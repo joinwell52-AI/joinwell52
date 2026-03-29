@@ -1,12 +1,21 @@
 # How to Build an Automated AI Development Team in Cursor
+# 如何在 Cursor 中搭建 AI 自动化开发团队
 
 > Just tell the PM what you need, go grab a coffee, and come back to review the results.
+> 
+> 你只需要跟 PM 说清楚要做什么，然后去喝杯咖啡，回来验收成果。
+
+**[📖 English](cursorAI-automated-team-EN.md)** | **[📖 中文版](cursorAI自动化团队机制详解.md)**
+
+---
 
 Build a 4-role AI team (PM + DEV + OPS + QA) in Cursor IDE. The AIs collaborate autonomously — developing, deploying, and testing on their own. You only talk to the PM.
 
+在 Cursor IDE 中搭建 PM + DEV + OPS + QA 四角色 AI 团队，AI 之间自主协同——自动开发、自动部署、自动测试，人类只需和 PM 沟通任务。
+
 **Battle-tested: 87 person-days of work in 17 days, 91 production deployments, zero incidents.**
 
-**[English Version](cursorAI-automated-team-EN.md)** | **[中文版](cursorAI自动化团队机制详解.md)**
+**实战验证：17 天完成 87 人天工作量，线上发版 91 次，零事故。**
 
 ---
 
