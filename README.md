@@ -103,11 +103,16 @@ PM-01: "All complete. Here's the report."
 ├── auto_patrol.py                    # Patrol bot source code (280 lines)
 ├── README.md                         # This file
 ├── roles/                            # 📋 Role definition files (ready to use)
-│   ├── PM-01.md                      # PM: Project Manager + Architect
-│   ├── PM-01-工作规范.md              # PM work standards
-│   ├── DEV-01.md                     # DEV: Full-stack Developer
-│   ├── OPS-01.md                     # OPS: Operations Engineer
-│   └── QA-01.md                      # QA: Quality Assurance Engineer
+│   ├── PM-01.md                      # PM 项目经理 + 架构师（中文）
+│   ├── PM-01-EN.md                   # PM: Project Manager + Architect (English)
+│   ├── PM-01-工作规范.md              # PM 工作规范（中文）
+│   ├── PM-01-Work-Standards.md       # PM Work Standards (English)
+│   ├── DEV-01.md                     # DEV 全栈开发工程师（中文）
+│   ├── DEV-01-EN.md                  # DEV: Full-stack Developer (English)
+│   ├── OPS-01.md                     # OPS 运维部署工程师（中文）
+│   ├── OPS-01-EN.md                  # OPS: Operations Engineer (English)
+│   ├── QA-01.md                      # QA 质量测试工程师（中文）
+│   └── QA-01-EN.md                   # QA: Quality Assurance Engineer (English)
 └── images/                           # Screenshots
 ```
 
