@@ -1,156 +1,148 @@
-# 如何在 Cursor 中搭建 AI 开发团队自动开发
+# How to Build an Automated AI Development Team in Cursor
 
-> 你只需要跟 PM 说清楚要做什么，然后去喝杯咖啡，回来验收成果。
+> Just tell the PM what you need, go grab a coffee, and come back to review the results.
 
-在 Cursor IDE 中搭建 PM + DEV + OPS + QA 四角色 AI 团队，AI 之间自主协同——自动开发、自动部署、自动测试，人类只需和 PM 沟通任务。
+Build a 4-role AI team (PM + DEV + OPS + QA) in Cursor IDE. The AIs collaborate autonomously — developing, deploying, and testing on their own. You only talk to the PM.
 
-**实战验证：17 天完成 87 人天工作量，线上发版 91 次，零事故。**
+**Battle-tested: 87 person-days of work in 17 days, 91 production deployments, zero incidents.**
 
----
-
-## 这个教程讲什么
-
-|  | 内容 | 
-|--|------|
-| **第一章** | 为什么要拆分角色——单人 AI 的瓶颈 |
-| **第二章** | 手把手搭建：目录结构 → 角色定义 → 巡检规则 → 开 4 个标签页 |
-| **第三章** | 核心创新：文件名即协议——零数据库、零消息队列，一个文件名编码 7 个字段 |
-| **第四章** | 任务流转：从下达到开发到部署到测试到归档的完整 7 步闭环 |
-| **第五章** | 工作规范：每个角色的"军规"，强制留痕原则 |
-| **第六章** | 自动巡检器：屏幕图像识别 + 事件驱动，附完整 Python 源代码（280行） |
-| **第七章** | 实际运行效果：产出数据 + 9 张运行截图 |
+**[English Version](cursorAI-automated-team-EN.md)** | **[中文版](cursorAI自动化团队机制详解.md)**
 
 ---
 
-## 核心创新：文件名即协议
+## What's Inside
 
-不需要数据库，不需要消息队列，不需要 API——**一个文件名承载全部路由信息**：
+|  | Content |
+|--|--------|
+| **Ch.1** | Why split into roles — limits of single-agent AI |
+| **Ch.2** | Step-by-step setup: directory structure → role definitions → patrol rules → 4 chat tabs |
+| **Ch.3** | Core innovation: Filename as Protocol — zero databases, zero message queues, 7 fields in one filename |
+| **Ch.4** | Task flow: 7-step closed loop from assignment → dev → deploy → test → archive |
+| **Ch.5** | Work standards: each role's "rules of engagement" + mandatory documentation |
+| **Ch.6** | Auto patrol bot: screen image recognition + event-driven, with full Python source (280 lines) |
+| **Ch.7** | Real-world results: production data + 9 running screenshots |
+
+---
+
+## Core Innovation: Filename as Protocol
+
+No database, no message queue, no API — **one filename carries all routing information**:
 
 ```
 TASK-20260329-006-PM01-to-DEV01.md
 │    │        │   │     │   │    │
-│    │        │   │     │   │    └── 格式：Markdown
-│    │        │   │     │   └────── 收件人：DEV-01 处理
-│    │        │   │     └────────── 方向：PM → DEV
-│    │        │   └──────────────── 发件人：PM-01 创建
-│    │        └──────────────────── 序号：当天第 6 个任务
-│    └───────────────────────────── 日期：2026年3月29日
-└────────────────────────────────── 类型：任务单
+│    │        │   │     │   │    └── Format: Markdown
+│    │        │   │     │   └────── Recipient: DEV-01
+│    │        │   │     └────────── Direction: PM → DEV
+│    │        │   └──────────────── Sender: PM-01
+│    │        └──────────────────── Sequence: 6th task of the day
+│    └───────────────────────────── Date: 2026-03-29
+└────────────────────────────────── Type: Task ticket
 ```
 
-7 个信息字段，0 个数据库表，0 行配置代码。
+7 fields, 0 database tables, 0 lines of config code.
 
 ---
 
-## 工作模式
+## How It Works
 
 ```
-你："帮我做一轮安全加固"
-PM-01："收到，我来拆解任务。"
+You: "Do a round of security hardening."
+PM-01: "Got it. Breaking it down now."
 
-              ——你可以去做别的事了——
+              — Go do something else —
 
-PM-01 拆解任务  → 写任务单到 tasks/
-DEV-01 自动领取 → 写代码、自测、提交报告
-PM-01 自动验收  → 创建部署任务
-OPS-01 自动部署 → 健康检查、写部署报告
-PM-01 自动安排  → 创建测试任务
-QA-01 自动测试  → 安全测试、压力测试、写报告
-PM-01 自动归档  → 全部完成
+PM-01 breaks down tasks → writes tickets to tasks/
+DEV-01 auto picks up    → codes, self-tests, submits report
+PM-01 auto reviews      → creates deploy task
+OPS-01 auto deploys     → health check, writes report
+PM-01 auto assigns      → creates test task
+QA-01 auto tests        → security + stress tests, writes report
+PM-01 auto archives     → all done
 
-你回来："做完了？"
-PM-01："全部完成。这是报告。"
-```
-
----
-
-## 运行截图
-
-**PM-01 逐项验收代码改动**
-
-![PM-01 验收](images/pm-01-01.png)
-
-**DEV-01 接到任务自动列 Todo 改代码**
-
-![DEV-01 工作](images/dev-01-00.png)
-
-**巡检器自动监控 + 事件驱动催人**
-
-![巡检器](images/巡检1.png)
-
-**tasks/ 目录文件命名实拍**
-
-![任务单](images/任务单.png)
-
----
-
-## 文件说明
-
-```
-├── cursorAI自动化团队机制详解.md      # 完整教程（1000+ 行）
-├── auto_patrol.py                    # 巡检器源代码（280行）
-├── README.md                         # 本文件
-├── roles/                            # 📋 角色定义文件（可直接参考复用）
-│   ├── PM-01.md                      # PM 项目经理 + 架构师（完整入职手册）
-│   ├── PM-01-工作规范.md              # PM 工作规范与历次教训
-│   ├── DEV-01.md                     # DEV 全栈开发工程师
-│   ├── OPS-01.md                     # OPS 运维部署工程师
-│   └── QA-01.md                      # QA 质量测试工程师
-└── images/                           # 截图
-    ├── pm-01-00.png                  # PM 巡检报告
-    ├── pm-01-01.png                  # PM 逐项验收
-    ├── PM-01-02.png                  # PM 批次归档
-    ├── dev-01-00.png                 # DEV 接任务改代码
-    ├── ops-01-00.png                 # OPS 部署后待命
-    ├── OA-01-00.png                  # QA 智能等待+代码审查
-    ├── 任务单.png                     # tasks/ 目录实拍
-    ├── 巡检.png                       # 巡检器启动
-    ├── 巡检1.png                      # 巡检器常态监控
-    └── tpl-*.png                      # 巡检器模板图片
+You come back: "Done?"
+PM-01: "All complete. Here's the report."
 ```
 
 ---
 
-## 适用场景
+## Screenshots
 
-- 用 Cursor 做项目开发，想让 AI 更自动化
-- 一个人管多个 AI Agent，需要它们自主协作
-- 想要完整的任务追踪和审计记录
-- 小团队 / 个人开发者，想用 AI 替代重复性工作
+**PM-01 reviewing code changes item by item**
 
-## 技术栈
+![PM-01 Review](images/pm-01-01.png)
 
-- **IDE**：Cursor（Agent 模式）
-- **巡检器**：Python 3.10 + pyautogui + pyperclip
-- **通信协议**：文件系统 + Markdown（零外部依赖）
-- **AI 模型**：Opus 4.6 / Sonnet 4.6 / GPT-5.4（按角色选配）
+**DEV-01 auto-creates Todo list and codes**
 
----
+![DEV-01 Working](images/dev-01-00.png)
 
-## 巡检器源代码
+**Patrol bot auto-monitoring + event-driven notifications**
 
-仓库内附 [`auto_patrol.py`](auto_patrol.py) —— 完整的 UI 自动化巡检器源代码（约 280 行），可直接运行。
+![Patrol](images/巡检1.png)
+
+**tasks/ directory — filenames in action**
+
+![Tasks](images/任务单.png)
 
 ---
 
-## 版权与授权声明
+## Repository Structure
 
-© 2026 joinwell52-AI
-保留所有权利。
+```
+├── cursorAI-automated-team-EN.md     # Full tutorial — English (960+ lines)
+├── cursorAI自动化团队机制详解.md      # Full tutorial — Chinese (1000+ lines)
+├── auto_patrol.py                    # Patrol bot source code (280 lines)
+├── README.md                         # This file
+├── roles/                            # 📋 Role definition files (ready to use)
+│   ├── PM-01.md                      # PM: Project Manager + Architect
+│   ├── PM-01-工作规范.md              # PM work standards
+│   ├── DEV-01.md                     # DEV: Full-stack Developer
+│   ├── OPS-01.md                     # OPS: Operations Engineer
+│   └── QA-01.md                      # QA: Quality Assurance Engineer
+└── images/                           # Screenshots
+```
 
-### 使用条款
+---
 
-1. **非商业使用**：允许在非商业场景下（个人学习、教学、公益分享）复制、分发和修改本文内容，前提是：
-   - 保留原作者署名与来源链接；
-   - 不得对内容进行歪曲、篡改或用于违法违规用途。
-2. **商业使用**：**严格禁止**任何形式的商业使用，包括但不限于：
-   - 将内容用于付费课程、付费文档、商业网站/公众号；
-   - 将内容整合进商业产品、服务或营销材料；
-   - 以任何方式直接或间接从本文内容获取商业利益。
-3. 未经作者书面授权，不得违反上述条款。违者将追究相应法律责任。
+## Use Cases
+
+- Using Cursor for development and want more AI automation
+- Managing multiple AI Agents that need to collaborate autonomously
+- Need complete task tracking and audit trails
+- Solo developers / small teams using AI to replace repetitive work
+
+## Tech Stack
+
+- **IDE**: Cursor (Agent mode)
+- **Patrol bot**: Python 3.10 + pyautogui + pyperclip
+- **Communication**: File system + Markdown (zero external dependencies)
+- **AI models**: Claude / GPT (choose per role)
+
+---
+
+## Patrol Bot Source Code
+
+Full UI automation patrol bot included: [`auto_patrol.py`](auto_patrol.py) — 280 lines, ready to run.
+
+---
+
+## Copyright & License
+
+© 2026 joinwell52-AI. All rights reserved.
+
+### Terms of Use
+
+1. **Non-commercial use**: You may copy, distribute, and modify this content for non-commercial purposes (personal learning, teaching, public sharing), provided that:
+   - Original author attribution and source links are retained;
+   - Content is not distorted, tampered with, or used for illegal purposes.
+2. **Commercial use**: **Strictly prohibited**, including but not limited to:
+   - Using content in paid courses, paid documents, commercial websites/accounts;
+   - Integrating content into commercial products, services, or marketing materials;
+   - Directly or indirectly obtaining commercial benefit from this content.
+3. Violation of these terms without written authorization from the author may result in legal action.
 
 ---
 
 **Author**: [joinwell52-AI](https://github.com/joinwell52-AI)
 
-*来自真实生产项目的实战经验。2026-03-29*
+*From real production project experience. 2026-03-29*
