@@ -1,3 +1,8 @@
+---
+layout: default
+title: "How to Build an Automated AI Development Team in Cursor"
+---
+
 # How to Build an Automated AI Development Team in Cursor
 
 > **Just tell the PM what you need, go grab a coffee, and come back to review the results.**
