@@ -16,7 +16,7 @@ Ready-to-use AI team role definitions. Copy and adapt for your own project.
 | Role | File | Description |
 |------|------|-------------|
 | PM-01 | [PM-01.md](PM-01) | 项目经理 + 架构师（完整入职手册） |
-| PM-01 Work Standards | [PM-01-工作规范.md](PM-01-工作规范) | PM 工作规范与历次教训 |
+| PM-01 Work Standards | [PM-01-Work-Standards-CN.md](PM-01-Work-Standards-CN) | PM 工作规范与历次教训 |
 | DEV-01 | [DEV-01.md](DEV-01) | 全栈开发工程师 |
 | OPS-01 | [OPS-01.md](OPS-01) | 运维部署工程师 |
 | QA-01 | [QA-01.md](QA-01) | 质量测试工程师 |

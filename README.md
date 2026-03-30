@@ -5,7 +5,7 @@
 > 
 > 你只需要跟 PM 说清楚要做什么，然后去喝杯咖啡，回来验收成果。
 
-**[📖 English](cursorAI-automated-team-EN.md)** | **[📖 中文版](cursorAI自动化团队机制详解.md)**
+**[📖 English](cursorAI-automated-team-EN.md)** | **[📖 中文版](cursorAI-automated-team-CN.md)**
 
 ---
 
@@ -99,13 +99,13 @@ PM-01: "All complete. Here's the report."
 
 ```
 ├── cursorAI-automated-team-EN.md     # Full tutorial — English (960+ lines)
-├── cursorAI自动化团队机制详解.md      # Full tutorial — Chinese (1000+ lines)
+├── cursorAI-automated-team-CN.md      # Full tutorial — Chinese (1000+ lines)
 ├── auto_patrol.py                    # Patrol bot source code (280 lines)
 ├── README.md                         # This file
 ├── roles/                            # 📋 Role definition files (ready to use)
 │   ├── PM-01.md                      # PM 项目经理 + 架构师（中文）
 │   ├── PM-01-EN.md                   # PM: Project Manager + Architect (English)
-│   ├── PM-01-工作规范.md              # PM 工作规范（中文）
+│   ├── PM-01-Work-Standards-CN.md     # PM 工作规范（中文）
 │   ├── PM-01-Work-Standards.md       # PM Work Standards (English)
 │   ├── DEV-01.md                     # DEV 全栈开发工程师（中文）
 │   ├── DEV-01-EN.md                  # DEV: Full-stack Developer (English)
