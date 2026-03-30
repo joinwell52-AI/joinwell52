@@ -35,6 +35,8 @@ PM-01: "All complete. 3 batches, 11 tasks, 91 deployments, zero incidents. Here'
 
 **17 days, 87 person-days of work, 91 production deployments, zero incidents. The human only talked to the PM.**
 
+> **Core Architecture: "Filename as Protocol" — Zero databases, zero message queues, zero configuration code.** All task routing, role dispatch, and status tracking rely entirely on a file naming convention + 4 `.mdc` rule files.
+
 This tutorial covers:
 
 1. **Why do this** — Where single-agent AI hits its limits
@@ -962,6 +964,65 @@ The core value of this system: **You only need to say one thing to the PM, and t
 - You come back and review the reports
 
 You can adjust the number of roles for your project (small projects can get by with just PM + DEV), but the core mechanisms — **Filename as Protocol + Automated Patrol + Mandatory Documentation** — are universal.
+
+---
+
+## Appendix A: What is a .mdc File?
+
+`.mdc` (Markdown Configuration) is Cursor's new Project Rules file format. It defines project-level, directory-level, and file-level coding standards, context constraints, and behavioral instructions for AI agents — more flexible and maintainable than the old `.cursorrules`.
+
+**File structure:**
+
+```
+---
+description: One-line description of what this rule does
+alwaysApply: true          # true = auto-inject into all sessions; false = on-demand
+---
+
+# Rule Title
+
+(Standard Markdown content below — specify what the AI should and shouldn't do)
+```
+
+**Key features:**
+
+| Feature | Description |
+|---------|-------------|
+| Location | `.cursor/rules/` in your project root |
+| Auto-loading | Rules with `alwaysApply: true` are injected into **every** Agent session in the project |
+| Format | YAML frontmatter + Markdown body; any text editor can create them |
+| Purpose | Controls Agent behavior boundaries, workflows, triggers, and prohibitions |
+
+**Role in this system:** The 4 patrol rule files are `.mdc` format. They give each Agent window the automatic behavior of "scan directories every 30 seconds after startup" — no code to write, no services to configure, just a text file.
+
+> Built on the **"Filename as Protocol"** minimalist architecture — **zero databases, zero message queues, zero configuration code** — all collaboration logic lives in `.mdc` rules and Markdown filenames.
+
+---
+
+## Appendix B: 4 Patrol Rule Files
+
+The `rules/` directory in this repository contains 4 complete `.mdc` patrol rule files. Copy them directly to your project's `.cursor/rules/` directory to use:
+
+| File | Role | Description |
+|------|------|-------------|
+| `pm-main-control-patrol.mdc` | PM-01 | Master patrol: task dispatch, review, archival |
+| `dev-task-patrol.mdc` | DEV-01 | Dev patrol: only processes to-DEV01 tasks |
+| `ops-task-patrol.mdc` | OPS-01 | Ops patrol: only processes to-OPS01 tasks |
+| `qa-task-patrol.mdc` | QA-01 | QA patrol: dual-track (task receiving + autonomous testing) |
+
+**How to use:**
+
+```bash
+# Create the rules directory in your project root
+mkdir -p .cursor/rules
+
+# Copy all 4 files
+cp rules/*.mdc .cursor/rules/
+```
+
+After copying, Cursor automatically loads these rules. When each Agent session starts, the rules are auto-injected into context — just say "start working" to an Agent and the patrol begins.
+
+> **Note:** The QA rule file contains placeholder values for test accounts, test URLs, and API endpoints. Replace them with your own project's configuration.
 
 ---
 
