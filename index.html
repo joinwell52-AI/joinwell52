@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursor AI Automated Team | Cursor AI 自动化开发团队</title>
+    <meta name="description" content="Build a 4-role AI team (PM + DEV + OPS + QA) in Cursor IDE that collaborates autonomously. 在 Cursor 中搭建 AI 自动化开发团队。">
+    <meta name="keywords" content="Cursor, AI Agent, Multi-Agent, Automation, AI Team, Developer Tools">
+    <meta property="og:title" content="Cursor AI Automated Team">
+    <meta property="og:description" content="Build a 4-role AI team in Cursor IDE. Just tell the PM, go grab a coffee, come back to review.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://joinwell52-ai.github.io/joinwell52/">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1117 100%);
+            color: #e6edf3;
+            min-height: 100vh;
+        }
+        .container { max-width: 960px; margin: 0 auto; padding: 40px 20px; }
+
+        /* Header */
+        .hero { text-align: center; padding: 60px 0 40px; }
+        .hero h1 {
+            font-size: 2.4em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #58a6ff, #bc8cff, #f778ba);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+        .hero h2 {
+            font-size: 1.6em;
+            font-weight: 400;
+            color: #8b949e;
+            margin-bottom: 30px;
+        }
+        .hero .tagline {
+            font-size: 1.15em;
+            color: #8b949e;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        .hero .stats {
+            display: inline-block;
+            background: rgba(56, 139, 253, 0.1);
+            border: 1px solid rgba(56, 139, 253, 0.3);
+            border-radius: 12px;
+            padding: 12px 24px;
+            font-size: 1.05em;
+            color: #58a6ff;
+            margin-bottom: 40px;
+        }
+
+        /* Language switcher */
+        .lang-switch {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 50px;
+        }
+        .lang-switch a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 1.05em;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .lang-switch .en {
+            background: linear-gradient(135deg, #238636, #2ea043);
+            color: #fff;
+        }
+        .lang-switch .cn {
+            background: linear-gradient(135deg, #da3633, #f85149);
+            color: #fff;
+        }
+        .lang-switch a:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+
+        /* Roles */
+        .roles {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 50px;
+        }
+        .role-card {
+            background: rgba(22, 27, 34, 0.8);
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 24px 16px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .role-card:hover { border-color: #58a6ff; transform: translateY(-4px); }
+        .role-card .icon { font-size: 2.2em; margin-bottom: 10px; }
+        .role-card h3 { font-size: 1em; margin-bottom: 6px; color: #e6edf3; }
+        .role-card p { font-size: 0.85em; color: #8b949e; line-height: 1.4; }
+
+        /* Flow */
+        .flow {
+            background: rgba(22, 27, 34, 0.6);
+            border: 1px solid #30363d;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 50px;
+        }
+        .flow h3 { text-align: center; font-size: 1.3em; margin-bottom: 24px; color: #58a6ff; }
+        .flow-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .flow-step {
+            text-align: center;
+            flex: 1;
+            min-width: 100px;
+        }
+        .flow-step .num {
+            width: 36px; height: 36px;
+            background: #238636;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+        .flow-step p { font-size: 0.8em; color: #8b949e; }
+        .flow-arrow { color: #30363d; font-size: 1.5em; flex-shrink: 0; }
+
+        /* Innovation */
+        .innovation {
+            background: rgba(56, 139, 253, 0.05);
+            border: 1px solid rgba(56, 139, 253, 0.2);
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        .innovation h3 { font-size: 1.3em; color: #58a6ff; margin-bottom: 16px; }
+        .innovation .filename {
+            font-family: 'SFMono-Regular', Consolas, monospace;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 16px 24px;
+            font-size: 1em;
+            color: #f0883e;
+            display: inline-block;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+        .innovation p { color: #8b949e; font-size: 1em; }
+        .innovation strong { color: #e6edf3; }
+
+        /* Links */
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+        .links a {
+            padding: 10px 20px;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            color: #58a6ff;
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: all 0.2s;
+        }
+        .links a:hover { background: rgba(56,139,253,0.1); border-color: #58a6ff; }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid #21262d;
+            color: #484f58;
+            font-size: 0.9em;
+        }
+        .footer a { color: #58a6ff; text-decoration: none; }
+
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 1.6em; }
+            .hero h2 { font-size: 1.2em; }
+            .roles { grid-template-columns: repeat(2, 1fr); }
+            .flow-steps { flex-direction: column; }
+            .flow-arrow { transform: rotate(90deg); }
+            .lang-switch { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>Cursor AI Automated Team</h1>
+            <h2>Cursor AI 自动化开发团队</h2>
+            <p class="tagline">
+                Just tell the PM what you need, go grab a coffee, come back to review the results.<br>
+                你只需要跟 PM 说清楚要做什么，然后去喝杯咖啡，回来验收成果。
+            </p>
+            <div class="stats">
+                87 person-days in 17 days &nbsp;·&nbsp; 91 deployments &nbsp;·&nbsp; 0 incidents
+            </div>
+        </div>
+
+        <div class="lang-switch">
+            <a href="cursorAI-automated-team-EN.md" class="en">📖 English Tutorial</a>
+            <a href="cursorAI%E8%87%AA%E5%8A%A8%E5%8C%96%E5%9B%A2%E9%98%9F%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3.md" class="cn">📖 中文教程</a>
+        </div>
+
+        <div class="roles">
+            <div class="role-card">
+                <div class="icon">🎯</div>
+                <h3>PM-01</h3>
+                <p>Project Manager<br>项目经理 + 架构师</p>
+            </div>
+            <div class="role-card">
+                <div class="icon">💻</div>
+                <h3>DEV-01</h3>
+                <p>Full-stack Developer<br>全栈开发工程师</p>
+            </div>
+            <div class="role-card">
+                <div class="icon">🚀</div>
+                <h3>OPS-01</h3>
+                <p>Operations Engineer<br>运维部署工程师</p>
+            </div>
+            <div class="role-card">
+                <div class="icon">🔍</div>
+                <h3>QA-01</h3>
+                <p>QA Engineer<br>质量测试工程师</p>
+            </div>
+        </div>
+
+        <div class="flow">
+            <h3>How It Works / 工作流程</h3>
+            <div class="flow-steps">
+                <div class="flow-step">
+                    <div class="num">1</div>
+                    <p>You tell PM<br>你告诉 PM</p>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step">
+                    <div class="num">2</div>
+                    <p>PM assigns<br>PM 派任务</p>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step">
+                    <div class="num">3</div>
+                    <p>DEV codes<br>DEV 写代码</p>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step">
+                    <div class="num">4</div>
+                    <p>OPS deploys<br>OPS 部署</p>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step">
+                    <div class="num">5</div>
+                    <p>QA tests<br>QA 测试</p>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step">
+                    <div class="num">6</div>
+                    <p>You review<br>你验收</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="innovation">
+            <h3>Core Innovation: Filename as Protocol<br>核心创新：文件名即协议</h3>
+            <div class="filename">TASK-20260329-006-PM01-to-DEV01.md</div>
+            <p>
+                <strong>7 fields, 0 databases, 0 message queues, 0 config code.</strong><br>
+                7 个字段，0 个数据库，0 个消息队列，0 行配置代码。
+            </p>
+        </div>
+
+        <div class="links">
+            <a href="https://github.com/joinwell52-AI/joinwell52">⭐ GitHub</a>
+            <a href="https://gitee.com/joinwell52/cursor-ai">🇨🇳 Gitee 国内镜像</a>
+            <a href="auto_patrol.py">🤖 Patrol Bot Source</a>
+            <a href="roles/">📋 Role Templates</a>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 <a href="https://github.com/joinwell52-AI">joinwell52-AI</a> · Non-commercial use only · From real production experience</p>
+        </div>
+    </div>
+</body>
+</html>
