@@ -1,3 +1,7 @@
+> **🚀 This methodology is now a real product!** &nbsp; [**CodeFlow Product Page**](https://joinwell52-ai.github.io/codeflow-pwa/promotion/) · [GitHub](https://github.com/joinwell52-AI/codeflow-pwa) · [Try PWA](https://joinwell52-ai.github.io/codeflow-pwa/)
+>
+> **🚀 这套方法论已经做成了产品！** &nbsp; [**码流产品主页**](https://joinwell52-ai.github.io/codeflow-pwa/promotion/) · [GitHub](https://github.com/joinwell52-AI/codeflow-pwa) · [手机端 PWA](https://joinwell52-ai.github.io/codeflow-pwa/)
+
 # How to Build an Automated AI Development Team in Cursor
 # 如何在 Cursor 中搭建 AI 自动化开发团队
 
