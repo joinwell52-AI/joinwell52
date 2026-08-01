@@ -102,6 +102,18 @@ export default defineConfig({
     siteTitle: 'Research Center',
     search: { provider: 'local' },
     socialLinks: [{ icon: 'github', link: 'https://github.com/joinwell52-AI/joinwell52' }],
+    i18nRouting: (_data, route, targetLocale) => {
+      const path = route.path
+      if (targetLocale === 'zh') {
+        if (path === '/' || path === '/en/' || path === '/en') return '/zh/'
+        if (path.startsWith('/en/')) return `/zh/${path.slice(4)}`
+        if (path.startsWith('/zh/')) return path
+        return `/zh${path}`
+      }
+      if (path === '/zh/' || path === '/zh') return '/'
+      if (path.startsWith('/zh/')) return `/en/${path.slice(4)}`
+      return path
+    },
     locales: {
       root: {
         label: 'English',
