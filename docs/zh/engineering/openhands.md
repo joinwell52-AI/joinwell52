@@ -1,5 +1,9 @@
 ---
 title: OpenHands Agent Canvas — 工程分析
+date: '2026-08-01'
+column: open-source-engineering
+category: daily
+summary: 围绕 Skill、连接健康、自动触发、Runtime 选择与操作者体验的工程对标。
 outline: deep
 ---
 
