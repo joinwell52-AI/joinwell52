@@ -3,6 +3,7 @@ import type { Theme } from 'vitepress'
 import { withBase } from 'vitepress'
 import PortalHome from './components/PortalHome.vue'
 import ArticleCover from './components/ArticleCover.vue'
+import ResearchNotes from './components/ResearchNotes.vue'
 import './custom.css'
 import './mobile-fix.css'
 import './rvs.css'
@@ -44,6 +45,7 @@ export default {
   enhanceApp({ app, router }) {
     app.component('PortalHome', PortalHome)
     app.component('ArticleCover', ArticleCover)
+    app.component('ResearchNotes', ResearchNotes)
 
     if (typeof window !== 'undefined') {
       const apply = () => window.requestAnimationFrame(enhancePortal)
