@@ -1,136 +1,176 @@
-## 4.3 聚合与治理重建程序
+## 3.6 读端聚合与治理重建
 
-给定无序来源候选集合 `O` 与固定 Profile `P`，符合规范的实现执行两个阶段：
+TMPA 的读取面包含两个概念上独立的阶段：**来源聚合**与**治理重建**。
 
-```text
-AGGREGATE(O):
-  发现并保留每个来源工件及其原始字节
-  解析候选封装，保留解析失败诊断
-  建立对象 ID、写者流、序号、主载体、引用与完整性索引
-  字节相同观测可用于投影去重，但保留来源
-  相同 ID、不同内容必须保留为冲突候选
+令 `O_τ` 为观测时刻 `τ` 可见的有限来源候选集合。保留来源的聚合器 `A` 发现来源工件，保留来源身份与字节，解析候选封装，索引 ID 与引用，并执行 Reader 所需的确定性规范化：
 
-RECONSTRUCT(C, P):
-  验证对象结构、类型、Digest 与可选签名
-  验证一任务一主载体和单写者规则
-  按写者流与显式序号建立局部顺序
-  仅根据 Profile 声明关系建立跨流依赖
-  验证角色、职责分离、生命周期和前置证据
-  检测缺失引用、禁止环和未解决冲突
-  构建偏序流程与治理图
-  产生三值治理判断及规范问题集合
-  规范化图和问题输出
+`C_τ = A(O_τ)`
+
+聚合器 **MUST NOT** 判断哪项声明为真，**MUST NOT** 静默修复冲突，**MUST NOT** 发明缺失证据，也 **MUST NOT** 把到达顺序转换为治理顺序。它的职责是构造治理 Reader 可用的完整规范候选集合 `C_τ`，同时保留每项来源候选的 Provenance。
+
+令 `P` 为固定规则 Profile，其中包含 Schema、类型规则、角色分配、生命周期规则、关系语义、规范化规则、冲突策略与输出规范化规则。治理 Reader 计算：
+
+`R_P(C_τ) = (G_τ, I_τ)`
+
+其中 `G_τ` 是规范重建的偏序流程与治理图，`I_τ` 是规范问题集合。`G_τ` 表达工作进度、责任、生命周期、复核、批准、拒绝、恢复与审计关系，同时保留局部流顺序、显式跨流依赖和不可比较对象之间的并发；它不是权威总时间线。
+
+后文可用 `R_P(O)` 简写组合 Pipeline `R_P(A(O))`。核心确定性要求是排列不变性。对于同一规范候选集合的任意排列 `π`：
+
+`R_P(A(π(O))) = R_P(A(O))`
+
+等式适用于 `G` 与 `I` 的规范序列化，不适用于偶然的内存顺序或诊断格式。延迟到达会改变当前可用集合，因此可能合法地把 partial 视图改变为 authoritative 或 disputed；同一集合的不同枚举顺序 **MUST NOT** 改变结果。
+
+**确定性命题。** 令 `O` 为有限来源多重集合，`P` 为固定 Profile。若：(1) 来源规范化是来源身份和被覆盖字节的纯函数；(2) 重复分类、验证、权限、生命周期检查和问题 ID 均由规范对象值与 `P` 决定；(3) 图边只从流内序号与 Profile 声明关系导出；(4) 图与问题序列化使用已发布的确定性排序及 Tie-break 规则，则 `R_P(A(O))` 对来源枚举顺序不变。
+
+**证明概要。** 任意枚举均被聚合为同一规范索引候选多重集合；逐对象验证与顺序无关；重复 ID、流缺口、缺失引用、禁止环、权限冲突和生命周期冲突均在同一集合与关系上计算。因此，每次排列得到相同的接受节点集合与有向边集合。规范问题 ID、确定性排序和只用于表示不可比较节点的稳定 Tie-break 产生字节等价的 `G` 与 `I`。该命题只证明固定 Profile 下的排列不变性，不证明语义真实性、Profile 正确性、对受损信任根的抵抗或不同证据集合之间的相等。更强保证仍需机械化证明与可执行语料库。
+
+重建主题或子图的视图分类为：
+
+- **authoritative：** 必需证据有效，且没有影响结论的未解决完整性、权限、生命周期、顺序或必需引用问题；
+- **partial：** 必需证据缺失，或流/依赖不完整；
+- **disputed：** 多项有效但互不兼容的治理声明尚未解决；
+- **quarantined：** Profile 定义的完整性、身份、重复 ID 或禁止环条件，使受影响证据不能进入权威重建。
+
+认证是正交的保证标签。对象或视图可以在 TMPA Core 下结构性 authoritative，但在更强身份 Profile 下仍未认证；此时 **MUST NOT** 将其表述为具有认证完整性。
+
+TMPA 要求**保留冲突**：有效但矛盾的对象必须保持可见，直至出现新的授权解决对象。TMPA 也要求**扩展时保留证据**：增加候选证据不得擦除既有来源证据。治理状态不保证对任意集合扩展单调，因为新增有效证据可能把 authoritative 合法地改变为 partial、disputed 或 quarantined。
+
+确定性拓扑序列 **MAY** 用于交换或显示，但不得增加不可比较节点之间的治理顺序。C11 验证聚合与重建确定性；C03、C04、C09、C10、C12 分别验证 ID、顺序、依赖、环与冲突保留行为。
+
+## 3.7 完整性与签名证据
+
+TMPA 区分三个经常被混淆的属性：
+
+1. **归属（Attribution）：** 对象声明创建者与责任角色；
+2. **完整性（Integrity）：** 能够检测对象发布后的修改；
+3. **认证完整性（Authenticated integrity）：** 对象通过密码学方式绑定到已验证身份或密钥。
+
+TMPA Core 要求归属与完整性证据。只有应用可信身份、签名与密钥管理 Profile 时，部署 **MAY** 声称认证完整性。
+
+完整性记录标识：规范化 Profile、Hash 算法、内容 Digest、Profile 要求的前驱或引用 Digest，以及可选的签名算法、密钥 ID 与签名值。
+
+角色标签不是密码学签名。没有可信身份绑定的 Digest 可以检测修改，却不能证明对象由谁创建。有效签名在部署信任模型内证明来源与完整性，但不证明签名内容在语义上真实。
+
+# 4. 规范对象、编码与重建
+
+## 4.1 规范对象 Schema
+
+以下 JSON Schema 定义 TMPA Core V1.0 规范治理对象。它约束单个治理对象的结构。ID 唯一性、流连续性、角色授权、生命周期合法性、引用解析和确定性重建等跨对象属性，由适用 Profile 与 Reader 评估，不能由单对象 Schema 单独建立。
+
+实现只能在 `extensions` 下增加 Profile 特定字段，并且 **MUST** 保留所有 Core 字段的既定含义。
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tmpa:schema:governance-object:v1",
+  "title": "TMPA Governance Object V1",
+  "$comment": "Structural validation does not establish role authority, lifecycle legality, cross-object uniqueness, or integrity verification.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "tmpa_version",
+    "id",
+    "type",
+    "stream",
+    "creator",
+    "role",
+    "created_at",
+    "lifecycle",
+    "references",
+    "content",
+    "integrity"
+  ],
+  "properties": {
+    "tmpa_version": { "const": "1.0" },
+    "id": { "type": "string", "minLength": 1 },
+    "type": { "type": "string", "minLength": 1 },
+    "stream": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "sequence"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "sequence": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "creator": { "type": "string", "minLength": 1 },
+    "role": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile", "state"],
+      "properties": {
+        "profile": { "type": "string", "minLength": 1 },
+        "state": { "type": "string", "minLength": 1 }
+      }
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["relation", "target"],
+        "properties": {
+          "relation": { "type": "string", "minLength": 1 },
+          "target": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "content": {
+      "type": "object",
+      "required": ["media_type", "body"],
+      "properties": {
+        "media_type": { "type": "string", "minLength": 1 },
+        "body": {}
+      },
+      "additionalProperties": true
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["canonicalization", "hash_algorithm", "digest"],
+      "dependentRequired": {
+        "signature_algorithm": ["key_id", "signature"],
+        "key_id": ["signature_algorithm", "signature"],
+        "signature": ["signature_algorithm", "key_id"]
+      },
+      "properties": {
+        "canonicalization": { "type": "string", "minLength": 1 },
+        "hash_algorithm": { "type": "string", "minLength": 1 },
+        "digest": { "type": "string", "minLength": 1 },
+        "signature_algorithm": { "type": ["string", "null"] },
+        "key_id": { "type": ["string", "null"] },
+        "signature": { "type": ["string", "null"] }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "signature_algorithm": { "type": "null" },
+            "key_id": { "type": "null" },
+            "signature": { "type": "null" }
+          }
+        },
+        {
+          "required": ["signature_algorithm", "key_id", "signature"],
+          "properties": {
+            "signature_algorithm": { "type": "string", "minLength": 1 },
+            "key_id": { "type": "string", "minLength": 1 },
+            "signature": { "type": "string", "minLength": 1 }
+          }
+        }
+      ]
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}
 ```
 
-组合运算为 `R_P(A(O)) = (G, I)`。同一规范来源集合与固定 Profile 必须产生相同候选集合、治理图和问题集合。来源到达顺序、文件系统枚举顺序和时间戳不得用于解决治理冲突。
+`lifecycle.state` 记录此不可变对象发布时声明的状态，不是可变当前状态字段。当前权威生命周期状态 **MUST** 从有效对象集合、已接受迁移证据与适用生命周期 Profile 重建。
 
-## 4.4 冲突与验证处理
+规范化 Profile **MUST** 定义 Digest 覆盖的精确表示；使用签名时，还 **MUST** 定义签名覆盖的精确表示与自引用完整性字段的排除或规范化方法。TMPA Core V1.0 要求显式声明该 Profile，但不强制唯一的字节级规范化算法。
 
-| 条件 | 必需行为 |
-|---|---|
-| Schema 或类型无效 | 保留来源诊断，排除权威重建，产生确定性问题 |
-| Digest 不匹配 | 保留完整性失败证据，排除完整对象集合 |
-| 签名缺失 | Core 可继续处理，但不得声称认证完整性 |
-| 同 ID、同内容 | 投影可安全去重，但不得删除来源证据 |
-| 同 ID、不同内容 | 所有变体退出权威图并产生关键冲突 |
-| 缺失引用 | 保持 `undetermined/partial` 并产生未解析引用问题 |
-| 流序号缺口 | 标记流不完整，不得虚构对象或迁移 |
-| 重复流序号 | 保留冲突对象，受影响状态保持 partial 或 disputed |
-| 非法生命周期迁移 | 保留尝试证据，不改变权威状态 |
-| 未授权角色动作 | 保留尝试，不应用于权威状态 |
-| 禁止环 | 隔离受影响子图，继续重建未受影响对象 |
-| 并行矛盾复核 | 保留所有有效复核，直至授权解决对象出现 |
-
-# 5. 威胁模型与信任假设
-
-TMPA 保护对象归属、发布后修改检测、生命周期和权限违规可见性、冲突保留、运行中断后的重建，以及执行/复核/批准责任分离。
-
-部署必须声明信任根，包括身份提供方、角色分配权威、密钥注册表、可信存储边界、人工管理员或治理委员会，以及可信验证器。把角色名写入文档不会自动建立信任根。
-
-需要考虑身份冒充、越权角色、对象篡改、重放、非法迁移、证据遗漏、首次发布时伪造但格式正确的证据、冲突发布、工具受损、Prompt Injection、删除或隐藏证据、时间操纵、错误自动修复、委托扩权、权限组合风险、陈旧委托、路径组合风险，以及名义独立但共享模型、控制器、凭证、Host 或管理主体的复核者。
-
-TMPA Core 不假定所有参与者诚实。结构、生命周期、Digest 和签名有效都不证明事实声明为真。事实保证需要工具回执、可复现输出、独立数据源、真实安全主体之间的交叉验证或人工批准。若执行者和复核者共享受损控制器或凭证，名义职责分离可能形成相关伪造。
-
-FCoP 文件系统 Profile 还需防止未经授权地向终态目录插入文件、修改已发布工件、删除证据、重放文件或制造路径/事件不一致。文件存在本身不是有效性证明。更强部署可以增加受限写权限、只增或版本化存储、远程公证、透明日志、复制和密码学签名。
-
-TMPA Core 不提供拜占庭共识。当身份、角色权威、密钥、存储和验证器全部受损时，TMPA 不能保证真实历史。
-
-## 5.1 角色与身份分离层级
-
-1. Prompt 级角色分离；
-2. 进程级身份分离；
-3. 凭证级分离；
-4. Host 级隔离；
-5. 管理域分离。
-
-Prompt 级分离可以支持工作流清晰度，但不是安全边界。强独立复核、认证责任或防篡改声明需要与威胁模型相称的凭证、Host 或管理域控制。
-
-## 5.2 安全声明边界
-
-| 声明 | 最低要求 |
-|---|---|
-| 文本可追踪 | 持久规范对象与引用 |
-| 篡改检测 | 对受保护完整性元数据执行确定性 Digest 验证 |
-| 认证完整性 | 验证签名与可信密钥绑定 |
-| 授权强制 | 验证角色分配与动作策略 |
-| 语义声明验证 | Core 之外的领域证据或独立验证 |
-| 不可否认 | Core 之外的法律与密码学 Profile |
-| 拜占庭韧性 | 外部共识或等价机制 |
-
-# 9. TMPA Core 规范
-
-## 9.1 规范语言
-
-**MUST、MUST NOT、SHALL、SHALL NOT、SHOULD、SHOULD NOT、MAY** 用于定义一致性要求。
-
-## 9.2 对象要求
-
-每个治理对象必须符合 Core Schema 和文档类型定义，具有治理域内唯一 ID、恰好一个创建者、一个责任角色、一条流和正整数序号、文档类型、生命周期 Profile 与声明状态、规范文本内容、引用数组和完整性证据。
-
-已发布对象不可变。更正、拒绝、取代、回滚或解决必须创建新对象或迁移记录并保留先前证据。Schema 有效不得被解释为 ID 唯一、权限合法、生命周期合法、引用有效、Digest 正确或身份已认证。
-
-面向任务的 Profile 必须为每项受治理工作定义一个稳定主载体。后续对象必须引用该载体或 Profile 定义的后继关系。每个已发布治理对象必须只有一个写者；其他参与者必须通过新的可归属对象响应。
-
-## 9.3 类型注册要求
-
-实现必须发布文档类型注册表，并定义允许角色、必填字段、允许引用、生命周期 Profile 和验证规则。文档不得同时充当自己的独立复核或批准，除非存在明确且经过授权的例外对象。
-
-## 9.4 角色要求
-
-角色声明必须根据相关时刻有效的权威角色分配验证。参与者不得在角色范围之外执行受保护动作。声称职责分离的部署必须定义和强制不兼容角色组合。
-
-## 9.5 流要求
-
-每条流必须具有稳定 ID。每个对象恰好属于一条写者流。独立流可以异步推进，不需要同步前进。流内序号必须为正整数且唯一。重复序号和序号缺口必须报告，不得虚构缺失对象或用时间戳替代顺序。跨流之间没有 Profile 定义关系时，Reader 不得推断权威顺序。
-
-## 9.6 生命周期与三值判断要求
-
-每个生命周期 Profile 必须定义状态、初始状态、终态、动作、合法迁移、授权角色、前置条件和必需证据。非法或未授权迁移不得改变权威状态，尝试必须保持可观察。终态和归档操作必须保留完整重建所需的对象和迁移证据。
-
-治理 Reader 必须为受治理主体产生以下三种语义判断之一：
-
-- `valid`：所需证据存在且适用权限、生命周期、引用和完整性规则均成立；
-- `invalid`：证据明确违反适用规则，且违规已经能够被确定性证明；
-- `undetermined`：证据缺失、冲突、等待人工决定，或当前不足以证明 valid 或 invalid。
-
-实现必须保留 `undetermined`，不得在没有授权解决对象时将其强制转换为 valid 或 invalid。若对象依赖一个 `undetermined` 的前置对象，则其依赖结论必须保持 `undetermined`，直到该依赖得到解决。
-
-## 9.7 引用要求
-
-每个引用必须标识关系类型和目标 ID。Profile 必须定义哪些关系创建顺序依赖、哪些仅为非排序链接，以及哪些关系必须无环。缺失目标必须报告，依赖不得被视为已满足，并产生 `undetermined/partial`。禁止环的受影响子图必须隔离；未受影响对象应继续可重建。
-
-## 9.8 完整性要求
-
-规范化与 Digest 算法必须由版本化完整性 Profile 声明。Reader 必须重新计算 Digest。Digest 不匹配必须报告，相关对象不得进入完整权威集合。签名元数据存在时必须作为完整组提供，并验证签名、密钥状态和身份绑定。没有签名允许满足 Core，但不得声称认证完整性。Schema、Digest、签名、权限或生命周期有效都不得被表述为事实声明真实。
-
-## 9.9 聚合与 Reader 重建要求
-
-聚合器必须保留来源身份和内容，并产生确定性规范候选集合。它不得静默解决冲突、虚构对象或把到达顺序变成治理顺序。
-
-对于同一候选集合和固定 Profile，Reader 必须产生相同规范偏序图和问题集合；保留流内顺序、显式跨流关系和不可比较对象的并发；保留来源对象；保留矛盾证据直至授权解决；报告重复 ID、序号缺口、非法迁移、越权动作、缺失引用、禁止环和完整性失败；区分三值语义和视图分类；对问题与视图元素使用确定性排序。
-
-视图映射为：`valid → authoritative`；完整性或结构违规可形成 `invalid/quarantined`；缺失证据形成 `undetermined/partial`；冲突证据形成 `undetermined/disputed`；等待人工决定形成 `undetermined/pending_human`。
-
-## 9.10 恢复要求
-
-替代参与者必须能够从持久治理对象和 Profile 判断当前权威或显式 partial 状态、责任角色、未解决要求、相关结果/复核/批准/拒绝，以及完整性、权限、顺序、引用和验证问题。恢复不得要求访问前任的隐藏思维链；未表示的执行上下文必须报告为缺失而不是猜测。
+Schema 有效只是进入权威治理视图的必要条件而非充分条件。Reader 仍 **MUST** 检查 ID 唯一性、类型规则、流顺序、权限、生命周期、引用、Digest 与适用的签名策略。

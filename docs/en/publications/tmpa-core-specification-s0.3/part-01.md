@@ -19,10 +19,10 @@ outline: deep
 ## Textual Multi-Agent Process Architecture — Core Objects, Reader Semantics, and Conformance
 
 > **Specification Version:** Draft S0.3  
-> **Source Baseline:** `TMPA-Paper-v1.md`, Draft V1.0-R24  
+> **Historical Extraction Baseline:** TMPA Draft V1.0-R24; current specification maintained directly in this GitHub document
 > **Status:** Extracted Normative Draft  
 > **Extraction Date:** 2026-07-31  
-> **Authority:** The combined TMPA master remains authoritative until this specification is separately frozen as TMPA Core V1.0.
+> **Authority:** This GitHub document is the sole normative source for TMPA Core S0.3. The Architecture Paper is theoretical and the Implementation Case Report is evidentiary; neither may redefine this specification.
 
 ---
 

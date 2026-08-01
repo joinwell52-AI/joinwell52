@@ -20,9 +20,10 @@ outline: deep
 
 > **文档版本：** Draft I0.3  
 > **状态：** 作者生成的实施与案例报告  
-> **来源基线：** TMPA Draft V1.0-R24  
+> **历史证据基线：** TMPA Draft V1.0-R24
 > **报告日期：** 2026-07-31  
 > **一致性语料库：** `tmpa-draft-v1-c01-c14-20260731`
+> **权威边界：** 本报告只提供工程证据，不具有规范性；TMPA Core 要求仅由 GitHub Core Specification 定义。
 
 # 摘要
 

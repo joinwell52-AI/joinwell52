@@ -19,10 +19,10 @@ outline: deep
 ## An AI-Native Software Architecture Theory for Governed Multi-Agent Organizational Work in SMEs
 
 > **Architecture Paper Draft:** A0.4  
-> **Derived from:** TMPA Draft V1.0-R23  
+> **Historical Source Baseline:** TMPA Draft V1.0-R23; theory aligned through R31
 > **Status:** Publication Working Draft  
 > **Revision Date:** 2026-07-31  
-> **Authority:** The combined TMPA master and future Core specification remain normative.
+> **Publication Authority:** This GitHub document is the authoritative TMPA architecture paper. The separately maintained TMPA Core Specification is normative; the Implementation Case Report is evidentiary and non-normative.
 # Abstract
 
 Large language models are moving from isolated question answering into long-running, tool-using, and multi-agent execution. Tool traces and conversation histories may show what occurred, but they do not by themselves establish authorized responsibility, legal lifecycle transitions, independent review, or recoverable governance state.

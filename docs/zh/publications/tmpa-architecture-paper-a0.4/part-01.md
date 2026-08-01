@@ -19,10 +19,10 @@ outline: deep
 ## 面向中小企业受治理多智能体组织工作的 AI 原生软件架构理论
 
 > **架构论文草稿：** A0.4  
-> **源自：** TMPA Draft V1.0-R23  
+> **历史来源基线：** TMPA Draft V1.0-R23；理论已对齐至 R31
 > **状态：** 出版工作草稿  
 > **修订日期：** 2026-07-31  
-> **权威性：** TMPA 综合母版及未来发布的 Core Specification 仍为规范性来源。
+> **出版权威：** 本 GitHub 文档是 TMPA 架构论文的权威版本；独立维护的 TMPA Core Specification 是规范性来源；Implementation Case Report 仅提供工程证据，不具有规范性。
 
 # 摘要
 

@@ -76,9 +76,9 @@ The first author-produced C01–C14 corpus is maintained as a separate empirical
 
 ---
 
-# Appendix A. Source Traceability (Informative)
+# Appendix A. Historical Source Traceability (Informative)
 
-| Core specification content | Combined-master source | Extraction treatment |
+| Core specification content | Historical source section | Current treatment |
 |---|---|---|
 | terminology and representation stages | Section 1.5 | retained and renumbered |
 | governance objects, roles, lifecycle, streams, aggregation, integrity | Sections 4.1–4.7 | retained and renumbered |
@@ -89,7 +89,7 @@ The first author-produced C01–C14 corpus is maintained as a separate empirical
 | fixture and result-reporting requirements | Section 10.5 | retained; current product baseline removed |
 | compliance crosswalk boundary | Section 10.6 | retained |
 
-The architecture paper may summarize this specification but cannot redefine it. The implementation and case report may provide evidence against these clauses but cannot change their meaning. Until TMPA Core V1.0 is frozen, normative changes are made in the combined master and regenerated into this derivative.
+The Architecture Paper may summarize this specification but cannot redefine it. The Implementation Case Report may provide evidence against these clauses but cannot change their meaning. The historical combined draft records provenance only and has no current editorial or normative authority. All S0.3 and later normative changes are maintained directly in this GitHub Core Specification and represented by Git history.
 
 
 ## S0.3 Consolidated Theory Alignment

@@ -193,7 +193,7 @@ const categoryLabel = (category: ResearchCategory) => {
         <div class="rcv5-program-grid">
           <a class="rcv5-program tmpa" :href="p('/en/publications/', '/zh/publications/')">
             <div class="rcv5-program-cover"><span>GOVERNANCE</span><strong>T○</strong><i></i></div>
-            <div class="rcv5-program-body"><small>AI WORK DATA & GOVERNANCE</small><h3>TMPA</h3><p>{{ zh ? 'AI 工作数据与治理架构。' : 'AI work data and governance architecture.' }}</p><b>{{ zh ? '论文与规范' : 'Paper & specification' }} ↗</b></div>
+            <div class="rcv5-program-body"><small>TEXTUAL MULTI-AGENT GOVERNANCE</small><h3>TMPA</h3><p>{{ zh ? '文本化多智能体流程架构：以持久治理对象、单写者串行流、异步协作与确定性重建组织 AI 工作。' : 'A textual multi-agent process architecture built on durable governance objects, single-writer streams, asynchronous collaboration and deterministic reconstruction.' }}</p><b>{{ zh ? '论文与规范' : 'Paper & specification' }} ↗</b></div>
           </a>
           <a class="rcv5-program fcop-program" href="https://joinwell52-ai.github.io/FCoP/">
             <div class="rcv5-program-cover"><span>COORDINATION</span><img src="https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png" alt="FCoP logo"><i></i></div>

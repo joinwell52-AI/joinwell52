@@ -20,9 +20,10 @@ outline: deep
 
 > **Document Version:** Draft I0.3  
 > **Status:** Author-Produced Implementation and Case Report  
-> **Source Baseline:** TMPA Draft V1.0-R24  
+> **Historical Evidence Baseline:** TMPA Draft V1.0-R24
 > **Report Date:** 2026-07-31  
 > **Conformance Corpus:** `tmpa-draft-v1-c01-c14-20260731`
+> **Authority Boundary:** This report is evidentiary and non-normative. TMPA Core requirements are defined only by the GitHub Core Specification.
 
 ## Abstract
 
