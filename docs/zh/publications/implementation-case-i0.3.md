@@ -1,5 +1,15 @@
 ---
 title: TMPA–FCoP–CodeFlowMu 实施案例 — 草稿 I0.3
+type: implementation-case
+domain: TMPA
+version: I0.3
+status: public-draft
+source: github-main
+related:
+  - TMPA Architecture Paper
+  - TMPA Core Specification
+  - FCoP
+  - CodeFlowMu
 outline: deep
 ---
 
