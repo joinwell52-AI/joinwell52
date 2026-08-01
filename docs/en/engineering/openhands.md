@@ -1,5 +1,9 @@
 ---
 title: OpenHands Agent Canvas — Engineering Analysis
+date: '2026-08-01'
+column: open-source-engineering
+category: daily
+summary: An engineering benchmark for skills, connection health, automation triggers, runtime options and operator experience.
 outline: deep
 ---
 
