@@ -9,17 +9,15 @@ pageClass: tmpa-home
   <div class="hero-grid"></div>
   <div class="hero-inner">
     <div class="hero-copy">
-      <div class="hero-eyebrow"><span></span> INDEPENDENT AI RESEARCH · 独立 AI 研究</div>
+      <div class="hero-eyebrow"><span></span> JOINWELL52 RESEARCH CENTER · 独立 AI 研究</div>
       <h1><em>TMPA</em><br>Research Center</h1>
       <p class="hero-cn">AI 工作数据与数字员工治理架构</p>
-      <p class="hero-description">从真实工程出发，把每日观察、运行证据、架构规范与论文发布连接成一条持续演进的公开研究链。</p>
+      <p class="hero-description">连接 TMPA、FCoP、CodeFlowMu 与数字员工研究，从真实工程出发，把每日观察、运行证据、架构规范与论文发布组织成持续演进的公开研究体系。</p>
       <div class="hero-actions">
         <a class="hero-btn hero-btn-primary" href="./publications/">阅读 TMPA 论文 <span>↗</span></a>
         <a class="hero-btn hero-btn-secondary" href="./research/">进入研究中心 <span>→</span></a>
       </div>
-      <div class="hero-notes">
-        <span>Engineering First</span><i></i><span>Governance by Design</span><i></i><span>SME Oriented</span>
-      </div>
+      <div class="hero-notes"><span>Engineering First</span><i></i><span>Governance by Design</span><i></i><span>SME Oriented</span></div>
     </div>
     <div class="hero-visual" aria-label="TMPA research system"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div class="core-mark"><div class="core-symbol">T<span>○</span></div><small>AI WORK<br>GOVERNANCE</small></div><div class="orbit-node node-a"><b>TMPA</b><small>Governance</small></div><div class="orbit-node node-b"><b>FCoP</b><small>Coordination</small></div><div class="orbit-node node-c"><b>CodeFlowMu</b><small>Runtime</small></div></div>
   </div>
@@ -27,23 +25,40 @@ pageClass: tmpa-home
 
 <div class="home-container">
   <section class="signal-strip">
+    <div><strong>4</strong><span>核心研究计划</span></div>
     <div><strong>3</strong><span>公开出版草稿</span></div>
     <div><strong>2</strong><span>研究周报</span></div>
-    <div><strong>3</strong><span>行业与工程专题</span></div>
     <div><strong>V0.2</strong><span>数字员工纲领基线</span></div>
   </section>
 
+  <section class="home-section programs-section">
+    <div class="section-heading"><div><span class="section-index">01</span><p class="section-kicker">RESEARCH PROGRAMS</p><h2>研究中心的官方入口</h2></div><a href="./about">关于研究中心 →</a></div>
+    <div class="program-grid">
+      <a class="program-card program-tmpa" href="./publications/">
+        <div class="program-cover"><span class="program-code">01 / GOVERNANCE</span><div class="program-mark tmpa-mark">T○</div><div class="cover-lines"></div></div>
+        <div class="program-body"><small>RESEARCH & SPECIFICATION</small><h3>TMPA</h3><p>AI 工作数据与治理架构。负责事实、来源、验证、发布与知识晋级。</p><b>进入 TMPA 研究 →</b></div>
+      </a>
+      <a class="program-card program-fcop" href="https://joinwell52-ai.github.io/FCoP/">
+        <div class="program-cover"><span class="program-code">02 / COORDINATION</span><img src="https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png" alt="FCoP logo"><div class="cover-lines"></div></div>
+        <div class="program-body"><small>FORMAL COLLABORATION PROTOCOL</small><h3>FCoP</h3><p>面向多 Agent 正式协作、责任交接和生命周期闭环的协议体系。</p><b>访问 FCoP 官网 ↗</b></div>
+      </a>
+      <a class="program-card program-codeflow" href="https://github.com/joinwell52-AI/CodeFlowMu-open">
+        <div class="program-cover"><span class="program-code">03 / RUNTIME</span><div class="program-mark flow-mark">Cμ</div><div class="cover-lines"></div></div>
+        <div class="program-body"><small>DIGITAL EMPLOYEE RUNTIME</small><h3>CodeFlowMu</h3><p>数字员工开发与工作运行平台，负责调度、恢复、工具与完成门禁。</p><b>查看工程实现 ↗</b></div>
+      </a>
+      <a class="program-card program-employee" href="./digital-employee/architecture">
+        <div class="program-cover"><span class="program-code">04 / APPLICATION</span><div class="employee-glyph"><i></i><i></i><i></i><i></i></div><div class="cover-lines"></div></div>
+        <div class="program-body"><small>GOVERNED AI WORKFORCE</small><h3>Digital Employee</h3><p>以岗位、职责、技能、工作流、Runtime、治理与评估构成的软件定义工作单元。</p><b>阅读纲领性架构 →</b></div>
+      </a>
+    </div>
+  </section>
+
   <section class="home-section latest-section">
-    <div class="section-heading"><div><span class="section-index">01</span><p class="section-kicker">LATEST RESEARCH</p><h2>今天，我们在研究什么</h2></div><a href="./research/">全部研究 →</a></div>
+    <div class="section-heading"><div><span class="section-index">02</span><p class="section-kicker">LATEST RESEARCH</p><h2>今天，我们在研究什么</h2></div><a href="./research/">全部研究 →</a></div>
     <div class="lead-story">
       <a class="lead-story-main" href="./research/weekly/weekly-002"><div class="story-label">FEATURED · WEEKLY 002</div><h3>数字员工控制面<br>与工作 Runtime 的分层</h3><p>从 Workday Agent System of Record 与 OpenHands Agent Canvas 出发，判断 CodeFlowMu 如何形成面向中小企业的数字员工控制面与可靠运行时。</p><span class="story-link">阅读完整分析 <b>↗</b></span></a>
       <div class="lead-story-side"><a href="./industry/workday"><small>INDUSTRY ARCHITECTURE</small><h4>Workday：Agent System of Record</h4><p>所有权、岗位、成本、合规与生命周期如何成为数字劳动力控制面的核心。</p><span>查看分析 →</span></a><a href="./engineering/openhands"><small>GITHUB ENGINEERING</small><h4>OpenHands：从 Coding Agent 到 Agent Workspace</h4><p>Skill、连接健康、自动触发与操作者工作空间带来的工程启发。</p><span>查看分析 →</span></a></div>
     </div>
-  </section>
-
-  <section class="home-section system-section">
-    <div class="section-heading"><div><span class="section-index">02</span><p class="section-kicker">RESEARCH SYSTEM</p><h2>一套体系，三个稳定层次</h2></div></div>
-    <div class="system-flow"><a href="./publications/" class="system-card"><span>01 · GOVERNANCE</span><h3>TMPA</h3><p>AI 工作数据与治理架构。定义事实、来源、生命周期、验证、发布与知识晋级。</p><b>研究与规范 ↗</b></a><div class="flow-arrow">→</div><a href="https://github.com/joinwell52-AI/FCoP" class="system-card"><span>02 · COORDINATION</span><h3>FCoP</h3><p>正式协作与责任协议。通过 TASK、REPORT、ISSUE、REVIEW 形成闭环。</p><b>协议与证据 ↗</b></a><div class="flow-arrow">→</div><a href="https://github.com/joinwell52-AI/CodeFlowMu-open" class="system-card"><span>03 · RUNTIME</span><h3>CodeFlowMu</h3><p>数字员工开发与工作运行平台。负责调度、恢复、工具、工作流与完成门禁。</p><b>工程实现 ↗</b></a></div>
   </section>
 
   <section class="home-section publications-section">
