@@ -11,6 +11,8 @@ defineProps<{
   languageHref?: string
   languageLabel?: string
 }>()
+
+const localLink = (path?: string) => path ? withBase(path) : '#'
 </script>
 
 <template>
@@ -23,7 +25,7 @@ defineProps<{
       <div>
         <b v-if="version">{{ version }}</b>
         <i v-if="status">{{ status }}</i>
-        <a v-if="languageHref" :href="languageHref">{{ languageLabel }} →</a>
+        <a v-if="languageHref" :href="localLink(languageHref)">{{ languageLabel }} →</a>
       </div>
     </div>
   </header>
