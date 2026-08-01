@@ -1,6 +1,16 @@
-# Weekly Synthesis
+---
+title: Research Notes
+layout: page
+sidebar: false
+aside: false
+head:
+  - - meta
+    - http-equiv: refresh
+      content: '0; url=/joinwell52/en/research/'
+---
 
-Weekly reports combine academic papers, open-source engineering, industry architecture and CodeFlowMu implementation evidence.
+# Moved to Research Notes
 
-- [Weekly 002 — Digital Employee Control Plane and Work Runtime](./weekly-002)
-- [Weekly 001 — From Agent Frameworks to Governed Digital Employees](./weekly-001)
+Weekly Synthesis is now a metadata category inside the three Research Notes columns.
+
+[Open Research Notes →](/en/research/)
