@@ -1,5 +1,9 @@
 ---
 title: ServiceNow Autonomous Workforce — 架构分析
+date: '2026-08-01'
+column: industry-architecture
+category: daily
+summary: 岗位化 AI 工作者、确定性工作流、权限、升级与集中治理的企业对标。
 outline: deep
 ---
 
