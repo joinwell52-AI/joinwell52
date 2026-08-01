@@ -1,5 +1,9 @@
 ---
 title: ServiceNow Autonomous Workforce — Architecture Analysis
+date: '2026-08-01'
+column: industry-architecture
+category: daily
+summary: An enterprise benchmark for role-defined AI workers, deterministic workflows, authority, escalation and centralized governance.
 outline: deep
 ---
 
