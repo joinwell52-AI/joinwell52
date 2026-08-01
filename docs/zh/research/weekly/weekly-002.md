@@ -1,5 +1,9 @@
 ---
 title: Weekly 002 — 数字员工控制面与工作 Runtime
+date: '2026-08-01'
+column: digital-employee
+category: weekly
+summary: 综合 Workday Agent System of Record、OpenHands Agent Canvas 与 CodeFlowMu 的工程方向。
 outline: deep
 ---
 
