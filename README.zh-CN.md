@@ -4,12 +4,12 @@
 
 [English](./README.md) · **简体中文**
 
-[![研究门户](https://img.shields.io/badge/研究门户-Portal_V5-1f6feb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/)
+[![研究门户](https://img.shields.io/badge/研究门户-Research_OS-1f6feb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/)
 [![研究状态](https://img.shields.io/badge/状态-持续研究-16a34a?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/research/)
 
 ## 唯一事实源
 
-本 GitHub 仓库是 joinwell52 Research Center 的**唯一权威研究数据库**。论文、规范、工程报告、研究文章、视觉资产与网站页面全部直接在此维护。Git Commit、Diff、Tag、Release、Issue 和 Pull Request 构成正式版本与历史系统。
+本 GitHub 仓库是 joinwell52 Research Center 的**唯一权威研究数据库**。论文、规范、工程报告、研究笔记、视觉资产与网站页面全部直接在此维护。Git Commit、Diff、Tag、Release、Issue 和 Pull Request 构成正式版本与历史系统。
 
 原 ChatGPT Library `/TMPA` 目录已经退出活动工作流，只作为已弃用、只读的迁移档案，不再接受论文修订。
 
@@ -34,13 +34,27 @@ joinwell52 研究中心是由真实工程实践驱动的独立研究门户，聚
 - **CodeFlowMu：** 数字员工开发与工作 Runtime；
 - **Digital Employee：** 面向组织岗位的受治理数字劳动力。
 
-## 研究入口
+## 研究笔记模型
 
-- [每日研究](https://joinwell52-ai.github.io/joinwell52/zh/research/daily/)
-- [每周综合](https://joinwell52-ai.github.io/joinwell52/zh/research/weekly/)
-- [学术论文观察](https://joinwell52-ai.github.io/joinwell52/zh/research/papers/)
-- [行业与数字员工观察](https://joinwell52-ai.github.io/joinwell52/zh/industry/)
-- [GitHub 与工程观察](https://joinwell52-ai.github.io/joinwell52/zh/engineering/)
+**研究笔记是唯一研究入口。** 每一篇研究文章必须包含三个元数据属性：
+
+```yaml
+column: digital-employee | industry-architecture | open-source-engineering
+category: daily | weekly | academic
+date: YYYY-MM-DD
+```
+
+网站直接读取 GitHub Markdown 元数据，自动生成栏目篇数、类别篇数、日期倒序列表与日历筛选，不维护第二套数据库，也不维护手工文章列表。
+
+### 三个研究栏目
+
+- [数字员工](https://joinwell52-ai.github.io/joinwell52/zh/digital-employee/)
+- [行业架构](https://joinwell52-ai.github.io/joinwell52/zh/industry/)
+- [开源工程观察](https://joinwell52-ai.github.io/joinwell52/zh/engineering/)
+
+## 入口
+
+- [研究笔记](https://joinwell52-ai.github.io/joinwell52/zh/research/)
 - [出版中心](https://joinwell52-ai.github.io/joinwell52/zh/publications/)
 
 ## 双语规则

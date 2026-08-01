@@ -1,5 +1,9 @@
 ---
 title: Weekly 002 — Digital Employee Control Plane and Work Runtime
+date: '2026-08-01'
+column: digital-employee
+category: weekly
+summary: A synthesis of Workday Agent System of Record, OpenHands Agent Canvas, and the engineering direction of CodeFlowMu.
 outline: deep
 ---
 

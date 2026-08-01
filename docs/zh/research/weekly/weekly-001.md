@@ -1,5 +1,9 @@
 ---
 title: Weekly 001 — 从 Agent 框架走向可治理数字员工
+date: '2026-07-31'
+column: digital-employee
+category: weekly
+summary: 首期综合互操作协议、开源 Runtime 工程、企业数字劳动力产品与 CodeFlowMu 定位。
 outline: deep
 ---
 

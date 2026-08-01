@@ -1,5 +1,9 @@
 ---
 title: Workday Agent System of Record — 架构分析
+date: '2026-08-01'
+column: industry-architecture
+category: daily
+summary: 数字员工持久所有权、生命周期、成本、合规与劳动力级可观测的控制面对标。
 outline: deep
 ---
 

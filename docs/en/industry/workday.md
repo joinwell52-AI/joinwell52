@@ -1,5 +1,9 @@
 ---
 title: Workday Agent System of Record — Architecture Analysis
+date: '2026-08-01'
+column: industry-architecture
+category: daily
+summary: A control-plane benchmark for persistent ownership, lifecycle, cost, compliance and workforce-level observability.
 outline: deep
 ---
 

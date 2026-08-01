@@ -4,13 +4,13 @@
 
 **English** · [简体中文](./README.zh-CN.md)
 
-[![Research Site](https://img.shields.io/badge/Research_Site-Portal_V5-1f6feb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/)
+[![Research Site](https://img.shields.io/badge/Research_Site-Research_OS-1f6feb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/)
 [![Status](https://img.shields.io/badge/Status-Active_Research-16a34a?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/research/)
 [![中文](https://img.shields.io/badge/Language-简体中文-7c3aed?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/)
 
 ## Single Source of Truth
 
-This GitHub repository is the **only authoritative research database** of the joinwell52 Research Center. All papers, specifications, engineering reports, research articles, assets and website pages are maintained directly here. Git commits, diffs, tags, releases, issues and pull requests provide the authoritative history.
+This GitHub repository is the **only authoritative research database** of the joinwell52 Research Center. All papers, specifications, engineering reports, research notes, assets and website pages are maintained directly here. Git commits, diffs, tags, releases, issues and pull requests provide the authoritative history.
 
 The former ChatGPT Library `/TMPA` folder is a deprecated read-only migration archive and must not receive new paper revisions.
 
@@ -52,17 +52,27 @@ joinwell52 Research Center is an independent, engineering-driven research portal
 **Governed, position-oriented digital workforce**  
 [Governing architecture →](https://joinwell52-ai.github.io/joinwell52/en/digital-employee/architecture)
 
-## Research Model
+## Research Notes Model
 
-Research is maintained as three long-running chronological columns: Academic and Paper Observation; Industry and Digital Employee Observation; GitHub and Engineering Observation. Daily Research studies all three columns, and Weekly Synthesis integrates the evidence into architectural and engineering judgments.
+**Research Notes is the only research entry point.** Every research article carries three required metadata fields:
 
-## Research Entry Points
+```yaml
+column: digital-employee | industry-architecture | open-source-engineering
+category: daily | weekly | academic
+date: YYYY-MM-DD
+```
 
-- [Daily Research](https://joinwell52-ai.github.io/joinwell52/en/research/daily/)
-- [Weekly Synthesis](https://joinwell52-ai.github.io/joinwell52/en/research/weekly/)
-- [Academic and Paper Observation](https://joinwell52-ai.github.io/joinwell52/en/research/papers/)
-- [Industry and Digital Employee Observation](https://joinwell52-ai.github.io/joinwell52/en/industry/)
-- [GitHub and Engineering Observation](https://joinwell52-ai.github.io/joinwell52/en/engineering/)
+The website reads this metadata directly from GitHub Markdown and automatically generates column counts, category counts, newest-first lists and calendar filtering. No second database or manually maintained article list is used.
+
+### Three research columns
+
+- [Digital Employee](https://joinwell52-ai.github.io/joinwell52/en/digital-employee/)
+- [Industry Architecture](https://joinwell52-ai.github.io/joinwell52/en/industry/)
+- [Open-source Engineering](https://joinwell52-ai.github.io/joinwell52/en/engineering/)
+
+## Entry Points
+
+- [Research Notes](https://joinwell52-ai.github.io/joinwell52/en/research/)
 - [Publication Center](https://joinwell52-ai.github.io/joinwell52/en/publications/)
 
 ## Language Policy
@@ -88,7 +98,6 @@ Research is maintained as three long-running chronological columns: Academic and
 ├── MIGRATION-SINGLE-SOURCE.md
 ├── CITATION.cff
 ├── README.zh-CN.md
-├── README.en.md
 └── README.md
 ```
 

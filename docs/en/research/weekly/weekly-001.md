@@ -1,5 +1,9 @@
 ---
 title: Weekly 001 — From Agent Frameworks to Governed Digital Employees
+date: '2026-07-31'
+column: digital-employee
+category: weekly
+summary: The first synthesis of interoperability, open-source runtime engineering, enterprise digital workforce products and CodeFlowMu positioning.
 outline: deep
 ---
 

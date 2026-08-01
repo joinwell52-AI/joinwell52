@@ -1,70 +1,52 @@
 import { defineConfig } from 'vitepress'
 
 const enSidebar = {
-  '/en/research/': [
-    { text: 'Research', items: [
-      { text: 'Overview', link: '/en/research/' },
-      { text: 'Daily Research', link: '/en/research/daily/' },
-      { text: 'Weekly Synthesis', link: '/en/research/weekly/' },
-      { text: 'Academic Paper Watch', link: '/en/research/papers/' }
-    ]},
-    { text: 'Current Research', items: [
-      { text: 'Weekly 002 · Control Plane & Runtime', link: '/en/research/weekly/weekly-002' },
-      { text: 'Weekly 001 · From Agents to Digital Employees', link: '/en/research/weekly/weekly-001' }
-    ]}
-  ],
+  '/en/research/': [{ text: 'Research Notes', items: [
+    { text: 'All Research Notes', link: '/en/research/' },
+    { text: 'Digital Employee', link: '/en/digital-employee/' },
+    { text: 'Industry Architecture', link: '/en/industry/' },
+    { text: 'Open-source Engineering', link: '/en/engineering/' }
+  ]}],
   '/en/digital-employee/': [{ text: 'Digital Employee', items: [
-    { text: 'Overview', link: '/en/digital-employee/' },
+    { text: 'Research Notes', link: '/en/digital-employee/' },
     { text: 'Architecture V0.2', link: '/en/digital-employee/architecture' }
   ]}],
   '/en/industry/': [{ text: 'Industry Architecture', items: [
-    { text: 'Landscape', link: '/en/industry/' },
-    { text: 'ServiceNow', link: '/en/industry/servicenow' },
-    { text: 'Workday', link: '/en/industry/workday' }
+    { text: 'Research Notes', link: '/en/industry/' }
   ]}],
-  '/en/engineering/': [{ text: 'Engineering Watch', items: [
-    { text: 'Overview', link: '/en/engineering/' },
-    { text: 'OpenHands', link: '/en/engineering/openhands' }
+  '/en/engineering/': [{ text: 'Open-source Engineering', items: [
+    { text: 'Research Notes', link: '/en/engineering/' }
   ]}],
   '/en/publications/': [{ text: 'Publication Center', items: [
     { text: 'Overview', link: '/en/publications/' },
-    { text: 'TMPA Architecture Paper A0.3', link: '/en/publications/tmpa-architecture-paper-a0.3' },
-    { text: 'TMPA Core Specification S0.2', link: '/en/publications/tmpa-core-specification-s0.2' },
-    { text: 'Implementation Case I0.2', link: '/en/publications/implementation-case-i0.2' }
+    { text: 'TMPA Architecture Paper A0.4', link: '/en/publications/tmpa-architecture-paper-a0.4' },
+    { text: 'TMPA Core Specification S0.3', link: '/en/publications/tmpa-core-specification-s0.3' },
+    { text: 'Implementation Case I0.3', link: '/en/publications/implementation-case-i0.3' }
   ]}]
 }
 
 const zhSidebar = {
-  '/zh/research/': [
-    { text: '研究', items: [
-      { text: '研究总览', link: '/zh/research/' },
-      { text: '每日研究', link: '/zh/research/daily/' },
-      { text: '每周综合', link: '/zh/research/weekly/' },
-      { text: '学术论文观察', link: '/zh/research/papers/' }
-    ]},
-    { text: '近期研究', items: [
-      { text: 'Weekly 002 · 控制面与 Runtime', link: '/zh/research/weekly/weekly-002' },
-      { text: 'Weekly 001 · 从 Agent 到数字员工', link: '/zh/research/weekly/weekly-001' }
-    ]}
-  ],
+  '/zh/research/': [{ text: '研究笔记', items: [
+    { text: '全部研究笔记', link: '/zh/research/' },
+    { text: '数字员工', link: '/zh/digital-employee/' },
+    { text: '行业架构', link: '/zh/industry/' },
+    { text: '开源工程观察', link: '/zh/engineering/' }
+  ]}],
   '/zh/digital-employee/': [{ text: '数字员工', items: [
-    { text: '研究总览', link: '/zh/digital-employee/' },
+    { text: '研究笔记', link: '/zh/digital-employee/' },
     { text: '纲领性架构 V0.2', link: '/zh/digital-employee/architecture' }
   ]}],
   '/zh/industry/': [{ text: '行业架构', items: [
-    { text: '行业版图', link: '/zh/industry/' },
-    { text: 'ServiceNow', link: '/zh/industry/servicenow' },
-    { text: 'Workday', link: '/zh/industry/workday' }
+    { text: '研究笔记', link: '/zh/industry/' }
   ]}],
   '/zh/engineering/': [{ text: '开源工程观察', items: [
-    { text: '工程版图', link: '/zh/engineering/' },
-    { text: 'OpenHands', link: '/zh/engineering/openhands' }
+    { text: '研究笔记', link: '/zh/engineering/' }
   ]}],
   '/zh/publications/': [{ text: '出版中心', items: [
     { text: '出版物总览', link: '/zh/publications/' },
-    { text: 'TMPA 架构论文 A0.3', link: '/zh/publications/tmpa-architecture-paper-a0.3' },
-    { text: 'TMPA 核心规范 S0.2', link: '/zh/publications/tmpa-core-specification-s0.2' },
-    { text: '工程实现案例 I0.2', link: '/zh/publications/implementation-case-i0.2' }
+    { text: 'TMPA 架构论文 A0.4', link: '/zh/publications/tmpa-architecture-paper-a0.4' },
+    { text: 'TMPA 核心规范 S0.3', link: '/zh/publications/tmpa-core-specification-s0.3' },
+    { text: '工程实现案例 I0.3', link: '/zh/publications/implementation-case-i0.3' }
   ]}]
 }
 
@@ -120,23 +102,13 @@ export default defineConfig({
         selectText: 'Language',
         nav: [
           { text: 'Home', link: '/' },
-          { text: 'Research', items: [
-            { text: 'Research Overview', link: '/en/research/' },
-            { text: 'Daily Research', link: '/en/research/daily/' },
-            { text: 'Weekly Synthesis', link: '/en/research/weekly/' },
-            { text: 'Academic Paper Watch', link: '/en/research/papers/' }
-          ]},
-          { text: 'Domains', items: [
-            { text: 'Digital Employees', link: '/en/digital-employee/' },
-            { text: 'Industry Architecture', link: '/en/industry/' },
-            { text: 'Engineering Watch', link: '/en/engineering/' }
-          ]},
+          { text: 'Research Notes', link: '/en/research/' },
           { text: 'Publications', link: '/en/publications/' },
           { text: 'Programs', items: [
             { text: 'TMPA', link: '/en/publications/' },
             { text: 'FCoP Official Site', link: 'https://joinwell52-ai.github.io/FCoP/' },
             { text: 'CodeFlowMu', link: 'https://github.com/joinwell52-AI/CodeFlowMu-open' },
-            { text: 'Digital Employee', link: '/en/digital-employee/architecture' }
+            { text: 'Digital Employee Architecture', link: '/en/digital-employee/architecture' }
           ]},
           { text: 'About', link: '/en/about' }
         ],
@@ -151,23 +123,13 @@ export default defineConfig({
         selectText: '语言',
         nav: [
           { text: '首页', link: '/zh/' },
-          { text: '研究', items: [
-            { text: '研究总览', link: '/zh/research/' },
-            { text: '每日研究', link: '/zh/research/daily/' },
-            { text: '每周综合', link: '/zh/research/weekly/' },
-            { text: '学术论文观察', link: '/zh/research/papers/' }
-          ]},
-          { text: '研究领域', items: [
-            { text: '数字员工', link: '/zh/digital-employee/' },
-            { text: '行业架构', link: '/zh/industry/' },
-            { text: '开源工程观察', link: '/zh/engineering/' }
-          ]},
+          { text: '研究笔记', link: '/zh/research/' },
           { text: '出版物', link: '/zh/publications/' },
           { text: '研究计划', items: [
             { text: 'TMPA', link: '/zh/publications/' },
             { text: 'FCoP 官网', link: 'https://joinwell52-ai.github.io/FCoP/' },
             { text: 'CodeFlowMu', link: 'https://github.com/joinwell52-AI/CodeFlowMu-open' },
-            { text: '数字员工', link: '/zh/digital-employee/architecture' }
+            { text: '数字员工纲领性架构', link: '/zh/digital-employee/architecture' }
           ]},
           { text: '关于', link: '/zh/about' }
         ],
