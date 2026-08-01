@@ -1,5 +1,13 @@
 ---
 title: TMPA 架构论文 — 草稿 A0.4
+type: paper
+domain: TMPA
+version: A0.4
+status: public-draft
+source: github-main
+related:
+  - FCoP
+  - CodeFlowMu
 outline: deep
 ---
 
