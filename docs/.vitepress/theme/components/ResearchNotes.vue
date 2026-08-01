@@ -79,6 +79,13 @@ const notesForColumn = (column: ResearchColumn) =>
 const categoryCount = (column: ResearchColumn, category: ResearchCategory) =>
   notesForColumn(column).filter(note => note.category === category).length
 
+const currentColumnNotes = computed(() =>
+  props.column ? notesForColumn(props.column) : []
+)
+
+const currentCategoryCount = (category: ResearchCategory) =>
+  props.column ? categoryCount(props.column, category) : 0
+
 const visibleNotes = computed(() => {
   let notes = props.column
     ? notesForColumn(props.column)
@@ -95,13 +102,20 @@ const visibleNotes = computed(() => {
   return notes
 })
 
-const latestNotes = computed(() => visibleNotes.value.slice(0, props.column ? undefined : 12))
+const displayedNotes = computed(() =>
+  props.column ? visibleNotes.value : visibleNotes.value.slice(0, 12)
+)
 
 const columnPath = (column: typeof columns[number]) =>
   withBase(zh.value ? column.zhPath : column.enPath)
 
 const categoryLabel = (category: ResearchCategory) => {
   const item = categories.find(entry => entry.key === category)
+  return zh.value ? item?.zh : item?.en
+}
+
+const noteColumnLabel = (column: ResearchColumn) => {
+  const item = columns.find(entry => entry.key === column)
   return zh.value ? item?.zh : item?.en
 }
 
@@ -148,7 +162,7 @@ const clearDate = () => {
 
       <div class="rn-section-title">
         <div>
-          <span>{{ zh ? 'LATEST' : 'LATEST' }}</span>
+          <span>LATEST</span>
           <h2>{{ zh ? '最新研究笔记' : 'Latest Research Notes' }}</h2>
         </div>
         <small>{{ zh ? '按日期倒序' : 'Newest first' }}</small>
@@ -165,8 +179,8 @@ const clearDate = () => {
           @click="activeCategory = category.key"
         >
           <strong>{{ category.key === 'all'
-            ? notesForColumn(props.column!).length
-            : categoryCount(props.column!, category.key as ResearchCategory)
+            ? currentColumnNotes.length
+            : currentCategoryCount(category.key)
           }}</strong>
           <span>{{ zh ? category.zh : category.en }}</span>
         </button>
@@ -185,16 +199,13 @@ const clearDate = () => {
       </section>
     </template>
 
-    <section v-if="latestNotes.length" class="rn-list">
-      <a v-for="note in latestNotes" :key="note.url" :href="withBase(note.url)">
+    <section v-if="displayedNotes.length" class="rn-list">
+      <a v-for="note in displayedNotes" :key="note.url" :href="withBase(note.url)">
         <time>{{ note.date }}</time>
         <div>
           <div class="rn-tags">
             <span>{{ categoryLabel(note.category) }}</span>
-            <span v-if="!currentColumn">{{ zh
-              ? columns.find(item => item.key === note.column)?.zh
-              : columns.find(item => item.key === note.column)?.en
-            }}</span>
+            <span v-if="!currentColumn">{{ noteColumnLabel(note.column) }}</span>
           </div>
           <h3>{{ note.title }}</h3>
           <p v-if="note.summary">{{ note.summary }}</p>
