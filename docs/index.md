@@ -3,6 +3,8 @@ layout: home
 pageClass: tmpa-home
 ---
 
+<!-- pages-rebuild: 2026-08-01T17:10+08:00 -->
+
 <div class="landing-hero">
   <div class="hero-glow hero-glow-a"></div>
   <div class="hero-glow hero-glow-b"></div>
