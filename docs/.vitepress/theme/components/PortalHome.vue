@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { withBase } from 'vitepress'
+import { data as allNotes } from './research-notes.data'
+import type { ResearchCategory, ResearchColumn, ResearchNoteRecord } from './research-notes.data'
 
 const props = withDefaults(defineProps<{ lang?: 'en' | 'zh' }>(), { lang: 'en' })
 const zh = computed(() => props.lang === 'zh')
@@ -13,7 +15,7 @@ const t = computed(() => zh.value ? {
   explore: '进入研究笔记', publications: '阅读出版物',
   programsKicker: '01 / 研究计划', programsTitle: '官方研究计划', programsLead: '一个门户连接理论、协议、运行工程与最终应用方向。',
   hierarchyKicker: '02 / 研究笔记', hierarchyTitle: '三个长期研究栏目', hierarchyLead: '所有研究文章由 column、category 与 date 元数据自动分类、统计和排序。',
-  latestKicker: '03 / 最新研究', latestTitle: '最新研究笔记', latestLead: '来自数字员工、行业架构与开源工程观察的当前研究。',
+  latestKicker: '03 / 最新研究', latestTitle: '最新研究笔记', latestLead: '列表直接由 GitHub Markdown 元数据生成，不维护手工首页文章清单。',
   pubKicker: '04 / 出版中心', pubTitle: '版本化公开成果', pubLead: '论文、规范与工程案例均具有明确版本、状态、阅读与引用路径。',
   timelineKicker: '05 / 研究生命周期', timelineTitle: '从研究笔记，到正式发表',
   manifesto: '不要把 AI 包装成确定性。', manifesto2: '让不确定的智能进入可治理的工作系统。',
@@ -26,7 +28,7 @@ const t = computed(() => zh.value ? {
   explore: 'Explore Research Notes', publications: 'Read publications',
   programsKicker: '01 / PROGRAMS', programsTitle: 'Official research programs', programsLead: 'One portal connecting theory, protocol, runtime engineering and the final application direction.',
   hierarchyKicker: '02 / RESEARCH NOTES', hierarchyTitle: 'Three long-term research columns', hierarchyLead: 'Every research article is classified, counted and sorted automatically from column, category and date metadata.',
-  latestKicker: '03 / LATEST RESEARCH', latestTitle: 'Latest Research Notes', latestLead: 'Current work across Digital Employees, Industry Architecture and Open-source Engineering.',
+  latestKicker: '03 / LATEST RESEARCH', latestTitle: 'Latest Research Notes', latestLead: 'This list is generated directly from GitHub Markdown metadata; no manual homepage article list is maintained.',
   pubKicker: '04 / PUBLICATION CENTER', pubTitle: 'Versioned public work', pubLead: 'Papers, specifications and case reports with explicit status, reading and citation paths.',
   timelineKicker: '05 / RESEARCH LIFECYCLE', timelineTitle: 'From research notes to formal publication',
   manifesto: 'Do not pretend AI is deterministic.', manifesto2: 'Build systems that govern intelligent uncertainty.',
@@ -35,6 +37,30 @@ const t = computed(() => zh.value ? {
 
 const base = (path: string) => withBase(path)
 const p = (en: string, zhPath: string) => zh.value ? zhPath : en
+
+const latestNotes = computed(() =>
+  (allNotes as ResearchNoteRecord[])
+    .filter(note => note.lang === props.lang)
+    .slice(0, 3)
+)
+
+const columnLabel = (column: ResearchColumn) => {
+  const labels = {
+    'digital-employee': ['Digital Employee', '数字员工'],
+    'industry-architecture': ['Industry Architecture', '行业架构'],
+    'open-source-engineering': ['Open-source Engineering', '开源工程观察']
+  } as const
+  return labels[column][zh.value ? 1 : 0]
+}
+
+const categoryLabel = (category: ResearchCategory) => {
+  const labels = {
+    daily: ['Daily Research', '每日研究'],
+    weekly: ['Weekly Synthesis', '每周综合'],
+    academic: ['Academic Observation', '学术观察']
+  } as const
+  return labels[category][zh.value ? 1 : 0]
+}
 </script>
 
 <template>
@@ -110,14 +136,11 @@ const p = (en: string, zhPath: string) => zh.value ? zhPath : en
 
       <section class="rcv5-section">
         <div class="rcv5-heading"><div><span>{{ t.latestKicker }}</span><h2>{{ t.latestTitle }}</h2><p>{{ t.latestLead }}</p></div><a :href="p('/en/research/', '/zh/research/')">{{ zh ? '研究笔记' : 'Research Notes' }} →</a></div>
-        <div class="rcv5-latest">
-          <a class="rcv5-feature" :href="p('/en/research/weekly/weekly-002', '/zh/research/weekly/weekly-002')">
-            <img :src="base('/assets/covers/weekly-002.svg')" alt="Weekly 002 cover">
-            <div><span>DIGITAL EMPLOYEE · WEEKLY</span><h3>{{ zh ? '数字员工控制面与工作 Runtime' : 'Digital Employee Control Plane and Work Runtime' }}</h3><p>{{ zh ? '从 Workday 与 OpenHands 出发，判断面向中小企业的轻量数字员工平台。' : 'What Workday and OpenHands reveal about a lightweight, SME-first platform.' }}</p><b>{{ zh ? '阅读研究笔记' : 'Read Research Note' }} ↗</b></div>
-          </a>
-          <div class="rcv5-side-research">
-            <a :href="p('/en/industry/workday', '/zh/industry/workday')"><img :src="base('/assets/covers/workday.svg')" alt="Workday"><div><span>INDUSTRY ARCHITECTURE</span><h3>Workday Agent System of Record</h3><p>{{ zh ? '所有权、生命周期、成本与合规。' : 'Ownership, lifecycle, cost and compliance.' }}</p></div></a>
-            <a :href="p('/en/engineering/openhands', '/zh/engineering/openhands')"><img :src="base('/assets/covers/openhands.svg')" alt="OpenHands"><div><span>OPEN-SOURCE ENGINEERING</span><h3>OpenHands Agent Canvas</h3><p>{{ zh ? 'Skill、连接健康、自动化与操作体验。' : 'Skills, health, automation and operator experience.' }}</p></div></a>
+        <div class="rcv5-taxonomy">
+          <div v-for="note in latestNotes" :key="note.url" class="rcv5-tax-card">
+            <span>{{ columnLabel(note.column).toUpperCase() }}</span>
+            <h3>{{ note.title }}</h3>
+            <a :href="base(note.url)"><b>{{ categoryLabel(note.category) }}</b><small>{{ note.date }} · {{ note.summary }}</small></a>
           </div>
         </div>
       </section>
