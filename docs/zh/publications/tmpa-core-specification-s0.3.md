@@ -1,5 +1,13 @@
 ---
 title: TMPA Core Specification — 草稿 S0.3
+type: specification
+domain: TMPA
+version: S0.3
+status: public-draft
+source: github-main
+related:
+  - TMPA Architecture Paper
+  - FCoP
 outline: deep
 ---
 
