@@ -1,79 +1,111 @@
 ---
 layout: home
-
-hero:
-  name: "TMPA"
-  text: "Research Center / 研究中心"
-  tagline: "面向 AI 工作与数字员工的数据和治理架构。以真实工程为研究起点，以公开证据连接论文、规范、实现与行业观察。"
-  image:
-    src: /logo.svg
-    alt: TMPA Research Center
-  actions:
-    - theme: brand
-      text: 阅读出版物
-      link: /publications/
-    - theme: alt
-      text: 最新研究
-      link: /research/
-    - theme: alt
-      text: 数字员工架构
-      link: /digital-employee/architecture
-
-features:
-  - icon: ◈
-    title: TMPA
-    details: AI 工作数据与治理架构，统一 Profile、Event、Message、Index 与 Knowledge。
-  - icon: ⟁
-    title: Digital Employee
-    details: 对外是岗位，对内是受管理工作团队；由 CodeFlowMu Runtime 执行。
-  - icon: ◎
-    title: Engineering First
-    details: 研究结论来自 FCoP、CodeFlowMu 和真实业务运行，而不是概念拼装。
+pageClass: tmpa-home
 ---
 
-<div class="research-shell">
-  <div class="section-kicker">PUBLIC RESEARCH PROGRAM</div>
-  <h2 class="section-title">从每日观察，到可引用的研究成果</h2>
-  <p class="section-lead">这里不是资料堆积站，而是一条持续运行的研究流水线：筛选最新论文与工程进展，形成判断，更新纲领性架构，再把成熟结论沉淀为论文、规范与实现案例。</p>
+<div class="landing-hero">
+  <div class="hero-glow hero-glow-a"></div>
+  <div class="hero-glow hero-glow-b"></div>
+  <div class="hero-grid"></div>
 
-  <div class="metric-grid">
-    <div class="metric-card"><div class="metric-value">3</div><div class="metric-label">公开出版草稿</div></div>
-    <div class="metric-card"><div class="metric-value">2</div><div class="metric-label">研究周报</div></div>
-    <div class="metric-card"><div class="metric-value">3</div><div class="metric-label">行业与工程专题</div></div>
-    <div class="metric-card"><div class="metric-value">V0.2</div><div class="metric-label">数字员工纲领基线</div></div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="hero-eyebrow"><span></span> INDEPENDENT AI RESEARCH · 独立 AI 研究</div>
+      <h1><em>TMPA</em><br>Research Center</h1>
+      <p class="hero-cn">面向 AI 工作与数字员工的数据和治理架构</p>
+      <p class="hero-description">从真实工程出发，把每日观察、运行证据、架构规范与论文发布连接成一条持续演进的公开研究链。</p>
+      <div class="hero-actions">
+        <a class="hero-btn hero-btn-primary" href="./publications/">阅读 TMPA 论文 <span>↗</span></a>
+        <a class="hero-btn hero-btn-secondary" href="./research/">进入研究中心 <span>→</span></a>
+      </div>
+      <div class="hero-notes">
+        <span>Engineering First</span><i></i><span>Governance by Design</span><i></i><span>SME Oriented</span>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-label="TMPA research system">
+      <div class="orbit orbit-one"></div>
+      <div class="orbit orbit-two"></div>
+      <div class="orbit orbit-three"></div>
+      <div class="core-mark">
+        <div class="core-symbol">T<span>○</span></div>
+        <small>AI WORK<br>GOVERNANCE</small>
+      </div>
+      <div class="orbit-node node-a"><b>TMPA</b><small>Governance</small></div>
+      <div class="orbit-node node-b"><b>FCoP</b><small>Coordination</small></div>
+      <div class="orbit-node node-c"><b>CodeFlowMu</b><small>Runtime</small></div>
+    </div>
   </div>
+</div>
 
-  <div class="section-kicker" style="margin-top:64px">LATEST RESEARCH</div>
-  <h2 class="section-title">最新研究</h2>
-  <div class="research-grid">
-    <a class="research-card" href="./research/weekly/weekly-002"><div class="card-meta"><span class="card-dot"></span>2026-08-01 · Weekly</div><div class="card-title">第二期：数字员工控制面与运行平台分层</div><div class="card-copy">分析 Workday Agent System of Record、OpenHands Agent Canvas，以及 CodeFlowMu 应如何形成 SME-first 数字员工控制面。</div><span class="card-arrow">阅读报告 →</span></a>
-    <a class="research-card" href="./industry/workday"><div class="card-meta"><span class="card-dot"></span>Industry Architecture</div><div class="card-title">Workday：Agent System of Record</div><div class="card-copy">重点研究所有权、岗位技能、成本、合规和生命周期管理，对数字员工 Registry 的工程启发。</div><span class="card-arrow">查看分析 →</span></a>
-    <a class="research-card" href="./engineering/openhands"><div class="card-meta"><span class="card-dot"></span>GitHub Engineering</div><div class="card-title">OpenHands：从 Coding Agent 到 Agent Workspace</div><div class="card-copy">拆解 Agent Canvas 的运行、技能、连接健康与自动化能力，并判断 CodeFlowMu 应学什么、不应复制什么。</div><span class="card-arrow">查看分析 →</span></a>
-  </div>
+<div class="home-container">
+  <section class="signal-strip">
+    <div><strong>3</strong><span>公开出版草稿</span></div>
+    <div><strong>2</strong><span>研究周报</span></div>
+    <div><strong>3</strong><span>行业与工程专题</span></div>
+    <div><strong>V0.2</strong><span>数字员工纲领基线</span></div>
+  </section>
 
-  <div class="section-kicker" style="margin-top:64px">RESEARCH MAP</div>
-  <h2 class="section-title">一套体系，三个稳定层次</h2>
-  <div class="research-map">
-    <div class="map-card"><div class="map-label">GOVERNANCE</div><div class="map-title">TMPA</div><div class="map-copy">AI 工作数据与治理架构。定义工作事实、来源、生命周期、验证、发布与知识晋级。</div></div>
-    <div class="map-card"><div class="map-label">COORDINATION</div><div class="map-title">FCoP</div><div class="map-copy">粗粒度正式协作与责任协议。用 TASK、REPORT、ISSUE、REVIEW 和生命周期形成责任闭环。</div></div>
-    <div class="map-card"><div class="map-label">RUNTIME</div><div class="map-title">CodeFlowMu</div><div class="map-copy">数字员工开发与工作运行平台。负责调度、Session、恢复、工具、工作流与完成门禁。</div></div>
-  </div>
+  <section class="home-section latest-section">
+    <div class="section-heading">
+      <div><span class="section-index">01</span><p class="section-kicker">LATEST RESEARCH</p><h2>今天，我们在研究什么</h2></div>
+      <a href="./research/">全部研究 →</a>
+    </div>
 
-  <div class="section-kicker" style="margin-top:64px">PUBLICATIONS</div>
-  <h2 class="section-title">正在形成的出版体系</h2>
-  <div class="publication-grid">
-    <a class="publication-card" href="./publications/tmpa-architecture-paper-a0.3"><div class="card-meta">PAPER · A0.3</div><div class="card-title">TMPA Architecture Paper</div><div class="card-copy">面向研究同行的架构论文草稿，解释研究问题、设计动机、治理模型与差异化定位。</div><span class="card-arrow">阅读全文 →</span></a>
-    <a class="publication-card" href="./publications/tmpa-core-specification-s0.2"><div class="card-meta">SPECIFICATION · S0.2</div><div class="card-title">TMPA Core Specification</div><div class="card-copy">面向实现者的核心规范草稿，定义对象、约束、生命周期与一致性要求。</div><span class="card-arrow">阅读规范 →</span></a>
-    <a class="publication-card" href="./publications/implementation-case-i0.2"><div class="card-meta">CASE REPORT · I0.2</div><div class="card-title">FCoP / CodeFlowMu Implementation Case</div><div class="card-copy">以真实系统为证据，记录 TMPA 思想如何进入多 Agent 协作、治理与恢复工程。</div><span class="card-arrow">查看案例 →</span></a>
-  </div>
+    <div class="lead-story">
+      <a class="lead-story-main" href="./research/weekly/weekly-002">
+        <div class="story-label">FEATURED · WEEKLY 002</div>
+        <h3>数字员工控制面<br>与工作 Runtime 的分层</h3>
+        <p>从 Workday Agent System of Record 与 OpenHands Agent Canvas 出发，判断 CodeFlowMu 如何形成面向中小企业的数字员工控制面与可靠运行时。</p>
+        <span class="story-link">阅读完整分析 <b>↗</b></span>
+      </a>
+      <div class="lead-story-side">
+        <a href="./industry/workday"><small>INDUSTRY ARCHITECTURE</small><h4>Workday：Agent System of Record</h4><p>所有权、岗位、成本、合规与生命周期如何成为数字劳动力控制面的核心。</p><span>查看分析 →</span></a>
+        <a href="./engineering/openhands"><small>GITHUB ENGINEERING</small><h4>OpenHands：从 Coding Agent 到 Agent Workspace</h4><p>Skill、连接健康、自动触发与操作者工作空间带来的工程启发。</p><span>查看分析 →</span></a>
+      </div>
+    </div>
+  </section>
 
-  <div class="section-kicker" style="margin-top:64px">PUBLICATION TIMELINE</div>
-  <h2 class="section-title">研究发布路线</h2>
-  <div class="timeline">
-    <div class="timeline-item"><div class="timeline-date">NOW · 当前</div><div class="timeline-title">公开草稿与每日研究</div><div class="timeline-copy">持续更新论文、规范、行业分析和工程观察，建立公开时间线与可审阅材料。</div></div>
-    <div class="timeline-item"><div class="timeline-date">NEXT · 下一阶段</div><div class="timeline-title">稳定版本与引用信息</div><div class="timeline-copy">完成版本收口、参考文献复核、图表、实验与 Citation metadata。</div></div>
-    <div class="timeline-item"><div class="timeline-date">PUBLICATION · 正式发布</div><div class="timeline-title">预印本、DOI 与会议／期刊投稿</div><div class="timeline-copy">将成熟成果发布为长期可引用版本，并继续保留工程演进与复现证据。</div></div>
-  </div>
+  <section class="home-section system-section">
+    <div class="section-heading">
+      <div><span class="section-index">02</span><p class="section-kicker">RESEARCH SYSTEM</p><h2>一套体系，三个稳定层次</h2></div>
+    </div>
+    <div class="system-flow">
+      <a href="./publications/" class="system-card"><span>01 · GOVERNANCE</span><h3>TMPA</h3><p>AI 工作数据与治理架构。定义事实、来源、生命周期、验证、发布与知识晋级。</p><b>研究与规范 ↗</b></a>
+      <div class="flow-arrow">→</div>
+      <a href="https://github.com/joinwell52-AI/FCoP" class="system-card"><span>02 · COORDINATION</span><h3>FCoP</h3><p>正式协作与责任协议。通过 TASK、REPORT、ISSUE、REVIEW 形成闭环。</p><b>协议与证据 ↗</b></a>
+      <div class="flow-arrow">→</div>
+      <a href="https://github.com/joinwell52-AI/CodeFlowMu-open" class="system-card"><span>03 · RUNTIME</span><h3>CodeFlowMu</h3><p>数字员工开发与工作运行平台。负责调度、恢复、工具、工作流与完成门禁。</p><b>工程实现 ↗</b></a>
+    </div>
+  </section>
 
-  <div class="principle-banner"><strong>研究原则：工程优先，证据优先，持续修正。</strong><p>行业厂商的公开材料用于比较与启发，不覆盖 CodeFlowMu 的真实工程证据。任何尚未被证据支持的结论，都应保留为待讨论问题，而不是包装成确定事实。</p></div>
+  <section class="home-section publications-section">
+    <div class="section-heading">
+      <div><span class="section-index">03</span><p class="section-kicker">PUBLICATIONS</p><h2>正在形成的出版体系</h2></div>
+      <a href="./publications/">查看全部 →</a>
+    </div>
+    <div class="publication-list">
+      <a href="./publications/tmpa-architecture-paper-a0.3"><div class="pub-type">PAPER</div><div><small>A0.3 · PUBLIC RESEARCH DRAFT</small><h3>TMPA Architecture Paper</h3><p>面向研究同行的架构论文草稿。</p></div><span>↗</span></a>
+      <a href="./publications/tmpa-core-specification-s0.2"><div class="pub-type">SPEC</div><div><small>S0.2 · SPECIFICATION DRAFT</small><h3>TMPA Core Specification</h3><p>面向实现者的核心对象与一致性规范。</p></div><span>↗</span></a>
+      <a href="./publications/implementation-case-i0.2"><div class="pub-type">CASE</div><div><small>I0.2 · ENGINEERING CASE</small><h3>FCoP / CodeFlowMu Implementation Case</h3><p>从真实多 Agent 工程走向数字员工 Runtime。</p></div><span>↗</span></a>
+    </div>
+  </section>
+
+  <section class="home-section roadmap-section">
+    <div class="section-heading">
+      <div><span class="section-index">04</span><p class="section-kicker">RESEARCH ROADMAP</p><h2>从每日观察，到正式发表</h2></div>
+    </div>
+    <div class="roadmap-line">
+      <div class="roadmap-step active"><span>NOW</span><b>每日研究</b><p>论文、行业、GitHub 与工程事实</p></div>
+      <div class="roadmap-step active"><span>WEEKLY</span><b>综合分析</b><p>形成判断并反哺架构</p></div>
+      <div class="roadmap-step"><span>STABLE</span><b>版本收口</b><p>规范、图表、实验与引用</p></div>
+      <div class="roadmap-step"><span>PUBLISH</span><b>正式发布</b><p>预印本、DOI、会议与期刊</p></div>
+    </div>
+  </section>
+
+  <section class="home-manifesto">
+    <p>ENGINEERING FIRST · EVIDENCE FIRST · CONTINUOUSLY REVISED</p>
+    <h2>不是把 AI 包装成确定性。<br>而是让不确定的智能，进入可治理的工作系统。</h2>
+    <a href="./digital-employee/architecture">阅读数字员工纲领性架构 →</a>
+  </section>
 </div>
