@@ -1,0 +1,54 @@
+import { createContentLoader } from 'vitepress'
+
+export type ResearchColumn =
+  | 'digital-employee'
+  | 'industry-architecture'
+  | 'open-source-engineering'
+
+export type ResearchCategory = 'daily' | 'weekly' | 'academic'
+
+export interface ResearchNoteRecord {
+  title: string
+  date: string
+  column: ResearchColumn
+  category: ResearchCategory
+  summary: string
+  url: string
+  lang: 'en' | 'zh'
+}
+
+const columns = new Set<ResearchColumn>([
+  'digital-employee',
+  'industry-architecture',
+  'open-source-engineering'
+])
+
+const categories = new Set<ResearchCategory>(['daily', 'weekly', 'academic'])
+
+export default createContentLoader('**/*.md', {
+  excerpt: false,
+  transform(rawData): ResearchNoteRecord[] {
+    return rawData
+      .filter(({ frontmatter }) => {
+        return Boolean(
+          frontmatter.title &&
+          frontmatter.date &&
+          columns.has(frontmatter.column) &&
+          categories.has(frontmatter.category)
+        )
+      })
+      .map(({ url, frontmatter }) => ({
+        title: String(frontmatter.title),
+        date: String(frontmatter.date),
+        column: frontmatter.column as ResearchColumn,
+        category: frontmatter.category as ResearchCategory,
+        summary: String(frontmatter.summary || frontmatter.description || ''),
+        url,
+        lang: url.startsWith('/zh/') ? 'zh' : 'en'
+      }))
+      .sort((a, b) => {
+        const byDate = b.date.localeCompare(a.date)
+        return byDate || a.title.localeCompare(b.title)
+      })
+  }
+})
