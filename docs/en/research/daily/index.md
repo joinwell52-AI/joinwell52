@@ -1,7 +1,16 @@
-# Daily Research
+---
+title: Research Notes
+layout: page
+sidebar: false
+aside: false
+head:
+  - - meta
+    - http-equiv: refresh
+      content: '0; url=/joinwell52/en/research/'
+---
 
-Daily Research records new evidence, changes and provisional judgments that may affect TMPA, Digital Employee architecture or CodeFlowMu engineering.
+# Moved to Research Notes
 
-- [2026-08-01 — Public Research Center and GitHub Pages Architecture](./2026-08-01)
+Daily Research is now a metadata category inside the three Research Notes columns.
 
-Daily notes are observations, not stable conclusions. Important findings become long-term assets only after weekly synthesis, architecture revision or publication.
+[Open Research Notes →](/en/research/)
