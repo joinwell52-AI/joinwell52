@@ -7,15 +7,36 @@ import './custom.css'
 import './mobile-fix.css'
 import './rvs.css'
 import './portal-v5.css'
+import './portal-v5-language.css'
 import './article-cover.css'
 
-function fixPortalLinks() {
-  if (typeof document === 'undefined') return
+function enhancePortal() {
+  if (typeof document === 'undefined' || typeof window === 'undefined') return
+
   const siteBase = withBase('/')
+
+  // Ensure dynamic portal links include the GitHub Pages project base path.
   document.querySelectorAll<HTMLAnchorElement>('.rcv5 a[href^="/"]').forEach((anchor) => {
     const href = anchor.getAttribute('href') || ''
     if (href && !href.startsWith(siteBase)) anchor.setAttribute('href', withBase(href))
   })
+
+  // Place an explicit language selector inside the first screen, in addition
+  // to the standard VitePress language menu in the navigation bar.
+  const heroCopy = document.querySelector<HTMLElement>('.rcv5 .rcv5-hero-copy')
+  if (heroCopy && !heroCopy.querySelector('.rcv5-language-switch')) {
+    const chinese = window.location.pathname.includes(`${siteBase}zh/`)
+    const switcher = document.createElement('nav')
+    switcher.className = 'rcv5-language-switch'
+    switcher.setAttribute('aria-label', chinese ? '语言选择' : 'Language selection')
+
+    const otherHref = chinese ? withBase('/') : withBase('/zh/')
+    switcher.innerHTML = chinese
+      ? `<strong>中文</strong><span>/</span><a href="${otherHref}">EN</a>`
+      : `<strong>EN</strong><span>/</span><a href="${otherHref}">中文</a>`
+
+    heroCopy.prepend(switcher)
+  }
 }
 
 export default {
@@ -25,8 +46,9 @@ export default {
     app.component('ArticleCover', ArticleCover)
 
     if (typeof window !== 'undefined') {
-      const apply = () => window.requestAnimationFrame(fixPortalLinks)
+      const apply = () => window.requestAnimationFrame(enhancePortal)
       window.setTimeout(apply, 0)
+      window.setTimeout(apply, 160)
       router.onAfterRouteChange = apply
     }
   }
