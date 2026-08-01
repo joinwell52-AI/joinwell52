@@ -27,7 +27,7 @@ export default {
     if (typeof window !== 'undefined') {
       const apply = () => window.requestAnimationFrame(fixPortalLinks)
       window.setTimeout(apply, 0)
-      router.onAfterRouteChanged = apply
+      router.onAfterRouteChange = apply
     }
   }
 } satisfies Theme
