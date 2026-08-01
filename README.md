@@ -8,6 +8,17 @@
 [![Status](https://img.shields.io/badge/Status-Active_Research-16a34a?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/research/)
 [![中文](https://img.shields.io/badge/Language-简体中文-7c3aed?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/)
 
+## Single Source of Truth
+
+This GitHub repository is the **only authoritative research database** of the joinwell52 Research Center.
+
+All research articles, papers, specifications, Digital Employee documents, engineering analyses, visual assets, and website pages are maintained directly here. Git commits, diffs, tags, releases, issues, and pull requests provide the authoritative version and history system.
+
+- [Research governance](./RESEARCH-GOVERNANCE.md)
+- [Single-source migration record](./MIGRATION-SINGLE-SOURCE.md)
+
+The former ChatGPT Library `/TMPA` folder has been removed from the active workflow and renamed as a deprecated read-only migration archive. It must not receive new updates.
+
 ## Positioning
 
 joinwell52 Research Center is an independent, engineering-driven research portal focused on:
@@ -40,34 +51,34 @@ joinwell52 Research Center is an independent, engineering-driven research portal
 **Governed, position-oriented digital workforce**  
 [Governing architecture →](https://joinwell52-ai.github.io/joinwell52/en/digital-employee/architecture)
 
+## Research Model
+
+Research is maintained as three long-running chronological columns:
+
+1. **Academic and Paper Observation**;
+2. **Industry and Digital Employee Observation**;
+3. **GitHub and Engineering Observation**.
+
+Each Daily Research article studies all three columns through collection, organization, discussion, and impact assessment. Weekly Synthesis integrates the week's evidence into architectural and engineering judgments.
+
 ```text
-TMPA             → AI work data and governance architecture
-FCoP             → formal coordination and responsibility protocol
-CodeFlowMu       → Digital Employee development and runtime platform
-Digital Employee → final application direction
+Three chronological research columns
+                ↓
+        Daily Research articles
+                ↓
+          Weekly Synthesis
+                ↓
+Architecture · Specifications · Engineering Tasks · Publications
 ```
 
 ## Research Entry Points
 
-### Research Cadence
-
 - [Daily Research](https://joinwell52-ai.github.io/joinwell52/en/research/daily/)
 - [Weekly Synthesis](https://joinwell52-ai.github.io/joinwell52/en/research/weekly/)
-- [Academic Paper Watch](https://joinwell52-ai.github.io/joinwell52/en/research/papers/)
-
-### Research Domains
-
-- [Digital Employees](https://joinwell52-ai.github.io/joinwell52/en/digital-employee/)
-- [Industry Architecture](https://joinwell52-ai.github.io/joinwell52/en/industry/)
-- [Open-source Engineering Watch](https://joinwell52-ai.github.io/joinwell52/en/engineering/)
-
-### Publications
-
+- [Academic and Paper Observation](https://joinwell52-ai.github.io/joinwell52/en/research/papers/)
+- [Industry and Digital Employee Observation](https://joinwell52-ai.github.io/joinwell52/en/industry/)
+- [GitHub and Engineering Observation](https://joinwell52-ai.github.io/joinwell52/en/engineering/)
 - [Publication Center](https://joinwell52-ai.github.io/joinwell52/en/publications/)
-- TMPA Architecture Paper — A0.3
-- TMPA Core Specification — S0.2
-- TMPA–FCoP–CodeFlowMu Implementation Case — I0.2
-- Digital Employee Architecture — V0.2
 
 ## Language Policy
 
@@ -77,44 +88,23 @@ Digital Employee → final application direction
 - paired articles preserve topic, version and language-switch links;
 - the site header provides language selection.
 
-## Portal V5 Structure
-
-```text
-Portal Home
-├── Research Programs
-│   ├── TMPA
-│   ├── FCoP
-│   ├── CodeFlowMu
-│   └── Digital Employee
-├── Research
-│   ├── Daily Research
-│   ├── Weekly Synthesis
-│   └── Academic Paper Watch
-├── Research Domains
-│   ├── Digital Employees
-│   ├── Industry Architecture
-│   └── Engineering Watch
-└── Publications
-    ├── Papers
-    ├── Specifications
-    └── Implementation Cases
-```
-
 ## Repository Structure
 
 ```text
 .
 ├── docs/
-│   ├── index.md               # English-default Portal V5
+│   ├── index.md               # English-default Portal
 │   ├── en/                    # English articles
 │   ├── zh/                    # Chinese Portal and articles
 │   ├── .vitepress/theme/      # Portal components and visual system
 │   └── public/assets/covers/  # Article and publication covers
 ├── .github/workflows/         # GitHub Pages deployment
+├── RESEARCH-GOVERNANCE.md     # Single-source governance
+├── MIGRATION-SINGLE-SOURCE.md # Migration record
 ├── CITATION.cff
 ├── README.zh-CN.md
 ├── README.en.md
-└── README.md                  # Default English README
+└── README.md
 ```
 
 ## Author
