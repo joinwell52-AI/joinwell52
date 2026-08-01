@@ -10,14 +10,19 @@
 
 ## Single Source of Truth
 
-This GitHub repository is the **only authoritative research database** of the joinwell52 Research Center.
+This GitHub repository is the **only authoritative research database** of the joinwell52 Research Center. All papers, specifications, engineering reports, research articles, assets and website pages are maintained directly here. Git commits, diffs, tags, releases, issues and pull requests provide the authoritative history.
 
-All research articles, papers, specifications, Digital Employee documents, engineering analyses, visual assets, and website pages are maintained directly here. Git commits, diffs, tags, releases, issues, and pull requests provide the authoritative version and history system.
+The former ChatGPT Library `/TMPA` folder is a deprecated read-only migration archive and must not receive new paper revisions.
 
 - [Research governance](./RESEARCH-GOVERNANCE.md)
 - [Single-source migration record](./MIGRATION-SINGLE-SOURCE.md)
 
-The former ChatGPT Library `/TMPA` folder has been removed from the active workflow and renamed as a deprecated read-only migration archive. It must not receive new updates.
+## Current TMPA Publication Set
+
+- [TMPA Architecture Paper — A0.4](./docs/en/publications/tmpa-architecture-paper-a0.4.md)
+- [TMPA Core Specification — S0.3](./docs/en/publications/tmpa-core-specification-s0.3.md)
+- [TMPA–FCoP–CodeFlowMu Implementation Case — I0.3](./docs/en/publications/implementation-case-i0.3.md)
+- [Publication Center](https://joinwell52-ai.github.io/joinwell52/en/publications/)
 
 ## Positioning
 
@@ -32,44 +37,24 @@ joinwell52 Research Center is an independent, engineering-driven research portal
 ## Core Research Programs
 
 ### TMPA
-
 **AI work data and governance architecture**  
 [Research and publications →](https://joinwell52-ai.github.io/joinwell52/en/publications/)
 
 ### FCoP
-
 **Formal coordination and responsibility protocol**  
 [FCoP official site →](https://joinwell52-ai.github.io/FCoP/)
 
 ### CodeFlowMu
-
 **Digital Employee development and work runtime**  
 [GitHub repository →](https://github.com/joinwell52-AI/CodeFlowMu-open)
 
 ### Digital Employee
-
 **Governed, position-oriented digital workforce**  
 [Governing architecture →](https://joinwell52-ai.github.io/joinwell52/en/digital-employee/architecture)
 
 ## Research Model
 
-Research is maintained as three long-running chronological columns:
-
-1. **Academic and Paper Observation**;
-2. **Industry and Digital Employee Observation**;
-3. **GitHub and Engineering Observation**.
-
-Each Daily Research article studies all three columns through collection, organization, discussion, and impact assessment. Weekly Synthesis integrates the week's evidence into architectural and engineering judgments.
-
-```text
-Three chronological research columns
-                ↓
-        Daily Research articles
-                ↓
-          Weekly Synthesis
-                ↓
-Architecture · Specifications · Engineering Tasks · Publications
-```
+Research is maintained as three long-running chronological columns: Academic and Paper Observation; Industry and Digital Employee Observation; GitHub and Engineering Observation. Daily Research studies all three columns, and Weekly Synthesis integrates the evidence into architectural and engineering judgments.
 
 ## Research Entry Points
 
@@ -84,23 +69,23 @@ Architecture · Specifications · Engineering Tasks · Publications
 
 - English is the default language of the Portal and repository README;
 - Chinese Portal: `/zh/`;
-- English and Chinese articles are maintained as separate documents;
-- paired articles preserve topic, version and language-switch links;
-- the site header provides language selection.
+- English and Chinese publications are maintained as separate documents;
+- paired publications preserve topic, version, status, publication date and language-switch links;
+- no official revision is delivered without a Git commit.
 
 ## Repository Structure
 
 ```text
 .
 ├── docs/
-│   ├── index.md               # English-default Portal
-│   ├── en/                    # English articles
-│   ├── zh/                    # Chinese Portal and articles
-│   ├── .vitepress/theme/      # Portal components and visual system
-│   └── public/assets/covers/  # Article and publication covers
-├── .github/workflows/         # GitHub Pages deployment
-├── RESEARCH-GOVERNANCE.md     # Single-source governance
-├── MIGRATION-SINGLE-SOURCE.md # Migration record
+│   ├── index.md
+│   ├── en/
+│   ├── zh/
+│   ├── .vitepress/theme/
+│   └── public/assets/covers/
+├── .github/workflows/
+├── RESEARCH-GOVERNANCE.md
+├── MIGRATION-SINGLE-SOURCE.md
 ├── CITATION.cff
 ├── README.zh-CN.md
 ├── README.en.md
