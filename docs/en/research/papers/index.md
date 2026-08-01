@@ -1,21 +1,16 @@
-# Academic Paper Watch
+---
+title: Research Notes
+layout: page
+sidebar: false
+aside: false
+head:
+  - - meta
+    - http-equiv: refresh
+      content: '0; url=/joinwell52/en/research/'
+---
 
-This section tracks research relevant to TMPA, Digital Employees, Agent governance, multi-Agent coordination, AI workflows, AI software engineering, and SME-first AI deployment.
+# Moved to Research Notes
 
-Each paper review must answer:
+Academic Observation is now a metadata category inside the three Research Notes columns.
 
-- What problem does the paper address?
-- What method and evidence does it provide?
-- What are its limitations?
-- How does it relate to TMPA?
-- Does it change the Digital Employee architecture or the CodeFlowMu engineering roadmap?
-
-The output path is:
-
-```text
-Paper observation
-→ Daily Research
-→ Weekly Synthesis
-→ Architectural judgment
-→ Publication or engineering task when warranted
-```
+[Open Research Notes →](/en/research/)
