@@ -4,9 +4,9 @@
 
 **English** · [简体中文](./README.zh-CN.md)
 
-[![Research Site](https://img.shields.io/badge/Research_Site-Visit-1f6feb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/)
+[![Research Site](https://img.shields.io/badge/Research_Site-Portal_V5-1f6feb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/)
 [![Status](https://img.shields.io/badge/Status-Active_Research-16a34a?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/research/)
-[![中文](https://img.shields.io/badge/Language-简体中文-7c3aed?style=for-the-badge)](./README.zh-CN.md)
+[![中文](https://img.shields.io/badge/Language-简体中文-7c3aed?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/)
 
 ## Positioning
 
@@ -69,45 +69,51 @@ Digital Employee → final application direction
 - TMPA–FCoP–CodeFlowMu Implementation Case — I0.2
 - Digital Employee Architecture — V0.2
 
-## Research Workflow
-
-```text
-Daily Observation
-      ↓
-Weekly Synthesis
-      ↓
-Architecture and Specification
-      ↓
-Engineering Evidence
-      ↓
-Paper and Formal Publication
-```
-
 ## Language Policy
 
-- English is the default language of this repository README;
-- switch to [简体中文](./README.zh-CN.md) from the language link at the top;
-- English site: `/en/`;
-- Chinese site: `/`;
-- Chinese and English articles are maintained as separate documents;
-- paired articles preserve topic, version and corresponding paths.
+- English is the default language of the Portal and repository README;
+- Chinese Portal: `/zh/`;
+- English and Chinese articles are maintained as separate documents;
+- paired articles preserve topic, version and language-switch links;
+- the site header provides language selection.
+
+## Portal V5 Structure
+
+```text
+Portal Home
+├── Research Programs
+│   ├── TMPA
+│   ├── FCoP
+│   ├── CodeFlowMu
+│   └── Digital Employee
+├── Research
+│   ├── Daily Research
+│   ├── Weekly Synthesis
+│   └── Academic Paper Watch
+├── Research Domains
+│   ├── Digital Employees
+│   ├── Industry Architecture
+│   └── Engineering Watch
+└── Publications
+    ├── Papers
+    ├── Specifications
+    └── Implementation Cases
+```
 
 ## Repository Structure
 
 ```text
 .
 ├── docs/
-│   ├── research/              # Chinese research
-│   ├── digital-employee/      # Chinese Digital Employee research
-│   ├── industry/              # Chinese industry research
-│   ├── engineering/           # Chinese engineering watch
-│   ├── publications/          # Chinese publications
-│   └── en/                    # English site and articles
-├── docs/public/assets/        # Visual assets and covers
+│   ├── index.md               # English-default Portal V5
+│   ├── en/                    # English articles
+│   ├── zh/                    # Chinese Portal and articles
+│   ├── .vitepress/theme/      # Portal components and visual system
+│   └── public/assets/covers/  # Article and publication covers
 ├── .github/workflows/         # GitHub Pages deployment
-├── CITATION.cff               # Citation metadata
-├── README.zh-CN.md            # Chinese README
-├── README.en.md               # English mirror
+├── CITATION.cff
+├── README.zh-CN.md
+├── README.en.md
 └── README.md                  # Default English README
 ```
 
@@ -116,4 +122,4 @@ Paper and Formal Publication
 **Zhu Wei / 朱卫 · joinwell52-AI**  
 Independent Researcher
 
-Research site: https://joinwell52-ai.github.io/joinwell52/en/
+Research Portal: https://joinwell52-ai.github.io/joinwell52/
