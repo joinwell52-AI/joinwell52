@@ -9,7 +9,7 @@ export default defineConfig({
   lastUpdated: true,
   head: [
     ['link', { rel: 'icon', href: '/joinwell52/favicon.svg' }],
-    ['meta', { name: 'theme-color', content: '#11183b' }],
+    ['meta', { name: 'theme-color', content: '#080b18' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: 'TMPA Research Center' }],
     ['meta', { property: 'og:description', content: 'Governance Architecture for AI Work & Digital Employees' }],
@@ -17,7 +17,7 @@ export default defineConfig({
   ],
   themeConfig: {
     logo: '/logo.svg',
-    siteTitle: 'TMPA Research Center',
+    siteTitle: 'TMPA',
     nav: [
       { text: '研究', link: '/research/' },
       { text: '数字员工', link: '/digital-employee/' },
