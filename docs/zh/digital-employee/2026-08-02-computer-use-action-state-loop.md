@@ -1,0 +1,194 @@
+---
+title: 数字员工每日研究 003 — Computer Use 必须运行在可观测的动作—状态循环中
+date: '2026-08-02'
+column: digital-employee
+category: daily
+summary: OpenAI 与 Anthropic 的 Computer Use 指南表明，可靠的 GUI 工作依赖外部 Runtime 持续观察状态、执行有边界的动作、保存证据并验证结果状态。
+sources:
+  - OpenAI Computer use guide
+  - Anthropic Computer use tool documentation
+outline: deep
+---
+
+<ArticleCover
+  image="/assets/covers/daily-computer-use-loop.svg"
+  kicker="数字员工 · 每日研究 003"
+  title="Computer Use 必须运行在可观测的动作—状态循环中"
+  summary="模型的意图不能完成 GUI 工作；受治理的 Runtime 必须观察、执行、取证、审批和验证。"
+  version="DD003"
+  status="Production Test V1 · 2026-08-02"
+  languageHref="/en/digital-employee/2026-08-02-computer-use-action-state-loop"
+  languageLabel="English"
+/>
+
+## Summary
+
+Computer Use 经常被简单描述成 Agent“操作浏览器”或“使用桌面”。OpenAI 与 Anthropic 的官方实现指南展示的是一个更精确的系统。
+
+模型解释当前视觉状态并提出下一步动作；由应用控制的 Harness 在浏览器、虚拟机或桌面环境中执行动作，捕获新的状态，再把结果交给模型。这个循环持续运行，直到工作达到完成条件，或者因为政策门禁而需要人类权威。
+
+Research Center 的判断是：
+
+> 使用计算机的数字员工，不是一个获得鼠标权限的模型，而是一套由外部 Runtime 治理的可观测动作—状态循环；它必须具备明确权威、证据保存和最终状态验证。
+
+这一点很重要，因为组织工作是否完成，应由业务状态的变化决定，而不能由模型声称“已经点过正确按钮”决定。
+
+## Source
+
+### 入选的一手资料
+
+1. **OpenAI Computer use guide**：入选原因是其明确描述了常见 Harness 形态、截图—动作循环、隔离执行环境、把页面内容视为不可信输入，以及高影响动作需要人工参与。
+2. **Anthropic Computer use tool documentation**：入选原因是它把模型侧 Tool 与开发者提供的环境、Agent Loop 分开，并明确记录隔离、最小权限、Allowlist、Prompt Injection 风险和关键动作确认。
+
+两份资料都是 Provider 官方文档。它们说明支持的机制与推荐安全措施，但不能独立证明所有 GUI 任务都足够可靠、安全，或适合无人值守生产。
+
+## Observation
+
+### 1. 模型提出动作，Harness 执行动作
+
+在两种实现中，模型都不直接控制操作系统。它返回结构化动作，例如 Click、Type、Scroll、Key Press 或 Screenshot Request；开发者控制的代码解释这些动作，并把它们应用到实际环境中。
+
+因此形成了清晰的技术边界：
+
+```text
+模型推理
+    ↓ 提议动作
+执行 Harness
+    ↓ 受控操作
+浏览器 / 桌面 / 应用
+    ↓ 结果状态
+截图或结构化观察
+    ↺ 返回模型
+```
+
+*图：joinwell52 Research Center 根据 OpenAI 与 Anthropic Computer Use 文档综合。*
+
+Runtime 因而负责执行语义、环境隔离、Credential、Network Reachability、Timeout 和证据捕获。
+
+### 2. 每个动作都依赖新的状态
+
+正常循环不是“生成一长串脚本，然后希望它成功”。系统会反复捕获当前界面、请求下一步动作、执行动作，再返回更新后的截图或观察结果。
+
+这是因为界面具有状态性和不确定性。一次点击可能打开对话框、触发校验、静默失败、改变导航，或者进入新的安全边界。下一步动作必须基于观察到的结果，而不是基于期望发生的结果。
+
+### 3. 安全必须进入 Runtime 边界
+
+两个 Provider 的安全建议高度一致：
+
+- 在隔离浏览器、Container 或 Virtual Machine 中运行；
+- 尽量减少继承的环境变量和 Host Access；
+- 限定可访问的网站、账号、工具与动作；
+- 把界面内容视为潜在的不可信输入；
+- 对购买、认证、破坏性修改以及其他难以撤销的动作保留人工审批；
+- 避免让模型无边界接触敏感数据或 Credential。
+
+这些不能只靠 Prompt 约束，而需要可执行的 Runtime 控制。
+
+### 4. 最后一次点击不能证明工作完成
+
+Click 是一次操作尝试，不是业务结果的证据。系统必须检查动作后的状态，例如确认编号、更新后的记录、改变的 Status、生成的文件、成功的查询结果，或其他应用特定条件。
+
+因此，数字员工 Runtime 需要一个独立于模型叙述的 Validator。
+
+## Discussion
+
+### 最小 Computer Operation 记录
+
+每个 GUI Operation 应产生持久记录：
+
+```yaml
+computer_operation:
+  work_order_ref:
+  step_id:
+  actor_ref:
+  authority_snapshot_ref:
+  pre_state_ref:
+  proposed_action:
+  policy_decision:
+  human_approval_ref:
+  execution_result:
+  post_state_ref:
+  evidence_refs:
+  validator_result:
+  next_state:
+```
+
+这并不意味着所有截图都必须永久保存。Retention 可以由风险和隐私政策决定。关键是系统能够证明：观察到了什么状态、什么动作获得授权、实际发生了什么，以及工作流为什么可以继续推进。
+
+### 动作、状态和证据是不同事实
+
+| Runtime 事实 | 回答的问题 | 常见证据 |
+|---|---|---|
+| Proposed action | 模型请求做什么？ | Structured Tool Call |
+| Authorized action | 这个请求是否被允许？ | Policy 与 Approval Event |
+| Executed action | Harness 实际尝试了什么？ | Runtime Event 与 Return Code |
+| Resulting state | 应用最终变成什么状态？ | Screenshot、DOM Fact、API Readback、File Hash |
+| Completion judgment | WorkOrder 结果是否成立？ | Task-specific Validator |
+
+*表：joinwell52 Research Center 综合。*
+
+把这些事实混在一起会制造“假成功”。Tool Call 合法，不代表已经执行；执行技术上成功，不代表业务状态正确；期望状态短暂出现，也不代表已经持久保存或通过后续验证。
+
+### 数字员工不是爬虫
+
+爬虫从预定页面结构提取数据。数字员工则在组织岗位内执行受治理的操作序列：打开应用、通过批准路径认证、定位记录、录入或复核数据、响应界面状态、升级异常，并证明任务完成。
+
+当稳定、授权且足以完成工作的 API 存在时，Programmatic API 仍应优先。Computer Use 的价值主要在于工作只能通过人类界面完成，或者视觉上下文本身具有意义。Runtime 应选择风险最低且适合的通道，而不是把 GUI 控制当成 API 的通用替代品。
+
+### 人类权威应是工作流节点
+
+Approval 不应是一次非正式打断。工作流应进入 `waiting_human_authority` 等明确状态，保存提议动作和可见上下文，标明审批岗位，并且只在留下持久 Decision 后恢复。
+
+这样，“Human in the Loop”才从产品口号变成可审计的状态迁移。
+
+## Engineering Impact
+
+### TMPA
+
+本笔记不直接修改 TMPA 正式出版物。它为外部动作周围的 Event、Authority、Lifecycle、Evidence 与 Integrity Reference 提供研究证据。确定性重建必须区分 Proposed Action、Permitted Action、Execution Event、Observed State 与 Completion Judgment。
+
+### Digital Employee
+
+Computer Operation 应成为 Work Runtime 的一等节点，至少包括：
+
+1. 有边界的应用与账号上下文；
+2. 动作前状态捕获；
+3. 结构化动作提议；
+4. 可执行的 Policy 与 Approval Gate；
+5. 动作后状态捕获；
+6. 任务特定的完成验证；
+7. Exception、Retry 与 Escalation 状态；
+8. 隐私感知的证据保留。
+
+Position Definition 应明确数字员工可以无须额外审批使用哪些应用、执行哪些动作类别。
+
+### CodeFlowMu
+
+CodeFlowMu 应把 Computer Use 作为受治理的 Runtime Adapter，而不是无限制 Browser Automation。安全的实现路径是：
+
+```text
+WorkOrder
+→ Operation Node
+→ Computer-use Adapter
+→ Isolated Browser/Desktop
+→ Evidence Event
+→ Validator
+→ QA or Human Gate
+→ Completion
+```
+
+第一个验证案例应使用初始状态已知、具有可执行 Validator 的受控本地应用。Runtime 需要记录每一次状态迁移，并证明 Session 恢复不会重复执行有后果的动作。
+
+## Future Work
+
+1. 定义 Computer Operation Contract 与允许动作分类。
+2. 建立受控本地 Benchmark，覆盖 Login、Search、Form Entry、Confirmation、Error 与 Recovery。
+3. 比较 Screenshot-only Evidence、DOM、API Readback 与业务记录验证。
+4. 定义哪些动作可以由 Position 预授权，哪些必须逐次人工批准。
+5. 测试 Browser、Network 与 Model Failure 之后的 Checkpoint 与 Resume。
+6. 用最终状态衡量 Task Success，而不是用完成的 Click 数量衡量。
+
+## References
+
+1. OpenAI，**Computer use**：https://developers.openai.com/api/docs/guides/tools-computer-use
+2. Anthropic，**Computer use tool**：https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
