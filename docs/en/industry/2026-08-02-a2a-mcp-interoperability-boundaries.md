@@ -3,7 +3,7 @@ title: Industry Architecture Daily 003 — A2A and MCP Define Different Interope
 date: '2026-08-02'
 column: industry-architecture
 category: daily
-summary: A2A v1.0 and the MCP 2026-07-28 specification overlap in operational features but still govern different trust boundaries: collaboration between independent agents versus access to tools, context, and capabilities.
+summary: 'A2A v1.0 and the MCP 2026-07-28 specification overlap in operational features but still govern different trust boundaries: collaboration between independent agents versus access to tools, context, and capabilities.'
 sources:
   - A2A Protocol v1.0 documentation and specification
   - Model Context Protocol specification 2026-07-28
