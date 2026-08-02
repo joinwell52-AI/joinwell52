@@ -1,80 +1,133 @@
-# joinwell52 Research Center 2.0
+# joinwell52 Research Center 3.0
 
-> **A continuously operating AI Research Center powered by a Digital Research Employee**
+> **A Runtime-governed AI Research Center powered by a Digital Research Employee**
 
 **English** · [简体中文](./README.zh-CN.md)
 
-[![Research Site](https://img.shields.io/badge/Research_Center-2.0-1f6feb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/)
-[![Engine](https://img.shields.io/badge/Research_Report_Production_Engine-V1.0-6d5dfc?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/publications/research-report-production-engine-v1.0)
-[![Status](https://img.shields.io/badge/Status-Production_Verified-16a34a?style=for-the-badge)](https://github.com/joinwell52-AI/joinwell52/blob/main/research/production-tests/production-test-v1/REPORT.md)
-[![中文](https://img.shields.io/badge/Language-简体中文-7c3aed?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/)
+[![Research Center](https://img.shields.io/badge/Research_Center-3.0-1f6feb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/)
+[![Runtime](https://img.shields.io/badge/Research_Runtime_Scheduler-V1.0-7c6cff?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/publications/research-runtime-scheduler-v1.0)
+[![Digital Research Employee](https://img.shields.io/badge/Research_Report_Production_Engine-V1.0-6d5dfc?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/publications/research-report-production-engine-v1.0)
+[![Status](https://img.shields.io/badge/Runtime_Record-Required-16a34a?style=for-the-badge)](./research/runtime/README.md)
 
-## Research Center 2.0
+## Research Center 3.0
 
-joinwell52 Research Center is no longer positioned as a research website alone. It is a continuously operating research system.
+joinwell52 Research Center is a continuously operating research system with one formal execution control plane.
 
 ```text
 Research Operating System
+  defines the work lifecycle
         ↓
-Research Report Production Engine
+Research Runtime Center
+  schedules, observes, records and verifies execution
         ↓
-Digital Research Employee on ChatGPT
+Research Report Production Engine V1.0
+  performs the Digital Research Employee / Research Analyst position
         ↓
-Research Queue + Research Skills
+Research Skills + Research Queue + Runtime Knowledge
         ↓
-GitHub-first publication
+GitHub Commit + Commit Verify
         ↓
-Research Notes, architecture and formal releases
+Research Notes, architecture, specifications and formal releases
 ```
 
-The core execution capability is **Research Report Production Engine V1.0（研究报告生产机 V1.0）**: a production-verified Digital Research Employee built on ChatGPT and organized around a real Research Analyst position.
+Research Runtime Scheduler V1.0 is the only formal scheduler of the Research Operating System. Individual automations are Runtime workers; they are not independent control planes.
 
-- [Formal V1.0 release](./docs/en/publications/research-report-production-engine-v1.0.md)
-- [简体中文正式发布](./docs/zh/publications/research-report-production-engine-v1.0.md)
+- [Research Runtime Center](https://joinwell52-ai.github.io/joinwell52/en/runtime/)
+- [Research Runtime Scheduler V1.0 release](./docs/en/publications/research-runtime-scheduler-v1.0.md)
+- [Runtime Charter](./research/runtime/README.md)
+- [Runtime Record schema](./research/runtime/RUNTIME-RECORD-SCHEMA.md)
+- [Research Report Production Engine V1.0](./docs/en/publications/research-report-production-engine-v1.0.md)
 - [Production Test V1](./research/production-tests/production-test-v1/REPORT.md)
-- [Runtime Record](./research/production-tests/production-test-v1/RUNTIME-RECORD.md)
-- [Release record](./research/releases/research-report-production-engine-v1.0/RELEASE.md)
 
-## Single Source of Truth
+## Runtime architecture
 
-This GitHub repository is the **only authoritative research database and publication history** of the joinwell52 Research Center. Papers, specifications, capability releases, engineering reports, research notes, operating records, assets and website pages are maintained directly here.
+```text
+Research Runtime Center
+        ↓
+Runtime Scheduler V1.0
+        ↓
+Runtime Engine
+        ↓
+Runtime Queue
+        ↓
+Runtime Knowledge
+        ↓
+Runtime Architecture
+        ↓
+Runtime Publication / Weekly / Academic
+        ↓
+Runtime Record
+        ↓
+GitHub
+        ↓
+Research Center Website
+```
 
-Git commits, diffs, pull requests, CI results, tags and releases provide the authoritative history. A research product is not official merely because text was generated; it becomes official after the required publication gates and Git commit.
+Seven formal Runtime tasks are defined in [`research/runtime/SCHEDULER.json`](./research/runtime/SCHEDULER.json):
 
-The former ChatGPT Library `/TMPA` folder is a deprecated read-only migration archive and must not receive new revisions.
+| Runtime | Schedule (`Asia/Shanghai`) | Responsibility |
+|---|---|---|
+| Research Runtime Engine | Daily 09:00 | Advance the Research OS state machine. |
+| Research Runtime Queue | Daily 10:00 | Maintain discovery, candidates, priority and queue lifecycle. |
+| Research Runtime Knowledge | Daily 11:00 | Maintain knowledge, related notes and architecture candidates. |
+| Research Runtime Architecture | Monday 12:00 | Perform architecture and lifecycle review. |
+| Research Runtime Publication | Daily 20:00 | Publish Daily Research and verify the GitHub commit. |
+| Research Runtime Weekly | Sunday 20:30 | Create new synthesis and engineering judgment. |
+| Research Runtime Academic | Wednesday 10:00 | Publish research on papers, benchmarks, specifications and institutions. |
 
-- [Research governance](./RESEARCH-GOVERNANCE.md)
-- [Single-source migration record](./MIGRATION-SINGLE-SOURCE.md)
+The task draft used the phrase “six tasks” but explicitly defined seven. Research Center 3.0 adopts all seven responsibilities.
 
-## Current Publication Set
+## Runtime Record — execution truth
 
-### Digital Employee capability
+Every formal execution writes one daily record:
 
-- [Research Report Production Engine — V1.0](./docs/en/publications/research-report-production-engine-v1.0.md) — Production Verified
+```text
+research/runtime/YYYY/MM/YYYY-MM-DD-runtime.md
+```
 
-### TMPA
+The record contains start and end time, duration, task status, output, lifecycle, Queue and Engine state, publication state, GitHub commit, Commit Verify and an append-only Runtime Log.
 
-- [TMPA Architecture Paper — A0.4](./docs/en/publications/tmpa-architecture-paper-a0.4.md)
-- [TMPA Core Specification — S0.3](./docs/en/publications/tmpa-core-specification-s0.3.md)
-- [TMPA–FCoP–CodeFlowMu Implementation Case — I0.3](./docs/en/publications/implementation-case-i0.3.md)
-- [Publication Center](https://joinwell52-ai.github.io/joinwell52/en/publications/)
+Exactly six Runtime statuses are allowed:
+
+```text
+Running · Completed · Blocked · Failed · Skipped · Waiting
+```
+
+The website Runtime Dashboard, Today’s Tasks, Timeline, History and status panels are generated from Runtime Records. They are not manually maintained.
+
+## Runtime publication gate
+
+```text
+Research Runtime
+→ Publication Candidate
+→ Runtime Record
+→ GitHub Commit
+→ Commit Verify
+→ Official Publication
+```
+
+A formal publication pull request without a Runtime Record fails the Runtime Gate.
+
+> **Every official Publication must be executed by Research Runtime and produce a Runtime Record. A publication without a Runtime Record is not an official runtime output.**
 
 ## Digital Research Employee
 
-The Research Report Production Engine is defined as a position-based worker:
+Research Report Production Engine V1.0 is the Digital Research Employee execution capability:
 
 ```yaml
 position: Research Analyst
 worker: Digital Research Employee
 platform: ChatGPT
 work_system: Research Operating System
+control_plane: Research Runtime Center
+scheduler: Research Runtime Scheduler V1.0
 skills: 8 Research Skills
 queue: Research Queue
 output: Research Notes and formal publications
 system_of_record: GitHub
 ```
 
-Its standard work is:
+Its governed work path is:
 
 ```text
 Source Discovery
@@ -86,43 +139,39 @@ Source Discovery
 → Evidence & Citation
 → Publication Editing
 → GitHub PR / CI / main verification
+→ Runtime Record closure
 ```
 
-Production Test V1 produced three Daily Research objects and three Academic Observations, twelve bilingual Markdown publications, six dedicated covers and a complete GitHub publication record. The first CI build detected a real YAML defect; the defect was corrected and the second build passed before merge.
+Production Test V1 produced three Daily Research objects, three Academic Observations, twelve bilingual Markdown publications, six dedicated covers and a complete GitHub publication record. The first CI build detected a real YAML defect; the defect was corrected and the second build passed before merge.
 
-## Positioning
+## Single source of truth
 
-Research Center is not a news site, a blog or a passive paper archive. It is a process-driven AI research operation focused on:
+This repository is the only authoritative research database, runtime record and publication history of the joinwell52 Research Center.
 
-- Digital Employee positions, workflows, runtime, governance and evaluation;
-- enterprise and industry architecture for AI work;
-- open-source Agent engineering and runtime systems;
-- TMPA work data and governance architecture;
-- FCoP formal coordination;
-- CodeFlowMu Digital Employee engineering;
-- deployable AI work systems for SMEs.
+Git commits, diffs, pull requests, CI results, tags and releases provide the authoritative history. Generated text is not a formal result until it passes the applicable Runtime and publication gates.
 
-## Core Research Programs
+The former ChatGPT Library `/TMPA` folder is a deprecated read-only migration archive and must not receive new revisions.
+
+- [Research governance](./RESEARCH-GOVERNANCE.md)
+- [Single-source migration record](./MIGRATION-SINGLE-SOURCE.md)
+
+## Current publication set
+
+### Runtime and Digital Employee capabilities
+
+- [Research Runtime Scheduler — V1.0](./docs/en/publications/research-runtime-scheduler-v1.0.md) — Runtime Control Plane
+- [Research Report Production Engine — V1.0](./docs/en/publications/research-report-production-engine-v1.0.md) — Production Verified
 
 ### TMPA
-**AI work data and governance architecture**  
-[Research and publications →](https://joinwell52-ai.github.io/joinwell52/en/publications/)
 
-### FCoP
-**Formal coordination and responsibility protocol**  
-[FCoP official site →](https://joinwell52-ai.github.io/FCoP/)
+- [TMPA Architecture Paper — A0.4](./docs/en/publications/tmpa-architecture-paper-a0.4.md)
+- [TMPA Core Specification — S0.3](./docs/en/publications/tmpa-core-specification-s0.3.md)
+- [TMPA–FCoP–CodeFlowMu Implementation Case — I0.3](./docs/en/publications/implementation-case-i0.3.md)
+- [Publication Center](https://joinwell52-ai.github.io/joinwell52/en/publications/)
 
-### CodeFlowMu
-**Digital Employee development and work runtime**  
-[GitHub repository →](https://github.com/joinwell52-AI/CodeFlowMu-open)
+## Research Notes model
 
-### Digital Employee
-**Governed, position-oriented digital workforce**  
-[Governing architecture →](https://joinwell52-ai.github.io/joinwell52/en/digital-employee/architecture)
-
-## Research Notes Model
-
-Research Notes are the continuously growing research outputs. Every research article carries required metadata:
+Research Notes are organized by two independent metadata dimensions:
 
 ```yaml
 column: digital-employee | industry-architecture | open-source-engineering
@@ -132,28 +181,18 @@ date: YYYY-MM-DD
 
 The website reads metadata directly from GitHub Markdown and generates column counts, category counts, newest-first lists and calendar filtering. No second research database or manually maintained article list is used.
 
-### Three research columns
-
 - [Digital Employee](https://joinwell52-ai.github.io/joinwell52/en/digital-employee/)
 - [Industry Architecture](https://joinwell52-ai.github.io/joinwell52/en/industry/)
 - [Open-source Engineering](https://joinwell52-ai.github.io/joinwell52/en/engineering/)
 
-## Entry Points
+## Core research programs
 
-- [Research Center 2.0](https://joinwell52-ai.github.io/joinwell52/)
-- [Research Report Production Engine V1.0](https://joinwell52-ai.github.io/joinwell52/en/publications/research-report-production-engine-v1.0)
-- [Research Notes](https://joinwell52-ai.github.io/joinwell52/en/research/)
-- [Publication Center](https://joinwell52-ai.github.io/joinwell52/en/publications/)
+- **TMPA:** AI work data and governance architecture.
+- **FCoP:** formal coordination and responsibility protocol.
+- **CodeFlowMu:** Digital Employee development and work runtime.
+- **Digital Employee:** governed, position-oriented digital workforce.
 
-## Language Policy
-
-- English is the default language of the Portal and repository README;
-- Chinese Portal: `/zh/`;
-- English and Chinese publications are maintained as separate documents;
-- paired publications preserve topic, version, status, publication date and language-switch links;
-- no official revision is delivered without a Git commit.
-
-## Repository Structure
+## Repository structure
 
 ```text
 .
@@ -164,9 +203,11 @@ The website reads metadata directly from GitHub Markdown and generates column co
 │   ├── .vitepress/theme/
 │   └── public/assets/covers/
 ├── research/
+│   ├── runtime/
 │   ├── skills/
 │   ├── production-tests/
 │   └── releases/
+├── scripts/runtime-center.mjs
 ├── .github/workflows/
 ├── RESEARCH-GOVERNANCE.md
 ├── MIGRATION-SINGLE-SOURCE.md
@@ -175,9 +216,11 @@ The website reads metadata directly from GitHub Markdown and generates column co
 └── README.md
 ```
 
-## Core principle
+## Core principles
 
 > **A Digital Employee is not a chatbot. It is a persistent worker with a position, responsibilities, skills, workflow, standards, authority boundaries and verifiable work products.**
+
+> **Research Runtime—not individual automation tasks—is the operational control plane of the Digital Research Employee.**
 
 ## Author
 

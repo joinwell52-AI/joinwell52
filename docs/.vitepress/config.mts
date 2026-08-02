@@ -1,6 +1,11 @@
 import { defineConfig } from 'vitepress'
 
 const enSidebar = {
+  '/en/runtime/': [{ text: 'Research Runtime Center', items: [
+    { text: 'Runtime Dashboard', link: '/en/runtime/' },
+    { text: 'Runtime Scheduler V1.0', link: '/en/publications/research-runtime-scheduler-v1.0' },
+    { text: 'Research Report Production Engine V1.0', link: '/en/publications/research-report-production-engine-v1.0' }
+  ]}],
   '/en/research/': [{ text: 'Research Notes', items: [
     { text: 'All Research Notes', link: '/en/research/' },
     { text: 'Digital Employee', link: '/en/digital-employee/' },
@@ -19,6 +24,7 @@ const enSidebar = {
   ]}],
   '/en/publications/': [{ text: 'Publication Center', items: [
     { text: 'Overview', link: '/en/publications/' },
+    { text: 'Research Runtime Scheduler V1.0', link: '/en/publications/research-runtime-scheduler-v1.0' },
     { text: 'Research Report Production Engine V1.0', link: '/en/publications/research-report-production-engine-v1.0' },
     { text: 'TMPA Architecture Paper A0.4', link: '/en/publications/tmpa-architecture-paper-a0.4' },
     { text: 'TMPA Core Specification S0.3', link: '/en/publications/tmpa-core-specification-s0.3' },
@@ -27,6 +33,11 @@ const enSidebar = {
 }
 
 const zhSidebar = {
+  '/zh/runtime/': [{ text: 'Research Runtime Center', items: [
+    { text: 'Runtime Dashboard', link: '/zh/runtime/' },
+    { text: 'Runtime Scheduler V1.0', link: '/zh/publications/research-runtime-scheduler-v1.0' },
+    { text: '研究报告生产机 V1.0', link: '/zh/publications/research-report-production-engine-v1.0' }
+  ]}],
   '/zh/research/': [{ text: '研究笔记', items: [
     { text: '全部研究笔记', link: '/zh/research/' },
     { text: '数字员工', link: '/zh/digital-employee/' },
@@ -45,6 +56,7 @@ const zhSidebar = {
   ]}],
   '/zh/publications/': [{ text: '出版中心', items: [
     { text: '出版物总览', link: '/zh/publications/' },
+    { text: 'Research Runtime Scheduler V1.0', link: '/zh/publications/research-runtime-scheduler-v1.0' },
     { text: '研究报告生产机 V1.0', link: '/zh/publications/research-report-production-engine-v1.0' },
     { text: 'TMPA 架构论文 A0.4', link: '/zh/publications/tmpa-architecture-paper-a0.4' },
     { text: 'TMPA 核心规范 S0.3', link: '/zh/publications/tmpa-core-specification-s0.3' },
@@ -54,7 +66,7 @@ const zhSidebar = {
 
 export default defineConfig({
   title: 'joinwell52 Research Center',
-  description: 'A continuously operating AI Research Center powered by a production-verified Digital Research Employee',
+  description: 'Research Center 3.0 — a Runtime-governed AI Research Center powered by a production-verified Digital Research Employee',
   base: '/joinwell52/',
   cleanUrls: true,
   lastUpdated: true,
@@ -62,8 +74,8 @@ export default defineConfig({
     ['link', { rel: 'icon', href: '/joinwell52/favicon.svg' }],
     ['meta', { name: 'theme-color', content: '#080b18' }],
     ['meta', { property: 'og:type', content: 'website' }],
-    ['meta', { property: 'og:title', content: 'joinwell52 Research Center 2.0' }],
-    ['meta', { property: 'og:description', content: 'Research OS · Digital Research Employee · GitHub-first research publication' }],
+    ['meta', { property: 'og:title', content: 'joinwell52 Research Center 3.0' }],
+    ['meta', { property: 'og:description', content: 'Research Runtime Center · Runtime Scheduler V1.0 · Digital Research Employee · GitHub First' }],
     ['meta', { property: 'og:image', content: 'https://joinwell52-ai.github.io/joinwell52/og-cover.svg' }]
   ],
   locales: {
@@ -71,19 +83,19 @@ export default defineConfig({
       label: 'English',
       lang: 'en-US',
       title: 'joinwell52 Research Center',
-      description: 'A continuously operating AI Research Center powered by a production-verified Digital Research Employee'
+      description: 'Research Center 3.0 — a Runtime-governed AI Research Center powered by a production-verified Digital Research Employee'
     },
     zh: {
       label: '简体中文',
       lang: 'zh-CN',
       link: '/zh/',
       title: 'joinwell52 研究中心',
-      description: '由经过生产验证的数字研究员持续运行的 AI 研究中心'
+      description: 'Research Center 3.0——由 Runtime 统一治理、由经过生产验证的数字研究员持续运行的 AI 研究中心'
     }
   },
   themeConfig: {
     logo: '/logo.svg',
-    siteTitle: 'Research Center 2.0',
+    siteTitle: 'Research Center 3.0',
     search: { provider: 'local' },
     socialLinks: [{ icon: 'github', link: 'https://github.com/joinwell52-AI/joinwell52' }],
     i18nRouting: (_data, route, targetLocale) => {
@@ -104,10 +116,11 @@ export default defineConfig({
         selectText: 'Language',
         nav: [
           { text: 'Home', link: '/' },
-          { text: 'Research OS', link: '/en/publications/research-report-production-engine-v1.0' },
+          { text: 'Runtime Center', link: '/en/runtime/' },
           { text: 'Research Notes', link: '/en/research/' },
           { text: 'Publications', link: '/en/publications/' },
           { text: 'Programs', items: [
+            { text: 'Research Operating System', link: '/en/publications/research-runtime-scheduler-v1.0' },
             { text: 'TMPA', link: '/en/publications/' },
             { text: 'FCoP Official Site', link: 'https://joinwell52-ai.github.io/FCoP/' },
             { text: 'CodeFlowMu', link: 'https://github.com/joinwell52-AI/CodeFlowMu-open' },
@@ -119,17 +132,18 @@ export default defineConfig({
         outline: { level: [2, 3], label: 'On this page' },
         lastUpdated: { text: 'Last updated' },
         docFooter: { prev: 'Previous', next: 'Next' },
-        footer: { message: 'Research OS · GitHub First · Production-verified Digital Employee', copyright: 'Copyright © 2026 joinwell52-AI' }
+        footer: { message: 'Research Runtime Center · GitHub First · Production-verified Digital Research Employee', copyright: 'Copyright © 2026 joinwell52-AI' }
       },
       zh: {
         label: '简体中文',
         selectText: '语言',
         nav: [
           { text: '首页', link: '/zh/' },
-          { text: 'Research OS', link: '/zh/publications/research-report-production-engine-v1.0' },
+          { text: 'Runtime Center', link: '/zh/runtime/' },
           { text: '研究笔记', link: '/zh/research/' },
           { text: '出版物', link: '/zh/publications/' },
           { text: '研究计划', items: [
+            { text: 'Research Operating System', link: '/zh/publications/research-runtime-scheduler-v1.0' },
             { text: 'TMPA', link: '/zh/publications/' },
             { text: 'FCoP 官网', link: 'https://joinwell52-ai.github.io/FCoP/' },
             { text: 'CodeFlowMu', link: 'https://github.com/joinwell52-AI/CodeFlowMu-open' },
@@ -141,7 +155,7 @@ export default defineConfig({
         outline: { level: [2, 3], label: '本页目录' },
         lastUpdated: { text: '最后更新' },
         docFooter: { prev: '上一篇', next: '下一篇' },
-        footer: { message: 'Research OS · GitHub First · 经过生产验证的数字员工', copyright: 'Copyright © 2026 joinwell52-AI' }
+        footer: { message: 'Research Runtime Center · GitHub First · 经过生产验证的数字研究员', copyright: 'Copyright © 2026 joinwell52-AI' }
       }
     }
   }

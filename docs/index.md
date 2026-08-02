@@ -1,8 +1,8 @@
 ---
 layout: home
 pageClass: portal-v5-page
-title: Research Center 2.0 — Digital Research Center
-description: A continuously operating AI Research Center powered by a production-verified Digital Research Employee built on ChatGPT.
+title: Research Center 3.0 — Research Runtime Center
+description: A continuously operating AI Research Center governed by Research Runtime Scheduler V1.0 and powered by a production-verified Digital Research Employee.
 ---
 
-<PortalHome lang="en" />
+<ResearchCenterHome lang="en" />

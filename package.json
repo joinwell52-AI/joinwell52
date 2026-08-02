@@ -1,11 +1,14 @@
 {
   "name": "joinwell52-research-center-portal",
   "private": true,
-  "version": "5.0.0",
+  "version": "6.0.0",
   "type": "module",
   "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
+    "runtime:validate": "node scripts/runtime-center.mjs validate",
+    "runtime:build": "node scripts/runtime-center.mjs build",
+    "runtime:gate": "node scripts/runtime-center.mjs gate",
+    "docs:dev": "npm run runtime:build && vitepress dev docs",
+    "docs:build": "npm run runtime:build && vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {

@@ -388,4 +388,4 @@ The practical consequence is clear: CodeFlowMu should establish the Work Boundar
 1. [Digital Employee Daily 003 — Computer Use Requires an Observable Action–State Loop](../../digital-employee/2026-08-02-computer-use-action-state-loop)
 2. [Industry Architecture Daily 003 — A2A and MCP Define Different Interoperability Boundaries](../../industry/2026-08-02-a2a-mcp-interoperability-boundaries)
 3. [Open-source Engineering Daily 003 — Manager Orchestration and Handoffs Encode Different Ownership Models](../../engineering/2026-08-02-manager-handoff-ownership-models)
-4. [Research OS Engine Production Test V1 — evidence validation record](../../../../research/production-tests/production-test-v1/REPORT.md)
+4. [Research OS Engine Production Test V1 — evidence validation record](https://github.com/joinwell52-AI/joinwell52/blob/main/research/production-tests/production-test-v1/REPORT.md)

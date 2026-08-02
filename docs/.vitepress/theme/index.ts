@@ -4,6 +4,8 @@ import { withBase } from 'vitepress'
 import PortalHome from './components/PortalHome.vue'
 import ArticleCover from './components/ArticleCover.vue'
 import ResearchNotes from './components/ResearchNotes.vue'
+import RuntimeCenter from './components/RuntimeCenter.vue'
+import ResearchCenterHome from './components/ResearchCenterHome.vue'
 import './custom.css'
 import './mobile-fix.css'
 import './rvs.css'
@@ -16,14 +18,11 @@ function enhancePortal() {
 
   const siteBase = withBase('/')
 
-  // Ensure dynamic portal links include the GitHub Pages project base path.
   document.querySelectorAll<HTMLAnchorElement>('.rcv5 a[href^="/"]').forEach((anchor) => {
     const href = anchor.getAttribute('href') || ''
     if (href && !href.startsWith(siteBase)) anchor.setAttribute('href', withBase(href))
   })
 
-  // Place an explicit language selector inside the first screen, in addition
-  // to the standard VitePress language menu in the navigation bar.
   const heroCopy = document.querySelector<HTMLElement>('.rcv5 .rcv5-hero-copy')
   if (heroCopy && !heroCopy.querySelector('.rcv5-language-switch')) {
     const chinese = window.location.pathname.includes(`${siteBase}zh/`)
@@ -46,6 +45,8 @@ export default {
     app.component('PortalHome', PortalHome)
     app.component('ArticleCover', ArticleCover)
     app.component('ResearchNotes', ResearchNotes)
+    app.component('RuntimeCenter', RuntimeCenter)
+    app.component('ResearchCenterHome', ResearchCenterHome)
 
     if (typeof window !== 'undefined') {
       const apply = () => window.requestAnimationFrame(enhancePortal)
