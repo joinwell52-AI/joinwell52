@@ -19,6 +19,7 @@ const enSidebar = {
   ]}],
   '/en/publications/': [{ text: 'Publication Center', items: [
     { text: 'Overview', link: '/en/publications/' },
+    { text: 'Research Report Production Engine V1.0', link: '/en/publications/research-report-production-engine-v1.0' },
     { text: 'TMPA Architecture Paper A0.4', link: '/en/publications/tmpa-architecture-paper-a0.4' },
     { text: 'TMPA Core Specification S0.3', link: '/en/publications/tmpa-core-specification-s0.3' },
     { text: 'Implementation Case I0.3', link: '/en/publications/implementation-case-i0.3' }
@@ -44,6 +45,7 @@ const zhSidebar = {
   ]}],
   '/zh/publications/': [{ text: '出版中心', items: [
     { text: '出版物总览', link: '/zh/publications/' },
+    { text: '研究报告生产机 V1.0', link: '/zh/publications/research-report-production-engine-v1.0' },
     { text: 'TMPA 架构论文 A0.4', link: '/zh/publications/tmpa-architecture-paper-a0.4' },
     { text: 'TMPA 核心规范 S0.3', link: '/zh/publications/tmpa-core-specification-s0.3' },
     { text: '工程实现案例 I0.3', link: '/zh/publications/implementation-case-i0.3' }
@@ -52,7 +54,7 @@ const zhSidebar = {
 
 export default defineConfig({
   title: 'joinwell52 Research Center',
-  description: 'Independent engineering-driven research on AI work, governance and Digital Employees',
+  description: 'A continuously operating AI Research Center powered by a production-verified Digital Research Employee',
   base: '/joinwell52/',
   cleanUrls: true,
   lastUpdated: true,
@@ -60,8 +62,8 @@ export default defineConfig({
     ['link', { rel: 'icon', href: '/joinwell52/favicon.svg' }],
     ['meta', { name: 'theme-color', content: '#080b18' }],
     ['meta', { property: 'og:type', content: 'website' }],
-    ['meta', { property: 'og:title', content: 'joinwell52 Research Center' }],
-    ['meta', { property: 'og:description', content: 'AI Work · Governance · Digital Employees' }],
+    ['meta', { property: 'og:title', content: 'joinwell52 Research Center 2.0' }],
+    ['meta', { property: 'og:description', content: 'Research OS · Digital Research Employee · GitHub-first research publication' }],
     ['meta', { property: 'og:image', content: 'https://joinwell52-ai.github.io/joinwell52/og-cover.svg' }]
   ],
   locales: {
@@ -69,19 +71,19 @@ export default defineConfig({
       label: 'English',
       lang: 'en-US',
       title: 'joinwell52 Research Center',
-      description: 'Independent engineering-driven research on AI work, governance and Digital Employees'
+      description: 'A continuously operating AI Research Center powered by a production-verified Digital Research Employee'
     },
     zh: {
       label: '简体中文',
       lang: 'zh-CN',
       link: '/zh/',
       title: 'joinwell52 研究中心',
-      description: '面向 AI 工作、治理与数字员工的独立工程研究'
+      description: '由经过生产验证的数字研究员持续运行的 AI 研究中心'
     }
   },
   themeConfig: {
     logo: '/logo.svg',
-    siteTitle: 'Research Center',
+    siteTitle: 'Research Center 2.0',
     search: { provider: 'local' },
     socialLinks: [{ icon: 'github', link: 'https://github.com/joinwell52-AI/joinwell52' }],
     i18nRouting: (_data, route, targetLocale) => {
@@ -102,6 +104,7 @@ export default defineConfig({
         selectText: 'Language',
         nav: [
           { text: 'Home', link: '/' },
+          { text: 'Research OS', link: '/en/publications/research-report-production-engine-v1.0' },
           { text: 'Research Notes', link: '/en/research/' },
           { text: 'Publications', link: '/en/publications/' },
           { text: 'Programs', items: [
@@ -116,13 +119,14 @@ export default defineConfig({
         outline: { level: [2, 3], label: 'On this page' },
         lastUpdated: { text: 'Last updated' },
         docFooter: { prev: 'Previous', next: 'Next' },
-        footer: { message: 'Engineering first · Evidence first · Continuously revised', copyright: 'Copyright © 2026 joinwell52-AI' }
+        footer: { message: 'Research OS · GitHub First · Production-verified Digital Employee', copyright: 'Copyright © 2026 joinwell52-AI' }
       },
       zh: {
         label: '简体中文',
         selectText: '语言',
         nav: [
           { text: '首页', link: '/zh/' },
+          { text: 'Research OS', link: '/zh/publications/research-report-production-engine-v1.0' },
           { text: '研究笔记', link: '/zh/research/' },
           { text: '出版物', link: '/zh/publications/' },
           { text: '研究计划', items: [
@@ -137,7 +141,7 @@ export default defineConfig({
         outline: { level: [2, 3], label: '本页目录' },
         lastUpdated: { text: '最后更新' },
         docFooter: { prev: '上一篇', next: '下一篇' },
-        footer: { message: '工程优先 · 证据优先 · 持续修订', copyright: 'Copyright © 2026 joinwell52-AI' }
+        footer: { message: 'Research OS · GitHub First · 经过生产验证的数字员工', copyright: 'Copyright © 2026 joinwell52-AI' }
       }
     }
   }
