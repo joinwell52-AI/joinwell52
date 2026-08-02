@@ -6,15 +6,33 @@
 - **Repository:** `joinwell52-AI/joinwell52`
 - **Production branch:** `research-os-production-test-v1`
 - **Base commit:** `ba0137410f63461df78835b0ae3b40c5ddb0fbec`
-- **Final publication evidence:** recorded in `REPORT.md` after pull-request validation and merge
+- **Pull request:** `#8`
+- **Research release commit on `main`:** `22927bbb77f7bd4a47150a6bb8c5f00ccf0b1bf1`
+- **Final runtime status:** **PASS — research production, CI validation, GitHub publication, and main-branch verification completed**
+- **Pages observation:** configured and triggered by `main` push; external live-page refresh was not directly verified during this run
 
 ## Purpose
 
-This record documents the actual execution path used to produce and publish six bilingual Research Notes. It is intended to serve as engineering evidence for a later Research OS Engine capability release.
+This record documents the actual execution path used to produce and publish six bilingual Research Notes. It is retained as engineering evidence for a later Research OS Engine capability release.
 
-The test does not count generated prose as completion. Completion requires selected primary sources, structured research, bilingual Markdown, visual assets, valid metadata, GitHub publication, site-build validation, merge to `main`, and commit verification.
+Generated prose was not counted as completion. Completion required selected primary sources, structured research, bilingual Markdown, visual assets, valid metadata, GitHub publication, a real VitePress build, merge to `main`, and direct re-reading of the published files.
 
-## State transitions
+## Production result
+
+The run produced:
+
+- three Daily Research objects, one for each formal Research Center column;
+- three Academic Observations, one for each formal column;
+- six English Research Notes;
+- six Simplified Chinese Research Notes;
+- six dedicated SVG covers;
+- five governance and evidence records;
+- 23 additive release files;
+- 3,105 added lines;
+- zero deleted files;
+- zero pre-existing files modified by the research release.
+
+## Governed state transitions
 
 ```text
 Signal
@@ -29,6 +47,8 @@ Signal
 → Publication Editing
 → GitHub branch
 → Pull Request validation
+→ defect detection and correction
+→ successful CI
 → main
 → Commit Verification
 ```
@@ -41,10 +61,10 @@ Signal
 | 02 Research Triage | Six candidates were compared for Digital Employee, TMPA, CodeFlowMu, Engineering, Innovation, Official Source, and Research Value relevance. | PASS |
 | 03 Deep Reading | Primary material was read for mechanisms, research methods, evidence, scope, and limitations. | PASS |
 | 04 Research Analysis | Observation was separated from Research Center discussion and architecture judgment. | PASS |
-| 05 Research Writing | Every note follows required metadata and the logical structure Summary, Source, Observation, Discussion, Engineering Impact, Future Work, References. | PASS |
+| 05 Research Writing | Every note follows the required metadata and logical structure: Summary, Source, Observation, Discussion, Engineering Impact, Future Work, and References. | PASS |
 | 06 Research Visualization | Six dedicated SVG covers plus architecture diagrams, process models, or evidence tables inside every note. | PASS |
 | 07 Evidence & Citation | Claims were bound to direct primary-source references; historical benchmark numbers were labeled as historical results. | PASS |
-| 08 Publication Editing | Metadata, language links, file paths, covers, categories, and dynamic-loader compatibility were checked on the production branch. | PASS |
+| 08 Publication Editing | Metadata, language links, paths, covers, categories, dynamic-loader compatibility, PR changed files, CI, and main publication were checked. | PASS after one detected and corrected metadata defect |
 
 ## Selected research objects
 
@@ -73,9 +93,7 @@ Signal
 
 ### Phase 1 — Queue initialization
 
-Created:
-
-- `research/production-tests/production-test-v1/QUEUE.md`
+Created `research/production-tests/production-test-v1/QUEUE.md`.
 
 All six candidates advanced from Candidate to Selected only after a bounded question and an authoritative primary source were available.
 
@@ -128,41 +146,108 @@ Every note also contains a meaningful architecture diagram, process model, evide
 
 ### Phase 5 — Metadata and branch verification
 
-Verified through direct branch reads that the six English files exist with:
+Direct branch reads verified that the research files contain:
 
-- valid `date`;
+- a valid `date`;
 - one of the three formal `column` values;
-- `daily` or `academic` category;
+- a valid `daily` or `academic` category;
 - summary and source metadata;
-- ArticleCover reference;
-- bilingual language link.
+- an ArticleCover reference;
+- paired language links.
 
-Verified the dynamic content loader accepts the three columns and three categories and discovers Markdown through `**/*.md`.
-
-Compared `main` with `research-os-production-test-v1` after the first 19 writes:
-
-- branch status: ahead;
-- commits: 19;
-- files added: 19;
-- deletions: 0;
-- additions before this runtime record and report: 2,679 lines.
+The existing dynamic content loader accepts all three columns and all three formal categories and discovers Markdown through `**/*.md`.
 
 **Result:** PASS.
 
-### Phase 6 — Pull request, CI, merge, and final verification
+### Phase 6 — Pull request and manifest gate
 
-This phase is completed after this runtime record and `REPORT.md` enter the branch:
+Opened **PR #8**, `research: Research OS Engine Production Test V1`, from `research-os-production-test-v1` to `main`.
 
-1. open pull request to `main`;
-2. run `.github/workflows/validate-site.yml`;
-3. require successful `npm install` and `npm run docs:build`;
-4. inspect changed-file list;
-5. squash merge to `main`;
-6. fetch the resulting main commit;
-7. verify published files from `main`;
-8. record final evidence in `REPORT.md`.
+GitHub reported:
 
-## Branch commit ledger
+- changed files: 23;
+- additions: 3,105;
+- deletions: 0.
+
+The PR changed-file list was read separately and matched the frozen `FILE-MANIFEST.md` exactly.
+
+**Result:** PASS.
+
+### Phase 7 — Real CI defect detection
+
+The first `Validate Research Center` run executed:
+
+- workflow run: `30733284533`;
+- run number: 9;
+- dependency installation: PASS;
+- VitePress build: FAIL.
+
+The failure was a real YAML parsing defect in the English A2A/MCP note. Its unquoted `summary` contained a colon, causing VitePress to report an incomplete mapping pair at line 6.
+
+The file was corrected by quoting the summary value in commit:
+
+- `52661573988e8cefc808d5a82df1c13cc682fd43`
+
+This failure is part of the production evidence: the publication gate prevented invalid metadata from entering `main`.
+
+**Result:** DEFECT DETECTED AND CORRECTED.
+
+### Phase 8 — Successful CI validation
+
+The correction triggered a second `Validate Research Center` run:
+
+- workflow run: `30733346561`;
+- run number: 10;
+- job: `91457385657`;
+- Checkout: PASS;
+- Setup Node: PASS;
+- Install dependencies: PASS;
+- Build VitePress site: PASS;
+- cleanup steps: PASS.
+
+**Result:** PASS.
+
+### Phase 9 — Main publication
+
+PR #8 was squash-merged to `main` with release commit:
+
+- `22927bbb77f7bd4a47150a6bb8c5f00ccf0b1bf1`
+
+The commit message records the three Daily objects, three Academic Observations, bilingual publications, covers, governance records, successful VitePress validation, and the additive release boundary.
+
+**Result:** PASS.
+
+### Phase 10 — Main-branch file verification
+
+The release commit was fetched and verified. Representative formal files were then read directly from `main`, covering all three columns and both languages:
+
+- Digital Employee Daily — English;
+- Digital Employee Academic — Chinese;
+- Industry Architecture Daily — English;
+- Industry Architecture Academic — Chinese;
+- Open-source Engineering Daily — English;
+- Open-source Engineering Academic — Chinese.
+
+The corrected A2A/MCP summary was also re-read from `main` with valid quoted YAML.
+
+**Result:** PASS.
+
+### Phase 11 — GitHub Pages observation boundary
+
+The repository’s Pages workflow is configured to run on every push to `main`, build VitePress, upload the Pages artifact, and deploy through `actions/deploy-pages`.
+
+During this run, the available GitHub connector could inspect PR-triggered validation runs but could not list the push-triggered Pages run for the squash commit. A public-page observation still showed the pre-release listing at the time checked.
+
+Therefore:
+
+- **GitHub source publication:** verified;
+- **site build before merge:** verified;
+- **Pages deployment trigger configuration:** verified;
+- **external live-page refresh:** not directly verified during this run.
+
+This boundary is recorded rather than converted into an unsupported PASS claim.
+
+## Branch production ledger
 
 | Sequence | Commit | Artifact |
 |---:|---|---|
@@ -185,17 +270,24 @@ This phase is completed after this runtime record and `REPORT.md` enter the bran
 | 17 | `ee25e05872f84fd2cc3d7f93d36d050370ec7264` | Industry Architecture Academic — Chinese |
 | 18 | `f19afe4c61d4ee5db949a847809fb98d49bb6f47` | Open-source Engineering Academic — English |
 | 19 | `910ddfa5cf4f72c5803a3fbbb3e4d26f8e70ed1f` | Open-source Engineering Academic — Chinese |
+| Gate fix | `52661573988e8cefc808d5a82df1c13cc682fd43` | Quote A2A/MCP YAML summary after CI failure |
+| Release | `22927bbb77f7bd4a47150a6bb8c5f00ccf0b1bf1` | Squash publication to `main` |
 
-Git commit timestamps provide the authoritative execution timeline. The sequence above records the functional order.
+Git commit timestamps are the authoritative event timeline. The sequence above records the functional order.
 
 ## Evidence boundaries and limitations
 
 - Source claims are grounded in primary documentation, standards, papers, and official repositories.
 - Vendor documentation is treated as evidence of documented mechanism and recommendation, not independent proof of universal reliability.
 - Historical benchmark scores are labeled by source and study year rather than presented as current rankings.
-- The production test verifies research production and publication capability; it does not independently reproduce OSWorld or SWE-bench experiments.
-- Site build and final `main` publication are validated by repository CI and GitHub commit inspection in the final phase.
+- The production test verifies research production and GitHub publication capability; it does not independently reproduce OSWorld or SWE-bench experiments.
+- The PR build verifies that the VitePress source package compiles.
+- External GitHub Pages refresh remains a separate observation boundary because it was not directly confirmed during the run.
 
-## Runtime conclusion before release gate
+## Final runtime conclusion
 
-The Research Skills pipeline successfully produced six selected, evidence-governed, bilingual Research Notes and their visual assets. The content layer, metadata layer, and branch publication layer have passed. The final production verdict depends on pull-request build validation, merge to `main`, and final commit verification recorded in `REPORT.md`.
+**PASS.**
+
+Research OS Engine demonstrated an actual production path from source discovery and triage through structured research, bilingual writing, visualization, evidence control, publication editing, CI defect detection, correction, GitHub merge, and main-branch verification.
+
+The test therefore validates the **Research-to-GitHub production capability**. It does not merely demonstrate article generation.
