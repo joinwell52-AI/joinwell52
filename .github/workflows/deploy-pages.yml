@@ -1,4 +1,4 @@
-name: Deploy TMPA Research Center
+name: Deploy Research Center 3.0
 
 on:
   push:
@@ -31,6 +31,9 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      - name: Validate Runtime Center
+        run: npm run runtime:validate
 
       - name: Build VitePress site
         run: npm run docs:build

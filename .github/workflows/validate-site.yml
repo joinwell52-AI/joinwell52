@@ -1,4 +1,4 @@
-name: Validate Research Center
+name: Validate Research Center 3.0
 
 on:
   pull_request:
@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -22,6 +24,15 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      - name: Validate Runtime Center
+        run: npm run runtime:validate
+
+      - name: Enforce Runtime publication gate
+        if: github.event_name == 'pull_request'
+        env:
+          RUNTIME_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: npm run runtime:gate -- --base "$RUNTIME_BASE_SHA"
 
       - name: Build VitePress site
         run: npm run docs:build

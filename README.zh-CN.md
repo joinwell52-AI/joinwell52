@@ -1,79 +1,133 @@
-# joinwell52 Research Center 2.0
+# joinwell52 Research Center 3.0
 
-> **一个由数字研究员持续运行的 AI 研究中心**
+> **一个由 Research Runtime 统一治理、由数字研究员持续运行的 AI 研究中心**
 
 [English](./README.md) · **简体中文**
 
-[![研究中心](https://img.shields.io/badge/Research_Center-2.0-1f6feb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/)
-[![生产机](https://img.shields.io/badge/研究报告生产机-V1.0-6d5dfc?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/publications/research-report-production-engine-v1.0)
-[![状态](https://img.shields.io/badge/状态-Production_Verified-16a34a?style=for-the-badge)](https://github.com/joinwell52-AI/joinwell52/blob/main/research/production-tests/production-test-v1/REPORT.md)
+[![研究中心](https://img.shields.io/badge/Research_Center-3.0-1f6feb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/)
+[![Runtime](https://img.shields.io/badge/Research_Runtime_Scheduler-V1.0-7c6cff?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/publications/research-runtime-scheduler-v1.0)
+[![数字研究员](https://img.shields.io/badge/研究报告生产机-V1.0-6d5dfc?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/publications/research-report-production-engine-v1.0)
+[![状态](https://img.shields.io/badge/Runtime_Record-Required-16a34a?style=for-the-badge)](./research/runtime/README.md)
 
-## Research Center 2.0
+## Research Center 3.0
 
-joinwell52 Research Center 不再只被定义为一个研究网站，而是一个持续运行的研究系统。
+joinwell52 Research Center 是一个拥有唯一正式运行控制平面的持续研究系统。
 
 ```text
 Research Operating System
+  定义工作生命周期
         ↓
-研究报告生产机
+Research Runtime Center
+  调度、观察、记录并验证执行
         ↓
-运行在 ChatGPT 上的数字研究员
+研究报告生产机 V1.0
+  执行 Digital Research Employee / Research Analyst 岗位
         ↓
-Research Queue + Research Skills
+Research Skills + Research Queue + Runtime Knowledge
         ↓
-GitHub-first Publication
+GitHub Commit + Commit Verify
         ↓
-Research Notes、Architecture 与 Formal Release
+Research Notes、Architecture、Specification 与 Formal Release
 ```
 
-核心执行能力是 **研究报告生产机 V1.0（Research Report Production Engine V1.0）**：一个经过生产验证、基于 ChatGPT、按照真实 Research Analyst 岗位组织的数字研究员。
+Research Runtime Scheduler V1.0 是 Research Operating System 唯一正式调度器。单个自动任务只是 Runtime Worker，不再各自构成运行中心。
 
-- [V1.0 中文正式发布](./docs/zh/publications/research-report-production-engine-v1.0.md)
-- [English Release](./docs/en/publications/research-report-production-engine-v1.0.md)
+- [Research Runtime Center](https://joinwell52-ai.github.io/joinwell52/zh/runtime/)
+- [Research Runtime Scheduler V1.0 正式发布](./docs/zh/publications/research-runtime-scheduler-v1.0.md)
+- [Runtime Charter](./research/runtime/README.md)
+- [Runtime Record Schema](./research/runtime/RUNTIME-RECORD-SCHEMA.md)
+- [研究报告生产机 V1.0](./docs/zh/publications/research-report-production-engine-v1.0.md)
 - [Production Test V1](./research/production-tests/production-test-v1/REPORT.md)
-- [Runtime Record](./research/production-tests/production-test-v1/RUNTIME-RECORD.md)
-- [Release Record](./research/releases/research-report-production-engine-v1.0/RELEASE.md)
 
-## 唯一事实源
+## Runtime 架构
 
-本 GitHub 仓库是 joinwell52 Research Center 的**唯一权威研究数据库与出版历史**。论文、规范、数字员工能力、工程报告、研究笔记、运行记录、视觉资产与网站页面全部直接在此维护。
+```text
+Research Runtime Center
+        ↓
+Runtime Scheduler V1.0
+        ↓
+Runtime Engine
+        ↓
+Runtime Queue
+        ↓
+Runtime Knowledge
+        ↓
+Runtime Architecture
+        ↓
+Runtime Publication / Weekly / Academic
+        ↓
+Runtime Record
+        ↓
+GitHub
+        ↓
+Research Center Website
+```
 
-Git Commit、Diff、Pull Request、CI Result、Tag 与 Release 构成正式历史。文本被生成并不代表完成；只有通过所需 Publication Gate 并形成 Git Commit 的成果才属于正式发布。
+[`research/runtime/SCHEDULER.json`](./research/runtime/SCHEDULER.json) 固定七个正式 Runtime 任务：
 
-原 ChatGPT Library `/TMPA` 目录已经退出活动工作流，只作为已弃用、只读的迁移档案，不再接受修订。
+| Runtime | 调度时间（`Asia/Shanghai`） | 职责 |
+|---|---|---|
+| Research Runtime Engine | 每日 09:00 | 推进 Research OS 状态机。 |
+| Research Runtime Queue | 每日 10:00 | 维护发现、候选、优先级与 Queue Lifecycle。 |
+| Research Runtime Knowledge | 每日 11:00 | 维护 Knowledge、Related Notes 与 Architecture Candidate。 |
+| Research Runtime Architecture | 每周一 12:00 | 执行 Architecture 与 Lifecycle Review。 |
+| Research Runtime Publication | 每日 20:00 | 发布 Daily Research 并验证 GitHub Commit。 |
+| Research Runtime Weekly | 每周日 20:30 | 形成新的综合与工程判断。 |
+| Research Runtime Academic | 每周三 10:00 | 发布 Paper、Benchmark、Specification 与 Institution 研究。 |
 
-- [研究治理](./RESEARCH-GOVERNANCE.md)
-- [单一事实源迁移记录](./MIGRATION-SINGLE-SOURCE.md)
+原任务正文写“六类”，但实际明确规定了七项职责。Research Center 3.0 以七个正式任务为准。
 
-## 当前正式出版体系
+## Runtime Record——运行事实
 
-### 数字员工能力
+每次正式运行写入一个每日记录：
 
-- [研究报告生产机 — V1.0](./docs/zh/publications/research-report-production-engine-v1.0.md) — Production Verified
+```text
+research/runtime/YYYY/MM/YYYY-MM-DD-runtime.md
+```
 
-### TMPA
+Runtime Record 包含开始与结束时间、Duration、Task Status、Output、Lifecycle、Queue 与 Engine 状态、Publication 状态、GitHub Commit、Commit Verify 与只追加的 Runtime Log。
 
-- [TMPA Architecture Paper — A0.4](./docs/zh/publications/tmpa-architecture-paper-a0.4.md)
-- [TMPA Core Specification — S0.3](./docs/zh/publications/tmpa-core-specification-s0.3.md)
-- [TMPA–FCoP–CodeFlowMu Implementation Case — I0.3](./docs/zh/publications/implementation-case-i0.3.md)
-- [出版中心](https://joinwell52-ai.github.io/joinwell52/zh/publications/)
+只允许六种 Runtime 状态：
+
+```text
+Running · Completed · Blocked · Failed · Skipped · Waiting
+```
+
+网站的 Runtime Dashboard、Today’s Tasks、Timeline、History 与状态面板全部由 Runtime Record 自动生成，禁止手工维护。
+
+## Runtime Publication Gate
+
+```text
+Research Runtime
+→ Publication Candidate
+→ Runtime Record
+→ GitHub Commit
+→ Commit Verify
+→ Official Publication
+```
+
+没有 Runtime Record 的正式 Publication Pull Request 将无法通过 Runtime Gate。
+
+> **任何正式 Publication 都必须由 Research Runtime 驱动并生成 Runtime Record；没有 Runtime Record 的发布，不属于正式运行结果。**
 
 ## 数字研究员
 
-研究报告生产机按照岗位定义：
+研究报告生产机 V1.0 是 Digital Research Employee 的执行能力：
 
 ```yaml
 position: Research Analyst
 worker: Digital Research Employee
 platform: ChatGPT
 work_system: Research Operating System
+control_plane: Research Runtime Center
+scheduler: Research Runtime Scheduler V1.0
 skills: 8 Research Skills
 queue: Research Queue
 output: Research Notes and formal publications
 system_of_record: GitHub
 ```
 
-标准工作流程：
+受治理工作流程：
 
 ```text
 Source Discovery
@@ -85,32 +139,39 @@ Source Discovery
 → Evidence & Citation
 → Publication Editing
 → GitHub PR / CI / main Verification
+→ Runtime Record Closure
 ```
 
 Production Test V1 实际生产了三个 Daily Research 对象、三个 Academic Observation、十二篇中英文 Markdown、六张独立 Cover 与完整 GitHub 发布记录。第一次 CI Build 发现真实 YAML 缺陷；修复后第二次 Build 通过，随后才 Merge 到 `main`。
 
-## 定位
+## 唯一事实源
 
-Research Center 不是新闻站、博客或被动论文仓库，而是一个流程驱动的 AI 研究运行系统，聚焦：
+本仓库是 joinwell52 Research Center 唯一权威研究数据库、Runtime Record 与出版历史。
 
-- 数字员工的岗位、工作流、Runtime、治理与评估；
-- AI 工作的企业与行业架构；
-- 开源 Agent 工程与 Runtime 系统；
-- TMPA 工作数据与治理架构；
-- FCoP 正式协作；
-- CodeFlowMu 数字员工工程；
-- 面向中小企业的可落地 AI 工作系统。
+Git Commit、Diff、Pull Request、CI Result、Tag 与 Release 构成正式历史。生成文本不等于正式成果；只有通过相应 Runtime 与 Publication Gate 才属于正式运行结果。
 
-## 核心研究计划
+原 ChatGPT Library `/TMPA` 目录已经退出活动工作流，只作为已弃用、只读的迁移档案。
 
-- **TMPA：** AI 工作数据与治理架构；
-- **FCoP：** 正式协作与责任协议；
-- **CodeFlowMu：** 数字员工开发与工作 Runtime；
-- **Digital Employee：** 面向组织岗位的受治理数字劳动力。
+- [研究治理](./RESEARCH-GOVERNANCE.md)
+- [单一事实源迁移记录](./MIGRATION-SINGLE-SOURCE.md)
+
+## 当前正式出版体系
+
+### Runtime 与数字员工能力
+
+- [Research Runtime Scheduler — V1.0](./docs/zh/publications/research-runtime-scheduler-v1.0.md) — Runtime Control Plane
+- [研究报告生产机 — V1.0](./docs/zh/publications/research-report-production-engine-v1.0.md) — Production Verified
+
+### TMPA
+
+- [TMPA Architecture Paper — A0.4](./docs/zh/publications/tmpa-architecture-paper-a0.4.md)
+- [TMPA Core Specification — S0.3](./docs/zh/publications/tmpa-core-specification-s0.3.md)
+- [TMPA–FCoP–CodeFlowMu Implementation Case — I0.3](./docs/zh/publications/implementation-case-i0.3.md)
+- [出版中心](https://joinwell52-ai.github.io/joinwell52/zh/publications/)
 
 ## 研究笔记模型
 
-Research Notes 是持续增长的研究成果。每一篇研究文章必须包含正式元数据：
+Research Notes 由两个相互独立的元数据维度组织：
 
 ```yaml
 column: digital-employee | industry-architecture | open-source-engineering
@@ -118,27 +179,18 @@ category: daily | weekly | academic
 date: YYYY-MM-DD
 ```
 
-网站直接读取 GitHub Markdown 元数据，自动生成栏目篇数、类别篇数、日期倒序列表与日历筛选，不维护第二套研究数据库，也不维护手工文章清单。
-
-### 三个研究栏目
+网站直接读取 GitHub Markdown 元数据，自动生成栏目篇数、类别篇数、日期倒序列表与日历筛选，不维护第二套研究数据库或手工文章清单。
 
 - [数字员工](https://joinwell52-ai.github.io/joinwell52/zh/digital-employee/)
 - [行业架构](https://joinwell52-ai.github.io/joinwell52/zh/industry/)
 - [开源工程观察](https://joinwell52-ai.github.io/joinwell52/zh/engineering/)
 
-## 入口
+## 核心研究计划
 
-- [Research Center 2.0](https://joinwell52-ai.github.io/joinwell52/zh/)
-- [研究报告生产机 V1.0](https://joinwell52-ai.github.io/joinwell52/zh/publications/research-report-production-engine-v1.0)
-- [研究笔记](https://joinwell52-ai.github.io/joinwell52/zh/research/)
-- [出版中心](https://joinwell52-ai.github.io/joinwell52/zh/publications/)
-
-## 双语规则
-
-- 英文和中文出版物分别维护；
-- 每对出版物保持相同主题、版本、状态、发布日期和语言切换链接；
-- 允许按语言润色，但禁止只更新一种语言；
-- 未形成 Git Commit 的修订不属于正式交付。
+- **TMPA：** AI 工作数据与治理架构；
+- **FCoP：** 正式协作与责任协议；
+- **CodeFlowMu：** 数字员工开发与工作 Runtime；
+- **Digital Employee：** 面向组织岗位的受治理数字劳动力。
 
 ## 仓库结构
 
@@ -151,9 +203,11 @@ date: YYYY-MM-DD
 │   ├── .vitepress/theme/
 │   └── public/assets/covers/
 ├── research/
+│   ├── runtime/
 │   ├── skills/
 │   ├── production-tests/
 │   └── releases/
+├── scripts/runtime-center.mjs
 ├── .github/workflows/
 ├── RESEARCH-GOVERNANCE.md
 ├── MIGRATION-SINGLE-SOURCE.md
@@ -165,6 +219,8 @@ date: YYYY-MM-DD
 ## 核心原则
 
 > **数字员工不是一个会聊天的 AI，而是一个拥有岗位、职责、技能、工作流、标准、权限边界和可验证工作成果的持续工作者。**
+
+> **Research Runtime——而不是单个自动任务——是数字研究员的运行控制平面。**
 
 ## 作者
 

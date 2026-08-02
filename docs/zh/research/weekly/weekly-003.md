@@ -388,4 +388,4 @@ candidate
 1. [Digital Employee Daily 003 — 计算机操作需要可观测的动作—状态循环](../../digital-employee/2026-08-02-computer-use-action-state-loop)
 2. [Industry Architecture Daily 003 — A2A 与 MCP 定义不同的互操作边界](../../industry/2026-08-02-a2a-mcp-interoperability-boundaries)
 3. [Open-source Engineering Daily 003 — Manager 编排与 Handoff 表达不同的所有权模型](../../engineering/2026-08-02-manager-handoff-ownership-models)
-4. [Research OS Engine Production Test V1——证据验证记录](../../../../research/production-tests/production-test-v1/REPORT.md)
+4. [Research OS Engine Production Test V1——证据验证记录](https://github.com/joinwell52-AI/joinwell52/blob/main/research/production-tests/production-test-v1/REPORT.md)

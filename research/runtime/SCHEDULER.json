@@ -1,0 +1,75 @@
+{
+  "schema": "research-runtime-scheduler/v1",
+  "version": "1.0",
+  "centerVersion": "3.0",
+  "timezone": "Asia/Shanghai",
+  "repository": "joinwell52-AI/joinwell52",
+  "recordPath": "research/runtime/{YYYY}/{MM}/{YYYY-MM-DD}-runtime.md",
+  "statuses": ["Running", "Completed", "Blocked", "Failed", "Skipped", "Waiting"],
+  "tasks": [
+    {
+      "id": "engine",
+      "name": "Research Runtime Engine",
+      "schedule": { "kind": "daily", "time": "09:00", "cron": "0 1 * * *" },
+      "responsibility": "Advance the Research Operating System state machine.",
+      "output": "Research OS lifecycle state",
+      "prohibitions": [],
+      "skillsRequired": false,
+      "lifecycle": ["Signal", "Candidate", "Queue", "Selected", "Reading", "Analysis", "Knowledge", "Architecture", "Specification", "Publication", "Release"]
+    },
+    {
+      "id": "queue",
+      "name": "Research Runtime Queue",
+      "schedule": { "kind": "daily", "time": "10:00", "cron": "0 2 * * *" },
+      "responsibility": "Maintain source discovery, candidates, priority, selection, rejection and queue lifecycle.",
+      "output": "Research Queue",
+      "prohibitions": ["Direct publication"],
+      "skillsRequired": false
+    },
+    {
+      "id": "knowledge",
+      "name": "Research Runtime Knowledge",
+      "schedule": { "kind": "daily", "time": "11:00", "cron": "0 3 * * *" },
+      "responsibility": "Maintain the knowledge graph, related notes, architecture candidates, observations, discussions and engineering insights.",
+      "output": "Runtime Knowledge",
+      "prohibitions": ["Direct publication"],
+      "skillsRequired": false
+    },
+    {
+      "id": "architecture",
+      "name": "Research Runtime Architecture",
+      "schedule": { "kind": "weekly", "days": ["Monday"], "time": "12:00", "cron": "0 4 * * 1" },
+      "responsibility": "Perform architecture review and make architecture, specification, publication and lifecycle decisions.",
+      "output": "Architecture decisions",
+      "prohibitions": [],
+      "skillsRequired": false
+    },
+    {
+      "id": "publication",
+      "name": "Research Runtime Publication",
+      "schedule": { "kind": "daily", "time": "20:00", "cron": "0 12 * * *" },
+      "responsibility": "Publish Daily Research with metadata, website integration, GitHub commit and commit verification.",
+      "output": "Daily Publication",
+      "prohibitions": ["Direct research"],
+      "skillsRequired": true
+    },
+    {
+      "id": "weekly",
+      "name": "Research Runtime Weekly",
+      "schedule": { "kind": "weekly", "days": ["Sunday"], "time": "20:30", "cron": "30 12 * * 0" },
+      "responsibility": "Produce cross-analysis, architecture judgment, engineering judgment and a new Weekly Synthesis.",
+      "output": "Weekly Publication",
+      "prohibitions": ["Copying Daily Research"],
+      "skillsRequired": true
+    },
+    {
+      "id": "academic",
+      "name": "Research Runtime Academic",
+      "schedule": { "kind": "weekly", "days": ["Wednesday"], "time": "10:00", "cron": "0 2 * * *" },
+      "responsibility": "Publish research notes about papers, benchmarks, specifications, conferences and institutions.",
+      "output": "Academic Publication",
+      "prohibitions": ["Ordinary news"],
+      "skillsRequired": true
+    }
+  ]
+}
