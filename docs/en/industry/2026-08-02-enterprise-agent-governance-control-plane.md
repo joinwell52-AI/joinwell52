@@ -3,7 +3,7 @@ title: Industry Architecture Weekly 001 — The Enterprise Agent Governance Cont
 date: '2026-08-02'
 column: industry-architecture
 category: weekly
-summary: Workday, ServiceNow, and Microsoft are converging on a common enterprise Agent governance control plane: discover and register assets, assign owners, manage authority and lifecycle, observe runtime risk, and measure cost and value.
+summary: 'Workday, ServiceNow, and Microsoft are converging on a common enterprise Agent governance control plane: discover and register assets, assign owners, manage authority and lifecycle, observe runtime risk, and measure cost and value.'
 sources:
   - Workday Agent System of Record
   - ServiceNow AI Control Tower
