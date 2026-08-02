@@ -9,8 +9,8 @@ This manifest freezes the publication package presented to the release gate.
 - English Research Notes: 6
 - Simplified Chinese Research Notes: 6
 - Dedicated cover assets: 6
-- Production governance records: 4, including this manifest
-- Files added before the pull request: 22
+- Production governance records: 5, including this manifest
+- Files added before the pull request: 23
 - Existing files modified or deleted: 0
 
 ## Research Notes
@@ -48,7 +48,8 @@ This manifest freezes the publication package presented to the release gate.
 2. `research/production-tests/production-test-v1/RUNTIME-RECORD.md`
 3. `research/production-tests/production-test-v1/REPORT.md`
 4. `research/production-tests/production-test-v1/FILE-MANIFEST.md`
+5. `research/production-tests/production-test-v1/RELEASE-CHECKLIST.md`
 
 ## Release rule
 
-The manifest is accepted only if the pull-request changed-file list matches these 22 additive files and the VitePress site build passes.
+The manifest is accepted only if the pull-request changed-file list matches these 23 additive files and the VitePress site build passes.
