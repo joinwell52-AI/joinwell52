@@ -4,6 +4,7 @@ import { withBase } from 'vitepress'
 import PortalHome from './components/PortalHome.vue'
 import ArticleCover from './components/ArticleCover.vue'
 import ResearchNotes from './components/ResearchNotes.vue'
+import ResearchCategory from './components/ResearchCategory.vue'
 import RuntimeCenter from './components/RuntimeCenter.vue'
 import ResearchCenterHome from './components/ResearchCenterHome.vue'
 import './custom.css'
@@ -113,6 +114,7 @@ export default {
     app.component('PortalHome', PortalHome)
     app.component('ArticleCover', ArticleCover)
     app.component('ResearchNotes', ResearchNotes)
+    app.component('ResearchCategory', ResearchCategory)
     app.component('RuntimeCenter', RuntimeCenter)
     app.component('ResearchCenterHome', ResearchCenterHome)
 
