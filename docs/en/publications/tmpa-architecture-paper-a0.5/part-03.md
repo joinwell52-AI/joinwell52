@@ -19,6 +19,21 @@ The IETF agent-audit architecture similarly treats delegation and interactions a
 **Why Do Multi-Agent LLM Systems Fail?** derives failure categories from a large trace corpus [22]. TMPA improves observability of responsibility, review, conflict, and recovery, but this paper does not claim reduced failure rates.
 
 The incremental contribution is therefore not a new storage primitive or a complete control plane. It is the combination of a durable textual message/state plane, one-task-one-primary-carrier, local single-writer streams, asynchronous composition, source-preserving aggregation, and deterministic read-side governance reconstruction under a minimum-infrastructure profile.
+
+## 3.4 Comparative Synthesis and Research Gap
+
+The related work falls into five neighboring lines. Their boundaries clarify the gap addressed by TMPA:
+
+| Research line | Principal contribution | TMPA relation and boundary |
+|---|---|---|
+| MCP and A2A [1], [2] | interoperable context, capability, task, and message exchange for tool or agent interaction | TMPA may reference these interactions but defines longer-lived responsibility, review, conflict, and recovery evidence |
+| W3C PROV, event sourcing, and CQRS [3], [4] | derivation, append-oriented event history, and read-model construction | TMPA specializes these mechanisms into governed work identity, authority, lifecycle legality, and deterministic issue reconstruction |
+| Auditable Agents and the IETF audit architecture [17], [18] | accountability dimensions, distributed audit records, context, and later investigation | TMPA provides a substrate-neutral governed-work graph but does not define network audit-context propagation or attestation |
+| authorization propagation, path policies, and proof-carrying actions [20], [21], [29] | decision-time authorization and runtime enforcement for delegated paths or certified actions | TMPA preserves the authorized work process and its outcomes; it does not replace execution-time mediation |
+| NIST AI RMF and AGENTSAFE [30], [31] | organizational risk identification, controls, monitoring, assurance, and accountability | TMPA is a narrower evidence architecture that can support such programs but does not constitute a complete risk-management framework |
+
+No reviewed neighbor combines all of the following as one minimal-infrastructure process contract: a stable primary carrier, single-writer responsibility streams, asynchronous composition without a forced total order, explicit authority and lifecycle semantics, preservation of invalid and conflicting evidence, and deterministic reconstruction of both a governance graph and an issue set. This is the specific research gap claimed by A0.5. The claim is architectural and comparative; it is not a priority claim over every possible unpublished or proprietary system.
+
 # 4. TMPA Architecture
 
 TMPA defines governance semantics, not a runtime component. Its architecture specifies which governance facts must be represented, how responsibility and lifecycle are expressed, and how independent evidence is reconstructed into an authoritative view. Storage, transport, scheduling, and model behavior remain implementation concerns unless a TMPA profile explicitly binds them.

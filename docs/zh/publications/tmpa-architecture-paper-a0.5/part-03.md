@@ -70,16 +70,4 @@
 
 [30] Rafflesia Khan, Declan Joyce, and Mansura Habiba. “AGENTSAFE: A Unified Framework for Ethical Assurance and Governance in Agentic AI.” arXiv:2512.03180, 2025. `https://arxiv.org/abs/2512.03180`. Accessed 2026-07-31.
 
----
-
-
-## R30 Theoretical Consolidation
-
-This revision incorporates the stabilized TMPA theory from R26–R29: textual protocols are treated as dual-semantic surfaces carrying both prescriptive and evidentiary meaning; probabilistic agent interpretation is separated from deterministic governance validation; working agents are formed through organizational enablement; and governance reconstruction adopts explicit valid, invalid, and undetermined judgments.
-
-
-## R31 Theoretical Alignment: Three-Valued Governance Logic
-
-TMPA distinguishes governance judgment from presentation view. The semantic judgment space is intentionally three-valued: valid, invalid, and undetermined. Unlike binary authorization models that force every observation into approval or denial, TMPA preserves unresolved governance states as first-class outcomes. Incomplete evidence, conflicting evidence, and pending human decisions remain visible without creating false certainty.
-
-Agents may produce interpretations and evidence through probabilistic execution; deterministic governance rules determine whether the resulting state is sufficiently established.
+[31] National Institute of Standards and Technology. “Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile.” NIST AI 600-1, July 2024; updated April 2026. `https://doi.org/10.6028/NIST.AI.600-1`.

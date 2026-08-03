@@ -50,9 +50,9 @@ The migration review identified later local publication working drafts than some
 - TMPA Core Specification Draft S0.3;
 - TMPA–FCoP–CodeFlowMu Implementation Case Draft I0.3.
 
-These files are retained in the deprecated read-only library during editorial reconciliation. They are not silently promoted as stable public releases. Their content must be reviewed against the current bilingual publication pages before the Portal version number is advanced.
+These files were retained in the deprecated read-only library during editorial reconciliation. They were not silently promoted as stable public releases. Reconciliation was completed before the Portal version number advanced.
 
-This is an intentional governance safeguard: migration establishes one future write authority immediately, while publication promotion remains an explicit editorial action.
+This was an intentional governance safeguard: migration established one write authority immediately, while publication promotion remained an explicit editorial action. The deprecated library is no longer part of the active or archival publication system; Git history is the revision record.
 
 ## Cutover rules
 
@@ -73,7 +73,7 @@ From this migration onward:
 - [x] legacy folder inventory mapped to repository paths;
 - [x] Git history adopted as the version system;
 - [x] local library removed from the active workflow;
-- [ ] A0.4, S0.3 and I0.3 editorial reconciliation completed;
-- [ ] deprecated library permanently deleted after reconciliation.
+- [x] A0.4, S0.3 and I0.3 editorial reconciliation completed;
+- [x] deprecated library removed after reconciliation.
 
-The unchecked items do not block the operational cutover. They block permanent destruction of the legacy archive, preventing accidental loss of newer working drafts.
+The migration is complete. Current publication versions are maintained only in GitHub; superseded versions remain available only through Git history.

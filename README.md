@@ -164,7 +164,7 @@ The former ChatGPT Library `/TMPA` folder is a deprecated read-only migration ar
 
 ### TMPA
 
-- [TMPA Architecture Paper — A0.4](./docs/en/publications/tmpa-architecture-paper-a0.4.md)
+- [TMPA Architecture Paper — A0.5](./docs/en/publications/tmpa-architecture-paper-a0.5.md)
 - [TMPA Core Specification — S0.3](./docs/en/publications/tmpa-core-specification-s0.3.md)
 - [TMPA–FCoP–CodeFlowMu Implementation Case — I0.3](./docs/en/publications/implementation-case-i0.3.md)
 - [Publication Center](https://joinwell52-ai.github.io/joinwell52/en/publications/)

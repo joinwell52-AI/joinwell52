@@ -1,5 +1,5 @@
 ---
-title: TMPA Architecture Paper — Draft A0.4
+title: TMPA Architecture Paper — Academic Draft A0.5
 outline: deep
 ---
 
@@ -8,9 +8,9 @@ outline: deep
   kicker="Research Paper"
   title="TMPA Architecture Paper"
   summary="An AI-native software architecture theory for governed multi-agent organizational work in SMEs."
-  version="A0.4"
-  status="Public working draft"
-  languageHref="/zh/publications/tmpa-architecture-paper-a0.4"
+  version="A0.5"
+  status="Academic working draft"
+  languageHref="/zh/publications/tmpa-architecture-paper-a0.5"
   languageLabel="简体中文"
 />
 
@@ -18,10 +18,10 @@ outline: deep
 
 ## An AI-Native Software Architecture Theory for Governed Multi-Agent Organizational Work in SMEs
 
-> **Architecture Paper Draft:** A0.4  
+> **Architecture Paper Draft:** A0.5<br>
 > **Historical Source Baseline:** TMPA Draft V1.0-R23; theory aligned through R31<br>
-> **Status:** Publication Working Draft  
-> **Revision Date:** 2026-08-02<br>
+> **Status:** Academic Working Draft<br>
+> **Revision Date:** 2026-08-03<br>
 > **Publication Authority:** This GitHub document is the authoritative TMPA architecture paper. The separately maintained TMPA Core Specification is normative; the Implementation Case Report is evidentiary and non-normative.
 # Abstract
 
@@ -31,7 +31,7 @@ This paper presents **TMPA (Textual Multi-Agent Process Architecture)**, an SME-
 
 FCoP is the project-visible filesystem profile examined in this paper. It requires no mandatory coordination database, broker, or enterprise control plane, but it also does not by itself provide verified enterprise identity, strong role isolation, tamper-resistant storage, or Byzantine resilience. TMPA is therefore **SME-first, not SME-only**: larger implementations may preserve the same semantics through databases, object stores, event services, identity systems, and control planes.
 
-TMPA originated in March 2026 as **Text-Message Multi-AI Parallel Architecture** within a multi-role business system; FCoP was later extracted and matured as a reusable protocol, then adopted by CodeFlowMu. The present paper formalizes that lineage as a design-science contribution with normative objects, invariants, reader behavior, threat boundaries, and conformance criteria. In an initial author-run, version-pinned C01–C14 baseline, **two criteria pass, eight remain partial, and four were not run at product-reader level**. No criterion with a direct gating test failed in that run, but this is not equivalent to full execution or independent validation. All 14 fixture oracles match their internal expected outputs. Evidence remains separated into **specified**, **implemented**, **demonstrated**, and **independently adopted** levels; low-resource performance, adoption cost, interoperability, stronger security, and independent reproduction remain empirical requirements.
+The study follows a design-science method: it derives requirements from the governance gap and engineering lineage, constructs the TMPA artifact, analyzes its invariants and threat boundaries, maps the artifact to the FCoP reference profile, and evaluates bounded CodeFlowMu and XiaoDian AI evidence through a version-pinned C01–C14 corpus. The contribution is the integrated architecture—not a new storage primitive—and the evaluation is deliberately claim-bounded. In the first author-run baseline, **two criteria pass, eight remain partial, and four were not run at product-reader level**. No directly executed gating criterion failed, but that is not full conformance or independent validation. The evidence supports structural feasibility while low-resource performance, adoption cost, comparison baselines, broader fault recovery, and third-party reproduction remain open empirical requirements.
 
 **Keywords:** AI governance, agentic AI, multi-agent systems, SMEs, minimal infrastructure, textual messages, primary carrier, single-writer streams, asynchronous collaboration, deterministic reconstruction, lifecycle, role separation, provenance, auditability, recoverability, FCoP, CodeFlowMu
 
@@ -72,15 +72,15 @@ One optional application context, specified separately in Section 8.3, is a pers
 
 ## 1.1 Paper Type and Research Questions
 
-This paper is organized as a design-science and systems-architecture study. The designed artifact is TMPA; the embedded schema, lifecycle rules, reader semantics, and conformance criteria state how the artifact can be inspected and tested. The primary design environment is an SME or small-team setting in which governance must begin without assuming a dedicated agent platform, coordination database, message broker, enterprise identity plane, or specialist operations team. FCoP and CodeFlowMu provide implementation and demonstration evidence, but the current paper does not claim a representative benchmark, production-scale validation, or superiority over enterprise governance platforms.
+This paper is a design-science and systems-architecture study. The designed artifact is TMPA; the companion Core Specification defines its normative behavior, while this paper explains the problem, theory, design logic, and evaluation. The primary environment is an SME or small team in which governance must begin without assuming a dedicated agent platform, coordination database, message broker, enterprise identity plane, or specialist operations team. FCoP and CodeFlowMu provide implementation and demonstration evidence, but the study does not claim a representative benchmark, production-scale validation, or superiority over enterprise governance platforms.
 
 The paper addresses three research questions:
 
-- **RQ1 — SME governance gap:** Why are chats, shared folders, execution traces, and ordinary task states insufficient to establish an authoritative and recoverable governance state for multi-agent work in organizations with limited AI infrastructure?
-- **RQ2 — Minimum asynchronous process structure:** In the absence of a dedicated coordination database, message broker, and agent control plane, which minimum properties must still hold for durable textual messages and state, one-task-one-primary-carrier, single-writer serial streams, asynchronous multi-stream progress, role attribution, lifecycle legality, review separation, conflict preservation, deterministic reconstruction, and recovery?
-- **RQ3 — Feasibility of the lightweight profile:** Can FCoP realize this complete message-flow architecture through one task carrier, independently authored textual artifacts, asynchronous project-local workers, source-preserving aggregation, and deterministic governance reading on resource-constrained servers while keeping deployment, use, and maintenance burden appropriate for the target SME environment?
+- **RQ1 — Governance-state sufficiency:** Which information is missing when chats, shared folders, execution traces, and ordinary task states are used as the record of multi-agent organizational work, and why does that prevent authoritative responsibility and recovery?
+- **RQ2 — Minimum architecture:** Which substrate-independent objects, authority relations, lifecycle rules, ordering constraints, conflict semantics, and read-side operations are minimally necessary to reconstruct governed multi-agent work without a mandatory coordination database, broker, or control plane?
+- **RQ3 — Engineering feasibility and boundary:** To what extent do the FCoP profile, CodeFlowMu, XiaoDian AI, and the pinned C01–C14 corpus demonstrate those properties, and which feasibility claims remain unsupported?
 
-The current draft answers RQ1 and the structural part of RQ2 through architectural analysis and normative requirements, then reports a first pinned C01–C14 baseline in which two criteria pass, eight remain partial, and four were not run at product-reader level [28]. No directly executed gating criterion failed, but the run does not constitute complete conformance. RQ3 is addressed through engineering artifacts, selected executable suites, and bounded cases while quantified setup burden, low-resource performance, broader fault recovery, comparison baselines, and third-party reproduction remain unfinished evidence.
+A0.5 answers RQ1 through evidence-gap analysis and RQ2 through the TMPA object, stream, authority, lifecycle, and reconstruction model. RQ3 receives only a bounded answer: the reference profile and cases establish partial feasibility, while the pinned baseline reports two PASS, eight PARTIAL, and four NOT RUN product-level criteria [28]. Quantified setup burden, low-resource performance, broader fault recovery, comparison baselines, representative use, and third-party reproduction remain unfinished evidence.
 
 ## 1.2 Target Environment and Design Constraints
 

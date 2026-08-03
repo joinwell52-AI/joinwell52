@@ -36,7 +36,7 @@ The first version-pinned C01–C14 corpus fixes FCoP `3.2.4` at commit `da79dfef
 
 # 1. Scope and Evidence Boundary
 
-This report asks which TMPA mechanisms FCoP realizes, how CodeFlowMu uses them, what XiaoDian AI demonstrates, and what the first fixed-version C01–C14 execution established. It is evidentiary and nonnormative; the [TMPA Core Specification S0.3](/en/publications/tmpa-core-specification-s0.3) alone defines the requirements and canonical test meanings, while the [Architecture Paper A0.4](/en/publications/tmpa-architecture-paper-a0.4) explains the theory.
+This report asks which TMPA mechanisms FCoP realizes, how CodeFlowMu uses them, what XiaoDian AI demonstrates, and what the first fixed-version C01–C14 execution established. It is evidentiary and nonnormative; the [TMPA Core Specification S0.3](/en/publications/tmpa-core-specification-s0.3) alone defines the requirements and canonical test meanings, while the [Architecture Paper A0.5](/en/publications/tmpa-architecture-paper-a0.5) explains the theory.
 
 Evidence classes are **specified**, **implemented**, **demonstrated**, and **independently adopted**. Current evidence is strongest at the first three levels. Because the author is also the originator or principal developer of the evaluated systems, fixed versions and hashes are stated; PASS, PARTIAL, and NOT RUN remain separate; prerequisite failures are retained; fixture success is not converted into product conformance; and no independent-validation claim is made.
 

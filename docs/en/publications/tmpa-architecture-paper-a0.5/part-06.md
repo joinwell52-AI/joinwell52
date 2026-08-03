@@ -1,6 +1,30 @@
-## 8.4 Publication and Reproducibility Boundary
+## 8.4 Threats to Validity
 
-This architecture paper is a derivative of the combined editorial source. The complete schema, normative clauses, fixtures, runners, logs, and extended case material belong in companion Core and implementation reports. The shorter paper may summarize those artifacts but must not silently redefine their meaning.
+**Construct validity.** C01–C14 operationalize governance structure and reconstruction behavior. They do not directly measure factual truth, human usefulness, productivity, or organizational accountability. A criterion pass must not be interpreted as success on those external constructs.
+
+**Internal validity.** The author selected the architecture, systems, cases, and evidence mappings and also ran the baseline. Version differences and retrospective mapping from historical artifacts to later criteria can affect the result. Fixed revisions, hashes, explicit prerequisites, and separate product and fixture verdicts reduce—but do not remove—this risk.
+
+**External validity.** The principal implementation is a file-based profile, the case set is small, and much of the observed execution is project-local. The findings may not transfer unchanged to database-backed, highly distributed, regulated, adversarial, or high-throughput deployments.
+
+**Conclusion validity.** The verdict counts are descriptive results for selected paths. They are not statistical estimates, evidence of full conformance, or causal comparisons with chat, event-log, workflow-engine, or database alternatives.
+
+**Reproducibility.** The current corpus is author-produced. A stable public archive, release checksum, executable reproduction command, environment declaration, and independent rerun remain necessary.
+
+## 8.5 Limitations and Falsification Conditions
+
+TMPA's central claims should remain open to disconfirmation:
+
+| Claim | Evidence that would weaken or refute it |
+|---|---|
+| equal source sets permit deterministic reconstruction | conforming readers produce different canonical graph or issue outputs for the same profile and source set |
+| durable textual evidence improves responsibility recovery | controlled recovery tasks perform no better than relevant alternatives, or cannot identify responsibility and missing evidence reliably |
+| the architecture can operate with minimal infrastructure | required correctness depends on an undeclared coordination database, broker, global clock, or centralized mutable log |
+| the SME-first profile is operationally feasible | deployment, maintenance, storage, or human-discipline costs outweigh measured governance benefits in representative SME use |
+| the semantics are portable across profiles | independent implementations cannot preserve object, authority, lifecycle, conflict, and reconstruction semantics across different storage substrates |
+
+## 8.6 Publication and Reproducibility Boundary
+
+A0.5 is the theoretical architecture paper. Core S0.3 is the normative source, and Implementation Case I0.3 is the engineering-evidence source. The paper may summarize those companion artifacts but must not silently redefine their meaning.
 
 Before external submission, the corpus requires a stable public archive, pinned source revisions, an executable reproduction command, and at least one independent rerun. Low-resource deployment measurements remain a separate release requirement for the SME feasibility claim.
 # 9. Conclusion
@@ -9,7 +33,7 @@ TMPA is an **SME-first, minimal-infrastructure textual-message multi-agent async
 
 The architecture arose through **practice → method → theory**: XiaoDian AI exposed the multi-role coordination problem, original TMPA identified the textual asynchronous method, FCoP extracted and matured its reusable file-coordination and review subset, CodeFlowMu supplied downstream application feedback, and this paper formalized the resulting objects, invariants, assurance boundaries, and conformance criteria. The early pipeline establishes origin, not retroactive Core conformance.
 
-Draft V1.0 provides a complete architectural and normative answer to RQ1 and the structural part of RQ2, plus a first pinned author-run C01–C14 baseline. Against fixed FCoP `3.2.4` and CodeFlowMu `V1.2.3` revisions, **two criteria pass, eight remain partial, and four were not run at product-reader level**. No criterion with a direct gating test failed, but that statement is limited to the executed paths and must not be read as zero-failure full conformance. Selected suites recorded 222 FCoP tests, 73 CodeFlowMu tests, and 4 non-gating XiaoDian auditor tests passing. All 14 fixture oracles matched expected outputs, but this does not substitute for product execution of C08, C10, C11, and C12 or independent validation.
+A0.5 answers RQ1 and RQ2 at the architectural level and provides a first pinned, author-run baseline for RQ3. Against fixed FCoP `3.2.4` and CodeFlowMu `V1.2.3` revisions, **two criteria pass, eight remain partial, and four were not run at product-reader level**. No criterion with a direct gating test failed, but that statement is limited to the executed paths and must not be read as zero-failure full conformance. Selected suites recorded 222 FCoP tests, 73 CodeFlowMu tests, and 4 non-gating XiaoDian auditor tests passing. All 14 fixture oracles matched expected outputs, but this does not substitute for product execution of C08, C10, C11, and C12 or independent validation.
 
 The decisive remaining question is RQ3: whether an organization can sustain the responsibility, review, recovery, and evidence benefits of TMPA in an ordinary project environment at acceptable resource and discipline cost. That claim still requires a stable public corpus, product-level evidence-graph adapters, low-resource deployment and recovery measurements, baseline comparisons, representative use, and independent reproduction. TMPA also does not by itself establish authenticated identity, strong isolation, protected storage, Byzantine resilience, factual truth of participant claims, or ecosystem adoption.
 
@@ -85,16 +109,4 @@ The paper author is also the originator and principal developer of TMPA, FCoP, a
 
 [30] Rafflesia Khan, Declan Joyce, and Mansura Habiba. “AGENTSAFE: A Unified Framework for Ethical Assurance and Governance in Agentic AI.” arXiv:2512.03180, 2025. `https://arxiv.org/abs/2512.03180`. Accessed 2026-07-31.
 
----
-
-
-## R30 Theoretical Consolidation
-
-This revision incorporates the stabilized TMPA theory from R26–R29: textual protocols are treated as dual-semantic surfaces carrying both prescriptive and evidentiary meaning; probabilistic agent interpretation is separated from deterministic governance validation; working agents are formed through organizational enablement; and governance reconstruction adopts explicit valid, invalid, and undetermined judgments.
-
-
-## R31 Theoretical Alignment: Three-Valued Governance Logic
-
-TMPA distinguishes governance judgment from presentation view. The semantic judgment space is intentionally three-valued: valid, invalid, and undetermined. Unlike binary authorization models that force every observation into approval or denial, TMPA preserves unresolved governance states as first-class outcomes. Incomplete evidence, conflicting evidence, and pending human decisions remain visible without creating false certainty.
-
-Agents may produce interpretations and evidence through probabilistic execution; deterministic governance rules determine whether the resulting state is sufficiently established.
+[31] National Institute of Standards and Technology. “Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile.” NIST AI 600-1, July 2024; updated April 2026. `https://doi.org/10.6028/NIST.AI.600-1`.

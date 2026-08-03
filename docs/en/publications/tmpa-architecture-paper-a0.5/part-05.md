@@ -41,43 +41,34 @@ This distinction produces three separate questions:
 | Are the claims true? | independent verification or domain evidence |
 
 TMPA must not claim the guarantee of a surrounding identity, policy, or cryptographic system unless the deployment actually verifies that evidence under the corresponding profile.
-# 7. Core Summary and Conformance
+# 7. Evaluation Results
 
-The separately maintained [TMPA Core Specification S0.3](/en/publications/tmpa-core-specification-s0.3) is the sole normative source for C01–C14 and all SHALL/MUST clauses. This architecture paper summarizes that contract without redefining it; engineering verdicts belong to the [Implementation Case Report I0.3](/en/publications/implementation-case-i0.3).
+The separately maintained [TMPA Core Specification S0.3](/en/publications/tmpa-core-specification-s0.3) remains the sole normative source for C01–C14 and all SHALL/MUST clauses. Detailed engineering evidence and criterion verdicts belong to the [Implementation Case Report I0.3](/en/publications/implementation-case-i0.3). This section evaluates the research questions without reproducing the specification.
 
-A Core-conforming implementation must provide:
+## 7.1 Findings by Research Question
 
-- canonical textual governance objects and a finite type registry;
-- stable identifiers and profile-defined lifecycle rules;
-- single-writer publication and non-destructive correction;
-- role assignment and authority validation;
-- source-preserving aggregation;
-- deterministic reconstruction of graph, lifecycle, responsibility, conflict, and issues;
-- explicit treatment of invalid, partial, disputed, and quarantined evidence;
-- declared integrity, identity, and storage assumptions.
-
-Conformance is evaluated at multiple levels. **Core conformance** tests the architecture semantics. A **profile conformance** claim adds profile-specific encoding and lifecycle rules. **Authenticated governance conformance** additionally requires verified identity and signature policy. A product may satisfy some criteria partially without claiming full Core conformance.
-
-## 7.1 C01–C14 Criteria
-
-| ID | Canonical test name | Architecture-level observable requirement |
+| Research question | Finding and evidence | Boundary |
 |---|---|---|
-| C01 | Schema validation | canonical objects and invalid-schema cases are handled consistently |
-| C02 | Primary-carrier and single-writer immutability | single-writer publication and correction preserve prior evidence |
-| C03 | Duplicate object identity | duplicate identifiers with different content remain conflicted and non-authoritative |
-| C04 | Serial-stream continuity and asynchronous progress | local sequence faults do not invent a global total order or block unrelated streams |
-| C05 | Role authority | out-of-scope actions fail closed and produce governance issues |
-| C06 | Lifecycle legality | illegal lifecycle transitions are rejected without changing authoritative state |
-| C07 | Separation of duties | review separation is enforced or an authorized exception is recorded |
-| C08 | Integrity tampering | tampering of covered content is detected |
-| C09 | Missing reference | required missing references produce an `undetermined` partial or blocked state |
-| C10 | Prohibited cycle | prohibited cycles are detected while unaffected subgraphs remain usable |
-| C11 | Aggregation and reconstruction determinism | equal source sets produce byte-equivalent canonical graph and issue output across permutations |
-| C12 | Conflict preservation | contradictory valid evidence remains disputed and `undetermined` until an authorized resolution |
-| C13 | Recovery | a fresh reader reconstructs responsibility, lifecycle, dependencies, and issues |
-| C14 | Terminal-history preservation | terminal state, transitions, and prior evidence remain recoverable |
+| RQ1: governance-state sufficiency | ordinary conversation and execution surfaces do not, by themselves, preserve enough explicit authority, lifecycle, conflict, and recovery state for deterministic governance reconstruction; supported by problem diagnosis, DR1–DR8, and object/reconstruction analysis | no comparative field experiment has measured failure rates against alternative architectures |
+| RQ2: minimum architecture | stable carriers, single-writer streams, explicit authority and lifecycle, typed references, three-valued judgment, and source-preserving deterministic reconstruction form a coherent minimum contract; supported by invariants, counterexamples, the determinism proof sketch, and Core S0.3 | the proof is not mechanized, and minimality is an architectural argument rather than a universal lower-bound proof |
+| RQ3: engineering feasibility and boundary | FCoP, CodeFlowMu, and XiaoDian provide bounded evidence that substantial parts of the contract can operate in project-visible infrastructure; supported by reference mapping, operational cases, and the pinned C01–C14 baseline | full conformance, independent adoption, comparative SME burden, and cross-profile portability are not established |
 
-## 7.2 First Pinned Baseline
+The result is therefore strongest for architectural coherence and bounded implementation feasibility. It is weaker for organizational effectiveness and ecosystem generalization, which require independent and comparative evidence.
+
+## 7.2 Conformance-Domain Summary
+
+The baseline is summarized by architectural domain; exact criterion definitions remain in Core S0.3 §10.2.
+
+| Domain | Criteria | Product-level result |
+|---|---|---|
+| object, immutability, and integrity | C01, C02, C03, C08 | 3 PARTIAL; 1 NOT RUN |
+| authority and lifecycle | C05, C06, C07 | 1 PASS; 2 PARTIAL |
+| ordering, reference, and conflict | C04, C09, C10, C12 | 2 PARTIAL; 2 NOT RUN |
+| determinism, recovery, and history | C11, C13, C14 | 1 PASS; 1 PARTIAL; 1 NOT RUN |
+
+These are product-level results for the pinned revisions, not a declaration of full Core, profile, or authenticated-governance conformance.
+
+## 7.3 First Pinned Baseline
 
 The first consolidated corpus was executed on 31 July 2026 under identifier `tmpa-draft-v1-c01-c14-20260731` [28]. It pins FCoP package `3.2.4` at commit `da79dfefd99f597c9e422ce9edec22157f915a21`, CodeFlowMu `V1.2.3` at commit `8f342d028eb66e77d135bea58fdbc7f2d0627e3b`, and selected XiaoDian evidence by commit or SHA-256. The inventory records 325 evidence files.
 
@@ -92,6 +83,8 @@ The product-level verdicts are:
 | NOT RUN | C08, C10, C11, C12 |
 
 No criterion with a direct gating test failed in the run. That statement is limited to executed paths and is not “zero-failure full conformance.” All 14 fixture oracles matched expected outputs, but fixture consistency does not substitute for product execution.
+
+## 7.4 Interpretation: Shared Read-Side Gap
 
 The eight partial verdicts share a dominant implementation gap. FCoP and CodeFlowMu already provide substantial write-side and local-control mechanisms—separate artifacts, atomic publication, role checks, lifecycle gates, dependency blocking, archive preservation, and restart recovery—but do not expose one read-only adapter that normalizes all evidence into:
 
@@ -110,7 +103,7 @@ authoritative / partial / disputed / quarantined view
 This adapter would directly improve C03, C05, C09, and C13 and provide infrastructure for C04 and C07. It would also create the product execution path required by C10–C12. C01 still has schema-coverage gaps, C02 has a stricter immutability gap, and C08 requires a covered-content digest reader.
 
 The baseline is author-produced. A stable public archive and an independent rerun are required before any independently validated claim.
-# 8. Discussion and Limitations
+# 8. Discussion, Limitations, and Threats to Validity
 
 TMPA's contribution is a process-governance contract, not a complete enterprise agent platform. It makes work identity, responsibility, review, lifecycle, conflict, and recovery explicit at publication time and reconstructs them from durable evidence. FCoP demonstrates that a useful subset can operate in an ordinary project environment without a mandatory broker or coordination database.
 

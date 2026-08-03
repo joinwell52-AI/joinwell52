@@ -80,19 +80,39 @@ Execution Substrate        LLM APIs / MCP tools / filesystem /
 TMPA is not a runtime component in this stack. The `fcop` package is the reference implementation of FCoP; CodeFlowMu is a broader application environment. This separation preserves both historical accuracy and conformance boundaries.
 
 ---
-# 5. FCoP Profile and Engineering Evidence
+# 5. Research Design and Evaluation Method
 
-FCoP (File-based Coordination Protocol) is the reference profile used to examine whether TMPA semantics can be realized on an ordinary project-visible filesystem. The current conceptual relation is:
+This work is a design-science architecture study. It constructs a governance artifact, examines its internal properties, instantiates it through a reference profile, and evaluates bounded engineering evidence. It is not a causal trial, a performance benchmark, or a claim of ecosystem adoption.
+
+## 5.1 Design-Science Procedure
+
+The study follows five linked stages:
+
+| Stage | Research operation | Output and research question |
+|---|---|---|
+| problem diagnosis | analyze coordination gaps in chats, logs, workflows, and the XiaoDian lineage | DR1–DR8; RQ1 |
+| artifact construction | define objects, streams, authority, lifecycle, and reconstruction rules | TMPA architecture; RQ2 |
+| analytical evaluation | examine invariants, counterexamples, and assurance boundaries | structural soundness; RQ1–RQ2 |
+| reference instantiation | map FCoP artifacts and operations to TMPA concepts | implementation feasibility; RQ3 |
+| case observation and conformance baseline | inspect CodeFlowMu and XiaoDian paths, fixtures, and pinned test results | bounded demonstration; RQ3 |
+
+The units of analysis are a governance object, a governed work item, a reconstructed view, and a deployment profile. These units prevent product features, individual files, and architecture-level claims from being treated as interchangeable evidence.
+
+## 5.2 Evidence and Claim Protocol
+
+Evidence is classified as **specified**, **implemented**, **demonstrated**, or **independently adopted**. Conformance evidence additionally records fixed source revisions, evidence hashes, execution prerequisites, expected and actual outputs, and one of four product verdicts: PASS, PARTIAL, NOT RUN, or FAIL. A fixture-oracle match is reported separately from product execution.
+
+This protocol limits three common inference errors. Historical artifacts are not retroactively presented as purpose-built conformance tests; prerequisite failures are not converted into passes or product failures; and author-produced cases are not treated as independent adoption. The procedure supports structural and implementation-feasibility claims, but it does not support causal claims about productivity, cost, reliability, or organizational outcomes.
+
+## 5.3 FCoP as Reference Instantiation
+
+FCoP (File-based Coordination Protocol) is the reference profile used to examine whether TMPA semantics can be realized on an ordinary project-visible filesystem. The conceptual relation is:
 
 ```text
 TMPA architecture → reusable FCoP protocol profile → CodeFlowMu and other applications
 ```
 
 FCoP is not identical to TMPA. It realizes a file-based subset through named textual artifacts, lifecycle directories, append-oriented transition evidence, schemas, runtime tools, and adapters [7]–[12]. CodeFlowMu is a downstream application that uses FCoP concepts in a persistent multi-role development environment [13].
-
-Under the profile, one task has one stable transport-visible carrier. Reports, reviews, issues, approvals, and corrections remain separate artifacts. Writers publish independently, commonly through atomic filesystem operations, while readers inspect the available source set. Path location may contribute profile-specific lifecycle evidence, but a compliant projection must distinguish physical observations from semantic governance objects.
-
-A compact mapping is:
 
 | FCoP element | TMPA interpretation |
 |---|---|
@@ -104,17 +124,17 @@ A compact mapping is:
 | `supersedes` | correction without destructive rewrite |
 | archive/history | retained terminal evidence |
 
-The profile publishes a runtime specification, schemas, Python packages, MCP adapter, governance middleware, alert and audit ADRs, and project documentation [8]–[16]. These artifacts establish implementation and distribution, not broad adoption.
+Under this profile, one task has one stable transport-visible carrier; reports, reviews, issues, approvals, and corrections remain separate artifacts. Writers publish independently, while readers inspect the available source set. The published runtime specification, schemas, packages, adapters, governance middleware, ADRs, and documentation establish implementation and distribution paths, not broad adoption [8]–[16].
 
-## 5.1 Case Evidence
+## 5.4 Case and Corpus Procedure
 
-The original TMPA lineage arose in XiaoDian AI, where a multi-role business pipeline exposed the need to preserve task acceptance, execution, review, rejection, and audit evidence across model sessions [25]. FCoP later extracted the reusable file-coordination and review skeleton; CodeFlowMu then supplied a larger persistent-work case.
+The historical lineage is XiaoDian AI → FCoP → CodeFlowMu. XiaoDian exposed the need to preserve acceptance, execution, review, rejection, and audit evidence across model sessions [25]. FCoP extracted the reusable coordination and review skeleton; CodeFlowMu supplied a larger persistent-work application.
 
-The public CodeFlowMu demonstration includes task, report, review, issue, lifecycle, and audit views [13]. A worked NL2SQL case illustrates the separation between execution and review: a task requests a structured-data query, an executor produces a report, and a reviewer checks authorization, schema use, read-only constraints, tenant isolation, joins, enumerations, and result reasonableness. The example demonstrates the intended object chain; it is not a representative production benchmark.
+The public CodeFlowMu demonstration includes task, report, review, issue, lifecycle, and audit views [13]. A worked NL2SQL case separates execution from review: an executor produces a report, while a reviewer checks authorization, schema use, read-only constraints, tenant isolation, joins, enumerations, and result reasonableness. This demonstrates the intended object chain; it is not a representative production benchmark.
 
-Existing engineering evidence predates the C01–C14 labels. The first consolidated corpus therefore maps selected FCoP, CodeFlowMu, and XiaoDian tests and artifacts into fixed criterion fixtures rather than claiming that every historical case was originally designed as a conformance test [28].
+Because the engineering evidence predates the C01–C14 labels, the consolidated corpus maps selected tests and artifacts to fixed criterion fixtures [28]. The evaluation procedure is to: (1) lock product versions and the execution environment; (2) inventory and hash evidence; (3) map artifacts and tests to each criterion; (4) run selected suites and fixtures while retaining expected and actual outputs; (5) assign product verdicts without hiding unmet prerequisites; and (6) report fixture consistency separately from product behavior.
 
-The case establishes feasibility of durable project-visible coordination, role-separated review, lifecycle gates, archive preservation, and restart-related recovery. It does not establish low comparative cost, representative SME performance, independent adoption, or complete TMPA Core conformance.
+The resulting evidence supports bounded structural feasibility: durable project-visible coordination, role-separated review, lifecycle gates, archive preservation, and restart-related recovery. It does not establish lower comparative cost, representative SME performance, independent adoption, portability across deployment profiles, or complete TMPA Core conformance.
 # 6. Canonical Reconstruction Contract
 
 A TMPA implementation may store evidence in different substrates, but it must expose a canonical textual projection sufficient for deterministic reconstruction. The reader receives a set of **source candidates**, not a trusted ordered log. It parses and validates candidates, preserves duplicate observations, distinguishes conflicting content under the same identifier, applies profile rules, and emits:
