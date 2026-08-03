@@ -15,6 +15,7 @@ import './rvs.css'
 import './portal-v5.css'
 import './portal-v5-language.css'
 import './article-cover.css'
+import './homepage-responsive-fix.css'
 
 const zhRuntimeText: Record<string, string> = {
   'RESEARCH RUNTIME CENTER · 运行控制平面': '研究运行中心 · 运行控制平面',
