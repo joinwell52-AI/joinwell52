@@ -1,82 +1,1022 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { withBase } from 'vitepress'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { useData, withBase } from 'vitepress'
+import ResponsiveTitle from './ResponsiveTitle.vue'
+import ResearchSkillGlyph from './ResearchSkillGlyph.vue'
+import { data as allNotes } from './research-notes.data'
+import type { ResearchColumn, ResearchNoteRecord } from './research-notes.data'
+import runtimeData from '../../generated/runtime-records.json'
 
-const props = withDefaults(defineProps<{ lang?: 'en' | 'zh' }>(), { lang: 'en' })
+const props = withDefaults(defineProps<{ lang?: 'en' | 'zh'; preview?: boolean }>(), { lang: 'en', preview: false })
 const zh = computed(() => props.lang === 'zh')
-const c = computed(() => zh.value ? {
-  switcher:'EN', eyebrow:'TMPA · 数字员工生产机', title:'把通用 AI，变成', accent:'真正工作的数字员工。',
-  lead:'一个开放的研究与工程项目：用 TMPA、文本工作流、Skills、治理和持久记录，把 ChatGPT 等通用 AI 组织成可承担真实岗位工作的数字员工。',
-  paper:'阅读 TMPA', apps:'查看应用', github:'GitHub',
-  transform:'从通用智能到组织工作', transformLead:'模型提供智能。我们提供岗位、技能、工具、流程、权限、证据和持续责任。',
-  appsTitle:'三个真实应用', appsLead:'不是概念演示，而是三个不同岗位方向。',
-  appItems:[
-    ['研究笔记生产机','Research Analyst（RA）','基于 ChatGPT 的文本驱动数字研究员，持续发布每日、每周与学术研究笔记。'],
-    ['CodeFlowMu','PM · DEV · QA · OPS','由四个岗位组成的数字软件开发团队，承担真实的软件产品开发工作。'],
-    ['小典 AI','业务数据分析师','理解业务问题、生成并校验 SQL、执行查询、解释结果并保留审计记录。']
+const { isDark } = useData()
+const toggleAppearance = () => { isDark.value = !isDark.value }
+
+const copy = computed(() => zh.value ? {
+  currentLanguage: '中文', otherLanguage: 'EN', otherPath: '/',
+  eyebrow: 'JOINWELL52 研究中心 · AI 工作研究',
+  heroLabel: '我们研究通用 AI 如何承担真实工作',
+  heroWide: ['我们研究通用 AI', '如何承担', '真实工作'],
+  heroCompact: ['我们研究通用 AI', '如何承担', '真实工作'],
+  heroMobile: ['我们研究', '通用 AI', '如何承担', '真实工作'],
+  heroLead: '当 AI 从回答问题走向长期工作，我们研究谁接受责任，哪个对象承载任务，哪些证据完成审阅、决策与恢复，以及过程能否在中断后被重建。',
+  primary: '阅读 TMPA 论文', secondary: '进入研究笔记', tertiary: '检查运行证据',
+  ledger: '研究运行总账', live: '正在运行', ledgerRows: [
+    ['当前岗位', '研究分析员'], ['工作队列', '研究队列'], ['发布门禁', 'GitHub + VitePress'], ['事实来源', 'main 分支']
   ],
-  textTitle:'工作流就是文本。', textLead:'没有复杂 BPMN，没有专用 DSL，也不依赖庞大的流程代码。岗位、Skills、Queue、工作步骤、规范和记录都写成文本。AI 能理解，人也能理解。',
-  textTags:['人可读','AI 可执行','程序可校验','GitHub 可保存'],
-  tmpaTitle:'TMPA：理论、规范与实现', tmpaLead:'TMPA 研究受治理的 AI 原生组织工作，强调工作落地成文、组织先于编排、职责分离、相互约束和可重建的组织状态。',
-  papers:[['A0.4','主论文'],['S0.3','核心规范'],['I0.3','实现案例']],
-  researchTitle:'持续研究', researchLead:'数字员工 · 行业架构 · 开源工程', rhythms:['每日研究','每周综合','学术观察'],
-  openTitle:'全部开源，持续运行。', openLead:'开源的是理论、方法、文本工作流、研究笔记、运行记录、网站和工程证据；不是 ChatGPT 或底层大模型。',
-  runtime:'幕后运行记录', runtimeLead:'查看 RA 的调度、工作日志、GitHub 提交与发布验证。'
+  latestRelease: '出版体系正在修订', inspected: '可检查 · 可引用 · 可重建',
+  tmpaLabel: '01 · 旗舰研究',
+  tmpaTitle: '一套理论 三项正式出版物',
+  tmpaWide: ['一套理论', '三项正式出版物'],
+  tmpaCompact: ['一套理论', '三项正式', '出版物'],
+  tmpaMobile: ['一套理论', '三项正式', '出版物'],
+  tmpaLead: 'TMPA（文本多智能体流程架构）是面向中小企业 AI 协同治理的极简基础设施文本规范。主论文解释架构，核心规范固定对象与读者行为，工程案例公开实现证据及其边界。',
+  publications: [
+    { version:'A0.5', kind:'主论文', title:['TMPA','架构论文'], status:'版本持续修订', path:'/zh/publications/tmpa-architecture-paper-a0.5', tone:'paper' },
+    { version:'S0.3', kind:'核心规范', title:['TMPA','核心规范'], status:'版本持续修订', path:'/zh/publications/tmpa-core-specification-s0.3', tone:'spec' },
+    { version:'I0.3', kind:'工程案例', title:['TMPA–FCoP–','CodeFlowMu','实现案例'], status:'版本持续修订', path:'/zh/publications/implementation-case-i0.3', tone:'case' }
+  ],
+  readPublication: '阅读正式文档',
+  engineLabel: '02 · 数字研究员工',
+  engineTitle: '一名数字研究员 一条可验证的工作链',
+  engineWide: ['一名数字研究员', '一条可验证的工作链'],
+  engineCompact: ['一名数字研究员', '一条可验证的', '工作链'],
+  engineMobile: ['一名数字研究员', '一条可验证的', '工作链'],
+  engineLead: '研究报告生产机持有 Research Analyst 岗位。任务、来源、分析、配图、证据、审阅与发布记录跨会话保留，新的工作会从持久记录继续。',
+  position: '岗位', positionName: '研究分析员', worker: '数字研究员工', verified: '生产验证通过',
+  skills: ['来源发现','研究筛选','深度阅读','研究分析','研究写作','研究配图','证据与引用','出版编辑'],
+  skillStages: ['发现','发现','理解','理解','生产','生产','出版','出版'],
+  workflowLabel: '数字员工工作链', workflowLive: '正在运行', currentStep: '当前步骤',
+  engineLink: '查看研究报告生产机 V1.0',
+  fieldLabel: '03 · 研究产品体系',
+  fieldTitle: '理论 协议 Runtime 与应用',
+  fieldWide: ['理论 协议', 'Runtime 与应用'],
+  fieldCompact: ['理论 协议', 'Runtime 与应用'],
+  fieldMobile: ['理论 协议', 'Runtime', '与应用'],
+  fieldLead: 'TMPA 定义架构与治理语义，FCoP 提供项目可见的文件协议，CodeFlowMu 将协议带入持续工作 Runtime，Digital Employee 则定义长期工作的组织应用。',
+  systems: [
+    { no:'01', kind:'治理', role:'文本多智能体流程架构', name:['TMPA'], description:'面向中小企业 AI 协同治理的极简基础设施文本规范。一个稳定主载体锚定工作，多条责任流异步推进，读者从证据重建全貌。', path:'/zh/publications/tmpa-architecture-paper-a0.5', logo:'/logo.svg?v=tmpa-20260803-3', tone:'tmpa', cta:'论文与规范' },
+    { no:'02', kind:'协同', role:'基于文件的协同协议', name:['FCoP'], description:'以项目可见文件承载任务、报告、审阅与生命周期证据，是 TMPA 已定义子集的可复用文件协议实现。', path:'https://github.com/joinwell52-AI/FCoP', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'打开 GitHub' },
+    { no:'03', kind:'运行', role:'数字员工开发与工作 Runtime', name:['CodeFlowMu'], description:'将 FCoP 带入持续工作环境，支持数字员工开发、受治理执行、恢复与持久工作证据；它是下游采用者与参考实现环境。', path:'https://github.com/joinwell52-AI/CodeFlowMu-open', logo:'/assets/logos/codeflowmu.png', tone:'codeflow', cta:'打开 GitHub' },
+    { no:'04', kind:'应用', role:'受治理的 AI 劳动力', name:['Digital','Employee'], description:'面向组织岗位、权限、工作流与评价的受治理数字劳动力。', path:'/zh/digital-employee/', tone:'employee', cta:'查看体系' }
+  ],
+  researchLabel: '04 · 持续研究',
+  researchTitle: '研究笔记 持续更新',
+  researchWide: ['研究笔记', '持续更新'],
+  researchCompact: ['研究笔记', '持续更新'],
+  researchMobile: ['研究笔记', '持续更新'],
+  researchLead: '跟随数字研究员正在推进的工作，浏览最新文章，在三个研究栏目之间切换并进入完整研究笔记。',
+  streams: [
+    { column:'digital-employee' as ResearchColumn, index:'A', title:['数字员工'], description:'岗位、权限、工作流、Runtime 与评价。', path:'/zh/digital-employee/' },
+    { column:'industry-architecture' as ResearchColumn, index:'B', title:['行业架构'], description:'企业 AI 工作的组织、治理与系统边界。', path:'/zh/industry/' },
+    { column:'open-source-engineering' as ResearchColumn, index:'C', title:['开源工程'], description:'Agent、Skill、Tool、Recovery 与可观测性。', path:'/zh/engineering/' }
+  ],
+  latest: '最新研究', allResearch: '查看全部研究',
+  articleStream: '最新文章流', autoSwitch: '自动切换', enterNotes: '进入研究笔记',
+  workLog: 'RA 工作日志', raLine: ['我正在工作', '一起参与吗'],
+  raNote: '研究任务、证据、提交与发布记录持续写入运行中心。', enterRuntime: '进入研究运行中心',
+  latestTask: '当前工作', runtimeStatus: '运行状态', runtimeCommit: '提交记录',
+  footerAbout: '持续运行的 AI 工作研究中心。研究材料公开供阅读、讨论与规范引用。',
+  footerCode: '代码', footerRead: '阅读', footerCite: '引用',
+  repository: 'GitHub 仓库', fcop: 'FCoP 协议', codeflow: 'CodeFlowMu Runtime',
+  researchNotes: '研究笔记', publicationCenter: '出版中心', runtimeCenter: '研究运行中心',
+  citationFile: 'CITATION.cff', license: '许可说明', licenseName: '保留所有权利',
+  authorLabel: '作者', authorName: '朱卫', authorMeta: 'joinwell52-AI · 独立研究者',
+  copyright: '© 2026 JOINWELL52',
+  licenseSummary: '公开阅读与规范引用；复制、再发布、改编或商业使用需事先获得书面授权。'
 } : {
-  switcher:'中文', eyebrow:'TMPA · DIGITAL EMPLOYEE FACTORY', title:'Turn General AI into', accent:'Digital Employees.',
-  lead:'An open research and engineering project using TMPA, textual workflows, Skills, governance, and durable records to organize general AI such as ChatGPT into workers that can hold real organizational roles.',
-  paper:'Read TMPA', apps:'See Applications', github:'GitHub',
-  transform:'From general intelligence to organizational work', transformLead:'The model supplies intelligence. We supply roles, skills, tools, process, authority, evidence, and durable responsibility.',
-  appsTitle:'Three Working Applications', appsLead:'Not concept demos, but three distinct work roles.',
-  appItems:[
-    ['Research Note Factory','Research Analyst (RA)','A ChatGPT-powered, text-driven digital researcher publishing daily, weekly, and academic research notes.'],
-    ['CodeFlowMu','PM · DEV · QA · OPS','A four-role digital software development team performing real product-development work.'],
-    ['XiaoDian AI','Business Data Analyst','Understands business questions, generates and validates SQL, executes queries, explains results, and preserves audit evidence.']
+  currentLanguage: 'EN', otherLanguage: '中文', otherPath: '/zh/',
+  eyebrow: 'JOINWELL52 RESEARCH CENTER · AI WORK RESEARCH',
+  heroLabel: 'We research how general AI takes on real work',
+  heroWide: ['We research how', 'general AI takes on', 'real work'],
+  heroCompact: ['We research', 'how general AI', 'takes on real work'],
+  heroMobile: ['We research', 'how general AI', 'takes on', 'real work'],
+  heroLead: 'As AI moves from answering questions to continuing work, we study who accepts responsibility, which object carries the task, which evidence supports review and decision, and whether work can be reconstructed after interruption.',
+  primary: 'Read the TMPA paper', secondary: 'Explore Research Notes', tertiary: 'Inspect Runtime Evidence',
+  ledger: 'Research operations ledger', live: 'Live', ledgerRows: [
+    ['Active position', 'Research Analyst'], ['Work intake', 'Research Queue'], ['Publication gate', 'GitHub + VitePress'], ['Source of truth', 'main branch']
   ],
-  textTitle:'The workflow is text.', textLead:'No complex BPMN, proprietary DSL, or large workflow codebase. Roles, Skills, queues, procedures, standards, and records are written as text that both AI and people can understand.',
-  textTags:['Human-readable','AI-executable','Machine-validatable','GitHub-preserved'],
-  tmpaTitle:'TMPA: Theory, Specification, Implementation', tmpaLead:'TMPA studies governed AI-native organizational work through work-becomes-text, organization before orchestration, separation of duties, mutual constraint, and reconstructable organizational state.',
-  papers:[['A0.4','Main Paper'],['S0.3','Core Specification'],['I0.3','Implementation Case']],
-  researchTitle:'Continuing Research', researchLead:'Digital Employees · Industry Architecture · Open-source Engineering', rhythms:['Daily Research','Weekly Synthesis','Academic Observation'],
-  openTitle:'Open source. Continuously running.', openLead:'What is open-sourced is the theory, methods, textual workflows, research notes, runtime records, website, and engineering evidence—not ChatGPT or the underlying foundation model.',
-  runtime:'Behind the scenes', runtimeLead:'Inspect RA scheduling, work logs, GitHub commits, and publication verification.'
+  latestRelease: 'Publication suite in revision', inspected: 'Inspectable · Citable · Reconstructable',
+  tmpaLabel: '01 · FLAGSHIP RESEARCH',
+  tmpaTitle: 'One theory Three formal publications',
+  tmpaWide: ['One theory', 'Three formal publications'],
+  tmpaCompact: ['One theory', 'Three formal', 'publications'],
+  tmpaMobile: ['One theory', 'Three formal', 'publications'],
+  tmpaLead: 'TMPA is the Textual Multi-Agent Process Architecture: a minimal-infrastructure textual specification for SME AI collaboration governance. The paper explains the architecture, the Core specification fixes objects and reader behavior, and the case publishes implementation evidence and its limits.',
+  publications: [
+    { version:'A0.5', kind:'PRIMARY PAPER', title:['TMPA','Architecture Paper'], status:'Version under revision', path:'/en/publications/tmpa-architecture-paper-a0.5', tone:'paper' },
+    { version:'S0.3', kind:'CORE SPECIFICATION', title:['TMPA Core','Specification'], status:'Version under revision', path:'/en/publications/tmpa-core-specification-s0.3', tone:'spec' },
+    { version:'I0.3', kind:'ENGINEERING CASE', title:['TMPA–FCoP–','CodeFlowMu','Implementation Case'], status:'Version under revision', path:'/en/publications/implementation-case-i0.3', tone:'case' }
+  ],
+  readPublication: 'Read formal document',
+  engineLabel: '02 · DIGITAL RESEARCH EMPLOYEE',
+  engineTitle: 'One digital researcher One accountable chain of work',
+  engineWide: ['One digital researcher', 'One accountable chain of work'],
+  engineCompact: ['One digital researcher', 'One accountable', 'chain of work'],
+  engineMobile: ['One digital', 'researcher', 'One accountable', 'chain of work'],
+  engineLead: 'The Research Report Production Engine holds the Research Analyst position. Tasks, sources, analysis, visuals, evidence, review, and publication records persist across sessions, so new work can continue from durable records.',
+  position: 'Position', positionName: 'Research Analyst', worker: 'Digital Research Employee', verified: 'PRODUCTION VERIFIED',
+  skills: ['Source Discovery','Research Triage','Deep Reading','Research Analysis','Research Writing','Research Visualization','Evidence & Citation','Publication Editing'],
+  skillStages: ['DISCOVER','DISCOVER','UNDERSTAND','UNDERSTAND','PRODUCE','PRODUCE','PUBLISH','PUBLISH'],
+  workflowLabel: 'DIGITAL EMPLOYEE WORKFLOW', workflowLive: 'RUNNING', currentStep: 'CURRENT STEP',
+  engineLink: 'Inspect Research Report Production Engine V1.0',
+  fieldLabel: '03 · RESEARCH PROGRAMS',
+  fieldTitle: 'Theory Protocol Runtime Application',
+  fieldWide: ['Theory Protocol', 'Runtime Application'],
+  fieldCompact: ['Theory Protocol', 'Runtime', 'Application'],
+  fieldMobile: ['Theory', 'Protocol', 'Runtime', 'Application'],
+  fieldLead: 'TMPA defines architecture and governance semantics. FCoP provides the project-visible file protocol, CodeFlowMu brings the protocol into a continuing-work runtime, and Digital Employee defines its organizational application.',
+  systems: [
+    { no:'01', kind:'GOVERNANCE', role:'TEXTUAL MULTI-AGENT PROCESS ARCHITECTURE', name:['TMPA'], description:'A minimal-infrastructure textual specification for SME AI collaboration governance. One stable carrier anchors work, multiple responsibility streams progress asynchronously, and readers reconstruct the whole from evidence.', path:'/en/publications/tmpa-architecture-paper-a0.5', logo:'/logo.svg?v=tmpa-20260803-3', tone:'tmpa', cta:'Paper & specification' },
+    { no:'02', kind:'COORDINATION', role:'FILE-BASED COORDINATION PROTOCOL', name:['FCoP'], description:'Project-visible files carry tasks, reports, reviews, and lifecycle evidence as a reusable file-protocol realization of a defined TMPA subset.', path:'https://github.com/joinwell52-AI/FCoP', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'Open GitHub' },
+    { no:'03', kind:'RUNTIME', role:'DIGITAL EMPLOYEE DEVELOPMENT AND WORK RUNTIME', name:['CodeFlowMu'], description:'CodeFlowMu brings FCoP into a continuing-work environment for Digital Employee development, governed execution, recovery, and durable work evidence; it is a downstream adopter and reference environment.', path:'https://github.com/joinwell52-AI/CodeFlowMu-open', logo:'/assets/logos/codeflowmu.png', tone:'codeflow', cta:'Open GitHub' },
+    { no:'04', kind:'APPLICATION', role:'GOVERNED AI WORKFORCE', name:['Digital','Employee'], description:'A governed digital workforce organized around positions, authority, workflows, and evaluation.', path:'/en/digital-employee/', tone:'employee', cta:'View system' }
+  ],
+  researchLabel: '04 · CONTINUING RESEARCH',
+  researchTitle: 'Research notes Always updating',
+  researchWide: ['Research notes', 'Always updating'],
+  researchCompact: ['Research notes', 'Always updating'],
+  researchMobile: ['Research notes', 'Always updating'],
+  researchLead: 'Follow the work now in progress, browse the latest articles, switch among three research columns, and enter the complete research notes.',
+  streams: [
+    { column:'digital-employee' as ResearchColumn, index:'A', title:['Digital Employee'], description:'Position, authority, workflow, runtime, and evaluation.', path:'/en/digital-employee/' },
+    { column:'industry-architecture' as ResearchColumn, index:'B', title:['Industry','Architecture'], description:'Organization, governance, and system boundaries for enterprise AI work.', path:'/en/industry/' },
+    { column:'open-source-engineering' as ResearchColumn, index:'C', title:['Open-source','Engineering'], description:'Agents, skills, tools, recovery, and observability.', path:'/en/engineering/' }
+  ],
+  latest: 'Latest research', allResearch: 'View all research',
+  articleStream: 'Latest article stream', autoSwitch: 'Auto switching', enterNotes: 'Enter research notes',
+  workLog: 'RA work log', raLine: ['I am working', 'Want to take part'],
+  raNote: 'Research tasks, evidence, commits, and publication records continue into the Runtime Center.', enterRuntime: 'Enter Research Runtime Center',
+  latestTask: 'Current work', runtimeStatus: 'Runtime status', runtimeCommit: 'Commit record',
+  footerAbout: 'A continuously operating research center for AI work. Research materials are publicly readable for discussion and proper citation.',
+  footerCode: 'Code', footerRead: 'Read', footerCite: 'Cite',
+  repository: 'GitHub repository', fcop: 'FCoP protocol', codeflow: 'CodeFlowMu Runtime',
+  researchNotes: 'Research notes', publicationCenter: 'Publication center', runtimeCenter: 'Research Runtime Center',
+  citationFile: 'CITATION.cff', license: 'License notice', licenseName: 'All rights reserved',
+  authorLabel: 'Author', authorName: 'Zhu Wei', authorMeta: 'joinwell52-AI · Independent Researcher',
+  copyright: '© 2026 JOINWELL52',
+  licenseSummary: 'Public reading and proper citation are encouraged. Reproduction, redistribution, adaptation, or commercial use requires prior written permission.'
 })
-const languagePath = computed(() => zh.value ? '/' : '/zh/')
-const p = computed(() => ({
-  paper: zh.value ? '/zh/publications/tmpa-architecture-paper-a0.4' : '/en/publications/tmpa-architecture-paper-a0.4',
-  publications: zh.value ? '/zh/publications/' : '/en/publications/',
-  daily: zh.value ? '/zh/research/daily/' : '/en/research/daily/',
-  weekly: zh.value ? '/zh/research/weekly/' : '/en/research/weekly/',
-  academic: zh.value ? '/zh/research/papers/' : '/en/research/papers/',
-  runtime: zh.value ? '/zh/runtime/' : '/en/runtime/'
-}))
-const researchLinks = computed(() => [p.value.daily, p.value.weekly, p.value.academic])
+
+const link = (path: string) => path.startsWith('http') ? path : withBase(path)
+const publicationOverview = computed(() => zh.value ? '/zh/publications/' : '/en/publications/')
+const researchOverview = computed(() => zh.value ? '/zh/research/' : '/en/research/')
+const runtimePath = computed(() => zh.value ? '/zh/runtime/' : '/en/runtime/')
+const pairedHomePath = computed(() => props.preview
+  ? (zh.value ? '/en/preview/research-center-home' : '/zh/preview/research-center-home')
+  : copy.value.otherPath
+)
+
+const localizedNotes = computed(() => (allNotes as ResearchNoteRecord[]).filter(note => note.lang === props.lang))
+const activeColumn = ref<ResearchColumn>('digital-employee')
+const activeStream = computed(() => copy.value.streams.find(stream => stream.column === activeColumn.value) ?? copy.value.streams[0])
+const activeNotes = computed(() => localizedNotes.value.filter(note => note.column === activeColumn.value).slice(0, 3))
+const runtimeLatest = runtimeData.latest
+const runtimeTaskLabelsZh: Record<string, string> = {
+  'Research Runtime Engine': '研究运行引擎',
+  'Research Runtime Queue': '研究运行队列',
+  'Research Runtime Knowledge': '研究运行知识',
+  'Research Runtime Architecture': '研究运行架构评审',
+  'Research Runtime Publication': '研究运行每日发布',
+  'Research Runtime Weekly': '研究运行每周综合',
+  'Research Runtime Academic': '研究运行学术研究',
+  'Research Runtime Scheduler V1.0 Upgrade': '研究运行调度器升级'
+}
+const runtimeStatusLabelsZh: Record<string, string> = {
+  Completed: '已完成', Running: '运行中', Blocked: '受阻', Failed: '失败', Skipped: '已跳过', Waiting: '等待中'
+}
+const runtimeTaskLabel = computed(() => zh.value
+  ? (runtimeTaskLabelsZh[runtimeLatest.latestTask] ?? runtimeLatest.latestTask)
+  : runtimeLatest.latestTask
+)
+const runtimeStatusLabel = computed(() => zh.value
+  ? (runtimeStatusLabelsZh[runtimeLatest.status] ?? runtimeLatest.status)
+  : runtimeLatest.status
+)
+let researchRotation: ReturnType<typeof setInterval> | undefined
+const activeSkill = ref(0)
+let skillRotation: ReturnType<typeof setInterval> | undefined
+
+const startResearchRotation = () => {
+  if (typeof window === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  if (researchRotation) clearInterval(researchRotation)
+  researchRotation = setInterval(() => {
+    const columns = copy.value.streams.map(stream => stream.column)
+    activeColumn.value = columns[(columns.indexOf(activeColumn.value) + 1) % columns.length]
+  }, 6500)
+}
+
+const selectResearchColumn = (column: ResearchColumn) => {
+  activeColumn.value = column
+  startResearchRotation()
+}
+
+const startSkillRotation = () => {
+  if (typeof window === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  if (skillRotation) clearInterval(skillRotation)
+  skillRotation = setInterval(() => { activeSkill.value = (activeSkill.value + 1) % copy.value.skills.length }, 1450)
+}
+
+const selectSkill = (index: number) => {
+  activeSkill.value = index
+  startSkillRotation()
+}
+
+const categoryLabel = (category: ResearchNoteRecord['category']) => zh.value
+  ? ({ daily: '每日研究', weekly: '每周综合', academic: '学术研究' }[category])
+  : ({ daily: 'Daily research', weekly: 'Weekly synthesis', academic: 'Academic research' }[category])
+
+onMounted(() => { startResearchRotation(); startSkillRotation() })
+onBeforeUnmount(() => {
+  if (researchRotation) clearInterval(researchRotation)
+  if (skillRotation) clearInterval(skillRotation)
+})
 </script>
 
 <template>
-  <main class="product-home">
-    <section class="hero">
-      <div class="orb orb-a"></div><div class="orb orb-b"></div>
-      <div class="wrap hero-inner">
-        <nav class="lang"><strong>{{ zh ? '中文' : 'EN' }}</strong><span>/</span><a :href="withBase(languagePath)">{{ c.switcher }}</a></nav>
-        <span class="eyebrow">{{ c.eyebrow }}</span>
-        <h1>{{ c.title }}<br><em>{{ c.accent }}</em></h1>
-        <p>{{ c.lead }}</p>
-        <div class="actions"><a class="primary" :href="withBase(p.paper)">{{ c.paper }} ↗</a><a href="#applications">{{ c.apps }} ↓</a><a href="https://github.com/joinwell52-AI/joinwell52">{{ c.github }} ↗</a></div>
-        <div class="signal"><span>GENERAL AI</span><i>→</i><b>TMPA + TEXT + SKILLS</b><i>→</i><strong>DIGITAL EMPLOYEE</strong></div>
+  <main class="rc-home" :class="{ 'is-zh': zh }">
+    <section class="rc-hero">
+      <div class="rc-controls" :aria-label="zh ? '语言与明暗风格' : 'Language and appearance'">
+          <nav class="rc-language" :aria-label="zh ? '语言选择' : 'Language selection'">
+            <template v-if="zh"><strong>中文</strong><a :href="link(pairedHomePath)">EN</a></template>
+            <template v-else><a :href="link(pairedHomePath)">中文</a><strong>EN</strong></template>
+          </nav>
+          <button
+            class="rc-appearance"
+            type="button"
+            :aria-pressed="isDark"
+            :aria-label="zh ? (isDark ? '切换为明亮风格' : '切换为暗色风格') : (isDark ? 'Switch to light theme' : 'Switch to dark theme')"
+            @click="toggleAppearance"
+          >
+            <span aria-hidden="true">{{ isDark ? '☾' : '☀' }}</span>
+            <b>{{ zh ? (isDark ? '暗色' : '明亮') : (isDark ? 'Dark' : 'Light') }}</b>
+          </button>
+      </div>
+
+      <div class="rc-shell rc-hero__layout">
+        <div class="rc-hero__copy">
+          <p class="rc-kicker"><span></span>{{ copy.eyebrow }}</p>
+          <ResponsiveTitle
+            tag="h1"
+            class="rc-hero__title"
+            :label="copy.heroLabel"
+            :wide="copy.heroWide"
+            :compact="copy.heroCompact"
+            :mobile="copy.heroMobile"
+            :accent-from="1"
+          />
+          <p class="rc-hero__lead">{{ copy.heroLead }}</p>
+          <div class="rc-actions">
+            <a class="rc-button rc-button--primary" :href="link(copy.publications[0].path)">{{ copy.primary }} <span>↗</span></a>
+            <a class="rc-button" :href="link(researchOverview)">{{ copy.secondary }} <span>→</span></a>
+            <a class="rc-text-link" :href="link(runtimePath)">{{ copy.tertiary }} <span>↗</span></a>
+          </div>
+        </div>
+
+        <aside class="rc-ledger" :aria-label="copy.ledger">
+          <header><span>{{ copy.ledger }}</span><b><i></i>{{ copy.live }}</b></header>
+          <div class="rc-ledger__release">
+            <small>{{ copy.latestRelease }}</small>
+            <strong>TMPA</strong>
+            <p>{{ zh ? '主论文 · 核心规范 · 工程案例' : 'Paper · Core · Case' }}</p>
+          </div>
+          <dl>
+            <div v-for="row in copy.ledgerRows" :key="row[0]"><dt>{{ row[0] }}</dt><dd>{{ row[1] }}</dd></div>
+          </dl>
+          <footer><span>2026—08</span><b>{{ copy.inspected }}</b></footer>
+        </aside>
+
+        <div class="rc-mobile-ledger">
+          <span><i></i>{{ copy.live }}</span><b>{{ zh ? 'TMPA · 修订中' : 'TMPA · IN REVISION' }}</b><small>{{ copy.inspected }}</small>
+        </div>
+      </div>
+
+      <div class="rc-shell rc-hero__index">
+        <div><span>01</span><b>A</b><small>{{ zh ? '主论文' : 'PRIMARY PAPER' }}</small></div>
+        <div><span>02</span><b>S</b><small>{{ zh ? '核心规范' : 'CORE SPECIFICATION' }}</small></div>
+        <div><span>03</span><b>I</b><small>{{ zh ? '工程案例' : 'ENGINEERING CASE' }}</small></div>
+        <div><span>04</span><b>{{ zh ? '引擎' : 'ENGINE' }}</b><small>{{ zh ? '生产验证通过' : 'PRODUCTION VERIFIED' }}</small></div>
       </div>
     </section>
-    <section class="panel transform"><div class="wrap split"><div><span class="mini">01</span><h2>{{ c.transform }}</h2></div><p>{{ c.transformLead }}</p></div></section>
-    <section id="applications" class="panel apps-section"><div class="wrap"><span class="mini">02</span><h2>{{ c.appsTitle }}</h2><p class="intro">{{ c.appsLead }}</p><div class="apps"><article v-for="(item,index) in c.appItems" :key="item[0]" :class="`app app-${index+1}`"><small>0{{ index+1 }}</small><h3>{{ item[0] }}</h3><strong>{{ item[1] }}</strong><p>{{ item[2] }}</p></article></div></div></section>
-    <section class="panel text-section"><div class="wrap text-grid"><div><span class="mini">03</span><h2>{{ c.textTitle }}</h2><p>{{ c.textLead }}</p></div><div class="text-stack"><span v-for="tag in c.textTags" :key="tag">{{ tag }}</span></div></div></section>
-    <section class="panel tmpa-section"><div class="wrap"><span class="mini">04</span><h2>{{ c.tmpaTitle }}</h2><p class="intro">{{ c.tmpaLead }}</p><div class="papers"><a v-for="(paper,index) in c.papers" :key="paper[0]" :href="withBase(index===0 ? p.paper : p.publications)"><b>{{ paper[0] }}</b><span>{{ paper[1] }}</span><i>↗</i></a></div></div></section>
-    <section class="panel research-section"><div class="wrap research-grid"><div><span class="mini">05</span><h2>{{ c.researchTitle }}</h2><p>{{ c.researchLead }}</p></div><div class="rhythms"><a v-for="(item,index) in c.rhythms" :key="item" :href="withBase(researchLinks[index])">{{ item }} <span>→</span></a></div></div></section>
-    <section class="panel final-section"><div class="wrap final-grid"><div><span class="mini">06</span><h2>{{ c.openTitle }}</h2><p>{{ c.openLead }}</p></div><div class="final-links"><a href="https://github.com/joinwell52-AI/joinwell52">GitHub ↗</a><a :href="withBase(p.runtime)">{{ c.runtime }} →<small>{{ c.runtimeLead }}</small></a></div></div></section>
+
+    <section class="rc-section rc-tmpa">
+      <div class="rc-shell">
+        <div class="rc-section__intro rc-section__intro--light">
+          <div>
+            <p class="rc-kicker">{{ copy.tmpaLabel }}</p>
+            <ResponsiveTitle tag="h2" class="rc-section__title" :label="copy.tmpaTitle" :wide="copy.tmpaWide" :compact="copy.tmpaCompact" :mobile="copy.tmpaMobile" />
+          </div>
+          <p>{{ copy.tmpaLead }}</p>
+        </div>
+        <div class="rc-publications">
+          <a v-for="publication in copy.publications" :key="publication.version" :class="`rc-publication rc-publication--${publication.tone}`" :href="link(publication.path)">
+            <div class="rc-publication__art"><span>{{ publication.kind }}</span><b>{{ publication.version }}</b><i></i></div>
+            <div class="rc-publication__body">
+              <p>{{ publication.status }}</p>
+              <h3 :aria-label="publication.title.join(' ')"><span v-for="lineItem in publication.title" :key="lineItem">{{ lineItem }}</span></h3>
+              <b>{{ copy.readPublication }} <span>↗</span></b>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="rc-section rc-engine">
+      <div class="rc-shell">
+        <div class="rc-section__intro">
+          <div>
+            <p class="rc-kicker rc-kicker--dark">{{ copy.engineLabel }}</p>
+            <ResponsiveTitle tag="h2" class="rc-section__title" :label="copy.engineTitle" :wide="copy.engineWide" :compact="copy.engineCompact" :mobile="copy.engineMobile" />
+          </div>
+          <p>{{ copy.engineLead }}</p>
+        </div>
+        <div class="rc-engine__grid">
+          <article class="rc-position-card">
+            <header><span>{{ copy.position }}</span><b>{{ copy.verified }}</b></header>
+            <div class="rc-position-card__mark">RA</div>
+            <h3>{{ copy.positionName }}</h3><p>{{ copy.worker }}</p>
+            <div class="rc-position-card__live">
+              <span><i></i>{{ copy.workflowLive }}</span>
+              <b>{{ String(activeSkill + 1).padStart(2, '0') }} / 08</b>
+              <strong><small>{{ copy.currentStep }}</small>{{ copy.skills[activeSkill] }}</strong>
+            </div>
+            <a :href="link(zh ? '/zh/publications/research-report-production-engine-v1.0' : '/en/publications/research-report-production-engine-v1.0')">{{ copy.engineLink }} <span>↗</span></a>
+          </article>
+          <div class="rc-skill-flow" :class="`is-step-${activeSkill + 1}`">
+            <header><b>{{ copy.workflowLabel }}</b><span><i></i>{{ copy.workflowLive }} · {{ String(activeSkill + 1).padStart(2, '0') }}/08</span></header>
+            <div class="rc-skill-flow__map">
+              <svg viewBox="0 0 1000 470" preserveAspectRatio="none" aria-hidden="true">
+                <path class="rc-skill-flow__rail" d="M250 58H750Q790 58 790 98V136Q790 176 750 176H250Q210 176 210 216V254Q210 294 250 294H750Q790 294 790 334V372Q790 412 750 412H250" />
+                <path class="rc-skill-flow__pulse" d="M250 58H750Q790 58 790 98V136Q790 176 750 176H250Q210 176 210 216V254Q210 294 250 294H750Q790 294 790 334V372Q790 412 750 412H250" />
+              </svg>
+              <span class="rc-work-pass" aria-hidden="true"><b>RA</b><i></i></span>
+              <ol class="rc-skills">
+                <li v-for="(skill, index) in copy.skills" :key="skill" :class="{ 'is-active': activeSkill === index }">
+                  <button type="button" :aria-pressed="activeSkill === index" @click="selectSkill(index)">
+                    <span class="rc-office-lamp" aria-hidden="true"></span>
+                    <span class="rc-office-sign" aria-hidden="true"><ResearchSkillGlyph :step="index" :active="activeSkill === index" :label="skill" /></span>
+                    <span class="rc-office-door">
+                      <span class="rc-skill-copy"><small>{{ String(index + 1).padStart(2, '0') }} · {{ copy.skillStages[index] }}</small><b>{{ skill }}</b></span>
+                      <i class="rc-office-handle" aria-hidden="true"></i>
+                    </span>
+                  </button>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rc-section rc-field">
+      <div class="rc-shell">
+        <div class="rc-section__intro">
+          <div>
+            <p class="rc-kicker rc-kicker--dark">{{ copy.fieldLabel }}</p>
+            <ResponsiveTitle tag="h2" class="rc-section__title" :label="copy.fieldTitle" :wide="copy.fieldWide" :compact="copy.fieldCompact" :mobile="copy.fieldMobile" />
+          </div>
+          <p>{{ copy.fieldLead }}</p>
+        </div>
+        <div class="rc-programs">
+          <a
+            v-for="system in copy.systems"
+            :key="system.no"
+            class="rc-program"
+            :class="`rc-program--${system.tone}`"
+            :href="link(system.path)"
+            :target="system.path.startsWith('http') ? '_blank' : undefined"
+            :rel="system.path.startsWith('http') ? 'noreferrer' : undefined"
+          >
+            <div class="rc-program__cover">
+              <span>{{ system.kind }}</span>
+              <img v-if="system.logo" :src="link(system.logo)" :alt="`${system.name.join(' ')} logo`" loading="lazy" />
+              <strong v-else-if="system.mark">{{ system.mark }}</strong>
+              <div v-else class="rc-program__workforce" aria-hidden="true"><i></i><i></i><i></i></div>
+              <b>{{ system.no }}</b>
+            </div>
+            <div class="rc-program__body">
+              <small>{{ system.role }}</small>
+              <h3 :aria-label="system.name.join(' ')"><span v-for="lineItem in system.name" :key="lineItem">{{ lineItem }}</span></h3>
+              <p>{{ system.description }}</p>
+              <b>{{ system.cta }} <span>↗</span></b>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="rc-section rc-research">
+      <div class="rc-shell">
+        <div class="rc-section__intro rc-section__intro--light">
+          <div>
+            <p class="rc-kicker">{{ copy.researchLabel }}</p>
+            <ResponsiveTitle tag="h2" class="rc-section__title" :label="copy.researchTitle" :wide="copy.researchWide" :compact="copy.researchCompact" :mobile="copy.researchMobile" />
+          </div>
+          <p>{{ copy.researchLead }}</p>
+        </div>
+
+        <div class="rc-note-marquee">
+          <header><a :href="link(researchOverview)"><b><i></i>{{ copy.articleStream }}</b><span>{{ localizedNotes.length }} NOTES ↗</span></a></header>
+          <div class="rc-note-marquee__viewport">
+            <div class="rc-note-marquee__track">
+              <div v-for="repeat in 2" :key="repeat" class="rc-note-marquee__group" :aria-hidden="repeat === 2 ? 'true' : undefined">
+                <a v-for="note in localizedNotes.slice(0, 12)" :key="`${repeat}-${note.url}`" :href="link(researchOverview)" :tabindex="repeat === 2 ? -1 : undefined">
+                  <time>{{ note.date }}</time><span>{{ categoryLabel(note.category) }}</span><strong>{{ note.title }}</strong><i>↗</i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rc-note-browser">
+          <nav class="rc-note-tabs" role="tablist" :aria-label="zh ? '研究栏目切换' : 'Research column switcher'">
+            <button
+              v-for="stream in copy.streams"
+              :id="`research-tab-${stream.column}`"
+              :key="stream.column"
+              type="button"
+              role="tab"
+              :aria-selected="activeColumn === stream.column"
+              :aria-controls="`research-panel-${stream.column}`"
+              :class="{ 'is-active': activeColumn === stream.column }"
+              @click="selectResearchColumn(stream.column)"
+            >
+              <span>{{ stream.index }}</span><b>{{ stream.title.join(' ') }}</b><small>{{ localizedNotes.filter(note => note.column === stream.column).length }}</small>
+            </button>
+          </nav>
+
+          <Transition name="rc-note-panel" mode="out-in">
+            <article
+              :id="`research-panel-${activeColumn}`"
+              :key="activeColumn"
+              class="rc-note-panel"
+              role="tabpanel"
+              :aria-labelledby="`research-tab-${activeColumn}`"
+            >
+              <header>
+                <div><small>{{ copy.autoSwitch }} · {{ activeStream.index }}</small><h3>{{ activeStream.title.join(' ') }}</h3><p>{{ activeStream.description }}</p></div>
+                <a :href="link(activeStream.path)">{{ copy.enterNotes }} <span>↗</span></a>
+              </header>
+              <ol>
+                <li v-for="(note, index) in activeNotes" :key="note.url">
+                  <a :href="link(note.url)">
+                    <span>{{ String(index + 1).padStart(2, '0') }}</span>
+                    <div><small>{{ note.date }} · {{ categoryLabel(note.category) }}</small><b>{{ note.title }}</b><p>{{ note.summary }}</p></div>
+                    <i>↗</i>
+                  </a>
+                </li>
+              </ol>
+            </article>
+          </Transition>
+        </div>
+
+        <aside class="rc-ra-log">
+          <header><span><i></i>RA · {{ copy.workLog }}</span><b>{{ runtimeLatest.date }} · LIVE RECORD</b></header>
+          <div class="rc-ra-log__statement">
+            <small>RESEARCH ANALYST</small>
+            <h3><span v-for="lineItem in copy.raLine" :key="lineItem">{{ lineItem }}</span></h3>
+            <p>{{ copy.raNote }}</p>
+          </div>
+          <dl>
+            <div><dt>{{ copy.latestTask }}</dt><dd>{{ runtimeTaskLabel }}</dd></div>
+            <div><dt>{{ copy.runtimeStatus }}</dt><dd><i></i>{{ runtimeStatusLabel }}</dd></div>
+            <div><dt>{{ copy.runtimeCommit }}</dt><dd><a :href="`https://github.com/joinwell52-AI/joinwell52/commit/${runtimeLatest.commit}`">{{ runtimeLatest.commit.slice(0, 7) }} ↗</a></dd></div>
+          </dl>
+          <a class="rc-ra-log__cta" :href="link(runtimePath)">{{ copy.enterRuntime }} <span>→</span></a>
+        </aside>
+
+        <a class="rc-all-research" :href="link(researchOverview)">{{ copy.allResearch }} <span>→</span></a>
+      </div>
+    </section>
+
+    <footer class="rc-site-footer">
+      <div class="rc-shell rc-site-footer__grid">
+        <div class="rc-site-footer__brand">
+          <div class="rc-product-mark rc-product-mark--footer" aria-label="TMPA, FCoP, CodeFlowMu">
+            <a :href="link(zh ? '/zh/publications/tmpa-architecture-paper-a0.5' : '/en/publications/tmpa-architecture-paper-a0.5')" title="TMPA"><img src="/logo.svg?v=tmpa-20260803-3" alt="TMPA logo"><span>TMPA</span></a>
+            <a href="https://github.com/joinwell52-AI/FCoP" title="FCoP"><img src="https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png" alt="FCoP logo"><span>FCoP</span></a>
+            <a href="https://github.com/joinwell52-AI/CodeFlowMu-open" title="CodeFlowMu"><img src="/assets/logos/codeflowmu.png" alt="CodeFlowMu logo"><span>CodeFlowMu</span></a>
+          </div>
+          <h2>{{ zh ? 'JOINWELL52 研究中心' : 'JOINWELL52 Research Center' }}</h2>
+          <p>{{ copy.footerAbout }}</p>
+        </div>
+        <nav><h3>{{ copy.footerCode }}</h3><a href="https://github.com/joinwell52-AI/joinwell52">{{ copy.repository }} ↗</a><a href="https://github.com/joinwell52-AI/FCoP">{{ copy.fcop }} ↗</a><a href="https://github.com/joinwell52-AI/CodeFlowMu-open">{{ copy.codeflow }} ↗</a></nav>
+        <nav><h3>{{ copy.footerRead }}</h3><a :href="link(researchOverview)">{{ copy.researchNotes }} →</a><a :href="link(publicationOverview)">{{ copy.publicationCenter }} →</a><a :href="link(runtimePath)">{{ copy.runtimeCenter }} →</a></nav>
+        <nav><h3>{{ copy.footerCite }}</h3><a href="https://github.com/joinwell52-AI/joinwell52/blob/main/CITATION.cff">{{ copy.citationFile }} ↗</a><a href="https://github.com/joinwell52-AI/joinwell52/blob/main/LICENSE.md">{{ copy.license }} ↗</a><b>{{ copy.licenseName }}</b></nav>
+      </div>
+      <div class="rc-shell rc-site-footer__legal">
+        <div class="rc-site-footer__owner"><span>{{ copy.copyright }}</span><a href="https://github.com/joinwell52-AI">{{ copy.authorLabel }} {{ copy.authorName }} · {{ copy.authorMeta }}</a></div>
+        <p>{{ copy.licenseSummary }}</p>
+      </div>
+    </footer>
   </main>
 </template>
 
 <style scoped>
-.product-home{--bg:#07080d;--ink:#f7f7fb;--muted:#a8adba;--line:rgba(255,255,255,.12);background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{width:min(1180px,calc(100% - 48px));margin:auto}.hero{position:relative;isolation:isolate;min-height:760px;overflow:hidden;background:radial-gradient(circle at 50% -10%,rgba(132,105,255,.22),transparent 40%),linear-gradient(180deg,#080912,#07080d)}.hero:after{content:'';position:absolute;inset:0;z-index:-2;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(to bottom,#000,transparent 80%)}.orb{position:absolute;z-index:-1;border-radius:50%;filter:blur(80px);opacity:.4}.orb-a{width:420px;height:420px;right:-80px;top:80px;background:#6b5cff}.orb-b{width:340px;height:340px;left:-100px;bottom:20px;background:#007ea8}.hero-inner{display:flex;min-height:760px;flex-direction:column;justify-content:center;padding:72px 0 54px}.lang{display:flex;gap:9px;margin-bottom:36px;color:#747b8b;font:700 12px/1 ui-monospace,monospace}.lang a{color:#9ea5b6;text-decoration:none}.eyebrow,.mini{display:block;color:#a99cff;font:700 12px/1.2 ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase}.hero h1{max-width:980px;margin:22px 0 0;font-size:clamp(58px,8.2vw,118px);line-height:.91;letter-spacing:-.07em}.hero h1 em{color:transparent;background:linear-gradient(90deg,#fff 10%,#9b8cff 55%,#67d8ff);background-clip:text;font-style:normal}.hero p{max-width:780px;margin:30px 0 0;color:#b9beca;font-size:19px;line-height:1.75}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}.actions a{padding:13px 18px;color:#e8e9f0;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-weight:750}.actions .primary{color:#090a0f;background:#fff}.signal{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:76px;color:#737b8e;font:700 11px/1 ui-monospace,monospace}.signal b{color:#aea5ff}.signal strong{color:#e9ebf4}.panel{padding:108px 0;border-top:1px solid var(--line)}.panel h2{max-width:850px;margin:18px 0 0;font-size:clamp(42px,5.5vw,78px);line-height:1;letter-spacing:-.055em}.panel p{color:var(--muted);font-size:17px;line-height:1.7}.split,.research-grid,.final-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:80px;align-items:end}.apps-section{background:#0c0e15}.intro{max-width:700px}.apps,.papers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}.app{min-height:330px;padding:28px;border:1px solid var(--line);border-radius:26px;background:rgba(255,255,255,.035)}.app h3{margin:50px 0 8px;font-size:31px}.app strong{color:#a99cff}.text-section{background:linear-gradient(180deg,#11131b,#0b0d13)}.text-grid{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center}.text-stack{display:grid;gap:12px}.text-stack span,.papers a,.final-links a{padding:20px 22px;border:1px solid var(--line);border-radius:18px;color:#fff;text-decoration:none}.papers a{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center}.research-section{background:#f3f2f8;color:#101116}.research-section .mini{color:#6c59d7}.research-section p{color:#666b76}.rhythms{display:grid;gap:10px}.rhythms a{display:flex;justify-content:space-between;padding:18px 0;color:#11131a;border-bottom:1px solid rgba(0,0,0,.16);font-size:21px;font-weight:800;text-decoration:none}.final-section{background:linear-gradient(135deg,#19152d,#0d111a)}.final-links{display:grid;gap:12px}.final-links small{display:block;margin-top:8px;color:#9ea5b6}
-@media(max-width:900px){.split,.research-grid,.final-grid,.text-grid{grid-template-columns:1fr;gap:38px}.apps,.papers{grid-template-columns:1fr}.hero,.hero-inner{min-height:680px}.panel{padding:82px 0}.app{min-height:auto}}
-@media(max-width:640px){.wrap{width:calc(100% - 34px)}.hero h1{font-size:52px}.hero p{font-size:16px}.panel{padding:68px 0}.panel h2{font-size:42px}.actions a{width:100%;text-align:center}}
+:global(.portal-v5-page .VPContent) { padding-top: 0 !important; }
+:global(.portal-v5-page .VPHome) { max-width: none; padding-bottom: 0; }
+:global(.portal-v5-page .VPHomeHero), :global(.portal-v5-page .VPFeatures) { display: none; }
+:global(.portal-v5-page .VPFooter) { display: none; }
+:global(.portal-v5-page .VPNavBar) { border-bottom: 1px solid #e1e5ed; background: rgba(255, 255, 255, .92); backdrop-filter: blur(16px); }
+:global(.portal-v5-page .VPNavBarTitle .title) { font-weight: 760; letter-spacing: -.02em; }
+:global(.portal-v5-page .VPNavBarSearch .DocSearch-Button) { border-color: #dfe4ee; background: #f4f6fa; }
+:global(.portal-v5-page .VPNavBarAppearance) { display: none; }
+:global(.dark .portal-v5-page .VPNavBar) { border-bottom-color: rgba(255,255,255,.1); background: rgba(8, 11, 22, .94); }
+:global(.dark .portal-v5-page .VPNavBarSearch .DocSearch-Button) { border-color: rgba(255,255,255,.12); background: #12172a; }
+
+.rc-home {
+  --rc-paper: #f7f9fc;
+  --rc-paper-2: #eef2f7;
+  --rc-surface: #ffffff;
+  --rc-ink: #0d1225;
+  --rc-night: #080e1c;
+  --rc-muted: #657089;
+  --rc-line: #dfe4ee;
+  --rc-signal: #6d5dfc;
+  --rc-field: #121c3b;
+  --rc-field-border: #2a3761;
+  --rc-field-soft: #a9b4d0;
+  --rc-red: #176b82;
+  --rc-lime: #58d9ec;
+  --rc-watermark: rgba(126, 139, 174, .13);
+  color: var(--rc-ink);
+  background: var(--rc-paper);
+  font-family: Inter, "Noto Sans SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
+  overflow: hidden;
+}
+
+:global(.dark .rc-home) {
+  --rc-paper: #080b16;
+  --rc-paper-2: #0e1221;
+  --rc-surface: #101529;
+  --rc-ink: #f4f6fb;
+  --rc-night: #070b16;
+  --rc-muted: #9ca8c2;
+  --rc-line: rgba(255,255,255,.1);
+  --rc-signal: #8b7cff;
+  --rc-field: #131d3d;
+  --rc-field-border: #2c3b65;
+  --rc-field-soft: #aeb8d4;
+  --rc-red: #24758c;
+  --rc-lime: #62deed;
+  --rc-watermark: rgba(255,255,255,.06);
+}
+
+.rc-home, .rc-home * { box-sizing: border-box; }
+.rc-home a { text-decoration: none !important; }
+.rc-shell { width: min(1220px, calc(100% - 72px)); margin-inline: auto; }
+
+.rc-hero { position: relative; min-height: 770px; color: #fff; border-bottom: 1px solid rgba(255,255,255,.1); background: radial-gradient(circle at 82% 10%, rgba(54,203,232,.18), transparent 28%), radial-gradient(circle at 17% 82%, rgba(109,93,252,.2), transparent 32%), linear-gradient(135deg, #070d1a 0%, #101a36 56%, #072333 100%); }
+.rc-hero::before { content: "RESEARCH"; position: absolute; right: -34px; top: 38px; color: transparent; -webkit-text-stroke: 1px var(--rc-watermark); font-size: clamp(110px, 16vw, 230px); font-weight: 900; letter-spacing: -.08em; line-height: 1; pointer-events: none; }
+.rc-product-mark { display: inline-flex; align-items: center; gap: 12px; }
+.rc-product-mark a { display: grid; width: 36px; height: 36px; place-items: center; opacity: .82; transition: opacity .18s ease, transform .18s ease; }
+.rc-product-mark a:hover { opacity: 1; transform: translateY(-2px); }
+.rc-product-mark img { width: 34px; height: 34px; object-fit: contain; border-radius: 9px; }
+.rc-product-mark span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.rc-controls { position: fixed; z-index: 100; top: 11px; right: 82px; display: flex; align-items: center; gap: 4px; min-height: 42px; padding: 4px; color: #172039; background: rgba(255,255,255,.96); border: 1px solid #dfe4ee; border-radius: 24px; box-shadow: 0 8px 24px rgba(16,25,54,.12); backdrop-filter: blur(16px); }
+.rc-language { display: grid; grid-template-columns: repeat(2, minmax(44px, auto)); align-items: center; padding-right: 4px; border-right: 1px solid #dfe4ee; font: 760 12px/1 ui-sans-serif, system-ui, sans-serif; }
+.rc-language strong,
+.rc-language a { display: grid; min-height: 32px; padding: 0 10px; place-items: center; border-radius: 18px; }
+.rc-language strong { color: #fff; background: #121a34; }
+.rc-language a { color: #4c5670 !important; }
+.rc-language a:hover { color: #4f46e5 !important; background: #eef0ff; }
+.rc-appearance { display: flex; align-items: center; gap: 6px; min-height: 32px; padding: 0 11px; color: #242d45; background: transparent; border: 0; border-radius: 18px; cursor: pointer; font: 760 12px/1 ui-sans-serif, system-ui, sans-serif; }
+.rc-appearance:hover { background: #eef2f7; }
+.rc-appearance span { font-size: 15px; line-height: 1; }
+.rc-appearance b { font-weight: 760; }
+:global(.dark .rc-controls) { color: #fff; background: rgba(14,19,38,.96); border-color: rgba(255,255,255,.14); box-shadow: 0 8px 24px rgba(0,0,0,.28); }
+:global(.dark .rc-language) { border-right-color: rgba(255,255,255,.14); }
+:global(.dark .rc-language strong) { color: #11182e; background: #fff; }
+:global(.dark .rc-language a) { color: #b9c2d8 !important; }
+:global(.dark .rc-language a:hover),
+:global(.dark .rc-appearance:hover) { color: #fff !important; background: rgba(255,255,255,.1); }
+:global(.dark .rc-appearance) { color: #fff; }
+.rc-hero__layout { position: relative; display: grid; grid-template-columns: minmax(0, 1.34fr) minmax(340px, .66fr); gap: 72px; align-items: end; padding-top: 82px; }
+.rc-kicker { display: flex; align-items: center; gap: 13px; margin: 0 0 22px; color: #f0f4ff; font: 800 13px/1.4 "Noto Sans SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif; letter-spacing: .025em; }
+.rc-kicker span { width: 30px; height: 2px; background: var(--rc-red); }
+.rc-kicker--dark { color: var(--rc-ink); }
+.rc-hero .rc-kicker { color: #80e2f1; }
+.rc-hero__title { margin: 0; font-size: clamp(66px, 5.8vw, 84px); font-weight: 860; line-height: .93; letter-spacing: -.068em; }
+.rc-hero__title :deep(.is-accent) { color: transparent; background: linear-gradient(100deg, #9b8cff 5%, #6882ff 48%, #54d9ee 96%); background-clip: text; -webkit-background-clip: text; }
+.rc-hero__lead { max-width: 740px; margin: 32px 0 0; color: #aeb8d4; font-size: 17px; line-height: 1.75; }
+.rc-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
+.rc-button { display: inline-flex; align-items: center; justify-content: space-between; min-height: 48px; gap: 24px; padding: 0 18px; border: 1px solid rgba(255,255,255,.2); color: #fff !important; font-size: 13px; font-weight: 760; }
+.rc-button--primary { color: #fff !important; background: linear-gradient(120deg, #6d5dfc, #477fe9); border-color: transparent; box-shadow: 0 16px 38px rgba(83,78,235,.28); }
+.rc-text-link { margin-left: 8px; color: #fff !important; font-size: 12px; font-weight: 760; border-bottom: 1px solid rgba(255,255,255,.45); }
+.rc-ledger { position: relative; min-height: 442px; color: #fff; background: linear-gradient(145deg, rgba(22,31,63,.9), rgba(9,17,38,.92)); border: 1px solid rgba(255,255,255,.12); padding: 26px; box-shadow: 18px 18px 0 rgba(0,0,0,.34); }
+.rc-ledger::before { content: ""; position: absolute; inset: 0; opacity: .14; background-image: linear-gradient(rgba(255,255,255,.25) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.25) 1px, transparent 1px); background-size: 54px 54px; pointer-events: none; }
+.rc-ledger > * { position: relative; }
+.rc-ledger header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,.4); font: 750 12px/1.35 "Noto Sans SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif; letter-spacing: .02em; }
+.rc-ledger header b { display: flex; align-items: center; gap: 7px; }
+.rc-ledger header i, .rc-mobile-ledger i { width: 7px; height: 7px; border-radius: 50%; background: var(--rc-lime); box-shadow: 0 0 0 4px rgba(88,217,236,.16); }
+.rc-ledger__release { padding: 30px 0 24px; border-bottom: 1px solid rgba(255,255,255,.4); }
+.rc-ledger__release small { display: block; color: #aebddd; font: 700 12px/1.4 "Noto Sans SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif; letter-spacing: .02em; }
+.rc-ledger__release strong { display: block; margin-top: 12px; font-size: 70px; line-height: .95; letter-spacing: -.07em; }
+.rc-ledger__release p { margin: 10px 0 0; font-size: 14px; font-weight: 720; }
+.rc-ledger dl { margin: 10px 0 0; }
+.rc-ledger dl div { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,.18); }
+.rc-ledger dt { color: #aebddd; font-size: 12px; line-height: 1.35; }
+.rc-ledger dd { margin: 0; color: #fff; font: 750 12px/1.35 "Noto Sans SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif; letter-spacing: .01em; }
+.rc-ledger footer { display: flex; justify-content: space-between; gap: 18px; padding-top: 17px; font: 720 11px/1.4 "Noto Sans SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif; letter-spacing: .01em; }
+.rc-ledger footer b { color: #fff; font-size: 12px; }
+.rc-mobile-ledger { display: none; }
+.rc-hero__index { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 78px; border-top: 1px solid rgba(255,255,255,.14); }
+.rc-hero__index div { display: grid; grid-template-columns: 26px auto 1fr; align-items: center; gap: 12px; min-height: 78px; padding: 0 18px; border-right: 1px solid rgba(255,255,255,.12); }
+.rc-hero__index div:first-child { padding-left: 0; }
+.rc-hero__index div:last-child { border-right: 0; }
+.rc-hero__index span { color: #a5afc7; font: 700 10px/1 ui-monospace, monospace; }
+.rc-hero__index b { font-size: 20px; letter-spacing: -.04em; }
+.rc-hero__index small { color: #a5afc7; font: 700 11px/1.2 ui-sans-serif, system-ui, sans-serif; letter-spacing: .03em; }
+
+.rc-section { padding: 112px 0; border-bottom: 1px solid var(--rc-line); }
+.rc-section__intro { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(300px, .65fr); gap: 72px; align-items: end; }
+.rc-section__intro > p { margin: 0 0 5px; color: var(--rc-muted); font-size: 15px; line-height: 1.75; }
+.rc-section__title { margin: 0; font-size: clamp(48px, 5vw, 72px); line-height: .98; letter-spacing: -.06em; font-weight: 840; }
+.rc-section__intro--light > p { color: #aeb4ae; }
+
+.rc-tmpa, .rc-research { color: #fff; background: var(--rc-night); border-color: #313631; }
+.rc-research { padding-bottom: 0; }
+.rc-publications { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 70px; }
+.rc-publication { display: grid; grid-template-rows: 250px 1fr; min-height: 560px; color: var(--rc-ink) !important; background: var(--rc-paper); border: 1px solid #3f443f; }
+.rc-publication__art { position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 24px; overflow: hidden; color: #fff; background: var(--rc-signal); }
+.rc-publication--spec .rc-publication__art { background: var(--rc-red); }
+.rc-publication--case .rc-publication__art { color: var(--rc-night); background: var(--rc-lime); }
+.rc-publication__art::after { content: ""; position: absolute; width: 190px; height: 190px; right: -56px; bottom: -82px; border: 1px solid currentColor; border-radius: 50%; box-shadow: 0 0 0 34px transparent, 0 0 0 35px currentColor; opacity: .18; }
+.rc-publication__art span { font: 750 11px/1.2 ui-sans-serif, system-ui, sans-serif; letter-spacing: .05em; }
+.rc-publication__art b { font-size: 76px; line-height: .9; letter-spacing: -.08em; }
+.rc-publication__art i { position: absolute; top: 0; bottom: 0; right: 31%; width: 1px; background: currentColor; opacity: .2; }
+.rc-publication__body { display: flex; flex-direction: column; padding: 28px; }
+.rc-publication__body > p { margin: 0; color: var(--rc-muted); font: 700 11px/1.2 ui-sans-serif, system-ui, sans-serif; letter-spacing: .04em; }
+.rc-publication__body h3 { margin: 28px 0 24px; font-size: 31px; line-height: 1.04; letter-spacing: -.045em; }
+.rc-publication__body h3 span { display: block; white-space: nowrap; }
+.rc-publication__body > b { display: flex; justify-content: space-between; margin-top: auto; padding-top: 18px; border-top: 1px solid var(--rc-line); font-size: 11px; }
+
+.rc-engine { background: var(--rc-paper-2); }
+.rc-engine__grid { display: grid; grid-template-columns: .74fr 1.26fr; gap: 18px; margin-top: 68px; }
+.rc-position-card { position: relative; min-height: 470px; padding: 28px; color: #fff; background: linear-gradient(145deg, #171d3d, #102c43); }
+.rc-position-card header { display: flex; justify-content: space-between; font: 750 11px/1 ui-sans-serif, system-ui, sans-serif; letter-spacing: .04em; }
+.rc-position-card header b { color: var(--rc-lime); }
+.rc-position-card__mark { margin-top: 74px; font-size: 126px; font-weight: 900; line-height: .8; letter-spacing: -.1em; }
+.rc-position-card h3 { margin: 34px 0 5px; font-size: 30px; }
+.rc-position-card p { margin: 0; color: var(--rc-field-soft); font-size: 13px; }
+.rc-position-card__live { display: grid; grid-template-columns: 1fr auto; gap: 10px 16px; margin-top: 24px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,.18); }
+.rc-position-card__live > span { display: flex; align-items: center; gap: 8px; color: #9ae7cf; font: 780 10px/1 ui-sans-serif, system-ui, sans-serif; letter-spacing: .07em; }
+.rc-position-card__live > span i { width: 7px; height: 7px; background: #7ee2c0; border-radius: 50%; box-shadow: 0 0 0 5px rgba(126,226,192,.12); animation: rc-live-dot 1.45s ease-in-out infinite; }
+.rc-position-card__live > b { font: 760 11px/1 ui-monospace, monospace; }
+.rc-position-card__live > strong { grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; font-size: 15px; }
+.rc-position-card__live > strong small { color: #8e9bb4; font-size: 10px; font-weight: 700; letter-spacing: .04em; }
+.rc-position-card a { position: absolute; left: 28px; right: 28px; bottom: 28px; display: flex; justify-content: space-between; padding-top: 16px; color: #fff !important; border-top: 1px solid rgba(255,255,255,.45); font-size: 11px; font-weight: 750; }
+.rc-skill-flow { display: grid; grid-template-rows: 58px 1fr; min-height: 470px; padding: 0; background: #dfe4ec; border: 1px solid #cbd3df; }
+.rc-skill-flow > header { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 0 20px; color: #414b5d; background: rgba(247,249,252,.7); border-bottom: 1px solid #cbd3df; }
+.rc-skill-flow > header b { font-size: 14px; letter-spacing: .01em; }
+.rc-skill-flow > header span { display: flex; align-items: center; gap: 8px; font: 760 11px/1 ui-monospace, monospace; letter-spacing: .035em; }
+.rc-skill-flow > header span i { width: 7px; height: 7px; background: #7ee2c0; border-radius: 50%; box-shadow: 0 0 0 5px rgba(126,226,192,.14); animation: rc-live-dot 1.45s ease-in-out infinite; }
+.rc-skill-flow__map { position: relative; min-height: 0; padding: 12px; overflow: hidden; background: linear-gradient(90deg, transparent calc(50% - 25px), rgba(255,255,255,.42) calc(50% - 25px), rgba(255,255,255,.42) calc(50% + 25px), transparent calc(50% + 25px)), linear-gradient(rgba(74,86,105,.07) 1px, transparent 1px); background-size: auto, 100% 25%; }
+.rc-skill-flow__map > svg { position: absolute; inset: 12px; z-index: 0; width: calc(100% - 24px); height: calc(100% - 24px); overflow: visible; }
+.rc-skill-flow__rail,
+.rc-skill-flow__pulse { fill: none; vector-effect: non-scaling-stroke; }
+.rc-skill-flow__rail { stroke: rgba(95,108,128,.2); stroke-width: 11; stroke-linecap: round; }
+.rc-skill-flow__pulse { stroke: #58d9ec; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 3 19; animation: rc-flow-pulse 2.7s linear infinite; }
+.rc-skills { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(4, 1fr); gap: 14px 50px; height: 100%; min-height: 0; padding: 0; margin: 0; list-style: none; }
+.rc-skills li { position: relative; min-width: 0; min-height: 0; }
+.rc-skills button { position: relative; display: grid; grid-template-columns: 62px minmax(0, 1fr); gap: 13px; align-items: stretch; width: 100%; height: 100%; min-height: 0; padding: 8px 10px; overflow: visible; color: var(--office-ink); text-align: left; background: var(--office-room); border: 1px solid var(--office-edge); box-shadow: 0 3px 0 var(--office-threshold); cursor: pointer; transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease, background .24s ease; }
+.rc-skills button::after { position: absolute; right: 12px; bottom: 6px; width: 4px; height: 4px; background: var(--office-ink); border-radius: 50%; opacity: .55; content: ''; }
+.rc-skills li:nth-child(3) { grid-column: 2; grid-row: 2; }
+.rc-skills li:nth-child(4) { grid-column: 1; grid-row: 2; }
+.rc-skills li:nth-child(5) { grid-column: 1; grid-row: 3; }
+.rc-skills li:nth-child(6) { grid-column: 2; grid-row: 3; }
+.rc-skills li:nth-child(7) { grid-column: 2; grid-row: 4; }
+.rc-skills li:nth-child(8) { grid-column: 1; grid-row: 4; }
+.rc-skills li:nth-child(1) { --office-room: #f5f7fa; --office-ink: #344858; --office-edge: #cad2dc; --office-threshold: #9aa8b4; }
+.rc-skills li:nth-child(2) { --office-room: #eef2f6; --office-ink: #334c5b; --office-edge: #c6d0da; --office-threshold: #92a2af; }
+.rc-skills li:nth-child(3) { --office-room: #f2f0f6; --office-ink: #554c69; --office-edge: #cec9d8; --office-threshold: #9e95ad; }
+.rc-skills li:nth-child(4) { --office-room: #ebe8f1; --office-ink: #524662; --office-edge: #c8c2d2; --office-threshold: #9489a3; }
+.rc-skills li:nth-child(5) { --office-room: #f1edf5; --office-ink: #5a4965; --office-edge: #cec6d5; --office-threshold: #9c90a7; }
+.rc-skills li:nth-child(6) { --office-room: #e9e6f0; --office-ink: #54445f; --office-edge: #c8c1d1; --office-threshold: #93869f; }
+.rc-skills li:nth-child(7) { --office-room: #eef1f5; --office-ink: #404b59; --office-edge: #c8cfd8; --office-threshold: #959faa; }
+.rc-skills li:nth-child(8) { --office-room: #e7ebf0; --office-ink: #394552; --office-edge: #c2cad4; --office-threshold: #8995a2; }
+.rc-office-lamp { position: absolute; top: -5px; left: 14px; z-index: 3; width: 58px; height: 4px; background: #8792a1; opacity: .38; transition: background .24s ease, box-shadow .24s ease, opacity .24s ease; }
+.rc-office-sign { display: grid; align-self: center; width: 62px; height: 50px; padding: 6px; place-items: center; color: #dce5f1; background: #152136; border: 1px solid #273a56; border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.035); transition: color .24s ease, background .24s ease, transform .24s ease; }
+.rc-office-door { position: relative; display: flex; min-width: 0; padding: 8px 18px 8px 10px; align-items: center; border-left: 1px solid color-mix(in srgb, var(--office-ink) 18%, transparent); }
+.rc-skill-copy { min-width: 0; }
+.rc-skill-copy small { display: block; margin-bottom: 8px; color: var(--office-ink); font: 780 10.5px/1 ui-monospace, monospace; letter-spacing: .035em; opacity: .72; }
+.rc-skill-copy b { display: block; overflow: hidden; color: #111827; font-size: 16px; line-height: 1.15; text-overflow: ellipsis; white-space: nowrap; }
+.rc-office-handle { position: absolute; top: 50%; right: 2px; width: 5px; height: 5px; background: var(--office-ink); border-radius: 50%; opacity: .62; transform: translateY(-50%); }
+.rc-skills li.is-active { z-index: 2; }
+.rc-skills li.is-active button { background: #f6fcfd; border-color: #58d9ec; box-shadow: 0 10px 24px rgba(20,83,97,.15), 0 0 0 2px #58d9ec, 0 3px 0 #259eb0; transform: translateY(-2px); }
+.rc-skills li.is-active .rc-office-lamp { background: #7ee2c0; box-shadow: 0 0 8px #7ee2c0, 0 0 20px rgba(126,226,192,.62); opacity: 1; animation: rc-live-dot 1.45s ease-in-out infinite; }
+.rc-skills li.is-active .rc-office-sign { color: #fff; background: #0f4558; border-color: #58d9ec; transform: translateY(-1px); }
+.rc-work-pass { position: absolute; top: 12%; left: 50%; z-index: 4; display: grid; width: 30px; height: 24px; place-items: center; color: #fff; background: #18233a; border: 1px solid rgba(255,255,255,.72); box-shadow: 0 5px 14px rgba(31,40,58,.26); transform: translate(-50%, -50%); transition: top .32s cubic-bezier(.2,.8,.2,1); }
+.rc-work-pass b { font: 820 9px/1 ui-monospace, monospace; letter-spacing: .03em; }
+.rc-work-pass i { position: absolute; right: -4px; bottom: 3px; width: 8px; height: 3px; background: #58d9ec; }
+.rc-skill-flow.is-step-3 .rc-work-pass,
+.rc-skill-flow.is-step-4 .rc-work-pass { top: 37%; }
+.rc-skill-flow.is-step-5 .rc-work-pass,
+.rc-skill-flow.is-step-6 .rc-work-pass { top: 63%; }
+.rc-skill-flow.is-step-7 .rc-work-pass,
+.rc-skill-flow.is-step-8 .rc-work-pass { top: 88%; }
+:global(.dark .rc-skill-flow) { background: #101a2a; border-color: #293a50; }
+:global(.dark .rc-skill-flow > header) { color: #b9c8d8; background: #111d30; border-bottom-color: #293a50; }
+:global(.dark .rc-skill-flow__map) { background: linear-gradient(90deg, transparent calc(50% - 25px), rgba(90,126,153,.1) calc(50% - 25px), rgba(90,126,153,.1) calc(50% + 25px), transparent calc(50% + 25px)), linear-gradient(rgba(117,150,176,.06) 1px, transparent 1px); background-size: auto, 100% 25%; }
+:global(.dark .rc-skills li:nth-child(1)) { --office-room: #18283a; --office-ink: #b9cad8; --office-edge: #30465c; --office-threshold: #3a5369; }
+:global(.dark .rc-skills li:nth-child(2)) { --office-room: #172638; --office-ink: #b7cad8; --office-edge: #2e4459; --office-threshold: #385166; }
+:global(.dark .rc-skills li:nth-child(3)) { --office-room: #1b273b; --office-ink: #c5cbe0; --office-edge: #34435b; --office-threshold: #43536d; }
+:global(.dark .rc-skills li:nth-child(4)) { --office-room: #1d293e; --office-ink: #c9cee2; --office-edge: #36465e; --office-threshold: #465670; }
+:global(.dark .rc-skills li:nth-child(5)) { --office-room: #1a2a3f; --office-ink: #c2d0df; --office-edge: #34495f; --office-threshold: #405b71; }
+:global(.dark .rc-skills li:nth-child(6)) { --office-room: #19283c; --office-ink: #c0cedd; --office-edge: #32475d; --office-threshold: #3e586e; }
+:global(.dark .rc-skills li:nth-child(7)) { --office-room: #162536; --office-ink: #b7c7d5; --office-edge: #2d4256; --office-threshold: #384f63; }
+:global(.dark .rc-skills li:nth-child(8)) { --office-room: #172638; --office-ink: #bac9d6; --office-edge: #2e4358; --office-threshold: #394f65; }
+:global(.dark .rc-skill-copy b) { color: #f5f7fb; }
+:global(.dark .rc-office-sign) { color: #dce7f1; background: #0b1627; border-color: #354a63; }
+:global(.dark .rc-skills li.is-active button) { background: #102b33; border-color: #62deed; box-shadow: 0 10px 24px rgba(0,0,0,.32), 0 0 0 2px #62deed, 0 3px 0 #2498aa; }
+:global(.dark .rc-skills li.is-active .rc-office-sign) { color: #fff; background: #0e4758; border-color: #62deed; }
+:global(.dark .rc-skill-flow__rail) { stroke: rgba(255,255,255,.12); }
+:global(.dark .rc-skill-flow__pulse) { stroke: #62deed; }
+
+@keyframes rc-live-dot { 0%, 100% { opacity: .48; transform: scale(.82); } 50% { opacity: 1; transform: scale(1); } }
+@keyframes rc-flow-pulse { to { stroke-dashoffset: -52; } }
+
+.rc-field { background: var(--rc-surface); }
+.rc-programs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 70px; }
+.rc-program { display: grid; grid-template-columns: 44% 56%; min-height: 330px; overflow: hidden; color: var(--rc-ink) !important; background: var(--rc-paper); border: 1px solid var(--rc-line); border-radius: 28px; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.rc-program:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--rc-signal) 58%, var(--rc-line)); box-shadow: 0 22px 50px rgba(18, 28, 59, .1); }
+.rc-program__cover { position: relative; display: flex; flex-direction: column; justify-content: space-between; min-width: 0; padding: 24px; overflow: hidden; isolation: isolate; color: #fff; }
+.rc-program__cover::before,
+.rc-program__cover::after { position: absolute; z-index: -1; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; content: ''; }
+.rc-program__cover::before { right: -40%; bottom: -19%; width: 106%; aspect-ratio: 1; }
+.rc-program__cover::after { right: -16%; bottom: -48%; width: 106%; aspect-ratio: 1; }
+.rc-program--tmpa .rc-program__cover { background: linear-gradient(145deg, #171c4c, #6352ff); }
+.rc-program--fcop .rc-program__cover { background: linear-gradient(145deg, #07131f, #15465a); }
+.rc-program--codeflow .rc-program__cover { background: linear-gradient(145deg, #111936, #2858ad); }
+.rc-program--employee .rc-program__cover { background: linear-gradient(145deg, #181534, #7843aa); }
+.rc-program__cover > span,
+.rc-program__cover > b { position: relative; z-index: 1; font: 800 10px/1 ui-monospace, monospace; letter-spacing: .08em; }
+.rc-program__cover > b { align-self: flex-end; color: rgba(255,255,255,.62); }
+.rc-program__cover > strong { position: relative; z-index: 1; align-self: center; font-size: 78px; font-weight: 300; line-height: 1; letter-spacing: -.12em; }
+.rc-program__cover img { position: relative; z-index: 1; align-self: center; width: 112px; height: 112px; object-fit: contain; filter: drop-shadow(0 14px 20px rgba(0,0,0,.28)); }
+.rc-program__body { display: flex; flex-direction: column; min-width: 0; padding: 31px; }
+.rc-program__body small { color: var(--rc-signal); font: 800 11px/1.3 ui-sans-serif, system-ui, sans-serif; letter-spacing: .04em; }
+.rc-program__body h3 { margin: 22px 0 13px; font-size: 34px; line-height: .93; letter-spacing: -.055em; }
+.rc-program__body h3 span { display: block; white-space: nowrap; }
+.rc-program__body p { margin: 0; color: var(--rc-muted); font-size: 13px; line-height: 1.65; }
+.rc-program__body > b { display: flex; justify-content: space-between; margin-top: auto; padding-top: 20px; color: var(--rc-ink); border-top: 1px solid var(--rc-line); font-size: 10px; }
+.rc-program__workforce { position: relative; z-index: 1; display: flex; gap: 9px; align-items: flex-end; justify-content: center; height: 112px; }
+.rc-program__workforce i { display: block; width: 36px; border-radius: 20px 20px 8px 8px; background: linear-gradient(180deg, #fff, #60dfec); }
+.rc-program__workforce i:nth-child(1) { height: 64px; }
+.rc-program__workforce i:nth-child(2) { height: 98px; background: linear-gradient(180deg, #fff, #8d76ff); }
+.rc-program__workforce i:nth-child(3) { height: 64px; }
+
+.rc-note-marquee { margin-top: 68px; border-block: 1px solid rgba(255,255,255,.16); }
+.rc-note-marquee > header { min-height: 52px; color: #a9b4d0; font-size: 11px; }
+.rc-note-marquee > header > a { display: flex; align-items: center; justify-content: space-between; min-height: 52px; color: #a9b4d0 !important; }
+.rc-note-marquee > header > a:hover { color: #fff !important; }
+.rc-note-marquee > header b { display: flex; align-items: center; gap: 9px; color: #fff; font-weight: 760; }
+.rc-note-marquee > header i,
+.rc-ra-log header i,
+.rc-ra-log dd i { width: 7px; height: 7px; border-radius: 50%; background: var(--rc-lime); box-shadow: 0 0 0 4px rgba(88,217,236,.15); }
+.rc-note-marquee__viewport { overflow: hidden; border-top: 1px solid rgba(255,255,255,.12); }
+.rc-note-marquee__track { display: flex; width: max-content; animation: rc-note-scroll 54s linear infinite; }
+.rc-note-marquee:hover .rc-note-marquee__track { animation-play-state: paused; }
+.rc-note-marquee__group { display: flex; flex: none; }
+.rc-note-marquee__group a { display: grid; grid-template-columns: 82px 92px minmax(280px, 430px) 20px; gap: 12px; align-items: center; min-height: 76px; padding: 0 22px; color: #fff !important; border-right: 1px solid rgba(255,255,255,.12); }
+.rc-note-marquee__group time,
+.rc-note-marquee__group span { color: #8e9ab4; font-size: 10px; }
+.rc-note-marquee__group strong { overflow: hidden; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
+.rc-note-marquee__group i { color: var(--rc-lime); font-style: normal; }
+@keyframes rc-note-scroll { to { transform: translateX(-50%); } }
+
+.rc-note-browser { margin-top: 28px; border: 1px solid rgba(255,255,255,.18); background: linear-gradient(145deg, rgba(18,28,59,.45), rgba(8,14,28,.62)); }
+.rc-note-tabs { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid rgba(255,255,255,.18); }
+.rc-note-tabs button { position: relative; display: grid; grid-template-columns: 26px 1fr auto; gap: 12px; align-items: center; min-height: 76px; padding: 0 22px; color: #8f9bb4; text-align: left; border-right: 1px solid rgba(255,255,255,.14); }
+.rc-note-tabs button:last-child { border-right: 0; }
+.rc-note-tabs button::after { position: absolute; right: 0; bottom: -1px; left: 0; height: 3px; background: linear-gradient(90deg, #8b7cff, #58d9ec); transform: scaleX(0); transform-origin: left; transition: transform .3s ease; content: ''; }
+.rc-note-tabs button.is-active { color: #fff; background: rgba(255,255,255,.045); }
+.rc-note-tabs button.is-active::after { transform: scaleX(1); }
+.rc-note-tabs span,
+.rc-note-tabs small { color: #74819d; font: 700 10px/1 ui-monospace, monospace; }
+.rc-note-tabs b { font-size: 15px; }
+.rc-note-panel { min-height: 520px; padding: 34px; }
+.rc-note-panel > header { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: end; padding-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,.16); }
+.rc-note-panel > header small { color: var(--rc-lime); font-size: 10px; font-weight: 760; }
+.rc-note-panel > header h3 { margin: 14px 0 10px; font-size: 42px; line-height: 1; letter-spacing: -.05em; }
+.rc-note-panel > header p { max-width: 670px; margin: 0; color: #a9b4d0; font-size: 13px; }
+.rc-note-panel > header a { display: flex; align-items: center; justify-content: space-between; gap: 34px; min-width: 188px; padding: 15px 0; color: #fff !important; border-bottom: 1px solid rgba(255,255,255,.45); font-size: 12px; font-weight: 760; }
+.rc-note-panel ol { margin: 0; padding: 0; list-style: none; }
+.rc-note-panel li > a { display: grid; grid-template-columns: 36px 1fr 24px; gap: 18px; align-items: start; min-height: 114px; padding: 22px 0; color: #fff !important; border-bottom: 1px solid rgba(255,255,255,.13); }
+.rc-note-panel li > a > span { padding-top: 4px; color: #66738f; font: 700 10px/1 ui-monospace, monospace; }
+.rc-note-panel li small { display: block; color: #8090ad; font-size: 10px; }
+.rc-note-panel li b { display: block; margin-top: 8px; font-size: 16px; line-height: 1.4; }
+.rc-note-panel li p { display: -webkit-box; margin: 7px 0 0; overflow: hidden; color: #939eb6; font-size: 12px; line-height: 1.5; -webkit-box-orient: vertical; -webkit-line-clamp: 1; }
+.rc-note-panel li i { padding-top: 4px; color: var(--rc-lime); font-style: normal; }
+.rc-note-panel-enter-active,
+.rc-note-panel-leave-active { transition: opacity .24s ease, transform .24s ease; }
+.rc-note-panel-enter-from { opacity: 0; transform: translateX(18px); }
+.rc-note-panel-leave-to { opacity: 0; transform: translateX(-18px); }
+
+.rc-ra-log { display: grid; grid-template-columns: 1.15fr .85fr; margin-top: 28px; overflow: hidden; color: #fff; background: radial-gradient(circle at 82% 18%, rgba(88,217,236,.2), transparent 30%), linear-gradient(135deg, #151a43, #30245f 57%, #0c4252); border: 1px solid rgba(255,255,255,.18); }
+.rc-ra-log > header { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; min-height: 58px; padding: 0 28px; border-bottom: 1px solid rgba(255,255,255,.2); color: #a9b4d0; font: 700 10px/1 ui-monospace, monospace; }
+.rc-ra-log > header span { display: flex; align-items: center; gap: 10px; color: #fff; }
+.rc-ra-log__statement { grid-row: span 2; min-height: 380px; padding: 42px; border-right: 1px solid rgba(255,255,255,.18); }
+.rc-ra-log__statement small { color: var(--rc-lime); font: 750 10px/1 ui-monospace, monospace; letter-spacing: .08em; }
+.rc-ra-log__statement h3 { margin: 52px 0 24px; font-size: 54px; line-height: .96; letter-spacing: -.06em; }
+.rc-ra-log__statement h3 span { display: block; white-space: nowrap; }
+.rc-ra-log__statement p { max-width: 510px; margin: 0; color: #b2bdd2; font-size: 14px; line-height: 1.7; }
+.rc-ra-log dl { margin: 0; padding: 28px 30px 0; }
+.rc-ra-log dl > div { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding: 17px 0; border-bottom: 1px solid rgba(255,255,255,.16); }
+.rc-ra-log dt { color: #91a0bb; font-size: 11px; }
+.rc-ra-log dd { display: flex; align-items: center; gap: 9px; margin: 0; text-align: right; font-size: 11px; font-weight: 750; }
+.rc-ra-log dd a { color: #fff !important; }
+.rc-ra-log__cta { display: flex; align-items: center; justify-content: space-between; align-self: end; margin: 26px 30px 30px; padding: 16px 18px; color: #0c1430 !important; background: var(--rc-lime); font-size: 12px; font-weight: 820; }
+.rc-all-research { display: flex; justify-content: space-between; margin-top: 20px; padding: 18px 0; color: #fff !important; border-bottom: 1px solid rgba(255,255,255,.26); font-size: 12px; font-weight: 750; }
+
+.rc-site-footer { position: relative; overflow: hidden; color: #fff; background: #070c18; }
+.rc-site-footer::before { position: absolute; inset: 0; opacity: .13; background-image: linear-gradient(rgba(88,217,236,.28) 1px, transparent 1px), linear-gradient(90deg, rgba(88,217,236,.28) 1px, transparent 1px); background-size: 72px 72px; content: ''; pointer-events: none; }
+.rc-site-footer > * { position: relative; }
+.rc-site-footer__grid { display: grid; grid-template-columns: 1.45fr repeat(3, 1fr); gap: 52px; padding-block: 72px 58px; }
+.rc-site-footer__brand h2 { margin: 26px 0 12px; font-size: 25px; }
+.rc-site-footer__brand > p { max-width: 310px; margin: 0; color: #97a4bd; font-size: 13px; line-height: 1.7; }
+.rc-product-mark--footer { gap: 14px; }
+.rc-product-mark--footer a { width: 40px; height: 40px; }
+.rc-product-mark--footer img { width: 38px; height: 38px; }
+.rc-site-footer nav { display: flex; flex-direction: column; align-items: flex-start; }
+.rc-site-footer nav h3 { margin: 8px 0 24px; font-size: 13px; }
+.rc-site-footer nav a,
+.rc-site-footer nav > b { margin-bottom: 14px; color: #9eabc2 !important; font-size: 12px; font-weight: 520; }
+.rc-site-footer nav a:hover { color: #fff !important; }
+.rc-site-footer nav > b { color: #58d9ec !important; }
+.rc-site-footer__legal { display: grid; grid-template-columns: minmax(max-content, 1.1fr) minmax(0, 1.5fr); gap: 40px; align-items: start; padding-block: 28px 42px; border-top: 1px solid rgba(255,255,255,.16); }
+.rc-site-footer__owner { display: flex; flex-wrap: nowrap; gap: 7px 12px; align-items: baseline; white-space: nowrap; font-size: 11px; }
+.rc-site-footer__owner span { color: #fff; font-weight: 700; }
+.rc-site-footer__owner a { color: #8794ac !important; }
+.rc-site-footer__owner a:hover { color: #fff !important; }
+.rc-site-footer__legal p { margin: 0; color: #8794ac; font-size: 11px; line-height: 1.7; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rc-note-marquee__track { animation: none; }
+  .rc-note-marquee__group:nth-child(2) { display: none; }
+  .rc-note-marquee__viewport { overflow-x: auto; }
+  .rc-skill-flow__pulse,
+  .rc-position-card__live > span i,
+  .rc-skill-flow > header span i,
+  .rc-skills li.is-active .rc-office-lamp { animation: none; }
+}
+
+@media (max-width: 1199px) {
+  .rc-shell { width: min(100% - 56px, 940px); }
+  .rc-hero { min-height: 768px; }
+  .rc-hero__layout { grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr); gap: 44px; padding-top: 64px; }
+  .rc-hero__title { font-size: 62px; }
+  .rc-hero__lead { max-width: 560px; font-size: 15px; }
+  .rc-ledger { min-height: 418px; padding: 22px; box-shadow: 12px 12px 0 var(--rc-ink); }
+  .rc-ledger__release strong { font-size: 60px; }
+  .rc-hero__index { margin-top: 64px; }
+  .rc-hero__index div { grid-template-columns: 22px auto; gap: 8px; padding-inline: 12px; }
+  .rc-hero__index small { grid-column: 2; padding-bottom: 12px; }
+  .rc-section { padding: 94px 0; }
+  .rc-section__intro { grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr); gap: 45px; }
+  .rc-section__title { font-size: 57px; }
+  .rc-publication { grid-template-rows: 210px 1fr; min-height: 505px; }
+  .rc-publication__art b { font-size: 62px; }
+  .rc-publication__body { padding: 22px; }
+  .rc-publication__body h3 { font-size: 25px; }
+  .rc-engine__grid { grid-template-columns: .78fr 1.22fr; }
+  .rc-position-card { min-height: 450px; }
+  .rc-position-card__mark { font-size: 105px; }
+  .rc-skills { gap-inline: 42px; }
+  .rc-skills button { grid-template-columns: 54px minmax(0, 1fr); gap: 10px; padding: 8px; }
+  .rc-office-sign { width: 54px; height: 46px; }
+  .rc-office-door { padding-left: 8px; }
+  .rc-skill-copy small { font-size: 9.5px; }
+  .rc-skill-copy b { font-size: 15px; }
+  .rc-program { min-height: 310px; }
+  .rc-program__cover { padding: 20px; }
+  .rc-program__body { padding: 25px; }
+  .rc-program__body h3 { font-size: 29px; }
+  .rc-program__cover img { width: 94px; height: 94px; }
+  .rc-note-marquee__group a { grid-template-columns: 74px 80px minmax(240px, 350px) 18px; }
+  .rc-note-tabs button { grid-template-columns: 22px 1fr auto; padding-inline: 16px; }
+  .rc-note-tabs b { font-size: 13px; }
+  .rc-note-panel { padding: 28px; }
+  .rc-note-panel > header h3 { font-size: 36px; }
+  .rc-ra-log__statement { padding: 34px; }
+  .rc-ra-log__statement h3 { font-size: 46px; }
+  .rc-site-footer__grid { grid-template-columns: 1.35fr repeat(3, 1fr); gap: 30px; }
+}
+
+@media (max-width: 699px) {
+  :global(.portal-v5-page .VPNavBar) { background: rgba(244, 241, 232, .97); }
+  :global(.dark .portal-v5-page .VPNavBar) { background: rgba(8, 11, 22, .97); }
+  :global(.portal-v5-page .VPNavBarTitle .title) { font-size: 14px; }
+  .rc-shell { width: calc(100% - 34px); }
+  .rc-hero { min-height: auto; }
+  .rc-hero::before { top: 75px; right: -10px; font-size: 92px; }
+  .rc-product-mark { gap: 9px; }
+  .rc-product-mark img { width: 30px; height: 30px; }
+  .rc-product-mark a { width: 32px; height: 32px; }
+  .rc-controls { top: 66px; right: 12px; min-height: 38px; padding: 3px; }
+  .rc-language { grid-template-columns: repeat(2, minmax(38px, auto)); padding-right: 3px; font-size: 12px; }
+  .rc-language strong,
+  .rc-language a { min-height: 30px; padding-inline: 8px; }
+  .rc-appearance { min-height: 30px; padding-inline: 9px; font-size: 12px; }
+  .rc-hero__layout { display: block; padding-top: 54px; }
+  .rc-kicker { margin-bottom: 17px; font-size: 11px; line-height: 1.4; letter-spacing: .015em; }
+  .rc-kicker span { width: 20px; }
+  .rc-hero__title { font-size: 49px; line-height: .91; letter-spacing: -.062em; }
+  .rc-hero__lead { margin-top: 26px; font-size: 14px; line-height: 1.7; }
+  .rc-actions { display: grid; grid-template-columns: 1fr; margin-top: 28px; }
+  .rc-button { width: 100%; min-height: 47px; }
+  .rc-text-link { width: max-content; margin: 8px 0 0; }
+  .rc-ledger { display: none; }
+  .rc-mobile-ledger { display: grid; grid-template-columns: auto 1fr; gap: 9px 12px; align-items: center; margin-top: 40px; padding: 17px; color: #fff; background: linear-gradient(145deg, #171d3d, #102c43); box-shadow: 8px 8px 0 rgba(0,0,0,.34); }
+  .rc-mobile-ledger span { display: flex; align-items: center; gap: 7px; font: 700 10px/1 ui-sans-serif, system-ui, sans-serif; }
+  .rc-mobile-ledger b { text-align: right; font-size: 13px; }
+  .rc-mobile-ledger small { grid-column: 1 / -1; padding-top: 10px; border-top: 1px solid rgba(255,255,255,.35); font: 720 11px/1.4 "Noto Sans SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif; letter-spacing: .01em; }
+  .rc-hero__index { grid-template-columns: 1fr 1fr; margin-top: 52px; }
+  .rc-hero__index div { min-height: 68px; border-bottom: 1px solid var(--rc-line); }
+  .rc-hero__index div:nth-child(2) { border-right: 0; }
+  .rc-hero__index div:nth-child(n+3) { border-bottom: 0; }
+  .rc-hero__index div:nth-child(3) { padding-left: 0; }
+  .rc-hero__index b { font-size: 17px; }
+  .rc-hero__index small { font-size: 9px; }
+  .rc-section { padding: 76px 0; }
+  .rc-section__intro { display: block; }
+  .rc-section__intro > p { margin-top: 27px; font-size: 13px; }
+  .rc-section__title { font-size: 41px; line-height: .98; }
+  .rc-publications { grid-template-columns: 1fr; gap: 13px; margin-top: 44px; }
+  .rc-publication { grid-template-columns: 112px 1fr; grid-template-rows: 1fr; min-height: 250px; }
+  .rc-publication__art { padding: 16px; }
+  .rc-publication__art span { font-size: 9px; writing-mode: vertical-rl; }
+  .rc-publication__art b { font-size: 35px; }
+  .rc-publication__body { padding: 20px; }
+  .rc-publication__body h3 { margin-top: 28px; font-size: 23px; }
+  .rc-publication__body h3 span { white-space: nowrap; }
+  .rc-publication__body > b { font-size: 10px; }
+  .rc-engine__grid { grid-template-columns: 1fr; margin-top: 44px; }
+  .rc-position-card { min-height: 405px; }
+  .rc-position-card__mark { margin-top: 62px; font-size: 98px; }
+  .rc-skill-flow { min-height: 0; }
+  .rc-skill-flow__map { padding: 13px; }
+  .rc-skill-flow__map > svg,
+  .rc-work-pass { display: none; }
+  .rc-skills { grid-template-columns: 1fr; grid-template-rows: none; gap: 14px; height: auto; padding-left: 14px; background: linear-gradient(#58d9ec, #58d9ec) 3px 38px / 2px calc(100% - 76px) no-repeat; }
+  .rc-skills li,
+  .rc-skills li:nth-child(n) { grid-column: auto; grid-row: auto; min-height: 88px; }
+  .rc-skills button { grid-template-columns: 68px minmax(0, 1fr); gap: 13px; min-height: 88px; padding: 10px 12px; }
+  .rc-office-sign { width: 68px; height: 56px; }
+  .rc-office-lamp { left: 16px; width: 64px; }
+  .rc-skill-copy small { font-size: 10px; }
+  .rc-skill-copy b { font-size: 16px; }
+  .rc-skills li::before { position: absolute; top: 50%; left: -14px; z-index: 2; width: 8px; height: 8px; background: #dfe4ec; border: 2px solid #58d9ec; border-radius: 50%; content: ''; transform: translateY(-50%); }
+  .rc-skills li.is-active::before { width: 12px; height: 12px; background: #58d9ec; box-shadow: 0 0 0 5px rgba(88,217,236,.18); }
+  :global(.dark .rc-skills li::before) { background: #111722; }
+  :global(.dark .rc-skills li.is-active::before) { background: #62deed; }
+  .rc-programs { grid-template-columns: 1fr; gap: 13px; margin-top: 44px; }
+  .rc-program { grid-template-columns: 112px 1fr; min-height: 240px; border-radius: 20px; }
+  .rc-program__cover { padding: 15px; }
+  .rc-program__cover > span { align-self: flex-start; font-size: 9px; line-height: 1.2; writing-mode: vertical-rl; }
+  .rc-program__cover > b { font-size: 9px; }
+  .rc-program__cover > strong { font-size: 47px; }
+  .rc-program__cover img { width: 67px; height: 67px; }
+  .rc-program__body { padding: 19px; }
+  .rc-program__body small { font-size: 10px; }
+  .rc-program__body h3 { margin: 20px 0 10px; font-size: 24px; }
+  .rc-program__body p { font-size: 10.5px; line-height: 1.58; }
+  .rc-program__body > b { padding-top: 14px; font-size: 10px; }
+  .rc-program__workforce { gap: 5px; height: 72px; }
+  .rc-program__workforce i { width: 20px; border-radius: 12px 12px 5px 5px; }
+  .rc-program__workforce i:nth-child(1),
+  .rc-program__workforce i:nth-child(3) { height: 40px; }
+  .rc-program__workforce i:nth-child(2) { height: 63px; }
+  .rc-note-marquee { margin-top: 44px; }
+  .rc-note-marquee__group a { grid-template-columns: 66px minmax(210px, 270px) 18px; min-height: 68px; padding: 0 15px; }
+  .rc-note-marquee__group a > span { display: none; }
+  .rc-note-tabs { grid-template-columns: 1fr; }
+  .rc-note-tabs button { min-height: 60px; padding: 0 16px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.14); }
+  .rc-note-tabs button:last-child { border-bottom: 0; }
+  .rc-note-panel { min-height: 0; padding: 20px; }
+  .rc-note-panel > header { grid-template-columns: 1fr; gap: 18px; padding-bottom: 20px; }
+  .rc-note-panel > header h3 { font-size: 31px; }
+  .rc-note-panel > header a { width: 100%; min-width: 0; }
+  .rc-note-panel li > a { grid-template-columns: 28px 1fr 18px; gap: 10px; min-height: 108px; padding: 18px 0; }
+  .rc-note-panel li b { font-size: 14px; }
+  .rc-note-panel li p { -webkit-line-clamp: 2; }
+  .rc-ra-log { grid-template-columns: 1fr; }
+  .rc-ra-log > header { padding: 0 18px; }
+  .rc-ra-log > header > b { display: none; }
+  .rc-ra-log__statement { grid-row: auto; min-height: 320px; padding: 28px 22px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.18); }
+  .rc-ra-log__statement h3 { margin-top: 38px; font-size: 42px; }
+  .rc-ra-log dl { padding: 20px 20px 0; }
+  .rc-ra-log__cta { margin: 20px; }
+  .rc-site-footer__grid { grid-template-columns: 1fr 1fr; gap: 38px 22px; padding-block: 56px 44px; }
+  .rc-site-footer__brand { grid-column: 1 / -1; }
+  .rc-site-footer nav:last-child { grid-column: 1 / -1; }
+  .rc-site-footer__legal { grid-template-columns: 1fr; gap: 14px; }
+}
+
+/* The research section ends with its own navigation rule; no spacer row before the footer. */
+.rc-research { padding-bottom: 0; }
+
+@media (max-width: 699px) {
+  .rc-site-footer__owner { flex-wrap: wrap; white-space: normal; }
+}
 </style>
