@@ -3,7 +3,7 @@
 This architecture paper is a derivative of the combined editorial source. The complete schema, normative clauses, fixtures, runners, logs, and extended case material belong in companion Core and implementation reports. The shorter paper may summarize those artifacts but must not silently redefine their meaning.
 
 Before external submission, the corpus requires a stable public archive, pinned source revisions, an executable reproduction command, and at least one independent rerun. Low-resource deployment measurements remain a separate release requirement for the SME feasibility claim.
-# 12. Conclusion
+# 9. Conclusion
 
 TMPA is an **SME-first, minimal-infrastructure textual-message multi-agent asynchronous process architecture**. Text carries durable work and state; each work item has one stable primary carrier; each published object has one writer and belongs to a local serial stream; independent streams progress asynchronously; and aggregation plus deterministic reading reconstructs the partial-order process, responsibility, lifecycle, conflict, recovery, and audit view.
 

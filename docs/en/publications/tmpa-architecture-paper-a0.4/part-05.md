@@ -43,7 +43,7 @@ This distinction produces three separate questions:
 TMPA must not claim the guarantee of a surrounding identity, policy, or cryptographic system unless the deployment actually verifies that evidence under the corresponding profile.
 # 7. Core Summary and Conformance
 
-The full TMPA Core specification remains in the combined normative source. The architecture paper summarizes its contract rather than reproducing every SHALL/MUST clause.
+The separately maintained [TMPA Core Specification S0.3](/en/publications/tmpa-core-specification-s0.3) is the sole normative source for C01–C14 and all SHALL/MUST clauses. This architecture paper summarizes that contract without redefining it; engineering verdicts belong to the [Implementation Case Report I0.3](/en/publications/implementation-case-i0.3).
 
 A Core-conforming implementation must provide:
 
@@ -60,22 +60,22 @@ Conformance is evaluated at multiple levels. **Core conformance** tests the arch
 
 ## 7.1 C01–C14 Criteria
 
-| ID | Observable requirement |
-|---|---|
-| C01 | canonical objects and invalid-schema cases are handled consistently |
-| C02 | single-writer publication and correction preserve prior evidence |
-| C03 | duplicate identifiers with different content remain conflicted and non-authoritative |
-| C04 | local sequence faults do not invent a global total order or block unrelated streams |
-| C05 | out-of-scope actions fail closed and produce governance issues |
-| C06 | illegal lifecycle transitions are rejected without changing authoritative state |
-| C07 | review separation is enforced or an authorized exception is recorded |
-| C08 | tampering of covered content is detected |
-| C09 | required missing references produce partial or blocked state |
-| C10 | prohibited cycles are detected while unaffected subgraphs remain usable |
-| C11 | equal source sets produce byte-equivalent canonical graph and issue output across permutations |
-| C12 | contradictory valid evidence remains disputed until an authorized resolution |
-| C13 | a fresh reader reconstructs responsibility, lifecycle, dependencies, and issues |
-| C14 | terminal state, transitions, and prior evidence remain recoverable |
+| ID | Canonical test name | Architecture-level observable requirement |
+|---|---|---|
+| C01 | Schema validation | canonical objects and invalid-schema cases are handled consistently |
+| C02 | Primary-carrier and single-writer immutability | single-writer publication and correction preserve prior evidence |
+| C03 | Duplicate object identity | duplicate identifiers with different content remain conflicted and non-authoritative |
+| C04 | Serial-stream continuity and asynchronous progress | local sequence faults do not invent a global total order or block unrelated streams |
+| C05 | Role authority | out-of-scope actions fail closed and produce governance issues |
+| C06 | Lifecycle legality | illegal lifecycle transitions are rejected without changing authoritative state |
+| C07 | Separation of duties | review separation is enforced or an authorized exception is recorded |
+| C08 | Integrity tampering | tampering of covered content is detected |
+| C09 | Missing reference | required missing references produce an `undetermined` partial or blocked state |
+| C10 | Prohibited cycle | prohibited cycles are detected while unaffected subgraphs remain usable |
+| C11 | Aggregation and reconstruction determinism | equal source sets produce byte-equivalent canonical graph and issue output across permutations |
+| C12 | Conflict preservation | contradictory valid evidence remains disputed and `undetermined` until an authorized resolution |
+| C13 | Recovery | a fresh reader reconstructs responsibility, lifecycle, dependencies, and issues |
+| C14 | Terminal-history preservation | terminal state, transitions, and prior evidence remain recoverable |
 
 ## 7.2 First Pinned Baseline
 
@@ -162,4 +162,3 @@ The term **digital employee** is used only as an engineering label for a persist
 A future profile may define job scope, acceptance of delegated work, handoff, suspension, reassignment, and retirement. These are application semantics, not changes to Core.
 
 Textual governance improves inspectability but may expose sensitive information. Deployments should minimize content, separate secrets from governance metadata, apply access control and encryption, and define retention and erasure procedures. Immutability of governance history does not require public readability of sensitive payloads.
-

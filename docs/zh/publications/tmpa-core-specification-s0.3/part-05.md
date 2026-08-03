@@ -66,12 +66,15 @@ TMPA Core 允许没有签名。无法验证的签名 **SHALL NOT** 被视为认�
 - 保留有效冲突对象，直至出现授权解决对象；
 - 把 Schema 无效和 Digest 无效对象排除在权威对象集合之外，同时保留诊断证据；
 - 报告重复 ID、序号缺口、重复序号、非法迁移、越权动作、缺失引用、禁止环与完整性失败；
+- 为每项受治理结论输出 `valid`、`invalid` 或 `undetermined` 三者之一，并保留形成该判断的原因；
 - 在适用时区分 authoritative、partial、disputed、quarantined 与 unauthenticated；
 - 对一致性问题和序列化视图元素使用确定性排序。
 
 确定性拓扑序列或显示 Tie-break **SHALL NOT** 被解释为治理决定、真实性优先级或新增跨流顺序。
 
 Reader **SHALL NOT** 使用输入到达顺序、文件系统枚举顺序或墙上时钟顺序解决治理冲突。
+
+若依赖对象为 `undetermined`，依赖该对象的结论 **SHALL** 保持 `undetermined`，直至授权解决对象满足适用 Profile。视图分类用于解释判断原因，**SHALL NOT** 替代或扩展三个语义值。
 
 ## 9.10 恢复要求
 

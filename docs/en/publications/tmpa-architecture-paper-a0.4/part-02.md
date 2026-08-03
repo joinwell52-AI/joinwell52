@@ -51,20 +51,20 @@ The current TMPA–FCoP–CodeFlowMu relationship and the operational software s
 
 The paper fixes the following vocabulary so that semantic objects, physical storage, message behavior, and reconstructed views are not treated as interchangeable concepts.
 
-| Term | Fixed meaning in this paper | Not equivalent to |
-|---|---|---|
-| **governed work item** | the task, request, decision, or process subject whose responsibility and lifecycle are being governed | one file, one session, or one runtime job |
-| **primary carrier** | the stable governance object that anchors the identifier and minimum governing context of one work item | a mutable record that every participant edits |
-| **governance object** | one canonical semantic unit authored by one creator under one responsible role and one writer stream | its storage path, transport envelope, or derived view |
-| **textual message** | the communication function of a governance object when it transfers work, evidence, review, or decision semantics | a separate object class or an ephemeral queue message |
-| **state carrier** | the persistence function through which an object, transition record, or profile-defined location contributes declared or current state evidence | shared mutable application state |
-| **source artifact** | one physical representation or observation of evidence, such as a file, database row, object-store item, or received event | the semantic governance object after validation |
-| **source candidate** | one discovered source artifact presented to the aggregation stage, including malformed or conflicting observations | an accepted authoritative object |
-| **canonical candidate set** | the source-preserving, parsed, indexed, and deterministically normalized collection returned by aggregation | the final governance conclusion |
-| **writer stream** | the locally ordered sequence of governance objects published by one attributable writer | a global event log or total timeline |
-| **source aggregator** | the stage that discovers, preserves, parses, indexes, and normalizes source candidates without deciding governance truth | the governance reader |
-| **governance reader** | the deterministic stage that applies a fixed profile to the canonical candidate set | the storage layer, orchestrator, or model runtime |
-| **governance graph and issue set** | the reconstructed partial-order process view and the canonical unresolved-condition output | the original source evidence or an imposed total order |
+| Canonical English term | Fixed Chinese equivalent | Fixed meaning | Not equivalent to |
+|---|---|---|---|
+| **governed work item** | **受治理工作项** | the task, request, decision, or process subject whose responsibility and lifecycle are being governed | one file, one session, or one runtime job |
+| **primary carrier** | **主载体** | the stable governance object that anchors the identifier and minimum governing context of one work item | a mutable record that every participant edits |
+| **governance object** | **治理对象** | one canonical semantic unit authored by one creator under one responsible role and one writer stream | its storage path, transport envelope, or derived view |
+| **textual message** | **文本消息** | the communication function of a governance object when it transfers work, evidence, review, or decision semantics | a separate object class or an ephemeral queue message |
+| **state carrier** | **状态载体** | the persistence function through which an object, transition record, or profile-defined location contributes declared or current state evidence | shared mutable application state |
+| **source artifact** | **来源工件** | one physical representation or observation of evidence, such as a file, database row, object-store item, or received event | the semantic governance object after validation |
+| **source candidate** | **来源候选** | one discovered source artifact presented to the aggregation stage, including malformed or conflicting observations | an accepted authoritative object |
+| **canonical candidate set** | **规范候选集合** | the source-preserving, parsed, indexed, and deterministically normalized collection returned by aggregation | the final governance conclusion |
+| **writer stream** | **写者流** | the locally ordered sequence of governance objects published by one attributable writer | a global event log or total timeline |
+| **source aggregator** | **来源聚合器** | the stage that discovers, preserves, parses, indexes, and normalizes source candidates without deciding governance truth | the governance reader |
+| **governance reader** | **治理 Reader** | the deterministic stage that applies a fixed profile to the canonical candidate set | the storage layer, orchestrator, or model runtime |
+| **governance graph and issue set** | **治理图与问题集合** | the reconstructed partial-order process view and the canonical unresolved-condition output | the original source evidence or an imposed total order |
 
 A single canonical governance object may be realized by different physical profiles. In FCoP, its source artifact is ordinarily a file plus path and event evidence; another profile may use a row, object, or event. Conversely, two source artifacts that declare the same object identifier but contain different canonical content are not two harmless copies: they are conflicting candidates that must be retained and evaluated under the profile. Throughout the architecture and normative chapters, **object** refers to the semantic unit, **artifact** to a physical or published engineering representation, and **view** to a reader-derived result.
 

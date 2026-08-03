@@ -19,9 +19,10 @@ outline: deep
 ## Textual Multi-Agent Process Architecture — Core Objects, Reader Semantics, and Conformance
 
 > **Specification Version:** Draft S0.3  
-> **Historical Extraction Baseline:** TMPA Draft V1.0-R24; current specification maintained directly in this GitHub document
+> **Historical Extraction Baseline:** TMPA Draft V1.0-R24; current specification maintained directly in this GitHub document<br>
 > **Status:** Extracted Normative Draft  
 > **Extraction Date:** 2026-07-31  
+> **Editorial Revision Date:** 2026-08-02<br>
 > **Authority:** This GitHub document is the sole normative source for TMPA Core S0.3. The Architecture Paper is theoretical and the Implementation Case Report is evidentiary; neither may redefine this specification.
 
 ---
@@ -42,26 +43,41 @@ The following are outside TMPA Core unless a named profile adds them: authentica
 
 A conforming implementation MAY use files, database rows, object-store objects, or events as source artifacts. It MUST NOT claim conformance merely because it stores Markdown, produces logs, or implements a workflow state machine. Conformance is behavioral and depends on the observable object, lifecycle, reconstruction, conflict, recovery, and test requirements in Sections 9 and 10.
 
+The publication contract is fixed across the three maintained documents: the [Architecture Paper A0.4](/en/publications/tmpa-architecture-paper-a0.4) explains the theory, this Core Specification defines normative behavior, and the [Implementation Case Report I0.3](/en/publications/implementation-case-i0.3) reports bounded engineering evidence. Their current conceptual layering and historical lineage are distinct:
+
+```text
+CURRENT CONCEPTUAL LAYERING
+TMPA architecture → reusable FCoP protocol profile → CodeFlowMu and other applications
+
+HISTORICAL LINEAGE
+XiaoDian AI practice → original TMPA → FCoP extraction and maturation
+                    → CodeFlowMu application → current TMPA formalization
+```
+
+FCoP realizes a defined file-based subset of TMPA; CodeFlowMu adopts FCoP as coordination and governance infrastructure. Neither FCoP nor CodeFlowMu defines or exhausts TMPA Core.
+
 ---
 
 # 2. Terminology and Representation Stages
 
 The paper fixes the following vocabulary so that semantic objects, physical storage, message behavior, and reconstructed views are not treated as interchangeable concepts.
 
-| Term | Fixed meaning in this paper | Not equivalent to |
-|---|---|---|
-| **governed work item** | the task, request, decision, or process subject whose responsibility and lifecycle are being governed | one file, one session, or one runtime job |
-| **primary carrier** | the stable governance object that anchors the identifier and minimum governing context of one work item | a mutable record that every participant edits |
-| **governance object** | one canonical semantic unit authored by one creator under one responsible role and one writer stream | its storage path, transport envelope, or derived view |
-| **textual message** | the communication function of a governance object when it transfers work, evidence, review, or decision semantics | a separate object class or an ephemeral queue message |
-| **state carrier** | the persistence function through which an object, transition record, or profile-defined location contributes declared or current state evidence | shared mutable application state |
-| **source artifact** | one physical representation or observation of evidence, such as a file, database row, object-store item, or received event | the semantic governance object after validation |
-| **source candidate** | one discovered source artifact presented to the aggregation stage, including malformed or conflicting observations | an accepted authoritative object |
-| **canonical candidate set** | the source-preserving, parsed, indexed, and deterministically normalized collection returned by aggregation | the final governance conclusion |
-| **writer stream** | the locally ordered sequence of governance objects published by one attributable writer | a global event log or total timeline |
-| **source aggregator** | the stage that discovers, preserves, parses, indexes, and normalizes source candidates without deciding governance truth | the governance reader |
-| **governance reader** | the deterministic stage that applies a fixed profile to the canonical candidate set | the storage layer, orchestrator, or model runtime |
-| **governance graph and issue set** | the reconstructed partial-order process view and the canonical unresolved-condition output | the original source evidence or an imposed total order |
+| Canonical English term | Fixed Chinese equivalent | Fixed meaning | Not equivalent to |
+|---|---|---|---|
+| **governed work item** | **受治理工作项** | the task, request, decision, or process subject whose responsibility and lifecycle are being governed | one file, one session, or one runtime job |
+| **primary carrier** | **主载体** | the stable governance object that anchors the identifier and minimum governing context of one work item | a mutable record that every participant edits |
+| **governance object** | **治理对象** | one canonical semantic unit authored by one creator under one responsible role and one writer stream | its storage path, transport envelope, or derived view |
+| **textual message** | **文本消息** | the communication function of a governance object when it transfers work, evidence, review, or decision semantics | a separate object class or an ephemeral queue message |
+| **state carrier** | **状态载体** | the persistence function through which an object, transition record, or profile-defined location contributes declared or current state evidence | shared mutable application state |
+| **source artifact** | **来源工件** | one physical representation or observation of evidence, such as a file, database row, object-store item, or received event | the semantic governance object after validation |
+| **source candidate** | **来源候选** | one discovered source artifact presented to the aggregation stage, including malformed or conflicting observations | an accepted authoritative object |
+| **canonical candidate set** | **规范候选集合** | the source-preserving, parsed, indexed, and deterministically normalized collection returned by aggregation | the final governance conclusion |
+| **writer stream** | **写者流** | the locally ordered sequence of governance objects published by one attributable writer | a global event log or total timeline |
+| **source aggregator** | **来源聚合器** | the stage that discovers, preserves, parses, indexes, and normalizes source candidates without deciding governance truth | the governance reader |
+| **governance reader** | **治理 Reader** | the deterministic stage that applies a fixed profile to the canonical candidate set | the storage layer, orchestrator, or model runtime |
+| **governance graph and issue set** | **治理图与问题集合** | the reconstructed partial-order process view and the canonical unresolved-condition output | the original source evidence or an imposed total order |
+
+The three semantic judgments are also fixed across all documents: `valid` (**有效**) means the applicable evidence and rules establish acceptance; `invalid` (**无效**) means the rules establish rejection or violation; `undetermined` (**未确定**) means evidence is incomplete, conflicting, or awaiting an authorized resolution. View labels such as authoritative, quarantined, partial, disputed, and pending_human explain the presentation reason; they are not additional semantic values.
 
 A single canonical governance object may be realized by different physical profiles. In FCoP, its source artifact is ordinarily a file plus path and event evidence; another profile may use a row, object, or event. Conversely, two source artifacts that declare the same object identifier but contain different canonical content are not two harmless copies: they are conflicting candidates that must be retained and evaluated under the profile. Throughout the architecture and normative chapters, **object** refers to the semantic unit, **artifact** to a physical or published engineering representation, and **view** to a reader-derived result.
 

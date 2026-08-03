@@ -19,9 +19,9 @@ outline: deep
 ## An AI-Native Software Architecture Theory for Governed Multi-Agent Organizational Work in SMEs
 
 > **Architecture Paper Draft:** A0.4  
-> **Historical Source Baseline:** TMPA Draft V1.0-R23; theory aligned through R31
+> **Historical Source Baseline:** TMPA Draft V1.0-R23; theory aligned through R31<br>
 > **Status:** Publication Working Draft  
-> **Revision Date:** 2026-07-31  
+> **Revision Date:** 2026-08-02<br>
 > **Publication Authority:** This GitHub document is the authoritative TMPA architecture paper. The separately maintained TMPA Core Specification is normative; the Implementation Case Report is evidentiary and non-normative.
 # Abstract
 
@@ -58,8 +58,8 @@ DESIGN-SCIENCE LINEAGE
 business practice → original TMPA → FCoP extraction and maturation
                   → CodeFlowMu application → current TMPA formalization
 
-CURRENT CONCEPTUAL RELATION
-TMPA architecture → reusable FCoP protocol subset → downstream applications
+CURRENT CONCEPTUAL LAYERING
+TMPA architecture → reusable FCoP protocol profile → CodeFlowMu and other applications
 
 END-TO-END PROCESS
 write: primary carrier → single-writer streams → asynchronous composition
@@ -68,7 +68,7 @@ read:  source aggregation → governance reader → process graph + issue set
 
 The lineage explains origin, the conceptual relation explains present boundaries, and the process view explains operation. None implies that FCoP exhausts TMPA, CodeFlowMu defines FCoP, or the original March 2026 pipeline already satisfied the current Core specification.
 
-One optional application context, specified separately in Section 11.6, is a persistent AI work role sometimes described in industry as a **digital employee**. Throughout this paper, that label denotes only an engineering work identity that accepts delegated work, uses tools, and submits results across sessions; it does **not** imply legal employment, personhood, consciousness, human intention, or replacement of accountable human or organizational principals.
+One optional application context, specified separately in Section 8.3, is a persistent AI work role sometimes described in industry as a **digital employee**. Throughout this paper, that label denotes only an engineering work identity that accepts delegated work, uses tools, and submits results across sessions; it does **not** imply legal employment, personhood, consciousness, human intention, or replacement of accountable human or organizational principals.
 
 ## 1.1 Paper Type and Research Questions
 

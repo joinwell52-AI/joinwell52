@@ -20,8 +20,9 @@ outline: deep
 
 > **Document Version:** Draft I0.3  
 > **Status:** Author-Produced Implementation and Case Report  
-> **Historical Evidence Baseline:** TMPA Draft V1.0-R24
+> **Historical Evidence Baseline:** TMPA Draft V1.0-R24<br>
 > **Report Date:** 2026-07-31  
+> **Editorial Revision Date:** 2026-08-02<br>
 > **Conformance Corpus:** `tmpa-draft-v1-c01-c14-20260731`
 > **Authority Boundary:** This report is evidentiary and non-normative. TMPA Core requirements are defined only by the GitHub Core Specification.
 
@@ -35,25 +36,24 @@ The first version-pinned C01–C14 corpus fixes FCoP `3.2.4` at commit `da79dfef
 
 # 1. Scope and Evidence Boundary
 
-This report asks which TMPA mechanisms FCoP realizes, how CodeFlowMu uses them, what XiaoDian AI demonstrates, and what the first fixed-version C01–C14 execution established. It is not the normative Core specification.
+This report asks which TMPA mechanisms FCoP realizes, how CodeFlowMu uses them, what XiaoDian AI demonstrates, and what the first fixed-version C01–C14 execution established. It is evidentiary and nonnormative; the [TMPA Core Specification S0.3](/en/publications/tmpa-core-specification-s0.3) alone defines the requirements and canonical test meanings, while the [Architecture Paper A0.4](/en/publications/tmpa-architecture-paper-a0.4) explains the theory.
 
 Evidence classes are **specified**, **implemented**, **demonstrated**, and **independently adopted**. Current evidence is strongest at the first three levels. Because the author is also the originator or principal developer of the evaluated systems, fixed versions and hashes are stated; PASS, PARTIAL, and NOT RUN remain separate; prerequisite failures are retained; fixture success is not converted into product conformance; and no independent-validation claim is made.
 
 # 2. Engineering Lineage and Component Boundaries
 
 ```text
-XiaoDian AI engineering practice
-              ↓
-original textual multi-role coordination
-              ↓ extraction and independent maturation
-FCoP — File-based Coordination Protocol
-              ↓ downstream adoption
-CodeFlowMu persistent-work environment
-              ↓ evidence feedback
-current TMPA architecture and Core specification
+CURRENT CONCEPTUAL LAYERING
+TMPA architecture → reusable FCoP protocol profile → CodeFlowMu and other applications
+
+HISTORICAL LINEAGE
+XiaoDian AI practice → original TMPA → FCoP extraction and maturation
+                    → CodeFlowMu application → current TMPA formalization
 ```
 
-FCoP does not exhaust TMPA. CodeFlowMu does not define FCoP. XiaoDian AI is lineage and field evidence rather than a product-level TMPA reader.
+FCoP realizes a defined file-based subset of TMPA. CodeFlowMu adopts FCoP as coordination and governance infrastructure. FCoP does not exhaust TMPA; CodeFlowMu does not define FCoP; XiaoDian AI is lineage and field evidence rather than a product-level TMPA reader.
+
+Terminology follows Section 2 of the Core Specification. In particular, **governance object** is a semantic unit, **source artifact** is a physical observation, **governance reader** is the deterministic reconstruction stage, and `valid` / `invalid` / `undetermined` are the only semantic governance judgments. This report does not introduce alternative meanings.
 
 FCoP uses ordinary filesystem artifacts and operating-system operations as a project-visible coordination surface. CodeFlowMu combines FCoP operations with agent sessions, runtime scheduling, role interfaces, business workflows, approval paths, recovery controls, and user-facing views. XiaoDian AI contributes permission, validation, NL2SQL, policy-gate, rejection, and audit evidence.
 

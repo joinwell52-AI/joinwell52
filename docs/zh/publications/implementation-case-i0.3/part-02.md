@@ -1,46 +1,61 @@
-# 7. 标准级结果与共同缺口
+# 7. 标准级结果
 
-| ID | 裁决 | 当前边界 |
-|---|---|---|
-| C01 | PARTIAL | Schema 与验证路径存在，但完整 Core 对象覆盖尚未统一 |
-| C02 | PARTIAL | 独立工件与更正证据存在，更严格不可变观察尚不完整 |
-| C03 | PARTIAL | 局部重复/冲突机制存在，规范隔离视图未端到端输出 |
-| C04 | PARTIAL | 局部顺序与异步推进存在，统一偏序图未输出 |
-| C05 | PARTIAL | 角色与能力门禁存在，失败尚未统一进入权威问题模型 |
-| C06 | PASS | 非法/未授权迁移不改变权威状态 |
-| C07 | PARTIAL | 报告与复核分离存在，身份级独立和例外对象未完整验证 |
-| C08 | NOT RUN | Fixture 存在，产品级 Digest Reader 未执行 |
-| C09 | PARTIAL | 缺失依赖可阻塞工作，三值传播和规范问题输出未完整 |
-| C10 | NOT RUN | 禁止环 Fixture 存在，产品图 Reader 未执行 |
-| C11 | NOT RUN | 24 种排列的 Oracle 字节等价，产品级序列化器不存在 |
-| C12 | NOT RUN | 冲突保留 Fixture 存在，产品级 disputed/undetermined 路径未执行 |
-| C13 | PARTIAL | 重启恢复存在，统一全新 Reader 尚不存在 |
-| C14 | PASS | 归档历史保留终态、迁移和先前证据 |
+下表中的测试名称与含义直接引用 Core Specification 第 10.2 节；本报告只记录产品证据与剩余缺口。
 
-14 个 Fixture Oracle 均匹配预期，但 Fixture 一致性不替代产品执行。
+| ID | 规范测试名称 | 裁决 | 产品证据与剩余缺口 |
+|---|---|---|---|
+| C01 | Schema 验证 | PARTIAL | FCoP 与 CodeFlowMu 已有 Schema 和验证路径，但完整 TMPA 规范对象覆盖及全部负向格式案例尚未由一个 Core Validator 暴露。 |
+| C02 | 主载体与单写者不可变性 | PARTIAL | 独立工件与更正证据已存在；更严格的不可变对象与一任务一主载体观察仍不完整。 |
+| C03 | 重复对象 ID | PARTIAL | 局部重复与冲突机制已存在，但相同 ID、不同内容的规范隔离视图尚未端到端暴露。 |
+| C04 | 串行流连续性与异步推进 | PARTIAL | 局部排序、依赖等待与异步推进已实现；尚未输出统一规范偏序图与流缺口问题集合。 |
+| C05 | 角色权限 | PARTIAL | 角色、Capability 与操作门禁已存在；全部失败尚未规范化为统一权威 TMPA 问题模型。 |
+| C06 | 生命周期合法性 | PASS | 直接生命周期测试表明非法或未授权迁移保持可观察，且不改变权威状态。 |
+| C07 | 职责分离 | PARTIAL | 独立报告、复核与 Review Gate 已存在，但身份级分离和例外对象处理尚未完整演示。 |
+| C08 | 完整性篡改 | NOT RUN | Fixture Oracle 已存在；产品级被覆盖内容 Digest 验证与规范篡改 Reader 未执行。 |
+| C09 | 缺失引用 | PARTIAL | 缺失依赖可以阻塞工作，但完整 `undetermined`/partial 图传播与规范问题输出仍不完整。 |
+| C10 | 禁止环 | NOT RUN | 禁止环 Fixture 已存在；能够只隔离受影响子图的产品图 Reader 不可用。 |
+| C11 | 聚合与重建确定性 | NOT RUN | Fixture Oracle 在 24 种排列下产生字节等价输出；产品级规范图与问题序列化器不可用。 |
+| C12 | 冲突保留 | NOT RUN | 冲突保留 Fixture 已存在；产品级确定性 disputed/`undetermined` 视图与授权解决路径未作为一项标准执行。 |
+| C13 | 恢复 | PARTIAL | 重启与恢复机制已存在，但没有统一的全新 Reader 重建全部责任、生命周期、依赖与问题状态。 |
+| C14 | 终态历史保留 | PASS | 直接 Archive/History 测试保留终态、迁移、先前报告、复核与任务证据。 |
 
-共同缺口是统一只读证据图适配器：
+14 个 Fixture Oracle 均匹配预期输出。Fixture 一致性是语料库的必要条件，但不能替代产品执行。
+
+# 8. 共同的读取侧缺口
+
+PARTIAL 与 NOT RUN 的主要共同原因，是缺少统一的只读证据图适配器：
 
 ```text
-来源工件 → 来源候选 → 规范候选集合
-        → 偏序流程与责任图 → 规范问题集合
-        → valid / invalid / undetermined
-        → authoritative / quarantined / partial / disputed / pending_human
+来源工件
+    ↓
+保留来源追踪的来源候选
+    ↓
+规范候选集合
+    ↓
+偏序流程与责任图
+    ↓
+规范问题集合
+    ↓
+valid / invalid / undetermined 判断
+    ↓
+authoritative / quarantined / partial / disputed / pending_human 视图
 ```
 
-FCoP 与 CodeFlowMu 已具备大量写入侧和局部控制机制，但缺少把它们规范化为统一治理读模型的适配器。
+FCoP 与 CodeFlowMu 已具备独立工件、原子发布、角色检查、生命周期门禁、依赖阻塞、Archive 保留和重启恢复等写入侧与局部控制机制。缺失适配器将直接改善 C03、C05、C09、C13，为 C04/C07 提供基础设施，并建立 C10–C12 所需的产品执行路径。C01 仍有 Schema 覆盖缺口，C02 仍有更严格不可变性缺口，C08 需要被覆盖内容的 Digest Reader。
 
-# 8. 三值治理观察
+# 9. Worked Flow 中的三值治理
 
-| 语义判断 | 视图 | 含义 |
+TMPA 区分语义判断与视图分类：
+
+| 语义判断 | 视图分类 | 含义 |
 |---|---|---|
-| `valid` | authoritative | 证据和规则建立结论 |
-| `invalid` | quarantined/rejected | 确定性违规排除证据或动作 |
-| `undetermined` | partial | 必需证据缺失 |
-| `undetermined` | disputed | 有效证据冲突 |
-| `undetermined` | pending_human | Profile 要求人工决定 |
+| `valid` | authoritative | 必需证据与规则建立结论 |
+| `invalid` | quarantined 或 rejected | 确定性违规排除受影响证据或动作 |
+| `undetermined` | partial | 必需证据缺失或不完整 |
+| `undetermined` | disputed | 有效证据冲突且没有授权解决 |
+| `undetermined` | pending_human | 适用 Profile 要求人工决定 |
 
-代表性流程：
+代表性复核流程为：
 
 ```text
 TASK → REPORT → QA REVIEW(needs_human)
@@ -56,52 +71,89 @@ TASK → REPORT → QA REVIEW(needs_human)
         valid              invalid
 ```
 
-`needs_human` 节点在图中保持存在并可查询。依赖它的下游对象在授权决定出现前保持 `undetermined`，不得被误判为 done、approved、failed 或 rejected。
+`needs_human` 状态保持在图中并可查询，不得被提前表示为 done、approved、failed 或 rejected。依赖该未解决复核的下游对象保持 `undetermined`，直至增加授权决定对象。
 
-# 9. 可复现性与局限
+当前 CodeFlowMu 已有等待人工和注意状态，但尚未完整规范化为 TMPA Core 判断/视图模型，因此这里只是实现目标，不是已经完整演示的产品声明。
 
-语料库锁定实现版本、现场证据、环境、命令、日志、Fixture 与 Hash，但仍需要稳定公开归档、Release Checksum、一键独立设置和第三方重跑。
+# 10. 可复现性与局限
 
-基线不建立代表性 SME 性能、比较部署成本、广泛容错、独立采用、事实真实性、认证身份、受保护存储或拜占庭韧性。公开演示与私有数据系统也不被声称为同一个可复现公共构建。
+语料库锁定实现、选定现场证据、环境、命令、日志、Fixture 与 Hash，但仍需要稳定公开归档、Release Checksum、一键独立设置和第三方重跑。
 
-# 10. 工程路线
+基线不建立代表性 SME 性能、比较部署成本、广泛容错、独立采用、参与者声明的事实真实性、认证身份、受保护存储或拜占庭韧性。产品与案例证据均由作者产生。公开演示与私有数据生成系统不被声称为同一个可复现公共构建。
+
+下一阶段需要测量安装依赖与耗时、首个团队启动、CPU/内存/存储增长、延迟与乱序证据下的重建、受控中断与重启、冲突和缺失引用注入、人类可检查性、采用负担，以及相对于聊天、共享目录与简单工作流的基线。
+
+# 11. 工程路线
 
 1. 实现不改变现有写入行为的只读证据图适配器；
 2. 输出规范候选、治理图、问题集合和三值判断；
-3. 执行产品级 C08/C10/C11/C12；
-4. 补齐其余 PARTIAL 的观察表面；
-5. 公开语料库、Checksum 与复现说明；
-6. 测量低资源部署、重启和增量重建；
-7. 获得独立重跑并记录差异。
+3. 执行产品级 C08、C10、C11、C12；
+4. 补齐 C01–C05、C07、C09、C13 的部分观察表面；
+5. 发布带 Checksum 与复现说明的语料库；
+6. 测量低资源部署、重启与增量重建；
+7. 获得独立重跑并记录全部差异。
 
-# 11. 证据声明
+# 12. 证据声明
 
-本报告提供版本化工程证据，不是独立验证。最强结论是：在锁定修订和选定测试路径上，C06 与 C14 通过；8 项具有真实但不完整的产品证据；4 项具有 Fixture Oracle 但缺少产品 Reader 执行路径；没有直接执行的门禁标准失败。
+本报告提供带版本的工程证据，不提供独立验证。最强结论是一个可复现的边界声明：在锁定修订与选定测试路径下，C06 与 C14 PASS；8 项标准具有真实但不完整的产品证据；4 项具有 Fixture Oracle 但没有产品 Reader 执行路径；没有直接执行的门禁标准失败。更强声明需要缺失的读取侧适配器、更广泛实验和独立复现。
 
-# 工件与数据可用性
+# 13. 工程结论
 
-作者生成的 `tmpa-conformance.zip` 包含 Manifest、证据清单、Fixture、Runner、预期/实际输出、Result 和 Log。稳定公开归档仍待完成。私有业务数据、凭证和敏感运行记录不公开。
+锁定语料库把宽泛工程历史转化为可测试基线。在固定版本下，2 项标准直接 PASS，8 项具有部分产品证据，4 项未在产品 Reader 层运行。该结果强于无版本演示，但弱于完整或独立一致性。
+
+产品已经包含许多写入侧和局部控制机制；最大的共同缺口是确定性读取侧规范化。只读证据图适配器及后续 C08、C10、C11、C12 产品执行，是从分散工程证据走向更强实现声明的最短路径。量化 SME 部署成本与独立复现仍是分开的经验要求。
+
+# 工件可用性
+
+作者生成的一致性归档保存为 `tmpa-conformance.zip`，包含 Manifest、Evidence Inventory、Fixture、Runner、Expected/Actual 输出、结果记录与日志。稳定公共归档仍待完成。
+
+# 数据可用性
+
+公开演示暴露选定治理视图。私有业务数据、凭证与敏感运行记录不公开。语料库使用选定测试路径、Hash Inventory 与紧凑 Fixture，而不是导出私有生产数据。
 
 # 利益冲突与来源
 
-作者是 TMPA、FCoP 和 CodeFlowMu 的发起者或主要开发者，并参与小典 AI 谱系。全部基线结果均由作者产生，因此需要固定版本、保留失败和独立复现。
+作者是 TMPA、FCoP、CodeFlowMu 的发起者或主要开发者，并参与小典 AI 谱系。全部基线结果均由作者产生，因此更需要锁定版本、保留失败并进行独立复现。
 
 # References
 
-[1] FCoP Project. `https://github.com/joinwell52-AI/FCoP`.
+[1] FCoP Project. “FCoP — File-based Coordination Protocol,” repository README and architecture stack. GitHub, 2026. `https://github.com/joinwell52-AI/FCoP`.
 
-[2] FCoP Runtime Specification, 1.2.x specification line, 2026.
+[2] FCoP Project. “FCoP Runtime Specification · Single-Page Complete Edition,” 1.2.x specification line, 2026.
 
-[3] FCoP IPC Envelope and JSON Schemas, 2026.
+[3] FCoP Project. “FCoP IPC Envelope” and related machine-readable JSON Schemas, `spec/schemas/`, 2026.
 
-[4] `fcop` and `fcop-mcp` packages, 2026.
+[4] Python Package Index. `fcop` and `fcop-mcp` distributions, 2026.
 
-[5] Official MCP Registry entry `io.github.joinwell52-AI/fcop`.
+[5] Official MCP Registry. `io.github.joinwell52-AI/fcop`, `fcop-mcp` server entry, 2026.
 
-[6] ADR-0031 Governance Alert Layer, 2026-05-11.
+[6] FCoP Project. “ADR-0031: Governance Alert Layer (GAL).” Accepted 2026-05-11.
 
-[7] ADR-0032 `fcop_audit()`, 2026-05-12.
+[7] FCoP Project. “ADR-0032: `fcop_audit()` — Protocol-to-Inspection Compiler.” Accepted 2026-05-12.
 
-[8] CodeFlowMu TMPA Browser, `https://demo.chedian.cc/`.
+[8] CodeFlowMu. “TMPA Browser” public demonstration. `https://demo.chedian.cc/`. Snapshot observed 2026-07-29.
 
-[9] TMPA C01–C14 Conformance Corpus, `tmpa-draft-v1-c01-c14-20260731`.
+[9] TMPA Project. “TMPA Draft V1.0 C01–C14 Conformance Corpus.” Corpus ID `tmpa-draft-v1-c01-c14-20260731`, executed 2026-07-31. Author-produced archive `tmpa-conformance.zip`.
+
+# 附录 A：FCoP 端到端工件示例
+
+PM 创建 TASK，DEV Claim 并执行，随后提交独立 DEV REPORT，再由 QA 发布独立 REVIEW。当技术验证通过但生产激活会改变授权边界时，QA 可以返回 `needs_human`。
+
+Reader 重建：
+
+```text
+PM 创建 TASK
+  ├─ DEV Claim 并执行
+  ├─ DEV 提交 REPORT
+  ├─ QA 发布 REVIEW：needs_human
+  ├─ judgment: undetermined
+  ├─ view: pending_human
+  ├─ 授权人工批准或拒绝证据
+  └─ 最终判断：valid 或 invalid
+```
+
+`needs_human` 节点保持在图中并可查询。依赖它的下游对象保持 `undetermined`，直至授权决定对象解决状态。权威记录是来源集合与迁移，不是渲染视图；重新排列输入文件不得改变重建图或问题集合。
+
+## I0.3 理论—实现对齐
+
+FCoP 作为 TMPA 概念的协议实现接受评估；CodeFlowMu 作为结合协议角色、Skill、工具、Runtime 执行、恢复与界面的工程系统接受评估。本报告区分概率型 Agent 执行证据与确定性验证机制，也区分 demonstrated 行为与完整 Core Conformance。

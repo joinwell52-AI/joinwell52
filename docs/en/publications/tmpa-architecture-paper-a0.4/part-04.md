@@ -56,11 +56,11 @@ A role label is not a cryptographic signature. A digest without a trusted identi
 The orientation map in Section 1 distinguishes historical lineage, current conceptual relation, and end-to-end operation. This section fixes the software boundary:
 
 ```text
-TMPA architecture and specification
-        ↓ reusable protocol realization of a defined subset
+TMPA architecture
+        ↓ reusable FCoP protocol profile realizing a defined subset
 FCoP
         ↓ adopted as coordination and governance infrastructure by
-CodeFlowMu and other agent systems
+CodeFlowMu and other applications
 ```
 
 FCoP is independently specified and implemented; CodeFlowMu is a downstream adopter. Neither defines the broader TMPA architecture.
@@ -85,7 +85,7 @@ TMPA is not a runtime component in this stack. The `fcop` package is the referen
 FCoP (File-based Coordination Protocol) is the reference profile used to examine whether TMPA semantics can be realized on an ordinary project-visible filesystem. The current conceptual relation is:
 
 ```text
-TMPA architecture → reusable FCoP profile → downstream applications
+TMPA architecture → reusable FCoP protocol profile → CodeFlowMu and other applications
 ```
 
 FCoP is not identical to TMPA. It realizes a file-based subset through named textual artifacts, lifecycle directories, append-oriented transition evidence, schemas, runtime tools, and adapters [7]–[12]. CodeFlowMu is a downstream application that uses FCoP concepts in a persistent multi-role development environment [13].

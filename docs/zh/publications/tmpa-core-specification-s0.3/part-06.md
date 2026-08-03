@@ -61,6 +61,10 @@ Profile 特定工件不会自动成为规范 Core 对象。Profile **MUST** 定�
 
 所有规范修订 **MUST** 直接进入 `joinwell52-AI/joinwell52` 的本 GitHub 文档，并由 Git Commit 表示正式版本历史。Architecture Paper、Implementation Case Report、网站文案或外部副本 **MUST NOT** 覆盖或静默重定义 Core 条款。
 
+## 11.4 S0.3 编辑一致性记录
+
+2026-08-02 的 Phase 1 一致性收尾统一了双语术语矩阵、出版权威、TMPA—FCoP—CodeFlowMu 关系图、三值判断措辞、跨文档链接与 C01–C14 名称，并补齐中文实施报告缺失内容。本次编辑澄清已经存在的 S0.3 语义，不改变可观察一致性标准或通过条件。
+
 ---
 
 # 附录 A：历史来源可追踪性（说明性）

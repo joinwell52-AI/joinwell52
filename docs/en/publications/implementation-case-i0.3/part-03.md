@@ -1,21 +1,23 @@
 # 7. Criterion-Level Results
 
-| ID | Verdict | Product evidence and remaining gap |
-|---|---|---|
-| C01 | PARTIAL | FCoP and CodeFlowMu provide schemas and validation paths, but complete TMPA canonical-object coverage and all negative format cases are not yet exposed through one Core validator. |
-| C02 | PARTIAL | Separate artifacts and correction evidence exist; stricter immutable-object and one-primary-carrier observation remains incomplete. |
-| C03 | PARTIAL | Duplicate and conflict mechanisms exist locally, but a canonical same-ID/different-content quarantine view is not exposed end to end. |
-| C04 | PARTIAL | Local ordering, dependency waiting, and asynchronous progress are implemented; one canonical partial-order graph and stream-gap issue set are not yet emitted. |
-| C05 | PARTIAL | Role, capability, and operation gates exist; all failures are not yet normalized into one authoritative TMPA issue model. |
-| C06 | PASS | Direct lifecycle tests show illegal or unauthorized transitions remain observable and do not change authoritative state. |
-| C07 | PARTIAL | Separate reports and reviews plus review gates exist, but complete identity-level separation and exception-object handling are not fully demonstrated. |
-| C08 | NOT RUN | Fixture oracle exists; product covered-content digest verification and canonical tamper reader were not executed. |
-| C09 | PARTIAL | Missing dependencies can block work, but the complete `undetermined/partial` graph propagation and canonical issue output remain incomplete. |
-| C10 | NOT RUN | Prohibited-cycle fixture exists; product graph reader capable of quarantining only the affected subgraph was not available. |
-| C11 | NOT RUN | The fixture oracle produced byte-equivalent output across 24 permutations; no product-level canonical graph-plus-issue serializer was available. |
-| C12 | NOT RUN | Conflict-preservation fixture exists; product-level deterministic disputed/undetermined view and authorized resolution path were not executed as one criterion. |
-| C13 | PARTIAL | Restart and recovery mechanisms exist, but no unified fresh reader reconstructs all responsibility, lifecycle, dependency, and issue state. |
-| C14 | PASS | Direct archive/history tests preserve terminal state, transitions, prior reports, reviews, and task evidence. |
+The test names and meanings below are direct references to Core Specification Section 10.2; this report records only product evidence and remaining gaps.
+
+| ID | Canonical test name | Verdict | Product evidence and remaining gap |
+|---|---|---|---|
+| C01 | Schema validation | PARTIAL | FCoP and CodeFlowMu provide schemas and validation paths, but complete TMPA canonical-object coverage and all negative format cases are not yet exposed through one Core validator. |
+| C02 | Primary-carrier and single-writer immutability | PARTIAL | Separate artifacts and correction evidence exist; stricter immutable-object and one-primary-carrier observation remains incomplete. |
+| C03 | Duplicate object identity | PARTIAL | Duplicate and conflict mechanisms exist locally, but a canonical same-ID/different-content quarantine view is not exposed end to end. |
+| C04 | Serial-stream continuity and asynchronous progress | PARTIAL | Local ordering, dependency waiting, and asynchronous progress are implemented; one canonical partial-order graph and stream-gap issue set are not yet emitted. |
+| C05 | Role authority | PARTIAL | Role, capability, and operation gates exist; all failures are not yet normalized into one authoritative TMPA issue model. |
+| C06 | Lifecycle legality | PASS | Direct lifecycle tests show illegal or unauthorized transitions remain observable and do not change authoritative state. |
+| C07 | Separation of duties | PARTIAL | Separate reports and reviews plus review gates exist, but complete identity-level separation and exception-object handling are not fully demonstrated. |
+| C08 | Integrity tampering | NOT RUN | Fixture oracle exists; product covered-content digest verification and canonical tamper reader were not executed. |
+| C09 | Missing reference | PARTIAL | Missing dependencies can block work, but the complete `undetermined`/partial graph propagation and canonical issue output remain incomplete. |
+| C10 | Prohibited cycle | NOT RUN | Prohibited-cycle fixture exists; product graph reader capable of quarantining only the affected subgraph was not available. |
+| C11 | Aggregation and reconstruction determinism | NOT RUN | The fixture oracle produced byte-equivalent output across 24 permutations; no product-level canonical graph-plus-issue serializer was available. |
+| C12 | Conflict preservation | NOT RUN | Conflict-preservation fixture exists; product-level deterministic disputed/`undetermined` view and authorized resolution path were not executed as one criterion. |
+| C13 | Recovery | PARTIAL | Restart and recovery mechanisms exist, but no unified fresh reader reconstructs all responsibility, lifecycle, dependency, and issue state. |
+| C14 | Terminal-history preservation | PASS | Direct archive/history tests preserve terminal state, transitions, prior reports, reviews, and task evidence. |
 
 All 14 fixture oracles matched their expected outputs. Fixture consistency is necessary for the corpus but does not substitute for product execution.
 

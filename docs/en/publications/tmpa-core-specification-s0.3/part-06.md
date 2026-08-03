@@ -74,6 +74,10 @@ Publication of a specification establishes the **specified** evidence level. Exe
 
 The first author-produced C01–C14 corpus is maintained as a separate empirical artifact rather than embedded in this Core specification. Product verdicts and case evidence belong in the implementation and case report; the normative criterion meanings remain defined here.
 
+## 11.4 S0.3 Editorial Consistency Record
+
+The 2026-08-02 Phase 1 consistency closeout aligned the bilingual terminology matrix, publication authority, TMPA–FCoP–CodeFlowMu diagrams, three-valued judgment wording, cross-document links, and C01–C14 names. It also restored missing Chinese implementation-report coverage. The edit clarifies already stated S0.3 semantics and does not change the observable conformance criteria or pass conditions.
+
 ---
 
 # Appendix A. Historical Source Traceability (Informative)

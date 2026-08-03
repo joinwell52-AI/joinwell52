@@ -81,12 +81,15 @@ For the same canonical candidate set and fixed rule profile, a conforming govern
 - preserve valid conflicting objects until an authorized resolution exists;
 - exclude schema-invalid and digest-invalid objects from the authoritative object set while retaining their diagnostic evidence;
 - report duplicate identifiers, sequence gaps, duplicate sequences, illegal transitions, unauthorized actions, missing references, prohibited cycles, and integrity failures;
+- emit one semantic judgment—`valid`, `invalid`, or `undetermined`—for each governed conclusion and preserve the reason for that judgment;
 - distinguish authoritative, partial, disputed, quarantined, and unauthenticated states where those distinctions apply;
 - apply a deterministic order to conformance issues and serialized view elements.
 
 A deterministic topological serialization or display tie-breaker SHALL NOT be interpreted as a governance decision, truth priority, or additional cross-stream order.
 
 A reader SHALL NOT use input arrival order, filesystem enumeration order, or wall-clock timestamp order to resolve a governance conflict.
+
+An `undetermined` dependency SHALL propagate as `undetermined` to a dependent conclusion until an authorized resolution object satisfies the applicable profile. View classifications explain why the judgment was reached; they SHALL NOT replace or expand the three semantic values.
 
 ## 9.10 Recovery Requirements
 
