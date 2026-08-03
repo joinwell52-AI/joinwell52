@@ -1,0 +1,24 @@
+.product-home .final-section h2 {
+  max-width: none;
+  font-size: clamp(48px, 4.25vw, 66px);
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  html[lang^='zh'] .product-home .final-section h2 {
+    max-width: 5.5em;
+    white-space: normal;
+  }
+
+  html:not([lang^='zh']) .product-home .final-section h2 {
+    max-width: 11em;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 640px) {
+  .product-home .final-section h2 {
+    font-size: 42px;
+    line-height: 1.04;
+  }
+}
