@@ -9,7 +9,7 @@ The test names and meanings below are direct references to Core Specification Se
 | C03 | Duplicate object identity | PARTIAL | Duplicate and conflict mechanisms exist locally, but a canonical same-ID/different-content quarantine view is not exposed end to end. |
 | C04 | Serial-stream continuity and asynchronous progress | PARTIAL | Local ordering, dependency waiting, and asynchronous progress are implemented; one canonical partial-order graph and stream-gap issue set are not yet emitted. |
 | C05 | Role authority | PARTIAL | Role, capability, and operation gates exist; all failures are not yet normalized into one authoritative TMPA issue model. |
-| C06 | Lifecycle legality | PASS | Direct lifecycle tests show illegal or unauthorized transitions remain observable and do not change authoritative state. |
+| C06 | Lifecycle legality | PARTIAL | Direct lifecycle tests cover illegal and unauthorized transitions, but the product evidence does not yet emit both required canonical outputs: `ILLEGAL_TRANSITION`/`invalid` and `LIFECYCLE_UNDETERMINED`/`undetermined`. |
 | C07 | Separation of duties | PARTIAL | Separate reports and reviews plus review gates exist, but complete identity-level separation and exception-object handling are not fully demonstrated. |
 | C08 | Integrity tampering | NOT RUN | Fixture oracle exists; product covered-content digest verification and canonical tamper reader were not executed. |
 | C09 | Missing reference | PARTIAL | Missing dependencies can block work, but the complete `undetermined`/partial graph propagation and canonical issue output remain incomplete. |
@@ -19,11 +19,11 @@ The test names and meanings below are direct references to Core Specification Se
 | C13 | Recovery | PARTIAL | Restart and recovery mechanisms exist, but no unified fresh reader reconstructs all responsibility, lifecycle, dependency, and issue state. |
 | C14 | Terminal-history preservation | PASS | Direct archive/history tests preserve terminal state, transitions, prior reports, reviews, and task evidence. |
 
-All 14 fixture oracles matched their expected outputs. Fixture consistency is necessary for the corpus but does not substitute for product execution.
+The separate S0.4 Reference Reader track passes all 14 synthetic fixture assertions. Those results validate the executable interpretation and deterministic runner, not the products listed in the table.
 
-# 8. Shared Read-Side Gap
+# 8. Product Projection Gap
 
-The dominant common cause of the PARTIAL and NOT RUN verdicts is the absence of a unified read-only evidence-graph adapter:
+The publication repository now contains a generic S0.4 read-only Reference Reader. The dominant product gap is therefore narrower and more concrete: neither pinned product has a maintained projection adapter that converts its native artifacts into the S0.4 source-object surface consumed by that reader.
 
 ```text
 source artifacts
@@ -41,7 +41,7 @@ valid / invalid / undetermined judgment
 authoritative / quarantined / partial / disputed / pending_human view
 ```
 
-FCoP and CodeFlowMu already provide substantial write-side and local-control mechanisms: separate artifacts, atomic publication, role checks, lifecycle gates, dependency blocking, archive preservation, and restart recovery. The missing adapter would directly improve C03, C05, C09, and C13, provide infrastructure for C04/C07, and create the product execution path required by C10–C12. C01 still has schema-coverage gaps; C02 has a stricter immutability gap; C08 requires a covered-content digest reader.
+FCoP and CodeFlowMu already provide substantial write-side and local-control mechanisms: separate artifacts, atomic publication, role checks, lifecycle gates, dependency blocking, archive preservation, and restart recovery. Product-specific projection would directly improve C03, C05, C09, and C13, provide infrastructure for C04/C07, and create the product execution path required by C10–C12. C01 still has schema-coverage gaps; C02 has a stricter immutability gap; C06 lacks the complete canonical three-valued output pair; C08 requires covered-content digest evidence. CodeFlowMu additionally needs a publicly retrievable pinned source or reproduction package.
 
 # 9. Three-Valued Governance in the Worked Flow
 
@@ -73,11 +73,11 @@ TASK → REPORT → QA REVIEW(needs_human)
 
 The `needs_human` state remains present in the graph and queryable. It is not prematurely represented as done, approved, failed, or rejected. Any downstream object that depends on the unresolved review remains `undetermined` until an authorized decision object is added.
 
-Current CodeFlowMu behavior includes human-attention and waiting states, but complete normalization into this TMPA Core judgment/view model remains an implementation target rather than a fully demonstrated product claim.
+The S0.4 Reference Reader demonstrates this three-valued flow on synthetic fixtures. Current CodeFlowMu behavior includes human-attention and waiting states, but product normalization into the Core judgment/view model remains an implementation target rather than a fully demonstrated product claim.
 
 # 10. Reproducibility and Limitations
 
-The corpus pins implementations, selected field evidence, environment, commands, logs, fixtures, and hashes. It still requires a stable public archive, release checksum, one-command independent setup, and third-party rerun.
+The S0.4 corpus is now public at a stable repository path and includes one-command execution, schemas, profile, fixtures, assertions, outputs, logs, and SHA-256 manifests. Repeated local executions with the fixed execution timestamp produce byte-identical artifacts. The FCoP commit was independently retrieved within this maintenance run and its selected test suites reran successfully; the CodeFlowMu commit was unavailable from the public repository. No third party has rerun or independently validated the corpus.
 
 The baseline does not establish representative SME performance, comparative deployment cost, broad fault tolerance, independent adoption, factual truth of participant claims, authenticated identity, protected storage, or Byzantine resilience. Product and case evidence remain author-produced. The public demonstration and private data-producing system are not asserted to be one reproducible public build.
 
@@ -85,14 +85,13 @@ Required next measurements include installation dependencies and time, first-tea
 
 # 11. Engineering Roadmap
 
-1. Implement a read-only evidence-graph adapter without changing existing write behavior.
-2. Emit canonical candidate, graph, issue, and three-valued judgment outputs.
-3. Execute product-level C08/C10/C11/C12.
-4. Complete partial observation surfaces for C01–C05, C07, C09, and C13.
-5. Publish the conformance corpus with checksums and reproduction instructions.
-6. Measure low-resource deployment, restart, and incremental reconstruction.
-7. Obtain an independent rerun and record all differences.
+1. Implement maintained FCoP and CodeFlowMu projection adapters without changing existing write behavior.
+2. Publish or otherwise make the pinned CodeFlowMu source and reproduction package retrievable.
+3. Execute product-level C08, C10, C11, and C12.
+4. Emit the missing canonical outputs for C01–C07, C09, and C13, including both C06 three-valued branches.
+5. Measure low-resource deployment, restart, and incremental reconstruction.
+6. Obtain an independent rerun and record all differences.
 
 # 12. Evidence Statement
 
-This report provides versioned engineering evidence, not independent validation. Its strongest result is a reproducible boundary statement: at the pinned revisions and selected test paths, C06 and C14 pass; eight criteria have meaningful but incomplete product evidence; four criteria have fixture oracles but no product-reader execution path; no directly executed gating criterion failed. Stronger claims require the missing read-side adapter, broader experiments, and independent reproduction.
+This report provides versioned engineering evidence, not independent validation. Its strongest results are bounded: the public S0.4 Reference Reader passes 14 of 14 synthetic criteria; the pinned product baseline has C14 PASS, nine PARTIAL verdicts, four NOT RUN verdicts, and no observed FAIL. Zero FAIL does not mean complete conformance because four product criteria were not executed and nine remain incomplete. Stronger claims require product projection, CodeFlowMu reproducibility, broader experiments, and independent reproduction.

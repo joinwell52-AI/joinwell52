@@ -1,4 +1,4 @@
-首个作者执行的一致性语料库标识为 `tmpa-draft-v1-c01-c14-20260731`，当前保存在 `tmpa-conformance.zip` 中。它包含 Manifest、标准 Fixture、预期与实际输出、机器可读裁决、Runner、执行日志和 325 文件 SHA-256 证据清单。稳定公开归档、Release Checksum 和独立重跑仍未完成；因此，当前 Package 必须被引用为作者生成证据，而不是独立验证。
+作者执行的 S0.4 一致性语料库标识为 `tmpa-s0.4-fcop-codeflowmu-20260803`，公开位于 [`research/conformance/tmpa-core-s0.4`](https://github.com/joinwell52-AI/joinwell52/tree/main/research/conformance/tmpa-core-s0.4)。它包含 Reference Reader、可执行 Profile、标准 Fixture、产品断言、机器可读裁决、日志、外部运行记录和 SHA-256 Manifest。它仍必须被引用为作者生成证据，而不是独立验证。
 
 # 数据可用性
 
@@ -64,7 +64,7 @@
 
 [27] Richard Kang and Yudho Diponegoro. “Governance Gaps in Agent Interoperability Protocols: What MCP, A2A, and ACP Cannot Express.” arXiv:2606.31498, 2026. `https://arxiv.org/abs/2606.31498`. Accessed 2026-07-30.
 
-[28] TMPA Project. “TMPA Draft V1.0 C01–C14 Conformance Corpus.” Corpus ID `tmpa-draft-v1-c01-c14-20260731`, executed 31 July 2026. Author-produced archive `tmpa-conformance.zip`; contains manifest, 325-file SHA-256 evidence inventory, criterion fixtures and expected/actual outputs, machine-readable verdicts, runners, and execution logs. A stable public archive and independent rerun remain required.
+[28] TMPA Project. “TMPA Core S0.4 C01–C14 Conformance Corpus.” Corpus ID `tmpa-s0.4-fcop-codeflowmu-20260803`, executed 3 August 2026. `research/conformance/tmpa-core-s0.4/`; author-produced Reference Reader, fixtures, product assertions, results, logs, external-run records, and SHA-256 manifest. Independent rerun remains required.
 
 [29] Zexun Wang. “Proof-Carrying Agent Actions: Model-Agnostic Runtime Governance for Heterogeneous Agent Systems.” arXiv:2606.04104, 2026. `https://arxiv.org/abs/2606.04104`. Accessed 2026-07-31.
 

@@ -24,7 +24,7 @@ Research Runtime Scheduler V1.0 是 Research Operating System 唯一正式调度
 |---|---|---:|---|
 | 论文 | [TMPA Architecture Paper](./tmpa-architecture-paper-a0.5) | A0.5 | 学术工作草稿 |
 | 规范 | [TMPA Core Specification](./tmpa-core-specification-s0.4) | S0.4 | 可实现规范草稿 |
-| 案例 | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.4) | I0.4 | 公开工程案例草稿 |
+| 案例 | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.4) | I0.4 | S0.4 工程证据草稿 |
 
 TMPA 出版体系是独立理论层。工场的高频观察笔记不自动构成论文证据；工程案例只报告其明确范围内的实现与验证结果。
 

@@ -24,7 +24,7 @@ The Research Report Production Engine is the ChatGPT-based Research Analyst work
 |---|---|---:|---|
 | Paper | [TMPA Architecture Paper](./tmpa-architecture-paper-a0.5) | A0.5 | Academic working draft |
 | Specification | [TMPA Core Specification](./tmpa-core-specification-s0.4) | S0.4 | Implementation-ready specification draft |
-| Case report | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.4) | I0.4 | Public engineering case draft |
+| Case report | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.4) | I0.4 | S0.4 engineering evidence draft |
 
 The TMPA publication suite is an independent theory layer. High-frequency Observation Notes do not automatically become paper evidence; the implementation case reports only the engineering evidence inside its stated boundary.
 

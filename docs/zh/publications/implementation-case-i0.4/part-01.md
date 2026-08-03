@@ -7,40 +7,38 @@ outline: deep
   image="/assets/covers/implementation-case.svg"
   kicker="工程案例"
   title="TMPA 实施案例"
-  summary="来自 FCoP、CodeFlowMu 与小典 AI 的工程证据，以及锁定版本的 C01–C14 基线。"
+  summary="S0.4 Reference Reader 工程证据，以及 FCoP–CodeFlowMu 锁定基线的 C01–C14 严格重跑。"
   version="I0.4"
-  status="公开工作草稿"
+  status="S0.4 工程证据草稿"
   languageHref="/en/publications/implementation-case-i0.4"
   languageLabel="English"
 />
 
 # TMPA 实施与案例报告
 
-## FCoP、CodeFlowMu、小典 AI 与首个 C01–C14 基线
+## S0.4 Reference Reader、FCoP、CodeFlowMu 与 C01–C14 重跑
 
 > **文档版本：** Draft I0.4<br>
 > **状态：** 作者生成的实施与案例报告<br>
-> **历史证据基线：** TMPA Draft V1.0-R24<br>
-> **报告日期：** 2026-07-31  
-> **编辑修订日期：** 2026-08-03<br>
-> **一致性语料库：** `tmpa-draft-v1-c01-c14-20260731`
+> **规范目标：** TMPA Core S0.4<br>
+> **历史证据基线：** I0.3 / S0.3 语料库<br>
+> **报告与执行日期：** 2026-08-03<br>
+> **一致性语料库：** `tmpa-s0.4-fcop-codeflowmu-20260803`<br>
 > **权威边界：** 本报告只提供工程证据，不具有规范性；TMPA Core 要求仅由 GitHub Core Specification 定义。
-
-**I0.4 修订范围。** 本次修订把当前维护的出版组合统一为 A0.5 / S0.4 / I0.4，更新跨文档路由，并明确产品层、工程层与理论层的关系。它不新增一致性执行，也不把任何历史 S0.3 结果升级为 S0.4 结果。
 
 # 摘要
 
-本报告说明 TMPA 如何从工程实践中形成，以及其定义子集如何通过 FCoP、CodeFlowMu 和小典 AI 的选定证据得到实现。报告严格区分产品机制、观察案例与标准级一致性结果。
+本报告把 Implementation Case 从一个未进入 GitHub 的 S0.3 时代本地归档，推进为公开、可执行的 S0.4 语料库。新增内容包括只读 Reference Reader、确定性 C01–C14 Fixture、可执行 Manifest、规范结果 Envelope、产品证据断言、文件 Digest 与单命令 Runner；同时保留 FCoP、CodeFlowMu 与小典 AI 的工程谱系。
 
 FCoP 实现项目可见的协调 Profile：路由文本工件、生命周期路径、原子 Rename、只增迁移证据、角色绑定、复核、ISSUE、告警和检查报告都保存在临时模型 Session 之外。CodeFlowMu 把 FCoP 用作持久工作身份、任务—报告流、复核门禁、依赖等待、恢复和归档历史的协调与治理基础设施。小典 AI 提供来自受治理 NL2SQL Pipeline 的前规范现场证据，包括被保留的通过路径和拒绝路径。
 
-首个版本锁定的 C01–C14 语料库固定 FCoP `3.2.4`、CodeFlowMu `V1.2.3` 和按 SHA-256 锁定的小典 AI 证据，共记录 325 个证据文件 Hash，产品级结果为 **2 PASS、8 PARTIAL、4 NOT RUN**。没有直接执行的门禁标准失败，但这不是完整一致性。主要工程缺口是统一的只读证据图适配器。
+S0.4 Reference Reader 针对作者生成的合成 Fixture 套件得到 **14 PASS**。单独求值的 FCoP–CodeFlowMu 产品基线得到 **1 PASS、9 PARTIAL、4 NOT RUN、0 FAIL**，聚合裁决为 `PARTIAL`。FCoP `3.2.4` 锁定提交 `da79dfefd99f597c9e422ce9edec22157f915a21` 已直接取回重跑：1,137 项通过、2 项跳过、0 项失败。CodeFlowMu `V1.2.3` 锁定提交 `8f342d028eb66e77d135bea58fdbc7f2d0627e3b` 不存在于公开 `CodeFlowMu-open` 历史，因此只重新裁决 I0.3 已保存证据，不声称完成新的产品执行。
 
 # 1. 范围与证据边界
 
-本报告回答：FCoP 实现了哪些 TMPA 机制；CodeFlowMu 如何使用这些机制；小典 AI 案例证明什么；首轮锁定版本的一致性执行实际建立了什么。本报告只提供工程证据且不具有规范性；当前要求与规范测试名称只由 [TMPA Core Specification S0.4](/zh/publications/tmpa-core-specification-s0.4) 定义，理论由 [Architecture Paper A0.5](/zh/publications/tmpa-architecture-paper-a0.5) 解释。报告中的基线按 S0.3 执行，只保留为历史证据；在重新运行前，它不建立 S0.4 一致性。
+本报告回答：新的 S0.4 Reference Reader 实现了什么；锁定产品证据实际演示了什么；哪些产品要求仍未执行。本报告只提供工程证据且不具有规范性；要求与规范测试名称只由 [TMPA Core Specification S0.4](/zh/publications/tmpa-core-specification-s0.4) 定义，理论由 [Architecture Paper A0.5](/zh/publications/tmpa-architecture-paper-a0.5) 解释。
 
-证据分为 `specified`、`implemented`、`demonstrated` 与 `independently adopted`。当前证据最强在前三层。作者同时是被评估系统的发起者或主要开发者，因此版本与 Hash 必须锁定，PASS/PARTIAL/NOT RUN 必须分开，前置条件失败必须保留，Fixture 成功不能转换为产品一致性，且不能声称独立验证。
+证据仍分为 `specified`、`implemented`、`demonstrated` 与 `independently adopted`。Reference Reader 已实现并由作者演示；产品基线包含混合的 implemented/demonstrated 证据，聚合仍为 `PARTIAL`。Fixture 成功不得转换为 FCoP 或 CodeFlowMu 产品一致性，也不建立独立采用或独立验证。
 
 # 2. 工程谱系与组件边界
 
@@ -114,14 +112,24 @@ NL2SQL 链覆盖授权、意图规范化、Schema/DDL 上下文、SQL 生成、�
 
 被拒绝链保留请求身份、验证阶段、明确结果、耗时、跨 Session 证据以及治理证据与生成 SQL 的分离。它演示真实应用能够保存治理相关记录、重建多阶段链、把拒绝保留为一等结果并展示策略门禁；它不证明完整 TMPA Core 一致性、代表性 SME 性能、独立采用、密码学不可抵赖性或每条记录的事实正确性。
 
-# 6. 首个锁定的 C01–C14 语料库
+# 6. 公开 S0.4 C01–C14 语料库
 
-基线于 `2026-07-31T11:27:28+08:00` 执行，固定 FCoP Package `3.2.4` 与 Commit `da79df...`，CodeFlowMu `V1.2.3` 与 Commit `8f342d...`，以及选定小典 AI Commit/Hash。环境为 Windows 10、Python 3.12.9、Node v24.14.0、AMD64、约 17 GB 内存；证据清单记录 325 个文件。
+I0.3 曾描述本地 `tmpa-conformance.zip`，但该归档、Runner 与 Fixture 并未进入 GitHub 唯一事实源。I0.4 以公开仓库语料库 [`research/conformance/tmpa-core-s0.4`](https://github.com/joinwell52-AI/joinwell52/tree/main/research/conformance/tmpa-core-s0.4) 取代不可用的交付声明；语料库 ID 为 `tmpa-s0.4-fcop-codeflowmu-20260803`。
 
-选定套件报告 222 个 FCoP 测试和 73 个 CodeFlowMu 测试通过。隔离的 CodeFlowMu 身份测试因环境无法准备而 NOT RUN；4 个小典 Report-Auditor 测试作为非门禁证据通过；Guardrail Suite 因缺少 `aiomysql` 未运行。
+语料库刻意分成两条证据轨道：
 
-语料库包括 README、Manifest、Evidence Map、Inventory、Conformance Report、C01–C14 标准目录、Expected/Actual 输出、Runner 与结果文件。Runner 在不修改产品源码或原始证据的情况下重新生成实际输出与结果。
+1. **S0.4 Reference Reader 轨道。** 只读实现消费合成 Fixture，验证公开 S0.4 Schema 与可执行 Profile，重建规范节点、边、问题、判断和视图，再核验 C01–C14 断言。
+2. **锁定产品基线轨道。** 机器可读断言把可取得的 FCoP、CodeFlowMu 与小典证据按更严格的 S0.4 标准重新裁决。Fixture PASS 绝不提升为产品 PASS。
 
-状态语义固定为：PASS 表示固定产品的直接证据和成功门禁执行；PARTIAL 表示存在真实证据但 Core 观察表面不完整；NOT RUN 表示 Fixture 与 Oracle 存在但产品执行路径不存在或不可用；FAIL 表示直接门禁执行或 Fixture 内部预期失败。
+仓库命令为 `npm run tmpa:s0.4:conformance`。它在不修改产品仓库的前提下重新生成标准记录、Reference 与 Product 结果、执行日志、汇总和 SHA-256 文件 Manifest。Runner 对 S0.4 对象与 Reader Result Envelope 进行严格 JSON Schema 验证，并在求值前验证可执行的 Lifecycle/Type/Role/Relation Profile。
 
-产品级结果为：C06、C14 PASS；C01、C02、C03、C04、C05、C07、C09、C13 PARTIAL；C08、C10、C11、C12 NOT RUN。没有直接门禁测试失败，但这不等于全部执行或完整一致性。
+状态语义固定为：PASS 表示该轨道全部强制断言都已执行并匹配；PARTIAL 表示存在真实产品证据，但至少缺少一项 S0.4 必需观察或输出；NOT RUN 表示所需产品执行路径不可用；FAIL 表示已执行的强制断言不匹配。只有产品 C01–C14 全部 PASS 时，产品聚合结果才是 PASS。
+
+FCoP `3.2.4` Commit `da79dfefd99f597c9e422ce9edec22157f915a21` 已直接取回，并在 Python 3.12.13 上重跑：**1,137 项通过、2 项跳过、0 项失败**。CodeFlowMu `V1.2.3` 锁定 Commit `8f342d028eb66e77d135bea58fdbc7f2d0627e3b` 无法从公开 `CodeFlowMu-open` 历史取回，因此 I0.4 将新的 CodeFlowMu 执行记录为 NOT RUN，只把 I0.3 保存的断言用于有边界的重新裁决。
+
+| 证据轨道 | PASS | PARTIAL | NOT RUN | FAIL | 聚合 | 声明级别 |
+|---|---:|---:|---:|---:|---|---|
+| S0.4 Reference Reader Fixture | 14 | 0 | 0 | 0 | PASS | Implemented 且由作者 Demonstrated |
+| FCoP–CodeFlowMu 产品基线 | 1 | 9 | 4 | 0 | PARTIAL | 混合产品证据 |
+
+Reference Reader 结果表明已发布的解释可以执行。它**不**建立 FCoP、CodeFlowMu 或小典对 S0.4 的完整一致性，也不建立独立采用。

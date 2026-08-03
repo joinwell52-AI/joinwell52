@@ -17,9 +17,9 @@ outline: deep
   image="/assets/covers/implementation-case.svg"
   kicker="工程案例"
   title="TMPA 实施案例"
-  summary="来自 FCoP、CodeFlowMu 与小典 AI 的工程证据，以及锁定版本的 C01–C14 基线。"
+  summary="S0.4 Reference Reader 工程证据，以及 FCoP–CodeFlowMu 锁定基线的 C01–C14 严格重跑。"
   version="I0.4"
-  status="公开工作草稿"
+  status="S0.4 工程证据草稿"
   languageHref="/en/publications/implementation-case-i0.4"
   languageLabel="English"
 />

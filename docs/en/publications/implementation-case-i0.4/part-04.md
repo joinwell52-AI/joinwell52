@@ -1,12 +1,12 @@
 # 13. Engineering Conclusion
 
-The pinned corpus converts broad engineering history into a testable baseline. Against fixed versions, two criteria pass directly, eight have partial product evidence, and four were not run at product-reader level. The result is stronger than an unversioned demonstration but weaker than complete or independent conformance.
+The public S0.4 corpus converts broad engineering history into a testable, repository-resident baseline. Its Reference Reader passes all 14 synthetic criteria. Against the pinned products, only C14 passes, nine criteria have partial evidence, and four were not run at product-reader level. The result is stronger than an unversioned demonstration but remains weaker than complete or independent conformance.
 
-The products already contain many write-side and local-control mechanisms; the largest shared gap is deterministic read-side normalization. A read-only evidence-graph adapter, followed by product execution of C08, C10, C11, and C12, is the shortest path from scattered engineering evidence to a stronger implementation claim. Quantified SME deployment cost and independent reproduction remain separate empirical requirements.
+The products already contain many write-side and local-control mechanisms. The new generic reader establishes a deterministic read-side reference, while maintained product projection adapters remain the largest shared gap. Product execution of C08, C10, C11, and C12, completion of the other partial outputs, quantified SME deployment cost, and independent reproduction remain separate empirical requirements.
 
 # Artifact Availability
 
-The author-produced conformance archive is stored as `tmpa-conformance.zip`. It contains the manifest, evidence inventory, fixtures, runners, expected and actual outputs, result records, and logs. A stable public archive is pending.
+The author-produced S0.4 corpus is public at [`research/conformance/tmpa-core-s0.4`](https://github.com/joinwell52-AI/joinwell52/tree/main/research/conformance/tmpa-core-s0.4). It contains the Reference Reader, executable profile, fixtures, product-evidence assertions, external-run records, criterion results, summaries, logs, and SHA-256 manifest. There is no separate `tmpa-conformance.zip`; Git history is the version history.
 
 # Data Availability
 
@@ -34,7 +34,7 @@ The author is the originator or principal developer of TMPA, FCoP, and CodeFlowM
 
 [8] CodeFlowMu. “TMPA Browser” public demonstration. `https://demo.chedian.cc/`. Snapshot observed 2026-07-29.
 
-[9] TMPA Project. “TMPA Draft V1.0 C01–C14 Conformance Corpus.” Corpus ID `tmpa-draft-v1-c01-c14-20260731`, executed 2026-07-31. Author-produced archive `tmpa-conformance.zip`.
+[9] TMPA Project. “TMPA Core S0.4 C01–C14 Conformance Corpus.” Corpus ID `tmpa-s0.4-fcop-codeflowmu-20260803`, executed 2026-08-03. `research/conformance/tmpa-core-s0.4/`.
 
 # Appendix A. FCoP End-to-End Artifact Example
 

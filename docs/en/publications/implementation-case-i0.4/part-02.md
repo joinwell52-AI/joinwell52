@@ -22,14 +22,24 @@ Two captured chains were reported: a vehicle-violation query passed in 26,344 ms
 
 The rejected chain preserves request identity, validation stages, explicit outcome, elapsed time, evidence beyond the session, and separation between governance evidence and generated SQL. It demonstrates that a real application can persist governance-related records, reconstruct a multi-stage chain, retain rejection as a first-class outcome, and display policy gates. It does not establish full TMPA Core conformance, representative SME performance, independent adoption, cryptographic non-repudiation, or factual correctness of every record.
 
-# 6. First Pinned C01–C14 Corpus
+# 6. Public S0.4 C01–C14 Corpus
 
-The consolidated baseline was executed at `2026-07-31T11:27:28+08:00` under corpus ID `tmpa-draft-v1-c01-c14-20260731`. It fixes FCoP package `3.2.4` and commit `da79dfefd99f597c9e422ce9edec22157f915a21`; CodeFlowMu `V1.2.3` and commit `8f342d028eb66e77d135bea58fdbc7f2d0627e3b`; selected XiaoDian AI evidence by commit/hash; Windows 10, Python 3.12.9, Node v24.14.0, AMD64, approximately 17 GB memory; and a 325-file SHA-256 evidence inventory.
+I0.3 described a local `tmpa-conformance.zip`, but that archive, its runner, and its fixtures were not present in the GitHub single source of truth. I0.4 replaces that unavailable delivery claim with the public repository corpus [`research/conformance/tmpa-core-s0.4`](https://github.com/joinwell52-AI/joinwell52/tree/main/research/conformance/tmpa-core-s0.4), corpus ID `tmpa-s0.4-fcop-codeflowmu-20260803`.
 
-The archive contains a README, manifest, evidence map, inventory, conformance report, C01–C14 criterion directories, expected/actual outputs, runners, and result files. The runner regenerates actual outputs and results without modifying product source or original evidence.
+The corpus has two deliberately separate evidence tracks:
 
-Status semantics are strict: PASS means direct fixed-product evidence and a successful gating execution; PARTIAL means genuine evidence exists but part of the Core observation surface is missing; NOT RUN means fixtures and oracle exist but the product execution path was absent or unavailable; FAIL means a direct gating execution or internal fixture expectation failed.
+1. **S0.4 Reference Reader track.** A read-only implementation consumes synthetic fixtures, validates the public S0.4 schemas and executable profile, reconstructs canonical nodes, edges, issues, judgments, and views, then checks C01–C14 assertions.
+2. **Pinned product-baseline track.** Machine-readable assertions re-adjudicate the available FCoP, CodeFlowMu, and XiaoDian evidence against the stricter S0.4 criteria. A fixture PASS is never promoted into a product PASS.
 
-Selected runs reported 222 FCoP tests and 73 CodeFlowMu tests passing. An isolated CodeFlowMu identity test was NOT RUN because its test environment could not be prepared. Four XiaoDian report-auditor tests passed as non-gating evidence, while a guardrail suite was NOT RUN because `aiomysql` was unavailable.
+The repository command is `npm run tmpa:s0.4:conformance`. It regenerates criterion records, reference and product results, an execution log, a summary, and a SHA-256 file manifest without modifying product repositories. The runner uses strict JSON Schema validation for the S0.4 object and reader-result envelopes and validates the executable lifecycle/type/role/relation profile before evaluation.
 
-The aggregate product verdict is **2 PASS, 8 PARTIAL, 4 NOT RUN, 0 FAIL**. The absence of FAIL means no directly gated criterion failed in this run; it does not mean all criteria were executed or passed.
+Status semantics are strict: PASS means all mandatory assertions for that track executed and matched; PARTIAL means genuine product evidence exists but at least one S0.4-required observation or output is missing; NOT RUN means the required product execution path was unavailable; FAIL means an executed mandatory assertion did not match. The product aggregate is PASS only if all C01–C14 product verdicts are PASS.
+
+The FCoP `3.2.4` commit `da79dfefd99f597c9e422ce9edec22157f915a21` was retrieved directly and rerun on Python 3.12.13: **1,137 passed, 2 skipped, 0 failed**. The pinned CodeFlowMu `V1.2.3` commit `8f342d028eb66e77d135bea58fdbc7f2d0627e3b` was not retrievable from the public `CodeFlowMu-open` history, so I0.4 records the new CodeFlowMu run as NOT RUN and uses preserved I0.3 assertions only for bounded re-adjudication.
+
+| Evidence track | PASS | PARTIAL | NOT RUN | FAIL | Aggregate | Claim level |
+|---|---:|---:|---:|---:|---|---|
+| S0.4 Reference Reader fixtures | 14 | 0 | 0 | 0 | PASS | Implemented and author-demonstrated |
+| FCoP–CodeFlowMu product baseline | 1 | 9 | 4 | 0 | PARTIAL | Mixed product evidence |
+
+The Reference Reader result demonstrates that the published interpretation is executable. It does **not** establish that FCoP, CodeFlowMu, or XiaoDian fully conforms to S0.4, and it does not establish independent adoption.

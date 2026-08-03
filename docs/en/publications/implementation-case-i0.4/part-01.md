@@ -7,40 +7,38 @@ outline: deep
   image="/assets/covers/implementation-case.svg"
   kicker="Engineering Case"
   title="TMPA Implementation Case"
-  summary="Engineering evidence from FCoP, CodeFlowMu and XiaoDian AI, including the pinned C01–C14 baseline."
+  summary="S0.4 Reference Reader evidence and a strict C01–C14 rerun of the pinned FCoP–CodeFlowMu baseline."
   version="I0.4"
-  status="Public working draft"
+  status="S0.4 engineering evidence draft"
   languageHref="/zh/publications/implementation-case-i0.4"
   languageLabel="简体中文"
 />
 
 # TMPA Implementation and Case Report
 
-## FCoP, CodeFlowMu, XiaoDian AI, and the First C01–C14 Baseline
+## S0.4 Reference Reader, FCoP, CodeFlowMu, and the C01–C14 Rerun
 
 > **Document Version:** Draft I0.4<br>
 > **Status:** Author-Produced Implementation and Case Report<br>
-> **Historical Evidence Baseline:** TMPA Draft V1.0-R24<br>
-> **Report Date:** 2026-07-31  
-> **Editorial Revision Date:** 2026-08-03<br>
-> **Conformance Corpus:** `tmpa-draft-v1-c01-c14-20260731`
+> **Normative Target:** TMPA Core S0.4<br>
+> **Historical Evidence Baseline:** I0.3 / S0.3 corpus<br>
+> **Report and Execution Date:** 2026-08-03<br>
+> **Conformance Corpus:** `tmpa-s0.4-fcop-codeflowmu-20260803`<br>
 > **Authority Boundary:** This report is evidentiary and non-normative. TMPA Core requirements are defined only by the GitHub Core Specification.
-
-**I0.4 revision scope.** This revision aligns the maintained publication set to A0.5 / S0.4 / I0.4, updates cross-document routes, and makes the product–engineering–theory boundary explicit. It does not add a new conformance run or upgrade any historical S0.3 result to S0.4.
 
 ## Abstract
 
-This report documents how TMPA emerged in engineering practice and how a defined subset is realized through FCoP, CodeFlowMu, and selected XiaoDian AI evidence. It separates product mechanisms, observed cases, and criterion-level conformance results.
+This report advances the implementation case from an unavailable S0.3-era archive to a public, executable S0.4 corpus. It adds a read-only Reference Reader, deterministic C01–C14 fixtures, executable manifests, canonical result envelopes, product-evidence assertions, file digests, and a one-command runner. It also preserves the engineering lineage through FCoP, CodeFlowMu, and selected XiaoDian AI evidence.
 
 FCoP realizes a project-visible coordination profile in which routed textual artifacts, lifecycle paths, atomic rename, append-only transition evidence, role bindings, reviews, issues, alerts, and inspection reports remain available outside transient sessions. CodeFlowMu adopts FCoP for persistent work identities, task/report flows, review gates, dependency waiting, recovery, and archival history. XiaoDian AI contributes pre-specification field evidence from a governed NL2SQL pipeline, including retained pass and rejection paths.
 
-The first version-pinned C01–C14 corpus fixes FCoP `3.2.4` at commit `da79dfefd99f597c9e422ce9edec22157f915a21`, CodeFlowMu `V1.2.3` at commit `8f342d028eb66e77d135bea58fdbc7f2d0627e3b`, and selected XiaoDian evidence by SHA-256. It records 325 evidence-file hashes and reports **2 PASS, 8 PARTIAL, and 4 NOT RUN** at product level. No directly executed gating criterion failed, but this is not full conformance. The dominant gap is a unified read-only evidence-graph adapter.
+The S0.4 Reference Reader reports **14 PASS** against its author-produced synthetic fixture suite. The separately evaluated FCoP–CodeFlowMu product baseline reports **1 PASS, 9 PARTIAL, 4 NOT RUN, and 0 FAIL**, with aggregate verdict `PARTIAL`. FCoP `3.2.4` at commit `da79dfefd99f597c9e422ce9edec22157f915a21` was retrieved and rerun directly: 1,137 tests passed, 2 skipped, and none failed. CodeFlowMu `V1.2.3` commit `8f342d028eb66e77d135bea58fdbc7f2d0627e3b` was not present in the public `CodeFlowMu-open` history, so its preserved I0.3 evidence was re-adjudicated but no fresh product execution is claimed.
 
 # 1. Scope and Evidence Boundary
 
-This report asks which TMPA mechanisms FCoP realizes, how CodeFlowMu uses them, what XiaoDian AI demonstrates, and what the first fixed-version C01–C14 execution established. It is evidentiary and nonnormative; the [TMPA Core Specification S0.4](/en/publications/tmpa-core-specification-s0.4) alone defines the current requirements and canonical test meanings, while the [Architecture Paper A0.5](/en/publications/tmpa-architecture-paper-a0.5) explains the theory. The reported baseline was executed against S0.3; it remains historical evidence and does not establish S0.4 conformance without a new run.
+This report asks what the new S0.4 Reference Reader implements, what the fixed product evidence demonstrates, and which product requirements remain unexecuted. It is evidentiary and nonnormative; the [TMPA Core Specification S0.4](/en/publications/tmpa-core-specification-s0.4) alone defines requirements and canonical test meanings, while the [Architecture Paper A0.5](/en/publications/tmpa-architecture-paper-a0.5) explains the theory.
 
-Evidence classes are **specified**, **implemented**, **demonstrated**, and **independently adopted**. Current evidence is strongest at the first three levels. Because the author is also the originator or principal developer of the evaluated systems, fixed versions and hashes are stated; PASS, PARTIAL, and NOT RUN remain separate; prerequisite failures are retained; fixture success is not converted into product conformance; and no independent-validation claim is made.
+Evidence classes remain **specified**, **implemented**, **demonstrated**, and **independently adopted**. The Reference Reader is implemented and author-demonstrated. The product baseline contains mixed implemented/demonstrated evidence and remains `PARTIAL`. Fixture success is not converted into FCoP or CodeFlowMu product conformance, and no independent-adoption or independent-validation claim is made.
 
 # 2. Engineering Lineage and Component Boundaries
 

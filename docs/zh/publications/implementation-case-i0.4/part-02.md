@@ -9,7 +9,7 @@
 | C03 | 重复对象 ID | PARTIAL | 局部重复与冲突机制已存在，但相同 ID、不同内容的规范隔离视图尚未端到端暴露。 |
 | C04 | 串行流连续性与异步推进 | PARTIAL | 局部排序、依赖等待与异步推进已实现；尚未输出统一规范偏序图与流缺口问题集合。 |
 | C05 | 角色权限 | PARTIAL | 角色、Capability 与操作门禁已存在；全部失败尚未规范化为统一权威 TMPA 问题模型。 |
-| C06 | 生命周期合法性 | PASS | 直接生命周期测试表明非法或未授权迁移保持可观察，且不改变权威状态。 |
+| C06 | 生命周期合法性 | PARTIAL | 直接生命周期测试覆盖非法与未授权迁移，但产品证据尚未同时输出 S0.4 要求的 `ILLEGAL_TRANSITION`/`invalid` 与 `LIFECYCLE_UNDETERMINED`/`undetermined` 两类规范结果。 |
 | C07 | 职责分离 | PARTIAL | 独立报告、复核与 Review Gate 已存在，但身份级分离和例外对象处理尚未完整演示。 |
 | C08 | 完整性篡改 | NOT RUN | Fixture Oracle 已存在；产品级被覆盖内容 Digest 验证与规范篡改 Reader 未执行。 |
 | C09 | 缺失引用 | PARTIAL | 缺失依赖可以阻塞工作，但完整 `undetermined`/partial 图传播与规范问题输出仍不完整。 |
@@ -19,11 +19,11 @@
 | C13 | 恢复 | PARTIAL | 重启与恢复机制已存在，但没有统一的全新 Reader 重建全部责任、生命周期、依赖与问题状态。 |
 | C14 | 终态历史保留 | PASS | 直接 Archive/History 测试保留终态、迁移、先前报告、复核与任务证据。 |
 
-14 个 Fixture Oracle 均匹配预期输出。Fixture 一致性是语料库的必要条件，但不能替代产品执行。
+独立的 S0.4 Reference Reader 轨道通过全部 14 项合成 Fixture 断言。这些结果验证可执行解释与确定性 Runner，不验证表中产品。
 
-# 8. 共同的读取侧缺口
+# 8. 产品投影缺口
 
-PARTIAL 与 NOT RUN 的主要共同原因，是缺少统一的只读证据图适配器：
+Publication 仓库现已包含通用 S0.4 只读 Reference Reader。主要产品缺口因此更具体：两个锁定产品都没有受维护的投影适配器，把各自原生工件转换为该 Reader 消费的 S0.4 来源对象表面。
 
 ```text
 来源工件
@@ -41,7 +41,7 @@ valid / invalid / undetermined 判断
 authoritative / quarantined / partial / disputed / pending_human 视图
 ```
 
-FCoP 与 CodeFlowMu 已具备独立工件、原子发布、角色检查、生命周期门禁、依赖阻塞、Archive 保留和重启恢复等写入侧与局部控制机制。缺失适配器将直接改善 C03、C05、C09、C13，为 C04/C07 提供基础设施，并建立 C10–C12 所需的产品执行路径。C01 仍有 Schema 覆盖缺口，C02 仍有更严格不可变性缺口，C08 需要被覆盖内容的 Digest Reader。
+FCoP 与 CodeFlowMu 已具备独立工件、原子发布、角色检查、生命周期门禁、依赖阻塞、Archive 保留和重启恢复等写入侧与局部控制机制。产品专用投影将直接改善 C03、C05、C09、C13，为 C04/C07 提供基础设施，并建立 C10–C12 所需的产品执行路径。C01 仍有 Schema 覆盖缺口；C02 仍有更严格不可变性缺口；C06 缺少完整的规范三值输出对；C08 需要被覆盖内容的 Digest 证据。CodeFlowMu 还需要可公开取回的锁定源码或复现包。
 
 # 9. Worked Flow 中的三值治理
 
@@ -73,11 +73,11 @@ TASK → REPORT → QA REVIEW(needs_human)
 
 `needs_human` 状态保持在图中并可查询，不得被提前表示为 done、approved、failed 或 rejected。依赖该未解决复核的下游对象保持 `undetermined`，直至增加授权决定对象。
 
-当前 CodeFlowMu 已有等待人工和注意状态，但尚未完整规范化为 TMPA Core 判断/视图模型，因此这里只是实现目标，不是已经完整演示的产品声明。
+S0.4 Reference Reader 已在合成 Fixture 上演示该三值流程。当前 CodeFlowMu 已有等待人工和注意状态，但产品级 Core 判断/视图规范化仍是实现目标，不是已经完整演示的产品声明。
 
 # 10. 可复现性与局限
 
-语料库锁定实现、选定现场证据、环境、命令、日志、Fixture 与 Hash，但仍需要稳定公开归档、Release Checksum、一键独立设置和第三方重跑。
+S0.4 语料库现已位于稳定的公开仓库路径，包含单命令执行、Schema、Profile、Fixture、断言、输出、日志与 SHA-256 Manifest。在固定执行时间戳下重复本地运行可产生字节完全一致的工件。本次维护直接取回 FCoP Commit 并成功重跑选定测试套件；CodeFlowMu Commit 无法从公开仓库取得。尚无第三方重跑或独立验证该语料库。
 
 基线不建立代表性 SME 性能、比较部署成本、广泛容错、独立采用、参与者声明的事实真实性、认证身份、受保护存储或拜占庭韧性。产品与案例证据均由作者产生。公开演示与私有数据生成系统不被声称为同一个可复现公共构建。
 
@@ -85,27 +85,26 @@ TASK → REPORT → QA REVIEW(needs_human)
 
 # 11. 工程路线
 
-1. 实现不改变现有写入行为的只读证据图适配器；
-2. 输出规范候选、治理图、问题集合和三值判断；
+1. 实现受维护的 FCoP 与 CodeFlowMu 投影适配器，同时不改变现有写入行为；
+2. 发布或以其他方式提供可取回的 CodeFlowMu 锁定源码与复现包；
 3. 执行产品级 C08、C10、C11、C12；
-4. 补齐 C01–C05、C07、C09、C13 的部分观察表面；
-5. 发布带 Checksum 与复现说明的语料库；
-6. 测量低资源部署、重启与增量重建；
-7. 获得独立重跑并记录全部差异。
+4. 补齐 C01–C07、C09、C13 的规范输出，包括 C06 两个三值分支；
+5. 测量低资源部署、重启与增量重建；
+6. 获得独立重跑并记录全部差异。
 
 # 12. 证据声明
 
-本报告提供带版本的工程证据，不提供独立验证。最强结论是一个可复现的边界声明：在锁定修订与选定测试路径下，C06 与 C14 PASS；8 项标准具有真实但不完整的产品证据；4 项具有 Fixture Oracle 但没有产品 Reader 执行路径；没有直接执行的门禁标准失败。更强声明需要缺失的读取侧适配器、更广泛实验和独立复现。
+本报告提供带版本的工程证据，不提供独立验证。最强结论有明确边界：公开 S0.4 Reference Reader 通过 14/14 项合成标准；锁定产品基线为 C14 PASS、9 项 PARTIAL、4 项 NOT RUN，未观察到 FAIL。零 FAIL 不等于完整一致性，因为 4 项产品标准未执行，9 项仍不完整。更强声明需要产品投影、CodeFlowMu 可复现性、更广泛实验与独立复现。
 
 # 13. 工程结论
 
-锁定语料库把宽泛工程历史转化为可测试基线。在固定版本下，2 项标准直接 PASS，8 项具有部分产品证据，4 项未在产品 Reader 层运行。该结果强于无版本演示，但弱于完整或独立一致性。
+公开 S0.4 语料库把宽泛工程历史转化为仓库内可测试基线。Reference Reader 通过全部 14 项合成标准；对锁定产品而言，仅 C14 PASS，9 项具有部分证据，4 项未在产品 Reader 层运行。该结果强于无版本演示，但仍弱于完整或独立一致性。
 
-产品已经包含许多写入侧和局部控制机制；最大的共同缺口是确定性读取侧规范化。只读证据图适配器及后续 C08、C10、C11、C12 产品执行，是从分散工程证据走向更强实现声明的最短路径。量化 SME 部署成本与独立复现仍是分开的经验要求。
+产品已经包含许多写入侧和局部控制机制。新的通用 Reader 建立确定性读取侧参考，而受维护的产品投影适配器仍是最大的共同缺口。C08、C10、C11、C12 的产品执行、其他 PARTIAL 输出的补齐、量化 SME 部署成本与独立复现，仍是分开的经验要求。
 
 # 工件可用性
 
-作者生成的一致性归档保存为 `tmpa-conformance.zip`，包含 Manifest、Evidence Inventory、Fixture、Runner、Expected/Actual 输出、结果记录与日志。稳定公共归档仍待完成。
+作者生成的 S0.4 语料库公开位于 [`research/conformance/tmpa-core-s0.4`](https://github.com/joinwell52-AI/joinwell52/tree/main/research/conformance/tmpa-core-s0.4)，包含 Reference Reader、可执行 Profile、Fixture、产品证据断言、外部运行记录、标准结果、汇总、日志和 SHA-256 Manifest。不再存在单独的 `tmpa-conformance.zip`；Git History 即版本历史。
 
 # 数据可用性
 
@@ -133,7 +132,7 @@ TASK → REPORT → QA REVIEW(needs_human)
 
 [8] CodeFlowMu. “TMPA Browser” public demonstration. `https://demo.chedian.cc/`. Snapshot observed 2026-07-29.
 
-[9] TMPA Project. “TMPA Draft V1.0 C01–C14 Conformance Corpus.” Corpus ID `tmpa-draft-v1-c01-c14-20260731`, executed 2026-07-31. Author-produced archive `tmpa-conformance.zip`.
+[9] TMPA Project. “TMPA Core S0.4 C01–C14 Conformance Corpus.” Corpus ID `tmpa-s0.4-fcop-codeflowmu-20260803`, executed 2026-08-03. `research/conformance/tmpa-core-s0.4/`.
 
 # 附录 A：FCoP 端到端工件示例
 
