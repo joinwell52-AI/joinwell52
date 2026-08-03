@@ -1,12 +1,12 @@
 ---
 title: Research Runtime Scheduler V1.0
-description: Research Center 3.0 的唯一正式执行调度器与运行控制平面。
+description: 数字员工工场的正式执行调度器与运行控制平面。
 outline: deep
 ---
 
 <ArticleCover
   image="/assets/covers/research-runtime-scheduler-v1.svg"
-  kicker="Research Center 3.0 · Runtime 正式发布"
+  kicker="数字员工工场 · Runtime 正式发布"
   title="Research Runtime Scheduler V1.0"
   summary="Research Operating System 唯一正式调度器、可观测层与发布门禁。"
   version="V1.0"
@@ -17,7 +17,7 @@ outline: deep
 
 ## 发布声明
 
-**Research Runtime Scheduler V1.0** 正式把 **Research Runtime Center** 建立为 Research Center 3.0 的运行控制平面。
+**Research Runtime Scheduler V1.0** 正式把**工场运行中心**建立为数字员工工场的运行控制平面。
 
 Research OS 继续定义研究工作应该怎样流转；Runtime Scheduler 负责何时开启正式工作、记录实际执行、通过自动 Dashboard 暴露状态，并在 Publication 成为正式运行结果之前强制完成 GitHub Commit Verify。
 
@@ -29,7 +29,7 @@ Research OS 继续定义研究工作应该怎样流转；Runtime Scheduler 负�
 |---|---|
 | 能力 | Research Runtime Scheduler |
 | 版本 | V1.0 |
-| Research Center | 3.0 |
+| 数字员工工场 | 持续生产 |
 | Runtime 时区 | `Asia/Shanghai` |
 | 数字研究员 | 运行于 ChatGPT 的研究报告生产机 V1.0 |
 | 唯一事实源 | GitHub 仓库 `joinwell52-AI/joinwell52` |
@@ -57,7 +57,7 @@ Runtime Record
         ↓
 GitHub Commit + Commit Verify
         ↓
-Research Center
+数字员工工场
 ```
 
 Scheduler 负责建立受治理的执行槽位，对应的 ChatGPT Runtime Worker 负责完成研究。触发不等于完成：没有真实输出和验证时，Runtime 必须保持 Waiting、Blocked 或 Failed。
@@ -92,7 +92,7 @@ Running · Completed · Blocked · Failed · Skipped · Waiting
 
 ## Runtime Center 网站
 
-Research Center 3.0 新增自动生成的 Runtime Center：
+数字员工工场提供自动生成的工场运行中心：
 
 - Runtime Status；
 - Today’s Tasks；

@@ -1,5 +1,5 @@
 ---
-title: Open-source Engineering Research Notes
+title: Open-source Engineering Observation Notes
 layout: page
 sidebar: false
 aside: false

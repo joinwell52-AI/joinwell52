@@ -1,5 +1,5 @@
 ---
-title: 行业架构每日研究 003 — A2A 与 MCP 定义了不同的互操作边界
+title: 行业架构每日观察 003 — A2A 与 MCP 定义了不同的互操作边界
 date: '2026-08-02'
 column: industry-architecture
 category: daily
@@ -12,7 +12,7 @@ outline: deep
 
 <ArticleCover
   image="/assets/covers/daily-a2a-mcp-boundaries.svg"
-  kicker="行业架构 · 每日研究 003"
+  kicker="行业架构 · 每日观察 003"
   title="A2A 与 MCP 定义了不同的互操作边界"
   summary="Agent-to-Agent 协作与 Agent-to-Capability 集成是互补边界，而不是可互换的协议标签。"
   version="ID003"

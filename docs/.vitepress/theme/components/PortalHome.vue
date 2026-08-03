@@ -11,31 +11,31 @@ const t = computed(() => zh.value ? {
   eyebrow: 'RESEARCH CENTER 2.0 · 持续运行的 AI 研究中心',
   title1: '一个正在工作的', title2: '数字研究员。',
   intro: '研究报告生产机 V1.0 运行于 ChatGPT，通过 Research OS、Research Skills、Research Queue 与 GitHub-first Workflow 持续发现、研究、验证并发布成果。',
-  primary: '查看 V1.0 正式发布', secondary: '进入研究笔记',
+  primary: '查看 V1.0 正式发布', secondary: '进入观察笔记',
   osKicker: '01 / RESEARCH OPERATING SYSTEM', osTitle: '研究不是文章生成，而是一套持续运行的系统', osLead: 'Research OS 统一管理 Signal、Queue、Reading、Analysis、Publication 与 Release。Skills 是执行引擎，GitHub 是唯一事实源。',
   employeeKicker: '02 / DIGITAL RESEARCH EMPLOYEE', employeeTitle: '研究报告生产机 V1.0', employeeLead: '一个基于 ChatGPT 的 Research Analyst 岗位：有职责、有技能、有工作队列、有发布门禁，也有可验证的工作记录。',
   programsKicker: '03 / 研究计划', programsTitle: '理论、协议、Runtime 与应用', programsLead: '数字研究员持续提供研究输入，长期计划把研究沉淀为架构、协议、Runtime 与产品。',
-  notesKicker: '04 / 研究笔记', notesTitle: '三个长期研究栏目', notesLead: '研究笔记是数字研究员持续生产的核心成果。篇数、类别和顺序全部来自 GitHub Markdown 元数据。',
+  notesKicker: '04 / 观察笔记', notesTitle: '三个长期观察栏目', notesLead: '观察笔记是数字员工运行时留下的高频记录。篇数、类别和顺序全部来自 GitHub Markdown 元数据。',
   latestKicker: '05 / 最新研究', latestTitle: '最近发布', latestLead: '按日期自动排序，不维护第二套首页文章清单。',
   pubKicker: '06 / 出版中心', pubTitle: '能力、论文、规范与工程证据', pubLead: '研究报告生产机作为正式数字员工能力发布；TMPA 论文、核心规范与工程案例继续独立维护。',
   timelineKicker: '07 / 研究生命周期', timelineTitle: '从 Signal 到可验证 Release',
   manifesto: '数字员工不是一个会聊天的 AI。', manifesto2: '它拥有岗位、技能、流程、标准和可验证成果。',
-  allNotes: '全部研究笔记', openColumn: '进入栏目', release: '正式发布', evidence: '生产证据',
+  allNotes: '全部观察笔记', openColumn: '进入栏目', release: '正式发布', evidence: '生产证据',
   publicationCenter: '进入出版中心', switchText: 'Switch to English'
 } : {
   eyebrow: 'RESEARCH CENTER 2.0 · CONTINUOUSLY OPERATING AI RESEARCH',
   title1: 'A working', title2: 'Digital Research Employee.',
   intro: 'Research Report Production Engine V1.0 runs on ChatGPT and continuously discovers, studies, verifies and publishes research through Research OS, Research Skills, Research Queue and a GitHub-first workflow.',
-  primary: 'View the V1.0 release', secondary: 'Explore Research Notes',
+  primary: 'View the V1.0 release', secondary: 'Explore Observation Notes',
   osKicker: '01 / RESEARCH OPERATING SYSTEM', osTitle: 'Research is not article generation. It is an operating system.', osLead: 'Research OS governs Signal, Queue, Reading, Analysis, Publication and Release. Skills are the execution engine; GitHub is the single source of truth.',
   employeeKicker: '02 / DIGITAL RESEARCH EMPLOYEE', employeeTitle: 'Research Report Production Engine V1.0', employeeLead: 'A Research Analyst position built on ChatGPT—with responsibilities, skills, a work queue, publication gates and verifiable operating records.',
   programsKicker: '03 / PROGRAMS', programsTitle: 'Theory, protocol, runtime and application', programsLead: 'The Digital Research Employee supplies continuous research input; long-term programs turn it into architecture, protocols, runtimes and products.',
-  notesKicker: '04 / RESEARCH NOTES', notesTitle: 'Three long-term research columns', notesLead: 'Research Notes are the Digital Research Employee’s continuously produced core outputs. Counts, categories and order come directly from GitHub Markdown metadata.',
+  notesKicker: '04 / OBSERVATION NOTES', notesTitle: 'Three long-term observation columns', notesLead: 'Observation Notes are high-frequency records left by the Digital Employee while it operates. Counts, categories and order come directly from GitHub Markdown metadata.',
   latestKicker: '05 / LATEST RESEARCH', latestTitle: 'Recently published', latestLead: 'Automatically sorted by date, with no second homepage article database.',
   pubKicker: '06 / PUBLICATION CENTER', pubTitle: 'Capabilities, papers, specifications and engineering evidence', pubLead: 'The Research Report Production Engine is released as a formal Digital Employee capability; TMPA publications remain independently maintained.',
   timelineKicker: '07 / RESEARCH LIFECYCLE', timelineTitle: 'From Signal to a verifiable Release',
   manifesto: 'A Digital Employee is not a chatbot.', manifesto2: 'It has a position, skills, workflow, standards and verifiable work.',
-  allNotes: 'All Research Notes', openColumn: 'Open column', release: 'Formal release', evidence: 'Production evidence',
+  allNotes: 'All Observation Notes', openColumn: 'Open column', release: 'Formal release', evidence: 'Production evidence',
   publicationCenter: 'Publication center', switchText: '切换到简体中文'
 })
 
@@ -234,7 +234,7 @@ const categoryLabel = (category: ResearchCategory) => {
             <div class="rcv5-responsibility-grid">
               <article><span>01–02</span><h3>{{ zh ? '发现与筛选' : 'Discover & Triage' }}</h3><p>{{ zh ? '寻找真正值得研究的同行、论文、产品与工程，并进入 Queue 评分。' : 'Find relevant peers, papers, products and engineering work, then score them through the Queue.' }}</p></article>
               <article><span>03–04</span><h3>{{ zh ? '阅读与分析' : 'Read & Analyze' }}</h3><p>{{ zh ? '阅读一手资料，区分 Facts、Claims、Observation 与 Research Judgment。' : 'Read primary material and separate facts, claims, observation and Research Judgment.' }}</p></article>
-              <article><span>05–06</span><h3>{{ zh ? '写作与可视化' : 'Write & Visualize' }}</h3><p>{{ zh ? '生产独立中英文 Research Notes、Cover、Diagram、Table 与 Timeline。' : 'Produce independent English and Chinese Research Notes, covers, diagrams, tables and timelines.' }}</p></article>
+              <article><span>05–06</span><h3>{{ zh ? '写作与可视化' : 'Write & Visualize' }}</h3><p>{{ zh ? '生产独立中英文观察笔记、Cover、Diagram、Table 与 Timeline。' : 'Produce independent English and Chinese Observation Notes, covers, diagrams, tables and timelines.' }}</p></article>
               <article><span>07–08</span><h3>{{ zh ? '证据与发布' : 'Evidence & Publish' }}</h3><p>{{ zh ? '校验引用、Metadata、语言链接和 Build Gate，并发布到 GitHub main。' : 'Validate references, metadata, language links and build gates, then publish to GitHub main.' }}</p></article>
             </div>
             <article class="rcv5-production-proof">

@@ -17,10 +17,10 @@ import './portal-v5-language.css'
 import './article-cover.css'
 
 const zhRuntimeText: Record<string, string> = {
-  'RESEARCH RUNTIME CENTER · 运行控制平面': '研究运行中心 · 运行控制平面',
-  'Research Runtime Center': '研究运行中心',
-  'RESEARCH CENTER 3.0': 'JOINWELL52 研究中心',
-  '进入 Runtime Center': '进入研究运行中心',
+  'RESEARCH RUNTIME CENTER · 运行控制平面': '工场运行中心 · 运行控制平面',
+  'Research Runtime Center': '工场运行中心',
+  'RESEARCH CENTER 3.0': '数字员工工场',
+  '进入 Runtime Center': '进入工场运行中心',
   '查看 Runtime Charter': '查看运行章程',
   'Runtime Timeline': '运行时间线',
   '七个正式 Runtime 任务': '七个正式运行任务',
@@ -113,7 +113,7 @@ function enhancePortal() {
   const chinese = window.location.pathname.includes(`${siteBase}zh/`)
 
   document.querySelectorAll<HTMLElement>('.VPNavBarTitle .title span').forEach((title) => {
-    title.textContent = chinese ? 'JOINWELL52 研究中心' : 'JOINWELL52 Research Center'
+    title.textContent = chinese ? '数字员工工场' : 'Digital Employee Works'
   })
 
   document.querySelectorAll<HTMLAnchorElement>('.rcv5 a[href^="/"]').forEach((anchor) => {

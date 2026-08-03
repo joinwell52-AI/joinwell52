@@ -1,8 +1,8 @@
 ---
 layout: home
 pageClass: portal-v5-page
-title: JOINWELL52 研究中心 — Research Runtime Center
-description: 一个由 Research Runtime Scheduler V1.0 统一治理、由经过生产验证的数字研究员持续运行的 AI 研究中心。
+title: 数字员工工场 — 可核验的数字员工生产线
+description: 一个持续交付可核验数字员工工作成果、运行证据、观察笔记与正式出版物的受治理工场。
 ---
 
 <ResearchCenterHome lang="zh" />

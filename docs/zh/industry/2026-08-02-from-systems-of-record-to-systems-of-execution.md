@@ -1,5 +1,5 @@
 ---
-title: 行业架构每周报告 002 — 企业软件正从记录系统走向执行系统
+title: 行业架构观察周报 002 — 企业软件正从记录系统走向执行系统
 date: '2026-08-02'
 column: industry-architecture
 category: weekly
@@ -13,7 +13,7 @@ outline: deep
 
 <ArticleCover
   image="/assets/covers/industry-weekly-002.svg"
-  kicker="行业架构 · 每周报告 002"
+  kicker="行业架构 · 观察周报 002"
   title="企业软件正从记录系统走向执行系统"
   summary="Oracle、Salesforce 与 ServiceNow 正把 Agent 嵌入业务对象、工作流、权限、审批与审计。"
   version="IW002"

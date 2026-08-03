@@ -1,5 +1,5 @@
 ---
-title: 研究笔记
+title: 观察笔记
 layout: page
 sidebar: false
 aside: false

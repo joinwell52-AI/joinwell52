@@ -1,5 +1,5 @@
 ---
-title: 数字员工每日研究 001 — Agent 能力之前，先有岗位、所有权与权限
+title: 数字员工每日观察 001 — Agent 能力之前，先有岗位、所有权与权限
 date: '2026-08-02'
 column: digital-employee
 category: daily
@@ -11,7 +11,7 @@ sources:
 outline: deep
 ---
 
-# 数字员工每日研究 001 — Agent 能力之前，先有岗位、所有权与权限
+# 数字员工每日观察 001 — Agent 能力之前，先有岗位、所有权与权限
 
 ## Summary
 

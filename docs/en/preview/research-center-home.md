@@ -1,8 +1,8 @@
 ---
 layout: home
 pageClass: portal-v5-page
-title: JOINWELL52 Research Center New Homepage Preview
-description: Standalone review preview for the new bilingual JOINWELL52 Research Center homepage.
+title: Digital Employee Works Homepage Preview
+description: Standalone review preview for the bilingual Digital Employee Works homepage.
 head:
   - - meta
     - name: robots

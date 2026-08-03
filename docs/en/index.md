@@ -1,8 +1,8 @@
 ---
 layout: home
 pageClass: portal-v5-page
-title: JOINWELL52 Research Center — Research Runtime Center
-description: A continuously operating AI Research Center governed by Research Runtime Scheduler V1.0 and powered by a production-verified Digital Research Employee.
+title: Digital Employee Works — Verifiable Digital Employee Production
+description: A governed production line that continuously delivers verifiable Digital Employee work, runtime evidence, Observation Notes and formal publications.
 ---
 
 <ResearchCenterHome lang="en" />

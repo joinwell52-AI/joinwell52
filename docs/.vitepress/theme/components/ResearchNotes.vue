@@ -57,7 +57,7 @@ const columns: Array<{
 
 const categories: Array<{ key: 'all' | ResearchCategory; en: string; zh: string }> = [
   { key: 'all', en: 'All notes', zh: '全部笔记' },
-  { key: 'daily', en: 'Daily Research', zh: '每日研究' },
+  { key: 'daily', en: 'Daily Observation', zh: '每日观察' },
   { key: 'weekly', en: 'Weekly Synthesis', zh: '每周综合' },
   { key: 'academic', en: 'Academic Observation', zh: '学术观察' }
 ]
@@ -123,22 +123,22 @@ const clearDate = () => {
   <div class="rn-shell">
     <section class="rn-hero">
       <div class="rn-hero-copy">
-        <span>RESEARCH NOTES</span>
+        <span>OBSERVATION NOTES</span>
         <h1 v-if="currentColumn">{{ zh ? currentColumn.zh : currentColumn.en }}</h1>
-        <h1 v-else>{{ zh ? '研究笔记' : 'Research Notes' }}</h1>
+        <h1 v-else>{{ zh ? '观察笔记' : 'Observation Notes' }}</h1>
         <p v-if="currentColumn">{{ zh ? currentColumn.zhDescription : currentColumn.enDescription }}</p>
         <p v-else>{{ zh
-          ? 'Research OS 负责持续产出，GitHub 保存唯一事实，网站依据 column、category 与 date 元数据自动组织和展示。'
-          : 'Research OS produces continuously, GitHub preserves the single source of truth, and the site organizes everything from column, category and date metadata.'
+          ? '数字员工在持续工作中记录外部动态与工作判断；GitHub 保存唯一事实，网站依据 column、category 与 date 元数据自动组织和展示。'
+          : 'The Digital Employee records external developments and working judgments while operating. GitHub preserves the single source of truth, and the site organizes notes from column, category, and date metadata.'
         }}</p>
       </div>
       <div class="rn-hero-stat">
         <strong>{{ currentColumn ? currentColumnNotes.length : localizedNotes.length }}</strong>
-        <span>{{ zh ? '篇研究笔记' : 'research notes' }}</span>
+        <span>{{ zh ? '篇观察笔记' : 'observation notes' }}</span>
       </div>
     </section>
 
-    <nav class="rn-column-nav" :aria-label="zh ? '研究栏目' : 'Research columns'">
+    <nav class="rn-column-nav" :aria-label="zh ? '观察栏目' : 'Observation columns'">
       <a :class="{ active: !currentColumn }" :href="withBase(zh ? '/zh/research/' : '/en/research/')">
         <span>ALL</span><b>{{ zh ? '全部' : 'All notes' }}</b>
       </a>
@@ -153,7 +153,7 @@ const clearDate = () => {
     </nav>
 
     <template v-if="!currentColumn">
-      <section class="rn-columns" aria-label="Research columns">
+      <section class="rn-columns" aria-label="Observation columns">
         <a
           v-for="columnItem in columns"
           :key="columnItem.key"
@@ -177,7 +177,7 @@ const clearDate = () => {
       </section>
 
       <div class="rn-section-title">
-        <div><span>LATEST</span><h2>{{ zh ? '最新研究笔记' : 'Latest Research Notes' }}</h2></div>
+        <div><span>LATEST</span><h2>{{ zh ? '最新观察笔记' : 'Latest Observation Notes' }}</h2></div>
         <small>{{ zh ? '按日期倒序' : 'Newest first' }}</small>
       </div>
     </template>
@@ -199,7 +199,7 @@ const clearDate = () => {
 
         <div class="rn-toolbar">
           <div>
-            <b>{{ zh ? '研究笔记列表' : 'Research note list' }}</b>
+            <b>{{ zh ? '观察笔记列表' : 'Observation note list' }}</b>
             <span>{{ zh ? `当前显示 ${visibleNotes.length} 篇，默认按日期倒序` : `${visibleNotes.length} shown, sorted newest first` }}</span>
           </div>
           <label>
@@ -228,8 +228,8 @@ const clearDate = () => {
     </section>
 
     <section v-else class="rn-empty">
-      <strong>{{ zh ? '没有匹配的研究笔记' : 'No matching research notes' }}</strong>
-      <p>{{ zh ? '清除日期或类别筛选，或等待 Research OS 发布新的研究笔记。' : 'Clear the date or category filter, or wait for the Research OS to publish a new note.' }}</p>
+      <strong>{{ zh ? '没有匹配的观察笔记' : 'No matching observation notes' }}</strong>
+      <p>{{ zh ? '清除日期或类别筛选，或等待数字员工发布新的观察笔记。' : 'Clear the date or category filter, or wait for the Digital Employee to publish a new Observation Note.' }}</p>
     </section>
   </div>
 </template>

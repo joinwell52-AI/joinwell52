@@ -1,17 +1,17 @@
-# joinwell52 Research Center 3.0
+# 数字员工工场
 
-> **一个由 Research Runtime 统一治理、由数字研究员持续运行的 AI 研究中心**
+> **一条持续生产可核验数字员工工作成果的受治理产线**
 
 [English](./README.md) · **简体中文**
 
-[![研究中心](https://img.shields.io/badge/Research_Center-3.0-1f6feb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/)
+[![数字员工工场](https://img.shields.io/badge/数字员工-工场-1f6feb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/)
 [![Runtime](https://img.shields.io/badge/Research_Runtime_Scheduler-V1.0-7c6cff?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/publications/research-runtime-scheduler-v1.0)
 [![数字研究员](https://img.shields.io/badge/研究报告生产机-V1.0-6d5dfc?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/publications/research-report-production-engine-v1.0)
 [![状态](https://img.shields.io/badge/Runtime_Record-Required-16a34a?style=for-the-badge)](./research/runtime/README.md)
 
-## Research Center 3.0
+## 数字员工工场
 
-joinwell52 Research Center 是一个拥有唯一正式运行控制平面的持续研究系统。
+数字员工工场通过唯一正式运行控制平面持续生产可核验的数字员工工作成果。CodeFlowMu 与 FCoP 提供工程能力底座，TMPA 作为独立自证的理论与规范层维护。
 
 ```text
 Research Operating System
@@ -27,7 +27,7 @@ Research Skills + Research Queue + Runtime Knowledge
         ↓
 GitHub Commit + Commit Verify
         ↓
-Research Notes、Architecture、Specification 与 Formal Release
+观察笔记、运行证据、Specification 与 Formal Release
 ```
 
 Research Runtime Scheduler V1.0 是 Research Operating System 唯一正式调度器。单个自动任务只是 Runtime Worker，不再各自构成运行中心。
@@ -60,7 +60,7 @@ Runtime Record
         ↓
 GitHub
         ↓
-Research Center Website
+数字员工工场网站
 ```
 
 [`research/runtime/SCHEDULER.json`](./research/runtime/SCHEDULER.json) 固定七个正式 Runtime 任务：
@@ -75,7 +75,7 @@ Research Center Website
 | Research Runtime Weekly | 每周日 20:30 | 形成新的综合与工程判断。 |
 | Research Runtime Academic | 每周三 10:00 | 发布 Paper、Benchmark、Specification 与 Institution 研究。 |
 
-原任务正文写“六类”，但实际明确规定了七项职责。Research Center 3.0 以七个正式任务为准。
+原任务正文写“六类”，但实际明确规定了七项职责。数字员工工场以七项正式生产职责为准。
 
 ## Runtime Record——运行事实
 
@@ -146,7 +146,7 @@ Production Test V1 实际生产了三个 Daily Research 对象、三个 Academic
 
 ## 唯一事实源
 
-本仓库是 joinwell52 Research Center 唯一权威研究数据库、Runtime Record 与出版历史。
+本仓库是数字员工工场唯一权威的生产数据库、Runtime Record、观察档案与出版历史。
 
 Git Commit、Diff、Pull Request、CI Result、Tag 与 Release 构成正式历史。生成文本不等于正式成果；只有通过相应 Runtime 与 Publication Gate 才属于正式运行结果。
 
@@ -169,9 +169,9 @@ Git Commit、Diff、Pull Request、CI Result、Tag 与 Release 构成正式历�
 - [TMPA–FCoP–CodeFlowMu Implementation Case — I0.4](./docs/zh/publications/implementation-case-i0.4.md)
 - [出版中心](https://joinwell52-ai.github.io/joinwell52/zh/publications/)
 
-## 研究笔记模型
+## 观察笔记模型
 
-Research Notes 由两个相互独立的元数据维度组织：
+观察笔记为兼容历史 Schema 保留 `Research Note` 内部名称，并由两个相互独立的元数据维度组织：
 
 ```yaml
 column: digital-employee | industry-architecture | open-source-engineering
@@ -185,11 +185,11 @@ date: YYYY-MM-DD
 - [行业架构](https://joinwell52-ai.github.io/joinwell52/zh/industry/)
 - [开源工程观察](https://joinwell52-ai.github.io/joinwell52/zh/engineering/)
 
-## 核心研究计划
+## 产品、工程与理论层
 
-- **TMPA：** AI 工作数据与治理架构；
-- **FCoP：** 正式协作与责任协议；
-- **CodeFlowMu：** 数字员工开发与工作 Runtime；
+- **Digital Employee：** 产品与交付层；
+- **CodeFlowMu / FCoP：** Runtime 与协议工程层；
+- **TMPA：** 独立维护的治理理论与规范层；
 - **Digital Employee：** 面向组织岗位的受治理数字劳动力。
 
 ## 仓库结构
@@ -227,4 +227,4 @@ date: YYYY-MM-DD
 **朱卫 / Zhu Wei · joinwell52-AI**  
 独立研究者
 
-Research Center：https://joinwell52-ai.github.io/joinwell52/zh/
+数字员工工场：https://joinwell52-ai.github.io/joinwell52/zh/

@@ -1,5 +1,5 @@
 ---
-title: 数字员工研究笔记
+title: 数字员工观察笔记
 layout: page
 sidebar: false
 aside: false

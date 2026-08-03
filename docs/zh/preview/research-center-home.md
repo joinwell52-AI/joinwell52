@@ -1,8 +1,8 @@
 ---
 layout: home
 pageClass: portal-v5-page
-title: JOINWELL52 研究中心新首页预览
-description: JOINWELL52 研究中心新版中英文首页的独立评审预览页面。
+title: 数字员工工场首页预览
+description: 数字员工工场中英文首页的独立评审预览页面。
 head:
   - - meta
     - name: robots

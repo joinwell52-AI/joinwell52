@@ -1,5 +1,5 @@
 ---
-title: Research Notes
+title: Observation Notes
 layout: page
 sidebar: false
 aside: false

@@ -1,5 +1,5 @@
 ---
-title: 数字员工每日研究 002 — 控制面与工作 Runtime 是两个不同系统
+title: 数字员工每日观察 002 — 控制面与工作 Runtime 是两个不同系统
 date: '2026-08-02'
 column: digital-employee
 category: daily
@@ -11,7 +11,7 @@ sources:
 outline: deep
 ---
 
-# 数字员工每日研究 002 — 控制面与工作 Runtime 是两个不同系统
+# 数字员工每日观察 002 — 控制面与工作 Runtime 是两个不同系统
 
 ## Summary
 
