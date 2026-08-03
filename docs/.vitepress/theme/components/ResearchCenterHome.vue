@@ -33,7 +33,7 @@ const copy = computed(() => zh.value ? {
   tmpaLead: 'TMPA（文本多智能体流程架构）是面向中小企业 AI 协同治理的极简基础设施文本规范。主论文解释架构，核心规范固定对象与读者行为，工程案例公开实现证据及其边界。',
   publications: [
     { version:'A0.5', kind:'主论文', title:['TMPA','架构论文'], status:'版本持续修订', path:'/zh/publications/tmpa-architecture-paper-a0.5', tone:'paper' },
-    { version:'S0.3', kind:'核心规范', title:['TMPA','核心规范'], status:'版本持续修订', path:'/zh/publications/tmpa-core-specification-s0.3', tone:'spec' },
+    { version:'S0.4', kind:'核心规范', title:['TMPA','核心规范'], status:'可实现规范草稿', path:'/zh/publications/tmpa-core-specification-s0.4', tone:'spec' },
     { version:'I0.3', kind:'工程案例', title:['TMPA–FCoP–','CodeFlowMu','实现案例'], status:'版本持续修订', path:'/zh/publications/implementation-case-i0.3', tone:'case' }
   ],
   readPublication: '阅读正式文档',
@@ -105,7 +105,7 @@ const copy = computed(() => zh.value ? {
   tmpaLead: 'TMPA is the Textual Multi-Agent Process Architecture: a minimal-infrastructure textual specification for SME AI collaboration governance. The paper explains the architecture, the Core specification fixes objects and reader behavior, and the case publishes implementation evidence and its limits.',
   publications: [
     { version:'A0.5', kind:'PRIMARY PAPER', title:['TMPA','Architecture Paper'], status:'Version under revision', path:'/en/publications/tmpa-architecture-paper-a0.5', tone:'paper' },
-    { version:'S0.3', kind:'CORE SPECIFICATION', title:['TMPA Core','Specification'], status:'Version under revision', path:'/en/publications/tmpa-core-specification-s0.3', tone:'spec' },
+    { version:'S0.4', kind:'CORE SPECIFICATION', title:['TMPA Core','Specification'], status:'Implementation-ready draft', path:'/en/publications/tmpa-core-specification-s0.4', tone:'spec' },
     { version:'I0.3', kind:'ENGINEERING CASE', title:['TMPA–FCoP–','CodeFlowMu','Implementation Case'], status:'Version under revision', path:'/en/publications/implementation-case-i0.3', tone:'case' }
   ],
   readPublication: 'Read formal document',
