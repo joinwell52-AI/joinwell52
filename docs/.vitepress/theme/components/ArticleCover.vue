@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { withBase } from 'vitepress'
 
 defineProps<{
@@ -13,11 +14,18 @@ defineProps<{
 }>()
 
 const localLink = (path?: string) => path ? withBase(path) : '#'
+const coverShape = ref<'portrait' | 'landscape' | 'square' | 'pending'>('pending')
+
+function detectCoverShape(event: Event) {
+  const image = event.currentTarget as HTMLImageElement
+  const ratio = image.naturalWidth / image.naturalHeight
+  coverShape.value = ratio < .9 ? 'portrait' : ratio > 1.1 ? 'landscape' : 'square'
+}
 </script>
 
 <template>
-  <header class="article-v5-cover">
-    <img :src="withBase(image)" :alt="title">
+  <header class="article-v5-cover" :class="`article-v5-cover--${coverShape}`">
+    <img :src="withBase(image)" :alt="title" @load="detectCoverShape">
     <div class="article-v5-meta">
       <span>{{ kicker }}</span>
       <h1>{{ title }}</h1>
