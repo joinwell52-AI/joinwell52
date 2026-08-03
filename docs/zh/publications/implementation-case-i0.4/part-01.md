@@ -1,5 +1,5 @@
 ---
-title: TMPA–FCoP–CodeFlowMu 实施案例 — 草稿 I0.3
+title: TMPA–FCoP–CodeFlowMu 实施案例 — 草稿 I0.4
 outline: deep
 ---
 
@@ -8,9 +8,9 @@ outline: deep
   kicker="工程案例"
   title="TMPA 实施案例"
   summary="来自 FCoP、CodeFlowMu 与小典 AI 的工程证据，以及锁定版本的 C01–C14 基线。"
-  version="I0.3"
+  version="I0.4"
   status="公开工作草稿"
-  languageHref="/en/publications/implementation-case-i0.3"
+  languageHref="/en/publications/implementation-case-i0.4"
   languageLabel="English"
 />
 
@@ -18,13 +18,15 @@ outline: deep
 
 ## FCoP、CodeFlowMu、小典 AI 与首个 C01–C14 基线
 
-> **文档版本：** Draft I0.3  
-> **状态：** 作者生成的实施与案例报告  
+> **文档版本：** Draft I0.4<br>
+> **状态：** 作者生成的实施与案例报告<br>
 > **历史证据基线：** TMPA Draft V1.0-R24<br>
 > **报告日期：** 2026-07-31  
-> **编辑修订日期：** 2026-08-02<br>
+> **编辑修订日期：** 2026-08-03<br>
 > **一致性语料库：** `tmpa-draft-v1-c01-c14-20260731`
 > **权威边界：** 本报告只提供工程证据，不具有规范性；TMPA Core 要求仅由 GitHub Core Specification 定义。
+
+**I0.4 修订范围。** 本次修订把当前维护的出版组合统一为 A0.5 / S0.4 / I0.4，更新跨文档路由，并明确产品层、工程层与理论层的关系。它不新增一致性执行，也不把任何历史 S0.3 结果升级为 S0.4 结果。
 
 # 摘要
 

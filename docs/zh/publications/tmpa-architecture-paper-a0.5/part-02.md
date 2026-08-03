@@ -249,7 +249,7 @@ Digest 与签名证据必须被窄化解释。Digest 可以揭示被覆盖字节
 
 # 7. 评估结果
 
-独立维护的 [TMPA Core Specification S0.4](/zh/publications/tmpa-core-specification-s0.4) 仍是 C01–C14 及全部 SHALL/MUST 条款的唯一规范性来源。详细工程证据和标准裁决属于 [Implementation Case Report I0.3](/zh/publications/implementation-case-i0.3)。本节按研究问题评估结果，不复制规范正文。
+独立维护的 [TMPA Core Specification S0.4](/zh/publications/tmpa-core-specification-s0.4) 仍是 C01–C14 及全部 SHALL/MUST 条款的唯一规范性来源。详细工程证据和标准裁决属于 [Implementation Case Report I0.4](/zh/publications/implementation-case-i0.4)。本节按研究问题评估结果，不复制规范正文。
 
 ## 7.1 按研究问题组织的发现
 
@@ -389,7 +389,7 @@ TMPA 的核心声明必须保持可被反证：
 
 ## 8.6 出版与可复现边界
 
-A0.5 是理论架构论文；Core S0.4 是规范性来源；Implementation Case I0.3 是工程证据来源。论文可以总结配套工件，但不得静默重定义其含义。
+A0.5 是理论架构论文；Core S0.4 是规范性来源；Implementation Case I0.4 是工程证据来源。论文可以总结配套工件，但不得静默重定义其含义。
 
 对外投稿前，语料库需要稳定公开归档、锁定来源修订、可执行复现命令和至少一次独立重跑。低资源部署测量仍是 SME 可行性声明的独立发布要求。
 

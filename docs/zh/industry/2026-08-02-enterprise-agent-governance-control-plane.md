@@ -1,5 +1,5 @@
 ---
-title: 行业架构每周报告 001 — 企业 Agent 治理控制面正在形成
+title: 行业架构观察周报 001 — 企业 Agent 治理控制面正在形成
 date: '2026-08-02'
 column: industry-architecture
 category: weekly
@@ -13,7 +13,7 @@ outline: deep
 
 <ArticleCover
   image="/assets/covers/industry-weekly-001.svg"
-  kicker="行业架构 · 每周报告 001"
+  kicker="行业架构 · 观察周报 001"
   title="企业 Agent 治理控制面正在形成"
   summary="Workday、ServiceNow 与 Microsoft 的共同方向：发现、注册、治理、安全、观察与价值衡量。"
   version="IW001"

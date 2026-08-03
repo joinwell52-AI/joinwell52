@@ -1,17 +1,17 @@
-# joinwell52 Research Center 3.0
+# Digital Employee Works
 
-> **A Runtime-governed AI Research Center powered by a Digital Research Employee**
+> **A governed production line for verifiable Digital Employee work**
 
 **English** · [简体中文](./README.zh-CN.md)
 
-[![Research Center](https://img.shields.io/badge/Research_Center-3.0-1f6feb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/)
+[![Digital Employee Works](https://img.shields.io/badge/Digital_Employee-Works-1f6feb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/)
 [![Runtime](https://img.shields.io/badge/Research_Runtime_Scheduler-V1.0-7c6cff?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/publications/research-runtime-scheduler-v1.0)
 [![Digital Research Employee](https://img.shields.io/badge/Research_Report_Production_Engine-V1.0-6d5dfc?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/publications/research-report-production-engine-v1.0)
 [![Status](https://img.shields.io/badge/Runtime_Record-Required-16a34a?style=for-the-badge)](./research/runtime/README.md)
 
-## Research Center 3.0
+## Digital Employee Works
 
-joinwell52 Research Center is a continuously operating research system with one formal execution control plane.
+Digital Employee Works continuously produces verifiable Digital Employee work through one formal execution control plane. CodeFlowMu and FCoP provide the engineering foundation; TMPA remains an independently evidenced theory and specification layer.
 
 ```text
 Research Operating System
@@ -27,7 +27,7 @@ Research Skills + Research Queue + Runtime Knowledge
         ↓
 GitHub Commit + Commit Verify
         ↓
-Research Notes, architecture, specifications and formal releases
+Observation Notes, runtime evidence, specifications and formal releases
 ```
 
 Research Runtime Scheduler V1.0 is the only formal scheduler of the Research Operating System. Individual automations are Runtime workers; they are not independent control planes.
@@ -60,7 +60,7 @@ Runtime Record
         ↓
 GitHub
         ↓
-Research Center Website
+Digital Employee Works Website
 ```
 
 Seven formal Runtime tasks are defined in [`research/runtime/SCHEDULER.json`](./research/runtime/SCHEDULER.json):
@@ -75,7 +75,7 @@ Seven formal Runtime tasks are defined in [`research/runtime/SCHEDULER.json`](./
 | Research Runtime Weekly | Sunday 20:30 | Create new synthesis and engineering judgment. |
 | Research Runtime Academic | Wednesday 10:00 | Publish research on papers, benchmarks, specifications and institutions. |
 
-The task draft used the phrase “six tasks” but explicitly defined seven. Research Center 3.0 adopts all seven responsibilities.
+The task draft used the phrase “six tasks” but explicitly defined seven. Digital Employee Works adopts all seven production responsibilities.
 
 ## Runtime Record — execution truth
 
@@ -146,7 +146,7 @@ Production Test V1 produced three Daily Research objects, three Academic Observa
 
 ## Single source of truth
 
-This repository is the only authoritative research database, runtime record and publication history of the joinwell52 Research Center.
+This repository is the authoritative production database, runtime record, observation archive, and publication history of Digital Employee Works.
 
 Git commits, diffs, pull requests, CI results, tags and releases provide the authoritative history. Generated text is not a formal result until it passes the applicable Runtime and publication gates.
 
@@ -166,12 +166,12 @@ The former ChatGPT Library `/TMPA` folder is a deprecated read-only migration ar
 
 - [TMPA Architecture Paper — A0.5](./docs/en/publications/tmpa-architecture-paper-a0.5.md)
 - [TMPA Core Specification — S0.4](./docs/en/publications/tmpa-core-specification-s0.4.md)
-- [TMPA–FCoP–CodeFlowMu Implementation Case — I0.3](./docs/en/publications/implementation-case-i0.3.md)
+- [TMPA–FCoP–CodeFlowMu Implementation Case — I0.4](./docs/en/publications/implementation-case-i0.4.md)
 - [Publication Center](https://joinwell52-ai.github.io/joinwell52/en/publications/)
 
-## Research Notes model
+## Observation Notes model
 
-Research Notes are organized by two independent metadata dimensions:
+Observation Notes retain the historical `Research Note` schema name for compatibility and are organized by two independent metadata dimensions:
 
 ```yaml
 column: digital-employee | industry-architecture | open-source-engineering
@@ -185,11 +185,11 @@ The website reads metadata directly from GitHub Markdown and generates column co
 - [Industry Architecture](https://joinwell52-ai.github.io/joinwell52/en/industry/)
 - [Open-source Engineering](https://joinwell52-ai.github.io/joinwell52/en/engineering/)
 
-## Core research programs
+## Product, engineering and theory layers
 
-- **TMPA:** AI work data and governance architecture.
-- **FCoP:** formal coordination and responsibility protocol.
-- **CodeFlowMu:** Digital Employee development and work runtime.
+- **Digital Employee:** the product and delivery layer.
+- **CodeFlowMu / FCoP:** the runtime and protocol engineering layer.
+- **TMPA:** the independent governance theory and specification layer.
 - **Digital Employee:** governed, position-oriented digital workforce.
 
 ## Repository structure
@@ -227,4 +227,4 @@ The website reads metadata directly from GitHub Markdown and generates column co
 **Zhu Wei / 朱卫 · joinwell52-AI**  
 Independent Researcher
 
-Research Center: https://joinwell52-ai.github.io/joinwell52/
+Digital Employee Works: https://joinwell52-ai.github.io/joinwell52/

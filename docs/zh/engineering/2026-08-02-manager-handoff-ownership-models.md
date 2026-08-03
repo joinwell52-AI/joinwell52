@@ -1,5 +1,5 @@
 ---
-title: 开源工程每日研究 003 — Manager 编排与 Handoff 表达不同的工作所有权模型
+title: 开源工程每日观察 003 — Manager 编排与 Handoff 表达不同的工作所有权模型
 date: '2026-08-02'
 column: open-source-engineering
 category: daily
@@ -12,7 +12,7 @@ outline: deep
 
 <ArticleCover
   image="/assets/covers/daily-manager-handoff.svg"
-  kicker="开源工程 · 每日研究 003"
+  kicker="开源工程 · 每日观察 003"
   title="Manager 编排与 Handoff 表达不同的工作所有权模型"
   summary="保留控制权调用 Specialist，与把活动会话和责任转交出去，不是同一种操作。"
   version="ED003"

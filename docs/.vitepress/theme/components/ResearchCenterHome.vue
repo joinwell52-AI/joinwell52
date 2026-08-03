@@ -14,144 +14,148 @@ const toggleAppearance = () => { isDark.value = !isDark.value }
 
 const copy = computed(() => zh.value ? {
   currentLanguage: '中文', otherLanguage: 'EN', otherPath: '/',
-  eyebrow: 'JOINWELL52 研究中心 · AI 工作研究',
-  heroLabel: '我们研究通用 AI 如何承担真实工作',
-  heroWide: ['我们研究通用 AI', '如何承担', '真实工作'],
-  heroCompact: ['我们研究通用 AI', '如何承担', '真实工作'],
-  heroMobile: ['我们研究', '通用 AI', '如何承担', '真实工作'],
-  heroLead: '当 AI 从回答问题走向长期工作，我们研究谁接受责任，哪个对象承载任务，哪些证据完成审阅、决策与恢复，以及过程能否在中断后被重建。',
-  primary: '阅读 TMPA 论文', secondary: '进入研究笔记', tertiary: '检查运行证据',
-  ledger: '研究运行总账', live: '正在运行', ledgerRows: [
-    ['当前岗位', '研究分析员'], ['工作队列', '研究队列'], ['发布门禁', 'GitHub + VitePress'], ['事实来源', 'main 分支']
+  eyebrow: '数字员工工场 · 持续生产',
+  heroLabel: '持续生产可核验的数字员工工作成果',
+  heroWide: ['持续生产', '可核验的数字员工', '工作成果'],
+  heroCompact: ['持续生产', '可核验的', '数字员工成果'],
+  heroMobile: ['持续生产', '可核验的', '数字员工', '工作成果'],
+  heroLead: '工场把岗位、任务、能力、Runtime 与交付门禁组织成持续产线。每一项成果都保留来源、过程、证据、提交与发布状态，能够检查、恢复并继续生产。',
+  primary: '查看生产线', secondary: '进入观察笔记', tertiary: '检查运行证据',
+  ledger: '工场生产总账', live: '正在生产', ledgerRows: [
+    ['生产岗位', '研究分析员'], ['工作入口', '任务队列'], ['交付门禁', 'GitHub + VitePress'], ['事实来源', 'main 分支']
   ],
-  latestRelease: '出版体系正在修订', inspected: '可检查 · 可引用 · 可重建',
-  tmpaLabel: '01 · 旗舰研究',
-  tmpaTitle: '一套理论 三项正式出版物',
-  tmpaWide: ['一套理论', '三项正式出版物'],
-  tmpaCompact: ['一套理论', '三项正式', '出版物'],
-  tmpaMobile: ['一套理论', '三项正式', '出版物'],
-  tmpaLead: 'TMPA（文本多智能体流程架构）是面向中小企业 AI 协同治理的极简基础设施文本规范。主论文解释架构，核心规范固定对象与读者行为，工程案例公开实现证据及其边界。',
+  latestRelease: '数字员工生产线', ledgerMark: 'RA', ledgerDetail: '岗位 · 工作链 · 交付证据', inspected: '可检查 · 可引用 · 可重建',
+  tmpaLabel: '03 · 独立理论层',
+  tmpaTitle: 'TMPA 论文体系 独立自证',
+  tmpaWide: ['TMPA 论文体系', '独立自证'],
+  tmpaCompact: ['TMPA 论文体系', '独立自证'],
+  tmpaMobile: ['TMPA', '论文体系', '独立自证'],
+  tmpaLead: 'TMPA（文本多智能体流程架构）是独立维护的理论与规范层，不与高频观察笔记共用可信度标准。主论文解释架构，核心规范固定对象与读者行为，工程案例公开实现证据及其边界。',
   publications: [
     { version:'A0.5', kind:'主论文', title:['TMPA','架构论文'], status:'版本持续修订', path:'/zh/publications/tmpa-architecture-paper-a0.5', tone:'paper' },
     { version:'S0.4', kind:'核心规范', title:['TMPA','核心规范'], status:'可实现规范草稿', path:'/zh/publications/tmpa-core-specification-s0.4', tone:'spec' },
-    { version:'I0.3', kind:'工程案例', title:['TMPA–FCoP–','CodeFlowMu','实现案例'], status:'版本持续修订', path:'/zh/publications/implementation-case-i0.3', tone:'case' }
+    { version:'I0.4', kind:'工程案例', title:['TMPA–FCoP–','CodeFlowMu','实现案例'], status:'版本持续修订', path:'/zh/publications/implementation-case-i0.4', tone:'case' }
   ],
   readPublication: '阅读正式文档',
-  engineLabel: '02 · 数字研究员工',
-  engineTitle: '一名数字研究员 一条可验证的工作链',
-  engineWide: ['一名数字研究员', '一条可验证的工作链'],
-  engineCompact: ['一名数字研究员', '一条可验证的', '工作链'],
-  engineMobile: ['一名数字研究员', '一条可验证的', '工作链'],
-  engineLead: '研究报告生产机持有 Research Analyst 岗位。任务、来源、分析、配图、证据、审阅与发布记录跨会话保留，新的工作会从持久记录继续。',
+  engineLabel: '01 · 数字员工生产线',
+  engineTitle: '一个生产岗位 一条可核验产线',
+  engineWide: ['一个生产岗位', '一条可核验产线'],
+  engineCompact: ['一个生产岗位', '一条可核验', '产线'],
+  engineMobile: ['一个生产岗位', '一条可核验', '产线'],
+  engineLead: '研究报告生产机持有 Research Analyst 岗位，持续接收任务并交付观察笔记、运行记录与正式出版物。来源、分析、配图、证据、审阅和提交跨会话保留。',
   position: '岗位', positionName: '研究分析员', worker: '数字研究员工', verified: '生产验证通过',
   skills: ['来源发现','研究筛选','深度阅读','研究分析','研究写作','研究配图','证据与引用','出版编辑'],
   skillStages: ['发现','发现','理解','理解','生产','生产','出版','出版'],
   workflowLabel: '数字员工工作链', workflowLive: '正在运行', currentStep: '当前步骤',
   engineLink: '查看研究报告生产机 V1.0',
-  fieldLabel: '03 · 研究产品体系',
-  fieldTitle: '理论 协议 Runtime 与应用',
-  fieldWide: ['理论 协议', 'Runtime 与应用'],
-  fieldCompact: ['理论 协议', 'Runtime 与应用'],
-  fieldMobile: ['理论 协议', 'Runtime', '与应用'],
-  fieldLead: 'TMPA 定义架构与治理语义，FCoP 提供项目可见的文件协议，CodeFlowMu 将协议带入持续工作 Runtime，Digital Employee 则定义长期工作的组织应用。',
+  governanceTitle: '采用 TMPA 的单写者生命周期治理子集',
+  governanceText: '这条产线使用生命周期状态、门禁、证据保留、Git 提交与 Reader 重建；它不演示多智能体角色分离，也不以单写者生产记录宣称覆盖 TMPA 的全部机制。',
+  fieldLabel: '02 · 能力底座',
+  fieldTitle: '从数字员工 到运行与协议',
+  fieldWide: ['从数字员工', '到运行与协议'],
+  fieldCompact: ['从数字员工', '到运行与协议'],
+  fieldMobile: ['从数字员工', '到运行', '与协议'],
+  fieldLead: '工场生产数字员工；数字员工能力建立在 CodeFlowMu 与 FCoP 之上；其治理理论与规范边界记录在 TMPA 论文体系中。产品、工程与理论分别接受与自身相称的验证。',
   systems: [
-    { no:'01', kind:'治理', role:'文本多智能体流程架构', name:['TMPA'], description:'面向中小企业 AI 协同治理的极简基础设施文本规范。一个稳定主载体锚定工作，多条责任流异步推进，读者从证据重建全貌。', path:'/zh/publications/tmpa-architecture-paper-a0.5', logo:'/logo.svg?v=tmpa-20260803-3', tone:'tmpa', cta:'论文与规范' },
-    { no:'02', kind:'协同', role:'基于文件的协同协议', name:['FCoP'], description:'以项目可见文件承载任务、报告、审阅与生命周期证据，是 TMPA 已定义子集的可复用文件协议实现。', path:'https://github.com/joinwell52-AI/FCoP', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'打开 GitHub' },
-    { no:'03', kind:'运行', role:'数字员工开发与工作 Runtime', name:['CodeFlowMu'], description:'将 FCoP 带入持续工作环境，支持数字员工开发、受治理执行、恢复与持久工作证据；它是下游采用者与参考实现环境。', path:'https://github.com/joinwell52-AI/CodeFlowMu-open', logo:'/assets/logos/codeflowmu.png', tone:'codeflow', cta:'打开 GitHub' },
-    { no:'04', kind:'应用', role:'受治理的 AI 劳动力', name:['Digital','Employee'], description:'面向组织岗位、权限、工作流与评价的受治理数字劳动力。', path:'/zh/digital-employee/', tone:'employee', cta:'查看体系' }
+    { no:'01', kind:'产品', role:'工场直接生产的数字劳动力', name:['Digital','Employee'], description:'面向组织岗位、权限、工作流、成果与评价的受治理数字劳动力，是工场的产品与交付对象。', path:'/zh/digital-employee/', tone:'employee', cta:'查看产品层' },
+    { no:'02', kind:'运行', role:'数字员工开发与工作 Runtime', name:['CodeFlowMu'], description:'承载数字员工开发、受治理执行、恢复与持久工作证据，是工场能力的运行层与开源参考环境。', path:'https://github.com/joinwell52-AI/CodeFlowMu-open', logo:'/assets/logos/codeflowmu.png', tone:'codeflow', cta:'打开 GitHub' },
+    { no:'03', kind:'协议', role:'基于文件的协同协议', name:['FCoP'], description:'以项目可见文件承载任务、报告、审阅与生命周期证据，为 CodeFlowMu 与数字员工提供可重建的协同事实。', path:'https://github.com/joinwell52-AI/FCoP', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'打开 GitHub' },
+    { no:'04', kind:'理论', role:'文本多智能体流程架构', name:['TMPA'], description:'独立记录治理理论、规范对象与 Reader 行为，为协议与运行层提供理论基础，但不把工场日常产出自动当作论文证据。', path:'/zh/publications/tmpa-architecture-paper-a0.5', logo:'/logo.svg?v=tmpa-20260803-3', tone:'tmpa', cta:'论文与规范' }
   ],
-  researchLabel: '04 · 持续研究',
-  researchTitle: '研究笔记 持续更新',
-  researchWide: ['研究笔记', '持续更新'],
-  researchCompact: ['研究笔记', '持续更新'],
-  researchMobile: ['研究笔记', '持续更新'],
-  researchLead: '跟随数字研究员正在推进的工作，浏览最新文章，在三个研究栏目之间切换并进入完整研究笔记。',
+  researchLabel: '04 · 工场观察',
+  researchTitle: '观察笔记 持续更新',
+  researchWide: ['观察笔记', '持续更新'],
+  researchCompact: ['观察笔记', '持续更新'],
+  researchMobile: ['观察笔记', '持续更新'],
+  researchLead: '数字员工在持续工作中记录看到的行业动态、论文、基准与工程变化。这些高频内容是产线运行证据和工作判断，不冒充新的学术结论。',
   streams: [
     { column:'digital-employee' as ResearchColumn, index:'A', title:['数字员工'], description:'岗位、权限、工作流、Runtime 与评价。', path:'/zh/digital-employee/' },
     { column:'industry-architecture' as ResearchColumn, index:'B', title:['行业架构'], description:'企业 AI 工作的组织、治理与系统边界。', path:'/zh/industry/' },
     { column:'open-source-engineering' as ResearchColumn, index:'C', title:['开源工程'], description:'Agent、Skill、Tool、Recovery 与可观测性。', path:'/zh/engineering/' }
   ],
-  latest: '最新研究', allResearch: '查看全部研究',
-  articleStream: '最新文章流', autoSwitch: '自动切换', enterNotes: '进入研究笔记',
+  latest: '最新观察', allResearch: '查看全部观察',
+  articleStream: '最新观察流', autoSwitch: '自动切换', enterNotes: '进入观察笔记',
   workLog: 'RA 工作日志', raLine: ['我正在工作', '一起参与吗'],
-  raNote: '研究任务、证据、提交与发布记录持续写入运行中心。', enterRuntime: '进入研究运行中心',
+  raNote: '任务、证据、提交与交付记录持续写入工场运行中心。', enterRuntime: '进入工场运行中心',
   latestTask: '当前工作', runtimeStatus: '运行状态', runtimeCommit: '提交记录',
-  footerAbout: '持续运行的 AI 工作研究中心。研究材料公开供阅读、讨论与规范引用。',
+  footerAbout: '持续生产可核验数字员工工作成果的开放工场。观察笔记记录外部动态与工作判断，TMPA 论文体系独立维护。',
   footerCode: '代码', footerRead: '阅读', footerCite: '引用',
   repository: 'GitHub 仓库', fcop: 'FCoP 协议', codeflow: 'CodeFlowMu Runtime',
-  researchNotes: '研究笔记', publicationCenter: '出版中心', runtimeCenter: '研究运行中心',
+  researchNotes: '观察笔记', publicationCenter: '出版中心', runtimeCenter: '工场运行中心',
   citationFile: 'CITATION.cff', license: '许可说明', licenseName: '保留所有权利',
   authorLabel: '作者', authorName: '朱卫', authorMeta: 'joinwell52-AI · 独立研究者',
   copyright: '© 2026 JOINWELL52',
   licenseSummary: '公开阅读与规范引用；复制、再发布、改编或商业使用需事先获得书面授权。'
 } : {
   currentLanguage: 'EN', otherLanguage: '中文', otherPath: '/zh/',
-  eyebrow: 'JOINWELL52 RESEARCH CENTER · AI WORK RESEARCH',
-  heroLabel: 'We research how general AI takes on real work',
-  heroWide: ['We research how', 'general AI takes on', 'real work'],
-  heroCompact: ['We research', 'how general AI', 'takes on real work'],
-  heroMobile: ['We research', 'how general AI', 'takes on', 'real work'],
-  heroLead: 'As AI moves from answering questions to continuing work, we study who accepts responsibility, which object carries the task, which evidence supports review and decision, and whether work can be reconstructed after interruption.',
-  primary: 'Read the TMPA paper', secondary: 'Explore Research Notes', tertiary: 'Inspect Runtime Evidence',
-  ledger: 'Research operations ledger', live: 'Live', ledgerRows: [
-    ['Active position', 'Research Analyst'], ['Work intake', 'Research Queue'], ['Publication gate', 'GitHub + VitePress'], ['Source of truth', 'main branch']
+  eyebrow: 'DIGITAL EMPLOYEE WORKS · CONTINUOUS PRODUCTION',
+  heroLabel: 'We continuously produce verifiable Digital Employee work',
+  heroWide: ['We continuously', 'produce verifiable', 'Digital Employee', 'work'],
+  heroCompact: ['We continuously', 'produce verifiable', 'Digital Employee', 'work'],
+  heroMobile: ['We continuously', 'produce', 'verifiable', 'Digital Employee', 'work'],
+  heroLead: 'The Works organizes positions, tasks, capabilities, Runtime, and delivery gates as a continuing production line. Every output retains its sources, process, evidence, commits, and release state so work can be inspected, recovered, and continued.',
+  primary: 'Inspect the production line', secondary: 'Explore Observation Notes', tertiary: 'Inspect Runtime Evidence',
+  ledger: 'Factory production ledger', live: 'PRODUCING', ledgerRows: [
+    ['Production position', 'Research Analyst'], ['Work intake', 'Task Queue'], ['Delivery gate', 'GitHub + VitePress'], ['Source of truth', 'main branch']
   ],
-  latestRelease: 'Publication suite in revision', inspected: 'Inspectable · Citable · Reconstructable',
-  tmpaLabel: '01 · FLAGSHIP RESEARCH',
-  tmpaTitle: 'One theory Three formal publications',
-  tmpaWide: ['One theory', 'Three formal publications'],
-  tmpaCompact: ['One theory', 'Three formal', 'publications'],
-  tmpaMobile: ['One theory', 'Three formal', 'publications'],
-  tmpaLead: 'TMPA is the Textual Multi-Agent Process Architecture: a minimal-infrastructure textual specification for SME AI collaboration governance. The paper explains the architecture, the Core specification fixes objects and reader behavior, and the case publishes implementation evidence and its limits.',
+  latestRelease: 'Digital Employee production line', ledgerMark: 'RA', ledgerDetail: 'Position · Workflow · Delivery evidence', inspected: 'Inspectable · Citable · Reconstructable',
+  tmpaLabel: '03 · INDEPENDENT THEORY LAYER',
+  tmpaTitle: 'The TMPA publication suite stands on its own evidence',
+  tmpaWide: ['The TMPA publication suite', 'stands on its own evidence'],
+  tmpaCompact: ['The TMPA publication suite', 'stands on its', 'own evidence'],
+  tmpaMobile: ['The TMPA', 'publication suite', 'stands on its', 'own evidence'],
+  tmpaLead: 'TMPA is an independently maintained theory and specification layer, not a high-frequency Observation Notes stream. Its paper explains the architecture, its Core fixes normative objects and reader behavior, and its case report publishes bounded implementation evidence.',
   publications: [
     { version:'A0.5', kind:'PRIMARY PAPER', title:['TMPA','Architecture Paper'], status:'Version under revision', path:'/en/publications/tmpa-architecture-paper-a0.5', tone:'paper' },
     { version:'S0.4', kind:'CORE SPECIFICATION', title:['TMPA Core','Specification'], status:'Implementation-ready draft', path:'/en/publications/tmpa-core-specification-s0.4', tone:'spec' },
-    { version:'I0.3', kind:'ENGINEERING CASE', title:['TMPA–FCoP–','CodeFlowMu','Implementation Case'], status:'Version under revision', path:'/en/publications/implementation-case-i0.3', tone:'case' }
+    { version:'I0.4', kind:'ENGINEERING CASE', title:['TMPA–FCoP–','CodeFlowMu','Implementation Case'], status:'Version under revision', path:'/en/publications/implementation-case-i0.4', tone:'case' }
   ],
   readPublication: 'Read formal document',
-  engineLabel: '02 · DIGITAL RESEARCH EMPLOYEE',
-  engineTitle: 'One digital researcher One accountable chain of work',
-  engineWide: ['One digital researcher', 'One accountable chain of work'],
-  engineCompact: ['One digital researcher', 'One accountable', 'chain of work'],
-  engineMobile: ['One digital', 'researcher', 'One accountable', 'chain of work'],
-  engineLead: 'The Research Report Production Engine holds the Research Analyst position. Tasks, sources, analysis, visuals, evidence, review, and publication records persist across sessions, so new work can continue from durable records.',
+  engineLabel: '01 · DIGITAL EMPLOYEE PRODUCTION LINE',
+  engineTitle: 'One production position One verifiable line',
+  engineWide: ['One production position', 'One verifiable line'],
+  engineCompact: ['One production position', 'One verifiable', 'line'],
+  engineMobile: ['One production', 'position', 'One verifiable', 'line'],
+  engineLead: 'The Research Report Production Engine holds the Research Analyst position, continuously receives work, and delivers Observation Notes, runtime records, and formal publications. Sources, analysis, visuals, evidence, review, and commits persist across sessions.',
   position: 'Position', positionName: 'Research Analyst', worker: 'Digital Research Employee', verified: 'PRODUCTION VERIFIED',
   skills: ['Source Discovery','Research Triage','Deep Reading','Research Analysis','Research Writing','Research Visualization','Evidence & Citation','Publication Editing'],
   skillStages: ['DISCOVER','DISCOVER','UNDERSTAND','UNDERSTAND','PRODUCE','PRODUCE','PUBLISH','PUBLISH'],
   workflowLabel: 'DIGITAL EMPLOYEE WORKFLOW', workflowLive: 'RUNNING', currentStep: 'CURRENT STEP',
   engineLink: 'Inspect Research Report Production Engine V1.0',
-  fieldLabel: '03 · RESEARCH PROGRAMS',
-  fieldTitle: 'Theory Protocol Runtime Application',
-  fieldWide: ['Theory Protocol', 'Runtime Application'],
-  fieldCompact: ['Theory Protocol', 'Runtime', 'Application'],
-  fieldMobile: ['Theory', 'Protocol', 'Runtime', 'Application'],
-  fieldLead: 'TMPA defines architecture and governance semantics. FCoP provides the project-visible file protocol, CodeFlowMu brings the protocol into a continuing-work runtime, and Digital Employee defines its organizational application.',
+  governanceTitle: 'Uses the single-writer lifecycle-governance subset of TMPA',
+  governanceText: 'This production line uses lifecycle states, gates, evidence retention, Git commits, and Reader reconstruction. It does not demonstrate multi-agent role separation or claim that a single-writer production record exercises all TMPA mechanisms.',
+  fieldLabel: '02 · CAPABILITY FOUNDATION',
+  fieldTitle: 'From Digital Employee to Runtime and protocol',
+  fieldWide: ['From Digital Employee', 'to Runtime and protocol'],
+  fieldCompact: ['From Digital Employee', 'to Runtime', 'and protocol'],
+  fieldMobile: ['From Digital Employee', 'to Runtime', 'and protocol'],
+  fieldLead: 'The Works produces Digital Employees. Their capabilities are built on CodeFlowMu and FCoP, while the governing theory and specification boundaries are recorded independently in TMPA. Product, engineering, and theory are validated by standards appropriate to each layer.',
   systems: [
-    { no:'01', kind:'GOVERNANCE', role:'TEXTUAL MULTI-AGENT PROCESS ARCHITECTURE', name:['TMPA'], description:'A minimal-infrastructure textual specification for SME AI collaboration governance. One stable carrier anchors work, multiple responsibility streams progress asynchronously, and readers reconstruct the whole from evidence.', path:'/en/publications/tmpa-architecture-paper-a0.5', logo:'/logo.svg?v=tmpa-20260803-3', tone:'tmpa', cta:'Paper & specification' },
-    { no:'02', kind:'COORDINATION', role:'FILE-BASED COORDINATION PROTOCOL', name:['FCoP'], description:'Project-visible files carry tasks, reports, reviews, and lifecycle evidence as a reusable file-protocol realization of a defined TMPA subset.', path:'https://github.com/joinwell52-AI/FCoP', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'Open GitHub' },
-    { no:'03', kind:'RUNTIME', role:'DIGITAL EMPLOYEE DEVELOPMENT AND WORK RUNTIME', name:['CodeFlowMu'], description:'CodeFlowMu brings FCoP into a continuing-work environment for Digital Employee development, governed execution, recovery, and durable work evidence; it is a downstream adopter and reference environment.', path:'https://github.com/joinwell52-AI/CodeFlowMu-open', logo:'/assets/logos/codeflowmu.png', tone:'codeflow', cta:'Open GitHub' },
-    { no:'04', kind:'APPLICATION', role:'GOVERNED AI WORKFORCE', name:['Digital','Employee'], description:'A governed digital workforce organized around positions, authority, workflows, and evaluation.', path:'/en/digital-employee/', tone:'employee', cta:'View system' }
+    { no:'01', kind:'PRODUCT', role:'DIGITAL WORKFORCE PRODUCED BY THE WORKS', name:['Digital','Employee'], description:'Governed digital labor organized around positions, authority, workflows, deliverables, and evaluation—the product and delivery object of the Works.', path:'/en/digital-employee/', tone:'employee', cta:'View product layer' },
+    { no:'02', kind:'RUNTIME', role:'DIGITAL EMPLOYEE DEVELOPMENT AND WORK RUNTIME', name:['CodeFlowMu'], description:'The runtime layer for Digital Employee development, governed execution, recovery, and durable work evidence, with an open-source reference environment.', path:'https://github.com/joinwell52-AI/CodeFlowMu-open', logo:'/assets/logos/codeflowmu.png', tone:'codeflow', cta:'Open GitHub' },
+    { no:'03', kind:'PROTOCOL', role:'FILE-BASED COORDINATION PROTOCOL', name:['FCoP'], description:'Project-visible files carry tasks, reports, reviews, and lifecycle evidence, providing reconstructable coordination facts for CodeFlowMu and Digital Employees.', path:'https://github.com/joinwell52-AI/FCoP', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'Open GitHub' },
+    { no:'04', kind:'THEORY', role:'TEXTUAL MULTI-AGENT PROCESS ARCHITECTURE', name:['TMPA'], description:'Independently records governance theory, normative objects, and Reader behavior. It underpins the protocol and runtime layers without treating daily factory output as automatic paper evidence.', path:'/en/publications/tmpa-architecture-paper-a0.5', logo:'/logo.svg?v=tmpa-20260803-3', tone:'tmpa', cta:'Paper & specification' }
   ],
-  researchLabel: '04 · CONTINUING RESEARCH',
-  researchTitle: 'Research notes Always updating',
-  researchWide: ['Research notes', 'Always updating'],
-  researchCompact: ['Research notes', 'Always updating'],
-  researchMobile: ['Research notes', 'Always updating'],
-  researchLead: 'Follow the work now in progress, browse the latest articles, switch among three research columns, and enter the complete research notes.',
+  researchLabel: '04 · FACTORY OBSERVATION',
+  researchTitle: 'Observation Notes Always updating',
+  researchWide: ['Observation Notes', 'Always updating'],
+  researchCompact: ['Observation Notes', 'Always updating'],
+  researchMobile: ['Observation Notes', 'Always updating'],
+  researchLead: 'While working, the Digital Employee records industry developments, papers, benchmarks, and engineering changes. These high-frequency notes are evidence that the line is operating and records of working judgment—not claims of new academic knowledge.',
   streams: [
     { column:'digital-employee' as ResearchColumn, index:'A', title:['Digital Employee'], description:'Position, authority, workflow, runtime, and evaluation.', path:'/en/digital-employee/' },
     { column:'industry-architecture' as ResearchColumn, index:'B', title:['Industry','Architecture'], description:'Organization, governance, and system boundaries for enterprise AI work.', path:'/en/industry/' },
     { column:'open-source-engineering' as ResearchColumn, index:'C', title:['Open-source','Engineering'], description:'Agents, skills, tools, recovery, and observability.', path:'/en/engineering/' }
   ],
-  latest: 'Latest research', allResearch: 'View all research',
-  articleStream: 'Latest article stream', autoSwitch: 'Auto switching', enterNotes: 'Enter research notes',
+  latest: 'Latest observations', allResearch: 'View all observations',
+  articleStream: 'Latest observation stream', autoSwitch: 'Auto switching', enterNotes: 'Enter Observation Notes',
   workLog: 'RA work log', raLine: ['I am working', 'Want to take part'],
-  raNote: 'Research tasks, evidence, commits, and publication records continue into the Runtime Center.', enterRuntime: 'Enter Research Runtime Center',
+  raNote: 'Tasks, evidence, commits, and delivery records continue into the Factory Runtime Center.', enterRuntime: 'Enter Factory Runtime Center',
   latestTask: 'Current work', runtimeStatus: 'Runtime status', runtimeCommit: 'Commit record',
-  footerAbout: 'A continuously operating research center for AI work. Research materials are publicly readable for discussion and proper citation.',
+  footerAbout: 'An open Works continuously producing verifiable Digital Employee work. Observation Notes record external developments and working judgments; the TMPA publication suite is maintained independently.',
   footerCode: 'Code', footerRead: 'Read', footerCite: 'Cite',
   repository: 'GitHub repository', fcop: 'FCoP protocol', codeflow: 'CodeFlowMu Runtime',
-  researchNotes: 'Research notes', publicationCenter: 'Publication center', runtimeCenter: 'Research Runtime Center',
+  researchNotes: 'Observation Notes', publicationCenter: 'Publication center', runtimeCenter: 'Factory Runtime Center',
   citationFile: 'CITATION.cff', license: 'License notice', licenseName: 'All rights reserved',
   authorLabel: 'Author', authorName: 'Zhu Wei', authorMeta: 'joinwell52-AI · Independent Researcher',
   copyright: '© 2026 JOINWELL52',
@@ -223,8 +227,8 @@ const selectSkill = (index: number) => {
 }
 
 const categoryLabel = (category: ResearchNoteRecord['category']) => zh.value
-  ? ({ daily: '每日研究', weekly: '每周综合', academic: '学术研究' }[category])
-  : ({ daily: 'Daily research', weekly: 'Weekly synthesis', academic: 'Academic research' }[category])
+  ? ({ daily: '每日观察', weekly: '每周综合', academic: '学术观察' }[category])
+  : ({ daily: 'Daily observation', weekly: 'Weekly synthesis', academic: 'Academic observation' }[category])
 
 onMounted(() => { startResearchRotation(); startSkillRotation() })
 onBeforeUnmount(() => {
@@ -267,7 +271,7 @@ onBeforeUnmount(() => {
           />
           <p class="rc-hero__lead">{{ copy.heroLead }}</p>
           <div class="rc-actions">
-            <a class="rc-button rc-button--primary" :href="link(copy.publications[0].path)">{{ copy.primary }} <span>↗</span></a>
+            <a class="rc-button rc-button--primary" href="#production-line">{{ copy.primary }} <span>↓</span></a>
             <a class="rc-button" :href="link(researchOverview)">{{ copy.secondary }} <span>→</span></a>
             <a class="rc-text-link" :href="link(runtimePath)">{{ copy.tertiary }} <span>↗</span></a>
           </div>
@@ -277,8 +281,8 @@ onBeforeUnmount(() => {
           <header><span>{{ copy.ledger }}</span><b><i></i>{{ copy.live }}</b></header>
           <div class="rc-ledger__release">
             <small>{{ copy.latestRelease }}</small>
-            <strong>TMPA</strong>
-            <p>{{ zh ? '主论文 · 核心规范 · 工程案例' : 'Paper · Core · Case' }}</p>
+            <strong>{{ copy.ledgerMark }}</strong>
+            <p>{{ copy.ledgerDetail }}</p>
           </div>
           <dl>
             <div v-for="row in copy.ledgerRows" :key="row[0]"><dt>{{ row[0] }}</dt><dd>{{ row[1] }}</dd></div>
@@ -287,41 +291,19 @@ onBeforeUnmount(() => {
         </aside>
 
         <div class="rc-mobile-ledger">
-          <span><i></i>{{ copy.live }}</span><b>{{ zh ? 'TMPA · 修订中' : 'TMPA · IN REVISION' }}</b><small>{{ copy.inspected }}</small>
+          <span><i></i>{{ copy.live }}</span><b>{{ copy.ledgerMark }} · {{ zh ? '正在交付' : 'DELIVERING' }}</b><small>{{ copy.inspected }}</small>
         </div>
       </div>
 
       <div class="rc-shell rc-hero__index">
-        <div><span>01</span><b>A</b><small>{{ zh ? '主论文' : 'PRIMARY PAPER' }}</small></div>
-        <div><span>02</span><b>S</b><small>{{ zh ? '核心规范' : 'CORE SPECIFICATION' }}</small></div>
-        <div><span>03</span><b>I</b><small>{{ zh ? '工程案例' : 'ENGINEERING CASE' }}</small></div>
-        <div><span>04</span><b>{{ zh ? '引擎' : 'ENGINE' }}</b><small>{{ zh ? '生产验证通过' : 'PRODUCTION VERIFIED' }}</small></div>
+        <div><span>01</span><b>{{ zh ? '岗位' : 'POSITION' }}</b><small>{{ zh ? '数字员工' : 'DIGITAL EMPLOYEE' }}</small></div>
+        <div><span>02</span><b>{{ zh ? '工作链' : 'WORKFLOW' }}</b><small>{{ zh ? '持续运行' : 'CONTINUOUS' }}</small></div>
+        <div><span>03</span><b>{{ zh ? '证据' : 'EVIDENCE' }}</b><small>{{ zh ? '可检查可重建' : 'RECONSTRUCTABLE' }}</small></div>
+        <div><span>04</span><b>{{ zh ? '交付' : 'DELIVERY' }}</b><small>{{ zh ? '生产验证通过' : 'PRODUCTION VERIFIED' }}</small></div>
       </div>
     </section>
 
-    <section class="rc-section rc-tmpa">
-      <div class="rc-shell">
-        <div class="rc-section__intro rc-section__intro--light">
-          <div>
-            <p class="rc-kicker">{{ copy.tmpaLabel }}</p>
-            <ResponsiveTitle tag="h2" class="rc-section__title" :label="copy.tmpaTitle" :wide="copy.tmpaWide" :compact="copy.tmpaCompact" :mobile="copy.tmpaMobile" />
-          </div>
-          <p>{{ copy.tmpaLead }}</p>
-        </div>
-        <div class="rc-publications">
-          <a v-for="publication in copy.publications" :key="publication.version" :class="`rc-publication rc-publication--${publication.tone}`" :href="link(publication.path)">
-            <div class="rc-publication__art"><span>{{ publication.kind }}</span><b>{{ publication.version }}</b><i></i></div>
-            <div class="rc-publication__body">
-              <p>{{ publication.status }}</p>
-              <h3 :aria-label="publication.title.join(' ')"><span v-for="lineItem in publication.title" :key="lineItem">{{ lineItem }}</span></h3>
-              <b>{{ copy.readPublication }} <span>↗</span></b>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="rc-section rc-engine">
+    <section id="production-line" class="rc-section rc-engine">
       <div class="rc-shell">
         <div class="rc-section__intro">
           <div>
@@ -365,6 +347,11 @@ onBeforeUnmount(() => {
             </div>
           </div>
         </div>
+        <aside class="rc-governance-note">
+          <span>{{ zh ? '治理边界' : 'GOVERNANCE BOUNDARY' }}</span>
+          <h3>{{ copy.governanceTitle }}</h3>
+          <p>{{ copy.governanceText }}</p>
+        </aside>
       </div>
     </section>
 
@@ -405,6 +392,28 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
+    <section class="rc-section rc-tmpa">
+      <div class="rc-shell">
+        <div class="rc-section__intro rc-section__intro--light">
+          <div>
+            <p class="rc-kicker">{{ copy.tmpaLabel }}</p>
+            <ResponsiveTitle tag="h2" class="rc-section__title" :label="copy.tmpaTitle" :wide="copy.tmpaWide" :compact="copy.tmpaCompact" :mobile="copy.tmpaMobile" />
+          </div>
+          <p>{{ copy.tmpaLead }}</p>
+        </div>
+        <div class="rc-publications">
+          <a v-for="publication in copy.publications" :key="publication.version" :class="`rc-publication rc-publication--${publication.tone}`" :href="link(publication.path)">
+            <div class="rc-publication__art"><span>{{ publication.kind }}</span><b>{{ publication.version }}</b><i></i></div>
+            <div class="rc-publication__body">
+              <p>{{ publication.status }}</p>
+              <h3 :aria-label="publication.title.join(' ')"><span v-for="lineItem in publication.title" :key="lineItem">{{ lineItem }}</span></h3>
+              <b>{{ copy.readPublication }} <span>↗</span></b>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <section class="rc-section rc-research">
       <div class="rc-shell">
         <div class="rc-section__intro rc-section__intro--light">
@@ -429,7 +438,7 @@ onBeforeUnmount(() => {
         </div>
 
         <div class="rc-note-browser">
-          <nav class="rc-note-tabs" role="tablist" :aria-label="zh ? '研究栏目切换' : 'Research column switcher'">
+          <nav class="rc-note-tabs" role="tablist" :aria-label="zh ? '观察栏目切换' : 'Observation column switcher'">
             <button
               v-for="stream in copy.streams"
               :id="`research-tab-${stream.column}`"
@@ -497,7 +506,7 @@ onBeforeUnmount(() => {
             <a href="https://github.com/joinwell52-AI/FCoP" title="FCoP"><img src="https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png" alt="FCoP logo"><span>FCoP</span></a>
             <a href="https://github.com/joinwell52-AI/CodeFlowMu-open" title="CodeFlowMu"><img src="/assets/logos/codeflowmu.png" alt="CodeFlowMu logo"><span>CodeFlowMu</span></a>
           </div>
-          <h2>{{ zh ? 'JOINWELL52 研究中心' : 'JOINWELL52 Research Center' }}</h2>
+          <h2>{{ zh ? '数字员工工场' : 'Digital Employee Works' }}</h2>
           <p>{{ copy.footerAbout }}</p>
         </div>
         <nav><h3>{{ copy.footerCode }}</h3><a href="https://github.com/joinwell52-AI/joinwell52">{{ copy.repository }} ↗</a><a href="https://github.com/joinwell52-AI/FCoP">{{ copy.fcop }} ↗</a><a href="https://github.com/joinwell52-AI/CodeFlowMu-open">{{ copy.codeflow }} ↗</a></nav>
@@ -567,7 +576,7 @@ onBeforeUnmount(() => {
 .rc-shell { width: min(1220px, calc(100% - 72px)); margin-inline: auto; }
 
 .rc-hero { position: relative; min-height: 770px; color: #fff; border-bottom: 1px solid rgba(255,255,255,.1); background: radial-gradient(circle at 82% 10%, rgba(54,203,232,.18), transparent 28%), radial-gradient(circle at 17% 82%, rgba(109,93,252,.2), transparent 32%), linear-gradient(135deg, #070d1a 0%, #101a36 56%, #072333 100%); }
-.rc-hero::before { content: "RESEARCH"; position: absolute; right: -34px; top: 38px; color: transparent; -webkit-text-stroke: 1px var(--rc-watermark); font-size: clamp(110px, 16vw, 230px); font-weight: 900; letter-spacing: -.08em; line-height: 1; pointer-events: none; }
+.rc-hero::before { content: "WORKS"; position: absolute; right: -34px; top: 38px; color: transparent; -webkit-text-stroke: 1px var(--rc-watermark); font-size: clamp(110px, 16vw, 230px); font-weight: 900; letter-spacing: -.08em; line-height: 1; pointer-events: none; }
 .rc-product-mark { display: inline-flex; align-items: center; gap: 12px; }
 .rc-product-mark a { display: grid; width: 36px; height: 36px; place-items: center; opacity: .82; transition: opacity .18s ease, transform .18s ease; }
 .rc-product-mark a:hover { opacity: 1; transform: translateY(-2px); }
@@ -592,11 +601,13 @@ onBeforeUnmount(() => {
 :global(.dark .rc-appearance:hover) { color: #fff !important; background: rgba(255,255,255,.1); }
 :global(.dark .rc-appearance) { color: #fff; }
 .rc-hero__layout { position: relative; display: grid; grid-template-columns: minmax(0, 1.34fr) minmax(340px, .66fr); gap: 72px; align-items: end; padding-top: 82px; }
+.rc-home:not(.is-zh) .rc-hero__layout { grid-template-columns: minmax(0, 1fr) 340px; gap: 52px; }
 .rc-kicker { display: flex; align-items: center; gap: 13px; margin: 0 0 22px; color: #f0f4ff; font: 800 13px/1.4 "Noto Sans SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif; letter-spacing: .025em; }
 .rc-kicker span { width: 30px; height: 2px; background: var(--rc-red); }
 .rc-kicker--dark { color: var(--rc-ink); }
 .rc-hero .rc-kicker { color: #80e2f1; }
 .rc-hero__title { margin: 0; font-size: clamp(66px, 5.8vw, 84px); font-weight: 860; line-height: .93; letter-spacing: -.068em; }
+.rc-home:not(.is-zh) .rc-hero__title { font-size: clamp(66px, 5.15vw, 74px); }
 .rc-hero__title :deep(.is-accent) { color: transparent; background: linear-gradient(100deg, #9b8cff 5%, #6882ff 48%, #54d9ee 96%); background-clip: text; -webkit-background-clip: text; }
 .rc-hero__lead { max-width: 740px; margin: 32px 0 0; color: #aeb8d4; font-size: 17px; line-height: 1.75; }
 .rc-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
@@ -653,6 +664,10 @@ onBeforeUnmount(() => {
 
 .rc-engine { background: var(--rc-paper-2); }
 .rc-engine__grid { display: grid; grid-template-columns: .74fr 1.26fr; gap: 18px; margin-top: 68px; }
+.rc-governance-note { display: grid; grid-template-columns: .42fr 1.1fr 1.48fr; gap: 28px; align-items: start; margin-top: 18px; padding: 24px 28px; color: #dbe7f3; background: #111c30; border: 1px solid #273b55; }
+.rc-governance-note > span { color: #62deed; font: 780 10px/1.3 ui-monospace, monospace; letter-spacing: .08em; }
+.rc-governance-note h3 { margin: 0; color: #fff; font-size: 19px; line-height: 1.28; letter-spacing: -.025em; }
+.rc-governance-note p { margin: 0; color: #aebed0; font-size: 13px; line-height: 1.7; }
 .rc-position-card { position: relative; min-height: 470px; padding: 28px; color: #fff; background: linear-gradient(145deg, #171d3d, #102c43); }
 .rc-position-card header { display: flex; justify-content: space-between; font: 750 11px/1 ui-sans-serif, system-ui, sans-serif; letter-spacing: .04em; }
 .rc-position-card header b { color: var(--rc-lime); }
@@ -866,6 +881,8 @@ onBeforeUnmount(() => {
   .rc-hero { min-height: 768px; }
   .rc-hero__layout { grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr); gap: 44px; padding-top: 64px; }
   .rc-hero__title { font-size: 62px; }
+  .rc-home:not(.is-zh) .rc-hero__layout { grid-template-columns: minmax(0, 1fr) 300px; gap: 36px; }
+  .rc-home:not(.is-zh) .rc-hero__title { font-size: 56px; }
   .rc-hero__lead { max-width: 560px; font-size: 15px; }
   .rc-ledger { min-height: 418px; padding: 22px; box-shadow: 12px 12px 0 var(--rc-ink); }
   .rc-ledger__release strong { font-size: 60px; }
@@ -880,6 +897,7 @@ onBeforeUnmount(() => {
   .rc-publication__body { padding: 22px; }
   .rc-publication__body h3 { font-size: 25px; }
   .rc-engine__grid { grid-template-columns: .78fr 1.22fr; }
+  .rc-governance-note { grid-template-columns: .45fr 1fr 1.45fr; }
   .rc-position-card { min-height: 450px; }
   .rc-position-card__mark { font-size: 105px; }
   .rc-skills { gap-inline: 42px; }
@@ -922,6 +940,7 @@ onBeforeUnmount(() => {
   .rc-kicker { margin-bottom: 17px; font-size: 11px; line-height: 1.4; letter-spacing: .015em; }
   .rc-kicker span { width: 20px; }
   .rc-hero__title { font-size: 49px; line-height: .91; letter-spacing: -.062em; }
+  .rc-home:not(.is-zh) .rc-hero__title { font-size: 40px; line-height: .93; letter-spacing: -.052em; }
   .rc-hero__lead { margin-top: 26px; font-size: 14px; line-height: 1.7; }
   .rc-actions { display: grid; grid-template-columns: 1fr; margin-top: 28px; }
   .rc-button { width: 100%; min-height: 47px; }
@@ -952,6 +971,7 @@ onBeforeUnmount(() => {
   .rc-publication__body h3 span { white-space: nowrap; }
   .rc-publication__body > b { font-size: 10px; }
   .rc-engine__grid { grid-template-columns: 1fr; margin-top: 44px; }
+  .rc-governance-note { grid-template-columns: 1fr; gap: 10px; padding: 22px; }
   .rc-position-card { min-height: 405px; }
   .rc-position-card__mark { margin-top: 62px; font-size: 98px; }
   .rc-skill-flow { min-height: 0; }

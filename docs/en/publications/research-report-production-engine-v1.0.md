@@ -6,7 +6,7 @@ outline: deep
 
 <ArticleCover
   image="/assets/covers/research-report-production-engine-v1.svg"
-  kicker="Research Center 2.0 · Capability Release"
+  kicker="Digital Employee Works · Capability Release"
   title="Research Report Production Engine V1.0"
   summary="A production-verified Digital Research Employee built on ChatGPT."
   version="V1.0"
@@ -17,13 +17,21 @@ outline: deep
 
 ## Release statement
 
-**Research Report Production Engine V1.0** is the first production-verified Digital Research Employee released by the joinwell52 Research Center.
+**Research Report Production Engine V1.0** is the first production-verified Digital Research Employee released by Digital Employee Works.
 
 Its Chinese name is **研究报告生产机 V1.0**.
 
 It is a ChatGPT application capability organized as a real position rather than a one-time prompt. It receives research work, applies governed Research Skills, maintains a Research Queue, produces bilingual Research Notes, publishes through GitHub, and preserves evidence of how the work moved from source discovery to release.
 
 > The product is not “AI that writes articles.” It is a Digital Research Employee with a position, responsibilities, skills, workflow, standards, authority boundaries, and verifiable work products.
+
+### Boundary of TMPA adoption
+
+This product adopts the **single-writer lifecycle-governance subset of TMPA**. Each formal object has one writer; work passes through explicit lifecycle states and gates; sources, process records, failed-build corrections, Git commits, and publication records form a reconstructable evidence chain; and a Reader can recover the work state from durable records.
+
+It is not a multi-agent collaboration case and does not exercise the multi-writer role separation required by TMPA DR4. Executor/reviewer separation is not a conformance condition for this single-writer scenario. The product can therefore serve as a reference instantiation of TMPA lifecycle governance, evidence retention, and reconstruction semantics, but **it is not evidence that every TMPA mechanism or multi-agent claim has been validated**.
+
+The site now presents its high-frequency outputs as “Observation Notes.” The historical `Research Note` label remains in schemas and production records for compatibility; it does not assert that each Observation Note contributes new academic knowledge.
 
 ### Release metadata
 
@@ -63,7 +71,7 @@ Research Report Production Engine
 GitHub
   preserves the authoritative publication and evidence history
         ↓
-Research Center Website
+Digital Employee Works website
   presents the published research from repository metadata
 ```
 

@@ -7,12 +7,12 @@ import type { ResearchCategory, ResearchNoteRecord } from './research-notes.data
 const props = withDefaults(defineProps<{ lang?: 'en' | 'zh'; category: ResearchCategory }>(), { lang: 'en' })
 const zh = computed(() => props.lang === 'zh')
 const labels = computed(() => ({
-  daily: zh.value ? '每日研究' : 'Daily Research',
+  daily: zh.value ? '每日观察' : 'Daily Observation',
   weekly: zh.value ? '每周综合' : 'Weekly Synthesis',
   academic: zh.value ? '学术观察' : 'Academic Observation'
 }))
 const descriptions = computed(() => ({
-  daily: zh.value ? '数字研究员每日完成的研究笔记，按日期倒序展示。' : 'Daily research notes produced by the Research Analyst, newest first.',
+  daily: zh.value ? '数字员工在持续工作中形成的每日观察，按日期倒序展示。' : 'Daily observations produced while the Digital Employee works, newest first.',
   weekly: zh.value ? '跨越每日研究形成的新判断、新观点与架构综合。' : 'New judgments, viewpoints, and architecture synthesis across daily research.',
   academic: zh.value ? '围绕论文、基准、规范、会议与研究机构形成的学术观察。' : 'Academic observations on papers, benchmarks, specifications, conferences, and institutions.'
 }))
@@ -29,16 +29,16 @@ const notes = computed(() => (allNotes as ResearchNoteRecord[])
 <template>
   <main class="category-shell">
     <header>
-      <span>RESEARCH NOTES</span>
+      <span>OBSERVATION NOTES</span>
       <h1>{{ labels[category] }}</h1>
       <p>{{ descriptions[category] }}</p>
       <strong>{{ notes.length }} {{ zh ? '篇' : 'notes' }}</strong>
     </header>
     <nav>
-      <a :href="withBase(zh ? '/zh/research/daily/' : '/en/research/daily/')">{{ zh ? '每日研究' : 'Daily' }}</a>
+      <a :href="withBase(zh ? '/zh/research/daily/' : '/en/research/daily/')">{{ zh ? '每日观察' : 'Daily' }}</a>
       <a :href="withBase(zh ? '/zh/research/weekly/' : '/en/research/weekly/')">{{ zh ? '每周综合' : 'Weekly' }}</a>
       <a :href="withBase(zh ? '/zh/research/papers/' : '/en/research/papers/')">{{ zh ? '学术观察' : 'Academic' }}</a>
-      <a :href="withBase(zh ? '/zh/research/' : '/en/research/')">{{ zh ? '全部研究笔记' : 'All notes' }}</a>
+      <a :href="withBase(zh ? '/zh/research/' : '/en/research/')">{{ zh ? '全部观察笔记' : 'All notes' }}</a>
     </nav>
     <section v-if="notes.length" class="note-list">
       <a v-for="(note,index) in notes" :key="note.url" :href="withBase(note.url)">
@@ -48,7 +48,7 @@ const notes = computed(() => (allNotes as ResearchNoteRecord[])
         <i>→</i>
       </a>
     </section>
-    <section v-else class="empty">{{ zh ? '该类别暂时没有研究笔记。' : 'No research notes in this category yet.' }}</section>
+    <section v-else class="empty">{{ zh ? '该类别暂时没有观察笔记。' : 'No observation notes in this category yet.' }}</section>
   </main>
 </template>
 

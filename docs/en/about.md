@@ -1,5 +1,5 @@
-# About TMPA Research Center
+# About Digital Employee Works
 
-TMPA Research Center is an independent engineering-driven research project maintained by **Zhu Wei (joinwell52-AI)**.
+Digital Employee Works is independently maintained by **Zhu Wei (joinwell52-AI)**. The Works produces Digital Employee work; CodeFlowMu and FCoP provide the engineering foundation; the TMPA publication suite is maintained as an independent theory and specification layer.
 
-The program focuses on AI work data, agent governance, formal coordination, Digital Employee architecture, SME-first deployment, and evidence-based AI software engineering.
+Observation Notes record what the Digital Employee sees while working. They do not automatically become evidence for the TMPA paper.

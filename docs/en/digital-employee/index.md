@@ -1,5 +1,5 @@
 ---
-title: Digital Employee Research Notes
+title: Digital Employee Observation Notes
 layout: page
 sidebar: false
 aside: false

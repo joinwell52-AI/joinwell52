@@ -1,5 +1,5 @@
 ---
-title: Daily Research
+title: Daily Observation
 layout: page
 sidebar: false
 aside: false

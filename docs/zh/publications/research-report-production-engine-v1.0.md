@@ -6,7 +6,7 @@ outline: deep
 
 <ArticleCover
   image="/assets/covers/research-report-production-engine-v1.svg"
-  kicker="Research Center 2.0 · 能力发布"
+  kicker="数字员工工场 · 能力发布"
   title="研究报告生产机 V1.0"
   summary="一个经过生产验证、基于 ChatGPT 的数字研究员。"
   version="V1.0"
@@ -17,11 +17,19 @@ outline: deep
 
 ## 发布声明
 
-**研究报告生产机 V1.0（Research Report Production Engine V1.0）**，是 joinwell52 Research Center 发布的首个经过生产验证的数字研究员。
+**研究报告生产机 V1.0（Research Report Production Engine V1.0）**，是数字员工工场发布的首个经过生产验证的数字研究员。
 
 它不是一个一次性的 Prompt，也不是“自动写文章”的包装，而是一个运行在 ChatGPT 上、按照真实岗位组织起来的应用能力：接收研究工作、调用受治理的 Research Skills、维护 Research Queue、生产中英文 Research Notes、通过 GitHub 正式发布，并保存从发现资料到 Release 的全过程证据。
 
 > 这个产品的定义不是“会写文章的 AI”，而是一个具有岗位、职责、技能、工作流、标准、权限边界和可验证工作成果的数字研究员。
+
+### 与 TMPA 的关系边界
+
+本产品采用的是 **TMPA 的单写者生命周期治理子集**：每个正式对象只有一个写者，工作经过明确的生命周期状态与门禁，来源、过程、失败修复、Git Commit 和发布记录构成可重建证据链，Reader 可以从持久记录恢复工作全貌。
+
+它不是多智能体协作案例，也不演示 TMPA DR4 所要求的多写者角色分离。执行者与复核者分离不属于本产品当前单写者场景的合规条件。因此，本产品只能作为 TMPA 生命周期治理、证据保留和重建语义的参考实例化，**不能被表述为对 TMPA 全部机制或多智能体主张的完整验证**。
+
+站点将这条产线的高频内容称为“观察笔记”。历史 Schema 与生产记录中的 `Research Note` 名称为兼容性字段，不表示每一篇观察笔记都提出了新的学术知识。
 
 ### 发布元数据
 
@@ -61,7 +69,7 @@ Research OS Engine
 GitHub
   保存唯一权威出版物与运行证据
         ↓
-Research Center Website
+数字员工工场网站
   根据仓库元数据展示正式研究成果
 ```
 

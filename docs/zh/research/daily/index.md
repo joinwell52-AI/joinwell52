@@ -1,5 +1,5 @@
 ---
-title: 每日研究
+title: 每日观察
 layout: page
 sidebar: false
 aside: false

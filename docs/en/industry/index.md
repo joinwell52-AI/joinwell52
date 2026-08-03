@@ -1,5 +1,5 @@
 ---
-title: Industry Architecture Research Notes
+title: Industry Architecture Observation Notes
 layout: page
 sidebar: false
 aside: false

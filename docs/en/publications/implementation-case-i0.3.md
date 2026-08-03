@@ -1,20 +1,10 @@
 ---
-title: TMPA–FCoP–CodeFlowMu Implementation Case — Draft I0.3
-outline: deep
+title: Implementation Case I0.3 has moved
+description: The maintained TMPA–FCoP–CodeFlowMu Implementation Case is now I0.4.
 ---
 
-<ArticleCover
-  image="/assets/covers/implementation-case.svg"
-  kicker="Engineering Case"
-  title="TMPA Implementation Case"
-  summary="Engineering evidence from FCoP, CodeFlowMu and XiaoDian AI, including the pinned C01–C14 baseline."
-  version="I0.3"
-  status="Public working draft"
-  languageHref="/zh/publications/implementation-case-i0.3"
-  languageLabel="简体中文"
-/>
+# Implementation Case I0.3 has moved
 
-<!--@include: ./implementation-case-i0.3/part-01.md{17,}-->
-<!--@include: ./implementation-case-i0.3/part-02.md-->
-<!--@include: ./implementation-case-i0.3/part-03.md-->
-<!--@include: ./implementation-case-i0.3/part-04.md-->
+The maintained engineering case is now **I0.4**. This compatibility page keeps older links from returning 404.
+
+[Open Implementation Case I0.4 →](./implementation-case-i0.4)

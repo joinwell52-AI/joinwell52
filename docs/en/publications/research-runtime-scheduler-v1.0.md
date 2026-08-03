@@ -1,12 +1,12 @@
 ---
 title: Research Runtime Scheduler V1.0
-description: The formal execution scheduler and operational control plane of Research Center 3.0.
+description: The formal execution scheduler and operational control plane of Digital Employee Works.
 outline: deep
 ---
 
 <ArticleCover
   image="/assets/covers/research-runtime-scheduler-v1.svg"
-  kicker="Research Center 3.0 · Runtime Release"
+  kicker="Digital Employee Works · Runtime Release"
   title="Research Runtime Scheduler V1.0"
   summary="The only formal scheduler, observability layer and publication gate of the Research Operating System."
   version="V1.0"
@@ -17,7 +17,7 @@ outline: deep
 
 ## Release statement
 
-**Research Runtime Scheduler V1.0** establishes **Research Runtime Center** as the operational control plane of Research Center 3.0.
+**Research Runtime Scheduler V1.0** establishes the **Factory Runtime Center** as the operational control plane of Digital Employee Works.
 
 Research OS still defines how research work should move. The Runtime Scheduler decides when formal work is opened, records what actually happened, exposes the state through a generated dashboard, and requires GitHub commit verification before a publication can be considered an official runtime output.
 
@@ -29,7 +29,7 @@ Research OS still defines how research work should move. The Runtime Scheduler d
 |---|---|
 | Capability | Research Runtime Scheduler |
 | Version | V1.0 |
-| Research Center | 3.0 |
+| Digital Employee Works | Continuous production |
 | Runtime timezone | `Asia/Shanghai` |
 | Digital Research Employee | Research Report Production Engine V1.0 on ChatGPT |
 | System of record | GitHub repository `joinwell52-AI/joinwell52` |
@@ -57,7 +57,7 @@ Runtime Record
         ↓
 GitHub Commit + Commit Verify
         ↓
-Research Center
+Digital Employee Works
 ```
 
 The scheduler opens governed execution slots. The corresponding ChatGPT Runtime worker performs the research. A trigger does not count as completion: without output and verification, the Runtime remains Waiting, Blocked or Failed.
@@ -92,7 +92,7 @@ The website does not maintain a second dashboard database. At build time, the Ru
 
 ## Runtime Center website
 
-Research Center 3.0 adds a generated Runtime Center with:
+Digital Employee Works provides a generated Factory Runtime Center with:
 
 - Runtime Status;
 - Today’s Tasks;

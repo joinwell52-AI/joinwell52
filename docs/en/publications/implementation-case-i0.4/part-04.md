@@ -55,6 +55,6 @@ TASK created by PM
 
 The `needs_human` node remains in the graph and is queryable. Downstream objects depending on it remain `undetermined` until an authorized decision object resolves the state. The authoritative record is the source set and transitions, not the rendered view. Reordering input files must not change the reconstructed graph or issue set.
 
-## I0.3 Theory-to-Implementation Alignment
+## I0.4 Theory-to-Implementation Alignment
 
 FCoP is evaluated as a protocol realization of TMPA concepts; CodeFlowMu is evaluated as an engineering system combining protocol roles with Skills, tools, runtime execution, recovery, and interfaces. The report distinguishes probabilistic agent execution evidence from deterministic validation mechanisms, and demonstrated behavior from full Core conformance.

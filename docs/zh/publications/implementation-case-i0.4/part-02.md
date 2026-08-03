@@ -154,6 +154,6 @@ PM 创建 TASK
 
 `needs_human` 节点保持在图中并可查询。依赖它的下游对象保持 `undetermined`，直至授权决定对象解决状态。权威记录是来源集合与迁移，不是渲染视图；重新排列输入文件不得改变重建图或问题集合。
 
-## I0.3 理论—实现对齐
+## I0.4 理论—实现对齐
 
 FCoP 作为 TMPA 概念的协议实现接受评估；CodeFlowMu 作为结合协议角色、Skill、工具、Runtime 执行、恢复与界面的工程系统接受评估。本报告区分概率型 Agent 执行证据与确定性验证机制，也区分 demonstrated 行为与完整 Core Conformance。

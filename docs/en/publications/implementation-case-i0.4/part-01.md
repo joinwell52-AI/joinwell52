@@ -1,5 +1,5 @@
 ---
-title: TMPA–FCoP–CodeFlowMu Implementation Case — Draft I0.3
+title: TMPA–FCoP–CodeFlowMu Implementation Case — Draft I0.4
 outline: deep
 ---
 
@@ -8,9 +8,9 @@ outline: deep
   kicker="Engineering Case"
   title="TMPA Implementation Case"
   summary="Engineering evidence from FCoP, CodeFlowMu and XiaoDian AI, including the pinned C01–C14 baseline."
-  version="I0.3"
+  version="I0.4"
   status="Public working draft"
-  languageHref="/zh/publications/implementation-case-i0.3"
+  languageHref="/zh/publications/implementation-case-i0.4"
   languageLabel="简体中文"
 />
 
@@ -18,13 +18,15 @@ outline: deep
 
 ## FCoP, CodeFlowMu, XiaoDian AI, and the First C01–C14 Baseline
 
-> **Document Version:** Draft I0.3  
-> **Status:** Author-Produced Implementation and Case Report  
+> **Document Version:** Draft I0.4<br>
+> **Status:** Author-Produced Implementation and Case Report<br>
 > **Historical Evidence Baseline:** TMPA Draft V1.0-R24<br>
 > **Report Date:** 2026-07-31  
-> **Editorial Revision Date:** 2026-08-02<br>
+> **Editorial Revision Date:** 2026-08-03<br>
 > **Conformance Corpus:** `tmpa-draft-v1-c01-c14-20260731`
 > **Authority Boundary:** This report is evidentiary and non-normative. TMPA Core requirements are defined only by the GitHub Core Specification.
+
+**I0.4 revision scope.** This revision aligns the maintained publication set to A0.5 / S0.4 / I0.4, updates cross-document routes, and makes the product–engineering–theory boundary explicit. It does not add a new conformance run or upgrade any historical S0.3 result to S0.4.
 
 ## Abstract
 

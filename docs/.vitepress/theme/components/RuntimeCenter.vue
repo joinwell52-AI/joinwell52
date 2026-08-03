@@ -71,11 +71,11 @@ const todayTasks = computed(() => data.schedule
   .sort((a, b) => a.time.localeCompare(b.time)))
 
 const text = computed(() => zh.value ? {
-  kicker: '研究运行中心 · 数字研究员工作记录',
-  title: '研究运行中心',
+  kicker: '工场运行中心 · 数字员工工作记录',
+  title: '工场运行中心',
   lead: '这里展示数字研究员 RA 当天的计划、执行进度、下一项工作和可验证证据。页面依据调度清单与运行记录自动计算，不把尚未开始的任务误报为已跳过或已完成。',
-  center: `研究中心 ${data.centerVersion}`,
-  open: '进入研究运行中心', charter: '查看运行调度规范',
+  center: '数字员工工场',
+  open: '进入工场运行中心', charter: '查看运行调度规范',
   overview: '今日运行概况', progress: '今日进度', dayStatus: '全天状态', current: '当前状态', next: '下一任务',
   inProgress: '进行中', completed: '已完成', endedIncomplete: '当日已结束（未全部完成）', risk: '进行中（存在风险）',
   waitingNext: '等待下一任务', noMore: '今日计划已全部结束', noPlan: '今日没有计划任务',
@@ -86,11 +86,11 @@ const text = computed(() => zh.value ? {
   output: '输出', boundary: '边界', history: '运行历史', record: '查看记录', empty: '尚无运行记录。',
   principle: '正式发布必须由研究运行系统驱动并生成运行记录；没有运行记录的发布，不属于正式运行结果。'
 } : {
-  kicker: 'RESEARCH RUNTIME CENTER · DIGITAL RESEARCHER WORK RECORD',
-  title: 'Research Runtime Center',
-  lead: 'This page shows the Research Analyst’s daily plan, execution progress, next action and verifiable evidence. Status is resolved from the scheduler and Runtime Records, so future tasks are never reported as skipped or completed.',
-  center: `RESEARCH CENTER ${data.centerVersion}`,
-  open: 'Open Runtime Center', charter: 'View Runtime Scheduler',
+  kicker: 'FACTORY RUNTIME CENTER · DIGITAL EMPLOYEE WORK RECORD',
+  title: 'Factory Runtime Center',
+  lead: 'This page shows the Digital Employee’s daily plan, production progress, next action, and verifiable evidence. Status is resolved from the scheduler and Runtime Records, so future tasks are never reported as skipped or completed.',
+  center: 'DIGITAL EMPLOYEE WORKS',
+  open: 'Open Factory Runtime Center', charter: 'View Runtime Scheduler',
   overview: 'Today’s Overview', progress: 'Today’s Progress', dayStatus: 'Day Status', current: 'Current State', next: 'Next Task',
   inProgress: 'In Progress', completed: 'Completed', endedIncomplete: 'Day Ended — Incomplete', risk: 'In Progress — Attention Required',
   waitingNext: 'Waiting for the next task', noMore: 'Today’s plan has ended', noPlan: 'No tasks are scheduled today',
@@ -125,7 +125,7 @@ const taskCopy: Record<string, { zh: string; en: string; zhDescription: string; 
   },
   publication: {
     zh: '研究运行每日发布', en: 'Research Runtime Publication',
-    zhDescription: '发布已完成研究与验证的每日研究笔记，并完成 GitHub 提交校验。',
+    zhDescription: '发布已完成观察与验证的每日观察笔记，并完成 GitHub 提交校验。',
     zhOutput: '每日研究、索引、网站与提交验证', zhBoundary: '禁止在发布阶段直接研究'
   },
   weekly: {
@@ -136,7 +136,7 @@ const taskCopy: Record<string, { zh: string; en: string; zhDescription: string; 
   academic: {
     zh: '研究运行学术研究', en: 'Research Runtime Academic',
     zhDescription: '研究论文、基准、规范、会议与机构成果。',
-    zhOutput: '学术观察与正式研究笔记', zhBoundary: '禁止普通新闻'
+    zhOutput: '学术观察与正式观察笔记', zhBoundary: '禁止普通新闻'
   }
 }
 

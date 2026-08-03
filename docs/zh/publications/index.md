@@ -1,8 +1,8 @@
 # 出版中心
 
-joinwell52 Research Center 3.0 以版本化方式公开 Runtime 能力、数字员工能力、论文、规范和工程案例。GitHub 是唯一事实源；只有通过相应 Runtime Gate、形成 Git Commit 并完成 Commit Verify 的修订才属于正式交付。
+数字员工工场以版本化方式公开 Runtime 能力、数字员工能力、论文、规范和工程案例。GitHub 是唯一事实源；只有通过相应 Runtime Gate、形成 Git Commit 并完成 Commit Verify 的修订才属于正式交付。
 
-## Research Center 3.0 Runtime 发布
+## 工场 Runtime 发布
 
 | 类型 | 文档 | 版本 | 状态 |
 |---|---|---:|---|
@@ -16,7 +16,7 @@ Research Runtime Scheduler V1.0 是 Research Operating System 唯一正式调度
 |---|---|---:|---|
 | 数字员工能力 | [研究报告生产机](./research-report-production-engine-v1.0) | V1.0 | Production Verified |
 
-研究报告生产机是基于 ChatGPT 的 Research Analyst Worker。在 Research Center 3.0 中，它运行于 Research Runtime Center 之下，并通过 Runtime Record 与 GitHub 验证关闭正式工作。
+研究报告生产机是基于 ChatGPT 的 Research Analyst Worker。在数字员工工场中，它运行于 Runtime 控制平面之下，并通过 Runtime Record 与 GitHub 验证关闭正式工作。
 
 ## TMPA 出版体系
 
@@ -24,7 +24,9 @@ Research Runtime Scheduler V1.0 是 Research Operating System 唯一正式调度
 |---|---|---:|---|
 | 论文 | [TMPA Architecture Paper](./tmpa-architecture-paper-a0.5) | A0.5 | 学术工作草稿 |
 | 规范 | [TMPA Core Specification](./tmpa-core-specification-s0.4) | S0.4 | 可实现规范草稿 |
-| 案例 | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.3) | I0.3 | 公开工程案例草稿 |
+| 案例 | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.4) | I0.4 | 公开工程案例草稿 |
+
+TMPA 出版体系是独立理论层。工场的高频观察笔记不自动构成论文证据；工程案例只报告其明确范围内的实现与验证结果。
 
 ```text
 Research Runtime
@@ -35,7 +37,7 @@ Research Runtime
 → main
 → Commit Verify
 → Pages Build
-→ Research Center
+→ 数字员工工场
 ```
 
 在获得稳定版本或 DOI 之前，引用时应注明作者、标题、明确版本、仓库地址和访问日期。

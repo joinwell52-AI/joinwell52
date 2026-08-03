@@ -1,8 +1,8 @@
-# About / 关于研究中心
+# About Digital Employee Works / 关于数字员工工场
 
-TMPA Research Center is maintained by **Zhu Wei / 朱卫 (joinwell52-AI)** as an independent engineering-driven research project.
+Digital Employee Works is maintained by **Zhu Wei / 朱卫 (joinwell52-AI)** as an independent, engineering-driven production project.
 
-TMPA 研究中心由 **朱卫（joinwell52-AI）** 作为独立研究项目持续维护。
+数字员工工场由 **朱卫（joinwell52-AI）** 作为独立、工程驱动的生产项目持续维护。
 
 ## Research orientation / 研究方向
 
@@ -15,6 +15,6 @@ TMPA 研究中心由 **朱卫（joinwell52-AI）** 作为独立研究项目持�
 
 ## Method / 方法
 
-The project follows an engineering-to-theory path. CodeFlowMu and FCoP provide implementation evidence; TMPA extracts reusable data and governance architecture; public research continuously compares the system with academic, open-source, and industry developments.
+The Works produces Digital Employees. CodeFlowMu and FCoP provide the engineering foundation; TMPA is maintained as an independent theory and specification layer; Observation Notes record external developments without automatically becoming paper evidence.
 
-本项目采用“工程 → 理论”的研究路径。CodeFlowMu 与 FCoP 提供真实工程证据，TMPA 从中提炼可复用的数据与治理架构，公开研究持续将其与学术、开源和产业进展进行比较。
+工场生产数字员工，CodeFlowMu 与 FCoP 提供工程能力底座，TMPA 作为独立理论与规范层维护；观察笔记记录外部动态，但不自动构成论文证据。
