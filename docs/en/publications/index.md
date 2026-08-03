@@ -24,7 +24,7 @@ The Research Report Production Engine is the ChatGPT-based Research Analyst work
 |---|---|---:|---|
 | Paper | [TMPA Architecture Paper](./tmpa-architecture-paper-a0.5) | A0.5 | Academic working draft |
 | Specification | [TMPA Core Specification](./tmpa-core-specification-s0.4) | S0.4 | Implementation-ready specification draft |
-| Case report | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.3) | I0.3 | Public engineering case draft |
+| Case report | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.4) | I0.4 | S0.4 engineering evidence draft |
 
 ```text
 Research Runtime

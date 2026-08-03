@@ -1,0 +1,120 @@
+{
+  "baseline_id": "tmpa-s0.4-fcop-codeflowmu-20260803",
+  "core_version": "S0.4",
+  "evidence_level": "demonstrated",
+  "evaluated_systems": [
+    {
+      "id": "fcop",
+      "version": "3.2.4",
+      "commit": "da79dfefd99f597c9e422ce9edec22157f915a21",
+      "availability": "public commit retrieved and directly rerun"
+    },
+    {
+      "id": "codeflowmu",
+      "version": "V1.2.3",
+      "commit": "8f342d028eb66e77d135bea58fdbc7f2d0627e3b",
+      "availability": "not present in CodeFlowMu-open public history; I0.3 evidence only"
+    },
+    {
+      "id": "xiaodian-ai",
+      "version": "I0.3 selected evidence",
+      "availability": "private field evidence; no public reproduction package"
+    }
+  ],
+  "criteria": [
+    {
+      "id": "C01",
+      "assertions": [
+        { "id": "product-schema-paths", "mandatory": true, "status": "passed", "evidence": "FCoP 3.2.4 schema tests rerun successfully." },
+        { "id": "s0.4-canonical-object-negative-suite", "mandatory": true, "status": "not_executed", "evidence": "FCoP and CodeFlowMu do not expose the complete S0.4 governance-object schema surface." }
+      ]
+    },
+    {
+      "id": "C02",
+      "assertions": [
+        { "id": "separate-attributable-artifacts", "mandatory": true, "status": "passed", "evidence": "Pinned FCoP tests and I0.3 evidence preserve separate task, report, review and correction artifacts." },
+        { "id": "one-s0.4-primary-carrier-observation", "mandatory": true, "status": "not_executed", "evidence": "No product reader emits governed_work.primary_carrier_id conflict judgment." }
+      ]
+    },
+    {
+      "id": "C03",
+      "assertions": [
+        { "id": "duplicate-detection-mechanism", "mandatory": true, "status": "passed", "evidence": "FCoP provides duplicate and conflict checks in fixed-product tests." },
+        { "id": "canonical-duplicate-quarantine", "mandatory": true, "status": "not_executed", "evidence": "No fixed product emits DUPLICATE_ID_CONFLICT in an S0.4 Reader envelope." }
+      ]
+    },
+    {
+      "id": "C04",
+      "assertions": [
+        { "id": "local-order-and-asynchronous-progress", "mandatory": true, "status": "passed", "evidence": "FCoP lifecycle and stream-adjacent tests rerun; I0.3 records dependency waiting and independent progress." },
+        { "id": "canonical-gap-duplicate-permutation-output", "mandatory": true, "status": "not_executed", "evidence": "Product output is not normalized to S0.4 STREAM_GAP and STREAM_DUPLICATE_SEQUENCE results." }
+      ]
+    },
+    {
+      "id": "C05",
+      "assertions": [
+        { "id": "role-operation-gates", "mandatory": true, "status": "passed", "evidence": "FCoP and CodeFlowMu evidence contains role, capability and operation gates." },
+        { "id": "denied-versus-undetermined-canonical-output", "mandatory": true, "status": "not_executed", "evidence": "No product rerun emits both AUTHORITY_DENIED/invalid and AUTHORITY_UNDETERMINED/undetermined." }
+      ]
+    },
+    {
+      "id": "C06",
+      "assertions": [
+        { "id": "illegal-transition-does-not-apply", "mandatory": true, "status": "passed", "evidence": "Pinned FCoP lifecycle tests directly reran; I0.3 preserved the earlier successful lifecycle gate." },
+        { "id": "s0.4-lifecycle-three-valued-output", "mandatory": true, "status": "not_executed", "evidence": "The product does not emit both ILLEGAL_TRANSITION/invalid and LIFECYCLE_UNDETERMINED/undetermined in the S0.4 envelope." }
+      ]
+    },
+    {
+      "id": "C07",
+      "assertions": [
+        { "id": "separate-report-review-gate", "mandatory": true, "status": "passed", "evidence": "I0.3 records separate report, QA review and approval evidence; FCoP fixed tests reran." },
+        { "id": "verified-identity-sod-and-exception", "mandatory": true, "status": "not_executed", "evidence": "Identity-level separation and exception-object handling are not demonstrated end to end." }
+      ]
+    },
+    {
+      "id": "C08",
+      "assertions": [
+        { "id": "product-covered-content-tamper-run", "mandatory": true, "status": "not_executed", "evidence": "No pinned product Reader run recomputed the S0.4 object digest after controlled tampering." }
+      ]
+    },
+    {
+      "id": "C09",
+      "assertions": [
+        { "id": "missing-dependency-blocks-work", "mandatory": true, "status": "passed", "evidence": "I0.3 product evidence records dependency waiting and release behavior." },
+        { "id": "missing-reference-three-valued-propagation", "mandatory": true, "status": "not_executed", "evidence": "No product output emits MISSING_REFERENCE with canonical undetermined/partial propagation." }
+      ]
+    },
+    {
+      "id": "C10",
+      "assertions": [
+        { "id": "product-prohibited-cycle-quarantine", "mandatory": true, "status": "not_executed", "evidence": "No fixed product graph Reader quarantines only the affected prohibited-cycle subgraph." }
+      ]
+    },
+    {
+      "id": "C11",
+      "assertions": [
+        { "id": "product-byte-stable-envelope-permutations", "mandatory": true, "status": "not_executed", "evidence": "The new Reference Reader passes this fixture, but FCoP/CodeFlowMu do not emit the required canonical S0.4 result envelope." }
+      ]
+    },
+    {
+      "id": "C12",
+      "assertions": [
+        { "id": "product-conflict-preservation-and-resolution", "mandatory": true, "status": "not_executed", "evidence": "No fixed product rerun produced the disputed view and authorized resolution output as one S0.4 criterion." }
+      ]
+    },
+    {
+      "id": "C13",
+      "assertions": [
+        { "id": "restart-and-recovery-mechanisms", "mandatory": true, "status": "passed", "evidence": "I0.3 records task, session, ledger, restart and archive recovery paths." },
+        { "id": "fresh-unified-reader-reconstruction", "mandatory": true, "status": "not_executed", "evidence": "No fixed product reader reconstructs responsibility, lifecycle, dependencies and issues in one canonical result." }
+      ]
+    },
+    {
+      "id": "C14",
+      "assertions": [
+        { "id": "terminal-state-history-preserved", "mandatory": true, "status": "passed", "evidence": "Pinned FCoP archive/history tests reran and I0.3 product evidence preserves terminal history." },
+        { "id": "prior-task-report-review-transition-evidence", "mandatory": true, "status": "passed", "evidence": "Archived artifacts retain the earlier task, report, review and transition chain." }
+      ]
+    }
+  ]
+}

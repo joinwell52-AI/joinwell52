@@ -26,9 +26,9 @@ const enSidebar = {
     { text: 'Overview', link: '/en/publications/' },
     { text: 'Research Runtime Scheduler V1.0', link: '/en/publications/research-runtime-scheduler-v1.0' },
     { text: 'Research Report Production Engine V1.0', link: '/en/publications/research-report-production-engine-v1.0' },
-    { text: 'TMPA Architecture Paper A0.4', link: '/en/publications/tmpa-architecture-paper-a0.4' },
+    { text: 'TMPA Architecture Paper A0.5', link: '/en/publications/tmpa-architecture-paper-a0.5' },
     { text: 'TMPA Core Specification S0.4', link: '/en/publications/tmpa-core-specification-s0.4' },
-    { text: 'Implementation Case I0.3', link: '/en/publications/implementation-case-i0.3' }
+    { text: 'Implementation Case I0.4', link: '/en/publications/implementation-case-i0.4' }
   ]}]
 }
 
@@ -58,9 +58,9 @@ const zhSidebar = {
     { text: '出版物总览', link: '/zh/publications/' },
     { text: 'Research Runtime Scheduler V1.0', link: '/zh/publications/research-runtime-scheduler-v1.0' },
     { text: '研究报告生产机 V1.0', link: '/zh/publications/research-report-production-engine-v1.0' },
-    { text: 'TMPA 架构论文 A0.4', link: '/zh/publications/tmpa-architecture-paper-a0.4' },
+    { text: 'TMPA 架构论文 A0.5', link: '/zh/publications/tmpa-architecture-paper-a0.5' },
     { text: 'TMPA 核心规范 S0.4', link: '/zh/publications/tmpa-core-specification-s0.4' },
-    { text: '工程实现案例 I0.3', link: '/zh/publications/implementation-case-i0.3' }
+    { text: '工程实现案例 I0.4', link: '/zh/publications/implementation-case-i0.4' }
   ]}]
 }
 

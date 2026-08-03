@@ -249,7 +249,7 @@ Digest 与签名证据必须被窄化解释。Digest 可以揭示被覆盖字节
 
 # 7. 评估结果
 
-独立维护的 [TMPA Core Specification S0.4](/zh/publications/tmpa-core-specification-s0.4) 仍是 C01–C14 及全部 SHALL/MUST 条款的唯一规范性来源。详细工程证据和标准裁决属于 [Implementation Case Report I0.3](/zh/publications/implementation-case-i0.3)。本节按研究问题评估结果，不复制规范正文。
+独立维护的 [TMPA Core Specification S0.4](/zh/publications/tmpa-core-specification-s0.4) 仍是 C01–C14 及全部 SHALL/MUST 条款的唯一规范性来源。详细工程证据和标准裁决属于 [Implementation Case Report I0.4](/zh/publications/implementation-case-i0.4)。本节按研究问题评估结果，不复制规范正文。
 
 ## 7.1 按研究问题组织的发现
 
@@ -268,31 +268,31 @@ Digest 与签名证据必须被窄化解释。Digest 可以揭示被覆盖字节
 | 领域 | 标准 | 产品级结果 |
 |---|---|---|
 | 对象、不可变性与完整性 | C01、C02、C03、C08 | 3 项 PARTIAL；1 项 NOT RUN |
-| 权限与生命周期 | C05、C06、C07 | 1 项 PASS；2 项 PARTIAL |
+| 权限与生命周期 | C05、C06、C07 | 3 项 PARTIAL |
 | 顺序、引用与冲突 | C04、C09、C10、C12 | 2 项 PARTIAL；2 项 NOT RUN |
 | 确定性、恢复与历史 | C11、C13、C14 | 1 项 PASS；1 项 PARTIAL；1 项 NOT RUN |
 
 这些是锁定修订上的产品级结果，不是完整 Core、Profile 或 Authenticated Governance Conformance 声明。
 
-## 7.3 首个锁定基线
+## 7.3 锁定基线的 S0.4 重新裁决
 
-首个综合语料库于 2026 年 7 月 31 日执行，标识符为 `tmpa-draft-v1-c01-c14-20260731` [28]。它锁定 FCoP Package `3.2.4`（Commit `da79dfefd99f597c9e422ce9edec22157f915a21`）、CodeFlowMu `V1.2.3`（Commit `8f342d028eb66e77d135bea58fdbc7f2d0627e3b`），以及按 Commit 或 SHA-256 锁定的选定小典 AI 证据。清单共记录 325 个证据文件。
+I0.4 发布 S0.4 语料库 `tmpa-s0.4-fcop-codeflowmu-20260803` [28]。它保留锁定的 FCoP Package `3.2.4` Commit `da79dfefd99f597c9e422ce9edec22157f915a21`、CodeFlowMu `V1.2.3` Commit `8f342d028eb66e77d135bea58fdbc7f2d0627e3b` 与有边界的小典证据，但把 Reference Reader Fixture 与产品裁决严格分开。
 
-选定测试运行报告 222 个 FCoP 测试和 73 个 CodeFlowMu 测试通过；4 个小典 Report-Auditor 测试作为非门禁现场证据通过。一个隔离的 CodeFlowMu 身份测试和一套小典 Guardrail Suite 因无法准备前置条件而未运行；这些前置条件失败被如实保留，没有转换为标准失败或通过。
+FCoP Commit 已直接取回，选定套件重跑结果为 1,137 项通过、2 项跳过、0 项失败。CodeFlowMu Commit 无法从公开 `CodeFlowMu-open` 历史取回，因此不声称新的 CodeFlowMu 产品执行。公开 S0.4 Reference Reader 通过全部 14 项合成 Fixture；这些 PASS 不是产品 PASS。
 
 产品级裁决为：
 
 | 裁决 | 标准 |
 |---|---|
-| PASS | C06、C14 |
-| PARTIAL | C01、C02、C03、C04、C05、C07、C09、C13 |
+| PASS | C14 |
+| PARTIAL | C01、C02、C03、C04、C05、C06、C07、C09、C13 |
 | NOT RUN | C08、C10、C11、C12 |
 
-本轮没有具有直接门禁测试的标准失败。该陈述仅限已执行路径，不等于“零失败的完整一致性”。14 个 Fixture Oracle 均匹配预期输出，但 Fixture 内部一致不替代产品执行。
+没有已执行的产品标准失败。该陈述仅限已执行路径，不等于“零失败的完整一致性”。C06 在 S0.4 下为 PARTIAL，因为保存的产品证据尚未同时输出 `ILLEGAL_TRANSITION`/`invalid` 与 `LIFECYCLE_UNDETERMINED`/`undetermined`。
 
-## 7.4 解释：共同的读取侧缺口
+## 7.4 解释：产品投影缺口
 
-8 项 PARTIAL 共享一个主要实现缺口。FCoP 与 CodeFlowMu 已经提供大量写入侧与局部控制机制——独立工件、原子发布、角色检查、生命周期门禁、依赖阻塞、Archive 保留与重启恢复——但尚未暴露一个只读适配器，把全部证据规范化为：
+9 项 PARTIAL 共享一个主要实现缺口。通用 S0.4 只读 Reference Reader 现已存在，而 FCoP 与 CodeFlowMu 尚未暴露受维护的投影适配器，把各自原生证据规范化为：
 
 ```text
 来源候选
@@ -306,9 +306,9 @@ Digest 与签名证据必须被窄化解释。Digest 可以揭示被覆盖字节
 authoritative / partial / disputed / quarantined 视图
 ```
 
-该适配器将直接改善 C03、C05、C09 和 C13，并为 C04 与 C07 提供基础设施；它还将建立 C10–C12 所需的产品执行路径。C01 仍存在 Schema 覆盖缺口，C02 存在更严格不可变性缺口，C08 需要被覆盖内容的 Digest Reader。
+产品投影将直接改善 C03、C05、C09 和 C13，并为 C04 与 C07 提供基础设施；它还将建立 C10–C12 所需的产品执行路径。C01 仍存在 Schema 覆盖缺口；C02 存在更严格不可变性缺口；C06 缺少完整规范三值输出；C08 需要被覆盖内容的 Digest 证据。
 
-该基线由作者产生。任何独立验证声明都必须先有稳定公开归档和独立重跑。
+语料库与基线由作者产生。语料库现已公开，但任何独立验证声明仍必须先有独立重跑。
 
 # 8. 讨论、局限与效度威胁
 
@@ -373,7 +373,7 @@ TMPA 的贡献是流程治理契约，而不是完整企业 Agent 平台。它�
 
 **结论效度。** 裁决计数只是选定路径的描述性结果，不是统计估计、完整一致性证据，也不是与聊天、Event Log、Workflow Engine 或数据库替代方案的因果比较。
 
-**可复现性。** 当前语料库由作者生成。仍需要稳定公开归档、Release Checksum、可执行复现命令、环境声明与独立重跑。
+**可复现性。** 当前语料库由作者生成。它现已具备稳定公开仓库路径、可执行复现命令、环境声明与 SHA-256 Manifest；仍需要独立重跑。
 
 ## 8.5 局限与可证伪条件
 
@@ -389,9 +389,9 @@ TMPA 的核心声明必须保持可被反证：
 
 ## 8.6 出版与可复现边界
 
-A0.5 是理论架构论文；Core S0.4 是规范性来源；Implementation Case I0.3 是工程证据来源。论文可以总结配套工件，但不得静默重定义其含义。
+A0.5 是理论架构论文；Core S0.4 是规范性来源；Implementation Case I0.4 是工程证据来源。论文可以总结配套工件，但不得静默重定义其含义。
 
-对外投稿前，语料库需要稳定公开归档、锁定来源修订、可执行复现命令和至少一次独立重跑。低资源部署测量仍是 SME 可行性声明的独立发布要求。
+对外投稿前，语料库仍需要可取回的 CodeFlowMu 锁定源码或复现包，以及至少一次独立重跑。低资源部署测量仍是 SME 可行性声明的独立发布要求。
 
 # 9. 结论
 
@@ -399,9 +399,9 @@ TMPA 是一种**面向中小企业、最低基础设施条件的文本消息多�
 
 该架构沿着**实践 → 方法 → 理论**形成：小典 AI 暴露多角色协调问题，原始 TMPA 识别文本异步方法，FCoP 抽取并成熟其可复用文件协调与复核子集，CodeFlowMu 提供下游应用反馈，本文则形式化对象、不变量、保证边界和一致性标准。早期 Pipeline 证明起源，而不是追溯性的 Core Conformance。
 
-A0.5 在架构层回答 RQ1 与 RQ2，并为 RQ3 提供首个由作者运行、版本锁定的基线。在固定 FCoP `3.2.4` 与 CodeFlowMu `V1.2.3` 修订上，**2 项 PASS、8 项 PARTIAL、4 项未在产品 Reader 层运行**。没有直接门禁测试的标准失败，但该陈述仅限已执行路径，不得解读为零失败的完整一致性。选定套件记录 222 个 FCoP、73 个 CodeFlowMu 和 4 个非门禁小典 Auditor 测试通过。14 个 Fixture Oracle 均匹配预期输出，但这不替代 C08、C10、C11 和 C12 的产品执行，也不替代独立验证。
+A0.5 在架构层回答 RQ1 与 RQ2，并为 RQ3 提供由作者运行、版本锁定的基线。在 I0.4/S0.4 重新裁决下，**产品级 1 项 PASS、9 项 PARTIAL、4 项未在产品 Reader 层运行**。没有已执行的产品标准失败，但该陈述仅限已执行路径，不得解读为零失败的完整一致性。选定 FCoP 套件记录 1,137 项通过、2 项跳过、0 项失败；锁定 CodeFlowMu 源码不可用，未完成新执行。独立 S0.4 Reference Reader 通过全部 14 项合成 Fixture，但这不替代产品执行或独立验证。
 
-决定性剩余问题是 RQ3：组织能否在普通项目环境中，以可接受的资源与纪律成本持续获得 TMPA 的责任、复核、恢复与证据收益。该声明仍需要稳定公开语料库、产品级证据图适配器、低资源部署与恢复测量、基线对比、代表性使用和独立复现。TMPA 自身也不确立认证身份、强隔离、受保护存储、拜占庭容错、参与者声明的事实真实性或生态采用。
+决定性剩余问题是 RQ3：组织能否在普通项目环境中，以可接受的资源与纪律成本持续获得 TMPA 的责任、复核、恢复与证据收益。该声明仍需要产品投影适配器、可取回的 CodeFlowMu 复现包、低资源部署与恢复测量、基线对比、代表性使用和独立复现。TMPA 自身也不确立认证身份、强隔离、受保护存储、拜占庭容错、参与者声明的事实真实性或生态采用。
 
 ---
 

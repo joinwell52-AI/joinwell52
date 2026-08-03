@@ -43,7 +43,7 @@ This distinction produces three separate questions:
 TMPA must not claim the guarantee of a surrounding identity, policy, or cryptographic system unless the deployment actually verifies that evidence under the corresponding profile.
 # 7. Evaluation Results
 
-The separately maintained [TMPA Core Specification S0.4](/en/publications/tmpa-core-specification-s0.4) remains the sole normative source for C01–C14 and all SHALL/MUST clauses. Detailed engineering evidence and criterion verdicts belong to the [Implementation Case Report I0.3](/en/publications/implementation-case-i0.3). This section evaluates the research questions without reproducing the specification.
+The separately maintained [TMPA Core Specification S0.4](/en/publications/tmpa-core-specification-s0.4) remains the sole normative source for C01–C14 and all SHALL/MUST clauses. Detailed engineering evidence and criterion verdicts belong to the [Implementation Case Report I0.4](/en/publications/implementation-case-i0.4). This section evaluates the research questions without reproducing the specification.
 
 ## 7.1 Findings by Research Question
 
@@ -62,31 +62,31 @@ The baseline is summarized by architectural domain; exact criterion definitions 
 | Domain | Criteria | Product-level result |
 |---|---|---|
 | object, immutability, and integrity | C01, C02, C03, C08 | 3 PARTIAL; 1 NOT RUN |
-| authority and lifecycle | C05, C06, C07 | 1 PASS; 2 PARTIAL |
+| authority and lifecycle | C05, C06, C07 | 3 PARTIAL |
 | ordering, reference, and conflict | C04, C09, C10, C12 | 2 PARTIAL; 2 NOT RUN |
 | determinism, recovery, and history | C11, C13, C14 | 1 PASS; 1 PARTIAL; 1 NOT RUN |
 
 These are product-level results for the pinned revisions, not a declaration of full Core, profile, or authenticated-governance conformance.
 
-## 7.3 First Pinned Baseline
+## 7.3 S0.4 Re-adjudication of the Pinned Baseline
 
-The first consolidated corpus was executed on 31 July 2026 under identifier `tmpa-draft-v1-c01-c14-20260731` [28]. It pins FCoP package `3.2.4` at commit `da79dfefd99f597c9e422ce9edec22157f915a21`, CodeFlowMu `V1.2.3` at commit `8f342d028eb66e77d135bea58fdbc7f2d0627e3b`, and selected XiaoDian evidence by commit or SHA-256. The inventory records 325 evidence files.
+I0.4 publishes the S0.4 corpus `tmpa-s0.4-fcop-codeflowmu-20260803` [28]. It retains the pinned FCoP package `3.2.4` commit `da79dfefd99f597c9e422ce9edec22157f915a21`, CodeFlowMu `V1.2.3` commit `8f342d028eb66e77d135bea58fdbc7f2d0627e3b`, and bounded XiaoDian evidence, but separates Reference Reader fixtures from product verdicts.
 
-Selected runs reported 222 FCoP tests and 73 CodeFlowMu tests passing. Four XiaoDian report-auditor tests passed as non-gating field evidence. One isolated CodeFlowMu identity test and one XiaoDian guardrail suite were not run because their prerequisites could not be prepared; these prerequisite failures were retained rather than converted into criterion failures or passes.
+The FCoP commit was directly retrieved and selected suites reran with 1,137 passed, 2 skipped, and 0 failed. The CodeFlowMu commit was not retrievable from the public `CodeFlowMu-open` history, so no fresh CodeFlowMu product execution is claimed. The public S0.4 Reference Reader passes all 14 synthetic fixtures; those passes are not product passes.
 
 The product-level verdicts are:
 
 | Verdict | Criteria |
 |---|---|
-| PASS | C06, C14 |
-| PARTIAL | C01, C02, C03, C04, C05, C07, C09, C13 |
+| PASS | C14 |
+| PARTIAL | C01, C02, C03, C04, C05, C06, C07, C09, C13 |
 | NOT RUN | C08, C10, C11, C12 |
 
-No criterion with a direct gating test failed in the run. That statement is limited to executed paths and is not “zero-failure full conformance.” All 14 fixture oracles matched expected outputs, but fixture consistency does not substitute for product execution.
+No executed product criterion failed. That statement is limited to executed paths and is not “zero-failure full conformance.” C06 is PARTIAL under S0.4 because preserved product evidence does not emit both `ILLEGAL_TRANSITION`/`invalid` and `LIFECYCLE_UNDETERMINED`/`undetermined`.
 
-## 7.4 Interpretation: Shared Read-Side Gap
+## 7.4 Interpretation: Product Projection Gap
 
-The eight partial verdicts share a dominant implementation gap. FCoP and CodeFlowMu already provide substantial write-side and local-control mechanisms—separate artifacts, atomic publication, role checks, lifecycle gates, dependency blocking, archive preservation, and restart recovery—but do not expose one read-only adapter that normalizes all evidence into:
+The nine partial verdicts share a dominant implementation gap. A generic S0.4 read-only Reference Reader now exists, while FCoP and CodeFlowMu do not expose maintained projection adapters that normalize their native evidence into:
 
 ```text
 source candidates
@@ -100,9 +100,9 @@ authoritative issue set
 authoritative / partial / disputed / quarantined view
 ```
 
-This adapter would directly improve C03, C05, C09, and C13 and provide infrastructure for C04 and C07. It would also create the product execution path required by C10–C12. C01 still has schema-coverage gaps, C02 has a stricter immutability gap, and C08 requires a covered-content digest reader.
+Product projection would directly improve C03, C05, C09, and C13 and provide infrastructure for C04 and C07. It would also create the product execution path required by C10–C12. C01 still has schema-coverage gaps, C02 has a stricter immutability gap, C06 lacks complete canonical three-valued outputs, and C08 requires covered-content digest evidence.
 
-The baseline is author-produced. A stable public archive and an independent rerun are required before any independently validated claim.
+The corpus and baseline are author-produced. The corpus is now public, but an independent rerun is still required before any independently validated claim.
 # 8. Discussion, Limitations, and Threats to Validity
 
 TMPA's contribution is a process-governance contract, not a complete enterprise agent platform. It makes work identity, responsibility, review, lifecycle, conflict, and recovery explicit at publication time and reconstructs them from durable evidence. FCoP demonstrates that a useful subset can operate in an ordinary project environment without a mandatory broker or coordination database.

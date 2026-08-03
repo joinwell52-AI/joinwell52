@@ -8,7 +8,7 @@
 
 **Conclusion validity.** The verdict counts are descriptive results for selected paths. They are not statistical estimates, evidence of full conformance, or causal comparisons with chat, event-log, workflow-engine, or database alternatives.
 
-**Reproducibility.** The current corpus is author-produced. A stable public archive, release checksum, executable reproduction command, environment declaration, and independent rerun remain necessary.
+**Reproducibility.** The current corpus is author-produced. It now has a stable public repository path, executable reproduction command, environment declaration, and SHA-256 manifest. An independent rerun remains necessary.
 
 ## 8.5 Limitations and Falsification Conditions
 
@@ -24,23 +24,23 @@ TMPA's central claims should remain open to disconfirmation:
 
 ## 8.6 Publication and Reproducibility Boundary
 
-A0.5 is the theoretical architecture paper. Core S0.4 is the normative source, and Implementation Case I0.3 is the engineering-evidence source. The paper may summarize those companion artifacts but must not silently redefine their meaning.
+A0.5 is the theoretical architecture paper. Core S0.4 is the normative source, and Implementation Case I0.4 is the engineering-evidence source. The paper may summarize those companion artifacts but must not silently redefine their meaning.
 
-Before external submission, the corpus requires a stable public archive, pinned source revisions, an executable reproduction command, and at least one independent rerun. Low-resource deployment measurements remain a separate release requirement for the SME feasibility claim.
+Before external submission, the corpus still requires a retrievable pinned CodeFlowMu source or reproduction package and at least one independent rerun. Low-resource deployment measurements remain a separate release requirement for the SME feasibility claim.
 # 9. Conclusion
 
 TMPA is an **SME-first, minimal-infrastructure textual-message multi-agent asynchronous process architecture**. Text carries durable work and state; each work item has one stable primary carrier; each published object has one writer and belongs to a local serial stream; independent streams progress asynchronously; and aggregation plus deterministic reading reconstructs the partial-order process, responsibility, lifecycle, conflict, recovery, and audit view.
 
 The architecture arose through **practice → method → theory**: XiaoDian AI exposed the multi-role coordination problem, original TMPA identified the textual asynchronous method, FCoP extracted and matured its reusable file-coordination and review subset, CodeFlowMu supplied downstream application feedback, and this paper formalized the resulting objects, invariants, assurance boundaries, and conformance criteria. The early pipeline establishes origin, not retroactive Core conformance.
 
-A0.5 answers RQ1 and RQ2 at the architectural level and provides a first pinned, author-run baseline for RQ3. Against fixed FCoP `3.2.4` and CodeFlowMu `V1.2.3` revisions, **two criteria pass, eight remain partial, and four were not run at product-reader level**. No criterion with a direct gating test failed, but that statement is limited to the executed paths and must not be read as zero-failure full conformance. Selected suites recorded 222 FCoP tests, 73 CodeFlowMu tests, and 4 non-gating XiaoDian auditor tests passing. All 14 fixture oracles matched expected outputs, but this does not substitute for product execution of C08, C10, C11, and C12 or independent validation.
+A0.5 answers RQ1 and RQ2 at the architectural level and provides a pinned, author-run baseline for RQ3. Under the I0.4/S0.4 re-adjudication, **one product criterion passes, nine remain partial, and four were not run at product-reader level**. No executed product criterion failed, but that statement is limited to the executed paths and must not be read as zero-failure full conformance. Selected FCoP suites recorded 1,137 passed, 2 skipped, and 0 failed; the pinned CodeFlowMu source was unavailable for a fresh run. The separate S0.4 Reference Reader passes all 14 synthetic fixtures, but this does not substitute for product execution or independent validation.
 
-The decisive remaining question is RQ3: whether an organization can sustain the responsibility, review, recovery, and evidence benefits of TMPA in an ordinary project environment at acceptable resource and discipline cost. That claim still requires a stable public corpus, product-level evidence-graph adapters, low-resource deployment and recovery measurements, baseline comparisons, representative use, and independent reproduction. TMPA also does not by itself establish authenticated identity, strong isolation, protected storage, Byzantine resilience, factual truth of participant claims, or ecosystem adoption.
+The decisive remaining question is RQ3: whether an organization can sustain the responsibility, review, recovery, and evidence benefits of TMPA in an ordinary project environment at acceptable resource and discipline cost. That claim still requires product projection adapters, a retrievable CodeFlowMu reproduction package, low-resource deployment and recovery measurements, baseline comparisons, representative use, and independent reproduction. TMPA also does not by itself establish authenticated identity, strong isolation, protected storage, Byzantine resilience, factual truth of participant claims, or ecosystem adoption.
 
 ---
 # Artifact Availability
 
-The first author-run conformance corpus is identified as `tmpa-draft-v1-c01-c14-20260731` and is currently preserved as `tmpa-conformance.zip`. It contains the manifest, criterion fixtures, expected and actual outputs, machine-readable verdicts, runners, execution logs, and a 325-file SHA-256 evidence inventory. A stable public archive, release checksum, and independent rerun remain pending; the current package must therefore be cited as author-produced evidence rather than independent validation.
+The author-run S0.4 conformance corpus is identified as `tmpa-s0.4-fcop-codeflowmu-20260803` and is public at [`research/conformance/tmpa-core-s0.4`](https://github.com/joinwell52-AI/joinwell52/tree/main/research/conformance/tmpa-core-s0.4). It contains the Reference Reader, executable profile, criteria fixtures, product assertions, machine-readable verdicts, logs, external-run records, and SHA-256 manifest. It must still be cited as author-produced evidence rather than independent validation.
 # Data Availability
 
 The paper does not publish production business data. The worked NL2SQL material is an illustrative governance reconstruction rather than a verbatim production export. Conformance fixtures and selected implementation evidence are included in the author-produced corpus; any future public release must preserve redaction, version, provenance, and checksum information.
@@ -103,7 +103,7 @@ The paper author is also the originator and principal developer of TMPA, FCoP, a
 
 [27] Richard Kang and Yudho Diponegoro. “Governance Gaps in Agent Interoperability Protocols: What MCP, A2A, and ACP Cannot Express.” arXiv:2606.31498, 2026. `https://arxiv.org/abs/2606.31498`. Accessed 2026-07-30.
 
-[28] TMPA Project. “TMPA Draft V1.0 C01–C14 Conformance Corpus.” Corpus ID `tmpa-draft-v1-c01-c14-20260731`, executed 31 July 2026. Author-produced archive `tmpa-conformance.zip`; contains manifest, 325-file SHA-256 evidence inventory, criterion fixtures and expected/actual outputs, machine-readable verdicts, runners, and execution logs. A stable public archive and independent rerun remain required.
+[28] TMPA Project. “TMPA Core S0.4 C01–C14 Conformance Corpus.” Corpus ID `tmpa-s0.4-fcop-codeflowmu-20260803`, executed 3 August 2026. `research/conformance/tmpa-core-s0.4/`; author-produced Reference Reader, fixtures, product assertions, results, logs, external-run records, and SHA-256 manifest. Independent rerun remains required.
 
 [29] Zexun Wang. “Proof-Carrying Agent Actions: Model-Agnostic Runtime Governance for Heterogeneous Agent Systems.” arXiv:2606.04104, 2026. `https://arxiv.org/abs/2606.04104`. Accessed 2026-07-31.
 
