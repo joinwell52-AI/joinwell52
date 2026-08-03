@@ -1,3 +1,4 @@
+import { h } from 'vue'
 import DefaultTheme from 'vitepress/theme'
 import type { Theme } from 'vitepress'
 import { withBase } from 'vitepress'
@@ -7,6 +8,7 @@ import ResearchNotes from './components/ResearchNotes.vue'
 import ResearchCategory from './components/ResearchCategory.vue'
 import RuntimeCenter from './components/RuntimeCenter.vue'
 import ResearchCenterHome from './components/ResearchCenterHome.vue'
+import GlobalBack from './components/GlobalBack.vue'
 import './custom.css'
 import './mobile-fix.css'
 import './rvs.css'
@@ -110,6 +112,9 @@ function enhancePortal() {
 
 export default {
   extends: DefaultTheme,
+  Layout: () => h(DefaultTheme.Layout, null, {
+    'layout-top': () => h(GlobalBack)
+  }),
   enhanceApp({ app, router }) {
     app.component('PortalHome', PortalHome)
     app.component('ArticleCover', ArticleCover)
