@@ -4,6 +4,8 @@ A deployment claiming separation of duties SHALL define and enforce incompatible
 
 Role assignment, revocation, delegation, and separation-of-duty exceptions SHOULD themselves be represented as governance objects.
 
+Role and authority evaluation SHALL follow the order in Section 6.2. Proven denial or an out-of-scope action SHALL be `invalid`; missing or ambiguous assignment evidence SHALL be `undetermined`.
+
 ## 9.5 Stream Requirements
 
 Every stream SHALL have a stable stream identifier.
@@ -35,6 +37,8 @@ Every lifecycle profile SHALL define:
 - preconditions;
 - required evidence.
 
+Every lifecycle profile SHALL have a stable identifier, version, and byte digest. A reader SHALL validate transitions in the order defined by Section 6.2, reconstruct state as defined by Section 6.3, and apply only transitions judged `valid`. If the unique current state cannot be reconstructed, the candidate transition SHALL be `undetermined` and SHALL NOT alter authoritative state.
+
 An illegal or unauthorized transition SHALL NOT alter the authoritative lifecycle state.
 
 The attempted transition SHALL remain observable through a rejection, issue, alert, or equivalent profile-defined record unless the attempt cannot be captured by the deployment's stated threat model.
@@ -46,6 +50,8 @@ A terminal-state or archival operation SHALL preserve the objects and transition
 Every reference SHALL identify a relation type and target object identifier.
 
 A profile SHALL define which reference types create ordering dependencies, which are non-ordering links, and which relation classes must be acyclic.
+
+The relation registry SHALL have a stable identifier, version, and byte digest, and the reader result SHALL identify the exact revision used.
 
 A missing target SHALL be reported. The referencing object MAY remain in a partial view, but the missing dependency SHALL NOT be treated as satisfied.
 
@@ -84,6 +90,8 @@ For the same canonical candidate set and fixed rule profile, a conforming govern
 - emit one semantic judgment—`valid`, `invalid`, or `undetermined`—for each governed conclusion and preserve the reason for that judgment;
 - distinguish authoritative, partial, disputed, quarantined, and unauthenticated states where those distinctions apply;
 - apply a deterministic order to conformance issues and serialized view elements.
+
+The fixed rule profile SHALL include every input listed in Section 8.1. The reader SHALL emit the envelope defined by Section 8.2, use the Core issue codes and identifiers defined there, and apply the three-valued composition rules in Section 7.3. Canonical output ordering SHALL follow Section 8.3.
 
 A deterministic topological serialization or display tie-breaker SHALL NOT be interpreted as a governance decision, truth priority, or additional cross-stream order.
 
@@ -129,14 +137,14 @@ A TMPA Core conformance suite SHALL include C01–C14. Each result SHALL identif
 
 | ID | Test | Normative basis | Pass criterion |
 |---|---|---|---|
-| C01 | Schema validation | 9.2, 9.3 | an object with a missing required field, wrong core type, prohibited top-level field, incomplete signature group, or invalid asserted `date-time` is rejected from the authoritative object set and produces a deterministic validation issue |
+| C01 | Schema validation | 4.1, 9.2, 9.3 | an object with a missing required field including `governed_work`, wrong Core type or version, prohibited field, malformed transition tuple, incomplete signature group, or invalid asserted `date-time` is rejected from the authoritative object set and produces `SCHEMA_INVALID` deterministically |
 | C02 | Primary-carrier and single-writer immutability | 9.2 | one stable task carrier remains identifiable; another writer cannot replace or co-edit a published object; correction or supersession is represented by new attributable evidence that references or qualifies the earlier object |
 | C03 | Duplicate object identity | 9.2, 9.9 | two candidates with the same ID and different canonical content are both retained for inspection, neither is selected as the authoritative node, and a deterministic critical conflict is emitted |
 | C04 | Serial-stream continuity and asynchronous progress | 9.5, 9.9 | each writer preserves its local sequence; duplicate numbers and gaps are reported; unrelated streams can advance independently; no missing object is invented and arrival order does not change the final result for the same set |
-| C05 | Role authority | 9.4, 9.9 | an action outside the creator's validated role scope remains observable but is not applied to authoritative state |
-| C06 | Lifecycle legality | 9.6, 9.9 | an undefined or unauthorized transition remains observable as an issue and does not change the authoritative lifecycle state |
+| C05 | Role authority | 6.2, 9.4, 9.9 | an action outside validated role scope produces `AUTHORITY_DENIED` and `invalid`; missing or ambiguous assignment evidence produces `AUTHORITY_UNDETERMINED` and `undetermined`; neither action is applied |
+| C06 | Lifecycle legality | 6.2–6.4, 9.6, 9.9 | an undefined transition produces `ILLEGAL_TRANSITION` and `invalid`; ambiguous current state or missing prerequisite evidence produces `LIFECYCLE_UNDETERMINED` and `undetermined`; neither changes authoritative state |
 | C07 | Separation of duties | 9.3, 9.4 | the same identity cannot execute and independently review the same governed result unless a profile-authorized exception object exists; the exception and approving authority remain in evidence |
 | C08 | Integrity tampering | 9.8, 9.9 | changing covered content while preserving the original integrity metadata causes digest verification to fail; the object is retained as failure evidence but excluded from the intact authoritative set |
 | C09 | Missing reference | 9.7, 9.9 | an unresolved required target appears in the issue set, and the dependency is not treated as satisfied |
 | C10 | Prohibited cycle | 9.7, 9.9 | the affected prohibited-cycle subgraph is quarantined and reported while unaffected valid objects remain reconstructable |
-| C11 | Aggregation and reconstruction determinism | 9.9 | every tested enumeration, delayed-delivery permutation, and aggregation order of the same final canonical candidate set and fixed profile produces a byte-equivalent canonical partial-order process/governance graph and issue set, while unrelated cross-stream objects remain incomparable |
+| C11 | Aggregation and reconstruction determinism | 8, 9.9 | every tested enumeration, delayed-delivery permutation, and aggregation order of the same source set and complete fixed input bundle produces a byte-equivalent canonical result envelope, graph, and issue set, while unrelated cross-stream objects remain incomparable |

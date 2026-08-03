@@ -1,5 +1,5 @@
 ---
-title: TMPA Core Specification — 草稿 S0.3
+title: TMPA Core Specification — 可实现草稿 S0.4
 outline: deep
 ---
 
@@ -8,9 +8,9 @@ outline: deep
   kicker="规范性规范"
   title="TMPA Core Specification"
   summary="治理对象、生命周期、权限、三值判断与确定性重建的规范要求。"
-  version="S0.3"
-  status="公开工作草稿"
-  languageHref="/en/publications/tmpa-core-specification-s0.3"
+  version="S0.4"
+  status="可实现工作草稿"
+  languageHref="/en/publications/tmpa-core-specification-s0.4"
   languageLabel="English"
 />
 
@@ -18,25 +18,25 @@ outline: deep
 
 ## 文本化多智能体流程架构——Core 对象、Reader 语义与一致性
 
-> **规范版本：** Draft S0.3  
+> **规范版本：** Draft S0.4<br>
 > **历史抽取基线：** TMPA Draft V1.0-R24；当前规范直接在本 GitHub 文档中维护<br>
-> **状态：** 规范性工作草稿
-> **抽取日期：** 2026-07-31  
-> **编辑修订日期：** 2026-08-02<br>
-> **权威性：** 本 GitHub 文档是 TMPA Core S0.3 的唯一规范性来源。Architecture Paper 负责理论阐释，Implementation Case Report 负责工程证据；二者均不得重定义本规范。
+> **状态：** 可实现规范草稿<br>
+> **抽取日期：** 2026-07-31<br>
+> **编辑修订日期：** 2026-08-03<br>
+> **权威性：** 本 GitHub 文档是 TMPA Core S0.4 的唯一规范性来源。Architecture Paper 负责理论阐释，Implementation Case Report 负责工程证据；二者均不得重定义本规范。
 
 ---
 
 # 1. 状态、范围与一致性边界
 
-本文档定义供应商中立的 TMPA Core，包括规范治理对象模型、单写者与生命周期语义、来源聚合、确定性治理重建、信任假设、规范要求以及 C01–C14 一致性行为。
+本文档定义供应商中立的 TMPA Core，固定规范治理对象模型、单写者与生命周期语义、来源聚合、确定性治理重建、三值判断代数、Reader 输出契约、信任假设、规范要求以及 C01–C14 一致性行为。
 
 TMPA Core 治理流程—责任证据。它不规定模型 Runtime、调度器、存储引擎、消息传输、数据库、文件系统布局、身份提供方、密钥管理系统或企业控制平面。Profile 可以绑定这些机制，但它 **MUST** 保留 Core 语义，并且 **MUST** 明确每一项附加假设或保证。
 
 本草稿区分三类文本：
 
 - **规范要求：** 第 9、10 节，使用第 9.1 节规定的规范语言；
-- **解释规范条款所必需的架构定义：** 第 2–5 节；
+- **解释规范条款所必需的架构与算法定义：** 第 2–8 节；
 - **说明性的版本、出版与可追踪信息：** 第 11 节和附录 A。
 
 除非命名 Profile 明确增加，否则以下能力不属于 TMPA Core：经过认证的企业身份、凭证签发、递归委托、运行时准入控制、受保护或防篡改存储、分布式共识、语义真实性验证、拜占庭韧性、法律认证以及特定司法辖区合规。

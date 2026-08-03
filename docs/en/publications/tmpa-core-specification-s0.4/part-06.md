@@ -4,6 +4,58 @@
 
 The tests are behavioral. An implementation MAY use different storage, indexing, or execution mechanisms, but the observable conformance result must satisfy the same criteria.
 
+## 10.3 Executable Test-Case Contract
+
+Each executable test case SHALL publish a machine-readable manifest containing:
+
+- a stable `test_case_id` and exactly one C01–C14 `criterion`;
+- the Core, object-schema, output-schema, Profile, and registry versions and byte digests;
+- explicit prerequisites;
+- a source-fixture list containing `source_id`, repository-relative `path`, media type, and byte digest;
+- assertions containing a stable assertion ID, target, operator, expected value, and mandatory flag;
+- the expected canonical result digest;
+- the runner identifier, command, execution environment, and any permutation method or seed;
+- repository-relative paths for stdout, stderr, canonical output, and supporting evidence.
+
+The runner SHALL preserve the exact input manifest, canonical result, exit status, stdout, stderr, and execution-environment identity. A test SHALL NOT depend on an unpinned network response, wall-clock ordering, filesystem enumeration order, or undeclared mutable state.
+
+```json
+{
+  "test_case_id": "C06-illegal-transition-001",
+  "criterion": "C06",
+  "core_version": "S0.4",
+  "inputs": [{"source_id": "transition-1", "path": "fixtures/C06/transition-1.json", "media_type": "application/json", "byte_digest": "sha256:<hex>"}],
+  "assertions": [{"id": "state-unchanged", "target": "/nodes/work-1/state", "operator": "equals", "expected": "active", "mandatory": true}],
+  "expected_result_digest": "sha256:<hex>",
+  "runner": {"id": "tmpa-conformance", "version": "<version>", "command": "<command>"}
+}
+```
+
+## 10.4 Verdict Algorithm and Conformance Claim
+
+For each criterion, the runner SHALL assign exactly one verdict:
+
+- **PASS:** every mandatory assertion executed and passed;
+- **FAIL:** at least one mandatory assertion executed and failed;
+- **PARTIAL:** at least one mandatory assertion executed and passed, none failed, and at least one did not execute;
+- **NOT RUN:** no mandatory assertion executed, or a prerequisite prevented evaluation.
+
+Infrastructure failure SHALL be recorded separately as `run_state: error` and produces `NOT RUN`, not PASS. The aggregate precedence is FAIL, PARTIAL, NOT RUN, then PASS: any FAIL makes the aggregate FAIL; with no FAIL, any PARTIAL makes it PARTIAL; with neither, any NOT RUN makes it NOT RUN; only all PASS yields PASS.
+
+A product MAY claim **TMPA Core S0.4 Conformance** only when C01–C14 all report PASS against the same fixed input bundle and the complete evidence package is published. “No observed failure,” PARTIAL, NOT RUN, an earlier-Core result, or an unpublished result SHALL NOT be represented as full S0.4 conformance.
+
+`specified`, `implemented`, `demonstrated`, and `independently adopted` describe evidence maturity and SHALL be reported separately from test verdicts. A demonstration by the authors does not establish independent adoption.
+
+```json
+{
+  "core_version": "S0.4",
+  "implementation": {"id": "<id>", "version": "<version>"},
+  "criteria": [{"id": "C01", "verdict": "PASS", "manifest_digest": "sha256:<hex>", "result_digest": "sha256:<hex>"}],
+  "aggregate_verdict": "PASS | FAIL | PARTIAL | NOT RUN",
+  "evidence_level": "specified | implemented | demonstrated | independently_adopted"
+}
+```
+
 ## 10.5 Test Fixtures and Result Reporting
 
 The conformance package SHOULD publish:
@@ -74,9 +126,9 @@ Publication of a specification establishes the **specified** evidence level. Exe
 
 The first author-produced C01–C14 corpus is maintained as a separate empirical artifact rather than embedded in this Core specification. Product verdicts and case evidence belong in the implementation and case report; the normative criterion meanings remain defined here.
 
-## 11.4 S0.3 Editorial Consistency Record
+## 11.4 S0.4 Implementation-Readiness Record
 
-The 2026-08-02 Phase 1 consistency closeout aligned the bilingual terminology matrix, publication authority, TMPA–FCoP–CodeFlowMu diagrams, three-valued judgment wording, cross-document links, and C01–C14 names. It also restored missing Chinese implementation-report coverage. The edit clarifies already stated S0.3 semantics and does not change the observable conformance criteria or pass conditions.
+The 2026-08-03 S0.4 revision makes the draft implementable by binding objects to governed work and a primary carrier, formalizing transition evaluation and three-valued composition, fixing the Reader input/output contract, and defining executable test manifests and verdict rules for C01–C14. These changes alter observable schema and conformance behavior. Earlier S0.3 results therefore remain historical baselines and SHALL NOT be relabeled as S0.4 conformance evidence without a new run.
 
 ---
 
@@ -93,26 +145,4 @@ The 2026-08-02 Phase 1 consistency closeout aligned the bilingual terminology ma
 | fixture and result-reporting requirements | Section 10.5 | retained; current product baseline removed |
 | compliance crosswalk boundary | Section 10.6 | retained |
 
-The Architecture Paper may summarize this specification but cannot redefine it. The Implementation Case Report may provide evidence against these clauses but cannot change their meaning. The historical combined draft records provenance only and has no current editorial or normative authority. All S0.3 and later normative changes are maintained directly in this GitHub Core Specification and represented by Git history.
-
-
-## S0.3 Consolidated Theory Alignment
-
-The Core specification incorporates the R26–R29 theoretical boundary: textual protocol execution may be performed by probabilistic agents, while conformance and governance conclusions require deterministic validation. This specification therefore defines delegated authority, lifecycle validation, and governance judgment independently from model interpretation.
-
-Governance judgments use three semantic values: `valid`, `invalid`, and `undetermined`. Implementations MUST preserve unresolved states rather than forcing incomplete or conflicting evidence into binary conclusions.
-
-
-## S0.3 Governance Judgment Semantics
-
-TMPA Core defines three semantic governance judgments:
-
-- `valid`: required evidence and applicable governance rules establish acceptance.
-- `invalid`: applicable rules establish rejection or violation.
-- `undetermined`: evidence is incomplete, conflicting, or awaiting resolution; no binary conclusion is permitted.
-
-Implementations MUST preserve `undetermined` states and MUST NOT convert unresolved evidence into `valid` or `invalid` without an authorized resolution object.
-
-If a governance object depends on another object whose judgment is `undetermined`, the dependent judgment SHALL remain `undetermined` until resolution.
-
-View classifications are derived presentations, not additional semantic values: authoritative corresponds to valid; quarantined corresponds to invalid; partial, disputed, and pending_human represent different causes of undetermined.
+The Architecture Paper may summarize this specification but cannot redefine it. The Implementation Case Report may provide evidence against these clauses but cannot change their meaning. The historical combined draft records provenance only and has no current editorial or normative authority. All S0.4 and later normative changes are maintained directly in this GitHub Core Specification and represented by Git history.

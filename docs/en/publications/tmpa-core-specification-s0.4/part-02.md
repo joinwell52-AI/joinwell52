@@ -83,15 +83,15 @@ A role label is not a cryptographic signature. A digest without a trusted identi
 
 ## 4.1 Canonical Object Schema
 
-The following JSON Schema defines the TMPA Core V1.0 canonical object representation. It constrains the shape of one governance object. Cross-object properties—including identifier uniqueness, stream continuity, role authorization, lifecycle legality, reference resolution, and deterministic reconstruction—are evaluated by the applicable profile and reader rather than by this single-object schema.
+The following JSON Schema defines the TMPA Core S0.4 canonical object representation. It constrains the shape of one governance object. Cross-object properties—including identifier uniqueness, stream continuity, role authorization, lifecycle legality, reference resolution, and deterministic reconstruction—are evaluated by the applicable profile and reader rather than by this single-object schema.
 
 Implementations may add profile-specific fields only under `extensions`. They must preserve the meaning of the core fields.
 
 ```json
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:tmpa:schema:governance-object:v1",
-  "title": "TMPA Governance Object V1",
+  "$id": "urn:tmpa:schema:governance-object:s0.4",
+  "title": "TMPA Governance Object S0.4",
   "$comment": "Structural validation does not establish role authority, lifecycle legality, cross-object uniqueness, or integrity verification.",
   "type": "object",
   "additionalProperties": false,
@@ -99,6 +99,7 @@ Implementations may add profile-specific fields only under `extensions`. They mu
     "tmpa_version",
     "id",
     "type",
+    "governed_work",
     "stream",
     "creator",
     "role",
@@ -109,9 +110,18 @@ Implementations may add profile-specific fields only under `extensions`. They mu
     "integrity"
   ],
   "properties": {
-    "tmpa_version": { "const": "1.0" },
+    "tmpa_version": { "const": "S0.4" },
     "id": { "type": "string", "minLength": 1 },
     "type": { "type": "string", "minLength": 1 },
+    "governed_work": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "primary_carrier_id"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "primary_carrier_id": { "type": "string", "minLength": 1 }
+      }
+    },
     "stream": {
       "type": "object",
       "additionalProperties": false,
@@ -130,11 +140,22 @@ Implementations may add profile-specific fields only under `extensions`. They mu
       "required": ["profile", "state"],
       "properties": {
         "profile": { "type": "string", "minLength": 1 },
-        "state": { "type": "string", "minLength": 1 }
+        "state": { "type": "string", "minLength": 1 },
+        "transition": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["from", "action", "to"],
+          "properties": {
+            "from": { "type": "string", "minLength": 1 },
+            "action": { "type": "string", "minLength": 1 },
+            "to": { "type": "string", "minLength": 1 }
+          }
+        }
       }
     },
     "references": {
       "type": "array",
+      "uniqueItems": true,
       "items": {
         "type": "object",
         "additionalProperties": false,
@@ -152,7 +173,7 @@ Implementations may add profile-specific fields only under `extensions`. They mu
         "media_type": { "type": "string", "minLength": 1 },
         "body": {}
       },
-      "additionalProperties": true
+      "additionalProperties": false
     },
     "integrity": {
       "type": "object",

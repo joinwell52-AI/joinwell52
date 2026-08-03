@@ -165,7 +165,7 @@ Git Commit、Diff、Pull Request、CI Result、Tag 与 Release 构成正式历�
 ### TMPA
 
 - [TMPA Architecture Paper — A0.5](./docs/zh/publications/tmpa-architecture-paper-a0.5.md)
-- [TMPA Core Specification — S0.3](./docs/zh/publications/tmpa-core-specification-s0.3.md)
+- [TMPA Core Specification — S0.4](./docs/zh/publications/tmpa-core-specification-s0.4.md)
 - [TMPA–FCoP–CodeFlowMu Implementation Case — I0.3](./docs/zh/publications/implementation-case-i0.3.md)
 - [出版中心](https://joinwell52-ai.github.io/joinwell52/zh/publications/)
 

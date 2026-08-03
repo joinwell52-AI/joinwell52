@@ -1,3 +1,55 @@
+## 10.3 可执行测试用例契约
+
+每个可执行测试用例 **SHALL** 发布机器可读 Manifest，包含：
+
+- 稳定的 `test_case_id` 和恰好一个 C01–C14 `criterion`；
+- Core、对象 Schema、输出 Schema、Profile 和注册表的版本与字节 Digest；
+- 显式前置条件；
+- 包含 `source_id`、仓库相对 `path`、媒体类型与字节 Digest 的来源 Fixture 清单；
+- 包含稳定断言 ID、Target、Operator、Expected Value 与 Mandatory 标记的断言；
+- 预期规范结果 Digest；
+- Runner ID、命令、执行环境，以及任何排列方法或 Seed；
+- stdout、stderr、规范输出与支持证据的仓库相对路径。
+
+Runner **SHALL** 保留精确输入 Manifest、规范结果、退出状态、stdout、stderr 与执行环境身份。测试 **SHALL NOT** 依赖未固定的网络响应、墙上时钟顺序、文件系统枚举顺序或未声明的可变状态。
+
+```json
+{
+  "test_case_id": "C06-illegal-transition-001",
+  "criterion": "C06",
+  "core_version": "S0.4",
+  "inputs": [{"source_id": "transition-1", "path": "fixtures/C06/transition-1.json", "media_type": "application/json", "byte_digest": "sha256:<hex>"}],
+  "assertions": [{"id": "state-unchanged", "target": "/nodes/work-1/state", "operator": "equals", "expected": "active", "mandatory": true}],
+  "expected_result_digest": "sha256:<hex>",
+  "runner": {"id": "tmpa-conformance", "version": "<version>", "command": "<command>"}
+}
+```
+
+## 10.4 裁决算法与一致性声明
+
+Runner **SHALL** 为每项标准赋予恰好一个裁决：
+
+- **PASS：** 全部强制断言都已执行且通过；
+- **FAIL：** 至少一个强制断言已执行且失败；
+- **PARTIAL：** 至少一个强制断言已执行且通过、没有失败，并且至少一个未执行；
+- **NOT RUN：** 没有强制断言执行，或前置条件阻止了求值。
+
+基础设施失败 **SHALL** 另记为 `run_state: error`，并产生 NOT RUN，而不是 PASS。聚合优先级为 FAIL、PARTIAL、NOT RUN、PASS：任一 FAIL 使聚合为 FAIL；没有 FAIL 时，任一 PARTIAL 使聚合为 PARTIAL；两者均无时，任一 NOT RUN 使聚合为 NOT RUN；只有全部 PASS 才得到 PASS。
+
+只有 C01–C14 针对同一固定输入 Bundle 全部 PASS，且完整证据 Package 已发布，产品才 **MAY** 声明 **TMPA Core S0.4 Conformance**。“未观察到失败”、PARTIAL、NOT RUN、旧版 Core 结果或未发布结果 **SHALL NOT** 被表述为完整 S0.4 一致性。
+
+`specified`、`implemented`、`demonstrated` 与 `independently adopted` 描述证据成熟度，**SHALL** 与测试裁决分开报告。作者演示不建立独立采用。
+
+```json
+{
+  "core_version": "S0.4",
+  "implementation": {"id": "<id>", "version": "<version>"},
+  "criteria": [{"id": "C01", "verdict": "PASS", "manifest_digest": "sha256:<hex>", "result_digest": "sha256:<hex>"}],
+  "aggregate_verdict": "PASS | FAIL | PARTIAL | NOT RUN",
+  "evidence_level": "specified | implemented | demonstrated | independently_adopted"
+}
+```
+
 ## 10.5 Fixture 与结果报告
 
 一致性 Package **SHOULD** 发布：
@@ -61,9 +113,9 @@ Profile 特定工件不会自动成为规范 Core 对象。Profile **MUST** 定�
 
 所有规范修订 **MUST** 直接进入 `joinwell52-AI/joinwell52` 的本 GitHub 文档，并由 Git Commit 表示正式版本历史。Architecture Paper、Implementation Case Report、网站文案或外部副本 **MUST NOT** 覆盖或静默重定义 Core 条款。
 
-## 11.4 S0.3 编辑一致性记录
+## 11.4 S0.4 可实现性记录
 
-2026-08-02 的 Phase 1 一致性收尾统一了双语术语矩阵、出版权威、TMPA—FCoP—CodeFlowMu 关系图、三值判断措辞、跨文档链接与 C01–C14 名称，并补齐中文实施报告缺失内容。本次编辑澄清已经存在的 S0.3 语义，不改变可观察一致性标准或通过条件。
+2026-08-03 的 S0.4 修订通过把对象绑定到受治理工作项与主载体、形式化迁移求值和三值组合、固定 Reader 输入/输出契约，并为 C01–C14 定义可执行测试 Manifest 与裁决规则，使本草稿达到可实现状态。这些变更改变了可观察 Schema 和一致性行为。因此，早期 S0.3 结果只保留为历史基线；未重新运行时，**SHALL NOT** 把它们改标为 S0.4 一致性证据。
 
 ---
 
@@ -80,36 +132,4 @@ Profile 特定工件不会自动成为规范 Core 对象。Profile **MUST** 定�
 | Fixture 与结果报告 | 10.5 | 保留；当前产品基线移入实施报告 |
 | 合规映射边界 | 10.6 | 保留 |
 
-Architecture Paper **MAY** 总结本规范，但不得重定义其含义。Implementation Case Report **MAY** 按条款提供证据，但不得改变条款含义。历史综合草稿仅用于说明来源，不是当前编辑或规范权威；当前 S0.3 及后续规范版本只在本 GitHub Core Specification 中维护。
-
-## S0.3 理论对齐
-
-本规范纳入 R26–R29 稳定的理论边界：文本协议的执行可以由概率型 Agent 完成，但一致性与治理结论要求确定性验证。本规范因此把委托权限、生命周期验证和治理判断与模型解释分开定义。
-
-文本协议具有双重语义：既向执行者表达允许的动作和过程约束，也为 Reader 留下可验证的治理证据。Agent 的概率解释 **MUST NOT** 替代规范验证；Validator/Reader **MUST** 依据固定 Schema、Profile 和证据集合形成可复现结论。
-
-治理判断采用三个语义值：`valid`、`invalid`、`undetermined`。实现 **MUST** 保留未解决状态，**MUST NOT** 把不完整或冲突证据强制转换为二元结论。
-
-## S0.3 三值治理判断语义
-
-TMPA Core 定义：
-
-- `valid`：必需证据与适用治理规则建立接受结论；
-- `invalid`：适用规则建立拒绝或违规结论；
-- `undetermined`：证据不完整、相互冲突或等待解决，不允许形成二元结论。
-
-实现 **MUST** 保留 `undetermined`，并 **MUST NOT** 在没有授权解决对象时将未解决证据转换为 `valid` 或 `invalid`。
-
-若治理对象依赖另一个判断为 `undetermined` 的对象，则依赖对象的判断 **SHALL** 保持 `undetermined`，直至依赖得到解决。
-
-视图分类是派生表达，不是额外语义值：
-
-| 三值判断 | 典型视图 | 说明 |
-|---|---|---|
-| `valid` | authoritative | 必需证据和规则建立结论 |
-| `invalid` | quarantined / rejected | 规则确定排除证据或动作 |
-| `undetermined` | partial | 必需证据缺失 |
-| `undetermined` | disputed | 有效证据冲突 |
-| `undetermined` | pending_human | Profile 要求授权人工决定 |
-
-Reader **SHALL** 在输出中同时保留语义判断与导致该判断的视图原因，避免把 partial、disputed 与 pending_human 混为一种无法解释的“未知”。
+Architecture Paper **MAY** 总结本规范，但不得重定义其含义。Implementation Case Report **MAY** 按条款提供证据，但不得改变条款含义。历史综合草稿仅用于说明来源，不是当前编辑或规范权威；当前 S0.4 及后续规范版本只在本 GitHub Core Specification 中维护。

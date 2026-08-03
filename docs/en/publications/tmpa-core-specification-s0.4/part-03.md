@@ -30,9 +30,37 @@
 }
 ```
 
+The object fields have the following operational meanings:
+
+| Field | Reader obligation |
+|---|---|
+| `tmpa_version` | select the compatible Core object-schema line; unknown major versions are not silently downgraded |
+| `id` | index canonical identity and detect same-ID conflicting content |
+| `type` | resolve one versioned type-registry entry |
+| `governed_work.id` | group objects that govern the same work item |
+| `governed_work.primary_carrier_id` | identify the single stable carrier to which follow-on evidence must resolve |
+| `stream` | establish attributable local order without using timestamps |
+| `creator` and `role` | evaluate an authority claim against active assignments; these fields do not create authority |
+| `lifecycle` | identify the profile and declared state; `transition`, when present, supplies explicit `from/action/to` evidence |
+| `references` | construct typed ordering or non-ordering links according to the relation registry |
+| `content` | carry the governed payload in the declared media type |
+| `integrity` | identify the canonicalization and verification procedure for covered bytes |
+| `extensions` | contain all profile-specific additions; unknown extensions are processed only under the declared profile |
+
+The primary-carrier object uses its own `id` as `governed_work.primary_carrier_id`. Every other object for the same work item repeats that carrier identifier. A lifecycle-transition document type SHALL require `lifecycle.transition`; non-transition types MAY omit it. The type registry, rather than the generic single-object schema, enforces that conditional requirement.
+
+Schema processors used for C01 SHALL implement JSON Schema Draft 2020-12 `format` assertion for `created_at`. A processor that treats `date-time` as annotation-only is insufficient. The linked S0.4 machine-readable artifact is the normative schema byte sequence; the embedded rendering above SHALL remain semantically identical to it.
+
+| S0.4 machine-readable artifact | SHA-256 |
+|---|---|
+| [Governance Object Schema](/spec/tmpa/s0.4/governance-object.schema.json) | `738ef14d6425ddde211ca5a353533b1590a08dd5e783c2b7839ea607f3f3cc9e` |
+| [Lifecycle Profile Schema](/spec/tmpa/s0.4/lifecycle-profile.schema.json) | `e6250933d6e923b6a8858abefadd546d5ecc99a781c6579eba1d1bcd77276990` |
+| [Reader Result Schema](/spec/tmpa/s0.4/reader-result.schema.json) | `05f6e3e1eec4974240690a261710fabbb8ed22beecd8e504f7d6702c1e1dc9b3` |
+| [Conformance Result Schema](/spec/tmpa/s0.4/conformance-result.schema.json) | `33073847c48edc49567db2c2b83a2817c29740db1a99dfe665e22aa3338ef529` |
+
 The `lifecycle.state` field records the state declared for this immutable object at publication. It is not a mutable current-state field. The current authoritative lifecycle state is reconstructed from the valid object set, accepted transition evidence, and the applicable lifecycle profile.
 
-A canonicalization profile must define the exact representation covered by the digest and, when signatures are used, the exact representation covered by the signature. It must also define how self-referential integrity fields are excluded or normalized. TMPA Core V1.0 requires that this profile be declared; it does not prescribe one universal byte-level canonicalization algorithm.
+A canonicalization profile must define the exact representation covered by the digest and, when signatures are used, the exact representation covered by the signature. It must also define how self-referential integrity fields are excluded or normalized. TMPA Core S0.4 requires that this profile be declared; it does not prescribe one universal byte-level canonicalization algorithm.
 
 Schema validity is necessary but insufficient for acceptance into an authoritative governance view. A reader must still evaluate identifier uniqueness, type rules, stream order, authority, lifecycle legality, references, digest verification, and any applicable signature policy.
 

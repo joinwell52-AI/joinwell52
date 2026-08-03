@@ -36,7 +36,7 @@ FCoP 实现项目可见的协调 Profile：路由文本工件、生命周期路�
 
 # 1. 范围与证据边界
 
-本报告回答：FCoP 实现了哪些 TMPA 机制；CodeFlowMu 如何使用这些机制；小典 AI 案例证明什么；首轮锁定版本的一致性执行实际建立了什么。本报告只提供工程证据且不具有规范性；要求与规范测试名称只由 [TMPA Core Specification S0.3](/zh/publications/tmpa-core-specification-s0.3) 定义，理论由 [Architecture Paper A0.5](/zh/publications/tmpa-architecture-paper-a0.5) 解释。
+本报告回答：FCoP 实现了哪些 TMPA 机制；CodeFlowMu 如何使用这些机制；小典 AI 案例证明什么；首轮锁定版本的一致性执行实际建立了什么。本报告只提供工程证据且不具有规范性；当前要求与规范测试名称只由 [TMPA Core Specification S0.4](/zh/publications/tmpa-core-specification-s0.4) 定义，理论由 [Architecture Paper A0.5](/zh/publications/tmpa-architecture-paper-a0.5) 解释。报告中的基线按 S0.3 执行，只保留为历史证据；在重新运行前，它不建立 S0.4 一致性。
 
 证据分为 `specified`、`implemented`、`demonstrated` 与 `independently adopted`。当前证据最强在前三层。作者同时是被评估系统的发起者或主要开发者，因此版本与 Hash 必须锁定，PASS/PARTIAL/NOT RUN 必须分开，前置条件失败必须保留，Fixture 成功不能转换为产品一致性，且不能声称独立验证。
 

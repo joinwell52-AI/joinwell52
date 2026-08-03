@@ -43,21 +43,21 @@ This distinction produces three separate questions:
 TMPA must not claim the guarantee of a surrounding identity, policy, or cryptographic system unless the deployment actually verifies that evidence under the corresponding profile.
 # 7. Evaluation Results
 
-The separately maintained [TMPA Core Specification S0.3](/en/publications/tmpa-core-specification-s0.3) remains the sole normative source for C01–C14 and all SHALL/MUST clauses. Detailed engineering evidence and criterion verdicts belong to the [Implementation Case Report I0.3](/en/publications/implementation-case-i0.3). This section evaluates the research questions without reproducing the specification.
+The separately maintained [TMPA Core Specification S0.4](/en/publications/tmpa-core-specification-s0.4) remains the sole normative source for C01–C14 and all SHALL/MUST clauses. Detailed engineering evidence and criterion verdicts belong to the [Implementation Case Report I0.3](/en/publications/implementation-case-i0.3). This section evaluates the research questions without reproducing the specification.
 
 ## 7.1 Findings by Research Question
 
 | Research question | Finding and evidence | Boundary |
 |---|---|---|
 | RQ1: governance-state sufficiency | ordinary conversation and execution surfaces do not, by themselves, preserve enough explicit authority, lifecycle, conflict, and recovery state for deterministic governance reconstruction; supported by problem diagnosis, DR1–DR8, and object/reconstruction analysis | no comparative field experiment has measured failure rates against alternative architectures |
-| RQ2: minimum architecture | stable carriers, single-writer streams, explicit authority and lifecycle, typed references, three-valued judgment, and source-preserving deterministic reconstruction form a coherent minimum contract; supported by invariants, counterexamples, the determinism proof sketch, and Core S0.3 | the proof is not mechanized, and minimality is an architectural argument rather than a universal lower-bound proof |
+| RQ2: minimum architecture | stable carriers, single-writer streams, explicit authority and lifecycle, typed references, three-valued judgment, and source-preserving deterministic reconstruction form a coherent minimum contract; supported by invariants, counterexamples, the determinism proof sketch, and Core S0.4 | the proof is not mechanized, and minimality is an architectural argument rather than a universal lower-bound proof |
 | RQ3: engineering feasibility and boundary | FCoP, CodeFlowMu, and XiaoDian provide bounded evidence that substantial parts of the contract can operate in project-visible infrastructure; supported by reference mapping, operational cases, and the pinned C01–C14 baseline | full conformance, independent adoption, comparative SME burden, and cross-profile portability are not established |
 
 The result is therefore strongest for architectural coherence and bounded implementation feasibility. It is weaker for organizational effectiveness and ecosystem generalization, which require independent and comparative evidence.
 
 ## 7.2 Conformance-Domain Summary
 
-The baseline is summarized by architectural domain; exact criterion definitions remain in Core S0.3 §10.2.
+The baseline is summarized by architectural domain; exact criterion definitions remain in Core S0.4 §10.2.
 
 | Domain | Criteria | Product-level result |
 |---|---|---|

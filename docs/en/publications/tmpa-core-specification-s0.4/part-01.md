@@ -1,5 +1,5 @@
 ---
-title: TMPA Core Specification — Draft S0.3
+title: TMPA Core Specification — Implementation Draft S0.4
 outline: deep
 ---
 
@@ -8,9 +8,9 @@ outline: deep
   kicker="Normative Specification"
   title="TMPA Core Specification"
   summary="Normative object, lifecycle, authority, three-valued judgment and deterministic reconstruction requirements."
-  version="S0.3"
-  status="Public working draft"
-  languageHref="/zh/publications/tmpa-core-specification-s0.3"
+  version="S0.4"
+  status="Implementation-ready working draft"
+  languageHref="/zh/publications/tmpa-core-specification-s0.4"
   languageLabel="简体中文"
 />
 
@@ -18,25 +18,25 @@ outline: deep
 
 ## Textual Multi-Agent Process Architecture — Core Objects, Reader Semantics, and Conformance
 
-> **Specification Version:** Draft S0.3  
+> **Specification Version:** Draft S0.4<br>
 > **Historical Extraction Baseline:** TMPA Draft V1.0-R24; current specification maintained directly in this GitHub document<br>
-> **Status:** Extracted Normative Draft  
+> **Status:** Implementation-Ready Normative Draft<br>
 > **Extraction Date:** 2026-07-31  
-> **Editorial Revision Date:** 2026-08-02<br>
-> **Authority:** This GitHub document is the sole normative source for TMPA Core S0.3. The Architecture Paper is theoretical and the Implementation Case Report is evidentiary; neither may redefine this specification.
+> **Editorial Revision Date:** 2026-08-03<br>
+> **Authority:** This GitHub document is the sole normative source for TMPA Core S0.4. The Architecture Paper is theoretical and the Implementation Case Report is evidentiary; neither may redefine this specification.
 
 ---
 
 # 1. Status, Scope, and Conformance Boundary
 
-This document extracts the vendor-neutral TMPA Core from the combined architecture, implementation, and case-study source. It defines the canonical governance object model, single-writer and lifecycle semantics, source aggregation, deterministic governance reconstruction, trust assumptions, normative requirements, and C01–C14 conformance behavior.
+This document defines the vendor-neutral TMPA Core. It fixes the canonical governance object model, single-writer and lifecycle semantics, source aggregation, deterministic governance reconstruction, three-valued judgment algebra, reader output contract, trust assumptions, normative requirements, and C01–C14 conformance behavior.
 
 TMPA Core governs process-responsibility evidence. It does not prescribe a model runtime, scheduler, storage engine, message transport, database, filesystem layout, identity provider, key-management system, or enterprise control plane. A profile may bind those mechanisms, but it MUST preserve the Core semantics and MUST identify every additional assumption or guarantee.
 
 This draft separates three kinds of text:
 
 - **normative requirements:** Sections 9 and 10, using the terms defined in Section 9.1;
-- **architectural definitions required to interpret the normative clauses:** Sections 2–5;
+- **architectural and algorithmic definitions required to interpret the normative clauses:** Sections 2–8;
 - **informative extraction and traceability notes:** Section 11 and Appendix A.
 
 The following are outside TMPA Core unless a named profile adds them: authenticated enterprise identity, credential issuance, recursive delegation, runtime admission control, protected or tamper-resistant storage, distributed consensus, semantic truth verification, Byzantine resilience, legal certification, and jurisdiction-specific compliance.
