@@ -19,7 +19,7 @@ import './article-cover.css'
 const zhRuntimeText: Record<string, string> = {
   'RESEARCH RUNTIME CENTER · 运行控制平面': '研究运行中心 · 运行控制平面',
   'Research Runtime Center': '研究运行中心',
-  'RESEARCH CENTER 3.0': '研究中心 3.0',
+  'RESEARCH CENTER 3.0': 'JOINWELL52 研究中心',
   '进入 Runtime Center': '进入研究运行中心',
   '查看 Runtime Charter': '查看运行章程',
   'Runtime Timeline': '运行时间线',
@@ -82,10 +82,39 @@ function localizeChineseRuntime() {
   })
 }
 
+function pairedLanguagePath() {
+  if (typeof window === 'undefined') return withBase('/')
+
+  const siteBase = withBase('/')
+  const relative = window.location.pathname.startsWith(siteBase)
+    ? window.location.pathname.slice(siteBase.length)
+    : window.location.pathname.replace(/^\//, '')
+
+  if (!relative || relative === 'index.html') return withBase('/zh/')
+  if (relative === 'zh' || relative === 'zh/' || relative === 'zh/index.html') return withBase('/')
+  if (relative.startsWith('zh/')) return withBase(`/en/${relative.slice(3)}`)
+  if (relative === 'en' || relative === 'en/' || relative === 'en/index.html') return withBase('/zh/')
+  if (relative.startsWith('en/')) return withBase(`/zh/${relative.slice(3)}`)
+  return withBase('/zh/')
+}
+
+function enhanceLanguageRouting() {
+  if (typeof document === 'undefined') return
+  const target = pairedLanguagePath()
+  document.querySelectorAll<HTMLAnchorElement>('.VPNavBarTranslations a, .VPNavScreenTranslations a').forEach((anchor) => {
+    anchor.setAttribute('href', target)
+  })
+}
+
 function enhancePortal() {
   if (typeof document === 'undefined' || typeof window === 'undefined') return
 
   const siteBase = withBase('/')
+  const chinese = window.location.pathname.includes(`${siteBase}zh/`)
+
+  document.querySelectorAll<HTMLElement>('.VPNavBarTitle .title span').forEach((title) => {
+    title.textContent = chinese ? 'JOINWELL52 研究中心' : 'JOINWELL52 Research Center'
+  })
 
   document.querySelectorAll<HTMLAnchorElement>('.rcv5 a[href^="/"]').forEach((anchor) => {
     const href = anchor.getAttribute('href') || ''
@@ -94,7 +123,6 @@ function enhancePortal() {
 
   const heroCopy = document.querySelector<HTMLElement>('.rcv5 .rcv5-hero-copy')
   if (heroCopy && !heroCopy.querySelector('.rcv5-language-switch')) {
-    const chinese = window.location.pathname.includes(`${siteBase}zh/`)
     const switcher = document.createElement('nav')
     switcher.className = 'rcv5-language-switch'
     switcher.setAttribute('aria-label', chinese ? '语言选择' : 'Language selection')
@@ -107,6 +135,7 @@ function enhancePortal() {
     heroCopy.prepend(switcher)
   }
 
+  enhanceLanguageRouting()
   localizeChineseRuntime()
 }
 

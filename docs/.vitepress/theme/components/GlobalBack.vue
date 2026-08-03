@@ -4,12 +4,25 @@ import { useRoute, withBase } from 'vitepress'
 
 const route = useRoute()
 
-const chinese = computed(() => route.path === '/zh/' || route.path.startsWith('/zh/'))
-const normalizedPath = computed(() => {
+const siteBase = withBase('/')
+const relativePath = computed(() => {
   const path = route.path.replace(/index\.html$/, '')
+  if (path.startsWith(siteBase)) return `/${path.slice(siteBase.length)}`
+  return path
+})
+const chinese = computed(() => relativePath.value === '/zh/' || relativePath.value.startsWith('/zh/'))
+const normalizedPath = computed(() => {
+  const path = relativePath.value
   return path.endsWith('/') ? path : `${path}/`
 })
-const visible = computed(() => !['/', '/zh/', '/en/'].includes(normalizedPath.value))
+const homeLikePaths = [
+  '/',
+  '/zh/',
+  '/en/',
+  '/zh/preview/research-center-home/',
+  '/en/preview/research-center-home/'
+]
+const visible = computed(() => !homeLikePaths.includes(normalizedPath.value))
 const label = computed(() => chinese.value ? '返回上一页' : 'Back')
 
 function goBack() {

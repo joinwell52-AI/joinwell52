@@ -65,8 +65,8 @@ const zhSidebar = {
 }
 
 export default defineConfig({
-  title: 'joinwell52 Research Center',
-  description: 'Research Center 3.0 — a Runtime-governed AI Research Center powered by a production-verified Digital Research Employee',
+  title: 'JOINWELL52 Research Center',
+  description: 'JOINWELL52 Research Center — a Runtime-governed AI Research Center powered by a production-verified Digital Research Employee',
   base: '/joinwell52/',
   cleanUrls: true,
   lastUpdated: true,
@@ -74,7 +74,7 @@ export default defineConfig({
     ['link', { rel: 'icon', href: '/joinwell52/favicon.svg' }],
     ['meta', { name: 'theme-color', content: '#080b18' }],
     ['meta', { property: 'og:type', content: 'website' }],
-    ['meta', { property: 'og:title', content: 'joinwell52 Research Center 3.0' }],
+    ['meta', { property: 'og:title', content: 'JOINWELL52 Research Center' }],
     ['meta', { property: 'og:description', content: 'Research Runtime Center · Runtime Scheduler V1.0 · Digital Research Employee · GitHub First' }],
     ['meta', { property: 'og:image', content: 'https://joinwell52-ai.github.io/joinwell52/og-cover.svg' }]
   ],
@@ -82,37 +82,30 @@ export default defineConfig({
     root: {
       label: 'English',
       lang: 'en-US',
-      title: 'joinwell52 Research Center',
-      description: 'Research Center 3.0 — a Runtime-governed AI Research Center powered by a production-verified Digital Research Employee'
+      title: 'JOINWELL52 Research Center',
+      description: 'JOINWELL52 Research Center — a Runtime-governed AI Research Center powered by a production-verified Digital Research Employee'
     },
     zh: {
       label: '简体中文',
       lang: 'zh-CN',
       link: '/zh/',
-      title: 'joinwell52 研究中心',
-      description: 'Research Center 3.0——由 Runtime 统一治理、由经过生产验证的数字研究员持续运行的 AI 研究中心'
+      title: 'JOINWELL52 研究中心',
+      description: 'JOINWELL52 研究中心——由 Runtime 统一治理、由经过生产验证的数字研究员持续运行的 AI 研究中心'
     }
   },
   themeConfig: {
-    logo: '/logo.svg',
-    siteTitle: 'Research Center 3.0',
+    logo: '/logo.svg?v=tmpa-20260803-3',
+    siteTitle: 'JOINWELL52 Research Center',
     search: { provider: 'local' },
     socialLinks: [{ icon: 'github', link: 'https://github.com/joinwell52-AI/joinwell52' }],
-    i18nRouting: (_data, route, targetLocale) => {
-      const path = route.path
-      if (targetLocale === 'zh') {
-        if (path === '/' || path === '/en/' || path === '/en') return '/zh/'
-        if (path.startsWith('/en/')) return `/zh/${path.slice(4)}`
-        if (path.startsWith('/zh/')) return path
-        return `/zh${path}`
-      }
-      if (path === '/zh/' || path === '/zh') return '/'
-      if (path.startsWith('/zh/')) return `/en/${path.slice(4)}`
-      return path
-    },
+    // VitePress 1.6 accepts a boolean here. Exact paired-document links are
+    // applied by the theme after navigation; SSR falls back to valid locale
+    // roots instead of emitting broken `/zh/en/...` paths.
+    i18nRouting: false,
     locales: {
       root: {
         label: 'English',
+        siteTitle: 'JOINWELL52 Research Center',
         selectText: 'Language',
         nav: [
           { text: 'Home', link: '/' },
@@ -136,6 +129,7 @@ export default defineConfig({
       },
       zh: {
         label: '简体中文',
+        siteTitle: 'JOINWELL52 研究中心',
         selectText: '语言',
         nav: [
           { text: '首页', link: '/zh/' },

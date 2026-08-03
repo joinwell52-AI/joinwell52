@@ -58,17 +58,18 @@ function decode(value) {
 }
 
 function parseRecord(content, path) {
-  if (!content.startsWith('---\n')) die(`${path} must start with YAML frontmatter`)
-  const end = content.indexOf('\n---\n', 4)
+  const normalized = content.replace(/\r\n/g, '\n')
+  if (!normalized.startsWith('---\n')) die(`${path} must start with YAML frontmatter`)
+  const end = normalized.indexOf('\n---\n', 4)
   if (end < 0) die(`${path} has unterminated frontmatter`)
   const data = {}
-  for (const line of content.slice(4, end).split(/\r?\n/)) {
+  for (const line of normalized.slice(4, end).split('\n')) {
     if (!line.trim() || line.trimStart().startsWith('#')) continue
     const match = /^([a-z0-9_]+):\s*(.*)$/i.exec(line)
     if (!match) die(`${path} has unsupported frontmatter: ${line}`)
     data[match[1]] = decode(match[2])
   }
-  return { data, body: content.slice(end + 5) }
+  return { data, body: normalized.slice(end + 5) }
 }
 
 function serialize({ data, body }) {
