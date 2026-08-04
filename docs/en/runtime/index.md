@@ -13,11 +13,3 @@ import RuntimeOperationsCenterCurrent from '../../.vitepress/theme/components/Ru
 <RuntimeOperationsCenterCurrent lang="en" />
 
 <ResearchIntelligenceRadar lang="en" />
-
-<style>
-.runtime-center-page .runtime-classic .hero h1::after {
-  content: 'Digital Works Operations Center' !important;
-  font-size: clamp(42px, 4.2vw, 60px) !important;
-  letter-spacing: -.045em !important;
-}
-</style>
