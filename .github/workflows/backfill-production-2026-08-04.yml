@@ -1,0 +1,52 @@
+name: One-time Research Runtime Production Backfill
+
+on:
+  push:
+    branches:
+      - runtime-production-backfill-2026-08-04
+    paths:
+      - .github/workflows/backfill-production-2026-08-04.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: runtime-production-backfill-2026-08-04
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout backfill branch
+        uses: actions/checkout@v4
+        with:
+          ref: runtime-production-backfill-2026-08-04
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Apply Production backfill
+        run: node scripts/backfill-production-2026-08-04.mjs
+
+      - name: Validate Runtime and website
+        run: npm run docs:build
+
+      - name: Remove one-time patcher
+        run: rm scripts/backfill-production-2026-08-04.mjs .github/workflows/backfill-production-2026-08-04.yml
+
+      - name: Commit verified backfill
+        shell: bash
+        run: |
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime scripts .github/workflows
+          git commit -m "runtime: close 2026-08-04 Production backfill"
+          git push origin HEAD:runtime-production-backfill-2026-08-04
