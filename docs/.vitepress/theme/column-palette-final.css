@@ -120,36 +120,77 @@
   color: #7fe5f2 !important;
 }
 
-/* Runtime three-column plan. */
-.legacy-runtime .column-grid .column-digital-employee {
-  border-color: rgba(107,89,246,.70) !important;
-  background:
-    radial-gradient(circle at 92% 8%, rgba(107,89,246,.30), transparent 38%),
-    linear-gradient(145deg, #292366 0%, #13162f 100%) !important;
+/* Runtime Center: remove the obsolete hero subtitle. */
+.legacy-runtime .hero > div:first-child > p {
+  display: none !important;
 }
 
-.legacy-runtime .column-grid .column-industry-architecture {
-  border-color: rgba(29,116,133,.72) !important;
-  background:
-    radial-gradient(circle at 92% 8%, rgba(29,116,133,.34), transparent 38%),
-    linear-gradient(145deg, #185262 0%, #0e2632 100%) !important;
+/* Runtime Center: enforce the same three-column palette inside the component. */
+.legacy-runtime .column-grid > article {
+  position: relative !important;
+  overflow: hidden !important;
+  padding-top: 25px !important;
+  border-width: 1px !important;
+  box-shadow: 0 18px 44px rgba(0,0,0,.18) !important;
 }
 
-.legacy-runtime .column-grid .column-open-source-engineering {
-  border-color: rgba(88,207,225,.78) !important;
-  background:
-    radial-gradient(circle at 92% 8%, rgba(88,207,225,.36), transparent 38%),
-    linear-gradient(145deg, #176b7e 0%, #0d2d3e 100%) !important;
+.legacy-runtime .column-grid > article::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  left: 0 !important;
+  display: block !important;
+  height: 6px !important;
 }
 
-.legacy-runtime .column-grid .column-digital-employee::before {
+.legacy-runtime .column-grid > .column-digital-employee {
+  border-color: rgba(107,89,246,.78) !important;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(107,89,246,.34), transparent 38%),
+    linear-gradient(145deg, #302872 0%, #171935 100%) !important;
+}
+
+.legacy-runtime .column-grid > .column-industry-architecture {
+  border-color: rgba(29,116,133,.82) !important;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(29,116,133,.40), transparent 38%),
+    linear-gradient(145deg, #1a5868 0%, #102b37 100%) !important;
+}
+
+.legacy-runtime .column-grid > .column-open-source-engineering {
+  border-color: rgba(88,207,225,.88) !important;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(88,207,225,.42), transparent 38%),
+    linear-gradient(145deg, #19758a 0%, #10394b 100%) !important;
+}
+
+.legacy-runtime .column-grid > .column-digital-employee::before {
   background: var(--column-purple) !important;
 }
 
-.legacy-runtime .column-grid .column-industry-architecture::before {
+.legacy-runtime .column-grid > .column-industry-architecture::before {
   background: var(--column-teal) !important;
 }
 
-.legacy-runtime .column-grid .column-open-source-engineering::before {
+.legacy-runtime .column-grid > .column-open-source-engineering::before {
   background: var(--column-cyan) !important;
+}
+
+.legacy-runtime .column-grid > .column-digital-employee .card-head small,
+.legacy-runtime .column-grid > .column-digital-employee h3,
+.legacy-runtime .column-grid > .column-digital-employee h4 {
+  color: #c1baff !important;
+}
+
+.legacy-runtime .column-grid > .column-industry-architecture .card-head small,
+.legacy-runtime .column-grid > .column-industry-architecture h3,
+.legacy-runtime .column-grid > .column-industry-architecture h4 {
+  color: #82d0da !important;
+}
+
+.legacy-runtime .column-grid > .column-open-source-engineering .card-head small,
+.legacy-runtime .column-grid > .column-open-source-engineering h3,
+.legacy-runtime .column-grid > .column-open-source-engineering h4 {
+  color: #92ecf5 !important;
 }
