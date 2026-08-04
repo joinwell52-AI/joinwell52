@@ -1,0 +1,63 @@
+{
+  "schema": "runtime-column-plan/v1",
+  "date": "2026-08-04",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Queue",
+  "sourceRecord": "research/runtime/2026/08/2026-08-04-runtime.md",
+  "updatedAt": "2026-08-04T10:03:00+08:00",
+  "githubCommit": "42f3bc62ae3e710d5d5bdd3da0f94498c89a0293",
+  "columns": [
+    {
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "selectionStatus": "Selected",
+      "itemId": "Q-20260804-11",
+      "title": "Condition-aware long-running Digital Employee monitoring",
+      "title_zh": "面向条件的长时运行数字员工监控",
+      "priority": "P1",
+      "lifecycle": "Selected",
+      "source": "Microsoft Research SentinelBench article, open-source benchmark and technical report",
+      "source_zh": "Microsoft Research SentinelBench 文章、开源基准与技术报告",
+      "reason": "The candidate provides a bounded question about waiting, external state changes, condition evaluation, no-operation success, notification, consequential action and cost-aware polling in long-running Digital Employee work.",
+      "reason_zh": "该候选围绕长时运行数字员工中的等待、外部状态变化、条件判断、无操作成功、通知、关键动作与成本感知轮询形成了边界明确的问题。",
+      "next": "Wait for Engine allocation and begin Skill 03 — Deep Reading.",
+      "next_zh": "等待引擎分配，并从 Skill 03 深度阅读开始。"
+    },
+    {
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "selectionStatus": "No Selection",
+      "itemId": "",
+      "title": "No qualified topic selected",
+      "title_zh": "未选出合格选题",
+      "priority": "",
+      "lifecycle": "Queue",
+      "source": "",
+      "source_zh": "",
+      "reason": "The 10:00 Queue run enriched existing architecture-dependent objects but did not select a new bounded Industry Architecture topic.",
+      "reason_zh": "10:00 队列任务补充了依赖架构基线的现有对象，但没有选出新的边界明确的行业架构选题。",
+      "next": "Keep architecture-dependent objects in Queue until the ownership baseline and evidence thresholds are satisfied.",
+      "next_zh": "继续将依赖架构基线的对象保留在队列中，直到所有权基线与证据阈值满足。"
+    },
+    {
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "selectionStatus": "No Selection",
+      "itemId": "",
+      "title": "No qualified topic selected",
+      "title_zh": "未选出合格选题",
+      "priority": "",
+      "lifecycle": "Queue",
+      "source": "",
+      "source_zh": "",
+      "reason": "SWE-bench Pro, Workspace Agent, evaluation-security and MCP evidence enriched six existing objects; none became a new standalone engineering selection in this run.",
+      "reason_zh": "SWE-bench Pro、Workspace Agent、评估安全与 MCP 证据补充了 6 个现有对象，但本次没有形成新的独立开源工程选题。",
+      "next": "Continue evidence enrichment and select only when a reproducible engineering question crosses the Queue threshold.",
+      "next_zh": "继续补充证据，只有可复现的工程问题达到队列阈值后才正式选题。"
+    }
+  ]
+}
