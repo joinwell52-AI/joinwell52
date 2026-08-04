@@ -1,0 +1,74 @@
+name: Update FCoP official homepage links
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/update-fcop-official-links.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-links:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Point FCoP cards and footer to the official website
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('docs/.vitepress/theme/components/ResearchCenterHome.vue')
+          text = path.read_text(encoding='utf-8')
+
+          replacements = [
+              (
+                  "{ no:'03', kind:'协议', role:'基于文件的协同协议', name:['FCoP'], description:'以项目可见文件承载任务、报告、审阅与生命周期证据，为 CodeFlowMu 与数字员工提供可重建的协同事实。', path:'https://github.com/joinwell52-AI/FCoP', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'打开 GitHub' }",
+                  "{ no:'03', kind:'协议', role:'基于文件的协同协议', name:['FCoP'], description:'以项目可见文件承载任务、报告、审阅与生命周期证据，为 CodeFlowMu 与数字员工提供可重建的协同事实。', path:'https://joinwell52-ai.github.io/FCoP/', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'打开 FCoP 官网' }",
+                  'Chinese FCoP capability card',
+              ),
+              (
+                  "{ no:'03', kind:'PROTOCOL', role:'FILE-BASED COORDINATION PROTOCOL', name:['FCoP'], description:'Project-visible files carry tasks, reports, reviews, and lifecycle evidence, providing reconstructable coordination facts for CodeFlowMu and Digital Employees.', path:'https://github.com/joinwell52-AI/FCoP', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'Open GitHub' }",
+                  "{ no:'03', kind:'PROTOCOL', role:'FILE-BASED COORDINATION PROTOCOL', name:['FCoP'], description:'Project-visible files carry tasks, reports, reviews, and lifecycle evidence, providing reconstructable coordination facts for CodeFlowMu and Digital Employees.', path:'https://joinwell52-ai.github.io/FCoP/', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'Open FCoP site' }",
+                  'English FCoP capability card',
+              ),
+          ]
+
+          for old, new, label in replacements:
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{label}: expected exactly one match, found {count}')
+              text = text.replace(old, new, 1)
+
+          text = text.replace('href="https://github.com/joinwell52-AI/FCoP"', 'href="https://joinwell52-ai.github.io/FCoP/"')
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build site
+        run: npm run docs:build
+
+      - name: Commit and remove one-time workflow
+        shell: bash
+        run: |
+          rm .github/workflows/update-fcop-official-links.yml
+          git config user.name 'joinwell52-AI Runtime'
+          git config user.email 'actions@users.noreply.github.com'
+          git add docs/.vitepress/theme/components/ResearchCenterHome.vue .github/workflows/update-fcop-official-links.yml package-lock.json
+          git commit -m 'fix(home): link FCoP cards to official site'
+          git pull --rebase origin main
+          git push origin HEAD:main
