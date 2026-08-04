@@ -8,7 +8,18 @@
 }
 
 .portal-v5-page .rc-controls {
-  right: max(100px, calc((100vw - 1440px) / 2 + 52px)) !important;
+  right: max(104px, calc((100vw - 1440px) / 2 + 56px)) !important;
+}
+
+.portal-v5-page .VPNavBarSocialLinks,
+.portal-v5-page .VPSocialLinks {
+  position: fixed !important;
+  top: 0 !important;
+  right: max(58px, calc((100vw - 1440px) / 2 + 10px)) !important;
+  z-index: 103 !important;
+  display: flex !important;
+  align-items: center !important;
+  height: 64px !important;
 }
 
 /* Chinese wordmark: gradient “数字员工” plus compact square “工场” badge. */
@@ -100,6 +111,11 @@ html.dark[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title span::before {
 
   .portal-v5-page .rc-controls {
     right: 14px !important;
+  }
+
+  .portal-v5-page .VPNavBarSocialLinks,
+  .portal-v5-page .VPSocialLinks {
+    display: none !important;
   }
 
   html[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title span::before {
