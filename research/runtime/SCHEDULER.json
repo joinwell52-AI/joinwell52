@@ -1,77 +1,129 @@
 {
-  "schema": "research-runtime-scheduler/v1",
-  "version": "1.0",
+  "schema": "research-runtime-scheduler/v2",
+  "version": "2.0",
   "centerVersion": "3.0",
-  "operationsCenterVersion": "3.0",
+  "operationsCenterVersion": "4.0",
+  "effectiveDate": "2026-08-04",
   "resultContract": "runtime-task-result/v1",
+  "columnPlanContract": "runtime-column-plan/v1",
+  "publicationCandidateContract": "runtime-publication-candidate/v1",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
   "recordPath": "research/runtime/{YYYY}/{MM}/{YYYY-MM-DD}-runtime.md",
+  "planPath": "research/runtime/plans/{YYYY}/{MM}/{YYYY-MM-DD}-plan.json",
+  "candidatePath": "research/runtime/candidates/{YYYY}/{MM}/{YYYY-MM-DD}-candidates.json",
   "statuses": ["Running", "Completed", "Blocked", "Failed", "Skipped", "Waiting"],
+  "columns": [
+    {
+      "id": "digital-employee",
+      "name": "Digital Employee",
+      "name_zh": "数字员工",
+      "description": "Positions, responsibilities, workflows, runtime, governance and evaluation for Digital Employees.",
+      "description_zh": "数字员工的岗位、职责、工作流、运行、治理与评估。"
+    },
+    {
+      "id": "industry-architecture",
+      "name": "Industry Architecture",
+      "name_zh": "行业架构",
+      "description": "Enterprise AI operating models, control planes, work systems and organizational architecture.",
+      "description_zh": "企业 AI 运行模式、控制平面、工作系统与组织架构。"
+    },
+    {
+      "id": "open-source-engineering",
+      "name": "Open-source Engineering",
+      "name_zh": "开源工程",
+      "description": "Open-source runtimes, protocols, tools, benchmarks, recovery and observability engineering.",
+      "description_zh": "开源运行时、协议、工具、基准、恢复与可观测性工程。"
+    }
+  ],
   "tasks": [
     {
       "id": "engine",
       "name": "Research Runtime Engine",
+      "introduced": "2026-08-03",
       "schedule": { "kind": "daily", "time": "09:00", "cron": "0 1 * * *" },
-      "responsibility": "Advance the Research Operating System state machine.",
-      "output": "Research OS lifecycle state",
-      "prohibitions": [],
-      "skillsRequired": false,
-      "lifecycle": ["Signal", "Candidate", "Queue", "Selected", "Reading", "Analysis", "Knowledge", "Architecture", "Specification", "Publication", "Release"]
+      "responsibility": "Advance the Research Operating System state machine by exactly one governed transition per eligible object.",
+      "output": "Governed lifecycle transition and durable research artifact",
+      "prohibitions": ["Skipping lifecycle stages", "Direct publication"],
+      "skillsRequired": true,
+      "skills": ["03 Deep Reading", "04 Research Analysis"]
     },
     {
       "id": "queue",
       "name": "Research Runtime Queue",
+      "introduced": "2026-08-03",
       "schedule": { "kind": "daily", "time": "10:00", "cron": "0 2 * * *" },
-      "responsibility": "Maintain source discovery, candidates, priority, selection, rejection and queue lifecycle.",
-      "output": "Research Queue",
-      "prohibitions": ["Direct publication"],
-      "skillsRequired": false
+      "responsibility": "Discover signals, score candidates, assign every selected object to one of the three research columns, and publish the daily column plan.",
+      "output": "Research Queue and three-column Daily Research Plan",
+      "prohibitions": ["Direct publication", "Unassigned selected object"],
+      "skillsRequired": true,
+      "skills": ["01 Source Discovery", "02 Research Triage"]
     },
     {
       "id": "knowledge",
       "name": "Research Runtime Knowledge",
+      "introduced": "2026-08-03",
       "schedule": { "kind": "daily", "time": "11:00", "cron": "0 3 * * *" },
-      "responsibility": "Maintain the knowledge graph, related notes, architecture candidates, observations, discussions and engineering insights.",
-      "output": "Runtime Knowledge",
-      "prohibitions": ["Direct publication"],
-      "skillsRequired": false
+      "responsibility": "Admit evidence-validated Research Notes into Knowledge, maintain relationships and register architecture candidates.",
+      "output": "Knowledge records, links and architecture candidates",
+      "prohibitions": ["Direct publication", "Promotion without validated evidence"],
+      "skillsRequired": false,
+      "skills": []
     },
     {
       "id": "architecture",
       "name": "Research Runtime Architecture",
+      "introduced": "2026-08-03",
       "schedule": { "kind": "weekly", "days": ["Monday"], "time": "12:00", "cron": "0 4 * * 1" },
-      "responsibility": "Perform architecture review and make architecture, specification, publication and lifecycle decisions.",
-      "output": "Architecture decisions",
-      "prohibitions": [],
-      "skillsRequired": false
+      "responsibility": "Review architecture candidates and make governed Architecture, Specification, Publication and lifecycle decisions.",
+      "output": "Architecture decisions and lifecycle dispositions",
+      "prohibitions": ["Architecture decision from a single unsupported observation"],
+      "skillsRequired": false,
+      "skills": []
+    },
+    {
+      "id": "production",
+      "name": "Research Runtime Production",
+      "introduced": "2026-08-04",
+      "schedule": { "kind": "daily", "time": "15:00", "cron": "0 7 * * *" },
+      "responsibility": "Consume eligible analyzed objects by column and execute Research Writing, Visualization, Evidence and Citation, and Publication Editing to create complete bilingual Publication Candidates.",
+      "output": "Complete bilingual Publication Candidates",
+      "prohibitions": ["Direct publication", "Writing from an unvalidated signal", "Incomplete candidate marked ready"],
+      "skillsRequired": true,
+      "skills": ["05 Research Writing", "06 Visualization", "07 Evidence & Citation", "08 Publication Editing"]
     },
     {
       "id": "publication",
       "name": "Research Runtime Publication",
+      "introduced": "2026-08-03",
       "schedule": { "kind": "daily", "time": "20:00", "cron": "0 12 * * *" },
-      "responsibility": "Publish Daily Research with metadata, website integration, GitHub commit and commit verification.",
-      "output": "Daily Publication",
-      "prohibitions": ["Direct research"],
-      "skillsRequired": true
+      "responsibility": "Release only complete Publication Candidates, update bilingual indexes and website surfaces, commit to GitHub, and verify the commit.",
+      "output": "Released Daily Research and verified GitHub publication",
+      "prohibitions": ["Direct research", "Direct writing", "Publishing an incomplete candidate"],
+      "skillsRequired": false,
+      "skills": []
     },
     {
       "id": "weekly",
       "name": "Research Runtime Weekly",
+      "introduced": "2026-08-03",
       "schedule": { "kind": "weekly", "days": ["Sunday"], "time": "20:30", "cron": "30 12 * * 0" },
-      "responsibility": "Produce cross-analysis, architecture judgment, engineering judgment and a new Weekly Synthesis.",
+      "responsibility": "Produce cross-analysis, architecture judgment, engineering judgment and a genuinely new Weekly Synthesis.",
       "output": "Weekly Publication",
       "prohibitions": ["Copying Daily Research"],
-      "skillsRequired": true
+      "skillsRequired": true,
+      "skills": ["04 Research Analysis", "05 Research Writing", "07 Evidence & Citation", "08 Publication Editing"]
     },
     {
       "id": "academic",
       "name": "Research Runtime Academic",
+      "introduced": "2026-08-03",
       "schedule": { "kind": "weekly", "days": ["Wednesday"], "time": "10:00", "cron": "0 2 * * *" },
-      "responsibility": "Publish research notes about papers, benchmarks, specifications, conferences and institutions.",
+      "responsibility": "Research and publish papers, benchmarks, specifications, conferences and institutions through the complete Research Skills pipeline.",
       "output": "Academic Publication",
       "prohibitions": ["Ordinary news"],
-      "skillsRequired": true
+      "skillsRequired": true,
+      "skills": ["03 Deep Reading", "04 Research Analysis", "05 Research Writing", "06 Visualization", "07 Evidence & Citation", "08 Publication Editing"]
     }
   ]
 }
