@@ -1,9 +1,9 @@
 ---
 layout: home
 pageClass: runtime-center-page
-title: Digital Researcher Operations Center
-description: A scheduled-task work report showing inputs, outcomes, outputs, next actions, and GitHub evidence for the Digital Researcher.
+title: Digital Researcher Operations Center V4
+description: Three research columns, morning research shifts, complete report production at 15:00, GitHub and website release at 20:00, and work outcomes for every scheduled task.
 outline: false
 ---
 
-<RuntimeOperationsCenter lang="en" />
+<RuntimeOperationsCenterV4 lang="en" />
