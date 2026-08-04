@@ -1,0 +1,155 @@
+/* Exact three-column palette taken from the TMPA publication cards. */
+:root {
+  --column-purple: #6b59f6;
+  --column-purple-dark: #5341df;
+  --column-purple-soft: #ece8ff;
+  --column-teal: #1d7485;
+  --column-teal-dark: #155c6b;
+  --column-teal-soft: #d9ecef;
+  --column-cyan: #58cfe1;
+  --column-cyan-dark: #1494aa;
+  --column-cyan-soft: #d5f4f9;
+}
+
+/* Observation Notes overview cards. */
+.rn-column-card {
+  --rn-accent: var(--column-purple) !important;
+  --rn-accent-2: var(--column-purple-dark) !important;
+  --rn-ink: #2d2468 !important;
+  border-color: rgba(107,89,246,.48) !important;
+  background:
+    radial-gradient(circle at 94% 3%, rgba(107,89,246,.22) 0 19%, transparent 44%),
+    linear-gradient(145deg, #faf9ff 0%, #f0edff 48%, var(--column-purple-soft) 100%) !important;
+}
+
+.rn-column-card.is-industry-architecture {
+  --rn-accent: var(--column-teal) !important;
+  --rn-accent-2: var(--column-teal-dark) !important;
+  --rn-ink: #164f5c !important;
+  border-color: rgba(29,116,133,.50) !important;
+  background:
+    radial-gradient(circle at 94% 3%, rgba(29,116,133,.25) 0 19%, transparent 44%),
+    linear-gradient(145deg, #f8fcfd 0%, #e8f3f5 48%, var(--column-teal-soft) 100%) !important;
+}
+
+.rn-column-card.is-open-source-engineering {
+  --rn-accent: var(--column-cyan-dark) !important;
+  --rn-accent-2: var(--column-cyan) !important;
+  --rn-ink: #075f72 !important;
+  border-color: rgba(20,148,170,.50) !important;
+  background:
+    radial-gradient(circle at 94% 3%, rgba(88,207,225,.30) 0 19%, transparent 44%),
+    linear-gradient(145deg, #f8feff 0%, #e6f9fc 48%, var(--column-cyan-soft) 100%) !important;
+}
+
+.rn-column-card::before {
+  background: var(--rn-accent) !important;
+}
+
+.rn-column-card.is-open-source-engineering::before {
+  background: var(--column-cyan) !important;
+}
+
+.rn-column-card .rn-column-head span,
+.rn-column-card .rn-breakdown span {
+  border: 1px solid color-mix(in srgb, var(--rn-accent) 28%, transparent) !important;
+  background: color-mix(in srgb, var(--rn-accent) 11%, white) !important;
+}
+
+.rn-column-card .rn-column-head strong,
+.rn-column-card h2 {
+  color: var(--rn-ink) !important;
+}
+
+.rn-column-card > small,
+.rn-column-card .rn-breakdown b,
+.rn-column-card .rn-open {
+  color: var(--rn-accent) !important;
+}
+
+/* Homepage Observation Notes tabs and active panels. */
+.rc-research .rc-note-tabs button:nth-child(1) {
+  --stream-accent: var(--column-purple) !important;
+  --stream-soft: rgba(107,89,246,.22) !important;
+}
+
+.rc-research .rc-note-tabs button:nth-child(2) {
+  --stream-accent: var(--column-teal) !important;
+  --stream-soft: rgba(29,116,133,.25) !important;
+}
+
+.rc-research .rc-note-tabs button:nth-child(3) {
+  --stream-accent: var(--column-cyan) !important;
+  --stream-soft: rgba(88,207,225,.24) !important;
+}
+
+.rc-research .rc-note-tabs button::after {
+  background: var(--stream-accent) !important;
+}
+
+.rc-research .rc-note-panel[id$='digital-employee'] {
+  background:
+    radial-gradient(circle at 92% 10%, rgba(107,89,246,.25), transparent 34%),
+    linear-gradient(145deg, #25205c 0%, #191c43 100%) !important;
+}
+
+.rc-research .rc-note-panel[id$='industry-architecture'] {
+  background:
+    radial-gradient(circle at 92% 10%, rgba(29,116,133,.30), transparent 34%),
+    linear-gradient(145deg, #174d59 0%, #112f3d 100%) !important;
+}
+
+.rc-research .rc-note-panel[id$='open-source-engineering'] {
+  background:
+    radial-gradient(circle at 92% 10%, rgba(88,207,225,.30), transparent 34%),
+    linear-gradient(145deg, #155e70 0%, #103447 100%) !important;
+}
+
+.rc-research .rc-note-panel[id$='digital-employee'] > header small,
+.rc-research .rc-note-panel[id$='digital-employee'] li i {
+  color: #a99fff !important;
+}
+
+.rc-research .rc-note-panel[id$='industry-architecture'] > header small,
+.rc-research .rc-note-panel[id$='industry-architecture'] li i {
+  color: #70c9d5 !important;
+}
+
+.rc-research .rc-note-panel[id$='open-source-engineering'] > header small,
+.rc-research .rc-note-panel[id$='open-source-engineering'] li i {
+  color: #7fe5f2 !important;
+}
+
+/* Runtime three-column plan. */
+.legacy-runtime .column-grid .column-digital-employee {
+  border-color: rgba(107,89,246,.70) !important;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(107,89,246,.30), transparent 38%),
+    linear-gradient(145deg, #292366 0%, #13162f 100%) !important;
+}
+
+.legacy-runtime .column-grid .column-industry-architecture {
+  border-color: rgba(29,116,133,.72) !important;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(29,116,133,.34), transparent 38%),
+    linear-gradient(145deg, #185262 0%, #0e2632 100%) !important;
+}
+
+.legacy-runtime .column-grid .column-open-source-engineering {
+  border-color: rgba(88,207,225,.78) !important;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(88,207,225,.36), transparent 38%),
+    linear-gradient(145deg, #176b7e 0%, #0d2d3e 100%) !important;
+}
+
+.legacy-runtime .column-grid .column-digital-employee::before {
+  background: var(--column-purple) !important;
+}
+
+.legacy-runtime .column-grid .column-industry-architecture::before {
+  background: var(--column-teal) !important;
+}
+
+.legacy-runtime .column-grid .column-open-source-engineering::before {
+  background: var(--column-cyan) !important;
+}
