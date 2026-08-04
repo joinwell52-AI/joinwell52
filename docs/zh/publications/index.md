@@ -2,21 +2,42 @@
 
 数字员工工场以版本化方式公开 Runtime 能力、数字员工能力、论文、规范和工程案例。GitHub 是唯一事实源；只有通过相应 Runtime Gate、形成 Git Commit 并完成 Commit Verify 的修订才属于正式交付。
 
-## 工场 Runtime 发布
+## 当前运行体系
 
-| 类型 | 文档 | 版本 | 状态 |
+| 类型 | 文档 | 当前版本 | 状态 |
 |---|---|---:|---|
-| Runtime 控制平面 | [Research Runtime Scheduler](./research-runtime-scheduler-v1.0) | V1.0 | Released |
+| 数字研究员运营中心 | [Research Runtime Center](../runtime/) | V4 | Running |
+| 运行调度器 | [Research Runtime Center V4 规范](../runtime/v4) | Scheduler V2.0 | Active |
+| 研究情报系统 | [Research Intelligence System](../runtime/research-intelligence) | V1.0 | Active |
 
-Research Runtime Scheduler V1.0 是 Research Operating System 唯一正式调度器与可观测层，统一治理七个 Runtime 任务、每日 Runtime Record、自动生成的 Runtime Center 与 Publication Gate。
+当前 Runtime 已统一八个正式任务，包含 15:00 Production 与 20:00 Release Only；运营中心根据 Runtime Record、三栏计划、情报扫描记录和 Publication Candidate 自动生成。
+
+历史发布记录：
+
+- [Research Runtime Scheduler V1.0 正式发布](./research-runtime-scheduler-v1.0)
 
 ## 数字研究员能力
 
 | 类型 | 文档 | 版本 | 状态 |
 |---|---|---:|---|
-| 数字员工能力 | [研究报告生产机](./research-report-production-engine-v1.0) | V1.0 | Production Verified |
+| 数字员工能力 | [研究报告生产机](./research-report-production-engine-v1.3) | **V1.3** | Current Capability Release |
+| 使用说明 | [V1.3 快速开始](./research-report-production-engine-v1.3-quickstart) | V1.3 | Downloadable |
 
-研究报告生产机是基于 ChatGPT 的 Research Analyst Worker。在数字员工工场中，它运行于 Runtime 控制平面之下，并通过 Runtime Record 与 GitHub 验证关闭正式工作。
+研究报告生产机 V1.3 是基于 ChatGPT 的 Research Analyst Worker 与文本驱动生产系统。它整合：
+
+- Research Skills V2.0；
+- AI 平台、GitHub 工程、论文与研究成果三条情报管线；
+- 数字员工、行业架构、开源工程三个栏目分别选题；
+- 15:00 完整报告生产；
+- 20:00 GitHub 与网站发版；
+- Runtime Record、任务成果汇报与 Commit Verify。
+
+下载入口：
+
+- [下载当前源码 ZIP](https://github.com/joinwell52-AI/joinwell52/archive/refs/heads/main.zip)
+- [打开 GitHub 仓库](https://github.com/joinwell52-AI/joinwell52)
+
+V1.0 作为首个 Production Test 历史基线保留：[旧版兼容入口](./research-report-production-engine-v1.0)。
 
 ## TMPA 出版体系
 
@@ -29,13 +50,13 @@ Research Runtime Scheduler V1.0 是 Research Operating System 唯一正式调度
 TMPA 出版体系是独立理论层。工场的高频观察笔记不自动构成论文证据；工程案例只报告其明确范围内的实现与验证结果。
 
 ```text
-Research Runtime
-→ Runtime Record
+Research Intelligence
+→ Three-Column Triage
+→ Research Runtime
+→ Publication Candidate
 → 中英文正式出版
-→ GitHub Branch 与 Commit
-→ CI 验证
-→ main
-→ Commit Verify
+→ GitHub Commit
+→ CI / Commit Verify
 → Pages Build
 → 数字员工工场
 ```

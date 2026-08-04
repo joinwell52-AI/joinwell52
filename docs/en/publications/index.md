@@ -2,21 +2,42 @@
 
 Digital Employee Works publishes versioned Runtime capabilities, Digital Employee capabilities, papers, specifications, and engineering case reports. GitHub is the single source of truth; a revision is official only after the applicable Runtime Gate, Git commit, and commit verification.
 
-## Works Runtime release
+## Current operating system
+
+| Type | Document | Current version | Status |
+|---|---|---:|---|
+| Digital Researcher Operations Center | [Research Runtime Center](../runtime/) | V4 | Running |
+| Runtime scheduler | [Research Runtime Center V4 specification](../runtime/v4) | Scheduler V2.0 | Active |
+| Research intelligence | [Research Intelligence System](../runtime/research-intelligence) | V1.0 | Active |
+
+The current Runtime governs eight formal tasks, including 15:00 Production and release-only Publication at 20:00. The Operations Center is generated from Runtime Records, three-column plans, intelligence scan records, and Publication Candidates.
+
+Historical release record:
+
+- [Research Runtime Scheduler V1.0 release](./research-runtime-scheduler-v1.0)
+
+## Digital Researcher capability
 
 | Type | Document | Version | Status |
 |---|---|---:|---|
-| Runtime control plane | [Research Runtime Scheduler](./research-runtime-scheduler-v1.0) | V1.0 | Released |
+| Digital Employee capability | [Research Report Production Engine](./research-report-production-engine-v1.3) | **V1.3** | Current Capability Release |
+| Usage guide | [V1.3 Quick Start](./research-report-production-engine-v1.3-quickstart) | V1.3 | Downloadable |
 
-Research Runtime Scheduler V1.0 is the only formal scheduler and observability layer of the Research Operating System. It governs seven Runtime tasks, daily Runtime Records, the generated Runtime Center and the publication gate.
+Research Report Production Engine V1.3 is a ChatGPT-based Research Analyst worker and text-driven production system. It integrates:
 
-## Digital Research Employee capability
+- Research Skills V2.0;
+- AI Platform, GitHub Engineering, and Published Research intelligence pipelines;
+- separate topic decisions for Digital Employee, Industry Architecture, and Open-source Engineering;
+- complete-report production at 15:00;
+- GitHub and website release at 20:00;
+- Runtime Records, task-outcome reports, and Commit Verify.
 
-| Type | Document | Version | Status |
-|---|---|---:|---|
-| Digital Employee capability | [Research Report Production Engine](./research-report-production-engine-v1.0) | V1.0 | Production Verified |
+Download:
 
-The Research Report Production Engine is the ChatGPT-based Research Analyst worker. In Digital Employee Works it operates under the Runtime control plane and closes official work through Runtime Records and GitHub verification.
+- [Download the current source ZIP](https://github.com/joinwell52-AI/joinwell52/archive/refs/heads/main.zip)
+- [Open the GitHub repository](https://github.com/joinwell52-AI/joinwell52)
+
+V1.0 remains the historical baseline for the first Production Test: [legacy compatibility entry](./research-report-production-engine-v1.0).
 
 ## TMPA publication set
 
@@ -29,15 +50,15 @@ The Research Report Production Engine is the ChatGPT-based Research Analyst work
 The TMPA publication suite is an independent theory layer. High-frequency Observation Notes do not automatically become paper evidence; the implementation case reports only the engineering evidence inside its stated boundary.
 
 ```text
-Research Runtime
-→ Runtime Record
+Research Intelligence
+→ Three-Column Triage
+→ Research Runtime
+→ Publication Candidate
 → bilingual publication
-→ GitHub branch and commit
-→ CI validation
-→ main
-→ Commit Verify
+→ GitHub Commit
+→ CI / Commit Verify
 → Pages build
 → Digital Employee Works
 ```
 
-Until a stable release or DOI exists, citations should include author, title, explicit version, repository URL and access date.
+Until a stable release or DOI exists, citations should include author, title, explicit version, repository URL, and access date.

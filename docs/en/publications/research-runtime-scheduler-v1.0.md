@@ -1,132 +1,107 @@
 ---
 title: Research Runtime Scheduler V1.0
-description: The formal execution scheduler and operational control plane of Digital Employee Works.
+description: The first formal release record of Research Runtime Scheduler; the current operating baseline is Scheduler V2.0 and Runtime Center V4.
 outline: deep
 ---
 
 <ArticleCover
   image="/assets/covers/research-runtime-scheduler-v1.svg"
-  kicker="Digital Employee Works · Runtime Release"
+  kicker="Digital Employee Works · Historical Runtime Release"
   title="Research Runtime Scheduler V1.0"
-  summary="The only formal scheduler, observability layer and publication gate of the Research Operating System."
+  summary="The first formal scheduler and operational control-plane release of the Research Operating System."
   version="V1.0"
-  status="Released 2026-08-02 · Runtime Control Plane"
+  status="Released 2026-08-02 · Historical Release"
   languageHref="/zh/publications/research-runtime-scheduler-v1.0"
   languageLabel="简体中文"
 />
 
-## Release statement
+::: info Current operating baseline
+The current formal operating system has advanced to:
 
-**Research Runtime Scheduler V1.0** establishes the **Factory Runtime Center** as the operational control plane of Digital Employee Works.
+- **Research Runtime Center V4**;
+- **Research Runtime Scheduler V2.0**;
+- **Research Report Production Engine V1.3**;
+- **Research Intelligence System V1.0**;
+- eight formal Runtime tasks, including daily Production at 15:00;
+- release-only Publication at 20:00 for complete candidates.
 
-Research OS still defines how research work should move. The Runtime Scheduler decides when formal work is opened, records what actually happened, exposes the state through a generated dashboard, and requires GitHub commit verification before a publication can be considered an official runtime output.
+[Read the current V4 Runtime specification →](/en/runtime/v4)  
+[Read Research Report Production Engine V1.3 →](./research-report-production-engine-v1.3)
+:::
 
-> Research Runtime—not individual automation tasks—is the operational control plane of the Digital Research Employee.
+## Historical significance of V1.0
 
-## Release metadata
+Research Runtime Scheduler V1.0 first established Research Runtime Center as the formal operational control plane of the Research Operating System.
+
+It established these principles:
+
+- Research Runtime—not an individual automation task—is the Digital Researcher’s operational control plane;
+- the GitHub scheduler opens execution slots and must not manufacture completion facts;
+- every formal execution writes a Runtime Record;
+- exactly six statuses are allowed: `Running`, `Completed`, `Blocked`, `Failed`, `Skipped`, and `Waiting`;
+- formal publication requires a GitHub commit and Commit Verify;
+- a publication without a Runtime Record is not an official runtime output.
+
+## V1.0 release metadata
 
 | Field | Value |
 |---|---|
 | Capability | Research Runtime Scheduler |
-| Version | V1.0 |
-| Digital Employee Works | Continuous production |
-| Runtime timezone | `Asia/Shanghai` |
-| Digital Research Employee | Research Report Production Engine V1.0 on ChatGPT |
-| System of record | GitHub repository `joinwell52-AI/joinwell52` |
-| Runtime record | `research/runtime/YYYY/MM/YYYY-MM-DD-runtime.md` |
+| Historical version | V1.0 |
 | Release date | 2026-08-02 |
+| Timezone | `Asia/Shanghai` |
+| Digital Researcher at release | Research Report Production Engine V1.0 |
+| Current Digital Researcher | [Research Report Production Engine V1.3](./research-report-production-engine-v1.3) |
+| System of record | GitHub repository `joinwell52-AI/joinwell52` |
+| Runtime Record | `research/runtime/YYYY/MM/YYYY-MM-DD-runtime.md` |
 
-## Runtime architecture
+## The seven V1.0 tasks
 
-```text
-Research Runtime Center
-        ↓
-Research Runtime Scheduler
-        ↓
-Runtime Engine
-        ↓
-Runtime Queue
-        ↓
-Runtime Knowledge
-        ↓
-Runtime Architecture
-        ↓
-Runtime Publication / Weekly / Academic
-        ↓
-Runtime Record
-        ↓
-GitHub Commit + Commit Verify
-        ↓
-Digital Employee Works
-```
+V1.0 used seven formal tasks: Engine, Queue, Knowledge, Architecture, Publication, Weekly, and Academic.
 
-The scheduler opens governed execution slots. The corresponding ChatGPT Runtime worker performs the research. A trigger does not count as completion: without output and verification, the Runtime remains Waiting, Blocked or Failed.
+It did not yet contain a separate 15:00 Production shift. Writing, visualization, evidence work, and publication editing therefore had not been organized as an independent afternoon production stage.
 
-## Seven formal tasks
+## From V1.0 to V2.0
 
-The task proposal contained a numerical inconsistency: it said “six” but explicitly defined seven responsibilities. V1.0 adopts all seven.
-
-| Runtime | Schedule (`Asia/Shanghai`) | Formal responsibility |
-|---|---|---|
-| Research Runtime Engine | Daily 09:00 | Advance the Research OS state machine. |
-| Research Runtime Queue | Daily 10:00 | Maintain source discovery, candidates, priority and queue lifecycle; no direct publication. |
-| Research Runtime Knowledge | Daily 11:00 | Maintain knowledge, related notes, observations and architecture candidates; no direct publication. |
-| Research Runtime Architecture | Monday 12:00 | Make architecture, specification, publication-candidate and lifecycle decisions. |
-| Research Runtime Publication | Daily 20:00 | Publish Daily Research from completed inputs and Research Skills; perform commit verification. |
-| Research Runtime Weekly | Sunday 20:30 | Produce a new synthesis and engineering judgment; never copy Daily Research. |
-| Research Runtime Academic | Wednesday 10:00 | Publish research about papers, benchmarks, specifications, conferences and institutions; exclude ordinary news. |
-
-Runtime Queue and Runtime Academic intentionally share Wednesday 10:00. One scheduler trigger opens both slots, while each task preserves an independent status and output boundary.
-
-## Runtime Record
-
-Runtime Record is the single source of truth for every scheduled execution.
-
-It contains start and end time, duration, task, GitHub repository, commit, status, output, lifecycle, queue state, publication state, commit verification and append-only log events. Exactly six statuses are allowed:
+Scheduler V2.0 adds and clarifies:
 
 ```text
-Running · Completed · Blocked · Failed · Skipped · Waiting
+09:00 Engine
+10:00 Queue + Research Intelligence + three-column decisions
+11:00 Knowledge
+Monday 12:00 Architecture
+15:00 Production → complete Publication Candidate
+20:00 Publication → GitHub + website + Commit Verify
+Sunday 20:30 Weekly
+Wednesday 10:00 Academic
 ```
 
-The website does not maintain a second dashboard database. At build time, the Runtime engine validates the Markdown records and generates the dashboard projection.
+It also introduces:
 
-## Runtime Center website
+- three source-intelligence pipelines;
+- separate decisions for three research columns;
+- structured work outcomes for every scheduled task;
+- the three-column Daily Research Plan;
+- Publication Candidate batches;
+- an automatically generated Operations Center.
 
-Digital Employee Works provides a generated Factory Runtime Center with:
-
-- Runtime Status;
-- Today’s Tasks;
-- Runtime Timeline;
-- Runtime History;
-- Latest Runtime;
-- Runtime Log;
-- GitHub Status;
-- Publication Status;
-- Queue Status;
-- Engine Status.
-
-[Open Research Runtime Center →](/en/runtime/)
-
-## Runtime Gate
+## V1.0 Runtime Gate
 
 ```text
 Research Runtime
-→ Publication Candidate
 → Runtime Record
 → GitHub Commit
 → Commit Verify
 → Official Publication
 ```
 
-The pull-request validation workflow rejects formal publication changes that do not include a Runtime Record.
+V2.0 extends this gate by making the Production Candidate the formal handoff object between 15:00 and 20:00.
 
-## Highest engineering constraint
+## Current authoritative implementation
 
-> Every official Publication shall be executed by Research Runtime and produce a Runtime Record. Any publication without a Runtime Record is not considered an official runtime output.
-
-## Authoritative implementation
-
+- [Research Runtime Center V4](../runtime/v4)
+- [Research Intelligence System V1.0](../runtime/research-intelligence)
 - [Runtime Charter](https://github.com/joinwell52-AI/joinwell52/blob/main/research/runtime/README.md)
-- [Scheduler manifest](https://github.com/joinwell52-AI/joinwell52/blob/main/research/runtime/SCHEDULER.json)
-- [Runtime Record schema](https://github.com/joinwell52-AI/joinwell52/blob/main/research/runtime/RUNTIME-RECORD-SCHEMA.md)
-- [Release record](https://github.com/joinwell52-AI/joinwell52/blob/main/research/releases/research-runtime-scheduler-v1.0/RELEASE.md)
+- [Scheduler V2.0 Manifest](https://github.com/joinwell52-AI/joinwell52/blob/main/research/runtime/SCHEDULER.json)
+- [Worker Contracts V2](https://github.com/joinwell52-AI/joinwell52/blob/main/research/runtime/WORKER-PROMPTS-V2.md)
+- [V1.0 Historical Release Record](https://github.com/joinwell52-AI/joinwell52/blob/main/research/releases/research-runtime-scheduler-v1.0/RELEASE.md)

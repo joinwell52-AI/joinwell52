@@ -18,6 +18,7 @@ import './rvs.css'
 import './portal-v5.css'
 import './portal-v5-language.css'
 import './article-cover.css'
+import './production-engine-v1.3.css'
 
 const zhRuntimeText: Record<string, string> = {
   'RESEARCH RUNTIME CENTER · 运行控制平面': '工场运行中心 · 运行控制平面',
@@ -110,6 +111,71 @@ function enhanceLanguageRouting() {
   })
 }
 
+function reorderCapabilityCards() {
+  if (typeof document === 'undefined') return
+
+  const reorder = (rootSelector: string, selectors: string[], numberSelector?: string) => {
+    document.querySelectorAll<HTMLElement>(rootSelector).forEach((root) => {
+      selectors.forEach((selector, index) => {
+        const card = root.querySelector<HTMLElement>(selector)
+        if (!card) return
+        root.appendChild(card)
+        if (numberSelector) {
+          const number = card.querySelector<HTMLElement>(numberSelector)
+          if (number) number.textContent = String(index + 1).padStart(2, '0')
+        }
+      })
+    })
+  }
+
+  reorder(
+    '.rc-programs',
+    ['.rc-program--tmpa', '.rc-program--fcop', '.rc-program--codeflow', '.rc-program--employee'],
+    '.rc-program__cover > b'
+  )
+  reorder(
+    '.rcv5-program-grid',
+    ['.tmpa', '.fcop-program', '.codeflow', '.employee']
+  )
+}
+
+function enhanceProductionEngineV13(chinese: boolean) {
+  if (typeof document === 'undefined') return
+
+  const releasePath = withBase(chinese
+    ? '/zh/publications/research-report-production-engine-v1.3'
+    : '/en/publications/research-report-production-engine-v1.3')
+
+  document.querySelectorAll<HTMLAnchorElement>(
+    '.rc-home a[href*="research-report-production-engine-v1.0"], .rcv5 a[href*="research-report-production-engine-v1.0"]'
+  ).forEach((anchor) => anchor.setAttribute('href', releasePath))
+
+  const replacements: Record<string, string> = chinese ? {
+    '研究报告生产机 V1.0': '研究报告生产机 V1.3',
+    '从数字员工 到运行与协议': '从理论与协议 到运行与产品',
+    '工场生产数字员工；数字员工能力建立在 CodeFlowMu 与 FCoP 之上；其治理理论与规范边界记录在 TMPA 论文体系中。产品、工程与理论分别接受与自身相称的验证。': 'TMPA 固定理论与规范边界，FCoP 承载可重建的协同事实；CodeFlowMu 将其转化为数字员工开发与工作 Runtime，Digital Employee 是最终产品与交付层。'
+  } : {
+    'Research Report Production Engine V1.0': 'Research Report Production Engine V1.3',
+    'From Digital Employee to Runtime and protocol': 'From theory and protocol to runtime and product',
+    'The Works produces Digital Employees. Their capabilities are built on CodeFlowMu and FCoP, while the governing theory and specification boundaries are recorded independently in TMPA. Product, engineering, and theory are validated by standards appropriate to each layer.': 'TMPA fixes the theory and specification boundary; FCoP carries reconstructable coordination facts; CodeFlowMu turns them into a Digital Employee development and work Runtime; Digital Employee is the final product and delivery layer.'
+  }
+
+  document.querySelectorAll<HTMLElement>('.rc-home, .rcv5').forEach((root) => {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT)
+    let node = walker.nextNode()
+    while (node) {
+      const value = node.textContent || ''
+      let replaced = value
+      for (const [source, target] of Object.entries(replacements)) replaced = replaced.replaceAll(source, target)
+      if (replaced !== value) node.textContent = replaced
+      node = walker.nextNode()
+    }
+  })
+
+  document.querySelectorAll<HTMLElement>('.rcv5-engine-version > strong, .rcv5-dashboard > div:first-child > b')
+    .forEach((element) => { element.textContent = 'V1.3' })
+}
+
 function enhancePortal() {
   if (typeof document === 'undefined' || typeof window === 'undefined') return
 
@@ -143,6 +209,8 @@ function enhancePortal() {
     heroCopy.prepend(switcher)
   }
 
+  reorderCapabilityCards()
+  enhanceProductionEngineV13(chinese)
   enhanceLanguageRouting()
   localizeChineseRuntime()
 }

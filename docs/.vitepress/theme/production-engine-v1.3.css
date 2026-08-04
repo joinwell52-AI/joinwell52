@@ -1,0 +1,25 @@
+/* Product-stack hierarchy: theory and protocol first, runtime and product second. */
+.rc-home .rc-program--tmpa,
+.rcv5-program-grid .rcv5-program.tmpa {
+  order: 1;
+}
+
+.rc-home .rc-program--fcop,
+.rcv5-program-grid .rcv5-program.fcop-program {
+  order: 2;
+}
+
+.rc-home .rc-program--codeflow,
+.rcv5-program-grid .rcv5-program.codeflow {
+  order: 3;
+}
+
+.rc-home .rc-program--employee,
+.rcv5-program-grid .rcv5-program.employee {
+  order: 4;
+}
+
+/* Two-column desktop layout yields:
+   row 1: TMPA + FCoP
+   row 2: CodeFlowMu + Digital Employee.
+   The same hierarchy is preserved as a single column on mobile. */

@@ -5,8 +5,9 @@ const enSidebar = {
     { text: 'Operations Center V4', link: '/en/runtime/' },
     { text: 'Runtime Center V4 Guide', link: '/en/runtime/v4' },
     { text: 'Research Intelligence System', link: '/en/runtime/research-intelligence' },
-    { text: 'Runtime Scheduler V1.0 Release', link: '/en/publications/research-runtime-scheduler-v1.0' },
-    { text: 'Research Report Production Engine V1.0', link: '/en/publications/research-report-production-engine-v1.0' }
+    { text: 'Research Report Production Engine V1.3', link: '/en/publications/research-report-production-engine-v1.3' },
+    { text: 'V1.3 Quick Start', link: '/en/publications/research-report-production-engine-v1.3-quickstart' },
+    { text: 'Runtime Scheduler V1.0 Historical Release', link: '/en/publications/research-runtime-scheduler-v1.0' }
   ]}],
   '/en/research/': [{ text: 'Observation Notes', items: [
     { text: 'All Observation Notes', link: '/en/research/' },
@@ -16,18 +17,24 @@ const enSidebar = {
   ]}],
   '/en/digital-employee/': [{ text: 'Digital Employee', items: [
     { text: 'Observation Notes', link: '/en/digital-employee/' },
-    { text: 'Architecture V0.2', link: '/en/digital-employee/architecture' }
+    { text: 'Architecture V0.2', link: '/en/digital-employee/architecture' },
+    { text: 'Research Report Production Engine V1.3', link: '/en/publications/research-report-production-engine-v1.3' }
   ]}],
   '/en/industry/': [{ text: 'Industry Architecture', items: [
-    { text: 'Observation Notes', link: '/en/industry/' }
+    { text: 'Observation Notes', link: '/en/industry/' },
+    { text: 'Research Intelligence System', link: '/en/runtime/research-intelligence' }
   ]}],
   '/en/engineering/': [{ text: 'Open-source Engineering', items: [
-    { text: 'Observation Notes', link: '/en/engineering/' }
+    { text: 'Observation Notes', link: '/en/engineering/' },
+    { text: 'Research Intelligence System', link: '/en/runtime/research-intelligence' }
   ]}],
   '/en/publications/': [{ text: 'Publication Center', items: [
     { text: 'Overview', link: '/en/publications/' },
-    { text: 'Research Runtime Scheduler V1.0', link: '/en/publications/research-runtime-scheduler-v1.0' },
-    { text: 'Research Report Production Engine V1.0', link: '/en/publications/research-report-production-engine-v1.0' },
+    { text: 'Research Report Production Engine V1.3', link: '/en/publications/research-report-production-engine-v1.3' },
+    { text: 'V1.3 Quick Start', link: '/en/publications/research-report-production-engine-v1.3-quickstart' },
+    { text: 'Research Runtime Center V4', link: '/en/runtime/v4' },
+    { text: 'Research Intelligence System V1.0', link: '/en/runtime/research-intelligence' },
+    { text: 'Research Runtime Scheduler V1.0 History', link: '/en/publications/research-runtime-scheduler-v1.0' },
     { text: 'TMPA Architecture Paper A0.5', link: '/en/publications/tmpa-architecture-paper-a0.5' },
     { text: 'TMPA Core Specification S0.4', link: '/en/publications/tmpa-core-specification-s0.4' },
     { text: 'Implementation Case I0.4', link: '/en/publications/implementation-case-i0.4' }
@@ -39,8 +46,9 @@ const zhSidebar = {
     { text: '运营中心 V4', link: '/zh/runtime/' },
     { text: 'V4 运行规范', link: '/zh/runtime/v4' },
     { text: '研究情报系统 V1.0', link: '/zh/runtime/research-intelligence' },
-    { text: 'Runtime Scheduler V1.0 发布', link: '/zh/publications/research-runtime-scheduler-v1.0' },
-    { text: '研究报告生产机 V1.0', link: '/zh/publications/research-report-production-engine-v1.0' }
+    { text: '研究报告生产机 V1.3', link: '/zh/publications/research-report-production-engine-v1.3' },
+    { text: 'V1.3 快速开始', link: '/zh/publications/research-report-production-engine-v1.3-quickstart' },
+    { text: 'Runtime Scheduler V1.0 历史发布', link: '/zh/publications/research-runtime-scheduler-v1.0' }
   ]}],
   '/zh/research/': [{ text: '观察笔记', items: [
     { text: '全部观察笔记', link: '/zh/research/' },
@@ -50,18 +58,24 @@ const zhSidebar = {
   ]}],
   '/zh/digital-employee/': [{ text: '数字员工', items: [
     { text: '观察笔记', link: '/zh/digital-employee/' },
-    { text: '纲领性架构 V0.2', link: '/zh/digital-employee/architecture' }
+    { text: '纲领性架构 V0.2', link: '/zh/digital-employee/architecture' },
+    { text: '研究报告生产机 V1.3', link: '/zh/publications/research-report-production-engine-v1.3' }
   ]}],
   '/zh/industry/': [{ text: '行业架构', items: [
-    { text: '观察笔记', link: '/zh/industry/' }
+    { text: '观察笔记', link: '/zh/industry/' },
+    { text: '研究情报系统', link: '/zh/runtime/research-intelligence' }
   ]}],
   '/zh/engineering/': [{ text: '开源工程观察', items: [
-    { text: '观察笔记', link: '/zh/engineering/' }
+    { text: '观察笔记', link: '/zh/engineering/' },
+    { text: '研究情报系统', link: '/zh/runtime/research-intelligence' }
   ]}],
   '/zh/publications/': [{ text: '出版中心', items: [
     { text: '出版物总览', link: '/zh/publications/' },
-    { text: 'Research Runtime Scheduler V1.0', link: '/zh/publications/research-runtime-scheduler-v1.0' },
-    { text: '研究报告生产机 V1.0', link: '/zh/publications/research-report-production-engine-v1.0' },
+    { text: '研究报告生产机 V1.3', link: '/zh/publications/research-report-production-engine-v1.3' },
+    { text: 'V1.3 快速开始', link: '/zh/publications/research-report-production-engine-v1.3-quickstart' },
+    { text: 'Research Runtime Center V4', link: '/zh/runtime/v4' },
+    { text: '研究情报系统 V1.0', link: '/zh/runtime/research-intelligence' },
+    { text: 'Runtime Scheduler V1.0 历史发布', link: '/zh/publications/research-runtime-scheduler-v1.0' },
     { text: 'TMPA 架构论文 A0.5', link: '/zh/publications/tmpa-architecture-paper-a0.5' },
     { text: 'TMPA 核心规范 S0.4', link: '/zh/publications/tmpa-core-specification-s0.4' },
     { text: '工程实现案例 I0.4', link: '/zh/publications/implementation-case-i0.4' }
@@ -116,11 +130,12 @@ export default defineConfig({
           { text: 'Observation Notes', link: '/en/research/' },
           { text: 'Theory & Publications', link: '/en/publications/' },
           { text: 'Product Stack', items: [
-            { text: 'Research Operating System', link: '/en/publications/research-runtime-scheduler-v1.0' },
-            { text: 'TMPA', link: '/en/publications/' },
+            { text: 'TMPA', link: '/en/publications/tmpa-architecture-paper-a0.5' },
             { text: 'FCoP Official Site', link: 'https://joinwell52-ai.github.io/FCoP/' },
             { text: 'CodeFlowMu', link: 'https://github.com/joinwell52-AI/CodeFlowMu-open' },
-            { text: 'Digital Employee Architecture', link: '/en/digital-employee/architecture' }
+            { text: 'Research Report Production Engine V1.3', link: '/en/publications/research-report-production-engine-v1.3' },
+            { text: 'Digital Employee Architecture', link: '/en/digital-employee/architecture' },
+            { text: 'Research Runtime Center V4', link: '/en/runtime/v4' }
           ]},
           { text: 'About', link: '/en/about' }
         ],
@@ -140,11 +155,12 @@ export default defineConfig({
           { text: '观察笔记', link: '/zh/research/' },
           { text: '理论与出版', link: '/zh/publications/' },
           { text: '能力体系', items: [
-            { text: 'Research Operating System', link: '/zh/publications/research-runtime-scheduler-v1.0' },
-            { text: 'TMPA', link: '/zh/publications/' },
+            { text: 'TMPA', link: '/zh/publications/tmpa-architecture-paper-a0.5' },
             { text: 'FCoP 官网', link: 'https://joinwell52-ai.github.io/FCoP/' },
             { text: 'CodeFlowMu', link: 'https://github.com/joinwell52-AI/CodeFlowMu-open' },
-            { text: '数字员工纲领性架构', link: '/zh/digital-employee/architecture' }
+            { text: '研究报告生产机 V1.3', link: '/zh/publications/research-report-production-engine-v1.3' },
+            { text: '数字员工纲领性架构', link: '/zh/digital-employee/architecture' },
+            { text: 'Research Runtime Center V4', link: '/zh/runtime/v4' }
           ]},
           { text: '关于', link: '/zh/about' }
         ],
