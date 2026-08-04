@@ -1,9 +1,11 @@
 import { defineConfig } from 'vitepress'
 
 const enSidebar = {
-  '/en/runtime/': [{ text: 'Factory Runtime Center', items: [
-    { text: 'Runtime Dashboard', link: '/en/runtime/' },
-    { text: 'Runtime Scheduler V1.0', link: '/en/publications/research-runtime-scheduler-v1.0' },
+  '/en/runtime/': [{ text: 'Digital Researcher Operations', items: [
+    { text: 'Operations Center V4', link: '/en/runtime/' },
+    { text: 'Runtime Center V4 Guide', link: '/en/runtime/v4' },
+    { text: 'Research Intelligence System', link: '/en/runtime/research-intelligence' },
+    { text: 'Runtime Scheduler V1.0 Release', link: '/en/publications/research-runtime-scheduler-v1.0' },
     { text: 'Research Report Production Engine V1.0', link: '/en/publications/research-report-production-engine-v1.0' }
   ]}],
   '/en/research/': [{ text: 'Observation Notes', items: [
@@ -33,9 +35,11 @@ const enSidebar = {
 }
 
 const zhSidebar = {
-  '/zh/runtime/': [{ text: '工场运行中心', items: [
-    { text: 'Runtime Dashboard', link: '/zh/runtime/' },
-    { text: 'Runtime Scheduler V1.0', link: '/zh/publications/research-runtime-scheduler-v1.0' },
+  '/zh/runtime/': [{ text: '数字研究员运营中心', items: [
+    { text: '运营中心 V4', link: '/zh/runtime/' },
+    { text: 'V4 运行规范', link: '/zh/runtime/v4' },
+    { text: '研究情报系统 V1.0', link: '/zh/runtime/research-intelligence' },
+    { text: 'Runtime Scheduler V1.0 发布', link: '/zh/publications/research-runtime-scheduler-v1.0' },
     { text: '研究报告生产机 V1.0', link: '/zh/publications/research-report-production-engine-v1.0' }
   ]}],
   '/zh/research/': [{ text: '观察笔记', items: [
