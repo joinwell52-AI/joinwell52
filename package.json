@@ -1,17 +1,19 @@
 {
   "name": "joinwell52-research-center-portal",
   "private": true,
-  "version": "9.0.2",
+  "version": "9.0.3",
   "type": "module",
   "scripts": {
     "intelligence:validate": "node scripts/research-intelligence.mjs validate",
     "intelligence:build": "node scripts/research-intelligence.mjs build",
     "runtime:validate": "node scripts/runtime-v5.mjs validate && npm run intelligence:validate",
-    "runtime:build": "node scripts/runtime-v5.mjs build && node scripts/runtime-v5-home-compat.mjs && npm run intelligence:build && node scripts/runtime-legacy-compat.mjs",
+    "runtime:build": "node scripts/runtime-v5.mjs build && node scripts/runtime-v5-home-compat.mjs && npm run intelligence:build && node scripts/runtime-legacy-compat.mjs && node scripts/verify-runtime-projection.mjs",
+    "runtime:projection:verify": "node scripts/verify-runtime-projection.mjs",
+    "runtime:projection:verify-dist": "node scripts/verify-runtime-projection.mjs --dist",
     "runtime:gate": "node scripts/runtime-v5.mjs gate",
     "tmpa:s0.4:conformance": "node research/conformance/tmpa-core-s0.4/runner.mjs",
     "docs:dev": "npm run runtime:build && vitepress dev docs",
-    "docs:build": "npm run runtime:build && node scripts/vitepress-build-strict.mjs",
+    "docs:build": "npm run runtime:build && node scripts/vitepress-build-strict.mjs && npm run runtime:projection:verify-dist",
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
