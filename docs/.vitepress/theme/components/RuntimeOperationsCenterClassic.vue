@@ -1,0 +1,398 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { withBase } from 'vitepress'
+import runtimeData from '../../generated/runtime-records.json'
+import intelligenceData from '../../generated/research-intelligence.json'
+
+type Status = 'Running' | 'Completed' | 'Blocked' | 'Failed' | 'Skipped' | 'Waiting'
+type Task = {
+  id: string
+  family: string
+  name: string
+  name_zh: string
+  schedule: { kind: string; time: string; days?: string[]; cron: string }
+  input: string
+  work: string
+  output: string
+}
+type Metric = { label: string; label_zh: string; value: string }
+type Evidence = { label: string; label_zh: string; source: string }
+type Artifact = { label: string; label_zh: string; path?: string; url?: string; commit?: string }
+type Result = {
+  task: string
+  status: Status
+  input: string
+  input_zh: string
+  workResult: string
+  workResult_zh: string
+  output: string
+  output_zh: string
+  next: string
+  next_zh: string
+  reason?: string
+  reason_zh?: string
+  metrics: Metric[]
+  evidence: Evidence[]
+  artifacts: Artifact[]
+}
+type RecordItem = {
+  runtimeFamily: string
+  date: string
+  status: Status
+  taskStatus: Record<string, Status>
+  results: Record<string, Result>
+  timeline: Array<{ time: string; task: string; event: string; status: Status; detail: string }>
+  githubCommit: string
+  commitVerify: Status
+}
+type RuntimeData = {
+  today: string
+  timezone: string
+  schedulerVersion: string
+  centerVersion: string
+  schedule: Task[]
+  todayDaily: RecordItem
+  records: { daily: RecordItem[] }
+  columns: Array<{ id: string; name: string; name_zh: string }>
+}
+type Column = {
+  id: string
+  label: string
+  label_zh: string
+  decision: 'Waiting' | 'Selected' | 'No Selection'
+  signals: number
+  candidates: number
+  selectedItemId: string
+  selectedTitle: string
+  selectedTitle_zh: string
+  reason: string
+  reason_zh: string
+}
+type IntelligenceData = {
+  currentRun: { date: string; status: Status; columns: Column[] }
+}
+
+const runtime = runtimeData as RuntimeData
+const intelligence = intelligenceData as IntelligenceData
+const props = withDefaults(defineProps<{ lang?: 'en' | 'zh' }>(), { lang: 'en' })
+const zh = computed(() => props.lang === 'zh')
+const record = computed(() => runtime.todayDaily)
+const tasks = computed(() => runtime.schedule
+  .filter((task) => task.family === 'daily')
+  .sort((a, b) => a.schedule.time.localeCompare(b.schedule.time)))
+const columns = computed(() => intelligence.currentRun.columns || [])
+const rows = computed(() => tasks.value.map((task) => ({
+  task,
+  status: record.value.taskStatus?.[task.id] || 'Waiting',
+  result: record.value.results?.[task.id] || null
+})))
+const completedCount = computed(() => rows.value.filter((row) => row.status === 'Completed').length)
+const progress = computed(() => rows.value.length ? Math.round(completedCount.value / rows.value.length * 100) : 0)
+const risk = computed(() => rows.value.some((row) => row.status === 'Blocked' || row.status === 'Failed'))
+const activeRow = computed(() => rows.value.find((row) => row.status === 'Running') || rows.value.find((row) => row.status === 'Waiting') || null)
+const productionResult = computed(() => record.value.results?.production || null)
+const publicationResult = computed(() => record.value.results?.publication || null)
+const history = computed(() => (runtime.records?.daily || []).slice().sort((a, b) => b.date.localeCompare(a.date)).slice(0, 7))
+
+const copy = computed(() => zh.value ? {
+  kicker: 'RESEARCH RUNTIME CENTER V5.0 · 数字研究员运营中心',
+  title: '今天研究什么，下午生产什么，晚上发布什么。',
+  lead: '三个栏目分别选题；上午完成发现、阅读与分析，15:00 形成完整出版候选，20:00 只负责 GitHub 与网站发版。',
+  badge: 'Research Runtime Scheduler V3.0',
+  charter: '查看 V5.0 运行规范',
+  operations: '今日运营概况',
+  progress: '完成进度',
+  dayStatus: '全天状态',
+  current: '当前工作',
+  nextTask: '下一任务',
+  inProgress: '进行中',
+  completed: '已完成',
+  attention: '存在风险',
+  waiting: '待执行',
+  noMore: '今日计划已结束',
+  plan: '今日三栏研究计划',
+  planHint: '10:00 Queue 必须对三个栏目分别作出“已选题”或“未选题”决定。',
+  selected: '已选题',
+  noSelection: '未选题',
+  pendingDecision: '待决定',
+  decision: '选题判断',
+  signals: '信号',
+  candidates: '候选',
+  shifts: '今日班次与工作成果',
+  shiftsHint: '每个班次汇报输入、工作成果、输出、下一步与证据。',
+  input: '输入',
+  workResult: '工作成果',
+  output: '输出',
+  next: '下一步',
+  metrics: '量化结果',
+  evidence: '成果与证据',
+  pending: '任务尚未执行；完成后自动显示工作成果。',
+  production: '15:00 下午生产',
+  productionLead: 'Skill 05 写作 → 06 配图 → 07 证据与引用 → 08 出版编辑',
+  noCandidate: '尚未形成出版候选',
+  release: '20:00 晚间发版',
+  releaseLead: '只消费完整出版候选，更新中英文文章、索引、网站并验证 GitHub 提交。',
+  noRelease: '尚未执行发布',
+  verify: '运行证据',
+  github: 'GitHub 验证',
+  commit: '最新提交',
+  record: '运行记录',
+  history: '近期运营记录',
+  report: '查看记录',
+  principle: '数字员工不能只汇报“任务执行了”；每个班次必须交付可读、可追溯、可验证的工作成果。',
+  status: { Running: '运行中', Completed: '已完成', Blocked: '已阻塞', Failed: '失败', Skipped: '已跳过', Waiting: '待执行' } as Record<Status, string>
+} : {
+  kicker: 'RESEARCH RUNTIME CENTER V5.0 · DIGITAL RESEARCHER OPERATIONS',
+  title: 'What is researched today, produced at 15:00, and released at 20:00.',
+  lead: 'The three columns make separate topic decisions; discovery, reading and analysis complete before 15:00 Production, while 20:00 performs release only.',
+  badge: 'Research Runtime Scheduler V3.0',
+  charter: 'Read the V5.0 Runtime Specification',
+  operations: "Today's Operations",
+  progress: 'Completion',
+  dayStatus: 'Day Status',
+  current: 'Current Work',
+  nextTask: 'Next Task',
+  inProgress: 'In Progress',
+  completed: 'Completed',
+  attention: 'Attention Required',
+  waiting: 'Waiting',
+  noMore: "Today's plan has ended",
+  plan: "Today's Three-Column Research Plan",
+  planHint: 'The 10:00 Queue shift must decide Selected or No Selection for every column.',
+  selected: 'Selected',
+  noSelection: 'No Selection',
+  pendingDecision: 'Waiting',
+  decision: 'Decision',
+  signals: 'Signals',
+  candidates: 'Candidates',
+  shifts: "Today's Shifts and Outcomes",
+  shiftsHint: 'Every shift reports input, work result, output, next action and evidence.',
+  input: 'Input',
+  workResult: 'Work Result',
+  output: 'Output',
+  next: 'Next',
+  metrics: 'Metrics',
+  evidence: 'Artifacts & Evidence',
+  pending: 'The task has not run. Its work result will appear here after execution.',
+  production: '15:00 Production Shift',
+  productionLead: 'Skill 05 Writing → 06 Visualization → 07 Evidence & Citation → 08 Publication Editing',
+  noCandidate: 'No Publication Candidate yet',
+  release: '20:00 Release Shift',
+  releaseLead: 'Consumes complete candidates only, updates bilingual articles, indexes and website, then verifies the GitHub commit.',
+  noRelease: 'Release has not run',
+  verify: 'Runtime Evidence',
+  github: 'GitHub Verification',
+  commit: 'Latest Commit',
+  record: 'Runtime Record',
+  history: 'Recent Operations',
+  report: 'View record',
+  principle: 'A Digital Employee must not report only that a task ran; every shift must deliver readable, traceable and verifiable work results.',
+  status: { Running: 'Running', Completed: 'Completed', Blocked: 'Blocked', Failed: 'Failed', Skipped: 'Skipped', Waiting: 'Waiting' } as Record<Status, string>
+})
+
+const taskName = (task: Task) => zh.value ? task.name_zh : task.name
+const statusLabel = (status: Status) => copy.value.status[status]
+const statusClass = (status: Status | undefined) => `s-${String(status || 'Waiting').toLowerCase()}`
+const local = (value: Record<string, unknown>, field: string) => {
+  const localized = value[`${field}_zh`]
+  return String(zh.value && localized ? localized : value[field] || '')
+}
+const columnName = (column: Column) => zh.value ? column.label_zh : column.label
+const columnTitle = (column: Column) => zh.value ? column.selectedTitle_zh : column.selectedTitle
+const columnReason = (column: Column) => zh.value ? column.reason_zh : column.reason
+const columnStatus = (column: Column) => column.decision === 'Selected'
+  ? copy.value.selected
+  : column.decision === 'No Selection'
+    ? copy.value.noSelection
+    : copy.value.pendingDecision
+const columnClass = (column: Column) => column.decision === 'Selected'
+  ? 's-running'
+  : column.decision === 'No Selection'
+    ? 's-skipped'
+    : 's-waiting'
+const dayState = computed(() => {
+  if (completedCount.value === rows.value.length && rows.value.length) return copy.value.completed
+  if (risk.value) return copy.value.attention
+  return copy.value.inProgress
+})
+const recordPath = (item: RecordItem) => {
+  const [year, month] = item.date.split('-')
+  return `research/runtime/records/daily/${year}/${month}/${item.date}-daily-runtime.json`
+}
+const recordUrl = (item: RecordItem) => `https://github.com/joinwell52-AI/joinwell52/blob/main/${recordPath(item)}`
+const artifactHref = (artifact: Artifact) => artifact.url || (artifact.path
+  ? `https://github.com/joinwell52-AI/joinwell52/blob/main/${artifact.path}`
+  : artifact.commit
+    ? `https://github.com/joinwell52-AI/joinwell52/commit/${artifact.commit}`
+    : '#')
+const evidenceHref = (item: Evidence) => /^https?:\/\//.test(item.source)
+  ? item.source
+  : `https://github.com/joinwell52-AI/joinwell52/blob/main/${item.source}`
+const currentTime = computed(() => activeRow.value?.task.schedule.time || '—')
+const currentName = computed(() => activeRow.value ? taskName(activeRow.value.task) : copy.value.noMore)
+const shortCommit = computed(() => record.value.githubCommit && record.value.githubCommit !== 'pending'
+  ? record.value.githubCommit.slice(0, 10)
+  : copy.value.waiting)
+</script>
+
+<template>
+  <main class="runtime-classic">
+    <div class="shell">
+      <header class="hero">
+        <div>
+          <span class="kicker">{{ copy.kicker }}</span>
+          <h1>{{ copy.title }}</h1>
+          <p>{{ copy.lead }}</p>
+        </div>
+        <div class="hero-actions">
+          <b>{{ copy.badge }}</b>
+          <a :href="withBase(`/${props.lang}/runtime/v5`)">{{ copy.charter }} →</a>
+        </div>
+      </header>
+
+      <section class="panel overview">
+        <div class="section-title">
+          <div><span>01</span><h2>{{ copy.operations }}</h2></div>
+          <small>{{ runtime.today }} · {{ runtime.timezone }}</small>
+        </div>
+        <div class="overview-grid">
+          <article class="progress-card">
+            <span>{{ copy.progress }}</span>
+            <strong>{{ completedCount }} <i>/ {{ rows.length }}</i></strong>
+            <div class="progress-bar"><i :style="{ width: `${progress}%` }"></i></div>
+            <small>{{ progress }}%</small>
+          </article>
+          <article>
+            <span>{{ copy.dayStatus }}</span>
+            <strong :class="risk ? 's-failed' : completedCount === rows.length && rows.length ? 's-completed' : 's-running'">{{ dayState }}</strong>
+            <small>{{ record.status }}</small>
+          </article>
+          <article>
+            <span>{{ copy.current }}</span>
+            <strong>{{ currentName }}</strong>
+            <small>{{ activeRow ? statusLabel(activeRow.status) : copy.noMore }}</small>
+          </article>
+          <article>
+            <span>{{ copy.nextTask }}</span>
+            <strong>{{ currentTime }}</strong>
+            <small>{{ currentName }}</small>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel plan-panel">
+        <div class="section-title">
+          <div><span>02</span><h2>{{ copy.plan }}</h2></div>
+          <small>{{ copy.planHint }}</small>
+        </div>
+        <div class="column-grid">
+          <article v-for="column in columns" :key="column.id" :class="['column-card', `column-${column.id}`]">
+            <div class="column-head">
+              <div><span>{{ column.id.replaceAll('-', ' ').toUpperCase() }}</span><h3>{{ columnName(column) }}</h3></div>
+              <b :class="columnClass(column)">{{ columnStatus(column) }}</b>
+            </div>
+            <div class="topic">
+              <small v-if="column.selectedItemId">{{ column.selectedItemId }}</small>
+              <h4>{{ column.decision === 'Selected' ? columnTitle(column) : columnReason(column) }}</h4>
+            </div>
+            <dl>
+              <div><dt>{{ copy.decision }}</dt><dd>{{ columnReason(column) }}</dd></div>
+            </dl>
+            <div class="mini-metrics">
+              <span><strong>{{ column.signals }}</strong>{{ copy.signals }}</span>
+              <span><strong>{{ column.candidates }}</strong>{{ copy.candidates }}</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel shifts-panel">
+        <div class="section-title">
+          <div><span>03</span><h2>{{ copy.shifts }}</h2></div>
+          <small>{{ copy.shiftsHint }}</small>
+        </div>
+        <div class="shift-list">
+          <article v-for="row in rows" :key="row.task.id" class="shift-card">
+            <div class="shift-head">
+              <div><time>{{ row.task.schedule.time }}</time><h3>{{ taskName(row.task) }}</h3></div>
+              <b :class="statusClass(row.status)">{{ statusLabel(row.status) }}</b>
+            </div>
+            <template v-if="row.result">
+              <div class="result-grid">
+                <div><span>{{ copy.input }}</span><p>{{ local(row.result as unknown as Record<string, unknown>, 'input') }}</p></div>
+                <div class="outcome"><span>{{ copy.workResult }}</span><p>{{ local(row.result as unknown as Record<string, unknown>, 'workResult') }}</p></div>
+                <div><span>{{ copy.output }}</span><p>{{ local(row.result as unknown as Record<string, unknown>, 'output') }}</p></div>
+                <div><span>{{ copy.next }}</span><p>{{ local(row.result as unknown as Record<string, unknown>, 'next') }}</p></div>
+              </div>
+              <div v-if="row.result.metrics.length" class="metric-grid">
+                <div v-for="metric in row.result.metrics" :key="`${row.task.id}-${metric.label}`">
+                  <strong>{{ metric.value }}</strong><span>{{ zh ? metric.label_zh : metric.label }}</span>
+                </div>
+              </div>
+              <div v-if="row.result.artifacts.length || row.result.evidence.length" class="artifact-list">
+                <a v-for="artifact in row.result.artifacts" :key="artifact.label" :href="artifactHref(artifact)">{{ zh ? artifact.label_zh : artifact.label }} ↗</a>
+                <a v-for="item in row.result.evidence" :key="item.label" :href="evidenceHref(item)">{{ zh ? item.label_zh : item.label }} ↗</a>
+              </div>
+            </template>
+            <p v-else class="pending">{{ copy.pending }}</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="production-release">
+        <article class="panel production-card">
+          <div class="section-title">
+            <div><span>04</span><h2>{{ copy.production }}</h2></div>
+            <b :class="statusClass(record.taskStatus?.production)">{{ statusLabel(record.taskStatus?.production || 'Waiting') }}</b>
+          </div>
+          <p class="section-lead">{{ copy.productionLead }}</p>
+          <div v-if="productionResult" class="release-result">
+            <strong>{{ local(productionResult as unknown as Record<string, unknown>, 'workResult') }}</strong>
+            <p>{{ local(productionResult as unknown as Record<string, unknown>, productionResult.status === 'Skipped' ? 'reason' : 'output') }}</p>
+            <a v-for="artifact in productionResult.artifacts" :key="artifact.label" :href="artifactHref(artifact)">{{ zh ? artifact.label_zh : artifact.label }} ↗</a>
+          </div>
+          <div v-else class="empty-state"><strong>{{ copy.noCandidate }}</strong><p>{{ copy.productionLead }}</p></div>
+        </article>
+
+        <article class="panel release-card">
+          <div class="section-title">
+            <div><span>05</span><h2>{{ copy.release }}</h2></div>
+            <b :class="statusClass(record.taskStatus?.publication)">{{ statusLabel(record.taskStatus?.publication || 'Waiting') }}</b>
+          </div>
+          <p class="section-lead">{{ copy.releaseLead }}</p>
+          <div v-if="publicationResult" class="release-result">
+            <strong>{{ local(publicationResult as unknown as Record<string, unknown>, 'workResult') }}</strong>
+            <p>{{ local(publicationResult as unknown as Record<string, unknown>, publicationResult.status === 'Skipped' ? 'reason' : 'output') }}</p>
+            <a v-for="artifact in publicationResult.artifacts" :key="artifact.label" :href="artifactHref(artifact)">{{ zh ? artifact.label_zh : artifact.label }} ↗</a>
+          </div>
+          <div v-else class="empty-state"><strong>{{ copy.noRelease }}</strong><p>{{ copy.releaseLead }}</p></div>
+        </article>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="section-title"><div><span>06</span><h2>{{ copy.verify }}</h2></div></div>
+        <div class="evidence-grid">
+          <article><span>{{ copy.github }}</span><strong :class="statusClass(record.commitVerify)">{{ statusLabel(record.commitVerify) }}</strong></article>
+          <article><span>{{ copy.commit }}</span><strong>{{ shortCommit }}</strong></article>
+          <article><span>{{ copy.record }}</span><a :href="recordUrl(record)">{{ copy.report }} ↗</a></article>
+        </div>
+      </section>
+
+      <section class="panel history-panel">
+        <div class="section-title"><div><span>07</span><h2>{{ copy.history }}</h2></div></div>
+        <div v-if="history.length" class="history-list">
+          <a v-for="item in history" :key="item.date" :href="recordUrl(item)">
+            <strong>{{ item.date }}</strong><b :class="statusClass(item.status)">{{ statusLabel(item.status) }}</b><span>{{ copy.report }} ↗</span>
+          </a>
+        </div>
+        <div v-else class="empty-state"><strong>{{ runtime.today }}</strong><p>{{ copy.pending }}</p></div>
+      </section>
+
+      <p class="principle">{{ copy.principle }}</p>
+    </div>
+  </main>
+</template>
+
+<style scoped>
+.runtime-classic{--bg:#070914;--panel:#10162a;--line:rgba(148,163,184,.2);--text:#f5f7ff;--muted:#94a0b7;--accent:#8f80ff;--blue:#72d6ff;--green:#77e5a7;position:relative;width:100vw;margin-left:calc(50% - 50vw);min-height:100vh;color:var(--text);background:radial-gradient(circle at 75% 0%,rgba(88,72,210,.2),transparent 32%),linear-gradient(180deg,#060812,#080b18)}.shell{width:min(1280px,calc(100% - 52px));margin:auto;padding:54px 0 84px}.hero{display:flex;justify-content:space-between;align-items:flex-end;gap:36px;padding:34px;background:linear-gradient(145deg,rgba(18,25,46,.98),rgba(8,12,26,.97));border:1px solid var(--line);border-radius:24px}.kicker{display:block;margin-bottom:14px;color:#bdb5ff;font:750 11px/1.3 ui-monospace,monospace;letter-spacing:.14em}.hero h1{max-width:860px;margin:0;font-size:clamp(42px,6vw,74px);line-height:1.04;letter-spacing:-.055em}.hero p{max-width:820px;margin:20px 0 0;color:#b5bfd1;font-size:16px;line-height:1.75}.hero-actions{display:flex;min-width:260px;flex-direction:column;gap:12px;align-items:flex-end}.hero-actions b{color:#d8d4ff}.hero-actions a{color:#a9deff;text-decoration:none;font-size:13px}.panel{margin-top:16px;padding:26px;background:linear-gradient(145deg,rgba(18,25,46,.98),rgba(8,12,26,.97));border:1px solid var(--line);border-radius:20px}.section-title{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:20px}.section-title>div{display:flex;align-items:center;gap:12px}.section-title>div>span{color:#9487ff;font:800 11px/1 ui-monospace,monospace}.section-title h2{margin:0;font-size:23px}.section-title small,.section-lead{color:#7f8ca2}.overview-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.overview-grid article{padding:18px;background:#080d1c;border:1px solid var(--line);border-radius:15px}.overview-grid article>span,.evidence-grid article>span{display:block;margin-bottom:12px;color:#77849a;font-size:11px}.overview-grid strong{display:block;font-size:20px}.overview-grid strong i{color:#78849a;font-style:normal;font-size:13px}.overview-grid small{display:block;margin-top:8px;color:#7f8ca2}.progress-bar{height:6px;margin-top:14px;overflow:hidden;background:#202941;border-radius:999px}.progress-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--blue));border-radius:999px}.column-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.column-card{position:relative;overflow:hidden;padding:20px;background:rgba(5,9,21,.62);border:1px solid var(--line);border-radius:17px}.column-card:before{content:'';position:absolute;inset:0 auto 0 0;width:3px;background:var(--accent)}.column-industry-architecture:before{background:var(--blue)}.column-open-source-engineering:before{background:var(--green)}.column-head,.shift-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.column-head span{color:#748198;font:700 9px/1.3 ui-monospace,monospace}.column-head h3{margin:8px 0 0;font-size:19px}.column-head>b,.shift-head>b,.section-title>b,.history-list b{padding:7px 10px;border:1px solid currentColor;border-radius:999px;font:750 10px/1 ui-monospace,monospace}.topic{min-height:98px;margin-top:24px}.topic small{color:#8f9bb0}.topic h4{margin:8px 0 0;font-size:18px;line-height:1.45}.column-card dl{margin:0}.column-card dt{color:#748198;font-size:10px}.column-card dd{margin:8px 0 0;color:#a5b0c3;font-size:12px;line-height:1.55}.mini-metrics{display:flex;gap:8px;margin-top:16px}.mini-metrics span{flex:1;padding:10px;background:#0a1020;border:1px solid var(--line);border-radius:10px;color:#7f8ca2;font-size:9px}.mini-metrics strong{display:block;margin-bottom:4px;color:#e9e7ff;font-size:16px}.shift-list{display:grid;gap:12px}.shift-card{padding:20px;background:rgba(5,9,21,.62);border:1px solid var(--line);border-radius:17px}.shift-head time{display:block;color:#8f80ff;font:800 12px/1 ui-monospace,monospace}.shift-head h3{margin:8px 0 0;font-size:20px}.result-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px}.result-grid>div{padding:14px;background:#0a1020;border:1px solid var(--line);border-radius:12px}.result-grid .outcome{background:#121b35}.result-grid span{display:block;margin-bottom:8px;color:#77849a;font-size:10px}.result-grid p{margin:0;color:#b2bdd0;font-size:12px;line-height:1.55}.pending{margin:16px 0 0;color:#7f8ca2;font-size:13px}.metric-grid{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}.metric-grid>div{min-width:120px;padding:11px 13px;background:#0a1020;border:1px solid var(--line);border-radius:11px}.metric-grid strong{display:block;font-size:18px}.metric-grid span{color:#7f8ca2;font-size:10px}.artifact-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.artifact-list a,.release-result a{padding:9px 11px;color:#cbc6ff;background:#0a1020;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-size:11px}.production-release{display:grid;grid-template-columns:1fr 1fr;gap:16px}.production-release .panel{height:calc(100% - 16px)}.empty-state,.release-result{padding:22px;background:#080d1c;border:1px dashed var(--line);border-radius:15px}.empty-state strong,.release-result strong{display:block;font-size:18px}.empty-state p,.release-result p{color:#8f9bb0;line-height:1.6}.evidence-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.evidence-grid article{padding:18px;background:#080d1c;border:1px solid var(--line);border-radius:14px}.evidence-grid strong,.evidence-grid a{color:#f5f7ff;text-decoration:none;font-size:16px}.history-list{display:grid;gap:9px}.history-list a{display:grid;grid-template-columns:1fr auto auto;gap:16px;align-items:center;padding:14px 16px;color:inherit;background:#080d1c;border:1px solid var(--line);border-radius:13px;text-decoration:none}.history-list span{color:#9cb9df;font-size:12px}.principle{margin:28px auto 0;max-width:850px;color:#8f9bb0;text-align:center;line-height:1.7}.s-waiting{color:#c4b5fd!important}.s-running{color:var(--blue)!important}.s-completed{color:var(--green)!important}.s-blocked{color:#f8c56a!important}.s-failed{color:#fca5a5!important}.s-skipped{color:#a2acbd!important}@media(max-width:1000px){.hero{align-items:flex-start;flex-direction:column}.hero-actions{align-items:flex-start}.overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.column-grid{grid-template-columns:1fr}.result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.production-release{grid-template-columns:1fr}}@media(max-width:680px){.shell{width:calc(100% - 28px);padding:32px 0 64px}.hero,.panel{padding:19px;border-radius:17px}.hero h1{font-size:43px}.overview-grid,.result-grid,.evidence-grid{grid-template-columns:1fr}.section-title{align-items:flex-start;flex-direction:column}.history-list a{grid-template-columns:1fr auto}.history-list span{grid-column:1/-1}.hero-actions{min-width:0}}
+</style>

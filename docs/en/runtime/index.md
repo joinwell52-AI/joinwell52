@@ -1,15 +1,15 @@
 ---
 layout: home
 pageClass: runtime-center-page
-title: Research Runtime Center V5.0
-description: Four independent runtime systems with a same-day Daily Research production loop and separate Weekly, Academic and Research Program execution.
+title: Digital Researcher Operations Center
+description: Today's three-column research plan, six Daily Runtime shifts, 15:00 production, 20:00 release, work results and GitHub evidence.
 outline: false
 ---
 
 <script setup>
-import RuntimeOperationsCenterV5 from '../../.vitepress/theme/components/RuntimeOperationsCenterV5.vue'
+import RuntimeOperationsCenterClassic from '../../.vitepress/theme/components/RuntimeOperationsCenterClassic.vue'
 </script>
 
-<RuntimeOperationsCenterV5 lang="en" view="center" />
+<RuntimeOperationsCenterClassic lang="en" />
 
 <ResearchIntelligenceRadar lang="en" />
