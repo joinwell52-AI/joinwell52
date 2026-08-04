@@ -13,3 +13,5 @@ import RuntimeOperationsCenterCurrent from '../../.vitepress/theme/components/Ru
 <RuntimeOperationsCenterCurrent lang="zh" />
 
 <ResearchIntelligenceRadar lang="zh" />
+
+<style src="../../.vitepress/theme/runtime-bilingual-title.css"></style>
