@@ -1,0 +1,175 @@
+name: Correct Runtime zero-output status
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/correct-runtime-zero-output-status.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: correct-runtime-zero-output-status
+  cancel-in-progress: false
+
+jobs:
+  correct:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Correct Runtime status and contracts
+        run: |
+          node <<'NODE'
+          const fs = require('fs')
+
+          function replaceOnce(path, from, to) {
+            let text = fs.readFileSync(path, 'utf8')
+            if (!text.includes(from)) {
+              throw new Error(`Expected text not found in ${path}: ${from.slice(0, 120)}`)
+            }
+            text = text.replace(from, to)
+            fs.writeFileSync(path, text)
+          }
+
+          const runtime = 'research/runtime/2026/08/2026-08-04-runtime.md'
+          const replacements = [
+            [
+              'output: "Research Runtime Production executed and Skipped with 0 Publication Candidates; upstream lifecycle gates were preserved."',
+              'output: "Research Runtime Production completed with 0 Publication Candidates; upstream lifecycle gates were preserved."'
+            ],
+            ['task_production: "Skipped"', 'task_production: "Completed"'],
+            [
+              '**Research Runtime Production** performed a governed eligibility review for all three columns and correctly returned `Skipped`: no object had passed the complete upstream Reading and Analysis gates required to create a Publication Candidate.',
+              '**Research Runtime Production** completed a governed eligibility review for all three columns and returned a valid zero-output result: no object had passed the complete upstream Reading and Analysis gates required to create a Publication Candidate.'
+            ],
+            [
+              'Research Runtime Production has executed and is `Skipped` with zero Publication Candidates;',
+              'Research Runtime Production has executed and is `Completed` with zero Publication Candidates;'
+            ],
+            [
+              '  public_files_created: 0\n  status: Skipped\n```',
+              '  public_files_created: 0\n  status: Completed\n  outcome: No Eligible Research Object\n```'
+            ],
+            [
+              'The correct Production result is therefore not an invented article. It is an explicit, evidence-backed `Skipped` result that preserves the lifecycle gates and exposes why no complete report was produced.',
+              'The correct Production result is therefore not an invented article. It is an explicit, evidence-backed `Completed` zero-output result that preserves the lifecycle gates and exposes why no complete report was produced.'
+            ],
+            ['  - status: `Skipped`\n  - candidates: `0`', '  - status: `Completed`\n  - outcome: `No Eligible Research Object`\n  - candidates: `0`'],
+            ['"task": "production",\n  "status": "Skipped",', '"task": "production",\n  "status": "Completed",'],
+            [
+              '"summary": "Executed the governed Production eligibility review for all three columns; no object passed the upstream gates, so Production correctly created zero candidates and returned Skipped."',
+              '"summary": "Completed the governed Production eligibility review for all three columns; no object passed the upstream gates, so Production completed with zero Publication Candidates."'
+            ],
+            [
+              '"summary_zh": "对三个栏目执行了受治理的 Production 准入复核；没有对象通过上游门禁，因此正确生成 0 个出版候选，并以 Skipped 结束。"',
+              '"summary_zh": "对三个栏目完成了受治理的 Production 准入复核；没有对象通过上游门禁，因此该班次以 Completed 结束，并生成 0 个出版候选。"'
+            ],
+            [
+              '"output": "An empty Publication Candidate batch marked Skipped, exact bilingual blocker reasons, Runtime Record update, and verified GitHub evidence. No public article was created."',
+              '"output": "A completed zero-output Publication Candidate batch, exact bilingual eligibility reasons, Runtime Record update, and verified GitHub evidence. No public article was created."'
+            ],
+            [
+              '"output_zh": "标记为 Skipped 的空 Publication Candidate 批次、精确的中英文阻塞原因、Runtime Record 更新与已验证 GitHub 证据；没有创建公开文章。"',
+              '"output_zh": "已完成但输出为 0 的 Publication Candidate 批次、精确的中英文准入原因、Runtime Record 更新与已验证 GitHub 证据；没有创建公开文章。"'
+            ],
+            [
+              '| 16:29 | Research Runtime Production | Production Result | Skipped | Created zero Publication Candidates and recorded exact blockers instead of manufacturing an article. |',
+              '| 16:29 | Research Runtime Production | Production Result | Completed | Completed the eligibility review with zero Publication Candidates and recorded exact reasons instead of manufacturing an article. |'
+            ]
+          ]
+          for (const [from, to] of replacements) replaceOnce(runtime, from, to)
+
+          const candidatePath = 'research/runtime/candidates/2026/08/2026-08-04-candidates.json'
+          const candidate = JSON.parse(fs.readFileSync(candidatePath, 'utf8'))
+          candidate.status = 'Completed'
+          candidate.outcome = 'No Eligible Research Object'
+          candidate.outcome_zh = '没有合格研究对象'
+          candidate.reason = 'Production completed its eligibility review. Zero research objects passed the Production entry gate; therefore zero Publication Candidates were produced.'
+          candidate.reason_zh = 'Production 已完成准入复核。没有研究对象通过 Production 准入门禁，因此生成 0 个 Publication Candidate。'
+          fs.writeFileSync(candidatePath, JSON.stringify(candidate, null, 2) + '\n')
+
+          replaceOnce(
+            'scripts/runtime-v4.mjs',
+            "  if (candidate.status === 'Completed' && !candidate.candidates.length) {\n    die(`${path}: Completed production requires at least one Publication Candidate`)\n  }",
+            "  if (candidate.status === 'Completed' && !candidate.candidates.length && (!text(candidate.reason) || !text(candidate.reason_zh))) {\n    die(`${path}: Completed zero-output production requires a bilingual outcome reason`)\n  }"
+          )
+
+          replaceOnce(
+            'research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md',
+            '`Completed` production requires at least one candidate. When no object is eligible, Production is `Skipped` and must record the exact blocker.',
+            '`Completed` means the Production shift executed successfully. It may contain one or more candidates, or zero candidates with an exact bilingual `No Eligible Research Object` outcome. `Skipped` is reserved for a shift that is explicitly not applicable and therefore not executed.'
+          )
+          replaceOnce(
+            'research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md',
+            '  "reason": "Required when Skipped",\n  "reason_zh": "Skipped 时必须填写",',
+            '  "reason": "Required for zero-output Completed or Skipped",\n  "reason_zh": "Completed 且输出为 0，或 Skipped 时必须填写",'
+          )
+
+          replaceOnce(
+            'research/runtime/README.md',
+            'The bilingual machine contract is `runtime-shift-result/v2`. `Skipped` means the worker executed but no eligible output existed; it requires an exact reason and is not counted as successful completion.',
+            'The bilingual machine contract is `runtime-shift-result/v2`. A shift that executes successfully is `Completed`, even when its governed output count is zero. `Skipped` is reserved for a shift that is explicitly not applicable and therefore not executed.'
+          )
+          replaceOnce(
+            'research/runtime/README.zh-CN.md',
+            '机器合同为 `runtime-shift-result/v2`，并要求中英文结果一致。`Skipped` 表示 Worker 已执行但没有合格输出，必须记录精确原因，不能计为成功完成。',
+            '机器合同为 `runtime-shift-result/v2`，并要求中英文结果一致。班次只要实际执行成功，即使受治理输出数量为 0，也必须记录为 `Completed`；`Skipped` 只用于当天明确不适用、因而没有执行的班次。'
+          )
+
+          replaceOnce(
+            'research/runtime/WORKER-CONTRACT-V3.md',
+            'A terminal task result must conform to `runtime-shift-result/v2`. `Skipped` is valid only after the worker actually executes the gate and records the exact bilingual reason.',
+            'A terminal task result must conform to `runtime-shift-result/v2`. Successful execution is `Completed`, including a governed zero-output result. `Skipped` is valid only when the shift is explicitly not applicable and is not executed.'
+          )
+          replaceOnce(
+            'research/runtime/WORKER-CONTRACT-V3.zh-CN.md',
+            '所有终态任务必须符合 `runtime-shift-result/v2`。只有 Worker 实际执行门禁并记录精确中英文原因后，才允许使用 `Skipped`。',
+            '所有终态任务必须符合 `runtime-shift-result/v2`。班次实际执行成功时必须为 `Completed`，包括受治理输出为 0 的结果；`Skipped` 只允许用于该班次明确不适用且未执行的情况。'
+          )
+
+          replaceOnce(
+            'research/runtime/RUNTIME-RECORD-SCHEMA-V5.md',
+            'A `Skipped` result additionally requires `reason` and `reason_zh`.',
+            'A successfully executed shift is `Completed`, including a governed zero-output result. A `Skipped` result means the shift was explicitly not applicable and was not executed; it additionally requires `reason` and `reason_zh`.'
+          )
+          replaceOnce(
+            'research/runtime/RUNTIME-RECORD-SCHEMA-V5.zh-CN.md',
+            '`Skipped` 还必须提供 `reason` 与 `reason_zh`。',
+            '班次实际执行成功时必须记录为 `Completed`，包括受治理输出为 0 的结果。`Skipped` 表示该班次明确不适用且没有执行，并且必须提供 `reason` 与 `reason_zh`。'
+          )
+
+          replaceOnce(
+            'RESEARCH-GOVERNANCE.md',
+            'The machine contract is `runtime-shift-result/v2`. `Skipped` is valid only after the worker executes the gate and records an exact bilingual reason.',
+            'The machine contract is `runtime-shift-result/v2`. A successfully executed shift is `Completed`, including a governed zero-output result. `Skipped` is reserved for an explicitly non-applicable shift that was not executed and requires an exact bilingual reason.'
+          )
+          NODE
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Validate corrected Runtime
+        run: |
+          npm run runtime:validate
+          npm run docs:build
+
+      - name: Commit correction and remove one-time workflow
+        shell: bash
+        run: |
+          rm .github/workflows/correct-runtime-zero-output-status.yml
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime RESEARCH-GOVERNANCE.md scripts/runtime-v4.mjs .github/workflows/correct-runtime-zero-output-status.yml
+          git commit -m "fix(runtime): mark zero-output Production as Completed"
+          git pull --rebase origin main
+          git push origin HEAD:main
