@@ -1,7 +1,7 @@
 ---
 layout: home
 pageClass: runtime-center-page
-title: 数字研究员运营中心
+title: 数字工场运营中心
 description: 展示当天真实 Runtime 数据、三栏研究计划、动态班次总数、生产、发版、工作成果与 GitHub 证据。
 outline: false
 ---
