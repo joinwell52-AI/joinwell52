@@ -1,0 +1,63 @@
+{
+  "schema": "runtime-column-plan/v1",
+  "date": "2026-08-03",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Queue",
+  "sourceRecord": "research/runtime/2026/08/2026-08-03-runtime.md",
+  "updatedAt": "2026-08-03T10:09:00+08:00",
+  "githubCommit": "16562f38d6cd4915708d154383824e40a0783ef6",
+  "columns": [
+    {
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "selectionStatus": "Selected",
+      "itemId": "Q-20260803-09",
+      "title": "Multi-horizon Digital Employee execution and evaluation",
+      "title_zh": "多时间尺度数字员工执行与评估",
+      "priority": "P0",
+      "lifecycle": "Selected",
+      "source": "Microsoft Research CORPGEN paper and official research summary",
+      "source_zh": "Microsoft Research CORPGEN 论文与官方研究说明",
+      "reason": "The candidate directly addresses concurrent long-horizon work, memory isolation, dependencies, reprioritization and completion evidence for Digital Employees.",
+      "reason_zh": "该候选直接研究数字员工长时并发工作、记忆隔离、依赖管理、重新排序和完成证据。",
+      "next": "Wait for Engine allocation and begin Skill 03 — Deep Reading.",
+      "next_zh": "等待引擎分配，并从 Skill 03 深度阅读开始。"
+    },
+    {
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "selectionStatus": "No Selection",
+      "itemId": "",
+      "title": "No qualified topic selected",
+      "title_zh": "未选出合格选题",
+      "priority": "",
+      "lifecycle": "Queue",
+      "source": "",
+      "source_zh": "",
+      "reason": "The Queue run did not identify a new bounded industry-architecture candidate that crossed the selection threshold.",
+      "reason_zh": "本次队列运行没有发现达到选题阈值、边界明确的新行业架构候选。",
+      "next": "Continue source discovery and retain existing architecture dependencies in Queue.",
+      "next_zh": "继续来源发现，并保留现有架构依赖项在队列中。"
+    },
+    {
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "selectionStatus": "No Selection",
+      "itemId": "",
+      "title": "No qualified topic selected",
+      "title_zh": "未选出合格选题",
+      "priority": "",
+      "lifecycle": "Queue",
+      "source": "",
+      "source_zh": "",
+      "reason": "Official GitHub and MCP evidence enriched existing Queue objects, but no new standalone engineering object was selected.",
+      "reason_zh": "官方 GitHub 与 MCP 证据补充了现有队列对象，但没有选出新的独立开源工程对象。",
+      "next": "Preserve enriched objects and select only after a bounded engineering question meets the threshold.",
+      "next_zh": "保留已补充的对象，待边界明确的工程问题达到阈值后再选题。"
+    }
+  ]
+}
