@@ -89,8 +89,8 @@ const publication = computed(() => record.value?.results?.publication || null)
 
 const copy = computed(() => zh.value ? {
   kicker: 'RESEARCH RUNTIME CENTER · 数字研究员运营中心',
-  title: '今天研究什么，下午生产什么，晚上发布什么。',
-  lead: '当前页面兼容展示 V4 历史运行记录；V5 从 2026-08-05 起按新 Scheduler 正式运行。',
+  title: '数字工场运营中心',
+  lead: '今天研究什么，下午生产什么，晚上发布什么。',
   badge: '历史 Runtime Record · 真实数据',
   charter: '查看 V5.0 运行规范',
   operations: '今日运营概况',
@@ -128,8 +128,8 @@ const copy = computed(() => zh.value ? {
   status: { Running: '运行中', Completed: '已完成', Blocked: '已阻塞', Failed: '失败', Skipped: '已跳过', Waiting: '待执行' } as Record<Status, string>
 } : {
   kicker: 'RESEARCH RUNTIME CENTER · DIGITAL RESEARCHER OPERATIONS',
-  title: 'What is researched today, produced in the afternoon, and released at night.',
-  lead: 'This view projects the authentic V4 historical record. V5 begins formal Scheduler execution on 2026-08-05.',
+  title: 'Digital Works Operations Center',
+  lead: 'What is researched today, produced in the afternoon, and released at night.',
   badge: 'Historical Runtime Record · Authentic Data',
   charter: 'Read the V5.0 Runtime Specification',
   operations: "Today's Operations",
