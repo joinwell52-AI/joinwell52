@@ -58,6 +58,34 @@ jobs:
       - name: Build VitePress site
         run: npm run docs:build
 
+      - name: Verify primary public routes
+        run: |
+          node - <<'NODE'
+          const fs = require('fs')
+          const root = 'docs/.vitepress/dist'
+          const required = [
+            'index.html',
+            'zh/index.html',
+            'zh/runtime/index.html',
+            'zh/research/index.html',
+            'zh/digital-employee/index.html',
+            'zh/industry/index.html',
+            'zh/engineering/index.html',
+            'zh/publications/index.html',
+            'zh/about.html',
+            'en/runtime/index.html',
+            'en/research/index.html',
+            'en/digital-employee/index.html',
+            'en/industry/index.html',
+            'en/engineering/index.html',
+            'en/publications/index.html',
+            'en/about.html'
+          ]
+          const missing = required.filter((item) => !fs.existsSync(`${root}/${item}`))
+          if (missing.length) throw new Error(`Missing Pages routes: ${missing.join(', ')}`)
+          console.log(`Verified ${required.length} primary Pages routes.`)
+          NODE
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
