@@ -1,0 +1,75 @@
+name: Apply Runtime Operations hero copy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/runtime-operations-hero-copy.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply-copy:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Update Runtime Operations hero copy
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('docs/.vitepress/theme/components/RuntimeOperationsCenterLegacy.vue')
+          text = path.read_text(encoding='utf-8')
+
+          replacements = [
+              (
+                  "  title: '今天研究什么，下午生产什么，晚上发布什么。',\n  lead: '当前页面兼容展示 V4 历史运行记录；V5 从 2026-08-05 起按新 Scheduler 正式运行。',",
+                  "  title: '数字工场运营中心',\n  lead: '今天研究什么，下午生产什么，晚上发布什么。',",
+                  'Chinese Runtime Operations hero',
+              ),
+              (
+                  "  title: 'What is researched today, produced in the afternoon, and released at night.',\n  lead: 'This view projects the authentic V4 historical record. V5 begins formal Scheduler execution on 2026-08-05.',",
+                  "  title: 'Digital Works Operations Center',\n  lead: 'What is researched today, produced in the afternoon, and released at night.',",
+                  'English Runtime Operations hero',
+              ),
+          ]
+
+          for old, new, label in replacements:
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{label}: expected exactly one match, found {count}')
+              text = text.replace(old, new, 1)
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build site
+        run: npm run docs:build
+
+      - name: Commit update
+        shell: bash
+        run: |
+          git config user.name 'joinwell52-AI Runtime'
+          git config user.email 'actions@users.noreply.github.com'
+          git add docs/.vitepress/theme/components/RuntimeOperationsCenterLegacy.vue package-lock.json
+          if git diff --cached --quiet; then
+            echo 'No changes to commit.'
+            exit 0
+          fi
+          git commit -m 'feat(runtime): refine operations center hero copy'
+          git push origin HEAD:main
