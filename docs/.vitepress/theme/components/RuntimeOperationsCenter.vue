@@ -77,7 +77,7 @@ const todayTasks = computed(() => data.schedule
 
 const text = computed(() => zh.value ? {
   kicker: '数字员工运营中心 · 工作成果汇报',
-  title: '数字研究员今日工作汇报',
+  title: '数字工场运营中心',
   lead: '这里不只显示“任务已运行”，而是逐项汇报每个定时任务的输入、实际成果、输出文件、下一步和 GitHub 证据。',
   badge: '数字员工工场', charter: '查看运行调度规范',
   overview: '今日运营概况', progress: '完成进度', dayState: '全天状态', current: '当前工作', next: '下一任务',
