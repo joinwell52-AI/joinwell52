@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
 import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
-import { dirname, join, relative, resolve, sep } from 'node:path'
+import { join, relative, resolve, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { dirname } from 'node:path'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const MANIFEST_PATH = join(ROOT, 'research/runtime/SCHEDULER.json')
@@ -83,9 +84,16 @@ function weekday(date, timezone) {
   return new Intl.DateTimeFormat('en-US', { timeZone: timezone, weekday: 'long' }).format(value)
 }
 
+function introduced(task, date) {
+  return !task.introduced || task.introduced <= date
+}
+
 function tasksFor(date, manifest) {
   const day = weekday(date, manifest.timezone)
-  return manifest.tasks.filter((task) => task.schedule.kind === 'daily' || (task.schedule.days || []).includes(day))
+  return manifest.tasks.filter((task) =>
+    introduced(task, date) &&
+    (task.schedule.kind === 'daily' || (task.schedule.days || []).includes(day))
+  )
 }
 
 function textField(value) {
@@ -104,6 +112,9 @@ function validateArtifact(artifact, where) {
   if (!textField(artifact.label) || !textField(artifact.label_zh)) die(`${where}: artifacts require label and label_zh`)
   if (![artifact.path, artifact.commit, artifact.url].some((value) => textField(value))) {
     die(`${where}: every artifact requires path, commit or url`)
+  }
+  if (artifact.column && !['digital-employee', 'industry-architecture', 'open-source-engineering'].includes(artifact.column)) {
+    die(`${where}: invalid column ${artifact.column}`)
   }
 }
 
@@ -152,7 +163,6 @@ function validateRecord(record, manifest, taskIds) {
       die(`${path}: ${task.id} result status ${results[task.id].status} does not match frontmatter ${status}`)
     }
   }
-
   return results
 }
 
@@ -167,7 +177,7 @@ function loadRecords(manifest) {
 function validate() {
   const manifest = readJson(MANIFEST_PATH)
   if (manifest.resultContract !== CONTRACT) die(`SCHEDULER.json resultContract must be ${CONTRACT}`)
-  if (manifest.operationsCenterVersion !== '3.0') die('SCHEDULER.json operationsCenterVersion must be 3.0')
+  if (manifest.operationsCenterVersion !== '4.0') die('SCHEDULER.json operationsCenterVersion must be 4.0')
   const list = loadRecords(manifest)
   console.log(`Runtime task result validation passed: ${list.length} record(s).`)
   return { manifest, list }
@@ -210,7 +220,10 @@ function build() {
   const { manifest, list } = validate()
   if (!existsSync(GENERATED_PATH)) die('runtime-records.json is missing; run runtime-center.mjs build first')
   const generated = readJson(GENERATED_PATH)
-  const resultByPath = new Map(list.map(({ record, results }) => [relative(ROOT, record.path).split(sep).join('/'), results]))
+  const resultByPath = new Map(list.map(({ record, results }) => [
+    relative(ROOT, record.path).split(sep).join('/'),
+    results
+  ]))
 
   generated.operationsCenterVersion = manifest.operationsCenterVersion
   generated.resultContract = manifest.resultContract
