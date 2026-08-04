@@ -1,11 +1,12 @@
 {
   "name": "joinwell52-research-center-portal",
   "private": true,
-  "version": "6.0.0",
+  "version": "7.0.0",
   "type": "module",
   "scripts": {
-    "runtime:validate": "node scripts/runtime-center.mjs validate && node scripts/runtime-results.mjs validate",
-    "runtime:build": "node scripts/runtime-center.mjs build && node scripts/runtime-results.mjs build",
+    "runtime:migrate": "node scripts/runtime-migrate-v4.mjs",
+    "runtime:validate": "npm run runtime:migrate && node scripts/runtime-center.mjs validate && node scripts/runtime-results.mjs validate && node scripts/runtime-v4.mjs validate",
+    "runtime:build": "npm run runtime:migrate && node scripts/runtime-center.mjs build && node scripts/runtime-results.mjs build && node scripts/runtime-v4.mjs build",
     "runtime:gate": "node scripts/runtime-center.mjs gate",
     "tmpa:s0.4:conformance": "node research/conformance/tmpa-core-s0.4/runner.mjs",
     "docs:dev": "npm run runtime:build && vitepress dev docs",

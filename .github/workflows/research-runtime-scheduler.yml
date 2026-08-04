@@ -1,4 +1,4 @@
-name: Research Runtime Scheduler V1.0
+name: Research Runtime Scheduler V2.0
 
 on:
   schedule:
@@ -7,6 +7,7 @@ on:
     - cron: '0 2 * * *'     # Daily 10:00 — Runtime Queue; Wednesday also Runtime Academic
     - cron: '0 3 * * *'     # Daily 11:00 — Runtime Knowledge
     - cron: '0 4 * * 1'     # Monday 12:00 — Runtime Architecture
+    - cron: '0 7 * * *'     # Daily 15:00 — Runtime Production
     - cron: '0 12 * * *'    # Daily 20:00 — Runtime Publication
     - cron: '30 12 * * 0'   # Sunday 20:30 — Runtime Weekly
   workflow_dispatch:
@@ -20,6 +21,7 @@ on:
           - queue
           - knowledge
           - architecture
+          - production
           - publication
           - weekly
           - academic
@@ -60,13 +62,16 @@ jobs:
             node scripts/runtime-center.mjs schedule --task "$MANUAL_TASK"
           fi
 
-      - name: Initialize task result contract
+      - name: Initialize task-result contract
         run: node scripts/runtime-results.mjs initialize --date "${{ steps.runtime.outputs.runtime_date }}"
 
-      - name: Validate Runtime Record and task results
+      - name: Initialize three-column plan and Publication Candidate batch
+        run: node scripts/runtime-v4.mjs initialize --date "${{ steps.runtime.outputs.runtime_date }}"
+
+      - name: Validate Runtime Record, work results, column plan and candidates
         run: npm run runtime:validate
 
-      - name: Commit Runtime scheduling record
+      - name: Commit Runtime scheduling artifacts
         shell: bash
         env:
           TASK_NAMES: ${{ steps.runtime.outputs.task_names }}
@@ -77,7 +82,7 @@ jobs:
           git add research/runtime
 
           if git diff --cached --quiet; then
-            echo "Runtime Record already contains this scheduling event."
+            echo "Runtime artifacts already contain this scheduling event."
             exit 0
           fi
 
@@ -89,7 +94,7 @@ jobs:
             fi
             git rebase --abort || true
             if [[ "$attempt" -eq 3 ]]; then
-              echo "Unable to publish Runtime scheduling record after three attempts."
+              echo "Unable to publish Runtime scheduling artifacts after three attempts."
               exit 1
             fi
             sleep $((attempt * 5))

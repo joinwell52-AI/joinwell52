@@ -1,4 +1,4 @@
-# Runtime Record Schema V1.1
+# Runtime Record Schema V2.0
 
 ## Canonical path
 
@@ -8,14 +8,18 @@ research/runtime/YYYY/MM/YYYY-MM-DD-runtime.md
 
 The filename date, frontmatter `date` and `Asia/Shanghai` operating date must match.
 
-## Required frontmatter
+## Required frontmatter for Scheduler V2.0
 
 ```yaml
 ---
 schema: "research-runtime-record/v1"
-runtime_version: "1.0"
+runtime_version: "2.0"
 center_version: "3.0"
 result_contract: "runtime-task-result/v1"
+plan_contract: "runtime-column-plan/v1"
+plan_path: "research/runtime/plans/YYYY/MM/YYYY-MM-DD-plan.json"
+candidate_contract: "runtime-publication-candidate/v1"
+candidate_path: "research/runtime/candidates/YYYY/MM/YYYY-MM-DD-candidates.json"
 date: "YYYY-MM-DD"
 timezone: "Asia/Shanghai"
 overall_status: "Running | Completed | Blocked | Failed | Skipped | Waiting"
@@ -36,15 +40,16 @@ task_engine: "..."
 task_queue: "..."
 task_knowledge: "..."
 task_architecture: "..."
+task_production: "..."
 task_publication: "..."
 task_weekly: "..."
 task_academic: "..."
 ---
 ```
 
-All status-bearing fields use exactly the six Runtime statuses. `pending` is allowed only for `github_commit`, never as a status.
+All status-bearing fields use exactly the six Runtime statuses. `pending` is allowed only for commit fields, never as a status.
 
-Legacy records without `result_contract` remain readable. New and upgraded records use `runtime-task-result/v1` and must satisfy the task-result completion gate below.
+Historical Scheduler V1.0 records remain readable. Records created or upgraded under Scheduler V2.0 contain the plan, candidate and Production fields.
 
 ## Required body
 
@@ -59,27 +64,26 @@ Every record contains:
 
 ```runtime-result
 {
-  "task": "queue",
+  "task": "production",
   "status": "Completed",
-  "input": "Current Queue and official source signals.",
-  "input_zh": "当前研究队列与官方来源信号。",
-  "summary": "Registered six signals and selected one qualified candidate.",
-  "summary_zh": "登记 6 个信号并选出 1 个合格候选。",
-  "output": "Signal register, queue history and canonical Queue update.",
-  "output_zh": "信号登记、队列历史与权威队列更新。",
-  "next": "Wait for Engine allocation and begin Deep Reading.",
-  "next_zh": "等待引擎分配，并从深度阅读开始。",
+  "input": "Eligible analyzed objects assigned to the three columns.",
+  "input_zh": "已分配到三个栏目的合格分析对象。",
+  "summary": "Created one complete bilingual Publication Candidate.",
+  "summary_zh": "生成 1 份完整的中英文出版候选。",
+  "output": "Chinese and English Markdown, visualization, evidence validation, editing result and candidate batch.",
+  "output_zh": "中英文 Markdown、配图、证据校验、编辑结果与出版候选批次。",
+  "next": "Wait for the 20:00 Publication release shift.",
+  "next_zh": "等待 20:00 发布班次发版。",
   "reason": "",
   "reason_zh": "",
   "metrics": [
-    { "label": "Signals", "label_zh": "信号", "value": "6" }
+    { "label": "Publication Candidates", "label_zh": "出版候选", "value": "1" }
   ],
   "artifacts": [
     {
-      "label": "Signal register",
-      "label_zh": "信号登记",
-      "path": "research/queue/signals/YYYY-MM-DD.md",
-      "commit": "full SHA"
+      "label": "Candidate batch",
+      "label_zh": "出版候选批次",
+      "path": "research/runtime/candidates/YYYY/MM/YYYY-MM-DD-candidates.json"
     }
   ]
 }
@@ -92,42 +96,81 @@ Every record contains:
 | HH:MM | Research Runtime ... | Runtime Started | Running | ... |
 ```
 
-Corrections are preserved through Git history; past rows must not be silently rewritten to manufacture success.
+Corrections remain visible through Git history; past events must not be silently rewritten to manufacture success.
 
 ## Task-result contract
 
 Each scheduled task that reaches a terminal status—`Completed`, `Skipped`, `Blocked` or `Failed`—must have exactly one `runtime-result` block.
 
-A task-result block must report:
+The block reports:
 
-- `input` / `input_zh`: what the task actually read or received;
-- `summary` / `summary_zh`: the work outcome, not merely the action performed;
-- `output` / `output_zh`: durable files, decisions, publications or verified facts produced;
-- `next` / `next_zh`: the next governed action;
-- `metrics`: bounded result counts or decisions, each with English and Chinese labels;
-- `artifacts`: paths, commits or external evidence links, each with English and Chinese labels;
-- `reason` / `reason_zh`: mandatory when the status is `Skipped`.
+- actual input;
+- actual work outcome;
+- durable output;
+- next governed action;
+- bounded metrics;
+- artifacts and GitHub evidence;
+- bilingual reason when `Skipped`.
 
-The block status must match the corresponding `task_<id>` frontmatter status. A terminal task without a task-result block fails Runtime validation.
+The result status must match `task_<id>`.
 
-`Waiting` and `Running` tasks do not require a completed task-result block. The Operations Center displays them as pending or active work.
+`Waiting` and `Running` tasks do not require a completed result block.
 
-## Completion gate
+## Three-column plan link
 
-A publication Runtime is `Completed` only when its output exists, metadata is valid, the GitHub commit exists, the commit and output paths have been directly verified, all publication statuses are `Completed`, the structured task result exists, and the final Runtime Log event is present.
+`plan_path` points to the authoritative daily decisions for:
 
-A publication eligibility check that finds no eligible note is `Skipped`, not `Completed`. Its task result must state the reason and the next governed action. `Skipped` does not count toward the daily completion rate.
+- Digital Employee;
+- Industry Architecture;
+- Open-source Engineering.
 
-A scheduler trigger without worker execution remains `Waiting`. A generated document without commit verification remains `Running`, `Blocked` or `Failed` according to the actual condition.
+Queue is complete only after this plan exists and every column has `Selected` or `No Selection` with a reason.
 
-## Dashboard projection
+## Production completion gate
 
-The website derives the following from the Scheduler and Runtime Records:
+`task_production: Completed` requires:
 
-- today’s scheduled tasks and completion rate;
-- each task’s status;
-- each task’s input, work outcome, output, next action, metrics and artifacts;
-- GitHub commit and verification evidence;
-- work log and recent daily work reports.
+- at least one candidate in the candidate batch;
+- complete Chinese and English reports;
+- completed writing, visualization, evidence and citation validation, and publication editing;
+- lifecycle `Publication Candidate`;
+- no public release yet.
 
-The website must not maintain a second, hand-edited task-result list.
+When no object is eligible, Production is `Skipped`, the candidate list is empty, and the result states the exact upstream blocker.
+
+## Publication completion gate
+
+`task_publication: Completed` requires:
+
+- one or more complete Publication Candidates;
+- public bilingual files and metadata;
+- updated indexes and website surfaces;
+- GitHub commit;
+- commit and path verification;
+- Released lifecycle result.
+
+Publication must not perform new research, substantive writing or evidence repair. A failed candidate returns to Production or an earlier research stage.
+
+## Daily completion calculation
+
+Only `Completed` tasks count toward completion:
+
+```text
+completion rate = Completed scheduled tasks ÷ all scheduled tasks
+```
+
+`Waiting` and `Running` are unfinished. `Blocked`, `Failed` and `Skipped` are terminal but not completed. If every task is terminal but at least one is not `Completed`, the day ends incomplete.
+
+## Website projection
+
+The V4 Operations Center derives:
+
+- the three-column Daily Research Plan;
+- scheduled shifts and completion rate;
+- every task’s structured work outcome;
+- the 15:00 Publication Candidate batch;
+- the 20:00 release result;
+- Runtime Record, GitHub commit and verification;
+- work log and recent operating history.
+
+The website must not maintain a second hand-edited plan, candidate or result list.

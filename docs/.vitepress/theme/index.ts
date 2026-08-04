@@ -8,6 +8,7 @@ import ResearchNotes from './components/ResearchNotes.vue'
 import ResearchCategory from './components/ResearchCategory.vue'
 import RuntimeCenter from './components/RuntimeCenter.vue'
 import RuntimeOperationsCenter from './components/RuntimeOperationsCenter.vue'
+import RuntimeOperationsCenterV4 from './components/RuntimeOperationsCenterV4.vue'
 import ResearchCenterHome from './components/ResearchCenterHome.vue'
 import GlobalBack from './components/GlobalBack.vue'
 import './custom.css'
@@ -47,6 +48,7 @@ const zhRuntimeText: Record<string, string> = {
   'Research Runtime Queue': '研究运行队列',
   'Research Runtime Knowledge': '研究运行知识',
   'Research Runtime Architecture': '研究运行架构评审',
+  'Research Runtime Production': '研究运行生产',
   'Research Runtime Publication': '研究运行每日发布',
   'Research Runtime Weekly': '研究运行每周综合',
   'Research Runtime Academic': '研究运行学术研究',
@@ -122,6 +124,10 @@ function enhancePortal() {
     if (href && !href.startsWith(siteBase)) anchor.setAttribute('href', withBase(href))
   })
 
+  document.querySelectorAll<HTMLAnchorElement>('.runtime-v4 .hero-actions a').forEach((anchor) => {
+    anchor.setAttribute('href', withBase(chinese ? '/zh/runtime/v4' : '/en/runtime/v4'))
+  })
+
   const heroCopy = document.querySelector<HTMLElement>('.rcv5 .rcv5-hero-copy')
   if (heroCopy && !heroCopy.querySelector('.rcv5-language-switch')) {
     const switcher = document.createElement('nav')
@@ -152,6 +158,7 @@ export default {
     app.component('ResearchCategory', ResearchCategory)
     app.component('RuntimeCenter', RuntimeCenter)
     app.component('RuntimeOperationsCenter', RuntimeOperationsCenter)
+    app.component('RuntimeOperationsCenterV4', RuntimeOperationsCenterV4)
     app.component('ResearchCenterHome', ResearchCenterHome)
 
     if (typeof window !== 'undefined') {

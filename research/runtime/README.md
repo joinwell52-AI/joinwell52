@@ -1,143 +1,189 @@
-# Research Runtime Center — Runtime Charter V1.0
+# Research Runtime Center V4 — Runtime Charter
 
 **Project:** joinwell52 Research Center  
 **Center version:** Research Center 3.0  
-**Scheduler:** Research Runtime Scheduler V1.0  
-**Operations Center:** V3.0  
+**Scheduler:** Research Runtime Scheduler V2.0  
+**Operations Center:** V4.0  
 **Task result contract:** `runtime-task-result/v1`  
+**Column plan contract:** `runtime-column-plan/v1`  
+**Publication Candidate contract:** `runtime-publication-candidate/v1`  
 **Timezone:** `Asia/Shanghai`  
 **System of record:** `joinwell52-AI/joinwell52`
 
 ## Charter
 
-Research Runtime Center is the operational control plane of the Research Operating System.
+Research Runtime Center is the operational control plane of the Digital Research Employee.
 
-Research OS defines how research should move. Research Runtime schedules execution, opens an execution slot, records status and events, verifies GitHub publication, closes the lifecycle, and reports the actual work outcome of every scheduled task.
+V4 answers four operational questions:
+
+1. **What is each research column studying today?**
+2. **What did every scheduled shift actually accomplish?**
+3. **Which complete reports did the 15:00 Production shift create?**
+4. **Which Publication Candidates were released and verified at 20:00?**
 
 ```text
-Research Runtime Center
+Research Runtime Scheduler V2.0
         ↓
-Research Runtime Scheduler V1.0
+09:00 Engine
+10:00 Queue + Three-Column Plan
+11:00 Knowledge
+12:00 Architecture (Monday)
+15:00 Production
+20:00 Publication
+20:30 Weekly (Sunday)
+10:00 Academic (Wednesday)
         ↓
-Engine / Queue / Knowledge / Architecture
+Runtime Record + Task Work Results
         ↓
-Publication / Weekly / Academic
+Publication Candidate
         ↓
-Task Work Result
+GitHub Commit + Website + Commit Verify
         ↓
-Runtime Record
-        ↓
-GitHub Commit + Commit Verify
-        ↓
-Digital Researcher Operations Center
+Digital Researcher Operations Center V4
 ```
 
-No formal automation exists outside Research Runtime. Historical names such as “Research OS task”, “Queue task”, “Weekly automation” and “Publication task” are not formal scheduler names.
+## Three formal research columns
 
-## Seven formal Runtime tasks
+Every selected Queue object has exactly one primary column:
 
-The original task draft said “six” while explicitly defining seven tasks. This Charter and the machine-readable scheduler resolve the inconsistency in favor of the seven defined responsibilities.
+| Column | Scope |
+|---|---|
+| Digital Employee | Position, responsibility, workflow, runtime, governance and evaluation. |
+| Industry Architecture | Enterprise AI operating models, control planes, work systems and organizational architecture. |
+| Open-source Engineering | Runtimes, protocols, tools, benchmarks, recovery and observability engineering. |
 
-| Formal name | Schedule (`Asia/Shanghai`) | Responsibility | Boundary |
-|---|---|---|---|
-| Research Runtime Engine | Daily 09:00 | Advance the Research OS state machine from Signal to Release. | The only Research OS Engine. |
-| Research Runtime Queue | Daily 10:00 | Maintain discovery, candidates, priority, selection, rejection and queue lifecycle. | Must not publish directly. |
-| Research Runtime Knowledge | Daily 11:00 | Maintain Knowledge Graph, related notes, architecture candidates, observations and engineering insights. | Must not publish directly. |
-| Research Runtime Architecture | Monday 12:00 | Decide architecture, specification, publication candidates and lifecycle. | Architecture review only. |
-| Research Runtime Publication | Daily 20:00 | Publish Daily Research, metadata, website integration, GitHub commit and commit verification. | Must not research directly; must use completed knowledge and Research Skills. |
-| Research Runtime Weekly | Sunday 20:30 | Produce cross-analysis, architecture judgment, engineering judgment and Weekly publication. | Must not copy Daily Research. |
-| Research Runtime Academic | Wednesday 10:00 | Publish research about papers, benchmarks, specifications, conferences and institutions. | Must not publish ordinary news. |
+The 10:00 Queue shift writes one explicit decision per column. A column is either:
+
+- `Selected` with object, title, source, priority, lifecycle, reason and next action; or
+- `No Selection` with the exact threshold, blocker or evidence gap.
+
+The canonical contract is [`COLUMN-PLAN-SCHEMA.md`](./COLUMN-PLAN-SCHEMA.md).
+
+## Eight formal Runtime tasks
+
+| Formal name | Schedule (`Asia/Shanghai`) | Work outcome | Boundary |
+|---|---:|---|---|
+| Research Runtime Engine | Daily 09:00 | One governed lifecycle transition and durable research artifact. | No stage skipping or direct publication. |
+| Research Runtime Queue | Daily 10:00 | Signal register, Queue decision and three-column Daily Research Plan. | No direct publication; no unassigned selected object. |
+| Research Runtime Knowledge | Daily 11:00 | Knowledge admission, links and architecture candidates. | Only completed evidence-validated Research Notes may enter Knowledge. |
+| Research Runtime Architecture | Monday 12:00 | Architecture disposition and lifecycle decision. | No decision from a single unsupported observation. |
+| **Research Runtime Production** | **Daily 15:00** | **Complete bilingual Publication Candidates.** | No direct publication; no writing from an unvalidated signal. |
+| Research Runtime Publication | Daily 20:00 | Released bilingual articles, indexes, website and verified GitHub commit. | No new research, substantive writing or evidence repair. |
+| Research Runtime Weekly | Sunday 20:30 | New weekly synthesis and engineering judgment. | Must not copy or concatenate Daily notes. |
+| Research Runtime Academic | Wednesday 10:00 | Formal paper, benchmark, specification or institution research. | Ordinary news is excluded. |
 
 The authoritative machine-readable definition is [`SCHEDULER.json`](./SCHEDULER.json).
+
+## Daily production rhythm
+
+```text
+Morning research
+09:00 Engine → 10:00 Queue → 11:00 Knowledge
+
+Afternoon production
+15:00 Writing → Visualization → Evidence & Citation → Publication Editing
+      → Publication Candidate
+
+Evening release
+20:00 Candidate → bilingual public paths → metadata → indexes → website
+      → GitHub Commit → Commit Verify → Release
+```
+
+### 15:00 is not a draft shift
+
+The Production shift produces a **complete report**:
+
+- full Chinese Markdown;
+- full English Markdown;
+- valid metadata and column assignment;
+- required visualization or an explicit no-visual decision;
+- checked evidence and citations;
+- completed publication editing.
+
+Its lifecycle is `Publication Candidate`. The report is complete but not yet released.
+
+The exact contract is [`PUBLICATION-CANDIDATE-SCHEMA.md`](./PUBLICATION-CANDIDATE-SCHEMA.md).
+
+### 20:00 is release only
+
+Publication consumes the candidate batch. It must not discover sources, perform Analysis, write a new report or repair weak evidence. A candidate that fails the release gate returns to Production or an earlier research stage.
 
 ## Scheduler and worker boundary
 
 The control plane separates two facts:
 
-1. **Scheduler trigger:** GitHub Actions executes the canonical cron schedule and creates or updates the daily Runtime Record with a `Waiting` execution slot.
-2. **Digital Research Employee worker:** the corresponding ChatGPT Runtime task performs the research, writes outputs, records a structured task result, commits the outputs, verifies the commit, and closes the Runtime Record.
+1. **GitHub scheduler:** opens the canonical execution slot and initializes Runtime artifacts.
+2. **ChatGPT Digital Research Employee worker:** performs the work, writes the result, commits durable outputs, verifies the commit and closes the slot.
 
-A trigger is not evidence that research completed. If the worker does not run or cannot verify the result, the state remains `Waiting`, `Blocked` or `Failed`. The scheduler must never manufacture `Completed`.
+A GitHub cron trigger is not evidence that research completed. Without worker execution, the task remains `Waiting`, `Blocked` or `Failed`.
 
-On Wednesday at 10:00, Runtime Queue and Runtime Academic share one cron trigger. The scheduler creates both slots while preserving separate responsibilities, results and statuses.
+The eight worker contracts are defined in [`WORKER-PROMPTS-V2.md`](./WORKER-PROMPTS-V2.md).
 
-## Lifecycle and status
+## Runtime artifacts
 
-```text
-Signal → Candidate → Queue → Selected → Reading → Analysis
-→ Knowledge → Architecture → Specification → Publication → Release
-```
-
-Exactly six statuses are allowed:
-
-`Running` · `Completed` · `Blocked` · `Failed` · `Skipped` · `Waiting`
-
-Started, GitHub Commit, Commit Verify and Published are events, not additional statuses.
-
-`Skipped` means the task actually ran but produced no eligible output. It is a terminal status, must report the reason, and does not count toward the daily completion rate.
-
-## Runtime Record
-
-Every formal execution writes to:
+### Runtime Record
 
 ```text
 research/runtime/YYYY/MM/YYYY-MM-DD-runtime.md
 ```
 
-Runtime Record is the single source of truth for the daily task plan, status, work results, Timeline, History, Runtime Log, GitHub verification and publication outcome. Dashboard values must never be hand-edited. The exact contract is defined in [`RUNTIME-RECORD-SCHEMA.md`](./RUNTIME-RECORD-SCHEMA.md).
+Contains task statuses, structured work-result blocks, append-only events and GitHub verification.
 
-`scripts/runtime-center.mjs` validates records, creates scheduled slots, updates execution status, generates base website data and enforces the publication gate.
+### Daily Research Plan
 
-`scripts/runtime-results.mjs` validates `runtime-task-result/v1` blocks and injects structured work outcomes into the generated Operations Center data.
+```text
+research/runtime/plans/YYYY/MM/YYYY-MM-DD-plan.json
+```
+
+Contains the three column decisions produced by Queue.
+
+### Publication Candidate batch
+
+```text
+research/runtime/candidates/YYYY/MM/YYYY-MM-DD-candidates.json
+```
+
+Contains complete reports produced at 15:00 and consumed at 20:00.
+
+The website is generated from these artifacts. It must not maintain a second hand-edited status, topic or candidate list.
 
 ## Mandatory task work report
 
-A digital employee does not complete a task by reporting only “Completed.” Every scheduled task must report:
+A terminal task must report:
 
 ```text
 Input
 → Work Outcome
 → Durable Output
 → Next Governed Action
+→ Metrics
 → Artifacts and GitHub Evidence
 ```
 
-For a terminal task, the Runtime Record contains one structured `runtime-result` block. The bilingual Operations Center reads these blocks automatically and presents one work-report card per scheduled task.
-
-Examples:
-
-- Engine: which object moved, from which state to which state, which Skill was used, and what remains blocked;
-- Queue: signals discovered, candidates selected or rejected, the selected research object and its next Skill;
-- Knowledge: validated inputs, new knowledge records, links and architecture candidates;
-- Architecture: reviewed candidates, decision, promotion count and unresolved gate;
-- Publication: published note and commit, or `Skipped` with the exact eligibility failure;
-- Weekly and Academic: source set, new judgment, publication result and verification evidence.
-
-A terminal task without this work report fails validation.
+`Skipped` means the worker actually ran but produced no eligible output. It must explain the reason and does not count toward daily completion.
 
 ## Runtime Gate
 
 ```text
-Research Runtime
+Research Object
 → Publication Candidate
-→ Runtime Record
-→ Task Work Result
+→ Runtime Record + Task Result
+→ Public bilingual files
 → GitHub Commit
 → Commit Verify
-→ Runtime Record closure
-→ Official Publication
+→ Release
 ```
 
-A formal publication pull request without a changed Runtime Record fails validation.
-
-> Every official Publication shall be executed by Research Runtime and produce a Runtime Record. Any publication without a Runtime Record is not considered an official runtime output.
+A formal publication without a Runtime Record is not an official runtime output.
 
 ## Final principles
 
-> Research Runtime is the only execution scheduler of the Research Operating System.
+> Research Runtime is the only formal execution scheduler of the Research Operating System.
 
-> Every Digital Research Employee execution shall be scheduled, observable, recorded and verifiable through the Runtime Center.
+> The three research columns must receive explicit daily decisions.
 
-> Every scheduled task shall report its actual work outcome, not merely its execution status.
+> Production creates complete Publication Candidates; Publication releases them.
 
-> Research Runtime—not individual automation tasks—is the operational control plane of the Digital Research Employee.
+> Every scheduled shift must report its actual work outcome, not merely its execution status.
+
+> Every Digital Research Employee execution shall be scheduled, observable, recorded and verifiable through Research Runtime Center V4.
