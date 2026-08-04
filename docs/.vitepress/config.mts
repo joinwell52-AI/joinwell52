@@ -1,12 +1,16 @@
 import { defineConfig } from 'vitepress'
 
 const enSidebar = {
-  '/en/runtime/': [{ text: 'Digital Researcher Operations', items: [
-    { text: 'Operations Center V4', link: '/en/runtime/' },
-    { text: 'Runtime Center V4 Guide', link: '/en/runtime/v4' },
+  '/en/runtime/': [{ text: 'Research Runtime Center V5.0', items: [
+    { text: 'Operations Center V5.0', link: '/en/runtime/' },
+    { text: 'Daily Runtime', link: '/en/runtime/daily' },
+    { text: 'Weekly Runtime', link: '/en/runtime/weekly' },
+    { text: 'Academic Runtime', link: '/en/runtime/academic' },
+    { text: 'Research Program Runtime', link: '/en/runtime/program' },
+    { text: 'V5.0 Frozen Runtime Guide', link: '/en/runtime/v5' },
     { text: 'Research Intelligence System', link: '/en/runtime/research-intelligence' },
+    { text: 'Runtime Center V4 History', link: '/en/runtime/v4' },
     { text: 'Research Report Production Engine V1.3', link: '/en/publications/research-report-production-engine-v1.3' },
-    { text: 'V1.3 Quick Start', link: '/en/publications/research-report-production-engine-v1.3-quickstart' },
     { text: 'Runtime Scheduler V1.0 Historical Release', link: '/en/publications/research-runtime-scheduler-v1.0' }
   ]}],
   '/en/research/': [{ text: 'Observation Notes', items: [
@@ -32,7 +36,7 @@ const enSidebar = {
     { text: 'Overview', link: '/en/publications/' },
     { text: 'Research Report Production Engine V1.3', link: '/en/publications/research-report-production-engine-v1.3' },
     { text: 'V1.3 Quick Start', link: '/en/publications/research-report-production-engine-v1.3-quickstart' },
-    { text: 'Research Runtime Center V4', link: '/en/runtime/v4' },
+    { text: 'Research Runtime Center V5.0', link: '/en/runtime/v5' },
     { text: 'Research Intelligence System V1.0', link: '/en/runtime/research-intelligence' },
     { text: 'Research Runtime Scheduler V1.0 History', link: '/en/publications/research-runtime-scheduler-v1.0' },
     { text: 'TMPA Architecture Paper A0.5', link: '/en/publications/tmpa-architecture-paper-a0.5' },
@@ -42,12 +46,16 @@ const enSidebar = {
 }
 
 const zhSidebar = {
-  '/zh/runtime/': [{ text: '数字研究员运营中心', items: [
-    { text: '运营中心 V4', link: '/zh/runtime/' },
-    { text: 'V4 运行规范', link: '/zh/runtime/v4' },
+  '/zh/runtime/': [{ text: 'Research Runtime Center V5.0', items: [
+    { text: '运营中心 V5.0', link: '/zh/runtime/' },
+    { text: 'Daily Runtime', link: '/zh/runtime/daily' },
+    { text: 'Weekly Runtime', link: '/zh/runtime/weekly' },
+    { text: 'Academic Runtime', link: '/zh/runtime/academic' },
+    { text: 'Research Program Runtime', link: '/zh/runtime/program' },
+    { text: 'V5.0 冻结运行规范', link: '/zh/runtime/v5' },
     { text: '研究情报系统 V1.0', link: '/zh/runtime/research-intelligence' },
+    { text: 'Runtime Center V4 历史', link: '/zh/runtime/v4' },
     { text: '研究报告生产机 V1.3', link: '/zh/publications/research-report-production-engine-v1.3' },
-    { text: 'V1.3 快速开始', link: '/zh/publications/research-report-production-engine-v1.3-quickstart' },
     { text: 'Runtime Scheduler V1.0 历史发布', link: '/zh/publications/research-runtime-scheduler-v1.0' }
   ]}],
   '/zh/research/': [{ text: '观察笔记', items: [
@@ -73,7 +81,7 @@ const zhSidebar = {
     { text: '出版物总览', link: '/zh/publications/' },
     { text: '研究报告生产机 V1.3', link: '/zh/publications/research-report-production-engine-v1.3' },
     { text: 'V1.3 快速开始', link: '/zh/publications/research-report-production-engine-v1.3-quickstart' },
-    { text: 'Research Runtime Center V4', link: '/zh/runtime/v4' },
+    { text: 'Research Runtime Center V5.0', link: '/zh/runtime/v5' },
     { text: '研究情报系统 V1.0', link: '/zh/runtime/research-intelligence' },
     { text: 'Runtime Scheduler V1.0 历史发布', link: '/zh/publications/research-runtime-scheduler-v1.0' },
     { text: 'TMPA 架构论文 A0.5', link: '/zh/publications/tmpa-architecture-paper-a0.5' },
@@ -115,9 +123,6 @@ export default defineConfig({
     siteTitle: 'Digital Employee Works',
     search: { provider: 'local' },
     socialLinks: [{ icon: 'github', link: 'https://github.com/joinwell52-AI/joinwell52' }],
-    // VitePress 1.6 accepts a boolean here. Exact paired-document links are
-    // applied by the theme after navigation; SSR falls back to valid locale
-    // roots instead of emitting broken `/zh/en/...` paths.
     i18nRouting: false,
     locales: {
       root: {
@@ -135,7 +140,7 @@ export default defineConfig({
             { text: 'CodeFlowMu', link: 'https://github.com/joinwell52-AI/CodeFlowMu-open' },
             { text: 'Research Report Production Engine V1.3', link: '/en/publications/research-report-production-engine-v1.3' },
             { text: 'Digital Employee Architecture', link: '/en/digital-employee/architecture' },
-            { text: 'Research Runtime Center V4', link: '/en/runtime/v4' }
+            { text: 'Research Runtime Center V5.0', link: '/en/runtime/' }
           ]},
           { text: 'About', link: '/en/about' }
         ],
@@ -160,7 +165,7 @@ export default defineConfig({
             { text: 'CodeFlowMu', link: 'https://github.com/joinwell52-AI/CodeFlowMu-open' },
             { text: '研究报告生产机 V1.3', link: '/zh/publications/research-report-production-engine-v1.3' },
             { text: '数字员工纲领性架构', link: '/zh/digital-employee/architecture' },
-            { text: 'Research Runtime Center V4', link: '/zh/runtime/v4' }
+            { text: 'Research Runtime Center V5.0', link: '/zh/runtime/' }
           ]},
           { text: '关于', link: '/zh/about' }
         ],
