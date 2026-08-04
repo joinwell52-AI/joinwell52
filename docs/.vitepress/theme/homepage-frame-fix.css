@@ -1,0 +1,118 @@
+/* Final homepage header alignment: use the same 1440px frame as the dark hero. */
+.portal-v5-page .VPNavBarTitle {
+  left: max(48px, calc((100vw - 1440px) / 2)) !important;
+}
+
+.portal-v5-page .VPNavBarSearch {
+  left: max(188px, calc((100vw - 1440px) / 2 + 140px)) !important;
+}
+
+.portal-v5-page .rc-controls {
+  right: max(100px, calc((100vw - 1440px) / 2 + 52px)) !important;
+}
+
+/* Chinese wordmark: gradient “数字员工” plus compact square “工场” badge. */
+html[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title {
+  align-items: flex-start !important;
+  padding-top: 15px !important;
+  color: transparent !important;
+  font-size: 0 !important;
+  letter-spacing: normal !important;
+}
+
+html[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title span {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  color: transparent !important;
+  background: none !important;
+  -webkit-text-fill-color: transparent !important;
+  font-size: 0 !important;
+  filter: none !important;
+}
+
+html[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title span::before {
+  content: '数字员工' !important;
+  display: inline-block !important;
+  color: transparent !important;
+  background: linear-gradient(105deg, #101827 0%, #334765 46%, #5e51ef 78%, #20aac2 100%) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-family: "Microsoft YaHei UI", "PingFang SC", "Noto Sans SC", sans-serif !important;
+  font-size: 21px !important;
+  font-weight: 950 !important;
+  line-height: 28px !important;
+  letter-spacing: -.065em !important;
+  filter: drop-shadow(0 3px 7px rgba(79,70,229,.14)) !important;
+}
+
+html[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title span::after {
+  content: '工场' !important;
+  display: inline-grid !important;
+  width: 28px !important;
+  height: 28px !important;
+  padding: 0 !important;
+  place-items: center !important;
+  color: #fff !important;
+  background: linear-gradient(145deg, #6758f6 0%, #3f72df 62%, #21afc2 100%) !important;
+  -webkit-text-fill-color: #fff !important;
+  border: 1px solid rgba(255,255,255,.42) !important;
+  border-radius: 7px !important;
+  box-shadow: 0 6px 15px rgba(67,73,208,.24), inset 0 0 0 1px rgba(255,255,255,.14) !important;
+  font-family: "Microsoft YaHei UI", "PingFang SC", "Noto Sans SC", sans-serif !important;
+  font-size: 9px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  letter-spacing: 0 !important;
+}
+
+html[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title::after {
+  content: 'DIGITAL EMPLOYEE WORKS' !important;
+  position: absolute !important;
+  left: 1px !important;
+  top: 45px !important;
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  color: #7a879d !important;
+  background: none !important;
+  -webkit-text-fill-color: #7a879d !important;
+  font: 800 6.5px/1 ui-sans-serif, system-ui, sans-serif !important;
+  letter-spacing: .16em !important;
+}
+
+html.dark[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title span::before {
+  background: linear-gradient(105deg, #ffffff 0%, #cbd5e1 44%, #a89bff 76%, #67e8f9 100%) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+@media (max-width: 760px) {
+  .portal-v5-page .VPNavBarTitle {
+    left: 16px !important;
+  }
+
+  .portal-v5-page .VPNavBarSearch {
+    position: static !important;
+  }
+
+  .portal-v5-page .rc-controls {
+    right: 14px !important;
+  }
+
+  html[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title span::before {
+    font-size: 16px !important;
+  }
+
+  html[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title span::after {
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 8px !important;
+  }
+
+  html[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title::after {
+    display: none !important;
+  }
+}
