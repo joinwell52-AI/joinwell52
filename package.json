@@ -11,7 +11,7 @@
     "runtime:gate": "node scripts/runtime-v5.mjs gate",
     "tmpa:s0.4:conformance": "node research/conformance/tmpa-core-s0.4/runner.mjs",
     "docs:dev": "npm run runtime:build && vitepress dev docs",
-    "docs:build": "npm run runtime:build && vitepress build docs",
+    "docs:build": "npm run runtime:build && node scripts/vitepress-build-strict.mjs",
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
