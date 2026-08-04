@@ -92,7 +92,7 @@ const zhSidebar = {
 
 export default defineConfig({
   title: 'Digital Employee Works',
-  description: 'Digital Employee Works — continuously producing verifiable Digital Employee work through a governed runtime',
+  description: 'Digital Employee Works — turning general-purpose AI into Digital Employees with positions, responsibilities, skills, workflows, and verifiable work results',
   base: '/joinwell52/',
   cleanUrls: true,
   lastUpdated: true,
@@ -109,14 +109,14 @@ export default defineConfig({
       label: 'English',
       lang: 'en-US',
       title: 'Digital Employee Works',
-      description: 'A governed production line for verifiable Digital Employee work, observation notes, runtime evidence and formal publications'
+      description: 'Turn general-purpose AI into Digital Employees with positions, responsibilities, skills, workflows, and verifiable work results'
     },
     zh: {
       label: '简体中文',
       lang: 'zh-CN',
       link: '/zh/',
       title: '数字员工工场',
-      description: '数字员工工场——持续生产可核验的数字员工工作成果，公开运行证据、观察笔记与独立 TMPA 论文体系'
+      description: '让通用 AI 成为数字员工，让 AI 拥有岗位、职责、技能和工作流程，持续完成真实任务，并留下可核验的工作成果'
     }
   },
   themeConfig: {

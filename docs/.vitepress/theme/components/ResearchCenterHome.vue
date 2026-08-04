@@ -15,13 +15,13 @@ const toggleAppearance = () => { isDark.value = !isDark.value }
 const copy = computed(() => zh.value ? {
   currentLanguage: '中文', otherLanguage: 'EN', otherPath: '/',
   eyebrow: '数字员工工场 · 持续生产',
-  heroLabel: '持续生产可核验的数字员工工作成果',
-  heroWide: ['持续生产', '可核验的数字员工', '工作成果'],
-  heroCompact: ['持续生产', '可核验的', '数字员工成果'],
-  heroMobile: ['持续生产', '可核验的', '数字员工', '工作成果'],
-  heroLead: '工场把岗位、任务、能力、Runtime 与交付门禁组织成持续产线。每一项成果都保留来源、过程、证据、提交与发布状态，能够检查、恢复并继续生产。',
+  heroLabel: '让通用 AI 成为数字员工',
+  heroWide: ['让通用 AI', '成为数字员工'],
+  heroCompact: ['让通用 AI', '成为数字员工'],
+  heroMobile: ['让通用 AI', '成为数字员工'],
+  heroLead: '让 AI 拥有岗位、职责、技能和工作流程，持续完成真实任务，并留下可核验的工作成果。',
   primary: '查看生产线', secondary: '进入观察笔记', tertiary: '检查运行证据',
-  ledger: '工场生产总账', live: '正在生产', ledgerRows: [
+  ledger: '运行状态', live: '正在生产', ledgerRows: [
     ['生产岗位', '研究分析员'], ['工作入口', '任务队列'], ['交付门禁', 'GitHub + VitePress'], ['事实来源', 'main 分支']
   ],
   latestRelease: '数字员工生产线', ledgerMark: 'RA', ledgerDetail: '岗位 · 工作链 · 交付证据', inspected: '可检查 · 可引用 · 可重建',
@@ -78,7 +78,7 @@ const copy = computed(() => zh.value ? {
   workLog: 'RA 工作日志', raLine: ['我正在工作', '一起参与吗'],
   raNote: '任务、证据、提交与交付记录持续写入工场运行中心。', enterRuntime: '进入工场运行中心',
   latestTask: '当前工作', runtimeStatus: '运行状态', runtimeCommit: '提交记录',
-  footerAbout: '持续生产可核验数字员工工作成果的开放工场。观察笔记记录外部动态与工作判断，TMPA 论文体系独立维护。',
+  footerAbout: '让通用 AI 成为数字员工，持续完成真实任务，并留下可核验的工作成果。观察笔记记录外部动态与工作判断，TMPA 论文体系独立维护。',
   footerCode: '代码', footerRead: '阅读', footerCite: '引用',
   repository: 'GitHub 仓库', fcop: 'FCoP 协议', codeflow: 'CodeFlowMu Runtime',
   researchNotes: '观察笔记', publicationCenter: '出版中心', runtimeCenter: '工场运行中心',
@@ -89,13 +89,13 @@ const copy = computed(() => zh.value ? {
 } : {
   currentLanguage: 'EN', otherLanguage: '中文', otherPath: '/zh/',
   eyebrow: 'DIGITAL EMPLOYEE WORKS · CONTINUOUS PRODUCTION',
-  heroLabel: 'We continuously produce verifiable Digital Employee work',
-  heroWide: ['We continuously', 'produce verifiable', 'Digital Employee', 'work'],
-  heroCompact: ['We continuously', 'produce verifiable', 'Digital Employee', 'work'],
-  heroMobile: ['We continuously', 'produce', 'verifiable', 'Digital Employee', 'work'],
-  heroLead: 'The Works organizes positions, tasks, capabilities, Runtime, and delivery gates as a continuing production line. Every output retains its sources, process, evidence, commits, and release state so work can be inspected, recovered, and continued.',
+  heroLabel: 'Turn general-purpose AI into Digital Employees',
+  heroWide: ['Turn general-purpose AI', 'into Digital Employees'],
+  heroCompact: ['Turn general-purpose AI', 'into Digital', 'Employees'],
+  heroMobile: ['Turn general-purpose AI', 'into Digital', 'Employees'],
+  heroLead: 'Give AI a position, responsibilities, skills, and a workflow so it can continuously complete real tasks and leave verifiable work results.',
   primary: 'Inspect the production line', secondary: 'Explore Observation Notes', tertiary: 'Inspect Runtime Evidence',
-  ledger: 'Factory production ledger', live: 'PRODUCING', ledgerRows: [
+  ledger: 'Runtime status', live: 'IN PRODUCTION', ledgerRows: [
     ['Production position', 'Research Analyst'], ['Work intake', 'Task Queue'], ['Delivery gate', 'GitHub + VitePress'], ['Source of truth', 'main branch']
   ],
   latestRelease: 'Digital Employee production line', ledgerMark: 'RA', ledgerDetail: 'Position · Workflow · Delivery evidence', inspected: 'Inspectable · Citable · Reconstructable',
@@ -152,7 +152,7 @@ const copy = computed(() => zh.value ? {
   workLog: 'RA work log', raLine: ['I am working', 'Want to take part'],
   raNote: 'Tasks, evidence, commits, and delivery records continue into the Factory Runtime Center.', enterRuntime: 'Enter Factory Runtime Center',
   latestTask: 'Current work', runtimeStatus: 'Runtime status', runtimeCommit: 'Commit record',
-  footerAbout: 'An open Works continuously producing verifiable Digital Employee work. Observation Notes record external developments and working judgments; the TMPA publication suite is maintained independently.',
+  footerAbout: 'A Works that turns general-purpose AI into Digital Employees, continuously completing real tasks and leaving verifiable work results. Observation Notes record external developments and working judgments; the TMPA publication suite is maintained independently.',
   footerCode: 'Code', footerRead: 'Read', footerCite: 'Cite',
   repository: 'GitHub repository', fcop: 'FCoP protocol', codeflow: 'CodeFlowMu Runtime',
   researchNotes: 'Observation Notes', publicationCenter: 'Publication center', runtimeCenter: 'Factory Runtime Center',
@@ -527,10 +527,14 @@ onBeforeUnmount(() => {
 :global(.portal-v5-page .VPHomeHero), :global(.portal-v5-page .VPFeatures) { display: none; }
 :global(.portal-v5-page .VPFooter) { display: none; }
 :global(.portal-v5-page .VPNavBar) { border-bottom: 1px solid #e1e5ed; background: rgba(255, 255, 255, .92); backdrop-filter: blur(16px); }
-:global(.portal-v5-page .VPNavBarTitle .title) { font-weight: 760; letter-spacing: -.02em; }
+:global(.portal-v5-page .VPNavBar .container) { width: min(1340px, calc(100% - 48px)); max-width: none; margin-inline: auto; }
+:global(.portal-v5-page .VPNavBarTitle .title) { display: grid; align-content: center; gap: 3px; min-width: max-content; color: transparent; background: linear-gradient(105deg, #111827 0%, #334155 52%, #4f46e5 100%); background-clip: text; -webkit-background-clip: text; font-size: 18px; font-weight: 900; line-height: 1; letter-spacing: -.055em; }
+:global(.portal-v5-page .VPNavBarTitle .title::after) { content: \"DIGITAL EMPLOYEE WORKS\"; color: #69748a; -webkit-text-fill-color: #69748a; font: 760 7px/1 ui-sans-serif, system-ui, sans-serif; letter-spacing: .14em; }
 :global(.portal-v5-page .VPNavBarSearch .DocSearch-Button) { border-color: #dfe4ee; background: #f4f6fa; }
 :global(.portal-v5-page .VPNavBarAppearance) { display: none; }
 :global(.dark .portal-v5-page .VPNavBar) { border-bottom-color: rgba(255,255,255,.1); background: rgba(8, 11, 22, .94); }
+:global(.dark .portal-v5-page .VPNavBarTitle .title) { background: linear-gradient(105deg, #ffffff 0%, #b8c6e5 52%, #8b7cff 100%); background-clip: text; -webkit-background-clip: text; }
+:global(.dark .portal-v5-page .VPNavBarTitle .title::after) { color: #8d9ab5; -webkit-text-fill-color: #8d9ab5; }
 :global(.dark .portal-v5-page .VPNavBarSearch .DocSearch-Button) { border-color: rgba(255,255,255,.12); background: #12172a; }
 
 .rc-home {
@@ -582,7 +586,7 @@ onBeforeUnmount(() => {
 .rc-product-mark a:hover { opacity: 1; transform: translateY(-2px); }
 .rc-product-mark img { width: 34px; height: 34px; object-fit: contain; border-radius: 9px; }
 .rc-product-mark span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.rc-controls { position: fixed; z-index: 100; top: 11px; right: 82px; display: flex; align-items: center; gap: 4px; min-height: 42px; padding: 4px; color: #172039; background: rgba(255,255,255,.96); border: 1px solid #dfe4ee; border-radius: 24px; box-shadow: 0 8px 24px rgba(16,25,54,.12); backdrop-filter: blur(16px); }
+.rc-controls { position: fixed; z-index: 100; top: 11px; right: max(24px, calc((100vw - 1340px) / 2)); display: flex; align-items: center; gap: 4px; min-height: 42px; padding: 4px; color: #172039; background: rgba(255,255,255,.96); border: 1px solid #dfe4ee; border-radius: 24px; box-shadow: 0 8px 24px rgba(16,25,54,.12); backdrop-filter: blur(16px); }
 .rc-language { display: grid; grid-template-columns: repeat(2, minmax(44px, auto)); align-items: center; padding-right: 4px; border-right: 1px solid #dfe4ee; font: 760 12px/1 ui-sans-serif, system-ui, sans-serif; }
 .rc-language strong,
 .rc-language a { display: grid; min-height: 32px; padding: 0 10px; place-items: center; border-radius: 18px; }
