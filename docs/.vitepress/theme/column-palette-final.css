@@ -194,3 +194,83 @@
 .legacy-runtime .column-grid > .column-open-source-engineering h4 {
   color: #92ecf5 !important;
 }
+
+/* Current V5 Runtime page: fixed title and exact three-column palette. */
+.runtime-center-page .runtime-classic .hero h1 {
+  font-size: 0 !important;
+  max-width: none !important;
+}
+
+.runtime-center-page .runtime-classic .hero h1::after {
+  content: '数字工场运营中心';
+  display: block;
+  color: #f5f7ff;
+  font-size: clamp(46px, 5vw, 68px);
+  font-weight: 850;
+  line-height: 1.04;
+  letter-spacing: -.055em;
+}
+
+.runtime-center-page .runtime-classic .column-grid > .column-card {
+  position: relative !important;
+  overflow: hidden !important;
+  padding-top: 25px !important;
+  border-width: 1px !important;
+  box-shadow: 0 18px 44px rgba(0,0,0,.18) !important;
+}
+
+.runtime-center-page .runtime-classic .column-grid > .column-card::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 0 auto 0 !important;
+  width: auto !important;
+  height: 6px !important;
+}
+
+.runtime-center-page .runtime-classic .column-grid > .column-digital-employee {
+  border-color: rgba(107,89,246,.80) !important;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(107,89,246,.36), transparent 38%),
+    linear-gradient(145deg, #302872 0%, #171935 100%) !important;
+}
+.runtime-center-page .runtime-classic .column-grid > .column-digital-employee::before {
+  background: var(--column-purple) !important;
+}
+
+.runtime-center-page .runtime-classic .column-grid > .column-industry-architecture {
+  border-color: rgba(29,116,133,.84) !important;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(29,116,133,.42), transparent 38%),
+    linear-gradient(145deg, #1a5868 0%, #102b37 100%) !important;
+}
+.runtime-center-page .runtime-classic .column-grid > .column-industry-architecture::before {
+  background: var(--column-teal) !important;
+}
+
+.runtime-center-page .runtime-classic .column-grid > .column-open-source-engineering {
+  border-color: rgba(88,207,225,.90) !important;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(88,207,225,.45), transparent 38%),
+    linear-gradient(145deg, #19758a 0%, #10394b 100%) !important;
+}
+.runtime-center-page .runtime-classic .column-grid > .column-open-source-engineering::before {
+  background: var(--column-cyan) !important;
+}
+
+.runtime-center-page .runtime-classic .column-digital-employee .column-head span,
+.runtime-center-page .runtime-classic .column-digital-employee .column-head h3,
+.runtime-center-page .runtime-classic .column-digital-employee .topic h4 {
+  color: #c1baff !important;
+}
+
+.runtime-center-page .runtime-classic .column-industry-architecture .column-head span,
+.runtime-center-page .runtime-classic .column-industry-architecture .column-head h3,
+.runtime-center-page .runtime-classic .column-industry-architecture .topic h4 {
+  color: #82d0da !important;
+}
+
+.runtime-center-page .runtime-classic .column-open-source-engineering .column-head span,
+.runtime-center-page .runtime-classic .column-open-source-engineering .column-head h3,
+.runtime-center-page .runtime-classic .column-open-source-engineering .topic h4 {
+  color: #92ecf5 !important;
+}
