@@ -96,7 +96,7 @@ The OpenAI/Hugging Face evaluation-infrastructure incident was attached to `Q-W0
 The canonical Queue now contains:
 
 - one active `Analysis` object;
-- four P0 `Selected` objects;
+- three P0 `Selected` objects;
 - one new P1 `Selected` monitoring object;
 - six queued objects with explicit blockers;
 - evidence-only and rejected signals retained in provenance history.
