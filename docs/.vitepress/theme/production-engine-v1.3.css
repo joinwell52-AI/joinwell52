@@ -19,7 +19,7 @@
   order: 4 !important;
 }
 
-/* Lock the two-row desktop layout regardless of source-array order. */
+/* Lock the desktop card positions. */
 @media (min-width: 761px) {
   .rc-home .rc-program--tmpa { grid-column: 1 !important; grid-row: 1 !important; }
   .rc-home .rc-program--fcop { grid-column: 2 !important; grid-row: 1 !important; }
@@ -27,7 +27,7 @@
   .rc-home .rc-program--employee { grid-column: 2 !important; grid-row: 2 !important; }
 }
 
-/* The visible serial number follows the product hierarchy rather than source order. */
+/* Visible serial numbers follow the hierarchy. */
 .rc-home .rc-program__cover > b { font-size: 0 !important; }
 .rc-home .rc-program__cover > b::after {
   color: rgba(255,255,255,.68);
@@ -39,120 +39,78 @@
 .rc-home .rc-program--codeflow .rc-program__cover > b::after { content: '03'; }
 .rc-home .rc-program--employee .rc-program__cover > b::after { content: '04'; }
 
-/* Header edges align exactly with the 1220px homepage content shell. */
+/*
+ * Homepage header geometry.
+ * The dark hero is 1440px wide on desktop. The title begins at its left edge.
+ * The language/theme control ends 52px before its right edge, leaving the
+ * native GitHub icon visible in the remaining slot.
+ */
 .portal-v5-page .VPNavBar .container {
   width: 100% !important;
   max-width: none !important;
   margin: 0 !important;
   padding: 0 !important;
 }
+
 .portal-v5-page .VPNavBarTitle {
   position: fixed !important;
   top: 0 !important;
-  left: max(36px, calc((100vw - 1220px) / 2)) !important;
+  left: max(24px, calc((100vw - 1440px) / 2)) !important;
   z-index: 102 !important;
   width: auto !important;
   height: 64px !important;
   padding: 0 !important;
 }
+
 .portal-v5-page .VPNavBarTitle .title {
-  position: relative !important;
   display: flex !important;
   align-items: center !important;
   height: 64px !important;
   min-width: max-content !important;
   padding: 0 !important;
+  color: #1f2937 !important;
   background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  font-family: Inter, "Noto Sans SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 750 !important;
+  line-height: 1 !important;
+  letter-spacing: -.025em !important;
   text-shadow: none !important;
   filter: none !important;
   transform: none !important;
 }
+
+.portal-v5-page .VPNavBarTitle .title span {
+  display: inline !important;
+  color: inherit !important;
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  font: inherit !important;
+  letter-spacing: inherit !important;
+}
+
+.portal-v5-page .VPNavBarTitle .title::after,
+.portal-v5-page .VPNavBarTitle .title span::before,
+.portal-v5-page .VPNavBarTitle .title span::after {
+  content: none !important;
+  display: none !important;
+}
+
 .portal-v5-page .VPNavBarSearch {
   position: fixed !important;
   top: 11px !important;
-  left: max(226px, calc((100vw - 1220px) / 2 + 196px)) !important;
+  left: max(178px, calc((100vw - 1440px) / 2 + 140px)) !important;
   z-index: 101 !important;
 }
+
 .portal-v5-page .rc-controls {
-  right: max(36px, calc((100vw - 1220px) / 2)) !important;
+  right: max(76px, calc((100vw - 1440px) / 2 + 52px)) !important;
 }
 
-/* Chinese brand wordmark: geometric main name + compact Works seal. */
-html[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title {
-  color: transparent !important;
-  font-size: 0 !important;
-  letter-spacing: normal !important;
-}
-html[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title span {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 9px !important;
-  font-size: 0 !important;
-}
-html[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title span::before {
-  content: '数字员工';
-  color: transparent;
-  background: linear-gradient(105deg, #0a1020 0%, #293b63 48%, #5d50ea 78%, #1b9db9 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  font-family: 'Microsoft YaHei UI', 'PingFang SC', 'Noto Sans SC', sans-serif;
-  font-size: 21px;
-  font-weight: 950;
-  line-height: 1;
-  letter-spacing: -.075em;
-}
-html[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title span::after {
-  content: '工场';
-  display: inline-grid;
-  min-height: 24px;
-  padding: 0 7px;
-  place-items: center;
-  color: #fff;
-  background: linear-gradient(135deg, #5849ed, #3277dc 66%, #1eb2c4);
-  border-radius: 4px 10px 4px 10px;
-  box-shadow: 0 5px 13px rgba(73,68,217,.22), inset 0 0 0 1px rgba(255,255,255,.22);
-  font-family: 'Microsoft YaHei UI', 'PingFang SC', 'Noto Sans SC', sans-serif;
-  font-size: 11px;
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: .08em;
-}
-html[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title::after {
-  position: absolute !important;
-  top: 43px !important;
-  left: 1px !important;
-  content: 'DIGITAL EMPLOYEE WORKS' !important;
-  color: #7a879d !important;
-  -webkit-text-fill-color: #7a879d !important;
-  font: 800 6.5px/1 ui-sans-serif, system-ui, sans-serif !important;
-  letter-spacing: .17em !important;
-  transform: none !important;
-}
-
-/* Keep the English title clean and geometric. */
-html:not([lang='zh-CN']) .portal-v5-page .VPNavBarTitle .title span {
-  color: transparent !important;
-  background: linear-gradient(105deg, #0a1020 0%, #33466f 58%, #5b4cf0 100%) !important;
-  background-clip: text !important;
-  -webkit-background-clip: text !important;
-  font: 900 18px/1 ui-sans-serif, system-ui, sans-serif !important;
-  letter-spacing: -.045em !important;
-}
-html:not([lang='zh-CN']) .portal-v5-page .VPNavBarTitle .title::after { content: none !important; }
-
-html.dark[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title span::before {
-  background: linear-gradient(105deg, #fff 0%, #cbd5e9 48%, #a495ff 78%, #62deed 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-}
-html.dark[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title::after {
-  color: #8d9ab5 !important;
-  -webkit-text-fill-color: #8d9ab5 !important;
-}
-html.dark:not([lang='zh-CN']) .portal-v5-page .VPNavBarTitle .title span {
-  background: linear-gradient(105deg, #fff 0%, #c8d3eb 55%, #9b8cff 100%) !important;
-  background-clip: text !important;
-  -webkit-background-clip: text !important;
+.dark .portal-v5-page .VPNavBarTitle .title {
+  color: #f3f6fb !important;
+  -webkit-text-fill-color: currentColor !important;
 }
 
 @media (max-width: 760px) {
@@ -163,7 +121,20 @@ html.dark:not([lang='zh-CN']) .portal-v5-page .VPNavBarTitle .title span {
     grid-column: auto !important;
     grid-row: auto !important;
   }
-  .portal-v5-page .VPNavBarTitle { left: 16px !important; }
-  .portal-v5-page .rc-controls { right: 14px !important; }
-  .portal-v5-page .VPNavBarSearch { position: static !important; }
+
+  .portal-v5-page .VPNavBarTitle {
+    left: 16px !important;
+  }
+
+  .portal-v5-page .VPNavBarTitle .title {
+    font-size: 16px !important;
+  }
+
+  .portal-v5-page .rc-controls {
+    right: 14px !important;
+  }
+
+  .portal-v5-page .VPNavBarSearch {
+    position: static !important;
+  }
 }
