@@ -22,7 +22,38 @@ Advance eligible objects by exactly one governed lifecycle transition. Use the S
 
 ## 10:00 — Research Runtime Queue
 
-Discover official or primary-source signals, normalize and score candidates, update the canonical Queue, and write:
+The Queue worker is also the governed Research Intelligence worker. It must load:
+
+```text
+research/intelligence/REGISTRY.json
+```
+
+Then execute all three Skill 01 profiles due for the operating date:
+
+```text
+Skill 01-P — AI Platform Change Intelligence
+Skill 01-G — GitHub Engineering Intelligence
+Skill 01-R — Published Research Intelligence
+```
+
+### Intelligence obligations
+
+1. Scan all due P0 AI platforms: OpenAI, Anthropic/Claude, Google/Gemini, Cursor, GitHub Copilot and Microsoft Copilot Platform.
+2. Check official release notes, documentation, forums or communities, official repositories, status and policy channels as defined by the Registry.
+3. Scan the due GitHub repository watchlist incrementally; do not pretend to scan all of GitHub.
+4. Scan due paper, preprint, technical-report, benchmark and research-lab sources.
+5. Record checked, authentication-required, inaccessible and failed sources separately.
+6. Normalize and deduplicate the same change appearing in platform, GitHub and research sources.
+7. Assign exactly one primary column to every selected object and preserve optional secondary impact.
+8. Execute Skill 02 — Three-Column Research Triage only after source coverage is recorded.
+
+Write the daily intelligence run to:
+
+```text
+research/intelligence/runs/YYYY/MM/YYYY-MM-DD-intelligence.json
+```
+
+Then update the canonical Queue and write:
 
 ```text
 research/runtime/plans/YYYY/MM/YYYY-MM-DD-plan.json
@@ -35,6 +66,14 @@ The plan must contain exactly three decisions:
 - Open-source Engineering.
 
 For each column, select at most one primary object or explicitly record `No Selection` with the reason. Every selected Queue object must have one primary column. Queue must not write a publication.
+
+On and after the Research Intelligence Registry effective date, Queue cannot be `Completed` unless:
+
+- all three intelligence pipelines are `Completed`;
+- every due source is checked, explicitly inaccessible or failed with a reason;
+- all three columns have `Selected` or `No Selection`;
+- the selected IDs in the intelligence run and Daily Research Plan match;
+- the resulting GitHub commit is fetched and verified.
 
 ## 11:00 — Research Runtime Knowledge
 

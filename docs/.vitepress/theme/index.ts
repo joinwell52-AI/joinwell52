@@ -9,6 +9,7 @@ import ResearchCategory from './components/ResearchCategory.vue'
 import RuntimeCenter from './components/RuntimeCenter.vue'
 import RuntimeOperationsCenter from './components/RuntimeOperationsCenter.vue'
 import RuntimeOperationsCenterV4 from './components/RuntimeOperationsCenterV4.vue'
+import ResearchIntelligenceRadar from './components/ResearchIntelligenceRadar.vue'
 import ResearchCenterHome from './components/ResearchCenterHome.vue'
 import GlobalBack from './components/GlobalBack.vue'
 import './custom.css'
@@ -159,6 +160,7 @@ export default {
     app.component('RuntimeCenter', RuntimeCenter)
     app.component('RuntimeOperationsCenter', RuntimeOperationsCenter)
     app.component('RuntimeOperationsCenterV4', RuntimeOperationsCenterV4)
+    app.component('ResearchIntelligenceRadar', ResearchIntelligenceRadar)
     app.component('ResearchCenterHome', ResearchCenterHome)
 
     if (typeof window !== 'undefined') {
