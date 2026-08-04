@@ -1,0 +1,90 @@
+name: Add observation notes pagination
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/add-research-pagination.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  paginate-notes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Add pagination
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('docs/.vitepress/theme/components/ResearchNotes.vue')
+          text = path.read_text(encoding='utf-8')
+
+          def replace_once(old: str, new: str, label: str):
+              global text
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{label}: expected one match, found {count}')
+              text = text.replace(old, new, 1)
+
+          replace_once(
+              "const activeCategory = ref<'all' | ResearchCategory>('all')\nconst selectedDate = ref('')",
+              "const activeCategory = ref<'all' | ResearchCategory>('all')\nconst selectedDate = ref('')\nconst currentPage = ref(1)\nconst pageSize = 10",
+              'pagination state'
+          )
+
+          replace_once(
+              "watch(() => props.column, () => {\n  activeCategory.value = 'all'\n  selectedDate.value = ''\n})",
+              "watch(() => props.column, () => {\n  activeCategory.value = 'all'\n  selectedDate.value = ''\n  currentPage.value = 1\n})\n\nwatch([activeCategory, selectedDate], () => {\n  currentPage.value = 1\n})",
+              'pagination reset'
+          )
+
+          replace_once(
+              "const displayedNotes = computed(() =>\n  props.column ? visibleNotes.value : visibleNotes.value.slice(0, 12)\n)",
+              "const totalPages = computed(() => Math.max(1, Math.ceil(visibleNotes.value.length / pageSize)))\n\nconst displayedNotes = computed(() => {\n  const start = (currentPage.value - 1) * pageSize\n  return visibleNotes.value.slice(start, start + pageSize)\n})\n\nconst visiblePageNumbers = computed(() => {\n  const total = totalPages.value\n  if (total <= 7) return Array.from({ length: total }, (_, index) => index + 1)\n\n  const pages = new Set([1, total, currentPage.value - 1, currentPage.value, currentPage.value + 1])\n  return [...pages].filter(page => page >= 1 && page <= total).sort((a, b) => a - b)\n})\n\nconst changePage = (page: number) => {\n  currentPage.value = Math.min(Math.max(page, 1), totalPages.value)\n  if (typeof window !== 'undefined') {\n    window.requestAnimationFrame(() => {\n      document.querySelector('.rn-list')?.scrollIntoView({ behavior: 'smooth', block: 'start' })\n    })\n  }\n}",
+              'paginated notes'
+          )
+
+          replace_once(
+              "<span class=\"rn-index\">{{ String(index + 1).padStart(2, '0') }}</span>",
+              "<span class=\"rn-index\">{{ String((currentPage - 1) * pageSize + index + 1).padStart(2, '0') }}</span>",
+              'continuous item index'
+          )
+
+          replace_once(
+              "    </section>\n\n    <section v-else class=\"rn-empty\">",
+              "    </section>\n\n    <nav v-if=\"displayedNotes.length && totalPages > 1\" class=\"rn-pagination\" :aria-label=\"zh ? '观察笔记分页' : 'Observation notes pagination'\">\n      <button type=\"button\" :disabled=\"currentPage === 1\" @click=\"changePage(currentPage - 1)\">\n        <span>←</span>{{ zh ? '上一页' : 'Previous' }}\n      </button>\n      <div class=\"rn-pagination__pages\">\n        <template v-for=\"(page, index) in visiblePageNumbers\" :key=\"page\">\n          <span v-if=\"index > 0 && page - visiblePageNumbers[index - 1] > 1\" class=\"rn-pagination__ellipsis\">…</span>\n          <button type=\"button\" :class=\"{ active: currentPage === page }\" :aria-current=\"currentPage === page ? 'page' : undefined\" @click=\"changePage(page)\">{{ page }}</button>\n        </template>\n      </div>\n      <button type=\"button\" :disabled=\"currentPage === totalPages\" @click=\"changePage(currentPage + 1)\">\n        {{ zh ? '下一页' : 'Next' }}<span>→</span>\n      </button>\n    </nav>\n\n    <section v-else class=\"rn-empty\">",
+              'pagination controls'
+          )
+
+          replace_once(
+              "</style>",
+              ".rn-pagination{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:28px 0 8px;padding-top:22px;border-top:1px solid var(--vp-c-divider)}.rn-pagination>button,.rn-pagination__pages button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 15px;border:1px solid var(--vp-c-divider);border-radius:12px;background:var(--vp-c-bg);color:var(--vp-c-text-1);font-size:12px;font-weight:750;cursor:pointer;transition:.18s ease}.rn-pagination>button:hover:not(:disabled),.rn-pagination__pages button:hover,.rn-pagination__pages button.active{border-color:var(--vp-c-brand-1);color:var(--vp-c-brand-1);background:var(--vp-c-brand-soft)}.rn-pagination>button:disabled{opacity:.38;cursor:not-allowed}.rn-pagination__pages{display:flex;align-items:center;justify-content:center;gap:7px}.rn-pagination__pages button{width:40px;padding:0}.rn-pagination__ellipsis{display:grid;width:24px;place-items:center;color:var(--vp-c-text-3)}@media(max-width:620px){.rn-pagination{gap:8px}.rn-pagination>button{padding:0 10px;font-size:0}.rn-pagination>button span{font-size:14px}.rn-pagination__pages{gap:4px}.rn-pagination__pages button{width:36px;min-height:36px}}\n</style>",
+              'pagination styles'
+          )
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - run: npm install --no-audit --no-fund
+      - run: npm run docs:build
+
+      - name: Commit pagination
+        shell: bash
+        run: |
+          rm .github/workflows/add-research-pagination.yml
+          git config user.name 'joinwell52-AI Runtime'
+          git config user.email 'actions@users.noreply.github.com'
+          git add docs/.vitepress/theme/components/ResearchNotes.vue .github/workflows/add-research-pagination.yml package-lock.json
+          git commit -m 'feat(research): paginate observation notes'
+          git pull --rebase origin main
+          git push origin HEAD:main
