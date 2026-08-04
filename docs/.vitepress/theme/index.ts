@@ -18,6 +18,7 @@ import './rvs.css'
 import './portal-v5.css'
 import './portal-v5-language.css'
 import './article-cover.css'
+import './production-engine-v1.3.css'
 
 const zhRuntimeText: Record<string, string> = {
   'RESEARCH RUNTIME CENTER · 运行控制平面': '工场运行中心 · 运行控制平面',
@@ -110,6 +111,34 @@ function enhanceLanguageRouting() {
   })
 }
 
+function enhanceProductionEngineV13(chinese: boolean) {
+  if (typeof document === 'undefined') return
+
+  const releasePath = withBase(chinese
+    ? '/zh/publications/research-report-production-engine-v1.3'
+    : '/en/publications/research-report-production-engine-v1.3')
+
+  document.querySelectorAll<HTMLAnchorElement>(
+    '.rc-home a[href*="research-report-production-engine-v1.0"], .rcv5 a[href*="research-report-production-engine-v1.0"]'
+  ).forEach((anchor) => anchor.setAttribute('href', releasePath))
+
+  document.querySelectorAll<HTMLElement>('.rc-home, .rcv5').forEach((root) => {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT)
+    let node = walker.nextNode()
+    while (node) {
+      const value = node.textContent || ''
+      const replaced = value
+        .replaceAll('研究报告生产机 V1.0', '研究报告生产机 V1.3')
+        .replaceAll('Research Report Production Engine V1.0', 'Research Report Production Engine V1.3')
+      if (replaced !== value) node.textContent = replaced
+      node = walker.nextNode()
+    }
+  })
+
+  document.querySelectorAll<HTMLElement>('.rcv5-engine-version > strong, .rcv5-dashboard > div:first-child > b')
+    .forEach((element) => { element.textContent = 'V1.3' })
+}
+
 function enhancePortal() {
   if (typeof document === 'undefined' || typeof window === 'undefined') return
 
@@ -143,6 +172,7 @@ function enhancePortal() {
     heroCopy.prepend(switcher)
   }
 
+  enhanceProductionEngineV13(chinese)
   enhanceLanguageRouting()
   localizeChineseRuntime()
 }
