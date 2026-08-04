@@ -39,12 +39,7 @@
 .rc-home .rc-program--codeflow .rc-program__cover > b::after { content: '03'; }
 .rc-home .rc-program--employee .rc-program__cover > b::after { content: '04'; }
 
-/*
- * Homepage header geometry.
- * The dark hero is 1440px wide on desktop. The title begins at its left edge.
- * The language/theme control ends 52px before its right edge, leaving the
- * native GitHub icon visible in the remaining slot.
- */
+/* Homepage header stays inside the 1440px hero bounds. */
 .portal-v5-page .VPNavBar .container {
   width: 100% !important;
   max-width: none !important;
@@ -63,6 +58,7 @@
 }
 
 .portal-v5-page .VPNavBarTitle .title {
+  position: relative !important;
   display: flex !important;
   align-items: center !important;
   height: 64px !important;
@@ -90,11 +86,37 @@
   letter-spacing: inherit !important;
 }
 
-.portal-v5-page .VPNavBarTitle .title::after,
 .portal-v5-page .VPNavBarTitle .title span::before,
 .portal-v5-page .VPNavBarTitle .title span::after {
   content: none !important;
   display: none !important;
+}
+
+/* Restore the artistic Chinese wordmark without widening the header. */
+html[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title span {
+  color: transparent !important;
+  background: linear-gradient(100deg, #111827 0%, #334155 38%, #6257f5 72%, #22b8d1 100%) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-family: "Microsoft YaHei UI", "PingFang SC", "Noto Sans SC", sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 950 !important;
+  line-height: 1 !important;
+  letter-spacing: -.06em !important;
+  filter: drop-shadow(0 3px 8px rgba(79,70,229,.16)) !important;
+}
+
+html[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title::after {
+  content: '' !important;
+  position: absolute !important;
+  left: 1px !important;
+  bottom: 11px !important;
+  display: block !important;
+  width: 46px !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, #6257f5, #22b8d1) !important;
+  border-radius: 999px !important;
 }
 
 .portal-v5-page .VPNavBarSearch {
@@ -113,6 +135,122 @@
   -webkit-text-fill-color: currentColor !important;
 }
 
+html.dark[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title span {
+  background: linear-gradient(100deg, #ffffff 0%, #cbd5e1 38%, #a89bff 72%, #67e8f9 100%) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Restore distinct color identities for the three Observation Notes columns. */
+.rn-column-card {
+  --rn-accent: #6658ff;
+  --rn-accent-2: #36cbe8;
+  --rn-ink: #27234f;
+  --rn-soft: rgba(102,88,255,.10);
+  --rn-soft-2: rgba(54,203,232,.08);
+  border-color: color-mix(in srgb, var(--rn-accent) 28%, var(--vp-c-divider)) !important;
+  background:
+    radial-gradient(circle at 92% 5%, var(--rn-soft) 0 18%, transparent 42%),
+    linear-gradient(145deg, #fbfaff 0%, #f5f3ff 56%, #eefbff 100%) !important;
+  box-shadow: 0 18px 42px rgba(49,46,129,.07) !important;
+}
+
+.rn-column-card.is-industry-architecture {
+  --rn-accent: #168f8b;
+  --rn-accent-2: #5ed4cd;
+  --rn-ink: #174a49;
+  --rn-soft: rgba(22,143,139,.12);
+  --rn-soft-2: rgba(94,212,205,.10);
+  background:
+    radial-gradient(circle at 92% 5%, var(--rn-soft) 0 18%, transparent 42%),
+    linear-gradient(145deg, #f8fffd 0%, #effbf8 58%, #eefaf9 100%) !important;
+  box-shadow: 0 18px 42px rgba(15,118,110,.07) !important;
+}
+
+.rn-column-card.is-open-source-engineering {
+  --rn-accent: #315db4;
+  --rn-accent-2: #82a9ff;
+  --rn-ink: #203d78;
+  --rn-soft: rgba(49,93,180,.12);
+  --rn-soft-2: rgba(130,169,255,.10);
+  background:
+    radial-gradient(circle at 92% 5%, var(--rn-soft) 0 18%, transparent 42%),
+    linear-gradient(145deg, #fbfdff 0%, #f1f6ff 58%, #edf4ff 100%) !important;
+  box-shadow: 0 18px 42px rgba(30,64,175,.07) !important;
+}
+
+.rn-column-card::before {
+  background: linear-gradient(90deg, var(--rn-accent), var(--rn-accent-2)) !important;
+}
+
+.rn-column-card::after {
+  border-color: color-mix(in srgb, var(--rn-accent) 24%, transparent) !important;
+  box-shadow:
+    0 0 0 38px color-mix(in srgb, var(--rn-accent) 5%, transparent),
+    0 0 0 76px color-mix(in srgb, var(--rn-accent-2) 4%, transparent) !important;
+}
+
+.rn-column-card .rn-column-head span {
+  color: var(--rn-accent) !important;
+  background: color-mix(in srgb, var(--rn-accent) 11%, white) !important;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--rn-accent) 15%, transparent) !important;
+}
+
+.rn-column-card .rn-column-head strong,
+.rn-column-card h2 {
+  color: var(--rn-ink) !important;
+}
+
+.rn-column-card > small {
+  color: var(--rn-accent) !important;
+}
+
+.rn-column-card .rn-breakdown span {
+  background: color-mix(in srgb, var(--rn-accent) 7%, white) !important;
+  border: 1px solid color-mix(in srgb, var(--rn-accent) 12%, transparent) !important;
+}
+
+.rn-column-card .rn-breakdown b,
+.rn-column-card .rn-open {
+  color: var(--rn-accent) !important;
+}
+
+.rn-column-card:hover {
+  border-color: var(--rn-accent) !important;
+  box-shadow: 0 26px 64px color-mix(in srgb, var(--rn-accent) 18%, transparent) !important;
+}
+
+.dark .rn-column-card {
+  background:
+    radial-gradient(circle at 92% 5%, color-mix(in srgb, var(--rn-accent) 18%, transparent) 0 18%, transparent 44%),
+    linear-gradient(145deg, #131629 0%, #171a31 58%, #121a2d 100%) !important;
+  border-color: color-mix(in srgb, var(--rn-accent) 34%, rgba(255,255,255,.08)) !important;
+  box-shadow: 0 18px 42px rgba(0,0,0,.24) !important;
+}
+
+.dark .rn-column-card.is-industry-architecture {
+  background:
+    radial-gradient(circle at 92% 5%, rgba(22,143,139,.20) 0 18%, transparent 44%),
+    linear-gradient(145deg, #111c22 0%, #132729 58%, #112226 100%) !important;
+}
+
+.dark .rn-column-card.is-open-source-engineering {
+  background:
+    radial-gradient(circle at 92% 5%, rgba(49,93,180,.22) 0 18%, transparent 44%),
+    linear-gradient(145deg, #11182a 0%, #142039 58%, #101b30 100%) !important;
+}
+
+.dark .rn-column-card .rn-column-head span,
+.dark .rn-column-card .rn-breakdown span {
+  background: color-mix(in srgb, var(--rn-accent) 18%, #101529) !important;
+}
+
+.dark .rn-column-card .rn-column-head strong,
+.dark .rn-column-card h2 {
+  color: #f5f7ff !important;
+}
+
 @media (max-width: 760px) {
   .rc-home .rc-program--tmpa,
   .rc-home .rc-program--fcop,
@@ -126,7 +264,8 @@
     left: 16px !important;
   }
 
-  .portal-v5-page .VPNavBarTitle .title {
+  .portal-v5-page .VPNavBarTitle .title,
+  html[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title span {
     font-size: 16px !important;
   }
 
