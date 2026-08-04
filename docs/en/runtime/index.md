@@ -1,7 +1,7 @@
 ---
 layout: home
 pageClass: runtime-center-page
-title: Digital Researcher Operations Center
+title: Digital Works Operations Center
 description: Today's authentic Runtime data, three-column plan, dynamic shift total, production, release, work results and GitHub evidence.
 outline: false
 ---
@@ -13,3 +13,11 @@ import RuntimeOperationsCenterCurrent from '../../.vitepress/theme/components/Ru
 <RuntimeOperationsCenterCurrent lang="en" />
 
 <ResearchIntelligenceRadar lang="en" />
+
+<style>
+.runtime-center-page .runtime-classic .hero h1::after {
+  content: 'Digital Works Operations Center' !important;
+  font-size: clamp(42px, 4.2vw, 60px) !important;
+  letter-spacing: -.045em !important;
+}
+</style>
