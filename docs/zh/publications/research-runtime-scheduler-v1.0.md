@@ -1,6 +1,6 @@
 ---
 title: Research Runtime Scheduler V1.0
- description: Research Runtime Scheduler 的首个正式发布记录；当前运行基线已经升级到 Scheduler V2.0 与 Runtime Center V4。
+description: Research Runtime Scheduler 的首个正式发布记录；当前运行基线已经升级到 Scheduler V2.0 与 Runtime Center V4。
 outline: deep
 ---
 
