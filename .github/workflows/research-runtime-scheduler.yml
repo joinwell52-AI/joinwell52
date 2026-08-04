@@ -68,7 +68,10 @@ jobs:
       - name: Initialize three-column plan and Publication Candidate batch
         run: node scripts/runtime-v4.mjs initialize --date "${{ steps.runtime.outputs.runtime_date }}"
 
-      - name: Validate Runtime Record, work results, column plan and candidates
+      - name: Initialize Research Intelligence run
+        run: node scripts/research-intelligence.mjs initialize --date "${{ steps.runtime.outputs.runtime_date }}"
+
+      - name: Validate Runtime Record, intelligence coverage, work results, column plan and candidates
         run: npm run runtime:validate
 
       - name: Commit Runtime scheduling artifacts
@@ -79,7 +82,7 @@ jobs:
         run: |
           git config user.name "joinwell52 Research Runtime"
           git config user.email "actions@users.noreply.github.com"
-          git add research/runtime
+          git add research/runtime research/intelligence
 
           if git diff --cached --quiet; then
             echo "Runtime artifacts already contain this scheduling event."
