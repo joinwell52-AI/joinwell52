@@ -1,13 +1,13 @@
 {
   "name": "joinwell52-research-center-portal",
   "private": true,
-  "version": "9.0.3",
+  "version": "9.0.4",
   "type": "module",
   "scripts": {
     "intelligence:validate": "node scripts/research-intelligence.mjs validate",
     "intelligence:build": "node scripts/research-intelligence.mjs build",
     "runtime:validate": "node scripts/runtime-v5.mjs validate && npm run intelligence:validate",
-    "runtime:build": "node scripts/runtime-v5.mjs build && node scripts/runtime-v5-home-compat.mjs && npm run intelligence:build && node scripts/runtime-legacy-compat.mjs && node scripts/verify-runtime-projection.mjs",
+    "runtime:build": "node scripts/runtime-v5.mjs build && node scripts/runtime-v5-home-compat.mjs && npm run intelligence:build && node scripts/runtime-legacy-compat.mjs && node scripts/runtime-legacy-status-normalize.mjs && node scripts/verify-runtime-projection.mjs",
     "runtime:projection:verify": "node scripts/verify-runtime-projection.mjs",
     "runtime:projection:verify-dist": "node scripts/verify-runtime-projection.mjs --dist",
     "runtime:gate": "node scripts/runtime-v5.mjs gate",
