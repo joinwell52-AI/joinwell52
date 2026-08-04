@@ -6,14 +6,15 @@ Digital Employee Works publishes versioned Runtime capabilities, Digital Employe
 
 | Type | Document | Current version | Status |
 |---|---|---:|---|
-| Digital Researcher Operations Center | [Research Runtime Center](../runtime/) | V4 | Running |
-| Runtime scheduler | [Research Runtime Center V4 specification](../runtime/v4) | Scheduler V2.0 | Active |
+| Research Runtime Center | [Operations Center](../runtime/) | **V5.0** | Frozen architecture / Running operations |
+| Runtime scheduler | [Research Runtime Center V5.0 specification](../runtime/v5) | **Scheduler V3.0** | Active |
 | Research intelligence | [Research Intelligence System](../runtime/research-intelligence) | V1.0 | Active |
 
-The current Runtime governs eight formal tasks, including 15:00 Production and release-only Publication at 20:00. The Operations Center is generated from Runtime Records, three-column plans, intelligence scan records, and Publication Candidates.
+V5 defines four independent Runtime systems. Daily Runtime owns six formal same-day stages: Discovery, Queue, Reading, Analysis, Production and Publication. Weekly, Academic and Research Program runtimes use separate schedules and separate records. The complete Scheduler defines nine formal tasks.
 
-Historical release record:
+Historical records remain available:
 
+- [Research Runtime Center V4 history](../runtime/v4)
 - [Research Runtime Scheduler V1.0 release](./research-runtime-scheduler-v1.0)
 
 ## Digital Researcher capability
@@ -23,14 +24,16 @@ Historical release record:
 | Digital Employee capability | [Research Report Production Engine](./research-report-production-engine-v1.3) | **V1.3** | Current Capability Release |
 | Usage guide | [V1.3 Quick Start](./research-report-production-engine-v1.3-quickstart) | V1.3 | Downloadable |
 
-Research Report Production Engine V1.3 is a ChatGPT-based Research Analyst worker and text-driven production system. It integrates:
+Research Report Production Engine V1.3 is a ChatGPT-based Research Analyst worker and text-driven production system. Under Runtime Center V5 it operates through:
 
 - Research Skills V2.0;
 - AI Platform, GitHub Engineering, and Published Research intelligence pipelines;
 - separate topic decisions for Digital Employee, Industry Architecture, and Open-source Engineering;
+- Deep Reading at 11:00 and Research Analysis at 13:00;
 - complete-report production at 15:00;
 - GitHub and website release at 20:00;
-- Runtime Records, task-outcome reports, and Commit Verify.
+- separate Daily, Weekly, Academic and Program Runtime Records;
+- shift-outcome reports and Commit Verify.
 
 Download:
 
@@ -47,12 +50,13 @@ V1.0 remains the historical baseline for the first Production Test: [legacy comp
 | Specification | [TMPA Core Specification](./tmpa-core-specification-s0.4) | S0.4 | Implementation-ready specification draft |
 | Case report | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.4) | I0.4 | S0.4 engineering evidence draft |
 
-The TMPA publication suite is an independent theory layer. High-frequency Observation Notes do not automatically become paper evidence; the implementation case reports only the engineering evidence inside its stated boundary.
+The TMPA publication suite is an independent theory layer. High-frequency Observation Notes do not automatically become paper evidence; the implementation case reports only the engineering evidence inside its stated boundary. Long-term TMPA work runs through Research Program Runtime, not Daily Runtime.
 
 ```text
-Research Intelligence
-→ Three-Column Triage
-→ Research Runtime
+Daily Discovery
+→ Three-Column Queue
+→ Deep Reading
+→ Research Analysis
 → Publication Candidate
 → bilingual publication
 → GitHub Commit

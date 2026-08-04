@@ -1,11 +1,15 @@
 ---
 layout: home
 pageClass: runtime-center-page
-title: 数字研究员运营中心 V4
-description: 三条研究情报管线、三个研究栏目、上午研究班次、15:00 完整报告生产、20:00 GitHub 与网站发版，以及每个定时任务的工作成果。
+title: Research Runtime Center V5.0
+description: 四套相互独立的 Runtime，Daily 形成当天发现、研究、生产与发布闭环，Weekly、Academic、Program 独立运行。
 outline: false
 ---
 
-<RuntimeOperationsCenterV4 lang="zh" />
+<script setup>
+import RuntimeOperationsCenterV5 from '../../.vitepress/theme/components/RuntimeOperationsCenterV5.vue'
+</script>
+
+<RuntimeOperationsCenterV5 lang="zh" view="center" />
 
 <ResearchIntelligenceRadar lang="zh" />

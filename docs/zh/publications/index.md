@@ -6,14 +6,15 @@
 
 | 类型 | 文档 | 当前版本 | 状态 |
 |---|---|---:|---|
-| 数字研究员运营中心 | [Research Runtime Center](../runtime/) | V4 | Running |
-| 运行调度器 | [Research Runtime Center V4 规范](../runtime/v4) | Scheduler V2.0 | Active |
+| Research Runtime Center | [运营中心](../runtime/) | **V5.0** | 架构冻结 / 持续运行 |
+| 运行调度器 | [Research Runtime Center V5.0 规范](../runtime/v5) | **Scheduler V3.0** | Active |
 | 研究情报系统 | [Research Intelligence System](../runtime/research-intelligence) | V1.0 | Active |
 
-当前 Runtime 已统一八个正式任务，包含 15:00 Production 与 20:00 Release Only；运营中心根据 Runtime Record、三栏计划、情报扫描记录和 Publication Candidate 自动生成。
+V5 建立四套相互独立的 Runtime。Daily Runtime 负责六个当天阶段：Discovery、Queue、Reading、Analysis、Production、Publication；Weekly、Academic、Research Program 使用独立调度和独立记录。Scheduler 共定义九个正式任务。
 
-历史发布记录：
+历史记录继续保留：
 
+- [Research Runtime Center V4 历史](../runtime/v4)
 - [Research Runtime Scheduler V1.0 正式发布](./research-runtime-scheduler-v1.0)
 
 ## 数字研究员能力
@@ -23,14 +24,17 @@
 | 数字员工能力 | [研究报告生产机](./research-report-production-engine-v1.3) | **V1.3** | Current Capability Release |
 | 使用说明 | [V1.3 快速开始](./research-report-production-engine-v1.3-quickstart) | V1.3 | Downloadable |
 
-研究报告生产机 V1.3 是基于 ChatGPT 的 Research Analyst Worker 与文本驱动生产系统。它整合：
+研究报告生产机 V1.3 是基于 ChatGPT 的 Research Analyst Worker 与文本驱动生产系统。在 Runtime Center V5 中，它通过以下链路运行：
 
 - Research Skills V2.0；
 - AI 平台、GitHub 工程、论文与研究成果三条情报管线；
 - 数字员工、行业架构、开源工程三个栏目分别选题；
+- 11:00 Deep Reading；
+- 13:00 Research Analysis；
 - 15:00 完整报告生产；
 - 20:00 GitHub 与网站发版；
-- Runtime Record、任务成果汇报与 Commit Verify。
+- Daily、Weekly、Academic、Program 四类独立 Runtime Record；
+- 班次成果汇报与 Commit Verify。
 
 下载入口：
 
@@ -47,12 +51,13 @@ V1.0 作为首个 Production Test 历史基线保留：[旧版兼容入口](./re
 | 规范 | [TMPA Core Specification](./tmpa-core-specification-s0.4) | S0.4 | 可实现规范草稿 |
 | 案例 | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.4) | I0.4 | S0.4 工程证据草稿 |
 
-TMPA 出版体系是独立理论层。工场的高频观察笔记不自动构成论文证据；工程案例只报告其明确范围内的实现与验证结果。
+TMPA 出版体系是独立理论层。工场的高频观察笔记不自动构成论文证据；工程案例只报告其明确范围内的实现与验证结果。TMPA 长期研究进入 Research Program Runtime，不再进入 Daily Runtime。
 
 ```text
-Research Intelligence
-→ Three-Column Triage
-→ Research Runtime
+Daily Discovery
+→ Three-Column Queue
+→ Deep Reading
+→ Research Analysis
 → Publication Candidate
 → 中英文正式出版
 → GitHub Commit

@@ -5,7 +5,8 @@
 **English** · [简体中文](./README.zh-CN.md)
 
 [![Digital Employee Works](https://img.shields.io/badge/Digital_Employee-Works-1f6feb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/)
-[![Runtime](https://img.shields.io/badge/Runtime_Center-V4-7c6cff?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/runtime/)
+[![Runtime](https://img.shields.io/badge/Runtime_Center-V5.0-7c6cff?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/runtime/)
+[![Scheduler](https://img.shields.io/badge/Runtime_Scheduler-V3.0-2563eb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/runtime/v5)
 [![Digital Researcher](https://img.shields.io/badge/Research_Report_Production_Engine-V1.3-6d5dfc?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/publications/research-report-production-engine-v1.3)
 [![Intelligence](https://img.shields.io/badge/Research_Intelligence-V1.0-16a34a?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/runtime/research-intelligence)
 
@@ -13,52 +14,65 @@
 
 - [Download the current source ZIP](https://github.com/joinwell52-AI/joinwell52/archive/refs/heads/main.zip)
 - [Open the GitHub repository](https://github.com/joinwell52-AI/joinwell52)
+- [Read the V5.0 Runtime Guide](./docs/en/runtime/v5.md)
 - [Read the V1.3 Quick Start](./docs/en/publications/research-report-production-engine-v1.3-quickstart.md)
 
 No APK, EXE, or conventional installer is required. The repository is the distribution: it contains the skills, source registry, Runtime contracts, scheduling configuration, validators, website source, and operating evidence. Actual research execution uses the operator’s own ChatGPT and GitHub environment.
 
-## What this repository is
-
-Digital Employee Works continuously produces inspectable and reconstructable Digital Employee work through one formal control plane.
+## Current architecture
 
 ```text
 Research Intelligence System V1.0
         ↓
-Three-column Research Triage
+Research Runtime Center V5.0
         ↓
-Research Runtime Center V4
+Daily / Weekly / Academic / Research Program Runtime
         ↓
 Research Report Production Engine V1.3
-        ↓
-Publication Candidate
         ↓
 GitHub + Website + Commit Verify
 ```
 
-The current Digital Researcher product is:
+Research Runtime Center V5.0 is the frozen architecture baseline. Scheduler V3.0 defines four independent Runtime systems and nine formal tasks. Long-term Program work no longer enters Daily Runtime.
 
-- **Research Report Production Engine V1.3**;
-- implemented as a ChatGPT-based Research Analyst position;
-- operated through Research Runtime Scheduler V2.0;
-- governed by Research Skills V2.0;
-- supplied by three source-intelligence pipelines;
-- published through GitHub First.
+## Four independent Runtime systems
 
-## Three source-intelligence pipelines
+### Daily Runtime
 
-Skill 01 is a dispatcher for:
+```text
+09:00 Discovery → Signal Pool
+10:00 Queue → Today's Research Plan
+11:00 Reading → Reading Result
+13:00 Analysis → Research Object
+15:00 Production → Publication Candidate
+20:00 Publication → GitHub + Website + Commit Verify + Release
+```
 
-1. **AI Platform Change Intelligence** — OpenAI, Claude, Gemini, Cursor, GitHub Copilot, Microsoft Copilot Platform, official documentation, forums, release notes, GitHub, and status channels;
-2. **GitHub Engineering Intelligence** — controlled watchlists and incremental Releases, tags, merged PRs, high-value issues, discussions, security advisories, architecture files, tests, and benchmarks;
-3. **Published Research Intelligence** — papers, preprints, technical reports, benchmarks, datasets, system cards, model cards, standards, repositories, and evaluation assets.
-
-All three pipelines serve the same three permanent columns:
+Daily makes an explicit `Selected` or `No Selection` decision for each column:
 
 - **Digital Employee**;
 - **Industry Architecture**;
 - **Open-source Engineering**.
 
-One selected object has one primary column, with optional secondary impact.
+### Weekly Runtime
+
+Runs Sunday at 20:30. It synthesizes the previous seven days of evidence-validated Daily Research into new Trend, Architecture, Engineering and Prediction judgments. It must not copy or concatenate Daily articles.
+
+### Academic Runtime
+
+Runs Wednesday at 16:00. It accepts only Paper, Benchmark, Specification and Institution objects. Ordinary news is excluded.
+
+### Research Program Runtime
+
+Runs Monday at 12:00. It advances the independent queues, lifecycles, reviews and publications of:
+
+- TMPA;
+- FCoP;
+- CodeFlowMu;
+- Digital Employee;
+- Research Operating System.
+
+Program work never consumes a Daily stage or Daily column slot.
 
 ## Research Skills V2.0
 
@@ -73,67 +87,49 @@ One selected object has one primary column, with optional secondary impact.
 08 Publication Editing
 ```
 
-The article is not the execution unit. The Skill is the execution unit.
+The article is not the execution unit. The Skill is the execution unit. V5 binds Skills to explicit stage inputs and outputs: Reading consumes selected objects, Analysis consumes Reading Results, Production consumes Research Objects, and Publication consumes complete Publication Candidates only.
 
-## Runtime Center V4
+## Research Intelligence System V1.0
 
-Research Runtime Scheduler V2.0 defines eight formal Runtime tasks:
+Skill 01 dispatches three intelligence pipelines:
 
-| Runtime | Schedule (`Asia/Shanghai`) | Work outcome |
-|---|---:|---|
-| Research Runtime Engine | Daily 09:00 | Advance one governed lifecycle transition. |
-| Research Runtime Queue | Daily 10:00 | Run all three intelligence pipelines and publish three-column decisions. |
-| Research Runtime Knowledge | Daily 11:00 | Admit evidence-validated Research Notes into Knowledge. |
-| Research Runtime Architecture | Monday 12:00 | Make architecture and lifecycle dispositions. |
-| **Research Runtime Production** | **Daily 15:00** | Produce complete bilingual Publication Candidates. |
-| Research Runtime Publication | Daily 20:00 | Release complete candidates, update the website, commit, and verify. |
-| Research Runtime Weekly | Sunday 20:30 | Produce new cross-topic synthesis. |
-| Research Runtime Academic | Wednesday 10:00 | Research papers, benchmarks, standards, conferences, and institutions. |
+1. **AI Platform Change Intelligence**;
+2. **GitHub Engineering Intelligence**;
+3. **Published Research Intelligence**.
 
-### Afternoon production, evening release
-
-```text
-15:00
-Writing → Visualization → Evidence & Citation → Publication Editing
-→ complete Publication Candidate
-
-20:00
-Publication Candidate → public bilingual files → indexes → website
-→ GitHub Commit → Commit Verify → Release
-```
-
-The 20:00 task does not restart source discovery, analysis, or article writing.
+All three pipelines serve all three Daily columns. Discovery produces the same-day Signal Pool; Queue performs the column decisions.
 
 ## Work outcomes, not status slogans
 
-Every scheduled task reports:
+Every terminal shift reports:
 
 ```text
 Input
-→ Work Outcome
-→ Durable Output
-→ Next Governed Action
-→ Metrics
-→ Artifacts and GitHub Evidence
+Work Result
+Output
+Next
+Metrics
+Evidence
+Artifacts
 ```
 
 A trigger is not completion evidence. Without actual ChatGPT worker execution, the task remains `Waiting`, `Blocked`, or `Failed`.
 
-## Authoritative artifacts
+## Authoritative Runtime artifacts
 
 ```text
+research/runtime/SCHEDULER.json
+research/runtime/records/daily/YYYY/MM/YYYY-MM-DD-daily-runtime.json
+research/runtime/records/weekly/YYYY/MM/YYYY-MM-DD-weekly-runtime.json
+research/runtime/records/academic/YYYY/MM/YYYY-MM-DD-academic-runtime.json
+research/runtime/records/program/YYYY/MM/YYYY-MM-DD-program-runtime.json
 research/intelligence/REGISTRY.json
 research/intelligence/runs/YYYY/MM/YYYY-MM-DD-intelligence.json
-research/runtime/YYYY/MM/YYYY-MM-DD-runtime.md
-research/runtime/plans/YYYY/MM/YYYY-MM-DD-plan.json
-research/runtime/candidates/YYYY/MM/YYYY-MM-DD-candidates.json
 ```
 
-The website is generated from repository artifacts. It does not maintain a second hand-edited status or article database.
+V4 Markdown records remain frozen historical evidence. V5 does not rewrite them.
 
 ## Product and engineering hierarchy
-
-The public product stack is presented in this order:
 
 ```text
 TMPA + FCoP
@@ -146,17 +142,17 @@ CodeFlowMu + Digital Employee
 - **CodeFlowMu:** Digital Employee development and work Runtime;
 - **Digital Employee:** the product and delivery layer.
 
-TMPA and FCoP appear in the first row of the website capability section. CodeFlowMu leads the second row, followed by Digital Employee.
-
 ## Current formal releases
 
 ### Digital Researcher and Runtime
 
+- [Research Runtime Center V5.0](./docs/en/runtime/v5.md)
+- [Daily Runtime](./docs/en/runtime/daily.md)
+- [Weekly Runtime](./docs/en/runtime/weekly.md)
+- [Academic Runtime](./docs/en/runtime/academic.md)
+- [Research Program Runtime](./docs/en/runtime/program.md)
 - [Research Report Production Engine V1.3](./docs/en/publications/research-report-production-engine-v1.3.md)
-- [V1.3 Quick Start](./docs/en/publications/research-report-production-engine-v1.3-quickstart.md)
-- [Research Runtime Center V4](./docs/en/runtime/v4.md)
 - [Research Intelligence System V1.0](./docs/en/runtime/research-intelligence.md)
-- [V1.3 Release Record](./research/releases/research-report-production-engine-v1.3/RELEASE.md)
 
 ### TMPA
 
@@ -164,34 +160,28 @@ TMPA and FCoP appear in the first row of the website capability section. CodeFlo
 - [TMPA Core Specification S0.4](./docs/en/publications/tmpa-core-specification-s0.4.md)
 - [TMPA–FCoP–CodeFlowMu Implementation Case I0.4](./docs/en/publications/implementation-case-i0.4.md)
 
-## Production evidence
-
-Production Test V1 produced three Daily Research objects, three Academic Observations, twelve bilingual Markdown files, six dedicated SVG covers, and a complete GitHub publication record. The first CI build detected a real YAML frontmatter defect; it was repaired before the second build passed and the release was merged.
-
-V1.1–V1.3 subsequently added structured Runtime outcomes, three-column planning, Production and release separation, and Research Intelligence System.
-
 ## Repository structure
 
 ```text
 .
 ├── docs/                         # bilingual VitePress site
 ├── research/
-│   ├── intelligence/             # source registry and daily scan records
-│   ├── runtime/                  # scheduler, records, plans, candidates, contracts
+│   ├── intelligence/             # source registry and daily signal records
+│   ├── runtime/                  # Scheduler V3, four record families and worker contracts
 │   ├── skills/                   # Research Skills V2.0 and intelligence profiles
 │   ├── production-tests/         # production evidence
 │   └── releases/                 # formal release records
 ├── scripts/                      # validators and website-data generators
-├── .github/workflows/            # scheduling, validation, and Pages deployment
+├── .github/workflows/            # Scheduler V3, validation and Pages deployment
 ├── LICENSE.md
 ├── CITATION.cff
 ├── README.zh-CN.md
 └── README.md
 ```
 
-## License boundary
+## Freeze rule
 
-The repository is publicly readable, clonable, and downloadable. Reproduction, adaptation, redistribution, and commercial use follow the current [`LICENSE.md`](./LICENSE.md).
+After V5.0, the four-system separation, Daily six-stage sequence and Scheduler V3 task identities are frozen. Future work focuses on source quality, worker effectiveness, metrics, UX, evidence quality and publication quality.
 
 ## Core principles
 
