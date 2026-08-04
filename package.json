@@ -1,13 +1,13 @@
 {
   "name": "joinwell52-research-center-portal",
   "private": true,
-  "version": "9.0.0",
+  "version": "9.0.1",
   "type": "module",
   "scripts": {
     "intelligence:validate": "node scripts/research-intelligence.mjs validate",
     "intelligence:build": "node scripts/research-intelligence.mjs build",
     "runtime:validate": "node scripts/runtime-v5.mjs validate && npm run intelligence:validate",
-    "runtime:build": "node scripts/runtime-v5.mjs build && npm run intelligence:build",
+    "runtime:build": "node scripts/runtime-v5.mjs build && node scripts/runtime-v5-home-compat.mjs && npm run intelligence:build",
     "runtime:gate": "node scripts/runtime-v5.mjs gate",
     "tmpa:s0.4:conformance": "node research/conformance/tmpa-core-s0.4/runner.mjs",
     "docs:dev": "npm run runtime:build && vitepress dev docs",
