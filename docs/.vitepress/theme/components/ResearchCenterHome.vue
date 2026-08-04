@@ -527,9 +527,9 @@ onBeforeUnmount(() => {
 :global(.portal-v5-page .VPHomeHero), :global(.portal-v5-page .VPFeatures) { display: none; }
 :global(.portal-v5-page .VPFooter) { display: none; }
 :global(.portal-v5-page .VPNavBar) { border-bottom: 1px solid #e1e5ed; background: rgba(255, 255, 255, .92); backdrop-filter: blur(16px); }
-:global(.portal-v5-page .VPNavBar .container) { width: min(1340px, calc(100% - 48px)); max-width: none; margin-inline: auto; }
-:global(.portal-v5-page .VPNavBarTitle .title) { display: grid; align-content: center; gap: 3px; min-width: max-content; color: transparent; background: linear-gradient(105deg, #111827 0%, #334155 52%, #4f46e5 100%); background-clip: text; -webkit-background-clip: text; font-size: 18px; font-weight: 900; line-height: 1; letter-spacing: -.055em; }
-:global(.portal-v5-page .VPNavBarTitle .title::after) { content: \"DIGITAL EMPLOYEE WORKS\"; color: #69748a; -webkit-text-fill-color: #69748a; font: 760 7px/1 ui-sans-serif, system-ui, sans-serif; letter-spacing: .14em; }
+:global(.portal-v5-page .VPNavBar .container) { width: min(1220px, calc(100% - 72px)); max-width: none; margin-inline: auto; padding-inline: 0; }
+:global(.portal-v5-page .VPNavBarTitle .title) { display: grid; align-content: center; gap: 3px; min-width: max-content; color: transparent; background: linear-gradient(112deg, #090d18 0%, #293653 42%, #5b4cf0 76%, #31b8d4 100%); background-clip: text; -webkit-background-clip: text; font-family: "Arial Black", "Noto Sans SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif; font-size: 20px; font-weight: 950; line-height: .92; letter-spacing: -.085em; text-shadow: 0 1px 0 rgba(255,255,255,.5); filter: drop-shadow(0 4px 9px rgba(79,70,229,.15)); transform: skewX(-4deg); transform-origin: left center; }
+:global(.portal-v5-page .VPNavBarTitle .title::after) { content: \"DIGITAL EMPLOYEE WORKS\"; color: #69748a; -webkit-text-fill-color: #69748a; font: 800 7px/1 ui-sans-serif, system-ui, sans-serif; letter-spacing: .16em; transform: skewX(4deg); transform-origin: left center; }
 :global(.portal-v5-page .VPNavBarSearch .DocSearch-Button) { border-color: #dfe4ee; background: #f4f6fa; }
 :global(.portal-v5-page .VPNavBarAppearance) { display: none; }
 :global(.dark .portal-v5-page .VPNavBar) { border-bottom-color: rgba(255,255,255,.1); background: rgba(8, 11, 22, .94); }
@@ -586,7 +586,7 @@ onBeforeUnmount(() => {
 .rc-product-mark a:hover { opacity: 1; transform: translateY(-2px); }
 .rc-product-mark img { width: 34px; height: 34px; object-fit: contain; border-radius: 9px; }
 .rc-product-mark span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.rc-controls { position: fixed; z-index: 100; top: 11px; right: max(24px, calc((100vw - 1340px) / 2)); display: flex; align-items: center; gap: 4px; min-height: 42px; padding: 4px; color: #172039; background: rgba(255,255,255,.96); border: 1px solid #dfe4ee; border-radius: 24px; box-shadow: 0 8px 24px rgba(16,25,54,.12); backdrop-filter: blur(16px); }
+.rc-controls { position: fixed; z-index: 100; top: 11px; right: max(36px, calc((100vw - 1220px) / 2)); display: flex; align-items: center; gap: 4px; min-height: 42px; padding: 4px; color: #172039; background: rgba(255,255,255,.96); border: 1px solid #dfe4ee; border-radius: 24px; box-shadow: 0 8px 24px rgba(16,25,54,.12); backdrop-filter: blur(16px); }
 .rc-language { display: grid; grid-template-columns: repeat(2, minmax(44px, auto)); align-items: center; padding-right: 4px; border-right: 1px solid #dfe4ee; font: 760 12px/1 ui-sans-serif, system-ui, sans-serif; }
 .rc-language strong,
 .rc-language a { display: grid; min-height: 32px; padding: 0 10px; place-items: center; border-radius: 18px; }
@@ -928,7 +928,8 @@ onBeforeUnmount(() => {
 @media (max-width: 699px) {
   :global(.portal-v5-page .VPNavBar) { background: rgba(244, 241, 232, .97); }
   :global(.dark .portal-v5-page .VPNavBar) { background: rgba(8, 11, 22, .97); }
-  :global(.portal-v5-page .VPNavBarTitle .title) { font-size: 14px; }
+  :global(.portal-v5-page .VPNavBarTitle .title) { font-size: 15px; letter-spacing: -.065em; transform: none; }
+  :global(.portal-v5-page .VPNavBarTitle .title::after) { display: none; }
   .rc-shell { width: calc(100% - 34px); }
   .rc-hero { min-height: auto; }
   .rc-hero::before { top: 75px; right: -10px; font-size: 92px; }
