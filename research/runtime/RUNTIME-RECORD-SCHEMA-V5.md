@@ -69,7 +69,7 @@ Every terminal task requires one `runtime-shift-result/v2` object:
 }
 ```
 
-A `Skipped` result additionally requires `reason` and `reason_zh`.
+A successfully executed shift is `Completed`, including a governed zero-output result. A `Skipped` result means the shift was explicitly not applicable and was not executed; it additionally requires `reason` and `reason_zh`.
 
 ## Daily task status keys
 

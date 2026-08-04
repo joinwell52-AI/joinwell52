@@ -165,7 +165,7 @@ Evidence
 Artifacts
 ```
 
-The machine contract is `runtime-shift-result/v2`. `Skipped` is valid only after the worker executes the gate and records an exact bilingual reason.
+The machine contract is `runtime-shift-result/v2`. A successfully executed shift is `Completed`, including a governed zero-output result. `Skipped` is reserved for an explicitly non-applicable shift that was not executed and requires an exact bilingual reason.
 
 ## 12. Publication gate
 

@@ -69,7 +69,7 @@ V5 定义四种相互独立的记录 Schema：
 }
 ```
 
-`Skipped` 还必须提供 `reason` 与 `reason_zh`。
+班次实际执行成功时必须记录为 `Completed`，包括受治理输出为 0 的结果。`Skipped` 表示该班次明确不适用且没有执行，并且必须提供 `reason` 与 `reason_zh`。
 
 ## Daily 状态字段
 

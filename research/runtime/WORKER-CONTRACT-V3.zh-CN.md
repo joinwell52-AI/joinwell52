@@ -81,7 +81,7 @@ Worker 不得把 Scheduler 触发当成任务完成。
 
 ## 成果规则
 
-所有终态任务必须符合 `runtime-shift-result/v2`。只有 Worker 实际执行门禁并记录精确中英文原因后，才允许使用 `Skipped`。
+所有终态任务必须符合 `runtime-shift-result/v2`。班次实际执行成功时必须为 `Completed`，包括受治理输出为 0 的结果；`Skipped` 只允许用于该班次明确不适用且未执行的情况。
 
 ## GitHub 规则
 

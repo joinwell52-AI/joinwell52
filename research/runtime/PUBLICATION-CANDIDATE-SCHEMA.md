@@ -32,8 +32,8 @@ research/runtime/candidates/YYYY/MM/YYYY-MM-DD-candidates.json
   "sourceRecord": "research/runtime/YYYY/MM/YYYY-MM-DD-runtime.md",
   "updatedAt": "ISO-8601 timestamp or empty",
   "githubCommit": "full SHA or pending",
-  "reason": "Required when Skipped",
-  "reason_zh": "Skipped 时必须填写",
+  "reason": "Required for zero-output Completed or Skipped",
+  "reason_zh": "Completed 且输出为 0，或 Skipped 时必须填写",
   "candidates": []
 }
 ```
@@ -74,7 +74,7 @@ A candidate may be marked complete only when:
 - Publication Editing is complete;
 - the candidate is not yet placed in the public article directory.
 
-`Completed` production requires at least one candidate. When no object is eligible, Production is `Skipped` and must record the exact blocker.
+`Completed` means the Production shift executed successfully. It may contain one or more candidates, or zero candidates with an exact bilingual `No Eligible Research Object` outcome. `Skipped` is reserved for a shift that is explicitly not applicable and therefore not executed.
 
 ## 20:00 publication boundary
 

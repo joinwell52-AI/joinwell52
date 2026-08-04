@@ -117,7 +117,7 @@ Evidence
 Artifacts
 ```
 
-机器合同为 `runtime-shift-result/v2`，并要求中英文结果一致。`Skipped` 表示 Worker 已执行但没有合格输出，必须记录精确原因，不能计为成功完成。
+机器合同为 `runtime-shift-result/v2`，并要求中英文结果一致。班次只要实际执行成功，即使受治理输出数量为 0，也必须记录为 `Completed`；`Skipped` 只用于当天明确不适用、因而没有执行的班次。
 
 参见：
 

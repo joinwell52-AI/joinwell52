@@ -81,7 +81,7 @@ A worker must never infer completion from a scheduler trigger.
 
 ## Result rule
 
-A terminal task result must conform to `runtime-shift-result/v2`. `Skipped` is valid only after the worker actually executes the gate and records the exact bilingual reason.
+A terminal task result must conform to `runtime-shift-result/v2`. Successful execution is `Completed`, including a governed zero-output result. `Skipped` is valid only when the shift is explicitly not applicable and is not executed.
 
 ## GitHub rule
 

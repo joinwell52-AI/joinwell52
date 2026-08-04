@@ -108,8 +108,8 @@ function validateCandidate(candidate, path, manifest) {
     }
     if (item.lifecycle !== 'Publication Candidate') die(`${path}: candidate lifecycle must be Publication Candidate`)
   }
-  if (candidate.status === 'Completed' && !candidate.candidates.length) {
-    die(`${path}: Completed production requires at least one Publication Candidate`)
+  if (candidate.status === 'Completed' && !candidate.candidates.length && (!text(candidate.reason) || !text(candidate.reason_zh))) {
+    die(`${path}: Completed zero-output production requires a bilingual outcome reason`)
   }
   if (candidate.status === 'Skipped' && (!text(candidate.reason) || !text(candidate.reason_zh))) {
     die(`${path}: Skipped production requires bilingual reason`)

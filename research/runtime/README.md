@@ -117,7 +117,7 @@ Evidence
 Artifacts
 ```
 
-The bilingual machine contract is `runtime-shift-result/v2`. `Skipped` means the worker executed but no eligible output existed; it requires an exact reason and is not counted as successful completion.
+The bilingual machine contract is `runtime-shift-result/v2`. A shift that executes successfully is `Completed`, even when its governed output count is zero. `Skipped` is reserved for a shift that is explicitly not applicable and therefore not executed.
 
 See:
 
