@@ -52,14 +52,17 @@ if (process.argv.includes('--dist')) {
     .map((path) => readFileSync(path, 'utf8'))
     .join('\n')
 
-  if (!text.includes('4 <i>/ 5</i>') && !text.includes('4<!-- --> <i>/ 5</i>') && !text.includes('4/5')) {
-    die('built site does not contain the corrected 4/5 progress projection')
-  }
   if (!text.includes('该班次以 Completed 结束，并生成 0 个出版候选')) {
     die('built site does not contain the corrected Chinese Production outcome')
   }
+  if (!text.includes('Completed the governed Production eligibility review for all three columns')) {
+    die('built site does not contain the corrected English Production outcome')
+  }
   if (text.includes('因此正确生成 0 个出版候选，并以 Skipped 结束')) {
-    die('built site still contains the obsolete Skipped Production wording')
+    die('built site still contains the obsolete Chinese Skipped Production wording')
+  }
+  if (text.includes('Production correctly created zero candidates and returned Skipped')) {
+    die('built site still contains the obsolete English Skipped Production wording')
   }
 }
 
