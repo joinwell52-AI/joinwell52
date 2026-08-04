@@ -4,8 +4,8 @@
   "version": "6.0.0",
   "type": "module",
   "scripts": {
-    "runtime:validate": "node scripts/runtime-center.mjs validate",
-    "runtime:build": "node scripts/runtime-center.mjs build",
+    "runtime:validate": "node scripts/runtime-center.mjs validate && node scripts/runtime-results.mjs validate",
+    "runtime:build": "node scripts/runtime-center.mjs build && node scripts/runtime-results.mjs build",
     "runtime:gate": "node scripts/runtime-center.mjs gate",
     "tmpa:s0.4:conformance": "node research/conformance/tmpa-core-s0.4/runner.mjs",
     "docs:dev": "npm run runtime:build && vitepress dev docs",

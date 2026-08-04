@@ -1,9 +1,9 @@
 ---
 layout: home
 pageClass: runtime-center-page
-title: Research Runtime Center
-description: The operational control plane, scheduler, Runtime Record, timeline, and execution history of Digital Employee Works.
+title: Digital Researcher Operations Center
+description: A scheduled-task work report showing inputs, outcomes, outputs, next actions, and GitHub evidence for the Digital Researcher.
 outline: false
 ---
 
-<RuntimeCenter lang="en" />
+<RuntimeOperationsCenter lang="en" />

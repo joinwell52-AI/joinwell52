@@ -60,8 +60,11 @@ jobs:
             node scripts/runtime-center.mjs schedule --task "$MANUAL_TASK"
           fi
 
-      - name: Validate Runtime Record
-        run: node scripts/runtime-center.mjs validate
+      - name: Initialize task result contract
+        run: node scripts/runtime-results.mjs initialize --date "${{ steps.runtime.outputs.runtime_date }}"
+
+      - name: Validate Runtime Record and task results
+        run: npm run runtime:validate
 
       - name: Commit Runtime scheduling record
         shell: bash

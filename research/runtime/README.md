@@ -3,6 +3,8 @@
 **Project:** joinwell52 Research Center  
 **Center version:** Research Center 3.0  
 **Scheduler:** Research Runtime Scheduler V1.0  
+**Operations Center:** V3.0  
+**Task result contract:** `runtime-task-result/v1`  
 **Timezone:** `Asia/Shanghai`  
 **System of record:** `joinwell52-AI/joinwell52`
 
@@ -10,7 +12,7 @@
 
 Research Runtime Center is the operational control plane of the Research Operating System.
 
-Research OS defines how research should move. Research Runtime schedules execution, opens an execution slot, records status and events, verifies GitHub publication, and closes the lifecycle.
+Research OS defines how research should move. Research Runtime schedules execution, opens an execution slot, records status and events, verifies GitHub publication, closes the lifecycle, and reports the actual work outcome of every scheduled task.
 
 ```text
 Research Runtime Center
@@ -21,11 +23,13 @@ Engine / Queue / Knowledge / Architecture
         ↓
 Publication / Weekly / Academic
         ↓
+Task Work Result
+        ↓
 Runtime Record
         ↓
 GitHub Commit + Commit Verify
         ↓
-Research Center 3.0
+Digital Researcher Operations Center
 ```
 
 No formal automation exists outside Research Runtime. Historical names such as “Research OS task”, “Queue task”, “Weekly automation” and “Publication task” are not formal scheduler names.
@@ -51,11 +55,11 @@ The authoritative machine-readable definition is [`SCHEDULER.json`](./SCHEDULER.
 The control plane separates two facts:
 
 1. **Scheduler trigger:** GitHub Actions executes the canonical cron schedule and creates or updates the daily Runtime Record with a `Waiting` execution slot.
-2. **Digital Research Employee worker:** the corresponding ChatGPT Runtime task performs the research, writes outputs, commits them, verifies the commit, and closes the Runtime Record.
+2. **Digital Research Employee worker:** the corresponding ChatGPT Runtime task performs the research, writes outputs, records a structured task result, commits the outputs, verifies the commit, and closes the Runtime Record.
 
 A trigger is not evidence that research completed. If the worker does not run or cannot verify the result, the state remains `Waiting`, `Blocked` or `Failed`. The scheduler must never manufacture `Completed`.
 
-On Wednesday at 10:00, Runtime Queue and Runtime Academic share one cron trigger. The scheduler creates both slots while preserving separate responsibilities and statuses.
+On Wednesday at 10:00, Runtime Queue and Runtime Academic share one cron trigger. The scheduler creates both slots while preserving separate responsibilities, results and statuses.
 
 ## Lifecycle and status
 
@@ -70,6 +74,8 @@ Exactly six statuses are allowed:
 
 Started, GitHub Commit, Commit Verify and Published are events, not additional statuses.
 
+`Skipped` means the task actually ran but produced no eligible output. It is a terminal status, must report the reason, and does not count toward the daily completion rate.
+
 ## Runtime Record
 
 Every formal execution writes to:
@@ -78,9 +84,36 @@ Every formal execution writes to:
 research/runtime/YYYY/MM/YYYY-MM-DD-runtime.md
 ```
 
-Runtime Record is the single source of truth for Runtime Status, Today’s Tasks, Timeline, History, Runtime Log, GitHub Status, Publication Status, Queue Status and Engine Status. Dashboard values must never be hand-edited. The exact contract is defined in [`RUNTIME-RECORD-SCHEMA.md`](./RUNTIME-RECORD-SCHEMA.md).
+Runtime Record is the single source of truth for the daily task plan, status, work results, Timeline, History, Runtime Log, GitHub verification and publication outcome. Dashboard values must never be hand-edited. The exact contract is defined in [`RUNTIME-RECORD-SCHEMA.md`](./RUNTIME-RECORD-SCHEMA.md).
 
-`scripts/runtime-center.mjs` validates records, creates scheduled slots, updates execution status, generates website data and enforces the publication gate. The website projection is generated at build time from Runtime Records.
+`scripts/runtime-center.mjs` validates records, creates scheduled slots, updates execution status, generates base website data and enforces the publication gate.
+
+`scripts/runtime-results.mjs` validates `runtime-task-result/v1` blocks and injects structured work outcomes into the generated Operations Center data.
+
+## Mandatory task work report
+
+A digital employee does not complete a task by reporting only “Completed.” Every scheduled task must report:
+
+```text
+Input
+→ Work Outcome
+→ Durable Output
+→ Next Governed Action
+→ Artifacts and GitHub Evidence
+```
+
+For a terminal task, the Runtime Record contains one structured `runtime-result` block. The bilingual Operations Center reads these blocks automatically and presents one work-report card per scheduled task.
+
+Examples:
+
+- Engine: which object moved, from which state to which state, which Skill was used, and what remains blocked;
+- Queue: signals discovered, candidates selected or rejected, the selected research object and its next Skill;
+- Knowledge: validated inputs, new knowledge records, links and architecture candidates;
+- Architecture: reviewed candidates, decision, promotion count and unresolved gate;
+- Publication: published note and commit, or `Skipped` with the exact eligibility failure;
+- Weekly and Academic: source set, new judgment, publication result and verification evidence.
+
+A terminal task without this work report fails validation.
 
 ## Runtime Gate
 
@@ -88,6 +121,7 @@ Runtime Record is the single source of truth for Runtime Status, Today’s Tasks
 Research Runtime
 → Publication Candidate
 → Runtime Record
+→ Task Work Result
 → GitHub Commit
 → Commit Verify
 → Runtime Record closure
@@ -103,5 +137,7 @@ A formal publication pull request without a changed Runtime Record fails validat
 > Research Runtime is the only execution scheduler of the Research Operating System.
 
 > Every Digital Research Employee execution shall be scheduled, observable, recorded and verifiable through the Runtime Center.
+
+> Every scheduled task shall report its actual work outcome, not merely its execution status.
 
 > Research Runtime—not individual automation tasks—is the operational control plane of the Digital Research Employee.

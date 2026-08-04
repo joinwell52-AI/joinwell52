@@ -7,6 +7,7 @@ import ArticleCover from './components/ArticleCover.vue'
 import ResearchNotes from './components/ResearchNotes.vue'
 import ResearchCategory from './components/ResearchCategory.vue'
 import RuntimeCenter from './components/RuntimeCenter.vue'
+import RuntimeOperationsCenter from './components/RuntimeOperationsCenter.vue'
 import ResearchCenterHome from './components/ResearchCenterHome.vue'
 import GlobalBack from './components/GlobalBack.vue'
 import './custom.css'
@@ -150,6 +151,7 @@ export default {
     app.component('ResearchNotes', ResearchNotes)
     app.component('ResearchCategory', ResearchCategory)
     app.component('RuntimeCenter', RuntimeCenter)
+    app.component('RuntimeOperationsCenter', RuntimeOperationsCenter)
     app.component('ResearchCenterHome', ResearchCenterHome)
 
     if (typeof window !== 'undefined') {
