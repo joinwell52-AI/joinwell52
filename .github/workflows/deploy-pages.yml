@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -34,6 +34,26 @@ jobs:
 
       - name: Validate Runtime Center
         run: npm run runtime:validate
+
+      - name: Regenerate Runtime Center data
+        run: npm run runtime:build
+
+      - name: Verify Production backfill projection
+        run: |
+          node - <<'NODE'
+          const fs = require('fs')
+          const path = 'docs/.vitepress/generated/runtime-records.json'
+          const data = JSON.parse(fs.readFileSync(path, 'utf8'))
+          const record = data.records.find((item) => item.date === '2026-08-04')
+          if (!record) throw new Error('Missing 2026-08-04 Runtime projection')
+          if (record.tasks.production !== 'Skipped') {
+            throw new Error(`Expected production=Skipped, got ${record.tasks.production}`)
+          }
+          if (record.tasks.publication !== 'Waiting') {
+            throw new Error(`Expected publication=Waiting, got ${record.tasks.publication}`)
+          }
+          console.log('Runtime projection verified: Production=Skipped, Publication=Waiting')
+          NODE
 
       - name: Build VitePress site
         run: npm run docs:build
