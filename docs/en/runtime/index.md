@@ -1,6 +1,6 @@
 ---
 layout: home
-pageClass: runtime-center-page
+pageClass: runtime-center-page runtime-center-en
 title: Digital Works Operations Center
 description: Today's authentic Runtime data, three-column plan, dynamic shift total, production, release, work results and GitHub evidence.
 outline: false
