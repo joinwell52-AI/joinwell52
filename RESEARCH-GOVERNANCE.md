@@ -2,41 +2,25 @@
 
 ## 1. Single Source of Truth
 
-The `joinwell52-AI/joinwell52` GitHub repository is the only authoritative research database, Runtime Record store, source-intelligence registry, publication-candidate store, and publication history of Digital Employee Works.
+The `joinwell52-AI/joinwell52` GitHub repository is the only authoritative research database, Runtime Record store, source-intelligence registry, publication history, and website source of Digital Employee Works.
 
-All active work is maintained directly in this repository:
-
-- Research Intelligence Registry and daily intelligence runs;
-- Research Runtime Charter, scheduler manifest, Worker Contracts, and Runtime Records;
-- three-column Daily Research Plans;
-- Publication Candidate batches;
-- Research Skills and Research Queue artifacts;
-- Observation Notes;
-- Digital Employee architecture and capability releases;
-- TMPA papers and specifications;
-- implementation cases;
-- visual assets and website source.
-
-No secondary local database is authoritative. A local copy may exist only as a temporary checkout, cache, or migration archive. The deprecated ChatGPT Library `/TMPA` folder is read-only and must not receive new revisions.
+No secondary local database or ChatGPT Library copy is authoritative. A local copy may exist only as a temporary checkout, cache, or migration archive.
 
 ## 2. Current capability baseline
 
-The current formal operating baseline is:
-
 ```yaml
 production_engine: Research Report Production Engine V1.3
-runtime_center: Research Runtime Center V4
-scheduler: Research Runtime Scheduler V2.0
+runtime_center: Research Runtime Center V5.0
+scheduler: Research Runtime Scheduler V3.0
+architecture_status: frozen
 skills: Research Skills V2.0
 intelligence: Research Intelligence System V1.0
 system_of_record: GitHub
 ```
 
-V1.0 remains the historical Production Test baseline. V1.1–V1.3 record the addition of structured Runtime outcomes, three-column planning, Production and Publication separation, and three source-intelligence pipelines.
+V4 and earlier remain frozen historical evidence. V5 begins on 2026-08-05.
 
 ## 3. Product and engineering hierarchy
-
-The public capability hierarchy is:
 
 ```text
 TMPA + FCoP
@@ -49,11 +33,7 @@ CodeFlowMu + Digital Employee
 - CodeFlowMu is the Digital Employee development and work Runtime;
 - Digital Employee is the product and delivery layer.
 
-The website capability section presents TMPA and FCoP in the first row. CodeFlowMu leads the second row, followed by Digital Employee.
-
 ## 4. Research Intelligence authority
-
-Research Intelligence System is the formal source-discovery layer of the Research Operating System.
 
 Exactly three source-intelligence pipelines are recognized:
 
@@ -61,38 +41,13 @@ Exactly three source-intelligence pipelines are recognized:
 2. `Skill 01-G — GitHub Engineering Intelligence`;
 3. `Skill 01-R — Published Research Intelligence`.
 
-All three pipelines serve the same three research columns:
+They all serve the three Daily Research columns:
 
 1. `digital-employee`;
 2. `industry-architecture`;
 3. `open-source-engineering`.
 
-Source pipelines and research columns are separate dimensions. A source type does not determine the column automatically.
-
-The authoritative source definition is:
-
-```text
-research/intelligence/REGISTRY.json
-```
-
-Every formal Queue run after the effective date must write or update:
-
-```text
-research/intelligence/runs/YYYY/MM/YYYY-MM-DD-intelligence.json
-```
-
-The intelligence run must record:
-
-- sources due;
-- sources checked;
-- inaccessible channels;
-- failed checks;
-- signals;
-- candidates;
-- selected and rejected objects;
-- a `Selected` or `No Selection` decision for every research column.
-
-“Checked with no important change” and “not checked” are different facts and must never be conflated.
+Discovery executes the three pipelines and produces the same-day Signal Pool. Queue performs the three-column decisions. Source discovery and topic selection are separate stages.
 
 ## 5. Evidence hierarchy
 
@@ -106,59 +61,43 @@ Evidence authority is ordered as follows:
 6. reproducible community report;
 7. unverified discussion.
 
-Community discussion is a lead unless it is reproduced or confirmed. Popularity, stars, forum volume, and vendor claims are not independent validation.
+Community discussion is a lead unless reproduced or confirmed. Popularity, stars, forum volume, and vendor claims are not independent validation.
 
-The same change appearing in a platform announcement, GitHub repository, and paper must be deduplicated into one change object with multiple evidence sources.
+## 6. Four independent Runtime systems
 
-## 6. Three-column Research Triage
+Research Runtime Center V5.0 is the formal operational control plane. Four Runtime systems are recognized and must not be mixed:
 
-Every selected object has exactly one primary column. Secondary impacts may be recorded, but the same object must not become three duplicate Daily notes.
+1. **Daily Runtime** — same-day discovery, research, production and publication;
+2. **Weekly Runtime** — new weekly synthesis from validated Daily Research;
+3. **Academic Runtime** — Paper, Benchmark, Specification and Institution only;
+4. **Research Program Runtime** — long-term TMPA, FCoP, CodeFlowMu, Digital Employee and Research Operating System work.
 
-The three columns are:
+Research Program work never consumes a Daily stage or Daily column slot.
 
-### Digital Employee
+## 7. Daily Runtime authority
 
-Positions, responsibilities, workflows, runtime, waiting, recovery, escalation, approval, delivery, and evaluation.
+Daily Runtime is frozen as six formal stages:
 
-### Industry Architecture
+| Stage | Schedule | Legal input | Required output |
+|---|---:|---|---|
+| Discovery | Daily 09:00 | three Research Intelligence profiles | Signal Pool |
+| Queue | Daily 10:00 | same-day Signal Pool | Today's Research Plan |
+| Reading | Daily 11:00 | selected same-day objects | Reading Result |
+| Analysis | Daily 13:00 | Reading Result | Research Object |
+| Production | Daily 15:00 | Research Object | Publication Candidate |
+| Publication | Daily 20:00 | complete Publication Candidate | Released Daily Research |
 
-The agent products, workspaces, runtimes, permissions, connectors, enterprise controls, and product boundaries of major AI platforms, including OpenAI, Claude, Gemini, Cursor, GitHub Copilot, and Microsoft Copilot Platform.
+Each Daily column must receive `Selected` or `No Selection` every day. A publishing target must never force a weak signal into selection.
 
-### Open-source Engineering
+## 8. Independent Runtime schedules
 
-Agent runtimes, protocols, SDKs, tools, benchmarks, recovery, testing, security, and observability mechanisms.
+| Runtime | Schedule | Boundary |
+|---|---:|---|
+| Weekly Runtime | Sunday 20:30 | Must not copy or concatenate Daily articles. |
+| Academic Runtime | Wednesday 16:00 | Ordinary product and industry news is excluded. |
+| Research Program Runtime | Monday 12:00 | Must not enter Daily Runtime or publish without Program Review. |
 
-The 10:00 Queue task must make one explicit decision for each column:
-
-- `Selected`, with object, source, priority, lifecycle, reason, and next action; or
-- `No Selection`, with source coverage and the exact threshold or evidence gap.
-
-The authoritative daily plan is:
-
-```text
-research/runtime/plans/YYYY/MM/YYYY-MM-DD-plan.json
-```
-
-A publishing target must never force a weak signal into selection.
-
-## 7. Research Runtime authority
-
-Research Runtime Center is the operational control plane of the Research Operating System.
-
-Research OS defines lifecycle and work rules. Research Runtime Scheduler V2.0 is the only formal scheduler. Research Report Production Engine V1.3 and other Digital Research Employee workers execute inside this control plane.
-
-Exactly eight formal Runtime tasks are recognized:
-
-1. Research Runtime Engine;
-2. Research Runtime Queue;
-3. Research Runtime Knowledge;
-4. Research Runtime Architecture;
-5. Research Runtime Production;
-6. Research Runtime Publication;
-7. Research Runtime Weekly;
-8. Research Runtime Academic.
-
-The authoritative schedules, responsibilities, and boundaries are stored in:
+The authoritative schedules, identities, inputs, outputs and prohibitions are stored in:
 
 ```text
 research/runtime/SCHEDULER.json
@@ -166,24 +105,9 @@ research/runtime/SCHEDULER.json
 
 Timezone is `Asia/Shanghai`.
 
-## 8. Formal Runtime schedule and boundaries
-
-| Runtime | Schedule | Responsibility | Boundary |
-|---|---:|---|---|
-| Engine | Daily 09:00 | Advance one governed lifecycle transition. | No stage skipping or direct publication. |
-| Queue | Daily 10:00 | Run intelligence, triage candidates, and publish three-column decisions. | No direct publication; no unassigned selected object. |
-| Knowledge | Daily 11:00 | Admit evidence-validated Research Notes into Knowledge. | A Signal, Selected object, or Analysis record is not a completed Research Note. |
-| Architecture | Monday 12:00 | Make architecture and lifecycle dispositions. | No decision from a single unsupported observation. |
-| Production | Daily 15:00 | Execute Writing, Visualization, Evidence & Citation, and Publication Editing. | No direct publication and no writing from an unvalidated signal. |
-| Publication | Daily 20:00 | Release complete candidates, update indexes and website, commit, and verify. | No new discovery, analysis, substantive writing, or evidence repair. |
-| Weekly | Sunday 20:30 | Produce genuinely new cross-topic synthesis. | Must not concatenate Daily notes. |
-| Academic | Wednesday 10:00 | Research papers, benchmarks, standards, conferences, and institutions. | Ordinary news is excluded. |
-
 ## 9. Production and Publication separation
 
-### 15:00 Production
-
-Production creates a complete bilingual Publication Candidate:
+Production executes:
 
 ```text
 Research Writing
@@ -193,57 +117,31 @@ Research Writing
 → Publication Candidate
 ```
 
-A complete candidate contains:
-
-- Chinese Markdown;
-- English Markdown;
-- valid frontmatter and column assignment;
-- a completed visual or an explicit no-visual decision;
-- verified evidence and citations;
-- completed publication editing.
-
-The authoritative candidate batch is:
-
-```text
-research/runtime/candidates/YYYY/MM/YYYY-MM-DD-candidates.json
-```
-
-Production must not place the candidate in the public article directory.
-
-### 20:00 Publication
-
-Publication consumes complete candidates only:
+Publication executes:
 
 ```text
 Publication Candidate
-→ public bilingual Markdown
+→ public bilingual files
 → metadata / indexes / website
 → GitHub Commit
 → Commit Verify
 → Release
 ```
 
-A failed release candidate returns to Production or the relevant upstream research stage.
+Publication is prohibited from performing new research, substantive rewriting or evidence repair.
 
-## 10. Runtime Record
+## 10. Separate Runtime Records
 
-Every formal execution creates or updates:
+Every Runtime family maintains its own record path:
 
 ```text
-research/runtime/YYYY/MM/YYYY-MM-DD-runtime.md
+research/runtime/records/daily/YYYY/MM/YYYY-MM-DD-daily-runtime.json
+research/runtime/records/weekly/YYYY/MM/YYYY-MM-DD-weekly-runtime.json
+research/runtime/records/academic/YYYY/MM/YYYY-MM-DD-academic-runtime.json
+research/runtime/records/program/YYYY/MM/YYYY-MM-DD-program-runtime.json
 ```
 
-Runtime Record is the single source of truth for:
-
-- today’s scheduled tasks;
-- task statuses;
-- task inputs and work outcomes;
-- durable outputs;
-- next governed actions;
-- metrics and artifacts;
-- Runtime Timeline and append-only Runtime Log;
-- GitHub commit and Commit Verify;
-- publication outcome.
+Different Runtime families must never be merged into one operational record or timeline.
 
 Exactly six statuses are allowed:
 
@@ -251,26 +149,23 @@ Exactly six statuses are allowed:
 Running · Completed · Blocked · Failed · Skipped · Waiting
 ```
 
-A scheduler trigger opens an execution slot; it does not prove completion. Without actual worker execution, the task remains `Waiting`, `Blocked`, or `Failed`.
+A scheduler trigger opens an execution slot; it does not prove completion.
 
-`Skipped` means the worker actually ran but produced no eligible output. It requires a reason and does not count toward completion.
+## 11. Mandatory shift result
 
-## 11. Mandatory work-outcome report
-
-A terminal task must report:
+Every terminal shift must report:
 
 ```text
 Input
-→ Work Outcome
-→ Durable Output
-→ Next Governed Action
-→ Metrics
-→ Artifacts and GitHub Evidence
+Work Result
+Output
+Next
+Metrics
+Evidence
+Artifacts
 ```
 
-Reporting only “Completed” is not a valid Digital Employee work report.
-
-Dashboard and website values must be generated from Runtime and Intelligence artifacts. Hand-maintained status values, history lists, topic lists, and counts are prohibited.
+The machine contract is `runtime-shift-result/v2`. `Skipped` is valid only after the worker executes the gate and records an exact bilingual reason.
 
 ## 12. Publication gate
 
@@ -278,64 +173,36 @@ Every formal Daily publication follows:
 
 ```text
 Research Intelligence
-→ Three-Column Triage
-→ Governed research object
+→ Signal Pool
+→ Three-Column Queue
+→ Reading Result
+→ Research Object
 → Publication Candidate
-→ Runtime Record + Task Result
+→ Runtime Record + Shift Result
 → public bilingual files
 → GitHub Commit
 → Commit Verify
 → Release
 ```
 
-A formal publication change without a Runtime Record must fail validation.
-
-A publication may be `Completed` only after:
-
-1. the defined output exists;
-2. required metadata, column, and language pairing are valid;
-3. a complete Publication Candidate exists;
-4. the GitHub commit exists;
-5. the commit and output paths are directly verified;
-6. the final Runtime Log event is recorded.
-
-**Highest engineering constraint:** a publication without a Runtime Record and Commit Verify is not an official runtime output.
+A formal publication change without a V5 Runtime Record must fail validation.
 
 ## 13. Observation Notes information model
 
-Observation Notes are organized by two independent dimensions.
-
-### Column
+Observation Notes use two independent dimensions:
 
 ```yaml
 column: digital-employee | industry-architecture | open-source-engineering
-```
-
-### Category
-
-```yaml
 category: daily | weekly | academic
 ```
 
-Daily, Weekly, and Academic are publication categories inside each column. Academic is not a fourth research column.
-
-Required frontmatter:
-
-```yaml
-title: Article title
-date: 'YYYY-MM-DD'
-column: digital-employee | industry-architecture | open-source-engineering
-category: daily | weekly | academic
-summary: Short list summary
-```
-
-The website reads these fields directly and generates counts, newest-first lists, and calendar filtering. Manual article counts and chronological lists are prohibited.
+Academic is a publication category, not a fourth Daily column.
 
 ## 14. GitHub-first history policy
 
 Git provides the authoritative history:
 
-- commits record editorial and runtime evolution;
+- commits record editorial and Runtime evolution;
 - diffs record changes;
 - pull requests and CI record validation;
 - tags and release records mark versions;
@@ -343,28 +210,29 @@ Git provides the authoritative history:
 
 Generated text is not a formal result until it passes the applicable Runtime and publication gates.
 
-## 15. Download and license boundary
+## 15. TMPA boundary
 
-The repository is publicly readable, clonable, and downloadable. No APK, EXE, or conventional installer is required; the repository itself is the distribution.
+Research Report Production Engine V1.3 applies a single-writer lifecycle-governance subset of TMPA. It does not demonstrate the full multi-writer role separation of TMPA and must not be presented as complete validation of every TMPA claim.
 
-Reproduction, adaptation, redistribution, and commercial use follow the current `LICENSE.md`.
+## 16. V5 freeze rule
 
-## 16. TMPA boundary
+After V5.0, the following are frozen:
 
-Research Report Production Engine V1.3 applies a single-writer lifecycle-governance subset of TMPA: explicit states, gates, durable evidence, Git commits, and Reader reconstruction.
+- the four Runtime families;
+- the six Daily stages and their order;
+- the nine Scheduler V3 formal task identities;
+- the separation of Program work from Daily Runtime.
 
-It does not demonstrate the full multi-writer role separation of TMPA and must not be presented as complete validation of every TMPA claim.
+Future work may optimize source quality, worker performance, metrics, UX, evidence quality and publication quality, but must not recombine the four Runtime systems.
 
 ## Final principles
 
 > Research Runtime is the only formal execution scheduler of the Research Operating System.
 
-> Research Intelligence must report source coverage before Queue can formally complete.
+> Discovery finds signals; Queue decides topics.
 
-> Every research column receives an explicit daily decision.
+> Reading precedes Analysis; Analysis precedes Production.
 
 > Production creates complete reports; Publication releases them.
-
-> Every scheduled task reports actual work outcomes, not merely execution status.
 
 > Every formal output is observable, recorded, and verifiable through GitHub.
