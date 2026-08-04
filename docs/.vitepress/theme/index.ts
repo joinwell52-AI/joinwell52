@@ -124,6 +124,10 @@ function enhancePortal() {
     if (href && !href.startsWith(siteBase)) anchor.setAttribute('href', withBase(href))
   })
 
+  document.querySelectorAll<HTMLAnchorElement>('.runtime-v4 .hero-actions a').forEach((anchor) => {
+    anchor.setAttribute('href', withBase(chinese ? '/zh/runtime/v4' : '/en/runtime/v4'))
+  })
+
   const heroCopy = document.querySelector<HTMLElement>('.rcv5 .rcv5-hero-copy')
   if (heroCopy && !heroCopy.querySelector('.rcv5-language-switch')) {
     const switcher = document.createElement('nav')
