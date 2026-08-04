@@ -97,6 +97,9 @@ function validateRegistry(registry) {
   }
   for (const source of platform.sources) {
     if (!Array.isArray(source.channels) || !source.channels.length) die(`${source.id}: channels are required`)
+    if (source.tier === 'P0' && !source.channels.some((channel) => String(channel.type).includes('community'))) {
+      die(`${source.id}: a P0 platform requires an official forum or community channel`)
+    }
     for (const channel of source.channels) {
       if (!text(channel.id) || !text(channel.type) || !/^https:\/\//.test(channel.url || '')) {
         die(`${source.id}: invalid source channel`)
@@ -124,7 +127,9 @@ function validateRegistry(registry) {
 
 function dueCount(pipeline) {
   if (pipeline.id === 'ai-platform') {
-    return pipeline.sources.filter((source) => source.tier === 'P0').length
+    return pipeline.sources
+      .filter((source) => source.tier === 'P0')
+      .reduce((total, source) => total + source.channels.length, 0)
   }
   if (pipeline.id === 'github-engineering') {
     return pipeline.repositories.filter((item) => item.tier === 'P0').length
@@ -346,6 +351,7 @@ function build() {
       skill: pipeline.skill,
       due: dueCount(pipeline)
     })),
+    currentRunRecorded: Boolean(runByDate[today]),
     currentRun: runByDate[today] || defaultRun(today, registry),
     runs: runByDate
   }
