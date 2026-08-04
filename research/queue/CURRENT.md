@@ -3,7 +3,7 @@
 - **Repository:** `joinwell52-AI/joinwell52`
 - **Operating system:** Research Operating System V2
 - **Execution engine:** Research Runtime Engine
-- **Last governed Engine transition:** 2026-08-03
+- **Last governed Engine transition:** 2026-08-04
 - **Last Queue Stage run:** 2026-08-03
 - **Lifecycle:** `Signal → Candidate → Queue → Selected → Reading → Analysis → Research Note → Knowledge → Architecture → Specification → Publication → Release`
 
@@ -19,7 +19,7 @@ Historical labels such as `Hold`, `Backlog`, `Deferred`, and `Rejected` are sche
 
 | ID | Research object | Priority | Current state | Evidence basis | Blocker | Next governed action |
 |---|---|---:|---|---|---|---|
-| Q-W003-01 | WorkBoundaryContract and OwnershipLedger | P0 | **Reading** | Weekly 003 plus three evidence-validated Daily 003 notes | None at Reading entry | Perform boundary-field comparison and decide `Reading → Analysis` in a later Engine run. |
+| Q-W003-01 | WorkBoundaryContract and OwnershipLedger | P0 | **Analysis** | Completed Deep Reading plus Skill 04 five-boundary comparison, invariant test, projection analysis and falsification criteria | Four-path reconstruction experiment, duplicate-action proof and verifier-independence test are not complete | Execute the governed reconstruction experiment; advance `Analysis → Research Note` only if its evidence threshold is met, otherwise return to Reading or Queue with a specific evidence request. |
 | Q-W003-02 | CompletionVerifier and EvidenceEnvelope | P0 | Selected | Weekly 003 queue decision and completion/evidence gaps across all three Daily notes | Minimal ownership dimensions should be stabilized first | Open a bounded Deep Reading package after Q-W003-01 establishes the boundary baseline. |
 | Q-W003-03 | Human authority lifecycle node | P0 | Selected | Weekly 003 autonomy-versus-authority contradiction; GitHub agent action approvals, confidence, rationale, intents, and enterprise managed settings | Authority fields and ownership transition semantics remain coupled to Q-W003-01; approval UI is not itself a security boundary | Open Deep Reading focused on permission enforcement, approval, resume, timeout, rejection, rationale, and cross-client policy evidence. |
 | Q-20260803-09 | Multi-horizon Digital Employee execution and evaluation | P0 | **Selected** | Microsoft Research CORPGEN paper and official research summary | No Queue blocker; source claims still require formal Reading and evidence validation | Invoke Skill 03 — Deep Reading on MHTE benchmark design, architecture mechanisms, ablations, artifact-based evaluation, and applicability to Research Runtime and CodeFlowMu. |
@@ -29,6 +29,28 @@ Historical labels such as `Hold`, `Backlog`, `Deferred`, and `Rejected` are sche
 | Q-W003-07 | Unrestricted computer-use runtime | P2 | Queue | Weekly 003 reprioritization | Controlled local case and deterministic validator are not defined | Remain queued; begin only with a bounded application case. |
 | Q-20260803-10 | Agentic work adoption, duration, and organizational governance | P2 | Queue | OpenAI economic-research summary and internal usage measurements | Underlying paper, sampling method, task-duration estimator, and independent comparison have not been extracted | Retrieve the primary paper and methodology; then rescore for possible selection. |
 | Q-W003-08 | Full Digital Employee Studio | P3 | Queue | Weekly 003 reprioritization | Runtime semantic proof is incomplete | Remain queued until the control-plane model is tested. |
+
+## Engine transition — 2026-08-04
+
+```yaml
+engine_transition:
+  item_id: Q-W003-01
+  item: WorkBoundaryContract and OwnershipLedger
+  priority: P0
+  from: Reading
+  to: Analysis
+  transitions_executed: 1
+  skill_invoked: Skill 04 — Research Analysis
+  analysis_record: research/analysis/Q-W003-01-work-boundary-contract.md
+  evidence_threshold_met_for_transition: true
+  next_transition_authorized: false
+  research_note_created: false
+  publication_created: false
+```
+
+The Analysis compares controlled computer operation, MCP capability use, manager subtask, explicit handoff and A2A external delegation. It classifies the proposed invariant fields, compares three implementation alternatives, designs a four-path reconstruction experiment, maps provisional TMPA/FCoP/CodeFlowMu placement, and records falsification criteria.
+
+The item remains blocked from `Research Note` because the experiment has not yet demonstrated deterministic ownership reconstruction, independent rejection of false completion, or duplicate-action prevention.
 
 ## Queue Stage decision — 2026-08-03
 
@@ -81,6 +103,8 @@ Q-20260803-09 was selected because the primary paper is available, the research 
 - `research/production-tests/production-test-v1/REPORT.md`
 - `research/production-tests/production-test-v1/RUNTIME-RECORD.md`
 - `research/reading/Q-W003-01-work-boundary-contract.md`
+- `research/analysis/Q-W003-01-work-boundary-contract.md`
+- `research/architecture/gates/2026-08-03-accountable-work-boundaries.md`
 
 ### Queue Stage records
 
@@ -89,6 +113,11 @@ Q-20260803-09 was selected because the primary paper is available, the research 
 
 ## Next Engine action
 
-The active Engine item remains Q-W003-01. On the next eligible Engine run, it may move from `Reading` to `Analysis` only when the reading record is checked against the five boundary types and the minimal invariant set can be stated without unsupported implementation assumptions. Otherwise it must return to `Queue` with a specific evidence request.
+The active Engine item remains Q-W003-01 in `Analysis`. A later Engine run may move it from `Analysis` to `Research Note` only after the four-path reconstruction experiment is executed and produces source-traceable evidence that:
 
-The new Q-20260803-09 selection must wait for a later Engine allocation. Queue Stage selection must not bypass the active Reading item or invoke publication work directly.
+1. ownership, control, claimant, verifier and final acceptor can be reconstructed deterministically;
+2. a false success claim is rejected by an independent validator;
+3. interruption and resume do not duplicate the consequential operation;
+4. the proposed boundary envelope adds necessary information without becoming a second workflow engine.
+
+If the experiment cannot meet these conditions, return the item to `Reading` or `Queue` with a specific evidence request. The selected CORPGEN object must continue waiting for a later Engine allocation and may not bypass the active Analysis item.
