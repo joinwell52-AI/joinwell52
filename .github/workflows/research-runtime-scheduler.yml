@@ -1,41 +1,44 @@
-name: Research Runtime Scheduler V2.0
+name: Research Runtime Scheduler V3.0
 
 on:
   schedule:
     # Cron expressions are UTC; formal Runtime times are Asia/Shanghai (UTC+8).
-    - cron: '0 1 * * *'     # Daily 09:00 — Runtime Engine
-    - cron: '0 2 * * *'     # Daily 10:00 — Runtime Queue; Wednesday also Runtime Academic
-    - cron: '0 3 * * *'     # Daily 11:00 — Runtime Knowledge
-    - cron: '0 4 * * 1'     # Monday 12:00 — Runtime Architecture
-    - cron: '0 7 * * *'     # Daily 15:00 — Runtime Production
-    - cron: '0 12 * * *'    # Daily 20:00 — Runtime Publication
-    - cron: '30 12 * * 0'   # Sunday 20:30 — Runtime Weekly
+    - cron: '0 1 * * *'     # Daily 09:00 — Discovery
+    - cron: '0 2 * * *'     # Daily 10:00 — Queue
+    - cron: '0 3 * * *'     # Daily 11:00 — Reading
+    - cron: '0 5 * * *'     # Daily 13:00 — Analysis
+    - cron: '0 7 * * *'     # Daily 15:00 — Production
+    - cron: '0 12 * * *'    # Daily 20:00 — Publication
+    - cron: '30 12 * * 0'   # Sunday 20:30 — Weekly Runtime
+    - cron: '0 8 * * 3'     # Wednesday 16:00 — Academic Runtime
+    - cron: '0 4 * * 1'     # Monday 12:00 — Research Program Runtime
   workflow_dispatch:
     inputs:
       runtime_task:
-        description: Formal Runtime task to schedule manually
+        description: Formal V5 Runtime task to schedule manually
         required: true
         type: choice
         options:
-          - engine
+          - discovery
           - queue
-          - knowledge
-          - architecture
+          - reading
+          - analysis
           - production
           - publication
           - weekly
           - academic
+          - program
 
 permissions:
   contents: write
 
 concurrency:
-  group: research-runtime-scheduler
+  group: research-runtime-scheduler-v3
   cancel-in-progress: false
 
 jobs:
   schedule-runtime:
-    name: Open Runtime execution slot
+    name: Open V5 Runtime execution slot
     runs-on: ubuntu-latest
     steps:
       - name: Checkout authoritative repository
@@ -57,21 +60,24 @@ jobs:
           MANUAL_TASK: ${{ inputs.runtime_task }}
         run: |
           if [[ "$EVENT_NAME" == "schedule" ]]; then
-            node scripts/runtime-center.mjs schedule --cron "$EVENT_CRON"
+            node scripts/runtime-v5.mjs schedule --cron "$EVENT_CRON"
           else
-            node scripts/runtime-center.mjs schedule --task "$MANUAL_TASK"
+            node scripts/runtime-v5.mjs schedule --task "$MANUAL_TASK"
           fi
 
-      - name: Initialize task-result contract
-        run: node scripts/runtime-results.mjs initialize --date "${{ steps.runtime.outputs.runtime_date }}"
+      - name: Initialize same-day Research Intelligence
+        shell: bash
+        env:
+          TASK_IDS: ${{ steps.runtime.outputs.task_ids }}
+          RUNTIME_DATE: ${{ steps.runtime.outputs.runtime_date }}
+        run: |
+          if [[ "$TASK_IDS" == *"discovery"* ]]; then
+            node scripts/research-intelligence.mjs initialize --date "$RUNTIME_DATE"
+          else
+            echo "Research Intelligence initialization belongs to Discovery only."
+          fi
 
-      - name: Initialize three-column plan and Publication Candidate batch
-        run: node scripts/runtime-v4.mjs initialize --date "${{ steps.runtime.outputs.runtime_date }}"
-
-      - name: Initialize Research Intelligence run
-        run: node scripts/research-intelligence.mjs initialize --date "${{ steps.runtime.outputs.runtime_date }}"
-
-      - name: Validate Runtime Record, intelligence coverage, work results, column plan and candidates
+      - name: Validate four Runtime systems
         run: npm run runtime:validate
 
       - name: Commit Runtime scheduling artifacts
@@ -82,14 +88,14 @@ jobs:
         run: |
           git config user.name "joinwell52 Research Runtime"
           git config user.email "actions@users.noreply.github.com"
-          git add research/runtime research/intelligence
+          git add research/runtime/records research/intelligence
 
           if git diff --cached --quiet; then
             echo "Runtime artifacts already contain this scheduling event."
             exit 0
           fi
 
-          git commit -m "runtime: schedule ${TASK_NAMES} for ${RUNTIME_DATE}"
+          git commit -m "runtime(v5): schedule ${TASK_NAMES} for ${RUNTIME_DATE}"
 
           for attempt in 1 2 3; do
             if git pull --rebase origin main && git push origin HEAD:main; then
