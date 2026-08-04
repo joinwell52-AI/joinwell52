@@ -1,0 +1,84 @@
+name: Fix English homepage title layout
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-english-home-layout.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix-layout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Constrain English header and hero title
+        shell: bash
+        run: |
+          cat >> docs/.vitepress/theme/column-palette-final.css <<'CSS'
+
+/* English homepage layout: keep brand and hero copy inside their columns. */
+html[lang='en-US'] .portal-v5-page .VPNavBarTitle .title,
+html:not([lang='zh-CN']) .portal-v5-page .VPNavBarTitle .title {
+  max-width: 205px !important;
+  overflow: hidden !important;
+  font-size: 15.5px !important;
+  letter-spacing: -.04em !important;
+  white-space: nowrap !important;
+}
+
+html[lang='en-US'] .portal-v5-page .VPNavBarSearch,
+html:not([lang='zh-CN']) .portal-v5-page .VPNavBarSearch {
+  left: max(260px, calc((100vw - 1440px) / 2 + 218px)) !important;
+}
+
+.rc-home:not(.is-zh) .rc-hero__layout {
+  grid-template-columns: minmax(0, 1fr) 360px !important;
+  gap: 44px !important;
+}
+
+.rc-home:not(.is-zh) .rc-hero__copy {
+  min-width: 0 !important;
+  max-width: 790px !important;
+  overflow: hidden !important;
+}
+
+.rc-home:not(.is-zh) .rc-hero__title {
+  max-width: 100% !important;
+  font-size: clamp(52px, 4vw, 62px) !important;
+  line-height: .95 !important;
+  letter-spacing: -.058em !important;
+}
+
+.rc-home:not(.is-zh) .rc-hero__title .responsive-title__line {
+  max-width: 100% !important;
+}
+
+@media (max-width: 1399px) and (min-width: 1200px) {
+  .rc-home:not(.is-zh) .rc-hero__title {
+    font-size: 54px !important;
+  }
+}
+CSS
+
+      - run: npm install --no-audit --no-fund
+      - run: npm run docs:build
+
+      - name: Commit fix
+        shell: bash
+        run: |
+          rm .github/workflows/fix-english-home-layout.yml
+          git config user.name 'joinwell52-AI Runtime'
+          git config user.email 'actions@users.noreply.github.com'
+          git add docs/.vitepress/theme/column-palette-final.css .github/workflows/fix-english-home-layout.yml package-lock.json
+          git commit -m 'fix(home): constrain English header and hero title'
+          git pull --rebase origin main
+          git push origin HEAD:main
