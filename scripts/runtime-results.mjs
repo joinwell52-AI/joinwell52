@@ -21,6 +21,19 @@ function readJson(path) {
   catch (error) { die(`${relative(ROOT, path)} is invalid JSON: ${error.message}`) }
 }
 
+function argsOf(argv) {
+  const result = { _: [] }
+  for (let index = 0; index < argv.length; index += 1) {
+    const token = argv[index]
+    if (!token.startsWith('--')) { result._.push(token); continue }
+    const key = token.slice(2)
+    const value = argv[index + 1]
+    if (!value || value.startsWith('--')) result[key] = true
+    else { result[key] = value; index += 1 }
+  }
+  return result
+}
+
 function decode(value) {
   const text = value.trim()
   if (!text) return ''
@@ -58,6 +71,11 @@ function recordFiles() {
   return walk(RECORD_ROOT)
     .filter((path) => /\d{4}-\d{2}-\d{2}-runtime\.md$/.test(path))
     .sort()
+}
+
+function recordPath(date) {
+  const [year, month] = date.split('-')
+  return join(RECORD_ROOT, year, month, `${date}-runtime.md`)
 }
 
 function weekday(date, timezone) {
@@ -155,6 +173,39 @@ function validate() {
   return { manifest, list }
 }
 
+function initialize(date) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date || '')) die('initialize requires --date YYYY-MM-DD')
+  const path = recordPath(date)
+  if (!existsSync(path)) die(`missing Runtime Record for ${date}`)
+
+  const normalized = readFileSync(path, 'utf8').replace(/\r\n/g, '\n')
+  const end = normalized.indexOf('\n---\n', 4)
+  if (!normalized.startsWith('---\n') || end < 0) die(`${relative(ROOT, path)} has invalid frontmatter`)
+
+  const lines = normalized.slice(4, end).split('\n')
+  const existing = lines.findIndex((line) => /^result_contract:\s*/.test(line))
+  const contractLine = `result_contract: ${JSON.stringify(CONTRACT)}`
+  if (existing >= 0) lines[existing] = contractLine
+  else {
+    const centerIndex = lines.findIndex((line) => /^center_version:\s*/.test(line))
+    lines.splice(centerIndex >= 0 ? centerIndex + 1 : 0, 0, contractLine)
+  }
+
+  let body = normalized.slice(end + 5).trim()
+  if (!body.includes('## Runtime Task Results')) {
+    const logIndex = body.indexOf('## Runtime Log')
+    if (logIndex >= 0) {
+      body = `${body.slice(0, logIndex).trimEnd()}\n\n## Runtime Task Results\n\n${body.slice(logIndex)}`
+    } else {
+      body = `${body}\n\n## Runtime Task Results`
+    }
+  }
+
+  writeFileSync(path, `---\n${lines.join('\n')}\n---\n\n${body}\n`)
+  validate()
+  console.log(`Initialized ${relative(ROOT, path)} with ${CONTRACT}.`)
+}
+
 function build() {
   const { manifest, list } = validate()
   if (!existsSync(GENERATED_PATH)) die('runtime-records.json is missing; run runtime-center.mjs build first')
@@ -173,9 +224,11 @@ function build() {
   console.log(`Injected task results into ${relative(ROOT, GENERATED_PATH)}.`)
 }
 
-const command = process.argv[2] || 'build'
+const args = argsOf(process.argv.slice(2))
+const command = args._[0] || 'build'
 try {
   if (command === 'validate') validate()
+  else if (command === 'initialize') initialize(args.date)
   else if (command === 'build') build()
   else die(`unknown command ${command}`)
 } catch (error) {
