@@ -7,9 +7,11 @@ outline: false
 ---
 
 <script setup>
+import legacyData from '../../.vitepress/generated/runtime-legacy-records.json'
 import RuntimeOperationsCenterCurrent from '../../.vitepress/theme/components/RuntimeOperationsCenterCurrent.vue'
+const showV5Intelligence = !legacyData.current
 </script>
 
 <RuntimeOperationsCenterCurrent lang="zh" />
 
-<ResearchIntelligenceRadar lang="zh" />
+<ResearchIntelligenceRadar v-if="showV5Intelligence" lang="zh" />
