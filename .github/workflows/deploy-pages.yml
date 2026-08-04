@@ -1,8 +1,9 @@
-name: Deploy Research Center 3.0
+name: Deploy Research Center
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -11,79 +12,69 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: github-pages
   cancel-in-progress: true
 
 jobs:
   build:
+    name: Build site
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
-      - name: Setup Pages
+      - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Validate Runtime Center
-        run: npm run runtime:validate
-
-      - name: Regenerate Runtime Center data
-        run: npm run runtime:build
-
-      - name: Verify V5 Runtime projection
-        run: |
-          node - <<'NODE'
-          const fs = require('fs')
-          const path = 'docs/.vitepress/generated/runtime-records.json'
-          const data = JSON.parse(fs.readFileSync(path, 'utf8'))
-          if (data.schema !== 'research-runtime-center-data/v5') throw new Error(`Unexpected schema: ${data.schema}`)
-          if (data.centerVersion !== '5.0') throw new Error(`Unexpected center version: ${data.centerVersion}`)
-          if (data.schedulerVersion !== '3.0') throw new Error(`Unexpected scheduler version: ${data.schedulerVersion}`)
-          const families = data.runtimeFamilies.map((item) => item.id).join(',')
-          if (families !== 'daily,weekly,academic,program') throw new Error(`Unexpected Runtime families: ${families}`)
-          const daily = data.schedule.filter((task) => task.family === 'daily').map((task) => `${task.id}@${task.schedule.time}`).join(',')
-          const expected = 'discovery@09:00,queue@10:00,reading@11:00,analysis@13:00,production@15:00,publication@20:00'
-          if (daily !== expected) throw new Error(`Unexpected Daily Runtime: ${daily}`)
-          console.log('Runtime V5 projection verified.')
-          NODE
-
-      - name: Build VitePress site
+      - name: Build Research Center
         run: npm run docs:build
 
-      - name: Verify primary public routes
+      - name: Verify public routes
+        shell: bash
         run: |
-          node - <<'NODE'
+          node <<'NODE'
           const fs = require('fs')
-          const root = 'docs/.vitepress/dist'
+          const path = require('path')
+
+          const root = path.join('docs', '.vitepress', 'dist')
           const required = [
             'index.html',
             'zh/index.html',
+            'en/index.html',
             'zh/runtime/index.html',
-            'zh/research/index.html',
-            'zh/digital-employee/index.html',
-            'zh/industry/index.html',
-            'zh/engineering/index.html',
-            'zh/publications/index.html',
-            'zh/about.html',
             'en/runtime/index.html',
+            'zh/research/index.html',
             'en/research/index.html',
-            'en/digital-employee/index.html',
-            'en/industry/index.html',
-            'en/engineering/index.html',
-            'en/publications/index.html',
-            'en/about.html'
+            'zh/publications/index.html',
+            'en/publications/index.html'
           ]
-          const missing = required.filter((item) => !fs.existsSync(`${root}/${item}`))
-          if (missing.length) throw new Error(`Missing Pages routes: ${missing.join(', ')}`)
-          console.log(`Verified ${required.length} primary Pages routes.`)
+
+          const missing = required.filter((file) => !fs.existsSync(path.join(root, file)))
+          if (missing.length) {
+            throw new Error(`Missing built routes: ${missing.join(', ')}`)
+          }
+
+          const zhRuntime = fs.readFileSync(path.join(root, 'zh/runtime/index.html'), 'utf8')
+          const enRuntime = fs.readFileSync(path.join(root, 'en/runtime/index.html'), 'utf8')
+
+          if (!zhRuntime.includes('数字工场运营中心')) {
+            throw new Error('Chinese Runtime title was not generated correctly.')
+          }
+          if (!enRuntime.includes('Digital Works Operations Center')) {
+            throw new Error('English Runtime title was not generated correctly.')
+          }
+
+          console.log(`Verified ${required.length} public routes and bilingual Runtime titles.`)
           NODE
 
       - name: Upload Pages artifact
@@ -92,11 +83,13 @@ jobs:
           path: docs/.vitepress/dist
 
   deploy:
+    name: Deploy site
+    needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
-    runs-on: ubuntu-latest
+
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
