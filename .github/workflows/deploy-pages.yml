@@ -38,21 +38,21 @@ jobs:
       - name: Regenerate Runtime Center data
         run: npm run runtime:build
 
-      - name: Verify Production backfill projection
+      - name: Verify V5 Runtime projection
         run: |
           node - <<'NODE'
           const fs = require('fs')
           const path = 'docs/.vitepress/generated/runtime-records.json'
           const data = JSON.parse(fs.readFileSync(path, 'utf8'))
-          const record = data.records.find((item) => item.date === '2026-08-04')
-          if (!record) throw new Error('Missing 2026-08-04 Runtime projection')
-          if (record.tasks.production !== 'Skipped') {
-            throw new Error(`Expected production=Skipped, got ${record.tasks.production}`)
-          }
-          if (record.tasks.publication !== 'Waiting') {
-            throw new Error(`Expected publication=Waiting, got ${record.tasks.publication}`)
-          }
-          console.log('Runtime projection verified: Production=Skipped, Publication=Waiting')
+          if (data.schema !== 'research-runtime-center-data/v5') throw new Error(`Unexpected schema: ${data.schema}`)
+          if (data.centerVersion !== '5.0') throw new Error(`Unexpected center version: ${data.centerVersion}`)
+          if (data.schedulerVersion !== '3.0') throw new Error(`Unexpected scheduler version: ${data.schedulerVersion}`)
+          const families = data.runtimeFamilies.map((item) => item.id).join(',')
+          if (families !== 'daily,weekly,academic,program') throw new Error(`Unexpected Runtime families: ${families}`)
+          const daily = data.schedule.filter((task) => task.family === 'daily').map((task) => `${task.id}@${task.schedule.time}`).join(',')
+          const expected = 'discovery@09:00,queue@10:00,reading@11:00,analysis@13:00,production@15:00,publication@20:00'
+          if (daily !== expected) throw new Error(`Unexpected Daily Runtime: ${daily}`)
+          console.log('Runtime V5 projection verified.')
           NODE
 
       - name: Build VitePress site
