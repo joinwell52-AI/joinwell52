@@ -19,6 +19,7 @@ import './portal-v5.css'
 import './portal-v5-language.css'
 import './article-cover.css'
 import './production-engine-v1.3.css'
+import './homepage-frame-fix.css'
 
 const zhRuntimeText: Record<string, string> = {
   'RESEARCH RUNTIME CENTER · 运行控制平面': '工场运行中心 · 运行控制平面',
