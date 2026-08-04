@@ -59,7 +59,7 @@ const copy = computed(() => zh.value ? {
   systems: [
     { no:'01', kind:'产品', role:'工场直接生产的数字劳动力', name:['Digital','Employee'], description:'面向组织岗位、权限、工作流、成果与评价的受治理数字劳动力，是工场的产品与交付对象。', path:'/zh/digital-employee/', tone:'employee', cta:'查看产品层' },
     { no:'02', kind:'运行', role:'数字员工开发与工作 Runtime', name:['CodeFlowMu'], description:'承载数字员工开发、受治理执行、恢复与持久工作证据，是工场能力的运行层与开源参考环境。', path:'https://github.com/joinwell52-AI/CodeFlowMu-open', logo:'/assets/logos/codeflowmu.png', tone:'codeflow', cta:'打开 GitHub' },
-    { no:'03', kind:'协议', role:'基于文件的协同协议', name:['FCoP'], description:'以项目可见文件承载任务、报告、审阅与生命周期证据，为 CodeFlowMu 与数字员工提供可重建的协同事实。', path:'https://github.com/joinwell52-AI/FCoP', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'打开 GitHub' },
+    { no:'03', kind:'协议', role:'基于文件的协同协议', name:['FCoP'], description:'以项目可见文件承载任务、报告、审阅与生命周期证据，为 CodeFlowMu 与数字员工提供可重建的协同事实。', path:'https://joinwell52-ai.github.io/FCoP/', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'打开 FCoP 官网' },
     { no:'04', kind:'理论', role:'文本多智能体流程架构', name:['TMPA'], description:'独立记录治理理论、规范对象与 Reader 行为，为协议与运行层提供理论基础，但不把工场日常产出自动当作论文证据。', path:'/zh/publications/tmpa-architecture-paper-a0.5', logo:'/logo.svg?v=tmpa-20260803-3', tone:'tmpa', cta:'论文与规范' }
   ],
   researchLabel: '04 · 工场观察',
@@ -133,7 +133,7 @@ const copy = computed(() => zh.value ? {
   systems: [
     { no:'01', kind:'PRODUCT', role:'DIGITAL WORKFORCE PRODUCED BY THE WORKS', name:['Digital','Employee'], description:'Governed digital labor organized around positions, authority, workflows, deliverables, and evaluation—the product and delivery object of the Works.', path:'/en/digital-employee/', tone:'employee', cta:'View product layer' },
     { no:'02', kind:'RUNTIME', role:'DIGITAL EMPLOYEE DEVELOPMENT AND WORK RUNTIME', name:['CodeFlowMu'], description:'The runtime layer for Digital Employee development, governed execution, recovery, and durable work evidence, with an open-source reference environment.', path:'https://github.com/joinwell52-AI/CodeFlowMu-open', logo:'/assets/logos/codeflowmu.png', tone:'codeflow', cta:'Open GitHub' },
-    { no:'03', kind:'PROTOCOL', role:'FILE-BASED COORDINATION PROTOCOL', name:['FCoP'], description:'Project-visible files carry tasks, reports, reviews, and lifecycle evidence, providing reconstructable coordination facts for CodeFlowMu and Digital Employees.', path:'https://github.com/joinwell52-AI/FCoP', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'Open GitHub' },
+    { no:'03', kind:'PROTOCOL', role:'FILE-BASED COORDINATION PROTOCOL', name:['FCoP'], description:'Project-visible files carry tasks, reports, reviews, and lifecycle evidence, providing reconstructable coordination facts for CodeFlowMu and Digital Employees.', path:'https://joinwell52-ai.github.io/FCoP/', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'Open FCoP site' },
     { no:'04', kind:'THEORY', role:'TEXTUAL MULTI-AGENT PROCESS ARCHITECTURE', name:['TMPA'], description:'Independently records governance theory, normative objects, and Reader behavior. It underpins the protocol and runtime layers without treating daily factory output as automatic paper evidence.', path:'/en/publications/tmpa-architecture-paper-a0.5', logo:'/logo.svg?v=tmpa-20260803-3', tone:'tmpa', cta:'Paper & specification' }
   ],
   researchLabel: '04 · FACTORY OBSERVATION',
@@ -503,13 +503,13 @@ onBeforeUnmount(() => {
         <div class="rc-site-footer__brand">
           <div class="rc-product-mark rc-product-mark--footer" aria-label="TMPA, FCoP, CodeFlowMu">
             <a :href="link(zh ? '/zh/publications/tmpa-architecture-paper-a0.5' : '/en/publications/tmpa-architecture-paper-a0.5')" title="TMPA"><img src="/logo.svg?v=tmpa-20260803-3" alt="TMPA logo"><span>TMPA</span></a>
-            <a href="https://github.com/joinwell52-AI/FCoP" title="FCoP"><img src="https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png" alt="FCoP logo"><span>FCoP</span></a>
+            <a href="https://joinwell52-ai.github.io/FCoP/" title="FCoP"><img src="https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png" alt="FCoP logo"><span>FCoP</span></a>
             <a href="https://github.com/joinwell52-AI/CodeFlowMu-open" title="CodeFlowMu"><img src="/assets/logos/codeflowmu.png" alt="CodeFlowMu logo"><span>CodeFlowMu</span></a>
           </div>
           <h2>{{ zh ? '数字员工工场' : 'Digital Employee Works' }}</h2>
           <p>{{ copy.footerAbout }}</p>
         </div>
-        <nav><h3>{{ copy.footerCode }}</h3><a href="https://github.com/joinwell52-AI/joinwell52">{{ copy.repository }} ↗</a><a href="https://github.com/joinwell52-AI/FCoP">{{ copy.fcop }} ↗</a><a href="https://github.com/joinwell52-AI/CodeFlowMu-open">{{ copy.codeflow }} ↗</a></nav>
+        <nav><h3>{{ copy.footerCode }}</h3><a href="https://github.com/joinwell52-AI/joinwell52">{{ copy.repository }} ↗</a><a href="https://joinwell52-ai.github.io/FCoP/">{{ copy.fcop }} ↗</a><a href="https://github.com/joinwell52-AI/CodeFlowMu-open">{{ copy.codeflow }} ↗</a></nav>
         <nav><h3>{{ copy.footerRead }}</h3><a :href="link(researchOverview)">{{ copy.researchNotes }} →</a><a :href="link(publicationOverview)">{{ copy.publicationCenter }} →</a><a :href="link(runtimePath)">{{ copy.runtimeCenter }} →</a></nav>
         <nav><h3>{{ copy.footerCite }}</h3><a href="https://github.com/joinwell52-AI/joinwell52/blob/main/CITATION.cff">{{ copy.citationFile }} ↗</a><a href="https://github.com/joinwell52-AI/joinwell52/blob/main/LICENSE.md">{{ copy.license }} ↗</a><b>{{ copy.licenseName }}</b></nav>
       </div>
