@@ -1,0 +1,92 @@
+name: Refine homepage header alignment
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/refine-home-header-alignment.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refine-header:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Align header controls and strengthen brand wordmark
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('docs/.vitepress/theme/components/ResearchCenterHome.vue')
+          text = path.read_text(encoding='utf-8')
+
+          replacements = [
+              (
+                  ':global(.portal-v5-page .VPNavBar .container) { width: min(1340px, calc(100% - 48px)); max-width: none; margin-inline: auto; }',
+                  ':global(.portal-v5-page .VPNavBar .container) { width: min(1220px, calc(100% - 72px)); max-width: none; margin-inline: auto; padding-inline: 0; }',
+                  'desktop navbar container alignment',
+              ),
+              (
+                  ':global(.portal-v5-page .VPNavBarTitle .title) { display: grid; align-content: center; gap: 3px; min-width: max-content; color: transparent; background: linear-gradient(105deg, #111827 0%, #334155 52%, #4f46e5 100%); background-clip: text; -webkit-background-clip: text; font-size: 18px; font-weight: 900; line-height: 1; letter-spacing: -.055em; }',
+                  ':global(.portal-v5-page .VPNavBarTitle .title) { display: grid; align-content: center; gap: 3px; min-width: max-content; color: transparent; background: linear-gradient(112deg, #090d18 0%, #293653 42%, #5b4cf0 76%, #31b8d4 100%); background-clip: text; -webkit-background-clip: text; font-family: "Arial Black", "Noto Sans SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif; font-size: 20px; font-weight: 950; line-height: .92; letter-spacing: -.085em; text-shadow: 0 1px 0 rgba(255,255,255,.5); filter: drop-shadow(0 4px 9px rgba(79,70,229,.15)); transform: skewX(-4deg); transform-origin: left center; }',
+                  'brand wordmark styling',
+              ),
+              (
+                  ':global(.portal-v5-page .VPNavBarTitle .title::after) { content: \\"DIGITAL EMPLOYEE WORKS\\"; color: #69748a; -webkit-text-fill-color: #69748a; font: 760 7px/1 ui-sans-serif, system-ui, sans-serif; letter-spacing: .14em; }',
+                  ':global(.portal-v5-page .VPNavBarTitle .title::after) { content: \\"DIGITAL EMPLOYEE WORKS\\"; color: #69748a; -webkit-text-fill-color: #69748a; font: 800 7px/1 ui-sans-serif, system-ui, sans-serif; letter-spacing: .16em; transform: skewX(4deg); transform-origin: left center; }',
+                  'brand subtitle styling',
+              ),
+              (
+                  '.rc-controls { position: fixed; z-index: 100; top: 11px; right: max(24px, calc((100vw - 1340px) / 2)); display: flex;',
+                  '.rc-controls { position: fixed; z-index: 100; top: 11px; right: max(36px, calc((100vw - 1220px) / 2)); display: flex;',
+                  'floating controls alignment',
+              ),
+          ]
+
+          for old, new, label in replacements:
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{label}: expected exactly one match, found {count}')
+              text = text.replace(old, new, 1)
+
+          mobile_anchor = ':global(.portal-v5-page .VPNavBarTitle .title) { font-size: 14px; }'
+          if mobile_anchor not in text:
+              raise SystemExit('mobile title rule not found')
+          text = text.replace(
+              mobile_anchor,
+              ':global(.portal-v5-page .VPNavBarTitle .title) { font-size: 15px; letter-spacing: -.065em; transform: none; }\n  :global(.portal-v5-page .VPNavBarTitle .title::after) { display: none; }',
+              1,
+          )
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build site
+        run: npm run docs:build
+
+      - name: Commit and remove one-time workflow
+        shell: bash
+        run: |
+          rm .github/workflows/refine-home-header-alignment.yml
+          git config user.name 'joinwell52-AI Runtime'
+          git config user.email 'actions@users.noreply.github.com'
+          git add docs/.vitepress/theme/components/ResearchCenterHome.vue .github/workflows/refine-home-header-alignment.yml package-lock.json
+          git commit -m 'style(home): align header edges and strengthen brand wordmark'
+          git pull --rebase origin main
+          git push origin HEAD:main
