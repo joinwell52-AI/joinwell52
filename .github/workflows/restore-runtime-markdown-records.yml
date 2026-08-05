@@ -50,15 +50,13 @@ jobs:
           grep -F 'node scripts/runtime-markdown.mjs render --date' .github/workflows/research-runtime-scheduler.yml
           test -f .github/workflows/runtime-markdown-sync.yml
 
-      - name: Commit verified restoration
+      - name: Commit verified non-workflow files
         shell: bash
         run: |
           git config user.name "joinwell52 Research Runtime"
           git config user.email "actions@users.noreply.github.com"
-          git rm .github/workflows/restore-runtime-markdown-records.yml scripts/restore-runtime-markdown-records.py
           git add scripts/runtime-markdown.mjs package.json package-lock.json
-          git add .github/workflows/research-runtime-scheduler.yml .github/workflows/runtime-markdown-sync.yml
           git add docs/.vitepress/theme/components/RuntimeOperationsCenterClassic.vue
           git add research/runtime/README.md research/runtime/README.zh-CN.md research/runtime/2026
-          git commit -m "fix(runtime): restore mandatory human-readable Runtime ledgers"
+          git commit -m "fix(runtime): restore mandatory human-readable Runtime ledgers [skip ci]"
           git push origin HEAD:restore-runtime-markdown-records
