@@ -14,7 +14,7 @@
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Waiting",
+    "production": "Running",
     "publication": "Waiting"
   },
   "results": {
@@ -462,6 +462,13 @@
       "event": "Analysis Completed",
       "status": "Completed",
       "detail": "Skill 04 completed from the three durable Reading Results; three Production-authorized Research Objects were persisted without publication copy or release work."
+    },
+    {
+      "time": "2026-08-05T15:25:13+08:00",
+      "task": "production",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Production opened by Scheduler V3.0; Skills 05–08 may begin only after this start state is committed and verified."
     }
   ],
   "metrics": [
@@ -672,5 +679,5 @@
   ],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-05T13:08:10+08:00"
+  "updatedAt": "2026-08-05T15:25:13+08:00"
 }
