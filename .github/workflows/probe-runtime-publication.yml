@@ -38,35 +38,56 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          import re
           path = Path('control/scripts/execute-runtime-publication-20260805.mjs')
           text = path.read_text(encoding='utf-8')
-          text, count = re.subn(r"function sha256\(text\) \{\n  return \(await import\('node:crypto'\)\)\.createHash\('sha256'\)\.update\(text\)\.digest\('hex'\)\n\}\n", '', text)
-          if count != 1:
-              raise SystemExit(f'Executor patch count was {count}, expected 1')
-          path.write_text(text, encoding='utf-8')
+          start = text.find('function sha256(text) {')
+          end = text.find('function nowShanghai()', start)
+          if start < 0 or end < 0:
+              raise SystemExit(f'Unable to locate invalid sha256 helper: start={start}, end={end}')
+          path.write_text(text[:start] + text[end:], encoding='utf-8')
           PY
+          node --check control/scripts/execute-runtime-publication-20260805.mjs
 
       - name: Install repository dependencies
         working-directory: mainrepo
         run: npm install
 
-      - name: Execute and persist publication result
+      - name: Execute governed Publication
+        id: execute
+        continue-on-error: true
         shell: bash
         run: |
           set +e
           cd mainrepo
           node ../control/scripts/execute-runtime-publication-20260805.mjs "$PWD" ../control/runtime-publication-result.json 2>&1 | tee ../control/runtime-publication-execution.log
           status=${PIPESTATUS[0]}
-          set -e
-          cd ../control
+          echo "$status" > ../control/runtime-publication-status.txt
+          exit "$status"
+
+      - name: Persist execution result
+        if: always()
+        shell: bash
+        run: |
+          cd control
           if [ ! -f runtime-publication-result.json ]; then
             printf '{\n  "date": "2026-08-05",\n  "outcome": "Failed",\n  "error": "Executor ended without a result file"\n}\n' > runtime-publication-result.json
+          fi
+          if [ ! -f runtime-publication-execution.log ]; then
+            printf 'Executor did not produce a log.\n' > runtime-publication-execution.log
+          fi
+          if [ ! -f runtime-publication-status.txt ]; then
+            printf '1\n' > runtime-publication-status.txt
           fi
           git config user.name 'Research Runtime Publication'
           git config user.email 'actions@users.noreply.github.com'
           git pull --rebase origin runtime-publication-exec-20260805
-          git add runtime-publication-result.json runtime-publication-execution.log
-          git commit -m 'runtime(publication): persist execution result [skip ci]'
+          git add runtime-publication-result.json runtime-publication-execution.log runtime-publication-status.txt
+          git commit -m 'runtime(publication): persist execution result [skip ci]' || true
           git push origin HEAD:runtime-publication-exec-20260805
-          exit "$status"
+
+      - name: Enforce successful execution
+        if: always()
+        shell: bash
+        run: |
+          status="$(cat control/runtime-publication-status.txt 2>/dev/null || echo 1)"
+          test "$status" = "0"
