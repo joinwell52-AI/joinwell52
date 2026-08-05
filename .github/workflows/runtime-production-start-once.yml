@@ -1,0 +1,68 @@
+name: Runtime Production Start Once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/runtime-production-start-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  open-production:
+    if: github.event.head_commit.message == 'chore(runtime): bootstrap production start writer'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Open durable Production state
+        shell: bash
+        run: |
+          node <<'JS'
+          const fs = require('fs')
+          const path = 'research/runtime/records/daily/2026/08/2026-08-05-daily-runtime.json'
+          const record = JSON.parse(fs.readFileSync(path, 'utf8'))
+          const time = '2026-08-05T15:03:28+08:00'
+          record.status = 'Running'
+          record.taskStatus.production = 'Running'
+          delete record.results.production
+          record.githubCommit = 'pending'
+          record.commitVerify = 'Waiting'
+          if (!record.timeline.some((item) => item.task === 'production' && item.event === 'Execution Slot Opened' && item.time === time)) {
+            record.timeline.push({
+              time,
+              task: 'production',
+              event: 'Execution Slot Opened',
+              status: 'Running',
+              detail: 'Research Runtime Production opened by Scheduler V3.0; substantive Skills 05–08 work may begin only after this start state is committed and verified.'
+            })
+          }
+          record.updatedAt = time
+          fs.writeFileSync(path, JSON.stringify(record, null, 2) + '\n')
+          JS
+          node scripts/runtime-markdown.mjs render --date 2026-08-05
+          node scripts/runtime-v5.mjs validate
+          node scripts/runtime-markdown.mjs validate --date 2026-08-05
+      - name: Commit start state atomically
+        shell: bash
+        run: |
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime/records/daily/2026/08/2026-08-05-daily-runtime.json research/runtime/2026/08/2026-08-05-runtime.md
+          git commit -m "runtime(v5): open Production for 2026-08-05"
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Fetch and verify durable start commit
+        shell: bash
+        run: |
+          git fetch origin main
+          sha="$(git rev-parse origin/main)"
+          git show "$sha:research/runtime/records/daily/2026/08/2026-08-05-daily-runtime.json" | grep -q '"production": "Running"'
+          git show "$sha:research/runtime/2026/08/2026-08-05-runtime.md" | grep -q '2026-08-05T15:03:28+08:00'
+          echo "Verified Production start-state commit: $sha"
