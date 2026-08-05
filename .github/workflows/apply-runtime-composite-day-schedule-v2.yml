@@ -1,0 +1,57 @@
+name: Apply Runtime Composite Day Schedule V2
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/apply-runtime-composite-day-schedule-v2.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch-runtime-schedule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Apply composite schedule patch
+        run: python3 scripts/apply-runtime-composite-day-schedule.py
+
+      - name: Remove obsolete one-time workflows and patch script
+        run: |
+          rm -f .github/workflows/runtime-production-start-once.yml
+          rm -f .github/workflows/apply-runtime-composite-day-schedule.yml
+          rm -f .github/workflows/apply-runtime-composite-day-schedule-v2.yml
+          rm -f scripts/apply-runtime-composite-day-schedule.py
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate Runtime and build site
+        run: |
+          npm run runtime:validate
+          npm run docs:build
+          git diff --check
+          grep -q "taskRunsOnDate" docs/.vitepress/theme/components/RuntimeOperationsCenterClassic.vue
+          grep -q "recordForFamily(task.family)" docs/.vitepress/theme/components/RuntimeOperationsCenterClassic.vue
+
+      - name: Commit repair
+        shell: bash
+        run: |
+          git config user.name "joinwell52 Runtime Repair"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -m "fix(runtime): include weekday-specific tasks in daily timeline"
+          git pull --rebase origin main
+          git push origin HEAD:main
