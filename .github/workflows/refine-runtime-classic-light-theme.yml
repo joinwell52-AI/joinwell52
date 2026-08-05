@@ -1,0 +1,107 @@
+name: Refine Runtime Classic Light Theme
+
+on:
+  push:
+    branches:
+      - runtime-classic-native-light-theme
+
+permissions:
+  contents: write
+
+jobs:
+  refine-verify-capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: runtime-classic-native-light-theme
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Apply native light design
+        run: python scripts/refine-runtime-classic-light-theme.py
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Validate and build
+        run: |
+          npm run runtime:validate
+          npm run docs:build
+
+      - name: Install visual test driver
+        run: npm install --no-save playwright-core@1.55.0
+
+      - name: Verify actual Classic page
+        shell: bash
+        run: |
+          mkdir -p /tmp/runtime-site
+          ln -s "$GITHUB_WORKSPACE/docs/.vitepress/dist" /tmp/runtime-site/joinwell52
+          nohup python3 -m http.server 4173 --directory /tmp/runtime-site >/tmp/runtime-classic-server.log 2>&1 &
+          sleep 2
+          export CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          test -n "$CHROME"
+          cat > runtime-classic-theme-check.mjs <<'JS'
+          import { chromium } from 'playwright-core'
+          const browser = await chromium.launch({ headless: true, executablePath: process.env.CHROME, args: ['--no-sandbox'] })
+          for (const mode of ['light', 'dark']) {
+            const page = await browser.newPage({ viewport: { width: 1440, height: 1200 }, colorScheme: mode })
+            await page.goto('http://127.0.0.1:4173/joinwell52/zh/runtime/', { waitUntil: 'networkidle' })
+            await page.evaluate((value) => document.documentElement.classList.toggle('dark', value === 'dark'), mode)
+            await page.waitForTimeout(350)
+            const root = page.locator('.runtime-classic')
+            const radar = page.locator('.intel-radar')
+            if (await root.count() !== 1) throw new Error('Runtime Classic was not rendered')
+            if (await radar.count() !== 1) throw new Error('Research Intelligence Radar was not rendered')
+            const read = async (scope, selector) => scope.locator(selector).first().evaluate((el) => {
+              const s = getComputedStyle(el)
+              return { color: s.color, fill: s.webkitTextFillColor, fontSize: parseFloat(s.fontSize) }
+            })
+            const h1 = await read(root, '.hero h1')
+            const lead = await read(root, '.hero p')
+            const kicker = await read(root, '.kicker')
+            const overviewLabel = await read(root, '.overview-grid article>span')
+            const overviewSmall = await read(root, '.overview-grid small')
+            const sectionSmall = await read(root, '.section-title small')
+            const columnSmall = await read(root, '.column-head span')
+            const status = await read(root, '.shift-head>b')
+            const time = await read(root, '.shift-head time')
+            const radarSmall = await read(radar, '.card-head small')
+            if (mode === 'light') {
+              if (h1.color !== 'rgb(17, 24, 39)' || h1.fill !== 'rgb(17, 24, 39)') throw new Error(`light title is not black: ${JSON.stringify(h1)}`)
+              if (lead.color !== 'rgb(55, 65, 81)') throw new Error(`light lead is not dark gray: ${lead.color}`)
+            } else if (h1.color !== 'rgb(245, 247, 255)') {
+              throw new Error(`dark title palette changed: ${h1.color}`)
+            }
+            const sizes = { kicker, overviewLabel, overviewSmall, sectionSmall, columnSmall, status, time, radarSmall }
+            if (kicker.fontSize < 13 || overviewLabel.fontSize < 13 || overviewSmall.fontSize < 15 || sectionSmall.fontSize < 14 || columnSmall.fontSize < 11 || status.fontSize < 12 || time.fontSize < 20 || radarSmall.fontSize < 11) {
+              throw new Error(`small text remains undersized in ${mode}: ${JSON.stringify(sizes)}`)
+            }
+            await page.screenshot({ path: `runtime-classic-${mode}.png`, fullPage: true })
+            await page.close()
+          }
+          await browser.close()
+          JS
+          node runtime-classic-theme-check.mjs
+
+      - name: Upload visual checks
+        uses: actions/upload-artifact@v4
+        with:
+          name: runtime-classic-native-theme-previews
+          path: runtime-classic-*.png
+
+      - name: Commit verified design
+        shell: bash
+        run: |
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git rm .github/workflows/refine-runtime-classic-light-theme.yml scripts/refine-runtime-classic-light-theme.py
+          git add docs/.vitepress/theme/runtime-operations.css docs/zh/runtime/index.md docs/en/runtime/index.md
+          git add -u docs/.vitepress/theme/runtime-light-contrast.css
+          git commit -m "refactor(runtime): complete Classic light design and readable type"
+          git push origin HEAD:runtime-classic-native-light-theme
