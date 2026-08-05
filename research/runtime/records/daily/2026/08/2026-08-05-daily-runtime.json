@@ -173,6 +173,11 @@
           "label": "Triaged Research Intelligence run",
           "label_zh": "已筛选的研究情报运行记录",
           "path": "research/intelligence/runs/2026/08/2026-08-05-intelligence.json"
+        },
+        {
+          "label": "Verified Queue commit",
+          "label_zh": "已验证的 Queue 提交",
+          "commit": "2cd722da2e1553b66af9f46bc9bd0324dcefdb96"
         }
       ]
     }
@@ -212,6 +217,13 @@
       "event": "Queue Completed",
       "status": "Completed",
       "detail": "Skill 02 completed; three explicit Selected decisions and Today's Research Plan were persisted."
+    },
+    {
+      "time": "2026-08-05T10:10:39+08:00",
+      "task": "queue",
+      "event": "GitHub Commit Verified",
+      "status": "Completed",
+      "detail": "Fetched and verified commit 2cd722da2e1553b66af9f46bc9bd0324dcefdb96 containing the Queue result, triaged intelligence and Today's Research Plan."
     }
   ],
   "metrics": [
@@ -328,9 +340,14 @@
       "label": "Triaged Research Intelligence run",
       "label_zh": "已筛选的研究情报运行记录",
       "path": "research/intelligence/runs/2026/08/2026-08-05-intelligence.json"
+    },
+    {
+      "label": "Verified Queue commit",
+      "label_zh": "已验证的 Queue 提交",
+      "commit": "2cd722da2e1553b66af9f46bc9bd0324dcefdb96"
     }
   ],
-  "githubCommit": "pending",
-  "commitVerify": "Waiting",
-  "updatedAt": "2026-08-05T10:10:37+08:00"
+  "githubCommit": "2cd722da2e1553b66af9f46bc9bd0324dcefdb96",
+  "commitVerify": "Completed",
+  "updatedAt": "2026-08-05T10:10:39+08:00"
 }
