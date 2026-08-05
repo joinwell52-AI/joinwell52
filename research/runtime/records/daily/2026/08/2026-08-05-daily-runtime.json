@@ -1,1 +1,336 @@
-{"schema":"daily-runtime-record/v1","runtimeVersion":"5.0","schedulerVersion":"3.0","runtimeFamily":"daily","runtimeFamilyName":"Daily Runtime","runtimeFamilyName_zh":"每日运行","date":"2026-08-05","timezone":"Asia/Shanghai","repository":"joinwell52-AI/joinwell52","status":"Running","taskStatus":{"discovery":"Completed","queue":"Waiting","reading":"Waiting","analysis":"Waiting","production":"Waiting","publication":"Waiting"},"results":{"discovery":{"schema":"runtime-shift-result/v2","task":"discovery","status":"Completed","input":"Research Runtime Scheduler V3.0, Research Intelligence Registry V1.0, three formal Discovery profiles, 33 platform channels, 9 P0 repositories, and 6 P0 research sources.","input_zh":"Research Runtime Scheduler V3.0、Research Intelligence Registry V1.0、三项正式 Discovery Profile、33 个平台渠道、9 个 P0 仓库及 6 个 P0 研究来源。","workResult":"Completed all three intelligence profiles. Resolved 48 due source objects as 45 checked, 1 authentication-required, and 2 public-channel retrieval failures; normalized and deduplicated 16 signals without selecting topics.","workResult_zh":"已完成三项情报发现 Profile。48 个应检查来源对象全部得到明确结果：45 个已检查、1 个需要认证、2 个公开渠道抓取失败；共规范化并去重 16 个信号，未进行选题。","output":"A durable 2026-08-05 Research Intelligence run containing the Signal Pool: 7 AI-platform signals, 6 GitHub-engineering signals, and 3 published-research signals.","output_zh":"已生成持久化的 2026-08-05 Research Intelligence Run 与 Signal Pool：7 个 AI 平台信号、6 个 GitHub 工程信号、3 个论文与研究成果信号。","next":"Research Runtime Queue at 10:00 must perform only three-column triage and decide Selected or No Selection for each column.","next_zh":"10:00 Research Runtime Queue 仅执行三栏筛选，并为每个栏目作出 Selected 或 No Selection 决定。","metrics":[{"label":"Due source objects","label_zh":"应检查来源对象","value":"48"},{"label":"Checked source objects","label_zh":"已检查来源对象","value":"45"},{"label":"Authentication-required sources","label_zh":"需要认证的来源","value":"1"},{"label":"Recorded retrieval failures","label_zh":"已记录抓取失败","value":"2"},{"label":"Deduplicated signals","label_zh":"去重信号","value":"16"}],"evidence":[{"label":"Scheduler V3.0","label_zh":"Scheduler V3.0","source":"research/runtime/SCHEDULER.json"},{"label":"Research Intelligence Registry","label_zh":"研究情报注册表","source":"research/intelligence/REGISTRY.json"},{"label":"AI Platform profile","label_zh":"AI 平台情报 Profile","source":"research/skills/profiles/01p-ai-platform-change-intelligence.md"},{"label":"GitHub Engineering profile","label_zh":"GitHub 工程情报 Profile","source":"research/skills/profiles/01g-github-engineering-intelligence.md"},{"label":"Published Research profile","label_zh":"论文研究情报 Profile","source":"research/skills/profiles/01r-published-research-intelligence.md"}],"artifacts":[{"label":"Research Intelligence run and Signal Pool","label_zh":"研究情报运行记录与 Signal Pool","path":"research/intelligence/runs/2026/08/2026-08-05-intelligence.json"},{"label":"Verified Discovery commit","label_zh":"已验证的 Discovery 提交","commit":"5e9079cc0cb5e241ead493ab957e41465626b5e5"}]}},"timeline":[{"time":"2026-08-05T09:00:40+08:00","task":"discovery","event":"Execution Slot Opened","status":"Running","detail":"Research Runtime Discovery opened by Scheduler V3.0."},{"time":"2026-08-05T09:04:57+08:00","task":"discovery","event":"Discovery Completed","status":"Completed","detail":"All three formal intelligence profiles completed; Signal Pool persisted; Queue triage remains pending."},{"time":"2026-08-05T09:11:37+08:00","task":"discovery","event":"GitHub Commit Verified","status":"Completed","detail":"Fetched and verified commit 5e9079cc0cb5e241ead493ab957e41465626b5e5 containing the durable Discovery record and Signal Pool."}],"metrics":[{"label":"Due source objects","label_zh":"应检查来源对象","value":"48"},{"label":"Checked source objects","label_zh":"已检查来源对象","value":"45"},{"label":"Authentication-required sources","label_zh":"需要认证的来源","value":"1"},{"label":"Recorded retrieval failures","label_zh":"已记录抓取失败","value":"2"},{"label":"Deduplicated signals","label_zh":"去重信号","value":"16"}],"evidence":[{"label":"Scheduler V3.0","label_zh":"Scheduler V3.0","source":"research/runtime/SCHEDULER.json"},{"label":"Research Intelligence Registry","label_zh":"研究情报注册表","source":"research/intelligence/REGISTRY.json"},{"label":"AI Platform profile","label_zh":"AI 平台情报 Profile","source":"research/skills/profiles/01p-ai-platform-change-intelligence.md"},{"label":"GitHub Engineering profile","label_zh":"GitHub 工程情报 Profile","source":"research/skills/profiles/01g-github-engineering-intelligence.md"},{"label":"Published Research profile","label_zh":"论文研究情报 Profile","source":"research/skills/profiles/01r-published-research-intelligence.md"}],"artifacts":[{"label":"Research Intelligence run and Signal Pool","label_zh":"研究情报运行记录与 Signal Pool","path":"research/intelligence/runs/2026/08/2026-08-05-intelligence.json"},{"label":"Verified Discovery commit","label_zh":"已验证的 Discovery 提交","commit":"5e9079cc0cb5e241ead493ab957e41465626b5e5"}],"githubCommit":"5e9079cc0cb5e241ead493ab957e41465626b5e5","commitVerify":"Completed","updatedAt":"2026-08-05T09:11:37+08:00"}
+{
+  "schema": "daily-runtime-record/v1",
+  "runtimeVersion": "5.0",
+  "schedulerVersion": "3.0",
+  "runtimeFamily": "daily",
+  "runtimeFamilyName": "Daily Runtime",
+  "runtimeFamilyName_zh": "每日运行",
+  "date": "2026-08-05",
+  "timezone": "Asia/Shanghai",
+  "repository": "joinwell52-AI/joinwell52",
+  "status": "Running",
+  "taskStatus": {
+    "discovery": "Completed",
+    "queue": "Completed",
+    "reading": "Waiting",
+    "analysis": "Waiting",
+    "production": "Waiting",
+    "publication": "Waiting"
+  },
+  "results": {
+    "discovery": {
+      "schema": "runtime-shift-result/v2",
+      "task": "discovery",
+      "status": "Completed",
+      "input": "Research Runtime Scheduler V3.0, Research Intelligence Registry V1.0, three formal Discovery profiles, 33 platform channels, 9 P0 repositories, and 6 P0 research sources.",
+      "input_zh": "Research Runtime Scheduler V3.0、Research Intelligence Registry V1.0、三项正式 Discovery Profile、33 个平台渠道、9 个 P0 仓库及 6 个 P0 研究来源。",
+      "workResult": "Completed all three intelligence profiles. Resolved 48 due source objects as 45 checked, 1 authentication-required, and 2 public-channel retrieval failures; normalized and deduplicated 16 signals without selecting topics.",
+      "workResult_zh": "已完成三项情报发现 Profile。48 个应检查来源对象全部得到明确结果：45 个已检查、1 个需要认证、2 个公开渠道抓取失败；共规范化并去重 16 个信号，未进行选题。",
+      "output": "A durable 2026-08-05 Research Intelligence run containing the Signal Pool: 7 AI-platform signals, 6 GitHub-engineering signals, and 3 published-research signals.",
+      "output_zh": "已生成持久化的 2026-08-05 Research Intelligence Run 与 Signal Pool：7 个 AI 平台信号、6 个 GitHub 工程信号、3 个论文与研究成果信号。",
+      "next": "Research Runtime Queue at 10:00 must perform only three-column triage and decide Selected or No Selection for each column.",
+      "next_zh": "10:00 Research Runtime Queue 仅执行三栏筛选，并为每个栏目作出 Selected 或 No Selection 决定。",
+      "metrics": [
+        {
+          "label": "Due source objects",
+          "label_zh": "应检查来源对象",
+          "value": "48"
+        },
+        {
+          "label": "Checked source objects",
+          "label_zh": "已检查来源对象",
+          "value": "45"
+        },
+        {
+          "label": "Authentication-required sources",
+          "label_zh": "需要认证的来源",
+          "value": "1"
+        },
+        {
+          "label": "Recorded retrieval failures",
+          "label_zh": "已记录抓取失败",
+          "value": "2"
+        },
+        {
+          "label": "Deduplicated signals",
+          "label_zh": "去重信号",
+          "value": "16"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Scheduler V3.0",
+          "label_zh": "Scheduler V3.0",
+          "source": "research/runtime/SCHEDULER.json"
+        },
+        {
+          "label": "Research Intelligence Registry",
+          "label_zh": "研究情报注册表",
+          "source": "research/intelligence/REGISTRY.json"
+        },
+        {
+          "label": "AI Platform profile",
+          "label_zh": "AI 平台情报 Profile",
+          "source": "research/skills/profiles/01p-ai-platform-change-intelligence.md"
+        },
+        {
+          "label": "GitHub Engineering profile",
+          "label_zh": "GitHub 工程情报 Profile",
+          "source": "research/skills/profiles/01g-github-engineering-intelligence.md"
+        },
+        {
+          "label": "Published Research profile",
+          "label_zh": "论文研究情报 Profile",
+          "source": "research/skills/profiles/01r-published-research-intelligence.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Research Intelligence run and Signal Pool",
+          "label_zh": "研究情报运行记录与 Signal Pool",
+          "path": "research/intelligence/runs/2026/08/2026-08-05-intelligence.json"
+        },
+        {
+          "label": "Verified Discovery commit",
+          "label_zh": "已验证的 Discovery 提交",
+          "commit": "5e9079cc0cb5e241ead493ab957e41465626b5e5"
+        }
+      ]
+    },
+    "queue": {
+      "schema": "runtime-shift-result/v2",
+      "task": "queue",
+      "status": "Completed",
+      "input": "The completed 2026-08-05 Signal Pool containing 16 deduplicated signals: 7 AI-platform, 6 GitHub-engineering and 3 published-research signals.",
+      "input_zh": "已完成的 2026-08-05 Signal Pool，共 16 个去重信号：7 个 AI 平台、6 个 GitHub 工程及 3 个论文研究信号。",
+      "workResult": "Executed Skill 02 only. Scored and classified all 16 signals, retained 12 as candidates or cross-source support, rejected 1 weak standalone object, and selected exactly one bounded primary object for each of the three columns.",
+      "workResult_zh": "仅执行 Skill 02。已对 16 个信号完成评分与分类，保留 12 个候选或跨来源支持信号，拒绝 1 个独立研究价值不足的对象，并为三个栏目各选出 1 个边界明确的主要对象。",
+      "output": "Today's Research Plan with three Selected decisions: verifiable completion for computer-use Digital Employees; governed task-aware model routing; and guardrail-before-persistence session ordering.",
+      "output_zh": "已形成今日研究计划，三个栏目均为 Selected：计算机操作型数字员工的可验证完成机制、受治理的任务感知模型路由，以及输出门禁先于会话持久化的顺序机制。",
+      "next": "Research Runtime Reading at 11:00 may consume only Q-20260805-12, Q-20260805-13 and Q-20260805-14 and must execute Skill 03 Deep Reading without analysis or article drafting.",
+      "next_zh": "11:00 Research Runtime Reading 只能消费 Q-20260805-12、Q-20260805-13 与 Q-20260805-14，并仅执行 Skill 03 深度阅读，不得分析或撰写文章。",
+      "metrics": [
+        {
+          "label": "Signal Pool",
+          "label_zh": "信号池",
+          "value": "16"
+        },
+        {
+          "label": "Column decisions",
+          "label_zh": "栏目决定",
+          "value": "3 / 3"
+        },
+        {
+          "label": "Selected objects",
+          "label_zh": "已选对象",
+          "value": "3"
+        },
+        {
+          "label": "Candidate/supporting signals",
+          "label_zh": "候选/支持信号",
+          "value": "12"
+        },
+        {
+          "label": "Rejected standalone signals",
+          "label_zh": "拒绝的独立信号",
+          "value": "1"
+        },
+        {
+          "label": "No Selection decisions",
+          "label_zh": "未选题决定",
+          "value": "0"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Scheduler V3.0",
+          "label_zh": "Scheduler V3.0",
+          "source": "research/runtime/SCHEDULER.json"
+        },
+        {
+          "label": "2026-08-05 Signal Pool",
+          "label_zh": "2026-08-05 信号池",
+          "source": "research/intelligence/runs/2026/08/2026-08-05-intelligence.json"
+        },
+        {
+          "label": "Skill 02 Three-Column Research Triage",
+          "label_zh": "Skill 02 三栏研究筛选",
+          "source": "research/skills/02-research-triage.md"
+        },
+        {
+          "label": "Runtime Column Plan Contract",
+          "label_zh": "Runtime 栏目计划契约",
+          "source": "research/runtime/COLUMN-PLAN-SCHEMA.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Today's Research Plan",
+          "label_zh": "今日研究计划",
+          "path": "research/runtime/plans/2026/08/2026-08-05-plan.json"
+        },
+        {
+          "label": "Triaged Research Intelligence run",
+          "label_zh": "已筛选的研究情报运行记录",
+          "path": "research/intelligence/runs/2026/08/2026-08-05-intelligence.json"
+        }
+      ]
+    }
+  },
+  "timeline": [
+    {
+      "time": "2026-08-05T09:00:40+08:00",
+      "task": "discovery",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Discovery opened by Scheduler V3.0."
+    },
+    {
+      "time": "2026-08-05T09:04:57+08:00",
+      "task": "discovery",
+      "event": "Discovery Completed",
+      "status": "Completed",
+      "detail": "All three formal intelligence profiles completed; Signal Pool persisted; Queue triage remains pending."
+    },
+    {
+      "time": "2026-08-05T09:11:37+08:00",
+      "task": "discovery",
+      "event": "GitHub Commit Verified",
+      "status": "Completed",
+      "detail": "Fetched and verified commit 5e9079cc0cb5e241ead493ab957e41465626b5e5 containing the durable Discovery record and Signal Pool."
+    },
+    {
+      "time": "2026-08-05T10:01:51+08:00",
+      "task": "queue",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Queue execution started."
+    },
+    {
+      "time": "2026-08-05T10:10:37+08:00",
+      "task": "queue",
+      "event": "Queue Completed",
+      "status": "Completed",
+      "detail": "Skill 02 completed; three explicit Selected decisions and Today's Research Plan were persisted."
+    }
+  ],
+  "metrics": [
+    {
+      "label": "Due source objects",
+      "label_zh": "应检查来源对象",
+      "value": "48"
+    },
+    {
+      "label": "Checked source objects",
+      "label_zh": "已检查来源对象",
+      "value": "45"
+    },
+    {
+      "label": "Authentication-required sources",
+      "label_zh": "需要认证的来源",
+      "value": "1"
+    },
+    {
+      "label": "Recorded retrieval failures",
+      "label_zh": "已记录抓取失败",
+      "value": "2"
+    },
+    {
+      "label": "Deduplicated signals",
+      "label_zh": "去重信号",
+      "value": "16"
+    },
+    {
+      "label": "Signal Pool",
+      "label_zh": "信号池",
+      "value": "16"
+    },
+    {
+      "label": "Column decisions",
+      "label_zh": "栏目决定",
+      "value": "3 / 3"
+    },
+    {
+      "label": "Selected objects",
+      "label_zh": "已选对象",
+      "value": "3"
+    },
+    {
+      "label": "Candidate/supporting signals",
+      "label_zh": "候选/支持信号",
+      "value": "12"
+    },
+    {
+      "label": "Rejected standalone signals",
+      "label_zh": "拒绝的独立信号",
+      "value": "1"
+    },
+    {
+      "label": "No Selection decisions",
+      "label_zh": "未选题决定",
+      "value": "0"
+    }
+  ],
+  "evidence": [
+    {
+      "label": "Research Intelligence Registry",
+      "label_zh": "研究情报注册表",
+      "source": "research/intelligence/REGISTRY.json"
+    },
+    {
+      "label": "AI Platform profile",
+      "label_zh": "AI 平台情报 Profile",
+      "source": "research/skills/profiles/01p-ai-platform-change-intelligence.md"
+    },
+    {
+      "label": "GitHub Engineering profile",
+      "label_zh": "GitHub 工程情报 Profile",
+      "source": "research/skills/profiles/01g-github-engineering-intelligence.md"
+    },
+    {
+      "label": "Published Research profile",
+      "label_zh": "论文研究情报 Profile",
+      "source": "research/skills/profiles/01r-published-research-intelligence.md"
+    },
+    {
+      "label": "Scheduler V3.0",
+      "label_zh": "Scheduler V3.0",
+      "source": "research/runtime/SCHEDULER.json"
+    },
+    {
+      "label": "2026-08-05 Signal Pool",
+      "label_zh": "2026-08-05 信号池",
+      "source": "research/intelligence/runs/2026/08/2026-08-05-intelligence.json"
+    },
+    {
+      "label": "Skill 02 Three-Column Research Triage",
+      "label_zh": "Skill 02 三栏研究筛选",
+      "source": "research/skills/02-research-triage.md"
+    },
+    {
+      "label": "Runtime Column Plan Contract",
+      "label_zh": "Runtime 栏目计划契约",
+      "source": "research/runtime/COLUMN-PLAN-SCHEMA.md"
+    }
+  ],
+  "artifacts": [
+    {
+      "label": "Verified Discovery commit",
+      "label_zh": "已验证的 Discovery 提交",
+      "commit": "5e9079cc0cb5e241ead493ab957e41465626b5e5"
+    },
+    {
+      "label": "Today's Research Plan",
+      "label_zh": "今日研究计划",
+      "path": "research/runtime/plans/2026/08/2026-08-05-plan.json"
+    },
+    {
+      "label": "Triaged Research Intelligence run",
+      "label_zh": "已筛选的研究情报运行记录",
+      "path": "research/intelligence/runs/2026/08/2026-08-05-intelligence.json"
+    }
+  ],
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-08-05T10:10:37+08:00"
+}

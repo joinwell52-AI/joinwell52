@@ -1,0 +1,152 @@
+{
+  "schema": "runtime-column-plan/v1",
+  "date": "2026-08-05",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Queue",
+  "sourceRecord": "research/runtime/records/daily/2026/08/2026-08-05-daily-runtime.json",
+  "updatedAt": "2026-08-05T10:10:37+08:00",
+  "githubCommit": "pending",
+  "columns": [
+    {
+      "selectionStatus": "Selected",
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "itemId": "Q-20260805-12",
+      "signalId": "SIG-20260805-R-003",
+      "priority": "P0",
+      "title": "Verifiable completion for computer-use Digital Employees",
+      "title_zh": "计算机操作型数字员工的可验证完成机制",
+      "lifecycle": "Selected",
+      "pipelineOrigin": "published-research",
+      "source": "Microsoft Research — The Art of Building Verifiers for Computer-Use Agents",
+      "source_zh": "Microsoft Research《为计算机操作 Agent 构建验证器的艺术》",
+      "sourceUrl": "https://www.microsoft.com/en-us/research/publication/the-art-of-building-verifiers-for-computer-use-agents/",
+      "evidenceLevels": [
+        "peer_reviewed_or_primary_research"
+      ],
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "researchQuestion": "How should a Digital Employee runtime separate process verification, outcome verification, and controllable versus uncontrollable failure so that completion is independently auditable and false positives remain bounded?",
+      "researchQuestion_zh": "数字员工运行时应如何分离过程验证、结果验证以及可控与不可控失败，使完成结果可独立审计并限制误报？",
+      "reason": "The primary research exposes a bounded completion-governance problem at the core of Digital Employee work: independent verification, process/outcome separation, failure attribution and false-positive control. It directly informs TMPA evidence envelopes and CodeFlowMu completion gates.",
+      "reason_zh": "该主要研究揭示了数字员工工作的核心完成治理问题：独立验证、过程与结果分离、失败归因及误报控制。它可直接支撑 TMPA 证据封装与 CodeFlowMu 完成门禁。",
+      "next": "Execute Skill 03 Deep Reading on the verifier methodology, evaluation set, agreement and false-positive measurements, process/outcome separation, failure taxonomy and applicability limits.",
+      "next_zh": "执行 Skill 03 深度阅读，核查验证器方法、评估集、一致性与误报指标、过程/结果分离、失败分类及适用边界。",
+      "proposedCategory": "Digital Employee Evaluation and Completion Governance",
+      "nextSkill": "03 Deep Reading",
+      "scores": {
+        "columnRelevance": 5,
+        "directionRelevance": 5,
+        "tmpaRelevance": 5,
+        "digitalEmployeeRelevance": 5,
+        "codeFlowMuRelevance": 4,
+        "engineeringValue": 4,
+        "novelInformation": 4,
+        "sourceQuality": 5,
+        "crossSourceSupport": 3,
+        "boundedQuestion": 5
+      },
+      "totalScore": 45
+    },
+    {
+      "selectionStatus": "Selected",
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "itemId": "Q-20260805-13",
+      "signalId": "SIG-20260805-P-004",
+      "priority": "P1",
+      "title": "Governed task-aware model routing for enterprise agent runtimes",
+      "title_zh": "企业 Agent 运行时的受治理任务感知模型路由",
+      "lifecycle": "Selected",
+      "pipelineOrigin": "ai-platform",
+      "source": "Cursor Router official changelog",
+      "source_zh": "Cursor Router 官方更新日志",
+      "sourceUrl": "https://cursor.com/changelog/router",
+      "evidenceLevels": [
+        "official_announcement"
+      ],
+      "secondaryColumns": [
+        "digital-employee",
+        "open-source-engineering"
+      ],
+      "crossSourceSupport": [
+        "SIG-20260805-P-001",
+        "SIG-20260805-P-006",
+        "SIG-20260805-P-007"
+      ],
+      "researchQuestion": "How should an enterprise agent runtime route models by task type, complexity, cost and intelligence while preserving team defaults, allow/block policy, enforceable restrictions and migration under model retirement?",
+      "researchQuestion_zh": "企业 Agent 运行时应如何依据任务类型、复杂度、成本与智能水平进行模型路由，同时保持团队默认值、允许/阻止策略、可执行限制以及模型退役时的迁移能力？",
+      "reason": "Cursor Router provides a concrete and testable architecture for task classification, model routing and enterprise controls. Official model-retirement and managed-settings signals provide cross-source support, turning the object into a bounded runtime-governance question rather than a product announcement.",
+      "reason_zh": "Cursor Router 提供了任务分类、模型路由与企业控制的具体可测试架构；官方模型退役和托管设置证据形成跨来源支持，使其成为边界明确的运行时治理问题，而非普通产品公告。",
+      "next": "Execute Skill 03 Deep Reading on routing inputs, policy precedence, enforcement boundaries, observability, fallback and migration behavior using the primary Router source and supporting official controls.",
+      "next_zh": "执行 Skill 03 深度阅读，基于 Router 主要来源及相关官方控制证据，核查路由输入、策略优先级、执行边界、可观测性、回退与迁移行为。",
+      "proposedCategory": "Enterprise Agent Runtime Architecture",
+      "nextSkill": "03 Deep Reading",
+      "scores": {
+        "columnRelevance": 5,
+        "directionRelevance": 5,
+        "tmpaRelevance": 4,
+        "digitalEmployeeRelevance": 4,
+        "codeFlowMuRelevance": 5,
+        "engineeringValue": 5,
+        "novelInformation": 4,
+        "sourceQuality": 5,
+        "crossSourceSupport": 4,
+        "boundedQuestion": 5
+      },
+      "totalScore": 46
+    },
+    {
+      "selectionStatus": "Selected",
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "itemId": "Q-20260805-14",
+      "signalId": "SIG-20260805-G-002",
+      "priority": "P0",
+      "title": "Persist governed session state only after output guardrails complete",
+      "title_zh": "仅在输出门禁完成后持久化受治理会话状态",
+      "lifecycle": "Selected",
+      "pipelineOrigin": "github-engineering",
+      "source": "openai/openai-agents-python commit 69e26269f52a1fde684154376d77e5a21b507c19",
+      "source_zh": "openai/openai-agents-python 提交 69e26269f52a1fde684154376d77e5a21b507c19",
+      "sourceUrl": "https://github.com/openai/openai-agents-python/commit/69e26269f52a1fde684154376d77e5a21b507c19",
+      "evidenceLevels": [
+        "merged_maintainer_change"
+      ],
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "crossSourceSupport": [
+        "SIG-20260805-G-001",
+        "SIG-20260805-G-004",
+        "SIG-20260805-R-003"
+      ],
+      "researchQuestion": "What completion-ordering invariant should an agent runtime enforce so that durable session state is written only after output guardrails accept the outcome, including interruption and resume behavior?",
+      "researchQuestion_zh": "Agent 运行时应执行怎样的完成顺序不变量，确保只有输出门禁接受结果后才写入持久会话状态，并覆盖中断与恢复行为？",
+      "reason": "The maintainer change exposes a precise implementation invariant: durable state must represent the governed outcome, not a provisional result. The mechanism is directly reproducible and relevant to TMPA evidence order, CodeFlowMu completion semantics and Digital Employee recovery.",
+      "reason_zh": "该维护者变更揭示了精确的实现不变量：持久状态必须代表受治理的最终结果，而非临时结果。该机制可直接复现，并关联 TMPA 证据顺序、CodeFlowMu 完成语义与数字员工恢复。",
+      "next": "Execute Skill 03 Deep Reading on the commit diff, tests, non-stream and stream ordering, output-guardrail failure paths, persistence semantics and recovery implications.",
+      "next_zh": "执行 Skill 03 深度阅读，核查提交差异、测试、非流式与流式顺序、输出门禁失败路径、持久化语义及恢复影响。",
+      "proposedCategory": "Agent Runtime State and Guardrail Ordering",
+      "nextSkill": "03 Deep Reading",
+      "scores": {
+        "columnRelevance": 5,
+        "directionRelevance": 5,
+        "tmpaRelevance": 5,
+        "digitalEmployeeRelevance": 4,
+        "codeFlowMuRelevance": 5,
+        "engineeringValue": 5,
+        "novelInformation": 5,
+        "sourceQuality": 5,
+        "crossSourceSupport": 4,
+        "boundedQuestion": 5
+      },
+      "totalScore": 48
+    }
+  ]
+}
