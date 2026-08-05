@@ -1,0 +1,63 @@
+name: Synchronize Runtime Markdown Ledger
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'research/runtime/records/daily/**/*.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: runtime-markdown-ledger-sync
+  cancel-in-progress: false
+
+jobs:
+  synchronize:
+    name: Synchronize human-readable Runtime records
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout authoritative main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Render and verify all V5 Daily Runtime ledgers
+        run: |
+          node scripts/runtime-markdown.mjs render --all
+          node scripts/runtime-markdown.mjs validate --all
+
+      - name: Commit synchronized ledgers
+        shell: bash
+        run: |
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime/[0-9][0-9][0-9][0-9]
+
+          if git diff --cached --quiet; then
+            echo "Readable Runtime ledgers are already synchronized."
+            exit 0
+          fi
+
+          git commit -m "runtime: synchronize human-readable Runtime ledger"
+
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort || true
+            if [[ "$attempt" -eq 3 ]]; then
+              echo "Unable to publish synchronized Runtime ledgers after three attempts."
+              exit 1
+            fi
+            sleep $((attempt * 5))
+          done

@@ -1,7 +1,7 @@
 {
   "name": "joinwell52-research-center-portal",
   "private": true,
-  "version": "9.0.4",
+  "version": "9.0.5",
   "type": "module",
   "scripts": {
     "intelligence:validate": "node scripts/research-intelligence.mjs validate",
@@ -14,7 +14,9 @@
     "tmpa:s0.4:conformance": "node research/conformance/tmpa-core-s0.4/runner.mjs",
     "docs:dev": "npm run runtime:build && vitepress dev docs",
     "docs:build": "npm run runtime:build && node scripts/vitepress-build-strict.mjs && npm run runtime:projection:verify-dist",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "runtime:markdown": "node scripts/runtime-markdown.mjs render --all",
+    "runtime:markdown:validate": "node scripts/runtime-markdown.mjs validate --all"
   },
   "devDependencies": {
     "ajv": "8.17.1",

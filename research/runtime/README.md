@@ -142,3 +142,13 @@ Runtime Result
 ## 8. Freeze rule
 
 After V5.0, the four-family boundary, Daily six-stage sequence and Scheduler V3.0 task identities are frozen. Later versions may optimize source quality, worker performance, metrics, page experience and publication quality, but must not recombine Program work with Daily Runtime.
+
+## Mandatory human-readable Daily Runtime ledger
+
+Every Daily Runtime JSON record must have a same-day human-readable ledger:
+
+```text
+research/runtime/YYYY/MM/YYYY-MM-DD-runtime.md
+```
+
+JSON is the machine source of truth; Markdown is the mandatory human-readable ledger. The Markdown ledger must preserve every execution-slot opening, Running transition, stage result, terminal status, and commit-verification timepoint, together with Input, Work Result, Output, Next, Metrics, Evidence, and Artifacts for every shift. Website “View record” links must target Markdown rather than the machine JSON.
