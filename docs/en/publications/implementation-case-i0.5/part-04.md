@@ -1,4 +1,4 @@
-# 13. Engineering Conclusion
+# 14. Engineering Conclusion
 
 The public S0.4 corpus converts broad engineering history into a testable, repository-resident baseline. Its Reference Reader passes all 14 synthetic criteria. Against the pinned products, only C14 passes, nine criteria have partial evidence, and four were not run at product-reader level. The result is stronger than an unversioned demonstration but remains weaker than complete or independent conformance.
 
@@ -6,11 +6,11 @@ The products already contain many write-side and local-control mechanisms. The n
 
 # Artifact Availability
 
-The author-produced S0.4 corpus is public at [`research/conformance/tmpa-core-s0.4`](https://github.com/joinwell52-AI/joinwell52/tree/main/research/conformance/tmpa-core-s0.4). It contains the Reference Reader, executable profile, fixtures, product-evidence assertions, external-run records, criterion results, summaries, logs, and SHA-256 manifest. There is no separate `tmpa-conformance.zip`; Git history is the version history.
+The author-produced S0.4 corpus is public at [`research/conformance/tmpa-core-s0.4`](https://github.com/joinwell52-AI/joinwell52/tree/main/research/conformance/tmpa-core-s0.4). It contains the Reference Reader, executable profile, fixtures, product-evidence assertions, external-run records, criterion results, summaries, logs, and SHA-256 manifest. WP-13 case boundaries and mapping metadata are at [`research/cases/wp13-multi-agent-fact-check`](https://github.com/joinwell52-AI/joinwell52/tree/main/research/cases/wp13-multi-agent-fact-check), and the complete V3 package is published under `/evidence/tmpa/i0.5/`. There is no separate `tmpa-conformance.zip`; Git history is the version history.
 
 # Data Availability
 
-The public demonstration exposes selected governance views. Private business data, credentials, and sensitive operational records are not included. The corpus uses selected test paths, hash inventories, and compact fixtures rather than exporting private production data.
+The public demonstration exposes selected governance views. Private business data, credentials, and sensitive operational records are not included. The corpus uses selected test paths, hash inventories, and compact fixtures rather than exporting private production data. The WP-13 package contains only the tasks, reports, runtime excerpts, Git patch, and QA results needed for this case; the original private product repository is not distributed with it.
 
 # Competing Interests and Provenance
 
@@ -36,6 +36,8 @@ The author is the originator or principal developer of TMPA, FCoP, and CodeFlowM
 
 [9] TMPA Project. “TMPA Core S0.4 C01–C14 Conformance Corpus.” Corpus ID `tmpa-s0.4-fcop-codeflowmu-20260803`, executed 2026-08-03. `research/conformance/tmpa-core-s0.4/`.
 
+[10] CodeFlowMu Project. “WP-13 Multi-Agent Fact-Check Publication Evidence V3.” Author-produced evidence snapshot, observed 2026-08-05. `research/cases/wp13-multi-agent-fact-check/`.
+
 # Appendix A. FCoP End-to-End Artifact Example
 
 A TASK is created by PM, claimed and executed by DEV, followed by a separate DEV REPORT and an independent QA REVIEW. The QA review may return `needs_human` when technical verification passes but production activation changes an authorization boundary.
@@ -55,6 +57,6 @@ TASK created by PM
 
 The `needs_human` node remains in the graph and is queryable. Downstream objects depending on it remain `undetermined` until an authorized decision object resolves the state. The authoritative record is the source set and transitions, not the rendered view. Reordering input files must not change the reconstructed graph or issue set.
 
-## I0.4 Theory-to-Implementation Alignment
+## I0.5 Theory-to-Implementation Alignment
 
 FCoP is evaluated as a protocol realization of TMPA concepts; CodeFlowMu is evaluated as an engineering system combining protocol roles with Skills, tools, runtime execution, recovery, and interfaces. The report distinguishes probabilistic agent execution evidence from deterministic validation mechanisms, and demonstrated behavior from full Core conformance.

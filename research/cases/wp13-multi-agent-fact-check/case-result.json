@@ -1,0 +1,55 @@
+{
+  "case_id": "wp13-multi-agent-fact-check-20260805",
+  "case_version": "v3",
+  "implementation_case_version": "I0.5",
+  "core_version": "S0.4",
+  "observation_window": {
+    "start": "2026-08-05T12:59:00+08:00",
+    "end": "2026-08-05T13:11:59+08:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "evidence_package": {
+    "path": "docs/public/evidence/tmpa/i0.5/wp13-multi-agent-fact-check-publication-evidence-v3.zip",
+    "sha256": "5b5eda3034c822f13421783244b1d0c76a9fa79950bfad0ce61bb8d2e404131c",
+    "file_count": 24
+  },
+  "claim_boundary": {
+    "primary_claim": "An unverified completion-meaning claim was withheld from authoritative delivery until persistent DEV evidence and role-separated QA evidence existed.",
+    "evidence_level": "demonstrated",
+    "author_produced": true,
+    "independent_validation": false,
+    "runtime_authenticated_reports": false,
+    "snapshot_lifecycle": "review_pending",
+    "eliminates_model_hallucination": false,
+    "establishes_full_s0_4_product_conformance": false
+  },
+  "actors": [
+    { "identity": "DEV-01", "role": "DEV" },
+    { "identity": "PM", "role": "PM" },
+    { "identity": "QA-01", "role": "QA" }
+  ],
+  "verified_observations": {
+    "qa_tests_passed": 27,
+    "qa_tests_total": 27,
+    "typecheck_exit_code": 0,
+    "diff_check_exit_code": 0,
+    "git_commit": "609571ddb22d1fbb2bfb5e54692c07beeef4cf23",
+    "git_patch_file_count": 12,
+    "runtime_excerpt_lines": 300,
+    "raw_readable_projection_semantically_equal": true
+  },
+  "criterion_contributions": [
+    { "criterion": "C04", "contribution": "traceable task-report-QA serial chain", "verdict_change": false },
+    { "criterion": "C06", "contribution": "incomplete evidence did not advance authoritative delivery", "verdict_change": false },
+    { "criterion": "C07", "contribution": "DEV, PM, and QA work-role separation", "verdict_change": false },
+    { "criterion": "C09", "contribution": "intermediate missing required report, commit, and test evidence", "verdict_change": false },
+    { "criterion": "C13", "contribution": "same-task recovery followed by durable evidence completion", "verdict_change": false }
+  ],
+  "preserved_product_baseline": {
+    "aggregate_verdict": "PARTIAL",
+    "PASS": 1,
+    "PARTIAL": 9,
+    "NOT_RUN": 4,
+    "FAIL": 0
+  }
+}

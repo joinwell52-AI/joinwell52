@@ -1,5 +1,5 @@
 ---
-title: TMPA–FCoP–CodeFlowMu 实施案例 — 草稿 I0.4
+title: TMPA–FCoP–CodeFlowMu 实施案例 — 草稿 I0.5
 outline: deep
 ---
 
@@ -7,32 +7,32 @@ outline: deep
   image="/assets/covers/implementation-case.svg"
   kicker="工程案例"
   title="TMPA 实施案例"
-  summary="S0.4 Reference Reader 工程证据，以及 FCoP–CodeFlowMu 锁定基线的 C01–C14 严格重跑。"
-  version="I0.4"
+  summary="S0.4 工程基线，以及 WP-13 多 Agent 证据门控与事实复核案例。"
+  version="I0.5"
   status="S0.4 工程证据草稿"
-  languageHref="/en/publications/implementation-case-i0.4"
+  languageHref="/en/publications/implementation-case-i0.5"
   languageLabel="English"
 />
 
 # TMPA 实施与案例报告
 
-## S0.4 Reference Reader、FCoP、CodeFlowMu 与 C01–C14 重跑
+## S0.4 Reference Reader、FCoP、CodeFlowMu 与 WP-13 多 Agent 事实复核
 
-> **文档版本：** Draft I0.4<br>
+> **文档版本：** Draft I0.5<br>
 > **状态：** 作者生成的实施与案例报告<br>
 > **规范目标：** TMPA Core S0.4<br>
 > **历史证据基线：** I0.3 / S0.3 语料库<br>
-> **报告与执行日期：** 2026-08-03<br>
+> **报告与执行日期：** 2026-08-03；WP-13 案例观察日期 2026-08-05<br>
 > **一致性语料库：** `tmpa-s0.4-fcop-codeflowmu-20260803`<br>
 > **权威边界：** 本报告只提供工程证据，不具有规范性；TMPA Core 要求仅由 GitHub Core Specification 定义。
 
 # 摘要
 
-本报告把 Implementation Case 从一个未进入 GitHub 的 S0.3 时代本地归档，推进为公开、可执行的 S0.4 语料库。新增内容包括只读 Reference Reader、确定性 C01–C14 Fixture、可执行 Manifest、规范结果 Envelope、产品证据断言、文件 Digest 与单命令 Runner；同时保留 FCoP、CodeFlowMu 与小典 AI 的工程谱系。
+本报告把 Implementation Case 从一个未进入 GitHub 的 S0.3 时代本地归档，推进为公开、可执行的 S0.4 语料库。I0.5 保留 I0.4 的 Reference Reader、C01–C14 Fixture、Manifest、结果 Envelope、产品证据断言与单命令 Runner，并新增 WP-13 现场案例：当子执行产生带有“完成”意味但缺乏退出状态、测试、Commit 与正式 REPORT 的声明时，PM 根据持久事实不予放行；DEV 恢复后在原任务补齐交付，再由角色分离的 QA 验证。
 
 FCoP 实现项目可见的协调 Profile：路由文本工件、生命周期路径、原子 Rename、只增迁移证据、角色绑定、复核、ISSUE、告警和检查报告都保存在临时模型 Session 之外。CodeFlowMu 把 FCoP 用作持久工作身份、任务—报告流、复核门禁、依赖等待、恢复和归档历史的协调与治理基础设施。小典 AI 提供来自受治理 NL2SQL Pipeline 的前规范现场证据，包括被保留的通过路径和拒绝路径。
 
-S0.4 Reference Reader 针对作者生成的合成 Fixture 套件得到 **14 PASS**。单独求值的 FCoP–CodeFlowMu 产品基线得到 **1 PASS、9 PARTIAL、4 NOT RUN、0 FAIL**，聚合裁决为 `PARTIAL`。FCoP `3.2.4` 锁定提交 `da79dfefd99f597c9e422ce9edec22157f915a21` 已直接取回重跑：1,137 项通过、2 项跳过、0 项失败。CodeFlowMu `V1.2.3` 锁定提交 `8f342d028eb66e77d135bea58fdbc7f2d0627e3b` 不存在于公开 `CodeFlowMu-open` 历史，因此只重新裁决 I0.3 已保存证据，不声称完成新的产品执行。
+S0.4 Reference Reader 针对作者生成的合成 Fixture 套件得到 **14 PASS**。单独求值的 FCoP–CodeFlowMu 产品基线仍为 **1 PASS、9 PARTIAL、4 NOT RUN、0 FAIL**，聚合裁决为 `PARTIAL`。WP-13 增强了 C04、C06、C07 与 C13 相关行为的作者生成 `demonstrated` 证据，但没有执行新的 S0.4 产品 Reader 标准，因此不改写上述裁决，也不建立独立验证。
 
 # 1. 范围与证据边界
 

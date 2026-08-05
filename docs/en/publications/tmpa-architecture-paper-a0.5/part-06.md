@@ -24,7 +24,7 @@ TMPA's central claims should remain open to disconfirmation:
 
 ## 8.6 Publication and Reproducibility Boundary
 
-A0.5 is the theoretical architecture paper. Core S0.4 is the normative source, and Implementation Case I0.4 is the engineering-evidence source. The paper may summarize those companion artifacts but must not silently redefine their meaning.
+A0.5 is the theoretical architecture paper. Core S0.4 is the normative source, and Implementation Case I0.5 is the engineering-evidence source. The paper may summarize those companion artifacts but must not silently redefine their meaning.
 
 Before external submission, the corpus still requires a retrievable pinned CodeFlowMu source or reproduction package and at least one independent rerun. Low-resource deployment measurements remain a separate release requirement for the SME feasibility claim.
 # 9. Conclusion

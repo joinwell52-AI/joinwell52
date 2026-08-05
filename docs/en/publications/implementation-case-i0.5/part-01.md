@@ -1,5 +1,5 @@
 ---
-title: TMPA–FCoP–CodeFlowMu Implementation Case — Draft I0.4
+title: TMPA–FCoP–CodeFlowMu Implementation Case — Draft I0.5
 outline: deep
 ---
 
@@ -7,32 +7,32 @@ outline: deep
   image="/assets/covers/implementation-case.svg"
   kicker="Engineering Case"
   title="TMPA Implementation Case"
-  summary="S0.4 Reference Reader evidence and a strict C01–C14 rerun of the pinned FCoP–CodeFlowMu baseline."
-  version="I0.4"
+  summary="The S0.4 engineering baseline and a WP-13 multi-agent evidence-gating and fact-checking case."
+  version="I0.5"
   status="S0.4 engineering evidence draft"
-  languageHref="/zh/publications/implementation-case-i0.4"
+  languageHref="/zh/publications/implementation-case-i0.5"
   languageLabel="简体中文"
 />
 
 # TMPA Implementation and Case Report
 
-## S0.4 Reference Reader, FCoP, CodeFlowMu, and the C01–C14 Rerun
+## S0.4 Reference Reader, FCoP, CodeFlowMu, and the WP-13 Multi-Agent Fact Check
 
-> **Document Version:** Draft I0.4<br>
+> **Document Version:** Draft I0.5<br>
 > **Status:** Author-Produced Implementation and Case Report<br>
 > **Normative Target:** TMPA Core S0.4<br>
 > **Historical Evidence Baseline:** I0.3 / S0.3 corpus<br>
-> **Report and Execution Date:** 2026-08-03<br>
+> **Report and Execution Date:** 2026-08-03; WP-13 case observed 2026-08-05<br>
 > **Conformance Corpus:** `tmpa-s0.4-fcop-codeflowmu-20260803`<br>
 > **Authority Boundary:** This report is evidentiary and non-normative. TMPA Core requirements are defined only by the GitHub Core Specification.
 
 ## Abstract
 
-This report advances the implementation case from an unavailable S0.3-era archive to a public, executable S0.4 corpus. It adds a read-only Reference Reader, deterministic C01–C14 fixtures, executable manifests, canonical result envelopes, product-evidence assertions, file digests, and a one-command runner. It also preserves the engineering lineage through FCoP, CodeFlowMu, and selected XiaoDian AI evidence.
+This report advances the implementation case from an unavailable S0.3-era archive to a public, executable S0.4 corpus. I0.5 retains the I0.4 Reference Reader, C01–C14 fixtures, manifests, result envelopes, product-evidence assertions, and one-command runner, and adds the WP-13 field case. In that case, a subexecution produced a completion-meaning claim without confirmed exit status, tests, commit, or formal report. PM withheld release on persistent facts; DEV then completed the same task after tool recovery, followed by role-separated QA.
 
 FCoP realizes a project-visible coordination profile in which routed textual artifacts, lifecycle paths, atomic rename, append-only transition evidence, role bindings, reviews, issues, alerts, and inspection reports remain available outside transient sessions. CodeFlowMu adopts FCoP for persistent work identities, task/report flows, review gates, dependency waiting, recovery, and archival history. XiaoDian AI contributes pre-specification field evidence from a governed NL2SQL pipeline, including retained pass and rejection paths.
 
-The S0.4 Reference Reader reports **14 PASS** against its author-produced synthetic fixture suite. The separately evaluated FCoP–CodeFlowMu product baseline reports **1 PASS, 9 PARTIAL, 4 NOT RUN, and 0 FAIL**, with aggregate verdict `PARTIAL`. FCoP `3.2.4` at commit `da79dfefd99f597c9e422ce9edec22157f915a21` was retrieved and rerun directly: 1,137 tests passed, 2 skipped, and none failed. CodeFlowMu `V1.2.3` commit `8f342d028eb66e77d135bea58fdbc7f2d0627e3b` was not present in the public `CodeFlowMu-open` history, so its preserved I0.3 evidence was re-adjudicated but no fresh product execution is claimed.
+The S0.4 Reference Reader reports **14 PASS** against its author-produced synthetic fixture suite. The separately evaluated FCoP–CodeFlowMu product baseline remains **1 PASS, 9 PARTIAL, 4 NOT RUN, and 0 FAIL**, with aggregate verdict `PARTIAL`. WP-13 strengthens author-produced `demonstrated` evidence related to C04, C06, C07, and C13, but it did not execute a new S0.4 product-reader criterion. The verdicts are therefore not relabeled, and no independent-validation claim is made.
 
 # 1. Scope and Evidence Boundary
 
