@@ -1,0 +1,1255 @@
+{
+  "schema": "research-runtime-legacy-projection/v1",
+  "generatedAt": "2026-08-05T12:34:11.994Z",
+  "today": "2026-08-05",
+  "timezone": "Asia/Shanghai",
+  "current": null,
+  "records": [
+    {
+      "runtimeFamily": "legacy",
+      "date": "2026-08-04",
+      "status": "Completed",
+      "taskStatus": {
+        "engine": "Completed",
+        "queue": "Completed",
+        "knowledge": "Completed",
+        "production": "Completed",
+        "publication": "Completed"
+      },
+      "results": {
+        "engine": {
+          "task": "engine",
+          "status": "Completed",
+          "input": "Q-W003-01 at Reading, the validated Reading artifact, the canonical Queue state, and the Architecture Gate requirement for additional Analysis.",
+          "input_zh": "处于 Reading 状态的 Q-W003-01、已验证的阅读记录、权威研究队列，以及架构评审要求补充分析的决定。",
+          "workResult": "Advanced Q-W003-01 exactly once from Reading to Analysis through Skill 04, completed the bounded work-boundary analysis, and preserved all later publication gates.",
+          "workResult_zh": "通过 Skill 04 将 Q-W003-01 严格推进一次：Reading → Analysis；完成工作边界分析，并保留后续所有发布门禁。",
+          "output": "Analysis record, canonical Queue transition, Engine queue history, Runtime Record update, and verified commits.",
+          "output_zh": "分析记录、权威队列状态转换、引擎队列历史、运行记录更新，以及已校验的 GitHub 提交。",
+          "next": "Run the governed reconstruction experiment and meet verifier-independence, false-success rejection, and duplicate-action prevention thresholds before Research Note.",
+          "next_zh": "在进入研究笔记阶段前，完成受治理的重建实验，并满足验证者独立、拒绝虚假成功和防止重复动作的证据阈值。",
+          "reason": "",
+          "reason_zh": "",
+          "metrics": [
+            {
+              "label": "Lifecycle transitions",
+              "label_zh": "生命周期推进",
+              "value": "1"
+            },
+            {
+              "label": "State",
+              "label_zh": "状态",
+              "value": "Reading → Analysis"
+            },
+            {
+              "label": "Skill",
+              "label_zh": "使用技能",
+              "value": "Skill 04"
+            },
+            {
+              "label": "Research notes created",
+              "label_zh": "新增研究笔记",
+              "value": "0"
+            }
+          ],
+          "evidence": [],
+          "artifacts": [
+            {
+              "label": "Analysis record",
+              "label_zh": "分析记录",
+              "path": "research/analysis/Q-W003-01-work-boundary-contract.md",
+              "commit": "1785fd7fb9a2569c15943afe22fcfda8fca80348"
+            },
+            {
+              "label": "Queue transition commit",
+              "label_zh": "队列转换提交",
+              "commit": "c556c506bef7a34dbc4e3d22a47207bc6669e4df"
+            },
+            {
+              "label": "Engine history commit",
+              "label_zh": "引擎历史提交",
+              "commit": "4ac238c4eff3c4232dfc5df1510355ea9996ba10"
+            }
+          ]
+        },
+        "queue": {
+          "task": "queue",
+          "status": "Completed",
+          "input": "The current Queue, the active Analysis object, and six official-source signals from benchmark, workspace-agent, evaluation-security, and long-running monitoring sources.",
+          "input_zh": "当前研究队列、正在 Analysis 的研究对象，以及来自基准、Workspace Agent、评估安全和长时监控的 6 个官方来源信号。",
+          "workResult": "Registered six signals, enriched six existing objects, created one bounded candidate, and selected Q-20260804-11 without changing the active Engine item.",
+          "workResult_zh": "登记 6 个信号，补充 6 个现有对象，新建 1 个边界明确的候选，并选出 Q-20260804-11；没有改变当前引擎研究对象。",
+          "output": "Official signal register, corrected Queue history, canonical Queue update, selected candidate Q-20260804-11, and verified GitHub commits.",
+          "output_zh": "官方信号登记、校正后的队列历史、权威队列更新、入选候选 Q-20260804-11，以及已校验的 GitHub 提交。",
+          "next": "Keep Q-W003-01 as the active Engine priority. Q-20260804-11 waits for later Engine allocation and must begin with Skill 03 — Deep Reading.",
+          "next_zh": "继续以 Q-W003-01 作为引擎优先项；Q-20260804-11 等待后续引擎分配，并必须从 Skill 03 深度阅读开始。",
+          "reason": "",
+          "reason_zh": "",
+          "metrics": [
+            {
+              "label": "Signals registered",
+              "label_zh": "登记信号",
+              "value": "6"
+            },
+            {
+              "label": "Existing objects enriched",
+              "label_zh": "补充现有对象",
+              "value": "6"
+            },
+            {
+              "label": "New candidates",
+              "label_zh": "新增候选",
+              "value": "1"
+            },
+            {
+              "label": "New selections",
+              "label_zh": "正式选题",
+              "value": "1"
+            },
+            {
+              "label": "Selected object",
+              "label_zh": "入选对象",
+              "value": "Q-20260804-11"
+            }
+          ],
+          "evidence": [],
+          "artifacts": [
+            {
+              "label": "Official signal register",
+              "label_zh": "官方信号登记",
+              "path": "research/queue/signals/2026-08-04.md",
+              "commit": "bda5561d6c653e717ff22d40dcf1ff2bf3d299b5"
+            },
+            {
+              "label": "Queue history",
+              "label_zh": "队列历史",
+              "path": "research/queue/history/2026-08-04-queue-stage.md",
+              "commit": "fdc245609b5fc2c97e926828f6a185805f1e05fb"
+            },
+            {
+              "label": "Canonical Queue",
+              "label_zh": "权威研究队列",
+              "path": "research/queue/CURRENT.md",
+              "commit": "42f3bc62ae3e710d5d5bdd3da0f94498c89a0293"
+            }
+          ]
+        },
+        "knowledge": {
+          "task": "knowledge",
+          "status": "Completed",
+          "input": "Six previously validated Research Notes, K-20260803-01, the current Queue, the Architecture Gate decision, and the new Q-W003-01 Analysis record.",
+          "input_zh": "6 篇已验证研究笔记、K-20260803-01、当前研究队列、架构评审决定，以及新增的 Q-W003-01 分析记录。",
+          "workResult": "Applied the Knowledge evidence gate, found no new eligible Research Note, preserved the existing Knowledge graph and five architecture candidates, and updated AC-K003-01 progress without promotion.",
+          "workResult_zh": "执行 Knowledge 证据门禁，确认没有新的合格研究笔记；保留现有知识图谱和 5 个架构候选，只更新 AC-K003-01 的进展，不予晋升。",
+          "output": "A source-traceable Knowledge admission record, refreshed Current Knowledge state, explicit blockers, and verified GitHub commits.",
+          "output_zh": "可追溯的 Knowledge 准入记录、更新后的当前知识状态、明确阻塞项，以及已验证的 GitHub 提交。",
+          "next": "Execute the four-path reconstruction experiment. Only a completed evidence-validated Research Note may be admitted by the next Knowledge run.",
+          "next_zh": "执行四路径重建实验；只有完成证据验证的研究笔记，才能在下一次 Knowledge 运行中被纳入。",
+          "reason": "No new Research Note completed the governed evidence-validation pipeline.",
+          "reason_zh": "没有新的研究笔记完成受治理的证据验证流程。",
+          "metrics": [
+            {
+              "label": "Validated notes reviewed",
+              "label_zh": "复核已验证笔记",
+              "value": "6"
+            },
+            {
+              "label": "New eligible notes",
+              "label_zh": "新增合格笔记",
+              "value": "0"
+            },
+            {
+              "label": "Knowledge objects",
+              "label_zh": "知识对象",
+              "value": "1 preserved"
+            },
+            {
+              "label": "Architecture candidates",
+              "label_zh": "架构候选",
+              "value": "5 retained"
+            },
+            {
+              "label": "Promotions",
+              "label_zh": "晋升",
+              "value": "0"
+            }
+          ],
+          "evidence": [],
+          "artifacts": [
+            {
+              "label": "Knowledge stage history",
+              "label_zh": "Knowledge 阶段历史",
+              "path": "research/knowledge/history/2026-08-04-knowledge-stage.md",
+              "commit": "d8fc0ed72f0ece9c8cc50a764a330a668e378d26"
+            },
+            {
+              "label": "Current Knowledge state",
+              "label_zh": "当前 Knowledge 状态",
+              "path": "research/knowledge/CURRENT.md",
+              "commit": "802af868c38a3eebf00111afb8c0dad19222941f"
+            }
+          ]
+        },
+        "production": {
+          "task": "production",
+          "status": "Completed",
+          "input": "The completed three-column Daily Research Plan, the canonical Queue, Q-W003-01 at Analysis, Q-20260804-11 at Selected, and the Publication Candidate contract.",
+          "input_zh": "已完成的三栏研究计划、权威 Research Queue、处于 Analysis 的 Q-W003-01、处于 Selected 的 Q-20260804-11，以及 Publication Candidate 契约。",
+          "workResult": "Completed the governed Production eligibility review for all three columns; no object passed the upstream gates, so Production completed with zero Publication Candidates.",
+          "workResult_zh": "对三个栏目完成了受治理的 Production 准入复核；没有对象通过上游门禁，因此该班次以 Completed 结束，并生成 0 个出版候选。",
+          "output": "A completed zero-output Publication Candidate batch, exact bilingual eligibility reasons, Runtime Record update, and verified GitHub evidence. No public article was created.",
+          "output_zh": "已完成但输出为 0 的 Publication Candidate 批次、精确的中英文准入原因、Runtime Record 更新与已验证 GitHub 证据；没有创建公开文章。",
+          "next": "Complete the Q-W003-01 reconstruction evidence or advance Q-20260804-11 through Deep Reading and Analysis before the next Production attempt.",
+          "next_zh": "在下一次 Production 尝试前，完成 Q-W003-01 的重建证据，或将 Q-20260804-11 依次推进到深度阅读与研究分析。",
+          "reason": "No research object passed the complete Production entry gate. Q-W003-01 remains blocked in Analysis; Q-20260804-11 remains Selected; the other two columns had No Selection.",
+          "reason_zh": "没有研究对象通过完整的 Production 准入门禁：Q-W003-01 仍阻塞在 Analysis，Q-20260804-11 仍处于 Selected，另外两个栏目当天均为未选题。",
+          "metrics": [
+            {
+              "label": "Columns reviewed",
+              "label_zh": "复核栏目",
+              "value": "3"
+            },
+            {
+              "label": "Objects reviewed",
+              "label_zh": "复核对象",
+              "value": "2"
+            },
+            {
+              "label": "Eligible objects",
+              "label_zh": "合格对象",
+              "value": "0"
+            },
+            {
+              "label": "Publication Candidates",
+              "label_zh": "出版候选",
+              "value": "0"
+            },
+            {
+              "label": "Public files created",
+              "label_zh": "新增公开文件",
+              "value": "0"
+            }
+          ],
+          "evidence": [],
+          "artifacts": [
+            {
+              "label": "Publication Candidate batch",
+              "label_zh": "出版候选批次",
+              "path": "research/runtime/candidates/2026/08/2026-08-04-candidates.json",
+              "commit": "95ed499dfb157489960b9b8155030de88c635e96"
+            },
+            {
+              "label": "Daily Research Plan",
+              "label_zh": "三栏研究计划",
+              "path": "research/runtime/plans/2026/08/2026-08-04-plan.json",
+              "commit": "42f3bc62ae3e710d5d5bdd3da0f94498c89a0293"
+            },
+            {
+              "label": "Canonical Queue",
+              "label_zh": "权威研究队列",
+              "path": "research/queue/CURRENT.md"
+            }
+          ]
+        },
+        "publication": {
+          "task": "publication",
+          "status": "Completed",
+          "input": "The completed 2026-08-04 Publication Candidate batch produced by Research Runtime Production, including its governed zero-candidate outcome and verified evidence commit.",
+          "input_zh": "Research Runtime Production 生成的 2026-08-04 已完成 Publication Candidate 批次，包括受治理的零候选结果与已验证证据提交。",
+          "workResult": "Completed the missed 20:00 Publication release gate. The candidate batch contained zero eligible candidates, so Publication completed with zero releases and no invented content.",
+          "workResult_zh": "补跑并完成错过的 20:00 Publication 发布门禁。候选批次中没有合格候选，因此 Publication 以 Completed 结束，发布 0 个内容，且没有虚构出版物。",
+          "output": "A closed V4 Daily Runtime Record with Publication Completed, zero releases, zero public-file changes, and preserved publication gates.",
+          "output_zh": "完成并关闭 V4 Daily Runtime Record：Publication 已完成、发布 0 个、公开文件变更 0 个，并保留全部出版门禁。",
+          "next": "Start Research Runtime Center V5 with Discovery at 09:00 Asia/Shanghai on 2026-08-05.",
+          "next_zh": "于 2026-08-05 09:00（Asia/Shanghai）从 Discovery 开始 Research Runtime Center V5。",
+          "reason": "No candidate was eligible because the completed candidate batch contained an empty candidates array.",
+          "reason_zh": "没有候选可发布，因为已完成的候选批次中 candidates 数组为空。",
+          "metrics": [
+            {
+              "label": "Candidate batches reviewed",
+              "label_zh": "复核候选批次",
+              "value": "1"
+            },
+            {
+              "label": "Candidates reviewed",
+              "label_zh": "复核候选",
+              "value": "0"
+            },
+            {
+              "label": "Eligible candidates",
+              "label_zh": "合格候选",
+              "value": "0"
+            },
+            {
+              "label": "Releases",
+              "label_zh": "发布数量",
+              "value": "0"
+            },
+            {
+              "label": "Public files changed",
+              "label_zh": "公开文件变更",
+              "value": "0"
+            }
+          ],
+          "evidence": [],
+          "artifacts": [
+            {
+              "label": "Publication Candidate batch",
+              "label_zh": "出版候选批次",
+              "path": "research/runtime/candidates/2026/08/2026-08-04-candidates.json",
+              "commit": "95ed499dfb157489960b9b8155030de88c635e96"
+            },
+            {
+              "label": "Daily Runtime Record",
+              "label_zh": "每日运行记录",
+              "path": "research/runtime/2026/08/2026-08-04-runtime.md"
+            }
+          ]
+        }
+      },
+      "timeline": [
+        {
+          "time": "09:00",
+          "task": "Research Runtime Engine",
+          "event": "Runtime Started",
+          "status": "Running",
+          "detail": "Loaded Q-W003-01, the validated Reading artifact, canonical Queue state, and the Architecture Gate requirement."
+        },
+        {
+          "time": "09:01",
+          "task": "Research Runtime Engine",
+          "event": "Lifecycle Transition",
+          "status": "Completed",
+          "detail": "Advanced Q-W003-01 exactly once from Reading to Analysis through Skill 04."
+        },
+        {
+          "time": "09:04",
+          "task": "Research Runtime Engine",
+          "event": "Commit Verify",
+          "status": "Completed",
+          "detail": "Analysis, Queue transition, history, Runtime Record, and verification commits were fetched and inspected."
+        },
+        {
+          "time": "10:00",
+          "task": "Research Runtime Queue",
+          "event": "Runtime Started",
+          "status": "Running",
+          "detail": "Loaded the current Queue and preserved Q-W003-01 as the active Analysis object."
+        },
+        {
+          "time": "10:01",
+          "task": "Research Runtime Queue",
+          "event": "Official Source Discovery",
+          "status": "Completed",
+          "detail": "Registered six official-source signals."
+        },
+        {
+          "time": "10:02",
+          "task": "Research Runtime Queue",
+          "event": "Candidate Scoring",
+          "status": "Completed",
+          "detail": "Enriched six existing objects and created one bounded candidate."
+        },
+        {
+          "time": "10:03",
+          "task": "Research Runtime Queue",
+          "event": "Selection Decision",
+          "status": "Completed",
+          "detail": "Selected Q-20260804-11 for later Engine allocation."
+        },
+        {
+          "time": "10:03",
+          "task": "Research Runtime Queue",
+          "event": "Commit Verify",
+          "status": "Completed",
+          "detail": "Signal register, Queue history, and canonical Queue commits were fetched and verified."
+        },
+        {
+          "time": "11:00",
+          "task": "Research Runtime Knowledge",
+          "event": "Runtime Started",
+          "status": "Running",
+          "detail": "Loaded the validated Knowledge record, current Queue, Architecture Gate decision, and Q-W003-01 Analysis."
+        },
+        {
+          "time": "11:01",
+          "task": "Research Runtime Knowledge",
+          "event": "Evidence Admission",
+          "status": "Completed",
+          "detail": "No new completed, evidence-validated Research Note was available."
+        },
+        {
+          "time": "11:02",
+          "task": "Research Runtime Knowledge",
+          "event": "Candidate Review",
+          "status": "Completed",
+          "detail": "Preserved one Knowledge object and five candidates; updated AC-K003-01 blockers without promotion."
+        },
+        {
+          "time": "11:03",
+          "task": "Research Runtime Knowledge",
+          "event": "Commit Verify",
+          "status": "Completed",
+          "detail": "Knowledge history and Current Knowledge commits were fetched by exact SHA and inspected."
+        },
+        {
+          "time": "12:17",
+          "task": "Research Runtime Engine",
+          "event": "Schedule Observed",
+          "status": "Completed",
+          "detail": "Scheduled 09:00 Asia/Shanghai; GitHub run 30877220775."
+        },
+        {
+          "time": "12:50",
+          "task": "Research Runtime Queue",
+          "event": "Schedule Observed",
+          "status": "Completed",
+          "detail": "Scheduled 10:00 Asia/Shanghai; GitHub run 30878818093."
+        },
+        {
+          "time": "13:50",
+          "task": "Research Runtime Knowledge",
+          "event": "Schedule Observed",
+          "status": "Completed",
+          "detail": "Scheduled 11:00 Asia/Shanghai; GitHub run 30881972799."
+        },
+        {
+          "time": "15:48",
+          "task": "Research Report Production Engine V1.3 Synchronization",
+          "event": "Capability Release Prepared",
+          "status": "Running",
+          "detail": "Canonical V1.3 product pages, Quick Start, release record, download entry, README/governance synchronization, and homepage hierarchy prepared."
+        },
+        {
+          "time": "15:48",
+          "task": "Research Report Production Engine V1.3 Synchronization",
+          "event": "Publication Gate Evidence",
+          "status": "Waiting",
+          "detail": "Runtime Record updated; pull-request validation, merge, deployment, and final commit verification remain pending."
+        },
+        {
+          "time": "15:51",
+          "task": "Research Report Production Engine V1.3 Synchronization",
+          "event": "Pull Request Validation",
+          "status": "Completed",
+          "detail": "Runtime validation, Research Intelligence validation, Publication Gate, and complete VitePress build passed for PR #26."
+        },
+        {
+          "time": "15:52",
+          "task": "Research Report Production Engine V1.3 Synchronization",
+          "event": "GitHub Merge",
+          "status": "Completed",
+          "detail": "PR #26 merged to main as ac0ab99241c6c7be709a35b90df6cd56aae2c472."
+        },
+        {
+          "time": "15:54",
+          "task": "Research Report Production Engine V1.3 Synchronization",
+          "event": "Commit Verify",
+          "status": "Completed",
+          "detail": "Merge commit and representative V1.3 product and hierarchy paths were fetched directly from main and verified."
+        },
+        {
+          "time": "15:54",
+          "task": "Research Report Production Engine V1.3 Synchronization",
+          "event": "Pages Deployment Observation",
+          "status": "Waiting",
+          "detail": "Source release is verified; external Pages refresh remains a separate deployment observation."
+        },
+        {
+          "time": "16:27",
+          "task": "Research Runtime Production",
+          "event": "Runtime Started",
+          "status": "Running",
+          "detail": "Loaded the Daily Research Plan, canonical Queue, active Analysis object, selected Digital Employee object, and Publication Candidate contract."
+        },
+        {
+          "time": "16:28",
+          "task": "Research Runtime Production",
+          "event": "Eligibility Review",
+          "status": "Completed",
+          "detail": "Reviewed all three columns and two relevant objects; no object passed the complete Production entry gate."
+        },
+        {
+          "time": "16:29",
+          "task": "Research Runtime Production",
+          "event": "Production Result",
+          "status": "Completed",
+          "detail": "Completed the eligibility review with zero Publication Candidates and recorded exact reasons instead of manufacturing an article."
+        },
+        {
+          "time": "16:30",
+          "task": "Research Runtime Production",
+          "event": "Commit Verify",
+          "status": "Completed",
+          "detail": "Candidate batch commit 95ed499dfb157489960b9b8155030de88c635e96 was fetched and inspected."
+        },
+        {
+          "time": "20:52",
+          "task": "Research Runtime Publication",
+          "event": "Runtime Started",
+          "status": "Running",
+          "detail": "Loaded the completed Publication Candidate batch and enforced the release-only boundary."
+        },
+        {
+          "time": "20:53",
+          "task": "Research Runtime Publication",
+          "event": "Eligibility Review",
+          "status": "Completed",
+          "detail": "Candidate batch status was Completed and candidates array contained 0 items."
+        },
+        {
+          "time": "20:54",
+          "task": "Research Runtime Publication",
+          "event": "Publication Result",
+          "status": "Completed",
+          "detail": "Completed the release gate with 0 releases and 0 public-file changes; no publication was invented."
+        },
+        {
+          "time": "20:54",
+          "task": "Research Runtime Publication",
+          "event": "Commit Verify",
+          "status": "Completed",
+          "detail": "Candidate-batch evidence and the updated Runtime Record were validated before closure."
+        }
+      ],
+      "githubCommit": "95ed499dfb157489960b9b8155030de88c635e96",
+      "commitVerify": "Completed",
+      "recordPath": "research/runtime/2026/08/2026-08-04-runtime.md",
+      "tasks": [
+        {
+          "id": "engine",
+          "family": "daily",
+          "name": "Research Runtime Engine",
+          "name_zh": "研究运行引擎",
+          "schedule": {
+            "kind": "daily",
+            "time": "09:00",
+            "cron": ""
+          },
+          "input": "Governed Research OS lifecycle state.",
+          "input_zh": "受治理的 Research OS 生命周期状态。",
+          "work": "Advance one eligible object by one governed transition.",
+          "work_zh": "将一个合格对象推进一个受治理状态。",
+          "output": "Lifecycle transition and durable research artifact.",
+          "output_zh": "生命周期转换与持久化研究产物。"
+        },
+        {
+          "id": "queue",
+          "family": "daily",
+          "name": "Research Runtime Queue",
+          "name_zh": "研究运行队列",
+          "schedule": {
+            "kind": "daily",
+            "time": "10:00",
+            "cron": ""
+          },
+          "input": "Official signals and current queue state.",
+          "input_zh": "官方信号与当前队列状态。",
+          "work": "Discover, score, select, defer or reject research candidates.",
+          "work_zh": "发现、评分、选择、延期或拒绝研究候选。",
+          "output": "Research Queue and three-column plan.",
+          "output_zh": "研究队列与三栏计划。"
+        },
+        {
+          "id": "knowledge",
+          "family": "daily",
+          "name": "Research Runtime Knowledge",
+          "name_zh": "研究运行知识",
+          "schedule": {
+            "kind": "daily",
+            "time": "11:00",
+            "cron": ""
+          },
+          "input": "Completed evidence-validated Research Notes.",
+          "input_zh": "已完成证据核验的研究笔记。",
+          "work": "Maintain knowledge links and architecture candidates.",
+          "work_zh": "维护知识关联与架构候选。",
+          "output": "Knowledge records and architecture candidates.",
+          "output_zh": "知识记录与架构候选。"
+        },
+        {
+          "id": "production",
+          "family": "daily",
+          "name": "Research Runtime Production",
+          "name_zh": "研究运行生产",
+          "schedule": {
+            "kind": "daily",
+            "time": "15:00",
+            "cron": ""
+          },
+          "input": "Eligible analyzed research objects.",
+          "input_zh": "合格的已分析研究对象。",
+          "work": "Run writing, visualization, evidence and editing gates.",
+          "work_zh": "执行写作、配图、证据与编辑门禁。",
+          "output": "Publication Candidate batch.",
+          "output_zh": "出版候选批次。"
+        },
+        {
+          "id": "publication",
+          "family": "daily",
+          "name": "Research Runtime Publication",
+          "name_zh": "研究运行发布",
+          "schedule": {
+            "kind": "daily",
+            "time": "20:00",
+            "cron": ""
+          },
+          "input": "Complete Publication Candidates.",
+          "input_zh": "完整出版候选。",
+          "work": "Release, commit and verify.",
+          "work_zh": "发版、提交并验证。",
+          "output": "Released publication.",
+          "output_zh": "正式发布结果。"
+        }
+      ],
+      "columns": [
+        {
+          "id": "digital-employee",
+          "label": "Digital Employee",
+          "label_zh": "数字员工",
+          "decision": "Selected",
+          "signals": 0,
+          "candidates": 1,
+          "selectedItemId": "Q-20260804-11",
+          "selectedTitle": "Condition-aware long-running Digital Employee monitoring",
+          "selectedTitle_zh": "面向条件的长时运行数字员工监控",
+          "reason": "The candidate provides a bounded question about waiting, external state changes, condition evaluation, no-operation success, notification, consequential action and cost-aware polling in long-running Digital Employee work.",
+          "reason_zh": "该候选围绕长时运行数字员工中的等待、外部状态变化、条件判断、无操作成功、通知、关键动作与成本感知轮询形成了边界明确的问题。"
+        },
+        {
+          "id": "industry-architecture",
+          "label": "Industry Architecture",
+          "label_zh": "行业架构",
+          "decision": "No Selection",
+          "signals": 0,
+          "candidates": 0,
+          "selectedItemId": "",
+          "selectedTitle": "No qualified topic selected",
+          "selectedTitle_zh": "未选出合格选题",
+          "reason": "The 10:00 Queue run enriched existing architecture-dependent objects but did not select a new bounded Industry Architecture topic.",
+          "reason_zh": "10:00 队列任务补充了依赖架构基线的现有对象，但没有选出新的边界明确的行业架构选题。"
+        },
+        {
+          "id": "open-source-engineering",
+          "label": "Open-source Engineering",
+          "label_zh": "开源工程",
+          "decision": "No Selection",
+          "signals": 0,
+          "candidates": 0,
+          "selectedItemId": "",
+          "selectedTitle": "No qualified topic selected",
+          "selectedTitle_zh": "未选出合格选题",
+          "reason": "SWE-bench Pro, Workspace Agent, evaluation-security and MCP evidence enriched six existing objects; none became a new standalone engineering selection in this run.",
+          "reason_zh": "SWE-bench Pro、Workspace Agent、评估安全与 MCP 证据补充了 6 个现有对象，但本次没有形成新的独立开源工程选题。"
+        }
+      ],
+      "totalTasks": 5,
+      "completedTasks": 5
+    },
+    {
+      "runtimeFamily": "legacy",
+      "date": "2026-08-03",
+      "status": "Completed",
+      "taskStatus": {
+        "engine": "Completed",
+        "queue": "Completed",
+        "knowledge": "Completed",
+        "architecture": "Completed",
+        "publication": "Completed"
+      },
+      "results": {},
+      "timeline": [
+        {
+          "time": "01:49",
+          "task": "Research Category Lists Repair",
+          "event": "Runtime Started",
+          "status": "Running",
+          "detail": "Homepage category links reported as 404."
+        },
+        {
+          "time": "01:56",
+          "task": "Research Category Lists Repair",
+          "event": "Root Cause Confirmed",
+          "status": "Completed",
+          "detail": "Existing category routes were migration stubs, not list pages."
+        },
+        {
+          "time": "02:04",
+          "task": "Research Category Lists Repair",
+          "event": "Publication Surfaces Generated",
+          "status": "Completed",
+          "detail": "Six bilingual category list pages and shared component prepared."
+        },
+        {
+          "time": "02:08",
+          "task": "Research Category Lists Repair",
+          "event": "Pull Request Validation",
+          "status": "Waiting",
+          "detail": "Runtime gate and VitePress build pending rerun."
+        },
+        {
+          "time": "09:00",
+          "task": "Research Runtime Engine",
+          "event": "Runtime Started",
+          "status": "Running",
+          "detail": "Loaded Weekly 003 queue reprioritization and verified source records."
+        },
+        {
+          "time": "09:00",
+          "task": "Research Runtime Engine",
+          "event": "Queue Loaded",
+          "status": "Completed",
+          "detail": "Eight current items normalized into the canonical lifecycle without inventing new stages."
+        },
+        {
+          "time": "09:01",
+          "task": "Research Runtime Engine",
+          "event": "Eligibility Decision",
+          "status": "Completed",
+          "detail": "Q-W003-01 selected as the shared P0 prerequisite; all other states retained."
+        },
+        {
+          "time": "09:02",
+          "task": "Research Runtime Engine",
+          "event": "Deep Reading",
+          "status": "Completed",
+          "detail": "Skill 03 record created from validated internal evidence only."
+        },
+        {
+          "time": "09:02",
+          "task": "Research Runtime Engine",
+          "event": "Lifecycle Transition",
+          "status": "Completed",
+          "detail": "Q-W003-01 advanced exactly once: Selected → Reading."
+        },
+        {
+          "time": "09:03",
+          "task": "Research Runtime Engine",
+          "event": "Commit Verify",
+          "status": "Completed",
+          "detail": "Reading and queue commits were fetched and their diffs inspected."
+        },
+        {
+          "time": "10:02",
+          "task": "Research Runtime Queue",
+          "event": "Runtime Started",
+          "status": "Running",
+          "detail": "Loaded current queue and active Reading state."
+        },
+        {
+          "time": "10:03",
+          "task": "Research Runtime Queue",
+          "event": "Official Source Discovery",
+          "status": "Completed",
+          "detail": "Registered six primary or official signals without creating research prose."
+        },
+        {
+          "time": "10:05",
+          "task": "Research Runtime Queue",
+          "event": "Candidate Scoring",
+          "status": "Completed",
+          "detail": "Applied seven-dimension 0–5 scoring and explicit thresholds."
+        },
+        {
+          "time": "10:06",
+          "task": "Research Runtime Queue",
+          "event": "Selection Decision",
+          "status": "Completed",
+          "detail": "Selected Q-20260803-09; deferred Q-20260803-10; rejected one product-only signal."
+        },
+        {
+          "time": "10:07",
+          "task": "Research Runtime Queue",
+          "event": "Existing Queue Enrichment",
+          "status": "Completed",
+          "detail": "Added authority-governance and MCP-conformance evidence while preserving blockers."
+        },
+        {
+          "time": "10:08",
+          "task": "Research Runtime Queue",
+          "event": "Queue State Commit",
+          "status": "Completed",
+          "detail": "Updated canonical current queue on `main`."
+        },
+        {
+          "time": "10:09",
+          "task": "Research Runtime Queue",
+          "event": "Commit Verify",
+          "status": "Completed",
+          "detail": "Signal, history, and current queue commits fetched and inspected."
+        },
+        {
+          "time": "11:00",
+          "task": "Research Runtime Knowledge",
+          "event": "Runtime Started",
+          "status": "Running",
+          "detail": "Loaded six Production Test V1 publications and their validation provenance."
+        },
+        {
+          "time": "11:01",
+          "task": "Research Runtime Knowledge",
+          "event": "Evidence Admission",
+          "status": "Completed",
+          "detail": "Accepted six evidence-validated inputs; excluded unvalidated queue signals and unsupported claims."
+        },
+        {
+          "time": "11:02",
+          "task": "Research Runtime Knowledge",
+          "event": "Knowledge Linking",
+          "status": "Completed",
+          "detail": "Connected publications to papers, repositories, specifications, TMPA, Digital Employee and CodeFlowMu."
+        },
+        {
+          "time": "11:03",
+          "task": "Research Runtime Knowledge",
+          "event": "Recurring Findings",
+          "status": "Completed",
+          "detail": "Extracted seven reusable findings across governance, execution and acceptance."
+        },
+        {
+          "time": "11:03",
+          "task": "Research Runtime Knowledge",
+          "event": "Architecture Candidates",
+          "status": "Completed",
+          "detail": "Registered five candidates with blockers and promotion evidence; no promotion occurred."
+        },
+        {
+          "time": "11:04",
+          "task": "Research Runtime Knowledge",
+          "event": "Knowledge State Commit",
+          "status": "Completed",
+          "detail": "Created the Knowledge record and canonical Knowledge index on `main`."
+        },
+        {
+          "time": "11:05",
+          "task": "Research Runtime Knowledge",
+          "event": "Commit Verify",
+          "status": "Completed",
+          "detail": "Both Knowledge commits were fetched and their changed paths and content inspected."
+        },
+        {
+          "time": "12:02",
+          "task": "Research Runtime Architecture",
+          "event": "Runtime Started",
+          "status": "Running",
+          "detail": "Loaded five Knowledge-stage candidates and their promotion thresholds."
+        },
+        {
+          "time": "12:04",
+          "task": "Research Runtime Architecture",
+          "event": "Evidence Review",
+          "status": "Completed",
+          "detail": "Verified Reading, Knowledge, TMPA and Digital Employee evidence boundaries."
+        },
+        {
+          "time": "12:06",
+          "task": "Research Runtime Architecture",
+          "event": "Gate Decision",
+          "status": "Completed",
+          "detail": "AC-K003-01 retained at Knowledge and returned for Analysis."
+        },
+        {
+          "time": "12:07",
+          "task": "Research Runtime Architecture",
+          "event": "Component Impact",
+          "status": "Completed",
+          "detail": "Recorded TMPA, Digital Employee and CodeFlowMu effects and non-authorizations."
+        },
+        {
+          "time": "12:08",
+          "task": "Research Runtime Architecture",
+          "event": "Lifecycle Record",
+          "status": "Completed",
+          "detail": "Created gate record and Architecture current-state index; updated Knowledge disposition."
+        },
+        {
+          "time": "12:10",
+          "task": "Research Runtime Architecture",
+          "event": "Commit Verify",
+          "status": "Completed",
+          "detail": "Gate, index and Knowledge disposition commits fetched and inspected."
+        },
+        {
+          "time": "12:34",
+          "task": "Research Runtime Engine",
+          "event": "Schedule Observed",
+          "status": "Completed",
+          "detail": "Scheduled 09:00 Asia/Shanghai; GitHub run 30784785673."
+        },
+        {
+          "time": "13:24",
+          "task": "Research Runtime Queue",
+          "event": "Schedule Observed",
+          "status": "Completed",
+          "detail": "Scheduled 10:00 Asia/Shanghai; GitHub run 30787076585."
+        },
+        {
+          "time": "14:27",
+          "task": "Research Runtime Knowledge",
+          "event": "Schedule Observed",
+          "status": "Completed",
+          "detail": "Scheduled 11:00 Asia/Shanghai; GitHub run 30790264855."
+        },
+        {
+          "time": "15:31",
+          "task": "Research Runtime Architecture",
+          "event": "Schedule Observed",
+          "status": "Completed",
+          "detail": "Scheduled 12:00 Asia/Shanghai; GitHub run 30793926116."
+        },
+        {
+          "time": "20:04",
+          "task": "Research Runtime Publication",
+          "event": "Runtime Started",
+          "status": "Running",
+          "detail": "Loaded canonical Queue, Architecture state, and prior validated publication package."
+        },
+        {
+          "time": "20:05",
+          "task": "Research Runtime Publication",
+          "event": "Eligibility Decision",
+          "status": "Completed",
+          "detail": "Zero items passed all required Research Skills and lifecycle gates."
+        },
+        {
+          "time": "20:05",
+          "task": "Research Runtime Publication",
+          "event": "Publication Output",
+          "status": "Skipped",
+          "detail": "No publication files, metadata, indexes, homepage references, or lifecycle records required changes."
+        },
+        {
+          "time": "20:06",
+          "task": "Research Runtime Publication",
+          "event": "Runtime Record",
+          "status": "Completed",
+          "detail": "Daily Runtime Record updated; no publication commit was created."
+        },
+        {
+          "time": "21:15",
+          "task": "Research Runtime Publication",
+          "event": "Runtime Scheduled",
+          "status": "Waiting",
+          "detail": "Product-site release opened as a separate publication-surface revision."
+        },
+        {
+          "time": "21:15",
+          "task": "Research Runtime Publication",
+          "event": "Publication Revision Started",
+          "status": "Running",
+          "detail": "Digital Employee Works rebrand, Observation Notes taxonomy, and TMPA single-writer subset boundary started."
+        },
+        {
+          "time": "21:37",
+          "task": "Research Runtime Publication",
+          "event": "Digital Employee Works Release Completed",
+          "status": "Completed",
+          "detail": "VitePress build passed; bilingual light/dark responsive QA passed at 1440x900, 1024x768, and 390x844; 206 internal targets checked with zero missing; legacy I0.3 routes retained as compatibility pages."
+        },
+        {
+          "time": "21:39",
+          "task": "Research Runtime Publication",
+          "event": "Release Commit Verified",
+          "status": "Completed",
+          "detail": "Release commit 9999f8e pushed to origin/agent/digital-employee-works; VitePress build passed; bilingual responsive QA passed; 206 internal targets resolved with zero missing."
+        },
+        {
+          "time": "22:34",
+          "task": "Research Runtime Publication",
+          "event": "Schedule Observed",
+          "status": "Completed",
+          "detail": "Scheduled 20:00 Asia/Shanghai; GitHub run 30823300192."
+        }
+      ],
+      "githubCommit": "9999f8eb0dde77ece8e4a4ad19c0f428da2a95e3",
+      "commitVerify": "Completed",
+      "recordPath": "research/runtime/2026/08/2026-08-03-runtime.md",
+      "tasks": [
+        {
+          "id": "engine",
+          "family": "daily",
+          "name": "Research Runtime Engine",
+          "name_zh": "研究运行引擎",
+          "schedule": {
+            "kind": "daily",
+            "time": "09:00",
+            "cron": ""
+          },
+          "input": "Governed Research OS lifecycle state.",
+          "input_zh": "受治理的 Research OS 生命周期状态。",
+          "work": "Advance one eligible object by one governed transition.",
+          "work_zh": "将一个合格对象推进一个受治理状态。",
+          "output": "Lifecycle transition and durable research artifact.",
+          "output_zh": "生命周期转换与持久化研究产物。"
+        },
+        {
+          "id": "queue",
+          "family": "daily",
+          "name": "Research Runtime Queue",
+          "name_zh": "研究运行队列",
+          "schedule": {
+            "kind": "daily",
+            "time": "10:00",
+            "cron": ""
+          },
+          "input": "Official signals and current queue state.",
+          "input_zh": "官方信号与当前队列状态。",
+          "work": "Discover, score, select, defer or reject research candidates.",
+          "work_zh": "发现、评分、选择、延期或拒绝研究候选。",
+          "output": "Research Queue and three-column plan.",
+          "output_zh": "研究队列与三栏计划。"
+        },
+        {
+          "id": "knowledge",
+          "family": "daily",
+          "name": "Research Runtime Knowledge",
+          "name_zh": "研究运行知识",
+          "schedule": {
+            "kind": "daily",
+            "time": "11:00",
+            "cron": ""
+          },
+          "input": "Completed evidence-validated Research Notes.",
+          "input_zh": "已完成证据核验的研究笔记。",
+          "work": "Maintain knowledge links and architecture candidates.",
+          "work_zh": "维护知识关联与架构候选。",
+          "output": "Knowledge records and architecture candidates.",
+          "output_zh": "知识记录与架构候选。"
+        },
+        {
+          "id": "architecture",
+          "family": "daily",
+          "name": "Research Runtime Architecture",
+          "name_zh": "研究运行架构评审",
+          "schedule": {
+            "kind": "weekly",
+            "time": "12:00",
+            "days": [
+              "Monday"
+            ],
+            "cron": ""
+          },
+          "input": "Evidence-backed architecture candidates.",
+          "input_zh": "具备证据支持的架构候选。",
+          "work": "Make governed architecture and lifecycle decisions.",
+          "work_zh": "作出受治理的架构与生命周期决定。",
+          "output": "Architecture disposition.",
+          "output_zh": "架构处置结果。"
+        },
+        {
+          "id": "publication",
+          "family": "daily",
+          "name": "Research Runtime Publication",
+          "name_zh": "研究运行发布",
+          "schedule": {
+            "kind": "daily",
+            "time": "20:00",
+            "cron": ""
+          },
+          "input": "Complete Publication Candidates.",
+          "input_zh": "完整出版候选。",
+          "work": "Release, commit and verify.",
+          "work_zh": "发版、提交并验证。",
+          "output": "Released publication.",
+          "output_zh": "正式发布结果。"
+        }
+      ],
+      "columns": [
+        {
+          "id": "digital-employee",
+          "label": "Digital Employee",
+          "label_zh": "数字员工",
+          "decision": "Selected",
+          "signals": 0,
+          "candidates": 1,
+          "selectedItemId": "Q-20260803-09",
+          "selectedTitle": "Multi-horizon Digital Employee execution and evaluation",
+          "selectedTitle_zh": "多时间尺度数字员工执行与评估",
+          "reason": "The candidate directly addresses concurrent long-horizon work, memory isolation, dependencies, reprioritization and completion evidence for Digital Employees.",
+          "reason_zh": "该候选直接研究数字员工长时并发工作、记忆隔离、依赖管理、重新排序和完成证据。"
+        },
+        {
+          "id": "industry-architecture",
+          "label": "Industry Architecture",
+          "label_zh": "行业架构",
+          "decision": "No Selection",
+          "signals": 0,
+          "candidates": 0,
+          "selectedItemId": "",
+          "selectedTitle": "No qualified topic selected",
+          "selectedTitle_zh": "未选出合格选题",
+          "reason": "The Queue run did not identify a new bounded industry-architecture candidate that crossed the selection threshold.",
+          "reason_zh": "本次队列运行没有发现达到选题阈值、边界明确的新行业架构候选。"
+        },
+        {
+          "id": "open-source-engineering",
+          "label": "Open-source Engineering",
+          "label_zh": "开源工程",
+          "decision": "No Selection",
+          "signals": 0,
+          "candidates": 0,
+          "selectedItemId": "",
+          "selectedTitle": "No qualified topic selected",
+          "selectedTitle_zh": "未选出合格选题",
+          "reason": "Official GitHub and MCP evidence enriched existing Queue objects, but no new standalone engineering object was selected.",
+          "reason_zh": "官方 GitHub 与 MCP 证据补充了现有队列对象，但没有选出新的独立开源工程对象。"
+        }
+      ],
+      "totalTasks": 5,
+      "completedTasks": 5
+    },
+    {
+      "runtimeFamily": "legacy",
+      "date": "2026-08-02",
+      "status": "Completed",
+      "taskStatus": {
+        "engine": "Completed",
+        "queue": "Completed",
+        "knowledge": "Completed",
+        "publication": "Completed",
+        "weekly": "Completed"
+      },
+      "results": {},
+      "timeline": [
+        {
+          "time": "21:15",
+          "task": "Research Runtime Scheduler V1.0 Upgrade",
+          "event": "Runtime Started",
+          "status": "Running",
+          "detail": "Research Center 3.0 upgrade authorized."
+        },
+        {
+          "time": "21:58",
+          "task": "Research Runtime Scheduler V1.0 Upgrade",
+          "event": "Runtime Artifacts Generated",
+          "status": "Running",
+          "detail": "Scheduler manifest, Runtime Record contract, control-plane implementation, bilingual publication and website projection prepared."
+        },
+        {
+          "time": "22:00",
+          "task": "Research Runtime Scheduler V1.0 Upgrade",
+          "event": "Pull Request Validation",
+          "status": "Completed",
+          "detail": "PR #10 passed Runtime validation, Publication Gate and complete VitePress build."
+        },
+        {
+          "time": "22:02",
+          "task": "Research Runtime Scheduler V1.0 Upgrade",
+          "event": "GitHub Commit",
+          "status": "Completed",
+          "detail": "Upgrade merged to main as acfe666a6a26d23b88c71584892e88e88e69825b."
+        },
+        {
+          "time": "22:02",
+          "task": "Research Runtime Scheduler V1.0 Upgrade",
+          "event": "Commit Verify",
+          "status": "Completed",
+          "detail": "Main commit, Scheduler manifest and bilingual Runtime publication were directly re-read from the authoritative repository."
+        },
+        {
+          "time": "22:02",
+          "task": "Research Runtime Scheduler V1.0 Upgrade",
+          "event": "Runtime Completed",
+          "status": "Completed",
+          "detail": "Research Runtime Scheduler V1.0 released and Research Center 3.0 runtime lifecycle closed."
+        }
+      ],
+      "githubCommit": "acfe666a6a26d23b88c71584892e88e88e69825b",
+      "commitVerify": "Completed",
+      "recordPath": "research/runtime/2026/08/2026-08-02-runtime.md",
+      "tasks": [
+        {
+          "id": "engine",
+          "family": "daily",
+          "name": "Research Runtime Engine",
+          "name_zh": "研究运行引擎",
+          "schedule": {
+            "kind": "daily",
+            "time": "09:00",
+            "cron": ""
+          },
+          "input": "Governed Research OS lifecycle state.",
+          "input_zh": "受治理的 Research OS 生命周期状态。",
+          "work": "Advance one eligible object by one governed transition.",
+          "work_zh": "将一个合格对象推进一个受治理状态。",
+          "output": "Lifecycle transition and durable research artifact.",
+          "output_zh": "生命周期转换与持久化研究产物。"
+        },
+        {
+          "id": "queue",
+          "family": "daily",
+          "name": "Research Runtime Queue",
+          "name_zh": "研究运行队列",
+          "schedule": {
+            "kind": "daily",
+            "time": "10:00",
+            "cron": ""
+          },
+          "input": "Official signals and current queue state.",
+          "input_zh": "官方信号与当前队列状态。",
+          "work": "Discover, score, select, defer or reject research candidates.",
+          "work_zh": "发现、评分、选择、延期或拒绝研究候选。",
+          "output": "Research Queue and three-column plan.",
+          "output_zh": "研究队列与三栏计划。"
+        },
+        {
+          "id": "knowledge",
+          "family": "daily",
+          "name": "Research Runtime Knowledge",
+          "name_zh": "研究运行知识",
+          "schedule": {
+            "kind": "daily",
+            "time": "11:00",
+            "cron": ""
+          },
+          "input": "Completed evidence-validated Research Notes.",
+          "input_zh": "已完成证据核验的研究笔记。",
+          "work": "Maintain knowledge links and architecture candidates.",
+          "work_zh": "维护知识关联与架构候选。",
+          "output": "Knowledge records and architecture candidates.",
+          "output_zh": "知识记录与架构候选。"
+        },
+        {
+          "id": "publication",
+          "family": "daily",
+          "name": "Research Runtime Publication",
+          "name_zh": "研究运行发布",
+          "schedule": {
+            "kind": "daily",
+            "time": "20:00",
+            "cron": ""
+          },
+          "input": "Complete Publication Candidates.",
+          "input_zh": "完整出版候选。",
+          "work": "Release, commit and verify.",
+          "work_zh": "发版、提交并验证。",
+          "output": "Released publication.",
+          "output_zh": "正式发布结果。"
+        },
+        {
+          "id": "weekly",
+          "family": "daily",
+          "name": "Research Runtime Weekly",
+          "name_zh": "研究运行每周综合",
+          "schedule": {
+            "kind": "weekly",
+            "time": "20:30",
+            "days": [
+              "Sunday"
+            ],
+            "cron": ""
+          },
+          "input": "The week’s validated Daily Research.",
+          "input_zh": "本周已验证 Daily Research。",
+          "work": "Produce new weekly synthesis.",
+          "work_zh": "形成新的每周综合。",
+          "output": "Weekly Publication.",
+          "output_zh": "每周发布。"
+        }
+      ],
+      "columns": [],
+      "totalTasks": 5,
+      "completedTasks": 5
+    }
+  ]
+}

@@ -22,7 +22,8 @@ const columnNames = {
 }
 
 function sh(command, capture = false) {
-  return execSync(command, { encoding: 'utf8', stdio: capture ? 'pipe' : 'inherit' }).trim()
+  const output = execSync(command, { encoding: 'utf8', stdio: capture ? 'pipe' : 'inherit' })
+  return capture ? output.trim() : ''
 }
 function readJson(file) { return JSON.parse(fs.readFileSync(file, 'utf8')) }
 function writeJson(file, value) { fs.writeFileSync(file, `${JSON.stringify(value, null, 2)}\n`) }
