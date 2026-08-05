@@ -1,0 +1,512 @@
+=== PACKAGE SCRIPTS ===
+{
+  "intelligence:validate": "node scripts/research-intelligence.mjs validate",
+  "intelligence:build": "node scripts/research-intelligence.mjs build",
+  "runtime:validate": "node scripts/runtime-v5.mjs validate && npm run intelligence:validate",
+  "runtime:build": "node scripts/runtime-v5.mjs build && node scripts/runtime-v5-home-compat.mjs && npm run intelligence:build && node scripts/runtime-legacy-compat.mjs && node scripts/runtime-legacy-status-normalize.mjs && node scripts/verify-runtime-projection.mjs",
+  "runtime:projection:verify": "node scripts/verify-runtime-projection.mjs",
+  "runtime:projection:verify-dist": "node scripts/verify-runtime-projection.mjs --dist",
+  "runtime:gate": "node scripts/runtime-v5.mjs gate",
+  "tmpa:s0.4:conformance": "node research/conformance/tmpa-core-s0.4/runner.mjs",
+  "tmpa:s0.5:conformance": "node research/conformance/tmpa-core-s0.5/runner.mjs",
+  "docs:dev": "npm run runtime:build && vitepress dev docs",
+  "docs:build": "npm run runtime:build && node scripts/vitepress-build-strict.mjs && npm run runtime:projection:verify-dist",
+  "docs:preview": "vitepress preview docs",
+  "runtime:markdown": "node scripts/runtime-markdown.mjs render --all",
+  "runtime:markdown:validate": "node scripts/runtime-markdown.mjs validate --all"
+}
+=== RESEARCH/ARTICLE DIRECTORIES ===
+docs/.vitepress/theme/article-cover.css
+docs/.vitepress/theme/components/ArticleCover.vue
+docs/.vitepress/theme/components/PortalHome.vue
+docs/.vitepress/theme/components/ResearchCategory.vue
+docs/.vitepress/theme/components/ResearchCenterHome.vue
+docs/.vitepress/theme/components/ResearchIntelligenceRadar.vue
+docs/.vitepress/theme/components/ResearchNotes.vue
+docs/.vitepress/theme/components/ResearchSkillGlyph.vue
+docs/.vitepress/theme/components/research-notes.data.ts
+docs/.vitepress/theme/homepage-frame-fix.css
+docs/.vitepress/theme/index.ts
+docs/digital-employee/index.md
+docs/en/digital-employee/index.md
+docs/en/engineering/index.md
+docs/en/index.md
+docs/en/industry/index.md
+docs/en/preview/portal-home/index.md
+docs/en/preview/research-center-home.md
+docs/en/publications/index.md
+docs/en/publications/research-report-production-engine-v1.0.md
+docs/en/publications/research-report-production-engine-v1.3-quickstart.md
+docs/en/publications/research-report-production-engine-v1.3.md
+docs/en/publications/research-runtime-scheduler-v1.0.md
+docs/en/research/daily/2026-08-01.md
+docs/en/research/daily/index.md
+docs/en/research/index.md
+docs/en/research/papers/index.md
+docs/en/research/weekly/index.md
+docs/en/research/weekly/weekly-001.md
+docs/en/research/weekly/weekly-002.md
+docs/en/research/weekly/weekly-003.md
+docs/en/runtime/index.md
+docs/en/runtime/research-intelligence.md
+docs/engineering/index.md
+docs/index.md
+docs/industry/index.md
+docs/public/assets/covers/research-report-production-engine-v1.svg
+docs/public/assets/covers/research-runtime-scheduler-v1.svg
+docs/research/daily/2026-08-01.md
+docs/research/daily/index.md
+docs/research/index.md
+docs/research/papers/index.md
+docs/research/weekly/index.md
+docs/research/weekly/weekly-001.md
+docs/research/weekly/weekly-002.md
+docs/zh/digital-employee/index.md
+docs/zh/engineering/index.md
+docs/zh/index.md
+docs/zh/industry/index.md
+docs/zh/preview/portal-home/index.md
+docs/zh/preview/research-center-home.md
+docs/zh/publications/index.md
+docs/zh/publications/research-report-production-engine-v1.0.md
+docs/zh/publications/research-report-production-engine-v1.3-quickstart.md
+docs/zh/publications/research-report-production-engine-v1.3.md
+docs/zh/publications/research-runtime-scheduler-v1.0.md
+docs/zh/research/daily/2026-08-01.md
+docs/zh/research/daily/index.md
+docs/zh/research/index.md
+docs/zh/research/papers/index.md
+docs/zh/research/weekly/index.md
+docs/zh/research/weekly/weekly-001.md
+docs/zh/research/weekly/weekly-002.md
+docs/zh/research/weekly/weekly-003.md
+docs/zh/runtime/index.md
+docs/zh/runtime/research-intelligence.md
+=== RECENT DATED PUBLIC ARTICLES ===
+docs/en/digital-employee/2026-08-02-computer-use-action-state-loop.md
+docs/en/digital-employee/2026-08-02-control-plane-work-runtime.md
+docs/en/digital-employee/2026-08-02-osworld-execution-verification.md
+docs/en/digital-employee/2026-08-02-position-ownership-authority.md
+docs/en/digital-employee/2026-08-05-universal-verifier-completion-contract.md
+docs/en/engineering/2026-08-02-agent-capability-packaging.md
+docs/en/engineering/2026-08-02-durable-agent-runtime.md
+docs/en/engineering/2026-08-02-manager-handoff-ownership-models.md
+docs/en/engineering/2026-08-02-swe-bench-verified-quality.md
+docs/en/industry/2026-08-02-a2a-mcp-interoperability-boundaries.md
+docs/en/industry/2026-08-02-enterprise-agent-governance-control-plane.md
+docs/en/industry/2026-08-02-from-systems-of-record-to-systems-of-execution.md
+docs/en/industry/2026-08-02-nist-ai-rmf-operating-loop.md
+docs/en/research/daily/2026-08-01.md
+docs/research/daily/2026-08-01.md
+docs/zh/digital-employee/2026-08-02-computer-use-action-state-loop.md
+docs/zh/digital-employee/2026-08-02-control-plane-work-runtime.md
+docs/zh/digital-employee/2026-08-02-osworld-execution-verification.md
+docs/zh/digital-employee/2026-08-02-position-ownership-authority.md
+docs/zh/digital-employee/2026-08-05-universal-verifier-completion-contract.md
+docs/zh/engineering/2026-08-02-agent-capability-packaging.md
+docs/zh/engineering/2026-08-02-durable-agent-runtime.md
+docs/zh/engineering/2026-08-02-manager-handoff-ownership-models.md
+docs/zh/engineering/2026-08-02-swe-bench-verified-quality.md
+docs/zh/industry/2026-08-02-a2a-mcp-interoperability-boundaries.md
+docs/zh/industry/2026-08-02-enterprise-agent-governance-control-plane.md
+docs/zh/industry/2026-08-02-from-systems-of-record-to-systems-of-execution.md
+docs/zh/industry/2026-08-02-nist-ai-rmf-operating-loop.md
+docs/zh/research/daily/2026-08-01.md
+=== INDEX REFERENCES ===
+docs/zh/publications/research-report-production-engine-v1.3.md
+docs/zh/publications/research-report-production-engine-v1.3-quickstart.md
+docs/zh/publications/tmpa-architecture-paper-a0.5/part-02.md
+docs/zh/publications/tmpa-architecture-paper-a0.5/part-01.md
+docs/zh/publications/research-report-production-engine-v1.0.md
+docs/zh/publications/implementation-case-i0.5/part-01.md
+docs/zh/publications/research-runtime-scheduler-v1.0.md
+docs/zh/publications/index.md
+docs/zh/about.md
+docs/zh/preview/research-center-home.md
+docs/zh/engineering/2026-08-02-manager-handoff-ownership-models.md
+docs/zh/engineering/openhands.md
+docs/zh/engineering/2026-08-02-agent-capability-packaging.md
+docs/zh/engineering/2026-08-02-swe-bench-verified-quality.md
+docs/zh/engineering/2026-08-02-durable-agent-runtime.md
+docs/zh/industry/servicenow.md
+docs/zh/industry/workday.md
+docs/zh/industry/2026-08-02-from-systems-of-record-to-systems-of-execution.md
+docs/zh/industry/2026-08-02-enterprise-agent-governance-control-plane.md
+docs/zh/industry/2026-08-02-a2a-mcp-interoperability-boundaries.md
+docs/zh/industry/2026-08-02-nist-ai-rmf-operating-loop.md
+docs/zh/digital-employee/2026-08-02-osworld-execution-verification.md
+docs/zh/digital-employee/2026-08-02-control-plane-work-runtime.md
+docs/zh/digital-employee/2026-08-02-position-ownership-authority.md
+docs/zh/digital-employee/2026-08-02-computer-use-action-state-loop.md
+docs/zh/digital-employee/architecture.md
+docs/zh/digital-employee/2026-08-05-universal-verifier-completion-contract.md
+docs/zh/digital-employee/index.md
+docs/zh/research/daily/2026-08-01.md
+docs/zh/research/weekly/weekly-002.md
+docs/zh/research/weekly/weekly-001.md
+docs/zh/research/weekly/weekly-003.md
+docs/zh/runtime/v4.md
+docs/zh/runtime/program.md
+docs/zh/runtime/research-intelligence.md
+docs/zh/runtime/v5.md
+docs/zh/index.md
+docs/en/publications/research-report-production-engine-v1.3.md
+docs/en/publications/research-report-production-engine-v1.3-quickstart.md
+docs/en/publications/tmpa-architecture-paper-a0.5/part-05.md
+docs/en/publications/research-report-production-engine-v1.0.md
+docs/en/publications/research-runtime-scheduler-v1.0.md
+docs/en/publications/index.md
+docs/en/about.md
+docs/en/preview/research-center-home.md
+docs/en/engineering/2026-08-02-manager-handoff-ownership-models.md
+docs/en/engineering/openhands.md
+docs/en/engineering/2026-08-02-agent-capability-packaging.md
+docs/en/engineering/2026-08-02-swe-bench-verified-quality.md
+docs/en/engineering/2026-08-02-durable-agent-runtime.md
+docs/en/industry/servicenow.md
+docs/en/industry/workday.md
+docs/en/industry/2026-08-02-from-systems-of-record-to-systems-of-execution.md
+docs/en/industry/2026-08-02-enterprise-agent-governance-control-plane.md
+docs/en/industry/2026-08-02-a2a-mcp-interoperability-boundaries.md
+docs/en/industry/2026-08-02-nist-ai-rmf-operating-loop.md
+docs/en/digital-employee/2026-08-02-osworld-execution-verification.md
+docs/en/digital-employee/2026-08-02-control-plane-work-runtime.md
+docs/en/digital-employee/2026-08-02-position-ownership-authority.md
+docs/en/digital-employee/2026-08-02-computer-use-action-state-loop.md
+docs/en/digital-employee/architecture.md
+docs/en/digital-employee/2026-08-05-universal-verifier-completion-contract.md
+docs/en/digital-employee/index.md
+docs/en/research/daily/2026-08-01.md
+docs/en/research/weekly/weekly-002.md
+docs/en/research/weekly/weekly-001.md
+docs/en/research/weekly/weekly-003.md
+docs/en/runtime/v4.md
+docs/en/runtime/program.md
+docs/en/runtime/research-intelligence.md
+docs/en/runtime/v5.md
+docs/en/index.md
+=== DIRECTORY SNAPSHOT ===
+docs/en
+docs/en/digital-employee
+docs/en/engineering
+docs/en/industry
+docs/en/preview
+docs/en/preview/portal-home
+docs/en/publications
+docs/en/publications/implementation-case-i0.5
+docs/en/publications/tmpa-architecture-paper-a0.5
+docs/en/publications/tmpa-core-specification-s0.5
+docs/en/research
+docs/en/research/daily
+docs/en/research/papers
+docs/en/research/weekly
+docs/en/runtime
+docs/zh
+docs/zh/digital-employee
+docs/zh/engineering
+docs/zh/industry
+docs/zh/preview
+docs/zh/preview/portal-home
+docs/zh/publications
+docs/zh/publications/implementation-case-i0.5
+docs/zh/publications/tmpa-architecture-paper-a0.5
+docs/zh/publications/tmpa-core-specification-s0.5
+docs/zh/research
+docs/zh/research/daily
+docs/zh/research/papers
+docs/zh/research/weekly
+docs/zh/runtime
+=== CANDIDATE BATCH ===
+{
+  "schema": "runtime-publication-candidate/v1",
+  "date": "2026-08-05",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Production",
+  "sourceRecord": "research/runtime/2026/08/2026-08-05-runtime.md",
+  "updatedAt": "2026-08-05T15:29:54+08:00",
+  "githubCommit": "5393410687a4ac191a7cdefef3652c29ab7b2f33",
+  "reason": "Production completed the eligibility gate and produced three complete bilingual Publication Candidates from the three authorized Research Objects.",
+  "reason_zh": "Production 已完成准入门禁，并仅从三份获授权 Research Object 生成三份完整双语 Publication Candidate。",
+  "outcome": "Publication Candidates Produced",
+  "outcome_zh": "已生成出版候选",
+  "candidates": [
+    {
+      "column": "digital-employee",
+      "itemId": "Q-20260805-12",
+      "title": "A Digital Employee Is Not Done Until Completion Is Independently Accepted",
+      "title_zh": "数字员工不是“做完了”，而是“完成声明被独立验收了”",
+      "zhPath": "staging/publication-candidates/2026-08-05-verifiable-completion.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-05-verifiable-completion.en.md",
+      "coverPath": "staging/publication-candidates/2026-08-05-verifiable-completion.svg",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    },
+    {
+      "column": "industry-architecture",
+      "itemId": "Q-20260805-13",
+      "title": "Model Routing Must Optimize Inside Policy, Not Replace It",
+      "title_zh": "模型路由必须在政策边界内优化，而不是取代政策",
+      "zhPath": "staging/publication-candidates/2026-08-05-governed-model-routing.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-05-governed-model-routing.en.md",
+      "coverPath": "staging/publication-candidates/2026-08-05-governed-model-routing.svg",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    },
+    {
+      "column": "open-source-engineering",
+      "itemId": "Q-20260805-14",
+      "title": "Guardrails Need a Persistence State Machine, Not a Later Save Call",
+      "title_zh": "输出门禁需要持久化状态机，而不只是“晚一点保存”",
+      "zhPath": "staging/publication-candidates/2026-08-05-guardrail-persistence-state-machine.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-05-guardrail-persistence-state-machine.en.md",
+      "coverPath": "staging/publication-candidates/2026-08-05-guardrail-persistence-state-machine.svg",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    }
+  ]
+}
+=== DAILY RECORD TAIL ===
+      "status": "Running",
+      "detail": "Research Runtime Production opened by Scheduler V3.0; Skills 05–08 may begin only after this start state is committed and verified."
+    },
+    {
+      "time": "2026-08-05T15:28:08+08:00",
+      "task": "production",
+      "event": "GitHub Commit Verified",
+      "status": "Running",
+      "detail": "Fetched and verified start-state commit 6b51dc7043054a897b82250425eee0d1989f9c5d containing synchronized Daily Runtime JSON and Markdown ledger."
+    },
+    {
+      "time": "2026-08-05T15:29:52+08:00",
+      "task": "production",
+      "event": "Production Completed",
+      "status": "Completed",
+      "detail": "Skills 05–08 completed for all three authorized Research Objects; three bilingual Publication Candidates and three visualizations were persisted without release."
+    },
+    {
+      "time": "2026-08-05T15:29:54+08:00",
+      "task": "production",
+      "event": "GitHub Commit Verified",
+      "status": "Completed",
+      "detail": "Fetched and verified Production result commit 5393410687a4ac191a7cdefef3652c29ab7b2f33, including synchronized JSON/Markdown, candidate batch, six bilingual article files and three visualization assets."
+    }
+  ],
+  "metrics": [
+    {
+      "label": "Due source objects",
+      "label_zh": "应检查来源对象",
+      "value": "48"
+    },
+    {
+      "label": "Checked source objects",
+      "label_zh": "已检查来源对象",
+      "value": "45"
+    },
+    {
+      "label": "Authentication-required sources",
+      "label_zh": "需要认证的来源",
+      "value": "1"
+    },
+    {
+      "label": "Recorded retrieval failures",
+      "label_zh": "已记录抓取失败",
+      "value": "2"
+    },
+    {
+      "label": "Deduplicated signals",
+      "label_zh": "去重信号",
+      "value": "16"
+    },
+    {
+      "label": "Signal Pool",
+      "label_zh": "信号池",
+      "value": "16"
+    },
+    {
+      "label": "Column decisions",
+      "label_zh": "栏目决定",
+      "value": "3 / 3"
+    },
+    {
+      "label": "Selected objects",
+      "label_zh": "已选对象",
+      "value": "3"
+    },
+    {
+      "label": "Candidate/supporting signals",
+      "label_zh": "候选/支持信号",
+      "value": "12"
+    },
+    {
+      "label": "Rejected standalone signals",
+      "label_zh": "拒绝的独立信号",
+      "value": "1"
+    },
+    {
+      "label": "No Selection decisions",
+      "label_zh": "未选题决定",
+      "value": "0"
+    },
+    {
+      "label": "Selected objects consumed",
+      "label_zh": "已消费 Selected 对象",
+      "value": "3"
+    },
+    {
+      "label": "Reading Results",
+      "label_zh": "Reading Result 数量",
+      "value": "3"
+    },
+    {
+      "label": "Primary or official source objects",
+      "label_zh": "主要或官方来源对象",
+      "value": "13"
+    },
+    {
+      "label": "Explicit limitations recorded",
+      "label_zh": "已记录明确限制",
+      "value": "21"
+    },
+    {
+      "label": "Contradictions or qualifications",
+      "label_zh": "矛盾或限定条件",
+      "value": "10"
+    },
+    {
+      "label": "Analysis artifacts",
+      "label_zh": "分析成果",
+      "value": "0"
+    },
+    {
+      "label": "Article drafts",
+      "label_zh": "文章草稿",
+      "value": "0"
+    }
+  ],
+  "evidence": [
+    {
+      "label": "Research Intelligence Registry",
+      "label_zh": "研究情报注册表",
+      "source": "research/intelligence/REGISTRY.json"
+    },
+    {
+      "label": "AI Platform profile",
+      "label_zh": "AI 平台情报 Profile",
+      "source": "research/skills/profiles/01p-ai-platform-change-intelligence.md"
+    },
+    {
+      "label": "GitHub Engineering profile",
+      "label_zh": "GitHub 工程情报 Profile",
+      "source": "research/skills/profiles/01g-github-engineering-intelligence.md"
+    },
+    {
+      "label": "Published Research profile",
+      "label_zh": "论文研究情报 Profile",
+      "source": "research/skills/profiles/01r-published-research-intelligence.md"
+    },
+    {
+      "label": "Scheduler V3.0",
+      "label_zh": "Scheduler V3.0",
+      "source": "research/runtime/SCHEDULER.json"
+    },
+    {
+      "label": "2026-08-05 Signal Pool",
+      "label_zh": "2026-08-05 信号池",
+      "source": "research/intelligence/runs/2026/08/2026-08-05-intelligence.json"
+    },
+    {
+      "label": "Skill 02 Three-Column Research Triage",
+      "label_zh": "Skill 02 三栏研究筛选",
+      "source": "research/skills/02-research-triage.md"
+    },
+    {
+      "label": "Runtime Column Plan Contract",
+      "label_zh": "Runtime 栏目计划契约",
+      "source": "research/runtime/COLUMN-PLAN-SCHEMA.md"
+    },
+    {
+      "label": "Today's Research Plan",
+      "label_zh": "今日研究计划",
+      "source": "research/runtime/plans/2026/08/2026-08-05-plan.json"
+    },
+    {
+      "label": "Skill 03 Deep Reading",
+      "label_zh": "Skill 03 深度阅读",
+      "source": "research/skills/03-deep-reading.md"
+    },
+    {
+      "label": "Microsoft Universal Verifier research",
+      "label_zh": "Microsoft Universal Verifier 研究",
+      "source": "https://www.microsoft.com/en-us/research/publication/the-art-of-building-verifiers-for-computer-use-agents/"
+    },
+    {
+      "label": "Cursor Router official changelog",
+      "label_zh": "Cursor Router 官方更新日志",
+      "source": "https://cursor.com/changelog/router"
+    },
+    {
+      "label": "OpenAI Agents Python guardrail-ordering commit",
+      "label_zh": "OpenAI Agents Python 门禁顺序提交",
+      "source": "https://github.com/openai/openai-agents-python/commit/69e26269f52a1fde684154376d77e5a21b507c19"
+    }
+  ],
+  "artifacts": [
+    {
+      "label": "Verified Discovery commit",
+      "label_zh": "已验证的 Discovery 提交",
+      "commit": "5e9079cc0cb5e241ead493ab957e41465626b5e5"
+    },
+    {
+      "label": "Today's Research Plan",
+      "label_zh": "今日研究计划",
+      "path": "research/runtime/plans/2026/08/2026-08-05-plan.json"
+    },
+    {
+      "label": "Triaged Research Intelligence run",
+      "label_zh": "已筛选的研究情报运行记录",
+      "path": "research/intelligence/runs/2026/08/2026-08-05-intelligence.json"
+    },
+    {
+      "label": "Verified Queue commit",
+      "label_zh": "已验证的 Queue 提交",
+      "commit": "2cd722da2e1553b66af9f46bc9bd0324dcefdb96"
+    },
+    {
+      "label": "Digital Employee Reading Result",
+      "label_zh": "数字员工 Reading Result",
+      "path": "research/reading/Q-20260805-12-verifiable-completion.md"
+    },
+    {
+      "label": "Industry Architecture Reading Result",
+      "label_zh": "行业架构 Reading Result",
+      "path": "research/reading/Q-20260805-13-governed-model-routing.md"
+    },
+    {
+      "label": "Open-source Engineering Reading Result",
+      "label_zh": "开源工程 Reading Result",
+      "path": "research/reading/Q-20260805-14-guardrail-session-ordering.md"
+    },
+    {
+      "label": "Verified Reading start-state commit",
+      "label_zh": "已验证的 Reading 启动状态提交",
+      "commit": "e0b03392bf760a147532b08820680a2e51f1053f"
+    },
+    {
+      "label": "Verified Reading result commit",
+      "label_zh": "已验证的 Reading 结果提交",
+      "commit": "c87783214681c8cfb95164952ab85cf45e480390"
+    },
+    {
+      "label": "Verified Production result commit",
+      "label_zh": "已验证的 Production 结果提交",
+      "commit": "5393410687a4ac191a7cdefef3652c29ab7b2f33"
+    }
+  ],
+  "githubCommit": "5393410687a4ac191a7cdefef3652c29ab7b2f33",
+  "commitVerify": "Completed",
+  "updatedAt": "2026-08-05T15:29:54+08:00"
+}
