@@ -1,0 +1,182 @@
+name: Apply Runtime Composite Day Schedule
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/apply-runtime-composite-day-schedule.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch-runtime-schedule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Merge daily and weekday-specific Runtime tasks
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs')
+          const path = 'docs/.vitepress/theme/components/RuntimeOperationsCenterClassic.vue'
+          let source = fs.readFileSync(path, 'utf8')
+
+          const replaceOnce = (before, after, label) => {
+            const count = source.split(before).length - 1
+            if (count !== 1) throw new Error(`${label}: expected exactly one match, found ${count}`)
+            source = source.replace(before, after)
+          }
+
+          replaceOnce(
+`  todayDaily: RecordItem
+  records: { daily: RecordItem[] }
+  columns: Array<{ id: string; name: string; name_zh: string }>
+`,
+`  todayDaily: RecordItem
+  latest: Record<string, RecordItem | null>
+  records: Record<string, RecordItem[]>
+  columns: Array<{ id: string; name: string; name_zh: string }>
+`,
+            'RuntimeData records contract'
+          )
+
+          replaceOnce(
+`const liveRecord = ref<RecordItem | null>(null)
+const staticRecord = computed(() => (runtime.records?.daily || []).find((item) => item.date === selectedDate.value)
+  || (runtime.todayDaily.date === selectedDate.value ? runtime.todayDaily : runtime.todayDaily))
+const record = computed(() => isToday.value && liveRecord.value ? liveRecord.value : staticRecord.value)
+`,
+`const liveRecords = ref<Record<string, RecordItem>>({})
+const staticRecordForFamily = (family: string) => (runtime.records?.[family] || [])
+  .find((item) => item.date === selectedDate.value) || null
+const recordForFamily = (family: string) => isToday.value && liveRecords.value[family]
+  ? liveRecords.value[family]
+  : staticRecordForFamily(family)
+const record = computed(() => recordForFamily('daily') || runtime.todayDaily)
+`,
+            'family record lookup'
+          )
+
+          replaceOnce(
+`const refreshLiveRecord = async () => {
+  if (typeof window === 'undefined' || !isToday.value) return
+  const [year, month] = selectedDate.value.split('-')
+  const path = \`research/runtime/records/daily/\${year}/\${month}/\${selectedDate.value}-daily-runtime.json\`
+  const url = \`https://raw.githubusercontent.com/joinwell52-AI/joinwell52/main/\${path}?t=\${Date.now()}\`
+  try {
+    const response = await fetch(url, { cache: 'no-store' })
+    if (!response.ok) return
+    const next = await response.json() as RecordItem
+    if (next.date === selectedDate.value) liveRecord.value = next
+  } catch {
+    // Preserve the build-time projection while GitHub is temporarily unavailable.
+  }
+}
+`,
+`const refreshLiveRecord = async () => {
+  if (typeof window === 'undefined' || !isToday.value) return
+  const [year, month] = selectedDate.value.split('-')
+  const families = ['daily', 'weekly', 'academic', 'program']
+  const refreshed = await Promise.all(families.map(async (family) => {
+    const recordPath = \`research/runtime/records/\${family}/\${year}/\${month}/\${selectedDate.value}-\${family}-runtime.json\`
+    const url = \`https://raw.githubusercontent.com/joinwell52-AI/joinwell52/main/\${recordPath}?t=\${Date.now()}\`
+    try {
+      const response = await fetch(url, { cache: 'no-store' })
+      if (!response.ok) return null
+      const next = await response.json() as RecordItem
+      return next.date === selectedDate.value ? [family, next] as const : null
+    } catch {
+      return null
+    }
+  }))
+  const available = refreshed.filter((item): item is readonly [string, RecordItem] => Boolean(item))
+  if (available.length) liveRecords.value = { ...liveRecords.value, ...Object.fromEntries(available) }
+}
+`,
+            'multi-family live refresh'
+          )
+
+          replaceOnce(
+`  const isWorking = Object.values(record.value.taskStatus || {}).includes('Running')
+`,
+`  const isWorking = Object.values(liveRecords.value).some((item) => Object.values(item.taskStatus || {}).includes('Running'))
+    || Object.values(record.value.taskStatus || {}).includes('Running')
+`,
+            'multi-family running refresh'
+          )
+
+          replaceOnce(
+`const tasks = computed(() => runtime.schedule
+  .filter((task) => task.family === 'daily')
+  .sort((a, b) => a.schedule.time.localeCompare(b.schedule.time)))
+`,
+`const weekdayForDate = (date: string) => ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][
+  new Date(\`\${date}T12:00:00Z\`).getUTCDay()
+]
+const taskRunsOnDate = (task: Task, date: string) => task.schedule.kind === 'daily'
+  || (task.schedule.kind === 'weekly' && (task.schedule.days || []).includes(weekdayForDate(date)))
+const tasks = computed(() => runtime.schedule
+  .filter((task) => taskRunsOnDate(task, selectedDate.value))
+  .sort((a, b) => a.schedule.time.localeCompare(b.schedule.time)))
+`,
+            'composite task schedule'
+          )
+
+          replaceOnce(
+`const rows = computed(() => tasks.value.map((task) => ({
+  task,
+  status: record.value.taskStatus?.[task.id] || 'Waiting',
+  result: record.value.results?.[task.id] || null
+})))
+`,
+`const rows = computed(() => tasks.value.map((task) => {
+  const familyRecord = recordForFamily(task.family)
+  return {
+    task,
+    status: familyRecord?.taskStatus?.[task.id] || 'Waiting',
+    result: familyRecord?.results?.[task.id] || null
+  }
+}))
+`,
+            'family-aware task rows'
+          )
+
+          fs.writeFileSync(path, source)
+          NODE
+
+      - name: Remove obsolete one-time Production workflow
+        run: rm -f .github/workflows/runtime-production-start-once.yml
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate Runtime and build site
+        run: |
+          npm run runtime:validate
+          npm run docs:build
+          git diff --check
+          grep -q "taskRunsOnDate" docs/.vitepress/theme/components/RuntimeOperationsCenterClassic.vue
+          grep -q "recordForFamily(task.family)" docs/.vitepress/theme/components/RuntimeOperationsCenterClassic.vue
+
+      - name: Commit repair and remove one-time workflow
+        shell: bash
+        run: |
+          rm -f .github/workflows/apply-runtime-composite-day-schedule.yml
+          git config user.name "joinwell52 Runtime Repair"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -m "fix(runtime): include weekday-specific tasks in daily timeline"
+          git pull --rebase origin main
+          git push origin HEAD:main
