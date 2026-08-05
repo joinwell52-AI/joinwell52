@@ -1,0 +1,65 @@
+name: Preview Runtime Theme
+
+on:
+  push:
+    branches:
+      - runtime-home-theme
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: runtime-home-theme
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verify color-only diff
+        shell: bash
+        run: |
+          git fetch origin main
+          changed=$(git diff --name-only origin/main...HEAD | grep -v '^.github/workflows/preview-runtime-theme.yml$' || true)
+          test "$changed" = "docs/.vitepress/theme/runtime-bilingual-title.css" || {
+            echo "Unexpected non-theme changes:"
+            echo "$changed"
+            exit 1
+          }
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Validate and build
+        run: |
+          npm run runtime:validate
+          npm run docs:build
+
+      - name: Capture light and dark previews
+        shell: bash
+        run: |
+          mkdir -p /tmp/runtime-site
+          ln -s "$GITHUB_WORKSPACE/docs/.vitepress/dist" /tmp/runtime-site/joinwell52
+          nohup python3 -m http.server 4173 --directory /tmp/runtime-site >/tmp/runtime-theme-server.log 2>&1 &
+          sleep 2
+          chrome=$(command -v google-chrome || command -v chromium || command -v chromium-browser)
+          test -n "$chrome"
+          "$chrome" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --window-size=1440,1100 --virtual-time-budget=5000 --screenshot=runtime-light.png http://127.0.0.1:4173/joinwell52/zh/runtime/
+          "$chrome" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-dark-mode --window-size=1440,1100 --virtual-time-budget=5000 --screenshot=runtime-dark.png http://127.0.0.1:4173/joinwell52/zh/runtime/
+          test -s runtime-light.png
+          test -s runtime-dark.png
+
+      - name: Upload previews
+        uses: actions/upload-artifact@v4
+        with:
+          name: runtime-theme-previews
+          path: |
+            runtime-light.png
+            runtime-dark.png
