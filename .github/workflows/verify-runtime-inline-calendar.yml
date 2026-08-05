@@ -1,0 +1,84 @@
+name: Verify Runtime Inline Calendar
+
+on:
+  push:
+    branches:
+      - runtime-calendar-inline-overview
+
+permissions:
+  contents: write
+
+jobs:
+  verify-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: runtime-calendar-inline-overview
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Apply compact calendar layout
+        run: python scripts/move-runtime-calendar-inline.py
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Validate and build
+        run: |
+          npm run runtime:validate
+          npm run runtime:markdown
+          npm run runtime:markdown:validate
+          npm run docs:build
+
+      - name: Verify real page layout
+        shell: bash
+        run: |
+          npm install --no-save playwright-core@1.55.0
+          mkdir -p /tmp/runtime-inline-site
+          ln -s "$GITHUB_WORKSPACE/docs/.vitepress/dist" /tmp/runtime-inline-site/joinwell52
+          nohup python3 -m http.server 4173 --directory /tmp/runtime-inline-site >/tmp/runtime-inline-server.log 2>&1 &
+          sleep 2
+          export CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          test -n "$CHROME"
+          cat > runtime-inline-check.mjs <<'JS'
+          import { chromium } from 'playwright-core'
+          const browser = await chromium.launch({ headless: true, executablePath: process.env.CHROME, args: ['--no-sandbox'] })
+          const page = await browser.newPage({ viewport: { width: 1440, height: 900 }, colorScheme: 'light' })
+          const base = 'http://127.0.0.1:4173/joinwell52/zh/runtime/'
+          await page.goto(base, { waitUntil: 'networkidle' })
+          await page.waitForTimeout(300)
+          if (await page.locator('.runtime-date-frame').count() !== 0) throw new Error('Standalone archive strip still exists')
+          if ((await page.locator('body').innerText()).includes('每日运行档案')) throw new Error('Redundant archive copy still exists')
+          const inline = page.locator('.overview .runtime-inline-date')
+          if (await inline.count() !== 1) throw new Error('Inline date controls are not inside Today Operations')
+          if ((await inline.locator('input[type=date]').inputValue()) !== '2026-08-05') throw new Error('Inline date is not bound to today')
+          await page.screenshot({ path: 'runtime-inline-calendar-today.png', fullPage: true })
+          await inline.locator('button').first().click()
+          await page.waitForTimeout(300)
+          if (!page.url().includes('date=2026-08-04')) throw new Error(`Previous date did not update URL: ${page.url()}`)
+          if (await page.locator('.legacy-runtime').count() !== 1) throw new Error('Previous date did not switch to V4 history')
+          if (await page.locator('.legacy-runtime .runtime-inline-date').count() !== 1) throw new Error('Legacy overview lacks inline date controls')
+          if ((await page.locator('.legacy-runtime .runtime-inline-date input[type=date]').inputValue()) !== '2026-08-04') throw new Error('Legacy inline date is incorrect')
+          await browser.close()
+          JS
+          node runtime-inline-check.mjs
+
+      - name: Commit verified layout
+        shell: bash
+        run: |
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git rm scripts/move-runtime-calendar-inline.py
+          rm -f runtime-inline-check.mjs runtime-inline-calendar-today.png
+          git add docs/.vitepress/theme/components/RuntimeOperationsCenterCurrent.vue
+          git add docs/.vitepress/theme/components/RuntimeOperationsCenterClassic.vue
+          git add docs/.vitepress/theme/components/RuntimeOperationsCenterLegacy.vue
+          git add research/runtime/2026
+          git commit -m "fix(runtime): move calendar controls into operations overview [skip ci]"
+          git push origin HEAD:runtime-calendar-inline-overview
