@@ -14,7 +14,7 @@
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Running",
+    "production": "Completed",
     "publication": "Waiting"
   },
   "results": {
@@ -383,6 +383,165 @@
           "commit": "e0b03392bf760a147532b08820680a2e51f1053f"
         }
       ]
+    },
+    "production": {
+      "schema": "runtime-shift-result/v2",
+      "task": "production",
+      "status": "Completed",
+      "input": "Only the three same-day Production-authorized Research Objects produced by Analysis: Verifiable Completion Contract, Governed Routing Decision Envelope, and Guardrail-Gated Persistence State Machine.",
+      "input_zh": "仅消费 Analysis 生成并授权进入 Production 的三份当日 Research Object：可验证完成契约、治理化路由决策信封，以及门禁持久化状态机。",
+      "workResult": "Executed Skills 05, 06, 07 and 08 for every eligible Research Object. Produced complete Chinese and English articles, one evidence-bounded architecture visualization per candidate, checked material claims against the Research Object and Reading Result boundaries, preserved uncertainty and counter-evidence, and completed publication editing without publishing.",
+      "workResult_zh": "针对每份合格 Research Object 完整执行 Skill 05、06、07 与 08。已生成完整中英文文章、每篇一张证据边界内的架构配图；逐项依据 Research Object 与 Reading Result 边界核对实质性声明，保留不确定性与反证，并完成出版编辑，未执行发布。",
+      "output": "Three durable bilingual Publication Candidates for Digital Employee, Industry Architecture and Open-source Engineering, with complete metadata, visualizations, evidence, citations, editing status and staging paths.",
+      "output_zh": "已生成三份持久化双语 Publication Candidate，分别对应数字员工、行业架构与开源工程，包含完整元数据、配图、证据、引用、编辑状态及 staging 路径。",
+      "next": "The 20:00 Publication shift may consume only the completed candidate batch. It may release the candidates but must not perform new research, substantive rewriting or evidence repair.",
+      "next_zh": "20:00 Publication 只能消费已完成的 Candidate Batch；可以执行发布，但不得新增研究、实质性重写或修复证据。",
+      "metrics": [
+        {
+          "label": "Eligible Research Objects consumed",
+          "label_zh": "已消费合格 Research Object",
+          "value": "3"
+        },
+        {
+          "label": "Publication Candidates produced",
+          "label_zh": "已生成 Publication Candidate",
+          "value": "3"
+        },
+        {
+          "label": "Bilingual article files",
+          "label_zh": "双语文章文件",
+          "value": "6"
+        },
+        {
+          "label": "Visualization assets",
+          "label_zh": "可视化资产",
+          "value": "3"
+        },
+        {
+          "label": "Evidence and citation reviews",
+          "label_zh": "证据与引用复核",
+          "value": "3 / 3"
+        },
+        {
+          "label": "Publication editing completed",
+          "label_zh": "已完成出版编辑",
+          "value": "3 / 3"
+        },
+        {
+          "label": "Signals or Reading Results used as writing input",
+          "label_zh": "作为写作输入的信号或 Reading Result",
+          "value": "0"
+        },
+        {
+          "label": "Items published directly",
+          "label_zh": "直接发布项目",
+          "value": "0"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Scheduler V3.0",
+          "label_zh": "Scheduler V3.0",
+          "source": "research/runtime/SCHEDULER.json"
+        },
+        {
+          "label": "Skill 05 Research Writing",
+          "label_zh": "Skill 05 研究写作",
+          "source": "research/skills/05-research-writing.md"
+        },
+        {
+          "label": "Skill 06 Visualization",
+          "label_zh": "Skill 06 可视化",
+          "source": "research/skills/06-research-visualization.md"
+        },
+        {
+          "label": "Skill 07 Evidence & Citation",
+          "label_zh": "Skill 07 证据与引用",
+          "source": "research/skills/07-evidence-citation.md"
+        },
+        {
+          "label": "Skill 08 Publication Editing",
+          "label_zh": "Skill 08 出版编辑",
+          "source": "research/skills/08-publication-editing.md"
+        },
+        {
+          "label": "Authorized Research Object 1",
+          "label_zh": "获授权 Research Object 1",
+          "source": "research/analysis/Q-20260805-12-verifiable-completion.md"
+        },
+        {
+          "label": "Authorized Research Object 2",
+          "label_zh": "获授权 Research Object 2",
+          "source": "research/analysis/Q-20260805-13-governed-model-routing.md"
+        },
+        {
+          "label": "Authorized Research Object 3",
+          "label_zh": "获授权 Research Object 3",
+          "source": "research/analysis/Q-20260805-14-guardrail-session-ordering.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Publication Candidate batch",
+          "label_zh": "Publication Candidate 批次",
+          "path": "research/runtime/candidates/2026/08/2026-08-05-candidates.json"
+        },
+        {
+          "label": "Q-20260805-12 Chinese candidate",
+          "label_zh": "Q-20260805-12 中文候选",
+          "path": "staging/publication-candidates/2026-08-05-verifiable-completion.zh.md"
+        },
+        {
+          "label": "Q-20260805-12 English candidate",
+          "label_zh": "Q-20260805-12 英文候选",
+          "path": "staging/publication-candidates/2026-08-05-verifiable-completion.en.md"
+        },
+        {
+          "label": "Q-20260805-12 visualization",
+          "label_zh": "Q-20260805-12 配图",
+          "path": "staging/publication-candidates/2026-08-05-verifiable-completion.svg"
+        },
+        {
+          "label": "Q-20260805-13 Chinese candidate",
+          "label_zh": "Q-20260805-13 中文候选",
+          "path": "staging/publication-candidates/2026-08-05-governed-model-routing.zh.md"
+        },
+        {
+          "label": "Q-20260805-13 English candidate",
+          "label_zh": "Q-20260805-13 英文候选",
+          "path": "staging/publication-candidates/2026-08-05-governed-model-routing.en.md"
+        },
+        {
+          "label": "Q-20260805-13 visualization",
+          "label_zh": "Q-20260805-13 配图",
+          "path": "staging/publication-candidates/2026-08-05-governed-model-routing.svg"
+        },
+        {
+          "label": "Q-20260805-14 Chinese candidate",
+          "label_zh": "Q-20260805-14 中文候选",
+          "path": "staging/publication-candidates/2026-08-05-guardrail-persistence-state-machine.zh.md"
+        },
+        {
+          "label": "Q-20260805-14 English candidate",
+          "label_zh": "Q-20260805-14 英文候选",
+          "path": "staging/publication-candidates/2026-08-05-guardrail-persistence-state-machine.en.md"
+        },
+        {
+          "label": "Q-20260805-14 visualization",
+          "label_zh": "Q-20260805-14 配图",
+          "path": "staging/publication-candidates/2026-08-05-guardrail-persistence-state-machine.svg"
+        },
+        {
+          "label": "Verified Production start-state commit",
+          "label_zh": "已验证的 Production 启动状态提交",
+          "commit": "6b51dc7043054a897b82250425eee0d1989f9c5d"
+        },
+        {
+          "label": "Verified Production start checkpoint",
+          "label_zh": "已验证的 Production 启动检查点",
+          "commit": "8d1dda7a3d7ba13ca4b044b193d6b7e3f26f31c3"
+        }
+      ]
     }
   },
   "timeline": [
@@ -476,6 +635,13 @@
       "event": "GitHub Commit Verified",
       "status": "Running",
       "detail": "Fetched and verified start-state commit 6b51dc7043054a897b82250425eee0d1989f9c5d containing synchronized Daily Runtime JSON and Markdown ledger."
+    },
+    {
+      "time": "2026-08-05T15:29:52+08:00",
+      "task": "production",
+      "event": "Production Completed",
+      "status": "Completed",
+      "detail": "Skills 05–08 completed for all three authorized Research Objects; three bilingual Publication Candidates and three visualizations were persisted without release."
     }
   ],
   "metrics": [
@@ -684,7 +850,7 @@
       "commit": "c87783214681c8cfb95164952ab85cf45e480390"
     }
   ],
-  "githubCommit": "6b51dc7043054a897b82250425eee0d1989f9c5d",
-  "commitVerify": "Completed",
-  "updatedAt": "2026-08-05T15:28:08+08:00"
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-08-05T15:29:52+08:00"
 }
