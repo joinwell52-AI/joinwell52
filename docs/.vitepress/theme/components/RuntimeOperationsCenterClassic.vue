@@ -94,13 +94,44 @@ const refreshLiveRecord = async () => {
   }
 }
 
-let liveRefreshTimer: ReturnType<typeof setInterval> | undefined
+const RUNNING_REFRESH_MS = 60_000
+const IDLE_REFRESH_MS = 300_000
+let liveRefreshTimer: ReturnType<typeof setTimeout> | undefined
+
+const scheduleLiveRefresh = () => {
+  if (typeof document === 'undefined') return
+  if (liveRefreshTimer) clearTimeout(liveRefreshTimer)
+  if (document.hidden) {
+    liveRefreshTimer = undefined
+    return
+  }
+  const isWorking = Object.values(record.value.taskStatus || {}).includes('Running')
+  const delay = isWorking ? RUNNING_REFRESH_MS : IDLE_REFRESH_MS
+  liveRefreshTimer = setTimeout(async () => {
+    await refreshLiveRecord()
+    scheduleLiveRefresh()
+  }, delay)
+}
+
+const handleVisibilityChange = () => {
+  if (typeof document === 'undefined') return
+  if (document.hidden) {
+    if (liveRefreshTimer) clearTimeout(liveRefreshTimer)
+    liveRefreshTimer = undefined
+    return
+  }
+  void refreshLiveRecord().finally(scheduleLiveRefresh)
+}
+
 onMounted(() => {
-  void refreshLiveRecord()
-  liveRefreshTimer = setInterval(() => void refreshLiveRecord(), 15_000)
+  void refreshLiveRecord().finally(scheduleLiveRefresh)
+  document.addEventListener('visibilitychange', handleVisibilityChange)
 })
 onBeforeUnmount(() => {
-  if (liveRefreshTimer) clearInterval(liveRefreshTimer)
+  if (liveRefreshTimer) clearTimeout(liveRefreshTimer)
+  if (typeof document !== 'undefined') {
+    document.removeEventListener('visibilitychange', handleVisibilityChange)
+  }
 })
 const tasks = computed(() => runtime.schedule
   .filter((task) => task.family === 'daily')
