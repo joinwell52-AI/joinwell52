@@ -32,6 +32,7 @@ jobs:
       - name: Validate and build
         run: |
           npm run runtime:validate
+          npm run runtime:markdown
           npm run runtime:markdown:validate
           npm run docs:build
 
@@ -115,5 +116,6 @@ jobs:
           git add scripts/runtime-legacy-compat.mjs
           git add docs/.vitepress/theme/components/RuntimeOperationsCenterClassic.vue
           git add docs/.vitepress/theme/column-palette-final.css
+          git add research/runtime/2026
           git commit -m "fix(runtime): restore full history and readable column/header colors [skip ci]"
           git push origin HEAD:fix-runtime-history-card-text-header-dark
