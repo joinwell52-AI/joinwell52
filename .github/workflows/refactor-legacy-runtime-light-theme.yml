@@ -46,7 +46,7 @@ jobs:
           sleep 2
           export CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
           test -n "$CHROME"
-          cat > /tmp/check-runtime-theme.mjs <<'JS'
+          cat > runtime-theme-check.mjs <<'JS'
           import { chromium } from 'playwright-core'
           const browser = await chromium.launch({ headless: true, executablePath: process.env.CHROME, args: ['--no-sandbox'] })
           for (const mode of ['light', 'dark']) {
@@ -84,7 +84,7 @@ jobs:
           }
           await browser.close()
           JS
-          node /tmp/check-runtime-theme.mjs
+          node runtime-theme-check.mjs
 
       - name: Upload visual checks
         uses: actions/upload-artifact@v4
