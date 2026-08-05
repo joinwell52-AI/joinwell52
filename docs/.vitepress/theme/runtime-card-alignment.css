@@ -1,0 +1,91 @@
+/* Keep the three-column Runtime and Intelligence cards visually aligned. */
+
+/* Today's three-column research plan. */
+.runtime-center-page .runtime-classic .plan-panel .column-grid {
+  align-items: stretch;
+}
+
+.runtime-center-page .runtime-classic .plan-panel .column-card {
+  display: grid;
+  grid-template-rows: auto minmax(104px, auto) minmax(0, 1fr) auto;
+  height: 100%;
+}
+
+.runtime-center-page .runtime-classic .plan-panel .column-card .column-head {
+  grid-row: 1;
+}
+
+.runtime-center-page .runtime-classic .plan-panel .column-card .topic {
+  grid-row: 2;
+  min-height: 104px;
+}
+
+.runtime-center-page .runtime-classic .plan-panel .column-card dl {
+  grid-row: 3;
+  align-self: stretch;
+}
+
+.runtime-center-page .runtime-classic .plan-panel .column-card .mini-metrics {
+  grid-row: 4;
+  align-self: end;
+  width: 100%;
+}
+
+/* Research Intelligence Radar pipeline cards. */
+.runtime-center-page .intel-radar .pipeline-grid {
+  align-items: stretch;
+}
+
+.runtime-center-page .intel-radar .pipeline-grid > article {
+  display: grid;
+  grid-template-rows: auto auto auto auto minmax(0, 1fr);
+  height: 100%;
+}
+
+.runtime-center-page .intel-radar .pipeline-grid > article > .card-head { grid-row: 1; }
+.runtime-center-page .intel-radar .pipeline-grid > article > .coverage { grid-row: 2; }
+.runtime-center-page .intel-radar .pipeline-grid > article > .bar { grid-row: 3; }
+.runtime-center-page .intel-radar .pipeline-grid > article > .metrics { grid-row: 4; }
+.runtime-center-page .intel-radar .pipeline-grid > article > p {
+  grid-row: 5;
+  align-self: start;
+}
+
+/* Research Intelligence Radar three-column decision cards. */
+.runtime-center-page .intel-radar .columns-panel .column-grid {
+  align-items: stretch;
+}
+
+.runtime-center-page .intel-radar .columns-panel .column-grid > article {
+  display: grid;
+  grid-template-rows: auto minmax(86px, auto) minmax(0, 1fr) auto;
+  height: 100%;
+}
+
+.runtime-center-page .intel-radar .columns-panel .column-grid > article > .card-head {
+  grid-row: 1;
+}
+
+.runtime-center-page .intel-radar .columns-panel .column-grid > article > h5 {
+  grid-row: 2;
+  min-height: 86px;
+}
+
+.runtime-center-page .intel-radar .columns-panel .column-grid > article > p {
+  grid-row: 3;
+  align-self: stretch;
+}
+
+.runtime-center-page .intel-radar .columns-panel .column-grid > article > .metrics {
+  grid-row: 4;
+  align-self: end;
+  width: 100%;
+}
+
+@media (max-width: 1000px) {
+  .runtime-center-page .runtime-classic .plan-panel .column-card,
+  .runtime-center-page .intel-radar .pipeline-grid > article,
+  .runtime-center-page .intel-radar .columns-panel .column-grid > article {
+    height: auto;
+  }
+}
