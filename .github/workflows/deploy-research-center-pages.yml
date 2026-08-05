@@ -7,26 +7,22 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
 concurrency:
-  group: runtime-publication-pages-trigger
-  cancel-in-progress: false
+  group: github-pages
+  cancel-in-progress: true
 
 jobs:
   build:
-    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.head_commit.message, 'chore(runtime): activate governed Publication executor')
     name: Build Research Center
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: main
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -40,22 +36,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Execute governed Publication
-        if: startsWith(github.event.head_commit.message, 'chore(runtime): activate governed Publication executor')
-        run: node scripts/run-publication-2026-08-05.mjs
-
-      - name: Restore Pages workflow
-        if: startsWith(github.event.head_commit.message, 'chore(runtime): activate governed Publication executor')
-        shell: bash
-        run: |
-          git show "6f1c0cb8f7bf48f2b91a8ceefdad7cdd22aaf2ad:.github/workflows/deploy-research-center-pages.yml" > .github/workflows/deploy-research-center-pages.yml
-          rm -f .runtime-publication-trigger-20260805
-          git config user.name "Research Runtime Publication"
-          git config user.email "actions@users.noreply.github.com"
-          git add -A
-          git commit -m "chore(runtime): restore Pages workflow after Publication"
-          git push origin HEAD:main
-
       - name: Build VitePress site
         run: npm run docs:build
 
@@ -65,19 +45,35 @@ jobs:
           node <<'NODE'
           const fs = require('fs')
           const path = require('path')
+
           const dist = path.join('docs', '.vitepress', 'dist')
           const requiredRoutes = [
-            'index.html', 'zh/index.html', 'en/index.html',
-            'zh/runtime/index.html', 'en/runtime/index.html',
-            'zh/research/index.html', 'en/research/index.html',
-            'zh/publications/index.html', 'en/publications/index.html'
+            'index.html',
+            'zh/index.html',
+            'en/index.html',
+            'zh/runtime/index.html',
+            'en/runtime/index.html',
+            'zh/research/index.html',
+            'en/research/index.html',
+            'zh/publications/index.html',
+            'en/publications/index.html'
           ]
+
           const missing = requiredRoutes.filter((file) => !fs.existsSync(path.join(dist, file)))
-          if (missing.length) throw new Error(`Missing generated routes: ${missing.join(', ')}`)
+          if (missing.length) {
+            throw new Error(`Missing generated routes: ${missing.join(', ')}`)
+          }
+
           const runtimeDataPath = path.join('docs', '.vitepress', 'generated', 'runtime-records.json')
-          if (!fs.existsSync(runtimeDataPath)) throw new Error('Missing generated Runtime data.')
+          if (!fs.existsSync(runtimeDataPath)) {
+            throw new Error('Missing generated Runtime data.')
+          }
+
           const runtimeData = JSON.parse(fs.readFileSync(runtimeDataPath, 'utf8'))
-          if (runtimeData.schema !== 'research-runtime-center-data/v5') throw new Error(`Unexpected Runtime schema: ${runtimeData.schema}`)
+          if (runtimeData.schema !== 'research-runtime-center-data/v5') {
+            throw new Error(`Unexpected Runtime schema: ${runtimeData.schema}`)
+          }
+
           console.log(`Verified ${requiredRoutes.length} public routes and Runtime V5 data.`)
           NODE
 
