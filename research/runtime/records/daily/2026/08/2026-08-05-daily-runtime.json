@@ -282,6 +282,11 @@
           "label": "Verified Reading start-state commit",
           "label_zh": "已验证的 Reading 启动状态提交",
           "commit": "e0b03392bf760a147532b08820680a2e51f1053f"
+        },
+        {
+          "label": "Verified Reading result commit",
+          "label_zh": "已验证的 Reading 结果提交",
+          "commit": "c87783214681c8cfb95164952ab85cf45e480390"
         }
       ]
     }
@@ -342,6 +347,13 @@
       "event": "Reading Completed",
       "status": "Completed",
       "detail": "Skill 03 completed for all three same-day Selected objects; three durable Reading Results were persisted without Research Analysis or article drafting."
+    },
+    {
+      "time": "2026-08-05T11:19:50+08:00",
+      "task": "reading",
+      "event": "GitHub Commit Verified",
+      "status": "Completed",
+      "detail": "Fetched and verified commit c87783214681c8cfb95164952ab85cf45e480390 containing the three durable Reading Records and the runtime-shift-result/v2 Reading result."
     }
   ],
   "metrics": [
@@ -543,9 +555,14 @@
       "label": "Verified Reading start-state commit",
       "label_zh": "已验证的 Reading 启动状态提交",
       "commit": "e0b03392bf760a147532b08820680a2e51f1053f"
+    },
+    {
+      "label": "Verified Reading result commit",
+      "label_zh": "已验证的 Reading 结果提交",
+      "commit": "c87783214681c8cfb95164952ab85cf45e480390"
     }
   ],
-  "githubCommit": "pending",
-  "commitVerify": "Running",
-  "updatedAt": "2026-08-05T11:16:55+08:00"
+  "githubCommit": "c87783214681c8cfb95164952ab85cf45e480390",
+  "commitVerify": "Completed",
+  "updatedAt": "2026-08-05T11:19:50+08:00"
 }
