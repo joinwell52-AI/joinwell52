@@ -3,6 +3,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { withBase } from 'vitepress'
 import runtimeData from '../../generated/runtime-records.json'
 import intelligenceData from '../../generated/research-intelligence.json'
+import legacyData from '../../generated/runtime-legacy-records.json'
 
 type Status = 'Running' | 'Completed' | 'Blocked' | 'Failed' | 'Skipped' | 'Waiting'
 type Task = {
@@ -71,9 +72,14 @@ type Column = {
 type IntelligenceData = {
   currentRun: { date: string; status: Status; columns: Column[] }
 }
+type LegacyHistoryData = {
+  records: Array<{ date: string; status: Status }>
+}
+type HistoryItem = { date: string; status: Status }
 
 const runtime = runtimeData as RuntimeData
 const intelligence = intelligenceData as IntelligenceData
+const legacyHistory = legacyData as LegacyHistoryData
 const props = withDefaults(defineProps<{ lang?: 'en' | 'zh' }>(), { lang: 'en' })
 const zh = computed(() => props.lang === 'zh')
 const liveRecord = ref<RecordItem | null>(null)
@@ -148,9 +154,17 @@ const risk = computed(() => rows.value.some((row) => row.status === 'Blocked' ||
 const activeRow = computed(() => rows.value.find((row) => row.status === 'Running') || rows.value.find((row) => row.status === 'Waiting') || null)
 const productionResult = computed(() => record.value.results?.production || null)
 const publicationResult = computed(() => record.value.results?.publication || null)
-const history = computed(() => {
+const history = computed<HistoryItem[]>(() => {
   const current = record.value
-  return [current, ...(runtime.records?.daily || []).filter((item) => item.date !== current.date)]
+  const currentV5History = (runtime.records?.daily || [])
+    .filter((item) => item.date !== current.date && item.date >= '2026-08-05')
+    .map((item) => ({ date: item.date, status: item.status }))
+  const frozenMarkdownHistory = (legacyHistory.records || [])
+    .filter((item) => item.date !== current.date && item.date < '2026-08-05')
+    .map((item) => ({ date: item.date, status: item.status }))
+
+  return [{ date: current.date, status: current.status }, ...currentV5History, ...frozenMarkdownHistory]
+    .filter((item, index, items) => items.findIndex((candidate) => candidate.date === item.date) === index)
     .sort((a, b) => b.date.localeCompare(a.date))
     .slice(0, 7)
 })
@@ -278,11 +292,11 @@ const dayState = computed(() => {
   if (risk.value) return copy.value.attention
   return copy.value.inProgress
 })
-const recordPath = (item: RecordItem) => {
+const recordPath = (item: { date: string }) => {
   const [year, month] = item.date.split('-')
   return `research/runtime/${year}/${month}/${item.date}-runtime.md`
 }
-const recordUrl = (item: RecordItem) => `https://github.com/joinwell52-AI/joinwell52/blob/main/${recordPath(item)}`
+const recordUrl = (item: { date: string }) => `https://github.com/joinwell52-AI/joinwell52/blob/main/${recordPath(item)}`
 const artifactHref = (artifact: Artifact) => artifact.url || (artifact.path
   ? `https://github.com/joinwell52-AI/joinwell52/blob/main/${artifact.path}`
   : artifact.commit

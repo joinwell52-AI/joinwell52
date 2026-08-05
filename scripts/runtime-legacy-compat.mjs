@@ -213,6 +213,7 @@ const runtime = readJson(GENERATED_RUNTIME)
 const legacyRecords = walk(RUNTIME_ROOT)
   .filter((path) => /research[\\/]runtime[\\/]\d{4}[\\/]\d{2}[\\/]\d{4}-\d{2}-\d{2}-runtime\.md$/.test(path))
   .map(parseMarkdownRecord)
+  .filter(({ data }) => data.schema !== 'research-runtime-readable-record/v2' && data.runtime_version !== '5.0')
   .map(recordFrom)
   .sort((a, b) => b.date.localeCompare(a.date))
 
