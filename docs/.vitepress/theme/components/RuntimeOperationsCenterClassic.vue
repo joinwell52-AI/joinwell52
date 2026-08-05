@@ -157,7 +157,7 @@ const history = computed(() => {
 
 const copy = computed(() => zh.value ? {
   kicker: 'RESEARCH RUNTIME CENTER V5.0 · 数字研究员运营中心',
-  title: '今天研究什么，下午生产什么，晚上发布什么。',
+  title: '数字工场运营中心',
   lead: '三个栏目分别选题；上午完成发现、阅读与分析，15:00 形成完整出版候选，20:00 只负责 GitHub 与网站发版。',
   badge: 'Research Runtime Scheduler V3.0',
   charter: '查看 V5.0 运行规范',
@@ -205,7 +205,7 @@ const copy = computed(() => zh.value ? {
   status: { Running: '工作中', Completed: '已完成', Blocked: '已阻塞', Failed: '失败', Skipped: '已跳过', Waiting: '待执行' } as Record<Status, string>
 } : {
   kicker: 'RESEARCH RUNTIME CENTER V5.0 · DIGITAL RESEARCHER OPERATIONS',
-  title: 'What is researched today, produced at 15:00, and released at 20:00.',
+  title: 'Digital Works Operations Center',
   lead: 'The three columns make separate topic decisions; discovery, reading and analysis complete before 15:00 Production, while 20:00 performs release only.',
   badge: 'Research Runtime Scheduler V3.0',
   charter: 'Read the V5.0 Runtime Specification',
