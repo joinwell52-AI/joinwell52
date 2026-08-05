@@ -281,6 +281,9 @@ function ensureRecord(manifest, familyId, date) {
 
 function appendScheduledEvent(record, task, now) {
   const currentStatus = record.taskStatus?.[task.id] || 'Waiting'
+  if (TERMINAL.has(currentStatus) && record.results?.[task.id]) {
+    return false
+  }
   const duplicate = currentStatus === 'Running' && record.timeline.some((entry) =>
     entry.task === task.id &&
     entry.event === 'Execution Slot Opened' &&
@@ -304,6 +307,7 @@ function appendScheduledEvent(record, task, now) {
     })
   }
   record.updatedAt = `${now.date}T${now.time}+08:00`
+  return true
 }
 
 function githubOutput(values) {
@@ -325,8 +329,9 @@ function schedule(args) {
   const paths = []
   for (const task of tasks) {
     const { path, record } = ensureRecord(manifest, task.family, now.date)
-    appendScheduledEvent(record, task, now)
-    writeJson(path, record)
+    const changed = appendScheduledEvent(record, task, now)
+    if (changed) writeJson(path, record)
+    else console.log(`${task.name} is already terminal for ${now.date}; delayed or duplicate scheduling cannot reopen it.`)
     paths.push(slash(path))
   }
 
