@@ -102,8 +102,19 @@ jobs:
             echo "Research Intelligence initialization belongs to Discovery only."
           fi
 
+      - name: Synchronize readable Runtime ledger
+        shell: bash
+        env:
+          RUNTIME_DATE: ${{ steps.runtime.outputs.runtime_date }}
+        run: node scripts/runtime-markdown.mjs render --date "$RUNTIME_DATE"
+
       - name: Validate four Runtime systems
-        run: npm run runtime:validate
+        shell: bash
+        env:
+          RUNTIME_DATE: ${{ steps.runtime.outputs.runtime_date }}
+        run: |
+          npm run runtime:validate
+          node scripts/runtime-markdown.mjs validate --date "$RUNTIME_DATE"
 
       - name: Commit Runtime scheduling artifacts
         shell: bash
@@ -113,7 +124,7 @@ jobs:
         run: |
           git config user.name "joinwell52 Research Runtime"
           git config user.email "actions@users.noreply.github.com"
-          git add research/runtime/records research/intelligence
+          git add research/runtime/records research/runtime/[0-9][0-9][0-9][0-9] research/intelligence
 
           if git diff --cached --quiet; then
             echo "Runtime artifacts already contain this scheduling event."
