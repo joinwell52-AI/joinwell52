@@ -12,7 +12,7 @@
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Running",
-    "reading": "Completed",
+    "reading": "Running",
     "analysis": "Completed",
     "production": "Waiting",
     "publication": "Waiting"
@@ -31,59 +31,70 @@
       "next": "Research Runtime Queue at 10:00 must perform only three-column triage and decide Selected or No Selection for each column.",
       "next_zh": "10:00 Research Runtime Queue 仅执行三栏筛选，并为每个栏目作出 Selected 或 No Selection 决定。",
       "metrics": [
-        {"label": "Due source objects", "label_zh": "应检查来源对象", "value": "48"},
-        {"label": "Checked source objects", "label_zh": "已检查来源对象", "value": "45"},
-        {"label": "Authentication-required sources", "label_zh": "需要认证的来源", "value": "1"},
-        {"label": "Recorded retrieval failures", "label_zh": "已记录抓取失败", "value": "2"},
-        {"label": "Deduplicated signals", "label_zh": "去重信号", "value": "16"}
+        {
+          "label": "Due source objects",
+          "label_zh": "应检查来源对象",
+          "value": "48"
+        },
+        {
+          "label": "Checked source objects",
+          "label_zh": "已检查来源对象",
+          "value": "45"
+        },
+        {
+          "label": "Authentication-required sources",
+          "label_zh": "需要认证的来源",
+          "value": "1"
+        },
+        {
+          "label": "Recorded retrieval failures",
+          "label_zh": "已记录抓取失败",
+          "value": "2"
+        },
+        {
+          "label": "Deduplicated signals",
+          "label_zh": "去重信号",
+          "value": "16"
+        }
       ],
       "evidence": [
-        {"label": "Scheduler V3.0", "label_zh": "Scheduler V3.0", "source": "research/runtime/SCHEDULER.json"},
-        {"label": "Research Intelligence Registry", "label_zh": "研究情报注册表", "source": "research/intelligence/REGISTRY.json"},
-        {"label": "AI Platform profile", "label_zh": "AI 平台情报 Profile", "source": "research/skills/profiles/01p-ai-platform-change-intelligence.md"},
-        {"label": "GitHub Engineering profile", "label_zh": "GitHub 工程情报 Profile", "source": "research/skills/profiles/01g-github-engineering-intelligence.md"},
-        {"label": "Published Research profile", "label_zh": "论文研究情报 Profile", "source": "research/skills/profiles/01r-published-research-intelligence.md"}
+        {
+          "label": "Scheduler V3.0",
+          "label_zh": "Scheduler V3.0",
+          "source": "research/runtime/SCHEDULER.json"
+        },
+        {
+          "label": "Research Intelligence Registry",
+          "label_zh": "研究情报注册表",
+          "source": "research/intelligence/REGISTRY.json"
+        },
+        {
+          "label": "AI Platform profile",
+          "label_zh": "AI 平台情报 Profile",
+          "source": "research/skills/profiles/01p-ai-platform-change-intelligence.md"
+        },
+        {
+          "label": "GitHub Engineering profile",
+          "label_zh": "GitHub 工程情报 Profile",
+          "source": "research/skills/profiles/01g-github-engineering-intelligence.md"
+        },
+        {
+          "label": "Published Research profile",
+          "label_zh": "论文研究情报 Profile",
+          "source": "research/skills/profiles/01r-published-research-intelligence.md"
+        }
       ],
       "artifacts": [
-        {"label": "Research Intelligence run and Signal Pool", "label_zh": "研究情报运行记录与 Signal Pool", "path": "research/intelligence/runs/2026/08/2026-08-05-intelligence.json"},
-        {"label": "Verified Discovery commit", "label_zh": "已验证的 Discovery 提交", "commit": "5e9079cc0cb5e241ead493ab957e41465626b5e5"}
-      ]
-    },
-    "reading": {
-      "schema": "runtime-shift-result/v2",
-      "task": "reading",
-      "status": "Completed",
-      "input": "The three same-day Selected objects in Today's Research Plan: Q-20260805-12, Q-20260805-13 and Q-20260805-14, together with their complete primary and authoritative source packages.",
-      "input_zh": "今日研究计划中三个同日 Selected 对象：Q-20260805-12、Q-20260805-13 与 Q-20260805-14，以及各自完整的主要与权威来源包。",
-      "workResult": "Executed Skill 03 only. Completed source-complete Deep Reading for all three selected column objects; extracted facts, vendor claims or research results, mechanisms, measurements, limitations, contradictions, unresolved questions and source traceability. Three durable Reading Records were produced. No Research Analysis or article drafting was performed.",
-      "workResult_zh": "仅执行 Skill 03。已对三个栏目选中对象完成来源完整的深度阅读，提取事实、厂商主张或研究结果、机制、测量、限制、矛盾、未决问题及来源可追溯性，并生成三份持久化 Reading Record。未执行 Research Analysis，也未撰写文章。",
-      "output": "Three Reading Results: Universal Verifier completion evidence and benchmark limits; Cursor Router's disclosed routing and governance surface plus undocumented policy and fallback behavior; and the exact OpenAI Agents Python persistence branches around output guardrails, interruption and resume.",
-      "output_zh": "三份 Reading Result：Universal Verifier 的完成证据机制与基准限制；Cursor Router 已披露的路由与治理表面及未公开的策略与回退行为；以及 OpenAI Agents Python 围绕输出门禁、中断和恢复的精确持久化分支。",
-      "next": "The 13:00 Research Runtime Analysis shift may consume only these three Reading Results to perform comparison, judgment and implication mapping. The Reading shift makes no adoption decision.",
-      "next_zh": "13:00 Research Runtime Analysis 只能消费这三份 Reading Result，执行比较、判断与影响映射；Reading 班次不作采用决策。",
-      "metrics": [
-        {"label": "Selected objects consumed", "label_zh": "已消费 Selected 对象", "value": "3"},
-        {"label": "Reading Results", "label_zh": "Reading Result 数量", "value": "3"},
-        {"label": "Primary or official source objects", "label_zh": "主要或官方来源对象", "value": "13"},
-        {"label": "Explicit limitations recorded", "label_zh": "已记录明确限制", "value": "21"},
-        {"label": "Contradictions or qualifications", "label_zh": "矛盾或限定条件", "value": "10"},
-        {"label": "Analysis artifacts", "label_zh": "分析成果", "value": "0"},
-        {"label": "Article drafts", "label_zh": "文章草稿", "value": "0"}
-      ],
-      "evidence": [
-        {"label": "Scheduler V3.0", "label_zh": "Scheduler V3.0", "source": "research/runtime/SCHEDULER.json"},
-        {"label": "Today's Research Plan", "label_zh": "今日研究计划", "source": "research/runtime/plans/2026/08/2026-08-05-plan.json"},
-        {"label": "Skill 03 Deep Reading", "label_zh": "Skill 03 深度阅读", "source": "research/skills/03-deep-reading.md"},
-        {"label": "Microsoft Universal Verifier research", "label_zh": "Microsoft Universal Verifier 研究", "source": "https://www.microsoft.com/en-us/research/publication/the-art-of-building-verifiers-for-computer-use-agents/"},
-        {"label": "Cursor Router official changelog", "label_zh": "Cursor Router 官方更新日志", "source": "https://cursor.com/changelog/router"},
-        {"label": "OpenAI Agents Python guardrail-ordering commit", "label_zh": "OpenAI Agents Python 门禁顺序提交", "source": "https://github.com/openai/openai-agents-python/commit/69e26269f52a1fde684154376d77e5a21b507c19"}
-      ],
-      "artifacts": [
-        {"label": "Digital Employee Reading Result", "label_zh": "数字员工 Reading Result", "path": "research/reading/Q-20260805-12-verifiable-completion.md"},
-        {"label": "Industry Architecture Reading Result", "label_zh": "行业架构 Reading Result", "path": "research/reading/Q-20260805-13-governed-model-routing.md"},
-        {"label": "Open-source Engineering Reading Result", "label_zh": "开源工程 Reading Result", "path": "research/reading/Q-20260805-14-guardrail-session-ordering.md"},
-        {"label": "Verified Reading start-state commit", "label_zh": "已验证的 Reading 启动状态提交", "commit": "e0b03392bf760a147532b08820680a2e51f1053f"},
-        {"label": "Verified Reading result commit", "label_zh": "已验证的 Reading 结果提交", "commit": "c87783214681c8cfb95164952ab85cf45e480390"}
+        {
+          "label": "Research Intelligence run and Signal Pool",
+          "label_zh": "研究情报运行记录与 Signal Pool",
+          "path": "research/intelligence/runs/2026/08/2026-08-05-intelligence.json"
+        },
+        {
+          "label": "Verified Discovery commit",
+          "label_zh": "已验证的 Discovery 提交",
+          "commit": "5e9079cc0cb5e241ead493ab957e41465626b5e5"
+        }
       ]
     },
     "analysis": {
@@ -99,91 +110,398 @@
       "next": "The 15:00 Production shift may consume only the three Research Objects listed in Artifacts. It must preserve their uncertainty and counter-evidence, and must not write from signals or Reading Results.",
       "next_zh": "15:00 Production 只能消费 Artifacts 中列出的三份 Research Object，必须保留其中的不确定性与反证，不得直接从信号或 Reading Result 写作。",
       "metrics": [
-        {"label": "Reading Results consumed", "label_zh": "已消费 Reading Result", "value": "3"},
-        {"label": "Research Objects produced", "label_zh": "已生成 Research Object", "value": "3"},
-        {"label": "Research columns covered", "label_zh": "覆盖研究栏目", "value": "3 / 3"},
-        {"label": "Explicit research judgments", "label_zh": "明确研究判断", "value": "13"},
-        {"label": "Uncertainty statements", "label_zh": "不确定性陈述", "value": "9"},
-        {"label": "Counter-evidence items", "label_zh": "反证条目", "value": "13"},
-        {"label": "Unread external sources introduced", "label_zh": "引入未读外部来源", "value": "0"},
-        {"label": "Publication drafts", "label_zh": "出版草稿", "value": "0"}
+        {
+          "label": "Reading Results consumed",
+          "label_zh": "已消费 Reading Result",
+          "value": "3"
+        },
+        {
+          "label": "Research Objects produced",
+          "label_zh": "已生成 Research Object",
+          "value": "3"
+        },
+        {
+          "label": "Research columns covered",
+          "label_zh": "覆盖研究栏目",
+          "value": "3 / 3"
+        },
+        {
+          "label": "Explicit research judgments",
+          "label_zh": "明确研究判断",
+          "value": "13"
+        },
+        {
+          "label": "Uncertainty statements",
+          "label_zh": "不确定性陈述",
+          "value": "9"
+        },
+        {
+          "label": "Counter-evidence items",
+          "label_zh": "反证条目",
+          "value": "13"
+        },
+        {
+          "label": "Unread external sources introduced",
+          "label_zh": "引入未读外部来源",
+          "value": "0"
+        },
+        {
+          "label": "Publication drafts",
+          "label_zh": "出版草稿",
+          "value": "0"
+        }
       ],
       "evidence": [
-        {"label": "Scheduler V3.0", "label_zh": "Scheduler V3.0", "source": "research/runtime/SCHEDULER.json"},
-        {"label": "Skill 04 Research Analysis", "label_zh": "Skill 04 研究分析", "source": "research/skills/04-research-analysis.md"},
-        {"label": "Digital Employee Reading Result", "label_zh": "数字员工 Reading Result", "source": "research/reading/Q-20260805-12-verifiable-completion.md"},
-        {"label": "Industry Architecture Reading Result", "label_zh": "行业架构 Reading Result", "source": "research/reading/Q-20260805-13-governed-model-routing.md"},
-        {"label": "Open-source Engineering Reading Result", "label_zh": "开源工程 Reading Result", "source": "research/reading/Q-20260805-14-guardrail-session-ordering.md"}
+        {
+          "label": "Scheduler V3.0",
+          "label_zh": "Scheduler V3.0",
+          "source": "research/runtime/SCHEDULER.json"
+        },
+        {
+          "label": "Skill 04 Research Analysis",
+          "label_zh": "Skill 04 研究分析",
+          "source": "research/skills/04-research-analysis.md"
+        },
+        {
+          "label": "Digital Employee Reading Result",
+          "label_zh": "数字员工 Reading Result",
+          "source": "research/reading/Q-20260805-12-verifiable-completion.md"
+        },
+        {
+          "label": "Industry Architecture Reading Result",
+          "label_zh": "行业架构 Reading Result",
+          "source": "research/reading/Q-20260805-13-governed-model-routing.md"
+        },
+        {
+          "label": "Open-source Engineering Reading Result",
+          "label_zh": "开源工程 Reading Result",
+          "source": "research/reading/Q-20260805-14-guardrail-session-ordering.md"
+        }
       ],
       "artifacts": [
-        {"label": "Digital Employee Research Object", "label_zh": "数字员工 Research Object", "path": "research/analysis/Q-20260805-12-verifiable-completion.md"},
-        {"label": "Industry Architecture Research Object", "label_zh": "行业架构 Research Object", "path": "research/analysis/Q-20260805-13-governed-model-routing.md"},
-        {"label": "Open-source Engineering Research Object", "label_zh": "开源工程 Research Object", "path": "research/analysis/Q-20260805-14-guardrail-session-ordering.md"},
-        {"label": "Verified Analysis start-state commit", "label_zh": "已验证的 Analysis 启动状态提交", "commit": "0dfc222efdc4af20a2d860fbf14700367000221c"}
+        {
+          "label": "Digital Employee Research Object",
+          "label_zh": "数字员工 Research Object",
+          "path": "research/analysis/Q-20260805-12-verifiable-completion.md"
+        },
+        {
+          "label": "Industry Architecture Research Object",
+          "label_zh": "行业架构 Research Object",
+          "path": "research/analysis/Q-20260805-13-governed-model-routing.md"
+        },
+        {
+          "label": "Open-source Engineering Research Object",
+          "label_zh": "开源工程 Research Object",
+          "path": "research/analysis/Q-20260805-14-guardrail-session-ordering.md"
+        },
+        {
+          "label": "Verified Analysis start-state commit",
+          "label_zh": "已验证的 Analysis 启动状态提交",
+          "commit": "0dfc222efdc4af20a2d860fbf14700367000221c"
+        }
       ]
     }
   },
   "timeline": [
-    {"time": "2026-08-05T09:00:40+08:00", "task": "discovery", "event": "Execution Slot Opened", "status": "Running", "detail": "Research Runtime Discovery opened by Scheduler V3.0."},
-    {"time": "2026-08-05T09:04:57+08:00", "task": "discovery", "event": "Discovery Completed", "status": "Completed", "detail": "All three formal intelligence profiles completed; Signal Pool persisted; Queue triage remains pending."},
-    {"time": "2026-08-05T09:11:37+08:00", "task": "discovery", "event": "GitHub Commit Verified", "status": "Completed", "detail": "Fetched and verified commit 5e9079cc0cb5e241ead493ab957e41465626b5e5 containing the durable Discovery record and Signal Pool."},
-    {"time": "2026-08-05T10:01:51+08:00", "task": "queue", "event": "Execution Slot Opened", "status": "Running", "detail": "Research Runtime Queue execution started."},
-    {"time": "2026-08-05T10:10:37+08:00", "task": "queue", "event": "Queue Completed", "status": "Completed", "detail": "Skill 02 completed; three explicit Selected decisions and Today's Research Plan were persisted."},
-    {"time": "2026-08-05T10:10:39+08:00", "task": "queue", "event": "GitHub Commit Verified", "status": "Completed", "detail": "Fetched and verified commit 2cd722da2e1553b66af9f46bc9bd0324dcefdb96 containing the Queue result, triaged intelligence and Today's Research Plan."},
-    {"time": "2026-08-05T11:02:03+08:00", "task": "reading", "event": "Execution Slot Opened", "status": "Running", "detail": "Research Runtime Reading opened by Scheduler V3.0; Deep Reading may begin only after this start state is committed and verified."},
-    {"time": "2026-08-05T11:16:55+08:00", "task": "reading", "event": "Reading Completed", "status": "Completed", "detail": "Skill 03 completed for all three same-day Selected objects; three durable Reading Results were persisted without Research Analysis or article drafting."},
-    {"time": "2026-08-05T11:19:50+08:00", "task": "reading", "event": "GitHub Commit Verified", "status": "Completed", "detail": "Fetched and verified commit c87783214681c8cfb95164952ab85cf45e480390 containing the three durable Reading Records and the runtime-shift-result/v2 Reading result."},
-    {"time": "2026-08-05T12:49:35+08:00", "task": "queue", "event": "Execution Slot Opened", "status": "Running", "detail": "Research Runtime Queue started by Research Runtime Scheduler V3.0."},
-    {"time": "2026-08-05T13:01:02+08:00", "task": "analysis", "event": "Execution Slot Opened", "status": "Running", "detail": "Research Runtime Analysis opened by Scheduler V3.0; substantive Skill 04 work may begin only after this start state is committed and verified."},
-    {"time": "2026-08-05T13:08:10+08:00", "task": "analysis", "event": "Analysis Completed", "status": "Completed", "detail": "Skill 04 completed from the three durable Reading Results; three Production-authorized Research Objects were persisted without publication copy or release work."}
+    {
+      "time": "2026-08-05T09:00:40+08:00",
+      "task": "discovery",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Discovery opened by Scheduler V3.0."
+    },
+    {
+      "time": "2026-08-05T09:04:57+08:00",
+      "task": "discovery",
+      "event": "Discovery Completed",
+      "status": "Completed",
+      "detail": "All three formal intelligence profiles completed; Signal Pool persisted; Queue triage remains pending."
+    },
+    {
+      "time": "2026-08-05T09:11:37+08:00",
+      "task": "discovery",
+      "event": "GitHub Commit Verified",
+      "status": "Completed",
+      "detail": "Fetched and verified commit 5e9079cc0cb5e241ead493ab957e41465626b5e5 containing the durable Discovery record and Signal Pool."
+    },
+    {
+      "time": "2026-08-05T10:01:51+08:00",
+      "task": "queue",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Queue execution started."
+    },
+    {
+      "time": "2026-08-05T10:10:37+08:00",
+      "task": "queue",
+      "event": "Queue Completed",
+      "status": "Completed",
+      "detail": "Skill 02 completed; three explicit Selected decisions and Today's Research Plan were persisted."
+    },
+    {
+      "time": "2026-08-05T10:10:39+08:00",
+      "task": "queue",
+      "event": "GitHub Commit Verified",
+      "status": "Completed",
+      "detail": "Fetched and verified commit 2cd722da2e1553b66af9f46bc9bd0324dcefdb96 containing the Queue result, triaged intelligence and Today's Research Plan."
+    },
+    {
+      "time": "2026-08-05T11:02:03+08:00",
+      "task": "reading",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Reading opened by Scheduler V3.0; Deep Reading may begin only after this start state is committed and verified."
+    },
+    {
+      "time": "2026-08-05T11:16:55+08:00",
+      "task": "reading",
+      "event": "Reading Completed",
+      "status": "Completed",
+      "detail": "Skill 03 completed for all three same-day Selected objects; three durable Reading Results were persisted without Research Analysis or article drafting."
+    },
+    {
+      "time": "2026-08-05T11:19:50+08:00",
+      "task": "reading",
+      "event": "GitHub Commit Verified",
+      "status": "Completed",
+      "detail": "Fetched and verified commit c87783214681c8cfb95164952ab85cf45e480390 containing the three durable Reading Records and the runtime-shift-result/v2 Reading result."
+    },
+    {
+      "time": "2026-08-05T12:49:35+08:00",
+      "task": "queue",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Queue started by Research Runtime Scheduler V3.0."
+    },
+    {
+      "time": "2026-08-05T13:01:02+08:00",
+      "task": "analysis",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Analysis opened by Scheduler V3.0; substantive Skill 04 work may begin only after this start state is committed and verified."
+    },
+    {
+      "time": "2026-08-05T13:08:10+08:00",
+      "task": "analysis",
+      "event": "Analysis Completed",
+      "status": "Completed",
+      "detail": "Skill 04 completed from the three durable Reading Results; three Production-authorized Research Objects were persisted without publication copy or release work."
+    },
+    {
+      "time": "2026-08-05T13:40:13+08:00",
+      "task": "reading",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Reading started by Research Runtime Scheduler V3.0."
+    }
   ],
   "metrics": [
-    {"label": "Due source objects", "label_zh": "应检查来源对象", "value": "48"},
-    {"label": "Checked source objects", "label_zh": "已检查来源对象", "value": "45"},
-    {"label": "Authentication-required sources", "label_zh": "需要认证的来源", "value": "1"},
-    {"label": "Recorded retrieval failures", "label_zh": "已记录抓取失败", "value": "2"},
-    {"label": "Deduplicated signals", "label_zh": "去重信号", "value": "16"},
-    {"label": "Signal Pool", "label_zh": "信号池", "value": "16"},
-    {"label": "Column decisions", "label_zh": "栏目决定", "value": "3 / 3"},
-    {"label": "Selected objects", "label_zh": "已选对象", "value": "3"},
-    {"label": "Candidate/supporting signals", "label_zh": "候选/支持信号", "value": "12"},
-    {"label": "Rejected standalone signals", "label_zh": "拒绝的独立信号", "value": "1"},
-    {"label": "No Selection decisions", "label_zh": "未选题决定", "value": "0"},
-    {"label": "Selected objects consumed", "label_zh": "已消费 Selected 对象", "value": "3"},
-    {"label": "Reading Results", "label_zh": "Reading Result 数量", "value": "3"},
-    {"label": "Primary or official source objects", "label_zh": "主要或官方来源对象", "value": "13"},
-    {"label": "Explicit limitations recorded", "label_zh": "已记录明确限制", "value": "21"},
-    {"label": "Contradictions or qualifications", "label_zh": "矛盾或限定条件", "value": "10"},
-    {"label": "Analysis artifacts", "label_zh": "分析成果", "value": "0"},
-    {"label": "Article drafts", "label_zh": "文章草稿", "value": "0"}
+    {
+      "label": "Due source objects",
+      "label_zh": "应检查来源对象",
+      "value": "48"
+    },
+    {
+      "label": "Checked source objects",
+      "label_zh": "已检查来源对象",
+      "value": "45"
+    },
+    {
+      "label": "Authentication-required sources",
+      "label_zh": "需要认证的来源",
+      "value": "1"
+    },
+    {
+      "label": "Recorded retrieval failures",
+      "label_zh": "已记录抓取失败",
+      "value": "2"
+    },
+    {
+      "label": "Deduplicated signals",
+      "label_zh": "去重信号",
+      "value": "16"
+    },
+    {
+      "label": "Signal Pool",
+      "label_zh": "信号池",
+      "value": "16"
+    },
+    {
+      "label": "Column decisions",
+      "label_zh": "栏目决定",
+      "value": "3 / 3"
+    },
+    {
+      "label": "Selected objects",
+      "label_zh": "已选对象",
+      "value": "3"
+    },
+    {
+      "label": "Candidate/supporting signals",
+      "label_zh": "候选/支持信号",
+      "value": "12"
+    },
+    {
+      "label": "Rejected standalone signals",
+      "label_zh": "拒绝的独立信号",
+      "value": "1"
+    },
+    {
+      "label": "No Selection decisions",
+      "label_zh": "未选题决定",
+      "value": "0"
+    },
+    {
+      "label": "Selected objects consumed",
+      "label_zh": "已消费 Selected 对象",
+      "value": "3"
+    },
+    {
+      "label": "Reading Results",
+      "label_zh": "Reading Result 数量",
+      "value": "3"
+    },
+    {
+      "label": "Primary or official source objects",
+      "label_zh": "主要或官方来源对象",
+      "value": "13"
+    },
+    {
+      "label": "Explicit limitations recorded",
+      "label_zh": "已记录明确限制",
+      "value": "21"
+    },
+    {
+      "label": "Contradictions or qualifications",
+      "label_zh": "矛盾或限定条件",
+      "value": "10"
+    },
+    {
+      "label": "Analysis artifacts",
+      "label_zh": "分析成果",
+      "value": "0"
+    },
+    {
+      "label": "Article drafts",
+      "label_zh": "文章草稿",
+      "value": "0"
+    }
   ],
   "evidence": [
-    {"label": "Research Intelligence Registry", "label_zh": "研究情报注册表", "source": "research/intelligence/REGISTRY.json"},
-    {"label": "AI Platform profile", "label_zh": "AI 平台情报 Profile", "source": "research/skills/profiles/01p-ai-platform-change-intelligence.md"},
-    {"label": "GitHub Engineering profile", "label_zh": "GitHub 工程情报 Profile", "source": "research/skills/profiles/01g-github-engineering-intelligence.md"},
-    {"label": "Published Research profile", "label_zh": "论文研究情报 Profile", "source": "research/skills/profiles/01r-published-research-intelligence.md"},
-    {"label": "Scheduler V3.0", "label_zh": "Scheduler V3.0", "source": "research/runtime/SCHEDULER.json"},
-    {"label": "2026-08-05 Signal Pool", "label_zh": "2026-08-05 信号池", "source": "research/intelligence/runs/2026/08/2026-08-05-intelligence.json"},
-    {"label": "Skill 02 Three-Column Research Triage", "label_zh": "Skill 02 三栏研究筛选", "source": "research/skills/02-research-triage.md"},
-    {"label": "Runtime Column Plan Contract", "label_zh": "Runtime 栏目计划契约", "source": "research/runtime/COLUMN-PLAN-SCHEMA.md"},
-    {"label": "Today's Research Plan", "label_zh": "今日研究计划", "source": "research/runtime/plans/2026/08/2026-08-05-plan.json"},
-    {"label": "Skill 03 Deep Reading", "label_zh": "Skill 03 深度阅读", "source": "research/skills/03-deep-reading.md"},
-    {"label": "Microsoft Universal Verifier research", "label_zh": "Microsoft Universal Verifier 研究", "source": "https://www.microsoft.com/en-us/research/publication/the-art-of-building-verifiers-for-computer-use-agents/"},
-    {"label": "Cursor Router official changelog", "label_zh": "Cursor Router 官方更新日志", "source": "https://cursor.com/changelog/router"},
-    {"label": "OpenAI Agents Python guardrail-ordering commit", "label_zh": "OpenAI Agents Python 门禁顺序提交", "source": "https://github.com/openai/openai-agents-python/commit/69e26269f52a1fde684154376d77e5a21b507c19"}
+    {
+      "label": "Research Intelligence Registry",
+      "label_zh": "研究情报注册表",
+      "source": "research/intelligence/REGISTRY.json"
+    },
+    {
+      "label": "AI Platform profile",
+      "label_zh": "AI 平台情报 Profile",
+      "source": "research/skills/profiles/01p-ai-platform-change-intelligence.md"
+    },
+    {
+      "label": "GitHub Engineering profile",
+      "label_zh": "GitHub 工程情报 Profile",
+      "source": "research/skills/profiles/01g-github-engineering-intelligence.md"
+    },
+    {
+      "label": "Published Research profile",
+      "label_zh": "论文研究情报 Profile",
+      "source": "research/skills/profiles/01r-published-research-intelligence.md"
+    },
+    {
+      "label": "Scheduler V3.0",
+      "label_zh": "Scheduler V3.0",
+      "source": "research/runtime/SCHEDULER.json"
+    },
+    {
+      "label": "2026-08-05 Signal Pool",
+      "label_zh": "2026-08-05 信号池",
+      "source": "research/intelligence/runs/2026/08/2026-08-05-intelligence.json"
+    },
+    {
+      "label": "Skill 02 Three-Column Research Triage",
+      "label_zh": "Skill 02 三栏研究筛选",
+      "source": "research/skills/02-research-triage.md"
+    },
+    {
+      "label": "Runtime Column Plan Contract",
+      "label_zh": "Runtime 栏目计划契约",
+      "source": "research/runtime/COLUMN-PLAN-SCHEMA.md"
+    },
+    {
+      "label": "Today's Research Plan",
+      "label_zh": "今日研究计划",
+      "source": "research/runtime/plans/2026/08/2026-08-05-plan.json"
+    },
+    {
+      "label": "Skill 03 Deep Reading",
+      "label_zh": "Skill 03 深度阅读",
+      "source": "research/skills/03-deep-reading.md"
+    },
+    {
+      "label": "Microsoft Universal Verifier research",
+      "label_zh": "Microsoft Universal Verifier 研究",
+      "source": "https://www.microsoft.com/en-us/research/publication/the-art-of-building-verifiers-for-computer-use-agents/"
+    },
+    {
+      "label": "Cursor Router official changelog",
+      "label_zh": "Cursor Router 官方更新日志",
+      "source": "https://cursor.com/changelog/router"
+    },
+    {
+      "label": "OpenAI Agents Python guardrail-ordering commit",
+      "label_zh": "OpenAI Agents Python 门禁顺序提交",
+      "source": "https://github.com/openai/openai-agents-python/commit/69e26269f52a1fde684154376d77e5a21b507c19"
+    }
   ],
   "artifacts": [
-    {"label": "Verified Discovery commit", "label_zh": "已验证的 Discovery 提交", "commit": "5e9079cc0cb5e241ead493ab957e41465626b5e5"},
-    {"label": "Today's Research Plan", "label_zh": "今日研究计划", "path": "research/runtime/plans/2026/08/2026-08-05-plan.json"},
-    {"label": "Triaged Research Intelligence run", "label_zh": "已筛选的研究情报运行记录", "path": "research/intelligence/runs/2026/08/2026-08-05-intelligence.json"},
-    {"label": "Verified Queue commit", "label_zh": "已验证的 Queue 提交", "commit": "2cd722da2e1553b66af9f46bc9bd0324dcefdb96"},
-    {"label": "Digital Employee Reading Result", "label_zh": "数字员工 Reading Result", "path": "research/reading/Q-20260805-12-verifiable-completion.md"},
-    {"label": "Industry Architecture Reading Result", "label_zh": "行业架构 Reading Result", "path": "research/reading/Q-20260805-13-governed-model-routing.md"},
-    {"label": "Open-source Engineering Reading Result", "label_zh": "开源工程 Reading Result", "path": "research/reading/Q-20260805-14-guardrail-session-ordering.md"},
-    {"label": "Verified Reading start-state commit", "label_zh": "已验证的 Reading 启动状态提交", "commit": "e0b03392bf760a147532b08820680a2e51f1053f"},
-    {"label": "Verified Reading result commit", "label_zh": "已验证的 Reading 结果提交", "commit": "c87783214681c8cfb95164952ab85cf45e480390"}
+    {
+      "label": "Verified Discovery commit",
+      "label_zh": "已验证的 Discovery 提交",
+      "commit": "5e9079cc0cb5e241ead493ab957e41465626b5e5"
+    },
+    {
+      "label": "Today's Research Plan",
+      "label_zh": "今日研究计划",
+      "path": "research/runtime/plans/2026/08/2026-08-05-plan.json"
+    },
+    {
+      "label": "Triaged Research Intelligence run",
+      "label_zh": "已筛选的研究情报运行记录",
+      "path": "research/intelligence/runs/2026/08/2026-08-05-intelligence.json"
+    },
+    {
+      "label": "Verified Queue commit",
+      "label_zh": "已验证的 Queue 提交",
+      "commit": "2cd722da2e1553b66af9f46bc9bd0324dcefdb96"
+    },
+    {
+      "label": "Digital Employee Reading Result",
+      "label_zh": "数字员工 Reading Result",
+      "path": "research/reading/Q-20260805-12-verifiable-completion.md"
+    },
+    {
+      "label": "Industry Architecture Reading Result",
+      "label_zh": "行业架构 Reading Result",
+      "path": "research/reading/Q-20260805-13-governed-model-routing.md"
+    },
+    {
+      "label": "Open-source Engineering Reading Result",
+      "label_zh": "开源工程 Reading Result",
+      "path": "research/reading/Q-20260805-14-guardrail-session-ordering.md"
+    },
+    {
+      "label": "Verified Reading start-state commit",
+      "label_zh": "已验证的 Reading 启动状态提交",
+      "commit": "e0b03392bf760a147532b08820680a2e51f1053f"
+    },
+    {
+      "label": "Verified Reading result commit",
+      "label_zh": "已验证的 Reading 结果提交",
+      "commit": "c87783214681c8cfb95164952ab85cf45e480390"
+    }
   ],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-05T13:08:10+08:00"
+  "updatedAt": "2026-08-05T13:40:13+08:00"
 }
