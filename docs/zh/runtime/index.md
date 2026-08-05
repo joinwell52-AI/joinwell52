@@ -15,4 +15,3 @@ import RuntimeOperationsCenterCurrent from '../../.vitepress/theme/components/Ru
 <ResearchIntelligenceRadar lang="zh" />
 
 <style src="../../.vitepress/theme/runtime-operations.css"></style>
-<style src="../../.vitepress/theme/runtime-light-contrast.css"></style>
