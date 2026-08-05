@@ -43,7 +43,7 @@ This distinction produces three separate questions:
 TMPA must not claim the guarantee of a surrounding identity, policy, or cryptographic system unless the deployment actually verifies that evidence under the corresponding profile.
 # 7. Evaluation Results
 
-The separately maintained [TMPA Core Specification S0.4](/en/publications/tmpa-core-specification-s0.4) remains the sole normative source for C01–C14 and all SHALL/MUST clauses. Detailed engineering evidence and criterion verdicts belong to the [Implementation Case Report I0.5](/en/publications/implementation-case-i0.5). This section evaluates the research questions without reproducing the specification.
+The separately maintained [TMPA Core Specification S0.5](/en/publications/tmpa-core-specification-s0.5) is the current sole normative source for C01–C14 and all SHALL/MUST clauses. The [Implementation Case Report I0.5](/en/publications/implementation-case-i0.5) remains a historical S0.4 engineering-evidence baseline and does not claim S0.5 conformance. This section evaluates the research questions without reproducing the specification.
 
 ## 7.1 Findings by Research Question
 

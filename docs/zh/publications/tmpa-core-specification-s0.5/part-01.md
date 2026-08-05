@@ -1,5 +1,5 @@
 ---
-title: TMPA Core Specification — 可实现草稿 S0.4
+title: TMPA Core Specification — 可实现草稿 S0.5
 outline: deep
 ---
 
@@ -8,9 +8,9 @@ outline: deep
   kicker="规范性规范"
   title="TMPA Core Specification"
   summary="治理对象、生命周期、权限、三值判断与确定性重建的规范要求。"
-  version="S0.4"
+  version="S0.5"
   status="可实现工作草稿"
-  languageHref="/en/publications/tmpa-core-specification-s0.4"
+  languageHref="/en/publications/tmpa-core-specification-s0.5"
   languageLabel="English"
 />
 
@@ -18,12 +18,12 @@ outline: deep
 
 ## 文本化多智能体流程架构——Core 对象、Reader 语义与一致性
 
-> **规范版本：** Draft S0.4<br>
+> **规范版本：** Draft S0.5<br>
 > **历史抽取基线：** TMPA Draft V1.0-R24；当前规范直接在本 GitHub 文档中维护<br>
 > **状态：** 可实现规范草稿<br>
 > **抽取日期：** 2026-07-31<br>
-> **编辑修订日期：** 2026-08-03<br>
-> **权威性：** 本 GitHub 文档是 TMPA Core S0.4 的唯一规范性来源。Architecture Paper 负责理论阐释，Implementation Case Report 负责工程证据；二者均不得重定义本规范。
+> **编辑修订日期：** 2026-08-05<br>
+> **权威性：** 本 GitHub 文档是 TMPA Core S0.5 的唯一规范性来源。Architecture Paper 负责理论阐释，Implementation Case Report 负责工程证据；二者均不得重定义本规范。
 
 ---
 
@@ -54,7 +54,7 @@ TMPA 架构 → 可复用 FCoP 协议 Profile → CodeFlowMu 与其他下游应�
               → CodeFlowMu 应用 → 当前 TMPA 形式化
 ```
 
-FCoP 实现 TMPA 中一个已定义的文件型子集；CodeFlowMu 把 FCoP 作为协调与治理基础设施采用。FCoP 和 CodeFlowMu 均不定义、也不穷尽 TMPA Core。
+FCoP 定义覆盖 TMPA 部分语义的可复用文件型协议 Profile；CodeFlowMu 是采用该协议进行协调与治理的下游应用。`fcop` 与 `fcop-mcp` Python Package 是 FCoP 协议的参考实现，不是 FCoP 本身。FCoP 协议、其参考实现和 CodeFlowMu 均不定义、也不穷尽 TMPA Core。
 
 ---
 
@@ -76,6 +76,12 @@ FCoP 实现 TMPA 中一个已定义的文件型子集；CodeFlowMu 把 FCoP 作�
 | **source aggregator** | **来源聚合器** | 发现、保留、解析、索引与规范化来源候选，但不决定治理真值的阶段 | 治理 Reader |
 | **governance reader** | **治理 Reader** | 把固定 Profile 应用于规范候选集合的确定性阶段 | 存储层、编排器或模型 Runtime |
 | **governance graph and issue set** | **治理图与问题集合** | 重建得到的偏序流程视图，以及规范化的未解决条件输出 | 原始来源证据或人为强加的总顺序 |
+| **lifecycle state** | **生命周期状态** | Profile 状态机中由有效迁移或状态观测重建的当前阶段 | 业务验收、语义真实性或任务价值已经实现 |
+| **business acceptance** | **业务验收** | 有权角色针对交付声明与支持证据发布的独立接受结论 | 执行者自述、终态目录位置或 `done` 标签 |
+| **completion claim** | **完成声明** | 对某一工作项、交付物或子工作集合已经满足要求的可审查断言 | 自证成立的完成事实 |
+| **work derivation** | **工作派生关系** | 父工作与子工作之间保留范围、责任和闭环要求的显式关系 | 运行时临时分叉或无来源的任务列表 |
+| **governance decision** | **治理裁决** | 复核、批准、拒绝、要求修改、回避或升级人工的独立对象 | 生命周期中的 `review` 阶段本身 |
+| **inspection finding** | **巡检发现** | Reader、审计器或治理告警组件发现的可复现偏差或风险信号 | 已自动执行的修复或业务裁决 |
 
 三份文档统一使用三个语义判断：`valid`（**有效**）表示适用证据与规则建立接受结论；`invalid`（**无效**）表示规则建立拒绝或违规；`undetermined`（**未确定**）表示证据不完整、相互冲突或等待授权解决。authoritative、quarantined、partial、disputed、pending_human 等视图标签只解释呈现原因，不构成额外语义值。
 
@@ -105,12 +111,17 @@ TMPA 定义治理语义，而不是某个 Runtime 组件。它规定必须表示
 - 创建时间；
 - 生命周期 Profile 与声明状态；
 - 指向相关对象的类型化引用；
+- 可选的父工作与 Thread 标识；
+- 可选的完成、失败、恢复或验收声明及其证据引用；
+- Profile 要求时的风险等级与人工审批要求；
 - 规范文本内容；
 - 完整性证据。
 
 已发布治理对象不可变。更正 **MUST NOT** 擦除或重写原对象，而 **MUST** 创建新的对象，对原对象进行取代、拒绝、限定或解决。多个字节相同的来源观测可以指向同一对象；相同 ID 配合不同规范内容构成冲突，不构成更新。
 
 对象声明的生命周期状态是发布时按照其 Profile 关联的状态。受治理工作的当前权威状态 **MUST** 从有效对象集合、已接受迁移和 Profile 规则中重建；实现 **MUST NOT** 通过修改旧对象或选择时间戳最新的对象得到权威状态。
+
+生命周期状态与业务验收是两个正交维度。对象位于终态、归档位置或声明 `done` 只能构成状态证据；除非适用 Profile 明确规定验收权限、必需交付证据和职责分离，并且 Reader 找到有效的接受对象，否则它 **MUST NOT** 被重建为业务完成。
 
 ## 3.2 文档类型注册表
 
@@ -131,6 +142,8 @@ TMPA Core 不规定统一的业务文档分类。每个实现 Profile **MUST** �
 TMPA 角色是具有确定范围的治理权限，不是 Prompt 标签或自然语言人格。
 
 每个角色定义包括：稳定角色 ID、允许创建的对象类型、允许执行的生命周期动作、职责分离约束、角色授予方、分配有效期与撤销状态。
+
+Profile **MAY** 把角色组织为执行、治理与管理等能力层，但必须声明层级含义、允许方向、禁止方向以及由何种身份或 Runtime 控制实际执行。声明性能力边界与已强制执行的能力边界 **MUST** 分开报告。
 
 对象的 `role` 字段声明创建者以何种权限行动，但它不会自行创造权限。Reader **MUST** 根据有效角色分配与适用策略 Profile 验证该声明。
 
@@ -153,6 +166,8 @@ TMPA 角色是具有确定范围的治理权限，不是 Prompt 标签或自然�
 只有同时满足以下条件，迁移才被接受：来源状态匹配当前权威状态；迁移存在于 `T`；发起角色已获授权；必需引用与前置条件已满足；迁移证据通过 Schema 与完整性验证。
 
 非法或未经授权的迁移 **MUST NOT** 改变权威生命周期状态。该尝试 **MUST** 通过拒绝、ISSUE、告警或 Profile 规定的等价记录保持可观察，不得静默丢弃或修复。
+
+生命周期 Profile 还 **MUST** 声明：(1) 哪些状态需要独立业务验收；(2) 哪些关系构成报告、复核、接受与归档授权；(3) 父子工作如何汇总；(4) 哪些风险等级需要人工批准；(5) 失败类型、恢复动作及其持久证据。生命周期工具或物理位置可以实现这些规则，但不能取代这些语义定义。
 
 ## 3.5 文本消息、单写者流与异步并行
 

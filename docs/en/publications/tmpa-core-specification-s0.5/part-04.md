@@ -203,7 +203,7 @@ The reader emits one result envelope with at least:
 
 ```json
 {
-  "core_version": "S0.4",
+  "core_version": "S0.5",
   "output_version": "1",
   "profile": {},
   "reader": { "id": "<id>", "version": "<version>" },
@@ -218,7 +218,7 @@ The reader emits one result envelope with at least:
 
 Each node and edge SHALL contain a stable identifier and its source-object identifier. Each issue SHALL contain a stable `issue_id` and `source_id`; it records `source_object_id` when parsing produced one. Nodes SHOULD additionally record canonical digest, governed-work ID, primary-carrier ID, type, stream position, judgment, view state, and retained source IDs. Edges SHOULD record relation and ordering semantics. Issues SHALL record code and severity and SHOULD record the affected judgment, normative rule, and deterministic parameters.
 
-Core issue codes are: `SCHEMA_INVALID`, `UNKNOWN_TYPE`, `INTEGRITY_MISMATCH`, `SIGNATURE_UNVERIFIED`, `DUPLICATE_ID_CONFLICT`, `PRIMARY_CARRIER_CONFLICT`, `STREAM_DUPLICATE_SEQUENCE`, `STREAM_GAP`, `AUTHORITY_UNDETERMINED`, `AUTHORITY_DENIED`, `SOD_VIOLATION`, `LIFECYCLE_UNDETERMINED`, `ILLEGAL_TRANSITION`, `MISSING_REFERENCE`, `PROHIBITED_CYCLE`, and `UNRESOLVED_CONFLICT`. Profiles namespace additional codes and do not redefine Core codes.
+Core issue codes are: `SCHEMA_INVALID`, `UNKNOWN_TYPE`, `INTEGRITY_MISMATCH`, `SIGNATURE_UNVERIFIED`, `DUPLICATE_ID_CONFLICT`, `PRIMARY_CARRIER_CONFLICT`, `STREAM_DUPLICATE_SEQUENCE`, `STREAM_GAP`, `AUTHORITY_UNDETERMINED`, `AUTHORITY_DENIED`, `SOD_VIOLATION`, `LIFECYCLE_UNDETERMINED`, `ILLEGAL_TRANSITION`, `MISSING_REFERENCE`, `PROHIBITED_CYCLE`, `UNRESOLVED_CONFLICT`, `CLAIM_EVIDENCE_MISSING`, `ACCEPTANCE_UNDETERMINED`, `HUMAN_APPROVAL_REQUIRED`, `CHILD_WORK_OPEN`, `RECIPROCITY_MISSING`, and `STATE_EVIDENCE_CONFLICT`. Profiles namespace additional codes and do not redefine Core codes.
 
 ## 8.3 Canonicalization and Ordering
 

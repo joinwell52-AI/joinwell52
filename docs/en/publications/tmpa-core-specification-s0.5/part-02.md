@@ -79,19 +79,53 @@ An integrity record identifies:
 
 A role label is not a cryptographic signature. A digest without a trusted identity binding can detect modification but cannot prove who created the object. A valid signature proves origin and integrity under the deployed trust model; it does not prove that the signed content is semantically true.
 
+## 3.8 Governance Closure Abstracted from FCoP Practice
+
+S0.5 derives vendor-neutral Core constraints from FCoP protocol specifications, Rules, Schemas, and ADRs, together with bounded observations of the `fcop` / `fcop-mcp` reference implementation. FCoP is a protocol and reference profile, not an application and not the definition of TMPA; the Python packages are only its reference implementation. This section therefore absorbs portable semantics rather than `_lifecycle/`, filename, or MCP-tool names.
+
+### 3.8.1 Current State, Transition History, and Business Completion
+
+A profile MUST define current-state observations separately from transition-history evidence. FCoP uses path as current stage and append-only `transitions` as history; a database profile may use a current-state row and event table. When they conflict, the reader MUST preserve both sources and emit `STATE_EVIDENCE_CONFLICT` or a profile-declared canonical equivalent. It MUST NOT resolve the conflict by selecting the latest timestamp.
+
+Entering `done`, a terminal state, or an archive MUST NOT automatically establish business acceptance. The executor report is an attributable delivery claim; only a review or acceptance object issued by an authorized and sufficiently independent actor can establish business completion. Without that object, the completion conclusion is `undetermined` and the view is `partial` or `pending_human`.
+
+### 3.8.2 Reciprocity, Claims, and Evidence Gates
+
+A work-oriented profile MUST define reciprocal relations between work requests and responses. Every accepted work object SHALL eventually relate to a report, issue, rejection, cancellation, or follow-up work object; silence cannot be inferred as success.
+
+Completion, failure, recovery, and acceptance assertions MAY be represented by `claims`. Every claim has a stable claim identifier, predicate, subject, and evidence-object identifier set. If a completion claim lacks tests, artifacts, commits, reports, or other evidence required by the profile, the reader SHALL emit `CLAIM_EVIDENCE_MISSING` and retain `undetermined`. This rule governs unsupported claims; it does not claim to eliminate model hallucinations.
+
+### 3.8.3 Parent-Child Work and Closure Roll-up
+
+Child work SHALL identify its parent through `governed_work.parent_id` or a profile-declared equivalent. A shared thread may be represented by `thread_id`, but a thread MUST NOT replace the parent-child scope relation. When a parent has an unfinished child, an unhandled blocked child, or a child without a reciprocal outcome, a parent completion claim SHALL emit `CHILD_WORK_OPEN` and remain `undetermined`.
+
+Scope correction MUST be expressed by a new object, supersession relation, or new derivation relation rather than in-place rewriting of a published parent. The reader SHALL preserve the parent, every child, their reciprocal outcomes, and the roll-up conclusion.
+
+### 3.8.4 Governance Decisions, Risk, and Human Approval
+
+A lifecycle review stage and a governance-decision object are orthogonal mechanisms. A profile MUST assign them different type or relation semantics. An implementation MUST NOT infer independent review merely because work entered a `review` stage, and a governance review must not replace the execution report.
+
+A profile MAY use the risk levels `low`, `medium`, `high`, and `irreversible`. If an object declares that human approval is required, or its risk level belongs to the profile's human-approval set, the reader SHALL emit `HUMAN_APPROVAL_REQUIRED`, judgment `undetermined`, and view `pending_human` until a valid human-approval object exists. An agent cannot satisfy the requirement by rewriting its own decision.
+
+### 3.8.5 Failure, Recovery, Inspection, and Drift
+
+A profile MUST publish finite failure-type and recovery-action registries and define how retry, resume, rollback, abort, and escalation produce new objects. Failure MUST NOT be hidden by a success report; a recovery object MUST reference both the triggering failure and the recovered work.
+
+Protocol inspection and governance alerts are observations, not automatic remediation. INSPECTION, ALERT, or equivalent objects MAY report blocking, normative, or hygiene findings, but suggested commands MUST NOT be interpreted by the reader as executed transitions. Independent governance signals and executor self-reports MUST be classified separately.
+
 # 4. Canonical Object, Encoding, and Reconstruction
 
 ## 4.1 Canonical Object Schema
 
-The following JSON Schema defines the TMPA Core S0.4 canonical object representation. It constrains the shape of one governance object. Cross-object properties—including identifier uniqueness, stream continuity, role authorization, lifecycle legality, reference resolution, and deterministic reconstruction—are evaluated by the applicable profile and reader rather than by this single-object schema.
+The following JSON Schema defines the TMPA Core S0.5 canonical object representation. It constrains the shape of one governance object. Cross-object properties—including identifier uniqueness, stream continuity, role authorization, lifecycle legality, reference resolution, and deterministic reconstruction—are evaluated by the applicable profile and reader rather than by this single-object schema.
 
 Implementations may add profile-specific fields only under `extensions`. They must preserve the meaning of the core fields.
 
 ```json
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:tmpa:schema:governance-object:s0.4",
-  "title": "TMPA Governance Object S0.4",
+  "$id": "urn:tmpa:schema:governance-object:s0.5",
+  "title": "TMPA Governance Object S0.5",
   "$comment": "Structural validation does not establish role authority, lifecycle legality, cross-object uniqueness, or integrity verification.",
   "type": "object",
   "additionalProperties": false,
@@ -110,7 +144,7 @@ Implementations may add profile-specific fields only under `extensions`. They mu
     "integrity"
   ],
   "properties": {
-    "tmpa_version": { "const": "S0.4" },
+    "tmpa_version": { "const": "S0.5" },
     "id": { "type": "string", "minLength": 1 },
     "type": { "type": "string", "minLength": 1 },
     "governed_work": {
@@ -119,7 +153,9 @@ Implementations may add profile-specific fields only under `extensions`. They mu
       "required": ["id", "primary_carrier_id"],
       "properties": {
         "id": { "type": "string", "minLength": 1 },
-        "primary_carrier_id": { "type": "string", "minLength": 1 }
+        "primary_carrier_id": { "type": "string", "minLength": 1 },
+        "parent_id": { "type": "string", "minLength": 1 },
+        "thread_id": { "type": "string", "minLength": 1 }
       }
     },
     "stream": {
@@ -164,6 +200,30 @@ Implementations may add profile-specific fields only under `extensions`. They mu
           "relation": { "type": "string", "minLength": 1 },
           "target": { "type": "string", "minLength": 1 }
         }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "predicate", "subject", "evidence"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "predicate": { "type": "string", "minLength": 1 },
+          "subject": { "type": "string", "minLength": 1 },
+          "evidence": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+        }
+      }
+    },
+    "risk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "requires_human_approval"],
+      "properties": {
+        "level": { "enum": ["low", "medium", "high", "irreversible"] },
+        "requires_human_approval": { "type": "boolean" }
       }
     },
     "content": {

@@ -183,7 +183,7 @@ Reader **SHALL** 输出至少包含以下字段的规范结果 Envelope：
 
 ```json
 {
-  "core_version": "S0.4",
+  "core_version": "S0.5",
   "output_version": "1",
   "profile": {},
   "reader": { "id": "<id>", "version": "<version>" },
@@ -198,7 +198,7 @@ Reader **SHALL** 输出至少包含以下字段的规范结果 Envelope：
 
 每个节点和边 **SHALL** 包含稳定 ID 与其来源对象 ID。每个问题 **SHALL** 包含稳定 `issue_id` 与 `source_id`；解析产生来源对象 ID 时还记录 `source_object_id`。节点 **SHOULD** 另记录规范 Digest、受治理工作项 ID、主载体 ID、类型、流位置、判断、视图状态与保留的来源 ID；边 **SHOULD** 记录关系与排序语义；问题 **SHALL** 记录代码和严重级别，并 **SHOULD** 记录受影响判断、规范规则与确定性参数。
 
-Core 问题代码为：`SCHEMA_INVALID`、`UNKNOWN_TYPE`、`INTEGRITY_MISMATCH`、`SIGNATURE_UNVERIFIED`、`DUPLICATE_ID_CONFLICT`、`PRIMARY_CARRIER_CONFLICT`、`STREAM_DUPLICATE_SEQUENCE`、`STREAM_GAP`、`AUTHORITY_UNDETERMINED`、`AUTHORITY_DENIED`、`SOD_VIOLATION`、`LIFECYCLE_UNDETERMINED`、`ILLEGAL_TRANSITION`、`MISSING_REFERENCE`、`PROHIBITED_CYCLE` 和 `UNRESOLVED_CONFLICT`。Profile **MAY** 增加命名空间化代码，但不得重定义 Core 代码。
+Core 问题代码为：`SCHEMA_INVALID`、`UNKNOWN_TYPE`、`INTEGRITY_MISMATCH`、`SIGNATURE_UNVERIFIED`、`DUPLICATE_ID_CONFLICT`、`PRIMARY_CARRIER_CONFLICT`、`STREAM_DUPLICATE_SEQUENCE`、`STREAM_GAP`、`AUTHORITY_UNDETERMINED`、`AUTHORITY_DENIED`、`SOD_VIOLATION`、`LIFECYCLE_UNDETERMINED`、`ILLEGAL_TRANSITION`、`MISSING_REFERENCE`、`PROHIBITED_CYCLE`、`UNRESOLVED_CONFLICT`、`CLAIM_EVIDENCE_MISSING`、`ACCEPTANCE_UNDETERMINED`、`HUMAN_APPROVAL_REQUIRED`、`CHILD_WORK_OPEN`、`RECIPROCITY_MISSING` 与 `STATE_EVIDENCE_CONFLICT`。Profile **MAY** 增加命名空间化代码，但不得重定义 Core 代码。
 
 ## 8.3 规范化与排序
 
