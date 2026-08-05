@@ -6,27 +6,44 @@ on:
       - runtime-publication-exec-20260805
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   probe:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           ref: main
+          path: mainrepo
+      - uses: actions/checkout@v4
+        with:
+          ref: runtime-publication-exec-20260805
+          path: control
       - name: Probe repository publication structure
         shell: bash
         run: |
-          echo '=== PACKAGE SCRIPTS ==='
-          node -e "const p=require('./package.json'); console.log(JSON.stringify(p.scripts,null,2))"
-          echo '=== RESEARCH/ARTICLE DIRECTORIES ==='
-          find docs -maxdepth 4 -type f | sort | grep -Ei '(research|article|note|index|home)' | head -400
-          echo '=== RECENT DATED PUBLIC ARTICLES ==='
-          find docs -type f | sort | grep -E '2026-08-0[1-5].*\.md$' | head -200
-          echo '=== INDEX REFERENCES ==='
-          grep -RIl --exclude-dir=node_modules -E 'Research Notes|研究札记|Digital Employee|数字员工' docs/zh docs/en 2>/dev/null | head -200
-          echo '=== CANDIDATE BATCH ==='
-          cat research/runtime/candidates/2026/08/2026-08-05-candidates.json
-          echo '=== DAILY RECORD TAIL ==='
-          tail -220 research/runtime/records/daily/2026/08/2026-08-05-daily-runtime.json
+          cd mainrepo
+          {
+            echo '=== PACKAGE SCRIPTS ==='
+            node -e "const p=require('./package.json'); console.log(JSON.stringify(p.scripts,null,2))"
+            echo '=== RESEARCH/ARTICLE DIRECTORIES ==='
+            find docs -maxdepth 5 -type f | sort | grep -Ei '(research|article|note|index|home)' | head -600
+            echo '=== RECENT DATED PUBLIC ARTICLES ==='
+            find docs -type f | sort | grep -E '2026-08-0[1-5].*\.md$' | head -300
+            echo '=== INDEX REFERENCES ==='
+            grep -RIl --exclude-dir=node_modules -E 'Research Notes|研究札记|Digital Employee|数字员工' docs/zh docs/en 2>/dev/null | head -300
+            echo '=== DIRECTORY SNAPSHOT ==='
+            find docs/zh docs/en -maxdepth 3 -type d | sort
+            echo '=== CANDIDATE BATCH ==='
+            cat research/runtime/candidates/2026/08/2026-08-05-candidates.json
+            echo '=== DAILY RECORD TAIL ==='
+            tail -240 research/runtime/records/daily/2026/08/2026-08-05-daily-runtime.json
+          } > ../control/runtime-publication-probe.txt
+          cd ../control
+          git config user.name 'Runtime Publication Probe'
+          git config user.email 'actions@users.noreply.github.com'
+          git add runtime-publication-probe.txt
+          git commit -m 'chore(runtime): persist publication probe [skip ci]'
+          git push origin HEAD:runtime-publication-exec-20260805
