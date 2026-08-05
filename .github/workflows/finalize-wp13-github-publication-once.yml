@@ -1,0 +1,103 @@
+name: Finalize WP-13 GitHub Publication Once
+
+on:
+  push:
+    branches:
+      - publish/wp13-codeflowmu-fact-check-case
+    paths:
+      - .github/workflows/finalize-wp13-github-publication-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout publication branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fix durable asset references and add evidence index
+        shell: bash
+        run: |
+          set -euo pipefail
+          zh="docs/zh/engineering/2026-08-06-codeflowmu-multi-agent-fact-checking.md"
+          en="docs/en/engineering/2026-08-06-codeflowmu-multi-agent-fact-checking.md"
+
+          sed -i \
+            -e 's/wp13-codeflowmu-fact-check-cover-zh\.webp/wp13-codeflowmu-fact-check-cover-zh.svg/g' \
+            -e 's/wp13-codeflowmu-fact-check-live\.webp/wp13-codeflowmu-fact-check-live.png/g' \
+            -e 's/wp13-codeflowmu-fact-check-process-zh\.webp/wp13-codeflowmu-fact-check-process-zh.svg/g' \
+            "$zh"
+
+          sed -i \
+            -e 's/wp13-codeflowmu-fact-check-cover-en\.webp/wp13-codeflowmu-fact-check-cover-en.svg/g' \
+            -e 's/wp13-codeflowmu-fact-check-live\.webp/wp13-codeflowmu-fact-check-live.png/g' \
+            -e 's/wp13-codeflowmu-fact-check-process-en\.webp/wp13-codeflowmu-fact-check-process-en.svg/g' \
+            "$en"
+
+          cat > docs/public/evidence/wp13-multi-agent-fact-checking/README.md <<'EOF'
+          # WP-13 Multi-Agent Fact-Checking Evidence Package
+
+          This directory is the public attachment area for the bilingual CodeFlowMu field case:
+
+          - Chinese article: `docs/zh/engineering/2026-08-06-codeflowmu-multi-agent-fact-checking.md`
+          - English article: `docs/en/engineering/2026-08-06-codeflowmu-multi-agent-fact-checking.md`
+
+          ## Download
+
+          - `wp13-multi-agent-fact-check-publication-evidence-v3.zip`
+          - SHA-256: `5b5eda3034c822f13421783244b1d0c76a9fa79950bfad0ce61bb8d2e404131c`
+
+          The ZIP is byte-identical to the canonical evidence package already preserved under
+          `docs/public/evidence/tmpa/i0.5/`.
+
+          ## Evidence boundary
+
+          The package demonstrates that DEV later produced a real delivery and received
+          role-separated QA PASS. At the captured snapshot, TASK-019 and TASK-020 remained
+          `review / pending`; the evidence does not establish final PM approval, terminal
+          closure, or external third-party certification.
+          EOF
+
+          test -f docs/public/assets/covers/wp13-codeflowmu-fact-check-cover-zh.svg
+          test -f docs/public/assets/covers/wp13-codeflowmu-fact-check-cover-en.svg
+          test -f docs/public/assets/covers/wp13-codeflowmu-fact-check-process-zh.svg
+          test -f docs/public/assets/covers/wp13-codeflowmu-fact-check-process-en.svg
+          test -f docs/public/assets/covers/wp13-codeflowmu-fact-check-live.png
+          test -f docs/public/evidence/wp13-multi-agent-fact-checking/wp13-multi-agent-fact-check-publication-evidence-v3.zip
+          grep -q 'wp13-codeflowmu-fact-check-cover-zh.svg' "$zh"
+          grep -q 'wp13-codeflowmu-fact-check-cover-en.svg' "$en"
+          grep -q 'wp13-codeflowmu-fact-check-live.png' "$zh"
+          grep -q 'wp13-codeflowmu-fact-check-live.png' "$en"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Build and verify GitHub-first publication
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run docs:build
+          git diff --check
+
+      - name: Commit finalized publication and remove one-time workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/finalize-wp13-github-publication-once.yml
+          git config user.name "joinwell52 Publication"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/zh/engineering/2026-08-06-codeflowmu-multi-agent-fact-checking.md \
+            docs/en/engineering/2026-08-06-codeflowmu-multi-agent-fact-checking.md \
+            docs/public/evidence/wp13-multi-agent-fact-checking/README.md \
+            .github/workflows/finalize-wp13-github-publication-once.yml
+          git commit -m "docs(engineering): finalize WP-13 GitHub-first publication"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
