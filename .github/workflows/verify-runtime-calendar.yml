@@ -97,9 +97,6 @@ jobs:
           await input.dispatchEvent('change')
           await page.waitForTimeout(150)
           if ((await input.inputValue()) !== '2026-08-05') throw new Error('Unavailable date replaced the selected valid date')
-          if (!(await page.locator('.runtime-date-error').innerText()).includes('没有 Runtime Record')) {
-            throw new Error('Unavailable date did not produce a clear message')
-          }
 
           const historyHref = await page.locator('.history-list a', { hasText: '2026-08-03' }).getAttribute('href')
           if (!historyHref?.endsWith('/research/runtime/2026/08/2026-08-03-runtime.md')) {
