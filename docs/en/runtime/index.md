@@ -14,4 +14,4 @@ import RuntimeOperationsCenterCurrent from '../../.vitepress/theme/components/Ru
 
 <ResearchIntelligenceRadar lang="en" />
 
-<style src="../../.vitepress/theme/runtime-bilingual-title.css"></style>
+<style src="../../.vitepress/theme/runtime-operations.css"></style>
