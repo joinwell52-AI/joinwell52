@@ -77,26 +77,84 @@ const intelligence = intelligenceData as IntelligenceData
 const props = withDefaults(defineProps<{ lang?: 'en' | 'zh' }>(), { lang: 'en' })
 const zh = computed(() => props.lang === 'zh')
 const liveRecord = ref<RecordItem | null>(null)
+const refreshing = ref(false)
 const record = computed(() => liveRecord.value || runtime.todayDaily)
+let liveEtag = ''
+
+const decodeBase64Utf8 = (value: string) => {
+  const binary = atob(value.replace(/\s/g, ''))
+  const bytes = Uint8Array.from(binary, (character) => character.charCodeAt(0))
+  return new TextDecoder().decode(bytes)
+}
 
 const refreshLiveRecord = async () => {
-  if (typeof window === 'undefined') return
+  if (typeof window === 'undefined' || refreshing.value) return
   const [year, month] = runtime.today.split('-')
   const path = `research/runtime/records/daily/${year}/${month}/${runtime.today}-daily-runtime.json`
-  const url = `https://raw.githubusercontent.com/joinwell52-AI/joinwell52/main/${path}?t=${Date.now()}`
+  const url = `https://api.github.com/repos/joinwell52-AI/joinwell52/contents/${path}?ref=main`
+  const headers: Record<string, string> = {
+    Accept: 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28'
+  }
+  if (liveEtag) headers['If-None-Match'] = liveEtag
+
+  refreshing.value = true
   try {
-    const response = await fetch(url, { cache: 'no-store' })
+    const response = await fetch(url, { cache: 'no-store', headers })
+    if (response.status === 304) return
     if (!response.ok) return
-    const next = await response.json() as RecordItem
-    if (next.date === runtime.today) liveRecord.value = next
+    const payload = await response.json() as { content?: string; encoding?: string }
+    if (payload.encoding !== 'base64' || !payload.content) return
+    const next = JSON.parse(decodeBase64Utf8(payload.content)) as RecordItem
+    if (next.date === runtime.today) {
+      liveRecord.value = next
+      liveEtag = response.headers.get('etag') || liveEtag
+    }
   } catch {
-    // Preserve the build-time projection while GitHub is temporarily unavailable.
+    // Preserve the latest known record while GitHub is temporarily unavailable.
+  } finally {
+    refreshing.value = false
   }
 }
 
-const RUNNING_REFRESH_MS = 60_000
+const ACTIVE_REFRESH_MS = 60_000
 const IDLE_REFRESH_MS = 300_000
+const WINDOW_BEFORE_MINUTES = 2
+const WINDOW_AFTER_MINUTES = 20
 let liveRefreshTimer: ReturnType<typeof setTimeout> | undefined
+
+const shanghaiMinuteOfDay = () => {
+  const parts = Object.fromEntries(new Intl.DateTimeFormat('en-GB', {
+    timeZone: runtime.timezone,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hourCycle: 'h23'
+  }).formatToParts(new Date()).map((part) => [part.type, part.value]))
+  return Number(parts.hour) * 60 + Number(parts.minute) + Number(parts.second) / 60
+}
+
+const scheduleWindow = () => {
+  const now = shanghaiMinuteOfDay()
+  let active = false
+  let minutesUntilNextWindow = Number.POSITIVE_INFINITY
+  for (const task of runtime.schedule.filter((item) => item.family === 'daily')) {
+    const [hour, minute] = task.schedule.time.split(':').map(Number)
+    const scheduled = hour * 60 + minute
+    const windowStart = scheduled - WINDOW_BEFORE_MINUTES
+    const windowEnd = scheduled + WINDOW_AFTER_MINUTES
+    if (now >= windowStart && now <= windowEnd) active = true
+    let untilStart = windowStart - now
+    if (untilStart <= 0) untilStart += 24 * 60
+    minutesUntilNextWindow = Math.min(minutesUntilNextWindow, untilStart)
+  }
+  return {
+    active,
+    nextWindowMs: Number.isFinite(minutesUntilNextWindow)
+      ? Math.max(1_000, Math.ceil(minutesUntilNextWindow * 60_000))
+      : IDLE_REFRESH_MS
+  }
+}
 
 const scheduleLiveRefresh = () => {
   if (typeof document === 'undefined') return
@@ -106,11 +164,18 @@ const scheduleLiveRefresh = () => {
     return
   }
   const isWorking = Object.values(record.value.taskStatus || {}).includes('Running')
-  const delay = isWorking ? RUNNING_REFRESH_MS : IDLE_REFRESH_MS
+  const window = scheduleWindow()
+  const delay = isWorking || window.active
+    ? ACTIVE_REFRESH_MS
+    : Math.min(IDLE_REFRESH_MS, window.nextWindowMs)
   liveRefreshTimer = setTimeout(async () => {
     await refreshLiveRecord()
     scheduleLiveRefresh()
   }, delay)
+}
+
+const manualRefresh = () => {
+  void refreshLiveRecord().finally(scheduleLiveRefresh)
 }
 
 const handleVisibilityChange = () => {
@@ -120,11 +185,11 @@ const handleVisibilityChange = () => {
     liveRefreshTimer = undefined
     return
   }
-  void refreshLiveRecord().finally(scheduleLiveRefresh)
+  manualRefresh()
 }
 
 onMounted(() => {
-  void refreshLiveRecord().finally(scheduleLiveRefresh)
+  manualRefresh()
   document.addEventListener('visibilitychange', handleVisibilityChange)
 })
 onBeforeUnmount(() => {
@@ -170,6 +235,8 @@ const copy = computed(() => zh.value ? {
   completed: '已完成',
   attention: '存在风险',
   waiting: '待执行',
+  refresh: '立即刷新状态',
+  refreshing: '正在刷新…',
   noMore: '今日计划已结束',
   plan: '今日三栏研究计划',
   planHint: '10:00 Queue 必须对三个栏目分别作出“已选题”或“未选题”决定。',
@@ -218,6 +285,8 @@ const copy = computed(() => zh.value ? {
   completed: 'Completed',
   attention: 'Attention Required',
   waiting: 'Waiting',
+  refresh: 'Refresh status',
+  refreshing: 'Refreshing…',
   noMore: "Today's plan has ended",
   plan: "Today's Three-Column Research Plan",
   planHint: 'The 10:00 Queue shift must decide Selected or No Selection for every column.',
@@ -316,7 +385,12 @@ const shortCommit = computed(() => record.value.githubCommit && record.value.git
       <section class="panel overview">
         <div class="section-title">
           <div><span>01</span><h2>{{ copy.operations }}</h2></div>
-          <small>{{ runtime.today }} · {{ runtime.timezone }}</small>
+          <div class="status-tools">
+            <small>{{ runtime.today }} · {{ runtime.timezone }}</small>
+            <button type="button" :disabled="refreshing" @click="manualRefresh">
+              {{ refreshing ? copy.refreshing : copy.refresh }}
+            </button>
+          </div>
         </div>
         <div class="overview-grid">
           <article class="progress-card">
@@ -457,5 +531,5 @@ const shortCommit = computed(() => record.value.githubCommit && record.value.git
 </template>
 
 <style scoped>
-.runtime-classic{--bg:#070914;--panel:#10162a;--line:rgba(148,163,184,.2);--text:#f5f7ff;--muted:#94a0b7;--accent:#8f80ff;--blue:#72d6ff;--green:#77e5a7;position:relative;width:100vw;margin-left:calc(50% - 50vw);min-height:100vh;color:var(--text);background:radial-gradient(circle at 75% 0%,rgba(88,72,210,.2),transparent 32%),linear-gradient(180deg,#060812,#080b18)}.shell{width:min(1280px,calc(100% - 52px));margin:auto;padding:54px 0 84px}.hero{display:flex;justify-content:space-between;align-items:flex-end;gap:36px;padding:34px;background:linear-gradient(145deg,rgba(18,25,46,.98),rgba(8,12,26,.97));border:1px solid var(--line);border-radius:24px}.kicker{display:block;margin-bottom:14px;color:#bdb5ff;font:750 11px/1.3 ui-monospace,monospace;letter-spacing:.14em}.hero h1{max-width:860px;margin:0;font-size:clamp(42px,6vw,74px);line-height:1.04;letter-spacing:-.055em}.hero p{max-width:820px;margin:20px 0 0;color:#b5bfd1;font-size:16px;line-height:1.75}.hero-actions{display:flex;min-width:260px;flex-direction:column;gap:12px;align-items:flex-end}.hero-actions b{color:#d8d4ff}.hero-actions a{color:#a9deff;text-decoration:none;font-size:13px}.panel{margin-top:16px;padding:26px;background:linear-gradient(145deg,rgba(18,25,46,.98),rgba(8,12,26,.97));border:1px solid var(--line);border-radius:20px}.section-title{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:20px}.section-title>div{display:flex;align-items:center;gap:12px}.section-title>div>span{color:#9487ff;font:800 11px/1 ui-monospace,monospace}.section-title h2{margin:0;font-size:23px}.section-title small,.section-lead{color:#7f8ca2}.overview-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.overview-grid article{padding:18px;background:#080d1c;border:1px solid var(--line);border-radius:15px}.overview-grid article>span,.evidence-grid article>span{display:block;margin-bottom:12px;color:#77849a;font-size:11px}.overview-grid strong{display:block;font-size:20px}.overview-grid strong i{color:#78849a;font-style:normal;font-size:13px}.overview-grid small{display:block;margin-top:8px;color:#7f8ca2}.progress-bar{height:6px;margin-top:14px;overflow:hidden;background:#202941;border-radius:999px}.progress-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--blue));border-radius:999px}.column-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.column-card{position:relative;overflow:hidden;padding:20px;background:rgba(5,9,21,.62);border:1px solid var(--line);border-radius:17px}.column-card:before{content:'';position:absolute;inset:0 auto 0 0;width:3px;background:var(--accent)}.column-industry-architecture:before{background:var(--blue)}.column-open-source-engineering:before{background:var(--green)}.column-head,.shift-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.column-head span{color:#748198;font:700 9px/1.3 ui-monospace,monospace}.column-head h3{margin:8px 0 0;font-size:19px}.column-head>b,.shift-head>b,.section-title>b,.history-list b{padding:7px 10px;border:1px solid currentColor;border-radius:999px;font:750 10px/1 ui-monospace,monospace}.topic{min-height:98px;margin-top:24px}.topic small{color:#8f9bb0}.topic h4{margin:8px 0 0;font-size:18px;line-height:1.45}.column-card dl{margin:0}.column-card dt{color:#748198;font-size:10px}.column-card dd{margin:8px 0 0;color:#a5b0c3;font-size:12px;line-height:1.55}.mini-metrics{display:flex;gap:8px;margin-top:16px}.mini-metrics span{flex:1;padding:10px;background:#0a1020;border:1px solid var(--line);border-radius:10px;color:#7f8ca2;font-size:9px}.mini-metrics strong{display:block;margin-bottom:4px;color:#e9e7ff;font-size:16px}.shift-list{display:grid;gap:12px}.shift-card{padding:20px;background:rgba(5,9,21,.62);border:1px solid var(--line);border-radius:17px}.shift-head time{display:block;color:#8f80ff;font:800 12px/1 ui-monospace,monospace}.shift-head h3{margin:8px 0 0;font-size:20px}.result-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px}.result-grid>div{padding:14px;background:#0a1020;border:1px solid var(--line);border-radius:12px}.result-grid .outcome{background:#121b35}.result-grid span{display:block;margin-bottom:8px;color:#77849a;font-size:10px}.result-grid p{margin:0;color:#b2bdd0;font-size:12px;line-height:1.55}.pending{margin:16px 0 0;color:#7f8ca2;font-size:13px}.metric-grid{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}.metric-grid>div{min-width:120px;padding:11px 13px;background:#0a1020;border:1px solid var(--line);border-radius:11px}.metric-grid strong{display:block;font-size:18px}.metric-grid span{color:#7f8ca2;font-size:10px}.artifact-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.artifact-list a,.release-result a{padding:9px 11px;color:#cbc6ff;background:#0a1020;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-size:11px}.production-release{display:grid;grid-template-columns:1fr 1fr;gap:16px}.production-release .panel{height:calc(100% - 16px)}.empty-state,.release-result{padding:22px;background:#080d1c;border:1px dashed var(--line);border-radius:15px}.empty-state strong,.release-result strong{display:block;font-size:18px}.empty-state p,.release-result p{color:#8f9bb0;line-height:1.6}.evidence-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.evidence-grid article{padding:18px;background:#080d1c;border:1px solid var(--line);border-radius:14px}.evidence-grid strong,.evidence-grid a{color:#f5f7ff;text-decoration:none;font-size:16px}.history-list{display:grid;gap:9px}.history-list a{display:grid;grid-template-columns:1fr auto auto;gap:16px;align-items:center;padding:14px 16px;color:inherit;background:#080d1c;border:1px solid var(--line);border-radius:13px;text-decoration:none}.history-list span{color:#9cb9df;font-size:12px}.principle{margin:28px auto 0;max-width:850px;color:#8f9bb0;text-align:center;line-height:1.7}.s-waiting{color:#c4b5fd!important}.s-running{color:var(--blue)!important}.s-completed{color:var(--green)!important}.s-blocked{color:#f8c56a!important}.s-failed{color:#fca5a5!important}.s-skipped{color:#a2acbd!important}@media(max-width:1000px){.hero{align-items:flex-start;flex-direction:column}.hero-actions{align-items:flex-start}.overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.column-grid{grid-template-columns:1fr}.result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.production-release{grid-template-columns:1fr}}@media(max-width:680px){.shell{width:calc(100% - 28px);padding:32px 0 64px}.hero,.panel{padding:19px;border-radius:17px}.hero h1{font-size:43px}.overview-grid,.result-grid,.evidence-grid{grid-template-columns:1fr}.section-title{align-items:flex-start;flex-direction:column}.history-list a{grid-template-columns:1fr auto}.history-list span{grid-column:1/-1}.hero-actions{min-width:0}}
+.runtime-classic{--bg:#070914;--panel:#10162a;--line:rgba(148,163,184,.2);--text:#f5f7ff;--muted:#94a0b7;--accent:#8f80ff;--blue:#72d6ff;--green:#77e5a7;position:relative;width:100vw;margin-left:calc(50% - 50vw);min-height:100vh;color:var(--text);background:radial-gradient(circle at 75% 0%,rgba(88,72,210,.2),transparent 32%),linear-gradient(180deg,#060812,#080b18)}.shell{width:min(1280px,calc(100% - 52px));margin:auto;padding:54px 0 84px}.hero{display:flex;justify-content:space-between;align-items:flex-end;gap:36px;padding:34px;background:linear-gradient(145deg,rgba(18,25,46,.98),rgba(8,12,26,.97));border:1px solid var(--line);border-radius:24px}.kicker{display:block;margin-bottom:14px;color:#bdb5ff;font:750 11px/1.3 ui-monospace,monospace;letter-spacing:.14em}.hero h1{max-width:860px;margin:0;font-size:clamp(42px,6vw,74px);line-height:1.04;letter-spacing:-.055em}.hero p{max-width:820px;margin:20px 0 0;color:#b5bfd1;font-size:16px;line-height:1.75}.hero-actions{display:flex;min-width:260px;flex-direction:column;gap:12px;align-items:flex-end}.hero-actions b{color:#d8d4ff}.hero-actions a{color:#a9deff;text-decoration:none;font-size:13px}.panel{margin-top:16px;padding:26px;background:linear-gradient(145deg,rgba(18,25,46,.98),rgba(8,12,26,.97));border:1px solid var(--line);border-radius:20px}.section-title{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:20px}.section-title>div{display:flex;align-items:center;gap:12px}.section-title>div>span{color:#9487ff;font:800 11px/1 ui-monospace,monospace}.section-title h2{margin:0;font-size:23px}.section-title small,.section-lead{color:#7f8ca2}.status-tools{display:flex;align-items:center;gap:12px}.status-tools button{padding:8px 12px;color:#c8e9ff;background:#0a1020;border:1px solid var(--line);border-radius:999px;font:700 11px/1 ui-monospace,monospace;cursor:pointer}.status-tools button:hover{border-color:#72d6ff}.status-tools button:disabled{opacity:.55;cursor:wait}.overview-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.overview-grid article{padding:18px;background:#080d1c;border:1px solid var(--line);border-radius:15px}.overview-grid article>span,.evidence-grid article>span{display:block;margin-bottom:12px;color:#77849a;font-size:11px}.overview-grid strong{display:block;font-size:20px}.overview-grid strong i{color:#78849a;font-style:normal;font-size:13px}.overview-grid small{display:block;margin-top:8px;color:#7f8ca2}.progress-bar{height:6px;margin-top:14px;overflow:hidden;background:#202941;border-radius:999px}.progress-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--blue));border-radius:999px}.column-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.column-card{position:relative;overflow:hidden;padding:20px;background:rgba(5,9,21,.62);border:1px solid var(--line);border-radius:17px}.column-card:before{content:'';position:absolute;inset:0 auto 0 0;width:3px;background:var(--accent)}.column-industry-architecture:before{background:var(--blue)}.column-open-source-engineering:before{background:var(--green)}.column-head,.shift-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.column-head span{color:#748198;font:700 9px/1.3 ui-monospace,monospace}.column-head h3{margin:8px 0 0;font-size:19px}.column-head>b,.shift-head>b,.section-title>b,.history-list b{padding:7px 10px;border:1px solid currentColor;border-radius:999px;font:750 10px/1 ui-monospace,monospace}.topic{min-height:98px;margin-top:24px}.topic small{color:#8f9bb0}.topic h4{margin:8px 0 0;font-size:18px;line-height:1.45}.column-card dl{margin:0}.column-card dt{color:#748198;font-size:10px}.column-card dd{margin:8px 0 0;color:#a5b0c3;font-size:12px;line-height:1.55}.mini-metrics{display:flex;gap:8px;margin-top:16px}.mini-metrics span{flex:1;padding:10px;background:#0a1020;border:1px solid var(--line);border-radius:10px;color:#7f8ca2;font-size:9px}.mini-metrics strong{display:block;margin-bottom:4px;color:#e9e7ff;font-size:16px}.shift-list{display:grid;gap:12px}.shift-card{padding:20px;background:rgba(5,9,21,.62);border:1px solid var(--line);border-radius:17px}.shift-head time{display:block;color:#8f80ff;font:800 12px/1 ui-monospace,monospace}.shift-head h3{margin:8px 0 0;font-size:20px}.result-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px}.result-grid>div{padding:14px;background:#0a1020;border:1px solid var(--line);border-radius:12px}.result-grid .outcome{background:#121b35}.result-grid span{display:block;margin-bottom:8px;color:#77849a;font-size:10px}.result-grid p{margin:0;color:#b2bdd0;font-size:12px;line-height:1.55}.pending{margin:16px 0 0;color:#7f8ca2;font-size:13px}.metric-grid{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}.metric-grid>div{min-width:120px;padding:11px 13px;background:#0a1020;border:1px solid var(--line);border-radius:11px}.metric-grid strong{display:block;font-size:18px}.metric-grid span{color:#7f8ca2;font-size:10px}.artifact-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.artifact-list a,.release-result a{padding:9px 11px;color:#cbc6ff;background:#0a1020;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-size:11px}.production-release{display:grid;grid-template-columns:1fr 1fr;gap:16px}.production-release .panel{height:calc(100% - 16px)}.empty-state,.release-result{padding:22px;background:#080d1c;border:1px dashed var(--line);border-radius:15px}.empty-state strong,.release-result strong{display:block;font-size:18px}.empty-state p,.release-result p{color:#8f9bb0;line-height:1.6}.evidence-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.evidence-grid article{padding:18px;background:#080d1c;border:1px solid var(--line);border-radius:14px}.evidence-grid strong,.evidence-grid a{color:#f5f7ff;text-decoration:none;font-size:16px}.history-list{display:grid;gap:9px}.history-list a{display:grid;grid-template-columns:1fr auto auto;gap:16px;align-items:center;padding:14px 16px;color:inherit;background:#080d1c;border:1px solid var(--line);border-radius:13px;text-decoration:none}.history-list span{color:#9cb9df;font-size:12px}.principle{margin:28px auto 0;max-width:850px;color:#8f9bb0;text-align:center;line-height:1.7}.s-waiting{color:#c4b5fd!important}.s-running{color:var(--blue)!important}.s-completed{color:var(--green)!important}.s-blocked{color:#f8c56a!important}.s-failed{color:#fca5a5!important}.s-skipped{color:#a2acbd!important}@media(max-width:1000px){.hero{align-items:flex-start;flex-direction:column}.hero-actions{align-items:flex-start}.overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.column-grid{grid-template-columns:1fr}.result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.production-release{grid-template-columns:1fr}}@media(max-width:680px){.shell{width:calc(100% - 28px);padding:32px 0 64px}.hero,.panel{padding:19px;border-radius:17px}.hero h1{font-size:43px}.overview-grid,.result-grid,.evidence-grid{grid-template-columns:1fr}.section-title{align-items:flex-start;flex-direction:column}.history-list a{grid-template-columns:1fr auto}.history-list span{grid-column:1/-1}.hero-actions{min-width:0}}
 </style>
