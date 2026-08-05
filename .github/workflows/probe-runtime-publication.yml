@@ -1,0 +1,32 @@
+name: Probe Runtime Publication Paths
+
+on:
+  push:
+    branches:
+      - runtime-publication-exec-20260805
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Probe repository publication structure
+        shell: bash
+        run: |
+          echo '=== PACKAGE SCRIPTS ==='
+          node -e "const p=require('./package.json'); console.log(JSON.stringify(p.scripts,null,2))"
+          echo '=== RESEARCH/ARTICLE DIRECTORIES ==='
+          find docs -maxdepth 4 -type f | sort | grep -Ei '(research|article|note|index|home)' | head -400
+          echo '=== RECENT DATED PUBLIC ARTICLES ==='
+          find docs -type f | sort | grep -E '2026-08-0[1-5].*\.md$' | head -200
+          echo '=== INDEX REFERENCES ==='
+          grep -RIl --exclude-dir=node_modules -E 'Research Notes|研究札记|Digital Employee|数字员工' docs/zh docs/en 2>/dev/null | head -200
+          echo '=== CANDIDATE BATCH ==='
+          cat research/runtime/candidates/2026/08/2026-08-05-candidates.json
+          echo '=== DAILY RECORD TAIL ==='
+          tail -220 research/runtime/records/daily/2026/08/2026-08-05-daily-runtime.json
