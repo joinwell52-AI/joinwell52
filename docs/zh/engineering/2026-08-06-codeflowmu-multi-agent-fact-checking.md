@@ -14,7 +14,7 @@ outline: deep
 ---
 
 <ArticleCover
-  image="/assets/covers/wp13-codeflowmu-fact-check-cover-zh.webp"
+  image="/assets/covers/wp13-codeflowmu-fact-check-cover-zh.svg"
   kicker="开源工程 · CodeFlowMu 应用案例"
   title="一个 Agent 说‘完成了’，为什么团队没有放行？"
   summary="幻觉不可避免；真正可靠的多 Agent 团队，靠其他角色基于外部事实阻止错误声明获得系统权威。"
@@ -75,7 +75,7 @@ CodeFlowMu 的思路不同。
 
 左侧是 PM 与任务事实；右侧和底部保留了 Agent 的实时操作流与可见思考摘要。DEV 正在描述实现范围、读取源码、调用工具；PM 没有等待它把故事讲圆，而是直接检查磁盘、Git、REPORT 和任务状态。
 
-![CodeFlowMu 现场：PM 事实复核与 Agent 实时操作流](/assets/covers/wp13-codeflowmu-fact-check-live.webp)
+![CodeFlowMu 现场：PM 事实复核与 Agent 实时操作流](/assets/covers/wp13-codeflowmu-fact-check-live.png)
 
 当时，PM 要回答的不是“DEV 看起来是否努力”，也不是“子执行的语气是否自信”，而是一个非常简单的问题：
 
@@ -99,7 +99,7 @@ CodeFlowMu 的思路不同。
 
 ## 五个角色动作，把一句“完成了”重新变成可验证的交付
 
-![WP-13 五阶段多 Agent 事实复核](/assets/covers/wp13-codeflowmu-fact-check-process-zh.webp)
+![WP-13 五阶段多 Agent 事实复核](/assets/covers/wp13-codeflowmu-fact-check-process-zh.svg)
 
 ### 第一幕：DEV 的工具通道失去确定性
 

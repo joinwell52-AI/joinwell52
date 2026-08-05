@@ -14,7 +14,7 @@ outline: deep
 ---
 
 <ArticleCover
-  image="/assets/covers/wp13-codeflowmu-fact-check-cover-en.webp"
+  image="/assets/covers/wp13-codeflowmu-fact-check-cover-en.svg"
   kicker="Open-source Engineering · CodeFlowMu Field Case"
   title="One Agent Said ‘Done.’ The Team Refused to Believe It."
   summary="Hallucination may be unavoidable. A real multi-agent team uses independent roles and external facts to stop unsupported claims from acquiring system authority."
@@ -78,7 +78,7 @@ The image below is not a reconstructed flowchart. It is a screenshot from the Co
 
 The left side shows the PM-facing task and fact-checking conversation. The right and lower areas preserve the live agent activity stream and visible reasoning summaries: files being inspected, tools being called, implementation scope being discussed, and status changing in real time.
 
-![CodeFlowMu live scene: PM fact-check and agent activity stream](/assets/covers/wp13-codeflowmu-fact-check-live.webp)
+![CodeFlowMu live scene: PM fact-check and agent activity stream](/assets/covers/wp13-codeflowmu-fact-check-live.png)
 
 PM did not ask, “Are you sure you are done?”
 
@@ -106,7 +106,7 @@ That decision is the heart of the case. PM was not “a smarter writing agent.�
 
 ## Five role actions turned a “done” claim back into a verifiable delivery
 
-![The five-stage WP-13 fact-checking sequence](/assets/covers/wp13-codeflowmu-fact-check-process-en.webp)
+![The five-stage WP-13 fact-checking sequence](/assets/covers/wp13-codeflowmu-fact-check-process-en.svg)
 
 ### Act 1: DEV lost certainty at the tool boundary
 
