@@ -69,8 +69,10 @@ type Column = {
   reason: string
   reason_zh: string
 }
+type IntelligenceRun = { date: string; status: Status; columns: Column[] }
 type IntelligenceData = {
-  currentRun: { date: string; status: Status; columns: Column[] }
+  currentRun: IntelligenceRun
+  runs?: Record<string, IntelligenceRun>
 }
 type LegacyHistoryData = {
   records: Array<{ date: string; status: Status }>
@@ -80,21 +82,25 @@ type HistoryItem = { date: string; status: Status }
 const runtime = runtimeData as RuntimeData
 const intelligence = intelligenceData as IntelligenceData
 const legacyHistory = legacyData as LegacyHistoryData
-const props = withDefaults(defineProps<{ lang?: 'en' | 'zh' }>(), { lang: 'en' })
+const props = withDefaults(defineProps<{ lang?: 'en' | 'zh'; selectedDate?: string }>(), { lang: 'en', selectedDate: '' })
 const zh = computed(() => props.lang === 'zh')
+const selectedDate = computed(() => props.selectedDate || runtime.today)
+const isToday = computed(() => selectedDate.value === runtime.today)
 const liveRecord = ref<RecordItem | null>(null)
-const record = computed(() => liveRecord.value || runtime.todayDaily)
+const staticRecord = computed(() => (runtime.records?.daily || []).find((item) => item.date === selectedDate.value)
+  || (runtime.todayDaily.date === selectedDate.value ? runtime.todayDaily : runtime.todayDaily))
+const record = computed(() => isToday.value && liveRecord.value ? liveRecord.value : staticRecord.value)
 
 const refreshLiveRecord = async () => {
-  if (typeof window === 'undefined') return
-  const [year, month] = runtime.today.split('-')
-  const path = `research/runtime/records/daily/${year}/${month}/${runtime.today}-daily-runtime.json`
+  if (typeof window === 'undefined' || !isToday.value) return
+  const [year, month] = selectedDate.value.split('-')
+  const path = `research/runtime/records/daily/${year}/${month}/${selectedDate.value}-daily-runtime.json`
   const url = `https://raw.githubusercontent.com/joinwell52-AI/joinwell52/main/${path}?t=${Date.now()}`
   try {
     const response = await fetch(url, { cache: 'no-store' })
     if (!response.ok) return
     const next = await response.json() as RecordItem
-    if (next.date === runtime.today) liveRecord.value = next
+    if (next.date === selectedDate.value) liveRecord.value = next
   } catch {
     // Preserve the build-time projection while GitHub is temporarily unavailable.
   }
@@ -105,7 +111,7 @@ const IDLE_REFRESH_MS = 300_000
 let liveRefreshTimer: ReturnType<typeof setTimeout> | undefined
 
 const scheduleLiveRefresh = () => {
-  if (typeof document === 'undefined') return
+  if (typeof document === 'undefined' || !isToday.value) return
   if (liveRefreshTimer) clearTimeout(liveRefreshTimer)
   if (document.hidden) {
     liveRefreshTimer = undefined
@@ -120,7 +126,7 @@ const scheduleLiveRefresh = () => {
 }
 
 const handleVisibilityChange = () => {
-  if (typeof document === 'undefined') return
+  if (typeof document === 'undefined' || !isToday.value) return
   if (document.hidden) {
     if (liveRefreshTimer) clearTimeout(liveRefreshTimer)
     liveRefreshTimer = undefined
@@ -130,8 +136,10 @@ const handleVisibilityChange = () => {
 }
 
 onMounted(() => {
-  void refreshLiveRecord().finally(scheduleLiveRefresh)
-  document.addEventListener('visibilitychange', handleVisibilityChange)
+  if (isToday.value) {
+    void refreshLiveRecord().finally(scheduleLiveRefresh)
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+  }
 })
 onBeforeUnmount(() => {
   if (liveRefreshTimer) clearTimeout(liveRefreshTimer)
@@ -142,7 +150,9 @@ onBeforeUnmount(() => {
 const tasks = computed(() => runtime.schedule
   .filter((task) => task.family === 'daily')
   .sort((a, b) => a.schedule.time.localeCompare(b.schedule.time)))
-const columns = computed(() => intelligence.currentRun.columns || [])
+const columns = computed(() => intelligence.runs?.[selectedDate.value]?.columns
+  || (intelligence.currentRun.date === selectedDate.value ? intelligence.currentRun.columns : [])
+  || [])
 const rows = computed(() => tasks.value.map((task) => ({
   task,
   status: record.value.taskStatus?.[task.id] || 'Waiting',
@@ -330,7 +340,7 @@ const shortCommit = computed(() => record.value.githubCommit && record.value.git
       <section class="panel overview">
         <div class="section-title">
           <div><span>01</span><h2>{{ copy.operations }}</h2></div>
-          <small>{{ runtime.today }} · {{ runtime.timezone }}</small>
+          <small>{{ record.date }} · {{ runtime.timezone }}</small>
         </div>
         <div class="overview-grid">
           <article class="progress-card">

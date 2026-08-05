@@ -71,9 +71,9 @@ type Data = {
 }
 
 const data = legacyData as Data
-const props = withDefaults(defineProps<{ lang?: 'en' | 'zh' }>(), { lang: 'en' })
+const props = withDefaults(defineProps<{ lang?: 'en' | 'zh'; selectedDate?: string }>(), { lang: 'en', selectedDate: '' })
 const zh = computed(() => props.lang === 'zh')
-const record = computed(() => data.current)
+const record = computed(() => data.records.find((item) => item.date === props.selectedDate) || data.current)
 const rows = computed(() => (record.value?.tasks || []).map((task) => ({
   task,
   status: record.value?.taskStatus?.[task.id] || 'Waiting',
