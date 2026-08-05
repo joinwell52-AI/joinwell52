@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   build:
-    if: github.event_name == 'workflow_dispatch' || github.event.head_commit.message == 'chore(runtime): activate governed Publication executor'
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.head_commit.message, 'chore(runtime): activate governed Publication executor')
     name: Build Research Center
     runs-on: ubuntu-latest
 
@@ -41,11 +41,11 @@ jobs:
         run: npm ci
 
       - name: Execute governed Publication
-        if: github.event.head_commit.message == 'chore(runtime): activate governed Publication executor'
+        if: startsWith(github.event.head_commit.message, 'chore(runtime): activate governed Publication executor')
         run: node scripts/run-publication-2026-08-05.mjs
 
       - name: Restore Pages workflow
-        if: github.event.head_commit.message == 'chore(runtime): activate governed Publication executor'
+        if: startsWith(github.event.head_commit.message, 'chore(runtime): activate governed Publication executor')
         shell: bash
         run: |
           git show "6f1c0cb8f7bf48f2b91a8ceefdad7cdd22aaf2ad:.github/workflows/deploy-research-center-pages.yml" > .github/workflows/deploy-research-center-pages.yml
