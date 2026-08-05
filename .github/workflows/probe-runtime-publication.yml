@@ -1,4 +1,4 @@
-name: Probe Runtime Publication Paths
+name: Execute Runtime V5 Publication 2026-08-05
 
 on:
   push:
@@ -9,41 +9,64 @@ permissions:
   contents: write
 
 jobs:
-  probe:
+  publish:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout current main
+        uses: actions/checkout@v4
         with:
           ref: main
+          fetch-depth: 0
           path: mainrepo
-      - uses: actions/checkout@v4
+
+      - name: Checkout execution control
+        uses: actions/checkout@v4
         with:
           ref: runtime-publication-exec-20260805
+          fetch-depth: 0
           path: control
-      - name: Probe repository publication structure
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Prepare governed executor
         shell: bash
         run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          path = Path('control/scripts/execute-runtime-publication-20260805.mjs')
+          text = path.read_text(encoding='utf-8')
+          text, count = re.subn(r"function sha256\(text\) \{\n  return \(await import\('node:crypto'\)\)\.createHash\('sha256'\)\.update\(text\)\.digest\('hex'\)\n\}\n", '', text)
+          if count != 1:
+              raise SystemExit(f'Executor patch count was {count}, expected 1')
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Install repository dependencies
+        working-directory: mainrepo
+        run: npm install
+
+      - name: Execute and persist publication result
+        shell: bash
+        run: |
+          set +e
           cd mainrepo
-          {
-            echo '=== PACKAGE SCRIPTS ==='
-            node -e "const p=require('./package.json'); console.log(JSON.stringify(p.scripts,null,2))"
-            echo '=== RESEARCH/ARTICLE DIRECTORIES ==='
-            find docs -maxdepth 5 -type f | sort | grep -Ei '(research|article|note|index|home)' | head -600
-            echo '=== RECENT DATED PUBLIC ARTICLES ==='
-            find docs -type f | sort | grep -E '2026-08-0[1-5].*\.md$' | head -300
-            echo '=== INDEX REFERENCES ==='
-            grep -RIl --exclude-dir=node_modules -E 'Research Notes|研究札记|Digital Employee|数字员工' docs/zh docs/en 2>/dev/null | head -300
-            echo '=== DIRECTORY SNAPSHOT ==='
-            find docs/zh docs/en -maxdepth 3 -type d | sort
-            echo '=== CANDIDATE BATCH ==='
-            cat research/runtime/candidates/2026/08/2026-08-05-candidates.json
-            echo '=== DAILY RECORD TAIL ==='
-            tail -240 research/runtime/records/daily/2026/08/2026-08-05-daily-runtime.json
-          } > ../control/runtime-publication-probe.txt
+          node ../control/scripts/execute-runtime-publication-20260805.mjs "$PWD" ../control/runtime-publication-result.json 2>&1 | tee ../control/runtime-publication-execution.log
+          status=${PIPESTATUS[0]}
+          set -e
           cd ../control
-          git config user.name 'Runtime Publication Probe'
+          if [ ! -f runtime-publication-result.json ]; then
+            printf '{\n  "date": "2026-08-05",\n  "outcome": "Failed",\n  "error": "Executor ended without a result file"\n}\n' > runtime-publication-result.json
+          fi
+          git config user.name 'Research Runtime Publication'
           git config user.email 'actions@users.noreply.github.com'
-          git add runtime-publication-probe.txt
-          git commit -m 'chore(runtime): persist publication probe [skip ci]'
+          git pull --rebase origin runtime-publication-exec-20260805
+          git add runtime-publication-result.json runtime-publication-execution.log
+          git commit -m 'runtime(publication): persist execution result [skip ci]'
           git push origin HEAD:runtime-publication-exec-20260805
+          exit "$status"
