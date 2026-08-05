@@ -1,0 +1,33 @@
+name: Run Runtime V5 Production 2026-08-05
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/run-production-2026-08-05.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: runtime-production-2026-08-05
+  cancel-in-progress: false
+
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install
+      - name: Execute governed Production
+        run: node scripts/run-production-2026-08-05.mjs
