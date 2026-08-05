@@ -89,7 +89,7 @@ jobs:
         run: |
           git config user.name "joinwell52 Research Runtime"
           git config user.email "actions@users.noreply.github.com"
-          git rm scripts/move-runtime-calendar-inline.py
+          git rm -f scripts/move-runtime-calendar-inline.py
           rm -f runtime-inline-check.mjs runtime-inline-calendar-today.png
           git add docs/.vitepress/theme/components/RuntimeOperationsCenterCurrent.vue
           git add docs/.vitepress/theme/components/RuntimeOperationsCenterClassic.vue
