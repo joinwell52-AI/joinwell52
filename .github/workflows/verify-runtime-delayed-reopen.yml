@@ -1,0 +1,69 @@
+name: Verify Runtime Delayed Scheduler Repair
+
+on:
+  push:
+    branches:
+      - fix-runtime-history-card-text-header-dark
+
+permissions:
+  contents: write
+
+jobs:
+  verify-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repair branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix-runtime-history-card-text-header-dark
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Apply delayed scheduler repair
+        run: python scripts/fix-runtime-delayed-reopen.py
+
+      - name: Regenerate readable ledger
+        run: |
+          node scripts/runtime-markdown.mjs render --date 2026-08-05
+          node scripts/runtime-markdown.mjs validate --date 2026-08-05
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Validate and build
+        run: |
+          npm run runtime:validate
+          npm run docs:build
+
+      - name: Verify restored terminal results and guard
+        shell: bash
+        run: |
+          node - <<'JS'
+          const fs = require('fs')
+          const record = JSON.parse(fs.readFileSync('research/runtime/records/daily/2026/08/2026-08-05-daily-runtime.json', 'utf8'))
+          if (record.taskStatus.queue !== 'Completed' || !record.results.queue) throw new Error('Queue was not restored')
+          if (record.taskStatus.reading !== 'Completed' || !record.results.reading) throw new Error('Reading was not restored')
+          if (record.timeline.some((event) => event.time === '2026-08-05T12:49:35+08:00' || event.time === '2026-08-05T13:40:13+08:00')) {
+            throw new Error('Delayed reopen events remain in the authoritative timeline')
+          }
+          JS
+          grep -F "TERMINAL.has(currentStatus) && record.results?.[task.id]" scripts/runtime-v5.mjs
+          grep -F "delayed or duplicate scheduling cannot reopen it" scripts/runtime-v5.mjs
+          grep -F "| 10:00 | 研究运行队列 | Research Runtime Queue | 已完成 / Completed |" research/runtime/2026/08/2026-08-05-runtime.md
+          grep -F "| 11:00 | 研究运行阅读 | Research Runtime Reading | 已完成 / Completed |" research/runtime/2026/08/2026-08-05-runtime.md
+
+      - name: Commit verified repair
+        shell: bash
+        run: |
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git rm scripts/fix-runtime-delayed-reopen.py
+          git add scripts/runtime-v5.mjs
+          git add research/runtime/records/daily/2026/08/2026-08-05-daily-runtime.json
+          git add research/runtime/2026/08/2026-08-05-runtime.md
+          git commit -m "fix(runtime): prevent delayed scheduler from reopening completed shifts [skip ci]"
+          git push origin HEAD:fix-runtime-history-card-text-header-dark
