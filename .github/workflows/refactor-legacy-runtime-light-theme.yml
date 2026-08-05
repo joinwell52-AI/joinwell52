@@ -1,0 +1,104 @@
+name: Refactor Legacy Runtime Light Theme
+
+on:
+  push:
+    branches:
+      - legacy-runtime-native-light-theme
+
+permissions:
+  contents: write
+
+jobs:
+  refactor-verify-capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: legacy-runtime-native-light-theme
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Apply native light theme
+        run: python scripts/refactor-legacy-runtime-light-theme.py
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Validate and build
+        run: |
+          npm run runtime:validate
+          npm run docs:build
+
+      - name: Install visual test driver
+        run: npm install --no-save playwright-core@1.55.0
+
+      - name: Verify light and dark rendering
+        shell: bash
+        run: |
+          mkdir -p /tmp/runtime-site
+          ln -s "$GITHUB_WORKSPACE/docs/.vitepress/dist" /tmp/runtime-site/joinwell52
+          nohup python3 -m http.server 4173 --directory /tmp/runtime-site >/tmp/runtime-theme-server.log 2>&1 &
+          sleep 2
+          export CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          test -n "$CHROME"
+          cat > /tmp/check-runtime-theme.mjs <<'JS'
+          import { chromium } from 'playwright-core'
+          const browser = await chromium.launch({ headless: true, executablePath: process.env.CHROME, args: ['--no-sandbox'] })
+          for (const mode of ['light', 'dark']) {
+            const page = await browser.newPage({ viewport: { width: 1440, height: 1200 }, colorScheme: mode })
+            await page.goto('http://127.0.0.1:4173/joinwell52/zh/runtime/', { waitUntil: 'networkidle' })
+            await page.evaluate((value) => document.documentElement.classList.toggle('dark', value === 'dark'), mode)
+            await page.waitForTimeout(300)
+            const root = page.locator('.legacy-runtime')
+            if (await root.count() !== 1) throw new Error('Legacy Runtime was not rendered')
+            const read = async (selector) => root.locator(selector).first().evaluate((el) => {
+              const s = getComputedStyle(el)
+              return { color: s.color, fontSize: parseFloat(s.fontSize), background: s.backgroundImage }
+            })
+            const h1 = await read('.hero h1')
+            const lead = await read('.hero p')
+            const kicker = await read('.kicker')
+            const overviewLabel = await read('.overview-grid span')
+            const overviewSmall = await read('.overview-grid small')
+            const sectionSmall = await read('.section-title small')
+            const cardSmall = await read('.card-head small')
+            const status = await read('.shift-head > b')
+            const time = await read('.shift-head time')
+            if (mode === 'light') {
+              if (h1.color !== 'rgb(17, 24, 39)') throw new Error(`light h1 is not black: ${h1.color}`)
+              if (lead.color !== 'rgb(55, 65, 81)') throw new Error(`light lead is not dark gray: ${lead.color}`)
+            } else if (h1.color !== 'rgb(245, 247, 255)') {
+              throw new Error(`dark h1 palette changed: ${h1.color}`)
+            }
+            const sizes = { kicker, overviewLabel, overviewSmall, sectionSmall, cardSmall, status, time }
+            if (kicker.fontSize < 13 || overviewLabel.fontSize < 13 || overviewSmall.fontSize < 15 || sectionSmall.fontSize < 14 || cardSmall.fontSize < 11 || status.fontSize < 12 || time.fontSize < 20) {
+              throw new Error(`small text remains undersized in ${mode}: ${JSON.stringify(sizes)}`)
+            }
+            await page.screenshot({ path: `legacy-runtime-${mode}.png`, fullPage: true })
+            await page.close()
+          }
+          await browser.close()
+          JS
+          node /tmp/check-runtime-theme.mjs
+
+      - name: Upload visual checks
+        uses: actions/upload-artifact@v4
+        with:
+          name: legacy-runtime-native-theme-previews
+          path: legacy-runtime-*.png
+
+      - name: Commit verified theme
+        shell: bash
+        run: |
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git rm .github/workflows/refactor-legacy-runtime-light-theme.yml scripts/refactor-legacy-runtime-light-theme.py
+          git add docs/.vitepress/theme/components/RuntimeOperationsCenterLegacy.vue docs/zh/runtime/index.md docs/en/runtime/index.md
+          git add -u docs/.vitepress/theme/runtime-light-contrast.css
+          git commit -m "refactor(runtime): add native Legacy light theme and readable type"
+          git push origin HEAD:legacy-runtime-native-light-theme
