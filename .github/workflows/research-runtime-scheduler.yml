@@ -2,16 +2,17 @@ name: Research Runtime Scheduler V3.0
 
 on:
   schedule:
-    # Cron expressions are UTC; formal Runtime times are Asia/Shanghai (UTC+8).
-    - cron: '0 1 * * *'     # Daily 09:00 — Discovery
-    - cron: '0 2 * * *'     # Daily 10:00 — Queue
-    - cron: '0 3 * * *'     # Daily 11:00 — Reading
-    - cron: '0 5 * * *'     # Daily 13:00 — Analysis
-    - cron: '0 7 * * *'     # Daily 15:00 — Production
-    - cron: '0 12 * * *'    # Daily 20:00 — Publication
-    - cron: '30 12 * * 0'   # Sunday 20:30 — Weekly Runtime
-    - cron: '0 8 * * 3'     # Wednesday 16:00 — Academic Runtime
-    - cron: '0 4 * * 1'     # Monday 12:00 — Research Program Runtime
+    # GitHub scheduled events can be delayed or dropped during high load at the top of an hour.
+    # Open each execution slot five minutes before the formal Asia/Shanghai shift time.
+    - cron: '55 0 * * *'     # Pre-open Daily 09:00 — Discovery
+    - cron: '55 1 * * *'     # Pre-open Daily 10:00 — Queue
+    - cron: '55 2 * * *'     # Pre-open Daily 11:00 — Reading
+    - cron: '55 4 * * *'     # Pre-open Daily 13:00 — Analysis
+    - cron: '55 6 * * *'     # Pre-open Daily 15:00 — Production
+    - cron: '55 11 * * *'    # Pre-open Daily 20:00 — Publication
+    - cron: '25 12 * * 0'    # Pre-open Sunday 20:30 — Weekly Runtime
+    - cron: '55 7 * * 3'     # Pre-open Wednesday 16:00 — Academic Runtime
+    - cron: '55 3 * * 1'     # Pre-open Monday 12:00 — Research Program Runtime
   workflow_dispatch:
     inputs:
       runtime_task:
@@ -51,19 +52,43 @@ jobs:
         with:
           node-version: 22
 
-      - name: Schedule Runtime task
-        id: runtime
+      - name: Resolve formal Runtime task
+        id: resolve
         shell: bash
         env:
           EVENT_NAME: ${{ github.event_name }}
           EVENT_CRON: ${{ github.event.schedule }}
           MANUAL_TASK: ${{ inputs.runtime_task }}
         run: |
-          if [[ "$EVENT_NAME" == "schedule" ]]; then
-            node scripts/runtime-v5.mjs schedule --cron "$EVENT_CRON"
+          if [[ "$EVENT_NAME" != "schedule" ]]; then
+            task="$MANUAL_TASK"
           else
-            node scripts/runtime-v5.mjs schedule --task "$MANUAL_TASK"
+            case "$EVENT_CRON" in
+              '55 0 * * *') task='discovery' ;;
+              '55 1 * * *') task='queue' ;;
+              '55 2 * * *') task='reading' ;;
+              '55 4 * * *') task='analysis' ;;
+              '55 6 * * *') task='production' ;;
+              '55 11 * * *') task='publication' ;;
+              '25 12 * * 0') task='weekly' ;;
+              '55 7 * * 3') task='academic' ;;
+              '55 3 * * 1') task='program' ;;
+              *)
+                echo "Unknown Scheduler V3 pre-open cron: $EVENT_CRON"
+                exit 1
+                ;;
+            esac
           fi
+
+          echo "runtime_task=$task" >> "$GITHUB_OUTPUT"
+          echo "Resolved $EVENT_CRON to formal Runtime task: $task"
+
+      - name: Schedule Runtime task
+        id: runtime
+        shell: bash
+        env:
+          RUNTIME_TASK: ${{ steps.resolve.outputs.runtime_task }}
+        run: node scripts/runtime-v5.mjs schedule --task "$RUNTIME_TASK"
 
       - name: Initialize same-day Research Intelligence
         shell: bash
