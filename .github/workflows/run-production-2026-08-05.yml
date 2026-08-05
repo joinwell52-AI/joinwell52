@@ -29,7 +29,7 @@ jobs:
           node-version: 22
       - name: Install dependencies
         run: npm install
-      - name: Make executor resume-safe after durable start commit
+      - name: Make executor resume-safe after durable start verification
         shell: bash
         run: |
           python3 - <<'PY'
@@ -37,7 +37,8 @@ jobs:
           import re
           p = Path('scripts/run-production-2026-08-05.mjs')
           s = p.read_text()
-          replacement = r'''// 1. Durable Running state before substantive Production work.
+          s = s.replace("research/skills/06-visualization.md", "research/skills/06-research-visualization.md")
+          start = r'''// 1. Durable Running state before substantive Production work.
           let startTime
           let startSha
           if (record.taskStatus?.production === 'Waiting') {
@@ -54,7 +55,9 @@ jobs:
             const opened = [...(record.timeline || [])].reverse().find((item) => item.task === 'production' && item.event === 'Execution Slot Opened')
             if (!opened) throw new Error('Production is Running without an Execution Slot Opened event')
             startTime = opened.time
-            startSha = sh('git', 'log', '-1', '--format=%H', '--', RECORD)
+            startSha = record.githubCommit && record.githubCommit !== 'pending'
+              ? record.githubCommit
+              : sh('git', 'log', '-1', '--format=%H', '--', RECORD)
           } else if (record.taskStatus?.production === 'Completed') {
             process.exit(0)
           } else {
@@ -63,10 +66,31 @@ jobs:
           verifyProjection(startSha, [startTime, 'Execution Slot Opened', 'Running'])
 
           // 2. Persist the verified start checkpoint, still before substantive work.'''
-          s2, n = re.subn(r'// 1\. Durable Running state before substantive Production work\.[\s\S]*?// 2\. Persist the verified start checkpoint, still before substantive work\.', replacement, s, count=1)
+          s, n = re.subn(r'// 1\. Durable Running state before substantive Production work\.[\s\S]*?// 2\. Persist the verified start checkpoint, still before substantive work\.', start, s, count=1)
           if n != 1:
               raise SystemExit('failed to patch resume block')
-          p.write_text(s2)
+          checkpoint = r'''// 2. Persist the verified start checkpoint, still before substantive work.
+          record = readJson(RECORD)
+          let checkpointSha
+          const existingStartVerification = [...(record.timeline || [])].reverse().find((item) => item.task === 'production' && item.event === 'GitHub Commit Verified' && item.detail.includes(startSha))
+          if (existingStartVerification) {
+            checkpointSha = sh('git', 'log', '-1', '--format=%H', '--', RECORD)
+            verifyProjection(checkpointSha, [existingStartVerification.time, startSha, 'GitHub Commit Verified'])
+          } else {
+            const verifiedStartTime = appendEvent(record, 'GitHub Commit Verified', 'Running', `Fetched and verified start-state commit ${startSha} containing synchronized Daily Runtime JSON and Markdown ledger.`)
+            record.githubCommit = startSha
+            record.commitVerify = 'Completed'
+            writeJson(RECORD, record)
+            renderLedger()
+            checkpointSha = commitAndPush(`runtime(production): verify ${DATE} start state`, [RECORD, LEDGER])
+            verifyProjection(checkpointSha, [verifiedStartTime, startSha, 'GitHub Commit Verified'])
+          }
+
+          // Substantive work begins only here.'''
+          s, n = re.subn(r'// 2\. Persist the verified start checkpoint, still before substantive work\.[\s\S]*?// Substantive work begins only here\.', checkpoint, s, count=1)
+          if n != 1:
+              raise SystemExit('failed to patch checkpoint block')
+          p.write_text(s)
           PY
       - name: Execute governed Production
         run: node scripts/run-production-2026-08-05.mjs
