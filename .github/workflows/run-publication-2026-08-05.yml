@@ -24,14 +24,44 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
+
+      - name: Persist runner start
+        shell: bash
+        run: |
+          printf '{"date":"2026-08-05","state":"runner-started","run_id":"%s","sha":"%s"}\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" > .runtime-publication-runner-state.json
+          git config user.name "Research Runtime Publication"
+          git config user.email "actions@users.noreply.github.com"
+          git add .runtime-publication-runner-state.json
+          git commit -m "runtime(publication): runner started for 2026-08-05"
+          git push origin HEAD:main
+
+      - name: Synchronize main after runner marker
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
       - name: Install dependencies
         run: npm install
+
       - name: Execute governed Publication
+        id: execute
+        shell: bash
         run: node scripts/run-publication-2026-08-05.mjs
 
-# explicit retrigger after workflow registration
-# automation retrigger after 20:00 slot verification
+      - name: Persist runner failure
+        if: failure()
+        shell: bash
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+          printf '{"date":"2026-08-05","state":"failed","run_id":"%s","sha":"%s"}\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" > .runtime-publication-runner-state.json
+          git config user.name "Research Runtime Publication"
+          git config user.email "actions@users.noreply.github.com"
+          git add .runtime-publication-runner-state.json
+          git commit -m "runtime(publication): record executor failure"
+          git push origin HEAD:main
