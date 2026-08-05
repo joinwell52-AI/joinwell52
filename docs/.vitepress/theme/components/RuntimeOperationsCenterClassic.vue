@@ -53,7 +53,8 @@ type RuntimeData = {
   centerVersion: string
   schedule: Task[]
   todayDaily: RecordItem
-  records: { daily: RecordItem[] }
+  latest: Record<string, RecordItem | null>
+  records: Record<string, RecordItem[]>
   columns: Array<{ id: string; name: string; name_zh: string }>
 }
 type Column = {
@@ -88,24 +89,32 @@ const handleDateInput = (event: Event) => emit('dateInput', (event.target as HTM
 const zh = computed(() => props.lang === 'zh')
 const selectedDate = computed(() => props.selectedDate || runtime.today)
 const isToday = computed(() => selectedDate.value === runtime.today)
-const liveRecord = ref<RecordItem | null>(null)
-const staticRecord = computed(() => (runtime.records?.daily || []).find((item) => item.date === selectedDate.value)
-  || (runtime.todayDaily.date === selectedDate.value ? runtime.todayDaily : runtime.todayDaily))
-const record = computed(() => isToday.value && liveRecord.value ? liveRecord.value : staticRecord.value)
+const liveRecords = ref<Record<string, RecordItem>>({})
+const staticRecordForFamily = (family: string) => (runtime.records?.[family] || [])
+  .find((item) => item.date === selectedDate.value) || null
+const recordForFamily = (family: string) => isToday.value && liveRecords.value[family]
+  ? liveRecords.value[family]
+  : staticRecordForFamily(family)
+const record = computed(() => recordForFamily('daily') || runtime.todayDaily)
 
 const refreshLiveRecord = async () => {
   if (typeof window === 'undefined' || !isToday.value) return
   const [year, month] = selectedDate.value.split('-')
-  const path = `research/runtime/records/daily/${year}/${month}/${selectedDate.value}-daily-runtime.json`
-  const url = `https://raw.githubusercontent.com/joinwell52-AI/joinwell52/main/${path}?t=${Date.now()}`
-  try {
-    const response = await fetch(url, { cache: 'no-store' })
-    if (!response.ok) return
-    const next = await response.json() as RecordItem
-    if (next.date === selectedDate.value) liveRecord.value = next
-  } catch {
-    // Preserve the build-time projection while GitHub is temporarily unavailable.
-  }
+  const families = ['daily', 'weekly', 'academic', 'program']
+  const refreshed = await Promise.all(families.map(async (family) => {
+    const recordPath = `research/runtime/records/${family}/${year}/${month}/${selectedDate.value}-${family}-runtime.json`
+    const url = `https://raw.githubusercontent.com/joinwell52-AI/joinwell52/main/${recordPath}?t=${Date.now()}`
+    try {
+      const response = await fetch(url, { cache: 'no-store' })
+      if (!response.ok) return null
+      const next = await response.json() as RecordItem
+      return next.date === selectedDate.value ? [family, next] as const : null
+    } catch {
+      return null
+    }
+  }))
+  const available = refreshed.filter((item): item is readonly [string, RecordItem] => Boolean(item))
+  if (available.length) liveRecords.value = { ...liveRecords.value, ...Object.fromEntries(available) }
 }
 
 const RUNNING_REFRESH_MS = 60_000
@@ -119,7 +128,8 @@ const scheduleLiveRefresh = () => {
     liveRefreshTimer = undefined
     return
   }
-  const isWorking = Object.values(record.value.taskStatus || {}).includes('Running')
+  const isWorking = Object.values(liveRecords.value).some((item) => Object.values(item.taskStatus || {}).includes('Running'))
+    || Object.values(record.value.taskStatus || {}).includes('Running')
   const delay = isWorking ? RUNNING_REFRESH_MS : IDLE_REFRESH_MS
   liveRefreshTimer = setTimeout(async () => {
     await refreshLiveRecord()
@@ -149,17 +159,25 @@ onBeforeUnmount(() => {
     document.removeEventListener('visibilitychange', handleVisibilityChange)
   }
 })
+const weekdayForDate = (date: string) => ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][
+  new Date(`${date}T12:00:00Z`).getUTCDay()
+]
+const taskRunsOnDate = (task: Task, date: string) => task.schedule.kind === 'daily'
+  || (task.schedule.kind === 'weekly' && (task.schedule.days || []).includes(weekdayForDate(date)))
 const tasks = computed(() => runtime.schedule
-  .filter((task) => task.family === 'daily')
+  .filter((task) => taskRunsOnDate(task, selectedDate.value))
   .sort((a, b) => a.schedule.time.localeCompare(b.schedule.time)))
 const columns = computed(() => intelligence.runs?.[selectedDate.value]?.columns
   || (intelligence.currentRun.date === selectedDate.value ? intelligence.currentRun.columns : [])
   || [])
-const rows = computed(() => tasks.value.map((task) => ({
-  task,
-  status: record.value.taskStatus?.[task.id] || 'Waiting',
-  result: record.value.results?.[task.id] || null
-})))
+const rows = computed(() => tasks.value.map((task) => {
+  const familyRecord = recordForFamily(task.family)
+  return {
+    task,
+    status: familyRecord?.taskStatus?.[task.id] || 'Waiting',
+    result: familyRecord?.results?.[task.id] || null
+  }
+}))
 const completedCount = computed(() => rows.value.filter((row) => row.status === 'Completed').length)
 const progress = computed(() => rows.value.length ? Math.round(completedCount.value / rows.value.length * 100) : 0)
 const risk = computed(() => rows.value.some((row) => row.status === 'Blocked' || row.status === 'Failed'))
