@@ -280,7 +280,7 @@ const dayState = computed(() => {
 })
 const recordPath = (item: RecordItem) => {
   const [year, month] = item.date.split('-')
-  return `research/runtime/records/daily/${year}/${month}/${item.date}-daily-runtime.json`
+  return `research/runtime/${year}/${month}/${item.date}-runtime.md`
 }
 const recordUrl = (item: RecordItem) => `https://github.com/joinwell52-AI/joinwell52/blob/main/${recordPath(item)}`
 const artifactHref = (artifact: Artifact) => artifact.url || (artifact.path

@@ -101,7 +101,15 @@ research/runtime/records/academic/YYYY/MM/YYYY-MM-DD-academic-runtime.json
 research/runtime/records/program/YYYY/MM/YYYY-MM-DD-program-runtime.json
 ```
 
-V4 历史记录保留在原路径并冻结，不改写成 V5 记录。
+V4 历史记录保留在原路径并冻结，不改写成 V5 机器记录。
+
+每一份 Daily Runtime JSON 必须同时维护同日的人类可读运行账本：
+
+```text
+research/runtime/YYYY/MM/YYYY-MM-DD-runtime.md
+```
+
+JSON 是机器事实源；Markdown 是不可缺失的人类可读账本。Markdown 必须逐时点保留执行槽打开、Running、阶段成果、Completed/Blocked/Failed/Skipped、GitHub Commit Verify 等完整时间线，并展示每个班次的 Input、Work Result、Output、Next、Metrics、Evidence 与 Artifacts。网站“查看记录”必须链接 Markdown，不得直接把机器 JSON 作为主要阅读页面。
 
 ## 6. 班次成果合同
 
