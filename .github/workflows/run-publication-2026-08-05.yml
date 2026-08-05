@@ -48,6 +48,21 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Patch command wrapper locally
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('scripts/run-publication-2026-08-05.mjs')
+          text = path.read_text(encoding='utf-8')
+          old = "function sh(command, capture = false) {\n  return execSync(command, { encoding: 'utf8', stdio: capture ? 'pipe' : 'inherit' }).trim()\n}"
+          new = "function sh(command, capture = false) {\n  const output = execSync(command, { encoding: 'utf8', stdio: capture ? 'pipe' : 'inherit' })\n  return capture ? output.trim() : ''\n}"
+          if old not in text:
+              raise SystemExit('Command wrapper patch anchor missing')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+          node --check scripts/run-publication-2026-08-05.mjs
+
       - name: Execute governed Publication
         id: execute
         shell: bash
