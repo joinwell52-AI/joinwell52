@@ -1,0 +1,225 @@
+name: Apply Runtime Home Theme
+
+on:
+  push:
+    branches:
+      - runtime-home-theme
+
+permissions:
+  contents: write
+
+jobs:
+  apply-verify-and-capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: runtime-home-theme
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Restore real title and add theme layer
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          component = Path('docs/.vitepress/theme/components/RuntimeOperationsCenterClassic.vue')
+          text = component.read_text(encoding='utf-8')
+          text = text.replace("title: '今天研究什么，下午生产什么，晚上发布什么。',", "title: '数字工场运营中心',")
+          text = text.replace("title: 'What is researched today, produced at 15:00, and released at 20:00.',", "title: 'Digital Works Operations Center',")
+          if "title: '数字工场运营中心'," not in text or "title: 'Digital Works Operations Center'," not in text:
+              raise SystemExit('runtime title replacement failed')
+          component.write_text(text, encoding='utf-8')
+          PY
+
+          cat > docs/.vitepress/theme/runtime-bilingual-title.css <<'CSS'
+          /* Runtime Operations Center: homepage-aligned theme without template changes. */
+          .runtime-center-page,
+          .runtime-center-page .VPContent,
+          .runtime-center-page .VPHome { background: var(--vp-c-bg) !important; }
+
+          .runtime-center-page .runtime-classic {
+            --rt-page-bg: radial-gradient(circle at 78% 0%, rgba(101,87,255,.10), transparent 31%), radial-gradient(circle at 12% 24%, rgba(56,199,232,.08), transparent 26%), linear-gradient(180deg, #fafbfe 0%, #f3f5fa 100%);
+            --rt-panel-bg: linear-gradient(145deg, rgba(255,255,255,.99), rgba(248,249,253,.98));
+            --rt-card-bg: #ffffff;
+            --rt-card-soft: #f6f7fb;
+            --rt-card-accent: #eef1ff;
+            --rt-text: var(--home-ink, #0d1024);
+            --rt-muted: var(--home-muted, #61657a);
+            --rt-subtle: #7d8295;
+            --rt-line: var(--home-line, rgba(18,24,51,.12));
+            --rt-link: #4f56c9;
+            --rt-shadow: 0 18px 54px rgba(24,31,68,.08);
+            --rt-date-bg: linear-gradient(135deg, rgba(101,87,255,.11), rgba(56,199,232,.10));
+            --rt-date-text: #30365e;
+            --line: var(--rt-line);
+            --text: var(--rt-text);
+            --muted: var(--rt-muted);
+            --accent: var(--home-purple, #6557ff);
+            --blue: #168bad;
+            --green: #16835c;
+            color: var(--rt-text) !important;
+            background: var(--rt-page-bg) !important;
+          }
+
+          .dark .runtime-center-page .runtime-classic {
+            --rt-page-bg: radial-gradient(circle at 75% 0%, rgba(88,72,210,.20), transparent 32%), linear-gradient(180deg, #060812, #080b18);
+            --rt-panel-bg: linear-gradient(145deg, rgba(18,25,46,.98), rgba(8,12,26,.97));
+            --rt-card-bg: #080d1c;
+            --rt-card-soft: rgba(5,9,21,.62);
+            --rt-card-accent: #121b35;
+            --rt-text: #f5f7ff;
+            --rt-muted: #94a0b7;
+            --rt-subtle: #7f8ca2;
+            --rt-line: rgba(148,163,184,.20);
+            --rt-link: #a9deff;
+            --rt-shadow: none;
+            --rt-date-bg: linear-gradient(135deg, rgba(107,89,246,.24), rgba(88,207,225,.18));
+            --rt-date-text: #e9fbff;
+            --line: var(--rt-line);
+            --text: var(--rt-text);
+            --muted: var(--rt-muted);
+            --blue: #72d6ff;
+            --green: #77e5a7;
+          }
+
+          .runtime-center-page .runtime-classic .shell { width: min(1180px, calc(100% - 48px)) !important; padding: 40px 0 88px !important; }
+          .runtime-center-page .runtime-classic .hero,
+          .runtime-center-page .runtime-classic .panel { color: var(--rt-text) !important; background: var(--rt-panel-bg) !important; border-color: var(--rt-line) !important; box-shadow: var(--rt-shadow) !important; }
+          .runtime-center-page .runtime-classic .hero { align-items: center !important; padding: 40px 42px !important; }
+          .runtime-center-page .runtime-classic .hero > div:first-child { min-width: 0; flex: 1 1 auto; }
+          .runtime-center-page .runtime-classic .hero h1 { max-width: 760px !important; margin: 0 !important; color: var(--rt-text) !important; font-size: clamp(42px, 5vw, 66px) !important; font-weight: 800 !important; line-height: 1.04 !important; letter-spacing: -.055em !important; }
+          .runtime-center-page .runtime-classic .hero h1::after { content: none !important; display: none !important; }
+          .runtime-center-page .runtime-classic .kicker { color: var(--home-purple, #6557ff) !important; letter-spacing: .11em !important; }
+          .runtime-center-page .runtime-classic .hero p,
+          .runtime-center-page .runtime-classic .section-title small,
+          .runtime-center-page .runtime-classic .section-lead,
+          .runtime-center-page .runtime-classic .pending,
+          .runtime-center-page .runtime-classic .principle,
+          .runtime-center-page .runtime-classic .empty-state p,
+          .runtime-center-page .runtime-classic .release-result p { color: var(--rt-muted) !important; }
+          .runtime-center-page .runtime-classic .hero-actions b { color: var(--rt-text) !important; }
+          .runtime-center-page .runtime-classic .hero-actions a,
+          .runtime-center-page .runtime-classic .history-list span { color: var(--rt-link) !important; }
+
+          .runtime-center-page .runtime-classic .overview-grid article,
+          .runtime-center-page .runtime-classic .evidence-grid article,
+          .runtime-center-page .runtime-classic .empty-state,
+          .runtime-center-page .runtime-classic .release-result,
+          .runtime-center-page .runtime-classic .history-list a { color: var(--rt-text) !important; background: var(--rt-card-bg) !important; border-color: var(--rt-line) !important; }
+          .runtime-center-page .runtime-classic .column-card,
+          .runtime-center-page .runtime-classic .shift-card { color: var(--rt-text) !important; background: var(--rt-card-soft) !important; border-color: var(--rt-line) !important; }
+          .runtime-center-page .runtime-classic .mini-metrics span,
+          .runtime-center-page .runtime-classic .result-grid > div,
+          .runtime-center-page .runtime-classic .metric-grid > div,
+          .runtime-center-page .runtime-classic .artifact-list a,
+          .runtime-center-page .runtime-classic .release-result a { background: var(--rt-card-bg) !important; border-color: var(--rt-line) !important; }
+          .runtime-center-page .runtime-classic .result-grid .outcome { background: var(--rt-card-accent) !important; }
+          .runtime-center-page .runtime-classic .progress-bar { background: rgba(101,87,255,.13) !important; }
+
+          .runtime-center-page .runtime-classic .section-title h2,
+          .runtime-center-page .runtime-classic .column-head h3,
+          .runtime-center-page .runtime-classic .topic h4,
+          .runtime-center-page .runtime-classic .shift-head h3,
+          .runtime-center-page .runtime-classic .overview-grid strong,
+          .runtime-center-page .runtime-classic .metric-grid strong,
+          .runtime-center-page .runtime-classic .empty-state strong,
+          .runtime-center-page .runtime-classic .release-result strong,
+          .runtime-center-page .runtime-classic .evidence-grid strong,
+          .runtime-center-page .runtime-classic .evidence-grid a,
+          .runtime-center-page .runtime-classic .mini-metrics strong { color: var(--rt-text) !important; }
+
+          .runtime-center-page .runtime-classic .overview-grid article > span,
+          .runtime-center-page .runtime-classic .overview-grid small,
+          .runtime-center-page .runtime-classic .overview-grid strong i,
+          .runtime-center-page .runtime-classic .evidence-grid article > span,
+          .runtime-center-page .runtime-classic .column-head span,
+          .runtime-center-page .runtime-classic .topic small,
+          .runtime-center-page .runtime-classic .column-card dt,
+          .runtime-center-page .runtime-classic .column-card dd,
+          .runtime-center-page .runtime-classic .mini-metrics span,
+          .runtime-center-page .runtime-classic .result-grid span,
+          .runtime-center-page .runtime-classic .result-grid p,
+          .runtime-center-page .runtime-classic .metric-grid span { color: var(--rt-subtle) !important; }
+          .runtime-center-page .runtime-classic .artifact-list a,
+          .runtime-center-page .runtime-classic .release-result a { color: var(--home-purple, #6557ff) !important; }
+
+          .runtime-center-page .runtime-classic .overview .section-title > small { display: inline-flex !important; align-items: center !important; min-height: 34px !important; padding: 0 12px !important; color: var(--rt-date-text) !important; background: var(--rt-date-bg) !important; border: 1px solid rgba(101,87,255,.22) !important; border-radius: 999px !important; box-shadow: none !important; font: 750 13px/1 ui-monospace, SFMono-Regular, Consolas, monospace !important; letter-spacing: 0 !important; white-space: nowrap !important; }
+
+          @media (max-width: 1120px) {
+            .runtime-center-page .runtime-classic .hero { align-items: flex-start !important; flex-direction: column !important; }
+            .runtime-center-page .runtime-classic .hero-actions { min-width: 0 !important; align-items: flex-start !important; }
+            .runtime-center-page .runtime-classic .overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+            .runtime-center-page .runtime-classic .result-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+          }
+          @media (max-width: 680px) {
+            .runtime-center-page .runtime-classic .shell { width: calc(100% - 28px) !important; padding: 28px 0 64px !important; }
+            .runtime-center-page .runtime-classic .hero,
+            .runtime-center-page .runtime-classic .panel { padding: 19px !important; }
+            .runtime-center-page .runtime-classic .hero h1 { font-size: 40px !important; }
+            .runtime-center-page .runtime-classic .overview-grid,
+            .runtime-center-page .runtime-classic .result-grid,
+            .runtime-center-page .runtime-classic .evidence-grid { grid-template-columns: 1fr !important; }
+          }
+          CSS
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Validate and build
+        run: |
+          npm run runtime:validate
+          npm run docs:build
+
+      - name: Install browser
+        run: npx --yes playwright@1.55.0 install --with-deps chromium
+
+      - name: Capture visual checks
+        shell: bash
+        run: |
+          nohup python3 -m http.server 4173 --directory docs/.vitepress/dist >/tmp/runtime-theme-server.log 2>&1 &
+          sleep 2
+          cat > /tmp/runtime-theme-check.mjs <<'JS'
+          import { chromium } from 'playwright'
+          const browser = await chromium.launch({ headless: true })
+          for (const width of [1440, 960]) {
+            for (const scheme of ['light', 'dark']) {
+              const page = await browser.newPage({ viewport: { width, height: 1200 }, colorScheme: scheme })
+              await page.goto('http://127.0.0.1:4173/joinwell52/zh/runtime/', { waitUntil: 'networkidle' })
+              await page.evaluate((mode) => document.documentElement.classList.toggle('dark', mode === 'dark'), scheme)
+              await page.waitForTimeout(300)
+              const title = page.locator('.runtime-classic .hero h1')
+              const box = await title.boundingBox()
+              if (!box || box.width < 200 || box.height < 40) throw new Error(`title invisible at ${width}/${scheme}`)
+              const text = (await title.innerText()).trim()
+              if (text !== '数字工场运营中心') throw new Error(`wrong title: ${text}`)
+              const runtimeBox = await page.locator('.runtime-classic').boundingBox()
+              if (!runtimeBox || runtimeBox.width < width * 0.9) throw new Error(`runtime width too narrow at ${width}/${scheme}`)
+              await page.screenshot({ path: `runtime-${width}-${scheme}.png`, fullPage: true })
+              await page.close()
+            }
+          }
+          await browser.close()
+          JS
+          npx --yes -p playwright@1.55.0 node /tmp/runtime-theme-check.mjs
+
+      - name: Upload visual checks
+        uses: actions/upload-artifact@v4
+        with:
+          name: runtime-theme-screenshots
+          path: runtime-*.png
+
+      - name: Commit verified theme
+        shell: bash
+        run: |
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git rm .github/workflows/apply-runtime-home-theme.yml
+          git add docs/.vitepress/theme/components/RuntimeOperationsCenterClassic.vue docs/.vitepress/theme/runtime-bilingual-title.css
+          git commit -m "fix(runtime): align light and dark theme with homepage"
+          git push origin HEAD:runtime-home-theme
