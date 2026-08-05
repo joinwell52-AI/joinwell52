@@ -1,0 +1,133 @@
+name: Verify Runtime Calendar Navigation
+
+on:
+  push:
+    branches:
+      - runtime-calendar-date-navigation
+
+permissions:
+  contents: write
+
+jobs:
+  verify-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout calendar branch
+        uses: actions/checkout@v4
+        with:
+          ref: runtime-calendar-date-navigation
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Apply date-aware component integration
+        run: python scripts/implement-runtime-calendar.py
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Validate and build
+        run: |
+          npm run runtime:validate
+          npm run runtime:markdown
+          npm run runtime:markdown:validate
+          npm run docs:build
+
+      - name: Verify date switching in a real browser
+        shell: bash
+        run: |
+          npm install --no-save playwright-core@1.55.0
+          mkdir -p /tmp/runtime-calendar-site
+          ln -s "$GITHUB_WORKSPACE/docs/.vitepress/dist" /tmp/runtime-calendar-site/joinwell52
+          nohup python3 -m http.server 4173 --directory /tmp/runtime-calendar-site >/tmp/runtime-calendar-server.log 2>&1 &
+          sleep 2
+          export CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          test -n "$CHROME"
+          cat > runtime-calendar-check.mjs <<'JS'
+          import { chromium } from 'playwright-core'
+
+          const browser = await chromium.launch({ headless: true, executablePath: process.env.CHROME, args: ['--no-sandbox'] })
+          const page = await browser.newPage({ viewport: { width: 1440, height: 1100 }, colorScheme: 'light' })
+          const base = 'http://127.0.0.1:4173/joinwell52/zh/runtime/'
+
+          await page.goto(base, { waitUntil: 'networkidle' })
+          await page.waitForTimeout(400)
+          if (await page.locator('.runtime-date-nav').count() !== 1) throw new Error('Runtime date navigation is missing')
+          if (await page.locator('.runtime-classic').count() !== 1) throw new Error('Default date is not rendered by V5 Classic')
+          const today = await page.locator('.runtime-date-controls input[type=date]').inputValue()
+          if (today !== '2026-08-05') throw new Error(`Unexpected default Runtime date: ${today}`)
+          if (!(await page.locator('.overview .section-title small').innerText()).includes('2026-08-05')) {
+            throw new Error('V5 overview did not bind to the selected date')
+          }
+          await page.screenshot({ path: 'runtime-calendar-today.png', fullPage: true })
+
+          let historicalJsonRequests = 0
+          page.on('request', (request) => {
+            if (request.url().includes('raw.githubusercontent.com') && request.url().includes('daily-runtime.json')) historicalJsonRequests += 1
+          })
+          await page.goto(`${base}?date=2026-08-03`, { waitUntil: 'networkidle' })
+          await page.waitForTimeout(500)
+          if (await page.locator('.legacy-runtime').count() !== 1) throw new Error('2026-08-03 did not render the historical V4 structure')
+          if (await page.locator('.runtime-classic').count() !== 0) throw new Error('Historical V4 date was forced into the V5 structure')
+          if ((await page.locator('.runtime-date-controls input[type=date]').inputValue()) !== '2026-08-03') {
+            throw new Error('Calendar did not retain the query-selected historical date')
+          }
+          if (!(await page.locator('.legacy-runtime .section-title small').first().innerText()).includes('2026-08-03')) {
+            throw new Error('Historical page content did not switch to 2026-08-03')
+          }
+          if (historicalJsonRequests !== 0) throw new Error(`Historical date started live polling: ${historicalJsonRequests} request(s)`)
+          await page.screenshot({ path: 'runtime-calendar-2026-08-03.png', fullPage: true })
+
+          const controls = page.locator('.runtime-date-controls')
+          await controls.locator('button').nth(1).click()
+          await page.waitForTimeout(250)
+          if (!page.url().includes('date=2026-08-04')) throw new Error(`Next-date URL was not updated: ${page.url()}`)
+          if (await page.locator('.legacy-runtime').count() !== 1) throw new Error('2026-08-04 should still use the V4 structure')
+
+          await controls.locator('button').nth(1).click()
+          await page.waitForTimeout(300)
+          if (!page.url().includes('date=2026-08-05')) throw new Error(`V5 transition URL was not updated: ${page.url()}`)
+          if (await page.locator('.runtime-classic').count() !== 1) throw new Error('2026-08-05 did not switch back to V5 Classic')
+
+          const input = page.locator('.runtime-date-controls input[type=date]')
+          await input.fill('2026-08-01')
+          await input.dispatchEvent('change')
+          await page.waitForTimeout(150)
+          if ((await input.inputValue()) !== '2026-08-05') throw new Error('Unavailable date replaced the selected valid date')
+          if (!(await page.locator('.runtime-date-error').innerText()).includes('没有 Runtime Record')) {
+            throw new Error('Unavailable date did not produce a clear message')
+          }
+
+          const historyHref = await page.locator('.history-list a', { hasText: '2026-08-03' }).getAttribute('href')
+          if (!historyHref?.endsWith('/research/runtime/2026/08/2026-08-03-runtime.md')) {
+            throw new Error(`Historical record link is not Markdown: ${historyHref}`)
+          }
+
+          await browser.close()
+          JS
+          node runtime-calendar-check.mjs
+
+      - name: Upload calendar previews
+        uses: actions/upload-artifact@v4
+        with:
+          name: runtime-calendar-preview
+          path: |
+            runtime-calendar-today.png
+            runtime-calendar-2026-08-03.png
+
+      - name: Commit verified calendar implementation
+        shell: bash
+        run: |
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git rm scripts/implement-runtime-calendar.py
+          rm -f runtime-calendar-check.mjs runtime-calendar-today.png runtime-calendar-2026-08-03.png
+          git add docs/.vitepress/theme/components/RuntimeOperationsCenterCurrent.vue
+          git add docs/.vitepress/theme/components/RuntimeOperationsCenterClassic.vue
+          git add docs/.vitepress/theme/components/RuntimeOperationsCenterLegacy.vue
+          git add research/runtime/2026
+          git commit -m "feat(runtime): add calendar-driven daily archive [skip ci]"
+          git push origin HEAD:runtime-calendar-date-navigation
