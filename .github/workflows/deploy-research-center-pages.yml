@@ -48,10 +48,11 @@ jobs:
         if: github.event.head_commit.message == 'chore(runtime): activate governed Publication executor'
         shell: bash
         run: |
-          git show "${GITHUB_SHA}^:.github/workflows/deploy-research-center-pages.yml" > .github/workflows/deploy-research-center-pages.yml
+          git show "6f1c0cb8f7bf48f2b91a8ceefdad7cdd22aaf2ad:.github/workflows/deploy-research-center-pages.yml" > .github/workflows/deploy-research-center-pages.yml
+          rm -f .runtime-publication-trigger-20260805
           git config user.name "Research Runtime Publication"
           git config user.email "actions@users.noreply.github.com"
-          git add .github/workflows/deploy-research-center-pages.yml
+          git add -A
           git commit -m "chore(runtime): restore Pages workflow after Publication"
           git push origin HEAD:main
 
@@ -64,23 +65,15 @@ jobs:
           node <<'NODE'
           const fs = require('fs')
           const path = require('path')
-
           const dist = path.join('docs', '.vitepress', 'dist')
           const requiredRoutes = [
-            'index.html',
-            'zh/index.html',
-            'en/index.html',
-            'zh/runtime/index.html',
-            'en/runtime/index.html',
-            'zh/research/index.html',
-            'en/research/index.html',
-            'zh/publications/index.html',
-            'en/publications/index.html'
+            'index.html', 'zh/index.html', 'en/index.html',
+            'zh/runtime/index.html', 'en/runtime/index.html',
+            'zh/research/index.html', 'en/research/index.html',
+            'zh/publications/index.html', 'en/publications/index.html'
           ]
-
           const missing = requiredRoutes.filter((file) => !fs.existsSync(path.join(dist, file)))
           if (missing.length) throw new Error(`Missing generated routes: ${missing.join(', ')}`)
-
           const runtimeDataPath = path.join('docs', '.vitepress', 'generated', 'runtime-records.json')
           if (!fs.existsSync(runtimeDataPath)) throw new Error('Missing generated Runtime data.')
           const runtimeData = JSON.parse(fs.readFileSync(runtimeDataPath, 'utf8'))
