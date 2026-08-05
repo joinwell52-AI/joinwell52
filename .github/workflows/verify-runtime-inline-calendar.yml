@@ -23,6 +23,21 @@ jobs:
         with:
           node-version: 22
 
+      - name: Correct styleless Classic migration
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('scripts/move-runtime-calendar-inline.py')
+          text = path.read_text(encoding='utf-8')
+          old = "text = text.rsplit('</style>', 1)[0] + INLINE_STYLE + '</style>'"
+          new = "text = text + '\\n<style scoped>' + INLINE_STYLE + '</style>\\n'"
+          if old not in text:
+              raise SystemExit('Classic style migration anchor missing')
+          text = text.replace(old, new, 1)
+          path.write_text(text, encoding='utf-8')
+          PY
+
       - name: Apply compact calendar layout
         run: python scripts/move-runtime-calendar-inline.py
 
