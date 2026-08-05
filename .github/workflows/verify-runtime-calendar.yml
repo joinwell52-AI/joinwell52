@@ -66,7 +66,7 @@ jobs:
 
           let historicalJsonRequests = 0
           page.on('request', (request) => {
-            if (request.url().includes('raw.githubusercontent.com') && request.url().includes('daily-runtime.json')) historicalJsonRequests += 1
+            if (request.url().includes('2026-08-03-daily-runtime.json')) historicalJsonRequests += 1
           })
           await page.goto(`${base}?date=2026-08-03`, { waitUntil: 'networkidle' })
           await page.waitForTimeout(500)
