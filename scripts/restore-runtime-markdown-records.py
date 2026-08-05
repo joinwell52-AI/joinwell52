@@ -114,9 +114,6 @@ replace_once(
 readme_en = ROOT / 'research/runtime/README.md'
 if readme_en.exists():
     text = readme_en.read_text(encoding='utf-8')
-    anchor = 'V4 historical records remain frozen at their original paths and are not rewritten as V5 records.\n'
-    if anchor in text:
-        replacement = anchor + """\nEvery Daily Runtime JSON record must have a same-day human-readable ledger:\n\n```text\nresearch/runtime/YYYY/MM/YYYY-MM-DD-runtime.md\n```\n\nJSON is the machine source of truth; Markdown is the mandatory human-readable ledger. The Markdown ledger must preserve every execution-slot opening, Running transition, stage result, terminal status, and commit-verification timepoint, together with Input, Work Result, Output, Next, Metrics, Evidence, and Artifacts for every shift. Website “View record” links must target Markdown rather than the machine JSON.\n"""
-        readme_en.write_text(text.replace(anchor, replacement, 1), encoding='utf-8')
-    else:
-        raise SystemExit('expected English V4 history anchor not found')
+    section = """\n## Mandatory human-readable Daily Runtime ledger\n\nEvery Daily Runtime JSON record must have a same-day human-readable ledger:\n\n```text\nresearch/runtime/YYYY/MM/YYYY-MM-DD-runtime.md\n```\n\nJSON is the machine source of truth; Markdown is the mandatory human-readable ledger. The Markdown ledger must preserve every execution-slot opening, Running transition, stage result, terminal status, and commit-verification timepoint, together with Input, Work Result, Output, Next, Metrics, Evidence, and Artifacts for every shift. Website “View record” links must target Markdown rather than the machine JSON.\n"""
+    if '## Mandatory human-readable Daily Runtime ledger' not in text:
+        readme_en.write_text(text.rstrip() + '\n' + section, encoding='utf-8')
