@@ -280,16 +280,27 @@ function ensureRecord(manifest, familyId, date) {
 }
 
 function appendScheduledEvent(record, task, now) {
-  const duplicate = record.timeline.some((entry) =>
-    entry.task === task.id && entry.event === 'Execution Slot Opened' && entry.time?.startsWith(now.date)
+  const currentStatus = record.taskStatus?.[task.id] || 'Waiting'
+  const duplicate = currentStatus === 'Running' && record.timeline.some((entry) =>
+    entry.task === task.id &&
+    entry.event === 'Execution Slot Opened' &&
+    entry.status === 'Running' &&
+    entry.time?.startsWith(now.date)
   )
+
+  record.taskStatus[task.id] = 'Running'
+  delete record.results[task.id]
+  record.status = 'Running'
+  record.githubCommit = 'pending'
+  record.commitVerify = 'Waiting'
+
   if (!duplicate) {
     record.timeline.push({
       time: `${now.date}T${now.time}+08:00`,
       task: task.id,
       event: 'Execution Slot Opened',
-      status: 'Waiting',
-      detail: `${task.name} scheduled by Research Runtime Scheduler V3.0.`
+      status: 'Running',
+      detail: `${task.name} started by Research Runtime Scheduler V3.0.`
     })
   }
   record.updatedAt = `${now.date}T${now.time}+08:00`

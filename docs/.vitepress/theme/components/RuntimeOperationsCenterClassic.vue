@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { withBase } from 'vitepress'
 import runtimeData from '../../generated/runtime-records.json'
 import intelligenceData from '../../generated/research-intelligence.json'
@@ -76,7 +76,32 @@ const runtime = runtimeData as RuntimeData
 const intelligence = intelligenceData as IntelligenceData
 const props = withDefaults(defineProps<{ lang?: 'en' | 'zh' }>(), { lang: 'en' })
 const zh = computed(() => props.lang === 'zh')
-const record = computed(() => runtime.todayDaily)
+const liveRecord = ref<RecordItem | null>(null)
+const record = computed(() => liveRecord.value || runtime.todayDaily)
+
+const refreshLiveRecord = async () => {
+  if (typeof window === 'undefined') return
+  const [year, month] = runtime.today.split('-')
+  const path = `research/runtime/records/daily/${year}/${month}/${runtime.today}-daily-runtime.json`
+  const url = `https://raw.githubusercontent.com/joinwell52-AI/joinwell52/main/${path}?t=${Date.now()}`
+  try {
+    const response = await fetch(url, { cache: 'no-store' })
+    if (!response.ok) return
+    const next = await response.json() as RecordItem
+    if (next.date === runtime.today) liveRecord.value = next
+  } catch {
+    // Preserve the build-time projection while GitHub is temporarily unavailable.
+  }
+}
+
+let liveRefreshTimer: ReturnType<typeof setInterval> | undefined
+onMounted(() => {
+  void refreshLiveRecord()
+  liveRefreshTimer = setInterval(() => void refreshLiveRecord(), 15_000)
+})
+onBeforeUnmount(() => {
+  if (liveRefreshTimer) clearInterval(liveRefreshTimer)
+})
 const tasks = computed(() => runtime.schedule
   .filter((task) => task.family === 'daily')
   .sort((a, b) => a.schedule.time.localeCompare(b.schedule.time)))
@@ -92,7 +117,12 @@ const risk = computed(() => rows.value.some((row) => row.status === 'Blocked' ||
 const activeRow = computed(() => rows.value.find((row) => row.status === 'Running') || rows.value.find((row) => row.status === 'Waiting') || null)
 const productionResult = computed(() => record.value.results?.production || null)
 const publicationResult = computed(() => record.value.results?.publication || null)
-const history = computed(() => (runtime.records?.daily || []).slice().sort((a, b) => b.date.localeCompare(a.date)).slice(0, 7))
+const history = computed(() => {
+  const current = record.value
+  return [current, ...(runtime.records?.daily || []).filter((item) => item.date !== current.date)]
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, 7)
+})
 
 const copy = computed(() => zh.value ? {
   kicker: 'RESEARCH RUNTIME CENTER V5.0 · 数字研究员运营中心',
@@ -127,6 +157,7 @@ const copy = computed(() => zh.value ? {
   metrics: '量化结果',
   evidence: '成果与证据',
   pending: '任务尚未执行；完成后自动显示工作成果。',
+  working: '任务正在执行，查询与成果整理尚未完成。',
   production: '15:00 下午生产',
   productionLead: 'Skill 05 写作 → 06 配图 → 07 证据与引用 → 08 出版编辑',
   noCandidate: '尚未形成出版候选',
@@ -140,7 +171,7 @@ const copy = computed(() => zh.value ? {
   history: '近期运营记录',
   report: '查看记录',
   principle: '数字员工不能只汇报“任务执行了”；每个班次必须交付可读、可追溯、可验证的工作成果。',
-  status: { Running: '运行中', Completed: '已完成', Blocked: '已阻塞', Failed: '失败', Skipped: '已跳过', Waiting: '待执行' } as Record<Status, string>
+  status: { Running: '工作中', Completed: '已完成', Blocked: '已阻塞', Failed: '失败', Skipped: '已跳过', Waiting: '待执行' } as Record<Status, string>
 } : {
   kicker: 'RESEARCH RUNTIME CENTER V5.0 · DIGITAL RESEARCHER OPERATIONS',
   title: 'What is researched today, produced at 15:00, and released at 20:00.',
@@ -174,6 +205,7 @@ const copy = computed(() => zh.value ? {
   metrics: 'Metrics',
   evidence: 'Artifacts & Evidence',
   pending: 'The task has not run. Its work result will appear here after execution.',
+  working: 'The task is working; retrieval and artifact preparation are still in progress.',
   production: '15:00 Production Shift',
   productionLead: 'Skill 05 Writing → 06 Visualization → 07 Evidence & Citation → 08 Publication Editing',
   noCandidate: 'No Publication Candidate yet',
@@ -265,7 +297,7 @@ const shortCommit = computed(() => record.value.githubCommit && record.value.git
           <article>
             <span>{{ copy.dayStatus }}</span>
             <strong :class="risk ? 's-failed' : completedCount === rows.length && rows.length ? 's-completed' : 's-running'">{{ dayState }}</strong>
-            <small>{{ record.status }}</small>
+            <small>{{ statusLabel(record.status) }}</small>
           </article>
           <article>
             <span>{{ copy.current }}</span>
@@ -334,7 +366,7 @@ const shortCommit = computed(() => record.value.githubCommit && record.value.git
                 <a v-for="item in row.result.evidence" :key="item.label" :href="evidenceHref(item)">{{ zh ? item.label_zh : item.label }} ↗</a>
               </div>
             </template>
-            <p v-else class="pending">{{ copy.pending }}</p>
+            <p v-else class="pending">{{ row.status === 'Running' ? copy.working : copy.pending }}</p>
           </article>
         </div>
       </section>
@@ -351,7 +383,7 @@ const shortCommit = computed(() => record.value.githubCommit && record.value.git
             <p>{{ local(productionResult as unknown as Record<string, unknown>, productionResult.status === 'Skipped' ? 'reason' : 'output') }}</p>
             <a v-for="artifact in productionResult.artifacts" :key="artifact.label" :href="artifactHref(artifact)">{{ zh ? artifact.label_zh : artifact.label }} ↗</a>
           </div>
-          <div v-else class="empty-state"><strong>{{ copy.noCandidate }}</strong><p>{{ copy.productionLead }}</p></div>
+          <div v-else class="empty-state"><strong>{{ record.taskStatus?.production === 'Running' ? copy.working : copy.noCandidate }}</strong><p>{{ copy.productionLead }}</p></div>
         </article>
 
         <article class="panel release-card">
@@ -365,7 +397,7 @@ const shortCommit = computed(() => record.value.githubCommit && record.value.git
             <p>{{ local(publicationResult as unknown as Record<string, unknown>, publicationResult.status === 'Skipped' ? 'reason' : 'output') }}</p>
             <a v-for="artifact in publicationResult.artifacts" :key="artifact.label" :href="artifactHref(artifact)">{{ zh ? artifact.label_zh : artifact.label }} ↗</a>
           </div>
-          <div v-else class="empty-state"><strong>{{ copy.noRelease }}</strong><p>{{ copy.releaseLead }}</p></div>
+          <div v-else class="empty-state"><strong>{{ record.taskStatus?.publication === 'Running' ? copy.working : copy.noRelease }}</strong><p>{{ copy.releaseLead }}</p></div>
         </article>
       </section>
 
