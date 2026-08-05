@@ -2,17 +2,11 @@ name: Research Runtime Scheduler V3.0
 
 on:
   schedule:
-    # GitHub scheduled events can be delayed or dropped during high load at the top of an hour.
-    # Open each execution slot five minutes before the formal Asia/Shanghai shift time.
-    - cron: '55 0 * * *'     # Pre-open Daily 09:00 — Discovery
-    - cron: '55 1 * * *'     # Pre-open Daily 10:00 — Queue
-    - cron: '55 2 * * *'     # Pre-open Daily 11:00 — Reading
-    - cron: '55 4 * * *'     # Pre-open Daily 13:00 — Analysis
-    - cron: '55 6 * * *'     # Pre-open Daily 15:00 — Production
-    - cron: '55 11 * * *'    # Pre-open Daily 20:00 — Publication
-    - cron: '25 12 * * 0'    # Pre-open Sunday 20:30 — Weekly Runtime
-    - cron: '55 7 * * 3'     # Pre-open Wednesday 16:00 — Academic Runtime
-    - cron: '55 3 * * 1'     # Pre-open Monday 12:00 — Research Program Runtime
+    # Control-plane heartbeat. Each run opens any due execution slot from
+    # five minutes before its formal Asia/Shanghai time until sixty minutes
+    # after it. Repeated checks make a delayed or dropped cron occurrence
+    # recoverable instead of leaving the public Runtime at Waiting.
+    - cron: '*/5 * * * *'
   workflow_dispatch:
     inputs:
       runtime_task:
@@ -52,38 +46,86 @@ jobs:
         with:
           node-version: 22
 
-      - name: Resolve formal Runtime task
+      - name: Resolve due Runtime task
         id: resolve
         shell: bash
         env:
           EVENT_NAME: ${{ github.event_name }}
-          EVENT_CRON: ${{ github.event.schedule }}
           MANUAL_TASK: ${{ inputs.runtime_task }}
         run: |
-          if [[ "$EVENT_NAME" != "schedule" ]]; then
-            task="$MANUAL_TASK"
-          else
-            case "$EVENT_CRON" in
-              '55 0 * * *') task='discovery' ;;
-              '55 1 * * *') task='queue' ;;
-              '55 2 * * *') task='reading' ;;
-              '55 4 * * *') task='analysis' ;;
-              '55 6 * * *') task='production' ;;
-              '55 11 * * *') task='publication' ;;
-              '25 12 * * 0') task='weekly' ;;
-              '55 7 * * 3') task='academic' ;;
-              '55 3 * * 1') task='program' ;;
-              *)
-                echo "Unknown Scheduler V3 pre-open cron: $EVENT_CRON"
-                exit 1
-                ;;
-            esac
-          fi
+          node <<'NODE'
+          const fs = require('fs')
+          const path = require('path')
 
-          echo "runtime_task=$task" >> "$GITHUB_OUTPUT"
-          echo "Resolved $EVENT_CRON to formal Runtime task: $task"
+          const manifest = JSON.parse(fs.readFileSync('research/runtime/SCHEDULER.json', 'utf8'))
+          const outputPath = process.env.GITHUB_OUTPUT
+          const terminal = new Set(['Running', 'Completed', 'Blocked', 'Failed', 'Skipped'])
+          const leadMinutes = 5
+          const graceMinutes = 60
 
-      - name: Schedule Runtime task
+          const writeOutput = (values) => {
+            fs.appendFileSync(outputPath, Object.entries(values)
+              .map(([key, value]) => `${key}=${String(value).replace(/\r?\n/g, ' ')}`)
+              .join('\n') + '\n')
+          }
+
+          if (process.env.EVENT_NAME !== 'schedule') {
+            writeOutput({ has_task: 'true', runtime_task: process.env.MANUAL_TASK, reason: 'manual dispatch' })
+            process.exit(0)
+          }
+
+          const parts = Object.fromEntries(new Intl.DateTimeFormat('en-CA', {
+            timeZone: manifest.timezone,
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            weekday: 'long',
+            hour: '2-digit',
+            minute: '2-digit',
+            hourCycle: 'h23'
+          }).formatToParts(new Date()).map((part) => [part.type, part.value]))
+
+          const date = `${parts.year}-${parts.month}-${parts.day}`
+          const nowMinutes = Number(parts.hour) * 60 + Number(parts.minute)
+
+          const due = manifest.tasks.filter((task) => {
+            if (task.schedule.kind === 'weekly' && !task.schedule.days?.includes(parts.weekday)) return false
+            const [hour, minute] = task.schedule.time.split(':').map(Number)
+            const delta = hour * 60 + minute - nowMinutes
+            if (delta > leadMinutes || delta < -graceMinutes) return false
+
+            const recordPath = path.join(
+              manifest.recordRoots[task.family],
+              parts.year,
+              parts.month,
+              `${date}-${task.family}-runtime.json`
+            )
+            if (!fs.existsSync(recordPath)) return true
+            const record = JSON.parse(fs.readFileSync(recordPath, 'utf8'))
+            return !terminal.has(record.taskStatus?.[task.id] || 'Waiting')
+          })
+
+          if (due.length > 1) {
+            throw new Error(`Multiple Runtime tasks are due in one control-plane heartbeat: ${due.map((task) => task.id).join(', ')}`)
+          }
+          if (!due.length) {
+            writeOutput({ has_task: 'false', runtime_task: 'none', reason: `no Waiting task due at ${date} ${parts.hour}:${parts.minute}` })
+            process.exit(0)
+          }
+
+          writeOutput({
+            has_task: 'true',
+            runtime_task: due[0].id,
+            reason: `control-plane heartbeat at ${date} ${parts.hour}:${parts.minute}; formal time ${due[0].schedule.time}`
+          })
+          NODE
+
+      - name: Report idle heartbeat
+        if: steps.resolve.outputs.has_task != 'true'
+        run: echo "${{ steps.resolve.outputs.reason }}"
+
+      - name: Persist Runtime Running state
+        if: steps.resolve.outputs.has_task == 'true'
         id: runtime
         shell: bash
         env:
@@ -91,6 +133,7 @@ jobs:
         run: node scripts/runtime-v5.mjs schedule --task "$RUNTIME_TASK"
 
       - name: Initialize same-day Research Intelligence
+        if: steps.resolve.outputs.has_task == 'true'
         shell: bash
         env:
           TASK_IDS: ${{ steps.runtime.outputs.task_ids }}
@@ -103,12 +146,14 @@ jobs:
           fi
 
       - name: Synchronize readable Runtime ledger
+        if: steps.resolve.outputs.has_task == 'true'
         shell: bash
         env:
           RUNTIME_DATE: ${{ steps.runtime.outputs.runtime_date }}
         run: node scripts/runtime-markdown.mjs render --date "$RUNTIME_DATE"
 
       - name: Validate four Runtime systems
+        if: steps.resolve.outputs.has_task == 'true'
         shell: bash
         env:
           RUNTIME_DATE: ${{ steps.runtime.outputs.runtime_date }}
@@ -116,7 +161,9 @@ jobs:
           npm run runtime:validate
           node scripts/runtime-markdown.mjs validate --date "$RUNTIME_DATE"
 
-      - name: Commit Runtime scheduling artifacts
+      - name: Commit control-plane Running state
+        if: steps.resolve.outputs.has_task == 'true'
+        id: commit
         shell: bash
         env:
           TASK_NAMES: ${{ steps.runtime.outputs.task_names }}
@@ -127,20 +174,48 @@ jobs:
           git add research/runtime/records research/runtime/[0-9][0-9][0-9][0-9] research/intelligence
 
           if git diff --cached --quiet; then
-            echo "Runtime artifacts already contain this scheduling event."
+            echo "Runtime control-plane state was already persisted by another scheduler heartbeat."
+            echo "committed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          git commit -m "runtime(v5): schedule ${TASK_NAMES} for ${RUNTIME_DATE}"
+          git commit -m "runtime(v5): open ${TASK_NAMES} control-plane state for ${RUNTIME_DATE}"
+          commit_sha="$(git rev-parse HEAD)"
 
           for attempt in 1 2 3; do
             if git pull --rebase origin main && git push origin HEAD:main; then
+              echo "committed=true" >> "$GITHUB_OUTPUT"
+              echo "commit_sha=$commit_sha" >> "$GITHUB_OUTPUT"
               exit 0
             fi
             git rebase --abort || true
             if [[ "$attempt" -eq 3 ]]; then
-              echo "Unable to publish Runtime scheduling artifacts after three attempts."
+              echo "Unable to publish Runtime Running state after three attempts."
               exit 1
             fi
             sleep $((attempt * 5))
           done
+
+      - name: Verify durable Running state
+        if: steps.commit.outputs.committed == 'true'
+        shell: bash
+        env:
+          COMMIT_SHA: ${{ steps.commit.outputs.commit_sha }}
+          RUNTIME_TASK: ${{ steps.resolve.outputs.runtime_task }}
+          RECORD_PATHS: ${{ steps.runtime.outputs.record_paths }}
+        run: |
+          git fetch origin main
+          git merge-base --is-ancestor "$COMMIT_SHA" origin/main
+
+          record_path="${RECORD_PATHS%%,*}"
+          git show "$COMMIT_SHA:$record_path" > /tmp/runtime-start-state.json
+          node <<'NODE'
+          const fs = require('fs')
+          const record = JSON.parse(fs.readFileSync('/tmp/runtime-start-state.json', 'utf8'))
+          const task = process.env.RUNTIME_TASK
+          if (record.status !== 'Running') throw new Error(`Expected overall Running, got ${record.status}`)
+          if (record.taskStatus?.[task] !== 'Running') throw new Error(`Expected taskStatus.${task}=Running, got ${record.taskStatus?.[task]}`)
+          const opened = record.timeline?.some((event) => event.task === task && event.event === 'Execution Slot Opened' && event.status === 'Running')
+          if (!opened) throw new Error(`Missing Execution Slot Opened / Running event for ${task}`)
+          console.log(`Verified durable control-plane Running state for ${task}.`)
+          NODE
