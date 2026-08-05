@@ -1,0 +1,45 @@
+name: Apply Runtime Reading 2026-08-05
+
+on:
+  push:
+    branches:
+      - runtime-reading-20260805
+
+permissions:
+  contents: write
+
+jobs:
+  apply-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: runtime-reading-20260805
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Apply Reading result
+        run: python scripts/tmp-apply-reading-20260805.py
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Validate Runtime and site
+        run: |
+          npm run runtime:validate
+          npm run docs:build
+
+      - name: Commit verified Reading result
+        shell: bash
+        run: |
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git rm .github/workflows/apply-reading-20260805.yml scripts/tmp-apply-reading-20260805.py
+          git add research/runtime/records/daily/2026/08/2026-08-05-daily-runtime.json
+          git commit -m "runtime(reading): complete 2026-08-05 deep reading"
+          git push origin HEAD:runtime-reading-20260805
