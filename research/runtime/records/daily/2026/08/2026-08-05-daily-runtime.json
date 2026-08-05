@@ -8,14 +8,14 @@
   "date": "2026-08-05",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Completed",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
     "production": "Completed",
-    "publication": "Running"
+    "publication": "Completed"
   },
   "results": {
     "discovery": {
@@ -542,6 +542,130 @@
           "commit": "8d1dda7a3d7ba13ca4b044b193d6b7e3f26f31c3"
         }
       ]
+    },
+    "publication": {
+      "schema": "runtime-shift-result/v2",
+      "task": "publication",
+      "status": "Completed",
+      "input": "3 complete same-day Publication Candidates produced by the Completed Production shift, together with Scheduler V3.0 and the data-driven bilingual Research Notes website surfaces.",
+      "input_zh": "由已完成 Production 班次生成的 3 份完整当日 Publication Candidate，以及 Scheduler V3.0 和数据驱动的双语 Research Notes 网站表面。",
+      "workResult": "Validated Production, evidence, citation, publication editing, bilingual pairing, metadata and visualization gates for all 3 candidates. Published only authorized candidate text and SVG assets to required Chinese and English column paths; data-driven indexes and website loaders now surface the releases. No new research, substantive rewriting or evidence repair was performed.",
+      "workResult_zh": "已验证全部 3 份候选的 Production、证据、引用、出版编辑、双语配对、元数据与可视化门禁。仅将获准候选文本和 SVG 资产发布到规定的中英文栏目路径；数据驱动索引与网站加载器现已展示这些发布项。未开展新研究、实质性改写或证据修复。",
+      "output": "Released 3 Daily Research items as 6 bilingual public article files and 3 visualization assets. Release commit: fd7a9f745ddcbf63172be9ee48fd4ea8ba008715.",
+      "output_zh": "已发布 3 项 Daily Research，共 6 个双语公开文章文件与 3 个可视化资产。发布提交：fd7a9f745ddcbf63172be9ee48fd4ea8ba008715。",
+      "next": "The Daily Runtime is closed for 2026-08-05. The next Daily Runtime begins with the next scheduled Discovery slot; future synthesis must consume durable released research rather than staging candidates.",
+      "next_zh": "2026-08-05 Daily Runtime 已关闭。下一轮 Daily Runtime 从下一次计划内 Discovery 时段开始；后续综合应消费已持久发布的研究成果，而不是 staging 候选。",
+      "metrics": [
+        {
+          "label": "Eligible Publication Candidates",
+          "label_zh": "符合条件的出版候选",
+          "value": "3"
+        },
+        {
+          "label": "Released Daily Research items",
+          "label_zh": "已发布 Daily Research 项目",
+          "value": "3"
+        },
+        {
+          "label": "Public bilingual article files",
+          "label_zh": "公开双语文章文件",
+          "value": "6"
+        },
+        {
+          "label": "Published visualization assets",
+          "label_zh": "已发布可视化资产",
+          "value": "3"
+        },
+        {
+          "label": "New research performed",
+          "label_zh": "开展新研究",
+          "value": "0"
+        },
+        {
+          "label": "Substantive rewrites",
+          "label_zh": "实质性改写",
+          "value": "0"
+        },
+        {
+          "label": "Evidence repairs",
+          "label_zh": "证据修复",
+          "value": "0"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Scheduler V3.0",
+          "label_zh": "Scheduler V3.0",
+          "source": "research/runtime/SCHEDULER.json"
+        },
+        {
+          "label": "Publication Candidate batch",
+          "label_zh": "Publication Candidate 批次",
+          "source": "research/runtime/candidates/2026/08/2026-08-05-candidates.json"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Verified Publication start-state commit",
+          "label_zh": "已验证 Publication 启动状态提交",
+          "commit": "d49a09154b8fe9a96e4f0f6282353dba4d682578"
+        },
+        {
+          "label": "Verified Publication start checkpoint",
+          "label_zh": "已验证 Publication 启动检查点",
+          "commit": "2db22a547a329fd071d9d63581efe6fc19df0c73"
+        },
+        {
+          "label": "Verified Daily Research release commit",
+          "label_zh": "已验证 Daily Research 发布提交",
+          "commit": "fd7a9f745ddcbf63172be9ee48fd4ea8ba008715"
+        },
+        {
+          "label": "Q-20260805-12 Chinese public article",
+          "label_zh": "Q-20260805-12 中文公开文章",
+          "path": "docs/zh/digital-employee/2026-08-05-verifiable-completion.md"
+        },
+        {
+          "label": "Q-20260805-12 English public article",
+          "label_zh": "Q-20260805-12 英文公开文章",
+          "path": "docs/en/digital-employee/2026-08-05-verifiable-completion.md"
+        },
+        {
+          "label": "Q-20260805-12 public visualization",
+          "label_zh": "Q-20260805-12 公开可视化",
+          "path": "docs/public/assets/covers/daily-2026-08-05-verifiable-completion.svg"
+        },
+        {
+          "label": "Q-20260805-13 Chinese public article",
+          "label_zh": "Q-20260805-13 中文公开文章",
+          "path": "docs/zh/industry/2026-08-05-governed-model-routing.md"
+        },
+        {
+          "label": "Q-20260805-13 English public article",
+          "label_zh": "Q-20260805-13 英文公开文章",
+          "path": "docs/en/industry/2026-08-05-governed-model-routing.md"
+        },
+        {
+          "label": "Q-20260805-13 public visualization",
+          "label_zh": "Q-20260805-13 公开可视化",
+          "path": "docs/public/assets/covers/daily-2026-08-05-governed-model-routing.svg"
+        },
+        {
+          "label": "Q-20260805-14 Chinese public article",
+          "label_zh": "Q-20260805-14 中文公开文章",
+          "path": "docs/zh/engineering/2026-08-05-guardrail-persistence-state-machine.md"
+        },
+        {
+          "label": "Q-20260805-14 English public article",
+          "label_zh": "Q-20260805-14 英文公开文章",
+          "path": "docs/en/engineering/2026-08-05-guardrail-persistence-state-machine.md"
+        },
+        {
+          "label": "Q-20260805-14 public visualization",
+          "label_zh": "Q-20260805-14 公开可视化",
+          "path": "docs/public/assets/covers/daily-2026-08-05-guardrail-persistence-state-machine.svg"
+        }
+      ]
     }
   },
   "timeline": [
@@ -663,6 +787,20 @@
       "event": "GitHub Commit Verified",
       "status": "Running",
       "detail": "Fetched and verified start-state commit d49a09154b8fe9a96e4f0f6282353dba4d682578 containing synchronized Daily Runtime JSON and Markdown ledger."
+    },
+    {
+      "time": "2026-08-05T20:34:25+08:00",
+      "task": "publication",
+      "event": "Publication Completed",
+      "status": "Completed",
+      "detail": "Validated all Publication gates and released 3 Daily Research items as 6 bilingual articles and 3 visualizations without new research, substantive rewriting or evidence repair."
+    },
+    {
+      "time": "2026-08-05T20:34:25+08:00",
+      "task": "publication",
+      "event": "GitHub Commit Verified",
+      "status": "Completed",
+      "detail": "Fetched and verified release commit fd7a9f745ddcbf63172be9ee48fd4ea8ba008715 containing all authorized bilingual public paths, visualization assets and website surface updates."
     }
   ],
   "metrics": [
