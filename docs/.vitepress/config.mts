@@ -40,7 +40,7 @@ const enSidebar = {
     { text: 'Research Intelligence System V1.0', link: '/en/runtime/research-intelligence' },
     { text: 'Research Runtime Scheduler V1.0 History', link: '/en/publications/research-runtime-scheduler-v1.0' },
     { text: 'TMPA Architecture Paper A0.5', link: '/en/publications/tmpa-architecture-paper-a0.5' },
-    { text: 'TMPA Core Specification S0.4', link: '/en/publications/tmpa-core-specification-s0.4' },
+    { text: 'TMPA Core Specification S0.5', link: '/en/publications/tmpa-core-specification-s0.5' },
     { text: 'Implementation Case I0.5', link: '/en/publications/implementation-case-i0.5' }
   ]}]
 }
@@ -85,7 +85,7 @@ const zhSidebar = {
     { text: '研究情报系统 V1.0', link: '/zh/runtime/research-intelligence' },
     { text: 'Runtime Scheduler V1.0 历史发布', link: '/zh/publications/research-runtime-scheduler-v1.0' },
     { text: 'TMPA 架构论文 A0.5', link: '/zh/publications/tmpa-architecture-paper-a0.5' },
-    { text: 'TMPA 核心规范 S0.4', link: '/zh/publications/tmpa-core-specification-s0.4' },
+    { text: 'TMPA 核心规范 S0.5', link: '/zh/publications/tmpa-core-specification-s0.5' },
     { text: '工程实现案例 I0.5', link: '/zh/publications/implementation-case-i0.5' }
   ]}]
 }

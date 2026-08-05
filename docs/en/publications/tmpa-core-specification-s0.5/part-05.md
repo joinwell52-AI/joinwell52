@@ -113,6 +113,28 @@ Recovery SHALL NOT require access to the previous participant's hidden chain of 
 
 Execution-specific context not represented in governance objects MAY be unavailable; such absence SHALL be reported rather than guessed.
 
+## 9.11 Governance Closure, Claims, and Human-Control Requirements
+
+A work-oriented profile SHALL define the relation semantics for reports, issues, rejection, cancellation, follow-up work, review, acceptance, parent-child derivation, human approval, and archive authorization.
+
+Lifecycle state and business acceptance SHALL be reconstructed separately. A terminal state, `done` label, physical archive, or executor completion claim SHALL NOT establish business completion by itself. When valid acceptance evidence is missing, the reader SHALL emit `ACCEPTANCE_UNDETERMINED`.
+
+A governance-decision object SHALL remain orthogonal to a lifecycle review stage. An execution report SHALL NOT act as its own independent review, and a governance review SHALL NOT replace a required reciprocal response.
+
+Every completion, failure, recovery, or acceptance claim SHALL identify a stable claim identifier, predicate, subject, and evidence-object identifier set. Missing required evidence SHALL emit `CLAIM_EVIDENCE_MISSING`, and the affected conclusion SHALL be `undetermined`.
+
+Every accepted work object SHALL eventually have a report, issue, rejection, cancellation, or follow-up-work response. When the profile requires closure and the reader finds none, it SHALL emit `RECIPROCITY_MISSING` and SHALL NOT interpret silence as success.
+
+Child work SHALL identify its parent explicitly. When a parent has an unfinished child, an unhandled blocked child, or a child without a reciprocal result, parent completion or acceptance SHALL emit `CHILD_WORK_OPEN` and remain `undetermined`.
+
+A risk object requiring human approval SHALL remain `undetermined` / `pending_human` until the reader verifies a human-approval object issued by a profile-authorized role. Agent self-approval, missing approval, or unauthorized approval SHALL NOT satisfy the requirement and SHALL emit `HUMAN_APPROVAL_REQUIRED` or the applicable authority issue.
+
+A profile SHALL publish failure-type and recovery-action registries. Failure and recovery objects SHALL reference the affected work; a recovery object SHALL also reference the triggering failure. A failure SHALL NOT be hidden or overwritten by a success response.
+
+When current-state observations conflict with transition-history evidence, the reader SHALL emit `STATE_EVIDENCE_CONFLICT`, preserve both sources, and prevent the conflicting state from becoming the sole authoritative conclusion.
+
+Inspection and governance-alert objects MAY emit findings and suggested plans, but they SHALL NOT be interpreted as an applied repair, lifecycle transition, or business decision without separate execution evidence.
+
 ---
 
 # 10. Conformance and Testability
@@ -124,7 +146,7 @@ Sections 9 and 10 preserve the clause identifiers used by the combined TMPA Draf
 TMPA defines three conformance levels:
 
 1. **TMPA Core Conformance:** implements durable textual messages and state objects, primary-carrier rules, single-writer streams, asynchronous multi-stream progression, deterministic aggregation and governance reconstruction, type rules, roles, lifecycle, integrity verification, and recovery requirements.
-2. **FCoP Profile Conformance:** satisfies TMPA Core through a documented FCoP projection and implements the published FCoP naming, lifecycle, atomic-transition, routing, and evidence rules.
+2. **FCoP Profile Conformance:** satisfies TMPA Core through a documented projection to the published FCoP protocol, including its naming, lifecycle, atomic-transition, routing, and evidence rules. Passing tests for one FCoP reference-implementation package is implementation evidence only; it is neither installation of the protocol nor sufficient by itself for this conformance level.
 3. **Authenticated Governance Conformance:** satisfies TMPA Core and validates creator identity through a trusted signature, key, and authorization profile.
 
 None of these levels certifies the semantic truth of a participant's claim. Authenticated Governance Conformance can establish which verified principal published an authorized object; claim correctness still depends on the applicable evidence, review, tool-attestation, or domain-verification profile.
@@ -137,14 +159,14 @@ A TMPA Core conformance suite SHALL include C01–C14. Each result SHALL identif
 
 | ID | Test | Normative basis | Pass criterion |
 |---|---|---|---|
-| C01 | Schema validation | 4.1, 9.2, 9.3 | an object with a missing required field including `governed_work`, wrong Core type or version, prohibited field, malformed transition tuple, incomplete signature group, or invalid asserted `date-time` is rejected from the authoritative object set and produces `SCHEMA_INVALID` deterministically |
-| C02 | Primary-carrier and single-writer immutability | 9.2 | one stable task carrier remains identifiable; another writer cannot replace or co-edit a published object; correction or supersession is represented by new attributable evidence that references or qualifies the earlier object |
+| C01 | Schema validation | 4.1, 9.2, 9.3, 9.11 | an object with missing required fields, wrong Core type/version, prohibited fields, malformed transitions, incomplete signatures, malformed claims, invalid risk enums, or invalid asserted `date-time` is excluded and produces `SCHEMA_INVALID` deterministically |
+| C02 | Primary carrier, work derivation, and single-writer immutability | 9.2, 9.11 | one stable task carrier remains identifiable; parent-child work round-trips and is not replaced by a thread; another writer cannot replace or co-edit a published object; correction/supersession uses new attributable evidence |
 | C03 | Duplicate object identity | 9.2, 9.9 | two candidates with the same ID and different canonical content are both retained for inspection, neither is selected as the authoritative node, and a deterministic critical conflict is emitted |
 | C04 | Serial-stream continuity and asynchronous progress | 9.5, 9.9 | each writer preserves its local sequence; duplicate numbers and gaps are reported; unrelated streams can advance independently; no missing object is invented and arrival order does not change the final result for the same set |
 | C05 | Role authority | 6.2, 9.4, 9.9 | an action outside validated role scope produces `AUTHORITY_DENIED` and `invalid`; missing or ambiguous assignment evidence produces `AUTHORITY_UNDETERMINED` and `undetermined`; neither action is applied |
-| C06 | Lifecycle legality | 6.2–6.4, 9.6, 9.9 | an undefined transition produces `ILLEGAL_TRANSITION` and `invalid`; ambiguous current state or missing prerequisite evidence produces `LIFECYCLE_UNDETERMINED` and `undetermined`; neither changes authoritative state |
-| C07 | Separation of duties | 9.3, 9.4 | the same identity cannot execute and independently review the same governed result unless a profile-authorized exception object exists; the exception and approving authority remain in evidence |
+| C06 | Lifecycle legality, state evidence, and business-acceptance separation | 6.2–6.4, 9.6, 9.9, 9.11 | an undefined transition produces `ILLEGAL_TRANSITION`; ambiguous state or missing prerequisites produce `LIFECYCLE_UNDETERMINED`; an observation contradicting reconstructed state produces `STATE_EVIDENCE_CONFLICT`; completion without independent acceptance produces `ACCEPTANCE_UNDETERMINED`; none fabricates business completion |
+| C07 | Separation of duties and human control | 9.3, 9.4, 9.11 | the same identity cannot execute and independently review the same result; a risk object requiring human approval produces `HUMAN_APPROVAL_REQUIRED` and `pending_human` until valid approval exists; exceptions and approval authority remain in evidence |
 | C08 | Integrity tampering | 9.8, 9.9 | changing covered content while preserving the original integrity metadata causes digest verification to fail; the object is retained as failure evidence but excluded from the intact authoritative set |
-| C09 | Missing reference | 9.7, 9.9 | an unresolved required target appears in the issue set, and the dependency is not treated as satisfied |
+| C09 | Missing reference and claim evidence | 9.7, 9.9, 9.11 | an unresolved target produces `MISSING_REFERENCE`; missing evidence for a completion claim produces `CLAIM_EVIDENCE_MISSING`; neither dependency nor claim is treated as satisfied |
 | C10 | Prohibited cycle | 9.7, 9.9 | the affected prohibited-cycle subgraph is quarantined and reported while unaffected valid objects remain reconstructable |
 | C11 | Aggregation and reconstruction determinism | 8, 9.9 | every tested enumeration, delayed-delivery permutation, and aggregation order of the same source set and complete fixed input bundle produces a byte-equivalent canonical result envelope, graph, and issue set, while unrelated cross-stream objects remain incomparable |

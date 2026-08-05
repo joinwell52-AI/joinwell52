@@ -17,7 +17,7 @@ Runner **SHALL** 保留精确输入 Manifest、规范结果、退出状态、std
 {
   "test_case_id": "C06-illegal-transition-001",
   "criterion": "C06",
-  "core_version": "S0.4",
+  "core_version": "S0.5",
   "inputs": [{"source_id": "transition-1", "path": "fixtures/C06/transition-1.json", "media_type": "application/json", "byte_digest": "sha256:<hex>"}],
   "assertions": [{"id": "state-unchanged", "target": "/nodes/work-1/state", "operator": "equals", "expected": "active", "mandatory": true}],
   "expected_result_digest": "sha256:<hex>",
@@ -36,13 +36,13 @@ Runner **SHALL** 为每项标准赋予恰好一个裁决：
 
 基础设施失败 **SHALL** 另记为 `run_state: error`，并产生 NOT RUN，而不是 PASS。聚合优先级为 FAIL、PARTIAL、NOT RUN、PASS：任一 FAIL 使聚合为 FAIL；没有 FAIL 时，任一 PARTIAL 使聚合为 PARTIAL；两者均无时，任一 NOT RUN 使聚合为 NOT RUN；只有全部 PASS 才得到 PASS。
 
-只有 C01–C14 针对同一固定输入 Bundle 全部 PASS，且完整证据 Package 已发布，产品才 **MAY** 声明 **TMPA Core S0.4 Conformance**。“未观察到失败”、PARTIAL、NOT RUN、旧版 Core 结果或未发布结果 **SHALL NOT** 被表述为完整 S0.4 一致性。
+只有 C01–C14 针对同一固定输入 Bundle 全部 PASS，且完整证据 Package 已发布，产品才 **MAY** 声明 **TMPA Core S0.5 Conformance**。“未观察到失败”、PARTIAL、NOT RUN、旧版 Core 结果或未发布结果 **SHALL NOT** 被表述为完整 S0.5 一致性。
 
 `specified`、`implemented`、`demonstrated` 与 `independently adopted` 描述证据成熟度，**SHALL** 与测试裁决分开报告。作者演示不建立独立采用。
 
 ```json
 {
-  "core_version": "S0.4",
+  "core_version": "S0.5",
   "implementation": {"id": "<id>", "version": "<version>"},
   "criteria": [{"id": "C01", "verdict": "PASS", "manifest_digest": "sha256:<hex>", "result_digest": "sha256:<hex>"}],
   "aggregate_verdict": "PASS | FAIL | PARTIAL | NOT RUN",
@@ -113,9 +113,15 @@ Profile 特定工件不会自动成为规范 Core 对象。Profile **MUST** 定�
 
 所有规范修订 **MUST** 直接进入 `joinwell52-AI/joinwell52` 的本 GitHub 文档，并由 Git Commit 表示正式版本历史。Architecture Paper、Implementation Case Report、网站文案或外部副本 **MUST NOT** 覆盖或静默重定义 Core 条款。
 
-## 11.4 S0.4 可实现性记录
+## 11.4 S0.5 FCoP 派生闭环记录
 
-2026-08-03 的 S0.4 修订通过把对象绑定到受治理工作项与主载体、形式化迁移求值和三值组合、固定 Reader 输入/输出契约，并为 C01–C14 定义可执行测试 Manifest 与裁决规则，使本草稿达到可实现状态。这些变更改变了可观察 Schema 和一致性行为。因此，早期 S0.3 结果只保留为历史基线；未重新运行时，**SHALL NOT** 把它们改标为 S0.4 一致性证据。
+2026-08-05 的 S0.5 修订在 S0.4 可实现基线上，使用完整 FCoP 来源集合抽取协议语义，而不是只从某一个应用案例抽取。修订区分生命周期状态与业务验收，增加显式父子工作派生、完成声明与证据、角色能力分层、风险与人工批准门、互惠闭环、失败/恢复动作、巡检发现及漂移处理，并同步扩展 Reader 问题代码和 C01–C14。
+
+来源边界必须明确：FCoP 是协议与参考 Profile；其规范输入是固定版本的 FCoP Specification、Rules、Schema 与架构决策。`fcop` 和 `fcop-mcp` Python Package 是用于测试部分协议投影的参考实现；安装或测试这些 Package 不等于“安装 FCoP”，其测试状态也不单独决定协议是否有效。
+
+作者生成的 S0.5 Reference Reader 已通过全部十四项 S0.5 Fixture。另行对 FCoP v3.2.5 参考实现重跑，记录 1,222 passed、2 skipped、3 failed；失败涉及可选 `parent` 字段的保存回读和公开接口暴露。因此，已执行的 C02 S0.5 断言使产品基线为 FAIL。这是有界的参考实现一致性发现，不是 FCoP 协议失败，也不构成完整 S0.5 产品一致性。
+
+S0.4 及其 I0.5 一致性语料库作为不可变历史基线保留，**SHALL NOT** 被改标为 S0.5 证据。S0.5 改变了可观察 Schema、Reader 输出与标准含义，因此任何 S0.5 产品声明都需要新的 S0.5 运行。
 
 ---
 
@@ -132,4 +138,18 @@ Profile 特定工件不会自动成为规范 Core 对象。Profile **MUST** 定�
 | Fixture 与结果报告 | 10.5 | 保留；当前产品基线移入实施报告 |
 | 合规映射边界 | 10.6 | 保留 |
 
-Architecture Paper **MAY** 总结本规范，但不得重定义其含义。Implementation Case Report **MAY** 按条款提供证据，但不得改变条款含义。历史综合草稿仅用于说明来源，不是当前编辑或规范权威；当前 S0.4 及后续规范版本只在本 GitHub Core Specification 中维护。
+Architecture Paper **MAY** 总结本规范，但不得重定义其含义。Implementation Case Report **MAY** 按条款提供证据，但不得改变条款含义。历史综合草稿仅用于说明来源，不是当前编辑或规范权威；当前 S0.5 及后续规范版本只在本 GitHub Core Specification 中维护。
+
+# 附录 B：FCoP 来源交叉映射（说明性）
+
+| S0.5 关注点 | 固定版本的 FCoP 来源 | TMPA Core 处理 |
+|---|---|---|
+| 协议对象、文档与事件词汇 | `spec/fcop-v3-spec.md` 与 `spec/fcop-v3-spec.zh.md`；仓库 Tag `v3.2.5` | 投影为治理对象、类型化引用、写者流与保留来源的 Reader 输入 |
+| 角色边界与协作周期规则 | `AGENTS.md`，Rules 版本 `3.2.5` | 声明能力与强制权限分离；验收与职责分离裁决要求可归属证据 |
+| 机器可读载体与验证 | `spec/schemas/` | 为 S0.5 对象/Profile Schema 提供输入，但不替代 TMPA Core Schema 验证 |
+| 生命周期、原子迁移、恢复与审计决策 | FCoP Specification 与适用 ADR | 形式化为生命周期状态、业务验收、失败/恢复动作、巡检发现及确定性历史重建 |
+| 父子工作派生与闭环 | FCoP v3.2.5 `parent` 协议表面 | 表示为 `governed_work.parent_id`、父子汇总与 `CHILD_WORK_OPEN` |
+| 可执行软件 | `fcop` 与 `fcop-mcp` Package | 只作为 FCoP 参考实现；Package 测试是实现证据，不是协议本身 |
+| 下游采用 | CodeFlowMu 及有界的小典 AI/WP-13 证据 | 只作为 Implementation Case Report 中的应用证据，不作为理论证明或协议定义 |
+
+本表只用于可追踪，不构成引用即纳入。FCoP 与 TMPA 抽象不同时，由本 Core Specification 控制 TMPA 含义；应用或参考实现偏离协议来源时，应把偏差报告为实现证据，不得静默改写任一规范。

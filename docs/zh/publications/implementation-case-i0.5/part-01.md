@@ -30,13 +30,13 @@ outline: deep
 
 本报告把 Implementation Case 从一个未进入 GitHub 的 S0.3 时代本地归档，推进为公开、可执行的 S0.4 语料库。I0.5 保留 I0.4 的 Reference Reader、C01–C14 Fixture、Manifest、结果 Envelope、产品证据断言与单命令 Runner，并新增 WP-13 现场案例：当子执行产生带有“完成”意味但缺乏退出状态、测试、Commit 与正式 REPORT 的声明时，PM 根据持久事实不予放行；DEV 恢复后在原任务补齐交付，再由角色分离的 QA 验证。
 
-FCoP 实现项目可见的协调 Profile：路由文本工件、生命周期路径、原子 Rename、只增迁移证据、角色绑定、复核、ISSUE、告警和检查报告都保存在临时模型 Session 之外。CodeFlowMu 把 FCoP 用作持久工作身份、任务—报告流、复核门禁、依赖等待、恢复和归档历史的协调与治理基础设施。小典 AI 提供来自受治理 NL2SQL Pipeline 的前规范现场证据，包括被保留的通过路径和拒绝路径。
+FCoP 协议定义项目可见的协调 Profile：路由文本工件、生命周期路径、原子 Rename、只增迁移证据、角色绑定、复核、ISSUE、告警和检查报告都保存在临时模型 Session 之外；其参考实现为这些规则提供有界的可执行证据。CodeFlowMu 作为下游应用采用该协议，用于持久工作身份、任务—报告流、复核门禁、依赖等待、恢复和归档历史。小典 AI 提供来自受治理 NL2SQL Pipeline 的前规范现场证据，包括被保留的通过路径和拒绝路径。
 
 S0.4 Reference Reader 针对作者生成的合成 Fixture 套件得到 **14 PASS**。单独求值的 FCoP–CodeFlowMu 产品基线仍为 **1 PASS、9 PARTIAL、4 NOT RUN、0 FAIL**，聚合裁决为 `PARTIAL`。WP-13 增强了 C04、C06、C07 与 C13 相关行为的作者生成 `demonstrated` 证据，但没有执行新的 S0.4 产品 Reader 标准，因此不改写上述裁决，也不建立独立验证。
 
 # 1. 范围与证据边界
 
-本报告回答：新的 S0.4 Reference Reader 实现了什么；锁定产品证据实际演示了什么；哪些产品要求仍未执行。本报告只提供工程证据且不具有规范性；要求与规范测试名称只由 [TMPA Core Specification S0.4](/zh/publications/tmpa-core-specification-s0.4) 定义，理论由 [Architecture Paper A0.5](/zh/publications/tmpa-architecture-paper-a0.5) 解释。
+本报告回答：S0.4 Reference Reader 实现了什么；锁定产品证据实际演示了什么；哪些 S0.4 产品要求仍未执行。本报告只提供工程证据且不具有规范性，其裁决保留在历史 S0.4 目标下；当前要求与规范测试名称由 [TMPA Core Specification S0.5](/zh/publications/tmpa-core-specification-s0.5) 定义，I0.5 不声明 S0.5 一致性。理论由 [Architecture Paper A0.5](/zh/publications/tmpa-architecture-paper-a0.5) 解释。
 
 证据仍分为 `specified`、`implemented`、`demonstrated` 与 `independently adopted`。Reference Reader 已实现并由作者演示；产品基线包含混合的 implemented/demonstrated 证据，聚合仍为 `PARTIAL`。Fixture 成功不得转换为 FCoP 或 CodeFlowMu 产品一致性，也不建立独立采用或独立验证。
 
@@ -51,11 +51,11 @@ TMPA 架构 → 可复用 FCoP 协议 Profile → CodeFlowMu 与其他下游应�
               → CodeFlowMu 应用 → 当前 TMPA 形式化
 ```
 
-FCoP 实现 TMPA 中一个已定义的文件型子集；CodeFlowMu 把 FCoP 作为协调与治理基础设施采用。FCoP 不穷尽 TMPA；CodeFlowMu 不定义 FCoP；小典 AI 是谱系和现场证据，不是产品级 TMPA Reader。
+FCoP 定义覆盖 TMPA 部分文件型语义的协议 Profile；`fcop` 与 `fcop-mcp` Package 是其参考实现，CodeFlowMu 是把该协议作为协调与治理基础设施采用的下游应用。FCoP 不穷尽 TMPA；CodeFlowMu 不定义 FCoP；小典 AI 是谱系和现场证据，不是产品级 TMPA Reader。
 
 术语遵循 Core Specification 第 2 节：**治理对象**是语义单元，**来源工件**是物理观测，**治理 Reader**是确定性重建阶段，`valid` / `invalid` / `undetermined` 是仅有的三个治理语义判断。本报告不引入替代含义。
 
-# 3. FCoP 工程实现
+# 3. FCoP 协议与参考实现证据
 
 ## 3.1 持久文本消息与状态表面
 

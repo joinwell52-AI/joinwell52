@@ -1,5 +1,5 @@
 ---
-title: TMPA Core Specification — Implementation Draft S0.4
+title: TMPA Core Specification — Implementation Draft S0.5
 outline: deep
 ---
 
@@ -8,9 +8,9 @@ outline: deep
   kicker="Normative Specification"
   title="TMPA Core Specification"
   summary="Normative object, lifecycle, authority, three-valued judgment and deterministic reconstruction requirements."
-  version="S0.4"
+  version="S0.5"
   status="Implementation-ready working draft"
-  languageHref="/zh/publications/tmpa-core-specification-s0.4"
+  languageHref="/zh/publications/tmpa-core-specification-s0.5"
   languageLabel="简体中文"
 />
 
@@ -18,12 +18,12 @@ outline: deep
 
 ## Textual Multi-Agent Process Architecture — Core Objects, Reader Semantics, and Conformance
 
-> **Specification Version:** Draft S0.4<br>
+> **Specification Version:** Draft S0.5<br>
 > **Historical Extraction Baseline:** TMPA Draft V1.0-R24; current specification maintained directly in this GitHub document<br>
 > **Status:** Implementation-Ready Normative Draft<br>
 > **Extraction Date:** 2026-07-31  
-> **Editorial Revision Date:** 2026-08-03<br>
-> **Authority:** This GitHub document is the sole normative source for TMPA Core S0.4. The Architecture Paper is theoretical and the Implementation Case Report is evidentiary; neither may redefine this specification.
+> **Editorial Revision Date:** 2026-08-05<br>
+> **Authority:** This GitHub document is the sole normative source for TMPA Core S0.5. The Architecture Paper is theoretical and the Implementation Case Report is evidentiary; neither may redefine this specification.
 
 ---
 
@@ -54,7 +54,7 @@ XiaoDian AI practice → original TMPA → FCoP extraction and maturation
                     → CodeFlowMu application → current TMPA formalization
 ```
 
-FCoP realizes a defined file-based subset of TMPA; CodeFlowMu adopts FCoP as coordination and governance infrastructure. Neither FCoP nor CodeFlowMu defines or exhausts TMPA Core.
+FCoP defines a reusable file-based protocol profile over a subset of TMPA semantics; CodeFlowMu is a downstream application that adopts that protocol for coordination and governance. The `fcop` and `fcop-mcp` Python packages are reference implementations of the protocol, not FCoP itself. Neither the FCoP protocol, its reference implementation, nor CodeFlowMu defines or exhausts TMPA Core.
 
 ---
 
@@ -76,6 +76,12 @@ The paper fixes the following vocabulary so that semantic objects, physical stor
 | **source aggregator** | **来源聚合器** | the stage that discovers, preserves, parses, indexes, and normalizes source candidates without deciding governance truth | the governance reader |
 | **governance reader** | **治理 Reader** | the deterministic stage that applies a fixed profile to the canonical candidate set | the storage layer, orchestrator, or model runtime |
 | **governance graph and issue set** | **治理图与问题集合** | the reconstructed partial-order process view and the canonical unresolved-condition output | the original source evidence or an imposed total order |
+| **lifecycle state** | **生命周期状态** | the current profile stage reconstructed from valid transitions or state observations | business acceptance, semantic truth, or proof that intended value was delivered |
+| **business acceptance** | **业务验收** | an independent conclusion by an authorized role over a delivery claim and its supporting evidence | executor self-report, terminal storage location, or a `done` label |
+| **completion claim** | **完成声明** | an inspectable assertion that a work item, deliverable, or child-work set satisfies its requirements | a self-authenticating completion fact |
+| **work derivation** | **工作派生关系** | an explicit parent-child relation retaining scope, responsibility, and closure requirements | a transient runtime fork or an unproven task list |
+| **governance decision** | **治理裁决** | an independent review, approval, rejection, change request, abstention, or human-escalation object | the lifecycle `review` stage itself |
+| **inspection finding** | **巡检发现** | a reproducible drift or risk signal emitted by a reader, auditor, or governance-alert component | an automatically executed repair or business decision |
 
 The three semantic judgments are also fixed across all documents: `valid` (**有效**) means the applicable evidence and rules establish acceptance; `invalid` (**无效**) means the rules establish rejection or violation; `undetermined` (**未确定**) means evidence is incomplete, conflicting, or awaiting an authorized resolution. View labels such as authoritative, quarantined, partial, disputed, and pending_human explain the presentation reason; they are not additional semantic values.
 
@@ -103,12 +109,17 @@ Every governance object contains or identifies:
 - a creation time;
 - a lifecycle profile and declared state;
 - typed references to related objects;
+- optional parent-work and thread identifiers;
+- optional completion, failure, recovery, or acceptance claims and their evidence references;
+- a risk level and human-approval requirement when required by the profile;
 - canonical textual content;
 - integrity evidence.
 
 A published governance object is immutable. Correction does not erase or rewrite the original object; it creates a new object that supersedes, rejects, qualifies, or resolves the earlier one. Multiple byte-identical source observations may refer to the same object without changing its meaning; the same identifier paired with different canonical content is a conflict, not an update.
 
 The lifecycle state declared by an object is the state associated with that object under its profile at publication. The current authoritative state of governed work is reconstructed from the valid object set, accepted transitions, and profile rules. It is not obtained by mutating an earlier published object or by selecting the most recent timestamp.
+
+Lifecycle state and business acceptance are orthogonal dimensions. A terminal state, archive location, or `done` declaration is state evidence only. It MUST NOT be reconstructed as business completion unless the applicable profile defines acceptance authority, required delivery evidence, and separation of duties, and the reader finds a valid acceptance object.
 
 ## 3.2 Document-Type Registries
 
@@ -139,6 +150,8 @@ Each role definition identifies:
 - the authority that assigns the role;
 - the assignment's validity period and revocation state.
 
+A profile MAY organize roles into execution, governance, and administration capability layers, but it must define permitted and prohibited directions and identify the identity or runtime control that enforces them. Declared capability boundaries and enforced capability boundaries MUST be reported separately.
+
 An object’s `role` field declares the authority under which the creator acted; it does not create that authority. A reader validates the claim against an active role assignment and the applicable policy profile.
 
 A participant may occupy more than one role only when the implementation profile explicitly permits the combination. A deployment claiming independent review must prohibit the same identity from acting as both executor and reviewer for the same governed result unless a recorded and authorized exception applies.
@@ -166,6 +179,8 @@ A transition is accepted only when:
 5. the transition evidence passes schema and integrity validation.
 
 An illegal or unauthorized transition does not alter the authoritative lifecycle state. The attempt remains observable through a rejection, issue, alert, or equivalent profile-defined record rather than being silently discarded or repaired.
+
+A lifecycle profile MUST additionally define: (1) which states require independent business acceptance; (2) which relations constitute reporting, review, acceptance, and archive authorization; (3) how parent and child work roll up; (4) which risk levels require human approval; and (5) failure types, recovery actions, and their persistent evidence. Lifecycle tools or physical locations may implement these rules but do not replace their semantic definitions.
 
 ## 3.5 Textual Messages, Single-Writer Streams, and Asynchronous Parallelism
 

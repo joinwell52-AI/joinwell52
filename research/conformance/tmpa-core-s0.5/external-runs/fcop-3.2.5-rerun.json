@@ -1,0 +1,27 @@
+{
+  "system": "FCoP reference implementation (fcop + fcop-mcp)",
+  "version": "3.2.5",
+  "commit": "b3dc23439c6aaa6a6b3765655b87e5924e0257f9",
+  "retrieval": "git fetch --depth=1 origin tag v3.2.5",
+  "executed_at": "2026-08-05T09:00:00Z",
+  "environment": {
+    "os": "Linux",
+    "python": "3.12.13",
+    "pytest": "9.1.1",
+    "pythonhashseed": "0"
+  },
+  "command": "UV_CACHE_DIR=/tmp/uv-cache-tmpa-s05 UV_LINK_MODE=copy uv run --extra dev pytest tests -q",
+  "result": {
+    "passed": 1222,
+    "skipped": 2,
+    "failed": 3,
+    "warnings": 1,
+    "duration_seconds": 3.15
+  },
+  "failures": [
+    "tests/test_fcop/test_public_surface.py::test_public_surface_matches_snapshot — write_task parent parameter absent from the locked public API snapshot",
+    "tests/test_fcop_mcp/test_server.py::TestReportsAndIssues::test_report_lifecycle — parent field not preserved by read_task",
+    "tests/test_fcop_mcp/test_tool_surface.py::test_tool_surface_matches_snapshot — parent parameter absent from the locked MCP surface snapshot"
+  ],
+  "scope": "Direct rerun of the fcop and fcop-mcp reference-implementation packages at the publicly retrievable FCoP repository v3.2.5 release tag. This evaluates the reference implementation, not the FCoP protocol itself and not a TMPA S0.5 Reader result; the three executed failures are retained and not relabeled."
+}
