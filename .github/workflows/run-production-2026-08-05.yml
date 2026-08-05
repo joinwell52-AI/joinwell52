@@ -29,5 +29,44 @@ jobs:
           node-version: 22
       - name: Install dependencies
         run: npm install
+      - name: Make executor resume-safe after durable start commit
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('scripts/run-production-2026-08-05.mjs')
+          s = p.read_text()
+          replacement = r'''// 1. Durable Running state before substantive Production work.
+          let startTime
+          let startSha
+          if (record.taskStatus?.production === 'Waiting') {
+            startTime = isoShanghai()
+            record.status = 'Running'
+            record.taskStatus.production = 'Running'
+            appendEvent(record, 'Execution Slot Opened', 'Running', 'Research Runtime Production opened by Scheduler V3.0; Skills 05–08 may begin only after this start state is committed and verified.', startTime)
+            record.githubCommit = 'pending'
+            record.commitVerify = 'Waiting'
+            writeJson(RECORD, record)
+            renderLedger()
+            startSha = commitAndPush(`runtime(production): open ${DATE} execution slot`, [RECORD, LEDGER])
+          } else if (record.taskStatus?.production === 'Running') {
+            const opened = [...(record.timeline || [])].reverse().find((item) => item.task === 'production' && item.event === 'Execution Slot Opened')
+            if (!opened) throw new Error('Production is Running without an Execution Slot Opened event')
+            startTime = opened.time
+            startSha = sh('git', 'log', '-1', '--format=%H', '--', RECORD)
+          } else if (record.taskStatus?.production === 'Completed') {
+            process.exit(0)
+          } else {
+            throw new Error(`Production cannot resume from ${record.taskStatus?.production}`)
+          }
+          verifyProjection(startSha, [startTime, 'Execution Slot Opened', 'Running'])
+
+          // 2. Persist the verified start checkpoint, still before substantive work.'''
+          s2, n = re.subn(r'// 1\. Durable Running state before substantive Production work\.[\s\S]*?// 2\. Persist the verified start checkpoint, still before substantive work\.', replacement, s, count=1)
+          if n != 1:
+              raise SystemExit('failed to patch resume block')
+          p.write_text(s2)
+          PY
       - name: Execute governed Production
         run: node scripts/run-production-2026-08-05.mjs
