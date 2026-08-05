@@ -86,6 +86,7 @@ jobs:
           npm ci
           npm run docs:build
           git diff --check
+          git restore docs/.vitepress/generated || true
 
       - name: Commit finalized publication and remove one-time workflow
         shell: bash
@@ -99,5 +100,4 @@ jobs:
             docs/public/evidence/wp13-multi-agent-fact-checking/README.md \
             .github/workflows/finalize-wp13-github-publication-once.yml
           git commit -m "docs(engineering): finalize WP-13 GitHub-first publication"
-          git pull --rebase origin "$GITHUB_REF_NAME"
           git push origin "HEAD:$GITHUB_REF_NAME"
