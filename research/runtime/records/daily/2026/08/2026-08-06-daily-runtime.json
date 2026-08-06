@@ -8,14 +8,14 @@
   "date": "2026-08-06",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Completed",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
     "production": "Completed",
-    "publication": "Running"
+    "publication": "Completed"
   },
   "results": {
     "discovery": {
@@ -698,6 +698,162 @@
           "path": "research/runtime/2026/08/2026-08-06-runtime.md"
         }
       ]
+    },
+    "publication": {
+      "schema": "runtime-shift-result/v2",
+      "task": "publication",
+      "status": "Completed",
+      "input": "Three complete same-day Publication Candidates produced by the Completed Production shift, the durably verified Scheduler-fallback Publication start state, Scheduler V3.0, and the data-driven bilingual Research Notes website surfaces.",
+      "input_zh": "由已完成 Production 班次生成的 3 份完整当日 Publication Candidate、已完成持久化核验的 Scheduler 回退 Publication 启动状态、Scheduler V3.0，以及数据驱动的双语 Research Notes 网站表面。",
+      "workResult": "After the durable Running control-plane state was fetched and verified, validated Production, evidence, citation, publication editing, bilingual pairing, metadata and visualization gates for all three candidates. Published only the authorized candidate text and SVG assets to the required Chinese and English column paths; the data-driven indexes and website loaders surfaced the releases. No new research, substantive rewriting or evidence repair was performed. Scheduler fallback was explicitly recorded because the pre-existing Publication Running state was absent.",
+      "workResult_zh": "在获取并核验持久化 Running 控制面状态后，已验证全部 3 份候选的 Production、证据、引用、出版编辑、双语配对、元数据与可视化门禁。仅将获准候选文本和 SVG 资产发布到规定的中英文栏目路径；数据驱动索引与网站加载器已展示这些发布项。未开展新研究、实质性改写或证据修复。由于执行前缺少既有 Publication Running 状态，已明确记录 Scheduler 回退。",
+      "output": "Released 3 Daily Research items as 6 bilingual public article files and 3 visualization assets. Release manifest: research/runtime/releases/2026-08-06-publication.json. Verified release commit: f941753be1731bdd3d1a983632a8c305cd0b8540.",
+      "output_zh": "已发布 3 项 Daily Research，共 6 个双语公开文章文件与 3 个可视化资产。发布清单：research/runtime/releases/2026-08-06-publication.json。已核验发布提交：f941753be1731bdd3d1a983632a8c305cd0b8540。",
+      "next": "The Daily Runtime is closed for 2026-08-06. The next Daily Runtime begins with the next scheduled Discovery slot; future synthesis must consume durable released research rather than staging candidates.",
+      "next_zh": "2026-08-06 Daily Runtime 已关闭。下一轮 Daily Runtime 从下一次计划内 Discovery 时段开始；后续综合应消费已持久发布的研究成果，而不是 staging 候选。",
+      "metrics": [
+        {
+          "label": "Eligible Publication Candidates",
+          "label_zh": "符合条件的出版候选",
+          "value": "3"
+        },
+        {
+          "label": "Released Daily Research items",
+          "label_zh": "已发布 Daily Research 项目",
+          "value": "3"
+        },
+        {
+          "label": "Public bilingual article files",
+          "label_zh": "公开双语文章文件",
+          "value": "6"
+        },
+        {
+          "label": "Published visualization assets",
+          "label_zh": "已发布可视化资产",
+          "value": "3"
+        },
+        {
+          "label": "Scheduler fallbacks",
+          "label_zh": "Scheduler 回退次数",
+          "value": "1"
+        },
+        {
+          "label": "New research performed",
+          "label_zh": "开展新研究",
+          "value": "0"
+        },
+        {
+          "label": "Substantive rewrites",
+          "label_zh": "实质性改写",
+          "value": "0"
+        },
+        {
+          "label": "Evidence repairs",
+          "label_zh": "证据修复",
+          "value": "0"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Scheduler V3.0",
+          "label_zh": "Scheduler V3.0",
+          "source": "research/runtime/SCHEDULER.json"
+        },
+        {
+          "label": "Publication Candidate batch",
+          "label_zh": "Publication Candidate 批次",
+          "source": "research/runtime/candidates/2026/08/2026-08-06-candidates.json"
+        },
+        {
+          "label": "Verified Scheduler-fallback start-state commit",
+          "label_zh": "已核验的 Scheduler 回退启动状态提交",
+          "commit": "1745be024e3b31e21dc181c136d164d9dca309b9",
+          "source": "https://github.com/joinwell52-AI/joinwell52/commit/1745be024e3b31e21dc181c136d164d9dca309b9"
+        },
+        {
+          "label": "Publication release manifest",
+          "label_zh": "Publication 发布清单",
+          "source": "research/runtime/releases/2026-08-06-publication.json"
+        },
+        {
+          "label": "Verified Daily Research release commit",
+          "label_zh": "已核验的 Daily Research 发布提交",
+          "commit": "f941753be1731bdd3d1a983632a8c305cd0b8540",
+          "source": "https://github.com/joinwell52-AI/joinwell52/commit/f941753be1731bdd3d1a983632a8c305cd0b8540"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Verified Publication start-state commit",
+          "label_zh": "已核验 Publication 启动状态提交",
+          "commit": "1745be024e3b31e21dc181c136d164d9dca309b9"
+        },
+        {
+          "label": "Verified Daily Research release commit",
+          "label_zh": "已核验 Daily Research 发布提交",
+          "commit": "f941753be1731bdd3d1a983632a8c305cd0b8540"
+        },
+        {
+          "label": "Publication release manifest",
+          "label_zh": "Publication 发布清单",
+          "path": "research/runtime/releases/2026-08-06-publication.json"
+        },
+        {
+          "label": "Q-20260806-01 Chinese public article",
+          "label_zh": "Q-20260806-01 中文公开文章",
+          "path": "docs/zh/digital-employee/2026-08-06-governed-revisable-work-graph.md"
+        },
+        {
+          "label": "Q-20260806-01 English public article",
+          "label_zh": "Q-20260806-01 英文公开文章",
+          "path": "docs/en/digital-employee/2026-08-06-governed-revisable-work-graph.md"
+        },
+        {
+          "label": "Q-20260806-01 public visualization",
+          "label_zh": "Q-20260806-01 公开可视化",
+          "path": "docs/public/assets/covers/daily-2026-08-06-governed-revisable-work-graph.svg"
+        },
+        {
+          "label": "Q-20260806-02 Chinese public article",
+          "label_zh": "Q-20260806-02 中文公开文章",
+          "path": "docs/zh/industry/2026-08-06-enterprise-agent-decision-envelope.md"
+        },
+        {
+          "label": "Q-20260806-02 English public article",
+          "label_zh": "Q-20260806-02 英文公开文章",
+          "path": "docs/en/industry/2026-08-06-enterprise-agent-decision-envelope.md"
+        },
+        {
+          "label": "Q-20260806-02 public visualization",
+          "label_zh": "Q-20260806-02 公开可视化",
+          "path": "docs/public/assets/covers/daily-2026-08-06-enterprise-agent-decision-envelope.svg"
+        },
+        {
+          "label": "Q-20260806-03 Chinese public article",
+          "label_zh": "Q-20260806-03 中文公开文章",
+          "path": "docs/zh/engineering/2026-08-06-semantic-migration-recovery.md"
+        },
+        {
+          "label": "Q-20260806-03 English public article",
+          "label_zh": "Q-20260806-03 英文公开文章",
+          "path": "docs/en/engineering/2026-08-06-semantic-migration-recovery.md"
+        },
+        {
+          "label": "Q-20260806-03 public visualization",
+          "label_zh": "Q-20260806-03 公开可视化",
+          "path": "docs/public/assets/covers/daily-2026-08-06-semantic-migration-recovery.svg"
+        },
+        {
+          "label": "Daily Runtime Record",
+          "label_zh": "每日运行机器记录",
+          "path": "research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json"
+        },
+        {
+          "label": "Human-readable Runtime ledger",
+          "label_zh": "人类可读运行账本",
+          "path": "research/runtime/2026/08/2026-08-06-runtime.md"
+        }
+      ]
     }
   },
   "timeline": [
@@ -812,6 +968,20 @@
       "event": "Execution Slot Opened",
       "status": "Running",
       "detail": "Scheduler fallback: Research Runtime Publication opened because the durable control-plane Running state was absent; release work may begin only after this synchronized JSON and Markdown state is committed and verified."
+    },
+    {
+      "time": "2026-08-06T20:13:12+08:00",
+      "task": "publication",
+      "event": "Publication Completed",
+      "status": "Completed",
+      "detail": "Validated all Publication gates and released 3 Daily Research items as 6 bilingual articles and 3 visualizations without new research, substantive rewriting or evidence repair; the Scheduler fallback remained explicitly recorded."
+    },
+    {
+      "time": "2026-08-06T20:13:20+08:00",
+      "task": "publication",
+      "event": "GitHub Commit Verified",
+      "status": "Completed",
+      "detail": "Fetched and verified release commit f941753be1731bdd3d1a983632a8c305cd0b8540 containing all authorized bilingual public paths, visualization assets, the release manifest and website-surface validation."
     }
   ],
   "metrics": [
@@ -896,7 +1066,7 @@
       "path": "research/runtime/2026/08/2026-08-06-runtime.md"
     }
   ],
-  "githubCommit": "1340f82f9a01d5fb3cd37370b8542780046c87d9",
+  "githubCommit": "f941753be1731bdd3d1a983632a8c305cd0b8540",
   "commitVerify": "Completed",
-  "updatedAt": "2026-08-06T20:04:47+08:00"
+  "updatedAt": "2026-08-06T20:13:20+08:00"
 }
