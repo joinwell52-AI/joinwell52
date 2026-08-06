@@ -3,7 +3,7 @@ title: "One Agent Said ‘Done.’ The Team Refused to Believe It."
 date: '2026-08-06'
 column: open-source-engineering
 category: daily
-summary: "Hallucination may be unavoidable, but a role-separated multi-agent team can stop one agent's unsupported claim from becoming system fact."
+summary: "FCoP lets an agent say no when evidence is incomplete; refusing to promote an unsupported claim into system fact is a scarce multi-agent capability."
 item_id: WP13-CODEFLOWMU-FACT-CHECK
 lifecycle: Published
 evidence_status: Completed
@@ -17,7 +17,7 @@ outline: deep
   image="/assets/covers/wp13-codeflowmu-fact-check-cover-en.svg"
   kicker="Open-source Engineering · CodeFlowMu Field Case"
   title="One Agent Said ‘Done.’ The Team Refused to Believe It."
-  summary="Hallucination may be unavoidable. A real multi-agent team uses independent roles and external facts to stop unsupported claims from acquiring system authority."
+  summary="FCoP lets agents do more than generate ‘done.’ It lets a role say no when the shared facts do not support completion."
   version="WP-13"
   status="Field Case · 2026-08-06"
   languageHref="/zh/engineering/2026-08-06-codeflowmu-multi-agent-fact-checking"
@@ -72,11 +72,17 @@ The goal is to make sure that a hallucination produced by one role cannot automa
 
 > **Agents may be wrong. The organization must not make them right by default.**
 
-## The live scene: while DEV was still reasoning, PM was already checking reality
+## The live scene: PM’s fact judgment above, the agent’s live activity stream below
 
 The image below is not a reconstructed flowchart. It is a screenshot from the CodeFlowMu operating interface during the incident.
 
-The left side shows the PM-facing task and fact-checking conversation. The right and lower areas preserve the live agent activity stream and visible reasoning summaries: files being inspected, tools being called, implementation scope being discussed, and status changing in real time.
+The upper area shows the PM-facing task and fact-checking conversation. The lower area preserves the live agent activity stream and visible reasoning summaries: files being inspected, tools being called, implementation scope being discussed, and status changing in real time.
+
+The most important sentence in the image is not DEV’s self-report. It is PM’s judgment:
+
+> **The sub-agent claimed completion, but the artifacts were incomplete -- do not treat it as complete.**
+
+This is not a caption added later. It is the business decision PM made after checking disk, Git, REPORT, and task state. It turns `completed` back from a persuasive language claim into an evidence-insufficient result that cannot be released.
 
 ![CodeFlowMu live scene: PM fact-check and agent activity stream](/assets/covers/wp13-codeflowmu-fact-check-live.png)
 
@@ -198,6 +204,18 @@ FCoP does not understand the business goal of WP-13, run tests, or judge whether
 **FCoP does not think for the roles. It gives the roles a common set of facts to think with.**
 
 In this case, PM could say no because missing REPORTs, state location, event history, and engineering evidence were inspectable outside DEV’s hidden context.
+
+## FCoP is a protocol that lets an agent say no
+
+Language models are not scarce in their ability to keep generating: add another explanation, offer another plan, or turn an incomplete process into a completion-shaped narrative. The scarce capability is to stop when the facts do not close and say no.
+
+> **One of FCoP’s most important values is that it lets agents do more than say yes; it lets a role say no on the basis of shared facts.**
+>
+> **Generating another answer is abundant. Refusing to promote incomplete evidence into “done” is a scarce agent capability.**
+
+This no is not a mood or cautious wording. It has protocol consequences: do not dispatch QA, do not close the task, do not create a duplicate history, preserve the missing evidence, and continue the original task. FCoP externalizes the basis for that no through TASKs, REPORTs, state location, and event history. CodeFlowMu gives PM the role and authority to act on those facts.
+
+The core of this case is therefore not merely that one agent noticed another agent’s error. Protocol and organization together gave PM a scarce capability: **to reject a polished answer before it became a completion fact.**
 
 ## Reading the FCoP repository changes how this case should be described
 
@@ -359,7 +377,7 @@ WP-13 eventually passed 27 tests. That matters.
 
 But the more important moment happened before the tests: one agent had already said “done,” and the system did not convert that confidence into success.
 
-PM checked facts and said no.
+PM checked the facts and said no: the sub-agent claimed completion, but the artifacts were incomplete, so the claim could not be treated as complete.
 
 DEV returned to the original task and completed the real delivery.
 
@@ -370,6 +388,8 @@ FCoP did not think for them or schedule them.
 It did something more fundamental: it kept tasks, reports, states, and events outside any one agent’s private narrative.
 
 CodeFlowMu placed those protocol facts inside a team with real role separation, giving different roles the authority to continue, reject, and verify.
+
+FCoP does not teach an agent to produce one more sentence. It turns refusal to release into a protocol action with factual grounds, state consequences, and an auditable record.
 
 > **A single agent tries to be right. A multi-agent team must remain reliable even when one agent is wrong.**
 
