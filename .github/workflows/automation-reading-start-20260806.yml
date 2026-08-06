@@ -1,0 +1,68 @@
+name: Automation Reading Start 2026-08-06
+
+on:
+  push:
+    branches:
+      - automation/reading-20260806-start
+    paths:
+      - .github/workflows/automation-reading-start-20260806.yml
+
+permissions:
+  contents: write
+
+jobs:
+  persist-reading-start:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Verify or persist exactly one Reading start event
+        shell: bash
+        run: |
+          set -euo pipefail
+          record="research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json"
+          ledger="research/runtime/2026/08/2026-08-06-runtime.md"
+
+          state=$(node - <<'NODE'
+          const fs = require('fs')
+          const path = 'research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json'
+          const r = JSON.parse(fs.readFileSync(path, 'utf8'))
+          const events = (r.timeline || []).filter(e => e.task === 'reading' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-06'))
+          if (r.status === 'Running' && r.taskStatus?.reading === 'Running' && events.length === 1) process.stdout.write('verified')
+          else process.stdout.write(`fallback:${r.status}:${r.taskStatus?.reading}:${events.length}`)
+          NODE
+          )
+
+          if [[ "$state" == "verified" ]]; then
+            echo "Reading Running state already durable; no duplicate start event or start commit created."
+            exit 0
+          fi
+
+          echo "Scheduler fallback required: $state"
+          node scripts/runtime-v5.mjs schedule --task reading
+          node - <<'NODE'
+          const fs = require('fs')
+          const path = 'research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json'
+          const r = JSON.parse(fs.readFileSync(path, 'utf8'))
+          const events = (r.timeline || []).filter(e => e.task === 'reading' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-06'))
+          if (events.length !== 1) throw new Error(`expected exactly one Reading start event, found ${events.length}`)
+          events[0].detail = 'Research Runtime Reading started by Scheduler fallback because the durable control-plane Running state was absent at execution time.'
+          r.status = 'Running'
+          r.taskStatus.reading = 'Running'
+          fs.writeFileSync(path, JSON.stringify(r, null, 2) + '\n')
+          NODE
+          node scripts/runtime-markdown.mjs render --date 2026-08-06
+          node scripts/runtime-v5.mjs validate
+          node scripts/runtime-markdown.mjs validate --date 2026-08-06
+          grep -q 'Research Runtime Reading started by Scheduler fallback' "$record"
+          grep -q '研究运行阅读 / Research Runtime Reading' "$ledger"
+
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$record" "$ledger"
+          git commit -m "runtime(reading): persist 2026-08-06 fallback Running state"
+          git push origin HEAD:main
