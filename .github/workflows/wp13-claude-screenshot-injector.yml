@@ -10,7 +10,6 @@ permissions:
 
 jobs:
   inject:
-    if: github.event.head_commit.message == 'chore: install WP-13 screenshot injector'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
