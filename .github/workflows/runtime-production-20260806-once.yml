@@ -1,0 +1,855 @@
+name: Complete Research Runtime Production 2026-08-06 Once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/runtime-production-20260806-once.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: runtime-production-20260806
+  cancel-in-progress: false
+
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Synchronize and verify Production control-plane gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --rebase origin main
+          node <<'NODE'
+          const fs = require('fs')
+          const record = JSON.parse(fs.readFileSync('research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json', 'utf8'))
+          const opened = (record.timeline || []).filter((event) =>
+            event.task === 'production' && event.event === 'Execution Slot Opened' && event.status === 'Running' && String(event.time || '').startsWith('2026-08-06')
+          )
+          if (record.status !== 'Running') throw new Error(`Expected overall Running, got ${record.status}`)
+          if (record.taskStatus?.production !== 'Running') throw new Error(`Expected taskStatus.production=Running, got ${record.taskStatus?.production}`)
+          if (opened.length !== 1) throw new Error(`Expected exactly one Production start event, got ${opened.length}`)
+          const objects = [
+            'research/analysis/Q-20260806-01-revisable-dag-computer-use.md',
+            'research/analysis/Q-20260806-02-enterprise-agent-control-plane.md',
+            'research/analysis/Q-20260806-03-rollout-migration-recovery.md'
+          ]
+          for (const path of objects) {
+            const text = fs.readFileSync(path, 'utf8')
+            if (!text.includes('status: "ReadyForProduction"')) throw new Error(`${path} is not ReadyForProduction`)
+            if (!text.includes('production_input_authorized: true')) throw new Error(`${path} is not authorized for Production`)
+            if (!text.includes('publication_authorized: false')) throw new Error(`${path} unexpectedly authorizes Publication`)
+          }
+          console.log('Production gate verified: durable Running state, one start event, three authorized Research Objects.')
+          NODE
+
+      - name: Execute Skills 05 through 08 and create bilingual candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p staging/publication-candidates research/runtime/candidates/2026/08
+          python <<'PY'
+          from pathlib import Path
+
+          files = {
+          'staging/publication-candidates/2026-08-06-governed-revisable-work-graph.zh.md': r'''---
+          schema: "publication-candidate-article/v1"
+          title: "可修订工作图仍需超越“图就绪”的授权边界"
+          date: "2026-08-06"
+          column: "digital-employee"
+          category: "daily"
+          summary: "计算机操作型数字员工可以用可修订 DAG 表达长任务，但节点进入 ready frontier 只证明依赖满足，不能证明权限、资源和外部副作用已获授权。"
+          sources:
+            - "research/analysis/Q-20260806-01-revisable-dag-computer-use.md"
+            - "research/reading/Q-20260806-01-revisable-dag-computer-use.md"
+          item_id: "Q-20260806-01"
+          lifecycle: "Publication Candidate"
+          source_research_object: "research/analysis/Q-20260806-01-revisable-dag-computer-use.md"
+          source_reading_result: "research/reading/Q-20260806-01-revisable-dag-computer-use.md"
+          visualization: "staging/publication-candidates/2026-08-06-governed-revisable-work-graph.svg"
+          visualization_decision: "Required — governed work-graph architecture diagram included"
+          evidence_status: "Completed"
+          citation_status: "Completed"
+          editing_status: "Completed"
+          publication_authorized: false
+          ---
+
+          # 可修订工作图仍需超越“图就绪”的授权边界
+
+          计算机操作型数字员工可以把长任务表示为可修订 DAG：管理者维护依赖图，调度已就绪节点，并在执行结果暴露新依赖时改写尚未执行的部分。这比隐藏在线性提示词中的一次性计划更可观察，也更适合部分可观测、长周期工作。
+
+          ## 核心判断
+
+          **图就绪只说明依赖条件满足，不说明执行已经获得授权。** 对会修改文件、操作业务系统或产生外部副作用的数字员工，节点还必须通过权限、资源隔离、应用所有权和证据要求等独立门禁。
+
+          ## 来源
+
+          本文唯一分析输入是同日完成并获准进入 Production 的 Research Object。其证据边界指向已完成的 Reading Result；Production 没有从 Signal Pool 或 Reading Result 重新开展研究，也没有加入新的事实材料。
+
+          ## 观察
+
+          Research Object 记录了三个结构性事实：工作图可以在运行中持久化和修订；彼此独立的 ready 节点可以并行；当原界面状态无法再次观察时，发现与文件需要通过管理者状态和归档池向后传递。它同时保留了反证：性能提升并不一致，有一个基准比单 Agent 更慢，管理者仍可能成为瓶颈和单点解释权威。
+
+          ## 比较
+
+          | 规划形态 | 可见的运行状态 | 并行能力 | 授权与证据 | 恢复边界 |
+          |---|---|---|---|---|
+          | 隐藏线性计划 | 低；主要存在于上下文 | 弱 | 通常与执行叙事混在一起 | 难以重放 |
+          | 可修订 DAG | 图版本、节点和依赖可见 | 可调度 ready frontier | 图本身不证明权限或验收 | 可从快照与日志重建部分状态 |
+          | 受治理工作图 | 图状态与协议状态分离 | 仅并行无数据、资源和副作用冲突的节点 | 每节点携带权限边界、证据契约和独立验收 | 从事件与已提交副作用收据恢复 |
+
+          表中前两行基于 Research Object 对来源机制的总结；第三行是 Research Center 的工程综合，不是来源已经实现或验证的能力。
+
+          ## 讨论
+
+          关键变化不是“增加更多 Agent”，而是让计划在执行中成为版本化、可检查、可回放的运行投影。但编排投影不能替代任务事实、审批权和完成证据。管理者可以提出“节点完成”或“任务完成”的声明，却不能凭图状态自行批准自己的解释。
+
+          并行也不能只看数据依赖。两个节点即使没有输入输出依赖，仍可能争用同一浏览器会话、业务记录、文件路径或外部账户。真正的 ready frontier 应同时满足依赖条件与 authority conditions。
+
+          ## 工程影响
+
+          对数字员工，WorkOrder 应投影为带版本的工作图，节点包含责任、依赖、所需 Skill、授权边界、预期产物和完成证据。每次图变更都应记录操作者、原因、前后版本和受影响节点。
+
+          对 CodeFlowMu，FCoP TASK/REPORT/REVIEW 继续保持协议事实权威；可修订项目图只承担编排。应先增加图版本、变更事件、节点证据收据和恢复投影，再考虑开放广泛并行执行。
+
+          ## 边界与反证
+
+          现有证据来自一份 2026 年 6 月预印本及其公开实现线索，没有证明企业权限模型、事务边界、并发副作用安全、精确崩溃恢复或独立完成验收。部分评估依赖 LLM 或 rubric judge，且并行配置并非在所有基准上更快。
+
+          ## 未来工作
+
+          需要验证最小图变更契约、权限与依赖联合就绪规则、下游重接线后已完成节点的有效性，以及恢复时如何区分安全重放和已经发生的外部副作用。
+
+          ## 可视化说明
+
+          配图把“可修订图—ready frontier—授权门禁—证据验收”画成四个分离层。它是基于 Research Object 的 Research Center 架构综合，不表达来源未提供的量化结果。
+
+          ## 证据与引用
+
+          1. [Research Object](https://github.com/joinwell52-AI/joinwell52/blob/main/research/analysis/Q-20260806-01-revisable-dag-computer-use.md)：本文唯一分析输入，包含判断、不确定性、反证和工程影响。
+          2. [Reading Result](https://github.com/joinwell52-AI/joinwell52/blob/main/research/reading/Q-20260806-01-revisable-dag-computer-use.md)：Research Object 声明的证据边界与来源追溯记录；本文不从该记录重新分析。
+
+          > 编辑状态：已完成双语结构对齐、证据边界核对、非一致性能结果与中心管理者风险保留；尚未发布。
+          ''',
+          'staging/publication-candidates/2026-08-06-governed-revisable-work-graph.en.md': r'''---
+          schema: "publication-candidate-article/v1"
+          title: "A Revisable Work Graph Still Needs Authority Beyond Graph Readiness"
+          date: "2026-08-06"
+          column: "digital-employee"
+          category: "daily"
+          summary: "A computer-use Digital Employee can represent long work as a revisable DAG, but entry into the ready frontier proves dependency readiness, not permission, isolation, or acceptance of consequential effects."
+          sources:
+            - "research/analysis/Q-20260806-01-revisable-dag-computer-use.md"
+            - "research/reading/Q-20260806-01-revisable-dag-computer-use.md"
+          item_id: "Q-20260806-01"
+          lifecycle: "Publication Candidate"
+          source_research_object: "research/analysis/Q-20260806-01-revisable-dag-computer-use.md"
+          source_reading_result: "research/reading/Q-20260806-01-revisable-dag-computer-use.md"
+          visualization: "staging/publication-candidates/2026-08-06-governed-revisable-work-graph.svg"
+          visualization_decision: "Required — governed work-graph architecture diagram included"
+          evidence_status: "Completed"
+          citation_status: "Completed"
+          editing_status: "Completed"
+          publication_authorized: false
+          ---
+
+          # A Revisable Work Graph Still Needs Authority Beyond Graph Readiness
+
+          A computer-use Digital Employee can represent long work as a revisable DAG: a manager maintains dependencies, dispatches ready nodes, and rewrites pending work when execution exposes new dependencies. This is more inspectable than a one-time plan hidden in a prompt and better suited to long-horizon, partially observable work.
+
+          ## Central judgment
+
+          **Graph readiness proves that dependencies are satisfied; it does not prove that execution is authorized.** A node that can change files, operate a business system, or create an external effect also needs independent permission, resource-isolation, application-ownership, and evidence gates.
+
+          ## Source
+
+          The sole analytical input is the same-day Research Object authorized for Production. Its evidence boundary points to a completed Reading Result. Production did not return to the Signal Pool or Reading Result to conduct new research and did not introduce new factual material.
+
+          ## Observation
+
+          The Research Object preserves three structural observations: the work graph can be persisted and revised during execution; independent ready nodes can run concurrently; and findings or files may need to be carried forward when later workers cannot re-observe the original interface. It also preserves counter-evidence: performance gains are not uniform, one benchmark is slower than the single-agent configuration, and the manager remains a potential bottleneck and interpretation authority.
+
+          ## Comparison
+
+          | Planning form | Visible runtime state | Parallelism | Authority and evidence | Recovery boundary |
+          |---|---|---|---|---|
+          | Hidden linear plan | Low; mostly inside context | Weak | Usually mixed with the execution narrative | Difficult to replay |
+          | Revisable DAG | Graph versions, nodes, and dependencies are visible | Ready-frontier scheduling | The graph does not prove permission or acceptance | Partial reconstruction from snapshots and logs |
+          | Governed work graph | Orchestration state is separated from protocol state | Only nodes without data, resource, or side-effect conflicts run together | Every node carries authority limits, an evidence contract, and independent acceptance | Rebuild from events and receipts for already committed effects |
+
+          The first two rows summarize mechanisms described by the Research Object. The third is a Research Center engineering synthesis, not a capability already implemented or validated by the source.
+
+          ## Discussion
+
+          The important change is not “more agents.” It is making the plan a versioned, inspectable, replayable runtime projection. That projection must not replace task truth, approval rights, or completion evidence. A manager may issue a completion claim, but graph state cannot authorize the manager to approve its own interpretation.
+
+          Parallelism also requires more than data independence. Two nodes may have no explicit dependency and still contend for the same browser session, business record, file path, or external account. A consequential ready frontier must combine dependency readiness with authority conditions.
+
+          ## Engineering impact
+
+          For Digital Employees, a WorkOrder should project a versioned graph whose nodes declare responsibility, dependencies, required skills, authority boundaries, expected artifacts, and completion evidence. Every graph mutation should record actor, reason, before-and-after version, and affected pending nodes.
+
+          For CodeFlowMu, FCoP TASK/REPORT/REVIEW state should remain authoritative while the mutable project graph serves orchestration. Graph versions, mutation events, node evidence receipts, and recovery projections should come before unrestricted parallel computer-use execution.
+
+          ## Boundaries and counter-evidence
+
+          The evidence is bounded to a June 2026 preprint and related implementation material. It does not establish enterprise authorization, transaction boundaries, safe concurrent side effects, crash-exact recovery, or independent completion acceptance. Some evaluations use LLM or rubric judges, and the parallel configuration is not faster on every benchmark.
+
+          ## Future work
+
+          The next tests should define a minimum graph-mutation contract, combine permission and dependency readiness, determine whether completed nodes remain valid after downstream rewiring, and distinguish safe replay from an external effect that already occurred.
+
+          ## Visualization note
+
+          The visual separates the revisable graph, ready frontier, authority gate, and evidence acceptance. It is a Research Center synthesis based on the Research Object and does not encode unsupported quantitative results.
+
+          ## Evidence and references
+
+          1. [Research Object](https://github.com/joinwell52-AI/joinwell52/blob/main/research/analysis/Q-20260806-01-revisable-dag-computer-use.md): the sole analytical input, including judgment, uncertainty, counter-evidence, and engineering impact.
+          2. [Reading Result](https://github.com/joinwell52-AI/joinwell52/blob/main/research/reading/Q-20260806-01-revisable-dag-computer-use.md): the evidence boundary and source-traceability record declared by the Research Object; this article does not re-analyze it.
+
+          > Editing status: bilingual structure, evidence boundaries, non-uniform performance, and central-manager risk were checked; not published.
+          ''',
+          'staging/publication-candidates/2026-08-06-enterprise-agent-decision-envelope.zh.md': r'''---
+          schema: "publication-candidate-article/v1"
+          title: "企业 Agent 控制平面需要决策信封，而不只是配置优先级"
+          date: "2026-08-06"
+          column: "industry-architecture"
+          category: "daily"
+          summary: "托管设置可以表达组织意图，但真正的企业 Agent 治理需要把政策来源、主体、能力、模型、沙箱和恢复上下文绑定到每次关键执行，并由各执行点返回证据收据。"
+          sources:
+            - "research/analysis/Q-20260806-02-enterprise-agent-control-plane.md"
+            - "research/reading/Q-20260806-02-enterprise-agent-control-plane.md"
+          item_id: "Q-20260806-02"
+          lifecycle: "Publication Candidate"
+          source_research_object: "research/analysis/Q-20260806-02-enterprise-agent-control-plane.md"
+          source_reading_result: "research/reading/Q-20260806-02-enterprise-agent-control-plane.md"
+          visualization: "staging/publication-candidates/2026-08-06-enterprise-agent-decision-envelope.svg"
+          visualization_decision: "Required — decision-envelope and enforcement-receipt diagram included"
+          evidence_status: "Completed"
+          citation_status: "Completed"
+          editing_status: "Completed"
+          publication_authorized: false
+          ---
+
+          # 企业 Agent 控制平面需要决策信封，而不只是配置优先级
+
+          企业编码 Agent 的治理表面通常分散在托管设置、工具权限、操作系统沙箱、模型选择和会话恢复中。配置可以声明“谁的政策优先”，但不能自动证明每一条执行路径都真正应用了同一政策。
+
+          ## 核心判断
+
+          **企业 Agent 控制平面应为每次关键执行生成版本化决策信封，并要求执行点返回 enforcement receipt。** 决策信封至少绑定政策来源、执行主体、请求能力、实际模型、沙箱模式和恢复上下文。
+
+          ## 来源
+
+          本文只消费获准进入 Production 的 Research Object。其依据是同日完成的 Reading Result；Production 没有独立复现安全绕过，也没有把厂商修复说明提升为第三方验证结果。
+
+          ## 观察
+
+          Research Object 把组织政策分发、权限提示、OS 沙箱、模型回退和 session resume 放在同一架构问题中。它同时保留了重要矛盾：官方文档赋予 managed settings 最高优先级，但发布说明仍报告过绕过托管禁用策略或工作流沙箱边界的执行路径。由此可见，配置权威与执行点一致性是两个不同问题。
+
+          ## 比较
+
+          | 控制表面 | 表达的意图 | 需要的执行证据 | 未被现有证据证明的内容 |
+          |---|---|---|---|
+          | Managed settings | 组织政策与优先级 | 有效政策版本和来源 | 所有路径都执行了同一政策 |
+          | 工具权限 | 某类工具是否允许 | 请求、决定、操作者与原因 | 子进程与绕行路径被完全覆盖 |
+          | OS sandbox | Bash 与子进程的系统边界 | 实际沙箱模式与失败行为 | 跨平台等价与绝不 fail-open |
+          | 模型回退 | 执行身份发生替换 | 原模型、实际模型、原因与属性变化 | 回退已被授权且语义等价 |
+          | Session resume | 继续过去工作 | 工作目录、政策、模型、沙箱和未结副作用清单 | 恢复上下文与原上下文完全等价 |
+
+          每一行都区分了文档化意图、应产生的证据和当前未知项；表格不把厂商声明解释为独立验证。
+
+          ## 讨论
+
+          最高优先级配置是必要条件，却不是完整控制平面。Agent、Skill、workflow、命令、子进程和恢复路径都可能形成不同 enforcement point。控制平面的核心任务，是证明每个执行点应用了相同的有效政策，或在无法证明时明确 fail closed。
+
+          模型回退也不能只作为提醒。模型身份变化可能改变成本、驻留、能力和安全属性，因此回退应成为可授权的状态迁移。恢复会话同样不只是恢复聊天文本，而是恢复工作目录、政策版本、实际模型、沙箱状态和未完成影响的语义上下文。
+
+          ## 工程影响
+
+          对企业数字员工，Position 与 WorkOrder 应先解析为 effective policy snapshot；每个 Operation Node 接收决策信封，并返回包含实际执行身份和政策版本的收据。模型替换、沙箱不可用和恢复上下文漂移应进入 allow、deny 或 escalation 流程。
+
+          对 CodeFlowMu，应把政策解析投影与 FCoP 生命周期状态分开，持久化 requested/actual model、sandbox mode、permission decision 与 policy provenance，并在 resume 时比较上下文 manifest，发现实质漂移就阻断或升级。
+
+          ## 边界与反证
+
+          证据来自官方发布说明和文档，没有独立安全公告、利用复现、平台回归矩阵或事故下降数据。当前文档也可能与发布时实现状态不完全一致。本文因此只提出架构判断，不宣称命名修复已经被独立证明有效。
+
+          ## 未来工作
+
+          需要确定哪些政策决定必须集中完成、哪些可带来源证明地缓存；哪些模型属性变化必须重新授权；如何证明所有执行路径使用同一政策版本；以及哪些恢复差异可以继续、哪些必须阻断。
+
+          ## 可视化说明
+
+          配图以决策信封为中心，把政策、主体与能力、模型、沙箱、恢复上下文连接到执行点收据。来源标注为基于 Research Object 的 Research Center 架构综合。
+
+          ## 证据与引用
+
+          1. [Research Object](https://github.com/joinwell52-AI/joinwell52/blob/main/research/analysis/Q-20260806-02-enterprise-agent-control-plane.md)：本文唯一分析输入，明确区分文档化政策、执行一致性与独立验证缺口。
+          2. [Reading Result](https://github.com/joinwell52-AI/joinwell52/blob/main/research/reading/Q-20260806-02-enterprise-agent-control-plane.md)：Research Object 声明的证据边界和来源追溯记录；本文不从该记录重新研究。
+
+          > 编辑状态：已完成双语实质一致性、厂商声明限定、控制表面对照和证据缺口检查；尚未发布。
+          ''',
+          'staging/publication-candidates/2026-08-06-enterprise-agent-decision-envelope.en.md': r'''---
+          schema: "publication-candidate-article/v1"
+          title: "Enterprise Agent Control Planes Need Decision Envelopes, Not Configuration Precedence Alone"
+          date: "2026-08-06"
+          column: "industry-architecture"
+          category: "daily"
+          summary: "Managed settings can express organizational intent, but enterprise agent governance must bind policy provenance, principal, capability, model, sandbox, and resumed context to each consequential execution and collect enforcement receipts."
+          sources:
+            - "research/analysis/Q-20260806-02-enterprise-agent-control-plane.md"
+            - "research/reading/Q-20260806-02-enterprise-agent-control-plane.md"
+          item_id: "Q-20260806-02"
+          lifecycle: "Publication Candidate"
+          source_research_object: "research/analysis/Q-20260806-02-enterprise-agent-control-plane.md"
+          source_reading_result: "research/reading/Q-20260806-02-enterprise-agent-control-plane.md"
+          visualization: "staging/publication-candidates/2026-08-06-enterprise-agent-decision-envelope.svg"
+          visualization_decision: "Required — decision-envelope and enforcement-receipt diagram included"
+          evidence_status: "Completed"
+          citation_status: "Completed"
+          editing_status: "Completed"
+          publication_authorized: false
+          ---
+
+          # Enterprise Agent Control Planes Need Decision Envelopes, Not Configuration Precedence Alone
+
+          Enterprise coding-agent governance is distributed across managed settings, tool permissions, operating-system sandboxing, model selection, and session resume. Configuration can declare whose policy has priority, but it cannot by itself prove that every execution path applied the same policy.
+
+          ## Central judgment
+
+          **An enterprise agent control plane should issue a versioned decision envelope for each consequential execution and require an enforcement receipt from the execution point.** The envelope should bind policy provenance, principal, requested capability, actual model, sandbox mode, and resumed context.
+
+          ## Source
+
+          This candidate consumes only the Research Object authorized for Production. Its evidence boundary is the completed same-day Reading Result. Production did not reproduce a security bypass and does not upgrade vendor fix notes into independently validated results.
+
+          ## Observation
+
+          The Research Object places organization policy distribution, permission prompts, OS sandboxing, model fallback, and session resume inside one architecture problem. It also preserves a contradiction: official documentation gives managed settings the highest precedence, while release notes describe execution paths that had bypassed a managed disable policy or workflow sandbox boundary. Configuration authority and enforcement-path conformance are therefore separate concerns.
+
+          ## Comparison
+
+          | Control surface | Intended policy | Required execution evidence | What the current evidence does not establish |
+          |---|---|---|---|
+          | Managed settings | Organization policy and precedence | Effective policy version and provenance | Every path enforced the same policy |
+          | Tool permissions | Whether a class of tools is allowed | Request, decision, actor, and reason | Complete coverage of child processes and bypass paths |
+          | OS sandbox | System boundary for Bash and child processes | Actual sandbox mode and failure behavior | Cross-platform equivalence and universal fail-closed behavior |
+          | Model fallback | Substitution of execution identity | Requested model, actual model, reason, and property changes | Authorization and semantic equivalence of the fallback |
+          | Session resume | Continuation of prior work | Working directory, policy, model, sandbox, and outstanding-effect manifest | Full semantic equivalence to the original context |
+
+          Each row distinguishes documented intent, the evidence a runtime should emit, and unknowns. Vendor statements are not treated as independent validation.
+
+          ## Discussion
+
+          Highest-precedence configuration is necessary, but it is not a complete control plane. Agents, skills, workflows, commands, child processes, and resume paths can become separate enforcement points. The control plane must prove that each point applied the same effective policy or fail closed when it cannot.
+
+          Model fallback should not be reduced to a warning. A changed model can alter cost, residency, capability, and safety properties, so substitution belongs inside the authorization decision. Session resume likewise restores more than conversation text: it restores working directory, policy version, actual model, sandbox state, and unresolved effects.
+
+          ## Engineering impact
+
+          For enterprise Digital Employees, Position and WorkOrder should resolve into an effective policy snapshot before consequential work begins. Each Operation Node should receive a decision envelope and return a receipt naming the actual execution identity and policy version. Model substitution, sandbox unavailability, and resumed-context drift should enter configured allow, deny, or escalation paths.
+
+          For CodeFlowMu, policy resolution should be a projection separate from FCoP lifecycle state. Requested and actual model, sandbox mode, permission decision, and policy provenance should be durable operation evidence. Resume should compare a stored context manifest with the restored runtime and block or escalate material drift.
+
+          ## Boundaries and counter-evidence
+
+          The evidence consists of official release notes and documentation, not an independent advisory, exploit reproduction, platform regression matrix, or measured incident reduction. Current documentation may also differ from the implementation state at release time. This candidate presents an architectural judgment, not an independently proven security result.
+
+          ## Future work
+
+          Further work should determine which decisions must remain centralized, which may be cached with verifiable provenance, which model-property changes require re-authorization, how every execution path proves policy-version conformance, and which resume differences must block continued work.
+
+          ## Visualization note
+
+          The visual centers the decision envelope and links policy, principal and capability, model, sandbox, and resumed context to enforcement receipts. It is a Research Center architecture synthesis based on the Research Object.
+
+          ## Evidence and references
+
+          1. [Research Object](https://github.com/joinwell52-AI/joinwell52/blob/main/research/analysis/Q-20260806-02-enterprise-agent-control-plane.md): the sole analytical input, explicitly separating documented policy, enforcement conformance, and independent-validation gaps.
+          2. [Reading Result](https://github.com/joinwell52-AI/joinwell52/blob/main/research/reading/Q-20260806-02-enterprise-agent-control-plane.md): the evidence boundary and source-traceability record declared by the Research Object; this candidate does not re-research it.
+
+          > Editing status: bilingual substance, vendor-claim qualifications, control-surface comparison, and evidence gaps were checked; not published.
+          ''',
+          'staging/publication-candidates/2026-08-06-semantic-migration-recovery.zh.md': r'''---
+          schema: "publication-candidate-article/v1"
+          title: "Agent 历史迁移必须保留语义，而不只是搬运文件"
+          date: "2026-08-06"
+          column: "open-source-engineering"
+          category: "daily"
+          summary: "回滚、压缩和迟到事件会让物理记录顺序偏离逻辑会话边界；可靠迁移必须先重建语义，再通过带 journal 的幂等阶段发布和恢复。"
+          sources:
+            - "research/analysis/Q-20260806-03-rollout-migration-recovery.md"
+            - "research/reading/Q-20260806-03-rollout-migration-recovery.md"
+          item_id: "Q-20260806-03"
+          lifecycle: "Publication Candidate"
+          source_research_object: "research/analysis/Q-20260806-03-rollout-migration-recovery.md"
+          source_reading_result: "research/reading/Q-20260806-03-rollout-migration-recovery.md"
+          visualization: "staging/publication-candidates/2026-08-06-semantic-migration-recovery.svg"
+          visualization_decision: "Required — semantic migration and journaled recovery lifecycle included"
+          evidence_status: "Completed"
+          citation_status: "Completed"
+          editing_status: "Completed"
+          publication_authorized: false
+          ---
+
+          # Agent 历史迁移必须保留语义，而不只是搬运文件
+
+          Agent rollout 的持久记录可能经历回滚、压缩、父子历史复制和迟到生命周期事件。此时，物理顺序不再等于逻辑会话含义。逐行复制可以保留字节，却可能恢复出错误的可见历史。
+
+          ## 核心判断
+
+          **Agent 历史迁移应被定义为版本化语义转换，而不是文件格式转换。** 转换需要明确不变量、逻辑边界和降级项；跨 JSONL 与 SQLite 的发布应采用持久 journal 与幂等阶段，并把结果称为“可恢复”，除非真正证明了全局原子性。
+
+          ## 来源
+
+          本文唯一分析输入是获准进入 Production 的 Research Object。Production 没有重新读取提交差异来开展新分析，也不把单一维护者变更和测试提升为 fleet-scale 保证。
+
+          ## 观察
+
+          Research Object 描述了四个关键机制：按逻辑 turn ownership 分配记录；消费 rollback 事件并保留必要 compaction anchor；在可证明安全检查点时进行有界反向重放，否则回退到完整容错重放；通过 flush、sync、rename 发布文件，并以 pending journal 跨越 JSONL 已发布而 SQLite 尚未完成的非原子区间。
+
+          ## 比较
+
+          | 方法 | 保留对象 | 主要保证 | 明确边界 |
+          |---|---|---|---|
+          | 原样复制 | 字节和物理顺序 | 文件内容未改写 | 可能破坏逻辑可见历史 |
+          | 语义重放 | turn ownership、rollback、compaction 与子 Agent 边界 | 恢复预期会话意义 | 依赖不变量与容错策略 |
+          | 原子 rename | 单文件发布 | 读者看到旧文件或新文件 | 不覆盖多存储事务 |
+          | Journaled recovery | 跨 JSONL/SQLite 的发布意图和阶段 | 崩溃后可继续或修复 | 是可恢复协议，不是分布式原子事务 |
+
+          表格区分了字节保存、语义恢复、单文件原子性和跨存储可恢复性，避免把不同保证混为一谈。
+
+          ## 讨论
+
+          可靠迁移应先完成 semantic canonicalization，再执行 durable publication。逻辑 turn id 能处理迟到记录，而简单删除物理后缀可能误删仍属于有效 turn 的证据。pending journal 的作用是保留跨存储过渡意图，使恢复者能幂等地完成或修复，而不是假装存在一个并未建立的全局事务。
+
+          有界重放也必须是“证明后优化”：只有安全检查点成立时才缩小重放范围，否则回退到完整容错重放。回退可能增加成本或保留重复，但它比在不确定边界上做激进裁剪更保守。
+
+          ## 工程影响
+
+          对 CodeFlowMu，可把迁移拆成 Prepare、Transform、Validate、Publish、Complete 与 Recover 阶段，并为每阶段配置幂等键。任何跨多个存储或投影的逻辑迁移都应有 durable pending journal。
+
+          迁移 manifest 应包含源/目标版本、记录数量、逻辑边界决定、跳过项、fallback 路径、journal 阶段和验证结果。FCoP 的 append-only 历史与当前生命周期事实保持权威，派生索引和 Runtime 投影可以重建，但不能反向改写协议历史。
+
+          ## 边界与反证
+
+          证据是一项已合并维护者变更和相关测试，不是独立或大规模生产验证。损坏或超大记录可能被跳过或失败；文件系统 rename、fsync 和目录同步具有平台差异；journal 不是分布式事务；来源没有提供吞吐、恢复时长、争用或生产数据丢失指标。
+
+          ## 未来工作
+
+          需要定义迁移前后模型可见上下文的可比较不变量，确定何时损坏记录必须阻断而不是降级，设计并发 writer/recoverer 协调，以及把哪些吞吐、fallback 和恢复指标作为发布门禁。
+
+          ## 可视化说明
+
+          配图把 Prepare 到 Recover 的阶段与 pending journal、JSONL、SQLite 分开表示。它是 Research Center 基于 Research Object 的生命周期综合，不声称跨存储全局原子性。
+
+          ## 证据与引用
+
+          1. [Research Object](https://github.com/joinwell52-AI/joinwell52/blob/main/research/analysis/Q-20260806-03-rollout-migration-recovery.md)：本文唯一分析输入，包含语义迁移判断、可恢复边界、反证和工程影响。
+          2. [Reading Result](https://github.com/joinwell52-AI/joinwell52/blob/main/research/reading/Q-20260806-03-rollout-migration-recovery.md)：Research Object 声明的证据边界与来源追溯记录；本文不从该记录重新分析。
+
+          > 编辑状态：已完成双语结构、atomic 与 recoverable 术语区分、异常记录和平台限制保留；尚未发布。
+          ''',
+          'staging/publication-candidates/2026-08-06-semantic-migration-recovery.en.md': r'''---
+          schema: "publication-candidate-article/v1"
+          title: "Agent History Migration Must Preserve Semantics, Not Just Files"
+          date: "2026-08-06"
+          column: "open-source-engineering"
+          category: "daily"
+          summary: "Rollback, compaction, and late lifecycle events can make physical record order diverge from logical session boundaries; reliable migration must reconstruct semantics before journaled, idempotent publication and recovery."
+          sources:
+            - "research/analysis/Q-20260806-03-rollout-migration-recovery.md"
+            - "research/reading/Q-20260806-03-rollout-migration-recovery.md"
+          item_id: "Q-20260806-03"
+          lifecycle: "Publication Candidate"
+          source_research_object: "research/analysis/Q-20260806-03-rollout-migration-recovery.md"
+          source_reading_result: "research/reading/Q-20260806-03-rollout-migration-recovery.md"
+          visualization: "staging/publication-candidates/2026-08-06-semantic-migration-recovery.svg"
+          visualization_decision: "Required — semantic migration and journaled recovery lifecycle included"
+          evidence_status: "Completed"
+          citation_status: "Completed"
+          editing_status: "Completed"
+          publication_authorized: false
+          ---
+
+          # Agent History Migration Must Preserve Semantics, Not Just Files
+
+          Agent rollout records may contain rollback, compaction, copied parent history, and late lifecycle events. Physical order can therefore diverge from logical session meaning. Line-by-line copying may preserve bytes while restoring the wrong visible history.
+
+          ## Central judgment
+
+          **Agent-history migration should be defined as a versioned semantic transformation, not a file-format conversion.** The transformation needs explicit invariants, logical boundaries, and degraded items. Publication across JSONL and SQLite should use a durable journal and idempotent phases, and the result should be called recoverable unless a true global atomic boundary is proven.
+
+          ## Source
+
+          The sole analytical input is the Research Object authorized for Production. Production did not re-read the implementation change to create new analysis and does not promote one maintainer change and its tests into a fleet-scale guarantee.
+
+          ## Observation
+
+          The Research Object identifies four mechanisms: assign records by logical turn ownership; consume rollback events while preserving required compaction anchors; use bounded reverse replay only when a safe checkpoint can be proven, otherwise fall back to complete tolerant replay; and publish files with flush, sync, and rename while a pending journal bridges the non-atomic interval between JSONL publication and SQLite completion.
+
+          ## Comparison
+
+          | Method | What it preserves | Primary guarantee | Explicit boundary |
+          |---|---|---|---|
+          | Verbatim copy | Bytes and physical order | File content is not rewritten | Logical visible history may be wrong |
+          | Semantic replay | Turn ownership, rollback, compaction, and subagent boundaries | Intended session meaning is reconstructed | Depends on invariants and tolerant policy |
+          | Atomic rename | Publication of one file | Readers observe the old or new file | Does not cover a multi-store transaction |
+          | Journaled recovery | Intent and phases across JSONL and SQLite | A crash can be completed or repaired | Recoverable protocol, not distributed atomicity |
+
+          The table separates byte preservation, semantic restoration, single-file atomicity, and cross-store recoverability instead of treating them as one guarantee.
+
+          ## Discussion
+
+          Reliable migration should separate semantic canonicalization from durable publication. Logical turn ownership handles late records that a physical suffix deletion could remove incorrectly. The pending journal preserves cross-store transition intent so a recoverer can complete or repair the operation idempotently; it does not create a global transaction that the system does not possess.
+
+          Bounded replay must also be an optimization under proof. It can reduce work only when a safe checkpoint is established. Otherwise, complete tolerant replay is the conservative fallback. That fallback may add cost or preserve duplication, but it is safer than aggressive trimming at an uncertain boundary.
+
+          ## Engineering impact
+
+          For CodeFlowMu, migration can be divided into Prepare, Transform, Validate, Publish, Complete, and Recover phases with idempotency keys. Any logical transition spanning multiple stores or projections should have a durable pending journal.
+
+          A migration manifest should contain source and target versions, record counts, logical-boundary decisions, skipped items, fallback path, journal phase, and verification results. FCoP append-only history and current lifecycle truth remain authoritative; derived indexes and Runtime projections may be rebuilt without rewriting protocol history.
+
+          ## Boundaries and counter-evidence
+
+          The evidence is one merged maintainer change and its tests, not independent or fleet-scale validation. Malformed or oversized records may be skipped or fail; rename, fsync, and directory synchronization are platform dependent; the journal is not a distributed transaction; and the source provides no throughput, recovery-time, contention, or production data-loss metrics.
+
+          ## Future work
+
+          Future work should define comparable invariants for model-visible context before and after migration, decide when malformed input must block instead of degrade, coordinate concurrent writers and recoverers, and make throughput, fallback, and recovery metrics part of release gates.
+
+          ## Visualization note
+
+          The visual separates Prepare through Recover from the pending journal, JSONL, and SQLite. It is a Research Center lifecycle synthesis based on the Research Object and does not claim global cross-store atomicity.
+
+          ## Evidence and references
+
+          1. [Research Object](https://github.com/joinwell52-AI/joinwell52/blob/main/research/analysis/Q-20260806-03-rollout-migration-recovery.md): the sole analytical input, including semantic-migration judgment, recoverability boundaries, counter-evidence, and engineering impact.
+          2. [Reading Result](https://github.com/joinwell52-AI/joinwell52/blob/main/research/reading/Q-20260806-03-rollout-migration-recovery.md): the evidence boundary and source-traceability record declared by the Research Object; this candidate does not re-analyze it.
+
+          > Editing status: bilingual structure, the distinction between atomic and recoverable, abnormal-record handling, and platform limitations were checked; not published.
+          ''',
+          'staging/publication-candidates/2026-08-06-governed-revisable-work-graph.svg': r'''<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><defs><marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#6fd3ff"/></marker><linearGradient id="g" x1="0" x2="1"><stop stop-color="#6b63ff"/><stop offset="1" stop-color="#22b8cf"/></linearGradient></defs><rect width="1200" height="630" fill="#07111f"/><text x="70" y="72" fill="#8ccfff" font-size="22" font-family="Arial">RESEARCH RUNTIME · DIGITAL EMPLOYEE</text><text x="70" y="124" fill="#fff" font-size="38" font-weight="700" font-family="Arial">Governed Revisable Work Graph</text><rect x="70" y="185" width="230" height="170" rx="20" fill="#10223b" stroke="#7168ff" stroke-width="3"/><text x="185" y="228" text-anchor="middle" fill="#fff" font-size="24" font-family="Arial">Revisable Graph</text><text x="185" y="268" text-anchor="middle" fill="#a9bdd6" font-size="17" font-family="Arial">version · nodes · edges</text><text x="185" y="298" text-anchor="middle" fill="#a9bdd6" font-size="17" font-family="Arial">mutation events</text><path d="M300 270 H360" stroke="#6fd3ff" stroke-width="5" marker-end="url(#a)"/><rect x="380" y="185" width="230" height="170" rx="20" fill="#10223b" stroke="#2db7d6" stroke-width="3"/><text x="495" y="228" text-anchor="middle" fill="#fff" font-size="24" font-family="Arial">Ready Frontier</text><text x="495" y="268" text-anchor="middle" fill="#a9bdd6" font-size="17" font-family="Arial">dependencies satisfied</text><text x="495" y="298" text-anchor="middle" fill="#ffcf6e" font-size="17" font-family="Arial">not yet authorized</text><path d="M610 270 H670" stroke="#6fd3ff" stroke-width="5" marker-end="url(#a)"/><rect x="690" y="185" width="230" height="170" rx="20" fill="#211c30" stroke="#ffb54a" stroke-width="3"/><text x="805" y="228" text-anchor="middle" fill="#fff" font-size="24" font-family="Arial">Authority Gate</text><text x="805" y="263" text-anchor="middle" fill="#d8c3a2" font-size="17" font-family="Arial">policy · resource locks</text><text x="805" y="293" text-anchor="middle" fill="#d8c3a2" font-size="17" font-family="Arial">side-effect scope</text><path d="M920 270 H980" stroke="#6fd3ff" stroke-width="5" marker-end="url(#a)"/><rect x="990" y="185" width="150" height="170" rx="20" fill="#132a25" stroke="#42d39a" stroke-width="3"/><text x="1065" y="228" text-anchor="middle" fill="#fff" font-size="22" font-family="Arial">Acceptance</text><text x="1065" y="266" text-anchor="middle" fill="#b4e3d2" font-size="16" font-family="Arial">evidence receipt</text><text x="1065" y="294" text-anchor="middle" fill="#b4e3d2" font-size="16" font-family="Arial">independent QA</text><path d="M805 355 V430 H185 V355" fill="none" stroke="url(#g)" stroke-width="4" stroke-dasharray="10 8" marker-end="url(#a)"/><text x="495" y="470" text-anchor="middle" fill="#a9bdd6" font-size="19" font-family="Arial">Results may revise pending nodes; accepted effects are not replayed blindly.</text><text x="70" y="570" fill="#8599b3" font-size="18" font-family="Arial">Source: Research Center synthesis based on Q-20260806-01 Research Object · 2026-08-06</text></svg>''',
+          'staging/publication-candidates/2026-08-06-enterprise-agent-decision-envelope.svg': r'''<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><defs><marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#7dd3fc"/></marker></defs><rect width="1200" height="630" fill="#07111f"/><text x="70" y="72" fill="#8ccfff" font-size="22" font-family="Arial">RESEARCH RUNTIME · INDUSTRY ARCHITECTURE</text><text x="70" y="124" fill="#fff" font-size="38" font-weight="700" font-family="Arial">Enterprise Agent Decision Envelope</text><rect x="420" y="190" width="360" height="220" rx="28" fill="#142744" stroke="#7c72ff" stroke-width="4"/><text x="600" y="238" text-anchor="middle" fill="#fff" font-size="28" font-family="Arial">Versioned Decision Envelope</text><text x="600" y="282" text-anchor="middle" fill="#b8c8dc" font-size="18" font-family="Arial">policy provenance · principal · capability</text><text x="600" y="318" text-anchor="middle" fill="#b8c8dc" font-size="18" font-family="Arial">actual model · sandbox · resume digest</text><text x="600" y="365" text-anchor="middle" fill="#ffcf6e" font-size="18" font-family="Arial">allow · deny · escalate</text><rect x="70" y="180" width="240" height="100" rx="18" fill="#10223b" stroke="#38bdf8" stroke-width="3"/><text x="190" y="220" text-anchor="middle" fill="#fff" font-size="22" font-family="Arial">Managed Policy</text><text x="190" y="251" text-anchor="middle" fill="#a9bdd6" font-size="16" font-family="Arial">version + provenance</text><rect x="70" y="330" width="240" height="100" rx="18" fill="#10223b" stroke="#38bdf8" stroke-width="3"/><text x="190" y="370" text-anchor="middle" fill="#fff" font-size="22" font-family="Arial">Principal + Capability</text><text x="190" y="401" text-anchor="middle" fill="#a9bdd6" font-size="16" font-family="Arial">who requests what</text><rect x="890" y="180" width="240" height="100" rx="18" fill="#10223b" stroke="#38bdf8" stroke-width="3"/><text x="1010" y="220" text-anchor="middle" fill="#fff" font-size="22" font-family="Arial">Model + Sandbox</text><text x="1010" y="251" text-anchor="middle" fill="#a9bdd6" font-size="16" font-family="Arial">requested vs actual</text><rect x="890" y="330" width="240" height="100" rx="18" fill="#10223b" stroke="#38bdf8" stroke-width="3"/><text x="1010" y="370" text-anchor="middle" fill="#fff" font-size="22" font-family="Arial">Resume Context</text><text x="1010" y="401" text-anchor="middle" fill="#a9bdd6" font-size="16" font-family="Arial">directory · policy · effects</text><path d="M310 230 H405" stroke="#7dd3fc" stroke-width="4" marker-end="url(#a)"/><path d="M310 380 H405" stroke="#7dd3fc" stroke-width="4" marker-end="url(#a)"/><path d="M890 230 H795" stroke="#7dd3fc" stroke-width="4" marker-end="url(#a)"/><path d="M890 380 H795" stroke="#7dd3fc" stroke-width="4" marker-end="url(#a)"/><rect x="420" y="455" width="360" height="70" rx="18" fill="#123329" stroke="#42d39a" stroke-width="3"/><text x="600" y="497" text-anchor="middle" fill="#d8ffef" font-size="22" font-family="Arial">Enforcement Receipt from Every Execution Path</text><path d="M600 410 V445" stroke="#42d39a" stroke-width="4" marker-end="url(#a)"/><text x="70" y="580" fill="#8599b3" font-size="18" font-family="Arial">Source: Research Center synthesis based on Q-20260806-02 Research Object · vendor claims remain qualified</text></svg>''',
+          'staging/publication-candidates/2026-08-06-semantic-migration-recovery.svg': r'''<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><defs><marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#75d6ff"/></marker></defs><rect width="1200" height="630" fill="#07111f"/><text x="70" y="72" fill="#8ccfff" font-size="22" font-family="Arial">RESEARCH RUNTIME · OPEN-SOURCE ENGINEERING</text><text x="70" y="124" fill="#fff" font-size="38" font-weight="700" font-family="Arial">Semantic Migration with Journaled Recovery</text><g font-family="Arial"><rect x="55" y="190" width="160" height="90" rx="16" fill="#10223b" stroke="#6b63ff" stroke-width="3"/><text x="135" y="244" text-anchor="middle" fill="#fff" font-size="21">Prepare</text><rect x="245" y="190" width="160" height="90" rx="16" fill="#10223b" stroke="#6b63ff" stroke-width="3"/><text x="325" y="244" text-anchor="middle" fill="#fff" font-size="21">Transform</text><rect x="435" y="190" width="160" height="90" rx="16" fill="#10223b" stroke="#6b63ff" stroke-width="3"/><text x="515" y="244" text-anchor="middle" fill="#fff" font-size="21">Validate</text><rect x="625" y="190" width="160" height="90" rx="16" fill="#211c30" stroke="#ffb54a" stroke-width="3"/><text x="705" y="244" text-anchor="middle" fill="#fff" font-size="21">Publish</text><rect x="815" y="190" width="160" height="90" rx="16" fill="#132a25" stroke="#42d39a" stroke-width="3"/><text x="895" y="244" text-anchor="middle" fill="#fff" font-size="21">Complete</text><path d="M215 235 H235" stroke="#75d6ff" stroke-width="4" marker-end="url(#a)"/><path d="M405 235 H425" stroke="#75d6ff" stroke-width="4" marker-end="url(#a)"/><path d="M595 235 H615" stroke="#75d6ff" stroke-width="4" marker-end="url(#a)"/><path d="M785 235 H805" stroke="#75d6ff" stroke-width="4" marker-end="url(#a)"/><rect x="360" y="360" width="480" height="95" rx="20" fill="#2b2316" stroke="#ffb54a" stroke-width="3"/><text x="600" y="399" text-anchor="middle" fill="#ffe0a3" font-size="24">Durable Pending Journal</text><text x="600" y="431" text-anchor="middle" fill="#d9c6a4" font-size="17">phase · intent · idempotency key · recovery receipt</text><path d="M705 280 V350" stroke="#ffb54a" stroke-width="4" marker-end="url(#a)"/><rect x="90" y="375" width="190" height="70" rx="16" fill="#10223b" stroke="#38bdf8" stroke-width="3"/><text x="185" y="417" text-anchor="middle" fill="#fff" font-size="21">JSONL Published</text><rect x="920" y="375" width="190" height="70" rx="16" fill="#10223b" stroke="#38bdf8" stroke-width="3"/><text x="1015" y="417" text-anchor="middle" fill="#fff" font-size="21">SQLite Pending</text><path d="M360 407 H290" stroke="#75d6ff" stroke-width="4" marker-end="url(#a)"/><path d="M840 407 H910" stroke="#75d6ff" stroke-width="4" marker-end="url(#a)"/><path d="M1015 445 V500 H895 V290" fill="none" stroke="#42d39a" stroke-width="4" stroke-dasharray="10 8" marker-end="url(#a)"/><text x="985" y="522" text-anchor="middle" fill="#b4e3d2" font-size="18">Recover idempotently</text><text x="70" y="580" fill="#8599b3" font-size="18">Source: Research Center synthesis based on Q-20260806-03 Research Object · recoverable, not globally atomic</text></g></svg>'''
+          }
+
+          for path, content in files.items():
+              p = Path(path)
+              p.parent.mkdir(parents=True, exist_ok=True)
+              lines = content.splitlines()
+              # Remove YAML-block indentation introduced by the workflow while preserving article indentation.
+              nonblank = [len(line) - len(line.lstrip()) for line in lines if line.strip()]
+              trim = min(nonblank) if nonblank else 0
+              normalized = '\n'.join(line[trim:] if line.strip() else '' for line in lines).strip() + '\n'
+              p.write_text(normalized, encoding='utf-8')
+          PY
+
+          cat > research/runtime/candidates/2026/08/2026-08-06-candidates.json <<'JSON'
+          {
+            "schema": "runtime-publication-candidate/v1",
+            "date": "2026-08-06",
+            "timezone": "Asia/Shanghai",
+            "status": "Completed",
+            "sourceTask": "Research Runtime Production",
+            "sourceRecord": "research/runtime/2026/08/2026-08-06-runtime.md",
+            "updatedAt": "pending",
+            "githubCommit": "pending",
+            "reason": "Production completed the eligibility gate and produced three complete bilingual Publication Candidates from the three Production-authorized Research Objects.",
+            "reason_zh": "Production 已完成准入门禁，并仅从三份获授权 Research Object 生成三份完整双语 Publication Candidate。",
+            "outcome": "Publication Candidates Produced",
+            "outcome_zh": "已生成出版候选",
+            "candidates": [
+              {
+                "column": "digital-employee",
+                "itemId": "Q-20260806-01",
+                "title": "A Revisable Work Graph Still Needs Authority Beyond Graph Readiness",
+                "title_zh": "可修订工作图仍需超越“图就绪”的授权边界",
+                "zhPath": "staging/publication-candidates/2026-08-06-governed-revisable-work-graph.zh.md",
+                "enPath": "staging/publication-candidates/2026-08-06-governed-revisable-work-graph.en.md",
+                "coverPath": "staging/publication-candidates/2026-08-06-governed-revisable-work-graph.svg",
+                "lifecycle": "Publication Candidate",
+                "evidenceStatus": "Completed",
+                "editingStatus": "Completed"
+              },
+              {
+                "column": "industry-architecture",
+                "itemId": "Q-20260806-02",
+                "title": "Enterprise Agent Control Planes Need Decision Envelopes, Not Configuration Precedence Alone",
+                "title_zh": "企业 Agent 控制平面需要决策信封，而不只是配置优先级",
+                "zhPath": "staging/publication-candidates/2026-08-06-enterprise-agent-decision-envelope.zh.md",
+                "enPath": "staging/publication-candidates/2026-08-06-enterprise-agent-decision-envelope.en.md",
+                "coverPath": "staging/publication-candidates/2026-08-06-enterprise-agent-decision-envelope.svg",
+                "lifecycle": "Publication Candidate",
+                "evidenceStatus": "Completed",
+                "editingStatus": "Completed"
+              },
+              {
+                "column": "open-source-engineering",
+                "itemId": "Q-20260806-03",
+                "title": "Agent History Migration Must Preserve Semantics, Not Just Files",
+                "title_zh": "Agent 历史迁移必须保留语义，而不只是搬运文件",
+                "zhPath": "staging/publication-candidates/2026-08-06-semantic-migration-recovery.zh.md",
+                "enPath": "staging/publication-candidates/2026-08-06-semantic-migration-recovery.en.md",
+                "coverPath": "staging/publication-candidates/2026-08-06-semantic-migration-recovery.svg",
+                "lifecycle": "Publication Candidate",
+                "evidenceStatus": "Completed",
+                "editingStatus": "Completed"
+              }
+            ]
+          }
+          JSON
+
+      - name: Update only the Production result and synchronize ledger
+        shell: bash
+        run: |
+          set -euo pipefail
+          completion_time="$(TZ=Asia/Shanghai date '+%Y-%m-%dT%H:%M:%S+08:00')"
+          COMPLETION_TIME="$completion_time" node <<'NODE'
+          const fs = require('fs')
+          const path = 'research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json'
+          const record = JSON.parse(fs.readFileSync(path, 'utf8'))
+          const opened = (record.timeline || []).filter((event) => event.task === 'production' && event.event === 'Execution Slot Opened' && event.status === 'Running' && String(event.time || '').startsWith('2026-08-06'))
+          if (opened.length !== 1) throw new Error(`Expected exactly one Production start event before completion, got ${opened.length}`)
+          if (record.results?.production) throw new Error('Production result already exists; refusing to overwrite')
+          record.results.production = {
+            schema: 'runtime-shift-result/v2',
+            task: 'production',
+            status: 'Completed',
+            input: 'The durably verified Scheduler-fallback Production start state in commit 7c1513474494c52e6f3ea6795db92b1c94f645c5 and the three Production-authorized Research Objects Q-20260806-01, Q-20260806-02 and Q-20260806-03.',
+            input_zh: '提交 7c1513474494c52e6f3ea6795db92b1c94f645c5 中已完成持久化核验的 Scheduler 回退 Production 启动状态，以及三份获准进入 Production 的 Research Object：Q-20260806-01、Q-20260806-02 与 Q-20260806-03。',
+            workResult: 'Executed Skill 05 Research Writing, Skill 06 Visualization, Skill 07 Evidence & Citation and Skill 08 Publication Editing for every eligible Research Object. Produced three complete bilingual candidates, six independently edited article files and three evidence-bounded architecture or lifecycle visuals. No Signal Pool or Reading Result was used as writing input, and no candidate was published.',
+            workResult_zh: '对全部合格 Research Object 执行 Skill 05 Research Writing、Skill 06 Visualization、Skill 07 Evidence & Citation 与 Skill 08 Publication Editing。已生成三份完整双语候选、六份独立编辑文章及三张证据边界内的架构或生命周期配图。未以 Signal Pool 或 Reading Result 作为写作输入，未发布任何候选。',
+            output: 'A completed 2026-08-06 Publication Candidate batch containing one candidate for each research column, with valid metadata, bilingual paths, visualization decisions, completed evidence and citation status, completed editing status and publication_authorized=false.',
+            output_zh: '已形成完整的 2026-08-06 Publication Candidate 批次，三个研究栏目各一份候选，包含有效元数据、双语路径、可视化决定、已完成的证据与引用状态、已完成的编辑状态，并保持 publication_authorized=false。',
+            next: 'Research Runtime Publication at 20:00 may consume only research/runtime/candidates/2026/08/2026-08-06-candidates.json. It may release complete candidates but must not conduct new research, substantive rewriting or evidence repair.',
+            next_zh: '20:00 Research Runtime Publication 只能消费 research/runtime/candidates/2026/08/2026-08-06-candidates.json；可以发布完整候选，但不得开展新研究、实质性改写或证据修复。',
+            metrics: [
+              { label: 'Eligible Research Objects', label_zh: '合格 Research Object', value: '3' },
+              { label: 'Publication Candidates', label_zh: '出版候选', value: '3' },
+              { label: 'Bilingual article files', label_zh: '双语文章文件', value: '6' },
+              { label: 'Architecture or lifecycle visuals', label_zh: '架构或生命周期配图', value: '3' },
+              { label: 'Evidence status Completed', label_zh: '证据状态 Completed', value: '3 / 3' },
+              { label: 'Editing status Completed', label_zh: '编辑状态 Completed', value: '3 / 3' },
+              { label: 'Scheduler fallback start events', label_zh: 'Scheduler 回退启动事件', value: '1' },
+              { label: 'Direct publications', label_zh: '直接发布', value: '0' }
+            ],
+            evidence: [
+              { label: 'Scheduler V3.0', label_zh: 'Scheduler V3.0', source: 'research/runtime/SCHEDULER.json' },
+              { label: 'Verified Production fallback start commit', label_zh: '已核验的 Production 回退启动提交', commit: '7c1513474494c52e6f3ea6795db92b1c94f645c5', source: 'https://github.com/joinwell52-AI/joinwell52/commit/7c1513474494c52e6f3ea6795db92b1c94f645c5' },
+              { label: 'Skill 05 Research Writing', label_zh: 'Skill 05 Research Writing', source: 'research/skills/05-research-writing.md' },
+              { label: 'Skill 06 Research Visualization', label_zh: 'Skill 06 Research Visualization', source: 'research/skills/06-research-visualization.md' },
+              { label: 'Skill 07 Evidence & Citation', label_zh: 'Skill 07 Evidence & Citation', source: 'research/skills/07-evidence-citation.md' },
+              { label: 'Skill 08 Publication Editing', label_zh: 'Skill 08 Publication Editing', source: 'research/skills/08-publication-editing.md' },
+              { label: 'Publication Candidate Contract', label_zh: 'Publication Candidate 契约', source: 'research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md' },
+              { label: 'Digital Employee Research Object', label_zh: '数字员工 Research Object', source: 'research/analysis/Q-20260806-01-revisable-dag-computer-use.md' },
+              { label: 'Industry Architecture Research Object', label_zh: '行业架构 Research Object', source: 'research/analysis/Q-20260806-02-enterprise-agent-control-plane.md' },
+              { label: 'Open-source Engineering Research Object', label_zh: '开源工程 Research Object', source: 'research/analysis/Q-20260806-03-rollout-migration-recovery.md' }
+            ],
+            artifacts: [
+              { label: 'Publication Candidate batch', label_zh: '出版候选批次', path: 'research/runtime/candidates/2026/08/2026-08-06-candidates.json' },
+              { label: 'Governed work graph Chinese candidate', label_zh: '受治理工作图中文候选', path: 'staging/publication-candidates/2026-08-06-governed-revisable-work-graph.zh.md' },
+              { label: 'Governed work graph English candidate', label_zh: '受治理工作图英文候选', path: 'staging/publication-candidates/2026-08-06-governed-revisable-work-graph.en.md' },
+              { label: 'Governed work graph visual', label_zh: '受治理工作图配图', path: 'staging/publication-candidates/2026-08-06-governed-revisable-work-graph.svg' },
+              { label: 'Decision envelope Chinese candidate', label_zh: '决策信封中文候选', path: 'staging/publication-candidates/2026-08-06-enterprise-agent-decision-envelope.zh.md' },
+              { label: 'Decision envelope English candidate', label_zh: '决策信封英文候选', path: 'staging/publication-candidates/2026-08-06-enterprise-agent-decision-envelope.en.md' },
+              { label: 'Decision envelope visual', label_zh: '决策信封配图', path: 'staging/publication-candidates/2026-08-06-enterprise-agent-decision-envelope.svg' },
+              { label: 'Semantic migration Chinese candidate', label_zh: '语义迁移中文候选', path: 'staging/publication-candidates/2026-08-06-semantic-migration-recovery.zh.md' },
+              { label: 'Semantic migration English candidate', label_zh: '语义迁移英文候选', path: 'staging/publication-candidates/2026-08-06-semantic-migration-recovery.en.md' },
+              { label: 'Semantic migration visual', label_zh: '语义迁移配图', path: 'staging/publication-candidates/2026-08-06-semantic-migration-recovery.svg' },
+              { label: 'Daily Runtime Record', label_zh: '每日运行机器记录', path: 'research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json' },
+              { label: 'Human-readable Runtime ledger', label_zh: '人类可读运行账本', path: 'research/runtime/2026/08/2026-08-06-runtime.md' }
+            ]
+          }
+          record.status = 'Waiting'
+          record.taskStatus.production = 'Completed'
+          record.timeline.push({
+            time: process.env.COMPLETION_TIME,
+            task: 'production',
+            event: 'Production Completed',
+            status: 'Completed',
+            detail: 'Skills 05-08 produced three complete bilingual Publication Candidates after verified Scheduler-fallback start commit 7c1513474494c52e6f3ea6795db92b1c94f645c5; no direct publication or new research was performed.'
+          })
+          record.githubCommit = 'pending'
+          record.commitVerify = 'Waiting'
+          record.updatedAt = process.env.COMPLETION_TIME
+          fs.writeFileSync(path, JSON.stringify(record, null, 2) + '\n')
+
+          const batchPath = 'research/runtime/candidates/2026/08/2026-08-06-candidates.json'
+          const batch = JSON.parse(fs.readFileSync(batchPath, 'utf8'))
+          batch.updatedAt = process.env.COMPLETION_TIME
+          fs.writeFileSync(batchPath, JSON.stringify(batch, null, 2) + '\n')
+          NODE
+          node scripts/runtime-markdown.mjs render --date 2026-08-06
+
+      - name: Validate candidates, Runtime and site build
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs')
+          const batch = JSON.parse(fs.readFileSync('research/runtime/candidates/2026/08/2026-08-06-candidates.json', 'utf8'))
+          if (batch.status !== 'Completed' || batch.candidates.length !== 3) throw new Error('Candidate batch must be Completed with exactly three candidates')
+          for (const candidate of batch.candidates) {
+            for (const key of ['zhPath', 'enPath', 'coverPath']) {
+              if (!fs.existsSync(candidate[key])) throw new Error(`Missing ${key}: ${candidate[key]}`)
+            }
+            if (candidate.evidenceStatus !== 'Completed' || candidate.editingStatus !== 'Completed') throw new Error(`Candidate gate incomplete: ${candidate.itemId}`)
+            for (const p of [candidate.zhPath, candidate.enPath]) {
+              const text = fs.readFileSync(p, 'utf8')
+              for (const required of ['publication_authorized: false', 'evidence_status: "Completed"', 'citation_status: "Completed"', 'editing_status: "Completed"']) {
+                if (!text.includes(required)) throw new Error(`${p} missing ${required}`)
+              }
+            }
+          }
+          const record = JSON.parse(fs.readFileSync('research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json', 'utf8'))
+          if (record.taskStatus.production !== 'Completed' || record.results.production?.schema !== 'runtime-shift-result/v2') throw new Error('Production result is incomplete')
+          const opened = record.timeline.filter((e) => e.task === 'production' && e.event === 'Execution Slot Opened' && e.status === 'Running')
+          if (opened.length !== 1) throw new Error(`Expected one Production start event, got ${opened.length}`)
+          console.log('Candidate and Runtime contracts validated.')
+          NODE
+          npm ci
+          npm run runtime:validate
+          node scripts/runtime-markdown.mjs validate --date 2026-08-06
+          npm run docs:build
+          git restore docs/.vitepress/generated || true
+          git diff --check
+
+      - name: Commit final durable Production artifacts separately to main
+        id: durable
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add staging/publication-candidates \
+            research/runtime/candidates/2026/08/2026-08-06-candidates.json \
+            research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json \
+            research/runtime/2026/08/2026-08-06-runtime.md
+          git commit -m "runtime(production): create 2026-08-06 bilingual candidates"
+          durable_sha="$(git rev-parse HEAD)"
+          git push origin HEAD:main
+          echo "durable_sha=$durable_sha" >> "$GITHUB_OUTPUT"
+
+      - name: Fetch and verify durable Production commit
+        shell: bash
+        env:
+          DURABLE_SHA: ${{ steps.durable.outputs.durable_sha }}
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git merge-base --is-ancestor "$DURABLE_SHA" origin/main
+          for path in \
+            research/runtime/candidates/2026/08/2026-08-06-candidates.json \
+            staging/publication-candidates/2026-08-06-governed-revisable-work-graph.zh.md \
+            staging/publication-candidates/2026-08-06-governed-revisable-work-graph.en.md \
+            staging/publication-candidates/2026-08-06-governed-revisable-work-graph.svg \
+            staging/publication-candidates/2026-08-06-enterprise-agent-decision-envelope.zh.md \
+            staging/publication-candidates/2026-08-06-enterprise-agent-decision-envelope.en.md \
+            staging/publication-candidates/2026-08-06-enterprise-agent-decision-envelope.svg \
+            staging/publication-candidates/2026-08-06-semantic-migration-recovery.zh.md \
+            staging/publication-candidates/2026-08-06-semantic-migration-recovery.en.md \
+            staging/publication-candidates/2026-08-06-semantic-migration-recovery.svg \
+            research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json \
+            research/runtime/2026/08/2026-08-06-runtime.md; do
+            git show "$DURABLE_SHA:$path" >/dev/null
+          done
+          git show "$DURABLE_SHA:research/runtime/candidates/2026/08/2026-08-06-candidates.json" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const b=JSON.parse(s);if(b.candidates.length!==3||b.status!=="Completed")process.exit(1)})'
+          echo "Verified durable Production commit $DURABLE_SHA and all candidate artifacts."
+
+      - name: Record verified commit and synchronize Runtime ledger
+        shell: bash
+        env:
+          DURABLE_SHA: ${{ steps.durable.outputs.durable_sha }}
+        run: |
+          set -euo pipefail
+          verify_time="$(TZ=Asia/Shanghai date '+%Y-%m-%dT%H:%M:%S+08:00')"
+          VERIFY_TIME="$verify_time" node <<'NODE'
+          const fs = require('fs')
+          const runtimePath = 'research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json'
+          const record = JSON.parse(fs.readFileSync(runtimePath, 'utf8'))
+          if (record.results.production?.status !== 'Completed') throw new Error('Production is not Completed')
+          const verified = (record.timeline || []).filter((e) => e.task === 'production' && e.event === 'GitHub Commit Verified')
+          if (verified.length) throw new Error('Production verification event already exists')
+          record.githubCommit = process.env.DURABLE_SHA
+          record.commitVerify = 'Completed'
+          record.updatedAt = process.env.VERIFY_TIME
+          record.timeline.push({
+            time: process.env.VERIFY_TIME,
+            task: 'production',
+            event: 'GitHub Commit Verified',
+            status: 'Completed',
+            detail: `Fetched and verified commit ${process.env.DURABLE_SHA} containing the three complete bilingual Publication Candidates, six article files, three visuals, the Production-only runtime-shift-result/v2 update and the synchronized Markdown ledger.`
+          })
+          fs.writeFileSync(runtimePath, JSON.stringify(record, null, 2) + '\n')
+          const batchPath = 'research/runtime/candidates/2026/08/2026-08-06-candidates.json'
+          const batch = JSON.parse(fs.readFileSync(batchPath, 'utf8'))
+          batch.githubCommit = process.env.DURABLE_SHA
+          fs.writeFileSync(batchPath, JSON.stringify(batch, null, 2) + '\n')
+          NODE
+          node scripts/runtime-markdown.mjs render --date 2026-08-06
+          npm run runtime:validate
+          node scripts/runtime-markdown.mjs validate --date 2026-08-06
+          git diff --check
+
+      - name: Commit verification record and remove one-time workflow
+        id: verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/runtime-production-20260806-once.yml
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime/candidates/2026/08/2026-08-06-candidates.json \
+            research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json \
+            research/runtime/2026/08/2026-08-06-runtime.md \
+            .github/workflows/runtime-production-20260806-once.yml
+          git commit -m "runtime(production): verify 2026-08-06 durable artifacts"
+          verification_sha="$(git rev-parse HEAD)"
+          git push origin HEAD:main
+          echo "verification_sha=$verification_sha" >> "$GITHUB_OUTPUT"
+
+      - name: Fetch and verify final verification commit
+        shell: bash
+        env:
+          VERIFICATION_SHA: ${{ steps.verification.outputs.verification_sha }}
+          DURABLE_SHA: ${{ steps.durable.outputs.durable_sha }}
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git merge-base --is-ancestor "$VERIFICATION_SHA" origin/main
+          git show "$VERIFICATION_SHA:research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json" >/tmp/runtime-final.json
+          git show "$VERIFICATION_SHA:research/runtime/2026/08/2026-08-06-runtime.md" >/tmp/runtime-final.md
+          git show "$VERIFICATION_SHA:research/runtime/candidates/2026/08/2026-08-06-candidates.json" >/tmp/candidates-final.json
+          DURABLE_SHA="$DURABLE_SHA" node <<'NODE'
+          const fs = require('fs')
+          const record = JSON.parse(fs.readFileSync('/tmp/runtime-final.json', 'utf8'))
+          const batch = JSON.parse(fs.readFileSync('/tmp/candidates-final.json', 'utf8'))
+          const opened = record.timeline.filter((e) => e.task === 'production' && e.event === 'Execution Slot Opened' && e.status === 'Running')
+          const completed = record.timeline.filter((e) => e.task === 'production' && e.event === 'Production Completed' && e.status === 'Completed')
+          const verified = record.timeline.filter((e) => e.task === 'production' && e.event === 'GitHub Commit Verified' && e.status === 'Completed')
+          if (record.taskStatus.production !== 'Completed' || record.results.production?.status !== 'Completed') throw new Error('Final Production status is not Completed')
+          if (record.commitVerify !== 'Completed' || record.githubCommit !== process.env.DURABLE_SHA) throw new Error('Final commit verification fields are incorrect')
+          if (opened.length !== 1 || completed.length !== 1 || verified.length !== 1) throw new Error('Final Production timeline cardinality is incorrect')
+          if (batch.status !== 'Completed' || batch.githubCommit !== process.env.DURABLE_SHA || batch.candidates.length !== 3) throw new Error('Final candidate batch is incorrect')
+          const md = fs.readFileSync('/tmp/runtime-final.md', 'utf8')
+          if (!md.includes('Research Runtime Production') || !md.includes('Completed')) throw new Error('Final Markdown ledger is not synchronized')
+          console.log('Final verification commit confirmed: Production Completed with verified artifacts and no duplicate start event.')
+          NODE
