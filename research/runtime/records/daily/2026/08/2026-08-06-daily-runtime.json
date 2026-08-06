@@ -8,16 +8,176 @@
   "date": "2026-08-06",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
-    "discovery": "Running",
+    "discovery": "Completed",
     "queue": "Waiting",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
   },
-  "results": {},
+  "results": {
+    "discovery": {
+      "schema": "runtime-shift-result/v2",
+      "task": "discovery",
+      "status": "Completed",
+      "input": "The durably verified Scheduler-fallback start state in commit 1346eaff7e3020478d47cf47ee17f9e770025ec4, Research Runtime Scheduler V3.0, Research Intelligence Registry V1.0, three formal Discovery profiles, 33 platform channels, 9 P0 repositories, and 6 P0 research sources.",
+      "input_zh": "提交 1346eaff7e3020478d47cf47ee17f9e770025ec4 中已完成持久化核验的 Scheduler 回退启动状态、Research Runtime Scheduler V3.0、Research Intelligence Registry V1.0、三项正式 Discovery Profile、33 个平台渠道、9 个 P0 仓库及 6 个 P0 研究来源。",
+      "workResult": "Completed all three formal intelligence profiles after verifying the durable Running control-plane state. Resolved all 48 due source objects as 45 checked, 1 authentication-required and 2 explicitly failed; normalized and deduplicated 10 signals without selecting topics, performing Deep Reading, analysis or article writing.",
+      "workResult_zh": "在核验持久化 Running 控制面状态后，完成三项正式情报 Profile。48 个应检查来源对象全部得到明确结果：45 个已检查、1 个需要认证、2 个明确失败；共规范化并去重 10 个信号，未选题、未开展 Deep Reading、分析或文章写作。",
+      "output": "A durable 2026-08-06 Research Intelligence run containing the Signal Pool: 1 AI-platform signal, 6 GitHub-engineering signals and 3 published-research signals, with explicit inaccessible and failed-source records.",
+      "output_zh": "已生成持久化的 2026-08-06 Research Intelligence Run 与 Signal Pool：1 个 AI 平台信号、6 个 GitHub 工程信号、3 个论文与研究成果信号，并明确记录不可访问与失败来源。",
+      "next": "Research Runtime Queue at 10:00 must perform only three-column triage and decide Selected or No Selection; it must not treat Discovery signals as selected topics.",
+      "next_zh": "10:00 Research Runtime Queue 仅执行三栏筛选并作出 Selected 或 No Selection 决定；不得将 Discovery 信号直接视为已选主题。",
+      "metrics": [
+        {
+          "label": "Due source objects",
+          "label_zh": "应检查来源对象",
+          "value": "48"
+        },
+        {
+          "label": "Checked source objects",
+          "label_zh": "已检查来源对象",
+          "value": "45"
+        },
+        {
+          "label": "Authentication-required sources",
+          "label_zh": "需要认证的来源",
+          "value": "1"
+        },
+        {
+          "label": "Recorded retrieval failures",
+          "label_zh": "已记录抓取失败",
+          "value": "2"
+        },
+        {
+          "label": "Deduplicated signals",
+          "label_zh": "去重信号",
+          "value": "10"
+        },
+        {
+          "label": "AI-platform signals",
+          "label_zh": "AI 平台信号",
+          "value": "1"
+        },
+        {
+          "label": "GitHub-engineering signals",
+          "label_zh": "GitHub 工程信号",
+          "value": "6"
+        },
+        {
+          "label": "Published-research signals",
+          "label_zh": "论文研究信号",
+          "value": "3"
+        },
+        {
+          "label": "Topics selected",
+          "label_zh": "已选主题",
+          "value": "0"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Scheduler V3.0",
+          "label_zh": "Scheduler V3.0",
+          "path": "research/runtime/SCHEDULER.json"
+        },
+        {
+          "label": "Verified fallback start-state commit",
+          "label_zh": "已核验的回退启动状态提交",
+          "commit": "1346eaff7e3020478d47cf47ee17f9e770025ec4"
+        },
+        {
+          "label": "Research Intelligence Registry",
+          "label_zh": "研究情报注册表",
+          "path": "research/intelligence/REGISTRY.json"
+        },
+        {
+          "label": "AI Platform profile",
+          "label_zh": "AI 平台情报 Profile",
+          "path": "research/skills/profiles/01p-ai-platform-change-intelligence.md"
+        },
+        {
+          "label": "GitHub Engineering profile",
+          "label_zh": "GitHub 工程情报 Profile",
+          "path": "research/skills/profiles/01g-github-engineering-intelligence.md"
+        },
+        {
+          "label": "Published Research profile",
+          "label_zh": "论文研究情报 Profile",
+          "path": "research/skills/profiles/01r-published-research-intelligence.md"
+        },
+        {
+          "label": "OpenAI release notes",
+          "label_zh": "OpenAI 发布说明",
+          "url": "https://openai.com/products/release-notes/"
+        },
+        {
+          "label": "Claude Code v2.1.223",
+          "label_zh": "Claude Code v2.1.223",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.223"
+        },
+        {
+          "label": "Gemini API release notes",
+          "label_zh": "Gemini API 发布说明",
+          "url": "https://ai.google.dev/gemini-api/docs/changelog"
+        },
+        {
+          "label": "Cursor changelog",
+          "label_zh": "Cursor 更新日志",
+          "url": "https://cursor.com/changelog"
+        },
+        {
+          "label": "GitHub Copilot changelog",
+          "label_zh": "GitHub Copilot 更新日志",
+          "url": "https://github.blog/changelog/label/copilot/"
+        },
+        {
+          "label": "Microsoft Copilot Studio What's New",
+          "label_zh": "Microsoft Copilot Studio 更新说明",
+          "url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/whats-new"
+        },
+        {
+          "label": "Google DeepMind publications",
+          "label_zh": "Google DeepMind 论文列表",
+          "url": "https://deepmind.google/research/publications/"
+        },
+        {
+          "label": "Microsoft Research publications",
+          "label_zh": "Microsoft Research 论文列表",
+          "url": "https://www.microsoft.com/en-us/research/publications/"
+        },
+        {
+          "label": "arXiv",
+          "label_zh": "arXiv",
+          "url": "https://arxiv.org/"
+        },
+        {
+          "label": "OpenReview",
+          "label_zh": "OpenReview",
+          "url": "https://openreview.net/"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "2026-08-06 Research Intelligence Run and Signal Pool",
+          "label_zh": "2026-08-06 研究情报运行与 Signal Pool",
+          "path": "research/intelligence/runs/2026/08/2026-08-06-intelligence.json"
+        },
+        {
+          "label": "Daily Runtime Record",
+          "label_zh": "每日运行机器记录",
+          "path": "research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json"
+        },
+        {
+          "label": "Human-readable Runtime ledger",
+          "label_zh": "人类可读运行账本",
+          "path": "research/runtime/2026/08/2026-08-06-runtime.md"
+        }
+      ]
+    }
+  },
   "timeline": [
     {
       "time": "2026-08-06T09:03:28+08:00",
@@ -25,12 +185,162 @@
       "event": "Execution Slot Opened",
       "status": "Running",
       "detail": "Scheduler fallback: Research Runtime Discovery opened because the durable control-plane start state was absent; substantive work may begin only after this synchronized JSON and Markdown state is committed and verified."
+    },
+    {
+      "time": "2026-08-06T09:12:52+08:00",
+      "task": "discovery",
+      "event": "Discovery Completed",
+      "status": "Completed",
+      "detail": "All three formal intelligence profiles completed after verified fallback start-state commit 1346eaff7e3020478d47cf47ee17f9e770025ec4; 48 due source objects were resolved and a 10-signal pool was persisted without topic selection."
     }
   ],
-  "metrics": [],
-  "evidence": [],
-  "artifacts": [],
+  "metrics": [
+    {
+      "label": "Due source objects",
+      "label_zh": "应检查来源对象",
+      "value": "48"
+    },
+    {
+      "label": "Checked source objects",
+      "label_zh": "已检查来源对象",
+      "value": "45"
+    },
+    {
+      "label": "Authentication-required sources",
+      "label_zh": "需要认证的来源",
+      "value": "1"
+    },
+    {
+      "label": "Recorded retrieval failures",
+      "label_zh": "已记录抓取失败",
+      "value": "2"
+    },
+    {
+      "label": "Deduplicated signals",
+      "label_zh": "去重信号",
+      "value": "10"
+    },
+    {
+      "label": "AI-platform signals",
+      "label_zh": "AI 平台信号",
+      "value": "1"
+    },
+    {
+      "label": "GitHub-engineering signals",
+      "label_zh": "GitHub 工程信号",
+      "value": "6"
+    },
+    {
+      "label": "Published-research signals",
+      "label_zh": "论文研究信号",
+      "value": "3"
+    },
+    {
+      "label": "Topics selected",
+      "label_zh": "已选主题",
+      "value": "0"
+    }
+  ],
+  "evidence": [
+    {
+      "label": "Scheduler V3.0",
+      "label_zh": "Scheduler V3.0",
+      "path": "research/runtime/SCHEDULER.json"
+    },
+    {
+      "label": "Verified fallback start-state commit",
+      "label_zh": "已核验的回退启动状态提交",
+      "commit": "1346eaff7e3020478d47cf47ee17f9e770025ec4"
+    },
+    {
+      "label": "Research Intelligence Registry",
+      "label_zh": "研究情报注册表",
+      "path": "research/intelligence/REGISTRY.json"
+    },
+    {
+      "label": "AI Platform profile",
+      "label_zh": "AI 平台情报 Profile",
+      "path": "research/skills/profiles/01p-ai-platform-change-intelligence.md"
+    },
+    {
+      "label": "GitHub Engineering profile",
+      "label_zh": "GitHub 工程情报 Profile",
+      "path": "research/skills/profiles/01g-github-engineering-intelligence.md"
+    },
+    {
+      "label": "Published Research profile",
+      "label_zh": "论文研究情报 Profile",
+      "path": "research/skills/profiles/01r-published-research-intelligence.md"
+    },
+    {
+      "label": "OpenAI release notes",
+      "label_zh": "OpenAI 发布说明",
+      "url": "https://openai.com/products/release-notes/"
+    },
+    {
+      "label": "Claude Code v2.1.223",
+      "label_zh": "Claude Code v2.1.223",
+      "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.223"
+    },
+    {
+      "label": "Gemini API release notes",
+      "label_zh": "Gemini API 发布说明",
+      "url": "https://ai.google.dev/gemini-api/docs/changelog"
+    },
+    {
+      "label": "Cursor changelog",
+      "label_zh": "Cursor 更新日志",
+      "url": "https://cursor.com/changelog"
+    },
+    {
+      "label": "GitHub Copilot changelog",
+      "label_zh": "GitHub Copilot 更新日志",
+      "url": "https://github.blog/changelog/label/copilot/"
+    },
+    {
+      "label": "Microsoft Copilot Studio What's New",
+      "label_zh": "Microsoft Copilot Studio 更新说明",
+      "url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/whats-new"
+    },
+    {
+      "label": "Google DeepMind publications",
+      "label_zh": "Google DeepMind 论文列表",
+      "url": "https://deepmind.google/research/publications/"
+    },
+    {
+      "label": "Microsoft Research publications",
+      "label_zh": "Microsoft Research 论文列表",
+      "url": "https://www.microsoft.com/en-us/research/publications/"
+    },
+    {
+      "label": "arXiv",
+      "label_zh": "arXiv",
+      "url": "https://arxiv.org/"
+    },
+    {
+      "label": "OpenReview",
+      "label_zh": "OpenReview",
+      "url": "https://openreview.net/"
+    }
+  ],
+  "artifacts": [
+    {
+      "label": "2026-08-06 Research Intelligence Run and Signal Pool",
+      "label_zh": "2026-08-06 研究情报运行与 Signal Pool",
+      "path": "research/intelligence/runs/2026/08/2026-08-06-intelligence.json"
+    },
+    {
+      "label": "Daily Runtime Record",
+      "label_zh": "每日运行机器记录",
+      "path": "research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json"
+    },
+    {
+      "label": "Human-readable Runtime ledger",
+      "label_zh": "人类可读运行账本",
+      "path": "research/runtime/2026/08/2026-08-06-runtime.md"
+    }
+  ],
   "githubCommit": "pending",
   "commitVerify": "Running",
-  "updatedAt": "2026-08-06T09:03:28+08:00"
+  "updatedAt": "2026-08-06T09:12:52+08:00"
 }
