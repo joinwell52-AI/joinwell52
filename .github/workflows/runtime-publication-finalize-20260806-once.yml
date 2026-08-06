@@ -1,0 +1,200 @@
+name: Runtime Publication Finalize 2026-08-06 Once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/runtime-publication-finalize-20260806-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Verify release and persist only the Publication result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git cat-file -e f941753be1731bdd3d1a983632a8c305cd0b8540^{commit}
+          git merge-base --is-ancestor f941753be1731bdd3d1a983632a8c305cd0b8540 HEAD
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          DATE = '2026-08-06'
+          START_COMMIT = '1745be024e3b31e21dc181c136d164d9dca309b9'
+          RELEASE_COMMIT = 'f941753be1731bdd3d1a983632a8c305cd0b8540'
+          runtime_path = Path('research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json')
+          release_path = Path('research/runtime/releases/2026-08-06-publication.json')
+          candidate_path = Path('research/runtime/candidates/2026/08/2026-08-06-candidates.json')
+          data = json.loads(runtime_path.read_text(encoding='utf-8'))
+          release = json.loads(release_path.read_text(encoding='utf-8'))
+          candidates = json.loads(candidate_path.read_text(encoding='utf-8'))
+
+          starts = [
+              e for e in data.get('timeline', [])
+              if e.get('task') == 'publication'
+              and e.get('event') == 'Execution Slot Opened'
+              and e.get('status') == 'Running'
+              and str(e.get('time', '')).startswith(f'{DATE}T')
+          ]
+          assert data.get('status') == 'Running'
+          assert data.get('taskStatus', {}).get('publication') == 'Running'
+          assert len(starts) == 1, len(starts)
+          assert 'publication' not in data.get('results', {}), 'Publication result already exists'
+          assert data.get('results', {}).get('production', {}).get('status') == 'Completed'
+          assert candidates.get('status') == 'Completed'
+          assert len(candidates.get('candidates', [])) == 3
+          assert release.get('status') == 'Released'
+          assert release.get('startStateCommit') == START_COMMIT
+          assert release.get('schedulerFallback') is True
+          assert release.get('metrics') == {
+              'eligibleCandidates': 3,
+              'releasedItems': 3,
+              'bilingualArticleFiles': 6,
+              'visualizationAssets': 3,
+          }
+          assert release.get('prohibitionsObserved') == {
+              'newResearch': 0,
+              'substantiveRewriting': 0,
+              'evidenceRepair': 0,
+          }
+
+          artifacts = [
+              ('Q-20260806-01 Chinese public article', 'Q-20260806-01 中文公开文章', 'docs/zh/digital-employee/2026-08-06-governed-revisable-work-graph.md'),
+              ('Q-20260806-01 English public article', 'Q-20260806-01 英文公开文章', 'docs/en/digital-employee/2026-08-06-governed-revisable-work-graph.md'),
+              ('Q-20260806-01 public visualization', 'Q-20260806-01 公开可视化', 'docs/public/assets/covers/daily-2026-08-06-governed-revisable-work-graph.svg'),
+              ('Q-20260806-02 Chinese public article', 'Q-20260806-02 中文公开文章', 'docs/zh/industry/2026-08-06-enterprise-agent-decision-envelope.md'),
+              ('Q-20260806-02 English public article', 'Q-20260806-02 英文公开文章', 'docs/en/industry/2026-08-06-enterprise-agent-decision-envelope.md'),
+              ('Q-20260806-02 public visualization', 'Q-20260806-02 公开可视化', 'docs/public/assets/covers/daily-2026-08-06-enterprise-agent-decision-envelope.svg'),
+              ('Q-20260806-03 Chinese public article', 'Q-20260806-03 中文公开文章', 'docs/zh/engineering/2026-08-06-semantic-migration-recovery.md'),
+              ('Q-20260806-03 English public article', 'Q-20260806-03 英文公开文章', 'docs/en/engineering/2026-08-06-semantic-migration-recovery.md'),
+              ('Q-20260806-03 public visualization', 'Q-20260806-03 公开可视化', 'docs/public/assets/covers/daily-2026-08-06-semantic-migration-recovery.svg'),
+          ]
+          for _, _, path in artifacts:
+              assert Path(path).is_file(), path
+
+          data['status'] = 'Completed'
+          data['taskStatus']['publication'] = 'Completed'
+          data['results']['publication'] = {
+              'schema': 'runtime-shift-result/v2',
+              'task': 'publication',
+              'status': 'Completed',
+              'input': 'Three complete same-day Publication Candidates produced by the Completed Production shift, the durably verified Scheduler-fallback Publication start state, Scheduler V3.0, and the data-driven bilingual Research Notes website surfaces.',
+              'input_zh': '由已完成 Production 班次生成的 3 份完整当日 Publication Candidate、已完成持久化核验的 Scheduler 回退 Publication 启动状态、Scheduler V3.0，以及数据驱动的双语 Research Notes 网站表面。',
+              'workResult': 'After the durable Running control-plane state was fetched and verified, validated Production, evidence, citation, publication editing, bilingual pairing, metadata and visualization gates for all three candidates. Published only the authorized candidate text and SVG assets to the required Chinese and English column paths; the data-driven indexes and website loaders surfaced the releases. No new research, substantive rewriting or evidence repair was performed. Scheduler fallback was explicitly recorded because the pre-existing Publication Running state was absent.',
+              'workResult_zh': '在获取并核验持久化 Running 控制面状态后，已验证全部 3 份候选的 Production、证据、引用、出版编辑、双语配对、元数据与可视化门禁。仅将获准候选文本和 SVG 资产发布到规定的中英文栏目路径；数据驱动索引与网站加载器已展示这些发布项。未开展新研究、实质性改写或证据修复。由于执行前缺少既有 Publication Running 状态，已明确记录 Scheduler 回退。',
+              'output': f'Released 3 Daily Research items as 6 bilingual public article files and 3 visualization assets. Release manifest: {release_path}. Verified release commit: {RELEASE_COMMIT}.',
+              'output_zh': f'已发布 3 项 Daily Research，共 6 个双语公开文章文件与 3 个可视化资产。发布清单：{release_path}。已核验发布提交：{RELEASE_COMMIT}。',
+              'next': 'The Daily Runtime is closed for 2026-08-06. The next Daily Runtime begins with the next scheduled Discovery slot; future synthesis must consume durable released research rather than staging candidates.',
+              'next_zh': '2026-08-06 Daily Runtime 已关闭。下一轮 Daily Runtime 从下一次计划内 Discovery 时段开始；后续综合应消费已持久发布的研究成果，而不是 staging 候选。',
+              'metrics': [
+                  {'label': 'Eligible Publication Candidates', 'label_zh': '符合条件的出版候选', 'value': '3'},
+                  {'label': 'Released Daily Research items', 'label_zh': '已发布 Daily Research 项目', 'value': '3'},
+                  {'label': 'Public bilingual article files', 'label_zh': '公开双语文章文件', 'value': '6'},
+                  {'label': 'Published visualization assets', 'label_zh': '已发布可视化资产', 'value': '3'},
+                  {'label': 'Scheduler fallbacks', 'label_zh': 'Scheduler 回退次数', 'value': '1'},
+                  {'label': 'New research performed', 'label_zh': '开展新研究', 'value': '0'},
+                  {'label': 'Substantive rewrites', 'label_zh': '实质性改写', 'value': '0'},
+                  {'label': 'Evidence repairs', 'label_zh': '证据修复', 'value': '0'},
+              ],
+              'evidence': [
+                  {'label': 'Scheduler V3.0', 'label_zh': 'Scheduler V3.0', 'source': 'research/runtime/SCHEDULER.json'},
+                  {'label': 'Publication Candidate batch', 'label_zh': 'Publication Candidate 批次', 'source': str(candidate_path)},
+                  {'label': 'Verified Scheduler-fallback start-state commit', 'label_zh': '已核验的 Scheduler 回退启动状态提交', 'commit': START_COMMIT, 'source': f'https://github.com/joinwell52-AI/joinwell52/commit/{START_COMMIT}'},
+                  {'label': 'Publication release manifest', 'label_zh': 'Publication 发布清单', 'source': str(release_path)},
+                  {'label': 'Verified Daily Research release commit', 'label_zh': '已核验的 Daily Research 发布提交', 'commit': RELEASE_COMMIT, 'source': f'https://github.com/joinwell52-AI/joinwell52/commit/{RELEASE_COMMIT}'},
+              ],
+              'artifacts': [
+                  {'label': 'Verified Publication start-state commit', 'label_zh': '已核验 Publication 启动状态提交', 'commit': START_COMMIT},
+                  {'label': 'Verified Daily Research release commit', 'label_zh': '已核验 Daily Research 发布提交', 'commit': RELEASE_COMMIT},
+                  {'label': 'Publication release manifest', 'label_zh': 'Publication 发布清单', 'path': str(release_path)},
+                  *[{'label': label, 'label_zh': label_zh, 'path': path} for label, label_zh, path in artifacts],
+                  {'label': 'Daily Runtime Record', 'label_zh': '每日运行机器记录', 'path': str(runtime_path)},
+                  {'label': 'Human-readable Runtime ledger', 'label_zh': '人类可读运行账本', 'path': 'research/runtime/2026/08/2026-08-06-runtime.md'},
+              ],
+          }
+          data['timeline'].append({
+              'time': '2026-08-06T20:13:12+08:00',
+              'task': 'publication',
+              'event': 'Publication Completed',
+              'status': 'Completed',
+              'detail': 'Validated all Publication gates and released 3 Daily Research items as 6 bilingual articles and 3 visualizations without new research, substantive rewriting or evidence repair; the Scheduler fallback remained explicitly recorded.'
+          })
+          data['timeline'].append({
+              'time': '2026-08-06T20:13:20+08:00',
+              'task': 'publication',
+              'event': 'GitHub Commit Verified',
+              'status': 'Completed',
+              'detail': f'Fetched and verified release commit {RELEASE_COMMIT} containing all authorized bilingual public paths, visualization assets, the release manifest and website-surface validation.'
+          })
+          data['githubCommit'] = RELEASE_COMMIT
+          data['commitVerify'] = 'Completed'
+          data['updatedAt'] = '2026-08-06T20:13:20+08:00'
+          runtime_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+          node scripts/runtime-markdown.mjs render --date 2026-08-06
+          node scripts/runtime-markdown.mjs validate --date 2026-08-06
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path('research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json').read_text(encoding='utf-8'))
+          starts = [e for e in data['timeline'] if e.get('task') == 'publication' and e.get('event') == 'Execution Slot Opened' and e.get('status') == 'Running' and str(e.get('time', '')).startswith('2026-08-06T')]
+          assert len(starts) == 1
+          assert data['status'] == 'Completed'
+          assert data['taskStatus']['publication'] == 'Completed'
+          result = data['results']['publication']
+          assert result['schema'] == 'runtime-shift-result/v2'
+          assert result['status'] == 'Completed'
+          for key in ['input', 'workResult', 'output', 'next', 'metrics', 'evidence', 'artifacts']:
+              assert key in result and result[key]
+          assert data['githubCommit'] == 'f941753be1731bdd3d1a983632a8c305cd0b8540'
+          assert data['commitVerify'] == 'Completed'
+          markdown = Path('research/runtime/2026/08/2026-08-06-runtime.md').read_text(encoding='utf-8')
+          assert 'overall_status: "Completed"' in markdown
+          assert '| 20:00 | 研究运行发布 | Research Runtime Publication | daily | 已完成 / Completed |' in markdown
+          assert markdown.count('Research Runtime Publication | daily | Execution Slot Opened | 工作中 / Running') == 1
+          assert 'f941753be1731bdd3d1a983632a8c305cd0b8540' in markdown
+          assert 'Scheduler 回退' in markdown
+          PY
+
+      - name: Build and validate final Runtime surfaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run docs:build
+          git diff --check
+          grep -R -q '2026-08-06 Daily Runtime 已关闭' docs/.vitepress/dist/zh/runtime || grep -R -q 'Released 3 Daily Research items' docs/.vitepress/dist
+          git restore docs/.vitepress/generated || true
+
+      - name: Commit final Runtime record separately to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/runtime-publication-finalize-20260806-once.yml
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json \
+            research/runtime/2026/08/2026-08-06-runtime.md \
+            .github/workflows/runtime-publication-finalize-20260806-once.yml
+          git commit -m "runtime(publication): complete verified 2026-08-06 release record"
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main
