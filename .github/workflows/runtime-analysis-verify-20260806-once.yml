@@ -1,0 +1,78 @@
+name: Runtime Analysis Verify 2026-08-06 Once
+
+on:
+  push:
+    branches:
+      - runtime-analysis-20260806-verify
+    paths:
+      - .github/workflows/runtime-analysis-verify-20260806-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  verify-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Verify Analysis result artifacts and record commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "97cbc87e1b0f9c72e7711880501ba4e951d26ff2"
+          test -f research/analysis/Q-20260806-01-revisable-dag-computer-use.md
+          test -f research/analysis/Q-20260806-02-enterprise-agent-control-plane.md
+          test -f research/analysis/Q-20260806-03-rollout-migration-recovery.md
+          grep -q 'status: "ReadyForProduction"' research/analysis/Q-20260806-01-revisable-dag-computer-use.md
+          grep -q 'status: "ReadyForProduction"' research/analysis/Q-20260806-02-enterprise-agent-control-plane.md
+          grep -q 'status: "ReadyForProduction"' research/analysis/Q-20260806-03-rollout-migration-recovery.md
+
+          node <<'NODE'
+          const fs = require('fs')
+          const path = 'research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json'
+          const record = JSON.parse(fs.readFileSync(path, 'utf8'))
+          const starts = record.timeline.filter((event) => event.task === 'analysis' && event.event === 'Execution Slot Opened' && event.status === 'Running' && event.time.startsWith('2026-08-06T'))
+          const completed = record.timeline.filter((event) => event.task === 'analysis' && event.event === 'Analysis Completed' && event.status === 'Completed' && event.time.startsWith('2026-08-06T'))
+          const verified = record.timeline.filter((event) => event.task === 'analysis' && event.event === 'GitHub Commit Verified' && event.status === 'Completed' && event.time.startsWith('2026-08-06T'))
+          if (record.taskStatus.analysis !== 'Completed') throw new Error('analysis is not Completed')
+          if (record.results.analysis?.status !== 'Completed') throw new Error('Analysis result is not Completed')
+          if (starts.length !== 1) throw new Error(`expected one start event, found ${starts.length}`)
+          if (completed.length !== 1) throw new Error(`expected one completion event, found ${completed.length}`)
+          if (verified.length !== 0) throw new Error(`verification event already exists: ${verified.length}`)
+          const objects = record.results.analysis.artifacts.filter((artifact) => artifact.path?.startsWith('research/analysis/'))
+          if (objects.length !== 3) throw new Error(`expected three Research Object artifacts, found ${objects.length}`)
+          record.timeline.push({
+            time: '2026-08-06T13:08:27+08:00',
+            task: 'analysis',
+            event: 'GitHub Commit Verified',
+            status: 'Completed',
+            detail: 'Fetched and verified commit 97cbc87e1b0f9c72e7711880501ba4e951d26ff2 containing all three Production-authorized Research Objects, the Analysis-only runtime-shift-result/v2 update and the synchronized Markdown ledger.'
+          })
+          record.githubCommit = '97cbc87e1b0f9c72e7711880501ba4e951d26ff2'
+          record.commitVerify = 'Completed'
+          record.updatedAt = '2026-08-06T13:08:27+08:00'
+          fs.writeFileSync(path, JSON.stringify(record, null, 2) + '\n')
+          NODE
+
+          node scripts/runtime-markdown.mjs render --date 2026-08-06
+          node scripts/runtime-markdown.mjs validate --date 2026-08-06
+
+          grep -q 'github_commit: "97cbc87e1b0f9c72e7711880501ba4e951d26ff2"' research/runtime/2026/08/2026-08-06-runtime.md
+          grep -q 'commit_verify: "Completed"' research/runtime/2026/08/2026-08-06-runtime.md
+
+      - name: Commit verification record to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json \
+                  research/runtime/2026/08/2026-08-06-runtime.md
+          git commit -m "runtime(analysis): verify 2026-08-06 durable artifacts"
+          git pull --rebase origin main
+          git push origin HEAD:main
