@@ -3,20 +3,26 @@
   "version": "1.0",
   "date": "2026-08-06",
   "timezone": "Asia/Shanghai",
-  "status": "Running",
+  "status": "Completed",
   "registryVersion": "1.0",
-  "sourceTask": "Research Runtime Discovery",
-  "updatedAt": "2026-08-06T09:35:01+08:00",
+  "sourceTask": "Research Runtime Queue",
+  "updatedAt": "2026-08-06T10:05:02+08:00",
   "githubCommit": "524f618285bcf073f0e1ab683af1e69c91d8f7ec",
-  "reason": "All three formal Discovery profiles completed after the scheduler-fallback Running state was durably verified. Queue triage has not run, so the Research Intelligence run remains Running with all signals unselected. The durable Discovery result commit has been fetched and verified.",
-  "reason_zh": "在调度器回退 Running 状态完成持久化核验后，三项正式 Discovery Profile 均已完成。Queue 筛选尚未执行，因此 Research Intelligence Run 保持 Running，所有信号均未选题。Discovery 持久化结果提交已完成拉取核验。",
+  "reason": "Queue completed Skill 02 only: all ten signals were triaged, exactly one bounded primary object was selected for each column, and the remaining seven signals were retained as candidates. No Deep Reading, analysis, writing or publication was performed.",
+  "reason_zh": "Queue 仅完成 Skill 02：十个信号均已筛选，三个栏目各选出一个边界明确的主要对象，其余七个信号保留为候选。未开展 Deep Reading、分析、写作或发布。",
   "controlPlane": {
     "startStateMode": "scheduler-fallback",
     "startStateCommit": "1346eaff7e3020478d47cf47ee17f9e770025ec4",
     "startEventCount": 1,
     "verifiedBeforeSubstantiveWork": true,
     "resultCommit": "524f618285bcf073f0e1ab683af1e69c91d8f7ec",
-    "resultCommitVerified": true
+    "resultCommitVerified": true,
+    "queueStartStateMode": "scheduler-fallback",
+    "queueStartStateCommit": "d9d0463e6610af7d4cebaabb518dfbf91aaa8d0e",
+    "queueStartEventCount": 1,
+    "queueVerifiedBeforeSubstantiveWork": true,
+    "queueResultCommit": "",
+    "queueResultCommitVerified": false
   },
   "pipelines": [
     {
@@ -44,7 +50,7 @@
       ],
       "signals": 1,
       "candidates": 0,
-      "selected": 0,
+      "selected": 1,
       "rejected": 0,
       "coveragePercent": 100,
       "reason": "All 33 P0 platform channels were resolved: 30 checked, 1 authentication-required and 2 retrieval failures with explicit fallback coverage.",
@@ -60,8 +66,8 @@
       "inaccessible": [],
       "failed": [],
       "signals": 6,
-      "candidates": 0,
-      "selected": 0,
+      "candidates": 5,
+      "selected": 1,
       "rejected": 0,
       "coveragePercent": 100,
       "reason": "All nine P0 repositories were incrementally checked from the 2026-08-05 checkpoints; six normalized change objects were retained.",
@@ -77,8 +83,8 @@
       "inaccessible": [],
       "failed": [],
       "signals": 3,
-      "candidates": 0,
-      "selected": 0,
+      "candidates": 2,
+      "selected": 1,
       "rejected": 0,
       "coveragePercent": 100,
       "reason": "arXiv, OpenReview, OpenAI Research, Anthropic Research, Google DeepMind Research and Microsoft Research were checked; three previously unregistered primary research artifacts were retained.",
@@ -90,40 +96,55 @@
       "id": "digital-employee",
       "label": "Digital Employee",
       "label_zh": "数字员工",
-      "decision": "Waiting",
+      "decision": "Selected",
       "signals": 3,
-      "candidates": 0,
-      "selectedItemId": "",
-      "selectedTitle": "",
-      "selectedTitle_zh": "",
-      "reason": "Discovery only normalized signals; Queue triage has not run.",
-      "reason_zh": "Discovery 仅规范化信号；Queue 筛选尚未执行。"
+      "candidates": 2,
+      "selectedItemId": "Q-20260806-01",
+      "selectedTitle": "Revisable DAG orchestration for multi-agent computer-use Digital Employees",
+      "selectedTitle_zh": "面向计算机操作型数字员工的可修订 DAG 多 Agent 编排",
+      "reason": "This is the strongest bounded Digital Employee object in the pool: it directly studies manager-worker decomposition, parallel computer-use execution, dynamic replanning and measured wall-clock effects using primary research rather than a product announcement.",
+      "reason_zh": "这是信号池中边界最清晰的数字员工对象：它以主要研究直接讨论管理者—执行者拆解、并行计算机操作、动态图修订及墙钟时间测量，而非普通产品公告。",
+      "priority": "P0",
+      "signalId": "SIG-20260806-R-002",
+      "source": "https://arxiv.org/abs/2606.01533",
+      "next": "Execute Skill 03 Deep Reading on the task decomposition algorithm, DAG revision rules, worker coordination, benchmark design, reported gains, failure cases and limits of transferring the method into governed Digital Employee runtimes.",
+      "next_zh": "执行 Skill 03 深度阅读，核查任务拆解算法、DAG 修订规则、执行者协调、基准设计、报告收益、失败案例及迁移到受治理数字员工运行时的边界。"
     },
     {
       "id": "industry-architecture",
       "label": "Industry Architecture",
       "label_zh": "行业架构",
-      "decision": "Waiting",
+      "decision": "Selected",
       "signals": 1,
       "candidates": 0,
-      "selectedItemId": "",
-      "selectedTitle": "",
-      "selectedTitle_zh": "",
-      "reason": "Discovery only normalized signals; Queue triage has not run.",
-      "reason_zh": "Discovery 仅规范化信号；Queue 筛选尚未执行。"
+      "selectedItemId": "Q-20260806-02",
+      "selectedTitle": "Managed policy, sandbox and resume boundaries in enterprise coding-agent runtimes",
+      "selectedTitle_zh": "企业编码 Agent 运行时的托管策略、沙箱与恢复边界",
+      "reason": "The release concentrates several enterprise architecture controls in one authoritative object: policy distribution, permission enforcement, sandbox containment, fallback observability and resume recovery. The combination is more valuable than treating each fix as isolated product news.",
+      "reason_zh": "该官方发布在一个权威对象中集中呈现多项企业架构控制：策略分发、权限强制、沙箱隔离、回退可观测性与恢复治理；其组合价值高于把各项修复视为零散产品新闻。",
+      "priority": "P0",
+      "signalId": "SIG-20260806-P-001",
+      "source": "https://github.com/anthropics/claude-code/releases/tag/v2.1.223",
+      "next": "Execute Skill 03 Deep Reading on the exact managed-policy surface, precedence and enforcement points, sandbox escape fixes, fallback disclosure, resume failure modes and what remains undocumented.",
+      "next_zh": "执行 Skill 03 深度阅读，核查托管策略表面、优先级与执行点、沙箱逃逸修复、回退披露、恢复失败模式及仍未公开的边界。"
     },
     {
       "id": "open-source-engineering",
       "label": "Open-source Engineering",
       "label_zh": "开源工程",
-      "decision": "Waiting",
+      "decision": "Selected",
       "signals": 6,
-      "candidates": 0,
-      "selectedItemId": "",
-      "selectedTitle": "",
-      "selectedTitle_zh": "",
-      "reason": "Discovery only normalized signals; Queue triage has not run.",
-      "reason_zh": "Discovery 仅规范化信号；Queue 筛选尚未执行。"
+      "candidates": 5,
+      "selectedItemId": "Q-20260806-03",
+      "selectedTitle": "Atomic legacy rollout migration with semantic replay and recoverable journaling",
+      "selectedTitle_zh": "基于语义重放、原子发布与可恢复日志的旧版 Rollout 迁移",
+      "reason": "The maintainer change exposes a reproducible migration-and-recovery design with strong engineering boundaries: semantic preservation, active-writer exclusion, dry-run, idempotency, journaled recovery and atomic replacement. It directly informs durable agent-runtime history evolution.",
+      "reason_zh": "该维护者变更给出可复现且边界清晰的迁移恢复设计：语义保持、活跃写入者排除、dry-run、幂等、日志恢复与原子替换，可直接支撑 Agent 运行时历史存储演进。",
+      "priority": "P0",
+      "signalId": "SIG-20260806-G-001",
+      "source": "https://github.com/openai/codex/commit/aac9f842473ac6a05d417dd76ce8b89bdb3b707d",
+      "next": "Execute Skill 03 Deep Reading on the commit series, migration state machine, journal format, recovery tests, active-writer detection, atomic replacement and compatibility limits.",
+      "next_zh": "执行 Skill 03 深度阅读，核查提交链、迁移状态机、日志格式、恢复测试、活跃写入者检测、原子替换及兼容性限制。"
     }
   ],
   "signals": [
@@ -144,7 +165,8 @@
       "observedChange": "The release adds organization-wide marketplace allow/block wildcards, warns when restricted subagent models fall back to the parent model, fixes command-obfuscation permission bypasses and workflow-sandbox escape paths, enforces organization bypass-permission policy, and repairs several resumed-session failure modes.",
       "observedChange_zh": "该版本新增组织级 Marketplace 通配允许/阻止规则，在受限子 Agent 模型回退到父模型时给出警告，修复命令混淆权限绕过与工作流沙箱逃逸路径，执行组织级绕过权限禁用策略，并修复多项会话恢复失败。",
       "confidence": "high",
-      "triageStatus": "signal"
+      "triageStatus": "selected",
+      "selectedItemId": "Q-20260806-02"
     },
     {
       "id": "SIG-20260806-G-001",
@@ -162,7 +184,8 @@
       "observedChange": "Linked maintainer changes migrate legacy JSONL rollouts into paginated history while preserving rollback, compaction and subagent-history semantics; replacements are atomic, migrations are journaled and recoverable, dry-run and idempotency are tested, and active writers are skipped.",
       "observedChange_zh": "关联维护者变更将旧版 JSONL Rollout 迁移到分页历史，同时保留回滚、压缩与子 Agent 历史语义；替换采用原子发布，迁移带日志并可恢复，覆盖 dry-run 与幂等测试，并跳过活跃写入者。",
       "confidence": "high",
-      "triageStatus": "signal"
+      "triageStatus": "selected",
+      "selectedItemId": "Q-20260806-03"
     },
     {
       "id": "SIG-20260806-G-002",
@@ -180,7 +203,7 @@
       "observedChange": "Multi-agent usage instructions are now represented in world state and re-emitted when configuration or tool availability changes, including cold resumes and wait-agent guidance.",
       "observedChange_zh": "多 Agent 使用说明被纳入 World State，并在配置或工具可用性变化时重新发出，覆盖冷恢复及 wait-agent 引导。",
       "confidence": "high",
-      "triageStatus": "signal"
+      "triageStatus": "candidate"
     },
     {
       "id": "SIG-20260806-G-003",
@@ -198,7 +221,7 @@
       "observedChange": "Linked fixes keep completed tool-guardrail results when a resumed run interrupts again and publish completed streamed guardrail results on failure paths, preventing verified evidence from disappearing during non-success terminal flows.",
       "observedChange_zh": "关联修复在恢复后的运行再次中断时保留已完成的工具门禁结果，并在流式失败路径发布已完成门禁结果，避免已验证证据在非成功终结路径中消失。",
       "confidence": "high",
-      "triageStatus": "signal"
+      "triageStatus": "candidate"
     },
     {
       "id": "SIG-20260806-G-004",
@@ -216,7 +239,7 @@
       "observedChange": "The LlmAgent resume path no longer terminates the parent when a child pauses, clarifying propagation rules between local pause state and compound-agent lifecycle completion.",
       "observedChange_zh": "LlmAgent 恢复路径不再因子 Agent 暂停而终结父 Agent，明确了局部暂停状态与复合 Agent 生命周期完成之间的传播规则。",
       "confidence": "high",
-      "triageStatus": "signal"
+      "triageStatus": "candidate"
     },
     {
       "id": "SIG-20260806-G-005",
@@ -234,7 +257,7 @@
       "observedChange": "The runtime now preserves functionCall thoughtSignature metadata while stripping thought parts, protecting tool-call continuity and history integrity across model transformations.",
       "observedChange_zh": "运行时在剥离思考片段时保留 functionCall 的 thoughtSignature 元数据，以维护模型转换过程中的工具调用连续性与历史完整性。",
       "confidence": "high",
-      "triageStatus": "signal"
+      "triageStatus": "candidate"
     },
     {
       "id": "SIG-20260806-G-006",
@@ -252,7 +275,7 @@
       "observedChange": "Streamable HTTP MCP initialize, initialized-notification and discovery requests now inherit the remaining handshake deadline, preventing a timed-out request from continuing to block the serial executor.",
       "observedChange_zh": "Streamable HTTP MCP 的 initialize、initialized 通知与发现请求现在继承剩余握手截止时间，防止已超时请求继续阻塞串行执行器。",
       "confidence": "high",
-      "triageStatus": "signal"
+      "triageStatus": "candidate"
     },
     {
       "id": "SIG-20260806-R-001",
@@ -270,7 +293,7 @@
       "observedChange": "A 64-run controlled pilot reports that explicit delegation contracts and required evidence bundles improved evidence sufficiency and reduced reviewer ambiguity without improving already-saturated hidden-test outcomes; the contracts increased token and wall-clock cost.",
       "observedChange_zh": "一项 64 次运行的受控试验报告称，显式委托契约与强制证据包提高了证据充分性并降低审阅歧义，但未提升已饱和的隐藏测试结果，同时增加了 Token 与墙钟时间成本。",
       "confidence": "medium-high",
-      "triageStatus": "signal"
+      "triageStatus": "candidate"
     },
     {
       "id": "SIG-20260806-R-002",
@@ -288,7 +311,8 @@
       "observedChange": "A manager decomposes tasks into a dependency DAG, dispatches ready nodes in parallel and revises the graph as findings arrive; the paper reports 3.4–25.5% gains over single-agent baselines and about 1.5× wall-clock improvement on Odysseys.",
       "observedChange_zh": "管理器将任务分解为依赖 DAG，并行派发就绪节点，随新发现持续修订图；论文报告相对单 Agent 基线提升 3.4–25.5%，在 Odysseys 上墙钟时间约提升 1.5 倍。",
       "confidence": "medium-high",
-      "triageStatus": "signal"
+      "triageStatus": "selected",
+      "selectedItemId": "Q-20260806-01"
     },
     {
       "id": "SIG-20260806-R-003",
@@ -306,7 +330,7 @@
       "observedChange": "The study reports that generic coding assistants achieved only 30% execution success for evaluation generation, while an evaluation-skill pipeline improved Eval@1 from 17.5% to 65% and received 79.5% expert preference; ablation reduced Eval@1 to 30%.",
       "observedChange_zh": "研究报告称，通用编码助手生成评估时仅有 30% 执行成功率，而基于评估 Skill 的流水线将 Eval@1 从 17.5% 提升至 65%，获得 79.5% 专家偏好；移除 Skill 后 Eval@1 降至 30%。",
       "confidence": "medium-high",
-      "triageStatus": "signal"
+      "triageStatus": "candidate"
     }
   ]
 }

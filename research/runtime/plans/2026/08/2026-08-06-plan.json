@@ -1,0 +1,142 @@
+{
+  "schema": "runtime-column-plan/v1",
+  "date": "2026-08-06",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Queue",
+  "sourceRecord": "research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json",
+  "updatedAt": "2026-08-06T10:05:02+08:00",
+  "githubCommit": "",
+  "columns": [
+    {
+      "selectionStatus": "Selected",
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "itemId": "Q-20260806-01",
+      "signalId": "SIG-20260806-R-002",
+      "priority": "P0",
+      "title": "Revisable DAG orchestration for multi-agent computer-use Digital Employees",
+      "title_zh": "面向计算机操作型数字员工的可修订 DAG 多 Agent 编排",
+      "lifecycle": "Selected",
+      "pipelineOrigin": "published-research",
+      "source": "arXiv — Multi-Agent Computer Use",
+      "source_zh": "arXiv《Multi-Agent Computer Use》",
+      "sourceUrl": "https://arxiv.org/abs/2606.01533",
+      "evidenceLevels": [
+        "peer_reviewed_or_primary_research"
+      ],
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "researchQuestion": "How should a Digital Employee manager decompose long-horizon computer work into a revisable dependency DAG, dispatch ready nodes in parallel, absorb new findings, and preserve accountable completion across workers?",
+      "researchQuestion_zh": "数字员工管理者应如何把长程计算机操作拆解为可修订依赖 DAG，并行派发就绪节点、吸收新发现，同时在多个执行者之间保持可问责的完成语义？",
+      "reason": "This is the strongest bounded Digital Employee object in the pool: it directly studies manager-worker decomposition, parallel computer-use execution, dynamic replanning and measured wall-clock effects using primary research rather than a product announcement.",
+      "reason_zh": "这是信号池中边界最清晰的数字员工对象：它以主要研究直接讨论管理者—执行者拆解、并行计算机操作、动态图修订及墙钟时间测量，而非普通产品公告。",
+      "next": "Execute Skill 03 Deep Reading on the task decomposition algorithm, DAG revision rules, worker coordination, benchmark design, reported gains, failure cases and limits of transferring the method into governed Digital Employee runtimes.",
+      "next_zh": "执行 Skill 03 深度阅读，核查任务拆解算法、DAG 修订规则、执行者协调、基准设计、报告收益、失败案例及迁移到受治理数字员工运行时的边界。",
+      "proposedCategory": "Digital Employee Workflow and Multi-Agent Orchestration",
+      "nextSkill": "03 Deep Reading",
+      "scores": {
+        "columnRelevance": 5,
+        "directionRelevance": 5,
+        "tmpaRelevance": 4,
+        "digitalEmployeeRelevance": 5,
+        "codeFlowMuRelevance": 4,
+        "engineeringValue": 4,
+        "novelInformation": 5,
+        "sourceQuality": 4,
+        "crossSourceSupport": 2,
+        "boundedQuestion": 5
+      },
+      "totalScore": 43
+    },
+    {
+      "selectionStatus": "Selected",
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "itemId": "Q-20260806-02",
+      "signalId": "SIG-20260806-P-001",
+      "priority": "P0",
+      "title": "Managed policy, sandbox and resume boundaries in enterprise coding-agent runtimes",
+      "title_zh": "企业编码 Agent 运行时的托管策略、沙箱与恢复边界",
+      "lifecycle": "Selected",
+      "pipelineOrigin": "ai-platform",
+      "source": "Anthropic Claude Code v2.1.223 official release",
+      "source_zh": "Anthropic Claude Code v2.1.223 官方发布",
+      "sourceUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.223",
+      "evidenceLevels": [
+        "official_announcement"
+      ],
+      "secondaryColumns": [
+        "open-source-engineering",
+        "digital-employee"
+      ],
+      "researchQuestion": "What enterprise control-plane architecture is implied when organization-wide marketplace policy, bypass-permission enforcement, subagent-model fallback disclosure, workflow sandbox boundaries and resumed-session recovery must operate together?",
+      "researchQuestion_zh": "当组织级 Marketplace 策略、绕过权限强制、子 Agent 模型回退披露、工作流沙箱边界与会话恢复必须协同运行时，它们共同要求怎样的企业控制平面架构？",
+      "reason": "The release concentrates several enterprise architecture controls in one authoritative object: policy distribution, permission enforcement, sandbox containment, fallback observability and resume recovery. The combination is more valuable than treating each fix as isolated product news.",
+      "reason_zh": "该官方发布在一个权威对象中集中呈现多项企业架构控制：策略分发、权限强制、沙箱隔离、回退可观测性与恢复治理；其组合价值高于把各项修复视为零散产品新闻。",
+      "next": "Execute Skill 03 Deep Reading on the exact managed-policy surface, precedence and enforcement points, sandbox escape fixes, fallback disclosure, resume failure modes and what remains undocumented.",
+      "next_zh": "执行 Skill 03 深度阅读，核查托管策略表面、优先级与执行点、沙箱逃逸修复、回退披露、恢复失败模式及仍未公开的边界。",
+      "proposedCategory": "Enterprise Agent Runtime Control Plane",
+      "nextSkill": "03 Deep Reading",
+      "scores": {
+        "columnRelevance": 5,
+        "directionRelevance": 5,
+        "tmpaRelevance": 5,
+        "digitalEmployeeRelevance": 4,
+        "codeFlowMuRelevance": 5,
+        "engineeringValue": 5,
+        "novelInformation": 5,
+        "sourceQuality": 5,
+        "crossSourceSupport": 3,
+        "boundedQuestion": 5
+      },
+      "totalScore": 47
+    },
+    {
+      "selectionStatus": "Selected",
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "itemId": "Q-20260806-03",
+      "signalId": "SIG-20260806-G-001",
+      "priority": "P0",
+      "title": "Atomic legacy rollout migration with semantic replay and recoverable journaling",
+      "title_zh": "基于语义重放、原子发布与可恢复日志的旧版 Rollout 迁移",
+      "lifecycle": "Selected",
+      "pipelineOrigin": "github-engineering",
+      "source": "openai/codex commit aac9f842473ac6a05d417dd76ce8b89bdb3b707d",
+      "source_zh": "openai/codex 提交 aac9f842473ac6a05d417dd76ce8b89bdb3b707d",
+      "sourceUrl": "https://github.com/openai/codex/commit/aac9f842473ac6a05d417dd76ce8b89bdb3b707d",
+      "evidenceLevels": [
+        "merged_maintainer_change"
+      ],
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "researchQuestion": "How should an agent runtime migrate active historical execution records while preserving semantic replay, rollback, compaction and subagent history, with atomic publication, idempotency, journaling and crash recovery?",
+      "researchQuestion_zh": "Agent 运行时应如何迁移活跃历史执行记录，同时保留语义重放、回滚、压缩与子 Agent 历史，并实现原子发布、幂等、日志与崩溃恢复？",
+      "reason": "The maintainer change exposes a reproducible migration-and-recovery design with strong engineering boundaries: semantic preservation, active-writer exclusion, dry-run, idempotency, journaled recovery and atomic replacement. It directly informs durable agent-runtime history evolution.",
+      "reason_zh": "该维护者变更给出可复现且边界清晰的迁移恢复设计：语义保持、活跃写入者排除、dry-run、幂等、日志恢复与原子替换，可直接支撑 Agent 运行时历史存储演进。",
+      "next": "Execute Skill 03 Deep Reading on the commit series, migration state machine, journal format, recovery tests, active-writer detection, atomic replacement and compatibility limits.",
+      "next_zh": "执行 Skill 03 深度阅读，核查提交链、迁移状态机、日志格式、恢复测试、活跃写入者检测、原子替换及兼容性限制。",
+      "proposedCategory": "Agent Runtime Migration and Recovery Engineering",
+      "nextSkill": "03 Deep Reading",
+      "scores": {
+        "columnRelevance": 5,
+        "directionRelevance": 5,
+        "tmpaRelevance": 5,
+        "digitalEmployeeRelevance": 4,
+        "codeFlowMuRelevance": 5,
+        "engineeringValue": 5,
+        "novelInformation": 5,
+        "sourceQuality": 5,
+        "crossSourceSupport": 3,
+        "boundedQuestion": 5
+      },
+      "totalScore": 47
+    }
+  ]
+}
