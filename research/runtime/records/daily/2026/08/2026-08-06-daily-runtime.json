@@ -705,10 +705,10 @@
       "status": "Completed",
       "input": "Three complete same-day Publication Candidates produced by the Completed Production shift, the durably verified Scheduler-fallback Publication start state, Scheduler V3.0, and the data-driven bilingual Research Notes website surfaces.",
       "input_zh": "由已完成 Production 班次生成的 3 份完整当日 Publication Candidate、已完成持久化核验的 Scheduler 回退 Publication 启动状态、Scheduler V3.0，以及数据驱动的双语 Research Notes 网站表面。",
-      "workResult": "After the durable Running control-plane state was fetched and verified, validated Production, evidence, citation, publication editing, bilingual pairing, metadata and visualization gates for all three candidates. Published only the authorized candidate text and SVG assets to the required Chinese and English column paths; the data-driven indexes and website loaders surfaced the releases. No new research, substantive rewriting or evidence repair was performed. Scheduler fallback was explicitly recorded because the pre-existing Publication Running state was absent.",
-      "workResult_zh": "在获取并核验持久化 Running 控制面状态后，已验证全部 3 份候选的 Production、证据、引用、出版编辑、双语配对、元数据与可视化门禁。仅将获准候选文本和 SVG 资产发布到规定的中英文栏目路径；数据驱动索引与网站加载器已展示这些发布项。未开展新研究、实质性改写或证据修复。由于执行前缺少既有 Publication Running 状态，已明确记录 Scheduler 回退。",
-      "output": "Released 3 Daily Research items as 6 bilingual public article files and 3 visualization assets. Release manifest: research/runtime/releases/2026-08-06-publication.json. Verified release commit: f941753be1731bdd3d1a983632a8c305cd0b8540.",
-      "output_zh": "已发布 3 项 Daily Research，共 6 个双语公开文章文件与 3 个可视化资产。发布清单：research/runtime/releases/2026-08-06-publication.json。已核验发布提交：f941753be1731bdd3d1a983632a8c305cd0b8540。",
+      "workResult": "After the durable Running control-plane state was fetched and verified, validated Production, evidence, citation, publication editing, bilingual pairing, metadata and visualization gates for all three candidates. Published only the authorized candidate text and SVG assets to the required Chinese and English column paths; the data-driven indexes and website loaders surfaced the releases. After the initial GitHub Pages backend timed out, the formal deployment flow was migrated to a generated gh-pages root with .nojekyll, GitHub Pages was configured to publish from gh-pages / (root), workflow #104 completed successfully, the resulting gh-pages commit was verified, and the final Pages build reached built with all six public article pages returning HTTP 200. No candidate was consumed again, no article was republished, and no new research, substantive rewriting, evidence repair or Publication start event was added. Scheduler fallback was explicitly recorded because the pre-existing Publication Running state was absent.",
+      "workResult_zh": "在获取并核验持久化 Running 控制面状态后，已验证全部 3 份候选的 Production、证据、引用、出版编辑、双语配对、元数据与可视化门禁。仅将获准候选文本和 SVG 资产发布到规定的中英文栏目路径；数据驱动索引与网站加载器已展示这些发布项。初次 GitHub Pages 后端部署超时后，正式部署流程已迁移为生成带 .nojekyll 的 gh-pages 分支根目录，GitHub Pages 已配置为从 gh-pages / (root) 发布，工作流 #104 成功完成，生成的 gh-pages 提交已核验，最终 Pages build 达到 built，且 6 个公开文章页面均返回 HTTP 200。未重新消费候选、未重复发布文章，也未新增研究、实质性改写、证据修复或 Publication 启动事件。由于执行前缺少既有 Publication Running 状态，已明确记录 Scheduler 回退。",
+      "output": "Released 3 Daily Research items as 6 bilingual public article files and 3 visualization assets. Release manifest: research/runtime/releases/2026-08-06-publication.json. Verified release commit: f941753be1731bdd3d1a983632a8c305cd0b8540. Verified deployment-flow commit: 540b71375986e8bf39f86008040276f223af34e7. Verified gh-pages publication commit: c3bd327fd4afb8dd04ab00fc381fa4116cc3a5cb. GitHub Pages status: built.",
+      "output_zh": "已发布 3 项 Daily Research，共 6 个双语公开文章文件与 3 个可视化资产。发布清单：research/runtime/releases/2026-08-06-publication.json。已核验发布提交：f941753be1731bdd3d1a983632a8c305cd0b8540。已核验部署流程提交：540b71375986e8bf39f86008040276f223af34e7。已核验 gh-pages 发布提交：c3bd327fd4afb8dd04ab00fc381fa4116cc3a5cb。GitHub Pages 状态：built。",
       "next": "The Daily Runtime is closed for 2026-08-06. The next Daily Runtime begins with the next scheduled Discovery slot; future synthesis must consume durable released research rather than staging candidates.",
       "next_zh": "2026-08-06 Daily Runtime 已关闭。下一轮 Daily Runtime 从下一次计划内 Discovery 时段开始；后续综合应消费已持久发布的研究成果，而不是 staging 候选。",
       "metrics": [
@@ -751,6 +751,21 @@
           "label": "Evidence repairs",
           "label_zh": "证据修复",
           "value": "0"
+        },
+        {
+          "label": "Deployment workflow",
+          "label_zh": "部署工作流",
+          "value": "#104 success"
+        },
+        {
+          "label": "GitHub Pages build",
+          "label_zh": "GitHub Pages 构建",
+          "value": "built"
+        },
+        {
+          "label": "Verified public article pages",
+          "label_zh": "已核验公开文章页面",
+          "value": "6 / 6 HTTP 200"
         }
       ],
       "evidence": [
@@ -780,6 +795,28 @@
           "label_zh": "已核验的 Daily Research 发布提交",
           "commit": "f941753be1731bdd3d1a983632a8c305cd0b8540",
           "source": "https://github.com/joinwell52-AI/joinwell52/commit/f941753be1731bdd3d1a983632a8c305cd0b8540"
+        },
+        {
+          "label": "Verified deployment-flow commit",
+          "label_zh": "已核验部署流程提交",
+          "commit": "540b71375986e8bf39f86008040276f223af34e7",
+          "source": "https://github.com/joinwell52-AI/joinwell52/commit/540b71375986e8bf39f86008040276f223af34e7"
+        },
+        {
+          "label": "Verified gh-pages publication commit",
+          "label_zh": "已核验 gh-pages 发布提交",
+          "commit": "c3bd327fd4afb8dd04ab00fc381fa4116cc3a5cb",
+          "source": "https://github.com/joinwell52-AI/joinwell52/commit/c3bd327fd4afb8dd04ab00fc381fa4116cc3a5cb"
+        },
+        {
+          "label": "Successful deployment workflow #104",
+          "label_zh": "成功的部署工作流 #104",
+          "source": "https://github.com/joinwell52-AI/joinwell52/actions/runs/31109011241"
+        },
+        {
+          "label": "Built GitHub Pages deployment",
+          "label_zh": "已构建的 GitHub Pages 部署",
+          "source": "https://github.com/joinwell52-AI/joinwell52/actions/runs/31110025908"
         }
       ],
       "artifacts": [
@@ -852,6 +889,16 @@
           "label": "Human-readable Runtime ledger",
           "label_zh": "人类可读运行账本",
           "path": "research/runtime/2026/08/2026-08-06-runtime.md"
+        },
+        {
+          "label": "Verified gh-pages publication commit",
+          "label_zh": "已核验 gh-pages 发布提交",
+          "commit": "c3bd327fd4afb8dd04ab00fc381fa4116cc3a5cb"
+        },
+        {
+          "label": "Verified deployment-flow commit",
+          "label_zh": "已核验部署流程提交",
+          "commit": "540b71375986e8bf39f86008040276f223af34e7"
         }
       ]
     }
@@ -982,6 +1029,13 @@
       "event": "GitHub Commit Verified",
       "status": "Completed",
       "detail": "Fetched and verified release commit f941753be1731bdd3d1a983632a8c305cd0b8540 containing all authorized bilingual public paths, visualization assets, the release manifest and website-surface validation."
+    },
+    {
+      "time": "2026-08-06T22:18:20+08:00",
+      "task": "publication",
+      "event": "Pages Deployment Recovered",
+      "status": "Completed",
+      "detail": "Verified deployment-flow commit 540b71375986e8bf39f86008040276f223af34e7, successful formal workflow #104, gh-pages publication commit c3bd327fd4afb8dd04ab00fc381fa4116cc3a5cb, final GitHub Pages status built, and HTTP 200 responses for all six released article pages; no candidate was re-consumed, no article was republished, and no Publication start event was added."
     }
   ],
   "metrics": [
@@ -1066,7 +1120,7 @@
       "path": "research/runtime/2026/08/2026-08-06-runtime.md"
     }
   ],
-  "githubCommit": "f941753be1731bdd3d1a983632a8c305cd0b8540",
+  "githubCommit": "540b71375986e8bf39f86008040276f223af34e7",
   "commitVerify": "Completed",
-  "updatedAt": "2026-08-06T20:13:20+08:00"
+  "updatedAt": "2026-08-06T22:36:25+08:00"
 }
