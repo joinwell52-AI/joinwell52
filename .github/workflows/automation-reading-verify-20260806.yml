@@ -1,0 +1,99 @@
+name: Automation Reading Verify 2026-08-06
+
+on:
+  push:
+    branches:
+      - automation/reading-20260806-verify
+    paths:
+      - .github/workflows/automation-reading-verify-20260806.yml
+
+permissions:
+  contents: write
+
+jobs:
+  verify-reading-result:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Fetch and verify the durable Reading result
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected="6227377d3d20a2dceb8a64c0d624bcb8ffb395b2"
+          test "$(git rev-parse HEAD)" = "$expected"
+          git show --stat --oneline "$expected"
+
+          for path in \
+            research/reading/Q-20260806-01-revisable-dag-computer-use.md \
+            research/reading/Q-20260806-02-enterprise-agent-control-plane.md \
+            research/reading/Q-20260806-03-rollout-migration-recovery.md \
+            research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json \
+            research/runtime/2026/08/2026-08-06-runtime.md
+          do
+            test -s "$path"
+            git cat-file -e "$expected:$path"
+          done
+
+          node - <<'NODE'
+          const fs = require('fs')
+          const path = 'research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json'
+          const r = JSON.parse(fs.readFileSync(path, 'utf8'))
+          const starts = r.timeline.filter(e => e.task === 'reading' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time).startsWith('2026-08-06'))
+          const done = r.timeline.filter(e => e.task === 'reading' && e.event === 'Reading Completed' && e.status === 'Completed')
+          if (r.taskStatus.reading !== 'Completed' || r.results.reading?.status !== 'Completed' || r.results.reading?.schema !== 'runtime-shift-result/v2') throw new Error('Reading result is not complete')
+          if (starts.length !== 1 || done.length !== 1) throw new Error(`unexpected Reading event counts: starts=${starts.length}, completed=${done.length}`)
+          if (r.githubCommit !== 'pending' || r.commitVerify !== 'Waiting') throw new Error('result commit is not awaiting verification')
+          if (r.results.reading.artifacts.filter(a => a.path?.startsWith('research/reading/Q-20260806-')).length !== 3) throw new Error('expected three Reading artifacts')
+          NODE
+
+      - name: Persist verified commit state and regenerate ledger
+        shell: bash
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const fs = require('fs')
+          const path = 'research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json'
+          const r = JSON.parse(fs.readFileSync(path, 'utf8'))
+          if (r.timeline.some(e => e.task === 'reading' && e.event === 'GitHub Commit Verified')) throw new Error('duplicate Reading verification event')
+          const parts = Object.fromEntries(new Intl.DateTimeFormat('en-CA', {
+            timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit',
+            hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23'
+          }).formatToParts(new Date()).map((part) => [part.type, part.value]))
+          const timestamp = `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}:${parts.second}+08:00`
+          if (!timestamp.startsWith('2026-08-06T')) throw new Error(`unexpected runtime date ${timestamp}`)
+          r.githubCommit = '6227377d3d20a2dceb8a64c0d624bcb8ffb395b2'
+          r.commitVerify = 'Completed'
+          r.updatedAt = timestamp
+          r.timeline.push({
+            time: timestamp,
+            task: 'reading',
+            event: 'GitHub Commit Verified',
+            status: 'Completed',
+            detail: 'Fetched and verified commit 6227377d3d20a2dceb8a64c0d624bcb8ffb395b2 containing all three Reading Records, the Reading-only runtime-shift-result/v2 update and the synchronized Markdown ledger.'
+          })
+          fs.writeFileSync(path, JSON.stringify(r, null, 2) + '\n')
+          NODE
+
+          node scripts/runtime-markdown.mjs render --date 2026-08-06
+          node scripts/runtime-v5.mjs validate
+          node scripts/runtime-markdown.mjs validate --date 2026-08-06
+          git diff --check
+          grep -q '6227377d3d20a2dceb8a64c0d624bcb8ffb395b2' research/runtime/2026/08/2026-08-06-runtime.md
+          grep -q 'GitHub Commit Verified' research/runtime/2026/08/2026-08-06-runtime.md
+
+      - name: Commit final verification state separately to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add \
+            research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json \
+            research/runtime/2026/08/2026-08-06-runtime.md
+          git commit -m "runtime(reading): verify 2026-08-06 durable artifacts"
+          git push origin HEAD:main
