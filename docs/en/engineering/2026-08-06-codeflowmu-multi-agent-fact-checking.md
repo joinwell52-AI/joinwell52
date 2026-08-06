@@ -372,6 +372,40 @@ As explained above, FCoP owns the shared fact surface and CodeFlowMu runs the ro
 
 Hallucination may be unavoidable, but it can remain a local error instead of becoming an incorrect delivery. That is the most practical and valuable form of multi-agent “hallucination prevention.”
 
+## Easter egg: after publication, Claude reproduced the same failure mode
+
+After this article was published, I sent the link to Claude for another editorial pass. I applied its suggestions and published the revision. Claude then repeatedly concluded that the page had not updated. It called the same `web_fetch` path several times, saw old content, and promoted that observation into a confident explanation that the site or CDN was still serving the previous version.
+
+The problem was not that the tool returned nothing. The problem was that Claude promoted “the tool call completed” into “the returned content is the latest truth,” then treated repeated calls through the same tool and the same information path as independent verification.
+
+I opened the same page on two computers, saw the new version on both, and sent screenshots. Only then did Claude acknowledge:
+
+> **I treated “the call completed” as “the result is the latest fact.”**
+
+The failure can be compressed into three boundaries:
+
+```text
+web_fetch completed
+        ≠
+the returned page is the latest truth
+
+six calls through the same tool
+        ≠
+six independent information sources
+
+a plausible CDN explanation
+        ≠
+a demonstrated root cause
+```
+
+This is the same governance problem as the main WP-13 case. In the article, DEV’s `completed` could not override disk, Git, REPORT, and test evidence. In the easter egg, Claude’s repeated `web_fetch` results could not override the new page observed on two devices. The domain changed, but the failure structure did not: **an agent may propose a conclusion, but that conclusion cannot promote itself into fact by repeatedly consulting the same tool chain.**
+
+Cross-checking on two computers was not an external third-party audit, but it introduced observations independent of Claude’s single retrieval path and was enough to force the original conclusion back into review.
+
+This easter egg also keeps an evidence boundary. It does not prove that the stale result was caused by Claude’s local cache, the CDN, or a particular edge node. It proves only that, while the root cause remained unknown, Claude promoted stale content from one retrieval path into a confident conclusion and continued to use the same source to support itself.
+
+> **The most dangerous part was not that a tool returned old content. It was that an agent gave that old content an overconfident explanation without independent evidence.**
+
 ---
 
 ## Download the complete evidence package
