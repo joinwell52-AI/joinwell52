@@ -6,15 +6,17 @@
   "status": "Running",
   "registryVersion": "1.0",
   "sourceTask": "Research Runtime Discovery",
-  "updatedAt": "2026-08-06T09:12:52+08:00",
-  "githubCommit": "pending",
-  "reason": "All three formal Discovery profiles completed after the scheduler-fallback Running state was durably verified. Queue triage has not run, so the Research Intelligence run remains Running with all signals unselected.",
-  "reason_zh": "在调度器回退 Running 状态完成持久化核验后，三项正式 Discovery Profile 均已完成。Queue 筛选尚未执行，因此 Research Intelligence Run 保持 Running，所有信号均未选题。",
+  "updatedAt": "2026-08-06T09:35:01+08:00",
+  "githubCommit": "524f618285bcf073f0e1ab683af1e69c91d8f7ec",
+  "reason": "All three formal Discovery profiles completed after the scheduler-fallback Running state was durably verified. Queue triage has not run, so the Research Intelligence run remains Running with all signals unselected. The durable Discovery result commit has been fetched and verified.",
+  "reason_zh": "在调度器回退 Running 状态完成持久化核验后，三项正式 Discovery Profile 均已完成。Queue 筛选尚未执行，因此 Research Intelligence Run 保持 Running，所有信号均未选题。Discovery 持久化结果提交已完成拉取核验。",
   "controlPlane": {
     "startStateMode": "scheduler-fallback",
     "startStateCommit": "1346eaff7e3020478d47cf47ee17f9e770025ec4",
     "startEventCount": 1,
-    "verifiedBeforeSubstantiveWork": true
+    "verifiedBeforeSubstantiveWork": true,
+    "resultCommit": "524f618285bcf073f0e1ab683af1e69c91d8f7ec",
+    "resultCommitVerified": true
   },
   "pipelines": [
     {
