@@ -8,10 +8,10 @@
   "date": "2026-08-06",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Waiting",
+  "status": "Running",
   "taskStatus": {
     "discovery": "Completed",
-    "queue": "Waiting",
+    "queue": "Running",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
@@ -215,6 +215,13 @@
       "event": "GitHub Commit Verified",
       "status": "Completed",
       "detail": "Fetched and verified commit 524f618285bcf073f0e1ab683af1e69c91d8f7ec containing the durable Research Intelligence run, the Discovery-only runtime-shift-result/v2 record, and the synchronized human-readable ledger."
+    },
+    {
+      "time": "2026-08-06T10:05:01+08:00",
+      "task": "queue",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Scheduler fallback: Research Runtime Queue opened because the durable control-plane start state was absent; Skill 02 triage may begin only after this synchronized JSON and Markdown state is committed and verified."
     }
   ],
   "metrics": [
@@ -380,6 +387,6 @@
     }
   ],
   "githubCommit": "524f618285bcf073f0e1ab683af1e69c91d8f7ec",
-  "commitVerify": "Completed",
-  "updatedAt": "2026-08-06T09:35:01+08:00"
+  "commitVerify": "Pending",
+  "updatedAt": "2026-08-06T10:05:01+08:00"
 }
