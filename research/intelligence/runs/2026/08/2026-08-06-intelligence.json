@@ -1,0 +1,310 @@
+{
+  "schema": "research-intelligence-run/v1",
+  "version": "1.0",
+  "date": "2026-08-06",
+  "timezone": "Asia/Shanghai",
+  "status": "Running",
+  "registryVersion": "1.0",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-08-06T09:12:52+08:00",
+  "githubCommit": "pending",
+  "reason": "All three formal Discovery profiles completed after the scheduler-fallback Running state was durably verified. Queue triage has not run, so the Research Intelligence run remains Running with all signals unselected.",
+  "reason_zh": "在调度器回退 Running 状态完成持久化核验后，三项正式 Discovery Profile 均已完成。Queue 筛选尚未执行，因此 Research Intelligence Run 保持 Running，所有信号均未选题。",
+  "controlPlane": {
+    "startStateMode": "scheduler-fallback",
+    "startStateCommit": "1346eaff7e3020478d47cf47ee17f9e770025ec4",
+    "startEventCount": 1,
+    "verifiedBeforeSubstantiveWork": true
+  },
+  "pipelines": [
+    {
+      "id": "ai-platform",
+      "label": "AI Platform Change Intelligence",
+      "label_zh": "AI 平台变更情报发现",
+      "status": "Completed",
+      "due": 33,
+      "checked": 30,
+      "inaccessible": [
+        {
+          "source": "anthropic-claude/community-discord",
+          "reason": "The official channel redirects to Discord and requires authenticated membership; it was not represented as publicly checked."
+        }
+      ],
+      "failed": [
+        {
+          "source": "cursor/announcements",
+          "reason": "The official announcements category returned an internal retrieval error; Cursor changelog, documentation, main forum and status page were checked."
+        },
+        {
+          "source": "microsoft-copilot-platform/tech-community",
+          "reason": "The Copilot Studio Tech Community category returned an internal retrieval error; Microsoft Learn documentation, What's New, roadmap and service-health documentation were checked."
+        }
+      ],
+      "signals": 1,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All 33 P0 platform channels were resolved: 30 checked, 1 authentication-required and 2 retrieval failures with explicit fallback coverage.",
+      "reason_zh": "33 个 P0 平台渠道均得到明确结果：30 个已检查、1 个需要认证、2 个抓取失败且已有替代官方渠道覆盖。"
+    },
+    {
+      "id": "github-engineering",
+      "label": "GitHub Engineering Intelligence",
+      "label_zh": "GitHub 工程情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 9,
+      "inaccessible": [],
+      "failed": [],
+      "signals": 6,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 repositories were incrementally checked from the 2026-08-05 checkpoints; six normalized change objects were retained.",
+      "reason_zh": "9 个 P0 仓库均从 2026-08-05 检查点完成增量检查；保留 6 个规范化变更对象。"
+    },
+    {
+      "id": "published-research",
+      "label": "Published Research Intelligence",
+      "label_zh": "论文与研究成果情报发现",
+      "status": "Completed",
+      "due": 6,
+      "checked": 6,
+      "inaccessible": [],
+      "failed": [],
+      "signals": 3,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "arXiv, OpenReview, OpenAI Research, Anthropic Research, Google DeepMind Research and Microsoft Research were checked; three previously unregistered primary research artifacts were retained.",
+      "reason_zh": "已检查 arXiv、OpenReview、OpenAI Research、Anthropic Research、Google DeepMind Research 与 Microsoft Research；保留 3 个此前未登记的主要研究成果信号。"
+    }
+  ],
+  "columns": [
+    {
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "decision": "Waiting",
+      "signals": 3,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery only normalized signals; Queue triage has not run.",
+      "reason_zh": "Discovery 仅规范化信号；Queue 筛选尚未执行。"
+    },
+    {
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "decision": "Waiting",
+      "signals": 1,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery only normalized signals; Queue triage has not run.",
+      "reason_zh": "Discovery 仅规范化信号；Queue 筛选尚未执行。"
+    },
+    {
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "decision": "Waiting",
+      "signals": 6,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery only normalized signals; Queue triage has not run.",
+      "reason_zh": "Discovery 仅规范化信号；Queue 筛选尚未执行。"
+    }
+  ],
+  "signals": [
+    {
+      "id": "SIG-20260806-P-001",
+      "pipeline": "ai-platform",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "open-source-engineering",
+        "digital-employee"
+      ],
+      "title": "Claude Code v2.1.223 hardens managed policy, permission checks, workflow sandboxing and resume behavior",
+      "title_zh": "Claude Code v2.1.223 加强托管策略、权限检查、工作流沙箱与恢复行为",
+      "sourceUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.223",
+      "publishedAt": "2026-08-06",
+      "evidenceLevel": "official_announcement",
+      "changeType": "security-and-enterprise-policy",
+      "observedChange": "The release adds organization-wide marketplace allow/block wildcards, warns when restricted subagent models fall back to the parent model, fixes command-obfuscation permission bypasses and workflow-sandbox escape paths, enforces organization bypass-permission policy, and repairs several resumed-session failure modes.",
+      "observedChange_zh": "该版本新增组织级 Marketplace 通配允许/阻止规则，在受限子 Agent 模型回退到父模型时给出警告，修复命令混淆权限绕过与工作流沙箱逃逸路径，执行组织级绕过权限禁用策略，并修复多项会话恢复失败。",
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260806-G-001",
+      "pipeline": "github-engineering",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "title": "Codex migrates legacy rollouts with semantic replay, atomic publication, journaling and recovery",
+      "title_zh": "Codex 以语义重放、原子发布、日志与恢复迁移旧版 Rollout",
+      "sourceUrl": "https://github.com/openai/codex/commit/aac9f842473ac6a05d417dd76ce8b89bdb3b707d",
+      "publishedAt": "2026-08-06",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "migration-and-recovery",
+      "observedChange": "Linked maintainer changes migrate legacy JSONL rollouts into paginated history while preserving rollback, compaction and subagent-history semantics; replacements are atomic, migrations are journaled and recoverable, dry-run and idempotency are tested, and active writers are skipped.",
+      "observedChange_zh": "关联维护者变更将旧版 JSONL Rollout 迁移到分页历史，同时保留回滚、压缩与子 Agent 历史语义；替换采用原子发布，迁移带日志并可恢复，覆盖 dry-run 与幂等测试，并跳过活跃写入者。",
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260806-G-002",
+      "pipeline": "github-engineering",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "title": "Codex persists multi-agent usage hints in world state and refreshes them on resume",
+      "title_zh": "Codex 将多 Agent 使用提示持久化到 World State 并在恢复时刷新",
+      "sourceUrl": "https://github.com/openai/codex/commit/92b83e226df59dc5ec43a49259d7716821e20c85",
+      "publishedAt": "2026-08-06",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "resume-and-world-state",
+      "observedChange": "Multi-agent usage instructions are now represented in world state and re-emitted when configuration or tool availability changes, including cold resumes and wait-agent guidance.",
+      "observedChange_zh": "多 Agent 使用说明被纳入 World State，并在配置或工具可用性变化时重新发出，覆盖冷恢复及 wait-agent 引导。",
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260806-G-003",
+      "pipeline": "github-engineering",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "title": "OpenAI Agents Python preserves completed guardrail evidence across resumed interruptions and streamed failure paths",
+      "title_zh": "OpenAI Agents Python 在恢复中断与流式失败路径中保留已完成门禁证据",
+      "sourceUrl": "https://github.com/openai/openai-agents-python/commit/36d50b014a92d09c9f667bf95bfc26c2f22920ca",
+      "publishedAt": "2026-08-06",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "guardrail-evidence",
+      "observedChange": "Linked fixes keep completed tool-guardrail results when a resumed run interrupts again and publish completed streamed guardrail results on failure paths, preventing verified evidence from disappearing during non-success terminal flows.",
+      "observedChange_zh": "关联修复在恢复后的运行再次中断时保留已完成的工具门禁结果，并在流式失败路径发布已完成门禁结果，避免已验证证据在非成功终结路径中消失。",
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260806-G-004",
+      "pipeline": "github-engineering",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "title": "Google ADK fixes resume semantics so a paused child does not end its parent agent",
+      "title_zh": "Google ADK 修复恢复语义，避免暂停的子 Agent 终结父 Agent",
+      "sourceUrl": "https://github.com/google/adk-python/commit/3bb10115d3ae69cfc42bebcdfa4a935031c8e1a1",
+      "publishedAt": "2026-08-06",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "pause-resume-lifecycle",
+      "observedChange": "The LlmAgent resume path no longer terminates the parent when a child pauses, clarifying propagation rules between local pause state and compound-agent lifecycle completion.",
+      "observedChange_zh": "LlmAgent 恢复路径不再因子 Agent 暂停而终结父 Agent，明确了局部暂停状态与复合 Agent 生命周期完成之间的传播规则。",
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260806-G-005",
+      "pipeline": "github-engineering",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "title": "Gemini CLI preserves function-call thought signatures when filtering thought parts",
+      "title_zh": "Gemini CLI 在过滤思考片段时保留函数调用 Thought Signature",
+      "sourceUrl": "https://github.com/google-gemini/gemini-cli/commit/63c5b747702268394399d873ea6a72583ef25772",
+      "publishedAt": "2026-08-05",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "conversation-history-integrity",
+      "observedChange": "The runtime now preserves functionCall thoughtSignature metadata while stripping thought parts, protecting tool-call continuity and history integrity across model transformations.",
+      "observedChange_zh": "运行时在剥离思考片段时保留 functionCall 的 thoughtSignature 元数据，以维护模型转换过程中的工具调用连续性与历史完整性。",
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260806-G-006",
+      "pipeline": "github-engineering",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
+      "title": "Codex bounds remote MCP handshake HTTP requests to the initialization deadline",
+      "title_zh": "Codex 将远程 MCP 握手 HTTP 请求限制在初始化截止时间内",
+      "sourceUrl": "https://github.com/openai/codex/commit/e244a9d94e2e6f1b052c2d432f1808985073b911",
+      "publishedAt": "2026-08-05",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "timeout-and-resource-recovery",
+      "observedChange": "Streamable HTTP MCP initialize, initialized-notification and discovery requests now inherit the remaining handshake deadline, preventing a timed-out request from continuing to block the serial executor.",
+      "observedChange_zh": "Streamable HTTP MCP 的 initialize、initialized 通知与发现请求现在继承剩余握手截止时间，防止已超时请求继续阻塞串行执行器。",
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260806-R-001",
+      "pipeline": "published-research",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "title": "Software Delegation Contracts measure reviewability gains rather than correctness gains",
+      "title_zh": "软件委托契约测得的是可审阅性提升，而非正确率提升",
+      "sourceUrl": "https://arxiv.org/abs/2606.17099",
+      "publishedAt": "2026-06-14",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "changeType": "coding-agent-evaluation",
+      "observedChange": "A 64-run controlled pilot reports that explicit delegation contracts and required evidence bundles improved evidence sufficiency and reduced reviewer ambiguity without improving already-saturated hidden-test outcomes; the contracts increased token and wall-clock cost.",
+      "observedChange_zh": "一项 64 次运行的受控试验报告称，显式委托契约与强制证据包提高了证据充分性并降低审阅歧义，但未提升已饱和的隐藏测试结果，同时增加了 Token 与墙钟时间成本。",
+      "confidence": "medium-high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260806-R-002",
+      "pipeline": "published-research",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "title": "Multi-Agent Computer Use uses a revisable DAG manager for parallel long-horizon execution",
+      "title_zh": "Multi-Agent Computer Use 使用可修订 DAG 管理器执行并行长任务",
+      "sourceUrl": "https://arxiv.org/abs/2606.01533",
+      "publishedAt": "2026-06-01",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "changeType": "multi-agent-computer-use",
+      "observedChange": "A manager decomposes tasks into a dependency DAG, dispatches ready nodes in parallel and revises the graph as findings arrive; the paper reports 3.4–25.5% gains over single-agent baselines and about 1.5× wall-clock improvement on Odysseys.",
+      "observedChange_zh": "管理器将任务分解为依赖 DAG，并行派发就绪节点，随新发现持续修订图；论文报告相对单 Agent 基线提升 3.4–25.5%，在 Odysseys 上墙钟时间约提升 1.5 倍。",
+      "confidence": "medium-high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260806-R-003",
+      "pipeline": "published-research",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "title": "EvalAgent encodes evaluation expertise as reusable skills and executable trace-based artifacts",
+      "title_zh": "EvalAgent 将评估专业知识编码为可复用 Skill 与可执行轨迹评估产物",
+      "sourceUrl": "https://arxiv.org/abs/2605.11378",
+      "publishedAt": "2026-05-12",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "changeType": "agent-evaluation-automation",
+      "observedChange": "The study reports that generic coding assistants achieved only 30% execution success for evaluation generation, while an evaluation-skill pipeline improved Eval@1 from 17.5% to 65% and received 79.5% expert preference; ablation reduced Eval@1 to 30%.",
+      "observedChange_zh": "研究报告称，通用编码助手生成评估时仅有 30% 执行成功率，而基于评估 Skill 的流水线将 Eval@1 从 17.5% 提升至 65%，获得 79.5% 专家偏好；移除 Skill 后 Eval@1 降至 30%。",
+      "confidence": "medium-high",
+      "triageStatus": "signal"
+    }
+  ]
+}
