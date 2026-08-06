@@ -8,11 +8,11 @@
   "date": "2026-08-06",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Waiting",
+  "status": "Running",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Waiting",
+    "reading": "Running",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -331,6 +331,13 @@
       "event": "GitHub Commit Verified",
       "status": "Completed",
       "detail": "Fetched and verified commit 2c67e5ff6f4e4f15e1daa1ebe13b81e827c75332 containing Today's Research Plan, the triaged Research Intelligence run, the Queue-only runtime-shift-result/v2 record and the synchronized Markdown ledger."
+    },
+    {
+      "time": "2026-08-06T11:03:29+08:00",
+      "task": "reading",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Reading started by Scheduler fallback because the durable control-plane Running state was absent at execution time."
     }
   ],
   "metrics": [
@@ -415,7 +422,7 @@
       "path": "research/runtime/2026/08/2026-08-06-runtime.md"
     }
   ],
-  "githubCommit": "2c67e5ff6f4e4f15e1daa1ebe13b81e827c75332",
-  "commitVerify": "Completed",
-  "updatedAt": "2026-08-06T10:05:03+08:00"
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-08-06T11:03:29+08:00"
 }
