@@ -8,11 +8,11 @@
   "date": "2026-08-06",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -287,6 +287,132 @@
           "path": "research/runtime/2026/08/2026-08-06-runtime.md"
         }
       ]
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "status": "Completed",
+      "input": "The durably verified Scheduler-fallback Reading start state in commit 637bfe54751b3aa6363add407deb916615c2135b, Research Runtime Scheduler V3.0, Skill 03 Deep Reading, and the completed 2026-08-06 Research Plan containing exactly three Selected objects: Q-20260806-01, Q-20260806-02 and Q-20260806-03.",
+      "input_zh": "提交 637bfe54751b3aa6363add407deb916615c2135b 中已持久化核验的 Reading Scheduler 回退启动状态、Research Runtime Scheduler V3.0、Skill 03 深度阅读，以及包含且仅包含三个 Selected 对象 Q-20260806-01、Q-20260806-02 与 Q-20260806-03 的已完成 2026-08-06 Research Plan。",
+      "workResult": "Executed Skill 03 only for all three same-day Selected objects. Read primary and authoritative research, product and code sources; extracted facts, research results or vendor claims, mechanisms, evidence, limitations, comparisons, contradictions, unresolved questions and source traceability. One oversized arXiv PDF retrieval limitation was explicitly recorded and supplemented with the arXiv record, indexed full text, author project page and official repository. No Research Analysis, recommendations, article drafting, Production or Publication work was performed.",
+      "workResult_zh": "仅对三个当日 Selected 对象执行 Skill 03。已阅读主要及权威的研究、产品与代码来源，并提取事实、研究结果或厂商主张、机制、证据、限制、比较、矛盾、未决问题与来源追溯。一个超大 arXiv PDF 抓取限制已明确记录，并以 arXiv 记录、索引全文、作者项目页与官方仓库补充；未开展 Research Analysis、建议、文章撰写、Production 或 Publication。",
+      "output": "Three durable Reading Records: revisable DAG orchestration for multi-agent computer use; enterprise policy, permission, sandbox, fallback and resume boundaries in Claude Code v2.1.223; and semantic legacy rollout migration with bounded subagent replay and journaled recovery in openai/codex.",
+      "output_zh": "已形成三份持久化 Reading Record：多 Agent 计算机操作的可修订 DAG 编排；Claude Code v2.1.223 中的企业策略、权限、沙箱、回退与恢复边界；以及 openai/codex 中采用有界子 Agent 重放和日志恢复的旧版 Rollout 语义迁移。",
+      "next": "Research Runtime Analysis may consume only these three Reading Records and must preserve their evidence classes, contradictions, access limitation and unresolved boundaries. Reading itself must not be expanded into analysis or publication text.",
+      "next_zh": "Research Runtime Analysis 只能消费这三份 Reading Record，并必须保留其中的证据类别、矛盾、访问限制与未决边界；Reading 本身不得扩展为分析或出版文本。",
+      "metrics": [
+        {
+          "label": "Selected objects consumed",
+          "label_zh": "已消费 Selected 对象",
+          "value": "3"
+        },
+        {
+          "label": "Durable Reading Results",
+          "label_zh": "持久化 Reading Result",
+          "value": "3"
+        },
+        {
+          "label": "Columns completed",
+          "label_zh": "已完成栏目",
+          "value": "3 / 3"
+        },
+        {
+          "label": "Explicit source-access limitations",
+          "label_zh": "明确记录的来源访问限制",
+          "value": "1"
+        },
+        {
+          "label": "Research Analysis objects",
+          "label_zh": "Research Analysis 对象",
+          "value": "0"
+        },
+        {
+          "label": "Article drafts",
+          "label_zh": "文章草稿",
+          "value": "0"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Scheduler V3.0",
+          "label_zh": "Scheduler V3.0",
+          "source": "research/runtime/SCHEDULER.json"
+        },
+        {
+          "label": "Verified Reading fallback start commit",
+          "label_zh": "已核验的 Reading 回退启动提交",
+          "commit": "637bfe54751b3aa6363add407deb916615c2135b",
+          "source": "https://github.com/joinwell52-AI/joinwell52/commit/637bfe54751b3aa6363add407deb916615c2135b"
+        },
+        {
+          "label": "Today's Research Plan",
+          "label_zh": "今日研究计划",
+          "source": "research/runtime/plans/2026/08/2026-08-06-plan.json"
+        },
+        {
+          "label": "Skill 03 Deep Reading",
+          "label_zh": "Skill 03 深度阅读",
+          "source": "research/skills/03-deep-reading.md"
+        },
+        {
+          "label": "Multi-Agent Computer Use arXiv record",
+          "label_zh": "Multi-Agent Computer Use arXiv 记录",
+          "source": "https://arxiv.org/abs/2606.01533"
+        },
+        {
+          "label": "Multi-Agent Computer Use official repository",
+          "label_zh": "Multi-Agent Computer Use 官方仓库",
+          "source": "https://github.com/kohjingyu/multi-agent-computer-use"
+        },
+        {
+          "label": "Claude Code v2.1.223 official release",
+          "label_zh": "Claude Code v2.1.223 官方发布",
+          "source": "https://github.com/anthropics/claude-code/releases/tag/v2.1.223"
+        },
+        {
+          "label": "Claude Code official security and settings documentation",
+          "label_zh": "Claude Code 官方安全与设置文档",
+          "source": "https://docs.anthropic.com/en/docs/claude-code/settings"
+        },
+        {
+          "label": "openai/codex semantic migration commit",
+          "label_zh": "openai/codex 语义迁移提交",
+          "commit": "aac9f842473ac6a05d417dd76ce8b89bdb3b707d",
+          "source": "https://github.com/openai/codex/commit/aac9f842473ac6a05d417dd76ce8b89bdb3b707d"
+        },
+        {
+          "label": "openai/codex merged migration PR",
+          "label_zh": "openai/codex 已合并迁移 PR",
+          "source": "https://github.com/openai/codex/pull/37191"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Digital Employee Reading Record",
+          "label_zh": "数字员工 Reading Record",
+          "path": "research/reading/Q-20260806-01-revisable-dag-computer-use.md"
+        },
+        {
+          "label": "Industry Architecture Reading Record",
+          "label_zh": "行业架构 Reading Record",
+          "path": "research/reading/Q-20260806-02-enterprise-agent-control-plane.md"
+        },
+        {
+          "label": "Open-source Engineering Reading Record",
+          "label_zh": "开源工程 Reading Record",
+          "path": "research/reading/Q-20260806-03-rollout-migration-recovery.md"
+        },
+        {
+          "label": "Daily Runtime Record",
+          "label_zh": "每日运行机器记录",
+          "path": "research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json"
+        },
+        {
+          "label": "Human-readable Runtime ledger",
+          "label_zh": "人类可读运行账本",
+          "path": "research/runtime/2026/08/2026-08-06-runtime.md"
+        }
+      ]
     }
   },
   "timeline": [
@@ -338,6 +464,13 @@
       "event": "Execution Slot Opened",
       "status": "Running",
       "detail": "Research Runtime Reading started by Scheduler fallback because the durable control-plane Running state was absent at execution time."
+    },
+    {
+      "time": "2026-08-06T11:13:14+08:00",
+      "task": "reading",
+      "event": "Reading Completed",
+      "status": "Completed",
+      "detail": "Skill 03 completed all three same-day Selected objects after verified Scheduler-fallback start commit 637bfe54751b3aa6363add407deb916615c2135b; three Reading Records were persisted with source traceability and no Research Analysis or article drafting."
     }
   ],
   "metrics": [
@@ -424,5 +557,5 @@
   ],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-06T11:03:29+08:00"
+  "updatedAt": "2026-08-06T11:13:14+08:00"
 }
