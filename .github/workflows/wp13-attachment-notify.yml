@@ -1,0 +1,20 @@
+name: WP13 attachment notify
+
+on:
+  push:
+    paths:
+      - '.github/workflows/wp13-attachment-notify.yml'
+
+permissions:
+  issues: write
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post transfer request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api repos/${{ github.repository }}/issues/64/comments \
+            -f body='@joinwell52-AI Please reply to this GitHub notification with the four original PNG attachments.'
