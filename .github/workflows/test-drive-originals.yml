@@ -7,19 +7,33 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Download and inspect
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download and verify with gdown
         run: |
           set -euxo pipefail
+          pip install --quiet gdown pillow
           ids=(
             1V5WIIpvU5n7JTW9IX4lBcaEG1VpvLmad
             11MI_PcAXmSqlsMjGnRXL2Y0a84SuLKMW
             1Z-yJRm9WempRy5FmP_I6e6XOZFLCvaG6
             1QXuDz2ZbY9vBZzSXJH0XujpzbqN3Snkd
           )
+          expected=(
+            1a8fa32fe5b4eeafe98c38f2b2d1aae53cdbbabdb72ae700fe6c559cc3765735
+            b28b0356151c5e898be6fa2bd61ed64bc49034ebd91165d228382664852fd7d4
+            9de759262aca12c93547998badc4c20b63dbe5af0849262d233c6d9e62d9887d
+            bd19bba4b4a7924b0af1fbd18e857c4743208bccb21f4f1c775a2ea3df136e34
+          )
           for i in 1 2 3 4; do
             id=${ids[$((i-1))]}
-            curl -L --fail --show-error "https://drive.google.com/uc?export=download&id=$id" -o "claude-0${i}.png"
-            file "claude-0${i}.png"
-            wc -c "claude-0${i}.png"
-            sha256sum "claude-0${i}.png"
+            gdown "$id" -O "claude-0${i}.png"
+            echo "${expected[$((i-1))]}  claude-0${i}.png" | sha256sum -c -
           done
+          python - <<'PY'
+          from PIL import Image
+          for i in range(1,5):
+              im=Image.open(f'claude-0{i}.png')
+              print(i, im.size, im.mode)
+          PY
