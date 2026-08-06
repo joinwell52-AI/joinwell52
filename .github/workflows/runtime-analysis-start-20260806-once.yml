@@ -1,0 +1,87 @@
+name: Runtime Analysis Start 2026-08-06 Once
+
+on:
+  push:
+    branches:
+      - runtime-analysis-20260806-control
+    paths:
+      - .github/workflows/runtime-analysis-start-20260806-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  persist-start:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Persist exactly one Analysis Running event
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs')
+          const path = 'research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json'
+          const record = JSON.parse(fs.readFileSync(path, 'utf8'))
+          const matching = (record.timeline || []).filter((event) =>
+            event.task === 'analysis' &&
+            event.event === 'Execution Slot Opened' &&
+            event.status === 'Running' &&
+            String(event.time || '').startsWith('2026-08-06T')
+          )
+          if (matching.length > 1) {
+            throw new Error(`duplicate Analysis start events already exist: ${matching.length}`)
+          }
+          if (matching.length === 0) {
+            record.timeline = record.timeline || []
+            record.timeline.push({
+              time: '2026-08-06T13:02:16+08:00',
+              task: 'analysis',
+              event: 'Execution Slot Opened',
+              status: 'Running',
+              detail: 'Scheduler fallback: Research Runtime Analysis opened because the durable control-plane Running state was absent; Skill 04 may begin only after this synchronized JSON and Markdown state is committed and verified.'
+            })
+          }
+          record.status = 'Running'
+          record.taskStatus = record.taskStatus || {}
+          record.taskStatus.analysis = 'Running'
+          record.githubCommit = 'pending'
+          record.commitVerify = 'Waiting'
+          record.updatedAt = '2026-08-06T13:02:16+08:00'
+          fs.writeFileSync(path, JSON.stringify(record, null, 2) + '\n')
+          NODE
+
+          node scripts/runtime-markdown.mjs render --date 2026-08-06
+          node scripts/runtime-markdown.mjs validate --date 2026-08-06
+
+          node <<'NODE'
+          const fs = require('fs')
+          const path = 'research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json'
+          const record = JSON.parse(fs.readFileSync(path, 'utf8'))
+          const matching = (record.timeline || []).filter((event) =>
+            event.task === 'analysis' &&
+            event.event === 'Execution Slot Opened' &&
+            event.status === 'Running' &&
+            String(event.time || '').startsWith('2026-08-06T')
+          )
+          if (record.status !== 'Running') throw new Error('overall status is not Running')
+          if (record.taskStatus?.analysis !== 'Running') throw new Error('taskStatus.analysis is not Running')
+          if (matching.length !== 1) throw new Error(`expected exactly one Analysis start event, found ${matching.length}`)
+          NODE
+
+      - name: Commit synchronized start state to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json \
+                  research/runtime/2026/08/2026-08-06-runtime.md
+          git commit -m "runtime(analysis): persist 2026-08-06 fallback Running state"
+          git pull --rebase origin main
+          git push origin HEAD:main
