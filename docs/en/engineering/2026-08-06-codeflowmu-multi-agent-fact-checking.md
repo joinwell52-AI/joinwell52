@@ -386,19 +386,19 @@ I opened the same page on two computers, saw the new version on both, and sent s
 
 **Screenshot 1 — repeated retrieval was mistaken for independent verification.** Claude insists that every `web_fetch` call is a fresh, independent network request. Because six calls returned the same old page, it attributes the result to the site, server, or CDN rather than questioning the shared retrieval path.
 
-![Claude easter egg screenshot 1: repeated retrieval presented as independent network requests](/assets/covers/wp13-claude-easter-01.png)
+![Claude easter egg screenshot 1: repeated retrieval presented as independent network requests](../../public/assets/covers/wp13-claude-easter-01.png)
 
 **Screenshot 2 — new evidence appears, but the explanation remains overconfident.** After the user supplies a screenshot showing the revised article, Claude accepts that the new version exists, yet continues to explain its stale result as CDN edge-node inconsistency. That explanation is plausible, but it has not been independently established.
 
-![Claude easter egg screenshot 2: the new version is acknowledged while CDN inconsistency is inferred](/assets/covers/wp13-claude-easter-02.png)
+![Claude easter egg screenshot 2: the new version is acknowledged while CDN inconsistency is inferred](../../public/assets/covers/wp13-claude-easter-02.png)
 
 **Screenshot 3 — the methodological error is recognized.** Claude acknowledges that it kept using one tool and one information path to validate itself. It did not switch to an independent source in the way a PM or QA role would cross-check a disputed fact.
 
-![Claude easter egg screenshot 3: acknowledgement that no independent information source was introduced](/assets/covers/wp13-claude-easter-03.png)
+![Claude easter egg screenshot 3: acknowledgement that no independent information source was introduced](../../public/assets/covers/wp13-claude-easter-03.png)
 
 **Screenshot 4 — two-device observation forces the claim back into review.** Once the user confirms the revised page on two computers, Claude explicitly admits the core failure: it treated “the call completed” as “the result is the latest fact.” The screenshot also records the distinction between repeated use of one tool and genuinely independent verification.
 
-![Claude easter egg screenshot 4: acknowledgement that tool completion was mistaken for latest truth](/assets/covers/wp13-claude-easter-04.png)
+![Claude easter egg screenshot 4: acknowledgement that tool completion was mistaken for latest truth](../../public/assets/covers/wp13-claude-easter-04.png)
 
 
 The failure can be compressed into three boundaries:
