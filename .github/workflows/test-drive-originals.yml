@@ -1,0 +1,25 @@
+name: Test Drive originals
+on:
+  push:
+    paths:
+      - .github/workflows/test-drive-originals.yml
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download and inspect
+        run: |
+          set -euxo pipefail
+          ids=(
+            1V5WIIpvU5n7JTW9IX4lBcaEG1VpvLmad
+            11MI_PcAXmSqlsMjGnRXL2Y0a84SuLKMW
+            1Z-yJRm9WempRy5FmP_I6e6XOZFLCvaG6
+            1QXuDz2ZbY9vBZzSXJH0XujpzbqN3Snkd
+          )
+          for i in 1 2 3 4; do
+            id=${ids[$((i-1))]}
+            curl -L --fail --show-error "https://drive.google.com/uc?export=download&id=$id" -o "claude-0${i}.png"
+            file "claude-0${i}.png"
+            wc -c "claude-0${i}.png"
+            sha256sum "claude-0${i}.png"
+          done
