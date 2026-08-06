@@ -1,0 +1,48 @@
+name: Rebuild WP13 original screenshots
+
+on:
+  push:
+    paths:
+      - 'tmp/wp13/READY'
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Decode exact original PNG files
+        shell: bash
+        run: |
+          set -euo pipefail
+          for i in 01 02 03 04; do
+            cat tmp/wp13/img${i}.part*.b64 | base64 --decode > docs/public/assets/covers/wp13-claude-easter-${i}.png
+          done
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          expected = {
+            '01': (146041, '1a8fa32fe5b4eeafe98c38f2b2d1aae53cdbbabdb72ae700fe6c559cc3765735'),
+            '02': (168797, 'b28b0356151c5e898be6fa2bd61ed64bc49034ebd91165d228382664852fd7d4'),
+            '03': (128208, '9de759262aca12c93547998badc4c20b63dbe5af0849262d233c6d9e62d9887d'),
+            '04': (124694, 'bd19bba4b4a7924b0af1fbd18e857c4743208bccb21f4f1c775a2ea3df136e34'),
+          }
+          for i, (size, digest) in expected.items():
+              p = Path(f'docs/public/assets/covers/wp13-claude-easter-{i}.png')
+              data = p.read_bytes()
+              assert len(data) == size, (i, len(data), size)
+              assert hashlib.sha256(data).hexdigest() == digest, i
+              print(i, len(data), digest)
+          PY
+      - name: Commit exact images
+        run: |
+          rm -rf tmp/wp13 .github/workflows/wp13-original-image-rebuild.yml
+          git config user.name 'joinwell52 Research Runtime'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A
+          git commit -m 'docs: restore four original Claude screenshots losslessly'
+          git push origin HEAD
