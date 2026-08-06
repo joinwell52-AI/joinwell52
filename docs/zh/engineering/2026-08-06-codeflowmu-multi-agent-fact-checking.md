@@ -85,81 +85,6 @@ CodeFlowMu 的做法不同。多 Agent 不是几个模型轮流发言，也不�
 
 **不派 QA，不收口，不新建一个重复任务，继续原任务。**
 
-## 核心机制：确定性事实读取，加上 PM 的业务裁决
-
-工程读者最关心的问题是：PM 到底“怎么”查到这些事实？这是 prompt 让 PM 自觉检查，还是 Runtime 在放行前强制执行一组非 LLM 检查？
-
-从 WP-13 证据包能够确认的实际链路是：
-
-1. Runtime 记录并展示子执行结束事件，同时保留 `no exit status`、测试未确认和 SHA 不可得等异常事实；
-2. Runtime 维持原任务身份，并把该任务继续交给 PM 处理；
-3. PM Agent 在自己的执行会话中主动读取任务、生命周期位置、REPORT、磁盘文件、Git 状态和 Runtime 事件；
-4. 文件是否存在、HEAD 指向哪里、退出状态是否为空，属于确定性观察；
-5. 这些事实是否满足 WP-13 的完成合同，以及应继续、返工还是派 QA，由 PM 作业务裁决。
-
-因此，本文不能把现场写成“FCoP 自动识别了幻觉”，也不能声称当时已经有一个全局硬编码的 `collect_evidence()` 门禁替 PM reject。更准确的表达是：
-
-> **Runtime 保存并暴露事实；PM 按岗位职责和任务合同主动核验；业务放行权仍属于 PM。**
-
-### PM 核验的对象与可复现检查
-
-下表中的命令是可复现的等价检查，用来说明事实来自哪里；它们不是声称 PM 当时逐字执行了同一组命令。
-
-| 要核验的事实 | 可复查的数据源或等价检查 | 13:08 左右的结果 |
-|---|---|---|
-| 任务当前状态 | 在 `fcop/_lifecycle/{inbox,active,review,done}/` 定位 `TASK-20260805-019` | 仍在 `active` |
-| DEV 是否正式交付 | 查找 `fcop/reports/REPORT-*-DEV-to-PM.md` 并核对任务引用 | 未找到对应 REPORT |
-| 是否形成 WP-13 提交 | `git rev-parse HEAD`、`git show --stat HEAD`，再核对 WP-13 路径 | HEAD 仍属于前一个 WP |
-| 必需文件是否落盘 | 按 TASK 中要求的 WP-13 文件和测试路径执行 `stat/glob` | 不完整 |
-| 命令和测试是否可确认 | 读取 Runtime 原始事件、Shell 退出状态和测试输出 | `exit_status = null`，结果为 `unknown` |
-
-下面是**归一化证据摘要**。字段来自证据包中的原始事件和 PM 核验结果，但排版不是 Runtime JSONL 的逐字复制：
-
-```text
-13:06  subexecution.status = completed
-       shell.exit_status = null
-       tests = unconfirmed
-       commit_sha = unavailable
-
-13:08  task.bucket = active
-       dev_report = missing
-       wp13_commit = missing
-       required_test_files = incomplete
-       pm_decision = evidence_incomplete
-       next = continue TASK-20260805-019; do not dispatch QA
-```
-
-把现场机制抽象成伪代码，大致是：
-
-```text
-on_subexecution_finished(event):
-    runtime.append(event)
-    # completed 与 exit_status=null 被保留为两个不同事实
-    runtime.surface_to_pm(event.task_id)
-
-PM.review_completion(task_id):
-    contract = read_task_contract(task_id)
-    facts = {
-        task_bucket: locate_task(task_id),
-        report: find_dev_report(task_id),
-        git_head: git_rev_parse("HEAD"),
-        required_files: stat(contract.required_files),
-        command_results: read_runtime_events(task_id)
-    }
-
-    if facts.report.missing
-       or not commit_matches(contract, facts.git_head)
-       or not facts.required_files.complete
-       or facts.command_results.exit_status is null:
-        PM.decision = "evidence_incomplete"
-        dispatch_QA = false
-        continue_same_task = true
-    else:
-        dispatch_QA = true
-```
-
-这段伪代码是对现场机制的工程抽象，**不是声称仓库里已经存在一个同名硬门禁**。后续 Runtime 可以把 `report_missing`、`commit_unreachable`、`evidence_incomplete` 预计算成确定性诊断，但继续、返工或接受仍应由具备职责的角色裁决。
-
 ## 五个角色动作，把一句“完成了”变成可验证的交付
 
 ![WP-13 五阶段多 Agent 事实复核](/assets/covers/wp13-codeflowmu-fact-check-process-zh.svg)
@@ -182,7 +107,94 @@ DEV 已经完成了部分实现，但 Edit、Shell、Read 等工具连续返回�
 
 PM 没有再问一遍“你确定吗”。同一个 Agent 的再次确认，仍然只是另一条语言声明。
 
-它执行了上一节所列的事实核验，发现完成合同没有闭合，于是拒绝派 QA，并保留原任务继续执行。这里没有神奇的“真假分类器”，只有一个不同职责的角色根据外部事实作出有限、可解释的业务判断。
+工程上更关键的问题是：PM 到底“怎么”查到这些事实？这是 prompt 让 PM 自觉检查，还是 Runtime 在放行前强制执行一组非 LLM 检查？
+
+从 WP-13 证据包能够确认的实际链路是：
+
+1. Runtime 记录并展示子执行结束事件，同时保留 `no exit status`、测试未确认和 SHA 不可得等异常事实；
+2. Runtime 维持原任务身份，并把该任务继续交给 PM 处理；
+3. PM Agent 在自己的执行会话中主动读取任务、生命周期位置、REPORT、磁盘文件、Git 状态和 Runtime 事件；
+4. 文件是否存在、HEAD 指向哪里、退出状态是否为空，属于确定性观察；
+5. 这些事实是否满足 WP-13 的完成合同，以及应继续、返工还是派 QA，由 PM 作业务裁决。
+
+因此，本文不能把现场写成“FCoP 自动识别了幻觉”，也不能声称当时已经有一个全局硬编码的 `collect_evidence()` 门禁替 PM reject。更准确的表达是：
+
+> **Runtime 保存并暴露事实；PM 按岗位职责和任务合同主动核验；业务放行权仍属于 PM。**
+
+#### PM 核验的对象与可复现检查
+
+下表中的命令是可复现的等价检查，用来说明事实来自哪里；它们不是声称 PM 当时逐字执行了同一组命令。
+
+| 要核验的事实 | 可复查的数据源或等价检查 | 13:08 左右的结果 |
+|---|---|---|
+| 任务当前状态 | 在 `fcop/_lifecycle/{inbox,active,review,done}/` 定位 `TASK-20260805-019` | 仍在 `active` |
+| DEV 是否正式交付 | 查找 `fcop/reports/REPORT-*-DEV-to-PM.md` 并核对任务引用 | 未找到对应 REPORT |
+| 是否形成 WP-13 提交 | `git rev-parse HEAD`、`git show --stat HEAD`，再核对 WP-13 路径 | HEAD 仍属于前一个 WP |
+| 必需文件是否落盘 | 按 TASK 中要求的 WP-13 文件和测试路径执行 `stat/glob` | 不完整 |
+| 命令和测试是否可确认 | 读取 Runtime 原始事件、Shell 退出状态和测试输出 | 至少一个相关 Shell 事件的 `exit_status = null`，结果为 `unknown` |
+
+`task_bucket` 不是完成证据本身，而是生命周期一致性约束。对这次 pre-QA 核验，PM 预期任务仍在 `active`；如果它已经被提前挪到 `review`、`done` 或 `archive`，这本身就是状态漂移，应先阻塞并核对，而不能继续放行。
+
+把现场机制抽象成伪代码，大致是：
+
+```text
+on_subexecution_finished(event):
+    runtime.append(event)
+    # completed 与 exit_status=null 被保留为两个不同事实
+    runtime.surface_to_pm(event.task_id)
+
+PM.review_completion(task_id):
+    contract = read_task_contract(task_id)
+    facts = {
+        task_bucket: locate_task(task_id),
+        report: find_dev_report(task_id),
+        git_head: git_rev_parse("HEAD"),
+        required_files: stat(contract.required_files),
+        command_results: read_runtime_events(task_id)
+    }
+
+    unexpected_bucket = facts.task_bucket != "active"
+    shell_events = [
+        e for e in facts.command_results
+        if e.kind == "shell"
+    ]
+    any_unresolved = any(
+        e.exit_status is null
+        for e in shell_events
+    )
+
+    if unexpected_bucket
+       or facts.report.missing
+       or not commit_matches(contract, facts.git_head)
+       or not facts.required_files.complete
+       or any_unresolved:
+        PM.decision = "evidence_incomplete"
+        dispatch_QA = false
+        continue_same_task = true
+    else:
+        dispatch_QA = true
+```
+
+这段伪代码是对现场机制的工程抽象，**不是声称仓库里已经存在一个同名硬门禁**。后续 Runtime 可以把 `report_missing`、`commit_unreachable`、`evidence_incomplete` 预计算成确定性诊断，但继续、返工或接受仍应由具备职责的角色裁决。
+
+下面是**归一化证据摘要**。字段来自证据包中的原始事件和 PM 核验结果，但排版不是 Runtime JSONL 的逐字复制：
+
+```text
+13:06  subexecution.status = completed
+       shell_events.any(exit_status = null) = true
+       tests = unconfirmed
+       commit_sha = unavailable
+
+13:08  task.bucket = active
+       expected_bucket = active
+       dev_report = missing
+       wp13_commit = missing
+       required_test_files = incomplete
+       pm_decision = evidence_incomplete
+       next = continue TASK-20260805-019; do not dispatch QA
+```
+
+PM 发现完成合同没有闭合，于是拒绝派 QA，并保留原任务继续执行。这里没有神奇的“真假分类器”，只有一个不同职责的角色根据外部事实作出有限、可解释的业务判断。
 
 ### 第四幕：DEV 在原任务上完成真实交付
 

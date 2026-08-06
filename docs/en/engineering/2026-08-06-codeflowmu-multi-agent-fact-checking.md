@@ -83,86 +83,11 @@ This is not a caption added later. It is the business decision PM made after che
 
 ![CodeFlowMu live scene: PM fact-check and agent activity stream](/assets/covers/wp13-codeflowmu-fact-check-live.png)
 
-Around 1:08 PM, PM could see that no formal DEV REPORT existed, Git HEAD still belonged to the previous work package, required test files were incomplete, Shell had returned `no exit status`, and the subexecution itself admitted that tests were unconfirmed and the SHA was unavailable.
+Around 1:08 PM, PM could see that no formal DEV REPORT existed, Git HEAD still belonged to the previous work package, required test files were incomplete, Shell had returned `no exit status` multiple times, and the subexecution itself admitted that tests were unconfirmed and the SHA was unavailable.
 
 PM’s decision was immediate:
 
 **Do not dispatch QA. Do not close the task. Do not create a duplicate replacement task. Continue the original task.**
-
-## Core mechanism: deterministic fact retrieval plus PM business judgment
-
-The engineering question is straightforward: how did PM obtain those facts? Was PM merely prompted to behave this way, or did Runtime enforce a non-LLM gate before release?
-
-The WP-13 evidence package supports the following actual chain:
-
-1. Runtime recorded and surfaced the subexecution-ending event while preserving `no exit status`, unconfirmed tests, and unavailable SHA as separate facts;
-2. Runtime preserved the original task identity and returned the task to PM’s workflow;
-3. PM Agent, inside its own execution session, actively read the TASK, lifecycle location, REPORTs, disk files, Git state, and Runtime event evidence;
-4. whether a file exists, where HEAD points, and whether an exit status is null are deterministic observations;
-5. whether those observations satisfy the WP-13 completion contract—and whether to continue, rework, or dispatch QA—remained PM’s business judgment.
-
-The article therefore should not describe WP-13 as “FCoP automatically detected a hallucination,” nor should it claim that a global hard-coded `collect_evidence()` gate rejected the task on PM’s behalf.
-
-> **Runtime stores and exposes facts. PM checks them under a role and task contract. Business release authority remains with PM.**
-
-### What PM checked, and how another engineer can reproduce it
-
-The commands below are reproducible equivalents that show where each fact comes from. They are not a claim that PM executed the same literal command sequence character for character.
-
-| Fact to verify | Reproducible source or equivalent check | State around 1:08 PM |
-|---|---|---|
-| Current task state | Locate `TASK-20260805-019` under `fcop/_lifecycle/{inbox,active,review,done}/` | Still in `active` |
-| Formal DEV handoff | Search `fcop/reports/REPORT-*-DEV-to-PM.md` and verify task references | No matching REPORT |
-| Traceable WP-13 commit | `git rev-parse HEAD`, `git show --stat HEAD`, then inspect WP-13 paths | HEAD still belonged to the previous WP |
-| Required files on disk | `stat/glob` the WP-13 files and test paths required by the TASK | Incomplete |
-| Confirmed command and test evidence | Read the raw Runtime event, Shell exit status, and test output | `exit_status = null`; result remained `unknown` |
-
-The following is a **normalized evidence summary**. Its fields come from the raw event and PM’s checks, but its formatting is not a verbatim copy of the Runtime JSONL:
-
-```text
-13:06  subexecution.status = completed
-       shell.exit_status = null
-       tests = unconfirmed
-       commit_sha = unavailable
-
-13:08  task.bucket = active
-       dev_report = missing
-       wp13_commit = missing
-       required_test_files = incomplete
-       pm_decision = evidence_incomplete
-       next = continue TASK-20260805-019; do not dispatch QA
-```
-
-Abstracted as pseudocode, the mechanism looks roughly like this:
-
-```text
-on_subexecution_finished(event):
-    runtime.append(event)
-    # completed and exit_status=null remain two different facts
-    runtime.surface_to_pm(event.task_id)
-
-PM.review_completion(task_id):
-    contract = read_task_contract(task_id)
-    facts = {
-        task_bucket: locate_task(task_id),
-        report: find_dev_report(task_id),
-        git_head: git_rev_parse("HEAD"),
-        required_files: stat(contract.required_files),
-        command_results: read_runtime_events(task_id)
-    }
-
-    if facts.report.missing
-       or not commit_matches(contract, facts.git_head)
-       or not facts.required_files.complete
-       or facts.command_results.exit_status is null:
-        PM.decision = "evidence_incomplete"
-        dispatch_QA = false
-        continue_same_task = true
-    else:
-        dispatch_QA = true
-```
-
-This pseudocode is an engineering abstraction of the observed mechanism. It is **not a claim that the repository already contained a same-named hard gate**. A stronger Runtime may later precompute deterministic diagnostics such as `report_missing`, `commit_unreachable`, and `evidence_incomplete`, while leaving continuation, rework, and acceptance to the role with the appropriate authority.
 
 ## Five role actions turned “done” into a verifiable delivery
 
@@ -188,7 +113,94 @@ Coherence is not closure.
 
 PM did not ask the same execution path, “Are you sure?” A second confirmation would still be another language claim.
 
-It performed the fact checks described above, found that the completion contract did not close, withheld QA dispatch, and preserved the original task for continued work. No global truth classifier was required—only a role with a bounded responsibility making an explainable judgment from external facts.
+The more important engineering question is how PM obtained the facts. Was PM merely prompted to behave this way, or did Runtime enforce a non-LLM gate before release?
+
+The WP-13 evidence package supports the following actual chain:
+
+1. Runtime recorded and surfaced the subexecution-ending event while preserving `no exit status`, unconfirmed tests, and unavailable SHA as separate facts;
+2. Runtime preserved the original task identity and returned the task to PM’s workflow;
+3. PM Agent, inside its own execution session, actively read the TASK, lifecycle location, REPORTs, disk files, Git state, and Runtime event evidence;
+4. whether a file exists, where HEAD points, and whether an exit status is null are deterministic observations;
+5. whether those observations satisfy the WP-13 completion contract—and whether to continue, rework, or dispatch QA—remained PM’s business judgment.
+
+The article therefore should not describe WP-13 as “FCoP automatically detected a hallucination,” nor should it claim that a global hard-coded `collect_evidence()` gate rejected the task on PM’s behalf.
+
+> **Runtime stores and exposes facts. PM checks them under a role and task contract. Business release authority remains with PM.**
+
+#### What PM checked, and how another engineer can reproduce it
+
+The commands below are reproducible equivalents that show where each fact comes from. They are not a claim that PM executed the same literal command sequence character for character.
+
+| Fact to verify | Reproducible source or equivalent check | State around 1:08 PM |
+|---|---|---|
+| Current task state | Locate `TASK-20260805-019` under `fcop/_lifecycle/{inbox,active,review,done}/` | Still in `active` |
+| Formal DEV handoff | Search `fcop/reports/REPORT-*-DEV-to-PM.md` and verify task references | No matching REPORT |
+| Traceable WP-13 commit | `git rev-parse HEAD`, `git show --stat HEAD`, then inspect WP-13 paths | HEAD still belonged to the previous WP |
+| Required files on disk | `stat/glob` the WP-13 files and test paths required by the TASK | Incomplete |
+| Confirmed command and test evidence | Read the raw Runtime events, Shell exit statuses, and test output | At least one relevant Shell event had `exit_status = null`; the result remained `unknown` |
+
+`task_bucket` is not completion evidence by itself; it is a lifecycle-consistency constraint. For this pre-QA review, PM expected the task to remain in `active`. If it had already moved to `review`, `done`, or `archive`, that would itself be state drift and should block progression until reconciled.
+
+Abstracted as pseudocode, the mechanism looks roughly like this:
+
+```text
+on_subexecution_finished(event):
+    runtime.append(event)
+    # completed and exit_status=null remain two different facts
+    runtime.surface_to_pm(event.task_id)
+
+PM.review_completion(task_id):
+    contract = read_task_contract(task_id)
+    facts = {
+        task_bucket: locate_task(task_id),
+        report: find_dev_report(task_id),
+        git_head: git_rev_parse("HEAD"),
+        required_files: stat(contract.required_files),
+        command_results: read_runtime_events(task_id)
+    }
+
+    unexpected_bucket = facts.task_bucket != "active"
+    shell_events = [
+        e for e in facts.command_results
+        if e.kind == "shell"
+    ]
+    any_unresolved = any(
+        e.exit_status is null
+        for e in shell_events
+    )
+
+    if unexpected_bucket
+       or facts.report.missing
+       or not commit_matches(contract, facts.git_head)
+       or not facts.required_files.complete
+       or any_unresolved:
+        PM.decision = "evidence_incomplete"
+        dispatch_QA = false
+        continue_same_task = true
+    else:
+        dispatch_QA = true
+```
+
+This pseudocode is an engineering abstraction of the observed mechanism. It is **not a claim that the repository already contained a same-named hard gate**. A stronger Runtime may later precompute deterministic diagnostics such as `report_missing`, `commit_unreachable`, and `evidence_incomplete`, while leaving continuation, rework, and acceptance to the role with the appropriate authority.
+
+The following is a **normalized evidence summary**. Its fields come from the raw event and PM’s checks, but its formatting is not a verbatim copy of the Runtime JSONL:
+
+```text
+13:06  subexecution.status = completed
+       shell_events.any(exit_status = null) = true
+       tests = unconfirmed
+       commit_sha = unavailable
+
+13:08  task.bucket = active
+       expected_bucket = active
+       dev_report = missing
+       wp13_commit = missing
+       required_test_files = incomplete
+       pm_decision = evidence_incomplete
+       next = continue TASK-20260805-019; do not dispatch QA
+```
+
+PM found that the completion contract did not close, withheld QA dispatch, and preserved the original task for continued work. No global truth classifier was required—only a role with a bounded responsibility making an explainable judgment from external facts.
 
 ### Act 4: DEV completed the real delivery on the original task
 
