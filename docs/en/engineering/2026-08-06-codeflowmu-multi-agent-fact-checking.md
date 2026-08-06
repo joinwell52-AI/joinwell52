@@ -1,9 +1,9 @@
 ---
-title: "One Agent Said ‘Done.’ The Team Refused to Believe It."
+title: 'One Agent Said “Done.” Why Didn’t the Team Release It?'
 date: '2026-08-06'
 column: open-source-engineering
 category: daily
-summary: "FCoP lets an agent say no when evidence is incomplete; refusing to promote an unsupported claim into system fact is a scarce multi-agent capability."
+summary: 'This is not model-level hallucination detection. It is protocol-and-organization governance: FCoP externalizes facts, CodeFlowMu runs the roles, and PM rejects unsupported completion claims.'
 item_id: WP13-CODEFLOWMU-FACT-CHECK
 lifecycle: Published
 evidence_status: Completed
@@ -16,15 +16,19 @@ outline: deep
 <ArticleCover
   image="/assets/covers/wp13-codeflowmu-fact-check-cover-en.svg"
   kicker="Open-source Engineering · CodeFlowMu Field Case"
-  title="One Agent Said ‘Done.’ The Team Refused to Believe It."
-  summary="FCoP lets agents do more than generate ‘done.’ It lets a role say no when the shared facts do not support completion."
+  title="One Agent Said ‘Done.’ Why Didn’t the Team Release It?"
+  summary="This is not model-level hallucination detection. FCoP provides the fact track, CodeFlowMu runs the roles, and PM can say no when evidence does not support completion."
   version="WP-13"
   status="Field Case · 2026-08-06"
   languageHref="/zh/engineering/2026-08-06-codeflowmu-multi-agent-fact-checking"
   languageLabel="中文"
 />
 
-# One Agent Said “Done.” The Team Refused to Believe It.
+# One Agent Said “Done.” Why Didn’t the Team Release It?
+
+*A CodeFlowMu multi-agent fact-checking field case*
+
+**This is not model-level hallucination detection. It is protocol-and-organization governance: FCoP, as Agent POSIX, externalizes facts; CodeFlowMu, as the application and Runtime, runs the roles; PM decides whether the evidence is sufficient to advance.**
 
 At 1:06 PM, a DEV subexecution returned `completed`.
 
@@ -42,13 +46,11 @@ On one side: “done.”
 
 On the other: no confirmed command result, no confirmed tests, and no commit SHA.
 
-This is one of the most dangerous failure modes in agentic software engineering. A model-generated uncertainty was about to become an organizational fact.
-
 If PM had accepted the summary, QA would have received a delivery that did not yet exist. If QA had merely repeated DEV’s conclusion, the claim could have propagated into task status, reports, acceptance, and release.
 
 That did not happen in WP-13.
 
-The team refused to believe the agent.
+PM did not release it.
 
 ## Hallucination happens inside one agent. Failure happens when the team treats it as fact.
 
@@ -56,15 +58,12 @@ Most conversations about hallucination prevention focus on making the model smar
 
 Those techniques help, but they still depend on the same basic idea: ask a language model to correct a language model.
 
-CodeFlowMu takes a different approach.
-
-A multi-agent system is not several models taking turns writing. It is a team with distinct jobs, authority, and handoff boundaries:
+CodeFlowMu takes a different approach. A multi-agent system is not several models taking turns writing, nor is it three models voting. It is a team with distinct jobs, fact sources, authority, and handoff boundaries:
 
 - DEV implements the task and may make mistakes;
 - PM decides whether delivery facts satisfy the task contract;
 - QA re-verifies the result as a separate role;
-- Runtime handles wake-up, scheduling, recovery, UI, and live activity streams, but should not replace business judgment;
-- FCoP externalizes TASKs, REPORTs, REVIEWs, states, and events into a protocol surface that every role can inspect.
+- Runtime handles wake-up, scheduling, recovery, UI, and live activity streams, but does not replace PM’s business judgment.
 
 The goal is not to make hallucination impossible.
 
@@ -72,13 +71,11 @@ The goal is to make sure that a hallucination produced by one role cannot automa
 
 > **Agents may be wrong. The organization must not make them right by default.**
 
-## The live scene: PM’s fact judgment above, the agent’s live activity stream below
+## The live scene: PM’s fact judgment above, the agent’s activity stream below
 
 The image below is not a reconstructed flowchart. It is a screenshot from the CodeFlowMu operating interface during the incident.
 
-The upper area shows the PM-facing task and fact-checking conversation. The lower area preserves the live agent activity stream and visible reasoning summaries: files being inspected, tools being called, implementation scope being discussed, and status changing in real time.
-
-The most important sentence in the image is not DEV’s self-report. It is PM’s judgment:
+The upper area shows the PM-facing task and fact-checking conversation. The lower area preserves the live agent activity stream and visible reasoning summaries. The most important sentence is not DEV’s self-report. It is PM’s judgment:
 
 > **The sub-agent claimed completion, but the artifacts were incomplete -- do not treat it as complete.**
 
@@ -86,31 +83,88 @@ This is not a caption added later. It is the business decision PM made after che
 
 ![CodeFlowMu live scene: PM fact-check and agent activity stream](/assets/covers/wp13-codeflowmu-fact-check-live.png)
 
-PM did not ask, “Are you sure you are done?”
-
-A second confirmation from the same execution path would still be another language claim.
-
-Instead, PM asked a different question:
-
-> **Do the external facts prove that WP-13 is complete?**
-
-Around 1:08 PM, the answer was no.
-
-PM found that:
-
-- no formal DEV REPORT existed;
-- Git HEAD still pointed to the previous work package;
-- required WP-13 test files were missing;
-- Shell repeatedly returned `no exit status`;
-- the subexecution itself admitted that tests were unconfirmed and the SHA was unavailable.
+Around 1:08 PM, PM could see that no formal DEV REPORT existed, Git HEAD still belonged to the previous work package, required test files were incomplete, Shell had returned `no exit status`, and the subexecution itself admitted that tests were unconfirmed and the SHA was unavailable.
 
 PM’s decision was immediate:
 
 **Do not dispatch QA. Do not close the task. Do not create a duplicate replacement task. Continue the original task.**
 
-That decision is the heart of the case. PM was not “a smarter writing agent.” PM was a different role with different authority, checking different facts.
+## Core mechanism: deterministic fact retrieval plus PM business judgment
 
-## Five role actions turned a “done” claim back into a verifiable delivery
+The engineering question is straightforward: how did PM obtain those facts? Was PM merely prompted to behave this way, or did Runtime enforce a non-LLM gate before release?
+
+The WP-13 evidence package supports the following actual chain:
+
+1. Runtime recorded and surfaced the subexecution-ending event while preserving `no exit status`, unconfirmed tests, and unavailable SHA as separate facts;
+2. Runtime preserved the original task identity and returned the task to PM’s workflow;
+3. PM Agent, inside its own execution session, actively read the TASK, lifecycle location, REPORTs, disk files, Git state, and Runtime event evidence;
+4. whether a file exists, where HEAD points, and whether an exit status is null are deterministic observations;
+5. whether those observations satisfy the WP-13 completion contract—and whether to continue, rework, or dispatch QA—remained PM’s business judgment.
+
+The article therefore should not describe WP-13 as “FCoP automatically detected a hallucination,” nor should it claim that a global hard-coded `collect_evidence()` gate rejected the task on PM’s behalf.
+
+> **Runtime stores and exposes facts. PM checks them under a role and task contract. Business release authority remains with PM.**
+
+### What PM checked, and how another engineer can reproduce it
+
+The commands below are reproducible equivalents that show where each fact comes from. They are not a claim that PM executed the same literal command sequence character for character.
+
+| Fact to verify | Reproducible source or equivalent check | State around 1:08 PM |
+|---|---|---|
+| Current task state | Locate `TASK-20260805-019` under `fcop/_lifecycle/{inbox,active,review,done}/` | Still in `active` |
+| Formal DEV handoff | Search `fcop/reports/REPORT-*-DEV-to-PM.md` and verify task references | No matching REPORT |
+| Traceable WP-13 commit | `git rev-parse HEAD`, `git show --stat HEAD`, then inspect WP-13 paths | HEAD still belonged to the previous WP |
+| Required files on disk | `stat/glob` the WP-13 files and test paths required by the TASK | Incomplete |
+| Confirmed command and test evidence | Read the raw Runtime event, Shell exit status, and test output | `exit_status = null`; result remained `unknown` |
+
+The following is a **normalized evidence summary**. Its fields come from the raw event and PM’s checks, but its formatting is not a verbatim copy of the Runtime JSONL:
+
+```text
+13:06  subexecution.status = completed
+       shell.exit_status = null
+       tests = unconfirmed
+       commit_sha = unavailable
+
+13:08  task.bucket = active
+       dev_report = missing
+       wp13_commit = missing
+       required_test_files = incomplete
+       pm_decision = evidence_incomplete
+       next = continue TASK-20260805-019; do not dispatch QA
+```
+
+Abstracted as pseudocode, the mechanism looks roughly like this:
+
+```text
+on_subexecution_finished(event):
+    runtime.append(event)
+    # completed and exit_status=null remain two different facts
+    runtime.surface_to_pm(event.task_id)
+
+PM.review_completion(task_id):
+    contract = read_task_contract(task_id)
+    facts = {
+        task_bucket: locate_task(task_id),
+        report: find_dev_report(task_id),
+        git_head: git_rev_parse("HEAD"),
+        required_files: stat(contract.required_files),
+        command_results: read_runtime_events(task_id)
+    }
+
+    if facts.report.missing
+       or not commit_matches(contract, facts.git_head)
+       or not facts.required_files.complete
+       or facts.command_results.exit_status is null:
+        PM.decision = "evidence_incomplete"
+        dispatch_QA = false
+        continue_same_task = true
+    else:
+        dispatch_QA = true
+```
+
+This pseudocode is an engineering abstraction of the observed mechanism. It is **not a claim that the repository already contained a same-named hard gate**. A stronger Runtime may later precompute deterministic diagnostics such as `report_missing`, `commit_unreachable`, and `evidence_incomplete`, while leaving continuation, rework, and acceptance to the role with the appropriate authority.
+
+## Five role actions turned “done” into a verifiable delivery
 
 ![The five-stage WP-13 fact-checking sequence](/assets/covers/wp13-codeflowmu-fact-check-process-en.svg)
 
@@ -118,17 +172,13 @@ That decision is the heart of the case. PM was not “a smarter writing agent.�
 
 Part of the implementation existed, but Edit, Shell, and Read calls repeatedly returned abnormal or incomplete status. The key problem was not merely that a tool failed. The tool could not provide a reliable exit status.
 
-In engineering, there is a hard boundary between `unknown` and `success`.
-
-No exit status means a command cannot be assumed to have run. No output means tests cannot be assumed to have passed. No commit means the work has not become a traceable delivery.
+In engineering, there is a hard boundary between `unknown` and `success`. No exit status means a command cannot be assumed to have run. No output means tests cannot be assumed to have passed. No commit means the work has not become a traceable delivery.
 
 ### Act 2: Subexecution produced a completion-like narrative
 
 The subexecution was not malicious. It attempted to continue the work and produced a technically coherent plan.
 
-But when tools could not confirm results, it still organized partial information into a narrative that sounded complete.
-
-That is one of the strongest capabilities of language models — and one of the most dangerous in an execution system:
+But when tools could not confirm results, it still organized partial information into a narrative that sounded complete. That is one of the strongest capabilities of language models—and one of the most dangerous in an execution system:
 
 **they can turn incomplete and conflicting evidence into a coherent story.**
 
@@ -136,18 +186,9 @@ Coherence is not closure.
 
 ### Act 3: PM blocked the story from acquiring business authority
 
-PM did not run a magical hallucination classifier. PM checked four external fact classes:
+PM did not ask the same execution path, “Are you sure?” A second confirmation would still be another language claim.
 
-| Claim to prove | Fact source |
-|---|---|
-| Code actually exists | Files and disk diff |
-| Delivery is traceable | Git commit |
-| DEV formally handed off work | FCoP REPORT |
-| Task contract is satisfied | Tests and typecheck |
-
-None of the four evidence chains was complete, so PM refused release.
-
-This is the key distinction: another role did not merely offer another opinion. It made a fact judgment under a different responsibility.
+It performed the fact checks described above, found that the completion contract did not close, withheld QA dispatch, and preserved the original task for continued work. No global truth classifier was required—only a role with a bounded responsibility making an explainable judgment from external facts.
 
 ### Act 4: DEV completed the real delivery on the original task
 
@@ -168,11 +209,11 @@ Real artifacts then appeared:
 
 Only then did “done” stop depending on DEV’s wording.
 
-### Act 5: QA trusted neither DEV nor PM — it trusted re-execution
+### Act 5: QA trusted neither DEV nor PM—it trusted re-execution
 
 At 1:09 PM, after verifying the REPORT and commit, PM dispatched `TASK-20260805-020` to QA.
 
-QA did not rewrite the DEV report. It reran the evidence checks in a separate role. At 1:11 PM, the live activity stream recorded the first completion statement backed by independent execution:
+QA reran the evidence checks in a separate role. At 1:11 PM, the live activity stream recorded the first completion statement backed by independent execution:
 
 > All tests passed, 27/27. DEV’s reported 3+10+14=27 matches the actual result.
 
@@ -184,26 +225,7 @@ The final QA evidence included:
 - no TaskDispatcher changes in the commit;
 - `production_active` remained false.
 
-This was **role-separated QA verification**, not an external third-party audit. But it was enough to break the single-agent pattern of self-claim, self-approval, and self-closure.
-
-## This was not “FCoP automatically detecting hallucination”
-
-The easiest misunderstanding is to imagine that FCoP acted like a hallucination detector and discovered that DEV was lying.
-
-It did not.
-
-FCoP does not understand the business goal of WP-13, run tests, or judge whether a sentence is true. It is closer to a shared protocol surface for multi-agent work:
-
-- TASK externalizes what should be done;
-- REPORT externalizes what an agent claims it did;
-- REVIEW externalizes who judged what, and on which basis;
-- file location represents current state;
-- append-only `transitions:` preserve the past;
-- filenames expose identity, type, and routing to both humans and agents.
-
-**FCoP does not think for the roles. It gives the roles a common set of facts to think with.**
-
-In this case, PM could say no because missing REPORTs, state location, event history, and engineering evidence were inspectable outside DEV’s hidden context.
+This was **role-separated QA verification**, not an external third-party audit. But it broke the single-agent pattern of self-claim, self-approval, and self-closure.
 
 ## FCoP is a protocol that lets an agent say no
 
@@ -213,47 +235,29 @@ Language models are not scarce in their ability to keep generating: add another 
 >
 > **Generating another answer is abundant. Refusing to promote incomplete evidence into “done” is a scarce agent capability.**
 
-This no is not a mood or cautious wording. It has protocol consequences: do not dispatch QA, do not close the task, do not create a duplicate history, preserve the missing evidence, and continue the original task. FCoP externalizes the basis for that no through TASKs, REPORTs, state location, and event history. CodeFlowMu gives PM the role and authority to act on those facts.
+This no is not a mood or cautious wording. It has operational consequences: do not dispatch QA, do not close the task, do not create a duplicate history, preserve the missing evidence, and continue the original task.
 
-The core of this case is therefore not merely that one agent noticed another agent’s error. Protocol and organization together gave PM a scarce capability: **to reject a polished answer before it became a completion fact.**
+The core of WP-13 is not merely that one agent noticed another agent’s error. Protocol and organization together gave PM a scarce capability: **to reject a polished answer before it became a completion fact.**
 
-## Reading the FCoP repository changes how this case should be described
+## Protocol and application boundary: FCoP is Agent POSIX; CodeFlowMu is the Runtime
 
-### 1. FCoP means Filesystem Coordination Protocol
+This section gives the complete architectural explanation once. Later sections only refer back to it.
+
+### FCoP means Filesystem Coordination Protocol
 
 “Filename as Protocol” is not the expansion of FCoP. It is the protocol’s core invariant.
 
-The current FCoP formulation is:
+The current formulation is:
 
 > **Files carry protocol. Paths address state. Events replay transitions.**
 
-That statement explains why WP-13 was reviewable:
+TASK externalizes what should be done. REPORT externalizes what an agent claims it did. REVIEW externalizes who judged what and on which basis. File location represents current state, while append-only `transitions:` preserve the past.
 
-- DEV’s “done” was a language claim;
-- TASKs, REPORTs, paths, and events were externalized facts;
-- PM and QA could inspect the same surface instead of trusting DEV’s private narrative.
+### FCoP is a behavioral governance protocol layer, not a hallucination detector
 
-### 2. FCoP is a behavioral governance protocol layer
+FCoP does not understand the business goal of WP-13, run tests, or decide whether a natural-language sentence is true. It defines how agents report behavior, how results are reviewed, and how actions remain auditable inside capability boundaries.
 
-The repository positions FCoP as the **behavior governance protocol layer** for multi-agent systems. It defines how agents report behavior, how results are reviewed, and how actions remain auditable inside capability boundaries.
-
-That is more precise than calling it a file-based ticket system.
-
-FCoP asks questions such as:
-
-- What did the agent claim to do?
-- How can another role verify it?
-- Where is the authoritative current state?
-- Is the transition history preserved?
-- Are review and capability boundaries explicit?
-
-### 3. FCoP is Agent POSIX, not Agent OS
-
-The Boundary Charter is explicit:
-
-> **FCoP is Agent POSIX, not Agent OS.**
-
-It describes, externalizes, and coordinates. It does not execute, own, or orchestrate.
+### FCoP is Agent POSIX, not Agent OS
 
 | FCoP is responsible for | FCoP is not responsible for |
 |---|---|
@@ -263,35 +267,25 @@ It describes, externalizes, and coordinates. It does not execute, own, or orches
 | Audit and append-only history | Deciding which agent executes now |
 | Capability declaration and review semantics | Concrete sandbox, process, and permission enforcement |
 
-Therefore, this article should not say that FCoP scheduled PM, DEV, and QA to prevent hallucination.
+### CodeFlowMu is the application site for FCoP
 
-The accurate statement is:
+CodeFlowMu runs PM, DEV, QA, OPS, and other roles; preserves task identity; performs wake-up and scheduling; records Runtime events; displays the live activity stream; and recovers the original task after anomalies.
 
-> **FCoP provided an observable, auditable, governable protocol surface. CodeFlowMu, as the application and Runtime, organized roles, woke agents, displayed the live scene, and enabled PM and QA to make judgments on that surface.**
-
-### 4. CodeFlowMu is where FCoP becomes a working application
-
-CodeFlowMu is not another name for FCoP.
-
-It is a multi-agent development tool built on the FCoP protocol. It turns protocol semantics into an actual working team: PM, DEV, QA, OPS, and other roles have separate responsibilities; tasks move through lifecycles; execution appears in a live activity stream; failures can recover; and results can be handed off and reviewed.
-
-The relationship can be summarized as:
-
-```text
-CodeFlowMu: makes work happen
-FCoP: makes what happened reportable, reviewable, and auditable
-```
-
-Or, using the Boundary Charter’s stricter language:
+The relationship can be compressed into:
 
 ```text
 CodeFlowMu: Application / Runtime / Scheduler / UI
 FCoP: Identity + Location + Event + Behavior Governance
 ```
 
-That is why WP-13 is both a **CodeFlowMu application case** and an **FCoP field evidence case**.
+Or more plainly:
 
-It does not prove that a protocol can decide truth on behalf of people or agents. It proves that, when a team works through a shared protocol surface, one role’s unsupported claim does not easily overwrite facts available to other roles.
+```text
+CodeFlowMu: makes work happen
+FCoP: makes what happened reportable, reviewable, and auditable
+```
+
+WP-13 is therefore a **CodeFlowMu application case** and an **FCoP field-evidence case**. It is not a case of “FCoP automatically detecting and repairing hallucination.”
 
 ## The real value of multi-agent systems is organizational veto power
 
@@ -309,15 +303,13 @@ Real role separation requires at least three properties:
 2. **Different fact sources** — every role cannot rely on the same natural-language summary;
 3. **Different authority** — DEV cannot approve itself, QA cannot redefine PM’s task goal, and Runtime cannot replace business judgment.
 
-FCoP provides the shared fact surface for the second property. CodeFlowMu provides the team and runtime boundaries for the first and third.
-
-The key to hallucination prevention is therefore not the number of agents. It is the organizational structure.
+The key to hallucination containment is therefore not the number of agents. It is the organizational structure.
 
 > **Without role boundaries, multi-agent means multiple answers. With roles, fact sources, and authority boundaries, it becomes a team.**
 
-## Hallucination may be unavoidable. Becoming organizational fact is not.
+## Three meanings of “success” must remain separate
 
-The most important result of this case is not the 27/27 test count. It is this boundary:
+The most important boundary in this case is:
 
 ```text
 model-generated completion claim
@@ -326,8 +318,6 @@ protocol completion state
         ≠
 business acceptance
 ```
-
-Each transition requires different evidence and different roles.
 
 ### A tool call ending is not work completion
 
@@ -339,65 +329,36 @@ Code, commit, REPORT, and tests may establish a DEV delivery. Acceptance still r
 
 ### Protocol state does not replace business judgment
 
-In FCoP, path is the NOW truth and events preserve PAST transitions. But even `done` must not be casually reinterpreted as “the product has received final human approval.” Protocol semantics and business authority must remain precise.
+In FCoP, path is the NOW truth and events preserve PAST transitions. But even `done` must not be casually reinterpreted as final business approval. Protocol semantics and business authority must remain precise and separate.
 
 ## What should this case change? Improve the Runtime before expanding the protocol.
 
-The FCoP repository includes another important principle: the protocol has entered a **Runtime Absorption Era**. New protocol mechanisms should come from demonstrated runtime pressure, not from a desire for theoretical completeness.
-
 WP-13 first exposed CodeFlowMu Runtime problems:
 
-- `no exit status` was not preserved clearly enough as `unknown`;
-- subexecution completion and business completion could be visually confused;
-- evidence contracts should be attached more explicitly to tasks;
-- PM fact-check decisions need a lightweight immutable record;
-- QA must remain role-separated and rerun verification.
+- preserve `no exit status` as `unknown`;
+- never visually collapse subexecution completion into business completion;
+- attach typed evidence contracts to tasks;
+- precompute diagnostics such as `report_missing`, `commit_unreachable`, and `evidence_incomplete`;
+- persist PM fact judgments as lightweight immutable records;
+- keep QA role-separated and require real reruns;
+- resume the original task after tool recovery;
+- add a regression case where a subexecution returns `completed` without exit status, commit, or REPORT.
 
-These should be addressed first in CodeFlowMu’s Runtime, UI, status projection, and regression tests.
-
-Only when multiple independent runtimes demonstrate that the existing FCoP file contract cannot express a necessary fact should protocol expansion be considered.
-
-That restraint matters. If every application issue adds a field, state, or automated judgment to the protocol, FCoP will quickly grow from Agent POSIX into another Agent OS.
-
-## Engineering requirements for multi-agent development tools
-
-WP-13 leaves several direct requirements for CodeFlowMu and other agent platforms:
-
-- make `unknown` a first-class state; missing exit status must never collapse into success;
-- attach typed evidence contracts to tasks because code, UI, documentation, and operations work require different completion evidence;
-- Runtime may surface `report_missing`, `commit_unreachable`, and `evidence_incomplete`, but should not manufacture business truth for PM;
-- continue the original task after tool recovery instead of creating duplicate histories;
-- keep QA separate from the executor and require actual reruns;
-- preserve reachable TASK, REPORT, REVIEW, and event histories;
-- add a regression case where subexecution returns `completed` without exit status, commit, or REPORT.
+Only when multiple independent runtimes demonstrate that the current file contract cannot express a necessary fact should FCoP be expanded. Otherwise every application problem becomes another field, state, or automated judgment, and Agent POSIX grows into another Agent OS.
 
 ## Conclusion: a team allows an agent to be wrong without allowing the error to pass
 
-WP-13 eventually passed 27 tests. That matters.
-
-But the more important moment happened before the tests: one agent had already said “done,” and the system did not convert that confidence into success.
+WP-13 eventually passed 27 tests. But the more important moment happened before the tests: one agent had already said “done,” and the system did not convert that confidence into success.
 
 PM checked the facts and said no: the sub-agent claimed completion, but the artifacts were incomplete, so the claim could not be treated as complete.
 
-DEV returned to the original task and completed the real delivery.
+DEV returned to the original task and completed the real delivery. QA reran the evidence and only then returned PASS.
 
-QA reran the evidence and only then returned PASS.
-
-FCoP did not think for them or schedule them.
-
-It did something more fundamental: it kept tasks, reports, states, and events outside any one agent’s private narrative.
-
-CodeFlowMu placed those protocol facts inside a team with real role separation, giving different roles the authority to continue, reject, and verify.
-
-FCoP does not teach an agent to produce one more sentence. It turns refusal to release into a protocol action with factual grounds, state consequences, and an auditable record.
+As explained above, FCoP owns the shared fact surface and CodeFlowMu runs the roles; the actual veto belonged to PM, the role with the relevant responsibility and authority.
 
 > **A single agent tries to be right. A multi-agent team must remain reliable even when one agent is wrong.**
 
-Hallucination may be unavoidable.
-
-But when FCoP provides a shared fact surface, CodeFlowMu provides roles and a live runtime, and PM, DEV, and QA possess real functional separation, hallucination can remain a local error instead of becoming an incorrect delivery.
-
-That may be the most practical and valuable form of “hallucination prevention” multi-agent systems can offer.
+Hallucination may be unavoidable, but it can remain a local error instead of becoming an incorrect delivery. That is the most practical and valuable form of multi-agent “hallucination prevention.”
 
 ---
 
