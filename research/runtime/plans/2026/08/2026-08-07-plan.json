@@ -1,0 +1,142 @@
+{
+  "schema": "runtime-column-plan/v1",
+  "date": "2026-08-07",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Queue",
+  "sourceRecord": "research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json",
+  "updatedAt": "2026-08-07T10:09:09+08:00",
+  "githubCommit": "",
+  "columns": [
+    {
+      "selectionStatus": "Selected",
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "itemId": "Q-20260807-01",
+      "signalId": "SIG-20260807-R-002",
+      "priority": "P0",
+      "title": "Role-owned durable runtime with verification-gated Digital Employee self-evolution",
+      "title_zh": "具有角色所有权与验证门禁自演化的持久数字员工运行时",
+      "lifecycle": "Selected",
+      "pipelineOrigin": "published-research",
+      "source": "arXiv — Argus (arXiv:2608.05144)",
+      "source_zh": "arXiv — Argus（arXiv:2608.05144）",
+      "sourceUrl": "https://arxiv.org/abs/2608.05144",
+      "evidenceLevels": [
+        "peer_reviewed_or_primary_research"
+      ],
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "researchQuestion": "How should a persistent Digital Employee runtime separate durable user intent from bounded operational missions, assign role-owned review, gate memory/skill/routing evolution on verification, and escalate when verification cannot close?",
+      "researchQuestion_zh": "持久数字员工运行时应如何分离稳定用户意图与有界操作任务，落实角色所有的审查责任，以验证门禁控制 Memory、Skill 与路由演化，并在无法闭环验证时升级给操作员？",
+      "reason": "Argus is the strongest bounded Digital Employee object in the pool because it directly combines durable state, explicit roles, bounded missions, verification-gated evolution and operator escalation in one primary research artifact.",
+      "reason_zh": "Argus 是信号池中边界最清晰的数字员工对象：单一主要研究成果同时覆盖持久状态、明确角色、有界 Mission、验证门禁自演化与操作员升级。",
+      "next": "Execute Skill 03 Deep Reading on Argus role ownership, durable-state model, mission boundaries, verification gates, operator escalation points, evaluation setup and stated limitations.",
+      "next_zh": "执行 Skill 03 深度阅读，核查 Argus 的角色所有权、持久状态模型、Mission 边界、验证门禁、操作员升级点、评测设置及作者声明的限制。",
+      "proposedCategory": "Digital Employee Runtime Governance and Self-Evolution",
+      "nextSkill": "03 Deep Reading",
+      "scores": {
+        "columnRelevance": 5,
+        "directionRelevance": 5,
+        "tmpaRelevance": 5,
+        "digitalEmployeeRelevance": 5,
+        "codeFlowMuRelevance": 5,
+        "engineeringValue": 4,
+        "novelInformation": 5,
+        "sourceQuality": 4,
+        "crossSourceSupport": 3,
+        "boundedQuestion": 5
+      },
+      "totalScore": 46
+    },
+    {
+      "selectionStatus": "Selected",
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "itemId": "Q-20260807-02",
+      "signalId": "SIG-20260807-R-003",
+      "priority": "P0",
+      "title": "Role-aware CPU-GPU scheduling architecture for production agentic workflows",
+      "title_zh": "面向生产级 Agentic Workflow 的角色感知 CPU-GPU 调度架构",
+      "lifecycle": "Selected",
+      "pipelineOrigin": "published-research",
+      "source": "arXiv — Microsoft Azure production study (arXiv:2608.04458)",
+      "source_zh": "arXiv — Microsoft Azure 生产研究（arXiv:2608.04458）",
+      "sourceUrl": "https://arxiv.org/abs/2608.04458",
+      "evidenceLevels": [
+        "peer_reviewed_or_primary_research"
+      ],
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "researchQuestion": "What infrastructure architecture is required when production agentic workflows fragment orchestration across CPU and GPU work, exhibit bursty demand, and require role-aware resource scheduling rather than request-level model serving alone?",
+      "researchQuestion_zh": "当生产级 Agentic Workflow 在 CPU 与 GPU 之间形成碎片化编排、呈现突发资源需求，并要求角色感知调度而非仅按请求提供模型服务时，需要怎样的基础设施架构？",
+      "reason": "This is the strongest Industry Architecture object because it uses Microsoft Azure production traces plus controlled framework experiments to expose a bounded resource-orchestration problem at infrastructure scale, not a single product feature.",
+      "reason_zh": "这是最强的行业架构对象：研究结合 Microsoft Azure 生产 Trace 与受控框架实验，把问题限定为基础设施尺度的资源编排，而不是单一产品功能。",
+      "next": "Execute Skill 03 Deep Reading on the production traces, CPU/GPU fragmentation, burst characteristics, role-sensitive demand, scheduling implications, experimental controls and transfer limits.",
+      "next_zh": "执行 Skill 03 深度阅读，核查生产 Trace、CPU/GPU 碎片化、突发特征、角色敏感需求、调度影响、实验控制与外推边界。",
+      "proposedCategory": "Agentic Infrastructure and Role-Aware Resource Architecture",
+      "nextSkill": "03 Deep Reading",
+      "scores": {
+        "columnRelevance": 5,
+        "directionRelevance": 5,
+        "tmpaRelevance": 3,
+        "digitalEmployeeRelevance": 4,
+        "codeFlowMuRelevance": 4,
+        "engineeringValue": 5,
+        "novelInformation": 5,
+        "sourceQuality": 4,
+        "crossSourceSupport": 3,
+        "boundedQuestion": 5
+      },
+      "totalScore": 43
+    },
+    {
+      "selectionStatus": "Selected",
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "itemId": "Q-20260807-03",
+      "signalId": "SIG-20260807-G-003",
+      "priority": "P0",
+      "title": "Report-and-materialize lifecycle for deferred agent environment provisioning",
+      "title_zh": "延迟 Agent 环境 Provisioning 的报告—实体化生命周期",
+      "lifecycle": "Selected",
+      "pipelineOrigin": "github-engineering",
+      "source": "openai/codex commit f8ac8fa6c6ac99dd81f02bf1fd947e76c287b219",
+      "source_zh": "openai/codex 提交 f8ac8fa6c6ac99dd81f02bf1fd947e76c287b219",
+      "sourceUrl": "https://github.com/openai/codex/commit/f8ac8fa6c6ac99dd81f02bf1fd947e76c287b219",
+      "evidenceLevels": [
+        "merged_maintainer_change"
+      ],
+      "secondaryColumns": [
+        "digital-employee",
+        "industry-architecture"
+      ],
+      "researchQuestion": "How should an agent runtime represent deferred environment provisioning as status reports plus explicit materialization so invalid reports, duplicate materialization and conflicts are bounded by one testable lifecycle?",
+      "researchQuestion_zh": "Agent 运行时应如何把延迟环境 Provisioning 表示为状态报告加显式实体化，使无效报告、重复实体化与冲突都被约束在一个可测试生命周期中？",
+      "reason": "This maintainer change exposes a concrete, reproducible lifecycle simplification with explicit conflict and duplicate tests. It directly informs agent-runtime environment state machines, recovery boundaries and observable provisioning semantics.",
+      "reason_zh": "该维护者变更给出具体可复现的生命周期收敛方案，并明确覆盖冲突与重复实体化测试，可直接支撑 Agent 运行时环境状态机、恢复边界与可观测 Provisioning 语义。",
+      "next": "Execute Skill 03 Deep Reading on the EnvironmentManager API change, provisioning state transitions, report validation, pending-environment materialization, conflict handling, tests and compatibility boundary.",
+      "next_zh": "执行 Skill 03 深度阅读，核查 EnvironmentManager API 变化、Provisioning 状态迁移、报告校验、待定环境实体化、冲突处理、测试与兼容边界。",
+      "proposedCategory": "Agent Runtime Environment Provisioning Lifecycle",
+      "nextSkill": "03 Deep Reading",
+      "scores": {
+        "columnRelevance": 5,
+        "directionRelevance": 5,
+        "tmpaRelevance": 5,
+        "digitalEmployeeRelevance": 4,
+        "codeFlowMuRelevance": 5,
+        "engineeringValue": 5,
+        "novelInformation": 5,
+        "sourceQuality": 5,
+        "crossSourceSupport": 4,
+        "boundedQuestion": 5
+      },
+      "totalScore": 48
+    }
+  ]
+}

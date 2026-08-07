@@ -8,10 +8,10 @@
   "date": "2026-08-07",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
-    "queue": "Running",
+    "queue": "Completed",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
@@ -186,6 +186,96 @@
           "path": "research/runtime/2026/08/2026-08-07-runtime.md"
         }
       ]
+    },
+    "queue": {
+      "schema": "runtime-shift-result/v2",
+      "task": "queue",
+      "status": "Completed",
+      "input": "The durably verified Scheduler-fallback Queue start state in commit 52e79aa03297a966427fdf3de19fe965be7bf656 and the completed 2026-08-07 Signal Pool containing 15 deduplicated signals: 3 AI-platform, 8 GitHub-engineering and 4 published-research signals.",
+      "input_zh": "提交 52e79aa03297a966427fdf3de19fe965be7bf656 中已完成持久化核验的 Scheduler 回退 Queue 启动状态，以及已完成的 2026-08-07 Signal Pool，共 15 个去重信号：3 个 AI 平台、8 个 GitHub 工程及 4 个论文研究信号。",
+      "workResult": "Executed Skill 02 only after durable Queue Running state verification. Triaged all 15 signals, retained 12 non-selected signals as candidates, rejected 0, and selected exactly one bounded primary object for each of the three columns. No Deep Reading, Analysis, writing or publication was performed.",
+      "workResult_zh": "仅在持久化 Queue Running 状态完成核验后执行 Skill 02。已筛选全部 15 个信号，将 12 个未选信号保留为候选、拒绝 0 个，并为三个栏目各选出一个边界明确的主要对象。未开展 Deep Reading、Analysis、写作或发布。",
+      "output": "Today's Research Plan with three Selected decisions: a role-owned verification-gated durable runtime for Digital Employees; role-aware CPU-GPU scheduling architecture for production agentic workflows; and a report-and-materialize lifecycle for deferred agent environment provisioning.",
+      "output_zh": "已形成今日研究计划，三个栏目均为 Selected：具有角色所有权与验证门禁的持久数字员工运行时、生产级 Agentic Workflow 的角色感知 CPU-GPU 调度架构，以及延迟 Agent 环境 Provisioning 的报告—实体化生命周期。",
+      "next": "Research Runtime Reading at 11:00 may consume only Q-20260807-01, Q-20260807-02 and Q-20260807-03 and must execute Skill 03 Deep Reading without analysis or article drafting.",
+      "next_zh": "11:00 Research Runtime Reading 只能消费 Q-20260807-01、Q-20260807-02 与 Q-20260807-03，并仅执行 Skill 03 深度阅读，不得分析或撰写文章。",
+      "metrics": [
+        {
+          "label": "Signal Pool",
+          "label_zh": "信号池",
+          "value": "15"
+        },
+        {
+          "label": "Column decisions",
+          "label_zh": "栏目决定",
+          "value": "3 / 3"
+        },
+        {
+          "label": "Selected objects",
+          "label_zh": "已选对象",
+          "value": "3"
+        },
+        {
+          "label": "Candidate signals",
+          "label_zh": "候选信号",
+          "value": "12"
+        },
+        {
+          "label": "Rejected signals",
+          "label_zh": "拒绝信号",
+          "value": "0"
+        },
+        {
+          "label": "No Selection decisions",
+          "label_zh": "未选题决定",
+          "value": "0"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Scheduler V3.0",
+          "label_zh": "Scheduler V3.0",
+          "source": "research/runtime/SCHEDULER.json"
+        },
+        {
+          "label": "Verified Queue start-state commit",
+          "label_zh": "已核验的 Queue 启动状态提交",
+          "commit": "52e79aa03297a966427fdf3de19fe965be7bf656",
+          "source": "https://github.com/joinwell52-AI/joinwell52/commit/52e79aa03297a966427fdf3de19fe965be7bf656"
+        },
+        {
+          "label": "2026-08-07 Signal Pool",
+          "label_zh": "2026-08-07 信号池",
+          "source": "research/intelligence/runs/2026/08/2026-08-07-intelligence.json"
+        },
+        {
+          "label": "Skill 02 Three-Column Research Triage",
+          "label_zh": "Skill 02 三栏研究筛选",
+          "source": "research/skills/02-research-triage.md"
+        },
+        {
+          "label": "Runtime Column Plan Contract",
+          "label_zh": "Runtime 栏目计划契约",
+          "source": "research/runtime/COLUMN-PLAN-SCHEMA.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Today's Research Plan",
+          "label_zh": "今日研究计划",
+          "path": "research/runtime/plans/2026/08/2026-08-07-plan.json"
+        },
+        {
+          "label": "Daily Runtime Record",
+          "label_zh": "每日运行机器记录",
+          "path": "research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json"
+        },
+        {
+          "label": "Human-readable Runtime ledger",
+          "label_zh": "人类可读运行账本",
+          "path": "research/runtime/2026/08/2026-08-07-runtime.md"
+        }
+      ]
     }
   },
   "timeline": [
@@ -216,52 +306,44 @@
       "event": "Execution Slot Opened",
       "status": "Running",
       "detail": "Scheduler fallback: Research Runtime Queue opened because the durable control-plane start state was absent; Skill 02 triage may begin only after this synchronized JSON and Markdown state is committed and verified."
+    },
+    {
+      "time": "2026-08-07T10:09:09+08:00",
+      "task": "queue",
+      "event": "Queue Completed",
+      "status": "Completed",
+      "detail": "Skill 02 triaged all 15 signals after verified scheduler-fallback start commit 52e79aa03297a966427fdf3de19fe965be7bf656; exactly one object was selected for each column and no Deep Reading, analysis, writing or publication was performed."
     }
   ],
   "metrics": [
     {
-      "label": "Due source objects",
-      "label_zh": "应检查来源对象",
-      "value": "48"
-    },
-    {
-      "label": "Checked source objects",
-      "label_zh": "已检查来源对象",
-      "value": "45"
-    },
-    {
-      "label": "Authentication-required sources",
-      "label_zh": "需要认证的来源",
-      "value": "1"
-    },
-    {
-      "label": "Recorded retrieval failures",
-      "label_zh": "已记录抓取失败",
-      "value": "2"
-    },
-    {
-      "label": "Deduplicated signals",
-      "label_zh": "去重信号",
+      "label": "Signal Pool",
+      "label_zh": "信号池",
       "value": "15"
     },
     {
-      "label": "AI-platform signals",
-      "label_zh": "AI 平台信号",
+      "label": "Column decisions",
+      "label_zh": "栏目决定",
+      "value": "3 / 3"
+    },
+    {
+      "label": "Selected objects",
+      "label_zh": "已选对象",
       "value": "3"
     },
     {
-      "label": "GitHub-engineering signals",
-      "label_zh": "GitHub 工程信号",
-      "value": "8"
+      "label": "Candidate signals",
+      "label_zh": "候选信号",
+      "value": "12"
     },
     {
-      "label": "Published-research signals",
-      "label_zh": "论文研究信号",
-      "value": "4"
+      "label": "Rejected signals",
+      "label_zh": "拒绝信号",
+      "value": "0"
     },
     {
-      "label": "Topics selected",
-      "label_zh": "已选主题",
+      "label": "No Selection decisions",
+      "label_zh": "未选题决定",
       "value": "0"
     }
   ],
@@ -269,99 +351,35 @@
     {
       "label": "Scheduler V3.0",
       "label_zh": "Scheduler V3.0",
-      "path": "research/runtime/SCHEDULER.json",
       "source": "research/runtime/SCHEDULER.json"
     },
     {
-      "label": "Verified fallback start-state commit",
-      "label_zh": "已核验的回退启动状态提交",
-      "commit": "2e7b74217cc2c7f201755e8be227978eecca4862",
-      "source": "https://github.com/joinwell52-AI/joinwell52/commit/2e7b74217cc2c7f201755e8be227978eecca4862"
+      "label": "Verified Queue start-state commit",
+      "label_zh": "已核验的 Queue 启动状态提交",
+      "commit": "52e79aa03297a966427fdf3de19fe965be7bf656",
+      "source": "https://github.com/joinwell52-AI/joinwell52/commit/52e79aa03297a966427fdf3de19fe965be7bf656"
     },
     {
-      "label": "Research Intelligence Registry",
-      "label_zh": "研究情报注册表",
-      "path": "research/intelligence/REGISTRY.json",
-      "source": "research/intelligence/REGISTRY.json"
+      "label": "2026-08-07 Signal Pool",
+      "label_zh": "2026-08-07 信号池",
+      "source": "research/intelligence/runs/2026/08/2026-08-07-intelligence.json"
     },
     {
-      "label": "AI Platform profile",
-      "label_zh": "AI 平台情报 Profile",
-      "path": "research/skills/profiles/01p-ai-platform-change-intelligence.md",
-      "source": "research/skills/profiles/01p-ai-platform-change-intelligence.md"
+      "label": "Skill 02 Three-Column Research Triage",
+      "label_zh": "Skill 02 三栏研究筛选",
+      "source": "research/skills/02-research-triage.md"
     },
     {
-      "label": "GitHub Engineering profile",
-      "label_zh": "GitHub 工程情报 Profile",
-      "path": "research/skills/profiles/01g-github-engineering-intelligence.md",
-      "source": "research/skills/profiles/01g-github-engineering-intelligence.md"
-    },
-    {
-      "label": "Published Research profile",
-      "label_zh": "论文研究情报 Profile",
-      "path": "research/skills/profiles/01r-published-research-intelligence.md",
-      "source": "research/skills/profiles/01r-published-research-intelligence.md"
-    },
-    {
-      "label": "ChatGPT release notes",
-      "label_zh": "ChatGPT 发布说明",
-      "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
-      "source": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
-    },
-    {
-      "label": "GitHub Copilot changelog",
-      "label_zh": "GitHub Copilot 更新日志",
-      "url": "https://github.blog/changelog/label/copilot/",
-      "source": "https://github.blog/changelog/label/copilot/"
-    },
-    {
-      "label": "Gemini CLI v0.54.0",
-      "label_zh": "Gemini CLI v0.54.0",
-      "url": "https://github.com/google-gemini/gemini-cli/releases/tag/v0.54.0",
-      "source": "https://github.com/google-gemini/gemini-cli/releases/tag/v0.54.0"
-    },
-    {
-      "label": "arXiv Computer Science new listings",
-      "label_zh": "arXiv Computer Science 新上架",
-      "url": "https://arxiv.org/list/cs/new",
-      "source": "https://arxiv.org/list/cs/new"
-    },
-    {
-      "label": "OpenReview",
-      "label_zh": "OpenReview",
-      "url": "https://openreview.net/",
-      "source": "https://openreview.net/"
-    },
-    {
-      "label": "OpenAI Research",
-      "label_zh": "OpenAI Research",
-      "url": "https://openai.com/research/",
-      "source": "https://openai.com/research/"
-    },
-    {
-      "label": "Anthropic Research",
-      "label_zh": "Anthropic Research",
-      "url": "https://www.anthropic.com/research",
-      "source": "https://www.anthropic.com/research"
-    },
-    {
-      "label": "Google DeepMind Research",
-      "label_zh": "Google DeepMind Research",
-      "url": "https://deepmind.google/research/",
-      "source": "https://deepmind.google/research/"
-    },
-    {
-      "label": "Microsoft Research",
-      "label_zh": "Microsoft Research",
-      "url": "https://www.microsoft.com/en-us/research/",
-      "source": "https://www.microsoft.com/en-us/research/"
+      "label": "Runtime Column Plan Contract",
+      "label_zh": "Runtime 栏目计划契约",
+      "source": "research/runtime/COLUMN-PLAN-SCHEMA.md"
     }
   ],
   "artifacts": [
     {
-      "label": "2026-08-07 Research Intelligence Run and Signal Pool",
-      "label_zh": "2026-08-07 研究情报运行与 Signal Pool",
-      "path": "research/intelligence/runs/2026/08/2026-08-07-intelligence.json"
+      "label": "Today's Research Plan",
+      "label_zh": "今日研究计划",
+      "path": "research/runtime/plans/2026/08/2026-08-07-plan.json"
     },
     {
       "label": "Daily Runtime Record",
@@ -374,7 +392,7 @@
       "path": "research/runtime/2026/08/2026-08-07-runtime.md"
     }
   ],
-  "githubCommit": "4c7d96b290a53e129e5d913ee15a977d12634c39",
-  "commitVerify": "Pending",
-  "updatedAt": "2026-08-07T10:05:46+08:00"
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-08-07T10:09:09+08:00"
 }
