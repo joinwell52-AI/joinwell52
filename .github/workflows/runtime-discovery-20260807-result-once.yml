@@ -1,0 +1,585 @@
+name: Runtime Discovery 2026-08-07 Result Once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/runtime-discovery-20260807-result-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  persist-discovery:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Synchronize latest main
+        shell: bash
+        run: git pull --rebase origin main
+
+      - name: Persist Discovery result and Signal Pool
+        shell: bash
+        run: |
+          set -euo pipefail
+          record="research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json"
+          ledger="research/runtime/2026/08/2026-08-07-runtime.md"
+          intel="research/intelligence/runs/2026/08/2026-08-07-intelligence.json"
+          start_commit="2e7b74217cc2c7f201755e8be227978eecca4862"
+
+          node - <<'NODE'
+          const fs = require('fs')
+          const p = 'research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json'
+          const r = JSON.parse(fs.readFileSync(p, 'utf8'))
+          const starts = (r.timeline || []).filter(e => e.task === 'discovery' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-07'))
+          if (r.status !== 'Running') throw new Error(`overall status must still be Running before Discovery result, got ${r.status}`)
+          if (r.taskStatus?.discovery !== 'Running') throw new Error(`Discovery must still be Running, got ${r.taskStatus?.discovery}`)
+          if (starts.length !== 1) throw new Error(`expected exactly one current-day Discovery start event, got ${starts.length}`)
+          if (Object.keys(r.results || {}).length !== 0) throw new Error('unexpected pre-existing result fields before Discovery result')
+          NODE
+
+          mkdir -p "$(dirname "$intel")"
+          cat > "$intel" <<'JSON'
+          {
+            "schema": "research-intelligence-run/v1",
+            "version": "1.0",
+            "date": "2026-08-07",
+            "timezone": "Asia/Shanghai",
+            "status": "Running",
+            "registryVersion": "1.0",
+            "sourceTask": "Research Runtime Discovery",
+            "updatedAt": "2026-08-07T09:07:30+08:00",
+            "githubCommit": "pending",
+            "reason": "All three formal Discovery profiles completed only after the scheduler-fallback Running state in commit 2e7b74217cc2c7f201755e8be227978eecca4862 was durably fetched and verified. Queue triage has not run, so all normalized signals remain unselected.",
+            "reason_zh": "仅在提交 2e7b74217cc2c7f201755e8be227978eecca4862 中的 Scheduler 回退 Running 状态完成持久化拉取与核验后，三项正式 Discovery Profile 才开始并完成。Queue 筛选尚未执行，因此所有规范化信号均保持未选题。",
+            "controlPlane": {
+              "startStateMode": "scheduler-fallback",
+              "startStateCommit": "2e7b74217cc2c7f201755e8be227978eecca4862",
+              "startEventCount": 1,
+              "verifiedBeforeSubstantiveWork": true
+            },
+            "pipelines": [
+              {
+                "id": "ai-platform",
+                "label": "AI Platform Change Intelligence",
+                "label_zh": "AI 平台变更情报发现",
+                "status": "Completed",
+                "due": 33,
+                "checked": 30,
+                "inaccessible": [
+                  {
+                    "source": "anthropic-claude/community-discord",
+                    "reason": "The registry marks the official Discord channel authentication-required; it was not represented as publicly checked."
+                  }
+                ],
+                "failed": [
+                  {
+                    "source": "cursor/announcements",
+                    "reason": "The exact official Cursor announcements category returned an internal retrieval error; Cursor changelog, documentation, main forum and status page were checked successfully."
+                  },
+                  {
+                    "source": "microsoft-copilot-platform/tech-community",
+                    "reason": "The Copilot Studio Tech Community category returned an internal retrieval error; Microsoft Learn Copilot documentation, Copilot Studio What's New, Microsoft 365 Roadmap and service-health documentation were checked successfully."
+                  }
+                ],
+                "signals": 3,
+                "candidates": 0,
+                "selected": 0,
+                "rejected": 0,
+                "coveragePercent": 100,
+                "reason": "All 33 due P0 platform channels received an explicit outcome: 30 checked, 1 authentication-required and 2 retrieval failures with authoritative fallback coverage. Three material changes observed after the prior checkpoint were retained.",
+                "reason_zh": "33 个应检查 P0 平台渠道均得到明确结果：30 个已检查、1 个需要认证、2 个抓取失败且有权威替代渠道覆盖；保留 3 个在上一检查点之后出现的重要变更。"
+              },
+              {
+                "id": "github-engineering",
+                "label": "GitHub Engineering Intelligence",
+                "label_zh": "GitHub 工程情报发现",
+                "status": "Completed",
+                "due": 9,
+                "checked": 9,
+                "inaccessible": [],
+                "failed": [],
+                "signals": 8,
+                "candidates": 0,
+                "selected": 0,
+                "rejected": 0,
+                "coveragePercent": 100,
+                "reason": "All nine P0 repositories were incrementally checked against the prior-day checkpoint. Eight maintainer change objects were retained after merging same-mechanism commits and excluding release-only, cosmetic and already-observed changes.",
+                "reason_zh": "9 个 P0 仓库均基于上一日检查点完成增量检查；合并同机制提交并排除纯发布、外观及已观察变更后，保留 8 个维护者变更对象。"
+              },
+              {
+                "id": "published-research",
+                "label": "Published Research Intelligence",
+                "label_zh": "论文与研究成果情报发现",
+                "status": "Completed",
+                "due": 6,
+                "checked": 6,
+                "inaccessible": [],
+                "failed": [],
+                "signals": 4,
+                "candidates": 0,
+                "selected": 0,
+                "rejected": 0,
+                "coveragePercent": 100,
+                "reason": "arXiv Computer Science new listings, OpenReview, OpenAI Research, Anthropic Research, Google DeepMind Research and Microsoft Research were checked. Four newly surfaced primary research artifacts directly matching the registered agent-runtime topics were retained; the other P0 research sources yielded no additional retained artifact in this run.",
+                "reason_zh": "已检查 arXiv Computer Science 新上架、OpenReview、OpenAI Research、Anthropic Research、Google DeepMind Research 与 Microsoft Research。保留 4 个新出现且直接匹配注册 Agent Runtime 主题的主要研究成果；其余 P0 研究来源本次没有额外保留对象。"
+              }
+            ],
+            "columns": [
+              {
+                "id": "digital-employee",
+                "label": "Digital Employee",
+                "label_zh": "数字员工",
+                "decision": "Waiting",
+                "signals": 3,
+                "candidates": 0,
+                "selectedItemId": "",
+                "selectedTitle": "",
+                "selectedTitle_zh": "",
+                "reason": "Discovery only normalized signals; Queue triage has not run.",
+                "reason_zh": "Discovery 仅规范化信号；Queue 筛选尚未执行。"
+              },
+              {
+                "id": "industry-architecture",
+                "label": "Industry Architecture",
+                "label_zh": "行业架构",
+                "decision": "Waiting",
+                "signals": 4,
+                "candidates": 0,
+                "selectedItemId": "",
+                "selectedTitle": "",
+                "selectedTitle_zh": "",
+                "reason": "Discovery only normalized signals; Queue triage has not run.",
+                "reason_zh": "Discovery 仅规范化信号；Queue 筛选尚未执行。"
+              },
+              {
+                "id": "open-source-engineering",
+                "label": "Open-source Engineering",
+                "label_zh": "开源工程",
+                "decision": "Waiting",
+                "signals": 8,
+                "candidates": 0,
+                "selectedItemId": "",
+                "selectedTitle": "",
+                "selectedTitle_zh": "",
+                "reason": "Discovery only normalized signals; Queue triage has not run.",
+                "reason_zh": "Discovery 仅规范化信号；Queue 筛选尚未执行。"
+              }
+            ],
+            "signals": [
+              {
+                "id": "SIG-20260807-P-001",
+                "pipeline": "ai-platform",
+                "primaryColumn": "industry-architecture",
+                "secondaryColumns": ["digital-employee"],
+                "title": "ChatGPT updates GPT-5.6 Sol and expands GPT-5.6 Luna while explicitly leaving Work and Codex unchanged",
+                "title_zh": "ChatGPT 更新 GPT-5.6 Sol 并扩大 GPT-5.6 Luna，同时明确 Work 与 Codex 不变",
+                "sourceUrl": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+                "publishedAt": "2026-08-06",
+                "evidenceLevel": "official_announcement",
+                "changeType": "model-and-product-boundary",
+                "observedChange": "OpenAI updated GPT-5.6 Sol for Plus and Pro with a thought-amount control and is making GPT-5.6 Luna the Free and Go default, while explicitly scoping the release to ChatGPT and excluding Work and Codex.",
+                "observedChange_zh": "OpenAI 为 Plus 与 Pro 更新 GPT-5.6 Sol 并增加思考量控制，同时将 GPT-5.6 Luna 设为 Free 与 Go 默认；发布范围明确限定为 ChatGPT，不改变 Work 与 Codex。",
+                "confidence": "high",
+                "triageStatus": "signal"
+              },
+              {
+                "id": "SIG-20260807-P-002",
+                "pipeline": "ai-platform",
+                "primaryColumn": "industry-architecture",
+                "secondaryColumns": ["open-source-engineering"],
+                "title": "GitHub Copilot announces Kimi K3 with enterprise policy gating, then temporarily pauses rollout during a GitHub Actions incident",
+                "title_zh": "GitHub Copilot 宣布 Kimi K3 并设置企业策略门禁，随后因 GitHub Actions 事件临时暂停推出",
+                "sourceUrl": "https://github.blog/changelog/2026-08-06-kimi-k3-is-now-available-in-github-copilot/",
+                "publishedAt": "2026-08-06",
+                "evidenceLevel": "official_announcement",
+                "changeType": "model-availability-and-governance",
+                "observedChange": "GitHub announced Kimi K3 across Copilot surfaces, hosted on Fireworks AI and disabled by default for Business and Enterprise until administrators enable its policy; an editor note states rollout was temporarily paused while GitHub mitigated an Actions incident.",
+                "observedChange_zh": "GitHub 宣布 Kimi K3 覆盖多种 Copilot 表面，由 Fireworks AI 托管；Business 与 Enterprise 默认关闭，需管理员启用策略。官方编辑说明同时记录因 GitHub Actions 事件临时暂停推出。",
+                "confidence": "high",
+                "triageStatus": "signal"
+              },
+              {
+                "id": "SIG-20260807-P-003",
+                "pipeline": "ai-platform",
+                "primaryColumn": "open-source-engineering",
+                "secondaryColumns": ["digital-employee", "industry-architecture"],
+                "title": "Gemini CLI v0.54.0 packages session-continuity, transport-security and history-integrity fixes",
+                "title_zh": "Gemini CLI v0.54.0 集中发布会话连续性、传输安全与历史完整性修复",
+                "sourceUrl": "https://github.com/google-gemini/gemini-cli/releases/tag/v0.54.0",
+                "publishedAt": "2026-08-06",
+                "evidenceLevel": "official_announcement",
+                "changeType": "coding-agent-release",
+                "observedChange": "The v0.54.0 release includes session-ID rotation on model fallback, HTTPS enforcement for Google credential transport, history filtering corrections and other runtime fixes accumulated since the prior stable line.",
+                "observedChange_zh": "v0.54.0 包含模型回退时轮换 Session ID、Google 凭据传输强制 HTTPS、历史过滤修正及其他运行时修复。",
+                "confidence": "high",
+                "triageStatus": "signal"
+              },
+              {
+                "id": "SIG-20260807-G-001",
+                "pipeline": "github-engineering",
+                "primaryColumn": "industry-architecture",
+                "secondaryColumns": ["open-source-engineering"],
+                "title": "Codex sends credential-scoped model routing hints to backend HTTP, compaction and WebSocket paths",
+                "title_zh": "Codex 在受凭据范围约束的 HTTP、压缩与 WebSocket 路径发送模型路由提示",
+                "sourceUrl": "https://github.com/openai/codex/commit/270d93268ce97e8c5606a6cf12b4192d71b2581a",
+                "publishedAt": "2026-08-07",
+                "evidenceLevel": "merged_maintainer_change",
+                "changeType": "model-routing",
+                "observedChange": "A new x-codex-routing-hint carries request model and optional service tier across Responses, remote compaction and WebSocket prewarm paths, but is intentionally omitted for API-key and provider-specific credential paths.",
+                "observedChange_zh": "新增 x-codex-routing-hint，在 Responses、远程压缩与 WebSocket 预热路径传递请求模型及可选服务层级，同时明确排除 API Key 与特定 Provider 凭据路径。",
+                "confidence": "high",
+                "triageStatus": "signal"
+              },
+              {
+                "id": "SIG-20260807-G-002",
+                "pipeline": "github-engineering",
+                "primaryColumn": "open-source-engineering",
+                "secondaryColumns": ["digital-employee"],
+                "title": "Codex fixes subagent MCP startup status so deferred cached servers cannot leave the UI permanently running",
+                "title_zh": "Codex 修复子 Agent MCP 启动状态，避免延迟缓存 Server 让界面永久显示运行中",
+                "sourceUrl": "https://github.com/openai/codex/commit/4ffeddcbcc0dd72251433abff1ca9423e8017008",
+                "publishedAt": "2026-08-07",
+                "evidenceLevel": "merged_maintainer_change",
+                "changeType": "status-settlement",
+                "observedChange": "Active subagent threads now clear configured MCP startup expectations so visible startup state is driven by actual notifications; primary threads and side conversations retain configured-server tracking.",
+                "observedChange_zh": "活跃子 Agent Thread 现在清除预配置 MCP 启动预期，使可见启动状态由实际通知驱动；主 Thread 与侧会话仍保留配置 Server 跟踪。",
+                "confidence": "high",
+                "triageStatus": "signal"
+              },
+              {
+                "id": "SIG-20260807-G-003",
+                "pipeline": "github-engineering",
+                "primaryColumn": "open-source-engineering",
+                "secondaryColumns": ["digital-employee", "industry-architecture"],
+                "title": "Codex consolidates deferred environment provisioning into report-and-materialize lifecycle APIs",
+                "title_zh": "Codex 将延迟环境 Provisioning 收敛为报告与实体化生命周期 API",
+                "sourceUrl": "https://github.com/openai/codex/commit/f8ac8fa6c6ac99dd81f02bf1fd947e76c287b219",
+                "publishedAt": "2026-08-07",
+                "evidenceLevel": "merged_maintainer_change",
+                "changeType": "environment-provisioning-lifecycle",
+                "observedChange": "EnvironmentManager removes separate deferred registration and readiness APIs in favor of provisioning-status reporting plus explicit pending-environment materialization, with tests for invalid reports, duplicate materialization and conflicts.",
+                "observedChange_zh": "EnvironmentManager 移除独立的延迟注册与就绪发布 API，改用 Provisioning 状态报告加待定环境显式实体化，并覆盖无效报告、重复实体化与冲突测试。",
+                "confidence": "high",
+                "triageStatus": "signal"
+              },
+              {
+                "id": "SIG-20260807-G-004",
+                "pipeline": "github-engineering",
+                "primaryColumn": "digital-employee",
+                "secondaryColumns": ["open-source-engineering"],
+                "title": "OpenAI Agents Python isolates resumed-run mutable lists by copying state adopted from RunState",
+                "title_zh": "OpenAI Agents Python 通过复制 RunState 列表隔离恢复运行的可变状态",
+                "sourceUrl": "https://github.com/openai/openai-agents-python/commit/b42ead5c119738afd57f44d0190f088af441e515",
+                "publishedAt": "2026-08-07",
+                "evidenceLevel": "merged_maintainer_change",
+                "changeType": "resume-state-isolation",
+                "observedChange": "A resumed run now works on copies of mutable lists adopted from RunState instead of sharing the original list objects, tightening isolation between persisted resume state and subsequent execution mutations.",
+                "observedChange_zh": "恢复运行现在对从 RunState 接管的可变列表使用副本，而不再共享原列表对象，从而强化持久化恢复状态与后续执行变更之间的隔离。",
+                "confidence": "high",
+                "triageStatus": "signal"
+              },
+              {
+                "id": "SIG-20260807-G-005",
+                "pipeline": "github-engineering",
+                "primaryColumn": "open-source-engineering",
+                "secondaryColumns": ["digital-employee"],
+                "title": "OpenAI Agents Python preserves required program item IDs for OpenAI conversation sessions",
+                "title_zh": "OpenAI Agents Python 为 OpenAI Conversation Session 保留必需的 Program Item ID",
+                "sourceUrl": "https://github.com/openai/openai-agents-python/commit/20dd205d5d1d2340f3f0693eced4570393714d66",
+                "publishedAt": "2026-08-07",
+                "evidenceLevel": "merged_maintainer_change",
+                "changeType": "session-identity-integrity",
+                "observedChange": "Conversation-session handling was corrected to preserve required program item identifiers, protecting identity continuity across session-backed agent runs.",
+                "observedChange_zh": "Conversation Session 处理被修正为保留必需的 Program Item 标识符，以维护基于 Session 的 Agent 运行身份连续性。",
+                "confidence": "high",
+                "triageStatus": "signal"
+              },
+              {
+                "id": "SIG-20260807-G-006",
+                "pipeline": "github-engineering",
+                "primaryColumn": "open-source-engineering",
+                "secondaryColumns": ["industry-architecture"],
+                "title": "Google ADK bounds both entry count and bytes read from uploaded skill ZIP archives",
+                "title_zh": "Google ADK 同时限制上传 Skill ZIP 的条目数量与读取字节数",
+                "sourceUrl": "https://github.com/google/adk-python/commit/fa136c432a416706b12f667110e3742e422c0311",
+                "publishedAt": "2026-08-07",
+                "evidenceLevel": "merged_maintainer_change",
+                "changeType": "skill-ingestion-security",
+                "observedChange": "Skill archive ingestion now enforces bounds on archive entry count and bytes read, reducing resource-exhaustion exposure at the skill package boundary.",
+                "observedChange_zh": "Skill Archive 摄入现在限制归档条目数量与读取字节数，降低 Skill 包边界的资源耗尽风险。",
+                "confidence": "high",
+                "triageStatus": "signal"
+              },
+              {
+                "id": "SIG-20260807-G-007",
+                "pipeline": "github-engineering",
+                "primaryColumn": "open-source-engineering",
+                "secondaryColumns": ["industry-architecture"],
+                "title": "Google ADK redacts database passwords from session-service errors and logs",
+                "title_zh": "Google ADK 从 Session Service 错误与日志中脱敏数据库密码",
+                "sourceUrl": "https://github.com/google/adk-python/commit/4ad3ecccec39d43f7256a1f8fa4e764716012d51",
+                "publishedAt": "2026-08-06",
+                "evidenceLevel": "merged_maintainer_change",
+                "changeType": "secret-redaction",
+                "observedChange": "Session service failure handling now redacts database passwords from errors and log output, strengthening observability without leaking connection secrets.",
+                "observedChange_zh": "Session Service 失败处理现在从错误与日志输出中脱敏数据库密码，在保持可观测性的同时避免泄露连接秘密。",
+                "confidence": "high",
+                "triageStatus": "signal"
+              },
+              {
+                "id": "SIG-20260807-G-008",
+                "pipeline": "github-engineering",
+                "primaryColumn": "open-source-engineering",
+                "secondaryColumns": ["industry-architecture"],
+                "title": "A2A corrects its v1 migration guide to match normative ProtoJSON stream names and serializable fields",
+                "title_zh": "A2A 修正 v1 迁移指南，使其匹配规范 ProtoJSON Stream 名称与可序列化字段",
+                "sourceUrl": "https://github.com/a2aproject/A2A/commit/08b42ebda1490900d1eb560cd67eb77d497d01b3",
+                "publishedAt": "2026-08-06",
+                "evidenceLevel": "merged_maintainer_change",
+                "changeType": "protocol-migration-correctness",
+                "observedChange": "The migration guide now uses canonical statusUpdate and artifactUpdate ProtoJSON names and removes nonexistent task timestamp and configId claims that could cause conforming stream updates to be ignored.",
+                "observedChange_zh": "迁移指南现使用规范的 statusUpdate 与 artifactUpdate ProtoJSON 名称，并移除不存在的 Task Timestamp 与 configId 声明，避免合规 Stream Update 被错误忽略。",
+                "confidence": "high",
+                "triageStatus": "signal"
+              },
+              {
+                "id": "SIG-20260807-R-001",
+                "pipeline": "published-research",
+                "primaryColumn": "digital-employee",
+                "secondaryColumns": ["open-source-engineering"],
+                "title": "OneDayAgent proposes a long-horizon harness with bounded subtasks, execution memory and final-deliverable verification and repair",
+                "title_zh": "OneDayAgent 提出包含有界子任务、执行记忆与最终交付验证修复的长周期 Harness",
+                "sourceUrl": "https://arxiv.org/abs/2608.05013",
+                "publishedAt": "2026-08-04",
+                "evidenceLevel": "peer_reviewed_or_primary_research",
+                "changeType": "long-horizon-agent-harness",
+                "observedChange": "The paper presents a backend-agnostic long-horizon harness that manages goal and state persistence, context pressure, bounded subtask decomposition, and final deliverable verification across 104 AgentIF-OneDay tasks.",
+                "observedChange_zh": "论文提出面向多 Backend 的长周期 Harness，联合管理目标与状态持久化、上下文压力、有界子任务拆解及最终交付验证，并在 104 个 AgentIF-OneDay 任务上评估。",
+                "confidence": "high",
+                "triageStatus": "signal"
+              },
+              {
+                "id": "SIG-20260807-R-002",
+                "pipeline": "published-research",
+                "primaryColumn": "digital-employee",
+                "secondaryColumns": ["open-source-engineering"],
+                "title": "Argus describes a durable role-owned runtime with verification-gated self-evolution and operator escalation points",
+                "title_zh": "Argus 描述具有角色所有权、验证门禁自演化与操作员升级点的持久运行时",
+                "sourceUrl": "https://arxiv.org/abs/2608.05144",
+                "publishedAt": "2026-08-05",
+                "evidenceLevel": "peer_reviewed_or_primary_research",
+                "changeType": "persistent-agent-runtime",
+                "observedChange": "Argus separates stable user intent from operational objectives and lets Manager, Planner, Engineer and Reviewer operate bounded missions over durable state; memories, skills and routing decisions are admitted only after role-owned review and available task-native verification.",
+                "observedChange_zh": "Argus 将稳定用户意图与操作目标分离，由 Manager、Planner、Engineer、Reviewer 在持久状态上执行有界 Mission；Memory、Skill 与路由决策仅在角色 Review 及可用任务原生验证后进入持久运行时。",
+                "confidence": "high",
+                "triageStatus": "signal"
+              },
+              {
+                "id": "SIG-20260807-R-003",
+                "pipeline": "published-research",
+                "primaryColumn": "industry-architecture",
+                "secondaryColumns": ["open-source-engineering"],
+                "title": "A Microsoft Azure production study characterizes agentic workflows as fragmented CPU-GPU orchestration with role-sensitive resource demand",
+                "title_zh": "Microsoft Azure 生产研究将 Agentic Workflow 刻画为碎片化 CPU-GPU 编排与角色敏感资源需求",
+                "sourceUrl": "https://arxiv.org/abs/2608.04458",
+                "publishedAt": "2026-08-05",
+                "evidenceLevel": "peer_reviewed_or_primary_research",
+                "changeType": "agentic-datacenter-architecture",
+                "observedChange": "The study combines Microsoft Azure production traces with controlled open-source framework experiments to characterize tool and orchestration fragmentation, bursty CPU demand, GPU multiplexing and role-aware scheduling implications.",
+                "observedChange_zh": "研究结合 Microsoft Azure 生产 Trace 与开源框架受控实验，刻画工具与编排碎片化、突发 CPU 需求、GPU 多路复用及角色感知调度的架构影响。",
+                "confidence": "high",
+                "triageStatus": "signal"
+              },
+              {
+                "id": "SIG-20260807-R-004",
+                "pipeline": "published-research",
+                "primaryColumn": "open-source-engineering",
+                "secondaryColumns": ["digital-employee"],
+                "title": "Active-SWE benchmarks coding agents on proactive multi-bug discovery and repair without issue-report guidance",
+                "title_zh": "Active-SWE 在没有 Issue Report 指引时评测 Coding Agent 主动发现并修复多 Bug 的能力",
+                "sourceUrl": "https://arxiv.org/abs/2608.04682",
+                "publishedAt": "2026-08-05",
+                "evidenceLevel": "peer_reviewed_or_primary_research",
+                "changeType": "coding-agent-benchmark",
+                "observedChange": "Active-SWE expands coding-agent evaluation beyond reactive issue-driven repair to 1,663 proactive bug-fixing tasks across six bug categories and eight languages, using a difficulty-aware construction pipeline and dual-track evaluation.",
+                "observedChange_zh": "Active-SWE 将 Coding Agent 评测从依赖 Issue 的被动修复扩展到 1,663 个主动 Bug 修复任务，覆盖 6 类 Bug 与 8 种语言，并使用难度感知构造与双轨评测。",
+                "confidence": "high",
+                "triageStatus": "signal"
+              }
+            ]
+          }
+          JSON
+
+          node - <<'NODE'
+          const fs = require('fs')
+          const recordPath = 'research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json'
+          const intelPath = 'research/intelligence/runs/2026/08/2026-08-07-intelligence.json'
+          const r = JSON.parse(fs.readFileSync(recordPath, 'utf8'))
+          const intel = JSON.parse(fs.readFileSync(intelPath, 'utf8'))
+
+          const shanghaiIso = () => {
+            const now = new Date()
+            const parts = new Intl.DateTimeFormat('en-CA', {timeZone:'Asia/Shanghai', year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit', hourCycle:'h23'}).formatToParts(now)
+            const x = Object.fromEntries(parts.map(p => [p.type,p.value]))
+            return `${x.year}-${x.month}-${x.day}T${x.hour}:${x.minute}:${x.second}+08:00`
+          }
+          const completedAt = shanghaiIso()
+          const starts = (r.timeline || []).filter(e => e.task === 'discovery' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-07'))
+          if (starts.length !== 1) throw new Error(`expected exactly one Discovery start event, got ${starts.length}`)
+          if ((r.timeline || []).some(e => e.task === 'discovery' && e.event === 'Discovery Completed')) throw new Error('Discovery Completed event already exists')
+
+          const metrics = [
+            {label:'Due source objects',label_zh:'应检查来源对象',value:'48'},
+            {label:'Checked source objects',label_zh:'已检查来源对象',value:'45'},
+            {label:'Authentication-required sources',label_zh:'需要认证的来源',value:'1'},
+            {label:'Recorded retrieval failures',label_zh:'已记录抓取失败',value:'2'},
+            {label:'Deduplicated signals',label_zh:'去重信号',value:'15'},
+            {label:'AI-platform signals',label_zh:'AI 平台信号',value:'3'},
+            {label:'GitHub-engineering signals',label_zh:'GitHub 工程信号',value:'8'},
+            {label:'Published-research signals',label_zh:'论文研究信号',value:'4'},
+            {label:'Topics selected',label_zh:'已选主题',value:'0'}
+          ]
+          const evidence = [
+            {label:'Scheduler V3.0',label_zh:'Scheduler V3.0',path:'research/runtime/SCHEDULER.json',source:'research/runtime/SCHEDULER.json'},
+            {label:'Verified fallback start-state commit',label_zh:'已核验的回退启动状态提交',commit:'2e7b74217cc2c7f201755e8be227978eecca4862',source:'https://github.com/joinwell52-AI/joinwell52/commit/2e7b74217cc2c7f201755e8be227978eecca4862'},
+            {label:'Research Intelligence Registry',label_zh:'研究情报注册表',path:'research/intelligence/REGISTRY.json',source:'research/intelligence/REGISTRY.json'},
+            {label:'AI Platform profile',label_zh:'AI 平台情报 Profile',path:'research/skills/profiles/01p-ai-platform-change-intelligence.md',source:'research/skills/profiles/01p-ai-platform-change-intelligence.md'},
+            {label:'GitHub Engineering profile',label_zh:'GitHub 工程情报 Profile',path:'research/skills/profiles/01g-github-engineering-intelligence.md',source:'research/skills/profiles/01g-github-engineering-intelligence.md'},
+            {label:'Published Research profile',label_zh:'论文研究情报 Profile',path:'research/skills/profiles/01r-published-research-intelligence.md',source:'research/skills/profiles/01r-published-research-intelligence.md'},
+            {label:'ChatGPT release notes',label_zh:'ChatGPT 发布说明',url:'https://help.openai.com/en/articles/6825453-chatgpt-release-notes',source:'https://help.openai.com/en/articles/6825453-chatgpt-release-notes'},
+            {label:'GitHub Copilot changelog',label_zh:'GitHub Copilot 更新日志',url:'https://github.blog/changelog/label/copilot/',source:'https://github.blog/changelog/label/copilot/'},
+            {label:'Gemini CLI v0.54.0',label_zh:'Gemini CLI v0.54.0',url:'https://github.com/google-gemini/gemini-cli/releases/tag/v0.54.0',source:'https://github.com/google-gemini/gemini-cli/releases/tag/v0.54.0'},
+            {label:'arXiv Computer Science new listings',label_zh:'arXiv Computer Science 新上架',url:'https://arxiv.org/list/cs/new',source:'https://arxiv.org/list/cs/new'},
+            {label:'OpenReview',label_zh:'OpenReview',url:'https://openreview.net/',source:'https://openreview.net/'},
+            {label:'OpenAI Research',label_zh:'OpenAI Research',url:'https://openai.com/research/',source:'https://openai.com/research/'},
+            {label:'Anthropic Research',label_zh:'Anthropic Research',url:'https://www.anthropic.com/research',source:'https://www.anthropic.com/research'},
+            {label:'Google DeepMind Research',label_zh:'Google DeepMind Research',url:'https://deepmind.google/research/',source:'https://deepmind.google/research/'},
+            {label:'Microsoft Research',label_zh:'Microsoft Research',url:'https://www.microsoft.com/en-us/research/',source:'https://www.microsoft.com/en-us/research/'}
+          ]
+          const artifacts = [
+            {label:'2026-08-07 Research Intelligence Run and Signal Pool',label_zh:'2026-08-07 研究情报运行与 Signal Pool',path:'research/intelligence/runs/2026/08/2026-08-07-intelligence.json'},
+            {label:'Daily Runtime Record',label_zh:'每日运行机器记录',path:'research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json'},
+            {label:'Human-readable Runtime ledger',label_zh:'人类可读运行账本',path:'research/runtime/2026/08/2026-08-07-runtime.md'}
+          ]
+
+          r.status = 'Waiting'
+          r.taskStatus.discovery = 'Completed'
+          r.results.discovery = {
+            schema:'runtime-shift-result/v2',
+            task:'discovery',
+            status:'Completed',
+            input:'The durably verified Scheduler-fallback start state in commit 2e7b74217cc2c7f201755e8be227978eecca4862, Research Runtime Scheduler V3.0, Research Intelligence Registry V1.0, three formal Discovery profiles, 33 platform channels, 9 P0 repositories, and 6 P0 research sources.',
+            input_zh:'提交 2e7b74217cc2c7f201755e8be227978eecca4862 中已完成持久化核验的 Scheduler 回退启动状态、Research Runtime Scheduler V3.0、Research Intelligence Registry V1.0、三项正式 Discovery Profile、33 个平台渠道、9 个 P0 仓库及 6 个 P0 研究来源。',
+            workResult:'Completed all three formal intelligence profiles only after the durable Running control-plane state was fetched and verified. Resolved all 48 due source objects as 45 checked, 1 authentication-required and 2 explicitly failed; normalized and deduplicated 15 signals without selecting topics, performing Deep Reading, analysis or article writing.',
+            workResult_zh:'仅在持久化 Running 控制面状态完成拉取与核验后，才完成三项正式情报 Profile。48 个应检查来源对象全部得到明确结果：45 个已检查、1 个需要认证、2 个明确失败；共规范化并去重 15 个信号，未选题、未开展 Deep Reading、分析或文章写作。',
+            output:'A durable 2026-08-07 Research Intelligence run containing the Signal Pool: 3 AI-platform signals, 8 GitHub-engineering signals and 4 published-research signals, with explicit inaccessible and failed-source records.',
+            output_zh:'已生成持久化的 2026-08-07 Research Intelligence Run 与 Signal Pool：3 个 AI 平台信号、8 个 GitHub 工程信号、4 个论文与研究成果信号，并明确记录不可访问与失败来源。',
+            next:'Research Runtime Queue at 10:00 must perform only three-column triage and decide Selected or No Selection; it must not treat Discovery signals as selected topics.',
+            next_zh:'10:00 Research Runtime Queue 仅执行三栏筛选并作出 Selected 或 No Selection 决定；不得将 Discovery 信号直接视为已选主题。',
+            metrics, evidence, artifacts
+          }
+          r.timeline.push({
+            time: completedAt,
+            task:'discovery',
+            event:'Discovery Completed',
+            status:'Completed',
+            detail:'All three formal intelligence profiles completed after verified fallback start-state commit 2e7b74217cc2c7f201755e8be227978eecca4862; 48 due source objects were resolved and a 15-signal pool was persisted without topic selection.'
+          })
+          r.metrics = metrics
+          r.evidence = evidence
+          r.artifacts = artifacts
+          r.githubCommit = 'pending'
+          r.commitVerify = 'Running'
+          r.updatedAt = completedAt
+          intel.updatedAt = completedAt
+          fs.writeFileSync(recordPath, JSON.stringify(r, null, 2) + '\n')
+          fs.writeFileSync(intelPath, JSON.stringify(intel, null, 2) + '\n')
+          NODE
+
+          node scripts/runtime-markdown.mjs render --date 2026-08-07
+          node scripts/runtime-markdown.mjs validate --date 2026-08-07
+          node scripts/runtime-v5.mjs validate
+          git diff --check
+
+      - name: Commit durable Discovery result
+        id: result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/intelligence/runs/2026/08/2026-08-07-intelligence.json \
+            research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json \
+            research/runtime/2026/08/2026-08-07-runtime.md
+          git commit -m "runtime(discovery): persist 2026-08-07 Signal Pool"
+          result_commit=$(git rev-parse HEAD)
+          echo "result_commit=$result_commit" >> "$GITHUB_OUTPUT"
+          git push origin HEAD:main
+          git fetch origin main
+          git merge-base --is-ancestor "$result_commit" origin/main
+
+      - name: Persist commit verification and remove one-time workflow
+        shell: bash
+        env:
+          RESULT_COMMIT: ${{ steps.result.outputs.result_commit }}
+        run: |
+          set -euo pipefail
+          record="research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json"
+          intel="research/intelligence/runs/2026/08/2026-08-07-intelligence.json"
+
+          node - <<'NODE'
+          const fs = require('fs')
+          const resultCommit = process.env.RESULT_COMMIT
+          if (!/^[0-9a-f]{40}$/.test(resultCommit || '')) throw new Error('invalid RESULT_COMMIT')
+          const shanghaiIso = () => {
+            const now = new Date()
+            const parts = new Intl.DateTimeFormat('en-CA', {timeZone:'Asia/Shanghai', year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit', hourCycle:'h23'}).formatToParts(now)
+            const x = Object.fromEntries(parts.map(p => [p.type,p.value]))
+            return `${x.year}-${x.month}-${x.day}T${x.hour}:${x.minute}:${x.second}+08:00`
+          }
+          const verifiedAt = shanghaiIso()
+          const recordPath = 'research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json'
+          const intelPath = 'research/intelligence/runs/2026/08/2026-08-07-intelligence.json'
+          const r = JSON.parse(fs.readFileSync(recordPath, 'utf8'))
+          const intel = JSON.parse(fs.readFileSync(intelPath, 'utf8'))
+          const starts = (r.timeline || []).filter(e => e.task === 'discovery' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-07'))
+          const completed = (r.timeline || []).filter(e => e.task === 'discovery' && e.event === 'Discovery Completed' && e.status === 'Completed')
+          if (starts.length !== 1) throw new Error(`start event count changed: ${starts.length}`)
+          if (completed.length !== 1) throw new Error(`Discovery Completed event count is ${completed.length}`)
+          if (r.taskStatus?.discovery !== 'Completed' || !r.results?.discovery) throw new Error('Discovery result missing before verification')
+          r.githubCommit = resultCommit
+          r.commitVerify = 'Completed'
+          r.timeline.push({
+            time: verifiedAt,
+            task:'discovery',
+            event:'GitHub Commit Verified',
+            status:'Completed',
+            detail:`Fetched and verified durable Discovery result commit ${resultCommit}; Research Intelligence JSON, Daily Runtime JSON and regenerated Markdown ledger are present and consistent.`
+          })
+          r.updatedAt = verifiedAt
+          intel.githubCommit = resultCommit
+          intel.controlPlane.resultCommit = resultCommit
+          intel.controlPlane.resultCommitVerified = true
+          intel.updatedAt = verifiedAt
+          fs.writeFileSync(recordPath, JSON.stringify(r, null, 2) + '\n')
+          fs.writeFileSync(intelPath, JSON.stringify(intel, null, 2) + '\n')
+          NODE
+
+          node scripts/runtime-markdown.mjs render --date 2026-08-07
+          node scripts/runtime-markdown.mjs validate --date 2026-08-07
+          node scripts/runtime-v5.mjs validate
+          git diff --check
+          rm -f .github/workflows/runtime-discovery-20260807-result-once.yml
+          git add research/intelligence/runs/2026/08/2026-08-07-intelligence.json \
+            research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json \
+            research/runtime/2026/08/2026-08-07-runtime.md \
+            .github/workflows/runtime-discovery-20260807-result-once.yml
+          git commit -m "runtime(discovery): verify 2026-08-07 durable result"
+          git pull --rebase origin main
+          git push origin HEAD:main
