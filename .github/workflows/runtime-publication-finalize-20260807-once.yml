@@ -1,0 +1,317 @@
+name: Runtime Publication Finalize 2026-08-07 Once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/runtime-publication-finalize-20260807-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Verify durable release inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main gh-pages || true
+          git cat-file -e 38c0b5e2bc559a056e207335c7c868bde932a683^{commit}
+          git merge-base --is-ancestor 38c0b5e2bc559a056e207335c7c868bde932a683 HEAD
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          DATE='2026-08-07'
+          START='a89a9c0c372e94cb91e38eb0470172b1250b1d89'
+          runtime=json.loads(Path('research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json').read_text(encoding='utf-8'))
+          candidates=json.loads(Path('research/runtime/candidates/2026/08/2026-08-07-candidates.json').read_text(encoding='utf-8'))
+          release=json.loads(Path('research/runtime/releases/2026-08-07-publication.json').read_text(encoding='utf-8'))
+          starts=[e for e in runtime.get('timeline',[]) if e.get('task')=='publication' and e.get('event')=='Execution Slot Opened' and e.get('status')=='Running' and str(e.get('time','')).startswith(f'{DATE}T')]
+          assert runtime['status']=='Running'
+          assert runtime['taskStatus']['publication']=='Running'
+          assert len(starts)==1
+          assert 'publication' not in runtime.get('results',{})
+          assert runtime['results']['production']['status']=='Completed'
+          assert candidates['status']=='Completed' and len(candidates['candidates'])==3
+          assert release['status']=='Released'
+          assert release['startStateCommit']==START
+          assert release['schedulerFallback'] is True
+          assert release['metrics']=={'eligibleCandidates':3,'releasedItems':3,'bilingualArticleFiles':6,'visualizationAssets':3}
+          assert release['prohibitionsObserved']=={'newResearch':0,'substantiveRewriting':0,'evidenceRepair':0}
+          for item in release['releasedItems']:
+              for key in ('zh','en','cover'):
+                  assert Path(item[key]).is_file(), item[key]
+          PY
+
+      - name: Build release state and publish gh-pages
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          npm ci
+          rm -rf docs/.vitepress/dist
+          npm run docs:build
+          git diff --check
+          rm -rf docs/.vitepress/dist/.git
+          touch docs/.vitepress/dist/.nojekyll
+          (
+            cd docs/.vitepress/dist
+            git init
+            git checkout -b gh-pages
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add --all
+            git commit -m "deploy-release: 38c0b5e2bc559a056e207335c7c868bde932a683"
+            git push --force "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
+          )
+          GH_PAGES_COMMIT=$(git ls-remote "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" refs/heads/gh-pages | awk '{print $1}')
+          test -n "$GH_PAGES_COMMIT"
+          echo "GH_PAGES_COMMIT=$GH_PAGES_COMMIT" >> "$GITHUB_ENV"
+
+          pages_json=$(curl -fsSL -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages")
+          python - "$pages_json" <<'PY'
+          import json,sys
+          data=json.loads(sys.argv[1])
+          assert data.get('status') in {'built','building'}
+          assert data.get('source',{}).get('branch')=='gh-pages'
+          assert data.get('source',{}).get('path')=='/'
+          PY
+
+          python - <<'PY'
+          from pathlib import Path
+          checks={
+            'docs/.vitepress/dist/zh/digital-employee/2026-08-07-verification-gated-state-admission.html':'持久数字员工需要',
+            'docs/.vitepress/dist/en/digital-employee/2026-08-07-verification-gated-state-admission.html':'Persistent Digital Employees Need Verification-Gated State Admission',
+            'docs/.vitepress/dist/zh/industry/2026-08-07-role-aware-agent-resource-plane.html':'Agent 资源平面需要角色感知调度',
+            'docs/.vitepress/dist/en/industry/2026-08-07-role-aware-agent-resource-plane.html':'Agent Resource Planes Need Role-Aware Scheduling',
+            'docs/.vitepress/dist/zh/engineering/2026-08-07-stable-identity-provisioning-gate.html':'延迟 Agent 环境需要稳定身份',
+            'docs/.vitepress/dist/en/engineering/2026-08-07-stable-identity-provisioning-gate.html':'Deferred Agent Environments Need Stable Identity',
+          }
+          for p,s in checks.items():
+              text=Path(p).read_text(encoding='utf-8')
+              assert s in text,(p,s)
+          PY
+
+      - name: Verify six public release URLs
+        shell: bash
+        run: |
+          set -euo pipefail
+          base='https://joinwell52-ai.github.io/joinwell52'
+          urls=(
+            "$base/zh/digital-employee/2026-08-07-verification-gated-state-admission.html"
+            "$base/en/digital-employee/2026-08-07-verification-gated-state-admission.html"
+            "$base/zh/industry/2026-08-07-role-aware-agent-resource-plane.html"
+            "$base/en/industry/2026-08-07-role-aware-agent-resource-plane.html"
+            "$base/zh/engineering/2026-08-07-stable-identity-provisioning-gate.html"
+            "$base/en/engineering/2026-08-07-stable-identity-provisioning-gate.html"
+          )
+          expected=(
+            '持久数字员工需要'
+            'Persistent Digital Employees Need Verification-Gated State Admission'
+            'Agent 资源平面需要角色感知调度'
+            'Agent Resource Planes Need Role-Aware Scheduling'
+            '延迟 Agent 环境需要稳定身份'
+            'Deferred Agent Environments Need Stable Identity'
+          )
+          ok=0
+          for attempt in $(seq 1 72); do
+            ok=1
+            for i in ${!urls[@]}; do
+              body=$(curl -fsSL --max-time 15 "${urls[$i]}" || true)
+              if [[ "$body" != *"${expected[$i]}"* ]]; then ok=0; break; fi
+            done
+            if [[ "$ok" == 1 ]]; then break; fi
+            sleep 5
+          done
+          [[ "$ok" == 1 ]]
+          echo 'PUBLIC_RELEASE_VERIFIED=1' >> "$GITHUB_ENV"
+
+      - name: Persist only the Publication result and regenerate Runtime ledger
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os
+          from datetime import datetime
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+
+          DATE='2026-08-07'
+          START_COMMIT='a89a9c0c372e94cb91e38eb0470172b1250b1d89'
+          RELEASE_COMMIT='38c0b5e2bc559a056e207335c7c868bde932a683'
+          GH_PAGES_COMMIT=os.environ['GH_PAGES_COMMIT']
+          assert os.environ.get('PUBLIC_RELEASE_VERIFIED')=='1'
+          runtime_path=Path('research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json')
+          release_path=Path('research/runtime/releases/2026-08-07-publication.json')
+          candidate_path=Path('research/runtime/candidates/2026/08/2026-08-07-candidates.json')
+          data=json.loads(runtime_path.read_text(encoding='utf-8'))
+          release=json.loads(release_path.read_text(encoding='utf-8'))
+          candidates=json.loads(candidate_path.read_text(encoding='utf-8'))
+          starts=[e for e in data.get('timeline',[]) if e.get('task')=='publication' and e.get('event')=='Execution Slot Opened' and e.get('status')=='Running' and str(e.get('time','')).startswith(f'{DATE}T')]
+          assert data['status']=='Running'
+          assert data['taskStatus']['publication']=='Running'
+          assert len(starts)==1
+          assert 'publication' not in data.get('results',{})
+          assert data['results']['production']['status']=='Completed'
+          assert candidates['status']=='Completed' and len(candidates['candidates'])==3
+          assert release['status']=='Released' and release['startStateCommit']==START_COMMIT
+
+          artifacts=[
+            ('Q-20260807-01 Chinese public article','Q-20260807-01 中文公开文章','docs/zh/digital-employee/2026-08-07-verification-gated-state-admission.md','https://joinwell52-ai.github.io/joinwell52/zh/digital-employee/2026-08-07-verification-gated-state-admission.html'),
+            ('Q-20260807-01 English public article','Q-20260807-01 英文公开文章','docs/en/digital-employee/2026-08-07-verification-gated-state-admission.md','https://joinwell52-ai.github.io/joinwell52/en/digital-employee/2026-08-07-verification-gated-state-admission.html'),
+            ('Q-20260807-01 public visualization','Q-20260807-01 公开可视化','docs/public/assets/covers/daily-2026-08-07-verification-gated-state-admission.svg',None),
+            ('Q-20260807-02 Chinese public article','Q-20260807-02 中文公开文章','docs/zh/industry/2026-08-07-role-aware-agent-resource-plane.md','https://joinwell52-ai.github.io/joinwell52/zh/industry/2026-08-07-role-aware-agent-resource-plane.html'),
+            ('Q-20260807-02 English public article','Q-20260807-02 英文公开文章','docs/en/industry/2026-08-07-role-aware-agent-resource-plane.md','https://joinwell52-ai.github.io/joinwell52/en/industry/2026-08-07-role-aware-agent-resource-plane.html'),
+            ('Q-20260807-02 public visualization','Q-20260807-02 公开可视化','docs/public/assets/covers/daily-2026-08-07-role-aware-agent-resource-plane.svg',None),
+            ('Q-20260807-03 Chinese public article','Q-20260807-03 中文公开文章','docs/zh/engineering/2026-08-07-stable-identity-provisioning-gate.md','https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-08-07-stable-identity-provisioning-gate.html'),
+            ('Q-20260807-03 English public article','Q-20260807-03 英文公开文章','docs/en/engineering/2026-08-07-stable-identity-provisioning-gate.md','https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-08-07-stable-identity-provisioning-gate.html'),
+            ('Q-20260807-03 public visualization','Q-20260807-03 公开可视化','docs/public/assets/covers/daily-2026-08-07-stable-identity-provisioning-gate.svg',None),
+          ]
+          for _,_,p,_ in artifacts: assert Path(p).is_file(),p
+          now=datetime.now(ZoneInfo('Asia/Shanghai')).isoformat(timespec='seconds')
+          data['status']='Completed'
+          data['taskStatus']['publication']='Completed'
+          data['results']['publication']={
+            'schema':'runtime-shift-result/v2',
+            'task':'publication',
+            'status':'Completed',
+            'input':'Three complete same-day Publication Candidates produced by the Completed Production shift, the durably verified Scheduler-fallback Publication start state, Scheduler V3.0, and the gh-pages-backed bilingual website surfaces.',
+            'input_zh':'由已完成 Production 班次生成的 3 份完整当日 Publication Candidate、已完成持久化核验的 Scheduler 回退 Publication 启动状态、Scheduler V3.0，以及由 gh-pages 承载的双语网站表面。',
+            'workResult':'After the durable Running control-plane state was fetched and verified, validated Production, evidence, citation, publication editing, bilingual pairing, metadata and visualization gates for all three candidates. Published only the authorized candidate text and SVG assets to the required Chinese and English paths, built the VitePress site, force-published the generated static site to gh-pages, and verified all six public article URLs before completion. No new research, substantive rewriting or evidence repair was performed. Scheduler fallback was explicitly recorded because the pre-existing Publication Running state was absent.',
+            'workResult_zh':'在获取并核验持久化 Running 控制面状态后，已验证全部 3 份候选的 Production、证据、引用、出版编辑、双语配对、元数据与可视化门禁。仅将获准候选文本和 SVG 资产发布到规定的中英文路径，完成 VitePress 构建并将静态站点强制发布到 gh-pages，且在完成前逐一核验 6 个公开文章 URL。未开展新研究、实质性改写或证据修复。由于执行前缺少既有 Publication Running 状态，已明确记录 Scheduler 回退。',
+            'output':f'Released 3 Daily Research items as 6 bilingual public article files and 3 visualization assets. Release manifest: {release_path}. Verified release commit: {RELEASE_COMMIT}. Verified gh-pages deployment commit: {GH_PAGES_COMMIT}.',
+            'output_zh':f'已发布 3 项 Daily Research，共 6 个双语公开文章文件与 3 个可视化资产。发布清单：{release_path}。已核验发布提交：{RELEASE_COMMIT}。已核验 gh-pages 部署提交：{GH_PAGES_COMMIT}。',
+            'next':'The Daily Runtime is closed for 2026-08-07. The next Daily Runtime begins with the next scheduled Discovery slot; future synthesis must consume durable released research rather than staging candidates.',
+            'next_zh':'2026-08-07 Daily Runtime 已关闭。下一轮 Daily Runtime 从下一次计划内 Discovery 时段开始；后续综合应消费已持久发布的研究成果，而不是 staging 候选。',
+            'metrics':[
+              {'label':'Eligible Publication Candidates','label_zh':'符合条件的出版候选','value':'3'},
+              {'label':'Released Daily Research items','label_zh':'已发布 Daily Research 项目','value':'3'},
+              {'label':'Public bilingual article files','label_zh':'公开双语文章文件','value':'6'},
+              {'label':'Published visualization assets','label_zh':'已发布可视化资产','value':'3'},
+              {'label':'Verified public article URLs','label_zh':'已核验公开文章 URL','value':'6 / 6'},
+              {'label':'Scheduler fallbacks','label_zh':'Scheduler 回退次数','value':'1'},
+              {'label':'New research performed','label_zh':'开展新研究','value':'0'},
+              {'label':'Substantive rewrites','label_zh':'实质性改写','value':'0'},
+              {'label':'Evidence repairs','label_zh':'证据修复','value':'0'},
+            ],
+            'evidence':[
+              {'label':'Scheduler V3.0','label_zh':'Scheduler V3.0','source':'research/runtime/SCHEDULER.json'},
+              {'label':'Publication Candidate batch','label_zh':'Publication Candidate 批次','source':str(candidate_path)},
+              {'label':'Verified Scheduler-fallback start-state commit','label_zh':'已核验的 Scheduler 回退启动状态提交','commit':START_COMMIT,'source':f'https://github.com/joinwell52-AI/joinwell52/commit/{START_COMMIT}'},
+              {'label':'Publication release manifest','label_zh':'Publication 发布清单','source':str(release_path)},
+              {'label':'Verified Daily Research release commit','label_zh':'已核验的 Daily Research 发布提交','commit':RELEASE_COMMIT,'source':f'https://github.com/joinwell52-AI/joinwell52/commit/{RELEASE_COMMIT}'},
+              {'label':'Verified gh-pages deployment commit','label_zh':'已核验 gh-pages 部署提交','commit':GH_PAGES_COMMIT,'source':f'https://github.com/joinwell52-AI/joinwell52/commit/{GH_PAGES_COMMIT}'},
+              {'label':'Public URL verification','label_zh':'公开 URL 核验','source':'https://joinwell52-ai.github.io/joinwell52/'},
+            ],
+            'artifacts':[
+              {'label':'Verified Publication start-state commit','label_zh':'已核验 Publication 启动状态提交','commit':START_COMMIT},
+              {'label':'Verified Daily Research release commit','label_zh':'已核验 Daily Research 发布提交','commit':RELEASE_COMMIT},
+              {'label':'Verified gh-pages deployment commit','label_zh':'已核验 gh-pages 部署提交','commit':GH_PAGES_COMMIT},
+              {'label':'Publication release manifest','label_zh':'Publication 发布清单','path':str(release_path)},
+              *[({**{'label':label,'label_zh':label_zh,'path':path}, **({'url':url} if url else {})}) for label,label_zh,path,url in artifacts],
+              {'label':'Daily Runtime Record','label_zh':'每日运行机器记录','path':str(runtime_path)},
+              {'label':'Human-readable Runtime ledger','label_zh':'人类可读运行账本','path':'research/runtime/2026/08/2026-08-07-runtime.md'},
+            ],
+          }
+          data['timeline'].append({'time':now,'task':'publication','event':'Publication Completed','status':'Completed','detail':'Validated all Publication gates and released 3 Daily Research items as 6 bilingual articles and 3 visualizations without new research, substantive rewriting or evidence repair; Scheduler fallback remained explicitly recorded.'})
+          data['timeline'].append({'time':now,'task':'publication','event':'GitHub Commit Verified','status':'Completed','detail':f'Fetched and verified release commit {RELEASE_COMMIT} containing all authorized bilingual public paths, visualization assets and the release manifest.'})
+          data['timeline'].append({'time':now,'task':'publication','event':'Public Deployment Verified','status':'Completed','detail':f'Published the release build to gh-pages commit {GH_PAGES_COMMIT} and verified all six public article URLs before closing Publication.'})
+          data['githubCommit']=RELEASE_COMMIT
+          data['commitVerify']='Completed'
+          data['updatedAt']=now
+          runtime_path.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+          node scripts/runtime-markdown.mjs render --date 2026-08-07
+          node scripts/runtime-markdown.mjs validate --date 2026-08-07
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path('research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json').read_text(encoding='utf-8'))
+          starts=[e for e in data['timeline'] if e.get('task')=='publication' and e.get('event')=='Execution Slot Opened' and e.get('status')=='Running' and str(e.get('time','')).startswith('2026-08-07T')]
+          assert len(starts)==1
+          assert data['status']=='Completed'
+          assert data['taskStatus']['publication']=='Completed'
+          result=data['results']['publication']
+          assert result['schema']=='runtime-shift-result/v2' and result['status']=='Completed'
+          for k in ['input','workResult','output','next','metrics','evidence','artifacts']: assert result.get(k)
+          assert data['githubCommit']=='38c0b5e2bc559a056e207335c7c868bde932a683'
+          assert data['commitVerify']=='Completed'
+          md=Path('research/runtime/2026/08/2026-08-07-runtime.md').read_text(encoding='utf-8')
+          assert 'overall_status: "Completed"' in md
+          assert '| 20:00 | 研究运行发布 | Research Runtime Publication | daily | 已完成 / Completed |' in md
+          assert md.count('Research Runtime Publication | daily | Execution Slot Opened | 工作中 / Running')==1
+          assert 'Public Deployment Verified' in md
+          PY
+
+      - name: Build final completed Runtime website
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf docs/.vitepress/dist
+          npm run docs:build
+          git diff --check
+          git restore docs/.vitepress/generated || true
+
+      - name: Commit final Runtime record separately to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/runtime-publication-finalize-20260807-once.yml
+          git pull --rebase --autostash origin main
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json \
+            research/runtime/2026/08/2026-08-07-runtime.md \
+            .github/workflows/runtime-publication-finalize-20260807-once.yml
+          git commit -m "runtime(publication): complete verified 2026-08-07 release record"
+          FINAL_COMMIT=$(git rev-parse HEAD)
+          echo "FINAL_COMMIT=$FINAL_COMMIT" >> "$GITHUB_ENV"
+          git push origin HEAD:main
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "$FINAL_COMMIT"
+
+      - name: Publish final completed site to gh-pages and verify
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          rm -rf docs/.vitepress/dist/.git
+          touch docs/.vitepress/dist/.nojekyll
+          (
+            cd docs/.vitepress/dist
+            git init
+            git checkout -b gh-pages
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add --all
+            git commit -m "deploy: ${FINAL_COMMIT}"
+            git push --force "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
+          )
+          FINAL_GH_PAGES_COMMIT=$(git ls-remote "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" refs/heads/gh-pages | awk '{print $1}')
+          test -n "$FINAL_GH_PAGES_COMMIT"
+          echo "Final gh-pages commit: $FINAL_GH_PAGES_COMMIT"
+          base='https://joinwell52-ai.github.io/joinwell52'
+          ok=0
+          for attempt in $(seq 1 72); do
+            article=$(curl -fsSL --max-time 15 "$base/zh/digital-employee/2026-08-07-verification-gated-state-admission.html" || true)
+            runtime=$(curl -fsSL --max-time 15 "$base/zh/runtime/daily.html" || true)
+            if [[ "$article" == *'持久数字员工需要'* && "$runtime" == *'2026-08-07'* && "$runtime" == *'Completed'* ]]; then ok=1; break; fi
+            sleep 5
+          done
+          [[ "$ok" == 1 ]]
