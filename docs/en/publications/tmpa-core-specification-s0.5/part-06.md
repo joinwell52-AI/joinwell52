@@ -134,7 +134,7 @@ The source boundary is explicit. FCoP is a protocol and reference profile. Its n
 
 The author-produced S0.5 Reference Reader passes all fourteen S0.5 fixtures. A separate rerun of the FCoP v3.2.5 reference implementation recorded 1,222 passed, 2 skipped, and 3 failed tests; the failures concern preservation and public-surface exposure of the optional `parent` field. The product baseline is therefore FAIL for the executed C02 S0.5 assertion. This is a bounded reference-implementation consistency finding, not a failure of the FCoP protocol and not full S0.5 product conformance.
 
-S0.4 and its I0.5 conformance corpus remain immutable historical baselines. They SHALL NOT be relabeled as S0.5 evidence. S0.5 changes observable schema, Reader output, and criterion meanings, so any S0.5 product claim requires a new S0.5 run.
+S0.4 and its I0.5 conformance corpus remain immutable historical baselines. They SHALL NOT be relabeled as S0.5 evidence. I0.6 supplies a separate author-run S0.5 evidence record and retains all product FAIL, PARTIAL, and NOT RUN results. S0.5 changes observable schema, Reader output, and criterion meanings, so every S0.5 product claim requires its own fixed S0.5 run.
 
 ---
 

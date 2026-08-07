@@ -249,50 +249,51 @@ Digest 与签名证据必须被窄化解释。Digest 可以揭示被覆盖字节
 
 # 7. 评估结果
 
-独立维护的 [TMPA Core Specification S0.5](/zh/publications/tmpa-core-specification-s0.5) 是当前 C01–C14 及全部 SHALL/MUST 条款的唯一规范性来源。[Implementation Case Report I0.5](/zh/publications/implementation-case-i0.5) 仍是 S0.4 历史工程证据基线，不声明 S0.5 一致性。本节按研究问题评估结果，不复制规范正文。
+独立维护的 [TMPA Core Specification S0.5](/zh/publications/tmpa-core-specification-s0.5) 是当前 C01–C14 及全部 SHALL/MUST 条款的唯一规范性来源。[Implementation Case Report I0.6](/zh/publications/implementation-case-i0.6) 报告当前有边界的 S0.5 工程证据基线；I0.5 仍是不可变的 S0.4 历史基线。本节按研究问题评估结果，不复制规范正文。
 
 ## 7.1 按研究问题组织的发现
 
 | 研究问题 | 发现与证据 | 边界 |
 |---|---|---|
 | RQ1：治理状态充分性 | 普通对话与执行界面本身不能保留足够显式的权限、生命周期、冲突与恢复状态，以支持确定性治理重建；支持来自问题诊断、DR1–DR8 以及对象与重建分析 | 尚无对比现场实验测量替代架构的失败率 |
-| RQ2：最低架构 | 稳定载体、单写者流、显式权限和生命周期、类型化引用、三值判断以及保留来源的确定性重建构成一致的最低契约；支持来自不变量、反例、确定性证明概要与 Core S0.4 | 证明尚未机械化；最低性是架构论证，而非普适下界证明 |
-| RQ3：工程可行性与边界 | FCoP、CodeFlowMu 与小典提供有界证据，表明契约的重要部分可在项目可见基础设施中运行；支持来自参考映射、运行案例与锁定 C01–C14 基线 | 尚未建立完整一致性、独立采用、SME 比较负担与跨 Profile 可移植性 |
+| RQ2：最低架构 | 稳定载体、单写者流、显式权限和生命周期、类型化引用、三值判断以及保留来源的确定性重建构成一致的最低契约；支持来自不变量、反例、确定性证明概要与 Core S0.5 | 证明尚未机械化；最低性是架构论证，而非普适下界证明 |
+| RQ3：工程可行性与边界 | FCoP、CodeFlowMu 与 WP-13 提供有界证据，表明契约的重要部分可在项目可见基础设施中运行；支持来自参考映射、运行案例与锁定的 I0.6 C01–C14 基线 | 2 项 FAIL、3 项未运行、8 项仍为 PARTIAL；独立采用、SME 比较负担与跨 Profile 可移植性尚未建立 |
 
 因此，结果对架构一致性和有界实现可行性的支持最强；对组织有效性与生态泛化的支持较弱，后者需要独立与比较证据。
 
 ## 7.2 一致性领域摘要
 
-基线按架构领域汇总；标准的精确定义仍以 Core S0.4 §10.2 为准。
+基线按架构领域汇总；标准的精确定义仍以 Core S0.5 §10.2 为准。
 
 | 领域 | 标准 | 产品级结果 |
 |---|---|---|
-| 对象、不可变性与完整性 | C01、C02、C03、C08 | 3 项 PARTIAL；1 项 NOT RUN |
-| 权限与生命周期 | C05、C06、C07 | 3 项 PARTIAL |
-| 顺序、引用与冲突 | C04、C09、C10、C12 | 2 项 PARTIAL；2 项 NOT RUN |
+| 对象、不可变性与完整性 | C01、C02、C03、C08 | 1 项 FAIL；2 项 PARTIAL；1 项 NOT RUN |
+| 权限与生命周期 | C05、C06、C07 | 1 项 FAIL；2 项 PARTIAL |
+| 顺序、引用与冲突 | C04、C09、C10、C12 | 3 项 PARTIAL；1 项 NOT RUN |
 | 确定性、恢复与历史 | C11、C13、C14 | 1 项 PASS；1 项 PARTIAL；1 项 NOT RUN |
 
 这些是锁定修订上的产品级结果，不是完整 Core、Profile 或 Authenticated Governance Conformance 声明。
 
-## 7.3 锁定基线的 S0.4 重新裁决
+## 7.3 S0.5 作者运行产品基线
 
-I0.4 发布 S0.4 语料库 `tmpa-s0.4-fcop-codeflowmu-20260803` [28]。它保留锁定的 FCoP Package `3.2.4` Commit `da79dfefd99f597c9e422ce9edec22157f915a21`、CodeFlowMu `V1.2.3` Commit `8f342d028eb66e77d135bea58fdbc7f2d0627e3b` 与有边界的小典证据，但把 Reference Reader Fixture 与产品裁决严格分开。
+I0.6 发布证据包 `tmpa-i0.6-local-evidence-20260806-v2` [28]。它锁定 FCoP Tag `v3.2.5` Commit `b3dc23439c6aaa6a6b3765655b87e5924e0257f9`、基于 Commit `c4ebc146cb8ef0409a4c9eb571a8f2432ade3bd0` 的隔离 CodeFlowMu 快照，以及 WP-13 V3 包。CodeFlowMu 来源工作树为脏且仅存在本地，因此本轮属于作者本地证据，不是稳定公开复现基线。小典没有固定 S0.5 包，未运行。
 
-FCoP Commit 已直接取回，选定套件重跑结果为 1,137 项通过、2 项跳过、0 项失败。CodeFlowMu Commit 无法从公开 `CodeFlowMu-open` 历史取回，因此不声称新的 CodeFlowMu 产品执行。公开 S0.4 Reference Reader 通过全部 14 项合成 Fixture；这些 PASS 不是产品 PASS。
+FCoP 记录 1,222 项通过、3 项失败、2 项跳过。CodeFlowMu 记录 Protocol Fixture 8/8、Runtime 1,420 项通过 / 1 项失败 / 1 项跳过、Shell 770/770，Typecheck 全部通过。公开 S0.5 Reference Reader 通过全部 14 项合成 Fixture；这些 PASS 不是产品 PASS。
 
 产品级裁决为：
 
 | 裁决 | 标准 |
 |---|---|
 | PASS | C14 |
-| PARTIAL | C01、C02、C03、C04、C05、C06、C07、C09、C13 |
-| NOT RUN | C08、C10、C11、C12 |
+| PARTIAL | C01、C03、C04、C05、C06、C09、C10、C13 |
+| NOT RUN | C08、C11、C12 |
+| FAIL | C02、C07 |
 
-没有已执行的产品标准失败。该陈述仅限已执行路径，不等于“零失败的完整一致性”。C06 在 S0.4 下为 PARTIAL，因为保存的产品证据尚未同时输出 `ILLEGAL_TRANSITION`/`invalid` 与 `LIFECYCLE_UNDETERMINED`/`undetermined`。
+C02 失败记录 FCoP `parent` 持久化/读回与 Release Surface 未闭合。C07 失败记录 CodeFlowMu 提示语契约不一致——可读输出 `需 ADMIN/PM 人工裁定` 没有命中测试要求——不是编码损坏。两项失败均须在对应修复和全量复测前保留。
 
 ## 7.4 解释：产品投影缺口
 
-9 项 PARTIAL 共享一个主要实现缺口。通用 S0.4 只读 Reference Reader 现已存在，而 FCoP 与 CodeFlowMu 尚未暴露受维护的投影适配器，把各自原生证据规范化为：
+8 项 PARTIAL 共享一个主要实现缺口。通用 S0.5 只读 Reference Reader 已存在，而 FCoP 与 CodeFlowMu 尚未暴露受维护的投影适配器，把各自原生证据规范化为：
 
 ```text
 来源候选
@@ -306,7 +307,7 @@ FCoP Commit 已直接取回，选定套件重跑结果为 1,137 项通过、2 �
 authoritative / partial / disputed / quarantined 视图
 ```
 
-产品投影将直接改善 C03、C05、C09 和 C13，并为 C04 与 C07 提供基础设施；它还将建立 C10–C12 所需的产品执行路径。C01 仍存在 Schema 覆盖缺口；C02 存在更严格不可变性缺口；C06 缺少完整规范三值输出；C08 需要被覆盖内容的 Digest 证据。
+产品投影将直接改善 C03、C05、C09 和 C13，并为 C04、C06、C10 提供基础设施；它还将建立 C11–C12 所需的产品执行路径。C01 仍存在 Schema 覆盖缺口；C02 与 C07 需要针对已保留失败进行修复；C08 需要被覆盖内容的 Digest 证据。
 
 语料库与基线由作者产生。语料库现已公开，但任何独立验证声明仍必须先有独立重跑。
 
@@ -389,7 +390,7 @@ TMPA 的核心声明必须保持可被反证：
 
 ## 8.6 出版与可复现边界
 
-A0.5 是理论架构论文；Core S0.5 是当前规范性来源；Implementation Case I0.5 保留 S0.4 工程证据基线。论文可以总结配套工件，但不得静默重定义其含义，也不得把 S0.4 证据改标为 S0.5 一致性。
+A0.5 是理论架构论文；Core S0.5 是当前规范性来源；Implementation Case I0.6 报告当前作者运行的 S0.5 工程证据基线，I0.5 保留 S0.4 历史。论文可以总结配套工件，但不得静默重定义其含义，也不得把 Reference Reader Fixture 提升为产品一致性。
 
 对外投稿前，语料库仍需要可取回的 CodeFlowMu 锁定源码或复现包，以及至少一次独立重跑。低资源部署测量仍是 SME 可行性声明的独立发布要求。
 
@@ -399,7 +400,7 @@ TMPA 是一种**面向中小企业、最低基础设施条件的文本消息多�
 
 该架构沿着**实践 → 方法 → 理论**形成：小典 AI 暴露多角色协调问题，原始 TMPA 识别文本异步方法，FCoP 抽取并成熟其可复用文件协调与复核子集，CodeFlowMu 提供下游应用反馈，本文则形式化对象、不变量、保证边界和一致性标准。早期 Pipeline 证明起源，而不是追溯性的 Core Conformance。
 
-A0.5 在架构层回答 RQ1 与 RQ2，并为 RQ3 提供由作者运行、版本锁定的基线。在 I0.4/S0.4 重新裁决下，**产品级 1 项 PASS、9 项 PARTIAL、4 项未在产品 Reader 层运行**。没有已执行的产品标准失败，但该陈述仅限已执行路径，不得解读为零失败的完整一致性。选定 FCoP 套件记录 1,137 项通过、2 项跳过、0 项失败；锁定 CodeFlowMu 源码不可用，未完成新执行。独立 S0.4 Reference Reader 通过全部 14 项合成 Fixture，但这不替代产品执行或独立验证。
+A0.5 在架构层回答 RQ1 与 RQ2，并为 RQ3 提供由作者运行、版本锁定的基线。在 I0.6/S0.5 评估下，**产品级 1 项 PASS、8 项 PARTIAL、3 项 NOT RUN、2 项 FAIL**。FCoP v3.2.5 记录 1,222 项通过、3 项失败、2 项跳过；隔离 CodeFlowMu 快照记录 Runtime 1,420 项通过、1 项失败、1 项跳过，以及 Shell 770/770。独立 S0.5 Reference Reader 通过全部 14 项合成 Fixture，但这不替代产品执行、干净公开复现或独立验证。
 
 决定性剩余问题是 RQ3：组织能否在普通项目环境中，以可接受的资源与纪律成本持续获得 TMPA 的责任、复核、恢复与证据收益。该声明仍需要产品投影适配器、可取回的 CodeFlowMu 复现包、低资源部署与恢复测量、基线对比、代表性使用和独立复现。TMPA 自身也不确立认证身份、强隔离、受保护存储、拜占庭容错、参与者声明的事实真实性或生态采用。
 

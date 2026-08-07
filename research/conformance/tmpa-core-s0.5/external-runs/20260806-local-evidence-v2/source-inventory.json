@@ -1,0 +1,99 @@
+{
+  "generated_at": "2026-08-07T12:33:00+08:00",
+  "path_policy": "logical paths only; absolute local paths omitted",
+  "sources": [
+    {
+      "id": "tmpa-publication",
+      "path": "source://tmpa-publication",
+      "visibility": "public",
+      "remote": "https://github.com/joinwell52-AI/joinwell52.git",
+      "branch": "main",
+      "commit": "653e7ba0ac788cb7745f127d03fd23610a58d4e2",
+      "tag": null,
+      "git_status": "initially clean; generated conformance artifacts modified by isolated replay",
+      "dirty_files": "19 generated artifact files after replay",
+      "source_role": "TMPA A0.5, Core S0.5, I0.5, schemas, reference reader and fixtures",
+      "availability": "available"
+    },
+    {
+      "id": "fcop-v3.2.5",
+      "path": "source://fcop-v3.2.5",
+      "visibility": "public",
+      "remote": "https://github.com/joinwell52-AI/FCoP.git",
+      "branch": "detached",
+      "commit": "b3dc23439c6aaa6a6b3765655b87e5924e0257f9",
+      "tag": "v3.2.5",
+      "git_status": "clean; ignored test environment only",
+      "dirty_files": 0,
+      "source_role": "FCoP protocol/profile and fcop/fcop-mcp reference implementation",
+      "availability": "available"
+    },
+    {
+      "id": "fcop-local-historical",
+      "path": "source://fcop-local-historical",
+      "visibility": "mixed/local-only",
+      "remote": "https://github.com/joinwell52-AI/FCoP.git",
+      "branch": "main",
+      "commit": "da79dfefd99f597c9e422ce9edec22157f915a21",
+      "tag": "v3.2.4-5-gda79dfe-dirty",
+      "git_status": "dirty",
+      "dirty_files": "not enumerated in publication package",
+      "source_role": "historical inventory only",
+      "availability": "available but not used for target run"
+    },
+    {
+      "id": "codeflowmu-local-snapshot",
+      "path": "source://codeflowmu-local-snapshot",
+      "visibility": "mixed; tested snapshot local-only",
+      "remote": "https://github.com/joinwell52-AI/codeflowmu.git",
+      "branch": "main",
+      "commit": "c4ebc146cb8ef0409a4c9eb571a8f2432ade3bd0",
+      "tag": null,
+      "version": "0.3.0-alpha",
+      "git_status": "dirty source worktree",
+      "dirty_files": {"total": 86, "modified": 39, "untracked": 47, "deleted": 0},
+      "source_role": "CodeFlowMu downstream application",
+      "availability": "product-relevant files copied byte-for-byte into an isolated snapshot"
+    },
+    {
+      "id": "wp13-v3",
+      "path": "case://wp13-v3",
+      "visibility": "public author package",
+      "remote": "published with TMPA I0.5",
+      "branch": null,
+      "commit": "609571ddb22d1fbb2bfb5e54692c07beeef4cf23",
+      "tag": null,
+      "git_status": "immutable zip",
+      "dirty_files": 0,
+      "source_role": "WP-13 engineering case",
+      "availability": "available and validated",
+      "sha256": "5b5eda3034c822f13421783244b1d0c76a9fa79950bfad0ce61bb8d2e404131c"
+    },
+    {
+      "id": "task003-dispatch-stall",
+      "path": "case://task003-dispatch-stall",
+      "visibility": "local-only",
+      "remote": null,
+      "branch": null,
+      "commit": null,
+      "tag": null,
+      "git_status": "not a standalone repository",
+      "dirty_files": null,
+      "source_role": "observer case index",
+      "availability": "available; not executed as an S0.5 reader input"
+    },
+    {
+      "id": "xiaodian-local",
+      "path": "case://xiaodian-local",
+      "visibility": "private/local-only",
+      "remote": null,
+      "branch": null,
+      "commit": null,
+      "tag": null,
+      "git_status": "no fixed evidence repository established",
+      "dirty_files": null,
+      "source_role": "private field case candidate",
+      "availability": "NOT RUN; source not copied"
+    }
+  ]
+}

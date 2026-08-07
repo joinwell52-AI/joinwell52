@@ -49,7 +49,7 @@ V1.0 作为首个 Production Test 历史基线保留：[旧版兼容入口](./re
 |---|---|---:|---|
 | 论文 | [TMPA Architecture Paper](./tmpa-architecture-paper-a0.5) | A0.5 | 学术工作草稿 |
 | 规范 | [TMPA Core Specification](./tmpa-core-specification-s0.5) | S0.5 | FCoP 派生的可实现规范草稿 |
-| 案例 | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.5) | I0.5 | S0.4 基线与 WP-13 多 Agent 事实复核 |
+| 案例 | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.6) | I0.6 | S0.5 作者运行产品证据与 WP-13 治理案例 |
 
 TMPA 出版体系是独立理论层。工场的高频观察笔记不自动构成论文证据；工程案例只报告其明确范围内的实现与验证结果。TMPA 长期研究进入 Research Program Runtime，不再进入 Daily Runtime。
 

@@ -24,7 +24,7 @@ TMPA's central claims should remain open to disconfirmation:
 
 ## 8.6 Publication and Reproducibility Boundary
 
-A0.5 is the theoretical architecture paper. Core S0.5 is the current normative source, while Implementation Case I0.5 preserves the S0.4 engineering-evidence baseline. The paper may summarize those companion artifacts but must not silently redefine their meaning or relabel S0.4 evidence as S0.5 conformance.
+A0.5 is the theoretical architecture paper. Core S0.5 is the current normative source, while Implementation Case I0.6 reports the current author-run S0.5 engineering-evidence baseline and I0.5 preserves S0.4 history. The paper may summarize those companion artifacts but must not silently redefine their meaning or promote Reference Reader fixtures into product conformance.
 
 Before external submission, the corpus still requires a retrievable pinned CodeFlowMu source or reproduction package and at least one independent rerun. Low-resource deployment measurements remain a separate release requirement for the SME feasibility claim.
 # 9. Conclusion
@@ -33,14 +33,14 @@ TMPA is an **SME-first, minimal-infrastructure textual-message multi-agent async
 
 The architecture arose through **practice → method → theory**: XiaoDian AI exposed the multi-role coordination problem, original TMPA identified the textual asynchronous method, FCoP extracted and matured its reusable file-coordination and review subset, CodeFlowMu supplied downstream application feedback, and this paper formalized the resulting objects, invariants, assurance boundaries, and conformance criteria. The early pipeline establishes origin, not retroactive Core conformance.
 
-A0.5 answers RQ1 and RQ2 at the architectural level and provides a pinned, author-run baseline for RQ3. Under the I0.4/S0.4 re-adjudication, **one product criterion passes, nine remain partial, and four were not run at product-reader level**. No executed product criterion failed, but that statement is limited to the executed paths and must not be read as zero-failure full conformance. Selected FCoP suites recorded 1,137 passed, 2 skipped, and 0 failed; the pinned CodeFlowMu source was unavailable for a fresh run. The separate S0.4 Reference Reader passes all 14 synthetic fixtures, but this does not substitute for product execution or independent validation.
+A0.5 answers RQ1 and RQ2 at the architectural level and provides a pinned, author-run baseline for RQ3. Under the I0.6/S0.5 evaluation, **one product criterion passes, eight remain partial, three were not run, and two fail**. FCoP v3.2.5 records 1,222 passed, 3 failed, and 2 skipped tests; the isolated CodeFlowMu snapshot records 1,420 passed, 1 failed, and 1 skipped Runtime tests plus 770/770 Shell tests. The separate S0.5 Reference Reader passes all 14 synthetic fixtures, but this does not substitute for product execution, clean public reproducibility, or independent validation.
 
 The decisive remaining question is RQ3: whether an organization can sustain the responsibility, review, recovery, and evidence benefits of TMPA in an ordinary project environment at acceptable resource and discipline cost. That claim still requires product projection adapters, a retrievable CodeFlowMu reproduction package, low-resource deployment and recovery measurements, baseline comparisons, representative use, and independent reproduction. TMPA also does not by itself establish authenticated identity, strong isolation, protected storage, Byzantine resilience, factual truth of participant claims, or ecosystem adoption.
 
 ---
 # Artifact Availability
 
-The author-run S0.4 conformance corpus is identified as `tmpa-s0.4-fcop-codeflowmu-20260803` and is public at [`research/conformance/tmpa-core-s0.4`](https://github.com/joinwell52-AI/joinwell52/tree/main/research/conformance/tmpa-core-s0.4). It contains the Reference Reader, executable profile, criteria fixtures, product assertions, machine-readable verdicts, logs, external-run records, and SHA-256 manifest. It must still be cited as author-produced evidence rather than independent validation.
+The current author-run S0.5 evidence package is identified as `tmpa-i0.6-local-evidence-20260806-v2` and is published with [Implementation Case I0.6](/en/publications/implementation-case-i0.6). Reviewable metadata is stored at [`research/conformance/tmpa-core-s0.5/external-runs/20260806-local-evidence-v2`](https://github.com/joinwell52-AI/joinwell52/tree/main/research/conformance/tmpa-core-s0.5/external-runs/20260806-local-evidence-v2). The S0.4 corpus remains an immutable historical baseline. Both must be cited as author-produced evidence rather than independent validation.
 # Data Availability
 
 The paper does not publish production business data. The worked NL2SQL material is an illustrative governance reconstruction rather than a verbatim production export. Conformance fixtures and selected implementation evidence are included in the author-produced corpus; any future public release must preserve redaction, version, provenance, and checksum information.
@@ -103,7 +103,7 @@ The paper author is also the originator and principal developer of TMPA, FCoP, a
 
 [27] Richard Kang and Yudho Diponegoro. “Governance Gaps in Agent Interoperability Protocols: What MCP, A2A, and ACP Cannot Express.” arXiv:2606.31498, 2026. `https://arxiv.org/abs/2606.31498`. Accessed 2026-07-30.
 
-[28] TMPA Project. “TMPA Core S0.4 C01–C14 Conformance Corpus.” Corpus ID `tmpa-s0.4-fcop-codeflowmu-20260803`, executed 3 August 2026. `research/conformance/tmpa-core-s0.4/`; author-produced Reference Reader, fixtures, product assertions, results, logs, external-run records, and SHA-256 manifest. Independent rerun remains required.
+[28] TMPA Project. “I0.6 Local Engineering Evidence V2.” Package `tmpa-i0.6-local-evidence-20260806-v2`, captured 7 August 2026. `research/conformance/tmpa-core-s0.5/external-runs/20260806-local-evidence-v2/`; author-produced Reference Reader, FCoP, CodeFlowMu, and WP-13 results. Independent rerun remains required.
 
 [29] Zexun Wang. “Proof-Carrying Agent Actions: Model-Agnostic Runtime Governance for Heterogeneous Agent Systems.” arXiv:2606.04104, 2026. `https://arxiv.org/abs/2606.04104`. Accessed 2026-07-31.
 
