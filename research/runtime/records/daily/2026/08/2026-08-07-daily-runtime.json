@@ -8,14 +8,14 @@
   "date": "2026-08-07",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Waiting",
+  "status": "Running",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
     "production": "Completed",
-    "publication": "Waiting"
+    "publication": "Running"
   },
   "results": {
     "discovery": {
@@ -804,6 +804,13 @@
       "event": "GitHub Commit Verified",
       "status": "Completed",
       "detail": "Fetched and verified durable Production result commit 8199a98039baf5240302fced0f73b7182b78a34a; the candidate batch, six bilingual article files, three source-labeled visuals, Production runtime-shift-result/v2 record and regenerated Markdown ledger are present and synchronized, with exactly one Production start event and Publication still Waiting."
+    },
+    {
+      "time": "2026-08-07T20:05:22+08:00",
+      "task": "publication",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Scheduler fallback: Research Runtime Publication opened because the durable control-plane Running state was absent; release work may begin only after this synchronized JSON and Markdown state is committed and verified."
     }
   ],
   "metrics": [
@@ -883,7 +890,7 @@
       "path": "research/runtime/2026/08/2026-08-07-runtime.md"
     }
   ],
-  "githubCommit": "8199a98039baf5240302fced0f73b7182b78a34a",
-  "commitVerify": "Completed",
-  "updatedAt": "2026-08-07T15:22:34+08:00"
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-08-07T20:05:22+08:00"
 }
