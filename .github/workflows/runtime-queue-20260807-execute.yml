@@ -1,0 +1,466 @@
+name: Runtime Queue 2026-08-07 Execute
+
+on:
+  push:
+    branches:
+      - runtime-queue-20260807-run
+    paths:
+      - '.github/workflows/runtime-queue-20260807-execute.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: runtime-queue-20260807
+  cancel-in-progress: false
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Configure git
+        run: |
+          git config user.name 'joinwell52 Research Runtime'
+          git config user.email 'actions@users.noreply.github.com'
+
+      - name: Verify control plane and persist fallback if missing
+        id: start
+        shell: bash
+        run: |
+          set -euo pipefail
+          DAILY='research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json'
+          LEDGER='research/runtime/2026/08/2026-08-07-runtime.md'
+          export DAILY LEDGER
+          START_TIME="$(TZ=Asia/Shanghai date --iso-8601=seconds)"
+          export START_TIME
+
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+
+          p = Path(os.environ['DAILY'])
+          d = json.loads(p.read_text())
+          date = '2026-08-07'
+          starts = [e for e in d.get('timeline', [])
+                    if e.get('task') == 'queue'
+                    and e.get('event') == 'Execution Slot Opened'
+                    and e.get('status') == 'Running'
+                    and str(e.get('time','')).startswith(date)]
+          if len(starts) > 1:
+              raise SystemExit(f'duplicate Queue start events already exist: {len(starts)}')
+          state_ok = d.get('status') == 'Running' and d.get('taskStatus',{}).get('queue') == 'Running' and len(starts) == 1
+          Path('/tmp/start_state_present').write_text('yes' if state_ok else 'no')
+          if state_ok:
+              print('Durable Queue Running state already present; no fallback mutation required.')
+              raise SystemExit(0)
+
+          d['status'] = 'Running'
+          d.setdefault('taskStatus', {})['queue'] = 'Running'
+          if len(starts) == 0:
+              d.setdefault('timeline', []).append({
+                  'time': os.environ['START_TIME'],
+                  'task': 'queue',
+                  'event': 'Execution Slot Opened',
+                  'status': 'Running',
+                  'detail': 'Scheduler fallback: Research Runtime Queue opened because the durable control-plane start state was absent; Skill 02 triage may begin only after this synchronized JSON and Markdown state is committed and verified.'
+              })
+          d['commitVerify'] = 'Pending'
+          d['updatedAt'] = os.environ['START_TIME']
+          p.write_text(json.dumps(d, ensure_ascii=False, indent=2) + '\n')
+          PY
+
+          if [[ "$(cat /tmp/start_state_present)" == "no" ]]; then
+            node scripts/runtime-markdown.mjs render --date 2026-08-07
+            node scripts/runtime-markdown.mjs validate --date 2026-08-07
+            git diff --name-only | sort > /tmp/start_files
+            printf '%s\n%s\n' "$DAILY" "$LEDGER" | sort > /tmp/start_expected
+            diff -u /tmp/start_expected /tmp/start_files
+            git add "$DAILY" "$LEDGER"
+            git commit -m 'runtime(queue): persist 2026-08-07 fallback Running state'
+            git push origin HEAD:main
+            FALLBACK='yes'
+          else
+            FALLBACK='no'
+          fi
+
+          git fetch origin main
+          git reset --hard origin/main
+          START_SHA="$(git rev-parse HEAD)"
+          export START_SHA
+          echo "START_SHA=$START_SHA" >> "$GITHUB_ENV"
+          echo "FALLBACK=$FALLBACK" >> "$GITHUB_ENV"
+
+          git show "$START_SHA:$DAILY" > /tmp/remote-daily.json
+          git show "$START_SHA:$LEDGER" > /tmp/remote-ledger.md
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          d = json.loads(Path('/tmp/remote-daily.json').read_text())
+          starts = [e for e in d.get('timeline', [])
+                    if e.get('task') == 'queue'
+                    and e.get('event') == 'Execution Slot Opened'
+                    and e.get('status') == 'Running'
+                    and str(e.get('time','')).startswith('2026-08-07')]
+          assert d.get('status') == 'Running', d.get('status')
+          assert d.get('taskStatus',{}).get('queue') == 'Running', d.get('taskStatus')
+          assert len(starts) == 1, len(starts)
+          md = Path('/tmp/remote-ledger.md').read_text()
+          assert 'Research Runtime Queue | daily | 工作中 / Running' in md
+          assert 'Scheduler fallback: Research Runtime Queue opened' in md or os.environ.get('FALLBACK') == 'no'
+          print('Verified durable Queue Running control-plane state and synchronized ledger at', os.environ['START_SHA'])
+          PY
+          node scripts/runtime-markdown.mjs validate --date 2026-08-07
+
+      - name: Execute Skill 02 only and persist Queue result
+        shell: bash
+        run: |
+          set -euo pipefail
+          DAILY='research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json'
+          LEDGER='research/runtime/2026/08/2026-08-07-runtime.md'
+          INTEL='research/intelligence/runs/2026/08/2026-08-07-intelligence.json'
+          PLAN='research/runtime/plans/2026/08/2026-08-07-plan.json'
+          export DAILY LEDGER INTEL PLAN START_SHA FALLBACK
+          RESULT_TIME="$(TZ=Asia/Shanghai date --iso-8601=seconds)"
+          export RESULT_TIME
+
+          INTEL_BLOB_BEFORE="$(git rev-parse "HEAD:$INTEL")"
+          echo "INTEL_BLOB_BEFORE=$INTEL_BLOB_BEFORE" >> "$GITHUB_ENV"
+
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+
+          daily_path = Path(os.environ['DAILY'])
+          intel_path = Path(os.environ['INTEL'])
+          plan_path = Path(os.environ['PLAN'])
+          d = json.loads(daily_path.read_text())
+          intel = json.loads(intel_path.read_text())
+
+          # Input gate: only proceed if all three formal Discovery pipelines are complete.
+          expected = {'ai-platform', 'github-engineering', 'published-research'}
+          by_id = {p.get('id'): p for p in intel.get('pipelines', [])}
+          missing = []
+          for pid in expected:
+              p = by_id.get(pid)
+              if not p:
+                  missing.append(f'{pid}: pipeline record missing')
+              elif p.get('status') != 'Completed':
+                  missing.append(f'{pid}: status={p.get("status")}')
+              elif p.get('coveragePercent') != 100:
+                  missing.append(f'{pid}: coveragePercent={p.get("coveragePercent")}')
+          if missing:
+              result = {
+                  'schema': 'runtime-shift-result/v2',
+                  'task': 'queue',
+                  'status': 'Blocked',
+                  'input': 'The same-day Signal Pool and the three formal Discovery pipeline records.',
+                  'input_zh': '当日 Signal Pool 与三项正式 Discovery Pipeline 记录。',
+                  'workResult': 'Skill 02 did not run because Discovery input-gate verification failed: ' + '; '.join(missing),
+                  'workResult_zh': '因 Discovery 输入门禁核验失败，Skill 02 未执行：' + '; '.join(missing),
+                  'output': 'Blocked; no research plan was invented.',
+                  'output_zh': '已阻塞；未虚构今日研究计划。',
+                  'next': 'Complete the exact missing Discovery input before rerunning Queue triage.',
+                  'next_zh': '先补齐明确缺失的 Discovery 输入，再重新执行 Queue 筛选。',
+                  'metrics': [{'label':'Missing Discovery inputs','label_zh':'缺失的 Discovery 输入','value':str(len(missing))}],
+                  'evidence': [
+                      {'label':'2026-08-07 Signal Pool','label_zh':'2026-08-07 信号池','source':os.environ['INTEL']},
+                      {'label':'Skill 02 Three-Column Research Triage','label_zh':'Skill 02 三栏研究筛选','source':'research/skills/02-research-triage.md'}
+                  ],
+                  'artifacts': [
+                      {'label':'Daily Runtime Record','label_zh':'每日运行机器记录','path':os.environ['DAILY']},
+                      {'label':'Human-readable Runtime ledger','label_zh':'人类可读运行账本','path':os.environ['LEDGER']}
+                  ]
+              }
+              d.setdefault('results', {})['queue'] = result
+              d['status'] = 'Blocked'
+              d.setdefault('taskStatus', {})['queue'] = 'Blocked'
+              d.setdefault('timeline', []).append({
+                  'time': os.environ['RESULT_TIME'], 'task':'queue', 'event':'Queue Blocked', 'status':'Blocked',
+                  'detail':'Discovery input gate failed: ' + '; '.join(missing)
+              })
+              d['metrics'] = result['metrics']; d['evidence'] = result['evidence']; d['artifacts'] = result['artifacts']
+              d['githubCommit'] = 'pending'; d['commitVerify'] = 'Waiting'; d['updatedAt'] = os.environ['RESULT_TIME']
+              daily_path.write_text(json.dumps(d, ensure_ascii=False, indent=2) + '\n')
+              Path('/tmp/queue_blocked').write_text('yes')
+              raise SystemExit(0)
+
+          signals = {s['id']: s for s in intel.get('signals', [])}
+          chosen_ids = ['SIG-20260807-R-002', 'SIG-20260807-R-003', 'SIG-20260807-G-003']
+          absent = [sid for sid in chosen_ids if sid not in signals]
+          if absent:
+              raise SystemExit('required selected signal missing: ' + ', '.join(absent))
+
+          selections = [
+              {
+                  'selectionStatus':'Selected', 'id':'digital-employee', 'label':'Digital Employee', 'label_zh':'数字员工',
+                  'itemId':'Q-20260807-01', 'signalId':'SIG-20260807-R-002', 'priority':'P0',
+                  'title':'Role-owned durable runtime with verification-gated Digital Employee self-evolution',
+                  'title_zh':'具有角色所有权与验证门禁自演化的持久数字员工运行时',
+                  'lifecycle':'Selected', 'pipelineOrigin':'published-research',
+                  'source':'arXiv — Argus (arXiv:2608.05144)', 'source_zh':'arXiv — Argus（arXiv:2608.05144）',
+                  'sourceUrl':signals['SIG-20260807-R-002']['sourceUrl'],
+                  'evidenceLevels':[signals['SIG-20260807-R-002']['evidenceLevel']],
+                  'secondaryColumns':['open-source-engineering'],
+                  'researchQuestion':'How should a persistent Digital Employee runtime separate durable user intent from bounded operational missions, assign role-owned review, gate memory/skill/routing evolution on verification, and escalate when verification cannot close?',
+                  'researchQuestion_zh':'持久数字员工运行时应如何分离稳定用户意图与有界操作任务，落实角色所有的审查责任，以验证门禁控制 Memory、Skill 与路由演化，并在无法闭环验证时升级给操作员？',
+                  'reason':'Argus is the strongest bounded Digital Employee object in the pool because it directly combines durable state, explicit roles, bounded missions, verification-gated evolution and operator escalation in one primary research artifact.',
+                  'reason_zh':'Argus 是信号池中边界最清晰的数字员工对象：单一主要研究成果同时覆盖持久状态、明确角色、有界 Mission、验证门禁自演化与操作员升级。',
+                  'next':'Execute Skill 03 Deep Reading on Argus role ownership, durable-state model, mission boundaries, verification gates, operator escalation points, evaluation setup and stated limitations.',
+                  'next_zh':'执行 Skill 03 深度阅读，核查 Argus 的角色所有权、持久状态模型、Mission 边界、验证门禁、操作员升级点、评测设置及作者声明的限制。',
+                  'proposedCategory':'Digital Employee Runtime Governance and Self-Evolution', 'nextSkill':'03 Deep Reading',
+                  'scores':{'columnRelevance':5,'directionRelevance':5,'tmpaRelevance':5,'digitalEmployeeRelevance':5,'codeFlowMuRelevance':5,'engineeringValue':4,'novelInformation':5,'sourceQuality':4,'crossSourceSupport':3,'boundedQuestion':5},
+                  'totalScore':46
+              },
+              {
+                  'selectionStatus':'Selected', 'id':'industry-architecture', 'label':'Industry Architecture', 'label_zh':'行业架构',
+                  'itemId':'Q-20260807-02', 'signalId':'SIG-20260807-R-003', 'priority':'P0',
+                  'title':'Role-aware CPU-GPU scheduling architecture for production agentic workflows',
+                  'title_zh':'面向生产级 Agentic Workflow 的角色感知 CPU-GPU 调度架构',
+                  'lifecycle':'Selected', 'pipelineOrigin':'published-research',
+                  'source':'arXiv — Microsoft Azure production study (arXiv:2608.04458)', 'source_zh':'arXiv — Microsoft Azure 生产研究（arXiv:2608.04458）',
+                  'sourceUrl':signals['SIG-20260807-R-003']['sourceUrl'],
+                  'evidenceLevels':[signals['SIG-20260807-R-003']['evidenceLevel']],
+                  'secondaryColumns':['open-source-engineering'],
+                  'researchQuestion':'What infrastructure architecture is required when production agentic workflows fragment orchestration across CPU and GPU work, exhibit bursty demand, and require role-aware resource scheduling rather than request-level model serving alone?',
+                  'researchQuestion_zh':'当生产级 Agentic Workflow 在 CPU 与 GPU 之间形成碎片化编排、呈现突发资源需求，并要求角色感知调度而非仅按请求提供模型服务时，需要怎样的基础设施架构？',
+                  'reason':'This is the strongest Industry Architecture object because it uses Microsoft Azure production traces plus controlled framework experiments to expose a bounded resource-orchestration problem at infrastructure scale, not a single product feature.',
+                  'reason_zh':'这是最强的行业架构对象：研究结合 Microsoft Azure 生产 Trace 与受控框架实验，把问题限定为基础设施尺度的资源编排，而不是单一产品功能。',
+                  'next':'Execute Skill 03 Deep Reading on the production traces, CPU/GPU fragmentation, burst characteristics, role-sensitive demand, scheduling implications, experimental controls and transfer limits.',
+                  'next_zh':'执行 Skill 03 深度阅读，核查生产 Trace、CPU/GPU 碎片化、突发特征、角色敏感需求、调度影响、实验控制与外推边界。',
+                  'proposedCategory':'Agentic Infrastructure and Role-Aware Resource Architecture', 'nextSkill':'03 Deep Reading',
+                  'scores':{'columnRelevance':5,'directionRelevance':5,'tmpaRelevance':3,'digitalEmployeeRelevance':4,'codeFlowMuRelevance':4,'engineeringValue':5,'novelInformation':5,'sourceQuality':4,'crossSourceSupport':3,'boundedQuestion':5},
+                  'totalScore':43
+              },
+              {
+                  'selectionStatus':'Selected', 'id':'open-source-engineering', 'label':'Open-source Engineering', 'label_zh':'开源工程',
+                  'itemId':'Q-20260807-03', 'signalId':'SIG-20260807-G-003', 'priority':'P0',
+                  'title':'Report-and-materialize lifecycle for deferred agent environment provisioning',
+                  'title_zh':'延迟 Agent 环境 Provisioning 的报告—实体化生命周期',
+                  'lifecycle':'Selected', 'pipelineOrigin':'github-engineering',
+                  'source':'openai/codex commit f8ac8fa6c6ac99dd81f02bf1fd947e76c287b219', 'source_zh':'openai/codex 提交 f8ac8fa6c6ac99dd81f02bf1fd947e76c287b219',
+                  'sourceUrl':signals['SIG-20260807-G-003']['sourceUrl'],
+                  'evidenceLevels':[signals['SIG-20260807-G-003']['evidenceLevel']],
+                  'secondaryColumns':['digital-employee','industry-architecture'],
+                  'researchQuestion':'How should an agent runtime represent deferred environment provisioning as status reports plus explicit materialization so invalid reports, duplicate materialization and conflicts are bounded by one testable lifecycle?',
+                  'researchQuestion_zh':'Agent 运行时应如何把延迟环境 Provisioning 表示为状态报告加显式实体化，使无效报告、重复实体化与冲突都被约束在一个可测试生命周期中？',
+                  'reason':'This maintainer change exposes a concrete, reproducible lifecycle simplification with explicit conflict and duplicate tests. It directly informs agent-runtime environment state machines, recovery boundaries and observable provisioning semantics.',
+                  'reason_zh':'该维护者变更给出具体可复现的生命周期收敛方案，并明确覆盖冲突与重复实体化测试，可直接支撑 Agent 运行时环境状态机、恢复边界与可观测 Provisioning 语义。',
+                  'next':'Execute Skill 03 Deep Reading on the EnvironmentManager API change, provisioning state transitions, report validation, pending-environment materialization, conflict handling, tests and compatibility boundary.',
+                  'next_zh':'执行 Skill 03 深度阅读，核查 EnvironmentManager API 变化、Provisioning 状态迁移、报告校验、待定环境实体化、冲突处理、测试与兼容边界。',
+                  'proposedCategory':'Agent Runtime Environment Provisioning Lifecycle', 'nextSkill':'03 Deep Reading',
+                  'scores':{'columnRelevance':5,'directionRelevance':5,'tmpaRelevance':5,'digitalEmployeeRelevance':4,'codeFlowMuRelevance':5,'engineeringValue':5,'novelInformation':5,'sourceQuality':5,'crossSourceSupport':4,'boundedQuestion':5},
+                  'totalScore':48
+              }
+          ]
+
+          plan = {
+              'schema':'runtime-column-plan/v1', 'date':'2026-08-07', 'timezone':'Asia/Shanghai', 'status':'Completed',
+              'sourceTask':'Research Runtime Queue', 'sourceRecord':os.environ['DAILY'],
+              'updatedAt':os.environ['RESULT_TIME'], 'githubCommit':'', 'columns':selections
+          }
+          plan_path.parent.mkdir(parents=True, exist_ok=True)
+          plan_path.write_text(json.dumps(plan, ensure_ascii=False, indent=2) + '\n')
+
+          result = {
+              'schema':'runtime-shift-result/v2', 'task':'queue', 'status':'Completed',
+              'input':f"The durably verified Scheduler-fallback Queue start state in commit {os.environ['START_SHA']} and the completed 2026-08-07 Signal Pool containing 15 deduplicated signals: 3 AI-platform, 8 GitHub-engineering and 4 published-research signals.",
+              'input_zh':f"提交 {os.environ['START_SHA']} 中已完成持久化核验的 Scheduler 回退 Queue 启动状态，以及已完成的 2026-08-07 Signal Pool，共 15 个去重信号：3 个 AI 平台、8 个 GitHub 工程及 4 个论文研究信号。",
+              'workResult':'Executed Skill 02 only after durable Queue Running state verification. Triaged all 15 signals, retained 12 non-selected signals as candidates, rejected 0, and selected exactly one bounded primary object for each of the three columns. No Deep Reading, Analysis, writing or publication was performed.',
+              'workResult_zh':'仅在持久化 Queue Running 状态完成核验后执行 Skill 02。已筛选全部 15 个信号，将 12 个未选信号保留为候选、拒绝 0 个，并为三个栏目各选出一个边界明确的主要对象。未开展 Deep Reading、Analysis、写作或发布。',
+              'output':'Today\'s Research Plan with three Selected decisions: a role-owned verification-gated durable runtime for Digital Employees; role-aware CPU-GPU scheduling architecture for production agentic workflows; and a report-and-materialize lifecycle for deferred agent environment provisioning.',
+              'output_zh':'已形成今日研究计划，三个栏目均为 Selected：具有角色所有权与验证门禁的持久数字员工运行时、生产级 Agentic Workflow 的角色感知 CPU-GPU 调度架构，以及延迟 Agent 环境 Provisioning 的报告—实体化生命周期。',
+              'next':'Research Runtime Reading at 11:00 may consume only Q-20260807-01, Q-20260807-02 and Q-20260807-03 and must execute Skill 03 Deep Reading without analysis or article drafting.',
+              'next_zh':'11:00 Research Runtime Reading 只能消费 Q-20260807-01、Q-20260807-02 与 Q-20260807-03，并仅执行 Skill 03 深度阅读，不得分析或撰写文章。',
+              'metrics':[
+                  {'label':'Signal Pool','label_zh':'信号池','value':'15'},
+                  {'label':'Column decisions','label_zh':'栏目决定','value':'3 / 3'},
+                  {'label':'Selected objects','label_zh':'已选对象','value':'3'},
+                  {'label':'Candidate signals','label_zh':'候选信号','value':'12'},
+                  {'label':'Rejected signals','label_zh':'拒绝信号','value':'0'},
+                  {'label':'No Selection decisions','label_zh':'未选题决定','value':'0'}
+              ],
+              'evidence':[
+                  {'label':'Scheduler V3.0','label_zh':'Scheduler V3.0','source':'research/runtime/SCHEDULER.json'},
+                  {'label':'Verified Queue start-state commit','label_zh':'已核验的 Queue 启动状态提交','commit':os.environ['START_SHA'],'source':f"https://github.com/joinwell52-AI/joinwell52/commit/{os.environ['START_SHA']}"},
+                  {'label':'2026-08-07 Signal Pool','label_zh':'2026-08-07 信号池','source':os.environ['INTEL']},
+                  {'label':'Skill 02 Three-Column Research Triage','label_zh':'Skill 02 三栏研究筛选','source':'research/skills/02-research-triage.md'},
+                  {'label':'Runtime Column Plan Contract','label_zh':'Runtime 栏目计划契约','source':'research/runtime/COLUMN-PLAN-SCHEMA.md'}
+              ],
+              'artifacts':[
+                  {'label':"Today's Research Plan",'label_zh':'今日研究计划','path':os.environ['PLAN']},
+                  {'label':'Daily Runtime Record','label_zh':'每日运行机器记录','path':os.environ['DAILY']},
+                  {'label':'Human-readable Runtime ledger','label_zh':'人类可读运行账本','path':os.environ['LEDGER']}
+              ]
+          }
+
+          d.setdefault('results', {})['queue'] = result
+          d['status'] = 'Waiting'
+          d.setdefault('taskStatus', {})['queue'] = 'Completed'
+          completed = [e for e in d.get('timeline', []) if e.get('task')=='queue' and e.get('event')=='Queue Completed']
+          if not completed:
+              d.setdefault('timeline', []).append({
+                  'time':os.environ['RESULT_TIME'], 'task':'queue', 'event':'Queue Completed', 'status':'Completed',
+                  'detail':f"Skill 02 triaged all 15 signals after verified scheduler-fallback start commit {os.environ['START_SHA']}; exactly one object was selected for each column and no Deep Reading, analysis, writing or publication was performed."
+              })
+          elif len(completed) > 1:
+              raise SystemExit(f'duplicate Queue Completed events: {len(completed)}')
+          d['metrics'] = result['metrics']; d['evidence'] = result['evidence']; d['artifacts'] = result['artifacts']
+          d['githubCommit'] = 'pending'; d['commitVerify'] = 'Waiting'; d['updatedAt'] = os.environ['RESULT_TIME']
+          daily_path.write_text(json.dumps(d, ensure_ascii=False, indent=2) + '\n')
+          Path('/tmp/queue_blocked').write_text('no')
+          PY
+
+          node scripts/runtime-markdown.mjs render --date 2026-08-07
+          node scripts/runtime-markdown.mjs validate --date 2026-08-07
+
+          if [[ "$(cat /tmp/queue_blocked)" == "yes" ]]; then
+            git diff --name-only | sort > /tmp/result_files
+            printf '%s\n%s\n' "$DAILY" "$LEDGER" | sort > /tmp/result_expected
+          else
+            git diff --name-only | sort > /tmp/result_files
+            printf '%s\n%s\n%s\n' "$DAILY" "$LEDGER" "$PLAN" | sort > /tmp/result_expected
+          fi
+          diff -u /tmp/result_expected /tmp/result_files
+          test "$(git rev-parse "HEAD:$INTEL")" = "$INTEL_BLOB_BEFORE"
+
+          git add "$DAILY" "$LEDGER"
+          [[ -f "$PLAN" ]] && git add "$PLAN"
+          if [[ "$(cat /tmp/queue_blocked)" == "yes" ]]; then
+            git commit -m 'runtime(queue): block 2026-08-07 on incomplete Discovery input'
+          else
+            git commit -m 'runtime(queue): complete 2026-08-07 three-column triage'
+          fi
+          RESULT_SHA="$(git rev-parse HEAD)"
+          echo "RESULT_SHA=$RESULT_SHA" >> "$GITHUB_ENV"
+          git push origin HEAD:main
+
+      - name: Fetch and verify durable Queue result
+        shell: bash
+        run: |
+          set -euo pipefail
+          DAILY='research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json'
+          LEDGER='research/runtime/2026/08/2026-08-07-runtime.md'
+          INTEL='research/intelligence/runs/2026/08/2026-08-07-intelligence.json'
+          PLAN='research/runtime/plans/2026/08/2026-08-07-plan.json'
+          export DAILY LEDGER INTEL PLAN RESULT_SHA START_SHA
+          git fetch origin main
+          REMOTE_SHA="$(git rev-parse origin/main)"
+          test "$REMOTE_SHA" = "$RESULT_SHA"
+          git reset --hard "$RESULT_SHA"
+          node scripts/runtime-markdown.mjs validate --date 2026-08-07
+          test "$(git rev-parse "$RESULT_SHA:$INTEL")" = "$INTEL_BLOB_BEFORE"
+
+          git show "$RESULT_SHA:$DAILY" > /tmp/result-daily.json
+          git show "$RESULT_SHA:$LEDGER" > /tmp/result-ledger.md
+          if git cat-file -e "$RESULT_SHA:$PLAN" 2>/dev/null; then git show "$RESULT_SHA:$PLAN" > /tmp/result-plan.json; fi
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          d = json.loads(Path('/tmp/result-daily.json').read_text())
+          starts = [e for e in d.get('timeline', []) if e.get('task')=='queue' and e.get('event')=='Execution Slot Opened' and e.get('status')=='Running' and str(e.get('time','')).startswith('2026-08-07')]
+          assert len(starts) == 1, len(starts)
+          q = d.get('results',{}).get('queue')
+          assert q and q.get('schema') == 'runtime-shift-result/v2'
+          if q.get('status') == 'Completed':
+              assert d.get('taskStatus',{}).get('queue') == 'Completed'
+              plan = json.loads(Path('/tmp/result-plan.json').read_text())
+              assert plan.get('status') == 'Completed'
+              cols = plan.get('columns', [])
+              assert [c.get('id') for c in cols] == ['digital-employee','industry-architecture','open-source-engineering']
+              assert all(c.get('selectionStatus') in ('Selected','No Selection') for c in cols)
+              assert len(cols) == 3
+              assert [c.get('signalId') for c in cols] == ['SIG-20260807-R-002','SIG-20260807-R-003','SIG-20260807-G-003']
+              md = Path('/tmp/result-ledger.md').read_text()
+              assert 'Skill 02' in md and 'Today' in q.get('output','')
+          else:
+              assert q.get('status') == 'Blocked'
+          print('Fetched and verified durable Queue result commit', os.environ['RESULT_SHA'])
+          PY
+
+      - name: Record verification without changing substantive triage
+        shell: bash
+        run: |
+          set -euo pipefail
+          DAILY='research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json'
+          LEDGER='research/runtime/2026/08/2026-08-07-runtime.md'
+          INTEL='research/intelligence/runs/2026/08/2026-08-07-intelligence.json'
+          PLAN='research/runtime/plans/2026/08/2026-08-07-plan.json'
+          export DAILY LEDGER INTEL PLAN RESULT_SHA
+          VERIFY_TIME="$(TZ=Asia/Shanghai date --iso-8601=seconds)"
+          export VERIFY_TIME
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          p = Path(os.environ['DAILY'])
+          d = json.loads(p.read_text())
+          d['githubCommit'] = os.environ['RESULT_SHA']
+          d['commitVerify'] = 'Completed'
+          d['updatedAt'] = os.environ['VERIFY_TIME']
+          events = [e for e in d.get('timeline', []) if e.get('task')=='queue' and e.get('event')=='GitHub Commit Verified']
+          if not events:
+              d.setdefault('timeline', []).append({
+                  'time':os.environ['VERIFY_TIME'], 'task':'queue', 'event':'GitHub Commit Verified', 'status':'Completed',
+                  'detail':f"Fetched and verified durable Queue result commit {os.environ['RESULT_SHA']}; Today's Research Plan, Queue runtime-shift-result/v2 record and regenerated Markdown ledger are present and synchronized, and the Research Intelligence run was not modified."
+              })
+          elif len(events) > 1:
+              raise SystemExit(f'duplicate Queue verification events: {len(events)}')
+          p.write_text(json.dumps(d, ensure_ascii=False, indent=2) + '\n')
+          plan = Path(os.environ['PLAN'])
+          if plan.exists():
+              x = json.loads(plan.read_text())
+              x['githubCommit'] = os.environ['RESULT_SHA']
+              x['updatedAt'] = os.environ['VERIFY_TIME']
+              plan.write_text(json.dumps(x, ensure_ascii=False, indent=2) + '\n')
+          PY
+          node scripts/runtime-markdown.mjs render --date 2026-08-07
+          node scripts/runtime-markdown.mjs validate --date 2026-08-07
+          test "$(git rev-parse "HEAD:$INTEL")" = "$INTEL_BLOB_BEFORE"
+          git diff --name-only | sort > /tmp/verify_files
+          if [[ -f "$PLAN" ]]; then
+            printf '%s\n%s\n%s\n' "$DAILY" "$LEDGER" "$PLAN" | sort > /tmp/verify_expected
+          else
+            printf '%s\n%s\n' "$DAILY" "$LEDGER" | sort > /tmp/verify_expected
+          fi
+          diff -u /tmp/verify_expected /tmp/verify_files
+          git add "$DAILY" "$LEDGER"
+          [[ -f "$PLAN" ]] && git add "$PLAN"
+          git commit -m 'runtime(queue): verify 2026-08-07 durable artifacts'
+          VERIFY_SHA="$(git rev-parse HEAD)"
+          echo "VERIFY_SHA=$VERIFY_SHA" >> "$GITHUB_ENV"
+          git push origin HEAD:main
+
+      - name: Final remote verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          DAILY='research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json'
+          LEDGER='research/runtime/2026/08/2026-08-07-runtime.md'
+          INTEL='research/intelligence/runs/2026/08/2026-08-07-intelligence.json'
+          PLAN='research/runtime/plans/2026/08/2026-08-07-plan.json'
+          export DAILY LEDGER INTEL PLAN RESULT_SHA VERIFY_SHA
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "$VERIFY_SHA"
+          git reset --hard "$VERIFY_SHA"
+          node scripts/runtime-markdown.mjs validate --date 2026-08-07
+          test "$(git rev-parse "$VERIFY_SHA:$INTEL")" = "$INTEL_BLOB_BEFORE"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          d = json.loads(Path(os.environ['DAILY']).read_text())
+          q = d.get('results',{}).get('queue',{})
+          assert d.get('commitVerify') == 'Completed'
+          assert d.get('githubCommit') == os.environ['RESULT_SHA']
+          assert q.get('status') in ('Completed','Blocked')
+          starts = [e for e in d.get('timeline', []) if e.get('task')=='queue' and e.get('event')=='Execution Slot Opened' and e.get('status')=='Running' and str(e.get('time','')).startswith('2026-08-07')]
+          assert len(starts) == 1
+          if q.get('status') == 'Completed':
+              plan = json.loads(Path(os.environ['PLAN']).read_text())
+              assert plan.get('githubCommit') == os.environ['RESULT_SHA']
+              assert len(plan.get('columns', [])) == 3
+          print('Final durable verification complete:', os.environ['VERIFY_SHA'])
+          PY
