@@ -327,6 +327,55 @@ function validatePlanLink(runs, registry) {
   }
 }
 
+function loadCompletedPlans(registry) {
+  return walk(PLAN_ROOT)
+    .filter((path) => /\d{4}-\d{2}-\d{2}-plan\.json$/.test(path))
+    .map((path) => readJson(path))
+    .filter((plan) => plan.date >= registry.effectiveDate && plan.status === 'Completed')
+}
+
+function projectQueuePlan(run, plan) {
+  if (!plan) return run
+  const baseColumns = new Map((run.columns || []).map((column) => [column.id, column]))
+  const projectedColumns = (plan.columns || []).map((column) => {
+    const base = baseColumns.get(column.id) || {
+      id: column.id,
+      label: column.label,
+      label_zh: column.label_zh,
+      signals: 0,
+      candidates: 0
+    }
+    const decision = column.selectionStatus === 'No Selection'
+      ? 'No Selection'
+      : column.selectionStatus === 'Waiting'
+        ? 'Waiting'
+        : 'Selected'
+    return {
+      ...base,
+      id: column.id,
+      label: column.label || base.label,
+      label_zh: column.label_zh || base.label_zh,
+      decision,
+      selectedItemId: decision === 'Selected' ? (column.itemId || '') : '',
+      selectedTitle: decision === 'Selected' ? (column.title || '') : '',
+      selectedTitle_zh: decision === 'Selected' ? (column.title_zh || '') : '',
+      reason: column.reason || base.reason || '',
+      reason_zh: column.reason_zh || base.reason_zh || ''
+    }
+  })
+  return {
+    ...run,
+    columns: projectedColumns,
+    queuePlanProjection: {
+      status: plan.status,
+      sourceTask: plan.sourceTask,
+      sourceRecord: plan.sourceRecord,
+      githubCommit: plan.githubCommit,
+      date: plan.date
+    }
+  }
+}
+
 function validate() {
   const registry = validateRegistry(readJson(REGISTRY_PATH))
   const runs = loadRuns(registry)
@@ -357,7 +406,8 @@ function currentDate(timezone) {
 function build() {
   const { registry, runs } = validate()
   const today = currentDate(registry.timezone)
-  const runByDate = Object.fromEntries(runs.map((run) => [run.date, run]))
+  const plans = Object.fromEntries(loadCompletedPlans(registry).map((plan) => [plan.date, plan]))
+  const runByDate = Object.fromEntries(runs.map((run) => [run.date, projectQueuePlan(run, plans[run.date])]))
   const payload = {
     schema: 'research-intelligence-center-data/v1',
     generatedAt: new Date().toISOString(),
@@ -376,7 +426,8 @@ function build() {
     })),
     currentRunRecorded: Boolean(runByDate[today]),
     currentRun: runByDate[today] || defaultRun(today, registry),
-    runs: runByDate
+    runs: runByDate,
+    plans
   }
   writeJson(GENERATED_PATH, payload)
   console.log(`Generated ${relativePath(GENERATED_PATH)}.`)
