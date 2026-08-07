@@ -1,0 +1,137 @@
+name: Verify Research Runtime Production 2026-08-07 Once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/runtime-production-verify-20260807-once.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: runtime-production-verify-20260807
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch and verify Production commit and durable artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --rebase origin main
+          production_commit="8199a98039baf5240302fced0f73b7182b78a34a"
+          git cat-file -e "${production_commit}^{commit}"
+
+          expected=(
+            research/runtime/2026/08/2026-08-07-runtime.md
+            research/runtime/candidates/2026/08/2026-08-07-candidates.json
+            research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json
+            staging/publication-candidates/2026-08-07-role-aware-agent-resource-plane.en.md
+            staging/publication-candidates/2026-08-07-role-aware-agent-resource-plane.svg
+            staging/publication-candidates/2026-08-07-role-aware-agent-resource-plane.zh.md
+            staging/publication-candidates/2026-08-07-stable-identity-provisioning-gate.en.md
+            staging/publication-candidates/2026-08-07-stable-identity-provisioning-gate.svg
+            staging/publication-candidates/2026-08-07-stable-identity-provisioning-gate.zh.md
+            staging/publication-candidates/2026-08-07-verification-gated-state-admission.en.md
+            staging/publication-candidates/2026-08-07-verification-gated-state-admission.svg
+            staging/publication-candidates/2026-08-07-verification-gated-state-admission.zh.md
+          )
+          mapfile -t changed < <(git diff-tree --no-commit-id --name-only -r "$production_commit" | sort)
+          mapfile -t wanted < <(printf '%s\n' "${expected[@]}" | sort)
+          if [[ "$(printf '%s\n' "${changed[@]}")" != "$(printf '%s\n' "${wanted[@]}")" ]]; then
+            echo "Unexpected Production commit file set"
+            printf 'Changed:\n%s\n' "${changed[*]}"
+            printf 'Expected:\n%s\n' "${wanted[*]}"
+            exit 1
+          fi
+          for path in "${expected[@]}"; do test -f "$path"; done
+
+          node <<'NODE'
+          const fs = require('fs')
+          const recordPath = 'research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json'
+          const batchPath = 'research/runtime/candidates/2026/08/2026-08-07-candidates.json'
+          const record = JSON.parse(fs.readFileSync(recordPath, 'utf8'))
+          const batch = JSON.parse(fs.readFileSync(batchPath, 'utf8'))
+          const starts = record.timeline.filter(e => e.task === 'production' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time).startsWith('2026-08-07'))
+          const completes = record.timeline.filter(e => e.task === 'production' && e.event === 'Production Completed' && e.status === 'Completed')
+          const verifies = record.timeline.filter(e => e.task === 'production' && e.event === 'GitHub Commit Verified')
+          if (starts.length !== 1) throw new Error(`Expected exactly one Production start, got ${starts.length}`)
+          if (completes.length !== 1) throw new Error(`Expected exactly one Production completion, got ${completes.length}`)
+          if (verifies.length !== 0) throw new Error(`Production verification event already exists: ${verifies.length}`)
+          if (record.taskStatus.production !== 'Completed' || record.results?.production?.status !== 'Completed') throw new Error('Production result is not Completed')
+          if (record.taskStatus.publication !== 'Waiting') throw new Error('Publication must remain Waiting')
+          if (!Array.isArray(batch.candidates) || batch.candidates.length !== 3 || batch.status !== 'Completed') throw new Error('Publication Candidate batch is not complete')
+          for (const candidate of batch.candidates) {
+            for (const path of [candidate.zhPath,candidate.enPath,candidate.coverPath]) if (!fs.existsSync(path)) throw new Error(`Missing ${path}`)
+            if (candidate.evidenceStatus !== 'Completed' || candidate.editingStatus !== 'Completed') throw new Error(`${candidate.itemId} not complete`)
+          }
+          const md = fs.readFileSync('research/runtime/2026/08/2026-08-07-runtime.md', 'utf8')
+          if (!md.includes('Production Completed') || !md.includes('Publication Candidates')) throw new Error('Markdown ledger does not contain durable Production result')
+          console.log('Fetched Production commit and verified all durable Production artifacts.')
+          NODE
+
+      - name: Persist Production commit verification and regenerate Markdown
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs')
+          const recordPath = 'research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json'
+          const batchPath = 'research/runtime/candidates/2026/08/2026-08-07-candidates.json'
+          const record = JSON.parse(fs.readFileSync(recordPath, 'utf8'))
+          const batch = JSON.parse(fs.readFileSync(batchPath, 'utf8'))
+          const productionCommit = '8199a98039baf5240302fced0f73b7182b78a34a'
+          const nowBase = new Intl.DateTimeFormat('sv-SE', {
+            timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit',
+            hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23'
+          }).format(new Date()).replace(' ', 'T')
+          const now = `${nowBase}+08:00`
+          const verifies = record.timeline.filter(e => e.task === 'production' && e.event === 'GitHub Commit Verified')
+          if (verifies.length !== 0) throw new Error(`Refusing duplicate verification event: ${verifies.length}`)
+          record.githubCommit = productionCommit
+          record.commitVerify = 'Completed'
+          record.updatedAt = now
+          record.timeline.push({
+            time: now,
+            task: 'production',
+            event: 'GitHub Commit Verified',
+            status: 'Completed',
+            detail: `Fetched and verified durable Production result commit ${productionCommit}; the candidate batch, six bilingual article files, three source-labeled visuals, Production runtime-shift-result/v2 record and regenerated Markdown ledger are present and synchronized, with exactly one Production start event and Publication still Waiting.`
+          })
+          batch.githubCommit = productionCommit
+          batch.updatedAt = now
+          fs.writeFileSync(recordPath, JSON.stringify(record, null, 2) + '\n')
+          fs.writeFileSync(batchPath, JSON.stringify(batch, null, 2) + '\n')
+          NODE
+          node scripts/runtime-markdown.mjs render --date 2026-08-07
+          npm run runtime:validate
+          node scripts/runtime-markdown.mjs validate --date 2026-08-07
+          git diff --check
+
+      - name: Commit verification and remove one-time workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/runtime-production-verify-20260807-once.yml
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json \
+            research/runtime/2026/08/2026-08-07-runtime.md \
+            research/runtime/candidates/2026/08/2026-08-07-candidates.json \
+            .github/workflows/runtime-production-verify-20260807-once.yml
+          git commit -m "runtime(production): verify 2026-08-07 durable artifacts"
+          git push origin HEAD:main
