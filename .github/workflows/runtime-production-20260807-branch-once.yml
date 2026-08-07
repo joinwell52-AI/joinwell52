@@ -1,0 +1,242 @@
+name: Finalize Research Runtime Production 2026-08-07 Branch Once
+
+on:
+  push:
+    branches: [runtime-production-20260807-run]
+    paths:
+      - .github/workflows/runtime-production-20260807-branch-once.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: runtime-production-20260807-branch-finalizer
+  cancel-in-progress: false
+
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Production branch
+        uses: actions/checkout@v4
+        with:
+          ref: runtime-production-20260807-run
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Synchronize and verify Production control-plane gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --rebase origin runtime-production-20260807-run
+          node <<'NODE'
+          const fs = require('fs')
+          const recordPath = 'research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json'
+          const record = JSON.parse(fs.readFileSync(recordPath, 'utf8'))
+          const opened = (record.timeline || []).filter((event) =>
+            event.task === 'production' &&
+            event.event === 'Execution Slot Opened' &&
+            event.status === 'Running' &&
+            String(event.time || '').startsWith('2026-08-07')
+          )
+          if (record.status !== 'Running') throw new Error(`Expected overall Running, got ${record.status}`)
+          if (record.taskStatus?.production !== 'Running') throw new Error(`Expected taskStatus.production=Running, got ${record.taskStatus?.production}`)
+          if (opened.length !== 1) throw new Error(`Expected exactly one current-day Production start event, got ${opened.length}`)
+          const objects = [
+            'research/analysis/Q-20260807-01-verification-gated-durable-state-admission.md',
+            'research/analysis/Q-20260807-02-role-aware-heterogeneous-agent-resource-plane.md',
+            'research/analysis/Q-20260807-03-stable-identity-provisioning-gate.md'
+          ]
+          for (const path of objects) {
+            const text = fs.readFileSync(path, 'utf8')
+            if (!text.includes('status: "ReadyForProduction"')) throw new Error(`${path} is not ReadyForProduction`)
+            if (!text.includes('production_input_authorized: true')) throw new Error(`${path} is not authorized for Production`)
+            if (!text.includes('publication_authorized: false')) throw new Error(`${path} unexpectedly authorizes Publication`)
+          }
+          console.log('Production control-plane and three Research Object gates verified.')
+          NODE
+
+      - name: Validate complete bilingual Publication Candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs')
+          const batchPath = 'research/runtime/candidates/2026/08/2026-08-07-candidates.json'
+          const batch = JSON.parse(fs.readFileSync(batchPath, 'utf8'))
+          if (batch.schema !== 'runtime-publication-candidate/v1') throw new Error('Invalid candidate batch schema')
+          if (batch.date !== '2026-08-07' || batch.status !== 'Completed') throw new Error('Candidate batch is not Completed for 2026-08-07')
+          if (!Array.isArray(batch.candidates) || batch.candidates.length !== 3) throw new Error(`Expected 3 candidates, got ${batch.candidates?.length}`)
+          const expectedColumns = new Set(['digital-employee','industry-architecture','open-source-engineering'])
+          for (const candidate of batch.candidates) {
+            if (!expectedColumns.delete(candidate.column)) throw new Error(`Duplicate or invalid candidate column ${candidate.column}`)
+            for (const path of [candidate.zhPath, candidate.enPath, candidate.coverPath]) {
+              if (!fs.existsSync(path)) throw new Error(`Missing candidate artifact ${path}`)
+            }
+            for (const path of [candidate.zhPath, candidate.enPath]) {
+              const text = fs.readFileSync(path, 'utf8')
+              for (const token of [
+                'schema: "publication-candidate-article/v1"',
+                'lifecycle: "Publication Candidate"',
+                'evidence_status: "Completed"',
+                'citation_status: "Completed"',
+                'editing_status: "Completed"',
+                'publication_authorized: false',
+                '## Evidence',
+              ]) {
+                if (token === '## Evidence') continue
+                if (!text.includes(token)) throw new Error(`${path} missing ${token}`)
+              }
+              const sectionTokens = path.endsWith('.zh.md')
+                ? ['## 核心判断','## 来源','## 观察','## 比较','## 讨论','## 工程影响','## 边界与反证','## 未来工作','## 可视化说明','## 证据与引用']
+                : ['## Central judgment','## Source','## Observation','## Comparison','## Discussion','## Engineering impact','## Boundaries and counter-evidence','## Future work','## Visualization note','## Evidence and references']
+              for (const token of sectionTokens) if (!text.includes(token)) throw new Error(`${path} missing section ${token}`)
+            }
+            const svg = fs.readFileSync(candidate.coverPath, 'utf8')
+            if (!svg.includes('Research Center') || !svg.includes('1376') || !svg.includes('768')) throw new Error(`${candidate.coverPath} missing visualization source/canvas contract`)
+            if (candidate.evidenceStatus !== 'Completed' || candidate.editingStatus !== 'Completed') throw new Error(`Candidate ${candidate.itemId} is not fully edited/evidenced`)
+          }
+          console.log('Validated 3 bilingual candidates, 6 article files, and 3 source-labeled visuals.')
+          NODE
+
+      - name: Persist Production runtime-shift-result v2 and regenerate Markdown
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs')
+          const recordPath = 'research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json'
+          const batchPath = 'research/runtime/candidates/2026/08/2026-08-07-candidates.json'
+          const record = JSON.parse(fs.readFileSync(recordPath, 'utf8'))
+          const batch = JSON.parse(fs.readFileSync(batchPath, 'utf8'))
+          const nowBase = new Intl.DateTimeFormat('sv-SE', {
+            timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit',
+            hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23'
+          }).format(new Date()).replace(' ', 'T')
+          const now = `${nowBase}+08:00`
+          const opened = (record.timeline || []).filter((event) =>
+            event.task === 'production' && event.event === 'Execution Slot Opened' && event.status === 'Running' && String(event.time || '').startsWith('2026-08-07')
+          )
+          if (opened.length !== 1) throw new Error(`Production start-event count changed before completion: ${opened.length}`)
+          const completed = (record.timeline || []).filter((event) => event.task === 'production' && event.event === 'Production Completed')
+          if (completed.length !== 0) throw new Error(`Production Completed event already exists: ${completed.length}`)
+
+          record.status = 'Waiting'
+          record.taskStatus.production = 'Completed'
+          record.results.production = {
+            schema: 'runtime-shift-result/v2',
+            task: 'production',
+            status: 'Completed',
+            input: 'The durably verified Scheduler-fallback Production start state in commit 3970f3a82fa17bcfe2dbf8fd54228dae729883de and exactly three same-day Production-authorized Research Objects: Q-20260807-01, Q-20260807-02 and Q-20260807-03.',
+            input_zh: '提交 3970f3a82fa17bcfe2dbf8fd54228dae729883de 中已完成持久化核验的 Scheduler 回退 Production 启动状态，以及且仅有三份当日获准进入 Production 的 Research Object：Q-20260807-01、Q-20260807-02 与 Q-20260807-03。',
+            workResult: 'Executed Skill 05 Research Writing, Skill 06 Research Visualization, Skill 07 Evidence & Citation and Skill 08 Publication Editing for every eligible Research Object. Produced three complete bilingual Publication Candidates, six independently edited article files and three source-labeled evidence-bounded architecture/lifecycle visuals. Production used only Research Objects as writing input, introduced no new research from signals or Reading Results, and published nothing directly.',
+            workResult_zh: '对全部合格 Research Object 执行 Skill 05 Research Writing、Skill 06 Research Visualization、Skill 07 Evidence & Citation 与 Skill 08 Publication Editing。已生成三份完整双语 Publication Candidate、六份独立编辑文章及三张带来源标记、受证据边界约束的架构/生命周期配图。Production 仅以 Research Object 作为写作输入，未从信号或 Reading Result 开展新研究，也未直接发布任何内容。',
+            output: 'A completed 2026-08-07 Publication Candidate batch with one candidate for each research column, valid bilingual metadata and paths, explicit visualization decisions, evidenceStatus=Completed, editingStatus=Completed and publication_authorized=false.',
+            output_zh: '已形成完整的 2026-08-07 Publication Candidate 批次，三个研究栏目各一份候选，包含有效双语元数据与路径、明确可视化决定、evidenceStatus=Completed、editingStatus=Completed，并保持 publication_authorized=false。',
+            next: 'Research Runtime Publication at 20:00 may consume only research/runtime/candidates/2026/08/2026-08-07-candidates.json. It may release complete candidates but must not conduct new research, substantive rewriting or evidence repair.',
+            next_zh: '20:00 Research Runtime Publication 只能消费 research/runtime/candidates/2026/08/2026-08-07-candidates.json；可以发布完整候选，但不得开展新研究、实质性改写或证据修复。',
+            metrics: [
+              {label:'Eligible Research Objects',label_zh:'合格 Research Object',value:'3'},
+              {label:'Publication Candidates',label_zh:'出版候选',value:'3'},
+              {label:'Bilingual article files',label_zh:'双语文章文件',value:'6'},
+              {label:'Source-labeled architecture/lifecycle visuals',label_zh:'带来源标记的架构/生命周期配图',value:'3'},
+              {label:'Evidence status Completed',label_zh:'证据状态 Completed',value:'3 / 3'},
+              {label:'Citation status Completed',label_zh:'引用状态 Completed',value:'3 / 3'},
+              {label:'Editing status Completed',label_zh:'编辑状态 Completed',value:'3 / 3'},
+              {label:'Scheduler fallback start events',label_zh:'Scheduler 回退启动事件',value:'1'},
+              {label:'Direct publications',label_zh:'直接发布',value:'0'},
+              {label:'New research from signals or Reading Results',label_zh:'从信号或 Reading Result 新开展研究',value:'0'}
+            ],
+            evidence: [
+              {label:'Scheduler V3.0',label_zh:'Scheduler V3.0',source:'research/runtime/SCHEDULER.json'},
+              {label:'Verified Production fallback start commit',label_zh:'已核验的 Production 回退启动提交',commit:'3970f3a82fa17bcfe2dbf8fd54228dae729883de',source:'https://github.com/joinwell52-AI/joinwell52/commit/3970f3a82fa17bcfe2dbf8fd54228dae729883de'},
+              {label:'Skill 05 Research Writing',label_zh:'Skill 05 Research Writing',source:'research/skills/05-research-writing.md'},
+              {label:'Skill 06 Research Visualization',label_zh:'Skill 06 Research Visualization',source:'research/skills/06-research-visualization.md'},
+              {label:'Skill 07 Evidence & Citation',label_zh:'Skill 07 Evidence & Citation',source:'research/skills/07-evidence-citation.md'},
+              {label:'Skill 08 Publication Editing',label_zh:'Skill 08 Publication Editing',source:'research/skills/08-publication-editing.md'},
+              {label:'Publication Candidate Contract',label_zh:'Publication Candidate 契约',source:'research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md'},
+              {label:'Digital Employee Research Object',label_zh:'数字员工 Research Object',source:'research/analysis/Q-20260807-01-verification-gated-durable-state-admission.md'},
+              {label:'Industry Architecture Research Object',label_zh:'行业架构 Research Object',source:'research/analysis/Q-20260807-02-role-aware-heterogeneous-agent-resource-plane.md'},
+              {label:'Open-source Engineering Research Object',label_zh:'开源工程 Research Object',source:'research/analysis/Q-20260807-03-stable-identity-provisioning-gate.md'}
+            ],
+            artifacts: [
+              {label:'Publication Candidate batch',label_zh:'出版候选批次',path:'research/runtime/candidates/2026/08/2026-08-07-candidates.json'},
+              {label:'State-admission Chinese candidate',label_zh:'状态准入中文候选',path:'staging/publication-candidates/2026-08-07-verification-gated-state-admission.zh.md'},
+              {label:'State-admission English candidate',label_zh:'状态准入英文候选',path:'staging/publication-candidates/2026-08-07-verification-gated-state-admission.en.md'},
+              {label:'State-admission visual',label_zh:'状态准入配图',path:'staging/publication-candidates/2026-08-07-verification-gated-state-admission.svg'},
+              {label:'Role-aware resource-plane Chinese candidate',label_zh:'角色感知资源平面中文候选',path:'staging/publication-candidates/2026-08-07-role-aware-agent-resource-plane.zh.md'},
+              {label:'Role-aware resource-plane English candidate',label_zh:'角色感知资源平面英文候选',path:'staging/publication-candidates/2026-08-07-role-aware-agent-resource-plane.en.md'},
+              {label:'Role-aware resource-plane visual',label_zh:'角色感知资源平面配图',path:'staging/publication-candidates/2026-08-07-role-aware-agent-resource-plane.svg'},
+              {label:'Stable-identity provisioning Chinese candidate',label_zh:'稳定身份 Provisioning 中文候选',path:'staging/publication-candidates/2026-08-07-stable-identity-provisioning-gate.zh.md'},
+              {label:'Stable-identity provisioning English candidate',label_zh:'稳定身份 Provisioning 英文候选',path:'staging/publication-candidates/2026-08-07-stable-identity-provisioning-gate.en.md'},
+              {label:'Stable-identity provisioning visual',label_zh:'稳定身份 Provisioning 配图',path:'staging/publication-candidates/2026-08-07-stable-identity-provisioning-gate.svg'},
+              {label:'Daily Runtime Record',label_zh:'每日运行机器记录',path:'research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json'},
+              {label:'Human-readable Runtime ledger',label_zh:'人类可读运行账本',path:'research/runtime/2026/08/2026-08-07-runtime.md'}
+            ]
+          }
+          record.timeline.push({
+            time: now,
+            task: 'production',
+            event: 'Production Completed',
+            status: 'Completed',
+            detail: 'Skills 05-08 produced three complete bilingual Publication Candidates after verified Scheduler-fallback start commit 3970f3a82fa17bcfe2dbf8fd54228dae729883de; no direct publication or new research was performed.'
+          })
+          record.githubCommit = 'pending'
+          record.commitVerify = 'Waiting'
+          record.updatedAt = now
+          batch.updatedAt = now
+          batch.githubCommit = 'pending'
+          fs.writeFileSync(recordPath, JSON.stringify(record, null, 2) + '\n')
+          fs.writeFileSync(batchPath, JSON.stringify(batch, null, 2) + '\n')
+          console.log(`Production result persisted at ${now}`)
+          NODE
+
+          node scripts/runtime-markdown.mjs render --date 2026-08-07
+          npm run runtime:validate
+          node scripts/runtime-markdown.mjs validate --date 2026-08-07
+
+      - name: Install dependencies and run publication editing build gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run docs:build
+          git diff --check
+          git restore docs/.vitepress/generated || true
+
+      - name: Verify worktree invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs')
+          const record = JSON.parse(fs.readFileSync('research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json', 'utf8'))
+          const starts = record.timeline.filter(e => e.task === 'production' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time).startsWith('2026-08-07'))
+          const completes = record.timeline.filter(e => e.task === 'production' && e.event === 'Production Completed' && e.status === 'Completed')
+          if (starts.length !== 1) throw new Error(`Expected one Production start, got ${starts.length}`)
+          if (completes.length !== 1) throw new Error(`Expected one Production completion, got ${completes.length}`)
+          if (record.taskStatus.production !== 'Completed' || record.results?.production?.status !== 'Completed') throw new Error('Production runtime result is not Completed')
+          if (record.taskStatus.publication !== 'Waiting') throw new Error('Publication status must remain Waiting')
+          const md = fs.readFileSync('research/runtime/2026/08/2026-08-07-runtime.md', 'utf8')
+          if (!md.includes('Research Runtime Production') || !md.includes('Publication Candidate')) throw new Error('Markdown ledger is missing Production result')
+          console.log('Worktree invariants verified: one start, one completion, Publication Waiting, synchronized ledger.')
+          NODE
+
+      - name: Commit branch Production result and remove one-time workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/runtime-production-20260807-branch-once.yml
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json \
+            research/runtime/2026/08/2026-08-07-runtime.md \
+            research/runtime/candidates/2026/08/2026-08-07-candidates.json \
+            .github/workflows/runtime-production-20260807-branch-once.yml
+          git commit -m "runtime(production): prepare 2026-08-07 durable Production result"
+          git push origin HEAD:runtime-production-20260807-run
