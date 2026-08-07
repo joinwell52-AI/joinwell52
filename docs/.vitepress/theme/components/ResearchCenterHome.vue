@@ -32,7 +32,7 @@ const copy = computed(() => zh.value ? {
   tmpaMobile: ['TMPA', '论文体系', '独立自证'],
   tmpaLead: 'TMPA（文本多智能体流程架构）是独立维护的理论与规范层，不与高频观察笔记共用可信度标准。主论文解释架构，核心规范固定对象与读者行为，工程案例公开实现证据及其边界。',
   publications: [
-    { version:'A0.6', kind:'主论文', title:['TMPA','架构论文'], status:'投稿级学术草稿', path:'/zh/publications/tmpa-architecture-paper-a0.6', tone:'paper' },
+    { version:'A0.7', kind:'主论文', title:['TMPA','架构论文'], status:'投稿前审稿修订版', path:'/zh/publications/tmpa-architecture-paper-a0.7', tone:'paper' },
     { version:'S0.5', kind:'核心规范', title:['TMPA','核心规范'], status:'FCoP 派生可实现草稿', path:'/zh/publications/tmpa-core-specification-s0.5', tone:'spec' },
     { version:'I0.5', kind:'工程案例', title:['TMPA–FCoP–','CodeFlowMu','实现案例'], status:'WP-13 多 Agent 事实复核', path:'/zh/publications/implementation-case-i0.5', tone:'case' }
   ],
@@ -60,7 +60,7 @@ const copy = computed(() => zh.value ? {
     { no:'01', kind:'产品', role:'工场直接生产的数字劳动力', name:['Digital','Employee'], description:'面向组织岗位、权限、工作流、成果与评价的受治理数字劳动力，是工场的产品与交付对象。', path:'/zh/digital-employee/', tone:'employee', cta:'查看产品层' },
     { no:'02', kind:'运行', role:'数字员工开发与工作 Runtime', name:['CodeFlowMu'], description:'承载数字员工开发、受治理执行、恢复与持久工作证据，是工场能力的运行层与开源参考环境。', path:'https://github.com/joinwell52-AI/CodeFlowMu-open', logo:'/assets/logos/codeflowmu.png', tone:'codeflow', cta:'打开 GitHub' },
     { no:'03', kind:'协议', role:'基于文件的协同协议', name:['FCoP'], description:'以项目可见文件承载任务、报告、审阅与生命周期证据，为 CodeFlowMu 与数字员工提供可重建的协同事实。', path:'https://joinwell52-ai.github.io/FCoP/', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'打开 FCoP 官网' },
-    { no:'04', kind:'理论', role:'文本多智能体流程架构', name:['TMPA'], description:'独立记录治理理论、规范对象与 Reader 行为，为协议与运行层提供理论基础，但不把工场日常产出自动当作论文证据。', path:'/zh/publications/tmpa-architecture-paper-a0.6', logo:'/logo.svg?v=tmpa-20260807-4', tone:'tmpa', cta:'论文与规范' }
+    { no:'04', kind:'理论', role:'文本多智能体流程架构', name:['TMPA'], description:'独立记录治理理论、规范对象与 Reader 行为，为协议与运行层提供理论基础，但不把工场日常产出自动当作论文证据。', path:'/zh/publications/tmpa-architecture-paper-a0.7', logo:'/logo.svg?v=tmpa-20260807-5', tone:'tmpa', cta:'论文与规范' }
   ],
   researchLabel: '04 · 工场观察',
   researchTitle: '观察笔记 持续更新',
@@ -106,7 +106,7 @@ const copy = computed(() => zh.value ? {
   tmpaMobile: ['The TMPA', 'publication suite', 'stands on its', 'own evidence'],
   tmpaLead: 'TMPA is an independently maintained theory and specification layer, not a high-frequency Observation Notes stream. Its paper explains the architecture, its Core fixes normative objects and reader behavior, and its case report publishes bounded implementation evidence.',
   publications: [
-    { version:'A0.6', kind:'PRIMARY PAPER', title:['TMPA','Architecture Paper'], status:'Submission-oriented draft', path:'/en/publications/tmpa-architecture-paper-a0.6', tone:'paper' },
+    { version:'A0.7', kind:'PRIMARY PAPER', title:['TMPA','Architecture Paper'], status:'Pre-submission review', path:'/en/publications/tmpa-architecture-paper-a0.7', tone:'paper' },
     { version:'S0.5', kind:'CORE SPECIFICATION', title:['TMPA Core','Specification'], status:'FCoP-derived implementable draft', path:'/en/publications/tmpa-core-specification-s0.5', tone:'spec' },
     { version:'I0.5', kind:'ENGINEERING CASE', title:['TMPA–FCoP–','CodeFlowMu','Implementation Case'], status:'WP-13 multi-agent fact check', path:'/en/publications/implementation-case-i0.5', tone:'case' }
   ],
@@ -134,7 +134,7 @@ const copy = computed(() => zh.value ? {
     { no:'01', kind:'PRODUCT', role:'DIGITAL WORKFORCE PRODUCED BY THE WORKS', name:['Digital','Employee'], description:'Governed digital labor organized around positions, authority, workflows, deliverables, and evaluation—the product and delivery object of the Works.', path:'/en/digital-employee/', tone:'employee', cta:'View product layer' },
     { no:'02', kind:'RUNTIME', role:'DIGITAL EMPLOYEE DEVELOPMENT AND WORK RUNTIME', name:['CodeFlowMu'], description:'The runtime layer for Digital Employee development, governed execution, recovery, and durable work evidence, with an open-source reference environment.', path:'https://github.com/joinwell52-AI/CodeFlowMu-open', logo:'/assets/logos/codeflowmu.png', tone:'codeflow', cta:'Open GitHub' },
     { no:'03', kind:'PROTOCOL', role:'FILE-BASED COORDINATION PROTOCOL', name:['FCoP'], description:'Project-visible files carry tasks, reports, reviews, and lifecycle evidence, providing reconstructable coordination facts for CodeFlowMu and Digital Employees.', path:'https://joinwell52-ai.github.io/FCoP/', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'Open FCoP site' },
-    { no:'04', kind:'THEORY', role:'TEXTUAL MULTI-AGENT PROCESS ARCHITECTURE', name:['TMPA'], description:'Independently records governance theory, normative objects, and Reader behavior. It underpins the protocol and runtime layers without treating daily factory output as automatic paper evidence.', path:'/en/publications/tmpa-architecture-paper-a0.6', logo:'/logo.svg?v=tmpa-20260807-4', tone:'tmpa', cta:'Paper & specification' }
+    { no:'04', kind:'THEORY', role:'TEXTUAL MULTI-AGENT PROCESS ARCHITECTURE', name:['TMPA'], description:'Independently records governance theory, normative objects, and Reader behavior. It underpins the protocol and runtime layers without treating daily factory output as automatic paper evidence.', path:'/en/publications/tmpa-architecture-paper-a0.7', logo:'/logo.svg?v=tmpa-20260807-5', tone:'tmpa', cta:'Paper & specification' }
   ],
   researchLabel: '04 · FACTORY OBSERVATION',
   researchTitle: 'Observation Notes Always updating',
@@ -502,7 +502,7 @@ onBeforeUnmount(() => {
       <div class="rc-shell rc-site-footer__grid">
         <div class="rc-site-footer__brand">
           <div class="rc-product-mark rc-product-mark--footer" aria-label="TMPA, FCoP, CodeFlowMu">
-            <a :href="link(zh ? '/zh/publications/tmpa-architecture-paper-a0.6' : '/en/publications/tmpa-architecture-paper-a0.6')" title="TMPA"><img src="/logo.svg?v=tmpa-20260807-4" alt="TMPA logo"><span>TMPA</span></a>
+            <a :href="link(zh ? '/zh/publications/tmpa-architecture-paper-a0.7' : '/en/publications/tmpa-architecture-paper-a0.7')" title="TMPA"><img src="/logo.svg?v=tmpa-20260807-5" alt="TMPA logo"><span>TMPA</span></a>
             <a href="https://joinwell52-ai.github.io/FCoP/" title="FCoP"><img src="https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png" alt="FCoP logo"><span>FCoP</span></a>
             <a href="https://github.com/joinwell52-AI/CodeFlowMu-open" title="CodeFlowMu"><img src="/assets/logos/codeflowmu.png" alt="CodeFlowMu logo"><span>CodeFlowMu</span></a>
           </div>

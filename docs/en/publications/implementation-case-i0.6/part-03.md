@@ -60,7 +60,7 @@ The historical S0.4 corpus remains at [`research/conformance/tmpa-core-s0.4`](ht
 
 [1] TMPA Project. “TMPA Core Specification S0.5.” GitHub, 2026.
 
-[2] TMPA Project. “TMPA Architecture Paper A0.6.” GitHub, 2026.
+[2] TMPA Project. “TMPA Architecture Paper A0.7.” GitHub, 2026.
 
 [3] FCoP Project. “FCoP — File-based Coordination Protocol,” tag v3.2.5, commit `b3dc23439c6aaa6a6b3765655b87e5924e0257f9`. GitHub, 2026.
 

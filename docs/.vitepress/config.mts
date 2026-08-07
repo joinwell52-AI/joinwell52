@@ -39,7 +39,7 @@ const enSidebar = {
     { text: 'Research Runtime Center V5.0', link: '/en/runtime/v5' },
     { text: 'Research Intelligence System V1.0', link: '/en/runtime/research-intelligence' },
     { text: 'Research Runtime Scheduler V1.0 History', link: '/en/publications/research-runtime-scheduler-v1.0' },
-    { text: 'TMPA Architecture Paper A0.6', link: '/en/publications/tmpa-architecture-paper-a0.6' },
+    { text: 'TMPA Architecture Paper A0.7', link: '/en/publications/tmpa-architecture-paper-a0.7' },
     { text: 'TMPA Core Specification S0.5', link: '/en/publications/tmpa-core-specification-s0.5' },
     { text: 'Implementation Case I0.6', link: '/en/publications/implementation-case-i0.6' }
   ]}]
@@ -84,7 +84,7 @@ const zhSidebar = {
     { text: 'Research Runtime Center V5.0', link: '/zh/runtime/v5' },
     { text: '研究情报系统 V1.0', link: '/zh/runtime/research-intelligence' },
     { text: 'Runtime Scheduler V1.0 历史发布', link: '/zh/publications/research-runtime-scheduler-v1.0' },
-    { text: 'TMPA 架构论文 A0.6', link: '/zh/publications/tmpa-architecture-paper-a0.6' },
+    { text: 'TMPA 架构论文 A0.7', link: '/zh/publications/tmpa-architecture-paper-a0.7' },
     { text: 'TMPA 核心规范 S0.5', link: '/zh/publications/tmpa-core-specification-s0.5' },
     { text: '工程实现案例 I0.6', link: '/zh/publications/implementation-case-i0.6' }
   ]}]
@@ -135,7 +135,7 @@ export default defineConfig({
           { text: 'Observation Notes', link: '/en/research/' },
           { text: 'Theory & Publications', link: '/en/publications/' },
           { text: 'Product Stack', items: [
-            { text: 'TMPA', link: '/en/publications/tmpa-architecture-paper-a0.6' },
+            { text: 'TMPA', link: '/en/publications/tmpa-architecture-paper-a0.7' },
             { text: 'FCoP Official Site', link: 'https://joinwell52-ai.github.io/FCoP/' },
             { text: 'CodeFlowMu', link: 'https://github.com/joinwell52-AI/CodeFlowMu-open' },
             { text: 'Research Report Production Engine V1.3', link: '/en/publications/research-report-production-engine-v1.3' },
@@ -160,7 +160,7 @@ export default defineConfig({
           { text: '观察笔记', link: '/zh/research/' },
           { text: '理论与出版', link: '/zh/publications/' },
           { text: '能力体系', items: [
-            { text: 'TMPA', link: '/zh/publications/tmpa-architecture-paper-a0.6' },
+            { text: 'TMPA', link: '/zh/publications/tmpa-architecture-paper-a0.7' },
             { text: 'FCoP 官网', link: 'https://joinwell52-ai.github.io/FCoP/' },
             { text: 'CodeFlowMu', link: 'https://github.com/joinwell52-AI/CodeFlowMu-open' },
             { text: '研究报告生产机 V1.3', link: '/zh/publications/research-report-production-engine-v1.3' },
