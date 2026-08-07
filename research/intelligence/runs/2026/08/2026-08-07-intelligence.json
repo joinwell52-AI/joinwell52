@@ -6,15 +6,17 @@
   "status": "Running",
   "registryVersion": "1.0",
   "sourceTask": "Research Runtime Discovery",
-  "updatedAt": "2026-08-07T09:09:55+08:00",
-  "githubCommit": "pending",
+  "updatedAt": "2026-08-07T09:09:57+08:00",
+  "githubCommit": "4c7d96b290a53e129e5d913ee15a977d12634c39",
   "reason": "All three formal Discovery profiles completed only after the scheduler-fallback Running state in commit 2e7b74217cc2c7f201755e8be227978eecca4862 was durably fetched and verified. Queue triage has not run, so all normalized signals remain unselected.",
   "reason_zh": "仅在提交 2e7b74217cc2c7f201755e8be227978eecca4862 中的 Scheduler 回退 Running 状态完成持久化拉取与核验后，三项正式 Discovery Profile 才开始并完成。Queue 筛选尚未执行，因此所有规范化信号均保持未选题。",
   "controlPlane": {
     "startStateMode": "scheduler-fallback",
     "startStateCommit": "2e7b74217cc2c7f201755e8be227978eecca4862",
     "startEventCount": 1,
-    "verifiedBeforeSubstantiveWork": true
+    "verifiedBeforeSubstantiveWork": true,
+    "resultCommit": "4c7d96b290a53e129e5d913ee15a977d12634c39",
+    "resultCommitVerified": true
   },
   "pipelines": [
     {
