@@ -43,7 +43,7 @@ TMPA Core 治理流程—责任证据。它不规定模型 Runtime、调度器�
 
 符合规范的实现 **MAY** 使用文件、数据库行、对象存储对象或事件作为来源工件。实现 **MUST NOT** 仅因为存储 Markdown、生成日志或实现工作流状态机就声称符合 TMPA。一致性是行为性质，取决于第 9、10 节规定的可观察对象、生命周期、重建、冲突、恢复与测试结果。
 
-三份维护文档的出版契约固定如下：[Architecture Paper A0.6](/zh/publications/tmpa-architecture-paper-a0.6) 解释理论，本 Core Specification 定义规范行为，[Implementation Case Report I0.6](/zh/publications/implementation-case-i0.6) 报告边界明确的工程证据。当前概念分层与历史谱系必须分开表达：
+三份维护文档的出版契约固定如下：[Architecture Paper A0.7](/zh/publications/tmpa-architecture-paper-a0.7) 解释理论，本 Core Specification 定义规范行为，[Implementation Case Report I0.6](/zh/publications/implementation-case-i0.6) 报告边界明确的工程证据。当前概念分层与历史谱系必须分开表达：
 
 ```text
 当前概念分层
