@@ -46,7 +46,7 @@ V1.0 remains the historical baseline for the first Production Test: [legacy comp
 
 | Type | Document | Version | Status |
 |---|---|---:|---|
-| Paper | [TMPA Architecture Paper](./tmpa-architecture-paper-a0.5) | A0.5 | Academic working draft |
+| Paper | [TMPA Architecture Paper](./tmpa-architecture-paper-a0.6) | A0.6 | Submission-oriented academic draft |
 | Specification | [TMPA Core Specification](./tmpa-core-specification-s0.5) | S0.5 | FCoP-derived implementable specification draft |
 | Case report | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.6) | I0.6 | S0.5 author-run product evidence and WP-13 governance case |
 
