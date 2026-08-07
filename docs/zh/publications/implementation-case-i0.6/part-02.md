@@ -108,7 +108,7 @@ FCoP 仍是协议层，其 Package 是参考实现；CodeFlowMu 仍是下游应�
 
 [1] TMPA Project. “TMPA Core Specification S0.5.” GitHub, 2026.
 
-[2] TMPA Project. “TMPA Architecture Paper A0.5.” GitHub, 2026.
+[2] TMPA Project. “TMPA Architecture Paper A0.6.” GitHub, 2026.
 
 [3] FCoP Project. “FCoP — File-based Coordination Protocol,” tag v3.2.5, commit `b3dc23439c6aaa6a6b3765655b87e5924e0257f9`. GitHub, 2026.
 
