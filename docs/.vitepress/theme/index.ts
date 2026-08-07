@@ -178,6 +178,38 @@ function enhanceProductionEngineV13(chinese: boolean) {
     .forEach((element) => { element.textContent = 'V1.3' })
 }
 
+function enhanceImplementationCaseI06(chinese: boolean) {
+  if (typeof document === 'undefined') return
+
+  const casePath = withBase(chinese
+    ? '/zh/publications/implementation-case-i0.6'
+    : '/en/publications/implementation-case-i0.6')
+
+  document.querySelectorAll<HTMLAnchorElement>(
+    '.rc-home a[href*="implementation-case-i0.5"], .rcv5 a[href*="implementation-case-i0.5"]'
+  ).forEach((anchor) => anchor.setAttribute('href', casePath))
+
+  const replacements: Record<string, string> = chinese ? {
+    'I0.5': 'I0.6',
+    'WP-13 多 Agent 事实复核': 'S0.5 作者运行产品证据与 WP-13 治理案例'
+  } : {
+    'I0.5': 'I0.6',
+    'WP-13 multi-agent fact check': 'S0.5 author-run product evidence and the WP-13 governance case'
+  }
+
+  document.querySelectorAll<HTMLElement>('.rc-home, .rcv5').forEach((root) => {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT)
+    let node = walker.nextNode()
+    while (node) {
+      const value = node.textContent || ''
+      let replaced = value
+      for (const [source, target] of Object.entries(replacements)) replaced = replaced.replaceAll(source, target)
+      if (replaced !== value) node.textContent = replaced
+      node = walker.nextNode()
+    }
+  })
+}
+
 function enhancePortal() {
   if (typeof document === 'undefined' || typeof window === 'undefined') return
 
@@ -213,6 +245,7 @@ function enhancePortal() {
 
   reorderCapabilityCards()
   enhanceProductionEngineV13(chinese)
+  enhanceImplementationCaseI06(chinese)
   enhanceLanguageRouting()
   localizeChineseRuntime()
 }
