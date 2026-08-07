@@ -1,0 +1,261 @@
+name: Runtime Publication Release 2026-08-07 Once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/runtime-publication-release-20260807-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Validate gates and publish authorized candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import html
+          import json
+          import shutil
+          from pathlib import Path
+
+          DATE = '2026-08-07'
+          START_COMMIT = 'a89a9c0c372e94cb91e38eb0470172b1250b1d89'
+          runtime_path = Path('research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json')
+          manifest_path = Path('research/runtime/candidates/2026/08/2026-08-07-candidates.json')
+          runtime = json.loads(runtime_path.read_text(encoding='utf-8'))
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+
+          starts = [
+              e for e in runtime.get('timeline', [])
+              if e.get('task') == 'publication'
+              and e.get('event') == 'Execution Slot Opened'
+              and e.get('status') == 'Running'
+              and str(e.get('time', '')).startswith(f'{DATE}T')
+          ]
+          assert runtime.get('status') == 'Running', runtime.get('status')
+          assert runtime.get('taskStatus', {}).get('publication') == 'Running'
+          assert runtime.get('results', {}).get('production', {}).get('status') == 'Completed'
+          assert len(starts) == 1, len(starts)
+          assert manifest.get('status') == 'Completed'
+          assert manifest.get('date') == DATE
+          assert manifest.get('sourceTask') == 'Research Runtime Production'
+          candidates = manifest.get('candidates', [])
+          assert len(candidates) == 3, len(candidates)
+
+          column_map = {
+              'digital-employee': {'dir': 'digital-employee', 'zh_kicker': '数字员工 · 每日研究', 'en_kicker': 'Digital Employee · Daily Research'},
+              'industry-architecture': {'dir': 'industry', 'zh_kicker': '行业架构 · 每日研究', 'en_kicker': 'Industry Architecture · Daily Research'},
+              'open-source-engineering': {'dir': 'engineering', 'zh_kicker': '开源工程 · 每日研究', 'en_kicker': 'Open-source Engineering · Daily Research'},
+          }
+
+          def parse_candidate(path: Path):
+              text = path.read_text(encoding='utf-8')
+              assert text.startswith('---\n')
+              parts = text.split('---\n', 2)
+              assert len(parts) == 3
+              fm_text, body = parts[1], parts[2].lstrip('\n')
+              fm = {}
+              for raw in fm_text.splitlines():
+                  if not raw or raw.startswith(' ') or ':' not in raw:
+                      continue
+                  key, value = raw.split(':', 1)
+                  value = value.strip()
+                  if value.startswith('"') and value.endswith('"'):
+                      fm[key] = json.loads(value)
+                  elif value.startswith("'") and value.endswith("'"):
+                      fm[key] = value[1:-1]
+                  elif value == 'true':
+                      fm[key] = True
+                  elif value == 'false':
+                      fm[key] = False
+                  else:
+                      fm[key] = value
+              lines = body.rstrip().splitlines()
+              while lines and not lines[-1].strip():
+                  lines.pop()
+              if lines and (lines[-1].startswith('> 编辑状态：') or lines[-1].startswith('> Editing status:')):
+                  lines.pop()
+                  while lines and not lines[-1].strip():
+                      lines.pop()
+              return fm, '\n'.join(lines).rstrip() + '\n'
+
+          released = []
+          for candidate in candidates:
+              assert candidate.get('lifecycle') == 'Publication Candidate'
+              assert candidate.get('evidenceStatus') == 'Completed'
+              assert candidate.get('editingStatus') == 'Completed'
+              column = candidate['column']
+              assert column in column_map
+              zh_source = Path(candidate['zhPath'])
+              en_source = Path(candidate['enPath'])
+              cover_source = Path(candidate['coverPath'])
+              assert zh_source.is_file() and en_source.is_file() and cover_source.is_file()
+              assert '<svg' in cover_source.read_text(encoding='utf-8')[:1000]
+
+              zh, zh_body = parse_candidate(zh_source)
+              en, en_body = parse_candidate(en_source)
+              required = [
+                  'title', 'date', 'column', 'category', 'summary', 'item_id',
+                  'lifecycle', 'source_research_object', 'source_reading_result',
+                  'visualization', 'visualization_decision', 'evidence_status',
+                  'citation_status', 'editing_status', 'publication_authorized'
+              ]
+              for lang, fm in [('zh', zh), ('en', en)]:
+                  missing = [k for k in required if k not in fm or fm[k] == '']
+                  assert not missing, (candidate['itemId'], lang, missing)
+                  assert fm['date'] == DATE
+                  assert fm['column'] == column
+                  assert fm['category'] == 'daily'
+                  assert fm['item_id'] == candidate['itemId']
+                  assert fm['lifecycle'] == 'Publication Candidate'
+                  assert fm['evidence_status'] == 'Completed'
+                  assert fm['citation_status'] == 'Completed'
+                  assert fm['editing_status'] == 'Completed'
+                  assert fm['publication_authorized'] is False
+                  assert fm['visualization'] == candidate['coverPath']
+                  assert 'Required' in fm['visualization_decision']
+              for paired in ['date', 'column', 'category', 'item_id', 'source_research_object', 'source_reading_result', 'visualization']:
+                  assert zh[paired] == en[paired], (candidate['itemId'], paired)
+
+              slug = zh_source.name.removesuffix('.zh.md').removeprefix(f'{DATE}-')
+              public_dir = column_map[column]['dir']
+              zh_target = Path(f'docs/zh/{public_dir}/{DATE}-{slug}.md')
+              en_target = Path(f'docs/en/{public_dir}/{DATE}-{slug}.md')
+              cover_target = Path(f'docs/public/assets/covers/daily-{DATE}-{slug}.svg')
+              for target in (zh_target, en_target, cover_target):
+                  assert not target.exists(), f'refusing to overwrite existing publication target: {target}'
+                  target.parent.mkdir(parents=True, exist_ok=True)
+
+              public_image = f'/assets/covers/daily-{DATE}-{slug}.svg'
+              zh_href = f'/zh/{public_dir}/{DATE}-{slug}'
+              en_href = f'/en/{public_dir}/{DATE}-{slug}'
+
+              def q(value):
+                  return json.dumps(str(value), ensure_ascii=False)
+
+              def render(fm, body, lang):
+                  title = fm['title']
+                  summary = fm['summary']
+                  is_zh = lang == 'zh'
+                  kicker = column_map[column]['zh_kicker' if is_zh else 'en_kicker']
+                  language_href = en_href if is_zh else zh_href
+                  language_label = 'English' if is_zh else '中文'
+                  front = [
+                      '---',
+                      f'title: {q(title)}',
+                      f"date: '{DATE}'",
+                      f'column: {column}',
+                      'category: daily',
+                      f'summary: {q(summary)}',
+                      f"item_id: {fm['item_id']}",
+                      f'source_research_object: {q(fm["source_research_object"])}',
+                      f'source_reading_result: {q(fm["source_reading_result"])}',
+                      'lifecycle: Published',
+                      'evidence_status: Completed',
+                      'citation_status: Completed',
+                      'editing_status: Completed',
+                      'publication_authorized: true',
+                      'outline: deep',
+                      '---',
+                      '',
+                      '<ArticleCover',
+                      f'  image="{html.escape(public_image, quote=True)}"',
+                      f'  kicker="{html.escape(kicker, quote=True)}"',
+                      f'  title="{html.escape(title, quote=True)}"',
+                      f'  summary="{html.escape(summary, quote=True)}"',
+                      f'  version="{html.escape(fm["item_id"], quote=True)}"',
+                      f'  status="Daily Runtime V5 · {DATE}"',
+                      f'  languageHref="{html.escape(language_href, quote=True)}"',
+                      f'  languageLabel="{html.escape(language_label, quote=True)}"',
+                      '/>',
+                      '',
+                  ]
+                  return '\n'.join(front) + body
+
+              zh_target.write_text(render(zh, zh_body, 'zh'), encoding='utf-8')
+              en_target.write_text(render(en, en_body, 'en'), encoding='utf-8')
+              shutil.copyfile(cover_source, cover_target)
+              released.append({'itemId': candidate['itemId'], 'column': column, 'zh': str(zh_target), 'en': str(en_target), 'cover': str(cover_target)})
+
+          Path('research/runtime/releases').mkdir(parents=True, exist_ok=True)
+          release_manifest = {
+              'schema': 'runtime-publication-release/v1',
+              'date': DATE,
+              'timezone': 'Asia/Shanghai',
+              'status': 'Released',
+              'sourceCandidates': str(manifest_path),
+              'startStateCommit': START_COMMIT,
+              'schedulerFallback': True,
+              'releasedItems': released,
+              'metrics': {
+                  'eligibleCandidates': len(released),
+                  'releasedItems': len(released),
+                  'bilingualArticleFiles': len(released) * 2,
+                  'visualizationAssets': len(released),
+              },
+              'prohibitionsObserved': {'newResearch': 0, 'substantiveRewriting': 0, 'evidenceRepair': 0},
+          }
+          release_path = Path('research/runtime/releases/2026-08-07-publication.json')
+          assert not release_path.exists()
+          release_path.write_text(json.dumps(release_manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Build and verify website surfaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run docs:build
+          git diff --check
+          test -f docs/zh/digital-employee/2026-08-07-verification-gated-state-admission.md
+          test -f docs/en/digital-employee/2026-08-07-verification-gated-state-admission.md
+          test -f docs/zh/industry/2026-08-07-role-aware-agent-resource-plane.md
+          test -f docs/en/industry/2026-08-07-role-aware-agent-resource-plane.md
+          test -f docs/zh/engineering/2026-08-07-stable-identity-provisioning-gate.md
+          test -f docs/en/engineering/2026-08-07-stable-identity-provisioning-gate.md
+          test -f docs/public/assets/covers/daily-2026-08-07-verification-gated-state-admission.svg
+          test -f docs/public/assets/covers/daily-2026-08-07-role-aware-agent-resource-plane.svg
+          test -f docs/public/assets/covers/daily-2026-08-07-stable-identity-provisioning-gate.svg
+          grep -R -q 'Persistent Digital Employees Need Verification-Gated State Admission' docs/.vitepress/dist/en/digital-employee
+          grep -R -q 'Agent 资源平面需要角色感知调度' docs/.vitepress/dist/zh/industry
+          grep -R -q '延迟 Agent 环境需要稳定身份' docs/.vitepress/dist/zh/engineering
+          git restore docs/.vitepress/generated || true
+
+      - name: Commit release separately to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/runtime-publication-release-20260807-once.yml
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/zh/digital-employee/2026-08-07-verification-gated-state-admission.md \
+            docs/en/digital-employee/2026-08-07-verification-gated-state-admission.md \
+            docs/zh/industry/2026-08-07-role-aware-agent-resource-plane.md \
+            docs/en/industry/2026-08-07-role-aware-agent-resource-plane.md \
+            docs/zh/engineering/2026-08-07-stable-identity-provisioning-gate.md \
+            docs/en/engineering/2026-08-07-stable-identity-provisioning-gate.md \
+            docs/public/assets/covers/daily-2026-08-07-verification-gated-state-admission.svg \
+            docs/public/assets/covers/daily-2026-08-07-role-aware-agent-resource-plane.svg \
+            docs/public/assets/covers/daily-2026-08-07-stable-identity-provisioning-gate.svg \
+            research/runtime/releases/2026-08-07-publication.json \
+            .github/workflows/runtime-publication-release-20260807-once.yml
+          git commit -m "publish(runtime): release 3 Daily Research items for 2026-08-07"
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main
