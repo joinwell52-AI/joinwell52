@@ -284,21 +284,44 @@ function validatePlanLink(runs, registry) {
   for (const path of walk(PLAN_ROOT).filter((item) => /\d{4}-\d{2}-\d{2}-plan\.json$/.test(item))) {
     const plan = readJson(path)
     if (plan.date < registry.effectiveDate || plan.status !== 'Completed') continue
+
+    // V5 stage boundary: Research Intelligence is Discovery-owned. Queue consumes
+    // the resolved Signal Pool and writes Today's Research Plan; it must not be
+    // required to write selection decisions back into the Discovery artifact.
     const run = byDate.get(plan.date)
-    if (!run || run.status !== 'Completed') {
-      die(`${relativePath(path)}: completed Queue plan requires a completed Research Intelligence run`)
+    if (!run) {
+      die(`${relativePath(path)}: completed Queue plan requires a same-day Research Intelligence run`)
     }
-    const decisions = Object.fromEntries(run.columns.map((column) => [column.id, column]))
+    if (!run.pipelines.every((pipeline) => pipeline.status === 'Completed')) {
+      die(`${relativePath(path)}: completed Queue plan requires all Discovery pipelines Completed`)
+    }
+
+    const signals = new Map(run.signals.map((signal) => [signal.id, signal]))
     for (const column of plan.columns || []) {
-      const decision = decisions[column.id]
-      if (!decision) die(`${relativePath(path)}: missing intelligence decision for ${column.id}`)
-      const planSelected = column.selectionStatus !== 'No Selection'
-      const intelligenceSelected = decision.decision === 'Selected'
-      if (planSelected !== intelligenceSelected) {
-        die(`${relativePath(path)}: Queue plan and intelligence decision disagree for ${column.id}`)
+      if (!COLUMN_IDS.includes(column.id)) {
+        die(`${relativePath(path)}: invalid Queue plan column ${column.id}`)
       }
-      if (planSelected && column.itemId !== decision.selectedItemId) {
-        die(`${relativePath(path)}: selected item mismatch for ${column.id}`)
+      if (!['Selected', 'No Selection'].includes(column.selectionStatus)) {
+        die(`${relativePath(path)}: ${column.id} must be Selected or No Selection`)
+      }
+      if (column.selectionStatus === 'No Selection') continue
+
+      if (!text(column.itemId) || !text(column.signalId)) {
+        die(`${relativePath(path)}: selected column ${column.id} requires itemId and signalId`)
+      }
+      const signal = signals.get(column.signalId)
+      if (!signal) {
+        die(`${relativePath(path)}: selected signal ${column.signalId} is absent from the same-day Signal Pool`)
+      }
+      const servedColumns = [signal.primaryColumn, ...(signal.secondaryColumns || [])]
+      if (!servedColumns.includes(column.id)) {
+        die(`${relativePath(path)}: selected signal ${column.signalId} does not serve column ${column.id}`)
+      }
+      if (text(column.pipelineOrigin) && column.pipelineOrigin !== signal.pipeline) {
+        die(`${relativePath(path)}: selected signal ${column.signalId} pipeline does not match Queue plan`)
+      }
+      if (text(column.sourceUrl) && column.sourceUrl !== signal.sourceUrl) {
+        die(`${relativePath(path)}: selected signal ${column.signalId} sourceUrl does not match Queue plan`)
       }
     }
   }
