@@ -48,7 +48,7 @@ V1.0 remains the historical baseline for the first Production Test: [legacy comp
 |---|---|---:|---|
 | Paper | [TMPA Architecture Paper](./tmpa-architecture-paper-a0.5) | A0.5 | Academic working draft |
 | Specification | [TMPA Core Specification](./tmpa-core-specification-s0.5) | S0.5 | FCoP-derived implementable specification draft |
-| Case report | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.5) | I0.5 | S0.4 baseline and WP-13 multi-agent fact check |
+| Case report | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.6) | I0.6 | S0.5 author-run product evidence and WP-13 governance case |
 
 The TMPA publication suite is an independent theory layer. High-frequency Observation Notes do not automatically become paper evidence; the implementation case reports only the engineering evidence inside its stated boundary. Long-term TMPA work runs through Research Program Runtime, not Daily Runtime.
 

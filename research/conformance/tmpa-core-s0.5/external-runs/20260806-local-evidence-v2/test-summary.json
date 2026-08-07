@@ -1,0 +1,48 @@
+{
+  "task": "TMPA-I06-LOCAL-EVIDENCE-001",
+  "revision": {
+    "version": "v2",
+    "status": "conditionally accepted",
+    "tests_rerun": false,
+    "correction": "CodeFlowMu Runtime failure is a human-adjudication prompt contract mismatch, not encoding damage"
+  },
+  "primary_runs": [
+    {"id":"reader-s05-conformance","passed":14,"failed":0,"skipped":0,"warnings":0,"exit_code":0,"scope":"S0.5 Reference Reader criteria"},
+    {"id":"fcop-full-pytest-shorttmp","passed":1222,"failed":3,"skipped":2,"warnings":1,"exit_code":1,"scope":"FCoP v3.2.5 full tests"},
+    {"id":"fcop-library-ci-suite-retry","passed":907,"failed":1,"skipped":0,"warnings":1,"exit_code":1,"scope":"fcop library CI suite"},
+    {"id":"fcop-mcp-ci-suite","passed":78,"failed":2,"skipped":0,"warnings":1,"exit_code":1,"scope":"fcop-mcp CI suite"},
+    {"id":"codeflowmu-protocol-test","passed":8,"failed":0,"skipped":0,"warnings":0,"exit_code":0,"scope":"5 valid and 3 expected-invalid fixtures"},
+    {"id":"codeflowmu-runtime-test-escalated","passed":1420,"failed":1,"skipped":1,"warnings":0,"exit_code":1,"scope":"Runtime full suite"},
+    {"id":"codeflowmu-shell-test-final","passed":770,"failed":0,"skipped":0,"warnings":0,"exit_code":0,"scope":"Shell full suite"},
+    {"id":"codeflowmu-protocol-typecheck","passed":1,"failed":0,"skipped":0,"warnings":0,"exit_code":0,"scope":"Protocol tsc --noEmit"},
+    {"id":"codeflowmu-runtime-typecheck","passed":1,"failed":0,"skipped":0,"warnings":0,"exit_code":0,"scope":"Runtime tsc --noEmit"},
+    {"id":"codeflowmu-shell-typecheck","passed":1,"failed":0,"skipped":0,"warnings":0,"exit_code":0,"scope":"Shell tsc --noEmit"},
+    {"id":"wp13-v3-validation-v2","passed":1,"failed":0,"skipped":0,"warnings":0,"exit_code":0,"scope":"WP-13 V3 archive validation"}
+  ],
+  "retained_diagnostic_runs": [
+    {"id":"fcop-full-pytest","passed":1217,"failed":8,"skipped":2,"warnings":1,"exit_code":1,"classification":"five additional Windows long-path failures"},
+    {"id":"codeflowmu-runtime-test-retry","exit_code":1,"classification":"pre-assertion sandbox os.userInfo failure"},
+    {"id":"codeflowmu-shell-test","passed":665,"failed":69,"skipped":0,"exit_code":1,"classification":"incomplete snapshot assets"},
+    {"id":"codeflowmu-shell-test-retry","passed":758,"failed":12,"skipped":0,"exit_code":1,"classification":"remaining snapshot assets"},
+    {"id":"codeflowmu-shell-test-complete-snapshot","passed":767,"failed":3,"skipped":0,"exit_code":1,"classification":"remaining rules/version metadata; targeted rerun then passed"}
+  ],
+  "failures": [
+    {"system":"fcop","count":3,"cause":"parent readback and API/MCP surface snapshots","product_assertion":true},
+    {
+      "system": "codeflowmu-runtime",
+      "count": 1,
+      "cause": "needs-admin human-adjudication prompt contract mismatch",
+      "actual_text": "需 ADMIN/PM 人工裁定",
+      "expected_text_contract": ["需 ADMIN 人工裁定", "需人工裁定"],
+      "structured_result_valid": true,
+      "chinese_text_valid": true,
+      "responsibility_adjudication": "unresolved: intended product change versus outdated test expectation",
+      "product_assertion": true,
+      "c07_verdict": "FAIL",
+      "promotion_blocker": "contract adjudication, corresponding product-or-test change, and rerun required"
+    }
+  ],
+  "code_modified": false,
+  "tests_modified": false,
+  "push_or_release": false
+}

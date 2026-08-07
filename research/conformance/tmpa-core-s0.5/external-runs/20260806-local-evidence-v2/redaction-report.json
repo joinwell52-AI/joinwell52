@@ -1,0 +1,55 @@
+{
+  "policy": "deterministic path-only redaction; exit codes, counts, assertion text and relative source paths unchanged",
+  "performed": true,
+  "changed_file_count_this_pass": 7,
+  "replacement_counts_this_pass": {
+    "<SHORT_TMP>": 13,
+    "<NODE_EXECUTABLE>": 1,
+    "<LOCAL_USER>": 5
+  },
+  "placeholder_counts_final": {
+    "<SHORT_TMP>": 16,
+    "<EVIDENCE_WORKSPACE>": 497,
+    "<LOCAL_TEMP>": 7,
+    "<NODE_EXECUTABLE>": 1,
+    "<LOCAL_UV_CACHE>": 6,
+    "<LOCAL_USER>": 5
+  },
+  "files_with_redaction": [
+    "commands/commands.json",
+    "logs/codeflowmu/codeflowmu-protocol-test.stdout.log",
+    "logs/codeflowmu/codeflowmu-runtime-test-escalated.stdout.log",
+    "logs/codeflowmu/codeflowmu-runtime-test-retry.stdout.log",
+    "logs/codeflowmu/codeflowmu-shell-test-complete-snapshot.stdout.log",
+    "logs/codeflowmu/codeflowmu-shell-test-retry.stdout.log",
+    "logs/codeflowmu/codeflowmu-shell-test.stdout.log",
+    "logs/fcop/fcop-dependencies-retry.stdout.log",
+    "logs/fcop/fcop-dependencies.stderr.log",
+    "logs/fcop/fcop-full-pytest-shorttmp.json",
+    "logs/fcop/fcop-full-pytest-shorttmp.stdout.log",
+    "logs/fcop/fcop-full-pytest.stdout.log",
+    "logs/fcop/fcop-library-ci-suite-retry.json",
+    "logs/fcop/fcop-library-ci-suite-retry.stdout.log",
+    "logs/fcop/fcop-library-ci-suite.stdout.log",
+    "logs/fcop/fcop-mcp-ci-suite.json",
+    "logs/fcop/fcop-mcp-ci-suite.stdout.log",
+    "logs/fcop/fcop-setup-mcp.stderr.log",
+    "logs/fcop/fcop-setup-root-retry.stderr.log",
+    "logs/fcop/fcop-setup-root-retry2.stderr.log",
+    "logs/fcop/fcop-setup-root.stderr.log",
+    "redaction-report.json"
+  ],
+  "encoding_normalization": {
+    "policy": "process logs were normalized into decodable UTF-8; invalid original byte sequences, when encountered, are represented by U+FFFD. This does not claim byte-for-byte preservation of original process output",
+    "original_bytes_preserved": false,
+    "counts_exit_codes_and_identified_failures_affected": false,
+    "files": {
+      "logs/fcop/fcop-full-pytest-shorttmp.stdout.log": {
+        "u_fffd_replacement_character_count": 2
+      },
+      "logs/fcop/fcop-full-pytest.stdout.log": {
+        "u_fffd_replacement_character_count": 406
+      }
+    }
+  }
+}

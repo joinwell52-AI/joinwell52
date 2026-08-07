@@ -43,50 +43,51 @@ This distinction produces three separate questions:
 TMPA must not claim the guarantee of a surrounding identity, policy, or cryptographic system unless the deployment actually verifies that evidence under the corresponding profile.
 # 7. Evaluation Results
 
-The separately maintained [TMPA Core Specification S0.5](/en/publications/tmpa-core-specification-s0.5) is the current sole normative source for C01–C14 and all SHALL/MUST clauses. The [Implementation Case Report I0.5](/en/publications/implementation-case-i0.5) remains a historical S0.4 engineering-evidence baseline and does not claim S0.5 conformance. This section evaluates the research questions without reproducing the specification.
+The separately maintained [TMPA Core Specification S0.5](/en/publications/tmpa-core-specification-s0.5) is the current sole normative source for C01–C14 and all SHALL/MUST clauses. The [Implementation Case Report I0.6](/en/publications/implementation-case-i0.6) reports the current bounded S0.5 engineering-evidence baseline; I0.5 remains the immutable S0.4 historical baseline. This section evaluates the research questions without reproducing the specification.
 
 ## 7.1 Findings by Research Question
 
 | Research question | Finding and evidence | Boundary |
 |---|---|---|
 | RQ1: governance-state sufficiency | ordinary conversation and execution surfaces do not, by themselves, preserve enough explicit authority, lifecycle, conflict, and recovery state for deterministic governance reconstruction; supported by problem diagnosis, DR1–DR8, and object/reconstruction analysis | no comparative field experiment has measured failure rates against alternative architectures |
-| RQ2: minimum architecture | stable carriers, single-writer streams, explicit authority and lifecycle, typed references, three-valued judgment, and source-preserving deterministic reconstruction form a coherent minimum contract; supported by invariants, counterexamples, the determinism proof sketch, and Core S0.4 | the proof is not mechanized, and minimality is an architectural argument rather than a universal lower-bound proof |
-| RQ3: engineering feasibility and boundary | FCoP, CodeFlowMu, and XiaoDian provide bounded evidence that substantial parts of the contract can operate in project-visible infrastructure; supported by reference mapping, operational cases, and the pinned C01–C14 baseline | full conformance, independent adoption, comparative SME burden, and cross-profile portability are not established |
+| RQ2: minimum architecture | stable carriers, single-writer streams, explicit authority and lifecycle, typed references, three-valued judgment, and source-preserving deterministic reconstruction form a coherent minimum contract; supported by invariants, counterexamples, the determinism proof sketch, and Core S0.5 | the proof is not mechanized, and minimality is an architectural argument rather than a universal lower-bound proof |
+| RQ3: engineering feasibility and boundary | FCoP, CodeFlowMu, and WP-13 provide bounded evidence that substantial parts of the contract can operate in project-visible infrastructure; supported by reference mapping, operational cases, and the pinned I0.6 C01–C14 baseline | two criteria fail, three were not run, eight remain partial, and independent adoption, comparative SME burden, and cross-profile portability are not established |
 
 The result is therefore strongest for architectural coherence and bounded implementation feasibility. It is weaker for organizational effectiveness and ecosystem generalization, which require independent and comparative evidence.
 
 ## 7.2 Conformance-Domain Summary
 
-The baseline is summarized by architectural domain; exact criterion definitions remain in Core S0.4 §10.2.
+The baseline is summarized by architectural domain; exact criterion definitions remain in Core S0.5 §10.2.
 
 | Domain | Criteria | Product-level result |
 |---|---|---|
-| object, immutability, and integrity | C01, C02, C03, C08 | 3 PARTIAL; 1 NOT RUN |
-| authority and lifecycle | C05, C06, C07 | 3 PARTIAL |
-| ordering, reference, and conflict | C04, C09, C10, C12 | 2 PARTIAL; 2 NOT RUN |
+| object, immutability, and integrity | C01, C02, C03, C08 | 1 FAIL; 2 PARTIAL; 1 NOT RUN |
+| authority and lifecycle | C05, C06, C07 | 1 FAIL; 2 PARTIAL |
+| ordering, reference, and conflict | C04, C09, C10, C12 | 3 PARTIAL; 1 NOT RUN |
 | determinism, recovery, and history | C11, C13, C14 | 1 PASS; 1 PARTIAL; 1 NOT RUN |
 
 These are product-level results for the pinned revisions, not a declaration of full Core, profile, or authenticated-governance conformance.
 
-## 7.3 S0.4 Re-adjudication of the Pinned Baseline
+## 7.3 S0.5 Author-Run Product Baseline
 
-I0.4 publishes the S0.4 corpus `tmpa-s0.4-fcop-codeflowmu-20260803` [28]. It retains the pinned FCoP package `3.2.4` commit `da79dfefd99f597c9e422ce9edec22157f915a21`, CodeFlowMu `V1.2.3` commit `8f342d028eb66e77d135bea58fdbc7f2d0627e3b`, and bounded XiaoDian evidence, but separates Reference Reader fixtures from product verdicts.
+I0.6 publishes the evidence package `tmpa-i0.6-local-evidence-20260806-v2` [28]. It pins FCoP tag `v3.2.5` commit `b3dc23439c6aaa6a6b3765655b87e5924e0257f9`, an isolated CodeFlowMu snapshot based on commit `c4ebc146cb8ef0409a4c9eb571a8f2432ade3bd0`, and the WP-13 V3 package. The CodeFlowMu source worktree was dirty and local-only, so the run is author-local evidence rather than a stable public reproduction baseline. XiaoDian had no fixed S0.5 package and was not run.
 
-The FCoP commit was directly retrieved and selected suites reran with 1,137 passed, 2 skipped, and 0 failed. The CodeFlowMu commit was not retrievable from the public `CodeFlowMu-open` history, so no fresh CodeFlowMu product execution is claimed. The public S0.4 Reference Reader passes all 14 synthetic fixtures; those passes are not product passes.
+FCoP records 1,222 passed, 3 failed, and 2 skipped tests. CodeFlowMu records 8/8 Protocol fixtures, 1,420 passed / 1 failed / 1 skipped Runtime tests, 770/770 Shell tests, and successful type checks. The public S0.5 Reference Reader passes all 14 synthetic fixtures; those passes are not product passes.
 
 The product-level verdicts are:
 
 | Verdict | Criteria |
 |---|---|
 | PASS | C14 |
-| PARTIAL | C01, C02, C03, C04, C05, C06, C07, C09, C13 |
-| NOT RUN | C08, C10, C11, C12 |
+| PARTIAL | C01, C03, C04, C05, C06, C09, C10, C13 |
+| NOT RUN | C08, C11, C12 |
+| FAIL | C02, C07 |
 
-No executed product criterion failed. That statement is limited to executed paths and is not “zero-failure full conformance.” C06 is PARTIAL under S0.4 because preserved product evidence does not emit both `ILLEGAL_TRANSITION`/`invalid` and `LIFECYCLE_UNDETERMINED`/`undetermined`.
+The C02 failure records incomplete FCoP `parent` persistence/readback and release-surface closure. The C07 failure records a CodeFlowMu prompt-contract mismatch—readable `需 ADMIN/PM 人工裁定` versus the required test expression—not encoding damage. Both failures remain until corresponding fixes and full reruns.
 
 ## 7.4 Interpretation: Product Projection Gap
 
-The nine partial verdicts share a dominant implementation gap. A generic S0.4 read-only Reference Reader now exists, while FCoP and CodeFlowMu do not expose maintained projection adapters that normalize their native evidence into:
+The eight partial verdicts share a dominant implementation gap. A generic S0.5 read-only Reference Reader exists, while FCoP and CodeFlowMu do not expose maintained projection adapters that normalize their native evidence into:
 
 ```text
 source candidates
@@ -100,7 +101,7 @@ authoritative issue set
 authoritative / partial / disputed / quarantined view
 ```
 
-Product projection would directly improve C03, C05, C09, and C13 and provide infrastructure for C04 and C07. It would also create the product execution path required by C10–C12. C01 still has schema-coverage gaps, C02 has a stricter immutability gap, C06 lacks complete canonical three-valued outputs, and C08 requires covered-content digest evidence.
+Product projection would directly improve C03, C05, C09, and C13 and provide infrastructure for C04, C06, and C10. It would also create product execution paths for C11–C12. C01 still has schema-coverage gaps; C02 and C07 require failure-specific fixes; C08 requires covered-content digest evidence.
 
 The corpus and baseline are author-produced. The corpus is now public, but an independent rerun is still required before any independently validated claim.
 # 8. Discussion, Limitations, and Threats to Validity

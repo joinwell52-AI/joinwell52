@@ -1,0 +1,145 @@
+{
+  "format": "TMPA-I0.6 package validation",
+  "package_name": "tmpa-i0.6-local-evidence-20260806-v2",
+  "validated_at_utc": "2026-08-07T06:02:05.429787+00:00",
+  "passed": true,
+  "validation": {
+    "passed": true,
+    "checks": {
+      "required_files": {
+        "passed": true,
+        "missing": [],
+        "required_log_groups": {
+          "reference_reader": true,
+          "fcop": true,
+          "codeflowmu": true,
+          "cases": true
+        }
+      },
+      "filenames": {
+        "passed": true,
+        "non_ascii": [],
+        "unsafe": []
+      },
+      "text_and_privacy": {
+        "strict_utf8": {
+          "passed": true,
+          "errors": []
+        },
+        "json_parse": {
+          "passed": true,
+          "errors": []
+        },
+        "jsonl_parse": {
+          "passed": true,
+          "errors": []
+        },
+        "absolute_local_path_scan": {
+          "passed": true,
+          "hits": []
+        },
+        "credential_scan": {
+          "passed": true,
+          "hits": []
+        }
+      },
+      "c01_c14_matrix": {
+        "passed": true,
+        "row_count": 14,
+        "ids_in_order": [
+          "C01",
+          "C02",
+          "C03",
+          "C04",
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14"
+        ],
+        "product_verdict_counts": {
+          "PARTIAL": 8,
+          "FAIL": 2,
+          "NOT RUN": 3,
+          "PASS": 1
+        },
+        "expected_product_verdict_counts": {
+          "PASS": 1,
+          "FAIL": 2,
+          "PARTIAL": 8,
+          "NOT RUN": 3
+        },
+        "reference_reader_verdict_counts": {
+          "PASS": 14
+        },
+        "missing_fields": []
+      },
+      "test_summary_against_raw_logs": {
+        "passed": true,
+        "summary_mismatches": [],
+        "raw_log_assertions": {
+          "reader_14_pass": {
+            "passed": true,
+            "file": "logs/reference-reader/reader-s05-conformance.stdout.log",
+            "missing_patterns": []
+          },
+          "fcop_full_counts": {
+            "passed": true,
+            "file": "logs/fcop/fcop-full-pytest-shorttmp.stdout.log",
+            "missing_patterns": []
+          },
+          "codeflowmu_runtime_counts": {
+            "passed": true,
+            "file": "logs/codeflowmu/codeflowmu-runtime-test-escalated.stdout.log",
+            "missing_patterns": []
+          },
+          "codeflowmu_shell_counts": {
+            "passed": true,
+            "file": "logs/codeflowmu/codeflowmu-shell-test-final.stdout.log",
+            "missing_patterns": []
+          }
+        }
+      },
+      "safety_declarations": {
+        "passed": true,
+        "declarations": {
+          "code_modified_false": true,
+          "tests_modified_false": true,
+          "push_or_release_false": true,
+          "production_data_modified_false": true,
+          "no_forbidden_secret_filenames": true
+        },
+        "forbidden_names": []
+      },
+      "v2_revision": {
+        "passed": true,
+        "applicable": true,
+        "correction": "human-adjudication prompt contract mismatch; C07 remains FAIL",
+        "tests_rerun": false,
+        "raw_log_comparison": {
+          "applicable": true,
+          "matched": true,
+          "mismatches": []
+        },
+        "errors": []
+      }
+    }
+  },
+  "manifest": {
+    "passed": true,
+    "verified_entries": 122,
+    "mismatches": [],
+    "files_sha256_digest_matches": true
+  },
+  "zip": {
+    "passed": true,
+    "entry_count": 125,
+    "errors": [],
+    "note": "entry set, CRC, UTF-8 and structured-data parsing are checked again after the final write; archive size and digest are intentionally reported outside this self-containing ZIP"
+  }
+}
