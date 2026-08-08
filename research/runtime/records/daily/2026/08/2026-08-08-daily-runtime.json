@@ -8,13 +8,13 @@
   "date": "2026-08-08",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Running",
+    "production": "Completed",
     "publication": "Waiting"
   },
   "results": {
@@ -575,6 +575,195 @@
           "path": "research/runtime/2026/08/2026-08-08-runtime.md"
         }
       ]
+    },
+    "production": {
+      "schema": "runtime-shift-result/v2",
+      "task": "production",
+      "family": "daily",
+      "status": "Completed",
+      "startedAt": "2026-08-08T15:03:24+08:00",
+      "completedAt": "2026-08-08T15:14:05+08:00",
+      "input": "The durably verified Scheduler-fallback Production start state in commit c2a20793cb4cf94a42dbdcd981b9f0a1224bfb8b and exactly three same-day Production-authorized Research Objects: Q-20260808-01, Q-20260808-02 and Q-20260808-03.",
+      "input_zh": "提交 c2a20793cb4cf94a42dbdcd981b9f0a1224bfb8b 中已完成持久化核验的 Scheduler 回退 Production 启动状态，以及且仅有三份当日获准进入 Production 的 Research Object：Q-20260808-01、Q-20260808-02 与 Q-20260808-03。",
+      "workResult": "Executed Skill 05 Research Writing, Skill 06 Research Visualization, Skill 07 Evidence & Citation and Skill 08 Publication Editing for every eligible Research Object. Produced three complete bilingual Publication Candidates, six independently edited article files and three source-labeled evidence-bounded lifecycle/architecture diagrams. Production used only Research Objects as substantive writing input, introduced no new research from signals or Reading Results, and published nothing directly. Scheduler fallback is explicitly recorded because the pre-existing Production Running state was absent.",
+      "workResult_zh": "对全部合格 Research Object 执行 Skill 05 Research Writing、Skill 06 Research Visualization、Skill 07 Evidence & Citation 与 Skill 08 Publication Editing。已生成三份完整双语 Publication Candidate、六份独立编辑文章及三张带来源标记、受证据边界约束的生命周期/架构配图。Production 仅以 Research Object 作为实质写作输入，未从信号或 Reading Result 开展新研究，也未直接发布任何内容。由于执行前缺少既有 Production Running 状态，已明确记录 Scheduler 回退。",
+      "output": "A completed 2026-08-08 Publication Candidate batch with one candidate for each research column, valid bilingual metadata and staging paths, explicit visualization decisions, evidenceStatus=Completed, citationStatus=Completed in the article metadata, editingStatus=Completed and publication_authorized=false.",
+      "output_zh": "已形成完整的 2026-08-08 Publication Candidate 批次，三个研究栏目各一份候选，包含有效双语元数据与 staging 路径、明确可视化决定、evidenceStatus=Completed、文章元数据 citationStatus=Completed、editingStatus=Completed，并保持 publication_authorized=false。",
+      "next": "Research Runtime Publication at 20:00 may consume only research/runtime/candidates/2026/08/2026-08-08-candidates.json. It may release complete candidates but must not conduct new research, substantive rewriting or evidence repair.",
+      "next_zh": "20:00 Research Runtime Publication 只能消费 research/runtime/candidates/2026/08/2026-08-08-candidates.json；可以发布完整候选，但不得开展新研究、实质性改写或证据修复。",
+      "controlPlane": {
+        "mode": "scheduler-fallback",
+        "startCommit": "c2a20793cb4cf94a42dbdcd981b9f0a1224bfb8b",
+        "verifiedBeforeSubstantiveWork": true,
+        "startEventCount": 1
+      },
+      "metrics": [
+        {
+          "label": "Eligible Research Objects",
+          "label_zh": "合格 Research Object",
+          "value": "3"
+        },
+        {
+          "label": "Publication Candidates",
+          "label_zh": "出版候选",
+          "value": "3"
+        },
+        {
+          "label": "Bilingual article files",
+          "label_zh": "双语文章文件",
+          "value": "6"
+        },
+        {
+          "label": "Source-labeled lifecycle/architecture visuals",
+          "label_zh": "带来源标记的生命周期/架构配图",
+          "value": "3"
+        },
+        {
+          "label": "Evidence status Completed",
+          "label_zh": "证据状态 Completed",
+          "value": "3 / 3"
+        },
+        {
+          "label": "Citation status Completed",
+          "label_zh": "引用状态 Completed",
+          "value": "3 / 3"
+        },
+        {
+          "label": "Editing status Completed",
+          "label_zh": "编辑状态 Completed",
+          "value": "3 / 3"
+        },
+        {
+          "label": "Scheduler fallback start events",
+          "label_zh": "Scheduler 回退启动事件",
+          "value": "1"
+        },
+        {
+          "label": "Direct publications",
+          "label_zh": "直接发布",
+          "value": "0"
+        },
+        {
+          "label": "New research from signals or Reading Results",
+          "label_zh": "从信号或 Reading Result 新开展研究",
+          "value": "0"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Scheduler V3.0",
+          "label_zh": "Scheduler V3.0",
+          "source": "research/runtime/SCHEDULER.json"
+        },
+        {
+          "label": "Verified Production fallback start commit",
+          "label_zh": "已核验的 Production 回退启动提交",
+          "commit": "c2a20793cb4cf94a42dbdcd981b9f0a1224bfb8b",
+          "source": "https://github.com/joinwell52-AI/joinwell52/commit/c2a20793cb4cf94a42dbdcd981b9f0a1224bfb8b"
+        },
+        {
+          "label": "Skill 05 Research Writing",
+          "label_zh": "Skill 05 Research Writing",
+          "source": "research/skills/05-research-writing.md"
+        },
+        {
+          "label": "Skill 06 Research Visualization",
+          "label_zh": "Skill 06 Research Visualization",
+          "source": "research/skills/06-research-visualization.md"
+        },
+        {
+          "label": "Skill 07 Evidence & Citation",
+          "label_zh": "Skill 07 Evidence & Citation",
+          "source": "research/skills/07-evidence-citation.md"
+        },
+        {
+          "label": "Skill 08 Publication Editing",
+          "label_zh": "Skill 08 Publication Editing",
+          "source": "research/skills/08-publication-editing.md"
+        },
+        {
+          "label": "Publication Candidate Contract",
+          "label_zh": "Publication Candidate 契约",
+          "source": "research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md"
+        },
+        {
+          "label": "Digital Employee Research Object",
+          "label_zh": "数字员工 Research Object",
+          "source": "research/analysis/Q-20260808-01-pause-preserving-budget-admission.md"
+        },
+        {
+          "label": "Industry Architecture Research Object",
+          "label_zh": "行业架构 Research Object",
+          "source": "research/analysis/Q-20260808-02-lifecycle-revalidated-managed-policy-plane.md"
+        },
+        {
+          "label": "Open-source Engineering Research Object",
+          "label_zh": "开源工程 Research Object",
+          "source": "research/analysis/Q-20260808-03-correlated-multistream-agent-host-contract.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Publication Candidate batch",
+          "label_zh": "出版候选批次",
+          "path": "research/runtime/candidates/2026/08/2026-08-08-candidates.json"
+        },
+        {
+          "label": "Budget-admission Chinese candidate",
+          "label_zh": "预算准入中文候选",
+          "path": "staging/publication-candidates/2026-08-08-pause-preserving-budget-admission.zh.md"
+        },
+        {
+          "label": "Budget-admission English candidate",
+          "label_zh": "预算准入英文候选",
+          "path": "staging/publication-candidates/2026-08-08-pause-preserving-budget-admission.en.md"
+        },
+        {
+          "label": "Budget-admission visual",
+          "label_zh": "预算准入配图",
+          "path": "staging/publication-candidates/2026-08-08-pause-preserving-budget-admission.svg"
+        },
+        {
+          "label": "Policy-plane Chinese candidate",
+          "label_zh": "策略平面中文候选",
+          "path": "staging/publication-candidates/2026-08-08-lifecycle-revalidated-policy-plane.zh.md"
+        },
+        {
+          "label": "Policy-plane English candidate",
+          "label_zh": "策略平面英文候选",
+          "path": "staging/publication-candidates/2026-08-08-lifecycle-revalidated-policy-plane.en.md"
+        },
+        {
+          "label": "Policy-plane visual",
+          "label_zh": "策略平面配图",
+          "path": "staging/publication-candidates/2026-08-08-lifecycle-revalidated-policy-plane.svg"
+        },
+        {
+          "label": "Multi-stream host Chinese candidate",
+          "label_zh": "多流 Host 中文候选",
+          "path": "staging/publication-candidates/2026-08-08-correlated-multistream-host-contract.zh.md"
+        },
+        {
+          "label": "Multi-stream host English candidate",
+          "label_zh": "多流 Host 英文候选",
+          "path": "staging/publication-candidates/2026-08-08-correlated-multistream-host-contract.en.md"
+        },
+        {
+          "label": "Multi-stream host visual",
+          "label_zh": "多流 Host 配图",
+          "path": "staging/publication-candidates/2026-08-08-correlated-multistream-host-contract.svg"
+        },
+        {
+          "label": "Daily Runtime Record",
+          "label_zh": "每日运行机器记录",
+          "path": "research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json"
+        },
+        {
+          "label": "Human-readable Runtime ledger",
+          "label_zh": "人类可读运行账本",
+          "path": "research/runtime/2026/08/2026-08-08-runtime.md"
+        }
+      ]
     }
   },
   "timeline": [
@@ -668,6 +857,13 @@
       "event": "Execution Slot Opened",
       "status": "Running",
       "detail": "Scheduler fallback: Research Runtime Production opened because the durable control-plane Running state was absent at automation entry; substantive Skills 05–08 work may begin only after this synchronized JSON and Markdown state is committed, fetched and verified."
+    },
+    {
+      "time": "2026-08-08T15:14:05+08:00",
+      "task": "production",
+      "event": "Production Completed",
+      "status": "Completed",
+      "detail": "Skills 05–08 consumed exactly three same-day Production-authorized Research Objects and produced three complete bilingual Publication Candidates, six independently edited staging articles, and three source-labeled evidence-bounded visuals. No direct publication or new research from signals/Reading Results was performed."
     }
   ],
   "metrics": [],
@@ -675,5 +871,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-08T15:03:24+08:00"
+  "updatedAt": "2026-08-08T15:14:05+08:00"
 }
