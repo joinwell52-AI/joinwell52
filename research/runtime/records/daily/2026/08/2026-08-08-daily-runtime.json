@@ -8,11 +8,11 @@
   "date": "2026-08-08",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Waiting",
+  "status": "Running",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Waiting",
+    "reading": "Running",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -270,12 +270,19 @@
       "event": "GitHub Commit Verified",
       "status": "Completed",
       "detail": "Fetched and verified Queue result commit 9012895ec87f534085a9e2eabe38e30ec1ffa5d5: Today's Research Plan, Queue runtime-shift-result/v2 object, Daily Runtime JSON and synchronized Markdown ledger are present and consistent; exactly one current-day Queue Execution Slot Opened / Running event remains."
+    },
+    {
+      "time": "2026-08-08T11:12:30+08:00",
+      "task": "reading",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Scheduler fallback: Research Runtime Reading opened because the durable control-plane Running state was absent at automation entry; Deep Reading may begin only after this synchronized JSON and Markdown state is committed, fetched and verified."
     }
   ],
   "metrics": [],
   "evidence": [],
   "artifacts": [],
-  "githubCommit": "9012895ec87f534085a9e2eabe38e30ec1ffa5d5",
-  "commitVerify": "Completed",
-  "updatedAt": "2026-08-08T10:09:58+08:00"
+  "githubCommit": "pending",
+  "commitVerify": "Running",
+  "updatedAt": "2026-08-08T11:12:30+08:00"
 }
