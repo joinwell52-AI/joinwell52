@@ -8,9 +8,11 @@ outline: false
 
 <script setup>
 import RuntimeOperationsCenterCurrent from '../../.vitepress/theme/components/RuntimeOperationsCenterCurrent.vue'
+import RuntimePrestartState from '../../.vitepress/theme/components/RuntimePrestartState.vue'
 import RuntimeShiftCollapse from '../../.vitepress/theme/components/RuntimeShiftCollapse.vue'
 </script>
 
+<RuntimePrestartState lang="en" />
 <RuntimeOperationsCenterCurrent lang="en" />
 <RuntimeShiftCollapse lang="en" />
 
