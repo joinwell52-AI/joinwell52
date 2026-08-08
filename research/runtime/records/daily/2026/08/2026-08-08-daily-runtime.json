@@ -8,10 +8,10 @@
   "date": "2026-08-08",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Waiting",
+  "status": "Running",
   "taskStatus": {
     "discovery": "Completed",
-    "queue": "Waiting",
+    "queue": "Running",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
@@ -125,46 +125,16 @@
         "instruction": "Use only the same-day Signal Pool to make one Selected or No Selection decision for each research column. Discovery itself made no selection."
       },
       "metrics": [
-        {
-          "name": "platform_channels_due",
-          "value": 33
-        },
-        {
-          "name": "platform_channels_checked",
-          "value": 29
-        },
-        {
-          "name": "platform_channels_inaccessible",
-          "value": 1
-        },
-        {
-          "name": "platform_channels_failed",
-          "value": 3
-        },
-        {
-          "name": "github_repositories_due",
-          "value": 9
-        },
-        {
-          "name": "github_repositories_checked",
-          "value": 9
-        },
-        {
-          "name": "research_sources_due",
-          "value": 6
-        },
-        {
-          "name": "research_sources_checked",
-          "value": 6
-        },
-        {
-          "name": "signal_pool_count",
-          "value": 16
-        },
-        {
-          "name": "topic_selection_count",
-          "value": 0
-        }
+        { "name": "platform_channels_due", "value": 33 },
+        { "name": "platform_channels_checked", "value": 29 },
+        { "name": "platform_channels_inaccessible", "value": 1 },
+        { "name": "platform_channels_failed", "value": 3 },
+        { "name": "github_repositories_due", "value": 9 },
+        { "name": "github_repositories_checked", "value": 9 },
+        { "name": "research_sources_due", "value": 6 },
+        { "name": "research_sources_checked", "value": 6 },
+        { "name": "signal_pool_count", "value": 16 },
+        { "name": "topic_selection_count", "value": 0 }
       ],
       "evidence": [
         "research/runtime/SCHEDULER.json",
@@ -219,12 +189,19 @@
       "event": "GitHub Commit Verified",
       "status": "Completed",
       "detail": "Fetched and verified Discovery result commit 81618569508957fd4cd8517d91ca89e8eac1c093: the Research Intelligence run, Daily Runtime JSON, and synchronized detailed Markdown ledger are present; exactly one current-day start event remains. This idempotent re-entry did not append a second start event or rerun the already-completed source pass."
+    },
+    {
+      "time": "2026-08-08T10:00:41+08:00",
+      "task": "queue",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Scheduler fallback: Research Runtime Queue opened because the durable control-plane Running state was absent; Skill 02 triage may begin only after this synchronized JSON and Markdown state is committed, fetched and verified."
     }
   ],
   "metrics": [],
   "evidence": [],
   "artifacts": [],
-  "githubCommit": "81618569508957fd4cd8517d91ca89e8eac1c093",
-  "commitVerify": "Completed",
-  "updatedAt": "2026-08-08T09:25:53+08:00"
+  "githubCommit": "pending",
+  "commitVerify": "Running",
+  "updatedAt": "2026-08-08T10:00:41+08:00"
 }
