@@ -8,12 +8,12 @@
   "date": "2026-08-08",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Waiting",
+  "status": "Running",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
-    "analysis": "Waiting",
+    "analysis": "Running",
     "production": "Waiting",
     "publication": "Waiting"
   },
@@ -45,18 +45,54 @@
         "summary": "Executed only the three formal Discovery intelligence profiles after verifying the durable Running control-plane state. All due P0 source objects received explicit checked, inaccessible or failed outcomes; same-mechanism objects were normalized and deduplicated into a 16-signal pool. No topic selection, Deep Reading, Research Analysis or article writing was performed.",
         "summary_zh": "仅在持久化 Running 控制面状态核验完成后执行三项正式 Discovery 情报 Profile。所有应检查 P0 来源对象均获得明确的已检查、不可访问或失败结果；同机制对象经规范化与去重后形成 16 个 Signal。未执行选题、Deep Reading、Research Analysis 或文章写作。",
         "profiles": [
-          { "id": "ai-platform", "due": 33, "checked": 29, "inaccessible": 1, "failed": 3, "signals": 4, "coveragePercent": 100 },
-          { "id": "github-engineering", "due": 9, "checked": 9, "inaccessible": 0, "failed": 0, "signals": 8, "coveragePercent": 100 },
-          { "id": "published-research", "due": 6, "checked": 6, "inaccessible": 0, "failed": 0, "signals": 4, "coveragePercent": 100 }
+          {
+            "id": "ai-platform",
+            "due": 33,
+            "checked": 29,
+            "inaccessible": 1,
+            "failed": 3,
+            "signals": 4,
+            "coveragePercent": 100
+          },
+          {
+            "id": "github-engineering",
+            "due": 9,
+            "checked": 9,
+            "inaccessible": 0,
+            "failed": 0,
+            "signals": 8,
+            "coveragePercent": 100
+          },
+          {
+            "id": "published-research",
+            "due": 6,
+            "checked": 6,
+            "inaccessible": 0,
+            "failed": 0,
+            "signals": 4,
+            "coveragePercent": 100
+          }
         ],
         "sourceOutcomes": {
           "inaccessible": [
-            { "source": "anthropic-claude/community-discord", "reason": "authentication-required by registry" }
+            {
+              "source": "anthropic-claude/community-discord",
+              "reason": "authentication-required by registry"
+            }
           ],
           "failed": [
-            { "source": "openai/release-notes", "reason": "exact products release-notes URL timed out; companion official OpenAI channels were checked" },
-            { "source": "cursor/announcements", "reason": "exact official announcements category returned an internal retrieval error; companion Cursor channels were checked" },
-            { "source": "microsoft-copilot-platform/tech-community", "reason": "exact Copilot Studio Tech Community category returned an internal retrieval error; companion Microsoft official channels were checked" }
+            {
+              "source": "openai/release-notes",
+              "reason": "exact products release-notes URL timed out; companion official OpenAI channels were checked"
+            },
+            {
+              "source": "cursor/announcements",
+              "reason": "exact official announcements category returned an internal retrieval error; companion Cursor channels were checked"
+            },
+            {
+              "source": "microsoft-copilot-platform/tech-community",
+              "reason": "exact Copilot Studio Tech Community category returned an internal retrieval error; companion Microsoft official channels were checked"
+            }
           ]
         },
         "normalization": {
@@ -89,16 +125,46 @@
         "instruction": "Use only the same-day Signal Pool to make one Selected or No Selection decision for each research column. Discovery itself made no selection."
       },
       "metrics": [
-        { "name": "platform_channels_due", "value": 33 },
-        { "name": "platform_channels_checked", "value": 29 },
-        { "name": "platform_channels_inaccessible", "value": 1 },
-        { "name": "platform_channels_failed", "value": 3 },
-        { "name": "github_repositories_due", "value": 9 },
-        { "name": "github_repositories_checked", "value": 9 },
-        { "name": "research_sources_due", "value": 6 },
-        { "name": "research_sources_checked", "value": 6 },
-        { "name": "signal_pool_count", "value": 16 },
-        { "name": "topic_selection_count", "value": 0 }
+        {
+          "name": "platform_channels_due",
+          "value": 33
+        },
+        {
+          "name": "platform_channels_checked",
+          "value": 29
+        },
+        {
+          "name": "platform_channels_inaccessible",
+          "value": 1
+        },
+        {
+          "name": "platform_channels_failed",
+          "value": 3
+        },
+        {
+          "name": "github_repositories_due",
+          "value": 9
+        },
+        {
+          "name": "github_repositories_checked",
+          "value": 9
+        },
+        {
+          "name": "research_sources_due",
+          "value": 6
+        },
+        {
+          "name": "research_sources_checked",
+          "value": 6
+        },
+        {
+          "name": "signal_pool_count",
+          "value": 16
+        },
+        {
+          "name": "topic_selection_count",
+          "value": 0
+        }
       ],
       "evidence": [
         "research/runtime/SCHEDULER.json",
@@ -206,13 +272,34 @@
         "instruction": "Research Runtime Reading may consume only Q-20260808-01, Q-20260808-02 and Q-20260808-03 and must execute Skill 03 Deep Reading without Research Analysis or article drafting."
       },
       "metrics": [
-        { "name": "signal_pool_count", "value": 16 },
-        { "name": "column_decisions", "value": 3 },
-        { "name": "selected_objects", "value": 3 },
-        { "name": "candidate_signals", "value": 13 },
-        { "name": "rejected_signals", "value": 0 },
-        { "name": "no_selection_decisions", "value": 0 },
-        { "name": "queue_start_events", "value": 1 }
+        {
+          "name": "signal_pool_count",
+          "value": 16
+        },
+        {
+          "name": "column_decisions",
+          "value": 3
+        },
+        {
+          "name": "selected_objects",
+          "value": 3
+        },
+        {
+          "name": "candidate_signals",
+          "value": 13
+        },
+        {
+          "name": "rejected_signals",
+          "value": 0
+        },
+        {
+          "name": "no_selection_decisions",
+          "value": 0
+        },
+        {
+          "name": "queue_start_events",
+          "value": 1
+        }
       ],
       "evidence": [
         "research/runtime/SCHEDULER.json",
@@ -239,7 +326,11 @@
         "skill": "research/skills/03-deep-reading.md",
         "plan": "research/runtime/plans/2026/08/2026-08-08-plan.json",
         "queueStatus": "Completed",
-        "selectedObjects": ["Q-20260808-01", "Q-20260808-02", "Q-20260808-03"],
+        "selectedObjects": [
+          "Q-20260808-01",
+          "Q-20260808-02",
+          "Q-20260808-03"
+        ],
         "controlPlane": {
           "mode": "scheduler-fallback",
           "startCommit": "959e14a2cae8279bb21d31b6b815440a0b977b75",
@@ -303,14 +394,38 @@
         "instruction": "Research Runtime Analysis may consume only these three durable Reading Results and may execute Skill 04 Research Analysis. Reading itself made no architecture recommendation and drafted no article."
       },
       "metrics": [
-        { "name": "selected_objects", "value": 3 },
-        { "name": "reading_results", "value": 3 },
-        { "name": "primary_source_groups", "value": 3 },
-        { "name": "inaccessible_sources", "value": 0 },
-        { "name": "failed_sources", "value": 0 },
-        { "name": "reading_start_events", "value": 1 },
-        { "name": "research_analysis_objects", "value": 0 },
-        { "name": "article_drafts", "value": 0 }
+        {
+          "name": "selected_objects",
+          "value": 3
+        },
+        {
+          "name": "reading_results",
+          "value": 3
+        },
+        {
+          "name": "primary_source_groups",
+          "value": 3
+        },
+        {
+          "name": "inaccessible_sources",
+          "value": 0
+        },
+        {
+          "name": "failed_sources",
+          "value": 0
+        },
+        {
+          "name": "reading_start_events",
+          "value": 1
+        },
+        {
+          "name": "research_analysis_objects",
+          "value": 0
+        },
+        {
+          "name": "article_drafts",
+          "value": 0
+        }
       ],
       "evidence": [
         "research/runtime/SCHEDULER.json",
@@ -397,12 +512,19 @@
       "event": "GitHub Commit Verified",
       "status": "Completed",
       "detail": "Fetched and verified Reading result commit fb3e3b069651e82bcd044fc1561b6e90dc8e849b: all three Reading Records, the Reading runtime-shift-result/v2 object, Daily Runtime JSON and synchronized detailed Markdown ledger are present; exactly one current-day Reading Execution Slot Opened / Running event remains. No Research Analysis or article drafting was performed."
+    },
+    {
+      "time": "2026-08-08T13:12:26+08:00",
+      "task": "analysis",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Scheduler fallback: Research Runtime Analysis opened because the durable control-plane Running state was absent at automation entry; substantive Skill 04 work may begin only after this synchronized JSON and Markdown state is committed, fetched and verified."
     }
   ],
   "metrics": [],
   "evidence": [],
   "artifacts": [],
-  "githubCommit": "fb3e3b069651e82bcd044fc1561b6e90dc8e849b",
-  "commitVerify": "Completed",
-  "updatedAt": "2026-08-08T11:31:30+08:00"
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-08-08T13:12:26+08:00"
 }
