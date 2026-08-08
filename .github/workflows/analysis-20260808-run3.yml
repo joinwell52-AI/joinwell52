@@ -1,0 +1,700 @@
+name: Execute Research Runtime Analysis 2026-08-08 Run 3
+
+on:
+  push:
+    branches:
+      - automation/analysis-20260808-run3
+    paths:
+      - .github/workflows/analysis-20260808-run3.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: research-runtime-analysis-20260808
+  cancel-in-progress: false
+
+jobs:
+  analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout authoritative main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verify or persist durable Analysis Running state
+        id: control
+        shell: bash
+        run: |
+          set -euo pipefail
+          RECORD="research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json"
+          LEDGER="research/runtime/2026/08/2026-08-08-runtime.md"
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+
+          inspect_state() {
+            node <<'NODE'
+          const fs = require('fs')
+          const record = JSON.parse(fs.readFileSync('research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json', 'utf8'))
+          const starts = (record.timeline || []).filter((e) =>
+            e.task === 'analysis' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-08')
+          )
+          console.log(`overall=${record.status}`)
+          console.log(`analysis=${record.taskStatus?.analysis || ''}`)
+          console.log(`starts=${starts.length}`)
+          console.log(`reading=${record.taskStatus?.reading || ''}`)
+          NODE
+          }
+
+          fallback="false"
+          start_commit=""
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            state="$(inspect_state)"
+            echo "$state"
+            overall="$(printf '%s\n' "$state" | sed -n 's/^overall=//p')"
+            analysis="$(printf '%s\n' "$state" | sed -n 's/^analysis=//p')"
+            starts="$(printf '%s\n' "$state" | sed -n 's/^starts=//p')"
+            reading="$(printf '%s\n' "$state" | sed -n 's/^reading=//p')"
+
+            if [[ "$starts" == "1" && "$overall" == "Running" && "$analysis" == "Running" ]]; then
+              start_commit="$(git log -1 --format=%H -- "$RECORD")"
+              echo "Scheduler Running state already durable at $start_commit."
+              break
+            fi
+            if [[ "$starts" != "0" ]]; then
+              echo "Expected zero or one current-day Analysis start event, found $starts."
+              exit 1
+            fi
+            if [[ "$reading" != "Completed" ]]; then
+              echo "Reading dependency is not Completed: $reading"
+              exit 1
+            fi
+            if [[ "$analysis" != "Waiting" ]]; then
+              echo "Analysis is neither Waiting nor the required durable Running state: $analysis"
+              exit 1
+            fi
+
+            echo "Scheduler fallback required: persisting missing Analysis Running state."
+            node scripts/runtime-v5.mjs schedule --task analysis
+            node <<'NODE'
+          const fs = require('fs')
+          const path = 'research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json'
+          const record = JSON.parse(fs.readFileSync(path, 'utf8'))
+          const starts = (record.timeline || []).filter((e) => e.task === 'analysis' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-08'))
+          if (starts.length !== 1) throw new Error(`fallback must create exactly one Analysis start event, got ${starts.length}`)
+          starts[0].detail = 'Scheduler fallback: Research Runtime Analysis opened because the durable control-plane Running state was absent at automation entry; substantive Skill 04 work may begin only after this synchronized JSON and Markdown state is committed, fetched and verified.'
+          fs.writeFileSync(path, JSON.stringify(record, null, 2) + '\n')
+          NODE
+            node scripts/runtime-markdown.mjs render --date 2026-08-08
+            npm run runtime:validate
+            node scripts/runtime-markdown.mjs validate --date 2026-08-08
+            git add "$RECORD" "$LEDGER"
+            git commit -m "runtime(v5): fallback open Analysis control-plane state for 2026-08-08"
+            candidate="$(git rev-parse HEAD)"
+            if git push origin HEAD:main; then
+              fallback="true"
+              start_commit="$candidate"
+              break
+            fi
+            echo "Start-state push raced with another main update; retrying from authoritative main."
+          done
+
+          if [[ -z "$start_commit" ]]; then
+            echo "Unable to establish a durable Analysis Running state."
+            exit 1
+          fi
+
+          echo "fallback=$fallback" >> "$GITHUB_OUTPUT"
+          echo "start_commit=$start_commit" >> "$GITHUB_OUTPUT"
+
+      - name: Fetch and verify durable control-plane state before substantive work
+        shell: bash
+        env:
+          START_COMMIT: ${{ steps.control.outputs.start_commit }}
+          FALLBACK: ${{ steps.control.outputs.fallback }}
+        run: |
+          set -euo pipefail
+          RECORD="research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json"
+          LEDGER="research/runtime/2026/08/2026-08-08-runtime.md"
+          git fetch origin main
+          git merge-base --is-ancestor "$START_COMMIT" origin/main
+          git show "origin/main:$RECORD" > /tmp/analysis-start.json
+          git show "origin/main:$LEDGER" > /tmp/analysis-start.md
+          node <<'NODE'
+          const fs = require('fs')
+          const record = JSON.parse(fs.readFileSync('/tmp/analysis-start.json', 'utf8'))
+          const starts = (record.timeline || []).filter((e) => e.task === 'analysis' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-08'))
+          if (record.status !== 'Running') throw new Error(`Expected overall Running, got ${record.status}`)
+          if (record.taskStatus?.analysis !== 'Running') throw new Error(`Expected taskStatus.analysis=Running, got ${record.taskStatus?.analysis}`)
+          if (starts.length !== 1) throw new Error(`Expected exactly one Analysis start event, got ${starts.length}`)
+          if (record.taskStatus?.reading !== 'Completed') throw new Error(`Reading dependency must be Completed, got ${record.taskStatus?.reading}`)
+          console.log(`Verified Analysis durable Running state; fallback=${process.env.FALLBACK}; startCommit=${process.env.START_COMMIT}`)
+          NODE
+          grep -q '| 13:00 | 研究运行分析 | Research Runtime Analysis | daily | 运行中 / Running |' /tmp/analysis-start.md
+
+      - name: Execute Skill 04 from completed Reading Results only
+        id: result
+        shell: bash
+        env:
+          START_COMMIT: ${{ steps.control.outputs.start_commit }}
+          FALLBACK: ${{ steps.control.outputs.fallback }}
+        run: |
+          set -euo pipefail
+          RECORD="research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json"
+          LEDGER="research/runtime/2026/08/2026-08-08-runtime.md"
+          R1="research/reading/Q-20260808-01-session-budget-governance.md"
+          R2="research/reading/Q-20260808-02-managed-model-auto-review.md"
+          R3="research/reading/Q-20260808-03-code-mode-grpc-host-protocol.md"
+          A1="research/analysis/Q-20260808-01-pause-preserving-budget-admission.md"
+          A2="research/analysis/Q-20260808-02-lifecycle-revalidated-managed-policy-plane.md"
+          A3="research/analysis/Q-20260808-03-correlated-multistream-agent-host-contract.md"
+
+          git fetch origin main
+          git reset --hard origin/main
+
+          test "$(git rev-parse HEAD:$R1)" = "9f22d00e120e44d5a1ce11e6ac9181bb7d6c9b45"
+          test "$(git rev-parse HEAD:$R2)" = "7259795cb7d2a583adbde3315d274ac845176723"
+          test "$(git rev-parse HEAD:$R3)" = "f5952a99dd4b8c9d40fc6851f210ee0d92345046"
+          test "$(git rev-parse HEAD:research/skills/04-research-analysis.md)" = "fcb04fa2321e4a0707d69aa3a852a8061fe5e718"
+
+          node <<'NODE'
+          const fs = require('fs')
+          const record = JSON.parse(fs.readFileSync('research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json', 'utf8'))
+          const starts = (record.timeline || []).filter((e) => e.task === 'analysis' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-08'))
+          if (record.taskStatus?.reading !== 'Completed') throw new Error('Reading is incomplete; Analysis must block.')
+          if (record.taskStatus?.analysis !== 'Running' || record.status !== 'Running') throw new Error('Analysis durable Running state was lost before substantive work.')
+          if (starts.length !== 1) throw new Error(`Expected exactly one Analysis start event, got ${starts.length}`)
+          const readingArtifacts = record.results?.reading?.artifacts || []
+          if (readingArtifacts.length && readingArtifacts.length < 3) throw new Error('Reading result does not expose all three durable Reading artifacts.')
+          NODE
+
+          mkdir -p research/analysis
+          cat > "$A1" <<'EOF'
+          ---
+          schema: "research-analysis/v1"
+          id: "AN-20260808-01"
+          date: "2026-08-08"
+          timezone: "Asia/Shanghai"
+          repository: "joinwell52-AI/joinwell52"
+          queue_item: "Q-20260808-01"
+          column: "digital-employee"
+          transition: "Reading -> Analysis"
+          skill: "Skill 04 — Research Analysis"
+          input_contract: "Reading Result"
+          input_reading: "research/reading/Q-20260808-01-session-budget-governance.md"
+          output_contract: "Research Object"
+          research_object: "Pause-Preserving Budget Admission"
+          status: "ReadyForProduction"
+          production_input_authorized: true
+          publication_authorized: false
+          ---
+
+          # Research Object — Pause-Preserving Budget Admission for Digital Employees
+
+          ## Governed scope
+
+          This object performs Skill 04 using only the three completed same-day Reading Results, with `Q-20260808-01` as the primary column input. It introduces no unread sources and does not draft publication copy or authorize release.
+
+          ## Analysis
+
+          ```yaml
+          analysis:
+            observations:
+              - The primary Reading Result shows a hard session budget implemented as an admission gate before each new model request rather than as a mid-request kill switch.
+              - Budget exhaustion maps to durable pause semantics: the session becomes idle with `budget_reached`, history and sandbox state remain preserved, and already-started settlement work may still complete.
+              - The platform separates exact enforcement cost from rounded visible usage, so an operator can observe a value that is insufficient to calculate the mathematically smallest valid resume budget.
+              - Multiagent threads share one session budget and may converge to pause at different times because already-admitted requests are allowed to finish.
+              - A valid policy update or budget removal resumes paused work automatically, making authorization state rather than a fresh execution command the causal resume trigger.
+            cross_comparison:
+              - Compared with the managed-model Reading Result, both systems compile central policy into runtime admission constraints rather than relying on model self-regulation or client preference.
+              - Compared with the gRPC host Reading Result, both distinguish lifecycle state from semantic success: a budget-paused session is durable but not complete, while an execution can be protocol-completed and still carry application error text.
+              - The budget settle-only channel is structurally similar to a drain boundary: new generative work is blocked while already-admitted obligations are allowed to reconcile before the runtime becomes quiescent.
+              - Shared session budgets resemble other shared control-plane authorities: they simplify one source of truth but couple otherwise independent worker threads unless a higher policy layer partitions authority.
+            discussion:
+              - The important mechanism is cost-governed work admission, not merely cost reporting. Governance becomes effective only when the runtime can refuse new model work while preserving the work identity and evidence needed to continue later.
+              - Pause rather than termination creates a reversible authority boundary. The operator changes policy, and the runtime resumes from preserved state; this is closer to suspended employment authority than to process failure.
+              - Because in-flight work may overshoot the cap, the phrase hard budget should be interpreted as a hard boundary on admitting new model requests, not as an exact invoice ceiling.
+              - A Digital Employee therefore needs separate concepts for budget policy, observed usage, admissible new work, settlement work and durable work state. Collapsing them into one boolean `active` flag loses the reason and authority for suspension.
+              - Shared budgets are appropriate when one work order owns the economic authority, but they are insufficient when independent roles require separate cost accountability; that need should be solved above the session primitive rather than inferred from thread-local usage.
+            research_judgment:
+              - A managed Digital Employee should model budget exhaustion as a typed, reversible admission state that blocks new generative work while preserving durable work state and permitting narrowly defined settlement actions.
+              - Budget authority should be attached to the long-lived WorkOrder/session identity and changed only by an authorized policy owner; resume should be a consequence of an accepted policy transition, not an untracked worker retry.
+              - Runtime evidence must distinguish exact enforcement accounting from rounded operator-facing usage and must never promise an exact spend ceiling when already-admitted work can overshoot.
+              - Per-role or fleet-wide economic controls, if required, should be explicit higher-level policy objects because a shared per-session cap does not provide independent thread budgets or cumulative deployment governance.
+            uncertainty:
+              - Confidence is high in the admission-versus-termination distinction because it is directly specified in the completed first-party Reading Result.
+              - Confidence is medium that pause-preserving budget governance transfers cleanly to heterogeneous Digital Employee roles because the source describes one managed-agent product rather than a cross-platform implementation study.
+              - Confidence is low about exactly-once event delivery, worst-case multi-thread convergence time and organization-level cumulative budget behavior because those guarantees are unresolved in the Reading Result.
+            counter_evidence:
+              - The documented hard budget can overshoot due to already-admitted requests, so it is not evidence for an exact final-cost ceiling.
+              - Public list cost may differ from negotiated billed spend, limiting the feature as a direct financial-accounting control.
+              - Multiagent sessions share one cap with no per-thread partition, so the mechanism does not independently govern role budgets.
+              - Models without public list prices can make the budget unusable, with removal of the budget documented as the recovery path.
+            engineering_impact:
+              tmpa:
+                - Treat this as research input on typed suspension, policy authority and evidence boundaries; no TMPA Core change is justified from one product mechanism.
+              digital_employee:
+                - Add a durable budget-policy surface to WorkOrder/runtime state with explicit Active, BudgetPaused and Resumable semantics rather than terminating work at the cap.
+                - Preserve an allowlist for settlement actions that can close already-started tool obligations without admitting new model work.
+                - Record policy owner, exact enforcement usage, rounded display usage, pause reason and resume authorization as separate evidence fields.
+                - Use higher-level role or organizational budget policy when one shared session cap is too coarse for accountability.
+              codeflowmu:
+                - Keep `unknown`, `running`, `waiting for authority` and `completed` distinct; a budget pause should not be surfaced as failure or completion.
+                - Implement budget governance first in Runtime/WorkOrder state and observation surfaces rather than expanding FCoP protocol semantics from this single case.
+                - Recovery should reopen execution from preserved accepted state after policy authorization without requiring reuse of the original provider session.
+            limitations:
+              - Analysis is bounded to completed same-day Reading Results and does not independently reproduce Claude Managed Agents behavior.
+              - No organization-level cumulative budget primitive is established by the primary Reading Result.
+              - Event retry, reconnect and exactly-once guarantees are not demonstrated.
+              - The transfer from product-specific list-cost accounting to SME operational budgets remains an inference.
+            future_questions:
+              - What minimum WorkOrder budget contract separates cap, exact consumed amount, displayed amount, settlement authority and resume authority?
+              - How should role-specific budgets compose with a shared work-order budget without creating contradictory admission decisions?
+              - What crash/reconnect tests are required to prove that BudgetPaused state and settlement receipts survive partial failure?
+              - Should CodeFlowMu expose budget pause as a dedicated operator decision state or as a generic policy-wait state with typed reason metadata?
+          ```
+
+          ## Research judgment
+
+          Treat budget exhaustion as pause-preserving work-admission governance: new generative work stops, accepted state survives, settlement remains possible, and only an authorized policy change reopens execution. Do not equate a hard admission gate with an exact final-cost ceiling.
+
+          ## Production input
+
+          Production may consume this object only with its overshoot, list-cost, shared-budget and unresolved delivery-guarantee boundaries intact.
+
+          ## Evidence boundary
+
+          - `research/reading/Q-20260808-01-session-budget-governance.md`
+          - `research/reading/Q-20260808-02-managed-model-auto-review.md`
+          - `research/reading/Q-20260808-03-code-mode-grpc-host-protocol.md`
+
+          No unread material was consumed.
+          EOF
+
+          cat > "$A2" <<'EOF'
+          ---
+          schema: "research-analysis/v1"
+          id: "AN-20260808-02"
+          date: "2026-08-08"
+          timezone: "Asia/Shanghai"
+          repository: "joinwell52-AI/joinwell52"
+          queue_item: "Q-20260808-02"
+          column: "industry-architecture"
+          transition: "Reading -> Analysis"
+          skill: "Skill 04 — Research Analysis"
+          input_contract: "Reading Result"
+          input_reading: "research/reading/Q-20260808-02-managed-model-auto-review.md"
+          output_contract: "Research Object"
+          research_object: "Lifecycle-Revalidated Managed Policy Plane"
+          status: "ReadyForProduction"
+          production_input_authorized: true
+          publication_authorized: false
+          ---
+
+          # Research Object — Lifecycle-Revalidated Managed Policy Plane
+
+          ## Governed scope
+
+          This object performs Skill 04 using only the three completed same-day Reading Results, with `Q-20260808-02` as the primary Industry Architecture input. It does not inspect unread Codex material, write publication copy or authorize release.
+
+          ## Analysis
+
+          ```yaml
+          analysis:
+            observations:
+              - The primary Reading Result shows managed model requirements merged by union across policy layers, normalized to exact model identity and exposed through a requirements-read API.
+              - Protected-model policy shapes unsafe startup state into constrained approval/reviewer/sandbox settings, while later attempts to relax those settings are rejected.
+              - Resume, fork and model-change paths re-evaluate current managed requirements, preventing persisted historical settings from becoming a permanent policy bypass.
+              - MCP reviewer routing gives the protected-model requirement precedence over connector-local reviewer choice, extending central policy across a separate integration path.
+              - The implementation contains an intentional trusted in-memory Guardian reviewer exception and does not demonstrate instantaneous asynchronous revocation of continuously active sessions.
+            cross_comparison:
+              - Compared with session-budget governance, both mechanisms make central authority causal at an admission boundary: one governs economic work admission, the other governs reviewer and permission admission.
+              - Compared with the gRPC host protocol, the policy plane supplies authority semantics that the transport contract itself does not define; versioned RPC lifecycle alone is not an authorization system.
+              - Startup coercion versus runtime rejection reveals two policy-enforcement modes that should be separately observable because both can satisfy the same invariant while producing different operator evidence.
+              - Resume/fork revalidation resembles schema or policy migration at lifecycle boundaries: durable historical state remains, but current authority is re-applied before the state can execute again.
+            discussion:
+              - The structurally important feature is not automatic review by itself. It is a managed constraint compiler that converts distributed policy into runtime invariants and rechecks those invariants at lifecycle boundaries.
+              - Enterprise control planes need explicit precedence. Central requirements must outrank local connector or client preferences when the managed policy is intended to be non-bypassable.
+              - Revalidation on resume, fork, model change and settings mutation is a practical compromise between immutable historical state and current governance. Without it, persistence becomes a policy-escape mechanism.
+              - Policy shaping and policy rejection should produce different audit evidence. Silent normalization at startup can hide that a client requested Full Access, even though the resulting state is safe.
+              - A trusted reviewer exception can be legitimate only when its creation path is itself a stronger trust boundary with inspectable provenance; otherwise it becomes the highest-value bypass target.
+            research_judgment:
+              - An enterprise agent control plane should compile managed policy into enforceable runtime invariants and revalidate them at every lifecycle transition that can reactivate or materially change execution authority.
+              - Central policy precedence must be explicit across client settings, connector-local configuration and persisted historical state; local configuration must not silently win conflict resolution.
+              - Coercion, rejection and trusted bypass are distinct governance outcomes and should each emit auditable provenance rather than collapsing into one final configuration snapshot.
+              - Model-driven automatic review can be an authority-routing mechanism, but the presence of that mechanism is not evidence that review decisions are semantically correct; reviewer quality requires separate evaluation.
+            uncertainty:
+              - Confidence is high that lifecycle revalidation closes several persistence-based policy escape paths because the completed Reading Result documents tests for resume, fork, model change and unsafe overrides.
+              - Confidence is medium that the same pattern generalizes to all enterprise agent runtimes because third-party wrappers and external integration paths are outside the changed Codex evidence boundary.
+              - Confidence is low about live revocation latency, Guardian reviewer trust unforgeability and automatic-review decision quality because those properties are not established by the Reading Result.
+            counter_evidence:
+              - Continuously active sessions are not shown to receive instantaneous policy mutation when administrators change requirements.
+              - The trusted Guardian reviewer intentionally bypasses ordinary protected-session validation, so the system is not exception-free.
+              - Automatic review is still model-driven and the Reading Result provides no false-approval or false-denial evaluation.
+              - Model matching supports a constrained alias shape and may not directly generalize to environments with different model identity conventions.
+            engineering_impact:
+              tmpa:
+                - Use the case as evidence for policy precedence, revalidation and auditable exception semantics; no TMPA protocol change is justified from one implementation.
+              digital_employee:
+                - Separate job policy, role policy and local execution preference, with deterministic precedence and an effective-policy projection visible to operators.
+                - Revalidate permissions, reviewer requirements and capability boundaries whenever a WorkOrder resumes, forks, changes model/runtime or materially changes settings.
+                - Record whether a safe state resulted from original compliance, policy coercion or rejected mutation so governance history remains explainable.
+              codeflowmu:
+                - Treat PM/QA/ADMIN authority and runtime capability policy as explicit constraints that are reapplied at resume/recovery boundaries rather than trusted from stale session state.
+                - Make connector/tool-local settings subordinate to centrally managed task or organizational policy when conflict rules require it.
+                - Preserve trusted bypasses only with narrow creation paths and explicit evidence; avoid introducing protocol-level exceptions into FCoP unless repeated Runtime pressure demonstrates need.
+            limitations:
+              - The analysis is based on merged implementation and tests, not production telemetry or an external security audit.
+              - The evidence does not cover every third-party wrapper or integration path around Codex.
+              - Live asynchronous revocation of already-running sessions is not demonstrated.
+              - Automatic-review semantic accuracy is outside the evidence boundary.
+            future_questions:
+              - Which lifecycle transitions in CodeFlowMu must force policy revalidation before an Agent can regain execution authority?
+              - How should policy provenance show which layer contributed each effective constraint when several layers are unioned?
+              - What emergency override can remain governable without turning into a permanent bypass path?
+              - How should reviewer-quality evaluation be separated from reviewer-routing policy in enterprise assurance reports?
+          ```
+
+          ## Research judgment
+
+          Treat enterprise agent governance as a lifecycle-revalidated managed policy plane: compile policy into runtime invariants, reapply it whenever durable state regains execution authority, make precedence explicit, and audit coercion, rejection and trusted bypass separately.
+
+          ## Production input
+
+          Production may consume this object only if it preserves the distinction between policy enforcement and reviewer correctness, plus the unresolved live-revocation and trusted-Guardian boundaries.
+
+          ## Evidence boundary
+
+          - `research/reading/Q-20260808-01-session-budget-governance.md`
+          - `research/reading/Q-20260808-02-managed-model-auto-review.md`
+          - `research/reading/Q-20260808-03-code-mode-grpc-host-protocol.md`
+
+          No unread material was consumed.
+          EOF
+
+          cat > "$A3" <<'EOF'
+          ---
+          schema: "research-analysis/v1"
+          id: "AN-20260808-03"
+          date: "2026-08-08"
+          timezone: "Asia/Shanghai"
+          repository: "joinwell52-AI/joinwell52"
+          queue_item: "Q-20260808-03"
+          column: "open-source-engineering"
+          transition: "Reading -> Analysis"
+          skill: "Skill 04 — Research Analysis"
+          input_contract: "Reading Result"
+          input_reading: "research/reading/Q-20260808-03-code-mode-grpc-host-protocol.md"
+          output_contract: "Research Object"
+          research_object: "Correlated Multi-Stream Agent Host Contract"
+          status: "ReadyForProduction"
+          production_input_authorized: true
+          publication_authorized: false
+          ---
+
+          # Research Object — Correlated Multi-Stream Agent Host Contract
+
+          ## Governed scope
+
+          This object performs Skill 04 using only the three completed same-day Reading Results, with `Q-20260808-03` as the primary Open-source Engineering input. It does not inspect unread host implementation, prescribe production code or draft an article.
+
+          ## Analysis
+
+          ```yaml
+          analysis:
+            observations:
+              - The primary Reading Result defines a versioned `codex.code_mode.v1` gRPC boundary for session ownership, execution, waits, cancellation, termination, nested tool callbacks, notifications and typed content results.
+              - Control events, tool subscriptions and tool-result completions intentionally use independent HTTP/2 streams to reduce head-of-line blocking, which also makes cross-stream reordering a normal condition rather than an exceptional bug.
+              - Client-chosen execution and wait identifiers, invocation identifiers, per-execution tool-call sequence numbers and `CellClosed.final_tool_call_sequence` provide correlation and a drain watermark when total ordering is unavailable.
+              - Dropping the OpenSession event stream closes the session and terminates active cells, making stream lifetime function as a session lease.
+              - Lifecycle completion and semantic success are distinct because `ExecutionCompleted` may still carry `error_text`, while RPC transport failure is a separate error surface.
+            cross_comparison:
+              - Compared with budget governance, both systems preserve a distinction between admitting new work and draining already-admitted obligations; safe quiescence requires evidence that outstanding work has settled.
+              - Compared with managed-model policy, the gRPC contract is a transport/lifecycle plane rather than an authority plane; it does not itself define authentication, tenant policy or reviewer correctness.
+              - The sequence watermark is analogous to a custody or closure proof: a consumer should not retire state merely because a close event arrived if lower-numbered callbacks may still be in flight.
+              - Explicit CancelWait acknowledgment demonstrates a reusable race-control pattern: cancellation is not complete until the remote side confirms the old wait has been retired.
+            discussion:
+              - Splitting traffic across streams trades serialization simplicity for concurrency. Once that choice is made, correctness has to move into correlation IDs, explicit outcome states and drain conditions rather than relying on arrival order.
+              - A session lease tied to a control stream is operationally simple and fail-closed, but it deliberately sacrifices transparent reconnect/resume unless a higher layer adds recovery semantics.
+              - Versioning in the protobuf package makes the wire namespace durable, but it is not equivalent to runtime feature negotiation; mixed-version compatibility still needs an explicit policy.
+              - The protocol usefully separates lifecycle finality from application success. Agent platforms should avoid any UI or state projection that maps an outer `completed` token directly to successful work without checking the embedded result.
+              - Reliable remote-agent hosting also needs retry and idempotency contracts for unary mutating RPCs; the Reading Result explicitly leaves those guarantees unresolved.
+            research_judgment:
+              - A remote agent host should treat cross-stream reordering as a first-class contract and recover safe local order through durable correlation identifiers, monotonic sequence evidence and explicit drain watermarks.
+              - Lifecycle completion must remain separate from semantic success and transport success; clients need typed outcome interpretation before promoting execution results into business completion.
+              - Cancellation and termination should be acknowledgment-bearing state transitions, not local assumptions based on dropping a future or closing a UI action.
+              - Package-level protocol versioning is necessary but insufficient for long-lived interoperability; retry/idempotency, authentication and feature-negotiation contracts must be specified before treating the boundary as production-grade remote execution infrastructure.
+            uncertainty:
+              - Confidence is high in the stated wire-level lifecycle and ordering semantics because they are explicit in the completed protobuf Reading Result.
+              - Confidence is medium that split streams improve end-to-end responsiveness under realistic CodeFlowMu loads because no concurrency benchmark or host implementation test is included in the selected change.
+              - Confidence is low about reconnect, replay, idempotent retry and authentication behavior because those mechanisms are outside the Reading Result.
+            counter_evidence:
+              - The selected change mainly defines protocol and bindings; it does not prove end-to-end behavior under real concurrent traffic.
+              - Cross-stream concurrency intentionally removes a single total event order and therefore increases client reconciliation complexity.
+              - Dropping the session stream terminates active cells, so stream-lease simplicity does not provide resumable disconnection semantics by itself.
+              - `ExecutionCompleted.error_text` means outer lifecycle completion cannot be used as a semantic success signal.
+            engineering_impact:
+              tmpa:
+                - Use the case as research input on typed lifecycle evidence and ordering boundaries; it does not justify turning TMPA or FCoP into a transport protocol.
+              digital_employee:
+                - If Digital Employees execute through remote hosts, preserve WorkOrder identity above host-session leases so provider or transport session loss does not erase durable job state.
+                - Keep execution outcome, business verdict and transport status as different state dimensions.
+              codeflowmu:
+                - If execution is externalized over RPC, separate high-volume tool payload traffic from control/event traffic while adding execution IDs, invocation IDs, sequence numbers and closure watermarks.
+                - Require explicit cancel acknowledgments and idempotency keys before retrying mutating remote calls after transport failure.
+                - Keep FCoP as the shared behavioral/work protocol surface; do not overload it with gRPC transport ordering or connection-liveness semantics.
+                - Reconcile a worker's `completed` lifecycle result with nested error fields and QA evidence before changing task acceptance state.
+            limitations:
+              - No authentication, authorization or tenant-binding contract is established in the selected protobuf evidence.
+              - No runtime version negotiation or compatibility handshake is specified.
+              - Retryability and idempotency semantics for mutating RPCs are unresolved.
+              - End-to-end concurrency and backpressure properties are not demonstrated by tests in the selected change.
+            future_questions:
+              - Which CodeFlowMu execution events require monotonic sequence numbers or closure watermarks when tools and control traffic are separated?
+              - What reconnect model preserves WorkOrder continuity if a remote host session lease ends on stream loss?
+              - Which mutating RPCs require idempotency keys and durable effect receipts before automated retry is safe?
+              - How should protocol version negotiation and capability discovery be layered without coupling FCoP work semantics to transport details?
+          ```
+
+          ## Research judgment
+
+          Treat remote agent execution as a correlated multi-stream contract: concurrency may reorder events, so safe finality must be reconstructed from identifiers, sequence evidence, acknowledgments and typed outcomes rather than arrival order or an outer `completed` label.
+
+          ## Production input
+
+          Production may consume this object only with the missing authentication, negotiation, idempotency and end-to-end concurrency evidence stated explicitly.
+
+          ## Evidence boundary
+
+          - `research/reading/Q-20260808-01-session-budget-governance.md`
+          - `research/reading/Q-20260808-02-managed-model-auto-review.md`
+          - `research/reading/Q-20260808-03-code-mode-grpc-host-protocol.md`
+
+          No unread material was consumed.
+          EOF
+
+          completed_at="$(TZ=Asia/Shanghai date +%Y-%m-%dT%H:%M:%S%:z)"
+          export COMPLETED_AT="$completed_at"
+          node <<'NODE'
+          const fs = require('fs')
+          const path = 'research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json'
+          const record = JSON.parse(fs.readFileSync(path, 'utf8'))
+          const starts = (record.timeline || []).filter((e) => e.task === 'analysis' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-08'))
+          if (record.taskStatus?.reading !== 'Completed') throw new Error(`Reading incomplete: ${record.taskStatus?.reading}`)
+          if (record.taskStatus?.analysis !== 'Running' || record.status !== 'Running') throw new Error('Analysis must still be Running before terminal result is written.')
+          if (starts.length !== 1) throw new Error(`Expected exactly one Analysis start event, got ${starts.length}`)
+          const startCommit = process.env.START_COMMIT
+          const mode = process.env.FALLBACK === 'true' ? 'scheduler-fallback' : 'scheduler'
+          const completedAt = process.env.COMPLETED_AT
+          record.taskStatus.analysis = 'Completed'
+          record.status = 'Waiting'
+          record.results.analysis = {
+            schema: 'runtime-shift-result/v2',
+            task: 'analysis',
+            family: 'daily',
+            status: 'Completed',
+            startedAt: starts[0].time,
+            completedAt,
+            input: `Consumed only the three completed 2026-08-08 Reading Results after durable Analysis Running state verification. Control plane: ${mode}; start commit ${startCommit}.`,
+            input_zh: `仅在持久化 Analysis Running 状态核验后消费 2026-08-08 当日三份已完成 Reading Results。控制面：${mode}；启动提交 ${startCommit}。`,
+            workResult: 'Skill 04 produced three Research Objects with observations, same-day cross-comparison, causal and architectural discussion, four explicit research judgments per column, uncertainty, counter-evidence, engineering impact, limitations and future questions. No unread source, publication copy or release work was introduced.',
+            workResult_zh: 'Skill 04 形成三份 Research Objects，包含观察、同日交叉比较、因果与架构讨论、每栏四项明确研究判断、不确定性、反证、工程影响、限制与未来问题。未引入未读来源、出版文案或发布工作。',
+            output: 'Three Production-authorized Research Objects: Pause-Preserving Budget Admission; Lifecycle-Revalidated Managed Policy Plane; Correlated Multi-Stream Agent Host Contract.',
+            output_zh: '三份可作为 Production 唯一合法输入的 Research Objects：暂停保留型预算准入、生命周期重验证托管策略平面、关联式多流 Agent Host 契约。',
+            next: 'Production at 15:00 may consume only these durable Research Objects. It must not write from Signals or Reading Results directly and must preserve each object\'s uncertainty and counter-evidence boundaries.',
+            next_zh: '15:00 Production 只能消费这三份持久化 Research Objects，不得直接从 Signal 或 Reading Result 写作，并必须保留各对象的不确定性与反证边界。',
+            controlPlane: { mode, startCommit, verifiedBeforeSubstantiveWork: true, startEventCount: 1 },
+            metrics: [
+              { label: 'Reading Results consumed', label_zh: '已消费 Reading Results', value: '3' },
+              { label: 'Research Objects produced', label_zh: '已产出 Research Objects', value: '3' },
+              { label: 'Research columns completed', label_zh: '已完成研究栏目', value: '3/3' },
+              { label: 'Explicit research judgments', label_zh: '明确研究判断', value: '12' },
+              { label: 'Uncertainty statements', label_zh: '不确定性陈述', value: '9' },
+              { label: 'Counter-evidence items', label_zh: '反证条目', value: '12' },
+              { label: 'Unread external sources introduced', label_zh: '引入未读外部来源', value: '0' },
+              { label: 'Publication drafts', label_zh: '出版草稿', value: '0' },
+              { label: 'Analysis start events', label_zh: 'Analysis 启动事件', value: '1' }
+            ],
+            evidence: [
+              { label: 'Scheduler V3', label_zh: 'V3 调度器', source: 'research/runtime/SCHEDULER.json' },
+              { label: 'Skill 04 Research Analysis', label_zh: 'Skill 04 研究分析', source: 'research/skills/04-research-analysis.md' },
+              { label: 'Digital Employee Reading Result', label_zh: '数字员工 Reading Result', source: 'research/reading/Q-20260808-01-session-budget-governance.md' },
+              { label: 'Industry Architecture Reading Result', label_zh: '行业架构 Reading Result', source: 'research/reading/Q-20260808-02-managed-model-auto-review.md' },
+              { label: 'Open-source Engineering Reading Result', label_zh: '开源工程 Reading Result', source: 'research/reading/Q-20260808-03-code-mode-grpc-host-protocol.md' },
+              { label: 'Verified Analysis start commit', label_zh: '已核验 Analysis 启动提交', source: `https://github.com/joinwell52-AI/joinwell52/commit/${startCommit}` }
+            ],
+            artifacts: [
+              { label: 'Digital Employee Research Object', label_zh: '数字员工 Research Object', path: 'research/analysis/Q-20260808-01-pause-preserving-budget-admission.md' },
+              { label: 'Industry Architecture Research Object', label_zh: '行业架构 Research Object', path: 'research/analysis/Q-20260808-02-lifecycle-revalidated-managed-policy-plane.md' },
+              { label: 'Open-source Engineering Research Object', label_zh: '开源工程 Research Object', path: 'research/analysis/Q-20260808-03-correlated-multistream-agent-host-contract.md' },
+              { label: 'Daily Runtime JSON', label_zh: '每日 Runtime JSON', path },
+              { label: 'Human-readable Runtime ledger', label_zh: '人类可读 Runtime 账本', path: 'research/runtime/2026/08/2026-08-08-runtime.md' }
+            ]
+          }
+          record.timeline.push({
+            time: completedAt,
+            task: 'analysis',
+            event: 'Analysis Completed',
+            status: 'Completed',
+            detail: `Skill 04 consumed only three completed same-day Reading Results after verified ${mode} start commit ${startCommit}; three durable Research Objects were produced with comparison, causal/architectural judgment, uncertainty and counter-evidence. No publication copy or release work was performed.`
+          })
+          record.githubCommit = 'pending'
+          record.commitVerify = 'Waiting'
+          record.updatedAt = completedAt
+          fs.writeFileSync(path, JSON.stringify(record, null, 2) + '\n')
+          NODE
+
+          node scripts/runtime-markdown.mjs render --date 2026-08-08
+          npm run runtime:validate
+          node scripts/runtime-markdown.mjs validate --date 2026-08-08
+          git diff --check
+
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$A1" "$A2" "$A3" "$RECORD" "$LEDGER"
+          git commit -m "research(analysis): produce 2026-08-08 Research Objects"
+
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              result_commit="$(git rev-parse HEAD)"
+              echo "result_commit=$result_commit" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            git rebase --abort || true
+            if [[ "$attempt" -eq 3 ]]; then
+              echo "Unable to publish Analysis result after three attempts."
+              exit 1
+            fi
+            sleep $((attempt * 3))
+          done
+
+      - name: Fetch and verify Analysis result artifacts
+        shell: bash
+        env:
+          RESULT_COMMIT: ${{ steps.result.outputs.result_commit }}
+        run: |
+          set -euo pipefail
+          RECORD="research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json"
+          LEDGER="research/runtime/2026/08/2026-08-08-runtime.md"
+          git fetch origin main
+          git merge-base --is-ancestor "$RESULT_COMMIT" origin/main
+          for path in \
+            research/analysis/Q-20260808-01-pause-preserving-budget-admission.md \
+            research/analysis/Q-20260808-02-lifecycle-revalidated-managed-policy-plane.md \
+            research/analysis/Q-20260808-03-correlated-multistream-agent-host-contract.md; do
+            git cat-file -e "$RESULT_COMMIT:$path"
+          done
+          git show "$RESULT_COMMIT:$RECORD" > /tmp/analysis-result.json
+          git show "$RESULT_COMMIT:$LEDGER" > /tmp/analysis-result.md
+          node <<'NODE'
+          const fs = require('fs')
+          const record = JSON.parse(fs.readFileSync('/tmp/analysis-result.json', 'utf8'))
+          const starts = (record.timeline || []).filter((e) => e.task === 'analysis' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-08'))
+          if (record.taskStatus?.analysis !== 'Completed') throw new Error(`Analysis not Completed in result commit: ${record.taskStatus?.analysis}`)
+          if (record.results?.analysis?.schema !== 'runtime-shift-result/v2') throw new Error('Missing runtime-shift-result/v2 Analysis result.')
+          if (starts.length !== 1) throw new Error(`Expected exactly one Analysis start event, got ${starts.length}`)
+          if ((record.results.analysis.artifacts || []).filter((a) => String(a.path || '').startsWith('research/analysis/')).length !== 3) throw new Error('Expected three Research Object artifacts.')
+          console.log('Verified Analysis result commit and three Research Objects.')
+          NODE
+          grep -q '| 13:00 | 研究运行分析 | Research Runtime Analysis | daily | 已完成 / Completed |' /tmp/analysis-result.md
+
+      - name: Persist verified final Runtime commit
+        id: verify
+        shell: bash
+        env:
+          RESULT_COMMIT: ${{ steps.result.outputs.result_commit }}
+        run: |
+          set -euo pipefail
+          RECORD="research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json"
+          LEDGER="research/runtime/2026/08/2026-08-08-runtime.md"
+          git fetch origin main
+          git reset --hard origin/main
+          verified_at="$(TZ=Asia/Shanghai date +%Y-%m-%dT%H:%M:%S%:z)"
+          export VERIFIED_AT="$verified_at"
+          node <<'NODE'
+          const fs = require('fs')
+          const path = 'research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json'
+          const record = JSON.parse(fs.readFileSync(path, 'utf8'))
+          if (record.taskStatus?.analysis !== 'Completed' || record.results?.analysis?.status !== 'Completed') throw new Error('Cannot verify a non-completed Analysis result.')
+          const starts = (record.timeline || []).filter((e) => e.task === 'analysis' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-08'))
+          if (starts.length !== 1) throw new Error(`Expected exactly one Analysis start event, got ${starts.length}`)
+          const existing = (record.timeline || []).filter((e) => e.task === 'analysis' && e.event === 'GitHub Commit Verified' && String(e.time || '').startsWith('2026-08-08'))
+          if (existing.length) throw new Error(`Unexpected pre-existing Analysis verification event count: ${existing.length}`)
+          record.githubCommit = process.env.RESULT_COMMIT
+          record.commitVerify = 'Completed'
+          record.updatedAt = process.env.VERIFIED_AT
+          record.timeline.push({
+            time: process.env.VERIFIED_AT,
+            task: 'analysis',
+            event: 'GitHub Commit Verified',
+            status: 'Completed',
+            detail: `Fetched and verified Analysis result commit ${process.env.RESULT_COMMIT}: all three Research Objects, the runtime-shift-result/v2 Analysis result, Daily Runtime JSON and synchronized Markdown ledger are present and consistent; exactly one current-day Analysis Execution Slot Opened / Running event remains.`
+          })
+          fs.writeFileSync(path, JSON.stringify(record, null, 2) + '\n')
+          NODE
+          node scripts/runtime-markdown.mjs render --date 2026-08-08
+          npm run runtime:validate
+          node scripts/runtime-markdown.mjs validate --date 2026-08-08
+          git diff --check
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$RECORD" "$LEDGER"
+          git commit -m "runtime(v5): verify 2026-08-08 Analysis artifacts"
+
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              verify_commit="$(git rev-parse HEAD)"
+              echo "verify_commit=$verify_commit" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            git rebase --abort || true
+            if [[ "$attempt" -eq 3 ]]; then
+              echo "Unable to publish Analysis verification state after three attempts."
+              exit 1
+            fi
+            sleep $((attempt * 3))
+          done
+
+      - name: Fetch and verify resulting final main commit
+        shell: bash
+        env:
+          RESULT_COMMIT: ${{ steps.result.outputs.result_commit }}
+          VERIFY_COMMIT: ${{ steps.verify.outputs.verify_commit }}
+        run: |
+          set -euo pipefail
+          RECORD="research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json"
+          LEDGER="research/runtime/2026/08/2026-08-08-runtime.md"
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "$VERIFY_COMMIT"
+          git show "$VERIFY_COMMIT:$RECORD" > /tmp/final-runtime.json
+          git show "$VERIFY_COMMIT:$LEDGER" > /tmp/final-runtime.md
+          node <<'NODE'
+          const fs = require('fs')
+          const record = JSON.parse(fs.readFileSync('/tmp/final-runtime.json', 'utf8'))
+          const starts = (record.timeline || []).filter((e) => e.task === 'analysis' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-08'))
+          const verifies = (record.timeline || []).filter((e) => e.task === 'analysis' && e.event === 'GitHub Commit Verified' && e.status === 'Completed' && String(e.time || '').startsWith('2026-08-08'))
+          if (record.status !== 'Waiting') throw new Error(`Expected overall Waiting for Production, got ${record.status}`)
+          if (record.taskStatus?.analysis !== 'Completed') throw new Error(`Expected Analysis Completed, got ${record.taskStatus?.analysis}`)
+          if (record.taskStatus?.production !== 'Waiting') throw new Error(`Expected Production Waiting, got ${record.taskStatus?.production}`)
+          if (record.githubCommit !== process.env.RESULT_COMMIT) throw new Error(`githubCommit mismatch: ${record.githubCommit}`)
+          if (record.commitVerify !== 'Completed') throw new Error(`commitVerify mismatch: ${record.commitVerify}`)
+          if (starts.length !== 1) throw new Error(`Expected exactly one Analysis start event, got ${starts.length}`)
+          if (verifies.length !== 1) throw new Error(`Expected exactly one Analysis verification event, got ${verifies.length}`)
+          console.log(`Final Runtime verified: result=${process.env.RESULT_COMMIT}, final=${process.env.VERIFY_COMMIT}`)
+          NODE
+          grep -q '| 13:00 | 研究运行分析 | Research Runtime Analysis | daily | 已完成 / Completed |' /tmp/final-runtime.md
+
+      - name: Remove ephemeral automation branch
+        if: success()
+        shell: bash
+        run: |
+          git push origin --delete automation/analysis-20260808-run3 || true
