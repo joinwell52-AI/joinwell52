@@ -6,8 +6,8 @@
   "status": "Running",
   "registryVersion": "1.0",
   "sourceTask": "Research Runtime Discovery",
-  "updatedAt": "2026-08-08T09:09:13+08:00",
-  "githubCommit": "pending",
+  "updatedAt": "2026-08-08T09:25:53+08:00",
+  "githubCommit": "81618569508957fd4cd8517d91ca89e8eac1c093",
   "reason": "All three formal Discovery profiles completed only after the scheduler-fallback Running state in commit 266182de7728b7c3cdb3511b7236e12e8bea95da was durably fetched and verified. Queue triage has not run, so all normalized signals remain unselected.",
   "reason_zh": "仅在提交 266182de7728b7c3cdb3511b7236e12e8bea95da 中的 Scheduler 回退 Running 状态完成持久化拉取与核验后，三项正式 Discovery Profile 才开始并完成。Queue 筛选尚未执行，因此所有规范化信号均保持未选题。",
   "controlPlane": {
@@ -15,8 +15,10 @@
     "startStateCommit": "266182de7728b7c3cdb3511b7236e12e8bea95da",
     "startEventCount": 1,
     "verifiedBeforeSubstantiveWork": true,
-    "resultCommit": "pending",
-    "resultCommitVerified": false
+    "resultCommit": "81618569508957fd4cd8517d91ca89e8eac1c093",
+    "resultCommitVerified": true,
+    "idempotentReentry": true,
+    "idempotentReentryNote": "A same-day completed Discovery already existed when the later automation invocation entered. The canonical start snapshot and result artifacts were fetched and verified; no duplicate start event, second start-state commit, or second source-retrieval pass was created."
   },
   "pipelines": [
     {
@@ -135,7 +137,9 @@
       "id": "SIG-20260808-P-001",
       "pipeline": "ai-platform",
       "primaryColumn": "digital-employee",
-      "secondaryColumns": ["industry-architecture"],
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
       "title": "ChatGPT Voice adds file uploads and Projects context",
       "title_zh": "ChatGPT Voice 新增文件上传与 Projects 上下文",
       "sourceUrl": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
@@ -151,7 +155,9 @@
       "id": "SIG-20260808-P-002",
       "pipeline": "ai-platform",
       "primaryColumn": "digital-employee",
-      "secondaryColumns": ["industry-architecture"],
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
       "title": "Claude Managed Agents adds hard session budgets with pause-and-resume semantics",
       "title_zh": "Claude Managed Agents 新增具有暂停与恢复语义的 Session 硬预算",
       "sourceUrl": "https://platform.claude.com/docs/en/release-notes/overview",
@@ -167,7 +173,9 @@
       "id": "SIG-20260808-P-003",
       "pipeline": "ai-platform",
       "primaryColumn": "industry-architecture",
-      "secondaryColumns": ["digital-employee"],
+      "secondaryColumns": [
+        "digital-employee"
+      ],
       "title": "GitHub Copilot usage metrics API separates third-party agent app activity by stable agent ID",
       "title_zh": "GitHub Copilot Usage Metrics API 按稳定 Agent ID 分离第三方 Agent App 活动",
       "sourceUrl": "https://github.blog/changelog/2026-08-07-copilot-usage-metrics-api-adds-agent-app-activity/",
@@ -183,7 +191,9 @@
       "id": "SIG-20260808-P-004",
       "pipeline": "ai-platform",
       "primaryColumn": "industry-architecture",
-      "secondaryColumns": ["open-source-engineering"],
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
       "title": "GitHub Copilot code review effort levels become GA with organization defaults and visible execution labels",
       "title_zh": "GitHub Copilot Code Review Effort Level GA，并支持组织默认值与可见执行标签",
       "sourceUrl": "https://github.blog/changelog/2026-08-07-copilot-code-review-effort-levels-are-generally-available/",
@@ -199,7 +209,10 @@
       "id": "SIG-20260808-G-001",
       "pipeline": "github-engineering",
       "primaryColumn": "industry-architecture",
-      "secondaryColumns": ["open-source-engineering", "digital-employee"],
+      "secondaryColumns": [
+        "open-source-engineering",
+        "digital-employee"
+      ],
       "title": "Codex can require automatic review for centrally managed model slugs",
       "title_zh": "Codex 可对集中管理的模型 Slug 强制自动 Review",
       "sourceUrl": "https://github.com/openai/codex/commit/208f05b23387c47d7e52fd2153d59255e945d0b7",
@@ -215,7 +228,9 @@
       "id": "SIG-20260808-G-002",
       "pipeline": "github-engineering",
       "primaryColumn": "open-source-engineering",
-      "secondaryColumns": ["industry-architecture"],
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
       "title": "Codex disables reusable command-approval rules for cyber-specialized models",
       "title_zh": "Codex 对 Cyber 专用模型禁用可复用命令 Approval 规则",
       "sourceUrl": "https://github.com/openai/codex/commit/e734a1a5c1c6e51d7a28ec8ec6381d7ffb18e23b",
@@ -231,7 +246,9 @@
       "id": "SIG-20260808-G-003",
       "pipeline": "github-engineering",
       "primaryColumn": "digital-employee",
-      "secondaryColumns": ["open-source-engineering"],
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
       "title": "Codex Guardian review sessions can reuse parent compactions after history rewrites",
       "title_zh": "Codex Guardian Review Session 可在父历史重写后复用 Parent Compaction",
       "sourceUrl": "https://github.com/openai/codex/commit/c2bcb9a26b5bdbdc66c48cf3bc3bb382568e800c",
@@ -247,7 +264,9 @@
       "id": "SIG-20260808-G-004",
       "pipeline": "github-engineering",
       "primaryColumn": "open-source-engineering",
-      "secondaryColumns": ["industry-architecture"],
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
       "title": "Codex defines a versioned gRPC host protocol for code-mode sessions and executions",
       "title_zh": "Codex 为 Code Mode Session 与执行定义版本化 gRPC Host Protocol",
       "sourceUrl": "https://github.com/openai/codex/commit/8073dbb20bbd57f2acdc18708a95e8fbbfc8b91f",
@@ -263,7 +282,9 @@
       "id": "SIG-20260808-G-005",
       "pipeline": "github-engineering",
       "primaryColumn": "open-source-engineering",
-      "secondaryColumns": ["digital-employee"],
+      "secondaryColumns": [
+        "digital-employee"
+      ],
       "title": "OpenAI Agents Python hardens sandbox artifact fidelity for lazy skills and workspace extraction",
       "title_zh": "OpenAI Agents Python 加固 Lazy Skill 与 Workspace 解包的 Sandbox 工件保真度",
       "sourceUrl": "https://github.com/openai/openai-agents-python/commit/f30f7baca082a2c3ec0cc4d467db78e66e01e365",
@@ -279,7 +300,9 @@
       "id": "SIG-20260808-G-006",
       "pipeline": "github-engineering",
       "primaryColumn": "digital-employee",
-      "secondaryColumns": ["open-source-engineering"],
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
       "title": "Gemini CLI Caretaker clears execution locks when work transitions to NEEDS_HUMAN",
       "title_zh": "Gemini CLI Caretaker 在工作进入 NEEDS_HUMAN 时清理执行锁",
       "sourceUrl": "https://github.com/google-gemini/gemini-cli/commit/cf22ac7e86f3dcf528e3ae591fec1c03090a49f8",
@@ -295,7 +318,9 @@
       "id": "SIG-20260808-G-007",
       "pipeline": "github-engineering",
       "primaryColumn": "open-source-engineering",
-      "secondaryColumns": ["industry-architecture"],
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
       "title": "Google ADK blocks the Python standard library from agent-config code references",
       "title_zh": "Google ADK 阻止 Agent Config Code Reference 访问 Python 标准库",
       "sourceUrl": "https://github.com/google/adk-python/commit/a16f6da3314b8dcd9925884cd6fc7fc9ffdd570d",
@@ -311,7 +336,9 @@
       "id": "SIG-20260808-G-008",
       "pipeline": "github-engineering",
       "primaryColumn": "open-source-engineering",
-      "secondaryColumns": ["industry-architecture"],
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
       "title": "Google ADK stops sharing GCS clients across credentials",
       "title_zh": "Google ADK 停止跨 Credential 共享 GCS Client",
       "sourceUrl": "https://github.com/google/adk-python/commit/3d2975025bfecd5fe63f1669cf3336c7340f02ac",
@@ -327,7 +354,9 @@
       "id": "SIG-20260808-R-001",
       "pipeline": "published-research",
       "primaryColumn": "digital-employee",
-      "secondaryColumns": ["open-source-engineering"],
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
       "title": "OrchestraBench evaluates multi-agent orchestration failure modes, recovery, and decomposition quality",
       "title_zh": "OrchestraBench 评估多 Agent 编排故障模式、恢复与任务分解质量",
       "sourceUrl": "https://arxiv.org/abs/2608.05263",
@@ -343,7 +372,9 @@
       "id": "SIG-20260808-R-002",
       "pipeline": "published-research",
       "primaryColumn": "digital-employee",
-      "secondaryColumns": ["open-source-engineering"],
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
       "title": "Activity Frames compiles screen activity into deterministic, auditable agent memory and replay",
       "title_zh": "Activity Frames 将屏幕活动编译为确定性、可审计的 Agent Memory 与 Replay",
       "sourceUrl": "https://arxiv.org/abs/2608.05784",
@@ -359,7 +390,9 @@
       "id": "SIG-20260808-R-003",
       "pipeline": "published-research",
       "primaryColumn": "open-source-engineering",
-      "secondaryColumns": ["digital-employee"],
+      "secondaryColumns": [
+        "digital-employee"
+      ],
       "title": "CodeGrep trains a dedicated retrieval agent to reduce coding-agent search cost",
       "title_zh": "CodeGrep 训练专用 Retrieval Agent 以降低 Coding Agent 搜索成本",
       "sourceUrl": "https://arxiv.org/abs/2608.05886",
@@ -375,7 +408,9 @@
       "id": "SIG-20260808-R-004",
       "pipeline": "published-research",
       "primaryColumn": "open-source-engineering",
-      "secondaryColumns": ["industry-architecture"],
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
       "title": "TIPEX models multi-agent inference parallelism as replica and structural execution tiers",
       "title_zh": "TIPEX 将多 Agent 推理并行建模为 Replica 与 Structural 两级执行",
       "sourceUrl": "https://arxiv.org/abs/2608.05791",
