@@ -1,0 +1,73 @@
+name: Reading Fallback 2026-08-08 Once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/reading-fallback-20260808-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  persist-reading-start:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Persist exactly one durable Reading Running state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --rebase origin main
+          record="research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json"
+          before="$(node - <<'NODE'
+          const fs=require('fs'); const p='research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json'; const r=JSON.parse(fs.readFileSync(p,'utf8'));
+          const e=(r.timeline||[]).filter(x=>x.task==='reading'&&x.event==='Execution Slot Opened'&&x.status==='Running'&&String(x.time||'').startsWith('2026-08-08'));
+          console.log(JSON.stringify({status:r.status,reading:r.taskStatus?.reading,count:e.length}))
+          NODE
+          )"
+          echo "Before: $before"
+          mode="existing"
+          if node -e 'const x=JSON.parse(process.argv[1]); process.exit(x.status==="Running"&&x.reading==="Running"&&x.count===1?0:1)' "$before"; then
+            echo "Scheduler state already durable after refresh; no duplicate start will be written."
+          else
+            node -e 'const x=JSON.parse(process.argv[1]); if(!(x.reading==="Waiting"&&x.count===0)) process.exit(2)' "$before"
+            node scripts/runtime-v5.mjs schedule --task reading
+            node <<'NODE'
+            const fs=require('fs'); const p='research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json'; const r=JSON.parse(fs.readFileSync(p,'utf8'));
+            const events=(r.timeline||[]).filter(x=>x.task==='reading'&&x.event==='Execution Slot Opened'&&x.status==='Running'&&String(x.time||'').startsWith('2026-08-08'));
+            if(events.length!==1) throw new Error(`Expected exactly one Reading start event, got ${events.length}`)
+            events[0].detail='Scheduler fallback: Research Runtime Reading opened because the durable control-plane Running state was absent at automation entry; Deep Reading may begin only after this synchronized JSON and Markdown state is committed, fetched and verified.'
+            r.status='Running'; r.taskStatus.reading='Running'; r.githubCommit='pending'; r.commitVerify='Running';
+            fs.writeFileSync(p, JSON.stringify(r,null,2)+'\n')
+            NODE
+            mode="fallback"
+            node scripts/runtime-markdown.mjs render --date 2026-08-08
+          fi
+          npm run runtime:validate
+          node scripts/runtime-markdown.mjs validate --date 2026-08-08
+          node <<'NODE'
+          const fs=require('fs'); const p='research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json'; const r=JSON.parse(fs.readFileSync(p,'utf8'));
+          const e=(r.timeline||[]).filter(x=>x.task==='reading'&&x.event==='Execution Slot Opened'&&x.status==='Running'&&String(x.time||'').startsWith('2026-08-08'));
+          if(r.status!=='Running') throw new Error(`overall status ${r.status}`)
+          if(r.taskStatus?.reading!=='Running') throw new Error(`reading status ${r.taskStatus?.reading}`)
+          if(e.length!==1) throw new Error(`Reading start-event count ${e.length}`)
+          console.log(`Verified local durable candidate: overall Running, reading Running, start events=${e.length}`)
+          NODE
+          rm -f .github/workflows/reading-fallback-20260808-once.yml
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$record" research/runtime/2026/08/2026-08-08-runtime.md .github/workflows/reading-fallback-20260808-once.yml
+          if git diff --cached --quiet; then exit 0; fi
+          if [[ "$mode" == "fallback" ]]; then
+            git commit -m "runtime(reading): persist 2026-08-08 scheduler fallback start"
+          else
+            git commit -m "chore(runtime): remove resolved Reading fallback trigger"
+          fi
+          git pull --rebase origin main
+          git push origin HEAD:main
