@@ -1,0 +1,100 @@
+/* Mobile containment contract for Runtime and Intelligence pages. */
+@media (max-width: 699px) {
+  .runtime-center-page,
+  .runtime-center-page .VPContent,
+  .runtime-center-page .VPHome,
+  .runtime-center-page .runtime-classic,
+  .runtime-center-page .intel-radar {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  .runtime-center-page .runtime-classic,
+  .runtime-center-page .intel-radar {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .runtime-center-page .runtime-classic .shell,
+  .runtime-center-page .intel-radar .intel-shell {
+    width: calc(100% - 24px);
+    max-width: 100%;
+    min-width: 0;
+    margin-inline: auto;
+  }
+
+  .runtime-center-page .panel,
+  .runtime-center-page .shift-card,
+  .runtime-center-page .column-card,
+  .runtime-center-page .overview-grid article,
+  .runtime-center-page .evidence-grid article,
+  .runtime-center-page .result-grid > div,
+  .runtime-center-page .metric-grid > div,
+  .runtime-center-page .production-release,
+  .runtime-center-page .empty-state,
+  .runtime-center-page .release-result {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .runtime-center-page .shift-head,
+  .runtime-center-page .column-head,
+  .runtime-center-page .card-head {
+    min-width: 0;
+    flex-wrap: wrap;
+  }
+
+  .runtime-center-page .shift-head > div,
+  .runtime-center-page .column-head > div,
+  .runtime-center-page .card-head > div {
+    min-width: 0;
+    flex: 1 1 220px;
+  }
+
+  .runtime-center-page .shift-head > b,
+  .runtime-center-page .column-head > b,
+  .runtime-center-page .card-head > b {
+    flex: 0 0 auto;
+  }
+
+  .runtime-center-page .result-grid,
+  .runtime-center-page .overview-grid,
+  .runtime-center-page .evidence-grid,
+  .runtime-center-page .column-grid,
+  .runtime-center-page .pipeline-grid {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .runtime-center-page .result-grid p,
+  .runtime-center-page .column-card dd,
+  .runtime-center-page .column-card h4,
+  .runtime-center-page .pipeline-grid p,
+  .runtime-center-page .column-grid p,
+  .runtime-center-page .history-list a,
+  .runtime-center-page .artifact-list a,
+  .runtime-center-page .release-result p,
+  .runtime-center-page .release-result strong,
+  .runtime-center-page .empty-state p,
+  .runtime-center-page .evidence-grid a,
+  .runtime-center-page .evidence-grid strong {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .runtime-center-page .artifact-list a,
+  .runtime-center-page .release-result a {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .runtime-center-page .runtime-inline-date {
+    min-width: 0;
+  }
+
+  .runtime-center-page .runtime-inline-date label,
+  .runtime-center-page .runtime-inline-date input {
+    min-width: 0;
+    max-width: 100%;
+  }
+}
