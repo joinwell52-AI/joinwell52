@@ -1,0 +1,45 @@
+name: Restore Reading Ledger 2026-08-08 Once
+
+on:
+  push:
+    branches:
+      - runtime-reading-ledger-restore-20260808
+    paths:
+      - .github/workflows/restore-reading-ledger-20260808-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout restore branch
+        uses: actions/checkout@v4
+        with:
+          ref: runtime-reading-ledger-restore-20260808
+          fetch-depth: 0
+
+      - name: Restore detailed verified ledger
+        shell: bash
+        run: |
+          set -euo pipefail
+          ledger="research/runtime/2026/08/2026-08-08-runtime.md"
+          verify_commit="6869fcbaa37c578622403f7b665f4a47aac29771"
+          git show "${verify_commit}:${ledger}" > "$ledger"
+          grep -q '^github_commit: "fb3e3b069651e82bcd044fc1561b6e90dc8e849b"$' "$ledger"
+          grep -q '^commit_verify: "Completed"$' "$ledger"
+          grep -q '2026-08-08T11:31:30+08:00.*GitHub Commit Verified' "$ledger"
+          grep -q '### Work Result' "$ledger"
+          grep -q 'Q-20260808-03' "$ledger"
+
+      - name: Commit Markdown-only restoration and remove workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/restore-reading-ledger-20260808-once.yml
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime/2026/08/2026-08-08-runtime.md .github/workflows/restore-reading-ledger-20260808-once.yml
+          git commit -m "runtime(reading): restore detailed 2026-08-08 ledger projection"
+          git push origin HEAD:runtime-reading-ledger-restore-20260808
