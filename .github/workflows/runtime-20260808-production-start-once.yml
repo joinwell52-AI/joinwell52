@@ -1,0 +1,90 @@
+name: Runtime 2026-08-08 Production Start Once
+
+on:
+  push:
+    branches:
+      - runtime/20260808-production-stage
+    paths:
+      - .github/workflows/runtime-20260808-production-start-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  open-production:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Persist Production Running control-plane state if missing
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs')
+          const path = 'research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json'
+          const record = JSON.parse(fs.readFileSync(path, 'utf8'))
+          const startTime = '2026-08-08T15:03:24+08:00'
+          const starts = (record.timeline || []).filter((event) =>
+            event.task === 'production' &&
+            event.event === 'Execution Slot Opened' &&
+            event.status === 'Running' &&
+            String(event.time || '').startsWith('2026-08-08T')
+          )
+          if (starts.length > 1) throw new Error(`duplicate Production start events: ${starts.length}`)
+          const alreadyDurable = record.status === 'Running' && record.taskStatus?.production === 'Running' && starts.length === 1
+          if (alreadyDurable) {
+            console.log('Production Running state already durable; no fallback mutation required.')
+            process.exit(0)
+          }
+          if (starts.length === 0) {
+            record.timeline = record.timeline || []
+            record.timeline.push({
+              time: startTime,
+              task: 'production',
+              event: 'Execution Slot Opened',
+              status: 'Running',
+              detail: 'Scheduler fallback: Research Runtime Production opened because the durable control-plane Running state was absent at automation entry; substantive Skills 05–08 work may begin only after this synchronized JSON and Markdown state is committed, fetched and verified.'
+            })
+          }
+          record.status = 'Running'
+          record.taskStatus = record.taskStatus || {}
+          record.taskStatus.production = 'Running'
+          record.githubCommit = 'pending'
+          record.commitVerify = 'Waiting'
+          record.updatedAt = startTime
+          fs.writeFileSync(path, JSON.stringify(record, null, 2) + '\n')
+          NODE
+
+          node scripts/runtime-markdown.mjs render --date 2026-08-08
+          node scripts/runtime-markdown.mjs validate --date 2026-08-08
+
+          node <<'NODE'
+          const fs = require('fs')
+          const path = 'research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json'
+          const record = JSON.parse(fs.readFileSync(path, 'utf8'))
+          const starts = (record.timeline || []).filter((event) =>
+            event.task === 'production' && event.event === 'Execution Slot Opened' && event.status === 'Running' && String(event.time || '').startsWith('2026-08-08T')
+          )
+          if (record.status !== 'Running') throw new Error(`overall status is ${record.status}`)
+          if (record.taskStatus?.production !== 'Running') throw new Error(`production status is ${record.taskStatus?.production}`)
+          if (starts.length !== 1) throw new Error(`Production start event count is ${starts.length}`)
+          NODE
+
+      - name: Commit synchronized start state to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json research/runtime/2026/08/2026-08-08-runtime.md; then
+            echo "No start-state commit needed."
+            exit 0
+          fi
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json research/runtime/2026/08/2026-08-08-runtime.md
+          git commit -m "runtime(v5): fallback open Production control-plane state for 2026-08-08"
+          git push origin HEAD:main
