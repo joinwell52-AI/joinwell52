@@ -8,10 +8,10 @@
   "date": "2026-08-08",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
-    "queue": "Running",
+    "queue": "Completed",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
@@ -45,54 +45,18 @@
         "summary": "Executed only the three formal Discovery intelligence profiles after verifying the durable Running control-plane state. All due P0 source objects received explicit checked, inaccessible or failed outcomes; same-mechanism objects were normalized and deduplicated into a 16-signal pool. No topic selection, Deep Reading, Research Analysis or article writing was performed.",
         "summary_zh": "仅在持久化 Running 控制面状态核验完成后执行三项正式 Discovery 情报 Profile。所有应检查 P0 来源对象均获得明确的已检查、不可访问或失败结果；同机制对象经规范化与去重后形成 16 个 Signal。未执行选题、Deep Reading、Research Analysis 或文章写作。",
         "profiles": [
-          {
-            "id": "ai-platform",
-            "due": 33,
-            "checked": 29,
-            "inaccessible": 1,
-            "failed": 3,
-            "signals": 4,
-            "coveragePercent": 100
-          },
-          {
-            "id": "github-engineering",
-            "due": 9,
-            "checked": 9,
-            "inaccessible": 0,
-            "failed": 0,
-            "signals": 8,
-            "coveragePercent": 100
-          },
-          {
-            "id": "published-research",
-            "due": 6,
-            "checked": 6,
-            "inaccessible": 0,
-            "failed": 0,
-            "signals": 4,
-            "coveragePercent": 100
-          }
+          { "id": "ai-platform", "due": 33, "checked": 29, "inaccessible": 1, "failed": 3, "signals": 4, "coveragePercent": 100 },
+          { "id": "github-engineering", "due": 9, "checked": 9, "inaccessible": 0, "failed": 0, "signals": 8, "coveragePercent": 100 },
+          { "id": "published-research", "due": 6, "checked": 6, "inaccessible": 0, "failed": 0, "signals": 4, "coveragePercent": 100 }
         ],
         "sourceOutcomes": {
           "inaccessible": [
-            {
-              "source": "anthropic-claude/community-discord",
-              "reason": "authentication-required by registry"
-            }
+            { "source": "anthropic-claude/community-discord", "reason": "authentication-required by registry" }
           ],
           "failed": [
-            {
-              "source": "openai/release-notes",
-              "reason": "exact products release-notes URL timed out; companion official OpenAI channels were checked"
-            },
-            {
-              "source": "cursor/announcements",
-              "reason": "exact official announcements category returned an internal retrieval error; companion Cursor channels were checked"
-            },
-            {
-              "source": "microsoft-copilot-platform/tech-community",
-              "reason": "exact Copilot Studio Tech Community category returned an internal retrieval error; companion Microsoft official channels were checked"
-            }
+            { "source": "openai/release-notes", "reason": "exact products release-notes URL timed out; companion official OpenAI channels were checked" },
+            { "source": "cursor/announcements", "reason": "exact official announcements category returned an internal retrieval error; companion Cursor channels were checked" },
+            { "source": "microsoft-copilot-platform/tech-community", "reason": "exact Copilot Studio Tech Community category returned an internal retrieval error; companion Microsoft official channels were checked" }
           ]
         },
         "normalization": {
@@ -166,6 +130,102 @@
         "research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json",
         "research/runtime/2026/08/2026-08-08-runtime.md"
       ]
+    },
+    "queue": {
+      "schema": "runtime-shift-result/v2",
+      "task": "queue",
+      "family": "daily",
+      "status": "Completed",
+      "startedAt": "2026-08-08T10:00:41+08:00",
+      "completedAt": "2026-08-08T10:08:12+08:00",
+      "input": {
+        "scheduler": "research/runtime/SCHEDULER.json",
+        "skill": "research/skills/02-research-triage.md",
+        "signalPool": "research/intelligence/runs/2026/08/2026-08-08-intelligence.json",
+        "signalCount": 16,
+        "discoveryStatus": "Completed",
+        "controlPlane": {
+          "mode": "scheduler-fallback",
+          "startCommit": "c8c4e41aafd977aef7c7b20ed8a8b62b37a88b36",
+          "verifiedBeforeSubstantiveWork": true,
+          "startEventCount": 1
+        }
+      },
+      "workResult": {
+        "summary": "Executed only Skill 02 after fetching and verifying the durable Queue Running state. Triaged all 16 same-day signals and wrote exactly one explicit Selected decision for each of the three research columns. Three primary objects were selected, 13 non-selected signals were retained as candidates, and none were rejected. No Deep Reading, Research Analysis, writing or publication work was performed.",
+        "summary_zh": "仅在 fetch 并核验持久化 Queue Running 状态后执行 Skill 02。已筛选全部 16 个同日 Signal，并为三个研究栏目各写入且仅写入一个明确 Selected 决定。共选出 3 个主要对象，其余 13 个未选 Signal 保留为 Candidate，拒绝 0 个。未执行 Deep Reading、Research Analysis、写作或发布。",
+        "decisions": [
+          {
+            "column": "digital-employee",
+            "decision": "Selected",
+            "itemId": "Q-20260808-01",
+            "signalId": "SIG-20260808-P-002",
+            "priority": "P0",
+            "primaryObject": "Hard session-budget governance with pause-and-resume semantics for managed Digital Employees",
+            "source": "https://platform.claude.com/docs/en/release-notes/overview",
+            "reason": "A first-party, bounded runtime-governance mechanism converts cost authority into explicit pause/resume state and deployment-level inheritance."
+          },
+          {
+            "column": "industry-architecture",
+            "decision": "Selected",
+            "itemId": "Q-20260808-02",
+            "signalId": "SIG-20260808-G-001",
+            "priority": "P0",
+            "primaryObject": "Centrally managed model policy that forces automatic review and permission downgrades",
+            "source": "https://github.com/openai/codex/commit/208f05b23387c47d7e52fd2153d59255e945d0b7",
+            "reason": "One merged mechanism exposes policy distribution, reviewer assignment, permission shaping, override rejection and cross-lifecycle enforcement as an enterprise control plane."
+          },
+          {
+            "column": "open-source-engineering",
+            "decision": "Selected",
+            "itemId": "Q-20260808-03",
+            "signalId": "SIG-20260808-G-004",
+            "priority": "P0",
+            "primaryObject": "Versioned gRPC host protocol for agent code-mode sessions and executions",
+            "source": "https://github.com/openai/codex/commit/8073dbb20bbd57f2acdc18708a95e8fbbfc8b91f",
+            "reason": "A concrete versioned protocol defines session, execution, wait, callback, notification and result boundaries with generated bindings and build targets."
+          }
+        ],
+        "boundary": {
+          "deepReading": false,
+          "researchAnalysis": false,
+          "articleWriting": false,
+          "publication": false
+        }
+      },
+      "output": {
+        "type": "Today's Research Plan",
+        "artifact": "research/runtime/plans/2026/08/2026-08-08-plan.json",
+        "columnDecisions": 3,
+        "selectedCount": 3,
+        "noSelectionCount": 0
+      },
+      "next": {
+        "task": "reading",
+        "scheduledTime": "11:00",
+        "instruction": "Research Runtime Reading may consume only Q-20260808-01, Q-20260808-02 and Q-20260808-03 and must execute Skill 03 Deep Reading without Research Analysis or article drafting."
+      },
+      "metrics": [
+        { "name": "signal_pool_count", "value": 16 },
+        { "name": "column_decisions", "value": 3 },
+        { "name": "selected_objects", "value": 3 },
+        { "name": "candidate_signals", "value": 13 },
+        { "name": "rejected_signals", "value": 0 },
+        { "name": "no_selection_decisions", "value": 0 },
+        { "name": "queue_start_events", "value": 1 }
+      ],
+      "evidence": [
+        "research/runtime/SCHEDULER.json",
+        "research/skills/02-research-triage.md",
+        "research/intelligence/runs/2026/08/2026-08-08-intelligence.json",
+        "research/runtime/COLUMN-PLAN-SCHEMA.md",
+        "https://github.com/joinwell52-AI/joinwell52/commit/c8c4e41aafd977aef7c7b20ed8a8b62b37a88b36"
+      ],
+      "artifacts": [
+        "research/runtime/plans/2026/08/2026-08-08-plan.json",
+        "research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json",
+        "research/runtime/2026/08/2026-08-08-runtime.md"
+      ]
     }
   },
   "timeline": [
@@ -196,6 +256,13 @@
       "event": "Execution Slot Opened",
       "status": "Running",
       "detail": "Scheduler fallback: Research Runtime Queue opened because the durable control-plane Running state was absent; Skill 02 triage may begin only after this synchronized JSON and Markdown state is committed, fetched and verified."
+    },
+    {
+      "time": "2026-08-08T10:08:12+08:00",
+      "task": "queue",
+      "event": "Queue Completed",
+      "status": "Completed",
+      "detail": "Skill 02 triaged all 16 same-day signals after verified Scheduler-fallback start commit c8c4e41aafd977aef7c7b20ed8a8b62b37a88b36; exactly one P0 object was selected for each column, 13 signals were retained as candidates, and no Deep Reading, analysis, writing or publication was performed."
     }
   ],
   "metrics": [],
@@ -203,5 +270,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Running",
-  "updatedAt": "2026-08-08T10:00:41+08:00"
+  "updatedAt": "2026-08-08T10:08:12+08:00"
 }
