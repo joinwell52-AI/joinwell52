@@ -8,11 +8,11 @@
   "date": "2026-08-08",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -226,6 +226,112 @@
         "research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json",
         "research/runtime/2026/08/2026-08-08-runtime.md"
       ]
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "family": "daily",
+      "status": "Completed",
+      "startedAt": "2026-08-08T11:12:30+08:00",
+      "completedAt": "2026-08-08T11:25:30+08:00",
+      "input": {
+        "scheduler": "research/runtime/SCHEDULER.json",
+        "skill": "research/skills/03-deep-reading.md",
+        "plan": "research/runtime/plans/2026/08/2026-08-08-plan.json",
+        "queueStatus": "Completed",
+        "selectedObjects": ["Q-20260808-01", "Q-20260808-02", "Q-20260808-03"],
+        "controlPlane": {
+          "mode": "scheduler-fallback",
+          "startCommit": "959e14a2cae8279bb21d31b6b815440a0b977b75",
+          "verifiedBeforeSubstantiveWork": true,
+          "startEventCount": 1
+        }
+      },
+      "workResult": {
+        "summary": "Executed only Skill 03 Deep Reading after fetching and verifying the durable Reading Running state. Read first-party Anthropic Managed Agents budget documentation and two merged openai/codex implementation changes, then produced one source-traceable Reading Record for each same-day Selected object. Each record separates facts from vendor claims or implementation evidence and records mechanisms, limitations, contradictions and unresolved questions. No Research Analysis, architecture recommendation or article drafting was performed.",
+        "summary_zh": "仅在 fetch 并核验持久化 Reading Running 状态后执行 Skill 03 Deep Reading。已深读 Anthropic Managed Agents Session Budget 一手文档以及两项已合并 openai/codex 实现变更，并为同日三个 Selected 对象分别形成一份可追溯 Reading Record。每份记录区分事实、厂商声明或实现证据，并记录机制、限制、矛盾和未决问题。未执行 Research Analysis、架构建议或文章撰写。",
+        "readings": [
+          {
+            "column": "digital-employee",
+            "itemId": "Q-20260808-01",
+            "artifact": "research/reading/Q-20260808-01-session-budget-governance.md",
+            "primaryObject": "Hard session-budget governance with pause-and-resume semantics for managed Digital Employees",
+            "sourceClass": "first-party product documentation",
+            "keyBoundary": "The hard budget is enforced between model requests and can overshoot by already-admitted in-flight work; budget exhaustion pauses the durable session rather than terminating it."
+          },
+          {
+            "column": "industry-architecture",
+            "itemId": "Q-20260808-02",
+            "artifact": "research/reading/Q-20260808-02-managed-model-auto-review.md",
+            "primaryObject": "Centrally managed model policy that forces automatic review and permission downgrades",
+            "sourceClass": "merged maintainer implementation and tests",
+            "keyBoundary": "Protected model slugs are unioned across managed layers and enforced through exact matching, startup permission shaping, runtime validation and model-aware MCP reviewer routing; the evidence does not establish production review accuracy."
+          },
+          {
+            "column": "open-source-engineering",
+            "itemId": "Q-20260808-03",
+            "artifact": "research/reading/Q-20260808-03-code-mode-grpc-host-protocol.md",
+            "primaryObject": "Versioned gRPC host protocol for agent code-mode sessions and executions",
+            "sourceClass": "merged maintainer protocol implementation",
+            "keyBoundary": "The v1 protobuf makes session, execution, wait, callback, notification and content-result boundaries explicit, but the selected change does not establish authentication, version negotiation, retry/idempotency or end-to-end concurrency guarantees."
+          }
+        ],
+        "sourceOutcomes": {
+          "completed": 3,
+          "inaccessible": 0,
+          "failed": 0
+        },
+        "boundary": {
+          "researchAnalysis": false,
+          "architectureRecommendation": false,
+          "articleWriting": false,
+          "publication": false
+        }
+      },
+      "output": {
+        "type": "Reading Results",
+        "readingResultCount": 3,
+        "artifacts": [
+          "research/reading/Q-20260808-01-session-budget-governance.md",
+          "research/reading/Q-20260808-02-managed-model-auto-review.md",
+          "research/reading/Q-20260808-03-code-mode-grpc-host-protocol.md"
+        ]
+      },
+      "next": {
+        "task": "analysis",
+        "scheduledTime": "13:00",
+        "instruction": "Research Runtime Analysis may consume only these three durable Reading Results and may execute Skill 04 Research Analysis. Reading itself made no architecture recommendation and drafted no article."
+      },
+      "metrics": [
+        { "name": "selected_objects", "value": 3 },
+        { "name": "reading_results", "value": 3 },
+        { "name": "primary_source_groups", "value": 3 },
+        { "name": "inaccessible_sources", "value": 0 },
+        { "name": "failed_sources", "value": 0 },
+        { "name": "reading_start_events", "value": 1 },
+        { "name": "research_analysis_objects", "value": 0 },
+        { "name": "article_drafts", "value": 0 }
+      ],
+      "evidence": [
+        "research/runtime/SCHEDULER.json",
+        "research/skills/03-deep-reading.md",
+        "research/runtime/plans/2026/08/2026-08-08-plan.json",
+        "https://platform.claude.com/docs/en/release-notes/overview",
+        "https://platform.claude.com/docs/en/managed-agents/budgets",
+        "https://platform.claude.com/docs/en/managed-agents/session-operations",
+        "https://github.com/openai/codex/commit/208f05b23387c47d7e52fd2153d59255e945d0b7",
+        "https://github.com/openai/codex/pull/37511",
+        "https://github.com/openai/codex/commit/8073dbb20bbd57f2acdc18708a95e8fbbfc8b91f",
+        "https://github.com/openai/codex/pull/37510",
+        "https://github.com/joinwell52-AI/joinwell52/commit/959e14a2cae8279bb21d31b6b815440a0b977b75"
+      ],
+      "artifacts": [
+        "research/reading/Q-20260808-01-session-budget-governance.md",
+        "research/reading/Q-20260808-02-managed-model-auto-review.md",
+        "research/reading/Q-20260808-03-code-mode-grpc-host-protocol.md",
+        "research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json",
+        "research/runtime/2026/08/2026-08-08-runtime.md"
+      ]
     }
   },
   "timeline": [
@@ -277,6 +383,13 @@
       "event": "Execution Slot Opened",
       "status": "Running",
       "detail": "Scheduler fallback: Research Runtime Reading opened because the durable control-plane Running state was absent at automation entry; Deep Reading may begin only after this synchronized JSON and Markdown state is committed, fetched and verified."
+    },
+    {
+      "time": "2026-08-08T11:25:30+08:00",
+      "task": "reading",
+      "event": "Reading Completed",
+      "status": "Completed",
+      "detail": "Skill 03 Deep Reading completed for all three same-day Selected objects after verified fallback start commit 959e14a2cae8279bb21d31b6b815440a0b977b75; three durable source-traceable Reading Records were produced. No Research Analysis, architecture recommendation or article drafting was performed."
     }
   ],
   "metrics": [],
@@ -284,5 +397,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Running",
-  "updatedAt": "2026-08-08T11:12:30+08:00"
+  "updatedAt": "2026-08-08T11:25:30+08:00"
 }
