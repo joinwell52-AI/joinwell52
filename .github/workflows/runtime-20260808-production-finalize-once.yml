@@ -1,0 +1,290 @@
+name: Runtime 2026-08-08 Production Finalize Once
+
+on:
+  push:
+    branches:
+      - runtime/20260808-production-stage
+    paths:
+      - .github/workflows/runtime-20260808-production-finalize-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize-production:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Fetch staged Production artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin runtime/20260808-production-stage:refs/remotes/origin/runtime/20260808-production-stage
+          files=(
+            research/runtime/candidates/2026/08/2026-08-08-candidates.json
+            staging/publication-candidates/2026-08-08-pause-preserving-budget-admission.zh.md
+            staging/publication-candidates/2026-08-08-pause-preserving-budget-admission.en.md
+            staging/publication-candidates/2026-08-08-pause-preserving-budget-admission.svg
+            staging/publication-candidates/2026-08-08-lifecycle-revalidated-policy-plane.zh.md
+            staging/publication-candidates/2026-08-08-lifecycle-revalidated-policy-plane.en.md
+            staging/publication-candidates/2026-08-08-lifecycle-revalidated-policy-plane.svg
+            staging/publication-candidates/2026-08-08-correlated-multistream-host-contract.zh.md
+            staging/publication-candidates/2026-08-08-correlated-multistream-host-contract.en.md
+            staging/publication-candidates/2026-08-08-correlated-multistream-host-contract.svg
+          )
+          for p in "${files[@]}"; do
+            mkdir -p "$(dirname "$p")"
+            git show "origin/runtime/20260808-production-stage:$p" > "$p"
+          done
+
+      - name: Verify Production gate and write runtime-shift-result v2
+        shell: bash
+        run: |
+          set -euo pipefail
+          export TZ=Asia/Shanghai
+          COMPLETED_AT="$(date --iso-8601=seconds)"
+          export COMPLETED_AT
+          node <<'NODE'
+          const fs = require('fs')
+          const recordPath = 'research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json'
+          const candidatePath = 'research/runtime/candidates/2026/08/2026-08-08-candidates.json'
+          const objects = [
+            'research/analysis/Q-20260808-01-pause-preserving-budget-admission.md',
+            'research/analysis/Q-20260808-02-lifecycle-revalidated-managed-policy-plane.md',
+            'research/analysis/Q-20260808-03-correlated-multistream-agent-host-contract.md'
+          ]
+          for (const p of objects) {
+            const text = fs.readFileSync(p, 'utf8')
+            if (!/status:\s*"ReadyForProduction"/.test(text)) throw new Error(`${p} is not ReadyForProduction`)
+            if (!/production_input_authorized:\s*true/.test(text)) throw new Error(`${p} is not Production-authorized`)
+          }
+
+          const record = JSON.parse(fs.readFileSync(recordPath, 'utf8'))
+          const starts = (record.timeline || []).filter((e) => e.task === 'production' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-08T'))
+          if (record.status !== 'Running') throw new Error(`overall status must be Running before Production, got ${record.status}`)
+          if (record.taskStatus?.production !== 'Running') throw new Error(`Production status must be Running, got ${record.taskStatus?.production}`)
+          if (starts.length !== 1) throw new Error(`expected exactly one Production start event, got ${starts.length}`)
+          const completed = (record.timeline || []).filter((e) => e.task === 'production' && e.event === 'Production Completed')
+          if (completed.length) throw new Error('Production completion event already exists; refusing duplicate execution')
+
+          const completedAt = process.env.COMPLETED_AT
+          record.results = record.results || {}
+          record.results.production = {
+            schema: 'runtime-shift-result/v2',
+            task: 'production',
+            family: 'daily',
+            status: 'Completed',
+            startedAt: starts[0].time,
+            completedAt,
+            input: 'The durably verified Scheduler-fallback Production start state in commit c2a20793cb4cf94a42dbdcd981b9f0a1224bfb8b and exactly three same-day Production-authorized Research Objects: Q-20260808-01, Q-20260808-02 and Q-20260808-03.',
+            input_zh: '提交 c2a20793cb4cf94a42dbdcd981b9f0a1224bfb8b 中已完成持久化核验的 Scheduler 回退 Production 启动状态，以及且仅有三份当日获准进入 Production 的 Research Object：Q-20260808-01、Q-20260808-02 与 Q-20260808-03。',
+            workResult: 'Executed Skill 05 Research Writing, Skill 06 Research Visualization, Skill 07 Evidence & Citation and Skill 08 Publication Editing for every eligible Research Object. Produced three complete bilingual Publication Candidates, six independently edited article files and three source-labeled evidence-bounded lifecycle/architecture diagrams. Production used only Research Objects as substantive writing input, introduced no new research from signals or Reading Results, and published nothing directly. Scheduler fallback is explicitly recorded because the pre-existing Production Running state was absent.',
+            workResult_zh: '对全部合格 Research Object 执行 Skill 05 Research Writing、Skill 06 Research Visualization、Skill 07 Evidence & Citation 与 Skill 08 Publication Editing。已生成三份完整双语 Publication Candidate、六份独立编辑文章及三张带来源标记、受证据边界约束的生命周期/架构配图。Production 仅以 Research Object 作为实质写作输入，未从信号或 Reading Result 开展新研究，也未直接发布任何内容。由于执行前缺少既有 Production Running 状态，已明确记录 Scheduler 回退。',
+            output: 'A completed 2026-08-08 Publication Candidate batch with one candidate for each research column, valid bilingual metadata and staging paths, explicit visualization decisions, evidenceStatus=Completed, citationStatus=Completed in the article metadata, editingStatus=Completed and publication_authorized=false.',
+            output_zh: '已形成完整的 2026-08-08 Publication Candidate 批次，三个研究栏目各一份候选，包含有效双语元数据与 staging 路径、明确可视化决定、evidenceStatus=Completed、文章元数据 citationStatus=Completed、editingStatus=Completed，并保持 publication_authorized=false。',
+            next: 'Research Runtime Publication at 20:00 may consume only research/runtime/candidates/2026/08/2026-08-08-candidates.json. It may release complete candidates but must not conduct new research, substantive rewriting or evidence repair.',
+            next_zh: '20:00 Research Runtime Publication 只能消费 research/runtime/candidates/2026/08/2026-08-08-candidates.json；可以发布完整候选，但不得开展新研究、实质性改写或证据修复。',
+            controlPlane: {
+              mode: 'scheduler-fallback',
+              startCommit: 'c2a20793cb4cf94a42dbdcd981b9f0a1224bfb8b',
+              verifiedBeforeSubstantiveWork: true,
+              startEventCount: 1
+            },
+            metrics: [
+              { label: 'Eligible Research Objects', label_zh: '合格 Research Object', value: '3' },
+              { label: 'Publication Candidates', label_zh: '出版候选', value: '3' },
+              { label: 'Bilingual article files', label_zh: '双语文章文件', value: '6' },
+              { label: 'Source-labeled lifecycle/architecture visuals', label_zh: '带来源标记的生命周期/架构配图', value: '3' },
+              { label: 'Evidence status Completed', label_zh: '证据状态 Completed', value: '3 / 3' },
+              { label: 'Citation status Completed', label_zh: '引用状态 Completed', value: '3 / 3' },
+              { label: 'Editing status Completed', label_zh: '编辑状态 Completed', value: '3 / 3' },
+              { label: 'Scheduler fallback start events', label_zh: 'Scheduler 回退启动事件', value: '1' },
+              { label: 'Direct publications', label_zh: '直接发布', value: '0' },
+              { label: 'New research from signals or Reading Results', label_zh: '从信号或 Reading Result 新开展研究', value: '0' }
+            ],
+            evidence: [
+              { label: 'Scheduler V3.0', label_zh: 'Scheduler V3.0', source: 'research/runtime/SCHEDULER.json' },
+              { label: 'Verified Production fallback start commit', label_zh: '已核验的 Production 回退启动提交', commit: 'c2a20793cb4cf94a42dbdcd981b9f0a1224bfb8b', source: 'https://github.com/joinwell52-AI/joinwell52/commit/c2a20793cb4cf94a42dbdcd981b9f0a1224bfb8b' },
+              { label: 'Skill 05 Research Writing', label_zh: 'Skill 05 Research Writing', source: 'research/skills/05-research-writing.md' },
+              { label: 'Skill 06 Research Visualization', label_zh: 'Skill 06 Research Visualization', source: 'research/skills/06-research-visualization.md' },
+              { label: 'Skill 07 Evidence & Citation', label_zh: 'Skill 07 Evidence & Citation', source: 'research/skills/07-evidence-citation.md' },
+              { label: 'Skill 08 Publication Editing', label_zh: 'Skill 08 Publication Editing', source: 'research/skills/08-publication-editing.md' },
+              { label: 'Publication Candidate Contract', label_zh: 'Publication Candidate 契约', source: 'research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md' },
+              { label: 'Digital Employee Research Object', label_zh: '数字员工 Research Object', source: objects[0] },
+              { label: 'Industry Architecture Research Object', label_zh: '行业架构 Research Object', source: objects[1] },
+              { label: 'Open-source Engineering Research Object', label_zh: '开源工程 Research Object', source: objects[2] }
+            ],
+            artifacts: [
+              { label: 'Publication Candidate batch', label_zh: '出版候选批次', path: candidatePath },
+              { label: 'Budget-admission Chinese candidate', label_zh: '预算准入中文候选', path: 'staging/publication-candidates/2026-08-08-pause-preserving-budget-admission.zh.md' },
+              { label: 'Budget-admission English candidate', label_zh: '预算准入英文候选', path: 'staging/publication-candidates/2026-08-08-pause-preserving-budget-admission.en.md' },
+              { label: 'Budget-admission visual', label_zh: '预算准入配图', path: 'staging/publication-candidates/2026-08-08-pause-preserving-budget-admission.svg' },
+              { label: 'Policy-plane Chinese candidate', label_zh: '策略平面中文候选', path: 'staging/publication-candidates/2026-08-08-lifecycle-revalidated-policy-plane.zh.md' },
+              { label: 'Policy-plane English candidate', label_zh: '策略平面英文候选', path: 'staging/publication-candidates/2026-08-08-lifecycle-revalidated-policy-plane.en.md' },
+              { label: 'Policy-plane visual', label_zh: '策略平面配图', path: 'staging/publication-candidates/2026-08-08-lifecycle-revalidated-policy-plane.svg' },
+              { label: 'Multi-stream host Chinese candidate', label_zh: '多流 Host 中文候选', path: 'staging/publication-candidates/2026-08-08-correlated-multistream-host-contract.zh.md' },
+              { label: 'Multi-stream host English candidate', label_zh: '多流 Host 英文候选', path: 'staging/publication-candidates/2026-08-08-correlated-multistream-host-contract.en.md' },
+              { label: 'Multi-stream host visual', label_zh: '多流 Host 配图', path: 'staging/publication-candidates/2026-08-08-correlated-multistream-host-contract.svg' },
+              { label: 'Daily Runtime Record', label_zh: '每日运行机器记录', path: recordPath },
+              { label: 'Human-readable Runtime ledger', label_zh: '人类可读运行账本', path: 'research/runtime/2026/08/2026-08-08-runtime.md' }
+            ]
+          }
+
+          record.taskStatus.production = 'Completed'
+          record.status = 'Waiting'
+          record.timeline.push({
+            time: completedAt,
+            task: 'production',
+            event: 'Production Completed',
+            status: 'Completed',
+            detail: 'Skills 05–08 consumed exactly three same-day Production-authorized Research Objects and produced three complete bilingual Publication Candidates, six independently edited staging articles, and three source-labeled evidence-bounded visuals. No direct publication or new research from signals/Reading Results was performed.'
+          })
+          record.githubCommit = 'pending'
+          record.commitVerify = 'Waiting'
+          record.updatedAt = completedAt
+          fs.writeFileSync(recordPath, JSON.stringify(record, null, 2) + '\n')
+
+          const candidates = JSON.parse(fs.readFileSync(candidatePath, 'utf8'))
+          candidates.updatedAt = completedAt
+          candidates.githubCommit = 'pending'
+          if (candidates.status !== 'Completed' || candidates.candidates?.length !== 3) throw new Error('candidate batch gate failed')
+          fs.writeFileSync(candidatePath, JSON.stringify(candidates, null, 2) + '\n')
+          NODE
+
+          node scripts/runtime-markdown.mjs render --date 2026-08-08
+          node scripts/runtime-markdown.mjs validate --date 2026-08-08
+
+          for p in staging/publication-candidates/2026-08-08-*.md; do
+            grep -q 'evidence_status: "Completed"' "$p"
+            grep -q 'citation_status: "Completed"' "$p"
+            grep -q 'editing_status: "Completed"' "$p"
+            grep -q 'publication_authorized: false' "$p"
+          done
+          for p in staging/publication-candidates/2026-08-08-*.svg; do
+            grep -q 'Research Center synthesis based on' "$p"
+          done
+
+      - name: Build publication candidates without publishing
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run docs:build
+          git diff --check
+          git restore docs/.vitepress/generated || true
+
+      - name: Commit Production result to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add \
+            research/runtime/candidates/2026/08/2026-08-08-candidates.json \
+            staging/publication-candidates/2026-08-08-pause-preserving-budget-admission.zh.md \
+            staging/publication-candidates/2026-08-08-pause-preserving-budget-admission.en.md \
+            staging/publication-candidates/2026-08-08-pause-preserving-budget-admission.svg \
+            staging/publication-candidates/2026-08-08-lifecycle-revalidated-policy-plane.zh.md \
+            staging/publication-candidates/2026-08-08-lifecycle-revalidated-policy-plane.en.md \
+            staging/publication-candidates/2026-08-08-lifecycle-revalidated-policy-plane.svg \
+            staging/publication-candidates/2026-08-08-correlated-multistream-host-contract.zh.md \
+            staging/publication-candidates/2026-08-08-correlated-multistream-host-contract.en.md \
+            staging/publication-candidates/2026-08-08-correlated-multistream-host-contract.svg \
+            research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json \
+            research/runtime/2026/08/2026-08-08-runtime.md
+          git commit -m "research(production): produce 2026-08-08 Publication Candidates"
+          git push origin HEAD:main
+          echo "RESULT_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+
+      - name: Fetch and verify Production result commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "$RESULT_SHA"
+          git show "$RESULT_SHA:research/runtime/candidates/2026/08/2026-08-08-candidates.json" | grep -q '"status": "Completed"'
+          git show "$RESULT_SHA:research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json" | grep -q '"production": "Completed"'
+          for p in \
+            staging/publication-candidates/2026-08-08-pause-preserving-budget-admission.zh.md \
+            staging/publication-candidates/2026-08-08-pause-preserving-budget-admission.en.md \
+            staging/publication-candidates/2026-08-08-pause-preserving-budget-admission.svg \
+            staging/publication-candidates/2026-08-08-lifecycle-revalidated-policy-plane.zh.md \
+            staging/publication-candidates/2026-08-08-lifecycle-revalidated-policy-plane.en.md \
+            staging/publication-candidates/2026-08-08-lifecycle-revalidated-policy-plane.svg \
+            staging/publication-candidates/2026-08-08-correlated-multistream-host-contract.zh.md \
+            staging/publication-candidates/2026-08-08-correlated-multistream-host-contract.en.md \
+            staging/publication-candidates/2026-08-08-correlated-multistream-host-contract.svg; do
+            git cat-file -e "$RESULT_SHA:$p"
+          done
+
+      - name: Persist verified commit metadata and synchronized ledger
+        shell: bash
+        run: |
+          set -euo pipefail
+          export TZ=Asia/Shanghai
+          VERIFIED_AT="$(date --iso-8601=seconds)"
+          export VERIFIED_AT RESULT_SHA
+          node <<'NODE'
+          const fs = require('fs')
+          const recordPath = 'research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json'
+          const candidatePath = 'research/runtime/candidates/2026/08/2026-08-08-candidates.json'
+          const record = JSON.parse(fs.readFileSync(recordPath, 'utf8'))
+          const starts = (record.timeline || []).filter((e) => e.task === 'production' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-08T'))
+          const completions = (record.timeline || []).filter((e) => e.task === 'production' && e.event === 'Production Completed')
+          const verifications = (record.timeline || []).filter((e) => e.task === 'production' && e.event === 'GitHub Commit Verified')
+          if (starts.length !== 1 || completions.length !== 1 || verifications.length !== 0) throw new Error(`unexpected Production timeline counts ${starts.length}/${completions.length}/${verifications.length}`)
+          record.githubCommit = process.env.RESULT_SHA
+          record.commitVerify = 'Completed'
+          record.updatedAt = process.env.VERIFIED_AT
+          record.timeline.push({
+            time: process.env.VERIFIED_AT,
+            task: 'production',
+            event: 'GitHub Commit Verified',
+            status: 'Completed',
+            detail: `Fetched and verified Production result commit ${process.env.RESULT_SHA}: the candidate batch, six bilingual staging article files, three source-labeled visuals, Production runtime-shift-result/v2 object, Daily Runtime JSON and synchronized Markdown ledger are present; exactly one current-day Production Execution Slot Opened / Running event remains.`
+          })
+          fs.writeFileSync(recordPath, JSON.stringify(record, null, 2) + '\n')
+
+          const candidates = JSON.parse(fs.readFileSync(candidatePath, 'utf8'))
+          candidates.githubCommit = process.env.RESULT_SHA
+          candidates.updatedAt = process.env.VERIFIED_AT
+          fs.writeFileSync(candidatePath, JSON.stringify(candidates, null, 2) + '\n')
+          NODE
+
+          node scripts/runtime-markdown.mjs render --date 2026-08-08
+          node scripts/runtime-markdown.mjs validate --date 2026-08-08
+          git diff --check
+
+          git add \
+            research/runtime/candidates/2026/08/2026-08-08-candidates.json \
+            research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json \
+            research/runtime/2026/08/2026-08-08-runtime.md
+          git commit -m "runtime(v5): verify 2026-08-08 Production artifacts"
+          git push origin HEAD:main
+          echo "VERIFY_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+
+      - name: Final durable verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "$VERIFY_SHA"
+          node <<'NODE'
+          const fs = require('fs')
+          const record = JSON.parse(fs.readFileSync('research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json', 'utf8'))
+          const candidates = JSON.parse(fs.readFileSync('research/runtime/candidates/2026/08/2026-08-08-candidates.json', 'utf8'))
+          const starts = record.timeline.filter((e) => e.task === 'production' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-08T'))
+          const completions = record.timeline.filter((e) => e.task === 'production' && e.event === 'Production Completed')
+          const verifications = record.timeline.filter((e) => e.task === 'production' && e.event === 'GitHub Commit Verified')
+          if (record.taskStatus.production !== 'Completed') throw new Error('Production is not Completed')
+          if (record.status !== 'Waiting') throw new Error(`overall status should be Waiting for Publication, got ${record.status}`)
+          if (record.commitVerify !== 'Completed') throw new Error('commit verification not Completed')
+          if (starts.length !== 1 || completions.length !== 1 || verifications.length !== 1) throw new Error(`Production timeline counts ${starts.length}/${completions.length}/${verifications.length}`)
+          if (candidates.status !== 'Completed' || candidates.candidates.length !== 3) throw new Error('candidate batch not complete')
+          if (candidates.githubCommit !== process.env.RESULT_SHA) throw new Error('candidate result commit mismatch')
+          NODE
