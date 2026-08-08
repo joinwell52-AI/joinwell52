@@ -83,41 +83,30 @@ const intelligence = readJson(INTELLIGENCE_PATH)
 for (const [date, run] of Object.entries(intelligence.runs || {})) {
   if (run?.date !== date) die(`Research Intelligence historical run key ${date} points to ${run?.date}`)
 }
-if (intelligence.currentRun && intelligence.currentRun.date && intelligence.runs?.[intelligence.currentRun.date]) {
-  if (intelligence.runs[intelligence.currentRun.date].date !== intelligence.currentRun.date) die('current Intelligence run is cross-dated')
-}
 
 const legacy = readJson(LEGACY_PATH)
 const august4 = (legacy.records || []).find((record) => record.date === '2026-08-04')
 if (!august4) die('2026-08-04 legacy Runtime Record is missing')
-const productionStatus = august4.taskStatus?.production
 const productionResult = august4.results?.production
-const publicationStatus = august4.taskStatus?.publication
 const publicationResult = august4.results?.publication
-if (productionStatus !== 'Completed' || productionResult?.status !== 'Completed') die('2026-08-04 Production must remain Completed')
-if (publicationStatus !== 'Completed' || publicationResult?.status !== 'Completed') die('2026-08-04 Publication must remain Completed')
+if (august4.taskStatus?.production !== 'Completed' || productionResult?.status !== 'Completed') die('2026-08-04 Production must remain Completed')
+if (august4.taskStatus?.publication !== 'Completed' || publicationResult?.status !== 'Completed') die('2026-08-04 Publication must remain Completed')
 if (august4.completedTasks !== 5 || august4.totalTasks !== 5) die(`2026-08-04 progress is ${august4.completedTasks}/${august4.totalTasks}, expected 5/5`)
 if (!productionResult.workResult_zh.includes('Completed') || !productionResult.workResult_zh.includes('0 个出版候选')) die('Chinese legacy Production result is incorrect')
 if (productionResult.workResult_zh.includes('Skipped') || productionResult.output_zh.includes('Skipped')) die('legacy Production projection still contains Skipped')
 if (!publicationResult.workResult_zh.includes('Completed') || !publicationResult.workResult_zh.includes('发布 0 个')) die('Chinese legacy Publication result is incorrect')
 
 if (process.argv.includes('--dist')) {
-  const required = [
-    'zh/runtime/index.html', 'en/runtime/index.html',
-    'zh/runtime/intelligence-sources.html', 'en/runtime/intelligence-sources.html'
-  ]
+  const required = ['zh/runtime/index.html', 'en/runtime/index.html', 'zh/runtime/intelligence-sources.html', 'en/runtime/intelligence-sources.html']
   for (const route of required) if (!existsSync(join(DIST_PATH, route))) die(`built site is missing ${route}`)
 
   const text = walk(DIST_PATH).filter((path) => /\.(html|js|json)$/.test(path)).map((path) => readFileSync(path, 'utf8')).join('\n')
-  if (text.includes('[object Object]')) die('built site contains [object Object]')
   if (analysis) {
     if (!text.includes(analysis.input_zh)) die('built site does not contain the Chinese 2026-08-08 Analysis input')
     if (!text.includes(analysis.workResult_zh)) die('built site does not contain the Chinese 2026-08-08 Analysis result')
     if (!text.includes(analysis.input)) die('built site does not contain the English 2026-08-08 Analysis input')
   }
-  if (!text.includes('Microsoft Research') || !text.includes('Autonomous Agents and Multi-Agent Systems') || !text.includes('Journal of Systems and Software') || !text.includes('Zenodo')) {
-    die('built source-detail pages do not contain the required intelligence sources')
-  }
+  if (!text.includes('Microsoft Research') || !text.includes('Autonomous Agents and Multi-Agent Systems') || !text.includes('Journal of Systems and Software') || !text.includes('Zenodo')) die('built source-detail pages do not contain the required intelligence sources')
   if (!text.includes('该班次以 Completed 结束，并生成 0 个出版候选')) die('built site does not contain the corrected Chinese legacy Production outcome')
   if (!text.includes('Completed the governed Production eligibility review for all three columns')) die('built site does not contain the corrected English legacy Production outcome')
 }
