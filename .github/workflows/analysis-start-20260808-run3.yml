@@ -1,0 +1,135 @@
+name: Persist Research Runtime Analysis Start 2026-08-08 Run 3
+
+on:
+  push:
+    branches:
+      - automation/analysis-20260808-run3
+    paths:
+      - .github/workflows/analysis-start-20260808-run3.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: research-runtime-analysis-start-20260808
+  cancel-in-progress: false
+
+jobs:
+  start:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout authoritative main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Persist exactly one durable Analysis Running state or accept Scheduler state
+        shell: bash
+        run: |
+          set -euo pipefail
+          RECORD="research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json"
+          LEDGER="research/runtime/2026/08/2026-08-08-runtime.md"
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            state="$(node <<'NODE'
+          const fs = require('fs')
+          const r = JSON.parse(fs.readFileSync('research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json','utf8'))
+          const starts=(r.timeline||[]).filter(e=>e.task==='analysis'&&e.event==='Execution Slot Opened'&&e.status==='Running'&&String(e.time||'').startsWith('2026-08-08'))
+          console.log([r.status,r.taskStatus?.analysis||'',r.taskStatus?.reading||'',starts.length].join('|'))
+          NODE
+          )"
+            IFS='|' read -r overall analysis reading starts <<< "$state"
+            echo "overall=$overall analysis=$analysis reading=$reading starts=$starts"
+
+            if [[ "$overall" == "Running" && "$analysis" == "Running" && "$starts" == "1" ]]; then
+              start_commit="$(git log -1 --format=%H -- "$RECORD")"
+              echo "Scheduler state already durable; start commit $start_commit"
+              break
+            fi
+
+            if [[ "$reading" != "Completed" ]]; then
+              echo "Blocked: Reading dependency is $reading, expected Completed."
+              exit 1
+            fi
+            if [[ "$analysis" != "Waiting" || "$starts" != "0" ]]; then
+              echo "Unsafe pre-start state: analysis=$analysis starts=$starts overall=$overall"
+              exit 1
+            fi
+
+            started_at="$(TZ=Asia/Shanghai date +%Y-%m-%dT%H:%M:%S%:z)"
+            export STARTED_AT="$started_at"
+            node <<'NODE'
+          const fs = require('fs')
+          const recordPath='research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json'
+          const ledgerPath='research/runtime/2026/08/2026-08-08-runtime.md'
+          const r=JSON.parse(fs.readFileSync(recordPath,'utf8'))
+          const starts=(r.timeline||[]).filter(e=>e.task==='analysis'&&e.event==='Execution Slot Opened'&&e.status==='Running'&&String(e.time||'').startsWith('2026-08-08'))
+          if(r.taskStatus?.reading!=='Completed') throw new Error(`Reading dependency is ${r.taskStatus?.reading}`)
+          if(r.taskStatus?.analysis!=='Waiting'||starts.length!==0) throw new Error('Control-plane state changed before fallback write')
+          r.status='Running'
+          r.taskStatus.analysis='Running'
+          delete r.results.analysis
+          r.githubCommit='pending'
+          r.commitVerify='Waiting'
+          r.updatedAt=process.env.STARTED_AT
+          r.timeline.push({
+            time:process.env.STARTED_AT,
+            task:'analysis',
+            event:'Execution Slot Opened',
+            status:'Running',
+            detail:'Scheduler fallback: Research Runtime Analysis opened because the durable control-plane Running state was absent at automation entry; substantive Skill 04 work may begin only after this synchronized JSON and Markdown state is committed, fetched and verified.'
+          })
+          fs.writeFileSync(recordPath,JSON.stringify(r,null,2)+'\n')
+
+          let md=fs.readFileSync(ledgerPath,'utf8')
+          md=md.replace(/^overall_status: .*$/m,'overall_status: "Running"')
+          md=md.replace(/^github_commit: .*$/m,'github_commit: "pending"')
+          md=md.replace(/^commit_verify: .*$/m,'commit_verify: "Waiting"')
+          md=md.replace(/^updated_at: .*$/m,`updated_at: "${process.env.STARTED_AT}"`)
+          md=md.replace(/^- \*\*全天状态 \/ Overall Status:\*\* .*$/m,'- **全天状态 / Overall Status:** **工作中 / Running**')
+          md=md.replace(/^- \*\*GitHub Commit:\*\* .*$/m,'- **GitHub Commit:** pending')
+          md=md.replace(/^- \*\*Commit Verify:\*\* .*$/m,'- **Commit Verify:** 待执行 / Waiting')
+          md=md.replace(/^- \*\*最后更新 \/ Updated:\*\* .*$/m,`- **最后更新 / Updated:** ${process.env.STARTED_AT}`)
+          md=md.replace(/^\| 13:00 \| 研究运行分析 \| Research Runtime Analysis \| daily \| .*$/m,'| 13:00 | 研究运行分析 | Research Runtime Analysis | daily | 工作中 / Running | Analysis 已启动；成果块须等待 Skill 04 完成后写入。 |')
+          const eventRow=`| ${process.env.STARTED_AT} | 研究运行分析 / Research Runtime Analysis | daily | Execution Slot Opened | 工作中 / Running | Scheduler fallback: Research Runtime Analysis opened because the durable control-plane Running state was absent at automation entry; substantive Skill 04 work may begin only after this synchronized JSON and Markdown state is committed, fetched and verified. |`
+          const timelineEnd='\n## 09:00 · 研究运行发现 / Research Runtime Discovery'
+          if(!md.includes(eventRow)) md=md.replace(timelineEnd,`\n${eventRow}\n${timelineEnd}`)
+          const runningSection=`## 13:00 · 研究运行分析 / Research Runtime Analysis\n\n- **Family:** daily\n- **状态 / Status:** **工作中 / Running**\n\n任务已经启动，成果块尚未完成；启动时点已记录在上方完整事件时间线。 / The shift has started; its result block is not complete yet.\n`
+          md=md.replace(/## 13:00 · 研究运行分析 \/ Research Runtime Analysis[\s\S]*?(?=\n## 15:00 · 研究运行生产 \/ Research Runtime Production)/,runningSection)
+          fs.writeFileSync(ledgerPath,md)
+          NODE
+
+            node -e "JSON.parse(require('fs').readFileSync('$RECORD','utf8')); console.log('Daily Runtime JSON parse OK')"
+            git diff --check
+            git add "$RECORD" "$LEDGER"
+            git commit -m "runtime(v5): fallback open Analysis control-plane state for 2026-08-08"
+            candidate="$(git rev-parse HEAD)"
+            if git push origin HEAD:main; then
+              start_commit="$candidate"
+              echo "Persisted scheduler fallback start commit $start_commit"
+              break
+            fi
+            echo "Push raced with another main update; retrying from authoritative main."
+          done
+
+          test -n "${start_commit:-}"
+          git fetch origin main
+          git merge-base --is-ancestor "$start_commit" origin/main
+          git show "origin/main:$RECORD" > /tmp/start.json
+          git show "origin/main:$LEDGER" > /tmp/start.md
+          node <<'NODE'
+          const fs=require('fs')
+          const r=JSON.parse(fs.readFileSync('/tmp/start.json','utf8'))
+          const starts=(r.timeline||[]).filter(e=>e.task==='analysis'&&e.event==='Execution Slot Opened'&&e.status==='Running'&&String(e.time||'').startsWith('2026-08-08'))
+          if(r.status!=='Running') throw new Error(`overall status ${r.status}`)
+          if(r.taskStatus?.analysis!=='Running') throw new Error(`analysis status ${r.taskStatus?.analysis}`)
+          if(starts.length!==1) throw new Error(`Analysis start-event count ${starts.length}`)
+          console.log(`Verified durable Analysis Running state at ${starts[0].time}`)
+          NODE
+          grep -q '| 13:00 | 研究运行分析 | Research Runtime Analysis | daily | 工作中 / Running |' /tmp/start.md
+          grep -q 'Execution Slot Opened | 工作中 / Running | Scheduler fallback: Research Runtime Analysis opened' /tmp/start.md || grep -q 'Execution Slot Opened | 工作中 / Running | Research Runtime Analysis started by Research Runtime Scheduler V3.0.' /tmp/start.md
