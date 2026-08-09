@@ -14,7 +14,7 @@
     "queue": "Completed",
     "reading": "Running",
     "analysis": "Blocked",
-    "production": "Completed",
+    "production": "Waiting",
     "publication": "Waiting"
   },
   "results": {
@@ -319,98 +319,6 @@
         }
       ],
       "blockedBy": "reading"
-    },
-    "production": {
-      "schema": "runtime-shift-result/v2",
-      "task": "production",
-      "family": "daily",
-      "status": "Completed",
-      "startedAt": "2026-08-09T15:05:38+08:00",
-      "completedAt": "2026-08-09T15:07:53+08:00",
-      "input": "Current main-branch V5 Scheduler, today's Daily Runtime Record, and only same-day Research Objects produced by Analysis and explicitly eligible for Production.",
-      "input_zh": "当前 main 分支 V5 Scheduler、当日 Daily Runtime Record，以及仅允许消费的由 Analysis 生成并明确满足 Production 准入条件的当日 Research Objects。",
-      "workResult": "Verified the durable Scheduler fallback start commit 26df3e8b0e859c8c0f53100c4488fd5784f0dc2d before Production evaluation. Re-checked the current main branch and found zero same-day Research Objects produced by Analysis and zero objects passing the Production gate. Analysis remains non-completed for deliverable production, so Skills 05 Research Writing, 06 Visualization, 07 Evidence & Citation and 08 Publication Editing had no eligible object to execute against. No signal, Reading Result or external source was used for writing, and nothing was published.",
-      "workResult_zh": "在 Production 准入评估前已核验持久化 Scheduler fallback 启动态提交 26df3e8b0e859c8c0f53100c4488fd5784f0dc2d。再次检查当前 main 分支后，确认 Analysis 生成的当日 Research Object 为 0，满足 Production 门禁的对象也为 0。Analysis 尚未形成可供 Production 消费的完成产物，因此 Skill 05 Research Writing、Skill 06 Visualization、Skill 07 Evidence & Citation、Skill 08 Publication Editing 均不存在可执行对象。未从 Signal、Reading Result 或外部来源直接写作，也未执行发布。",
-      "output": "No Eligible Research Object — 0 Publication Candidates.",
-      "output_zh": "No Eligible Research Object —— 0 个 Publication Candidates。",
-      "next": "Publication must consume only the completed zero-candidate batch and must not perform new research, substantive rewriting or evidence repair. If a later governed recovery creates eligible Research Objects after this Completed Production result, Production requires an explicit governed rerun because Completed shifts are not auto-reopened.",
-      "next_zh": "Publication 只能消费这份已完成的零候选批次，不得开展新研究、实质性改写或证据修复。若后续受治理恢复流程在本次 Production 完成后才生成新的可用 Research Objects，则必须显式触发受治理的 Production 重跑，因为 Completed 班次不会自动重开。",
-      "metrics": [
-        {
-          "label": "Production start events",
-          "label_zh": "Production 启动事件",
-          "value": 1
-        },
-        {
-          "label": "Same-day Research Objects produced by Analysis",
-          "label_zh": "Analysis 生成的当日 Research Objects",
-          "value": 0
-        },
-        {
-          "label": "Eligible Research Objects",
-          "label_zh": "可用 Research Objects",
-          "value": 0
-        },
-        {
-          "label": "Publication Candidates",
-          "label_zh": "Publication Candidates",
-          "value": 0
-        },
-        {
-          "label": "Skills 05-08 executions",
-          "label_zh": "Skills 05-08 执行次数",
-          "value": 0
-        },
-        {
-          "label": "Direct publications",
-          "label_zh": "直接发布",
-          "value": 0
-        }
-      ],
-      "evidence": [
-        {
-          "label": "V5 Scheduler",
-          "label_zh": "V5 Scheduler",
-          "source": "research/runtime/SCHEDULER.json"
-        },
-        {
-          "label": "Daily Runtime Record",
-          "label_zh": "Daily Runtime Record",
-          "source": "research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json"
-        },
-        {
-          "label": "Publication Candidate contract",
-          "label_zh": "Publication Candidate 契约",
-          "source": "research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md"
-        },
-        {
-          "label": "Verified Production fallback start state",
-          "label_zh": "已核验 Production fallback 启动态",
-          "commit": "26df3e8b0e859c8c0f53100c4488fd5784f0dc2d"
-        }
-      ],
-      "artifacts": [
-        {
-          "label": "Publication Candidate batch",
-          "label_zh": "Publication Candidate 批次",
-          "path": "research/runtime/candidates/2026/08/2026-08-09-candidates.json"
-        },
-        {
-          "label": "Daily Runtime JSON",
-          "label_zh": "Daily Runtime JSON",
-          "path": "research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json"
-        },
-        {
-          "label": "Human-readable Runtime ledger",
-          "label_zh": "人类可读 Runtime 账本",
-          "path": "research/runtime/2026/08/2026-08-09-runtime.md"
-        },
-        {
-          "label": "Verified Production result commit",
-          "label_zh": "已核验 Production 成果提交",
-          "commit": "407edd05935fe45e804768cc6d2589cc716d9d93"
-        }
-      ]
     }
   },
   "timeline": [
@@ -504,11 +412,18 @@
       "event": "GitHub Commit Verified",
       "status": "Completed",
       "detail": "Fetched and verified durable Production result commit 407edd05935fe45e804768cc6d2589cc716d9d93: the zero-candidate batch, Daily Runtime JSON and regenerated Markdown ledger are present; exactly one Production Execution Slot Opened event and one Production Completed event remain; no eligible same-day Research Object was consumed and no public article was written."
+    },
+    {
+      "time": "2026-08-09T15:22:25+08:00",
+      "task": "production",
+      "event": "Order Violation Invalidated",
+      "status": "Waiting",
+      "detail": "Research Runtime Production completion was invalidated because dependency analysis is not Completed. Any downstream artifacts from that attempt are not governed inputs and the task must rerun after its prerequisite completes."
     }
   ],
-  "githubCommit": "407edd05935fe45e804768cc6d2589cc716d9d93",
-  "commitVerify": "Completed",
-  "updatedAt": "2026-08-09T15:09:30+08:00",
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-08-09T15:22:25+08:00",
   "metrics": [
     {
       "label": "Start events",
