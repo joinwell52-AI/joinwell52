@@ -1,0 +1,96 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "reading",
+  "family": "daily",
+  "status": "Completed",
+  "input": {
+    "scheduler": "research/runtime/SCHEDULER.json",
+    "skill": "research/skills/03-deep-reading.md",
+    "plan": "research/runtime/plans/2026/08/2026-08-09-plan.json",
+    "queueStatus": "Completed",
+    "selectedObjects": [
+      "Q-20260809-01",
+      "Q-20260809-02",
+      "Q-20260809-03"
+    ],
+    "controlPlane": {
+      "mode": "ordered-recovery",
+      "verifiedRunningBeforeSubstantiveWork": true
+    }
+  },
+  "workResult": {
+    "summary": "Executed only Skill 03 Deep Reading for the three selected 2026-08-09 Queue objects after the ordered recovery control plane had restored Reading to Running. Produced three source-traceable Reading Records from merged maintainer implementation evidence. The Langfuse record verifies transactional cancellation of unsettled runs under the same conversation-row lock used for admission while preserving cooperative semantics for already-running workers. The Codex record verifies the short-lived workload-identity exchange primitive, caching, refresh/coalescing, rotation and redaction, while explicitly rejecting the broader child-process stripping claim as unproven by the selected commit. The LangGraph record verifies the persisted plain-value seed migration defect and explains why output correctness could hide an unbounded history replay regression. No Research Analysis, architecture recommendation, article writing or publication was performed.",
+    "summary_zh": "仅在顺序恢复控制面已把 Reading 恢复为 Running 后，对 2026-08-09 Queue 选中的三个对象执行 Skill 03 Deep Reading，并形成三份可追溯 Reading Record。Langfuse 记录确认：删除 Conversation 与未结清 Run 的取消在与 Admission 相同的 Conversation Row Lock 下事务化协调，而已 Running Worker 仍采用协作式取消；Codex 记录确认：短期 Workload Identity Exchange、缓存、刷新与请求合并、Assertion Rotation 和 Token Redaction 均有实现证据，但 Queue 中更广泛的子进程凭据剥离主张不能由该 Commit 证明，因此明确降级为未决证据；LangGraph 记录确认：持久化 Plain Value Seed 的迁移缺陷会在输出仍正确时造成全历史重放，并揭示 Conformance 未实际接入 Backend 时的覆盖空洞。未执行 Research Analysis、架构建议、文章写作或发布。",
+    "readings": [
+      {
+        "column": "digital-employee",
+        "itemId": "Q-20260809-01",
+        "artifact": "research/reading/Q-20260809-01-conversation-delete-run-cancellation.md",
+        "sourceClass": "merged maintainer implementation and tests",
+        "keyBoundary": "Deletion and unsettled-run cancellation share the same durable conversation-row lock as admission; RUNNING cancellation remains cooperative rather than synchronously terminating physical execution."
+      },
+      {
+        "column": "industry-architecture",
+        "itemId": "Q-20260809-02",
+        "artifact": "research/reading/Q-20260809-02-workload-identity-exchange.md",
+        "sourceClass": "merged maintainer implementation and tests",
+        "keyBoundary": "The selected commit strongly proves the exchange primitive but does not prove the broader child-process credential-stripping boundary described in Queue."
+      },
+      {
+        "column": "open-source-engineering",
+        "itemId": "Q-20260809-03",
+        "artifact": "research/reading/Q-20260809-03-checkpoint-conformance-migration.md",
+        "sourceClass": "merged maintainer implementation, regression tests and conformance evidence",
+        "keyBoundary": "A persisted-state migration defect can preserve reconstructed values while violating bounded-replay semantics; conformance protects a backend only when that backend actually executes the suite."
+      }
+    ],
+    "sourceOutcomes": {
+      "completed": 3,
+      "inaccessible": 0,
+      "failed": 0
+    },
+    "boundary": {
+      "researchAnalysis": false,
+      "architectureRecommendation": false,
+      "articleWriting": false,
+      "publication": false
+    }
+  },
+  "output": {
+    "type": "Reading Results",
+    "readingResultCount": 3,
+    "artifacts": [
+      "research/reading/Q-20260809-01-conversation-delete-run-cancellation.md",
+      "research/reading/Q-20260809-02-workload-identity-exchange.md",
+      "research/reading/Q-20260809-03-checkpoint-conformance-migration.md"
+    ]
+  },
+  "next": {
+    "task": "analysis",
+    "scheduledTime": "13:00",
+    "instruction": "Research Runtime Analysis may consume only these three durable Reading Results, preserve the explicit evidence downgrade on the unproven Codex child-process stripping claim, and execute Skill 04 Research Analysis before Production can resume."
+  },
+  "metrics": [
+    { "name": "selected_objects", "value": 3 },
+    { "name": "reading_results", "value": 3 },
+    { "name": "primary_source_groups", "value": 3 },
+    { "name": "inaccessible_sources", "value": 0 },
+    { "name": "failed_sources", "value": 0 },
+    { "name": "research_analysis_objects", "value": 0 },
+    { "name": "article_drafts", "value": 0 }
+  ],
+  "evidence": [
+    "research/runtime/SCHEDULER.json",
+    "research/skills/03-deep-reading.md",
+    "research/runtime/plans/2026/08/2026-08-09-plan.json",
+    "https://github.com/langfuse/langfuse/commit/ee5e0f15fb5146548968bd9474cdc31d301b98d1",
+    "https://github.com/openai/codex/commit/936f5eb3ee223ab34dcb221fa7c5f9943c8092bd",
+    "https://github.com/langchain-ai/langgraph/commit/d569e18f4bd78b7652cb88c84b8dd098057e4f7d"
+  ],
+  "artifacts": [
+    "research/reading/Q-20260809-01-conversation-delete-run-cancellation.md",
+    "research/reading/Q-20260809-02-workload-identity-exchange.md",
+    "research/reading/Q-20260809-03-checkpoint-conformance-migration.md",
+    "research/runtime/results/2026/08/2026-08-09-reading-result.json"
+  ]
+}
