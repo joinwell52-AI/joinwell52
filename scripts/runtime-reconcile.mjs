@@ -131,8 +131,10 @@ function main() {
     return !dependency || statusOf(dependency) === 'Completed'
   }
 
-  // Scheduled reconciliation repairs an impossible downstream Running state first.
-  // Manual requests never mutate state before they pass the same ordered gate.
+  // Scheduled reconciliation repairs impossible downstream state before choosing work.
+  // Running is corrected; Completed is invalidated because downstream output cannot be
+  // authoritative when its prerequisite had not completed. Manual requests never mutate
+  // state before they pass the same ordered gate.
   if (!args.manual) {
     for (const task of manifest.tasks) {
       if (!taskAppliesToday(task, now)) continue
@@ -140,18 +142,24 @@ function main() {
       if (!dependency) continue
       const entry = getRecord(task)
       const record = entry.record
-      if (!record || record.taskStatus?.[task.id] !== 'Running') continue
+      if (!record) continue
+
+      const currentStatus = record.taskStatus?.[task.id] || 'Waiting'
+      if (!['Running', 'Completed'].includes(currentStatus)) continue
       if (statusOf(dependency) === 'Completed') continue
 
+      const invalidatedCompletion = currentStatus === 'Completed'
       record.taskStatus[task.id] = 'Waiting'
       if (record.results?.[task.id]) delete record.results[task.id]
       record.timeline = Array.isArray(record.timeline) ? record.timeline : []
       record.timeline.push({
         time: `${now.date}T${now.time}+08:00`,
         task: task.id,
-        event: 'Order Violation Corrected',
+        event: invalidatedCompletion ? 'Order Violation Invalidated' : 'Order Violation Corrected',
         status: 'Waiting',
-        detail: `${task.name} was returned to Waiting because dependency ${dependency} is not Completed. Scheduler reconciliation forbids downstream execution before its prerequisite.`
+        detail: invalidatedCompletion
+          ? `${task.name} completion was invalidated because dependency ${dependency} is not Completed. Any downstream artifacts from that attempt are not governed inputs and the task must rerun after its prerequisite completes.`
+          : `${task.name} was returned to Waiting because dependency ${dependency} is not Completed. Scheduler reconciliation forbids downstream execution before its prerequisite.`
       })
       record.updatedAt = `${now.date}T${now.time}+08:00`
       record.githubCommit = 'pending'
@@ -160,7 +168,6 @@ function main() {
     }
   }
 
-  // Persist in-memory repairs before recalculating eligibility so the same pass sees corrected facts.
   for (const { file, record } of records.values()) {
     if (record && changedPaths.has(file)) writeJson(file, record)
   }
@@ -206,7 +213,7 @@ function main() {
       state_changed: changed ? 'true' : 'false',
       changed_record_paths: changedList,
       runtime_date: now.date,
-      reason: `reconciled at ${now.date} ${now.hour}:${now.minute}; no dependency-ready overdue task${changed ? '; corrected out-of-order Running state' : ''}`
+      reason: `reconciled at ${now.date} ${now.hour}:${now.minute}; no dependency-ready overdue task${changed ? '; corrected out-of-order downstream state' : ''}`
     })
     console.log(`No runnable overdue task at ${now.date} ${now.hour}:${now.minute}.${changed ? ` Corrected: ${changedList}` : ''}`)
     return
