@@ -1,0 +1,36 @@
+name: Complete Analysis 2026-08-09
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "research/runtime/COMPLETE-ANALYSIS-20260809"
+
+permissions:
+  contents: write
+
+jobs:
+  complete-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Complete governed Analysis shift
+        run: node scripts/runtime-shift-complete.mjs --task analysis --date 2026-08-09 --result research/runtime/results/2026/08/2026-08-09-analysis-result.json
+      - name: Render and validate
+        run: |
+          node scripts/runtime-markdown.mjs render --date 2026-08-09
+          npm run runtime:validate
+          node scripts/runtime-markdown.mjs validate --date 2026-08-09
+      - name: Commit Analysis completion
+        run: |
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime/records research/runtime/2026 research/runtime/results research/analysis
+          git commit -m "runtime(analysis): complete 2026-08-09 governed recovery"
+          git pull --rebase origin main
+          git push origin HEAD:main
