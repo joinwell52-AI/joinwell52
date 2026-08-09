@@ -13,6 +13,7 @@ Publication Result Completed
 → Release Manifest = Released
 → 中英文源文章存在
 → VitePress 中英文文章路由生成
+→ 中英文网站首页可发现
 → Research 总入口可发现
 → 对应栏目入口可发现
 → 必需封面/可视化资产存在
@@ -44,6 +45,7 @@ research/runtime/releases/YYYY-MM-DD-publication.json
 - 英文源文件存在；
 - 中文公开 HTML 路由存在；
 - 英文公开 HTML 路由存在；
+- 中文与英文公共首页能发现文章；
 - `/zh/research/` 与 `/en/research/` 能发现文章；
 - 对应数字员工 / 行业架构 / 开源工程栏目页能发现文章；
 - Release Manifest 指定的封面存在。
@@ -52,7 +54,7 @@ Gate 失败时 Pages Verify 必须失败，`Publish gh-pages branch` 必须被�
 
 ## 3. 今日发布入口
 
-观察笔记首页增加 `TodayPublished` 展示层。当天 `category: daily` 的正式文章直接显示为“今日发布”，包括：
+网站首页与观察笔记首页均增加 `TodayPublished` 展示层。当天 `category: daily` 的正式文章直接显示为“今日发布”，包括：
 
 - 当前日期；
 - 当天发布数量；
@@ -67,7 +69,7 @@ Gate 失败时 Pages Verify 必须失败，`Publish gh-pages branch` 必须被�
 
 首次 Visibility Gate 因错误假设 VitePress clean URL 产物为 `slug/index.html` 而主动失败并阻止发布。确认本站 `cleanUrls: true` 的实际构建产物为 `slug.html` 后修复 Gate。
 
-随后 Pages Run #235 完整通过：
+随后 Pages Run #235 完整通过初版 Research/栏目 Gate。进一步把网站首页纳入正式发现面后，Pages Run #242 再次完整通过：
 
 ```text
 Build VitePress site: success
@@ -76,13 +78,13 @@ Publication Visibility Gate: PASS
 Publish gh-pages branch: success
 ```
 
-Gate 输出确认：
+最终 Gate 输出确认：
 
 ```text
-PASS 2026-08-09: 3 released items are routable and discoverable in both languages.
+PASS 2026-08-09: 3 released items are routable and discoverable from home, Research and column indexes in both languages.
 ```
 
-部署后的中文观察笔记首页明确显示“今日发布 · 3”，并直接列出当天三篇研究文章。
+因此当天三篇文章不仅存在公开路由，也必须同时出现在中英文首页、Research 总入口和对应栏目入口的生成结果中。
 
 ## 5. 不变量
 
