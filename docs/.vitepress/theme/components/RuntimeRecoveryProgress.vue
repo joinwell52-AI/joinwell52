@@ -24,7 +24,7 @@ type RuntimeData = {
   latest: Record<string, RecordShape | null>
 }
 
-type DisplayState = 'completed' | 'running' | 'catching-up' | 'overdue' | 'waiting-dependency' | 'recoverable' | 'order-error' | 'future' | 'failed' | 'skipped'
+type DisplayState = 'completed' | 'running' | 'catching-up' | 'overdue' | 'waiting-dependency' | 'blocked-waiting' | 'blocked-recoverable' | 'order-error' | 'future' | 'failed' | 'skipped'
 
 const props = withDefaults(defineProps<{ lang?: Lang }>(), { lang: 'en' })
 const data = runtimeData as RuntimeData
@@ -49,11 +49,14 @@ const text = computed(() => props.lang === 'zh' ? {
   none: '无',
   states: {
     completed: '已完成', running: '运行中', 'catching-up': '补班中', overdue: '欠班待补',
-    'waiting-dependency': '等待前置', recoverable: '待恢复', 'order-error': '顺序异常', future: '未到时间', failed: '失败', skipped: '已跳过'
+    'waiting-dependency': '等待前置', 'blocked-waiting': '已阻塞 · 等待前置', 'blocked-recoverable': '已阻塞 · 待恢复',
+    'order-error': '顺序异常', future: '未到时间', failed: '失败', skipped: '已跳过'
   } as Record<DisplayState, string>,
   orderError: '检测到后置任务在前置未完成时已经 Running。Scheduler 会在下一次 reconcile 自动退回 Waiting，并保留纠正事件。',
   idle: '当前没有需要补的工作；系统等待下一正式时间点。',
   waiting: '正在等待前置阶段完成。',
+  blockedWaiting: '存在已阻塞任务，当前仍在等待其前置阶段完成。',
+  blockedRecoverable: '存在已阻塞任务，前置已经完成；Scheduler 应在下一次 reconcile 受控恢复。',
   overdue: '存在已到时间但尚未完成的工作，Scheduler 会从最早可执行的一环开始补。'
 } : {
   title: 'V2.0 Ordered Recovery Progress',
@@ -64,11 +67,14 @@ const text = computed(() => props.lang === 'zh' ? {
   none: 'None',
   states: {
     completed: 'Completed', running: 'Running', 'catching-up': 'Catching up', overdue: 'Overdue',
-    'waiting-dependency': 'Waiting prerequisite', recoverable: 'Ready to recover', 'order-error': 'Order violation', future: 'Not due', failed: 'Failed', skipped: 'Skipped'
+    'waiting-dependency': 'Waiting prerequisite', 'blocked-waiting': 'Blocked · waiting prerequisite', 'blocked-recoverable': 'Blocked · ready to recover',
+    'order-error': 'Order violation', future: 'Not due', failed: 'Failed', skipped: 'Skipped'
   } as Record<DisplayState, string>,
   orderError: 'A downstream task is Running before its prerequisite completed. The next Scheduler reconcile will return it to Waiting and preserve a correction event.',
   idle: 'No catch-up work is currently required; waiting for the next formal time.',
   waiting: 'Waiting for the prerequisite stage to complete.',
+  blockedWaiting: 'A Blocked task is still waiting for its prerequisite to complete.',
+  blockedRecoverable: 'A Blocked task now has a completed prerequisite and should be reopened by the next Scheduler reconcile.',
   overdue: 'Due work is incomplete. Scheduler will recover the oldest runnable stage first.'
 })
 
@@ -123,7 +129,7 @@ function displayState(task: Task): DisplayState {
     if (dependency && !ready) return 'order-error'
     return nowMinutes.value - scheduledMinutes(task) > 5 ? 'catching-up' : 'running'
   }
-  if (status === 'Blocked') return ready ? 'recoverable' : 'waiting-dependency'
+  if (status === 'Blocked') return ready ? 'blocked-recoverable' : 'blocked-waiting'
   if (!due) return 'future'
   if (!ready) return 'waiting-dependency'
   return 'overdue'
@@ -133,7 +139,7 @@ const rows = computed(() => tasksToday.value.map((task) => ({ task, state: displ
 const completedCount = computed(() => rows.value.filter((row) => row.status === 'Completed' || row.status === 'Skipped').length)
 const orderError = computed(() => rows.value.some((row) => row.state === 'order-error'))
 const firstOpen = computed(() => rows.value.find((row) => !['completed', 'skipped'].includes(row.state)) || null)
-const currentRow = computed(() => rows.value.find((item) => ['running', 'catching-up', 'order-error'].includes(item.state)) || firstOpen.value)
+const currentRow = computed(() => rows.value.find((item) => ['running', 'catching-up', 'order-error', 'blocked-recoverable'].includes(item.state)) || firstOpen.value)
 const currentLabel = computed(() => currentRow.value ? (props.lang === 'zh' ? currentRow.value.task.name_zh : currentRow.value.task.name) : text.value.none)
 const nextLabel = computed(() => {
   const currentIndex = currentRow.value ? rows.value.findIndex((row) => row.task.id === currentRow.value?.task.id) : -1
@@ -142,7 +148,9 @@ const nextLabel = computed(() => {
 })
 const summary = computed(() => {
   if (orderError.value) return text.value.orderError
-  if (rows.value.some((row) => ['overdue', 'recoverable', 'catching-up'].includes(row.state))) return text.value.overdue
+  if (rows.value.some((row) => row.state === 'blocked-recoverable')) return text.value.blockedRecoverable
+  if (rows.value.some((row) => row.state === 'blocked-waiting')) return text.value.blockedWaiting
+  if (rows.value.some((row) => ['overdue', 'catching-up'].includes(row.state))) return text.value.overdue
   if (rows.value.some((row) => row.state === 'waiting-dependency')) return text.value.waiting
   return text.value.idle
 })
@@ -201,7 +209,8 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
 .recovery-chain span{margin-top:auto;font-size:12px;font-weight:700}
 .state-completed{opacity:.72}
 .state-running,.state-catching-up{border-color:var(--vp-c-brand-1)!important}
-.state-overdue,.state-recoverable{border-color:var(--vp-c-warning-1)!important}
+.state-overdue,.state-blocked-recoverable{border-color:var(--vp-c-warning-1)!important}
+.state-blocked-waiting{border-color:var(--vp-c-warning-1)!important;opacity:.9}
 .state-order-error{border-color:var(--vp-c-danger-1)!important;background:color-mix(in srgb,var(--vp-c-danger-soft) 45%,var(--vp-c-bg))!important}
 .state-waiting-dependency,.state-future{opacity:.78}
 @media(max-width:700px){.recovery-progress{margin:12px 12px 18px;padding:15px}.recovery-progress header{flex-direction:column}.recovery-summary{grid-template-columns:1fr}.recovery-summary p{grid-column:1}.recovery-chain{grid-template-columns:repeat(2,minmax(0,1fr))}}
