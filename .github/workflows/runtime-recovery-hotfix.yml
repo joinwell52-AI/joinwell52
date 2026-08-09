@@ -42,13 +42,13 @@ jobs:
           fi
       - name: Validate full runtime after recovery state
         run: node scripts/runtime-v5.mjs validate
-      - name: Commit repair and recovered control-plane state
+      - name: Commit runtime repair and recovered control-plane state
         shell: bash
         run: |
           git config user.name "joinwell52 Runtime Recovery"
           git config user.email "actions@users.noreply.github.com"
-          rm .github/workflows/runtime-recovery-hotfix.yml scripts/runtime-recovery-hotfix.mjs
-          git add .github/workflows/research-runtime-scheduler.yml scripts/runtime-v5.mjs scripts/runtime-markdown.mjs research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json research/runtime/2026/08/2026-08-09-runtime.md .github/workflows/runtime-recovery-hotfix.yml scripts/runtime-recovery-hotfix.mjs
+          git checkout -- .github/workflows/research-runtime-scheduler.yml
+          git add scripts/runtime-v5.mjs scripts/runtime-markdown.mjs research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json research/runtime/2026/08/2026-08-09-runtime.md
           git commit -m "fix(runtime): recover dependency-aware scheduled execution"
           git pull --rebase origin main
           git push origin HEAD:main
