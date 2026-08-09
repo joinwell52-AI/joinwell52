@@ -15,6 +15,8 @@ type RecordShape = {
   date: string
   taskStatus?: Record<string, RawStatus>
   results?: Record<string, any>
+  updatedAt?: string
+  githubCommit?: string
 }
 type RuntimeData = {
   today: string
@@ -29,7 +31,11 @@ type DisplayState = 'completed' | 'running' | 'catching-up' | 'overdue' | 'waiti
 const props = withDefaults(defineProps<{ lang?: Lang }>(), { lang: 'en' })
 const data = runtimeData as RuntimeData
 const now = ref(new Date())
+const liveDaily = ref<RecordShape>(data.todayDaily)
+const liveLatest = ref<Record<string, RecordShape | null>>({ ...data.latest })
+const liveUpdatedAt = ref('')
 let timer: ReturnType<typeof setInterval> | null = null
+let refreshTimer: ReturnType<typeof setInterval> | null = null
 
 const dependencyOf: Record<string, string> = {
   queue: 'discovery',
@@ -43,10 +49,8 @@ const dependencyOf: Record<string, string> = {
 const text = computed(() => props.lang === 'zh' ? {
   title: 'V2.0 顺序恢复进程',
   lead: '到点只触发检查；前面欠班必须先补完并通过自检，后面的工作才允许启动。',
-  completed: '已完成',
-  current: '当前处理',
-  next: '下一环',
-  none: '无',
+  completed: '已完成', current: '当前处理', next: '下一环', none: '无',
+  live: '实时 Runtime', snapshot: '构建快照',
   states: {
     completed: '已完成', running: '运行中', 'catching-up': '补班中', overdue: '欠班待补',
     'waiting-dependency': '等待前置', 'blocked-waiting': '已阻塞 · 等待前置', 'blocked-recoverable': '已阻塞 · 待恢复',
@@ -61,10 +65,8 @@ const text = computed(() => props.lang === 'zh' ? {
 } : {
   title: 'V2.0 Ordered Recovery Progress',
   lead: 'Clock time triggers reconciliation only. Earlier missed work must complete and pass checks before downstream work may start.',
-  completed: 'Completed',
-  current: 'Current',
-  next: 'Next',
-  none: 'None',
+  completed: 'Completed', current: 'Current', next: 'Next', none: 'None',
+  live: 'Live Runtime', snapshot: 'Build snapshot',
   states: {
     completed: 'Completed', running: 'Running', 'catching-up': 'Catching up', overdue: 'Overdue',
     'waiting-dependency': 'Waiting prerequisite', 'blocked-waiting': 'Blocked · waiting prerequisite', 'blocked-recoverable': 'Blocked · ready to recover',
@@ -89,14 +91,15 @@ function zonedParts(date: Date) {
 const parts = computed(() => zonedParts(now.value))
 const nowMinutes = computed(() => Number(parts.value.hour) * 60 + Number(parts.value.minute))
 const weekday = computed(() => parts.value.weekday)
+const sourceLabel = computed(() => liveUpdatedAt.value ? text.value.live : text.value.snapshot)
 
 const tasksToday = computed(() => data.schedule
   .filter((task) => task.family === 'daily' || (task.id === 'weekly' && task.schedule.days?.includes(weekday.value)))
   .sort((a, b) => a.schedule.time.localeCompare(b.schedule.time)))
 
 function recordFor(task: Task): RecordShape | null {
-  if (task.family === 'daily') return data.todayDaily
-  const record = data.latest?.[task.family]
+  if (task.family === 'daily') return liveDaily.value
+  const record = liveLatest.value?.[task.family]
   return record?.date === data.today ? record : null
 }
 
@@ -121,7 +124,6 @@ function displayState(task: Task): DisplayState {
   const due = scheduledMinutes(task) <= nowMinutes.value
   const dependency = dependencyOf[task.id]
   const ready = dependencyReady(task)
-
   if (status === 'Completed') return 'completed'
   if (status === 'Failed') return 'failed'
   if (status === 'Skipped') return 'skipped'
@@ -133,6 +135,30 @@ function displayState(task: Task): DisplayState {
   if (!due) return 'future'
   if (!ready) return 'waiting-dependency'
   return 'overdue'
+}
+
+async function fetchRecord(family: 'daily' | 'weekly'): Promise<RecordShape | null> {
+  const [year, month] = data.today.split('-')
+  const url = `https://raw.githubusercontent.com/joinwell52-AI/joinwell52/main/research/runtime/records/${family}/${year}/${month}/${data.today}-${family}-runtime.json?t=${Date.now()}`
+  try {
+    const response = await fetch(url, { cache: 'no-store' })
+    if (!response.ok) return null
+    return await response.json() as RecordShape
+  } catch {
+    return null
+  }
+}
+
+async function refreshLiveRecords() {
+  const daily = await fetchRecord('daily')
+  if (daily?.date === data.today) {
+    liveDaily.value = daily
+    liveUpdatedAt.value = daily.updatedAt || new Date().toISOString()
+  }
+  if (tasksToday.value.some((task) => task.family === 'weekly')) {
+    const weekly = await fetchRecord('weekly')
+    if (weekly?.date === data.today) liveLatest.value = { ...liveLatest.value, weekly }
+  }
 }
 
 const rows = computed(() => tasksToday.value.map((task) => ({ task, state: displayState(task), status: rawStatus(task) })))
@@ -157,16 +183,21 @@ const summary = computed(() => {
 
 onMounted(() => {
   now.value = new Date()
+  void refreshLiveRecords()
   timer = setInterval(() => { now.value = new Date() }, 60_000)
+  refreshTimer = setInterval(() => { void refreshLiveRecords() }, 30_000)
 })
-onBeforeUnmount(() => { if (timer) clearInterval(timer) })
+onBeforeUnmount(() => {
+  if (timer) clearInterval(timer)
+  if (refreshTimer) clearInterval(refreshTimer)
+})
 </script>
 
 <template>
   <section class="recovery-progress" :class="{ danger: orderError }">
     <header>
       <div>
-        <small>RECONCILE · {{ data.timezone }}</small>
+        <small>RECONCILE · {{ data.timezone }} · {{ sourceLabel }}</small>
         <h2>{{ text.title }}</h2>
         <p>{{ text.lead }}</p>
       </div>
