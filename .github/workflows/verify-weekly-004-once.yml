@@ -1,0 +1,70 @@
+name: Verify Weekly 004 Once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/verify-weekly-004-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Verify publication artifacts and update Weekly Runtime record
+        shell: bash
+        run: |
+          set -euo pipefail
+          record="research/runtime/records/weekly/2026/08/2026-08-09-weekly-runtime.json"
+          test -f docs/en/research/weekly/weekly-004.md
+          test -f docs/zh/research/weekly/weekly-004.md
+          test -f docs/public/assets/covers/weekly-004.svg
+          test -f docs/research/weekly/index.md
+          test -f "$record"
+          grep -q 'Authority Is a Lifecycle, Not a Setting' docs/en/research/weekly/weekly-004.md
+          grep -q '权限是一条生命周期，不是一个配置项' docs/zh/research/weekly/weekly-004.md
+          grep -q 'Weekly 004' docs/research/weekly/index.md
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'research/runtime/records/weekly/2026/08/2026-08-09-weekly-runtime.json';
+          const record = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const startEvents = record.timeline.filter(e => e.event === 'Execution Slot Opened' && e.status === 'Running');
+          if (startEvents.length !== 1) throw new Error(`expected exactly one Weekly start event, got ${startEvents.length}`);
+          if (record.status !== 'Completed' || record.taskStatus?.weekly !== 'Completed') throw new Error('Weekly record is not Completed');
+          if (record.results?.weekly?.schema !== 'runtime-shift-result/v2') throw new Error('Weekly result contract missing');
+          const commit = 'b3e2835358259e2a85ee0b26d77608b40d3ff706';
+          const verifiedAt = '2026-08-09T20:45:06+08:00';
+          record.githubCommit = commit;
+          record.commitVerify = 'Completed';
+          record.updatedAt = verifiedAt;
+          if (!record.timeline.some(e => e.event === 'GitHub Commit Verified' && e.detail?.includes(commit))) {
+            record.timeline.push({
+              time: verifiedAt,
+              task: 'weekly',
+              event: 'GitHub Commit Verified',
+              status: 'Completed',
+              detail: `Fetched commit ${commit} and all Weekly 004 publication artifacts from main; the Research Center Pages build and generated-site verification completed successfully.`
+            });
+          }
+          fs.writeFileSync(path, JSON.stringify(record, null, 2) + '\n', 'utf8');
+          NODE
+
+      - name: Commit verification and remove one-time workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/verify-weekly-004-once.yml
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime/records/weekly/2026/08/2026-08-09-weekly-runtime.json .github/workflows/verify-weekly-004-once.yml
+          git commit -m "runtime(weekly): verify Weekly 004 durable artifacts"
+          git pull --rebase origin main
+          git push origin HEAD:main
