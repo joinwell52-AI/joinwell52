@@ -13,8 +13,9 @@ Publication Result Completed
 → Release Manifest = Released
 → bilingual source articles exist
 → bilingual VitePress article routes are generated
-→ Research indexes can discover every released item
-→ matching column indexes can discover every released item
+→ bilingual public homepages discover every released item
+→ Research indexes discover every released item
+→ matching column indexes discover every released item
 → required cover / visualization assets exist
 → Pages Build succeeds
 → Publication Visibility Gate PASS
@@ -44,6 +45,7 @@ For each `releasedItems[]` entry it verifies:
 - English source exists;
 - Chinese public HTML route exists;
 - English public HTML route exists;
+- the Chinese and English public homepages discover the article;
 - `/zh/research/` and `/en/research/` discover the article;
 - the matching Digital Employee / Industry Architecture / Open-source Engineering column index discovers the article;
 - the manifest-declared cover exists.
@@ -52,7 +54,7 @@ If this gate fails, Pages Verify fails and `Publish gh-pages branch` is skipped.
 
 ## 3. Today's releases surface
 
-The Observation Notes index includes `TodayPublished`. Same-day formal `category: daily` articles are promoted into a dedicated Today's Releases surface containing the date, release count, column, title, summary and direct article route.
+Both the public homepage and Observation Notes index include `TodayPublished`. Same-day formal `category: daily` articles are promoted into a dedicated Today's Releases surface containing the date, release count, column, title, summary and direct article route.
 
 The historical list remains newest-first, but same-day delivery no longer depends on a user manually finding an item in history.
 
@@ -60,7 +62,7 @@ The historical list remains newest-first, but same-day delivery no longer depend
 
 The first Visibility Gate run intentionally blocked deployment because its initial checker assumed the wrong VitePress clean-URL artifact shape (`slug/index.html`). The site actually uses `cleanUrls: true` and emits `slug.html`. The gate was corrected to inspect the real build contract.
 
-Pages Run #235 then passed the full chain:
+Pages Run #235 passed the initial Research/column visibility gate. After public homepages were added to the formal discovery surface, Pages Run #242 passed the expanded chain:
 
 ```text
 Build VitePress site: success
@@ -69,13 +71,13 @@ Publication Visibility Gate: PASS
 Publish gh-pages branch: success
 ```
 
-The gate reported:
+The final gate reported:
 
 ```text
-PASS 2026-08-09: 3 released items are routable and discoverable in both languages.
+PASS 2026-08-09: 3 released items are routable and discoverable from home, Research and column indexes in both languages.
 ```
 
-The deployed Chinese Observation Notes index visibly shows `Today's releases / 今日发布` with all three same-day articles.
+The three same-day articles therefore must exist not only as public routes but also within the generated bilingual home, Research and matching column discovery surfaces.
 
 ## 5. Invariant
 
