@@ -25,12 +25,18 @@ on:
         description: Repository path to runtime-shift-result/v2 JSON
         required: true
         type: string
+  push:
+    branches: [main]
+    paths:
+      - "research/runtime/completion-requests/*.json"
 
 permissions:
   contents: write
 
+# Completion is serialized because every completion can immediately unlock the next
+# overdue stage. One durable transition must finish before another is evaluated.
 concurrency:
-  group: research-runtime-shift-completion-${{ inputs.runtime_date }}-${{ inputs.runtime_task }}
+  group: research-runtime-shift-completion-v2
   cancel-in-progress: false
 
 jobs:
@@ -53,16 +59,65 @@ jobs:
           git fetch origin main
           git reset --hard origin/main
 
+      - name: Resolve completion request
+        id: request
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_TASK: ${{ inputs.runtime_task }}
+          INPUT_DATE: ${{ inputs.runtime_date }}
+          INPUT_RESULT: ${{ inputs.result_path }}
+          BEFORE_SHA: ${{ github.event.before }}
+          EVENT_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            echo "runtime_task=$INPUT_TASK" >> "$GITHUB_OUTPUT"
+            echo "runtime_date=$INPUT_DATE" >> "$GITHUB_OUTPUT"
+            echo "result_path=$INPUT_RESULT" >> "$GITHUB_OUTPUT"
+            echo "request_path=workflow_dispatch" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          request_path="$(git diff --name-only "$BEFORE_SHA" "$EVENT_SHA" -- 'research/runtime/completion-requests/*.json' | tail -n 1)"
+          if [[ -z "$request_path" ]]; then
+            request_path="$(git show --pretty='' --name-only "$EVENT_SHA" -- 'research/runtime/completion-requests/*.json' | tail -n 1)"
+          fi
+          if [[ -z "$request_path" || ! -f "$request_path" ]]; then
+            echo "No durable completion request found in triggering commit."
+            exit 1
+          fi
+
+          REQUEST_PATH="$request_path" node <<'NODE'
+          const fs = require('fs')
+          const request = JSON.parse(fs.readFileSync(process.env.REQUEST_PATH, 'utf8'))
+          if (request.schema !== 'runtime-shift-completion-request/v1') {
+            throw new Error(`Invalid completion request schema: ${request.schema}`)
+          }
+          if (!/^[a-z][a-z0-9-]*$/.test(request.task || '')) throw new Error('Invalid request.task')
+          if (!/^\d{4}-\d{2}-\d{2}$/.test(request.date || '')) throw new Error('Invalid request.date')
+          if (!/^research\/runtime\/results\/.+\.json$/.test(request.resultPath || '')) {
+            throw new Error('request.resultPath must be a Runtime result JSON path')
+          }
+          if (!fs.existsSync(request.resultPath)) throw new Error(`Result file does not exist: ${request.resultPath}`)
+          const output = process.env.GITHUB_OUTPUT
+          fs.appendFileSync(output, `runtime_task=${request.task}\n`)
+          fs.appendFileSync(output, `runtime_date=${request.date}\n`)
+          fs.appendFileSync(output, `result_path=${request.resultPath}\n`)
+          fs.appendFileSync(output, `request_path=${process.env.REQUEST_PATH}\n`)
+          NODE
+
       - name: Complete governed shift
         env:
-          RUNTIME_TASK: ${{ inputs.runtime_task }}
-          RUNTIME_DATE: ${{ inputs.runtime_date }}
-          RESULT_PATH: ${{ inputs.result_path }}
+          RUNTIME_TASK: ${{ steps.request.outputs.runtime_task }}
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+          RESULT_PATH: ${{ steps.request.outputs.result_path }}
         run: node scripts/runtime-shift-complete.mjs --task "$RUNTIME_TASK" --date "$RUNTIME_DATE" --result "$RESULT_PATH"
 
       - name: Render and validate
         env:
-          RUNTIME_DATE: ${{ inputs.runtime_date }}
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
         run: |
           node scripts/runtime-markdown.mjs render --date "$RUNTIME_DATE"
           npm run runtime:validate
@@ -71,12 +126,13 @@ jobs:
       - name: Commit durable completion
         id: commit
         env:
-          RUNTIME_TASK: ${{ inputs.runtime_task }}
-          RUNTIME_DATE: ${{ inputs.runtime_date }}
+          RUNTIME_TASK: ${{ steps.request.outputs.runtime_task }}
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+          REQUEST_PATH: ${{ steps.request.outputs.request_path }}
         run: |
           git config user.name "joinwell52 Research Runtime"
           git config user.email "actions@users.noreply.github.com"
-          git add research/runtime/records research/runtime/[0-9][0-9][0-9][0-9] research/runtime/results research/analysis research/reading staging docs || true
+          git add research/runtime/records research/runtime/[0-9][0-9][0-9][0-9] research/runtime/results research/runtime/completion-requests research/analysis research/reading staging docs || true
           if git diff --cached --quiet; then
             echo "No completion changes to persist."
             exit 1
@@ -96,8 +152,8 @@ jobs:
       - name: Verify durable completion
         env:
           COMMIT_SHA: ${{ steps.commit.outputs.commit_sha }}
-          RUNTIME_TASK: ${{ inputs.runtime_task }}
-          RUNTIME_DATE: ${{ inputs.runtime_date }}
+          RUNTIME_TASK: ${{ steps.request.outputs.runtime_task }}
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
         run: |
           git fetch origin main
           git merge-base --is-ancestor "$COMMIT_SHA" origin/main
@@ -112,5 +168,5 @@ jobs:
           const record = JSON.parse(fs.readFileSync(file,'utf8'))
           if (record.taskStatus?.[task.id] !== 'Completed') throw new Error(`Expected ${task.id}=Completed`)
           if (record.results?.[task.id]?.status !== 'Completed') throw new Error(`Missing durable Completed result for ${task.id}`)
-          console.log(`Verified ${task.id}=Completed. Scheduler will be awakened immediately by workflow_run.`)
+          console.log(`Verified ${task.id}=Completed. Scheduler workflow_run will immediately reconcile the next overdue stage.`)
           NODE
