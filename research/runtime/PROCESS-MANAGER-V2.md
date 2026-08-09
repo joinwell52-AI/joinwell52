@@ -132,7 +132,38 @@ Static Pages data is first-render fallback only. After hydration, the page perio
 
 A page may not show “catching up” in the progress strip while the task card says Completed.
 
-## 7. Self-check chain
+## 7. Publication public-delivery gate
+
+A Runtime Publication result becoming `Completed` means its shift contract is complete; **public delivery still requires discoverability acceptance**.
+
+Formal delivery chain:
+
+```text
+Publication Completed
+→ Release Manifest = Released
+→ bilingual articles and covers exist
+→ VitePress article routes are generated
+→ Research indexes discover every released item
+→ matching column indexes discover every released item
+→ Publication Visibility Gate PASS
+→ Pages Build / Verify / Publish
+→ GitHub Pages deployment succeeds
+```
+
+Authoritative checker:
+
+```text
+scripts/publication-visibility.mjs
+```
+
+Specifications:
+
+- `research/runtime/PUBLICATION-VISIBILITY-GATE.zh-CN.md`
+- `research/runtime/PUBLICATION-VISIBILITY-GATE.md`
+
+If any released item cannot be found from an official public entry point, Pages Verify fails and `gh-pages` must not be updated. The Observation Notes index also exposes a Today's Releases surface so same-day articles are directly visible rather than buried in history.
+
+## 8. Self-check chain
 
 Every completion and advancement must pass:
 
@@ -144,10 +175,13 @@ result contract validate
 → durable Git commit
 → ancestor / state verify
 → immediate reconcile
-→ Pages Build / Verify / Publish
+→ Pages Build
+→ Runtime order check
+→ Publication Visibility Gate (when a formal release exists)
+→ Pages Publish / deployment verify
 ```
 
-## 8. 2026-08-09 production validation
+## 9. 2026-08-09 production validation
 
 After Analysis completed, the old flow waited only for cron and did not open Production immediately. The repaired flow produced this evidence:
 
@@ -158,12 +192,15 @@ After Analysis completed, the old flow waited only for cron and did not open Pro
 - Scheduler received a `workflow_run` activation within seconds of completion;
 - Scheduler correctly kept Publication Waiting because 20:00 had not arrived.
 
-The validation proves both requirements:
+Publication later released three items as six bilingual public article files. The system then exposed a separate delivery defect: articles could be released while their user-facing discovery path was not prominent enough. V2.0 therefore added Publication Visibility Gate and a Today's Releases surface. The first gate run correctly blocked deployment when its own clean-URL artifact assumption was wrong; after matching the real `slug.html` build contract, Pages Run #235 passed Build, Verify, Visibility Gate and Publish, with all three released items routable and discoverable in both languages.
+
+The validation proves three requirements:
 
 1. an overdue next stage no longer waits for another cron;
-2. a future next stage does not bypass its formal time gate.
+2. a future next stage does not bypass its formal time gate;
+3. backend `Completed` is not mistaken for public delivery until users can discover the release through official entry points.
 
-## 9. Operational acceptance
+## 10. Operational acceptance
 
 Process management must be:
 
@@ -171,4 +208,5 @@ Process management must be:
 - **accurate:** machine and page states share one source; Running has a lease;
 - **efficient:** advance one stage at a time without dependent concurrency;
 - **recoverable:** heartbeat, Blocked reopen and Watchdog provide safety paths;
-- **auditable:** opening, completion, expiry, recovery, commit and verification are durable events.
+- **discoverable:** Publication is publicly delivered only after official entry points expose every released item and Visibility Gate passes;
+- **auditable:** opening, completion, expiry, recovery, commit, index checks and deployment verification are durable evidence.
