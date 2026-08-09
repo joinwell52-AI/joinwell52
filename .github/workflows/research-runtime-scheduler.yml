@@ -2,8 +2,17 @@ name: Research Runtime Scheduler V3.0
 
 on:
   schedule:
-    # Offset heartbeat. Time wakes reconciliation; it does not select a stage directly.
+    # Heartbeat is only a safety net. Overdue chains advance immediately on successful completion events.
     - cron: '2,7,12,17,22,27,32,37,42,47,52,57 * * * *'
+  workflow_run:
+    workflows:
+      - Research Runtime Shift Completion V2.0
+    types: [completed]
+    branches: [main]
+  push:
+    branches: [main]
+    paths:
+      - 'research/runtime/process-kick/**'
   workflow_dispatch:
     inputs:
       runtime_task:
@@ -31,6 +40,7 @@ concurrency:
 jobs:
   schedule-runtime:
     name: Reconcile and open V5 Runtime execution slot
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout authoritative repository
@@ -42,6 +52,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+
+      - name: Fetch latest durable facts
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
 
       - name: Expire stale Running leases
         id: watchdog
@@ -68,15 +83,19 @@ jobs:
             node scripts/runtime-reconcile.mjs
           fi
 
+      - name: Report reconciliation source
+        run: |
+          echo "event=${{ github.event_name }}"
+          echo "${{ steps.resolve.outputs.reason }}"
+
       - name: Report idle heartbeat
         if: steps.resolve.outputs.has_task != 'true' && steps.resolve.outputs.state_changed != 'true' && steps.watchdog.outputs.state_changed != 'true'
-        run: echo "${{ steps.resolve.outputs.reason }}"
+        run: echo "No runnable work after reconciliation."
 
       - name: Report repaired order violation
         if: steps.resolve.outputs.state_changed == 'true'
         run: |
           echo "Ordered reconciliation repaired Runtime control-plane state."
-          echo "${{ steps.resolve.outputs.reason }}"
           echo "Changed records: ${{ steps.resolve.outputs.changed_record_paths }}"
 
       - name: Persist Runtime Running state
@@ -135,7 +154,7 @@ jobs:
           git add research/runtime/records research/runtime/[0-9][0-9][0-9][0-9] research/intelligence
 
           if git diff --cached --quiet; then
-            echo "Runtime control-plane state was already persisted by another scheduler heartbeat."
+            echo "Runtime control-plane state was already persisted by another scheduler activation."
             echo "committed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
