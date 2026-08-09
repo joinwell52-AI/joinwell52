@@ -14,7 +14,7 @@
     "queue": "Completed",
     "reading": "Running",
     "analysis": "Blocked",
-    "production": "Waiting",
+    "production": "Running",
     "publication": "Waiting"
   },
   "results": {
@@ -391,11 +391,18 @@
       "event": "Execution Slot Opened",
       "status": "Running",
       "detail": "Research Runtime Reading started by Research Runtime Scheduler V3.0."
+    },
+    {
+      "time": "2026-08-09T15:05:38+08:00",
+      "task": "production",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Scheduler fallback: Research Runtime Production opened because the durable control-plane Running state was absent; Production may evaluate Research Objects only after this synchronized JSON and Markdown start state is committed, fetched and verified."
     }
   ],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-09T14:55:58+08:00",
+  "updatedAt": "2026-08-09T15:05:38+08:00",
   "metrics": [
     {
       "label": "Start events",
