@@ -308,9 +308,11 @@ function ensureRecord(manifest, familyId, date) {
   return { path, record }
 }
 
-function appendScheduledEvent(record, task, now) {
+function appendScheduledEvent(record, task, now, options = {}) {
   const currentStatus = record.taskStatus?.[task.id] || 'Waiting'
-  if (TERMINAL.has(currentStatus) && record.results?.[task.id]) {
+  const reopenBlocked = options.reopenBlocked === true
+  const retryingBlocked = currentStatus === 'Blocked' && reopenBlocked && Boolean(record.results?.[task.id])
+  if (TERMINAL.has(currentStatus) && record.results?.[task.id] && !retryingBlocked) {
     return false
   }
   const duplicate = currentStatus === 'Running' && record.timeline.some((entry) =>
@@ -332,7 +334,9 @@ function appendScheduledEvent(record, task, now) {
       task: task.id,
       event: 'Execution Slot Opened',
       status: 'Running',
-      detail: `${task.name} started by Research Runtime Scheduler V3.0.`
+      detail: retryingBlocked
+        ? `${task.name} reopened by Research Runtime Scheduler V3.0 after its blocking dependency became ready.`
+        : `${task.name} started by Research Runtime Scheduler V3.0.`
     })
   }
   record.updatedAt = `${now.date}T${now.time}+08:00`
@@ -358,7 +362,7 @@ function schedule(args) {
   const paths = []
   for (const task of tasks) {
     const { path, record } = ensureRecord(manifest, task.family, now.date)
-    const changed = appendScheduledEvent(record, task, now)
+    const changed = appendScheduledEvent(record, task, now, { reopenBlocked: args['reopen-blocked'] === true || args['reopen-blocked'] === 'true' })
     if (changed) writeJson(path, record)
     else console.log(`${task.name} is already terminal for ${now.date}; delayed or duplicate scheduling cannot reopen it.`)
     paths.push(slash(path))

@@ -45,7 +45,9 @@ function walk(dir) {
 }
 
 function text(value) {
-  return typeof value === 'string' ? value.trim() : String(value ?? '').trim()
+  if (typeof value === 'string') return value.trim()
+  if (value && typeof value === 'object') return JSON.stringify(value)
+  return String(value ?? '').trim()
 }
 
 function yaml(value) {
@@ -54,6 +56,18 @@ function yaml(value) {
 
 function cell(value) {
   return (text(value) || '—').replace(/\|/g, '\\|').replace(/\r?\n/g, '<br>')
+}
+
+function narrative(value, language = 'en') {
+  if (typeof value === 'string') return value.trim()
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return text(value)
+  const preferred = language === 'zh'
+    ? ['summary_zh', 'instruction_zh', 'description_zh', 'summary', 'instruction', 'description', 'type']
+    : ['summary', 'instruction', 'description', 'type', 'summary_zh', 'instruction_zh', 'description_zh']
+  for (const key of preferred) {
+    if (typeof value[key] === 'string' && value[key].trim()) return value[key].trim()
+  }
+  return JSON.stringify(value)
 }
 
 function status(value) {
@@ -94,23 +108,31 @@ function href(repository, item) {
 function linkedList(repository, items) {
   if (!Array.isArray(items) || !items.length) return '- 无 / None'
   return items.map((item) => {
+    if (typeof item === 'string') {
+      const raw = item.trim()
+      if (!raw) return '- Evidence'
+      const url = /^https?:\/\//.test(raw) ? raw : `https://github.com/${repository}/blob/main/${raw}`
+      return `- [${raw}](${url})`
+    }
     const zh = text(item?.label_zh)
     const en = text(item?.label)
-    const label = zh && en && zh !== en ? `${zh} / ${en}` : zh || en || 'Evidence'
+    const label = zh && en && zh !== en ? `${zh} / ${en}` : zh || en || text(item?.source) || text(item?.path) || text(item?.url) || text(item?.commit) || 'Evidence'
     const url = href(repository, item)
     return url ? `- [${label}](${url})` : `- ${label}`
   }).join('\n')
 }
-
 function metricsTable(metrics) {
   if (!Array.isArray(metrics) || !metrics.length) return '无 / None'
   return [
     '| 指标 | Metric | 数值 / Value |',
     '|---|---|---:|',
-    ...metrics.map((item) => `| ${cell(item.label_zh)} | ${cell(item.label)} | ${cell(item.value)} |`)
+    ...metrics.map((item) => {
+      const en = item.label || item.name || '—'
+      const zh = item.label_zh || item.label || item.name || '—'
+      return `| ${cell(zh)} | ${cell(en)} | ${cell(item.value)} |`
+    })
   ].join('\n')
 }
-
 function weekdayForDate(date) {
   return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][
     new Date(`${date}T12:00:00Z`).getUTCDay()
@@ -258,7 +280,7 @@ function render(date, scheduler, familyRecords) {
   for (const task of tasks) {
     const currentStatus = taskStatus(task, familyRecords)
     const result = taskResult(task, familyRecords)
-    const summary = result?.workResult_zh || result?.workResult || '尚未生成成果块 / No result block yet'
+    const summary = result ? (narrative(result.workResult_zh || result.workResult, 'zh') || '尚未生成成果块 / No result block yet') : '尚未生成成果块 / No result block yet'
     out.push(`| ${cell(task.schedule?.time)} | ${cell(task.name_zh)} | ${cell(task.name)} | ${cell(task.family)} | ${cell(status(currentStatus))} | ${cell(summary)} |`)
   }
 
@@ -298,27 +320,27 @@ function render(date, scheduler, familyRecords) {
 
     out.push('### 输入 / Input')
     out.push('')
-    out.push(result.input_zh || '—')
+    out.push(narrative(result.input_zh || result.input, 'zh') || '—')
     out.push('')
-    out.push(`> ${result.input || '—'}`)
+    out.push(`> ${narrative(result.input, 'en') || '—'}`)
     out.push('')
     out.push('### 工作成果 / Work Result')
     out.push('')
-    out.push(result.workResult_zh || '—')
+    out.push(narrative(result.workResult_zh || result.workResult, 'zh') || '—')
     out.push('')
-    out.push(`> ${result.workResult || '—'}`)
+    out.push(`> ${narrative(result.workResult, 'en') || '—'}`)
     out.push('')
     out.push('### 输出 / Output')
     out.push('')
-    out.push(result.output_zh || '—')
+    out.push(narrative(result.output_zh || result.output, 'zh') || '—')
     out.push('')
-    out.push(`> ${result.output || '—'}`)
+    out.push(`> ${narrative(result.output, 'en') || '—'}`)
     out.push('')
     out.push('### 下一步 / Next')
     out.push('')
-    out.push(result.next_zh || '—')
+    out.push(narrative(result.next_zh || result.next, 'zh') || '—')
     out.push('')
-    out.push(`> ${result.next || '—'}`)
+    out.push(`> ${narrative(result.next, 'en') || '—'}`)
     if (result.reason || result.reason_zh) {
       out.push('')
       out.push('### 原因 / Reason')

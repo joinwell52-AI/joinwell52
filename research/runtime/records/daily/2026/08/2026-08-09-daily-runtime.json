@@ -8,11 +8,11 @@
   "date": "2026-08-09",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Blocked",
+  "status": "Running",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Waiting",
+    "reading": "Running",
     "analysis": "Blocked",
     "production": "Waiting",
     "publication": "Waiting"
@@ -317,7 +317,8 @@
           "label_zh": "人类可读 Runtime 账本",
           "path": "research/runtime/2026/08/2026-08-09-runtime.md"
         }
-      ]
+      ],
+      "blockedBy": "reading"
     }
   },
   "timeline": [
@@ -383,11 +384,18 @@
       "event": "GitHub Commit Verified",
       "status": "Completed",
       "detail": "Fetched and verified durable Analysis Blocked result commit 7e66561361e9efd6907ec44310d7c3768a1031f0: Daily Runtime JSON and regenerated Markdown ledger are synchronized; exactly one Analysis Execution Slot Opened / Running event remains; Reading is still incomplete and zero Research Objects were produced."
+    },
+    {
+      "time": "2026-08-09T14:55:58+08:00",
+      "task": "reading",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Reading started by Research Runtime Scheduler V3.0."
     }
   ],
-  "githubCommit": "7e66561361e9efd6907ec44310d7c3768a1031f0",
-  "commitVerify": "Completed",
-  "updatedAt": "2026-08-09T13:07:34+08:00",
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-08-09T14:55:58+08:00",
   "metrics": [
     {
       "label": "Start events",
