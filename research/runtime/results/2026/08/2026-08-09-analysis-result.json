@@ -1,0 +1,80 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "analysis",
+  "family": "daily",
+  "status": "Completed",
+  "input": {
+    "scheduler": "research/runtime/SCHEDULER.json",
+    "skill": "research/skills/04-research-analysis.md",
+    "readingStatus": "Completed",
+    "readingArtifacts": [
+      "research/reading/Q-20260809-01-conversation-delete-run-cancellation.md",
+      "research/reading/Q-20260809-02-workload-identity-exchange.md",
+      "research/reading/Q-20260809-03-checkpoint-conformance-migration.md"
+    ],
+    "controlPlane": {
+      "mode": "ordered-recovery",
+      "verifiedRunningBeforeSubstantiveWork": true
+    }
+  },
+  "workResult": {
+    "summary": "Executed Skill 04 Research Analysis only after Reading had completed and Analysis had been reopened by ordered reconciliation. Produced three durable Research Objects. The Digital Employee judgment treats destructive context transitions as authority revocation coupled to transactional reconciliation of unsettled child work and identifies a worker lease/watchdog as the missing boundary for already-running execution. The Industry Architecture judgment separates rotatable workload identity, short-lived execution credentials and downstream propagation policy into independent trust controls. The Open-source Engineering judgment treats reader compatibility plus actually executed cross-backend conformance as the governing contract for durable-state migrations, including non-output invariants such as bounded replay. No article drafting or publication work was performed.",
+    "summary_zh": "仅在 Reading 已完成且 Analysis 由顺序恢复机制重新打开后执行 Skill 04 Research Analysis，并形成三份持久化 Research Object。Digital Employee 判断把破坏性上下文转换视为权限撤销与未结清子工作事务化协调，并指出对于已 Running 的物理执行仍需要 Worker Lease/Watchdog；Industry Architecture 判断把可轮换 Workload Identity、短期执行凭据和下游传播策略拆分为独立信任控制；Open-source Engineering 判断把 Reader Compatibility 与真实执行的跨后端 Conformance 共同视为持久化迁移治理合同，并把 bounded replay 等非输出属性纳入验证。未执行文章撰写或 Publication。",
+    "researchObjects": [
+      {
+        "column": "digital-employee",
+        "itemId": "Q-20260809-01",
+        "artifact": "research/analysis/Q-20260809-01-revocation-coupled-run-reconciliation.md",
+        "judgment": "Destructive work-context transitions should revoke authority and reconcile unsettled descendants under the same admission serialization boundary; Running execution additionally requires a bounded worker lease/watchdog."
+      },
+      {
+        "column": "industry-architecture",
+        "itemId": "Q-20260809-02",
+        "artifact": "research/analysis/Q-20260809-02-rotating-assertion-short-lived-credential.md",
+        "judgment": "Rotatable workload identity, short-lived runtime credentials and child-process propagation policy are separate trust boundaries and must be evidenced independently."
+      },
+      {
+        "column": "open-source-engineering",
+        "itemId": "Q-20260809-03",
+        "artifact": "research/analysis/Q-20260809-03-executed-conformance-migration-safety.md",
+        "judgment": "Migration safety requires reader compatibility with historical representations and conformance suites that actually execute against every governed backend, including bounded replay invariants."
+      }
+    ],
+    "boundary": {
+      "articleWriting": false,
+      "publication": false
+    }
+  },
+  "output": {
+    "type": "Research Objects",
+    "researchObjectCount": 3,
+    "artifacts": [
+      "research/analysis/Q-20260809-01-revocation-coupled-run-reconciliation.md",
+      "research/analysis/Q-20260809-02-rotating-assertion-short-lived-credential.md",
+      "research/analysis/Q-20260809-03-executed-conformance-migration-safety.md"
+    ]
+  },
+  "next": {
+    "task": "production",
+    "scheduledTime": "15:00",
+    "instruction": "Production may consume only these three completed Research Objects and must preserve their evidence boundaries."
+  },
+  "metrics": [
+    { "name": "reading_results_consumed", "value": 3 },
+    { "name": "research_objects", "value": 3 },
+    { "name": "article_drafts", "value": 0 },
+    { "name": "publication_actions", "value": 0 }
+  ],
+  "evidence": [
+    "research/skills/04-research-analysis.md",
+    "research/reading/Q-20260809-01-conversation-delete-run-cancellation.md",
+    "research/reading/Q-20260809-02-workload-identity-exchange.md",
+    "research/reading/Q-20260809-03-checkpoint-conformance-migration.md"
+  ],
+  "artifacts": [
+    "research/analysis/Q-20260809-01-revocation-coupled-run-reconciliation.md",
+    "research/analysis/Q-20260809-02-rotating-assertion-short-lived-credential.md",
+    "research/analysis/Q-20260809-03-executed-conformance-migration-safety.md",
+    "research/runtime/results/2026/08/2026-08-09-analysis-result.json"
+  ]
+}
