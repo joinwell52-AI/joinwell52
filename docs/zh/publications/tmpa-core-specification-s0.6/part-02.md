@@ -53,7 +53,7 @@ TMPA Core 要求归属与完整性证据。只有应用可信身份、签名与�
 
 ## 3.8 从 FCoP 工程实践抽象的治理闭环
 
-S0.5 从 FCoP 协议规范、Rules、Schema 与 ADR，以及 `fcop` / `fcop-mcp` 参考实现的有界观察中提炼供应商中立的 Core 约束。FCoP 是协议与参考 Profile，不是应用程序，也不是 TMPA 的定义者；Python Package 只是参考实现。因此本节吸收的是可移植语义，而不是 `_lifecycle/`、文件名或 MCP 工具名。
+S0.6 从 FCoP 协议规范、Rules、Schema 与 ADR，以及 `fcop` / `fcop-mcp` 参考实现的有界观察中提炼供应商中立的 Core 约束。FCoP 是协议与参考 Profile，不是应用程序，也不是 TMPA 的定义者；Python Package 只是参考实现。因此本节吸收的是可移植语义，而不是 `_lifecycle/`、文件名或 MCP 工具名。
 
 ### 3.8.1 当前状态、迁移历史与业务完成
 
@@ -89,15 +89,15 @@ Profile **MUST** 发布有限失败类型与恢复动作注册表，并说明重
 
 ## 4.1 规范对象 Schema
 
-以下 JSON Schema 定义 TMPA Core S0.5 规范治理对象。它约束单个治理对象的结构。ID 唯一性、流连续性、角色授权、生命周期合法性、引用解析和确定性重建等跨对象属性，由适用 Profile 与 Reader 评估，不能由单对象 Schema 单独建立。
+以下 JSON Schema 定义 TMPA Core S0.6 规范治理对象。它约束单个治理对象的结构。ID 唯一性、流连续性、角色授权、生命周期合法性、引用解析和确定性重建等跨对象属性，由适用 Profile 与 Reader 评估，不能由单对象 Schema 单独建立。
 
 实现只能在 `extensions` 下增加 Profile 特定字段，并且 **MUST** 保留所有 Core 字段的既定含义。
 
 ```json
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:tmpa:schema:governance-object:s0.5",
-  "title": "TMPA Governance Object S0.5",
+  "$id": "urn:tmpa:schema:governance-object:s0.6",
+  "title": "TMPA Governance Object S0.6",
   "$comment": "Structural validation does not establish role authority, lifecycle legality, cross-object uniqueness, or integrity verification.",
   "type": "object",
   "additionalProperties": false,
@@ -116,7 +116,7 @@ Profile **MUST** 发布有限失败类型与恢复动作注册表，并说明重
     "integrity"
   ],
   "properties": {
-    "tmpa_version": { "const": "S0.5" },
+    "tmpa_version": { "const": "S0.6" },
     "id": { "type": "string", "minLength": 1 },
     "type": { "type": "string", "minLength": 1 },
     "governed_work": {
@@ -272,19 +272,19 @@ Profile **MUST** 发布有限失败类型与恢复动作注册表，并说明重
 
 主载体对象把自己的 `id` 用作 `governed_work.primary_carrier_id`。同一工作项的其他对象重复该载体 ID。生命周期迁移文档类型 **SHALL** 要求 `lifecycle.transition`；非迁移类型 **MAY** 省略它。该条件由类型注册表而不是通用单对象 Schema 强制。
 
-C01 使用的 Schema Processor **SHALL** 为 `created_at` 执行 JSON Schema Draft 2020-12 `format` 断言；仅把 `date-time` 当作注释不足以通过 C01。下方链接的 S0.5 机器可读工件是规范 Schema 字节序列；上方嵌入展示 **SHALL** 与其保持语义一致。
+C01 使用的 Schema Processor **SHALL** 为 `created_at` 执行 JSON Schema Draft 2020-12 `format` 断言；仅把 `date-time` 当作注释不足以通过 C01。下方链接的 S0.6 机器可读工件是规范 Schema 字节序列；上方嵌入展示 **SHALL** 与其保持语义一致。
 
-| S0.5 机器可读工件 | SHA-256 |
+| S0.6 机器可读工件 | SHA-256 |
 |---|---|
-| [治理对象 Schema](/spec/tmpa/s0.5/governance-object.schema.json) | `b2a282b59b9cf2c431db0e1fbb2b405485315f2a2b90739858e669c5e59633d5` |
-| [生命周期 Profile Schema](/spec/tmpa/s0.5/lifecycle-profile.schema.json) | `754242458509c1dfe93bb75feed44f7bf7339b4631afbe02c915fbd23c400af5` |
-| [Reader 结果 Schema](/spec/tmpa/s0.5/reader-result.schema.json) | `b364d1c1cb0946f4a9d06f8ae5c83d2519f480402cb6f30ac08639ef53b2e287` |
-| [一致性结果 Schema](/spec/tmpa/s0.5/conformance-result.schema.json) | `1a0ce5372b59f97994d2b08ea2c528d53f868d98e6ab2ba0d0e53b423e38de52` |
+| [治理对象 Schema](/spec/tmpa/s0.6/governance-object.schema.json) | `623fd1d639defa441353993a3f5c1b228889d8977f5ac199d05c23f4683d036b` |
+| [生命周期 Profile Schema](/spec/tmpa/s0.6/lifecycle-profile.schema.json) | `df925fc3c515f680e2f699ef5e82aba00c299ba63675d520effb0c006e6ce9d8` |
+| [Reader 结果 Schema](/spec/tmpa/s0.6/reader-result.schema.json) | `f62aca5fb0a696bf92cd89bbf84e8c59d185d45af8f189504151c18509cc4f59` |
+| [一致性结果 Schema](/spec/tmpa/s0.6/conformance-result.schema.json) | `11c21a8d4dc8ef1b9f9990123a6deb4870a39232574f9565d7d95ed78a808749` |
 
-生命周期 Profile Schema 除状态、动作、迁移与恢复规则外，还强制要求显式 `acceptance`、`work_graph`、`risk_policy` 与 `failure_model` 区段，使 FCoP 派生的协作周期语义可以审查，同时不把 TMPA 绑定到 FCoP 参考实现或 CodeFlowMu。
+生命周期 Profile Schema 除状态、动作、迁移与恢复规则外，还强制要求显式 `acceptance`、`work_graph`、`risk_policy` 与 `failure_model` 区段。S0.6 进一步要求风险策略标识允许的批准对象类型，以及是否要求批准人相互独立。这些区段使 FCoP 派生的协作周期语义可以审查，同时不把 TMPA 绑定到 FCoP 参考实现或 CodeFlowMu。
 
 `lifecycle.state` 记录此不可变对象发布时声明的状态，不是可变当前状态字段。当前权威生命周期状态 **MUST** 从有效对象集合、已接受迁移证据与适用生命周期 Profile 重建。
 
-规范化 Profile **MUST** 定义 Digest 覆盖的精确表示；使用签名时，还 **MUST** 定义签名覆盖的精确表示与自引用完整性字段的排除或规范化方法。TMPA Core S0.5 要求显式声明该 Profile，但不强制唯一的字节级规范化算法。
+规范化 Profile **MUST** 定义 Digest 覆盖的精确表示；使用签名时，还 **MUST** 定义签名覆盖的精确表示与自引用完整性字段的排除或规范化方法。TMPA Core S0.6 要求显式声明该 Profile，但不强制唯一的字节级规范化算法。
 
 Schema 有效只是进入权威治理视图的必要条件而非充分条件。Reader 仍 **MUST** 检查 ID 唯一性、类型规则、流顺序、权限、生命周期、引用、Digest 与适用的签名策略。

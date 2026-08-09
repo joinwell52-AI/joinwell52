@@ -81,7 +81,7 @@ A role label is not a cryptographic signature. A digest without a trusted identi
 
 ## 3.8 Governance Closure Abstracted from FCoP Practice
 
-S0.5 derives vendor-neutral Core constraints from FCoP protocol specifications, Rules, Schemas, and ADRs, together with bounded observations of the `fcop` / `fcop-mcp` reference implementation. FCoP is a protocol and reference profile, not an application and not the definition of TMPA; the Python packages are only its reference implementation. This section therefore absorbs portable semantics rather than `_lifecycle/`, filename, or MCP-tool names.
+S0.6 derives vendor-neutral Core constraints from FCoP protocol specifications, Rules, Schemas, and ADRs, together with bounded observations of the `fcop` / `fcop-mcp` reference implementation. FCoP is a protocol and reference profile, not an application and not the definition of TMPA; the Python packages are only its reference implementation. This section therefore absorbs portable semantics rather than `_lifecycle/`, filename, or MCP-tool names.
 
 ### 3.8.1 Current State, Transition History, and Business Completion
 
@@ -117,15 +117,15 @@ Protocol inspection and governance alerts are observations, not automatic remedi
 
 ## 4.1 Canonical Object Schema
 
-The following JSON Schema defines the TMPA Core S0.5 canonical object representation. It constrains the shape of one governance object. Cross-object properties—including identifier uniqueness, stream continuity, role authorization, lifecycle legality, reference resolution, and deterministic reconstruction—are evaluated by the applicable profile and reader rather than by this single-object schema.
+The following JSON Schema defines the TMPA Core S0.6 canonical object representation. It constrains the shape of one governance object. Cross-object properties—including identifier uniqueness, stream continuity, role authorization, lifecycle legality, reference resolution, and deterministic reconstruction—are evaluated by the applicable profile and reader rather than by this single-object schema.
 
 Implementations may add profile-specific fields only under `extensions`. They must preserve the meaning of the core fields.
 
 ```json
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:tmpa:schema:governance-object:s0.5",
-  "title": "TMPA Governance Object S0.5",
+  "$id": "urn:tmpa:schema:governance-object:s0.6",
+  "title": "TMPA Governance Object S0.6",
   "$comment": "Structural validation does not establish role authority, lifecycle legality, cross-object uniqueness, or integrity verification.",
   "type": "object",
   "additionalProperties": false,
@@ -144,7 +144,7 @@ Implementations may add profile-specific fields only under `extensions`. They mu
     "integrity"
   ],
   "properties": {
-    "tmpa_version": { "const": "S0.5" },
+    "tmpa_version": { "const": "S0.6" },
     "id": { "type": "string", "minLength": 1 },
     "type": { "type": "string", "minLength": 1 },
     "governed_work": {

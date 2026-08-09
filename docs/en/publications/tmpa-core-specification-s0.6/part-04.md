@@ -203,7 +203,7 @@ The reader emits one result envelope with at least:
 
 ```json
 {
-  "core_version": "S0.5",
+  "core_version": "S0.6",
   "output_version": "1",
   "profile": {},
   "reader": { "id": "<id>", "version": "<version>" },
@@ -224,7 +224,7 @@ Core issue codes are: `SCHEMA_INVALID`, `UNKNOWN_TYPE`, `INTEGRITY_MISMATCH`, `S
 
 The source-set digest is computed from the deterministically sorted list of `(source_id, byte_digest)` pairs under the declared output profile. Nodes sort by `(id, source_object_id)`. Edges sort by `(source_id, relation, target_id, id)`. Issues sort by `(severity, code, object_id, relation, target_id, issue_id)`, using severity order `critical`, `error`, `warning`, `info`; absent tuple fields are empty strings.
 
-An `issue_id` is derived from the canonical tuple `(code, object_id, relation, target_id, profile_digest)` under the output profile. Human-readable messages, stack traces, local paths, and execution timestamps are excluded from canonical equality. Subject and source ID arrays sort by Unicode code-point order after profile-defined normalization.
+An `issue_id` is derived from the canonical tuple `(code, object_id, relation, target_id, profile_digest)` under the output profile. Human-readable messages, stack traces, local paths, and execution timestamps are excluded from canonical equality. Object keys, subjects, retained source IDs, nodes, edges, and issues use Unicode code-point order after profile-defined normalization; locale-sensitive collation is not canonical.
 
 The canonical result serialization is byte-stable for equal fixed inputs. Non-canonical logs and user-interface ordering may vary, but they do not alter the result envelope used for C11.
 

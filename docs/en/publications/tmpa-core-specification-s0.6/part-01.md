@@ -1,5 +1,5 @@
 ---
-title: TMPA Core Specification — Implementation Draft S0.5
+title: TMPA Core Specification — Release Candidate S0.6
 outline: deep
 ---
 
@@ -8,9 +8,9 @@ outline: deep
   kicker="Normative Specification"
   title="TMPA Core Specification"
   summary="Normative object, lifecycle, authority, three-valued judgment and deterministic reconstruction requirements."
-  version="S0.5"
-  status="Implementation-ready working draft"
-  languageHref="/zh/publications/tmpa-core-specification-s0.5"
+  version="S0.6"
+  status="Release Candidate"
+  languageHref="/zh/publications/tmpa-core-specification-s0.6"
   languageLabel="简体中文"
 />
 
@@ -18,12 +18,12 @@ outline: deep
 
 ## Textual Multi-Agent Process Architecture — Core Objects, Reader Semantics, and Conformance
 
-> **Specification Version:** Draft S0.5<br>
+> **Specification Version:** Release Candidate S0.6<br>
 > **Historical Extraction Baseline:** TMPA Draft V1.0-R24; current specification maintained directly in this GitHub document<br>
-> **Status:** Implementation-Ready Normative Draft<br>
+> **Status:** Public Release Candidate<br>
 > **Extraction Date:** 2026-07-31  
-> **Editorial Revision Date:** 2026-08-05<br>
-> **Authority:** This GitHub document is the sole normative source for TMPA Core S0.5. The Architecture Paper is theoretical and the Implementation Case Report is evidentiary; neither may redefine this specification.
+> **Editorial Revision Date:** 2026-08-09<br>
+> **Authority:** This GitHub document is the sole normative source for TMPA Core S0.6. The Architecture Paper is theoretical and the Implementation Case Report is evidentiary; neither may redefine this specification.
 
 ---
 
@@ -33,7 +33,7 @@ This document defines the vendor-neutral TMPA Core. It fixes the canonical gover
 
 TMPA Core governs process-responsibility evidence. It does not prescribe a model runtime, scheduler, storage engine, message transport, database, filesystem layout, identity provider, key-management system, or enterprise control plane. A profile may bind those mechanisms, but it MUST preserve the Core semantics and MUST identify every additional assumption or guarantee.
 
-This draft separates three kinds of text:
+This release candidate separates three kinds of text:
 
 - **normative requirements:** Sections 9 and 10, using the terms defined in Section 9.1;
 - **architectural and algorithmic definitions required to interpret the normative clauses:** Sections 2–8;

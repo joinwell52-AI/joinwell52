@@ -1,5 +1,5 @@
 ---
-title: TMPA Core Specification — 可实现草稿 S0.5
+title: TMPA Core Specification — 发布候选版 S0.6
 outline: deep
 ---
 
@@ -8,9 +8,9 @@ outline: deep
   kicker="规范性规范"
   title="TMPA Core Specification"
   summary="治理对象、生命周期、权限、三值判断与确定性重建的规范要求。"
-  version="S0.5"
-  status="可实现工作草稿"
-  languageHref="/en/publications/tmpa-core-specification-s0.5"
+  version="S0.6"
+  status="发布候选版"
+  languageHref="/en/publications/tmpa-core-specification-s0.6"
   languageLabel="English"
 />
 
@@ -18,12 +18,12 @@ outline: deep
 
 ## 文本化多智能体流程架构——Core 对象、Reader 语义与一致性
 
-> **规范版本：** Draft S0.5<br>
+> **规范版本：** Release Candidate S0.6<br>
 > **历史抽取基线：** TMPA Draft V1.0-R24；当前规范直接在本 GitHub 文档中维护<br>
-> **状态：** 可实现规范草稿<br>
+> **状态：** 公开发布候选版<br>
 > **抽取日期：** 2026-07-31<br>
-> **编辑修订日期：** 2026-08-05<br>
-> **权威性：** 本 GitHub 文档是 TMPA Core S0.5 的唯一规范性来源。Architecture Paper 负责理论阐释，Implementation Case Report 负责工程证据；二者均不得重定义本规范。
+> **编辑修订日期：** 2026-08-09<br>
+> **权威性：** 本 GitHub 文档是 TMPA Core S0.6 的唯一规范性来源。Architecture Paper 负责理论阐释，Implementation Case Report 负责工程证据；二者均不得重定义本规范。
 
 ---
 
@@ -33,7 +33,7 @@ outline: deep
 
 TMPA Core 治理流程—责任证据。它不规定模型 Runtime、调度器、存储引擎、消息传输、数据库、文件系统布局、身份提供方、密钥管理系统或企业控制平面。Profile 可以绑定这些机制，但它 **MUST** 保留 Core 语义，并且 **MUST** 明确每一项附加假设或保证。
 
-本草稿区分三类文本：
+本发布候选版区分三类文本：
 
 - **规范要求：** 第 9、10 节，使用第 9.1 节规定的规范语言；
 - **解释规范条款所必需的架构与算法定义：** 第 2–8 节；

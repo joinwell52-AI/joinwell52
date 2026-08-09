@@ -13,6 +13,7 @@
     "runtime:gate": "node scripts/runtime-v5.mjs gate",
     "tmpa:s0.4:conformance": "node research/conformance/tmpa-core-s0.4/runner.mjs",
     "tmpa:s0.5:conformance": "node research/conformance/tmpa-core-s0.5/runner.mjs",
+    "tmpa:s0.6:conformance": "node research/conformance/tmpa-core-s0.6/runner.mjs",
     "docs:dev": "npm run runtime:build && vitepress dev docs",
     "docs:build": "npm run runtime:build && node scripts/vitepress-build-strict.mjs && npm run runtime:projection:verify-dist",
     "docs:preview": "vitepress preview docs",

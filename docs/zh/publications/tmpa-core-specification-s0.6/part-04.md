@@ -183,7 +183,7 @@ Reader **SHALL** 输出至少包含以下字段的规范结果 Envelope：
 
 ```json
 {
-  "core_version": "S0.5",
+  "core_version": "S0.6",
   "output_version": "1",
   "profile": {},
   "reader": { "id": "<id>", "version": "<version>" },
@@ -204,7 +204,7 @@ Core 问题代码为：`SCHEMA_INVALID`、`UNKNOWN_TYPE`、`INTEGRITY_MISMATCH`�
 
 `source_set_digest` 按声明输出 Profile 从 `(source_id, byte_digest)` 对的确定性排序列表计算。节点按 `(id, source_object_id)` 排序；边按 `(source_id, relation, target_id, id)` 排序；问题按 `(severity, code, object_id, relation, target_id, issue_id)` 排序，其中严重级别顺序为 `critical`、`error`、`warning`、`info`。元组中不存在的字段按空字符串处理。
 
-`issue_id` **SHALL** 由 `(code, object_id, relation, target_id, profile_digest)` 的规范编码确定性导出。人类可读消息、Stack Trace、本地路径与执行时间戳排除在规范等价性之外。主体与来源 ID 数组在 Profile 定义规范化后按 Unicode 码点排序。
+`issue_id` **SHALL** 由 `(code, object_id, relation, target_id, profile_digest)` 的规范编码确定性导出。人类可读消息、Stack Trace、本地路径与执行时间戳排除在规范等价性之外。对象键、主体、保留的来源 ID、节点、边和问题在 Profile 定义规范化后按 Unicode 码点排序；依赖 Locale 的排序不得作为规范排序。
 
 对于相同固定输入，规范结果序列化必须字节稳定。非规范日志与用户界面排序可以变化，但不得改变用于 C11 的结果 Envelope。
 
