@@ -5,7 +5,13 @@ title: Digital Employee Works — Verifiable Digital Employee Production
 description: A governed production line that continuously delivers verifiable Digital Employee work, runtime evidence, Observation Notes and formal publications.
 ---
 
+<script setup>
+import TodayPublished from './.vitepress/theme/components/TodayPublished.vue'
+</script>
+
 <ResearchCenterHome lang="en" />
+
+<TodayPublished lang="en" />
 
 <style>
 .portal-v5-page .VPNavBarTitle .title {
