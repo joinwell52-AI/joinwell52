@@ -404,6 +404,11 @@
           "label": "Human-readable Runtime ledger",
           "label_zh": "人类可读 Runtime 账本",
           "path": "research/runtime/2026/08/2026-08-09-runtime.md"
+        },
+        {
+          "label": "Verified Production result commit",
+          "label_zh": "已核验 Production 成果提交",
+          "commit": "407edd05935fe45e804768cc6d2589cc716d9d93"
         }
       ]
     }
@@ -492,11 +497,18 @@
       "event": "Production Completed",
       "status": "Completed",
       "detail": "Production gate re-evaluated after the verified Scheduler fallback start state. No same-day Research Object produced by Analysis was available or eligible, so Production completed with outcome No Eligible Research Object and zero Publication Candidates; no writing, visualization, evidence editing or publication was performed."
+    },
+    {
+      "time": "2026-08-09T15:09:30+08:00",
+      "task": "production",
+      "event": "GitHub Commit Verified",
+      "status": "Completed",
+      "detail": "Fetched and verified durable Production result commit 407edd05935fe45e804768cc6d2589cc716d9d93: the zero-candidate batch, Daily Runtime JSON and regenerated Markdown ledger are present; exactly one Production Execution Slot Opened event and one Production Completed event remain; no eligible same-day Research Object was consumed and no public article was written."
     }
   ],
-  "githubCommit": "pending",
-  "commitVerify": "Waiting",
-  "updatedAt": "2026-08-09T15:07:53+08:00",
+  "githubCommit": "407edd05935fe45e804768cc6d2589cc716d9d93",
+  "commitVerify": "Completed",
+  "updatedAt": "2026-08-09T15:09:30+08:00",
   "metrics": [
     {
       "label": "Start events",
