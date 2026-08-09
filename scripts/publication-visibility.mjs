@@ -12,13 +12,18 @@ function fail(message) {
   process.exitCode = 1
 }
 
-function htmlPathForDoc(docPath) {
-  const relative = docPath.replace(/^docs\//, '').replace(/\.md$/, '')
-  return path.join(dist, relative, 'index.html')
+function relativeRouteForDoc(docPath) {
+  return docPath.replace(/^docs\//, '').replace(/\.md$/, '')
 }
 
-function publicHrefForDoc(docPath) {
-  return `/${docPath.replace(/^docs\//, '').replace(/\.md$/, '')}`
+function htmlPathForDoc(docPath) {
+  // VitePress cleanUrls=true emits foo/bar.html while serving /foo/bar.
+  return path.join(dist, `${relativeRouteForDoc(docPath)}.html`)
+}
+
+function routeNeedle(docPath) {
+  // Match the stable route tail independent of the configured GitHub Pages base.
+  return relativeRouteForDoc(docPath)
 }
 
 function read(file) {
@@ -44,8 +49,6 @@ if (!releaseFiles.length) {
   process.exit()
 }
 
-// Verify the latest formal Daily Publication release. Older releases remain immutable evidence;
-// the latest release is the one a user must be able to discover immediately after deployment.
 const latestName = releaseFiles.at(-1)
 const releasePath = path.join(releasesDir, latestName)
 const release = JSON.parse(read(releasePath))
@@ -86,12 +89,9 @@ for (const item of items) {
       continue
     }
 
-    const href = publicHrefForDoc(docPath)
-    // VitePress uses the configured base at render time; matching the base-independent
-    // tail protects both local builds and GitHub Pages deployments.
-    const hrefTail = href.replace(/^\/(zh|en)\//, '/')
-    if (!indexHtml[lang].includes(hrefTail) && !indexHtml[lang].includes(href)) {
-      fail(`${item.itemId} ${lang} is not discoverable from the Research index (${href})`)
+    const needle = routeNeedle(docPath)
+    if (!indexHtml[lang].includes(needle)) {
+      fail(`${item.itemId} ${lang} is not discoverable from the Research index (${needle})`)
     }
 
     const columnRoute = columnIndex[item.column]?.[lang]
@@ -105,7 +105,7 @@ for (const item of items) {
       continue
     }
     const columnHtml = read(columnHtmlPath)
-    if (!columnHtml.includes(hrefTail) && !columnHtml.includes(href)) {
+    if (!columnHtml.includes(needle)) {
       fail(`${item.itemId} ${lang} is not discoverable from its column index (${columnRoute})`)
     }
   }
