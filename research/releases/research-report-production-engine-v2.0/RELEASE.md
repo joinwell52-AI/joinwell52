@@ -22,14 +22,36 @@ V2.0 upgrades the Research Report Production Engine from a time-triggered resear
 - Runtime V5 validation accepts legitimate historical flat and structured shift-result forms.
 - Human-readable Runtime projection handles structured narratives and evidence without `[object Object]` leakage.
 - Runtime and Markdown validation are mandatory control-plane checks.
+- Scheduled, manual, fallback and recovery requests share one ordered reconciliation rule; manual dispatch cannot bypass the earliest runnable due task.
+- A downstream task found `Running` before its prerequisite is `Completed` is automatically returned to `Waiting`, with an `Order Violation Corrected` timeline event preserved for audit.
+- Runtime pages expose ordered recovery progress with Completed, Running, Catching up, Overdue, Waiting prerequisite, Ready to recover and Order violation presentation states.
+- Pages verification refuses to publish a Runtime surface when generated Daily state still contains a downstream Running/Completed stage whose prerequisite is not Completed.
 
 ## Production recovery evidence — 2026-08-09
 
-The Sunday runtime exposed a real recovery case: Reading was missed, Analysis opened before Reading completion and became Blocked, historical structured results prevented Scheduler state persistence, and Markdown projection rendered structured Queue output incorrectly. The permanent repair restored Reading, marked Analysis with `blockedBy: reading`, installed dependency-aware scheduling and governed Blocked retry, repaired projection, validated Runtime V5, and removed temporary hotfix machinery.
+The Sunday runtime exposed a real recovery case: Reading was missed, Analysis opened before Reading completion and became Blocked, historical structured results prevented Scheduler state persistence, and Markdown projection rendered structured Queue output incorrectly. A later fallback also opened Production while Reading was still Running and Analysis was Blocked, proving that automatic and manual/fallback entry paths had to share the same ordering gate.
+
+The permanent repair restored Reading, marked Analysis with `blockedBy: reading`, installed dependency-aware scheduling and governed Blocked retry, centralized reconciliation in `scripts/runtime-reconcile.mjs`, denied out-of-order manual dispatch, added automatic correction for impossible downstream Running state, repaired projection, added a frontend recovery-progress surface, added a Pages order-consistency gate, validated Runtime V5, and removed temporary hotfix machinery.
 
 ## Recovery invariant
 
 > Restore durable facts first; recover the earliest dependency-ready gap; validate and persist it; only then advance downstream work.
+
+Every entry path obeys the same invariant:
+
+```text
+schedule / manual / fallback / recovery
+            ↓
+        reconcile facts
+            ↓
+oldest due + incomplete + dependency-ready task
+            ↓
+open one stage only
+            ↓
+Runtime validate + Markdown validate + durable Git verify
+            ↓
+next heartbeat may advance
+```
 
 ## Public documents
 
