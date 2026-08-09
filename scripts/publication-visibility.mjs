@@ -22,7 +22,6 @@ function htmlPathForDoc(docPath) {
 }
 
 function routeNeedle(docPath) {
-  // Match the stable route tail independent of the configured GitHub Pages base.
   return relativeRouteForDoc(docPath)
 }
 
@@ -64,9 +63,14 @@ if (!items.length) {
   process.exit()
 }
 
-const indexHtml = {
+const researchIndexHtml = {
   zh: read(path.join(dist, 'zh', 'research', 'index.html')),
   en: read(path.join(dist, 'en', 'research', 'index.html'))
+}
+
+const homeHtml = {
+  zh: read(path.join(dist, 'zh', 'index.html')),
+  en: read(path.join(dist, 'index.html'))
 }
 
 const columnIndex = {
@@ -90,8 +94,12 @@ for (const item of items) {
     }
 
     const needle = routeNeedle(docPath)
-    if (!indexHtml[lang].includes(needle)) {
+    if (!researchIndexHtml[lang].includes(needle)) {
       fail(`${item.itemId} ${lang} is not discoverable from the Research index (${needle})`)
+    }
+
+    if (!homeHtml[lang].includes(needle)) {
+      fail(`${item.itemId} ${lang} is not discoverable from the public homepage (${needle})`)
     }
 
     const columnRoute = columnIndex[item.column]?.[lang]
@@ -116,5 +124,5 @@ for (const item of items) {
 }
 
 if (!process.exitCode) {
-  console.log(`[publication-visibility] PASS ${release.date}: ${items.length} released items are routable and discoverable in both languages.`)
+  console.log(`[publication-visibility] PASS ${release.date}: ${items.length} released items are routable and discoverable from home, Research and column indexes in both languages.`)
 }
