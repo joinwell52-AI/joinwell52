@@ -82,7 +82,6 @@ function zonedParts(date: Date) {
 
 const parts = computed(() => zonedParts(now.value))
 const nowMinutes = computed(() => Number(parts.value.hour) * 60 + Number(parts.value.minute))
-const today = computed(() => `${parts.value.year}-${parts.value.month}-${parts.value.day}`)
 const weekday = computed(() => parts.value.weekday)
 
 const tasksToday = computed(() => data.schedule
@@ -134,12 +133,10 @@ const rows = computed(() => tasksToday.value.map((task) => ({ task, state: displ
 const completedCount = computed(() => rows.value.filter((row) => row.status === 'Completed' || row.status === 'Skipped').length)
 const orderError = computed(() => rows.value.some((row) => row.state === 'order-error'))
 const firstOpen = computed(() => rows.value.find((row) => !['completed', 'skipped'].includes(row.state)) || null)
-const currentLabel = computed(() => {
-  const row = rows.value.find((item) => ['running', 'catching-up', 'order-error'].includes(item.state)) || firstOpen.value
-  return row ? (props.lang === 'zh' ? row.task.name_zh : row.task.name) : text.value.none
-})
+const currentRow = computed(() => rows.value.find((item) => ['running', 'catching-up', 'order-error'].includes(item.state)) || firstOpen.value)
+const currentLabel = computed(() => currentRow.value ? (props.lang === 'zh' ? currentRow.value.task.name_zh : currentRow.value.task.name) : text.value.none)
 const nextLabel = computed(() => {
-  const currentIndex = rows.value.findIndex((row) => (props.lang === 'zh' ? row.task.name_zh : row.task.name) === currentLabel.value)
+  const currentIndex = currentRow.value ? rows.value.findIndex((row) => row.task.id === currentRow.value?.task.id) : -1
   const next = currentIndex >= 0 ? rows.value.slice(currentIndex + 1).find((row) => !['completed', 'skipped'].includes(row.state)) : null
   return next ? (props.lang === 'zh' ? next.task.name_zh : next.task.name) : text.value.none
 })
@@ -177,7 +174,7 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
     <div class="recovery-chain">
       <article v-for="row in rows" :key="row.task.id" :class="`state-${row.state}`">
         <time>{{ row.task.schedule.time }}</time>
-        <b>{{ lang === 'zh' ? row.task.name_zh : row.task.name }}</b>
+        <b>{{ props.lang === 'zh' ? row.task.name_zh : row.task.name }}</b>
         <span>{{ text.states[row.state] }}</span>
       </article>
     </div>
