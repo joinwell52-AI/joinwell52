@@ -1,0 +1,59 @@
+name: Repair 2026-08-09 Intelligence Evidence Once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/repair-intelligence-evidence-20260809-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Canonicalize evidence levels
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs')
+          const file = 'research/intelligence/runs/2026/08/2026-08-09-intelligence.json'
+          const data = JSON.parse(fs.readFileSync(file, 'utf8'))
+          const aliases = {
+            official_release_changelog: 'official_announcement',
+            primary_research_preprint: 'peer_reviewed_or_primary_research'
+          }
+          let changed = 0
+          for (const signal of data.signals || []) {
+            const next = aliases[signal.evidenceLevel]
+            if (!next) continue
+            signal.evidenceLevel = next
+            changed += 1
+          }
+          if (changed !== 5) {
+            throw new Error(`Expected 5 evidence-level repairs, found ${changed}`)
+          }
+          fs.writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`)
+          console.log(`Canonicalized ${changed} evidence levels in ${file}`)
+          NODE
+
+      - name: Commit repaired intelligence run
+        shell: bash
+        run: |
+          git diff --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/intelligence/runs/2026/08/2026-08-09-intelligence.json
+          git commit -m "fix(intelligence): canonicalize 2026-08-09 evidence levels"
+          git push origin HEAD:main
