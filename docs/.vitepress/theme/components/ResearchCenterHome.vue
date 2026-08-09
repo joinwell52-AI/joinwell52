@@ -33,7 +33,7 @@ const copy = computed(() => zh.value ? {
   tmpaLead: 'TMPA（文本多智能体流程架构）是独立维护的理论与规范层，不与高频观察笔记共用可信度标准。主论文解释架构，核心规范固定对象与读者行为，工程案例公开实现证据及其边界。',
   publications: [
     { version:'A0.7', kind:'主论文', title:['TMPA','架构论文'], status:'投稿前审稿修订版', path:'/zh/publications/tmpa-architecture-paper-a0.7', tone:'paper' },
-    { version:'S0.5', kind:'核心规范', title:['TMPA','核心规范'], status:'FCoP 派生可实现草稿', path:'/zh/publications/tmpa-core-specification-s0.5', tone:'spec' },
+    { version:'S0.6', kind:'核心规范', title:['TMPA','核心规范'], status:'发布候选版 · Reference 14/14', path:'/zh/publications/tmpa-core-specification-s0.6', tone:'spec' },
     { version:'I0.7', kind:'工程案例', title:['TMPA–FCoP–','CodeFlowMu','实现案例'], status:'V1.4.1 · C01–C14 14/14', path:'/zh/publications/implementation-case-i0.7', tone:'case' }
   ],
   readPublication: '阅读正式文档',
@@ -107,7 +107,7 @@ const copy = computed(() => zh.value ? {
   tmpaLead: 'TMPA is an independently maintained theory and specification layer, not a high-frequency Observation Notes stream. Its paper explains the architecture, its Core fixes normative objects and reader behavior, and its case report publishes bounded implementation evidence.',
   publications: [
     { version:'A0.7', kind:'PRIMARY PAPER', title:['TMPA','Architecture Paper'], status:'Pre-submission review', path:'/en/publications/tmpa-architecture-paper-a0.7', tone:'paper' },
-    { version:'S0.5', kind:'CORE SPECIFICATION', title:['TMPA Core','Specification'], status:'FCoP-derived implementable draft', path:'/en/publications/tmpa-core-specification-s0.5', tone:'spec' },
+    { version:'S0.6', kind:'CORE SPECIFICATION', title:['TMPA Core','Specification'], status:'Release Candidate · Reference 14/14', path:'/en/publications/tmpa-core-specification-s0.6', tone:'spec' },
     { version:'I0.7', kind:'ENGINEERING CASE', title:['TMPA–FCoP–','CodeFlowMu','Implementation Case'], status:'V1.4.1 · C01–C14 14/14', path:'/en/publications/implementation-case-i0.7', tone:'case' }
   ],
   readPublication: 'Read formal document',

@@ -23,7 +23,7 @@ The runner SHALL preserve the exact input manifest, canonical result, exit statu
 {
   "test_case_id": "C06-illegal-transition-001",
   "criterion": "C06",
-  "core_version": "S0.5",
+  "core_version": "S0.6",
   "inputs": [{"source_id": "transition-1", "path": "fixtures/C06/transition-1.json", "media_type": "application/json", "byte_digest": "sha256:<hex>"}],
   "assertions": [{"id": "state-unchanged", "target": "/nodes/work-1/state", "operator": "equals", "expected": "active", "mandatory": true}],
   "expected_result_digest": "sha256:<hex>",
@@ -42,13 +42,13 @@ For each criterion, the runner SHALL assign exactly one verdict:
 
 Infrastructure failure SHALL be recorded separately as `run_state: error` and produces `NOT RUN`, not PASS. The aggregate precedence is FAIL, PARTIAL, NOT RUN, then PASS: any FAIL makes the aggregate FAIL; with no FAIL, any PARTIAL makes it PARTIAL; with neither, any NOT RUN makes it NOT RUN; only all PASS yields PASS.
 
-A product MAY claim **TMPA Core S0.5 Conformance** only when C01–C14 all report PASS against the same fixed input bundle and the complete evidence package is published. “No observed failure,” PARTIAL, NOT RUN, an earlier-Core result, or an unpublished result SHALL NOT be represented as full S0.5 conformance.
+A product MAY claim **TMPA Core S0.6 Conformance** only when C01–C14 all report PASS against the same fixed input bundle and the complete evidence package is published. “No observed failure,” PARTIAL, NOT RUN, an earlier-Core result, or an unpublished result SHALL NOT be represented as full S0.6 conformance.
 
 `specified`, `implemented`, `demonstrated`, and `independently adopted` describe evidence maturity and SHALL be reported separately from test verdicts. A demonstration by the authors does not establish independent adoption.
 
 ```json
 {
-  "core_version": "S0.5",
+  "core_version": "S0.6",
   "implementation": {"id": "<id>", "version": "<version>"},
   "criteria": [{"id": "C01", "verdict": "PASS", "manifest_digest": "sha256:<hex>", "result_digest": "sha256:<hex>"}],
   "aggregate_verdict": "PASS | FAIL | PARTIAL | NOT RUN",
@@ -126,15 +126,17 @@ Publication of a specification establishes the **specified** evidence level. Exe
 
 The first author-produced C01–C14 corpus is maintained as a separate empirical artifact rather than embedded in this Core specification. Product verdicts and case evidence belong in the implementation and case report; the normative criterion meanings remain defined here.
 
-## 11.4 S0.5 FCoP-Derived Closure Record
+## 11.4 S0.6 Release-Candidate Closure Record
 
-The 2026-08-05 S0.5 revision extends the S0.4 implementable baseline with protocol semantics extracted from the complete FCoP source set rather than from one application case. It separates lifecycle state from business acceptance; adds explicit parent-child work derivation, completion claims and evidence, role capability layers, risk and human-approval gates, reciprocity, failure/recovery actions, inspection findings, and drift handling; and extends Reader issues and C01–C14 accordingly.
+The 2026-08-09 S0.6 release-candidate audit freezes the implementable Core after checking the English and Chinese documents, all four machine-readable schemas, lifecycle Profile, canonicalization Profile, Reference Reader, and C01–C14 fixtures as one versioned bundle. The audit closes three observable gaps found in S0.5: byte-identical observations now retain every contributing source ID; human approval now requires a permitted object type, an assigned authorized role, and an independent actor when the Profile requires one; and canonical sorting now uses locale-independent Unicode code-point order.
 
-The source boundary is explicit. FCoP is a protocol and reference profile. Its normative inputs are the version-pinned FCoP specification, rules, schemas, and architecture decisions. The `fcop` and `fcop-mcp` Python packages are a reference implementation used to test selected protocol projections; installing or testing those packages is not “installing FCoP,” and their test status does not by itself determine whether the protocol is valid.
+The author-produced S0.6 Reference Reader passes all fourteen S0.6 fixtures. This establishes demonstrated behavior only for the tested Reference Reader paths. The S0.6 product track is deliberately `NOT RUN` for all fourteen criteria because no product has yet published an exact-version S0.6 bundle. It does not establish product conformance, independent validation, semantic truth, or independent adoption.
 
-The author-produced S0.5 Reference Reader passes all fourteen S0.5 fixtures. A separate rerun of the FCoP v3.2.5 reference implementation recorded 1,222 passed, 2 skipped, and 3 failed tests; the failures concern preservation and public-surface exposure of the optional `parent` field. The product baseline is therefore FAIL for the executed C02 S0.5 assertion. This is a bounded reference-implementation consistency finding, not a failure of the FCoP protocol and not full S0.5 product conformance.
+I0.7 and the locked CodeFlowMu V1.4.1 evidence package remain exact-version S0.5 author-run evidence with 14/14 PASS. They SHALL NOT be relabeled as S0.6 evidence. The next product case must run the S0.6 corpus and publish a separately locked evidence package before making an S0.6 product claim.
 
-S0.4 and its I0.5 conformance corpus remain immutable historical baselines. They SHALL NOT be relabeled as S0.5 evidence. I0.6 supplies a separate author-run S0.5 evidence record and retains all product FAIL, PARTIAL, and NOT RUN results. I0.7 supplies a newer fixed CodeFlowMu V1.4.1 run with 14/14 author-local product PASS while preserving the I0.6 and V1.4.0 repair-before records as history. S0.5 changes observable schema, Reader output, and criterion meanings, so every S0.5 product claim requires its own fixed S0.5 run.
+## 11.5 S0.5 FCoP-Derived Historical Baseline
+
+S0.5 derived lifecycle-state/business-acceptance separation, parent-child work, completion claims, role capability layers, risk and human-approval gates, reciprocity, failure/recovery actions, inspection findings, and drift handling from the complete, version-pinned FCoP protocol source set. FCoP remains a protocol and reference Profile; the `fcop` and `fcop-mcp` Python packages remain reference implementations rather than the protocol itself. S0.4/I0.5, S0.5/I0.6, and S0.5/I0.7 retain their exact historical meanings in Git history and their published evidence packages.
 
 ---
 
@@ -151,15 +153,15 @@ S0.4 and its I0.5 conformance corpus remain immutable historical baselines. They
 | fixture and result-reporting requirements | Section 10.5 | retained; current product baseline removed |
 | compliance crosswalk boundary | Section 10.6 | retained |
 
-The Architecture Paper may summarize this specification but cannot redefine it. The Implementation Case Report may provide evidence against these clauses but cannot change their meaning. The historical combined draft records provenance only and has no current editorial or normative authority. All S0.5 and later normative changes are maintained directly in this GitHub Core Specification and represented by Git history.
+The Architecture Paper may summarize this specification but cannot redefine it. The Implementation Case Report may provide evidence against these clauses but cannot change their meaning. The historical combined draft records provenance only and has no current editorial or normative authority. All S0.6 and later normative changes are maintained directly in this GitHub Core Specification and represented by Git history.
 
 # Appendix B. FCoP Source Crosswalk (Informative)
 
-| S0.5 concern | Version-pinned FCoP source | TMPA Core treatment |
+| S0.6 concern | Version-pinned FCoP source | TMPA Core treatment |
 |---|---|---|
 | protocol object, document and event vocabulary | `spec/fcop-v3-spec.md` and `spec/fcop-v3-spec.zh.md`; repository tag `v3.2.5` | projected into governance objects, typed references, writer streams, and source-preserving Reader input |
 | role boundaries and collaboration-cycle rules | `AGENTS.md`, rules line `3.2.5` | declared capability and enforced authority remain separate; acceptance and separation-of-duty decisions require attributable evidence |
-| machine-readable carriers and validation | `spec/schemas/` | informs S0.5 object/profile schemas but does not replace TMPA Core schema validation |
+| machine-readable carriers and validation | `spec/schemas/` | informs S0.6 object/profile schemas but does not replace TMPA Core schema validation |
 | lifecycle, atomic transition, recovery and audit decisions | FCoP specification and applicable ADRs | formalized as lifecycle state, business acceptance, failure/recovery actions, inspection findings, and deterministic history reconstruction |
 | parent-child work derivation and closure | FCoP v3.2.5 `parent` protocol surface | represented by `governed_work.parent_id`, parent-child rollup, and `CHILD_WORK_OPEN` |
 | executable software | `fcop` and `fcop-mcp` packages | treated only as the FCoP reference implementation; package tests are implementation evidence, not the protocol itself |

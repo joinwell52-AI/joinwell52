@@ -52,20 +52,20 @@ The object fields have the following operational meanings:
 
 The primary-carrier object uses its own `id` as `governed_work.primary_carrier_id`. Every other object for the same work item repeats that carrier identifier. A lifecycle-transition document type SHALL require `lifecycle.transition`; non-transition types MAY omit it. The type registry, rather than the generic single-object schema, enforces that conditional requirement.
 
-Schema processors used for C01 SHALL implement JSON Schema Draft 2020-12 `format` assertion for `created_at`. A processor that treats `date-time` as annotation-only is insufficient. The linked S0.5 machine-readable artifact is the normative schema byte sequence; the embedded rendering above SHALL remain semantically identical to it.
+Schema processors used for C01 SHALL implement JSON Schema Draft 2020-12 `format` assertion for `created_at`. A processor that treats `date-time` as annotation-only is insufficient. The linked S0.6 machine-readable artifact is the normative schema byte sequence; the embedded rendering above SHALL remain semantically identical to it.
 
-| S0.5 machine-readable artifact | SHA-256 |
+| S0.6 machine-readable artifact | SHA-256 |
 |---|---|
-| [Governance Object Schema](/spec/tmpa/s0.5/governance-object.schema.json) | `b2a282b59b9cf2c431db0e1fbb2b405485315f2a2b90739858e669c5e59633d5` |
-| [Lifecycle Profile Schema](/spec/tmpa/s0.5/lifecycle-profile.schema.json) | `754242458509c1dfe93bb75feed44f7bf7339b4631afbe02c915fbd23c400af5` |
-| [Reader Result Schema](/spec/tmpa/s0.5/reader-result.schema.json) | `b364d1c1cb0946f4a9d06f8ae5c83d2519f480402cb6f30ac08639ef53b2e287` |
-| [Conformance Result Schema](/spec/tmpa/s0.5/conformance-result.schema.json) | `1a0ce5372b59f97994d2b08ea2c528d53f868d98e6ab2ba0d0e53b423e38de52` |
+| [Governance Object Schema](/spec/tmpa/s0.6/governance-object.schema.json) | `623fd1d639defa441353993a3f5c1b228889d8977f5ac199d05c23f4683d036b` |
+| [Lifecycle Profile Schema](/spec/tmpa/s0.6/lifecycle-profile.schema.json) | `df925fc3c515f680e2f699ef5e82aba00c299ba63675d520effb0c006e6ce9d8` |
+| [Reader Result Schema](/spec/tmpa/s0.6/reader-result.schema.json) | `f62aca5fb0a696bf92cd89bbf84e8c59d185d45af8f189504151c18509cc4f59` |
+| [Conformance Result Schema](/spec/tmpa/s0.6/conformance-result.schema.json) | `11c21a8d4dc8ef1b9f9990123a6deb4870a39232574f9565d7d95ed78a808749` |
 
-The lifecycle-profile schema requires explicit `acceptance`, `work_graph`, `risk_policy`, and `failure_model` sections in addition to states, actions, transitions, and recovery rules. These sections make FCoP-derived collaboration-cycle semantics inspectable without binding TMPA to the FCoP reference implementation or to CodeFlowMu.
+The lifecycle-profile schema requires explicit `acceptance`, `work_graph`, `risk_policy`, and `failure_model` sections in addition to states, actions, transitions, and recovery rules. S0.6 additionally requires the risk policy to identify permitted approval-object types and whether the approver must be independent. These sections make FCoP-derived collaboration-cycle semantics inspectable without binding TMPA to the FCoP reference implementation or to CodeFlowMu.
 
 The `lifecycle.state` field records the state declared for this immutable object at publication. It is not a mutable current-state field. The current authoritative lifecycle state is reconstructed from the valid object set, accepted transition evidence, and the applicable lifecycle profile.
 
-A canonicalization profile must define the exact representation covered by the digest and, when signatures are used, the exact representation covered by the signature. It must also define how self-referential integrity fields are excluded or normalized. TMPA Core S0.5 requires that this profile be declared; it does not prescribe one universal byte-level canonicalization algorithm.
+A canonicalization profile must define the exact representation covered by the digest and, when signatures are used, the exact representation covered by the signature. It must also define how self-referential integrity fields are excluded or normalized. TMPA Core S0.6 requires that this profile be declared; it does not prescribe one universal byte-level canonicalization algorithm.
 
 Schema validity is necessary but insufficient for acceptance into an authoritative governance view. A reader must still evaluate identifier uniqueness, type rules, stream order, authority, lifecycle legality, references, digest verification, and any applicable signature policy.
 
@@ -119,7 +119,8 @@ RECONSTRUCT(C, P):
      P's acceptance policy. An unverifiable signature never establishes
      authenticated integrity.
   4. Group intact candidates by object id.
-     a. Same id and same canonical content: project one object.
+     a. Same id and same canonical content: project one object while retaining
+        every contributing `source_id` in Unicode code-point order.
      b. Same id and different canonical content: quarantine all variants
         from the authoritative graph and emit a duplicate-id conflict.
   5. Validate one-primary-carrier rules for task-oriented profiles and verify
@@ -179,7 +180,7 @@ A reader applies the following behavior consistently with the normative requirem
 | Digest mismatch | retain source as integrity-failure evidence, exclude from intact authoritative set |
 | Signature absent | permit TMPA Core processing when other requirements pass; do not claim authenticated integrity |
 | Signature unverifiable | emit signature issue and do not place object in an authenticated view |
-| Same ID, same canonical content | safely de-duplicate for projection without changing source evidence |
+| Same ID, same canonical content | safely de-duplicate for projection while retaining every contributing source identity |
 | Same ID, different canonical content | quarantine all variants from authoritative graph and emit critical duplicate-ID issue |
 | Missing reference | retain object in a partial view and emit unresolved-reference issue |
 | Stream sequence gap | mark stream incomplete; do not infer the missing object or transition |
