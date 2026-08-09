@@ -77,7 +77,27 @@ jobs:
             throw new Error(`Unexpected Runtime schema: ${runtimeData.schema}`)
           }
 
-          console.log(`Verified ${requiredRoutes.length} public routes and Runtime V5 data.`)
+          const statuses = runtimeData.todayDaily?.taskStatus || {}
+          const dependencyOf = {
+            queue: 'discovery',
+            reading: 'queue',
+            analysis: 'reading',
+            production: 'analysis',
+            publication: 'production'
+          }
+          for (const [task, dependency] of Object.entries(dependencyOf)) {
+            if (['Running', 'Completed'].includes(statuses[task]) && statuses[dependency] !== 'Completed') {
+              throw new Error(`Runtime order violation: ${task}=${statuses[task]} while ${dependency}=${statuses[dependency]}. Refusing to publish an inconsistent Runtime page.`)
+            }
+          }
+
+          const zhRuntimeHtml = fs.readFileSync(path.join(dist, 'zh/runtime/index.html'), 'utf8')
+          const enRuntimeHtml = fs.readFileSync(path.join(dist, 'en/runtime/index.html'), 'utf8')
+          if (!zhRuntimeHtml.includes('runtime-center-page') || !enRuntimeHtml.includes('runtime-center-page')) {
+            throw new Error('Runtime page shell marker missing from generated HTML.')
+          }
+
+          console.log(`Verified ${requiredRoutes.length} public routes, Runtime V5 data and ordered Runtime state.`)
           NODE
 
       - name: Publish gh-pages branch
