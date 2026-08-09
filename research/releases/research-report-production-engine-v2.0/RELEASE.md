@@ -4,11 +4,12 @@
 **Status:** Current Capability Release  
 **Runtime:** Research Runtime Center V5.0  
 **Scheduler:** Research Runtime Scheduler V3.0  
-**Process manager:** Completion-driven catch-up + heartbeat safety net
+**Process manager:** Completion-driven catch-up + heartbeat safety net  
+**Public delivery gate:** Publication Visibility Gate V1.0
 
 ## Release definition
 
-V2.0 upgrades the Research Report Production Engine from a time-triggered research production line to a dependency-driven, recoverable and self-validating Digital Research Employee Runtime.
+V2.0 upgrades the Research Report Production Engine from a time-triggered research production line to a dependency-driven, recoverable, self-validating and publicly verifiable Digital Research Employee Runtime.
 
 ## Permanent capabilities
 
@@ -23,7 +24,7 @@ V2.0 upgrades the Research Report Production Engine from a time-triggered resear
 - Human-readable Runtime projection handles structured narratives and evidence without `[object Object]` leakage.
 - Runtime and Markdown validation are mandatory control-plane checks.
 - Scheduled, manual, fallback and recovery requests share one ordered reconciliation rule; manual dispatch cannot bypass the earliest runnable due task.
-- A downstream task found `Running` before its prerequisite is `Completed` is automatically returned to `Waiting`, with an audit event.
+- A downstream task found `Running` or `Completed` before its prerequisite is `Completed` is invalidated back into governed recovery with durable audit evidence.
 - Runtime pages expose ordered recovery progress from the same live Runtime Record used by task cards.
 - Pages verification refuses to publish an order-inconsistent Runtime surface.
 - Running is a bounded lease; stale execution slots expire back into governed recovery rather than remaining “Running” indefinitely.
@@ -31,6 +32,9 @@ V2.0 upgrades the Research Report Production Engine from a time-triggered resear
 - A successful completion immediately emits `workflow_run` to Scheduler. If the next dependency-ready stage is already overdue, it starts immediately; cron is not required for that handoff.
 - Future stages retain their formal time gate. Immediate catch-up never starts a not-yet-due task.
 - Scheduler and generic Completion workflow events explicitly trigger Pages Build, Verify and Publish, including GITHUB_TOKEN-authored Runtime commits.
+- Publication `Completed` is not treated as final public delivery. The latest Release Manifest must pass `scripts/publication-visibility.mjs` before `gh-pages` can be updated.
+- Publication Visibility Gate verifies bilingual sources, clean-URL HTML routes, Research-index discoverability, matching column-index discoverability and required cover assets.
+- Observation Notes exposes a dedicated same-day `TodayPublished` surface so formal daily releases are immediately visible instead of being buried in history.
 
 ## Production recovery evidence — 2026-08-09
 
@@ -58,11 +62,26 @@ Production verification on 2026-08-09 demonstrated the rule:
 - Scheduler was awakened within seconds by `workflow_run`;
 - Publication remained Waiting because its formal 20:00 time had not arrived.
 
-## Recovery invariant
+Publication then released 3 items as 6 bilingual public articles. A separate delivery defect was exposed: a release could technically exist while the user-facing discovery path was too weak. V2.0 therefore introduced Publication Visibility Gate V1.0 and `TodayPublished`.
+
+The first visibility-gate execution intentionally failed before publishing because the checker assumed the wrong VitePress clean-URL artifact path. After correcting the gate to the actual `cleanUrls: true` output (`slug.html`), Pages Run #235 passed:
+
+```text
+Build VitePress site: success
+Verify generated site: success
+Publication Visibility Gate: PASS
+Publish gh-pages branch: success
+```
+
+The gate verified all three same-day released items as routable and discoverable in both languages. The deployed Chinese Research index now presents `今日发布 · 3` with direct links to all three articles.
+
+## Recovery and delivery invariants
 
 > Restore durable facts first; recover the earliest dependency-ready gap; validate and persist it; then advance immediately when the successor is already overdue.
 
-Every entry path obeys the same invariant:
+> An article that cannot be found through an official public entry point is not a completed public delivery.
+
+Every entry path obeys the same process invariant:
 
 ```text
 schedule / completion event / manual / fallback / recovery
@@ -80,10 +99,23 @@ schedule / completion event / manual / fallback / recovery
         heartbeat remains available as the recovery safety net
 ```
 
+Publication adds a delivery invariant:
+
+```text
+Publication Completed
+→ Release Manifest Released
+→ bilingual routes + indexes + covers verified
+→ Publication Visibility Gate PASS
+→ Pages Publish
+→ public delivery accepted
+```
+
 ## Process specifications
 
 - `research/runtime/PROCESS-MANAGER-V2.zh-CN.md`
 - `research/runtime/PROCESS-MANAGER-V2.md`
+- `research/runtime/PUBLICATION-VISIBILITY-GATE.zh-CN.md`
+- `research/runtime/PUBLICATION-VISIBILITY-GATE.md`
 
 ## Public documents
 
