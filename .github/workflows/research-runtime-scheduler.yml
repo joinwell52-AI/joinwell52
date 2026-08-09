@@ -2,11 +2,12 @@ name: Research Runtime Scheduler V3.0
 
 on:
   schedule:
-    # Control-plane heartbeat. Each run opens any due execution slot from
-    # five minutes before its formal Asia/Shanghai time until sixty minutes
-    # after it. Repeated checks make a delayed or dropped cron occurrence
-    # recoverable instead of leaving the public Runtime at Waiting.
-    - cron: '*/5 * * * *'
+    # Offset the heartbeat away from the top-of-hour congestion window.
+    # Each heartbeat treats SCHEDULER.json + Runtime records as the source of truth:
+    # any same-day task whose formal time has arrived and is still Waiting is overdue.
+    # Only the oldest overdue task is opened per heartbeat, so multiple missed cron
+    # occurrences recover sequentially without duplicate execution or ambiguity.
+    - cron: '2,7,12,17,22,27,32,37,42,47,52,57 * * * *'
   workflow_dispatch:
     inputs:
       runtime_task:
@@ -61,7 +62,6 @@ jobs:
           const outputPath = process.env.GITHUB_OUTPUT
           const terminal = new Set(['Running', 'Completed', 'Blocked', 'Failed', 'Skipped'])
           const leadMinutes = 5
-          const graceMinutes = 60
 
           const writeOutput = (values) => {
             fs.appendFileSync(outputPath, Object.entries(values)
@@ -88,11 +88,13 @@ jobs:
           const date = `${parts.year}-${parts.month}-${parts.day}`
           const nowMinutes = Number(parts.hour) * 60 + Number(parts.minute)
 
-          const due = manifest.tasks.filter((task) => {
-            if (task.schedule.kind === 'weekly' && !task.schedule.days?.includes(parts.weekday)) return false
+          const overdue = manifest.tasks.flatMap((task) => {
+            if (task.schedule.kind === 'weekly' && !task.schedule.days?.includes(parts.weekday)) return []
+
             const [hour, minute] = task.schedule.time.split(':').map(Number)
-            const delta = hour * 60 + minute - nowMinutes
-            if (delta > leadMinutes || delta < -graceMinutes) return false
+            const scheduledMinutes = hour * 60 + minute
+            const delta = scheduledMinutes - nowMinutes
+            if (delta > leadMinutes) return []
 
             const recordPath = path.join(
               manifest.recordRoots[task.family],
@@ -100,23 +102,25 @@ jobs:
               parts.month,
               `${date}-${task.family}-runtime.json`
             )
-            if (!fs.existsSync(recordPath)) return true
-            const record = JSON.parse(fs.readFileSync(recordPath, 'utf8'))
-            return !terminal.has(record.taskStatus?.[task.id] || 'Waiting')
-          })
 
-          if (due.length > 1) {
-            throw new Error(`Multiple Runtime tasks are due in one control-plane heartbeat: ${due.map((task) => task.id).join(', ')}`)
-          }
-          if (!due.length) {
-            writeOutput({ has_task: 'false', runtime_task: 'none', reason: `no Waiting task due at ${date} ${parts.hour}:${parts.minute}` })
+            if (fs.existsSync(recordPath)) {
+              const record = JSON.parse(fs.readFileSync(recordPath, 'utf8'))
+              if (terminal.has(record.taskStatus?.[task.id] || 'Waiting')) return []
+            }
+
+            return [{ task, scheduledMinutes, latenessMinutes: Math.max(0, nowMinutes - scheduledMinutes) }]
+          }).sort((a, b) => a.scheduledMinutes - b.scheduledMinutes || a.task.id.localeCompare(b.task.id))
+
+          if (!overdue.length) {
+            writeOutput({ has_task: 'false', runtime_task: 'none', reason: `no overdue Waiting task at ${date} ${parts.hour}:${parts.minute}` })
             process.exit(0)
           }
 
+          const selected = overdue[0]
           writeOutput({
             has_task: 'true',
-            runtime_task: due[0].id,
-            reason: `control-plane heartbeat at ${date} ${parts.hour}:${parts.minute}; formal time ${due[0].schedule.time}`
+            runtime_task: selected.task.id,
+            reason: `self-healing heartbeat at ${date} ${parts.hour}:${parts.minute}; formal time ${selected.task.schedule.time}; lateness ${selected.latenessMinutes}m; overdue queue ${overdue.map((item) => item.task.id).join(',')}`
           })
           NODE
 
