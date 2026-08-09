@@ -8,12 +8,12 @@
   "date": "2026-08-09",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Blocked",
+  "status": "Running",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
-    "analysis": "Blocked",
+    "analysis": "Running",
     "production": "Waiting",
     "publication": "Waiting"
   },
@@ -234,91 +234,6 @@
         "research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json",
         "research/runtime/2026/08/2026-08-09-runtime.md"
       ]
-    },
-    "analysis": {
-      "schema": "runtime-shift-result/v2",
-      "task": "analysis",
-      "family": "daily",
-      "status": "Blocked",
-      "startedAt": "2026-08-09T13:07:30+08:00",
-      "completedAt": "2026-08-09T13:07:32+08:00",
-      "input": "Current main-branch V5 Scheduler, today's Daily Runtime Record, and only completed Reading Results as the legal Analysis input.",
-      "input_zh": "当前 main 分支 V5 Scheduler、当日 Daily Runtime Record，以及仅允许作为 Analysis 合法输入的已完成 Reading Results。",
-      "workResult": "Analysis was not performed. Exact dependency: Research Runtime Reading is Waiting; Analysis requires a Completed Reading Result before Skill 04 may consume any material. No unread material was analyzed, no Research Object was created, and no publication copy was written. Scheduler fallback start state was verified at commit 9ca86a2c7485b674be62826ca274cd9ef3fa647e.",
-      "workResult_zh": "未执行 Research Analysis。明确依赖：Research Runtime Reading 当前为 Waiting；Analysis 必须等待 Reading Result 完成后，Skill 04 才能消费任何材料。 未分析任何未读材料，未创建 Research Object，未撰写 publication copy。Scheduler fallback 启动态已在提交 9ca86a2c7485b674be62826ca274cd9ef3fa647e 完成核验。",
-      "output": "Blocked — 0 Research Objects. Reading status: Waiting.",
-      "output_zh": "Blocked —— 0 个 Research Objects。Reading 状态：Waiting。",
-      "next": "Research Runtime Reading must first complete its selected objects and durably persist completed Reading Results. Analysis may be re-run only after that dependency is verified.",
-      "next_zh": "必须先由 Research Runtime Reading 完成已选对象并持久化已完成 Reading Results；只有该依赖完成并核验后，才能重新执行 Analysis。",
-      "reason": "Research Runtime Reading is Waiting; Analysis requires a Completed Reading Result before Skill 04 may consume any material.",
-      "reason_zh": "Research Runtime Reading 当前为 Waiting；Analysis 必须等待 Reading Result 完成后，Skill 04 才能消费任何材料。",
-      "metrics": [
-        {
-          "label": "Analysis start events",
-          "label_zh": "Analysis 启动事件",
-          "value": 1
-        },
-        {
-          "label": "Reading status",
-          "label_zh": "Reading 状态",
-          "value": "Waiting"
-        },
-        {
-          "label": "Eligible completed Reading Results",
-          "label_zh": "可用的已完成 Reading Results",
-          "value": 0
-        },
-        {
-          "label": "Research Objects produced",
-          "label_zh": "生成 Research Objects",
-          "value": 0
-        },
-        {
-          "label": "Unread external material analyzed",
-          "label_zh": "分析未读外部材料",
-          "value": 0
-        },
-        {
-          "label": "Publication drafts",
-          "label_zh": "Publication 草稿",
-          "value": 0
-        }
-      ],
-      "evidence": [
-        {
-          "label": "V5 Scheduler",
-          "label_zh": "V5 Scheduler",
-          "source": "research/runtime/SCHEDULER.json"
-        },
-        {
-          "label": "Daily Runtime Record",
-          "label_zh": "Daily Runtime Record",
-          "source": "research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json"
-        },
-        {
-          "label": "Today's Research Plan",
-          "label_zh": "当日研究计划",
-          "source": "research/runtime/plans/2026/08/2026-08-09-plan.json"
-        },
-        {
-          "label": "Verified Analysis start state",
-          "label_zh": "已核验 Analysis 启动态",
-          "commit": "9ca86a2c7485b674be62826ca274cd9ef3fa647e"
-        }
-      ],
-      "artifacts": [
-        {
-          "label": "Daily Runtime JSON",
-          "label_zh": "Daily Runtime JSON",
-          "path": "research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json"
-        },
-        {
-          "label": "Human-readable Runtime ledger",
-          "label_zh": "人类可读 Runtime 账本",
-          "path": "research/runtime/2026/08/2026-08-09-runtime.md"
-        }
-      ],
-      "blockedBy": "reading"
     },
     "reading": {
       "schema": "runtime-shift-result/v2",
@@ -545,11 +460,18 @@
       "event": "Shift Completed",
       "status": "Completed",
       "detail": "Research Runtime Reading completed through governed Runtime shift completion after durable result validation."
+    },
+    {
+      "time": "2026-08-09T16:07:56+08:00",
+      "task": "analysis",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Analysis reopened by Research Runtime Scheduler V3.0 after its blocking dependency became ready."
     }
   ],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-09T15:45:15+08:00",
+  "updatedAt": "2026-08-09T16:07:56+08:00",
   "metrics": [
     {
       "label": "Start events",
