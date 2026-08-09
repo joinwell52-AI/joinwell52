@@ -3,152 +3,106 @@
 **Project:** joinwell52 Research Center  
 **Scheduler:** Research Runtime Scheduler V3.0  
 **Operations Center:** V5.0  
-**Architecture status:** Frozen after V5.0  
+**Architecture status:** four-family and Daily six-stage boundaries frozen; recovery governance is now a formal runtime rule  
 **Effective date:** 2026-08-05  
+**Recovery rule update:** 2026-08-09  
 **Timezone:** `Asia/Shanghai`  
 **System of record:** `joinwell52-AI/joinwell52`
 
 ## 1. V5 boundary
 
-Research Runtime Center V5.0 separates four execution systems:
+Runtime Center V5 separates Daily, Weekly, Academic and Research Program Runtime. Program work never consumes a Daily stage or Daily column slot.
 
-1. **Daily Runtime** — same-day discovery, research, production and publication.
-2. **Weekly Runtime** — new weekly synthesis from validated Daily Research.
-3. **Academic Runtime** — papers, benchmarks, specifications and institutions only.
-4. **Research Program Runtime** — long-term TMPA, FCoP, CodeFlowMu, Digital Employee and Research Operating System work.
-
-A Research Program never consumes a Daily Runtime stage or Daily column slot.
-
-## 2. Daily Runtime closed loop
+## 2. Daily closed loop
 
 ```text
-09:00 Discovery
-  → Signal Pool
-10:00 Queue
-  → Today's Research Plan
-11:00 Reading
-  → Reading Result
-13:00 Analysis
-  → Research Object
-15:00 Production
-  → Publication Candidate
-20:00 Publication
-  → GitHub + Website + Commit Verify + Release
+09:00 Discovery → Signal Pool
+10:00 Queue → Today's Research Plan
+11:00 Reading → Reading Result
+13:00 Analysis → Research Object
+15:00 Production → Publication Candidate
+20:00 Publication → GitHub + Website + Commit Verify + Release
 ```
 
-Daily Runtime must make an explicit `Selected` or `No Selection` decision for each column:
-
-- Digital Employee;
-- Industry Architecture;
-- Open-source Engineering.
-
-### Stage gates
-
-- Reading consumes only selected same-day objects.
-- Analysis consumes only Reading Results.
-- Production consumes only Research Objects.
-- Publication consumes only complete Publication Candidates.
-- Publication is forbidden from performing new research, substantive rewriting or evidence repair.
+The dependency chain is strict: Discovery → Queue → Reading → Analysis → Production → Publication. A later stage may open only after its direct prerequisite is `Completed`.
 
 ## 3. Independent runtimes
 
-### Weekly Runtime
+- Weekly runs Sunday 20:30 and joins the same-day recovery queue only after Publication completes. Sunday therefore has seven tasks.
+- Academic runs Wednesday 16:00 for papers, benchmarks, specifications and institutions.
+- Research Program runs Monday 12:00 for TMPA, FCoP, CodeFlowMu, Digital Employee and Research Operating System.
 
-Runs Sunday at 20:30. It consumes the previous seven days of evidence-validated Daily Research and produces new Trend, Architecture, Engineering and Prediction judgments. It must not copy or concatenate Daily articles.
+## 4. Scheduler V3.0: wake-up, not clock truth
 
-### Academic Runtime
+[`SCHEDULER.json`](./SCHEDULER.json) is the machine authority. GitHub Actions schedule wakes the Scheduler; `SCHEDULER.json + Runtime Records + current Asia/Shanghai time` determine actual due work.
 
-Runs Wednesday at 16:00. Its allowed primary objects are papers, benchmarks, specifications and institutions. Ordinary product news and general industry announcements are excluded.
+Each offset heartbeat recalculates same-day work. Running, Completed, Failed and Skipped are not automatically reopened. Waiting requires its direct prerequisite to be Completed. Blocked is eligible only when it is explicitly dependency-caused and its `blockedBy` prerequisite has completed. Runnable overdue work is sorted by formal time, and **only the oldest runnable shift is opened per heartbeat**.
 
-### Research Program Runtime
+Missing heartbeats therefore delay work rather than expiring it, while sequential catch-up prevents dependent stages from being opened concurrently.
 
-Runs Monday at 12:00. It advances the independent queues and lifecycles of:
+## 5. Recoverable Blocked governance
 
-- TMPA;
-- FCoP;
-- CodeFlowMu;
-- Digital Employee;
-- Research Operating System.
+Dependency Blocked results should carry machine-readable metadata such as:
 
-Program work owns its own Queue, Research, Review and Publication. It does not enter Daily Runtime.
-
-## 4. Scheduler V3.0
-
-The machine-readable authority is [`SCHEDULER.json`](./SCHEDULER.json). It defines nine formal tasks:
-
-| Family | Formal task | Time (`Asia/Shanghai`) |
-|---|---|---:|
-| Daily | Research Runtime Discovery | Daily 09:00 |
-| Daily | Research Runtime Queue | Daily 10:00 |
-| Daily | Research Runtime Reading | Daily 11:00 |
-| Daily | Research Runtime Analysis | Daily 13:00 |
-| Daily | Research Runtime Production | Daily 15:00 |
-| Daily | Research Runtime Publication | Daily 20:00 |
-| Weekly | Research Runtime Weekly | Sunday 20:30 |
-| Academic | Research Runtime Academic | Wednesday 16:00 |
-| Program | Research Program Runtime | Monday 12:00 |
-
-GitHub Actions opens execution slots. ChatGPT workers perform the actual research work. A scheduled slot is not evidence of completion.
-
-## 5. Separate Runtime Records
-
-V5 maintains separate records:
-
-```text
-research/runtime/records/daily/YYYY/MM/YYYY-MM-DD-daily-runtime.json
-research/runtime/records/weekly/YYYY/MM/YYYY-MM-DD-weekly-runtime.json
-research/runtime/records/academic/YYYY/MM/YYYY-MM-DD-academic-runtime.json
-research/runtime/records/program/YYYY/MM/YYYY-MM-DD-program-runtime.json
+```json
+{
+  "status": "Blocked",
+  "blockedBy": "reading"
+}
 ```
 
-Historical V4 records remain frozen in their original paths and are not rewritten as V5 records.
+After the dependency completes, Scheduler may use Runtime V5's governed `reopen-blocked` path. The previous current result is cleared for the retry, while timeline history remains auditable. Unrelated Blocked work is not reopened merely because time passes.
 
-## 6. Mandatory shift result
+## 6. Records and human ledger
 
-Every terminal shift must report:
+Machine records live under `research/runtime/records/{family}/YYYY/MM/`. Daily JSON requires a same-day `research/runtime/YYYY/MM/YYYY-MM-DD-runtime.md` ledger. JSON is authoritative; Markdown is a mandatory inspection projection containing start, Running, terminal and Commit Verify events plus Input, Work Result, Output, Next, Metrics, Evidence and Artifacts.
 
-```text
-Input
-Work Result
-Output
-Next
-Metrics
-Evidence
-Artifacts
-```
+Structured narratives, legacy metric names and string/object evidence/artifacts must project correctly. `[object Object]`, placeholder evidence replacing real sources, or machine/Markdown status divergence are projection failures.
 
-The bilingual machine contract is `runtime-shift-result/v2`. A shift that executes successfully is `Completed`, even when its governed output count is zero. `Skipped` is reserved for a shift that is explicitly not applicable and therefore not executed.
+## 7. Shift result contract
 
-See:
+Terminal shifts report Input, Work Result, Output, Next, Metrics, Evidence and Artifacts under `runtime-shift-result/v2`. Runtime V5 validation accepts legitimate flat bilingual and structured V5 forms already present in the repository; historical valid results must not break the scheduler control plane.
 
-- [`RUNTIME-RECORD-SCHEMA-V5.md`](./RUNTIME-RECORD-SCHEMA-V5.md)
-- [`WORKER-CONTRACT-V3.md`](./WORKER-CONTRACT-V3.md)
+## 8. Mandatory self-check
 
-## 7. Website and authority
-
-Runtime Dashboard displays Daily only. Weekly, Academic and Program have independent entry surfaces. No view may merge the four Runtime families into one operational timeline.
-
-GitHub is the single source of truth. A formal publication is complete only after:
+Every opened or recovered slot passes:
 
 ```text
-Runtime Result
-→ Durable artifacts
-→ GitHub Commit
-→ Commit Verify
-→ Website projection
-→ Release
+Runtime V5 validate
+→ Markdown render
+→ Markdown validate
+→ durable Git commit
+→ fetch / ancestor verify
+→ taskStatus == Running verify
+→ Execution Slot Opened event verify
 ```
 
-## 8. Freeze rule
+Worker completion still requires result-contract, artifact, Git commit and Commit Verify checks. A green Actions run alone is never proof that research work completed.
 
-After V5.0, the four-family boundary, Daily six-stage sequence and Scheduler V3.0 task identities are frozen. Later versions may optimize source quality, worker performance, metrics, page experience and publication quality, but must not recombine Program work with Daily Runtime.
-
-## Mandatory human-readable Daily Runtime ledger
-
-Every Daily Runtime JSON record must have a same-day human-readable ledger:
+## 9. Recovery order
 
 ```text
-research/runtime/YYYY/MM/YYYY-MM-DD-runtime.md
+establish durable facts
+→ locate earliest missing/recoverable gap
+→ verify or repair its direct prerequisite
+→ open only that stage
+→ Runtime + Markdown self-check
+→ persist and Commit Verify
+→ allow the next stage
 ```
 
-JSON is the machine source of truth; Markdown is the mandatory human-readable ledger. The Markdown ledger must preserve every execution-slot opening, Running transition, stage result, terminal status, and commit-verification timepoint, together with Input, Work Result, Output, Next, Metrics, Evidence, and Artifacts for every shift. Website “View record” links must target Markdown rather than the machine JSON.
+Never jump to a downstream stage based on current clock time, open multiple dependent stages to catch up, or fabricate Completed.
+
+## 10. 2026-08-09 Recovery Case
+
+Sunday had seven due tasks. Discovery and Queue completed, Reading was missed, and Analysis opened while Reading was incomplete and correctly became Blocked. Investigation also exposed Runtime V5 incompatibility with legitimate structured historical results and `[object Object]` leakage in Markdown projection.
+
+The permanent repair restored Reading, marked Analysis with `blockedBy: reading`, installed dependency gates and dependency-ready Blocked retry, made Runtime V5 compatible with legitimate result forms, repaired projection, ran full validation and removed temporary hotfix machinery. This is the first production recovery case for Research Report Production Engine V2.0.
+
+## 11. Authority and release
+
+GitHub is the single source of truth. A formal release is complete only after Runtime Result → Durable Artifacts → GitHub Commit → Commit Verify → Website Projection → Release.
+
+## 12. Freeze rule
+
+The four Runtime families, Daily six-stage identities and Scheduler V3.0 formal task identities remain frozen. The 2026-08-09 change adds recovery governance and self-check rules without redefining the business stages.
