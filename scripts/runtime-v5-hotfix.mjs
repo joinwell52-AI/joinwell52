@@ -29,8 +29,8 @@ function validateEvidence(item, where) {
   }
   if (!item || typeof item !== 'object' || Array.isArray(item)) die(@@#{where}: evidence must be a string or object@@)
   if (!text(item.label) || !text(item.label_zh)) die(@@#{where}: evidence object requires label and label_zh@@)
-  if (![item.source, item.value, item.path, item.url].some((value) => text(value))) {
-    die(@@#{where}: evidence object requires source, value, path or url@@)
+  if (![item.source, item.value, item.path, item.url, item.commit].some((value) => text(value))) {
+    die(@@#{where}: evidence object requires source, value, path, url or commit@@)
   }
 }
 
