@@ -48,7 +48,7 @@ const dependencyOf: Record<string, string> = {
 
 const text = computed(() => props.lang === 'zh' ? {
   title: 'V2.0 顺序恢复进程',
-  lead: '到点只触发检查；前面欠班必须先补完并通过自检，后面的工作才允许启动。',
+  lead: '正式时间负责到期；补班完成后立即推进下一项已延误工作，cron 仅作兜底。',
   completed: '已完成', current: '当前处理', next: '下一环', none: '无',
   live: '实时 Runtime', snapshot: '构建快照',
   states: {
@@ -57,14 +57,14 @@ const text = computed(() => props.lang === 'zh' ? {
     'order-error': '顺序异常', future: '未到时间', failed: '失败', skipped: '已跳过'
   } as Record<DisplayState, string>,
   orderError: '检测到后置任务在前置未完成时已经 Running。Scheduler 会在下一次 reconcile 自动退回 Waiting，并保留纠正事件。',
-  idle: '当前没有需要补的工作；系统等待下一正式时间点。',
+  idle: '当前没有正在处理或已经到期的欠班；系统等待下一正式时间点。',
   waiting: '正在等待前置阶段完成。',
   blockedWaiting: '存在已阻塞任务，当前仍在等待其前置阶段完成。',
-  blockedRecoverable: '存在已阻塞任务，前置已经完成；Scheduler 应在下一次 reconcile 受控恢复。',
+  blockedRecoverable: '存在已阻塞任务，前置已经完成；Scheduler 应立即受控恢复。',
   overdue: '存在已到时间但尚未完成的工作，Scheduler 会从最早可执行的一环开始补。'
 } : {
   title: 'V2.0 Ordered Recovery Progress',
-  lead: 'Clock time triggers reconciliation only. Earlier missed work must complete and pass checks before downstream work may start.',
+  lead: 'Formal time determines due work; completion immediately advances an overdue successor, with cron as the safety net.',
   completed: 'Completed', current: 'Current', next: 'Next', none: 'None',
   live: 'Live Runtime', snapshot: 'Build snapshot',
   states: {
@@ -73,10 +73,10 @@ const text = computed(() => props.lang === 'zh' ? {
     'order-error': 'Order violation', future: 'Not due', failed: 'Failed', skipped: 'Skipped'
   } as Record<DisplayState, string>,
   orderError: 'A downstream task is Running before its prerequisite completed. The next Scheduler reconcile will return it to Waiting and preserve a correction event.',
-  idle: 'No catch-up work is currently required; waiting for the next formal time.',
+  idle: 'No task is currently active and no overdue work is runnable; waiting for the next formal time.',
   waiting: 'Waiting for the prerequisite stage to complete.',
   blockedWaiting: 'A Blocked task is still waiting for its prerequisite to complete.',
-  blockedRecoverable: 'A Blocked task now has a completed prerequisite and should be reopened by the next Scheduler reconcile.',
+  blockedRecoverable: 'A Blocked task now has a completed prerequisite and should be reopened immediately.',
   overdue: 'Due work is incomplete. Scheduler will recover the oldest runnable stage first.'
 })
 
@@ -164,12 +164,16 @@ async function refreshLiveRecords() {
 const rows = computed(() => tasksToday.value.map((task) => ({ task, state: displayState(task), status: rawStatus(task) })))
 const completedCount = computed(() => rows.value.filter((row) => row.status === 'Completed' || row.status === 'Skipped').length)
 const orderError = computed(() => rows.value.some((row) => row.state === 'order-error'))
-const firstOpen = computed(() => rows.value.find((row) => !['completed', 'skipped'].includes(row.state)) || null)
-const currentRow = computed(() => rows.value.find((item) => ['running', 'catching-up', 'order-error', 'blocked-recoverable'].includes(item.state)) || firstOpen.value)
+const currentStates = new Set<DisplayState>(['running', 'catching-up', 'overdue', 'blocked-recoverable', 'order-error'])
+const currentRow = computed(() => rows.value.find((row) => currentStates.has(row.state)) || null)
 const currentLabel = computed(() => currentRow.value ? (props.lang === 'zh' ? currentRow.value.task.name_zh : currentRow.value.task.name) : text.value.none)
 const nextLabel = computed(() => {
-  const currentIndex = currentRow.value ? rows.value.findIndex((row) => row.task.id === currentRow.value?.task.id) : -1
-  const next = currentIndex >= 0 ? rows.value.slice(currentIndex + 1).find((row) => !['completed', 'skipped'].includes(row.state)) : null
+  if (!currentRow.value) {
+    const next = rows.value.find((row) => !['completed', 'skipped'].includes(row.state))
+    return next ? (props.lang === 'zh' ? next.task.name_zh : next.task.name) : text.value.none
+  }
+  const currentIndex = rows.value.findIndex((row) => row.task.id === currentRow.value?.task.id)
+  const next = rows.value.slice(currentIndex + 1).find((row) => !['completed', 'skipped'].includes(row.state))
   return next ? (props.lang === 'zh' ? next.task.name_zh : next.task.name) : text.value.none
 })
 const summary = computed(() => {
