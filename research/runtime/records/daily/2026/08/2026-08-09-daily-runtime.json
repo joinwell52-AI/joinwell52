@@ -8,13 +8,13 @@
   "date": "2026-08-09",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Running",
+    "production": "Completed",
     "publication": "Waiting"
   },
   "results": {
@@ -447,6 +447,149 @@
       ],
       "startedAt": "2026-08-09T16:07:56+08:00",
       "completedAt": "2026-08-09T17:15:05+08:00"
+    },
+    "production": {
+      "schema": "runtime-shift-result/v2",
+      "task": "production",
+      "family": "daily",
+      "status": "Completed",
+      "input": {
+        "scheduler": "research/runtime/SCHEDULER.json",
+        "skills": [
+          "research/skills/05-research-writing.md",
+          "research/skills/06-research-visualization.md",
+          "research/skills/07-evidence-citation.md",
+          "research/skills/08-publication-editing.md"
+        ],
+        "analysisStatus": "Completed",
+        "researchObjects": [
+          "research/analysis/Q-20260809-01-revocation-coupled-run-reconciliation.md",
+          "research/analysis/Q-20260809-02-rotating-assertion-short-lived-credential.md",
+          "research/analysis/Q-20260809-03-executed-conformance-migration-safety.md"
+        ],
+        "controlPlane": {
+          "mode": "event-driven-overdue-recovery",
+          "verifiedRunningBeforeSubstantiveWork": true,
+          "upstreamCompletionImmediatelyReconciled": true
+        }
+      },
+      "workResult": {
+        "summary": "Executed Skills 05–08 only after durable Production Running and completed Analysis verification. Converted the three same-day Research Objects into three independently edited bilingual Publication Candidates, each with a dedicated semantic SVG visual, explicit evidence boundaries, comparison structure, engineering implications, uncertainty and complete Research Object / Reading Result traceability. Production did not publish, modify public indexes, reopen Signal discovery, or introduce new research claims.",
+        "summary_zh": "仅在持久化 Production Running 与 Analysis 已完成状态核验后执行 Skill 05–08。已把当日三个 Research Object 分别生产为三组独立编辑的中英文 Publication Candidate；每组均包含专属语义 SVG、明确证据边界、比较结构、工程影响、不确定性，以及完整的 Research Object / Reading Result 追溯。Production 未执行发布、未修改公开索引、未重新发现 Signal，也未引入新的研究主张。",
+        "candidates": [
+          {
+            "column": "digital-employee",
+            "itemId": "Q-20260809-01",
+            "researchObject": "Revocation-Coupled Run Reconciliation",
+            "zh": "staging/publication-candidates/2026-08-09-revocation-coupled-run-reconciliation.zh.md",
+            "en": "staging/publication-candidates/2026-08-09-revocation-coupled-run-reconciliation.en.md",
+            "visual": "staging/publication-candidates/2026-08-09-revocation-coupled-run-reconciliation.svg",
+            "editingDecision": "PASS"
+          },
+          {
+            "column": "industry-architecture",
+            "itemId": "Q-20260809-02",
+            "researchObject": "Rotating Assertion to Short-Lived Runtime Credential",
+            "zh": "staging/publication-candidates/2026-08-09-rotating-assertion-short-lived-credential.zh.md",
+            "en": "staging/publication-candidates/2026-08-09-rotating-assertion-short-lived-credential.en.md",
+            "visual": "staging/publication-candidates/2026-08-09-rotating-assertion-short-lived-credential.svg",
+            "editingDecision": "PASS"
+          },
+          {
+            "column": "open-source-engineering",
+            "itemId": "Q-20260809-03",
+            "researchObject": "Executed Conformance for Migration Safety",
+            "zh": "staging/publication-candidates/2026-08-09-executed-conformance-migration-safety.zh.md",
+            "en": "staging/publication-candidates/2026-08-09-executed-conformance-migration-safety.en.md",
+            "visual": "staging/publication-candidates/2026-08-09-executed-conformance-migration-safety.svg",
+            "editingDecision": "PASS"
+          }
+        ],
+        "boundary": {
+          "newResearch": false,
+          "publication": false,
+          "publicIndexChange": false,
+          "evidenceRepair": false
+        }
+      },
+      "output": {
+        "type": "Publication Candidates",
+        "candidateCount": 3,
+        "bilingualDocuments": 6,
+        "semanticVisuals": 3,
+        "editingDecision": "PASS",
+        "publicationAuthorized": false,
+        "artifacts": [
+          "staging/publication-candidates/2026-08-09-revocation-coupled-run-reconciliation.zh.md",
+          "staging/publication-candidates/2026-08-09-revocation-coupled-run-reconciliation.en.md",
+          "staging/publication-candidates/2026-08-09-revocation-coupled-run-reconciliation.svg",
+          "staging/publication-candidates/2026-08-09-rotating-assertion-short-lived-credential.zh.md",
+          "staging/publication-candidates/2026-08-09-rotating-assertion-short-lived-credential.en.md",
+          "staging/publication-candidates/2026-08-09-rotating-assertion-short-lived-credential.svg",
+          "staging/publication-candidates/2026-08-09-executed-conformance-migration-safety.zh.md",
+          "staging/publication-candidates/2026-08-09-executed-conformance-migration-safety.en.md",
+          "staging/publication-candidates/2026-08-09-executed-conformance-migration-safety.svg"
+        ]
+      },
+      "next": {
+        "task": "publication",
+        "scheduledTime": "20:00",
+        "instruction": "Publication may release only these completed candidates after the formal 20:00 due time. It may update public bilingual paths, indexes, Git history, verification and release evidence, but must not perform new research or substantive rewriting."
+      },
+      "metrics": [
+        {
+          "name": "research_objects_consumed",
+          "value": 3
+        },
+        {
+          "name": "publication_candidates",
+          "value": 3
+        },
+        {
+          "name": "bilingual_documents",
+          "value": 6
+        },
+        {
+          "name": "semantic_visuals",
+          "value": 3
+        },
+        {
+          "name": "editing_pass",
+          "value": 3
+        },
+        {
+          "name": "new_research_claims",
+          "value": 0
+        },
+        {
+          "name": "publications_released",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        "research/runtime/SCHEDULER.json",
+        "research/skills/05-research-writing.md",
+        "research/skills/06-research-visualization.md",
+        "research/skills/07-evidence-citation.md",
+        "research/skills/08-publication-editing.md",
+        "research/analysis/Q-20260809-01-revocation-coupled-run-reconciliation.md",
+        "research/analysis/Q-20260809-02-rotating-assertion-short-lived-credential.md",
+        "research/analysis/Q-20260809-03-executed-conformance-migration-safety.md"
+      ],
+      "artifacts": [
+        "staging/publication-candidates/2026-08-09-revocation-coupled-run-reconciliation.zh.md",
+        "staging/publication-candidates/2026-08-09-revocation-coupled-run-reconciliation.en.md",
+        "staging/publication-candidates/2026-08-09-revocation-coupled-run-reconciliation.svg",
+        "staging/publication-candidates/2026-08-09-rotating-assertion-short-lived-credential.zh.md",
+        "staging/publication-candidates/2026-08-09-rotating-assertion-short-lived-credential.en.md",
+        "staging/publication-candidates/2026-08-09-rotating-assertion-short-lived-credential.svg",
+        "staging/publication-candidates/2026-08-09-executed-conformance-migration-safety.zh.md",
+        "staging/publication-candidates/2026-08-09-executed-conformance-migration-safety.en.md",
+        "staging/publication-candidates/2026-08-09-executed-conformance-migration-safety.svg",
+        "research/runtime/results/2026/08/2026-08-09-production-result.json"
+      ],
+      "startedAt": "2026-08-09T17:32:52+08:00",
+      "completedAt": "2026-08-09T17:47:51+08:00"
     }
   },
   "timeline": [
@@ -575,11 +718,18 @@
       "event": "Execution Slot Opened",
       "status": "Running",
       "detail": "Research Runtime Production started by Research Runtime Scheduler V3.0."
+    },
+    {
+      "time": "2026-08-09T17:47:51+08:00",
+      "task": "production",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Production completed through governed Runtime shift completion after durable result validation."
     }
   ],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-09T17:32:52+08:00",
+  "updatedAt": "2026-08-09T17:47:51+08:00",
   "metrics": [
     {
       "label": "Start events",
