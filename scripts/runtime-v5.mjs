@@ -180,39 +180,67 @@ function validateManifest(manifest) {
   return manifest
 }
 
+function meaningful(value) {
+  if (typeof value === 'string') return Boolean(text(value))
+  if (value && typeof value === 'object' && !Array.isArray(value)) return Object.keys(value).length > 0
+  return value !== undefined && value !== null
+}
+
 function validateMetric(metric, where) {
   if (!metric || typeof metric !== 'object' || Array.isArray(metric)) die(`${where}: metric must be an object`)
-  if (!text(metric.label) || !text(metric.label_zh) || !text(String(metric.value ?? ''))) {
-    die(`${where}: metric requires label, label_zh and value`)
+  const hasCanonicalLabel = text(metric.label) && text(metric.label_zh)
+  const hasLegacyName = text(metric.name)
+  if ((!hasCanonicalLabel && !hasLegacyName) || !meaningful(metric.value)) {
+    die(`${where}: metric requires label+label_zh or name, and value`)
   }
 }
 
 function validateEvidence(item, where) {
-  if (!item || typeof item !== 'object' || Array.isArray(item)) die(`${where}: evidence must be an object`)
-  if (!text(item.label) || !text(item.label_zh) || !text(item.source)) {
-    die(`${where}: evidence requires label, label_zh and source`)
+  if (typeof item === 'string') {
+    if (!text(item)) die(`${where}: evidence string must not be empty`)
+    return
+  }
+  if (!item || typeof item !== 'object' || Array.isArray(item)) die(`${where}: evidence must be a string or object`)
+  if (!text(item.label) || !text(item.label_zh)) die(`${where}: evidence object requires label and label_zh`)
+  if (![item.source, item.value, item.path, item.url, item.commit].some((value) => text(value))) {
+    die(`${where}: evidence object requires source, value, path, url or commit`)
   }
 }
 
 function validateArtifact(item, where) {
-  if (!item || typeof item !== 'object' || Array.isArray(item)) die(`${where}: artifact must be an object`)
-  if (!text(item.label) || !text(item.label_zh)) die(`${where}: artifact requires label and label_zh`)
-  if (![item.path, item.url, item.commit].some((value) => text(value))) {
-    die(`${where}: artifact requires path, url or commit`)
+  if (typeof item === 'string') {
+    if (!text(item)) die(`${where}: artifact string must not be empty`)
+    return
+  }
+  if (!item || typeof item !== 'object' || Array.isArray(item)) die(`${where}: artifact must be a string or object`)
+  if (!text(item.label) || !text(item.label_zh)) die(`${where}: artifact object requires label and label_zh`)
+  if (![item.path, item.url, item.commit, item.value].some((value) => text(value))) {
+    die(`${where}: artifact object requires path, url, commit or value`)
   }
 }
 
-function validateResult(result, where, taskIds, statuses) {
-  if (!result || typeof result !== 'object' || Array.isArray(result)) die(`${where}: result must be an object`)
-  if (!taskIds.has(result.task)) die(`${where}: invalid task ${result.task}`)
-  if (!statuses.has(result.status)) die(`${where}: invalid status ${result.status}`)
+function validateNarrativePair(result, field, fieldZh, where) {
+  const value = result[field]
+  if (typeof value === 'string') {
+    if (!text(value) || !text(result[fieldZh])) die(`${where}: missing ${field} or ${fieldZh}`)
+    return
+  }
+  if (!meaningful(value)) die(`${where}: missing ${field}`)
+}
 
-  const required = [
-    'input', 'input_zh', 'workResult', 'workResult_zh',
-    'output', 'output_zh', 'next', 'next_zh'
-  ]
-  for (const field of required) if (!text(result[field])) die(`${where}: missing ${field}`)
-  if (result.status === 'Skipped' && (!text(result.reason) || !text(result.reason_zh))) {
+function validateResult(result, where, expectedTask, expectedStatus, taskIds, statuses) {
+  if (!result || typeof result !== 'object' || Array.isArray(result)) die(`${where}: result must be an object`)
+  const task = text(result.task) || expectedTask
+  const status = text(result.status) || expectedStatus
+  if (!taskIds.has(task) || task !== expectedTask) die(`${where}: invalid task ${result.task}`)
+  if (!statuses.has(status)) die(`${where}: invalid status ${result.status}`)
+
+  validateNarrativePair(result, 'input', 'input_zh', where)
+  validateNarrativePair(result, 'workResult', 'workResult_zh', where)
+  validateNarrativePair(result, 'output', 'output_zh', where)
+  validateNarrativePair(result, 'next', 'next_zh', where)
+
+  if (status === 'Skipped' && (!text(result.reason) || !text(result.reason_zh))) {
     die(`${where}: Skipped result requires reason and reason_zh`)
   }
   for (const field of ['metrics', 'evidence', 'artifacts']) {
@@ -221,6 +249,7 @@ function validateResult(result, where, taskIds, statuses) {
   result.metrics.forEach((item, index) => validateMetric(item, `${where} metric ${index + 1}`))
   result.evidence.forEach((item, index) => validateEvidence(item, `${where} evidence ${index + 1}`))
   result.artifacts.forEach((item, index) => validateArtifact(item, `${where} artifact ${index + 1}`))
+  return status
 }
 
 function validateRecord(manifest, record, path) {
@@ -240,8 +269,8 @@ function validateRecord(manifest, record, path) {
     if (!statuses.has(status)) die(`${path}: invalid taskStatus.${taskId}`)
     const result = record.results?.[taskId]
     if (result) {
-      validateResult(result, `${path} result ${taskId}`, taskIds, statuses)
-      if (result.status !== status) die(`${path}: ${taskId} result status does not match taskStatus`)
+      const resultStatus = validateResult(result, `${path} result ${taskId}`, taskId, status, taskIds, statuses)
+      if (resultStatus !== status) die(`${path}: ${taskId} result status does not match taskStatus`)
     } else if (TERMINAL.has(status)) {
       die(`${path}: terminal task ${taskId} requires a complete shift result`)
     }
