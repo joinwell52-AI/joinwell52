@@ -1,0 +1,116 @@
+name: Research Runtime Shift Completion V2.0
+
+on:
+  workflow_dispatch:
+    inputs:
+      runtime_task:
+        description: Running Runtime task to complete
+        required: true
+        type: choice
+        options:
+          - discovery
+          - queue
+          - reading
+          - analysis
+          - production
+          - publication
+          - weekly
+          - academic
+          - program
+      runtime_date:
+        description: Runtime date (YYYY-MM-DD)
+        required: true
+        type: string
+      result_path:
+        description: Repository path to runtime-shift-result/v2 JSON
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: research-runtime-shift-completion-${{ inputs.runtime_date }}-${{ inputs.runtime_task }}
+  cancel-in-progress: false
+
+jobs:
+  complete:
+    name: Complete, validate and persist Runtime shift
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout authoritative repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch latest durable facts
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Complete governed shift
+        env:
+          RUNTIME_TASK: ${{ inputs.runtime_task }}
+          RUNTIME_DATE: ${{ inputs.runtime_date }}
+          RESULT_PATH: ${{ inputs.result_path }}
+        run: node scripts/runtime-shift-complete.mjs --task "$RUNTIME_TASK" --date "$RUNTIME_DATE" --result "$RESULT_PATH"
+
+      - name: Render and validate
+        env:
+          RUNTIME_DATE: ${{ inputs.runtime_date }}
+        run: |
+          node scripts/runtime-markdown.mjs render --date "$RUNTIME_DATE"
+          npm run runtime:validate
+          node scripts/runtime-markdown.mjs validate --date "$RUNTIME_DATE"
+
+      - name: Commit durable completion
+        id: commit
+        env:
+          RUNTIME_TASK: ${{ inputs.runtime_task }}
+          RUNTIME_DATE: ${{ inputs.runtime_date }}
+        run: |
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime/records research/runtime/[0-9][0-9][0-9][0-9] research/runtime/results research/analysis research/reading staging docs || true
+          if git diff --cached --quiet; then
+            echo "No completion changes to persist."
+            exit 1
+          fi
+          git commit -m "runtime(${RUNTIME_TASK}): complete governed shift for ${RUNTIME_DATE}"
+          commit_sha="$(git rev-parse HEAD)"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              echo "commit_sha=$commit_sha" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            git rebase --abort || true
+            if [[ "$attempt" -eq 3 ]]; then exit 1; fi
+            sleep $((attempt * 5))
+          done
+
+      - name: Verify durable completion
+        env:
+          COMMIT_SHA: ${{ steps.commit.outputs.commit_sha }}
+          RUNTIME_TASK: ${{ inputs.runtime_task }}
+          RUNTIME_DATE: ${{ inputs.runtime_date }}
+        run: |
+          git fetch origin main
+          git merge-base --is-ancestor "$COMMIT_SHA" origin/main
+          node <<'NODE'
+          const fs = require('fs')
+          const path = require('path')
+          const manifest = JSON.parse(fs.readFileSync('research/runtime/SCHEDULER.json','utf8'))
+          const task = manifest.tasks.find(t => t.id === process.env.RUNTIME_TASK)
+          if (!task) throw new Error('Unknown runtime task')
+          const [y,m] = process.env.RUNTIME_DATE.split('-')
+          const file = path.join(manifest.recordRoots[task.family], y, m, `${process.env.RUNTIME_DATE}-${task.family}-runtime.json`)
+          const record = JSON.parse(fs.readFileSync(file,'utf8'))
+          if (record.taskStatus?.[task.id] !== 'Completed') throw new Error(`Expected ${task.id}=Completed`)
+          if (record.results?.[task.id]?.status !== 'Completed') throw new Error(`Missing durable Completed result for ${task.id}`)
+          console.log(`Verified ${task.id}=Completed. Scheduler will be awakened immediately by workflow_run.`)
+          NODE
