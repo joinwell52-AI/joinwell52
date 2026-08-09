@@ -8,11 +8,382 @@
   "date": "2026-08-09",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Completed",
   "taskStatus": {
-    "weekly": "Running"
+    "weekly": "Completed"
   },
-  "results": {},
+  "results": {
+    "weekly": {
+      "schema": "runtime-shift-result/v2",
+      "task": "weekly",
+      "family": "weekly",
+      "status": "Completed",
+      "startedAt": "2026-08-09T20:30:00+08:00",
+      "completedAt": "2026-08-09T20:39:04+08:00",
+      "input": {
+        "scheduler": "research/runtime/SCHEDULER.json",
+        "weeklyRuntime": "research/runtime/records/weekly/2026/08/2026-08-09-weekly-runtime.json",
+        "window": {
+          "from": "2026-08-03",
+          "to": "2026-08-09"
+        },
+        "dailyRuntimeRecords": [
+          "research/runtime/records/daily/2026/08/2026-08-05-daily-runtime.json",
+          "research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json",
+          "research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json",
+          "research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json",
+          "research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json"
+        ],
+        "eligibleDailyResearch": [
+          "docs/en/digital-employee/2026-08-05-verifiable-completion.md",
+          "docs/en/industry/2026-08-05-governed-model-routing.md",
+          "docs/en/engineering/2026-08-05-guardrail-persistence-state-machine.md",
+          "docs/en/digital-employee/2026-08-06-governed-revisable-work-graph.md",
+          "docs/en/industry/2026-08-06-enterprise-agent-decision-envelope.md",
+          "docs/en/engineering/2026-08-06-semantic-migration-recovery.md",
+          "docs/en/digital-employee/2026-08-07-verification-gated-state-admission.md",
+          "docs/en/industry/2026-08-07-role-aware-agent-resource-plane.md",
+          "docs/en/engineering/2026-08-07-stable-identity-provisioning-gate.md",
+          "docs/en/digital-employee/2026-08-08-pause-preserving-budget-admission.md",
+          "docs/en/industry/2026-08-08-lifecycle-revalidated-policy-plane.md",
+          "docs/en/engineering/2026-08-08-correlated-multistream-host-contract.md",
+          "docs/en/digital-employee/2026-08-09-revocation-coupled-run-reconciliation.md",
+          "docs/en/industry/2026-08-09-rotating-assertion-short-lived-credential.md",
+          "docs/en/engineering/2026-08-09-executed-conformance-migration-safety.md"
+        ],
+        "controlPlane": {
+          "mode": "scheduler-fallback",
+          "startCommit": "203bf86e6534cc36ca449f87426455f1329b0279",
+          "verifiedBeforeSubstantiveWork": true,
+          "overallStatus": "Running",
+          "weeklyStatus": "Running",
+          "startEventCount": 1
+        }
+      },
+      "workResult": {
+        "summary": "Verified the seven-day window and found five completed V5 Daily Runtime days (2026-08-05 through 2026-08-09), yielding 15 evidence-validated Daily Research notes across all three formal columns. No eligible V5 Daily Research existed on 2026-08-03 or 2026-08-04. Rather than concatenating Daily conclusions, the Weekly synthesis cross-analyzed control semantics and produced a new judgment: authority is a lifecycle of admission, leasing, revalidation, revocation, reconciliation and independent acceptance.",
+        "summary_zh": "核验七日窗口后，确认其中有五个已完成的 V5 Daily Runtime 日（2026-08-05 至 2026-08-09），三个正式栏目共形成 15 篇证据已验证 Daily Research；2026-08-03 与 2026-08-04 没有符合条件的 V5 Daily Research。Weekly 未拼接 Daily 结论，而是对控制语义进行交叉分析，形成新的判断：权限是一条由准入、租约、重新验证、撤销、对账与独立接受构成的生命周期。",
+        "evidenceThreshold": {
+          "met": true,
+          "windowDays": 7,
+          "completedDailyRuntimeDays": 5,
+          "eligibleDailyNotes": 15,
+          "columnsCovered": 3,
+          "researchObjects": 15,
+          "readingResults": 15,
+          "excludedWindowDays": [
+            "2026-08-03",
+            "2026-08-04"
+          ],
+          "excludedMaterial": [
+            "Academic observations",
+            "Previous Weekly reports",
+            "Manual field cases",
+            "Unpublished publication candidates"
+          ]
+        },
+        "trend": "Across five completed Daily Runtime days, authority repeatedly moved from being treated as a static setting to being treated as a transition-time fact. Completion, memory, work-graph readiness, budgets, policy, credentials, remote execution, deletion and migration all require a new decision when authority is admitted, resumed, changed, paused, revoked or accepted.",
+        "trend_zh": "连续五个已完成 Daily Runtime 日的研究共同显示：权限正在从“静态配置”转变为“发生在状态迁移时的事实”。完成、记忆、工作图就绪、预算、策略、凭据、远程执行、删除与迁移，都要求在权限被准入、恢复、改变、暂停、撤销或接受时重新作出可验证决定。",
+        "architecture": "The new synthesis is an Authority Lifecycle Control Plane: Canonical Work Identity → Authority Admission → Bounded Execution Leases → Lifecycle Revalidation → Revocation and Reconciliation → Independent Acceptance, with evidence, receipts and executable conformance as a side plane. The reusable loop is admit → lease → observe → revalidate → reconcile → accept.",
+        "architecture_zh": "新的综合架构判断是 Authority Lifecycle Control Plane：Canonical Work Identity → Authority Admission → Bounded Execution Leases → Lifecycle Revalidation → Revocation and Reconciliation → Independent Acceptance，并以证据、回执与可执行 Conformance 作为侧平面。可复用闭环是：admit → lease → observe → revalidate → reconcile → accept。",
+        "engineering": "Correct output is not sufficient evidence of a correct agent runtime. The week repeatedly exposed mechanisms whose visible outcome can remain plausible while the promised control invariant is broken: stale admitted memory, bypassed policy paths, replay from root, undrained streams, unacknowledged cancellation or an assertion that escaped its intended credential boundary. Release gates therefore need to test control invariants as execution facts.",
+        "engineering_zh": "“输出正确”不足以证明 Agent Runtime 正确。本周多次出现同一类风险：可见结果仍然合理，但承诺的控制不变量已经失效，例如过期状态被重新准入、策略路径被绕过、从根重放、流未排空、取消未确认，或身份断言越过预期凭据边界。因此 Release Gate 必须把控制不变量本身作为可执行事实验证。",
+        "prediction": [
+          "Agent platforms will expose authority-transition events—admitted, leased, paused, revalidated, revoked, fenced and accepted—as first-class runtime facts rather than deriving them from one status field.",
+          "Long-lived memory will split into a historical evidence store and an admitted-state store; persistence alone will no longer imply future execution authority.",
+          "Worker leases, credential leases, budget admission and resource reclamation will converge on a common bounded-authority pattern: explicit owner, expiry/renewal, revocation and fencing.",
+          "Conformance suites will increasingly assert behavioral bounds such as replay/query limits, drain watermarks and policy-path coverage, not only final values.",
+          "Observability will shift from traces alone toward evidence-bearing receipts that prove which policy, identity, model, sandbox, resource and verifier actually governed an execution."
+        ],
+        "prediction_zh": [
+          "Agent 平台会把 admitted、leased、paused、revalidated、revoked、fenced、accepted 等权限迁移事件做成一等 Runtime 事实，而不是从一个状态字段推导。",
+          "长生命周期记忆会拆分为历史证据库与已准入状态库；“持久化”本身不再等价于“可影响未来执行”。",
+          "Worker Lease、Credential Lease、Budget Admission 与资源回收会逐步收敛为统一的有界权限模式：明确 Owner、期限/续租、撤销与 fencing。",
+          "Conformance Suite 会越来越多地验证 replay/query 上界、drain watermark、policy-path coverage 等行为边界，而不仅是最终值。",
+          "可观测性会从单纯 Trace 转向带证据的 Receipt，用于证明实际执行采用了哪个 Policy、Identity、Model、Sandbox、Resource 与 Verifier。"
+        ],
+        "contradictions": [
+          "Durability versus stale authority: durable state is valuable for recovery but dangerous when old authority is silently reactivated.",
+          "Parallelism versus revocation/finality: ready DAG nodes and independent streams increase concurrency while making fencing, draining and late-result handling harder.",
+          "Short-lived credentials versus containment: shorter lifetime reduces exposure duration but does not prove least-privilege propagation.",
+          "Central policy versus control-plane bottlenecks: centralized authority improves consistency, yet enforcement still has to remain available and verifiable across every execution path.",
+          "Local idempotence versus distributed exactly-once: stable identity and in-process convergence reduce ambiguity but do not settle external side effects after crashes.",
+          "Correct output versus valid mechanism: output equivalence can hide replay, migration or policy-conformance failures."
+        ],
+        "contradictions_zh": [
+          "持久化与过期权限：持久状态有利于恢复，但旧权限若被静默重新激活，就会把持久化变成旁路。",
+          "并行与撤销/终结：Ready DAG 与独立 Stream 提升并发，却让 fencing、drain 与 late result 处理更难。",
+          "短期凭据与隔离：缩短凭据寿命只减少暴露时间，并不能证明传播范围满足最小权限。",
+          "中央策略与控制平面瓶颈：中央权威提高一致性，但每条执行路径上的 Enforcement 仍必须可用、可验证。",
+          "本地幂等与分布式 Exactly-once：稳定身份和进程内收敛可以减少歧义，却无法自动解决崩溃后的外部副作用。",
+          "正确输出与正确机制：最终值相同，仍可能掩盖 Replay、Migration 或 Policy Conformance 失败。"
+        ],
+        "crossColumnImplications": [
+          "Digital Employee state admission and Industry policy revalidation are two halves of the same effective-authority snapshot: retained state can influence work only after current policy admits it.",
+          "Industry decision envelopes need Engineering receipts. A policy decision is incomplete until the actual execution point returns evidence of the model, sandbox, credential and policy version it enforced.",
+          "Engineering transport and storage conformance must preserve Digital Employee semantics. Resume, pause, revoke and accept cannot remain business-only labels if the underlying host or store can replay, reorder or duplicate effects.",
+          "Resource efficiency is subordinate to trust. Role-aware scheduling may reclaim capacity only inside tenant, credential, sandbox, authority and side-effect boundaries."
+        ],
+        "crossColumnImplications_zh": [
+          "数字员工的 State Admission 与行业架构的 Policy Revalidation 是同一份 Effective Authority Snapshot 的两面：保留状态只有在当前策略重新准入后，才能继续影响工作。",
+          "行业架构的 Decision Envelope 必须由工程层 Receipt 闭环。策略决定只有在真实执行点返回实际 Model、Sandbox、Credential 与 Policy Version 的证据后才完整。",
+          "工程层 Transport/Storage Conformance 必须保留数字员工语义。若底层 Host/Store 可能 Replay、Reorder 或 Duplicate Effect，Resume、Pause、Revoke、Accept 就不能只是业务标签。",
+          "资源效率必须从属于 Trust。Role-aware Scheduling 只能在 Tenant、Credential、Sandbox、Authority 与 Side-effect 边界内回收容量。"
+        ],
+        "unresolvedQuestions": [
+          "How fresh must policy be at each transition, and which policy snapshots may be safely cached?",
+          "Can worker, credential, budget and resource leases share one minimal abstraction without erasing their different failure semantics?",
+          "How should stale workers and stale credentials be fenced after authority has been revoked or replaced?",
+          "Who owns compensation when a consequential external side effect lands after cancellation or revocation?",
+          "How can independent acceptance scale without turning QA or human authority into the dominant throughput bottleneck?",
+          "Which behavioral invariants must become non-skippable conformance gates for every governed backend?",
+          "Which authority semantics belong in FCoP protocol facts and which should remain CodeFlowMu Runtime projections?",
+          "How should resource optimization prove that trust, tenant and credential isolation were preserved while capacity was reclaimed?"
+        ],
+        "unresolvedQuestions_zh": [
+          "每次迁移需要多新的 Policy，哪些 Policy Snapshot 可以安全缓存？",
+          "Worker、Credential、Budget 与 Resource Lease 能否共享一个最小抽象，同时不抹平各自不同的失败语义？",
+          "权限撤销或替换后，如何对过期 Worker 与过期 Credential 做可靠 fencing？",
+          "取消或撤销之后仍落地的高后果外部副作用，由谁拥有补偿责任？",
+          "独立 Acceptance 如何扩展，而不让 QA 或人工权威成为主要吞吐瓶颈？",
+          "哪些行为不变量必须成为所有受治理 Backend 不可 Skip 的 Conformance Gate？",
+          "哪些 Authority 语义应进入 FCoP 协议事实，哪些应保持为 CodeFlowMu Runtime Projection？",
+          "资源优化如何证明在回收容量时仍保持 Trust、Tenant 与 Credential 隔离？"
+        ],
+        "boundary": {
+          "copiedDailyArticles": false,
+          "newExternalSourceRetrieval": false,
+          "dailyRuntimeModified": false,
+          "academicIncluded": false
+        }
+      },
+      "output": {
+        "type": "Weekly Synthesis",
+        "weeklyId": "W004",
+        "title": "Authority Is a Lifecycle, Not a Setting",
+        "title_zh": "权限是一条生命周期，不是一个配置项",
+        "english": "docs/en/research/weekly/weekly-004.md",
+        "chinese": "docs/zh/research/weekly/weekly-004.md",
+        "cover": "docs/public/assets/covers/weekly-004.svg",
+        "index": "docs/research/weekly/index.md"
+      },
+      "next": {
+        "window": "2026-08-10 through 2026-08-16",
+        "priorities": [
+          "P0 — Draft an Authority Transition Contract research schema covering admission, lease, revalidation, revocation, fencing and acceptance.",
+          "P0 — Prototype CodeFlowMu worker leases and revocation fencing for already-running work.",
+          "P0 — Build historical Runtime conformance fixtures and make governed backend coverage non-skippable.",
+          "P1 — Add credential delegation receipts that make propagation boundaries explicit.",
+          "P1 — Test budget admission separately from settlement and authorized resume.",
+          "P1 — Add role-aware Runtime telemetry that separates control, runner and inference pressure while preserving trust constraints."
+        ],
+        "priorities_zh": [
+          "P0 — 起草 Authority Transition Contract 研究 Schema，覆盖 admission、lease、revalidation、revocation、fencing 与 acceptance。",
+          "P0 — 在 CodeFlowMu 中原型化 Worker Lease 与对已运行工作的撤销 fencing。",
+          "P0 — 建立历史 Runtime Conformance Fixtures，并把受治理 Backend 覆盖做成不可 Skip 的 Gate。",
+          "P1 — 增加 Credential Delegation Receipt，使凭据传播边界显式化。",
+          "P1 — 分离测试 Budget Admission、Settlement 与 Authorized Resume。",
+          "P1 — 增加 Role-aware Runtime Telemetry，区分 Control、Runner、Inference 压力，同时保留 Trust 约束。"
+        ]
+      },
+      "metrics": [
+        {
+          "label": "Scheduler fallback",
+          "label_zh": "Scheduler Fallback",
+          "value": "yes"
+        },
+        {
+          "label": "Weekly start events",
+          "label_zh": "Weekly 启动事件",
+          "value": 1
+        },
+        {
+          "label": "Evidence window days",
+          "label_zh": "证据窗口天数",
+          "value": 7
+        },
+        {
+          "label": "Completed Daily Runtime days",
+          "label_zh": "已完成 Daily Runtime 天数",
+          "value": 5
+        },
+        {
+          "label": "Eligible Daily Research notes",
+          "label_zh": "符合条件 Daily Research",
+          "value": 15
+        },
+        {
+          "label": "Columns covered",
+          "label_zh": "覆盖栏目",
+          "value": 3
+        },
+        {
+          "label": "Source Research Objects",
+          "label_zh": "来源 Research Objects",
+          "value": 15
+        },
+        {
+          "label": "Source Reading Results",
+          "label_zh": "来源 Reading Results",
+          "value": 15
+        },
+        {
+          "label": "Contradictions synthesized",
+          "label_zh": "综合矛盾",
+          "value": 6
+        },
+        {
+          "label": "Forward predictions",
+          "label_zh": "前瞻预测",
+          "value": 5
+        },
+        {
+          "label": "Bilingual Weekly publications",
+          "label_zh": "双语 Weekly 发布物",
+          "value": 2
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Scheduler",
+          "label_zh": "调度器",
+          "source": "research/runtime/SCHEDULER.json"
+        },
+        {
+          "label": "Scheduler fallback start commit",
+          "label_zh": "Scheduler Fallback 启动提交",
+          "source": "https://github.com/joinwell52-AI/joinwell52/commit/203bf86e6534cc36ca449f87426455f1329b0279"
+        },
+        {
+          "label": "Daily Runtime 5",
+          "label_zh": "Daily Runtime 5",
+          "source": "research/runtime/records/daily/2026/08/2026-08-05-daily-runtime.json"
+        },
+        {
+          "label": "Daily Runtime 6",
+          "label_zh": "Daily Runtime 6",
+          "source": "research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json"
+        },
+        {
+          "label": "Daily Runtime 7",
+          "label_zh": "Daily Runtime 7",
+          "source": "research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json"
+        },
+        {
+          "label": "Daily Runtime 8",
+          "label_zh": "Daily Runtime 8",
+          "source": "research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json"
+        },
+        {
+          "label": "Daily Runtime 9",
+          "label_zh": "Daily Runtime 9",
+          "source": "research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json"
+        },
+        {
+          "label": "Eligible Daily Research",
+          "label_zh": "符合条件 Daily Research",
+          "source": "docs/en/digital-employee/2026-08-05-verifiable-completion.md"
+        },
+        {
+          "label": "Eligible Daily Research",
+          "label_zh": "符合条件 Daily Research",
+          "source": "docs/en/industry/2026-08-05-governed-model-routing.md"
+        },
+        {
+          "label": "Eligible Daily Research",
+          "label_zh": "符合条件 Daily Research",
+          "source": "docs/en/engineering/2026-08-05-guardrail-persistence-state-machine.md"
+        },
+        {
+          "label": "Eligible Daily Research",
+          "label_zh": "符合条件 Daily Research",
+          "source": "docs/en/digital-employee/2026-08-06-governed-revisable-work-graph.md"
+        },
+        {
+          "label": "Eligible Daily Research",
+          "label_zh": "符合条件 Daily Research",
+          "source": "docs/en/industry/2026-08-06-enterprise-agent-decision-envelope.md"
+        },
+        {
+          "label": "Eligible Daily Research",
+          "label_zh": "符合条件 Daily Research",
+          "source": "docs/en/engineering/2026-08-06-semantic-migration-recovery.md"
+        },
+        {
+          "label": "Eligible Daily Research",
+          "label_zh": "符合条件 Daily Research",
+          "source": "docs/en/digital-employee/2026-08-07-verification-gated-state-admission.md"
+        },
+        {
+          "label": "Eligible Daily Research",
+          "label_zh": "符合条件 Daily Research",
+          "source": "docs/en/industry/2026-08-07-role-aware-agent-resource-plane.md"
+        },
+        {
+          "label": "Eligible Daily Research",
+          "label_zh": "符合条件 Daily Research",
+          "source": "docs/en/engineering/2026-08-07-stable-identity-provisioning-gate.md"
+        },
+        {
+          "label": "Eligible Daily Research",
+          "label_zh": "符合条件 Daily Research",
+          "source": "docs/en/digital-employee/2026-08-08-pause-preserving-budget-admission.md"
+        },
+        {
+          "label": "Eligible Daily Research",
+          "label_zh": "符合条件 Daily Research",
+          "source": "docs/en/industry/2026-08-08-lifecycle-revalidated-policy-plane.md"
+        },
+        {
+          "label": "Eligible Daily Research",
+          "label_zh": "符合条件 Daily Research",
+          "source": "docs/en/engineering/2026-08-08-correlated-multistream-host-contract.md"
+        },
+        {
+          "label": "Eligible Daily Research",
+          "label_zh": "符合条件 Daily Research",
+          "source": "docs/en/digital-employee/2026-08-09-revocation-coupled-run-reconciliation.md"
+        },
+        {
+          "label": "Eligible Daily Research",
+          "label_zh": "符合条件 Daily Research",
+          "source": "docs/en/industry/2026-08-09-rotating-assertion-short-lived-credential.md"
+        },
+        {
+          "label": "Eligible Daily Research",
+          "label_zh": "符合条件 Daily Research",
+          "source": "docs/en/engineering/2026-08-09-executed-conformance-migration-safety.md"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "English Weekly 004",
+          "label_zh": "英文 Weekly 004",
+          "path": "docs/en/research/weekly/weekly-004.md"
+        },
+        {
+          "label": "Chinese Weekly 004",
+          "label_zh": "中文 Weekly 004",
+          "path": "docs/zh/research/weekly/weekly-004.md"
+        },
+        {
+          "label": "Weekly 004 cover",
+          "label_zh": "Weekly 004 题图",
+          "path": "docs/public/assets/covers/weekly-004.svg"
+        },
+        {
+          "label": "Weekly index",
+          "label_zh": "Weekly 索引",
+          "path": "docs/research/weekly/index.md"
+        },
+        {
+          "label": "Weekly Runtime Record",
+          "label_zh": "Weekly Runtime Record",
+          "path": "research/runtime/records/weekly/2026/08/2026-08-09-weekly-runtime.json"
+        }
+      ]
+    }
+  },
   "timeline": [
     {
       "time": "2026-08-09T20:30:00+08:00",
@@ -20,12 +391,212 @@
       "event": "Execution Slot Opened",
       "status": "Running",
       "detail": "Scheduler fallback: the Weekly Runtime Record was absent at the scheduled start, so the missing Running control-plane state and exactly one start event were durably persisted before any weekly synthesis work."
+    },
+    {
+      "time": "2026-08-09T20:39:04+08:00",
+      "task": "weekly",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Weekly 004 bilingual synthesis was produced and staged after the evidence threshold was verified; no Daily Runtime Record was modified."
     }
   ],
-  "metrics": [],
-  "evidence": [],
-  "artifacts": [],
+  "metrics": [
+    {
+      "label": "Scheduler fallback",
+      "label_zh": "Scheduler Fallback",
+      "value": "yes"
+    },
+    {
+      "label": "Weekly start events",
+      "label_zh": "Weekly 启动事件",
+      "value": 1
+    },
+    {
+      "label": "Evidence window days",
+      "label_zh": "证据窗口天数",
+      "value": 7
+    },
+    {
+      "label": "Completed Daily Runtime days",
+      "label_zh": "已完成 Daily Runtime 天数",
+      "value": 5
+    },
+    {
+      "label": "Eligible Daily Research notes",
+      "label_zh": "符合条件 Daily Research",
+      "value": 15
+    },
+    {
+      "label": "Columns covered",
+      "label_zh": "覆盖栏目",
+      "value": 3
+    },
+    {
+      "label": "Source Research Objects",
+      "label_zh": "来源 Research Objects",
+      "value": 15
+    },
+    {
+      "label": "Source Reading Results",
+      "label_zh": "来源 Reading Results",
+      "value": 15
+    },
+    {
+      "label": "Contradictions synthesized",
+      "label_zh": "综合矛盾",
+      "value": 6
+    },
+    {
+      "label": "Forward predictions",
+      "label_zh": "前瞻预测",
+      "value": 5
+    },
+    {
+      "label": "Bilingual Weekly publications",
+      "label_zh": "双语 Weekly 发布物",
+      "value": 2
+    }
+  ],
+  "evidence": [
+    {
+      "label": "Scheduler",
+      "label_zh": "调度器",
+      "source": "research/runtime/SCHEDULER.json"
+    },
+    {
+      "label": "Scheduler fallback start commit",
+      "label_zh": "Scheduler Fallback 启动提交",
+      "source": "https://github.com/joinwell52-AI/joinwell52/commit/203bf86e6534cc36ca449f87426455f1329b0279"
+    },
+    {
+      "label": "Daily Runtime 5",
+      "label_zh": "Daily Runtime 5",
+      "source": "research/runtime/records/daily/2026/08/2026-08-05-daily-runtime.json"
+    },
+    {
+      "label": "Daily Runtime 6",
+      "label_zh": "Daily Runtime 6",
+      "source": "research/runtime/records/daily/2026/08/2026-08-06-daily-runtime.json"
+    },
+    {
+      "label": "Daily Runtime 7",
+      "label_zh": "Daily Runtime 7",
+      "source": "research/runtime/records/daily/2026/08/2026-08-07-daily-runtime.json"
+    },
+    {
+      "label": "Daily Runtime 8",
+      "label_zh": "Daily Runtime 8",
+      "source": "research/runtime/records/daily/2026/08/2026-08-08-daily-runtime.json"
+    },
+    {
+      "label": "Daily Runtime 9",
+      "label_zh": "Daily Runtime 9",
+      "source": "research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json"
+    },
+    {
+      "label": "Eligible Daily Research",
+      "label_zh": "符合条件 Daily Research",
+      "source": "docs/en/digital-employee/2026-08-05-verifiable-completion.md"
+    },
+    {
+      "label": "Eligible Daily Research",
+      "label_zh": "符合条件 Daily Research",
+      "source": "docs/en/industry/2026-08-05-governed-model-routing.md"
+    },
+    {
+      "label": "Eligible Daily Research",
+      "label_zh": "符合条件 Daily Research",
+      "source": "docs/en/engineering/2026-08-05-guardrail-persistence-state-machine.md"
+    },
+    {
+      "label": "Eligible Daily Research",
+      "label_zh": "符合条件 Daily Research",
+      "source": "docs/en/digital-employee/2026-08-06-governed-revisable-work-graph.md"
+    },
+    {
+      "label": "Eligible Daily Research",
+      "label_zh": "符合条件 Daily Research",
+      "source": "docs/en/industry/2026-08-06-enterprise-agent-decision-envelope.md"
+    },
+    {
+      "label": "Eligible Daily Research",
+      "label_zh": "符合条件 Daily Research",
+      "source": "docs/en/engineering/2026-08-06-semantic-migration-recovery.md"
+    },
+    {
+      "label": "Eligible Daily Research",
+      "label_zh": "符合条件 Daily Research",
+      "source": "docs/en/digital-employee/2026-08-07-verification-gated-state-admission.md"
+    },
+    {
+      "label": "Eligible Daily Research",
+      "label_zh": "符合条件 Daily Research",
+      "source": "docs/en/industry/2026-08-07-role-aware-agent-resource-plane.md"
+    },
+    {
+      "label": "Eligible Daily Research",
+      "label_zh": "符合条件 Daily Research",
+      "source": "docs/en/engineering/2026-08-07-stable-identity-provisioning-gate.md"
+    },
+    {
+      "label": "Eligible Daily Research",
+      "label_zh": "符合条件 Daily Research",
+      "source": "docs/en/digital-employee/2026-08-08-pause-preserving-budget-admission.md"
+    },
+    {
+      "label": "Eligible Daily Research",
+      "label_zh": "符合条件 Daily Research",
+      "source": "docs/en/industry/2026-08-08-lifecycle-revalidated-policy-plane.md"
+    },
+    {
+      "label": "Eligible Daily Research",
+      "label_zh": "符合条件 Daily Research",
+      "source": "docs/en/engineering/2026-08-08-correlated-multistream-host-contract.md"
+    },
+    {
+      "label": "Eligible Daily Research",
+      "label_zh": "符合条件 Daily Research",
+      "source": "docs/en/digital-employee/2026-08-09-revocation-coupled-run-reconciliation.md"
+    },
+    {
+      "label": "Eligible Daily Research",
+      "label_zh": "符合条件 Daily Research",
+      "source": "docs/en/industry/2026-08-09-rotating-assertion-short-lived-credential.md"
+    },
+    {
+      "label": "Eligible Daily Research",
+      "label_zh": "符合条件 Daily Research",
+      "source": "docs/en/engineering/2026-08-09-executed-conformance-migration-safety.md"
+    }
+  ],
+  "artifacts": [
+    {
+      "label": "English Weekly 004",
+      "label_zh": "英文 Weekly 004",
+      "path": "docs/en/research/weekly/weekly-004.md"
+    },
+    {
+      "label": "Chinese Weekly 004",
+      "label_zh": "中文 Weekly 004",
+      "path": "docs/zh/research/weekly/weekly-004.md"
+    },
+    {
+      "label": "Weekly 004 cover",
+      "label_zh": "Weekly 004 题图",
+      "path": "docs/public/assets/covers/weekly-004.svg"
+    },
+    {
+      "label": "Weekly index",
+      "label_zh": "Weekly 索引",
+      "path": "docs/research/weekly/index.md"
+    },
+    {
+      "label": "Weekly Runtime Record",
+      "label_zh": "Weekly Runtime Record",
+      "path": "research/runtime/records/weekly/2026/08/2026-08-09-weekly-runtime.json"
+    }
+  ],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-09T20:30:00+08:00"
+  "updatedAt": "2026-08-09T20:39:04+08:00"
 }

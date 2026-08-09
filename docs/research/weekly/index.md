@@ -4,6 +4,7 @@ Weekly reports synthesize evidence-validated Daily Research Notes into new cross
 
 周报将经过证据验证的 Daily Research Notes 综合为新的交叉分析、架构判断、工程判断、未解决问题与后续研究优先级。
 
+- [Weekly 004 — Authority Is a Lifecycle, Not a Setting](/en/research/weekly/weekly-004) · [中文：权限是一条生命周期，不是一个配置项](/zh/research/weekly/weekly-004)
 - [Weekly 003 — Ownership Is the Control Plane of Agentic Work](/en/research/weekly/weekly-003) · [中文：所有权是智能体工作的控制平面](/zh/research/weekly/weekly-003)
 - [Weekly 002 — Control Plane and Runtime Separation](./weekly-002)
 - [Weekly 001 — From Agent Frameworks to Governed Digital Employees](./weekly-001)
