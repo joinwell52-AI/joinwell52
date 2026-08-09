@@ -1,0 +1,63 @@
+{
+  "schema": "runtime-column-plan/v1",
+  "date": "2026-08-09",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Queue",
+  "sourceRecord": "research/runtime/2026/08/2026-08-09-runtime.md",
+  "updatedAt": "2026-08-09T10:05:44+08:00",
+  "githubCommit": "pending",
+  "columns": [
+    {
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "selectionStatus": "Selected",
+      "itemId": "Q-20260809-01",
+      "title": "Transactional cancellation of unsettled agent runs when a conversation is deleted",
+      "title_zh": "删除 Conversation 时事务化取消所有未结清 Agent Run",
+      "priority": "P0",
+      "lifecycle": "Selected",
+      "source": "https://github.com/langfuse/langfuse/commit/ee5e0f15fb5146548968bd9474cdc31d301b98d1",
+      "source_zh": "Langfuse 合并维护者实现变更",
+      "reason": "The signal exposes a bounded Digital Employee lifecycle mechanism: queued, approval-waiting and running work is cancelled under the same conversation-row lock used for admission, preventing deleted work contexts from leaving orphaned workers or occupied execution slots.",
+      "reason_zh": "该信号给出了边界清晰的数字员工生命周期机制：Queued、Awaiting Approval 与 Running 工作在与 Admission 相同的 Conversation Row Lock 下统一取消，避免已删除工作上下文留下孤儿 Worker 或占用执行 Slot。",
+      "next": "Skill 03 may inspect only the cancellation transaction, lock/admission relationship, covered run states, orphan-prevention semantics and explicit limitations.",
+      "next_zh": "Skill 03 仅核查取消事务、Lock 与 Admission 的关系、覆盖的 Run 状态、孤儿任务防护语义及明确限制。"
+    },
+    {
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "selectionStatus": "Selected",
+      "itemId": "Q-20260809-02",
+      "title": "Short-lived workload identity exchange with child-process credential boundary",
+      "title_zh": "短期 Workload Identity Exchange 与子进程凭据边界",
+      "priority": "P0",
+      "lifecycle": "Selected",
+      "source": "https://github.com/openai/codex/commit/936f5eb3ee223ab34dcb221fa7c5f9943c8092bd",
+      "source_zh": "openai/codex 合并维护者实现变更",
+      "reason": "A concrete enterprise control-plane boundary is visible: file-backed workload identity is exchanged for short-lived credentials with caching and refresh, while launch-context identity is stripped from executions, MCP servers, hooks, Git and remote child processes.",
+      "reason_zh": "该信号暴露了具体的企业控制面边界：文件型 Workload Identity 被交换为短期 Credential，并具备缓存与刷新；同时 Launch Context 身份从 Execution、MCP Server、Hook、Git 与远程子进程中移除。",
+      "next": "Skill 03 may inspect only identity exchange, refresh/coalescing, credential lifetime, child-process stripping and trust-boundary behavior.",
+      "next_zh": "Skill 03 仅核查身份交换、刷新与请求合并、凭据生命周期、子进程剥离以及 Trust Boundary 行为。"
+    },
+    {
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "selectionStatus": "Selected",
+      "itemId": "Q-20260809-03",
+      "title": "Checkpoint conformance as a detector for persisted-state migration defects",
+      "title_zh": "用 Checkpoint Conformance 捕获持久状态迁移缺陷",
+      "priority": "P0",
+      "lifecycle": "Selected",
+      "source": "https://github.com/langchain-ai/langgraph/commit/d569e18f4bd78b7652cb88c84b8dd098057e4f7d",
+      "source_zh": "LangGraph 合并维护者实现变更",
+      "reason": "The signal is directly implementable and reproducible: enabling one shared conformance suite across SQLite and Postgres immediately exposed a previously skipped persisted delta-history migration defect, linking test-contract design to durable state correctness.",
+      "reason_zh": "该信号可直接实现和复现：SQLite 与 Postgres 启用同一共享 Conformance Suite 后立即暴露此前被 Skip 的持久化 Delta History 迁移缺陷，把测试契约设计与持久状态正确性直接连接起来。",
+      "next": "Skill 03 may inspect only the conformance contract, migrated plain-value seed detection, backend parity, failure reproduction and remaining persistence boundaries.",
+      "next_zh": "Skill 03 仅核查 Conformance Contract、迁移 Plain Value 的 Seed Detection、后端一致性、缺陷复现与剩余持久化边界。"
+    }
+  ]
+}

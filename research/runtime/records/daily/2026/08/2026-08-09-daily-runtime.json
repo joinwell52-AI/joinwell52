@@ -8,10 +8,10 @@
   "date": "2026-08-09",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
-    "queue": "Running",
+    "queue": "Completed",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
@@ -50,6 +50,105 @@
         { "label": "Daily Runtime JSON", "label_zh": "Daily Runtime JSON", "value": "research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json" },
         { "label": "Human-readable Runtime ledger", "label_zh": "人类可读 Runtime 账本", "value": "research/runtime/2026/08/2026-08-09-runtime.md" }
       ]
+    },
+    "queue": {
+      "schema": "runtime-shift-result/v2",
+      "task": "queue",
+      "family": "daily",
+      "status": "Completed",
+      "startedAt": "2026-08-09T10:02:24+08:00",
+      "completedAt": "2026-08-09T10:05:44+08:00",
+      "input": {
+        "scheduler": "research/runtime/SCHEDULER.json",
+        "skill": "research/skills/02-research-triage.md",
+        "signalPool": "research/intelligence/runs/2026/08/2026-08-09-intelligence.json",
+        "signalCount": 16,
+        "discoveryStatus": "Completed",
+        "controlPlane": {
+          "mode": "scheduler-fallback",
+          "startCommit": "a4798cb29f16be75f104f80ca00d874bd0da3f99",
+          "verifiedBeforeSubstantiveWork": true,
+          "startEventCount": 1
+        }
+      },
+      "workResult": {
+        "summary": "Executed only Skill 02 after fetching and verifying the durable Queue Running state. Triaged all 16 same-day signals and wrote exactly one explicit Selected decision for each of the three research columns. Three P0 primary objects were selected, 13 non-selected signals were retained as candidates, and none were rejected. No Deep Reading, Research Analysis, writing or publication work was performed.",
+        "summary_zh": "仅在 fetch 并核验持久化 Queue Running 状态后执行 Skill 02。已筛选全部 16 个同日 Signal，并为三个研究栏目各写入且仅写入一个明确 Selected 决定。共选出 3 个 P0 主要对象，其余 13 个未选 Signal 保留为 Candidate，拒绝 0 个。未执行 Deep Reading、Research Analysis、写作或发布。",
+        "decisions": [
+          {
+            "column": "digital-employee",
+            "decision": "Selected",
+            "itemId": "Q-20260809-01",
+            "signalId": "SIG-20260809-G-012",
+            "priority": "P0",
+            "primaryObject": "Transactional cancellation of unsettled agent runs when a conversation is deleted",
+            "source": "https://github.com/langfuse/langfuse/commit/ee5e0f15fb5146548968bd9474cdc31d301b98d1",
+            "reason": "The mechanism explicitly governs queued, approval-waiting and running work under the same lock used for admission, making deletion, cancellation and orphan prevention a bounded Digital Employee lifecycle question.",
+            "nextAction": "Skill 03 may inspect only cancellation transaction semantics, covered run states, the admission-lock relationship, orphan prevention and explicit limitations."
+          },
+          {
+            "column": "industry-architecture",
+            "decision": "Selected",
+            "itemId": "Q-20260809-02",
+            "signalId": "SIG-20260809-G-003",
+            "priority": "P0",
+            "primaryObject": "Short-lived workload identity exchange with child-process credential boundary",
+            "source": "https://github.com/openai/codex/commit/936f5eb3ee223ab34dcb221fa7c5f9943c8092bd",
+            "reason": "One concrete implementation exposes an enterprise identity control plane: workload JWT exchange, short-lived credential caching and refresh, plus explicit stripping of launch-context identity from executions, MCP servers, hooks, Git and remote child processes.",
+            "nextAction": "Skill 03 may inspect only identity exchange, refresh/coalescing, credential lifetime, child-process stripping and trust-boundary behavior."
+          },
+          {
+            "column": "open-source-engineering",
+            "decision": "Selected",
+            "itemId": "Q-20260809-03",
+            "signalId": "SIG-20260809-G-007",
+            "priority": "P0",
+            "primaryObject": "Checkpoint conformance as a detector for persisted-state migration defects",
+            "source": "https://github.com/langchain-ai/langgraph/commit/d569e18f4bd78b7652cb88c84b8dd098057e4f7d",
+            "reason": "The change is directly implementable and testable: enabling one shared checkpoint conformance suite across SQLite and Postgres immediately exposed a persisted delta-history migration defect that had previously been skipped.",
+            "nextAction": "Skill 03 may inspect only the conformance contract, migrated plain-value seed detection, backend parity, failure reproduction and remaining persistence boundaries."
+          }
+        ],
+        "boundary": {
+          "deepReading": false,
+          "researchAnalysis": false,
+          "articleWriting": false,
+          "publication": false
+        }
+      },
+      "output": {
+        "type": "Today's Research Plan",
+        "artifact": "research/runtime/plans/2026/08/2026-08-09-plan.json",
+        "columnDecisions": 3,
+        "selectedCount": 3,
+        "noSelectionCount": 0
+      },
+      "next": {
+        "task": "reading",
+        "scheduledTime": "11:00",
+        "instruction": "Research Runtime Reading may consume only Q-20260809-01, Q-20260809-02 and Q-20260809-03 and must execute Skill 03 Deep Reading without Research Analysis or article drafting."
+      },
+      "metrics": [
+        { "name": "signal_pool_count", "value": 16 },
+        { "name": "column_decisions", "value": 3 },
+        { "name": "selected_objects", "value": 3 },
+        { "name": "candidate_signals", "value": 13 },
+        { "name": "rejected_signals", "value": 0 },
+        { "name": "no_selection_decisions", "value": 0 },
+        { "name": "queue_start_events", "value": 1 }
+      ],
+      "evidence": [
+        "research/runtime/SCHEDULER.json",
+        "research/skills/02-research-triage.md",
+        "research/intelligence/runs/2026/08/2026-08-09-intelligence.json",
+        "research/runtime/COLUMN-PLAN-SCHEMA.md",
+        "https://github.com/joinwell52-AI/joinwell52/commit/a4798cb29f16be75f104f80ca00d874bd0da3f99"
+      ],
+      "artifacts": [
+        "research/runtime/plans/2026/08/2026-08-09-plan.json",
+        "research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json",
+        "research/runtime/2026/08/2026-08-09-runtime.md"
+      ]
     }
   },
   "timeline": [
@@ -80,11 +179,18 @@
       "event": "Execution Slot Opened",
       "status": "Running",
       "detail": "Scheduler fallback: Research Runtime Queue opened because the durable control-plane Running state was absent; Skill 02 triage may begin only after this synchronized JSON and Markdown state is committed, fetched and verified."
+    },
+    {
+      "time": "2026-08-09T10:05:44+08:00",
+      "task": "queue",
+      "event": "Queue Completed",
+      "status": "Completed",
+      "detail": "Skill 02 triaged all 16 same-day signals after verified Scheduler-fallback start commit a4798cb29f16be75f104f80ca00d874bd0da3f99; exactly one P0 object was selected for each column, 13 signals were retained as candidates, and no Deep Reading, analysis, writing or publication was performed."
     }
   ],
   "githubCommit": "pending",
   "commitVerify": "Running",
-  "updatedAt": "2026-08-09T10:02:24+08:00",
+  "updatedAt": "2026-08-09T10:05:44+08:00",
   "metrics": [
     { "label": "Start events", "label_zh": "启动事件", "value": 1 },
     { "label": "AI platform due / checked / unavailable / failed", "label_zh": "AI 平台应查 / 已查 / 不可访问 / 失败", "value": "33 / 29 / 1 / 3" },
