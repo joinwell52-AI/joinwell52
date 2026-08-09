@@ -43,6 +43,18 @@ jobs:
         with:
           node-version: 22
 
+      - name: Expire stale Running leases
+        id: watchdog
+        shell: bash
+        run: node scripts/runtime-running-watchdog.mjs
+
+      - name: Report expired Running leases
+        if: steps.watchdog.outputs.state_changed == 'true'
+        run: |
+          echo "Running is an execution lease, not proof of live worker progress."
+          echo "Expired tasks: ${{ steps.watchdog.outputs.expired_tasks }}"
+          echo "Changed records: ${{ steps.watchdog.outputs.changed_record_paths }}"
+
       - name: Resolve ordered Runtime work
         id: resolve
         shell: bash
@@ -57,7 +69,7 @@ jobs:
           fi
 
       - name: Report idle heartbeat
-        if: steps.resolve.outputs.has_task != 'true' && steps.resolve.outputs.state_changed != 'true'
+        if: steps.resolve.outputs.has_task != 'true' && steps.resolve.outputs.state_changed != 'true' && steps.watchdog.outputs.state_changed != 'true'
         run: echo "${{ steps.resolve.outputs.reason }}"
 
       - name: Report repaired order violation
@@ -95,14 +107,14 @@ jobs:
           fi
 
       - name: Synchronize readable Runtime ledger
-        if: steps.resolve.outputs.has_task == 'true' || steps.resolve.outputs.state_changed == 'true'
+        if: steps.resolve.outputs.has_task == 'true' || steps.resolve.outputs.state_changed == 'true' || steps.watchdog.outputs.state_changed == 'true'
         shell: bash
         env:
           RUNTIME_DATE: ${{ steps.resolve.outputs.runtime_date }}
         run: node scripts/runtime-markdown.mjs render --date "$RUNTIME_DATE"
 
       - name: Validate Runtime and readable ledger
-        if: steps.resolve.outputs.has_task == 'true' || steps.resolve.outputs.state_changed == 'true'
+        if: steps.resolve.outputs.has_task == 'true' || steps.resolve.outputs.state_changed == 'true' || steps.watchdog.outputs.state_changed == 'true'
         shell: bash
         env:
           RUNTIME_DATE: ${{ steps.resolve.outputs.runtime_date }}
@@ -111,7 +123,7 @@ jobs:
           node scripts/runtime-markdown.mjs validate --date "$RUNTIME_DATE"
 
       - name: Commit reconciled control-plane state
-        if: steps.resolve.outputs.has_task == 'true' || steps.resolve.outputs.state_changed == 'true'
+        if: steps.resolve.outputs.has_task == 'true' || steps.resolve.outputs.state_changed == 'true' || steps.watchdog.outputs.state_changed == 'true'
         id: commit
         shell: bash
         env:
@@ -129,7 +141,7 @@ jobs:
           fi
 
           label="$RUNTIME_TASK"
-          if [[ "$label" == "none" ]]; then label="order-reconciliation"; fi
+          if [[ "$label" == "none" || -z "$label" ]]; then label="lease-or-order-reconciliation"; fi
           git commit -m "runtime(v5): reconcile ${label} control-plane state for ${RUNTIME_DATE}"
           commit_sha="$(git rev-parse HEAD)"
 
@@ -155,12 +167,14 @@ jobs:
           RUNTIME_TASK: ${{ steps.resolve.outputs.runtime_task }}
           TASK_RECORD_PATHS: ${{ steps.runtime.outputs.record_paths }}
           CHANGED_RECORD_PATHS: ${{ steps.resolve.outputs.changed_record_paths }}
+          WATCHDOG_RECORD_PATHS: ${{ steps.watchdog.outputs.changed_record_paths }}
         run: |
           git fetch origin main
           git merge-base --is-ancestor "$COMMIT_SHA" origin/main
 
           record_paths="$TASK_RECORD_PATHS"
           if [[ -z "$record_paths" ]]; then record_paths="$CHANGED_RECORD_PATHS"; fi
+          if [[ -z "$record_paths" ]]; then record_paths="$WATCHDOG_RECORD_PATHS"; fi
           record_path="${record_paths%%,*}"
           git show "$COMMIT_SHA:$record_path" > /tmp/runtime-reconciled-state.json
 
@@ -189,5 +203,5 @@ jobs:
             const opened = record.timeline?.some((event) => event.task === requestedTask && event.event === 'Execution Slot Opened' && event.status === 'Running')
             if (!opened) throw new Error(`Missing Execution Slot Opened / Running event for ${requestedTask}`)
           }
-          console.log('Verified durable ordered Runtime reconciliation state.')
+          console.log('Verified durable ordered Runtime reconciliation state and Running lease governance.')
           NODE
