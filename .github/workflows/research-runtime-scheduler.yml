@@ -3,10 +3,9 @@ name: Research Runtime Scheduler V3.0
 on:
   schedule:
     # Offset the heartbeat away from the top-of-hour congestion window.
-    # Each heartbeat treats SCHEDULER.json + Runtime records as the source of truth:
-    # any same-day task whose formal time has arrived and is still Waiting is overdue.
-    # Only the oldest overdue task is opened per heartbeat, so multiple missed cron
-    # occurrences recover sequentially without duplicate execution or ambiguity.
+    # Each heartbeat treats SCHEDULER.json + Runtime records as the source of truth.
+    # Only dependency-ready work is eligible. The oldest eligible shift opens first,
+    # and a dependency-blocked shift may be retried after that dependency completes.
     - cron: '2,7,12,17,22,27,32,37,42,47,52,57 * * * *'
   workflow_dispatch:
     inputs:
@@ -60,7 +59,15 @@ jobs:
 
           const manifest = JSON.parse(fs.readFileSync('research/runtime/SCHEDULER.json', 'utf8'))
           const outputPath = process.env.GITHUB_OUTPUT
-          const terminal = new Set(['Running', 'Completed', 'Blocked', 'Failed', 'Skipped'])
+          const neverReopen = new Set(['Running', 'Completed', 'Failed', 'Skipped'])
+          const dependencyOf = {
+            queue: 'discovery',
+            reading: 'queue',
+            analysis: 'reading',
+            production: 'analysis',
+            publication: 'production',
+            weekly: 'publication'
+          }
           const leadMinutes = 5
 
           const writeOutput = (values) => {
@@ -70,7 +77,7 @@ jobs:
           }
 
           if (process.env.EVENT_NAME !== 'schedule') {
-            writeOutput({ has_task: 'true', runtime_task: process.env.MANUAL_TASK, reason: 'manual dispatch' })
+            writeOutput({ has_task: 'true', runtime_task: process.env.MANUAL_TASK, reopen_blocked: 'false', reason: 'manual dispatch' })
             process.exit(0)
           }
 
@@ -87,6 +94,47 @@ jobs:
 
           const date = `${parts.year}-${parts.month}-${parts.day}`
           const nowMinutes = Number(parts.hour) * 60 + Number(parts.minute)
+          const taskById = new Map(manifest.tasks.map((task) => [task.id, task]))
+          const recordCache = new Map()
+
+          const recordForTask = (task) => {
+            const key = `${task.family}:${date}`
+            if (recordCache.has(key)) return recordCache.get(key)
+            const recordPath = path.join(
+              manifest.recordRoots[task.family],
+              parts.year,
+              parts.month,
+              `${date}-${task.family}-runtime.json`
+            )
+            const record = fs.existsSync(recordPath) ? JSON.parse(fs.readFileSync(recordPath, 'utf8')) : null
+            recordCache.set(key, record)
+            return record
+          }
+
+          const statusOf = (taskId) => {
+            const task = taskById.get(taskId)
+            if (!task) return 'Waiting'
+            return recordForTask(task)?.taskStatus?.[taskId] || 'Waiting'
+          }
+
+          const dependencyReady = (task) => {
+            const dependencyId = dependencyOf[task.id]
+            return !dependencyId || statusOf(dependencyId) === 'Completed'
+          }
+
+          const dependencyBlockedAndReady = (task, record) => {
+            const dependencyId = dependencyOf[task.id]
+            if (!dependencyId || !dependencyReady(task)) return false
+            const result = record?.results?.[task.id]
+            if (!result) return false
+            const declared = String(result.blockedBy || result.dependency || '').trim().toLowerCase()
+            if (declared) return declared === dependencyId.toLowerCase()
+            const reason = [result.reason, result.reason_zh, result.next, result.next_zh]
+              .filter((value) => typeof value === 'string')
+              .join(' ')
+              .toLowerCase()
+            return reason.includes(dependencyId.toLowerCase()) || reason.includes(`research runtime ${dependencyId.toLowerCase()}`)
+          }
 
           const overdue = manifest.tasks.flatMap((task) => {
             if (task.schedule.kind === 'weekly' && !task.schedule.days?.includes(parts.weekday)) return []
@@ -96,23 +144,23 @@ jobs:
             const delta = scheduledMinutes - nowMinutes
             if (delta > leadMinutes) return []
 
-            const recordPath = path.join(
-              manifest.recordRoots[task.family],
-              parts.year,
-              parts.month,
-              `${date}-${task.family}-runtime.json`
-            )
+            const record = recordForTask(task)
+            const currentStatus = record?.taskStatus?.[task.id] || 'Waiting'
+            if (neverReopen.has(currentStatus)) return []
 
-            if (fs.existsSync(recordPath)) {
-              const record = JSON.parse(fs.readFileSync(recordPath, 'utf8'))
-              if (terminal.has(record.taskStatus?.[task.id] || 'Waiting')) return []
+            if (currentStatus === 'Blocked') {
+              if (!dependencyBlockedAndReady(task, record)) return []
+              return [{ task, scheduledMinutes, latenessMinutes: Math.max(0, nowMinutes - scheduledMinutes), reopenBlocked: true }]
             }
 
-            return [{ task, scheduledMinutes, latenessMinutes: Math.max(0, nowMinutes - scheduledMinutes) }]
+            if (currentStatus !== 'Waiting') return []
+            if (!dependencyReady(task)) return []
+
+            return [{ task, scheduledMinutes, latenessMinutes: Math.max(0, nowMinutes - scheduledMinutes), reopenBlocked: false }]
           }).sort((a, b) => a.scheduledMinutes - b.scheduledMinutes || a.task.id.localeCompare(b.task.id))
 
           if (!overdue.length) {
-            writeOutput({ has_task: 'false', runtime_task: 'none', reason: `no overdue Waiting task at ${date} ${parts.hour}:${parts.minute}` })
+            writeOutput({ has_task: 'false', runtime_task: 'none', reopen_blocked: 'false', reason: `no dependency-ready overdue task at ${date} ${parts.hour}:${parts.minute}` })
             process.exit(0)
           }
 
@@ -120,7 +168,8 @@ jobs:
           writeOutput({
             has_task: 'true',
             runtime_task: selected.task.id,
-            reason: `self-healing heartbeat at ${date} ${parts.hour}:${parts.minute}; formal time ${selected.task.schedule.time}; lateness ${selected.latenessMinutes}m; overdue queue ${overdue.map((item) => item.task.id).join(',')}`
+            reopen_blocked: selected.reopenBlocked ? 'true' : 'false',
+            reason: `self-healing heartbeat at ${date} ${parts.hour}:${parts.minute}; formal time ${selected.task.schedule.time}; lateness ${selected.latenessMinutes}m; mode ${selected.reopenBlocked ? 'retry-blocked' : 'open-waiting'}; ready queue ${overdue.map((item) => item.task.id).join(',')}`
           })
           NODE
 
@@ -134,7 +183,13 @@ jobs:
         shell: bash
         env:
           RUNTIME_TASK: ${{ steps.resolve.outputs.runtime_task }}
-        run: node scripts/runtime-v5.mjs schedule --task "$RUNTIME_TASK"
+          REOPEN_BLOCKED: ${{ steps.resolve.outputs.reopen_blocked }}
+        run: |
+          if [[ "$REOPEN_BLOCKED" == "true" ]]; then
+            node scripts/runtime-v5.mjs schedule --task "$RUNTIME_TASK" --reopen-blocked true
+          else
+            node scripts/runtime-v5.mjs schedule --task "$RUNTIME_TASK"
+          fi
 
       - name: Initialize same-day Research Intelligence
         if: steps.resolve.outputs.has_task == 'true'
