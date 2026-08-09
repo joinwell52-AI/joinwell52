@@ -132,7 +132,38 @@ Runtime 页面必须使用同一份 live Runtime Record：
 
 禁止同一页面出现“进程条显示补班中、任务卡显示已完成”的双事实。
 
-## 7. 自检链
+## 7. Publication 公共交付门禁
+
+Publication 的 Runtime 结果写成 `Completed`，只表示该班次的工作合同已经完成；**公共交付还必须经过可发现性验收**。
+
+正式链路：
+
+```text
+Publication Completed
+→ Release Manifest = Released
+→ 中英文文章与封面存在
+→ VitePress 文章路由生成
+→ Research 总入口可发现
+→ 对应栏目入口可发现
+→ Publication Visibility Gate PASS
+→ Pages Build / Verify / Publish
+→ GitHub Pages deployment success
+```
+
+正式检查器为：
+
+```text
+scripts/publication-visibility.mjs
+```
+
+正式规范为：
+
+- `research/runtime/PUBLICATION-VISIBILITY-GATE.zh-CN.md`
+- `research/runtime/PUBLICATION-VISIBILITY-GATE.md`
+
+任何 released item 无法从正式公共入口找到时，Pages Verify 必须失败，禁止更新 `gh-pages`。观察笔记首页同时提供“今日发布”区域，直接展示当天正式文章，不再要求用户从历史列表自行寻找。
+
+## 8. 自检链
 
 每次完成与推进都必须经过：
 
@@ -144,10 +175,13 @@ result contract validate
 → durable Git commit
 → ancestor / state verify
 → immediate reconcile
-→ Pages Build / Verify / Publish
+→ Pages Build
+→ Runtime order check
+→ Publication Visibility Gate（若存在正式 Release）
+→ Pages Publish / deployment verify
 ```
 
-## 8. 2026-08-09 生产验证
+## 9. 2026-08-09 生产验证
 
 当天 Analysis 完成后，旧流程因只等待 cron，Production 没有立即启动。修复后：
 
@@ -158,12 +192,15 @@ result contract validate
 - Completion 成功后约数秒内产生 Scheduler `workflow_run`；
 - Scheduler 正确判断 Publication 尚未到 20:00，因此保持 Waiting。
 
-该验证证明两件事同时成立：
+20:00 Publication 随后完成 3 项、6 个中英文公开文章文件。系统进一步发现“文章已发布但用户入口不够明显”的交付缺口，因此增加 Publication Visibility Gate 与“今日发布”入口。首次 Gate 因错误假设 VitePress clean URL 产物结构而主动阻止发布；修正真实 `slug.html` 构建合同后，Pages Run #235 的 Build、Verify、Visibility Gate、Publish 全部成功，3 个 released items 的中英文路由与索引可发现性全部 PASS。
+
+该验证证明：
 
 1. overdue 下一环不再等待下一次 cron；
-2. future 下一环不会因为即时推进而越过正式时间。
+2. future 下一环不会因为即时推进而越过正式时间；
+3. 后台 `Completed` 不再被误认为最终公共交付，用户可发现性已经成为硬门禁。
 
-## 9. 运营判定
+## 10. 运营判定
 
 进程管理必须同时满足：
 
@@ -171,4 +208,5 @@ result contract validate
 - **准确：** 页面和机器状态同源，Running 有 Lease；
 - **高效：** 每次只推进一环，不产生并发竞态；
 - **可恢复：** heartbeat、Blocked reopen 和 Watchdog 提供兜底；
-- **可审计：** 每次打开、完成、过期、恢复、提交与验证都有 durable event。
+- **可发现：** Publication 只有在文章可从正式公共入口找到且 Visibility Gate PASS 后才算公共交付完成；
+- **可审计：** 每次打开、完成、过期、恢复、提交、索引检查与部署验证都有 durable evidence。
