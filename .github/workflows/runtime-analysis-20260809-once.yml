@@ -1,0 +1,291 @@
+name: Runtime Analysis 2026-08-09 Once
+
+on:
+  push:
+    branches:
+      - automation/runtime-analysis-20260809
+    paths:
+      - .github/workflows/runtime-analysis-20260809-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Persist or verify Analysis Running control-plane state
+        id: start
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git checkout -B main origin/main
+          record="research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json"
+          ledger="research/runtime/2026/08/2026-08-09-runtime.md"
+          now="$(TZ=Asia/Shanghai date '+%Y-%m-%dT%H:%M:%S+08:00')"
+          export RUNTIME_NOW="$now"
+
+          node <<'NODE'
+          const fs = require('fs')
+          const path = 'research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json'
+          const r = JSON.parse(fs.readFileSync(path, 'utf8'))
+          const date = '2026-08-09'
+          const starts = (r.timeline || []).filter(e =>
+            e.task === 'analysis' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith(date)
+          )
+          const terminal = new Set(['Completed','Blocked','Failed','Skipped'])
+          if (terminal.has(r.taskStatus?.analysis)) {
+            throw new Error(`Analysis is already terminal: ${r.taskStatus.analysis}`)
+          }
+          if (r.status === 'Running' && r.taskStatus?.analysis === 'Running' && starts.length === 1) {
+            fs.writeFileSync('/tmp/analysis-start-mode', 'scheduler')
+            process.exit(0)
+          }
+          if (starts.length !== 0) {
+            throw new Error(`Invalid Analysis start-event count before fallback: ${starts.length}`)
+          }
+          r.status = 'Running'
+          r.taskStatus.analysis = 'Running'
+          r.githubCommit = 'pending'
+          r.commitVerify = 'Running'
+          r.updatedAt = process.env.RUNTIME_NOW
+          r.timeline.push({
+            time: process.env.RUNTIME_NOW,
+            task: 'analysis',
+            event: 'Execution Slot Opened',
+            status: 'Running',
+            detail: 'Scheduler fallback: Research Runtime Analysis opened because the durable control-plane Running state was absent; substantive work may begin only after this synchronized JSON and Markdown state is committed, fetched and verified.'
+          })
+          fs.writeFileSync(path, JSON.stringify(r, null, 2) + '\n')
+          fs.writeFileSync('/tmp/analysis-start-mode', 'scheduler-fallback')
+          NODE
+
+          mode="$(cat /tmp/analysis-start-mode)"
+          echo "mode=$mode" >> "$GITHUB_OUTPUT"
+          if [[ "$mode" == "scheduler-fallback" ]]; then
+            node scripts/runtime-markdown.mjs render --date 2026-08-09
+            node scripts/runtime-markdown.mjs validate --date 2026-08-09
+            git config user.name "joinwell52 Research Runtime"
+            git config user.email "actions@users.noreply.github.com"
+            git add "$record" "$ledger"
+            git commit -m "runtime(analysis): open 2026-08-09 execution slot"
+            git push origin HEAD:main
+          fi
+
+          git fetch origin main
+          start_commit="$(git rev-parse origin/main)"
+          echo "commit=$start_commit" >> "$GITHUB_OUTPUT"
+          git show "origin/main:$record" > /tmp/analysis-start.json
+          git show "origin/main:$ledger" > /tmp/analysis-start.md
+          node <<'NODE'
+          const fs = require('fs')
+          const r = JSON.parse(fs.readFileSync('/tmp/analysis-start.json', 'utf8'))
+          const starts = (r.timeline || []).filter(e => e.task === 'analysis' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-09'))
+          if (r.status !== 'Running') throw new Error(`overall status is ${r.status}, expected Running`)
+          if (r.taskStatus?.analysis !== 'Running') throw new Error(`analysis status is ${r.taskStatus?.analysis}, expected Running`)
+          if (starts.length !== 1) throw new Error(`Analysis start-event count is ${starts.length}, expected exactly 1`)
+          NODE
+          grep -Fq '| 13:00 | 研究运行分析 | Research Runtime Analysis | daily | 工作中 / Running |' /tmp/analysis-start.md
+          test "$(grep -Fc '| 研究运行分析 / Research Runtime Analysis | daily | Execution Slot Opened | 工作中 / Running |' /tmp/analysis-start.md)" -eq 1
+
+      - name: Read current Scheduler and dependency state
+        id: dependency
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git reset --hard origin/main
+          node <<'NODE'
+          const fs = require('fs')
+          const scheduler = JSON.parse(fs.readFileSync('research/runtime/SCHEDULER.json','utf8'))
+          const analysis = scheduler.tasks.find(t => t.id === 'analysis' && t.family === 'daily')
+          if (!analysis) throw new Error('V5 Scheduler analysis task missing')
+          if (analysis.input !== 'Reading Result') throw new Error(`Unexpected Analysis input contract: ${analysis.input}`)
+          if (analysis.output !== 'Research Object') throw new Error(`Unexpected Analysis output contract: ${analysis.output}`)
+          if (!(analysis.prohibitions || []).includes('Analyzing unread material')) throw new Error('Analysis unread-material prohibition missing')
+          const r = JSON.parse(fs.readFileSync('research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json','utf8'))
+          fs.writeFileSync('/tmp/reading-status', String(r.taskStatus?.reading || 'Waiting'))
+          NODE
+          reading_status="$(cat /tmp/reading-status)"
+          echo "reading_status=$reading_status" >> "$GITHUB_OUTPUT"
+          if [[ "$reading_status" == "Completed" ]]; then
+            echo "Reading completed during this run; stop here rather than fabricate Research Analysis without a model-backed Skill 04 pass." >&2
+            exit 42
+          fi
+
+      - name: Persist Analysis Blocked result for incomplete Reading dependency
+        id: result
+        shell: bash
+        run: |
+          set -euo pipefail
+          record="research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json"
+          ledger="research/runtime/2026/08/2026-08-09-runtime.md"
+          now="$(TZ=Asia/Shanghai date '+%Y-%m-%dT%H:%M:%S+08:00')"
+          export RUNTIME_NOW="$now"
+          export START_COMMIT="${{ steps.start.outputs.commit }}"
+
+          node <<'NODE'
+          const fs = require('fs')
+          const path = 'research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json'
+          const r = JSON.parse(fs.readFileSync(path,'utf8'))
+          const readingStatus = String(r.taskStatus?.reading || 'Waiting')
+          if (readingStatus === 'Completed') throw new Error('Reading became Completed; refusing Blocked result')
+          const starts = (r.timeline || []).filter(e => e.task === 'analysis' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-09'))
+          if (starts.length !== 1) throw new Error(`Analysis start-event count ${starts.length}; expected 1`)
+          const readingResult = r.results?.reading
+          const dependency = `Research Runtime Reading is ${readingStatus}; Analysis requires a Completed Reading Result before Skill 04 may consume any material.`
+          const dependencyZh = `Research Runtime Reading 当前为 ${readingStatus}；Analysis 必须等待 Reading Result 完成后，Skill 04 才能消费任何材料。`
+          r.status = 'Blocked'
+          r.taskStatus.analysis = 'Blocked'
+          r.results.analysis = {
+            schema: 'runtime-shift-result/v2',
+            task: 'analysis',
+            family: 'daily',
+            status: 'Blocked',
+            startedAt: starts[0].time,
+            completedAt: process.env.RUNTIME_NOW,
+            input: 'Current main-branch V5 Scheduler, today\'s Daily Runtime Record, and only completed Reading Results as the legal Analysis input.',
+            input_zh: '当前 main 分支 V5 Scheduler、当日 Daily Runtime Record，以及仅允许作为 Analysis 合法输入的已完成 Reading Results。',
+            workResult: `Analysis was not performed. Exact dependency: ${dependency} No unread material was analyzed, no Research Object was created, and no publication copy was written. Scheduler fallback start state was verified at commit ${process.env.START_COMMIT}.`,
+            workResult_zh: `未执行 Research Analysis。明确依赖：${dependencyZh} 未分析任何未读材料，未创建 Research Object，未撰写 publication copy。Scheduler fallback 启动态已在提交 ${process.env.START_COMMIT} 完成核验。`,
+            output: `Blocked — 0 Research Objects. Reading status: ${readingStatus}.`,
+            output_zh: `Blocked —— 0 个 Research Objects。Reading 状态：${readingStatus}。`,
+            next: 'Research Runtime Reading must first complete its selected objects and durably persist completed Reading Results. Analysis may be re-run only after that dependency is verified.',
+            next_zh: '必须先由 Research Runtime Reading 完成已选对象并持久化已完成 Reading Results；只有该依赖完成并核验后，才能重新执行 Analysis。',
+            reason: dependency,
+            reason_zh: dependencyZh,
+            metrics: [
+              { label: 'Analysis start events', label_zh: 'Analysis 启动事件', value: 1 },
+              { label: 'Reading status', label_zh: 'Reading 状态', value: readingStatus },
+              { label: 'Eligible completed Reading Results', label_zh: '可用的已完成 Reading Results', value: readingResult && readingStatus === 'Completed' ? 1 : 0 },
+              { label: 'Research Objects produced', label_zh: '生成 Research Objects', value: 0 },
+              { label: 'Unread external material analyzed', label_zh: '分析未读外部材料', value: 0 },
+              { label: 'Publication drafts', label_zh: 'Publication 草稿', value: 0 }
+            ],
+            evidence: [
+              { label: 'V5 Scheduler', label_zh: 'V5 Scheduler', source: 'research/runtime/SCHEDULER.json' },
+              { label: 'Daily Runtime Record', label_zh: 'Daily Runtime Record', source: 'research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json' },
+              { label: "Today's Research Plan", label_zh: '当日研究计划', source: 'research/runtime/plans/2026/08/2026-08-09-plan.json' },
+              { label: 'Verified Analysis start state', label_zh: '已核验 Analysis 启动态', commit: process.env.START_COMMIT }
+            ],
+            artifacts: [
+              { label: 'Daily Runtime JSON', label_zh: 'Daily Runtime JSON', path: 'research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json' },
+              { label: 'Human-readable Runtime ledger', label_zh: '人类可读 Runtime 账本', path: 'research/runtime/2026/08/2026-08-09-runtime.md' }
+            ]
+          }
+          r.githubCommit = 'pending'
+          r.commitVerify = 'Running'
+          r.updatedAt = process.env.RUNTIME_NOW
+          r.timeline.push({
+            time: process.env.RUNTIME_NOW,
+            task: 'analysis',
+            event: 'Analysis Blocked',
+            status: 'Blocked',
+            detail: `Research Analysis was not performed because ${dependency} Zero Research Objects were produced.`
+          })
+          fs.writeFileSync(path, JSON.stringify(r,null,2) + '\n')
+          NODE
+
+          node scripts/runtime-markdown.mjs render --date 2026-08-09
+          node scripts/runtime-markdown.mjs validate --date 2026-08-09
+          git diff --check
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$record" "$ledger"
+          git commit -m "runtime(analysis): block 2026-08-09 on incomplete reading"
+          result_commit="$(git rev-parse HEAD)"
+          echo "commit=$result_commit" >> "$GITHUB_OUTPUT"
+          git push origin HEAD:main
+
+          git fetch origin main
+          git show "origin/main:$record" > /tmp/analysis-result.json
+          git show "origin/main:$ledger" > /tmp/analysis-result.md
+          export RESULT_COMMIT="$result_commit"
+          node <<'NODE'
+          const fs = require('fs')
+          const r = JSON.parse(fs.readFileSync('/tmp/analysis-result.json','utf8'))
+          const starts = (r.timeline || []).filter(e => e.task === 'analysis' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-09'))
+          if (r.taskStatus?.analysis !== 'Blocked') throw new Error(`Analysis status ${r.taskStatus?.analysis}, expected Blocked`)
+          if (r.results?.analysis?.schema !== 'runtime-shift-result/v2') throw new Error('Analysis result schema missing')
+          if (r.results?.analysis?.status !== 'Blocked') throw new Error('Analysis result is not Blocked')
+          if (starts.length !== 1) throw new Error(`Analysis start-event count ${starts.length}, expected 1`)
+          if ((r.results.analysis.metrics || []).find(m => m.label === 'Research Objects produced')?.value !== 0) throw new Error('Research Objects metric must be zero')
+          NODE
+          grep -Fq '| 13:00 | 研究运行分析 | Research Runtime Analysis | daily | 已阻塞 / Blocked |' /tmp/analysis-result.md
+          grep -Fq '### 工作成果 / Work Result' /tmp/analysis-result.md
+          grep -Fq '### 输出 / Output' /tmp/analysis-result.md
+          grep -Fq '### 下一步 / Next' /tmp/analysis-result.md
+          grep -Fq '### 量化结果 / Metrics' /tmp/analysis-result.md
+          grep -Fq '### 证据 / Evidence' /tmp/analysis-result.md
+          grep -Fq '### 成果文件 / Artifacts' /tmp/analysis-result.md
+
+      - name: Persist commit verification and verify final durable state
+        id: verify
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git reset --hard origin/main
+          record="research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json"
+          ledger="research/runtime/2026/08/2026-08-09-runtime.md"
+          result_commit="${{ steps.result.outputs.commit }}"
+          now="$(TZ=Asia/Shanghai date '+%Y-%m-%dT%H:%M:%S+08:00')"
+          export RUNTIME_NOW="$now"
+          export RESULT_COMMIT="$result_commit"
+
+          node <<'NODE'
+          const fs = require('fs')
+          const path = 'research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json'
+          const r = JSON.parse(fs.readFileSync(path,'utf8'))
+          const starts = (r.timeline || []).filter(e => e.task === 'analysis' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-09'))
+          if (starts.length !== 1) throw new Error(`Analysis start-event count ${starts.length}, expected 1`)
+          if (r.taskStatus?.analysis !== 'Blocked' || r.results?.analysis?.status !== 'Blocked') throw new Error('Blocked Analysis result missing before verification')
+          r.githubCommit = process.env.RESULT_COMMIT
+          r.commitVerify = 'Completed'
+          r.updatedAt = process.env.RUNTIME_NOW
+          r.timeline.push({
+            time: process.env.RUNTIME_NOW,
+            task: 'analysis',
+            event: 'GitHub Commit Verified',
+            status: 'Completed',
+            detail: `Fetched and verified durable Analysis Blocked result commit ${process.env.RESULT_COMMIT}: Daily Runtime JSON and regenerated Markdown ledger are synchronized; exactly one Analysis Execution Slot Opened / Running event remains; Reading is still incomplete and zero Research Objects were produced.`
+          })
+          fs.writeFileSync(path, JSON.stringify(r,null,2) + '\n')
+          NODE
+
+          node scripts/runtime-markdown.mjs render --date 2026-08-09
+          node scripts/runtime-markdown.mjs validate --date 2026-08-09
+          git diff --check
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$record" "$ledger"
+          git commit -m "runtime(analysis): verify 2026-08-09 blocked result"
+          verify_commit="$(git rev-parse HEAD)"
+          echo "commit=$verify_commit" >> "$GITHUB_OUTPUT"
+          git push origin HEAD:main
+
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "$verify_commit"
+          git show "origin/main:$record" > /tmp/analysis-final.json
+          git show "origin/main:$ledger" > /tmp/analysis-final.md
+          node <<'NODE'
+          const fs = require('fs')
+          const r = JSON.parse(fs.readFileSync('/tmp/analysis-final.json','utf8'))
+          const starts = (r.timeline || []).filter(e => e.task === 'analysis' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith('2026-08-09'))
+          if (r.taskStatus?.analysis !== 'Blocked') throw new Error(`Final Analysis status ${r.taskStatus?.analysis}`)
+          if (r.results?.analysis?.status !== 'Blocked') throw new Error('Final Analysis result not Blocked')
+          if (r.githubCommit !== process.env.RESULT_COMMIT) throw new Error(`githubCommit ${r.githubCommit} does not match verified result ${process.env.RESULT_COMMIT}`)
+          if (r.commitVerify !== 'Completed') throw new Error(`commitVerify ${r.commitVerify}`)
+          if (starts.length !== 1) throw new Error(`Final Analysis start-event count ${starts.length}, expected 1`)
+          NODE
+          grep -Fq '| 13:00 | 研究运行分析 | Research Runtime Analysis | daily | 已阻塞 / Blocked |' /tmp/analysis-final.md
+          test "$(grep -Fc '| 研究运行分析 / Research Runtime Analysis | daily | Execution Slot Opened | 工作中 / Running |' /tmp/analysis-final.md)" -eq 1
+          grep -Fq "- **GitHub Commit:** $result_commit" /tmp/analysis-final.md
+          grep -Fq -- '- **Commit Verify:** 已完成 / Completed' /tmp/analysis-final.md
