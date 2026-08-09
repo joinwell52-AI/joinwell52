@@ -99,3 +99,5 @@ jobs:
           git push --force \
             "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
             gh-pages
+
+# Keep this workflow path-sensitive so a maintenance commit can explicitly retrigger Pages.
