@@ -8,16 +8,114 @@
   "date": "2026-08-09",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
-    "discovery": "Running",
+    "discovery": "Completed",
     "queue": "Waiting",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
   },
-  "results": {},
+  "results": {
+    "discovery": {
+      "schema": "runtime-shift-result/v2",
+      "input": "Current main-branch SCHEDULER.json; Research Intelligence REGISTRY.json; formal profiles AI Platform Change Intelligence, GitHub Engineering Intelligence and Published Research Intelligence; prior-day 2026-08-08 Signal Pool for deduplication; current authoritative platform, repository and research sources.",
+      "input_zh": "当前 main 分支 SCHEDULER.json、Research Intelligence REGISTRY.json、AI Platform Change Intelligence / GitHub Engineering Intelligence / Published Research Intelligence 三个正式 Profile、用于去重的 2026-08-08 Signal Pool，以及当前权威平台、仓库与研究来源。",
+      "workResult": "Verified scheduler fallback commit da29de51e017a18a01c600de71cebb5cf3e2e167 before substantive work. Executed all three formal Discovery profiles. Platform coverage: 33 due = 29 checked + 1 authentication-required + 3 explicit retrieval failures. GitHub Engineering: 19 due repositories checked (9 P0 daily + 10 P1 weekly). Published Research: 9 due = 8 checked + 1 explicit retrieval failure. Same-mechanism changes were normalized, prior-day duplicates removed, and no Queue triage was performed.",
+      "workResult_zh": "在任何实质工作前已核验 Scheduler Fallback 提交 da29de51e017a18a01c600de71cebb5cf3e2e167。执行全部三个正式 Discovery Profile。平台覆盖：33 个应查 = 29 已检查 + 1 需认证 + 3 明确抓取失败；GitHub Engineering：19 个应查仓库全部完成（9 个 P0 Daily + 10 个 P1 Weekly）；Published Research：9 个应查 = 8 已检查 + 1 明确抓取失败。相邻同机制变更完成规范化，前一日重复信号已去除，未执行 Queue 筛选。",
+      "output": "A deduplicated Signal Pool of 16 unselected signals: 0 AI-platform, 12 GitHub-engineering and 4 published-research signals. All three column decisions remain Waiting with selectedItemId empty.",
+      "output_zh": "生成 16 个未选题的去重 Signal Pool：AI Platform 0 个、GitHub Engineering 12 个、Published Research 4 个；三个栏目 Decision 均保持 Waiting，selectedItemId 为空。",
+      "next": "Research Runtime Queue may independently score and triage the Signal Pool. Discovery must not select topics or carry out Deep Reading, Research Analysis, Production or Publication.",
+      "next_zh": "后续由 Research Runtime Queue 独立评分与筛选 Signal Pool；Discovery 不得选题，也不得执行 Deep Reading、Research Analysis、Production 或 Publication。",
+      "metrics": [
+        {
+          "label": "Start events",
+          "label_zh": "启动事件",
+          "value": 1
+        },
+        {
+          "label": "AI platform due / checked / unavailable / failed",
+          "label_zh": "AI 平台应查 / 已查 / 不可访问 / 失败",
+          "value": "33 / 29 / 1 / 3"
+        },
+        {
+          "label": "GitHub repositories checked",
+          "label_zh": "GitHub 已检查仓库",
+          "value": "19 / 19"
+        },
+        {
+          "label": "Research sources due / checked / failed",
+          "label_zh": "研究来源应查 / 已查 / 失败",
+          "value": "9 / 8 / 1"
+        },
+        {
+          "label": "Normalized signals",
+          "label_zh": "规范化信号",
+          "value": 16
+        },
+        {
+          "label": "Selected topics",
+          "label_zh": "已选主题",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Scheduler fallback start state",
+          "label_zh": "Scheduler Fallback 启动态",
+          "value": "da29de51e017a18a01c600de71cebb5cf3e2e167"
+        },
+        {
+          "label": "Scheduler",
+          "label_zh": "调度器",
+          "value": "research/runtime/SCHEDULER.json"
+        },
+        {
+          "label": "Research Intelligence registry",
+          "label_zh": "Research Intelligence 注册表",
+          "value": "research/intelligence/REGISTRY.json"
+        },
+        {
+          "label": "AI Platform profile",
+          "label_zh": "AI 平台 Profile",
+          "value": "research/skills/profiles/01p-ai-platform-change-intelligence.md"
+        },
+        {
+          "label": "GitHub Engineering profile",
+          "label_zh": "GitHub 工程 Profile",
+          "value": "research/skills/profiles/01g-github-engineering-intelligence.md"
+        },
+        {
+          "label": "Published Research profile",
+          "label_zh": "已发表研究 Profile",
+          "value": "research/skills/profiles/01r-published-research-intelligence.md"
+        },
+        {
+          "label": "Prior-day dedup baseline",
+          "label_zh": "前一日去重基线",
+          "value": "research/intelligence/runs/2026/08/2026-08-08-intelligence.json"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Research Intelligence run",
+          "label_zh": "Research Intelligence 运行记录",
+          "value": "research/intelligence/runs/2026/08/2026-08-09-intelligence.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "value": "research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json"
+        },
+        {
+          "label": "Human-readable Runtime ledger",
+          "label_zh": "人类可读 Runtime 账本",
+          "value": "research/runtime/2026/08/2026-08-09-runtime.md"
+        }
+      ]
+    }
+  },
   "timeline": [
     {
       "time": "2026-08-09T09:03:17+08:00",
@@ -25,12 +123,102 @@
       "event": "Execution Slot Opened",
       "status": "Running",
       "detail": "Scheduler fallback: Research Runtime Discovery opened because the durable control-plane start state was absent; substantive work may begin only after this synchronized JSON and Markdown state is committed and verified."
+    },
+    {
+      "time": "2026-08-09T09:16:50+08:00",
+      "task": "discovery",
+      "event": "Discovery Completed",
+      "status": "Completed",
+      "detail": "All three formal Discovery profiles completed after verified Scheduler fallback; 16 normalized signals retained, 0 topics selected. Explicit source failures and the authentication-required Anthropic Discord channel are preserved in the Research Intelligence run."
     }
   ],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-09T09:03:17+08:00",
-  "metrics": [],
-  "evidence": [],
-  "artifacts": []
+  "updatedAt": "2026-08-09T09:16:50+08:00",
+  "metrics": [
+    {
+      "label": "Start events",
+      "label_zh": "启动事件",
+      "value": 1
+    },
+    {
+      "label": "AI platform due / checked / unavailable / failed",
+      "label_zh": "AI 平台应查 / 已查 / 不可访问 / 失败",
+      "value": "33 / 29 / 1 / 3"
+    },
+    {
+      "label": "GitHub repositories checked",
+      "label_zh": "GitHub 已检查仓库",
+      "value": "19 / 19"
+    },
+    {
+      "label": "Research sources due / checked / failed",
+      "label_zh": "研究来源应查 / 已查 / 失败",
+      "value": "9 / 8 / 1"
+    },
+    {
+      "label": "Normalized signals",
+      "label_zh": "规范化信号",
+      "value": 16
+    },
+    {
+      "label": "Selected topics",
+      "label_zh": "已选主题",
+      "value": 0
+    }
+  ],
+  "evidence": [
+    {
+      "label": "Scheduler fallback start state",
+      "label_zh": "Scheduler Fallback 启动态",
+      "value": "da29de51e017a18a01c600de71cebb5cf3e2e167"
+    },
+    {
+      "label": "Scheduler",
+      "label_zh": "调度器",
+      "value": "research/runtime/SCHEDULER.json"
+    },
+    {
+      "label": "Research Intelligence registry",
+      "label_zh": "Research Intelligence 注册表",
+      "value": "research/intelligence/REGISTRY.json"
+    },
+    {
+      "label": "AI Platform profile",
+      "label_zh": "AI 平台 Profile",
+      "value": "research/skills/profiles/01p-ai-platform-change-intelligence.md"
+    },
+    {
+      "label": "GitHub Engineering profile",
+      "label_zh": "GitHub 工程 Profile",
+      "value": "research/skills/profiles/01g-github-engineering-intelligence.md"
+    },
+    {
+      "label": "Published Research profile",
+      "label_zh": "已发表研究 Profile",
+      "value": "research/skills/profiles/01r-published-research-intelligence.md"
+    },
+    {
+      "label": "Prior-day dedup baseline",
+      "label_zh": "前一日去重基线",
+      "value": "research/intelligence/runs/2026/08/2026-08-08-intelligence.json"
+    }
+  ],
+  "artifacts": [
+    {
+      "label": "Research Intelligence run",
+      "label_zh": "Research Intelligence 运行记录",
+      "value": "research/intelligence/runs/2026/08/2026-08-09-intelligence.json"
+    },
+    {
+      "label": "Daily Runtime JSON",
+      "label_zh": "Daily Runtime JSON",
+      "value": "research/runtime/records/daily/2026/08/2026-08-09-daily-runtime.json"
+    },
+    {
+      "label": "Human-readable Runtime ledger",
+      "label_zh": "人类可读 Runtime 账本",
+      "value": "research/runtime/2026/08/2026-08-09-runtime.md"
+    }
+  ]
 }

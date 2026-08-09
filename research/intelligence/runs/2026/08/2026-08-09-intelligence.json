@@ -1,0 +1,429 @@
+{
+  "schema": "research-intelligence-run/v1",
+  "version": "1.0",
+  "date": "2026-08-09",
+  "timezone": "Asia/Shanghai",
+  "status": "Running",
+  "registryVersion": "1.0",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-08-09T09:16:50+08:00",
+  "githubCommit": "pending",
+  "reason": "Discovery completed all due formal source profiles after the scheduler-fallback Running state was durably committed and verified. Signals were normalized and deduplicated against the 2026-08-08 Signal Pool; Queue triage has not run and no topic was selected.",
+  "reason_zh": "仅在 Scheduler Fallback Running 状态完成持久化提交并核验后执行全部到期正式来源 Profile。信号已与 2026-08-08 Signal Pool 去重并规范化；Queue 尚未执行，没有选题。",
+  "controlPlane": {
+    "startStateMode": "scheduler-fallback",
+    "startStateCommit": "da29de51e017a18a01c600de71cebb5cf3e2e167",
+    "startEventCount": 1,
+    "verifiedBeforeSubstantiveWork": true,
+    "fallbackRecorded": true,
+    "resultCommit": "pending",
+    "resultCommitVerified": false
+  },
+  "pipelines": [
+    {
+      "id": "ai-platform",
+      "label": "AI Platform Change Intelligence",
+      "label_zh": "AI 平台变更情报发现",
+      "status": "Completed",
+      "due": 33,
+      "checked": 29,
+      "inaccessible": [
+        {
+          "source": "anthropic-claude/community-discord",
+          "reason": "Registry marks the official Anthropic Discord as authentication-required; it was not represented as a publicly checked channel."
+        }
+      ],
+      "failed": [
+        {
+          "source": "openai/release-notes",
+          "reason": "The exact OpenAI Products Release Notes URL was not retrievable; ChatGPT release notes, developer docs/community, official GitHub and status channels were checked."
+        },
+        {
+          "source": "cursor/announcements",
+          "reason": "The exact official Cursor announcements category returned an internal retrieval error; Cursor changelog, docs, forum root and status channels were checked."
+        },
+        {
+          "source": "microsoft-copilot-platform/tech-community",
+          "reason": "The exact Copilot Studio Tech Community category returned an internal retrieval error; Microsoft Learn Copilot docs, Copilot Studio What’s New, Microsoft 365 Roadmap and service-health documentation were checked."
+        }
+      ],
+      "signals": 0,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All 33 due P0 platform channels received an explicit outcome: 29 checked, 1 authentication-required and 3 retrieval failures with authoritative companion-channel coverage. No material platform change remained after deduplication against the prior-day Signal Pool.",
+      "reason_zh": "33 个应检查 P0 平台渠道均得到明确结果：29 个已检查、1 个需认证、3 个抓取失败且有权威伴随渠道覆盖。与前一日 Signal Pool 去重后，本轮没有新增保留的平台变更。"
+    },
+    {
+      "id": "github-engineering",
+      "label": "GitHub Engineering Intelligence",
+      "label_zh": "GitHub 工程情报发现",
+      "status": "Completed",
+      "due": 19,
+      "checked": 19,
+      "inaccessible": [],
+      "failed": [],
+      "signals": 12,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 daily repositories and all ten P1 weekly repositories were checked on the Sunday run. Adjacent commits with the same mechanism were grouped, stale or cosmetic changes were excluded, and 12 distinct engineering signals remained after prior-day deduplication.",
+      "reason_zh": "周日运行检查了全部 9 个 P0 Daily 仓库与 10 个 P1 Weekly 仓库。相邻同机制 Commit 已合并，过期、纯发布或外观改动已排除，与前一日去重后保留 12 个独立工程信号。"
+    },
+    {
+      "id": "published-research",
+      "label": "Published Research Intelligence",
+      "label_zh": "已发表研究情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 8,
+      "inaccessible": [],
+      "failed": [
+        {
+          "source": "journals/journal-of-systems-and-software",
+          "reason": "The configured Journal of Systems and Software landing page returned an internal retrieval error; the failure is preserved rather than interpreted as no update."
+        }
+      ],
+      "signals": 4,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "Eight of nine P0 research sources were checked and one configured journal source failed retrieval. arXiv’s latest computer-science listing remained Friday 7 August because of the weekend; four primary research artifacts not already present in the 2026-08-08 Signal Pool were retained.",
+      "reason_zh": "9 个 P0 研究来源中 8 个已检查、1 个期刊来源抓取失败。周末期间 arXiv 最新 Computer Science 列表仍为 8 月 7 日周五；仅保留 4 个未出现在 2026-08-08 Signal Pool 中的主要研究对象。"
+    }
+  ],
+  "columns": [
+    {
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "decision": "Waiting",
+      "signals": 4,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery only normalized signals; Queue triage has not run.",
+      "reason_zh": "Discovery 仅规范化信号；Queue 筛选尚未执行。"
+    },
+    {
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "decision": "Waiting",
+      "signals": 5,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery only normalized signals; Queue triage has not run.",
+      "reason_zh": "Discovery 仅规范化信号；Queue 筛选尚未执行。"
+    },
+    {
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "decision": "Waiting",
+      "signals": 7,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery only normalized signals; Queue triage has not run.",
+      "reason_zh": "Discovery 仅规范化信号；Queue 筛选尚未执行。"
+    }
+  ],
+  "signals": [
+    {
+      "id": "SIG-20260809-G-001",
+      "pipeline": "github-engineering",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
+      "title": "Codex makes plugin-install failure analytics stable and policy-aware",
+      "title_zh": "Codex 将 Plugin 安装失败分析收敛为稳定、可识别策略原因的遥测",
+      "sourceUrl": "https://github.com/openai/codex/commit/94937de51ba28d4b308dbe1b8472d6fe1dddad28",
+      "publishedAt": "2026-08-09",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "failure-observability",
+      "observedChange": "Codex refactored plugin-install failure analytics into stable low-cardinality outcomes, including HTTP-status subtypes plus policy and unavailable-plugin failures, and added tests around the classification path.",
+      "observedChange_zh": "Codex 将 Plugin 安装失败遥测重构为低基数稳定结果，区分 HTTP Status 子类型、策略拒绝与不可用 Plugin，并为分类路径补充测试。",
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260809-G-002",
+      "pipeline": "github-engineering",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "title": "Codex binds approval review to the active step environment",
+      "title_zh": "Codex 将 Approval Review 绑定到当前执行 Step 的环境快照",
+      "sourceUrl": "https://github.com/openai/codex/commit/dd43a9967ff19ce2b96282d2fd5cbdd2022a9b11",
+      "publishedAt": "2026-08-08",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "approval-context",
+      "observedChange": "Guardian approval reviews now use the current step environment rather than a stale thread-level snapshot, including cwd and permission context after delayed environment readiness; adjacent command-prefix approval logic was also moved onto active-step context.",
+      "observedChange_zh": "Guardian Approval Review 改为使用当前 Step Environment，而非陈旧的 Thread 级快照；延迟环境就绪后也会携带当前 cwd 与 Permission Context，相邻命令前缀审批逻辑同样迁移到 Active Step Context。",
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260809-G-003",
+      "pipeline": "github-engineering",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "title": "Codex adds short-lived workload identity exchange and strips identity context from children",
+      "title_zh": "Codex 新增短期 Workload Identity Exchange，并阻止身份上下文泄露给子进程",
+      "sourceUrl": "https://github.com/openai/codex/commit/936f5eb3ee223ab34dcb221fa7c5f9943c8092bd",
+      "publishedAt": "2026-08-08",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "credential-boundary",
+      "observedChange": "Codex introduced file-backed workload JWT exchange to short-lived ChatGPT credentials with caching, refresh and request coalescing; an adjacent change removes launch-context identity variables from executions, MCP servers, hooks, Git and remote child processes.",
+      "observedChange_zh": "Codex 引入文件型 Workload JWT 到短期 ChatGPT Credential 的交换，并支持缓存、刷新与请求合并；相邻改动同时从 Execution、MCP、Hook、Git 与远程子进程中移除 Launch Context 身份变量。",
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260809-G-004",
+      "pipeline": "github-engineering",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "title": "OpenAI Agents preserves session state across streamed guardrails and cancelled compaction replacement",
+      "title_zh": "OpenAI Agents 在流式 Guardrail 与取消 Compaction 替换时恢复 Session State",
+      "sourceUrl": "https://github.com/openai/openai-agents-python/commit/cdde4d651d3c6c99b1097ca3c95d21ec038bda53",
+      "publishedAt": "2026-08-08",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "session-recovery",
+      "observedChange": "Two adjacent runtime fixes preserve streamed guardrail session state and restore pre-replacement session history when compaction replacement is cancelled, keeping session persistence aligned with the accepted execution path instead of partial transformations.",
+      "observedChange_zh": "相邻两项 Runtime 修复分别保留流式 Guardrail 的 Session State，并在 Compaction Replacement 被取消时恢复替换前 Session History，使持久状态继续对应被接受的执行路径而非中间态。",
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260809-G-005",
+      "pipeline": "github-engineering",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "title": "Claude Code 2.1.225 tightens cross-session reliability, trust, and remote recovery",
+      "title_zh": "Claude Code 2.1.225 收紧跨 Session 可靠性、Workspace Trust 与远程恢复",
+      "sourceUrl": "https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md",
+      "publishedAt": "2026-08-08",
+      "evidenceLevel": "official_release_changelog",
+      "changeType": "cross-session-runtime",
+      "observedChange": "Claude Code 2.1.225 adds a workspace-trust prompt to claude agents and fixes cross-session message parking, Remote Control history after compaction resume, headless OAuth replacement, MCP OAuth bursts, stuck web sessions and self-hosted runner startup validation; SendMessage can also initiate remote-session conversations by name.",
+      "observedChange_zh": "Claude Code 2.1.225 为 claude agents 增加 Workspace Trust Prompt，并修复跨 Session 消息滞留、Compaction Resume 后 Remote Control History、Headless OAuth Token 替换、MCP OAuth 401 Burst、Web Session 误判卡死与 Self-hosted Runner 启动校验；SendMessage 还可按名称主动建立远程 Session 对话。",
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260809-G-006",
+      "pipeline": "github-engineering",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "title": "CrewAI separates coding-agent identity from runtime execution context",
+      "title_zh": "CrewAI 将 Coding Agent 身份与 Runtime 执行环境拆分为独立遥测维度",
+      "sourceUrl": "https://github.com/crewAIInc/crewAI/commit/92012aec55314e09450a9a6a8d9d3251cc849a13",
+      "publishedAt": "2026-08-08",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "runtime-observability",
+      "observedChange": "CrewAI split one overloaded telemetry field into coding-agent identity and runtime context, added project_id, distinguished CI/serverless/PaaS/container/editor contexts, and aligned environment-event detection to the same assistant-precedence table.",
+      "observedChange_zh": "CrewAI 将原先混合两个问题的遥测字段拆为 Coding Agent Identity 与 Runtime Context，新增 project_id，区分 CI、Serverless、PaaS、Container 与 Editor Terminal，并让 Environment Event Detection 与同一套 Agent Precedence 规则保持一致。",
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260809-G-007",
+      "pipeline": "github-engineering",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
+      "title": "LangGraph makes checkpoint conformance catch persisted delta-history migration failures",
+      "title_zh": "LangGraph 用 Checkpoint Conformance 捕获持久化 Delta History 迁移缺陷",
+      "sourceUrl": "https://github.com/langchain-ai/langgraph/commit/d569e18f4bd78b7652cb88c84b8dd098057e4f7d",
+      "publishedAt": "2026-08-07",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "state-persistence-conformance",
+      "observedChange": "LangGraph repaired Postgres delta-history seed detection for migrated plain values and then enabled the shared conformance suite for SQLite and Postgres; turning conformance on immediately exposed a real persisted-state bug that had been silently skipped.",
+      "observedChange_zh": "LangGraph 修复迁移线程中 Plain Value 的 Postgres Delta History Seed 检测，并随后为 SQLite 与 Postgres 真正启用共享 Conformance Suite；该 Suite 一启用就捕获了此前被静默 Skip 的真实持久状态缺陷。",
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260809-G-008",
+      "pipeline": "github-engineering",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "title": "OpenHands adds a typed agent action for launching child conversations",
+      "title_zh": "OpenHands 新增用于启动本地或 Cloud 子 Conversation 的类型化 Agent Action",
+      "sourceUrl": "https://github.com/OpenHands/OpenHands/commit/e882651e29ee221305229a72b044fcecfdc609b3",
+      "publishedAt": "2026-08-07",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "agent-delegation",
+      "observedChange": "OpenHands added a typed agent action that launches local or Cloud child conversations, alongside automation tagging and recognition changes, making delegation an explicit runtime action rather than an implicit conversational convention.",
+      "observedChange_zh": "OpenHands 增加类型化 Agent Action，可启动本地或 Cloud 子 Conversation，并配套 Automation Tag Recognition，使 Delegation 更接近显式 Runtime Action，而不是隐含在自然语言约定中。",
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260809-G-009",
+      "pipeline": "github-engineering",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "title": "Phoenix turns sprint and roadmap maintenance into dry-run-first skills with stale-snapshot guards",
+      "title_zh": "Phoenix 将 Sprint 与 Roadmap 维护做成 Dry-run 优先并带 Stale Snapshot Guard 的 Skill",
+      "sourceUrl": "https://github.com/Arize-ai/phoenix/commit/2bb26ab5f358c2cd54ee09646b0c35c6b58e9ecc",
+      "publishedAt": "2026-08-08",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "managed-work-skill",
+      "observedChange": "Phoenix expanded its GitHub skill into sprint close-out, rollover, hygiene and roadmap tooling, with writers dry-run by default; follow-up fixes define stranded work against completed iterations and refuse stale snapshots for writes unless explicitly overridden.",
+      "observedChange_zh": "Phoenix 将 GitHub Skill 扩展为 Sprint Close-out、Rollover、Board Hygiene 与 Roadmap 工具，写操作默认 Dry-run；后续修复将 Stranded Work 绑定到已完成 Iteration，并在写入时拒绝过期 Snapshot，除非显式 Override。",
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260809-G-010",
+      "pipeline": "github-engineering",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "title": "Browser Use surfaces MCP application errors as failed agent actions",
+      "title_zh": "Browser Use 将 MCP Application Error 显式映射为失败 Agent Action",
+      "sourceUrl": "https://github.com/browser-use/browser-use/commit/8651458987cc911ee96a5d31478a3da5aa625bd9",
+      "publishedAt": "2026-08-03",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "tool-error-semantics",
+      "observedChange": "Browser Use now checks MCP CallToolResult.isError and maps application-level tool failures to ActionResult(error=..., success=false) instead of stringifying them into success-shaped results; regression tests cover both error and success paths.",
+      "observedChange_zh": "Browser Use 开始检查 MCP CallToolResult.isError，将 Application-level Tool Failure 映射为 ActionResult(error=..., success=false)，而不是把错误内容字符串化为成功形态结果；回归测试同时覆盖 Error 与 Success 路径。",
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260809-G-011",
+      "pipeline": "github-engineering",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
+      "title": "SWE-bench is replacing ad-hoc v5 generation helpers with a canonical local dataset/build path",
+      "title_zh": "SWE-bench 正用统一 Local Dataset / Build Path 替换临时 v5 生成工具",
+      "sourceUrl": "https://github.com/SWE-bench/SWE-bench/commit/cd37836ffec01d01a0d699a80a039d84ff2cebfe",
+      "publishedAt": "2026-08-08",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "evaluation-infrastructure",
+      "observedChange": "SWE-bench removed the temporary make_v5 dataset and Dockerfile helpers after superseding them with build_local_datasets.py and sb_dockerfile_gen, indicating consolidation of benchmark artifact generation around a canonical path.",
+      "observedChange_zh": "SWE-bench 在 build_local_datasets.py 与 sb_dockerfile_gen 取代临时方案后删除 make_v5 Dataset / Dockerfile Helper，表明 Benchmark Artifact Generation 正收敛到统一 Canonical Path。",
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260809-G-012",
+      "pipeline": "github-engineering",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
+      "title": "Langfuse makes conversation deletion transactionally cancel unsettled agent runs",
+      "title_zh": "Langfuse 在删除 Conversation 时事务化取消所有未结清 Agent Run",
+      "sourceUrl": "https://github.com/langfuse/langfuse/commit/ee5e0f15fb5146548968bd9474cdc31d301b98d1",
+      "publishedAt": "2026-08-07",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "agent-run-lifecycle",
+      "observedChange": "Deleting an in-app-agent conversation now cancels its full unsettled run set under the same conversation-row lock used for admission, covering queued, approval-waiting and running states so deleted conversations do not leave orphaned workers or slots.",
+      "observedChange_zh": "删除 In-app Agent Conversation 时，Langfuse 现在会在与 Run Admission 相同的 Conversation Row Lock 下取消全部未结清 Run，覆盖 Queued、Awaiting Approval 与 Running，避免已删除 Conversation 留下孤儿 Worker 或并发 Slot。",
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260809-R-001",
+      "pipeline": "published-research",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "title": "A new AI coding-agent study frames persistent mandate-authority gaps as a lifecycle vulnerability",
+      "title_zh": "新研究将 AI Coding Agent 的持续 Mandate–Authority Gap 定义为生命周期漏洞",
+      "sourceUrl": "https://arxiv.org/abs/2608.05884",
+      "publishedAt": "2026-08-07",
+      "evidenceLevel": "primary_research_preprint",
+      "changeType": "agent-governance",
+      "observedChange": "The preprint argues that coding agents can retain task-conditioned operational authority after the mandate that justified it has changed or expired, and treats the durable mandate-authority gap as a lifecycle control problem rather than a one-shot prompt-safety problem.",
+      "observedChange_zh": "该预印本认为 Coding Agent 可能在原始 Mandate 已变化或失效后继续保留任务条件下的操作 Authority，并将这种持续 Mandate–Authority Gap 视为生命周期控制问题，而非一次性 Prompt Safety 问题。",
+      "confidence": "medium-high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260809-R-002",
+      "pipeline": "published-research",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
+      "title": "DCAS tests coding-agent policies across substituted scaffolds instead of a single harness",
+      "title_zh": "DCAS 通过 Scaffold Substitution 检验 Coding Agent 策略能否跨 Harness 泛化",
+      "sourceUrl": "https://arxiv.org/abs/2608.06113",
+      "publishedAt": "2026-08-07",
+      "evidenceLevel": "primary_research_preprint",
+      "changeType": "cross-scaffold-evaluation",
+      "observedChange": "DCAS studies coding-agent scaffold overfitting by intercepting backend interactions and substituting different scaffolds during evaluation, separating learned problem-solving policy from harness-specific behavior and reporting cross-scaffold generalization interventions.",
+      "observedChange_zh": "DCAS 通过拦截 Backend Interaction 并在评估时替换不同 Scaffold，研究 Coding Agent 对单一 Harness 的过拟合，将 Learned Problem-solving Policy 与 Scaffold-specific Behavior 分离，并报告跨 Scaffold 泛化干预。",
+      "confidence": "medium-high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260809-R-003",
+      "pipeline": "published-research",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "title": "Reusable coding-agent skills are evolved globally with relation graphs and replay verification",
+      "title_zh": "新研究用 Skill Relation Graph 与 Replay Verification 演化全局可复用 Coding Agent Skill",
+      "sourceUrl": "https://arxiv.org/abs/2608.06153",
+      "publishedAt": "2026-08-07",
+      "evidenceLevel": "primary_research_preprint",
+      "changeType": "skill-evolution",
+      "observedChange": "The preprint proposes globally reusable skill evolution for coding agents using a Skill Relation Graph, cluster-level consolidation and replay-driven verification, and evaluates the approach across OpenHands, mini-SWE-agent and an industrial coding agent.",
+      "observedChange_zh": "该预印本提出面向 Coding Agent 的全局可复用 Skill Evolution，以 Skill Relation Graph、Cluster-level Consolidation 与 Replay-driven Verification 组织 Skill，并在 OpenHands、mini-SWE-agent 与工业 Coding Agent 上评估。",
+      "confidence": "medium-high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260809-R-004",
+      "pipeline": "published-research",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "title": "Agentic Nesting proposes hierarchical stewardship around legacy applications",
+      "title_zh": "Agentic Nesting 提出围绕 Legacy Application 的层级化 Agent Stewardship",
+      "sourceUrl": "https://arxiv.org/abs/2608.05159",
+      "publishedAt": "2026-08-07",
+      "evidenceLevel": "primary_research_preprint",
+      "changeType": "agentic-application-architecture",
+      "observedChange": "Agentic Nesting proposes encapsulating legacy applications behind autonomous agent proxies and composing them under hierarchical orchestration, treating stewardship and delegation boundaries as an architectural layer over existing software rather than requiring full replacement.",
+      "observedChange_zh": "Agentic Nesting 提出用 Autonomous Agent Proxy 封装 Legacy Application，并在层级 Orchestration 下组合，使 Stewardship 与 Delegation Boundary 成为既有软件之上的架构层，而非要求整体替换。",
+      "confidence": "medium-high",
+      "triageStatus": "signal"
+    }
+  ]
+}
