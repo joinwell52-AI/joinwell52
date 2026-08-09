@@ -12,6 +12,12 @@ on:
       - "package.json"
       - "package-lock.json"
       - ".github/workflows/deploy-research-center-pages.yml"
+  workflow_run:
+    workflows:
+      - "Research Runtime Scheduler V3.0"
+      - "Complete Reading 2026-08-09"
+    types:
+      - completed
   workflow_dispatch:
 
 permissions:
@@ -23,12 +29,19 @@ concurrency:
 
 jobs:
   build:
+    # A failed upstream Runtime workflow must not publish an unverified state.
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     name: Build Research Center
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          # workflow_run executes in the context of the default branch. Always build current
+          # authoritative main so a GITHUB_TOKEN-authored Runtime commit is included.
+          ref: main
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -63,14 +76,10 @@ jobs:
           ]
 
           const missing = requiredRoutes.filter((file) => !fs.existsSync(path.join(dist, file)))
-          if (missing.length) {
-            throw new Error(`Missing generated routes: ${missing.join(', ')}`)
-          }
+          if (missing.length) throw new Error(`Missing generated routes: ${missing.join(', ')}`)
 
           const runtimeDataPath = path.join('docs', '.vitepress', 'generated', 'runtime-records.json')
-          if (!fs.existsSync(runtimeDataPath)) {
-            throw new Error('Missing generated Runtime data.')
-          }
+          if (!fs.existsSync(runtimeDataPath)) throw new Error('Missing generated Runtime data.')
 
           const runtimeData = JSON.parse(fs.readFileSync(runtimeDataPath, 'utf8'))
           if (runtimeData.schema !== 'research-runtime-center-data/v5') {
@@ -106,6 +115,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          source_sha="$(git rev-parse HEAD)"
 
           cd docs/.vitepress/dist
           touch .nojekyll
@@ -115,10 +125,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add --all
-          git commit -m "deploy: ${GITHUB_SHA}"
+          git commit -m "deploy: ${source_sha}"
 
           git push --force \
             "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
             gh-pages
 
-# Keep this workflow path-sensitive so a maintenance commit can explicitly retrigger Pages.
+# Runtime state may be committed by GITHUB_TOKEN. workflow_run is therefore a first-class
+# synchronization path, not merely a push fallback.
