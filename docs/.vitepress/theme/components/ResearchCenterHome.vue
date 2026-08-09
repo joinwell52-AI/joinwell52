@@ -34,7 +34,7 @@ const copy = computed(() => zh.value ? {
   publications: [
     { version:'A0.7', kind:'主论文', title:['TMPA','架构论文'], status:'投稿前审稿修订版', path:'/zh/publications/tmpa-architecture-paper-a0.7', tone:'paper' },
     { version:'S0.5', kind:'核心规范', title:['TMPA','核心规范'], status:'FCoP 派生可实现草稿', path:'/zh/publications/tmpa-core-specification-s0.5', tone:'spec' },
-    { version:'I0.5', kind:'工程案例', title:['TMPA–FCoP–','CodeFlowMu','实现案例'], status:'WP-13 多 Agent 事实复核', path:'/zh/publications/implementation-case-i0.5', tone:'case' }
+    { version:'I0.7', kind:'工程案例', title:['TMPA–FCoP–','CodeFlowMu','实现案例'], status:'V1.4.1 · C01–C14 14/14', path:'/zh/publications/implementation-case-i0.7', tone:'case' }
   ],
   readPublication: '阅读正式文档',
   engineLabel: '01 · 数字员工生产线',
@@ -108,7 +108,7 @@ const copy = computed(() => zh.value ? {
   publications: [
     { version:'A0.7', kind:'PRIMARY PAPER', title:['TMPA','Architecture Paper'], status:'Pre-submission review', path:'/en/publications/tmpa-architecture-paper-a0.7', tone:'paper' },
     { version:'S0.5', kind:'CORE SPECIFICATION', title:['TMPA Core','Specification'], status:'FCoP-derived implementable draft', path:'/en/publications/tmpa-core-specification-s0.5', tone:'spec' },
-    { version:'I0.5', kind:'ENGINEERING CASE', title:['TMPA–FCoP–','CodeFlowMu','Implementation Case'], status:'WP-13 multi-agent fact check', path:'/en/publications/implementation-case-i0.5', tone:'case' }
+    { version:'I0.7', kind:'ENGINEERING CASE', title:['TMPA–FCoP–','CodeFlowMu','Implementation Case'], status:'V1.4.1 · C01–C14 14/14', path:'/en/publications/implementation-case-i0.7', tone:'case' }
   ],
   readPublication: 'Read formal document',
   engineLabel: '01 · DIGITAL EMPLOYEE PRODUCTION LINE',

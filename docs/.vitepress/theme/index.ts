@@ -178,23 +178,27 @@ function enhanceProductionEngineV13(chinese: boolean) {
     .forEach((element) => { element.textContent = 'V1.3' })
 }
 
-function enhanceImplementationCaseI06(chinese: boolean) {
+function enhanceImplementationCaseI07(chinese: boolean) {
   if (typeof document === 'undefined') return
 
   const casePath = withBase(chinese
-    ? '/zh/publications/implementation-case-i0.6'
-    : '/en/publications/implementation-case-i0.6')
+    ? '/zh/publications/implementation-case-i0.7'
+    : '/en/publications/implementation-case-i0.7')
 
   document.querySelectorAll<HTMLAnchorElement>(
-    '.rc-home a[href*="implementation-case-i0.5"], .rcv5 a[href*="implementation-case-i0.5"]'
+    '.rc-home a[href*="implementation-case-i0.5"], .rcv5 a[href*="implementation-case-i0.5"], .rc-home a[href*="implementation-case-i0.6"], .rcv5 a[href*="implementation-case-i0.6"]'
   ).forEach((anchor) => anchor.setAttribute('href', casePath))
 
   const replacements: Record<string, string> = chinese ? {
-    'I0.5': 'I0.6',
-    'WP-13 多 Agent 事实复核': 'S0.5 作者运行产品证据与 WP-13 治理案例'
+    'I0.5': 'I0.7',
+    'I0.6': 'I0.7',
+    'WP-13 多 Agent 事实复核': 'V1.4.1 · C01–C14 14/14',
+    'S0.5 作者运行产品证据与 WP-13 治理案例': 'V1.4.1 · C01–C14 14/14'
   } : {
-    'I0.5': 'I0.6',
-    'WP-13 multi-agent fact check': 'S0.5 author-run product evidence and the WP-13 governance case'
+    'I0.5': 'I0.7',
+    'I0.6': 'I0.7',
+    'WP-13 multi-agent fact check': 'V1.4.1 · C01–C14 14/14',
+    'S0.5 author-run product evidence and the WP-13 governance case': 'V1.4.1 · C01–C14 14/14'
   }
 
   document.querySelectorAll<HTMLElement>('.rc-home, .rcv5').forEach((root) => {
@@ -245,7 +249,7 @@ function enhancePortal() {
 
   reorderCapabilityCards()
   enhanceProductionEngineV13(chinese)
-  enhanceImplementationCaseI06(chinese)
+  enhanceImplementationCaseI07(chinese)
   enhanceLanguageRouting()
   localizeChineseRuntime()
 }

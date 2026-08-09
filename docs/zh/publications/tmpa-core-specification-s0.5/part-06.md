@@ -121,7 +121,7 @@ Profile 特定工件不会自动成为规范 Core 对象。Profile **MUST** 定�
 
 作者生成的 S0.5 Reference Reader 已通过全部十四项 S0.5 Fixture。另行对 FCoP v3.2.5 参考实现重跑，记录 1,222 passed、2 skipped、3 failed；失败涉及可选 `parent` 字段的保存回读和公开接口暴露。因此，已执行的 C02 S0.5 断言使产品基线为 FAIL。这是有界的参考实现一致性发现，不是 FCoP 协议失败，也不构成完整 S0.5 产品一致性。
 
-S0.4 及其 I0.5 一致性语料库作为不可变历史基线保留，**SHALL NOT** 被改标为 S0.5 证据。I0.6 提供独立的作者运行 S0.5 证据记录，并保留全部产品 FAIL、PARTIAL 与 NOT RUN。S0.5 改变了可观察 Schema、Reader 输出与标准含义，因此每项 S0.5 产品声明都需要自己的固定 S0.5 运行。
+S0.4 及其 I0.5 一致性语料库作为不可变历史基线保留，**SHALL NOT** 被改标为 S0.5 证据。I0.6 提供独立的作者运行 S0.5 证据记录，并保留全部产品 FAIL、PARTIAL 与 NOT RUN。I0.7 提供更新的 CodeFlowMu V1.4.1 固定运行，记录作者本地产品级 14/14 PASS，同时把 I0.6 与 V1.4.0 修复前记录保留为历史。S0.5 改变了可观察 Schema、Reader 输出与标准含义，因此每项 S0.5 产品声明都需要自己的固定 S0.5 运行。
 
 ---
 
