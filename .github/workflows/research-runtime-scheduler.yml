@@ -2,15 +2,12 @@ name: Research Runtime Scheduler V3.0
 
 on:
   schedule:
-    # Offset the heartbeat away from the top-of-hour congestion window.
-    # Each heartbeat treats SCHEDULER.json + Runtime records as the source of truth.
-    # Only dependency-ready work is eligible. The oldest eligible shift opens first,
-    # and a dependency-blocked shift may be retried after that dependency completes.
+    # Offset heartbeat. Time wakes reconciliation; it does not select a stage directly.
     - cron: '2,7,12,17,22,27,32,37,42,47,52,57 * * * *'
   workflow_dispatch:
     inputs:
       runtime_task:
-        description: Formal V5 Runtime task to schedule manually
+        description: Formal V5 Runtime task to request manually; ordered reconciliation may deny it
         required: true
         type: choice
         options:
@@ -33,7 +30,7 @@ concurrency:
 
 jobs:
   schedule-runtime:
-    name: Open V5 Runtime execution slot
+    name: Reconcile and open V5 Runtime execution slot
     runs-on: ubuntu-latest
     steps:
       - name: Checkout authoritative repository
@@ -46,136 +43,29 @@ jobs:
         with:
           node-version: 22
 
-      - name: Resolve due Runtime task
+      - name: Resolve ordered Runtime work
         id: resolve
         shell: bash
         env:
           EVENT_NAME: ${{ github.event_name }}
           MANUAL_TASK: ${{ inputs.runtime_task }}
         run: |
-          node <<'NODE'
-          const fs = require('fs')
-          const path = require('path')
-
-          const manifest = JSON.parse(fs.readFileSync('research/runtime/SCHEDULER.json', 'utf8'))
-          const outputPath = process.env.GITHUB_OUTPUT
-          const neverReopen = new Set(['Running', 'Completed', 'Failed', 'Skipped'])
-          const dependencyOf = {
-            queue: 'discovery',
-            reading: 'queue',
-            analysis: 'reading',
-            production: 'analysis',
-            publication: 'production',
-            weekly: 'publication'
-          }
-          const leadMinutes = 5
-
-          const writeOutput = (values) => {
-            fs.appendFileSync(outputPath, Object.entries(values)
-              .map(([key, value]) => `${key}=${String(value).replace(/\r?\n/g, ' ')}`)
-              .join('\n') + '\n')
-          }
-
-          if (process.env.EVENT_NAME !== 'schedule') {
-            writeOutput({ has_task: 'true', runtime_task: process.env.MANUAL_TASK, reopen_blocked: 'false', reason: 'manual dispatch' })
-            process.exit(0)
-          }
-
-          const parts = Object.fromEntries(new Intl.DateTimeFormat('en-CA', {
-            timeZone: manifest.timezone,
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            weekday: 'long',
-            hour: '2-digit',
-            minute: '2-digit',
-            hourCycle: 'h23'
-          }).formatToParts(new Date()).map((part) => [part.type, part.value]))
-
-          const date = `${parts.year}-${parts.month}-${parts.day}`
-          const nowMinutes = Number(parts.hour) * 60 + Number(parts.minute)
-          const taskById = new Map(manifest.tasks.map((task) => [task.id, task]))
-          const recordCache = new Map()
-
-          const recordForTask = (task) => {
-            const key = `${task.family}:${date}`
-            if (recordCache.has(key)) return recordCache.get(key)
-            const recordPath = path.join(
-              manifest.recordRoots[task.family],
-              parts.year,
-              parts.month,
-              `${date}-${task.family}-runtime.json`
-            )
-            const record = fs.existsSync(recordPath) ? JSON.parse(fs.readFileSync(recordPath, 'utf8')) : null
-            recordCache.set(key, record)
-            return record
-          }
-
-          const statusOf = (taskId) => {
-            const task = taskById.get(taskId)
-            if (!task) return 'Waiting'
-            return recordForTask(task)?.taskStatus?.[taskId] || 'Waiting'
-          }
-
-          const dependencyReady = (task) => {
-            const dependencyId = dependencyOf[task.id]
-            return !dependencyId || statusOf(dependencyId) === 'Completed'
-          }
-
-          const dependencyBlockedAndReady = (task, record) => {
-            const dependencyId = dependencyOf[task.id]
-            if (!dependencyId || !dependencyReady(task)) return false
-            const result = record?.results?.[task.id]
-            if (!result) return false
-            const declared = String(result.blockedBy || result.dependency || '').trim().toLowerCase()
-            if (declared) return declared === dependencyId.toLowerCase()
-            const reason = [result.reason, result.reason_zh, result.next, result.next_zh]
-              .filter((value) => typeof value === 'string')
-              .join(' ')
-              .toLowerCase()
-            return reason.includes(dependencyId.toLowerCase()) || reason.includes(`research runtime ${dependencyId.toLowerCase()}`)
-          }
-
-          const overdue = manifest.tasks.flatMap((task) => {
-            if (task.schedule.kind === 'weekly' && !task.schedule.days?.includes(parts.weekday)) return []
-
-            const [hour, minute] = task.schedule.time.split(':').map(Number)
-            const scheduledMinutes = hour * 60 + minute
-            const delta = scheduledMinutes - nowMinutes
-            if (delta > leadMinutes) return []
-
-            const record = recordForTask(task)
-            const currentStatus = record?.taskStatus?.[task.id] || 'Waiting'
-            if (neverReopen.has(currentStatus)) return []
-
-            if (currentStatus === 'Blocked') {
-              if (!dependencyBlockedAndReady(task, record)) return []
-              return [{ task, scheduledMinutes, latenessMinutes: Math.max(0, nowMinutes - scheduledMinutes), reopenBlocked: true }]
-            }
-
-            if (currentStatus !== 'Waiting') return []
-            if (!dependencyReady(task)) return []
-
-            return [{ task, scheduledMinutes, latenessMinutes: Math.max(0, nowMinutes - scheduledMinutes), reopenBlocked: false }]
-          }).sort((a, b) => a.scheduledMinutes - b.scheduledMinutes || a.task.id.localeCompare(b.task.id))
-
-          if (!overdue.length) {
-            writeOutput({ has_task: 'false', runtime_task: 'none', reopen_blocked: 'false', reason: `no dependency-ready overdue task at ${date} ${parts.hour}:${parts.minute}` })
-            process.exit(0)
-          }
-
-          const selected = overdue[0]
-          writeOutput({
-            has_task: 'true',
-            runtime_task: selected.task.id,
-            reopen_blocked: selected.reopenBlocked ? 'true' : 'false',
-            reason: `self-healing heartbeat at ${date} ${parts.hour}:${parts.minute}; formal time ${selected.task.schedule.time}; lateness ${selected.latenessMinutes}m; mode ${selected.reopenBlocked ? 'retry-blocked' : 'open-waiting'}; ready queue ${overdue.map((item) => item.task.id).join(',')}`
-          })
-          NODE
+          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            node scripts/runtime-reconcile.mjs --manual "$MANUAL_TASK"
+          else
+            node scripts/runtime-reconcile.mjs
+          fi
 
       - name: Report idle heartbeat
-        if: steps.resolve.outputs.has_task != 'true'
+        if: steps.resolve.outputs.has_task != 'true' && steps.resolve.outputs.state_changed != 'true'
         run: echo "${{ steps.resolve.outputs.reason }}"
+
+      - name: Report repaired order violation
+        if: steps.resolve.outputs.state_changed == 'true'
+        run: |
+          echo "Ordered reconciliation repaired Runtime control-plane state."
+          echo "${{ steps.resolve.outputs.reason }}"
+          echo "Changed records: ${{ steps.resolve.outputs.changed_record_paths }}"
 
       - name: Persist Runtime Running state
         if: steps.resolve.outputs.has_task == 'true'
@@ -196,7 +86,7 @@ jobs:
         shell: bash
         env:
           TASK_IDS: ${{ steps.runtime.outputs.task_ids }}
-          RUNTIME_DATE: ${{ steps.runtime.outputs.runtime_date }}
+          RUNTIME_DATE: ${{ steps.resolve.outputs.runtime_date }}
         run: |
           if [[ "$TASK_IDS" == *"discovery"* ]]; then
             node scripts/research-intelligence.mjs initialize --date "$RUNTIME_DATE"
@@ -205,28 +95,28 @@ jobs:
           fi
 
       - name: Synchronize readable Runtime ledger
-        if: steps.resolve.outputs.has_task == 'true'
+        if: steps.resolve.outputs.has_task == 'true' || steps.resolve.outputs.state_changed == 'true'
         shell: bash
         env:
-          RUNTIME_DATE: ${{ steps.runtime.outputs.runtime_date }}
+          RUNTIME_DATE: ${{ steps.resolve.outputs.runtime_date }}
         run: node scripts/runtime-markdown.mjs render --date "$RUNTIME_DATE"
 
-      - name: Validate four Runtime systems
-        if: steps.resolve.outputs.has_task == 'true'
+      - name: Validate Runtime and readable ledger
+        if: steps.resolve.outputs.has_task == 'true' || steps.resolve.outputs.state_changed == 'true'
         shell: bash
         env:
-          RUNTIME_DATE: ${{ steps.runtime.outputs.runtime_date }}
+          RUNTIME_DATE: ${{ steps.resolve.outputs.runtime_date }}
         run: |
           npm run runtime:validate
           node scripts/runtime-markdown.mjs validate --date "$RUNTIME_DATE"
 
-      - name: Commit control-plane Running state
-        if: steps.resolve.outputs.has_task == 'true'
+      - name: Commit reconciled control-plane state
+        if: steps.resolve.outputs.has_task == 'true' || steps.resolve.outputs.state_changed == 'true'
         id: commit
         shell: bash
         env:
-          TASK_NAMES: ${{ steps.runtime.outputs.task_names }}
-          RUNTIME_DATE: ${{ steps.runtime.outputs.runtime_date }}
+          RUNTIME_TASK: ${{ steps.resolve.outputs.runtime_task }}
+          RUNTIME_DATE: ${{ steps.resolve.outputs.runtime_date }}
         run: |
           git config user.name "joinwell52 Research Runtime"
           git config user.email "actions@users.noreply.github.com"
@@ -238,7 +128,9 @@ jobs:
             exit 0
           fi
 
-          git commit -m "runtime(v5): open ${TASK_NAMES} control-plane state for ${RUNTIME_DATE}"
+          label="$RUNTIME_TASK"
+          if [[ "$label" == "none" ]]; then label="order-reconciliation"; fi
+          git commit -m "runtime(v5): reconcile ${label} control-plane state for ${RUNTIME_DATE}"
           commit_sha="$(git rev-parse HEAD)"
 
           for attempt in 1 2 3; do
@@ -249,32 +141,53 @@ jobs:
             fi
             git rebase --abort || true
             if [[ "$attempt" -eq 3 ]]; then
-              echo "Unable to publish Runtime Running state after three attempts."
+              echo "Unable to publish reconciled Runtime state after three attempts."
               exit 1
             fi
             sleep $((attempt * 5))
           done
 
-      - name: Verify durable Running state
+      - name: Verify durable reconciled state
         if: steps.commit.outputs.committed == 'true'
         shell: bash
         env:
           COMMIT_SHA: ${{ steps.commit.outputs.commit_sha }}
           RUNTIME_TASK: ${{ steps.resolve.outputs.runtime_task }}
-          RECORD_PATHS: ${{ steps.runtime.outputs.record_paths }}
+          TASK_RECORD_PATHS: ${{ steps.runtime.outputs.record_paths }}
+          CHANGED_RECORD_PATHS: ${{ steps.resolve.outputs.changed_record_paths }}
         run: |
           git fetch origin main
           git merge-base --is-ancestor "$COMMIT_SHA" origin/main
 
-          record_path="${RECORD_PATHS%%,*}"
-          git show "$COMMIT_SHA:$record_path" > /tmp/runtime-start-state.json
+          record_paths="$TASK_RECORD_PATHS"
+          if [[ -z "$record_paths" ]]; then record_paths="$CHANGED_RECORD_PATHS"; fi
+          record_path="${record_paths%%,*}"
+          git show "$COMMIT_SHA:$record_path" > /tmp/runtime-reconciled-state.json
+
           node <<'NODE'
           const fs = require('fs')
-          const record = JSON.parse(fs.readFileSync('/tmp/runtime-start-state.json', 'utf8'))
-          const task = process.env.RUNTIME_TASK
-          if (record.status !== 'Running') throw new Error(`Expected overall Running, got ${record.status}`)
-          if (record.taskStatus?.[task] !== 'Running') throw new Error(`Expected taskStatus.${task}=Running, got ${record.taskStatus?.[task]}`)
-          const opened = record.timeline?.some((event) => event.task === task && event.event === 'Execution Slot Opened' && event.status === 'Running')
-          if (!opened) throw new Error(`Missing Execution Slot Opened / Running event for ${task}`)
-          console.log(`Verified durable control-plane Running state for ${task}.`)
+          const record = JSON.parse(fs.readFileSync('/tmp/runtime-reconciled-state.json', 'utf8'))
+          const requestedTask = process.env.RUNTIME_TASK
+          const dependencyOf = {
+            queue: 'discovery',
+            reading: 'queue',
+            analysis: 'reading',
+            production: 'analysis',
+            publication: 'production'
+          }
+
+          for (const [task, dependency] of Object.entries(dependencyOf)) {
+            if (record.taskStatus?.[task] === 'Running' && record.taskStatus?.[dependency] !== 'Completed') {
+              throw new Error(`Order violation remains: ${task}=Running while ${dependency}=${record.taskStatus?.[dependency]}`)
+            }
+          }
+
+          if (requestedTask && requestedTask !== 'none') {
+            if (record.taskStatus?.[requestedTask] !== 'Running') {
+              throw new Error(`Expected taskStatus.${requestedTask}=Running, got ${record.taskStatus?.[requestedTask]}`)
+            }
+            const opened = record.timeline?.some((event) => event.task === requestedTask && event.event === 'Execution Slot Opened' && event.status === 'Running')
+            if (!opened) throw new Error(`Missing Execution Slot Opened / Running event for ${requestedTask}`)
+          }
+          console.log('Verified durable ordered Runtime reconciliation state.')
           NODE
