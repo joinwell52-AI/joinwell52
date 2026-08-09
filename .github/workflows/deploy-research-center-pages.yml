@@ -109,6 +109,11 @@ jobs:
           console.log(`Verified ${requiredRoutes.length} public routes, Runtime V5 data and ordered Runtime state.`)
           NODE
 
+          # Publication is not considered publicly deliverable merely because article files exist.
+          # The latest formal release must be routable and discoverable from the bilingual Research
+          # index and its corresponding column indexes before gh-pages can be updated.
+          node scripts/publication-visibility.mjs
+
       - name: Publish gh-pages branch
         env:
           GH_TOKEN: ${{ github.token }}
