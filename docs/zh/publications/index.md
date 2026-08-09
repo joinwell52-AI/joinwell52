@@ -7,10 +7,10 @@
 | 类型 | 文档 | 当前版本 | 状态 |
 |---|---|---:|---|
 | Research Runtime Center | [运营中心](../runtime/) | **V5.0** | 架构冻结 / 持续运行 |
-| 运行调度器 | [Research Runtime Center V5.0 规范](../runtime/v5) | **Scheduler V3.0** | Active |
+| 运行调度器 | [Research Runtime Center V5.0 规范](../runtime/v5) | **Scheduler V3.0** | Active / Dependency-aware recovery |
 | 研究情报系统 | [Research Intelligence System](../runtime/research-intelligence) | V1.0 | Active |
 
-V5 建立四套相互独立的 Runtime。Daily Runtime 负责六个当天阶段：Discovery、Queue、Reading、Analysis、Production、Publication；Weekly、Academic、Research Program 使用独立调度和独立记录。Scheduler 共定义九个正式任务。
+V5 建立四套相互独立的 Runtime。Daily Runtime 负责 Discovery、Queue、Reading、Analysis、Production、Publication 六阶段；周日另有 20:30 Weekly，因此周日当天共 7 个正式任务。Scheduler 使用 durable Runtime facts 做依赖门禁、欠班追赶和 Blocked 恢复。
 
 历史记录继续保留：
 
@@ -21,20 +21,20 @@ V5 建立四套相互独立的 Runtime。Daily Runtime 负责六个当天阶段�
 
 | 类型 | 文档 | 版本 | 状态 |
 |---|---|---:|---|
-| 数字员工能力 | [研究报告生产机](./research-report-production-engine-v1.3) | **V1.3** | Current Capability Release |
-| 使用说明 | [V1.3 快速开始](./research-report-production-engine-v1.3-quickstart) | V1.3 | Downloadable |
+| 数字员工能力 | [研究报告生产机](./research-report-production-engine-v2.0) | **V2.0** | **Current Capability Release** |
+| 使用说明 | [V2.0 快速开始](./research-report-production-engine-v2.0-quickstart) | V2.0 | Downloadable |
+| 历史能力 | [研究报告生产机 V1.3](./research-report-production-engine-v1.3) | V1.3 | Historical Release |
 
-研究报告生产机 V1.3 是基于 ChatGPT 的 Research Analyst Worker 与文本驱动生产系统。在 Runtime Center V5 中，它通过以下链路运行：
+V2.0 从“按时间触发的研究生产线”升级为“依赖驱动、可追赶、可恢复、自校验的数字研究员 Runtime”：
 
-- Research Skills V2.0；
-- AI 平台、GitHub 工程、论文与研究成果三条情报管线；
-- 数字员工、行业架构、开源工程三个栏目分别选题；
-- 11:00 Deep Reading；
-- 13:00 Research Analysis；
-- 15:00 完整报告生产；
-- 20:00 GitHub 与网站发版；
-- Daily、Weekly、Academic、Program 四类独立 Runtime Record；
-- 班次成果汇报与 Commit Verify。
+- GitHub cron 是唤醒信号，不是调度事实源；
+- `SCHEDULER.json + Runtime Record` 决定真正应执行的班次；
+- 严格执行 Discovery → Queue → Reading → Analysis → Production → Publication；
+- 周日 Publication 完成后才允许 Weekly；
+- 漏班从最早可执行阶段逐个追赶；
+- 依赖型 Blocked 在依赖完成后受控重开；
+- Runtime V5 与 Markdown ledger 每次状态变更后执行自检；
+- 2026-08-09 Reading 漏班与 Analysis Blocked 是首个真实 Recovery Case。
 
 下载入口：
 
