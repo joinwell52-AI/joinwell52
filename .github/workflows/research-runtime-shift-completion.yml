@@ -25,6 +25,11 @@ on:
         description: Repository path to runtime-shift-result/v2 JSON
         required: true
         type: string
+      allow_historical:
+        description: Explicit governed recovery for a prior Runtime date
+        required: false
+        default: false
+        type: boolean
   push:
     branches: [main]
     paths:
@@ -67,6 +72,7 @@ jobs:
           INPUT_TASK: ${{ inputs.runtime_task }}
           INPUT_DATE: ${{ inputs.runtime_date }}
           INPUT_RESULT: ${{ inputs.result_path }}
+          INPUT_ALLOW_HISTORICAL: ${{ inputs.allow_historical }}
           BEFORE_SHA: ${{ github.event.before }}
           EVENT_SHA: ${{ github.sha }}
         run: |
@@ -76,6 +82,7 @@ jobs:
             echo "runtime_task=$INPUT_TASK" >> "$GITHUB_OUTPUT"
             echo "runtime_date=$INPUT_DATE" >> "$GITHUB_OUTPUT"
             echo "result_path=$INPUT_RESULT" >> "$GITHUB_OUTPUT"
+            echo "allow_historical=${INPUT_ALLOW_HISTORICAL:-false}" >> "$GITHUB_OUTPUT"
             echo "request_path=workflow_dispatch" >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -101,10 +108,14 @@ jobs:
             throw new Error('request.resultPath must be a Runtime result JSON path')
           }
           if (!fs.existsSync(request.resultPath)) throw new Error(`Result file does not exist: ${request.resultPath}`)
+          if (request.allowHistorical !== undefined && typeof request.allowHistorical !== 'boolean') {
+            throw new Error('request.allowHistorical must be boolean when present')
+          }
           const output = process.env.GITHUB_OUTPUT
           fs.appendFileSync(output, `runtime_task=${request.task}\n`)
           fs.appendFileSync(output, `runtime_date=${request.date}\n`)
           fs.appendFileSync(output, `result_path=${request.resultPath}\n`)
+          fs.appendFileSync(output, `allow_historical=${request.allowHistorical === true}\n`)
           fs.appendFileSync(output, `request_path=${process.env.REQUEST_PATH}\n`)
           NODE
 
@@ -113,7 +124,8 @@ jobs:
           RUNTIME_TASK: ${{ steps.request.outputs.runtime_task }}
           RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
           RESULT_PATH: ${{ steps.request.outputs.result_path }}
-        run: node scripts/runtime-shift-complete.mjs --task "$RUNTIME_TASK" --date "$RUNTIME_DATE" --result "$RESULT_PATH"
+          ALLOW_HISTORICAL: ${{ steps.request.outputs.allow_historical }}
+        run: node scripts/runtime-shift-complete.mjs --task "$RUNTIME_TASK" --date "$RUNTIME_DATE" --result "$RESULT_PATH" --allow-historical "${ALLOW_HISTORICAL:-false}"
 
       - name: Render and validate
         env:
@@ -168,5 +180,6 @@ jobs:
           const record = JSON.parse(fs.readFileSync(file,'utf8'))
           if (record.taskStatus?.[task.id] !== 'Completed') throw new Error(`Expected ${task.id}=Completed`)
           if (record.results?.[task.id]?.status !== 'Completed') throw new Error(`Missing durable Completed result for ${task.id}`)
-          console.log(`Verified ${task.id}=Completed. Scheduler workflow_run will immediately reconcile the next overdue stage.`)
+          if (record.results?.[task.id]?.runtimeDate !== process.env.RUNTIME_DATE) throw new Error(`Completed result runtimeDate mismatch for ${task.id}`)
+          console.log(`Verified ${task.id}=Completed for ${process.env.RUNTIME_DATE}. Scheduler workflow_run will immediately reconcile the next overdue stage.`)
           NODE
