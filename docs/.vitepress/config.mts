@@ -42,7 +42,8 @@ const enSidebar = {
     { text: 'TMPA Architecture Paper A0.9', link: '/en/publications/tmpa-architecture-paper-a0.9' },
     { text: 'TMPA Core Specification S0.6', link: '/en/publications/tmpa-core-specification-s0.6' },
     { text: 'Implementation Case I0.8', link: '/en/publications/implementation-case-i0.8' },
-    { text: 'TMPA V1.0 Readiness Audit', link: '/en/publications/tmpa-v1.0-release-readiness-audit' }
+    { text: 'TMPA V1.0 Readiness Audit', link: '/en/publications/tmpa-v1.0-release-readiness-audit' },
+    { text: 'TMPA V1.0 P0 Closure RC1', link: '/en/publications/tmpa-v1.0-p0-closure-rc1' }
   ]}]
 }
 
@@ -88,7 +89,8 @@ const zhSidebar = {
     { text: 'TMPA 架构论文 A0.9', link: '/zh/publications/tmpa-architecture-paper-a0.9' },
     { text: 'TMPA 核心规范 S0.6', link: '/zh/publications/tmpa-core-specification-s0.6' },
     { text: '工程实现案例 I0.8', link: '/zh/publications/implementation-case-i0.8' },
-    { text: 'TMPA V1.0 发布就绪审查', link: '/zh/publications/tmpa-v1.0-release-readiness-audit' }
+    { text: 'TMPA V1.0 发布就绪审查', link: '/zh/publications/tmpa-v1.0-release-readiness-audit' },
+    { text: 'TMPA V1.0 P0 关闭记录 RC1', link: '/zh/publications/tmpa-v1.0-p0-closure-rc1' }
   ]}]
 }
 

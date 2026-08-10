@@ -74,8 +74,8 @@ NOT RUN: 0
 FAIL: 0
 product_reader_called: true
 reference_reader_called: false
-input_bundle_digest: sha256:251914c0d04a48de1697fb735c00c070d1466fcc00d7f94a61fa2f19ae1243fa
-result_digest: sha256:f16ab28fb4a927e38f9d2a88cb2f9e24d8ed98afd18a54a492176964ea3a3cc7f2
+input_bundle_digest: sha256:251914ee55922d20c9bd23943a4ff445bccaa5835e1fcc11b8562f3f384243fa
+result_digest: sha256:f16ab28e694003a25ba83cb9c94e85d757860201caca2f489f32e4d1ca3cc7f2
 ```
 
 证据包内的 `tsx` 启动器在本次受限审查沙箱中无法创建临时 IPC Socket（`EPERM`）。从官方 npm registry 完成依赖安装并通过输入验证后，本次使用 Node 的 TypeScript 类型剥离模式执行同一 Runner，得到上述结果。这属于环境限制，不是 Conformance 断言失败；正式发布包仍应在不受限的干净机器上再执行一次标准命令。

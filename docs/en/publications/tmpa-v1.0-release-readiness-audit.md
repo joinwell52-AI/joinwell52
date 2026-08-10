@@ -74,8 +74,8 @@ NOT RUN: 0
 FAIL: 0
 product_reader_called: true
 reference_reader_called: false
-input_bundle_digest: sha256:251914c0d04a48de1697fb735c00c070d1466fcc00d7f94a61fa2f19ae1243fa
-result_digest: sha256:f16ab28fb4a927e38f9d2a88cb2f9e24d8ed98afd18a54a492176964ea3a3cc7f2
+input_bundle_digest: sha256:251914ee55922d20c9bd23943a4ff445bccaa5835e1fcc11b8562f3f384243fa
+result_digest: sha256:f16ab28e694003a25ba83cb9c94e85d757860201caca2f489f32e4d1ca3cc7f2
 ```
 
 The packaged `tsx` launcher could not open its temporary IPC socket inside this review sandbox (`EPERM`). After dependency installation from the canonical npm registry and successful input verification, the same TypeScript runner was executed with Node's type-stripping mode and produced the recorded result above. This is an environment limitation, not a failed conformance assertion; an unrestricted clean-machine rerun remains part of release packaging.

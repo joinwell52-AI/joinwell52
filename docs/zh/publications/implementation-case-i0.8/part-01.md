@@ -1,6 +1,11 @@
 ---
 title: TMPA–FCoP–CodeFlowMu 实施案例 — 草稿 I0.8
 outline: deep
+citation:
+  work: TMPA Implementation Case
+  identifier: TMPA-CASE-I0.8
+  language: zh
+  metadata: /releases/tmpa/v1.0-rc1/metadata/implementation-case.zh.cff
 ---
 
 <ArticleCover
@@ -67,7 +72,7 @@ CodeFlowMu V1.6.0 应用执行与消费层
 WP-13 与其他有限案例
 ```
 
-TMPA 理论指导 CodeFlowMu 的工程方向，Core S0.6 固定本报告接受评估的规范行为。FCoP 是 CodeFlowMu 使用的现实协作与证据协议，不是应用程序；`fcop` 与 `fcop-mcp` 是参考实现，不等于协议本身。按照 CodeFlowMu 工程架构 [7]，CodeFlowMu 是应用执行与消费层：负责产生协作事实、运行 Adapter 与 Reader、投影治理图，并让恢复与治理门禁消费重建结果。WP-13 与小典 AI 继续作为工程谱系中的有限证据来源，不能替代 S0.6 产品运行。
+TMPA 理论指导 CodeFlowMu 的工程方向，Core S0.6 固定本报告接受评估的规范行为。FCoP 是 CodeFlowMu 使用的现实协作与证据协议，不是应用程序；`fcop` 与 `fcop-mcp` 是参考实现，不等于协议本身。按照 CodeFlowMu 工程架构 [7]，CodeFlowMu 是应用执行与消费层：负责产生协作事实、运行 Adapter 与 Reader、投影治理图，并让恢复与治理门禁消费重建结果。WP-13 保留为有界的证据准入案例；小典 AI 仅作为作者报告的工程谱系，不纳入评估证据；二者都不能替代 S0.6 产品运行。
 
 概念依赖与历史形成过程保持分离：
 

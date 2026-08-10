@@ -101,7 +101,7 @@ The study follows six linked stages:
 | problem diagnosis | analyze coordination gaps in chats, logs, workflows, and the XiaoDian lineage | DR1–DR8; RQ1 |
 | objectives for a solution | derive minimum-infrastructure, responsibility, lifecycle, conflict, and reconstruction requirements | DR1–DR8; RQ1–RQ2 |
 | artifact construction | define objects, streams, authority, lifecycle, and reconstruction rules | TMPA architecture; RQ2 |
-| demonstration | trace the FCoP protocol and the TMPA-guided CodeFlowMu, XiaoDian, and WP-13 paths to TMPA concepts | implementation feasibility; RQ3 |
+| demonstration | trace the FCoP protocol and the pinned TMPA-guided CodeFlowMu and WP-13 paths to TMPA concepts | implementation feasibility; RQ3; XiaoDian lineage excluded from evaluation |
 | evaluation | examine invariants and counterexamples; execute the Reference Reader and product evidence matrix | structural and bounded engineering results; RQ1–RQ3 |
 | communication | publish versioned paper, specification, implementation report, fixtures, and evidence boundaries | reproducible review surface |
 
@@ -123,7 +123,7 @@ TMPA theory → Core requirements → FCoP protocol profile → CodeFlowMu engin
 
 **Figure 6. Reference-instantiation path used in the engineering evaluation.**
 
-FCoP is not identical to TMPA. It realizes a file-based subset through named textual artifacts, lifecycle directories, append-oriented transition evidence, schemas, runtime tools, and adapters [7]–[12]. CodeFlowMu is the engineering system developed under TMPA guidance that uses FCoP as its coordination protocol in a persistent multi-role development and work environment [13], [37].
+FCoP is not identical to TMPA. It realizes a file-based subset through named textual artifacts, lifecycle directories, append-oriented transition evidence, schemas, runtime tools, and adapters [7]–[12]. CodeFlowMu is the engineering system developed under TMPA guidance that uses FCoP as its coordination protocol in a persistent multi-role development and work environment [28], [37].
 
 **Table 7. Mapping from the FCoP protocol profile to TMPA concepts.**
 
@@ -141,9 +141,9 @@ Under this profile, one task has one stable transport-visible carrier; reports, 
 
 ## 5.4 Case and Corpus Procedure
 
-The historical lineage is XiaoDian AI → early TMPA → FCoP → CodeFlowMu, followed by feedback into current TMPA formalization. XiaoDian exposed the need to preserve acceptance, execution, review, rejection, and audit evidence across model sessions [25]. Early TMPA supplied the textual asynchronous method; FCoP extracted the reusable coordination and review skeleton; CodeFlowMu engineered that direction into a larger persistent-work system. Its operational results then supplied evidence and revision input, without becoming the authority that defines TMPA.
+The author reports the historical lineage as XiaoDian AI → early TMPA → FCoP → CodeFlowMu, followed by feedback into current TMPA formalization [25]. The XiaoDian source has no fixed public snapshot and is therefore used only to disclose design provenance, not as an evaluated observation. Public, pinned FCoP, CodeFlowMu, and WP-13 artifacts provide the evidence used in RQ3. Their operational results supply bounded revision input without becoming the authority that defines TMPA.
 
-The public CodeFlowMu demonstration includes task, report, review, issue, lifecycle, and audit views [13]. A worked NL2SQL case separates execution from review: an executor produces a report, while a reviewer checks authorization, schema use, read-only constraints, tenant isolation, joins, enumerations, and result reasonableness. This demonstrates the intended object chain; it is not a representative production benchmark.
+The live CodeFlowMu browser [13] is retained as an illustrative interface reference only: its build and dataset are not immutably identified, so it is excluded from the reproducible evaluation. CodeFlowMu claims in this paper rely on the locked I0.8 package and public reproducer [28]. The NL2SQL view remains an illustration of the intended object chain, not a representative production benchmark or a scored observation.
 
 The consolidated corpus preserves historical mapped evidence and adds a direct S0.6 product run [28]. The evaluation has two tracks. The **analytical track** examines invariants, counterexamples, equal-input determinism, illegal transitions, conflicts, and three-valued judgments. The **engineering track** fixes the seven normative input files by raw-byte hash; locks product and dependency revisions; inventories and hashes evidence; executes each criterion through the CodeFlowMu product Reader; validates the result envelope; and reports Reference Reader fixtures separately from product behavior. The WP-13 path is treated as evidence-admission behavior, not as S0.6 conformance evidence or proof that an agent no longer hallucinates [36].
 

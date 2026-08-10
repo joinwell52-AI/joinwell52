@@ -132,7 +132,7 @@ The 2026-08-09 S0.6 release-candidate audit freezes the implementable Core after
 
 The author-produced S0.6 Reference Reader passes all fourteen S0.6 fixtures. This establishes demonstrated behavior only for the tested Reference Reader paths. The S0.6 product track is deliberately `NOT RUN` for all fourteen criteria because no product has yet published an exact-version S0.6 bundle. It does not establish product conformance, independent validation, semantic truth, or independent adoption.
 
-I0.7 and the locked CodeFlowMu V1.4.1 evidence package remain exact-version S0.5 author-run evidence with 14/14 PASS. They SHALL NOT be relabeled as S0.6 evidence. The next product case must run the S0.6 corpus and publish a separately locked evidence package before making an S0.6 product claim.
+I0.7 and the locked CodeFlowMu V1.4.1 evidence package remain exact-version S0.5 author-run evidence with 14/14 PASS. They SHALL NOT be relabeled as S0.6 evidence. After this release-candidate record was frozen, I0.8 completed a separate exact S0.6 product run against CodeFlowMu V1.6.0. Its dated external-run register fixes the Core and implementation commits, package SHA-256, input-bundle digest, result digest, and 14/14 product verdict. That later run is author-produced demonstrated evidence for the locked bundle only; it does not rewrite the historical `NOT RUN` track or establish independent validation.
 
 ## 11.5 S0.5 FCoP-Derived Historical Baseline
 
@@ -165,6 +165,6 @@ The Architecture Paper may summarize this specification but cannot redefine it. 
 | lifecycle, atomic transition, recovery and audit decisions | FCoP specification and applicable ADRs | formalized as lifecycle state, business acceptance, failure/recovery actions, inspection findings, and deterministic history reconstruction |
 | parent-child work derivation and closure | FCoP v3.2.5 `parent` protocol surface | represented by `governed_work.parent_id`, parent-child rollup, and `CHILD_WORK_OPEN` |
 | executable software | `fcop` and `fcop-mcp` packages | treated only as the FCoP reference implementation; package tests are implementation evidence, not the protocol itself |
-| downstream use | CodeFlowMu and bounded XiaoDian AI/WP-13 evidence | treated as application evidence in the Implementation Case Report, never as proof of the theory or definition of the protocol |
+| downstream use | CodeFlowMu and bounded WP-13 evidence | treated as application evidence in the Implementation Case Report, never as proof of the theory or definition of the protocol; XiaoDian AI is retained as author-reported lineage only and is excluded from evaluated evidence |
 
 The crosswalk is a traceability aid, not an incorporation by reference. Where FCoP and TMPA use different abstractions, this Core specification controls TMPA meaning; where an application or reference implementation diverges from its protocol source, the divergence is reported as implementation evidence rather than silently changing either specification.

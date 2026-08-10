@@ -23,7 +23,8 @@ This decision means the bilingual specification, machine schemas, profiles, Refe
 | Determinism / 确定性 | Canonical sorting is Unicode code-point based and permutation-stable / 规范排序采用 Unicode 码点顺序且排列稳定 | PASS |
 | Three-valued logic / 三值逻辑 | valid, invalid, undetermined remain the only semantic judgments; view labels remain explanatory / 三个判断值不变，视图标签只作解释 | PASS |
 | C01–C14 Reference Reader | 14 PASS, 0 FAIL / 14 项通过、0 项失败 | PASS |
-| Product track / 产品轨道 | No exact S0.6 run exists; all 14 criteria explicitly NOT RUN / 尚无精确 S0.6 产品运行，十四项均明确 NOT RUN | BOUNDED |
+| Product track at freeze / 冻结时产品轨道 | No exact S0.6 run existed on 2026-08-09; all 14 criteria remain explicitly NOT RUN in the frozen record / 2026-08-09 冻结时尚无精确 S0.6 产品运行，冻结记录中的十四项继续明确为 NOT RUN | BOUNDED |
+| Later exact product run / 后续精确产品运行 | I0.8 registers CodeFlowMu V1.6.0 against the exact S0.6 bundle with 14 PASS / 0 FAIL on 2026-08-10 / I0.8 登记 CodeFlowMu V1.6.0 于 2026-08-10 针对精确 S0.6 Bundle 的 14 PASS / 0 FAIL 结果 | PASS |
 | Prior evidence / 既有证据 | I0.7 / CodeFlowMu V1.4.1 remains S0.5 evidence and is not relabeled / I0.7 与 CodeFlowMu V1.4.1 保持为 S0.5 证据，不改标 | PASS |
 
 ## Evidence boundary / 证据边界
@@ -31,17 +32,17 @@ This decision means the bilingual specification, machine schemas, profiles, Refe
 - **Specified:** S0.6 clauses and schemas.
 - **Implemented:** the author-produced S0.6 Reference Reader.
 - **Demonstrated:** the Reference Reader's 14/14 fixture run.
-- **Not demonstrated:** any S0.6 product conformance.
+- **Subsequently demonstrated:** exact-bundle CodeFlowMu V1.6.0 product behavior in the separately locked I0.8 author-run package.
 - **Not established:** independent validation or independent adoption.
 
 - **Specified（已规定）：** S0.6 条款与 Schema。
 - **Implemented（已实现）：** 作者生成的 S0.6 Reference Reader。
 - **Demonstrated（已演示）：** Reference Reader 的 14/14 Fixture 运行。
-- **尚未演示：** 任何 S0.6 产品一致性。
+- **后续已演示：** 独立锁定的 I0.8 作者运行证据包中，CodeFlowMu V1.6.0 针对精确 Bundle 的产品行为。
 - **尚未建立：** 独立验证或独立采用。
 
 ## Next gate / 下一门禁
 
-The next Implementation Case must execute C01–C14 against an exact S0.6 product bundle and publish a separately locked package and SHA-256 file. S0.5 results cannot satisfy that gate.
+I0.8 closed this next gate on 2026-08-10 by executing C01–C14 against the exact S0.6 bundle and publishing a separately locked package and SHA-256 file. The dated register is `external-runs/20260810-codeflowmu-v1.6.0/`. This does not alter the 2026-08-09 freeze decision or establish independent validation.
 
-下一版 Implementation Case 必须针对精确 S0.6 产品 Bundle 执行 C01–C14，并发布独立锁定证据包及 SHA-256 文件；S0.5 结果不能替代该门禁。
+I0.8 已于 2026-08-10 针对精确 S0.6 Bundle 执行 C01–C14，并发布独立锁定证据包与 SHA-256 文件，从而关闭该后续门禁。带日期的登记位于 `external-runs/20260810-codeflowmu-v1.6.0/`。这不改变 2026-08-09 的冻结裁决，也不建立独立验证。

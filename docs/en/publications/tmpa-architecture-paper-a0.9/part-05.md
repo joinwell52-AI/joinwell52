@@ -134,7 +134,7 @@ The paper separates four claim levels:
 3. **demonstrated** — an operational case exhibits the behavior;
 4. **independently adopted** — an external system relies on and validates it.
 
-The architecture and criteria are specified. FCoP supplies implementation evidence. CodeFlowMu and XiaoDian supply bounded demonstration evidence. Independent adoption is not established.
+The architecture and criteria are specified. FCoP supplies implementation evidence. The locked CodeFlowMu and WP-13 artifacts supply bounded demonstration evidence. XiaoDian is retained as author-reported provenance only; independent adoption is not established.
 
 The author is also the originator and principal developer of the evaluated systems. This gives access to detailed artifacts but creates self-evaluation and selection risk. The corpus therefore labels author-produced evidence, non-gating field evidence, fixture-only oracle results, and product-level verdicts separately.
 
