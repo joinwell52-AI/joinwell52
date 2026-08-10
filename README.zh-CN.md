@@ -156,7 +156,7 @@ CodeFlowMu + Digital Employee
 
 ### TMPA
 
-- [TMPA Architecture Paper A0.7](./docs/zh/publications/tmpa-architecture-paper-a0.7.md)
+- [TMPA Architecture Paper A0.8](./docs/zh/publications/tmpa-architecture-paper-a0.8.md)
 - [TMPA Core Specification S0.6](./docs/zh/publications/tmpa-core-specification-s0.6.md)
 - [TMPA–FCoP–CodeFlowMu Implementation Case I0.8](./docs/zh/publications/implementation-case-i0.8.md)
 
