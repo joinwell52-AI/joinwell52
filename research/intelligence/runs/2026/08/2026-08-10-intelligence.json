@@ -6,8 +6,8 @@
   "status": "Running",
   "registryVersion": "1.0",
   "sourceTask": "Research Runtime Discovery",
-  "updatedAt": "2026-08-10T09:16:04+08:00",
-  "githubCommit": "pending",
+  "updatedAt": "2026-08-10T09:19:35+08:00",
+  "githubCommit": "17dcb64e2e83173c6f5cbe6709867eb10a4e894b",
   "reason": "Discovery completed all due formal source profiles only after the scheduler-fallback Running state was durably committed and fetched back from main. Signals were normalized and deduplicated against the 2026-08-09 Signal Pool; Queue triage has not run and no topic was selected.",
   "reason_zh": "仅在 Scheduler Fallback Running 状态完成持久化提交并从 main 重新 fetch 核验后执行全部到期正式来源 Profile。信号已与 2026-08-09 Signal Pool 去重并规范化；Queue 尚未执行，没有选题。",
   "controlPlane": {
@@ -16,8 +16,8 @@
     "startEventCount": 1,
     "verifiedBeforeSubstantiveWork": true,
     "fallbackRecorded": true,
-    "resultCommit": "pending",
-    "resultCommitVerified": false
+    "resultCommit": "17dcb64e2e83173c6f5cbe6709867eb10a4e894b",
+    "resultCommitVerified": true
   },
   "pipelines": [
     {
@@ -141,7 +141,9 @@
       "id": "SIG-20260810-G-001",
       "pipeline": "github-engineering",
       "primaryColumn": "open-source-engineering",
-      "secondaryColumns": ["digital-employee"],
+      "secondaryColumns": [
+        "digital-employee"
+      ],
       "title": "Codex bounds external-agent project path resolution instead of recursively scanning",
       "title_zh": "Codex 将外部 Agent 项目路径解析改为有界探测，停止递归扫描",
       "sourceUrl": "https://github.com/openai/codex/commit/f344a80a3b4a2e9a3f70f04526c77c6a979f5fb4",
@@ -157,7 +159,9 @@
       "id": "SIG-20260810-G-002",
       "pipeline": "github-engineering",
       "primaryColumn": "industry-architecture",
-      "secondaryColumns": ["open-source-engineering"],
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
       "title": "Codex adds a network-addressable gRPC transport for the code-mode host",
       "title_zh": "Codex 为 Code-mode Host 新增可网络寻址的 gRPC Transport",
       "sourceUrl": "https://github.com/openai/codex/commit/c0ad3ab014a27d66d1631fb00f7a70b035f46f0d",
@@ -173,7 +177,9 @@
       "id": "SIG-20260810-G-003",
       "pipeline": "github-engineering",
       "primaryColumn": "open-source-engineering",
-      "secondaryColumns": ["digital-employee"],
+      "secondaryColumns": [
+        "digital-employee"
+      ],
       "title": "OpenAI Agents serializes and bounds MCP server lifecycle operations",
       "title_zh": "OpenAI Agents 将 MCP Server 生命周期操作串行化并加入有界等待",
       "sourceUrl": "https://github.com/openai/openai-agents-python/commit/7da5696020a82d7ee2546a557eb8990169e23815",
@@ -189,7 +195,9 @@
       "id": "SIG-20260810-G-004",
       "pipeline": "github-engineering",
       "primaryColumn": "digital-employee",
-      "secondaryColumns": ["open-source-engineering"],
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
       "title": "OpenAI Agents makes resumed RunState preserve admitted input and execution evidence",
       "title_zh": "OpenAI Agents 让恢复后的 RunState 持久保留已接纳输入与执行证据",
       "sourceUrl": "https://github.com/openai/openai-agents-python/commit/7bf73afa47ac48c1efb599d0b1505cee994e74f5",
@@ -205,7 +213,9 @@
       "id": "SIG-20260810-G-005",
       "pipeline": "github-engineering",
       "primaryColumn": "digital-employee",
-      "secondaryColumns": ["industry-architecture"],
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
       "title": "OpenAI Agents separates ordinary retry from explicit approval of unsafe replay",
       "title_zh": "OpenAI Agents 将普通 Retry 与不安全 Replay 的显式批准分离",
       "sourceUrl": "https://github.com/openai/openai-agents-python/commit/6115461c6b0f661398d63b1de2b3ecc9390a5a09",
@@ -221,7 +231,9 @@
       "id": "SIG-20260810-G-006",
       "pipeline": "github-engineering",
       "primaryColumn": "digital-employee",
-      "secondaryColumns": ["open-source-engineering"],
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
       "title": "OpenAI Agents formalizes post-completion review feedback as a new bounded cycle",
       "title_zh": "OpenAI Agents 将完成后的 Review Feedback 正式化为新的有界 Review Cycle",
       "sourceUrl": "https://github.com/openai/openai-agents-python/commit/020db0addfb75a730235396ce5f0d6cf9a2b4be2",
@@ -237,7 +249,9 @@
       "id": "SIG-20260810-G-007",
       "pipeline": "github-engineering",
       "primaryColumn": "open-source-engineering",
-      "secondaryColumns": ["digital-employee"],
+      "secondaryColumns": [
+        "digital-employee"
+      ],
       "title": "Google ADK auto-discovers eval configuration only when the input boundary is unambiguous",
       "title_zh": "Google ADK 仅在输入边界无歧义时自动发现 Eval 配置",
       "sourceUrl": "https://github.com/google/adk-python/commit/0477e5743bdf5e0cce5a698951c7b70a07baa80a",
@@ -253,7 +267,9 @@
       "id": "SIG-20260810-R-001",
       "pipeline": "published-research",
       "primaryColumn": "open-source-engineering",
-      "secondaryColumns": ["digital-employee"],
+      "secondaryColumns": [
+        "digital-employee"
+      ],
       "title": "SearchAuditor evaluates evidence-grounded failure localization and repair in long-horizon agents",
       "title_zh": "SearchAuditor 评估长周期 Agent 的证据化故障定位与修复",
       "sourceUrl": "https://arxiv.org/abs/2608.05212",
@@ -269,7 +285,9 @@
       "id": "SIG-20260810-R-002",
       "pipeline": "published-research",
       "primaryColumn": "digital-employee",
-      "secondaryColumns": ["industry-architecture"],
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
       "title": "Project2Task turns a long-horizon project into bounded dependency-aware task contracts",
       "title_zh": "Project2Task 将长周期 Project 转换为有界、依赖感知的 Task Contract",
       "sourceUrl": "https://arxiv.org/abs/2608.05225",
@@ -285,7 +303,9 @@
       "id": "SIG-20260810-R-003",
       "pipeline": "published-research",
       "primaryColumn": "industry-architecture",
-      "secondaryColumns": ["open-source-engineering"],
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
       "title": "OrchestraBench measures multi-agent cascade radius, recovery and trusted-state dependence",
       "title_zh": "OrchestraBench 测量多 Agent Cascade Radius、Recovery 与 Trusted-state 依赖",
       "sourceUrl": "https://arxiv.org/abs/2608.05263",
@@ -301,7 +321,9 @@
       "id": "SIG-20260810-R-004",
       "pipeline": "published-research",
       "primaryColumn": "open-source-engineering",
-      "secondaryColumns": ["industry-architecture"],
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
       "title": "A new coding-agent study quantifies malicious skill-file exploitability",
       "title_zh": "新研究量化 Coding Agent 恶意 Skill File 的可利用性",
       "sourceUrl": "https://arxiv.org/abs/2608.05223",
@@ -317,7 +339,9 @@
       "id": "SIG-20260810-R-005",
       "pipeline": "published-research",
       "primaryColumn": "open-source-engineering",
-      "secondaryColumns": ["digital-employee"],
+      "secondaryColumns": [
+        "digital-employee"
+      ],
       "title": "SkillTrace separates expression, implementation and operational provenance for reusable agent skills",
       "title_zh": "SkillTrace 将可复用 Agent Skill 的 Expression、Implementation 与 Operational Provenance 分离审计",
       "sourceUrl": "https://arxiv.org/abs/2608.05204",
