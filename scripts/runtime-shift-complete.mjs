@@ -66,22 +66,38 @@ const taskId = String(args.task || '')
 const resultFile = String(args.result || '')
 const now = clock()
 const date = String(args.date || now.date)
+const allowHistorical = String(args['allow-historical'] || '') === 'true'
 const task = manifest.tasks.find((item) => item.id === taskId)
 if (!task) fail(`unknown task ${taskId}`)
 if (!resultFile) fail('--result <json-file> is required')
+if (date > now.date) fail(`completion date ${date} is in the future; Shanghai today is ${now.date}`)
+if (date !== now.date && !allowHistorical) {
+  fail(`completion date ${date} is not active Shanghai date ${now.date}; use --allow-historical true only for explicit governed recovery`)
+}
 const absoluteResult = path.resolve(ROOT, resultFile)
 if (!existsSync(absoluteResult)) fail(`result file not found: ${resultFile}`)
+const [resultYear, resultMonth] = date.split('-')
+const normalizedResultPath = path.relative(ROOT, absoluteResult).split(path.sep).join('/')
+const expectedResultPrefix = `research/runtime/results/${resultYear}/${resultMonth}/${date}-`
+if (!normalizedResultPath.startsWith(expectedResultPrefix)) {
+  fail(`result path ${normalizedResultPath} does not belong to runtime date ${date}; expected prefix ${expectedResultPrefix}`)
+}
 const file = recordPath(task, date)
 if (!existsSync(file)) fail(`runtime record not found for ${taskId} on ${date}`)
 const record = readJson(file)
+if (record.date && record.date !== date) fail(`runtime record date ${record.date} does not match completion date ${date}`)
 if (record.taskStatus?.[taskId] !== 'Running') fail(`taskStatus.${taskId} must be Running, got ${record.taskStatus?.[taskId]}`)
 
 const result = readJson(absoluteResult)
 validateResult(result, taskId)
+for (const dateField of ['date', 'runtimeDate']) {
+  if (text(result[dateField]) && result[dateField] !== date) fail(`result ${dateField} ${result[dateField]} does not match runtime date ${date}`)
+}
 const opened = [...(record.timeline || [])].reverse().find((event) => event.task === taskId && event.event === 'Execution Slot Opened' && event.status === 'Running')
 result.task = taskId
 result.family = task.family
 result.status = 'Completed'
+result.runtimeDate = date
 if (!result.startedAt && opened?.time) result.startedAt = opened.time
 result.completedAt = `${now.date}T${now.time}+08:00`
 record.results = record.results || {}
@@ -94,7 +110,7 @@ record.timeline.push({
   task: taskId,
   event: 'Shift Completed',
   status: 'Completed',
-  detail: `${task.name} completed through governed Runtime shift completion after durable result validation.`
+  detail: `${task.name} completed through governed Runtime shift completion after durable result validation for ${date}.`
 })
 record.updatedAt = result.completedAt
 record.githubCommit = 'pending'
