@@ -8,14 +8,14 @@
   "date": "2026-08-10",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Completed",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
     "production": "Completed",
-    "publication": "Running"
+    "publication": "Completed"
   },
   "results": {
     "discovery": {
@@ -591,6 +591,130 @@
       "githubCommit": "a3ce3250373f7dcdd86312fa314f83f0ba22db0c",
       "commitVerify": "Completed",
       "verifiedAt": "2026-08-10T15:30:13+08:00"
+    },
+    "publication": {
+      "schema": "runtime-shift-result/v2",
+      "task": "publication",
+      "family": "daily",
+      "runtimeDate": "2026-08-10",
+      "status": "Completed",
+      "input": {
+        "scheduler": "research/runtime/SCHEDULER.json",
+        "dailyRuntime": "research/runtime/records/daily/2026/08/2026-08-10-daily-runtime.json",
+        "productionResult": "research/runtime/results/2026/08/2026-08-10-production-result.json",
+        "candidateBatch": "research/runtime/candidates/2026/08/2026-08-10-candidates.json",
+        "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-10/publication-200638.json",
+        "workerClaim": "research/runtime/worker-claims/2026/08/2026-08-10/publication-201323.json",
+        "controlPlane": {
+          "executionSlotOpenedAt": "2026-08-10T20:12:41+08:00",
+          "startStateCommit": "af67fa16b3f16676d588a4b88feaa7d0de96b080",
+          "globalOrderVerified": true,
+          "earlierDueTasksClosed": [
+            "discovery",
+            "queue",
+            "reading",
+            "program",
+            "analysis",
+            "production"
+          ]
+        }
+      },
+      "workResult": {
+        "summary": "Verified the durable 2026-08-10 Publication wake receipt, ordered execution slot and Worker Claimed evidence before release work. Revalidated the completed Production result and the three same-day bilingual candidate sets; each candidate retained completed evidence/editing status and passed its cover/figure gates. Released exactly three items as six bilingual public articles, three editorial WebP covers and three explanatory SVG figures, plus the same-day release manifest. No new research, substantive rewriting or evidence repair was performed. The Research Center Pages build, generated-site verification, publication visibility check and gh-pages publish all completed successfully for the release state.",
+        "summary_zh": "发布工作前已核验 2026-08-10 当日 Publication Wake Receipt、顺序执行槽与 Worker Claimed 证据。随后重新核验已完成的 Production 结果与三个同日双语 Candidate Set；每个候选均保持 Evidence / Editing Completed，并通过 Cover / Figure Gate。仅发布 3 个项目，共 6 篇双语公开文章、3 张编辑性 WebP 题图、3 张解释性 SVG 文中图以及同日 Release Manifest。未开展新研究、实质性改写或证据修复。对应发布状态的 Research Center Pages 构建、生成站点核验、Publication Visibility 检查与 gh-pages 发布均成功完成。",
+        "releaseCommit": "98949820cab523971faa593731cef8f8e31b252b",
+        "releaseCommitVerified": true,
+        "pagesWorkflowRun": 31387706177,
+        "pagesBuildVerified": true,
+        "releasedItems": [
+          "Q-20260810-01",
+          "Q-20260810-02",
+          "Q-20260810-03"
+        ],
+        "boundary": {
+          "newResearch": false,
+          "substantiveRewriting": false,
+          "evidenceRepair": false
+        }
+      },
+      "output": {
+        "type": "Released Daily Research",
+        "outcome": "Released",
+        "releaseManifest": "research/runtime/releases/2026-08-10-publication.json",
+        "releaseCommit": "98949820cab523971faa593731cef8f8e31b252b",
+        "releasedItems": 3,
+        "bilingualArticleFiles": 6,
+        "coverAssets": 3,
+        "explanatoryFigureAssets": 3
+      },
+      "next": {
+        "instruction": "Daily Publication is complete for 2026-08-10. No Weekly Runtime is applicable on Monday; the Process Manager should stop after durable Publication completion verification unless another formally applicable overdue task exists."
+      },
+      "metrics": [
+        {
+          "name": "eligible_publication_candidates",
+          "value": 3
+        },
+        {
+          "name": "released_items",
+          "value": 3
+        },
+        {
+          "name": "bilingual_article_files",
+          "value": 6
+        },
+        {
+          "name": "cover_assets",
+          "value": 3
+        },
+        {
+          "name": "explanatory_figure_assets",
+          "value": 3
+        },
+        {
+          "name": "publication_start_events",
+          "value": 1
+        },
+        {
+          "name": "new_research_actions",
+          "value": 0
+        },
+        {
+          "name": "substantive_rewrites",
+          "value": 0
+        },
+        {
+          "name": "evidence_repairs",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        "research/runtime/wakes/2026/08/2026-08-10/publication-200638.json",
+        "research/runtime/worker-claims/2026/08/2026-08-10/publication-201323.json",
+        "research/runtime/results/2026/08/2026-08-10-production-result.json",
+        "research/runtime/candidates/2026/08/2026-08-10-candidates.json",
+        "research/runtime/releases/2026-08-10-publication.json",
+        "https://github.com/joinwell52-AI/joinwell52/commit/98949820cab523971faa593731cef8f8e31b252b",
+        "https://github.com/joinwell52-AI/joinwell52/actions/runs/31387706177"
+      ],
+      "artifacts": [
+        "docs/zh/digital-employee/2026-08-10-governed-input-admission-boundary.md",
+        "docs/en/digital-employee/2026-08-10-governed-input-admission-boundary.md",
+        "docs/zh/industry/2026-08-10-authority-plane-cascade-containment.md",
+        "docs/en/industry/2026-08-10-authority-plane-cascade-containment.md",
+        "docs/zh/engineering/2026-08-10-serialized-tool-lifecycle-authority.md",
+        "docs/en/engineering/2026-08-10-serialized-tool-lifecycle-authority.md",
+        "docs/public/assets/covers/daily-2026-08-10-governed-input-admission-boundary.webp",
+        "docs/public/assets/covers/daily-2026-08-10-governed-input-admission-boundary-figure.svg",
+        "docs/public/assets/covers/daily-2026-08-10-authority-plane-cascade-containment.webp",
+        "docs/public/assets/covers/daily-2026-08-10-authority-plane-cascade-containment-figure.svg",
+        "docs/public/assets/covers/daily-2026-08-10-serialized-tool-lifecycle-authority.webp",
+        "docs/public/assets/covers/daily-2026-08-10-serialized-tool-lifecycle-authority-figure.svg",
+        "research/runtime/releases/2026-08-10-publication.json",
+        "research/runtime/results/2026/08/2026-08-10-publication-result.json"
+      ],
+      "startedAt": "2026-08-10T20:12:41+08:00",
+      "completedAt": "2026-08-10T20:24:52+08:00"
     }
   },
   "timeline": [
@@ -691,11 +815,18 @@
       "event": "Execution Slot Opened",
       "status": "Running",
       "detail": "Research Runtime Publication started by Research Runtime Scheduler V3.0."
+    },
+    {
+      "time": "2026-08-10T20:24:52+08:00",
+      "task": "publication",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Publication completed through governed Runtime shift completion after durable result validation for 2026-08-10."
     }
   ],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-10T20:12:41+08:00",
+  "updatedAt": "2026-08-10T20:24:52+08:00",
   "metrics": [],
   "evidence": [],
   "artifacts": []
