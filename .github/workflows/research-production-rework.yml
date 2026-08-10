@@ -1,0 +1,318 @@
+name: Research Production Rework V1.0
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "research/runtime/rework-requests/*.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: research-production-rework-v1
+  cancel-in-progress: false
+
+jobs:
+  cover-rework:
+    name: Apply and verify governed Production cover rework
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout authoritative repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch latest durable facts
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Resolve and validate rework request
+        id: request
+        shell: bash
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          EVENT_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          request_path="$(git diff --name-only "$BEFORE_SHA" "$EVENT_SHA" -- 'research/runtime/rework-requests/*.json' | tail -n 1)"
+          if [[ -z "$request_path" ]]; then
+            request_path="$(git show --pretty='' --name-only "$EVENT_SHA" -- 'research/runtime/rework-requests/*.json' | tail -n 1)"
+          fi
+          if [[ -z "$request_path" || ! -f "$request_path" ]]; then
+            echo "No durable Production rework request found."
+            exit 1
+          fi
+          REQUEST_PATH="$request_path" node <<'NODE'
+          const fs = require('fs')
+          const r = JSON.parse(fs.readFileSync(process.env.REQUEST_PATH, 'utf8'))
+          if (r.schema !== 'runtime-production-rework-request/v1') throw new Error('Invalid rework request schema')
+          if (r.task !== 'production' || r.kind !== 'Production Rework' || r.scope !== 'cover-only') throw new Error('Only cover-only Production Rework is accepted')
+          if (!/^\d{4}-\d{2}-\d{2}$/.test(r.date || '')) throw new Error('Invalid rework date')
+          if (r.timezone !== 'Asia/Shanghai') throw new Error('Invalid timezone')
+          if (!/^[0-9a-f]{40}$/.test(r.sourceCompletionCommit || '') || !/^[0-9a-f]{40}$/.test(r.sourceVerificationCommit || '')) throw new Error('Invalid source commit evidence')
+          if (!Array.isArray(r.covers) || r.covers.length !== 3) throw new Error('Exactly three cover replacements are required')
+          const ids = r.covers.map(x => x.itemId)
+          if (JSON.stringify(ids) !== JSON.stringify(['Q-20260810-01','Q-20260810-02','Q-20260810-03'])) throw new Error(`Unexpected rework objects: ${ids.join(',')}`)
+          for (const c of r.covers) {
+            for (const field of ['coverPath','figurePath','enPath','zhPath']) {
+              if (!c[field] || !fs.existsSync(c[field])) throw new Error(`Missing ${field}: ${c[field]}`)
+            }
+            if (c.coverPath === c.figurePath) throw new Error(`Cover and figure must be separate assets for ${c.itemId}`)
+          }
+          NODE
+          source_completion="$(node -e "const r=require('./$request_path');process.stdout.write(r.sourceCompletionCommit)")"
+          source_verification="$(node -e "const r=require('./$request_path');process.stdout.write(r.sourceVerificationCommit)")"
+          git merge-base --is-ancestor "$source_completion" origin/main
+          git merge-base --is-ancestor "$source_verification" origin/main
+          echo "request_path=$request_path" >> "$GITHUB_OUTPUT"
+          echo "runtime_date=$(node -e "const r=require('./$request_path');process.stdout.write(r.date)")" >> "$GITHUB_OUTPUT"
+
+      - name: Apply Cover Gate rework
+        env:
+          REQUEST_PATH: ${{ steps.request.outputs.request_path }}
+        run: |
+          node <<'NODE'
+          const fs = require('fs')
+          const path = require('path')
+          const r = JSON.parse(fs.readFileSync(process.env.REQUEST_PATH, 'utf8'))
+          const batch = JSON.parse(fs.readFileSync(r.candidateBatch, 'utf8'))
+          if (batch.schema !== 'runtime-publication-candidate/v1' || batch.date !== r.date || batch.status !== 'Completed') throw new Error('Candidate batch is not the completed same-date Production batch')
+          const priorCandidateCommit = batch.githubCommit
+          const parts = Object.fromEntries(new Intl.DateTimeFormat('en-CA', { timeZone: r.timezone, year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit', hourCycle:'h23' }).formatToParts(new Date()).map(p => [p.type,p.value]))
+          const now = `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}:${parts.second}+08:00`
+          if (`${parts.year}-${parts.month}-${parts.day}` !== r.date) throw new Error('Cover rework must remain on the active Shanghai runtime date')
+
+          function applyArticle(entry, file, zh) {
+            let body = fs.readFileSync(file, 'utf8')
+            const coverLine = `cover: "${entry.coverPath}"`
+            const visualizationLine = `visualization: "${entry.figurePath}"`
+            if (!body.includes(visualizationLine)) throw new Error(`${file}: expected original explanatory visualization path is missing`)
+            if (!body.includes(coverLine)) body = body.replace(visualizationLine, `${coverLine}\n${visualizationLine}`)
+            body = body.replace(/^visualization_decision:.*$/m, 'visualization_decision: "Required — dedicated editorial Article Cover passes Cover Gate; explanatory Article Figure retained separately"')
+            const coverName = path.basename(entry.coverPath)
+            const figureName = path.basename(entry.figurePath)
+            if (zh) {
+              const coverRe = /## 题图\n\n!\[[^\]]*\]\(\.\/[^)]+\)\n/
+              if (!coverRe.test(body)) throw new Error(`${file}: missing Chinese cover section`)
+              body = body.replace(coverRe, `## 题图\n\n![${entry.coverAlt_zh}](./${coverName})\n\n## 文中图\n\n![${entry.figureAlt_zh}](./${figureName})\n`)
+              const noteRe = /## 可视化说明\n\n[\s\S]*?\n\n## 参考资料/
+              if (!noteRe.test(body)) throw new Error(`${file}: missing Chinese visualization note`)
+              body = body.replace(noteRe, '## 可视化说明\n\n题图是面向缩略图识别的 Research Center 编辑性视觉隐喻，并通过 Cover Gate；原 SVG 保留为独立文中解释图，用于精确说明文章机制。两种视觉角色不再复用同一资产；未使用厂商原图，也未构造无来源数值。\n\n## 参考资料')
+            } else {
+              const coverRe = /## Cover\n\n!\[[^\]]*\]\(\.\/[^)]+\)\n/
+              if (!coverRe.test(body)) throw new Error(`${file}: missing English cover section`)
+              body = body.replace(coverRe, `## Cover\n\n![${entry.coverAlt}](./${coverName})\n\n## Figure\n\n![${entry.figureAlt}](./${figureName})\n`)
+              const noteRe = /## Visualization note\n\n[\s\S]*?\n\n## References/
+              if (!noteRe.test(body)) throw new Error(`${file}: missing English visualization note`)
+              body = body.replace(noteRe, '## Visualization note\n\nThe editorial cover is a Research Center visual metaphor designed for thumbnail-scale recognition and passes the Cover Gate. The original SVG is retained separately as the explanatory Article Figure for the article mechanism. The two visual roles no longer reuse one asset; no vendor artwork or invented quantitative data is used.\n\n## References')
+            }
+            fs.writeFileSync(file, body)
+          }
+
+          for (const entry of r.covers) {
+            const candidate = batch.candidates.find(c => c.itemId === entry.itemId)
+            if (!candidate) throw new Error(`Candidate not found: ${entry.itemId}`)
+            applyArticle(entry, entry.enPath, false)
+            applyArticle(entry, entry.zhPath, true)
+            candidate.coverPath = entry.coverPath
+            candidate.figurePath = entry.figurePath
+            candidate.coverGate = 'PASS'
+            candidate.figureGate = 'PASS'
+            candidate.editingStatus = 'Completed'
+          }
+
+          batch.updatedAt = now
+          batch.githubCommit = 'pending'
+          batch.rework = {
+            schema: 'runtime-production-rework/v1',
+            kind: 'Production Rework',
+            scope: 'cover-only',
+            status: 'Completed',
+            reason: r.reason,
+            reason_zh: r.reason_zh,
+            sourceCompletionCommit: r.sourceCompletionCommit,
+            sourceVerificationCommit: r.sourceVerificationCommit,
+            sourceCandidateCommit: priorCandidateCommit,
+            researchChanged: false,
+            analysisChanged: false,
+            articleClaimsChanged: false,
+            publicationPerformed: false,
+            publicationAuthorized: false,
+            coverGate: 'PASS',
+            figureGate: 'PASS',
+            thumbnailQaWidth: 320,
+            githubCommit: 'pending',
+            commitVerify: 'Waiting',
+            completedAt: now
+          }
+          fs.writeFileSync(r.candidateBatch, `${JSON.stringify(batch, null, 2)}\n`)
+
+          const [year, month] = r.date.split('-')
+          const recordPath = `research/runtime/rework/${year}/${month}/${r.date}-production-cover-rework.json`
+          fs.mkdirSync(path.dirname(recordPath), { recursive: true })
+          const record = {
+            schema: 'runtime-production-rework/v1',
+            date: r.date,
+            timezone: r.timezone,
+            task: 'production',
+            kind: 'Production Rework',
+            scope: 'cover-only',
+            status: 'Completed',
+            reason: r.reason,
+            reason_zh: r.reason_zh,
+            sourceCompletionCommit: r.sourceCompletionCommit,
+            sourceVerificationCommit: r.sourceVerificationCommit,
+            sourceCandidateCommit: priorCandidateCommit,
+            governanceBasis: ['research/skills/06-research-visualization.md','research/skills/08-publication-editing.md'],
+            objects: r.covers.map(c => ({ itemId:c.itemId, coverPath:c.coverPath, figurePath:c.figurePath, coverGate:'PASS', figureGate:'PASS', thumbnailQaWidth:320 })),
+            substantiveResearchChanged: false,
+            analysisChanged: false,
+            articleClaimsChanged: false,
+            publicationPerformed: false,
+            publicationAuthorized: false,
+            githubCommit: 'pending',
+            commitVerify: 'Waiting',
+            completedAt: now
+          }
+          fs.writeFileSync(recordPath, `${JSON.stringify(record, null, 2)}\n`)
+
+          const contractPath = 'research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md'
+          let contract = fs.readFileSync(contractPath, 'utf8')
+          if (!contract.includes('## Cover / Figure role gate')) {
+            contract = contract.replace('  "coverPath": "staging/publication-candidates/...svg",', '  "coverPath": "staging/publication-candidates/...-cover.webp",\n  "figurePath": "staging/publication-candidates/...-figure.svg",\n  "coverGate": "PASS",\n  "figureGate": "PASS",')
+            contract = contract.replace('## Production completion gate', '## Cover / Figure role gate\n\n`coverPath` is the dedicated editorial Article Cover and must pass Skill 06 Cover Gate, including thumbnail-scale recognition. `figurePath` is the separate explanatory Article Figure used for technical structure, workflow, lifecycle or evidence explanation. The same asset MUST NOT satisfy both roles. A workflow, lifecycle, architecture stack, state machine or other explanatory schematic cannot be promoted into `coverPath` merely because it already exists.\n\n## Production completion gate')
+            contract = contract.replace('- required visualization exists or the record states why none is needed;', '- a dedicated editorial Article Cover exists and passes the Skill 06 Cover Gate;\n- a separate explanatory Article Figure exists when the research benefits from technical visual explanation;\n- `coverPath` and `figurePath` do not point to the same asset;')
+            fs.writeFileSync(contractPath, contract)
+          }
+          console.log(`Applied cover-only Production Rework to ${r.covers.length} candidates.`)
+          NODE
+
+      - name: Commit governed Production rework
+        id: rework
+        shell: bash
+        env:
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+        run: |
+          set -euo pipefail
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add staging/publication-candidates research/runtime/candidates research/runtime/rework research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md
+          git commit -m "production(rework): apply ${RUNTIME_DATE} cover-gate repair"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main; then
+              rework_sha="$(git rev-parse HEAD)"
+              if git push origin HEAD:main; then
+                echo "rework_sha=$rework_sha" >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
+            fi
+            git rebase --abort || true
+            if [[ "$attempt" -eq 3 ]]; then exit 1; fi
+            sleep $((attempt * 5))
+          done
+
+      - name: Verify reworked candidates from main
+        env:
+          REQUEST_PATH: ${{ steps.request.outputs.request_path }}
+          REWORK_SHA: ${{ steps.rework.outputs.rework_sha }}
+        run: |
+          git fetch origin main
+          git merge-base --is-ancestor "$REWORK_SHA" origin/main
+          git reset --hard origin/main
+          node <<'NODE'
+          const fs = require('fs')
+          const path = require('path')
+          const r = JSON.parse(fs.readFileSync(process.env.REQUEST_PATH, 'utf8'))
+          const batch = JSON.parse(fs.readFileSync(r.candidateBatch, 'utf8'))
+          for (const entry of r.covers) {
+            const c = batch.candidates.find(x => x.itemId === entry.itemId)
+            if (!c || c.coverPath !== entry.coverPath || c.figurePath !== entry.figurePath) throw new Error(`Candidate visual roles not durable: ${entry.itemId}`)
+            if (c.coverGate !== 'PASS' || c.figureGate !== 'PASS') throw new Error(`Visual gate not PASS: ${entry.itemId}`)
+            if (!fs.existsSync(entry.coverPath) || !fs.existsSync(entry.figurePath)) throw new Error(`Visual asset missing: ${entry.itemId}`)
+            for (const [file, heading] of [[entry.enPath,'## Figure'],[entry.zhPath,'## 文中图']]) {
+              const body = fs.readFileSync(file, 'utf8')
+              if (!body.includes(path.basename(entry.coverPath)) || !body.includes(path.basename(entry.figurePath)) || !body.includes(heading)) throw new Error(`Candidate article roles not durable: ${file}`)
+            }
+          }
+          if (batch.rework?.commitVerify !== 'Waiting' || batch.rework?.publicationPerformed !== false) throw new Error('Unexpected pre-verification or publication state')
+          console.log('Verified three dedicated covers plus three retained explanatory figures on main.')
+          NODE
+
+      - name: Record durable rework verification
+        env:
+          REQUEST_PATH: ${{ steps.request.outputs.request_path }}
+          REWORK_SHA: ${{ steps.rework.outputs.rework_sha }}
+        run: |
+          node <<'NODE'
+          const fs = require('fs')
+          const r = JSON.parse(fs.readFileSync(process.env.REQUEST_PATH, 'utf8'))
+          const parts = Object.fromEntries(new Intl.DateTimeFormat('en-CA', { timeZone:r.timezone, year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit', hourCycle:'h23' }).formatToParts(new Date()).map(p => [p.type,p.value]))
+          const now = `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}:${parts.second}+08:00`
+          const batch = JSON.parse(fs.readFileSync(r.candidateBatch, 'utf8'))
+          batch.githubCommit = process.env.REWORK_SHA
+          batch.rework.githubCommit = process.env.REWORK_SHA
+          batch.rework.commitVerify = 'Completed'
+          batch.rework.verifiedAt = now
+          batch.updatedAt = now
+          fs.writeFileSync(r.candidateBatch, `${JSON.stringify(batch, null, 2)}\n`)
+          const [year, month] = r.date.split('-')
+          const recordPath = `research/runtime/rework/${year}/${month}/${r.date}-production-cover-rework.json`
+          const record = JSON.parse(fs.readFileSync(recordPath, 'utf8'))
+          record.githubCommit = process.env.REWORK_SHA
+          record.commitVerify = 'Completed'
+          record.verifiedAt = now
+          fs.writeFileSync(recordPath, `${JSON.stringify(record, null, 2)}\n`)
+          NODE
+
+      - name: Commit durable rework verification
+        id: verification
+        shell: bash
+        env:
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+        run: |
+          set -euo pipefail
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime/candidates research/runtime/rework
+          git commit -m "production(rework): verify ${RUNTIME_DATE} cover-gate repair"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main; then
+              verification_sha="$(git rev-parse HEAD)"
+              if git push origin HEAD:main; then
+                echo "verification_sha=$verification_sha" >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
+            fi
+            git rebase --abort || true
+            if [[ "$attempt" -eq 3 ]]; then exit 1; fi
+            sleep $((attempt * 5))
+          done
+
+      - name: Verify terminal rework evidence
+        env:
+          REQUEST_PATH: ${{ steps.request.outputs.request_path }}
+          REWORK_SHA: ${{ steps.rework.outputs.rework_sha }}
+          VERIFICATION_SHA: ${{ steps.verification.outputs.verification_sha }}
+        run: |
+          git fetch origin main
+          git merge-base --is-ancestor "$REWORK_SHA" origin/main
+          git merge-base --is-ancestor "$VERIFICATION_SHA" origin/main
+          git reset --hard origin/main
+          node <<'NODE'
+          const fs = require('fs')
+          const r = JSON.parse(fs.readFileSync(process.env.REQUEST_PATH, 'utf8'))
+          const batch = JSON.parse(fs.readFileSync(r.candidateBatch, 'utf8'))
+          const [year, month] = r.date.split('-')
+          const record = JSON.parse(fs.readFileSync(`research/runtime/rework/${year}/${month}/${r.date}-production-cover-rework.json`, 'utf8'))
+          if (batch.githubCommit !== process.env.REWORK_SHA || batch.rework?.commitVerify !== 'Completed') throw new Error('Candidate batch rework verification is not durable')
+          if (record.githubCommit !== process.env.REWORK_SHA || record.commitVerify !== 'Completed') throw new Error('Rework audit record is not verified')
+          if (record.publicationPerformed !== false || record.articleClaimsChanged !== false || record.analysisChanged !== false) throw new Error('Cover-only boundary was violated')
+          console.log(`Verified governed Production Rework ${process.env.REWORK_SHA}; verification commit ${process.env.VERIFICATION_SHA}; no early Publication performed.`)
+          NODE
