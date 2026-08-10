@@ -1,0 +1,63 @@
+{
+  "schema": "runtime-column-plan/v1",
+  "date": "2026-08-10",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Queue",
+  "sourceRecord": "research/runtime/2026/08/2026-08-10-runtime.md",
+  "updatedAt": "2026-08-10T11:10:00+08:00",
+  "githubCommit": "pending",
+  "columns": [
+    {
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "selectionStatus": "Selected",
+      "itemId": "Q-20260810-01",
+      "title": "Durable RunState resume preserves admitted input and execution evidence",
+      "title_zh": "持久 RunState 恢复保留已接纳输入与执行证据",
+      "priority": "P0",
+      "lifecycle": "Selected",
+      "source": "https://github.com/openai/openai-agents-python/commit/7bf73afa47ac48c1efb599d0b1505cee994e74f5",
+      "source_zh": "OpenAI Agents Python 维护者合并变更",
+      "reason": "Selected from SIG-20260810-G-004. It is the strongest bounded Digital Employee runtime question in today's pool: resumed work preserves pending input occurrence identity, exactly-once conversation tracking and local execution evidence instead of reconstructing state loosely. Skill 02 score: 46/50. The mechanism is directly relevant to work continuity, recovery, auditability and reconstructability.",
+      "reason_zh": "选自 SIG-20260810-G-004。它是今天信号池中最强的有界数字员工运行问题：恢复后的工作继续保留 Pending Input 的 Occurrence Identity、Exactly-once Conversation Tracking 与本地执行证据，而不是松散重建状态。Skill 02 评分 46/50，直接涉及工作连续性、恢复、审计与可重建性。",
+      "next": "Skill 03 Deep Reading must verify the exact persisted RunState fields, occurrence identity semantics, shell-output preservation, serialization boundaries and failure cases without entering Research Analysis.",
+      "next_zh": "Skill 03 Deep Reading 仅核查实际持久化的 RunState 字段、Occurrence Identity 语义、Shell Output 保留、序列化边界与失败情形，不得提前进入 Research Analysis。"
+    },
+    {
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "selectionStatus": "Selected",
+      "itemId": "Q-20260810-02",
+      "title": "Multi-agent failure containment depends on trusted-state repair",
+      "title_zh": "多 Agent 故障收敛依赖 Trusted-state Repair",
+      "priority": "P0",
+      "lifecycle": "Selected",
+      "source": "https://arxiv.org/abs/2608.05263",
+      "source_zh": "OrchestraBench 原始研究论文",
+      "reason": "Selected from SIG-20260810-R-003. It turns multi-agent reliability into a bounded architecture question by measuring cascade radius and recovery by failure mode, and by showing that blind retry can reproduce latent faults while apparent containment depends materially on a trusted-state signal. Skill 02 score: 46/50. This provides a concrete basis for recovery-governance and control-plane architecture decisions.",
+      "reason_zh": "选自 SIG-20260810-R-003。它把多 Agent 可靠性收敛成可验证的架构问题：按 Failure Mode 测量 Cascade Radius 与 Recovery，并指出 Blind Retry 可能重现潜在故障，而表面上的 Containment 改善明显依赖 Trusted-state Signal。Skill 02 评分 46/50，可直接支持恢复治理与控制面架构判断。",
+      "next": "Skill 03 Deep Reading must verify the failure-injection design, cascade-radius and recovery metrics, blind-retry findings, trusted-state ablation, assumptions and external-validity limits.",
+      "next_zh": "Skill 03 Deep Reading 仅核查故障注入设计、Cascade Radius / Recovery 指标、Blind Retry 结论、Trusted-state 消融、前提与外部有效性边界。"
+    },
+    {
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "selectionStatus": "Selected",
+      "itemId": "Q-20260810-03",
+      "title": "Serialized and bounded MCP lifecycle operations prevent races and indefinite hangs",
+      "title_zh": "MCP 生命周期串行化与有界等待防止竞态和无限挂起",
+      "priority": "P0",
+      "lifecycle": "Selected",
+      "source": "https://github.com/openai/openai-agents-python/commit/7da5696020a82d7ee2546a557eb8990169e23815",
+      "source_zh": "OpenAI Agents Python 维护者合并变更",
+      "reason": "Selected from SIG-20260810-G-003. The change exposes an implementable and testable lifecycle-governance pattern: connect, reconnect and cleanup share one lifecycle lock, cleanup survives cancellation, and finite waits/default timeouts bound failure recovery. Skill 02 score: 48/50. It is directly relevant to MCP reliability, recovery and worker liveness.",
+      "reason_zh": "选自 SIG-20260810-G-003。该变更给出可实现、可测试的生命周期治理模式：Connect、Reconnect、Cleanup 共用一个 Lifecycle Lock，Cleanup 在取消后仍能完成，并通过有限等待与默认 Timeout 约束故障恢复。Skill 02 评分 48/50，直接关联 MCP 可靠性、恢复与 Worker 活性。",
+      "next": "Skill 03 Deep Reading must verify lock scope, cancellation behavior, timeout defaults, overlapping-operation semantics, cleanup-worker lifecycle and remaining deadlock or leak boundaries.",
+      "next_zh": "Skill 03 Deep Reading 仅核查 Lock Scope、取消行为、默认 Timeout、重叠操作语义、Cleanup Worker 生命周期以及剩余死锁或泄漏边界。"
+    }
+  ]
+}
