@@ -248,4 +248,57 @@ SaaW 开始重新组合这三个生命周期：
 
 ## 15. SaaW 最终改变的是软件经济学
 
-SaaS
+SaaS 的商业逻辑是企业购买软件能力，然后继续配置员工完成工作。
+
+SaaW 的商业逻辑则可能变成：企业部署被治理的数字工作能力，软件交付的一部分开始从 Feature 转向 Work Outcome。
+
+企业未来购买的可能不只是 CRM，而是客户运营数字团队；不只是财务系统，而是财务处理数字员工；不只是合同管理软件，而是合同审查、签署与履约数字团队。
+
+这意味着软件市场可能从单纯的 **Software Market** 向 **Digital Labor Market** 延伸。
+
+SaaW 的价值不在于发明一个新的 Agent 名词，而在于提出一个新的软件问题：
+
+> **如果软件能够承担岗位职责，那么企业应该如何定义、开发、验证、部署、治理、恢复和升级这种“软件员工”？**
+
+TMPA、FCoP 与 CodeFlowMu 正是在不同层次回答这个问题。
+
+## 16. 结语：软件开始工作
+
+过去的软件一直在回答：怎样让人更高效地工作？
+
+AI Native Software 开始面对另一个问题：哪些工作可以由软件本身完成？
+
+我们的判断不是“人将从系统中消失”，而是角色开始迁移：Agent 进入操作层，人进入治理层。
+
+**SaaS：Human operates Software。**  
+**Copilot：Human operates with AI。**  
+**SaaW：AI performs Work; Human governs AI。**
+
+而当能够开发数字员工的系统，又开始利用自己的研发能力开发下一代 Worker，一个新的递归生命周期出现：
+
+**AI develops Worker → Worker performs Work → Work produces Evidence → Evidence drives Development → AI develops next Worker。**
+
+这就是 CodeFlowMu 正在探索的方向。
+
+不是再造一个 Multi-Agent Framework。
+
+而是：
+
+> **构造一套能够开发、运行、治理、恢复并持续演化数字员工的软件基础设施。**
+
+# SaaW — Software as an Agent Worker
+
+软件曾经是工具。  
+后来成为服务。  
+现在，它开始工作。
+
+**从软件市场到数字劳动力市场。**
+
+---
+
+**joinwell52 Research Center**  
+**CodeFlowMu Core Team**
+
+**TMPA Architecture Paper A0.9 · TMPA Core Specification S0.6 · TMPA Implementation Case Report I0.8 · Research Report Production Engine V1.3 · CodeFlowMu / FCoP**
+
+> **V1.1 边界说明：** 已发布的 TMPA/FCoP/CodeFlowMu 与研究报告生产机能力，以对应版本规范和证据为准。Self-Morphing、统一 Digital Employee Package、通用 Agent PC 与 Development Runtime → Work Runtime 闭环仍包含正在推进的工程方向，不应被解读为无约束自修改或已经完成的全自动企业部署能力。
