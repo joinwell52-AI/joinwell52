@@ -8,11 +8,55 @@
   "date": "2026-08-10",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Blocked",
   "taskStatus": {
-    "program": "Running"
+    "program": "Blocked"
   },
-  "results": {},
+  "results": {
+    "program": {
+      "schema": "runtime-shift-result/v2",
+      "task": "program",
+      "family": "program",
+      "status": "Blocked",
+      "blockedBy": "program-queues",
+      "input": "Fresh post-Reading main-branch state: Research Runtime Scheduler V3.0, Research Runtime Worker Contract V3, the verified 2026-08-10 Program Runtime control-plane attempt, and the independent Program queues required for TMPA, FCoP, CodeFlowMu, Digital Employee and Research Operating System.",
+      "input_zh": "Reading 完成并核验后的最新 main 分支状态：Research Runtime Scheduler V3.0、Research Runtime Worker Contract V3、已核验的 2026-08-10 Program Runtime 控制面尝试，以及 TMPA、FCoP、CodeFlowMu、Digital Employee、Research Operating System 所要求的独立 Program Queue。",
+      "workResult": "After the invalid pre-Reading attempt was removed from authority, a fresh Program attempt was opened at 12:20:40 and claimed at 12:20:41, both after Reading was durably verified at 12:04:59. The fresh attempt then re-read the current Scheduler and Worker Contract and searched current main for authoritative independent Program queue artifacts. The Scheduler and Worker Contract require separate Program queues for the five formal programs. Current repository search still resolves Program-queue terms only to Runtime/governance documentation and the Program Runtime record; research/queue/CURRENT.md is a general Research Queue and does not expose five independent Program queue objects with program lifecycle state, evidence, blocker, review decision and next governed action. Therefore the required Program Runtime input is absent on current main. No lifecycle transition, Program Review decision, or Program Publication was authorized or invented.",
+      "workResult_zh": "在失效的 Reading 前 Program 尝试退出权威状态后，于 12:20:40 打开新的 Program 尝试，并于 12:20:41 由 Worker 接单；两者均晚于 Reading 在 12:04:59 完成持久核验。随后重新读取当前 Scheduler 与 Worker Contract，并在最新 main 上重新检索权威的独立 Program Queue 产物。Scheduler 与 Worker Contract 均要求五个正式 Program 分别具有独立 Program Queue。当前仓库对 Program Queue 的检索仍只命中 Runtime/治理文档与 Program Runtime Record；research/queue/CURRENT.md 是通用 Research Queue，并未暴露五个独立 Program Queue 对象所需的 program lifecycle state、evidence、blocker、review decision 与 next governed action。因此当前 main 仍缺少 Program Runtime 的必需输入。本次未授权或臆造任何生命周期转换、Program Review 决定或 Program Publication。",
+      "output": "A fresh, order-valid 2026-08-10 Program Runtime outcome of Blocked: 0 authoritative independent Program queues found, 0 lifecycle transitions, and 0 Program publications.",
+      "output_zh": "生成一份顺序有效的 2026-08-10 Program Runtime Blocked 结果：权威独立 Program Queue 为 0，生命周期转换为 0，Program 发布为 0。",
+      "next": "Define or identify one authoritative independent Program queue for each of TMPA, FCoP, CodeFlowMu, Digital Employee and Research Operating System. Each must expose at least object id, lifecycle state, evidence, blocker, review decision and next governed action. Only then may Program Runtime be rerun for lifecycle advancement.",
+      "next_zh": "为 TMPA、FCoP、CodeFlowMu、Digital Employee、Research Operating System 分别定义或指明一个权威独立 Program Queue；每个队列至少暴露 object id、lifecycle state、evidence、blocker、review decision 与 next governed action。只有这些输入进入 main 后，Program Runtime 才可再次运行并推进生命周期。",
+      "reason": "Required independent Program queues are absent from current main after a fresh post-Reading verification.",
+      "reason_zh": "在 Reading 完成后的新一轮核验中，当前 main 仍缺少必需的独立 Program Queue。",
+      "metrics": [
+        { "label": "Authoritative independent Program queues found", "label_zh": "发现的权威独立 Program Queue", "value": "0" },
+        { "label": "Lifecycle transitions", "label_zh": "生命周期转换", "value": "0" },
+        { "label": "Program publications", "label_zh": "Program 发布", "value": "0" },
+        { "label": "Fresh post-Reading start events", "label_zh": "Reading 后新尝试启动事件", "value": "1" },
+        { "label": "Fresh Worker Claimed events", "label_zh": "新尝试 Worker Claimed 事件", "value": "1" }
+      ],
+      "evidence": [
+        { "label": "Run-date Daily Runtime", "label_zh": "运行日 Daily Runtime", "path": "research/runtime/records/daily/2026/08/2026-08-10-daily-runtime.json" },
+        { "label": "V5 Scheduler", "label_zh": "V5 调度器", "path": "research/runtime/SCHEDULER.json" },
+        { "label": "Worker Contract V3", "label_zh": "Worker Contract V3", "path": "research/runtime/WORKER-CONTRACT-V3.md" },
+        { "label": "General Research Queue, not a Program queue", "label_zh": "通用 Research Queue，非 Program Queue", "path": "research/queue/CURRENT.md" },
+        { "label": "Program queue search", "label_zh": "Program Queue 检索", "source": "GitHub code search on current repository for independent Program queue lifecycle state review decision next governed action and TMPA Program Queue" }
+      ],
+      "artifacts": [
+        { "label": "Program Runtime Record", "label_zh": "Program Runtime Record", "path": "research/runtime/records/program/2026/08/2026-08-10-program-runtime.json" }
+      ],
+      "programReview": [
+        { "program": "TMPA", "queueAvailable": false, "transition": "none", "blocker": "No authoritative independent TMPA Program queue object is present on current main." },
+        { "program": "FCoP", "queueAvailable": false, "transition": "none", "blocker": "No authoritative independent FCoP Program queue object is present on current main." },
+        { "program": "CodeFlowMu", "queueAvailable": false, "transition": "none", "blocker": "No authoritative independent CodeFlowMu Program queue object is present on current main." },
+        { "program": "Digital Employee", "queueAvailable": false, "transition": "none", "blocker": "No authoritative independent Digital Employee Program queue object is present on current main." },
+        { "program": "Research Operating System", "queueAvailable": false, "transition": "none", "blocker": "No authoritative independent Research Operating System Program queue object is present on current main." }
+      ],
+      "startedAt": "2026-08-10T12:20:40+08:00",
+      "completedAt": "2026-08-10T12:21:34+08:00"
+    }
+  },
   "timeline": [
     {
       "time": "2026-08-10T12:01:04+08:00",
@@ -33,14 +77,14 @@
       "task": "program",
       "event": "GitHub Commit Verified",
       "status": "Completed",
-      "detail": "Fetched and verified durable Program review result commit 4c4631165bee312021ec419ad6085b92e17bda87 on main; the run-date Program Runtime Record remains Blocked on missing independent Program queues with exactly one Execution Slot Opened event."
+      "detail": "Fetched and verified durable Program review result commit 4c4631165bee312021ec419ad6085b92e17bda87 on main; this attempt was later invalidated for execution-order violation."
     },
     {
       "time": "2026-08-10T12:19:58+08:00",
       "task": "program",
       "event": "Order Violation Invalidated",
       "status": "Waiting",
-      "detail": "The 12:01 Program attempt is non-authoritative because it began before the 11:00 Reading shift was durably verified. Reading completed at 12:02:14 and was verified at 12:04:59; Program began at 12:01:04. The prior Program result is retained only in auditHistory and the current Program task is reset to Waiting for a fresh post-Reading attempt."
+      "detail": "The 12:01 Program attempt is non-authoritative because it began before the 11:00 Reading shift was durably verified. Reading completed at 12:02:14 and was verified at 12:04:59; Program began at 12:01:04. The prior Program result is retained only in auditHistory."
     },
     {
       "time": "2026-08-10T12:20:40+08:00",
@@ -55,6 +99,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed the fresh post-Reading Program attempt; substantive Program work is authorized only for this new attempt."
+    },
+    {
+      "time": "2026-08-10T12:21:34+08:00",
+      "task": "program",
+      "event": "Program Review Blocked",
+      "status": "Blocked",
+      "detail": "Fresh post-Reading Program attempt closed Blocked because current main still has no authoritative independent Program queues for the five formal programs. Zero lifecycle transitions and zero Program publications were authorized."
     }
   ],
   "auditHistory": [
@@ -69,31 +120,17 @@
         "family": "program",
         "status": "Blocked",
         "blockedBy": "program-queues",
-        "input": "The current main-branch Research Runtime Scheduler V3.0, Research Runtime Worker Contract V3, the run-date Program Runtime Record, repository evidence for TMPA, FCoP, CodeFlowMu, Digital Employee and Research Operating System, and the required independent Program queues for those five programs.",
-        "input_zh": "当前 main 分支 Research Runtime Scheduler V3.0、Research Runtime Worker Contract V3、运行日 Program Runtime Record、TMPA / FCoP / CodeFlowMu / Digital Employee / Research Operating System 的仓库证据，以及这五个研究计划所要求的独立 Program Queue。",
-        "workResult": "The Program control-plane start state was missing and was persisted exactly once through scheduler fallback, then fetched and verified before review. Main was reviewed for all five long-term programs. TMPA has current S0.6 RC and I0.7 publication evidence; FCoP has current boundary/evidence work and pinned v3.2.5 references; CodeFlowMu has the I0.7 locked evidence and WP-13 field case; Digital Employee has the maintained Digital Employee Works positioning and prior release evidence; Research Operating System has the active V5 Scheduler and Worker Contract. However, the declared Program Runtime input does not exist as operational data: no independent Program queue artifacts for the five programs are present on main. Search results for Program queues resolve only to the Runtime contracts and the general Research Queue, which is not a substitute for the independent Program queues required by V5. Therefore no Program Queue -> Research -> Review -> Program Publication lifecycle transition can be authorized without inventing state. Zero transitions and zero Program publications were performed.",
-        "workResult_zh": "Program 控制面的启动状态缺失，已通过 Scheduler fallback 恰好补写一次，并在评审前重新 fetch 与核验。随后分别检查五个长期研究计划在 main 上的当前证据：TMPA 已有 S0.6 RC 与 I0.7 正式发布证据；FCoP 已有最新边界/证据工作并固定 v3.2.5 引用；CodeFlowMu 已有 I0.7 锁定证据与 WP-13 现场案例；Digital Employee 已有持续维护的 Digital Employee Works 定位与既有发布证据；Research Operating System 已有正在生效的 V5 Scheduler 与 Worker Contract。但 Program Runtime 声明的输入目前并不存在为可操作数据：main 上没有这五个研究计划各自独立的 Program Queue 产物。对 Program Queue 的检索只命中 Runtime 合同和通用 Research Queue，而后者不能替代 V5 要求的独立 Program Queue。若继续推进就必须臆造生命周期状态，因此本次不授权任何 Program Queue -> Research -> Review -> Program Publication 转换，执行 0 个转换、0 个 Program 发布。",
-        "output": "A governed Blocked Program Runtime result for 2026-08-10: five programs reviewed independently, zero eligible lifecycle transitions, and one explicit blocker — the five independent Program queues required by the V5 contract are absent from main.",
-        "output_zh": "生成 2026-08-10 受治理的 Blocked Program Runtime 结果：五个研究计划已分别检查，符合条件的生命周期转换为 0；唯一明确阻塞项是 V5 合同要求的五个独立 Program Queue 在 main 上不存在。",
-        "next": "Define or identify the authoritative independent Program queue artifact for each of TMPA, FCoP, CodeFlowMu, Digital Employee and Research Operating System. Each queue must expose at least object id, lifecycle state, evidence, blocker, review decision and next governed action. After those inputs exist on main, rerun Program Runtime and advance only objects whose current lifecycle gate is satisfied.",
-        "next_zh": "为 TMPA、FCoP、CodeFlowMu、Digital Employee、Research Operating System 分别定义或指明权威的独立 Program Queue 产物；每个队列至少应暴露 object id、lifecycle state、evidence、blocker、review decision 与 next governed action。上述输入进入 main 后，再运行 Program Runtime，并且只推进满足当前生命周期门禁的对象。",
-        "reason": "Required independent Program queues are absent from main; advancing lifecycle objects would require inventing program state.",
-        "reason_zh": "main 上缺少必需的独立 Program Queue；继续推进将不得不臆造研究计划状态。",
-        "metrics": [
-          { "label": "Programs reviewed", "label_zh": "已检查研究计划", "value": "5" },
-          { "label": "Independent Program queues found", "label_zh": "发现的独立 Program Queue", "value": "0" },
-          { "label": "Lifecycle transitions", "label_zh": "生命周期转换", "value": "0" },
-          { "label": "Program publications", "label_zh": "Program 发布", "value": "0" },
-          { "label": "Program start events", "label_zh": "Program 启动事件", "value": "1" }
-        ],
-        "evidence": [
-          { "label": "V5 Scheduler", "label_zh": "V5 调度器", "source": "research/runtime/SCHEDULER.json" },
-          { "label": "Worker Contract V3", "label_zh": "Worker Contract V3", "source": "research/runtime/WORKER-CONTRACT-V3.md" },
-          { "label": "General Research Queue (not a Program queue)", "label_zh": "通用 Research Queue（非 Program Queue）", "source": "research/queue/CURRENT.md" }
-        ],
-        "artifacts": [
-          { "label": "Program Runtime Record", "label_zh": "Program Runtime Record", "path": "research/runtime/records/program/2026/08/2026-08-10-program-runtime.json" }
-        ],
+        "input": "The pre-Reading Program attempt inputs as recorded at 12:01.",
+        "input_zh": "12:01 Reading 完成前 Program 尝试所记录的输入。",
+        "workResult": "Historical pre-Reading Program review result retained only for audit; it is not authoritative because the attempt violated global execution order.",
+        "workResult_zh": "保留 Reading 完成前 Program 评审结果仅用于审计；由于该尝试违反全局执行顺序，不再具有权威性。",
+        "output": "Non-authoritative historical audit evidence only.",
+        "output_zh": "仅作为非权威历史审计证据。",
+        "next": "Use the fresh post-Reading Program attempt as the only authoritative current outcome.",
+        "next_zh": "仅使用 Reading 完成后的新 Program 尝试作为当前权威结果。",
+        "metrics": [],
+        "evidence": [],
+        "artifacts": [],
         "startedAt": "2026-08-10T12:01:04+08:00",
         "completedAt": "2026-08-10T12:02:01+08:00"
       }
@@ -104,5 +141,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-10T12:20:41+08:00"
+  "updatedAt": "2026-08-10T12:21:34+08:00"
 }
