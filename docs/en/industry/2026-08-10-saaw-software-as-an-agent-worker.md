@@ -7,7 +7,7 @@ version: "V1.1"
 summary: "SaaW shifts software delivery from capabilities and assistants toward governed digital workers. V1.1 anchors the manifesto in Research Report Production Engine V1.3 and separates current engineering evidence from the Self-Morphing research frontier."
 item_id: "MANIFESTO-20260810-SAAW"
 lifecycle: "Published"
-cover: "/assets/covers/saaw-manifesto-cover.svg"
+cover: "/assets/covers/saaw-manifesto-cover.svg?v=20260811-final"
 visualization: "/assets/covers/saaw-governance-stack.svg"
 visualization_2: "/assets/covers/saaw-self-morphing-loop.svg"
 evidence_status: "Architecture-grounded + production-engine reference implementation"
@@ -24,7 +24,7 @@ outline: deep
 
 [中文版](/zh/industry/2026-08-10-saaw-software-as-an-agent-worker)
 
-![SaaW — Software as an Agent Worker](/assets/covers/saaw-manifesto-cover.svg)
+![SaaW — Software as an Agent Worker](/assets/covers/saaw-manifesto-cover.svg?v=20260811-final)
 
 > **Author / Publisher:** joinwell52 Research Center / CodeFlowMu Core Team  
 > **Architecture:** [TMPA Architecture Paper A0.9](/en/publications/tmpa-architecture-paper-a0.9)  
