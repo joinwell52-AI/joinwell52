@@ -2,7 +2,7 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 
 const MANIFEST_PATH = 'research/runtime/SCHEDULER.json'
-const NEVER_REOPEN = new Set(['Completed', 'Failed', 'Skipped'])
+const HARD_CLOSED = new Set(['Completed', 'Failed', 'Skipped'])
 const DEPENDENCY_OF = {
   queue: 'discovery',
   reading: 'queue',
@@ -126,15 +126,39 @@ function main() {
     return getRecord(task).record?.taskStatus?.[taskId] || 'Waiting'
   }
 
+  const resultOf = (taskId) => {
+    const task = taskById.get(taskId)
+    if (!task) return null
+    return getRecord(task).record?.results?.[taskId] || null
+  }
+
   const dependencyReady = (task) => {
     const dependency = dependencyId(task)
     return !dependency || statusOf(dependency) === 'Completed'
   }
 
-  // Scheduled reconciliation repairs impossible downstream state before choosing work.
-  // Running is corrected; Completed is invalidated because downstream output cannot be
-  // authoritative when its prerequisite had not completed. Manual requests never mutate
-  // state before they pass the same ordered gate.
+  const recoverableBlocked = (task) => {
+    if (statusOf(task.id) !== 'Blocked') return false
+    const dependency = dependencyId(task)
+    return Boolean(
+      dependency &&
+      dependencyReady(task) &&
+      resultDeclaresDependency(resultOf(task.id), dependency)
+    )
+  }
+
+  const executionClosed = (task) => {
+    const status = statusOf(task.id)
+    if (HARD_CLOSED.has(status)) return true
+    if (status === 'Blocked') return !recoverableBlocked(task)
+    return false
+  }
+
+  const dueTasks = manifest.tasks
+    .filter((task) => taskAppliesToday(task, now) && isDue(task, now))
+    .sort((a, b) => scheduledMinutes(a) - scheduledMinutes(b) || a.id.localeCompare(b.id))
+
+  // First repair explicit business-dependency violations.
   if (!args.manual) {
     for (const task of manifest.tasks) {
       if (!taskAppliesToday(task, now)) continue
@@ -145,21 +169,51 @@ function main() {
       if (!record) continue
 
       const currentStatus = record.taskStatus?.[task.id] || 'Waiting'
-      if (!['Running', 'Completed'].includes(currentStatus)) continue
+      if (!['Running', 'Completed', 'Blocked', 'Failed', 'Skipped'].includes(currentStatus)) continue
       if (statusOf(dependency) === 'Completed') continue
 
-      const invalidatedCompletion = currentStatus === 'Completed'
       record.taskStatus[task.id] = 'Waiting'
       if (record.results?.[task.id]) delete record.results[task.id]
       record.timeline = Array.isArray(record.timeline) ? record.timeline : []
       record.timeline.push({
         time: `${now.date}T${now.time}+08:00`,
         task: task.id,
-        event: invalidatedCompletion ? 'Order Violation Invalidated' : 'Order Violation Corrected',
+        event: currentStatus === 'Running' ? 'Order Violation Corrected' : 'Order Violation Invalidated',
         status: 'Waiting',
-        detail: invalidatedCompletion
-          ? `${task.name} completion was invalidated because dependency ${dependency} is not Completed. Any downstream artifacts from that attempt are not governed inputs and the task must rerun after its prerequisite completes.`
-          : `${task.name} was returned to Waiting because dependency ${dependency} is not Completed. Scheduler reconciliation forbids downstream execution before its prerequisite.`
+        detail: currentStatus === 'Running'
+          ? `${task.name} was returned to Waiting because dependency ${dependency} is not Completed. Scheduler reconciliation forbids downstream execution before its prerequisite.`
+          : `${task.name} ${currentStatus} outcome was invalidated because dependency ${dependency} is not Completed. Any downstream artifacts from that attempt are historical audit evidence only and the task must rerun after its prerequisite completes.`
+      })
+      record.updatedAt = `${now.date}T${now.time}+08:00`
+      record.githubCommit = 'pending'
+      record.commitVerify = 'Waiting'
+      changedPaths.add(entry.file)
+    }
+  }
+
+  // Then enforce the cross-family global serial clock: a later due task may not execute
+  // while any earlier due task is still Waiting/Running or has become recoverable.
+  if (!args.manual) {
+    for (let index = 0; index < dueTasks.length; index += 1) {
+      const task = dueTasks[index]
+      const earlierOpen = dueTasks.slice(0, index).find((candidate) => !executionClosed(candidate))
+      if (!earlierOpen) continue
+
+      const entry = getRecord(task)
+      const record = entry.record
+      if (!record) continue
+      const currentStatus = record.taskStatus?.[task.id] || 'Waiting'
+      if (!['Running', 'Completed', 'Blocked', 'Failed', 'Skipped'].includes(currentStatus)) continue
+
+      record.taskStatus[task.id] = 'Waiting'
+      if (record.results?.[task.id]) delete record.results[task.id]
+      record.timeline = Array.isArray(record.timeline) ? record.timeline : []
+      record.timeline.push({
+        time: `${now.date}T${now.time}+08:00`,
+        task: task.id,
+        event: currentStatus === 'Running' ? 'Global Order Violation Corrected' : 'Global Order Violation Invalidated',
+        status: 'Waiting',
+        detail: `${task.name} ${currentStatus} state was invalidated because earlier due task ${earlierOpen.id} at ${earlierOpen.schedule.time} had not execution-closed. Timer activation does not grant execution authority; this task must be reconciled again after the earlier task closes.`
       })
       record.updatedAt = `${now.date}T${now.time}+08:00`
       record.githubCommit = 'pending'
@@ -172,38 +226,41 @@ function main() {
     if (record && changedPaths.has(file)) writeJson(file, record)
   }
 
-  const candidates = manifest.tasks.flatMap((task) => {
-    if (!taskAppliesToday(task, now) || !isDue(task, now)) return []
-    const entry = getRecord(task)
-    const record = entry.record
-    const currentStatus = record?.taskStatus?.[task.id] || 'Waiting'
+  const earliestOpen = dueTasks.find((task) => !executionClosed(task)) || null
+  let selected = null
 
-    if (currentStatus === 'Running' || NEVER_REOPEN.has(currentStatus)) return []
-
-    if (currentStatus === 'Blocked') {
-      const dependency = dependencyId(task)
-      if (!dependency || !dependencyReady(task)) return []
-      if (!resultDeclaresDependency(record?.results?.[task.id], dependency)) return []
-      return [{ task, reopenBlocked: true, scheduledMinutes: scheduledMinutes(task) }]
+  if (earliestOpen) {
+    const currentStatus = statusOf(earliestOpen.id)
+    if (currentStatus === 'Blocked' && recoverableBlocked(earliestOpen)) {
+      selected = {
+        task: earliestOpen,
+        reopenBlocked: true,
+        scheduledMinutes: scheduledMinutes(earliestOpen)
+      }
+    } else if (currentStatus === 'Waiting' && dependencyReady(earliestOpen)) {
+      selected = {
+        task: earliestOpen,
+        reopenBlocked: false,
+        scheduledMinutes: scheduledMinutes(earliestOpen)
+      }
     }
+  }
 
-    if (currentStatus !== 'Waiting' || !dependencyReady(task)) return []
-    return [{ task, reopenBlocked: false, scheduledMinutes: scheduledMinutes(task) }]
-  }).sort((a, b) => a.scheduledMinutes - b.scheduledMinutes || a.task.id.localeCompare(b.task.id))
-
-  const selected = candidates[0] || null
   const requested = args.manual ? String(args.manual) : ''
 
   if (requested) {
     if (!taskById.has(requested)) throw new Error(`Unknown manual runtime task: ${requested}`)
     if (!selected || selected.task.id !== requested) {
-      const expected = selected?.task.id || 'none'
-      throw new Error(`Ordered reconciliation denied manual task ${requested}; earliest runnable due task is ${expected}. Manual/fallback dispatch cannot bypass dependency order.`)
+      const expected = earliestOpen?.id || 'none'
+      throw new Error(`Ordered reconciliation denied manual task ${requested}; earliest due unfinished task is ${expected}. Timer/manual/fallback activation cannot bypass global serial order or business dependencies.`)
     }
   }
 
   const changed = changedPaths.size > 0
   const changedList = [...changedPaths].join(',')
+  const openReason = earliestOpen
+    ? `${earliestOpen.id}=${statusOf(earliestOpen.id)}${dependencyId(earliestOpen) && !dependencyReady(earliestOpen) ? `; dependency ${dependencyId(earliestOpen)} not Completed` : ''}`
+    : 'none'
 
   if (!selected) {
     githubOutput({
@@ -213,9 +270,10 @@ function main() {
       state_changed: changed ? 'true' : 'false',
       changed_record_paths: changedList,
       runtime_date: now.date,
-      reason: `reconciled at ${now.date} ${now.hour}:${now.minute}; no dependency-ready overdue task${changed ? '; corrected out-of-order downstream state' : ''}`
+      earliest_due_unfinished: earliestOpen?.id || 'none',
+      reason: `reconciled at ${now.date} ${now.hour}:${now.minute}; no task may open now; earliest due unfinished ${openReason}${changed ? '; corrected out-of-order state' : ''}`
     })
-    console.log(`No runnable overdue task at ${now.date} ${now.hour}:${now.minute}.${changed ? ` Corrected: ${changedList}` : ''}`)
+    console.log(`No runnable task at ${now.date} ${now.hour}:${now.minute}; earliest due unfinished ${openReason}.${changed ? ` Corrected: ${changedList}` : ''}`)
     return
   }
 
@@ -227,9 +285,10 @@ function main() {
     state_changed: changed ? 'true' : 'false',
     changed_record_paths: changedList,
     runtime_date: now.date,
-    reason: `ordered reconcile at ${now.date} ${now.hour}:${now.minute}; selected ${selected.task.id}; formal time ${selected.task.schedule.time}; lateness ${latenessMinutes}m; mode ${selected.reopenBlocked ? 'retry-blocked' : 'open-waiting'}; ready queue ${candidates.map((item) => item.task.id).join(',')}`
+    earliest_due_unfinished: selected.task.id,
+    reason: `global ordered reconcile at ${now.date} ${now.hour}:${now.minute}; selected earliest due unfinished ${selected.task.id}; formal time ${selected.task.schedule.time}; lateness ${latenessMinutes}m; mode ${selected.reopenBlocked ? 'retry-blocked' : 'open-waiting'}`
   })
-  console.log(`Selected ${selected.task.id}; ready queue: ${candidates.map((item) => item.task.id).join(', ')}`)
+  console.log(`Selected earliest due unfinished task ${selected.task.id}.`)
 }
 
 main()
