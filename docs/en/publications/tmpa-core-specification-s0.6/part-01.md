@@ -43,18 +43,25 @@ The following are outside TMPA Core unless a named profile adds them: authentica
 
 A conforming implementation MAY use files, database rows, object-store objects, or events as source artifacts. It MUST NOT claim conformance merely because it stores Markdown, produces logs, or implements a workflow state machine. Conformance is behavioral and depends on the observable object, lifecycle, reconstruction, conflict, recovery, and test requirements in Sections 9 and 10.
 
-The publication contract is fixed across the three maintained documents: the [Architecture Paper A0.8](/en/publications/tmpa-architecture-paper-a0.8) explains the theory, this Core Specification defines normative behavior, and the [Implementation Case Report I0.8](/en/publications/implementation-case-i0.8) reports bounded engineering evidence. Their current conceptual layering and historical lineage are distinct:
+The publication contract is fixed across the three maintained documents: the [Architecture Paper A0.9](/en/publications/tmpa-architecture-paper-a0.9) explains the theory, this Core Specification defines normative behavior, and the [Implementation Case Report I0.8](/en/publications/implementation-case-i0.8) reports bounded engineering evidence. Their current guidance relation and historical co-evolution are distinct:
 
 ```text
-CURRENT CONCEPTUAL LAYERING
-TMPA architecture → reusable FCoP protocol profile → CodeFlowMu and other applications
+CURRENT GUIDANCE AND IMPLEMENTATION
+TMPA theory and architecture
+        ↓ formalized as normative behavior by
+TMPA Core Specification
+        ↓ projected through the file-based profile
+FCoP protocol
+        ↓ used by
+CodeFlowMu engineering system
 
-HISTORICAL LINEAGE
-XiaoDian AI practice → original TMPA → FCoP extraction and maturation
-                    → CodeFlowMu application → current TMPA formalization
+HISTORICAL CO-EVOLUTION
+XiaoDian AI practice → early TMPA → FCoP extraction and maturation
+                    → CodeFlowMu engineering implementation
+FCoP + CodeFlowMu feedback → current TMPA formalization
 ```
 
-FCoP defines a reusable file-based protocol profile over a subset of TMPA semantics; CodeFlowMu is a downstream application that adopts that protocol for coordination and governance. The `fcop` and `fcop-mcp` Python packages are reference implementations of the protocol, not FCoP itself. Neither the FCoP protocol, its reference implementation, nor CodeFlowMu defines or exhausts TMPA Core.
+TMPA theory guides CodeFlowMu engineering, this Core fixes the normative behavior under evaluation, and FCoP provides the coordination protocol used by CodeFlowMu. The `fcop` and `fcop-mcp` Python packages are reference implementations of the protocol, not FCoP itself. Engineering feedback may motivate a later TMPA revision, but neither the FCoP protocol, its reference implementation, nor CodeFlowMu defines or exhausts TMPA Core.
 
 ---
 

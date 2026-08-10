@@ -33,7 +33,7 @@ V1.0 remains the historical baseline for the first Production Test: [legacy comp
 
 | Type | Document | Version | Status |
 |---|---|---:|---|
-| Paper | [TMPA Architecture Paper](./tmpa-architecture-paper-a0.8) | A0.8 | Pre-submission review draft; aligned to Core S0.6 and Implementation Case I0.8 |
+| Paper | [TMPA Architecture Paper](./tmpa-architecture-paper-a0.9) | A0.9 | Pre-submission review draft; current TMPA → Core → FCoP → CodeFlowMu guidance relation finalized |
 | Specification | [TMPA Core Specification](./tmpa-core-specification-s0.6) | S0.6 | Release Candidate; Reference Reader 14/14 PASS; CodeFlowMu V1.6.0 product run 14/14 PASS (author-run) |
 | Case report | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.8) | I0.8 | Exact-version S0.6 CodeFlowMu V1.6.0 evidence: C01–C14 14/14 author-run PASS; public reproducer included; WP-13 retained as a bounded case |
 

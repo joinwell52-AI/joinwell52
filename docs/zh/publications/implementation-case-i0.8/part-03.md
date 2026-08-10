@@ -52,7 +52,7 @@ I0.8 让这种分离可观察。错误类型或自我签发的批准被保留，
 
 I0.8 将 Implementation Case 从精确的 S0.5 产品结果推进到精确输入的 S0.6 产品结果。CodeFlowMu V1.6.0 通过全部十四项强制准则，并直接暴露 S0.6 在来源保留、批准权威和不依赖 Locale 的确定性重建方面的变化。自包含复现器缩小了作者本地产品证据与公开检查之间的差距，同时没有把私有完整应用包装成开源或独立验证。
 
-该结果强化 TMPA 可实现性的工程证据，而不是证明理论逻辑为真。TMPA 仍是规范架构，FCoP 是协议层，CodeFlowMu 是受测应用，WP-13 是有限现场案例。独立采用与更广泛经验评估仍属于后续工作。
+该结果强化 TMPA 可实现性的工程证据，而不是证明理论逻辑为真。TMPA 理论指导系统设计，Core S0.6 固定受评估要求，FCoP 提供现实协作与证据协议，CodeFlowMu 是受测的应用执行与消费层，WP-13 是有限现场案例。独立采用与更广泛经验评估仍属于后续工作。
 
 # 证据获取
 
@@ -64,7 +64,7 @@ I0.7 及其 V1.4.1/S0.5 压缩包继续保留在版本路径。被拒绝的 I0.8
 
 [1] TMPA Project. “TMPA Core Specification S0.6,” Commit `8989657e8fde6d2e55d7606ae0adacac14fec760`. GitHub, 2026.
 
-[2] TMPA Project. “TMPA Architecture Paper A0.7.” GitHub, 2026.
+[2] TMPA Project. “TMPA Architecture Paper A0.9.” GitHub, 2026.
 
 [3] FCoP Project. “FCoP — File-based Coordination Protocol,” 参考实现 Commit `da79dfefd99f597c9e422ce9edec22157f915a21`. GitHub, 2026.
 
@@ -73,3 +73,5 @@ I0.7 及其 V1.4.1/S0.5 压缩包继续保留在版本路径。被拒绝的 I0.8
 [5] TMPA Project. “I0.8 CodeFlowMu V1.6.0 S0.6 Evidence,” Package `tmpa-i0.8-codeflowmu-v1.6.0-s0.6-evidence-20260810`, 2026.
 
 [6] CodeFlowMu Project. “WP-13 Multi-Agent Fact-Check Publication Evidence V3,” 2026.
+
+[7] CodeFlowMu Project. “CodeFlowMu V1.4–V1.5 TMPA × FCoP × 应用统一架构”，`docs/TMPA-GOVERNANCE.md`。GitHub，2026。`https://github.com/joinwell52-AI/codeflowmu/blob/main/docs/TMPA-GOVERNANCE.md`。
