@@ -75,7 +75,18 @@ const existing = (record.timeline || []).find((event) =>
   String(event.detail || '').includes(commit)
 )
 if (existing) {
-  console.log(`Verification already recorded for ${taskId} ${date} commit ${commit}.`)
+  if (record.githubCommit !== commit || record.commitVerify !== 'Completed') {
+    record.githubCommit = commit
+    record.commitVerify = 'Completed'
+    result.githubCommit = commit
+    result.commitVerify = 'Completed'
+    result.verifiedAt = existing.time
+    record.updatedAt = existing.time
+    writeJson(file, record)
+    console.log(`Reconciled verification fields for ${taskId} ${date} commit ${commit}.`)
+  } else {
+    console.log(`Verification already recorded for ${taskId} ${date} commit ${commit}.`)
+  }
   process.exit(0)
 }
 
@@ -91,6 +102,8 @@ record.timeline.push({
 result.githubCommit = commit
 result.commitVerify = 'Completed'
 result.verifiedAt = verifiedAt
+record.githubCommit = commit
+record.commitVerify = 'Completed'
 record.updatedAt = verifiedAt
 writeJson(file, record)
 console.log(`Recorded durable verification for ${taskId} ${date} commit ${commit}.`)
