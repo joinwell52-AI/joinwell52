@@ -7,11 +7,13 @@ outline: false
 ---
 
 <script setup>
+import RuntimeTodayUrlSync from '../../.vitepress/theme/components/RuntimeTodayUrlSync.vue'
 import RuntimeOperationsCenterCurrent from '../../.vitepress/theme/components/RuntimeOperationsCenterCurrent.vue'
 import RuntimePrestartState from '../../.vitepress/theme/components/RuntimePrestartState.vue'
 import RuntimeShiftCollapse from '../../.vitepress/theme/components/RuntimeShiftCollapse.vue'
 </script>
 
+<RuntimeTodayUrlSync />
 <RuntimePrestartState lang="en" />
 <RuntimeOperationsCenterCurrent lang="en" />
 <RuntimeShiftCollapse lang="en" />
