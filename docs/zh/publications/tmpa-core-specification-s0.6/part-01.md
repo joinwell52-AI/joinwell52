@@ -43,18 +43,25 @@ TMPA Core 治理流程—责任证据。它不规定模型 Runtime、调度器�
 
 符合规范的实现 **MAY** 使用文件、数据库行、对象存储对象或事件作为来源工件。实现 **MUST NOT** 仅因为存储 Markdown、生成日志或实现工作流状态机就声称符合 TMPA。一致性是行为性质，取决于第 9、10 节规定的可观察对象、生命周期、重建、冲突、恢复与测试结果。
 
-三份维护文档的出版契约固定如下：[Architecture Paper A0.8](/zh/publications/tmpa-architecture-paper-a0.8) 解释理论，本 Core Specification 定义规范行为，[Implementation Case Report I0.8](/zh/publications/implementation-case-i0.8) 报告边界明确的工程证据。当前概念分层与历史谱系必须分开表达：
+三份维护文档的出版契约固定如下：[Architecture Paper A0.9](/zh/publications/tmpa-architecture-paper-a0.9) 解释理论，本 Core Specification 定义规范行为，[Implementation Case Report I0.8](/zh/publications/implementation-case-i0.8) 报告边界明确的工程证据。当前指导关系与历史协同演进必须分开表达：
 
 ```text
-当前概念分层
-TMPA 架构 → 可复用 FCoP 协议 Profile → CodeFlowMu 与其他下游应用
+当前指导与落实关系
+TMPA 理论与架构
+        ↓ 由下列文档形式化为规范行为
+TMPA Core Specification
+        ↓ 通过文件型 Profile 投影
+FCoP 协议
+        ↓ 被下列系统使用
+CodeFlowMu 工程系统
 
-历史谱系
-小典 AI 实践 → 原始 TMPA → FCoP 抽取与成熟
-              → CodeFlowMu 应用 → 当前 TMPA 形式化
+历史协同演进
+小典 AI 实践 → 早期 TMPA → FCoP 抽取与成熟
+              → CodeFlowMu 工程落实
+FCoP + CodeFlowMu 反馈 → 当前 TMPA 形式化
 ```
 
-FCoP 定义覆盖 TMPA 部分语义的可复用文件型协议 Profile；CodeFlowMu 是采用该协议进行协调与治理的下游应用。`fcop` 与 `fcop-mcp` Python Package 是 FCoP 协议的参考实现，不是 FCoP 本身。FCoP 协议、其参考实现和 CodeFlowMu 均不定义、也不穷尽 TMPA Core。
+TMPA 理论指导 CodeFlowMu 工程落实，本 Core 固定接受评估的规范行为，FCoP 提供 CodeFlowMu 使用的协作协议。`fcop` 与 `fcop-mcp` Python Package 是 FCoP 协议的参考实现，不是 FCoP 本身。工程反馈可以推动后续 TMPA 修订，但 FCoP 协议、其参考实现和 CodeFlowMu 均不定义、也不穷尽 TMPA Core。
 
 ---
 

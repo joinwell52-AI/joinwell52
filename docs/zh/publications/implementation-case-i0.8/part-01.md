@@ -57,25 +57,29 @@ I0.8 回答：
 
 ```text
 TMPA Architecture Paper
-        ↓ 理论与治理模型
+        ↓ 理论指导工程方向
 TMPA Core S0.6
-        ↓ 规范对象、Reader 与符合性契约
+        ↓ 固定规范对象、Reader 与符合性契约
 FCoP 协议
-        ↓ 基于文件的协同 Profile 与参考实现
-CodeFlowMu V1.6.0 应用
+        ↓ 提供现实协作与证据协议
+CodeFlowMu V1.6.0 应用执行与消费层
         ↓ 产品 Reader、Runtime、角色、恢复与审计
 WP-13 与其他有限案例
 ```
 
-TMPA 提供架构与规范治理模型。FCoP 是可复用的基于文件的协同协议，不是应用程序；`fcop` 与 `fcop-mcp` 是参考实现，不等于协议本身。CodeFlowMu 是本次受评估的下游应用。WP-13 与小典 AI 继续作为工程谱系中的有限证据来源，不能替代 S0.6 产品运行。
+TMPA 理论指导 CodeFlowMu 的工程方向，Core S0.6 固定本报告接受评估的规范行为。FCoP 是 CodeFlowMu 使用的现实协作与证据协议，不是应用程序；`fcop` 与 `fcop-mcp` 是参考实现，不等于协议本身。按照 CodeFlowMu 工程架构 [7]，CodeFlowMu 是应用执行与消费层：负责产生协作事实、运行 Adapter 与 Reader、投影治理图，并让恢复与治理门禁消费重建结果。WP-13 与小典 AI 继续作为工程谱系中的有限证据来源，不能替代 S0.6 产品运行。
 
 概念依赖与历史形成过程保持分离：
 
 ```text
-概念关系：TMPA → FCoP → CodeFlowMu / 其他应用
-历史关系：小典实践 → 早期 TMPA → FCoP 提取
-                               → CodeFlowMu → 当前 TMPA 形式化
+当前指导：TMPA 理论 → Core 要求 → FCoP 协议
+                                  → CodeFlowMu 工程落实
+历史反馈：小典实践 → 早期 TMPA → FCoP 提取
+                               → CodeFlowMu 工程实现
+FCoP + CodeFlowMu 结果 → 当前 TMPA 形式化
 ```
+
+历史反馈解释理论如何成熟，但不会倒置当前权威关系。产品行为可以提供证据或推动后续修订，却不能重定义当前 Core。
 
 # 3. 锁定来源与证据设计
 

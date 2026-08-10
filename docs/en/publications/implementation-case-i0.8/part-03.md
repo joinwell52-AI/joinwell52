@@ -52,7 +52,7 @@ The initial 2026-08-09 candidate archive is not published. It contained semantic
 
 I0.8 advances the Implementation Case from an exact S0.5 product result to an exact-input S0.6 product result. CodeFlowMu V1.6.0 passes all fourteen mandatory criteria while directly exposing the S0.6 changes in provenance retention, approval authority, and locale-independent reconstruction. A self-contained reproducer narrows the gap between author-local product evidence and public inspection without misrepresenting the private full application as open or independently validated.
 
-The result strengthens the engineering evidence for TMPA's implementability, not the logical truth of the theory. TMPA remains the normative architecture, FCoP the protocol layer, CodeFlowMu the application under test, and WP-13 a bounded field case. Independent adoption and broader empirical evaluation remain future work.
+The result strengthens the engineering evidence for TMPA's implementability, not the logical truth of the theory. TMPA theory guides the system design, Core S0.6 fixes the evaluated requirements, FCoP supplies the collaboration and evidence protocol, CodeFlowMu is the application execution and consumption layer under test, and WP-13 is a bounded field case. Independent adoption and broader empirical evaluation remain future work.
 
 # Artifact Availability
 
@@ -64,7 +64,7 @@ I0.7 and its V1.4.1/S0.5 archive remain available at their versioned paths. The 
 
 [1] TMPA Project. “TMPA Core Specification S0.6,” commit `8989657e8fde6d2e55d7606ae0adacac14fec760`. GitHub, 2026.
 
-[2] TMPA Project. “TMPA Architecture Paper A0.7.” GitHub, 2026.
+[2] TMPA Project. “TMPA Architecture Paper A0.9.” GitHub, 2026.
 
 [3] FCoP Project. “FCoP — File-based Coordination Protocol,” reference implementation commit `da79dfefd99f597c9e422ce9edec22157f915a21`. GitHub, 2026.
 
@@ -73,3 +73,5 @@ I0.7 and its V1.4.1/S0.5 archive remain available at their versioned paths. The 
 [5] TMPA Project. “I0.8 CodeFlowMu V1.6.0 S0.6 Evidence,” package `tmpa-i0.8-codeflowmu-v1.6.0-s0.6-evidence-20260810`, 2026.
 
 [6] CodeFlowMu Project. “WP-13 Multi-Agent Fact-Check Publication Evidence V3,” 2026.
+
+[7] CodeFlowMu Project. “CodeFlowMu V1.4–V1.5 TMPA × FCoP × Application Unified Architecture,” `docs/TMPA-GOVERNANCE.md`. GitHub, 2026. `https://github.com/joinwell52-AI/codeflowmu/blob/main/docs/TMPA-GOVERNANCE.md`.

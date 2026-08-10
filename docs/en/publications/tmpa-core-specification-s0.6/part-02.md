@@ -83,6 +83,8 @@ A role label is not a cryptographic signature. A digest without a trusted identi
 
 S0.6 derives vendor-neutral Core constraints from FCoP protocol specifications, Rules, Schemas, and ADRs, together with bounded observations of the `fcop` / `fcop-mcp` reference implementation. FCoP is a protocol and reference profile, not an application and not the definition of TMPA; the Python packages are only its reference implementation. This section therefore absorbs portable semantics rather than `_lifecycle/`, filename, or MCP-tool names.
 
+This historical extraction is implementation feedback into specification design, not a reversal of current authority. Once published, TMPA theory and this Core govern the intended CodeFlowMu implementation; observed product behavior can support, challenge, or motivate a later revision, but cannot silently redefine the current requirements.
+
 ### 3.8.1 Current State, Transition History, and Business Completion
 
 A profile MUST define current-state observations separately from transition-history evidence. FCoP uses path as current stage and append-only `transitions` as history; a database profile may use a current-state row and event table. When they conflict, the reader MUST preserve both sources and emit `STATE_EVIDENCE_CONFLICT` or a profile-declared canonical equivalent. It MUST NOT resolve the conflict by selecting the latest timestamp.

@@ -55,6 +55,8 @@ TMPA Core 要求归属与完整性证据。只有应用可信身份、签名与�
 
 S0.6 从 FCoP 协议规范、Rules、Schema 与 ADR，以及 `fcop` / `fcop-mcp` 参考实现的有界观察中提炼供应商中立的 Core 约束。FCoP 是协议与参考 Profile，不是应用程序，也不是 TMPA 的定义者；Python Package 只是参考实现。因此本节吸收的是可移植语义，而不是 `_lifecycle/`、文件名或 MCP 工具名。
 
+这种历史提炼属于工程反馈进入规范设计，不表示当前权威关系倒置。规范发布后，TMPA 理论与本 Core 约束 CodeFlowMu 的预期工程落实；观测到的产品行为可以支持、质疑或推动后续修订，但不能静默重定义当前要求。
+
 ### 3.8.1 当前状态、迁移历史与业务完成
 
 Profile **MUST** 分别定义当前状态观测与迁移历史证据。FCoP 以路径表达当前阶段、以只增 `transitions` 表达历史；数据库 Profile 可以使用当前状态行与 Event 表。Reader 遇到两者冲突时 **MUST** 保留两份来源并输出 `STATE_EVIDENCE_CONFLICT` 或 Profile 声明的等价规范问题，不得用“最新时间戳”覆盖冲突。

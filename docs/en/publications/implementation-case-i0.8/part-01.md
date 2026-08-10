@@ -57,25 +57,29 @@ The unit of judgment is a criterion-bound claim over a fixed bundle. The four ev
 
 ```text
 TMPA Architecture Paper
-        ↓ theory and governance model
+        ↓ theory guides engineering direction
 TMPA Core S0.6
-        ↓ normative object, Reader, and conformance contract
+        ↓ fixes normative object, Reader, and conformance contract
 FCoP protocol
-        ↓ file-based coordination profile and reference implementation
-CodeFlowMu V1.6.0 application
+        ↓ supplies the collaboration and evidence protocol
+CodeFlowMu V1.6.0 execution and consumption layer
         ↓ product Reader, Runtime, roles, recovery, and audit
 WP-13 and other bounded cases
 ```
 
-TMPA supplies the architecture and normative governance model. FCoP is a reusable file-based coordination protocol, not an application; `fcop` and `fcop-mcp` are reference implementations rather than the protocol itself. CodeFlowMu is the evaluated downstream application. WP-13 and XiaoDian AI remain bounded evidence sources in the engineering lineage and do not substitute for the S0.6 product run.
+TMPA theory guides the engineering direction of CodeFlowMu, while Core S0.6 fixes the normative behavior evaluated in this report. FCoP is the reusable collaboration and evidence protocol used by CodeFlowMu, not an application; `fcop` and `fcop-mcp` are reference implementations rather than the protocol itself. Consistent with CodeFlowMu's engineering architecture [7], CodeFlowMu is the application execution and consumption layer: it produces coordination facts, runs the Adapter and Reader, projects the governance graph, and lets recovery and governance gates consume the reconstructed result. WP-13 and XiaoDian AI remain bounded evidence sources in the engineering lineage and do not substitute for the S0.6 product run.
 
 Conceptual dependency and historical formation remain distinct:
 
 ```text
-CONCEPTUAL: TMPA → FCoP → CodeFlowMu / other applications
-HISTORICAL: XiaoDian practice → early TMPA → FCoP extraction
-                                   → CodeFlowMu → current TMPA formalization
+CURRENT GUIDANCE: TMPA theory → Core requirements → FCoP protocol
+                                                  → CodeFlowMu engineering
+HISTORICAL FEEDBACK: XiaoDian practice → early TMPA → FCoP extraction
+                                           → CodeFlowMu implementation
+FCoP + CodeFlowMu results → current TMPA formalization
 ```
+
+Historical feedback explains how the theory matured; it does not invert the current authority relation. Product behavior may provide evidence or motivate a later revision, but it cannot redefine the current Core.
 
 # 3. Fixed Sources and Evidence Design
 
