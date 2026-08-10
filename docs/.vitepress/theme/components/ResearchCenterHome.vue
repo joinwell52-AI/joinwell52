@@ -3,6 +3,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useData, withBase } from 'vitepress'
 import ResponsiveTitle from './ResponsiveTitle.vue'
 import ResearchSkillGlyph from './ResearchSkillGlyph.vue'
+import EditorialScorecard from './EditorialScorecard.vue'
 import { data as allNotes } from './research-notes.data'
 import type { ResearchColumn, ResearchNoteRecord } from './research-notes.data'
 import runtimeData from '../../generated/runtime-records.json'
@@ -478,6 +479,8 @@ onBeforeUnmount(() => {
             </article>
           </Transition>
         </div>
+
+        <EditorialScorecard :lang="props.lang" />
 
         <aside class="rc-ra-log">
           <header><span><i></i>RA · {{ copy.workLog }}</span><b>{{ runtimeLatest.date }} · LIVE RECORD</b></header>
