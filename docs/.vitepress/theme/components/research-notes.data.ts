@@ -6,6 +6,7 @@ export type ResearchColumn =
   | 'open-source-engineering'
 
 export type ResearchCategory = 'daily' | 'weekly' | 'academic'
+type SourceResearchCategory = ResearchCategory | 'manifesto'
 
 export interface ResearchNoteRecord {
   title: string
@@ -23,7 +24,10 @@ const columns = new Set<ResearchColumn>([
   'open-source-engineering'
 ])
 
-const categories = new Set<ResearchCategory>(['daily', 'weekly', 'academic'])
+const sourceCategories = new Set<SourceResearchCategory>(['daily', 'weekly', 'academic', 'manifesto'])
+
+const displayCategory = (category: SourceResearchCategory): ResearchCategory =>
+  category === 'manifesto' ? 'daily' : category
 
 export default createContentLoader('**/*.md', {
   excerpt: false,
@@ -34,14 +38,14 @@ export default createContentLoader('**/*.md', {
           frontmatter.title &&
           frontmatter.date &&
           columns.has(frontmatter.column) &&
-          categories.has(frontmatter.category)
+          sourceCategories.has(frontmatter.category)
         )
       })
       .map(({ url, frontmatter }) => ({
         title: String(frontmatter.title),
         date: String(frontmatter.date),
         column: frontmatter.column as ResearchColumn,
-        category: frontmatter.category as ResearchCategory,
+        category: displayCategory(frontmatter.category as SourceResearchCategory),
         summary: String(frontmatter.summary || frontmatter.description || ''),
         url,
         lang: url.startsWith('/zh/') ? 'zh' : 'en'
