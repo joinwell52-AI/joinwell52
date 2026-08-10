@@ -2,19 +2,17 @@
 layout: home
 pageClass: runtime-center-page runtime-center-en
 title: Digital Works Operations Center
-description: Today's authentic Runtime data, ordered recovery progress, three-column plan, dynamic shift total, production, release, work results and GitHub evidence.
+description: Today's authentic Runtime data, three-column plan, dynamic shift total, production, release, work results and GitHub evidence.
 outline: false
 ---
 
 <script setup>
 import RuntimeOperationsCenterCurrent from '../../.vitepress/theme/components/RuntimeOperationsCenterCurrent.vue'
 import RuntimePrestartState from '../../.vitepress/theme/components/RuntimePrestartState.vue'
-import RuntimeRecoveryProgress from '../../.vitepress/theme/components/RuntimeRecoveryProgress.vue'
 import RuntimeShiftCollapse from '../../.vitepress/theme/components/RuntimeShiftCollapse.vue'
 </script>
 
 <RuntimePrestartState lang="en" />
-<RuntimeRecoveryProgress lang="en" />
 <RuntimeOperationsCenterCurrent lang="en" />
 <RuntimeShiftCollapse lang="en" />
 
