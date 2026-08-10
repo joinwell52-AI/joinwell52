@@ -119,7 +119,7 @@ Profile 特定工件不会自动成为规范 Core 对象。Profile **MUST** 定�
 
 作者生成的 S0.6 Reference Reader 通过全部十四项 S0.6 Fixture。这只为已测试的 Reference Reader 路径建立 demonstrated 行为。由于尚无产品发布精确版本的 S0.6 Bundle，S0.6 产品轨道的十四项标准全部明确记为 `NOT RUN`。本次结果不建立产品一致性、独立验证、语义真实性或独立采用。
 
-I0.7 与锁定的 CodeFlowMu V1.4.1 证据包继续作为精确版本的 S0.5 作者运行证据，结果为 14/14 PASS；它们 **SHALL NOT** 被改标为 S0.6 证据。下一版产品案例必须运行 S0.6 语料库并发布独立锁定证据包，才能提出 S0.6 产品声明。
+I0.7 与锁定的 CodeFlowMu V1.4.1 证据包继续作为精确版本的 S0.5 作者运行证据，结果为 14/14 PASS；它们 **SHALL NOT** 被改标为 S0.6 证据。本发布候选记录冻结后，I0.8 针对 CodeFlowMu V1.6.0 完成了一次独立登记的精确 S0.6 产品运行。其带日期的外部运行登记固定了 Core 与实现 Commit、证据包 SHA-256、输入 Bundle Digest、结果 Digest 及 14/14 产品裁决。该后续运行仅构成锁定 Bundle 下的作者生成 demonstrated 证据；它不改写历史 `NOT RUN` 轨道，也不建立独立验证。
 
 ## 11.5 S0.5 FCoP 派生历史基线
 
@@ -152,6 +152,6 @@ Architecture Paper **MAY** 总结本规范，但不得重定义其含义。Imple
 | 生命周期、原子迁移、恢复与审计决策 | FCoP Specification 与适用 ADR | 形式化为生命周期状态、业务验收、失败/恢复动作、巡检发现及确定性历史重建 |
 | 父子工作派生与闭环 | FCoP v3.2.5 `parent` 协议表面 | 表示为 `governed_work.parent_id`、父子汇总与 `CHILD_WORK_OPEN` |
 | 可执行软件 | `fcop` 与 `fcop-mcp` Package | 只作为 FCoP 参考实现；Package 测试是实现证据，不是协议本身 |
-| 下游采用 | CodeFlowMu 及有界的小典 AI/WP-13 证据 | 只作为 Implementation Case Report 中的应用证据，不作为理论证明或协议定义 |
+| 下游采用 | CodeFlowMu 及有界的 WP-13 证据 | 只作为 Implementation Case Report 中的应用证据，不作为理论证明或协议定义；小典 AI 仅保留为作者报告的历史谱系，不纳入评估证据 |
 
 本表只用于可追踪，不构成引用即纳入。FCoP 与 TMPA 抽象不同时，由本 Core Specification 控制 TMPA 含义；应用或参考实现偏离协议来源时，应把偏差报告为实现证据，不得静默改写任一规范。

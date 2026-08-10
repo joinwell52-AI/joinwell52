@@ -85,7 +85,7 @@ This architecture study does not report a human-subject experiment and does not 
 
 [12] FCoP Project. “FCoP 3.2.5 Release Notes.” 2026. `https://github.com/joinwell52-AI/FCoP/blob/v3.2.5/docs/releases/3.2.5.md`.
 
-[13] CodeFlowMu. “TMPA Browser” public demonstration. `https://demo.chedian.cc/`. Snapshot observed 2026-07-29; build and dataset identity remain to be fixed for a reproducible submission artifact.
+[13] CodeFlowMu. “TMPA Browser” live public demonstration. `https://demo.chedian.cc/`. Observed 2026-07-29. Because the build and dataset are not immutably identified, this source is illustrative only and is excluded from the reproducible evaluation; locked CodeFlowMu claims use [28].
 
 [14] FCoP Project. “ADR-0031: Governance Alert Layer (GAL).” Accepted 2026-05-11; tag `v3.2.5`. `https://github.com/joinwell52-AI/FCoP/blob/v3.2.5/adr/ADR-0031-governance-alert-layer.md`.
 
@@ -109,7 +109,7 @@ This architecture study does not report a human-subject experiment and does not 
 
 [24] Infocomm Media Development Authority, Singapore. “Singapore's Digital Economy at 18.6% of GDP, up from 14.9% in 2019; Growth Fuelled by Accelerating Digitalisation and AI Adoption across Sectors and Firms.” 6 October 2025. `https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/press-releases/2025/singapore-digital-economy`. Accessed 2026-07-30.
 
-[25] SaigeAgent / XiaoDian AI Project. “多 AI 角色协同架构规划” [Multi-AI Role Collaboration Architecture Plan]. Phase 3 architecture planning document, version 1.2, first dated 21 March 2026 and updated 28 March 2026. Project archive. Section 7.0 introduces “Text-Message Multi-AI Parallel Architecture” and records the original one-task-one-carrier, textual-message, asynchronous-request, multi-role pipeline, and audit-trace design. A fixed public or archival snapshot is required before external submission.
+[25] SaigeAgent / XiaoDian AI Project. “多 AI 角色协同架构规划” [Multi-AI Role Collaboration Architecture Plan]. Author-reported private project archive, March 2026. No fixed public snapshot is available. It is cited only to disclose the author's account of design lineage and is excluded from the evaluated corpus, RQ results, and conformance claims.
 
 [26] Christian Schroeder de Witt. “Open Challenges in Multi-Agent Security: Towards Secure Systems of Interacting AI Agents.” arXiv:2505.02077, 2025. `https://arxiv.org/abs/2505.02077`. Accessed 2026-07-30.
 

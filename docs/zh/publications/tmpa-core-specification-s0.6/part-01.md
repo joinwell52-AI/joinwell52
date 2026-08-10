@@ -1,6 +1,11 @@
 ---
 title: TMPA Core Specification — 发布候选版 S0.6
 outline: deep
+citation:
+  work: TMPA Core Specification
+  identifier: TMPA-CORE-S0.6
+  language: zh
+  metadata: /releases/tmpa/v1.0-rc1/metadata/core-specification.zh.cff
 ---
 
 <ArticleCover

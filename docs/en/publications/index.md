@@ -37,7 +37,7 @@ V1.0 remains the historical baseline for the first Production Test: [legacy comp
 | Specification | [TMPA Core Specification](./tmpa-core-specification-s0.6) | S0.6 | Release Candidate; Reference Reader 14/14 PASS; CodeFlowMu V1.6.0 product run 14/14 PASS (author-run) |
 | Case report | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.8) | I0.8 | Exact-version S0.6 CodeFlowMu V1.6.0 evidence: C01–C14 14/14 author-run PASS; public reproducer included; WP-13 retained as a bounded case |
 
-Release governance: [TMPA V1.0 Release Readiness Audit RA1](./tmpa-v1.0-release-readiness-audit) — V1.0 promotion is currently **blocked** pending four bounded P0 closures; A0.9/S0.6/I0.8 remain the current official versions.
+Release governance: [TMPA V1.0 Release Readiness Audit RA1](./tmpa-v1.0-release-readiness-audit) identified four bounded P0 items. [RC1 closes P0-01 through P0-04](./tmpa-v1.0-p0-closure-rc1) and is ready for final promotion review; A0.9/S0.6/I0.8 remain the current official versions until author decisions and promotion authorization.
 
 The TMPA publication suite is an independent theory layer. High-frequency Observation Notes do not automatically become paper evidence; long-term TMPA work runs through Research Program Runtime, not Daily Runtime.
 

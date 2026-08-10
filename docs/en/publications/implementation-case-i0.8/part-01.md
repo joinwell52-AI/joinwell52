@@ -1,6 +1,11 @@
 ---
 title: TMPA–FCoP–CodeFlowMu Implementation Case — Draft I0.8
 outline: deep
+citation:
+  work: TMPA Implementation Case
+  identifier: TMPA-CASE-I0.8
+  language: en
+  metadata: /releases/tmpa/v1.0-rc1/metadata/implementation-case.en.cff
 ---
 
 <ArticleCover
@@ -67,7 +72,7 @@ CodeFlowMu V1.6.0 execution and consumption layer
 WP-13 and other bounded cases
 ```
 
-TMPA theory guides the engineering direction of CodeFlowMu, while Core S0.6 fixes the normative behavior evaluated in this report. FCoP is the reusable collaboration and evidence protocol used by CodeFlowMu, not an application; `fcop` and `fcop-mcp` are reference implementations rather than the protocol itself. Consistent with CodeFlowMu's engineering architecture [7], CodeFlowMu is the application execution and consumption layer: it produces coordination facts, runs the Adapter and Reader, projects the governance graph, and lets recovery and governance gates consume the reconstructed result. WP-13 and XiaoDian AI remain bounded evidence sources in the engineering lineage and do not substitute for the S0.6 product run.
+TMPA theory guides the engineering direction of CodeFlowMu, while Core S0.6 fixes the normative behavior evaluated in this report. FCoP is the reusable collaboration and evidence protocol used by CodeFlowMu, not an application; `fcop` and `fcop-mcp` are reference implementations rather than the protocol itself. Consistent with CodeFlowMu's engineering architecture [7], CodeFlowMu is the application execution and consumption layer: it produces coordination facts, runs the Adapter and Reader, projects the governance graph, and lets recovery and governance gates consume the reconstructed result. WP-13 remains a bounded evidence-admission case. XiaoDian AI is retained as author-reported engineering lineage only and is excluded from the evaluated evidence; neither substitutes for the S0.6 product run.
 
 Conceptual dependency and historical formation remain distinct:
 

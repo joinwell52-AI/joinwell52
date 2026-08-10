@@ -1,4 +1,4 @@
-The same source also records a transitional implementation: one `Pipeline` advanced roles sequentially through a shared `context: dict` and accumulated `trace: List[RoleMessage]` [25]. It therefore establishes the architectural origin, not present-day Core conformance. Immutable writer streams, source-preserving aggregation, deterministic reconstruction, explicit conflict states, and conformance requirements were developed later.
+The same private source reportedly records a transitional `Pipeline` design [25]. This author-reported lineage is not used as submission evidence and does not establish present-day Core conformance. Immutable writer streams, source-preserving aggregation, deterministic reconstruction, explicit conflict states, and conformance requirements were developed later and are evaluated only through the public, pinned artifacts.
 
 ```text
 XiaoDian AI business practice
@@ -45,7 +45,7 @@ The paper makes four contributions:
 3. **Deterministic governance contract.** It couples source-preserving aggregation with explicit authority, lifecycle, conflict, three-valued judgment, and canonical issue reconstruction.
 4. **Evidence-bounded SME-first evaluation.** It separates TMPA theory, Core requirements, the FCoP protocol, reference implementations, the TMPA-guided CodeFlowMu engineering system, and case evidence; publishes C01–C14 results including failures; and identifies the empirical work still required for feasibility and adoption claims.
 
-The paper does **not** contribute a new storage primitive, agent communication protocol, runtime orchestrator, identity provider, factual-verification method, or empirical proof of productivity. FCoP, CodeFlowMu, and XiaoDian are evidence sources and lineage artifacts. CodeFlowMu is engineered under TMPA guidance, but neither its implementation nor a passing fixed bundle defines or proves the theory.
+The paper does **not** contribute a new storage primitive, agent communication protocol, runtime orchestrator, identity provider, factual-verification method, or empirical proof of productivity. FCoP and the pinned CodeFlowMu/WP-13 artifacts are bounded evidence sources; XiaoDian is author-reported lineage only. CodeFlowMu is engineered under TMPA guidance, but neither its implementation nor a passing fixed bundle defines or proves the theory.
 
 The current TMPA–FCoP–CodeFlowMu relationship and the operational software stack are specified in Section 4.8; terminology is fixed in Section 1.5.
 

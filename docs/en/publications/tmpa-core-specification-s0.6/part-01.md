@@ -1,6 +1,11 @@
 ---
 title: TMPA Core Specification — Release Candidate S0.6
 outline: deep
+citation:
+  work: TMPA Core Specification
+  identifier: TMPA-CORE-S0.6
+  language: en
+  metadata: /releases/tmpa/v1.0-rc1/metadata/core-specification.en.cff
 ---
 
 <ArticleCover

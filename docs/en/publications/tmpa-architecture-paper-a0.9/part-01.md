@@ -1,6 +1,11 @@
 ---
 title: TMPA Architecture Paper — Pre-Submission Review Draft A0.9
 outline: deep
+citation:
+  work: TMPA Architecture Paper
+  identifier: TMPA-ARCH-A0.9
+  language: en
+  metadata: /releases/tmpa/v1.0-rc1/metadata/architecture-paper.en.cff
 ---
 
 <ArticleCover
@@ -94,7 +99,7 @@ The paper addresses three research questions:
 
 - **RQ1 — Governance-state sufficiency:** Which information is missing when chats, shared folders, execution traces, and ordinary task states are used as the record of multi-agent organizational work, and why does that prevent authoritative responsibility and recovery?
 - **RQ2 — Minimum architecture:** Which substrate-independent objects, authority relations, lifecycle rules, ordering constraints, conflict semantics, and read-side operations are minimally necessary to reconstruct governed multi-agent work without a mandatory coordination database, broker, or control plane?
-- **RQ3 — Engineering feasibility and boundary:** To what extent do the FCoP profile, CodeFlowMu, XiaoDian AI, and the pinned C01–C14 corpus demonstrate those properties, and which feasibility claims remain unsupported?
+- **RQ3 — Engineering feasibility and boundary:** To what extent do the FCoP profile, the pinned CodeFlowMu product evidence, WP-13, and the C01–C14 corpus demonstrate those properties, and which feasibility claims remain unsupported?
 
 A0.9 answers RQ1 through evidence-gap analysis and RQ2 through the TMPA object, stream, authority, lifecycle, and reconstruction model. RQ3 receives a stronger but still bounded answer: CodeFlowMu V1.6.0 calls its own product Reader against the exact S0.6 inputs and records 14/14 product PASS, while a self-contained public reproducer makes that conformance slice inspectable [28]. The result is demonstrated under a fixed bundle, not independently adopted or certified. The WP-13 case separately shows why a completed agent trajectory is not automatically admissible governance evidence [36]. Quantified setup burden, low-resource performance, broader fault recovery, comparison baselines, representative use, and third-party reproduction remain unfinished evidence.
 
@@ -141,4 +146,4 @@ The primary profile is asynchronous project-local collaboration, not distributed
 
 ## 1.3 Design Origin and Evolution
 
-TMPA first appeared on 21 March 2026 in Section 7.0 of the archived multi-role architecture plan as **Text-Message Multi-AI Parallel Architecture** [25]. The original design joined one-task-one-carrier, files or objects as messages, asynchronous AI requests, independent task lines, role pipelines, permission checks, and audit traces.
+The author's private XiaoDian project archive reports that an early form of TMPA appeared in a March 2026 multi-role architecture plan under the name **Text-Message Multi-AI Parallel Architecture** [25]. Because that source has no fixed public snapshot, it is retained only as author-reported design lineage and is excluded from the evaluated corpus, RQ results, and conformance claims.
