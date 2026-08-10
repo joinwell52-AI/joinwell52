@@ -46,7 +46,7 @@ concurrency:
 
 jobs:
   complete:
-    name: Complete, validate and persist Runtime shift
+    name: Complete, validate, verify and persist Runtime shift
     runs-on: ubuntu-latest
     steps:
       - name: Checkout authoritative repository
@@ -150,11 +150,13 @@ jobs:
             exit 1
           fi
           git commit -m "runtime(${RUNTIME_TASK}): complete governed shift for ${RUNTIME_DATE}"
-          commit_sha="$(git rev-parse HEAD)"
           for attempt in 1 2 3; do
-            if git pull --rebase origin main && git push origin HEAD:main; then
-              echo "commit_sha=$commit_sha" >> "$GITHUB_OUTPUT"
-              exit 0
+            if git pull --rebase origin main; then
+              commit_sha="$(git rev-parse HEAD)"
+              if git push origin HEAD:main; then
+                echo "commit_sha=$commit_sha" >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
             fi
             git rebase --abort || true
             if [[ "$attempt" -eq 3 ]]; then exit 1; fi
@@ -169,6 +171,7 @@ jobs:
         run: |
           git fetch origin main
           git merge-base --is-ancestor "$COMMIT_SHA" origin/main
+          git reset --hard origin/main
           node <<'NODE'
           const fs = require('fs')
           const path = require('path')
@@ -181,5 +184,76 @@ jobs:
           if (record.taskStatus?.[task.id] !== 'Completed') throw new Error(`Expected ${task.id}=Completed`)
           if (record.results?.[task.id]?.status !== 'Completed') throw new Error(`Missing durable Completed result for ${task.id}`)
           if (record.results?.[task.id]?.runtimeDate !== process.env.RUNTIME_DATE) throw new Error(`Completed result runtimeDate mismatch for ${task.id}`)
-          console.log(`Verified ${task.id}=Completed for ${process.env.RUNTIME_DATE}. Scheduler workflow_run will immediately reconcile the next overdue stage.`)
+          console.log(`Verified ${task.id}=Completed for ${process.env.RUNTIME_DATE}.`)
+          NODE
+
+      - name: Record GitHub Commit Verified event
+        env:
+          COMMIT_SHA: ${{ steps.commit.outputs.commit_sha }}
+          RUNTIME_TASK: ${{ steps.request.outputs.runtime_task }}
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+          git merge-base --is-ancestor "$COMMIT_SHA" origin/main
+          node scripts/runtime-shift-verify.mjs --task "$RUNTIME_TASK" --date "$RUNTIME_DATE" --commit "$COMMIT_SHA"
+          node scripts/runtime-markdown.mjs render --date "$RUNTIME_DATE"
+          npm run runtime:validate
+          node scripts/runtime-markdown.mjs validate --date "$RUNTIME_DATE"
+
+      - name: Commit durable verification
+        id: verification
+        env:
+          RUNTIME_TASK: ${{ steps.request.outputs.runtime_task }}
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+        run: |
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime/records research/runtime/[0-9][0-9][0-9][0-9]
+          if git diff --cached --quiet; then
+            echo "Verification record was already durable."
+            echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "runtime(${RUNTIME_TASK}): record verified completion for ${RUNTIME_DATE}"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main; then
+              verification_sha="$(git rev-parse HEAD)"
+              if git push origin HEAD:main; then
+                echo "commit_sha=$verification_sha" >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
+            fi
+            git rebase --abort || true
+            if [[ "$attempt" -eq 3 ]]; then exit 1; fi
+            sleep $((attempt * 5))
+          done
+
+      - name: Verify durable verification evidence
+        env:
+          VERIFICATION_SHA: ${{ steps.verification.outputs.commit_sha }}
+          COMPLETION_COMMIT: ${{ steps.commit.outputs.commit_sha }}
+          RUNTIME_TASK: ${{ steps.request.outputs.runtime_task }}
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+        run: |
+          git fetch origin main
+          git merge-base --is-ancestor "$VERIFICATION_SHA" origin/main
+          git reset --hard origin/main
+          node <<'NODE'
+          const fs = require('fs')
+          const path = require('path')
+          const manifest = JSON.parse(fs.readFileSync('research/runtime/SCHEDULER.json','utf8'))
+          const task = manifest.tasks.find(t => t.id === process.env.RUNTIME_TASK)
+          if (!task) throw new Error('Unknown runtime task')
+          const [y,m] = process.env.RUNTIME_DATE.split('-')
+          const file = path.join(manifest.recordRoots[task.family], y, m, `${process.env.RUNTIME_DATE}-${task.family}-runtime.json`)
+          const record = JSON.parse(fs.readFileSync(file,'utf8'))
+          const starts = (record.timeline || []).filter(e => e.task === task.id && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith(process.env.RUNTIME_DATE))
+          if (starts.length !== 1) throw new Error(`Expected exactly one start event, got ${starts.length}`)
+          const verified = (record.timeline || []).some(e => e.task === task.id && e.event === 'GitHub Commit Verified' && e.status === 'Completed' && String(e.time || '').startsWith(process.env.RUNTIME_DATE) && String(e.detail || '').includes(process.env.COMPLETION_COMMIT))
+          if (!verified) throw new Error('Missing durable GitHub Commit Verified event')
+          if (record.githubCommit !== process.env.COMPLETION_COMMIT || record.commitVerify !== 'Completed') throw new Error('Record-level commit verification fields are not durable')
+          if (record.taskStatus?.[task.id] !== 'Completed' || record.results?.[task.id]?.status !== 'Completed') throw new Error('Runtime completion regressed')
+          if (record.results?.[task.id]?.runtimeDate !== process.env.RUNTIME_DATE) throw new Error('Runtime result date mismatch')
+          console.log(`Verified terminal completion and GitHub evidence for ${task.id} ${process.env.RUNTIME_DATE}. Scheduler may now reconcile the next overdue stage.`)
           NODE
