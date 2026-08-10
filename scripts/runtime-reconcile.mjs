@@ -11,7 +11,7 @@ const DEPENDENCY_OF = {
   publication: 'production',
   weekly: 'publication'
 }
-const LEAD_MINUTES = 5
+const LEAD_MINUTES = 0
 
 function readJson(file) {
   return JSON.parse(readFileSync(file, 'utf8'))
