@@ -1,0 +1,114 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "reading",
+  "family": "daily",
+  "runtimeDate": "2026-08-10",
+  "status": "Completed",
+  "input": "The 2026-08-10 Daily Runtime Record with Queue Completed and Reading Running; the 2026-08-10 Today's Research Plan containing Q-20260810-01, Q-20260810-02 and Q-20260810-03; Skill 03 Deep Reading; and the selected primary sources for those three objects.",
+  "input_zh": "2026-08-10 Daily Runtime Record（Queue 已完成、Reading 正在运行）、包含 Q-20260810-01、Q-20260810-02、Q-20260810-03 的 2026-08-10 Today's Research Plan、Skill 03 Deep Reading，以及三个已选对象对应的一手来源。",
+  "workResult": "Completed primary-source Deep Reading for all three run-date selected objects and produced three durable Reading Notes. Q-20260810-01 verified durable pending-input admission in resumable RunState, including serialized pending input, occurrence identity, guardrail/admission ordering, checkpointed accepted-response/tool progress, and the boundary of SDK-level exactly-once semantics. Q-20260810-02 verified OrchestraBench's controlled failure-injection design, three-tier recovery behavior, blind-retry failure on latent modes, cascade-radius depth scaling, the trusted-upstream policy assumption, the llm_noupstream ablation, and the paper's explicit external-validity limits. Q-20260810-03 verified the MCPServerManager race mechanism, manager-level lifecycle serialization, cancellation-shielded cleanup ownership, safe worker replacement, preserved cleanup failures, 10-second default lifecycle timeouts, and deterministic concurrency regression coverage. No Research Analysis or article drafting was performed.",
+  "workResult_zh": "完成三个运行日已选对象的一手来源 Deep Reading，并形成 3 份持久 Reading Note。Q-20260810-01 核验了可恢复 RunState 的持久 Pending Input Admission，包括序列化 Pending Input、Occurrence Identity、Guardrail/Admission 顺序、已接纳响应与工具进度的 Checkpoint，以及 SDK 内部 Exactly-once 语义边界；Q-20260810-02 核验了 OrchestraBench 的受控故障注入设计、三层恢复行为、Blind Retry 对 Latent Mode 无效、Cascade Radius 随深度增长、Trusted-upstream 的策略假设、llm_noupstream 消融以及论文明确的外部有效性限制；Q-20260810-03 核验了 MCPServerManager 的竞态机制、Manager-level Lifecycle Serialization、Cancellation-shielded Cleanup Ownership、安全 Worker Replacement、Cleanup Failure 保留、默认 10 秒 Lifecycle Timeout 与确定性并发回归测试。未执行 Research Analysis 或文章写作。",
+  "output": "Three run-date Reading Notes: research/reading/Q-20260810-01-durable-runstate-pending-input.md, research/reading/Q-20260810-02-trusted-state-cascade-containment.md, and research/reading/Q-20260810-03-mcp-lifecycle-serialization.md.",
+  "output_zh": "形成 3 份运行日 Reading Note：research/reading/Q-20260810-01-durable-runstate-pending-input.md、research/reading/Q-20260810-02-trusted-state-cascade-containment.md、research/reading/Q-20260810-03-mcp-lifecycle-serialization.md。",
+  "next": "Research Runtime Analysis may consume only these three 2026-08-10 Reading Notes and perform Skill 04 Research Analysis. It must preserve each note's evidence class and limitations and must not treat the OrchestraBench trusted-state probe as autonomous deployable routing evidence.",
+  "next_zh": "Research Runtime Analysis 只能消费这 3 份 2026-08-10 Reading Note 并执行 Skill 04 Research Analysis；必须保留各 Note 的证据类别与局限，尤其不得把 OrchestraBench 的 Trusted-state Probe 误写为可部署的自主路由证据。",
+  "metrics": [
+    {
+      "label": "Selected objects read",
+      "label_zh": "已完成深读对象",
+      "value": "3"
+    },
+    {
+      "label": "Reading notes produced",
+      "label_zh": "Reading Note 数量",
+      "value": "3"
+    },
+    {
+      "label": "Primary-source objects",
+      "label_zh": "一手来源对象",
+      "value": "3 / 3"
+    },
+    {
+      "label": "Research Analysis performed",
+      "label_zh": "Research Analysis 已执行",
+      "value": "0"
+    },
+    {
+      "label": "Article drafts produced",
+      "label_zh": "文章草稿数量",
+      "value": "0"
+    }
+  ],
+  "evidence": [
+    {
+      "label": "Run-date Today's Research Plan",
+      "label_zh": "运行日 Today's Research Plan",
+      "value": "research/runtime/plans/2026/08/2026-08-10-plan.json"
+    },
+    {
+      "label": "Skill 03 Deep Reading",
+      "label_zh": "Skill 03 Deep Reading",
+      "value": "research/skills/03-deep-reading.md"
+    },
+    {
+      "label": "OpenAI Agents Python durable RunState PR",
+      "label_zh": "OpenAI Agents Python 持久 RunState PR",
+      "value": "https://github.com/openai/openai-agents-python/pull/4325"
+    },
+    {
+      "label": "OrchestraBench primary paper",
+      "label_zh": "OrchestraBench 原始论文",
+      "value": "https://arxiv.org/abs/2608.05263"
+    },
+    {
+      "label": "OpenAI Agents Python MCP lifecycle PR",
+      "label_zh": "OpenAI Agents Python MCP 生命周期 PR",
+      "value": "https://github.com/openai/openai-agents-python/pull/4340"
+    }
+  ],
+  "artifacts": [
+    {
+      "label": "Digital Employee Reading Note",
+      "label_zh": "数字员工 Reading Note",
+      "value": "research/reading/Q-20260810-01-durable-runstate-pending-input.md"
+    },
+    {
+      "label": "Industry Architecture Reading Note",
+      "label_zh": "行业架构 Reading Note",
+      "value": "research/reading/Q-20260810-02-trusted-state-cascade-containment.md"
+    },
+    {
+      "label": "Open-source Engineering Reading Note",
+      "label_zh": "开源工程 Reading Note",
+      "value": "research/reading/Q-20260810-03-mcp-lifecycle-serialization.md"
+    },
+    {
+      "label": "Reading result",
+      "label_zh": "Reading 结果",
+      "value": "research/runtime/results/2026/08/2026-08-10-reading-result.json"
+    }
+  ],
+  "readingResults": [
+    {
+      "itemId": "Q-20260810-01",
+      "column": "digital-employee",
+      "artifact": "research/reading/Q-20260810-01-durable-runstate-pending-input.md",
+      "evidenceClass": "Fact",
+      "primarySource": "https://github.com/openai/openai-agents-python/pull/4325"
+    },
+    {
+      "itemId": "Q-20260810-02",
+      "column": "industry-architecture",
+      "artifact": "research/reading/Q-20260810-02-trusted-state-cascade-containment.md",
+      "evidenceClass": "Research Result",
+      "primarySource": "https://arxiv.org/abs/2608.05263"
+    },
+    {
+      "itemId": "Q-20260810-03",
+      "column": "open-source-engineering",
+      "artifact": "research/reading/Q-20260810-03-mcp-lifecycle-serialization.md",
+      "evidenceClass": "Fact",
+      "primarySource": "https://github.com/openai/openai-agents-python/pull/4340"
+    }
+  ]
+}
