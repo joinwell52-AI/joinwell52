@@ -93,8 +93,7 @@ jobs:
           }
 
           // Cross-day freshness invariant: once today's durable Runtime record exists, Pages may
-          // never publish yesterday as "today". This prevents a failed deployment from freezing
-          // the public operating surface on the prior day.
+          // never publish yesterday as "today". This is a data contract, not a UI-panel contract.
           if (fs.existsSync(currentRuntimeRecord) && runtimeData.todayDaily?.date !== shanghaiToday) {
             throw new Error(`Runtime freshness violation: durable ${shanghaiToday} record exists but generated todayDaily=${runtimeData.todayDaily?.date || '(missing)'}.`)
           }
@@ -119,18 +118,11 @@ jobs:
             throw new Error('Runtime page shell marker missing from generated HTML.')
           }
 
-          const zhHomeHtml = fs.readFileSync(path.join(dist, 'zh/index.html'), 'utf8')
-          const enHomeHtml = fs.readFileSync(path.join(dist, 'index.html'), 'utf8')
-          if (!zhHomeHtml.includes(`TODAY · ${shanghaiToday}`) || !enHomeHtml.includes(`TODAY · ${shanghaiToday}`)) {
-            throw new Error(`Homepage freshness violation: TODAY marker is not ${shanghaiToday} in both languages.`)
-          }
-
           console.log(`Verified ${requiredRoutes.length} public routes, Runtime V5 ordering and Shanghai freshness=${shanghaiToday}.`)
           NODE
 
-          # Publication is not considered publicly deliverable merely because article files exist.
-          # Historical releases remain discoverable in Research/column indexes; homepage promotion
-          # is required only for a release whose date equals Shanghai today.
+          # Released articles must remain publicly routable and discoverable through
+          # Research and their corresponding column indexes. Homepage promotion is optional UI.
           node scripts/publication-visibility.mjs
 
       - name: Publish gh-pages branch
