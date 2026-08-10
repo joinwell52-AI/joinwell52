@@ -7,7 +7,7 @@ version: "V1.1"
 summary: "SaaW 将软件的交付单位从功能与助手推进到可承担岗位职责的数字工作主体；V1.1 以研究报告生产机 V1.3 为真实工程锚点，并明确当前能力与 Self-Morphing 研究边界。"
 item_id: "MANIFESTO-20260810-SAAW"
 lifecycle: "Published"
-cover: "/assets/covers/saaw-manifesto-cover.svg"
+cover: "/assets/covers/saaw-manifesto-cover.svg?v=20260811-final"
 visualization: "/assets/covers/saaw-governance-stack.svg"
 visualization_2: "/assets/covers/saaw-self-morphing-loop.svg"
 evidence_status: "Architecture-grounded + production-engine reference implementation"
@@ -24,7 +24,7 @@ outline: deep
 
 [English version](/en/industry/2026-08-10-saaw-software-as-an-agent-worker)
 
-![SaaW — Software as an Agent Worker](/assets/covers/saaw-manifesto-cover.svg)
+![SaaW — Software as an Agent Worker](/assets/covers/saaw-manifesto-cover.svg?v=20260811-final)
 
 > **作者 / 发布单位：** joinwell52 Research Center / CodeFlowMu Core Team  
 > **理论与架构：** [TMPA Architecture Paper A0.9](/zh/publications/tmpa-architecture-paper-a0.9)  
