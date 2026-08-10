@@ -6,17 +6,67 @@ Convert research structure and evidence into clear visual explanations without i
 
 The visual is part of the research evidence surface. Treat composition, cropping, terminology and responsive rendering as publication requirements, not decoration.
 
+## Mandatory visual-role separation
+
+Every substantial Research Note must distinguish two different visual jobs:
+
+1. **Article Cover** — an editorial title image that creates recognition, visual tension and a memorable concept before the reader enters the article;
+2. **Article Figure** — an explanatory diagram, table, chart, workflow, lifecycle or architecture visual used inside the article to explain evidence or mechanism.
+
+The same asset MUST NOT satisfy both roles.
+
+A visual that requires the reader to inspect arrows, boxes, labels, legends, small text or state transitions in order to understand it is an **Article Figure**, not an Article Cover.
+
 ## Minimum visual package
 
 Every substantial Research Note should include:
 
-1. one article cover;
-2. one architecture, workflow, lifecycle or relationship diagram;
+1. one dedicated editorial Article Cover;
+2. one architecture, workflow, lifecycle, relationship or other explanatory Article Figure;
 3. one comparison table when multiple products, papers or mechanisms are discussed.
 
 Use a numeric chart only when reliable quantitative data exists.
 
-## Visual types
+## Cover Gate — editorial title image
+
+The cover must communicate one strong concept at thumbnail scale. It is not responsible for explaining the complete mechanism.
+
+A valid cover should:
+
+- use one dominant semantic object, scene, tension or visual metaphor derived from the article;
+- remain recognizable when reduced to a small card or feed thumbnail;
+- communicate the article theme even if internal explanatory text is unreadable;
+- use little or no text beyond a short title, kicker or single key phrase;
+- prioritize composition, focal hierarchy, silhouette, contrast and editorial atmosphere over information density;
+- feel like the opening image of a serious technology or research publication, not a slide, architecture chart or dashboard screenshot.
+
+A cover MUST be rejected when its primary composition is any of the following:
+
+- boxes connected by arrows;
+- a workflow or lifecycle diagram;
+- an architecture stack or layer map;
+- a comparison table or matrix;
+- a labeled state machine;
+- a dense node network;
+- a technical figure whose meaning depends on reading multiple labels;
+- a body figure enlarged and reused as the title image.
+
+If the research proposition is itself architectural, translate it into an editorial visual metaphor for the cover and place the exact architecture diagram inside the article as a separate Figure.
+
+### Thumbnail acceptance test
+
+Before approving a cover, render or inspect it at approximately `320px` wide.
+
+Reject it if:
+
+- the central idea disappears at thumbnail size;
+- the reader must zoom or read small labels to understand the image;
+- it looks primarily like documentation, a slide, a schematic or an internal engineering diagram;
+- visual interest depends mainly on text rather than composition.
+
+## Figure Gate — explanatory visual
+
+Article Figures may use the full grammar of technical explanation:
 
 - Architecture diagram: layers, responsibilities and interfaces;
 - Workflow diagram: ordered work and decision stages;
@@ -24,6 +74,8 @@ Use a numeric chart only when reliable quantitative data exists.
 - Comparison table: products, mechanisms, scope and limitations;
 - Timeline: version or industry evolution;
 - Data table or chart: sourced measurements, counts or evaluation results.
+
+Figures should optimize for precision, traceability and explanatory value rather than cover-like visual impact.
 
 ## Source labels
 
@@ -34,6 +86,8 @@ Every visual must state one of:
 - `Research Center synthesis based on cited official sources`;
 - `Research Center architecture proposal`.
 
+For an editorial cover, the source note may appear in article metadata or the visual manifest rather than as prominent text inside the artwork. Explanatory Figures should keep their source basis visible near the figure.
+
 ## Rules
 
 - Do not create decorative charts from subjective scores.
@@ -42,17 +96,20 @@ Every visual must state one of:
 - Prefer original diagrams that synthesize cited material.
 - Keep visual terminology identical to the article terminology.
 - Ensure diagrams remain readable on mobile screens.
+- Never reuse an explanatory Figure as the Article Cover merely because it already exists.
 
 ## Article-cover workflow
 
-1. Extract the article's single visual proposition: what relationship, boundary, process or claim should the reader understand before reading?
-2. Choose a cover mode deliberately:
+1. Extract the article's single editorial proposition: what should the reader feel or recognize before reading, not what complete mechanism must be explained?
+2. Choose one semantic object, scene or visual metaphor that embodies that proposition.
+3. Choose a cover mode deliberately:
    - portrait editorial cover: `720×900` or `800×1040`;
    - landscape editorial cover: `1600×900`, `1376×768` or `960×600`;
    - do not mix portrait composition with a landscape canvas.
-3. Write a visual brief before drawing: proposition, semantic object, hierarchy, palette, exact text, language and intended canvas.
-4. Build one coherent visual system. Use shared geometry, stroke hierarchy and spacing; do not assemble unrelated AI-style decorations.
-5. Render the actual article page and approve the cover only after responsive QA.
+4. Write a visual brief before drawing: proposition, semantic object, editorial mood, hierarchy, palette, exact optional text, language and intended canvas.
+5. Build one coherent visual system. Use shared geometry, stroke hierarchy and spacing; do not assemble unrelated AI-style decorations.
+6. Run the Thumbnail acceptance test.
+7. Render the actual article page and approve the cover only after responsive QA.
 
 ## Mandatory safe area
 
@@ -87,5 +144,6 @@ Record the three rendered screenshots as visual QA evidence before publication.
 - Reject generic gradient cards, arbitrary grids, glowing orbs, circuitry, humanoid robots and decorative node networks unless the article's argument requires them.
 - Do not use a giant acronym as the main image merely to fill space.
 - Do not repeat one cover composition across unrelated articles by changing only the title and color.
-- Prefer a distinctive semantic object derived from the article: responsibility boundary, evidence ledger, queue, lifecycle, handoff, control plane or runtime state.
+- Prefer a distinctive semantic object derived from the article, but express it editorially on the cover rather than diagrammatically.
 - Use Research Center typography and palette as constraints, then vary composition according to the research proposition.
+- A responsibility boundary, evidence ledger, queue, lifecycle, handoff, control plane or runtime state may inspire the cover metaphor; the literal labeled diagram belongs inside the article.
