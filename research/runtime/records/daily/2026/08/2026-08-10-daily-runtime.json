@@ -8,10 +8,10 @@
   "date": "2026-08-10",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
-    "queue": "Running",
+    "queue": "Completed",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
@@ -114,6 +114,109 @@
           "value": "research/runtime/2026/08/2026-08-10-runtime.md"
         }
       ]
+    },
+    "queue": {
+      "schema": "runtime-shift-result/v2",
+      "task": "queue",
+      "status": "Completed",
+      "input": "The 2026-08-10 Daily Runtime Record with Discovery Completed and Queue Running; the 2026-08-10 Research Intelligence run containing 12 normalized signals; Skill 02 Three-Column Research Triage; and the current V5 Scheduler and Column Plan contract.",
+      "input_zh": "2026-08-10 Daily Runtime Record（Discovery 已完成、Queue 正在运行）、包含 12 个规范化 Signal 的 2026-08-10 Research Intelligence run、Skill 02 Three-Column Research Triage，以及当前 V5 Scheduler 与 Column Plan 合同。",
+      "workResult": "Scored and triaged all 12 run-date signals without consuming any prior-day Queue plan or prior-day selected objects. Digital Employee selected SIG-20260810-G-004 as Q-20260810-01 for durable RunState resume and admitted execution evidence; Industry Architecture selected SIG-20260810-R-003 as Q-20260810-02 for multi-agent cascade containment and trusted-state repair; Open-source Engineering selected SIG-20260810-G-003 as Q-20260810-03 for serialized, timeout-bounded MCP lifecycle operations. The remaining 9 signals were retained as candidates and none was rejected. No Deep Reading, Research Analysis, writing or publication was performed.",
+      "workResult_zh": "对运行日的全部 12 个 Signal 完成评分与筛选，未消费任何前一日 Queue Plan 或前一日已选对象。数字员工选择 SIG-20260810-G-004，形成 Q-20260810-01，研究持久 RunState 恢复与已接纳执行证据；行业架构选择 SIG-20260810-R-003，形成 Q-20260810-02，研究多 Agent Cascade Containment 与 Trusted-state Repair；开源工程选择 SIG-20260810-G-003，形成 Q-20260810-03，研究 MCP 生命周期串行化与 Timeout 有界等待。其余 9 个 Signal 保留为 Candidate，Rejected 为 0。未执行 Deep Reading、Research Analysis、写作或发布。",
+      "output": "Today's Research Plan at research/runtime/plans/2026/08/2026-08-10-plan.json with exactly three Selected P0 objects: Q-20260810-01, Q-20260810-02 and Q-20260810-03.",
+      "output_zh": "Today's Research Plan 已写入 research/runtime/plans/2026/08/2026-08-10-plan.json，恰好包含 3 个 Selected P0 对象：Q-20260810-01、Q-20260810-02、Q-20260810-03。",
+      "next": "Research Runtime Reading may consume only Q-20260810-01, Q-20260810-02 and Q-20260810-03 for Skill 03 Deep Reading after Queue completion is durably committed and verified on main.",
+      "next_zh": "仅当 Queue 完成状态在 main 上完成持久化提交与核验后，Research Runtime Reading 才可消费 Q-20260810-01、Q-20260810-02、Q-20260810-03 执行 Skill 03 Deep Reading。",
+      "metrics": [
+        {
+          "label": "Signal pool count",
+          "label_zh": "Signal Pool 数量",
+          "value": "12"
+        },
+        {
+          "label": "Column decisions",
+          "label_zh": "栏目决定",
+          "value": "3"
+        },
+        {
+          "label": "Selected objects",
+          "label_zh": "已选对象",
+          "value": "3"
+        },
+        {
+          "label": "Candidate signals",
+          "label_zh": "Candidate Signal",
+          "value": "9"
+        },
+        {
+          "label": "Rejected signals",
+          "label_zh": "Rejected Signal",
+          "value": "0"
+        },
+        {
+          "label": "No Selection decisions",
+          "label_zh": "No Selection 决定",
+          "value": "0"
+        },
+        {
+          "label": "Queue start events",
+          "label_zh": "Queue 启动事件",
+          "value": "1"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Run-date Daily Runtime Record",
+          "label_zh": "运行日 Daily Runtime Record",
+          "value": "research/runtime/records/daily/2026/08/2026-08-10-daily-runtime.json"
+        },
+        {
+          "label": "Run-date Research Intelligence",
+          "label_zh": "运行日 Research Intelligence",
+          "value": "research/intelligence/runs/2026/08/2026-08-10-intelligence.json"
+        },
+        {
+          "label": "Skill 02",
+          "label_zh": "Skill 02",
+          "value": "research/skills/02-research-triage.md"
+        },
+        {
+          "label": "Column Plan contract",
+          "label_zh": "Column Plan 合同",
+          "value": "research/runtime/COLUMN-PLAN-SCHEMA.md"
+        },
+        {
+          "label": "Queue Running control-plane commit",
+          "label_zh": "Queue Running 控制面提交",
+          "value": "fc6892c4165b5b4d935afb4125e67998f1b1fd62"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Today's Research Plan",
+          "label_zh": "今日研究计划",
+          "value": "research/runtime/plans/2026/08/2026-08-10-plan.json"
+        },
+        {
+          "label": "Queue result",
+          "label_zh": "Queue 结果",
+          "value": "research/runtime/results/2026/08/2026-08-10-queue-result.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "value": "research/runtime/records/daily/2026/08/2026-08-10-daily-runtime.json"
+        },
+        {
+          "label": "Runtime Markdown ledger",
+          "label_zh": "Runtime Markdown 账本",
+          "value": "research/runtime/2026/08/2026-08-10-runtime.md"
+        }
+      ],
+      "family": "daily",
+      "runtimeDate": "2026-08-10",
+      "startedAt": "2026-08-10T10:54:31+08:00",
+      "completedAt": "2026-08-10T11:13:46+08:00"
     }
   },
   "timeline": [
@@ -144,11 +247,18 @@
       "event": "Execution Slot Opened",
       "status": "Running",
       "detail": "Research Runtime Queue started by Research Runtime Scheduler V3.0."
+    },
+    {
+      "time": "2026-08-10T11:13:46+08:00",
+      "task": "queue",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Queue completed through governed Runtime shift completion after durable result validation for 2026-08-10."
     }
   ],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-10T10:54:31+08:00",
+  "updatedAt": "2026-08-10T11:13:46+08:00",
   "metrics": [],
   "evidence": [],
   "artifacts": []
