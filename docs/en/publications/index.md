@@ -34,8 +34,8 @@ V1.0 remains the historical baseline for the first Production Test: [legacy comp
 | Type | Document | Version | Status |
 |---|---|---:|---|
 | Paper | [TMPA Architecture Paper](./tmpa-architecture-paper-a0.7) | A0.7 | Pre-submission review draft |
-| Specification | [TMPA Core Specification](./tmpa-core-specification-s0.6) | S0.6 | Release Candidate; Reference Reader 14/14 PASS, product track NOT RUN |
-| Case report | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.7) | I0.7 | Exact-version S0.5 CodeFlowMu V1.4.1 evidence: C01–C14 14/14 author-run PASS; WP-13 retained |
+| Specification | [TMPA Core Specification](./tmpa-core-specification-s0.6) | S0.6 | Release Candidate; Reference Reader 14/14 PASS; CodeFlowMu V1.6.0 product run 14/14 PASS (author-run) |
+| Case report | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.8) | I0.8 | Exact-version S0.6 CodeFlowMu V1.6.0 evidence: C01–C14 14/14 author-run PASS; public reproducer included; WP-13 retained as a bounded case |
 
 The TMPA publication suite is an independent theory layer. High-frequency Observation Notes do not automatically become paper evidence; long-term TMPA work runs through Research Program Runtime, not Daily Runtime.
 
