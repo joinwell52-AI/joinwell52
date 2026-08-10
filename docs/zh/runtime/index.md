@@ -2,19 +2,17 @@
 layout: home
 pageClass: runtime-center-page runtime-center-zh
 title: 数字工场运营中心
-description: 展示当天真实 Runtime 数据、顺序恢复进程、三栏研究计划、动态班次总数、生产、发版、工作成果与 GitHub 证据。
+description: 展示当天真实 Runtime 数据、三栏研究计划、动态班次总数、生产、发版、工作成果与 GitHub 证据。
 outline: false
 ---
 
 <script setup>
 import RuntimeOperationsCenterCurrent from '../../.vitepress/theme/components/RuntimeOperationsCenterCurrent.vue'
 import RuntimePrestartState from '../../.vitepress/theme/components/RuntimePrestartState.vue'
-import RuntimeRecoveryProgress from '../../.vitepress/theme/components/RuntimeRecoveryProgress.vue'
 import RuntimeShiftCollapse from '../../.vitepress/theme/components/RuntimeShiftCollapse.vue'
 </script>
 
 <RuntimePrestartState lang="zh" />
-<RuntimeRecoveryProgress lang="zh" />
 <RuntimeOperationsCenterCurrent lang="zh" />
 <RuntimeShiftCollapse lang="zh" />
 
