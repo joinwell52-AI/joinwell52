@@ -47,7 +47,7 @@ V1.0 作为首个 Production Test 历史基线保留：[旧版兼容入口](./re
 
 | 类型 | 文档 | 版本 | 状态 |
 |---|---|---:|---|
-| 论文 | [TMPA Architecture Paper](./tmpa-architecture-paper-a0.7) | A0.7 | 投稿前审稿修订版 |
+| 论文 | [TMPA Architecture Paper](./tmpa-architecture-paper-a0.8) | A0.8 | 投稿前审稿修订版；已对齐 Core S0.6 与 Implementation Case I0.8 |
 | 规范 | [TMPA Core Specification](./tmpa-core-specification-s0.6) | S0.6 | 发布候选版；Reference Reader 14/14 PASS；CodeFlowMu V1.6.0 产品运行 14/14 PASS（作者运行） |
 | 案例 | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.8) | I0.8 | 精确 S0.6 版本的 CodeFlowMu V1.6.0 证据：C01–C14 作者运行 14/14 PASS；包含公开复现器；WP-13 作为有边界案例保留 |
 
