@@ -51,6 +51,8 @@ V1.0 作为首个 Production Test 历史基线保留：[旧版兼容入口](./re
 | 规范 | [TMPA Core Specification](./tmpa-core-specification-s0.6) | S0.6 | 发布候选版；Reference Reader 14/14 PASS；CodeFlowMu V1.6.0 产品运行 14/14 PASS（作者运行） |
 | 案例 | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.8) | I0.8 | 精确 S0.6 版本的 CodeFlowMu V1.6.0 证据：C01–C14 作者运行 14/14 PASS；包含公开复现器；WP-13 作为有边界案例保留 |
 
+发布治理：[TMPA V1.0 发布就绪审查 RA1](./tmpa-v1.0-release-readiness-audit)——当前 V1.0 升版因 4 项有边界 P0 关闭任务而处于 **阻断** 状态；A0.9/S0.6/I0.8 仍是当前正式维护版本。
+
 TMPA 出版体系是独立理论层。工场的高频观察笔记不自动构成论文证据；工程案例只报告其明确范围内的实现与验证结果。TMPA 长期研究进入 Research Program Runtime，不再进入 Daily Runtime。
 
 ```text
