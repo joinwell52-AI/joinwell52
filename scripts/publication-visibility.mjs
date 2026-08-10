@@ -12,6 +12,12 @@ function fail(message) {
   process.exitCode = 1
 }
 
+function shanghaiDate() {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit'
+  }).format(new Date())
+}
+
 function relativeRouteForDoc(docPath) {
   return docPath.replace(/^docs\//, '').replace(/\.md$/, '')
 }
@@ -51,9 +57,15 @@ if (!releaseFiles.length) {
 const latestName = releaseFiles.at(-1)
 const releasePath = path.join(releasesDir, latestName)
 const release = JSON.parse(read(releasePath))
+const today = shanghaiDate()
 
 if (release.status !== 'Released') {
   fail(`${latestName} status is ${release.status}, expected Released`)
+  process.exit()
+}
+
+if (release.date > today) {
+  fail(`${latestName} has future release date ${release.date} while Shanghai today is ${today}`)
   process.exit()
 }
 
@@ -68,10 +80,13 @@ const researchIndexHtml = {
   en: read(path.join(dist, 'en', 'research', 'index.html'))
 }
 
-const homeHtml = {
+// Homepage visibility is a same-day delivery contract only. Historical releases must remain
+// discoverable through Research and their column indexes, but must never be relabeled as Today.
+const requireHomepageVisibility = release.date === today
+const homeHtml = requireHomepageVisibility ? {
   zh: read(path.join(dist, 'zh', 'index.html')),
   en: read(path.join(dist, 'index.html'))
-}
+} : null
 
 const columnIndex = {
   'digital-employee': { zh: 'zh/digital-employee/index.html', en: 'en/digital-employee/index.html' },
@@ -98,8 +113,8 @@ for (const item of items) {
       fail(`${item.itemId} ${lang} is not discoverable from the Research index (${needle})`)
     }
 
-    if (!homeHtml[lang].includes(needle)) {
-      fail(`${item.itemId} ${lang} is not discoverable from the public homepage (${needle})`)
+    if (requireHomepageVisibility && !homeHtml[lang].includes(needle)) {
+      fail(`${item.itemId} ${lang} same-day release is not discoverable from the public homepage (${needle})`)
     }
 
     const columnRoute = columnIndex[item.column]?.[lang]
@@ -124,5 +139,8 @@ for (const item of items) {
 }
 
 if (!process.exitCode) {
-  console.log(`[publication-visibility] PASS ${release.date}: ${items.length} released items are routable and discoverable from home, Research and column indexes in both languages.`)
+  const scope = requireHomepageVisibility
+    ? 'home, Research and column indexes'
+    : 'Research and column indexes (historical homepage promotion correctly not required)'
+  console.log(`[publication-visibility] PASS ${release.date}: ${items.length} released items are routable and discoverable from ${scope} in both languages; Shanghai today=${today}.`)
 }
