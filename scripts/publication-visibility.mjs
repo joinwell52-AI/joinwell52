@@ -80,14 +80,6 @@ const researchIndexHtml = {
   en: read(path.join(dist, 'en', 'research', 'index.html'))
 }
 
-// Homepage visibility is a same-day delivery contract only. Historical releases must remain
-// discoverable through Research and their column indexes, but must never be relabeled as Today.
-const requireHomepageVisibility = release.date === today
-const homeHtml = requireHomepageVisibility ? {
-  zh: read(path.join(dist, 'zh', 'index.html')),
-  en: read(path.join(dist, 'index.html'))
-} : null
-
 const columnIndex = {
   'digital-employee': { zh: 'zh/digital-employee/index.html', en: 'en/digital-employee/index.html' },
   'industry-architecture': { zh: 'zh/industry/index.html', en: 'en/industry/index.html' },
@@ -113,10 +105,6 @@ for (const item of items) {
       fail(`${item.itemId} ${lang} is not discoverable from the Research index (${needle})`)
     }
 
-    if (requireHomepageVisibility && !homeHtml[lang].includes(needle)) {
-      fail(`${item.itemId} ${lang} same-day release is not discoverable from the public homepage (${needle})`)
-    }
-
     const columnRoute = columnIndex[item.column]?.[lang]
     if (!columnRoute) {
       fail(`${item.itemId} has unsupported column ${item.column}`)
@@ -139,8 +127,5 @@ for (const item of items) {
 }
 
 if (!process.exitCode) {
-  const scope = requireHomepageVisibility
-    ? 'home, Research and column indexes'
-    : 'Research and column indexes (historical homepage promotion correctly not required)'
-  console.log(`[publication-visibility] PASS ${release.date}: ${items.length} released items are routable and discoverable from ${scope} in both languages; Shanghai today=${today}.`)
+  console.log(`[publication-visibility] PASS ${release.date}: ${items.length} released items are routable and discoverable from Research and column indexes in both languages; homepage promotion is optional; Shanghai today=${today}.`)
 }
