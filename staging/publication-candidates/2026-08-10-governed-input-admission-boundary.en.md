@@ -12,8 +12,9 @@ item_id: "Q-20260810-01"
 lifecycle: "Publication Candidate"
 source_research_object: "research/analysis/Q-20260810-01-governed-input-admission.md"
 source_reading_result: "research/reading/Q-20260810-01-durable-runstate-pending-input.md"
+cover: "staging/publication-candidates/2026-08-10-governed-input-admission-boundary-cover.webp"
 visualization: "staging/publication-candidates/2026-08-10-governed-input-admission-boundary.svg"
-visualization_decision: "Required — input-admission lifecycle diagram included"
+visualization_decision: "Required — dedicated editorial Article Cover passes Cover Gate; explanatory Article Figure retained separately"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -26,7 +27,11 @@ A Digital Employee that can pause, accept operator input, resume after process b
 
 ## Cover
 
-![Governed input-admission boundary](./2026-08-10-governed-input-admission-boundary.svg)
+![Governed input-admission editorial cover](./2026-08-10-governed-input-admission-boundary-cover.webp)
+
+## Figure
+
+![Input-admission lifecycle figure](./2026-08-10-governed-input-admission-boundary.svg)
 
 ## Summary
 
@@ -85,7 +90,7 @@ A product-level Digital Employee runtime should test crash points between receip
 
 ## Visualization note
 
-The cover visual is a Research Center architecture synthesis. It separates receipt, policy admission, deterministic resume and consumption evidence, with an explicit side-effect boundary rather than presenting a vendor diagram or invented metric.
+The editorial cover is a Research Center visual metaphor designed for thumbnail-scale recognition and passes the Cover Gate. The original SVG is retained separately as the explanatory Article Figure for the article mechanism. The two visual roles no longer reuse one asset; no vendor artwork or invented quantitative data is used.
 
 ## References
 

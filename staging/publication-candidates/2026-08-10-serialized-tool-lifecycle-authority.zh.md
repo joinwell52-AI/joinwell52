@@ -12,8 +12,9 @@ item_id: "Q-20260810-03"
 lifecycle: "Publication Candidate"
 source_research_object: "research/analysis/Q-20260810-03-serialized-lifecycle-governance.md"
 source_reading_result: "research/reading/Q-20260810-03-mcp-lifecycle-serialization.md"
+cover: "staging/publication-candidates/2026-08-10-serialized-tool-lifecycle-authority-cover.webp"
 visualization: "staging/publication-candidates/2026-08-10-serialized-tool-lifecycle-authority.svg"
-visualization_decision: "Required — serialized lifecycle authority diagram included"
+visualization_decision: "Required — dedicated editorial Article Cover passes Cover Gate; explanatory Article Figure retained separately"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -26,7 +27,11 @@ Connect、Reconnect、Cleanup 看起来像普通辅助函数，直到多个调�
 
 ## 题图
 
-![串行化生命周期权威](./2026-08-10-serialized-tool-lifecycle-authority.svg)
+![串行化生命周期控制题图](./2026-08-10-serialized-tool-lifecycle-authority-cover.webp)
+
+## 文中图
+
+![串行化生命周期权威机制图](./2026-08-10-serialized-tool-lifecycle-authority.svg)
 
 ## 摘要
 
@@ -87,7 +92,7 @@ Cancellation 也应该从资源而不是 Caller 的角度解释。Caller 消失�
 
 ## 可视化说明
 
-题图是 Research Center 综合图，用来表达单一生命周期权威如何排序 Cleanup 与 Generation Replacement，并刻意让 Failure State 保持可见，而不是把 Reconnect 画成无条件成功路径。
+题图是面向缩略图识别的 Research Center 编辑性视觉隐喻，并通过 Cover Gate；原 SVG 保留为独立文中解释图，用于精确说明文章机制。两种视觉角色不再复用同一资产；未使用厂商原图，也未构造无来源数值。
 
 ## 参考资料
 

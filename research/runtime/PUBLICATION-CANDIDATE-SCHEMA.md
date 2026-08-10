@@ -48,7 +48,10 @@ research/runtime/candidates/YYYY/MM/YYYY-MM-DD-candidates.json
   "title_zh": "中文标题",
   "zhPath": "staging/publication-candidates/...zh.md",
   "enPath": "staging/publication-candidates/...en.md",
-  "coverPath": "staging/publication-candidates/...svg",
+  "coverPath": "staging/publication-candidates/...-cover.webp",
+  "figurePath": "staging/publication-candidates/...-figure.svg",
+  "coverGate": "PASS",
+  "figureGate": "PASS",
   "lifecycle": "Publication Candidate",
   "evidenceStatus": "Completed",
   "editingStatus": "Completed"
@@ -61,6 +64,10 @@ research/runtime/candidates/YYYY/MM/YYYY-MM-DD-candidates.json
 - `industry-architecture`;
 - `open-source-engineering`.
 
+## Cover / Figure role gate
+
+`coverPath` is the dedicated editorial Article Cover and must pass Skill 06 Cover Gate, including thumbnail-scale recognition. `figurePath` is the separate explanatory Article Figure used for technical structure, workflow, lifecycle or evidence explanation. The same asset MUST NOT satisfy both roles. A workflow, lifecycle, architecture stack, state machine or other explanatory schematic cannot be promoted into `coverPath` merely because it already exists.
+
 ## Production completion gate
 
 A candidate may be marked complete only when:
@@ -68,7 +75,9 @@ A candidate may be marked complete only when:
 - the research object has passed Reading and Analysis;
 - the full Chinese and English Markdown files exist;
 - metadata and target column are valid;
-- required visualization exists or the record states why none is needed;
+- a dedicated editorial Article Cover exists and passes the Skill 06 Cover Gate;
+- a separate explanatory Article Figure exists when the research benefits from technical visual explanation;
+- `coverPath` and `figurePath` do not point to the same asset;
 - every material claim has source evidence;
 - citations have been checked;
 - Publication Editing is complete;

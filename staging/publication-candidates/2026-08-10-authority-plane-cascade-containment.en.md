@@ -12,8 +12,9 @@ item_id: "Q-20260810-02"
 lifecycle: "Publication Candidate"
 source_research_object: "research/analysis/Q-20260810-02-authoritative-state-containment.md"
 source_reading_result: "research/reading/Q-20260810-02-trusted-state-cascade-containment.md"
+cover: "staging/publication-candidates/2026-08-10-authority-plane-cascade-containment-cover.webp"
 visualization: "staging/publication-candidates/2026-08-10-authority-plane-cascade-containment.svg"
-visualization_decision: "Required — authority-plane containment diagram included"
+visualization_decision: "Required — dedicated editorial Article Cover passes Cover Gate; explanatory Article Figure retained separately"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -26,7 +27,11 @@ When a multi-agent workflow fails, “retry” and “repair” are not the same
 
 ## Cover
 
-![Authority-plane cascade containment](./2026-08-10-authority-plane-cascade-containment.svg)
+![Authority plane cascade-containment editorial cover](./2026-08-10-authority-plane-cascade-containment-cover.webp)
+
+## Figure
+
+![Authority-plane containment figure](./2026-08-10-authority-plane-cascade-containment.svg)
 
 ## Summary
 
@@ -84,7 +89,7 @@ The next engineering questions are: what qualifies as authoritative state for ea
 
 ## Visualization note
 
-The cover is a Research Center synthesis that separates execution/retry from authoritative-state reconciliation and selective downstream invalidation. It does not convert qualitative mechanisms into invented scores.
+The editorial cover is a Research Center visual metaphor designed for thumbnail-scale recognition and passes the Cover Gate. The original SVG is retained separately as the explanatory Article Figure for the article mechanism. The two visual roles no longer reuse one asset; no vendor artwork or invented quantitative data is used.
 
 ## References
 

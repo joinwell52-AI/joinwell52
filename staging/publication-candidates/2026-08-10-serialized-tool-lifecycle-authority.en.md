@@ -12,8 +12,9 @@ item_id: "Q-20260810-03"
 lifecycle: "Publication Candidate"
 source_research_object: "research/analysis/Q-20260810-03-serialized-lifecycle-governance.md"
 source_reading_result: "research/reading/Q-20260810-03-mcp-lifecycle-serialization.md"
+cover: "staging/publication-candidates/2026-08-10-serialized-tool-lifecycle-authority-cover.webp"
 visualization: "staging/publication-candidates/2026-08-10-serialized-tool-lifecycle-authority.svg"
-visualization_decision: "Required — serialized lifecycle authority diagram included"
+visualization_decision: "Required — dedicated editorial Article Cover passes Cover Gate; explanatory Article Figure retained separately"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -26,7 +27,11 @@ Connect, reconnect and cleanup look like ordinary helper methods until multiple 
 
 ## Cover
 
-![Serialized lifecycle authority](./2026-08-10-serialized-tool-lifecycle-authority.svg)
+![Serialized lifecycle control editorial cover](./2026-08-10-serialized-tool-lifecycle-authority-cover.webp)
+
+## Figure
+
+![Serialized lifecycle authority figure](./2026-08-10-serialized-tool-lifecycle-authority.svg)
 
 ## Summary
 
@@ -87,7 +92,7 @@ The next design questions are whether lifecycle lock acquisition needs a deadlin
 
 ## Visualization note
 
-The cover is a Research Center synthesis that shows one serialized lifecycle authority ordering cleanup and replacement generations. It intentionally keeps failure state visible rather than treating reconnection as an unconditional happy path.
+The editorial cover is a Research Center visual metaphor designed for thumbnail-scale recognition and passes the Cover Gate. The original SVG is retained separately as the explanatory Article Figure for the article mechanism. The two visual roles no longer reuse one asset; no vendor artwork or invented quantitative data is used.
 
 ## References
 

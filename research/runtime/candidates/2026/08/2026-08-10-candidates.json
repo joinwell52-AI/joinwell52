@@ -5,8 +5,8 @@
   "status": "Completed",
   "sourceTask": "Research Runtime Production",
   "sourceRecord": "research/runtime/2026/08/2026-08-10-runtime.md",
-  "updatedAt": "2026-08-10T15:14:33+08:00",
-  "githubCommit": "093dd3c488e8614f7337668804e144485e5cdd77",
+  "updatedAt": "2026-08-10T16:17:47+08:00",
+  "githubCommit": "pending",
   "reason": "Production completed the eligibility gate and produced three complete bilingual Publication Candidates from the three 2026-08-10 Production-authorized Research Objects.",
   "reason_zh": "Production 已完成准入门禁，并仅从 2026-08-10 当日三份获授权 Research Object 生成三份完整双语 Publication Candidate。",
   "outcome": "Publication Candidates Produced",
@@ -19,10 +19,13 @@
       "title_zh": "可恢复数字员工需要受治理的输入准入边界",
       "zhPath": "staging/publication-candidates/2026-08-10-governed-input-admission-boundary.zh.md",
       "enPath": "staging/publication-candidates/2026-08-10-governed-input-admission-boundary.en.md",
-      "coverPath": "staging/publication-candidates/2026-08-10-governed-input-admission-boundary.svg",
+      "coverPath": "staging/publication-candidates/2026-08-10-governed-input-admission-boundary-cover.webp",
       "lifecycle": "Publication Candidate",
       "evidenceStatus": "Completed",
-      "editingStatus": "Completed"
+      "editingStatus": "Completed",
+      "figurePath": "staging/publication-candidates/2026-08-10-governed-input-admission-boundary.svg",
+      "coverGate": "PASS",
+      "figureGate": "PASS"
     },
     {
       "column": "industry-architecture",
@@ -31,10 +34,13 @@
       "title_zh": "多 Agent 恢复需要权威状态平面，而不是盲目重试",
       "zhPath": "staging/publication-candidates/2026-08-10-authority-plane-cascade-containment.zh.md",
       "enPath": "staging/publication-candidates/2026-08-10-authority-plane-cascade-containment.en.md",
-      "coverPath": "staging/publication-candidates/2026-08-10-authority-plane-cascade-containment.svg",
+      "coverPath": "staging/publication-candidates/2026-08-10-authority-plane-cascade-containment-cover.webp",
       "lifecycle": "Publication Candidate",
       "evidenceStatus": "Completed",
-      "editingStatus": "Completed"
+      "editingStatus": "Completed",
+      "figurePath": "staging/publication-candidates/2026-08-10-authority-plane-cascade-containment.svg",
+      "coverGate": "PASS",
+      "figureGate": "PASS"
     },
     {
       "column": "open-source-engineering",
@@ -43,10 +49,35 @@
       "title_zh": "工具运行时需要串行化生命周期权威",
       "zhPath": "staging/publication-candidates/2026-08-10-serialized-tool-lifecycle-authority.zh.md",
       "enPath": "staging/publication-candidates/2026-08-10-serialized-tool-lifecycle-authority.en.md",
-      "coverPath": "staging/publication-candidates/2026-08-10-serialized-tool-lifecycle-authority.svg",
+      "coverPath": "staging/publication-candidates/2026-08-10-serialized-tool-lifecycle-authority-cover.webp",
       "lifecycle": "Publication Candidate",
       "evidenceStatus": "Completed",
-      "editingStatus": "Completed"
+      "editingStatus": "Completed",
+      "figurePath": "staging/publication-candidates/2026-08-10-serialized-tool-lifecycle-authority.svg",
+      "coverGate": "PASS",
+      "figureGate": "PASS"
     }
-  ]
+  ],
+  "rework": {
+    "schema": "runtime-production-rework/v1",
+    "kind": "Production Rework",
+    "scope": "cover-only",
+    "status": "Completed",
+    "reason": "Post-production Cover Gate repair: the original SVG assets are explanatory Article Figures, not editorial title images.",
+    "reason_zh": "Production 完成后的 Cover Gate 修复：原 SVG 属于文中解释图，不是编辑性题图。",
+    "sourceCompletionCommit": "a3ce3250373f7dcdd86312fa314f83f0ba22db0c",
+    "sourceVerificationCommit": "8e01c275062244d4978539f86399853f2e35b0e5",
+    "sourceCandidateCommit": "093dd3c488e8614f7337668804e144485e5cdd77",
+    "researchChanged": false,
+    "analysisChanged": false,
+    "articleClaimsChanged": false,
+    "publicationPerformed": false,
+    "publicationAuthorized": false,
+    "coverGate": "PASS",
+    "figureGate": "PASS",
+    "thumbnailQaWidth": 320,
+    "githubCommit": "pending",
+    "commitVerify": "Waiting",
+    "completedAt": "2026-08-10T16:17:47+08:00"
+  }
 }

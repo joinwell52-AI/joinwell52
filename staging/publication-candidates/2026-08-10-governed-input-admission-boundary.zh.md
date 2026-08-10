@@ -12,8 +12,9 @@ item_id: "Q-20260810-01"
 lifecycle: "Publication Candidate"
 source_research_object: "research/analysis/Q-20260810-01-governed-input-admission.md"
 source_reading_result: "research/reading/Q-20260810-01-durable-runstate-pending-input.md"
+cover: "staging/publication-candidates/2026-08-10-governed-input-admission-boundary-cover.webp"
 visualization: "staging/publication-candidates/2026-08-10-governed-input-admission-boundary.svg"
-visualization_decision: "Required — input-admission lifecycle diagram included"
+visualization_decision: "Required — dedicated editorial Article Cover passes Cover Gate; explanatory Article Figure retained separately"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -26,7 +27,11 @@ publication_authorized: false
 
 ## 题图
 
-![受治理的输入准入边界](./2026-08-10-governed-input-admission-boundary.svg)
+![受治理输入准入题图](./2026-08-10-governed-input-admission-boundary-cover.webp)
+
+## 文中图
+
+![输入准入生命周期图](./2026-08-10-governed-input-admission-boundary.svg)
 
 ## 摘要
 
@@ -85,7 +90,7 @@ Production 只消费当日 Research Object `Q-20260810-01`，并仅使用已完�
 
 ## 可视化说明
 
-题图是 Research Center 的架构综合图，用来分离 Receipt、Policy Admission、Deterministic Resume、Consumption Evidence 和 External Side-effect Boundary；没有使用厂商原图，也没有构造无来源数值。
+题图是面向缩略图识别的 Research Center 编辑性视觉隐喻，并通过 Cover Gate；原 SVG 保留为独立文中解释图，用于精确说明文章机制。两种视觉角色不再复用同一资产；未使用厂商原图，也未构造无来源数值。
 
 ## 参考资料
 

@@ -12,8 +12,9 @@ item_id: "Q-20260810-02"
 lifecycle: "Publication Candidate"
 source_research_object: "research/analysis/Q-20260810-02-authoritative-state-containment.md"
 source_reading_result: "research/reading/Q-20260810-02-trusted-state-cascade-containment.md"
+cover: "staging/publication-candidates/2026-08-10-authority-plane-cascade-containment-cover.webp"
 visualization: "staging/publication-candidates/2026-08-10-authority-plane-cascade-containment.svg"
-visualization_decision: "Required — authority-plane containment diagram included"
+visualization_decision: "Required — dedicated editorial Article Cover passes Cover Gate; explanatory Article Figure retained separately"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -26,7 +27,11 @@ publication_authorized: false
 
 ## 题图
 
-![权威状态平面与级联遏制](./2026-08-10-authority-plane-cascade-containment.svg)
+![权威状态平面级联遏制题图](./2026-08-10-authority-plane-cascade-containment-cover.webp)
+
+## 文中图
+
+![权威状态平面遏制机制图](./2026-08-10-authority-plane-cascade-containment.svg)
 
 ## 摘要
 
@@ -84,7 +89,7 @@ OrchestraBench 的核心实验是受控机制探针，不是完整企业级多 A
 
 ## 可视化说明
 
-题图是 Research Center 架构综合，用来分离 Execution/Retry、Authoritative-state Reconciliation 和 Selective Downstream Invalidation；没有把定性机制转换成无来源的评分。
+题图是面向缩略图识别的 Research Center 编辑性视觉隐喻，并通过 Cover Gate；原 SVG 保留为独立文中解释图，用于精确说明文章机制。两种视觉角色不再复用同一资产；未使用厂商原图，也未构造无来源数值。
 
 ## 参考资料
 
