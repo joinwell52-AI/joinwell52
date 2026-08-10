@@ -43,6 +43,7 @@
         { "label": "Digital Employee Program queue", "label_zh": "Digital Employee Program Queue", "path": "research/program/queues/digital-employee.json" },
         { "label": "Research Operating System Program queue", "label_zh": "Research Operating System Program Queue", "path": "research/program/queues/research-operating-system.json" },
         { "label": "Program queue initialization commit", "label_zh": "Program Queue 初始化提交", "value": "8734a77fc3eb0c04acfe5d962ee8d3b7f4f881fb" },
+        { "label": "Program completion commit", "label_zh": "Program 完成提交", "value": "dea6807ed9aa0edfdd90cd3300a6fc6c6e9f2c6c" },
         { "label": "V5 Scheduler", "label_zh": "V5 调度器", "path": "research/runtime/SCHEDULER.json" },
         { "label": "Worker Contract V3", "label_zh": "Worker Contract V3", "path": "research/runtime/WORKER-CONTRACT-V3.md" }
       ],
@@ -141,6 +142,13 @@
       "event": "Shift Completed",
       "status": "Completed",
       "detail": "Reviewed five independent Program queues. All five decisions are Hold; no lifecycle transition and no Program Publication were authorized."
+    },
+    {
+      "time": "2026-08-10T12:40:10+08:00",
+      "task": "program",
+      "event": "GitHub Commit Verified",
+      "status": "Completed",
+      "detail": "Fetched main and verified Program completion commit dea6807ed9aa0edfdd90cd3300a6fc6c6e9f2c6c with the 2026-08-10 Program Runtime status and all five reviewed queues durably present."
     }
   ],
   "auditHistory": [
@@ -167,12 +175,13 @@
   ],
   "evidence": [
     { "label": "Program queue index", "label_zh": "Program Queue 索引", "path": "research/program/queues/INDEX.json" },
-    { "label": "Program queue initialization commit", "label_zh": "Program Queue 初始化提交", "value": "8734a77fc3eb0c04acfe5d962ee8d3b7f4f881fb" }
+    { "label": "Program queue initialization commit", "label_zh": "Program Queue 初始化提交", "value": "8734a77fc3eb0c04acfe5d962ee8d3b7f4f881fb" },
+    { "label": "Program completion commit", "label_zh": "Program 完成提交", "value": "dea6807ed9aa0edfdd90cd3300a6fc6c6e9f2c6c" }
   ],
   "artifacts": [
     { "label": "Program Runtime Record", "label_zh": "Program Runtime Record", "path": "research/runtime/records/program/2026/08/2026-08-10-program-runtime.json" }
   ],
-  "githubCommit": null,
-  "commitVerify": "Waiting",
-  "updatedAt": "2026-08-10T12:38:45+08:00"
+  "githubCommit": "dea6807ed9aa0edfdd90cd3300a6fc6c6e9f2c6c",
+  "commitVerify": "Completed",
+  "updatedAt": "2026-08-10T12:40:10+08:00"
 }
