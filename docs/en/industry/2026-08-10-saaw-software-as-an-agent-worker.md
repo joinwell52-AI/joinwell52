@@ -153,9 +153,15 @@ That is why TMPA exists.
 
 ## 4. TMPA: Work facts must exist independently of the Agent
 
-TMPA stands for **Textual Multi-Agent Process Architecture**.
+TMPA asks a simple question: when Agents and humans jointly perform long-running work, where should trustworthy work state live?
 
-It asks a simple question: when Agents and humans jointly perform long-running work, where should trustworthy work state live?
+This is TMPA's formal answer:
+
+> **TMPA (Textual Multi-Agent Process Architecture)** is an **asynchronous text-message multi-agent process architecture** designed for SMEs and minimum-infrastructure conditions. Its core consists of four connected rules: **text carries durable messages and state; each writer maintains its own local serial stream; multiple serial streams advance asynchronously to form parallel collaboration; the read side aggregates available evidence to reconstruct process, responsibility, lifecycle, conflicts, and audit state.**
+
+**Sections 4–7 expand these four rules in order: Section 4 covers durable messages and state in text; Section 5 covers local Single-Writer serial streams; Section 6 covers asynchronous parallel collaboration across streams; Section 7 covers read-side reconstruction and the Issue Set.**
+
+TMPA is **SME-first, not SME-only**. Its minimum-infrastructure orientation reduces dependence on dedicated coordination infrastructure, but larger implementations may use databases, object stores, event services, identity systems, and control planes while preserving the same work-fact, responsibility, reference, lifecycle, and governance semantics.
 
 Traditional Agent systems often put state in model context, runtime memory, database internals, brokers, central schedulers, or an ever-growing conversation.
 
@@ -276,6 +282,8 @@ TMPA does not try to make those problems disappear.
 
 It makes them formal facts.
 
+The key is not merely to list errors, but to perform **read-side reconstruction**. The Reader aggregates the currently available evidence to reconstruct process, responsibility, lifecycle, conflicts, and audit state; the **Issue Set** is the formal representation of conflicts, gaps, and illegal states within that reconstruction.
+
 The Reader therefore reconstructs not only a Process Graph but also an Issue Set, such as:
 
 ```text
@@ -364,69 +372,93 @@ That is a day in the life of a digital researcher: **it is not answering one que
 
 ---
 
-## 9. CodeFlowMu: Bringing TMPA into the runtime world
+## 9. FCoP: File-based Coordination Protocol
 
-If TMPA addresses the governance architecture, CodeFlowMu addresses another question: how do these Agents actually work?
+**FCoP (File-based Coordination Protocol) is a multi-agent behavioral-governance protocol that uses the filesystem as its only synchronization primitive.**
 
-CodeFlowMu did not begin by constructing a giant central Agent Runtime.
+Its core invariant is **Filename as Protocol**. In its project-visible filesystem profile:
 
-Instead, it tries to remain deliberately restrained.
+- **directory is state**: `_lifecycle/{inbox,active,review,done,archive}/`;
+- **filename is routing**: sender, recipient, type, and sequence identify origin, destination, and work-object identity;
+- **content is payload**: Markdown plus YAML frontmatter carries tasks, reports, issues, references, and governance facts;
+- **`os.rename()` is the only synchronization operation**: lifecycle transitions rely on atomic filesystem moves rather than a coordination database, message broker, or central lock service.
 
-Reasoning is delegated to mature model ecosystems, while tools remain in real operating environments.
+A task lifecycle is therefore directly observable:
 
-CodeFlowMu concentrates on work orchestration, Agent responsibility boundaries, lifecycle, FCoP, Skill invocation, Reports, Reviews, human decisions, recovery, and runtime governance.
+```text
+inbox      waiting to be claimed
+  │
+  ▼
+active     in execution
+  │
+  ▼
+review     awaiting review
+  │
+  ▼
+done       completed
+  │
+  ▼
+archive    archived
+```
 
-This creates an important engineering boundary:
+FCoP governs **Agent collaboration behavior**: how tasks are handed off, results are reported, issues are raised, capability boundaries are declared, and those behaviors leave event semantics, failure boundaries, and auditable evidence.
 
-**CodeFlowMu does not need to reinvent the LLM.**
+**FCoP does not govern the execution runtime.** Scheduling, process management, model sessions, resource allocation, identity authentication, and runtime-node management are outside the protocol itself.
 
-The model is only one part of a digital employee's brain.
+In the TMPA implementation relationship, FCoP acts as a **project-visible filesystem profile**. It does not require a coordination database, message broker, or enterprise control plane; conversely, it does not by itself provide validated enterprise identity, strong role isolation, tamper-resistant storage, or Byzantine fault tolerance. This is consistent with TMPA being **SME-first, not SME-only**: larger deployments can add databases, object stores, event services, identity systems, and control planes without changing the governance semantics carried by the protocol.
 
-What ultimately determines whether it can become an employee is the external structure of work.
+Most importantly, **the FCoP protocol, host adapters, reference implementation, and runtime environment are not the same thing.** The A0.9 operational stack can be represented directly as:
 
-[![SaaW governance and runtime architecture: SaaW, CodeFlowMu, FCoP, and TMPA](/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png)](/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png)
+```text
+Application / Runtime
+CodeFlowMu / Cursor / Claude Desktop
+                │
+                ▼
+Host Adapter Layer
+fcop-mcp / fcop-cli / host bridges
+                │
+                ▼
+★ FCoP Protocol Layer ★
+behavior governance / handoff / reporting / review
+capability boundaries / event semantics / failure boundaries / audit
+                │
+                ▼
+Reference Implementation
+fcop Python library
+                │
+                ▼
+Execution Substrate
+LLM APIs / MCP tools / filesystem / process manager / operating system
+```
 
-*Figure 1. SaaW describes the software-delivery paradigm; CodeFlowMu provides the engineering runtime; FCoP provides the lightweight coordination protocol; TMPA provides the work-fact and governance architecture.*
+Therefore:
+
+- the `fcop` Python package is the **reference implementation of FCoP**, not the FCoP protocol itself;
+- `fcop-mcp` and `fcop-cli` sit in the **Host Adapter Layer**, exposing protocol capabilities to actual hosts;
+- CodeFlowMu sits above FCoP in the **Application / Runtime layer** and uses FCoP as its coordination protocol;
+- TMPA is not a runtime layer in this stack; it supplies the higher-level governance semantics and architectural guidance the stack is intended to realize.
+
+This also explains why “directory is state” matters: administrators, human supervisors, Agents, and debugging tools can inspect the same project-visible facts without first entering a hidden central coordination state.
 
 ---
 
-## 10. FCoP: Filename as Protocol
+## 10. CodeFlowMu: From protocol to the real runtime world
 
-A core engineering choice in CodeFlowMu is FCoP.
+If TMPA defines work-fact and governance semantics, and FCoP supplies a project-visible file-based coordination protocol, then **CodeFlowMu addresses how those semantics and that protocol enter a real Agent runtime world.**
 
-FCoP projects part of Agent coordination and governance directly into the file system.
+CodeFlowMu did not begin by constructing a giant central Agent Runtime.
 
-Work objects are not hidden inside a central server. They can be observed as files.
+Instead, it remains deliberately restrained: reasoning is delegated to mature model ecosystems, tools remain in real operating environments, and CodeFlowMu concentrates on work orchestration, Agent responsibility boundaries, lifecycle, FCoP integration, Skill invocation, Reports, Reviews, human decisions, recovery, and runtime governance.
 
-File names, directories, references, and lifecycle transitions become part of the protocol itself.
+This creates an important engineering boundary:
 
-A task can move through a lifecycle such as:
+**CodeFlowMu does not need to reinvent the LLM, and it does not redefine FCoP.**
 
-```text
-inbox
-  │
-  ▼
-active
-  │
-  ▼
-review
-  │
-  ▼
-done
-  │
-  ▼
-archive
-```
+The model is only one part of a digital employee's brain; FCoP is the coordination protocol it uses; what determines whether the digital employee can sustain responsibility is the surrounding work structure, runtime environment, and governance loop.
 
-State transitions occur through explicit operations.
+[![SaaW governance and runtime architecture: SaaW, CodeFlowMu, FCoP, and TMPA](/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png)](/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png)
 
-This produces a simple but important result:
-
-> **The directory itself becomes observable state.**
-
-System administrators, human supervisors, Agents, and debugging tools can inspect the same facts.
-
-That reduces one of the most dangerous forms of complexity in multi-agent systems: hidden state.
+*Figure 1. TMPA supplies work-fact and governance architecture; FCoP supplies the file-based coordination protocol; CodeFlowMu provides the engineering runtime; SaaW names the resulting software-delivery paradigm.*
 
 ---
 
