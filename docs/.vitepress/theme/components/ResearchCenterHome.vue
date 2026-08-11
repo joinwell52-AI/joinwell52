@@ -500,6 +500,17 @@ onBeforeUnmount(() => {
           </Transition>
         </div>
 
+        <aside class="rc-original-article">
+          <div>
+            <small>{{ zh ? '推荐原创文章' : 'FEATURED ORIGINAL ARTICLE' }}</small>
+            <h3>{{ zh ? '一个 Agent 说“完成了”，团队为什么没放行？' : 'One Agent Said “Done.” Why Didn’t the Team Release It?' }}</h3>
+          </div>
+          <nav :aria-label="zh ? '推荐原创文章发布地址' : 'Featured original article publication links'">
+            <a href="https://blog.csdn.net/m0_51507544/article/details/163676669"><span>{{ zh ? '中文地址 · CSDN' : 'Chinese · CSDN' }}</span><b>↗</b></a>
+            <a href="https://dev.to/joinwell52/one-agent-said-done-why-didnt-the-team-release-it-518j"><span>{{ zh ? '英文地址 · DEV' : 'English · DEV' }}</span><b>↗</b></a>
+          </nav>
+        </aside>
+
         <EditorialScorecard :lang="props.lang" />
 
         <aside class="rc-ra-log">
@@ -518,17 +529,6 @@ onBeforeUnmount(() => {
         </aside>
 
         <a class="rc-all-research" :href="link(researchOverview)">{{ copy.allResearch }} <span>→</span></a>
-
-        <aside class="rc-original-article">
-          <div>
-            <small>{{ zh ? '原创文章' : 'ORIGINAL ARTICLE' }}</small>
-            <h3>{{ zh ? 'CodeFlowMu 多 Agent 事实核查实战' : 'A CodeFlowMu multi-agent fact-checking field case' }}</h3>
-          </div>
-          <nav :aria-label="zh ? '原创文章发布地址' : 'Original article publication links'">
-            <a href="https://blog.csdn.net/m0_51507544/article/details/163676669"><span>{{ zh ? '中文地址 · CSDN' : 'Chinese · CSDN' }}</span><b>↗</b></a>
-            <a href="https://dev.to/joinwell52/one-agent-said-done-why-didnt-the-team-release-it-518j"><span>{{ zh ? '英文地址 · DEV' : 'English · DEV' }}</span><b>↗</b></a>
-          </nav>
-        </aside>
       </div>
     </section>
 

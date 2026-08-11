@@ -162,8 +162,7 @@ const copy = computed(() => zh.value ? {
 </template>
 
 <style scoped>
-.scorecard{--scorecard-row:#fff;--scorecard-row-alt:#f3f4f6;--scorecard-table-text:#25324a;--scorecard-table-muted:#63718a;--scorecard-table-index:#53627a;margin-top:28px;border:1px solid rgba(255,255,255,.16);background:linear-gradient(145deg,#111b31,#171438 58%,#0c3541);color:#fff;box-shadow:0 24px 70px rgba(0,0,0,.24)}
-:global(html.dark .scorecard){--scorecard-row:#10192d;--scorecard-row-alt:#151d33;--scorecard-table-text:#f4f7fc;--scorecard-table-muted:#aab5c8;--scorecard-table-index:#7d8ca7}
+.scorecard{margin-top:28px;border:1px solid rgba(255,255,255,.16);background:linear-gradient(145deg,#111b31,#171438 58%,#0c3541);color:#fff;box-shadow:0 24px 70px rgba(0,0,0,.24)}
 .scorecard__header{display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:42px;align-items:end;padding:32px;border-bottom:1px solid rgba(255,255,255,.14)}
 .scorecard__header>div>span,.scorecard__top>span{display:block;color:#62deed;font:800 10px/1 ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase}
 .scorecard__header h3{margin:12px 0 10px;font-size:clamp(29px,4vw,44px);line-height:1.04;letter-spacing:-.045em}
@@ -197,17 +196,20 @@ const copy = computed(() => zh.value ? {
 .scorecard__details[open] .hide{display:inline}
 .scorecard__table-wrap{max-height:590px;overflow:auto;border-top:1px solid rgba(255,255,255,.1)}
 table{width:100%;border-collapse:collapse;font-size:11px}
-tbody tr{color:var(--scorecard-table-text);background:var(--scorecard-row)!important}
-tbody tr:nth-child(even){background:var(--scorecard-row-alt)!important}
 th,td{padding:15px 14px;border-bottom:1px solid rgba(255,255,255,.09);text-align:left;vertical-align:top}
 th{position:sticky;top:0;z-index:1;color:#8997af;background:#11172a;font:800 9px/1 ui-monospace,monospace;letter-spacing:.09em;text-transform:uppercase}
-th:first-child,td:first-child{width:44px;padding-left:32px;color:var(--scorecard-table-index);font-family:ui-monospace,monospace}
+th:first-child,td:first-child{width:44px;padding-left:32px;color:#66758f;font-family:ui-monospace,monospace}
 th:nth-child(2),td:nth-child(2){width:30%}
 th:nth-child(3),td:nth-child(3){width:70px;text-align:center}
-td a{color:var(--scorecard-table-text)!important;font-weight:750;line-height:1.45}
+td a{color:#fff!important;font-weight:750;line-height:1.45}
 td a span{color:#62deed}
 td strong{color:#62deed;font-size:17px}
-td:last-child{color:var(--scorecard-table-muted);line-height:1.55}
+td:last-child{color:#aab5c8;line-height:1.55}
+:global(html:not(.dark) .scorecard tbody tr){color:#25324a;background:#fff!important}
+:global(html:not(.dark) .scorecard tbody tr:nth-child(even)){background:#f3f4f6!important}
+:global(html:not(.dark) .scorecard td:first-child){color:#53627a}
+:global(html:not(.dark) .scorecard td a){color:#25324a!important}
+:global(html:not(.dark) .scorecard td:last-child){color:#63718a}
 .scorecard footer{display:grid;grid-template-columns:220px 1fr;gap:24px;padding:20px 32px;color:#8290a9;border-top:1px solid rgba(255,255,255,.12);font-size:10px;line-height:1.55}
 .scorecard footer span{color:#aebbd1;font-weight:760}
 .scorecard footer p{margin:0}
