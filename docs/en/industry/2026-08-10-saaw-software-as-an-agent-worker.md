@@ -24,11 +24,11 @@ outline: deep
 
 [中文版](/zh/industry/2026-08-10-saaw-software-as-an-agent-worker)
 
-![SaaW — Software as an Agent Worker](/assets/covers/01-saaw-manifesto-cover-agent-worker.png)
+[![SaaW — Software as an Agent Worker](/assets/covers/01-saaw-manifesto-cover-agent-worker.png)](/assets/covers/01-saaw-manifesto-cover-agent-worker.png)
 
 ---
 
-## 1. The last mile SaaS never solved
+## 1. The last mile that SaaS never solved
 
 For the past two decades, SaaS changed how software is delivered.
 
@@ -137,7 +137,7 @@ But:
 
 Trace answers: **What happened?**
 
-Enterprise governance must also answer: Who authorized the work? Who accepted responsibility? Which object represents the official work fact? Who submitted the Report? Who performed the Review? Who made the Decision? Is the current state legal? Are references dangling? Are disagreements unresolved? After failure, who is allowed to continue?
+Enterprise governance must also answer: Who authorized the work? Who accepted responsibility? Which object represents the official work fact? Who submitted the Report? Who performed the Review? Who made the Decision? Is the current state valid under the governing policy? Are references dangling? Are disagreements unresolved? After failure, who is allowed to continue?
 
 This is not merely a logging problem.
 
@@ -346,8 +346,9 @@ The digital researcher turns the research object into a formal work product: str
 **Output: Publication Candidate.**
 
 **20:00 · Formal Publication**  
-Once the candidate satisfies publication conditions, it enters the formal release path: GitHub write, website generation, commit verification, and release confirmation. If an action requires accountable human authority, the work stops at that authority boundary and waits for a human decision.  
-**Output: formally published research result.**
+Once the candidate satisfies publication conditions, it enters the formal release path: committing to GitHub, generating the website, verifying the commit, and confirming the release. If an action requires accountable human authority, the work stops at that authority boundary and waits for a human decision.
+
+**Output: Formally Published Research Result.**
 
 ```text
 09:00 Research Discovery   → Signal Pool
@@ -383,7 +384,7 @@ The model is only one part of a digital employee's brain.
 
 What ultimately determines whether it can become an employee is the external structure of work.
 
-![SaaW governance and runtime architecture: SaaW, CodeFlowMu, FCoP, and TMPA](/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png)
+[![SaaW governance and runtime architecture: SaaW, CodeFlowMu, FCoP, and TMPA](/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png)](/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png)
 
 *Figure 1. SaaW describes the software-delivery paradigm; CodeFlowMu provides the engineering runtime; FCoP provides the lightweight coordination protocol; TMPA provides the work-fact and governance architecture.*
 
@@ -450,7 +451,7 @@ Reason
  ↓
 Use Skill
  ↓
-Operate System
+Operate Business System
  ↓
 Observe Result
  ↓
@@ -576,11 +577,11 @@ Its output does not have to be only traditional software. It can also be:
 
 ---
 
-## 15. Digital Employee Package: Making Digital Employees Engineerable Products
+## 15. Digital Employee Package: Turning Digital Employees into Engineered Products
 
 Before a digital employee can truly be deployed, it needs an engineering description.
 
-A complete Digital Employee Package may include at least:
+A complete Digital Employee Package typically includes at least:
 
 - role;
 - job responsibilities;
@@ -650,7 +651,7 @@ It does not mean that an Agent freely mutates its source code, and it does not m
 
 > **Self-Morphing means that a digital-employee runtime can use its own software-development capability to construct, validate, and deploy new digital-worker forms.**
 
-![Self-Morphing: from meta-development runtime to the digital-worker work loop](/assets/covers/03-saaw-self-morphing-loop-fixed-v2.png)
+[![Self-Morphing: from meta-development runtime to the digital-worker work loop](/assets/covers/03-saaw-self-morphing-loop-fixed-v2.png)](/assets/covers/03-saaw-self-morphing-loop-fixed-v2.png)
 
 *Figure 2. The governed Self-Morphing loop brings development, validation, authorization, deployment, work execution, and work evidence into one recoverable and traceable lifecycle.*
 
@@ -756,6 +757,8 @@ Traditional software separates development, production runtime, and human work.
 
 SaaW begins to recombine them.
 
+CodeFlowMu's long-term direction can be expressed as follows:
+
 ```text
 Development Runtime
         │
@@ -828,7 +831,7 @@ Reader
 Mobile PWA
       │
       ▼
-Human Approve / Reject
+Human Approves / Rejects
       │
       ▼
 Formal Decision
@@ -875,7 +878,7 @@ But already established work facts must not disappear with them.
 
 This is where TMPA, FCoP, and CodeFlowMu ultimately converge:
 
-**Free intelligence from session continuity, and build continuity of work on durable facts.**
+**Decouple intelligence from session continuity, and build work continuity on durable facts.**
 
 This may be one of the most important architectural principles for building long-running digital employees.
 
