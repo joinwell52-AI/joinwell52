@@ -8,11 +8,11 @@
   "date": "2026-08-11",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Waiting",
+  "status": "Running",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Waiting",
+    "reading": "Running",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -33,36 +33,140 @@
       "next": "At 10:00 or any later wake, the Process Manager may grant Queue execution authority only if Discovery remains durably Completed and no earlier due unfinished task exists. Queue may triage only this run-date Signal Pool.",
       "next_zh": "10:00 或之后任何唤醒时，只有当 Discovery 仍为持久化 Completed 且不存在更早到期未收口任务，Process Manager 才可授予 Queue 执行权；Queue 只能筛选本运行日 Signal Pool。",
       "metrics": [
-        { "label": "Wake receipts verified", "label_zh": "已核验 Wake Receipt", "value": 1 },
-        { "label": "Discovery start events", "label_zh": "Discovery 启动事件", "value": 1 },
-        { "label": "Worker claims", "label_zh": "Worker Claimed", "value": 1 },
-        { "label": "AI platform due / checked / inaccessible / failed", "label_zh": "AI 平台应查 / 已查 / 不可访问 / 失败", "value": "33 / 30 / 1 / 2" },
-        { "label": "GitHub P0 repositories checked", "label_zh": "GitHub P0 已检查仓库", "value": "9 / 9" },
-        { "label": "Research sources due / checked / failed", "label_zh": "研究来源应查 / 已查 / 失败", "value": "9 / 8 / 1" },
-        { "label": "Normalized signals", "label_zh": "规范化信号", "value": 9 },
-        { "label": "Selected topics", "label_zh": "已选主题", "value": 0 }
+        {
+          "label": "Wake receipts verified",
+          "label_zh": "已核验 Wake Receipt",
+          "value": 1
+        },
+        {
+          "label": "Discovery start events",
+          "label_zh": "Discovery 启动事件",
+          "value": 1
+        },
+        {
+          "label": "Worker claims",
+          "label_zh": "Worker Claimed",
+          "value": 1
+        },
+        {
+          "label": "AI platform due / checked / inaccessible / failed",
+          "label_zh": "AI 平台应查 / 已查 / 不可访问 / 失败",
+          "value": "33 / 30 / 1 / 2"
+        },
+        {
+          "label": "GitHub P0 repositories checked",
+          "label_zh": "GitHub P0 已检查仓库",
+          "value": "9 / 9"
+        },
+        {
+          "label": "Research sources due / checked / failed",
+          "label_zh": "研究来源应查 / 已查 / 失败",
+          "value": "9 / 8 / 1"
+        },
+        {
+          "label": "Normalized signals",
+          "label_zh": "规范化信号",
+          "value": 9
+        },
+        {
+          "label": "Selected topics",
+          "label_zh": "已选主题",
+          "value": 0
+        }
       ],
       "evidence": [
-        { "label": "Discovery Wake Receipt", "label_zh": "Discovery 唤醒回执", "path": "research/runtime/wakes/2026/08/2026-08-11/discovery-090301.json" },
-        { "label": "V5 Scheduler", "label_zh": "V5 调度器", "path": "research/runtime/SCHEDULER.json" },
-        { "label": "Research Intelligence Registry", "label_zh": "Research Intelligence 注册表", "path": "research/intelligence/REGISTRY.json" },
-        { "label": "AI Platform profile", "label_zh": "AI Platform Profile", "path": "research/skills/profiles/01p-ai-platform-change-intelligence.md" },
-        { "label": "GitHub Engineering profile", "label_zh": "GitHub Engineering Profile", "path": "research/skills/profiles/01g-github-engineering-intelligence.md" },
-        { "label": "Published Research profile", "label_zh": "Published Research Profile", "path": "research/skills/profiles/01r-published-research-intelligence.md" },
-        { "label": "OpenAI ChatGPT release notes", "label_zh": "OpenAI ChatGPT 发布说明", "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes" },
-        { "label": "GitHub Copilot web changelog", "label_zh": "GitHub Copilot Web 变更日志", "url": "https://github.blog/changelog/2026-08-10-copilot-on-web-expands-conversation-controls/" },
-        { "label": "Codex notification completion change", "label_zh": "Codex 通知完成语义变更", "url": "https://github.com/openai/codex/commit/9be95745fb84f540582e6ef4144e7edf5bcb7959" },
-        { "label": "Google ADK Agent Analytics change", "label_zh": "Google ADK Agent Analytics 变更", "url": "https://github.com/google/adk-python/commit/04b8b72709f6d17b503cf674c8ac1b89798f655e" },
-        { "label": "Google ADK MCP config security change", "label_zh": "Google ADK MCP 配置安全变更", "url": "https://github.com/google/adk-python/commit/a61d8ecf294515016a42080cc833fd8f73915695" },
-        { "label": "Google ADK sandbox timeout change", "label_zh": "Google ADK Sandbox 超时变更", "url": "https://github.com/google/adk-python/commit/a39e71aace8490772b9fb554713ba964f7225adf" },
-        { "label": "Gemini CLI MCP OAuth refresh change", "label_zh": "Gemini CLI MCP OAuth 刷新变更", "url": "https://github.com/google-gemini/gemini-cli/commit/eef19f25c325f35634bdf5fdea5f245414ed4390" },
-        { "label": "Claude Code 2.1.227 changelog commit", "label_zh": "Claude Code 2.1.227 变更日志提交", "url": "https://github.com/anthropics/claude-code/commit/54cc51a08a5d3900e5abd02ad75a2ce46f3f008c" },
-        { "label": "GitHub Copilot CLI 1.0.79 changelog commit", "label_zh": "GitHub Copilot CLI 1.0.79 变更日志提交", "url": "https://github.com/github/copilot-cli/commit/ef627e1baad937d3c8da45f8a5541c6fc3c97b6a" }
+        {
+          "label": "Discovery Wake Receipt",
+          "label_zh": "Discovery 唤醒回执",
+          "path": "research/runtime/wakes/2026/08/2026-08-11/discovery-090301.json"
+        },
+        {
+          "label": "V5 Scheduler",
+          "label_zh": "V5 调度器",
+          "path": "research/runtime/SCHEDULER.json"
+        },
+        {
+          "label": "Research Intelligence Registry",
+          "label_zh": "Research Intelligence 注册表",
+          "path": "research/intelligence/REGISTRY.json"
+        },
+        {
+          "label": "AI Platform profile",
+          "label_zh": "AI Platform Profile",
+          "path": "research/skills/profiles/01p-ai-platform-change-intelligence.md"
+        },
+        {
+          "label": "GitHub Engineering profile",
+          "label_zh": "GitHub Engineering Profile",
+          "path": "research/skills/profiles/01g-github-engineering-intelligence.md"
+        },
+        {
+          "label": "Published Research profile",
+          "label_zh": "Published Research Profile",
+          "path": "research/skills/profiles/01r-published-research-intelligence.md"
+        },
+        {
+          "label": "OpenAI ChatGPT release notes",
+          "label_zh": "OpenAI ChatGPT 发布说明",
+          "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+        },
+        {
+          "label": "GitHub Copilot web changelog",
+          "label_zh": "GitHub Copilot Web 变更日志",
+          "url": "https://github.blog/changelog/2026-08-10-copilot-on-web-expands-conversation-controls/"
+        },
+        {
+          "label": "Codex notification completion change",
+          "label_zh": "Codex 通知完成语义变更",
+          "url": "https://github.com/openai/codex/commit/9be95745fb84f540582e6ef4144e7edf5bcb7959"
+        },
+        {
+          "label": "Google ADK Agent Analytics change",
+          "label_zh": "Google ADK Agent Analytics 变更",
+          "url": "https://github.com/google/adk-python/commit/04b8b72709f6d17b503cf674c8ac1b89798f655e"
+        },
+        {
+          "label": "Google ADK MCP config security change",
+          "label_zh": "Google ADK MCP 配置安全变更",
+          "url": "https://github.com/google/adk-python/commit/a61d8ecf294515016a42080cc833fd8f73915695"
+        },
+        {
+          "label": "Google ADK sandbox timeout change",
+          "label_zh": "Google ADK Sandbox 超时变更",
+          "url": "https://github.com/google/adk-python/commit/a39e71aace8490772b9fb554713ba964f7225adf"
+        },
+        {
+          "label": "Gemini CLI MCP OAuth refresh change",
+          "label_zh": "Gemini CLI MCP OAuth 刷新变更",
+          "url": "https://github.com/google-gemini/gemini-cli/commit/eef19f25c325f35634bdf5fdea5f245414ed4390"
+        },
+        {
+          "label": "Claude Code 2.1.227 changelog commit",
+          "label_zh": "Claude Code 2.1.227 变更日志提交",
+          "url": "https://github.com/anthropics/claude-code/commit/54cc51a08a5d3900e5abd02ad75a2ce46f3f008c"
+        },
+        {
+          "label": "GitHub Copilot CLI 1.0.79 changelog commit",
+          "label_zh": "GitHub Copilot CLI 1.0.79 变更日志提交",
+          "url": "https://github.com/github/copilot-cli/commit/ef627e1baad937d3c8da45f8a5541c6fc3c97b6a"
+        }
       ],
       "artifacts": [
-        { "label": "Research Intelligence Signal Pool", "label_zh": "Research Intelligence Signal Pool", "path": "research/intelligence/runs/2026/08/2026-08-11-intelligence.json" },
-        { "label": "Discovery result", "label_zh": "Discovery 结果", "path": "research/runtime/results/2026/08/2026-08-11-discovery-result.json" },
-        { "label": "Daily Runtime Record", "label_zh": "Daily Runtime Record", "path": "research/runtime/records/daily/2026/08/2026-08-11-daily-runtime.json" }
+        {
+          "label": "Research Intelligence Signal Pool",
+          "label_zh": "Research Intelligence Signal Pool",
+          "path": "research/intelligence/runs/2026/08/2026-08-11-intelligence.json"
+        },
+        {
+          "label": "Discovery result",
+          "label_zh": "Discovery 结果",
+          "path": "research/runtime/results/2026/08/2026-08-11-discovery-result.json"
+        },
+        {
+          "label": "Daily Runtime Record",
+          "label_zh": "Daily Runtime Record",
+          "path": "research/runtime/records/daily/2026/08/2026-08-11-daily-runtime.json"
+        }
       ],
       "startedAt": "2026-08-11T09:03:45+08:00",
       "completedAt": "2026-08-11T09:09:45+08:00"
@@ -82,29 +186,105 @@
       "next": "Research Runtime Reading may consume only Q-20260811-01, Q-20260811-02 and Q-20260811-03 for Skill 03 Deep Reading after Queue completion is durably committed and verified on main.",
       "next_zh": "仅当 Queue 完成状态在 main 上完成持久化提交与核验后，Research Runtime Reading 才可消费 Q-20260811-01、Q-20260811-02、Q-20260811-03 执行 Skill 03 Deep Reading。",
       "metrics": [
-        { "label": "Wake receipts verified", "label_zh": "已核验 Wake Receipt", "value": "1" },
-        { "label": "Signal pool count", "label_zh": "Signal Pool 数量", "value": "9" },
-        { "label": "Column decisions", "label_zh": "栏目决定", "value": "3" },
-        { "label": "Selected objects", "label_zh": "已选对象", "value": "3" },
-        { "label": "Candidate signals", "label_zh": "Candidate Signal", "value": "6" },
-        { "label": "Rejected signals", "label_zh": "Rejected Signal", "value": "0" },
-        { "label": "No Selection decisions", "label_zh": "No Selection 决定", "value": "0" },
-        { "label": "Queue start events", "label_zh": "Queue 启动事件", "value": "1" },
-        { "label": "Worker claims", "label_zh": "Worker Claimed", "value": "1" }
+        {
+          "label": "Wake receipts verified",
+          "label_zh": "已核验 Wake Receipt",
+          "value": "1"
+        },
+        {
+          "label": "Signal pool count",
+          "label_zh": "Signal Pool 数量",
+          "value": "9"
+        },
+        {
+          "label": "Column decisions",
+          "label_zh": "栏目决定",
+          "value": "3"
+        },
+        {
+          "label": "Selected objects",
+          "label_zh": "已选对象",
+          "value": "3"
+        },
+        {
+          "label": "Candidate signals",
+          "label_zh": "Candidate Signal",
+          "value": "6"
+        },
+        {
+          "label": "Rejected signals",
+          "label_zh": "Rejected Signal",
+          "value": "0"
+        },
+        {
+          "label": "No Selection decisions",
+          "label_zh": "No Selection 决定",
+          "value": "0"
+        },
+        {
+          "label": "Queue start events",
+          "label_zh": "Queue 启动事件",
+          "value": "1"
+        },
+        {
+          "label": "Worker claims",
+          "label_zh": "Worker Claimed",
+          "value": "1"
+        }
       ],
       "evidence": [
-        { "label": "Queue Wake Receipt", "label_zh": "Queue 唤醒回执", "value": "research/runtime/wakes/2026/08/2026-08-11/queue-100313.json" },
-        { "label": "Run-date Daily Runtime Record", "label_zh": "运行日 Daily Runtime Record", "value": "research/runtime/records/daily/2026/08/2026-08-11-daily-runtime.json" },
-        { "label": "Run-date Research Intelligence", "label_zh": "运行日 Research Intelligence", "value": "research/intelligence/runs/2026/08/2026-08-11-intelligence.json" },
-        { "label": "Skill 02", "label_zh": "Skill 02", "value": "research/skills/02-research-triage.md" },
-        { "label": "Column Plan contract", "label_zh": "Column Plan 合同", "value": "research/runtime/COLUMN-PLAN-SCHEMA.md" },
-        { "label": "Queue Running control-plane commit", "label_zh": "Queue Running 控制面提交", "value": "efaa466413065ac8e501bb3b8fe18b093dc5efde" }
+        {
+          "label": "Queue Wake Receipt",
+          "label_zh": "Queue 唤醒回执",
+          "value": "research/runtime/wakes/2026/08/2026-08-11/queue-100313.json"
+        },
+        {
+          "label": "Run-date Daily Runtime Record",
+          "label_zh": "运行日 Daily Runtime Record",
+          "value": "research/runtime/records/daily/2026/08/2026-08-11-daily-runtime.json"
+        },
+        {
+          "label": "Run-date Research Intelligence",
+          "label_zh": "运行日 Research Intelligence",
+          "value": "research/intelligence/runs/2026/08/2026-08-11-intelligence.json"
+        },
+        {
+          "label": "Skill 02",
+          "label_zh": "Skill 02",
+          "value": "research/skills/02-research-triage.md"
+        },
+        {
+          "label": "Column Plan contract",
+          "label_zh": "Column Plan 合同",
+          "value": "research/runtime/COLUMN-PLAN-SCHEMA.md"
+        },
+        {
+          "label": "Queue Running control-plane commit",
+          "label_zh": "Queue Running 控制面提交",
+          "value": "efaa466413065ac8e501bb3b8fe18b093dc5efde"
+        }
       ],
       "artifacts": [
-        { "label": "Today's Research Plan", "label_zh": "今日研究计划", "value": "research/runtime/plans/2026/08/2026-08-11-plan.json" },
-        { "label": "Queue result", "label_zh": "Queue 结果", "value": "research/runtime/results/2026/08/2026-08-11-queue-result.json" },
-        { "label": "Daily Runtime JSON", "label_zh": "Daily Runtime JSON", "value": "research/runtime/records/daily/2026/08/2026-08-11-daily-runtime.json" },
-        { "label": "Runtime Markdown ledger", "label_zh": "Runtime Markdown 账本", "value": "research/runtime/2026/08/2026-08-11-runtime.md" }
+        {
+          "label": "Today's Research Plan",
+          "label_zh": "今日研究计划",
+          "value": "research/runtime/plans/2026/08/2026-08-11-plan.json"
+        },
+        {
+          "label": "Queue result",
+          "label_zh": "Queue 结果",
+          "value": "research/runtime/results/2026/08/2026-08-11-queue-result.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "value": "research/runtime/records/daily/2026/08/2026-08-11-daily-runtime.json"
+        },
+        {
+          "label": "Runtime Markdown ledger",
+          "label_zh": "Runtime Markdown 账本",
+          "value": "research/runtime/2026/08/2026-08-11-runtime.md"
+        }
       ],
       "startedAt": "2026-08-11T10:04:43+08:00",
       "completedAt": "2026-08-11T10:07:16+08:00"
@@ -180,12 +360,19 @@
       "event": "GitHub Commit Verified",
       "status": "Completed",
       "detail": "Fetched main and verified Queue completion commit 757211def1fd2acf3b19753f93875b7f6cefed9f is an ancestor of main; the same-date Wake Receipt, Research Plan, Queue result, Daily Runtime JSON and synchronized readable ledger are durably reachable."
+    },
+    {
+      "time": "2026-08-11T11:03:14+08:00",
+      "task": "reading",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Reading started by Research Runtime Scheduler V3.0."
     }
   ],
   "metrics": [],
   "evidence": [],
   "artifacts": [],
-  "githubCommit": "be6ee8a2d2a1da118c6c0ebdc37c47cd15163a21",
-  "commitVerify": "Completed",
-  "updatedAt": "2026-08-11T10:08:23+08:00"
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-08-11T11:03:14+08:00"
 }
