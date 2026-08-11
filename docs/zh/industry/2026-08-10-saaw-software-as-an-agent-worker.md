@@ -26,12 +26,6 @@ outline: deep
 
 ![SaaW — Software as an Agent Worker](/assets/covers/saaw-manifesto-cover-hd.svg)
 
-> **作者 / 发布单位：** joinwell52 Research Center / CodeFlowMu Core Team  
-> **理论与架构支撑：** TMPA Architecture Paper — TMPA-ARCH-A0.9  
-> **规范性标准：** TMPA Core Specification — S0.6  
-> **实证案例：** TMPA Implementation Case Report — I0.8  
-> **核心工程载体：** CodeFlowMu / FCoP
-
 ---
 
 ## 1. SaaS 没有解决的最后一公里
@@ -204,19 +198,19 @@ TMPA 的另一个核心原则是：
 新的状态通过新的对象追加产生。
 
 ```text
-TASK
+TASK          任务
   │
   ▼
-ACCEPTANCE
+ACCEPTANCE    接受任务
   │
   ▼
-REPORT
+REPORT        工作报告
   │
   ▼
-REVIEW
+REVIEW        审查
   │
   ▼
-DECISION
+DECISION      正式决策
 ```
 
 每一个动作都拥有自己的作者和引用关系。
@@ -261,9 +255,9 @@ TMPA 因此强调**异步协作（Asynchronous Collaboration）**。
 最后得到的不是简单日志列表，而是一张**偏序图（Partial-Order Graph）**。
 
 ```text
-            ┌── DEV REPORT ──┐
-TASK ───────┤                ├── REVIEW
-            └── OPS REPORT ──┘
+                  ┌── DEV REPORT / 开发报告 ──┐
+TASK / 任务 ──────┤                           ├── REVIEW / 审查
+                  └── OPS REPORT / 运维报告 ──┘
 ```
 
 两个 Report 谁先写完并不是最重要的。
@@ -329,24 +323,44 @@ CodeFlowMu / FCoP 将这一思想进一步投射到文件系统。
 ---
 
 
-### 一个数字员工的一天：Research Report Production Engine V1.3
+### 一个数字研究员的一天：Research Report Production Engine V1.3
 
-如果只看“数字员工”的定义，读者很容易把它理解成一个更聪明的聊天机器人。更直接的理解方式，是看看一个已经运行的研究型数字员工如何完成一天的工作。
+我们不再虚构一个岗位。下面就是 **Research Report Production Engine V1.3** 作为“数字研究员”的真实一天。
 
-当当天的研究任务进入执行窗口时，**Research Report Production Engine V1.3** 首先接收研究问题，并把它转化为明确的研究对象与工作状态。它不是立即生成一篇文章，而是先进入证据与阅读阶段：检索、读取和整理来源，记录能够支持哪些判断、还缺哪些证据。证据不足时，系统应该留下缺口，而不是用语言流畅度把缺口掩盖掉。
+**09:00 · 研究发现**  
+数字研究员开始当天工作，扫描新的研究信号、工程变化和待研究问题，判断哪些内容值得进入研究视野。  
+**产出：信号池（Signal Pool）。**
 
-随后进入分析阶段。已有证据被组织成论点、反论点、边界条件和待验证问题，再形成结构化报告。此时的 Report 仍不是“可以发布的文章”，它必须经过 Evidence Gate：关键判断是否有证据支撑，引用是否可以回溯，事实与推断是否被区分，图表是否与正文一致。只有通过这些检查，才进入可视化和出版准备。
+**10:00 · 研究队列**  
+它从信号池中筛选当天真正要推进的研究对象，确定优先级和研究方向。不是看到什么就写什么，而是先决定“今天研究什么”。  
+**产出：今日研究计划（Today's Research Plan）。**
 
-需要人类承担责任的地方不会被自动化吞掉。重要发布进入 **Human at the Authority Boundary**：人类看到报告、证据状态、风险和待决项，决定批准、驳回或要求修订。获得授权之后，Publication 才成为正式结果；如果运行中断，系统依据持久化工作事实恢复，而不是要求原来的模型会话“记得刚才做到哪里”。
+**11:00 · 研究阅读**  
+围绕当天选定的研究对象读取论文、规范、工程记录、代码、测试结果和已有材料，整理可用证据，同时明确还缺什么。  
+**产出：阅读结果（Reading Result）。**
 
-把这一天压缩成一条工作链，就是：
+**13:00 · 研究分析**  
+把上午获得的材料转化为判断：哪些事实成立，哪些只是推断，哪里存在争议，边界条件是什么，接下来应该形成什么研究结论。  
+**产出：研究对象（Research Object）。**
+
+**15:00 · 研究生产**  
+数字研究员开始把研究对象加工成正式工作成果：组织文章结构、写报告、核对证据、补充必要的图表和可视化，形成可以进入发布审查的候选版本。  
+**产出：发布候选稿（Publication Candidate）。**
+
+**20:00 · 正式发布**  
+候选稿满足发布条件后进入正式发布：写入 GitHub、生成网站页面、完成提交验证与发布确认；如果存在必须由人承担责任的事项，就停在授权边界等待人工决定。  
+**产出：正式发布的研究成果。**
 
 ```text
-TASK → ACCEPTANCE → EVIDENCE / READING → ANALYSIS → REPORT
-     → EVIDENCE GATE → HUMAN DECISION → PUBLICATION → ARCHIVE
+09:00 研究发现      → 信号池
+10:00 研究队列      → 今日研究计划
+11:00 研究阅读      → 阅读结果
+13:00 研究分析      → 研究对象
+15:00 研究生产      → 发布候选稿
+20:00 正式发布      → GitHub 入库 + 网站发布 + 提交验证 + Release
 ```
 
-这时 SaaW 就不再只是一个哲学概念。它像一个真正正在工作的研究员工：领取任务、使用技能、积累证据、提交成果、接受审查，在授权边界等待人类决定，然后继续完成工作。
+这就是一个数字研究员的一天：**它不是回答一次问题，而是在固定职责和工作节奏下，持续完成研究工作。**
 
 
 ---
@@ -390,19 +404,19 @@ FCoP 将 Agent 协作的一部分治理关系直接投射到文件系统。
 一个任务可以经历类似这样的生命周期：
 
 ```text
-inbox
+inbox      收件箱 / 待领取
   │
   ▼
-active
+active     执行中
   │
   ▼
-review
+review     待审查
   │
   ▼
-done
+done       已完成
   │
   ▼
-archive
+archive    已归档
 ```
 
 状态迁移通过明确操作发生。
@@ -474,15 +488,16 @@ archive
 **AI 操作业务系统，而不是绕过业务系统。**
 
 ```text
-Agent
+Agent / 智能体
   │
-  ├── API
-  ├── 浏览器
-  ├── CLI
-  ├── 受控 Hook
-  └── 受控自动化
+  ├── API / 接口
+  ├── Browser / 浏览器
+  ├── CLI / 命令行
+  ├── Hook / 受控钩子
+  └── Approved Automation / 受控自动化
         │
         ▼
+Existing ERP / CRM / Business System
 既有 ERP / CRM / 业务系统
 ```
 
@@ -545,11 +560,11 @@ CodeFlowMu 当前最值得关注的地方，不只是多个 Agent 可以一起�
 初始 CodeFlowMu 可以表现为一个四角色开发团队：
 
 ```text
-┌───────────────────────────────┐
-│      CodeFlowMu Meta Team     │
-│                               │
-│ PM        DEV       QA    OPS │
-└───────────────────────────────┘
+┌─────────────────────────────────────────────────────┐
+│        CodeFlowMu Meta Team / 元开发团队            │
+│                                                     │
+│ PM / 项目经理   DEV / 开发   QA / 质量验证   OPS / 运维 │
+└─────────────────────────────────────────────────────┘
 ```
 
 他们拥有各自的责任边界。
@@ -603,9 +618,23 @@ OPS 负责运行环境、恢复、部署和生命周期。
 研究生产链可以写成：
 
 ```text
-Research Question → Research Object → Evidence / Reading → Analysis
-                  → Report → Evidence Gate → Visualization
-                  → Human Authorization → Publication
+Research Question      研究问题
+        ↓
+Research Object        研究对象
+        ↓
+Evidence / Reading     证据 / 阅读
+        ↓
+Analysis               分析
+        ↓
+Report                 报告
+        ↓
+Evidence Gate          证据门
+        ↓
+Visualization          可视化
+        ↓
+Human Authorization    人类授权
+        ↓
+Publication            发布
 ```
 
 而把同一条链换成 SaaW 的语言，就是：
@@ -644,56 +673,56 @@ Self-Morphing 真正值得讨论的含义是：
 其完整过程应该是：
 
 ```text
-Meta-Dev Runtime
+Meta-Dev Runtime              元开发运行体
         │
         ▼
-Analyze Existing Work
+Analyze Existing Work         分析现有工作
         │
         ▼
-Develop Worker Package
+Develop Worker Package        开发数字员工包
         │
         ▼
-Validate
+Validate                      验证
         │
         ▼
-Human / Governance Decision
+Human / Governance Decision   人类 / 治理决策
         │
         ▼
-Deploy
+Deploy                        部署
         │
         ▼
-Domain Worker Runtime
+Domain Worker Runtime         领域数字员工运行体
 ```
 
 例如：
 
 ```text
-PM / DEV / QA / OPS
+PM / DEV / QA / OPS           元开发团队
         │
         │ 开发
         ▼
-Finance Worker Package
+Finance Worker Package        财务数字员工包
         │
         ▼
-Invoice Agent
-ERP Entry Agent
-Compliance Agent
-Archive Agent
+Invoice Agent                 发票处理智能体
+ERP Entry Agent               ERP 录入智能体
+Compliance Agent              合规智能体
+Archive Agent                 归档智能体
 ```
 
 或者：
 
 ```text
-PM / DEV / QA / OPS
+PM / DEV / QA / OPS           元开发团队
         │
         ▼
-Contract Worker Package
+Contract Worker Package       合同数字员工包
         │
         ▼
-Risk Analysis Agent
-Signing Agent
-Compliance Agent
-Archive Agent
+Risk Analysis Agent           风险分析智能体
+Signing Agent                 签署智能体
+Compliance Agent              合规智能体
+Archive Agent                 归档智能体
 ```
 
 过去的软件开发模型是：
@@ -748,19 +777,19 @@ SaaW 正在让这三者重新组合。
 CodeFlowMu 的长期方向可以被表达为：
 
 ```text
-Development Runtime
+Development Runtime          开发运行体
         │
         ▼
-Digital Employee Package
+Digital Employee Package     数字员工包
         │
         ▼
-Work Runtime
+Work Runtime                 工作运行体
         │
         ▼
-Work Evidence
+Work Evidence                工作证据
         │
         ▼
-Development Runtime
+Development Runtime          回到开发运行体
 ```
 
 这不是简单的 DevOps。
@@ -804,7 +833,7 @@ CodeFlowMu 的 PWA 因此并不是简单的手机网页。
 管理者可以通过移动端查看当前任务、Agent 状态、报告、审查、问题、待决事项、恢复状态与工作结果。
 
 ```text
-SaaW Runtime
+SaaW Runtime        SaaW 运行体
       │
       ▼
 工作报告
@@ -813,10 +842,10 @@ SaaW Runtime
 FCoP / TMPA 工作事实
       │
       ▼
-Reader
+Reader              状态读取器
       │
       ▼
-Mobile PWA
+Mobile PWA          移动控制面
       │
       ▼
 人类批准 / 驳回
@@ -825,7 +854,7 @@ Mobile PWA
 正式决策
       │
       ▼
-SaaW Runtime 继续运行
+SaaW Runtime        SaaW 运行体继续工作
 ```
 
 这里最重要的一点是：批准并不是一个普通的界面点击事件。
@@ -1016,9 +1045,10 @@ AI 开发下一代数字员工
 
 ---
 
-**joinwell52 Research Center**  
-**CodeFlowMu Core Team**
-
-**TMPA Architecture Paper A0.9 · TMPA Core Specification S0.6 · TMPA Implementation Case Report I0.8 · CodeFlowMu / FCoP**
+> **作者 / 发布单位：** joinwell52 Research Center / CodeFlowMu Core Team  
+> **理论与架构支撑：** TMPA Architecture Paper — TMPA-ARCH-A0.9  
+> **规范性标准：** TMPA Core Specification — S0.6  
+> **实证案例：** TMPA Implementation Case Report — I0.8  
+> **核心工程载体：** CodeFlowMu / FCoP
 
 > **V1.1 边界说明：** 本文是一篇面向 AI 原生软件、多智能体工程与企业数字员工方向的技术宣言。SaaW、Self-Morphing、数字员工运行体等概念既包含现有架构与工程实践，也包含正在持续验证的研究方向；具体能力边界以对应版本的公开规范、测试与实现证据为准。
