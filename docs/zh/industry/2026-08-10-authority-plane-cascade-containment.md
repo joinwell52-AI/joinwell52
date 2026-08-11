@@ -21,17 +21,20 @@ publication_authorized: true
 outline: deep
 ---
 
+<ArticleCover
+  image="/assets/covers/daily-2026-08-10-authority-plane-cascade-containment.webp"
+  kicker="行业架构 · 每日研究"
+  title="多 Agent 恢复需要权威状态平面，而不是盲目重试"
+  summary="受控故障注入证据表明：重试可以恢复瞬态工具故障，但当同一坏状态仍被视为权威状态时，重试不能修复潜在语义污染；可靠遏制因此需要独立的状态权威与 Provenance 平面。"
+  version="Q-20260810-02"
+  status="Daily Runtime V5 · 2026-08-10"
+  languageHref="/en/industry/2026-08-10-authority-plane-cascade-containment"
+  languageLabel="English"
+/>
+
 # 多 Agent 恢复需要权威状态平面，而不是盲目重试
 
 多 Agent 工作流发生故障时，“重试”和“修复”并不是同一件事。瞬态工具故障可以通过再次执行恢复可用性；如果每一次新尝试仍然消费同一份已经污染的状态，那么重试不会产生语义修复。
-
-## 题图
-
-![权威状态平面级联遏制题图](/assets/covers/daily-2026-08-10-authority-plane-cascade-containment.webp)
-
-## 文中图
-
-![权威状态平面遏制机制图](/assets/covers/daily-2026-08-10-authority-plane-cascade-containment-figure.svg)
 
 ## 摘要
 
@@ -51,6 +54,10 @@ Production 只消费同日 Research Object `Q-20260810-02`，并仅使用已完�
 论文将瞬态 Tool Fault 与 Latent Semantic/Context Fault 分开评估。在受控分阶段计算中，Blind Retry 能够恢复可重试的工具故障；对于上下文污染、冲突输出等潜在语义故障，如果底层坏状态仍然存在，重试只是在重新传播同一个错误。
 
 深度实验进一步显示，Latent Fault 会随着流水线加深扩大 Cascade Radius。更关键的是，Policy-conditioned LLM 条件给 Router 显式提供 Trusted Upstream Value，并允许它发现和纠正异常；去掉 Trusted Upstream 的消融后，Latent Recovery 明显下降。论文作者也明确提醒，这属于 Trusted-state Self-correction Probe，而不是 Autonomous Routing 的生产部署估计。
+
+![权威状态平面遏制机制图](/assets/covers/daily-2026-08-10-authority-plane-cascade-containment-figure.svg)
+
+*图 1：Trusted State 与独立 Authority Plane 共同限制潜在坏状态继续向下游级联。来源：Research Center 基于文中引用的一手资料综合绘制。*
 
 ## 比较
 
@@ -89,7 +96,7 @@ OrchestraBench 的核心实验是受控机制探针，不是完整企业级多 A
 
 ## 可视化说明
 
-题图是面向缩略图识别的 Research Center 编辑性视觉隐喻，并通过 Cover Gate；原 SVG 保留为独立文中解释图，用于精确说明文章机制。两种视觉角色不再复用同一资产；未使用厂商原图，也未构造无来源数值。
+题图位于文章头部，以受控屏障表现权威状态平面对污染级联的遏制；嵌入“观察”部分的机制图用于说明 Trusted State、Authority Plane 与下游级联之间的关系。两种视觉角色使用不同资产；未使用厂商原图，也未构造无来源数值。
 
 ## 参考资料
 

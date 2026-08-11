@@ -21,17 +21,20 @@ publication_authorized: true
 outline: deep
 ---
 
+<ArticleCover
+  image="/assets/covers/daily-2026-08-10-authority-plane-cascade-containment.webp"
+  kicker="Industry Architecture · Daily Research"
+  title="Multi-Agent Recovery Needs an Authority Plane, Not Blind Retry"
+  summary="Controlled failure-injection evidence shows that retry can recover transient tool faults but cannot repair latent semantic corruption when the same bad state remains authoritative; reliable containment therefore needs an independent state-authority and provenance plane."
+  version="Q-20260810-02"
+  status="Daily Runtime V5 · 2026-08-10"
+  languageHref="/zh/industry/2026-08-10-authority-plane-cascade-containment"
+  languageLabel="中文"
+/>
+
 # Multi-Agent Recovery Needs an Authority Plane, Not Blind Retry
 
 When a multi-agent workflow fails, “retry” and “repair” are not the same operation. Retry can restore liveness after a transient tool fault. It cannot repair semantic corruption if every new attempt consumes the same corrupted state.
-
-## Cover
-
-![Authority plane cascade-containment editorial cover](/assets/covers/daily-2026-08-10-authority-plane-cascade-containment.webp)
-
-## Figure
-
-![Authority-plane containment figure](/assets/covers/daily-2026-08-10-authority-plane-cascade-containment-figure.svg)
 
 ## Summary
 
@@ -51,6 +54,10 @@ Production consumes the same-day Research Object `Q-20260810-02` and uses its co
 The paper separates transient tool faults from latent semantic/context faults. On its controlled staged computations, blind retry can recover the retryable tool-failure mode, while latent modes continue to propagate because the underlying state remains corrupted.
 
 The depth experiment reports increasing cascade radius as latent faults pass through longer pipelines. More importantly, the policy-conditioned LLM receives a trusted upstream value and explicit permission to repair an anomaly. Removing that trusted-upstream signal materially reduces latent recovery. The authors themselves caution that this row is a trusted-state self-correction probe, not a deployment estimate for autonomous routing.
+
+![Authority-plane containment mechanism](/assets/covers/daily-2026-08-10-authority-plane-cascade-containment-figure.svg)
+
+*Figure 1. Trusted State and an independent Authority Plane jointly prevent a potentially bad state from cascading downstream. Source: Research Center synthesis based on the cited primary sources.*
 
 ## Comparison
 
@@ -89,7 +96,7 @@ The next engineering questions are: what qualifies as authoritative state for ea
 
 ## Visualization note
 
-The editorial cover is a Research Center visual metaphor designed for thumbnail-scale recognition and passes the Cover Gate. The original SVG is retained separately as the explanatory Article Figure for the article mechanism. The two visual roles no longer reuse one asset; no vendor artwork or invented quantitative data is used.
+The header cover uses a controlled barrier to represent containment of corrupted state by an authority plane. The mechanism figure embedded in the Observation section explains the relationship among trusted state, the authority plane and downstream cascade propagation. The two visual roles use different assets; no vendor artwork or invented quantitative data is used.
 
 ## References
 

@@ -21,17 +21,20 @@ publication_authorized: true
 outline: deep
 ---
 
+<ArticleCover
+  image="/assets/covers/daily-2026-08-10-governed-input-admission-boundary.webp"
+  kicker="数字员工 · 每日研究"
+  title="可恢复数字员工需要受治理的输入准入边界"
+  summary="可恢复数字员工应把迟到的操作员输入视为带持久 Occurrence Identity、策略校验与消费证据的准入事件，同时把外部副作用留在独立的幂等或事务边界内。"
+  version="Q-20260810-01"
+  status="Daily Runtime V5 · 2026-08-10"
+  languageHref="/en/digital-employee/2026-08-10-governed-input-admission-boundary"
+  languageLabel="English"
+/>
+
 # 可恢复数字员工需要受治理的输入准入边界
 
 一个能够暂停、等待人工输入、跨进程恢复并继续调用工具的数字员工，仅仅保存聊天记录是不够的。系统还必须明确：一条新收到的输入，究竟在什么时刻开始成为本次运行的权威输入。
-
-## 题图
-
-![受治理输入准入题图](/assets/covers/daily-2026-08-10-governed-input-admission-boundary.webp)
-
-## 文中图
-
-![输入准入生命周期图](/assets/covers/daily-2026-08-10-governed-input-admission-boundary-figure.svg)
 
 ## 摘要
 
@@ -52,6 +55,10 @@ Production 只消费当日 Research Object `Q-20260810-01`，并仅使用已完�
 仓库实现把 Pending Input 保持在当前模型/工具执行之外，直到下一次模型调用前的准入边界。Reading Result 记录了几个关键机制：Pending Input 能随 `RunState` 序列化保存；它带有生成的 Occurrence Identifier；只有当未完成工作走到合适的恢复点后，输入才会被准入；Input Guardrail 在下一次模型调用前执行；校验失败的输入不会被静默消费，而是保持可恢复状态。
 
 证据同样给出了清晰的所有权边界。SDK 可以在自身掌控的会话与准入账本中维护 Exactly-once 语义，但这不等于任意外部工具在崩溃、重试、跨主机执行时也会 Exactly-once。
+
+![输入准入生命周期图](/assets/covers/daily-2026-08-10-governed-input-admission-boundary-figure.svg)
+
+*图 1：迟到输入在恢复边界前保持待准入状态，经过策略校验后才进入下一次模型调用。来源：Research Center 基于文中引用的一手资料综合绘制。*
 
 ## 比较
 
@@ -90,7 +97,7 @@ Production 只消费当日 Research Object `Q-20260810-01`，并仅使用已完�
 
 ## 可视化说明
 
-题图是面向缩略图识别的 Research Center 编辑性视觉隐喻，并通过 Cover Gate；原 SVG 保留为独立文中解释图，用于精确说明文章机制。两种视觉角色不再复用同一资产；未使用厂商原图，也未构造无来源数值。
+题图位于文章头部，以受控闸门表现迟到输入的保存、校验与准入边界；嵌入“观察”部分的解释图用于精确说明输入生命周期。两种视觉角色使用不同资产；未使用厂商原图，也未构造无来源数值。
 
 ## 参考资料
 

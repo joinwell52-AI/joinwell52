@@ -21,17 +21,20 @@ publication_authorized: true
 outline: deep
 ---
 
+<ArticleCover
+  image="/assets/covers/daily-2026-08-10-governed-input-admission-boundary.webp"
+  kicker="Digital Employee · Daily Research"
+  title="Resumable Digital Employees Need a Governed Input-Admission Boundary"
+  summary="A resumable Digital Employee should treat late operator input as a durable admission event with occurrence identity, policy validation and consumption evidence, while keeping external side effects behind their own idempotency boundary."
+  version="Q-20260810-01"
+  status="Daily Runtime V5 · 2026-08-10"
+  languageHref="/zh/digital-employee/2026-08-10-governed-input-admission-boundary"
+  languageLabel="中文"
+/>
+
 # Resumable Digital Employees Need a Governed Input-Admission Boundary
 
 A Digital Employee that can pause, accept operator input, resume after process boundaries and continue tool work needs more than persistent chat history. It needs an explicit boundary that determines when a newly received input becomes authoritative for the run.
-
-## Cover
-
-![Governed input-admission editorial cover](/assets/covers/daily-2026-08-10-governed-input-admission-boundary.webp)
-
-## Figure
-
-![Input-admission lifecycle figure](/assets/covers/daily-2026-08-10-governed-input-admission-boundary-figure.svg)
 
 ## Summary
 
@@ -52,6 +55,10 @@ Production consumes the same-day Research Object `Q-20260810-01` and uses its co
 The repository implementation keeps pending input outside the active model/tool step until the next model-call admission boundary. The Reading Result records that pending input survives `RunState` serialization, carries a generated occurrence identifier, and is admitted only after unfinished work has reached the appropriate resume boundary. Input guardrails run before the next model call, and rejected input remains recoverable instead of being silently consumed.
 
 The same evidence also shows the ownership limit. The SDK can preserve exactly-once admission and conversation bookkeeping under its own state model, but that is not a guarantee that an arbitrary external tool side effect executes exactly once across crashes, retries or distributed workers.
+
+![Input-admission lifecycle figure](/assets/covers/daily-2026-08-10-governed-input-admission-boundary-figure.svg)
+
+*Figure 1. Late input remains pending until the resume boundary and enters the next model call only after policy validation. Source: Research Center synthesis based on the cited primary sources.*
 
 ## Comparison
 
@@ -90,7 +97,7 @@ A product-level Digital Employee runtime should test crash points between receip
 
 ## Visualization note
 
-The editorial cover is a Research Center visual metaphor designed for thumbnail-scale recognition and passes the Cover Gate. The original SVG is retained separately as the explanatory Article Figure for the article mechanism. The two visual roles no longer reuse one asset; no vendor artwork or invented quantitative data is used.
+The header cover uses a controlled gate to represent preservation, validation and admission of late input. The explanatory figure embedded in the Observation section shows the input lifecycle precisely. The two visual roles use different assets; no vendor artwork or invented quantitative data is used.
 
 ## References
 

@@ -21,17 +21,11 @@ editing_status: "Completed"
 publication_authorized: false
 ---
 
+![Serialized lifecycle control editorial cover](./2026-08-10-serialized-tool-lifecycle-authority-cover.webp)
+
 # Tool Runtimes Need Serialized Lifecycle Authority
 
 Connect, reconnect and cleanup look like ordinary helper methods until multiple callers operate on the same tool runtime. At that point they become control-plane transitions: they mutate shared resource state, determine which generation owns the connection, and decide whether teardown has finished safely enough for replacement.
-
-## Cover
-
-![Serialized lifecycle control editorial cover](./2026-08-10-serialized-tool-lifecycle-authority-cover.webp)
-
-## Figure
-
-![Serialized lifecycle authority figure](./2026-08-10-serialized-tool-lifecycle-authority.svg)
 
 ## Summary
 
@@ -52,6 +46,10 @@ Production consumes the same-day Research Object `Q-20260810-03` and uses its co
 Before the fix, public lifecycle operations could overlap while sharing manager and worker state. Commands could be queued after cleanup even though the relevant worker had already exited, leaving unresolved futures and inconsistent state.
 
 The merged repair introduces one manager-level lifecycle lock above public `connect_all()`, `reconnect()` and `cleanup_all()` transitions. Parallel cleanup is represented by one cleanup future and awaited through `asyncio.shield`, so cancellation of a caller does not automatically cancel the underlying cleanup operation. A stopping worker is awaited before replacement, cleanup failures are retained, and connect/cleanup operations use finite 10-second defaults unless the application explicitly opts out.
+
+![Serialized lifecycle authority figure](./2026-08-10-serialized-tool-lifecycle-authority.svg)
+
+*Figure 1. Connect, Reconnect, and Cleanup share one serialized lifecycle authority; a new Generation cannot start before the previous one closes. Source: Research Center synthesis based on the cited primary sources.*
 
 ## Comparison
 
@@ -92,7 +90,7 @@ The next design questions are whether lifecycle lock acquisition needs a deadlin
 
 ## Visualization note
 
-The editorial cover is a Research Center visual metaphor designed for thumbnail-scale recognition and passes the Cover Gate. The original SVG is retained separately as the explanatory Article Figure for the article mechanism. The two visual roles no longer reuse one asset; no vendor artwork or invented quantitative data is used.
+The header cover uses controlled, sequential resource chambers to represent serialized lifecycle authority. The explanatory figure embedded in the Observation section shows the relationship among connect, reconnect and cleanup. The two visual roles use different assets; no vendor artwork or invented quantitative data is used.
 
 ## References
 

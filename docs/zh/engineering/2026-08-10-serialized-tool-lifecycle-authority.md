@@ -21,17 +21,20 @@ publication_authorized: true
 outline: deep
 ---
 
+<ArticleCover
+  image="/assets/covers/daily-2026-08-10-serialized-tool-lifecycle-authority.webp"
+  kicker="开源工程 · 每日研究"
+  title="工具运行时需要串行化生命周期权威"
+  summary="共享工具与 Connector Runtime 应把 connect、reconnect、cleanup 串行化到同一个生命周期权威下，让 Cleanup Ownership 能跨调用方取消继续负责资源安全，等待有界，失败保持可见，并在旧 Generation 安全收口前禁止新 Generation 启动。"
+  version="Q-20260810-03"
+  status="Daily Runtime V5 · 2026-08-10"
+  languageHref="/en/engineering/2026-08-10-serialized-tool-lifecycle-authority"
+  languageLabel="English"
+/>
+
 # 工具运行时需要串行化生命周期权威
 
 Connect、Reconnect、Cleanup 看起来像普通辅助函数，直到多个调用方同时操作同一个工具运行时。此时它们实际上已经成为 Control-plane Transition：它们会修改共享资源状态，决定哪个 Generation 拥有连接，并决定旧资源是否已经安全清理到可以创建下一代实例。
-
-## 题图
-
-![串行化生命周期控制题图](/assets/covers/daily-2026-08-10-serialized-tool-lifecycle-authority.webp)
-
-## 文中图
-
-![串行化生命周期权威机制图](/assets/covers/daily-2026-08-10-serialized-tool-lifecycle-authority-figure.svg)
 
 ## 摘要
 
@@ -52,6 +55,10 @@ Production 只消费当日 Research Object `Q-20260810-03`，并仅使用完成�
 修复前，公开生命周期操作可以在共享 Manager/Worker State 上并发发生。Cleanup 已经让 Worker 退出后，后续命令仍可能被放进队列，从而形成永远没有消费者的 Future，并让共享状态在不同生命周期调用之间发生分叉。
 
 合并修复在 `connect_all()`、`reconnect()`、`cleanup_all()` 之上加入一个 Manager-level Lifecycle Lock。Parallel Cleanup 使用单一 Cleanup Future，并通过 `asyncio.shield` 等待，所以 Caller Cancellation 不会自动取消底层 Cleanup Work。处于 Stopping 状态的 Worker 会先等待退出再被替换；Cleanup Error 保持可见；Connect/Cleanup 默认采用有限的 10 秒 Timeout，除非应用显式选择关闭超时。
+
+![串行化生命周期权威机制图](/assets/covers/daily-2026-08-10-serialized-tool-lifecycle-authority-figure.svg)
+
+*图 1：Connect、Reconnect 与 Cleanup 共享同一串行化生命周期权威，旧 Generation 收口前不得启动新 Generation。来源：Research Center 基于文中引用的一手资料综合绘制。*
 
 ## 比较
 
@@ -92,7 +99,7 @@ Cancellation 也应该从资源而不是 Caller 的角度解释。Caller 消失�
 
 ## 可视化说明
 
-题图是面向缩略图识别的 Research Center 编辑性视觉隐喻，并通过 Cover Gate；原 SVG 保留为独立文中解释图，用于精确说明文章机制。两种视觉角色不再复用同一资产；未使用厂商原图，也未构造无来源数值。
+题图位于文章头部，以受控且有序开启的资源舱表现串行化生命周期权威；嵌入“观察”部分的解释图用于精确说明 Connect、Reconnect 与 Cleanup 的关系。两种视觉角色使用不同资产；未使用厂商原图，也未构造无来源数值。
 
 ## 参考资料
 
