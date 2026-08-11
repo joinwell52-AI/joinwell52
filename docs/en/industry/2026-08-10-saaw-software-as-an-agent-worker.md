@@ -4,10 +4,10 @@ date: "2026-08-10"
 column: "industry-architecture"
 category: "manifesto"
 version: "V1.1"
-summary: "A 23-section manifesto deriving SaaW from Governance, TMPA, FCoP, Agent PC, CodeFlowMu, Self-Morphing and the Digital Employee Runtime."
+summary: "A 23-section manifesto deriving SaaW from Governance, TMPA, FCoP, Agent PC, CodeFlowMu, Self-Morphing, and the Digital Employee Runtime."
 item_id: "MANIFESTO-20260810-SAAW"
 lifecycle: "Published"
-cover: "/assets/covers/saaw-manifesto-cover.svg?v=20260811-approved"
+cover: "/assets/covers/saaw-manifesto-cover-approved.webp"
 visualization: "/assets/covers/saaw-governance-stack.svg"
 visualization_2: "/assets/covers/saaw-self-morphing-loop.svg"
 evidence_status: "Architecture-grounded"
@@ -24,53 +24,41 @@ outline: deep
 
 [中文版](/zh/industry/2026-08-10-saaw-software-as-an-agent-worker)
 
-![SaaW — Software as an Agent Worker](/assets/covers/saaw-manifesto-cover.svg?v=20260811-approved)
+![SaaW — Software as an Agent Worker](/assets/covers/saaw-manifesto-cover-approved.webp)
 
 > **Author / Publisher:** joinwell52 Research Center / CodeFlowMu Core Team  
 > **Architecture:** TMPA Architecture Paper — TMPA-ARCH-A0.9  
-> **Normative standard:** TMPA Core Specification — S0.6  
-> **Implementation evidence:** TMPA Implementation Case Report — I0.8  
-> **Engineering vehicle:** CodeFlowMu / FCoP
+> **Normative Standard:** TMPA Core Specification — S0.6  
+> **Implementation Case:** TMPA Implementation Case Report — I0.8  
+> **Engineering Vehicle:** CodeFlowMu / FCoP
 
 ---
 
-## 1. The last mile SaaS did not solve
+## 1. The last mile SaaS never solved
 
-Over the past two decades, SaaS transformed the delivery of software.
+For the past two decades, SaaS transformed how software is delivered. Browsers became the interface, cloud became infrastructure, and subscription became the business model.
 
-Enterprises no longer bought software on discs, maintained large fleets of local servers, or paid the same deployment cost for every upgrade. The browser became the interface, the cloud became infrastructure, and subscription became the business model.
-
-Yet one thing barely changed:
+But one thing barely changed:
 
 **Humans still operate software.**
 
-Employees sign into ERP systems to retrieve data and copy it into spreadsheets. They open CRM systems to enter customer information, submit expenses in finance software, approve requests in workflow systems, and move the result into yet another application.
+Employees log into ERP systems, copy data into spreadsheets, update CRM records, submit expenses, approve requests, and move results into yet another system.
 
-Enterprises own more software than ever, and employees operate more software than ever.
+SaaS solved how software is delivered. It did not solve who performs the work.
 
-SaaS solved “how software is delivered,” but it did not fundamentally solve “who does the work.”
-
-Copilot took the next step.
-
-AI entered the software interface and began helping humans write email, summarize documents, generate code, search knowledge and support decisions.
+Copilot moved the boundary forward. AI began helping people draft, summarize, code, search, and decide.
 
 But the basic relationship remained:
 
-**AI advises; humans perform the work.**
+**AI gives advice; humans perform the work.**
 
-People still sit in front of screens, click buttons, switch systems, enter results and resolve exceptions.
+The next generation of software should not merely be a smarter tool.
 
-The next generation of software worth discussing should not merely be a smarter tool.
-
-It should be:
-
-**Software capable of carrying work.**
+It should be software capable of taking responsibility for work.
 
 We call this paradigm:
 
 # SaaW — Software as an Agent Worker
-
-Software as an Agent Worker.
 
 Software is no longer only a Service.
 
@@ -78,11 +66,9 @@ Software begins to become a Worker.
 
 ---
 
-## 2. From “buying tools” to “deploying digital employees”
+## 2. From buying tools to deploying digital employees
 
-The core change in SaaW is not simply embedding an Agent inside SaaS.
-
-It changes the basic unit of software delivery.
+SaaW is not simply an Agent embedded inside SaaS. It changes the unit of software delivery.
 
 SaaS delivers **Function**.
 
@@ -90,25 +76,9 @@ Copilot delivers **Assistance**.
 
 SaaW delivers **Work**.
 
-A real SaaW should not merely be a chatbot with a system prompt.
+A real SaaW cannot be merely a chatbot with a system prompt. It needs job-like structure: Role, Responsibilities, Workflow, Skills, bounded Permissions, persistent Work State, verifiable Evidence, recoverable Runtime, and explicit human authority boundaries.
 
-It needs a structure closer to an actual job:
-
-- an explicit Role;
-- explicit Responsibilities;
-- executable Workflows;
-- callable Skills;
-- bounded Permissions;
-- persistent Work State;
-- verifiable Evidence;
-- a recoverable Runtime;
-- explicit human authority boundaries.
-
-We therefore define SaaW as follows:
-
-> **SaaW (Software as an Agent Worker) is a software paradigm in which software is delivered as a digital work actor. Under explicit role responsibilities, permission boundaries and governance rules, it can continuously execute workflows, use business tools, produce work outcomes, and remain subject to human supervision, review and authorization.**
-
-Enterprise software therefore begins to follow a clear evolutionary path:
+> **SaaW is a software paradigm in which software is delivered as a digital work actor. It can continuously execute workflows, use business tools, produce work outcomes, and operate under explicit responsibility, permission, governance, supervision, review, and authorization boundaries.**
 
 ```text
 SaaS
@@ -127,35 +97,31 @@ SaaW
 Software performs work
 ```
 
-The real change is not merely that AI becomes smarter.
+The real change is not simply that AI became smarter.
 
-It is that **software acquires a labor role.**
+**The labor attribute of software changed.**
 
 ---
 
 ## 3. The real enterprise problem: Trace is not Governance
 
-An Agent being able to call tools does not mean it is ready for enterprise production.
+An Agent that can call tools is not automatically ready for production.
 
-Many multi-agent systems can already generate rich execution traces: which agent invoked which tool, which function executed, what result was produced, and what steps the model followed.
+Modern multi-agent systems can generate detailed Execution Traces: who called which tool, which function ran, what result was produced, and which reasoning steps occurred.
 
-That information matters.
+Those traces matter.
 
 But:
 
 # Trace ≠ Governance
 
-Execution Trace answers: **What happened?**
+Trace answers: **What happened?**
 
-Enterprises must answer much more: Who authorized the work? Who accepted it? Which object represents the official work fact? Who submitted the Report? Who performed the Review? Who made the Decision? Is the current state legal? Are there dangling references? Are there unresolved disagreements among actors? After a crash, who is allowed to continue?
+Enterprise governance must also answer: Who authorized the work? Who accepted responsibility? Which object represents the official work fact? Who submitted the Report? Who performed the Review? Who made the Decision? Is the current state legal? Are references dangling? Are disagreements unresolved? After failure, who is allowed to continue?
 
-That is not merely a logging problem.
+This is not merely a logging problem.
 
 It is a Governance State problem.
-
-Without these answers, an Agent cannot credibly carry organizational responsibility.
-
-Our position is therefore:
 
 > **No governance, no employee.**
 
@@ -167,45 +133,39 @@ That is why TMPA exists.
 
 TMPA stands for **Textual Multi-Agent Process Architecture**.
 
-It asks a simple foundational question:
+It asks a simple question: when Agents and humans jointly perform long-running work, where should trustworthy work state live?
 
-**When multiple Agents and humans perform long-running work together, where does trustworthy work state actually live?**
+Traditional Agent systems often put state in model context, runtime memory, database internals, brokers, central schedulers, or an ever-growing conversation.
 
-Traditional Agent systems often place state in model context, runtime memory, internal database records, brokers, central schedulers, or an ever-growing conversation.
+The common weakness is that runtime instances and work facts become too tightly coupled.
 
-These approaches share a common problem: **the running instance becomes too tightly coupled to the work fact.**
-
-TMPA takes another path.
+TMPA chooses another path:
 
 # Text carries messages and state.
 
 Important work facts are projected into plain, portable text.
 
-These texts are not merely chat transcripts. They are formal work objects such as Task, Acceptance, Report, Review, Decision, Correction and Issue.
+These are not merely chat transcripts. They are formal work objects such as Task, Acceptance, Report, Review, Decision, Correction, and Issue.
 
-Reference Identifiers connect those objects causally.
+Those objects form causal relationships through Reference Identifiers.
 
-Work facts therefore no longer exist only inside an Agent’s memory.
+Agents can exit. Models can change. Processes can restart. Nodes can go offline.
 
-Agents may exit. Models may change. Processes may restart. Nodes may temporarily go offline.
+Established work facts remain.
 
-But established work facts remain.
-
-That is the first foundation that allows SaaW to persist.
+That is the first foundation for a long-running SaaW.
 
 ---
 
-## 5. Single-Writer: Responsibility needs an explicit source
+## 5. Single-Writer: Responsibility needs a clear source
 
 Another core TMPA principle is:
 
 # Single-Writer Serial Streams
 
-Every Agent or human responsibility holder acts as an independent Single Writer.
+Each Agent or human responsibility holder is an independent Single Writer.
 
-One actor does not silently rewrite a fact already written by another actor.
-
-New state is produced through newly appended objects.
+One actor does not silently rewrite facts authored by another. New state is created by appending new objects.
 
 ```text
 TASK
@@ -223,46 +183,39 @@ REVIEW
 DECISION
 ```
 
-Every action has an author and explicit references.
+Each action has an author and explicit references.
 
-Responsibility is therefore not guessed from the final database value. It is formed by the facts themselves.
+Responsibility is therefore derived from work facts themselves, not guessed from the final database status.
 
-Traditional workflow systems often mutate one central status:
+Traditional workflow systems often overwrite one central state until only `status = done` remains.
 
-```text
-status = pending
-status = running
-status = review
-status = done
-```
+TMPA instead asks who accepted, who submitted, who reviewed, who approved, what disputes occurred, and which facts were later corrected.
 
-At the end, only `status = done` is visible, while the actual process may have been overwritten.
+State is not merely overwritten.
 
-TMPA cares about who accepted, who submitted, who reviewed, who approved, what disputes occurred, and which facts were later corrected.
-
-**State is not overwritten. It is reconstructed.**
+It is reconstructed.
 
 ---
 
-## 6. There is no perfect global timeline in an asynchronous world
+## 6. The asynchronous world has no perfect global timeline
 
-Real multi-agent systems are inherently asynchronous.
+Real multi-agent systems are asynchronous.
 
-PM may be writing a plan while DEV changes code. QA may already be checking another module. OPS may be handling deployment. A human supervisor may approve hours later.
+PM may write a plan while DEV changes code, QA checks another module, OPS handles deployment, and a human supervisor approves hours later.
 
-Forcing this reality into a perfect total order — `1 → 2 → 3 → 4 → 5` — can conceal the actual concurrency.
+Forcing a perfect global sequence can hide the real concurrency.
 
 TMPA therefore emphasizes:
 
 # Asynchronous Collaboration
 
-Different Single-Writer Streams may progress independently.
+Single-Writer Streams can advance independently.
 
-The write side does not fabricate a global timeline.
+The write side does not manufacture a fake universal chronology.
 
-The Reader reconstructs relationships from Reference, Causality, Transition, Responsibility and Governance Rules.
+The Reader reconstructs relationships from Reference, Causality, Transition, Responsibility, and Governance Rules.
 
-The result is not merely a log list but a Partial-Order Graph.
+The result is a Partial-Order Graph rather than a flat event log.
 
 ```text
             ┌── DEV REPORT ──┐
@@ -270,23 +223,21 @@ TASK ───────┤                ├── REVIEW
             └── OPS REPORT ──┘
 ```
 
-Which Report happened first matters less than the causal fact that both depend on the same TASK and that REVIEW depends on those work facts.
-
-That is closer to how real organizations work.
+Which report happened first is less important than their causal relationship to the same Task and the Review that depends on them.
 
 ---
 
-## 7. Issue Set: Do not hide conflict
+## 7. Issue Set: Do not hide disagreement
 
-Automation systems often aim for a cosmetically clean final state: conflicts disappear, errors auto-heal, everything turns green.
+Automation systems often prefer a cosmetically green final state.
 
-Real organizations do not work that way.
+Real organizations are not like that.
 
-Two roles may disagree. A reference may not exist. A state transition may be illegal. QA may reject DEV. A Report may lack evidence. A Decision may not have legal prerequisites.
+References may be missing. State transitions may be illegal. QA may reject DEV. Reports may lack evidence. Decisions may lack valid preconditions. Roles may disagree.
 
-TMPA does not try to make these problems disappear.
+TMPA does not try to make those problems disappear.
 
-It makes them **formal facts**.
+It makes them formal facts.
 
 The Reader therefore reconstructs not only a Process Graph but also an Issue Set, such as:
 
@@ -298,65 +249,55 @@ missing_acceptance
 conflicting_review
 ```
 
-This is critical for SaaW.
+Enterprises do not need mythical AI that never fails.
 
-Enterprises do not need mythical AI that never makes mistakes.
-
-They need systems where **when AI makes a mistake, the system can locate the problem and expose it to the correct authority.**
+They need AI systems that can tell where failure occurred and surface it to the right authority.
 
 ---
 
 ## 8. Recoverability: A digital employee must be able to wake up and continue
 
-One of the largest differences between SaaW and a chatbot is timescale.
+The difference between SaaW and a chatbot is partly a difference in time scale.
 
-A chatbot session may last minutes. Real work may last hours, days, weeks or months.
+A chatbot session may last minutes. Real work can last hours, days, weeks, or months.
 
-Digital employees will therefore encounter network interruptions, SDK timeouts, Agent exits, runtime restarts, context loss, operating-system restarts and software upgrades.
+Digital employees will encounter network interruptions, SDK timeouts, Agent exits, runtime restarts, context loss, operating-system restarts, and software upgrades.
 
-If every failure requires telling the AI the entire story again, it cannot become a real employee.
+If every failure requires telling the AI the whole story again, it cannot become a reliable Worker.
 
-SaaW therefore requires:
+SaaW therefore needs:
 
 # Recoverability
 
-One purpose of TMPA is to make current governance state computable again from durable facts.
+TMPA allows governance state to be recalculated from persistent work facts.
 
 CodeFlowMu / FCoP projects that idea into the file system.
 
-After a node restarts, the system does not assume the original model remembers. It rereads TASK, ACCEPTANCE, REPORT, REVIEW, DECISION and ISSUE, then derives who owns the task, what is complete, which outcomes are confirmed, what remains unresolved, what actions are legal now, and who should act next.
+After restart, the runtime rereads TASK, ACCEPTANCE, REPORT, REVIEW, DECISION, and ISSUE, then derives current responsibility, completed work, approved results, unresolved problems, legal next actions, and the next actor.
 
-Recovery is therefore not about restoring an Agent’s memory.
+Recovery is not about restoring an Agent's memory.
 
-It is about:
-
-> **Reconstructing the facts of work.**
-
-These are fundamentally different ideas.
+It is about reconstructing the facts of work.
 
 ---
 
-## 9. CodeFlowMu: TMPA enters the runtime world
+## 9. CodeFlowMu: Bringing TMPA into the runtime world
 
-If TMPA addresses governance architecture, CodeFlowMu addresses another question:
+If TMPA addresses governance architecture, CodeFlowMu addresses how Agents actually work.
 
-**How do these Agents actually work?**
+Its engineering starting point is not to build a giant central Agent Runtime.
 
-CodeFlowMu does not begin by building a giant central Agent Runtime.
+Reasoning is delegated to mature model ecosystems. Tools live in real operating environments.
 
-It deliberately stays restrained.
+CodeFlowMu focuses on work orchestration, Agent Responsibility, lifecycle, FCoP, Skill invocation, Report, Review, Human Decision, Recovery, and Runtime Governance.
 
-Reasoning is delegated to mature model ecosystems. Tools live in actual runtime environments.
-
-CodeFlowMu concentrates on work orchestration, Agent Responsibility, lifecycle, FCoP, Skill invocation, Reports, Reviews, Human Decisions, Recovery and Runtime Governance.
-
-This creates an important engineering boundary:
+This creates an important boundary:
 
 **CodeFlowMu does not need to reinvent the LLM.**
 
-The model is only one part of a digital employee’s brain.
+The model is only one part of a digital employee's brain.
 
-Whether it can become an employee is determined by the surrounding work structure.
+What makes it an employee is the surrounding work structure.
 
 ---
 
@@ -364,13 +305,11 @@ Whether it can become an employee is determined by the surrounding work structur
 
 A core CodeFlowMu engineering choice is FCoP.
 
-FCoP projects part of Agent coordination and governance directly into the file system.
+FCoP projects part of the coordination and governance relationship directly into the file system.
 
 Work objects are not hidden inside a central server. They can be observed as files.
 
-File names, directories, references and lifecycle transitions become part of the protocol.
-
-A task may pass through a lifecycle such as:
+File names, directories, references, and lifecycle transitions become part of the protocol.
 
 ```text
 inbox
@@ -388,33 +327,29 @@ done
 archive
 ```
 
-Transitions occur through explicit operations.
+The result is simple but powerful:
 
-The result is simple but important:
+# Directory becomes observable state.
 
-> **Directory becomes observable state.**
+Administrators, human supervisors, Agents, and debugging tools can inspect the same facts.
 
-Administrators, human supervisors, Agents and debugging tools can inspect the same set of facts.
-
-That reduces one of the most dangerous forms of multi-agent complexity: **hidden state.**
+This reduces one of the most dangerous forms of complexity in multi-agent systems: hidden state.
 
 ---
 
 ## 11. Agent PC: A real digital employee needs a “computer”
 
-If SaaW is a Worker, that Worker needs a work environment.
+If SaaW is a Worker, the Worker needs a work environment.
 
 We call this runtime node:
 
 # Agent PC
 
-It does not have to be a conventional physical computer.
+It does not have to be a physical computer. It represents an independent runtime environment containing Reasoning, Skills, Workflow, Credentials, Runtime, Files, Governance, and External Systems.
 
-It represents an independent execution environment owned by a digital employee, containing Reasoning, Skills, Workflow, Credentials, Runtime, Files, Governance and External Systems.
+It may use browsers, APIs, CLI tools, scripts, MCP, internal enterprise services, and controlled automation hooks.
 
-It may use Browser, API, CLI, Script, MCP, internal enterprise services and controlled Automation Hooks.
-
-The Agent loop therefore changes from `Prompt → Response` into:
+The loop therefore changes from `Prompt → Response` into:
 
 ```text
 Task
@@ -432,25 +367,23 @@ Produce Evidence
 Continue / Report / Escalate
 ```
 
-That is the runtime loop of a real digital employee.
+That is a digital-worker runtime loop.
 
 ---
 
-## 12. Non-invasive digital employees: Let AI use software instead of bypassing it
+## 12. Non-invasive digital employees: Let AI use software, not bypass software
 
-One of the most dangerous temptations in enterprise automation is to let AI write directly into databases.
+One of the most dangerous temptations in enterprise automation is to let AI modify the database directly.
 
-It looks efficient.
+That may look efficient, but real enterprise systems are not simple CRUD layers.
 
-But real enterprise systems are not simple CRUD tables.
+A field may sit behind state machines, triggers, stored procedures, permission rules, financial controls, workflow, audit trails, and external integrations.
 
-A field may sit behind state machines, triggers, stored procedures, permission rules, financial constraints, workflows, audit trails and external integrations.
+Direct table writes can bypass decades of accumulated business safeguards.
 
-Writing directly to tables can bypass decades of accumulated business boundaries.
+SaaW should therefore prefer:
 
-A more defensible SaaW path is:
-
-**AI operates business systems instead of bypassing business systems.**
+**AI operates the business system rather than bypassing it.**
 
 ```text
 Agent
@@ -465,25 +398,19 @@ Agent
 Existing ERP / CRM / Business System
 ```
 
-The goal is not to guarantee that errors never occur.
-
-The goal is to make errors occur inside boundaries where existing business rules can observe, reject, audit and roll them back.
-
-That is the engineering discipline enterprise AI automation requires.
+The goal is not to claim that AI never makes mistakes. It is to keep mistakes inside boundaries where existing business systems can observe, reject, audit, and roll them back.
 
 ---
 
-## 13. Rediscovering enterprise SOPs from code
+## 13. Rediscovering enterprise SOP from code
 
-Legacy software has another underestimated value:
+Legacy Software contains an underestimated asset:
 
 **Code itself is enterprise knowledge.**
 
-Many enterprises do not possess complete SOP documentation.
+Business rules may be scattered across APIs, controllers, forms, validation logic, state transitions, permission checks, batch scripts, database schemas, and configuration.
 
-The real rules may be distributed across APIs, Controllers, Forms, Validation, State Transitions, Permission Checks, Batch Scripts, Database Schemas and Configuration.
-
-One important CodeFlowMu direction is therefore to let a Meta-Development Team analyze existing systems and help extract:
+A Meta-Development Team can help reconstruct:
 
 ```text
 Existing Code
@@ -501,27 +428,25 @@ SOP
 Digital Employee Skills
 ```
 
-But this does not mean “scan the code = automatically understand the enterprise.”
+But “scan code = understand the enterprise” would be naïve.
 
-Real SOPs may also come from documents, human explanations, API specifications, operation recordings, job descriptions, policies and business-expert feedback.
+Real SOP also comes from documents, human explanation, API specifications, operation recordings, job descriptions, policy, and domain experts.
 
-Code is one important source of evidence.
-
-More rigorously, the path should be understood as:
+A more rigorous formulation is:
 
 # Enterprise Evidence → Candidate SOP → Validation → Governed Workflow
 
-AI makes scattered knowledge cheaper to restructure. But a Candidate SOP only becomes an executable worker Workflow after business validation, engineering tests, governance checks or human authorization.
+AI can cheaply structure scattered evidence. A Candidate SOP becomes an executable Worker workflow only after business validation, engineering testing, governance checks, or human authorization.
 
 ---
 
-## 14. CodeFlowMu’s second form: Meta-Development Runtime
+## 14. CodeFlowMu's second form: Meta-Development Runtime
 
-The most interesting aspect of CodeFlowMu is not merely that multiple Agents can develop software together.
+The most important direction for CodeFlowMu is not simply that multiple Agents can develop software together.
 
-More importantly, **that development capacity itself can become a production capability for future digital employees.**
+The development capability itself can become a production capability for digital employees.
 
-An initial CodeFlowMu can appear as a four-role development team:
+An initial CodeFlowMu team may contain four roles:
 
 ```text
 ┌───────────────────────────────┐
@@ -531,54 +456,39 @@ An initial CodeFlowMu can appear as a four-role development team:
 └───────────────────────────────┘
 ```
 
-Their responsibility boundaries are distinct.
-
-**PM** understands requirements, decomposes work and organizes collaboration.  
-**DEV** implements code, Skills, Hooks and Workflows.  
-**QA** validates business and engineering results.  
-**OPS** manages runtime environment, recovery, deployment and lifecycle.
+PM interprets goals and orchestrates work. DEV implements code, Skills, Hooks, and Workflows. QA verifies business and engineering outcomes. OPS manages runtime, recovery, deployment, and lifecycle.
 
 This is:
 
 # Meta-Dev Mode
 
-Its output does not have to be only conventional software.
+Its output does not have to be only traditional software.
 
-It can also be a:
-
-# Digital Employee Package
+It can be a Digital Employee Package.
 
 ---
 
 ## 15. Digital Employee Package
 
-Before a digital employee can be deployed, it needs an engineering description.
+A digital employee must be described as an engineering artifact before deployment.
 
-A complete Worker Package may contain Role, Responsibilities, Workflow, Skills, Permissions, Policies, Validation Rules, Runtime Configuration, Recovery Rules and Human Decision Gates.
+A Worker Package may include Role, Responsibilities, Workflow, Skills, Permissions, Policies, Validation Rules, Runtime Configuration, Recovery Rules, and Human Decision Gates.
 
-The digital employee therefore begins to look like a serious software product: it can be defined, developed, tested, versioned, deployed, upgraded and rolled back.
+A digital employee can therefore be defined, developed, tested, versioned, deployed, upgraded, and rolled back like a serious software product.
 
-This is one of the deepest differences between SaaW and “writing an Agent prompt.”
+That is one of the fundamental differences between SaaW and “writing an Agent prompt.”
 
 ---
 
 ## 16. Self-Morphing: When the codebase begins to “develop itself”
 
-We now reach the most important part of this manifesto.
+Now we reach the central idea of this manifesto:
 
 # Self-Morphing
 
-The term is easy to misunderstand.
+It does not mean that an Agent freely mutates its source code, and it does not mean unrestricted AI self-replication.
 
-It does not mean that an Agent arbitrarily rewrites its own source code, and it does not mean unrestricted AI self-replication.
-
-The useful meaning of Self-Morphing is:
-
-> **A digital-employee runtime uses its own software-development capability to construct, validate and deploy new forms of digital workers.**
-
-![Self-Morphing Digital Employee Loop](/assets/covers/saaw-self-morphing-loop.svg)
-
-A complete process should look like:
+> **Self-Morphing means that a digital-employee runtime can use its own software-development capability to construct, validate, and deploy new digital-worker forms.**
 
 ```text
 Meta-Dev Runtime
@@ -602,38 +512,7 @@ Deploy
 Domain Worker Runtime
 ```
 
-For example:
-
-```text
-PM / DEV / QA / OPS
-        │
-        │ develop
-        ▼
-Finance Worker Package
-        │
-        ▼
-Invoice Agent
-ERP Entry Agent
-Compliance Agent
-Archive Agent
-```
-
-Or:
-
-```text
-PM / DEV / QA / OPS
-        │
-        ▼
-Contract Worker Package
-        │
-        ▼
-Risk Analysis Agent
-Signing Agent
-Compliance Agent
-Archive Agent
-```
-
-Notice the change.
+A development team may produce a Finance Worker Package containing Invoice, ERP Entry, Compliance, and Archive Agents, or a Contract Worker Package containing Risk Analysis, Signing, Compliance, and Archive Agents.
 
 Traditional software development looks like:
 
@@ -645,7 +524,7 @@ builds Software
 Human uses Software
 ```
 
-Self-Morphing introduces:
+Self-Morphing introduces another pattern:
 
 ```text
 AI Development Team
@@ -655,7 +534,7 @@ builds Digital Worker
 Digital Worker performs Work
 ```
 
-Then an even more important step appears:
+And the next step is even more important:
 
 ```text
 Worker performs Work
@@ -670,21 +549,19 @@ Development Input
 Next Worker Version
 ```
 
-Software development and software work begin to form a loop:
+Development and work begin to form one loop:
 
 # Develop → Validate → Deploy → Work → Observe → Improve
 
-That is the meaningful interpretation of “the codebase begins to develop itself.”
+That is the meaningful engineering interpretation of “the codebase develops itself.”
 
 ---
 
 ## 17. From Development Runtime to Work Runtime
 
-Traditional software has clear boundaries: development systems develop, production systems run, and users perform the work.
+Traditional software separates development, production runtime, and human work.
 
-SaaW begins to recombine these layers.
-
-The long-term CodeFlowMu direction can be expressed as:
+SaaW begins to recombine them.
 
 ```text
 Development Runtime
@@ -706,9 +583,11 @@ This is not merely DevOps.
 
 DevOps connects Development and Deployment.
 
-SaaW goes further and connects **Development and Work.**
+SaaW attempts to connect:
 
-This may become one of the largest dividing lines between AI-native and traditional software.
+**Development and Work.**
+
+That may become one of the deepest boundaries between AI-native and traditional software.
 
 ---
 
@@ -716,33 +595,31 @@ This may become one of the largest dividing lines between AI-native and traditio
 
 Digital employees do not imply Human-Out-of-the-Loop.
 
-Quite the opposite.
+Safe SaaW must clearly define which actions Agents can perform autonomously and which actions require human authority.
 
-A safe SaaW must explicitly define what Agents may do autonomously and what requires a human decision.
-
-In SaaS, the human is usually the Operator.
+In SaaS, the human is often the Operator.
 
 In SaaW, the human increasingly becomes the Supervisor / Authorizer.
 
-Low-risk work such as retrieval, organization, validation, report generation and internal synchronization can be highly automated.
+Low-risk activities such as querying, organizing, validation, internal reporting, and synchronization can become highly automated.
 
-Large payments, final contract signatures, permission escalation, irreversible data operations and important public publication should enter Decision Gates.
+Large payments, final contract signatures, permission escalation, irreversible data operations, and important public publication should enter Decision Gates.
 
-The more accurate principle is not Human-in-every-loop, but:
+A better principle is:
 
 # Human at the Authority Boundary.
 
 ---
 
-## 19. PWA: The mobile control plane for a digital employee team
+## 19. PWA: The mobile control plane for a digital-employee team
 
-The CodeFlowMu PWA is therefore not merely a mobile webpage.
+The CodeFlowMu PWA is not merely a mobile webpage.
 
 It represents the:
 
 # Human Control Plane
 
-A manager can inspect current Tasks, Agent state, Reports, Reviews, Issues, Waiting Decisions, Recovery State and work outcomes.
+Supervisors can inspect Tasks, Agent state, Reports, Reviews, Issues, Waiting Decisions, Recovery State, and work outcomes.
 
 ```text
 SaaW Runtime
@@ -769,7 +646,7 @@ Decision
 SaaW Runtime continues
 ```
 
-The key point is that Approve is not merely a UI click.
+Approve is not merely a UI click.
 
 The click is only the interface.
 
@@ -783,15 +660,13 @@ Governance Fact
 State Transition
 ```
 
-Authorization therefore enters the durable work history.
-
-That is meaningful Human-in-the-Loop governance.
+Authorization therefore enters durable work history.
 
 ---
 
 ## 20. A digital employee must not depend on a model session that never disconnects
 
-Many Agent products today hide a dangerous assumption: the model session will always remain alive.
+Many Agent products hide a dangerous assumption: the model session will always remain alive.
 
 Reality is different.
 
@@ -805,11 +680,9 @@ Agents can change. Models can change. SDKs can change. Runtimes can restart.
 
 Established work facts must not disappear.
 
-This is where TMPA, FCoP and CodeFlowMu converge:
+TMPA, FCoP, and CodeFlowMu converge on the same architectural direction:
 
 **Free intelligence from session continuity, and build work continuity on durable facts.**
-
-That may be one of the most important architectural principles for long-running digital employees.
 
 ---
 
@@ -834,17 +707,15 @@ The software market may expand from the Software Market into the:
 
 # Digital Labor Market
 
-That is the larger economic possibility behind SaaW.
-
 ---
 
 ## 22. SaaW is not a new chat box
 
-The entire argument can be reduced to one sentence:
+The whole argument can be reduced to one sentence:
 
 **A digital employee is not a smarter chatbot.**
 
-It requires job responsibilities, a work environment, tools, permissions, state, governance, evidence, recovery capability and human authority boundaries.
+It requires job responsibilities, a work environment, tools, permissions, state, governance, evidence, recovery capability, and human authority boundaries.
 
 TMPA studies how those work facts become valid.
 
@@ -876,8 +747,6 @@ This does not mean software replaces everyone.
 
 The deeper change may be that humans gradually leave repetitive software operation, Agents enter the operation layer, and humans move into the governance layer.
 
-Thus:
-
 ```text
 SaaS
 Human operates Software
@@ -908,11 +777,9 @@ A software lifecycle that did not previously exist begins to emerge.
 
 That is the direction CodeFlowMu is exploring.
 
-Not another Multi-Agent Framework.
+Not another Multi-Agent Framework, but:
 
-But:
-
-> **Software infrastructure capable of developing, running, governing and continuously evolving digital employees.**
+> **Software infrastructure capable of developing, running, governing, and continuously evolving digital employees.**
 
 That is why we propose SaaW.
 
@@ -922,7 +789,7 @@ Software was once a tool.
 
 Then it became a service.
 
-Now it is beginning to work.
+Now, it is beginning to work.
 
 **From Software Market to Digital Labor Market.**
 
@@ -931,9 +798,6 @@ Now it is beginning to work.
 **joinwell52 Research Center**  
 **CodeFlowMu Core Team**
 
-**TMPA Architecture Paper A0.9**  
-**TMPA Core Specification S0.6**  
-**TMPA Implementation Case Report I0.8**  
-**CodeFlowMu / FCoP**
+**TMPA Architecture Paper A0.9 · TMPA Core Specification S0.6 · TMPA Implementation Case Report I0.8 · CodeFlowMu / FCoP**
 
-> **V1.1 scope note:** This is a technical manifesto for AI Native Software, Multi-Agent Engineering and enterprise digital employees. SaaW, Self-Morphing and Digital Employee Runtime combine existing architecture and engineering practice with research directions that remain under active validation. Exact capability boundaries are governed by the corresponding public specifications, tests and implementation evidence.
+> **V1.1 scope note:** This is a technical manifesto for AI-native software, multi-agent engineering, and enterprise digital employees. SaaW, Self-Morphing, and Digital Employee Runtime combine current architecture and engineering practice with active research directions. Capability boundaries are defined by the corresponding public specifications, tests, and implementation evidence.
