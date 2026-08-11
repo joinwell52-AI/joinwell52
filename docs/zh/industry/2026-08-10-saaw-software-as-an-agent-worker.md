@@ -7,7 +7,7 @@ version: "V1.1"
 summary: "从治理、TMPA、FCoP、Agent PC、CodeFlowMu 与 Self-Morphing 推导 SaaW，并以 Research Report Production Engine V1.3 作为真实工程锚点，区分已验证能力与研究前沿。"
 item_id: "MANIFESTO-20260810-SAAW"
 lifecycle: "Published"
-cover: "/assets/covers/01-saaw-manifesto-cover.jpeg"
+cover: "/assets/covers/01-saaw-manifesto-cover-agent-worker.png"
 visualization: "/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png"
 visualization_2: "/assets/covers/03-saaw-self-morphing-loop-fixed-v2.png"
 evidence_status: "Architecture-grounded + production-engine reference implementation"
@@ -24,7 +24,7 @@ outline: deep
 
 [English version](/en/industry/2026-08-10-saaw-software-as-an-agent-worker)
 
-![SaaW — Software as an Agent Worker](/assets/covers/01-saaw-manifesto-cover.jpeg)
+![SaaW — Software as an Agent Worker](/assets/covers/01-saaw-manifesto-cover-agent-worker.png)
 
 ---
 
