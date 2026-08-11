@@ -407,7 +407,7 @@ FCoP governs **Agent collaboration behavior**: how tasks are handed off, results
 
 In the TMPA implementation relationship, FCoP acts as a **project-visible filesystem profile**. It does not require a coordination database, message broker, or enterprise control plane; conversely, it does not by itself provide validated enterprise identity, strong role isolation, tamper-resistant storage, or Byzantine fault tolerance. This is consistent with TMPA being **SME-first, not SME-only**: larger deployments can add databases, object stores, event services, identity systems, and control planes without changing the governance semantics carried by the protocol.
 
-Most importantly, **the FCoP protocol, host adapters, reference implementation, and runtime environment are not the same thing.** The A0.9 operational stack can be represented directly as:
+Most importantly, **the FCoP protocol, packages, host-adapter responsibilities, reference implementation, and runtime environment are not the same thing.** Combining A0.9’s layering semantics with the current implementation, the operational stack can be represented as:
 
 ```text
 Application / Runtime
@@ -415,7 +415,7 @@ CodeFlowMu / Cursor / Claude Desktop
                 │
                 ▼
 Host Adapter Layer
-fcop-mcp / fcop-cli / host bridges
+fcop-mcp / host bridges
                 │
                 ▼
 ★ FCoP Protocol Layer ★
@@ -433,8 +433,8 @@ LLM APIs / MCP tools / filesystem / process manager / operating system
 
 Therefore:
 
-- the `fcop` Python package is the **reference implementation of FCoP**, not the FCoP protocol itself;
-- `fcop-mcp` and `fcop-cli` sit in the **Host Adapter Layer**, exposing protocol capabilities to actual hosts;
+- `fcop` is a Python package distributed on PyPI and the **reference implementation of FCoP**; it also provides the CLI capability;
+- `fcop-mcp` is an FCoP MCP tool package distributed on PyPI; in the operational stack it performs **host-adapter responsibilities**, exposing FCoP capabilities to actual hosts;
 - **CodeFlowMu is an application/runtime system that uses FCoP as its coordination protocol.**
 - TMPA is not a runtime layer in this stack; it supplies the higher-level governance semantics and architectural guidance the stack is intended to realize.
 
