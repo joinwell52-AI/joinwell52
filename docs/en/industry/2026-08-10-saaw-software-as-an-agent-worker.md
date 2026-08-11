@@ -1,5 +1,5 @@
 ---
-title: "SaaW: Software as an Agent Worker — From SaaS to SaaW"
+title: "From SaaS to SaaW: When a Codebase Starts “Developing Itself”"
 date: "2026-08-10"
 column: "industry-architecture"
 category: "manifesto"
@@ -17,10 +17,8 @@ publication_authorized: true
 outline: deep
 ---
 
-# SaaW: Software as an Agent Worker
-## From SaaS to SaaW: When the Codebase Begins to “Develop Itself”
-
-**A Digital Employee Manifesto Grounded in TMPA Governance and CodeFlowMu Engineering · V1.1**
+# From SaaS to SaaW: When a Codebase Starts “Developing Itself”
+## A Manifesto for the Digital Employee Paradigm Grounded in TMPA Governance and CodeFlowMu Practice
 
 [中文版](/zh/industry/2026-08-10-saaw-software-as-an-agent-worker)
 
