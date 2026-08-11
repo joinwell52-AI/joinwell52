@@ -159,7 +159,7 @@ This is TMPA's formal answer:
 
 > **TMPA (Textual Multi-Agent Process Architecture)** is an **asynchronous text-message multi-agent process architecture** designed for SMEs and minimum-infrastructure conditions. Its core consists of four connected rules: **text carries durable messages and state; each writer maintains its own local serial stream; multiple serial streams advance asynchronously to form parallel collaboration; the read side aggregates available evidence to reconstruct process, responsibility, lifecycle, conflicts, and audit state.**
 
-**Sections 4–7 expand these four rules in order: Section 4 covers durable messages and state in text; Section 5 covers local Single-Writer serial streams; Section 6 covers asynchronous parallel collaboration across streams; Section 7 covers read-side reconstruction and the Issue Set.**
+**This section and Sections 5–7 expand these four rules in order: this section covers durable messages and state in text; Section 5 covers local Single-Writer serial streams; Section 6 covers asynchronous parallel collaboration across streams; Section 7 covers read-side reconstruction and the Issue Set.**
 
 TMPA is **SME-first, not SME-only**. Its minimum-infrastructure orientation reduces dependence on dedicated coordination infrastructure, but larger implementations may use databases, object stores, event services, identity systems, and control planes while preserving the same work-fact, responsibility, reference, lifecycle, and governance semantics.
 
