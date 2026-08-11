@@ -11,7 +11,7 @@ item_id: "Q-20260811-03"
 lifecycle: "Published"
 source_research_object: "research/analysis/Q-20260811-03-event-identity-terminal-evidence.md"
 source_reading_result: "research/reading/Q-20260811-03-durable-event-identity-terminal-evidence.md"
-cover: "/assets/covers/daily-2026-08-11-durable-event-identity-terminal-evidence.svg"
+cover: "/assets/covers/daily-2026-08-11-durable-event-identity-terminal-evidence.webp"
 visualization: "/assets/covers/daily-2026-08-11-durable-event-identity-terminal-evidence-figure.svg"
 visualization_decision: "Required — editorial identity/terminal metaphor plus a separate retry-and-terminal evidence figure"
 evidence_status: "Completed"
@@ -21,17 +21,20 @@ publication_authorized: true
 outline: deep
 ---
 
+<ArticleCover
+  image="/assets/covers/daily-2026-08-11-durable-event-identity-terminal-evidence.webp"
+  kicker="Open-source Engineering · Daily Research"
+  title="Agent Operations Need Durable Identity and Explicit Terminal Evidence"
+  summary="Stable occurrence identity should be created before asynchronous handoff and reused across retries, while typed terminal success/error evidence closes that same logical execution. Deduplication identity improves reconciliation but does not prove system-wide exactly-once or lossless delivery."
+  version="Q-20260811-03"
+  status="Daily Runtime V5 · 2026-08-11"
+  languageHref="/zh/engineering/2026-08-11-durable-event-identity-terminal-evidence"
+  languageLabel="中文"
+/>
+
 # Agent Operations Need Durable Identity and Explicit Terminal Evidence
 
 Distributed agent systems often confuse three different properties: “this logical occurrence has an identity,” “the transport did not duplicate a row,” and “the business operation executed exactly once.” They are not equivalent. A durable occurrence ID is primarily a reconciliation primitive; terminal evidence is what closes the logical execution.
-
-## Cover
-
-![Durable identity editorial cover](/assets/covers/daily-2026-08-11-durable-event-identity-terminal-evidence.svg)
-
-## Figure
-
-![Durable identity and terminal evidence figure](/assets/covers/daily-2026-08-11-durable-event-identity-terminal-evidence-figure.svg)
 
 ## Summary
 
@@ -56,6 +59,10 @@ The implementation assigns `event_id` when an analytics row is created, before i
 The optional committed-stream mode adds explicit offsets and local conflict handling. Ambiguous retries can be confirmed when an occupied offset follows a locally ambiguous send, but an unexpected occupied offset marks the stream desynchronized. Rotation failure and backoff are deliberately bounded, and the implementation explicitly documents row-loss cases rather than claiming a lossless system.
 
 Terminal evidence is also made more explicit. Final LLM finish metadata is emitted only on the final response row, while workflow nodes can emit dedicated `NODE_OUTPUT` and `NODE_ERROR` events with run/node identity. Progressive telemetry and terminal outcome are therefore separate evidence classes.
+
+![Durable identity and terminal evidence figure](/assets/covers/daily-2026-08-11-durable-event-identity-terminal-evidence-figure.svg)
+
+*Figure 1. A logical identity is created before asynchronous handoff and reused across retries; explicit success or failure evidence closes that same logical execution. Source: Research Center synthesis based on the cited primary sources.*
 
 ## Comparison
 
@@ -93,7 +100,7 @@ Agent runtimes should define an identity hierarchy that connects Runtime task, w
 
 ## Visualization note
 
-The cover uses a stable identity ring converging on a terminal seal as an editorial metaphor. The separate figure explains identity creation, retry reuse, explicit terminal success/error and downstream reconciliation. Both are Research Center originals and contain no invented quantitative data.
+The header cover uses one persistent identity marker passing through disruption into a terminal evidence chamber. The figure embedded in the Observation section explains identity creation, retry reuse, explicit terminal success/error and downstream reconciliation. Both are Research Center originals and contain no invented quantitative data.
 
 ## References
 

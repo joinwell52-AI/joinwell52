@@ -12,7 +12,7 @@ item_id: "Q-20260811-01"
 lifecycle: "Publication Candidate"
 source_research_object: "research/analysis/Q-20260811-01-execution-authority-ordered-work.md"
 source_reading_result: "research/reading/Q-20260811-01-ordered-local-work-queue.md"
-cover: "staging/publication-candidates/2026-08-11-execution-authority-ordered-work-cover.svg"
+cover: "staging/publication-candidates/2026-08-11-execution-authority-ordered-work-cover.webp"
 visualization: "staging/publication-candidates/2026-08-11-execution-authority-ordered-work-figure.svg"
 visualization_decision: "Required — 独立编辑性题图 + 独立顺序执行通道解释图"
 evidence_status: "Completed"
@@ -21,17 +21,11 @@ editing_status: "Completed"
 publication_authorized: false
 ---
 
+![执行权边界编辑性题图](./2026-08-11-execution-authority-ordered-work-cover.webp)
+
 # 数字员工需要显式的执行权边界
 
 定时器已经触发、用户请求已经到达、任务已经进入队列，都不能自动推出“现在可以执行”。对于数字员工而言，真正关键的不是有没有排程，而是**何时从‘工作存在’跨越到‘获得执行权’**。
-
-## 题图
-
-![执行权边界编辑性题图](./2026-08-11-execution-authority-ordered-work-cover.svg)
-
-## 解释图
-
-![顺序执行通道与执行权边界](./2026-08-11-execution-authority-ordered-work-figure.svg)
 
 ## 摘要
 
@@ -52,6 +46,10 @@ Research Center 的判断比“加一个队列”更严格：产品级数字员�
 这个版本同时出现三组相关机制。第一，新任务可以在当前任务执行期间到达，但只能排队等待，说明“到达”和“执行”是两个不同事件。第二，多个并发 Session 被明确支持，说明顺序性至少受到 Session Identity 的边界约束，而不是一个全局单队列。第三，由 Sandbox 导致的 MCP 与 Language Server 启动异常不再无限卡住，而是转化为有界失败，并且 `/sandbox policy` 可以显示实际生效的策略，而不只是配置意图。
 
 这三点共同指向一个运行时原则：一个执行通道同一时刻应该只有一个明确的权威持有者；可能阻塞通道的启动依赖必须有有界失败；操作界面应该展示真正生效的执行策略和证据。
+
+![顺序执行通道与执行权边界](./2026-08-11-execution-authority-ordered-work-figure.svg)
+
+*图 1：Received 与 Scheduled 进入 Queued 后，只有显式 Worker Claim 才授予执行权。来源：Research Center 基于文中引用的一手资料综合绘制。*
 
 ## 比较
 
@@ -90,7 +88,7 @@ Research Center 的判断比“加一个队列”更严格：产品级数字员�
 
 ## 可视化说明
 
-题图采用语言依赖较低的“单一闸门 + 等待工作 Token”视觉隐喻，可在缩略图尺度识别主题；解释图则单独承担状态和顺序机制说明。两张图均为 Research Center 原创，不使用厂商图，也没有人为制造量化数据。
+题图位于文章头部，以一组等待中的执行舱和唯一获准开启的通道表现执行权边界；嵌入“观察”部分的解释图承担状态与顺序机制说明。两张图均为 Research Center 原创，不使用厂商图，也没有人为制造量化数据。
 
 ## 参考资料
 

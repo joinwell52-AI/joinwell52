@@ -11,7 +11,7 @@ item_id: "Q-20260811-03"
 lifecycle: "Published"
 source_research_object: "research/analysis/Q-20260811-03-event-identity-terminal-evidence.md"
 source_reading_result: "research/reading/Q-20260811-03-durable-event-identity-terminal-evidence.md"
-cover: "/assets/covers/daily-2026-08-11-durable-event-identity-terminal-evidence.svg"
+cover: "/assets/covers/daily-2026-08-11-durable-event-identity-terminal-evidence.webp"
 visualization: "/assets/covers/daily-2026-08-11-durable-event-identity-terminal-evidence-figure.svg"
 visualization_decision: "Required — 独立身份/终态编辑性题图 + 独立重试与终态证据解释图"
 evidence_status: "Completed"
@@ -21,17 +21,20 @@ publication_authorized: true
 outline: deep
 ---
 
+<ArticleCover
+  image="/assets/covers/daily-2026-08-11-durable-event-identity-terminal-evidence.webp"
+  kicker="开源工程 · 每日研究"
+  title="Agent 运行需要持久身份与显式终态证据"
+  summary="逻辑发生身份应在进入异步边界前创建并跨重试复用，同一逻辑执行还需要显式成功/失败终态证据完成闭合。去重身份能提升对账能力，但不能直接证明端到端 exactly-once 或无损交付。"
+  version="Q-20260811-03"
+  status="Daily Runtime V5 · 2026-08-11"
+  languageHref="/en/engineering/2026-08-11-durable-event-identity-terminal-evidence"
+  languageLabel="English"
+/>
+
 # Agent 运行需要持久身份与显式终态证据
 
 分布式 Agent 系统经常把三件不同的事情混在一起：“这次逻辑发生有唯一身份”“传输层没有重复写入”“业务动作只执行一次”。三者并不等价。持久 Occurrence ID 首先是一种**对账原语**；真正关闭一次逻辑执行，还需要明确的终态证据。
-
-## 题图
-
-![持久身份编辑性题图](/assets/covers/daily-2026-08-11-durable-event-identity-terminal-evidence.svg)
-
-## 解释图
-
-![持久身份与终态证据解释图](/assets/covers/daily-2026-08-11-durable-event-identity-terminal-evidence-figure.svg)
 
 ## 摘要
 
@@ -56,6 +59,10 @@ Research Center 的判断因此必须保持精确：**在进入异步边界之�
 可选 Committed Stream 模式进一步引入 Explicit Offset 和本地冲突处理。模糊发送之后遇到同 Offset 的 `AlreadyExists` 可以被解释为此前写入已提交；如果本地没有模糊发送却发现 Offset 被占用，则 Stream 被标记为 Desynchronized，并进入 Rotation / Drop Accounting。实现明确选择“有界失败 + 显式丢失边界”，而不是宣称系统无损。
 
 终态证据也更明确。Final LLM Finish Metadata 只出现在最终 Response Row 上，Workflow Node 则可以产生带 Run / Node Identity 的 `NODE_OUTPUT` 和 `NODE_ERROR`。这样 Progressive Telemetry 与 Terminal Outcome 成为两类不同证据。
+
+![持久身份与终态证据解释图](/assets/covers/daily-2026-08-11-durable-event-identity-terminal-evidence-figure.svg)
+
+*图 1：逻辑身份在异步交接前创建并跨重试复用，显式成功或失败终态证据关闭同一逻辑执行。来源：Research Center 基于文中引用的一手资料综合绘制。*
 
 ## 比较
 
@@ -93,7 +100,7 @@ Agent Runtime 需要定义一套 Identity Hierarchy，把 Runtime Task、Worker 
 
 ## 可视化说明
 
-题图使用“稳定身份环最终汇聚到终态 Seal”的编辑性隐喻；正文解释图再单独说明 Identity Creation、Retry Reuse、Terminal Success/Error 与后续 Reconciliation。两张图均为 Research Center 原创，不包含人为制造的量化数据。
+题图位于文章头部，以同一身份标记穿越扰动并进入终态证据舱表现持久身份与闭合；嵌入“观察”部分的解释图说明 Identity Creation、Retry Reuse、Terminal Success/Error 与后续 Reconciliation。两张图均为 Research Center 原创，不包含人为制造的量化数据。
 
 ## 参考资料
 

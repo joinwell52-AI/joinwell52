@@ -11,7 +11,7 @@ item_id: "Q-20260811-02"
 lifecycle: "Published"
 source_research_object: "research/analysis/Q-20260811-02-connector-action-handoff.md"
 source_reading_result: "research/reading/Q-20260811-02-restaurant-reservation-action-handoff.md"
-cover: "/assets/covers/daily-2026-08-11-governed-connector-action-handoff.svg"
+cover: "/assets/covers/daily-2026-08-11-governed-connector-action-handoff.webp"
 visualization: "/assets/covers/daily-2026-08-11-governed-connector-action-handoff-figure.svg"
 visualization_decision: "Required — editorial handoff metaphor plus a separate authority-stage figure"
 evidence_status: "Completed"
@@ -21,17 +21,20 @@ publication_authorized: true
 outline: deep
 ---
 
+<ArticleCover
+  image="/assets/covers/daily-2026-08-11-governed-connector-action-handoff.webp"
+  kicker="Industry Architecture · Daily Research"
+  title="Connector Actions Need a Governed Authority Handoff"
+  summary="Connector-mediated actions should distinguish observed availability, action eligibility, user or role authorization, provider submission, provider-confirmed outcome and post-handoff custody instead of collapsing them into one tool-call status."
+  version="Q-20260811-02"
+  status="Daily Runtime V5 · 2026-08-11"
+  languageHref="/zh/industry/2026-08-11-governed-connector-action-handoff"
+  languageLabel="中文"
+/>
+
 # Connector Actions Need a Governed Authority Handoff
 
 An agent can observe a live opportunity without owning the transaction that follows. Restaurant reservation support in ChatGPT makes this boundary unusually visible: recommendation, live availability, action eligibility, booking submission and the authoritative reservation record belong to different stages and, in some cases, different systems.
-
-## Cover
-
-![Governed connector handoff editorial cover](/assets/covers/daily-2026-08-11-governed-connector-action-handoff.svg)
-
-## Figure
-
-![Connector action authority-handoff figure](/assets/covers/daily-2026-08-11-governed-connector-action-handoff-figure.svg)
 
 ## Summary
 
@@ -55,6 +58,10 @@ The documented flow separates recommendation from action. A restaurant can be re
 When Reserve is available, the user enters a booking flow and can adjust details before placement. After the reservation is placed, ChatGPT does not keep the booking as the authoritative record. Confirmation, modification, cancellation and provider-account issues remain with the external reservation service.
 
 The product surface is itself a policy input. The release applies to supported ChatGPT surfaces and explicitly excludes ChatGPT Work, demonstrating that execution eligibility depends on more than model capability alone.
+
+![Connector action authority-handoff figure](/assets/covers/daily-2026-08-11-governed-connector-action-handoff-figure.svg)
+
+*Figure 1. A connector action moves from availability observation through qualification, authorization, and commit before the Provider holds the result and record. Source: Research Center synthesis based on the cited primary sources.*
 
 ## Comparison
 
@@ -93,7 +100,7 @@ A general agent runtime should define the minimum handoff receipt for an externa
 
 ## Visualization note
 
-The cover uses two authority domains and one crossing transaction token as an editorial metaphor. The body figure separately shows the full six-stage handoff lifecycle with bilingual terminology. Both assets are Research Center originals and contain no invented quantitative data.
+The header cover uses two authority domains and one transaction carrier held at a controlled boundary to represent authority transfer. The figure embedded in the Observation section shows the full six-stage handoff lifecycle with bilingual terminology. Both assets are Research Center originals and contain no invented quantitative data.
 
 ## References
 

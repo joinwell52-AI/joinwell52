@@ -11,7 +11,7 @@ item_id: "Q-20260811-02"
 lifecycle: "Published"
 source_research_object: "research/analysis/Q-20260811-02-connector-action-handoff.md"
 source_reading_result: "research/reading/Q-20260811-02-restaurant-reservation-action-handoff.md"
-cover: "/assets/covers/daily-2026-08-11-governed-connector-action-handoff.svg"
+cover: "/assets/covers/daily-2026-08-11-governed-connector-action-handoff.webp"
 visualization: "/assets/covers/daily-2026-08-11-governed-connector-action-handoff-figure.svg"
 visualization_decision: "Required — 独立权威交接编辑性题图 + 独立动作生命周期解释图"
 evidence_status: "Completed"
@@ -21,17 +21,20 @@ publication_authorized: true
 outline: deep
 ---
 
+<ArticleCover
+  image="/assets/covers/daily-2026-08-11-governed-connector-action-handoff.webp"
+  kicker="行业架构 · 每日研究"
+  title="连接器动作需要受治理的权威交接"
+  summary="Connector-mediated Action 不应被压缩成一次 tool call 的成功或失败，而应明确区分可用性观察、动作资格、用户或角色授权、Provider 提交、Provider 确认结果以及交接后的记录托管。"
+  version="Q-20260811-02"
+  status="Daily Runtime V5 · 2026-08-11"
+  languageHref="/en/industry/2026-08-11-governed-connector-action-handoff"
+  languageLabel="English"
+/>
+
 # 连接器动作需要受治理的权威交接
 
 Agent 可以看到一个实时机会，却不一定拥有完成后续交易的权威。ChatGPT 的餐厅预约能力把这个边界展示得很清楚：推荐、实时可用性、动作资格、预约提交和最终预约记录，可能属于不同阶段，甚至属于不同系统。
-
-## 题图
-
-![连接器权威交接编辑性题图](/assets/covers/daily-2026-08-11-governed-connector-action-handoff.svg)
-
-## 解释图
-
-![连接器动作权威交接生命周期](/assets/covers/daily-2026-08-11-governed-connector-action-handoff-figure.svg)
 
 ## 摘要
 
@@ -57,6 +60,10 @@ Research Center 的判断是：Connector Action 应当建模为**权威交接**�
 当 Reserve 可用时，用户进入预约流程，并可以在提交前调整信息。预约完成之后，ChatGPT 不保存预约作为权威记录；后续确认、修改、取消以及 Provider Account 问题都由外部预约 Provider 负责。
 
 产品入口本身也是执行策略的一部分。官方说明该能力适用于受支持的 ChatGPT Surface，同时明确排除 ChatGPT Work。这说明是否可执行不仅由模型能力决定，还受到 Product Surface、Region、Identity 和 Provider Match 等政策输入约束。
+
+![连接器动作权威交接生命周期](/assets/covers/daily-2026-08-11-governed-connector-action-handoff-figure.svg)
+
+*图 1：连接器动作从可用性观察经过资格、授权与提交，最终把结果与记录托管交给 Provider。来源：Research Center 基于文中引用的一手资料综合绘制。*
 
 ## 比较
 
@@ -95,7 +102,7 @@ System of Record 的边界也应该直接体现在 UI 中。`Available`、`Actio
 
 ## 可视化说明
 
-题图使用“两侧权威域 + 单一交易 Token 穿越边界”的编辑性隐喻；正文解释图再单独呈现完整六阶段权威交接。两张图均为 Research Center 原创，不包含人为制造的量化数据。
+题图位于文章头部，以两个权威域在受控边界交接单一交易载体表现权威转移；嵌入“观察”部分的解释图呈现完整六阶段交接生命周期。两张图均为 Research Center 原创，不包含人为制造的量化数据。
 
 ## 参考资料
 

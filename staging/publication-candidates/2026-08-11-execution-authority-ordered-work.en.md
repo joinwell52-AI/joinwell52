@@ -12,7 +12,7 @@ item_id: "Q-20260811-01"
 lifecycle: "Publication Candidate"
 source_research_object: "research/analysis/Q-20260811-01-execution-authority-ordered-work.md"
 source_reading_result: "research/reading/Q-20260811-01-ordered-local-work-queue.md"
-cover: "staging/publication-candidates/2026-08-11-execution-authority-ordered-work-cover.svg"
+cover: "staging/publication-candidates/2026-08-11-execution-authority-ordered-work-cover.webp"
 visualization: "staging/publication-candidates/2026-08-11-execution-authority-ordered-work-figure.svg"
 visualization_decision: "Required — dedicated editorial cover plus a separate ordered-lane explanatory figure"
 evidence_status: "Completed"
@@ -21,17 +21,11 @@ editing_status: "Completed"
 publication_authorized: false
 ---
 
+![Execution-authority editorial cover](./2026-08-11-execution-authority-ordered-work-cover.webp)
+
 # Digital Employees Need an Explicit Execution-Authority Boundary
 
 A timer firing, a user request arriving, or a queue entry existing does not mean a Digital Employee is authorized to begin side effects. The central runtime problem is therefore not only scheduling; it is deciding when received intent becomes **execution authority**.
-
-## Cover
-
-![Execution-authority editorial cover](./2026-08-11-execution-authority-ordered-work-cover.svg)
-
-## Figure
-
-![Ordered-lane execution-authority figure](./2026-08-11-execution-authority-ordered-work-figure.svg)
 
 ## Summary
 
@@ -52,6 +46,10 @@ Production consumes only the completed same-day Research Object `Q-20260811-01` 
 The release documents three related mechanisms. First, new local-session work may be queued while current work continues; arrival and execution are therefore separate events. Second, multiple concurrent sessions are supported, so ordering is bounded by session identity rather than presented as one global queue. Third, MCP and language-server startup failures caused by the sandbox are turned into bounded failures instead of indefinite stalls, and `/sandbox policy` exposes effective policy rather than only configured intent.
 
 Together these mechanisms point to a runtime discipline: one lane should have one current authority holder, blocking dependencies need bounded failure, and operators need evidence of the policy that was actually applied.
+
+![Ordered-lane execution-authority figure](./2026-08-11-execution-authority-ordered-work-figure.svg)
+
+*Figure 1. After Received and Scheduled work enters Queued, only an explicit Worker Claim grants execution authority. Source: Research Center synthesis based on the cited primary sources.*
 
 ## Comparison
 
@@ -90,7 +88,7 @@ A product-grade runtime should test crash points between wake receipt, queue per
 
 ## Visualization note
 
-The cover uses a language-light gate metaphor that remains recognizable at thumbnail scale. The separate figure carries the ordered state model and bilingual labels. Both are Research Center originals; no vendor artwork or invented quantitative data is used.
+The header cover uses queued execution chambers and one admitted lane to represent the execution-authority boundary. The figure embedded in the Observation section carries the ordered state model and bilingual labels. Both are Research Center originals; no vendor artwork or invented quantitative data is used.
 
 ## References
 
