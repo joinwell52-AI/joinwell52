@@ -1,0 +1,60 @@
+name: Validate SaaW Body Polish
+
+on:
+  push:
+    branches:
+      - saaw-body-polish-final
+    paths:
+      - docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+      - docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+      - .github/workflows/validate-saaw-body-polish.yml
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: saaw-body-polish-final
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify manifesto structure
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          for lang in ('zh','en'):
+              p=Path(f'docs/{lang}/industry/2026-08-10-saaw-software-as-an-agent-worker.md')
+              t=p.read_text(encoding='utf-8')
+              nums=[int(x) for x in re.findall(r'^## (\d+)\.', t, re.M)]
+              assert nums == list(range(1,24)), (lang, nums)
+              assert '应收账款' not in t
+              assert 'Accounts Receivable' not in t
+              h1=re.findall(r'^# ', t, re.M)
+              assert len(h1)==1, (lang, len(h1))
+          print('Manifesto structure verified: bilingual 23 sections, one H1 each, no obsolete AR example.')
+          PY
+
+      - name: Build VitePress site
+        run: npm run docs:build
+
+      - name: Verify generated SaaW routes
+        shell: bash
+        run: |
+          test -f docs/.vitepress/dist/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.html
+          test -f docs/.vitepress/dist/en/industry/2026-08-10-saaw-software-as-an-agent-worker.html
+          grep -q 'Research Report Production Engine V1.3' docs/.vitepress/dist/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.html
+          grep -q 'Research Report Production Engine V1.3' docs/.vitepress/dist/en/industry/2026-08-10-saaw-software-as-an-agent-worker.html
+          echo 'Generated bilingual SaaW routes verified.'
