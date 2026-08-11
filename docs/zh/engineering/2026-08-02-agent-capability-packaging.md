@@ -1,109 +1,109 @@
 ---
-title: 开源工程观察周报 002 — Agent 能力正在被封装为 Skill、Plugin 与 Contract
+title: 开源工程观察周报 002 — 智能体能力正在被封装为技能、插件与契约
 date: '2026-08-02'
 column: open-source-engineering
 category: weekly
-summary: OpenHands、CrewAI、AutoGen 与 LangGraph 显示，可复用 Agent 能力正从隐藏 Prompt 转向显式 Skill、Plugin、Tool、Workflow、Message Contract 与结构化 Event。
+summary: OpenHands、CrewAI、AutoGen 与 LangGraph 显示，可复用智能体能力正从隐藏提示词转向显式技能、插件、工具、工作流、消息契约与结构化事件。
 sources:
-  - OpenHands skills and plugins documentation
-  - CrewAI agents, flows, and observability documentation
-  - AutoGen teams, application stack, memory, and logging documentation
-  - LangGraph runtime and human-in-the-loop documentation
+  - OpenHands 技能与插件文档
+  - CrewAI 智能体、流程与可观测性文档
+  - AutoGen 团队、应用栈、记忆与日志文档
+  - LangGraph 运行时与人在回路文档
 outline: deep
 ---
 
 <ArticleCover
-  image="/assets/covers/engineering-weekly-002.svg"
+  image="/assets/covers/engineering-weekly-002-zh.svg"
   kicker="开源工程观察 · 周报 002"
-  title="Agent 能力正在被封装为 Skill、Plugin 与 Contract"
-  summary="可复用能力正在离开隐藏 Prompt，进入显式 Package、Interface、Workflow Node 与 Event。"
+  title="智能体能力正在被封装为技能、插件与契约"
+  summary="可复用能力正在离开隐藏提示词，进入显式能力包、接口、工作流节点与事件。"
   version="EW002"
   status="发布于 2026-08-02"
   languageHref="/en/engineering/2026-08-02-agent-capability-packaging"
   languageLabel="English"
 />
 
-## Summary
+## 摘要
 
-第二个开源工程信号，是 Agent 能力的表达方式正在改变。早期系统常把能力藏在一段长 Prompt 和一个无限制 Tool List 中；当前系统越来越多地把能力封装为可检查的显式组件。
+第二个开源工程信号，是智能体能力的表达方式正在改变。早期系统常把能力藏在一段很长的提示词和一个不受限制的工具列表中；当前系统越来越多地把能力封装为可检查的显式组件。
 
-OpenHands 使用 Skill、Hook、MCP Configuration、Specialized Agent、Command 与 Plugin；CrewAI 分离 Agent、Task、Tool、Crew、Flow、Guardrail、Memory、Knowledge 和 Structured Output；AutoGen 将 AgentChat Team 与 Event-driven Core 分开，并要求应用定义 Message Contract；LangGraph 将 Node、State、Edge、Interrupt 和 Persistence 作为显式编排组件。
+OpenHands 使用技能、钩子、MCP 配置、专用智能体、命令与插件；CrewAI 分离智能体、任务、工具、团队、流程、护栏、记忆、知识和结构化输出；AutoGen 将 AgentChat 团队与事件驱动核心分开，并要求应用定义消息契约；LangGraph 将节点、状态、边、中断和持久化作为显式编排组件。
 
 本周判断是：
 
-> 可复用 Agent 能力正在成为受治理的能力包，需要名称、范围、激活规则、接口、版本、Runtime 依赖、Event Surface 和证据链。单独一段 Prompt 不能构成完整 Skill Contract。
+> 可复用智能体能力正在成为受治理的能力包，需要名称、范围、激活规则、接口、版本、运行时依赖、事件面和证据链。单独一段提示词不能构成完整的技能契约。
 
-## Source
+## 资料来源
 
 本周选择以下官方资料，覆盖四个互补方向：
 
-1. **OpenHands Skills 与 Plugins**：`SKILL.md`、Always-on Context、Triggered Skill、Plugin Package、Hook、MCP Server、Agent 与 Command。
-2. **CrewAI Agents 与 Flows**：岗位化 Agent、Tool、Memory、Knowledge、Structured Output、Persistent Flow、Guardrail、Callback 与 Observability。
-3. **AutoGen Teams 与 Core**：团队模式、Handoff、Event-driven Runtime、Message Protocol、Memory Interface、State Serialization 与 Structured Logging。
-4. **LangGraph Orchestration**：显式 State、Node、Transition、Interrupt、Persistence 与 Human Decision Point。
+1. **OpenHands 技能与插件**：`SKILL.md`、常驻上下文、按需触发技能、插件包、钩子、MCP 服务器、智能体与命令。
+2. **CrewAI 智能体与流程**：岗位化智能体、工具、记忆、知识、结构化输出、持久流程、护栏、回调与可观测性。
+3. **AutoGen 团队与核心**：团队模式、交接、事件驱动运行时、消息协议、记忆接口、状态序列化与结构化日志。
+4. **LangGraph 编排**：显式状态、节点、转换、中断、持久化与人工决策点。
 
-这些资料揭示了工程模式，但尚不能证明存在一个统一 Skill Packaging 标准。
+这些资料揭示了工程模式，但尚不能证明存在一个统一的技能封装标准。
 
-## Weekly Highlights
+## 本周要点
 
-### 1. Skill 正从 Prompt 文本转向可加载 Artifact
+### 1. 技能正从提示词文本转向可加载工件
 
-OpenHands 把 Skill 定义为增强 Agent 的专门知识和工作方式，但通过文件和明确加载行为进行封装。Always-on Context 与 On-demand Skill 分开；Keyword Trigger 或 Agent 自主选择支持 Progressive Disclosure；组织、用户和仓库级 Scope 也被区分。
+OpenHands 把技能定义为增强智能体的专门知识和工作方式，并通过文件和明确的加载行为进行封装。常驻上下文与按需技能分开；关键词触发或智能体自主选择支持渐进式披露；组织、用户和仓库级范围也被区分。
 
-这比把所有规则复制进每次 System Prompt 更容易维护和审计。
+这比把所有规则复制进每次系统提示词更容易维护和审计。
 
-### 2. Plugin 正在成为能力组合包
+### 2. 插件正在成为能力组合包
 
-OpenHands Plugin 可以同时包含 Skill、Hook、MCP Configuration、Specialized Agent 与 Command。重要变化是：一个能力包可以同时携带知识和 Runtime Integration。
+OpenHands 插件可以同时包含技能、钩子、MCP 配置、专用智能体与命令。重要变化是：一个能力包可以同时携带知识和运行时集成。
 
 ```text
 能力包
-  ├── Skill 指令
-  ├── Tool / MCP Binding
-  ├── Lifecycle Hook
-  ├── Specialized Agent Definition
-  ├── Command
-  └── Versioned Package Metadata
+  ├── 技能指令
+  ├── 工具 / MCP 绑定
+  ├── 生命周期钩子
+  ├── 专用智能体定义
+  ├── 命令
+  └── 带版本的包元数据
 ```
 
-*图：joinwell52 Research Center 根据 OpenHands Plugin 文档整理。*
+*图：JoinWell52 研究中心根据 OpenHands 插件文档整理。*
 
-### 3. Workflow 系统正在分离能力与编排
+### 3. 工作流系统正在分离能力与编排
 
-CrewAI 将 Agent 与 Tool 同负责 Route、Persist 和 Resume 的 Flow 分开；LangGraph 将 Node Behavior 与 State、Transition 分开；AutoGen 将 Agent 与 Team Pattern、Event-driven Runtime 分开。
+CrewAI 将智能体和工具同负责路由、持久化与恢复的流程分开；LangGraph 将节点行为同状态、转换分开；AutoGen 将智能体同团队模式、事件驱动运行时分开。
 
-这让同一 Skill 或 Tool 可以在不同 Workflow 中复用，而不需要重新定义完整数字员工。
+这让同一技能或工具可以在不同工作流中复用，而不需要重新定义完整的数字员工。
 
-### 4. Message 与 Event Contract 正变得重要
+### 4. 消息与事件契约正变得重要
 
-AutoGen Application Stack 要求开发者把 Message Type 定义为 Behavior Contract，并把 Trace Log 与 Structured Event 分离。这表明 Agent Interaction 需要 Machine-readable Interface，而不仅是自由文本。
+AutoGen 应用栈要求开发者把消息类型定义为行为契约，并把追踪日志与结构化事件分离。这表明智能体交互需要机器可读接口，而不仅是自由文本。
 
 当其他组件无法判断以下内容时，一个能力在工程上仍不完整：
 
-- 接受什么 Input；
-- 承诺什么 Output；
-- 发出什么 Event；
-- 可以返回什么 Error 或 Hold；
-- 需要什么 Authority；
-- 如何进行 Versioning。
+- 接受什么输入；
+- 承诺什么输出；
+- 发出什么事件；
+- 可以返回什么错误或暂停状态；
+- 需要什么权限；
+- 如何进行版本管理。
 
-## Cross Analysis
+## 交叉分析
 
 ### 能力表达矩阵
 
 | 维度 | OpenHands | CrewAI | AutoGen | LangGraph |
 |---|---|---|---|---|
-| 主要能力单元 | Skill / Plugin / Agent / Command | Agent / Tool / Task / Crew | Agent / Team / Message Handler | Node / Runnable / Graph |
-| 激活方式 | Always-on、用户触发、关键词或 Agent 选择 | Task/Process/Flow Invocation | Runtime Message、Team Selection、Handoff | Edge、Condition、Interrupt、Command |
-| Tool 集成 | Plugin 与 MCP Configuration | Agent Tool 与 Integration Tool | Tool-capable Agent 与 Extension | Tool Node 与应用代码 |
-| State | Conversation 与 Workspace Context | Flow 与 Crew State | Agent/Team State 与 Memory Protocol | 显式 Graph State 与 Checkpoint |
-| Interface Contract | Skill Format 与 Plugin Structure | Structured Input/Output 与 Pydantic Model | Message Protocol 与 Event Type | State Schema 与 Node Transition Contract |
-| Observability | Runtime/Plugin Log 与 Hook | Trace、Callback、Monitoring | Trace Logger 与 Structured Event Logger | State History 与 Trace Integration |
-| 分发方式 | Registry / Repository Package | Project Package 与托管平台 | Python Component 与 Distributed Runtime | Library、Deployment 与 Runtime Service |
+| 主要能力单元 | 技能 / 插件 / 智能体 / 命令 | 智能体 / 工具 / 任务 / 团队 | 智能体 / 团队 / 消息处理器 | 节点 / 可运行单元 / 图 |
+| 激活方式 | 常驻、用户触发、关键词或智能体选择 | 任务 / 过程 / 流程调用 | 运行时消息、团队选择、交接 | 边、条件、中断、命令 |
+| 工具集成 | 插件与 MCP 配置 | 智能体工具与集成工具 | 可调用工具的智能体与扩展 | 工具节点与应用代码 |
+| 状态 | 对话与工作区上下文 | 流程与团队状态 | 智能体 / 团队状态与记忆协议 | 显式图状态与检查点 |
+| 接口契约 | 技能格式与插件结构 | 结构化输入输出与 Pydantic 模型 | 消息协议与事件类型 | 状态模式与节点转换契约 |
+| 可观测性 | 运行时 / 插件日志与钩子 | 追踪、回调、监控 | 追踪日志与结构化事件日志 | 状态历史与追踪集成 |
+| 分发方式 | 注册表 / 仓库包 | 项目包与托管平台 | Python 组件与分布式运行时 | 库、部署与运行时服务 |
 
 **说明：** 本表比较官方抽象，不代表功能等价或质量评测。
 
-### 建议的最小 Skill Contract
+### 建议的最小技能契约
 
 ```yaml
 skill:
@@ -122,29 +122,29 @@ skill:
   owner:
 ```
 
-这是 Research Center 的研究投影，不是冻结产品 Schema。
+这是研究中心提出的研究投影，不是已经冻结的产品数据模式。
 
-## New Architecture Judgment
+## 新架构判断
 
-1. **Skill 应是显式 Artifact。** 隐藏 Prompt 无法可靠发现、版本化、激活和审计。
-2. **能力与 Workflow 必须分开。** Skill 说明可以做什么；Workflow 决定何时以及按什么顺序使用。
-3. **Plugin 可以把知识绑定 Runtime 基础设施。** 这很强，但扩大了安全与审查边界。
-4. **Message 与 Event Contract 是多 Agent 组合的必要条件。** 自由文本不足以支持可靠编排。
-5. **激活状态必须可观察。** Installed、Loaded、Selected、Executed 与 Verified 是不同状态。
+1. **技能应是显式工件。** 隐藏提示词无法可靠发现、版本化、激活和审计。
+2. **能力与工作流必须分开。** 技能说明可以做什么；工作流决定何时以及按什么顺序使用。
+3. **插件可以把知识绑定到运行时基础设施。** 这很强，但也扩大了安全与审查边界。
+4. **消息与事件契约是多智能体组合的必要条件。** 自由文本不足以支持可靠编排。
+5. **激活状态必须可观察。** 已安装、已加载、已选择、已执行与已验证是不同状态。
 
-## Engineering Impact
+## 工程影响
 
 ### TMPA
 
-本报告不修改 TMPA 正式出版物。作为研究输入，它支持在 Capability Activation 与 Execution 中明确 Role、Authority、Message、Event、Lifecycle 和 Integrity 之间的 Reference。
+本报告不修改 TMPA 正式出版物。作为研究输入，它支持在能力激活与执行过程中，明确角色、权限、消息、事件、生命周期和完整性之间的引用关系。
 
-### Digital Employee
+### 数字员工
 
-数字员工应拥有受治理的 Capability Catalog。每个 Skill 需要 Scope、Version、Owner、Authority Requirement、Runtime Binding、Evidence Expectation 与 Evaluation History。
+数字员工应拥有受治理的能力目录。每项技能需要范围、版本、负责人、权限要求、运行时绑定、证据要求与评估历史。
 
 ### CodeFlowMu
 
-CodeFlowMu 当前已经加载 Skill 并记录 Tool Usage，但产品需要明确区分：
+CodeFlowMu 当前已经加载技能并记录工具使用情况，但产品需要明确区分：
 
 ```text
 available
@@ -155,25 +155,25 @@ available
 → verified
 ```
 
-Runtime 应记录每个 WorkOrder 实际启用了哪个 Skill Version，以及产生了哪些 Structured Event 与 Evidence。
+运行时应记录每个工作单实际启用了哪个技能版本，以及产生了哪些结构化事件与证据。上面的英文状态词是建议保留在系统中的稳定标识，面向用户时应同时提供中文解释。
 
-## Next Week Research
+## 下周研究
 
-1. 比较 AgentSkills、Claude Code Plugin、MCP Server 与 Framework-specific Tool。
-2. 为 CodeFlowMu 定义可移植 Skill Contract。
+1. 比较 AgentSkills、Claude Code 插件、MCP 服务器与框架专用工具。
+2. 为 CodeFlowMu 定义可移植的技能契约。
 3. 研究第三方能力包的签名、信任和权限模型。
-4. 测试同一 Skill 在不同 Agent Provider 下能否保持一致行为。
+4. 测试同一技能在不同智能体提供商环境下能否保持一致行为。
 
-## References
+## 参考资料
 
-1. OpenHands，**Skills overview**：https://docs.openhands.dev/overview/skills
-2. OpenHands，**Organization and User Skills**：https://docs.openhands.dev/overview/skills/org
-3. OpenHands，**Adding New Skills**：https://docs.openhands.dev/overview/skills/adding
-4. OpenHands，**Plugins**：https://docs.openhands.dev/sdk/guides/plugins
-5. CrewAI，**Documentation**：https://docs.crewai.com/
+1. OpenHands，**技能概览**：https://docs.openhands.dev/overview/skills
+2. OpenHands，**组织与用户技能**：https://docs.openhands.dev/overview/skills/org
+3. OpenHands，**添加新技能**：https://docs.openhands.dev/overview/skills/adding
+4. OpenHands，**插件**：https://docs.openhands.dev/sdk/guides/plugins
+5. CrewAI，**文档**：https://docs.crewai.com/
 6. CrewAI，**CrewAI AMP**：https://docs.crewai.com/enterprise/introduction
-7. Microsoft AutoGen，**Teams**：https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/teams.html
-8. Microsoft AutoGen，**Application Stack**：https://microsoft.github.io/autogen/stable/user-guide/core-user-guide/core-concepts/application-stack.html
-9. Microsoft AutoGen，**Memory and RAG**：https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/memory.html
-10. Microsoft AutoGen，**Logging**：https://microsoft.github.io/autogen/stable/user-guide/core-user-guide/framework/logging.html
-11. LangChain，**LangGraph overview**：https://docs.langchain.com/oss/python/langgraph/overview
+7. Microsoft AutoGen，**团队**：https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/teams.html
+8. Microsoft AutoGen，**应用栈**：https://microsoft.github.io/autogen/stable/user-guide/core-user-guide/core-concepts/application-stack.html
+9. Microsoft AutoGen，**记忆与检索增强生成**：https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/memory.html
+10. Microsoft AutoGen，**日志**：https://microsoft.github.io/autogen/stable/user-guide/core-user-guide/framework/logging.html
+11. LangChain，**LangGraph 概览**：https://docs.langchain.com/oss/python/langgraph/overview
