@@ -336,6 +336,10 @@ The model is only one part of a digital employee's brain.
 
 What makes it an employee is the surrounding work structure.
 
+![SaaW governance and runtime architecture: SaaW, CodeFlowMu, FCoP, and TMPA](/assets/covers/saaw-governance-stack.svg)
+
+*Figure 1. SaaW describes the software-delivery paradigm; CodeFlowMu provides the engineering runtime; FCoP provides the lightweight coordination protocol; TMPA provides the work-fact and governance architecture.*
+
 ---
 
 ## 10. FCoP: Filename as Protocol
@@ -565,6 +569,10 @@ Now we reach the central idea of this manifesto:
 It does not mean that an Agent freely mutates its source code, and it does not mean unrestricted AI self-replication.
 
 > **Self-Morphing means that a digital-employee runtime can use its own software-development capability to construct, validate, and deploy new digital-worker forms.**
+
+![Self-Morphing: from meta-development runtime to the digital-worker work loop](/assets/covers/saaw-self-morphing-loop.svg)
+
+*Figure 2. The governed Self-Morphing loop brings development, validation, authorization, deployment, work execution, and work evidence into one recoverable and traceable lifecycle.*
 
 ```text
 Meta-Dev Runtime
