@@ -127,6 +127,8 @@ The real change is not that AI simply became smarter.
 
 An Agent that can call tools is not automatically ready for production.
 
+> **“Traditional SaaS and multi-agent systems are, at their core, an exquisitely engineered illusion: they shackle business facts to central database state machines and filesystem topology. The moment a process crashes or a directory layout shifts, memory and permissions die with it.** **A real SaaW never lives on the charity of a central server. State is not encoded by changes in physical topology; facts remain forever independent of runtime instances.”**
+
 Modern multi-agent systems can generate detailed Execution Traces: who called which tool, which function ran, what result was produced, and which reasoning steps occurred.
 
 Those traces matter.
@@ -161,15 +163,7 @@ This is TMPA's formal answer:
 
 **This section and Sections 5–7 expand these four rules in order: this section covers durable messages and state in text; Section 5 covers local Single-Writer serial streams; Section 6 covers asynchronous parallel collaboration across streams; Section 7 covers read-side reconstruction and the Issue Set.**
 
-TMPA being **SME-first** is not a statement that it is limited to SMEs. It is a stronger architectural constraint: **governance semantics should not be intrinsically locked to one model session, one process, one central state machine, or one physical storage topology.**
-
-A common weakness in traditional Agent systems is not the absence of state, but excessive coupling between trustworthy state and runtime instances. State may be trapped inside model context, process memory, database internals, brokers, or ever-growing conversations. When an instance disappears, an external center is then required to explain what the work currently means.
-
-TMPA rejects dependence on that accidental runtime continuity. Work facts must persist independently of a particular runtime instance and remain reconstructable from the available evidence.
-
-This requires a distinction between **governance semantics** and **physical projection**. TMPA does not require lifecycle meaning to be universally encoded by directory location or any single storage topology. A filesystem profile such as FCoP may project lifecycle state into directories, but that is a profile-level representation rather than a universal physical binding in TMPA.
-
-> **Text carries facts; topology carries projection. Facts must remain reconstructable across changes in runtime instance or physical layout.**
+> **“When heterogeneous Agents and humans wrestle with long-running work inside the same codebase, the most absurd choice is to entrust trustworthy state to the volatile memory of a model.** **TMPA has an iron law: text is fact. The physical topology of files and directories exists only to provide a compliant projection; immutable text objects are the only hard currency that survives across cycles.”**
 
 Important work facts are projected into plain, portable text.
 
@@ -213,11 +207,7 @@ REVIEW
 DECISION
 ```
 
-Every action has its own author and reference relationships. Whoever writes an `Acceptance`, appends a `Report`, or publishes a `Correction` enters an attributable chain through authorship, references, and local order.
-
-**Responsibility is not calculated from one final state field; it grows out of the Single-Writer append stream.**
-
-Single-Writer does not mean that plain text is magically tamper-proof. It means one actor must not silently rewrite facts already published by another actor. Corrections appear as new governed objects such as `Correction`, `supersedes`, or equivalent profile mechanisms; cryptographic tamper resistance still requires integrity, signatures, and trusted identity mechanisms.
+> **“The cancer of enterprise collaboration is the chaos of ‘anyone can change state.’** **In TMPA Single-Writer Serial Streams, every actor—human or Agent—is an absolutely isolated Single Writer. You may append only your own facts; you do not get to contaminate someone else’s history.** **Responsibility is not ‘calculated’ by database transaction locks; it ‘grows’ out of the tamper-proof reference chain of Single-Writer streams.”**
 
 This differs in an important way from many traditional workflow engines.
 
@@ -252,13 +242,7 @@ TMPA therefore emphasizes:
 
 > **Asynchronous Collaboration**
 
-Single-Writer Streams can advance independently. Each writer maintains only its own local order instead of competing to mutate one global state merely to establish “who came first.”
-
-> **An asynchronous world does not need a fabricated total order: writers preserve local serial order; readers reconstruct the partial order.**
-
-The Reader dynamically reconstructs relationships from Reference, Causality, Transition, Responsibility, and Governance Rules. The result is not a central scheduler flattening everything into one log, but a **Partial-Order Graph**.
-
-This is also why the architecture can live directly in local repositories and file-based coordination practice: different Agents, hosts, or SDK integrations can emit work facts asynchronously without sharing one mutable memory region, while the Reader reconstructs an interpretable work relationship from the evidence that exists.
+> **“Trying to fabricate a single global timeline in an asynchronous multi-agent world is architectural arrogance.** **Writers do nothing but lock-free appends; the Partial-Order Graph is rebuilt dynamically on the read side. Without the blind commands of a central scheduler, multi-agent work grows wild and staggered through local text streams. That is the brutal truth of high-concurrency digital labor.”**
 
 ```text
             ┌── DEV REPORT ──┐
