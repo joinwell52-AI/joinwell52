@@ -1,9 +1,11 @@
-name: Apply SaaW bilingual flow labels
+name: Apply SaaW Chinese Cleanup
 
 on:
   push:
-    branches: [saaw-bilingual-flow-labels]
+    branches:
+      - saaw-bilingual-flow-labels
     paths:
+      - 'scripts/finalize_saaw_chinese_examples.py'
       - '.github/workflows/saaw-bilingual-flow-labels.yml'
 
 permissions:
@@ -17,63 +19,15 @@ jobs:
         with:
           ref: saaw-bilingual-flow-labels
           fetch-depth: 0
-      - name: Update Chinese flow labels
+      - name: Apply article cleanup
+        run: python3 scripts/finalize_saaw_chinese_examples.py
+      - name: Commit final article only
         shell: bash
         run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          p = Path('docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md')
-          s = p.read_text(encoding='utf-8')
-          old = '''```text
-Meta-Dev Runtime
-        │
-        ▼
-Analyze Existing Work
-        │
-        ▼
-Develop Worker Package
-        │
-        ▼
-Validate
-        │
-        ▼
-Human / Governance Decision
-        │
-        ▼
-Deploy
-        │
-        ▼
-Domain Worker Runtime
-```'''
-          new = '''```text
-Meta-Dev Runtime              元开发运行体
-        │
-        ▼
-Analyze Existing Work         分析现有工作
-        │
-        ▼
-Develop Worker Package        开发数字员工包
-        │
-        ▼
-Validate                      验证
-        │
-        ▼
-Human / Governance Decision   人类 / 治理决策
-        │
-        ▼
-Deploy                        部署
-        │
-        ▼
-Domain Worker Runtime         领域数字员工运行体
-```'''
-          if old not in s:
-              raise SystemExit('target flow block not found')
-          s = s.replace(old, new, 1)
-          p.write_text(s, encoding='utf-8')
-          PY
-          rm .github/workflows/saaw-bilingual-flow-labels.yml
-          git config user.name 'joinwell52 Research Runtime'
-          git config user.email 'actions@users.noreply.github.com'
+          rm -f scripts/finalize_saaw_chinese_examples.py
+          rm -f .github/workflows/saaw-bilingual-flow-labels.yml
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
           git add -A
-          git commit -m 'docs: add Chinese labels to Self-Morphing flow'
+          git commit -m "docs: finalize SaaW Chinese workday and bilingual flows"
           git push origin HEAD:saaw-bilingual-flow-labels
