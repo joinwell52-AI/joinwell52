@@ -1,0 +1,60 @@
+name: SaaW Final Proofread
+
+on:
+  push:
+    branches: [saaw-final-proofread]
+    paths:
+      - '.github/workflows/saaw-final-proofread.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  proofread:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: saaw-final-proofread
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Apply English parity corrections
+        run: python3 scripts/proofread_saaw_en.py
+      - name: Verify parity invariants
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md')
+          s=p.read_text(encoding='utf-8')
+          assert sum(1 for line in s.splitlines() if line.startswith('## ') and line[3:4].isdigit()) == 23
+          required = [
+            'The more software an enterprise owns, the more software its employees have to operate.',
+            'status = pending',
+            'A complete Digital Employee Package may include at least:',
+            'That is **Human-in-the-Loop Governance** in the real sense.',
+            'Self-Morphing is more credible precisely because',
+            '/assets/covers/01-saaw-manifesto-cover.jpeg',
+            '/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png',
+            '/assets/covers/03-saaw-self-morphing-loop-fixed.png'
+          ]
+          for x in required:
+              assert x in s, x
+          print('English parity proofread invariants passed.')
+          PY
+      - name: Build VitePress
+        run: npm ci && npm run docs:build
+      - name: Commit article only
+        shell: bash
+        run: |
+          git checkout -- docs/.vitepress/generated 2>/dev/null || true
+          rm -f scripts/proofread_saaw_en.py .github/workflows/saaw-final-proofread.yml
+          git config user.name 'joinwell52 Research Runtime'
+          git config user.email 'actions@users.noreply.github.com'
+          git add docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+          git add -u scripts/proofread_saaw_en.py .github/workflows/saaw-final-proofread.yml || true
+          git commit -m 'docs: complete SaaW English paragraph parity proofread'
+          git push origin HEAD:saaw-final-proofread
