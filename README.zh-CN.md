@@ -9,6 +9,11 @@
 [![实施案例 I1.0](https://img.shields.io/badge/CodeFlowMu-I1.0_14%2F14_PASS-15803d?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/publications/implementation-case-i1.0)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21888488-1682D4?style=for-the-badge)](https://doi.org/10.5281/zenodo.21888488)
 
+## 推荐文章
+
+- **中文 · CSDN：**[一个 Agent 说“完成了”，团队为什么没放行？](https://blog.csdn.net/m0_51507544/article/details/163676669)
+- **English · DEV：**[One Agent Said “Done.” Why Didn’t the Team Release It?](https://dev.to/joinwell52/one-agent-said-done-why-didnt-the-team-release-it-518j)
+
 TMPA 是一套厂商中立的架构与规范，用于治理由异构 AI Agent 与人类共同承担的长周期工作。它把持久工作事实从模型的易失性记忆中剥离出来，以可检查对象保存事实，在异步执行中维持责任边界，并依据现有证据重构生命周期、权限、冲突与审计状态。
 
 本仓库是 TMPA 的公开研究、规范、符合性测试与证据基座。**CodeFlowMu** 是 TMPA 的主要工程实证。数字研究员及其发布的文章属于衍生研究基础设施与研究讨论，既不是本仓库的核心定位，也不是 TMPA 的规范性来源。
