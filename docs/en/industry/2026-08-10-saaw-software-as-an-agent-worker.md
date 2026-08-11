@@ -3,7 +3,7 @@ title: "SaaW: Software as an Agent Worker — From SaaS to SaaW"
 date: "2026-08-10"
 column: "industry-architecture"
 category: "manifesto"
-version: "V1.1"
+version: "V1.2"
 summary: "A 23-section manifesto deriving SaaW from governance, TMPA, FCoP, Agent PC, CodeFlowMu, and Self-Morphing, anchored in Research Report Production Engine V1.3 and explicitly separating validated capabilities from research frontiers."
 item_id: "MANIFESTO-20260810-SAAW"
 lifecycle: "Published"
@@ -11,8 +11,8 @@ cover: "/assets/covers/01-saaw-manifesto-cover-agent-worker.png"
 visualization: "/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png"
 visualization_2: "/assets/covers/03-saaw-self-morphing-loop-fixed-v2.png"
 evidence_status: "Architecture-grounded + production-engine reference implementation"
-citation_status: "Internal publication mapping completed"
-editing_status: "Published V1.1 — full 23-section edition"
+citation_status: "TMPA V1.0 DOI and publication record linked"
+editing_status: "Published V1.2 — TMPA V1.0 citation edition"
 publication_authorized: true
 outline: deep
 ---
@@ -20,7 +20,7 @@ outline: deep
 # SaaW: Software as an Agent Worker
 ## From SaaS to SaaW: When the Codebase Begins to “Develop Itself”
 
-**A Digital Employee Manifesto Grounded in TMPA Governance and CodeFlowMu Engineering · V1.1**
+**A Digital Employee Manifesto Grounded in TMPA Governance and CodeFlowMu Engineering · V1.2**
 
 [中文版](/zh/industry/2026-08-10-saaw-software-as-an-agent-worker)
 
@@ -1047,10 +1047,20 @@ Now, it is beginning to work.
 
 ---
 
-> **Author / Publisher:** joinwell52 Research Center / CodeFlowMu Core Team  
-> **Architecture and Theory:** TMPA Architecture Paper — **A1.0**  
-> **Normative Standard:** TMPA Core Specification — **S1.0**  
-> **Implementation Case:** TMPA–FCoP–CodeFlowMu Implementation Case — **I1.0 (CodeFlowMu v1.8.0 · S1.0 14/14)**  
+> **Author / Publisher:** joinwell52 Research Center / CodeFlowMu Core Team
+>
+> **Architecture and Theory:** TMPA Architecture Paper — **A1.0**
+>
+> **Normative Standard:** TMPA Core Specification — **S1.0**
+>
+> **Implementation Case (author-run engineering evidence):** TMPA–FCoP–CodeFlowMu Implementation Case — **I1.0 (CodeFlowMu v1.8.0 · S1.0 C01–C14 14/14 PASS)**
+>
+> **Formal Publication:** TMPA V1.0 Publication System, 2026-08-11
+>
+> **DOI:** [10.5281/zenodo.21888488](https://doi.org/10.5281/zenodo.21888488)
+>
+> **Release Record:** [TMPA V1.0 Formal Release Record](/en/publications/tmpa-v1.0-release-record)
+>
 > **Core Engineering Vehicle:** CodeFlowMu / FCoP
 
-> **V1.1 scope note:** This is a technical manifesto for AI-native software, multi-agent engineering, and enterprise digital employees. SaaW, Self-Morphing, and Digital Employee Runtime combine current architecture and engineering practice with active research directions. Capability boundaries are defined by the corresponding public specifications, tests, and implementation evidence.
+> **V1.2 scope note:** This is a technical manifesto for AI-native software, multi-agent engineering, and enterprise digital employees. SaaW, Self-Morphing, and Digital Employee Runtime combine current architecture and engineering practice with active research directions. Capability boundaries are defined by the corresponding public specifications, tests, and implementation evidence.
