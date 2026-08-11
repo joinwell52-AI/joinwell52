@@ -1,0 +1,98 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "publication",
+  "family": "daily",
+  "runtimeDate": "2026-08-11",
+  "status": "Completed",
+  "input": {
+    "scheduler": "research/runtime/SCHEDULER.json",
+    "dailyRuntime": "research/runtime/records/daily/2026/08/2026-08-11-daily-runtime.json",
+    "productionResult": "research/runtime/results/2026/08/2026-08-11-production-result.json",
+    "candidateBatch": "research/runtime/candidates/2026/08/2026-08-11-candidates.json",
+    "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-11/publication-200205.json",
+    "workerClaim": "research/runtime/worker-claims/2026/08/2026-08-11/publication-200659.json",
+    "controlPlane": {
+      "executionSlotOpenedAt": "2026-08-11T20:05:17+08:00",
+      "startStateCommit": "36b150ad4de8535bb72057428ec6e0323a2e2626",
+      "globalOrderVerified": true,
+      "earlierDueTasksClosed": [
+        "discovery",
+        "queue",
+        "reading",
+        "analysis",
+        "production"
+      ]
+    }
+  },
+  "workResult": {
+    "summary": "Verified the durable 2026-08-11 Publication wake receipt, ordered execution slot and Worker Claimed evidence before release work. Revalidated the completed same-day Production result and all three bilingual Publication Candidate sets; each candidate retained Completed evidence/editing status and PASS cover/figure gates. Released exactly three items as six bilingual public articles, three editorial SVG covers and three explanatory SVG figures, plus the same-day Release Manifest. No new research, substantive rewriting or evidence repair was performed. Deploy Research Center Pages run 31490700610 completed successfully: VitePress build, generated-site verification including Runtime ordering/freshness and Publication Visibility, and gh-pages publication all passed for release state commit 5b52a03ac8a28fa3feee08218737d5ea3a6e60e7.",
+    "summary_zh": "发布工作前已核验 2026-08-11 当日 Publication Wake Receipt、顺序执行槽与 Worker Claimed 证据。随后重新核验当日已完成的 Production Result 与三组双语 Publication Candidate；每个候选均保持 Evidence / Editing Completed，并通过 Cover / Figure Gate。仅发布 3 个项目，共 6 篇双语公开文章、3 张编辑性 SVG 题图、3 张解释性 SVG 文中图以及同日 Release Manifest。未开展新研究、实质性改写或证据修复。Deploy Research Center Pages Run 31490700610 已成功完成：VitePress Build、包含 Runtime 顺序/新鲜度与 Publication Visibility 的生成站点核验，以及 gh-pages 发布均针对发布状态 Commit 5b52a03ac8a28fa3feee08218737d5ea3a6e60e7 通过。",
+    "releaseContentCommit": "d9d5bd66477ea2b758064438a359326e3a3cf37c",
+    "releaseCommit": "5b52a03ac8a28fa3feee08218737d5ea3a6e60e7",
+    "releaseCommitVerified": true,
+    "pagesWorkflowRun": 31490700610,
+    "pagesBuildVerified": true,
+    "releasedItems": [
+      "Q-20260811-01",
+      "Q-20260811-02",
+      "Q-20260811-03"
+    ],
+    "boundary": {
+      "newResearch": false,
+      "substantiveRewriting": false,
+      "evidenceRepair": false
+    }
+  },
+  "output": {
+    "type": "Released Daily Research",
+    "outcome": "Released",
+    "releaseManifest": "research/runtime/releases/2026-08-11-publication.json",
+    "releaseCommit": "5b52a03ac8a28fa3feee08218737d5ea3a6e60e7",
+    "releasedItems": 3,
+    "bilingualArticleFiles": 6,
+    "coverAssets": 3,
+    "explanatoryFigureAssets": 3
+  },
+  "next": {
+    "instruction": "Daily Publication is complete for 2026-08-11. No Weekly, Academic, or Program Runtime is applicable after Publication on Tuesday; after durable Publication completion verification the Process Manager should stop unless another formally applicable overdue task exists."
+  },
+  "metrics": [
+    { "name": "eligible_publication_candidates", "value": 3 },
+    { "name": "released_items", "value": 3 },
+    { "name": "bilingual_article_files", "value": 6 },
+    { "name": "cover_assets", "value": 3 },
+    { "name": "explanatory_figure_assets", "value": 3 },
+    { "name": "publication_start_events", "value": 1 },
+    { "name": "wake_receipts_verified", "value": 1 },
+    { "name": "worker_claims_verified", "value": 1 },
+    { "name": "new_research_actions", "value": 0 },
+    { "name": "substantive_rewrites", "value": 0 },
+    { "name": "evidence_repairs", "value": 0 }
+  ],
+  "evidence": [
+    "research/runtime/wakes/2026/08/2026-08-11/publication-200205.json",
+    "research/runtime/worker-claims/2026/08/2026-08-11/publication-200659.json",
+    "research/runtime/results/2026/08/2026-08-11-production-result.json",
+    "research/runtime/candidates/2026/08/2026-08-11-candidates.json",
+    "research/runtime/releases/2026-08-11-publication.json",
+    "https://github.com/joinwell52-AI/joinwell52/commit/d9d5bd66477ea2b758064438a359326e3a3cf37c",
+    "https://github.com/joinwell52-AI/joinwell52/commit/5b52a03ac8a28fa3feee08218737d5ea3a6e60e7",
+    "https://github.com/joinwell52-AI/joinwell52/actions/runs/31490700610"
+  ],
+  "artifacts": [
+    "docs/zh/digital-employee/2026-08-11-execution-authority-ordered-work.md",
+    "docs/en/digital-employee/2026-08-11-execution-authority-ordered-work.md",
+    "docs/zh/industry/2026-08-11-governed-connector-action-handoff.md",
+    "docs/en/industry/2026-08-11-governed-connector-action-handoff.md",
+    "docs/zh/engineering/2026-08-11-durable-event-identity-terminal-evidence.md",
+    "docs/en/engineering/2026-08-11-durable-event-identity-terminal-evidence.md",
+    "docs/public/assets/covers/daily-2026-08-11-execution-authority-ordered-work.svg",
+    "docs/public/assets/covers/daily-2026-08-11-execution-authority-ordered-work-figure.svg",
+    "docs/public/assets/covers/daily-2026-08-11-governed-connector-action-handoff.svg",
+    "docs/public/assets/covers/daily-2026-08-11-governed-connector-action-handoff-figure.svg",
+    "docs/public/assets/covers/daily-2026-08-11-durable-event-identity-terminal-evidence.svg",
+    "docs/public/assets/covers/daily-2026-08-11-durable-event-identity-terminal-evidence-figure.svg",
+    "research/runtime/releases/2026-08-11-publication.json",
+    "research/runtime/results/2026/08/2026-08-11-publication-result.json"
+  ]
+}
