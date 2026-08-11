@@ -1,0 +1,52 @@
+name: SaaW FCoP Package Correction
+on:
+  push:
+    branches: [saaw-section4-roadmap-wording]
+    paths: [.github/workflows/saaw-fcop-package-correction.yml]
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: saaw-section4-roadmap-wording
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Apply bilingual FCoP package correction
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          files = [
+              Path('docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md'),
+              Path('docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md'),
+          ]
+          zh = files[0].read_text(encoding='utf-8')
+          en = files[1].read_text(encoding='utf-8')
+          zh = zh.replace('更重要的是，**FCoP 协议、适配层、参考实现和运行环境不是同一个东西。** A0.9 中的运行栈可以直接写成：', '更重要的是，**FCoP 协议、工具包、适配职责、参考实现和运行环境不是同一个东西。** 结合 A0.9 的分层语义与当前实现，运行栈可以写成：')
+          zh = zh.replace('主机适配层 / Host Adapter Layer\nfcop-mcp / fcop-cli / host bridges', '主机适配层 / Host Adapter Layer\nfcop-mcp / host bridges')
+          zh = zh.replace('- `fcop` Python Package 是 **FCoP 的参考实现**，不是 FCoP 协议本身；\n- `fcop-mcp` 与 `fcop-cli` 位于**主机适配层**，负责把协议能力暴露给实际宿主；', '- `fcop` 是发布在 PyPI 上的 Python Package，也是 **FCoP 的参考实现**；CLI 能力由 `fcop` 提供，不存在独立的 `fcop-cli` Package；\n- `fcop-mcp` 是发布在 PyPI 上的 FCoP MCP 工具包；在运行栈中承担**主机适配职责**，把 FCoP 能力暴露给实际宿主；')
+          en = en.replace('Most importantly, **the FCoP protocol, host adapters, reference implementation, and runtime environment are not the same thing.** The A0.9 operational stack can be represented directly as:', 'Most importantly, **the FCoP protocol, packages, host-adapter responsibilities, reference implementation, and runtime environment are not the same thing.** Combining A0.9’s layering semantics with the current implementation, the operational stack can be represented as:')
+          en = en.replace('Host Adapter Layer\nfcop-mcp / fcop-cli / host bridges', 'Host Adapter Layer\nfcop-mcp / host bridges')
+          en = en.replace('- the `fcop` Python package is the **reference implementation of FCoP**, not the FCoP protocol itself;\n- `fcop-mcp` and `fcop-cli` sit in the **Host Adapter Layer**, exposing protocol capabilities to actual hosts;', '- `fcop` is a Python package distributed on PyPI and the **reference implementation of FCoP**; CLI functionality is provided by `fcop`, and there is no separate `fcop-cli` package;\n- `fcop-mcp` is an FCoP MCP tool package distributed on PyPI; in the operational stack it performs **host-adapter responsibilities**, exposing FCoP capabilities to actual hosts;')
+          assert 'fcop-cli' not in zh, 'fcop-cli remains in Chinese SaaW article'
+          assert 'fcop-cli' not in en, 'fcop-cli remains in English SaaW article'
+          assert 'CLI 能力由 `fcop` 提供' in zh
+          assert 'there is no separate `fcop-cli` package' in en
+          files[0].write_text(zh, encoding='utf-8')
+          files[1].write_text(en, encoding='utf-8')
+          PY
+      - name: Build VitePress
+        run: |
+          npm ci
+          npm run docs:build
+      - name: Commit article-only correction
+        run: |
+          git config user.name 'joinwell52'
+          git config user.email 'joinwell52@gmail.com'
+          git add docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+          git rm .github/workflows/saaw-fcop-package-correction.yml
+          git commit -m 'correct FCoP package naming in SaaW article'
+          git push origin HEAD:saaw-section4-roadmap-wording
