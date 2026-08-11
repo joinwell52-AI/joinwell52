@@ -8,16 +8,66 @@
   "date": "2026-08-11",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
-    "discovery": "Running",
+    "discovery": "Completed",
     "queue": "Waiting",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
   },
-  "results": {},
+  "results": {
+    "discovery": {
+      "schema": "runtime-shift-result/v2",
+      "task": "discovery",
+      "family": "daily",
+      "runtimeDate": "2026-08-11",
+      "status": "Completed",
+      "input": "The verified 2026-08-11 Discovery wake receipt; current main-branch Research Runtime Scheduler V3.0; Research Intelligence Registry v1; the three formal Discovery profiles; current authoritative platform channels, nine P0 engineering repositories, and nine P0 published-research sources. No prior-day artifact was consumed as a current-day input.",
+      "input_zh": "已核验的 2026-08-11 Discovery Wake Receipt、当前 main 分支 Research Runtime Scheduler V3.0、Research Intelligence Registry v1、三条正式 Discovery Profile、当前权威平台渠道、9 个 P0 工程仓库与 9 个 P0 研究来源。本班次未把任何前一日产物作为当日输入。",
+      "workResult": "After durable Wake Receipt, Execution Slot Opened, and Worker Claimed verification, all three formal Discovery profiles were executed. AI Platform coverage resolved all 33 due channels as 30 checked, 1 authentication-required, and 2 retrieval failures, producing 2 platform signals. GitHub Engineering checked all 9 P0 daily repositories incrementally and normalized 7 material maintainer changes. Published Research resolved all 9 due sources as 8 checked and 1 retrieval failure; no newly observed research object met both the registered agent-runtime scope and current freshness threshold. Current-day signals were normalized and deduplicated within this run; Queue triage was not performed.",
+      "workResult_zh": "在 Wake Receipt、Execution Slot Opened 与 Worker Claimed 均完成持久化核验后，执行了全部三条正式 Discovery Profile。AI Platform 的 33 个应查渠道全部解析为 30 个已检查、1 个需认证、2 个抓取失败，生成 2 个平台信号；GitHub Engineering 对 9 个 P0 日更仓库全部完成增量检查，并规范化出 7 个重要维护者变更；Published Research 的 9 个应查来源解析为 8 个已检查、1 个抓取失败，本次没有新研究对象同时满足已注册 Agent Runtime 范围与当前新鲜度阈值。当日信号已在本次运行内规范化与去重，未执行 Queue 筛选。",
+      "output": "A 2026-08-11 Research Intelligence Signal Pool with 9 unselected signals: 2 AI-platform, 7 GitHub-engineering, and 0 published-research. Column decisions remain Waiting for the independent Queue stage.",
+      "output_zh": "形成 2026-08-11 Research Intelligence Signal Pool，共 9 个未选题信号：AI Platform 2 个、GitHub Engineering 7 个、Published Research 0 个；三个栏目 Decision 保持 Waiting，等待独立 Queue 阶段。",
+      "next": "At 10:00 or any later wake, the Process Manager may grant Queue execution authority only if Discovery remains durably Completed and no earlier due unfinished task exists. Queue may triage only this run-date Signal Pool.",
+      "next_zh": "10:00 或之后任何唤醒时，只有当 Discovery 仍为持久化 Completed 且不存在更早到期未收口任务，Process Manager 才可授予 Queue 执行权；Queue 只能筛选本运行日 Signal Pool。",
+      "metrics": [
+        { "label": "Wake receipts verified", "label_zh": "已核验 Wake Receipt", "value": 1 },
+        { "label": "Discovery start events", "label_zh": "Discovery 启动事件", "value": 1 },
+        { "label": "Worker claims", "label_zh": "Worker Claimed", "value": 1 },
+        { "label": "AI platform due / checked / inaccessible / failed", "label_zh": "AI 平台应查 / 已查 / 不可访问 / 失败", "value": "33 / 30 / 1 / 2" },
+        { "label": "GitHub P0 repositories checked", "label_zh": "GitHub P0 已检查仓库", "value": "9 / 9" },
+        { "label": "Research sources due / checked / failed", "label_zh": "研究来源应查 / 已查 / 失败", "value": "9 / 8 / 1" },
+        { "label": "Normalized signals", "label_zh": "规范化信号", "value": 9 },
+        { "label": "Selected topics", "label_zh": "已选主题", "value": 0 }
+      ],
+      "evidence": [
+        { "label": "Discovery Wake Receipt", "label_zh": "Discovery 唤醒回执", "path": "research/runtime/wakes/2026/08/2026-08-11/discovery-090301.json" },
+        { "label": "V5 Scheduler", "label_zh": "V5 调度器", "path": "research/runtime/SCHEDULER.json" },
+        { "label": "Research Intelligence Registry", "label_zh": "Research Intelligence 注册表", "path": "research/intelligence/REGISTRY.json" },
+        { "label": "AI Platform profile", "label_zh": "AI Platform Profile", "path": "research/skills/profiles/01p-ai-platform-change-intelligence.md" },
+        { "label": "GitHub Engineering profile", "label_zh": "GitHub Engineering Profile", "path": "research/skills/profiles/01g-github-engineering-intelligence.md" },
+        { "label": "Published Research profile", "label_zh": "Published Research Profile", "path": "research/skills/profiles/01r-published-research-intelligence.md" },
+        { "label": "OpenAI ChatGPT release notes", "label_zh": "OpenAI ChatGPT 发布说明", "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes" },
+        { "label": "GitHub Copilot web changelog", "label_zh": "GitHub Copilot Web 变更日志", "url": "https://github.blog/changelog/2026-08-10-copilot-on-web-expands-conversation-controls/" },
+        { "label": "Codex notification completion change", "label_zh": "Codex 通知完成语义变更", "commit": "9be95745fb84f540582e6ef4144e7edf5bcb7959" },
+        { "label": "Google ADK Agent Analytics change", "label_zh": "Google ADK Agent Analytics 变更", "commit": "04b8b72709f6d17b503cf674c8ac1b89798f655e" },
+        { "label": "Google ADK MCP config security change", "label_zh": "Google ADK MCP 配置安全变更", "commit": "a61d8ecf294515016a42080cc833fd8f73915695" },
+        { "label": "Google ADK sandbox timeout change", "label_zh": "Google ADK Sandbox 超时变更", "commit": "a39e71aace8490772b9fb554713ba964f7225adf" },
+        { "label": "Gemini CLI MCP OAuth refresh change", "label_zh": "Gemini CLI MCP OAuth 刷新变更", "commit": "eef19f25c325f35634bdf5fdea5f245414ed4390" },
+        { "label": "Claude Code 2.1.227 changelog commit", "label_zh": "Claude Code 2.1.227 变更日志提交", "commit": "54cc51a08a5d3900e5abd02ad75a2ce46f3f008c" },
+        { "label": "GitHub Copilot CLI 1.0.79 changelog commit", "label_zh": "GitHub Copilot CLI 1.0.79 变更日志提交", "commit": "ef627e1baad937d3c8da45f8a5541c6fc3c97b6a" }
+      ],
+      "artifacts": [
+        { "label": "Research Intelligence Signal Pool", "label_zh": "Research Intelligence Signal Pool", "path": "research/intelligence/runs/2026/08/2026-08-11-intelligence.json" },
+        { "label": "Discovery result", "label_zh": "Discovery 结果", "path": "research/runtime/results/2026/08/2026-08-11-discovery-result.json" },
+        { "label": "Daily Runtime Record", "label_zh": "Daily Runtime Record", "path": "research/runtime/records/daily/2026/08/2026-08-11-daily-runtime.json" }
+      ],
+      "startedAt": "2026-08-11T09:03:45+08:00",
+      "completedAt": "2026-08-11T09:09:45+08:00"
+    }
+  },
   "timeline": [
     {
       "time": "2026-08-11T09:03:45+08:00",
@@ -32,12 +82,19 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT scheduled automation claimed the Discovery execution slot after durable wake-receipt and slot verification."
+    },
+    {
+      "time": "2026-08-11T09:10:15+08:00",
+      "task": "discovery",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Discovery completed after all three configured profiles resolved due-source coverage and the 2026-08-11 Signal Pool was durably persisted."
     }
   ],
   "metrics": [],
   "evidence": [],
   "artifacts": [],
   "githubCommit": "pending",
-  "commitVerify": "Waiting",
-  "updatedAt": "2026-08-11T09:04:11+08:00"
+  "commitVerify": "Running",
+  "updatedAt": "2026-08-11T09:10:15+08:00"
 }
