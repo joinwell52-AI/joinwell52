@@ -408,7 +408,7 @@ FCoP 治理的是 **Agent 的协作行为**：任务如何交接、结果如何�
 
 从 TMPA 的实现关系看，FCoP 是一种**项目可见的文件系统 Profile**。它不强制要求协调数据库、消息 Broker 或企业级控制平面，但也不会单独提供经过验证的企业身份、强角色隔离、防篡改存储或拜占庭容错。这与 TMPA 的 **SME-first，而非 SME-only** 边界一致：更大规模的部署可以增加数据库、对象存储、事件服务、身份系统和控制平面，而不改变协议所承载的治理语义。
 
-更重要的是，**FCoP 协议、适配层、参考实现和运行环境不是同一个东西。** A0.9 中的运行栈可以直接写成：
+更重要的是，**FCoP 协议、工具包、适配职责、参考实现和运行环境不是同一个东西。** 结合 A0.9 的分层语义与当前实现，运行栈可以写成：
 
 ```text
 应用层 / Application Runtime
@@ -416,7 +416,7 @@ CodeFlowMu / Cursor / Claude Desktop
                 │
                 ▼
 主机适配层 / Host Adapter Layer
-fcop-mcp / fcop-cli / host bridges
+fcop-mcp / host bridges
                 │
                 ▼
 ★ FCoP 协议层 / FCoP Protocol Layer ★
@@ -434,8 +434,8 @@ LLM APIs / MCP tools / 文件系统 / 进程管理 / 操作系统
 
 因此：
 
-- `fcop` Python Package 是 **FCoP 的参考实现**，不是 FCoP 协议本身；
-- `fcop-mcp` 与 `fcop-cli` 位于**主机适配层**，负责把协议能力暴露给实际宿主；
+- `fcop` 是发布在 PyPI 上的 Python Package，也是 **FCoP 的参考实现**；CLI 能力由 `fcop` 提供；
+- `fcop-mcp` 是发布在 PyPI 上的 FCoP MCP 工具包；在运行栈中承担**主机适配职责**，把 FCoP 能力暴露给实际宿主；
 - **CodeFlowMu 是使用 FCoP 作为协作协议的应用 / 运行系统。**
 - TMPA 不属于这个运行栈中的某一层，它提供的是这套栈试图实现的上位治理语义与架构指导。
 
