@@ -38,7 +38,7 @@ jobs:
                   raise SystemExit('ZH section 4 anchor missing')
               zh = zh.replace(zh_anchor, zh_anchor + '\n\n' + zh_release, 1)
 
-          zh_old = 'A0.9 中的运行栈可以直接写成：'
+          zh_old = '结合 A0.9 的分层语义与当前实现，运行栈可以写成：'
           zh_new = '随着 TMPA V1.0 正式发布，这套运行关系已经冻结到 **A1.0 / S1.0 / I1.0** 稳定发布线。运行栈可以直接写成：'
           if zh_old not in zh:
               raise SystemExit('ZH A0.9 stack wording missing')
@@ -51,7 +51,7 @@ jobs:
                   raise SystemExit('EN section 4 anchor missing')
               en = en.replace(en_anchor, en_anchor + '\n\n' + en_release, 1)
 
-          en_old = 'The A0.9 operational stack can be represented directly as:'
+          en_old = 'Combining A0.9’s layering semantics with the current implementation, the operational stack can be represented as:'
           en_new = 'With TMPA V1.0 formally released, this operating relationship is now frozen in the stable **A1.0 / S1.0 / I1.0** release line. The operational stack can be represented directly as:'
           if en_old not in en:
               raise SystemExit('EN A0.9 stack wording missing')
@@ -68,7 +68,8 @@ jobs:
           grep -F '14/14' docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md
           grep -F 'TMPA has entered the stable V1.0 release line' docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md
           grep -F 'A1.0 / S1.0 / I1.0' docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md
-          ! grep -F 'A0.9 operational stack' docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+          ! grep -F 'A0.9' docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+          ! grep -F 'A0.9' docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md
       - name: Build VitePress
         run: npm ci && npm run docs:build
       - name: Commit article-only update
