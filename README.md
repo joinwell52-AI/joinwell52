@@ -1,199 +1,147 @@
-# Digital Employee Works
+# TMPA — Textual Multi-Agent Process Architecture
 
-> **A governed, downloadable production line for verifiable Digital Employee work**
+> **A governance architecture for production-grade multi-agent work**
 
 **English** · [简体中文](./README.zh-CN.md)
 
-[![Digital Employee Works](https://img.shields.io/badge/Digital_Employee-Works-1f6feb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/)
-[![Runtime](https://img.shields.io/badge/Runtime_Center-V5.0-7c6cff?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/runtime/)
-[![Scheduler](https://img.shields.io/badge/Runtime_Scheduler-V3.0-2563eb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/runtime/v5)
-[![Digital Researcher](https://img.shields.io/badge/Research_Report_Production_Engine-V1.3-6d5dfc?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/publications/research-report-production-engine-v1.3)
-[![Intelligence](https://img.shields.io/badge/Research_Intelligence-V1.0-16a34a?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/runtime/research-intelligence)
+[![Architecture A1.0](https://img.shields.io/badge/TMPA-Architecture_A1.0-2563eb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-architecture-paper-a1.0)
+[![Core S1.0](https://img.shields.io/badge/TMPA-Core_S1.0-7c3aed?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-core-specification-s1.0)
+[![Implementation I1.0](https://img.shields.io/badge/CodeFlowMu-I1.0_14%2F14_PASS-15803d?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/publications/implementation-case-i1.0)
 
-## Download
+TMPA is a vendor-neutral architecture and specification for governing long-running work performed by heterogeneous AI agents and humans. It moves durable work facts out of volatile model memory and into inspectable objects, preserves responsibility across asynchronous execution, and reconstructs lifecycle, authority, conflict, and audit state from available evidence.
 
-- [Download the current source ZIP](https://github.com/joinwell52-AI/joinwell52/archive/refs/heads/main.zip)
-- [Open the GitHub repository](https://github.com/joinwell52-AI/joinwell52)
-- [Read the V5.0 Runtime Guide](./docs/en/runtime/v5.md)
-- [Read the V1.3 Quick Start](./docs/en/publications/research-report-production-engine-v1.3-quickstart.md)
+This repository is the public research, specification, conformance, and evidence base for TMPA. **CodeFlowMu** is its primary engineering demonstration. The Digital Researcher and the articles it publishes are derived research infrastructure and discourse—not the repository's primary identity and not normative sources for TMPA.
 
-No APK, EXE, or conventional installer is required. The repository is the distribution: it contains the skills, source registry, Runtime contracts, scheduling configuration, validators, website source, and operating evidence. Actual research execution uses the operator’s own ChatGPT and GitHub environment.
+## Start with the stable V1.0 publication set
 
-## Current architecture
+| Publication | Role | Read online | Release artifact |
+|---|---|---|---|
+| **Architecture Paper A1.0** | Explains the governance-state problem and the architectural theory | [Web](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-architecture-paper-a1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-architecture-paper-a1.0-en.pdf) |
+| **Core Specification S1.0** | Defines normative objects, lifecycle, authority, Reader behavior, and C01–C14 | [Web](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-core-specification-s1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-core-specification-s1.0-en.pdf) |
+| **Implementation Case I1.0** | Reports bounded CodeFlowMu V1.8.0 product evidence against S1.0 | [Web](https://joinwell52-ai.github.io/joinwell52/en/publications/implementation-case-i1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-implementation-case-i1.0-en.pdf) |
 
-```text
-Research Intelligence System V1.0
-        ↓
-Research Runtime Center V5.0
-        ↓
-Daily / Weekly / Academic / Research Program Runtime
-        ↓
-Research Report Production Engine V1.3
-        ↓
-GitHub + Website + Commit Verify
-```
+The checksummed bilingual publication dossier, citation metadata, manifest, and release notes are in [`docs/public/releases/tmpa/v1.0/`](./docs/public/releases/tmpa/v1.0/).
 
-Research Runtime Center V5.0 is the frozen architecture baseline. Scheduler V3.0 defines four independent Runtime systems and nine formal tasks. Long-term Program work no longer enters Daily Runtime.
+## Why TMPA exists
 
-## Four independent Runtime systems
+Modern agent systems can produce rich execution traces: prompts, tool calls, outputs, and timestamps. Those records answer **what ran**. Production governance must also answer:
 
-### Daily Runtime
+- Who accepted responsibility and who had authority to approve?
+- Which object is the authoritative work fact?
+- Is the claimed lifecycle transition legal?
+- Which evidence is missing, conflicting, invalid, or still awaiting a human decision?
+- Can the current state be reconstructed after an agent exits, a model changes, or a runtime restarts?
 
-```text
-09:00 Discovery → Signal Pool
-10:00 Queue → Today's Research Plan
-11:00 Reading → Reading Result
-13:00 Analysis → Research Object
-15:00 Production → Publication Candidate
-20:00 Publication → GitHub + Website + Commit Verify + Release
-```
+That is why **Trace ≠ Governance**. TMPA is not another general-purpose agent framework and does not treat logs, Markdown storage, or a workflow state machine as proof of governance. It defines observable governance behavior that implementations can be tested against.
 
-Daily makes an explicit `Selected` or `No Selection` decision for each column:
+## The four connected rules
 
-- **Digital Employee**;
-- **Industry Architecture**;
-- **Open-source Engineering**.
+1. **Text carries durable messages and state.** Work facts are portable, inspectable objects rather than facts trapped in a model session or process instance.
+2. **Each writer owns a local serial stream.** Single-writer semantics preserve provenance and prevent one actor from silently rewriting another actor's history.
+3. **Multiple streams advance asynchronously.** Collaboration retains partial-order and concurrency semantics instead of inventing a false global timeline.
+4. **The Reader reconstructs governance state.** It aggregates available evidence to derive process, responsibility, lifecycle, conflicts, three-valued judgments, and an explicit Issue Set.
 
-### Weekly Runtime
+TMPA Core is storage-neutral: a conforming implementation may use files, database rows, object-store objects, or events. **FCoP** supplies a file-based coordination and evidence profile; **CodeFlowMu** implements and consumes that projection in a working engineering system.
 
-Runs Sunday at 20:30. It synthesizes the previous seven days of evidence-validated Daily Research into new Trend, Architecture, Engineering and Prediction judgments. It must not copy or concatenate Daily articles.
-
-### Academic Runtime
-
-Runs Wednesday at 16:00. It accepts only Paper, Benchmark, Specification and Institution objects. Ordinary news is excluded.
-
-### Research Program Runtime
-
-Runs Monday at 12:00. It advances the independent queues, lifecycles, reviews and publications of:
-
-- TMPA;
-- FCoP;
-- CodeFlowMu;
-- Digital Employee;
-- Research Operating System.
-
-Program work never consumes a Daily stage or Daily column slot.
-
-## Research Skills V2.0
+## From theory to engineering evidence
 
 ```text
-01 Research Intelligence Discovery
-02 Three-Column Research Triage
-03 Deep Reading
-04 Research Analysis
-05 Research Writing
-06 Research Visualization
-07 Evidence & Citation
-08 Publication Editing
+TMPA Architecture Paper A1.0
+        ↓ architecture theory and design direction
+TMPA Core Specification S1.0
+        ↓ normative object, Reader, and conformance behavior
+FCoP
+        ↓ file-based coordination and evidence profile
+CodeFlowMu V1.8.0
+        ↓ product Adapter and Governance Reader
+Implementation Case I1.0
+        ↓ bounded, inspectable engineering evidence
+Digital Employee and Research Runtime applications
 ```
 
-The article is not the execution unit. The Skill is the execution unit. V5 binds Skills to explicit stage inputs and outputs: Reading consumes selected objects, Analysis consumes Reading Results, Production consumes Research Objects, and Publication consumes complete Publication Candidates only.
+The dependency direction matters: A1.0 states the theory; S1.0 is the normative authority; FCoP supplies a reusable coordination protocol; CodeFlowMu implements and consumes the governance projection; I1.0 reports what was demonstrated. An implementation can support or challenge the theory, but it cannot silently redefine the specification.
 
-## Research Intelligence System V1.0
+## CodeFlowMu engineering demonstration
 
-Skill 01 dispatches three intelligence pipelines:
+I1.0 evaluates the CodeFlowMu V1.8.0 product Reader against the exact, frozen TMPA Core S1.0 bundle. The product path invokes `GovernanceReader.readSync`; it does not substitute the TMPA Reference Reader.
 
-1. **AI Platform Change Intelligence**;
-2. **GitHub Engineering Intelligence**;
-3. **Published Research Intelligence**.
+| Evidence item | Recorded result |
+|---|---:|
+| S1.0 criteria | **14 PASS / 0 PARTIAL / 0 NOT RUN / 0 FAIL** |
+| Mandatory assertions | **71 / 71 passed and recomputed** |
+| CodeFlowMu TMPA Runtime suite | **24 passed / 0 failed** |
+| CodeFlowMu Runtime full suite | **1,522 passed / 0 failed / 1 skipped** |
+| CodeFlowMu Shell coverage | **791 passed / 0 failed** |
+| Locked FCoP reference implementation | **1,210 passed / 2 skipped** |
+| Evidence integrity | **889 files covered by the internal SHA-256 manifest** |
 
-All three pipelines serve all three Daily columns. Discovery produces the same-day Signal Pool; Queue performs the column decisions.
+Evidence entry points:
 
-## Work outcomes, not status slogans
+- [Implementation Case I1.0 source](./docs/en/publications/implementation-case-i1.0.md)
+- [S1.0 conformance workspace and release audit](./research/conformance/tmpa-core-s1.0/)
+- [Registered CodeFlowMu V1.8.0 exact-version run](./research/conformance/tmpa-core-s1.0/external-runs/20260811-codeflowmu-v1.8.0/)
+- [Locked evidence archive](./docs/public/evidence/tmpa/i1.0/tmpa-i1.0-codeflowmu-v1.8.0-s1.0-evidence-20260811.zip) · [SHA-256](./docs/public/evidence/tmpa/i1.0/tmpa-i1.0-codeflowmu-v1.8.0-s1.0-evidence-20260811.zip.sha256)
 
-Every terminal shift reports:
+**Claim boundary:** this is author-run, demonstrated behavior for one exact implementation revision and one exact S1.0 input bundle. It is not independent certification, universal conformance, proof of TMPA theory, proof of semantic truth, hallucination elimination, or independent adoption.
 
-```text
-Input
-Work Result
-Output
-Next
-Metrics
-Evidence
-Artifacts
+## Machine-readable specification and reproducibility
+
+Published S1.0 machine contracts:
+
+- [Governance Object Schema](./docs/public/spec/tmpa/s1.0/governance-object.schema.json)
+- [Lifecycle Profile Schema](./docs/public/spec/tmpa/s1.0/lifecycle-profile.schema.json)
+- [Reader Result Schema](./docs/public/spec/tmpa/s1.0/reader-result.schema.json)
+- [Conformance Result Schema](./docs/public/spec/tmpa/s1.0/conformance-result.schema.json)
+
+Run the author-produced S1.0 Reference Reader suite locally with Node.js 20 or later:
+
+```bash
+npm ci
+npm run tmpa:s1.0:conformance
 ```
 
-A trigger is not completion evidence. Without actual ChatGPT worker execution, the task remains `Waiting`, `Blocked`, or `Failed`.
+The Reference Reader result and the separately registered CodeFlowMu product result are distinct evidence tracks. See the [conformance README](./research/conformance/tmpa-core-s1.0/README.md) before interpreting either result.
 
-## Authoritative Runtime artifacts
+## Research infrastructure and derived outputs
 
-```text
-research/runtime/SCHEDULER.json
-research/runtime/records/daily/YYYY/MM/YYYY-MM-DD-daily-runtime.json
-research/runtime/records/weekly/YYYY/MM/YYYY-MM-DD-weekly-runtime.json
-research/runtime/records/academic/YYYY/MM/YYYY-MM-DD-academic-runtime.json
-research/runtime/records/program/YYYY/MM/YYYY-MM-DD-program-runtime.json
-research/intelligence/REGISTRY.json
-research/intelligence/runs/YYYY/MM/YYYY-MM-DD-intelligence.json
-```
+The repository also contains a governed research production system: Research Intelligence, Daily/Weekly/Academic/Program Runtimes, Research Skills, publication gates, and verification scripts. These components provide a living environment in which governance ideas can be exercised and research can be published.
 
-V4 Markdown records remain frozen historical evidence. V5 does not rewrite them.
+The Digital Researcher's daily articles are **derived outputs of that environment**. They may interpret TMPA, connect it to industry change, or propose new research directions, but they do not define conformance and cannot override S1.0.
 
-## Product and engineering hierarchy
+- [SaaW: Software as an Agent Worker](https://joinwell52-ai.github.io/joinwell52/en/industry/2026-08-10-saaw-software-as-an-agent-worker) — an industry manifesto connecting the shift from SaaS to software as a governed work actor with TMPA and CodeFlowMu.
+- [Research Runtime Center V5.0](./docs/en/runtime/v5.md) — the operating system for the Digital Researcher and its publication workflows.
+- [Research Report Production Engine V1.3](./docs/en/publications/research-report-production-engine-v1.3.md) — the report-production implementation built on that Runtime.
 
-```text
-TMPA + FCoP
-      ↓
-CodeFlowMu + Digital Employee
-```
+Use the Architecture Paper and Core Specification for authoritative TMPA claims; use I1.0 and the evidence packages for engineering claims; treat essays and manifestos as research discourse.
 
-- **TMPA:** independent theory and specification layer;
-- **FCoP:** file-based coordination protocol;
-- **CodeFlowMu:** Digital Employee development and work Runtime;
-- **Digital Employee:** the product and delivery layer.
-
-## Current formal releases
-
-### Digital Researcher and Runtime
-
-- [Research Runtime Center V5.0](./docs/en/runtime/v5.md)
-- [Daily Runtime](./docs/en/runtime/daily.md)
-- [Weekly Runtime](./docs/en/runtime/weekly.md)
-- [Academic Runtime](./docs/en/runtime/academic.md)
-- [Research Program Runtime](./docs/en/runtime/program.md)
-- [Research Report Production Engine V1.3](./docs/en/publications/research-report-production-engine-v1.3.md)
-- [Research Intelligence System V1.0](./docs/en/runtime/research-intelligence.md)
-
-### TMPA
-
-- [TMPA Architecture Paper A1.0](./docs/en/publications/tmpa-architecture-paper-a1.0.md)
-- [TMPA Core Specification S1.0](./docs/en/publications/tmpa-core-specification-s1.0.md)
-- [TMPA–FCoP–CodeFlowMu Implementation Case I1.0](./docs/en/publications/implementation-case-i1.0.md)
-
-## Repository structure
+## Repository map
 
 ```text
 .
-├── docs/                         # bilingual VitePress site
+├── docs/
+│   ├── en/ and zh/                  # bilingual research site sources
+│   └── public/
+│       ├── spec/tmpa/s1.0/          # machine-readable normative contracts
+│       ├── releases/tmpa/v1.0/      # checksummed bilingual publication dossier
+│       └── evidence/tmpa/i1.0/      # locked CodeFlowMu evidence package
 ├── research/
-│   ├── intelligence/             # source registry and daily signal records
-│   ├── runtime/                  # Scheduler V3, four record families and worker contracts
-│   ├── skills/                   # Research Skills V2.0 and intelligence profiles
-│   ├── production-tests/         # production evidence
-│   └── releases/                 # formal release records
-├── scripts/                      # validators and website-data generators
-├── .github/workflows/            # Scheduler V3, validation and Pages deployment
-├── LICENSE.md
-├── CITATION.cff
-├── README.zh-CN.md
-└── README.md
+│   ├── conformance/tmpa-core-s1.0/  # Reference Reader, fixtures, results, audits
+│   ├── runtime/                      # governed research execution records
+│   ├── intelligence/                 # source registry and research signals
+│   └── skills/                       # staged research work contracts
+├── scripts/                          # validation, projection, and site tooling
+└── .github/workflows/                # validation, scheduling, and Pages deployment
 ```
 
-## Freeze rule
+## Citation, rights, and contribution
 
-After V5.0, the four-system separation, Daily six-stage sequence and Scheduler V3 task identities are frozen. Future work focuses on source quality, worker effectiveness, metrics, UX, evidence quality and publication quality.
-
-## Core principles
-
-> **A Digital Employee is not a chatbot. It is a persistent worker with a position, responsibilities, skills, workflow, standards, authority boundaries, and verifiable work products.**
-
-> **Research Runtime—not an individual automation task—is the operational control plane.**
-
-> **Production creates complete reports; Publication releases them.**
+- Citation metadata: [`CITATION.cff`](./CITATION.cff) and the per-publication CFF/BibTeX files in the [V1.0 dossier](./docs/public/releases/tmpa/v1.0/metadata/)
+- Rights and permitted use: [`LICENSE.md`](./LICENSE.md)
+- Research and contribution policy: [`CONTRIBUTING.md`](./CONTRIBUTING.md) and [`RESEARCH-GOVERNANCE.md`](./RESEARCH-GOVERNANCE.md)
 
 ## Author
 
 **Zhu Wei / 朱卫 · joinwell52-AI**  
 Independent Researcher
 
-Digital Employee Works: https://joinwell52-ai.github.io/joinwell52/
+Research site: [joinwell52-ai.github.io/joinwell52](https://joinwell52-ai.github.io/joinwell52/)
