@@ -47,9 +47,9 @@ Worker 不得把 Scheduler 触发当成任务完成。
 ### 15:00 — Research Runtime Production
 
 - 输入：只能是 Research Object。
-- 工作：Skill 05 Writing → Skill 06 Visualization → Skill 07 Evidence & Citation → Skill 08 Publication Editing。
-- 输出：完整中英文 Publication Candidate。
-- 禁止：从 Signal Pool 或 Reading Result 直接写作、直接发布。
+- 工作：Skill 05 Writing → 一张正式科技编辑题图 → 判断并在正文相关位置嵌入 `0..N` 张文中配图 → Skill 07 Evidence & Citation → Skill 08 Publication Editing → 静态文章版式校验。
+- 输出：完整中英文 Publication Candidate，并通过 `coverGate`、`inlineVisualGate` 与 `layoutGate`。
+- 禁止：从 Signal Pool 或 Reading Result 直接写作、直接发布、用技术图冒充题图、生成固定 `## Cover` / `## Figure` 图片栏目，或为了凑门禁强制生成无必要配图。
 
 ### 20:00 — Research Runtime Publication
 

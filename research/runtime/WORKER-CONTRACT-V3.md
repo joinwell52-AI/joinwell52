@@ -47,9 +47,9 @@ A worker must never infer completion from a scheduler trigger.
 ### 15:00 — Research Runtime Production
 
 - Input: Research Object only.
-- Work: Skill 05 Writing → Skill 06 Visualization → Skill 07 Evidence & Citation → Skill 08 Publication Editing.
-- Output: complete bilingual Publication Candidate.
-- Forbidden: writing from a Signal Pool or Reading Result, or releasing directly.
+- Work: Skill 05 Writing → one formal editorial Article Cover → decide and place `0..N` contextual Inline Figures → Skill 07 Evidence & Citation → Skill 08 Publication Editing → static Article Layout validation.
+- Output: complete bilingual Publication Candidate with `coverGate`, `inlineVisualGate` and `layoutGate` passed.
+- Forbidden: writing from a Signal Pool or Reading Result, releasing directly, using a technical diagram as the cover, generating fixed `## Cover` / `## Figure` image sections, or manufacturing an unnecessary Figure.
 
 ### 20:00 — Research Runtime Publication
 

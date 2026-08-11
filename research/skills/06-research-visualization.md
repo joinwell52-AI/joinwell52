@@ -11,23 +11,36 @@ The visual is part of the research evidence surface. Treat composition, cropping
 Every substantial Research Note must distinguish two different visual jobs:
 
 1. **Article Cover** — an editorial title image that creates recognition, visual tension and a memorable concept before the reader enters the article;
-2. **Article Figure** — an explanatory diagram, table, chart, workflow, lifecycle or architecture visual used inside the article to explain evidence or mechanism.
+2. **Inline Figure / In-article Figure** — an explanatory diagram, table, chart, workflow, lifecycle or architecture visual inserted where the article uses it to explain evidence or mechanism.
 
 The same asset MUST NOT satisfy both roles.
 
-A visual that requires the reader to inspect arrows, boxes, labels, legends, small text or state transitions in order to understand it is an **Article Figure**, not an Article Cover.
+A visual that requires the reader to inspect arrows, boxes, labels, legends, small text or state transitions in order to understand it is an **Inline Figure**, not an Article Cover.
 
-## Minimum visual package
+## Visual package
 
-Every substantial Research Note should include:
+Every Daily Research Note must include:
 
-1. one dedicated editorial Article Cover;
-2. one architecture, workflow, lifecycle, relationship or other explanatory Article Figure;
-3. one comparison table when multiple products, papers or mechanisms are discussed.
+1. exactly one dedicated editorial Article Cover;
+2. zero or more Inline Figures selected by explanatory need;
+3. a meaningful comparison when multiple products, papers or mechanisms are discussed.
+
+`Inline Figures: 0..N` is valid. Do not create a technical figure merely to satisfy an asset count. When a table or the prose already explains the mechanism clearly, an additional Inline Figure is unnecessary.
 
 Use a numeric chart only when reliable quantitative data exists.
 
 ## Cover Gate — editorial title image
+
+Default Daily Research Cover Direction:
+
+```text
+formal editorial technology cover with cinematic lighting,
+controlled contrast, strong focal hierarchy,
+one dominant visual metaphor, low information density,
+professional research-publication tone
+```
+
+The cover is the page's first visual entrance. It should use light, space, subject and editorial metaphor to communicate the article theme before the reader enters the body.
 
 The cover must communicate one strong concept at thumbnail scale. It is not responsible for explaining the complete mechanism.
 
@@ -39,6 +52,8 @@ A valid cover should:
 - use little or no text beyond a short title, kicker or single key phrase;
 - prioritize composition, focal hierarchy, silhouette, contrast and editorial atmosphere over information density;
 - feel like the opening image of a serious technology or research publication, not a slide, architecture chart or dashboard screenshot.
+- establish a clear foreground/midground/background relationship or another strong spatial hierarchy;
+- use controlled color and lighting rather than flat iconography or cartoon-like symbols.
 
 A cover MUST be rejected when its primary composition is any of the following:
 
@@ -51,7 +66,7 @@ A cover MUST be rejected when its primary composition is any of the following:
 - a technical figure whose meaning depends on reading multiple labels;
 - a body figure enlarged and reused as the title image.
 
-If the research proposition is itself architectural, translate it into an editorial visual metaphor for the cover and place the exact architecture diagram inside the article as a separate Figure.
+If the research proposition is itself architectural, translate it into an editorial visual metaphor for the cover and place the exact architecture diagram inside the article as an Inline Figure when the body needs it.
 
 ### Thumbnail acceptance test
 
@@ -64,9 +79,9 @@ Reject it if:
 - it looks primarily like documentation, a slide, a schematic or an internal engineering diagram;
 - visual interest depends mainly on text rather than composition.
 
-## Figure Gate — explanatory visual
+## Inline Figure Gate — explanatory visual
 
-Article Figures may use the full grammar of technical explanation:
+Inline Figures may use the full grammar of technical explanation:
 
 - Architecture diagram: layers, responsibilities and interfaces;
 - Workflow diagram: ordered work and decision stages;
@@ -75,7 +90,7 @@ Article Figures may use the full grammar of technical explanation:
 - Timeline: version or industry evolution;
 - Data table or chart: sourced measurements, counts or evaluation results.
 
-Figures should optimize for precision, traceability and explanatory value rather than cover-like visual impact.
+Inline Figures should optimize for precision, traceability and explanatory value rather than cover-like visual impact. They must be inserted next to the argument they explain, followed by a matching caption and source statement, and remain readable on mobile screens.
 
 ## Source labels
 
@@ -86,7 +101,7 @@ Every visual must state one of:
 - `Research Center synthesis based on cited official sources`;
 - `Research Center architecture proposal`.
 
-For an editorial cover, the source note may appear in article metadata or the visual manifest rather than as prominent text inside the artwork. Explanatory Figures should keep their source basis visible near the figure.
+For an editorial cover, the source note may appear in article metadata or the visual manifest rather than as prominent text inside the artwork. Inline Figures must keep their source basis visible in the adjacent caption or figure content.
 
 ## Rules
 
@@ -96,7 +111,9 @@ For an editorial cover, the source note may appear in article metadata or the vi
 - Prefer original diagrams that synthesize cited material.
 - Keep visual terminology identical to the article terminology.
 - Ensure diagrams remain readable on mobile screens.
-- Never reuse an explanatory Figure as the Article Cover merely because it already exists.
+- Never reuse an Inline Figure as the Article Cover merely because it already exists.
+- Never create fixed Markdown sections named `## Cover`, `## Figure` or `## Visualization` merely to contain image assets.
+- Never treat an Inline Figure as a second publication object; it is part of the article body.
 
 ## Article-cover workflow
 

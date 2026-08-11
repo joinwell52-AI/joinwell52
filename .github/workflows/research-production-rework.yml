@@ -95,24 +95,35 @@ jobs:
             const visualizationLine = `visualization: "${entry.figurePath}"`
             if (!body.includes(visualizationLine)) throw new Error(`${file}: expected original explanatory visualization path is missing`)
             if (!body.includes(coverLine)) body = body.replace(visualizationLine, `${coverLine}\n${visualizationLine}`)
-            body = body.replace(/^visualization_decision:.*$/m, 'visualization_decision: "Required — dedicated editorial Article Cover passes Cover Gate; explanatory Article Figure retained separately"')
+            body = body.replace(/^visualization_decision:.*$/m, 'visualization_decision: "Required — editorial Article Cover plus a contextually embedded explanatory figure"')
             const coverName = path.basename(entry.coverPath)
             const figureName = path.basename(entry.figurePath)
-            if (zh) {
-              const coverRe = /## 题图\n\n!\[[^\]]*\]\(\.\/[^)]+\)\n/
-              if (!coverRe.test(body)) throw new Error(`${file}: missing Chinese cover section`)
-              body = body.replace(coverRe, `## 题图\n\n![${entry.coverAlt_zh}](./${coverName})\n\n## 文中图\n\n![${entry.figureAlt_zh}](./${figureName})\n`)
-              const noteRe = /## 可视化说明\n\n[\s\S]*?\n\n## 参考资料/
-              if (!noteRe.test(body)) throw new Error(`${file}: missing Chinese visualization note`)
-              body = body.replace(noteRe, '## 可视化说明\n\n题图是面向缩略图识别的 Research Center 编辑性视觉隐喻，并通过 Cover Gate；原 SVG 保留为独立文中解释图，用于精确说明文章机制。两种视觉角色不再复用同一资产；未使用厂商原图，也未构造无来源数值。\n\n## 参考资料')
+            const forbiddenHeading = /^(## (Cover|Figure|Visualization|题图|文中图|解释图|可视化))\s*$/m
+            if (forbiddenHeading.test(body)) throw new Error(`${file}: fixed image-container heading is forbidden; place the cover before H1 and the figure in its semantic section`)
+            const h1Index = body.search(/^# /m)
+            if (h1Index < 0) throw new Error(`${file}: H1 title is missing`)
+            const coverImage = `![${zh ? entry.coverAlt_zh : entry.coverAlt}](./${coverName})`
+            const preTitle = body.slice(0, h1Index)
+            const preTitleImage = /!\[[^\]]*\]\(\.\/[^)]+\)/
+            if (preTitleImage.test(preTitle)) {
+              body = preTitle.replace(preTitleImage, coverImage) + body.slice(h1Index)
             } else {
-              const coverRe = /## Cover\n\n!\[[^\]]*\]\(\.\/[^)]+\)\n/
-              if (!coverRe.test(body)) throw new Error(`${file}: missing English cover section`)
-              body = body.replace(coverRe, `## Cover\n\n![${entry.coverAlt}](./${coverName})\n\n## Figure\n\n![${entry.figureAlt}](./${figureName})\n`)
-              const noteRe = /## Visualization note\n\n[\s\S]*?\n\n## References/
-              if (!noteRe.test(body)) throw new Error(`${file}: missing English visualization note`)
-              body = body.replace(noteRe, '## Visualization note\n\nThe editorial cover is a Research Center visual metaphor designed for thumbnail-scale recognition and passes the Cover Gate. The original SVG is retained separately as the explanatory Article Figure for the article mechanism. The two visual roles no longer reuse one asset; no vendor artwork or invented quantitative data is used.\n\n## References')
+              body = `${preTitle}${coverImage}\n\n${body.slice(h1Index)}`
             }
+            const escapedFigureName = figureName.replaceAll('.', '\\.')
+            const figureImageRe = new RegExp(`!\\[[^\\]]*\\]\\(\\./${escapedFigureName}\\)`)
+            const figureMatch = body.match(figureImageRe)
+            if (!figureMatch) throw new Error(`${file}: explanatory figure must already be placed in its semantic section`)
+            const figureIndex = figureMatch.index
+            const firstSectionIndex = body.search(/^## /m)
+            if (firstSectionIndex < 0 || figureIndex < firstSectionIndex) throw new Error(`${file}: explanatory figure is not contextually embedded after a semantic section`)
+            const figureImage = `![${zh ? entry.figureAlt_zh : entry.figureAlt}](./${figureName})`
+            body = body.replace(figureImageRe, figureImage)
+            const afterFigure = body.slice(body.indexOf(figureImage) + figureImage.length)
+            const captionRe = zh
+              ? /^\s*\*图\s+\d+[:：][^\n]*来源[:：][^\n]*\*/
+              : /^\s*\*Figure\s+\d+\.[^\n]*Source:[^\n]*\*/
+            if (!captionRe.test(afterFigure)) throw new Error(`${file}: explanatory figure requires an adjacent bilingual caption and source`)
             fs.writeFileSync(file, body)
           }
 
@@ -123,8 +134,11 @@ jobs:
             applyArticle(entry, entry.zhPath, true)
             candidate.coverPath = entry.coverPath
             candidate.figurePath = entry.figurePath
+            candidate.inlineFigures = [{ path: entry.figurePath, placement: 'observation', caption: entry.figureAlt, caption_zh: entry.figureAlt_zh, source: 'Research Center synthesis based on cited primary sources.', source_zh: 'Research Center 基于文中引用的一手资料综合绘制。' }]
             candidate.coverGate = 'PASS'
             candidate.figureGate = 'PASS'
+            candidate.inlineVisualGate = 'PASS'
+            candidate.layoutGate = 'PASS'
             candidate.editingStatus = 'Completed'
           }
 
@@ -147,6 +161,8 @@ jobs:
             publicationAuthorized: false,
             coverGate: 'PASS',
             figureGate: 'PASS',
+            inlineVisualGate: 'PASS',
+            layoutGate: 'PASS',
             thumbnailQaWidth: 320,
             githubCommit: 'pending',
             commitVerify: 'Waiting',
@@ -171,7 +187,7 @@ jobs:
             sourceVerificationCommit: r.sourceVerificationCommit,
             sourceCandidateCommit: priorCandidateCommit,
             governanceBasis: ['research/skills/06-research-visualization.md','research/skills/08-publication-editing.md'],
-            objects: r.covers.map(c => ({ itemId:c.itemId, coverPath:c.coverPath, figurePath:c.figurePath, coverGate:'PASS', figureGate:'PASS', thumbnailQaWidth:320 })),
+            objects: r.covers.map(c => ({ itemId:c.itemId, coverPath:c.coverPath, inlineFigures:[{ path:c.figurePath, placement:'observation' }], coverGate:'PASS', inlineVisualGate:'PASS', layoutGate:'PASS', thumbnailQaWidth:320 })),
             substantiveResearchChanged: false,
             analysisChanged: false,
             articleClaimsChanged: false,
@@ -183,14 +199,6 @@ jobs:
           }
           fs.writeFileSync(recordPath, `${JSON.stringify(record, null, 2)}\n`)
 
-          const contractPath = 'research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md'
-          let contract = fs.readFileSync(contractPath, 'utf8')
-          if (!contract.includes('## Cover / Figure role gate')) {
-            contract = contract.replace('  "coverPath": "staging/publication-candidates/...svg",', '  "coverPath": "staging/publication-candidates/...-cover.webp",\n  "figurePath": "staging/publication-candidates/...-figure.svg",\n  "coverGate": "PASS",\n  "figureGate": "PASS",')
-            contract = contract.replace('## Production completion gate', '## Cover / Figure role gate\n\n`coverPath` is the dedicated editorial Article Cover and must pass Skill 06 Cover Gate, including thumbnail-scale recognition. `figurePath` is the separate explanatory Article Figure used for technical structure, workflow, lifecycle or evidence explanation. The same asset MUST NOT satisfy both roles. A workflow, lifecycle, architecture stack, state machine or other explanatory schematic cannot be promoted into `coverPath` merely because it already exists.\n\n## Production completion gate')
-            contract = contract.replace('- required visualization exists or the record states why none is needed;', '- a dedicated editorial Article Cover exists and passes the Skill 06 Cover Gate;\n- a separate explanatory Article Figure exists when the research benefits from technical visual explanation;\n- `coverPath` and `figurePath` do not point to the same asset;')
-            fs.writeFileSync(contractPath, contract)
-          }
           console.log(`Applied cover-only Production Rework to ${r.covers.length} candidates.`)
           NODE
 
@@ -203,7 +211,7 @@ jobs:
           set -euo pipefail
           git config user.name "joinwell52 Research Runtime"
           git config user.email "actions@users.noreply.github.com"
-          git add staging/publication-candidates research/runtime/candidates research/runtime/rework research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md
+          git add staging/publication-candidates research/runtime/candidates research/runtime/rework
           git commit -m "production(rework): apply ${RUNTIME_DATE} cover-gate repair"
           for attempt in 1 2 3; do
             if git pull --rebase origin main; then
@@ -234,16 +242,18 @@ jobs:
           for (const entry of r.covers) {
             const c = batch.candidates.find(x => x.itemId === entry.itemId)
             if (!c || c.coverPath !== entry.coverPath || c.figurePath !== entry.figurePath) throw new Error(`Candidate visual roles not durable: ${entry.itemId}`)
-            if (c.coverGate !== 'PASS' || c.figureGate !== 'PASS') throw new Error(`Visual gate not PASS: ${entry.itemId}`)
+            if (c.coverGate !== 'PASS' || c.inlineVisualGate !== 'PASS' || c.layoutGate !== 'PASS') throw new Error(`Visual/layout gate not PASS: ${entry.itemId}`)
             if (!fs.existsSync(entry.coverPath) || !fs.existsSync(entry.figurePath)) throw new Error(`Visual asset missing: ${entry.itemId}`)
-            for (const [file, heading] of [[entry.enPath,'## Figure'],[entry.zhPath,'## 文中图']]) {
+            for (const file of [entry.enPath, entry.zhPath]) {
               const body = fs.readFileSync(file, 'utf8')
-              if (!body.includes(path.basename(entry.coverPath)) || !body.includes(path.basename(entry.figurePath)) || !body.includes(heading)) throw new Error(`Candidate article roles not durable: ${file}`)
+              if (!body.includes(path.basename(entry.coverPath)) || !body.includes(path.basename(entry.figurePath))) throw new Error(`Candidate article roles not durable: ${file}`)
+              if (/^(## (Cover|Figure|Visualization|题图|文中图|解释图|可视化))\s*$/m.test(body)) throw new Error(`Forbidden fixed image-container heading is durable: ${file}`)
             }
           }
           if (batch.rework?.commitVerify !== 'Waiting' || batch.rework?.publicationPerformed !== false) throw new Error('Unexpected pre-verification or publication state')
           console.log('Verified three dedicated covers plus three retained explanatory figures on main.')
           NODE
+          node scripts/research-publication-layout-validate.mjs
 
       - name: Record durable rework verification
         env:

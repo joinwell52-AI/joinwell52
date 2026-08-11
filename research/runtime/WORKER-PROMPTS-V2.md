@@ -102,7 +102,22 @@ research/runtime/candidates/YYYY/MM/YYYY-MM-DD-candidates.json
 
 The output lifecycle is `Publication Candidate`. Production must not place the report into the public article directory and must not publish to the website.
 
-When no object has passed all upstream gates, set Production to `Skipped`, record the exact blocker, and leave the candidate list empty.
+For each eligible Research Object, produce one formal editorial Article Cover. The cover must use cinematic or controlled editorial lighting, one dominant semantic object, strong visual hierarchy and low information density. It must read as the opening image of a serious technology publication. Architecture diagrams, workflows, lifecycle diagrams, state machines, dashboards and node graphs are not valid Article Covers.
+
+Technical visuals are Inline Figures. Decide whether the article benefits from visual explanation, generate `0..N` figures accordingly, and insert each one directly into the relevant body section with a bilingual caption and source basis. Do not create fixed Markdown sections named:
+
+```text
+## Cover
+## Figure
+## Visualization
+## 题图
+## 文中图
+## 解释图
+```
+
+Run the Cover Gate, Inline Visual Gate and Article Layout Gate before marking the candidate complete. The final candidate must read and render as a finished research publication, not as a generated artifact inventory.
+
+When no object has passed all upstream gates, complete the governed Production review with zero candidates and record the exact bilingual outcome. Use `Skipped` only when the shift is explicitly not applicable and was not executed.
 
 ## 20:00 — Research Runtime Publication
 
