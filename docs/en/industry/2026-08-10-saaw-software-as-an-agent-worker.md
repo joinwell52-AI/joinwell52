@@ -7,9 +7,9 @@ version: "V1.1"
 summary: "A 23-section manifesto deriving SaaW from governance, TMPA, FCoP, Agent PC, CodeFlowMu, and Self-Morphing, anchored in Research Report Production Engine V1.3 and explicitly separating validated capabilities from research frontiers."
 item_id: "MANIFESTO-20260810-SAAW"
 lifecycle: "Published"
-cover: "/assets/covers/saaw-manifesto-cover-approved.webp"
-visualization: "/assets/covers/saaw-governance-stack.svg"
-visualization_2: "/assets/covers/saaw-self-morphing-loop.svg"
+cover: "/assets/covers/01-saaw-manifesto-cover.jpeg"
+visualization: "/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png"
+visualization_2: "/assets/covers/03-saaw-self-morphing-loop-fixed.png"
 evidence_status: "Architecture-grounded + production-engine reference implementation"
 citation_status: "Internal publication mapping completed"
 editing_status: "Published V1.1 — full 23-section edition"
@@ -24,7 +24,7 @@ outline: deep
 
 [中文版](/zh/industry/2026-08-10-saaw-software-as-an-agent-worker)
 
-![SaaW — Software as an Agent Worker](/assets/covers/saaw-manifesto-cover-approved.webp)
+![SaaW — Software as an Agent Worker](/assets/covers/01-saaw-manifesto-cover.jpeg)
 
 ---
 
@@ -336,7 +336,7 @@ The model is only one part of a digital employee's brain.
 
 What makes it an employee is the surrounding work structure.
 
-![SaaW governance and runtime architecture: SaaW, CodeFlowMu, FCoP, and TMPA](/assets/covers/saaw-governance-stack.svg)
+![SaaW governance and runtime architecture: SaaW, CodeFlowMu, FCoP, and TMPA](/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png)
 
 *Figure 1. SaaW describes the software-delivery paradigm; CodeFlowMu provides the engineering runtime; FCoP provides the lightweight coordination protocol; TMPA provides the work-fact and governance architecture.*
 
@@ -570,7 +570,7 @@ It does not mean that an Agent freely mutates its source code, and it does not m
 
 > **Self-Morphing means that a digital-employee runtime can use its own software-development capability to construct, validate, and deploy new digital-worker forms.**
 
-![Self-Morphing: from meta-development runtime to the digital-worker work loop](/assets/covers/saaw-self-morphing-loop.svg)
+![Self-Morphing: from meta-development runtime to the digital-worker work loop](/assets/covers/03-saaw-self-morphing-loop-fixed.png)
 
 *Figure 2. The governed Self-Morphing loop brings development, validation, authorization, deployment, work execution, and work evidence into one recoverable and traceable lifecycle.*
 
