@@ -1,0 +1,29 @@
+name: Temporary SaaW Workday Rewrite
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/tmp_rewrite_saaw_workday.py'
+
+permissions:
+  contents: write
+
+jobs:
+  rewrite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Rewrite article sections
+        run: python3 scripts/tmp_rewrite_saaw_workday.py
+      - name: Commit article rewrite and cleanup
+        run: |
+          rm scripts/tmp_rewrite_saaw_workday.py .github/workflows/tmp-rewrite-saaw-workday.yml
+          git config user.name 'joinwell52 Research Runtime'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A
+          git commit -m 'docs: rewrite SaaW workday as real runtime timeline'
+          git pull --rebase origin main
+          git push origin HEAD:main
