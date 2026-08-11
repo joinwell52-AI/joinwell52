@@ -155,11 +155,17 @@ Agent 能够执行工具，并不意味着 Agent 可以进入企业生产环境�
 
 ## 4. TMPA：让工作事实脱离 Agent 而存在
 
-TMPA，全称 **Textual Multi-Agent Process Architecture**。
-
-它试图解决的核心问题非常简单：
+TMPA 试图解决的核心问题非常简单：
 
 **当多个 Agent 和人类共同完成一个长期工作时，真正可信的工作状态到底存在于哪里？**
+
+这是 TMPA 给出的形式化回答：
+
+> **TMPA（Textual Multi-Agent Process Architecture，文本化多智能体流程架构）**：一种面向中小企业、最低基础设施条件的**文本消息多智能体异步流程架构**。其核心由四条相互关联的规则构成：**文本承载持久消息与状态；每个写者保持自己的局部串行流；多条串行流异步推进并形成并行协作；读端聚合现有证据，重建流程、责任、生命周期、冲突与审计状态。**
+
+**以下第 4—7 节逐条展开这四条规则：第 4 节讨论文本承载持久消息与状态；第 5 节讨论单写者的局部串行流；第 6 节讨论多条串行流的异步并行协作；第 7 节讨论读端重建与问题集（Issue Set）。**
+
+TMPA 的设计目标是尽可能降低治理架构对专用基础设施的依赖，但这并不意味着它只能用于小规模系统。它的定位是 **SME-first，而非 SME-only**：规模更大的实现可以使用数据库、对象存储、事件服务、身份系统和控制平面，同时保留相同的工作事实、责任、引用、生命周期和治理语义。
 
 传统 Agent 系统很容易把状态放进模型上下文、运行时内存、数据库内部状态、消息代理、中央调度器，或者一个不断增长的会话。
 
@@ -280,7 +286,9 @@ TMPA 的目标不是让这些问题消失，而是：
 
 **让问题成为正式事实。**
 
-Reader 因此不仅重构流程图，还需要重构**问题集（Issue Set）**，例如：
+这里的关键不只是“列出错误”，而是**读端重建**。Reader 聚合当前可用证据，重建流程、责任、生命周期、冲突与审计状态；**问题集（Issue Set）**是其中对冲突、缺口和非法状态的正式表达。
+
+因此，Reader 不仅重构流程图，还需要重构问题集，例如：
 
 ```text
 dangling_reference
@@ -365,43 +373,18 @@ CodeFlowMu / FCoP 将这一思想进一步投射到文件系统。
 
 ---
 
-## 9. CodeFlowMu：TMPA 从理论进入运行世界
+## 9. FCoP：文件驱动协作协议
 
-如果说 TMPA 解决的是治理架构问题，那么 CodeFlowMu 解决的是另一个问题：这些 Agent 到底如何真正工作？
+**FCoP（File-based Coordination Protocol，文件驱动协作协议）是一种以文件系统为唯一同步原语的多智能体行为治理协议。**
 
-CodeFlowMu 的工程起点不是构造一个巨大的中央 Agent 运行体。
+它的核心不变式是 **Filename as Protocol**。在项目可见的文件系统 Profile 中：
 
-相反，它试图保持克制。
+- **目录即状态**：`_lifecycle/{inbox,active,review,done,archive}/`；
+- **文件名即路由**：发送者、接收者、类型与序号共同表达工作对象的来源、去向与身份；
+- **内容即负载**：Markdown 正文与 YAML frontmatter 承载任务、报告、问题、引用和治理事实；
+- **`os.rename()` 是唯一同步操作**：生命周期迁移依靠文件系统原子移动，而不是协调数据库、消息 Broker 或中心锁服务。
 
-推理交给成熟模型生态，工具交给实际运行环境。
-
-CodeFlowMu 集中解决工作编排、Agent 责任边界、生命周期、FCoP、Skill 调用、报告、审查、人类决策、恢复与运行治理。
-
-这形成一个非常重要的工程边界：
-
-**CodeFlowMu 不需要重新发明 LLM。**
-
-模型只是数字员工“大脑”的一部分。
-
-真正决定它能不能成为“员工”的，是外部工作结构。
-
-[![SaaW 治理与运行架构：SaaW、CodeFlowMu、FCoP 与 TMPA](/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png)](/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png)
-
-*图 1：SaaW 治理与运行架构。SaaW 描述软件交付范式，CodeFlowMu 承担工程运行，FCoP 提供轻量协作协议，TMPA 提供工作事实与治理架构。*
-
----
-
-## 10. FCoP：Filename as Protocol
-
-CodeFlowMu 的一个核心工程选择，是 FCoP。
-
-FCoP 将 Agent 协作的一部分治理关系直接投射到文件系统。
-
-工作对象不是隐藏在某个中心服务器内部，它们能够以文件形式被观察。
-
-文件名、目录、引用以及生命周期迁移构成协议的一部分。
-
-一个任务可以经历类似这样的生命周期：
+一个任务的生命周期因此可以直接被观察：
 
 ```text
 inbox      收件箱 / 待领取
@@ -419,15 +402,64 @@ done       已完成
 archive    已归档
 ```
 
-状态迁移通过明确操作发生。
+FCoP 治理的是 **Agent 的协作行为**：任务如何交接、结果如何报告、问题如何提出、能力边界如何声明，以及这些行为如何留下事件语义、失败边界与可审计证据。
 
-这带来一个极其朴素但重要的结果：
+**FCoP 不治理执行运行时。** 调度、进程管理、模型会话、资源分配、身份认证和运行节点管理不属于协议本身的职责。
 
-> **目录本身就是可观察状态。**
+从 TMPA 的实现关系看，FCoP 是一种**项目可见的文件系统 Profile**。它不强制要求协调数据库、消息 Broker 或企业级控制平面，但也不会单独提供经过验证的企业身份、强角色隔离、防篡改存储或拜占庭容错。这与 TMPA 的 **SME-first，而非 SME-only** 边界一致：更大规模的部署可以增加数据库、对象存储、事件服务、身份系统和控制平面，而不改变协议所承载的治理语义。
 
-系统管理员、人类主管、Agent 和调试工具看到的，可以是同一组事实。
+更重要的是，**FCoP 协议、适配层、参考实现和运行环境不是同一个东西。** A0.9 中的运行栈可以直接写成：
 
-这降低了多智能体系统最危险的一种复杂度：隐藏状态。
+```text
+应用层 / Application Runtime
+CodeFlowMu / Cursor / Claude Desktop
+                │
+                ▼
+主机适配层 / Host Adapter Layer
+fcop-mcp / fcop-cli / host bridges
+                │
+                ▼
+★ FCoP 协议层 / FCoP Protocol Layer ★
+行为治理 / 交接 / 报告 / 审查 / 能力边界
+事件语义 / 失败边界 / 可审计性
+                │
+                ▼
+参考实现 / Reference Implementation
+fcop（Python library）
+                │
+                ▼
+执行基座 / Execution Substrate
+LLM APIs / MCP tools / 文件系统 / 进程管理 / 操作系统
+```
+
+因此：
+
+- `fcop` Python Package 是 **FCoP 的参考实现**，不是 FCoP 协议本身；
+- `fcop-mcp` 与 `fcop-cli` 位于**主机适配层**，负责把协议能力暴露给实际宿主；
+- CodeFlowMu 位于 FCoP 之上的**应用 / 运行层**，使用 FCoP 作为协作协议；
+- TMPA 不属于这个运行栈中的某一层，它提供的是这套栈试图实现的上位治理语义与架构指导。
+
+这也解释了为什么“目录即状态”如此重要：系统管理员、人类主管、Agent 和调试工具可以观察同一组项目事实，而不必先进入一个隐藏的中央协调状态。
+
+---
+
+## 10. CodeFlowMu：从协议进入真实运行世界
+
+如果说 TMPA 定义的是工作事实与治理语义，FCoP 提供项目可见的文件驱动协作协议，那么 **CodeFlowMu 解决的是这些语义和协议如何进入真实 Agent 运行世界。**
+
+CodeFlowMu 的工程起点不是构造一个巨大的中央 Agent 运行体。
+
+相反，它试图保持克制：推理交给成熟模型生态，工具交给实际运行环境，而自身集中解决工作编排、Agent 责任边界、生命周期、FCoP 接入、Skill 调用、报告、审查、人类决策、恢复与运行治理。
+
+这形成一个非常重要的工程边界：
+
+**CodeFlowMu 不需要重新发明 LLM，也不重新定义 FCoP。**
+
+模型只是数字员工“大脑”的一部分；FCoP 是其采用的协作协议；真正决定数字员工能不能持续承担工作的是外部工作结构、运行环境和治理闭环。
+
+[![SaaW 治理与运行架构：SaaW、CodeFlowMu、FCoP 与 TMPA](/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png)](/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png)
+
+*图 1：SaaW 治理与运行架构。TMPA 提供工作事实与治理架构，FCoP 提供文件驱动协作协议，CodeFlowMu 承担工程运行，SaaW 描述最终的软件交付范式。*
 
 ---
 
