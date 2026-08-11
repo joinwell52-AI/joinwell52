@@ -1,9 +1,25 @@
 #!/usr/bin/env node
 
 import { spawnSync } from 'node:child_process'
+import { readFileSync } from 'node:fs'
+import { createRequire } from 'node:module'
+import { dirname, join } from 'node:path'
 
-const command = process.platform === 'win32' ? 'npx.cmd' : 'npx'
-const result = spawnSync(command, ['vitepress', 'build', 'docs'], {
+const require = createRequire(import.meta.url)
+const vitepressPackagePath = require.resolve('vitepress/package.json')
+const vitepressPackage = JSON.parse(readFileSync(vitepressPackagePath, 'utf8'))
+const vitepressBin = typeof vitepressPackage.bin === 'string'
+  ? vitepressPackage.bin
+  : vitepressPackage.bin?.vitepress
+
+if (!vitepressBin) {
+  console.error('Unable to resolve the VitePress CLI from its installed package.')
+  process.exit(1)
+}
+
+const command = process.execPath
+const args = [join(dirname(vitepressPackagePath), vitepressBin), 'build', 'docs']
+const result = spawnSync(command, args, {
   encoding: 'utf8',
   env: process.env
 })
