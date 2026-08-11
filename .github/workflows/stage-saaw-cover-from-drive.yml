@@ -1,0 +1,47 @@
+name: Stage SaaW Cover Binary
+
+on:
+  push:
+    branches:
+      - saaw-cover-binary-stage
+    paths:
+      - '.github/workflows/stage-saaw-cover-from-drive.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: saaw-cover-binary-stage
+          fetch-depth: 0
+      - name: Download approved cover
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL='https://drive.usercontent.google.com/download?id=1eJp9CUW3lZf7P8bsUgq3DV_yJXT1eN0K&export=download&confirm=t'
+          curl -L --fail --retry 2 -o /tmp/saaw-cover.jpeg "$URL"
+          file /tmp/saaw-cover.jpeg
+          wc -c /tmp/saaw-cover.jpeg
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('/tmp/saaw-cover.jpeg')
+          d=p.read_bytes()
+          print('magic', d[:16], 'tail', d[-16:], 'bytes', len(d))
+          if not d.startswith(b'\xff\xd8'):
+              raise SystemExit('not a JPEG')
+          if not d.endswith(b'\xff\xd9'):
+              raise SystemExit('truncated JPEG')
+          PY
+          cp /tmp/saaw-cover.jpeg docs/public/assets/covers/saaw-manifesto-cover-final.jpeg
+      - name: Commit staged binary
+        shell: bash
+        run: |
+          git config user.name 'joinwell52 Research Runtime'
+          git config user.email 'actions@users.noreply.github.com'
+          git add docs/public/assets/covers/saaw-manifesto-cover-final.jpeg
+          git commit -m 'stage approved SaaW cover as direct JPEG'
+          git push origin HEAD:saaw-cover-binary-stage
