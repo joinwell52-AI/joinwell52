@@ -167,6 +167,8 @@ TMPA 试图解决的核心问题非常简单：
 
 **本节与第 5—7 节逐条展开这四条规则：本节讨论文本承载持久消息与状态；第 5 节讨论单写者的局部串行流；第 6 节讨论多条串行流的异步并行协作；第 7 节讨论读端重建与问题集（Issue Set）。**
 
+**截至 2026 年 8 月 11 日，TMPA 已进入 V1.0 稳定发布线：** [架构论文 A1.0](/zh/publications/tmpa-architecture-paper-a1.0)、[核心规范 S1.0](/zh/publications/tmpa-core-specification-s1.0) 与 [实施案例 I1.0](/zh/publications/implementation-case-i1.0) 已形成稳定三件套；I1.0 固定 **CodeFlowMu v1.8.0**，对 **S1.0** 的产品验证结果为 **14/14**。
+
 > **“当多个异构智能体与人类在同一个代码库里长期博弈时，最荒谬的事莫过于把可信状态托付给模型的挥发性记忆。** **TMPA 的底层铁律是：文本即事实。文件与目录的物理拓扑只负责合规投影，不可变的文本对象才是跨越周期的唯一硬通货。”**
 
 重要工作事实被投射为普通、可移植的文本。
@@ -396,7 +398,7 @@ FCoP 治理的是 **Agent 的协作行为**：任务如何交接、结果如何�
 
 从 TMPA 的实现关系看，FCoP 是一种**项目可见的文件系统 Profile**。它不强制要求协调数据库、消息 Broker 或企业级控制平面，但也不会单独提供经过验证的企业身份、强角色隔离、防篡改存储或拜占庭容错。这与 TMPA 的 **SME-first，而非 SME-only** 边界一致：更大规模的部署可以增加数据库、对象存储、事件服务、身份系统和控制平面，而不改变协议所承载的治理语义。
 
-更重要的是，**FCoP 协议、工具包、适配职责、参考实现和运行环境不是同一个东西。** 结合 A0.9 的分层语义与当前实现，运行栈可以写成：
+更重要的是，**FCoP 协议、工具包、适配职责、参考实现和运行环境不是同一个东西。** 随着 TMPA V1.0 正式发布，这套运行关系已经冻结到 **A1.0 / S1.0 / I1.0** 稳定发布线。运行栈可以直接写成：
 
 ```text
 应用层 / Application Runtime
@@ -1066,9 +1068,9 @@ AI 开发下一代数字员工
 ---
 
 > **作者 / 发布单位：** joinwell52 Research Center / CodeFlowMu Core Team  
-> **理论与架构支撑：** TMPA Architecture Paper — TMPA-ARCH-A0.9  
-> **规范性标准：** TMPA Core Specification — S0.6  
-> **实证案例：** TMPA Implementation Case Report — I0.8  
+> **理论与架构支撑：** TMPA Architecture Paper — **A1.0**  
+> **规范性标准：** TMPA Core Specification — **S1.0**  
+> **实证案例：** TMPA–FCoP–CodeFlowMu Implementation Case — **I1.0（CodeFlowMu v1.8.0 · S1.0 14/14）**  
 > **核心工程载体：** CodeFlowMu / FCoP
 
 > **V1.1 边界说明：** 本文是一篇面向 AI 原生软件、多智能体工程与企业数字员工方向的技术宣言。SaaW、Self-Morphing、数字员工运行体等概念既包含现有架构与工程实践，也包含正在持续验证的研究方向；具体能力边界以对应版本的公开规范、测试与实现证据为准。
