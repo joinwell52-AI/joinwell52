@@ -1,0 +1,70 @@
+name: SaaW Final Errata
+
+on:
+  push:
+    branches: [saaw-final-proofread]
+    paths:
+      - '.github/workflows/saaw-final-errata.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  errata:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: saaw-final-proofread
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install image dependencies
+        shell: bash
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk
+          python3 -m pip install --quiet pillow
+      - name: Apply text errata and figure references
+        run: python3 scripts/saaw_final_errata.py
+      - name: Generate corrected Self-Morphing figure
+        run: python3 scripts/generate_saaw_self_morphing_v2.py
+      - name: Verify article and image invariants
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          zh=Path('docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md').read_text(encoding='utf-8')
+          en=Path('docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md').read_text(encoding='utf-8')
+          fig='/assets/covers/03-saaw-self-morphing-loop-fixed-v2.png'
+          assert fig in zh and fig in en
+          for needle in [
+              'an Agent cannot realistically assume job responsibility',
+              'This is closer to how real organizations actually work.',
+              'This is an important SaaW capability.',
+          ]:
+              assert needle in en, needle
+          assert sum(1 for line in zh.splitlines() if line.startswith('## ') and line[3:4].isdigit()) == 23
+          assert sum(1 for line in en.splitlines() if line.startswith('## ') and line[3:4].isdigit()) == 23
+          img=Image.open('docs/public/assets/covers/03-saaw-self-morphing-loop-fixed-v2.png')
+          assert img.size == (1500, 940)
+          print('Final SaaW errata invariants passed.')
+          PY
+      - name: Build VitePress
+        run: npm ci && npm run docs:build
+      - name: Commit final errata artifacts only
+        shell: bash
+        run: |
+          git checkout -- docs/.vitepress/generated 2>/dev/null || true
+          rm -f scripts/saaw_final_errata.py scripts/generate_saaw_self_morphing_v2.py .github/workflows/saaw-final-errata.yml
+          git config user.name 'joinwell52 Research Runtime'
+          git config user.email 'actions@users.noreply.github.com'
+          git add docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+          git add docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+          git add docs/public/assets/covers/03-saaw-self-morphing-loop-fixed-v2.png
+          git add -u scripts/saaw_final_errata.py scripts/generate_saaw_self_morphing_v2.py .github/workflows/saaw-final-errata.yml || true
+          git commit -m 'docs: apply final SaaW bilingual errata'
+          git push origin HEAD:saaw-final-proofread
