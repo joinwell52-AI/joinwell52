@@ -3,7 +3,7 @@ title: "SaaW：Software as an Agent Worker——从 SaaS 到 SaaW"
 date: "2026-08-10"
 column: "industry-architecture"
 category: "manifesto"
-version: "V1.1"
+version: "V1.2"
 summary: "从治理、TMPA、FCoP、Agent PC、CodeFlowMu 与 Self-Morphing 推导 SaaW，并以 Research Report Production Engine V1.3 作为真实工程锚点，区分已验证能力与研究前沿。"
 item_id: "MANIFESTO-20260810-SAAW"
 lifecycle: "Published"
@@ -11,8 +11,8 @@ cover: "/assets/covers/01-saaw-manifesto-cover-agent-worker.png"
 visualization: "/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png"
 visualization_2: "/assets/covers/03-saaw-self-morphing-loop-fixed-v2.png"
 evidence_status: "Architecture-grounded + production-engine reference implementation"
-citation_status: "Internal publication mapping completed"
-editing_status: "Published V1.1 — full 23-section edition"
+citation_status: "TMPA V1.0 DOI and publication record linked"
+editing_status: "Published V1.2 — TMPA V1.0 citation edition"
 publication_authorized: true
 outline: deep
 ---
@@ -20,7 +20,7 @@ outline: deep
 # SaaW: Software as an Agent Worker
 ## 从 SaaS 到 SaaW：当代码库开始“自己开发自己”
 
-**基于 TMPA 治理体系与 CodeFlowMu 实践的数字员工范式宣言 · V1.1**
+**基于 TMPA 治理体系与 CodeFlowMu 实践的数字员工范式宣言 · V1.2**
 
 [English version](/en/industry/2026-08-10-saaw-software-as-an-agent-worker)
 
@@ -1067,10 +1067,20 @@ AI 开发下一代数字员工
 
 ---
 
-> **作者 / 发布单位：** joinwell52 Research Center / CodeFlowMu Core Team  
-> **理论与架构支撑：** TMPA Architecture Paper — **A1.0**  
-> **规范性标准：** TMPA Core Specification — **S1.0**  
-> **实证案例：** TMPA–FCoP–CodeFlowMu Implementation Case — **I1.0（CodeFlowMu v1.8.0 · S1.0 14/14）**  
+> **作者 / 发布单位：** joinwell52 Research Center / CodeFlowMu Core Team
+>
+> **理论与架构支撑：** TMPA Architecture Paper — **A1.0**
+>
+> **规范性标准：** TMPA Core Specification — **S1.0**
+>
+> **工程实施案例（作者运行的工程证据）：** TMPA–FCoP–CodeFlowMu Implementation Case — **I1.0（CodeFlowMu v1.8.0 · S1.0 C01–C14 14/14 PASS）**
+>
+> **正式出版：** TMPA V1.0 Publication System，2026-08-11
+>
+> **DOI：** [10.5281/zenodo.21888488](https://doi.org/10.5281/zenodo.21888488)
+>
+> **发布记录：** [TMPA V1.0 正式发布记录](/zh/publications/tmpa-v1.0-release-record)
+>
 > **核心工程载体：** CodeFlowMu / FCoP
 
-> **V1.1 边界说明：** 本文是一篇面向 AI 原生软件、多智能体工程与企业数字员工方向的技术宣言。SaaW、Self-Morphing、数字员工运行体等概念既包含现有架构与工程实践，也包含正在持续验证的研究方向；具体能力边界以对应版本的公开规范、测试与实现证据为准。
+> **V1.2 边界说明：** 本文是一篇面向 AI 原生软件、多智能体工程与企业数字员工方向的技术宣言。SaaW、Self-Morphing、数字员工运行体等概念既包含现有架构与工程实践，也包含正在持续验证的研究方向；具体能力边界以对应版本的公开规范、测试与实现证据为准。
