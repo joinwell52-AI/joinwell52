@@ -4,10 +4,10 @@ date: "2026-08-10"
 column: "industry-architecture"
 category: "manifesto"
 version: "V1.1"
-summary: "从 Governance、TMPA、FCoP、Agent PC、CodeFlowMu、Self-Morphing 与 Digital Employee Runtime 推导 SaaW：软件从工具与服务走向可治理的数字工作主体。"
+summary: "从治理、TMPA、FCoP、Agent PC、CodeFlowMu、Self-Morphing 与数字员工运行体系推导 SaaW：软件从工具与服务走向可治理的数字工作主体。"
 item_id: "MANIFESTO-20260810-SAAW"
 lifecycle: "Published"
-cover: "/assets/covers/saaw-manifesto-cover-approved.webp"
+cover: "/assets/covers/saaw-manifesto-cover-hd.svg"
 visualization: "/assets/covers/saaw-governance-stack.svg"
 visualization_2: "/assets/covers/saaw-self-morphing-loop.svg"
 evidence_status: "Architecture-grounded"
@@ -24,7 +24,7 @@ outline: deep
 
 [English version](/en/industry/2026-08-10-saaw-software-as-an-agent-worker)
 
-![SaaW — Software as an Agent Worker](/assets/covers/saaw-manifesto-cover-approved.webp)
+![SaaW — Software as an Agent Worker](/assets/covers/saaw-manifesto-cover-hd.svg)
 
 > **作者 / 发布单位：** joinwell52 Research Center / CodeFlowMu Core Team  
 > **理论与架构支撑：** TMPA Architecture Paper — TMPA-ARCH-A0.9  
@@ -60,9 +60,7 @@ AI 开始进入软件界面，帮助人类写邮件、总结文档、生成代�
 
 人仍然要坐在屏幕前，点击按钮、切换系统、录入结果、处理异常。
 
-真正值得讨论的下一代软件，不应该只是更聪明的工具。
-
-而应该是：
+真正值得讨论的下一代软件，不应该只是更聪明的工具，而应该是：
 
 **能够承担工作的软件。**
 
@@ -70,11 +68,9 @@ AI 开始进入软件界面，帮助人类写邮件、总结文档、生成代�
 
 # SaaW — Software as an Agent Worker
 
-Software as an Agent Worker。
+软件不再只是服务。
 
-软件不再只是 Service。
-
-软件开始成为 Worker。
+软件开始成为工作主体。
 
 ---
 
@@ -84,24 +80,24 @@ SaaW 的核心变化，不是简单地把 Agent 嵌入 SaaS。
 
 它改变的是软件的基本交付单位。
 
-SaaS 交付的是：**Function。**
+SaaS 交付的是**功能**。
 
-Copilot 交付的是：**Assistance。**
+Copilot 交付的是**辅助**。
 
-SaaW 交付的是：**Work。**
+SaaW 交付的是**工作**。
 
-一个真正的 SaaW，不应该只是一个拥有系统 Prompt 的聊天机器人。
+一个真正的 SaaW，不应该只是一个拥有系统提示词的聊天机器人。
 
 它必须具备接近真实岗位的结构：
 
-- 明确的 Role；
-- 明确的 Responsibilities；
-- 可执行的 Workflow；
-- 可以调用的 Skills；
-- 有边界的 Permissions；
-- 持续存在的 Work State；
-- 可验证的 Evidence；
-- 可以恢复的 Runtime；
+- 明确的角色；
+- 明确的岗位职责；
+- 可执行的工作流；
+- 可以调用的技能；
+- 有边界的权限；
+- 持续存在的工作状态；
+- 可核验的工作证据；
+- 可以恢复的运行环境；
 - 明确的人类授权边界。
 
 因此，我们对 SaaW 给出如下定义：
@@ -112,24 +108,24 @@ SaaW 交付的是：**Work。**
 
 ```text
 SaaS
-Software provides tools
+软件提供工具
         │
         ▼
 Copilot
-AI assists humans
+AI 辅助人类
         │
         ▼
 Agent
-AI executes actions
+AI 执行动作
         │
         ▼
 SaaW
-Software performs work
+软件承担工作
 ```
 
-真正的变化不是：AI 更聪明了。
+真正的变化不是 AI 更聪明了，而是：
 
-而是：**软件的劳动属性发生了变化。**
+**软件的劳动属性发生了变化。**
 
 ---
 
@@ -137,7 +133,7 @@ Software performs work
 
 Agent 能够执行工具，并不意味着 Agent 可以进入企业生产环境。
 
-今天许多 Multi-Agent 系统已经能够生成复杂的 Execution Trace：谁调用了哪个工具；执行了哪个函数；产生了什么结果；模型经历了哪些步骤。
+今天许多多智能体系统已经能够生成复杂的执行轨迹（Execution Trace）：谁调用了哪个工具，执行了哪个函数，产生了什么结果，模型经历了哪些步骤。
 
 这些信息非常重要。
 
@@ -145,13 +141,13 @@ Agent 能够执行工具，并不意味着 Agent 可以进入企业生产环境�
 
 # Trace ≠ Governance
 
-Execution Trace 回答的是：**发生了什么？**
+执行轨迹回答的是：**发生了什么？**
 
-而企业真正需要回答的问题更多：谁授权了这项工作？谁接受了任务？哪一个对象代表正式的工作事实？谁提交了 Report？谁执行了 Review？谁作出了 Decision？当前状态是否合法？是否存在悬空引用？多个主体之间是否发生了尚未解决的冲突？系统崩溃之后，下一步究竟应该由谁继续？
+而企业真正需要回答的问题更多：谁授权了这项工作？谁接受了任务？哪一个对象代表正式的工作事实？谁提交了正式报告？谁执行了审查？谁作出了决策？当前状态是否合法？是否存在悬空引用？多个主体之间是否发生了尚未解决的冲突？系统崩溃之后，下一步究竟应该由谁继续？
 
 这不是普通日志系统能够解决的问题。
 
-这是一个 Governance State 问题。
+这是一个**治理状态**问题。
 
 如果这些问题没有答案，Agent 就很难真正承担岗位责任。
 
@@ -165,29 +161,29 @@ Execution Trace 回答的是：**发生了什么？**
 
 ## 4. TMPA：让工作事实脱离 Agent 而存在
 
-TMPA，全称：**Textual Multi-Agent Process Architecture。**
+TMPA，全称 **Textual Multi-Agent Process Architecture**。
 
 它试图解决的核心问题非常简单：
 
 **当多个 Agent 和人类共同完成一个长期工作时，真正可信的工作状态到底存在于哪里？**
 
-传统 Agent 系统很容易把状态放进模型上下文、Runtime Memory、数据库中的内部状态、Broker、中央调度器，或者一个不断增长的 Conversation。
+传统 Agent 系统很容易把状态放进模型上下文、运行时内存、数据库内部状态、消息代理、中央调度器，或者一个不断增长的会话。
 
 但所有这些方案都面临一个共同问题：**运行实例和工作事实绑得太紧。**
 
-TMPA 选择了另一条路线。
+TMPA 选择了另一条路线：
 
-# Text carries messages and state.
+> **文本同时承载消息与状态。**
 
-重要工作事实被投射到 Plain, portable text。
+重要工作事实被投射为普通、可移植的文本。
 
-这些文本不是“聊天记录”，而是正式的工作对象，例如：Task、Acceptance、Report、Review、Decision、Correction、Issue。
+这些文本不是“聊天记录”，而是正式工作对象，例如 `Task`、`Acceptance`、`Report`、`Review`、`Decision`、`Correction`、`Issue`。
 
-这些对象通过 Reference Identifier 形成因果关系。
+这些对象通过引用标识符形成因果关系。
 
 于是，工作的事实不再只存在于某个 Agent 的记忆中。
 
-Agent 可以退出。模型可以切换。进程可以重启。节点甚至可以暂时离线。
+Agent 可以退出，模型可以切换，进程可以重启，节点甚至可以暂时离线。
 
 但已经成立的工作事实仍然存在。
 
@@ -201,9 +197,9 @@ TMPA 的另一个核心原则是：
 
 # Single-Writer Serial Streams
 
-每一个 Agent 或人类责任主体都是独立的 Single Writer。
+每一个 Agent 或人类责任主体都是独立的单写者。
 
-这意味着：一个主体不去偷偷修改另一个主体已经写下的事实。
+这意味着，一个主体不去偷偷修改另一个主体已经写下的事实。
 
 新的状态通过新的对象追加产生。
 
@@ -227,7 +223,7 @@ DECISION
 
 于是系统中的责任链不是靠“最终数据库状态”猜出来的，而是由事实本身形成。
 
-这与许多传统 Workflow Engine 有一个重要差别。
+这与许多传统工作流引擎有一个重要差别。
 
 传统系统往往不断修改一个中央状态：
 
@@ -242,31 +238,27 @@ status = done
 
 TMPA 更关心的是：谁接受？谁提交？谁审核？谁批准？中间发生过什么争议？哪些事实后来被纠正？
 
-状态不是被覆盖。
-
-而是被重构。
+状态不是被覆盖，而是被重构。
 
 ---
 
 ## 6. 异步世界不存在完美的全局时间线
 
-真实的 Multi-Agent 系统天然是异步的。
+真实的多智能体系统天然是异步的。
 
-PM 在写计划。DEV 同时修改代码。QA 可能已经开始检查另一个模块。OPS 正在处理部署。人类主管可能晚几个小时才进行审批。
+PM 在写计划，DEV 同时修改代码，QA 可能已经开始检查另一个模块，OPS 正在处理部署，人类主管可能晚几个小时才进行审批。
 
-在这种环境中，如果系统强行构造一个完美的全局顺序：`1 → 2 → 3 → 4 → 5`，往往反而会掩盖真实发生的并发关系。
+在这种环境中，如果系统强行构造一个完美的全局顺序 `1 → 2 → 3 → 4 → 5`，往往反而会掩盖真实发生的并发关系。
 
-TMPA 因此强调：
+TMPA 因此强调**异步协作（Asynchronous Collaboration）**。
 
-# Asynchronous Collaboration
-
-不同的 Single-Writer Streams 可以独立推进。
+不同的单写者串行流可以独立推进。
 
 写端不负责制造虚假的全局时序。
 
-真正的关系在 Reader 端通过 Reference、Causality、Transition、Responsibility 与 Governance Rule 进行重构。
+真正的关系在 Reader 端通过引用、因果、状态迁移、责任与治理规则进行重构。
 
-最后得到的不是简单日志列表，而是一张 Partial-Order Graph。
+最后得到的不是简单日志列表，而是一张**偏序图（Partial-Order Graph）**。
 
 ```text
             ┌── DEV REPORT ──┐
@@ -276,7 +268,7 @@ TASK ───────┤                ├── REVIEW
 
 两个 Report 谁先写完并不是最重要的。
 
-重要的是：它们都因果依赖于同一个 TASK，而 REVIEW 又依赖于这些工作事实。
+重要的是，它们都因果依赖于同一个 TASK，而 REVIEW 又依赖于这些工作事实。
 
 这更接近真实组织的工作方式。
 
@@ -284,17 +276,17 @@ TASK ───────┤                ├── REVIEW
 
 ## 7. Issue Set：不要隐藏冲突
 
-很多自动化系统喜欢追求一个“漂亮的最终状态”。冲突最好自动消失，错误最好自动修正，所有流程最终都显示绿色。
+很多自动化系统喜欢追求一个“漂亮的最终状态”：冲突最好自动消失，错误最好自动修正，所有流程最终都显示绿色。
 
 但真实组织不是这样的。
 
 在企业工作中，两个角色可能意见冲突；引用可能不存在；状态可能非法跃迁；QA 可能否决 DEV；Report 可能缺少必要证据；Decision 可能没有合法前置条件。
 
-TMPA 的目标不是让这些问题消失。
+TMPA 的目标不是让这些问题消失，而是：
 
-而是：**让问题成为正式事实。**
+**让问题成为正式事实。**
 
-Reader 因此不仅重构 Process Graph，还需要重构 Issue Set，例如：
+Reader 因此不仅重构流程图，还需要重构**问题集（Issue Set）**，例如：
 
 ```text
 dangling_reference
@@ -314,23 +306,21 @@ conflicting_review
 
 ## 8. Recoverability：数字员工必须能够“醒来继续工作”
 
-SaaW 与普通 Chatbot 最大的差别之一，是时间尺度。
+SaaW 与普通聊天机器人最大的差别之一，是时间尺度。
 
-Chatbot 的典型生命周期可能只有几分钟，而真实工作可能持续数小时、数天、数周，甚至数月。
+聊天机器人的典型生命周期可能只有几分钟，而真实工作可能持续数小时、数天、数周，甚至数月。
 
-这意味着数字员工一定会遇到网络中断、SDK 超时、Agent 退出、Runtime 重启、模型上下文丢失、操作系统重启和软件升级。
+这意味着数字员工一定会遇到网络中断、SDK 超时、Agent 退出、运行体重启、模型上下文丢失、操作系统重启和软件升级。
 
 如果每一次异常都意味着“重新告诉 AI 前面发生了什么”，那么它永远无法成为真正的员工。
 
-因此 SaaW 必须具备：
-
-# Recoverability
+因此 SaaW 必须具备**可恢复性（Recoverability）**。
 
 TMPA 的目标之一，就是让当前治理状态能够从持久化事实重新计算。
 
 CodeFlowMu / FCoP 将这一思想进一步投射到文件系统。
 
-当节点重新启动时，不需要假设原来的模型一定还记得，而是重新读取 TASK、ACCEPTANCE、REPORT、REVIEW、DECISION、ISSUE，然后重新推导：当前任务是谁负责？已经完成了什么？哪些结果已经被确认？哪些问题还没有解决？现在允许发生什么？下一步应该由谁行动？
+当节点重新启动时，不需要假设原来的模型一定还记得，而是重新读取 `TASK`、`ACCEPTANCE`、`REPORT`、`REVIEW`、`DECISION`、`ISSUE`，然后重新推导：当前任务是谁负责？已经完成了什么？哪些结果已经被确认？哪些问题还没有解决？现在允许发生什么？下一步应该由谁行动？
 
 于是恢复不再是恢复 Agent 的记忆，而是：
 
@@ -342,13 +332,13 @@ CodeFlowMu / FCoP 将这一思想进一步投射到文件系统。
 
 如果说 TMPA 解决的是治理架构问题，那么 CodeFlowMu 解决的是另一个问题：这些 Agent 到底如何真正工作？
 
-CodeFlowMu 的工程起点不是构造一个巨大的中央 Agent Runtime。
+CodeFlowMu 的工程起点不是构造一个巨大的中央 Agent 运行体。
 
 相反，它试图保持克制。
 
-推理交给成熟模型生态。工具交给实际运行环境。
+推理交给成熟模型生态，工具交给实际运行环境。
 
-CodeFlowMu 集中解决工作编排、Agent Responsibility、生命周期、FCoP、Skill 调用、Report、Review、Human Decision、Recovery 与 Runtime Governance。
+CodeFlowMu 集中解决工作编排、Agent 责任边界、生命周期、FCoP、Skill 调用、报告、审查、人类决策、恢复与运行治理。
 
 这形成一个非常重要的工程边界：
 
@@ -357,6 +347,10 @@ CodeFlowMu 集中解决工作编排、Agent Responsibility、生命周期、FCoP
 模型只是数字员工的大脑之一。
 
 真正决定它能不能成为“员工”的，是外部工作结构。
+
+![SaaW 治理与运行架构：SaaW、CodeFlowMu、FCoP 与 TMPA](/assets/covers/saaw-governance-stack.svg)
+
+*图 1：SaaW 治理与运行架构。SaaW 描述软件交付范式，CodeFlowMu 承担工程运行，FCoP 提供轻量协作协议，TMPA 提供工作事实与治理架构。*
 
 ---
 
@@ -392,17 +386,17 @@ archive
 
 这带来一个极其朴素但重要的结果：
 
-# Directory becomes observable state.
+> **目录本身就是可观察状态。**
 
 系统管理员、人类主管、Agent 和调试工具看到的，可以是同一组事实。
 
-这降低了 Multi-Agent 系统最危险的一种复杂度：隐藏状态。
+这降低了多智能体系统最危险的一种复杂度：隐藏状态。
 
 ---
 
 ## 11. Agent PC：真正的数字员工需要一台“电脑”
 
-如果 SaaW 是 Worker，那么 Worker 必须有工作环境。
+如果 SaaW 是工作主体，那么它就必须拥有工作环境。
 
 我们把这一运行节点称为：
 
@@ -410,30 +404,30 @@ archive
 
 它并不一定是一台传统意义上的物理电脑，而代表一个数字员工拥有的独立运行环境。
 
-其中包括 Reasoning、Skills、Workflow、Credentials、Runtime、Files、Governance 与 External Systems。
+其中包括推理能力、Skill、工作流、凭据、运行环境、文件、治理规则与外部系统。
 
-它可以使用 Browser、API、CLI、Script、MCP、企业内部服务和受控 Automation Hook。
+它可以使用 Browser、API、CLI、Script、MCP、企业内部服务和受控自动化接口。
 
 于是 Agent 不再只是：
 
-`Prompt → Response`
+`提示 → 响应`
 
 而变成：
 
 ```text
-Task
+任务
  ↓
-Reason
+推理
  ↓
-Use Skill
+调用 Skill
  ↓
-Operate System
+操作系统
  ↓
-Observe Result
+观察结果
  ↓
-Produce Evidence
+生成证据
  ↓
-Continue / Report / Escalate
+继续 / 报告 / 升级处理
 ```
 
 这才是真正的数字员工运行循环。
@@ -448,7 +442,7 @@ Continue / Report / Escalate
 
 但真实企业系统并不是简单的 CRUD。
 
-一个字段背后可能存在状态机、Trigger、Stored Procedure、权限规则、财务约束、Workflow、Audit Trail 与外部系统联动。
+一个字段背后可能存在状态机、触发器、存储过程、权限规则、财务约束、工作流、审计轨迹与外部系统联动。
 
 直接改表，相当于绕过企业几十年积累下来的业务边界。
 
@@ -463,7 +457,7 @@ Agent
   ├── Browser
   ├── CLI
   ├── Hook
-  └── Approved Automation
+  └── 受控自动化
         │
         ▼
 Existing ERP / CRM / Business System
@@ -477,43 +471,43 @@ Existing ERP / CRM / Business System
 
 ## 13. 从代码中重新发现企业 SOP
 
-Legacy Software 还有一个经常被低估的价值：
+遗留软件还有一个经常被低估的价值：
 
 **代码本身就是企业知识。**
 
 大量企业流程并没有完整 SOP 文档。
 
-真正的规则隐藏在 API、Controller、Form、Validation、State Transition、Permission Check、Batch Script、Database Schema 与 Configuration 中。
+真正的规则隐藏在 API、控制器、表单、校验规则、状态迁移、权限检查、批处理脚本、数据库结构与配置中。
 
-因此 CodeFlowMu 的一个重要演进方向，是让 Meta-Development Team 能够分析现有系统，帮助重新提取：
+因此 CodeFlowMu 的一个重要演进方向，是让元开发团队能够分析现有系统，帮助重新提取：
 
 ```text
-Existing Code
+现有代码
       │
       ▼
-Business Rules
+业务规则
       │
       ▼
-Workflow
+工作流
       │
       ▼
 SOP
       │
       ▼
-Digital Employee Skills
+数字员工 Skill
 ```
 
 但这并不意味着“扫描代码 = 自动理解整个企业”。
 
-真实 SOP 还可能来自文档、人工说明、API Specification、操作录像、岗位说明书、Policy 与业务专家反馈。
+真实 SOP 还可能来自文档、人工说明、API 规范、操作录像、岗位说明书、政策规则与业务专家反馈。
 
 代码只是其中极其重要的一种事实来源。
 
 更严谨地说，这条路径应该被理解为：
 
-# Enterprise Evidence → Candidate SOP → Validation → Governed Workflow
+# 企业证据 → 候选 SOP → 验证 → 受治理工作流
 
-AI 的价值，是第一次让这些分散知识能够被低成本地重新结构化；而 Candidate SOP 只有经过业务验证、工程测试、治理检查或人类授权，才能升级为数字员工可执行的正式 Workflow。
+AI 的价值，是第一次让这些分散知识能够被低成本地重新结构化；而候选 SOP 只有经过业务验证、工程测试、治理检查或人类授权，才能升级为数字员工可执行的正式工作流。
 
 ---
 
@@ -521,7 +515,9 @@ AI 的价值，是第一次让这些分散知识能够被低成本地重新结�
 
 CodeFlowMu 当前最值得关注的地方，不只是多个 Agent 可以一起开发软件。
 
-更重要的是：这种研发能力本身可以成为下一代数字员工的生产能力。
+更重要的是，这种研发能力本身可以成为下一代数字员工的生产能力。
+
+我们把这一形态称为**元开发运行体（Meta-Development Runtime）**。
 
 初始 CodeFlowMu 可以表现为一个四角色开发团队：
 
@@ -537,31 +533,40 @@ CodeFlowMu 当前最值得关注的地方，不只是多个 Agent 可以一起�
 
 PM 理解需求、拆解工作、组织协作。
 
-DEV 实现代码、Skill、Hook 和 Workflow。
+DEV 实现代码、Skill、Hook 和工作流。
 
 QA 验证业务结果与工程结果。
 
 OPS 负责运行环境、恢复、部署和生命周期。
 
-这是：
+这是 CodeFlowMu 的**元开发模式**。
 
-# Meta-Dev Mode
+它的产物，不一定只是传统软件，还可以是：
 
-它的产物，不一定只是传统软件。
-
-还可以是 Digital Employee Package。
+**数字员工包（Digital Employee Package）。**
 
 ---
 
-## 15. Digital Employee Package
+## 15. Digital Employee Package：让数字员工成为可工程化产品
 
 一个数字员工真正可以部署之前，需要被工程化描述。
 
-一个完整的 Worker Package 至少可能包含 Role、Responsibilities、Workflow、Skills、Permissions、Policies、Validation Rules、Runtime Configuration、Recovery Rules 与 Human Decision Gates。
+一个完整的数字员工包至少可能包含：
 
-于是数字员工第一次开始像一个真正的软件产品一样：可以定义；可以开发；可以测试；可以版本化；可以部署；可以升级；可以回滚。
+- 角色；
+- 岗位职责；
+- 工作流；
+- Skill；
+- 权限；
+- 治理策略；
+- 验证规则；
+- 运行配置；
+- 恢复规则；
+- 人类决策门。
 
-这也是 SaaW 与“写一个 Agent Prompt”之间最根本的区别之一。
+于是数字员工第一次开始像一个真正的软件产品一样：可以定义、可以开发、可以测试、可以版本化、可以部署、可以升级、可以回滚。
+
+这也是 SaaW 与“写一个 Agent 提示词”之间最根本的区别之一。
 
 ---
 
@@ -578,6 +583,10 @@ OPS 负责运行环境、恢复、部署和生命周期。
 Self-Morphing 真正值得讨论的含义是：
 
 > **一个数字员工运行系统，利用自身的软件开发能力，构造、验证并部署新的数字员工形态。**
+
+![Self-Morphing：从元开发运行体到数字员工履职闭环](/assets/covers/saaw-self-morphing-loop.svg)
+
+*图 2：Self-Morphing 的受治理闭环。开发、验证、授权、部署、履职与工作证据进入同一个可恢复、可追踪的生命周期。*
 
 其完整过程应该是：
 
@@ -608,7 +617,7 @@ Domain Worker Runtime
 ```text
 PM / DEV / QA / OPS
         │
-        │ develop
+        │ 开发
         ▼
 Finance Worker Package
         │
@@ -637,41 +646,41 @@ Archive Agent
 过去的软件开发模型是：
 
 ```text
-Human
+人类
   ↓
-builds Software
+开发软件
   ↓
-Human uses Software
+人类使用软件
 ```
 
 而 Self-Morphing 开始出现：
 
 ```text
-AI Development Team
+AI 开发团队
         ↓
-builds Digital Worker
+开发数字员工
         ↓
-Digital Worker performs Work
+数字员工承担工作
 ```
 
 然后更加重要的一步出现：
 
 ```text
-Worker performs Work
+数字员工履职
         │
         ▼
-Evidence / Issues
+工作证据 / 问题
         │
         ▼
-Development Input
+开发输入
         │
         ▼
-Next Worker Version
+下一版本数字员工
 ```
 
 于是软件开发与软件履职第一次形成闭环：
 
-# Develop → Validate → Deploy → Work → Observe → Improve
+# 开发 → 验证 → 部署 → 工作 → 观察 → 改进
 
 这就是“代码库开始自己开发自己”真正值得研究的含义。
 
@@ -703,35 +712,33 @@ Development Runtime
 
 这不是简单的 DevOps。
 
-DevOps 连接的是 Development 与 Deployment。
+DevOps 连接的是开发与部署。
 
-SaaW 进一步连接：
+SaaW 进一步连接的是：
 
-**Development 与 Work。**
+**开发与工作。**
 
-这可能成为 AI Native Software 与传统软件最大的分水岭之一。
+这可能成为 AI 原生软件与传统软件最大的分水岭之一。
 
 ---
 
 ## 18. 人类并没有消失，而是离开了操作层
 
-数字员工的出现并不意味着 Human-Out-of-the-Loop。
+数字员工的出现并不意味着把人类排除在工作闭环之外。
 
 恰恰相反。
 
-真正安全的 SaaW 必须明确哪些事情 Agent 可以自主完成，以及哪些事情必须由人决定。
+真正安全的 SaaW 必须明确：哪些事情 Agent 可以在授权范围内自主完成，哪些事情必须由人作出决定。
 
-人在 SaaS 中通常是 Operator。
+**在 SaaS 模式中，人通常处于软件操作层；在 SaaW 模式中，人逐渐转向监督与最终授权层。**
 
-人在 SaaW 中逐渐变成 Supervisor / Authorizer。
+查询、整理、校验、生成报告、内部同步等低风险工作可以高度自动化。
 
-例如，查询、整理、校验、生成报告、内部同步等低风险工作可以高度自动化。
-
-而对于大额付款、合同最终签署、权限提升、不可逆数据操作、重要公开发布，系统应该进入 Decision Gate。
+而对于大额付款、合同最终签署、权限提升、不可逆数据操作和重要公开发布，系统应该进入明确的人类决策门。
 
 更准确地说：
 
-# Human at the Authority Boundary.
+> **人处在授权边界（Human at the Authority Boundary）。**
 
 ---
 
@@ -739,20 +746,18 @@ SaaW 进一步连接：
 
 CodeFlowMu 的 PWA 因此并不是简单的手机网页。
 
-它代表的是：
+它代表的是数字员工团队的**人类控制面（Human Control Plane）**。
 
-# Human Control Plane
-
-管理者可以通过移动端查看当前 Task、Agent 状态、Report、Review、Issue、Waiting Decision、Recovery State 与工作结果。
+管理者可以通过移动端查看当前任务、Agent 状态、报告、审查、问题、待决事项、恢复状态与工作结果。
 
 ```text
 SaaW Runtime
       │
       ▼
-Report
+工作报告
       │
       ▼
-FCoP / TMPA Facts
+FCoP / TMPA 工作事实
       │
       ▼
 Reader
@@ -761,32 +766,32 @@ Reader
 Mobile PWA
       │
       ▼
-Human Approve / Reject
+人类批准 / 驳回
       │
       ▼
-Decision
+正式决策
       │
       ▼
-SaaW Runtime continues
+SaaW Runtime 继续运行
 ```
 
-这里最重要的一点是：Approve 不是一个普通 UI 点击事件。
+这里最重要的一点是：批准并不是一个普通的界面点击事件。
 
 点击只是界面。
 
 真正发生的是：
 
 ```text
-Human Decision
+人类决策
         ↓
-Governance Fact
+治理事实
         ↓
-State Transition
+状态迁移
 ```
 
 授权因此进入正式工作历史。
 
-这才是真正意义上的 Human-in-the-Loop。
+这才是真正意义上的**人类在环治理（Human-in-the-Loop）**。
 
 ---
 
@@ -796,13 +801,13 @@ State Transition
 
 但真实世界不会这样。
 
-模型会超时。上下文会溢出。Gateway 会失败。Agent 会崩溃。软件会升级。服务器会重启。
+模型会超时，上下文会溢出，Gateway 会失败，Agent 会崩溃，软件会升级，服务器会重启。
 
 所以真正的 SaaW 必须遵守一个非常重要的原则：
 
-# Agent is replaceable. Work facts are not.
+> **Agent 可以替换，工作事实不能丢失。**
 
-Agent 可以换。模型可以换。SDK 可以换。Runtime 可以重启。
+Agent 可以换，模型可以换，SDK 可以换，运行体可以重启。
 
 但已经成立的工作事实不能因此消失。
 
@@ -816,24 +821,24 @@ Agent 可以换。模型可以换。SDK 可以换。Runtime 可以重启。
 
 ## 21. SaaW 改变的不是 AI，而是软件经济学
 
-最终，SaaW 讨论的并不只是一个新的 Agent Framework。
+最终，SaaW 讨论的并不只是一个新的 Agent 框架。
 
 它可能意味着软件经济模型发生变化。
 
-SaaS 的商业逻辑是：企业购买软件能力，然后继续配置员工。
+SaaS 的商业逻辑是：企业购买软件能力，然后继续配置员工完成工作。
 
-SaaW 的商业逻辑可能变成：企业部署数字工作能力，结果第一次开始成为软件交付的一部分。
+SaaW 的商业逻辑可能变成：企业部署数字工作能力，工作结果第一次开始成为软件交付的一部分。
 
 因此：
 
-**SaaS 卖 Capability。**  
-**SaaW 交付 Work。**
+**SaaS 卖能力。**  
+**SaaW 交付工作。**
 
 企业未来购买的可能不再只是 CRM，而是客户运营数字团队；不再只是财务系统，而是财务处理数字员工；不再只是合同管理平台，而是合同审查与履约数字团队。
 
-软件市场可能从 Software Market 逐渐扩展到：
+软件市场可能从**软件市场**逐渐扩展到：
 
-# Digital Labor Market
+# 数字劳动力市场
 
 这才是 SaaW 真正巨大的想象空间。
 
@@ -843,7 +848,7 @@ SaaW 的商业逻辑可能变成：企业部署数字工作能力，结果第一
 
 我们最终想表达的其实只有一句话：
 
-**数字员工不是更聪明的 Chatbot。**
+**数字员工不是更聪明的聊天机器人。**
 
 它必须拥有工作职责、工作环境、工具、权限、状态、治理、证据、恢复能力，以及人类授权边界。
 
@@ -869,7 +874,7 @@ PWA 提供：人类管理数字员工的控制面。
 
 > **我们怎样让人更高效地工作？**
 
-AI Native Software 可能开始回答另一个问题：
+AI 原生软件开始面对另一个问题：
 
 > **哪些工作可以由软件本身完成？**
 
@@ -881,39 +886,39 @@ AI Native Software 可能开始回答另一个问题：
 
 ```text
 SaaS
-Human operates Software
+人操作软件
         ↓
 Copilot
-Human operates with AI
+人与 AI 协同操作
         ↓
 SaaW
-AI performs Work
-Human governs AI
+AI 承担工作
+人负责治理与授权
 ```
 
 而当能够开发数字员工的系统，又开始利用自身能力开发下一代数字员工：
 
 ```text
-AI develops Worker
+AI 开发数字员工
         ↓
-Worker performs Work
+数字员工承担工作
         ↓
-Work produces Evidence
+工作产生证据
         ↓
-Evidence drives Development
+证据驱动下一轮开发
         ↓
-AI develops next Worker
+AI 开发下一代数字员工
 ```
 
 一个过去不存在的软件生命周期开始形成。
 
 这就是 CodeFlowMu 正在探索的方向。
 
-不是再造一个 Multi-Agent Framework。
+不是再造一个多智能体框架。
 
 而是：
 
-> **构造一套能够开发、运行、治理和持续演化数字员工的软件基础设施。**
+> **构造一套能够开发、运行、治理、恢复并持续演化数字员工的软件基础设施。**
 
 这也是我们提出 SaaW 的真正原因。
 
@@ -934,4 +939,4 @@ AI develops next Worker
 
 **TMPA Architecture Paper A0.9 · TMPA Core Specification S0.6 · TMPA Implementation Case Report I0.8 · CodeFlowMu / FCoP**
 
-> **V1.1 边界说明：** 本文是一篇面向 AI Native Software、Multi-Agent Engineering 与企业数字员工方向的技术宣言。SaaW、Self-Morphing、Digital Employee Runtime 等概念既包含现有架构与工程实践，也包含正在持续验证的研究方向；具体能力边界以对应版本的公开规范、测试与实现证据为准。
+> **V1.1 边界说明：** 本文是一篇面向 AI 原生软件、多智能体工程与企业数字员工方向的技术宣言。SaaW、Self-Morphing、数字员工运行体等概念既包含现有架构与工程实践，也包含正在持续验证的研究方向；具体能力边界以对应版本的公开规范、测试与实现证据为准。
