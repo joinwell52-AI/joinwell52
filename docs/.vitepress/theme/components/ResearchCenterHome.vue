@@ -38,6 +38,9 @@ const copy = computed(() => zh.value ? {
     { version:'I1.0', kind:'工程案例', title:['TMPA–FCoP–','CodeFlowMu','实施案例'], status:'V1.8.0 · S1.0 14/14', path:'/zh/publications/implementation-case-i1.0', tone:'case' }
   ],
   readPublication: '阅读正式文档',
+  tmpaArchiveStatus: 'V1.0 · Zenodo DOI 已登记',
+  tmpaPaperAddress: '架构论文地址',
+  tmpaArchiveLink: 'Zenodo 正式归档',
   engineLabel: '01 · 数字员工生产线',
   engineTitle: '一个生产岗位 一条可核验产线',
   engineWide: ['一个生产岗位', '一条可核验产线'],
@@ -112,6 +115,9 @@ const copy = computed(() => zh.value ? {
     { version:'I1.0', kind:'ENGINEERING CASE', title:['TMPA–FCoP–','CodeFlowMu','Implementation Case'], status:'V1.8.0 · S1.0 14/14', path:'/en/publications/implementation-case-i1.0', tone:'case' }
   ],
   readPublication: 'Read formal document',
+  tmpaArchiveStatus: 'V1.0 · Zenodo DOI registered',
+  tmpaPaperAddress: 'Architecture paper',
+  tmpaArchiveLink: 'Zenodo archival record',
   engineLabel: '01 · DIGITAL EMPLOYEE PRODUCTION LINE',
   engineTitle: 'One production position One verifiable line',
   engineWide: ['One production position', 'One verifiable line'],
@@ -402,6 +408,20 @@ onBeforeUnmount(() => {
           </div>
           <p>{{ copy.tmpaLead }}</p>
         </div>
+        <div class="rc-tmpa__archive" aria-label="TMPA V1.0 Zenodo archive">
+          <a class="rc-doi-badge" href="https://doi.org/10.5281/zenodo.21888488">
+            <span>DOI</span>
+            <strong>10.5281/zenodo.21888488</strong>
+            <i>↗</i>
+          </a>
+          <div class="rc-tmpa__archive-meta">
+            <b>{{ copy.tmpaArchiveStatus }}</b>
+            <nav>
+              <a :href="link(zh ? '/zh/publications/tmpa-architecture-paper-a1.0' : '/en/publications/tmpa-architecture-paper-a1.0')">{{ copy.tmpaPaperAddress }} <span>↗</span></a>
+              <a href="https://zenodo.org/records/21888488">{{ copy.tmpaArchiveLink }} <span>↗</span></a>
+            </nav>
+          </div>
+        </div>
         <div class="rc-publications">
           <a v-for="publication in copy.publications" :key="publication.version" :class="`rc-publication rc-publication--${publication.tone}`" :href="link(publication.path)">
             <div class="rc-publication__art"><span>{{ publication.kind }}</span><b>{{ publication.version }}</b><i></i></div>
@@ -654,6 +674,17 @@ onBeforeUnmount(() => {
 
 .rc-tmpa, .rc-research { color: #fff; background: var(--rc-night); border-color: #313631; }
 .rc-research { padding-bottom: 0; }
+.rc-tmpa__archive { display: flex; align-items: stretch; margin-top: 34px; background: #101511; border: 1px solid #3f443f; }
+.rc-doi-badge { display: flex; align-items: center; gap: 14px; min-width: 330px; padding: 17px 20px; color: #fff !important; background: #1682d4; }
+.rc-doi-badge span { padding-right: 14px; border-right: 1px solid rgba(255,255,255,.42); font: 850 12px/1 ui-sans-serif, system-ui, sans-serif; letter-spacing: .08em; }
+.rc-doi-badge strong { font: 800 15px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: -.025em; }
+.rc-doi-badge i { margin-left: auto; font-style: normal; }
+.rc-tmpa__archive-meta { display: flex; flex: 1; align-items: center; justify-content: space-between; gap: 24px; padding: 14px 18px; }
+.rc-tmpa__archive-meta > b { color: #d9dfd9; font: 760 11px/1.3 ui-sans-serif, system-ui, sans-serif; letter-spacing: .04em; }
+.rc-tmpa__archive-meta nav { display: flex; align-items: center; gap: 8px; }
+.rc-tmpa__archive-meta a { padding: 9px 11px; color: #fff !important; border: 1px solid #4b514c; font: 750 11px/1.2 ui-sans-serif, system-ui, sans-serif; }
+.rc-tmpa__archive-meta a:hover { color: var(--rc-night) !important; background: var(--rc-lime); border-color: var(--rc-lime); }
+.rc-tmpa__archive + .rc-publications { margin-top: 34px; }
 .rc-publications { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 70px; }
 .rc-publication { display: grid; grid-template-rows: 250px 1fr; min-height: 560px; color: var(--rc-ink) !important; background: var(--rc-paper); border: 1px solid #3f443f; }
 .rc-publication__art { position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 24px; overflow: hidden; color: #fff; background: var(--rc-signal); }
@@ -969,6 +1000,13 @@ onBeforeUnmount(() => {
   .rc-section__intro { display: block; }
   .rc-section__intro > p { margin-top: 27px; font-size: 13px; }
   .rc-section__title { font-size: 41px; line-height: .98; }
+  .rc-tmpa__archive { display: block; margin-top: 30px; }
+  .rc-doi-badge { min-width: 0; padding: 15px 16px; }
+  .rc-doi-badge strong { font-size: 12px; }
+  .rc-tmpa__archive-meta { display: block; padding: 15px 16px; }
+  .rc-tmpa__archive-meta nav { margin-top: 12px; }
+  .rc-tmpa__archive-meta a { flex: 1; text-align: center; }
+  .rc-tmpa__archive + .rc-publications { margin-top: 24px; }
   .rc-publications { grid-template-columns: 1fr; gap: 13px; margin-top: 44px; }
   .rc-publication { grid-template-columns: 112px 1fr; grid-template-rows: 1fr; min-height: 250px; }
   .rc-publication__art { padding: 16px; }

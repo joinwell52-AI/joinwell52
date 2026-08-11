@@ -37,6 +37,8 @@ V1.0 remains the historical baseline for the first Production Test: [legacy comp
 | Specification | [TMPA Core Specification](./tmpa-core-specification-s1.0) | S1.0 | Stable normative release; Reference Reader 14/14 PASS; registered CodeFlowMu V1.8.0 product run 14/14 PASS (author-run) |
 | Case report | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i1.0) | I1.0 | Exact-version S1.0 CodeFlowMu V1.8.0 evidence: C01–C14 14/14 author-run PASS across 71 mandatory assertions; WP-13 retained as a bounded case |
 
+TMPA V1.0 suite archive: [Zenodo record](https://zenodo.org/records/21888488) · [DOI: 10.5281/zenodo.21888488](https://doi.org/10.5281/zenodo.21888488) · PUBLISHED · 10/10 files · Open · All rights reserved. The DOI identifies the complete suite, not separate DOIs for A1.0, S1.0, and I1.0.
+
 Release governance: [TMPA V1.0 Release Readiness Audit RA1](./tmpa-v1.0-release-readiness-audit) identified four bounded P0 items; [RC1 closed P0-01 through P0-04](./tmpa-v1.0-p0-closure-rc1). The [final V1.0 release record](./tmpa-v1.0-release-record) promotes A1.0/S1.0/I1.0 and preserves both reviews as historical evidence.
 
 The TMPA publication suite is an independent theory layer. High-frequency Observation Notes do not automatically become paper evidence; long-term TMPA work runs through Research Program Runtime, not Daily Runtime.

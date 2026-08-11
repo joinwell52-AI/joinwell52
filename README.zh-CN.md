@@ -7,6 +7,7 @@
 [![架构论文 A1.0](https://img.shields.io/badge/TMPA-架构论文_A1.0-2563eb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/publications/tmpa-architecture-paper-a1.0)
 [![核心规范 S1.0](https://img.shields.io/badge/TMPA-核心规范_S1.0-7c3aed?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/publications/tmpa-core-specification-s1.0)
 [![实施案例 I1.0](https://img.shields.io/badge/CodeFlowMu-I1.0_14%2F14_PASS-15803d?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/publications/implementation-case-i1.0)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21888488.svg)](https://doi.org/10.5281/zenodo.21888488)
 
 TMPA 是一套厂商中立的架构与规范，用于治理由异构 AI Agent 与人类共同承担的长周期工作。它把持久工作事实从模型的易失性记忆中剥离出来，以可检查对象保存事实，在异步执行中维持责任边界，并依据现有证据重构生命周期、权限、冲突与审计状态。
 
@@ -21,6 +22,10 @@ TMPA 是一套厂商中立的架构与规范，用于治理由异构 AI Agent �
 | **实施案例 I1.0** | 报告 CodeFlowMu V1.8.0 针对 S1.0 的有界产品证据 | [网页](https://joinwell52-ai.github.io/joinwell52/zh/publications/implementation-case-i1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-implementation-case-i1.0-zh.pdf) |
 
 包含中英文出版物、引用元数据、Manifest、校验和与发行说明的完整档案位于 [`docs/public/releases/tmpa/v1.0/`](./docs/public/releases/tmpa/v1.0/)。
+
+**TMPA V1.0 Zenodo 归档：** <https://zenodo.org/records/21888488>
+
+**DOI：** <https://doi.org/10.5281/zenodo.21888488>
 
 ## 为什么需要 TMPA
 

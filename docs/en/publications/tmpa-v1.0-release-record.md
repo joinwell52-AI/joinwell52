@@ -25,6 +25,15 @@ CodeFlowMu V1.8.0 executes its product Reader against the exact S1.0 frozen-cand
 
 The evidence is author-run and fixed-bundle. The CodeFlowMu evidence commit was local-only at capture, and the package includes its source snapshot and patch. Promotion does not assert independent validation, certification, universal conformance, theory proof, semantic truth, hallucination elimination, or independent adoption.
 
-## Archival status
+## Zenodo archival record
 
-The repository release and Git tag establish the publication version. DOI minting is a separate archival-deposit action and remains pending. Earlier RA1, RC1, A0.x, S0.x, and I0.x records remain immutable publication history.
+- **DOI:** [10.5281/zenodo.21888488](https://doi.org/10.5281/zenodo.21888488)
+- **Zenodo record:** [https://zenodo.org/records/21888488](https://zenodo.org/records/21888488)
+- **Status:** PUBLISHED
+- **Files:** 10/10
+- **Access:** Open
+- **License:** All rights reserved
+- **Publication dossier SHA-256:** `13b53f36738efee769b42bb6bd3466557c8862c089f6b5e762203aff61256d7d`
+- **Implementation evidence SHA-256:** `9b92b06c3e46c8019362f55075be4ed066cb7a9c0d9859945b6c3b7de8840d04`
+
+Zenodo is the immutable archival platform for the TMPA V1.0 Publication System. The GitHub repository `joinwell52-AI/joinwell52` remains the single source of truth for editable content and version history. The DOI identifies the complete TMPA V1.0 publication suite; it is not a set of separate DOIs for A1.0, S1.0, and I1.0. Earlier RA1, RC1, A0.x, S0.x, and I0.x records remain immutable publication history.

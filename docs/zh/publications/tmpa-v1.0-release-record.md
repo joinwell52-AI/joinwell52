@@ -25,6 +25,15 @@ CodeFlowMu V1.8.0 产品 Reader 针对精确 S1.0 冻结候选字节执行，在
 
 证据由作者运行并绑定固定 Bundle。CodeFlowMu 证据 Commit 在捕获时仅存在于本地，证据包包含其源码快照与 Patch。本次升版不主张独立验证、认证、普遍一致性、理论证明、语义真实性、幻觉消除或独立采用。
 
-## 存档状态
+## Zenodo 不可变归档记录
 
-仓库 Release 与 Git Tag 确立出版版本。DOI 生成属于单独的存档提交动作，目前仍为 pending。早期 RA1、RC1、A0.x、S0.x 与 I0.x 记录继续作为不可变出版历史保留。
+- **DOI：** [10.5281/zenodo.21888488](https://doi.org/10.5281/zenodo.21888488)
+- **Zenodo Record：** [https://zenodo.org/records/21888488](https://zenodo.org/records/21888488)
+- **状态：** PUBLISHED
+- **文件：** 10/10
+- **访问方式：** Open
+- **许可证：** All rights reserved
+- **Publication dossier SHA-256：** `13b53f36738efee769b42bb6bd3466557c8862c089f6b5e762203aff61256d7d`
+- **Implementation evidence SHA-256：** `9b92b06c3e46c8019362f55075be4ed066cb7a9c0d9859945b6c3b7de8840d04`
+
+Zenodo 是 TMPA V1.0 Publication System 的不可变归档平台。GitHub 仓库 `joinwell52-AI/joinwell52` 仍是可编辑内容与版本历史的唯一事实源。该 DOI 标识完整的 TMPA V1.0 出版套件，并非 A1.0、S1.0 与 I1.0 各自拥有不同 DOI。早期 RA1、RC1、A0.x、S0.x 与 I0.x 记录继续作为不可变出版历史保留。

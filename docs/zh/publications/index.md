@@ -51,6 +51,8 @@ V1.0 作为首个 Production Test 历史基线保留：[旧版兼容入口](./re
 | 规范 | [TMPA Core Specification](./tmpa-core-specification-s1.0) | S1.0 | 稳定规范正式版；Reference Reader 14/14 PASS；登记 CodeFlowMu V1.8.0 产品运行 14/14 PASS（作者运行） |
 | 案例 | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i1.0) | I1.0 | 精确 S1.0 版本的 CodeFlowMu V1.8.0 证据：C01–C14 作者运行 14/14 PASS，覆盖 71 项强制断言；WP-13 作为有边界案例保留 |
 
+TMPA V1.0 出版套件归档：[Zenodo Record](https://zenodo.org/records/21888488) · [DOI：10.5281/zenodo.21888488](https://doi.org/10.5281/zenodo.21888488) · PUBLISHED · 10/10 files · Open · All rights reserved。该 DOI 标识完整套件，并非 A1.0、S1.0 与 I1.0 各自拥有不同 DOI。
+
 发布治理：[TMPA V1.0 发布就绪审查 RA1](./tmpa-v1.0-release-readiness-audit)识别了 4 项有边界 P0，[RC1 已关闭 P0-01 至 P0-04](./tmpa-v1.0-p0-closure-rc1)。[V1.0 最终发布记录](./tmpa-v1.0-release-record)正式升版 A1.0/S1.0/I1.0，并把两次审查保留为历史证据。
 
 TMPA 出版体系是独立理论层。工场的高频观察笔记不自动构成论文证据；工程案例只报告其明确范围内的实现与验证结果。TMPA 长期研究进入 Research Program Runtime，不再进入 Daily Runtime。
