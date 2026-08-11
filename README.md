@@ -7,7 +7,7 @@
 [![Architecture A1.0](https://img.shields.io/badge/TMPA-Architecture_A1.0-2563eb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-architecture-paper-a1.0)
 [![Core S1.0](https://img.shields.io/badge/TMPA-Core_S1.0-7c3aed?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-core-specification-s1.0)
 [![Implementation I1.0](https://img.shields.io/badge/CodeFlowMu-I1.0_14%2F14_PASS-15803d?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/publications/implementation-case-i1.0)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21888488.svg)](https://doi.org/10.5281/zenodo.21888488)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21888488-1682D4?style=for-the-badge)](https://doi.org/10.5281/zenodo.21888488)
 
 TMPA is a vendor-neutral architecture and specification for governing long-running work performed by heterogeneous AI agents and humans. It moves durable work facts out of volatile model memory and into inspectable objects, preserves responsibility across asynchronous execution, and reconstructs lifecycle, authority, conflict, and audit state from available evidence.
 
