@@ -1,0 +1,33 @@
+name: SaaW TMPA FCoP Structure Sync
+on:
+  push:
+    paths:
+      - '.github/workflows/saaw-tmpa-fcop-structure-sync.yml'
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: saaw-tmpa-fcop-structure-sync
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Apply bilingual article changes
+        run: python scripts/saaw_tmpa_fcop_structure_sync.py
+      - name: Build VitePress
+        run: |
+          npm ci
+          npm run docs:build
+      - name: Commit final article changes only
+        run: |
+          rm scripts/saaw_tmpa_fcop_structure_sync.py
+          rm .github/workflows/saaw-tmpa-fcop-structure-sync.yml
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md scripts/saaw_tmpa_fcop_structure_sync.py .github/workflows/saaw-tmpa-fcop-structure-sync.yml
+          git commit -m "docs: align SaaW TMPA and FCoP structure with A0.9" || exit 0
+          git push origin HEAD:saaw-tmpa-fcop-structure-sync
