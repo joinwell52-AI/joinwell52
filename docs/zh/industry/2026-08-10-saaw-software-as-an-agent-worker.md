@@ -4,13 +4,13 @@ date: "2026-08-10"
 column: "industry-architecture"
 category: "manifesto"
 version: "V1.1"
-summary: "从治理、TMPA、FCoP、Agent PC、CodeFlowMu、Self-Morphing 与数字员工运行体系推导 SaaW：软件从工具与服务走向可治理的数字工作主体。"
+summary: "从治理、TMPA、FCoP、Agent PC、CodeFlowMu 与 Self-Morphing 推导 SaaW，并以 Research Report Production Engine V1.3 作为真实工程锚点，区分已验证能力与研究前沿。"
 item_id: "MANIFESTO-20260810-SAAW"
 lifecycle: "Published"
 cover: "/assets/covers/saaw-manifesto-cover-hd.svg"
 visualization: "/assets/covers/saaw-governance-stack.svg"
 visualization_2: "/assets/covers/saaw-self-morphing-loop.svg"
-evidence_status: "Architecture-grounded"
+evidence_status: "Architecture-grounded + production-engine reference implementation"
 citation_status: "Internal publication mapping completed"
 editing_status: "Published V1.1 — full 23-section edition"
 publication_authorized: true
@@ -66,7 +66,7 @@ AI 开始进入软件界面，帮助人类写邮件、总结文档、生成代�
 
 我们将这一范式称为：
 
-# SaaW — Software as an Agent Worker
+> **SaaW — Software as an Agent Worker**
 
 软件不再只是服务。
 
@@ -139,7 +139,7 @@ Agent 能够执行工具，并不意味着 Agent 可以进入企业生产环境�
 
 但：
 
-# Trace ≠ Governance
+> **Trace ≠ Governance**
 
 执行轨迹回答的是：**发生了什么？**
 
@@ -191,11 +191,11 @@ Agent 可以退出，模型可以切换，进程可以重启，节点甚至可�
 
 ---
 
-## 5. Single-Writer：责任必须有明确来源
+## 5. 单写者（Single-Writer）：责任必须有明确来源
 
 TMPA 的另一个核心原则是：
 
-# Single-Writer Serial Streams
+> **Single-Writer Serial Streams**
 
 每一个 Agent 或人类责任主体都是独立的单写者。
 
@@ -274,7 +274,7 @@ TASK ───────┤                ├── REVIEW
 
 ---
 
-## 7. Issue Set：不要隐藏冲突
+## 7. 问题集（Issue Set）：不要隐藏冲突
 
 很多自动化系统喜欢追求一个“漂亮的最终状态”：冲突最好自动消失，错误最好自动修正，所有流程最终都显示绿色。
 
@@ -304,7 +304,7 @@ conflicting_review
 
 ---
 
-## 8. Recoverability：数字员工必须能够“醒来继续工作”
+## 8. 可恢复性（Recoverability）：数字员工必须能够“醒来继续工作”
 
 SaaW 与普通聊天机器人最大的差别之一，是时间尺度。
 
@@ -325,6 +325,29 @@ CodeFlowMu / FCoP 将这一思想进一步投射到文件系统。
 于是恢复不再是恢复 Agent 的记忆，而是：
 
 **重构工作的事实。**
+
+---
+
+
+### 一个数字员工的一天：Research Report Production Engine V1.3
+
+如果只看“数字员工”的定义，读者很容易把它理解成一个更聪明的聊天机器人。更直接的理解方式，是看看一个已经运行的研究型数字员工如何完成一天的工作。
+
+当当天的研究任务进入执行窗口时，**Research Report Production Engine V1.3** 首先接收研究问题，并把它转化为明确的研究对象与工作状态。它不是立即生成一篇文章，而是先进入证据与阅读阶段：检索、读取和整理来源，记录能够支持哪些判断、还缺哪些证据。证据不足时，系统应该留下缺口，而不是用语言流畅度把缺口掩盖掉。
+
+随后进入分析阶段。已有证据被组织成论点、反论点、边界条件和待验证问题，再形成结构化报告。此时的 Report 仍不是“可以发布的文章”，它必须经过 Evidence Gate：关键判断是否有证据支撑，引用是否可以回溯，事实与推断是否被区分，图表是否与正文一致。只有通过这些检查，才进入可视化和出版准备。
+
+需要人类承担责任的地方不会被自动化吞掉。重要发布进入 **Human at the Authority Boundary**：人类看到报告、证据状态、风险和待决项，决定批准、驳回或要求修订。获得授权之后，Publication 才成为正式结果；如果运行中断，系统依据持久化工作事实恢复，而不是要求原来的模型会话“记得刚才做到哪里”。
+
+把这一天压缩成一条工作链，就是：
+
+```text
+TASK → ACCEPTANCE → EVIDENCE / READING → ANALYSIS → REPORT
+     → EVIDENCE GATE → HUMAN DECISION → PUBLICATION → ARCHIVE
+```
+
+这时 SaaW 就不再只是一个哲学概念。它像一个真正正在工作的研究员工：领取任务、使用技能、积累证据、提交成果、接受审查，在授权边界等待人类决定，然后继续完成工作。
+
 
 ---
 
@@ -400,13 +423,13 @@ archive
 
 我们把这一运行节点称为：
 
-# Agent PC
+> **Agent PC**
 
 它并不一定是一台传统意义上的物理电脑，而代表一个数字员工拥有的独立运行环境。
 
 其中包括推理能力、Skill、工作流、凭据、运行环境、文件、治理规则与外部系统。
 
-它可以使用 Browser、API、CLI、Script、MCP、企业内部服务和受控自动化接口。
+它可以使用浏览器、API、CLI、脚本、MCP、企业内部服务和受控自动化接口。
 
 于是 Agent 不再只是：
 
@@ -440,7 +463,7 @@ archive
 
 这看起来非常高效。
 
-但真实企业系统并不是简单的 CRUD。
+但真实企业系统并不是简单的增删改查（CRUD）。
 
 一个字段背后可能存在状态机、触发器、存储过程、权限规则、财务约束、工作流、审计轨迹与外部系统联动。
 
@@ -454,13 +477,13 @@ archive
 Agent
   │
   ├── API
-  ├── Browser
+  ├── 浏览器
   ├── CLI
-  ├── Hook
+  ├── 受控 Hook
   └── 受控自动化
         │
         ▼
-Existing ERP / CRM / Business System
+既有 ERP / CRM / 业务系统
 ```
 
 这样做的意义并不是保证“永远不会出错”，而是让错误尽量发生在已有业务规则可以观察、拒绝、审计和回滚的边界内。
@@ -505,13 +528,13 @@ SOP
 
 更严谨地说，这条路径应该被理解为：
 
-# 企业证据 → 候选 SOP → 验证 → 受治理工作流
+> **企业证据 → 候选 SOP → 验证 → 受治理工作流**
 
 AI 的价值，是第一次让这些分散知识能够被低成本地重新结构化；而候选 SOP 只有经过业务验证、工程测试、治理检查或人类授权，才能升级为数字员工可执行的正式工作流。
 
 ---
 
-## 14. CodeFlowMu 的第二形态：Meta-Development Runtime
+## 14. CodeFlowMu 的第二形态：元开发运行体（Meta-Development Runtime）
 
 CodeFlowMu 当前最值得关注的地方，不只是多个 Agent 可以一起开发软件。
 
@@ -547,7 +570,7 @@ OPS 负责运行环境、恢复、部署和生命周期。
 
 ---
 
-## 15. Digital Employee Package：让数字员工成为可工程化产品
+## 15. 数字员工包（Digital Employee Package）：让数字员工成为可工程化产品
 
 一个数字员工真正可以部署之前，需要被工程化描述。
 
@@ -570,11 +593,41 @@ OPS 负责运行环境、恢复、部署和生命周期。
 
 ---
 
+
+### 现实工程锚点：这篇 SaaW 宣言本身就是案例
+
+这里存在一个很重要的递归关系。
+
+我们不是先写一篇文章宣称 SaaW 存在，再寻找一个虚构案例证明它。**我们用已经运行的 Research Report Production Engine V1.3 来解释 SaaW，而这篇 SaaW 宣言本身，又成为这台研究生产机所管理、审查和发布的研究成果。**
+
+研究生产链可以写成：
+
+```text
+Research Question → Research Object → Evidence / Reading → Analysis
+                  → Report → Evidence Gate → Visualization
+                  → Human Authorization → Publication
+```
+
+而把同一条链换成 SaaW 的语言，就是：
+
+```text
+角色 → 工作流 → Skill → 工作状态 → 工作证据
+    → 治理 → 人类授权 → 工作结果
+```
+
+两条链描述的不是两套系统，而是同一个事实：软件开始在明确职责、证据规则和授权边界下承担持续工作。
+
+> **这不是 AI 写作工具，而是一个受治理的研究型数字员工。**  
+> **This is not an AI writing tool. It is a governed research worker.**
+
+
+---
+
 ## 16. Self-Morphing：当代码库开始“自己开发自己”
 
 现在，我们来到整篇文章最重要的部分。
 
-# Self-Morphing
+> **Self-Morphing**
 
 这个词很容易被误解。
 
@@ -680,13 +733,13 @@ AI 开发团队
 
 于是软件开发与软件履职第一次形成闭环：
 
-# 开发 → 验证 → 部署 → 工作 → 观察 → 改进
+> **开发 → 验证 → 部署 → 工作 → 观察 → 改进**
 
 这就是“代码库开始自己开发自己”真正值得研究的含义。
 
 ---
 
-## 17. 从 Development Runtime 到 Work Runtime
+## 17. 从开发运行体到工作运行体
 
 传统软件世界存在非常明确的边界：研发系统负责开发，生产系统负责运行，用户负责工作。
 
@@ -838,7 +891,7 @@ SaaW 的商业逻辑可能变成：企业部署数字工作能力，工作结果
 
 软件市场可能从**软件市场**逐渐扩展到：
 
-# 数字劳动力市场
+> **数字劳动力市场**
 
 这才是 SaaW 真正巨大的想象空间。
 
@@ -864,7 +917,7 @@ PWA 提供：人类管理数字员工的控制面。
 
 而 SaaW 则给这一整套变化一个更高层的名字：
 
-# Software as an Agent Worker
+> **Software as an Agent Worker**
 
 ---
 
@@ -912,6 +965,35 @@ AI 开发下一代数字员工
 
 一个过去不存在的软件生命周期开始形成。
 
+
+
+### 已验证（Today）
+
+为了不把研究方向包装成已经完成的产品能力，需要把今天已经存在的工程事实单独列出来：
+
+- FCoP 的文件驱动生命周期、任务移交、报告与问题机制；
+- PM / DEV / QA / OPS 四角色 Agent 的实际协作闭环；
+- `Report`、`Review`、`Decision` 以及人类审批链路；
+- PWA 人类控制面与待决事项处理；
+- 运行中断后的恢复治理；
+- TMPA Reader、规范测试与工作事实重构；
+- CodeFlowMu 的真实工程协作案例；
+- Research Report Production Engine V1.3 从研究任务到受治理发布的生产链路。
+
+### 正在探索（Next）
+
+仍处在研究、标准化或更大规模工程验证阶段的包括：
+
+- 数字员工包（Digital Employee Package）的标准化；
+- Agent PC 的标准化；
+- 面向具体岗位的工作运行体；
+- 从遗留系统与企业证据中提取候选 SOP；
+- 从元开发运行体到领域数字员工运行体的转换；
+- 受治理的 Self-Morphing 闭环。
+
+这个区分不是保守，而是可信度的一部分：**已经验证的能力用证据说话，正在探索的能力保留为研究命题。** Self-Morphing 的意义，也正因为它建立在已经存在的治理、恢复、工作事实与工程运行能力之上。
+
+
 这就是 CodeFlowMu 正在探索的方向。
 
 不是再造一个多智能体框架。
@@ -922,7 +1004,7 @@ AI 开发下一代数字员工
 
 这也是我们提出 SaaW 的真正原因。
 
-# SaaW — Software as an Agent Worker
+> **SaaW — Software as an Agent Worker**
 
 软件曾经是工具。
 

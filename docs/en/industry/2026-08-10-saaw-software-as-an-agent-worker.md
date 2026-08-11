@@ -58,7 +58,7 @@ It should be software capable of taking responsibility for work.
 
 We call this paradigm:
 
-# SaaW — Software as an Agent Worker
+> **SaaW — Software as an Agent Worker**
 
 Software is no longer only a Service.
 
@@ -113,7 +113,7 @@ Those traces matter.
 
 But:
 
-# Trace ≠ Governance
+> **Trace ≠ Governance**
 
 Trace answers: **What happened?**
 
@@ -141,7 +141,7 @@ The common weakness is that runtime instances and work facts become too tightly 
 
 TMPA chooses another path:
 
-# Text carries messages and state.
+> **Text carries messages and state.**
 
 Important work facts are projected into plain, portable text.
 
@@ -161,7 +161,7 @@ That is the first foundation for a long-running SaaW.
 
 Another core TMPA principle is:
 
-# Single-Writer Serial Streams
+> **Single-Writer Serial Streams**
 
 Each Agent or human responsibility holder is an independent Single Writer.
 
@@ -207,7 +207,7 @@ Forcing a perfect global sequence can hide the real concurrency.
 
 TMPA therefore emphasizes:
 
-# Asynchronous Collaboration
+> **Asynchronous Collaboration**
 
 Single-Writer Streams can advance independently.
 
@@ -267,7 +267,7 @@ If every failure requires telling the AI the whole story again, it cannot become
 
 SaaW therefore needs:
 
-# Recoverability
+> **Recoverability**
 
 TMPA allows governance state to be recalculated from persistent work facts.
 
@@ -278,6 +278,27 @@ After restart, the runtime rereads TASK, ACCEPTANCE, REPORT, REVIEW, DECISION, a
 Recovery is not about restoring an Agent's memory.
 
 It is about reconstructing the facts of work.
+
+---
+
+
+### A Day in the Life of Research Report Production Engine V1.3
+
+The fastest way to understand a digital employee is not to imagine a smarter chatbot, but to watch a governed research worker complete its work.
+
+When a research task enters an execution window, **Research Report Production Engine V1.3** accepts the research question and turns it into an explicit research object and work state. It does not jump directly to prose generation. It first enters Evidence / Reading: locating, reading, and organizing sources, recording what each source supports and where evidence is still missing. A missing fact remains a gap instead of being hidden by fluent language.
+
+Analysis then turns evidence into claims, counterclaims, boundary conditions, and open questions. A structured Report follows, but that Report is not yet publication. It must pass an Evidence Gate: important claims need traceable support, citations must be recoverable, fact and inference must remain distinguishable, and visualizations must agree with the text.
+
+Human responsibility is not automated away. Important publication crosses **Human at the Authority Boundary**. A human reviews the report, evidence state, risks, and unresolved items, then approves, rejects, or requests revision. Only after authorization does Publication become a formal work outcome. If runtime execution is interrupted, the system resumes from persistent work facts rather than depending on the original model session to remember its place.
+
+The work chain is therefore:
+
+```text
+TASK → ACCEPTANCE → EVIDENCE / READING → ANALYSIS → REPORT
+     → EVIDENCE GATE → HUMAN DECISION → PUBLICATION → ARCHIVE
+```
+
 
 ---
 
@@ -329,7 +350,7 @@ archive
 
 The result is simple but powerful:
 
-# Directory becomes observable state.
+> **Directory becomes observable state.**
 
 Administrators, human supervisors, Agents, and debugging tools can inspect the same facts.
 
@@ -343,7 +364,7 @@ If SaaW is a Worker, the Worker needs a work environment.
 
 We call this runtime node:
 
-# Agent PC
+> **Agent PC**
 
 It does not have to be a physical computer. It represents an independent runtime environment containing Reasoning, Skills, Workflow, Credentials, Runtime, Files, Governance, and External Systems.
 
@@ -434,7 +455,7 @@ Real SOP also comes from documents, human explanation, API specifications, opera
 
 A more rigorous formulation is:
 
-# Enterprise Evidence → Candidate SOP → Validation → Governed Workflow
+> **Enterprise Evidence → Candidate SOP → Validation → Governed Workflow**
 
 AI can cheaply structure scattered evidence. A Candidate SOP becomes an executable Worker workflow only after business validation, engineering testing, governance checks, or human authorization.
 
@@ -460,7 +481,7 @@ PM interprets goals and orchestrates work. DEV implements code, Skills, Hooks, a
 
 This is:
 
-# Meta-Dev Mode
+> **Meta-Dev Mode**
 
 Its output does not have to be only traditional software.
 
@@ -480,11 +501,36 @@ That is one of the fundamental differences between SaaW and “writing an Agent 
 
 ---
 
+
+### A Real Engineering Anchor: The SaaW Manifesto Is Part of the Case
+
+There is a useful recursive relationship here.
+
+We are not writing a manifesto that claims SaaW exists and then inventing an example to justify it. **We use the operating Research Report Production Engine V1.3 to explain SaaW, while this SaaW Manifesto itself becomes a research artifact managed, reviewed, and published through that production system.**
+
+```text
+Research Question → Research Object → Evidence / Reading → Analysis
+                  → Report → Evidence Gate → Visualization
+                  → Human Authorization → Publication
+```
+
+The same path expressed as a SaaW worker model is:
+
+```text
+Role → Workflow → Skills → Work State → Evidence
+     → Governance → Human Authority → Work Outcome
+```
+
+> **This is not an AI writing tool. It is a governed research worker.**
+
+
+---
+
 ## 16. Self-Morphing: When the codebase begins to “develop itself”
 
 Now we reach the central idea of this manifesto:
 
-# Self-Morphing
+> **Self-Morphing**
 
 It does not mean that an Agent freely mutates its source code, and it does not mean unrestricted AI self-replication.
 
@@ -551,7 +597,7 @@ Next Worker Version
 
 Development and work begin to form one loop:
 
-# Develop → Validate → Deploy → Work → Observe → Improve
+> **Develop → Validate → Deploy → Work → Observe → Improve**
 
 That is the meaningful engineering interpretation of “the codebase develops itself.”
 
@@ -597,9 +643,9 @@ Digital employees do not imply Human-Out-of-the-Loop.
 
 Safe SaaW must clearly define which actions Agents can perform autonomously and which actions require human authority.
 
-In SaaS, the human is often the Operator.
+In SaaS, humans usually remain in the operation layer.
 
-In SaaW, the human increasingly becomes the Supervisor / Authorizer.
+In SaaW, humans increasingly move to supervision and final authorization.
 
 Low-risk activities such as querying, organizing, validation, internal reporting, and synchronization can become highly automated.
 
@@ -607,7 +653,7 @@ Large payments, final contract signatures, permission escalation, irreversible d
 
 A better principle is:
 
-# Human at the Authority Boundary.
+> **Human at the Authority Boundary.**
 
 ---
 
@@ -617,7 +663,7 @@ The CodeFlowMu PWA is not merely a mobile webpage.
 
 It represents the:
 
-# Human Control Plane
+> **Human Control Plane**
 
 Supervisors can inspect Tasks, Agent state, Reports, Reviews, Issues, Waiting Decisions, Recovery State, and work outcomes.
 
@@ -674,7 +720,7 @@ Models time out. Context overflows. Gateways fail. Agents crash. Software upgrad
 
 A real SaaW must therefore follow a critical principle:
 
-# Agent is replaceable. Work facts are not.
+> **Agent is replaceable. Work facts are not.**
 
 Agents can change. Models can change. SDKs can change. Runtimes can restart.
 
@@ -705,7 +751,7 @@ Enterprises may eventually buy not only CRM, but a digital customer-operations t
 
 The software market may expand from the Software Market into the:
 
-# Digital Labor Market
+> **Digital Labor Market**
 
 ---
 
@@ -729,7 +775,7 @@ PWA provides the human control surface.
 
 SaaW gives the whole transition a higher-level name:
 
-# Software as an Agent Worker
+> **Software as an Agent Worker**
 
 ---
 
@@ -775,6 +821,35 @@ AI develops next Worker
 
 A software lifecycle that did not previously exist begins to emerge.
 
+
+
+### What Exists Today
+
+The boundary between engineering fact and research frontier should remain explicit. Validated capabilities include:
+
+- FCoP file-driven lifecycle, handoff, reports, and issues;
+- real PM / DEV / QA / OPS multi-Agent collaboration loops;
+- `Report`, `Review`, `Decision`, and human approval paths;
+- the PWA human control plane and pending-decision handling;
+- recovery governance after runtime interruption;
+- TMPA Reader, specification tests, and reconstruction of work facts;
+- real CodeFlowMu engineering cases;
+- the Research Report Production Engine V1.3 research-to-governed-publication workflow.
+
+### What Comes Next
+
+Still under research, standardization, or broader engineering validation are:
+
+- standardized Digital Employee Packages;
+- standardized Agent PC;
+- role-specific Work Runtimes;
+- Candidate SOP extraction from legacy systems and enterprise evidence;
+- Meta-Development Runtime → Domain Worker Runtime transformation;
+- governed Self-Morphing.
+
+This distinction is part of the credibility of the architecture: **validated capability should be stated with evidence, while frontier capability should remain a research proposition.**
+
+
 That is the direction CodeFlowMu is exploring.
 
 Not another Multi-Agent Framework, but:
@@ -783,7 +858,7 @@ Not another Multi-Agent Framework, but:
 
 That is why we propose SaaW.
 
-# SaaW — Software as an Agent Worker
+> **SaaW — Software as an Agent Worker**
 
 Software was once a tool.
 
