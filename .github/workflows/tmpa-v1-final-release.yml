@@ -1,0 +1,67 @@
+name: TMPA V1.0 Final Release
+
+on:
+  push:
+    paths:
+      - ".github/workflows/tmpa-v1-final-release.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TARGET_SHA: d437ffd6769c46076724d99c6fcc5080203d58eb
+      RELEASE_TAG: tmpa-v1.0
+      DOSSIER_SHA256: e2ade29f364d1708501c39219315d518cbcc34a4840f31f2504a20bcc5f5a5d1
+      EVIDENCE_SHA256: 9b92b06c3e46c8019362f55075be4ed066cb7a9c0d9859945b6c3b7de8840d04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify reviewed release artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(sha256sum docs/public/releases/tmpa/tmpa-v1.0-publication-dossier.zip | cut -d' ' -f1)" = "$DOSSIER_SHA256"
+          test "$(sha256sum docs/public/evidence/tmpa/i1.0/tmpa-i1.0-codeflowmu-v1.8.0-s1.0-evidence-20260811.zip | cut -d' ' -f1)" = "$EVIDENCE_SHA256"
+          test "$(cut -d' ' -f1 docs/public/releases/tmpa/tmpa-v1.0-publication-dossier.zip.sha256)" = "$DOSSIER_SHA256"
+          test "$(cut -d' ' -f1 docs/public/evidence/tmpa/i1.0/tmpa-i1.0-codeflowmu-v1.8.0-s1.0-evidence-20260811.zip.sha256)" = "$EVIDENCE_SHA256"
+          git cat-file -e "$TARGET_SHA^{commit}"
+
+      - name: Create immutable release tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git rev-parse -q --verify "refs/tags/$RELEASE_TAG" >/dev/null; then
+            test "$(git rev-list -n 1 "$RELEASE_TAG")" = "$TARGET_SHA"
+          else
+            git tag -a "$RELEASE_TAG" "$TARGET_SHA" -m "TMPA V1.0 — A1.0, S1.0, I1.0"
+            git push origin "refs/tags/$RELEASE_TAG"
+          fi
+
+      - name: Publish GitHub Release
+        shell: bash
+        run: |
+          set -euo pipefail
+          NOTES="TMPA V1.0 formally publishes the bilingual A1.0 Architecture Paper, S1.0 Core Specification, and I1.0 Implementation Case.
+
+The release dossier contains six publication PDFs, six Markdown editions, citation metadata, a machine-readable manifest, SHA-256 checksums, and the reproducible build record.
+
+I1.0 records author-run, fixed-bundle CodeFlowMu V1.8.0 evidence against TMPA Core S1.0: 14 PASS, 0 PARTIAL, 0 NOT RUN, 0 FAIL across 71 mandatory assertions.
+
+Reviewed release commit: d437ffd6769c46076724d99c6fcc5080203d58eb
+Publication dossier SHA-256: e2ade29f364d1708501c39219315d518cbcc34a4840f31f2504a20bcc5f5a5d1
+Evidence archive SHA-256: 9b92b06c3e46c8019362f55075be4ed066cb7a9c0d9859945b6c3b7de8840d04
+
+DOI status: pending archival deposit. No DOI is asserted by this release."
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release edit "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --title "TMPA V1.0" --notes "$NOTES"
+          else
+            gh release create "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --title "TMPA V1.0" --notes "$NOTES" --verify-tag
+          fi
+          gh release upload "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --clobber             "docs/public/releases/tmpa/tmpa-v1.0-publication-dossier.zip#TMPA V1.0 publication dossier"             "docs/public/releases/tmpa/tmpa-v1.0-publication-dossier.zip.sha256#Publication dossier SHA-256"             "docs/public/evidence/tmpa/i1.0/tmpa-i1.0-codeflowmu-v1.8.0-s1.0-evidence-20260811.zip#I1.0 CodeFlowMu V1.8.0 evidence"             "docs/public/evidence/tmpa/i1.0/tmpa-i1.0-codeflowmu-v1.8.0-s1.0-evidence-20260811.zip.sha256#Evidence archive SHA-256"
