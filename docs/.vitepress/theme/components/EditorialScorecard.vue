@@ -163,7 +163,7 @@ const copy = computed(() => zh.value ? {
 
 <style scoped>
 .scorecard{--scorecard-row:#fff;--scorecard-row-alt:#f3f4f6;--scorecard-table-text:#25324a;--scorecard-table-muted:#63718a;--scorecard-table-index:#53627a;margin-top:28px;border:1px solid rgba(255,255,255,.16);background:linear-gradient(145deg,#111b31,#171438 58%,#0c3541);color:#fff;box-shadow:0 24px 70px rgba(0,0,0,.24)}
-:global(.dark) .scorecard{--scorecard-row:#10192d;--scorecard-row-alt:#151d33;--scorecard-table-text:#f4f7fc;--scorecard-table-muted:#aab5c8;--scorecard-table-index:#7d8ca7}
+:global(html.dark .scorecard){--scorecard-row:#10192d;--scorecard-row-alt:#151d33;--scorecard-table-text:#f4f7fc;--scorecard-table-muted:#aab5c8;--scorecard-table-index:#7d8ca7}
 .scorecard__header{display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:42px;align-items:end;padding:32px;border-bottom:1px solid rgba(255,255,255,.14)}
 .scorecard__header>div>span,.scorecard__top>span{display:block;color:#62deed;font:800 10px/1 ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase}
 .scorecard__header h3{margin:12px 0 10px;font-size:clamp(29px,4vw,44px);line-height:1.04;letter-spacing:-.045em}
