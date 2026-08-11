@@ -3,7 +3,37 @@ from pathlib import Path
 p = Path('docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md')
 s = p.read_text(encoding='utf-8')
 
-# 1) Replace the explanatory workday section with a concrete digital-researcher workday.
+# 1) Move publication/research metadata from the opening to the article footer.
+front_meta = '''> **作者 / 发布单位：** joinwell52 Research Center / CodeFlowMu Core Team  
+> **理论与架构支撑：** TMPA Architecture Paper — TMPA-ARCH-A0.9  
+> **规范性标准：** TMPA Core Specification — S0.6  
+> **实证案例：** TMPA Implementation Case Report — I0.8  
+> **核心工程载体：** CodeFlowMu / FCoP
+
+'''
+s = s.replace(front_meta, '', 1)
+
+old_footer = '''---
+
+**joinwell52 Research Center**  
+**CodeFlowMu Core Team**
+
+**TMPA Architecture Paper A0.9 · TMPA Core Specification S0.6 · TMPA Implementation Case Report I0.8 · CodeFlowMu / FCoP**
+
+> **V1.1 边界说明：**'''
+new_footer = '''---
+
+> **作者 / 发布单位：** joinwell52 Research Center / CodeFlowMu Core Team  
+> **理论与架构支撑：** TMPA Architecture Paper — TMPA-ARCH-A0.9  
+> **规范性标准：** TMPA Core Specification — S0.6  
+> **实证案例：** TMPA Implementation Case Report — I0.8  
+> **核心工程载体：** CodeFlowMu / FCoP
+
+> **V1.1 边界说明：**'''
+if old_footer in s:
+    s = s.replace(old_footer, new_footer, 1)
+
+# 2) Replace the explanatory workday section with a concrete digital-researcher workday.
 start = s.index('### 一个数字员工的一天：Research Report Production Engine V1.3')
 end = s.index('\n\n---\n\n## 9. CodeFlowMu：TMPA 从理论进入运行世界', start)
 workday = '''### 一个数字研究员的一天：Research Report Production Engine V1.3
@@ -40,14 +70,56 @@ workday = '''### 一个数字研究员的一天：Research Report Production Eng
 11:00 研究阅读      → 阅读结果
 13:00 研究分析      → 研究对象
 15:00 研究生产      → 发布候选稿
-20:00 正式发布      → GitHub + Website + Commit Verify + Release
+20:00 正式发布      → GitHub 入库 + 网站发布 + 提交验证 + Release
 ```
 
 这就是一个数字研究员的一天：**它不是回答一次问题，而是在固定职责和工作节奏下，持续完成研究工作。**
 '''
 s = s[:start] + workday + s[end:]
 
-# 2) Five FCoP buckets: preserve English protocol names and add Chinese labels on the right.
+# 3) Formal work-fact chain: preserve identifiers and add Chinese labels.
+s = s.replace('''```text
+TASK
+  │
+  ▼
+ACCEPTANCE
+  │
+  ▼
+REPORT
+  │
+  ▼
+REVIEW
+  │
+  ▼
+DECISION
+```''', '''```text
+TASK          任务
+  │
+  ▼
+ACCEPTANCE    接受任务
+  │
+  ▼
+REPORT        工作报告
+  │
+  ▼
+REVIEW        审查
+  │
+  ▼
+DECISION      正式决策
+```''', 1)
+
+# 4) Partial-order example: bilingual labels.
+s = s.replace('''```text
+            ┌── DEV REPORT ──┐
+TASK ───────┤                ├── REVIEW
+            └── OPS REPORT ──┘
+```''', '''```text
+                  ┌── DEV REPORT / 开发报告 ──┐
+TASK / 任务 ──────┤                           ├── REVIEW / 审查
+                  └── OPS REPORT / 运维报告 ──┘
+```''', 1)
+
+# 5) Five FCoP buckets: English protocol names on the left, Chinese names on the right.
 s = s.replace('''```text
 inbox
   │
@@ -78,7 +150,73 @@ done       已完成
 archive    已归档
 ```''', 1)
 
-# 3) Self-Morphing main flow: bilingual labels.
+# 6) Existing-system operation diagram: translate ordinary labels, preserve technical terms.
+s = s.replace('''```text
+Agent
+  │
+  ├── API
+  ├── 浏览器
+  ├── CLI
+  ├── 受控 Hook
+  └── 受控自动化
+        │
+        ▼
+既有 ERP / CRM / 业务系统
+```''', '''```text
+Agent / 智能体
+  │
+  ├── API / 接口
+  ├── Browser / 浏览器
+  ├── CLI / 命令行
+  ├── Hook / 受控钩子
+  └── Approved Automation / 受控自动化
+        │
+        ▼
+Existing ERP / CRM / Business System
+既有 ERP / CRM / 业务系统
+```''', 1)
+
+# 7) CodeFlowMu Meta Team box: bilingual role labels.
+s = s.replace('''```text
+┌───────────────────────────────┐
+│      CodeFlowMu Meta Team     │
+│                               │
+│ PM        DEV       QA    OPS │
+└───────────────────────────────┘
+```''', '''```text
+┌─────────────────────────────────────────────────────┐
+│        CodeFlowMu Meta Team / 元开发团队            │
+│                                                     │
+│ PM / 项目经理   DEV / 开发   QA / 质量验证   OPS / 运维 │
+└─────────────────────────────────────────────────────┘
+```''', 1)
+
+# 8) Research production chain: add Chinese mapping; this is distinct from the workday timeline.
+s = s.replace('''```text
+Research Question → Research Object → Evidence / Reading → Analysis
+                  → Report → Evidence Gate → Visualization
+                  → Human Authorization → Publication
+```''', '''```text
+Research Question      研究问题
+        ↓
+Research Object        研究对象
+        ↓
+Evidence / Reading     证据 / 阅读
+        ↓
+Analysis               分析
+        ↓
+Report                 报告
+        ↓
+Evidence Gate          证据门
+        ↓
+Visualization          可视化
+        ↓
+Human Authorization    人类授权
+        ↓
+Publication            发布
+```''', 1)
+
+# 9) Self-Morphing main flow: bilingual labels.
 s = s.replace('''```text
 Meta-Dev Runtime
         │
@@ -121,32 +259,58 @@ Deploy                        部署
 Domain Worker Runtime         领域数字员工运行体
 ```''', 1)
 
-# 4) Research production chain: add Chinese mapping without turning it into the workday timeline.
+# 10) Finance and contract worker examples: bilingual labels.
 s = s.replace('''```text
-Research Question → Research Object → Evidence / Reading → Analysis
-                  → Report → Evidence Gate → Visualization
-                  → Human Authorization → Publication
+PM / DEV / QA / OPS
+        │
+        │ 开发
+        ▼
+Finance Worker Package
+        │
+        ▼
+Invoice Agent
+ERP Entry Agent
+Compliance Agent
+Archive Agent
 ```''', '''```text
-Research Question      研究问题
-        ↓
-Research Object        研究对象
-        ↓
-Evidence / Reading     证据 / 阅读
-        ↓
-Analysis               分析
-        ↓
-Report                 报告
-        ↓
-Evidence Gate          证据门
-        ↓
-Visualization          可视化
-        ↓
-Human Authorization    人类授权
-        ↓
-Publication            发布
+PM / DEV / QA / OPS           元开发团队
+        │
+        │ 开发
+        ▼
+Finance Worker Package        财务数字员工包
+        │
+        ▼
+Invoice Agent                 发票处理智能体
+ERP Entry Agent               ERP 录入智能体
+Compliance Agent              合规智能体
+Archive Agent                 归档智能体
 ```''', 1)
 
-# 5) Development-to-work runtime loop: bilingual.
+s = s.replace('''```text
+PM / DEV / QA / OPS
+        │
+        ▼
+Contract Worker Package
+        │
+        ▼
+Risk Analysis Agent
+Signing Agent
+Compliance Agent
+Archive Agent
+```''', '''```text
+PM / DEV / QA / OPS           元开发团队
+        │
+        ▼
+Contract Worker Package       合同数字员工包
+        │
+        ▼
+Risk Analysis Agent           风险分析智能体
+Signing Agent                 签署智能体
+Compliance Agent              合规智能体
+Archive Agent                 归档智能体
+```''', 1)
+
+# 11) Development-to-work runtime loop: bilingual.
 s = s.replace('''```text
 Development Runtime
         │
@@ -177,7 +341,7 @@ Work Evidence                工作证据
 Development Runtime          回到开发运行体
 ```''', 1)
 
-# 6) PWA control-plane flow: bilingual labels for the remaining English nodes.
+# 12) PWA control-plane flow: bilingual labels for remaining English nodes.
 s = s.replace('''```text
 SaaW Runtime
       │
