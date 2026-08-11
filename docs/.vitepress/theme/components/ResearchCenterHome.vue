@@ -518,6 +518,17 @@ onBeforeUnmount(() => {
         </aside>
 
         <a class="rc-all-research" :href="link(researchOverview)">{{ copy.allResearch }} <span>→</span></a>
+
+        <aside class="rc-original-article">
+          <div>
+            <small>{{ zh ? '原创文章' : 'ORIGINAL ARTICLE' }}</small>
+            <h3>{{ zh ? 'CodeFlowMu 多 Agent 事实核查实战' : 'A CodeFlowMu multi-agent fact-checking field case' }}</h3>
+          </div>
+          <nav :aria-label="zh ? '原创文章发布地址' : 'Original article publication links'">
+            <a href="https://blog.csdn.net/m0_51507544/article/details/163676669"><span>{{ zh ? '中文地址 · CSDN' : 'Chinese · CSDN' }}</span><b>↗</b></a>
+            <a href="https://dev.to/joinwell52/one-agent-said-done-why-didnt-the-team-release-it-518j"><span>{{ zh ? '英文地址 · DEV' : 'English · DEV' }}</span><b>↗</b></a>
+          </nav>
+        </aside>
       </div>
     </section>
 
@@ -881,6 +892,13 @@ onBeforeUnmount(() => {
 .rc-ra-log dd a { color: #fff !important; }
 .rc-ra-log__cta { display: flex; align-items: center; justify-content: space-between; align-self: end; margin: 26px 30px 30px; padding: 16px 18px; color: #0c1430 !important; background: var(--rc-lime); font-size: 12px; font-weight: 820; }
 .rc-all-research { display: flex; justify-content: space-between; margin-top: 20px; padding: 18px 0; color: #fff !important; border-bottom: 1px solid rgba(255,255,255,.26); font-size: 12px; font-weight: 750; }
+.rc-original-article { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, .82fr); gap: 38px; align-items: center; margin-top: 26px; padding: 30px 32px; color: #fff; border: 1px solid rgba(255,255,255,.18); background: linear-gradient(135deg, rgba(78,62,160,.34), rgba(20,112,126,.25)); }
+.rc-original-article small { color: var(--rc-lime); font: 760 10px/1 ui-monospace, monospace; letter-spacing: .08em; }
+.rc-original-article h3 { margin: 12px 0 0; font-size: 22px; line-height: 1.3; letter-spacing: -.025em; }
+.rc-original-article nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.rc-original-article a { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 54px; padding: 0 16px; color: #fff !important; border: 1px solid rgba(255,255,255,.25); background: rgba(8,14,28,.35); font-size: 12px; font-weight: 720; }
+.rc-original-article a:hover { border-color: var(--rc-lime); background: rgba(88,217,236,.1); }
+.rc-original-article a b { color: var(--rc-lime); }
 
 .rc-site-footer { position: relative; overflow: hidden; color: #fff; background: #070c18; }
 .rc-site-footer::before { position: absolute; inset: 0; opacity: .13; background-image: linear-gradient(rgba(88,217,236,.28) 1px, transparent 1px), linear-gradient(90deg, rgba(88,217,236,.28) 1px, transparent 1px); background-size: 72px 72px; content: ''; pointer-events: none; }
@@ -1073,6 +1091,9 @@ onBeforeUnmount(() => {
   .rc-ra-log__statement h3 { margin-top: 38px; font-size: 42px; }
   .rc-ra-log dl { padding: 20px 20px 0; }
   .rc-ra-log__cta { margin: 20px; }
+  .rc-original-article { grid-template-columns: 1fr; gap: 22px; padding: 24px 20px; }
+  .rc-original-article h3 { font-size: 19px; }
+  .rc-original-article nav { grid-template-columns: 1fr; }
   .rc-site-footer__grid { grid-template-columns: 1fr 1fr; gap: 38px 22px; padding-block: 56px 44px; }
   .rc-site-footer__brand { grid-column: 1 / -1; }
   .rc-site-footer nav:last-child { grid-column: 1 / -1; }
