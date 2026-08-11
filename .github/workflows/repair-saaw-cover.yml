@@ -12,81 +12,142 @@ jobs:
   repair:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout repository and full history
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Extract real JPEG and update article references
+      - name: Recover best complete historical JPEG
         shell: bash
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import base64, hashlib, re
+          import base64, hashlib, re, subprocess
 
           root = Path('.')
-          svg_path = root / 'docs/public/assets/covers/saaw-manifesto-cover-hd.svg'
           out_path = root / 'docs/public/assets/covers/saaw-manifesto-cover-final.jpg'
           manifest_path = root / 'docs/public/assets/covers/saaw-manifesto-cover-final.sha256.txt'
 
-          svg = svg_path.read_text(encoding='utf-8')
-          m = re.search(r'data:image/jpeg;base64,([^\"\']+)', svg)
-          if not m:
-              raise SystemExit('embedded JPEG not found in SaaW cover SVG')
+          def git(*args, text=False):
+              return subprocess.check_output(['git', *args], text=text)
 
-          data = base64.b64decode(m.group(1), validate=True)
-          if not (data.startswith(b'\xff\xd8') and data.endswith(b'\xff\xd9')):
-              raise SystemExit('decoded data is not a complete JPEG')
+          def jpeg_dimensions(data):
+              if not (data.startswith(b'\xff\xd8') and data.endswith(b'\xff\xd9')):
+                  return None
+              i = 2
+              while i + 9 < len(data):
+                  if data[i] != 0xFF:
+                      i += 1
+                      continue
+                  marker = data[i + 1]
+                  i += 2
+                  if marker in (0xD8, 0xD9) or 0xD0 <= marker <= 0xD7:
+                      continue
+                  if i + 2 > len(data):
+                      return None
+                  seglen = int.from_bytes(data[i:i+2], 'big')
+                  if seglen < 2 or i + seglen > len(data):
+                      return None
+                  if marker in {0xC0,0xC1,0xC2,0xC3,0xC5,0xC6,0xC7,0xC9,0xCA,0xCB,0xCD,0xCE,0xCF}:
+                      h = int.from_bytes(data[i+3:i+5], 'big')
+                      w = int.from_bytes(data[i+5:i+7], 'big')
+                      return w, h
+                  i += seglen
+              return None
 
-          # Parse JPEG dimensions from SOF markers without third-party libraries.
-          i = 2
-          width = height = None
-          while i + 9 < len(data):
-              if data[i] != 0xFF:
-                  i += 1
-                  continue
-              marker = data[i + 1]
-              i += 2
-              if marker in (0xD8, 0xD9) or 0xD0 <= marker <= 0xD7:
-                  continue
-              if i + 2 > len(data):
-                  break
-              seglen = int.from_bytes(data[i:i+2], 'big')
-              if seglen < 2 or i + seglen > len(data):
-                  break
-              if marker in {0xC0,0xC1,0xC2,0xC3,0xC5,0xC6,0xC7,0xC9,0xCA,0xCB,0xCD,0xCE,0xCF}:
-                  height = int.from_bytes(data[i+3:i+5], 'big')
-                  width = int.from_bytes(data[i+5:i+7], 'big')
-                  break
-              i += seglen
+          # Collect every historical SaaW cover-like path ever seen in all refs.
+          names = git('log', '--all', '--name-only', '--pretty=format:', text=True).splitlines()
+          paths = sorted({p.strip() for p in names if 'saaw' in p.lower() and 'cover' in p.lower()})
+          print('historical SaaW cover paths:', paths)
 
+          candidates = []
+          seen_blobs = set()
+          for path in paths:
+              commits = git('rev-list', '--all', '--', path, text=True).splitlines()
+              for commit in commits:
+                  spec = f'{commit}:{path}'
+                  try:
+                      blob_sha = git('rev-parse', spec, text=True).strip()
+                  except subprocess.CalledProcessError:
+                      continue
+                  if blob_sha in seen_blobs:
+                      continue
+                  seen_blobs.add(blob_sha)
+                  try:
+                      raw = git('show', spec)
+                  except subprocess.CalledProcessError:
+                      continue
+
+                  # Direct JPEG historical assets.
+                  dims = jpeg_dimensions(raw)
+                  if dims:
+                      w, h = dims
+                      candidates.append((w*h, len(raw), w, h, commit, path, blob_sha, raw, 'direct-jpeg'))
+                      print('VALID direct JPEG', w, h, len(raw), commit[:10], path, blob_sha)
+                      continue
+
+                  # SVGs that embed a JPEG data URI.
+                  if path.lower().endswith('.svg'):
+                      try:
+                          text = raw.decode('utf-8')
+                      except UnicodeDecodeError:
+                          continue
+                      for m in re.finditer(r'data:image/jpeg;base64,([^\"\']+)', text):
+                          try:
+                              data = base64.b64decode(m.group(1), validate=True)
+                          except Exception:
+                              continue
+                          dims = jpeg_dimensions(data)
+                          if not dims:
+                              continue
+                          w, h = dims
+                          candidates.append((w*h, len(data), w, h, commit, path, blob_sha, data, 'embedded-jpeg'))
+                          print('VALID embedded JPEG', w, h, len(data), commit[:10], path, blob_sha)
+
+          if not candidates:
+              raise SystemExit('No complete historical JPEG cover candidate found')
+
+          # Prefer highest pixel count, then largest encoded byte size.
+          candidates.sort(key=lambda x: (x[0], x[1]), reverse=True)
+          area, size, width, height, commit, source_path, blob_sha, data, kind = candidates[0]
           out_path.write_bytes(data)
           digest = hashlib.sha256(data).hexdigest()
           manifest_path.write_text(
-              f'sha256={digest}\nbytes={len(data)}\nwidth={width}\nheight={height}\n',
+              '\n'.join([
+                  f'sha256={digest}',
+                  f'bytes={len(data)}',
+                  f'width={width}',
+                  f'height={height}',
+                  f'source_commit={commit}',
+                  f'source_path={source_path}',
+                  f'source_blob={blob_sha}',
+                  f'source_kind={kind}',
+                  '',
+              ]),
               encoding='utf-8'
           )
+          print('SELECTED COVER:')
+          print(manifest_path.read_text(encoding='utf-8'))
 
           target = '/assets/covers/saaw-manifesto-cover-final.jpg?v=20260811-visual-final'
-          files = [
+          article_paths = [
               root / 'docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md',
               root / 'docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md',
           ]
-          old_patterns = [
+          patterns = [
               r'/assets/covers/saaw-manifesto-cover-hd\.svg(?:\?[^\"\')\s]+)?',
               r'/assets/covers/saaw-manifesto-cover-approved\.webp(?:\?[^\"\')\s]+)?',
               r'/assets/covers/saaw-manifesto-cover\.svg(?:\?[^\"\')\s]+)?',
+              r'/assets/covers/saaw-manifesto-cover-final\.jpg(?:\?[^\"\')\s]+)?',
           ]
-          for path in files:
+          for path in article_paths:
               text = path.read_text(encoding='utf-8')
-              for pattern in old_patterns:
+              for pattern in patterns:
                   text = re.sub(pattern, target, text)
               path.write_text(text, encoding='utf-8')
-
-          print(manifest_path.read_text(encoding='utf-8'))
           PY
 
-      - name: Commit repaired cover asset
+      - name: Commit recovered JPEG and article references
         shell: bash
         run: |
           git config user.name "joinwell52 Research Runtime"
@@ -96,5 +157,5 @@ jobs:
                   docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md \
                   docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md
           git diff --cached --quiet && exit 0
-          git commit -m "fix SaaW cover as direct JPEG asset"
+          git commit -m "fix SaaW cover as direct recovered JPEG"
           git push origin HEAD:main
