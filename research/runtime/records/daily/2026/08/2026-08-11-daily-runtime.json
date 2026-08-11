@@ -8,11 +8,11 @@
   "date": "2026-08-11",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -288,6 +288,147 @@
       ],
       "startedAt": "2026-08-11T10:04:43+08:00",
       "completedAt": "2026-08-11T10:07:16+08:00"
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "family": "daily",
+      "runtimeDate": "2026-08-11",
+      "status": "Completed",
+      "input": "The verified 2026-08-11 Reading wake receipt and Worker Claim; the 2026-08-11 Daily Runtime Record with Discovery and Queue Completed and Reading Running; the 2026-08-11 Today's Research Plan containing Q-20260811-01, Q-20260811-02 and Q-20260811-03; Skill 03 Deep Reading; and same-day selected primary sources only.",
+      "input_zh": "已核验的 2026-08-11 Reading Wake Receipt 与 Worker Claim、Discovery 和 Queue 已完成且 Reading 正在运行的 2026-08-11 Daily Runtime Record、包含 Q-20260811-01、Q-20260811-02、Q-20260811-03 的当日 Research Plan、Skill 03 Deep Reading，以及仅属于当日已选对象的一手来源。",
+      "workResult": "Completed primary-source Deep Reading for all three run-date selected objects and produced three durable Reading Notes. Q-20260811-01 verified the Copilot CLI 1.0.79 maintainer-documented queue boundary: prompts, shell commands and supported slash commands wait in order behind the current local-session task; multiple sessions remain explicitly concurrent; MCP sandbox startup fails in seconds rather than stalling; and effective sandbox paths, denials and network access are inspectable. The note also preserves important unknowns because the selected source is a release changelog rather than queue implementation code. Q-20260811-02 verified OpenAI's restaurant-reservation flow: OpenTable, Resy and Yelp availability can be surfaced in ChatGPT; Reserve is gated by matching to a supported third-party listing; the user confirms or adjusts booking details in a reservation flow; ChatGPT does not retain the booked reservation; and post-booking confirmation, modification and cancellation remain with the third-party provider. Q-20260811-03 verified the merged Google ADK BigQuery analytics implementation: event_id is assigned before enqueue and reused across retries; opt-in committed-stream explicit offsets narrow duplicate risk but remain lossy under documented conflict/retry/rotation failures; final-only LLM finish/error metadata avoids streaming double count; and NODE_OUTPUT/NODE_ERROR provide explicit workflow-node terminal evidence with identity. No Research Analysis or article drafting was performed.",
+      "workResult_zh": "完成三个运行日已选对象的一手来源 Deep Reading，并形成 3 份持久 Reading Note。Q-20260811-01 核验 Copilot CLI 1.0.79 维护者文档中的队列边界：Prompt、Shell Command 与受支持 Slash Command 在本地 Session 内等待当前任务结束后按序执行；多个 Session 仍可显式并发；MCP 的 Sandbox 启动失败改为数秒内失败而不是无限挂起；并可查看 Effective Sandbox Paths、Denials 与 Network Access。由于所选一手来源是 Release Changelog 而非队列实现代码，Note 同时保留了持久化、失败传播、队列容量等关键未知项。Q-20260811-02 核验 OpenAI 餐厅预约流程：ChatGPT 可展示 OpenTable、Resy、Yelp 的可用时间；Reserve 入口依赖能否匹配受支持的第三方 Provider Listing；用户在 Reservation Flow 中确认或调整预订细节；ChatGPT 不保存已完成预订；确认、修改与取消仍由第三方 Provider 持有。Q-20260811-03 核验 Google ADK 已合并的 BigQuery Analytics 实现：event_id 在入队前分配并在重试中复用；可选 Committed-stream Explicit Offset 模式缩小重复风险，但在 Conflict、Retry Exhaustion 与 Stream Rotation Failure 下仍明确可能丢数据；LLM Finish/Error 终态元数据只写最终响应以避免 Streaming Double Count；NODE_OUTPUT/NODE_ERROR 则提供带身份的 Workflow Node 显式终态证据。未执行 Research Analysis 或文章写作。",
+      "output": "Three run-date Reading Notes: research/reading/Q-20260811-01-ordered-local-work-queue.md, research/reading/Q-20260811-02-restaurant-reservation-action-handoff.md, and research/reading/Q-20260811-03-durable-event-identity-terminal-evidence.md.",
+      "output_zh": "形成 3 份运行日 Reading Note：research/reading/Q-20260811-01-ordered-local-work-queue.md、research/reading/Q-20260811-02-restaurant-reservation-action-handoff.md、research/reading/Q-20260811-03-durable-event-identity-terminal-evidence.md。",
+      "next": "Research Runtime Analysis may consume only these three 2026-08-11 Reading Notes and perform Skill 04 Research Analysis. It must preserve the Q-20260811-01 implementation unknowns, the Q-20260811-02 third-party system-of-record boundary, and the Q-20260811-03 documented non-lossless/exactly-once scope boundary.",
+      "next_zh": "Research Runtime Analysis 只能消费这 3 份 2026-08-11 Reading Note 并执行 Skill 04 Research Analysis；必须保留 Q-20260811-01 的实现未知项、Q-20260811-02 的第三方 System-of-record 边界，以及 Q-20260811-03 明确的非 Lossless / Exactly-once 作用域边界。",
+      "metrics": [
+        {
+          "label": "Wake receipts verified",
+          "label_zh": "已核验 Wake Receipt",
+          "value": "1"
+        },
+        {
+          "label": "Worker claims verified",
+          "label_zh": "已核验 Worker Claim",
+          "value": "1"
+        },
+        {
+          "label": "Selected objects read",
+          "label_zh": "已完成深读对象",
+          "value": "3"
+        },
+        {
+          "label": "Reading notes produced",
+          "label_zh": "Reading Note 数量",
+          "value": "3"
+        },
+        {
+          "label": "Primary-source objects",
+          "label_zh": "一手来源对象",
+          "value": "3 / 3"
+        },
+        {
+          "label": "Research Analysis performed",
+          "label_zh": "Research Analysis 已执行",
+          "value": "0"
+        },
+        {
+          "label": "Article drafts produced",
+          "label_zh": "文章草稿数量",
+          "value": "0"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Reading Wake Receipt",
+          "label_zh": "Reading 唤醒回执",
+          "value": "research/runtime/wakes/2026/08/2026-08-11/reading-110024.json"
+        },
+        {
+          "label": "Reading Worker Claim",
+          "label_zh": "Reading Worker Claim",
+          "value": "research/runtime/worker-claims/2026/08/2026-08-11/reading-110349.json"
+        },
+        {
+          "label": "Run-date Today's Research Plan",
+          "label_zh": "运行日 Today's Research Plan",
+          "value": "research/runtime/plans/2026/08/2026-08-11-plan.json"
+        },
+        {
+          "label": "Skill 03 Deep Reading",
+          "label_zh": "Skill 03 Deep Reading",
+          "value": "research/skills/03-deep-reading.md"
+        },
+        {
+          "label": "GitHub Copilot CLI 1.0.79 maintainer changelog",
+          "label_zh": "GitHub Copilot CLI 1.0.79 维护者变更日志",
+          "value": "https://github.com/github/copilot-cli/commit/ef627e1baad937d3c8da45f8a5541c6fc3c97b6a"
+        },
+        {
+          "label": "OpenAI ChatGPT reservation release note",
+          "label_zh": "OpenAI ChatGPT 餐厅预约发布说明",
+          "value": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+        },
+        {
+          "label": "OpenAI ChatGPT Search reservation flow",
+          "label_zh": "OpenAI ChatGPT Search 预约流程说明",
+          "value": "https://help.openai.com/en/articles/9237897-chatgpt-search"
+        },
+        {
+          "label": "Google ADK BigQuery analytics implementation",
+          "label_zh": "Google ADK BigQuery Analytics 实现",
+          "value": "https://github.com/google/adk-python/commit/04b8b72709f6d17b503cf674c8ac1b89798f655e"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Digital Employee Reading Note",
+          "label_zh": "数字员工 Reading Note",
+          "value": "research/reading/Q-20260811-01-ordered-local-work-queue.md"
+        },
+        {
+          "label": "Industry Architecture Reading Note",
+          "label_zh": "行业架构 Reading Note",
+          "value": "research/reading/Q-20260811-02-restaurant-reservation-action-handoff.md"
+        },
+        {
+          "label": "Open-source Engineering Reading Note",
+          "label_zh": "开源工程 Reading Note",
+          "value": "research/reading/Q-20260811-03-durable-event-identity-terminal-evidence.md"
+        },
+        {
+          "label": "Reading result",
+          "label_zh": "Reading 结果",
+          "value": "research/runtime/results/2026/08/2026-08-11-reading-result.json"
+        }
+      ],
+      "readingResults": [
+        {
+          "itemId": "Q-20260811-01",
+          "column": "digital-employee",
+          "artifact": "research/reading/Q-20260811-01-ordered-local-work-queue.md",
+          "evidenceClass": "Fact with implementation unknowns",
+          "primarySource": "https://github.com/github/copilot-cli/commit/ef627e1baad937d3c8da45f8a5541c6fc3c97b6a"
+        },
+        {
+          "itemId": "Q-20260811-02",
+          "column": "industry-architecture",
+          "artifact": "research/reading/Q-20260811-02-restaurant-reservation-action-handoff.md",
+          "evidenceClass": "Vendor Claim / product fact",
+          "primarySource": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+        },
+        {
+          "itemId": "Q-20260811-03",
+          "column": "open-source-engineering",
+          "artifact": "research/reading/Q-20260811-03-durable-event-identity-terminal-evidence.md",
+          "evidenceClass": "Fact",
+          "primarySource": "https://github.com/google/adk-python/commit/04b8b72709f6d17b503cf674c8ac1b89798f655e"
+        }
+      ],
+      "startedAt": "2026-08-11T11:03:14+08:00",
+      "completedAt": "2026-08-11T11:08:35+08:00"
     }
   },
   "timeline": [
@@ -367,6 +508,13 @@
       "event": "Execution Slot Opened",
       "status": "Running",
       "detail": "Research Runtime Reading started by Research Runtime Scheduler V3.0."
+    },
+    {
+      "time": "2026-08-11T11:08:35+08:00",
+      "task": "reading",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Reading completed through governed Runtime shift completion after durable result validation for 2026-08-11."
     }
   ],
   "metrics": [],
@@ -374,5 +522,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-11T11:03:14+08:00"
+  "updatedAt": "2026-08-11T11:08:35+08:00"
 }
