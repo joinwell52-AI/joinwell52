@@ -11,8 +11,11 @@
 
 ## 推荐文章
 
-- **中文 · CSDN：**[一个 Agent 说“完成了”，团队为什么没放行？](https://blog.csdn.net/m0_51507544/article/details/163676669)
-- **English · DEV：**[One Agent Said “Done.” Why Didn’t the Team Release It?](https://dev.to/joinwell52/one-agent-said-done-why-didnt-the-team-release-it-518j)
+> README 仅保留最近 3 篇双语跨平台文章；更早文章请访问[研究主页](https://joinwell52-ai.github.io/joinwell52/zh/)。
+
+| 发布日 | 主题 | 中文 | English |
+|---|---|---|---|
+| 2026-08-06 | 一个 Agent 说“完成了”，团队为什么没放行？ | [CSDN](https://blog.csdn.net/m0_51507544/article/details/163676669) | [DEV](https://dev.to/joinwell52/one-agent-said-done-why-didnt-the-team-release-it-518j) |
 
 TMPA 是一套厂商中立的架构与规范，用于治理由异构 AI Agent 与人类共同承担的长周期工作。它把持久工作事实从模型的易失性记忆中剥离出来，以可检查对象保存事实，在异步执行中维持责任边界，并依据现有证据重构生命周期、权限、冲突与审计状态。
 
