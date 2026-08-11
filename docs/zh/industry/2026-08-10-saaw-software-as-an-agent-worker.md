@@ -24,7 +24,7 @@ outline: deep
 
 [English version](/en/industry/2026-08-10-saaw-software-as-an-agent-worker)
 
-![SaaW — Software as an Agent Worker](/assets/covers/01-saaw-manifesto-cover-agent-worker.png)
+[![SaaW — Software as an Agent Worker](/assets/covers/01-saaw-manifesto-cover-agent-worker.png)](/assets/covers/01-saaw-manifesto-cover-agent-worker.png)
 
 ---
 
@@ -147,7 +147,7 @@ Agent 能够执行工具，并不意味着 Agent 可以进入企业生产环境�
 
 因此我们认为：
 
-> **无治理，不员工。**
+> **没有治理，就没有数字员工。**
 
 这正是 TMPA 存在的原因。
 
@@ -381,11 +381,11 @@ CodeFlowMu 集中解决工作编排、Agent 责任边界、生命周期、FCoP�
 
 **CodeFlowMu 不需要重新发明 LLM。**
 
-模型只是数字员工的大脑之一。
+模型只是数字员工“大脑”的一部分。
 
 真正决定它能不能成为“员工”的，是外部工作结构。
 
-![SaaW 治理与运行架构：SaaW、CodeFlowMu、FCoP 与 TMPA](/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png)
+[![SaaW 治理与运行架构：SaaW、CodeFlowMu、FCoP 与 TMPA](/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png)](/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png)
 
 *图 1：SaaW 治理与运行架构。SaaW 描述软件交付范式，CodeFlowMu 承担工程运行，FCoP 提供轻量协作协议，TMPA 提供工作事实与治理架构。*
 
@@ -399,7 +399,7 @@ FCoP 将 Agent 协作的一部分治理关系直接投射到文件系统。
 
 工作对象不是隐藏在某个中心服务器内部，它们能够以文件形式被观察。
 
-文件名、目录、引用以及生命周期本身构成协议的一部分。
+文件名、目录、引用以及生命周期迁移构成协议的一部分。
 
 一个任务可以经历类似这样的生命周期：
 
@@ -458,7 +458,7 @@ archive    已归档
  ↓
 调用 Skill
  ↓
-操作系统
+操作业务系统
  ↓
 观察结果
  ↓
@@ -545,7 +545,7 @@ SOP
 
 > **企业证据 → 候选 SOP → 验证 → 受治理工作流**
 
-AI 的价值，是第一次让这些分散知识能够被低成本地重新结构化；而候选 SOP 只有经过业务验证、工程测试、治理检查或人类授权，才能升级为数字员工可执行的正式工作流。
+AI 的价值，是让这些分散知识能够被低成本地重新结构化；而候选 SOP 只有经过业务验证、工程测试、治理检查或人类授权，才能升级为数字员工可执行的正式工作流。
 
 ---
 
@@ -589,7 +589,7 @@ OPS 负责运行环境、恢复、部署和生命周期。
 
 一个数字员工真正可以部署之前，需要被工程化描述。
 
-一个完整的数字员工包至少可能包含：
+一个完整的数字员工包通常至少包括：
 
 - 角色；
 - 岗位职责；
@@ -666,7 +666,7 @@ Self-Morphing 真正值得讨论的含义是：
 
 > **一个数字员工运行系统，利用自身的软件开发能力，构造、验证并部署新的数字员工形态。**
 
-![Self-Morphing：从元开发运行体到数字员工履职闭环](/assets/covers/03-saaw-self-morphing-loop-fixed-v2.png)
+[![Self-Morphing：从元开发运行体到数字员工履职闭环](/assets/covers/03-saaw-self-morphing-loop-fixed-v2.png)](/assets/covers/03-saaw-self-morphing-loop-fixed-v2.png)
 
 *图 2：Self-Morphing 的受治理闭环。开发、验证、授权、部署、履职与工作证据进入同一个可恢复、可追踪的生命周期。*
 
@@ -873,7 +873,7 @@ SaaW Runtime        SaaW 运行体继续工作
 
 授权因此进入正式工作历史。
 
-这才是真正意义上的**人类在环治理（Human-in-the-Loop）**。
+这才是真正意义上的**人类在环治理（Human-in-the-Loop Governance）**。
 
 ---
 
@@ -907,7 +907,7 @@ Agent 可以换，模型可以换，SDK 可以换，运行体可以重启。
 
 它可能意味着软件经济模型发生变化。
 
-SaaS 的商业逻辑是：企业购买软件能力，然后继续配置员工完成工作。
+SaaS 的商业逻辑是：企业购买软件能力，然后继续配备员工完成工作。
 
 SaaW 的商业逻辑可能变成：企业部署数字工作能力，工作结果第一次开始成为软件交付的一部分。
 
