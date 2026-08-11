@@ -1,0 +1,145 @@
+name: SaaW TMPA Four Rule Structure
+on:
+  push:
+    paths:
+      - '.github/workflows/saaw-tmpa-four-rules.yml'
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: saaw-trace-governance-cn-labels
+      - name: Apply bilingual TMPA structure
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          zhp = Path('docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md')
+          enp = Path('docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md')
+          zh = zhp.read_text(encoding='utf-8')
+          en = enp.read_text(encoding='utf-8')
+
+          zh_old = '''## 4. TMPA：让工作事实脱离 Agent 而存在
+
+TMPA，全称 **Textual Multi-Agent Process Architecture**。
+
+它试图解决的核心问题非常简单：
+
+**当多个 Agent 和人类共同完成一个长期工作时，真正可信的工作状态到底存在于哪里？**
+
+传统 Agent 系统很容易把状态放进模型上下文、运行时内存、数据库内部状态、消息代理、中央调度器，或者一个不断增长的会话。
+'''
+          zh_new = '''## 4. TMPA：让工作事实脱离 Agent 而存在
+
+TMPA 试图解决的核心问题非常简单：
+
+**当多个 Agent 和人类共同完成一个长期工作时，真正可信的工作状态到底存在于哪里？**
+
+这是 TMPA 给出的形式化回答：
+
+> **TMPA（Textual Multi-Agent Process Architecture，文本化多智能体流程架构）**：一种面向中小企业、最低基础设施条件的**文本消息多智能体异步流程架构**。其核心由四条相互关联的规则构成：**文本承载持久消息与状态；每个写者保持自己的局部串行流；多条串行流异步推进并形成并行协作；读端聚合现有证据，重建流程、责任、生命周期、冲突与审计状态。**
+
+**以下第 4—7 节将逐条展开这四条规则：第 4 节讨论文本承载持久消息与状态，第 5 节讨论单写者局部串行流，第 6 节讨论多流异步并行协作，第 7 节讨论读端重建与问题集（Issue Set）。**
+
+传统 Agent 系统很容易把状态放进模型上下文、运行时内存、数据库内部状态、消息代理、中央调度器，或者一个不断增长的会话。
+'''
+          if zh_old not in zh:
+              raise SystemExit('Chinese section 4 anchor not found')
+          zh = zh.replace(zh_old, zh_new, 1)
+
+          zh_old7 = '''TMPA 的目标不是让这些问题消失，而是：
+
+**让问题成为正式事实。**
+
+Reader 因此不仅重构流程图，还需要重构**问题集（Issue Set）**，例如：
+'''
+          zh_new7 = '''TMPA 的目标不是让这些问题消失，而是：
+
+**让问题成为正式事实。**
+
+这里的关键不只是“列出错误”，而是**读端重建**。Reader 聚合现有证据，重建流程、责任、生命周期、冲突与审计状态；**问题集（Issue Set）**是其中对冲突、缺口和非法状态的正式表达。
+
+因此，Reader 不仅重构流程图，还需要重构问题集，例如：
+'''
+          if zh_old7 not in zh:
+              raise SystemExit('Chinese section 7 anchor not found')
+          zh = zh.replace(zh_old7, zh_new7, 1)
+
+          en_old = '''## 4. TMPA: Work facts must exist independently of the Agent
+
+TMPA stands for **Textual Multi-Agent Process Architecture**.
+
+It asks a simple question: when Agents and humans jointly perform long-running work, where should trustworthy work state live?
+
+Traditional Agent systems often put state in model context, runtime memory, database internals, brokers, central schedulers, or an ever-growing conversation.
+'''
+          en_new = '''## 4. TMPA: Work facts must exist independently of the Agent
+
+TMPA asks a simple question: when Agents and humans jointly perform long-running work, where should trustworthy work state live?
+
+This is TMPA's formal answer:
+
+> **TMPA (Textual Multi-Agent Process Architecture)** is an **asynchronous text-message multi-agent process architecture** designed for SMEs and minimum-infrastructure conditions. Its core consists of four connected rules: **text carries durable messages and state; each writer maintains its own local serial stream; multiple serial streams advance asynchronously to form parallel collaboration; the read side aggregates available evidence to reconstruct process, responsibility, lifecycle, conflicts, and audit state.**
+
+**Sections 4–7 expand these four rules in order: Section 4 covers durable messages and state in text; Section 5 covers local Single-Writer serial streams; Section 6 covers asynchronous parallel collaboration across streams; Section 7 covers read-side reconstruction and the Issue Set.**
+
+Traditional Agent systems often put state in model context, runtime memory, database internals, brokers, central schedulers, or an ever-growing conversation.
+'''
+          if en_old not in en:
+              raise SystemExit('English section 4 anchor not found')
+          en = en.replace(en_old, en_new, 1)
+
+          en_old7 = '''TMPA does not try to make those problems disappear.
+
+It makes them formal facts.
+
+The Reader therefore reconstructs not only a Process Graph but also an Issue Set, such as:
+'''
+          en_new7 = '''TMPA does not try to make those problems disappear.
+
+It makes them formal facts.
+
+The key here is not merely to list errors, but to perform **read-side reconstruction**. The Reader aggregates available evidence to reconstruct process, responsibility, lifecycle, conflicts, and audit state; the **Issue Set** is the formal representation of conflicts, gaps, and illegal states within that reconstruction.
+
+The Reader therefore reconstructs not only a Process Graph but also an Issue Set, such as:
+'''
+          if en_old7 not in en:
+              raise SystemExit('English section 7 anchor not found')
+          en = en.replace(en_old7, en_new7, 1)
+
+          zhp.write_text(zh, encoding='utf-8')
+          enp.write_text(en, encoding='utf-8')
+          PY
+      - name: Verify structure
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          zh = Path('docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md').read_text(encoding='utf-8')
+          en = Path('docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md').read_text(encoding='utf-8')
+          checks = [
+            ('zh definition', 'TMPA（Textual Multi-Agent Process Architecture，文本化多智能体流程架构）' in zh),
+            ('zh map', '以下第 4—7 节将逐条展开这四条规则' in zh),
+            ('zh reader', '这里的关键不只是“列出错误”，而是**读端重建**' in zh),
+            ('en definition', 'asynchronous text-message multi-agent process architecture' in en),
+            ('en map', 'Sections 4–7 expand these four rules in order' in en),
+            ('en reader', 'read-side reconstruction' in en),
+          ]
+          bad=[name for name,ok in checks if not ok]
+          if bad: raise SystemExit('failed: '+', '.join(bad))
+          print('TMPA four-rule structure verified')
+          PY
+      - name: Build
+        run: |
+          npm ci
+          npm run docs:build
+      - name: Commit articles only and remove temporary workflow
+        run: |
+          rm .github/workflows/saaw-tmpa-four-rules.yml
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md .github/workflows/saaw-tmpa-four-rules.yml
+          git commit -m "docs: expose TMPA four-rule structure in SaaW" || exit 0
+          git push origin HEAD:saaw-trace-governance-cn-labels
