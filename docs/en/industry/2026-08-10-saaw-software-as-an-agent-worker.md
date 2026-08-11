@@ -435,7 +435,7 @@ Therefore:
 
 - the `fcop` Python package is the **reference implementation of FCoP**, not the FCoP protocol itself;
 - `fcop-mcp` and `fcop-cli` sit in the **Host Adapter Layer**, exposing protocol capabilities to actual hosts;
-- CodeFlowMu sits above FCoP in the **Application / Runtime layer** and uses FCoP as its coordination protocol;
+- **CodeFlowMu is an application/runtime system that uses FCoP as its coordination protocol.**
 - TMPA is not a runtime layer in this stack; it supplies the higher-level governance semantics and architectural guidance the stack is intended to realize.
 
 This also explains why “directory is state” matters: administrators, human supervisors, Agents, and debugging tools can inspect the same project-visible facts without first entering a hidden central coordination state.
