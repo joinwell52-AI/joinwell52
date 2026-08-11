@@ -159,7 +159,7 @@ This is TMPA's formal answer:
 
 > **TMPA (Textual Multi-Agent Process Architecture)** is an **asynchronous text-message multi-agent process architecture** designed for SMEs and minimum-infrastructure conditions. Its core consists of four connected rules: **text carries durable messages and state; each writer maintains its own local serial stream; multiple serial streams advance asynchronously to form parallel collaboration; the read side aggregates available evidence to reconstruct process, responsibility, lifecycle, conflicts, and audit state.**
 
-**Sections 4–7 expand these four rules in order: Section 4 covers durable messages and state in text; Section 5 covers local Single-Writer serial streams; Section 6 covers asynchronous parallel collaboration across streams; Section 7 covers read-side reconstruction and the Issue Set.**
+**This section and Sections 5–7 expand these four rules in order: this section covers durable messages and state in text; Section 5 covers local Single-Writer serial streams; Section 6 covers asynchronous parallel collaboration across streams; Section 7 covers read-side reconstruction and the Issue Set.**
 
 TMPA is **SME-first, not SME-only**. Its minimum-infrastructure orientation reduces dependence on dedicated coordination infrastructure, but larger implementations may use databases, object stores, event services, identity systems, and control planes while preserving the same work-fact, responsibility, reference, lifecycle, and governance semantics.
 
@@ -435,7 +435,7 @@ Therefore:
 
 - the `fcop` Python package is the **reference implementation of FCoP**, not the FCoP protocol itself;
 - `fcop-mcp` and `fcop-cli` sit in the **Host Adapter Layer**, exposing protocol capabilities to actual hosts;
-- CodeFlowMu sits above FCoP in the **Application / Runtime layer** and uses FCoP as its coordination protocol;
+- **CodeFlowMu is an application/runtime system that uses FCoP as its coordination protocol.**
 - TMPA is not a runtime layer in this stack; it supplies the higher-level governance semantics and architectural guidance the stack is intended to realize.
 
 This also explains why “directory is state” matters: administrators, human supervisors, Agents, and debugging tools can inspect the same project-visible facts without first entering a hidden central coordination state.
