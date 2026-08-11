@@ -1,0 +1,95 @@
+name: SaaW TMPA 4-7 Hardening
+on:
+  push:
+    branches: [saaw-harden-tmpa-4-7]
+    paths: ['.github/workflows/saaw-harden-tmpa-4-7.yml']
+permissions:
+  contents: write
+jobs:
+  harden:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: saaw-harden-tmpa-4-7
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Apply bilingual TMPA 4-7 hardening
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          zh = Path('docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md')
+          en = Path('docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md')
+          z = zh.read_text(encoding='utf-8')
+          e = en.read_text(encoding='utf-8')
+
+          old = '''TMPA 的设计目标是尽可能降低治理架构对专用基础设施的依赖，但这并不意味着它只能用于小规模系统。它的定位是 **SME-first，而非 SME-only**：规模更大的实现可以使用数据库、对象存储、事件服务、身份系统和控制平面，同时保留相同的工作事实、责任、引用、生命周期和治理语义。\n\n传统 Agent 系统很容易把状态放进模型上下文、运行时内存、数据库内部状态、消息代理、中央调度器，或者一个不断增长的会话。\n\n但所有这些方案都面临一个共同问题：**运行实例和工作事实绑得太紧。**\n\nTMPA 选择了另一条路线：\n\n> **文本同时承载消息与状态。**'''
+          new = '''TMPA 的 **SME-first** 不是“只能服务于中小企业”，而是一条更强的架构约束：**治理语义不应被内生锁死在某个模型会话、某个进程、某个中央状态机，或某一种物理存储拓扑中。**\n\n传统 Agent 系统的常见弱点，并不是它们没有状态，而是把可信状态与运行实例绑得过紧：状态可能困在模型上下文、进程内存、中央数据库内部状态、消息代理或持续膨胀的会话里。实例一旦退出，系统就必须额外依赖某个中心组件去解释“现在到底发生到哪里”。\n\nTMPA 拒绝把治理真相交给这种偶然的运行连续性。它要求：**工作事实能够脱离具体运行实例而持续存在，并能够被重新聚合和重建。**\n\n这里必须区分“治理语义”和“物理投影”。TMPA 本身不要求状态由目录位置或某一种存储拓扑来定义；在 FCoP 这样的文件系统 Profile 中，目录可以投影生命周期状态，但那是 Profile 的具体表达，不是 TMPA 对所有实现的物理绑定。\n\n> **文本承载事实；拓扑承载投影。事实不应因运行实例或物理布局的变化而失去可重建性。**'''
+          assert old in z
+          z = z.replace(old, new, 1)
+
+          old = '''每一个动作都拥有自己的作者和引用关系。\n\n于是系统中的责任链不是靠“最终数据库状态”猜出来的，而是由事实本身形成。\n\n这与许多传统工作流引擎有一个重要差别。'''
+          new = '''每一个动作都拥有自己的作者和引用关系。谁写下 `Acceptance`，谁追加 `Report`，谁发布 `Correction`，都会沿着作者、引用与局部顺序进入同一条可追溯的事实链。\n\n**责任不是从一个最终状态字段里“算”出来的，而是从单写者追加流中“长”出来的。**\n\nSingle-Writer 的关键不是宣称文本天然不可篡改，而是禁止一个主体静默重写另一个主体已经发布的事实。需要纠正时，应通过新的 `Correction`、`supersedes` 或其他受治理对象追加新事实；如果需要密码学层面的防篡改，还必须叠加完整性、签名与可信身份机制。\n\n这与许多传统工作流引擎有一个重要差别。'''
+          assert old in z
+          z = z.replace(old, new, 1)
+
+          old = '''不同的单写者串行流可以独立推进。\n\n写端不负责制造虚假的全局时序。\n\n真正的关系在 Reader 端通过引用、因果、状态迁移、责任与治理规则进行重构。\n\n最后得到的不是简单日志列表，而是一张**偏序图（Partial-Order Graph）**。'''
+          new = '''不同的单写者串行流可以独立推进。每个写者只负责维护自己的局部顺序，不需要抢占一个全局可变状态来证明“谁先谁后”。\n\n> **异步世界不需要伪造全局总序：写端保持局部串行，读端重建偏序关系。**\n\n真正的关系由 Reader 在聚合时根据引用、因果、状态迁移、责任与治理规则动态重构。最后得到的不是被中央调度器强行排平的日志列表，而是一张**偏序图（Partial-Order Graph）**。\n\n这也是它能够落到本地代码库和文件协调实践里的原因：不同 Agent、不同宿主甚至不同 SDK 可以异步地产生各自的工作事实；系统不要求它们共享同一块可变内存，而是在 Reader 端把已经出现的证据重新拼成可解释的工作关系。'''
+          assert old in z
+          z = z.replace(old, new, 1)
+
+          old = '''这里的关键不只是“列出错误”，而是**读端重建**。Reader 聚合当前可用证据，重建流程、责任、生命周期、冲突与审计状态；**问题集（Issue Set）**是其中对冲突、缺口和非法状态的正式表达。\n\n因此，Reader 不仅重构流程图，还需要重构问题集，例如：'''
+          new = '''这里的关键不只是“列出错误”，而是**读端重建**。写端不负责偷偷消解冲突，也不把到达顺序冒充治理顺序；Reader 聚合当前可用证据，重建流程、责任、生命周期、冲突与审计状态。**问题集（Issue Set）**就是其中对冲突、缺口和非法状态的正式表达。\n\n> **TMPA 不承诺冲突不会发生；它要求冲突不能被隐藏。**\n\n因此，Reader 不仅重构流程图，还需要重构问题集，例如：'''
+          assert old in z
+          z = z.replace(old, new, 1)
+
+          old = '''TMPA is **SME-first, not SME-only**. Its minimum-infrastructure orientation reduces dependence on dedicated coordination infrastructure, but larger implementations may use databases, object stores, event services, identity systems, and control planes while preserving the same work-fact, responsibility, reference, lifecycle, and governance semantics.\n\nTraditional Agent systems often put state in model context, runtime memory, database internals, brokers, central schedulers, or an ever-growing conversation.\n\nThe common weakness is that runtime instances and work facts become too tightly coupled.\n\nTMPA chooses another path:\n\n> **Text carries messages and state.**'''
+          new = '''TMPA being **SME-first** is not a statement that it is limited to SMEs. It is a stronger architectural constraint: **governance semantics should not be intrinsically locked to one model session, one process, one central state machine, or one physical storage topology.**\n\nA common weakness in traditional Agent systems is not the absence of state, but excessive coupling between trustworthy state and runtime instances. State may be trapped inside model context, process memory, database internals, brokers, or ever-growing conversations. When an instance disappears, an external center is then required to explain what the work currently means.\n\nTMPA rejects dependence on that accidental runtime continuity. Work facts must persist independently of a particular runtime instance and remain reconstructable from the available evidence.\n\nThis requires a distinction between **governance semantics** and **physical projection**. TMPA does not require lifecycle meaning to be universally encoded by directory location or any single storage topology. A filesystem profile such as FCoP may project lifecycle state into directories, but that is a profile-level representation rather than a universal physical binding in TMPA.\n\n> **Text carries facts; topology carries projection. Facts must remain reconstructable across changes in runtime instance or physical layout.**'''
+          assert old in e
+          e = e.replace(old, new, 1)
+
+          old = '''Every action has its own author and reference relationships.\n\nResponsibility in the system is therefore not guessed from the final database state; it is formed by the work facts themselves.\n\nThis differs in an important way from many traditional workflow engines.'''
+          new = '''Every action has its own author and reference relationships. Whoever writes an `Acceptance`, appends a `Report`, or publishes a `Correction` enters an attributable chain through authorship, references, and local order.\n\n**Responsibility is not calculated from one final state field; it grows out of the Single-Writer append stream.**\n\nSingle-Writer does not mean that plain text is magically tamper-proof. It means one actor must not silently rewrite facts already published by another actor. Corrections appear as new governed objects such as `Correction`, `supersedes`, or equivalent profile mechanisms; cryptographic tamper resistance still requires integrity, signatures, and trusted identity mechanisms.\n\nThis differs in an important way from many traditional workflow engines.'''
+          assert old in e
+          e = e.replace(old, new, 1)
+
+          old = '''Single-Writer Streams can advance independently.\n\nThe write side does not manufacture a fake universal chronology.\n\nThe Reader reconstructs relationships from Reference, Causality, Transition, Responsibility, and Governance Rules.\n\nThe result is a Partial-Order Graph rather than a flat event log.'''
+          new = '''Single-Writer Streams can advance independently. Each writer maintains only its own local order instead of competing to mutate one global state merely to establish “who came first.”\n\n> **An asynchronous world does not need a fabricated total order: writers preserve local serial order; readers reconstruct the partial order.**\n\nThe Reader dynamically reconstructs relationships from Reference, Causality, Transition, Responsibility, and Governance Rules. The result is not a central scheduler flattening everything into one log, but a **Partial-Order Graph**.\n\nThis is also why the architecture can live directly in local repositories and file-based coordination practice: different Agents, hosts, or SDK integrations can emit work facts asynchronously without sharing one mutable memory region, while the Reader reconstructs an interpretable work relationship from the evidence that exists.'''
+          assert old in e
+          e = e.replace(old, new, 1)
+
+          old = '''The key is not merely to list errors, but to perform **read-side reconstruction**. The Reader aggregates the currently available evidence to reconstruct process, responsibility, lifecycle, conflicts, and audit state; the **Issue Set** is the formal representation of conflicts, gaps, and illegal states within that reconstruction.\n\nThe Reader therefore reconstructs not only a Process Graph but also an Issue Set, such as:'''
+          new = '''The key is not merely to list errors, but to perform **read-side reconstruction**. The write side does not silently resolve conflicts or treat arrival order as governance order. The Reader aggregates the currently available evidence to reconstruct process, responsibility, lifecycle, conflicts, and audit state; the **Issue Set** is the formal representation of conflicts, gaps, and illegal states within that reconstruction.\n\n> **TMPA does not promise that conflicts never occur; it requires that conflicts cannot be hidden.**\n\nThe Reader therefore reconstructs not only a Process Graph but also an Issue Set, such as:'''
+          assert old in e
+          e = e.replace(old, new, 1)
+
+          zh.write_text(z, encoding='utf-8')
+          en.write_text(e, encoding='utf-8')
+          PY
+      - name: Verify hardened concepts
+        shell: bash
+        run: |
+          grep -F '文本承载事实；拓扑承载投影' docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+          grep -F '责任不是从一个最终状态字段里“算”出来的，而是从单写者追加流中“长”出来的' docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+          grep -F 'TMPA 不承诺冲突不会发生；它要求冲突不能被隐藏' docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+          grep -F 'Text carries facts; topology carries projection' docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+          grep -F 'TMPA does not promise that conflicts never occur' docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+      - name: Build VitePress
+        shell: bash
+        run: |
+          npm ci
+          npm run docs:build
+      - name: Commit article-only changes
+        shell: bash
+        run: |
+          git config user.name 'joinwell52'
+          git config user.email 'joinwell52@gmail.com'
+          git add docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+          git commit -m 'harden TMPA sections 4-7' || true
+          git rm .github/workflows/saaw-harden-tmpa-4-7.yml
+          git commit -m 'remove temporary TMPA hardening workflow' || true
+          git push origin HEAD:saaw-harden-tmpa-4-7
