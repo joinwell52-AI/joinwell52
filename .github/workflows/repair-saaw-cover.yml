@@ -1,0 +1,100 @@
+name: Repair SaaW Cover Asset
+
+on:
+  push:
+    paths:
+      - '.github/workflows/repair-saaw-cover.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract real JPEG and update article references
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64, hashlib, re
+
+          root = Path('.')
+          svg_path = root / 'docs/public/assets/covers/saaw-manifesto-cover-hd.svg'
+          out_path = root / 'docs/public/assets/covers/saaw-manifesto-cover-final.jpg'
+          manifest_path = root / 'docs/public/assets/covers/saaw-manifesto-cover-final.sha256.txt'
+
+          svg = svg_path.read_text(encoding='utf-8')
+          m = re.search(r'data:image/jpeg;base64,([^\"\']+)', svg)
+          if not m:
+              raise SystemExit('embedded JPEG not found in SaaW cover SVG')
+
+          data = base64.b64decode(m.group(1), validate=True)
+          if not (data.startswith(b'\xff\xd8') and data.endswith(b'\xff\xd9')):
+              raise SystemExit('decoded data is not a complete JPEG')
+
+          # Parse JPEG dimensions from SOF markers without third-party libraries.
+          i = 2
+          width = height = None
+          while i + 9 < len(data):
+              if data[i] != 0xFF:
+                  i += 1
+                  continue
+              marker = data[i + 1]
+              i += 2
+              if marker in (0xD8, 0xD9) or 0xD0 <= marker <= 0xD7:
+                  continue
+              if i + 2 > len(data):
+                  break
+              seglen = int.from_bytes(data[i:i+2], 'big')
+              if seglen < 2 or i + seglen > len(data):
+                  break
+              if marker in {0xC0,0xC1,0xC2,0xC3,0xC5,0xC6,0xC7,0xC9,0xCA,0xCB,0xCD,0xCE,0xCF}:
+                  height = int.from_bytes(data[i+3:i+5], 'big')
+                  width = int.from_bytes(data[i+5:i+7], 'big')
+                  break
+              i += seglen
+
+          out_path.write_bytes(data)
+          digest = hashlib.sha256(data).hexdigest()
+          manifest_path.write_text(
+              f'sha256={digest}\nbytes={len(data)}\nwidth={width}\nheight={height}\n',
+              encoding='utf-8'
+          )
+
+          target = '/assets/covers/saaw-manifesto-cover-final.jpg?v=20260811-visual-final'
+          files = [
+              root / 'docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md',
+              root / 'docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md',
+          ]
+          old_patterns = [
+              r'/assets/covers/saaw-manifesto-cover-hd\.svg(?:\?[^\"\')\s]+)?',
+              r'/assets/covers/saaw-manifesto-cover-approved\.webp(?:\?[^\"\')\s]+)?',
+              r'/assets/covers/saaw-manifesto-cover\.svg(?:\?[^\"\')\s]+)?',
+          ]
+          for path in files:
+              text = path.read_text(encoding='utf-8')
+              for pattern in old_patterns:
+                  text = re.sub(pattern, target, text)
+              path.write_text(text, encoding='utf-8')
+
+          print(manifest_path.read_text(encoding='utf-8'))
+          PY
+
+      - name: Commit repaired cover asset
+        shell: bash
+        run: |
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/public/assets/covers/saaw-manifesto-cover-final.jpg \
+                  docs/public/assets/covers/saaw-manifesto-cover-final.sha256.txt \
+                  docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md \
+                  docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+          git diff --cached --quiet && exit 0
+          git commit -m "fix SaaW cover as direct JPEG asset"
+          git push origin HEAD:main
