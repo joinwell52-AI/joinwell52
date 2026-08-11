@@ -7,9 +7,9 @@ version: "V1.1"
 summary: "从治理、TMPA、FCoP、Agent PC、CodeFlowMu 与 Self-Morphing 推导 SaaW，并以 Research Report Production Engine V1.3 作为真实工程锚点，区分已验证能力与研究前沿。"
 item_id: "MANIFESTO-20260810-SAAW"
 lifecycle: "Published"
-cover: "/assets/covers/saaw-manifesto-cover-hd.svg"
-visualization: "/assets/covers/saaw-governance-stack.svg"
-visualization_2: "/assets/covers/saaw-self-morphing-loop.svg"
+cover: "/assets/covers/01-saaw-manifesto-cover.jpeg"
+visualization: "/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png"
+visualization_2: "/assets/covers/03-saaw-self-morphing-loop-fixed.png"
 evidence_status: "Architecture-grounded + production-engine reference implementation"
 citation_status: "Internal publication mapping completed"
 editing_status: "Published V1.1 — full 23-section edition"
@@ -24,7 +24,7 @@ outline: deep
 
 [English version](/en/industry/2026-08-10-saaw-software-as-an-agent-worker)
 
-![SaaW — Software as an Agent Worker](/assets/covers/saaw-manifesto-cover-hd.svg)
+![SaaW — Software as an Agent Worker](/assets/covers/01-saaw-manifesto-cover.jpeg)
 
 ---
 
@@ -385,7 +385,7 @@ CodeFlowMu 集中解决工作编排、Agent 责任边界、生命周期、FCoP�
 
 真正决定它能不能成为“员工”的，是外部工作结构。
 
-![SaaW 治理与运行架构：SaaW、CodeFlowMu、FCoP 与 TMPA](/assets/covers/saaw-governance-stack.svg)
+![SaaW 治理与运行架构：SaaW、CodeFlowMu、FCoP 与 TMPA](/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png)
 
 *图 1：SaaW 治理与运行架构。SaaW 描述软件交付范式，CodeFlowMu 承担工程运行，FCoP 提供轻量协作协议，TMPA 提供工作事实与治理架构。*
 
@@ -666,7 +666,7 @@ Self-Morphing 真正值得讨论的含义是：
 
 > **一个数字员工运行系统，利用自身的软件开发能力，构造、验证并部署新的数字员工形态。**
 
-![Self-Morphing：从元开发运行体到数字员工履职闭环](/assets/covers/saaw-self-morphing-loop.svg)
+![Self-Morphing：从元开发运行体到数字员工履职闭环](/assets/covers/03-saaw-self-morphing-loop-fixed.png)
 
 *图 2：Self-Morphing 的受治理闭环。开发、验证、授权、部署、履职与工作证据进入同一个可恢复、可追踪的生命周期。*
 
