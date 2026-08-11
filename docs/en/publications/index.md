@@ -33,11 +33,11 @@ V1.0 remains the historical baseline for the first Production Test: [legacy comp
 
 | Type | Document | Version | Status |
 |---|---|---:|---|
-| Paper | [TMPA Architecture Paper](./tmpa-architecture-paper-a0.9) | A0.9 | Pre-submission review draft; current TMPA → Core → FCoP → CodeFlowMu guidance relation finalized |
-| Specification | [TMPA Core Specification](./tmpa-core-specification-s0.6) | S0.6 | Release Candidate; Reference Reader 14/14 PASS; CodeFlowMu V1.6.0 product run 14/14 PASS (author-run) |
-| Case report | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i0.8) | I0.8 | Exact-version S0.6 CodeFlowMu V1.6.0 evidence: C01–C14 14/14 author-run PASS; public reproducer included; WP-13 retained as a bounded case |
+| Paper | [TMPA Architecture Paper](./tmpa-architecture-paper-a1.0) | A1.0 | Stable research-paper release; TMPA → Core → FCoP → CodeFlowMu guidance relation finalized |
+| Specification | [TMPA Core Specification](./tmpa-core-specification-s1.0) | S1.0 | Stable normative release; Reference Reader 14/14 PASS; registered CodeFlowMu V1.8.0 product run 14/14 PASS (author-run) |
+| Case report | [TMPA–FCoP–CodeFlowMu Implementation Case](./implementation-case-i1.0) | I1.0 | Exact-version S1.0 CodeFlowMu V1.8.0 evidence: C01–C14 14/14 author-run PASS across 71 mandatory assertions; WP-13 retained as a bounded case |
 
-Release governance: [TMPA V1.0 Release Readiness Audit RA1](./tmpa-v1.0-release-readiness-audit) identified four bounded P0 items. [RC1 closes P0-01 through P0-04](./tmpa-v1.0-p0-closure-rc1) and is ready for final promotion review; A0.9/S0.6/I0.8 remain the current official versions until author decisions and promotion authorization.
+Release governance: [TMPA V1.0 Release Readiness Audit RA1](./tmpa-v1.0-release-readiness-audit) identified four bounded P0 items; [RC1 closed P0-01 through P0-04](./tmpa-v1.0-p0-closure-rc1). The [final V1.0 release record](./tmpa-v1.0-release-record) promotes A1.0/S1.0/I1.0 and preserves both reviews as historical evidence.
 
 The TMPA publication suite is an independent theory layer. High-frequency Observation Notes do not automatically become paper evidence; long-term TMPA work runs through Research Program Runtime, not Daily Runtime.
 

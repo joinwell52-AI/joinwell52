@@ -1,0 +1,76 @@
+{
+  "id": "tmpa-s1.0-case-profile",
+  "version": "1.1.0",
+  "states": ["created", "active", "review", "done", "archive"],
+  "initial_state": "created",
+  "terminal_states": ["archive"],
+  "actions": ["start", "submit", "approve", "archive"],
+  "transitions": [
+    {
+      "from": "created",
+      "action": "start",
+      "to": "active",
+      "allowed_roles": ["PM"],
+      "required_relations": []
+    },
+    {
+      "from": "active",
+      "action": "submit",
+      "to": "review",
+      "allowed_roles": ["DEV"],
+      "required_relations": ["reports"]
+    },
+    {
+      "from": "review",
+      "action": "approve",
+      "to": "done",
+      "allowed_roles": ["QA"],
+      "required_relations": ["reviews"],
+      "separation_of_duties": ["executor_must_not_review"]
+    },
+    {
+      "from": "done",
+      "action": "archive",
+      "to": "archive",
+      "allowed_roles": ["OPS"],
+      "required_relations": ["archives"]
+    }
+  ],
+  "recovery_rules": ["terminal_state_is_stable", "source_history_is_preserved"],
+  "acceptance": {
+    "states_requiring_acceptance": ["done", "archive"],
+    "acceptance_relations": ["accepts"],
+    "allowed_roles": ["QA", "ADMIN"],
+    "requires_independent_actor": true,
+    "archive_requires_acceptance": true
+  },
+  "work_graph": {
+    "completion_claim_predicates": ["work.complete", "delivery.complete"],
+    "response_relations": ["reports", "responds_to"],
+    "child_terminal_states": ["done", "archive"]
+  },
+  "risk_policy": {
+    "human_approval_levels": ["high", "irreversible"],
+    "approval_relations": ["human_approves"],
+    "approval_roles": ["ADMIN"],
+    "approval_object_types": ["DECISION"],
+    "requires_independent_actor": true
+  },
+  "failure_model": {
+    "failure_types": ["timeout", "crash", "deadlock", "drift"],
+    "recovery_actions": ["retry", "resume", "rollback", "abort", "escalate"]
+  },
+  "extensions": {
+    "document_types": ["TASK", "TRANSITION", "STATE_OBSERVATION", "REPORT", "REVIEW", "DECISION", "CORRECTION", "ISSUE", "FAILURE", "RECOVERY", "INSPECTION", "ALERT"],
+    "assignments": [
+      { "identity": "alice", "role": "PM", "actions": ["start"] },
+      { "identity": "bob", "role": "DEV", "actions": ["submit"] },
+      { "identity": "bob", "role": "QA", "actions": ["approve"] },
+      { "identity": "carol", "role": "QA", "actions": ["approve"] },
+      { "identity": "dave", "role": "OPS", "actions": ["archive"] },
+      { "identity": "erin", "role": "ADMIN", "actions": [] }
+    ],
+    "ordering_relations": ["depends_on", "reports", "responds_to", "reviews", "accepts", "human_approves", "archives", "parent"],
+    "acyclic_relations": ["depends_on"]
+  }
+}

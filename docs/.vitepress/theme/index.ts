@@ -178,29 +178,31 @@ function enhanceProductionEngineV13(chinese: boolean) {
     .forEach((element) => { element.textContent = 'V1.3' })
 }
 
-function enhanceImplementationCaseI08(chinese: boolean) {
+function enhanceImplementationCaseI10(chinese: boolean) {
   if (typeof document === 'undefined') return
 
   const casePath = withBase(chinese
-    ? '/zh/publications/implementation-case-i0.8'
-    : '/en/publications/implementation-case-i0.8')
+    ? '/zh/publications/implementation-case-i1.0'
+    : '/en/publications/implementation-case-i1.0')
 
   document.querySelectorAll<HTMLAnchorElement>(
-    '.rc-home a[href*="implementation-case-i0.5"], .rcv5 a[href*="implementation-case-i0.5"], .rc-home a[href*="implementation-case-i0.6"], .rcv5 a[href*="implementation-case-i0.6"], .rc-home a[href*="implementation-case-i0.7"], .rcv5 a[href*="implementation-case-i0.7"]'
+    '.rc-home a[href*="implementation-case-i0.5"], .rcv5 a[href*="implementation-case-i0.5"], .rc-home a[href*="implementation-case-i0.6"], .rcv5 a[href*="implementation-case-i0.6"], .rc-home a[href*="implementation-case-i0.7"], .rcv5 a[href*="implementation-case-i0.7"], .rc-home a[href*="implementation-case-i0.8"], .rcv5 a[href*="implementation-case-i0.8"]'
   ).forEach((anchor) => anchor.setAttribute('href', casePath))
 
   const replacements: Record<string, string> = chinese ? {
-    'I0.5': 'I0.8',
-    'I0.6': 'I0.8',
-    'I0.7': 'I0.8',
-    'WP-13 多 Agent 事实复核': 'V1.6.0 · S0.6 C01–C14 14/14',
-    'S0.5 作者运行产品证据与 WP-13 治理案例': 'V1.6.0 · S0.6 C01–C14 14/14'
+    'I0.5': 'I1.0',
+    'I0.6': 'I1.0',
+    'I0.7': 'I1.0',
+    'I0.8': 'I1.0',
+    'WP-13 多 Agent 事实复核': 'V1.8.0 · S1.0 C01–C14 14/14',
+    'S0.5 作者运行产品证据与 WP-13 治理案例': 'V1.8.0 · S1.0 C01–C14 14/14'
   } : {
-    'I0.5': 'I0.8',
-    'I0.6': 'I0.8',
-    'I0.7': 'I0.8',
-    'WP-13 multi-agent fact check': 'V1.6.0 · S0.6 C01–C14 14/14',
-    'S0.5 author-run product evidence and the WP-13 governance case': 'V1.6.0 · S0.6 C01–C14 14/14'
+    'I0.5': 'I1.0',
+    'I0.6': 'I1.0',
+    'I0.7': 'I1.0',
+    'I0.8': 'I1.0',
+    'WP-13 multi-agent fact check': 'V1.8.0 · S1.0 C01–C14 14/14',
+    'S0.5 author-run product evidence and the WP-13 governance case': 'V1.8.0 · S1.0 C01–C14 14/14'
   }
 
   document.querySelectorAll<HTMLElement>('.rc-home, .rcv5').forEach((root) => {
@@ -251,7 +253,7 @@ function enhancePortal() {
 
   reorderCapabilityCards()
   enhanceProductionEngineV13(chinese)
-  enhanceImplementationCaseI08(chinese)
+  enhanceImplementationCaseI10(chinese)
   enhanceLanguageRouting()
   localizeChineseRuntime()
 }
