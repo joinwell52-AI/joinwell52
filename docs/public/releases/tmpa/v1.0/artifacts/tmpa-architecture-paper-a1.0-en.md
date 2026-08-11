@@ -509,10 +509,10 @@ The operational FCoP stack is:
 
 ```text
 Application / Runtime      CodeFlowMu / Cursor / Claude Desktop
-Host Adapter Layer         fcop-mcp / fcop-cli / host bridges
+Host Adapter Layer         fcop-mcp / host bridges
 FCoP Protocol Layer        collaboration / reporting / review /
                            capability governance / events / audit
-Reference Implementation   fcop Python library
+Reference Implementation   fcop Python package / CLI
 Execution Substrate        LLM APIs / MCP tools / filesystem /
                            process manager / operating system
 ```

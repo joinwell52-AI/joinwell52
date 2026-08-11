@@ -513,10 +513,10 @@ FCoP 运行栈为：
 
 ```text
 应用 / Runtime 层       CodeFlowMu / Cursor / Claude Desktop
-Host 适配层            fcop-mcp / fcop-cli / Host Bridges
+Host 适配层            fcop-mcp / Host Bridges
 FCoP 协议层            协作 / 报告 / 复核 /
                        能力治理 / 事件 / 审计
-参考实现               fcop Python Library
+参考实现               fcop Python Package / CLI
 执行基底               LLM API / MCP 工具 / 文件系统 /
                        进程管理器 / 操作系统
 ```
