@@ -9,7 +9,7 @@ item_id: "MANIFESTO-20260810-SAAW"
 lifecycle: "Published"
 cover: "/assets/covers/01-saaw-manifesto-cover.jpeg"
 visualization: "/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png"
-visualization_2: "/assets/covers/03-saaw-self-morphing-loop-fixed.png"
+visualization_2: "/assets/covers/03-saaw-self-morphing-loop-fixed-v2.png"
 evidence_status: "Architecture-grounded + production-engine reference implementation"
 citation_status: "Internal publication mapping completed"
 editing_status: "Published V1.1 — full 23-section edition"
@@ -666,7 +666,7 @@ Self-Morphing 真正值得讨论的含义是：
 
 > **一个数字员工运行系统，利用自身的软件开发能力，构造、验证并部署新的数字员工形态。**
 
-![Self-Morphing：从元开发运行体到数字员工履职闭环](/assets/covers/03-saaw-self-morphing-loop-fixed.png)
+![Self-Morphing：从元开发运行体到数字员工履职闭环](/assets/covers/03-saaw-self-morphing-loop-fixed-v2.png)
 
 *图 2：Self-Morphing 的受治理闭环。开发、验证、授权、部署、履职与工作证据进入同一个可恢复、可追踪的生命周期。*
 

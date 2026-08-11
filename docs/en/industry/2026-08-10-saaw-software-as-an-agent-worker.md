@@ -9,7 +9,7 @@ item_id: "MANIFESTO-20260810-SAAW"
 lifecycle: "Published"
 cover: "/assets/covers/01-saaw-manifesto-cover.jpeg"
 visualization: "/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png"
-visualization_2: "/assets/covers/03-saaw-self-morphing-loop-fixed.png"
+visualization_2: "/assets/covers/03-saaw-self-morphing-loop-fixed-v2.png"
 evidence_status: "Architecture-grounded + production-engine reference implementation"
 citation_status: "Internal publication mapping completed"
 editing_status: "Published V1.1 — full 23-section edition"
@@ -143,6 +143,8 @@ This is not merely a logging problem.
 
 It is a Governance State problem.
 
+If these questions have no answers, an Agent cannot realistically assume job responsibility.
+
 > **No governance, no employee.**
 
 That is why TMPA exists.
@@ -258,6 +260,8 @@ TASK ───────┤                ├── REVIEW
 
 Which report happened first is less important than their causal relationship to the same Task and the Review that depends on them.
 
+This is closer to how real organizations actually work.
+
 ---
 
 ## 7. Issue Set: Do not hide disagreement
@@ -281,6 +285,8 @@ unresolved_disagreement
 missing_acceptance
 conflicting_review
 ```
+
+This is an important SaaW capability.
 
 Enterprises do not need mythical AI that never fails.
 
@@ -644,7 +650,7 @@ It does not mean that an Agent freely mutates its source code, and it does not m
 
 > **Self-Morphing means that a digital-employee runtime can use its own software-development capability to construct, validate, and deploy new digital-worker forms.**
 
-![Self-Morphing: from meta-development runtime to the digital-worker work loop](/assets/covers/03-saaw-self-morphing-loop-fixed.png)
+![Self-Morphing: from meta-development runtime to the digital-worker work loop](/assets/covers/03-saaw-self-morphing-loop-fixed-v2.png)
 
 *Figure 2. The governed Self-Morphing loop brings development, validation, authorization, deployment, work execution, and work evidence into one recoverable and traceable lifecycle.*
 
