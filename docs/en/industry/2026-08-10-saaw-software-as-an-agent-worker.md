@@ -137,8 +137,6 @@ But:
 
 Trace answers: **What happened?**
 
-A trace is descriptive and retrospective: it records execution evidence. Governance is normative and authoritative: it defines who may act, under which policy, on which official work object, through which valid state transition, and with what accountability and recovery consequences. A complete trace can prove that an action occurred; by itself, it cannot prove that the action was permitted, accepted, or validly advanced the workflow.
-
 Enterprise governance must also answer: Who authorized the work? Who accepted responsibility? Which object represents the official work fact? Who submitted the Report? Who performed the Review? Who made the Decision? Is the current state legal? Are references dangling? Are disagreements unresolved? After failure, who is allowed to continue?
 
 This is not merely a logging problem.
