@@ -1,0 +1,308 @@
+{
+  "schema": "research-intelligence-run/v1",
+  "version": "1.0",
+  "date": "2026-08-11",
+  "timezone": "Asia/Shanghai",
+  "status": "Running",
+  "registryVersion": "1.0",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-08-11T09:08:27+08:00",
+  "githubCommit": "pending",
+  "reason": "All three Discovery pipelines resolved their due-source coverage. The Signal Pool is complete for Discovery and remains unselected pending the independent Queue triage stage.",
+  "reason_zh": "三条 Discovery 管线均已完成应查来源覆盖。Signal Pool 的 Discovery 阶段已完成，所有信号保持未选题，等待独立 Queue 筛选阶段。",
+  "pipelines": [
+    {
+      "id": "ai-platform",
+      "label": "AI Platform Change Intelligence",
+      "label_zh": "AI 平台变更情报发现",
+      "status": "Completed",
+      "due": 33,
+      "checked": 30,
+      "inaccessible": [
+        {
+          "source": "anthropic-claude/community-discord",
+          "reason": "The configured official Discord community requires authentication; it was recorded as authentication-required rather than treated as checked with no update."
+        }
+      ],
+      "failed": [
+        {
+          "source": "cursor/announcements",
+          "reason": "The configured Cursor announcements endpoint could not be reliably retrieved during this run; the general Cursor forum, docs, changelog and status channels were checked separately."
+        },
+        {
+          "source": "microsoft-copilot-platform/tech-community",
+          "reason": "The configured Microsoft Copilot Studio Tech Community endpoint returned a retrieval error during this run; Microsoft documentation, what's-new, roadmap and service-health documentation were checked separately."
+        }
+      ],
+      "signals": 2,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All 33 configured P0 daily platform channels were resolved as checked, explicitly authentication-required, or failed with a recorded reason. Two material current platform changes were retained as signals.",
+      "reason_zh": "33 个配置的 P0 日更平台渠道均已解析为已检查、明确需认证或带原因的失败；保留 2 个当前重要平台变更信号。"
+    },
+    {
+      "id": "github-engineering",
+      "label": "GitHub Engineering Intelligence",
+      "label_zh": "GitHub 工程情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 9,
+      "inaccessible": [],
+      "failed": [],
+      "signals": 7,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 daily repositories were checked incrementally. Seven material maintainer changes were normalized into distinct engineering signals; repositories without a material increment remain checked with no signal.",
+      "reason_zh": "9 个 P0 日更仓库全部完成增量检查。7 个重要维护者变更被规范化为独立工程信号；没有重要增量的仓库保持“已检查、无信号”。"
+    },
+    {
+      "id": "published-research",
+      "label": "Published Research Intelligence",
+      "label_zh": "论文与研究成果情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 8,
+      "inaccessible": [],
+      "failed": [
+        {
+          "source": "zenodo",
+          "reason": "The configured Zenodo discovery/search endpoint could not be reliably retrieved for the registered agent-runtime topics during this run; no Zenodo result was fabricated or inferred from secondary sources."
+        }
+      ],
+      "signals": 0,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "Eight of nine P0 research sources were checked and Zenodo was explicitly recorded as a retrieval failure. No newly observed research object met the registered agent-runtime scope and freshness threshold in this Discovery run.",
+      "reason_zh": "9 个 P0 研究来源中 8 个已检查，Zenodo 明确记录为抓取失败。本次 Discovery 未发现同时满足已注册 Agent Runtime 范围与新鲜度阈值的新研究对象。"
+    }
+  ],
+  "columns": [
+    {
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "decision": "Waiting",
+      "signals": 3,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery produced current signals relevant to waiting/resume behavior, session reliability and ordered agent work; selection belongs to Queue.",
+      "reason_zh": "Discovery 发现了与等待/恢复、会话可靠性和 Agent 顺序工作相关的当前信号；选题由 Queue 负责。"
+    },
+    {
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "decision": "Waiting",
+      "signals": 1,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery retained a current product-boundary and action-surface signal; selection belongs to Queue.",
+      "reason_zh": "Discovery 保留了一个当前产品边界与操作入口信号；选题由 Queue 负责。"
+    },
+    {
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "decision": "Waiting",
+      "signals": 5,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery retained current maintainer changes in completion semantics, observability, MCP security/authentication and bounded execution; selection belongs to Queue.",
+      "reason_zh": "Discovery 保留了完成语义、可观测性、MCP 安全/认证和有界执行方面的当前维护者变更；选题由 Queue 负责。"
+    }
+  ],
+  "signals": [
+    {
+      "id": "SIG-20260811-P-001",
+      "pipeline": "ai-platform",
+      "title": "ChatGPT adds restaurant reservation availability and booking handoff",
+      "title_zh": "ChatGPT 新增餐厅预约可用性查询与预订衔接",
+      "sourceUrl": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+      "publishedAt": "2026-08-10",
+      "evidenceLevel": "official_announcement",
+      "changeType": "new API",
+      "observedChange": "ChatGPT can surface restaurant reservation availability from OpenTable, Resy and Yelp and let users select a time to continue booking. The release explicitly excludes ChatGPT Work from restaurant reservation search.",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee"],
+      "relevance": {
+        "tmpa": "Shows an assistant surface moving from recommendation into externally grounded availability and action handoff with product-plan boundaries.",
+        "digital_employee": "Useful evidence for agent work that crosses discovery, preference refinement and action completion through connected services.",
+        "codeflowmu": "Relevant to connector-mediated action flows and explicit product/permission boundaries rather than direct database automation."
+      },
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260811-P-002",
+      "pipeline": "ai-platform",
+      "title": "GitHub Copilot web adds minimize/resume and token-spend visibility",
+      "title_zh": "GitHub Copilot Web 新增最小化/恢复对话与 Token 消耗可视化",
+      "sourceUrl": "https://github.blog/changelog/2026-08-10-copilot-on-web-expands-conversation-controls/",
+      "publishedAt": "2026-08-10",
+      "evidenceLevel": "official_announcement",
+      "changeType": "architecture",
+      "observedChange": "Copilot Chat on github.com now lets users minimize an in-progress conversation, return to recent conversations, and inspect per-session and per-message token quota while work continues.",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["industry-architecture"],
+      "relevance": {
+        "tmpa": "Provides product evidence that waiting, resumption and resource visibility are becoming explicit user-facing runtime states.",
+        "digital_employee": "Directly relevant to asynchronous work supervision: the user can leave a running conversation, return later and inspect its budget.",
+        "codeflowmu": "Supports separating active execution from UI presence and exposing runtime resource state."
+      },
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260811-G-001",
+      "pipeline": "github-engineering",
+      "title": "Codex makes code-mode notifications fire-and-forget so acknowledgments cannot delay completion",
+      "title_zh": "Codex 将 Code Mode 通知改为 Fire-and-Forget，避免确认阻塞完成",
+      "sourceUrl": "https://github.com/openai/codex/commit/9be95745fb84f540582e6ef4144e7edf5bcb7959",
+      "publishedAt": "2026-08-11T00:52:35Z",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "architecture",
+      "observedChange": "Code-mode notification delivery no longer waits for client acknowledgment; cell completion proceeds even when a notification is unacknowledged, while the legacy acknowledgment RPC remains accepted as a compatibility no-op.",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "relevance": {
+        "tmpa": "Strong evidence for separating informational events from completion-critical acknowledgments in runtime protocols.",
+        "digital_employee": "Prevents a passive UI/observer acknowledgment from stalling the worker's actual completion state.",
+        "codeflowmu": "Directly relevant to event-stream design: non-critical notifications should not own task completion authority."
+      },
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260811-G-002",
+      "pipeline": "github-engineering",
+      "title": "Google ADK adds opt-in exactly-once BigQuery delivery and final-state observability",
+      "title_zh": "Google ADK 新增可选 Exactly-Once BigQuery 投递与终态可观测性",
+      "sourceUrl": "https://github.com/google/adk-python/commit/04b8b72709f6d17b503cf674c8ac1b89798f655e",
+      "publishedAt": "2026-08-10T23:07:31Z",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "architecture",
+      "observedChange": "ADK's BigQuery Agent Analytics now assigns event IDs before enqueue, adds an opt-in committed-stream offset mode for duplicate prevention, records offset-conflict drops, and emits sanitized final finish/error and workflow node terminal events.",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["industry-architecture", "digital-employee"],
+      "relevance": {
+        "tmpa": "Concrete implementation evidence for durable event identity, ambiguous-send handling and terminal-state evidence.",
+        "digital_employee": "Improves the ability to audit whether work actually finished, failed or was dropped rather than inferring from transient UI state.",
+        "codeflowmu": "Highly relevant to evidence ledger design, duplicate detection and explicit terminal-event capture."
+      },
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260811-G-003",
+      "pipeline": "github-engineering",
+      "title": "Google ADK rejects config-declared stdio MCP servers by default",
+      "title_zh": "Google ADK 默认拒绝配置文件声明的 Stdio MCP Server",
+      "sourceUrl": "https://github.com/google/adk-python/commit/a61d8ecf294515016a42080cc833fd8f73915695",
+      "publishedAt": "2026-08-10T22:28:04Z",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "security",
+      "observedChange": "McpToolset.from_config now rejects stdio MCP server declarations unless the operator explicitly opts in, because loading an untrusted agent config could otherwise launch an arbitrary local command before the model is contacted. Remote MCP transports and code-constructed toolsets are unaffected.",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["industry-architecture"],
+      "relevance": {
+        "tmpa": "Shows that configuration provenance and execution authority must be separated: parsing a config must not silently grant local process-launch capability.",
+        "digital_employee": "Supports explicit skill/tool admission boundaries for worker roles.",
+        "codeflowmu": "Directly relevant to MCP/skill trust policy and fail-closed loading of locally executable integrations."
+      },
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260811-G-004",
+      "pipeline": "github-engineering",
+      "title": "Google ADK bounds Cloud Run sandbox execution to prevent hung agents",
+      "title_zh": "Google ADK 为 Cloud Run Sandbox 设置默认执行上限以避免 Agent 永久挂起",
+      "sourceUrl": "https://github.com/google/adk-python/commit/a39e71aace8490772b9fb554713ba964f7225adf",
+      "publishedAt": "2026-08-10T22:32:19Z",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "regression",
+      "observedChange": "CloudRunSandboxCodeExecutor now defaults a single code execution to a 300-second wall-clock timeout instead of waiting forever, with tests covering non-terminating generated code.",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "relevance": {
+        "tmpa": "Concrete evidence that worker execution needs bounded leases/timeouts rather than an unbounded Running state.",
+        "digital_employee": "A digital worker must convert non-terminating work into an observable timeout/recovery path instead of appearing busy forever.",
+        "codeflowmu": "Directly relevant to stale-running detection, execution leases and recovery governance."
+      },
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260811-G-005",
+      "pipeline": "github-engineering",
+      "title": "Gemini CLI preserves dynamically registered MCP OAuth client identity across token refresh",
+      "title_zh": "Gemini CLI 在 MCP OAuth Token 刷新中保留动态注册的 Client Identity",
+      "sourceUrl": "https://github.com/google-gemini/gemini-cli/commit/eef19f25c325f35634bdf5fdea5f245414ed4390",
+      "publishedAt": "2026-08-10T19:49:26Z",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "regression",
+      "observedChange": "MCP OAuth refresh now falls back to the persisted client ID from dynamic registration when static configuration has none, and persists that identity with refreshed credentials instead of losing the refresh path.",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [],
+      "relevance": {
+        "tmpa": "Shows why resumable tool sessions require durable identity metadata, not only an access token snapshot.",
+        "digital_employee": "Relevant to long-lived workers that must reconnect to tools without manual reauthentication.",
+        "codeflowmu": "Useful for connector credential-state persistence and recovery after token expiry."
+      },
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260811-G-006",
+      "pipeline": "github-engineering",
+      "title": "Claude Code 2.1.227 fixes expired-session policy evaluation and action-runner command failure",
+      "title_zh": "Claude Code 2.1.227 修复过期会话策略判断与 Action Runner 命令失败",
+      "sourceUrl": "https://github.com/anthropics/claude-code/commit/54cc51a08a5d3900e5abd02ad75a2ce46f3f008c",
+      "publishedAt": "2026-08-10T22:56:45Z",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "release",
+      "observedChange": "Claude Code v2.1.227 fixes subscription-tier feature flags when a session starts with an expired login token, fixes Bash failures in claude-code-action with allowed_non_write_users, repairs a rewind/TUI history issue, and reduces event-loop stalls.",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering"],
+      "relevance": {
+        "tmpa": "Reinforces that resumed or expired-auth sessions must reconstruct current authority/policy context before work continues.",
+        "digital_employee": "Directly relevant to worker continuity across authentication expiry and reliable execution in hosted action environments.",
+        "codeflowmu": "Supports explicit session revalidation and avoiding stale entitlement/policy state on resume."
+      },
+      "confidence": "high",
+      "triageStatus": "signal"
+    },
+    {
+      "id": "SIG-20260811-G-007",
+      "pipeline": "github-engineering",
+      "title": "GitHub Copilot CLI 1.0.79 adds ordered work queues, concurrent sessions and bounded MCP startup failure",
+      "title_zh": "GitHub Copilot CLI 1.0.79 新增顺序工作队列、并发会话与 MCP 启动快速失败",
+      "sourceUrl": "https://github.com/github/copilot-cli/commit/ef627e1baad937d3c8da45f8a5541c6fc3c97b6a",
+      "publishedAt": "2026-08-10T16:19:17Z",
+      "evidenceLevel": "merged_maintainer_change",
+      "changeType": "release",
+      "observedChange": "Version 1.0.79 can queue prompts, shell commands and supported slash commands to run in order after the current task, manages multiple concurrent sessions, makes MCP sandbox startup fail in seconds rather than stall, exposes effective sandbox policy, and adds enterprise policy controls.",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering", "industry-architecture"],
+      "relevance": {
+        "tmpa": "Strong implementation evidence for separating scheduled/queued intent from execution authority and for bounded failure before the next work item advances.",
+        "digital_employee": "Directly maps to a worker inbox/queue where new work waits behind the current task instead of executing out of order.",
+        "codeflowmu": "Highly relevant to the current Process Manager design: ordered pending work, explicit runtime state, fast failure and sandbox policy visibility."
+      },
+      "confidence": "high",
+      "triageStatus": "signal"
+    }
+  ]
+}
