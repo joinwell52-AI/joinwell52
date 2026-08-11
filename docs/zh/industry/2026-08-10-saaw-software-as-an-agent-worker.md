@@ -7,7 +7,7 @@ version: "V1.1"
 summary: "从 Governance、TMPA、FCoP、Agent PC、CodeFlowMu、Self-Morphing 与 Digital Employee Runtime 推导 SaaW：软件从工具与服务走向可治理的数字工作主体。"
 item_id: "MANIFESTO-20260810-SAAW"
 lifecycle: "Published"
-cover: "/assets/covers/saaw-manifesto-cover.svg?v=20260811-approved"
+cover: "/assets/covers/saaw-manifesto-cover-approved.webp"
 visualization: "/assets/covers/saaw-governance-stack.svg"
 visualization_2: "/assets/covers/saaw-self-morphing-loop.svg"
 evidence_status: "Architecture-grounded"
@@ -24,7 +24,7 @@ outline: deep
 
 [English version](/en/industry/2026-08-10-saaw-software-as-an-agent-worker)
 
-![SaaW — Software as an Agent Worker](/assets/covers/saaw-manifesto-cover.svg?v=20260811-approved)
+![SaaW — Software as an Agent Worker](/assets/covers/saaw-manifesto-cover-approved.webp)
 
 > **作者 / 发布单位：** joinwell52 Research Center / CodeFlowMu Core Team  
 > **理论与架构支撑：** TMPA Architecture Paper — TMPA-ARCH-A0.9  
@@ -227,6 +227,8 @@ DECISION
 
 于是系统中的责任链不是靠“最终数据库状态”猜出来的，而是由事实本身形成。
 
+这与许多传统 Workflow Engine 有一个重要差别。
+
 传统系统往往不断修改一个中央状态：
 
 ```text
@@ -240,7 +242,9 @@ status = done
 
 TMPA 更关心的是：谁接受？谁提交？谁审核？谁批准？中间发生过什么争议？哪些事实后来被纠正？
 
-**状态不是被覆盖，而是被重构。**
+状态不是被覆盖。
+
+而是被重构。
 
 ---
 
@@ -250,7 +254,7 @@ TMPA 更关心的是：谁接受？谁提交？谁审核？谁批准？中间发
 
 PM 在写计划。DEV 同时修改代码。QA 可能已经开始检查另一个模块。OPS 正在处理部署。人类主管可能晚几个小时才进行审批。
 
-在这种环境中，如果系统强行构造一个完美的全局顺序 `1 → 2 → 3 → 4 → 5`，往往反而会掩盖真实发生的并发关系。
+在这种环境中，如果系统强行构造一个完美的全局顺序：`1 → 2 → 3 → 4 → 5`，往往反而会掩盖真实发生的并发关系。
 
 TMPA 因此强调：
 
@@ -302,7 +306,7 @@ conflicting_review
 
 这是 SaaW 非常重要的一项能力。
 
-企业真正需要的不是“永远不会犯错的 AI”。这种 AI 不存在。
+因为企业真正需要的不是永远不会犯错的 AI——这种 AI 不存在。
 
 企业真正需要的是：**即使 AI 犯错，系统也能够知道哪里出了问题，并把问题暴露给正确的人。**
 
@@ -330,17 +334,13 @@ CodeFlowMu / FCoP 将这一思想进一步投射到文件系统。
 
 于是恢复不再是恢复 Agent 的记忆，而是：
 
-> **重构工作的事实。**
-
-这是两个完全不同的概念。
+**重构工作的事实。**
 
 ---
 
 ## 9. CodeFlowMu：TMPA 从理论进入运行世界
 
-如果说 TMPA 解决的是治理架构问题，那么 CodeFlowMu 解决的是另一个问题：
-
-**这些 Agent 到底如何真正工作？**
+如果说 TMPA 解决的是治理架构问题，那么 CodeFlowMu 解决的是另一个问题：这些 Agent 到底如何真正工作？
 
 CodeFlowMu 的工程起点不是构造一个巨大的中央 Agent Runtime。
 
@@ -366,7 +366,7 @@ CodeFlowMu 的一个核心工程选择，是 FCoP。
 
 FCoP 将 Agent 协作的一部分治理关系直接投射到文件系统。
 
-工作对象不是隐藏在某个中心服务器内部。它们能够以文件形式被观察。
+工作对象不是隐藏在某个中心服务器内部，它们能够以文件形式被观察。
 
 文件名、目录、引用以及生命周期本身构成协议的一部分。
 
@@ -392,11 +392,11 @@ archive
 
 这带来一个极其朴素但重要的结果：
 
-> **Directory becomes observable state.**
+# Directory becomes observable state.
 
 系统管理员、人类主管、Agent 和调试工具看到的，可以是同一组事实。
 
-这降低了 Multi-Agent 系统最危险的一种复杂度：**隐藏状态。**
+这降低了 Multi-Agent 系统最危险的一种复杂度：隐藏状态。
 
 ---
 
@@ -408,11 +408,11 @@ archive
 
 # Agent PC
 
-它并不一定是一台传统意义上的物理电脑。
+它并不一定是一台传统意义上的物理电脑，而代表一个数字员工拥有的独立运行环境。
 
-它代表的是一个数字员工拥有的独立运行环境，其中包括 Reasoning、Skills、Workflow、Credentials、Runtime、Files、Governance 与 External Systems。
+其中包括 Reasoning、Skills、Workflow、Credentials、Runtime、Files、Governance 与 External Systems。
 
-它可以使用 Browser、API、CLI、Script、MCP、企业内部服务与受控 Automation Hook。
+它可以使用 Browser、API、CLI、Script、MCP、企业内部服务和受控 Automation Hook。
 
 于是 Agent 不再只是：
 
@@ -521,7 +521,7 @@ AI 的价值，是第一次让这些分散知识能够被低成本地重新结�
 
 CodeFlowMu 当前最值得关注的地方，不只是多个 Agent 可以一起开发软件。
 
-更重要的是：**这种研发能力本身可以成为下一代数字员工的生产能力。**
+更重要的是：这种研发能力本身可以成为下一代数字员工的生产能力。
 
 初始 CodeFlowMu 可以表现为一个四角色开发团队：
 
@@ -535,10 +535,13 @@ CodeFlowMu 当前最值得关注的地方，不只是多个 Agent 可以一起�
 
 他们拥有各自的责任边界。
 
-**PM**：理解需求、拆解工作、组织协作。  
-**DEV**：实现代码、Skill、Hook 和 Workflow。  
-**QA**：验证业务结果与工程结果。  
-**OPS**：负责运行环境、恢复、部署和生命周期。
+PM 理解需求、拆解工作、组织协作。
+
+DEV 实现代码、Skill、Hook 和 Workflow。
+
+QA 验证业务结果与工程结果。
+
+OPS 负责运行环境、恢复、部署和生命周期。
 
 这是：
 
@@ -546,9 +549,7 @@ CodeFlowMu 当前最值得关注的地方，不只是多个 Agent 可以一起�
 
 它的产物，不一定只是传统软件。
 
-还可以是：
-
-# Digital Employee Package
+还可以是 Digital Employee Package。
 
 ---
 
@@ -556,7 +557,7 @@ CodeFlowMu 当前最值得关注的地方，不只是多个 Agent 可以一起�
 
 一个数字员工真正可以部署之前，需要被工程化描述。
 
-一个完整的 Worker Package 至少可能包含：Role、Responsibilities、Workflow、Skills、Permissions、Policies、Validation Rules、Runtime Configuration、Recovery Rules 与 Human Decision Gates。
+一个完整的 Worker Package 至少可能包含 Role、Responsibilities、Workflow、Skills、Permissions、Policies、Validation Rules、Runtime Configuration、Recovery Rules 与 Human Decision Gates。
 
 于是数字员工第一次开始像一个真正的软件产品一样：可以定义；可以开发；可以测试；可以版本化；可以部署；可以升级；可以回滚。
 
@@ -577,8 +578,6 @@ CodeFlowMu 当前最值得关注的地方，不只是多个 Agent 可以一起�
 Self-Morphing 真正值得讨论的含义是：
 
 > **一个数字员工运行系统，利用自身的软件开发能力，构造、验证并部署新的数字员工形态。**
-
-![Self-Morphing Digital Employee Loop](/assets/covers/saaw-self-morphing-loop.svg)
 
 其完整过程应该是：
 
@@ -634,8 +633,6 @@ Signing Agent
 Compliance Agent
 Archive Agent
 ```
-
-注意这个变化。
 
 过去的软件开发模型是：
 
@@ -708,7 +705,9 @@ Development Runtime
 
 DevOps 连接的是 Development 与 Deployment。
 
-SaaW 进一步连接：**Development 与 Work。**
+SaaW 进一步连接：
+
+**Development 与 Work。**
 
 这可能成为 AI Native Software 与传统软件最大的分水岭之一。
 
@@ -720,7 +719,7 @@ SaaW 进一步连接：**Development 与 Work。**
 
 恰恰相反。
 
-真正安全的 SaaW 必须明确：哪些事情 Agent 可以自主完成，以及哪些事情必须由人决定。
+真正安全的 SaaW 必须明确哪些事情 Agent 可以自主完成，以及哪些事情必须由人决定。
 
 人在 SaaS 中通常是 Operator。
 
@@ -728,9 +727,9 @@ SaaW 进一步连接：**Development 与 Work。**
 
 例如，查询、整理、校验、生成报告、内部同步等低风险工作可以高度自动化。
 
-而对于大额付款、合同最终签署、权限提升、不可逆数据操作和重要公开发布，系统应该进入 Decision Gate。
+而对于大额付款、合同最终签署、权限提升、不可逆数据操作、重要公开发布，系统应该进入 Decision Gate。
 
-更准确的原则不是 Human-in-every-loop，而是：
+更准确地说：
 
 # Human at the Authority Boundary.
 
@@ -910,7 +909,7 @@ AI develops next Worker
 
 这就是 CodeFlowMu 正在探索的方向。
 
-不是：再造一个 Multi-Agent Framework。
+不是再造一个 Multi-Agent Framework。
 
 而是：
 
@@ -933,9 +932,6 @@ AI develops next Worker
 **joinwell52 Research Center**  
 **CodeFlowMu Core Team**
 
-**TMPA Architecture Paper A0.9**  
-**TMPA Core Specification S0.6**  
-**TMPA Implementation Case Report I0.8**  
-**CodeFlowMu / FCoP**
+**TMPA Architecture Paper A0.9 · TMPA Core Specification S0.6 · TMPA Implementation Case Report I0.8 · CodeFlowMu / FCoP**
 
 > **V1.1 边界说明：** 本文是一篇面向 AI Native Software、Multi-Agent Engineering 与企业数字员工方向的技术宣言。SaaW、Self-Morphing、Digital Employee Runtime 等概念既包含现有架构与工程实践，也包含正在持续验证的研究方向；具体能力边界以对应版本的公开规范、测试与实现证据为准。
