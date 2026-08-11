@@ -1,5 +1,5 @@
 ---
-title: "SaaW：Software as an Agent Worker——从 SaaS 到 SaaW"
+title: "从 SaaS 到 SaaW：当代码库开始“自己开发自己”"
 date: "2026-08-10"
 column: "industry-architecture"
 category: "manifesto"
@@ -17,10 +17,8 @@ publication_authorized: true
 outline: deep
 ---
 
-# SaaW: Software as an Agent Worker
-## 从 SaaS 到 SaaW：当代码库开始“自己开发自己”
-
-**基于 TMPA 治理体系与 CodeFlowMu 实践的数字员工范式宣言 · V1.1**
+# 从 SaaS 到 SaaW：当代码库开始“自己开发自己”
+## 基于 TMPA 治理体系与 CodeFlowMu 实践的数字员工范式宣言
 
 [English version](/en/industry/2026-08-10-saaw-software-as-an-agent-worker)
 
