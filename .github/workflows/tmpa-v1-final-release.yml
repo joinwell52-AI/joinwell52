@@ -49,6 +49,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if git rev-parse -q --verify "refs/tags/$RELEASE_TAG" >/dev/null; then
             test "$(git rev-list -n 1 "$RELEASE_TAG")" = "$TARGET_SHA"
           else
