@@ -163,6 +163,8 @@ This is TMPA's formal answer:
 
 **This section and Sections 5–7 expand these four rules in order: this section covers durable messages and state in text; Section 5 covers local Single-Writer serial streams; Section 6 covers asynchronous parallel collaboration across streams; Section 7 covers read-side reconstruction and the Issue Set.**
 
+**As of August 11, 2026, TMPA has entered the stable V1.0 release line:** [Architecture Paper A1.0](/en/publications/tmpa-architecture-paper-a1.0), [Core Specification S1.0](/en/publications/tmpa-core-specification-s1.0), and [Implementation Case I1.0](/en/publications/implementation-case-i1.0) now form the stable three-part publication set; I1.0 pins **CodeFlowMu v1.8.0** and records a **14/14** product validation result against **S1.0**.
+
 > **“When heterogeneous Agents and humans wrestle with long-running work inside the same codebase, the most absurd choice is to entrust trustworthy state to the volatile memory of a model.** **TMPA has an iron law: text is fact. The physical topology of files and directories exists only to provide a compliant projection; immutable text objects are the only hard currency that survives across cycles.”**
 
 Important work facts are projected into plain, portable text.
@@ -395,7 +397,7 @@ FCoP governs **Agent collaboration behavior**: how tasks are handed off, results
 
 In the TMPA implementation relationship, FCoP acts as a **project-visible filesystem profile**. It does not require a coordination database, message broker, or enterprise control plane; conversely, it does not by itself provide validated enterprise identity, strong role isolation, tamper-resistant storage, or Byzantine fault tolerance. This is consistent with TMPA being **SME-first, not SME-only**: larger deployments can add databases, object stores, event services, identity systems, and control planes without changing the governance semantics carried by the protocol.
 
-Most importantly, **the FCoP protocol, packages, host-adapter responsibilities, reference implementation, and runtime environment are not the same thing.** Combining A0.9’s layering semantics with the current implementation, the operational stack can be represented as:
+Most importantly, **the FCoP protocol, packages, host-adapter responsibilities, reference implementation, and runtime environment are not the same thing.** With TMPA V1.0 formally released, this operating relationship is now frozen in the stable **A1.0 / S1.0 / I1.0** release line. The operational stack can be represented directly as:
 
 ```text
 Application / Runtime
@@ -1046,9 +1048,9 @@ Now, it is beginning to work.
 ---
 
 > **Author / Publisher:** joinwell52 Research Center / CodeFlowMu Core Team  
-> **Architecture and Theory:** TMPA Architecture Paper — TMPA-ARCH-A0.9  
-> **Normative Standard:** TMPA Core Specification — S0.6  
-> **Implementation Case:** TMPA Implementation Case Report — I0.8  
+> **Architecture and Theory:** TMPA Architecture Paper — **A1.0**  
+> **Normative Standard:** TMPA Core Specification — **S1.0**  
+> **Implementation Case:** TMPA–FCoP–CodeFlowMu Implementation Case — **I1.0 (CodeFlowMu v1.8.0 · S1.0 14/14)**  
 > **Core Engineering Vehicle:** CodeFlowMu / FCoP
 
 > **V1.1 scope note:** This is a technical manifesto for AI-native software, multi-agent engineering, and enterprise digital employees. SaaW, Self-Morphing, and Digital Employee Runtime combine current architecture and engineering practice with active research directions. Capability boundaries are defined by the corresponding public specifications, tests, and implementation evidence.
