@@ -1,0 +1,83 @@
+name: SaaW TMPA V1 Stable Line Update
+
+on:
+  push:
+    branches:
+      - saaw-update-tmpa-v1-stable-line
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: saaw-update-tmpa-v1-stable-line
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Update SaaW bilingual article to TMPA V1 stable line
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          zh_path = Path('docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md')
+          en_path = Path('docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md')
+          zh = zh_path.read_text(encoding='utf-8')
+          en = en_path.read_text(encoding='utf-8')
+
+          zh_anchor = '**本节与第 5—7 节逐条展开这四条规则：本节讨论文本承载持久消息与状态；第 5 节讨论单写者的局部串行流；第 6 节讨论多条串行流的异步并行协作；第 7 节讨论读端重建与问题集（Issue Set）。**'
+          zh_release = '**截至 2026 年 8 月 11 日，TMPA 已进入 V1.0 稳定发布线：**[架构论文 A1.0](/zh/publications/tmpa-architecture-paper-a1.0)、[核心规范 S1.0](/zh/publications/tmpa-core-specification-s1.0) 与 [实施案例 I1.0](/zh/publications/implementation-case-i1.0) 已形成稳定三件套；I1.0 固定 **CodeFlowMu v1.8.0**，对 **S1.0** 的产品验证结果为 **14/14**。'
+          if zh_release not in zh:
+              if zh_anchor not in zh:
+                  raise SystemExit('ZH section 4 anchor missing')
+              zh = zh.replace(zh_anchor, zh_anchor + '\n\n' + zh_release, 1)
+
+          zh_old = 'A0.9 中的运行栈可以直接写成：'
+          zh_new = '随着 TMPA V1.0 正式发布，这套运行关系已经冻结到 **A1.0 / S1.0 / I1.0** 稳定发布线。运行栈可以直接写成：'
+          if zh_old not in zh:
+              raise SystemExit('ZH A0.9 stack wording missing')
+          zh = zh.replace(zh_old, zh_new, 1)
+
+          en_anchor = '**This section and Sections 5–7 expand these four rules in order: this section covers durable messages and state in text; Section 5 covers local Single-Writer serial streams; Section 6 covers asynchronous parallel collaboration across streams; Section 7 covers read-side reconstruction and the Issue Set.**'
+          en_release = '**As of August 11, 2026, TMPA has entered the stable V1.0 release line:** [Architecture Paper A1.0](/en/publications/tmpa-architecture-paper-a1.0), [Core Specification S1.0](/en/publications/tmpa-core-specification-s1.0), and [Implementation Case I1.0](/en/publications/implementation-case-i1.0) now form the stable three-part publication set; I1.0 pins **CodeFlowMu v1.8.0** and records a **14/14** product validation result against **S1.0**.'
+          if en_release not in en:
+              if en_anchor not in en:
+                  raise SystemExit('EN section 4 anchor missing')
+              en = en.replace(en_anchor, en_anchor + '\n\n' + en_release, 1)
+
+          en_old = 'The A0.9 operational stack can be represented directly as:'
+          en_new = 'With TMPA V1.0 formally released, this operating relationship is now frozen in the stable **A1.0 / S1.0 / I1.0** release line. The operational stack can be represented directly as:'
+          if en_old not in en:
+              raise SystemExit('EN A0.9 stack wording missing')
+          en = en.replace(en_old, en_new, 1)
+
+          zh_path.write_text(zh, encoding='utf-8')
+          en_path.write_text(en, encoding='utf-8')
+          PY
+      - name: Verify publication status update
+        shell: bash
+        run: |
+          grep -F 'TMPA 已进入 V1.0 稳定发布线' docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+          grep -F 'CodeFlowMu v1.8.0' docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+          grep -F '14/14' docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+          grep -F 'TMPA has entered the stable V1.0 release line' docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+          grep -F 'A1.0 / S1.0 / I1.0' docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+          ! grep -F 'A0.9 operational stack' docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+      - name: Build VitePress
+        run: npm ci && npm run docs:build
+      - name: Commit article-only update
+        shell: bash
+        run: |
+          git config user.name 'joinwell52'
+          git config user.email 'joinwell52@gmail.com'
+          git add docs/zh/industry/2026-08-10-saaw-software-as-an-agent-worker.md docs/en/industry/2026-08-10-saaw-software-as-an-agent-worker.md
+          git commit -m 'update SaaW article to TMPA V1 stable release line'
+          git rm .github/workflows/saaw-update-tmpa-v1-stable-line.yml
+          git commit -m 'remove temporary SaaW stable-line workflow'
+          git push origin HEAD:saaw-update-tmpa-v1-stable-line
