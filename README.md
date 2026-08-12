@@ -188,11 +188,18 @@ The TMPA research content in this repository uses the terms in [`LICENSE.md`](./
 
 Beyond the stable TMPA line, this repository contains a governed research production environment: source intelligence, Daily/Weekly/Academic/Program runtimes, research skills, publication gates, validators, and the VitePress site.
 
-Featured reading:
+### Recommended articles and external publication record
 
-- [From SaaS to SaaW: When a Codebase Starts “Developing Itself”](https://joinwell52-ai.github.io/joinwell52/en/industry/2026-08-10-saaw-software-as-an-agent-worker)
-- [One Agent Said “Done.” Why Didn't the Team Release It?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-08-06-codeflowmu-multi-agent-fact-checking)
-- [Digital Employee Architecture V0.2](https://joinwell52-ai.github.io/joinwell52/en/digital-employee/architecture)
+Pinned articles can be registered here before external publication, then updated in the same row with each platform URL. The regular external-publication log starts on **2026-08-12**; earlier history is not backfilled. Chinese, English, and platform links for the same article stay together in one row.
+
+| # | Article | Published versions | Summary |
+|---:|---|---|---|
+| 📌 | **From SaaS to SaaW: When a Codebase Starts “Developing Itself”** | [Research Center 中文](https://joinwell52-ai.github.io/joinwell52/zh/industry/2026-08-10-saaw-software-as-an-agent-worker) · [Research Center English](https://joinwell52-ai.github.io/joinwell52/en/industry/2026-08-10-saaw-software-as-an-agent-worker) | Derives SaaW from governance, TMPA, FCoP, Agent PC, CodeFlowMu, and Self-Morphing while separating verified capabilities from the research frontier. |
+| 01 | **One Agent Said “Done.” Why Didn't the Team Release It?** | [Research Center 中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-08-06-codeflowmu-multi-agent-fact-checking) · [Research Center English](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-08-06-codeflowmu-multi-agent-fact-checking) · [CSDN 中文](https://blog.csdn.net/m0_51507544/article/details/163676669) · [DEV English](https://dev.to/joinwell52/one-agent-said-done-why-didnt-the-team-release-it-518j) | Shows how DEV, subexecution, PM, and QA rebuilt disk, Git, report, and test evidence before accepting a completion claim. |
+| 02 | **Agent Capabilities Are Being Packaged as Skills, Plugins, and Contracts** | [Research Center 中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-08-02-agent-capability-packaging) · [Research Center English](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-08-02-agent-capability-packaging) · [CSDN 中文](https://blog.csdn.net/m0_51507544/article/details/163677686) · [DEV English](https://dev.to/joinwell52/open-source-engineering-weekly-002-agent-capability-is-being-packaged-as-skills-plugins-and-1db5) | Reusable agent capability is moving from hidden prompts toward inspectable skills, plugins, interfaces, workflow nodes, events, and minimum capability contracts. |
+| 03 | **Durable Agent Runtime Is Becoming the Baseline** | [Research Center 中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-08-02-durable-agent-runtime) · [Research Center English](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-08-02-durable-agent-runtime) · [CSDN 中文](https://blog.csdn.net/m0_51507544/article/details/163677784) · [DEV English](https://dev.to/joinwell52/open-source-engineering-weekly-001-durable-agent-runtime-is-becoming-the-baseline-2oim) | LangGraph, OpenHands, CrewAI, and AutoGen show that durable state, interruption, recovery, isolation, observability, and explicit completion control are becoming runtime fundamentals. |
+
+Additional reference: [Digital Employee Architecture V0.2](https://joinwell52-ai.github.io/joinwell52/en/digital-employee/architecture).
 
 These outputs may interpret TMPA or inform future work, but they do not override Core S1.0.
 
