@@ -8,14 +8,14 @@
   "date": "2026-08-12",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Waiting",
+  "status": "Running",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
     "production": "Completed",
-    "publication": "Waiting"
+    "publication": "Running"
   },
   "results": {
     "discovery": {
@@ -903,12 +903,19 @@
       "event": "GitHub Commit Verified",
       "status": "Completed",
       "detail": "Fetched and verified durable Research Runtime Production result commit c71fec38208516a1b1ff0d570a5c7788f02cb7e2 on main; 1 execution epoch(s) remain as audit evidence, every prior epoch is governed-closed, and the latest epoch contains a fresh Worker Claimed event before completion."
+    },
+    {
+      "time": "2026-08-12T20:05:52+08:00",
+      "task": "publication",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Publication started by Research Runtime Scheduler V3.0."
     }
   ],
   "metrics": [],
   "evidence": [],
   "artifacts": [],
-  "githubCommit": "c71fec38208516a1b1ff0d570a5c7788f02cb7e2",
-  "commitVerify": "Completed",
-  "updatedAt": "2026-08-12T15:20:30+08:00"
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-08-12T20:05:52+08:00"
 }
