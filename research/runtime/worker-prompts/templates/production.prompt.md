@@ -19,7 +19,7 @@ This file is a generated execution artifact from the latest `main` branch. Do no
 
 ## Wake and durable authority
 
-Determine `runDate` and actual `wakeTime` in `{{timezone}}`. Before Runtime work, create a unique `runtime-wake-receipt/v1` JSON at `research/runtime/wakes/YYYY/MM/YYYY-MM-DD/production-HHMMSS.json` with the run date, timezone, nominal task and time, actual wake time, `source=chatgpt-scheduled-task`, and `status=Received`. Commit it to `main`, fetch `main`, and verify the exact receipt. If verification fails, stop with `Failed` and do no Runtime work.
+Determine `runDate` and actual `wakeTime` in `{{timezone}}`. Before Runtime work, create a unique `runtime-wake-receipt/v1` JSON at `research/runtime/wakes/YYYY/MM/YYYY-MM-DD/{{taskId}}-HHMMSS.json` with the run date, timezone, nominal task and time, actual wake time, the actual admitted wake source, and `status=Received`. Commit it to `main`, fetch `main`, and verify the exact receipt. If verification fails, stop with `Failed` and do no Runtime work. Obey every admitted duration, recovery, revision, output, same-date, publication and verification limit.
 
 The timer is only a wake signal. It does not grant Production execution authority. Read all run-date Runtime family records, order applicable formal tasks by scheduled time, and enforce global serial execution. Never start a later task while an earlier due task is `Waiting` or `Running`. A task is closed only when it is `Completed`, `Blocked`, `Failed` or `Skipped`, except an explicitly recoverable dependency-blocked task.
 

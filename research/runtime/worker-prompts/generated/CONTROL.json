@@ -1,6 +1,6 @@
 {
   "schema": "research-runtime-worker-control/v1",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "repository": "joinwell52-AI/joinwell52",
   "sourceBranch": "main",
   "scheduler": "research/runtime/SCHEDULER.json",
@@ -19,11 +19,161 @@
   "requiredCapabilities": [
     "github-read",
     "github-write",
-    "web-research",
     "command-execution",
     "file-editing"
   ],
   "tasks": {
+    "discovery": {
+      "state": "active",
+      "effectiveDate": "2026-08-12",
+      "family": "daily",
+      "schedule": {
+        "kind": "daily",
+        "time": "09:00",
+        "cron": "0 1 * * *"
+      },
+      "notBefore": "09:00",
+      "lateWakePolicy": "reconcile-earliest-due",
+      "requiredCapabilities": [
+        "web-research"
+      ],
+      "maxRunMinutes": 120,
+      "maxRecoveryAttempts": 2,
+      "maxRevisionRounds": 1,
+      "maxOutputItems": 30,
+      "zeroOutputAllowed": true,
+      "directPublicationAllowed": false,
+      "requireSameRunDateInputs": true,
+      "requirePromptHashVerification": true,
+      "requireRemoteCommitVerification": true,
+      "prompt": {
+        "schema": "research-runtime-worker-prompt/v1",
+        "version": "1.0.0",
+        "path": "research/runtime/worker-prompts/generated/discovery.prompt.md",
+        "sha256": "a2b786a776cdbe49ac98243efaa4d13edba62e0456d44349ed61c0ab1c90feaa",
+        "requiredSources": [
+          "research/runtime/SCHEDULER.json",
+          "research/runtime/WORKER-CONTRACT-V3.md",
+          "research/runtime/WAKE-RECEIPT-V1.md",
+          "research/intelligence/REGISTRY.json",
+          "research/intelligence/SCAN-CONTRACT.md",
+          "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+          "research/skills/01-source-discovery.md",
+          "research/skills/profiles/01p-ai-platform-change-intelligence.md",
+          "research/skills/profiles/01g-github-engineering-intelligence.md",
+          "research/skills/profiles/01r-published-research-intelligence.md"
+        ]
+      }
+    },
+    "queue": {
+      "state": "active",
+      "effectiveDate": "2026-08-12",
+      "family": "daily",
+      "schedule": {
+        "kind": "daily",
+        "time": "10:00",
+        "cron": "0 2 * * *"
+      },
+      "notBefore": "10:00",
+      "lateWakePolicy": "reconcile-earliest-due",
+      "requiredCapabilities": [],
+      "maxRunMinutes": 60,
+      "maxRecoveryAttempts": 2,
+      "maxRevisionRounds": 1,
+      "maxOutputItems": 3,
+      "zeroOutputAllowed": true,
+      "directPublicationAllowed": false,
+      "requireSameRunDateInputs": true,
+      "requirePromptHashVerification": true,
+      "requireRemoteCommitVerification": true,
+      "prompt": {
+        "schema": "research-runtime-worker-prompt/v1",
+        "version": "1.0.0",
+        "path": "research/runtime/worker-prompts/generated/queue.prompt.md",
+        "sha256": "48d6a9986b3b2bbd9e2f5cd04098d41d47e2f93d50240ed35f0ddcba3e073810",
+        "requiredSources": [
+          "research/runtime/SCHEDULER.json",
+          "research/runtime/WORKER-CONTRACT-V3.md",
+          "research/runtime/WAKE-RECEIPT-V1.md",
+          "research/runtime/COLUMN-PLAN-SCHEMA.md",
+          "research/skills/02-research-triage.md"
+        ]
+      }
+    },
+    "reading": {
+      "state": "active",
+      "effectiveDate": "2026-08-12",
+      "family": "daily",
+      "schedule": {
+        "kind": "daily",
+        "time": "11:00",
+        "cron": "0 3 * * *"
+      },
+      "notBefore": "11:00",
+      "lateWakePolicy": "reconcile-earliest-due",
+      "requiredCapabilities": [
+        "web-research"
+      ],
+      "maxRunMinutes": 180,
+      "maxRecoveryAttempts": 2,
+      "maxRevisionRounds": 2,
+      "maxOutputItems": 3,
+      "zeroOutputAllowed": true,
+      "directPublicationAllowed": false,
+      "requireSameRunDateInputs": true,
+      "requirePromptHashVerification": true,
+      "requireRemoteCommitVerification": true,
+      "prompt": {
+        "schema": "research-runtime-worker-prompt/v1",
+        "version": "1.0.0",
+        "path": "research/runtime/worker-prompts/generated/reading.prompt.md",
+        "sha256": "f02aac1b6ff0008fceb1285fd418afaa628db5072ad54072ee3b85c300e6e167",
+        "requiredSources": [
+          "research/runtime/SCHEDULER.json",
+          "research/runtime/WORKER-CONTRACT-V3.md",
+          "research/runtime/WAKE-RECEIPT-V1.md",
+          "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+          "research/skills/03-deep-reading.md"
+        ]
+      }
+    },
+    "analysis": {
+      "state": "active",
+      "effectiveDate": "2026-08-12",
+      "family": "daily",
+      "schedule": {
+        "kind": "daily",
+        "time": "13:00",
+        "cron": "0 5 * * *"
+      },
+      "notBefore": "13:00",
+      "lateWakePolicy": "reconcile-earliest-due",
+      "requiredCapabilities": [],
+      "maxRunMinutes": 120,
+      "maxRecoveryAttempts": 2,
+      "maxRevisionRounds": 2,
+      "maxOutputItems": 3,
+      "zeroOutputAllowed": true,
+      "directPublicationAllowed": false,
+      "requireSameRunDateInputs": true,
+      "requirePromptHashVerification": true,
+      "requireRemoteCommitVerification": true,
+      "prompt": {
+        "schema": "research-runtime-worker-prompt/v1",
+        "version": "2.0.0",
+        "path": "research/runtime/worker-prompts/generated/analysis.prompt.md",
+        "sha256": "93a0f08aaa4a2a00927faf2ccc6bfaab2d03522f251404aaa0a78ce5d5e2a16f",
+        "requiredSources": [
+          "research/runtime/SCHEDULER.json",
+          "research/runtime/WORKER-CONTRACT-V3.md",
+          "research/runtime/WAKE-RECEIPT-V1.md",
+          "research/editorial/EDITORIAL-ARCHITECTURE.json",
+          "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+          "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+          "research/skills/04-research-analysis.md"
+        ]
+      }
+    },
     "production": {
       "state": "active",
       "effectiveDate": "2026-08-12",
@@ -35,10 +185,11 @@
       },
       "notBefore": "15:00",
       "lateWakePolicy": "reconcile-earliest-due",
+      "requiredCapabilities": [],
       "maxRunMinutes": 120,
       "maxRecoveryAttempts": 2,
       "maxRevisionRounds": 3,
-      "maxCandidates": 3,
+      "maxOutputItems": 3,
       "zeroOutputAllowed": true,
       "directPublicationAllowed": false,
       "requireSameRunDateInputs": true,
@@ -46,12 +197,13 @@
       "requireRemoteCommitVerification": true,
       "prompt": {
         "schema": "research-runtime-worker-prompt/v1",
-        "version": "2.0.0",
+        "version": "2.1.0",
         "path": "research/runtime/worker-prompts/generated/production.prompt.md",
-        "sha256": "f155ce0bd3c08ce3482ec839e1f7097911ff2bac9c4321a5f65b3e26901e6ac9",
+        "sha256": "7c56b4ad2c099d2e0724b92affefacbd46184329c2b08f75b95aca43584c36ff",
         "requiredSources": [
           "research/runtime/SCHEDULER.json",
           "research/runtime/WORKER-CONTRACT-V3.md",
+          "research/runtime/WAKE-RECEIPT-V1.md",
           "research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md",
           "research/editorial/EDITORIAL-ARCHITECTURE.json",
           "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
@@ -59,6 +211,180 @@
           "research/skills/06-research-visualization.md",
           "research/skills/07-evidence-citation.md",
           "research/skills/08-publication-editing.md"
+        ]
+      }
+    },
+    "publication": {
+      "state": "active",
+      "effectiveDate": "2026-08-12",
+      "family": "daily",
+      "schedule": {
+        "kind": "daily",
+        "time": "20:00",
+        "cron": "0 12 * * *"
+      },
+      "notBefore": "20:00",
+      "lateWakePolicy": "reconcile-earliest-due",
+      "requiredCapabilities": [],
+      "maxRunMinutes": 120,
+      "maxRecoveryAttempts": 2,
+      "maxRevisionRounds": 1,
+      "maxOutputItems": 3,
+      "zeroOutputAllowed": true,
+      "directPublicationAllowed": true,
+      "requireSameRunDateInputs": true,
+      "requirePromptHashVerification": true,
+      "requireRemoteCommitVerification": true,
+      "prompt": {
+        "schema": "research-runtime-worker-prompt/v1",
+        "version": "2.0.0",
+        "path": "research/runtime/worker-prompts/generated/publication.prompt.md",
+        "sha256": "f307384f9bb856b428bedb2cb5170ab1850724aae917de2d26b240d65be3796e",
+        "requiredSources": [
+          "research/runtime/SCHEDULER.json",
+          "research/runtime/WORKER-CONTRACT-V3.md",
+          "research/runtime/WAKE-RECEIPT-V1.md",
+          "research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md",
+          "research/runtime/PUBLICATION-VISIBILITY-GATE.md",
+          "research/editorial/EDITORIAL-ARCHITECTURE.json",
+          "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+          "research/skills/08-publication-editing.md"
+        ]
+      }
+    },
+    "weekly": {
+      "state": "active",
+      "effectiveDate": "2026-08-12",
+      "family": "weekly",
+      "schedule": {
+        "kind": "weekly",
+        "days": [
+          "Sunday"
+        ],
+        "time": "20:30",
+        "cron": "30 12 * * 0"
+      },
+      "notBefore": "20:30",
+      "lateWakePolicy": "reconcile-earliest-due",
+      "requiredCapabilities": [],
+      "maxRunMinutes": 180,
+      "maxRecoveryAttempts": 2,
+      "maxRevisionRounds": 3,
+      "maxOutputItems": 1,
+      "zeroOutputAllowed": true,
+      "directPublicationAllowed": true,
+      "requireSameRunDateInputs": false,
+      "requirePromptHashVerification": true,
+      "requireRemoteCommitVerification": true,
+      "prompt": {
+        "schema": "research-runtime-worker-prompt/v1",
+        "version": "2.0.0",
+        "path": "research/runtime/worker-prompts/generated/weekly.prompt.md",
+        "sha256": "1936c9a15e6e2b1337131a881239f8958f373fc5b8c1b68551f384980718fdb8",
+        "requiredSources": [
+          "research/runtime/SCHEDULER.json",
+          "research/runtime/WORKER-CONTRACT-V3.md",
+          "research/runtime/WAKE-RECEIPT-V1.md",
+          "research/runtime/RUNTIME-RECORD-SCHEMA-V5.md",
+          "research/editorial/EDITORIAL-ARCHITECTURE.json",
+          "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+          "research/skills/04-research-analysis.md",
+          "research/skills/05-research-writing.md",
+          "research/skills/07-evidence-citation.md",
+          "research/skills/08-publication-editing.md"
+        ]
+      }
+    },
+    "academic": {
+      "state": "active",
+      "effectiveDate": "2026-08-12",
+      "family": "academic",
+      "schedule": {
+        "kind": "weekly",
+        "days": [
+          "Wednesday"
+        ],
+        "time": "16:00",
+        "cron": "0 8 * * 3"
+      },
+      "notBefore": "16:00",
+      "lateWakePolicy": "reconcile-earliest-due",
+      "requiredCapabilities": [
+        "web-research"
+      ],
+      "maxRunMinutes": 240,
+      "maxRecoveryAttempts": 2,
+      "maxRevisionRounds": 3,
+      "maxOutputItems": 1,
+      "zeroOutputAllowed": true,
+      "directPublicationAllowed": true,
+      "requireSameRunDateInputs": false,
+      "requirePromptHashVerification": true,
+      "requireRemoteCommitVerification": true,
+      "prompt": {
+        "schema": "research-runtime-worker-prompt/v1",
+        "version": "2.0.0",
+        "path": "research/runtime/worker-prompts/generated/academic.prompt.md",
+        "sha256": "1c8ba2c425b9799e7f585d44362f5a7ea5667b3eb5201c63a494d68125558d62",
+        "requiredSources": [
+          "research/runtime/SCHEDULER.json",
+          "research/runtime/WORKER-CONTRACT-V3.md",
+          "research/runtime/WAKE-RECEIPT-V1.md",
+          "research/runtime/RUNTIME-RECORD-SCHEMA-V5.md",
+          "research/editorial/EDITORIAL-ARCHITECTURE.json",
+          "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+          "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+          "research/skills/03-deep-reading.md",
+          "research/skills/04-research-analysis.md",
+          "research/skills/05-research-writing.md",
+          "research/skills/06-research-visualization.md",
+          "research/skills/07-evidence-citation.md",
+          "research/skills/08-publication-editing.md"
+        ]
+      }
+    },
+    "program": {
+      "state": "active",
+      "effectiveDate": "2026-08-12",
+      "family": "program",
+      "schedule": {
+        "kind": "weekly",
+        "days": [
+          "Monday"
+        ],
+        "time": "12:00",
+        "cron": "0 4 * * 1"
+      },
+      "notBefore": "12:00",
+      "lateWakePolicy": "reconcile-earliest-due",
+      "requiredCapabilities": [
+        "web-research"
+      ],
+      "maxRunMinutes": 120,
+      "maxRecoveryAttempts": 2,
+      "maxRevisionRounds": 2,
+      "maxOutputItems": 1,
+      "zeroOutputAllowed": true,
+      "directPublicationAllowed": true,
+      "requireSameRunDateInputs": false,
+      "requirePromptHashVerification": true,
+      "requireRemoteCommitVerification": true,
+      "prompt": {
+        "schema": "research-runtime-worker-prompt/v1",
+        "version": "1.0.0",
+        "path": "research/runtime/worker-prompts/generated/program.prompt.md",
+        "sha256": "26bba12adac68784a0b99aa238865b18f8d5dc06e7fbc9da5120f0cbc15e984e",
+        "requiredSources": [
+          "research/runtime/SCHEDULER.json",
+          "research/runtime/WORKER-CONTRACT-V3.md",
+          "research/runtime/WAKE-RECEIPT-V1.md",
+          "research/runtime/RUNTIME-RECORD-SCHEMA-V5.md",
+          "research/program/queues/INDEX.json",
+          "research/program/queues/tmpa.json",
+          "research/program/queues/fcop.json",
+          "research/program/queues/codeflowmu.json",
+          "research/program/queues/digital-employee.json",
+          "research/program/queues/research-operating-system.json"
         ]
       }
     }

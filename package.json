@@ -6,7 +6,7 @@
   "scripts": {
     "intelligence:validate": "node scripts/research-intelligence.mjs validate",
     "intelligence:build": "node scripts/research-intelligence.mjs build",
-    "runtime:validate": "node scripts/runtime-v5.mjs validate && npm run worker-prompts:validate && npm run intelligence:validate && npm run publication:layout:validate && npm run publication:editorial:validate",
+    "runtime:validate": "node scripts/runtime-v5.mjs validate && npm run worker-prompts:validate && npm run worker-control:test && npm run intelligence:validate && npm run publication:layout:validate && npm run publication:editorial:validate",
     "runtime:build": "node scripts/runtime-v5-projection.mjs && node scripts/runtime-v5-home-compat.mjs && npm run intelligence:build && node scripts/runtime-legacy-compat.mjs && node scripts/runtime-legacy-status-normalize.mjs && node scripts/verify-runtime-projection.mjs",
     "runtime:projection:verify": "node scripts/verify-runtime-projection.mjs",
     "runtime:projection:verify-dist": "node scripts/verify-runtime-projection.mjs --dist",
@@ -14,6 +14,7 @@
     "worker-prompts:build": "node scripts/worker-prompts.mjs build",
     "worker-prompts:validate": "node scripts/worker-prompts.mjs validate",
     "worker-control:resolve": "node scripts/worker-prompts.mjs resolve",
+    "worker-control:test": "node scripts/worker-control-test.mjs",
     "publication:layout:validate": "node scripts/research-publication-layout-validate.mjs",
     "publication:editorial:validate": "node scripts/publication-editorial-validate.mjs",
     "tmpa:s0.4:conformance": "node research/conformance/tmpa-core-s0.4/runner.mjs",

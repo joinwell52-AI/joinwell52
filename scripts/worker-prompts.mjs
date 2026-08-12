@@ -24,6 +24,10 @@ function list(items) {
   return items.map((item) => `- \`${item}\``).join('\n')
 }
 
+function bullets(items) {
+  return items.map((item) => `- ${item}`).join('\n')
+}
+
 function renderTemplate(template, values, templatePath) {
   const rendered = template.replace(/\{\{([A-Za-z0-9]+)\}\}/g, (_, key) => {
     if (!(key in values)) fail(`${templatePath}: unknown placeholder {{${key}}}`)
@@ -46,6 +50,14 @@ function compile() {
     if (!Array.isArray(config.control[field]) || config.control[field].length === 0) fail(`${configPath}: ${field} must not be empty`)
   }
   if (!Array.isArray(config.tasks) || config.tasks.length === 0) fail(`${configPath}: tasks must not be empty`)
+  const configuredTaskIds = config.tasks.map((entry) => entry.task)
+  if (new Set(configuredTaskIds).size !== configuredTaskIds.length) fail(`${configPath}: duplicate task entries`)
+  const schedulerTaskIds = scheduler.tasks.map((task) => task.id)
+  const missingTasks = schedulerTaskIds.filter((taskId) => !configuredTaskIds.includes(taskId))
+  const extraTasks = configuredTaskIds.filter((taskId) => !schedulerTaskIds.includes(taskId))
+  if (missingTasks.length || extraTasks.length) {
+    fail(`${configPath}: task coverage mismatch; missing=${missingTasks.join(',') || 'none'} extra=${extraTasks.join(',') || 'none'}`)
+  }
 
   const outputs = []
   const manifestTasks = {}
@@ -61,7 +73,9 @@ function compile() {
     }
     if (!['active', 'paused', 'disabled'].includes(entry.control?.state)) fail(`${configPath}: invalid control state for ${entry.task}`)
     if (entry.control.notBefore !== task.schedule.time) fail(`${configPath}: ${entry.task} notBefore must match Scheduler time`)
-    for (const field of ['maxRunMinutes', 'maxRecoveryAttempts', 'maxRevisionRounds', 'maxCandidates']) {
+    if (!Array.isArray(entry.requiredCapabilities)) fail(`${configPath}: requiredCapabilities missing for ${entry.task}`)
+    if (!Array.isArray(entry.rules) || entry.rules.length === 0) fail(`${configPath}: rules missing for ${entry.task}`)
+    for (const field of ['maxRunMinutes', 'maxRecoveryAttempts', 'maxRevisionRounds', 'maxOutputItems']) {
       if (!Number.isInteger(entry.control[field]) || entry.control[field] < 0) fail(`${configPath}: invalid ${field} for ${entry.task}`)
     }
     for (const source of entry.requiredSources) {
@@ -79,10 +93,12 @@ function compile() {
       taskFamily: task.family,
       scheduleTime: task.schedule.time,
       scheduleCron: task.schedule.cron,
+      taskInput: task.input,
       taskWork: task.work,
       taskOutput: task.output,
       taskSkills: list(task.skills),
       taskProhibitions: list(task.prohibitions),
+      taskRules: bullets(entry.rules),
       requiredSources: list(entry.requiredSources),
       requiredCommands: list(entry.requiredCommands || [])
     }
@@ -150,10 +166,11 @@ function compile() {
         schedule: prompt.schedule,
         notBefore: entry.control.notBefore,
         lateWakePolicy: entry.control.lateWakePolicy,
+        requiredCapabilities: entry.requiredCapabilities,
         maxRunMinutes: entry.control.maxRunMinutes,
         maxRecoveryAttempts: entry.control.maxRecoveryAttempts,
         maxRevisionRounds: entry.control.maxRevisionRounds,
-        maxCandidates: entry.control.maxCandidates,
+        maxOutputItems: entry.control.maxOutputItems,
         zeroOutputAllowed: entry.control.zeroOutputAllowed,
         directPublicationAllowed: entry.control.directPublicationAllowed,
         requireSameRunDateInputs: entry.control.requireSameRunDateInputs,
@@ -184,7 +201,7 @@ function build() {
   }
 }
 
-function validate() {
+function validate({ silent = false } = {}) {
   const { scheduler, config, outputs } = compile()
   if (scheduler.workerPromptManifest !== config.manifestPath) {
     fail(`${schedulerPath}: workerPromptManifest must equal ${config.manifestPath}`)
@@ -198,7 +215,7 @@ function validate() {
     const actual = readText(output.path)
     if (actual !== output.content) fail(`${output.path}: drift detected; run npm run worker-prompts:build`)
   }
-  console.log(`worker-prompts: validated ${config.tasks.length} generated prompt(s)`)
+  if (!silent) console.log(`worker-prompts: validated ${config.tasks.length} generated prompt(s)`)
 }
 
 function parseOptions(argv) {
@@ -216,13 +233,13 @@ function localClock(timezone, now) {
   const parts = Object.fromEntries(new Intl.DateTimeFormat('en-CA', {
     timeZone: timezone,
     year: 'numeric', month: '2-digit', day: '2-digit',
-    hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+    hour: '2-digit', minute: '2-digit', weekday: 'long', hourCycle: 'h23'
   }).formatToParts(now).map((part) => [part.type, part.value]))
-  return { date: `${parts.year}-${parts.month}-${parts.day}`, time: `${parts.hour}:${parts.minute}` }
+  return { date: `${parts.year}-${parts.month}-${parts.day}`, time: `${parts.hour}:${parts.minute}`, weekday: parts.weekday }
 }
 
 function resolveAdmission() {
-  validate()
+  validate({ silent: true })
   const options = parseOptions(process.argv.slice(3))
   const config = readJson(configPath)
   const control = readJson(config.controlPath)
@@ -242,10 +259,17 @@ function resolveAdmission() {
   if (task && task.state !== 'active') reasons.push(`${taskId} control is ${task.state}`)
   if (!control.allowedBranches.includes(branch)) reasons.push(`branch ${branch || '(missing)'} is not allowed`)
   if (!control.allowedWakeSources.includes(wakeSource)) reasons.push(`wake source ${wakeSource || '(missing)'} is not allowed`)
-  for (const capability of control.requiredCapabilities) {
+  const requiredCapabilities = [...new Set([
+    ...control.requiredCapabilities,
+    ...(task?.requiredCapabilities || [])
+  ])]
+  for (const capability of requiredCapabilities) {
     if (!capabilities.has(capability)) reasons.push(`missing capability ${capability}`)
   }
   if (task && clock.date < task.effectiveDate) reasons.push(`${taskId} is not effective until ${task.effectiveDate}`)
+  if (task?.schedule.days && !task.schedule.days.includes(clock.weekday)) {
+    reasons.push(`${taskId} is not scheduled on ${clock.weekday}`)
+  }
   if (task && clock.time < task.notBefore) reasons.push(`${taskId} is not eligible before ${task.notBefore}`)
 
   const result = {
@@ -254,8 +278,10 @@ function resolveAdmission() {
     task: taskId || null,
     runDate: clock.date,
     localTime: clock.time,
+    weekday: clock.weekday,
     branch: branch || null,
     wakeSource: wakeSource || null,
+    requiredCapabilities,
     reasons,
     runtimeAuthorityRequired: control.runtimeAuthorityRequired,
     prompt: task?.prompt || null,
@@ -263,7 +289,7 @@ function resolveAdmission() {
       maxRunMinutes: task.maxRunMinutes,
       maxRecoveryAttempts: task.maxRecoveryAttempts,
       maxRevisionRounds: task.maxRevisionRounds,
-      maxCandidates: task.maxCandidates,
+      maxOutputItems: task.maxOutputItems,
       zeroOutputAllowed: task.zeroOutputAllowed,
       directPublicationAllowed: task.directPublicationAllowed
     } : null

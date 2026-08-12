@@ -18,7 +18,7 @@ npm run worker-prompts:build
 npm run worker-prompts:validate
 ```
 
-The validation command fails when Scheduler metadata, the template, required sources, the generated prompt or the manifest drift apart. `npm run runtime:validate` includes this check.
+The validation command fails when Scheduler metadata, a task template, required sources, a generated prompt or either generated manifest drifts apart. `npm run runtime:validate` includes this check. All nine Scheduler tasks are generated and controlled; a missing task is a validation failure.
 
 ## Program control
 
@@ -26,9 +26,9 @@ The validation command fails when Scheduler metadata, the template, required sou
 
 - activate, pause or disable all workers or one task;
 - restrict source branches and accepted wake sources;
-- require concrete tool capabilities;
-- enforce the formal not-before time;
-- bound run duration, recovery attempts, revision rounds and candidate count;
+- require common and task-specific tool capabilities;
+- enforce the formal weekday and not-before time;
+- bound run duration, recovery attempts, revision rounds and output count;
 - allow governed zero-output while forbidding direct Publication;
 - require same-run-date inputs, prompt-hash verification and remote-commit verification.
 
@@ -39,24 +39,24 @@ npm run worker-control:resolve -- \
   --task production \
   --branch main \
   --wake-source chatgpt-scheduled-task \
-  --capabilities github-read,github-write,web-research,command-execution,file-editing \
+  --capabilities github-read,github-write,command-execution,file-editing \
   --now 2026-08-12T15:00:00+08:00
 ```
 
 `Admitted` means the Worker may proceed to Runtime reconciliation. It does not grant substantive execution authority; the Runtime state machine still decides the earliest due task and controls leases and terminal results. `Denied` is fail-closed and permits no Runtime business work.
 
-## ChatGPT Production bootstrap
+## ChatGPT scheduled-task bootstrap
 
-The account-level 15:00 task should contain only a stable bootstrap equivalent to:
+Every account-level task should contain only a stable task-specific bootstrap equivalent to:
 
 ```text
-Wake task=production for joinwell52-AI/joinwell52.
+Wake task=<scheduler-task-id> for joinwell52-AI/joinwell52.
 Access the latest main branch.
 Read the workerControlManifest declared by research/runtime/SCHEDULER.json.
-Pass tasks.production admission, then read its prompt path from the same commit,
+Pass that task's admission, then read its prompt path from the same commit,
 verify its version and SHA-256, and execute it.
 Do not use cached, embedded, prior-run or prior-day business rules.
 If main, control admission or the prompt cannot be read and verified, stop with Failed.
 ```
 
-The long Production instructions live in the generated repository prompt, not in the ChatGPT scheduled task.
+All business instructions live in generated repository prompts, not in ChatGPT scheduled tasks. A scheduled task contributes only a wake opportunity, repository access and Agent intelligence.
