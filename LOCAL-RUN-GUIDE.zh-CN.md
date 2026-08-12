@@ -22,6 +22,17 @@
 
 15:00 的实际文章生产主要由 **ChatGPT 定时任务**执行。ChatGPT Worker 负责研究、分析、写作、编辑和候选产出；GitHub Workflow 与调度槽主要负责打开运行位置、记录 Wake/Claim/Result、保存仓库事实、执行校验和发布。GitHub cron 本身不能独立生成研究文章。
 
+ChatGPT 账号中的 15:00 任务只应保存稳定的“薄启动器”：到点访问 GitHub 最新 `main`，读取 `research/runtime/worker-prompts/generated/MANIFEST.json`，解析 `tasks.production`，从同一提交完整读取并执行对应 Prompt。文章规则、Skills、Policy、Schema 和 Gate 不在账号级任务中复制维护。
+
+Production Prompt 由仓库程序确定并生成：
+
+```bash
+npm run worker-prompts:build
+npm run worker-prompts:validate
+```
+
+`npm run runtime:validate` 已包含 Prompt 漂移检查。Scheduler 时间、模板、必读文件、生成 Prompt、Manifest 版本或 SHA-256 不一致时，验证必须失败，不能回退到 ChatGPT 缓存或旧提示词。
+
 20:00 Publication 同样属于定时生产链的一部分。它消费已经完成的候选，通过发布 Gate 后更新 GitHub 和公开网站，但不得在发布阶段重新研究或补写文章。
 
 权责关系可简化为：

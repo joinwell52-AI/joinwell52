@@ -14,6 +14,12 @@ Every Runtime worker must:
 
 A worker must never infer completion from a scheduler trigger.
 
+## Prompt authority
+
+An account-level scheduled task is a wake-only bootstrap. It must access the latest `main` branch, read the manifest declared by `SCHEDULER.json#workerPromptManifest`, resolve its own task ID, and execute the generated prompt from the same commit. It must not retain a second embedded copy of Runtime business rules.
+
+The generated prompt bundle is deterministic repository state. Its version, schedule, required sources and SHA-256 are validated by `npm run worker-prompts:validate`, which is included in `npm run runtime:validate`. A missing manifest, unresolved task, hash drift, stale generated file or unreadable required source is a hard failure; cached prompt text is not an allowed fallback.
+
 ## Daily Runtime workers
 
 ### 09:00 — Research Runtime Discovery

@@ -1,0 +1,37 @@
+{
+  "schema": "research-runtime-worker-prompt-manifest/v1",
+  "repository": "joinwell52-AI/joinwell52",
+  "sourceBranch": "main",
+  "scheduler": "research/runtime/SCHEDULER.json",
+  "schedulerSchema": "research-runtime-scheduler/v3",
+  "schedulerVersion": "3.0",
+  "timezone": "Asia/Shanghai",
+  "promptSchema": "research-runtime-worker-prompt/v1",
+  "tasks": {
+    "production": {
+      "schema": "research-runtime-worker-prompt/v1",
+      "version": "2.0.0",
+      "effectiveDate": "2026-08-12",
+      "family": "daily",
+      "schedule": {
+        "kind": "daily",
+        "time": "15:00",
+        "cron": "0 7 * * *"
+      },
+      "path": "research/runtime/worker-prompts/generated/production.prompt.md",
+      "sha256": "f155ce0bd3c08ce3482ec839e1f7097911ff2bac9c4321a5f65b3e26901e6ac9",
+      "template": "research/runtime/worker-prompts/templates/production.prompt.md",
+      "requiredSources": [
+        "research/runtime/SCHEDULER.json",
+        "research/runtime/WORKER-CONTRACT-V3.md",
+        "research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md",
+        "research/editorial/EDITORIAL-ARCHITECTURE.json",
+        "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+        "research/skills/05-research-writing.md",
+        "research/skills/06-research-visualization.md",
+        "research/skills/07-evidence-citation.md",
+        "research/skills/08-publication-editing.md"
+      ]
+    }
+  }
+}

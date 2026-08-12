@@ -1,5 +1,7 @@
 # Research Runtime Worker Contracts V2
 
+> Compatibility reference only. Account-level scheduled tasks must not use this consolidated document as their sole runtime prompt. Generated task prompts declared by `research/runtime/worker-prompts/generated/MANIFEST.json` are authoritative for every task present in that manifest. The scheduled task is a wake-only bootstrap that reads the manifest and resolved prompt from the latest `main` commit.
+
 This document defines the worker obligations paired with Research Runtime Scheduler V2.0. The GitHub scheduler opens execution slots; the ChatGPT Digital Research Employee performs the work and closes each slot.
 
 ## Common completion requirements

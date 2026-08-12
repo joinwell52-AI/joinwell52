@@ -1,0 +1,31 @@
+{
+  "schema": "research-runtime-worker-prompt-config/v1",
+  "promptSchema": "research-runtime-worker-prompt/v1",
+  "manifestPath": "research/runtime/worker-prompts/generated/MANIFEST.json",
+  "sourceBranch": "main",
+  "tasks": [
+    {
+      "task": "production",
+      "version": "2.0.0",
+      "effectiveDate": "2026-08-12",
+      "template": "research/runtime/worker-prompts/templates/production.prompt.md",
+      "output": "research/runtime/worker-prompts/generated/production.prompt.md",
+      "requiredSources": [
+        "research/runtime/SCHEDULER.json",
+        "research/runtime/WORKER-CONTRACT-V3.md",
+        "research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md",
+        "research/editorial/EDITORIAL-ARCHITECTURE.json",
+        "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+        "research/skills/05-research-writing.md",
+        "research/skills/06-research-visualization.md",
+        "research/skills/07-evidence-citation.md",
+        "research/skills/08-publication-editing.md"
+      ],
+      "requiredCommands": [
+        "npm run publication:layout:validate",
+        "npm run publication:editorial:validate",
+        "npm run runtime:validate"
+      ]
+    }
+  ]
+}
