@@ -1,0 +1,129 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "analysis",
+  "family": "daily",
+  "runtimeDate": "2026-08-12",
+  "status": "Completed",
+  "input": {
+    "scheduler": "research/runtime/SCHEDULER.json",
+    "workerControl": "research/runtime/worker-prompts/generated/CONTROL.json",
+    "authoritativePrompt": {
+      "path": "research/runtime/worker-prompts/generated/analysis.prompt.md",
+      "version": "2.0.0",
+      "sha256": "93a0f08aaa4a2a00927faf2ccc6bfaab2d03522f251404aaa0a78ce5d5e2a16f",
+      "hashVerified": true,
+      "sourceCommit": "14088e4b3cae8d333e44d6335b3c501b6863dce0"
+    },
+    "admission": {
+      "decision": "Admitted",
+      "date": "2026-08-12",
+      "branch": "main",
+      "wakeSource": "chatgpt-scheduled-task",
+      "requiredCapabilities": ["github-read", "github-write", "command-execution", "file-editing"],
+      "limits": {
+        "maxRunMinutes": 120,
+        "maxRecoveryAttempts": 2,
+        "maxRevisionRounds": 2,
+        "maxOutputItems": 3,
+        "zeroOutputAllowed": true,
+        "directPublicationAllowed": false
+      }
+    },
+    "readingStatus": "Completed",
+    "readingArtifacts": [
+      "research/reading/Q-20260812-01-acceptance-based-queued-work-admission.md",
+      "research/reading/Q-20260812-02-reviewdecision-mcp-policy-amendment.md",
+      "research/reading/Q-20260812-03-grpc-callback-ownership-cancellation.md"
+    ],
+    "controlPlane": {
+      "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-12/analysis-130017.json",
+      "executionSlotOpenedAt": "2026-08-12T13:04:49+08:00",
+      "workerClaimedAt": "2026-08-12T13:05:51+08:00",
+      "workerClaimCommit": "ebb42ea46d9f7cc62e257a0c639b7ad0e8dfac56",
+      "globalOrderVerified": true,
+      "earlierDueTasksClosed": ["discovery", "queue", "reading"]
+    }
+  },
+  "workResult": {
+    "summary": "Executed Skill 04 Research Analysis using only the three completed 2026-08-12 Reading Results after fail-closed admission, prompt-hash verification, the durable Wake Receipt, ordered execution authority and Worker Claimed evidence were verified. Produced three Research Objects with explicit research questions, evidence identities, bounded judgments, counterarguments, limitations, open questions, article types, dynamic modules and project-relevance tests. Q-20260812-01 concludes that execution acceptance and durable recovery evidence are separate work-handoff boundaries: Core acceptance may grant execution authority, but queue removal alone is not evidence of restart-safe completion or exactly-once processing. Q-20260812-02 concludes that a shared approval vocabulary should represent decision intent while effective policy scope and persistence outcome remain separately observable, with invalid cross-domain decisions rejected fail-closed. Q-20260812-03 concludes that nested asynchronous tool runtimes can preserve independent concurrency through execution-scoped ownership, cancellation and bounded admission rather than global callback serialization; durable restart reconciliation and external-side-effect idempotency remain separate concerns. No article drafting, visualization, Publication Candidate creation or publication was performed.",
+    "summary_zh": "在 Fail-closed Admission、Prompt Hash、持久 Wake Receipt、顺序执行权与 Worker Claimed 证据均完成核验后，仅消费 2026-08-12 当日三份已完成 Reading Result 执行 Skill 04 Research Analysis，形成三份 Research Object，并显式记录 Research Question、Evidence Identity、有界判断、反方意见、局限、开放问题、Article Type、Dynamic Modules 与 Project-relevance Test。Q-20260812-01 的判断是：Execution Acceptance 与 Durable Recovery Evidence 属于不同的工作交接边界；Core Acceptance 可以授予执行权，但仅凭 Queue 删除不能证明 Restart-safe Completion 或 Exactly-once Processing。Q-20260812-02 的判断是：Shared Approval Vocabulary 应表达 Decision Intent，而 Effective Policy Scope 与 Persistence Outcome 必须独立可观测，跨 Domain 的无效 Decision 应 Fail-closed 拒绝。Q-20260812-03 的判断是：嵌套异步 Tool Runtime 可以通过 Execution-scoped Ownership、Cancellation 与 Bounded Admission 保留独立并发，而不依赖 Global Callback Serialization；Durable Restart Reconciliation 与 External-side-effect Idempotency 仍是独立问题。未执行文章撰写、可视化、Publication Candidate 创建或发布。",
+    "researchObjects": [
+      {
+        "column": "digital-employee",
+        "itemId": "Q-20260812-01",
+        "artifact": "research/analysis/Q-20260812-01-acceptance-persistence-handoff.md",
+        "articleType": "technical-analysis",
+        "projectRelevance": "none",
+        "judgment": "Execution acceptance and durable recovery evidence should be separate state transitions; acceptance can grant authority without proving restart-safe or exactly-once completion.",
+        "judgment_zh": "Execution Acceptance 与 Durable Recovery Evidence 应是两个独立状态转换；Acceptance 可以授予执行权，但不证明 Restart-safe 或 Exactly-once Completion。"
+      },
+      {
+        "column": "industry-architecture",
+        "itemId": "Q-20260812-02",
+        "artifact": "research/analysis/Q-20260812-02-decision-intent-effective-policy.md",
+        "articleType": "technical-analysis",
+        "projectRelevance": "none",
+        "judgment": "Shared approval decisions should carry intent while effective authorization scope and persistence outcome remain separately acknowledged and domain-invalid decisions fail closed.",
+        "judgment_zh": "Shared Approval Decision 应承载 Intent，同时独立确认 Effective Authorization Scope 与 Persistence Outcome，并对跨 Domain 的无效 Decision 执行 Fail-closed。"
+      },
+      {
+        "column": "open-source-engineering",
+        "itemId": "Q-20260812-03",
+        "artifact": "research/analysis/Q-20260812-03-scoped-callback-concurrency.md",
+        "articleType": "engineering-insight",
+        "projectRelevance": "none",
+        "judgment": "Execution-scoped ownership, cancellation and resource bounds can localize callback failures while preserving independent-session concurrency; restart deduplication and external-effect idempotency require separate contracts.",
+        "judgment_zh": "Execution-scoped Ownership、Cancellation 与 Resource Bound 可以在保留 Independent-session Concurrency 的同时局部化 Callback Failure；Restart Deduplication 与外部副作用幂等需要独立 Contract。"
+      }
+    ],
+    "boundary": {
+      "unreadMaterialAnalyzed": false,
+      "fixedArticleOutline": false,
+      "forcedFirstPartyMapping": false,
+      "articleWriting": false,
+      "visualization": false,
+      "publicationCandidate": false,
+      "publication": false
+    }
+  },
+  "output": {
+    "type": "Research Objects",
+    "researchObjectCount": 3,
+    "artifacts": [
+      "research/analysis/Q-20260812-01-acceptance-persistence-handoff.md",
+      "research/analysis/Q-20260812-02-decision-intent-effective-policy.md",
+      "research/analysis/Q-20260812-03-scoped-callback-concurrency.md"
+    ]
+  },
+  "next": {
+    "task": "production",
+    "scheduledTime": "15:00",
+    "instruction": "Production may consume only these three completed 2026-08-12 Research Objects after its formal time gate, fresh Worker admission, prompt verification and global serial-order check. It must not infer stronger evidence than these bounded Research Objects establish.",
+    "instruction_zh": "Production 只能在 15:00 正式时间门禁之后，并通过新的 Worker Admission、Prompt Verification 与全局串行顺序检查后，消费这三份 2026-08-12 已完成 Research Object；不得把这些有界 Research Object 的证据强度进一步夸大。"
+  },
+  "metrics": [
+    {"name": "reading_results_consumed", "value": 3},
+    {"name": "research_objects", "value": 3},
+    {"name": "prompt_hash_verified", "value": 1},
+    {"name": "first_party_project_mappings_forced", "value": 0},
+    {"name": "article_drafts", "value": 0},
+    {"name": "publication_actions", "value": 0}
+  ],
+  "evidence": [
+    "research/runtime/wakes/2026/08/2026-08-12/analysis-130017.json",
+    "research/runtime/records/daily/2026/08/2026-08-12-daily-runtime.json",
+    "research/runtime/worker-prompts/generated/CONTROL.json",
+    "research/runtime/worker-prompts/generated/analysis.prompt.md",
+    "research/skills/04-research-analysis.md",
+    "research/reading/Q-20260812-01-acceptance-based-queued-work-admission.md",
+    "research/reading/Q-20260812-02-reviewdecision-mcp-policy-amendment.md",
+    "research/reading/Q-20260812-03-grpc-callback-ownership-cancellation.md",
+    "ebb42ea46d9f7cc62e257a0c639b7ad0e8dfac56"
+  ],
+  "artifacts": [
+    "research/analysis/Q-20260812-01-acceptance-persistence-handoff.md",
+    "research/analysis/Q-20260812-02-decision-intent-effective-policy.md",
+    "research/analysis/Q-20260812-03-scoped-callback-concurrency.md",
+    "research/runtime/results/2026/08/2026-08-12-analysis-result.json"
+  ]
+}
