@@ -8,11 +8,11 @@
   "date": "2026-08-12",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -266,6 +266,124 @@
       "githubCommit": "154a70fcce6eb133d4ac000cdc4e49aab9b42308",
       "commitVerify": "Completed",
       "verifiedAt": "2026-08-12T11:13:11+08:00"
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "status": "Completed",
+      "input": "The durably verified 2026-08-12 Queue completion, the 2026-08-12 Today's Research Plan containing exactly Q-20260812-01, Q-20260812-02 and Q-20260812-03, Skill 03 Deep Reading, the verified deferred Reading Wake Receipt, and the three selected primary OpenAI Codex commits. No prior-day Reading Result or Research Object was used as current-day input.",
+      "input_zh": "已持久核验的 2026-08-12 Queue 完成状态、恰好包含 Q-20260812-01 / Q-20260812-02 / Q-20260812-03 的 2026-08-12 Today's Research Plan、Skill 03 Deep Reading、已核验且此前 Deferred 的 Reading Wake Receipt，以及三个已选 OpenAI Codex 一手提交。未把前一日 Reading Result 或 Research Object 作为当天输入。",
+      "workResult": "Completed primary-source Deep Reading for all three run-date selected objects after Queue recovery closed and Reading received a fresh execution slot and Worker Claimed event. Q-20260812-01 verified that queued-user-message admission now resolves at Core acceptance as a new turn or steer rather than at rollout persistence; queue deletion follows successful admission, prompt-hook stop is downstream of admission, and the source does not establish end-to-end exactly-once recovery after acceptance. Q-20260812-02 verified that MCP approvals now use the shared ReviewDecision type, with distinct current-request, session and cross-session policy-amendment semantics, approval-mode normalization, keyed persistent/session fallback, and fail-closed rejection of the MCP-only persistent decision in unrelated approval paths. Q-20260812-03 verified execution-scoped callback ownership, cancellation-token propagation, completed-versus-terminated cell cleanup, bounded callback/payload admission, enabled-tool and cell validation, panic containment, and tests showing independent gRPC code-mode sessions are not globally serialized. Three durable Reading Notes were produced. No Research Analysis, article drafting, visualization or publication was performed.",
+      "workResult_zh": "在 Queue 恢复完成并收口、Reading 获得新的 Execution Slot 与 Worker Claimed 后，对运行日三个已选对象完成一手来源 Deep Reading。Q-20260812-01 核验了排队用户消息的 Admission 已从 Rollout Persistence 改为 Core 接受 New Turn 或 Steer 时完成；Queue Entry 在成功 Admission 后删除，Prompt Hook Stop 属于 Admission 之后的执行阶段，而该来源并未证明接纳后的端到端 Exactly-once Recovery。Q-20260812-02 核验了 MCP 审批统一使用共享 ReviewDecision，同时区分单次请求、Session 与跨 Session Policy Amendment 三种语义，并包含 Approval Mode Normalization、Persistent/Session Key Fallback，以及 MCP 专用持久决策误入无关审批路径时的 Fail-closed 拒绝。Q-20260812-03 核验了 Execution-scoped Callback Ownership、CancellationToken 传播、Completed 与 Terminated Cell 的差异化清理、有界 Callback/Payload Admission、Enabled Tool 与 Cell 校验、Panic Containment，以及证明独立 gRPC Code Mode Session 不被全局串行化的测试。共形成 3 份持久 Reading Note。未执行 Research Analysis、文章写作、可视化或发布。",
+      "output": "Three durable Skill 03 Reading Notes for Q-20260812-01, Q-20260812-02 and Q-20260812-03, each recording problem, facts, mechanisms, evidence, limitations, comparisons, unresolved questions and a strict reading boundary.",
+      "output_zh": "形成 Q-20260812-01、Q-20260812-02、Q-20260812-03 三份持久 Skill 03 Reading Note；每份均记录 Problem、Facts、Mechanisms、Evidence、Limitations、Comparisons、Unresolved Questions 与严格 Reading Boundary。",
+      "next": "Research Runtime Analysis may consume only these 2026-08-12 Reading Notes after Reading completion and durable GitHub verification. Analysis must separate source-established facts from architectural judgment and must not treat unproven exactly-once, durable-recovery, policy-persistence or cross-transport claims as established facts.",
+      "next_zh": "只有在 Reading 完成并通过 GitHub 持久核验后，Research Runtime Analysis 才可消费这三份 2026-08-12 Reading Note。Analysis 必须把来源已建立事实与架构判断分开，不得把尚未证明的 Exactly-once、Durable Recovery、Policy Persistence 或 Cross-transport 结论当作已建立事实。",
+      "metrics": [
+        {
+          "label": "Selected objects read",
+          "label_zh": "已深读对象",
+          "value": "3 / 3"
+        },
+        {
+          "label": "Primary-source commits read",
+          "label_zh": "已读一手提交",
+          "value": "3"
+        },
+        {
+          "label": "Durable Reading Notes",
+          "label_zh": "持久 Reading Note",
+          "value": "3"
+        },
+        {
+          "label": "Prior-day research inputs reused",
+          "label_zh": "复用前一日研究输入",
+          "value": "0"
+        },
+        {
+          "label": "Research Analysis performed",
+          "label_zh": "已执行 Research Analysis",
+          "value": "0"
+        },
+        {
+          "label": "Publication copy produced",
+          "label_zh": "已生成发布文案",
+          "value": "0"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Reading Wake Receipt",
+          "label_zh": "Reading 唤醒回执",
+          "value": "research/runtime/wakes/2026/08/2026-08-12/reading-110206.json"
+        },
+        {
+          "label": "Run-date Research Plan",
+          "label_zh": "运行日 Research Plan",
+          "value": "research/runtime/plans/2026/08/2026-08-12-plan.json"
+        },
+        {
+          "label": "Skill 03",
+          "label_zh": "Skill 03",
+          "value": "research/skills/03-deep-reading.md"
+        },
+        {
+          "label": "Q-20260812-01 primary source",
+          "label_zh": "Q-20260812-01 一手来源",
+          "value": "https://github.com/openai/codex/commit/da2803c73cd366b5e01ffe8d0e5f7d396247f827"
+        },
+        {
+          "label": "Q-20260812-02 primary source",
+          "label_zh": "Q-20260812-02 一手来源",
+          "value": "https://github.com/openai/codex/commit/67afc7967463282af932be1984df9e16cc55ed99"
+        },
+        {
+          "label": "Q-20260812-03 primary source",
+          "label_zh": "Q-20260812-03 一手来源",
+          "value": "https://github.com/openai/codex/commit/ba2fb483197a6b428b8c6d999d192bb056c64ae7"
+        },
+        {
+          "label": "Reading Worker Claim record",
+          "label_zh": "Reading Worker Claim 记录",
+          "value": "research/runtime/records/daily/2026/08/2026-08-12-daily-runtime.json"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Q-20260812-01 Reading Note",
+          "label_zh": "Q-20260812-01 Reading Note",
+          "value": "research/reading/Q-20260812-01-acceptance-based-queued-work-admission.md"
+        },
+        {
+          "label": "Q-20260812-02 Reading Note",
+          "label_zh": "Q-20260812-02 Reading Note",
+          "value": "research/reading/Q-20260812-02-reviewdecision-mcp-policy-amendment.md"
+        },
+        {
+          "label": "Q-20260812-03 Reading Note",
+          "label_zh": "Q-20260812-03 Reading Note",
+          "value": "research/reading/Q-20260812-03-grpc-callback-ownership-cancellation.md"
+        },
+        {
+          "label": "Reading result",
+          "label_zh": "Reading 结果",
+          "value": "research/runtime/results/2026/08/2026-08-12-reading-result.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "value": "research/runtime/records/daily/2026/08/2026-08-12-daily-runtime.json"
+        },
+        {
+          "label": "Runtime Markdown ledger",
+          "label_zh": "Runtime Markdown 账本",
+          "value": "research/runtime/2026/08/2026-08-12-runtime.md"
+        }
+      ],
+      "family": "daily",
+      "runtimeDate": "2026-08-12",
+      "startedAt": "2026-08-12T11:14:29+08:00",
+      "completedAt": "2026-08-12T11:20:25+08:00"
     }
   },
   "timeline": [
@@ -359,6 +477,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Reading after verifying research/runtime/wakes/2026/08/2026-08-12/reading-110206.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-08-12T11:20:25+08:00",
+      "task": "reading",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Reading completed through governed Runtime shift completion after durable result validation for 2026-08-12."
     }
   ],
   "metrics": [],
@@ -366,5 +491,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-12T11:15:45+08:00"
+  "updatedAt": "2026-08-12T11:20:25+08:00"
 }
