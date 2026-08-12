@@ -33,29 +33,105 @@
       "next": "At or after the 10:00 formal Queue time, the Process Manager may grant Queue execution authority only if Discovery remains durably Completed and no earlier due task is unfinished. Queue may consume only the 2026-08-12 Signal Pool for triage.",
       "next_zh": "到达或超过 10:00 的正式 Queue 时点后，Process Manager 只有在 Discovery 仍为持久 Completed 且不存在更早到期未收口任务时，才可授予 Queue 执行权。Queue 只能消费 2026-08-12 Signal Pool 执行筛选。",
       "metrics": [
-        {"label":"Wake receipts","label_zh":"Wake Receipt","value":1},
-        {"label":"Discovery start events","label_zh":"Discovery 启动事件","value":1},
-        {"label":"Worker claims","label_zh":"Worker Claimed","value":1},
-        {"label":"AI platform due / checked / inaccessible / failed","label_zh":"AI 平台应查 / 已查 / 不可访问 / 失败","value":"33 / 32 / 1 / 0"},
-        {"label":"GitHub repositories checked","label_zh":"GitHub 已检查仓库","value":"9 / 9"},
-        {"label":"Research sources checked","label_zh":"研究来源已检查","value":"9 / 9"},
-        {"label":"Normalized signals","label_zh":"规范化 Signal","value":11},
-        {"label":"Selected topics","label_zh":"已选主题","value":0}
+        {
+          "label": "Wake receipts",
+          "label_zh": "Wake Receipt",
+          "value": 1
+        },
+        {
+          "label": "Discovery start events",
+          "label_zh": "Discovery 启动事件",
+          "value": 1
+        },
+        {
+          "label": "Worker claims",
+          "label_zh": "Worker Claimed",
+          "value": 1
+        },
+        {
+          "label": "AI platform due / checked / inaccessible / failed",
+          "label_zh": "AI 平台应查 / 已查 / 不可访问 / 失败",
+          "value": "33 / 32 / 1 / 0"
+        },
+        {
+          "label": "GitHub repositories checked",
+          "label_zh": "GitHub 已检查仓库",
+          "value": "9 / 9"
+        },
+        {
+          "label": "Research sources checked",
+          "label_zh": "研究来源已检查",
+          "value": "9 / 9"
+        },
+        {
+          "label": "Normalized signals",
+          "label_zh": "规范化 Signal",
+          "value": 11
+        },
+        {
+          "label": "Selected topics",
+          "label_zh": "已选主题",
+          "value": 0
+        }
       ],
       "evidence": [
-        {"label":"Discovery Wake Receipt","label_zh":"Discovery 唤醒回执","path":"research/runtime/wakes/2026/08/2026-08-12/discovery-090816.json"},
-        {"label":"Scheduler","label_zh":"调度器","path":"research/runtime/SCHEDULER.json"},
-        {"label":"Research Intelligence Registry","label_zh":"Research Intelligence 注册表","path":"research/intelligence/REGISTRY.json"},
-        {"label":"AI Platform profile","label_zh":"AI 平台 Profile","path":"research/skills/profiles/01p-ai-platform-change-intelligence.md"},
-        {"label":"GitHub Engineering profile","label_zh":"GitHub 工程 Profile","path":"research/skills/profiles/01g-github-engineering-intelligence.md"},
-        {"label":"Published Research profile","label_zh":"已发表研究 Profile","path":"research/skills/profiles/01r-published-research-intelligence.md"},
-        {"label":"Signal Pool commit","label_zh":"Signal Pool 提交","commit":"54385701c21d8ecb50f487464af9d1cd7515a3b4"}
+        {
+          "label": "Discovery Wake Receipt",
+          "label_zh": "Discovery 唤醒回执",
+          "path": "research/runtime/wakes/2026/08/2026-08-12/discovery-090816.json"
+        },
+        {
+          "label": "Scheduler",
+          "label_zh": "调度器",
+          "path": "research/runtime/SCHEDULER.json"
+        },
+        {
+          "label": "Research Intelligence Registry",
+          "label_zh": "Research Intelligence 注册表",
+          "path": "research/intelligence/REGISTRY.json"
+        },
+        {
+          "label": "AI Platform profile",
+          "label_zh": "AI 平台 Profile",
+          "path": "research/skills/profiles/01p-ai-platform-change-intelligence.md"
+        },
+        {
+          "label": "GitHub Engineering profile",
+          "label_zh": "GitHub 工程 Profile",
+          "path": "research/skills/profiles/01g-github-engineering-intelligence.md"
+        },
+        {
+          "label": "Published Research profile",
+          "label_zh": "已发表研究 Profile",
+          "path": "research/skills/profiles/01r-published-research-intelligence.md"
+        },
+        {
+          "label": "Signal Pool commit",
+          "label_zh": "Signal Pool 提交",
+          "commit": "54385701c21d8ecb50f487464af9d1cd7515a3b4"
+        }
       ],
       "artifacts": [
-        {"label":"Research Intelligence run","label_zh":"Research Intelligence 运行记录","path":"research/intelligence/runs/2026/08/2026-08-12-intelligence.json"},
-        {"label":"Discovery result","label_zh":"Discovery 结果","path":"research/runtime/results/2026/08/2026-08-12-discovery-result.json"},
-        {"label":"Daily Runtime JSON","label_zh":"Daily Runtime JSON","path":"research/runtime/records/daily/2026/08/2026-08-12-daily-runtime.json"},
-        {"label":"Runtime Markdown ledger","label_zh":"Runtime Markdown 账本","path":"research/runtime/2026/08/2026-08-12-runtime.md"}
+        {
+          "label": "Research Intelligence run",
+          "label_zh": "Research Intelligence 运行记录",
+          "path": "research/intelligence/runs/2026/08/2026-08-12-intelligence.json"
+        },
+        {
+          "label": "Discovery result",
+          "label_zh": "Discovery 结果",
+          "path": "research/runtime/results/2026/08/2026-08-12-discovery-result.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "path": "research/runtime/records/daily/2026/08/2026-08-12-daily-runtime.json"
+        },
+        {
+          "label": "Runtime Markdown ledger",
+          "label_zh": "Runtime Markdown 账本",
+          "path": "research/runtime/2026/08/2026-08-12-runtime.md"
+        }
       ],
       "startedAt": "2026-08-12T09:05:09+08:00",
       "completedAt": "2026-08-12T09:16:01+08:00"
@@ -103,6 +179,20 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Queue after verifying research/runtime/wakes/2026/08/2026-08-12/queue-100244.json on main."
+    },
+    {
+      "time": "2026-08-12T10:35:17+08:00",
+      "task": "queue",
+      "event": "Running Lease Expired",
+      "status": "Waiting",
+      "detail": "queue exceeded its 30 minute Running lease without a terminal result. The execution slot is no longer treated as proof of active work and returns to governed recovery."
+    },
+    {
+      "time": "2026-08-12T10:35:17+08:00",
+      "task": "queue",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Queue started by Research Runtime Scheduler V3.0."
     }
   ],
   "metrics": [],
@@ -110,5 +200,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-12T10:03:43+08:00"
+  "updatedAt": "2026-08-12T10:35:17+08:00"
 }
