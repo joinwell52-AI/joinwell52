@@ -24,6 +24,8 @@
 
 ChatGPT 账号中的 15:00 任务只应保存稳定的“薄启动器”：到点访问 GitHub 最新 `main`，读取 `research/runtime/worker-prompts/generated/MANIFEST.json`，解析 `tasks.production`，从同一提交完整读取并执行对应 Prompt。文章规则、Skills、Policy、Schema 和 Gate 不在账号级任务中复制维护。
 
+在 Prompt 之前还有程序控制层：`SCHEDULER.json#workerControlManifest` 指向生成的 `CONTROL.json`。它可以启用、暂停或禁用 Worker，限制分支、唤醒来源和工具能力，控制最早执行时间、最长运行时间、恢复次数、修订轮次、候选上限和直接发布权限。只有静态 Admission 为 `Admitted` 后，Agent 才能继续进入 Runtime 执行权判断；定时唤醒本身不授予工作权限。
+
 Production Prompt 由仓库程序确定并生成：
 
 ```bash

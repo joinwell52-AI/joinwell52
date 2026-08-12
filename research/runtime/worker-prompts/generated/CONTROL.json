@@ -1,0 +1,66 @@
+{
+  "schema": "research-runtime-worker-control/v1",
+  "version": "1.0.0",
+  "repository": "joinwell52-AI/joinwell52",
+  "sourceBranch": "main",
+  "scheduler": "research/runtime/SCHEDULER.json",
+  "promptManifest": "research/runtime/worker-prompts/generated/MANIFEST.json",
+  "state": "active",
+  "failClosed": true,
+  "allowedBranches": [
+    "main"
+  ],
+  "allowedWakeSources": [
+    "chatgpt-scheduled-task",
+    "manual-recovery"
+  ],
+  "globalSerialExecution": true,
+  "runtimeAuthorityRequired": true,
+  "requiredCapabilities": [
+    "github-read",
+    "github-write",
+    "web-research",
+    "command-execution",
+    "file-editing"
+  ],
+  "tasks": {
+    "production": {
+      "state": "active",
+      "effectiveDate": "2026-08-12",
+      "family": "daily",
+      "schedule": {
+        "kind": "daily",
+        "time": "15:00",
+        "cron": "0 7 * * *"
+      },
+      "notBefore": "15:00",
+      "lateWakePolicy": "reconcile-earliest-due",
+      "maxRunMinutes": 120,
+      "maxRecoveryAttempts": 2,
+      "maxRevisionRounds": 3,
+      "maxCandidates": 3,
+      "zeroOutputAllowed": true,
+      "directPublicationAllowed": false,
+      "requireSameRunDateInputs": true,
+      "requirePromptHashVerification": true,
+      "requireRemoteCommitVerification": true,
+      "prompt": {
+        "schema": "research-runtime-worker-prompt/v1",
+        "version": "2.0.0",
+        "path": "research/runtime/worker-prompts/generated/production.prompt.md",
+        "sha256": "f155ce0bd3c08ce3482ec839e1f7097911ff2bac9c4321a5f65b3e26901e6ac9",
+        "requiredSources": [
+          "research/runtime/SCHEDULER.json",
+          "research/runtime/WORKER-CONTRACT-V3.md",
+          "research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md",
+          "research/editorial/EDITORIAL-ARCHITECTURE.json",
+          "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+          "research/skills/05-research-writing.md",
+          "research/skills/06-research-visualization.md",
+          "research/skills/07-evidence-citation.md",
+          "research/skills/08-publication-editing.md"
+        ]
+      }
+    }
+  }
+}

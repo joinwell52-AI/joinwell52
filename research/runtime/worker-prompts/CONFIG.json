@@ -2,7 +2,19 @@
   "schema": "research-runtime-worker-prompt-config/v1",
   "promptSchema": "research-runtime-worker-prompt/v1",
   "manifestPath": "research/runtime/worker-prompts/generated/MANIFEST.json",
+  "controlPath": "research/runtime/worker-prompts/generated/CONTROL.json",
   "sourceBranch": "main",
+  "control": {
+    "schema": "research-runtime-worker-control/v1",
+    "version": "1.0.0",
+    "state": "active",
+    "failClosed": true,
+    "allowedBranches": ["main"],
+    "allowedWakeSources": ["chatgpt-scheduled-task", "manual-recovery"],
+    "globalSerialExecution": true,
+    "runtimeAuthorityRequired": true,
+    "requiredCapabilities": ["github-read", "github-write", "web-research", "command-execution", "file-editing"]
+  },
   "tasks": [
     {
       "task": "production",
@@ -10,6 +22,20 @@
       "effectiveDate": "2026-08-12",
       "template": "research/runtime/worker-prompts/templates/production.prompt.md",
       "output": "research/runtime/worker-prompts/generated/production.prompt.md",
+      "control": {
+        "state": "active",
+        "notBefore": "15:00",
+        "lateWakePolicy": "reconcile-earliest-due",
+        "maxRunMinutes": 120,
+        "maxRecoveryAttempts": 2,
+        "maxRevisionRounds": 3,
+        "maxCandidates": 3,
+        "zeroOutputAllowed": true,
+        "directPublicationAllowed": false,
+        "requireSameRunDateInputs": true,
+        "requirePromptHashVerification": true,
+        "requireRemoteCommitVerification": true
+      },
       "requiredSources": [
         "research/runtime/SCHEDULER.json",
         "research/runtime/WORKER-CONTRACT-V3.md",
