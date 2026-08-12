@@ -4,6 +4,7 @@ import type { Theme } from 'vitepress'
 import { withBase } from 'vitepress'
 import PortalHome from './components/PortalHome.vue'
 import ArticleCover from './components/ArticleCover.vue'
+import ArticleTypeBadge from './components/ArticleTypeBadge.vue'
 import ResearchNotes from './components/ResearchNotes.vue'
 import ResearchCategory from './components/ResearchCategory.vue'
 import RuntimeCenter from './components/RuntimeCenter.vue'
@@ -261,11 +262,13 @@ function enhancePortal() {
 export default {
   extends: DefaultTheme,
   Layout: () => h(DefaultTheme.Layout, null, {
-    'layout-top': () => h(GlobalBack)
+    'layout-top': () => h(GlobalBack),
+    'doc-before': () => h(ArticleTypeBadge)
   }),
   enhanceApp({ app, router }) {
     app.component('PortalHome', PortalHome)
     app.component('ArticleCover', ArticleCover)
+    app.component('ArticleTypeBadge', ArticleTypeBadge)
     app.component('ResearchNotes', ResearchNotes)
     app.component('ResearchCategory', ResearchCategory)
     app.component('RuntimeCenter', RuntimeCenter)

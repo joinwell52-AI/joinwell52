@@ -16,6 +16,7 @@ export interface ResearchNoteRecord {
   summary: string
   url: string
   lang: 'en' | 'zh'
+  articleType?: string
 }
 
 const columns = new Set<ResearchColumn>([
@@ -48,7 +49,8 @@ export default createContentLoader('**/*.md', {
         category: displayCategory(frontmatter.category as SourceResearchCategory),
         summary: String(frontmatter.summary || frontmatter.description || ''),
         url,
-        lang: url.startsWith('/zh/') ? 'zh' : 'en'
+        lang: url.startsWith('/zh/') ? 'zh' : 'en',
+        articleType: frontmatter.article_type ? String(frontmatter.article_type) : undefined
       }))
       .sort((a, b) => {
         const byDate = b.date.localeCompare(a.date)

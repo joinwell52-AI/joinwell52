@@ -27,6 +27,17 @@ Assign every material claim one identity:
 | `hypothesis` | State the testable proposition and missing evidence. |
 | `open-question` | Do not convert the question into a conclusion. |
 
+## Reader-facing evidence labels
+
+The stable English identities above are machine-facing schema values. Do not expose them to general readers as unexplained internal codes.
+
+- In Chinese articles, show a plain-language Chinese label first and keep the schema value secondary when useful: `公开一手事实（public-fact）`, `来源陈述（source-reported-claim）`, `本次观察（our-observation）`, `研究解释（our-interpretation）`, `内部实验依据（internal-experimental-evidence）`, `独立证据（independent-evidence）`, `待验证假设（hypothesis）`, `开放问题（open-question）`.
+- In English articles, use the readable English name first; a schema value is optional and must not be the only explanation.
+- The first evidence legend in an article must explain the practical meaning and boundary, not merely repeat a type name.
+- `public-fact` from a project's own public repository is a public primary-source fact, not independent evidence. Say so when independence matters.
+- Keep internal claim identifiers such as `E1` or `H1` in Candidate metadata, audit records, or optional footnotes by default. Do not place them in general-reader prose unless repeated cross-reference is genuinely necessary.
+- Prefer one reader-facing section named `证据与引用` / `Evidence and sources`. Explain directly what the source shows, what it does not establish, and what the article proposes testing. Label linked material by its actual role when useful: source material that directly supports a fact, contextual reference material, first-party evidence, or independent evidence. Do not call every citation a primary source or direct evidence; a plain `参考资料` / `References` label is sufficient when the distinction is not needed at that point.
+
 ## Non-equivalence gate
 
 Enforce all five:

@@ -1,73 +1,89 @@
 ---
 schema: "publication-candidate-article/v2"
-title: "Consent Is Not Policy: Why Approval Systems Need an Effective-Scope Acknowledgement"
+title: "The User Clicked ‘Always Allow.’ What Did the System Actually Save?"
 date: "2026-08-12"
 column: "industry-architecture"
 category: "daily"
 article_type: "technical-analysis"
 edition: "research-center"
 research_question: "How should an approval architecture unify decision vocabulary without conflating a user's requested consent scope with the policy state that was actually applied?"
-summary: "A shared approval vocabulary can carry intent across components, but durable policy change is trustworthy only when effective scope and persistence outcome are separately observable."
-sources: "research/analysis/Q-20260812-02-decision-intent-effective-policy.md; research/reading/Q-20260812-02-reviewdecision-mcp-policy-amendment.md"
-cover: "./2026-08-12-consent-effective-policy-cover.svg"
+summary: "A shared approval type can carry user intent without proving that policy took effect at the same scope. Governed approval records need both the requested decision and the effective outcome."
+sources: "https://github.com/openai/codex/commit/67afc7967463282af932be1984df9e16cc55ed99; research/analysis/Q-20260812-02-decision-intent-effective-policy.md; research/reading/Q-20260812-02-reviewdecision-mcp-policy-amendment.md"
+cover: "./2026-08-12-consent-effective-policy-cover.png"
 ---
 
-![A bright consent seal passing through an aperture and emerging as a narrower effective-policy field](./2026-08-12-consent-effective-policy-cover.svg)
+![A metal authorization seal passing through a precision policy aperture, with its warm light narrowed into the effective scope on the far side](./2026-08-12-consent-effective-policy-cover.png)
 
-# Consent Is Not Policy: Why Approval Systems Need an Effective-Scope Acknowledgement
+*Cover: an original Research Center editorial visual. Requested authorization passes through domain policy and may emerge as a narrower effective scope.*
 
-Approval protocols often improve as they converge on one shared decision vocabulary. A common type can simplify UI, audit logs, orchestration and adapter code. But the selected implementation change exposes a harder boundary: **the decision a user requests is not necessarily the policy state that the system can or does apply.** [Source basis: `research/analysis/Q-20260812-02-decision-intent-effective-policy.md`]
+# The User Clicked “Always Allow.” What Did the System Actually Save?
 
-## What should a shared approval decision mean?
+An approval UI offers three choices: allow once, allow for this session, and always allow. The user chooses the third option, the tool runs, and the audit trail retains one value: `ApprovedMcpPolicyAmendment`.
 
-The evidence shows a shared `ReviewDecision` vocabulary that preserves distinct outcomes for the current request, session scope and an MCP policy-amendment path. That is useful normalization, but it is not universal permission to interpret every decision variant in every domain.
+That value establishes cross-session intent. It does not yet tell an operator whether policy was written, what future calls it matches, or whether an unavailable persistence key turned the result into session-only memory.
 
-The implementation retains domain-specific guards. An MCP-only persistent decision is rejected fail-closed when it reaches unrelated command or generic approval paths. Approval-mode normalization can also reduce a requested broader scope to ordinary approval, and the absence of a persistent key can cause a persistence request to fall back to session memory.
+The selected [OpenAI Codex change](https://github.com/openai/codex/commit/67afc7967463282af932be1984df9e16cc55ed99) moves MCP approvals onto shared `ReviewDecision`, preserves current-call, session and persistent-policy outcomes, and rejects the MCP-only decision fail-closed if it reaches unrelated Shell, Command or Network approval paths. It solves fragmented vocabulary while exposing a second boundary: **a shared decision value is control intent, not a receipt proving effective policy.**
 
-Those behaviors establish a crucial separation: the shared decision value expresses **intent in a common control vocabulary**, while the actually effective authorization scope depends on the active policy mode, domain rules and available persistence mechanism.
+## “Always allow” passes through three gates
 
-## Shared vocabulary without shared semantics is dangerous
+The path from user choice to durable policy contains at least three different semantics:
 
-Tool-specific enums are easy to reason about locally because each value lives inside a narrow domain. Their weakness is fragmentation: UIs, audit pipelines and orchestration layers need translation logic for every tool family.
+| Stage | Question | What can change the answer |
+|---|---|---|
+| Requested decision | What scope did the user request? | UI choice, Guardian, or another decision source |
+| Normalized decision | What does this domain and approval mode permit? | Domain legality, mode constraints, enterprise policy |
+| Effective policy | What was actually stored or remembered? | Persistent key, session key, storage outcome and revision |
 
-A single global enum solves the vocabulary problem but can create a worse semantic problem if every consumer assumes every value is valid everywhere. A persistent-policy decision that is meaningful for one MCP approval path may be nonsensical or unsafe in a generic command approval path.
+The source shows that approval-mode normalization may narrow session or persistent scope to ordinary `Approved`; a missing persistent key may also fall back to session memory. “The user selected always allow” and “the system stored cross-session policy” therefore require separate evidence.
 
-The stronger architectural pattern is therefore not “one enum everywhere.” It is **one shared vocabulary plus fail-closed domain adapters**. The vocabulary improves interoperability; the adapters preserve local policy meaning.
+## Shared types unify language, not authority
 
-## Requested consent and effective policy are different records
+Private enums keep local meaning obvious but force UI, hooks, Guardian and audit layers to translate every tool family. Shared `ReviewDecision` provides a common control vocabulary while retaining rejection reasons, timeout, cancellation and approval scope.
 
-The selected evidence also shows why a decision value cannot, by itself, prove that durable policy was amended. A user may request a persistent scope, while normalization or missing persistence capability results in session-only behavior. The original user choice and the resulting system state are then different facts.
+A variant existing in the shared sum type does not authorize every consumer to interpret it. When an MCP policy decision reaches command execution, the safe result is not “it starts with Approved”; it is a semantic-domain mismatch and a decline.
 
-For auditability, an approval system should make that difference visible. A useful design hypothesis is to return both the requested decision and an **effective decision or effective scope** after normalization. When durable persistence was requested, the system could additionally return a policy revision, durable acknowledgement, or explicit downgrade/failure outcome.
+The protocol needs two forms of stability at once: common transport vocabulary and a domain-specific legal-value set at every adapter. The first without the second turns interoperability into authority leakage.
 
-That would let an audit record answer two separate questions:
+## An audit record needs two answers
 
-- What did the user authorize or request?
-- What authorization state did the system actually apply?
+Where normalization, downgrade or asynchronous persistence can occur, a single `decision` field is insufficient:
 
-This recommendation is an architectural inference from the observed distinction; it is not a feature established by the source.
+```yaml
+requested_decision: approved_mcp_policy_amendment
+effective_scope: session
+normalization_reason: persistent_key_unavailable
+policy_revision: null
+persistence_outcome: downgraded
+```
 
-## Fail-closed adapters preserve domain meaning
+The first two fields separate intent from realized capability; the reason explains the divergence; the revision or durable acknowledgement establishes what the policy store actually did.
 
-The implementation's rejection behavior is important because shared types expand the space of values that can reach a boundary. Without domain validation, a consumer can accidentally give semantics to a decision that should never have been legal there.
+This is not logging for its own sake. It prevents both a temporary approval being reported as persistent policy and a user believing policy was saved only to be prompted again in the next session.
 
-Fail-closed adapters turn that ambiguity into an explicit error instead of an implicit permission. The same principle applies to non-approval terminal outcomes. Denial, timeout and cancellation should remain distinguishable in audit evidence rather than collapsing into a generic `false`, because they describe different governance events and often require different recovery behavior.
+## Fail-closed matters most at semantic mismatches
 
-This yields four general implications for agent approval architecture:
+Conventional checks ask whether a decision is Allow or Deny. A shared control plane has another failure mode: an Allow that is meaningful in domain A arrives at domain B and is mistaken for B's own Allow.
 
-1. current-call consent, session consent and persistent policy amendment should be modeled as distinct scopes;
-2. user intent and effective policy state should be recorded separately when they can diverge;
-3. persistence should expose success, downgrade or failure independently of the original choice;
-4. shared control-plane types should be validated at every domain adapter boundary.
+Adapters should therefore validate actor, resource and effect—not string prefixes. Unknown variants, MCP-only variants in generic tool paths, and missing policy keys need explicit rejection or downgrade facts. Denial, timeout and cancellation should also remain separate audit outcomes; they imply different retry and responsibility semantics even when none authorizes execution.
 
-## What the evidence does not establish
+## Dual records are not a tax on every approval
 
-The available Reading Result does not define a complete persisted-policy model for matching, revocation, synchronization or conflicts. It contains no independent security review or reproduction. It also does not establish that every requested persistent amendment is durably written.
+For one-shot synchronous approval with no possible scope conversion, requested and effective decisions may be identical. If every consumer knows the domain and persistence completes in the same transaction, one decision can be adequate.
 
-For simple one-shot approvals, returning requested and effective fields may add unnecessary protocol complexity. A single decision value can be sufficient when the transport and consumer both know the domain and synchronously know the persistence outcome. The dual-record model matters most when consent scope can be normalized, downgraded, persisted asynchronously or interpreted across component boundaries.
+Dual records become necessary when at least one divergence point exists: policy can narrow scope; persistence can be asynchronous, fail or downgrade; domains share one type; or audit must explain cross-session behavior. Omitting effective scope in those conditions is not simplification—it removes the fact that determines what was actually authorized.
 
-## Questions that remain open
+## Acceptance must not stop at “the user consented”
 
-A production-grade policy architecture still needs explicit answers for policy-store acknowledgement, revision identity, enterprise overrides, concurrent amendments and revocation. It also needs a user-visible representation for the case where persistent consent was requested but only session scope became effective.
+A useful conformance suite should exercise four counterexamples: a persistent request normalized downward, a missing persistent key, an MCP-only decision delivered to a shell path, and policy storage failing after the decision is accepted. Every result should expose requested decision, normalized decision, effective scope and persistence outcome.
 
-The bounded conclusion is therefore architectural rather than universal: **shared approval vocabularies are most trustworthy when they represent decision intent, while effective policy scope is acknowledged separately and semantically invalid decisions are rejected fail-closed.**
+The source does not establish a complete matching, revocation, enterprise-override, concurrent-update or synchronization model, and it is not an independent security reproduction. The bounded architectural conclusion is narrower: **shared approval vocabulary expresses intent; domain adapters decide whether the meaning is legal; effective scope and persistence need their own evidence.**
+
+### Evidence and sources
+
+- **What the source shows:** the Codex protocol, implementation, and same-change tests distinguish approval outcomes and reject semantic-domain mismatches. This is checkable first-party evidence, not independent review.
+- **What the source does not establish:** a complete policy matching, revocation, enterprise-override, concurrent-update, or synchronization model.
+- **What this article proposes testing:** record requested scope, effective scope, and policy revision separately, then test whether the record improves auditability and failure explanation.
+
+**References:**
+
+- OpenAI Codex, [`67afc79` — Use `ReviewDecision` for MCP tool approvals](https://github.com/openai/codex/commit/67afc7967463282af932be1984df9e16cc55ed99), code commit with tests changed in the same commit boundary.

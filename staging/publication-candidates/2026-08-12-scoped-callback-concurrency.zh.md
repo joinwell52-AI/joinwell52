@@ -1,77 +1,78 @@
 ---
 schema: "publication-candidate-article/v2"
-title: "不靠全局锁实现并发：嵌套 Agent Callback 的作用域所有权"
+title: "并发不该先问锁：嵌套 Callback 的最小安全单元"
 date: "2026-08-12"
 column: "open-source-engineering"
 category: "daily"
 article_type: "engineering-insight"
 edition: "research-center"
 research_question: "How can a nested asynchronous tool runtime preserve ownership, cancellation and bounded failure without globally serializing independent sessions?"
-summary: "嵌套 Callback 的安全边界可以来自作用域所有权、取消传播和显式资源限制，而不是单一全局串行锁，从而保留独立 Session 并发。"
-sources: "research/analysis/Q-20260812-03-scoped-callback-concurrency.md; research/reading/Q-20260812-03-grpc-callback-ownership-cancellation.md"
-cover: "./2026-08-12-scoped-callback-concurrency-cover.svg"
+summary: "嵌套 Callback 的安全并发不是先选择锁，而是先建立归属、生命周期、容量和隔离四条边界；一旦越过进程，这些局部边界还必须升级为可持久重建的协议。"
+sources: "https://github.com/openai/codex/commit/ba2fb483197a6b428b8c6d999d192bb056c64ae7; research/analysis/Q-20260812-03-scoped-callback-concurrency.md; research/reading/Q-20260812-03-grpc-callback-ownership-cancellation.md"
+cover: "./2026-08-12-scoped-callback-concurrency-cover.png"
 ---
 
-![三条彼此独立的光弧围绕各自所有权中心运行，没有汇入单一全局瓶颈](./2026-08-12-scoped-callback-concurrency-cover.svg)
+![三条各自封闭的工业穿梭轨道在同一空间内并行前进，彼此可见却不互相阻塞](./2026-08-12-scoped-callback-concurrency-cover.png)
 
-# 不靠全局锁实现并发：嵌套 Agent Callback 的作用域所有权
+*题图：Research Center 原创编辑视觉；并发来自可识别、可终止的独立通道，而不是把所有工作塞进同一把锁。*
 
-嵌套异步工具调用会把 Runtime 推进一个很难治理的区域：父执行需要知道 Callback 属于谁、还有什么工作可以继续、取消究竟意味着什么，以及系统愿意容纳多少未完成工作。最简单的答案是“全部串行”。所选实现展示了另一条更值得研究的路径：**先把所有权和资源边界做成显式事实，再让彼此独立的所有权域保持并发。**［证据基础：`research/analysis/Q-20260812-03-scoped-callback-concurrency.md`］
+# 并发不该先问锁：嵌套 Callback 的最小安全单元
 
-## 并发存在时，哪些事实不能丢
+一个远程 Session 正在执行长任务，执行到一半需要反向调用宿主工具。Callback 已经发出，用户随后终止 Cell；与此同时，另一 Session 发起一项很小的查询。
 
-核心问题不是“同时可以跑多少 Callback”，而是并发存在时，Runtime 是否仍能保持归属和生命周期责任。
+如果系统首先问“这段代码该加哪把锁”，两个问题很容易被绑在一起：已失去所有者的 Callback 仍在等待，独立 Session 也被大请求拖住。更有用的起点是：**这次 Callback 属于谁，它还能活多久，它最多占用多少容量，它的等待是否会越过 Session 边界？**
 
-所选 gRPC Code-mode 路径在接纳嵌套 Callback 工作之前，会校验 Callback 身份、执行与 Cell 的所有权，以及对应工具是否启用。活动工作持有取消令牌；Completion 会观察取消状态；Cell 终止时会取消未完成工作，而正常完成的 Cell 可以让已经启动的 Notification 收尾。Pending Callback、Identifier 和 Payload 也都有显式限制。
+OpenAI Codex 的[所选变更](https://github.com/openai/codex/commit/ba2fb483197a6b428b8c6d999d192bb056c64ae7)把 gRPC Code-mode Callback 转发给 Session Delegate，并展示了几项具体边界：准入前核对 Cell 所有权与可用工具；用 Cancellation Token 连接执行生命周期；限制 Pending Delegate Calls 和近期 Callback ID；测试一个大 Unary Completion 不会阻塞独立 Session。这些事实支持一组可迁移的工程判断，但没有建立跨进程 Exactly-once、持久恢复或外部副作用回滚。
 
-这些事实形成了一个局部安全边界。它们没有证明跨重启 Exactly-once，但说明并发并不必然意味着所有权不可治理。
+## 把“回到哪里”升级为“谁仍然拥有它”
 
-## 所有权应该是准入条件，而不是路由标签
+Callback ID 只能回答消息如何匹配，不能证明接收者仍有权处理它。一个安全的 Callback 至少应绑定 Session、Execution 或 Cell、获准工具集合和当前 Cancellation Scope。
 
-较弱的 Callback 设计里，一个 ID 可能只负责“把结果送回哪里”，却不能证明当前接收方仍然拥有这项工作。Detached Future 很容易创建，但一旦 Parent State 变化，归属、取消和清理就会变得模糊。
+因此，路由表不是普通的 `id -> promise`。它更接近一份短期能力租约：只有创建它的执行实例仍处于可接收状态、所请求工具仍在能力包络中，结果才可以回流。Cell 已结束、Session 已替换或工具授权已撤销时，即使网络响应晚到，也不应重新激活旧执行。
 
-所选设计把 Ownership 直接纳入 Admission。Callback 必须与当前 Execution、Cell Context 匹配，并且 Tool 已启用，才能进入 Runtime。此时 Identity 不再只是描述性元数据，而成为“这项嵌套工作是否仍有资格执行”的治理条件。
+## 一个安全单元需要四条边界
 
-这种设计的价值在生命周期变化时最明显：如果拥有它的 Cell 已终止，未完成工作可以被取消，而不是继续成为一个脱离上下文的孤儿任务，等到原执行环境消失后再返回结果。
+| 边界 | 它限制什么 | 缺失后的典型故障 |
+|---|---|---|
+| Ownership | Callback 属于哪个 Session / Cell | 结果串入错误执行或孤儿结果被接纳 |
+| Lifetime | 何时取消、排空或拒绝晚到结果 | 终止后仍占资源，旧结果复活 |
+| Capacity | Pending 数量、ID 与 Payload 上限 | 单个会话耗尽内存或调度容量 |
+| Isolation | 一个会话的等待能否阻塞其它会话 | 大 Completion 形成全局队头阻塞 |
 
-## 取消与资源边界让失败局部化
+这四条边界共同定义“最小安全单元”。锁只是在单元内部保护状态的一种实现工具；它不能替代所有权检查，也不能自动提供取消、背压和跨 Session 隔离。
 
-只有 Cancellation 还不够。如果系统允许无限 Pending Work、无限 Payload 或无限 Identifier，异步系统仍然可能在运营上失控。所选实现把 Ownership 与多个资源限制结合起来，并对超界行为提供明确拒绝或截断路径。
+## 全局锁是组织复杂度的税
 
-这意味着可靠性不需要建立在“远端参与方会自觉控制行为”的假设上，Runtime 自己拥有受限制的准入面。
+最省事的做法，是用一个全局 Map 和一把全局锁管理所有回调。它在低并发测试中通常正确，却把本不相关的 Session 变成了共同故障域：慢解码、超大结果、锁内通知或清理路径都可能让其它 Session 排队。
 
-证据还区分了正常完成与终止。正常完成的 Cell 可以允许已经启动的工作收尾，终止的 Cell 则能够取消未完成工作。这个差异避免了再次用一个过载的“Closed”状态抹掉生命周期含义。
+更稳妥的结构是按 Session 或执行实例分区状态，只在极短时间内完成查找和所有权验证，把大 Payload 的传输、Delegate 执行和完成通知留在锁外。来源中的独立 Session 非阻塞测试值得保留，因为它验证的不是吞吐数字，而是隔离承诺。
 
-## 为什么全局锁不是唯一安全模型
+## 结束不是一种状态
 
-Global Lock 的优势是顺序简单，但它会把一个慢 Callback 变成无关 Session 的 Head-of-line Blocking。所选集成测试给出了一个有边界的反例：一个 Session 中的大型 Completion 不会阻塞另一个独立 Session。
+“Cell 不再运行”至少有两种含义。正常完成时，已经接纳的通知可能需要排空，确保结果被观察；强制终止时，应传播取消，停止仍在等待的工作。把两者统一为简单删除，会在一边丢失已完成结果，在另一边留下孤儿任务。
 
-这不能证明系统不存在任何共享资源竞争，但它足以建立一个较窄事实：当前被测试的安全模型并不依赖单一全局 Callback Lock。
+关闭协议因此应显式区分：不再接受新 Callback、排空已接纳项、取消未完成项、拒绝晚到结果、释放身份记录。近期 ID 集合的上限也不是小优化；它是在重复、晚到和内存无界增长之间画出有限时间窗口。
 
-因此，更一般的工程解释是：**当工作确实独立时，并发边界应该尽量跟随所有权边界。**共享资源或共享不变量需要串行化时再串行化，而不是仅仅因为并发难以推理，就把所有工作塞进同一把锁。
+## 一旦越过进程，局部所有权就不够了
 
-## 对嵌套工具 Runtime 的工程含义
+内存中的 Session、Token 和 Callback ID 能保护单进程生命周期，却无法回答重启后的同一性。进程在外部工具已经执行、完成事件尚未记录时崩溃，新的 Runtime 不知道应该重试、查询还是补偿。
 
-这个模式带来四条直接工程要求。
+此时需要的不是把本地 Map 永久保存，而是提升协议层级：为执行实例和外部效果提供稳定身份，记录可验证的准入与完成事件，并让外部工具支持幂等键、读回或补偿。这属于进一步设计；所选提交没有证明这些能力，不能从本地并发安全外推为分布式可靠性。
 
-第一，嵌套异步调用应携带 Execution、Cell 或 Session Owner，并在 Dispatch 前完成校验。第二，Cancellation 应附着在被拥有的工作上，并沿 Completion 传播，而不是只成为界面层的取消提示。第三，Pending Work、Identifier 与 Payload 都需要明确 Limit，并让拒绝行为可观测。第四，并发模型应按 Ownership Domain 划分，而不是把所有 Callback 折叠到一把锁后面。
+## 一套可迁移的工程判据
 
-这样既保留独立工作推进，又能让清理与审计知道“谁对这项工作负责”。
+审查类似系统时，可以先做五项反例测试：终止 Cell 后让结果晚到；让一个 Session 返回超大 Completion；填满 Pending Callback；复用旧 ID；在外部效果后、完成记录前杀死进程。
 
-## 仍然需要独立治理的运行问题
+前四项检验局部所有权、生命周期、容量和隔离；最后一项揭示是否已经跨入持久协议问题。若一个实现只能证明“没有数据竞争”，却不能明确回答这五项结果，它仍不足以称为安全的 Agent Callback Runtime。
 
-Scoped Ownership 不能解决所有可靠性问题。当两个 Callback 修改同一个外部资源时，局部 Ownership 并不能提供应用级冲突控制或幂等；Cancellation 也无法追溯撤销已经发生的任意外部副作用。Volatile Recent-ID Cache 同样不能被解释为跨进程重启的 Durable Deduplication。
+可保留的结论很窄：**并发安全的起点不是全局互斥，而是让每次 Callback 成为有所有者、有期限、有容量上限、不会拖住邻居的工作单元；跨进程以后，还必须用持久事实重新证明它是谁。**
 
-如果系统要求重启后继续对账，一种后续设计假设是在异步交接边界增加持久工作实例身份与终态证据，把 Ownership Model 延伸到进程生命周期之外。但当前来源没有实现或验证这项能力。
+### 证据与引用
 
-## 证据边界
+- **源码已经显示：**所选 Codex 路径包含所有权检查、取消传播、容量限制和独立 Session 非阻塞测试。同提交测试仍是项目自身证据，不等于独立验证。
+- **源码尚未证明：**跨进程恢复、Exactly-once 和外部副作用回滚仍未建立。
+- **本文建议进一步验证：**增加稳定执行身份、持久事件和外部幂等或读回，并通过故障注入检验跨重启行为。
 
-现有证据只覆盖所选 gRPC Code-mode 路径及其测试。独立 Session 的并发测试不能证明所有共享竞争已经消失；证据也没有建立跨重启 Durable Callback Identity、外部副作用回滚或 Exactly-once Completion。
+**参考资料：**
 
-因此，这个模式应被理解成有边界的工程结果：在被测试路径中，Scoped Ownership、Revocation 与 Resource Bound 能够在不依赖全局串行化的前提下保留独立 Session 并发。
-
-## 下一道边界仍有哪些问题
-
-持久 Runtime 仍需要回答：Callback Completion 因网络或进程故障丢失时，什么实例身份能够跨重启存续？接近 Pending Work 上限时如何治理公平性和优先级？哪些失败应进入 Parent-turn 的终态证据？Completion 存在歧义时需要什么外部副作用幂等契约？
-
-因此，真正值得保留的结论并不是“Callback 应该始终并发”，而是：**让 Ownership 显式、可撤销、有边界；让无关 Ownership Domain 保持并发；把重启对账和外部副作用安全作为独立契约治理，而不是把它们隐藏在 Callback 机制里。**
+- OpenAI Codex，[`ba2fb48` — Forward gRPC code-mode callbacks to session delegates](https://github.com/openai/codex/commit/ba2fb483197a6b428b8c6d999d192bb056c64ae7)，代码提交及同提交测试变更。

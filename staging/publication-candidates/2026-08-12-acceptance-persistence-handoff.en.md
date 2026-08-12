@@ -1,74 +1,71 @@
 ---
 schema: "publication-candidate-article/v2"
-title: "Acceptance Is Not Persistence: The Missing Handoff State in Durable Agent Work"
+title: "After the Queue Entry Disappears: Who Can Prove the Work Still Exists?"
 date: "2026-08-12"
 column: "digital-employee"
 category: "daily"
 article_type: "technical-analysis"
 edition: "research-center"
 research_question: "When queued intent is removed after Core acceptance rather than after persistence, what execution-authority and recovery boundary should a durable agent runtime expose?"
-summary: "Acceptance can transfer execution authority before durable recovery evidence exists. Durable agent runtimes should expose those two boundaries separately."
-sources: "research/analysis/Q-20260812-01-acceptance-persistence-handoff.md; research/reading/Q-20260812-01-acceptance-based-queued-work-admission.md"
-cover: "./2026-08-12-acceptance-persistence-handoff-cover.svg"
+summary: "Queue deletion can establish that the execution layer took custody; it cannot also establish that recovery evidence was persisted. The missing design object is a reconstructable handoff between those facts."
+sources: "https://github.com/openai/codex/commit/da2803c73cd366b5e01ffe8d0e5f7d396247f827; research/analysis/Q-20260812-01-acceptance-persistence-handoff.md; research/reading/Q-20260812-01-acceptance-based-queued-work-admission.md"
+cover: "./2026-08-12-acceptance-persistence-handoff-cover.png"
 ---
 
-![A luminous work token crossing from immediate acceptance toward a deeper durable record](./2026-08-12-acceptance-persistence-handoff-cover.svg)
+![A machined handoff token crossing the gap between a temporary intake rail and a deep archival vault](./2026-08-12-acceptance-persistence-handoff-cover.png)
 
-# Acceptance Is Not Persistence: The Missing Handoff State in Durable Agent Work
+*Cover: an original Research Center editorial visual representing the still-open handoff between execution custody and durable custody.*
 
-A queue is often treated as the durable truth of work that still needs to happen. That assumption becomes unsafe once a runtime removes an item at **execution acceptance** rather than at **persistence completion**. The selected implementation change makes exactly that distinction visible: queued user input is admitted when Core accepts it as a new turn or steer, and the queue entry is then deleted. The later persistence path is downstream of that admission boundary. [Source basis: `research/analysis/Q-20260812-01-acceptance-persistence-handoff.md`]
+# After the Queue Entry Disappears: Who Can Prove the Work Still Exists?
 
-## The handoff question
+A queued input is accepted by Core and immediately removed from the queue. A few milliseconds later, the process crashes.
 
-The useful question is not whether early acceptance is “better” than waiting for storage. It is: **what fact does each acknowledgement actually establish?**
+After restart, the queue is empty, no later durable record exists, and the client knows only that its request timed out. The hardest question is not yet whether to retry. It is more basic: **what surviving fact proves who took custody of this work?**
 
-The evidence supports a bounded answer. Core acceptance establishes that execution authority has moved into the runtime. Queue deletion therefore means “this work has been accepted for execution.” It does **not** establish that every downstream state transition is already durable, restart-safe, or exactly-once. The same source explicitly leaves end-to-end exactly-once processing, external-side-effect idempotency, and complete crash recovery outside its evidence boundary.
+That is the gap hidden when acceptance and persistence are compressed into one status. The selected [OpenAI Codex change](https://github.com/openai/codex/commit/da2803c73cd366b5e01ffe8d0e5f7d396247f827) supports two narrow facts: queued input is admitted when Core accepts it, and the Queue Entry is then deleted. It does not establish restart-safe exactly-once processing or rollback for arbitrary external effects.
 
-That difference matters for any long-lived agent or digital-worker runtime because failures do not respect component boundaries. A client can time out after the runtime has accepted work but before later durable evidence is available. A process can restart after queue ownership has been dropped. A downstream hook can stop work after admission without restoring the queue item. Those cases are not equivalent to “the work was never accepted.”
+## Cut the path at three failure points
 
-## Two acknowledgements, two meanings
+Start with a crash rather than a vocabulary of states:
 
-A persistence-gated admission model waits until storage has recorded enough state before acknowledging the handoff. Its advantage is a stronger durable checkpoint at the cost of coupling admission latency and failure semantics to storage.
+| Moment | What is established | What is not established |
+|---|---|---|
+| Queue Entry still exists | The system retains demand for execution | No execution owner has necessarily accepted responsibility |
+| Core accepted; Queue Entry deleted | Execution responsibility transferred | Restart-surviving execution evidence may not yet exist |
+| A later record was persisted | At least one recovery or reconciliation fact can survive | End-to-end exactly-once still does not follow |
 
-An acceptance-gated model moves the execution boundary earlier. That can make the runtime more responsive and better aligned with the actual moment at which Core takes responsibility. But it creates a second obligation: **the system must expose what durable evidence survives if failure happens after acceptance.**
+These moments are not percentages on a completion bar. They answer whether demand exists, whether responsibility transferred, and whether evidence survives failure. Calling the second row “completed” makes an empty queue carry a claim it cannot support.
 
-The two events therefore answer different questions:
+## Custody transfers; correctness does not
 
-- **Accepted:** Who owns execution now?
-- **Durably recorded:** What evidence survives restart or reconciliation?
+Core acceptance draws a useful responsibility boundary. From that point, the client or upstream queue should no longer treat the work as unowned. Earlier acknowledgement may also reduce storage-coupled admission delay.
 
-Treating them as one overloaded state hides the interval between them. That interval is where ambiguous retries and duplicate execution claims are most likely to become governance problems.
+But custody is not correctness. A downstream hook can stop the work, the process can exit before a durable record is written, and an external operation can remain outcome-ambiguous. Recovery can no longer rely on the deleted Queue Entry, yet it cannot infer success from queue absence.
 
-## Where ambiguity enters
+The important design object is therefore not another Boolean. It is a reconstructable **work occurrence**: who accepted it, which submission was accepted, the last verified event, and the evidence a successor must use.
 
-Consider a client that submits queued work and then loses the response. If the queue item is still present, retry logic can often reason from queue ownership. If Core already accepted and removed the item, the queue can no longer serve as the authoritative record of whether replay is safe.
+## A receipt can narrow ambiguity, not abolish it
 
-At that point the runtime needs another source of truth. Without one, the client and scheduler may know that the queue no longer contains the request but still lack durable evidence about whether the accepted occurrence completed, stopped, or must be reconciled.
+One testable hypothesis is to persist an Accepted-occurrence Receipt, with stable occurrence identity, before or while destructive queue ownership is released.
 
-This is why “queue empty” must not be promoted into “work safely completed.” It establishes only the narrower fact that queue ownership has ended under the changed path. Any stronger claim would exceed the evidence.
+Such a receipt can turn “the queue is empty and nothing is known” into “this occurrence was accepted and its later outcome requires reconciliation.” It can distinguish never accepted, accepted without later progress, durably recorded, and terminal work.
 
-## What a governed handoff should expose
+It cannot create exactly-once semantics by itself. A crash after an external effect but before terminal persistence still requires an idempotency key, an external read-back, or compensation. For naturally replayable work, the state cost of a receipt may exceed the ambiguity it removes. Earlier acceptance is not universally better than persistence-gated admission; they choose different latency, state, and recovery costs.
 
-A stronger durable design would make the handoff observable as at least two separate state transitions. One reasonable hypothesis is an **accepted-occurrence receipt** or equivalent record that survives the loss of queue ownership and carries a stable occurrence identity.
+## How this design should be falsified
 
-Such a receipt would not magically provide exactly-once execution. It would instead give recovery logic a durable object to reconcile against. The runtime could then distinguish “accepted but not yet durably progressed,” “accepted and durably recorded,” and later terminal outcomes without pretending they are the same fact.
+The next step is fault injection, not more status names. Terminate the process before Core acceptance, after queue deletion, around receipt persistence, and on both sides of an external effect. Then reconstruct the occurrence using only durable facts.
 
-This leads to three general engineering requirements:
+If recovery cannot distinguish never accepted from accepted-but-lost, the receipt is still written too late. If occurrence identity survives but the external effect remains unknowable, the missing contract is effect idempotency and read-back—not another queue state. If naturally replayable work recovers without ambiguity, the receipt should not become a universal requirement.
 
-1. schedulers and queues should expose demand, acceptance, and durable recovery evidence separately;
-2. retry policy should name the authoritative state source after queue ownership transfers;
-3. ambiguous retries should use occurrence identity or reconciliation evidence before claiming replay safety.
+The bounded conclusion is deliberately falsifiable: **execution acceptance may transfer custody, but a durable runtime needs separate surviving evidence that reconstructs that transfer; even that evidence does not prove the work ran only once.**
 
-These are architecture recommendations derived from the observed handoff semantics, not source-established features.
+### Evidence and sources
 
-## Boundaries of the evidence
+- **What the source shows:** the selected Codex implementation deletes the Queue Entry after Core admission. The public commit is checkable first-party evidence, not independent validation.
+- **What the source does not establish:** restart-safe exactly-once behavior, global effect idempotency, and complete crash recovery remain unproven.
+- **What this article proposes testing:** implement an Accepted-occurrence Receipt and use fault injection to determine whether it reduces recovery ambiguity.
 
-The evidence covers one changed queued-user-message path and its documented tests. It does not define a universal agent queue protocol. It includes no independent failure-injection study, and it does not establish restart-safe deduplication or arbitrary external-side-effect rollback.
+**References:**
 
-Waiting for persistence before admission can still be the correct choice in systems where durable storage is the intended handoff authority. Likewise, systems whose accepted work is naturally replayable may not need a separate durable receipt. The important point is not that one boundary is universally superior; it is that the system should not silently make one boundary stand in for the other.
-
-## Questions a runtime still has to answer
-
-Three questions remain open before a durable agent runtime can claim a complete recovery model: Which authoritative state drives replay after failure between acceptance and later persistence? Which occurrence identity survives ambiguous retries across process restarts? And should work that was accepted but later stopped by a downstream hook receive its own durable terminal event?
-
-Until those questions are answered, the defensible conclusion is narrow but useful: **execution acceptance can legitimately transfer authority before durable completion evidence exists, and the runtime should model those facts separately.**
+- OpenAI Codex, 11 August 2026, [`da2803c` — Simplify queued user message admission](https://github.com/openai/codex/commit/da2803c73cd366b5e01ffe8d0e5f7d396247f827), code commit with tests changed in the same commit boundary.
