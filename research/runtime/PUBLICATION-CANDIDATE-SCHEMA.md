@@ -1,18 +1,26 @@
-# Publication Candidate Contract V1.1
+# Publication Candidate Contract V2
+
+## Compatibility
+
+`runtime-publication-candidate/v2` applies to new automated Production from 2026-08-12. Historical `v1` batches and released articles remain valid, immutable records and are not upgraded in place.
 
 ## Purpose
 
-**Research Runtime Production** runs every day at 15:00. It does not publish. It converts eligible analyzed research objects into complete, bilingual **Publication Candidates** by executing:
+Production converts eligible Research Objects into complete bilingual Research Center Editions after executing:
 
 ```text
-Skill 05 — Research Writing
-→ Skill 06 — Visualization
-→ Skill 07 — Evidence & Citation
-→ Skill 08 — Publication Editing
+Research question and evidence identities
+→ Article-type identification
+→ Dynamic module selection
+→ Skill 05 Research Writing
+→ Skill 06 Visualization
+→ Skill 07 Evidence & Citation
+→ Skill 08 Publication Editing
+→ Six pre-publication gates
 → Publication Candidate
 ```
 
-A Publication Candidate is a complete report waiting for the 20:00 release shift. It is not an unfinished draft.
+A candidate is complete release input, not an unfinished draft. Publication may release it but may not repair its research, evidence, structure, language, or editions.
 
 ## Canonical path
 
@@ -24,41 +32,78 @@ research/runtime/candidates/YYYY/MM/YYYY-MM-DD-candidates.json
 
 ```json
 {
-  "schema": "runtime-publication-candidate/v1",
+  "schema": "runtime-publication-candidate/v2",
   "date": "YYYY-MM-DD",
   "timezone": "Asia/Shanghai",
-  "status": "Waiting | Running | Completed | Blocked | Failed | Skipped",
+  "status": "Completed",
   "sourceTask": "Research Runtime Production",
-  "sourceRecord": "research/runtime/YYYY/MM/YYYY-MM-DD-runtime.md",
-  "updatedAt": "ISO-8601 timestamp or empty",
-  "githubCommit": "full SHA or pending",
-  "reason": "Required for zero-output Completed or Skipped",
-  "reason_zh": "Completed 且输出为 0，或 Skipped 时必须填写",
+  "sourceRecord": "research/runtime/records/daily/YYYY/MM/YYYY-MM-DD-daily-runtime.json",
+  "updatedAt": "ISO-8601 timestamp",
+  "githubCommit": "pending",
+  "reason": "Exact English completion reason",
+  "reason_zh": "准确的中文完成原因",
   "candidates": []
 }
 ```
+
+Zero-output `Completed` remains valid with an exact bilingual `No Eligible Research Object` reason. `Skipped` is reserved for an explicitly non-applicable shift that was not executed.
 
 ## Candidate entry
 
 ```json
 {
-  "column": "digital-employee",
+  "column": "industry-architecture",
+  "category": "daily",
   "itemId": "Q-...",
-  "title": "English title",
-  "title_zh": "中文标题",
+  "articleType": "research-brief",
+  "researchQuestion": "What can the available evidence answer?",
+  "title": "Research Center title",
+  "title_zh": "Research Center 中文标题",
   "zhPath": "staging/publication-candidates/...zh.md",
   "enPath": "staging/publication-candidates/...en.md",
-  "coverPath": "staging/publication-candidates/...-cover.webp",
-  "inlineFigures": [
+  "sections": [
     {
-      "path": "staging/publication-candidates/...-figure.svg",
-      "placement": "observation",
-      "caption": "Figure 1. ...",
-      "caption_zh": "图 1：……",
-      "source": "Research Center synthesis based on the cited primary sources.",
-      "source_zh": "Research Center 基于文中引用的一手资料综合绘制。"
+      "module": "what-changed",
+      "heading": "What actually changed",
+      "heading_zh": "真正发生了什么"
+    },
+    {
+      "module": "what-remains-unclear",
+      "heading": "What the release does not establish",
+      "heading_zh": "这次发布尚未说明什么"
     }
   ],
+  "endingModule": "what-remains-unclear",
+  "evidenceClaims": [
+    {
+      "id": "C1",
+      "identity": "source-reported-claim",
+      "claim": "The source reports the bounded behavior.",
+      "claim_zh": "来源方报告了该限定行为。",
+      "source": "Stable source or repository evidence path",
+      "strength": "reports",
+      "independent": false
+    }
+  ],
+  "projectRelevance": {
+    "status": "none",
+    "projects": [],
+    "rationale": "The external argument is complete without first-party project mapping."
+  },
+  "communityEdition": {
+    "decision": "not-generated",
+    "rationale": "No community-specific angle adds value."
+  },
+  "gates": {
+    "researchValue": "PASS",
+    "independence": "PASS",
+    "evidence": "PASS",
+    "structure": "PASS",
+    "language": "PASS",
+    "bilingualConsistency": "PASS"
+  },
+  "coverPath": "staging/publication-candidates/...-cover.webp",
+  "inlineFigures": [],
   "coverGate": "PASS",
   "inlineVisualGate": "PASS",
   "layoutGate": "PASS",
@@ -68,57 +113,81 @@ research/runtime/candidates/YYYY/MM/YYYY-MM-DD-candidates.json
 }
 ```
 
-`column` must be one of:
+## Extensible type and module declarations
 
-- `digital-employee`;
-- `industry-architecture`;
-- `open-source-engineering`.
+Registered types and modules are stored in `research/editorial/EDITORIAL-ARCHITECTURE.json`. A candidate may introduce a new type with:
 
-`inlineFigures: []` is valid. Production decides whether the article benefits from technical visual explanation; it must not manufacture a Figure to satisfy a fixed asset count.
+```json
+"articleTypeDefinition": {
+  "purpose": "Why this type is distinct",
+  "defaultProjectRole": "none"
+}
+```
 
-For historical compatibility, a legacy candidate may retain `figurePath`. New Production output uses `inlineFigures[]` as the authoritative visual model. A legacy `figurePath` must never be treated as a fixed Markdown section or as a required second publication object.
+A new module uses `moduleDefinitions` keyed by module ID. Extensions do not change the Runtime lifecycle.
 
-## Cover / Inline Figure role gate
+## Dynamic section contract
 
-`coverPath` is the dedicated editorial Article Cover and must pass Skill 06 Cover Gate, including thumbnail-scale recognition. `inlineFigures[]` contains only explanatory visuals used contextually inside the article. The same asset MUST NOT satisfy both roles. A workflow, lifecycle, architecture stack, state machine or other explanatory schematic cannot be promoted into `coverPath` merely because it already exists.
+- `sections[]` records the modules actually used and their natural bilingual headings.
+- No universal section list or order is required.
+- Every declared heading must appear in the matching article language.
+- `endingModule` equals the last declared module and may be `limitations`, `what-remains-unclear`, or `open-questions`.
+- Empty template sections and forced conclusions fail the Structure Gate.
 
-Each `inlineFigures[]` entry must:
+## Evidence claim contract
 
-- identify an existing file;
-- declare a semantic body placement such as `observation`, `discussion` or `engineering-impact`;
-- provide matching Chinese and English captions;
-- identify its source basis;
-- appear at the declared location in both candidate articles.
+Every material claim records a shared bilingual identity and strength. `internal-experimental-evidence` requires `independent=false`; `independent-evidence` requires `independent=true` and a named independent source.
 
-## Production completion gate
+Publication, DOI, Zenodo, indexing, citation, peer review, and formal release are status facts. They cannot be used to infer theory validation, academic endorsement, or general validity. Successful implementation remains bounded implementation evidence.
 
-A candidate may be marked complete only when:
+## Project relevance contract
 
-- the research object has passed Reading and Analysis;
-- the full Chinese and English Markdown files exist;
-- metadata and target column are valid;
-- a dedicated editorial Article Cover exists and passes the Skill 06 Cover Gate;
-- `inlineFigures[]` accurately records zero or more contextually needed visuals;
-- `coverPath` does not point to any Inline Figure asset;
-- every Inline Figure has matching placement, caption and source evidence in both article languages;
-- the Article Layout Gate passes with no fixed Cover/Figure image-container sections;
-- every material claim has source evidence;
-- citations have been checked;
-- Publication Editing is complete;
-- the candidate is not yet placed in the public article directory.
+Allowed statuses are:
 
-New Production candidates created after this contract update must record `coverGate`, `inlineVisualGate` and `layoutGate` as `PASS` before completion.
+- `none`;
+- `research-object`;
+- `case-evidence`;
+- `substantive-relationship`.
 
-`Completed` means the Production shift executed successfully. It may contain one or more candidates, or zero candidates with an exact bilingual `No Eligible Research Object` outcome. `Skipped` is reserved for a shift that is explicitly not applicable and therefore not executed.
+If `status=none`, the article and any Community Edition must not insert TMPA, FCoP, or CodeFlowMu. A non-`project-research` article must pass the deletion test. Project names never appear solely for internal linking.
 
-## 20:00 publication boundary
+## Community Edition contract
 
-Research Runtime Publication consumes only this candidate batch. It may:
+`decision` is `generated`, `not-generated`, or `deferred`. A generated edition records:
 
-- move or write complete candidate files into the public bilingual article paths;
-- update metadata, indexes and website references;
-- commit to GitHub;
-- verify the commit and published paths;
-- mark the object Released.
+```json
+{
+  "decision": "generated",
+  "targetCommunity": "OpenAI Developer Community",
+  "title": "Different community title",
+  "title_zh": "不同的社区标题",
+  "angle": "One community-relevant question",
+  "discussionQuestion": "A concrete discussion question",
+  "enPath": "staging/community-editions/...en.md",
+  "zhPath": "staging/community-editions/...zh.md"
+}
+```
 
-It must not perform new research, substantive writing or evidence repair. A candidate that fails the release gate returns to Production or an earlier research stage.
+The title, angle, heading structure, and discussion question differ from the Research Center Edition. The body cannot be an identical copy, generic summary, or advertisement.
+
+## Visual contract
+
+The Article Cover and optional Inline Figures retain the V1.1 role separation and gates. Visuals do not determine article modules. `inlineFigures: []` is valid.
+
+## Completion gate
+
+A V2 candidate is complete only when:
+
+- the research question, type, dynamic sections, evidence identities, and project relevance are declared;
+- Chinese and English files exist and use `publication-candidate-article/v2` metadata;
+- claim identity and strength are equivalent in both languages;
+- all six editorial gates are `PASS`;
+- the Article Cover, Inline Visual, and Layout Gates pass;
+- any Community Edition is separately framed and machine-valid;
+- the candidate is not yet in the public article directory.
+
+The machine validator is `scripts/publication-editorial-validate.mjs`.
+
+## Publication boundary
+
+Publication may copy complete Research Center and authorized Community Edition artifacts to their target surfaces, update metadata and indexes, commit, verify, and release. It must return any failed candidate upstream and must not perform new research, substantive rewriting, evidence repair, type selection, module repair, or claim-strength repair.

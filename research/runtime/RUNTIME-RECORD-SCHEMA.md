@@ -18,7 +18,7 @@ center_version: "3.0"
 result_contract: "runtime-task-result/v1"
 plan_contract: "runtime-column-plan/v1"
 plan_path: "research/runtime/plans/YYYY/MM/YYYY-MM-DD-plan.json"
-candidate_contract: "runtime-publication-candidate/v1"
+candidate_contract: "runtime-publication-candidate/v2" # new Production from 2026-08-12; historical v1 remains readable
 candidate_path: "research/runtime/candidates/YYYY/MM/YYYY-MM-DD-candidates.json"
 date: "YYYY-MM-DD"
 timezone: "Asia/Shanghai"
@@ -49,7 +49,7 @@ task_academic: "..."
 
 All status-bearing fields use exactly the six Runtime statuses. `pending` is allowed only for commit fields, never as a status.
 
-Historical Scheduler V1.0 records remain readable. Records created or upgraded under Scheduler V2.0 contain the plan, candidate and Production fields.
+Historical Scheduler and `runtime-publication-candidate/v1` records remain readable and are not migrated in place. New Production from 2026-08-12 uses the question-driven V2 editorial contract.
 
 ## Required body
 
@@ -130,20 +130,22 @@ Queue is complete only after this plan exists and every column has `Selected` or
 
 `task_production: Completed` requires:
 
-- at least one candidate in the candidate batch;
-- complete Chinese and English reports;
-- completed writing, visualization, evidence and citation validation, and publication editing;
+- one or more candidates, or an exact bilingual governed zero-output result;
+- complete Chinese and English Research Center reports for every candidate;
+- research question, article type, dynamic modules, evidence identities and project relevance;
+- completed writing, visualization, evidence and citation validation, publication editing and six editorial gates;
+- a generated, deferred or not-generated Community Edition decision;
 - lifecycle `Publication Candidate`;
 - no public release yet.
 
-When no object is eligible, Production is `Skipped`, the candidate list is empty, and the result states the exact upstream blocker.
+When no object is eligible after Production executes its gate, Production is `Completed`, the candidate list is empty, and the result states the exact bilingual outcome. `Skipped` remains reserved for an explicitly non-applicable shift that was not executed.
 
 ## Publication completion gate
 
 `task_publication: Completed` requires:
 
 - one or more complete Publication Candidates;
-- public bilingual files and metadata;
+- public bilingual Research Center files and metadata, plus any separately authorized Community Edition output;
 - updated indexes and website surfaces;
 - GitHub commit;
 - commit and path verification;

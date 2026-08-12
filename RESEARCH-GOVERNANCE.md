@@ -15,6 +15,8 @@ scheduler: Research Runtime Scheduler V3.0
 architecture_status: frozen
 skills: Research Skills V2.0
 intelligence: Research Intelligence System V1.0
+editorial_architecture: Research Editorial Architecture V2.0
+candidate_contract: runtime-publication-candidate/v2 for new Production
 system_of_record: GitHub
 ```
 
@@ -63,6 +65,18 @@ Evidence authority is ordered as follows:
 
 Community discussion is a lead unless reproduced or confirmed. Popularity, stars, forum volume, and vendor claims are not independent validation.
 
+Evidence-source authority and evidence identity are separate dimensions. New Production must also classify each material claim as `public-fact`, `source-reported-claim`, `our-observation`, `our-interpretation`, `internal-experimental-evidence`, `independent-evidence`, `hypothesis`, or `open-question`. Language strength follows identity and scope.
+
+Publication status, a DOI, indexing, citation, peer review, or successful first-party implementation must not be promoted into a stronger evidence identity. In particular:
+
+```text
+Publication ≠ Validation
+Citation ≠ Endorsement
+Peer Review ≠ Proof
+Self-reported Evidence ≠ Independent Evidence
+Implementation Success ≠ General Validity
+```
+
 ## 6. Four independent Runtime systems
 
 Research Runtime Center V5.0 is the formal operational control plane. Four Runtime systems are recognized and must not be mixed:
@@ -93,7 +107,7 @@ Each Daily column must receive `Selected` or `No Selection` every day. A publish
 
 | Runtime | Schedule | Boundary |
 |---|---:|---|
-| Weekly Runtime | Sunday 20:30 | Must not copy or concatenate Daily articles. |
+| Weekly Runtime | Sunday 20:30 | Must connect material changes, evidence, disputes, judgments, and open questions; must not copy Daily articles or force first-party mapping. |
 | Academic Runtime | Wednesday 16:00 | Ordinary product and industry news is excluded. |
 | Research Program Runtime | Monday 12:00 | Must not enter Daily Runtime or publish without Program Review. |
 
@@ -110,10 +124,15 @@ Timezone is `Asia/Shanghai`.
 Production executes:
 
 ```text
-Research Writing
+Research question
+→ Evidence identity and findings
+→ Article-type identification
+→ Dynamic module selection
+→ Research Writing
 → Research Visualization
 → Evidence & Citation
 → Publication Editing
+→ Research Value / Independence / Evidence / Structure / Language / Bilingual Consistency Gates
 → Publication Candidate
 ```
 
@@ -187,6 +206,16 @@ Research Intelligence
 
 A formal publication change without a V5 Runtime Record must fail validation.
 
+New V2 Production additionally follows:
+
+```text
+research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md
+research/editorial/EDITORIAL-ARCHITECTURE.json
+research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md
+```
+
+The V2 contract applies prospectively. V1 candidate records and released articles remain valid historical evidence and are not migrated in place.
+
 ## 13. Observation Notes information model
 
 Observation Notes use two independent dimensions:
@@ -198,7 +227,21 @@ category: daily | weekly | academic
 
 Academic is a publication category, not a fourth Daily column.
 
-## 14. GitHub-first history policy
+Article type is a third independent editorial dimension. The initial registry includes Research Brief, Technical Analysis, Engineering Insight, Comparative Study, Experiment Report, Case Study, Research Note, Project Research, and Perspective, and remains extensible.
+
+## 14. Research independence and edition boundary
+
+External research must first reach conclusions from the research object and public evidence. TMPA, FCoP, CodeFlowMu, or another first-party project cannot be a preset conclusion, mandatory final section, internal-link target, or promotional entry point.
+
+Every non-Project Research candidate records the result of this deletion test:
+
+> If first-party project names are removed, does the core argument remain intact?
+
+When a project appears, its declared role is `research-object`, `case-evidence`, or `substantive-relationship`. `none` is valid and expected for unrelated external research.
+
+The Research Center Edition preserves the complete evidence-bearing article. Community Edition is optional and must select a community-specific question, title, angle, structure, and discussion prompt. It cannot be a full copy, generic summary, or advertisement.
+
+## 15. GitHub-first history policy
 
 Git provides the authoritative history:
 
@@ -210,11 +253,13 @@ Git provides the authoritative history:
 
 Generated text is not a formal result until it passes the applicable Runtime and publication gates.
 
-## 15. TMPA boundary
+## 16. TMPA boundary
 
 Research Report Production Engine V1.3 applies a single-writer lifecycle-governance subset of TMPA. It does not demonstrate the full multi-writer role separation of TMPA and must not be presented as complete validation of every TMPA claim.
 
-## 16. V5 freeze rule
+The publication, archive, DOI, release, conformance, and implementation records establish versioned provenance and bounded evidence. They do not independently validate TMPA or establish general validity.
+
+## 17. V5 freeze rule
 
 After V5.0, the following are frozen:
 
@@ -224,6 +269,8 @@ After V5.0, the following are frozen:
 - the separation of Program work from Daily Runtime.
 
 Future work may optimize source quality, worker performance, metrics, UX, evidence quality and publication quality, but must not recombine the four Runtime systems.
+
+Editorial Architecture V2 changes how research questions, evidence, article types, modules, gates, and editions are handled. It does not change the frozen four-family Runtime topology or six Daily-stage order.
 
 ## Final principles
 

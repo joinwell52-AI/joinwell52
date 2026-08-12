@@ -85,7 +85,13 @@ Review evidence-backed architecture candidates and make one governed disposition
 
 ## 15:00 — Research Runtime Production
 
-Read the Daily Research Plan, current Queue and eligible analyzed objects. For each eligible column object, execute:
+Read the Daily Research Plan, current Queue and eligible analyzed objects. For each eligible Research Object:
+
+1. confirm the research question and evidence identities;
+2. identify an article type from the extensible registry, or declare a justified extension;
+3. select and order only content modules that advance the answer;
+4. record project relevance after the research judgment exists;
+5. execute:
 
 ```text
 Skill 05 — Research Writing
@@ -100,7 +106,13 @@ Create complete Chinese and English reports, required visual assets, valid metad
 research/runtime/candidates/YYYY/MM/YYYY-MM-DD-candidates.json
 ```
 
-The output lifecycle is `Publication Candidate`. Production must not place the report into the public article directory and must not publish to the website.
+New output uses `runtime-publication-candidate/v2` and `publication-candidate-article/v2`. The output lifecycle is `Publication Candidate`. Production must not place the report into the public article directory and must not publish to the website.
+
+Article structure serves the research question. Do not reuse `Summary → Source → Observation → Discussion → Engineering Impact → Future Work → References` as a mandatory outline. Those modules remain available only when they add value. `Engineering Impact`, `Implications for Current Work` and `Conclusion` are optional, and an article may end with Limitations, What Remains Unclear or Open Questions.
+
+For external research, conclusions must stand without first-party project names. Do not insert TMPA, FCoP or CodeFlowMu as a habitual final destination or internal-link target. General engineering implications address the affected class of systems, runtimes, governance, operations or developer practice first.
+
+Classify every material claim as public fact, source-reported claim, our observation, our interpretation, internal experimental evidence, independent evidence, hypothesis or open question. Do not infer validation from publication, DOI, Zenodo, indexing, citation, peer review or successful implementation.
 
 For each eligible Research Object, produce one formal editorial Article Cover. The cover must use cinematic or controlled editorial lighting, one dominant semantic object, strong visual hierarchy and low information density. It must read as the opening image of a serious technology publication. Architecture diagrams, workflows, lifecycle diagrams, state machines, dashboards and node graphs are not valid Article Covers.
 
@@ -115,19 +127,21 @@ Technical visuals are Inline Figures. Decide whether the article benefits from v
 ## 解释图
 ```
 
-Run the Cover Gate, Inline Visual Gate and Article Layout Gate before marking the candidate complete. The final candidate must read and render as a finished research publication, not as a generated artifact inventory.
+Run Research Value, Independence, Evidence, Structure, Language, Bilingual Consistency, Cover, Inline Visual and Article Layout Gates before marking the candidate complete. The final candidate must read and render as a finished research publication, not as a generated artifact inventory or a high-volume template instance.
+
+After the Research Center Edition is complete, decide whether a Community Edition adds a real discussion angle for a named professional community. A generated Community Edition must have a different title, angle, structure and discussion question; it cannot be a full copy, generic summary or advertisement. `not-generated` with a reason is valid.
 
 When no object has passed all upstream gates, complete the governed Production review with zero candidates and record the exact bilingual outcome. Use `Skipped` only when the shift is explicitly not applicable and was not executed.
 
 ## 20:00 — Research Runtime Publication
 
-Read only the Publication Candidate batch. Release complete candidates by column, update public bilingual Markdown, metadata, indexes and website references, commit to GitHub, fetch the commit and verify the published paths.
+Read only the Publication Candidate batch. Release complete Research Center candidates by column and only separately authorized Community Editions; update public bilingual Markdown, metadata, indexes and website references, commit to GitHub, fetch the commit and verify the published paths.
 
 Publication must not discover sources, perform analysis, write a new report or repair weak evidence. A failed candidate returns to Production or the relevant earlier stage.
 
 ## Sunday 20:30 — Research Runtime Weekly
 
-Use the previous seven days of evidence-validated Daily Research Notes. Produce genuinely new cross-analysis, architecture judgment and engineering judgment. Do not concatenate Daily notes.
+Use the previous seven days of evidence-validated Daily Research Notes. Build an independently readable AI Research Brief around the week's materially important changes, connections among them, evidence and disputes, supportable judgments and unresolved questions. Do not concatenate Daily notes and do not force mapping to TMPA, FCoP or CodeFlowMu. `Implications for Current Work` is optional and requires a substantive relationship produced by the findings.
 
 ## Wednesday 10:00 — Research Runtime Academic
 

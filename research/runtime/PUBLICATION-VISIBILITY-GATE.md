@@ -10,6 +10,7 @@ A `Completed` Publication work result no longer means public delivery is complet
 
 ```text
 Publication Result Completed
+→ V2 Editorial Contract PASS when applicable
 → Release Manifest = Released
 → bilingual source articles exist
 → bilingual VitePress article routes are generated
@@ -49,6 +50,8 @@ For each `releasedItems[]` entry it verifies:
 - `/zh/research/` and `/en/research/` discover the article;
 - the matching Digital Employee / Industry Architecture / Open-source Engineering column index discovers the article;
 - the manifest-declared cover exists.
+
+For a `runtime-publication-candidate/v2` release, Publication must first preserve the completed Research Value, Independence, Evidence, Structure, Language and Bilingual Consistency gates. A generated Community Edition is a separate output: its own authorized target path and discoverability must be verified without treating the Research Center article as interchangeable copy.
 
 If this gate fails, Pages Verify fails and `Publish gh-pages branch` is skipped.
 

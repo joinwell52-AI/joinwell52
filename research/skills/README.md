@@ -1,6 +1,8 @@
-# Research Skills V2.0
+# Research Skills V2.1 — Editorial Architecture V2
 
 Research Skills V2.0 defines the reusable capabilities used by the joinwell52 Research Operating System.
+
+From 2026-08-12, Skills 04, 05, 07 and 08 implement the question-driven Editorial Architecture V2: extensible article types, dynamic modules, research independence, evidence identity and claim-strength calibration, distinct Research Center / Community Editions, and six pre-publication gates.
 
 The governed production sequence remains eight skills:
 
@@ -64,4 +66,4 @@ A publishing target must never force a weak signal into selection.
 
 ## Boundary
 
-These skills govern Research Notes and their source intelligence. TMPA Publication remains maintained by its dedicated publication task and GitHub history.
+These skills govern new Research Center articles and their source intelligence. Historical and formally archived publications remain unchanged. TMPA Publication remains maintained by its dedicated Project Research task and GitHub history; its publication status is not automatic validation evidence.

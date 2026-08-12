@@ -1,54 +1,79 @@
-# Skill 04 — Research Analysis
+# Skill 04 — Research Analysis V2
 
 ## Purpose
 
-Transform verified reading notes into a clear research judgment.
+Transform verified reading evidence into a question-driven Research Object without presupposing an article outline or a first-party project conclusion.
 
-## Required separation
+## Required reasoning
 
-### Observation
+1. State the research question.
+2. Separate public facts, source-reported claims, our observations, and our interpretations.
+3. Identify what the evidence supports, contradicts, and leaves unknown.
+4. Form a bounded research judgment.
+5. Identify the most suitable article type and only the content modules the judgment needs.
+6. Evaluate general implications for the affected systems and practices.
+7. Test first-party project relevance after the judgment exists.
 
-Describe what the sources show without inserting the Research Center conclusion.
+## Evidence identities
 
-### Discussion
+Use the identities in `research/editorial/EDITORIAL-ARCHITECTURE.json`:
 
-Explain why the observation matters, how it compares with similar systems, and what architectural pattern may be emerging.
+- `public-fact`;
+- `source-reported-claim`;
+- `our-observation`;
+- `our-interpretation`;
+- `internal-experimental-evidence`;
+- `independent-evidence`;
+- `hypothesis`;
+- `open-question`.
 
-### Research Judgment
+Publication, citation, DOI, indexing, peer review, or implementation status cannot be used to raise an evidence identity automatically.
 
-State one or more conclusions that follow from the evidence and analysis.
+## General implications first
 
-### Engineering Impact
+Evaluate implications for the actual affected class, such as agent systems, AI coding systems, multi-agent systems, runtimes, orchestration, governance, reliability, observability, recovery, verification, operations, research method, or developer practice.
 
-Evaluate impact on:
+`Implications for Current Work` is optional. It is allowed only when the completed judgment creates a concrete relationship to a declared first-party project.
 
-- TMPA as research input only;
-- Digital Employee architecture;
-- CodeFlowMu engineering and product direction.
+## Project-relevance test
 
-## Analysis questions
+For non-Project Research, record one of:
 
-- What changed?
-- What is structurally important rather than merely new?
-- Which layer does the mechanism belong to?
-- What problem does it solve?
-- What does it not solve?
-- Is the mechanism reusable for SMEs?
-- What conflicts with or reinforces current architecture?
+- `none`;
+- `case-evidence`;
+- `substantive-relationship`.
+
+If removing TMPA, FCoP, and CodeFlowMu names collapses the core argument, either the object is genuine `project-research` or the analysis is over-mapped and must be revised.
 
 ## Output
 
 ```yaml
 analysis:
+  research_question:
+  evidence_claims:
+    - id:
+      identity:
+      claim:
+      source:
+      strength:
+      independent: false
   observations:
-  cross_comparison:
-  discussion:
+  comparisons:
+  counterarguments:
   research_judgment:
-  engineering_impact:
+  general_implications:
   limitations:
-  future_questions:
+  open_questions:
+  article_type:
+  selected_modules:
+  project_relevance:
+    status: none | research-object | case-evidence | substantive-relationship
+    projects: []
+    rationale:
 ```
+
+No field is a required Markdown heading. Empty analytical fields are omitted rather than filled with generic prose.
 
 ## Rule
 
-Every judgment must be traceable to observations or explicitly marked as an inference.
+Every judgment must be traceable to observations or explicitly marked as interpretation, hypothesis, or open question. Internal evidence is never labeled independent.

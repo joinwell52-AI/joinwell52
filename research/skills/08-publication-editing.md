@@ -1,104 +1,89 @@
-# Skill 08 — Publication Editing
+# Skill 08 — Publication Editing V2
 
 ## Purpose
 
-Apply the final quality gate before a Research Note is committed and published.
+Apply the final editorial, evidence, independence, bilingual, visual, and edition gates before a research article is released.
 
-## Required checks
+## Gate A — Research Value
 
-### Research
+- A specific research question is recorded.
+- The article adds original information, analysis, synthesis, or judgment rather than only restating sources.
+- The article remains useful to a reader who does not know the author or first-party projects.
+- A publishing quota, trend, SEO phrase, or word count is not the reason for publication.
 
-- source discovery completed;
-- relevance decision recorded;
-- primary sources read;
-- fact, vendor claim and inference separated;
-- at least one clear research judgment present.
+## Gate B — Independence
 
-### Writing
+For non-`project-research`, remove TMPA, FCoP, and CodeFlowMu names mentally and confirm that the core argument still stands.
 
-- required metadata is valid;
-- Summary, Source, Observation, Discussion, Engineering Impact, Future Work and References are present;
-- title and summary accurately represent the article;
-- Chinese and English versions preserve the same substance.
+- `projectRelevance.status=none` requires no first-party project insertion.
+- Any project that appears is declared as research object, case evidence, or a substantive relationship produced by the findings.
+- Internal links and promotion are not valid relevance rationales.
 
-### Article Layout Gate
+## Gate C — Evidence
 
-The rendered candidate must read as a finished research publication in this order:
+- Material facts are sourced.
+- Source claims, observations, interpretations, internal evidence, independent evidence, hypotheses, and open questions are distinguishable.
+- Internal evidence is not presented as independent.
+- Publication, DOI, Zenodo, indexing, citation, and peer review are not presented as proof or automatic validation.
+- Implementation success is not generalized beyond its evidence scope.
 
-```text
-top editorial cover
-title and lead
-article body
-contextual Inline Figures and tables
-references
-```
+## Gate D — Structure
 
-The candidate is **NEEDS REVISION** when `## Cover`, `## Figure`, `## Visualization`, `## 题图`, `## 文中图` or `## 解释图` exists merely as an image container. The Article Cover is a page-level publication element, and Inline Figures belong beside the argument they explain.
+- The selected article type fits the research purpose.
+- Every body module advances the answer; empty template sections are absent.
+- Module order follows the argument rather than the previous article.
+- `Engineering Impact`, `Implications for Current Work`, and `Conclusion` are not forced.
+- Ending with Limitations, What Remains Unclear, or Open Questions is allowed.
 
-### Visuals
+## Gate E — Language
 
-- a dedicated editorial Article Cover exists;
-- the Article Cover passes Skill 06 Cover Gate and remains meaningful at thumbnail scale;
-- the cover communicates one strong editorial proposition without requiring the reader to inspect small labels, arrows, legends or state transitions;
-- a cover whose primary composition is a workflow, lifecycle, architecture stack, state machine, comparison table, dense node graph or other explanatory schematic is **NEEDS REVISION**;
-- Inline Figures are optional (`0..N`) and are generated only when the article benefits from visual explanation;
-- the Article Cover and every Inline Figure are separate assets and the same visual is not reused to satisfy both roles;
-- Inline Figures may contain technical labels, arrows and structural detail, but must be readable and evidence-traceable;
-- every Inline Figure is placed near the relevant argument and has a matching caption and source statement;
-- visual labels and terminology match the article;
-- every visual has a source note or an equivalent visual-manifest source record;
-- no invented quantitative data is used;
-- desktop, compact-desktop/tablet and mobile rendering have passed visual QA.
+- Title and lead are accurate rather than inflated.
+- Claim strength matches evidence identity.
+- Terms are necessary and consistent.
+- Chinese avoids unnecessary English mixing; necessary professional names remain consistent.
 
-### Cover Gate
+## Bilingual Consistency Gate
 
-PASS only when all are true:
+- Chinese and English preserve the same research question, evidence identities, claim strengths, uncertainty, and conclusion boundary.
+- Dynamic modules correspond semantically, while headings and prose are naturally edited in each language.
+- Neither language upgrades `suggests` to `proves`, internal evidence to independent evidence, or publication status to validation.
 
-1. the image works as a title image before the article is read;
-2. it has a clear focal hierarchy and one dominant semantic object, scene or visual metaphor;
-3. it remains recognizable at approximately `320px` wide;
-4. its meaning does not depend on reading multiple internal labels;
-5. it is visually distinct from every explanatory Inline Figure.
+## Article Layout Gate
 
-If any of these fail, the publication candidate must return to Visualization for a new cover. Do not promote a body diagram into the cover slot as a shortcut.
+The rendered candidate reads as a finished publication: page-level editorial cover, title and lead, dynamically structured body, contextual Inline Figures where useful, and a complete citation surface.
 
-### Inline Figure Gate
+`## Cover`, `## Figure`, `## Visualization`, `## 题图`, `## 文中图`, or `## 解释图` used merely as image containers is **NEEDS REVISION**.
 
-PASS when either:
+## Visual gates
 
-1. no Inline Figure is needed and the article records that decision; or
-2. each required Inline Figure is contextually placed, captioned, source-labeled, terminology-consistent and readable at the required page widths.
+- A dedicated editorial Article Cover exists and remains meaningful near `320px` width.
+- Inline Figures are optional (`0..N`), separate from the cover, contextually placed, captioned, source-labeled, terminology-consistent, and readable.
+- No invented quantitative data is used.
+- Desktop, compact desktop/tablet, and mobile rendering pass visual QA.
 
-A precise Inline Figure does not compensate for a weak cover, and an attractive cover does not compensate for missing visual explanation when the argument genuinely requires it.
+## Community Edition Gate
 
-### Evidence
+When generated, Community Edition has a named target community, different title, selected discussion angle, different structure, bounded evidence subset, concrete engineering or architectural significance, and an open discussion question. It is not identical to the Research Center article, a generic summary, or an advertisement.
 
-- major factual statements are traceable;
-- references are complete and accessible;
-- tables and diagrams identify their evidence basis;
-- uncertainty and limitations are visible.
+## Publishing
 
-### Publishing
-
-- `column + category + date` are valid;
-- article paths are correct;
-- website build succeeds;
-- the static Article Layout Validator passes;
-- changes enter Git history;
-- no manual count or chronological list is edited;
-- TMPA publication content is not changed from the Research Notes workflow.
+- V2 editorial metadata and all six gates are machine-valid.
+- Article paths and edition paths are correct.
+- Website build, static layout validation, and editorial-contract validation succeed.
+- Changes enter Git history without manual count or chronological-list edits.
+- Historical and formally archived publications are not rewritten by this workflow.
 
 ## Release decision
 
 ```text
 PASS
-  all required checks satisfied
+  all required gates satisfied
 
 NEEDS REVISION
-  content is useful but one or more required checks fail
+  useful content, but one or more gates fail; return to Production or the relevant earlier stage
 
 REJECT
-  weak relevance, insufficient evidence, fabricated data or unsupported conclusions
+  weak value, insufficient evidence, fabricated material, unsupported conclusion, or promotional/template output
 ```
 
-No Git commit means no official delivery.
+No Git commit means no official delivery. A commit proves the release state and provenance, not the correctness of every claim.

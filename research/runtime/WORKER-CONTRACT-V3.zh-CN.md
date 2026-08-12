@@ -40,30 +40,30 @@ Worker 不得把 Scheduler 触发当成任务完成。
 ### 13:00 — Research Runtime Analysis
 
 - 输入：Reading Result。
-- 工作：Skill 04 Research Analysis、比较、判断与影响映射。
+- 工作：Skill 04 Research Analysis；明确研究问题、标识证据身份、完成比较与有边界的判断、识别文章类型和候选模块、先分析普遍影响，再检查可选的自有项目相关性。
 - 输出：Research Object。
-- 禁止：分析未阅读材料、直接发布。
+- 禁止：分析未阅读材料、预设固定文章目录、强制映射 TMPA/FCoP/CodeFlowMu、直接发布。
 
 ### 15:00 — Research Runtime Production
 
 - 输入：只能是 Research Object。
-- 工作：Skill 05 Writing → 一张正式科技编辑题图 → 判断并在正文相关位置嵌入 `0..N` 张文中配图 → Skill 07 Evidence & Citation → Skill 08 Publication Editing → 静态文章版式校验。
-- 输出：完整中英文 Publication Candidate，并通过 `coverGate`、`inlineVisualGate` 与 `layoutGate`。
-- 禁止：从 Signal Pool 或 Reading Result 直接写作、直接发布、用技术图冒充题图、生成固定 `## Cover` / `## Figure` 图片栏目，或为了凑门禁强制生成无必要配图。
+- 工作：识别文章类型 → 动态选择模块 → Skill 05 Writing → 一张正式科技编辑题图 → 判断并在正文相关位置嵌入 `0..N` 张文中配图 → Skill 07 Evidence & Citation → Skill 08 Publication Editing → 编辑合同与静态文章版式校验 → 可选 Community Edition 决策。
+- 输出：完整中英文 V2 Publication Candidate，并通过六项编辑 Gate、`coverGate`、`inlineVisualGate` 与 `layoutGate`。
+- 禁止：从 Signal Pool 或 Reading Result 直接写作、直接发布、复用统一正文目录、强制增加自有项目段落、把发表状态写成验证、用技术图冒充题图、生成固定 `## Cover` / `## Figure` 图片栏目、为了凑门禁生成无必要配图，或把 Research Center 全文复制成 Community Edition。
 
 ### 20:00 — Research Runtime Publication
 
 - 输入：只能是完整 Publication Candidate。
-- 工作：更新中英文公开文件、索引与网站；提交；验证；发布。
+- 工作：更新中英文 Research Center 文件、已授权且独立改写的 Community Edition 输出面、索引与网站；提交；验证；发布。
 - 输出：Released Daily Research。
 - 禁止：重新研究、实质性重写、补救证据。
 
 ## Weekly Runtime Worker
 
 - 输入：过去七天已完成证据核验的 Daily Research。
-- 工作：形成 Trend、Architecture、Engineering、Prediction 综合判断。
+- 工作：围绕本周真正重要的变化、变化之间的联系、证据与争议、可支持的判断和尚未解决的问题，形成可独立阅读的 AI Research Brief。
 - 输出：Weekly Synthesis。
-- 禁止：复制或拼接 Daily 文章。
+- 禁止：复制或拼接 Daily 文章，或强制回扣 TMPA/FCoP/CodeFlowMu。
 
 ## Academic Runtime Worker
 

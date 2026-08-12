@@ -2,7 +2,7 @@
 layout: home
 pageClass: runtime-center-page
 title: Weekly Runtime — Research Runtime Center V5.0
-description: Independent weekly synthesis from the previous seven days of evidence-validated Daily Research.
+description: An independent AI Research Brief connecting the week's material changes, evidence, disputes, judgments, and open questions without forced first-party mapping.
 outline: false
 ---
 

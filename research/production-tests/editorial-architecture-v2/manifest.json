@@ -1,0 +1,184 @@
+{
+  "schema": "editorial-architecture-regression/v1",
+  "sourceDate": "2026-08-11",
+  "expectDistinctStructures": true,
+  "candidates": [
+    {
+      "column": "industry-architecture",
+      "category": "daily",
+      "itemId": "REG-20260811-01",
+      "articleType": "research-brief",
+      "researchQuestion": "Where does authority move when an assistant hands a reservation action to an external provider?",
+      "title": "A Reservation Button Does Not Own the Reservation",
+      "title_zh": "预订按钮并不拥有预订结果",
+      "enPath": "research/production-tests/editorial-architecture-v2/reservation-handoff.research-center.en.md",
+      "zhPath": "research/production-tests/editorial-architecture-v2/reservation-handoff.research-center.zh.md",
+      "sections": [
+        { "module": "what-changed", "heading": "What changed in the reservation flow", "heading_zh": "预订流程发生了什么" },
+        { "module": "evidence", "heading": "What the sources establish", "heading_zh": "证据能够说明什么" },
+        { "module": "open-questions", "heading": "Questions left at the provider boundary", "heading_zh": "提供方边界仍有哪些问题" }
+      ],
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {
+          "id": "R1",
+          "identity": "source-reported-claim",
+          "claim": "Official product documentation reports that the user can review reservation details before provider placement.",
+          "claim_zh": "官方产品文档报告称，用户可以在提交给提供方之前检查预订信息。",
+          "source": "https://help.openai.com/en/articles/9237897-chatgpt-search",
+          "strength": "reports",
+          "independent": false
+        },
+        {
+          "id": "R2",
+          "identity": "our-interpretation",
+          "claim": "The documented boundary suggests that availability, submission, confirmation and later custody should remain separate states.",
+          "claim_zh": "文档所示边界表明，可用、提交、确认与后续托管应保持为不同状态。",
+          "source": "research/reading/Q-20260811-02-restaurant-reservation-action-handoff.md",
+          "strength": "suggests",
+          "independent": false
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The provider-authority question is complete as external industry research."
+      },
+      "communityEdition": {
+        "decision": "generated",
+        "rationale": "Connector developers can discuss one narrower API-boundary question.",
+        "targetCommunity": "OpenAI Developer Community",
+        "title": "Where Should an Agent Stop During a Reservation Handoff?",
+        "title_zh": "预订交接时，Agent 应该在哪里停下？",
+        "angle": "Which lifecycle states and receipts a connector API should expose.",
+        "discussionQuestion": "Should provider confirmation and post-booking custody be separate typed outcomes?",
+        "enPath": "research/production-tests/editorial-architecture-v2/reservation-handoff.community.en.md",
+        "zhPath": "research/production-tests/editorial-architecture-v2/reservation-handoff.community.zh.md"
+      },
+      "gates": {
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS"
+      }
+    },
+    {
+      "column": "open-source-engineering",
+      "category": "daily",
+      "itemId": "REG-20260811-02",
+      "articleType": "technical-analysis",
+      "researchQuestion": "What does a stable event identity guarantee across asynchronous retries, and what does it leave unproven?",
+      "title": "Stable Event Identity Is a Reconciliation Primitive, Not Exactly-Once Delivery",
+      "title_zh": "稳定事件身份是对账原语，不是恰好一次投递",
+      "enPath": "research/production-tests/editorial-architecture-v2/event-identity.research-center.en.md",
+      "zhPath": "research/production-tests/editorial-architecture-v2/event-identity.research-center.zh.md",
+      "sections": [
+        { "module": "technical-analysis", "heading": "One identity, several delivery attempts", "heading_zh": "一个身份，多次投递" },
+        { "module": "limitations", "heading": "Where the implementation evidence stops", "heading_zh": "实现证据止于何处" },
+        { "module": "what-remains-unclear", "heading": "A mechanism still needing tests", "heading_zh": "仍需测试的机制" }
+      ],
+      "endingModule": "what-remains-unclear",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "The merged implementation assigns an event identifier before asynchronous handoff and reuses it for retries.",
+          "claim_zh": "合并后的实现会在异步交接前分配事件标识，并在重试时复用该标识。",
+          "source": "https://github.com/google/adk-python/commit/04b8b72709f6d17b503cf674c8ac1b89798f655e",
+          "strength": "fact",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "our-interpretation",
+          "claim": "The mechanism supports retry reconciliation but does not establish end-to-end exactly-once business execution.",
+          "claim_zh": "该机制支持重试对账，但并未证明端到端业务执行具备恰好一次语义。",
+          "source": "research/analysis/Q-20260811-03-event-identity-terminal-evidence.md",
+          "strength": "supports",
+          "independent": false
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The mechanism and its guarantee boundary are useful without first-party project mapping."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete technical analysis already serves the relevant engineering audience."
+      },
+      "gates": {
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS"
+      }
+    },
+    {
+      "column": "digital-employee",
+      "category": "daily",
+      "itemId": "REG-20260811-03",
+      "articleType": "engineering-insight",
+      "researchQuestion": "Which fact should grant an agent permission to execute queued work?",
+      "title": "Queued Work Is Demand; a Worker Claim Grants Execution Authority",
+      "title_zh": "排队任务表示需求，Worker Claim 才授予执行权",
+      "enPath": "research/production-tests/editorial-architecture-v2/execution-authority.research-center.en.md",
+      "zhPath": "research/production-tests/editorial-architecture-v2/execution-authority.research-center.zh.md",
+      "sections": [
+        { "module": "research-question", "heading": "Demand is not execution authority", "heading_zh": "需求不等于执行权" },
+        { "module": "engineering-implications", "heading": "Queue and claim are different facts", "heading_zh": "排队与认领是不同事实" },
+        { "module": "operational-implications", "heading": "What operators must be able to see", "heading_zh": "运维人员必须看见什么" },
+        { "module": "limitations", "heading": "Failure cases worth testing next", "heading_zh": "下一步应测试的失败场景" }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "A1",
+          "identity": "source-reported-claim",
+          "claim": "A maintainer changelog reports ordered queuing within a local session and separate support for concurrent sessions.",
+          "claim_zh": "维护者变更记录报告了本地会话内的顺序排队，以及多个会话并发运行的独立能力。",
+          "source": "https://github.com/github/copilot-cli/commit/ef627e1baad937d3c8da45f8a5541c6fc3c97b6a",
+          "strength": "reports",
+          "independent": false
+        },
+        {
+          "id": "A2",
+          "identity": "internal-experimental-evidence",
+          "claim": "An internal Research Center runtime record observed that a scheduler wake and a worker claim can be recorded as separate operational facts; this is internal evidence, not independent validation.",
+          "claim_zh": "Research Center 的一份内部运行记录观察到，调度唤醒与 Worker Claim 可以被记录为不同的运行事实；这是内部证据，不是独立验证。",
+          "source": "research/runtime/records/daily/2026/08/2026-08-11-daily-runtime.json",
+          "strength": "observed",
+          "independent": false
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The engineering rule is stated for queued agent runtimes generally, without first-party project promotion."
+      },
+      "communityEdition": {
+        "decision": "deferred",
+        "rationale": "A community angle should wait for crash-recovery test evidence."
+      },
+      "gates": {
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS"
+      }
+    }
+  ],
+  "claimLanguageCases": [
+    { "id": "bad-doi-en", "text": "The Zenodo publication and DOI validate the theory.", "expectLeap": true },
+    { "id": "bad-peer-review-en", "text": "Peer review proves the theory.", "expectLeap": true },
+    { "id": "bad-zenodo-zh", "text": "论文已在 Zenodo 发布，因此验证了该理论。", "expectLeap": true },
+    { "id": "good-doi-en", "text": "The DOI provides a persistent citation path; it does not validate the theory.", "expectLeap": false },
+    { "id": "good-publication-zh", "text": "正式发布记录版本状态，不代表理论已经得到验证。", "expectLeap": false }
+  ]
+}

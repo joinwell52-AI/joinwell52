@@ -8,6 +8,9 @@
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
   "resultContract": "runtime-shift-result/v2",
+  "publicationCandidateContract": "runtime-publication-candidate/v2",
+  "editorialArchitecture": "research/editorial/EDITORIAL-ARCHITECTURE.json",
+  "editorialEvidencePolicy": "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
   "recordContracts": {
     "daily": "daily-runtime-record/v1",
     "weekly": "weekly-runtime-record/v1",
@@ -57,8 +60,8 @@
       "id": "weekly",
       "name": "Weekly Runtime",
       "name_zh": "每周运行",
-      "purpose": "Synthesize the week's Daily Research into new trend, architecture, engineering and prediction judgments.",
-      "purpose_zh": "把本周 Daily Research 综合为新的趋势、架构、工程与预测判断。",
+      "purpose": "Synthesize material weekly changes, connections, evidence, disputes, judgments and open questions into an independently readable AI Research Brief.",
+      "purpose_zh": "把本周重要变化、相互联系、证据与争议、可支持的判断和尚未解决的问题综合为可独立阅读的 AI Research Brief。",
       "taskIds": ["weekly"]
     },
     {
@@ -123,10 +126,10 @@
       "name_zh": "研究运行分析",
       "schedule": { "kind": "daily", "time": "13:00", "cron": "0 5 * * *" },
       "input": "Reading Result",
-      "work": "Perform Research Analysis, comparison, judgment and implication mapping.",
+      "work": "State the research question, classify evidence identities, analyze and compare, form a bounded judgment, identify an article type and dynamic modules, map general implications, then test optional first-party relevance.",
       "output": "Research Object",
       "skills": ["04 Research Analysis"],
-      "prohibitions": ["Analyzing unread material", "Direct publication"]
+      "prohibitions": ["Analyzing unread material", "Fixed article outline", "Forced first-party project mapping", "Direct publication"]
     },
     {
       "id": "production",
@@ -135,10 +138,10 @@
       "name_zh": "研究运行生产",
       "schedule": { "kind": "daily", "time": "15:00", "cron": "0 7 * * *" },
       "input": "Research Object",
-      "work": "Write complete bilingual candidates, produce one formal editorial cover, decide and contextually insert 0..N Inline Figures, verify evidence and captions, and pass Cover, Inline Visual and Article Layout gates.",
+      "work": "Write complete bilingual V2 candidates using a selected article type and dynamic modules; classify claim identities and project relevance; produce one formal editorial cover; decide and contextually insert 0..N Inline Figures; pass six editorial gates plus Cover, Inline Visual and Article Layout gates; and record an optional Community Edition decision.",
       "output": "Publication Candidate",
       "skills": ["05 Research Writing", "06 Visualization", "07 Evidence & Citation", "08 Publication Editing"],
-      "prohibitions": ["Writing from signals or Reading Results", "Publishing directly", "Using technical diagrams as covers", "Fixed Cover or Figure image-container sections", "Manufacturing unnecessary figures"]
+      "prohibitions": ["Writing from signals or Reading Results", "Publishing directly", "Universal body outline", "Forced TMPA/FCoP/CodeFlowMu section", "Publication-to-validation inference", "Implementation-to-general-validity inference", "Using technical diagrams as covers", "Fixed Cover or Figure image-container sections", "Manufacturing unnecessary figures", "Copied or promotional Community Edition"]
     },
     {
       "id": "publication",
@@ -147,7 +150,7 @@
       "name_zh": "研究运行发布",
       "schedule": { "kind": "daily", "time": "20:00", "cron": "0 12 * * *" },
       "input": "Complete Publication Candidates",
-      "work": "Update GitHub, bilingual website surfaces and indexes, commit, verify and release.",
+      "work": "Release complete Research Center Editions and separately authorized Community Editions; update GitHub, bilingual website surfaces and indexes; commit, verify and release.",
       "output": "Released Daily Research",
       "skills": [],
       "prohibitions": ["New research", "Substantive rewriting", "Evidence repair"]
@@ -159,10 +162,10 @@
       "name_zh": "研究运行每周综合",
       "schedule": { "kind": "weekly", "days": ["Sunday"], "time": "20:30", "cron": "30 12 * * 0" },
       "input": "Evidence-validated Daily Research from the previous seven days",
-      "work": "Produce new Trend, Architecture, Engineering and Prediction synthesis.",
+      "work": "Produce an independently readable AI Research Brief about material changes, their connections, evidence and disputes, supportable judgments and unresolved questions.",
       "output": "Weekly Synthesis",
       "skills": ["04 Research Analysis", "05 Research Writing", "07 Evidence & Citation", "08 Publication Editing"],
-      "prohibitions": ["Copying or concatenating Daily Research"]
+      "prohibitions": ["Copying or concatenating Daily Research", "Forced TMPA/FCoP/CodeFlowMu implications", "Mandatory conclusion"]
     },
     {
       "id": "academic",

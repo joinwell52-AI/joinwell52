@@ -40,30 +40,30 @@ A worker must never infer completion from a scheduler trigger.
 ### 13:00 — Research Runtime Analysis
 
 - Input: Reading Result.
-- Work: Skill 04 Research Analysis, comparison, judgment and implication mapping.
+- Work: Skill 04 Research Analysis; state the question, classify evidence identities, compare, form a bounded judgment, identify an article type and candidate modules, map general implications, then test optional first-party relevance.
 - Output: Research Object.
-- Forbidden: analyzing unread sources or publishing directly.
+- Forbidden: analyzing unread sources, presupposing a fixed article outline, forcing TMPA/FCoP/CodeFlowMu mapping, or publishing directly.
 
 ### 15:00 — Research Runtime Production
 
 - Input: Research Object only.
-- Work: Skill 05 Writing → one formal editorial Article Cover → decide and place `0..N` contextual Inline Figures → Skill 07 Evidence & Citation → Skill 08 Publication Editing → static Article Layout validation.
-- Output: complete bilingual Publication Candidate with `coverGate`, `inlineVisualGate` and `layoutGate` passed.
-- Forbidden: writing from a Signal Pool or Reading Result, releasing directly, using a technical diagram as the cover, generating fixed `## Cover` / `## Figure` image sections, or manufacturing an unnecessary Figure.
+- Work: identify the article type → select dynamic modules → Skill 05 Writing → one formal editorial Article Cover → decide and place `0..N` contextual Inline Figures → Skill 07 Evidence & Citation → Skill 08 Publication Editing → editorial-contract and static Article Layout validation → optional Community Edition decision.
+- Output: complete bilingual V2 Publication Candidate with six editorial gates plus `coverGate`, `inlineVisualGate` and `layoutGate` passed.
+- Forbidden: writing from a Signal Pool or Reading Result, releasing directly, reusing a universal body outline, forcing first-party project sections, treating publication status as validation, using a technical diagram as the cover, generating fixed `## Cover` / `## Figure` image sections, manufacturing an unnecessary Figure, or copying the Research Center article into a Community Edition.
 
 ### 20:00 — Research Runtime Publication
 
 - Input: complete Publication Candidates only.
-- Work: update bilingual public files, indexes and website; commit; verify; release.
+- Work: update bilingual Research Center files, authorized distinct Community Edition surfaces, indexes and website; commit; verify; release.
 - Output: Released Daily Research.
 - Forbidden: new research, substantive rewriting or evidence repair.
 
 ## Weekly Runtime worker
 
 - Input: evidence-validated Daily Research from the previous seven days.
-- Work: synthesize Trend, Architecture, Engineering and Prediction judgments.
+- Work: synthesize the week's material changes, their connections, evidence and disputes, supportable judgments and unresolved questions into an independently readable AI Research Brief.
 - Output: Weekly Synthesis.
-- Forbidden: copying or concatenating Daily articles.
+- Forbidden: copying or concatenating Daily articles or forcing TMPA/FCoP/CodeFlowMu implications.
 
 ## Academic Runtime worker
 

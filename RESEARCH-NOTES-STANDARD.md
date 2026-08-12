@@ -1,111 +1,151 @@
-# Research Note Standard V1.1
+# Research Publication Standard V2.0
 
-Every Research Note must be produced from selected source material, not from a topic prompt alone.
+Effective for new automated production from 2026-08-12. V1.x articles and formal archives remain historical evidence and are not rewritten by this standard.
+
+Every research publication must be produced from selected source material, not from a topic prompt alone.
 
 ## Required workflow
 
 ```text
-Source Collection
-→ Relevance Review
-→ Selection
-→ Deep Reading
-→ Observation
-→ Discussion
-→ Research Note
+Research topic or event
+→ Research question
+→ Source and evidence collection
+→ Fact / claim / observation / inference separation
+→ Findings
+→ Article-type identification
+→ Dynamic module selection
+→ Complete Research Center Edition
+→ Research Independence Gate
+→ Evidence Gate
+→ Bilingual consistency check
+→ Research Center release
+→ Optional Community Edition decision
 ```
 
-Candidate material should primarily come from organizations, products, open-source projects, and research working in the same industry or technical direction as the Research Center.
+Article structure serves the research question. Automation must not turn this workflow into high-volume template filling.
 
-## Research Note categories
+## Research publication categories
 
-The three categories describe different research functions. They are not interchangeable labels.
+`category` describes the Runtime and publication cadence. It does not prescribe a table of contents.
 
 ### Daily Research (`category: daily`)
 
-Daily Research records one selected signal or a tightly bounded group of related signals.
+Daily Research investigates one selected signal or a tightly bounded group of related signals. It identifies what changed, separates evidence from interpretation, and forms a bounded judgment. It may contain no reference to TMPA, FCoP, CodeFlowMu, or any other first-party project.
 
-Its purpose is to:
+### Weekly Research (`category: weekly`)
 
-- identify what changed or what deserves attention;
-- preserve source material while it is current;
-- separate observed facts from first-stage interpretation;
-- state an initial impact on TMPA, Digital Employee, or CodeFlowMu;
-- create inputs for later weekly synthesis.
+Weekly Research is an independently readable AI Research Brief based on the previous seven days of validated Daily Research plus additional source review when needed. It must not copy or concatenate Daily articles.
 
-A Daily note should be focused and timely. It is not required to settle the architecture question.
-
-### Weekly Synthesis (`category: weekly`)
-
-Weekly Synthesis is a deeper research report built from the week’s Daily notes plus additional source review where needed.
-
-It must not copy or concatenate Daily notes. It should:
-
-- compare multiple signals, products, repositories, or mechanisms;
-- identify common patterns and meaningful differences;
-- test whether earlier observations still hold;
-- produce a new architecture or engineering judgment;
-- explain the accumulated impact on TMPA, Digital Employee, and CodeFlowMu;
-- define the next research questions.
-
-A Weekly report is therefore a synthesis and interpretation layer above Daily Research.
+It prioritizes material changes, connections among changes, evidence and disputes, supportable judgments, and unresolved questions. `Implications for Current Work` is optional and appears only when the findings create a substantive relationship.
 
 ### Academic Observation (`category: academic`)
 
-Academic Observation reviews research produced by others, including papers, technical reports, benchmarks, standards, institutional studies, and formal research publications.
+Academic Observation studies papers, technical reports, benchmarks, standards, institutional research, or formal research publications. It distinguishes source claims from Research Center interpretation and evaluates method, evidence, limitations, reproducibility, and relevance.
 
-It should:
+Publication, DOI assignment, indexing, citation, or peer review status is recorded as status evidence. None of those facts automatically validates the research claim.
 
-- explain the research question, method, evidence, and conclusion of the source;
-- distinguish the authors’ claims from the Research Center’s judgment;
-- assess limitations, reproducibility, and relevance;
-- compare the work with related studies where useful;
-- identify impact on the Research Center’s own architecture and engineering work.
+## Extensible article types
 
-Academic Observation is not defined by publication frequency. Its defining property is that the primary object of study is another organization’s or researcher’s formal research output.
+Before writing, Production chooses an article type from the registry in [`research/editorial/EDITORIAL-ARCHITECTURE.json`](./research/editorial/EDITORIAL-ARCHITECTURE.json), or declares a new type with its purpose and project role.
+
+The initial registry includes Research Brief, Technical Analysis, Engineering Insight, Comparative Study, Experiment Report, Case Study, Research Note, Project Research, and Perspective. This list is extensible. Article type and publication category are independent dimensions.
 
 ## Required metadata
 
+New V2 candidates record publication metadata and editorial metadata:
+
 ```yaml
+schema: publication-candidate-article/v2
 title: Article title
 date: 'YYYY-MM-DD'
 column: digital-employee | industry-architecture | open-source-engineering
 category: daily | weekly | academic
+article_type: research-brief | technical-analysis | engineering-insight | ...
+edition: research-center
+research_question: The question this article investigates
 summary: One-sentence list summary
 sources:
-  - Official source name
+  - Official or research source
 ```
 
-## Required article structure
+The candidate batch additionally records dynamic sections, evidence claims, project relevance, edition decision, and all pre-publication gates.
 
-1. **Summary** — the research judgment in brief.
-2. **Source** — what was reviewed, why it was selected, and whether it is an official, academic, repository, or secondary source.
-3. **Observation** — what the source actually shows. Keep observation separate from interpretation.
-4. **Discussion** — the Research Center's analysis, comparison, and judgment.
-5. **Engineering Impact** — implications for TMPA, Digital Employee, and CodeFlowMu. A note may state “no direct impact” where appropriate.
-6. **Future Work** — unresolved questions and next research actions.
-7. **References** — direct, readable references to the reviewed material.
+## Dynamic content modules
 
-Weekly Synthesis may use `Weekly Highlights`, `Cross Analysis`, `New Architecture Judgment`, and `Next Week Research` as more specific section names while preserving the same logical structure.
+There is no required universal body outline. Production selects only modules that contribute to the answer, for example:
 
-## Visual and evidence requirements
+- Research Question;
+- Context;
+- What Changed;
+- Evidence;
+- Key Findings;
+- Technical Analysis;
+- Architecture, Engineering, Operational, Governance, or Research Implications;
+- Comparison;
+- Experiment;
+- Limitations;
+- Counterarguments;
+- What Remains Unclear;
+- Open Questions;
+- Implications for Current Work;
+- Conclusion.
 
-A substantial Research Note should include:
+Module order is determined by the argument. Headings may be naturally rewritten. Empty sections are prohibited. An article may end with Limitations, What Remains Unclear, or Open Questions rather than a traditional conclusion.
 
-- one article cover;
-- at least one meaningful architecture diagram, process diagram, comparison table, evidence table, or data visualization;
-- a source label for each visual, such as an official source or “joinwell52 Research Center synthesis”;
-- numeric charts only when reliable quantitative data is available.
+Source traceability remains mandatory, but it may be implemented through a References section, footnotes, or another complete and readable citation surface; it is not a reason to force the rest of the outline.
 
-Visual decoration must not replace evidence. Invented scores, fabricated metrics, and decorative quantitative charts are prohibited.
+## Research independence
 
-## Source rules
+External research must reach its conclusion from the research object and public evidence. First-party projects are not mandatory destinations or promotional links.
 
-- Prefer official product pages, documentation, release notes, research papers, and source repositories.
-- Distinguish vendor claims from independently demonstrated evidence.
-- Do not write a report merely because a source is recent; it must be relevant to the Research Center's direction.
-- Every non-trivial factual claim must be traceable to a listed source.
-- References must be sufficient for a reader to verify the observation independently.
+For a non-Project Research article, ask:
+
+> If TMPA, FCoP, and CodeFlowMu names are removed, does the core argument still stand?
+
+If not, reclassify a genuine Project Research article or rewrite the self-mapping. When a project appears, declare whether it is the research object, bounded case/evidence, or a substantive relationship produced by the findings.
+
+## Engineering implications
+
+Engineering implications apply by default to the relevant class of agent systems, AI coding systems, multi-agent systems, runtimes, orchestration, governance, reliability, observability, recovery, verification, operations, or developer practice.
+
+They do not default to CodeFlowMu. `Implications for Current Work` is a separate optional module.
+
+## Evidence identity and claim strength
+
+Material claims use one of these identities:
+
+- public fact;
+- source-reported claim;
+- our observation;
+- our interpretation;
+- internal experimental evidence;
+- independent evidence;
+- hypothesis;
+- open question.
+
+Claim strength must match the evidence. Internal implementation success may support bounded feasibility; it is not independent validation or general validity. See [`research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md`](./research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md).
+
+## Visual requirements
+
+A formal article retains one editorial Article Cover. Inline Figures are optional (`0..N`) and are created only when they materially improve explanation.
+
+- Each visual identifies its evidence basis.
+- Numeric charts require reliable quantitative data.
+- Decorative metrics and fabricated scores are prohibited.
+- A visual requirement must never force a content module or a fixed image-container heading.
+
+## Research Center and Community Editions
+
+The Research Center Edition preserves the complete research, sources, evidence, analysis, limitations, and uncertainty.
+
+Community Edition is optional. It selects one question relevant to a named professional community and receives a distinct title, angle, structure, and discussion question. It is not a copied article, generic summary, or advertisement. First-party projects appear as cases or evidence only when relevant.
+
+## Pre-publication gates
+
+Every new V2 candidate must pass Research Value, Independence, Evidence, Structure, Language, and Bilingual Consistency.
+
+Insufficient evidence may produce no publication or a bounded Research Note. No daily quota, SEO target, or minimum word count overrides these gates.
 
 ## Publication rule
 
-A Research Note is official only after its Markdown and metadata are committed to GitHub. Website counts, classification, sorting, and calendar views are generated from metadata and must never be manually edited.
+A research article is official only after its Markdown, metadata, Runtime evidence, and release record are committed to GitHub. GitHub history proves the publication state and provenance of that version; it does not validate the article's research claims.
