@@ -1,0 +1,150 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "production",
+  "family": "daily",
+  "runtimeDate": "2026-08-12",
+  "status": "Completed",
+  "input": {
+    "scheduler": "research/runtime/SCHEDULER.json",
+    "workerControl": "research/runtime/worker-prompts/generated/CONTROL.json",
+    "authoritativePrompt": {
+      "path": "research/runtime/worker-prompts/generated/production.prompt.md",
+      "version": "2.1.0",
+      "sha256": "7c56b4ad2c099d2e0724b92affefacbd46184329c2b08f75b95aca43584c36ff",
+      "hashVerified": true,
+      "sourceCommit": "bd285da6e4415ddd8c47b25b70c8553f80d396f5"
+    },
+    "admission": {
+      "decision": "Admitted",
+      "date": "2026-08-12",
+      "branch": "main",
+      "wakeSource": "chatgpt-scheduled-task",
+      "requiredCapabilities": ["github-read", "github-write", "command-execution", "file-editing"],
+      "limits": {
+        "maxRunMinutes": 120,
+        "maxRecoveryAttempts": 2,
+        "maxRevisionRounds": 3,
+        "maxOutputItems": 3,
+        "zeroOutputAllowed": true,
+        "directPublicationAllowed": false
+      }
+    },
+    "analysisStatus": "Completed",
+    "researchObjects": [
+      "research/analysis/Q-20260812-01-acceptance-persistence-handoff.md",
+      "research/analysis/Q-20260812-02-decision-intent-effective-policy.md",
+      "research/analysis/Q-20260812-03-scoped-callback-concurrency.md"
+    ],
+    "controlPlane": {
+      "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-12/production-150034.json",
+      "executionSlotOpenedAt": "2026-08-12T15:07:17+08:00",
+      "workerClaimCommit": "2d94517e3bda9c4c3fa23c2146adb88612ceaf08",
+      "globalOrderVerified": true,
+      "earlierDueTasksClosed": ["discovery", "queue", "reading", "analysis"]
+    }
+  },
+  "workResult": {
+    "summary": "Executed the authoritative Production V2.1 prompt after fail-closed admission, deterministic prompt-hash verification, durable Wake Receipt verification, ordered execution authority and Worker Claimed evidence were established. Consumed only the three completed, Production-authorized 2026-08-12 Research Objects. Produced exactly three complete bilingual V2 Research Center Publication Candidates: a technical analysis separating execution acceptance from durable persistence evidence; a technical analysis separating requested approval intent from effective policy scope; and an engineering insight on scoped callback ownership, cancellation and bounded concurrency. Each candidate uses a question-driven dynamic structure, explicit evidence identities, projectRelevance=none, one dedicated original editorial Article Cover, zero manufactured Inline Figures, and a governed not-generated Community Edition decision. No public article, index, website release surface or Publication-stage artifact was modified. The completion workflow must run publication layout, editorial and full Runtime validators successfully before this result becomes authoritative Completed state.",
+    "summary_zh": "在 Fail-closed Admission、确定性 Prompt Hash 核验、持久 Wake Receipt、顺序执行权与 Worker Claimed 证据均成立后，按 Production V2.1 权威 Prompt 执行生产。仅消费 2026-08-12 当日三份已完成且获 Production 授权的 Research Object，恰好生成三组完整双语 V2 Research Center Publication Candidate：一篇分析 Execution Acceptance 与 Durable Persistence Evidence 的边界，一篇分析用户请求的 Approval Intent 与实际生效 Policy Scope 的边界，一篇总结 Scoped Callback Ownership、Cancellation 与 Bounded Concurrency 的工程模式。每组候选均采用 Research Question 驱动的动态结构、显式 Evidence Identity、projectRelevance=none、独立原创编辑题图，不制造无必要 Inline Figure，并记录受治理的 Community Edition not-generated 决定。未修改任何公开文章、索引、网站发布面或 Publication 阶段产物。只有 Completion Workflow 中的 Publication Layout、Editorial 与完整 Runtime Validator 全部成功后，本结果才成为权威 Completed 状态。",
+    "candidates": [
+      {
+        "column": "digital-employee",
+        "itemId": "Q-20260812-01",
+        "articleType": "technical-analysis",
+        "title": "Acceptance Is Not Persistence: The Missing Handoff State in Durable Agent Work",
+        "title_zh": "接受不等于持久化：持久 Agent 工作缺失的交接状态",
+        "projectRelevance": "none",
+        "inlineFigureCount": 0,
+        "communityEdition": "not-generated"
+      },
+      {
+        "column": "industry-architecture",
+        "itemId": "Q-20260812-02",
+        "articleType": "technical-analysis",
+        "title": "Consent Is Not Policy: Why Approval Systems Need an Effective-Scope Acknowledgement",
+        "title_zh": "同意不等于策略：审批系统为何需要实际生效范围确认",
+        "projectRelevance": "none",
+        "inlineFigureCount": 0,
+        "communityEdition": "not-generated"
+      },
+      {
+        "column": "open-source-engineering",
+        "itemId": "Q-20260812-03",
+        "articleType": "engineering-insight",
+        "title": "Concurrency Without a Global Lock: Scoped Ownership for Nested Agent Callbacks",
+        "title_zh": "不靠全局锁实现并发：嵌套 Agent Callback 的作用域所有权",
+        "projectRelevance": "none",
+        "inlineFigureCount": 0,
+        "communityEdition": "not-generated"
+      }
+    ],
+    "boundary": {
+      "sameDateResearchObjectsOnly": true,
+      "newDiscovery": false,
+      "newReading": false,
+      "newAnalysis": false,
+      "publicRelease": false,
+      "forcedFirstPartyMapping": false,
+      "unnecessaryInlineFigures": false,
+      "directPublication": false
+    }
+  },
+  "output": {
+    "type": "Publication Candidates",
+    "candidateCount": 3,
+    "researchCenterArticleFiles": 6,
+    "editorialCovers": 3,
+    "inlineFigures": 0,
+    "communityEditions": 0,
+    "candidateBatch": "research/runtime/candidates/2026/08/2026-08-12-candidates.json"
+  },
+  "next": {
+    "task": "publication",
+    "scheduledTime": "20:00",
+    "instruction": "Publication may consider only these verified complete 2026-08-12 V2 candidates after Production completion is durably committed and verified on main and after the 20:00 formal time gate. Publication must not repair research, evidence, structure, claim strength or editions.",
+    "instruction_zh": "只有当 Production 完成状态在 main 上完成持久提交与核验，并到达 20:00 正式时间门禁后，Publication 才可考虑这些已核验完整的 2026-08-12 V2 Candidate；Publication 不得修复研究、证据、结构、Claim Strength 或 Edition。"
+  },
+  "metrics": [
+    {"name": "research_objects_consumed", "value": 3},
+    {"name": "publication_candidates", "value": 3},
+    {"name": "bilingual_article_files", "value": 6},
+    {"name": "editorial_covers", "value": 3},
+    {"name": "inline_figures", "value": 0},
+    {"name": "community_editions", "value": 0},
+    {"name": "prompt_hash_verified", "value": 1},
+    {"name": "first_party_project_mappings_forced", "value": 0},
+    {"name": "publication_actions", "value": 0}
+  ],
+  "evidence": [
+    "research/runtime/wakes/2026/08/2026-08-12/production-150034.json",
+    "research/runtime/SCHEDULER.json",
+    "research/runtime/worker-prompts/generated/CONTROL.json",
+    "research/runtime/worker-prompts/generated/production.prompt.md",
+    "research/runtime/WORKER-CONTRACT-V3.md",
+    "research/runtime/WAKE-RECEIPT-V1.md",
+    "research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md",
+    "research/editorial/EDITORIAL-ARCHITECTURE.json",
+    "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+    "research/skills/05-research-writing.md",
+    "research/skills/06-research-visualization.md",
+    "research/skills/07-evidence-citation.md",
+    "research/skills/08-publication-editing.md",
+    "research/analysis/Q-20260812-01-acceptance-persistence-handoff.md",
+    "research/analysis/Q-20260812-02-decision-intent-effective-policy.md",
+    "research/analysis/Q-20260812-03-scoped-callback-concurrency.md",
+    "2d94517e3bda9c4c3fa23c2146adb88612ceaf08"
+  ],
+  "artifacts": [
+    "research/runtime/candidates/2026/08/2026-08-12-candidates.json",
+    "staging/publication-candidates/2026-08-12-acceptance-persistence-handoff.en.md",
+    "staging/publication-candidates/2026-08-12-acceptance-persistence-handoff.zh.md",
+    "staging/publication-candidates/2026-08-12-acceptance-persistence-handoff-cover.svg",
+    "staging/publication-candidates/2026-08-12-consent-effective-policy.en.md",
+    "staging/publication-candidates/2026-08-12-consent-effective-policy.zh.md",
+    "staging/publication-candidates/2026-08-12-consent-effective-policy-cover.svg",
+    "staging/publication-candidates/2026-08-12-scoped-callback-concurrency.en.md",
+    "staging/publication-candidates/2026-08-12-scoped-callback-concurrency.zh.md",
+    "staging/publication-candidates/2026-08-12-scoped-callback-concurrency-cover.svg",
+    "research/runtime/results/2026/08/2026-08-12-production-result.json"
+  ]
+}
