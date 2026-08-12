@@ -33,6 +33,12 @@ function recordPath(task, date) {
   const [year, month] = date.split('-')
   return path.join(ROOT, manifest.recordRoots[task.family], year, month, `${date}-${task.family}-runtime.json`)
 }
+function closesExecutionEpoch(event) {
+  if (!event || typeof event !== 'object') return false
+  if (['Running Lease Expired', 'Order Violation Corrected', 'Order Violation Invalidated'].includes(event.event)) return true
+  if (['Blocked', 'Failed', 'Skipped'].includes(event.status)) return true
+  return event.status === 'Completed' && /Completed$/.test(String(event.event || ''))
+}
 
 const args = argsOf(process.argv)
 const taskId = String(args.task || '')
@@ -52,22 +58,52 @@ const result = record.results?.[taskId]
 if (!result || result.status !== 'Completed') fail(`results.${taskId}.status must be Completed`)
 if (result.runtimeDate && result.runtimeDate !== date) fail(`results.${taskId}.runtimeDate ${result.runtimeDate} does not match ${date}`)
 
-const starts = (record.timeline || []).filter((event) =>
-  event.task === taskId &&
-  event.event === 'Execution Slot Opened' &&
-  event.status === 'Running' &&
-  String(event.time || '').startsWith(date)
-)
-if (starts.length !== 1) fail(`expected exactly one ${date} start event for ${taskId}, got ${starts.length}`)
-const completions = (record.timeline || []).filter((event) =>
+const timeline = Array.isArray(record.timeline) ? record.timeline : []
+const startIndexes = timeline
+  .map((event, index) => ({ event, index }))
+  .filter(({ event }) =>
+    event.task === taskId &&
+    event.event === 'Execution Slot Opened' &&
+    event.status === 'Running' &&
+    String(event.time || '').startsWith(date)
+  )
+  .map(({ index }) => index)
+if (!startIndexes.length) fail(`missing ${date} start event for ${taskId}`)
+
+// Recovery can legitimately open a later execution epoch after an earlier Running lease
+// expires or another governed terminal/correction event closes the prior epoch. Historical
+// starts remain audit evidence; verification requires every prior epoch to be closed before
+// the next start rather than requiring the entire day to contain exactly one start.
+for (let i = 0; i < startIndexes.length - 1; i += 1) {
+  const startIndex = startIndexes[i]
+  const nextStartIndex = startIndexes[i + 1]
+  const closed = timeline.slice(startIndex + 1, nextStartIndex).some((event) =>
+    event.task === taskId && String(event.time || '').startsWith(date) && closesExecutionEpoch(event)
+  )
+  if (!closed) fail(`execution epoch ${i + 1} for ${taskId} was not closed before recovery start ${i + 2}`)
+}
+
+const latestStartIndex = startIndexes[startIndexes.length - 1]
+const completionIndex = timeline.findIndex((event, index) =>
+  index > latestStartIndex &&
   event.task === taskId &&
   event.status === 'Completed' &&
   String(event.time || '').startsWith(date) &&
   /Completed$/.test(String(event.event || ''))
 )
-if (!completions.length) fail(`missing ${date} completion event for ${taskId}`)
+if (completionIndex < 0) fail(`missing ${date} completion event after latest execution start for ${taskId}`)
 
-const existing = (record.timeline || []).find((event) =>
+const workerClaimIndex = timeline.findIndex((event, index) =>
+  index > latestStartIndex &&
+  index < completionIndex &&
+  event.task === taskId &&
+  event.event === 'Worker Claimed' &&
+  event.status === 'Running' &&
+  String(event.time || '').startsWith(date)
+)
+if (workerClaimIndex < 0) fail(`missing fresh Worker Claimed event in latest execution epoch for ${taskId}`)
+
+const existing = timeline.find((event) =>
   event.task === taskId &&
   event.event === 'GitHub Commit Verified' &&
   event.status === 'Completed' &&
@@ -91,13 +127,12 @@ if (existing) {
 }
 
 const verifiedAt = clock()
-record.timeline = Array.isArray(record.timeline) ? record.timeline : []
 record.timeline.push({
   time: verifiedAt,
   task: taskId,
   event: 'GitHub Commit Verified',
   status: 'Completed',
-  detail: `Fetched and verified durable ${task.name} result commit ${commit} on main; the ${date} Runtime result, same-date artifacts and exactly one Execution Slot Opened / Running event remain present.`
+  detail: `Fetched and verified durable ${task.name} result commit ${commit} on main; ${startIndexes.length} execution epoch(s) remain as audit evidence, every prior epoch is governed-closed, and the latest epoch contains a fresh Worker Claimed event before completion.`
 })
 result.githubCommit = commit
 result.commitVerify = 'Completed'
@@ -106,4 +141,4 @@ record.githubCommit = commit
 record.commitVerify = 'Completed'
 record.updatedAt = verifiedAt
 writeJson(file, record)
-console.log(`Recorded durable verification for ${taskId} ${date} commit ${commit}.`)
+console.log(`Recorded durable verification for ${taskId} ${date} commit ${commit} across ${startIndexes.length} execution epoch(s).`)
