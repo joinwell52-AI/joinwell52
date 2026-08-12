@@ -188,11 +188,18 @@ I1.0 使用被冻结的 TMPA Core S1.0 Bundle，评估 CodeFlowMu V1.8.0 的真�
 
 除稳定 TMPA 文档线之外，本仓库还包含一套受治理的研究生产环境：Research Intelligence、Daily/Weekly/Academic/Program Runtime、Research Skills、出版门禁、校验脚本与 VitePress 网站。
 
-精选阅读：
+### 推荐文章与外部发布记录
 
-- [从 SaaS 到 SaaW：当代码库开始“自己开发自己”](https://joinwell52-ai.github.io/joinwell52/zh/industry/2026-08-10-saaw-software-as-an-agent-worker)
-- [一个 Agent 说“完成了”，团队为什么没放行？](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-08-06-codeflowmu-multi-agent-fact-checking)
-- [数字员工架构 V0.2](https://joinwell52-ai.github.io/joinwell52/zh/digital-employee/architecture)
+置顶文章可以在外发前登记，外发后直接在同一行补充平台链接。普通外部发布记录从 **2026-08-12** 开始，不回填此前的历史发布；同一文章的中文、英文及各平台链接集中在一行。
+
+| # | 标题 | 发布版本 | 一句话 |
+|---:|---|---|---|
+| 📌 | **从 SaaS 到 SaaW：当代码库开始“自己开发自己”** | [研究主页中文](https://joinwell52-ai.github.io/joinwell52/zh/industry/2026-08-10-saaw-software-as-an-agent-worker) · [Research Center English](https://joinwell52-ai.github.io/joinwell52/en/industry/2026-08-10-saaw-software-as-an-agent-worker) | 从治理、TMPA、FCoP、Agent PC、CodeFlowMu 与 Self-Morphing 推导 SaaW，并以真实生产引擎区分已验证能力与研究前沿。 |
+| 01 | **一个 Agent 说“完成了”，团队为什么没放行？** | [研究主页中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-08-06-codeflowmu-multi-agent-fact-checking) · [Research Center English](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-08-06-codeflowmu-multi-agent-fact-checking) · [CSDN 中文](https://blog.csdn.net/m0_51507544/article/details/163676669) · [DEV English](https://dev.to/joinwell52/one-agent-said-done-why-didnt-the-team-release-it-518j) | 一次工具异常后，PM 没有接受“完成”声明，而是让 DEV、Subexecution、PM 与 QA 依次补齐磁盘、Git、报告和测试证据，最终形成可核验交付。 |
+| 02 | **智能体能力正在被封装为技能、插件与契约** | [研究主页中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-08-02-agent-capability-packaging) · [Research Center English](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-08-02-agent-capability-packaging) · [CSDN 中文](https://blog.csdn.net/m0_51507544/article/details/163677686) · [DEV English](https://dev.to/joinwell52/open-source-engineering-weekly-002-agent-capability-is-being-packaged-as-skills-plugins-and-1db5) | 可复用智能体能力正在从隐藏提示词转向可检查的技能、插件、接口、工作流节点、事件与最小能力契约。 |
+| 03 | **持久化智能体运行时正在成为基础能力** | [研究主页中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-08-02-durable-agent-runtime) · [Research Center English](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-08-02-durable-agent-runtime) · [CSDN 中文](https://blog.csdn.net/m0_51507544/article/details/163677784) · [DEV English](https://dev.to/joinwell52/open-source-engineering-weekly-001-durable-agent-runtime-is-becoming-the-baseline-2oim) | LangGraph、OpenHands、CrewAI 与 AutoGen 共同显示，持久状态、中断、恢复、隔离、可观测与明确完成控制正在成为运行时基础能力。 |
+
+补充参考：[数字员工架构 V0.2](https://joinwell52-ai.github.io/joinwell52/zh/digital-employee/architecture)。
 
 这些内容可以解释 TMPA 或为后续研究提供输入，但不能覆盖 Core S1.0。
 
