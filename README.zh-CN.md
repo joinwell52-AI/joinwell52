@@ -4,6 +4,8 @@
 
 [English](./README.md) · **简体中文**
 
+本地启动、校验、构建以及 15:00 实际文章候选检查，请参阅：[本地运行说明](./LOCAL-RUN-GUIDE.zh-CN.md)。
+
 [![架构论文 A1.0](https://img.shields.io/badge/TMPA-架构论文_A1.0-2563eb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/publications/tmpa-architecture-paper-a1.0)
 [![核心规范 S1.0](https://img.shields.io/badge/TMPA-核心规范_S1.0-7c3aed?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/publications/tmpa-core-specification-s1.0)
 [![实施案例 I1.0](https://img.shields.io/badge/CodeFlowMu-I1.0_14%2F14_PASS-15803d?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/zh/publications/implementation-case-i1.0)
