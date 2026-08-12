@@ -8,16 +8,59 @@
   "date": "2026-08-12",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
-    "discovery": "Running",
+    "discovery": "Completed",
     "queue": "Waiting",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
   },
-  "results": {},
+  "results": {
+    "discovery": {
+      "schema": "runtime-shift-result/v2",
+      "task": "discovery",
+      "family": "daily",
+      "runtimeDate": "2026-08-12",
+      "status": "Completed",
+      "input": "The verified 2026-08-12 Discovery Wake Receipt, current main-branch Research Runtime Scheduler V3.0, Research Intelligence Registry v1, the three formal Discovery profiles, all 33 due P0 AI-platform channels, all nine P0 GitHub Engineering repositories, and all nine P0 Published Research sources. No prior-day artifact was used as a current-day research input.",
+      "input_zh": "已核验的 2026-08-12 Discovery Wake Receipt、当前 main 分支 Research Runtime Scheduler V3.0、Research Intelligence Registry v1、三条正式 Discovery Profile、全部 33 个应查 P0 AI 平台频道、9 个 P0 GitHub Engineering 仓库与 9 个 P0 Published Research 来源。未把前一日产物作为当天研究输入。",
+      "workResult": "Verified the durable Wake Receipt, recovered the already-open Discovery execution slot, and durably recorded Worker Claimed before substantive work. AI Platform coverage resolved all 33 due channels as 32 checked plus 1 authentication-required channel, retaining 3 material changes. GitHub Engineering checked all 9 P0 repositories and retained 8 material maintainer changes after same-mechanism normalization. Published Research checked all 9 P0 source indexes and retained 0 fresh objects above the engineering-evidence threshold. Discovery produced only the run-date Signal Pool; no Queue triage, Deep Reading, Research Analysis, writing, or publication was performed.",
+      "workResult_zh": "在任何实质工作前已核验持久 Wake Receipt，接管已打开的 Discovery 执行槽，并持久记录 Worker Claimed。AI Platform 的 33 个应查频道全部得到解析：32 个已检查、1 个明确需要认证，保留 3 个重要变化；GitHub Engineering 的 9 个 P0 仓库全部检查，按同机制归并后保留 8 个重要维护者变更；Published Research 的 9 个 P0 来源索引全部检查，没有新的研究对象达到工程证据阈值。Discovery 仅生成运行日 Signal Pool；未执行 Queue 筛选、Deep Reading、Research Analysis、写作或发布。",
+      "output": "A run-date Signal Pool of 11 unselected signals: 3 AI-platform signals, 8 GitHub-engineering signals, and 0 published-research signals. Column triage remains pending for Queue.",
+      "output_zh": "生成运行日 Signal Pool，共 11 个未选题 Signal：AI Platform 3 个、GitHub Engineering 8 个、Published Research 0 个。栏目筛选继续等待 Queue。",
+      "next": "At or after the 10:00 formal Queue time, the Process Manager may grant Queue execution authority only if Discovery remains durably Completed and no earlier due task is unfinished. Queue may consume only the 2026-08-12 Signal Pool for triage.",
+      "next_zh": "到达或超过 10:00 的正式 Queue 时点后，Process Manager 只有在 Discovery 仍为持久 Completed 且不存在更早到期未收口任务时，才可授予 Queue 执行权。Queue 只能消费 2026-08-12 Signal Pool 执行筛选。",
+      "metrics": [
+        {"label":"Wake receipts","label_zh":"Wake Receipt","value":1},
+        {"label":"Discovery start events","label_zh":"Discovery 启动事件","value":1},
+        {"label":"Worker claims","label_zh":"Worker Claimed","value":1},
+        {"label":"AI platform due / checked / inaccessible / failed","label_zh":"AI 平台应查 / 已查 / 不可访问 / 失败","value":"33 / 32 / 1 / 0"},
+        {"label":"GitHub repositories checked","label_zh":"GitHub 已检查仓库","value":"9 / 9"},
+        {"label":"Research sources checked","label_zh":"研究来源已检查","value":"9 / 9"},
+        {"label":"Normalized signals","label_zh":"规范化 Signal","value":11},
+        {"label":"Selected topics","label_zh":"已选主题","value":0}
+      ],
+      "evidence": [
+        {"label":"Discovery Wake Receipt","label_zh":"Discovery 唤醒回执","path":"research/runtime/wakes/2026/08/2026-08-12/discovery-090816.json"},
+        {"label":"Scheduler","label_zh":"调度器","path":"research/runtime/SCHEDULER.json"},
+        {"label":"Research Intelligence Registry","label_zh":"Research Intelligence 注册表","path":"research/intelligence/REGISTRY.json"},
+        {"label":"AI Platform profile","label_zh":"AI 平台 Profile","path":"research/skills/profiles/01p-ai-platform-change-intelligence.md"},
+        {"label":"GitHub Engineering profile","label_zh":"GitHub 工程 Profile","path":"research/skills/profiles/01g-github-engineering-intelligence.md"},
+        {"label":"Published Research profile","label_zh":"已发表研究 Profile","path":"research/skills/profiles/01r-published-research-intelligence.md"},
+        {"label":"Signal Pool commit","label_zh":"Signal Pool 提交","commit":"54385701c21d8ecb50f487464af9d1cd7515a3b4"}
+      ],
+      "artifacts": [
+        {"label":"Research Intelligence run","label_zh":"Research Intelligence 运行记录","path":"research/intelligence/runs/2026/08/2026-08-12-intelligence.json"},
+        {"label":"Discovery result","label_zh":"Discovery 结果","path":"research/runtime/results/2026/08/2026-08-12-discovery-result.json"},
+        {"label":"Daily Runtime JSON","label_zh":"Daily Runtime JSON","path":"research/runtime/records/daily/2026/08/2026-08-12-daily-runtime.json"},
+        {"label":"Runtime Markdown ledger","label_zh":"Runtime Markdown 账本","path":"research/runtime/2026/08/2026-08-12-runtime.md"}
+      ],
+      "startedAt": "2026-08-12T09:05:09+08:00",
+      "completedAt": "2026-08-12T09:16:01+08:00"
+    }
+  },
   "timeline": [
     {
       "time": "2026-08-12T09:05:09+08:00",
@@ -32,12 +75,19 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed the already-open Discovery execution slot after verifying research/runtime/wakes/2026/08/2026-08-12/discovery-090816.json on main."
+    },
+    {
+      "time": "2026-08-12T09:16:01+08:00",
+      "task": "discovery",
+      "event": "Discovery Completed",
+      "status": "Completed",
+      "detail": "All three formal Discovery pipelines completed with 11 normalized run-date signals and no Queue triage or downstream research work."
     }
   ],
   "metrics": [],
   "evidence": [],
   "artifacts": [],
-  "githubCommit": "pending",
+  "githubCommit": "c6dc6f146f2c5bdaf496a7ce0f38f04de756ea54",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-12T09:09:17+08:00"
+  "updatedAt": "2026-08-12T09:16:01+08:00"
 }
