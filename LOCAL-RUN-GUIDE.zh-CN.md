@@ -74,7 +74,60 @@ npm ci
 
 `npm ci` 严格按照 `package-lock.json` 安装依赖，适合第一次安装、依赖更新后安装和 CI 一致性检查。依赖没有变化时通常不需要每次重复执行。
 
-## 4. 启动本地网站
+## 4. GitHub 定时任务与并发写入
+
+本仓库的 GitHub Research Runtime 会持续运行。Discovery、Queue、Reading、Analysis、Production、Publication 以及相关 Wake、Claim、Verification 任务都可能在本地开发期间继续向远端 `main` 写入记录。
+
+因此，本地 `main` 只代表最近一次同步时的快照，不能假设远端在开发期间保持不变。
+
+### 开始修改前
+
+```powershell
+Set-Location 'D:\TMPA\joinwell52'
+git status
+git fetch origin main
+git pull --ff-only origin main
+```
+
+只有在工作树干净、没有本地未推送提交时，才直接使用 `git pull --ff-only`。
+
+### 完成本地修改后
+
+先只提交本任务文件，不要把自动生成或无关文件一起加入提交：
+
+```powershell
+git status
+git add -- '明确的文件路径'
+git commit -m "准确描述本次改动"
+```
+
+提交后重新同步远端：
+
+```powershell
+git fetch origin main
+git diff --name-only HEAD..origin/main
+git rebase origin/main
+git push origin main
+```
+
+如果 `git push` 提示远端再次前进，说明定时任务在这段时间内产生了新提交。不要强推，重新执行：
+
+```powershell
+git fetch origin main
+git rebase origin/main
+git push origin main
+```
+
+### 并发安全规则
+
+- 禁止使用 `git push --force` 或 `git push --force-with-lease` 覆盖 Runtime 提交；
+- 禁止为了同步而执行 `git reset --hard origin/main`，除非已经确认没有任何需要保留的本地工作；
+- 不要修改与当前任务无关的 Wake、Claim、Result、Runtime Record 或自动发布记录；
+- rebase 发生冲突时，应先识别远端 Runtime 记录与本地目标文件的职责边界，不能直接选择一侧覆盖另一侧；
+- 推送完成后，再执行 `git fetch origin main` 和 `git status -sb` 检查当前同步状态；
+- 即使刚完成推送，后续定时任务仍可能马上产生新的远端提交，这是正常运行状态。
+
+## 5. 启动本地网站
 
 ```powershell
 Set-Location 'D:\TMPA\joinwell52'
@@ -103,7 +156,7 @@ npm run docs:dev -- --port 5174
 
 <http://localhost:5174/joinwell52/>
 
-## 5. 常用校验命令
+## 6. 常用校验命令
 
 ### 完整 Runtime 与 Publication 校验
 
@@ -158,7 +211,7 @@ npm run docs:preview
 
 预览端口通常为 `4173`，但仍以终端显示的地址为准。
 
-## 6. 检查 15:00 实际生成的文章
+## 7. 检查 15:00 实际生成的文章
 
 15:00 Production 完成后，先同步 GitHub 最新内容：
 
@@ -216,7 +269,7 @@ npm run docs:dev
 
 15:00 产生的是候选文章，不一定已经出现在公开站点。候选通过 20:00 Publication 后，才进入公开 Research Center 页面。
 
-## 7. V2 回归样例
+## 8. V2 回归样例
 
 三篇不会公开发布的编辑架构回归样例位于：
 
@@ -238,7 +291,7 @@ research/production-tests/editorial-architecture-v2/
 npm run publication:editorial:validate
 ```
 
-## 8. 本地文件发生变化时
+## 9. 本地文件发生变化时
 
 `npm run docs:dev` 和 `npm run docs:build` 会重新生成部分页面投影。运行后先检查：
 
@@ -257,7 +310,7 @@ npm audit fix --force
 
 强制升级可能破坏锁定依赖和站点兼容性，应另建依赖升级任务评估。
 
-## 9. 本地与线上之间的关系
+## 10. 本地与线上之间的关系
 
 ```text
 GitHub main
@@ -275,13 +328,14 @@ GitHub main
 
 本地预览不等于线上发布。只有 GitHub Pages 部署工作流完成，并且线上路径能够访问，才算完成公开上线。
 
-## 10. 快速命令清单
+## 11. 快速命令清单
 
 ```powershell
 Set-Location 'D:\TMPA\joinwell52'
 
 # 同步最新代码
 git status
+git fetch origin main
 git pull --ff-only origin main
 
 # 安装锁定依赖
@@ -298,4 +352,9 @@ npm run docs:build
 
 # 只检查编辑架构
 npm run publication:editorial:validate
+
+# 提交后、推送前再次吸收定时任务的新提交
+git fetch origin main
+git rebase origin/main
+git push origin main
 ```
