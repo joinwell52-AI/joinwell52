@@ -1,0 +1,40 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "queue",
+  "status": "Completed",
+  "input": "The verified 2026-08-12 Queue wake receipt and the verified 11:00 Reading wake receipt used for governed Queue recovery; the 2026-08-12 Daily Runtime Record with Discovery Completed and Queue Running; the 2026-08-12 Research Intelligence run containing 11 normalized signals; Skill 02 Three-Column Research Triage; and the current V5 Scheduler and Column Plan contract.",
+  "input_zh": "已核验的 2026-08-12 Queue Wake Receipt，以及用于受治理 Queue 恢复的已核验 11:00 Reading Wake Receipt；Discovery 已完成且 Queue 正在运行的 2026-08-12 Daily Runtime Record；包含 11 个规范化 Signal 的 2026-08-12 Research Intelligence run；Skill 02 Three-Column Research Triage；以及当前 V5 Scheduler 与 Column Plan 合同。",
+  "workResult": "Recovered Queue after its first 30-minute Running lease expired, durably recorded a fresh Worker Claimed event, and triaged all 11 run-date signals without consuming any prior-day plan or selected object. Digital Employee selected SIG-20260812-G-001 as Q-20260812-01 for the admission boundary between queued intent, Core execution acceptance, queue deletion, persistence and retry semantics. Industry Architecture selected SIG-20260812-G-003 as Q-20260812-02 for a shared ReviewDecision architecture that distinguishes session consent from persistent MCP policy amendment while preserving rejection, timeout and cancellation semantics. Open-source Engineering selected SIG-20260812-G-004 as Q-20260812-03 for explicit nested-callback ownership, cancellation, bounded result/error handling, cell/tool validation and concurrent-session isolation. The remaining 8 signals were retained as candidates and none was rejected. The nominal Reading timer was deferred and performed zero Reading-specific business work while Queue remained the earliest due unfinished task. No Deep Reading, Research Analysis, writing or publication was performed.",
+  "workResult_zh": "Queue 首个 30 分钟 Running Lease 到期后完成受治理恢复，并在继续实质工作前持久记录新的 Worker Claimed；随后对运行日全部 11 个 Signal 完成筛选，未消费任何前一日 Plan 或前一日已选对象。数字员工选择 SIG-20260812-G-001，形成 Q-20260812-01，研究排队意图、Core 执行接受、Queue 删除、持久化与重试语义之间的 Admission 边界；行业架构选择 SIG-20260812-G-003，形成 Q-20260812-02，研究共享 ReviewDecision 如何区分单会话同意与持久 MCP Policy Amendment，同时保留拒绝、超时与取消语义；开源工程选择 SIG-20260812-G-004，形成 Q-20260812-03，研究嵌套 Callback 的显式所有权、取消、有界结果/错误、Cell/Tool 校验与并发 Session 隔离。其余 8 个 Signal 保留为 Candidate，Rejected 为 0。名义上的 Reading 定时器被延后，在 Queue 仍是最早到期未收口任务期间执行了 0 项 Reading 专属工作。未执行 Deep Reading、Research Analysis、写作或发布。",
+  "output": "Today's Research Plan at research/runtime/plans/2026/08/2026-08-12-plan.json with exactly three Selected P0 objects: Q-20260812-01, Q-20260812-02 and Q-20260812-03.",
+  "output_zh": "Today's Research Plan 已写入 research/runtime/plans/2026/08/2026-08-12-plan.json，恰好包含 3 个 Selected P0 对象：Q-20260812-01、Q-20260812-02、Q-20260812-03。",
+  "next": "After Queue completion is durably committed and verified on main, the Process Manager must immediately reconcile again because Reading is already overdue. Research Runtime Reading may then consume only Q-20260812-01, Q-20260812-02 and Q-20260812-03 for Skill 03 Deep Reading.",
+  "next_zh": "Queue 完成状态在 main 上持久提交并核验后，Process Manager 必须立即重新协调，因为 Reading 已经过期。随后 Research Runtime Reading 只能消费 Q-20260812-01、Q-20260812-02、Q-20260812-03 执行 Skill 03 Deep Reading。",
+  "metrics": [
+    {"label":"Wake receipts verified","label_zh":"已核验 Wake Receipt","value":"2"},
+    {"label":"Signal pool count","label_zh":"Signal Pool 数量","value":"11"},
+    {"label":"Column decisions","label_zh":"栏目决定","value":"3"},
+    {"label":"Selected objects","label_zh":"已选对象","value":"3"},
+    {"label":"Candidate signals","label_zh":"Candidate Signal","value":"8"},
+    {"label":"Rejected signals","label_zh":"Rejected Signal","value":"0"},
+    {"label":"No Selection decisions","label_zh":"No Selection 决定","value":"0"},
+    {"label":"Queue execution-slot openings","label_zh":"Queue 执行槽开启","value":"2"},
+    {"label":"Queue worker claims","label_zh":"Queue Worker Claimed","value":"2"},
+    {"label":"Expired Queue leases recovered","label_zh":"已恢复的 Queue 过期 Lease","value":"1"}
+  ],
+  "evidence": [
+    {"label":"Original Queue Wake Receipt","label_zh":"原始 Queue 唤醒回执","value":"research/runtime/wakes/2026/08/2026-08-12/queue-100244.json"},
+    {"label":"Reading Wake Receipt used for recovery","label_zh":"用于恢复的 Reading 唤醒回执","value":"research/runtime/wakes/2026/08/2026-08-12/reading-110206.json"},
+    {"label":"Run-date Daily Runtime Record","label_zh":"运行日 Daily Runtime Record","value":"research/runtime/records/daily/2026/08/2026-08-12-daily-runtime.json"},
+    {"label":"Run-date Research Intelligence","label_zh":"运行日 Research Intelligence","value":"research/intelligence/runs/2026/08/2026-08-12-intelligence.json"},
+    {"label":"Skill 02","label_zh":"Skill 02","value":"research/skills/02-research-triage.md"},
+    {"label":"Column Plan contract","label_zh":"Column Plan 合同","value":"research/runtime/COLUMN-PLAN-SCHEMA.md"},
+    {"label":"Recovered Queue worker-claim commit","label_zh":"恢复后的 Queue Worker Claim 提交","value":"4cf0a0cdf731d754d6598ed7e039ce1877f8ed69"}
+  ],
+  "artifacts": [
+    {"label":"Today's Research Plan","label_zh":"今日研究计划","value":"research/runtime/plans/2026/08/2026-08-12-plan.json"},
+    {"label":"Queue result","label_zh":"Queue 结果","value":"research/runtime/results/2026/08/2026-08-12-queue-result.json"},
+    {"label":"Daily Runtime JSON","label_zh":"Daily Runtime JSON","value":"research/runtime/records/daily/2026/08/2026-08-12-daily-runtime.json"},
+    {"label":"Runtime Markdown ledger","label_zh":"Runtime Markdown 账本","value":"research/runtime/2026/08/2026-08-12-runtime.md"}
+  ]
+}
