@@ -1,0 +1,138 @@
+name: Research Runtime Worker Claim V1.0
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "research/runtime/claim-requests/*.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: research-runtime-worker-claim-v1
+  cancel-in-progress: false
+
+jobs:
+  claim:
+    name: Persist and verify Runtime Worker Claimed
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout authoritative repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch latest durable facts
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Resolve claim request
+        id: request
+        shell: bash
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          EVENT_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          request_path="$(git diff --name-only "$BEFORE_SHA" "$EVENT_SHA" -- 'research/runtime/claim-requests/*.json' | tail -n 1)"
+          if [[ -z "$request_path" ]]; then
+            request_path="$(git show --pretty='' --name-only "$EVENT_SHA" -- 'research/runtime/claim-requests/*.json' | tail -n 1)"
+          fi
+          if [[ -z "$request_path" || ! -f "$request_path" ]]; then
+            echo "No durable worker-claim request found in triggering commit."
+            exit 1
+          fi
+          REQUEST_PATH="$request_path" node <<'NODE'
+          const fs = require('fs')
+          const request = JSON.parse(fs.readFileSync(process.env.REQUEST_PATH, 'utf8'))
+          if (request.schema !== 'runtime-worker-claim-request/v1') throw new Error(`Invalid claim request schema: ${request.schema}`)
+          if (!/^[a-z][a-z0-9-]*$/.test(request.task || '')) throw new Error('Invalid request.task')
+          if (!/^\d{4}-\d{2}-\d{2}$/.test(request.date || '')) throw new Error('Invalid request.date')
+          if (request.wakeReceipt && !/^research\/runtime\/wakes\/.+\.json$/.test(request.wakeReceipt)) throw new Error('Invalid request.wakeReceipt')
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `runtime_task=${request.task}\n`)
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `runtime_date=${request.date}\n`)
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `wake_receipt=${request.wakeReceipt || ''}\n`)
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `request_path=${process.env.REQUEST_PATH}\n`)
+          NODE
+
+      - name: Record worker claim
+        env:
+          RUNTIME_TASK: ${{ steps.request.outputs.runtime_task }}
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+          WAKE_RECEIPT: ${{ steps.request.outputs.wake_receipt }}
+        run: node scripts/runtime-worker-claim.mjs --task "$RUNTIME_TASK" --date "$RUNTIME_DATE" --receipt "$WAKE_RECEIPT"
+
+      - name: Render and validate synchronized ledger
+        env:
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+        run: |
+          node scripts/runtime-markdown.mjs render --date "$RUNTIME_DATE"
+          npm run runtime:validate
+          node scripts/runtime-markdown.mjs validate --date "$RUNTIME_DATE"
+
+      - name: Commit durable worker claim
+        id: commit
+        shell: bash
+        env:
+          RUNTIME_TASK: ${{ steps.request.outputs.runtime_task }}
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+        run: |
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime/records research/runtime/[0-9][0-9][0-9][0-9] research/runtime/claim-requests
+          if git diff --cached --quiet; then
+            echo "Worker claim was already durable."
+            echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "runtime(${RUNTIME_TASK}): record Worker Claimed for ${RUNTIME_DATE}"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main; then
+              claim_sha="$(git rev-parse HEAD)"
+              if git push origin HEAD:main; then
+                echo "commit_sha=$claim_sha" >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
+            fi
+            git rebase --abort || true
+            if [[ "$attempt" -eq 3 ]]; then exit 1; fi
+            sleep $((attempt * 5))
+          done
+
+      - name: Verify durable worker claim
+        env:
+          CLAIM_SHA: ${{ steps.commit.outputs.commit_sha }}
+          RUNTIME_TASK: ${{ steps.request.outputs.runtime_task }}
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+        run: |
+          git fetch origin main
+          git merge-base --is-ancestor "$CLAIM_SHA" origin/main
+          git reset --hard origin/main
+          node <<'NODE'
+          const fs = require('fs')
+          const path = require('path')
+          const manifest = JSON.parse(fs.readFileSync('research/runtime/SCHEDULER.json','utf8'))
+          const task = manifest.tasks.find(t => t.id === process.env.RUNTIME_TASK)
+          if (!task) throw new Error('Unknown runtime task')
+          const [y,m] = process.env.RUNTIME_DATE.split('-')
+          const file = path.join(manifest.recordRoots[task.family], y, m, `${process.env.RUNTIME_DATE}-${task.family}-runtime.json`)
+          const record = JSON.parse(fs.readFileSync(file,'utf8'))
+          const timeline = record.timeline || []
+          let start = -1
+          for (let i = timeline.length - 1; i >= 0; i -= 1) {
+            const e = timeline[i]
+            if (e.task === task.id && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith(process.env.RUNTIME_DATE)) { start = i; break }
+          }
+          if (start < 0) throw new Error('Missing latest Execution Slot Opened')
+          const claim = timeline.slice(start + 1).find(e => e.task === task.id && e.event === 'Worker Claimed' && e.status === 'Running' && String(e.time || '').startsWith(process.env.RUNTIME_DATE))
+          if (!claim) throw new Error('Missing Worker Claimed after latest execution start')
+          if (record.taskStatus?.[task.id] !== 'Running') throw new Error(`Expected ${task.id}=Running`)
+          console.log(`Verified durable Worker Claimed for ${task.id} ${process.env.RUNTIME_DATE} at ${claim.time}.`)
+          NODE
