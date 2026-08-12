@@ -20,7 +20,23 @@
 - 自动提交或推送 GitHub；
 - 自动更新线上 GitHub Pages。
 
-15:00 的实际文章生产由 GitHub 调度槽与 ChatGPT Worker 完成。20:00 Publication 通过发布 Gate 后，才把合格候选发布到公开网站。
+15:00 的实际文章生产主要由 **ChatGPT 定时任务**执行。ChatGPT Worker 负责研究、分析、写作、编辑和候选产出；GitHub Workflow 与调度槽主要负责打开运行位置、记录 Wake/Claim/Result、保存仓库事实、执行校验和发布。GitHub cron 本身不能独立生成研究文章。
+
+20:00 Publication 同样属于定时生产链的一部分。它消费已经完成的候选，通过发布 Gate 后更新 GitHub 和公开网站，但不得在发布阶段重新研究或补写文章。
+
+权责关系可简化为：
+
+```text
+ChatGPT 定时任务
+→ 执行研究、分析、写作、编辑与发布决策
+→ 把候选、证据和结果写入 GitHub
+
+GitHub Workflow / 调度槽
+→ 提供运行控制、记录、校验、提交与 Pages 发布链路
+
+GitHub main
+→ 保存权威源码、Runtime 记录、候选、历史与发布状态
+```
 
 ## 2. 环境要求
 
@@ -74,9 +90,9 @@ npm ci
 
 `npm ci` 严格按照 `package-lock.json` 安装依赖，适合第一次安装、依赖更新后安装和 CI 一致性检查。依赖没有变化时通常不需要每次重复执行。
 
-## 4. GitHub 定时任务与并发写入
+## 4. ChatGPT 定时任务、GitHub 记录与并发写入
 
-本仓库的 GitHub Research Runtime 会持续运行。Discovery、Queue、Reading、Analysis、Production、Publication 以及相关 Wake、Claim、Verification 任务都可能在本地开发期间继续向远端 `main` 写入记录。
+Publication System 的主体生产工作由 ChatGPT 定时任务持续执行。与此同时，GitHub Research Runtime 负责控制面和持久记录。Discovery、Queue、Reading、Analysis、Production、Publication 以及相关 Wake、Claim、Verification 任务都可能在本地开发期间继续向远端 `main` 写入记录。
 
 因此，本地 `main` 只代表最近一次同步时的快照，不能假设远端在开发期间保持不变。
 
