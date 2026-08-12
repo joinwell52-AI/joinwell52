@@ -4,6 +4,7 @@
   "version": "9.0.5",
   "type": "module",
   "scripts": {
+    "demo": "node scripts/tmpa-demo.mjs",
     "intelligence:validate": "node scripts/research-intelligence.mjs validate",
     "intelligence:build": "node scripts/research-intelligence.mjs build",
     "runtime:validate": "node scripts/runtime-v5.mjs validate && npm run worker-prompts:validate && npm run worker-control:test && npm run intelligence:validate && npm run publication:layout:validate && npm run publication:editorial:validate",

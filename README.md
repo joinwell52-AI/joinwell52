@@ -1,74 +1,160 @@
-# TMPA — Textual Multi-Agent Process Architecture
+<p align="center">
+  <img src="./docs/public/assets/readme/tmpa-readme-hero.svg" alt="TMPA — Textual Multi-Agent Process Architecture" width="100%">
+</p>
 
-> **A governance architecture for production-grade multi-agent work**
+<p align="center">
+  <strong>AI agents can produce results. Production systems must prove who was responsible, what was accepted, and why.</strong>
+</p>
 
-**English** · [简体中文](./README.zh-CN.md)
+<p align="center">
+  <a href="https://joinwell52-ai.github.io/CodeFlowMu-open/"><strong>Explore CodeFlowMu Open</strong></a>
+  ·
+  <a href="https://joinwell52-ai.github.io/FCoP/"><strong>Explore FCoP</strong></a>
+  ·
+  <a href="https://joinwell52-ai.github.io/joinwell52/"><strong>Explore the research site</strong></a>
+  ·
+  <a href="./README.zh-CN.md"><strong>简体中文</strong></a>
+</p>
 
-[![Architecture A1.0](https://img.shields.io/badge/TMPA-Architecture_A1.0-2563eb?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-architecture-paper-a1.0)
-[![Core S1.0](https://img.shields.io/badge/TMPA-Core_S1.0-7c3aed?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-core-specification-s1.0)
-[![Implementation I1.0](https://img.shields.io/badge/CodeFlowMu-I1.0_14%2F14_PASS-15803d?style=for-the-badge)](https://joinwell52-ai.github.io/joinwell52/en/publications/implementation-case-i1.0)
-[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21888488-1682D4?style=for-the-badge)](https://doi.org/10.5281/zenodo.21888488)
+<p align="center">
+  <a href="https://github.com/joinwell52-AI/joinwell52/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/joinwell52-AI/joinwell52?style=for-the-badge&logo=github&label=Star"></a>
+  <a href="https://doi.org/10.5281/zenodo.21888488"><img alt="DOI" src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21888488-1682D4?style=for-the-badge"></a>
+  <a href="https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-core-specification-s1.0"><img alt="TMPA Core S1.0" src="https://img.shields.io/badge/Core-S1.0-7c3aed?style=for-the-badge"></a>
+  <a href="https://joinwell52-ai.github.io/joinwell52/en/publications/implementation-case-i1.0"><img alt="Implementation I1.0" src="https://img.shields.io/badge/CodeFlowMu-14%2F14_PASS-15803d?style=for-the-badge"></a>
+</p>
 
-TMPA is a vendor-neutral architecture and specification for governing long-running work performed by heterogeneous AI agents and humans. It moves durable work facts out of volatile model memory and into inspectable objects, preserves responsibility across asynchronous execution, and reconstructs lifecycle, authority, conflict, and audit state from available evidence.
+---
 
-This repository is the public research, specification, conformance, and evidence base for TMPA. **CodeFlowMu** is its primary engineering demonstration. The Digital Researcher and the articles it publishes are derived research infrastructure and discourse—not the repository's primary identity and not normative sources for TMPA.
+# TMPA
 
-## Start with the stable V1.0 publication set
+**TMPA (Textual Multi-Agent Process Architecture)** is a vendor-neutral governance architecture for long-running work performed by AI agents and humans. It moves durable work facts out of volatile model memory, preserves responsibility across asynchronous execution, and reconstructs lifecycle, authority, conflict, and audit state from inspectable evidence.
 
-| Publication | Role | Read online | Release artifact |
+This repository is TMPA's public research, specification, executable conformance, and evidence base. [**CodeFlowMu Open**](https://github.com/joinwell52-AI/CodeFlowMu-open) ([site](https://joinwell52-ai.github.io/CodeFlowMu-open/)) is the installable MIT-licensed product: a local four-role development team—**PM / DEV / OPS / QA**—with EVAL observing independently. Its current public release connects to agents through **Cursor SDK only**. [**FCoP**](https://github.com/joinwell52-AI/FCoP) ([site](https://joinwell52-ai.github.io/FCoP/)) is the MIT-licensed file-based behavior-governance protocol used by that team.
+
+> If you are building agents that must survive restarts, handoffs, disputes, review, and real organizational accountability, this repository is for you. **Star it to follow stable specifications, executable examples, and evidence-backed releases.**
+
+## Start here
+
+| I want to… | Best entry point |
+|---|---|
+| Install the real open-source product | [GitHub](https://github.com/joinwell52-AI/CodeFlowMu-open) · [Product site](https://joinwell52-ai.github.io/CodeFlowMu-open/) — four-role development team, currently Cursor-only |
+| Add file-based coordination to agents | [GitHub](https://github.com/joinwell52-AI/FCoP) · [Protocol site](https://joinwell52-ai.github.io/FCoP/) — Python package, MCP server, and protocol |
+| Understand the idea in five minutes | [Why TMPA exists](#trace-is-not-governance) |
+| Browse the complete project visually | [Open Digital Employee Works →](https://joinwell52-ai.github.io/joinwell52/) |
+| Read the stable theory and specification | [Architecture A1.0](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-architecture-paper-a1.0) · [Core S1.0](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-core-specification-s1.0) |
+| Run something now | [Execute the S1.0 Reference Reader](#run-the-reference-reader) |
+| Inspect the engineering claim | [Implementation Case I1.0](https://joinwell52-ai.github.io/joinwell52/en/publications/implementation-case-i1.0) · [Evidence package](./docs/public/evidence/tmpa/i1.0/) |
+| Cite the work | [Zenodo DOI](https://doi.org/10.5281/zenodo.21888488) · [`CITATION.cff`](./CITATION.cff) |
+
+## Three public repositories, one system
+
+| Repository | Primary job | GitHub | Website |
 |---|---|---|---|
-| **Architecture Paper A1.0** | Explains the governance-state problem and the architectural theory | [Web](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-architecture-paper-a1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-architecture-paper-a1.0-en.pdf) |
-| **Core Specification S1.0** | Defines normative objects, lifecycle, authority, Reader behavior, and C01–C14 | [Web](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-core-specification-s1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-core-specification-s1.0-en.pdf) |
-| **Implementation Case I1.0** | Reports bounded CodeFlowMu V1.8.0 product evidence against S1.0 | [Web](https://joinwell52-ai.github.io/joinwell52/en/publications/implementation-case-i1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-implementation-case-i1.0-en.pdf) |
+| **TMPA / joinwell52** | Theory, specification, conformance, research, and evidence | [Source & Star](https://github.com/joinwell52-AI/joinwell52) | [Digital Employee Works](https://joinwell52-ai.github.io/joinwell52/) |
+| **FCoP** | File-based behavior-governance protocol, Python package, and MCP server | [Source & Star](https://github.com/joinwell52-AI/FCoP) | [FCoP site](https://joinwell52-ai.github.io/FCoP/) |
+| **CodeFlowMu Open** | Installable four-role development team product | [Source & Star](https://github.com/joinwell52-AI/CodeFlowMu-open) | [Product site](https://joinwell52-ai.github.io/CodeFlowMu-open/) |
 
-The checksummed bilingual publication dossier, citation metadata, manifest, and release notes are in [`docs/public/releases/tmpa/v1.0/`](./docs/public/releases/tmpa/v1.0/).
+Each repository has one clear reason to be discovered and starred: **TMPA explains and specifies; FCoP makes coordination reusable; CodeFlowMu Open turns both into a product people can install.** Product use produces field evidence, protocol improvements, and new questions for the specification.
 
-**TMPA V1.0 Zenodo Archive:** <https://zenodo.org/records/21888488>
+## Install the open-source product
 
-**DOI:** <https://doi.org/10.5281/zenodo.21888488>
+[CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open) is not a mockup or a documentation demo. It is an installable local application with a [dedicated product site](https://joinwell52-ai.github.io/CodeFlowMu-open/), PC Panel, Mobile PWA, project isolation, approval gates, FCoP work artifacts, and the fixed execution team `PM / DEV / OPS / QA`. `EVAL` observes delivery quality and risk independently.
 
-## Why TMPA exists
+> **Current provider boundary:** the public product uses **Cursor SDK / Cursor API Key only**. Other agent providers are not included or claimed by the current open release.
 
-Modern agent systems can produce rich execution traces: prompts, tool calls, outputs, and timestamps. Those records answer **what ran**. Production governance must also answer:
-
-- Who accepted responsibility and who had authority to approve?
-- Which object is the authoritative work fact?
-- Is the claimed lifecycle transition legal?
-- Which evidence is missing, conflicting, invalid, or still awaiting a human decision?
-- Can the current state be reconstructed after an agent exits, a model changes, or a runtime restarts?
-
-That is why **Trace ≠ Governance**. TMPA is not another general-purpose agent framework and does not treat logs, Markdown storage, or a workflow state machine as proof of governance. It defines observable governance behavior that implementations can be tested against.
-
-## The four connected rules
-
-1. **Text carries durable messages and state.** Work facts are portable, inspectable objects rather than facts trapped in a model session or process instance.
-2. **Each writer owns a local serial stream.** Single-writer semantics preserve provenance and prevent one actor from silently rewriting another actor's history.
-3. **Multiple streams advance asynchronously.** Collaboration retains partial-order and concurrency semantics instead of inventing a false global timeline.
-4. **The Reader reconstructs governance state.** It aggregates available evidence to derive process, responsibility, lifecycle, conflicts, three-valued judgments, and an explicit Issue Set.
-
-TMPA Core is storage-neutral: a conforming implementation may use files, database rows, object-store objects, or events. **FCoP** supplies a file-based coordination and evidence profile; **CodeFlowMu** implements and consumes that projection in a working engineering system.
-
-## From theory to engineering evidence
-
-```text
-TMPA Architecture Paper A1.0
-        ↓ architecture theory and design direction
-TMPA Core Specification S1.0
-        ↓ normative object, Reader, and conformance behavior
-FCoP
-        ↓ file-based coordination and evidence profile
-CodeFlowMu V1.8.0
-        ↓ product Adapter and Governance Reader
-Implementation Case I1.0
-        ↓ bounded, inspectable engineering evidence
-Digital Employee and Research Runtime applications
+```bat
+cd /d D:\
+git clone https://github.com/joinwell52-AI/CodeFlowMu-open.git
+cd CodeFlowMu-open
+START-CODEFLOWMU-OPEN.bat
 ```
 
-The dependency direction matters: A1.0 states the theory; S1.0 is the normative authority; FCoP supplies a reusable coordination protocol; CodeFlowMu implements and consumes the governance projection; I1.0 reports what was demonstrated. An implementation can support or challenge the theory, but it cannot silently redefine the specification.
+<p align="center">
+  <a href="https://github.com/joinwell52-AI/CodeFlowMu-open#real-product-screens">
+    <img src="https://raw.githubusercontent.com/joinwell52-AI/CodeFlowMu-open/main/docs/images/pc/V1.2.6/en/pc-dashboard-V1.2.6-en.png" alt="CodeFlowMu Open real product dashboard" width="920">
+  </a>
+</p>
 
-## CodeFlowMu engineering demonstration
+<p align="center"><sub>Real product capture · open the product repository for installation and the complete PC/PWA walkthrough.</sub></p>
 
-I1.0 evaluates the CodeFlowMu V1.8.0 product Reader against the exact, frozen TMPA Core S1.0 bundle. The product path invokes `GovernanceReader.readSync`; it does not substitute the TMPA Reference Reader.
+## Trace is not governance
+
+Agent traces tell you what ran. Production governance must answer a harder set of questions.
+
+| Execution trace | Governance state |
+|---|---|
+| A tool returned success | Was the result independently accepted? |
+| A model said “done” | Is there sufficient completion evidence? |
+| A workflow reached its final node | Was the lifecycle transition legal? |
+| A log contains an actor name | Did that actor have authority? |
+| Events have timestamps | Can conflict and concurrency be reconstructed without inventing a false order? |
+
+TMPA treats work as durable governance objects rather than facts trapped inside a chat, process, or model session.
+
+## The architecture in one view
+
+```text
+Architecture Paper A1.0       theory and design direction
+            ↓
+Core Specification S1.0      normative objects, lifecycle, Reader, C01–C14
+            ↓
+FCoP                         file-based coordination and evidence profile
+            ↓
+CodeFlowMu V1.8.0            product Adapter and Governance Reader
+            ↓
+Implementation Case I1.0     bounded, inspectable engineering evidence
+            ↓
+Digital Employee apps        governed work in real production contexts
+```
+
+The direction matters. The architecture explains the theory; Core defines normative behavior; [FCoP](https://github.com/joinwell52-AI/FCoP) supplies a protocol profile; [CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open) is the public installable product line; the case report states only what the exact-version evidence demonstrates.
+
+### Four connected rules
+
+1. **Text carries durable messages and state.** Work facts remain portable and inspectable outside any model session.
+2. **Each writer owns a local serial stream.** One actor cannot silently rewrite another actor's history.
+3. **Multiple streams advance asynchronously.** Collaboration preserves partial order and real concurrency.
+4. **The Reader reconstructs governance state.** Available evidence becomes lifecycle, responsibility, conflicts, judgments, and an explicit Issue Set.
+
+TMPA Core is storage-neutral. Files, database rows, object-store items, or events may carry the same governance semantics.
+
+## Run the Reference Reader
+
+The repository includes the complete TMPA Core S1.0 machine schemas, fixtures, profiles, author-produced Reference Reader, and C01–C14 runner.
+
+Requirements: **Node.js 20+**.
+
+```bash
+git clone https://github.com/joinwell52-AI/joinwell52.git
+cd joinwell52
+npm ci
+npm run demo
+npm run tmpa:s1.0:conformance
+```
+
+`npm run demo` shows one delivery rejected because the developer reviews its own `done` claim, then accepted after independent QA evidence is added. This is a small TMPA specification demo; the actual installable product is [CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open).
+
+Expected reference result:
+
+```text
+PASS 14  ·  PARTIAL 0  ·  NOT RUN 0  ·  FAIL 0
+```
+
+This proves the frozen reference paths behave as tested. It is separate from the registered CodeFlowMu product run and is not independent certification. Read the [conformance notes](./research/conformance/tmpa-core-s1.0/README.md) before interpreting the result.
+
+## Stable V1.0 publication set
+
+| Publication | What it answers | Read online | Artifact |
+|---|---|---|---|
+| **Architecture Paper A1.0** | Why agent work needs a governance-state architecture | [Web](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-architecture-paper-a1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-architecture-paper-a1.0-en.pdf) |
+| **Core Specification S1.0** | What objects, authority, lifecycle, Reader behavior, and conformance require | [Web](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-core-specification-s1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-core-specification-s1.0-en.pdf) |
+| **Implementation Case I1.0** | What CodeFlowMu V1.8.0 demonstrated against the exact S1.0 bundle | [Web](https://joinwell52-ai.github.io/joinwell52/en/publications/implementation-case-i1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-implementation-case-i1.0-en.pdf) |
+
+The complete checksummed bilingual dossier, citation metadata, manifest, and release notes live in [`docs/public/releases/tmpa/v1.0/`](./docs/public/releases/tmpa/v1.0/). Permanent archive: [Zenodo 21888488](https://zenodo.org/records/21888488).
+
+## Engineering evidence snapshot
+
+I1.0 evaluates the actual CodeFlowMu V1.8.0 product path—`GovernanceReader.readSync`—against the frozen TMPA Core S1.0 bundle.
 
 | Evidence item | Recorded result |
 |---|---:|
@@ -80,73 +166,72 @@ I1.0 evaluates the CodeFlowMu V1.8.0 product Reader against the exact, frozen TM
 | Locked FCoP reference implementation | **1,210 passed / 2 skipped** |
 | Evidence integrity | **889 files covered by the internal SHA-256 manifest** |
 
-Evidence entry points:
+Inspect the [exact-version registration](./research/conformance/tmpa-core-s1.0/external-runs/20260811-codeflowmu-v1.8.0/) or download the [locked evidence archive](./docs/public/evidence/tmpa/i1.0/tmpa-i1.0-codeflowmu-v1.8.0-s1.0-evidence-20260811.zip) and its [SHA-256](./docs/public/evidence/tmpa/i1.0/tmpa-i1.0-codeflowmu-v1.8.0-s1.0-evidence-20260811.zip.sha256).
 
-- [Implementation Case I1.0 source](./docs/en/publications/implementation-case-i1.0.md)
-- [S1.0 conformance workspace and release audit](./research/conformance/tmpa-core-s1.0/)
-- [Registered CodeFlowMu V1.8.0 exact-version run](./research/conformance/tmpa-core-s1.0/external-runs/20260811-codeflowmu-v1.8.0/)
-- [Locked evidence archive](./docs/public/evidence/tmpa/i1.0/tmpa-i1.0-codeflowmu-v1.8.0-s1.0-evidence-20260811.zip) · [SHA-256](./docs/public/evidence/tmpa/i1.0/tmpa-i1.0-codeflowmu-v1.8.0-s1.0-evidence-20260811.zip.sha256)
+> **Claim boundary:** this is author-run evidence for one exact implementation revision and one exact input bundle. It is not independent certification, universal conformance, proof of semantic truth, or proof that hallucinations have been eliminated.
 
-**Claim boundary:** this is author-run, demonstrated behavior for one exact implementation revision and one exact S1.0 input bundle. It is not independent certification, universal conformance, proof of TMPA theory, proof of semantic truth, hallucination elimination, or independent adoption.
+## Public access and open-source status
 
-## Machine-readable specification and reproducibility
+Transparency matters more than an attractive label:
 
-Published S1.0 machine contracts:
+| Component | Available in this repository? | Current status |
+|---|---:|---|
+| TMPA papers, specifications, diagrams, and research | Yes | Publicly readable and citable |
+| S1.0 schemas, fixtures, runner, and Reference Reader | Yes | Source-visible and executable |
+| CodeFlowMu conformance evidence | Yes | Frozen evidence and exact-version registration |
+| [FCoP GitHub](https://github.com/joinwell52-AI/FCoP) · [Site](https://joinwell52-ai.github.io/FCoP/) | Separate repository | MIT-licensed protocol, Python package, and MCP server |
+| [CodeFlowMu Open GitHub](https://github.com/joinwell52-AI/CodeFlowMu-open) · [Site](https://joinwell52-ai.github.io/CodeFlowMu-open/) | Separate repository | MIT-licensed installable product; four-role team; Cursor-only today |
 
-- [Governance Object Schema](./docs/public/spec/tmpa/s1.0/governance-object.schema.json)
-- [Lifecycle Profile Schema](./docs/public/spec/tmpa/s1.0/lifecycle-profile.schema.json)
-- [Reader Result Schema](./docs/public/spec/tmpa/s1.0/reader-result.schema.json)
-- [Conformance Result Schema](./docs/public/spec/tmpa/s1.0/conformance-result.schema.json)
+The TMPA research content in this repository uses the terms in [`LICENSE.md`](./LICENSE.md). The two software repositories above carry their own MIT licenses. Their licenses and product boundaries are intentionally separate from the TMPA publication license.
 
-Run the author-produced S1.0 Reference Reader suite locally with Node.js 20 or later:
+## Research and production system
 
-```bash
-npm ci
-npm run tmpa:s1.0:conformance
-```
+Beyond the stable TMPA line, this repository contains a governed research production environment: source intelligence, Daily/Weekly/Academic/Program runtimes, research skills, publication gates, validators, and the VitePress site.
 
-The Reference Reader result and the separately registered CodeFlowMu product result are distinct evidence tracks. See the [conformance README](./research/conformance/tmpa-core-s1.0/README.md) before interpreting either result.
+Featured reading:
 
-## Research infrastructure and derived outputs
+- [From SaaS to SaaW: When a Codebase Starts “Developing Itself”](https://joinwell52-ai.github.io/joinwell52/en/industry/2026-08-10-saaw-software-as-an-agent-worker)
+- [One Agent Said “Done.” Why Didn't the Team Release It?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-08-06-codeflowmu-multi-agent-fact-checking)
+- [Digital Employee Architecture V0.2](https://joinwell52-ai.github.io/joinwell52/en/digital-employee/architecture)
 
-The repository also contains a governed research production system: Research Intelligence, Daily/Weekly/Academic/Program Runtimes, Research Skills, publication gates, and verification scripts. These components provide a living environment in which governance ideas can be exercised and research can be published.
-
-The Digital Researcher's daily articles are **derived outputs of that environment**. They may interpret TMPA, connect it to industry change, or propose new research directions, but they do not define conformance and cannot override S1.0.
-
-- [SaaW: Software as an Agent Worker](https://joinwell52-ai.github.io/joinwell52/en/industry/2026-08-10-saaw-software-as-an-agent-worker) — an industry manifesto connecting the shift from SaaS to software as a governed work actor with TMPA and CodeFlowMu.
-- [Research Runtime Center V5.0](./docs/en/runtime/v5.md) — the operating system for the Digital Researcher and its publication workflows.
-- [Research Report Production Engine V1.3](./docs/en/publications/research-report-production-engine-v1.3.md) — the report-production implementation built on that Runtime.
-
-Use the Architecture Paper and Core Specification for authoritative TMPA claims; use I1.0 and the evidence packages for engineering claims; treat essays and manifestos as research discourse.
+These outputs may interpret TMPA or inform future work, but they do not override Core S1.0.
 
 ## Repository map
 
 ```text
 .
 ├── docs/
-│   ├── en/ and zh/                  # bilingual research site sources
+│   ├── en/ and zh/                  bilingual research site
 │   └── public/
-│       ├── spec/tmpa/s1.0/          # machine-readable normative contracts
-│       ├── releases/tmpa/v1.0/      # checksummed bilingual publication dossier
-│       └── evidence/tmpa/i1.0/      # locked CodeFlowMu evidence package
+│       ├── spec/tmpa/s1.0/          machine-readable contracts
+│       ├── releases/tmpa/v1.0/      checksummed publication dossier
+│       └── evidence/tmpa/i1.0/      locked CodeFlowMu evidence
 ├── research/
-│   ├── conformance/tmpa-core-s1.0/  # Reference Reader, fixtures, results, audits
-│   ├── runtime/                      # governed research execution records
-│   ├── intelligence/                 # source registry and research signals
-│   └── skills/                       # staged research work contracts
-├── scripts/                          # validation, projection, and site tooling
-└── .github/workflows/                # validation, scheduling, and Pages deployment
+│   ├── conformance/tmpa-core-s1.0/  Reference Reader, fixtures, results
+│   ├── runtime/                      governed execution records
+│   ├── intelligence/                 source registry and research signals
+│   └── skills/                       staged research work contracts
+├── scripts/                          validation, projection, and site tooling
+└── .github/workflows/                validation, scheduling, Pages deployment
 ```
 
-## Citation, rights, and contribution
+## Contribute, cite, and follow
 
-- Citation metadata: [`CITATION.cff`](./CITATION.cff) and the per-publication CFF/BibTeX files in the [V1.0 dossier](./docs/public/releases/tmpa/v1.0/metadata/)
+- Research and contribution policy: [`CONTRIBUTING.md`](./CONTRIBUTING.md) · [`RESEARCH-GOVERNANCE.md`](./RESEARCH-GOVERNANCE.md)
+- Citation metadata: [`CITATION.cff`](./CITATION.cff) · [V1.0 metadata](./docs/public/releases/tmpa/v1.0/metadata/)
 - Rights and permitted use: [`LICENSE.md`](./LICENSE.md)
-- Research and contribution policy: [`CONTRIBUTING.md`](./CONTRIBUTING.md) and [`RESEARCH-GOVERNANCE.md`](./RESEARCH-GOVERNANCE.md)
+- Questions and proposals: [open an issue](https://github.com/joinwell52-AI/joinwell52/issues)
 
-## Author
+If this work helps you reason about accountable AI work, [**give the repository a Star**](https://github.com/joinwell52-AI/joinwell52) and share the specific artifact you found useful.
 
-**Zhu Wei / 朱卫 · joinwell52-AI**  
-Independent Researcher
+---
 
-Research site: [joinwell52-ai.github.io/joinwell52](https://joinwell52-ai.github.io/joinwell52/)
+<p align="center">
+  <strong>Zhu Wei / 朱卫 · joinwell52-AI</strong><br>
+  Independent Researcher<br><br>
+  <a href="https://joinwell52-ai.github.io/joinwell52/">Digital Employee Works</a>
+  ·
+  <a href="https://doi.org/10.5281/zenodo.21888488">Zenodo DOI</a>
+  ·
+  <a href="./README.zh-CN.md">中文 README</a>
+</p>
