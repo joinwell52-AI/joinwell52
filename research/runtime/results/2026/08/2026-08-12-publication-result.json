@@ -1,0 +1,99 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "publication",
+  "family": "daily",
+  "runtimeDate": "2026-08-12",
+  "status": "Completed",
+  "input": {
+    "scheduler": "research/runtime/SCHEDULER.json",
+    "workerControl": "research/runtime/worker-prompts/generated/CONTROL.json",
+    "generatedPrompt": "research/runtime/worker-prompts/generated/publication.prompt.md",
+    "generatedPromptVersion": "2.0.0",
+    "generatedPromptSha256": "f307384f9bb856b428bedb2cb5170ab1850724aae917de2d26b240d65be3796e",
+    "admissionCommit": "c2242e6c6ff2692b86b5dd16cabe8cf8134423ed",
+    "dailyRuntime": "research/runtime/records/daily/2026/08/2026-08-12-daily-runtime.json",
+    "productionResult": "research/runtime/results/2026/08/2026-08-12-production-result.json",
+    "candidateBatch": "research/runtime/candidates/2026/08/2026-08-12-candidates.json",
+    "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-12/publication-200642.json",
+    "workerClaimRequest": "research/runtime/claim-requests/publication-20260812-2008.json",
+    "controlPlane": {
+      "executionSlotOpenedAt": "2026-08-12T20:05:52+08:00",
+      "workerClaimedAt": "2026-08-12T20:11:02+08:00",
+      "startStateCommit": "c2242e6c6ff2692b86b5dd16cabe8cf8134423ed",
+      "workerClaimCommit": "cf4b7490df8e8b99895bba0f7b5f0bd955d2a1d9",
+      "globalOrderVerified": true,
+      "earlierDueTasksClosed": ["discovery", "queue", "reading", "analysis", "production"],
+      "academicClosed": true
+    }
+  },
+  "workResult": {
+    "summary": "Resolved fail-closed Publication admission from authoritative main commit c2242e6c6ff2692b86b5dd16cabe8cf8134423ed, deterministically verified Publication Worker Prompt v2.0.0 SHA-256 f307384f9bb856b428bedb2cb5170ab1850724aae917de2d26b240d65be3796e, read every required source, persisted and verified the same-date Wake Receipt, and durably established ordered Worker Claimed evidence before release work. Revalidated the completed 2026-08-12 Production result and exactly three same-date V2 Research Center Publication Candidates; all required evidence, editorial, bilingual, cover, inline-visual and layout gates were PASS, all Community Editions were governed not-generated, and no candidate required repair. Released exactly three Research Center items as six bilingual public articles and three dedicated editorial PNG covers, with zero manufactured Inline Figures, then recorded the same-date Release Manifest. No new research, substantive rewriting, evidence repair, or Community Edition fabrication was performed. Deploy Research Center Pages run 31596037173 completed successfully against release state commit a7a91095f382ce9314cb9fadb8c0cbcad2c48dec, so npm run docs:build, Runtime freshness/order checks, Publication Visibility, and gh-pages publication all passed before terminal Runtime completion was requested.",
+    "summary_zh": "从 main 权威提交 c2242e6c6ff2692b86b5dd16cabe8cf8134423ed 解析并通过 Publication 的 Fail-closed Admission，确定性核验 Publication Worker Prompt v2.0.0 的 SHA-256 为 f307384f9bb856b428bedb2cb5170ab1850724aae917de2d26b240d65be3796e，完整读取全部 Required Sources，并在发布业务开始前持久写入并核验同日 Wake Receipt 与顺序 Worker Claimed 证据。随后重新核验 2026-08-12 已完成的 Production Result 与恰好 3 组同日 V2 Research Center Publication Candidate；全部 Evidence、Editorial、Bilingual、Cover、Inline Visual 与 Layout Gate 均为 PASS，所有 Community Edition 均为受治理的 not-generated，且没有候选需要修复。最终仅发布 3 个 Research Center 项目，共 6 篇双语公开文章、3 张独立编辑性 PNG 题图，未人为制造 Inline Figure，并记录同日 Release Manifest。未开展新研究、实质性改写、证据修复或 Community Edition 编造。Deploy Research Center Pages Run 31596037173 已针对 Release State Commit a7a91095f382ce9314cb9fadb8c0cbcad2c48dec 成功完成，因此 npm run docs:build、Runtime 新鲜度/顺序检查、Publication Visibility 与 gh-pages 发布均在请求 Runtime 终态完成之前通过。",
+    "releaseContentCommit": "a2b3523b2cad75edbbb688f180d2b89aa11bfa31",
+    "releaseCommit": "a7a91095f382ce9314cb9fadb8c0cbcad2c48dec",
+    "releaseCommitVerified": true,
+    "pagesWorkflowRun": 31596037173,
+    "pagesBuildVerified": true,
+    "releasedItems": ["Q-20260812-01", "Q-20260812-02", "Q-20260812-03"],
+    "boundary": {
+      "newResearch": false,
+      "substantiveRewriting": false,
+      "evidenceRepair": false,
+      "communityEditionsGenerated": false
+    }
+  },
+  "output": {
+    "type": "Released Daily Research",
+    "outcome": "Released",
+    "releaseManifest": "research/runtime/releases/2026-08-12-publication.json",
+    "releaseCommit": "a7a91095f382ce9314cb9fadb8c0cbcad2c48dec",
+    "releasedItems": 3,
+    "bilingualArticleFiles": 6,
+    "coverAssets": 3,
+    "inlineFigureAssets": 0,
+    "communityEditions": 0
+  },
+  "next": {
+    "instruction": "Daily Publication is complete for 2026-08-12. Wednesday Academic is already durably Completed, and no later formally applicable task remains after Publication today; after durable Publication completion verification the Process Manager should stop."
+  },
+  "metrics": [
+    {"name":"eligible_publication_candidates","value":3},
+    {"name":"released_items","value":3},
+    {"name":"bilingual_article_files","value":6},
+    {"name":"cover_assets","value":3},
+    {"name":"inline_figure_assets","value":0},
+    {"name":"community_editions","value":0},
+    {"name":"publication_start_events","value":1},
+    {"name":"wake_receipts_verified","value":1},
+    {"name":"worker_claims_verified","value":1},
+    {"name":"new_research_actions","value":0},
+    {"name":"substantive_rewrites","value":0},
+    {"name":"evidence_repairs","value":0}
+  ],
+  "evidence": [
+    "research/runtime/wakes/2026/08/2026-08-12/publication-200642.json",
+    "research/runtime/claim-requests/publication-20260812-2008.json",
+    "research/runtime/records/daily/2026/08/2026-08-12-daily-runtime.json",
+    "research/runtime/results/2026/08/2026-08-12-production-result.json",
+    "research/runtime/candidates/2026/08/2026-08-12-candidates.json",
+    "research/runtime/releases/2026-08-12-publication.json",
+    "https://github.com/joinwell52-AI/joinwell52/commit/a2b3523b2cad75edbbb688f180d2b89aa11bfa31",
+    "https://github.com/joinwell52-AI/joinwell52/commit/a7a91095f382ce9314cb9fadb8c0cbcad2c48dec",
+    "https://github.com/joinwell52-AI/joinwell52/actions/runs/31596037173"
+  ],
+  "artifacts": [
+    "docs/zh/digital-employee/2026-08-12-acceptance-persistence-handoff.md",
+    "docs/en/digital-employee/2026-08-12-acceptance-persistence-handoff.md",
+    "docs/zh/industry/2026-08-12-consent-effective-policy.md",
+    "docs/en/industry/2026-08-12-consent-effective-policy.md",
+    "docs/zh/engineering/2026-08-12-scoped-callback-concurrency.md",
+    "docs/en/engineering/2026-08-12-scoped-callback-concurrency.md",
+    "docs/public/assets/covers/daily-2026-08-12-acceptance-persistence-handoff.png",
+    "docs/public/assets/covers/daily-2026-08-12-consent-effective-policy.png",
+    "docs/public/assets/covers/daily-2026-08-12-scoped-callback-concurrency.png",
+    "research/runtime/releases/2026-08-12-publication.json",
+    "research/runtime/results/2026/08/2026-08-12-publication-result.json"
+  ],
+  "startedAt": "2026-08-12T20:05:52+08:00",
+  "completedAt": "2026-08-12T20:22:21+08:00"
+}
