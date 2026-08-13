@@ -78,6 +78,26 @@ function loadReviews() {
     }))
 }
 
+function nextWeeklyRun(now = new Date()) {
+  const parts = Object.fromEntries(new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Shanghai',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hourCycle: 'h23'
+  }).formatToParts(now)
+    .filter((part) => part.type !== 'literal')
+    .map((part) => [part.type, part.value]))
+  const localDate = new Date(Date.UTC(Number(parts.year), Number(parts.month) - 1, Number(parts.day)))
+  const weekday = localDate.getUTCDay()
+  let days = (7 - weekday) % 7
+  if (days === 0 && (Number(parts.hour) > 20 || (Number(parts.hour) === 20 && Number(parts.minute) >= 30))) days = 7
+  localDate.setUTCDate(localDate.getUTCDate() + days)
+  return `${localDate.toISOString().slice(0, 10)}T20:30:00+08:00`
+}
+
 function state() {
   const registry = readJson(REGISTRY_PATH)
   const reviews = loadReviews()
@@ -101,6 +121,14 @@ function state() {
   return {
     schema: 'p2-review-center-data/v1',
     generatedAt: new Date().toISOString(),
+    timezone: 'Asia/Shanghai',
+    schedule: {
+      carrierTask: 'Research Runtime Weekly',
+      cadence: 'weekly',
+      day: 'Sunday',
+      time: '20:30',
+      nextRunAt: nextWeeklyRun()
+    },
     contractPath: repoPath(CONTRACT_PATH),
     objects: p2Objects(registry),
     studies,

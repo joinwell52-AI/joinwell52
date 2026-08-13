@@ -5,13 +5,25 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>P2 专项研究审稿中心</title>
   <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/time-context.css">
 </head>
 <body>
-  <header class="topbar"><div><span>JOINWELL52 · INTERNAL RESEARCH</span><h1>P2 专项研究审稿中心</h1><p>本地独立页面 · 不参与 GitHub Pages 构建</p></div><button id="refresh">刷新数据</button></header>
+  <header class="topbar">
+    <div><span>JOINWELL52 · INTERNAL RESEARCH</span><h1>P2 专项研究审稿中心</h1><p>本地独立页面 · 不参与 GitHub Pages 构建</p></div>
+    <div class="top-actions">
+      <section class="time-context" aria-label="P2 时间信息">
+        <strong id="current-date">—</strong>
+        <b id="current-clock">—</b>
+        <small id="last-refresh">数据刷新：—</small>
+        <small id="next-run">下次周检查：—</small>
+      </section>
+      <button id="refresh">刷新数据</button>
+    </div>
+  </header>
   <main>
     <section id="summary" class="summary"></section>
     <section class="workspace">
-      <aside><div class="aside-head"><h2>待审专项</h2><button id="rules">研究规则</button></div><div id="study-list" class="study-list"></div><div class="run-head"><h2>周检查记录</h2></div><div id="run-list" class="run-list"></div></aside>
+      <aside><div class="aside-head"><h2>待审专项</h2><button id="rules">研究规则 · 中英双语</button></div><div id="study-list" class="study-list"></div><div class="run-head"><h2>周检查记录</h2></div><div id="run-list" class="run-list"></div></aside>
       <article id="review-pane" class="review-pane"><div class="empty"><strong>请选择专项稿件</strong><p>命中 P2 触发阈值后，Weekly Runtime 生成的内部专项稿会出现在这里。</p></div></article>
     </section>
   </main>

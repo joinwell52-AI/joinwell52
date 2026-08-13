@@ -85,3 +85,13 @@ npm run intelligence:validate
 npm run intelligence:build
 node scripts/research-intelligence.mjs initialize --date YYYY-MM-DD
 ```
+
+## Local P2 review center
+
+P2 research rules are bilingual. Internal P2 studies are reviewed through a local-only page that is excluded from the GitHub Pages build.
+
+```bash
+npm run p2:review
+```
+
+Open `http://127.0.0.1:4174/`. See `internal/p2-review/README.md` for startup, shutdown, port, and data-boundary details.

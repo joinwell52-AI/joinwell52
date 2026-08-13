@@ -1,5 +1,21 @@
 const $ = (selector) => document.querySelector(selector)
 const state = { data: null, selected: null }
+const shanghaiDate = new Intl.DateTimeFormat('zh-CN', { timeZone:'Asia/Shanghai', year:'numeric', month:'2-digit', day:'2-digit', weekday:'long' })
+const shanghaiTime = new Intl.DateTimeFormat('zh-CN', { timeZone:'Asia/Shanghai', hour:'2-digit', minute:'2-digit', second:'2-digit', hourCycle:'h23' })
+const shanghaiDateTime = new Intl.DateTimeFormat('zh-CN', { timeZone:'Asia/Shanghai', year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', hourCycle:'h23' })
+
+function renderClock() {
+  const now = new Date()
+  $('#current-date').textContent = shanghaiDate.format(now)
+  $('#current-clock').textContent = `${shanghaiTime.format(now)} · Asia/Shanghai`
+}
+
+function renderTimeContext() {
+  renderClock()
+  if (!state.data) return
+  $('#last-refresh').textContent = `数据刷新：${shanghaiDateTime.format(new Date(state.data.generatedAt))}`
+  $('#next-run').textContent = `下次周检查：${shanghaiDateTime.format(new Date(state.data.schedule.nextRunAt))}`
+}
 
 function escapeHtml(value = '') {
   return String(value).replace(/[&<>"']/g, (char) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[char])
@@ -75,7 +91,7 @@ async function selectStudy(path) {
   const content = await api(`/api/content?path=${encodeURIComponent(path)}`)
   const current = study.review?.currentDecision
   $('#review-pane').innerHTML = `
-    <header class="review-head"><div><span>${escapeHtml(study.date)} · PENDING REVIEW</span><h2>${escapeHtml(study.title)}</h2><p>${escapeHtml(path)}</p></div><b>${escapeHtml(decisionName(current))}</b></header>
+    <header class="review-head"><div><span>${escapeHtml(study.date)} · PENDING REVIEW</span><h2>${escapeHtml(study.title)}</h2><p>${escapeHtml(path)}</p>${study.review?.updatedAt ? `<small>最近审核：${escapeHtml(shanghaiDateTime.format(new Date(study.review.updatedAt)))}</small>` : ''}</div><b>${escapeHtml(decisionName(current))}</b></header>
     <section class="review-contract"><strong>人工审核门禁</strong><p>该稿件不会自动发布。只有选择“转公开文章候选”，才允许进入后续 Production / Publication。</p></section>
     <section class="markdown">${markdown(content)}</section>
     <section class="review-form"><label>审核人<input id="reviewer" value="Manual Reviewer" maxlength="100"></label><label>审核意见<textarea id="notes" rows="5" maxlength="5000" placeholder="说明通过、退回、转候选或归档的理由"></textarea></label><div class="actions"><button data-decision="Approved Internal">通过为内部研究</button><button data-decision="Revision Required">退回修改</button><button data-decision="Promote to Article Candidate">转公开文章候选</button><button data-decision="Archived">归档</button></div></section>`
@@ -104,7 +120,7 @@ async function showRules() {
 async function load(selectedPath = null) {
   try {
     state.data = await api('/api/state')
-    renderSummary(); renderStudies(); renderRuns()
+    renderTimeContext(); renderSummary(); renderStudies(); renderRuns()
     if (selectedPath) await selectStudy(selectedPath)
   } catch (error) { toast(error.message, true) }
 }
@@ -112,4 +128,6 @@ async function load(selectedPath = null) {
 $('#refresh').addEventListener('click', () => load(state.selected?.path))
 $('#rules').addEventListener('click', showRules)
 $('#rules-dialog .close').addEventListener('click', () => $('#rules-dialog').close())
+renderClock()
+setInterval(renderClock, 1000)
 load()
