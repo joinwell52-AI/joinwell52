@@ -38,7 +38,7 @@ const admitted = [
   ['queue', '2026-08-12T10:00:00+08:00'],
   ['reading', '2026-08-12T11:00:00+08:00'],
   ['analysis', '2026-08-12T13:00:00+08:00'],
-  ['production', '2026-08-12T15:00:00+08:00'],
+  ['production', '2026-08-13T15:00:00+08:00'],
   ['academic', '2026-08-12T16:00:00+08:00'],
   ['publication', '2026-08-12T20:00:00+08:00'],
   ['program', '2026-08-17T12:00:00+08:00'],
@@ -49,7 +49,7 @@ for (const [task, now] of admitted) {
   expectDecision(`${task} nominal admission`, { task, now }, 'Admitted')
 }
 
-expectDecision('production early wake', { task: 'production', now: '2026-08-12T14:59:00+08:00' }, 'Denied', 'not eligible before')
+expectDecision('production early wake', { task: 'production', now: '2026-08-13T14:59:00+08:00' }, 'Denied', 'not eligible before')
 expectDecision('weekly wrong weekday', { task: 'weekly', now: '2026-08-12T20:30:00+08:00' }, 'Denied', 'not scheduled on')
 expectDecision('academic wrong weekday', { task: 'academic', now: '2026-08-13T16:00:00+08:00' }, 'Denied', 'not scheduled on')
 expectDecision('program wrong weekday', { task: 'program', now: '2026-08-18T12:00:00+08:00' }, 'Denied', 'not scheduled on')

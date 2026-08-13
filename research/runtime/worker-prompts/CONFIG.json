@@ -166,8 +166,8 @@
     },
     {
       "task": "production",
-      "version": "2.1.0",
-      "effectiveDate": "2026-08-12",
+      "version": "2.2.0",
+      "effectiveDate": "2026-08-13",
       "template": "research/runtime/worker-prompts/templates/production.prompt.md",
       "output": "research/runtime/worker-prompts/generated/production.prompt.md",
       "requiredCapabilities": [],
@@ -188,7 +188,9 @@
       "rules": [
         "Produce complete bilingual V2 Publication Candidates only from completed same-run-date Research Objects.",
         "Apply dynamic article architecture, independent evidence grading, Research Center and Community Edition separation, and every declared gate.",
-        "Stage candidates only; Production never publishes."
+        "Build every candidate outside the canonical staging path until its Chinese article, English article, dedicated cover, optional Inline Figures and completed candidate-batch record are all ready.",
+        "Stage and commit the complete candidate bundle exactly once. Before commit run npm run publication:bundle:staged plus every declared validator; never commit one language, an article without its referenced assets, or an incomplete candidate batch.",
+        "Do not bypass the repository pre-commit hook, use --no-verify, or write candidate files directly through the GitHub Contents API. Stage candidates only; Production never publishes."
       ],
       "requiredSources": [
         "research/runtime/SCHEDULER.json",
@@ -202,7 +204,7 @@
         "research/skills/07-evidence-citation.md",
         "research/skills/08-publication-editing.md"
       ],
-      "requiredCommands": ["npm run publication:layout:validate", "npm run publication:editorial:validate", "npm run runtime:validate"]
+      "requiredCommands": ["npm run publication:bundle:staged", "npm run publication:layout:validate", "npm run publication:editorial:validate", "npm run runtime:validate"]
     },
     {
       "task": "publication",
