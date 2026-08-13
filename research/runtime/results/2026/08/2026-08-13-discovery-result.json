@@ -1,0 +1,50 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "discovery",
+  "family": "daily",
+  "runtimeDate": "2026-08-13",
+  "status": "Completed",
+  "input": "The verified 2026-08-13 Discovery Wake Receipt; main commit 78c73ec243f41c3105ce46947db1c10bc1f45f5d and its declared Worker Control manifest; generated Discovery prompt v1.0.0 with verified SHA-256 a2b786a776cdbe49ac98243efaa4d13edba62e0456d44349ed61c0ab1c90feaa; every required source declared by that prompt; all 33 due P0 AI-platform channels; all nine P0 GitHub Engineering repositories; and all nine P0 Published Research source indexes. No prior-day artifact was used as a current-day business input.",
+  "input_zh": "已核验的 2026-08-13 Discovery Wake Receipt；main 提交 78c73ec243f41c3105ce46947db1c10bc1f45f5d 及其声明的 Worker Control Manifest；已核验 SHA-256 为 a2b786a776cdbe49ac98243efaa4d13edba62e0456d44349ed61c0ab1c90feaa 的 Discovery Generated Prompt v1.0.0；该 Prompt 声明的全部 Required Source；33 个应查 P0 AI 平台频道、9 个 P0 GitHub Engineering 仓库与 9 个 P0 Published Research 来源索引。未把任何前一日产物作为当天业务输入。",
+  "workResult": "Fail-closed Worker Control admission succeeded on main for the scheduled-task wake with all required capabilities available. The durable Wake Receipt was committed and fetched before Runtime work; exactly one Discovery Execution Slot Opened event and one Worker Claimed event were then durably verified before substantive scanning. AI Platform resolved all 33 due channels as 30 checked, one authentication-required source, and two explicit retrieval failures, retaining one material run-date signal. GitHub Engineering incrementally checked all nine P0 repositories from the run-date boundary and retained nine material maintainer changes after same-mechanism normalization. Published Research checked all nine P0 source indexes and retained zero new run-date objects above the engineering-evidence threshold. Discovery stopped at the Signal Pool and performed no Queue triage, Deep Reading, Research Analysis, writing, or publication.",
+  "workResult_zh": "在 main 上按 Fail-closed Worker Control 完成 Scheduled-task Wake Admission，当前 Worker 具备全部必需能力。任何 Runtime 业务工作前，Wake Receipt 已提交并重新 Fetch 核验；随后在实质扫描前持久核验了恰好一个 Discovery Execution Slot Opened 与一个 Worker Claimed。AI Platform 的 33 个应查频道全部得到解析：30 个已检查、1 个明确需要认证、2 个明确抓取失败，保留 1 个运行日重要 Signal；GitHub Engineering 从运行日边界增量检查全部 9 个 P0 仓库，按同机制归并后保留 9 个重要维护者变更；Published Research 检查全部 9 个 P0 来源索引，没有新的运行日研究对象达到工程证据阈值。Discovery 止于 Signal Pool，未执行 Queue 筛选、Deep Reading、Research Analysis、写作或发布。",
+  "output": "A run-date Signal Pool of 10 unselected signals: one AI-platform signal, nine GitHub-engineering signals, and zero published-research signals. Primary-column counts are Digital Employee 2, Industry Architecture 2, and Open-source Engineering 6. All column decisions remain Waiting for Queue.",
+  "output_zh": "生成运行日 Signal Pool，共 10 个未选题 Signal：AI Platform 1 个、GitHub Engineering 9 个、Published Research 0 个；主栏目分布为数字员工 2 个、行业架构 2 个、开源工程 6 个。所有栏目 Decision 均继续等待 Queue。",
+  "next": "At or after the formal 10:00 Queue time, Runtime reconciliation may grant Queue execution authority only if Discovery is durably Completed and no earlier due task is unfinished. Queue may consume only the 2026-08-13 Signal Pool for triage.",
+  "next_zh": "到达或超过正式 10:00 Queue 时点后，Runtime Reconciliation 只有在 Discovery 已持久 Completed 且不存在更早到期未收口任务时，才可授予 Queue 执行权。Queue 只能消费 2026-08-13 Signal Pool 执行筛选。",
+  "metrics": [
+    {"label":"Wake receipts","label_zh":"Wake Receipt","value":1},
+    {"label":"Discovery start events","label_zh":"Discovery 启动事件","value":1},
+    {"label":"Worker claims","label_zh":"Worker Claimed","value":1},
+    {"label":"AI platform due / checked / inaccessible / failed","label_zh":"AI 平台应查 / 已查 / 不可访问 / 失败","value":"33 / 30 / 1 / 2"},
+    {"label":"GitHub repositories checked","label_zh":"GitHub 已检查仓库","value":"9 / 9"},
+    {"label":"Research sources checked","label_zh":"研究来源已检查","value":"9 / 9"},
+    {"label":"Normalized signals","label_zh":"规范化 Signal","value":10},
+    {"label":"Selected topics","label_zh":"已选主题","value":0},
+    {"label":"Generated prompt SHA-256 verified","label_zh":"Generated Prompt SHA-256 已核验","value":1}
+  ],
+  "evidence": [
+    {"label":"Discovery Wake Receipt","label_zh":"Discovery 唤醒回执","path":"research/runtime/wakes/2026/08/2026-08-13/discovery-090123.json"},
+    {"label":"Pinned Scheduler source commit","label_zh":"固定 Scheduler 来源提交","commit":"78c73ec243f41c3105ce46947db1c10bc1f45f5d"},
+    {"label":"Worker Control manifest","label_zh":"Worker Control Manifest","path":"research/runtime/worker-prompts/generated/CONTROL.json"},
+    {"label":"Generated Discovery prompt","label_zh":"Generated Discovery Prompt","path":"research/runtime/worker-prompts/generated/discovery.prompt.md"},
+    {"label":"Generated Discovery prompt SHA-256","label_zh":"Generated Discovery Prompt SHA-256","value":"a2b786a776cdbe49ac98243efaa4d13edba62e0456d44349ed61c0ab1c90feaa"},
+    {"label":"Research Intelligence Registry","label_zh":"Research Intelligence 注册表","path":"research/intelligence/REGISTRY.json"},
+    {"label":"AI Platform profile","label_zh":"AI 平台 Profile","path":"research/skills/profiles/01p-ai-platform-change-intelligence.md"},
+    {"label":"GitHub Engineering profile","label_zh":"GitHub 工程 Profile","path":"research/skills/profiles/01g-github-engineering-intelligence.md"},
+    {"label":"Published Research profile","label_zh":"已发表研究 Profile","path":"research/skills/profiles/01r-published-research-intelligence.md"},
+    {"label":"GitHub run-date service incident","label_zh":"GitHub 运行日服务事件","url":"https://www.githubstatus.com/incidents/lsvy8xsf0gxv"},
+    {"label":"Codex remote plugin metrics change","label_zh":"Codex 远程插件度量变更","url":"https://github.com/openai/codex/commit/9579479d288afbd3d827affdfc73801c6b848cd0"},
+    {"label":"Claude Code 2.1.229 release","label_zh":"Claude Code 2.1.229 发布","url":"https://github.com/anthropics/claude-code/releases/tag/v2.1.229"},
+    {"label":"Google ADK bounded HTTP change","label_zh":"Google ADK 有界 HTTP 变更","url":"https://github.com/google/adk-python/commit/f57a67d638a71899404dba2d4899ff42459e9f09"},
+    {"label":"Signal Pool commit","label_zh":"Signal Pool 提交","commit":"7a8d127ba2cb511613cb90420bbe02e421aa6974"}
+  ],
+  "artifacts": [
+    {"label":"Research Intelligence run","label_zh":"Research Intelligence 运行记录","path":"research/intelligence/runs/2026/08/2026-08-13-intelligence.json"},
+    {"label":"Discovery result","label_zh":"Discovery 结果","path":"research/runtime/results/2026/08/2026-08-13-discovery-result.json"},
+    {"label":"Daily Runtime JSON","label_zh":"Daily Runtime JSON","path":"research/runtime/records/daily/2026/08/2026-08-13-daily-runtime.json"},
+    {"label":"Runtime Markdown ledger","label_zh":"Runtime Markdown 账本","path":"research/runtime/2026/08/2026-08-13-runtime.md"}
+  ],
+  "startedAt": "2026-08-13T09:03:19+08:00",
+  "completedAt": "2026-08-13T09:11:43+08:00"
+}
