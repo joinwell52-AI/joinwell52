@@ -245,11 +245,11 @@
     },
     {
       "task": "weekly",
-      "version": "2.0.0",
-      "effectiveDate": "2026-08-12",
+      "version": "2.1.0",
+      "effectiveDate": "2026-08-14",
       "template": "research/runtime/worker-prompts/templates/stage.prompt.md",
       "output": "research/runtime/worker-prompts/generated/weekly.prompt.md",
-      "requiredCapabilities": [],
+      "requiredCapabilities": ["web-research"],
       "control": {
         "state": "active",
         "notBefore": "20:30",
@@ -257,7 +257,7 @@
         "maxRunMinutes": 180,
         "maxRecoveryAttempts": 2,
         "maxRevisionRounds": 3,
-        "maxOutputItems": 1,
+        "maxOutputItems": 2,
         "zeroOutputAllowed": true,
         "directPublicationAllowed": true,
         "requireSameRunDateInputs": false,
@@ -265,6 +265,12 @@
         "requireRemoteCommitVerification": true
       },
       "rules": [
+        "Fetch the latest main branch, initialize the run-date P2 record, and check every due P2 Registry object before Weekly synthesis; never create a separate P2 timer.",
+        "Use the P2 trigger score to decide whether a change is worth deeper research. Triggering a study requires a relevant primary-source change, not completed proof or production readiness.",
+        "Resolve every due P2 object to a terminal result. If one or more reach trigger score 5, rank them and execute at most one P2 special study in this Weekly invocation; otherwise record No Material Change or Continue Watching and perform no P2 study.",
+        "Persist a triggered study under research/intelligence/p2-studies as an internal research asset. It forms an independent judgment first, starts as Pending Review, never publishes directly, and never changes a first-party product automatically.",
+        "Do not write a P2 review decision during Weekly execution. Manual review is recorded separately under research/intelligence/p2-reviews; only Promote to Article Candidate permits a later handoff to the public-writing pipeline.",
+        "The final task notification must include P2 checked/due coverage, trigger count, selected study or explicit no-study result, outcome, checkpoint identity, internal report link when present, and verified GitHub commit; P2 completion must never be silent.",
         "Use only evidence-validated Daily Research from the previous seven days and explicitly identify the coverage window.",
         "Synthesize material changes, connections, disputes, supportable judgments and unresolved questions into one independently readable AI Research Brief; never concatenate daily articles.",
         "Use dynamic structure and an ending suited to the evidence; do not force a conclusion or TMPA, FCoP or CodeFlowMu implications.",
@@ -275,14 +281,19 @@
         "research/runtime/WORKER-CONTRACT-V3.md",
         "research/runtime/WAKE-RECEIPT-V1.md",
         "research/runtime/RUNTIME-RECORD-SCHEMA-V5.md",
+        "research/intelligence/REGISTRY.json",
+        "research/intelligence/P2-SPECIAL-STUDY-CONTRACT.md",
+        "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
         "research/editorial/EDITORIAL-ARCHITECTURE.json",
         "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+        "research/skills/profiles/01g-github-engineering-intelligence.md",
+        "research/skills/03-deep-reading.md",
         "research/skills/04-research-analysis.md",
         "research/skills/05-research-writing.md",
         "research/skills/07-evidence-citation.md",
         "research/skills/08-publication-editing.md"
       ],
-      "requiredCommands": ["npm run publication:layout:validate", "npm run publication:editorial:validate", "npm run runtime:validate", "npm run docs:build"]
+      "requiredCommands": ["npm run intelligence:validate", "npm run publication:layout:validate", "npm run publication:editorial:validate", "npm run runtime:validate", "npm run docs:build"]
     },
     {
       "task": "academic",
