@@ -1,0 +1,96 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "publication",
+  "family": "daily",
+  "runtimeDate": "2026-08-13",
+  "status": "Completed",
+  "input": {
+    "scheduler": "research/runtime/SCHEDULER.json",
+    "workerControl": "research/runtime/worker-prompts/generated/CONTROL.json",
+    "generatedPrompt": "research/runtime/worker-prompts/generated/publication.prompt.md",
+    "generatedPromptVersion": "2.0.0",
+    "generatedPromptSha256": "a4fefa79b616aaaeef94119299fe2fb1939948680a2440b54c4ed9e07c20b8e9",
+    "admissionCommit": "5dab0de596f43bb8c19afc1ae0f6c9f4a7726820",
+    "dailyRuntime": "research/runtime/records/daily/2026/08/2026-08-13-daily-runtime.json",
+    "productionResult": "research/runtime/results/2026/08/2026-08-13-production-result.json",
+    "candidateBatch": "research/runtime/candidates/2026/08/2026-08-13-candidates.json",
+    "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-13/publication-214304.json",
+    "controlPlane": {
+      "executionSlotOpenedAt": "2026-08-13T21:36:44+08:00",
+      "workerClaimedAt": "2026-08-13T21:43:34+08:00",
+      "startStateCommit": "d770ab69e895e0c34b9cdf7afbc2aa99be07e05d",
+      "workerClaimCommit": "6facc9d393140550e5195bb61665e24067aa1e8d",
+      "globalOrderVerified": true,
+      "earlierDueTasksClosed": ["discovery", "queue", "reading", "analysis", "production"]
+    }
+  },
+  "workResult": {
+    "summary": "Recovery Patrol admitted the overdue Publication worker from authoritative main, persisted and verified a dedicated Wake Receipt, and established a fresh Worker Claimed event for the current Publication execution epoch. Publication revalidated the completed same-date Production result and exactly three V2 Research Center Publication Candidates. It released three items as six bilingual public articles and three dedicated SVG covers, with zero manufactured Inline Figures and no Community Editions. The first mechanical release pass was correctly blocked because the staging cover image remained in public Markdown; the release transformer was corrected without changing article substance, and all layout, editorial, Runtime, VitePress build and public visibility gates then passed. Deploy Research Center Pages run 31706787743 successfully built, verified and published gh-pages from release state commit 8a458a737284982769aa14eb82fd0187626c3a6b. No new research, substantive rewriting or evidence repair was performed.",
+    "summary_zh": "Recovery Patrol 从最新 main 权威状态准入已延误的 Publication Worker，持久写入并核验独立 Wake Receipt，并在当前 Publication 执行轮次中建立新的 Worker Claimed 证据。Publication 重新核验了同日已完成的 Production Result 与恰好三组 V2 Research Center Publication Candidate，最终发布三项研究成果，包括六篇中英双语公开文章和三张独立 SVG 题图，未人为制造 Inline Figure，也未生成 Community Edition。首轮机械发布因公开 Markdown 中残留候选稿题图而被门禁正确拦截；随后只修正发布转换器，未改动文章实质内容，布局、编辑、Runtime、VitePress 构建和公开可见性门禁全部通过。Deploy Research Center Pages Run 31706787743 已基于发布状态提交 8a458a737284982769aa14eb82fd0187626c3a6b 成功完成构建、核验并发布 gh-pages。全程未开展新研究、实质性改写或证据修复。",
+    "releaseContentCommit": "8968a9be2eddeae3637172ad4dbaf1ce46429652",
+    "releaseCommit": "8a458a737284982769aa14eb82fd0187626c3a6b",
+    "releaseCommitVerified": true,
+    "pagesWorkflowRun": 31706787743,
+    "pagesBuildVerified": true,
+    "releasedItems": ["Q-20260813-01", "Q-20260813-02", "Q-20260813-03"],
+    "boundary": {
+      "newResearch": false,
+      "substantiveRewriting": false,
+      "evidenceRepair": false,
+      "communityEditionsGenerated": false
+    }
+  },
+  "output": {
+    "type": "Released Daily Research",
+    "outcome": "Released",
+    "releaseManifest": "research/runtime/releases/2026-08-13-publication.json",
+    "releaseCommit": "8a458a737284982769aa14eb82fd0187626c3a6b",
+    "releasedItems": 3,
+    "bilingualArticleFiles": 6,
+    "coverAssets": 3,
+    "inlineFigureAssets": 0,
+    "communityEditions": 0
+  },
+  "next": {
+    "instruction": "Daily Publication is complete for 2026-08-13. No later formally applicable Runtime task remains today; stop after durable Publication completion verification."
+  },
+  "metrics": [
+    {"name":"eligible_publication_candidates","value":3},
+    {"name":"released_items","value":3},
+    {"name":"bilingual_article_files","value":6},
+    {"name":"cover_assets","value":3},
+    {"name":"inline_figure_assets","value":0},
+    {"name":"community_editions","value":0},
+    {"name":"publication_start_events","value":1},
+    {"name":"wake_receipts_verified","value":1},
+    {"name":"worker_claims_verified","value":1},
+    {"name":"new_research_actions","value":0},
+    {"name":"substantive_rewrites","value":0},
+    {"name":"evidence_repairs","value":0}
+  ],
+  "evidence": [
+    "research/runtime/wakes/2026/08/2026-08-13/publication-214304.json",
+    "research/runtime/records/daily/2026/08/2026-08-13-daily-runtime.json",
+    "research/runtime/results/2026/08/2026-08-13-production-result.json",
+    "research/runtime/candidates/2026/08/2026-08-13-candidates.json",
+    "research/runtime/releases/2026-08-13-publication.json",
+    "https://github.com/joinwell52-AI/joinwell52/commit/8968a9be2eddeae3637172ad4dbaf1ce46429652",
+    "https://github.com/joinwell52-AI/joinwell52/commit/8a458a737284982769aa14eb82fd0187626c3a6b",
+    "https://github.com/joinwell52-AI/joinwell52/actions/runs/31706787743"
+  ],
+  "artifacts": [
+    "docs/zh/digital-employee/2026-08-13-resume-capability-reconstruction.md",
+    "docs/en/digital-employee/2026-08-13-resume-capability-reconstruction.md",
+    "docs/zh/industry/2026-08-13-session-rebinding-execution-continuity.md",
+    "docs/en/industry/2026-08-13-session-rebinding-execution-continuity.md",
+    "docs/zh/engineering/2026-08-13-bounded-extension-point.md",
+    "docs/en/engineering/2026-08-13-bounded-extension-point.md",
+    "docs/public/assets/covers/daily-2026-08-13-resume-capability-reconstruction-cover.svg",
+    "docs/public/assets/covers/daily-2026-08-13-session-rebinding-execution-continuity-cover.svg",
+    "docs/public/assets/covers/daily-2026-08-13-bounded-extension-point-cover.svg",
+    "research/runtime/releases/2026-08-13-publication.json",
+    "research/runtime/results/2026/08/2026-08-13-publication-result.json"
+  ],
+  "startedAt": "2026-08-13T21:36:44+08:00",
+  "completedAt": "2026-08-13T21:49:41+08:00"
+}
