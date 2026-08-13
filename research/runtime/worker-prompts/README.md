@@ -61,6 +61,6 @@ If main, control admission or the prompt cannot be read and verified, stop with 
 
 All business instructions live in generated repository prompts, not in ChatGPT scheduled tasks. A scheduled task contributes only a wake opportunity, repository access and Agent intelligence.
 
-## Recovery patrol bootstrap
+## Event-driven recovery
 
-The Codex recovery patrol is a second admitted wake source, `codex-recovery-patrol`. It may claim only the earliest due `Running` task when the latest execution epoch has remained without a fresh `Worker Claimed` event beyond its claim grace period. It must otherwise no-op, especially when another worker has already claimed the current epoch.
+There is no standalone recovery patrol and no fixed-interval AI wake. Recovery is evaluated only when an existing scheduled task wakes, a Runtime completion event reconciles the queue, or an operator explicitly requests manual recovery. Each such event checks the earliest due unfinished task before new business work begins. When no Runtime event occurs, no AI worker is awakened.

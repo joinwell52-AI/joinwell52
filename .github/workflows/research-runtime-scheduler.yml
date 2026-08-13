@@ -2,8 +2,15 @@ name: Research Runtime Scheduler V3.0
 
 on:
   schedule:
-    # Heartbeat is only a safety net. Overdue chains advance immediately on successful completion events.
-    - cron: '2,7,12,17,22,27,32,37,42,47,52,57 * * * *'
+    # Formal Runtime boundaries only (UTC). There is no fixed-interval or overnight patrol.
+    # Daily: 09:00, 10:00, 11:00, 13:00, 15:00 and 20:00 Asia/Shanghai.
+    - cron: '0 1,2,3,5,7,12 * * *'
+    # Program: Monday 12:00 Asia/Shanghai.
+    - cron: '0 4 * * 1'
+    # Academic: Wednesday 16:00 Asia/Shanghai.
+    - cron: '0 8 * * 3'
+    # Weekly/P2: Sunday 20:30 Asia/Shanghai.
+    - cron: '30 12 * * 0'
   workflow_run:
     workflows:
       - Research Runtime Shift Completion V2.0

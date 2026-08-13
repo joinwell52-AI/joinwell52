@@ -236,7 +236,7 @@ I1.0 使用被冻结的 TMPA Core S1.0 Bundle，评估 CodeFlowMu V1.8.0 的真�
 
 <p align="center">
   <strong>朱卫 / Zhu Wei · joinwell52-AI</strong><br>
-  独立研究者<br><br>
+  <br>
   <a href="https://joinwell52-ai.github.io/joinwell52/zh/">Digital Employee Works</a>
   ·
   <a href="https://doi.org/10.5281/zenodo.21888488">Zenodo DOI</a>

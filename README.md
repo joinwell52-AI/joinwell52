@@ -235,7 +235,7 @@ If this work helps you reason about accountable AI work, [**give the repository 
 
 <p align="center">
   <strong>Zhu Wei / 朱卫 · joinwell52-AI</strong><br>
-  Independent Researcher<br><br>
+  <br>
   <a href="https://joinwell52-ai.github.io/joinwell52/">Digital Employee Works</a>
   ·
   <a href="https://doi.org/10.5281/zenodo.21888488">Zenodo DOI</a>
