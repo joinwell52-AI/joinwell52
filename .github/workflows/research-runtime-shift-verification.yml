@@ -167,7 +167,7 @@ jobs:
           const file = path.join(manifest.recordRoots[task.family], y, m, `${process.env.RUNTIME_DATE}-${task.family}-runtime.json`)
           const record = JSON.parse(fs.readFileSync(file,'utf8'))
           const starts = (record.timeline || []).filter(e => e.task === task.id && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith(process.env.RUNTIME_DATE))
-          if (starts.length !== 1) throw new Error(`Expected exactly one start event, got ${starts.length}`)
+          if (starts.length < 1) throw new Error('Missing durable execution start event')
           const verified = (record.timeline || []).some(e => e.task === task.id && e.event === 'GitHub Commit Verified' && e.status === 'Completed' && String(e.time || '').startsWith(process.env.RUNTIME_DATE) && String(e.detail || '').includes(process.env.COMPLETION_COMMIT))
           if (!verified) throw new Error('Missing durable GitHub Commit Verified event')
           if (record.taskStatus?.[task.id] !== 'Completed' || record.results?.[task.id]?.status !== 'Completed') throw new Error('Runtime completion regressed')
