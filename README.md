@@ -39,6 +39,7 @@ This repository is TMPA's public research, specification, executable conformance
 |---|---|
 | Install the real open-source product | [GitHub](https://github.com/joinwell52-AI/CodeFlowMu-open) · [Product site](https://joinwell52-ai.github.io/CodeFlowMu-open/) — four-role development team, currently Cursor-only |
 | Add file-based coordination to agents | [GitHub](https://github.com/joinwell52-AI/FCoP) · [Protocol site](https://joinwell52-ai.github.io/FCoP/) — Python package, MCP server, and protocol |
+| Try the earliest enterprise application prototype | [Xiaodian AI public demo](https://demo.chedian.cc/) — fixed sanitized test data and read-only aggregate queries; source and production systems remain private |
 | Understand the idea in five minutes | [Why TMPA exists](#trace-is-not-governance) |
 | Browse the complete project visually | [Open Digital Employee Works →](https://joinwell52-ai.github.io/joinwell52/) |
 | Read the stable theory and specification | [Architecture A1.0](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-architecture-paper-a1.0) · [Core S1.0](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-core-specification-s1.0) |
@@ -55,6 +56,14 @@ This repository is TMPA's public research, specification, executable conformance
 | **CodeFlowMu Open** | Installable four-role development team product | [Source & Star](https://github.com/joinwell52-AI/CodeFlowMu-open) | [Product site](https://joinwell52-ai.github.io/CodeFlowMu-open/) |
 
 Each repository has one clear reason to be discovered and starred: **TMPA explains and specifies; FCoP makes coordination reusable; CodeFlowMu Open turns both into a product people can install.** Product use produces field evidence, protocol improvements, and new questions for the specification.
+
+## Engineering origin: Xiaodian AI
+
+The problem framing behind TMPA, FCoP, and CodeFlowMu did not begin with a paper definition. It grew out of engineering an enterprise AI application, **Xiaodian AI**. That work exposed two connected problems. The first was “who develops enterprise AI?”: one agent could not reliably own requirements, development, deployment, and acceptance, leading toward PM / DEV / OPS / QA, TASK / REPORT / ISSUE, and “files as protocol.” The second was “how should enterprise AI work inside a business?”: permission, query, analysis, action, and audit could not all be entrusted to one model; responsibilities had to be separated and inspectable facts retained. The first stream later developed into FCoP and CodeFlowMu; the second informed TMPA and the digital-employee architecture. They now meet again in the governed digital-employee production machine.
+
+[**Try the public Xiaodian AI demo →**](https://demo.chedian.cc/)
+
+> **Demo and evidence boundary:** the site provides controlled, read-only aggregate queries over a fixed sanitized test company. Do not enter real personal data, passwords, tokens, or business secrets. It does not disclose Xiaodian AI's private source code, provide a production SLA, or constitute evidence of TMPA S1.0 conformance, independent validation, or elimination of hallucinations. It is a mutable online service, so features and availability may change.
 
 ## Install the open-source product
 
