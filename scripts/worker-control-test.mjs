@@ -49,6 +49,12 @@ for (const [task, now] of admitted) {
   expectDecision(`${task} nominal admission`, { task, now }, 'Admitted')
 }
 
+expectDecision('publication recovery patrol admission', {
+  task: 'publication',
+  now: '2026-08-12T20:10:00+08:00',
+  wakeSource: 'codex-recovery-patrol'
+}, 'Admitted')
+
 expectDecision('production early wake', { task: 'production', now: '2026-08-13T14:59:00+08:00' }, 'Denied', 'not eligible before')
 expectDecision('weekly wrong weekday', { task: 'weekly', now: '2026-08-12T20:30:00+08:00' }, 'Denied', 'not scheduled on')
 expectDecision('academic wrong weekday', { task: 'academic', now: '2026-08-13T16:00:00+08:00' }, 'Denied', 'not scheduled on')
@@ -57,4 +63,4 @@ expectDecision('discovery missing web research', { task: 'discovery', now: '2026
 expectDecision('wrong branch', { task: 'queue', now: '2026-08-12T10:00:00+08:00', branch: 'feature/test' }, 'Denied', 'is not allowed')
 expectDecision('wrong wake source', { task: 'queue', now: '2026-08-12T10:00:00+08:00', wakeSource: 'unknown-timer' }, 'Denied', 'wake source')
 
-console.log(`worker-control: passed ${admitted.length + 7} admission regression cases`)
+console.log(`worker-control: passed ${admitted.length + 8} admission regression cases`)

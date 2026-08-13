@@ -6,11 +6,11 @@
   "sourceBranch": "main",
   "control": {
     "schema": "research-runtime-worker-control/v1",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "state": "active",
     "failClosed": true,
     "allowedBranches": ["main"],
-    "allowedWakeSources": ["chatgpt-scheduled-task", "manual-recovery"],
+    "allowedWakeSources": ["chatgpt-scheduled-task", "codex-recovery-patrol", "manual-recovery"],
     "globalSerialExecution": true,
     "runtimeAuthorityRequired": true,
     "requiredCapabilities": ["github-read", "github-write", "command-execution", "file-editing"]
