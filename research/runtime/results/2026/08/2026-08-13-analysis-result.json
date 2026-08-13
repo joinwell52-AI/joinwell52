@@ -1,0 +1,129 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "analysis",
+  "family": "daily",
+  "runtimeDate": "2026-08-13",
+  "status": "Completed",
+  "input": {
+    "scheduler": "research/runtime/SCHEDULER.json",
+    "workerControl": "research/runtime/worker-prompts/generated/CONTROL.json",
+    "authoritativePrompt": {
+      "path": "research/runtime/worker-prompts/generated/analysis.prompt.md",
+      "version": "2.0.0",
+      "sha256": "93a0f08aaa4a2a00927faf2ccc6bfaab2d03522f251404aaa0a78ce5d5e2a16f",
+      "hashVerified": true,
+      "sourceCommit": "d2f3f1fa48553c9352c09fc7e04ff726774b3083"
+    },
+    "admission": {
+      "decision": "Admitted",
+      "date": "2026-08-13",
+      "branch": "main",
+      "wakeSource": "chatgpt-scheduled-task",
+      "requiredCapabilities": ["github-read", "github-write", "command-execution", "file-editing"],
+      "limits": {
+        "maxRunMinutes": 120,
+        "maxRecoveryAttempts": 2,
+        "maxRevisionRounds": 2,
+        "maxOutputItems": 3,
+        "zeroOutputAllowed": true,
+        "directPublicationAllowed": false
+      }
+    },
+    "readingStatus": "Completed",
+    "readingArtifacts": [
+      "research/reading/Q-20260813-01-hitl-resume-transfer-capability.md",
+      "research/reading/Q-20260813-02-generation-aware-grpc-session-recovery.md",
+      "research/reading/Q-20260813-03-constrained-mcp-http-header-helper.md"
+    ],
+    "controlPlane": {
+      "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-13/analysis-130558.json",
+      "executionSlotOpenedAt": "2026-08-13T13:12:04+08:00",
+      "workerClaimedAt": "2026-08-13T13:14:11+08:00",
+      "workerClaimCommit": "f5eb6c5f72b1735d5cd8d42bdd4f4178ac49c159",
+      "globalOrderVerified": true,
+      "earlierDueTasksClosed": ["discovery", "queue", "reading"]
+    }
+  },
+  "workResult": {
+    "summary": "Executed Skill 04 Research Analysis using only the three completed 2026-08-13 Reading Results after fail-closed admission, deterministic prompt-hash verification, durable Wake Receipt verification, ordered execution authority and Worker Claimed evidence. Produced exactly three Research Objects. Q-20260813-01 concludes that resumable agent execution should separate durable state restoration from current executable-capability restoration: topology- or policy-derived capabilities should be reconstructed or revalidated before resumed work receives execution authority. Q-20260813-02 concludes that remote-session recovery should separate logical-session continuity from execution continuity: rebinding can restore future availability while a generation-scoped binding epoch prevents old and replacement identities from being confused, without implying that interrupted work migrated. Q-20260813-03 concludes that dynamic local integrations should be governed as explicitly bounded extension points across scope, ownership, lifetime, resource bounds and observability rather than treated as ordinary configuration. No article drafting, visualization, Publication Candidate creation or publication was performed.",
+    "summary_zh": "在 Fail-closed Admission、确定性 Prompt Hash、持久 Wake Receipt、顺序执行权与 Worker Claimed 证据均完成核验后，仅消费 2026-08-13 当日三份已完成 Reading Result 执行 Skill 04 Research Analysis，并恰好形成三份 Research Object。Q-20260813-01 的判断是：可恢复 Agent 执行应把持久状态恢复与当前可执行能力恢复分开；依赖拓扑或 Policy 的能力，应在恢复工作取得执行权前重建或重新核验。Q-20260813-02 的判断是：Remote-session Recovery 应把 Logical-session Continuity 与 Execution Continuity 分开；Rebinding 可以恢复后续可用性，带 Generation 的 Binding Epoch 可以避免新旧身份混淆，但不能据此声称被中断工作已经迁移。Q-20260813-03 的判断是：Dynamic Local Integration 应沿 Scope、Ownership、Lifetime、Resource Bound 与 Observability 建模为显式有界 Extension Point，而不是普通配置。未执行文章撰写、可视化、Publication Candidate 创建或发布。",
+    "researchObjects": [
+      {
+        "column": "digital-employee",
+        "itemId": "Q-20260813-01",
+        "artifact": "research/analysis/Q-20260813-01-resume-capability-reconstruction.md",
+        "articleType": "technical-analysis",
+        "projectRelevance": "none",
+        "judgment": "Durable state restoration and executable-capability restoration should be separate resume gates; topology- or policy-derived capabilities should be reconstructed or revalidated before resumed work receives execution authority.",
+        "judgment_zh": "持久状态恢复与可执行能力恢复应是独立 Resume Gate；依赖拓扑或 Policy 的能力，应在恢复工作获得执行权前依据当前权威重建或重新核验。"
+      },
+      {
+        "column": "industry-architecture",
+        "itemId": "Q-20260813-02",
+        "artifact": "research/analysis/Q-20260813-02-session-rebinding-boundary.md",
+        "articleType": "technical-analysis",
+        "projectRelevance": "none",
+        "judgment": "Remote-session recovery should distinguish logical-session continuity from execution continuity; successful rebinding restores future availability without proving interrupted work survived.",
+        "judgment_zh": "Remote-session Recovery 应区分 Logical-session Continuity 与 Execution Continuity；成功 Rebinding 恢复的是后续可用性，并不证明被中断工作已经存续。"
+      },
+      {
+        "column": "open-source-engineering",
+        "itemId": "Q-20260813-03",
+        "artifact": "research/analysis/Q-20260813-03-extension-boundary.md",
+        "articleType": "engineering-insight",
+        "projectRelevance": "none",
+        "judgment": "Dynamic local integrations should be governed as explicitly bounded extension points with independent scope, ownership, lifetime, resource and observability constraints.",
+        "judgment_zh": "Dynamic Local Integration 应被治理为显式有界 Extension Point，并分别约束 Scope、Ownership、Lifetime、Resource 与 Observability。"
+      }
+    ],
+    "boundary": {
+      "unreadMaterialAnalyzed": false,
+      "fixedArticleOutline": false,
+      "forcedFirstPartyMapping": false,
+      "articleWriting": false,
+      "visualization": false,
+      "publicationCandidate": false,
+      "publication": false
+    }
+  },
+  "output": {
+    "type": "Research Objects",
+    "researchObjectCount": 3,
+    "artifacts": [
+      "research/analysis/Q-20260813-01-resume-capability-reconstruction.md",
+      "research/analysis/Q-20260813-02-session-rebinding-boundary.md",
+      "research/analysis/Q-20260813-03-extension-boundary.md"
+    ]
+  },
+  "next": {
+    "task": "production",
+    "scheduledTime": "15:00",
+    "instruction": "Production may consume only these three completed 2026-08-13 Research Objects after its formal time gate, fresh Worker admission, prompt verification and global serial-order check. It must preserve the evidence boundaries and must not infer stronger claims than these Research Objects establish.",
+    "instruction_zh": "Production 只能在 15:00 正式时间门禁之后，并通过新的 Worker Admission、Prompt Verification 与全局串行顺序检查后，消费这三份 2026-08-13 已完成 Research Object；必须保留证据边界，不得把这些 Research Object 的有界判断进一步夸大。"
+  },
+  "metrics": [
+    {"name": "reading_results_consumed", "value": 3},
+    {"name": "research_objects", "value": 3},
+    {"name": "prompt_hash_verified", "value": 1},
+    {"name": "first_party_project_mappings_forced", "value": 0},
+    {"name": "article_drafts", "value": 0},
+    {"name": "publication_actions", "value": 0}
+  ],
+  "evidence": [
+    "research/runtime/wakes/2026/08/2026-08-13/analysis-130558.json",
+    "research/runtime/records/daily/2026/08/2026-08-13-daily-runtime.json",
+    "research/runtime/worker-prompts/generated/CONTROL.json",
+    "research/runtime/worker-prompts/generated/analysis.prompt.md",
+    "research/skills/04-research-analysis.md",
+    "research/reading/Q-20260813-01-hitl-resume-transfer-capability.md",
+    "research/reading/Q-20260813-02-generation-aware-grpc-session-recovery.md",
+    "research/reading/Q-20260813-03-constrained-mcp-http-header-helper.md",
+    "f5eb6c5f72b1735d5cd8d42bdd4f4178ac49c159"
+  ],
+  "artifacts": [
+    "research/analysis/Q-20260813-01-resume-capability-reconstruction.md",
+    "research/analysis/Q-20260813-02-session-rebinding-boundary.md",
+    "research/analysis/Q-20260813-03-extension-boundary.md",
+    "research/runtime/results/2026/08/2026-08-13-analysis-result.json"
+  ]
+}
