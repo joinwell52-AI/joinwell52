@@ -6,6 +6,7 @@ import ResearchSkillGlyph from './ResearchSkillGlyph.vue'
 import EditorialScorecard from './EditorialScorecard.vue'
 import { data as allNotes } from './research-notes.data'
 import type { ResearchColumn, ResearchNoteRecord } from './research-notes.data'
+import { editorialRating } from './editorial-rating'
 import runtimeData from '../../generated/runtime-records.json'
 
 const props = withDefaults(defineProps<{ lang?: 'en' | 'zh'; preview?: boolean }>(), { lang: 'en', preview: false })
@@ -182,6 +183,7 @@ const localizedNotes = computed(() => (allNotes as ResearchNoteRecord[]).filter(
 const activeColumn = ref<ResearchColumn>('digital-employee')
 const activeStream = computed(() => copy.value.streams.find(stream => stream.column === activeColumn.value) ?? copy.value.streams[0])
 const activeNotes = computed(() => localizedNotes.value.filter(note => note.column === activeColumn.value).slice(0, 3))
+const noteRating = (url: string) => editorialRating(url, props.lang)
 const runtimeLatest = runtimeData.latest
 const runtimeTaskLabelsZh: Record<string, string> = {
   'Research Runtime Engine': '研究运行引擎',
@@ -491,7 +493,7 @@ onBeforeUnmount(() => {
                 <li v-for="(note, index) in activeNotes" :key="note.url">
                   <a :href="link(note.url)">
                     <span>{{ String(index + 1).padStart(2, '0') }}</span>
-                    <div><small>{{ note.date }} · {{ categoryLabel(note.category) }}</small><b>{{ note.title }}</b><p>{{ note.summary }}</p></div>
+                    <div><small>{{ note.date }} · {{ categoryLabel(note.category) }} · <em :class="`rating-${noteRating(note.url).level}`">{{ noteRating(note.url).label }}</em></small><b>{{ note.title }}</b><p>{{ note.summary }}</p></div>
                     <i>↗</i>
                   </a>
                 </li>
@@ -869,6 +871,12 @@ onBeforeUnmount(() => {
 .rc-note-panel li > a { display: grid; grid-template-columns: 36px 1fr 24px; gap: 18px; align-items: start; min-height: 114px; padding: 22px 0; color: #fff !important; border-bottom: 1px solid rgba(255,255,255,.13); }
 .rc-note-panel li > a > span { padding-top: 4px; color: #66738f; font: 700 10px/1 ui-monospace, monospace; }
 .rc-note-panel li small { display: block; color: #8090ad; font-size: 10px; }
+.rc-note-panel li small em { display: inline-block; padding: 2px 6px; border: 1px solid transparent; border-radius: 999px; font-style: normal; font-weight: 800; }
+.rc-note-panel li small em.rating-benchmark { border-color: rgba(249,115,22,.58); background: rgba(249,115,22,.13); color: #fb923c; }
+.rc-note-panel li small em.rating-excellent { border-color: rgba(242,201,76,.62); background: rgba(242,201,76,.14); color: #f2c94c; }
+.rc-note-panel li small em.rating-quality { border-color: rgba(94,234,212,.52); background: rgba(94,234,212,.12); color: #5eead4; }
+.rc-note-panel li small em.rating-passing { border-color: rgba(96,165,250,.5); background: rgba(96,165,250,.11); color: #7db8ff; }
+.rc-note-panel li small em.rating-foundation { border-color: rgba(148,163,184,.46); background: rgba(148,163,184,.1); color: #aab6c7; }
 .rc-note-panel li b { display: block; margin-top: 8px; font-size: 16px; line-height: 1.4; }
 .rc-note-panel li p { display: -webkit-box; margin: 7px 0 0; overflow: hidden; color: #939eb6; font-size: 12px; line-height: 1.5; -webkit-box-orient: vertical; -webkit-line-clamp: 1; }
 .rc-note-panel li i { padding-top: 4px; color: var(--rc-lime); font-style: normal; }

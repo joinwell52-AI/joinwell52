@@ -1,0 +1,108 @@
+{
+  "schema": "observation-score-rubric/v1",
+  "version": "1.0.0",
+  "effectiveDate": "2026-08-13",
+  "name": "JoinWell52 AI Editorial Evaluation",
+  "name_zh": "JoinWell52 AI 编辑评测",
+  "purpose": "A weekly self-evaluation of published observation notes. It measures relative editorial and research maturity; it is not a publication gate or peer review.",
+  "purpose_zh": "对已发布观察笔记进行每周自我评价，衡量相对编辑质量与研究成熟度；它不是发布门禁，也不等同于同行评审。",
+  "scoring": {
+    "scale": { "min": 0, "max": 100, "integerOnly": true },
+    "totalRule": "The total is the exact sum of the four dimension scores. Manual total overrides are prohibited.",
+    "totalRule_zh": "总分必须等于四个分项分数之和，禁止手工覆盖总分。",
+    "dimensions": [
+      {
+        "id": "evidenceRigor",
+        "name": "Evidence and rigor",
+        "name_zh": "证据与严谨性",
+        "maxScore": 35,
+        "tests": [
+          "Claims are traceable to identifiable sources or first-party artifacts.",
+          "Facts, source claims, observations and judgments are not conflated.",
+          "Versions, uncertainty, counterevidence and extrapolation limits are explicit when material."
+        ],
+        "anchors": [
+          { "range": "31-35", "meaning": "Primary evidence is traceable, competing evidence is handled, and boundaries are explicit." },
+          { "range": "25-30", "meaning": "Evidence is strong and traceable with limited omissions or weak independent corroboration." },
+          { "range": "18-24", "meaning": "Core claims are supported, but source diversity, counterevidence or boundary handling is incomplete." },
+          { "range": "0-17", "meaning": "Material claims are weakly sourced, untraceable or insufficiently bounded." }
+        ]
+      },
+      {
+        "id": "originalJudgment",
+        "name": "Original judgment",
+        "name_zh": "原创判断",
+        "maxScore": 25,
+        "tests": [
+          "The article makes an explicit, non-trivial judgment rather than only summarizing sources.",
+          "The reasoning explains mechanisms, trade-offs or relationships.",
+          "The judgment stays within the evidence and distinguishes novelty from restatement."
+        ],
+        "anchors": [
+          { "range": "23-25", "meaning": "A distinctive, well-supported judgment reorganizes how the problem is understood." },
+          { "range": "18-22", "meaning": "The article contributes a clear synthesis or useful bounded judgment." },
+          { "range": "13-17", "meaning": "Some analysis is present, but the contribution remains close to source summary." },
+          { "range": "0-12", "meaning": "The article is primarily descriptive or its judgment is unsupported." }
+        ]
+      },
+      {
+        "id": "structureExpression",
+        "name": "Structure and expression",
+        "name_zh": "结构与表达",
+        "maxScore": 20,
+        "tests": [
+          "The research question, findings and reasoning path are easy to locate.",
+          "Sections add information value without mechanical repetition.",
+          "Terminology, tables, figures and bilingual surfaces preserve meaning and readability."
+        ],
+        "anchors": [
+          { "range": "18-20", "meaning": "The argument is exceptionally clear, economical and independently readable." },
+          { "range": "14-17", "meaning": "The structure is coherent with minor repetition, density or navigation cost." },
+          { "range": "10-13", "meaning": "The main line is recoverable, but compression, sequencing or terminology needs work." },
+          { "range": "0-9", "meaning": "The argument is difficult to follow or materially incomplete as a public article." }
+        ]
+      },
+      {
+        "id": "engineeringUsefulness",
+        "name": "Engineering usefulness",
+        "name_zh": "工程实用性",
+        "maxScore": 20,
+        "tests": [
+          "The article yields actionable design, validation or operating implications.",
+          "Implementation boundaries and prerequisites are explicit.",
+          "Readers can identify a next decision, experiment, check or reusable model."
+        ],
+        "anchors": [
+          { "range": "18-20", "meaning": "The work directly changes an engineering decision or provides a reusable validation model." },
+          { "range": "14-17", "meaning": "The implications are actionable but require some local interpretation." },
+          { "range": "10-13", "meaning": "The article is informative, but concrete next actions or boundaries are limited." },
+          { "range": "0-9", "meaning": "Engineering relevance is weak, generic or not demonstrated." }
+        ]
+      }
+    ]
+  },
+  "levels": [
+    { "internal": "E5", "min": 95, "max": 100, "publicLabel": "超凡", "publicLabel_en": "Transcendent" },
+    { "internal": "E4", "min": 90, "max": 94, "publicLabel": "卓越", "publicLabel_en": "Exceptional" },
+    { "internal": "E3", "min": 80, "max": 89, "publicLabel": "优质", "publicLabel_en": "High Quality" },
+    { "internal": "E2", "min": 70, "max": 79, "publicLabel": "合格", "publicLabel_en": "Qualified" },
+    { "internal": "E1", "min": 0, "max": 69, "publicLabel": "基础", "publicLabel_en": "Foundation" }
+  ],
+  "cadence": {
+    "timezone": "Asia/Shanghai",
+    "weekly": { "day": "Sunday", "afterTask": "weekly", "targetTime": "21:30" },
+    "weeklyScope": "Score every newly published or content-changed eligible note; inherit unchanged scores by content hash and audit at least 10% of inherited notes.",
+    "monthlyCalibration": "On the first Sunday of each month, rescore the complete eligible corpus.",
+    "completionRule": "A weekly snapshot is Completed only when every eligible note has a scored or hash-inherited item and the coverage rate is 100%."
+  },
+  "publicationSeparation": {
+    "dailyGate": "Publication uses binary editorial and evidence gates without a numeric score.",
+    "weeklyEvaluation": "Weekly scoring evaluates already-published work and may legitimately produce any score from 0 to 100.",
+    "lowScoreAction": "A low score is retained as self-evaluation evidence and may create an improvement candidate; it does not automatically unpublish an article."
+  },
+  "publicDisplay": {
+    "show": ["score", "publicLabel", "reviewDate", "rubricVersion", "coverageRate", "dimensionScores", "editorialNote"],
+    "hide": ["internal"],
+    "rule": "Public pages show only the five public labels; E1-E5 are internal machine fields."
+  }
+}
