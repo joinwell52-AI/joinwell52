@@ -95,14 +95,37 @@ function validateRegistry(registry) {
   if (JSON.stringify(actualPlatforms) !== JSON.stringify(requiredPlatforms)) {
     die(`AI platform P0 sources must be ${requiredPlatforms.join(', ')}`)
   }
+  if (platform.communityPolicy?.coverageModel !== 'public-section-only') {
+    die('AI platform community coverage must use public-section-only')
+  }
   for (const source of platform.sources) {
     if (!Array.isArray(source.channels) || !source.channels.length) die(`${source.id}: channels are required`)
-    if (source.tier === 'P0' && !source.channels.some((channel) => String(channel.type).includes('community'))) {
-      die(`${source.id}: a P0 platform requires an official forum or community channel`)
-    }
+    const channelIds = source.channels.map((channel) => channel.id)
+    if (new Set(channelIds).size !== channelIds.length) die(`${source.id}: channel ids must be unique`)
+    const communityChannels = source.channels.filter((channel) => String(channel.type).includes('community'))
     for (const channel of source.channels) {
       if (!text(channel.id) || !text(channel.type) || !/^https:\/\//.test(channel.url || '')) {
         die(`${source.id}: invalid source channel`)
+      }
+      if (channel.access !== 'public') die(`${source.id}/${channel.id}: due channels must be publicly accessible`)
+    }
+    if (communityChannels.length) {
+      if (source.communityNavigation?.countsTowardCoverage !== false) {
+        die(`${source.id}: forum home must be navigation-only`)
+      }
+      const communityLanes = new Set(communityChannels.map((channel) => channel.communityLane))
+      if (!communityLanes.has('official-notice') || !communityLanes.has('precision-section')) {
+        die(`${source.id}: public forum coverage requires official-notice and precision-section lanes`)
+      }
+      for (const channel of communityChannels) {
+        if (!Array.isArray(channel.scope) || !channel.scope.length || !text(channel.authorityRule)) {
+          die(`${source.id}/${channel.id}: community scope and authorityRule are required`)
+        }
+      }
+    } else if (source.tier === 'P0') {
+      const exclusion = source.communityExclusion
+      if (exclusion?.status !== 'excluded' || exclusion?.access !== 'authentication-required' || !text(exclusion.reason)) {
+        die(`${source.id}: no public forum requires an explicit authentication exclusion`)
       }
     }
   }

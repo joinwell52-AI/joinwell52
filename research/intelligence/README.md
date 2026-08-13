@@ -71,6 +71,9 @@ The Queue task cannot be reported as complete after the effective date unless:
 - Official release notes and documentation establish platform facts.
 - Official staff confirmation may corroborate a change.
 - Community discussion is a lead unless reproduced or confirmed.
+- Public official forums are checked by exact section, with separate official-notice and precision-section lanes.
+- Forum home pages are navigation only and do not count toward coverage.
+- Communities requiring authentication or membership are excluded from the active due list.
 - GitHub Releases, merged maintainer changes, tests and security advisories establish engineering evidence.
 - Papers, appendices, benchmarks, datasets and evaluation methods establish research evidence.
 - Popularity, Stars, forum volume and vendor claims are not independent validation.
