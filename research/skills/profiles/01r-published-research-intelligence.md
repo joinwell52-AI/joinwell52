@@ -26,6 +26,8 @@ research/intelligence/REGISTRY.json
 
 P0 daily sources include major preprint/review systems and official research laboratories. Conference proceedings and digital libraries are scanned on their configured schedule.
 
+Curated research indexes may be registered as P1 weekly navigation sources. They discover papers, datasets, benchmarks, tools and standards, but cannot establish a research fact by themselves. Every useful entry must be followed to its original paper, official repository, dataset, benchmark or standard before triage or citation. A configured taxonomy change, standards cluster or high-value mechanism may trigger a bounded special study.
+
 ## Topic families
 
 - Digital Employee and enterprise agent;
