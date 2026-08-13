@@ -15,6 +15,11 @@ const COLUMN_IDS = ['digital-employee', 'industry-architecture', 'open-source-en
 const STATUSES = new Set(['Waiting', 'Running', 'Completed', 'Blocked', 'Failed', 'Skipped'])
 const DECISIONS = new Set(['Waiting', 'Selected', 'No Selection'])
 const EFFECTIVE_TERMINAL = new Set(['Completed', 'Blocked', 'Failed', 'Skipped'])
+const TIER_FREQUENCIES = new Map([
+  ['P0', new Set(['daily'])],
+  ['P1', new Set(['weekly'])],
+  ['P2', new Set(['biweekly-or-release', 'monthly'])]
+])
 
 function die(message) {
   throw new Error(`Research Intelligence: ${message}`)
@@ -137,12 +142,35 @@ function validateRegistry(registry) {
   }
   for (const item of repositories) {
     if (!/^[^/\s]+\/[^/\s]+$/.test(item.repository || '')) die(`invalid repository ${item.repository}`)
-    if (!['P0', 'P1', 'P2'].includes(item.tier)) die(`${item.repository}: invalid tier`)
+    if (!TIER_FREQUENCIES.has(item.tier)) die(`${item.repository}: invalid tier`)
+    if (!TIER_FREQUENCIES.get(item.tier).has(item.frequency)) {
+      die(`${item.repository}: invalid ${item.tier} frequency ${item.frequency}`)
+    }
     if (!Array.isArray(item.columns) || !item.columns.length) die(`${item.repository}: columns are required`)
+    if (item.tier === 'P2' && (!text(item.category) || !text(item.specialStudyTrigger))) {
+      die(`${item.repository}: P2 repositories require category and specialStudyTrigger`)
+    }
+    if (item.specialStudyTrigger && !text(item.specialStudyTrigger_zh)) {
+      die(`${item.repository}: specialStudyTrigger requires a Chinese counterpart`)
+    }
   }
 
   const research = registry.pipelines.find((pipeline) => pipeline.id === 'published-research')
   if (!Array.isArray(research.sources) || !research.sources.length) die('published research sources are required')
+  for (const source of research.sources) {
+    if (!TIER_FREQUENCIES.has(source.tier) || !TIER_FREQUENCIES.get(source.tier).has(source.frequency)) {
+      die(`${source.id}: invalid research tier or frequency`)
+    }
+    if (!/^https:\/\//.test(source.url || '') || !Array.isArray(source.sourceTypes) || !source.sourceTypes.length) {
+      die(`${source.id}: research source requires URL and sourceTypes`)
+    }
+    if (source.evidenceRole === 'secondary-navigation-only' && !text(source.verificationRule)) {
+      die(`${source.id}: secondary navigation sources require verificationRule`)
+    }
+    if (source.evidenceRole === 'secondary-navigation-only' && (!text(source.verificationRule_zh) || !text(source.specialStudyTrigger_zh))) {
+      die(`${source.id}: secondary navigation sources require Chinese evidence and trigger rules`)
+    }
+  }
   if (!Array.isArray(research.topics) || research.topics.length < 10) die('published research topics are incomplete')
 
   return registry

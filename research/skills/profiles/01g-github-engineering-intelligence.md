@@ -20,7 +20,10 @@ The authoritative organizations, repositories and query policy are stored in `re
 
 - **P0 / daily:** official platform SDKs, coding agents, protocols and directly relevant runtimes.
 - **P1 / weekly:** major Agent frameworks, browser/computer-use systems, evaluation and observability projects.
+- **P2 / biweekly, monthly or release-triggered:** focused research tools, audit/security projects, writing and publication quality tools, and adjacent methods. A P2 source enters deeper research only when its configured trigger is met.
 - **Exploration:** new projects discovered through fixed queries; not admitted until maintenance and evidence checks pass.
+
+Repository ownership must remain explicit. A thematic group may contain projects from different owners and must not be presented as one researcher's repository group.
 
 ## Incremental events
 
