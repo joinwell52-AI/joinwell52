@@ -247,10 +247,15 @@ function main() {
   }
 
   const requested = args.manual ? String(args.manual) : ''
+  const requestedAlreadyRunning = Boolean(
+    requested &&
+    earliestOpen?.id === requested &&
+    statusOf(requested) === 'Running'
+  )
 
   if (requested) {
     if (!taskById.has(requested)) throw new Error(`Unknown manual runtime task: ${requested}`)
-    if (!selected || selected.task.id !== requested) {
+    if ((!selected || selected.task.id !== requested) && !requestedAlreadyRunning) {
       const expected = earliestOpen?.id || 'none'
       throw new Error(`Ordered reconciliation denied manual task ${requested}; earliest due unfinished task is ${expected}. Timer/manual/fallback activation cannot bypass global serial order or business dependencies.`)
     }
@@ -263,6 +268,9 @@ function main() {
     : 'none'
 
   if (!selected) {
+    const idleReason = requestedAlreadyRunning
+      ? `manual request ${requested} is already Running in the current execution epoch; idempotent no-op`
+      : `no task may open now; earliest due unfinished ${openReason}`
     githubOutput({
       has_task: 'false',
       runtime_task: 'none',
@@ -271,9 +279,9 @@ function main() {
       changed_record_paths: changedList,
       runtime_date: now.date,
       earliest_due_unfinished: earliestOpen?.id || 'none',
-      reason: `reconciled at ${now.date} ${now.hour}:${now.minute}; no task may open now; earliest due unfinished ${openReason}${changed ? '; corrected out-of-order state' : ''}`
+      reason: `reconciled at ${now.date} ${now.hour}:${now.minute}; ${idleReason}${changed ? '; corrected out-of-order state' : ''}`
     })
-    console.log(`No runnable task at ${now.date} ${now.hour}:${now.minute}; earliest due unfinished ${openReason}.${changed ? ` Corrected: ${changedList}` : ''}`)
+    console.log(`No runnable task at ${now.date} ${now.hour}:${now.minute}; ${idleReason}.${changed ? ` Corrected: ${changedList}` : ''}`)
     return
   }
 
