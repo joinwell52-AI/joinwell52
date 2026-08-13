@@ -88,7 +88,7 @@ const copy = computed(() => zh.value ? {
   repository: 'GitHub 仓库', fcop: 'FCoP 协议', codeflow: 'CodeFlowMu Runtime',
   researchNotes: '观察笔记', publicationCenter: '出版中心', runtimeCenter: '工场运行中心',
   citationFile: 'CITATION.cff', license: '许可说明', licenseName: '保留所有权利',
-  authorLabel: '作者', authorName: '朱卫', authorMeta: 'joinwell52-AI · 独立研究者',
+  authorLabel: '作者', authorName: '朱卫', authorMeta: 'joinwell52-AI',
   copyright: '© 2026 JOINWELL52',
   licenseSummary: '公开阅读与规范引用；复制、再发布、改编或商业使用需事先获得书面授权。'
 } : {
@@ -165,7 +165,7 @@ const copy = computed(() => zh.value ? {
   repository: 'GitHub repository', fcop: 'FCoP protocol', codeflow: 'CodeFlowMu Runtime',
   researchNotes: 'Observation Notes', publicationCenter: 'Publication center', runtimeCenter: 'Factory Runtime Center',
   citationFile: 'CITATION.cff', license: 'License notice', licenseName: 'All rights reserved',
-  authorLabel: 'Author', authorName: 'Zhu Wei', authorMeta: 'joinwell52-AI · Independent Researcher',
+  authorLabel: 'Author', authorName: 'Zhu Wei', authorMeta: 'joinwell52-AI',
   copyright: '© 2026 JOINWELL52',
   licenseSummary: 'Public reading and proper citation are encouraged. Reproduction, redistribution, adaptation, or commercial use requires prior written permission.'
 })
