@@ -1,0 +1,133 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "production",
+  "family": "daily",
+  "runtimeDate": "2026-08-13",
+  "status": "Completed",
+  "input": {
+    "scheduler": "research/runtime/SCHEDULER.json",
+    "workerControl": "research/runtime/worker-prompts/generated/CONTROL.json",
+    "authoritativePrompt": {
+      "path": "research/runtime/worker-prompts/generated/production.prompt.md",
+      "version": "2.2.0",
+      "sha256": "d763e5c21fe13e5a79eb3786a82a38dbcf96d814017979ba5a4c279ffe4fe3d3",
+      "hashVerified": true,
+      "sourceCommit": "1d2e5c1120333ab9b942a64eaac98a2e0536f67d"
+    },
+    "admission": {
+      "decision": "Admitted Recovery",
+      "date": "2026-08-13",
+      "branch": "main",
+      "wakeSource": "publication timer reconciled to earliest due unfinished production",
+      "requiredCapabilities": ["github-read", "github-write", "command-execution", "file-editing"],
+      "limits": {
+        "maxRunMinutes": 120,
+        "maxRecoveryAttempts": 2,
+        "maxRevisionRounds": 3,
+        "maxOutputItems": 3,
+        "zeroOutputAllowed": true,
+        "directPublicationAllowed": false
+      }
+    },
+    "analysisStatus": "Completed",
+    "researchObjects": [
+      "research/analysis/Q-20260813-01-resume-capability-reconstruction.md",
+      "research/analysis/Q-20260813-02-session-rebinding-boundary.md",
+      "research/analysis/Q-20260813-03-extension-boundary.md"
+    ],
+    "controlPlane": {
+      "originalWakeReceipt": "research/runtime/wakes/2026/08/2026-08-13/production-150702.json",
+      "recoveryWakeReceipt": "research/runtime/wakes/2026/08/2026-08-13/publication-200349.json",
+      "originalExecutionSlotOpenedAt": "2026-08-13T15:13:40+08:00",
+      "latestExecutionSlotOpenedAt": "2026-08-13T19:22:19+08:00",
+      "latestWorkerClaimedAt": "2026-08-13T20:12:27+08:00",
+      "latestWorkerClaimCommit": "1d2e5c1120333ab9b942a64eaac98a2e0536f67d",
+      "expiredExecutionEpochs": 2,
+      "globalOrderVerified": true,
+      "earlierDueTasksClosed": ["discovery", "queue", "reading", "analysis"]
+    }
+  },
+  "workResult": {
+    "summary": "Recovered the interrupted 2026-08-13 Production shift only after two stale 90-minute Running leases were durably closed and the latest recovery epoch received a fresh verified Worker Claim. Consumed only the three completed same-date Production-authorized Research Objects. Preserved the first bilingual capability-reconstruction candidate already present on main, completed the missing bilingual session-rebinding and bounded-extension candidates, and completed three distinct editorial SVG covers plus the authoritative same-date V2 Candidate Batch. All candidates use research-question-specific dynamic structures, bounded public-primary-source claims, projectRelevance=none, no Community Edition, and zero manufactured Inline Figures. Publication Layout and Editorial validators passed. No public article, public index, release manifest or website publication surface was modified.",
+    "summary_zh": "仅在两个陈旧的 90 分钟 Running Lease 被持久关闭、最新恢复轮次取得新的已核验 Worker Claim 后，才恢复 2026-08-13 被中断的 Production。全程只消费三份同日、已完成且已授权的 Research Object；保留 main 上已经存在的第一组能力重建双语候选，补齐缺失的 Session Rebinding 与有界 Extension 两组双语候选，并完成三张不同构图的编辑性 SVG 题图和同日权威 V2 Candidate Batch。三组候选均采用面向研究问题的动态结构、有边界的公开一手来源表述、projectRelevance=none，不生成 Community Edition，也未人为制造 Inline Figure。Publication Layout 与 Editorial Validator 均通过。未修改任何公开文章、公开索引、Release Manifest 或网站发布表面。",
+    "candidateCount": 3,
+    "bilingualArticleFiles": 6,
+    "coverAssets": 3,
+    "inlineFigureAssets": 0,
+    "communityEditions": 0,
+    "validation": {
+      "publicationBundleStaged": "PASS",
+      "publicationLayout": "PASS",
+      "publicationEditorial": "PASS",
+      "runtimeValidation": "PASS"
+    },
+    "boundary": {
+      "newDiscovery": false,
+      "newReading": false,
+      "newAnalysis": false,
+      "directPublication": false,
+      "publicSurfaceModified": false,
+      "forcedFirstPartyMapping": false,
+      "manufacturedInlineFigures": false
+    }
+  },
+  "output": {
+    "type": "Publication Candidates",
+    "outcome": "Completed",
+    "candidateBatch": "research/runtime/candidates/2026/08/2026-08-13-candidates.json",
+    "candidateCount": 3,
+    "bilingualArticleFiles": 6,
+    "coverAssets": 3,
+    "inlineFigureAssets": 0,
+    "communityEditions": 0
+  },
+  "next": {
+    "task": "publication",
+    "scheduledTime": "20:00",
+    "instruction": "Reconcile the overdue Publication task only after this Production result and exact candidate bundle are durably committed and verified on main. Publication may release the completed candidates but must not perform new research, substantive rewriting or evidence repair.",
+    "instruction_zh": "只有在本 Production Result 与精确 Candidate Bundle 已提交到 main 并完成持久核验后，才可协调已到期的 Publication。Publication 可以发布完整候选，但不得新增研究、实质性重写或修复证据。"
+  },
+  "metrics": [
+    {"name":"research_objects_consumed","value":3},
+    {"name":"publication_candidates","value":3},
+    {"name":"bilingual_article_files","value":6},
+    {"name":"cover_assets","value":3},
+    {"name":"inline_figure_assets","value":0},
+    {"name":"community_editions","value":0},
+    {"name":"expired_execution_epochs","value":2},
+    {"name":"fresh_worker_claims_in_latest_epoch","value":1},
+    {"name":"direct_publication_actions","value":0}
+  ],
+  "evidence": [
+    "research/runtime/wakes/2026/08/2026-08-13/production-150702.json",
+    "research/runtime/wakes/2026/08/2026-08-13/publication-200349.json",
+    "research/runtime/claim-requests/production-20260813-200349.json",
+    "research/runtime/records/daily/2026/08/2026-08-13-daily-runtime.json",
+    "research/runtime/worker-prompts/generated/CONTROL.json",
+    "research/runtime/worker-prompts/generated/production.prompt.md",
+    "research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md",
+    "research/editorial/EDITORIAL-ARCHITECTURE.json",
+    "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+    "research/skills/05-research-writing.md",
+    "research/skills/06-research-visualization.md",
+    "research/skills/07-evidence-citation.md",
+    "research/skills/08-publication-editing.md",
+    "research/analysis/Q-20260813-01-resume-capability-reconstruction.md",
+    "research/analysis/Q-20260813-02-session-rebinding-boundary.md",
+    "research/analysis/Q-20260813-03-extension-boundary.md",
+    "1d2e5c1120333ab9b942a64eaac98a2e0536f67d"
+  ],
+  "artifacts": [
+    "research/runtime/candidates/2026/08/2026-08-13-candidates.json",
+    "staging/publication-candidates/2026-08-13-resume-capability-reconstruction.en.md",
+    "staging/publication-candidates/2026-08-13-resume-capability-reconstruction.zh.md",
+    "staging/publication-candidates/2026-08-13-resume-capability-reconstruction-cover.svg",
+    "staging/publication-candidates/2026-08-13-session-rebinding-execution-continuity.en.md",
+    "staging/publication-candidates/2026-08-13-session-rebinding-execution-continuity.zh.md",
+    "staging/publication-candidates/2026-08-13-session-rebinding-execution-continuity-cover.svg",
+    "staging/publication-candidates/2026-08-13-bounded-extension-point.en.md",
+    "staging/publication-candidates/2026-08-13-bounded-extension-point.zh.md",
+    "staging/publication-candidates/2026-08-13-bounded-extension-point-cover.svg",
+    "research/runtime/results/2026/08/2026-08-13-production-result.json"
+  ]
+}
