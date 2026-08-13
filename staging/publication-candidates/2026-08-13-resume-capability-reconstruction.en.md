@@ -9,10 +9,10 @@ edition: research-center
 research_question: "After a human-in-the-loop pause, which execution capabilities must be reconstructed from current authority before resumed work can safely continue?"
 summary: "A paused agent run can restore durable history and still lack the capability or authority needed to act safely."
 sources: "research/analysis/Q-20260813-01-resume-capability-reconstruction.md"
-cover: "staging/publication-candidates/2026-08-13-resume-capability-reconstruction-cover.svg"
+cover: "staging/publication-candidates/2026-08-13-resume-capability-reconstruction-cover.png"
 ---
 
-![A doorway-like execution threshold with a suspended key-shaped capability bridge](staging/publication-candidates/2026-08-13-resume-capability-reconstruction-cover.svg)
+![A precision compute module being restored inside a secure server cabinet, representing reconstruction of current execution capability after state reload](staging/publication-candidates/2026-08-13-resume-capability-reconstruction-cover.png)
 
 # Resume Is More Than Reload: Reconstructing Execution Capability After a Human Pause
 

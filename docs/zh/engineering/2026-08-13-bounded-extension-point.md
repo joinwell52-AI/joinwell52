@@ -10,7 +10,7 @@ summary: "一个为 MCP HTTP 请求提供动态 Header 的本地 Helper，同时
 sources: "research/analysis/Q-20260813-03-extension-boundary.md"
 item_id: "Q-20260813-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-13-bounded-extension-point-cover.svg"
+cover: "/assets/covers/daily-2026-08-13-bounded-extension-point-cover.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -18,7 +18,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-13-bounded-extension-point-cover.svg"
+  image="/assets/covers/daily-2026-08-13-bounded-extension-point-cover.png"
   kicker="开源工程 · 每日研究"
   title="动态集成需要五条边界，而不是一个许可开关"
   summary="一个为 MCP HTTP 请求提供动态 Header 的本地 Helper，同时受到 Scope、Ownership、Lifetime、Resource 与 Observability 约束。真正可迁移的模式不是 Helper 本身，而是把动态集成建模成拥有多条独立边界的 Extension Point。"

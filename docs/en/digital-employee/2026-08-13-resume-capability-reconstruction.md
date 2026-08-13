@@ -10,7 +10,7 @@ summary: "A paused agent run can restore durable history and still lack the capa
 sources: "research/analysis/Q-20260813-01-resume-capability-reconstruction.md"
 item_id: "Q-20260813-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-13-resume-capability-reconstruction-cover.svg"
+cover: "/assets/covers/daily-2026-08-13-resume-capability-reconstruction-cover.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -18,7 +18,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-13-resume-capability-reconstruction-cover.svg"
+  image="/assets/covers/daily-2026-08-13-resume-capability-reconstruction-cover.png"
   kicker="Digital Employee · Daily Research"
   title="Resume Is More Than Reload: Reconstructing Execution Capability After a Human Pause"
   summary="A paused agent run can restore durable history and still lack the capability or authority needed to act safely."

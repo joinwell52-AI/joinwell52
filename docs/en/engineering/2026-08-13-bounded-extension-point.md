@@ -10,7 +10,7 @@ summary: "A local helper that produces dynamic MCP HTTP headers is governed acro
 sources: "research/analysis/Q-20260813-03-extension-boundary.md"
 item_id: "Q-20260813-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-13-bounded-extension-point-cover.svg"
+cover: "/assets/covers/daily-2026-08-13-bounded-extension-point-cover.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -18,7 +18,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-13-bounded-extension-point-cover.svg"
+  image="/assets/covers/daily-2026-08-13-bounded-extension-point-cover.png"
   kicker="Open-source Engineering · Daily Research"
   title="A Dynamic Integration Needs Five Boundaries, Not One Permission Switch"
   summary="A local helper that produces dynamic MCP HTTP headers is governed across scope, ownership, lifetime, resource use and observability. The useful pattern is not the helper itself, but treating dynamic integration as an explicit extension point with several independent boundaries."

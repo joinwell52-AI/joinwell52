@@ -9,10 +9,10 @@ edition: research-center
 research_question: "How should an extensible tool runtime keep a dynamic local integration bounded and reviewable?"
 summary: "A local helper that produces dynamic MCP HTTP headers is governed across scope, ownership, lifetime, resource use and observability. The useful pattern is not the helper itself, but treating dynamic integration as an explicit extension point with several independent boundaries."
 sources: "research/analysis/Q-20260813-03-extension-boundary.md"
-cover: "staging/publication-candidates/2026-08-13-bounded-extension-point-cover.svg"
+cover: "staging/publication-candidates/2026-08-13-bounded-extension-point-cover.png"
 ---
 
-![A luminous integration core is held inside five distinct translucent boundaries, suggesting that extensibility is admitted only through several independent constraints](staging/publication-candidates/2026-08-13-bounded-extension-point-cover.svg)
+![A precision module aligning with the single interface permitted by a protective mechanical boundary, representing bounded admission for dynamic extensions](staging/publication-candidates/2026-08-13-bounded-extension-point-cover.png)
 
 # A Dynamic Integration Needs Five Boundaries, Not One Permission Switch
 

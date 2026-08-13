@@ -9,10 +9,10 @@ edition: research-center
 research_question: "After a human-in-the-loop pause, which execution capabilities must be reconstructed from current authority before resumed work can safely continue?"
 summary: "一个暂停的 Agent 即使恢复了持久状态，也可能仍然缺少继续执行所需的当前能力与授权。"
 sources: "research/analysis/Q-20260813-01-resume-capability-reconstruction.md"
-cover: "staging/publication-candidates/2026-08-13-resume-capability-reconstruction-cover.svg"
+cover: "staging/publication-candidates/2026-08-13-resume-capability-reconstruction-cover.png"
 ---
 
-![一道执行门槛与悬停在门前的能力钥匙，表示状态恢复之后仍需重新取得行动资格](staging/publication-candidates/2026-08-13-resume-capability-reconstruction-cover.svg)
+![一枚精密计算模块正在安全机柜中恢复就位，表示状态重载之后仍需重建当前有效的执行能力](staging/publication-candidates/2026-08-13-resume-capability-reconstruction-cover.png)
 
 # 恢复不只是重载状态：人工暂停后的执行能力重建
 

@@ -9,10 +9,10 @@ edition: research-center
 research_question: "What does a successful session rebind establish—and what does it not establish—after the underlying runtime service changes?"
 summary: "稳定的逻辑会话可以在远端 Binding 失效后重新连接，但旧 Binding 上已经运行的工作仍然会中断。Generation-scoped Identity 能阻止替代 Host 继承过期 Cell 的控制权，却不会迁移已经丢失的执行。"
 sources: "research/analysis/Q-20260813-02-session-rebinding-boundary.md"
-cover: "staging/publication-candidates/2026-08-13-session-rebinding-execution-continuity-cover.svg"
+cover: "staging/publication-candidates/2026-08-13-session-rebinding-execution-continuity-cover.png"
 ---
 
-![一条连续光线穿过暗色断点后进入新的轨道，表示稳定 Session Identity 可以跨越 Binding 替换，但被中断的工作并没有越过缺口](staging/publication-candidates/2026-08-13-session-rebinding-execution-continuity-cover.svg)
+![一条光纤连接正在企业级设备中被精确重新接入，表示会话重绑定恢复后续可用性但不重写已经中断的执行](staging/publication-candidates/2026-08-13-session-rebinding-execution-continuity-cover.png)
 
 # 会话重新连上，不等于工作已经恢复
 

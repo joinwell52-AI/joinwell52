@@ -185,7 +185,9 @@
       },
       "notBefore": "15:00",
       "lateWakePolicy": "reconcile-earliest-due",
-      "requiredCapabilities": [],
+      "requiredCapabilities": [
+        "image-generation"
+      ],
       "maxRunMinutes": 120,
       "maxRecoveryAttempts": 2,
       "maxRevisionRounds": 3,
@@ -197,9 +199,9 @@
       "requireRemoteCommitVerification": true,
       "prompt": {
         "schema": "research-runtime-worker-prompt/v1",
-        "version": "2.2.0",
+        "version": "2.3.0",
         "path": "research/runtime/worker-prompts/generated/production.prompt.md",
-        "sha256": "4a4898a116825df460189b35b05d7980cb4525a0337e5900342b5a393948bcb7",
+        "sha256": "52a7622fc53b05cdfab7a2b92a1c8773a85eb1b4c7ca699e95e63cee4eac8c3d",
         "requiredSources": [
           "research/runtime/SCHEDULER.json",
           "research/runtime/WORKER-CONTRACT-V3.md",

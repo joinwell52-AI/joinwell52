@@ -9,10 +9,10 @@ edition: research-center
 research_question: "How should an extensible tool runtime keep a dynamic local integration bounded and reviewable?"
 summary: "一个为 MCP HTTP 请求提供动态 Header 的本地 Helper，同时受到 Scope、Ownership、Lifetime、Resource 与 Observability 约束。真正可迁移的模式不是 Helper 本身，而是把动态集成建模成拥有多条独立边界的 Extension Point。"
 sources: "research/analysis/Q-20260813-03-extension-boundary.md"
-cover: "staging/publication-candidates/2026-08-13-bounded-extension-point-cover.svg"
+cover: "staging/publication-candidates/2026-08-13-bounded-extension-point-cover.png"
 ---
 
-![一个发光的集成核心被五层不同的半透明边界约束，表示 Extensibility 只有同时通过多项独立约束才取得准入](staging/publication-candidates/2026-08-13-bounded-extension-point-cover.svg)
+![一个精密模块正在对准受机械边界保护的唯一接口，表示动态扩展只能在明确约束内取得准入](staging/publication-candidates/2026-08-13-bounded-extension-point-cover.png)
 
 # 动态集成需要五条边界，而不是一个许可开关
 

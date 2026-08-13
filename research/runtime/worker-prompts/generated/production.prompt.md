@@ -1,7 +1,7 @@
 <!-- GENERATED FILE. DO NOT EDIT DIRECTLY. -->
 <!-- schema: research-runtime-worker-prompt/v1 -->
 <!-- task: production -->
-<!-- prompt-version: 2.2.0 -->
+<!-- prompt-version: 2.3.0 -->
 <!-- scheduler-version: 3.0 -->
 <!-- template: research/runtime/worker-prompts/templates/production.prompt.md -->
 # Authoritative Production Worker Prompt
@@ -79,7 +79,7 @@ Automated production is not batch template content. Publication quantity, SEO wo
 
 The Research Center Edition is the complete evidence-bearing parent. Generate a Community Edition only after the parent is complete and only for a named professional community with a real discussion angle. It must have a different title, angle, evidence subset, structure, engineering or architectural significance and discussion question. It must not be a full copy, generic summary, advertisement or forced first-party-project vehicle. `not-generated` with a reason is valid.
 
-Create one dedicated professional editorial Article Cover for each candidate and place it before the H1 title. It must be a topic-specific cinematic or editorial visual metaphor with clear spatial hierarchy, controlled lighting and low information density. It must not be a technical diagram, workflow, state machine, dashboard, node graph, flat-icon card, generic template, cartoon or the same asset as an Inline Figure.
+Create one dedicated professional editorial Article Cover for each candidate and place it before the H1 title. Invoke the available image-generation capability and save the accepted cover as PNG, WebP or JPEG. A hand-authored SVG, HTML/CSS/canvas composition, rasterized diagram or renamed vector asset is forbidden as an Article Cover. If image generation is unavailable, return `NEEDS REVISION` instead of substituting a code-drawn cover or self-reporting `coverGate: PASS`. The cover must be a topic-specific cinematic or editorial visual metaphor with clear spatial hierarchy, controlled lighting and low information density. It must not be a technical diagram, workflow, state machine, dashboard, node graph, flat-icon card, generic template, cartoon or the same asset as an Inline Figure. Inspect the generated image itself at thumbnail size before setting `coverGate: PASS`.
 
 Inline Figures are optional `0..N`. Create one only where nearby reasoning materially benefits from visual explanation. Embed it in the relevant semantic section with an adjacent numbered bilingual caption and source. Never create fixed image-container headings or sections named `Cover`, `Figure`, `Visualization`, `题图`, `文中图`, `解释图` or `可视化`. Keep Chinese and English module sequence, claim identity and strength, uncertainty, figure order, captions and sources synchronized without mechanical sentence-by-sentence translation.
 

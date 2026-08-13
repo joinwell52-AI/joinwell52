@@ -9,10 +9,10 @@ edition: research-center
 research_question: "What does a successful session rebind establish—and what does it not establish—after the underlying runtime service changes?"
 summary: "A stable logical session can reopen a failed remote binding while the work already running on the old binding remains interrupted. Generation-scoped identity prevents the replacement host from inheriting stale cell authority, but it does not migrate lost execution."
 sources: "research/analysis/Q-20260813-02-session-rebinding-boundary.md"
-cover: "staging/publication-candidates/2026-08-13-session-rebinding-execution-continuity-cover.svg"
+cover: "staging/publication-candidates/2026-08-13-session-rebinding-execution-continuity-cover.png"
 ---
 
-![A continuous luminous thread crosses a dark break and enters a new orbit, representing stable session identity across a replacement binding without pretending that interrupted work crossed the gap](staging/publication-candidates/2026-08-13-session-rebinding-execution-continuity-cover.svg)
+![A fiber connection being precisely reattached inside enterprise equipment, representing restored future session availability without rewriting interrupted execution](staging/publication-candidates/2026-08-13-session-rebinding-execution-continuity-cover.png)
 
 # A Reconnected Session Is Not Recovered Work
 

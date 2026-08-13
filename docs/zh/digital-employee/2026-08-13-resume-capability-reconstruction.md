@@ -10,7 +10,7 @@ summary: "一个暂停的 Agent 即使恢复了持久状态，也可能仍然缺
 sources: "research/analysis/Q-20260813-01-resume-capability-reconstruction.md"
 item_id: "Q-20260813-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-13-resume-capability-reconstruction-cover.svg"
+cover: "/assets/covers/daily-2026-08-13-resume-capability-reconstruction-cover.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -18,7 +18,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-13-resume-capability-reconstruction-cover.svg"
+  image="/assets/covers/daily-2026-08-13-resume-capability-reconstruction-cover.png"
   kicker="数字员工 · 每日研究"
   title="恢复不只是重载状态：人工暂停后的执行能力重建"
   summary="一个暂停的 Agent 即使恢复了持久状态，也可能仍然缺少继续执行所需的当前能力与授权。"

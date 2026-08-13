@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
-import { dirname, join, relative, resolve, sep } from 'node:path'
+import { dirname, extname, join, relative, resolve, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const LAYOUT_EFFECTIVE_DATE = '2026-08-10'
 const INLINE_CONTRACT_EFFECTIVE_DATE = '2026-08-12'
+const RASTER_COVER_EFFECTIVE_DATE = '2026-08-13'
+const ALLOWED_COVER_EXTENSIONS = new Set(['.png', '.webp', '.jpg', '.jpeg'])
 const FORBIDDEN_IMAGE_HEADINGS = new Set([
   'Cover', 'Figure', 'Visualization', '题图', '文中图', '解释图', '可视化'
 ])
@@ -144,6 +146,9 @@ function validateArticle(articlePath, kind) {
   else {
     const coverAsset = resolveArticleAsset(articlePath, coverSource)
     if (!coverAsset || !existsSync(coverAsset)) fail(articlePath, `cover does not exist: ${coverSource}`)
+    if (date >= RASTER_COVER_EFFECTIVE_DATE && !ALLOWED_COVER_EXTENSIONS.has(extname(coverSource).toLowerCase())) {
+      fail(articlePath, `Article Cover must be a generated raster PNG, WebP or JPEG; SVG/code-drawn covers are forbidden: ${coverSource}`)
+    }
   }
 
   for (const image of inlineImages) {
@@ -159,6 +164,9 @@ function validateCandidateBatch(batchPath) {
   for (const candidate of batch.candidates || []) {
     const coverPath = candidate.coverPath ? join(ROOT, candidate.coverPath) : null
     if (!coverPath || !existsSync(coverPath)) fail(batchPath, `${candidate.itemId}: coverPath does not exist`)
+    if (batch.date >= RASTER_COVER_EFFECTIVE_DATE && !ALLOWED_COVER_EXTENSIONS.has(extname(candidate.coverPath || '').toLowerCase())) {
+      fail(batchPath, `${candidate.itemId}: Article Cover must be a generated raster PNG, WebP or JPEG`)
+    }
 
     const hasNewContract = Array.isArray(candidate.inlineFigures)
     if (batch.date >= INLINE_CONTRACT_EFFECTIVE_DATE && !hasNewContract) {

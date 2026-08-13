@@ -10,7 +10,7 @@ summary: "稳定的逻辑会话可以在远端 Binding 失效后重新连接，�
 sources: "research/analysis/Q-20260813-02-session-rebinding-boundary.md"
 item_id: "Q-20260813-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-13-session-rebinding-execution-continuity-cover.svg"
+cover: "/assets/covers/daily-2026-08-13-session-rebinding-execution-continuity-cover.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -18,7 +18,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-13-session-rebinding-execution-continuity-cover.svg"
+  image="/assets/covers/daily-2026-08-13-session-rebinding-execution-continuity-cover.png"
   kicker="行业架构 · 每日研究"
   title="会话重新连上，不等于工作已经恢复"
   summary="稳定的逻辑会话可以在远端 Binding 失效后重新连接，但旧 Binding 上已经运行的工作仍然会中断。Generation-scoped Identity 能阻止替代 Host 继承过期 Cell 的控制权，却不会迁移已经丢失的执行。"

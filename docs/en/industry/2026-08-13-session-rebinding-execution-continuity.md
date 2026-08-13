@@ -10,7 +10,7 @@ summary: "A stable logical session can reopen a failed remote binding while the 
 sources: "research/analysis/Q-20260813-02-session-rebinding-boundary.md"
 item_id: "Q-20260813-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-13-session-rebinding-execution-continuity-cover.svg"
+cover: "/assets/covers/daily-2026-08-13-session-rebinding-execution-continuity-cover.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -18,7 +18,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-13-session-rebinding-execution-continuity-cover.svg"
+  image="/assets/covers/daily-2026-08-13-session-rebinding-execution-continuity-cover.png"
   kicker="Industry Architecture · Daily Research"
   title="A Reconnected Session Is Not Recovered Work"
   summary="A stable logical session can reopen a failed remote binding while the work already running on the old binding remains interrupted. Generation-scoped identity prevents the replacement host from inheriting stale cell authority, but it does not migrate lost execution."

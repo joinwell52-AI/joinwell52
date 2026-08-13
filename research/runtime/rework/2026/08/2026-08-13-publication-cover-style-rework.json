@@ -1,0 +1,49 @@
+{
+  "schema": "runtime-publication-rework/v1",
+  "date": "2026-08-13",
+  "timezone": "Asia/Shanghai",
+  "task": "production",
+  "kind": "Production Cover Style Rework",
+  "scope": "cover-only",
+  "status": "Completed",
+  "reason": "The released covers passed file and layout checks but remained code-drawn geometric SVG illustrations. They were replaced with visually reviewed generated raster editorial covers, and the Production contract now requires image generation while rejecting SVG as an Article Cover.",
+  "reason_zh": "已发布题图虽然通过文件与布局检查，但仍是代码绘制的几何 SVG 插画。本次将其替换为经过目视审核的生成式位图编辑题图，并将 Production 合同改为必须调用图像生成能力，同时禁止 SVG 作为 Article Cover。",
+  "sourceStateCommit": "9b84c365c916b5f1852a324f6fbe6bdd6f54871d",
+  "governanceBasis": [
+    "research/skills/06-research-visualization.md",
+    "research/runtime/worker-prompts/templates/production.prompt.md",
+    "scripts/research-publication-layout-validate.mjs"
+  ],
+  "objects": [
+    {
+      "itemId": "Q-20260813-01",
+      "oldCoverPath": "docs/public/assets/covers/daily-2026-08-13-resume-capability-reconstruction-cover.svg",
+      "coverPath": "docs/public/assets/covers/daily-2026-08-13-resume-capability-reconstruction-cover.png",
+      "style": "photorealistic-editorial",
+      "visualReview": "PASS",
+      "coverGate": "PASS"
+    },
+    {
+      "itemId": "Q-20260813-02",
+      "oldCoverPath": "docs/public/assets/covers/daily-2026-08-13-session-rebinding-execution-continuity-cover.svg",
+      "coverPath": "docs/public/assets/covers/daily-2026-08-13-session-rebinding-execution-continuity-cover.png",
+      "style": "photorealistic-editorial",
+      "visualReview": "PASS",
+      "coverGate": "PASS"
+    },
+    {
+      "itemId": "Q-20260813-03",
+      "oldCoverPath": "docs/public/assets/covers/daily-2026-08-13-bounded-extension-point-cover.svg",
+      "coverPath": "docs/public/assets/covers/daily-2026-08-13-bounded-extension-point-cover.png",
+      "style": "photorealistic-editorial",
+      "visualReview": "PASS",
+      "coverGate": "PASS"
+    }
+  ],
+  "substantiveResearchChanged": false,
+  "analysisChanged": false,
+  "articleClaimsChanged": false,
+  "articlePresentationChanged": true,
+  "publicationSurfaceUpdated": true,
+  "completedAt": "2026-08-13T23:17:34+08:00"
+}
