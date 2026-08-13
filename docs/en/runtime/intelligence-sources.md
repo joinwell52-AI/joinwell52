@@ -52,7 +52,7 @@ This is the human-readable projection of the Digital Researcher's formal Watchli
 
 - **P0 / daily** sources are formal daily Discovery inputs.
 - **P1 / weekly** sources broaden high-value coverage.
-- **P2 / focused** sources are checked biweekly, on releases, or monthly; they enter special research only when their Registry trigger is met.
+- **P2 / focused** objects are checked biweekly, on releases, or monthly; the Registry also records their watch focus and special-study trigger.
 - **Curated research indexes** discover leads and never replace the original paper, official repository, dataset, benchmark, or standard.
 - Actual daily scan outcomes live in that day's Intelligence Run. Add or remove sources only in the Registry.
 

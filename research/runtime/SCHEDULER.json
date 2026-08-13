@@ -62,8 +62,8 @@
       "id": "weekly",
       "name": "Weekly Runtime",
       "name_zh": "每周运行",
-      "purpose": "Synthesize material weekly changes, connections, evidence, disputes, judgments and open questions into an independently readable AI Research Brief.",
-      "purpose_zh": "把本周重要变化、相互联系、证据与争议、可支持的判断和尚未解决的问题综合为可独立阅读的 AI Research Brief。",
+      "purpose": "Check due P2 objects and execute at most one triggered special study, then synthesize the week's validated research into an independently readable AI Research Brief.",
+      "purpose_zh": "检查到期 P2 对象并最多执行一个被触发的专项研究，再把本周已验证研究综合为可独立阅读的 AI Research Brief。",
       "taskIds": ["weekly"]
     },
     {
@@ -163,11 +163,11 @@
       "name": "Research Runtime Weekly",
       "name_zh": "研究运行每周综合",
       "schedule": { "kind": "weekly", "days": ["Sunday"], "time": "20:30", "cron": "30 12 * * 0" },
-      "input": "Evidence-validated Daily Research from the previous seven days",
-      "work": "Produce an independently readable AI Research Brief about material changes, their connections, evidence and disputes, supportable judgments and unresolved questions.",
-      "output": "Weekly Synthesis",
-      "skills": ["04 Research Analysis", "05 Research Writing", "07 Evidence & Citation", "08 Publication Editing"],
-      "prohibitions": ["Copying or concatenating Daily Research", "Forced TMPA/FCoP/CodeFlowMu implications", "Mandatory conclusion"]
+      "input": "Latest-main P2 Registry and checkpoints plus evidence-validated Daily Research from the previous seven days",
+      "work": "Check every due P2 object, execute at most one triggered P2 special study, and produce an independently readable AI Research Brief about material weekly changes, connections, evidence, disputes, judgments and open questions.",
+      "output": "P2 Check Record, zero or one P2 Special Study, and Weekly Synthesis",
+      "skills": ["01-G GitHub Engineering Intelligence", "03 Deep Reading", "04 Research Analysis", "05 Research Writing", "07 Evidence & Citation", "08 Publication Editing"],
+      "prohibitions": ["Separate P2 timer", "More than one P2 special study", "Direct publication of a P2 study", "Automatic first-party product change", "Silent omission of a due P2 object", "Copying or concatenating Daily Research", "Forced TMPA/FCoP/CodeFlowMu implications", "Mandatory conclusion"]
     },
     {
       "id": "academic",

@@ -50,7 +50,7 @@
         "schema": "research-runtime-worker-prompt/v1",
         "version": "1.0.0",
         "path": "research/runtime/worker-prompts/generated/discovery.prompt.md",
-        "sha256": "a2b786a776cdbe49ac98243efaa4d13edba62e0456d44349ed61c0ab1c90feaa",
+        "sha256": "55636950fafe406c551975393b93d1493c1eb205f1d0174471729c4f0c5bcb17",
         "requiredSources": [
           "research/runtime/SCHEDULER.json",
           "research/runtime/WORKER-CONTRACT-V3.md",
@@ -90,7 +90,7 @@
         "schema": "research-runtime-worker-prompt/v1",
         "version": "1.0.0",
         "path": "research/runtime/worker-prompts/generated/queue.prompt.md",
-        "sha256": "48d6a9986b3b2bbd9e2f5cd04098d41d47e2f93d50240ed35f0ddcba3e073810",
+        "sha256": "a0c42d5b8bfdedd9a237741ec74310bfe531ee7656a32f0e682945b4096443df",
         "requiredSources": [
           "research/runtime/SCHEDULER.json",
           "research/runtime/WORKER-CONTRACT-V3.md",
@@ -127,7 +127,7 @@
         "schema": "research-runtime-worker-prompt/v1",
         "version": "1.0.0",
         "path": "research/runtime/worker-prompts/generated/reading.prompt.md",
-        "sha256": "f02aac1b6ff0008fceb1285fd418afaa628db5072ad54072ee3b85c300e6e167",
+        "sha256": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5",
         "requiredSources": [
           "research/runtime/SCHEDULER.json",
           "research/runtime/WORKER-CONTRACT-V3.md",
@@ -162,7 +162,7 @@
         "schema": "research-runtime-worker-prompt/v1",
         "version": "2.0.0",
         "path": "research/runtime/worker-prompts/generated/analysis.prompt.md",
-        "sha256": "93a0f08aaa4a2a00927faf2ccc6bfaab2d03522f251404aaa0a78ce5d5e2a16f",
+        "sha256": "4f40dff2d12569f647bf265f344b60cb0f0cd0349f0b2d5cf1023f50947dfea2",
         "requiredSources": [
           "research/runtime/SCHEDULER.json",
           "research/runtime/WORKER-CONTRACT-V3.md",
@@ -176,7 +176,7 @@
     },
     "production": {
       "state": "active",
-      "effectiveDate": "2026-08-12",
+      "effectiveDate": "2026-08-13",
       "family": "daily",
       "schedule": {
         "kind": "daily",
@@ -197,9 +197,9 @@
       "requireRemoteCommitVerification": true,
       "prompt": {
         "schema": "research-runtime-worker-prompt/v1",
-        "version": "2.1.0",
+        "version": "2.2.0",
         "path": "research/runtime/worker-prompts/generated/production.prompt.md",
-        "sha256": "7c56b4ad2c099d2e0724b92affefacbd46184329c2b08f75b95aca43584c36ff",
+        "sha256": "4a4898a116825df460189b35b05d7980cb4525a0337e5900342b5a393948bcb7",
         "requiredSources": [
           "research/runtime/SCHEDULER.json",
           "research/runtime/WORKER-CONTRACT-V3.md",
@@ -239,7 +239,7 @@
         "schema": "research-runtime-worker-prompt/v1",
         "version": "2.0.0",
         "path": "research/runtime/worker-prompts/generated/publication.prompt.md",
-        "sha256": "f307384f9bb856b428bedb2cb5170ab1850724aae917de2d26b240d65be3796e",
+        "sha256": "a4fefa79b616aaaeef94119299fe2fb1939948680a2440b54c4ed9e07c20b8e9",
         "requiredSources": [
           "research/runtime/SCHEDULER.json",
           "research/runtime/WORKER-CONTRACT-V3.md",
@@ -254,7 +254,7 @@
     },
     "weekly": {
       "state": "active",
-      "effectiveDate": "2026-08-12",
+      "effectiveDate": "2026-08-14",
       "family": "weekly",
       "schedule": {
         "kind": "weekly",
@@ -266,11 +266,13 @@
       },
       "notBefore": "20:30",
       "lateWakePolicy": "reconcile-earliest-due",
-      "requiredCapabilities": [],
+      "requiredCapabilities": [
+        "web-research"
+      ],
       "maxRunMinutes": 180,
       "maxRecoveryAttempts": 2,
       "maxRevisionRounds": 3,
-      "maxOutputItems": 1,
+      "maxOutputItems": 2,
       "zeroOutputAllowed": true,
       "directPublicationAllowed": true,
       "requireSameRunDateInputs": false,
@@ -278,16 +280,21 @@
       "requireRemoteCommitVerification": true,
       "prompt": {
         "schema": "research-runtime-worker-prompt/v1",
-        "version": "2.0.0",
+        "version": "2.1.0",
         "path": "research/runtime/worker-prompts/generated/weekly.prompt.md",
-        "sha256": "1936c9a15e6e2b1337131a881239f8958f373fc5b8c1b68551f384980718fdb8",
+        "sha256": "0bcaf3e089691ba6d1ac421a4aa858c0ddc34ba6599664054616e2bbb3a56dac",
         "requiredSources": [
           "research/runtime/SCHEDULER.json",
           "research/runtime/WORKER-CONTRACT-V3.md",
           "research/runtime/WAKE-RECEIPT-V1.md",
           "research/runtime/RUNTIME-RECORD-SCHEMA-V5.md",
+          "research/intelligence/REGISTRY.json",
+          "research/intelligence/P2-SPECIAL-STUDY-CONTRACT.md",
+          "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
           "research/editorial/EDITORIAL-ARCHITECTURE.json",
           "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+          "research/skills/profiles/01g-github-engineering-intelligence.md",
+          "research/skills/03-deep-reading.md",
           "research/skills/04-research-analysis.md",
           "research/skills/05-research-writing.md",
           "research/skills/07-evidence-citation.md",
@@ -325,7 +332,7 @@
         "schema": "research-runtime-worker-prompt/v1",
         "version": "2.0.0",
         "path": "research/runtime/worker-prompts/generated/academic.prompt.md",
-        "sha256": "1c8ba2c425b9799e7f585d44362f5a7ea5667b3eb5201c63a494d68125558d62",
+        "sha256": "2a0b8a9ff98a62baf412ba8c08c9827974c81fbcd37ef58ac534c123bb3347ab",
         "requiredSources": [
           "research/runtime/SCHEDULER.json",
           "research/runtime/WORKER-CONTRACT-V3.md",
@@ -373,7 +380,7 @@
         "schema": "research-runtime-worker-prompt/v1",
         "version": "1.0.0",
         "path": "research/runtime/worker-prompts/generated/program.prompt.md",
-        "sha256": "26bba12adac68784a0b99aa238865b18f8d5dc06e7fbc9da5120f0cbc15e984e",
+        "sha256": "8f5fb62e2d47e446f1ebb8daf47a8e3c251a821aec2197ca19515b4ed986e568",
         "requiredSources": [
           "research/runtime/SCHEDULER.json",
           "research/runtime/WORKER-CONTRACT-V3.md",

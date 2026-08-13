@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>P2 专项研究审稿中心</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topbar"><div><span>JOINWELL52 · INTERNAL RESEARCH</span><h1>P2 专项研究审稿中心</h1><p>本地独立页面 · 不参与 GitHub Pages 构建</p></div><button id="refresh">刷新数据</button></header>
+  <main>
+    <section id="summary" class="summary"></section>
+    <section class="workspace">
+      <aside><div class="aside-head"><h2>待审专项</h2><button id="rules">研究规则</button></div><div id="study-list" class="study-list"></div><div class="run-head"><h2>周检查记录</h2></div><div id="run-list" class="run-list"></div></aside>
+      <article id="review-pane" class="review-pane"><div class="empty"><strong>请选择专项稿件</strong><p>命中 P2 触发阈值后，Weekly Runtime 生成的内部专项稿会出现在这里。</p></div></article>
+    </section>
+  </main>
+  <dialog id="rules-dialog"><button class="close" aria-label="关闭">×</button><article id="rules-content"></article></dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

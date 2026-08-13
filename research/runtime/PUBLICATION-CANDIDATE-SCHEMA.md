@@ -188,6 +188,16 @@ A V2 candidate is complete only when:
 
 The machine validator is `scripts/publication-editorial-validate.mjs`.
 
+## Atomic commit gate
+
+A new candidate is one indivisible commit bundle: the Chinese article, English article, dedicated cover, optional Inline Figures, and the completed same-date candidate-batch record. Production must build the bundle outside the canonical staging path, move all members into place together, stage them together, and run:
+
+```text
+npm run publication:bundle:staged
+```
+
+The repository pre-commit hook rejects a new candidate when its bilingual counterpart, referenced asset, or completed batch record is absent from the same Git index. Production must not bypass the hook, use `--no-verify`, split a candidate bundle by language, or write candidate members directly through the GitHub Contents API.
+
 ## Publication boundary
 
 Publication may copy complete Research Center and authorized Community Edition artifacts to their target surfaces, update metadata and indexes, commit, verify, and release. It must return any failed candidate upstream and must not perform new research, substantive rewriting, evidence repair, type selection, module repair, or claim-strength repair.

@@ -1,7 +1,7 @@
 <!-- GENERATED FILE. DO NOT EDIT DIRECTLY. -->
 <!-- schema: research-runtime-worker-prompt/v1 -->
 <!-- task: production -->
-<!-- prompt-version: 2.1.0 -->
+<!-- prompt-version: 2.2.0 -->
 <!-- scheduler-version: 3.0 -->
 <!-- template: research/runtime/worker-prompts/templates/production.prompt.md -->
 # Authoritative Production Worker Prompt
@@ -89,6 +89,7 @@ Produce staging candidates only. Do not publish and do not modify public article
 
 Required validation commands:
 
+- `npm run publication:bundle:staged`
 - `npm run publication:layout:validate`
 - `npm run publication:editorial:validate`
 - `npm run runtime:validate`

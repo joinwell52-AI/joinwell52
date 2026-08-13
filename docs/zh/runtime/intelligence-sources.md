@@ -52,7 +52,7 @@ const channelName=channel=>channelNames[channel.id]||channel.id.replaceAll('-','
 
 - **P0 / 每日**：Discovery 每日正式检查的核心来源。
 - **P1 / 每周**：扩大覆盖面的高价值来源。
-- **P2 / 专项**：每两周、按版本或每月查看；只有命中 Registry 中的触发条件才进入特别研究。
+- **P2 / 专项**：每两周、按版本或每月查看；Registry 同时记录观察重点与专项触发条件。
 - **研究聚合索引**只负责发现线索，不能替代原始论文、官方仓库、数据集、Benchmark 或标准文件。
 - 今日实际扫描结果记录在当天 Intelligence Run；新增或删除来源只修改 Registry，本页随构建自动更新。
 
