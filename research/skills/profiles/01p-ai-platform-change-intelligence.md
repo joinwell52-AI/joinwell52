@@ -34,6 +34,28 @@ For every due platform, check the applicable channels:
 
 A channel requiring authentication must be recorded as `authentication-required`; it must not be reported as “checked with no update.”
 
+## Public forum routing
+
+Official forums are collected through two separate lanes:
+
+1. **Official notice** — an announcement category, official community blog, or staff-authored notice index. These items may establish a platform fact only when the author is verified as the platform or its staff.
+2. **Precision section** — a product-specific category such as API, Codex, coding agents, Apps SDK, bug reports, release feedback, governance, or evaluation. These items are research leads until reproduced or officially corroborated.
+
+The registry stores the forum home page only as `communityNavigation`. Opening that home page does not satisfy coverage. Each due section URL must be checked independently.
+
+Only sources readable without authentication enter the due-channel count. A community that requires sign-in or membership is excluded from the active watchlist and recorded under `communityExclusion`; it is not reported as checked, failed, or inaccessible on every run.
+
+### Current public forum map
+
+| Platform | Official notice lane | Precision sections |
+| --- | --- | --- |
+| OpenAI | Announcements | API, Codex, ChatGPT Apps SDK, Open Models, Community projects |
+| Google | Announcement tag; staff authorship must be verified | Gemini API, Google AI Studio, Google Antigravity |
+| Cursor | Announcements | Release Discussions, Bug Reports, Ideas, Discussions |
+| GitHub Copilot | Copilot News and Announcements | Copilot Conversations |
+| Microsoft Copilot | Copilot Studio Blog | Copilot Studio Discussions |
+| Anthropic | Public news and release notes only | Discord excluded because anonymous inspection is unavailable |
+
 ## Change taxonomy
 
 - model launch, update, migration or retirement;
