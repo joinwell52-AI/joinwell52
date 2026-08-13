@@ -7,6 +7,7 @@ const ROOT = resolve('.')
 const LEGACY_PATH = join(ROOT, 'docs/.vitepress/generated/runtime-legacy-records.json')
 const RUNTIME_PATH = join(ROOT, 'docs/.vitepress/generated/runtime-records.json')
 const INTELLIGENCE_PATH = join(ROOT, 'docs/.vitepress/generated/research-intelligence.json')
+const SCHEDULER_PATH = join(ROOT, 'research/runtime/SCHEDULER.json')
 const DIST_PATH = join(ROOT, 'docs/.vitepress/dist')
 const RAW_DAILY_ROOT = join(ROOT, 'research/runtime/records/daily')
 const RESULT_FIELDS = ['input', 'workResult', 'output', 'next']
@@ -28,6 +29,10 @@ function assertReadable(label, value) {
 
 const runtime = readJson(RUNTIME_PATH)
 if (runtime.schema !== 'research-runtime-center-data/v5') die(`unexpected Runtime schema ${runtime.schema}`)
+const scheduler = readJson(SCHEDULER_PATH)
+if (runtime.effectiveDate !== scheduler.effectiveDate) {
+  die(`Runtime effective date ${runtime.effectiveDate} does not match Scheduler ${scheduler.effectiveDate}`)
+}
 
 for (const [family, records] of Object.entries(runtime.records || {})) {
   const seen = new Set()

@@ -1,22 +1,19 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import runtimeData from '../../generated/runtime-records.json'
-import intelligenceData from '../../generated/research-intelligence.json'
 import legacyData from '../../generated/runtime-legacy-records.json'
 import RuntimeOperationsCenterClassic from './RuntimeOperationsCenterClassic.vue'
 import RuntimeOperationsCenterLegacy from './RuntimeOperationsCenterLegacy.vue'
 
 type Lang = 'en' | 'zh'
 type DatedRecord = { date: string }
-type RuntimeData = { today: string; records: { daily: DatedRecord[] }; todayDaily: DatedRecord }
-type IntelligenceData = { effectiveDate: string }
+type RuntimeData = { today: string; effectiveDate: string; records: { daily: DatedRecord[] }; todayDaily: DatedRecord }
 type LegacyData = { records: DatedRecord[] }
 
 const props = withDefaults(defineProps<{ lang?: Lang }>(), { lang: 'en' })
 const runtime = runtimeData as RuntimeData
-const intelligence = intelligenceData as IntelligenceData
 const legacy = legacyData as LegacyData
-const effectiveDate = intelligence.effectiveDate || '2026-08-05'
+const effectiveDate = runtime.effectiveDate || '2026-08-05'
 
 const KEY_ZH: Record<string, string> = {
   scheduler: '调度器', skill: 'Skill', signalPool: '信号池', signalCount: '信号数', plan: '研究计划',

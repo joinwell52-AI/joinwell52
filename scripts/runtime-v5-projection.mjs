@@ -191,7 +191,7 @@ const records = Object.fromEntries(manifest.runtimeFamilies.map((family) => {
 const now = clock(manifest.timezone)
 const payload = {
   schema: 'research-runtime-center-data/v5', generatedAt: new Date().toISOString(), today: now.date,
-  timezone: manifest.timezone, schedulerVersion: manifest.version, centerVersion: manifest.centerVersion,
+  timezone: manifest.timezone, effectiveDate: manifest.effectiveDate, schedulerVersion: manifest.version, centerVersion: manifest.centerVersion,
   operationsCenterVersion: manifest.operationsCenterVersion, architectureStatus: manifest.architectureStatus,
   statuses: manifest.statuses, columns: manifest.columns, programs: manifest.programs, runtimeFamilies: manifest.runtimeFamilies,
   schedule: manifest.tasks,
