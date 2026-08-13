@@ -147,6 +147,10 @@ If these questions have no answers, an Agent cannot realistically assume job res
 
 > **No governance, no employee.**
 
+[![Trace is not Governance: the difference between execution events and governed work state](/assets/covers/15-saaw-trace-vs-governance-v2.svg)](/assets/covers/15-saaw-trace-vs-governance-v2.svg)
+
+*Supplementary view: Trace records execution events that occurred; Governance reconstructs legitimate state from durable work facts, rules, responsibility, and authority.*
+
 That is why TMPA exists.
 
 ---
@@ -162,6 +166,10 @@ This is TMPA's formal answer:
 **This section and Sections 5–7 expand these four rules in order: this section covers durable messages and state in text; Section 5 covers local Single-Writer serial streams; Section 6 covers asynchronous parallel collaboration across streams; Section 7 covers read-side reconstruction and the Issue Set.**
 
 **As of August 11, 2026, TMPA has entered the stable V1.0 release line:** [Architecture Paper A1.0](/en/publications/tmpa-architecture-paper-a1.0), [Core Specification S1.0](/en/publications/tmpa-core-specification-s1.0), and [Implementation Case I1.0](/en/publications/implementation-case-i1.0) now form the stable three-part publication set; I1.0 pins **CodeFlowMu v1.8.0** and records a **14/14** product validation result against **S1.0**.
+
+[![The four TMPA rules and reader-side fact reconstruction](/assets/covers/16-saaw-tmpa-four-rules-v2.svg)](/assets/covers/16-saaw-tmpa-four-rules-v2.svg)
+
+*Supplementary view: Each actor appends its own facts, cross-stream references preserve partial order, and the Reader aggregates evidence without hiding conflicts.*
 
 > **“When heterogeneous Agents and humans wrestle with long-running work inside the same codebase, the most absurd choice is to entrust trustworthy state to the volatile memory of a model.** **TMPA has an iron law: text is fact. The physical topology of files and directories exists only to provide a compliant projection; immutable text objects are the only hard currency that survives across cycles.”**
 
@@ -389,6 +397,10 @@ done       completed
 archive    archived
 ```
 
+[![The FCoP project-visible lifecycle and shared fact plane](/assets/covers/17-saaw-fcop-lifecycle-v2.svg)](/assets/covers/17-saaw-fcop-lifecycle-v2.svg)
+
+*Supplementary view: Lifecycle changes are expressed through project-visible work objects; humans, Agents, Readers, and operations tools observe the same fact plane.*
+
 FCoP governs **Agent collaboration behavior**: how tasks are handed off, results are reported, issues are raised, capability boundaries are declared, and those behaviors leave event semantics, failure boundaries, and auditable evidence.
 
 **FCoP does not govern the execution runtime.** Scheduling, process management, model sessions, resource allocation, identity authentication, and runtime-node management are outside the protocol itself.
@@ -447,6 +459,10 @@ The model is only one part of a digital employee's brain; FCoP is the coordinati
 [![SaaW governance and runtime architecture: SaaW, CodeFlowMu, FCoP, and TMPA](/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png)](/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png)
 
 *Figure 1. TMPA supplies work-fact and governance architecture; FCoP supplies the file-based coordination protocol; CodeFlowMu provides the engineering runtime; SaaW names the resulting software-delivery paradigm.*
+
+[![The CodeFlowMu engineering runtime boundary](/assets/covers/18-saaw-codeflowmu-runtime-boundary-v2.svg)](/assets/covers/18-saaw-codeflowmu-runtime-boundary-v2.svg)
+
+*Supplementary view: Models reason and tools act. CodeFlowMu organizes work, FCoP carries facts, and TMPA guides governance semantics.*
 
 ---
 
@@ -674,6 +690,10 @@ It does not mean that an Agent freely mutates its source code, and it does not m
 [![Self-Morphing: from meta-development runtime to the digital-worker work loop](/assets/covers/03-saaw-self-morphing-loop-fixed-v2.png)](/assets/covers/03-saaw-self-morphing-loop-fixed-v2.png)
 
 *Figure 2. The governed Self-Morphing loop brings development, validation, authorization, deployment, work execution, and work evidence into one recoverable and traceable lifecycle.*
+
+[![The governed Meta-Development and Self-Morphing loop](/assets/covers/19-saaw-governed-self-morphing-v2.svg)](/assets/covers/19-saaw-governed-self-morphing-v2.svg)
+
+*Supplementary view: Production evidence can enter meta-development, but meta-development cannot rewrite the live production runtime; validation and authorization control deployment, with rollback preserved.*
 
 ```text
 Meta-Dev Runtime

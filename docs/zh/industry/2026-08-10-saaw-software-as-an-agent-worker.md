@@ -149,6 +149,10 @@ Agent 能够执行工具，并不意味着 Agent 可以进入企业生产环境�
 
 > **没有治理，就没有数字员工。**
 
+[![Trace 不等于 Governance：执行轨迹与治理状态的区别](/assets/covers/15-saaw-trace-vs-governance-v2.svg)](/assets/covers/15-saaw-trace-vs-governance-v2.svg)
+
+*补充图：Trace 记录已经发生的执行事件；Governance 根据持久工作事实、规则、责任与授权重建合法状态。*
+
 这正是 TMPA 存在的原因。
 
 ---
@@ -166,6 +170,10 @@ TMPA 试图解决的核心问题非常简单：
 **本节与第 5—7 节逐条展开这四条规则：本节讨论文本承载持久消息与状态；第 5 节讨论单写者的局部串行流；第 6 节讨论多条串行流的异步并行协作；第 7 节讨论读端重建与问题集（Issue Set）。**
 
 **截至 2026 年 8 月 11 日，TMPA 已进入 V1.0 稳定发布线：** [架构论文 A1.0](/zh/publications/tmpa-architecture-paper-a1.0)、[核心规范 S1.0](/zh/publications/tmpa-core-specification-s1.0) 与 [实施案例 I1.0](/zh/publications/implementation-case-i1.0) 已形成稳定三件套；I1.0 固定 **CodeFlowMu v1.8.0**，对 **S1.0** 的产品验证结果为 **14/14**。
+
+[![TMPA 四条规则与事实重建](/assets/covers/16-saaw-tmpa-four-rules-v2.svg)](/assets/covers/16-saaw-tmpa-four-rules-v2.svg)
+
+*补充图：每个主体只追加自己的事实，跨流引用形成偏序关系，Reader 聚合证据但不覆盖冲突。*
 
 > **“当多个异构智能体与人类在同一个代码库里长期博弈时，最荒谬的事莫过于把可信状态托付给模型的挥发性记忆。** **TMPA 的底层铁律是：文本即事实。文件与目录的物理拓扑只负责合规投影，不可变的文本对象才是跨越周期的唯一硬通货。”**
 
@@ -390,6 +398,10 @@ done       已完成
 archive    已归档
 ```
 
+[![FCoP 文件驱动生命周期与事实平面](/assets/covers/17-saaw-fcop-lifecycle-v2.svg)](/assets/covers/17-saaw-fcop-lifecycle-v2.svg)
+
+*补充图：生命周期变化通过项目可见工作对象表达；人、Agent、Reader 与运维工具观察同一事实平面。*
+
 FCoP 治理的是 **Agent 的协作行为**：任务如何交接、结果如何报告、问题如何提出、能力边界如何声明，以及这些行为如何留下事件语义、失败边界与可审计证据。
 
 **FCoP 不治理执行运行时。** 调度、进程管理、模型会话、资源分配、身份认证和运行节点管理不属于协议本身的职责。
@@ -448,6 +460,10 @@ CodeFlowMu 的工程起点不是构造一个巨大的中央 Agent 运行体。
 [![SaaW 治理与运行架构：SaaW、CodeFlowMu、FCoP 与 TMPA](/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png)](/assets/covers/02-saaw-governance-runtime-stack-fixed-v2.png)
 
 *图 1：SaaW 治理与运行架构。TMPA 提供工作事实与治理架构，FCoP 提供文件驱动协作协议，CodeFlowMu 承担工程运行，SaaW 描述最终的软件交付范式。*
+
+[![CodeFlowMu 工程运行边界](/assets/covers/18-saaw-codeflowmu-runtime-boundary-v2.svg)](/assets/covers/18-saaw-codeflowmu-runtime-boundary-v2.svg)
+
+*补充图：模型负责推理，工具负责行动；CodeFlowMu 组织工作，FCoP 承载事实，TMPA 指导治理语义。*
 
 ---
 
@@ -689,6 +705,10 @@ Self-Morphing 真正值得讨论的含义是：
 [![Self-Morphing：从元开发运行体到数字员工履职闭环](/assets/covers/03-saaw-self-morphing-loop-fixed-v2.png)](/assets/covers/03-saaw-self-morphing-loop-fixed-v2.png)
 
 *图 2：Self-Morphing 的受治理闭环。开发、验证、授权、部署、履职与工作证据进入同一个可恢复、可追踪的生命周期。*
+
+[![受治理的元开发与 Self-Morphing 闭环](/assets/covers/19-saaw-governed-self-morphing-v2.svg)](/assets/covers/19-saaw-governed-self-morphing-v2.svg)
+
+*补充图：生产证据可以进入元开发，但元开发不能在线改写生产运行体；验证与授权决定能否部署，并始终保留回滚路径。*
 
 其完整过程应该是：
 
