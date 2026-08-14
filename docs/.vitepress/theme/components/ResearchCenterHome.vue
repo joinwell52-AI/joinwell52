@@ -65,7 +65,8 @@ const copy = computed(() => zh.value ? {
     { no:'01', kind:'产品', role:'工场直接生产的数字劳动力', name:['Digital','Employee'], description:'面向组织岗位、权限、工作流、成果与评价的受治理数字劳动力，是工场的产品与交付对象。', path:'/zh/digital-employee/', tone:'employee', cta:'查看产品层' },
     { no:'02', kind:'运行', role:'数字员工开发与工作 Runtime', name:['CodeFlowMu'], description:'承载数字员工开发、受治理执行、恢复与持久工作证据，是工场能力的运行层与开源参考环境。', path:'https://github.com/joinwell52-AI/CodeFlowMu-open', logo:'/assets/logos/codeflowmu.png', tone:'codeflow', cta:'打开 GitHub' },
     { no:'03', kind:'协议', role:'基于文件的协同协议', name:['FCoP'], description:'以项目可见文件承载任务、报告、审阅与生命周期证据，为 CodeFlowMu 与数字员工提供可重建的协同事实。', path:'https://joinwell52-ai.github.io/FCoP/', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'打开 FCoP 官网' },
-    { no:'04', kind:'理论', role:'文本化多智能体流程架构', name:['TMPA'], description:'独立记录治理理论、规范对象与 Reader 行为，通过 Core 与 FCoP 指导 CodeFlowMu 工程落实，但不把工程结果自动当作理论证明。', path:'/zh/publications/tmpa-architecture-paper-a1.0', logo:'/logo.svg?v=tmpa-20260807-5', tone:'tmpa', cta:'论文与规范' }
+    { no:'04', kind:'理论', role:'文本化多智能体流程架构', name:['TMPA'], description:'独立记录治理理论、规范对象与 Reader 行为，通过 Core 与 FCoP 指导 CodeFlowMu 工程落实，但不把工程结果自动当作理论证明。', path:'/zh/publications/tmpa-architecture-paper-a1.0', logo:'/logo.svg?v=tmpa-20260807-5', tone:'tmpa', cta:'论文与规范' },
+    { no:'05', kind:'应用', role:'企业 AI 应用 · PWA DEMO', name:['小典','AI'], description:'源于早期企业 AI 应用实践，并促成对多角色开发、业务治理与数字员工架构的持续探索。现开放 PWA Demo 供交互体验；这是体验入口，不是生产服务。', path:'https://demo.chedian.cc', mark:'XD', tone:'xiaodian', cta:'打开 PWA Demo' }
   ],
   researchLabel: '04 · 工场观察',
   researchTitle: '观察笔记 持续更新',
@@ -142,7 +143,8 @@ const copy = computed(() => zh.value ? {
     { no:'01', kind:'PRODUCT', role:'DIGITAL WORKFORCE PRODUCED BY THE WORKS', name:['Digital','Employee'], description:'Governed digital labor organized around positions, authority, workflows, deliverables, and evaluation—the product and delivery object of the Works.', path:'/en/digital-employee/', tone:'employee', cta:'View product layer' },
     { no:'02', kind:'RUNTIME', role:'DIGITAL EMPLOYEE DEVELOPMENT AND WORK RUNTIME', name:['CodeFlowMu'], description:'The runtime layer for Digital Employee development, governed execution, recovery, and durable work evidence, with an open-source reference environment.', path:'https://github.com/joinwell52-AI/CodeFlowMu-open', logo:'/assets/logos/codeflowmu.png', tone:'codeflow', cta:'Open GitHub' },
     { no:'03', kind:'PROTOCOL', role:'FILE-BASED COORDINATION PROTOCOL', name:['FCoP'], description:'Project-visible files carry tasks, reports, reviews, and lifecycle evidence, providing reconstructable coordination facts for CodeFlowMu and Digital Employees.', path:'https://joinwell52-ai.github.io/FCoP/', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'Open FCoP site' },
-    { no:'04', kind:'THEORY', role:'TEXTUAL MULTI-AGENT PROCESS ARCHITECTURE', name:['TMPA'], description:'Independently records governance theory, normative objects, and Reader behavior. Through Core and FCoP it guides CodeFlowMu engineering without treating implementation results as automatic proof of theory.', path:'/en/publications/tmpa-architecture-paper-a1.0', logo:'/logo.svg?v=tmpa-20260807-5', tone:'tmpa', cta:'Paper & specification' }
+    { no:'04', kind:'THEORY', role:'TEXTUAL MULTI-AGENT PROCESS ARCHITECTURE', name:['TMPA'], description:'Independently records governance theory, normative objects, and Reader behavior. Through Core and FCoP it guides CodeFlowMu engineering without treating implementation results as automatic proof of theory.', path:'/en/publications/tmpa-architecture-paper-a1.0', logo:'/logo.svg?v=tmpa-20260807-5', tone:'tmpa', cta:'Paper & specification' },
+    { no:'05', kind:'APPLICATION', role:'ENTERPRISE AI APPLICATION · PWA DEMO', name:['Xiaodian','AI'], description:'An early enterprise AI application that helped surface the need for multi-role development, business governance, and the Digital Employee architecture. Its PWA demo is open for hands-on exploration; it is an experience entry point, not a production service.', path:'https://demo.chedian.cc', mark:'XD', tone:'xiaodian', cta:'Open PWA Demo' }
   ],
   researchLabel: '04 · FACTORY OBSERVATION',
   researchTitle: 'Observation Notes Always updating',
@@ -381,7 +383,7 @@ onBeforeUnmount(() => {
             :class="`rc-program--${system.tone}`"
             :href="link(system.path)"
             :target="system.path.startsWith('http') ? '_blank' : undefined"
-            :rel="system.path.startsWith('http') ? 'noreferrer' : undefined"
+            :rel="system.path.startsWith('http') ? 'noopener noreferrer' : undefined"
           >
             <div class="rc-program__cover">
               <span>{{ system.kind }}</span>
@@ -815,6 +817,8 @@ onBeforeUnmount(() => {
 .rc-program--fcop .rc-program__cover { background: linear-gradient(145deg, #07131f, #15465a); }
 .rc-program--codeflow .rc-program__cover { background: linear-gradient(145deg, #111936, #2858ad); }
 .rc-program--employee .rc-program__cover { background: linear-gradient(145deg, #181534, #7843aa); }
+.rc-program--xiaodian { grid-column: 1 / -1; }
+.rc-program--xiaodian .rc-program__cover { background: linear-gradient(145deg, #10251f, #147d6f); }
 .rc-program__cover > span,
 .rc-program__cover > b { position: relative; z-index: 1; font: 800 10px/1 ui-monospace, monospace; letter-spacing: .08em; }
 .rc-program__cover > b { align-self: flex-end; color: rgba(255,255,255,.62); }
