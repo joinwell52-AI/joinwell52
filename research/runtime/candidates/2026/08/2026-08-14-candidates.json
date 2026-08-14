@@ -1,0 +1,114 @@
+{
+  "schema": "runtime-publication-candidate/v2",
+  "date": "2026-08-14",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Production",
+  "sourceRecord": "research/runtime/records/daily/2026/08/2026-08-14-daily-runtime.json",
+  "updatedAt": "2026-08-15T00:16:00+08:00",
+  "githubCommit": "pending",
+  "reason": "Governed manual recovery completed the interrupted 2026-08-14 Production batch from the last verified same-date checkpoint. Three authorized Research Objects became complete bilingual Publication Candidates with three independently generated and reviewed raster covers. No public surface was modified by Production.",
+  "reason_zh": "受治理的人工恢复从最后一个已核验的同日 checkpoint 补齐了中断的 2026-08-14 Production。三份已授权 Research Object 已形成完整双语 Publication Candidate，并分别配有独立生成、独立验收的真实栅格题图。Production 未修改公开发布表面。",
+  "candidates": [
+    {
+      "column": "digital-employee",
+      "category": "daily",
+      "itemId": "Q-20260814-01",
+      "articleType": "engineering-insight",
+      "researchQuestion": "How should long-lived digital employees preserve pending work across interruption and restart without turning persistence itself into permission to execute?",
+      "title": "Durable Work Is Not Execution Authority",
+      "title_zh": "持久工作不等于执行权",
+      "zhPath": "staging/publication-candidates/2026-08-14-durable-work-execution-authority.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-14-durable-work-execution-authority.en.md",
+      "sections": [
+        {"module":"technical-analysis","heading":"Three facts that should not collapse into one","heading_zh":"三个事实不能合并成一个事实"},
+        {"module":"engineering-implications","heading":"Engineering implication: model authority explicitly","heading_zh":"工程含义：把权威显式建模"},
+        {"module":"open-questions","heading":"Open questions","heading_zh":"仍待回答的问题"}
+      ],
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {"id":"C1","identity":"public-fact","claim":"The selected implementation persists queued submissions per thread with stable work identity.","claim_zh":"所选实现按 Thread 持久化 Queue Submission，并保留稳定的工作身份。","source":"research/analysis/Q-20260814-01-durable-work-identity-execution-authority.md","strength":"states","independent":false},
+        {"id":"C2","identity":"public-fact","claim":"A persisted queue item is removed only after the core admits execution as started.","claim_zh":"持久化 Queue Item 只有在 Core 接纳执行并返回 Started 后才会删除。","source":"research/analysis/Q-20260814-01-durable-work-identity-execution-authority.md","strength":"states","independent":false},
+        {"id":"C3","identity":"our-interpretation","claim":"Durable work identity, execution admission and resumption authorization should remain separate control facts.","claim_zh":"持久工作身份、执行准入与恢复授权应保持为不同的控制事实。","source":"research/analysis/Q-20260814-01-durable-work-identity-execution-authority.md","strength":"suggests","independent":false}
+      ],
+      "projectRelevance": {"status":"none","projects":[],"rationale":"The engineering argument is complete without first-party project mapping."},
+      "communityEdition": {"decision":"not-generated","rationale":"The complete Research Center edition already addresses the transferable engineering question."},
+      "gates": {"researchValue":"PASS","independence":"PASS","evidence":"PASS","structure":"PASS","language":"PASS","bilingualConsistency":"PASS"},
+      "coverPath": "staging/publication-candidates/2026-08-14-durable-work-execution-authority-cover.png",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    },
+    {
+      "column": "industry-architecture",
+      "category": "daily",
+      "itemId": "Q-20260814-02",
+      "articleType": "technical-analysis",
+      "researchQuestion": "What must be added to a multi-layer accountable-AI architecture before it can function as an operational governance system rather than remain a conceptual framework or dashboard?",
+      "title": "From KPI Visibility to Decision Rights: Making AI Operations Governable",
+      "title_zh": "从 KPI 可见性到决策权：让 AI 运营真正可治理",
+      "zhPath": "staging/publication-candidates/2026-08-14-kpi-decision-rights-governance.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-14-kpi-decision-rights-governance.en.md",
+      "sections": [
+        {"module":"technical-analysis","heading":"A dashboard can observe without governing","heading_zh":"仪表盘可以观察，却未必能够治理"},
+        {"module":"governance-implications","heading":"Governed KPIs need a control contract","heading_zh":"受治理 KPI 需要一份控制契约"},
+        {"module":"open-questions","heading":"Limits and open questions","heading_zh":"边界与开放问题"}
+      ],
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {"id":"C1","identity":"public-fact","claim":"The published artefact describes a three-stage airline operating architecture across six capability layers.","claim_zh":"已发布成果描述了一个跨六个 Capability Layer 的三阶段航空运营架构。","source":"research/analysis/Q-20260814-02-kpi-decision-rights-governance.md","strength":"states","independent":false},
+        {"id":"C2","identity":"source-reported-claim","claim":"The paper proposes binding governed KPIs to owners, thresholds, escalation paths, decision cadence and corrective action.","claim_zh":"论文提出把受治理 KPI 绑定到 Owner、Threshold、Escalation Path、Decision Cadence 与 Corrective Action。","source":"research/analysis/Q-20260814-02-kpi-decision-rights-governance.md","strength":"reports","independent":false},
+        {"id":"C3","identity":"our-interpretation","claim":"Governance begins when measured state is bound to decision authority and a closed corrective-action loop.","claim_zh":"当测量状态与决策权以及闭合的纠正行动回路绑定时，治理才真正开始。","source":"research/analysis/Q-20260814-02-kpi-decision-rights-governance.md","strength":"suggests","independent":false}
+      ],
+      "projectRelevance": {"status":"none","projects":[],"rationale":"The architecture analysis is complete without first-party project mapping."},
+      "communityEdition": {"decision":"not-generated","rationale":"No separate community framing adds enough value beyond the complete Research Center analysis."},
+      "gates": {"researchValue":"PASS","independence":"PASS","evidence":"PASS","structure":"PASS","language":"PASS","bilingualConsistency":"PASS"},
+      "coverPath": "staging/publication-candidates/2026-08-14-kpi-decision-rights-governance-cover.png",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    },
+    {
+      "column": "open-source-engineering",
+      "category": "daily",
+      "itemId": "Q-20260814-03",
+      "articleType": "engineering-insight",
+      "researchQuestion": "What recovery guarantees does prompt-scoped cancellation rollback actually provide, and what additional mechanisms are required before an aborted agent request can be safely retried after external tool side effects?",
+      "title": "Cancellation Rollback Stops at the Local State Boundary",
+      "title_zh": "取消回滚止于本地状态边界",
+      "zhPath": "staging/publication-candidates/2026-08-14-cancellation-rollback-effect-boundary.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-14-cancellation-rollback-effect-boundary.en.md",
+      "sections": [
+        {"module":"technical-analysis","heading":"A logical request can be rolled back locally","heading_zh":"一个逻辑请求可以在本地整体回退"},
+        {"module":"engineering-implications","heading":"Engineering implication: retry is an admission decision","heading_zh":"工程含义：重试本身是一项准入决定"},
+        {"module":"limitations","heading":"Limits of the evidence","heading_zh":"证据边界"},
+        {"module":"open-questions","heading":"Open questions","heading_zh":"仍待回答的问题"}
+      ],
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {"id":"C1","identity":"public-fact","claim":"The selected change records one rollback baseline across continuation calls that share a prompt identity.","claim_zh":"所选变更会在共享 Prompt Identity 的 Continuation Call 之间记录同一个回滚基线。","source":"research/analysis/Q-20260814-03-cancellation-rollback-effect-boundary.md","strength":"states","independent":false},
+        {"id":"C2","identity":"public-fact","claim":"Recognized cancellation restores local history and token accounting but does not reverse external tool effects.","claim_zh":"识别到 Cancellation 后可以恢复本地 History 与 Token Accounting，但不能撤销外部工具副作用。","source":"research/analysis/Q-20260814-03-cancellation-rollback-effect-boundary.md","strength":"states","independent":false},
+        {"id":"C3","identity":"our-interpretation","claim":"Safe cancellation recovery should separate local rollback, external-effect reconciliation and retry admission.","claim_zh":"安全的 Cancellation Recovery 应区分本地回滚、外部副作用核对与重试准入。","source":"research/analysis/Q-20260814-03-cancellation-rollback-effect-boundary.md","strength":"suggests","independent":false}
+      ],
+      "projectRelevance": {"status":"none","projects":[],"rationale":"The cancellation boundary is a general engineering question and needs no first-party project insertion."},
+      "communityEdition": {"decision":"not-generated","rationale":"The complete Research Center edition already preserves the necessary mechanism and evidence boundaries."},
+      "gates": {"researchValue":"PASS","independence":"PASS","evidence":"PASS","structure":"PASS","language":"PASS","bilingualConsistency":"PASS"},
+      "coverPath": "staging/publication-candidates/2026-08-14-cancellation-rollback-effect-boundary-cover.png",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    }
+  ]
+}

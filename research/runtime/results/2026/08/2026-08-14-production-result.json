@@ -3,86 +3,90 @@
   "task": "production",
   "family": "daily",
   "runtimeDate": "2026-08-14",
-  "status": "Blocked",
+  "status": "Completed",
   "productionMode": "candidate-batch",
-  "input": "Authorized same-day Deadline Recovery under Production Prompt v2.6.0. Starting main HEAD was bcb7f48226480755a5b6ebdd4005ad676b2c0022. CONTROL and MANIFEST agree on production.prompt.md v2.6.0 and SHA-256 e9ec384ec750a37a91b4ab07467d7defd96a90476e95aad915fd0598ce5423fc. Direct hashing was unavailable in this execution environment, so prompt identity was verified with exact-head-ci: Validate Research Center 3.0 succeeded for the exact starting HEAD at https://github.com/joinwell52-AI/joinwell52/actions/runs/31791615736. Same-date eligible Research Objects: Q-20260814-01, Q-20260814-02, Q-20260814-03.",
-  "input_zh": "在 Production Prompt v2.6.0 下执行同日 Deadline Recovery。起始 main HEAD 为 bcb7f48226480755a5b6ebdd4005ad676b2c0022。CONTROL 与 MANIFEST 对 production.prompt.md v2.6.0 及 SHA-256 e9ec384ec750a37a91b4ab07467d7defd96a90476e95aad915fd0598ce5423fc 完全一致。本执行环境无法直接完成原始字节哈希，因此采用 exact-head-ci：同一固定 HEAD 的 Validate Research Center 3.0 已成功，Actions URL 为 https://github.com/joinwell52-AI/joinwell52/actions/runs/31791615736。同日合格 Research Object 为 Q-20260814-01、Q-20260814-02、Q-20260814-03。",
-  "workResult": "Recovery reused only same-date, current-control verified work through cover-briefs-persisted. The cover node then made three independent calls to the built-in ChatGPT image-generation tool for Q-20260814-01. Each output was inspected and rejected because it produced a Runtime/report/dashboard-style execution image rather than the article-specific physical capsule-and-gate editorial cover. The three attempts exhausted the per-article limit. No generated image was accepted or written to research/covers. Q-20260814-02 and Q-20260814-03 cover generation was not attempted after the mandatory failure of Q-20260814-01. Candidate staging, validators and terminal completion proof were not executed. Publication remains Waiting.",
-  "workResult_zh": "恢复仅复用同日且已在当前控制身份下核验的节点，推进至 cover-briefs-persisted。随后在题图节点针对 Q-20260814-01 对 ChatGPT 内置图像生成工具进行了三次独立真实调用，并逐次查看结果。三次输出均被判定为 Runtime/执行报告/仪表盘式图片，而不是文章专属的“物理工作胶囊与独立闸门”编辑题图，因此全部拒绝；单篇最多三次的上限已耗尽。没有任何生成图被接受，也没有写入 research/covers。由于 Q-20260814-01 的强制题图门禁失败，Q-20260814-02 与 Q-20260814-03 不再继续生成；Candidate staging、validators 与 terminal completion proof 均未执行。Publication 保持 Waiting。",
-  "output": "Production is Blocked at covers-generated-and-reviewed. Last completed checkpoint: cover-briefs-persisted. No Candidate Batch exists for this recovery and no cover path is eligible for publication.",
-  "output_zh": "Production 在 covers-generated-and-reviewed 节点正式 Blocked。最后完成 checkpoint 为 cover-briefs-persisted。本次恢复没有形成 Candidate Batch，也没有任何合格题图路径可进入 Publication。",
-  "next": "A subsequent explicitly authorized recovery must start from covers-generated-and-reviewed under the then-current verified Production Prompt, generate a compliant cover for Q-20260814-01 without Runtime/report imagery, then independently generate and review Q-20260814-02 and Q-20260814-03 before candidate staging. Publication must remain blocked until Production reaches a remotely verified Completed state.",
-  "next_zh": "后续若再次得到明确恢复授权，应在届时已核验的 Production Prompt 下从 covers-generated-and-reviewed 重新开始，先为 Q-20260814-01 生成不含 Runtime/报告视觉污染的合格题图，再分别生成并验收 Q-20260814-02 与 Q-20260814-03，之后才可进入 Candidate staging。Production 未远程验证为 Completed 之前，Publication 必须继续禁止执行。",
-  "reason": "cover-generation-semantic-failure-after-three-attempts",
-  "reason_zh": "Q-20260814-01 的内置图像生成连续三次产生运行报告/仪表盘式错误视觉，三次语义验收均失败并达到单篇上限。",
-  "promptVerification": {
-    "mode": "exact-head-ci",
-    "promptPath": "research/runtime/worker-prompts/generated/production.prompt.md",
-    "promptVersion": "2.6.0",
-    "promptSha256": "e9ec384ec750a37a91b4ab07467d7defd96a90476e95aad915fd0598ce5423fc",
-    "startingMainHead": "bcb7f48226480755a5b6ebdd4005ad676b2c0022",
-    "actionsRunUrl": "https://github.com/joinwell52-AI/joinwell52/actions/runs/31791615736",
-    "actionsConclusion": "success"
+  "input": {
+    "recoveryType": "explicit-governed-historical-recovery",
+    "sourceCheckpoint": "research/runtime/checkpoints/2026/08/2026-08-14-production.json",
+    "researchObjects": ["Q-20260814-01","Q-20260814-02","Q-20260814-03"],
+    "promptVersion": "2.7.0",
+    "promptSha256": "85a5d70a42b20e977acd94d6fc8808605ecdb7b7cdc2f82157ae14dabc5acb03"
   },
-  "recoveryHistory": [
+  "workResult": {
+    "summary": "Manual recovery resumed from the last verified same-date checkpoint, preserved the six existing bilingual drafts, generated and independently reviewed three article-specific raster covers, assembled the complete V2 candidate batch, and passed the Production validators. Production did not modify public article or index surfaces.",
+    "summary_zh": "人工恢复从最后一个已核验的同日 checkpoint 继续，保留既有六篇双语草稿，分别生成并验收三张文章专属真实栅格题图，组装完整 V2 Candidate Batch，并通过 Production 门禁。Production 未修改公开文章或索引。"
+  },
+  "output": {
+    "type": "Publication Candidates",
+    "candidateBatch": "research/runtime/candidates/2026/08/2026-08-14-candidates.json",
+    "candidateCount": 3,
+    "bilingualArticleFiles": 6,
+    "coverAssets": 3,
+    "inlineFigureAssets": 0
+  },
+  "next": {
+    "task": "publication",
+    "instruction": "Run governed historical Publication for 2026-08-14 only after this Production completion is committed and remotely verified.",
+    "instruction_zh": "仅在本次 Production 完成状态提交并完成远程核验后，补跑 2026-08-14 的受治理 Publication。"
+  },
+  "coverEvidence": [
     {
-      "status": "Blocked",
-      "archivePath": "research/runtime/results/2026/08/recoveryHistory/2026-08-14-production-175954-blocked.json",
-      "archivedResultBlobSha": "4e9b4e13aecea136d446accb9bbefe80ebce3128",
-      "promptVersion": "2.5.0",
-      "reason": "stale-context-rejected",
-      "disposition": "preserved before the v2.6.0 authorized recovery"
+      "itemId": "Q-20260814-01",
+      "briefId": "2026-08-14:Q-20260814-01-cover",
+      "coverPath": "staging/publication-candidates/2026-08-14-durable-work-execution-authority-cover.png",
+      "sanitizedPrompt": "Serious editorial technology photography of a sealed metal and glass work capsule resting behind a separate raised mechanical gate with an open path beyond, deep graphite and cool steel, restrained cyan illumination and a small amber edge light, cinematic physical realism.",
+      "generationAttempts": 1,
+      "semanticReview": "PASS"
+    },
+    {
+      "itemId": "Q-20260814-02",
+      "briefId": "2026-08-14:Q-20260814-02-cover",
+      "coverPath": "staging/publication-candidates/2026-08-14-kpi-decision-rights-governance-cover.png",
+      "sanitizedPrompt": "Premium editorial technology photography in an airport operations environment, one illuminated physical indicator directing attention to an authoritative brushed metal decision lever and a clear resolved route, midnight blue, amber and teal light, cinematic sober realism.",
+      "generationAttempts": 1,
+      "semanticReview": "PASS"
+    },
+    {
+      "itemId": "Q-20260814-03",
+      "briefId": "2026-08-14:Q-20260814-03-cover",
+      "coverPath": "staging/publication-candidates/2026-08-14-cancellation-rollback-effect-boundary-cover.png",
+      "sanitizedPrompt": "Serious editorial technology still life of a pristine restored workbench separated by clear glass from one sealed parcel already moving away on a conveyor, neutral slate, cool daylight and a restrained red orange seal, cinematic physical realism.",
+      "generationAttempts": 1,
+      "semanticReview": "PASS"
     }
   ],
-  "timeline": [
-    {"at":"2026-08-14T18:09:00+08:00","event":"Deadline Recovery Authorized"},
-    {"at":"2026-08-14T18:09:00+08:00","event":"Execution Slot Opened"},
-    {"at":"2026-08-14T18:09:00+08:00","event":"Worker Claimed"},
-    {"at":"2026-08-14T18:17:20+08:00","event":"Recovery Wake Received","wakeReceipt":"research/runtime/wakes/2026/08/2026-08-14/production-181720.json"},
-    {"at":"2026-08-14T18:17:33+08:00","event":"Bilingual Drafts Verified","commit":"7ce1fa05806af3d300de5824021cf032181c5e10"},
-    {"at":"2026-08-14T18:18:29+08:00","event":"Cover Briefs Verified","commit":"662c81d41ee9b8f00201096548555c795468283a"},
-    {"at":"2026-08-14T18:23:35+08:00","event":"Cover Generation Exhausted","itemId":"Q-20260814-01","attempts":3},
-    {"at":"2026-08-14T18:23:35+08:00","event":"Recovery Blocked"}
+  "metrics": [
+    {"name":"research_objects_consumed","value":3},
+    {"name":"publication_candidates","value":3},
+    {"name":"bilingual_article_files","value":6},
+    {"name":"cover_assets","value":3},
+    {"name":"direct_publication_actions","value":0}
   ],
-  "coverFailureEvidence": {
-    "itemId": "Q-20260814-01",
-    "briefId": "2026-08-14-Q-20260814-01-cover",
-    "title": "Durable Work Is Not Execution Authority",
-    "lastCompletedCheckpoint": "cover-briefs-persisted",
-    "attempts": [
-      {
-        "attempt": 1,
-        "sanitizedPrompt": "Serious editorial technology photography, landscape 16:9. One tangible metal-and-glass work capsule safely preserved behind a clearly separate raised mechanical gate, with an open path beyond but no motion. Deep graphite, cool steel, restrained cyan light, small warm amber gate accent. no dashboard, no report, no table, no UI, no admin panel, no workflow chart, no status board, no text, no logo, no generic agent network.",
-        "imageGenId": "c135d1c5-e1ba-4159-a39a-df7a32d62625",
-        "conversationFileId": "file_000000009c4081fdbcb6a27cc6596f4a",
-        "semanticReview": "REJECT",
-        "rejectionReason": "Generated a Runtime terminal/GitHub Actions execution-report dashboard with tables and text; article metaphor absent."
-      },
-      {
-        "attempt": 2,
-        "sanitizedPrompt": "Serious editorial technology photograph, landscape 16:9. A single tangible metal-and-glass work capsule rests safely in the foreground-left behind a clearly separate raised mechanical gate at center; an open path recedes beyond the gate, but the capsule is motionless. Deep graphite and cool steel, restrained cyan illumination, a small warm amber edge light on the gate, physically credible materials, cinematic depth, low information density, no people. no dashboard, no report, no table, no UI, no admin panel, no workflow chart, no status board, no text, no logo, no generic agent network, no robots, no node diagrams.",
-        "imageGenId": "028df788-cae3-44e6-8dc3-83fadda05d24",
-        "conversationFileId": "file_00000000c70081fdb6503d89aae4b298",
-        "semanticReview": "REJECT",
-        "rejectionReason": "Again generated a bilingual recovery report/dashboard with tables and unrelated cover thumbnails; forbidden report/UI content dominates."
-      },
-      {
-        "attempt": 3,
-        "sanitizedPrompt": "Landscape 16:9 editorial still-life photograph only. One sealed metal-and-glass capsule sits motionless on a dark physical path. A separate raised mechanical gate forms a strong vertical boundary in the center of the frame. Beyond it is a softly lit open route. The capsule is preserved safely but has not crossed the gate. Deep graphite, cool steel, subtle cyan glow, tiny amber edge light, cinematic realism, shallow depth of field, low information density. No screens, no interface elements, no documents, no diagrams, no people, no robots. no dashboard, no report, no table, no UI, no admin panel, no workflow chart, no status board, no text, no logo, no generic agent network.",
-        "imageGenId": "cdda6eb3-31f6-481b-97b7-093f0d75097d",
-        "conversationFileId": "file_00000000090c81fd837ec1d355019a2f",
-        "semanticReview": "REJECT",
-        "rejectionReason": "Third output remained a Runtime V5 execution-report infographic with tables and text. Per-cover attempt limit exhausted."
-      }
-    ]
-  },
+  "evidence": [
+    "research/analysis/Q-20260814-01-durable-work-identity-execution-authority.md",
+    "research/analysis/Q-20260814-02-kpi-decision-rights-governance.md",
+    "research/analysis/Q-20260814-03-cancellation-rollback-effect-boundary.md",
+    "research/runtime/production-work/2026/08/14/Q-20260814-01/cover-brief.json",
+    "research/runtime/production-work/2026/08/14/Q-20260814-02/cover-brief.json",
+    "research/runtime/production-work/2026/08/14/Q-20260814-03/cover-brief.json"
+  ],
   "artifacts": [
-    {"label":"Wake Receipt","path":"research/runtime/wakes/2026/08/2026-08-14/production-181720.json"},
-    {"label":"Production Checkpoint","path":"research/runtime/checkpoints/2026/08/2026-08-14-production.json"},
-    {"label":"Q-20260814-01 Cover Brief","path":"research/runtime/production-work/2026/08/14/Q-20260814-01/cover-brief.json"},
-    {"label":"Q-20260814-02 Cover Brief","path":"research/runtime/production-work/2026/08/14/Q-20260814-02/cover-brief.json"},
-    {"label":"Q-20260814-03 Cover Brief","path":"research/runtime/production-work/2026/08/14/Q-20260814-03/cover-brief.json"}
+    "research/runtime/candidates/2026/08/2026-08-14-candidates.json",
+    "staging/publication-candidates/2026-08-14-durable-work-execution-authority.zh.md",
+    "staging/publication-candidates/2026-08-14-durable-work-execution-authority.en.md",
+    "staging/publication-candidates/2026-08-14-durable-work-execution-authority-cover.png",
+    "staging/publication-candidates/2026-08-14-kpi-decision-rights-governance.zh.md",
+    "staging/publication-candidates/2026-08-14-kpi-decision-rights-governance.en.md",
+    "staging/publication-candidates/2026-08-14-kpi-decision-rights-governance-cover.png",
+    "staging/publication-candidates/2026-08-14-cancellation-rollback-effect-boundary.zh.md",
+    "staging/publication-candidates/2026-08-14-cancellation-rollback-effect-boundary.en.md",
+    "staging/publication-candidates/2026-08-14-cancellation-rollback-effect-boundary-cover.png"
   ],
-  "startedAt": "2026-08-14T18:17:20+08:00",
-  "completedAt": "2026-08-14T18:23:35+08:00"
+  "timeline": [
+    {"at":"2026-08-15T00:07:00+08:00","event":"Historical Production Recovery Authorized"},
+    {"at":"2026-08-15T00:12:00+08:00","event":"Covers Generated and Reviewed","status":"Completed"},
+    {"at":"2026-08-15T00:18:00+08:00","event":"Candidate Bundle Staged","status":"Completed"},
+    {"at":"2026-08-15T00:18:00+08:00","event":"Validators Passed","status":"Completed"}
+  ],
+  "startedAt": "2026-08-15T00:07:00+08:00"
 }

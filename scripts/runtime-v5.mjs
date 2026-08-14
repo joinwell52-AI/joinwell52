@@ -308,11 +308,13 @@ function ensureRecord(manifest, familyId, date) {
   return { path, record }
 }
 
-function appendScheduledEvent(record, task, now, options = {}) {
+export function appendScheduledEvent(record, task, now, options = {}) {
   const currentStatus = record.taskStatus?.[task.id] || 'Waiting'
   const reopenBlocked = options.reopenBlocked === true
+  const reopenTerminal = options.reopenTerminal === true
   const retryingBlocked = currentStatus === 'Blocked' && reopenBlocked && Boolean(record.results?.[task.id])
-  if (TERMINAL.has(currentStatus) && record.results?.[task.id] && !retryingBlocked) {
+  const retryingTerminal = ['Failed', 'Blocked'].includes(currentStatus) && reopenTerminal && Boolean(record.results?.[task.id])
+  if (TERMINAL.has(currentStatus) && record.results?.[task.id] && !retryingBlocked && !retryingTerminal) {
     return false
   }
   const duplicate = currentStatus === 'Running' && record.timeline.some((entry) =>
@@ -334,9 +336,11 @@ function appendScheduledEvent(record, task, now, options = {}) {
       task: task.id,
       event: 'Execution Slot Opened',
       status: 'Running',
-      detail: retryingBlocked
-        ? `${task.name} reopened by Research Runtime Scheduler V3.0 after its blocking dependency became ready.`
-        : `${task.name} started by Research Runtime Scheduler V3.0.`
+      detail: retryingTerminal
+        ? `${task.name} reopened by Research Runtime Scheduler V3.0 under explicit governed terminal-recovery authorization.`
+        : retryingBlocked
+          ? `${task.name} reopened by Research Runtime Scheduler V3.0 after its blocking dependency became ready.`
+          : `${task.name} started by Research Runtime Scheduler V3.0.`
     })
   }
   record.updatedAt = `${now.date}T${now.time}+08:00`
@@ -362,7 +366,10 @@ function schedule(args) {
   const paths = []
   for (const task of tasks) {
     const { path, record } = ensureRecord(manifest, task.family, now.date)
-    const changed = appendScheduledEvent(record, task, now, { reopenBlocked: args['reopen-blocked'] === true || args['reopen-blocked'] === 'true' })
+    const changed = appendScheduledEvent(record, task, now, {
+      reopenBlocked: args['reopen-blocked'] === true || args['reopen-blocked'] === 'true',
+      reopenTerminal: args['reopen-terminal'] === true || args['reopen-terminal'] === 'true'
+    })
     if (changed) writeJson(path, record)
     else console.log(`${task.name} is already terminal for ${now.date}; delayed or duplicate scheduling cannot reopen it.`)
     paths.push(slash(path))
@@ -445,17 +452,22 @@ function gate(args) {
   console.log('Runtime V5 gate passed: publication change includes a V5 Runtime Record.')
 }
 
-const args = argsOf(process.argv.slice(2))
-const command = args._[0] || 'build'
-
-try {
+export function runCli(argv = process.argv.slice(2)) {
+  const args = argsOf(argv)
+  const command = args._[0] || 'build'
   if (command === 'validate') validate()
   else if (command === 'build') build()
   else if (command === 'schedule') schedule(args)
   else if (command === 'initialize') initialize(args)
   else if (command === 'gate') gate(args)
   else die(`unknown command ${command}`)
-} catch (error) {
-  console.error(error.message)
-  process.exitCode = 1
+}
+
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  try {
+    runCli()
+  } catch (error) {
+    console.error(error.message)
+    process.exitCode = 1
+  }
 }
