@@ -2,41 +2,51 @@
   "schema": "runtime-production-checkpoint/v1",
   "runDate": "2026-08-14",
   "node": "admission-and-inputs-verified",
-  "status": "Blocked",
+  "status": "Completed",
   "artifacts": [
-    "research/runtime/results/2026/08/2026-08-14-production-result.json",
-    "research/runtime/worker-prompts/generated/CONTROL.json",
-    "research/runtime/worker-prompts/generated/MANIFEST.json",
-    "research/runtime/worker-prompts/generated/production.prompt.md"
+    "research/runtime/wakes/2026/08/2026-08-14/production-180900.json",
+    "research/runtime/results/2026/08/recoveryHistory/2026-08-14-production-175954-blocked.json",
+    "research/analysis/Q-20260814-01-durable-work-identity-execution-authority.md",
+    "research/analysis/Q-20260814-02-kpi-decision-rights-governance.md",
+    "research/analysis/Q-20260814-03-cancellation-rollback-effect-boundary.md"
   ],
   "evidence": [
     {
       "type": "recovery-authorization",
       "source": "manual-recovery",
-      "events": [
-        "Deadline Recovery Authorized",
-        "Execution Slot Opened",
-        "Worker Claimed"
-      ]
+      "events": ["Deadline Recovery Authorized", "Execution Slot Opened", "Worker Claimed"],
+      "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-14/production-180900.json"
     },
     {
-      "type": "current-control",
-      "promptVersion": "2.5.0",
-      "promptSha256Declared": "5ee1675609c7b6b5f746108d0e8c5551824cb8fdd76605e89dfaf766ae62743c"
+      "type": "prompt-verification",
+      "promptVerificationMode": "exact-head-ci",
+      "promptPath": "research/runtime/worker-prompts/generated/production.prompt.md",
+      "promptVersion": "2.6.0",
+      "promptSha256": "e9ec384ec750a37a91b4ab07467d7defd96a90476e95aad915fd0598ce5423fc",
+      "controlManifest": "research/runtime/worker-prompts/generated/CONTROL.json",
+      "promptManifest": "research/runtime/worker-prompts/generated/MANIFEST.json",
+      "pinnedHead": "2c327ed1f5620935adf0b3dacff30848c2166be7",
+      "actionsRunUrl": "https://github.com/joinwell52-AI/joinwell52/actions/runs/31791173192",
+      "actionsConclusion": "success"
+    },
+    {
+      "type": "same-date-inputs",
+      "eligibleResearchObjects": ["Q-20260814-01", "Q-20260814-02", "Q-20260814-03"],
+      "allReadyForProduction": true,
+      "allProductionInputAuthorized": true
+    },
+    {
+      "type": "prior-terminal-preserved",
+      "path": "research/runtime/results/2026/08/recoveryHistory/2026-08-14-production-175954-blocked.json"
     },
     {
       "type": "prior-checkpoint-rejected",
       "priorNode": "admission-and-inputs-verified",
-      "priorStatus": "Completed",
-      "priorPromptVersion": "2.4.0",
-      "priorPromptSha256": "725b82ba9480473ce84645e1d16784b6009cbe7db7ab25d338b8ae8f461ca3fc"
-    },
-    {
-      "type": "terminal-block",
-      "reason": "stale-context-rejected",
-      "detail": "Independent SHA-256 verification of current pinned Prompt bytes unavailable; no downstream node entered."
+      "priorStatus": "Blocked",
+      "priorPromptVersion": "2.5.0",
+      "disposition": "not resumable under Production Prompt v2.6.0; re-executed from earliest unproved node"
     }
   ],
-  "sourceCommit": "f1f97706790d3ebd1c57b072962fbcdd2361be10",
-  "updatedAt": "2026-08-14T17:59:54+08:00"
+  "sourceCommit": "2c327ed1f5620935adf0b3dacff30848c2166be7",
+  "updatedAt": "2026-08-14T18:12:00+08:00"
 }
