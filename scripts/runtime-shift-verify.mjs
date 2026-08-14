@@ -46,6 +46,7 @@ const args = argsOf(process.argv)
 const taskId = String(args.task || '')
 const date = String(args.date || '')
 const commit = String(args.commit || '')
+const allowHistorical = String(args['allow-historical'] || '') === 'true'
 const task = manifest.tasks.find((item) => item.id === taskId)
 if (!task) fail(`unknown task ${taskId}`)
 if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) fail(`invalid date ${date}`)
@@ -65,13 +66,14 @@ if (taskId === 'production' && terminalStatus === 'Completed') {
 }
 
 const timeline = Array.isArray(record.timeline) ? record.timeline : []
+const belongsToExecutionDate = (event) => allowHistorical || String(event.time || '').startsWith(date)
 const startIndexes = timeline
   .map((event, index) => ({ event, index }))
   .filter(({ event }) =>
     event.task === taskId &&
     event.event === 'Execution Slot Opened' &&
     event.status === 'Running' &&
-    String(event.time || '').startsWith(date)
+    belongsToExecutionDate(event)
   )
   .map(({ index }) => index)
 if (!startIndexes.length) fail(`missing ${date} start event for ${taskId}`)
@@ -84,7 +86,7 @@ for (let i = 0; i < startIndexes.length - 1; i += 1) {
   const startIndex = startIndexes[i]
   const nextStartIndex = startIndexes[i + 1]
   const closed = timeline.slice(startIndex + 1, nextStartIndex).some((event) =>
-    event.task === taskId && String(event.time || '').startsWith(date) && closesExecutionEpoch(event)
+    event.task === taskId && belongsToExecutionDate(event) && closesExecutionEpoch(event)
   )
   if (!closed) fail(`execution epoch ${i + 1} for ${taskId} was not closed before recovery start ${i + 2}`)
 }
@@ -94,7 +96,7 @@ const terminalIndex = timeline.findIndex((event, index) =>
   index > latestStartIndex &&
   event.task === taskId &&
   event.status === terminalStatus &&
-  String(event.time || '').startsWith(date) &&
+  belongsToExecutionDate(event) &&
   event.event === `Shift ${terminalStatus}`
 )
 if (terminalIndex < 0) fail(`missing ${date} ${terminalStatus} event after latest execution start for ${taskId}`)
@@ -105,7 +107,7 @@ const workerClaimIndex = timeline.findIndex((event, index) =>
   event.task === taskId &&
   event.event === 'Worker Claimed' &&
   event.status === 'Running' &&
-  String(event.time || '').startsWith(date)
+  belongsToExecutionDate(event)
 )
 if (workerClaimIndex < 0) fail(`missing fresh Worker Claimed event in latest execution epoch for ${taskId}`)
 
@@ -113,7 +115,7 @@ const existing = timeline.find((event) =>
   event.task === taskId &&
   event.event === 'GitHub Commit Verified' &&
   event.status === 'Completed' &&
-  String(event.time || '').startsWith(date) &&
+  belongsToExecutionDate(event) &&
   String(event.detail || '').includes(commit)
 )
 if (existing) {
