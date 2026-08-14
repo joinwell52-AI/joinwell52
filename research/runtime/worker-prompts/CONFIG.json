@@ -166,7 +166,7 @@
     },
     {
       "task": "production",
-      "version": "2.4.0",
+      "version": "2.5.0",
       "effectiveDate": "2026-08-14",
       "template": "research/runtime/worker-prompts/templates/production.prompt.md",
       "output": "research/runtime/worker-prompts/generated/production.prompt.md",
@@ -190,6 +190,9 @@
         "Apply dynamic article architecture, independent evidence grading, Research Center and Community Edition separation, and every declared gate.",
         "Use ChatGPT cloud built-in image generation for every Article Cover. Derive one article-specific Cover Brief from that candidate only; do not call the OpenAI Image API, require OPENAI_API_KEY, or use a GitHub Secret for image generation.",
         "Generate and review every cover independently. Reject dashboards, monitoring screens, generic Agent networks, reused compositions, placeholders and unrelated UI; after at most two prompt-correction retries, close the shift as Blocked instead of claiming coverGate PASS.",
+        "Resume only from the latest same-run-date checkpoint committed on main. If no same-date checkpoint proves a node, restart at the earliest unproved node; never use chat memory, a report image, a demo or a prior-date checkpoint as progress evidence.",
+        "A Completed result with eligible inputs must declare productionMode=candidate-batch and pass npm run runtime:production:proof. The proof binds every eligible same-date Research Object to the same-date candidate batch, bilingual articles, real raster covers, structured cover evidence and a validators-passed checkpoint.",
+        "The final task response is plain text only. Never call image generation for a Runtime report, dashboard, poster, status summary or execution evidence; image generation is reserved exclusively for per-article covers.",
         "Build every candidate outside the canonical staging path until its Chinese article, English article, dedicated cover, optional Inline Figures and completed candidate-batch record are all ready.",
         "Stage and commit the complete candidate bundle exactly once. Before commit run npm run publication:bundle:staged plus every declared validator; never commit one language, an article without its referenced assets, or an incomplete candidate batch.",
         "Do not bypass the repository pre-commit hook, use --no-verify, or write candidate files directly through the GitHub Contents API. Stage candidates only; Production never publishes."
