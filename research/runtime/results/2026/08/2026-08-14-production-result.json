@@ -4,101 +4,85 @@
   "family": "daily",
   "runtimeDate": "2026-08-14",
   "status": "Blocked",
-  "input": "Runtime V5 Production Deadline Recovery on pinned main f1f97706790d3ebd1c57b072962fbcdd2361be10. Current CONTROL and MANIFEST both declare Production Prompt v2.5.0 at research/runtime/worker-prompts/generated/production.prompt.md with SHA-256 5ee1675609c7b6b5f746108d0e8c5551824cb8fdd76605e89dfaf766ae62743c. The latest same-date checkpoint is admission-and-inputs-verified but is bound to obsolete Prompt v2.4.0 / SHA-256 725b82ba9480473ce84645e1d16784b6009cbe7db7ab25d338b8ae8f461ca3fc.",
-  "input_zh": "在固定 main 提交 f1f97706790d3ebd1c57b072962fbcdd2361be10 上执行 Runtime V5 Production Deadline Recovery。当前 CONTROL 与 MANIFEST 均声明 Production Prompt v2.5.0，路径 research/runtime/worker-prompts/generated/production.prompt.md，SHA-256 为 5ee1675609c7b6b5f746108d0e8c5551824cb8fdd76605e89dfaf766ae62743c。main 上最新同日 checkpoint 虽为 admission-and-inputs-verified，但绑定的是已过期 Prompt v2.4.0 / SHA-256 725b82ba9480473ce84645e1d16784b6009cbe7db7ab25d338b8ae8f461ca3fc。",
-  "workResult": "Recovery did not reuse the stale checkpoint and did not enter drafting, cover generation, candidate staging or Publication. The available connected-repository execution path could read the current Prompt and its declared hashes, but could not independently execute SHA-256 over the pinned Prompt bytes. Under the recovery hard lock, declaration agreement is not equivalent to hash verification. Because runDate, pinned main HEAD, Prompt path/version and independently verified SHA-256 could not all be established simultaneously, the recovery fail-closed before admission.",
-  "workResult_zh": "本轮没有复用陈旧 checkpoint，也没有进入正文、题图生成、Candidate staging 或 Publication。当前连接仓库执行通道能够读取 Prompt 及其声明哈希，但不能对固定提交中的 Prompt 原始字节独立执行 SHA-256；两个声明文件一致不能替代哈希核验。由于 runDate、固定 main HEAD、Prompt 路径/版本与独立核验 SHA-256 无法同时成立，本轮按硬锁在 Admission 前 fail-closed。",
-  "output": "No Production Candidate was created. No cover image was generated. Publication remains ineligible.",
-  "output_zh": "未创建 Production Candidate，未生成任何题图，Publication 仍不得执行。",
-  "next": "A future recovery may proceed only after it can independently verify the v2.5.0 Prompt SHA-256 on the then-current main and re-establish a same-date admission checkpoint under that exact control context.",
-  "next_zh": "后续恢复只有在能够对届时最新 main 上的 v2.5.0 Prompt SHA-256 做独立核验，并在该精确控制上下文下重新建立同日 Admission checkpoint 后才可继续。",
-  "reason": "stale-context-rejected",
-  "reason_zh": "当前控制声明与可复用 checkpoint 上下文不一致，且本次无法独立完成 Prompt SHA-256 字节级核验；按硬锁拒绝陈旧上下文。",
+  "productionMode": "candidate-batch",
+  "input": "Authorized same-day Deadline Recovery under Production Prompt v2.6.0. Starting main HEAD was bcb7f48226480755a5b6ebdd4005ad676b2c0022. CONTROL and MANIFEST agree on production.prompt.md v2.6.0 and SHA-256 e9ec384ec750a37a91b4ab07467d7defd96a90476e95aad915fd0598ce5423fc. Direct hashing was unavailable in this execution environment, so prompt identity was verified with exact-head-ci: Validate Research Center 3.0 succeeded for the exact starting HEAD at https://github.com/joinwell52-AI/joinwell52/actions/runs/31791615736. Same-date eligible Research Objects: Q-20260814-01, Q-20260814-02, Q-20260814-03.",
+  "input_zh": "在 Production Prompt v2.6.0 下执行同日 Deadline Recovery。起始 main HEAD 为 bcb7f48226480755a5b6ebdd4005ad676b2c0022。CONTROL 与 MANIFEST 对 production.prompt.md v2.6.0 及 SHA-256 e9ec384ec750a37a91b4ab07467d7defd96a90476e95aad915fd0598ce5423fc 完全一致。本执行环境无法直接完成原始字节哈希，因此采用 exact-head-ci：同一固定 HEAD 的 Validate Research Center 3.0 已成功，Actions URL 为 https://github.com/joinwell52-AI/joinwell52/actions/runs/31791615736。同日合格 Research Object 为 Q-20260814-01、Q-20260814-02、Q-20260814-03。",
+  "workResult": "Recovery reused only same-date, current-control verified work through cover-briefs-persisted. The cover node then made three independent calls to the built-in ChatGPT image-generation tool for Q-20260814-01. Each output was inspected and rejected because it produced a Runtime/report/dashboard-style execution image rather than the article-specific physical capsule-and-gate editorial cover. The three attempts exhausted the per-article limit. No generated image was accepted or written to research/covers. Q-20260814-02 and Q-20260814-03 cover generation was not attempted after the mandatory failure of Q-20260814-01. Candidate staging, validators and terminal completion proof were not executed. Publication remains Waiting.",
+  "workResult_zh": "恢复仅复用同日且已在当前控制身份下核验的节点，推进至 cover-briefs-persisted。随后在题图节点针对 Q-20260814-01 对 ChatGPT 内置图像生成工具进行了三次独立真实调用，并逐次查看结果。三次输出均被判定为 Runtime/执行报告/仪表盘式图片，而不是文章专属的“物理工作胶囊与独立闸门”编辑题图，因此全部拒绝；单篇最多三次的上限已耗尽。没有任何生成图被接受，也没有写入 research/covers。由于 Q-20260814-01 的强制题图门禁失败，Q-20260814-02 与 Q-20260814-03 不再继续生成；Candidate staging、validators 与 terminal completion proof 均未执行。Publication 保持 Waiting。",
+  "output": "Production is Blocked at covers-generated-and-reviewed. Last completed checkpoint: cover-briefs-persisted. No Candidate Batch exists for this recovery and no cover path is eligible for publication.",
+  "output_zh": "Production 在 covers-generated-and-reviewed 节点正式 Blocked。最后完成 checkpoint 为 cover-briefs-persisted。本次恢复没有形成 Candidate Batch，也没有任何合格题图路径可进入 Publication。",
+  "next": "A subsequent explicitly authorized recovery must start from covers-generated-and-reviewed under the then-current verified Production Prompt, generate a compliant cover for Q-20260814-01 without Runtime/report imagery, then independently generate and review Q-20260814-02 and Q-20260814-03 before candidate staging. Publication must remain blocked until Production reaches a remotely verified Completed state.",
+  "next_zh": "后续若再次得到明确恢复授权，应在届时已核验的 Production Prompt 下从 covers-generated-and-reviewed 重新开始，先为 Q-20260814-01 生成不含 Runtime/报告视觉污染的合格题图，再分别生成并验收 Q-20260814-02 与 Q-20260814-03，之后才可进入 Candidate staging。Production 未远程验证为 Completed 之前，Publication 必须继续禁止执行。",
+  "reason": "cover-generation-semantic-failure-after-three-attempts",
+  "reason_zh": "Q-20260814-01 的内置图像生成连续三次产生运行报告/仪表盘式错误视觉，三次语义验收均失败并达到单篇上限。",
+  "promptVerification": {
+    "mode": "exact-head-ci",
+    "promptPath": "research/runtime/worker-prompts/generated/production.prompt.md",
+    "promptVersion": "2.6.0",
+    "promptSha256": "e9ec384ec750a37a91b4ab07467d7defd96a90476e95aad915fd0598ce5423fc",
+    "startingMainHead": "bcb7f48226480755a5b6ebdd4005ad676b2c0022",
+    "actionsRunUrl": "https://github.com/joinwell52-AI/joinwell52/actions/runs/31791615736",
+    "actionsConclusion": "success"
+  },
   "recoveryHistory": [
     {
-      "status": "Failed",
-      "resultPath": "research/runtime/results/2026/08/2026-08-14-production-result.json",
-      "verifiedCommit": "c24b73c61b4925e6aed4229261f7774318910eda",
-      "promptVersion": "2.3.0",
-      "reason": "Mandatory coverGate could not be satisfied; unrelated Runtime-dashboard imagery was rejected."
-    },
-    {
-      "status": "Running/Recovery",
-      "checkpointPath": "research/runtime/checkpoints/2026/08/2026-08-14-production.json",
-      "sourceCommit": "ee4380977fc28d28adb343d52bbd61630f7449b7",
-      "checkpointNode": "admission-and-inputs-verified",
-      "promptVersion": "2.4.0",
-      "promptSha256": "725b82ba9480473ce84645e1d16784b6009cbe7db7ab25d338b8ae8f461ca3fc",
-      "disposition": "rejected-as-stale-under-current-v2.5.0-control"
+      "status": "Blocked",
+      "archivePath": "research/runtime/results/2026/08/recoveryHistory/2026-08-14-production-175954-blocked.json",
+      "archivedResultBlobSha": "4e9b4e13aecea136d446accb9bbefe80ebce3128",
+      "promptVersion": "2.5.0",
+      "reason": "stale-context-rejected",
+      "disposition": "preserved before the v2.6.0 authorized recovery"
     }
   ],
   "timeline": [
-    {
-      "at": "2026-08-14T17:59:54+08:00",
-      "event": "Deadline Recovery Authorized"
-    },
-    {
-      "at": "2026-08-14T17:59:54+08:00",
-      "event": "Execution Slot Opened"
-    },
-    {
-      "at": "2026-08-14T17:59:54+08:00",
-      "event": "Worker Claimed"
-    },
-    {
-      "at": "2026-08-14T17:59:54+08:00",
-      "event": "Stale Context Rejected"
-    },
-    {
-      "at": "2026-08-14T17:59:54+08:00",
-      "event": "Recovery Blocked"
-    }
+    {"at":"2026-08-14T18:09:00+08:00","event":"Deadline Recovery Authorized"},
+    {"at":"2026-08-14T18:09:00+08:00","event":"Execution Slot Opened"},
+    {"at":"2026-08-14T18:09:00+08:00","event":"Worker Claimed"},
+    {"at":"2026-08-14T18:17:20+08:00","event":"Recovery Wake Received","wakeReceipt":"research/runtime/wakes/2026/08/2026-08-14/production-181720.json"},
+    {"at":"2026-08-14T18:17:33+08:00","event":"Bilingual Drafts Verified","commit":"7ce1fa05806af3d300de5824021cf032181c5e10"},
+    {"at":"2026-08-14T18:18:29+08:00","event":"Cover Briefs Verified","commit":"662c81d41ee9b8f00201096548555c795468283a"},
+    {"at":"2026-08-14T18:23:35+08:00","event":"Cover Generation Exhausted","itemId":"Q-20260814-01","attempts":3},
+    {"at":"2026-08-14T18:23:35+08:00","event":"Recovery Blocked"}
   ],
-  "evidence": [
-    {
-      "type": "run-date",
-      "value": "2026-08-14",
-      "timezone": "Asia/Shanghai"
-    },
-    {
-      "type": "starting-main-head",
-      "commit": "f1f97706790d3ebd1c57b072962fbcdd2361be10"
-    },
-    {
-      "type": "production-control",
-      "path": "research/runtime/worker-prompts/generated/CONTROL.json",
-      "version": "1.3.0",
-      "promptVersion": "2.5.0",
-      "promptSha256Declared": "5ee1675609c7b6b5f746108d0e8c5551824cb8fdd76605e89dfaf766ae62743c"
-    },
-    {
-      "type": "production-manifest",
-      "path": "research/runtime/worker-prompts/generated/MANIFEST.json",
-      "promptVersion": "2.5.0",
-      "promptSha256Declared": "5ee1675609c7b6b5f746108d0e8c5551824cb8fdd76605e89dfaf766ae62743c"
-    },
-    {
-      "type": "stale-checkpoint",
-      "path": "research/runtime/checkpoints/2026/08/2026-08-14-production.json",
-      "promptVersion": "2.4.0",
-      "promptSha256": "725b82ba9480473ce84645e1d16784b6009cbe7db7ab25d338b8ae8f461ca3fc"
-    },
-    {
-      "type": "hash-verification",
-      "status": "Unavailable",
-      "detail": "No repository command-execution path was available to independently hash the pinned Prompt bytes; declaration agreement was not accepted as verification."
-    }
-  ],
+  "coverFailureEvidence": {
+    "itemId": "Q-20260814-01",
+    "briefId": "2026-08-14-Q-20260814-01-cover",
+    "title": "Durable Work Is Not Execution Authority",
+    "lastCompletedCheckpoint": "cover-briefs-persisted",
+    "attempts": [
+      {
+        "attempt": 1,
+        "sanitizedPrompt": "Serious editorial technology photography, landscape 16:9. One tangible metal-and-glass work capsule safely preserved behind a clearly separate raised mechanical gate, with an open path beyond but no motion. Deep graphite, cool steel, restrained cyan light, small warm amber gate accent. no dashboard, no report, no table, no UI, no admin panel, no workflow chart, no status board, no text, no logo, no generic agent network.",
+        "imageGenId": "c135d1c5-e1ba-4159-a39a-df7a32d62625",
+        "conversationFileId": "file_000000009c4081fdbcb6a27cc6596f4a",
+        "semanticReview": "REJECT",
+        "rejectionReason": "Generated a Runtime terminal/GitHub Actions execution-report dashboard with tables and text; article metaphor absent."
+      },
+      {
+        "attempt": 2,
+        "sanitizedPrompt": "Serious editorial technology photograph, landscape 16:9. A single tangible metal-and-glass work capsule rests safely in the foreground-left behind a clearly separate raised mechanical gate at center; an open path recedes beyond the gate, but the capsule is motionless. Deep graphite and cool steel, restrained cyan illumination, a small warm amber edge light on the gate, physically credible materials, cinematic depth, low information density, no people. no dashboard, no report, no table, no UI, no admin panel, no workflow chart, no status board, no text, no logo, no generic agent network, no robots, no node diagrams.",
+        "imageGenId": "028df788-cae3-44e6-8dc3-83fadda05d24",
+        "conversationFileId": "file_00000000c70081fdb6503d89aae4b298",
+        "semanticReview": "REJECT",
+        "rejectionReason": "Again generated a bilingual recovery report/dashboard with tables and unrelated cover thumbnails; forbidden report/UI content dominates."
+      },
+      {
+        "attempt": 3,
+        "sanitizedPrompt": "Landscape 16:9 editorial still-life photograph only. One sealed metal-and-glass capsule sits motionless on a dark physical path. A separate raised mechanical gate forms a strong vertical boundary in the center of the frame. Beyond it is a softly lit open route. The capsule is preserved safely but has not crossed the gate. Deep graphite, cool steel, subtle cyan glow, tiny amber edge light, cinematic realism, shallow depth of field, low information density. No screens, no interface elements, no documents, no diagrams, no people, no robots. no dashboard, no report, no table, no UI, no admin panel, no workflow chart, no status board, no text, no logo, no generic agent network.",
+        "imageGenId": "cdda6eb3-31f6-481b-97b7-093f0d75097d",
+        "conversationFileId": "file_00000000090c81fd837ec1d355019a2f",
+        "semanticReview": "REJECT",
+        "rejectionReason": "Third output remained a Runtime V5 execution-report infographic with tables and text. Per-cover attempt limit exhausted."
+      }
+    ]
+  },
   "artifacts": [
-    {
-      "label": "Run-date Production Result",
-      "path": "research/runtime/results/2026/08/2026-08-14-production-result.json"
-    },
-    {
-      "label": "Run-date Production Checkpoint",
-      "path": "research/runtime/checkpoints/2026/08/2026-08-14-production.json"
-    }
+    {"label":"Wake Receipt","path":"research/runtime/wakes/2026/08/2026-08-14/production-181720.json"},
+    {"label":"Production Checkpoint","path":"research/runtime/checkpoints/2026/08/2026-08-14-production.json"},
+    {"label":"Q-20260814-01 Cover Brief","path":"research/runtime/production-work/2026/08/14/Q-20260814-01/cover-brief.json"},
+    {"label":"Q-20260814-02 Cover Brief","path":"research/runtime/production-work/2026/08/14/Q-20260814-02/cover-brief.json"},
+    {"label":"Q-20260814-03 Cover Brief","path":"research/runtime/production-work/2026/08/14/Q-20260814-03/cover-brief.json"}
   ],
-  "startedAt": "2026-08-14T17:50:00+08:00",
-  "completedAt": "2026-08-14T17:59:54+08:00"
+  "startedAt": "2026-08-14T18:17:20+08:00",
+  "completedAt": "2026-08-14T18:23:35+08:00"
 }
