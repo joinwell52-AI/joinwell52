@@ -1,0 +1,70 @@
+{
+  "schema": "runtime-production-recovery-history/v1",
+  "runDate": "2026-08-14",
+  "timezone": "Asia/Shanghai",
+  "task": "production",
+  "recoveryKind": "deadline-recovery",
+  "authorization": "same-day Deadline Recovery Authorization",
+  "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-14/production-172200.json",
+  "priorResult": {
+    "path": "research/runtime/results/2026/08/2026-08-14-production-result.json",
+    "status": "Failed",
+    "reason": "Mandatory coverGate could not be satisfied: the available image-generation interface produced unrelated Runtime-dashboard imagery instead of article-specific editorial covers.",
+    "verifiedCommit": "c24b73c61b4925e6aed4229261f7774318910eda",
+    "preserved": true
+  },
+  "recoveryStartCheckpoint": "admission-and-inputs-verified",
+  "checkpointPath": "research/runtime/checkpoints/2026/08/2026-08-14-production.json",
+  "timeline": [
+    {
+      "time": "2026-08-14T17:22:00+08:00",
+      "event": "Deadline Recovery Authorized",
+      "status": "Running",
+      "detail": "Same-day manual recovery wake accepted for the unfinished 15:00 Production. Prior Failed result preserved as audit evidence; Publication remains Waiting."
+    },
+    {
+      "time": "2026-08-14T17:22:01+08:00",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Recovery execution slot opened for Production only. No Publication authority granted."
+    },
+    {
+      "time": "2026-08-14T17:22:02+08:00",
+      "event": "Worker Claimed",
+      "status": "Running",
+      "detail": "ChatGPT cloud worker claimed the single allowed recovery attempt."
+    },
+    {
+      "time": "2026-08-14T17:27:35+08:00",
+      "event": "Checkpoint Verified",
+      "status": "Completed",
+      "node": "admission-and-inputs-verified",
+      "detail": "Current main Scheduler, worker control, Production prompt v2.4.0, matching SHA-256 declaration, all ten required sources and all three same-date ReadyForProduction Research Objects were read and verified; checkpoint was committed and fetched from main."
+    },
+    {
+      "time": "2026-08-14T17:28:10+08:00",
+      "event": "Cover Generation Attempt Rejected",
+      "status": "Running",
+      "detail": "ChatGPT cloud built-in image generation returned a Runtime V5 dashboard/report image instead of an article-specific editorial cover. Rejected under coverGate and not persisted as an article asset."
+    },
+    {
+      "time": "2026-08-14T17:28:50+08:00",
+      "event": "Cover Generation Retry Rejected",
+      "status": "Running",
+      "detail": "Retry again returned a recovery/dashboard report composition rather than an article-specific cover. The interface did not provide a usable per-article brief execution path in this recovery run."
+    },
+    {
+      "time": "2026-08-14T17:29:12+08:00",
+      "event": "Recovery Blocked",
+      "status": "Blocked",
+      "detail": "Recovery stopped after the single authorized recovery round because cloud image generation could not execute an article-specific Cover Brief and therefore coverGate, candidate-bundle staging and validators could not truthfully pass. No Publication action was performed."
+    }
+  ],
+  "finalStatus": "Blocked",
+  "lastCompletedNode": "admission-and-inputs-verified",
+  "nextUncompletedNode": "bilingual-drafts-persisted",
+  "blockingReasonCode": "cloud-image-generation-unavailable",
+  "blockingReason": "The available ChatGPT cloud image-generation interface repeatedly produced Runtime/dashboard recovery-report imagery instead of article-specific editorial covers and did not expose a usable per-article brief execution path for this recovery run. Production cannot truthfully pass coverGate or complete an atomic candidate bundle without accepted article-specific covers.",
+  "publicationStatus": "Waiting",
+  "updatedAt": "2026-08-14T17:29:12+08:00"
+}
