@@ -282,7 +282,7 @@ The research-publication Digital Employee is the first candidate reference insta
 
 The problem framing grew from engineering the Xiaodian AI enterprise application. One stream asked “who develops enterprise AI?” and led toward multi-role development, FCoP and CodeFlowMu. The other asked “how should enterprise AI enter business operations under governance?” and led toward TMPA and the Digital Employee architecture. The streams now meet again in the Digital Employee production machine.
 
-Xiaodian AI source, production systems and demo testing entry are not currently public. The project is an author-reported internal engineering origin, not public evidence of TMPA S1.0 conformance, independent validation or product generality.
+The [Xiaodian AI PWA Demo](https://demo.chedian.cc) is now public for hands-on exploration; its source code and production systems remain private. The demo is a public experience entry point, not public evidence of TMPA S1.0 conformance, independent validation, production readiness or product generality.
 
 ## SME-first economics
 

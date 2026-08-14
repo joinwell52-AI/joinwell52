@@ -266,6 +266,10 @@ const categoryLabel = (category: ResearchCategory) => {
             <div class="rcv5-program-cover"><span>APPLICATION</span><div class="rcv5-people"><i></i><i></i><i></i></div></div>
             <div class="rcv5-program-body"><small>GOVERNED AI WORKFORCE</small><h3>Digital Employee</h3><p>{{ zh ? '面向组织岗位的受治理数字劳动力。' : 'Governed digital workforce organized around positions.' }}</p><b>{{ zh ? '纲领性架构' : 'Governing architecture' }} →</b></div>
           </a>
+          <a class="rcv5-program xiaodian" href="https://demo.chedian.cc" target="_blank" rel="noopener noreferrer">
+            <div class="rcv5-program-cover"><span>ENTERPRISE AI · PWA DEMO</span><strong>XD</strong><i></i></div>
+            <div class="rcv5-program-body"><small>PUBLIC INTERACTIVE DEMO</small><h3>{{ zh ? '小典 AI' : 'Xiaodian AI' }}</h3><p>{{ zh ? '源于最早的企业 AI 应用实践，并促成对多角色开发、业务治理与数字员工架构的持续探索。现开放 PWA Demo 供交互体验。' : 'An early enterprise AI application that helped surface the need for multi-role development, business governance and the Digital Employee architecture. Its public PWA demo is now open for hands-on exploration.' }}</p><b>{{ zh ? '打开 PWA Demo' : 'Open PWA Demo' }} ↗</b></div>
+          </a>
         </div>
       </section>
 
