@@ -83,7 +83,7 @@ Daily JSON 必须同时维护：
 research/runtime/YYYY/MM/YYYY-MM-DD-runtime.md
 ```
 
-JSON 是机器事实源；Markdown 是强制人类可读投影。Markdown 必须保留 Execution Slot Opened、Running、Completed/Blocked/Failed/Skipped、Commit Verify 等时间点，并展示 Input、Work Result、Output、Next、Metrics、Evidence、Artifacts。
+JSON 是机器事实源；Markdown 是强制人类可读投影。Markdown 必须保留 Execution Slot Opened、Running、Completed/Blocked/Failed/Skipped、Commit Verify 等时间点，并展示 Input、Work Result、Output、Next、Metrics、Evidence、Artifacts。四种终态必须经过同一条持久化与 GitHub 核验通道；业务失败也必须关闭 Running 租约，不能留下“结果已 Failed、控制面仍 Running”的半状态。
 
 结构化 narrative、legacy metric `name`、字符串或对象 evidence/artifact 都必须可正确投影；`[object Object]`、伪 Evidence 占位、机器状态与 Markdown 状态不一致均属于投影故障。
 

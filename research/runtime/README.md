@@ -77,7 +77,7 @@ Runtime V5 validate
 → Execution Slot Opened event verify
 ```
 
-Worker completion still requires result-contract, artifact, Git commit and Commit Verify checks. A green Actions run alone is never proof that research work completed.
+Worker finalization requires result-contract, artifact, Git commit and Commit Verify checks for `Completed`, `Failed`, `Blocked` and `Skipped`. A green Actions run alone is never proof that research work completed, and a failed business shift must still close its Running lease through the governed terminal path.
 
 ## 9. Recovery order
 

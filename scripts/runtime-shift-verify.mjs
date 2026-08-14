@@ -5,6 +5,7 @@ import path from 'node:path'
 
 const ROOT = process.cwd()
 const manifest = JSON.parse(readFileSync(path.join(ROOT, 'research/runtime/SCHEDULER.json'), 'utf8'))
+const TERMINAL = new Set(['Completed', 'Failed', 'Blocked', 'Skipped'])
 
 function argsOf(argv) {
   const args = {}
@@ -53,9 +54,10 @@ const file = recordPath(task, date)
 if (!existsSync(file)) fail(`runtime record not found for ${taskId} on ${date}`)
 const record = readJson(file)
 if (record.date !== date) fail(`record date ${record.date} does not match ${date}`)
-if (record.taskStatus?.[taskId] !== 'Completed') fail(`taskStatus.${taskId} must be Completed, got ${record.taskStatus?.[taskId]}`)
+const terminalStatus = record.taskStatus?.[taskId]
+if (!TERMINAL.has(terminalStatus)) fail(`taskStatus.${taskId} must be terminal, got ${terminalStatus}`)
 const result = record.results?.[taskId]
-if (!result || result.status !== 'Completed') fail(`results.${taskId}.status must be Completed`)
+if (!result || result.status !== terminalStatus) fail(`results.${taskId}.status must match ${terminalStatus}`)
 if (result.runtimeDate && result.runtimeDate !== date) fail(`results.${taskId}.runtimeDate ${result.runtimeDate} does not match ${date}`)
 
 const timeline = Array.isArray(record.timeline) ? record.timeline : []
@@ -84,18 +86,18 @@ for (let i = 0; i < startIndexes.length - 1; i += 1) {
 }
 
 const latestStartIndex = startIndexes[startIndexes.length - 1]
-const completionIndex = timeline.findIndex((event, index) =>
+const terminalIndex = timeline.findIndex((event, index) =>
   index > latestStartIndex &&
   event.task === taskId &&
-  event.status === 'Completed' &&
+  event.status === terminalStatus &&
   String(event.time || '').startsWith(date) &&
-  /Completed$/.test(String(event.event || ''))
+  event.event === `Shift ${terminalStatus}`
 )
-if (completionIndex < 0) fail(`missing ${date} completion event after latest execution start for ${taskId}`)
+if (terminalIndex < 0) fail(`missing ${date} ${terminalStatus} event after latest execution start for ${taskId}`)
 
 const workerClaimIndex = timeline.findIndex((event, index) =>
   index > latestStartIndex &&
-  index < completionIndex &&
+  index < terminalIndex &&
   event.task === taskId &&
   event.event === 'Worker Claimed' &&
   event.status === 'Running' &&
@@ -132,7 +134,7 @@ record.timeline.push({
   task: taskId,
   event: 'GitHub Commit Verified',
   status: 'Completed',
-  detail: `Fetched and verified durable ${task.name} result commit ${commit} on main; ${startIndexes.length} execution epoch(s) remain as audit evidence, every prior epoch is governed-closed, and the latest epoch contains a fresh Worker Claimed event before completion.`
+  detail: `Fetched and verified durable ${task.name} ${terminalStatus} result commit ${commit} on main; ${startIndexes.length} execution epoch(s) remain as audit evidence, every prior epoch is governed-closed, and the latest epoch contains a fresh Worker Claimed event before terminal finalization.`
 })
 result.githubCommit = commit
 result.commitVerify = 'Completed'
@@ -141,4 +143,4 @@ record.githubCommit = commit
 record.commitVerify = 'Completed'
 record.updatedAt = verifiedAt
 writeJson(file, record)
-console.log(`Recorded durable verification for ${taskId} ${date} commit ${commit} across ${startIndexes.length} execution epoch(s).`)
+console.log(`Recorded durable ${terminalStatus} verification for ${taskId} ${date} commit ${commit} across ${startIndexes.length} execution epoch(s).`)
