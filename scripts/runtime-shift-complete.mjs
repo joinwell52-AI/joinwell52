@@ -2,6 +2,7 @@
 
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
+import { validateProductionCompletion } from './runtime-production-proof.mjs'
 
 const ROOT = process.cwd()
 const manifest = JSON.parse(readFileSync(path.join(ROOT, 'research/runtime/SCHEDULER.json'), 'utf8'))
@@ -98,6 +99,9 @@ const result = readJson(absoluteResult)
 const terminalStatus = validateResult(result, taskId)
 for (const dateField of ['date', 'runtimeDate']) {
   if (text(result[dateField]) && result[dateField] !== date) fail(`result ${dateField} ${result[dateField]} does not match runtime date ${date}`)
+}
+if (taskId === 'production' && terminalStatus === 'Completed') {
+  validateProductionCompletion({ root: ROOT, date, result, timezone: manifest.timezone })
 }
 const opened = [...(record.timeline || [])].reverse().find((event) => event.task === taskId && event.event === 'Execution Slot Opened' && event.status === 'Running')
 result.task = taskId

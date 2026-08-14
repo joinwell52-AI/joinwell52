@@ -2,6 +2,7 @@
 
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
+import { validateProductionCompletion } from './runtime-production-proof.mjs'
 
 const ROOT = process.cwd()
 const manifest = JSON.parse(readFileSync(path.join(ROOT, 'research/runtime/SCHEDULER.json'), 'utf8'))
@@ -59,6 +60,9 @@ if (!TERMINAL.has(terminalStatus)) fail(`taskStatus.${taskId} must be terminal, 
 const result = record.results?.[taskId]
 if (!result || result.status !== terminalStatus) fail(`results.${taskId}.status must match ${terminalStatus}`)
 if (result.runtimeDate && result.runtimeDate !== date) fail(`results.${taskId}.runtimeDate ${result.runtimeDate} does not match ${date}`)
+if (taskId === 'production' && terminalStatus === 'Completed') {
+  validateProductionCompletion({ root: ROOT, date, result, timezone: manifest.timezone })
+}
 
 const timeline = Array.isArray(record.timeline) ? record.timeline : []
 const startIndexes = timeline

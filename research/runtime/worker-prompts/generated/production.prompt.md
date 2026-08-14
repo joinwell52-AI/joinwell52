@@ -1,7 +1,7 @@
 <!-- GENERATED FILE. DO NOT EDIT DIRECTLY. -->
 <!-- schema: research-runtime-worker-prompt/v1 -->
 <!-- task: production -->
-<!-- prompt-version: 2.4.0 -->
+<!-- prompt-version: 2.5.0 -->
 <!-- scheduler-version: 3.0 -->
 <!-- template: research/runtime/worker-prompts/templates/production.prompt.md -->
 # Authoritative Production Worker Prompt
@@ -34,13 +34,17 @@ This file is a generated execution artifact from the latest `main` branch. Do no
 
 ## Wake and durable authority
 
-Determine `runDate` and actual `wakeTime` in `Asia/Shanghai`. Before Runtime work, create a unique `runtime-wake-receipt/v1` JSON at `research/runtime/wakes/YYYY/MM/YYYY-MM-DD/production-HHMMSS.json` with the run date, timezone, nominal task and time, actual wake time, the actual admitted wake source, and `status=Received`. Commit it to `main`, fetch `main`, and verify the exact receipt. If verification fails, stop with `Failed` and do no Runtime work. Obey every admitted duration, recovery, revision, output, same-date, publication and verification limit.
+Determine `runDate` and actual `wakeTime` from the current `Asia/Shanghai` clock. Never derive `runDate` from repository examples, old reports, article metadata, chat history or checkpoints. Before Runtime work, create a unique `runtime-wake-receipt/v1` JSON at `research/runtime/wakes/YYYY/MM/YYYY-MM-DD/production-HHMMSS.json` with the run date, timezone, nominal task and time, actual wake time, the actual admitted wake source, and `status=Received`. Commit it to `main`, fetch `main`, and verify the exact receipt. If verification fails, stop with `Failed` and do no Runtime work. Obey every admitted duration, recovery, revision, output, same-date, publication and verification limit.
+
+At admission, bind the execution to the fetched latest `main` HEAD, current Prompt path, version and SHA-256. Every checkpoint, Research Object, candidate, article, cover, evidence record and result must carry the same `runDate`. A path, embedded date or control identity from another date is stale evidence and must be rejected; do not copy, relabel or migrate it into the current run.
 
 The timer is only a wake signal. It does not grant Production execution authority. Read all run-date Runtime family records, order applicable formal tasks by scheduled time, and enforce global serial execution. Never start a later task while an earlier due task is `Waiting` or `Running`. A task is closed only when it is `Completed`, `Blocked`, `Failed` or `Skipped`, except an explicitly recoverable dependency-blocked task.
 
 Daily dependencies are `queue <- discovery`, `reading <- queue`, `analysis <- reading`, `production <- analysis`, `publication <- production`, and `weekly <- publication`. Program and Academic are independent business families but still obey global formal-time order.
 
 Find the earliest due unfinished task. Recover and claim the same task if it is `Running` without a fresh verified Worker Claim. If it is `Waiting` and eligible, persist and verify `Execution Slot Opened` and `Worker Claimed` before substantive work. Execute only the earliest authorized task. If Production does not hold execution authority, perform zero Production-specific work. After any selected task reaches a durably verified terminal result, reconcile again and continue only an already-overdue next task in order.
+
+For recovery, read only `research/runtime/checkpoints/YYYY/MM/YYYY-MM-DD-production.json` for the current `runDate`. Resume from its latest node only when the checkpoint itself and its `sourceCommit` are committed on fetched `main`. If the same-date checkpoint is absent or does not prove a node, restart from the earliest unproved node. Chat messages, generated execution reports, report images, demos and prior-date checkpoints are never progress evidence.
 
 ## Production responsibility
 
@@ -81,9 +85,13 @@ The Research Center Edition is the complete evidence-bearing parent. Generate a 
 
 Create one dedicated professional editorial Article Cover for each candidate and place it before the H1 title. Use ChatGPT cloud built-in image generation directly; do not call the OpenAI Image API, require `OPENAI_API_KEY`, or require a GitHub Secret for image generation. Before each call, derive an article-specific Cover Brief from only that Research Object and candidate: title, core proposition, one unique visual metaphor, primary subject, composition, palette, exclusions and landscape editorial-cover ratio. Never send Runtime, Scheduler, Dashboard or control-plane text as the image prompt, and never reuse one prompt or composition across the batch.
 
+Call image generation once per article, never for the batch or Runtime as a whole. The tool prompt must contain only that article's sanitized visual brief and cover exclusions. It must not contain Runtime state, recovery history, checkpoints, GitHub details, completion status or report content. Retry a rejected cover with a rewritten article-only prompt, up to three attempts for that article. Per-cover retries do not create a new Runtime recovery epoch.
+
 A hand-authored SVG, HTML/CSS/canvas composition, rasterized diagram or renamed vector asset is forbidden as an Article Cover. Reject Runtime dashboards, admin panels, monitoring screens, generic Agent networks, unrelated UI, placeholders, old assets, text-swapped duplicates and visibly reused compositions. Inspect each generated image itself at thumbnail size and verify that it expresses the article's proposition without title text and is clearly distinguishable from the other covers. If review fails, rewrite the prompt from the observed mismatch and retry at most twice. If cloud image generation is unavailable or still fails semantic review, close Production through the governed terminal path as `Blocked`; do not leave `Running`, substitute another asset, or self-report `coverGate: PASS`.
 
 For every cover record its Brief identity, generation attempt count, accepted asset path, semantic review decision and rejection reason in the Production evidence. Only an accepted PNG, WebP or JPEG committed through the authorized GitHub connection may pass `coverGate`.
+
+For `Completed`, persist structured `coverEvidence[]` in the Production result. Every entry must bind `itemId`, a run-date-prefixed `briefId`, `coverPath`, the actual article-only `sanitizedPrompt`, `generationAttempts` from 1 through 3, and `semanticReview=PASS`. The result must declare `productionMode=candidate-batch` when same-date eligible inputs exist. A zero-output completion is allowed only when the repository contains zero same-date `ReadyForProduction` and `production_input_authorized=true` Research Objects, and must declare `productionMode=zero-output`.
 
 Inline Figures are optional `0..N`. Create one only where nearby reasoning materially benefits from visual explanation. Embed it in the relevant semantic section with an adjacent numbered bilingual caption and source. Never create fixed image-container headings or sections named `Cover`, `Figure`, `Visualization`, `题图`, `文中图`, `解释图` or `可视化`. Keep Chinese and English module sequence, claim identity and strength, uncertainty, figure order, captions and sources synchronized without mechanical sentence-by-sentence translation.
 
@@ -97,6 +105,8 @@ Required validation commands:
 - `npm run publication:layout:validate`
 - `npm run publication:editorial:validate`
 - `npm run runtime:validate`
+
+Before requesting a `Completed` Production terminal state, run `npm run runtime:production:proof -- --date <runDate> --result <result-path>`. GitHub Runtime finalization repeats the same proof and rejects stale dates, missing eligible objects, mismatched candidate IDs, old article or cover paths, non-raster cover files, missing structured cover evidence, or a checkpoint earlier than `validators-passed`.
 
 Any research-value, independence, evidence, structure, language, bilingual parity, asset, caption/source, edition, layout or gate failure is `NEEDS REVISION` and must not be committed as `Completed`. Production owns content repair. Publication may release only a complete candidate and must return failures upstream; Publication must not perform new research, substantive rewriting, evidence repair, type selection, module repair or claim-strength repair.
 
@@ -117,4 +127,4 @@ Scheduler prohibitions:
 
 ## Durable completion
 
-Commit only intentional governed artifacts to `main`. Fetch `main` and verify the run date, result, exact artifact paths, schema versions, event order, Wake Receipt, Worker Claim, gates, validator results and commit reachability before reporting success. Chat text, intended changes, a local commit, an unverified push or an unverified candidate is not completion.
+Commit only intentional governed artifacts to `main`. Fetch `main` and verify the run date, result, exact artifact paths, schema versions, event order, Wake Receipt, Worker Claim, gates, validator results and commit reachability before reporting success. Chat text, intended changes, a local commit, an unverified push or an unverified candidate is not completion. The final task response must be plain text. Never call image generation to create a Runtime execution report, dashboard, poster, summary board or completion evidence; the image tool is reserved exclusively for the individual article covers.
