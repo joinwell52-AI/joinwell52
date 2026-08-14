@@ -14,5 +14,5 @@ export function articleTypeLabel(articleType: string | undefined, chinese: boole
   if (!articleType) return ''
   const item = articleTypes[articleType]
   if (!item) return articleType
-  return chinese ? `${item.zh} · ${item.en}` : `${item.en} · ${item.zh}`
+  return chinese ? item.zh : item.en
 }
