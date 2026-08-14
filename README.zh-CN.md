@@ -56,6 +56,12 @@
 
 每个仓库都有一个清楚的被发现与被 Star 的理由：**TMPA 解释并定义，FCoP 把协作能力做成可复用协议，CodeFlowMu Open 把二者变成可以安装的产品。** 产品使用继续产生现场证据、协议改进与新的规范问题。
 
+## 工程起点：小典 AI
+
+TMPA、FCoP 与 CodeFlowMu 的问题意识，不是先从论文定义出发，而是来自我们开发企业 AI 应用 **小典 AI** 时遇到的真实工程问题：一条线是“谁来开发企业 AI”——单 Agent 难以稳定承担需求、开发、部署与验收，逐步形成 PM / DEV / OPS / QA、TASK / REPORT / ISSUE 和“文件即协议”；另一条线是“企业 AI 如何进入业务”——权限、查询、分析、行动与审计不能都交给一个模型，必须分离职责并保留可复核事实。后来，前一条线演化为 FCoP 与 CodeFlowMu，后一条线进入 TMPA 与数字员工架构；现在二者在“受治理的数字员工生产机”中重新汇合。
+
+> **当前公开边界：**小典 AI 的源码、生产系统与 Demo 测试入口暂不公开。本段只说明 TMPA、FCoP 与 CodeFlowMu 的工程来源，不把小典 AI 作为 TMPA S1.0 符合性、独立验证或“已消除幻觉”的证据。
+
 ## 安装开源产品
 
 [CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open) 不是概念图或文档 Demo，而是拥有[独立产品主页](https://joinwell52-ai.github.io/CodeFlowMu-open/)、可以安装的本地应用。它提供 PC Panel、Mobile PWA、项目隔离、人工审批门禁、FCoP 工作工件，以及固定的 `PM / DEV / OPS / QA` 四人执行团队；`EVAL` 独立观察交付质量与风险。
