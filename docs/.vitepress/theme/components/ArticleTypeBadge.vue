@@ -26,7 +26,6 @@ const ratingLabel = computed(() => rating.value
   <div v-if="type || rating" class="article-badges">
     <div v-if="type" class="article-type-badge" aria-label="Article type">
       <strong>{{ chinese ? type.zh : type.en }}</strong>
-      <span>{{ chinese ? type.en : type.zh }}</span>
     </div>
     <div class="article-score-badge" :class="[`rating-${ratingLevel}`, { pending: !rating }]" aria-label="Weekly editorial rating">
       <strong>{{ ratingLabel }}</strong>
