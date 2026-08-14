@@ -1,0 +1,41 @@
+{
+  "schema": "production-cover-generation-failure/v1",
+  "runDate": "2026-08-14",
+  "itemId": "Q-20260814-01",
+  "briefId": "2026-08-14-Q-20260814-01-cover",
+  "title": "Durable Work Is Not Execution Authority",
+  "decision": "REJECT",
+  "reasonCode": "cloud-image-generation-unavailable",
+  "reason": "The built-in image-generation channel was available but did not honor three consecutive article-only sanitized cover requests. Each returned image was a Runtime/Production recovery report or dashboard-like document with dense text and tables, which is explicitly forbidden for an Article Cover. The channel is therefore unusable for a compliant article cover in this recovery epoch.",
+  "lastCompletedCheckpoint": "cover-briefs-persisted",
+  "attempts": [
+    {
+      "attempt": 1,
+      "sanitizedPrompt": "Durable Work Is Not Execution Authority. A sealed metal-and-glass work capsule rests safely behind a clearly separate raised mechanical gate; an open path continues beyond it, but the capsule remains deliberately still. Landscape 16:9 editorial technology cover, capsule dominant in the foreground-left, gate forming a strong vertical boundary near center, calm path receding into deep background, physically credible materials, cinematic depth, deep graphite and cool steel with restrained cyan light and a small warm amber edge accent, serious premium technology-publication photography, strong focal hierarchy, low information density, no dashboard, no report, no table, no UI, no admin panel, no workflow chart, no status board, no text, no logo, no generic agent network.",
+      "generationId": "d9df1f5d-cba4-4d20-85b9-b0be17f95b5f",
+      "imageSha256": "30344ca0c02791db689d25207775070bef42f9f692060f87851b357610ea6b8d",
+      "semanticReview": "REJECT",
+      "observedFailure": "Dense bilingual production-recovery report/dashboard with tables, status panels and text; unrelated to the article metaphor."
+    },
+    {
+      "attempt": 2,
+      "sanitizedPrompt": "Durable Work Is Not Execution Authority. One sealed ceramic-and-steel capsule containing a preserved task rests motionless on a stone plinth before a separate open brass gate; beyond the gate is a quiet illuminated corridor, emphasizing that preservation and permission are physically distinct. 16:9 landscape editorial cover, close three-quarter view, shallow depth of field, capsule large in foreground, gate clearly separated several meters behind, no people, realistic materials, cinematic side light, graphite and ivory with restrained cyan and amber accents, serious research-publication photography, minimal scene, no dashboard, no report, no table, no UI, no admin panel, no workflow chart, no status board, no text, no logo, no generic agent network.",
+      "generationId": "c42a900d-3d14-4e14-8e80-aff2c841214a",
+      "imageSha256": "4e83d971304a2649faab1675e7a64d5b221f8589c8c2d005a201ef6d13884251",
+      "semanticReview": "REJECT",
+      "observedFailure": "Recovery dashboard with checkpoint timeline, tables, article thumbnails and text; forbidden UI/report composition."
+    },
+    {
+      "attempt": 3,
+      "sanitizedPrompt": "Durable Work Is Not Execution Authority. A single heavy archival capsule is safely locked in a quiet vault alcove while a separate freestanding gate farther ahead remains closed; the visual idea is preserved work waiting for an independent permission boundary. 16:9 landscape editorial technology photograph, low camera angle, capsule sharp and dominant in foreground, gate isolated in middle distance, soft open space beyond, no screens or signage, realistic steel, stone and glass, controlled cinematic lighting, charcoal and cool gray with one restrained amber rim light, elegant serious magazine cover, low information density, no dashboard, no report, no table, no UI, no admin panel, no workflow chart, no status board, no text, no logo, no generic agent network.",
+      "generationId": "7defa98d-ac9e-4ba1-9df9-028309db3aba",
+      "imageSha256": "0ebbbe83c29684ad77b58081ab4984d754b081af3ec16400494c2cd70b4f833a",
+      "semanticReview": "REJECT",
+      "observedFailure": "Document-style recovery report with tables, checkpoint rows and dense text; forbidden report/dashboard visual."
+    }
+  ],
+  "otherItems": [
+    {"itemId":"Q-20260814-02","generationAttempts":0,"disposition":"not attempted after batch-blocking cover failure"},
+    {"itemId":"Q-20260814-03","generationAttempts":0,"disposition":"not attempted after batch-blocking cover failure"}
+  ]
+}
