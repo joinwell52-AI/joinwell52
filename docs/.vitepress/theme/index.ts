@@ -133,7 +133,7 @@ function reorderCapabilityCards() {
 
   reorder(
     '.rc-programs',
-    ['.rc-program--tmpa', '.rc-program--fcop', '.rc-program--codeflow', '.rc-program--employee'],
+    ['.rc-program--tmpa', '.rc-program--fcop', '.rc-program--codeflow', '.rc-program--employee', '.rc-program--xiaodian'],
     '.rc-program__cover > b'
   )
   reorder(
