@@ -1,0 +1,44 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "production",
+  "family": "daily",
+  "runtimeDate": "2026-08-14",
+  "status": "Blocked",
+  "input": "Same-day Deadline Recovery Authorization; verified manual-recovery Wake Receipt research/runtime/wakes/2026/08/2026-08-14/production-172200.json; latest-main Scheduler V3.0; Worker Control v1.3.0; authoritative Production prompt v2.4.0 with CONTROL/MANIFEST SHA-256 declaration 725b82ba9480473ce84645e1d16784b6009cbe7db7ab25d338b8ae8f461ca3fc; all ten required Production sources; and the three same-date ReadyForProduction Research Objects Q-20260814-01, Q-20260814-02 and Q-20260814-03.",
+  "input_zh": "同日 Deadline Recovery Authorization；已核验 manual-recovery Wake Receipt research/runtime/wakes/2026/08/2026-08-14/production-172200.json；最新 main 上的 Scheduler V3.0、Worker Control v1.3.0；权威 Production Prompt v2.4.0，CONTROL/MANIFEST 声明 SHA-256 为 725b82ba9480473ce84645e1d16784b6009cbe7db7ab25d338b8ae8f461ca3fc；全部 10 个 Production Required Source；以及同日三份 ReadyForProduction Research Object Q-20260814-01、Q-20260814-02、Q-20260814-03。",
+  "workResult": "The single authorized Deadline Recovery round was opened and claimed. The previous Failed Production result was preserved and archived by reference in recoveryHistory. Because no explicit Production checkpoint existed on main before recovery, the safe restart point was reconstructed from committed evidence. Recovery completed and remotely verified node a, admission-and-inputs-verified, and persisted research/runtime/checkpoints/2026/08/2026-08-14-production.json. Cloud built-in image generation was then exercised under the current v2.4.0 cover rule. Two generated outputs were Runtime/dashboard recovery-report compositions rather than article-specific editorial covers; both were rejected and neither was persisted as a cover asset. The available generation surface did not provide a usable per-article Cover Brief execution path in this run. As a result, coverGate cannot truthfully pass, an atomic Publication Candidate bundle cannot be staged, and the four mandatory validators cannot truthfully be reported as passed. Production is therefore Blocked. Publication remained Waiting and no public surface was modified.",
+  "workResult_zh": "本次唯一允许的 Deadline Recovery 轮次已打开并由 Worker Claimed。旧的 Failed Production Result 未被覆盖，并已在 recoveryHistory 中按原路径与已验证提交归档引用。由于恢复前 main 上没有显式 Production Checkpoint，只能依据已提交证据重建最近安全节点。本次恢复完成并远程核验了节点 a：admission-and-inputs-verified，并持久化 research/runtime/checkpoints/2026/08/2026-08-14-production.json。随后按照当前 v2.4.0 题图规则调用 ChatGPT 云端内置图像生成能力；两次输出均为 Runtime / Dashboard 恢复报告式构图，而不是文章级独立编辑题图，均被拒绝且未作为 Cover Asset 持久化。本轮可用生成界面没有提供可实际执行逐篇 Cover Brief 的路径。因此 coverGate 无法如实通过，原子 Publication Candidate Bundle 无法进入 staging，四项强制 Validator 也不能被虚假报告为通过。Production 正式收口为 Blocked；Publication 始终保持 Waiting，未修改任何公开页面。",
+  "output": "Blocked recovery result. Last completed checkpoint: admission-and-inputs-verified. Next uncompleted node: bilingual-drafts-persisted. No governed Publication Candidate batch or accepted Article Cover was created.",
+  "output_zh": "恢复结果为 Blocked。最后完成 Checkpoint：admission-and-inputs-verified。下一个未完成节点：bilingual-drafts-persisted。未创建受治理 Publication Candidate Batch，也没有任何被接受的 Article Cover。",
+  "next": "A later explicitly authorized recovery may resume from the verified admission-and-inputs-verified checkpoint only after the cloud image-generation surface can receive and faithfully execute three independent article-specific Cover Briefs. It must not reuse either rejected dashboard image. Publication must remain Waiting until Production reaches remotely verified Completed.",
+  "next_zh": "后续只有在再次获得明确 Recovery Authorization，且云端图像生成界面能够接收并忠实执行三份独立文章级 Cover Brief 后，才可从已核验的 admission-and-inputs-verified Checkpoint 继续。不得复用本次两张被拒绝的 Dashboard 图。Production 未达到远程验证 Completed 前，Publication 必须继续保持 Waiting。",
+  "reason": "cloud-image-generation-unavailable: the available ChatGPT cloud image-generation interface repeatedly produced Runtime/dashboard recovery-report imagery instead of article-specific editorial covers, so coverGate and downstream atomic candidate/validator gates could not be satisfied.",
+  "reason_zh": "cloud-image-generation-unavailable：当前 ChatGPT 云端图像生成界面连续生成 Runtime / Dashboard 恢复报告式图像，而不是文章级独立编辑题图，因此 coverGate 以及后续原子 Candidate / Validator 门禁无法满足。",
+  "metrics": [
+    {"label":"Recovery attempts used","label_zh":"已使用恢复轮次","value":1},
+    {"label":"Same-date Research Objects verified","label_zh":"已核验同日 Research Object","value":3},
+    {"label":"Production checkpoints completed in recovery","label_zh":"本次恢复完成 Production Checkpoint","value":1},
+    {"label":"Cloud cover generation outputs rejected","label_zh":"云端题图生成被拒绝输出","value":2},
+    {"label":"Accepted article covers","label_zh":"已接受文章题图","value":0},
+    {"label":"Governed Publication Candidate batches","label_zh":"受治理 Publication Candidate Batch","value":0},
+    {"label":"Validators passed","label_zh":"通过 Validator 数","value":0}
+  ],
+  "evidence": [
+    {"label":"Recovery Wake Receipt","label_zh":"Recovery Wake Receipt","path":"research/runtime/wakes/2026/08/2026-08-14/production-172200.json","commit":"ee4380977fc28d28adb343d52bbd61630f7449b7"},
+    {"label":"Verified recovery checkpoint","label_zh":"已核验 Recovery Checkpoint","path":"research/runtime/checkpoints/2026/08/2026-08-14-production.json","commit":"cd7af4601545e8aba2037ae56c1d308e465984cd"},
+    {"label":"Recovery history","label_zh":"Recovery History","path":"research/runtime/recoveryHistory/2026/08/2026-08-14-production-172200.json","commit":"032409772bae97af0e7c0039413622e45f112ef1"},
+    {"label":"Preserved prior Failed result","label_zh":"保留的旧 Failed Result","path":"research/runtime/results/2026/08/2026-08-14-production-result.json","verifiedCommit":"c24b73c61b4925e6aed4229261f7774318910eda"},
+    {"label":"Authoritative Production prompt","label_zh":"权威 Production Prompt","path":"research/runtime/worker-prompts/generated/production.prompt.md","version":"2.4.0","sha256":"725b82ba9480473ce84645e1d16784b6009cbe7db7ab25d338b8ae8f461ca3fc"},
+    {"label":"Cover attempt 1","label_zh":"题图尝试 1","decision":"REJECT","reason":"Runtime V5 recovery dashboard/report composition; not an article-specific editorial cover."},
+    {"label":"Cover retry 2","label_zh":"题图重试 2","decision":"REJECT","reason":"Recovery/dashboard report composition again; not an article-specific editorial cover."}
+  ],
+  "artifacts": [
+    {"label":"Recovery checkpoint","label_zh":"Recovery Checkpoint","path":"research/runtime/checkpoints/2026/08/2026-08-14-production.json"},
+    {"label":"Recovery history","label_zh":"Recovery History","path":"research/runtime/recoveryHistory/2026/08/2026-08-14-production-172200.json"},
+    {"label":"Recovery result","label_zh":"Recovery Result","path":"research/runtime/results/2026/08/2026-08-14-production-recovery-172200-result.json"}
+  ],
+  "startedAt": "2026-08-14T17:22:00+08:00",
+  "completedAt": "2026-08-14T17:29:12+08:00",
+  "githubCommit": "pending",
+  "commitVerify": "Waiting"
+}
