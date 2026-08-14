@@ -39,7 +39,6 @@
 |---|---|
 | 安装真正的开源产品 | [GitHub](https://github.com/joinwell52-AI/CodeFlowMu-open) · [产品主页](https://joinwell52-ai.github.io/CodeFlowMu-open/)——四人开发团队，当前只对接 Cursor |
 | 为 Agent 加入文件式协作 | [GitHub](https://github.com/joinwell52-AI/FCoP) · [协议主页](https://joinwell52-ai.github.io/FCoP/)——Python 包、MCP Server 与协议 |
-| 体验最早的企业应用原型 | [小典 AI 公开 Demo](https://demo.chedian.cc/)——固定脱敏测试数据、只读聚合查询；源码与生产系统不公开 |
 | 五分钟理解核心问题 | [为什么执行轨迹不等于治理](#执行轨迹不等于治理) |
 | 以完整视觉方式浏览项目 | [进入 Digital Employee Works →](https://joinwell52-ai.github.io/joinwell52/zh/) |
 | 阅读稳定理论与规范 | [架构论文 A1.0](https://joinwell52-ai.github.io/joinwell52/zh/publications/tmpa-architecture-paper-a1.0) · [核心规范 S1.0](https://joinwell52-ai.github.io/joinwell52/zh/publications/tmpa-core-specification-s1.0) |
@@ -56,14 +55,6 @@
 | **CodeFlowMu Open** | 可安装的四人开发团队产品 | [源码与 Star](https://github.com/joinwell52-AI/CodeFlowMu-open) | [产品主页](https://joinwell52-ai.github.io/CodeFlowMu-open/) |
 
 每个仓库都有一个清楚的被发现与被 Star 的理由：**TMPA 解释并定义，FCoP 把协作能力做成可复用协议，CodeFlowMu Open 把二者变成可以安装的产品。** 产品使用继续产生现场证据、协议改进与新的规范问题。
-
-## 工程起点：小典 AI
-
-TMPA、FCoP 与 CodeFlowMu 的问题意识，不是先从论文定义出发，而是来自我们开发企业 AI 应用 **小典 AI** 时遇到的真实工程问题：一条线是“谁来开发企业 AI”——单 Agent 难以稳定承担需求、开发、部署与验收，逐步形成 PM / DEV / OPS / QA、TASK / REPORT / ISSUE 和“文件即协议”；另一条线是“企业 AI 如何进入业务”——权限、查询、分析、行动与审计不能都交给一个模型，必须分离职责并保留可复核事实。后来，前一条线演化为 FCoP 与 CodeFlowMu，后一条线进入 TMPA 与数字员工架构；现在二者在“受治理的数字员工生产机”中重新汇合。
-
-[**立即体验小典 AI 公开 Demo →**](https://demo.chedian.cc/)
-
-> **Demo 与证据边界：**该站点提供固定脱敏测试企业上的受控、只读聚合查询，适合读者体验最早的企业应用形态；请勿输入真实个人信息、密码、Token 或商业秘密。它不开放小典 AI 私有源码，不提供生产 SLA，也不构成 TMPA S1.0 符合性、独立验证或“已消除幻觉”的证据。Demo 是可变在线服务，功能和可用性可能调整。
 
 ## 安装开源产品
 
