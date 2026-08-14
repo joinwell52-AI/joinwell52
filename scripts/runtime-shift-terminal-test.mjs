@@ -5,6 +5,7 @@ import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'nod
 import os from 'node:os'
 import path from 'node:path'
 import { spawnSync } from 'node:child_process'
+import { validateProductionCompletion } from './runtime-production-proof.mjs'
 
 const repositoryRoot = process.cwd()
 const completeScript = path.join(repositoryRoot, 'scripts/runtime-shift-complete.mjs')
@@ -74,7 +75,7 @@ function writeCompletedProductionProof(root, date, result) {
     itemId,
     briefId: `${date}:${itemId}:cover-v1`,
     coverPath,
-    sanitizedPrompt: 'A cinematic editorial landscape showing one durable bridge across a dark interruption, no dashboard, no report, no text.',
+    sanitizedPrompt: 'Cinematic editorial landscape photography of one durable illuminated bridge crossing a dark interrupted valley, restrained steel blue and amber palette, strong focal hierarchy, wide sixteen by nine composition.',
     generationAttempts: 1,
     semanticReview: 'PASS'
   }]
@@ -139,6 +140,28 @@ for (const terminalStatus of ['Completed', 'Failed', 'Blocked', 'Skipped']) {
 }
 
 {
+  const root = mkdtempSync(path.join(os.tmpdir(), 'runtime-contaminated-cover-prompt-'))
+  try {
+    const date = shanghaiDate()
+    const result = {
+      schema: 'runtime-shift-result/v2',
+      task: 'production',
+      status: 'Completed',
+      runtimeDate: date,
+      metrics: [], evidence: [], artifacts: []
+    }
+    writeCompletedProductionProof(root, date, result)
+    result.coverEvidence[0].sanitizedPrompt = 'No dashboard, no report, no text; show one bridge.'
+    assert.throws(
+      () => validateProductionCompletion({ root, date, result }),
+      /positive-only article imagery/
+    )
+  } finally {
+    rmSync(root, { recursive: true, force: true })
+  }
+}
+
+{
   const root = mkdtempSync(path.join(os.tmpdir(), 'runtime-stale-production-'))
   try {
     const date = shanghaiDate()
@@ -193,4 +216,4 @@ for (const terminalStatus of ['Completed', 'Failed', 'Blocked', 'Skipped']) {
   }
 }
 
-console.log('Runtime shift terminal finalization tests passed for Completed, Failed, Blocked and Skipped, including stale-date rejection.')
+console.log('Runtime shift terminal finalization tests passed for terminal states, stale-date rejection and positive-only cover prompts.')

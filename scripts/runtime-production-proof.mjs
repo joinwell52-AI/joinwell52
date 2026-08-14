@@ -13,7 +13,7 @@ const CHECKPOINT_ORDER = [
   'terminal-result-verified'
 ]
 const RASTER_EXTENSIONS = new Set(['.png', '.jpg', '.jpeg', '.webp'])
-const CONTROL_CONTEXT = /\b(?:runtime|recovery|checkpoint|github|worker|control|status|completed|blocked|dashboard|report)\b|执行报告|运行控制|仪表盘|状态看板/i
+const PROMPT_CONTAMINATION = /\b(?:runtime|recovery|checkpoint|github|worker|control|status|completed|blocked|dashboard|report|table|ui|admin|workflow|logo|text|agent network|node diagram|no|without|avoid|exclude|forbid)\b|执行报告|运行控制|仪表盘|状态看板|不要|禁止|排除|避免|无文字|无标志/i
 
 function fail(message) {
   throw new Error(`Runtime production proof: ${message}`)
@@ -89,11 +89,8 @@ function artifactPaths(result) {
   return paths
 }
 
-function containsControlContext(prompt) {
-  const cleaned = String(prompt || '')
-    .replace(/\b(?:no|without)\s+(?:dashboard|report|table|ui|admin panel|workflow chart|status board)\b/gi, '')
-    .replace(/无(?:仪表盘|报告|表格|界面|状态看板)/g, '')
-  return CONTROL_CONTEXT.test(cleaned)
+function containsPromptContamination(prompt) {
+  return PROMPT_CONTAMINATION.test(String(prompt || ''))
 }
 
 export function validateProductionCompletion({ root = process.cwd(), date, result, timezone = 'Asia/Shanghai' }) {
@@ -161,7 +158,9 @@ export function validateProductionCompletion({ root = process.cwd(), date, resul
     }
     if (!String(cover.briefId || '').startsWith(`${date}:`)) fail(`${candidate.itemId}: briefId must be bound to ${date}`)
     if (!String(cover.sanitizedPrompt || '').trim()) fail(`${candidate.itemId}: sanitizedPrompt is required`)
-    if (containsControlContext(cover.sanitizedPrompt)) fail(`${candidate.itemId}: sanitizedPrompt contains Runtime/report control context`)
+    if (containsPromptContamination(cover.sanitizedPrompt)) {
+      fail(`${candidate.itemId}: sanitizedPrompt must be positive-only article imagery without control, exclusion or negation language`)
+    }
     if (!artifacts.has(repoPath(candidate.coverPath))) fail(`result artifacts do not bind ${candidate.coverPath}`)
     requiredCheckpointArtifacts.add(repoPath(candidate.coverPath))
   }
