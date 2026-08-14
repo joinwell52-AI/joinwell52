@@ -1,0 +1,74 @@
+{
+  "schema": "runtime-production-recovery-history/v1",
+  "runDate": "2026-08-14",
+  "timezone": "Asia/Shanghai",
+  "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-14/production-173400.json",
+  "authorization": "Deadline Recovery Authorized",
+  "recoveryAttempt": 1,
+  "startingMainHead": "cc9563fcec7e9f5236ae418e2768c1154aec655d",
+  "prompt": {
+    "path": "research/runtime/worker-prompts/generated/production.prompt.md",
+    "version": "2.4.0",
+    "sha256": "725b82ba9480473ce84645e1d16784b6009cbe7db7ab25d338b8ae8f461ca3fc"
+  },
+  "preservedPriorTerminalResults": [
+    {
+      "path": "research/runtime/results/2026/08/2026-08-14-production-result.json",
+      "status": "Failed",
+      "verifiedCommit": "c24b73c61b4925e6aed4229261f7774318910eda"
+    },
+    {
+      "path": "research/runtime/results/2026/08/2026-08-14-production-recovery-172200-result.json",
+      "status": "Blocked",
+      "verifiedCommit": "cc9563fcec7e9f5236ae418e2768c1154aec655d"
+    }
+  ],
+  "lastVerifiedCheckpoint": {
+    "path": "research/runtime/checkpoints/2026/08/2026-08-14-production.json",
+    "node": "admission-and-inputs-verified",
+    "status": "Completed",
+    "sourceCommit": "ee4380977fc28d28adb343d52bbd61630f7449b7"
+  },
+  "timeline": [
+    {"at":"2026-08-14T17:34:00+08:00","event":"Deadline Recovery Authorized"},
+    {"at":"2026-08-14T17:36:31+08:00","event":"Wake Receipt Verified","commit":"e0974ee6c2ae07acd732131575688d9f505bf7c9"},
+    {"at":"2026-08-14T17:36:32+08:00","event":"Execution Slot Opened"},
+    {"at":"2026-08-14T17:36:33+08:00","event":"Worker Claimed"},
+    {"at":"2026-08-14T17:37:00+08:00","event":"Production Running"},
+    {"at":"2026-08-14T17:38:00+08:00","event":"Cover Attempt 1 Rejected","articleId":"Q-20260814-01"},
+    {"at":"2026-08-14T17:38:30+08:00","event":"Cover Attempt 2 Rejected","articleId":"Q-20260814-01"},
+    {"at":"2026-08-14T17:39:00+08:00","event":"Cover Attempt 3 Rejected","articleId":"Q-20260814-01"},
+    {"at":"2026-08-14T17:40:00+08:00","event":"Production Blocked","reasonCode":"cloud-image-generation-unavailable"}
+  ],
+  "coverFailure": {
+    "articleId": "Q-20260814-01",
+    "title_zh": "持久化不是执行许可：长期数字员工的三重边界",
+    "attempts": 3,
+    "accepted": 0,
+    "attemptEvidence": [
+      {
+        "attempt": 1,
+        "decision": "REJECT",
+        "reason": "Generated a Runtime V5 deadline-recovery dashboard/report instead of an article-specific editorial cover."
+      },
+      {
+        "attempt": 2,
+        "sanitizedCoverPrompt": "A cinematic editorial technology cover about durable agent work: a sealed archive capsule containing three distinct mechanical layers—an identity token resting safely in storage, a separate gate controlling admission, and a paused mechanism waiting for an explicit human-shaped key before motion resumes. Strong foreground/midground/background depth, restrained steel-blue and warm amber palette, realistic materials, serious research-publication photography, one dominant metaphor, 16:9 landscape. No dashboard, no report, no table, no UI, no admin panel, no workflow chart, no status board, no text, no logo, no generic agent network.",
+        "decision": "REJECT",
+        "reason": "Generated a production-recovery execution report/dashboard with tables and status controls instead of the requested article metaphor."
+      },
+      {
+        "attempt": 3,
+        "sanitizedCoverPrompt": "A single editorial photograph for a research article about durable work identity without automatic execution authority: one sealed metal archive capsule remains stationary on a dark platform while a separate physical gate ahead is closed; beyond it, a paused precision mechanism is visibly waiting for an independent key before it can move. No screens, no labels, no diagrams, no interface elements. Cinematic side lighting, realistic industrial materials, strong focal hierarchy, deep perspective, restrained steel-blue with warm amber accents, serious technology-magazine aesthetic, 16:9 landscape, no text, no logo. No dashboard, no report, no table, no UI, no admin panel, no workflow chart, no status board, no text, no logo, no generic agent network.",
+        "decision": "REJECT",
+        "reason": "Generated another Runtime V5 execution report with tables, checkpoints and status text; semantic contamination persisted."
+      }
+    ]
+  },
+  "partialArtifactsNotCountedAsCompletedNode": [
+    "research/runtime/production-work/2026/08/14/Q-20260814-01.zh.md"
+  ],
+  "publicationStatus": "Waiting",
+  "terminalStatus": "Blocked",
+  "reasonCode": "cloud-image-generation-unavailable"
+}
