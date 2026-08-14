@@ -206,7 +206,7 @@ I1.0 使用被冻结的 TMPA Core S1.0 Bundle，评估 CodeFlowMu V1.8.0 的真�
 | 03 | **智能体能力正在被封装为技能、插件与契约** | [研究主页中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-08-02-agent-capability-packaging) · [Research Center English](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-08-02-agent-capability-packaging) · [CSDN 中文](https://blog.csdn.net/m0_51507544/article/details/163677686) · [DEV English](https://dev.to/joinwell52/open-source-engineering-weekly-002-agent-capability-is-being-packaged-as-skills-plugins-and-1db5) | 可复用智能体能力正在从隐藏提示词转向可检查的技能、插件、接口、工作流节点、事件与最小能力契约。 |
 | 04 | **持久化智能体运行时正在成为基础能力** | [研究主页中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-08-02-durable-agent-runtime) · [Research Center English](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-08-02-durable-agent-runtime) · [CSDN 中文](https://blog.csdn.net/m0_51507544/article/details/163677784) · [DEV English](https://dev.to/joinwell52/open-source-engineering-weekly-001-durable-agent-runtime-is-becoming-the-baseline-2oim) | LangGraph、OpenHands、CrewAI 与 AutoGen 共同显示，持久状态、中断、恢复、隔离、可观测与明确完成控制正在成为运行时基础能力。 |
 
-补充参考：[数字员工架构 V0.2](https://joinwell52-ai.github.io/joinwell52/zh/digital-employee/architecture)。
+补充参考：[数字员工生产机架构 V0.3.1 草案](https://joinwell52-ai.github.io/joinwell52/zh/digital-employee/architecture)。
 
 这些内容可以解释 TMPA 或为后续研究提供输入，但不能覆盖 Core S1.0。
 
