@@ -168,6 +168,7 @@ jobs:
           COMMIT_SHA: ${{ steps.commit.outputs.commit_sha }}
           RUNTIME_TASK: ${{ steps.request.outputs.runtime_task }}
           RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+          ALLOW_HISTORICAL: ${{ steps.request.outputs.allow_historical }}
         run: |
           git fetch origin main
           git merge-base --is-ancestor "$COMMIT_SHA" origin/main
@@ -198,7 +199,7 @@ jobs:
           git fetch origin main
           git reset --hard origin/main
           git merge-base --is-ancestor "$COMMIT_SHA" origin/main
-          node scripts/runtime-shift-verify.mjs --task "$RUNTIME_TASK" --date "$RUNTIME_DATE" --commit "$COMMIT_SHA"
+          node scripts/runtime-shift-verify.mjs --task "$RUNTIME_TASK" --date "$RUNTIME_DATE" --commit "$COMMIT_SHA" --allow-historical "${ALLOW_HISTORICAL:-false}"
           node scripts/runtime-markdown.mjs render --date "$RUNTIME_DATE"
           npm run runtime:validate
           node scripts/runtime-markdown.mjs validate --date "$RUNTIME_DATE"
@@ -237,6 +238,7 @@ jobs:
           COMPLETION_COMMIT: ${{ steps.commit.outputs.commit_sha }}
           RUNTIME_TASK: ${{ steps.request.outputs.runtime_task }}
           RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+          ALLOW_HISTORICAL: ${{ steps.request.outputs.allow_historical }}
         run: |
           git fetch origin main
           git merge-base --is-ancestor "$VERIFICATION_SHA" origin/main
@@ -250,9 +252,11 @@ jobs:
           const [y,m] = process.env.RUNTIME_DATE.split('-')
           const file = path.join(manifest.recordRoots[task.family], y, m, `${process.env.RUNTIME_DATE}-${task.family}-runtime.json`)
           const record = JSON.parse(fs.readFileSync(file,'utf8'))
-          const starts = (record.timeline || []).filter(e => e.task === task.id && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith(process.env.RUNTIME_DATE))
+          const historical = process.env.ALLOW_HISTORICAL === 'true'
+          const belongsToExecutionDate = e => historical || String(e.time || '').startsWith(process.env.RUNTIME_DATE)
+          const starts = (record.timeline || []).filter(e => e.task === task.id && e.event === 'Execution Slot Opened' && e.status === 'Running' && belongsToExecutionDate(e))
           if (starts.length < 1) throw new Error('Missing durable execution start event')
-          const verified = (record.timeline || []).some(e => e.task === task.id && e.event === 'GitHub Commit Verified' && e.status === 'Completed' && String(e.time || '').startsWith(process.env.RUNTIME_DATE) && String(e.detail || '').includes(process.env.COMPLETION_COMMIT))
+          const verified = (record.timeline || []).some(e => e.task === task.id && e.event === 'GitHub Commit Verified' && e.status === 'Completed' && belongsToExecutionDate(e) && String(e.detail || '').includes(process.env.COMPLETION_COMMIT))
           if (!verified) throw new Error('Missing durable GitHub Commit Verified event')
           if (record.githubCommit !== process.env.COMPLETION_COMMIT || record.commitVerify !== 'Completed') throw new Error('Record-level commit verification fields are not durable')
           const terminal = new Set(['Completed', 'Failed', 'Blocked', 'Skipped'])
