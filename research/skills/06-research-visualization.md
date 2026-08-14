@@ -55,7 +55,7 @@ A valid cover should:
 - establish a clear foreground/midground/background relationship or another strong spatial hierarchy;
 - use controlled color and lighting rather than flat iconography or cartoon-like symbols.
 
-The Article Cover is a generated raster editorial asset, not a code-drawn visual. Production must invoke an available image-generation capability and save the accepted cover as `.png`, `.webp`, `.jpg` or `.jpeg`. If image generation is unavailable, the cover remains `NEEDS REVISION`; Production must not substitute a hand-authored SVG, CSS composition, diagram or icon card and must not mark `coverGate` as `PASS`.
+The Article Cover is a generated raster editorial asset, not a code-drawn visual. Production must use ChatGPT cloud built-in image generation and save the accepted cover as `.png`, `.webp`, `.jpg` or `.jpeg`; it does not call the OpenAI Image API or require an API-key Secret. If cloud image generation is unavailable, the shift closes as `Blocked`; Production must not substitute a hand-authored SVG, CSS composition, diagram or icon card and must not mark `coverGate` as `PASS`.
 
 SVG remains valid for an Inline Figure when the article needs a precise explanatory diagram. It is forbidden as the page-level Article Cover.
 
@@ -128,7 +128,7 @@ For an editorial cover, the source note may appear in article metadata or the vi
    - landscape editorial cover: `1600×900`, `1376×768` or `960×600`;
    - do not mix portrait composition with a landscape canvas.
 4. Write an image-generation brief: proposition, real or physically credible subject, editorial mood, hierarchy, palette, exact optional text, language, intended canvas and explicit negative constraints (`no cartoon`, `no comic`, `no diagram`, `no flat icon`, `no text` unless required).
-5. Invoke the available image-generation capability. Do not draw the cover in SVG, HTML, CSS or canvas, and do not convert an explanatory diagram into a raster file merely to satisfy the extension gate.
+5. Invoke ChatGPT cloud built-in image generation with only this article's Brief. Do not send Runtime Dashboard or control-plane context as the prompt, draw the cover in SVG, HTML, CSS or canvas, or convert an explanatory diagram into a raster file merely to satisfy the extension gate.
 6. Inspect the generated image itself and reject cartoon, comic, illustration-card, diagrammatic, generic-template or visibly synthetic failures.
 7. Run the Thumbnail acceptance test.
 8. Render the actual article page and approve the cover only after responsive QA.

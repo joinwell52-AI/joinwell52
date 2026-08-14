@@ -1,10 +1,10 @@
-name: Research Runtime Shift Completion V2.0
+name: Research Runtime Shift Finalization V2.1
 
 on:
   workflow_dispatch:
     inputs:
       runtime_task:
-        description: Running Runtime task to complete
+        description: Running Runtime task to finalize
         required: true
         type: choice
         options:
@@ -38,15 +38,15 @@ on:
 permissions:
   contents: write
 
-# Completion is serialized because every completion can immediately unlock the next
-# overdue stage. One durable transition must finish before another is evaluated.
+# Finalization is serialized because every terminal transition can immediately
+# change downstream eligibility. One durable transition must finish before another is evaluated.
 concurrency:
   group: research-runtime-shift-completion-v2
   cancel-in-progress: false
 
 jobs:
   complete:
-    name: Complete, validate, verify and persist Runtime shift
+    name: Finalize, validate, verify and persist Runtime shift
     runs-on: ubuntu-latest
     steps:
       - name: Checkout authoritative repository
@@ -119,7 +119,7 @@ jobs:
           fs.appendFileSync(output, `request_path=${process.env.REQUEST_PATH}\n`)
           NODE
 
-      - name: Complete governed shift
+      - name: Finalize governed shift
         env:
           RUNTIME_TASK: ${{ steps.request.outputs.runtime_task }}
           RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
@@ -135,7 +135,7 @@ jobs:
           npm run runtime:validate
           node scripts/runtime-markdown.mjs validate --date "$RUNTIME_DATE"
 
-      - name: Commit durable completion
+      - name: Commit durable terminal result
         id: commit
         env:
           RUNTIME_TASK: ${{ steps.request.outputs.runtime_task }}
@@ -149,7 +149,7 @@ jobs:
             echo "No completion changes to persist."
             exit 1
           fi
-          git commit -m "runtime(${RUNTIME_TASK}): complete governed shift for ${RUNTIME_DATE}"
+          git commit -m "runtime(${RUNTIME_TASK}): finalize governed shift for ${RUNTIME_DATE}"
           for attempt in 1 2 3; do
             if git pull --rebase origin main; then
               commit_sha="$(git rev-parse HEAD)"
@@ -163,7 +163,7 @@ jobs:
             sleep $((attempt * 5))
           done
 
-      - name: Verify durable completion
+      - name: Verify durable terminal result
         env:
           COMMIT_SHA: ${{ steps.commit.outputs.commit_sha }}
           RUNTIME_TASK: ${{ steps.request.outputs.runtime_task }}
@@ -181,13 +181,15 @@ jobs:
           const [y,m] = process.env.RUNTIME_DATE.split('-')
           const file = path.join(manifest.recordRoots[task.family], y, m, `${process.env.RUNTIME_DATE}-${task.family}-runtime.json`)
           const record = JSON.parse(fs.readFileSync(file,'utf8'))
-          if (record.taskStatus?.[task.id] !== 'Completed') throw new Error(`Expected ${task.id}=Completed`)
-          if (record.results?.[task.id]?.status !== 'Completed') throw new Error(`Missing durable Completed result for ${task.id}`)
-          if (record.results?.[task.id]?.runtimeDate !== process.env.RUNTIME_DATE) throw new Error(`Completed result runtimeDate mismatch for ${task.id}`)
-          console.log(`Verified ${task.id}=Completed for ${process.env.RUNTIME_DATE}.`)
+          const terminal = new Set(['Completed', 'Failed', 'Blocked', 'Skipped'])
+          const status = record.taskStatus?.[task.id]
+          if (!terminal.has(status)) throw new Error(`Expected terminal ${task.id} status, got ${status}`)
+          if (record.results?.[task.id]?.status !== status) throw new Error(`Durable result status does not match ${task.id}=${status}`)
+          if (record.results?.[task.id]?.runtimeDate !== process.env.RUNTIME_DATE) throw new Error(`Terminal result runtimeDate mismatch for ${task.id}`)
+          console.log(`Verified ${task.id}=${status} for ${process.env.RUNTIME_DATE}.`)
           NODE
 
-      - name: Record GitHub Commit Verified event
+      - name: Record terminal GitHub Commit Verified event
         env:
           COMMIT_SHA: ${{ steps.commit.outputs.commit_sha }}
           RUNTIME_TASK: ${{ steps.request.outputs.runtime_task }}
@@ -229,7 +231,7 @@ jobs:
             sleep $((attempt * 5))
           done
 
-      - name: Verify durable verification evidence
+      - name: Verify durable terminal verification evidence
         env:
           VERIFICATION_SHA: ${{ steps.verification.outputs.commit_sha }}
           COMPLETION_COMMIT: ${{ steps.commit.outputs.commit_sha }}
@@ -253,7 +255,9 @@ jobs:
           const verified = (record.timeline || []).some(e => e.task === task.id && e.event === 'GitHub Commit Verified' && e.status === 'Completed' && String(e.time || '').startsWith(process.env.RUNTIME_DATE) && String(e.detail || '').includes(process.env.COMPLETION_COMMIT))
           if (!verified) throw new Error('Missing durable GitHub Commit Verified event')
           if (record.githubCommit !== process.env.COMPLETION_COMMIT || record.commitVerify !== 'Completed') throw new Error('Record-level commit verification fields are not durable')
-          if (record.taskStatus?.[task.id] !== 'Completed' || record.results?.[task.id]?.status !== 'Completed') throw new Error('Runtime completion regressed')
+          const terminal = new Set(['Completed', 'Failed', 'Blocked', 'Skipped'])
+          const status = record.taskStatus?.[task.id]
+          if (!terminal.has(status) || record.results?.[task.id]?.status !== status) throw new Error('Runtime terminal state regressed')
           if (record.results?.[task.id]?.runtimeDate !== process.env.RUNTIME_DATE) throw new Error('Runtime result date mismatch')
-          console.log(`Verified terminal completion and GitHub evidence for ${task.id} ${process.env.RUNTIME_DATE}. Scheduler may now reconcile the next overdue stage.`)
+          console.log(`Verified ${status} terminal state and GitHub evidence for ${task.id} ${process.env.RUNTIME_DATE}. Scheduler may now reconcile downstream eligibility.`)
           NODE

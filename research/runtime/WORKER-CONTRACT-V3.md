@@ -87,7 +87,7 @@ The generated prompt bundle is deterministic repository state. Its version, sche
 
 ## Result rule
 
-A terminal task result must conform to `runtime-shift-result/v2`. Successful execution is `Completed`, including a governed zero-output result. `Skipped` is valid only when the shift is explicitly not applicable and is not executed.
+A terminal task result must conform to `runtime-shift-result/v2`. Successful execution is `Completed`, including a governed zero-output result. `Failed` records an attempted shift that could not satisfy its mandatory gates. `Blocked` records unavailable authority, dependency or execution capability. `Skipped` is valid only when the shift is explicitly not applicable. Every terminal status must pass the same durable finalization and GitHub verification path; a failure must never remain disguised as `Running`.
 
 ## GitHub rule
 

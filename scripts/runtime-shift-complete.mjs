@@ -5,6 +5,7 @@ import path from 'node:path'
 
 const ROOT = process.cwd()
 const manifest = JSON.parse(readFileSync(path.join(ROOT, 'research/runtime/SCHEDULER.json'), 'utf8'))
+const TERMINAL = new Set(['Completed', 'Failed', 'Blocked', 'Skipped'])
 
 function argsOf(argv) {
   const args = {}
@@ -43,7 +44,11 @@ function validateResult(result, taskId) {
   if (!result || typeof result !== 'object' || Array.isArray(result)) fail('result must be an object')
   if (result.schema !== manifest.resultContract) fail(`result schema must be ${manifest.resultContract}`)
   if (text(result.task) && result.task !== taskId) fail(`result task ${result.task} does not match ${taskId}`)
-  if ((result.status || 'Completed') !== 'Completed') fail('this command currently accepts Completed results only')
+  const status = text(result.status) || 'Completed'
+  if (!TERMINAL.has(status)) fail(`result status must be one of ${[...TERMINAL].join(', ')}`)
+  if (status !== 'Completed' && !text(result.reason) && !text(result.reason_zh)) {
+    fail(`${status} result must include reason or reason_zh`)
+  }
   for (const field of ['input', 'workResult', 'output', 'next']) {
     if (!meaningful(result[field])) fail(`result missing ${field}`)
     if (typeof result[field] === 'string' && !text(result[`${field}_zh`])) fail(`flat result missing ${field}_zh`)
@@ -51,6 +56,7 @@ function validateResult(result, taskId) {
   for (const field of ['metrics', 'evidence', 'artifacts']) {
     if (!Array.isArray(result[field])) fail(`result ${field} must be an array`)
   }
+  return status
 }
 function aggregateStatus(record) {
   const statuses = Object.values(record.taskStatus || {})
@@ -89,31 +95,31 @@ if (record.date && record.date !== date) fail(`runtime record date ${record.date
 if (record.taskStatus?.[taskId] !== 'Running') fail(`taskStatus.${taskId} must be Running, got ${record.taskStatus?.[taskId]}`)
 
 const result = readJson(absoluteResult)
-validateResult(result, taskId)
+const terminalStatus = validateResult(result, taskId)
 for (const dateField of ['date', 'runtimeDate']) {
   if (text(result[dateField]) && result[dateField] !== date) fail(`result ${dateField} ${result[dateField]} does not match runtime date ${date}`)
 }
 const opened = [...(record.timeline || [])].reverse().find((event) => event.task === taskId && event.event === 'Execution Slot Opened' && event.status === 'Running')
 result.task = taskId
 result.family = task.family
-result.status = 'Completed'
+result.status = terminalStatus
 result.runtimeDate = date
 if (!result.startedAt && opened?.time) result.startedAt = opened.time
 result.completedAt = `${now.date}T${now.time}+08:00`
 record.results = record.results || {}
 record.results[taskId] = result
-record.taskStatus[taskId] = 'Completed'
+record.taskStatus[taskId] = terminalStatus
 record.status = aggregateStatus(record)
 record.timeline = Array.isArray(record.timeline) ? record.timeline : []
 record.timeline.push({
   time: result.completedAt,
   task: taskId,
-  event: 'Shift Completed',
-  status: 'Completed',
-  detail: `${task.name} completed through governed Runtime shift completion after durable result validation for ${date}.`
+  event: `Shift ${terminalStatus}`,
+  status: terminalStatus,
+  detail: `${task.name} closed as ${terminalStatus} through governed Runtime shift finalization after durable result validation for ${date}.`
 })
 record.updatedAt = result.completedAt
 record.githubCommit = 'pending'
 record.commitVerify = 'Waiting'
 writeJson(file, record)
-console.log(`Completed ${taskId} for ${date}; overall status ${record.status}; record ${path.relative(ROOT, file)}.`)
+console.log(`Finalized ${taskId} as ${terminalStatus} for ${date}; overall status ${record.status}; record ${path.relative(ROOT, file)}.`)
