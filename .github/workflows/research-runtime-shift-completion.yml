@@ -195,6 +195,7 @@ jobs:
           COMMIT_SHA: ${{ steps.commit.outputs.commit_sha }}
           RUNTIME_TASK: ${{ steps.request.outputs.runtime_task }}
           RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+          ALLOW_HISTORICAL: ${{ steps.request.outputs.allow_historical }}
         run: |
           git fetch origin main
           git reset --hard origin/main
