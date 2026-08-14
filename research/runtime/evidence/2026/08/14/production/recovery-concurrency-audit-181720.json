@@ -1,0 +1,19 @@
+{
+  "schema": "runtime-production-recovery-concurrency-audit/v1",
+  "runDate": "2026-08-14",
+  "task": "production",
+  "recoveryWake": "research/runtime/wakes/2026/08/2026-08-14/production-181720.json",
+  "startingMainHead": "bcb7f48226480755a5b6ebdd4005ad676b2c0022",
+  "promptVersion": "2.6.0",
+  "promptSha256": "e9ec384ec750a37a91b4ab07467d7defd96a90476e95aad915fd0598ce5423fc",
+  "terminalDisposition": "Blocked",
+  "observation": "After this recovery had already exhausted three built-in image-generation attempts for Q-20260814-01 and persisted a Blocked result/checkpoint, main advanced with commit a3a22888a6260cb4f27db5fc6c91b81b2e2a25ea, which independently persisted another three rejected generation attempts for the same item under the same run date and cover brief. The execution-slot mechanism therefore did not prevent concurrent worker activity in this recovery epoch.",
+  "safetyDisposition": "Do not perform any further image-generation attempt for Q-20260814-01 in this recovery epoch. Treat all generated images as rejected audit evidence only. Candidate staging, validators and Publication remain prohibited.",
+  "primaryTerminalResultCommit": "065e20517a5db5a0293becb4323c0e29ca3800fa",
+  "blockedCheckpointCommit": "07f203bbb4acc93cdb4abd3757da04a2631d7f70",
+  "concurrentEvidenceCommit": "a3a22888a6260cb4f27db5fc6c91b81b2e2a25ea",
+  "concurrentEvidencePath": "research/runtime/evidence/2026/08/14/production/Q-20260814-01-cover-generation-failure.json",
+  "lastCompletedCheckpoint": "cover-briefs-persisted",
+  "publication": "Waiting",
+  "recordedAt": "2026-08-14T18:25:30+08:00"
+}
