@@ -8,13 +8,13 @@
   "date": "2026-08-14",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Running",
+    "production": "Completed",
     "publication": "Waiting"
   },
   "results": {
@@ -914,6 +914,133 @@
       "githubCommit": "a27412d37969d94fe635588a584e9c11e2e733fd",
       "commitVerify": "Completed",
       "verifiedAt": "2026-08-14T13:08:45+08:00"
+    },
+    "production": {
+      "schema": "runtime-shift-result/v2",
+      "task": "production",
+      "family": "daily",
+      "runtimeDate": "2026-08-14",
+      "status": "Completed",
+      "productionMode": "candidate-batch",
+      "input": {
+        "recoveryType": "explicit-governed-historical-recovery",
+        "sourceCheckpoint": "research/runtime/checkpoints/2026/08/2026-08-14-production.json",
+        "researchObjects": [
+          "Q-20260814-01",
+          "Q-20260814-02",
+          "Q-20260814-03"
+        ],
+        "promptVersion": "2.7.0",
+        "promptSha256": "85a5d70a42b20e977acd94d6fc8808605ecdb7b7cdc2f82157ae14dabc5acb03"
+      },
+      "workResult": {
+        "summary": "Manual recovery resumed from the last verified same-date checkpoint, preserved the six existing bilingual drafts, generated and independently reviewed three article-specific raster covers, assembled the complete V2 candidate batch, and passed the Production validators. Production did not modify public article or index surfaces.",
+        "summary_zh": "人工恢复从最后一个已核验的同日 checkpoint 继续，保留既有六篇双语草稿，分别生成并验收三张文章专属真实栅格题图，组装完整 V2 Candidate Batch，并通过 Production 门禁。Production 未修改公开文章或索引。"
+      },
+      "output": {
+        "type": "Publication Candidates",
+        "candidateBatch": "research/runtime/candidates/2026/08/2026-08-14-candidates.json",
+        "candidateCount": 3,
+        "bilingualArticleFiles": 6,
+        "coverAssets": 3,
+        "inlineFigureAssets": 0
+      },
+      "next": {
+        "task": "publication",
+        "instruction": "Run governed historical Publication for 2026-08-14 only after this Production completion is committed and remotely verified.",
+        "instruction_zh": "仅在本次 Production 完成状态提交并完成远程核验后，补跑 2026-08-14 的受治理 Publication。"
+      },
+      "coverEvidence": [
+        {
+          "itemId": "Q-20260814-01",
+          "briefId": "2026-08-14:Q-20260814-01-cover",
+          "coverPath": "staging/publication-candidates/2026-08-14-durable-work-execution-authority-cover.png",
+          "sanitizedPrompt": "Serious editorial technology photography of a sealed metal and glass work capsule resting behind a separate raised mechanical gate with an open path beyond, deep graphite and cool steel, restrained cyan illumination and a small amber edge light, cinematic physical realism.",
+          "generationAttempts": 1,
+          "semanticReview": "PASS"
+        },
+        {
+          "itemId": "Q-20260814-02",
+          "briefId": "2026-08-14:Q-20260814-02-cover",
+          "coverPath": "staging/publication-candidates/2026-08-14-kpi-decision-rights-governance-cover.png",
+          "sanitizedPrompt": "Premium editorial technology photography in an airport operations environment, one illuminated physical indicator directing attention to an authoritative brushed metal decision lever and a clear resolved route, midnight blue, amber and teal light, cinematic sober realism.",
+          "generationAttempts": 1,
+          "semanticReview": "PASS"
+        },
+        {
+          "itemId": "Q-20260814-03",
+          "briefId": "2026-08-14:Q-20260814-03-cover",
+          "coverPath": "staging/publication-candidates/2026-08-14-cancellation-rollback-effect-boundary-cover.png",
+          "sanitizedPrompt": "Serious editorial technology still life of a pristine restored workbench separated by clear glass from one sealed parcel already moving away on a conveyor, neutral slate, cool daylight and a restrained red orange seal, cinematic physical realism.",
+          "generationAttempts": 1,
+          "semanticReview": "PASS"
+        }
+      ],
+      "metrics": [
+        {
+          "name": "research_objects_consumed",
+          "value": 3
+        },
+        {
+          "name": "publication_candidates",
+          "value": 3
+        },
+        {
+          "name": "bilingual_article_files",
+          "value": 6
+        },
+        {
+          "name": "cover_assets",
+          "value": 3
+        },
+        {
+          "name": "direct_publication_actions",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        "research/analysis/Q-20260814-01-durable-work-identity-execution-authority.md",
+        "research/analysis/Q-20260814-02-kpi-decision-rights-governance.md",
+        "research/analysis/Q-20260814-03-cancellation-rollback-effect-boundary.md",
+        "research/runtime/production-work/2026/08/14/Q-20260814-01/cover-brief.json",
+        "research/runtime/production-work/2026/08/14/Q-20260814-02/cover-brief.json",
+        "research/runtime/production-work/2026/08/14/Q-20260814-03/cover-brief.json"
+      ],
+      "artifacts": [
+        "research/runtime/candidates/2026/08/2026-08-14-candidates.json",
+        "staging/publication-candidates/2026-08-14-durable-work-execution-authority.zh.md",
+        "staging/publication-candidates/2026-08-14-durable-work-execution-authority.en.md",
+        "staging/publication-candidates/2026-08-14-durable-work-execution-authority-cover.png",
+        "staging/publication-candidates/2026-08-14-kpi-decision-rights-governance.zh.md",
+        "staging/publication-candidates/2026-08-14-kpi-decision-rights-governance.en.md",
+        "staging/publication-candidates/2026-08-14-kpi-decision-rights-governance-cover.png",
+        "staging/publication-candidates/2026-08-14-cancellation-rollback-effect-boundary.zh.md",
+        "staging/publication-candidates/2026-08-14-cancellation-rollback-effect-boundary.en.md",
+        "staging/publication-candidates/2026-08-14-cancellation-rollback-effect-boundary-cover.png"
+      ],
+      "timeline": [
+        {
+          "at": "2026-08-15T00:07:00+08:00",
+          "event": "Historical Production Recovery Authorized"
+        },
+        {
+          "at": "2026-08-15T00:12:00+08:00",
+          "event": "Covers Generated and Reviewed",
+          "status": "Completed"
+        },
+        {
+          "at": "2026-08-15T00:18:00+08:00",
+          "event": "Candidate Bundle Staged",
+          "status": "Completed"
+        },
+        {
+          "at": "2026-08-15T00:18:00+08:00",
+          "event": "Validators Passed",
+          "status": "Completed"
+        }
+      ],
+      "startedAt": "2026-08-15T00:07:00+08:00",
+      "completedAt": "2026-08-15T00:22:50+08:00"
     }
   },
   "timeline": [
@@ -1070,6 +1197,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "Codex Desktop manually claimed the explicitly authorized historical Production recovery with repository write, image generation, command execution and file editing capabilities."
+    },
+    {
+      "time": "2026-08-15T00:22:50+08:00",
+      "task": "production",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Production closed as Completed through governed Runtime shift finalization after durable result validation for 2026-08-14."
     }
   ],
   "metrics": [],
@@ -1077,5 +1211,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-15T00:07:05+08:00"
+  "updatedAt": "2026-08-15T00:22:50+08:00"
 }
