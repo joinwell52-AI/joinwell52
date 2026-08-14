@@ -36,6 +36,11 @@ on:
           - weekly
           - academic
           - program
+      terminal_recovery:
+        description: Explicitly reopen same-day Failed/Blocked task under governed recovery
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -83,9 +88,27 @@ jobs:
         env:
           EVENT_NAME: ${{ github.event_name }}
           MANUAL_TASK: ${{ inputs.runtime_task }}
+          MANUAL_RECOVERY: ${{ inputs.terminal_recovery }}
+          BEFORE_SHA: ${{ github.event.before }}
+          EVENT_SHA: ${{ github.sha }}
         run: |
           if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
-            node scripts/runtime-reconcile.mjs --manual "$MANUAL_TASK"
+            if [[ "$MANUAL_RECOVERY" == "true" ]]; then
+              node scripts/runtime-reconcile.mjs --manual "$MANUAL_TASK" --recover "$MANUAL_TASK"
+            else
+              node scripts/runtime-reconcile.mjs --manual "$MANUAL_TASK"
+            fi
+          elif [[ "$EVENT_NAME" == "push" ]]; then
+            kick_path="$(git diff --name-only "$BEFORE_SHA" "$EVENT_SHA" -- 'research/runtime/process-kick/*.json' | tail -n 1)"
+            recovery_task=""
+            if [[ -n "$kick_path" && -f "$kick_path" ]]; then
+              recovery_task="$(node scripts/runtime-kick-resolve.mjs "$kick_path")"
+            fi
+            if [[ -n "$recovery_task" ]]; then
+              node scripts/runtime-reconcile.mjs --recover "$recovery_task"
+            else
+              node scripts/runtime-reconcile.mjs
+            fi
           else
             node scripts/runtime-reconcile.mjs
           fi
@@ -112,8 +135,11 @@ jobs:
         env:
           RUNTIME_TASK: ${{ steps.resolve.outputs.runtime_task }}
           REOPEN_BLOCKED: ${{ steps.resolve.outputs.reopen_blocked }}
+          REOPEN_TERMINAL: ${{ steps.resolve.outputs.reopen_terminal }}
         run: |
-          if [[ "$REOPEN_BLOCKED" == "true" ]]; then
+          if [[ "$REOPEN_TERMINAL" == "true" ]]; then
+            node scripts/runtime-v5.mjs schedule --task "$RUNTIME_TASK" --reopen-terminal true
+          elif [[ "$REOPEN_BLOCKED" == "true" ]]; then
             node scripts/runtime-v5.mjs schedule --task "$RUNTIME_TASK" --reopen-blocked true
           else
             node scripts/runtime-v5.mjs schedule --task "$RUNTIME_TASK"

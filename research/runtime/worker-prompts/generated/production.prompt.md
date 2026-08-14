@@ -1,7 +1,7 @@
 <!-- GENERATED FILE. DO NOT EDIT DIRECTLY. -->
 <!-- schema: research-runtime-worker-prompt/v1 -->
 <!-- task: production -->
-<!-- prompt-version: 2.7.0 -->
+<!-- prompt-version: 2.8.0 -->
 <!-- scheduler-version: 3.0 -->
 <!-- template: research/runtime/worker-prompts/templates/production.prompt.md -->
 # Authoritative Production Worker Prompt
@@ -35,6 +35,8 @@ This file is a generated execution artifact from the latest `main` branch. Do no
 ## Wake and durable authority
 
 Determine `runDate` and actual `wakeTime` from the current `Asia/Shanghai` clock. Never derive `runDate` from repository examples, old reports, article metadata, chat history or checkpoints. Before Runtime work, create a unique `runtime-wake-receipt/v1` JSON at `research/runtime/wakes/YYYY/MM/YYYY-MM-DD/production-HHMMSS.json` with the run date, timezone, nominal task and time, actual wake time, the actual admitted wake source, and `status=Received`. Commit it to `main`, fetch `main`, and verify the exact receipt. If verification fails, stop with `Failed` and do no Runtime work. Obey every admitted duration, recovery, revision, output, same-date, publication and verification limit.
+
+When this invocation is an explicitly authorized same-day Deadline Recovery and Production is `Failed` or `Blocked`, persist a unique `runtime-process-kick/v2` under `research/runtime/process-kick/` with `date=runDate`, `source=manual-recovery`, `requestMode=terminal-recovery`, `nominalTask=production`, and `allowTerminalReopen=true`. The Scheduler may reopen a terminal execution slot only from that v2 request or an equivalent explicit workflow-dispatch recovery input. A timer wake, ordinary `runtime-process-kick/v1`, prose reason or manual task name alone must not reopen terminal state.
 
 At admission, bind the execution to the fetched latest `main` HEAD, current Prompt path, version and SHA-256. Prefer direct SHA-256 calculation over the Prompt bytes when the Worker has a command-execution or hashing tool. When that capability is unavailable, do not block solely because the Worker cannot calculate the digest locally: accept the control identity only when `CONTROL.json` and `MANIFEST.json` agree on the exact Prompt path, version and SHA-256 and the `Validate Research Center 3.0 / build` GitHub Actions run has succeeded for that exact pinned `main` HEAD. Record `promptVerificationMode=direct-sha256` or `promptVerificationMode=exact-head-ci`, together with the digest or Actions run URL. Declaration agreement without exact-HEAD CI success is not sufficient.
 

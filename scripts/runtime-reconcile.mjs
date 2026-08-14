@@ -107,6 +107,10 @@ function main() {
   const manifest = readJson(MANIFEST_PATH)
   const now = clock(manifest.timezone)
   const taskById = new Map(manifest.tasks.map((task) => [task.id, task]))
+  const recoveryTaskId = args.recover ? String(args.recover) : ''
+  if (recoveryTaskId && !taskById.has(recoveryTaskId)) {
+    throw new Error(`Unknown terminal recovery task: ${recoveryTaskId}`)
+  }
   const records = new Map()
   const changedPaths = new Set()
 
@@ -147,7 +151,13 @@ function main() {
     )
   }
 
+  const explicitlyRecoverableTerminal = (task) => {
+    if (task.id !== recoveryTaskId) return false
+    return ['Failed', 'Blocked'].includes(statusOf(task.id)) && dependencyReady(task)
+  }
+
   const executionClosed = (task) => {
+    if (explicitlyRecoverableTerminal(task)) return false
     const status = statusOf(task.id)
     if (HARD_CLOSED.has(status)) return true
     if (status === 'Blocked') return !recoverableBlocked(task)
@@ -231,22 +241,31 @@ function main() {
 
   if (earliestOpen) {
     const currentStatus = statusOf(earliestOpen.id)
-    if (currentStatus === 'Blocked' && recoverableBlocked(earliestOpen)) {
+    if (explicitlyRecoverableTerminal(earliestOpen)) {
+      selected = {
+        task: earliestOpen,
+        reopenBlocked: false,
+        reopenTerminal: true,
+        scheduledMinutes: scheduledMinutes(earliestOpen)
+      }
+    } else if (currentStatus === 'Blocked' && recoverableBlocked(earliestOpen)) {
       selected = {
         task: earliestOpen,
         reopenBlocked: true,
+        reopenTerminal: false,
         scheduledMinutes: scheduledMinutes(earliestOpen)
       }
     } else if (currentStatus === 'Waiting' && dependencyReady(earliestOpen)) {
       selected = {
         task: earliestOpen,
         reopenBlocked: false,
+        reopenTerminal: false,
         scheduledMinutes: scheduledMinutes(earliestOpen)
       }
     }
   }
 
-  const requested = args.manual ? String(args.manual) : ''
+  const requested = args.manual ? String(args.manual) : recoveryTaskId
   const requestedAlreadyRunning = Boolean(
     requested &&
     earliestOpen?.id === requested &&
@@ -275,6 +294,7 @@ function main() {
       has_task: 'false',
       runtime_task: 'none',
       reopen_blocked: 'false',
+      reopen_terminal: 'false',
       state_changed: changed ? 'true' : 'false',
       changed_record_paths: changedList,
       runtime_date: now.date,
@@ -290,11 +310,12 @@ function main() {
     has_task: 'true',
     runtime_task: selected.task.id,
     reopen_blocked: selected.reopenBlocked ? 'true' : 'false',
+    reopen_terminal: selected.reopenTerminal ? 'true' : 'false',
     state_changed: changed ? 'true' : 'false',
     changed_record_paths: changedList,
     runtime_date: now.date,
     earliest_due_unfinished: selected.task.id,
-    reason: `global ordered reconcile at ${now.date} ${now.hour}:${now.minute}; selected earliest due unfinished ${selected.task.id}; formal time ${selected.task.schedule.time}; lateness ${latenessMinutes}m; mode ${selected.reopenBlocked ? 'retry-blocked' : 'open-waiting'}`
+    reason: `global ordered reconcile at ${now.date} ${now.hour}:${now.minute}; selected earliest due unfinished ${selected.task.id}; formal time ${selected.task.schedule.time}; lateness ${latenessMinutes}m; mode ${selected.reopenTerminal ? 'terminal-recovery' : selected.reopenBlocked ? 'retry-blocked' : 'open-waiting'}`
   })
   console.log(`Selected earliest due unfinished task ${selected.task.id}.`)
 }
