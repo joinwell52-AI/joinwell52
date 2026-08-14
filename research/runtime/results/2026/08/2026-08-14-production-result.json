@@ -3,39 +3,102 @@
   "task": "production",
   "family": "daily",
   "runtimeDate": "2026-08-14",
-  "status": "Failed",
-  "input": "Latest-main Runtime control from commit 8cf3c22109b55e7d9c7e65b2698532f6fa7a19fc; Scheduler V3.0 and its exact Worker Control Manifest; generated Production prompt v2.3.0 with verified SHA-256 cd8eae87024b73fd17b343f0103a78b53472b9686fe31630297265e562d62c00; all ten required fetched-main sources; verified Production Wake Receipt research/runtime/wakes/2026/08/2026-08-14/production-150513.json; and the three same-date Analysis Research Objects Q-20260814-01, Q-20260814-02 and Q-20260814-03, each ReadyForProduction with production_input_authorized=true.",
-  "input_zh": "读取最新 main 提交 8cf3c22109b55e7d9c7e65b2698532f6fa7a19fc 上的 Runtime 控制源、Scheduler V3.0 与其声明的精确 Worker Control Manifest；确定性核验 Production Generated Prompt v2.3.0 的 SHA-256 为 cd8eae87024b73fd17b343f0103a78b53472b9686fe31630297265e562d62c00；完整读取全部 10 个 Required Source；核验 Production Wake Receipt research/runtime/wakes/2026/08/2026-08-14/production-150513.json；并读取同日三份 Analysis Research Object Q-20260814-01、Q-20260814-02、Q-20260814-03，三者均为 ReadyForProduction 且 production_input_authorized=true。",
-  "workResult": "Fail-closed admission passed and repository reconciliation granted Production execution authority as the earliest due unfinished task after Analysis completed. The run-date Execution Slot Opened state and a durable Worker Claimed event were persisted and verified before substantive work. All three eligible Research Objects were read and were sufficient for bounded bilingual article production. Production then reached a hard asset-gate failure: the available image-generation interface could not execute the required topic-specific editorial-cover instructions and instead returned unrelated Runtime-dashboard imagery. Such outputs are not valid Article Covers under Production prompt v2.3.0 and were discarded. Because coverGate cannot truthfully pass, no Publication Candidate bundle was committed and no public surface was modified.",
-  "workResult_zh": "Fail-closed Admission 已通过；Analysis 完成后，仓库 Reconciliation 将 Production 判定为当前最早到期未收口任务并授予执行权。任何实质工作前，运行日 Execution Slot Opened 状态与持久 Worker Claimed 事件均已写入并核验。三份符合条件的 Research Object 已完整读取，证据足以支持有界的双语文章生产。随后 Production 遇到硬性资产门禁失败：当前可用的图像生成接口无法执行所需的主题化编辑题图指令，而是返回了与文章主题无关的 Runtime Dashboard 图像。按照 Production Prompt v2.3.0，这些输出不能作为 Article Cover，已丢弃。由于 coverGate 无法如实通过，本次没有提交任何 Publication Candidate Bundle，也没有修改任何公开发布表面。",
-  "output": "No governed Publication Candidate was committed. Production closed as Failed with zero publishable output because the mandatory topic-specific Article Cover gate could not be satisfied with the actually available image-generation interface.",
-  "output_zh": "未提交任何受治理 Publication Candidate。由于实际可用的图像生成接口无法满足强制的主题化 Article Cover 门禁，Production 以 Failed 收口，可发布输出为 0。",
-  "next": "Restore an image-generation path that can receive and faithfully execute the article-specific cover brief, then rerun Production from the same run-date Research Objects only if Runtime recovery policy explicitly permits reopening this Failed shift. Do not let Publication consume any uncommitted or failed Production artifact.",
-  "next_zh": "需要恢复能够接收并忠实执行文章级题图 Brief 的图像生成路径；仅在 Runtime Recovery Policy 明确允许重新打开本次 Failed 班次时，才能继续使用同运行日 Research Object 重跑 Production。Publication 不得消费任何未提交或来自失败 Production 的产物。",
-  "reason": "Mandatory coverGate could not be satisfied: the available image-generation interface produced unrelated Runtime-dashboard imagery instead of article-specific editorial covers.",
-  "reason_zh": "强制 coverGate 无法满足：当前可用图像生成接口生成的是无关的 Runtime Dashboard 图像，而不是文章主题对应的编辑题图。",
-  "metrics": [
-    {"label":"Eligible same-date Research Objects","label_zh":"符合条件的同日 Research Object","value":3},
-    {"label":"Wake receipts verified","label_zh":"已核验 Wake Receipt","value":1},
-    {"label":"Execution slots opened","label_zh":"已打开 Execution Slot","value":1},
-    {"label":"Worker claims verified","label_zh":"已核验 Worker Claim","value":1},
-    {"label":"Governed Publication Candidates committed","label_zh":"已提交受治理 Publication Candidate","value":0},
-    {"label":"Cover gate failures","label_zh":"Cover Gate 失败","value":1}
+  "status": "Blocked",
+  "input": "Runtime V5 Production Deadline Recovery on pinned main f1f97706790d3ebd1c57b072962fbcdd2361be10. Current CONTROL and MANIFEST both declare Production Prompt v2.5.0 at research/runtime/worker-prompts/generated/production.prompt.md with SHA-256 5ee1675609c7b6b5f746108d0e8c5551824cb8fdd76605e89dfaf766ae62743c. The latest same-date checkpoint is admission-and-inputs-verified but is bound to obsolete Prompt v2.4.0 / SHA-256 725b82ba9480473ce84645e1d16784b6009cbe7db7ab25d338b8ae8f461ca3fc.",
+  "input_zh": "在固定 main 提交 f1f97706790d3ebd1c57b072962fbcdd2361be10 上执行 Runtime V5 Production Deadline Recovery。当前 CONTROL 与 MANIFEST 均声明 Production Prompt v2.5.0，路径 research/runtime/worker-prompts/generated/production.prompt.md，SHA-256 为 5ee1675609c7b6b5f746108d0e8c5551824cb8fdd76605e89dfaf766ae62743c。main 上最新同日 checkpoint 虽为 admission-and-inputs-verified，但绑定的是已过期 Prompt v2.4.0 / SHA-256 725b82ba9480473ce84645e1d16784b6009cbe7db7ab25d338b8ae8f461ca3fc。",
+  "workResult": "Recovery did not reuse the stale checkpoint and did not enter drafting, cover generation, candidate staging or Publication. The available connected-repository execution path could read the current Prompt and its declared hashes, but could not independently execute SHA-256 over the pinned Prompt bytes. Under the recovery hard lock, declaration agreement is not equivalent to hash verification. Because runDate, pinned main HEAD, Prompt path/version and independently verified SHA-256 could not all be established simultaneously, the recovery fail-closed before admission.",
+  "workResult_zh": "本轮没有复用陈旧 checkpoint，也没有进入正文、题图生成、Candidate staging 或 Publication。当前连接仓库执行通道能够读取 Prompt 及其声明哈希，但不能对固定提交中的 Prompt 原始字节独立执行 SHA-256；两个声明文件一致不能替代哈希核验。由于 runDate、固定 main HEAD、Prompt 路径/版本与独立核验 SHA-256 无法同时成立，本轮按硬锁在 Admission 前 fail-closed。",
+  "output": "No Production Candidate was created. No cover image was generated. Publication remains ineligible.",
+  "output_zh": "未创建 Production Candidate，未生成任何题图，Publication 仍不得执行。",
+  "next": "A future recovery may proceed only after it can independently verify the v2.5.0 Prompt SHA-256 on the then-current main and re-establish a same-date admission checkpoint under that exact control context.",
+  "next_zh": "后续恢复只有在能够对届时最新 main 上的 v2.5.0 Prompt SHA-256 做独立核验，并在该精确控制上下文下重新建立同日 Admission checkpoint 后才可继续。",
+  "reason": "stale-context-rejected",
+  "reason_zh": "当前控制声明与可复用 checkpoint 上下文不一致，且本次无法独立完成 Prompt SHA-256 字节级核验；按硬锁拒绝陈旧上下文。",
+  "recoveryHistory": [
+    {
+      "status": "Failed",
+      "resultPath": "research/runtime/results/2026/08/2026-08-14-production-result.json",
+      "verifiedCommit": "c24b73c61b4925e6aed4229261f7774318910eda",
+      "promptVersion": "2.3.0",
+      "reason": "Mandatory coverGate could not be satisfied; unrelated Runtime-dashboard imagery was rejected."
+    },
+    {
+      "status": "Running/Recovery",
+      "checkpointPath": "research/runtime/checkpoints/2026/08/2026-08-14-production.json",
+      "sourceCommit": "ee4380977fc28d28adb343d52bbd61630f7449b7",
+      "checkpointNode": "admission-and-inputs-verified",
+      "promptVersion": "2.4.0",
+      "promptSha256": "725b82ba9480473ce84645e1d16784b6009cbe7db7ab25d338b8ae8f461ca3fc",
+      "disposition": "rejected-as-stale-under-current-v2.5.0-control"
+    }
+  ],
+  "timeline": [
+    {
+      "at": "2026-08-14T17:59:54+08:00",
+      "event": "Deadline Recovery Authorized"
+    },
+    {
+      "at": "2026-08-14T17:59:54+08:00",
+      "event": "Execution Slot Opened"
+    },
+    {
+      "at": "2026-08-14T17:59:54+08:00",
+      "event": "Worker Claimed"
+    },
+    {
+      "at": "2026-08-14T17:59:54+08:00",
+      "event": "Stale Context Rejected"
+    },
+    {
+      "at": "2026-08-14T17:59:54+08:00",
+      "event": "Recovery Blocked"
+    }
   ],
   "evidence": [
-    {"label":"Authoritative control-source commit","label_zh":"权威控制源提交","commit":"8cf3c22109b55e7d9c7e65b2698532f6fa7a19fc"},
-    {"label":"Generated Production prompt","label_zh":"生成的 Production Prompt","path":"research/runtime/worker-prompts/generated/production.prompt.md"},
-    {"label":"Verified Production prompt SHA-256","label_zh":"已核验 Production Prompt SHA-256","value":"cd8eae87024b73fd17b343f0103a78b53472b9686fe31630297265e562d62c00"},
-    {"label":"Production Wake Receipt","label_zh":"Production Wake Receipt","path":"research/runtime/wakes/2026/08/2026-08-14/production-150513.json"},
-    {"label":"Production reconciliation commit","label_zh":"Production Reconciliation 提交","commit":"13e8ed4b2ea2fa5c2ae2c2ed52b27f3b3893f485"},
-    {"label":"Production Worker Claimed commit","label_zh":"Production Worker Claimed 提交","commit":"02f5b8f9c5fb00120c1ac29ac0bec34ac6b7a613"},
-    {"label":"Cover generation failure","label_zh":"题图生成失败","value":"Available image-generation execution returned non-topic Runtime-dashboard imagery; output rejected and not persisted as a candidate asset."}
+    {
+      "type": "run-date",
+      "value": "2026-08-14",
+      "timezone": "Asia/Shanghai"
+    },
+    {
+      "type": "starting-main-head",
+      "commit": "f1f97706790d3ebd1c57b072962fbcdd2361be10"
+    },
+    {
+      "type": "production-control",
+      "path": "research/runtime/worker-prompts/generated/CONTROL.json",
+      "version": "1.3.0",
+      "promptVersion": "2.5.0",
+      "promptSha256Declared": "5ee1675609c7b6b5f746108d0e8c5551824cb8fdd76605e89dfaf766ae62743c"
+    },
+    {
+      "type": "production-manifest",
+      "path": "research/runtime/worker-prompts/generated/MANIFEST.json",
+      "promptVersion": "2.5.0",
+      "promptSha256Declared": "5ee1675609c7b6b5f746108d0e8c5551824cb8fdd76605e89dfaf766ae62743c"
+    },
+    {
+      "type": "stale-checkpoint",
+      "path": "research/runtime/checkpoints/2026/08/2026-08-14-production.json",
+      "promptVersion": "2.4.0",
+      "promptSha256": "725b82ba9480473ce84645e1d16784b6009cbe7db7ab25d338b8ae8f461ca3fc"
+    },
+    {
+      "type": "hash-verification",
+      "status": "Unavailable",
+      "detail": "No repository command-execution path was available to independently hash the pinned Prompt bytes; declaration agreement was not accepted as verification."
+    }
   ],
   "artifacts": [
-    {"label":"Run-date Production Result","label_zh":"运行日 Production Result","path":"research/runtime/results/2026/08/2026-08-14-production-result.json"},
-    {"label":"Run-date Daily Runtime Record","label_zh":"运行日 Daily Runtime Record","path":"research/runtime/records/daily/2026/08/2026-08-14-daily-runtime.json"},
-    {"label":"Run-date Wake Receipt","label_zh":"运行日 Wake Receipt","path":"research/runtime/wakes/2026/08/2026-08-14/production-150513.json"}
+    {
+      "label": "Run-date Production Result",
+      "path": "research/runtime/results/2026/08/2026-08-14-production-result.json"
+    },
+    {
+      "label": "Run-date Production Checkpoint",
+      "path": "research/runtime/checkpoints/2026/08/2026-08-14-production.json"
+    }
   ],
-  "startedAt": "2026-08-14T15:12:35+08:00",
-  "completedAt": "2026-08-14T15:16:33+08:00"
+  "startedAt": "2026-08-14T17:50:00+08:00",
+  "completedAt": "2026-08-14T17:59:54+08:00"
 }

@@ -2,61 +2,41 @@
   "schema": "runtime-production-checkpoint/v1",
   "runDate": "2026-08-14",
   "node": "admission-and-inputs-verified",
-  "status": "Completed",
+  "status": "Blocked",
   "artifacts": [
-    "research/runtime/wakes/2026/08/2026-08-14/production-172200.json",
-    "research/analysis/Q-20260814-01-durable-work-identity-execution-authority.md",
-    "research/analysis/Q-20260814-02-kpi-decision-rights-governance.md",
-    "research/analysis/Q-20260814-03-cancellation-rollback-effect-boundary.md"
+    "research/runtime/results/2026/08/2026-08-14-production-result.json",
+    "research/runtime/worker-prompts/generated/CONTROL.json",
+    "research/runtime/worker-prompts/generated/MANIFEST.json",
+    "research/runtime/worker-prompts/generated/production.prompt.md"
   ],
   "evidence": [
     {
       "type": "recovery-authorization",
       "source": "manual-recovery",
-      "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-14/production-172200.json"
-    },
-    {
-      "type": "control-manifest",
-      "path": "research/runtime/worker-prompts/generated/CONTROL.json",
-      "version": "1.3.0"
-    },
-    {
-      "type": "production-prompt",
-      "path": "research/runtime/worker-prompts/generated/production.prompt.md",
-      "version": "2.4.0",
-      "sha256": "725b82ba9480473ce84645e1d16784b6009cbe7db7ab25d338b8ae8f461ca3fc",
-      "manifestAgreement": true,
-      "controlAgreement": true
-    },
-    {
-      "type": "required-sources-read",
-      "count": 10,
-      "paths": [
-        "research/runtime/SCHEDULER.json",
-        "research/runtime/WORKER-CONTRACT-V3.md",
-        "research/runtime/WAKE-RECEIPT-V1.md",
-        "research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md",
-        "research/editorial/EDITORIAL-ARCHITECTURE.json",
-        "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
-        "research/skills/05-research-writing.md",
-        "research/skills/06-research-visualization.md",
-        "research/skills/07-evidence-citation.md",
-        "research/skills/08-publication-editing.md"
+      "events": [
+        "Deadline Recovery Authorized",
+        "Execution Slot Opened",
+        "Worker Claimed"
       ]
     },
     {
-      "type": "same-date-production-inputs",
-      "count": 3,
-      "allReadyForProduction": true,
-      "allProductionInputAuthorized": true
+      "type": "current-control",
+      "promptVersion": "2.5.0",
+      "promptSha256Declared": "5ee1675609c7b6b5f746108d0e8c5551824cb8fdd76605e89dfaf766ae62743c"
     },
     {
-      "type": "prior-terminal-result-preserved",
-      "path": "research/runtime/results/2026/08/2026-08-14-production-result.json",
-      "status": "Failed",
-      "verifiedCommit": "c24b73c61b4925e6aed4229261f7774318910eda"
+      "type": "prior-checkpoint-rejected",
+      "priorNode": "admission-and-inputs-verified",
+      "priorStatus": "Completed",
+      "priorPromptVersion": "2.4.0",
+      "priorPromptSha256": "725b82ba9480473ce84645e1d16784b6009cbe7db7ab25d338b8ae8f461ca3fc"
+    },
+    {
+      "type": "terminal-block",
+      "reason": "stale-context-rejected",
+      "detail": "Independent SHA-256 verification of current pinned Prompt bytes unavailable; no downstream node entered."
     }
   ],
-  "sourceCommit": "ee4380977fc28d28adb343d52bbd61630f7449b7",
-  "updatedAt": "2026-08-14T17:27:35+08:00"
+  "sourceCommit": "f1f97706790d3ebd1c57b072962fbcdd2361be10",
+  "updatedAt": "2026-08-14T17:59:54+08:00"
 }
