@@ -1,7 +1,7 @@
 <!-- GENERATED FILE. DO NOT EDIT DIRECTLY. -->
 <!-- schema: research-runtime-worker-prompt/v1 -->
 <!-- task: production -->
-<!-- prompt-version: 2.5.0 -->
+<!-- prompt-version: 2.6.0 -->
 <!-- scheduler-version: 3.0 -->
 <!-- template: research/runtime/worker-prompts/templates/production.prompt.md -->
 # Authoritative Production Worker Prompt
@@ -36,7 +36,9 @@ This file is a generated execution artifact from the latest `main` branch. Do no
 
 Determine `runDate` and actual `wakeTime` from the current `Asia/Shanghai` clock. Never derive `runDate` from repository examples, old reports, article metadata, chat history or checkpoints. Before Runtime work, create a unique `runtime-wake-receipt/v1` JSON at `research/runtime/wakes/YYYY/MM/YYYY-MM-DD/production-HHMMSS.json` with the run date, timezone, nominal task and time, actual wake time, the actual admitted wake source, and `status=Received`. Commit it to `main`, fetch `main`, and verify the exact receipt. If verification fails, stop with `Failed` and do no Runtime work. Obey every admitted duration, recovery, revision, output, same-date, publication and verification limit.
 
-At admission, bind the execution to the fetched latest `main` HEAD, current Prompt path, version and SHA-256. Every checkpoint, Research Object, candidate, article, cover, evidence record and result must carry the same `runDate`. A path, embedded date or control identity from another date is stale evidence and must be rejected; do not copy, relabel or migrate it into the current run.
+At admission, bind the execution to the fetched latest `main` HEAD, current Prompt path, version and SHA-256. Prefer direct SHA-256 calculation over the Prompt bytes when the Worker has a command-execution or hashing tool. When that capability is unavailable, do not block solely because the Worker cannot calculate the digest locally: accept the control identity only when `CONTROL.json` and `MANIFEST.json` agree on the exact Prompt path, version and SHA-256 and the `Validate Research Center 3.0 / build` GitHub Actions run has succeeded for that exact pinned `main` HEAD. Record `promptVerificationMode=direct-sha256` or `promptVerificationMode=exact-head-ci`, together with the digest or Actions run URL. Declaration agreement without exact-HEAD CI success is not sufficient.
+
+Every checkpoint, Research Object, candidate, article, cover, evidence record and result must carry the same `runDate`. A path, embedded date or control identity from another date is stale evidence and must be rejected; do not copy, relabel or migrate it into the current run. A same-date checkpoint bound to an older Prompt is not resumable, but it is not a reason to terminate recovery: re-execute the earliest unproved node under the current verified control identity.
 
 The timer is only a wake signal. It does not grant Production execution authority. Read all run-date Runtime family records, order applicable formal tasks by scheduled time, and enforce global serial execution. Never start a later task while an earlier due task is `Waiting` or `Running`. A task is closed only when it is `Completed`, `Blocked`, `Failed` or `Skipped`, except an explicitly recoverable dependency-blocked task.
 
@@ -106,7 +108,7 @@ Required validation commands:
 - `npm run publication:editorial:validate`
 - `npm run runtime:validate`
 
-Before requesting a `Completed` Production terminal state, run `npm run runtime:production:proof -- --date <runDate> --result <result-path>`. GitHub Runtime finalization repeats the same proof and rejects stale dates, missing eligible objects, mismatched candidate IDs, old article or cover paths, non-raster cover files, missing structured cover evidence, or a checkpoint earlier than `validators-passed`.
+Before requesting a `Completed` Production terminal state, run `npm run runtime:production:proof -- --date <runDate> --result <result-path>` when command execution is available. If the connected Worker cannot execute repository commands, it must create the governed same-date completion request and let `Research Runtime Shift Finalization V2.1` execute the proof and all Runtime validators on GitHub Actions; the shift is not `Completed` until that workflow persists and remotely verifies the terminal result. GitHub Runtime finalization repeats the same proof and rejects stale dates, missing eligible objects, mismatched candidate IDs, old article or cover paths, non-raster cover files, missing structured cover evidence, or a checkpoint earlier than `validators-passed`.
 
 Any research-value, independence, evidence, structure, language, bilingual parity, asset, caption/source, edition, layout or gate failure is `NEEDS REVISION` and must not be committed as `Completed`. Production owns content repair. Publication may release only a complete candidate and must return failures upstream; Publication must not perform new research, substantive rewriting, evidence repair, type selection, module repair or claim-strength repair.
 
