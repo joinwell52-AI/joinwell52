@@ -8,11 +8,11 @@
   "date": "2026-08-14",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -561,6 +561,159 @@
       "githubCommit": "b4b6ec05c745383446c06190a078cc549f2a2888",
       "commitVerify": "Completed",
       "verifiedAt": "2026-08-14T10:05:53+08:00"
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "status": "Completed",
+      "input": "Fail-closed Reading admission resolved from main commit 6c8a1b59d880730344890fd250e29ed812dca43f using Worker Control V1.3.0, branch=main, wake-source=chatgpt-scheduled-task, the active 2026-08-14 Reading window, and the Worker capabilities GitHub read/write, command execution, file editing and web research. The generated Reading prompt research/runtime/worker-prompts/generated/reading.prompt.md version 1.0.0 was deterministically verified at SHA-256 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5, and all five required sources were read completely from the same pinned commit. The remotely verified same-date Wake Receipt research/runtime/wakes/2026/08/2026-08-14/reading-110402.json, completed Queue, same-date Today's Research Plan containing exactly Q-20260814-01, Q-20260814-02 and Q-20260814-03, durable Reading Execution Slot and Worker Claimed event, and the three selected primary sources were then consumed. No prior-day Reading Result or Research Object was used as current-day input.",
+      "input_zh": "基于 main 提交 6c8a1b59d880730344890fd250e29ed812dca43f 声明的 Worker Control V1.3.0，使用 branch=main、wake-source=chatgpt-scheduled-task、2026-08-14 有效 Reading 时段，以及当前 Worker 实际具备的 GitHub 读写、命令执行、文件编辑与 Web Research 能力，完成 Reading 的 Fail-closed Admission。确定性核验生成版 Reading Prompt research/runtime/worker-prompts/generated/reading.prompt.md v1.0.0 的 SHA-256 为 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5，并从同一固定提交完整读取全部五个 Required Source。随后消费已远程核验的同日 Wake Receipt research/runtime/wakes/2026/08/2026-08-14/reading-110402.json、已完成 Queue、恰好包含 Q-20260814-01 / Q-20260814-02 / Q-20260814-03 的同日 Today's Research Plan、持久化 Reading Execution Slot 与 Worker Claimed 事件，以及三个已选一手来源。未把前一日 Reading Result 或 Research Object 作为当天输入。",
+      "workResult": "Completed Skill 03 source-complete Deep Reading for all three same-date selected objects only after ordered Runtime reconciliation granted Reading execution authority and the Worker Claimed event was durably verified. Q-20260814-01 verified Codex experimental persistent per-thread user queues: stable queue/client-message identity, explicit CRUD/reorder/start controls, per-thread dispatch serialization, deletion only after Core accepts a queued turn, persisted cold-resume behavior, automatic progression after completed or failed idle states, and a deliberate pause after interruption or budget-limited abort. Q-20260814-02 verified DPX-G360 as a design-science/documentary conference-paper artefact linking front-stage passenger journey, middle-stage offer/order orchestration and back-stage operating systems through six capability layers and KPI-to-owner/escalation governance, while the paper explicitly lacks passenger surveys, internal airline KPIs, interviews, experimental testing and longitudinal validation and therefore does not establish effectiveness. Q-20260814-03 verified Gemini CLI prompt-scoped cancellation rollback: calls sharing one prompt ID retain a pre-request history/token baseline and recognized cancellation rolls local chat state back to that baseline, synchronizes recorded messages and restores token accounting; the change does not roll back external tool side effects or establish exactly-once retry semantics. Three durable Reading Notes were produced. No Research Analysis, article drafting, visualization or publication was performed.",
+      "workResult_zh": "仅在有序 Runtime Reconciliation 授予 Reading 执行权并持久核验 Worker Claimed 之后，才对三个同日已选对象完成 Skill 03 Source-complete Deep Reading。Q-20260814-01 核验了 Codex 实验性持久 Thread User Queue：稳定的 Queue / Client Message Identity、显式 CRUD / Reorder / Start 控制、按 Thread 串行派发、仅在 Core 接纳排队 Turn 后删除队列记录、Cold Resume 持久行为、Completed 或 Failed Idle 后自动继续，以及 Interrupt 或 Budget-limited Abort 后有意暂停。Q-20260814-02 核验了 DPX-G360 作为 Design-science / Documentary Conference-paper Artefact，将 Front-stage Passenger Journey、Middle-stage Offer/Order Orchestration 与 Back-stage Operating System 通过六层 Capability 与 KPI-to-owner / Escalation Governance 连接起来；论文同时明确缺少 Passenger Survey、内部 Airline KPI、Interview、Experimental Testing 与 Longitudinal Validation，因此不能证明框架有效性。Q-20260814-03 核验了 Gemini CLI 的 Prompt-scoped Cancellation Rollback：共享同一 Prompt ID 的调用保留请求前 History / Token Baseline，识别到 Cancellation 后把本地 Chat State 回滚到该 Baseline、同步 Recording 并恢复 Token Accounting；该变更不回滚外部 Tool Side Effect，也不建立 Exactly-once Retry 语义。共形成 3 份持久 Reading Note。未执行 Research Analysis、文章写作、可视化或发布。",
+      "output": "Three durable Skill 03 Reading Notes for Q-20260814-01, Q-20260814-02 and Q-20260814-03, each recording source-backed problem, facts or research-result claims, mechanisms, evidence, limitations, comparisons, unresolved questions and a strict Reading boundary.",
+      "output_zh": "形成 Q-20260814-01、Q-20260814-02、Q-20260814-03 三份持久 Skill 03 Reading Note；每份均记录来源支持的 Problem、Facts 或 Research-result Claims、Mechanisms、Evidence、Limitations、Comparisons、Unresolved Questions 与严格 Reading Boundary。",
+      "next": "Research Runtime Analysis may consume only these 2026-08-14 Reading Notes after Reading completion and durable GitHub verification. Analysis must keep merged-code facts, paper research-result claims and architectural inference separate; it must not generalize Codex queue semantics into distributed exactly-once scheduling, treat DPX-G360 as empirically validated, or extend Gemini local history rollback to external side-effect compensation without new evidence.",
+      "next_zh": "只有在 Reading 完成并通过 GitHub 持久核验后，Research Runtime Analysis 才可消费这三份 2026-08-14 Reading Note。Analysis 必须把 Merged-code Fact、论文 Research-result Claim 与架构推论分开；不得在没有新证据的情况下，把 Codex Queue 语义泛化为分布式 Exactly-once Scheduling，把 DPX-G360 当作已经实证验证的框架，或把 Gemini 本地 History Rollback 扩展为外部 Side-effect Compensation。",
+      "metrics": [
+        {
+          "label": "Selected objects read",
+          "label_zh": "已深读对象",
+          "value": "3 / 3"
+        },
+        {
+          "label": "Primary-source objects read",
+          "label_zh": "已读一手对象",
+          "value": "3"
+        },
+        {
+          "label": "Merged maintainer commits read",
+          "label_zh": "已读维护者合并提交",
+          "value": "2"
+        },
+        {
+          "label": "Primary research artefacts read",
+          "label_zh": "已读一手研究产物",
+          "value": "1"
+        },
+        {
+          "label": "Durable Reading Notes",
+          "label_zh": "持久 Reading Note",
+          "value": "3"
+        },
+        {
+          "label": "Prompt SHA-256 verified",
+          "label_zh": "已核验 Prompt SHA-256",
+          "value": "1"
+        },
+        {
+          "label": "Prior-day research inputs reused",
+          "label_zh": "复用前一日研究输入",
+          "value": "0"
+        },
+        {
+          "label": "Research Analysis performed",
+          "label_zh": "已执行 Research Analysis",
+          "value": "0"
+        },
+        {
+          "label": "Publication copy produced",
+          "label_zh": "已生成发布文案",
+          "value": "0"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Pinned control-plane commit",
+          "label_zh": "固定控制面提交",
+          "value": "6c8a1b59d880730344890fd250e29ed812dca43f"
+        },
+        {
+          "label": "Worker Control version",
+          "label_zh": "Worker Control 版本",
+          "value": "1.3.0"
+        },
+        {
+          "label": "Verified generated Reading prompt SHA-256",
+          "label_zh": "已核验生成版 Reading Prompt SHA-256",
+          "value": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"
+        },
+        {
+          "label": "Reading Wake Receipt",
+          "label_zh": "Reading 唤醒回执",
+          "value": "research/runtime/wakes/2026/08/2026-08-14/reading-110402.json"
+        },
+        {
+          "label": "Run-date Research Plan",
+          "label_zh": "运行日 Research Plan",
+          "value": "research/runtime/plans/2026/08/2026-08-14-plan.json"
+        },
+        {
+          "label": "Skill 03",
+          "label_zh": "Skill 03",
+          "value": "research/skills/03-deep-reading.md"
+        },
+        {
+          "label": "Q-20260814-01 primary source",
+          "label_zh": "Q-20260814-01 一手来源",
+          "value": "https://github.com/openai/codex/commit/9341b38310c73957e1313eab3f7c4034689bdec9"
+        },
+        {
+          "label": "Q-20260814-02 primary source",
+          "label_zh": "Q-20260814-02 一手来源",
+          "value": "https://zenodo.org/records/21010383"
+        },
+        {
+          "label": "Q-20260814-03 primary source",
+          "label_zh": "Q-20260814-03 一手来源",
+          "value": "https://github.com/google-gemini/gemini-cli/commit/783f6cb494aedf3e7276d02e76f32f63a27551a0"
+        },
+        {
+          "label": "Reading Worker Claim commit",
+          "label_zh": "Reading Worker Claim 提交",
+          "value": "61fe54a23f435551e93f56b099c3ba43be830cd8"
+        },
+        {
+          "label": "Reading Runtime record",
+          "label_zh": "Reading Runtime 记录",
+          "value": "research/runtime/records/daily/2026/08/2026-08-14-daily-runtime.json"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Q-20260814-01 Reading Note",
+          "label_zh": "Q-20260814-01 Reading Note",
+          "value": "research/reading/Q-20260814-01-persistent-thread-queue-dispatch-boundary.md"
+        },
+        {
+          "label": "Q-20260814-02 Reading Note",
+          "label_zh": "Q-20260814-02 Reading Note",
+          "value": "research/reading/Q-20260814-02-dpx-g360-accountable-airline-operating-architecture.md"
+        },
+        {
+          "label": "Q-20260814-03 Reading Note",
+          "label_zh": "Q-20260814-03 Reading Note",
+          "value": "research/reading/Q-20260814-03-request-level-cancellation-rollback-boundary.md"
+        },
+        {
+          "label": "Reading result",
+          "label_zh": "Reading 结果",
+          "value": "research/runtime/results/2026/08/2026-08-14-reading-result.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "value": "research/runtime/records/daily/2026/08/2026-08-14-daily-runtime.json"
+        },
+        {
+          "label": "Runtime Markdown ledger",
+          "label_zh": "Runtime Markdown 账本",
+          "value": "research/runtime/2026/08/2026-08-14-runtime.md"
+        }
+      ],
+      "family": "daily",
+      "runtimeDate": "2026-08-14",
+      "startedAt": "2026-08-14T11:07:32+08:00",
+      "completedAt": "2026-08-14T11:14:06+08:00"
     }
   },
   "timeline": [
@@ -633,6 +786,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Reading after verifying research/runtime/wakes/2026/08/2026-08-14/reading-110402.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-08-14T11:14:06+08:00",
+      "task": "reading",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Reading completed through governed Runtime shift completion after durable result validation for 2026-08-14."
     }
   ],
   "metrics": [],
@@ -640,5 +800,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-14T11:08:51+08:00"
+  "updatedAt": "2026-08-14T11:14:06+08:00"
 }
