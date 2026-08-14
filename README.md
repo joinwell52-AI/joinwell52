@@ -56,6 +56,12 @@ This repository is TMPA's public research, specification, executable conformance
 
 Each repository has one clear reason to be discovered and starred: **TMPA explains and specifies; FCoP makes coordination reusable; CodeFlowMu Open turns both into a product people can install.** Product use produces field evidence, protocol improvements, and new questions for the specification.
 
+## Engineering origin: Xiaodian AI
+
+The problem framing behind TMPA, FCoP, and CodeFlowMu did not begin with a paper definition. It grew out of engineering an enterprise AI application, **Xiaodian AI**. That work exposed two connected problems. The first was “who develops enterprise AI?”: one agent could not reliably own requirements, development, deployment, and acceptance, leading toward PM / DEV / OPS / QA, TASK / REPORT / ISSUE, and “files as protocol.” The second was “how should enterprise AI work inside a business?”: permission, query, analysis, action, and audit could not all be entrusted to one model; responsibilities had to be separated and inspectable facts retained. The first stream later developed into FCoP and CodeFlowMu; the second informed TMPA and the digital-employee architecture. They now meet again in the governed digital-employee production machine.
+
+> **Current public boundary:** Xiaodian AI's source code, production system, and demo testing entry are not currently public. This section documents the engineering origin of TMPA, FCoP, and CodeFlowMu; it does not treat Xiaodian AI as evidence of TMPA S1.0 conformance, independent validation, or elimination of hallucinations.
+
 ## Install the open-source product
 
 [CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open) is not a mockup or a documentation demo. It is an installable local application with a [dedicated product site](https://joinwell52-ai.github.io/CodeFlowMu-open/), PC Panel, Mobile PWA, project isolation, approval gates, FCoP work artifacts, and the fixed execution team `PM / DEV / OPS / QA`. `EVAL` observes delivery quality and risk independently.
