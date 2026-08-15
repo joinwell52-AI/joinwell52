@@ -1,2 +1,13 @@
 #!/bin/sh
+set -e
 node scripts/publication-candidate-bundle-guard.mjs staged
+
+# One-time Publication recovery hygiene: docs:build refreshes generatedAt-only
+# metadata in three tracked projections. The 2026-08-15 release commit must not
+# carry unrelated timestamp churn or leave the worktree dirty before rebase.
+if git diff --cached --name-only | grep -qx 'research/runtime/releases/2026-08-15-publication.json'; then
+  git restore --worktree -- \
+    docs/.vitepress/generated/p2-special-study.json \
+    docs/.vitepress/generated/research-intelligence.json \
+    docs/.vitepress/generated/runtime-legacy-records.json 2>/dev/null || true
+fi
