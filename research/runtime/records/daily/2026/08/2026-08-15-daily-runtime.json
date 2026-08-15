@@ -8,11 +8,11 @@
   "date": "2026-08-15",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -523,6 +523,159 @@
       "githubCommit": "2addb52c450b98561aca818848b9868c28250719",
       "commitVerify": "Completed",
       "verifiedAt": "2026-08-15T10:04:27+08:00"
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "family": "daily",
+      "runtimeDate": "2026-08-15",
+      "status": "Completed",
+      "input": "Fail-closed Reading admission resolved from authoritative main commit 65526de7633e9d44aebb91b08007add89d811d28 using Worker Control V1.3.0, branch=main, wake-source=chatgpt-scheduled-task, the active 2026-08-15 Reading window, and the Worker capabilities GitHub read/write, command execution, file editing and web research. The generated Reading prompt research/runtime/worker-prompts/generated/reading.prompt.md version 1.0.0 was deterministically verified at SHA-256 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5, and all five required sources were read completely from the same pinned commit. The remotely verified same-date Wake Receipt research/runtime/wakes/2026/08/2026-08-15/reading-110053.json, completed Queue, same-date Today's Research Plan containing exactly Q-20260815-01, Q-20260815-02 and Q-20260815-03, durable Reading Execution Slot and Worker Claimed commit 814e0080a4b5540fa13cb49cc400dd9b65ef6191, and the three selected Google ADK maintainer commits were then consumed. No prior-day Reading Result or Research Object was used as current-day input.",
+      "input_zh": "基于权威 main 提交 65526de7633e9d44aebb91b08007add89d811d28 声明的 Worker Control V1.3.0，使用 branch=main、wake-source=chatgpt-scheduled-task、2026-08-15 有效 Reading 时段，以及当前 Worker 实际具备的 GitHub 读写、命令执行、文件编辑与 Web Research 能力，完成 Reading 的 Fail-closed Admission。确定性核验生成版 Reading Prompt research/runtime/worker-prompts/generated/reading.prompt.md v1.0.0 的 SHA-256 为 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5，并从同一固定提交完整读取全部五个 Required Source。随后消费已远程核验的同日 Wake Receipt research/runtime/wakes/2026/08/2026-08-15/reading-110053.json、已完成 Queue、恰好包含 Q-20260815-01 / Q-20260815-02 / Q-20260815-03 的同日 Today's Research Plan、持久化 Reading Execution Slot 与 Worker Claimed 提交 814e0080a4b5540fa13cb49cc400dd9b65ef6191，以及三个已选 Google ADK 维护者提交。未把前一日 Reading Result 或 Research Object 作为当天输入。",
+      "workResult": "Completed Skill 03 source-complete Deep Reading for all three same-date selected objects only after ordered Runtime reconciliation granted Reading execution authority and the Worker Claimed event was durably verified. Q-20260815-01 verified two distinct ADK recovery trust boundaries: session initialization now rejects client-supplied long-running-tool markers, non-default runtime actions and ADK-reserved HITL protocol calls before session creation while intentionally admitting ordinary text/tool history; later confirmation resolution requires the ADK confirmation function name and binds the confirmation to an existing same-agent, registered, confirmation-requiring historical tool call with matching ID, name and arguments. Q-20260815-02 verified native RemoteA2aAgent task mode: coordinator FunctionCall identity becomes the isolation scope, Runner uses two-pass terminal-scope recovery, remote history is scoped to the delegation, output-schema-valid finish_task responses are semantic completion, and FAILED/CANCELED/transport failures map to failed terminal semantics before control returns to the parent. Q-20260815-03 verified live background-tool lifecycle ownership: streaming and non-blocking asyncio tasks are cancelled before handoff and in run_live teardown, cancellation is bounded to one second and explicitly best effort, task exceptions are observed, and stale stream/task registries are retired even when cancellation is ignored. Three durable Reading Notes were produced. No Research Analysis, article drafting, visualization or publication was performed.",
+      "workResult_zh": "仅在有序 Runtime Reconciliation 授予 Reading 执行权并持久核验 Worker Claimed 之后，才对三个同日已选对象完成 Skill 03 Source-complete Deep Reading。Q-20260815-01 核验了 ADK 恢复过程中的两个独立信任边界：Session Initialization 在创建 Session 之前拒绝客户端提供的 Long-running Tool Marker、非默认 Runtime Action 与 ADK 保留 HITL Protocol Call，同时明确允许普通 Text / Tool History；后续 Confirmation Resolution 则要求使用 ADK Confirmation Function Name，并把确认绑定到历史中真实存在、由同一 Agent 负责、Tool 已注册且确实需要 Confirmation、且 ID / Name / Arguments 一致的原始 Tool Call。Q-20260815-02 核验了 RemoteA2aAgent 原生 Task Mode：Coordinator FunctionCall Identity 成为 Isolation Scope，Runner 通过两阶段 Terminal-scope Recovery 恢复活动任务，Remote History 被限制在本次委派范围，Output Schema 校验通过的 finish_task Response 构成语义完成，而 FAILED / CANCELED / Transport Failure 会映射成失败终态后再把控制权交还 Parent。Q-20260815-03 核验了 Live Background Tool 的生命周期所有权：Streaming 与 Non-blocking asyncio Task 会在 Handoff 之前以及 run_live 收尾时被取消，取消等待上限为 1 秒且明确属于 Best-effort；已结束 Task 的异常会被读取记录；即使 Task 忽略取消，陈旧 Stream / Task Registry 仍会退出当前 Run 的所有权。共形成 3 份持久 Reading Note。未执行 Research Analysis、文章写作、可视化或发布。",
+      "output": "Three durable Skill 03 Reading Notes for Q-20260815-01, Q-20260815-02 and Q-20260815-03, each recording source-backed problem, facts, mechanisms, evidence, limitations, comparisons, unresolved questions and a strict Reading boundary.",
+      "output_zh": "形成 Q-20260815-01、Q-20260815-02、Q-20260815-03 三份持久 Skill 03 Reading Note；每份均记录来源支持的 Problem、Facts、Mechanisms、Evidence、Limitations、Comparisons、Unresolved Questions 与严格 Reading Boundary。",
+      "next": "Research Runtime Analysis may consume only these 2026-08-15 Reading Notes after Reading completion and durable GitHub verification. Analysis must keep merged-code facts separate from architectural inference; it must not generalize ADK initialization filtering into authenticated/trusted history, treat A2A task mode as cross-framework delivery or exactly-once proof, or equate local asyncio cancellation and registry retirement with rollback of external tool side effects.",
+      "next_zh": "只有在 Reading 完成并通过 GitHub 持久核验后，Research Runtime Analysis 才可消费这三份 2026-08-15 Reading Note。Analysis 必须把 Merged-code Fact 与架构推论分开；不得把 ADK Initialization Filtering 泛化为已认证/可信的全部历史，不得把 A2A Task Mode 当作跨框架交付或 Exactly-once 的证明，也不得把本地 asyncio Cancellation 与 Registry Retirement 等同于外部 Tool Side Effect 的回滚。",
+      "metrics": [
+        {
+          "label": "Selected objects read",
+          "label_zh": "已深读对象",
+          "value": "3 / 3"
+        },
+        {
+          "label": "Primary-source objects read",
+          "label_zh": "已读一手对象",
+          "value": "3"
+        },
+        {
+          "label": "Merged maintainer commits read",
+          "label_zh": "已读维护者合并提交",
+          "value": "3"
+        },
+        {
+          "label": "Durable Reading Notes",
+          "label_zh": "持久 Reading Note",
+          "value": "3"
+        },
+        {
+          "label": "Generated prompt SHA-256 verified",
+          "label_zh": "已核验 Generated Prompt SHA-256",
+          "value": "1"
+        },
+        {
+          "label": "Required control sources read",
+          "label_zh": "已完整读取 Required Source",
+          "value": "5 / 5"
+        },
+        {
+          "label": "Prior-day research inputs reused",
+          "label_zh": "复用前一日研究输入",
+          "value": "0"
+        },
+        {
+          "label": "Research Analysis performed",
+          "label_zh": "已执行 Research Analysis",
+          "value": "0"
+        },
+        {
+          "label": "Publication copy produced",
+          "label_zh": "已生成发布文案",
+          "value": "0"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Pinned control-plane commit",
+          "label_zh": "固定控制面提交",
+          "commit": "65526de7633e9d44aebb91b08007add89d811d28"
+        },
+        {
+          "label": "Worker Control version",
+          "label_zh": "Worker Control 版本",
+          "value": "1.3.0"
+        },
+        {
+          "label": "Verified generated Reading prompt SHA-256",
+          "label_zh": "已核验生成版 Reading Prompt SHA-256",
+          "value": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"
+        },
+        {
+          "label": "Reading Wake Receipt",
+          "label_zh": "Reading 唤醒回执",
+          "path": "research/runtime/wakes/2026/08/2026-08-15/reading-110053.json"
+        },
+        {
+          "label": "Run-date Research Plan",
+          "label_zh": "运行日 Research Plan",
+          "path": "research/runtime/plans/2026/08/2026-08-15-plan.json"
+        },
+        {
+          "label": "Skill 03",
+          "label_zh": "Skill 03",
+          "path": "research/skills/03-deep-reading.md"
+        },
+        {
+          "label": "Q-20260815-01 primary source",
+          "label_zh": "Q-20260815-01 一手来源",
+          "url": "https://github.com/google/adk-python/commit/3fa71b6349dbabb47dff5a3e9dea689cae6904e9"
+        },
+        {
+          "label": "Q-20260815-02 primary source",
+          "label_zh": "Q-20260815-02 一手来源",
+          "url": "https://github.com/google/adk-python/commit/72f3ff5cfb11fdf7432c6c2faa01befcc350ad7e"
+        },
+        {
+          "label": "Q-20260815-03 primary source",
+          "label_zh": "Q-20260815-03 一手来源",
+          "url": "https://github.com/google/adk-python/commit/0088abbe6651da6a6c644cace087a79d6a674821"
+        },
+        {
+          "label": "Reading Worker Claim commit",
+          "label_zh": "Reading Worker Claim 提交",
+          "commit": "814e0080a4b5540fa13cb49cc400dd9b65ef6191"
+        },
+        {
+          "label": "Reading Runtime record",
+          "label_zh": "Reading Runtime 记录",
+          "path": "research/runtime/records/daily/2026/08/2026-08-15-daily-runtime.json"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Q-20260815-01 Reading Note",
+          "label_zh": "Q-20260815-01 Reading Note",
+          "path": "research/reading/Q-20260815-01-trusted-session-initialization-hitl-confirmation-boundary.md"
+        },
+        {
+          "label": "Q-20260815-02 Reading Note",
+          "label_zh": "Q-20260815-02 Reading Note",
+          "path": "research/reading/Q-20260815-02-native-a2a-task-delegation-finish-terminal-boundary.md"
+        },
+        {
+          "label": "Q-20260815-03 Reading Note",
+          "label_zh": "Q-20260815-03 Reading Note",
+          "path": "research/reading/Q-20260815-03-live-background-tool-task-lifecycle-ownership.md"
+        },
+        {
+          "label": "Reading result",
+          "label_zh": "Reading 结果",
+          "path": "research/runtime/results/2026/08/2026-08-15-reading-result.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "path": "research/runtime/records/daily/2026/08/2026-08-15-daily-runtime.json"
+        },
+        {
+          "label": "Runtime Markdown ledger",
+          "label_zh": "Runtime Markdown 账本",
+          "path": "research/runtime/2026/08/2026-08-15-runtime.md"
+        }
+      ],
+      "startedAt": "2026-08-15T11:03:46+08:00",
+      "completedAt": "2026-08-15T11:11:13+08:00"
     }
   },
   "timeline": [
@@ -595,6 +748,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Reading after verifying research/runtime/wakes/2026/08/2026-08-15/reading-110053.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-08-15T11:11:13+08:00",
+      "task": "reading",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Reading closed as Completed through governed Runtime shift finalization after durable result validation for 2026-08-15."
     }
   ],
   "metrics": [],
@@ -602,5 +762,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-15T11:04:18+08:00"
+  "updatedAt": "2026-08-15T11:11:13+08:00"
 }
