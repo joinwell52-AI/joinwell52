@@ -8,6 +8,7 @@ article_type: engineering-insight
 edition: research-center
 research_question: "当后台工具工作可能在 Handoff 或 Teardown 时超过创建它的 Agent 生命周期，Agent Runtime 必须把哪些 Ownership Fact 分开？"
 summary: "Agent Handoff 是一次 Ownership Transfer，而不只是 Active Agent 名称变化。本地执行取消、路由退出、已观察任务终止与外部效果核对是不同事实；近期一个 ADK 改动展示了较强的本地 Cleanup 与 Routing Revocation，但 External-effect Closure 明确不在其保证范围内。"
+cover: staging/publication-candidates/2026-08-15-agent-handoff-ownership-cover.png
 sources:
   - research/analysis/Q-20260815-03-handoff-routing-effect-ownership.md
   - research/reading/Q-20260815-03-live-background-tool-task-lifecycle-ownership.md
