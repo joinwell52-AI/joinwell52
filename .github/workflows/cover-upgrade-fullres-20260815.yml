@@ -45,8 +45,9 @@ jobs:
             "$transfer/chunk-11.txt" \
             "$transfer/chunk-12.txt" \
             "$transfer/chunk-13.txt" \
-            "$transfer/chunk-14.txt" > /tmp/covers-q70.b64
+            "$transfer/chunk-14.txt" | tr -d '\r\n\t ' > /tmp/covers-q70.b64
 
+          echo "normalized_base64_bytes=$(wc -c < /tmp/covers-q70.b64)"
           test "$(wc -c < /tmp/covers-q70.b64)" -eq 141120
           echo '0ef675edb3d99890cabfc5d4736c7da69dee118106eda80aa39d7261009eeec5  /tmp/covers-q70.b64' | sha256sum -c -
           base64 --decode /tmp/covers-q70.b64 > /tmp/covers-q70.zip
@@ -76,8 +77,10 @@ jobs:
           for n in 1 2 3; do
             $IMG "/tmp/covers-webp/q${n}.webp" -strip "PNG24:/tmp/covers-png/q${n}.png"
             dims="$($IDENTIFY -format '%wx%h' "/tmp/covers-png/q${n}.png")"
+            bytes="$(stat -c %s "/tmp/covers-png/q${n}.png")"
+            echo "q${n}.png ${dims} ${bytes} bytes"
             test "$dims" = '1600x900'
-            test "$(stat -c %s "/tmp/covers-png/q${n}.png")" -gt 300000
+            test "$bytes" -gt 300000
           done
 
       - name: Replace all six canonical cover paths on latest main
@@ -129,10 +132,17 @@ jobs:
         run: |
           set -euo pipefail
           git rev-parse HEAD
-          identify -format '%f %wx%h %b\n' \
-            staging/publication-candidates/2026-08-15-resumable-agent-trust-gates-cover.png \
-            staging/publication-candidates/2026-08-15-delegated-agent-return-contract-cover.png \
-            staging/publication-candidates/2026-08-15-agent-handoff-ownership-cover.png
+          if command -v magick >/dev/null 2>&1; then
+            magick identify -format '%f %wx%h %b\n' \
+              staging/publication-candidates/2026-08-15-resumable-agent-trust-gates-cover.png \
+              staging/publication-candidates/2026-08-15-delegated-agent-return-contract-cover.png \
+              staging/publication-candidates/2026-08-15-agent-handoff-ownership-cover.png
+          else
+            identify -format '%f %wx%h %b\n' \
+              staging/publication-candidates/2026-08-15-resumable-agent-trust-gates-cover.png \
+              staging/publication-candidates/2026-08-15-delegated-agent-return-contract-cover.png \
+              staging/publication-candidates/2026-08-15-agent-handoff-ownership-cover.png
+          fi
           sha256sum \
             staging/publication-candidates/2026-08-15-resumable-agent-trust-gates-cover.png \
             docs/public/assets/covers/daily-2026-08-15-resumable-agent-trust-gates-cover.png \
