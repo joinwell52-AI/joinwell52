@@ -1,0 +1,142 @@
+name: One-time full-resolution cover replacement 2026-08-15
+
+on:
+  push:
+    branches:
+      - cover-upgrade-fullres-20260815
+    paths:
+      - .github/workflows/cover-upgrade-fullres-20260815.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cover-upgrade-fullres-20260815
+  cancel-in-progress: false
+
+jobs:
+  replace:
+    name: Reconstruct 1600x900 covers and replace staging plus public assets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout transfer branch
+        uses: actions/checkout@v4
+        with:
+          ref: cover-upgrade-fullres-20260815
+          fetch-depth: 0
+
+      - name: Reconstruct and verify transferred cover archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          transfer='research/runtime/cover-upgrade-transfer/20260815'
+          cat \
+            "$transfer/chunk-00.txt" \
+            "$transfer/chunk-01.txt" \
+            "$transfer/chunk-02.txt" \
+            "$transfer/chunk-03.txt" \
+            "$transfer/chunk-04.txt" \
+            "$transfer/chunk-05.txt" \
+            "$transfer/chunk-06.txt" \
+            "$transfer/chunk-07.txt" \
+            "$transfer/chunk-08.txt" \
+            "$transfer/chunk-09-correct.txt" \
+            "$transfer/chunk-09.txt" \
+            "$transfer/chunk-11.txt" \
+            "$transfer/chunk-12.txt" \
+            "$transfer/chunk-13.txt" \
+            "$transfer/chunk-14.txt" > /tmp/covers-q70.b64
+
+          test "$(wc -c < /tmp/covers-q70.b64)" -eq 141120
+          echo '0ef675edb3d99890cabfc5d4736c7da69dee118106eda80aa39d7261009eeec5  /tmp/covers-q70.b64' | sha256sum -c -
+          base64 --decode /tmp/covers-q70.b64 > /tmp/covers-q70.zip
+          echo '74d4ac1a1536e5067d31339ce27fe5ff0e1ac4983e446ef67674a3ecf40ceb67  /tmp/covers-q70.zip' | sha256sum -c -
+          mkdir -p /tmp/covers-webp /tmp/covers-png
+          unzip -q /tmp/covers-q70.zip -d /tmp/covers-webp
+          test -s /tmp/covers-webp/q1.webp
+          test -s /tmp/covers-webp/q2.webp
+          test -s /tmp/covers-webp/q3.webp
+
+      - name: Convert without resizing and verify 1600x900 PNG dimensions
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v magick >/dev/null 2>&1 && ! command -v convert >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y imagemagick
+          fi
+          if command -v magick >/dev/null 2>&1; then
+            IMG='magick'
+            IDENTIFY='magick identify'
+          else
+            IMG='convert'
+            IDENTIFY='identify'
+          fi
+
+          for n in 1 2 3; do
+            $IMG "/tmp/covers-webp/q${n}.webp" -strip "PNG24:/tmp/covers-png/q${n}.png"
+            dims="$($IDENTIFY -format '%wx%h' "/tmp/covers-png/q${n}.png")"
+            test "$dims" = '1600x900'
+            test "$(stat -c %s "/tmp/covers-png/q${n}.png")" -gt 300000
+          done
+
+      - name: Replace all six canonical cover paths on latest main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git checkout -B main origin/main
+
+          cp /tmp/covers-png/q1.png staging/publication-candidates/2026-08-15-resumable-agent-trust-gates-cover.png
+          cp /tmp/covers-png/q2.png staging/publication-candidates/2026-08-15-delegated-agent-return-contract-cover.png
+          cp /tmp/covers-png/q3.png staging/publication-candidates/2026-08-15-agent-handoff-ownership-cover.png
+          cp /tmp/covers-png/q1.png docs/public/assets/covers/daily-2026-08-15-resumable-agent-trust-gates-cover.png
+          cp /tmp/covers-png/q2.png docs/public/assets/covers/daily-2026-08-15-delegated-agent-return-contract-cover.png
+          cp /tmp/covers-png/q3.png docs/public/assets/covers/daily-2026-08-15-agent-handoff-ownership-cover.png
+
+          cmp -s staging/publication-candidates/2026-08-15-resumable-agent-trust-gates-cover.png docs/public/assets/covers/daily-2026-08-15-resumable-agent-trust-gates-cover.png
+          cmp -s staging/publication-candidates/2026-08-15-delegated-agent-return-contract-cover.png docs/public/assets/covers/daily-2026-08-15-delegated-agent-return-contract-cover.png
+          cmp -s staging/publication-candidates/2026-08-15-agent-handoff-ownership-cover.png docs/public/assets/covers/daily-2026-08-15-agent-handoff-ownership-cover.png
+
+          expected="$(mktemp)"
+          actual="$(mktemp)"
+          cat > "$expected" <<'EOF'
+          docs/public/assets/covers/daily-2026-08-15-agent-handoff-ownership-cover.png
+          docs/public/assets/covers/daily-2026-08-15-delegated-agent-return-contract-cover.png
+          docs/public/assets/covers/daily-2026-08-15-resumable-agent-trust-gates-cover.png
+          staging/publication-candidates/2026-08-15-agent-handoff-ownership-cover.png
+          staging/publication-candidates/2026-08-15-delegated-agent-return-contract-cover.png
+          staging/publication-candidates/2026-08-15-resumable-agent-trust-gates-cover.png
+          EOF
+          sed -i 's/^          //' "$expected"
+          git status --short | awk '{print $2}' | sort > "$actual"
+          diff -u "$expected" "$actual"
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            staging/publication-candidates/2026-08-15-resumable-agent-trust-gates-cover.png \
+            staging/publication-candidates/2026-08-15-delegated-agent-return-contract-cover.png \
+            staging/publication-candidates/2026-08-15-agent-handoff-ownership-cover.png \
+            docs/public/assets/covers/daily-2026-08-15-resumable-agent-trust-gates-cover.png \
+            docs/public/assets/covers/daily-2026-08-15-delegated-agent-return-contract-cover.png \
+            docs/public/assets/covers/daily-2026-08-15-agent-handoff-ownership-cover.png
+          git commit -m 'fix(covers): restore 1600x900 published article images'
+          git push origin HEAD:main
+
+      - name: Show committed dimensions and hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD
+          identify -format '%f %wx%h %b\n' \
+            staging/publication-candidates/2026-08-15-resumable-agent-trust-gates-cover.png \
+            staging/publication-candidates/2026-08-15-delegated-agent-return-contract-cover.png \
+            staging/publication-candidates/2026-08-15-agent-handoff-ownership-cover.png
+          sha256sum \
+            staging/publication-candidates/2026-08-15-resumable-agent-trust-gates-cover.png \
+            docs/public/assets/covers/daily-2026-08-15-resumable-agent-trust-gates-cover.png \
+            staging/publication-candidates/2026-08-15-delegated-agent-return-contract-cover.png \
+            docs/public/assets/covers/daily-2026-08-15-delegated-agent-return-contract-cover.png \
+            staging/publication-candidates/2026-08-15-agent-handoff-ownership-cover.png \
+            docs/public/assets/covers/daily-2026-08-15-agent-handoff-ownership-cover.png
