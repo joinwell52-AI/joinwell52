@@ -1,0 +1,153 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "analysis",
+  "family": "daily",
+  "runtimeDate": "2026-08-15",
+  "status": "Completed",
+  "input": {
+    "scheduler": "research/runtime/SCHEDULER.json",
+    "workerControl": "research/runtime/worker-prompts/generated/CONTROL.json",
+    "workerControlVersion": "1.3.0",
+    "authoritativePrompt": {
+      "path": "research/runtime/worker-prompts/generated/analysis.prompt.md",
+      "version": "2.0.0",
+      "sha256": "4f40dff2d12569f647bf265f344b60cb0f0cd0349f0b2d5cf1023f50947dfea2",
+      "hashVerified": true,
+      "sourceCommit": "acc52c5bf45f07593885fa844dc41002ee7a535e"
+    },
+    "requiredSources": [
+      "research/runtime/SCHEDULER.json",
+      "research/runtime/WORKER-CONTRACT-V3.md",
+      "research/runtime/WAKE-RECEIPT-V1.md",
+      "research/editorial/EDITORIAL-ARCHITECTURE.json",
+      "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+      "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+      "research/skills/04-research-analysis.md"
+    ],
+    "admission": {
+      "decision": "Admitted",
+      "date": "2026-08-15",
+      "branch": "main",
+      "wakeSource": "chatgpt-scheduled-task",
+      "requiredCapabilities": ["github-read", "github-write", "command-execution", "file-editing"],
+      "availableCapabilities": ["github-read", "github-write", "command-execution", "file-editing", "web-research"],
+      "limits": {
+        "maxRunMinutes": 120,
+        "maxRecoveryAttempts": 2,
+        "maxRevisionRounds": 2,
+        "maxOutputItems": 3,
+        "zeroOutputAllowed": true,
+        "directPublicationAllowed": false,
+        "requireSameRunDateInputs": true,
+        "requirePromptHashVerification": true,
+        "requireRemoteCommitVerification": true
+      }
+    },
+    "readingStatus": "Completed",
+    "readingVerifiedAt": "2026-08-15T11:11:19+08:00",
+    "readingArtifacts": [
+      "research/reading/Q-20260815-01-trusted-session-initialization-hitl-confirmation-boundary.md",
+      "research/reading/Q-20260815-02-native-a2a-task-delegation-finish-terminal-boundary.md",
+      "research/reading/Q-20260815-03-live-background-tool-task-lifecycle-ownership.md"
+    ],
+    "controlPlane": {
+      "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-15/analysis-130135.json",
+      "executionSlotOpenedAt": "2026-08-15T13:06:28+08:00",
+      "workerClaimedAt": "2026-08-15T13:07:04+08:00",
+      "workerClaimCommit": "e9f32f77f68c4c117075dd648ae1569413123d81",
+      "globalOrderVerified": true,
+      "earlierDueTasksClosed": ["discovery", "queue", "reading"]
+    }
+  },
+  "workResult": {
+    "summary": "Executed only Skill 04 Research Analysis after fail-closed admission, deterministic validation of the authoritative generated Analysis prompt bundle, complete reading of all seven required control/editorial/evidence sources, a durable same-date Wake Receipt, repository-granted global-serial execution authority and a verified Worker Claimed event. Consumed only the three completed 2026-08-15 Reading Results and produced exactly three Research Objects. Q-20260815-01 concludes that resumable digital employees should separate history/provenance admission, framework-owned protocol-state admission, exact action-occurrence binding and independently authorized human approval; the selected implementation establishes strong protocol-state and occurrence boundaries but not trusted ordinary history or confirmer authorization. Q-20260815-02 concludes that delegated agent work needs both stable lifecycle identity for the delegated occurrence and a semantic return contract for successful completion; transport termination alone is insufficient, while cross-framework identity, remote durability and effect recovery remain separate contracts. Q-20260815-03 concludes that handoff safety must distinguish execution ownership, routing ownership and external-effect ownership; bounded local cancellation and registry retirement can revoke local routing without proving underlying work or external effects have terminated. No article drafting, visualization, Publication Candidate creation or publication was performed.",
+    "summary_zh": "在完成 Fail-closed Admission、权威 Generated Analysis Prompt Bundle 的确定性校验、全部 7 个 Required Control/Editorial/Evidence Source 的完整读取、同日 Wake Receipt 持久核验、仓库授予的全局串行执行权与 Worker Claimed 核验后，仅执行 Skill 04 Research Analysis。只消费 2026-08-15 当日三份已完成 Reading Result，并恰好形成三份 Research Object。Q-20260815-01 的判断是：可恢复数字员工应分离 History/Provenance Admission、框架自有 Protocol-state Admission、精确 Action-occurrence Binding 与独立授权的 Human Approval；所选实现建立了较强的 Protocol-state 与 Occurrence Boundary，但没有证明普通历史可信或 Confirmer 已授权。Q-20260815-02 的判断是：Delegated Agent Work 同时需要稳定的 Delegation Lifecycle Identity 与定义成功完成的 Semantic Return Contract；仅有 Transport Termination 不足，而 Cross-framework Identity、Remote Durability 与 Effect Recovery 仍是独立合同。Q-20260815-03 的判断是：Handoff Safety 必须区分 Execution Ownership、Routing Ownership 与 External-effect Ownership；有界的本地 Cancellation 与 Registry Retirement 可以撤销本地 Routing，但不能证明底层工作或外部 Effect 已经终止。未执行文章撰写、可视化、Publication Candidate 创建或发布。",
+    "researchObjects": [
+      {
+        "column": "digital-employee",
+        "itemId": "Q-20260815-01",
+        "artifact": "research/analysis/Q-20260815-01-protocol-state-admission-human-authorization.md",
+        "articleType": "engineering-insight",
+        "projectRelevance": "none",
+        "judgment": "Resumability should separate imported-history provenance, runtime-owned protocol-state admission, exact occurrence binding and human authorization; structurally valid history or confirmation is not automatically authoritative or authorized.",
+        "judgment_zh": "可恢复性应分离导入历史 Provenance、Runtime 自有 Protocol-state Admission、精确 Occurrence Binding 与 Human Authorization；结构有效的历史或确认并不会自动成为权威状态或已授权批准。"
+      },
+      {
+        "column": "industry-architecture",
+        "itemId": "Q-20260815-02",
+        "artifact": "research/analysis/Q-20260815-02-delegation-lifecycle-semantic-return-contract.md",
+        "articleType": "technical-analysis",
+        "projectRelevance": "none",
+        "judgment": "Reliable delegated-agent work needs both stable lifecycle identity for the exact delegation and a task-specific semantic terminal contract; transport closure alone cannot prove successful completion.",
+        "judgment_zh": "可靠的 Delegated-agent Work 同时需要精确委派的稳定 Lifecycle Identity 与 Task-specific Semantic Terminal Contract；Transport Closure 本身不能证明工作成功完成。"
+      },
+      {
+        "column": "open-source-engineering",
+        "itemId": "Q-20260815-03",
+        "artifact": "research/analysis/Q-20260815-03-handoff-routing-effect-ownership.md",
+        "articleType": "engineering-insight",
+        "projectRelevance": "none",
+        "judgment": "Safe handoff requires separate evidence for execution, routing and external-effect ownership; bounded cancellation and registry retirement can release local ownership without proving residual work or provider-side effects are closed.",
+        "judgment_zh": "安全 Handoff 需要分别证明 Execution、Routing 与 External-effect Ownership；Bounded Cancellation 与 Registry Retirement 可以释放本地 Ownership，但不能证明 Residual Work 或 Provider-side Effect 已关闭。"
+      }
+    ],
+    "boundary": {
+      "unreadMaterialAnalyzed": false,
+      "priorDayResearchInputsReused": false,
+      "fixedArticleOutline": false,
+      "forcedFirstPartyMapping": false,
+      "articleWriting": false,
+      "visualization": false,
+      "publicationCandidate": false,
+      "publication": false
+    }
+  },
+  "output": {
+    "type": "Research Objects",
+    "researchObjectCount": 3,
+    "artifacts": [
+      "research/analysis/Q-20260815-01-protocol-state-admission-human-authorization.md",
+      "research/analysis/Q-20260815-02-delegation-lifecycle-semantic-return-contract.md",
+      "research/analysis/Q-20260815-03-handoff-routing-effect-ownership.md"
+    ]
+  },
+  "next": {
+    "task": "production",
+    "scheduledTime": "15:00",
+    "instruction": "Production may consume only these three completed 2026-08-15 Research Objects after its formal time gate, fresh admission, authoritative prompt verification, global serial-order check and Worker Claim. It must preserve evidence identities and bounded judgments: imported history is not automatically authoritative, semantic task completion is distinct from transport termination, and local cancellation/routing retirement does not prove external-effect closure.",
+    "instruction_zh": "Production 只能在 15:00 正式时间门禁之后，并完成新的 Admission、权威 Prompt Verification、全局串行顺序检查与 Worker Claim 后，消费这三份 2026-08-15 已完成 Research Object。必须保留 Evidence Identity 与有界判断：导入 History 不会自动成为权威状态，Semantic Task Completion 不等于 Transport Termination，本地 Cancellation/Routing Retirement 也不能证明 External-effect Closure。"
+  },
+  "metrics": [
+    {"name": "reading_results_consumed", "value": 3},
+    {"name": "research_objects", "value": 3},
+    {"name": "prompt_hash_verified", "value": 1},
+    {"name": "required_sources_read", "value": 7},
+    {"name": "prior_day_research_inputs_reused", "value": 0},
+    {"name": "first_party_project_mappings_forced", "value": 0},
+    {"name": "article_drafts", "value": 0},
+    {"name": "publication_actions", "value": 0}
+  ],
+  "evidence": [
+    "acc52c5bf45f07593885fa844dc41002ee7a535e",
+    "research/runtime/wakes/2026/08/2026-08-15/analysis-130135.json",
+    "research/runtime/records/daily/2026/08/2026-08-15-daily-runtime.json",
+    "research/runtime/worker-prompts/generated/CONTROL.json",
+    "research/runtime/worker-prompts/generated/analysis.prompt.md",
+    "research/runtime/WORKER-CONTRACT-V3.md",
+    "research/runtime/WAKE-RECEIPT-V1.md",
+    "research/editorial/EDITORIAL-ARCHITECTURE.json",
+    "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+    "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+    "research/skills/04-research-analysis.md",
+    "research/reading/Q-20260815-01-trusted-session-initialization-hitl-confirmation-boundary.md",
+    "research/reading/Q-20260815-02-native-a2a-task-delegation-finish-terminal-boundary.md",
+    "research/reading/Q-20260815-03-live-background-tool-task-lifecycle-ownership.md",
+    "e9f32f77f68c4c117075dd648ae1569413123d81"
+  ],
+  "artifacts": [
+    "research/analysis/Q-20260815-01-protocol-state-admission-human-authorization.md",
+    "research/analysis/Q-20260815-02-delegation-lifecycle-semantic-return-contract.md",
+    "research/analysis/Q-20260815-03-handoff-routing-effect-ownership.md",
+    "research/runtime/results/2026/08/2026-08-15-analysis-result.json"
+  ]
+}
