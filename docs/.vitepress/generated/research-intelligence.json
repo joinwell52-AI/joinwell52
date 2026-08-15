@@ -1,7 +1,7 @@
 {
   "schema": "research-intelligence-center-data/v1",
-  "generatedAt": "2026-08-13T02:00:12.276Z",
-  "today": "2026-08-13",
+  "generatedAt": "2026-08-15T13:33:20.920Z",
+  "today": "2026-08-15",
   "timezone": "Asia/Shanghai",
   "registryVersion": "1.0",
   "effectiveDate": "2026-08-14",
@@ -56,68 +56,54 @@
   "currentRun": {
     "schema": "research-intelligence-run/v1",
     "version": "1.0",
-    "date": "2026-08-13",
+    "date": "2026-08-15",
     "timezone": "Asia/Shanghai",
-    "status": "Running",
+    "status": "Completed",
     "registryVersion": "1.0",
     "sourceTask": "Research Runtime Discovery",
-    "updatedAt": "2026-08-13T09:10:16+08:00",
+    "updatedAt": "2026-08-15T09:13:46+08:00",
     "githubCommit": "pending",
-    "reason": "Discovery pipelines are complete; Queue triage has not yet selected or rejected any run-date signal.",
-    "reason_zh": "Discovery 三条情报管线已完成；Queue 尚未对运行日 Signal 执行选题或淘汰。",
+    "reason": "Discovery completed all three configured intelligence pipelines for the run date, resolved every due P0 source, and retained 13 normalized same-day GitHub engineering signals. Topic selection remains exclusively owned by Queue, so all three column decisions remain Waiting.",
+    "reason_zh": "Discovery 已完成运行日三条配置情报管线，解析全部到期 P0 来源，并保留 13 个规范化的同日 GitHub 工程信号。选题仍完全由 Queue 负责，因此三个栏目决定均保持 Waiting。",
     "pipelines": [
       {
         "id": "ai-platform",
         "label": "AI Platform Change Intelligence",
-        "label_zh": "AI 平台变更情报发现",
+        "label_zh": "AI 平台变化情报",
         "status": "Completed",
-        "due": 33,
-        "checked": 30,
-        "inaccessible": [
-          {
-            "source": "anthropic-claude/community-discord",
-            "reason": "Configured official Discord community requires authenticated membership and is not anonymously retrievable."
-          }
-        ],
-        "failed": [
-          {
-            "source": "cursor/announcements",
-            "reason": "Configured official announcements channel returned an internal retrieval error during the run-date scan."
-          },
-          {
-            "source": "microsoft-copilot-platform/tech-community",
-            "reason": "Configured Microsoft Tech Community channel returned an internal retrieval error during the run-date scan."
-          }
-        ],
-        "signals": 1,
+        "due": 45,
+        "checked": 45,
+        "inaccessible": [],
+        "failed": [],
+        "signals": 0,
         "candidates": 0,
         "selected": 0,
         "rejected": 0,
         "coveragePercent": 100,
-        "reason": "All 33 due P0 platform channels were resolved as checked, explicitly authentication-required, or explicit retrieval failures; one material run-date change was retained after same-day normalization.",
-        "reason_zh": "33 个应查 P0 平台频道均解析为已检查、明确需要认证或明确抓取失败；按当天同机制归并后保留 1 个重要变化。"
+        "reason": "All 45 configured public P0 platform channels were checked against current authoritative surfaces. No material 2026-08-15 platform mechanism change survived normalization and same-day filtering.",
+        "reason_zh": "已检查全部 45 个配置的公开 P0 平台渠道，并以当前权威页面为准核验。经机制规范化与同日过滤后，没有保留 2026-08-15 的重要平台机制变化。"
       },
       {
         "id": "github-engineering",
         "label": "GitHub Engineering Intelligence",
-        "label_zh": "GitHub 工程情报发现",
+        "label_zh": "GitHub 工程情报",
         "status": "Completed",
         "due": 9,
         "checked": 9,
         "inaccessible": [],
         "failed": [],
-        "signals": 9,
+        "signals": 13,
         "candidates": 0,
         "selected": 0,
         "rejected": 0,
         "coveragePercent": 100,
-        "reason": "All nine P0 repositories were checked incrementally from the run-date boundary; nine material maintainer changes were retained after same-mechanism normalization.",
-        "reason_zh": "9 个 P0 仓库均从运行日边界完成增量检查；按同机制归并后保留 9 个重要维护者变更。"
+        "reason": "All nine P0 daily repositories were checked. Material same-day maintainer changes were normalized into 13 unselected signals, with related commits on the same underlying mechanism deduplicated.",
+        "reason_zh": "已检查全部 9 个 P0 每日仓库。同日重要维护者变更经规范化后形成 13 个未选题信号；同一底层机制的相关提交已合并去重。"
       },
       {
         "id": "published-research",
         "label": "Published Research Intelligence",
-        "label_zh": "论文与研究成果情报发现",
+        "label_zh": "已发表研究情报",
         "status": "Completed",
         "due": 9,
         "checked": 9,
@@ -128,8 +114,8 @@
         "selected": 0,
         "rejected": 0,
         "coveragePercent": 100,
-        "reason": "All nine P0 research-source indexes were checked; no newly published run-date object crossed the engineering-evidence threshold for a fresh Signal.",
-        "reason_zh": "9 个 P0 研究来源索引均已检查；没有新的运行日研究对象达到形成新 Signal 所需的工程证据阈值。"
+        "reason": "All nine configured P0 research sources were checked. No material same-day research object meeting the configured evidence and topic rules was retained.",
+        "reason_zh": "已检查全部 9 个配置的 P0 研究来源。没有保留符合配置证据与主题规则的重要同日研究对象。"
       }
     ],
     "columns": [
@@ -137,198 +123,278 @@
         "id": "digital-employee",
         "label": "Digital Employee",
         "label_zh": "数字员工",
-        "decision": "Waiting",
-        "signals": 2,
+        "decision": "Selected",
+        "signals": 4,
         "candidates": 0,
-        "selectedItemId": "",
-        "selectedTitle": "",
-        "selectedTitle_zh": "",
-        "reason": "Discovery only: two signals have Digital Employee as their primary column; Queue has not triaged them.",
-        "reason_zh": "仅完成 Discovery：2 个 Signal 以数字员工为主栏目；Queue 尚未筛选。"
+        "selectedItemId": "Q-20260815-01",
+        "selectedTitle": "HITL resumption needs trusted session initialization and confirmation boundaries",
+        "selectedTitle_zh": "HITL 恢复需要可信的会话初始化与确认边界",
+        "reason": "Selected from SIG-20260815-010 with Skill 02 score 46/50. It is the strongest bounded Digital Employee object in the run-date pool because it joins two runtime-authority boundaries in one concrete mechanism: client-supplied initialization events are prevented from seeding trusted session state, while HITL confirmation handling is tightened during resume. That yields a specific research question about which state may be admitted before a digital employee resumes after human intervention and how confirmation evidence is bound to the resumed execution. Guardian v2 policy-driven risk classification and explicit memory identity/topic controls are both strong candidates, but they are broader policy or memory-scope mechanisms rather than a direct resume-integrity boundary.",
+        "reason_zh": "选自 SIG-20260815-010，Skill 02 评分 46/50。它是运行日信号池中最强的有界数字员工对象，因为在一个具体机制中连接了两个运行时授权边界：客户端提供的初始化事件不能直接注入可信会话状态，同时 HITL 恢复时的确认处理被收紧。这形成一个明确研究问题：数字员工在人类介入后恢复执行之前，哪些状态可以被接纳，以及确认依据如何绑定到恢复后的执行。Guardian v2 的策略化风险分类和显式记忆身份/主题控制同样很强，但它们分别偏向更宽的策略或记忆作用域问题，不如该对象直接聚焦恢复完整性边界。"
       },
       {
         "id": "industry-architecture",
         "label": "Industry Architecture",
         "label_zh": "行业架构",
-        "decision": "Waiting",
+        "decision": "Selected",
         "signals": 2,
         "candidates": 0,
-        "selectedItemId": "",
-        "selectedTitle": "",
-        "selectedTitle_zh": "",
-        "reason": "Discovery only: two signals have Industry Architecture as their primary column; Queue has not triaged them.",
-        "reason_zh": "仅完成 Discovery：2 个 Signal 以行业架构为主栏目；Queue 尚未筛选。"
+        "selectedItemId": "Q-20260815-02",
+        "selectedTitle": "Native A2A task execution needs explicit delegation scope, finish semantics, and terminal-state mapping",
+        "selectedTitle_zh": "原生 A2A Task 执行需要显式委派作用域、完成语义与终态映射",
+        "reason": "Selected from SIG-20260815-008 with Skill 02 score 46/50. It exposes a bounded inter-agent execution architecture rather than only an instruction-distribution mechanism: RemoteA2aAgent gains native task mode, finish-task registration, delegation-scope aggregation and terminal-state mapping inside the A2A executor. The object therefore supports a concrete architecture question about how delegated work becomes a governed task with explicit completion and terminal semantics across an agent boundary. The model-catalog role-instruction signal remains a useful candidate, but it is primarily configuration/role distribution and has less execution-state depth than native A2A task mode.",
+        "reason_zh": "选自 SIG-20260815-008，Skill 02 评分 46/50。它暴露的是有界的 Agent 间执行架构，而不仅是指令分发机制：RemoteA2aAgent 获得原生 Task 模式、finish-task 注册、委派作用域聚合以及 A2A 执行器内的终态映射。因此可以形成具体架构问题：被委派的工作如何跨 Agent 边界成为具有显式完成语义和终态语义的受治理任务。模型目录角色指令信号仍是有价值候选，但它主要属于配置/角色分发，执行状态深度弱于原生 A2A Task 模式。"
       },
       {
         "id": "open-source-engineering",
         "label": "Open-source Engineering",
         "label_zh": "开源工程",
-        "decision": "Waiting",
-        "signals": 6,
+        "decision": "Selected",
+        "signals": 7,
         "candidates": 0,
-        "selectedItemId": "",
-        "selectedTitle": "",
-        "selectedTitle_zh": "",
-        "reason": "Discovery only: six signals have Open-source Engineering as their primary column; Queue has not triaged them.",
-        "reason_zh": "仅完成 Discovery：6 个 Signal 以开源工程为主栏目；Queue 尚未筛选。"
+        "selectedItemId": "Q-20260815-03",
+        "selectedTitle": "Agent runtimes must own background tool-task cancellation at run teardown",
+        "selectedTitle_zh": "Agent Runtime 必须在运行收尾时负责后台工具任务的取消",
+        "reason": "Selected from SIG-20260815-009 with Skill 02 score 46/50. It is the strongest bounded Open-source Engineering object because it defines ownership of streaming and non-blocking background tool tasks at handoff or teardown, explicitly cancels them, and releases stale stream-registry entries instead of allowing orphaned work to outlive the run. The mechanism is concrete, failure-oriented and regression-testable, giving a focused engineering question about lifecycle ownership and cleanup boundaries in agent runtimes. Executor network-policy auditing and environment-configuration ownership are both strong candidates, but neither exposes as direct a resource-lifetime failure mode.",
+        "reason_zh": "选自 SIG-20260815-009，Skill 02 评分 46/50。它是开源工程栏目中最强的有界对象，因为它明确了交接或运行收尾时对流式与非阻塞后台工具任务的所有权：这些任务会被显式取消，同时释放陈旧的流注册项，而不是让孤儿工作继续超出本次 Run 生命周期。该机制具体、面向失败场景且可回归测试，形成一个聚焦的工程问题：Agent Runtime 如何定义资源生命周期所有权与清理边界。执行器网络策略审计和环境配置所有权同样是强候选，但都没有暴露如此直接的资源生命周期失败模型。"
       }
     ],
     "signals": [
       {
-        "id": "SIG-20260813-P-001",
-        "pipeline": "ai-platform",
+        "id": "SIG-20260815-001",
+        "pipeline": "github-engineering",
+        "title": "Codex preserves per-environment permission and configuration ownership",
+        "title_zh": "Codex 保留每个环境的权限与配置所有权",
+        "sourceUrl": "https://github.com/openai/codex/commit/22bf16a37ed45006c0226541874abd7449c29911",
+        "publishedAt": "2026-08-15",
+        "evidenceLevel": "merged_maintainer_change",
+        "primaryColumn": "open-source-engineering",
+        "secondaryColumns": [
+          "digital-employee",
+          "industry-architecture"
+        ],
+        "triageStatus": "signal",
+        "changeObject": "openai/codex:environment-config-ownership-permission-profiles",
+        "summary": "Codex now retains whether an environment attachment inherits thread configuration or owns its own configuration, while honoring per-environment permission profiles across updates and child-thread snapshots.",
+        "summary_zh": "Codex 现在会保留环境附件是继承线程配置还是拥有自身配置，并在后续更新与子线程快照中继续遵守每个环境独立的权限配置。"
+      },
+      {
+        "id": "SIG-20260815-002",
+        "pipeline": "github-engineering",
+        "title": "Codex forwards executor network policy decisions for audit",
+        "title_zh": "Codex 将执行器网络策略决定转发用于审计",
+        "sourceUrl": "https://github.com/openai/codex/commit/15fde8c1f2d48812c1ad3b5d2fb7a1e7da4053fa",
+        "publishedAt": "2026-08-15",
+        "evidenceLevel": "merged_maintainer_change",
+        "primaryColumn": "open-source-engineering",
+        "secondaryColumns": [
+          "digital-employee",
+          "industry-architecture"
+        ],
+        "triageStatus": "signal",
+        "changeObject": "openai/codex:executor-network-policy-audit",
+        "summary": "Executor-local proxy decisions are forwarded as best-effort policy notifications, validated against the active process, and converted into audit events with controller-trusted execution metadata.",
+        "summary_zh": "执行器本地代理的策略决定会以尽力而为的策略通知转发，并对照活动进程核验，随后以控制器可信的执行元数据写入审计事件。"
+      },
+      {
+        "id": "SIG-20260815-003",
+        "pipeline": "github-engineering",
+        "title": "Codex adds MCP protocol discovery observability",
+        "title_zh": "Codex 增加 MCP 协议发现可观测性",
+        "sourceUrl": "https://github.com/openai/codex/commit/6bed213411d1250686cc162feb4324975c12158a",
+        "publishedAt": "2026-08-15",
+        "evidenceLevel": "merged_maintainer_change",
         "primaryColumn": "open-source-engineering",
         "secondaryColumns": [
           "industry-architecture"
         ],
-        "title": "GitHub resolved a run-date disruption affecting login and release-asset downloads",
-        "title_zh": "GitHub 解决了运行日内影响登录与 Release Asset 下载的服务中断",
-        "summary": "GitHub Status recorded a disruption beginning at 21:39 UTC on August 12 (05:39 Asia/Shanghai on August 13) affecting login and release-asset downloads; GitHub identified the root cause, mitigated the errors, and marked the incident resolved at 22:56 UTC.",
-        "summary_zh": "GitHub Status 记录了一次始于 8 月 12 日 21:39 UTC（上海时间 8 月 13 日 05:39）的服务中断，影响登录与 Release Asset 下载；GitHub 随后识别根因、实施缓解，并于 22:56 UTC 标记为已解决。",
-        "sourceUrl": "https://www.githubstatus.com/incidents/lsvy8xsf0gxv",
-        "evidenceLevel": "official_announcement",
-        "triageStatus": "signal"
+        "triageStatus": "signal",
+        "changeObject": "openai/codex:mcp-protocol-discovery-metrics",
+        "summary": "Codex records counters and durations for MCP client protocol discovery and classifies outcomes as modern, legacy, or failure under the configured negotiation mode.",
+        "summary_zh": "Codex 为 MCP 客户端协议发现记录计数与耗时，并按照配置的协商模式将结果分类为现代协议、旧协议或失败。"
       },
       {
-        "id": "SIG-20260813-G-001",
+        "id": "SIG-20260815-004",
         "pipeline": "github-engineering",
-        "primaryColumn": "digital-employee",
-        "secondaryColumns": [
-          "industry-architecture",
-          "open-source-engineering"
-        ],
-        "title": "Codex unifies turn input admission into atomic start-or-steer routing",
-        "title_zh": "Codex 将 Turn 输入接纳统一为原子化 Start-or-Steer 路由",
-        "summary": "Codex introduced a typed TurnInputRequest path that atomically starts a turn, steers an active turn, or declines input with a specific reason; app-server turn/start can steer an active regular turn and incompatible schemas or non-steerable states are rejected without applying settings or enqueuing input.",
-        "summary_zh": "Codex 引入类型化 TurnInputRequest 路径，以原子方式启动 Turn、Steer 活动 Turn，或带明确原因拒绝输入；app-server 的 turn/start 可 Steer 活动常规 Turn，而不兼容 Schema 或不可 Steer 状态会在不应用设置、不入队输入的情况下被拒绝。",
-        "sourceUrl": "https://github.com/openai/codex/commit/cbb7e82a8bdd2b59b6f25619e1db4b4c74de1b04",
+        "title": "Codex sources multi-agent role instructions from the model catalog",
+        "title_zh": "Codex 从模型目录提供多 Agent 角色指令",
+        "sourceUrl": "https://github.com/openai/codex/commit/395723b2385cf1314dcf27db4b01a221785109b0",
+        "publishedAt": "2026-08-15",
         "evidenceLevel": "merged_maintainer_change",
-        "triageStatus": "signal"
-      },
-      {
-        "id": "SIG-20260813-G-002",
-        "pipeline": "github-engineering",
-        "primaryColumn": "open-source-engineering",
-        "secondaryColumns": [
-          "industry-architecture"
-        ],
-        "title": "Codex extends plugin measurement to remote and background execution with bounded private sidecars",
-        "title_zh": "Codex 将插件度量扩展到远程与后台执行，并使用有界私有 Sidecar",
-        "summary": "A same-mechanism sequence of Codex changes keeps plugin measurement alive for background commands, finalizes late completions exactly once, and extends collection to remote executors using executor-native owner-private temporary directories, bounded streamed output, validation, and cleanup.",
-        "summary_zh": "Codex 一组同机制变更使插件度量在后台命令结束前持续有效，对晚到完成事件只收口一次，并扩展到远程执行器：使用执行器原生的仅所有者可访问临时目录、有界流式输出、校验与清理。",
-        "sourceUrl": "https://github.com/openai/codex/commit/9579479d288afbd3d827affdfc73801c6b848cd0",
-        "evidenceLevel": "merged_maintainer_change",
-        "triageStatus": "signal"
-      },
-      {
-        "id": "SIG-20260813-G-003",
-        "pipeline": "github-engineering",
         "primaryColumn": "industry-architecture",
         "secondaryColumns": [
           "open-source-engineering",
           "digital-employee"
         ],
-        "title": "Codex makes code-mode session recovery generation-aware after gRPC host restarts",
-        "title_zh": "Codex 在 gRPC Host 重启后实现具备 Generation 语义的 Code Mode 会话恢复",
-        "summary": "Codex now reopens cached code-mode sessions after a gRPC host stops, serializes concurrent reconnection attempts, scopes cell IDs to the new host generation, coordinates shutdown, and rejects stale wait or terminate requests.",
-        "summary_zh": "Codex 现在会在 gRPC Host 停止后重新打开缓存的 Code Mode 会话，串行化并发重连尝试，将 Cell ID 绑定到新的 Host Generation，协调关闭过程，并拒绝过期的 wait 或 terminate 请求。",
-        "sourceUrl": "https://github.com/openai/codex/commit/bde723ae7dedc87754228a2476a7a4cfbf05b4b8",
-        "evidenceLevel": "merged_maintainer_change",
-        "triageStatus": "signal"
+        "triageStatus": "signal",
+        "changeObject": "openai/codex:model-catalog-multi-agent-role-instructions",
+        "summary": "Root and subagent role instructions, delegation guidance, and model-specific refresh behavior are now supplied through the model catalog with explicit fallback precedence.",
+        "summary_zh": "根 Agent 与子 Agent 的角色指令、委派指导以及模型切换后的刷新行为现在由模型目录提供，并具有明确的回退优先级。"
       },
       {
-        "id": "SIG-20260813-G-004",
+        "id": "SIG-20260815-005",
         "pipeline": "github-engineering",
-        "primaryColumn": "open-source-engineering",
-        "secondaryColumns": [
-          "industry-architecture"
-        ],
-        "title": "Codex adds constrained dynamic HTTP header helpers for local MCP servers",
-        "title_zh": "Codex 为本地 MCP Server 增加受约束的动态 HTTP Header Helper",
-        "summary": "Local streamable-HTTP MCP servers can obtain connection-scoped headers from a configured helper command; Codex constrains the mechanism with origin isolation, redirect blocking, reserved and duplicate-header rejection, execution/output limits, managed validation, and command redaction.",
-        "summary_zh": "本地 Streamable HTTP MCP Server 可通过配置的 Helper Command 获取连接级 Header；Codex 同时施加 Origin 隔离、禁止重定向、保留/重复 Header 拒绝、执行与输出上限、Managed 校验以及命令脱敏。",
-        "sourceUrl": "https://github.com/openai/codex/commit/379cb68444057c721b6c8fa0bd610b7c6ecb9824",
+        "title": "Codex makes Guardian v2 risk classification policy-driven and configurable",
+        "title_zh": "Codex 将 Guardian v2 风险分类改为策略驱动且可配置",
+        "sourceUrl": "https://github.com/openai/codex/commit/baab1705c60089f919accc11608aa0df02f634f7",
+        "publishedAt": "2026-08-15",
         "evidenceLevel": "merged_maintainer_change",
-        "triageStatus": "signal"
-      },
-      {
-        "id": "SIG-20260813-G-005",
-        "pipeline": "github-engineering",
-        "primaryColumn": "open-source-engineering",
-        "secondaryColumns": [
-          "digital-employee",
-          "industry-architecture"
-        ],
-        "title": "Claude Code 2.1.229 hardens remote and self-hosted execution paths",
-        "title_zh": "Claude Code 2.1.229 强化远程与自托管执行链路",
-        "summary": "Claude Code 2.1.229 adds resumable Remote Control documentation, server-supplied hooks for self-hosted runners and SSE keepalives for long thinking pauses, while also making missing Git credentials fail fast, requiring explicit Windows self-hosted base directories, tightening sandbox network parsing, and stopping dangerous git flags from auto-approval.",
-        "summary_zh": "Claude Code 2.1.229 增加 Remote Control 最近会话恢复说明、自托管 Runner 的服务端 Hook 与长思考间隔 SSE Keepalive；同时让缺失 Git 凭据快速失败、要求 Windows 自托管 Runner 显式指定 Base Directory、收紧 Sandbox 网络地址解析，并取消危险 Git Flag 的自动批准。",
-        "sourceUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.229",
-        "evidenceLevel": "merged_maintainer_change",
-        "triageStatus": "signal"
-      },
-      {
-        "id": "SIG-20260813-G-006",
-        "pipeline": "github-engineering",
-        "primaryColumn": "industry-architecture",
-        "secondaryColumns": [
-          "digital-employee",
-          "open-source-engineering"
-        ],
-        "title": "Google ADK moves recalled memory into turn-scoped context to protect reusable cache identity",
-        "title_zh": "Google ADK 将召回记忆移入 Turn 级上下文以保护可复用 Cache Identity",
-        "summary": "ADK changed PreloadMemoryTool so recalled memory is inserted into the current request's trailing user-context batch rather than the system instruction, preventing one query's memory from destabilizing explicit-cache identity or persisting into reusable prefixes.",
-        "summary_zh": "ADK 修改 PreloadMemoryTool，将召回记忆放入当前请求末尾的 User Context Batch，而不是 System Instruction，从而避免某次查询的记忆破坏 Explicit Cache Identity 或滞留在可复用前缀中。",
-        "sourceUrl": "https://github.com/google/adk-python/commit/be103fbd2f2ef4804afd691e37de53def2b4f934",
-        "evidenceLevel": "merged_maintainer_change",
-        "triageStatus": "signal"
-      },
-      {
-        "id": "SIG-20260813-G-007",
-        "pipeline": "github-engineering",
         "primaryColumn": "digital-employee",
         "secondaryColumns": [
+          "open-source-engineering",
           "industry-architecture"
         ],
-        "title": "Google ADK repairs HITL resume by restoring transfer-to-agent capability",
-        "title_zh": "Google ADK 通过恢复 Transfer-to-Agent 能力修复 HITL Resume",
-        "summary": "ADK fixed human-in-the-loop confirmation resume by injecting the transfer_to_agent tool when the resumed flow requires it, preserving the agent handoff capability across the pause/resume boundary.",
-        "summary_zh": "ADK 修复 Human-in-the-Loop 确认后的 Resume 流程：在恢复后的流程需要时注入 transfer_to_agent 工具，使 Agent Handoff 能力跨越暂停/恢复边界继续存在。",
-        "sourceUrl": "https://github.com/google/adk-python/commit/0897bee6a01928cc89a2ba229d42834f77b33e85",
-        "evidenceLevel": "merged_maintainer_change",
-        "triageStatus": "signal"
+        "triageStatus": "signal",
+        "changeObject": "openai/codex:guardian-v2-policy-risk-classification",
+        "summary": "Guardian v2 risk classification can now resolve security policy and configurable classifier thresholds, reasoning effort, token budgets, and transcript controls instead of relying on one fixed review configuration.",
+        "summary_zh": "Guardian v2 风险分类现在可以解析安全策略，并配置分类阈值、推理强度、Token 预算与上下文记录控制，而不再依赖单一固定评审配置。"
       },
       {
-        "id": "SIG-20260813-G-008",
+        "id": "SIG-20260815-006",
         "pipeline": "github-engineering",
+        "title": "OpenAI Agents SDK sandbox honors view_image path grants",
+        "title_zh": "OpenAI Agents SDK 沙箱遵守 view_image 路径授权",
+        "sourceUrl": "https://github.com/openai/openai-agents-python/commit/1a0c08868aec2a18eba964e5a07da4270a490c25",
+        "publishedAt": "2026-08-15",
+        "evidenceLevel": "merged_maintainer_change",
+        "primaryColumn": "open-source-engineering",
+        "secondaryColumns": [
+          "digital-employee"
+        ],
+        "triageStatus": "signal",
+        "changeObject": "openai/openai-agents-python:sandbox-view-image-path-grants",
+        "summary": "The sandbox path policy now honors extra path grants used by view_image operations, tightening consistency between declared tool permissions and filesystem access.",
+        "summary_zh": "沙箱路径策略现在会遵守 view_image 操作使用的额外路径授权，使工具声明权限与文件系统访问之间更加一致。"
+      },
+      {
+        "id": "SIG-20260815-007",
+        "pipeline": "github-engineering",
+        "title": "OpenAI Agents SDK stops exposing the mutable MCP tools cache to callers",
+        "title_zh": "OpenAI Agents SDK 不再向调用方暴露可变 MCP 工具缓存",
+        "sourceUrl": "https://github.com/openai/openai-agents-python/commit/2b2d7fe4747e36ff327a9af3b3a5d4ede27d3c4b",
+        "publishedAt": "2026-08-15",
+        "evidenceLevel": "merged_maintainer_change",
         "primaryColumn": "open-source-engineering",
         "secondaryColumns": [
           "industry-architecture"
         ],
-        "title": "Google ADK makes pre-metric agent crashes fail evaluations instead of yielding empty success",
-        "title_zh": "Google ADK 将指标执行前的 Agent Crash 视为评测失败而非空成功",
-        "summary": "ADK now fails an evaluation when an agent crashes before any metric runs, closing a correctness gap where infrastructure or agent failure could otherwise leave an evaluation without meaningful metric evidence.",
-        "summary_zh": "ADK 现在会在 Agent 于任何 Metric 执行前崩溃时直接判定 Evaluation 失败，关闭了基础设施或 Agent 故障可能留下‘无有效指标证据’的正确性缺口。",
-        "sourceUrl": "https://github.com/google/adk-python/commit/efeec703dad61357ad1d79860a4696d4801ce487",
-        "evidenceLevel": "merged_maintainer_change",
-        "triageStatus": "signal"
+        "triageStatus": "signal",
+        "changeObject": "openai/openai-agents-python:mcp-tools-cache-ownership",
+        "summary": "MCP tool-cache ownership is hardened so callers no longer receive the internal cache object directly, reducing accidental shared-state mutation across tool discovery consumers.",
+        "summary_zh": "MCP 工具缓存的所有权得到收紧，调用方不再直接获得内部缓存对象，从而减少工具发现消费者之间意外修改共享状态的风险。"
       },
       {
-        "id": "SIG-20260813-G-009",
+        "id": "SIG-20260815-008",
         "pipeline": "github-engineering",
+        "title": "Google ADK adds native A2A task-mode execution",
+        "title_zh": "Google ADK 增加原生 A2A Task 模式执行",
+        "sourceUrl": "https://github.com/google/adk-python/commit/72f3ff5cfb11fdf7432c6c2faa01befcc350ad7e",
+        "publishedAt": "2026-08-15",
+        "evidenceLevel": "merged_maintainer_change",
+        "primaryColumn": "industry-architecture",
+        "secondaryColumns": [
+          "open-source-engineering",
+          "digital-employee"
+        ],
+        "triageStatus": "signal",
+        "changeObject": "google/adk-python:a2a-native-task-mode",
+        "summary": "RemoteA2aAgent can execute in native task mode, including finish-task registration, delegation-scope aggregation, and terminal-state mapping in the A2A executor.",
+        "summary_zh": "RemoteA2aAgent 可以使用原生 Task 模式执行，包括注册 finish-task 工具、聚合委派任务作用域以及在 A2A 执行器中映射终态。"
+      },
+      {
+        "id": "SIG-20260815-009",
+        "pipeline": "github-engineering",
+        "title": "Google ADK cancels background tool tasks when a live agent run ends",
+        "title_zh": "Google ADK 在 Live Agent 运行结束时取消后台工具任务",
+        "sourceUrl": "https://github.com/google/adk-python/commit/0088abbe6651da6a6c644cace087a79d6a674821",
+        "publishedAt": "2026-08-15",
+        "evidenceLevel": "merged_maintainer_change",
         "primaryColumn": "open-source-engineering",
         "secondaryColumns": [
-          "industry-architecture"
+          "digital-employee"
         ],
-        "title": "Google ADK bounds Apigee completion HTTP timeouts and redirects",
-        "title_zh": "Google ADK 为 Apigee Completion HTTP 请求设置有界超时与重定向",
-        "summary": "ADK added explicit bounds to the Apigee completions HTTP client for request timeout and redirect behavior, reducing the chance that external inference transport can wait or follow redirects without a defined bound.",
-        "summary_zh": "ADK 为 Apigee Completions HTTP Client 增加明确的请求超时与重定向边界，降低外部推理传输在没有定义边界的情况下长时间等待或跟随重定向的风险。",
-        "sourceUrl": "https://github.com/google/adk-python/commit/f57a67d638a71899404dba2d4899ff42459e9f09",
+        "triageStatus": "signal",
+        "changeObject": "google/adk-python:live-run-background-tool-cancellation",
+        "summary": "Live-agent runs now own and cancel streaming or non-blocking background tool tasks during handoff or teardown, and release stale stream registry entries instead of allowing orphaned tasks to continue.",
+        "summary_zh": "Live Agent 运行现在会在交接或结束时负责取消流式或非阻塞后台工具任务，并释放陈旧的流注册项，避免孤儿任务继续运行。"
+      },
+      {
+        "id": "SIG-20260815-010",
+        "pipeline": "github-engineering",
+        "title": "Google ADK validates session initialization events and tightens HITL resumption",
+        "title_zh": "Google ADK 校验会话初始化事件并收紧 HITL 恢复",
+        "sourceUrl": "https://github.com/google/adk-python/commit/3fa71b6349dbabb47dff5a3e9dea689cae6904e9",
+        "publishedAt": "2026-08-15",
         "evidenceLevel": "merged_maintainer_change",
-        "triageStatus": "signal"
+        "primaryColumn": "digital-employee",
+        "secondaryColumns": [
+          "open-source-engineering"
+        ],
+        "triageStatus": "signal",
+        "changeObject": "google/adk-python:session-init-validation-hitl-resume",
+        "summary": "ADK prevents client-supplied session initialization events from seeding runtime state and tightens confirmation handling when resuming human-in-the-loop execution.",
+        "summary_zh": "ADK 阻止客户端提供的会话初始化事件直接注入运行时状态，并在恢复人在回路执行时收紧确认处理。"
+      },
+      {
+        "id": "SIG-20260815-011",
+        "pipeline": "github-engineering",
+        "title": "Google ADK propagates the caller RunConfig into AgentTool execution",
+        "title_zh": "Google ADK 将调用方 RunConfig 传播到 AgentTool 执行",
+        "sourceUrl": "https://github.com/google/adk-python/commit/983c28056f664b6229a541bcbd442cd20c1b6345",
+        "publishedAt": "2026-08-15",
+        "evidenceLevel": "merged_maintainer_change",
+        "primaryColumn": "open-source-engineering",
+        "secondaryColumns": [
+          "digital-employee"
+        ],
+        "triageStatus": "signal",
+        "changeObject": "google/adk-python:agent-tool-caller-runconfig-propagation",
+        "summary": "AgentTool execution now runs under the caller's RunConfig so execution settings remain attached across the agent-as-tool boundary.",
+        "summary_zh": "AgentTool 现在会在调用方的 RunConfig 下执行，使执行设置能够跨越“Agent 作为工具”的边界继续生效。"
+      },
+      {
+        "id": "SIG-20260815-012",
+        "pipeline": "github-engineering",
+        "title": "Google ADK adds memory identity and topic restrictions to Vertex Memory Bank",
+        "title_zh": "Google ADK 为 Vertex Memory Bank 增加记忆身份与主题限制",
+        "sourceUrl": "https://github.com/google/adk-python/commit/bf733602b61f2542add406235706fc9b1b7bfed2",
+        "publishedAt": "2026-08-15",
+        "evidenceLevel": "merged_maintainer_change",
+        "primaryColumn": "digital-employee",
+        "secondaryColumns": [
+          "industry-architecture",
+          "open-source-engineering"
+        ],
+        "triageStatus": "signal",
+        "changeObject": "google/adk-python:vertex-memory-id-allowed-topics",
+        "summary": "Vertex Memory Bank integration adds memory_id and allowed_topics controls, making memory selection and topical scope explicit runtime inputs.",
+        "summary_zh": "Vertex Memory Bank 集成新增 memory_id 与 allowed_topics 控制，使记忆选择和主题作用域成为显式运行时输入。"
+      },
+      {
+        "id": "SIG-20260815-013",
+        "pipeline": "github-engineering",
+        "title": "Google ADK includes grounding metadata in rubric judging",
+        "title_zh": "Google ADK 在量表评判中纳入 Grounding 元数据",
+        "sourceUrl": "https://github.com/google/adk-python/commit/b0cdecfc3f846e8124f0a964e64174c12a696a2e",
+        "publishedAt": "2026-08-15",
+        "evidenceLevel": "merged_maintainer_change",
+        "primaryColumn": "digital-employee",
+        "secondaryColumns": [
+          "open-source-engineering"
+        ],
+        "triageStatus": "signal",
+        "changeObject": "google/adk-python:rubric-judge-grounding-metadata",
+        "summary": "Rubric-judge prompts now include grounding metadata, expanding the evidence context available to automated evaluation rather than judging only the visible response content.",
+        "summary_zh": "量表评判提示现在会包含 Grounding 元数据，使自动评估能够使用更完整的证据上下文，而不只是判断可见响应内容。"
       }
-    ]
+    ],
+    "queuePlanProjection": {
+      "status": "Completed",
+      "sourceTask": "Research Runtime Queue",
+      "sourceRecord": "research/runtime/2026/08/2026-08-15-runtime.md",
+      "githubCommit": "pending",
+      "date": "2026-08-15"
+    }
   },
   "runs": {
     "2026-08-04": {
@@ -3810,7 +3876,851 @@
           "triageStatus": "signal"
         }
       ]
+    },
+    "2026-08-14": {
+      "schema": "research-intelligence-run/v1",
+      "version": "1.0",
+      "date": "2026-08-14",
+      "timezone": "Asia/Shanghai",
+      "status": "Completed",
+      "registryVersion": "1.0",
+      "sourceTask": "Research Runtime Discovery",
+      "updatedAt": "2026-08-14T09:10:31+08:00",
+      "githubCommit": "pending",
+      "reason": "All three Discovery pipelines reached terminal coverage for the run date. Discovery retained material same-day signals but performed no Queue triage.",
+      "reason_zh": "运行日三条 Discovery 管线均完成终态覆盖。Discovery 仅保留当天重要信号，未执行 Queue 筛选。",
+      "pipelines": [
+        {
+          "id": "ai-platform",
+          "label": "AI Platform Change Intelligence",
+          "label_zh": "AI 平台变更情报发现",
+          "status": "Completed",
+          "due": 45,
+          "checked": 45,
+          "inaccessible": [],
+          "failed": [],
+          "signals": 0,
+          "candidates": 0,
+          "selected": 0,
+          "rejected": 0,
+          "coveragePercent": 100,
+          "reason": "All 45 due public P0 channels were inspected. No material same-day platform announcement or documentation change was retained independently after cross-pipeline normalization; repository-origin changes were represented once in GitHub Engineering where primary maintainer evidence was stronger.",
+          "reason_zh": "45 个到期的公开 P0 渠道全部完成检查。跨管线规范化后，没有单独保留当天重要的平台公告或文档变更；源自仓库的变化统一在 GitHub Engineering 中以更强的一手维护者证据记录。"
+        },
+        {
+          "id": "github-engineering",
+          "label": "GitHub Engineering Intelligence",
+          "label_zh": "GitHub 工程情报发现",
+          "status": "Completed",
+          "due": 9,
+          "checked": 9,
+          "inaccessible": [],
+          "failed": [],
+          "signals": 14,
+          "candidates": 0,
+          "selected": 0,
+          "rejected": 0,
+          "coveragePercent": 100,
+          "reason": "All nine P0 daily repositories were inspected incrementally. Fourteen same-day maintainer changes were normalized into material engineering signals; repositories without a qualifying same-day change were recorded as checked with no retained signal.",
+          "reason_zh": "9 个 P0 Daily 仓库全部完成增量检查。当天维护者变更经规范化后形成 14 个重要工程信号；没有符合条件当天变化的仓库记录为已检查但不保留信号。"
+        },
+        {
+          "id": "published-research",
+          "label": "Published Research Intelligence",
+          "label_zh": "论文与研究成果情报发现",
+          "status": "Completed",
+          "due": 9,
+          "checked": 9,
+          "inaccessible": [],
+          "failed": [],
+          "signals": 1,
+          "candidates": 0,
+          "selected": 0,
+          "rejected": 0,
+          "coveragePercent": 100,
+          "reason": "All nine P0 research sources were queried. One same-day Zenodo primary research artifact met the configured enterprise-governance scope; other visible items were older, out of scope, or lacked sufficient same-day freshness to retain as signals.",
+          "reason_zh": "9 个 P0 研究来源全部完成查询。1 个当天发布的 Zenodo 一手研究产物符合企业治理范围；其余可见内容发布时间更早、超出范围，或缺少足够的当天新鲜度，因此未保留为信号。"
+        }
+      ],
+      "columns": [
+        {
+          "id": "digital-employee",
+          "label": "Digital Employee",
+          "label_zh": "数字员工",
+          "decision": "Selected",
+          "signals": 4,
+          "candidates": 0,
+          "selectedItemId": "Q-20260814-01",
+          "selectedTitle": "Persistent thread queues need stable identity, explicit pause semantics, and deterministic dispatch",
+          "selectedTitle_zh": "持久 Thread Queue 需要稳定身份、显式暂停语义与确定性派发",
+          "reason": "Selected from SIG-20260814-G-001 with Skill 02 score 46/50. It presents the strongest bounded Digital Employee mechanism in the run-date pool: queued user work has durable IDs, explicit CRUD/reorder/start controls, change notifications, automatic FIFO dispatch after terminal turns, and a deliberate pause after interruption. This creates a concrete responsibility-runtime question about how a digital employee should retain pending work, expose operator control, resume deterministically, and avoid silently continuing after an interruption. It narrowly outranks the Remote Control recovery signal because it combines durable work identity with dispatch policy rather than recovery alone.",
+          "reason_zh": "选自 SIG-20260814-G-001，Skill 02 评分 46/50。它是运行日信号池中最强的有界数字员工机制：排队用户工作具有持久 ID、显式增删改排与启动控制、变更通知、Turn 终态后的自动 FIFO 派发，并在中断后有意保持暂停。这形成一个具体的职责—运行时问题：数字员工如何保留待办工作、暴露操作者控制、确定性恢复，并避免在中断后静默继续执行。它以很小优势高于 Remote Control 恢复信号，因为它同时提供持久工作身份与派发策略，而不仅是恢复机制。"
+        },
+        {
+          "id": "industry-architecture",
+          "label": "Industry Architecture",
+          "label_zh": "行业架构",
+          "decision": "Selected",
+          "signals": 2,
+          "candidates": 0,
+          "selectedItemId": "Q-20260814-02",
+          "selectedTitle": "Accountable-AI operating architecture must connect governance controls to front-stage and back-stage responsibilities",
+          "selectedTitle_zh": "可问责 AI 运营架构必须把治理控制连接到前后台职责",
+          "reason": "Selected from SIG-20260814-R-001 with Skill 02 score 38/50. It is the only run-date primary research object whose primary column is Industry Architecture and it poses a bounded architecture question: how accountable AI, trusted data, enterprise-system integration, KPI governance and operational resilience are connected across front-stage and back-stage airline functions. Selection reflects architectural relevance and novelty, not independent validation; the artifact must be read for its design-science method, evidence basis and external-validity limits before any broader conclusion.",
+          "reason_zh": "选自 SIG-20260814-R-001，Skill 02 评分 38/50。它是运行日唯一以行业架构为主栏目的当日一手研究对象，并形成有界架构问题：可问责 AI、可信数据、企业系统集成、KPI 治理与运营韧性如何连接航空前台与后台职能。选择基于架构相关性与新信息，不代表独立验证；后续必须核查其设计科学方法、证据基础与外部有效性边界，才能形成更广泛判断。"
+        },
+        {
+          "id": "open-source-engineering",
+          "label": "Open-source Engineering",
+          "label_zh": "开源工程",
+          "decision": "Selected",
+          "signals": 9,
+          "candidates": 0,
+          "selectedItemId": "Q-20260814-03",
+          "selectedTitle": "Cancellation-safe agent runtimes need request-level rollback boundaries, not partial-turn cleanup",
+          "selectedTitle_zh": "可安全取消的 Agent Runtime 需要请求级回滚边界，而不是局部 Turn 清理",
+          "reason": "Selected from SIG-20260814-G-010 with Skill 02 score 45/50. It is the highest-scoring bounded Open-source Engineering object: cancellation and abort now roll back the entire multi-turn request instead of leaving partial request state. The mechanism is concrete, regression-testable and directly relevant to agent-runtime state integrity, recovery and observability. The operation-scoped sandbox/proxy snapshot signal is also strong, but this object has a cleaner transactional boundary and a more specific failure model for today's engineering slot.",
+          "reason_zh": "选自 SIG-20260814-G-010，Skill 02 评分 45/50。它是开源工程栏目中评分最高且边界清晰的对象：取消与中止现在回滚整个多 Turn 请求，而不是留下部分请求状态。该机制具体、可回归测试，并直接关联 Agent Runtime 的状态完整性、恢复与可观测。按操作快照 Sandbox/Proxy 状态的信号同样较强，但本对象具有更清晰的事务边界和更具体的失败模型，更适合作为今天的工程研究槽位。"
+        }
+      ],
+      "signals": [
+        {
+          "id": "SIG-20260814-G-001",
+          "pipeline": "github-engineering",
+          "primaryColumn": "digital-employee",
+          "secondaryColumns": [
+            "open-source-engineering"
+          ],
+          "title": "Codex app server adds persistent thread queue APIs with automatic FIFO dispatch",
+          "title_zh": "Codex App Server 新增持久 Thread Queue API 与自动 FIFO 派发",
+          "sourceUrl": "https://github.com/openai/codex/commit/9341b38310c73957e1313eab3f7c4034689bdec9",
+          "publishedAt": "2026-08-14",
+          "evidenceLevel": "merged_maintainer_change",
+          "triageStatus": "signal",
+          "summary": "The app server adds persistent queued user submissions, CRUD/reorder/start operations, change notifications, stable IDs, and automatic FIFO dispatch after completed or failed turns while remaining paused after interruption.",
+          "summary_zh": "App Server 增加持久化用户提交队列、增删改排与启动操作、变更通知和稳定 ID，并在 Turn 完成或失败后自动 FIFO 派发；中断后保持暂停。"
+        },
+        {
+          "id": "SIG-20260814-G-002",
+          "pipeline": "github-engineering",
+          "primaryColumn": "open-source-engineering",
+          "secondaryColumns": [
+            "digital-employee"
+          ],
+          "title": "Codex preserves thread subscriptions across revert reloads",
+          "title_zh": "Codex 在 Revert Reload 后保留 Thread Subscription",
+          "sourceUrl": "https://github.com/openai/codex/commit/c6dee5f49f9d4763cb498904d9bf0d0fd0c4586b",
+          "publishedAt": "2026-08-14",
+          "evidenceLevel": "merged_maintainer_change",
+          "triageStatus": "signal",
+          "summary": "Thread listeners are restarted from preserved thread state after paginated reloads instead of depending on the requesting connection, protecting existing subscriptions when that connection closes.",
+          "summary_zh": "分页重载后，Thread Listener 从保留的 Thread State 重启，而不再依赖发起请求的连接，从而在该连接关闭时仍保护既有订阅。"
+        },
+        {
+          "id": "SIG-20260814-G-003",
+          "pipeline": "github-engineering",
+          "primaryColumn": "open-source-engineering",
+          "secondaryColumns": [
+            "digital-employee"
+          ],
+          "title": "Codex skill metadata now carries supported model annotations",
+          "title_zh": "Codex Skill Metadata 开始携带受支持的模型标注",
+          "sourceUrl": "https://github.com/openai/codex/commit/3711943d11a1c69a65afe98757814b6b5244fbaf",
+          "publishedAt": "2026-08-14",
+          "evidenceLevel": "merged_maintainer_change",
+          "triageStatus": "signal",
+          "summary": "Skill frontmatter parsing adds an optional model field, recognizes supported model values, and ignores unsupported values without preventing the remaining skill metadata from loading.",
+          "summary_zh": "Skill Frontmatter 解析新增可选 model 字段，识别受支持模型值，同时忽略不支持值而不阻塞其余 Skill Metadata 加载。"
+        },
+        {
+          "id": "SIG-20260814-G-004",
+          "pipeline": "github-engineering",
+          "primaryColumn": "open-source-engineering",
+          "secondaryColumns": [],
+          "title": "OpenAI Agents SDK redacts tool output values from output-type validation errors",
+          "title_zh": "OpenAI Agents SDK 从输出类型校验错误中隐藏工具输出值",
+          "sourceUrl": "https://github.com/openai/openai-agents-python/commit/761fcd981908d9c2ff466ac19ff3cbd7ec17debf",
+          "publishedAt": "2026-08-14",
+          "evidenceLevel": "merged_maintainer_change",
+          "triageStatus": "signal",
+          "summary": "Tool output values are no longer exposed in output-type validation errors, tightening failure-path data handling.",
+          "summary_zh": "输出类型校验错误不再暴露工具输出值，强化失败路径中的数据处理边界。"
+        },
+        {
+          "id": "SIG-20260814-G-005",
+          "pipeline": "github-engineering",
+          "primaryColumn": "open-source-engineering",
+          "secondaryColumns": [
+            "industry-architecture"
+          ],
+          "title": "OpenAI Agents SDK snapshots sandbox policy and proxy request state per operation",
+          "title_zh": "OpenAI Agents SDK 按操作快照 Sandbox Policy 与 Proxy 请求状态",
+          "sourceUrl": "https://github.com/openai/openai-agents-python/commit/15989e50bccd978212f712a7d5b2266090a6ebd5",
+          "publishedAt": "2026-08-14",
+          "evidenceLevel": "merged_maintainer_change",
+          "triageStatus": "signal",
+          "summary": "A sandbox fix snapshots per-operation audit policies; an adjacent same-day maintainer fix also snapshots HTTP proxy headers, indicating explicit operation-scoped state capture for concurrent execution paths.",
+          "summary_zh": "Sandbox 修复按操作快照 Audit Policy；同日相邻维护者修复同时快照 HTTP Proxy Header，体现并发执行路径中显式的操作级状态捕获。",
+          "corroboratingSources": [
+            "https://github.com/openai/openai-agents-python/commit/079e745996af793d8fb3e4e448c1d80535c80f25"
+          ]
+        },
+        {
+          "id": "SIG-20260814-G-006",
+          "pipeline": "github-engineering",
+          "primaryColumn": "digital-employee",
+          "secondaryColumns": [
+            "open-source-engineering"
+          ],
+          "title": "OpenAI Agents SDK fixes Codex resume argument ordering",
+          "title_zh": "OpenAI Agents SDK 修复 Codex Resume 参数顺序",
+          "sourceUrl": "https://github.com/openai/openai-agents-python/commit/95f1c7cc56484b147ac3926db4ee5e4d437fc03e",
+          "publishedAt": "2026-08-14",
+          "evidenceLevel": "merged_maintainer_change",
+          "triageStatus": "signal",
+          "summary": "The Codex integration now preserves resume argument ordering, a narrow but directly relevant recovery/resumption correctness fix.",
+          "summary_zh": "Codex 集成现在保留 Resume 参数顺序，是直接涉及恢复与续跑正确性的修复。"
+        },
+        {
+          "id": "SIG-20260814-G-007",
+          "pipeline": "github-engineering",
+          "primaryColumn": "digital-employee",
+          "secondaryColumns": [
+            "open-source-engineering",
+            "industry-architecture"
+          ],
+          "title": "Claude Code 2.1.232 makes subagent forking default and expands cross-session messaging",
+          "title_zh": "Claude Code 2.1.232 默认启用 Subagent Forking 并扩展跨 Session 消息",
+          "sourceUrl": "https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md",
+          "publishedAt": "2026-08-14",
+          "evidenceLevel": "merged_maintainer_change",
+          "triageStatus": "signal",
+          "summary": "The release enables fork-style subagents by default, backgrounds non-teammate spawns in interactive sessions, adds named cross-session messaging, and exposes inbound message acceptance controls.",
+          "summary_zh": "该版本默认启用 Fork 型 Subagent，交互会话中的非队友 Spawn 默认后台运行，并新增命名跨 Session 消息与入站消息接受控制。"
+        },
+        {
+          "id": "SIG-20260814-G-008",
+          "pipeline": "github-engineering",
+          "primaryColumn": "open-source-engineering",
+          "secondaryColumns": [
+            "industry-architecture"
+          ],
+          "title": "Claude Code 2.1.232 hardens permissions, repository trust, sandbox paths, and shared messaging sockets",
+          "title_zh": "Claude Code 2.1.232 强化权限、仓库信任、Sandbox 路径与共享消息 Socket",
+          "sourceUrl": "https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md",
+          "publishedAt": "2026-08-14",
+          "evidenceLevel": "merged_maintainer_change",
+          "triageStatus": "signal",
+          "summary": "The release closes multiple permission and sandbox bypasses, requires trust per nested repository, protects cross-session messaging socket directories, and restricts sandbox binary overrides to higher-precedence settings.",
+          "summary_zh": "该版本关闭多项权限与 Sandbox 绕过，要求嵌套仓库分别确认信任，保护跨 Session 消息 Socket 目录，并把 Sandbox 二进制覆盖限制在更高优先级设置层。"
+        },
+        {
+          "id": "SIG-20260814-G-009",
+          "pipeline": "github-engineering",
+          "primaryColumn": "digital-employee",
+          "secondaryColumns": [
+            "open-source-engineering"
+          ],
+          "title": "Claude Code 2.1.232 strengthens Remote Control reattachment, restart recovery, and reconnect persistence",
+          "title_zh": "Claude Code 2.1.232 强化 Remote Control 重连、重启恢复与持续重试",
+          "sourceUrl": "https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md",
+          "publishedAt": "2026-08-14",
+          "evidenceLevel": "merged_maintainer_change",
+          "triageStatus": "signal",
+          "summary": "Remote Control sessions reattach to existing sessions after local resume, restore conversation history after worker restarts, surface reachability correctly to new clients, and keep reconnecting for roughly 30 minutes after network loss.",
+          "summary_zh": "Remote Control 在本地 Resume 后重新附着既有 Session，在 Worker 重启后恢复会话历史，向新客户端正确暴露可达性，并在网络中断后持续重连约 30 分钟。"
+        },
+        {
+          "id": "SIG-20260814-G-010",
+          "pipeline": "github-engineering",
+          "primaryColumn": "open-source-engineering",
+          "secondaryColumns": [
+            "digital-employee"
+          ],
+          "title": "Gemini CLI rolls back the entire multi-turn request on cancellation or abort",
+          "title_zh": "Gemini CLI 在取消或中止时回滚整个多 Turn 请求",
+          "sourceUrl": "https://github.com/google-gemini/gemini-cli/commit/783f6cb494aedf3e7276d02e76f32f63a27551a0",
+          "publishedAt": "2026-08-14",
+          "evidenceLevel": "merged_maintainer_change",
+          "triageStatus": "signal",
+          "summary": "Cancellation and abort handling now rolls back the entire multi-turn request rather than leaving partial request state behind.",
+          "summary_zh": "取消与中止处理现在回滚整个多 Turn 请求，避免留下部分请求状态。"
+        },
+        {
+          "id": "SIG-20260814-G-011",
+          "pipeline": "github-engineering",
+          "primaryColumn": "open-source-engineering",
+          "secondaryColumns": [
+            "digital-employee"
+          ],
+          "title": "Gemini CLI adds context-aware silent retries and availability TTL for capacity errors",
+          "title_zh": "Gemini CLI 为容量错误新增上下文感知静默重试与可用性 TTL",
+          "sourceUrl": "https://github.com/google-gemini/gemini-cli/commit/fa2f27aee0464412e4ac455a4221b01a775ff9bc",
+          "publishedAt": "2026-08-14",
+          "evidenceLevel": "merged_maintainer_change",
+          "triageStatus": "signal",
+          "summary": "Capacity-error handling adds context-aware silent retries and a time-bounded availability cache, making retry behavior stateful and explicitly bounded.",
+          "summary_zh": "容量错误处理新增上下文感知静默重试和有时限的可用性缓存，使重试行为具有状态且边界明确。"
+        },
+        {
+          "id": "SIG-20260814-G-012",
+          "pipeline": "github-engineering",
+          "primaryColumn": "open-source-engineering",
+          "secondaryColumns": [],
+          "title": "Google ADK fixes systemic first-part assumptions in Gemini Live flows",
+          "title_zh": "Google ADK 修复 Gemini Live Flow 中系统性的首 Part 假设",
+          "sourceUrl": "https://github.com/google/adk-python/commit/2109ea96e1c7431225e57fb6db6c4c116e632867",
+          "publishedAt": "2026-08-14",
+          "evidenceLevel": "merged_maintainer_change",
+          "triageStatus": "signal",
+          "summary": "Core Gemini Live connection and flow modules now scan all message parts instead of assuming the relevant content is always at parts[0].",
+          "summary_zh": "核心 Gemini Live Connection 与 Flow 模块现在扫描全部消息 Part，不再假设相关内容始终位于 parts[0]。"
+        },
+        {
+          "id": "SIG-20260814-G-013",
+          "pipeline": "github-engineering",
+          "primaryColumn": "industry-architecture",
+          "secondaryColumns": [
+            "open-source-engineering"
+          ],
+          "title": "Google ADK resolves nested providers behind litellm_proxy prefixes",
+          "title_zh": "Google ADK 正确解析 litellm_proxy 前缀后的嵌套 Provider",
+          "sourceUrl": "https://github.com/google/adk-python/commit/602e58db7171a49086d0c5b2b3e0fd8a8bd6d681",
+          "publishedAt": "2026-08-14",
+          "evidenceLevel": "merged_maintainer_change",
+          "triageStatus": "signal",
+          "summary": "Provider resolution now recognizes nested providers behind litellm_proxy prefixes so provider-specific behavior such as Azure file upload handling is not skipped.",
+          "summary_zh": "Provider 解析现在识别 litellm_proxy 前缀后的嵌套 Provider，避免 Azure 文件上传等 Provider 特定行为被跳过。"
+        },
+        {
+          "id": "SIG-20260814-G-014",
+          "pipeline": "github-engineering",
+          "primaryColumn": "open-source-engineering",
+          "secondaryColumns": [
+            "digital-employee"
+          ],
+          "title": "Google ADK preserves developer instructions when invocation event history is empty",
+          "title_zh": "Google ADK 在 Invocation Event 为空时仍保留 Developer Instructions",
+          "sourceUrl": "https://github.com/google/adk-python/commit/69c909000f73e47272fcab508e96f184c5cd81b3",
+          "publishedAt": "2026-08-14",
+          "evidenceLevel": "merged_maintainer_change",
+          "triageStatus": "signal",
+          "summary": "Prompt assembly now populates developer instructions even when invocation_events is empty, closing an initialization-state gap in instruction propagation.",
+          "summary_zh": "Prompt Assembly 在 invocation_events 为空时仍填充 Developer Instructions，修复初始化状态中的指令传播缺口。"
+        },
+        {
+          "id": "SIG-20260814-R-001",
+          "pipeline": "published-research",
+          "primaryColumn": "industry-architecture",
+          "secondaryColumns": [
+            "digital-employee"
+          ],
+          "title": "DPX-G360 proposes an accountable-AI governance architecture for airline digital operations",
+          "title_zh": "DPX-G360 提出面向航空数字运营的可问责 AI 治理架构",
+          "sourceUrl": "https://zenodo.org/records/21010383",
+          "publishedAt": "2026-08-14",
+          "evidenceLevel": "peer_reviewed_or_primary_research",
+          "triageStatus": "signal",
+          "summary": "The same-day Zenodo artifact presents a design-science architecture combining accountable AI, trusted data, integrated enterprise systems, KPI governance, and operational resilience across airline front-stage and back-stage functions.",
+          "summary_zh": "该当天 Zenodo 研究产物提出设计科学架构，把可问责 AI、可信数据、企业系统集成、KPI 治理与运营韧性连接到航空前台与后台职能。"
+        }
+      ],
+      "queuePlanProjection": {
+        "status": "Completed",
+        "sourceTask": "Research Runtime Queue",
+        "sourceRecord": "research/runtime/2026/08/2026-08-14-runtime.md",
+        "githubCommit": "pending",
+        "date": "2026-08-14"
+      }
+    },
+    "2026-08-15": {
+      "schema": "research-intelligence-run/v1",
+      "version": "1.0",
+      "date": "2026-08-15",
+      "timezone": "Asia/Shanghai",
+      "status": "Completed",
+      "registryVersion": "1.0",
+      "sourceTask": "Research Runtime Discovery",
+      "updatedAt": "2026-08-15T09:13:46+08:00",
+      "githubCommit": "pending",
+      "reason": "Discovery completed all three configured intelligence pipelines for the run date, resolved every due P0 source, and retained 13 normalized same-day GitHub engineering signals. Topic selection remains exclusively owned by Queue, so all three column decisions remain Waiting.",
+      "reason_zh": "Discovery 已完成运行日三条配置情报管线，解析全部到期 P0 来源，并保留 13 个规范化的同日 GitHub 工程信号。选题仍完全由 Queue 负责，因此三个栏目决定均保持 Waiting。",
+      "pipelines": [
+        {
+          "id": "ai-platform",
+          "label": "AI Platform Change Intelligence",
+          "label_zh": "AI 平台变化情报",
+          "status": "Completed",
+          "due": 45,
+          "checked": 45,
+          "inaccessible": [],
+          "failed": [],
+          "signals": 0,
+          "candidates": 0,
+          "selected": 0,
+          "rejected": 0,
+          "coveragePercent": 100,
+          "reason": "All 45 configured public P0 platform channels were checked against current authoritative surfaces. No material 2026-08-15 platform mechanism change survived normalization and same-day filtering.",
+          "reason_zh": "已检查全部 45 个配置的公开 P0 平台渠道，并以当前权威页面为准核验。经机制规范化与同日过滤后，没有保留 2026-08-15 的重要平台机制变化。"
+        },
+        {
+          "id": "github-engineering",
+          "label": "GitHub Engineering Intelligence",
+          "label_zh": "GitHub 工程情报",
+          "status": "Completed",
+          "due": 9,
+          "checked": 9,
+          "inaccessible": [],
+          "failed": [],
+          "signals": 13,
+          "candidates": 0,
+          "selected": 0,
+          "rejected": 0,
+          "coveragePercent": 100,
+          "reason": "All nine P0 daily repositories were checked. Material same-day maintainer changes were normalized into 13 unselected signals, with related commits on the same underlying mechanism deduplicated.",
+          "reason_zh": "已检查全部 9 个 P0 每日仓库。同日重要维护者变更经规范化后形成 13 个未选题信号；同一底层机制的相关提交已合并去重。"
+        },
+        {
+          "id": "published-research",
+          "label": "Published Research Intelligence",
+          "label_zh": "已发表研究情报",
+          "status": "Completed",
+          "due": 9,
+          "checked": 9,
+          "inaccessible": [],
+          "failed": [],
+          "signals": 0,
+          "candidates": 0,
+          "selected": 0,
+          "rejected": 0,
+          "coveragePercent": 100,
+          "reason": "All nine configured P0 research sources were checked. No material same-day research object meeting the configured evidence and topic rules was retained.",
+          "reason_zh": "已检查全部 9 个配置的 P0 研究来源。没有保留符合配置证据与主题规则的重要同日研究对象。"
+        }
+      ],
+      "columns": [
+        {
+          "id": "digital-employee",
+          "label": "Digital Employee",
+          "label_zh": "数字员工",
+          "decision": "Selected",
+          "signals": 4,
+          "candidates": 0,
+          "selectedItemId": "Q-20260815-01",
+          "selectedTitle": "HITL resumption needs trusted session initialization and confirmation boundaries",
+          "selectedTitle_zh": "HITL 恢复需要可信的会话初始化与确认边界",
+          "reason": "Selected from SIG-20260815-010 with Skill 02 score 46/50. It is the strongest bounded Digital Employee object in the run-date pool because it joins two runtime-authority boundaries in one concrete mechanism: client-supplied initialization events are prevented from seeding trusted session state, while HITL confirmation handling is tightened during resume. That yields a specific research question about which state may be admitted before a digital employee resumes after human intervention and how confirmation evidence is bound to the resumed execution. Guardian v2 policy-driven risk classification and explicit memory identity/topic controls are both strong candidates, but they are broader policy or memory-scope mechanisms rather than a direct resume-integrity boundary.",
+          "reason_zh": "选自 SIG-20260815-010，Skill 02 评分 46/50。它是运行日信号池中最强的有界数字员工对象，因为在一个具体机制中连接了两个运行时授权边界：客户端提供的初始化事件不能直接注入可信会话状态，同时 HITL 恢复时的确认处理被收紧。这形成一个明确研究问题：数字员工在人类介入后恢复执行之前，哪些状态可以被接纳，以及确认依据如何绑定到恢复后的执行。Guardian v2 的策略化风险分类和显式记忆身份/主题控制同样很强，但它们分别偏向更宽的策略或记忆作用域问题，不如该对象直接聚焦恢复完整性边界。"
+        },
+        {
+          "id": "industry-architecture",
+          "label": "Industry Architecture",
+          "label_zh": "行业架构",
+          "decision": "Selected",
+          "signals": 2,
+          "candidates": 0,
+          "selectedItemId": "Q-20260815-02",
+          "selectedTitle": "Native A2A task execution needs explicit delegation scope, finish semantics, and terminal-state mapping",
+          "selectedTitle_zh": "原生 A2A Task 执行需要显式委派作用域、完成语义与终态映射",
+          "reason": "Selected from SIG-20260815-008 with Skill 02 score 46/50. It exposes a bounded inter-agent execution architecture rather than only an instruction-distribution mechanism: RemoteA2aAgent gains native task mode, finish-task registration, delegation-scope aggregation and terminal-state mapping inside the A2A executor. The object therefore supports a concrete architecture question about how delegated work becomes a governed task with explicit completion and terminal semantics across an agent boundary. The model-catalog role-instruction signal remains a useful candidate, but it is primarily configuration/role distribution and has less execution-state depth than native A2A task mode.",
+          "reason_zh": "选自 SIG-20260815-008，Skill 02 评分 46/50。它暴露的是有界的 Agent 间执行架构，而不仅是指令分发机制：RemoteA2aAgent 获得原生 Task 模式、finish-task 注册、委派作用域聚合以及 A2A 执行器内的终态映射。因此可以形成具体架构问题：被委派的工作如何跨 Agent 边界成为具有显式完成语义和终态语义的受治理任务。模型目录角色指令信号仍是有价值候选，但它主要属于配置/角色分发，执行状态深度弱于原生 A2A Task 模式。"
+        },
+        {
+          "id": "open-source-engineering",
+          "label": "Open-source Engineering",
+          "label_zh": "开源工程",
+          "decision": "Selected",
+          "signals": 7,
+          "candidates": 0,
+          "selectedItemId": "Q-20260815-03",
+          "selectedTitle": "Agent runtimes must own background tool-task cancellation at run teardown",
+          "selectedTitle_zh": "Agent Runtime 必须在运行收尾时负责后台工具任务的取消",
+          "reason": "Selected from SIG-20260815-009 with Skill 02 score 46/50. It is the strongest bounded Open-source Engineering object because it defines ownership of streaming and non-blocking background tool tasks at handoff or teardown, explicitly cancels them, and releases stale stream-registry entries instead of allowing orphaned work to outlive the run. The mechanism is concrete, failure-oriented and regression-testable, giving a focused engineering question about lifecycle ownership and cleanup boundaries in agent runtimes. Executor network-policy auditing and environment-configuration ownership are both strong candidates, but neither exposes as direct a resource-lifetime failure mode.",
+          "reason_zh": "选自 SIG-20260815-009，Skill 02 评分 46/50。它是开源工程栏目中最强的有界对象，因为它明确了交接或运行收尾时对流式与非阻塞后台工具任务的所有权：这些任务会被显式取消，同时释放陈旧的流注册项，而不是让孤儿工作继续超出本次 Run 生命周期。该机制具体、面向失败场景且可回归测试，形成一个聚焦的工程问题：Agent Runtime 如何定义资源生命周期所有权与清理边界。执行器网络策略审计和环境配置所有权同样是强候选，但都没有暴露如此直接的资源生命周期失败模型。"
+        }
+      ],
+      "signals": [
+        {
+          "id": "SIG-20260815-001",
+          "pipeline": "github-engineering",
+          "title": "Codex preserves per-environment permission and configuration ownership",
+          "title_zh": "Codex 保留每个环境的权限与配置所有权",
+          "sourceUrl": "https://github.com/openai/codex/commit/22bf16a37ed45006c0226541874abd7449c29911",
+          "publishedAt": "2026-08-15",
+          "evidenceLevel": "merged_maintainer_change",
+          "primaryColumn": "open-source-engineering",
+          "secondaryColumns": [
+            "digital-employee",
+            "industry-architecture"
+          ],
+          "triageStatus": "signal",
+          "changeObject": "openai/codex:environment-config-ownership-permission-profiles",
+          "summary": "Codex now retains whether an environment attachment inherits thread configuration or owns its own configuration, while honoring per-environment permission profiles across updates and child-thread snapshots.",
+          "summary_zh": "Codex 现在会保留环境附件是继承线程配置还是拥有自身配置，并在后续更新与子线程快照中继续遵守每个环境独立的权限配置。"
+        },
+        {
+          "id": "SIG-20260815-002",
+          "pipeline": "github-engineering",
+          "title": "Codex forwards executor network policy decisions for audit",
+          "title_zh": "Codex 将执行器网络策略决定转发用于审计",
+          "sourceUrl": "https://github.com/openai/codex/commit/15fde8c1f2d48812c1ad3b5d2fb7a1e7da4053fa",
+          "publishedAt": "2026-08-15",
+          "evidenceLevel": "merged_maintainer_change",
+          "primaryColumn": "open-source-engineering",
+          "secondaryColumns": [
+            "digital-employee",
+            "industry-architecture"
+          ],
+          "triageStatus": "signal",
+          "changeObject": "openai/codex:executor-network-policy-audit",
+          "summary": "Executor-local proxy decisions are forwarded as best-effort policy notifications, validated against the active process, and converted into audit events with controller-trusted execution metadata.",
+          "summary_zh": "执行器本地代理的策略决定会以尽力而为的策略通知转发，并对照活动进程核验，随后以控制器可信的执行元数据写入审计事件。"
+        },
+        {
+          "id": "SIG-20260815-003",
+          "pipeline": "github-engineering",
+          "title": "Codex adds MCP protocol discovery observability",
+          "title_zh": "Codex 增加 MCP 协议发现可观测性",
+          "sourceUrl": "https://github.com/openai/codex/commit/6bed213411d1250686cc162feb4324975c12158a",
+          "publishedAt": "2026-08-15",
+          "evidenceLevel": "merged_maintainer_change",
+          "primaryColumn": "open-source-engineering",
+          "secondaryColumns": [
+            "industry-architecture"
+          ],
+          "triageStatus": "signal",
+          "changeObject": "openai/codex:mcp-protocol-discovery-metrics",
+          "summary": "Codex records counters and durations for MCP client protocol discovery and classifies outcomes as modern, legacy, or failure under the configured negotiation mode.",
+          "summary_zh": "Codex 为 MCP 客户端协议发现记录计数与耗时，并按照配置的协商模式将结果分类为现代协议、旧协议或失败。"
+        },
+        {
+          "id": "SIG-20260815-004",
+          "pipeline": "github-engineering",
+          "title": "Codex sources multi-agent role instructions from the model catalog",
+          "title_zh": "Codex 从模型目录提供多 Agent 角色指令",
+          "sourceUrl": "https://github.com/openai/codex/commit/395723b2385cf1314dcf27db4b01a221785109b0",
+          "publishedAt": "2026-08-15",
+          "evidenceLevel": "merged_maintainer_change",
+          "primaryColumn": "industry-architecture",
+          "secondaryColumns": [
+            "open-source-engineering",
+            "digital-employee"
+          ],
+          "triageStatus": "signal",
+          "changeObject": "openai/codex:model-catalog-multi-agent-role-instructions",
+          "summary": "Root and subagent role instructions, delegation guidance, and model-specific refresh behavior are now supplied through the model catalog with explicit fallback precedence.",
+          "summary_zh": "根 Agent 与子 Agent 的角色指令、委派指导以及模型切换后的刷新行为现在由模型目录提供，并具有明确的回退优先级。"
+        },
+        {
+          "id": "SIG-20260815-005",
+          "pipeline": "github-engineering",
+          "title": "Codex makes Guardian v2 risk classification policy-driven and configurable",
+          "title_zh": "Codex 将 Guardian v2 风险分类改为策略驱动且可配置",
+          "sourceUrl": "https://github.com/openai/codex/commit/baab1705c60089f919accc11608aa0df02f634f7",
+          "publishedAt": "2026-08-15",
+          "evidenceLevel": "merged_maintainer_change",
+          "primaryColumn": "digital-employee",
+          "secondaryColumns": [
+            "open-source-engineering",
+            "industry-architecture"
+          ],
+          "triageStatus": "signal",
+          "changeObject": "openai/codex:guardian-v2-policy-risk-classification",
+          "summary": "Guardian v2 risk classification can now resolve security policy and configurable classifier thresholds, reasoning effort, token budgets, and transcript controls instead of relying on one fixed review configuration.",
+          "summary_zh": "Guardian v2 风险分类现在可以解析安全策略，并配置分类阈值、推理强度、Token 预算与上下文记录控制，而不再依赖单一固定评审配置。"
+        },
+        {
+          "id": "SIG-20260815-006",
+          "pipeline": "github-engineering",
+          "title": "OpenAI Agents SDK sandbox honors view_image path grants",
+          "title_zh": "OpenAI Agents SDK 沙箱遵守 view_image 路径授权",
+          "sourceUrl": "https://github.com/openai/openai-agents-python/commit/1a0c08868aec2a18eba964e5a07da4270a490c25",
+          "publishedAt": "2026-08-15",
+          "evidenceLevel": "merged_maintainer_change",
+          "primaryColumn": "open-source-engineering",
+          "secondaryColumns": [
+            "digital-employee"
+          ],
+          "triageStatus": "signal",
+          "changeObject": "openai/openai-agents-python:sandbox-view-image-path-grants",
+          "summary": "The sandbox path policy now honors extra path grants used by view_image operations, tightening consistency between declared tool permissions and filesystem access.",
+          "summary_zh": "沙箱路径策略现在会遵守 view_image 操作使用的额外路径授权，使工具声明权限与文件系统访问之间更加一致。"
+        },
+        {
+          "id": "SIG-20260815-007",
+          "pipeline": "github-engineering",
+          "title": "OpenAI Agents SDK stops exposing the mutable MCP tools cache to callers",
+          "title_zh": "OpenAI Agents SDK 不再向调用方暴露可变 MCP 工具缓存",
+          "sourceUrl": "https://github.com/openai/openai-agents-python/commit/2b2d7fe4747e36ff327a9af3b3a5d4ede27d3c4b",
+          "publishedAt": "2026-08-15",
+          "evidenceLevel": "merged_maintainer_change",
+          "primaryColumn": "open-source-engineering",
+          "secondaryColumns": [
+            "industry-architecture"
+          ],
+          "triageStatus": "signal",
+          "changeObject": "openai/openai-agents-python:mcp-tools-cache-ownership",
+          "summary": "MCP tool-cache ownership is hardened so callers no longer receive the internal cache object directly, reducing accidental shared-state mutation across tool discovery consumers.",
+          "summary_zh": "MCP 工具缓存的所有权得到收紧，调用方不再直接获得内部缓存对象，从而减少工具发现消费者之间意外修改共享状态的风险。"
+        },
+        {
+          "id": "SIG-20260815-008",
+          "pipeline": "github-engineering",
+          "title": "Google ADK adds native A2A task-mode execution",
+          "title_zh": "Google ADK 增加原生 A2A Task 模式执行",
+          "sourceUrl": "https://github.com/google/adk-python/commit/72f3ff5cfb11fdf7432c6c2faa01befcc350ad7e",
+          "publishedAt": "2026-08-15",
+          "evidenceLevel": "merged_maintainer_change",
+          "primaryColumn": "industry-architecture",
+          "secondaryColumns": [
+            "open-source-engineering",
+            "digital-employee"
+          ],
+          "triageStatus": "signal",
+          "changeObject": "google/adk-python:a2a-native-task-mode",
+          "summary": "RemoteA2aAgent can execute in native task mode, including finish-task registration, delegation-scope aggregation, and terminal-state mapping in the A2A executor.",
+          "summary_zh": "RemoteA2aAgent 可以使用原生 Task 模式执行，包括注册 finish-task 工具、聚合委派任务作用域以及在 A2A 执行器中映射终态。"
+        },
+        {
+          "id": "SIG-20260815-009",
+          "pipeline": "github-engineering",
+          "title": "Google ADK cancels background tool tasks when a live agent run ends",
+          "title_zh": "Google ADK 在 Live Agent 运行结束时取消后台工具任务",
+          "sourceUrl": "https://github.com/google/adk-python/commit/0088abbe6651da6a6c644cace087a79d6a674821",
+          "publishedAt": "2026-08-15",
+          "evidenceLevel": "merged_maintainer_change",
+          "primaryColumn": "open-source-engineering",
+          "secondaryColumns": [
+            "digital-employee"
+          ],
+          "triageStatus": "signal",
+          "changeObject": "google/adk-python:live-run-background-tool-cancellation",
+          "summary": "Live-agent runs now own and cancel streaming or non-blocking background tool tasks during handoff or teardown, and release stale stream registry entries instead of allowing orphaned tasks to continue.",
+          "summary_zh": "Live Agent 运行现在会在交接或结束时负责取消流式或非阻塞后台工具任务，并释放陈旧的流注册项，避免孤儿任务继续运行。"
+        },
+        {
+          "id": "SIG-20260815-010",
+          "pipeline": "github-engineering",
+          "title": "Google ADK validates session initialization events and tightens HITL resumption",
+          "title_zh": "Google ADK 校验会话初始化事件并收紧 HITL 恢复",
+          "sourceUrl": "https://github.com/google/adk-python/commit/3fa71b6349dbabb47dff5a3e9dea689cae6904e9",
+          "publishedAt": "2026-08-15",
+          "evidenceLevel": "merged_maintainer_change",
+          "primaryColumn": "digital-employee",
+          "secondaryColumns": [
+            "open-source-engineering"
+          ],
+          "triageStatus": "signal",
+          "changeObject": "google/adk-python:session-init-validation-hitl-resume",
+          "summary": "ADK prevents client-supplied session initialization events from seeding runtime state and tightens confirmation handling when resuming human-in-the-loop execution.",
+          "summary_zh": "ADK 阻止客户端提供的会话初始化事件直接注入运行时状态，并在恢复人在回路执行时收紧确认处理。"
+        },
+        {
+          "id": "SIG-20260815-011",
+          "pipeline": "github-engineering",
+          "title": "Google ADK propagates the caller RunConfig into AgentTool execution",
+          "title_zh": "Google ADK 将调用方 RunConfig 传播到 AgentTool 执行",
+          "sourceUrl": "https://github.com/google/adk-python/commit/983c28056f664b6229a541bcbd442cd20c1b6345",
+          "publishedAt": "2026-08-15",
+          "evidenceLevel": "merged_maintainer_change",
+          "primaryColumn": "open-source-engineering",
+          "secondaryColumns": [
+            "digital-employee"
+          ],
+          "triageStatus": "signal",
+          "changeObject": "google/adk-python:agent-tool-caller-runconfig-propagation",
+          "summary": "AgentTool execution now runs under the caller's RunConfig so execution settings remain attached across the agent-as-tool boundary.",
+          "summary_zh": "AgentTool 现在会在调用方的 RunConfig 下执行，使执行设置能够跨越“Agent 作为工具”的边界继续生效。"
+        },
+        {
+          "id": "SIG-20260815-012",
+          "pipeline": "github-engineering",
+          "title": "Google ADK adds memory identity and topic restrictions to Vertex Memory Bank",
+          "title_zh": "Google ADK 为 Vertex Memory Bank 增加记忆身份与主题限制",
+          "sourceUrl": "https://github.com/google/adk-python/commit/bf733602b61f2542add406235706fc9b1b7bfed2",
+          "publishedAt": "2026-08-15",
+          "evidenceLevel": "merged_maintainer_change",
+          "primaryColumn": "digital-employee",
+          "secondaryColumns": [
+            "industry-architecture",
+            "open-source-engineering"
+          ],
+          "triageStatus": "signal",
+          "changeObject": "google/adk-python:vertex-memory-id-allowed-topics",
+          "summary": "Vertex Memory Bank integration adds memory_id and allowed_topics controls, making memory selection and topical scope explicit runtime inputs.",
+          "summary_zh": "Vertex Memory Bank 集成新增 memory_id 与 allowed_topics 控制，使记忆选择和主题作用域成为显式运行时输入。"
+        },
+        {
+          "id": "SIG-20260815-013",
+          "pipeline": "github-engineering",
+          "title": "Google ADK includes grounding metadata in rubric judging",
+          "title_zh": "Google ADK 在量表评判中纳入 Grounding 元数据",
+          "sourceUrl": "https://github.com/google/adk-python/commit/b0cdecfc3f846e8124f0a964e64174c12a696a2e",
+          "publishedAt": "2026-08-15",
+          "evidenceLevel": "merged_maintainer_change",
+          "primaryColumn": "digital-employee",
+          "secondaryColumns": [
+            "open-source-engineering"
+          ],
+          "triageStatus": "signal",
+          "changeObject": "google/adk-python:rubric-judge-grounding-metadata",
+          "summary": "Rubric-judge prompts now include grounding metadata, expanding the evidence context available to automated evaluation rather than judging only the visible response content.",
+          "summary_zh": "量表评判提示现在会包含 Grounding 元数据，使自动评估能够使用更完整的证据上下文，而不只是判断可见响应内容。"
+        }
+      ],
+      "queuePlanProjection": {
+        "status": "Completed",
+        "sourceTask": "Research Runtime Queue",
+        "sourceRecord": "research/runtime/2026/08/2026-08-15-runtime.md",
+        "githubCommit": "pending",
+        "date": "2026-08-15"
+      }
     }
   },
-  "plans": {}
+  "plans": {
+    "2026-08-14": {
+      "schema": "runtime-column-plan/v1",
+      "date": "2026-08-14",
+      "timezone": "Asia/Shanghai",
+      "status": "Completed",
+      "sourceTask": "Research Runtime Queue",
+      "sourceRecord": "research/runtime/2026/08/2026-08-14-runtime.md",
+      "updatedAt": "2026-08-14T10:04:15+08:00",
+      "githubCommit": "pending",
+      "columns": [
+        {
+          "id": "digital-employee",
+          "label": "Digital Employee",
+          "label_zh": "数字员工",
+          "selectionStatus": "Selected",
+          "itemId": "Q-20260814-01",
+          "signalId": "SIG-20260814-G-001",
+          "pipelineOrigin": "github-engineering",
+          "sourceUrl": "https://github.com/openai/codex/commit/9341b38310c73957e1313eab3f7c4034689bdec9",
+          "title": "Persistent thread queues need stable identity, explicit pause semantics, and deterministic dispatch",
+          "title_zh": "持久 Thread Queue 需要稳定身份、显式暂停语义与确定性派发",
+          "priority": "P0",
+          "lifecycle": "Selected",
+          "source": "https://github.com/openai/codex/commit/9341b38310c73957e1313eab3f7c4034689bdec9",
+          "source_zh": "OpenAI Codex 维护者合并变更",
+          "reason": "Selected from SIG-20260814-G-001 with Skill 02 score 46/50. It presents the strongest bounded Digital Employee mechanism in the run-date pool: queued user work has durable IDs, explicit CRUD/reorder/start controls, change notifications, automatic FIFO dispatch after terminal turns, and a deliberate pause after interruption. This creates a concrete responsibility-runtime question about how a digital employee should retain pending work, expose operator control, resume deterministically, and avoid silently continuing after an interruption. It narrowly outranks the Remote Control recovery signal because it combines durable work identity with dispatch policy rather than recovery alone.",
+          "reason_zh": "选自 SIG-20260814-G-001，Skill 02 评分 46/50。它是运行日信号池中最强的有界数字员工机制：排队用户工作具有持久 ID、显式增删改排与启动控制、变更通知、Turn 终态后的自动 FIFO 派发，并在中断后有意保持暂停。这形成一个具体的职责—运行时问题：数字员工如何保留待办工作、暴露操作者控制、确定性恢复，并避免在中断后静默继续执行。它以很小优势高于 Remote Control 恢复信号，因为它同时提供持久工作身份与派发策略，而不仅是恢复机制。",
+          "next": "Skill 03 Deep Reading must verify queue persistence scope, stable item identity, CRUD/reorder/start semantics, notification behavior, the exact terminal states that trigger FIFO dispatch, interruption pause behavior, restart/reload persistence, and tests. Separate demonstrated Codex app-server behavior from broader digital-employee scheduling claims.",
+          "next_zh": "Skill 03 Deep Reading 仅核查队列持久化范围、稳定 Item Identity、增删改排与启动语义、通知行为、触发 FIFO 派发的确切终态、中断后的暂停行为、重启/重载持久性以及测试；必须把已证明的 Codex App Server 行为与更广泛的数字员工调度主张分开。"
+        },
+        {
+          "id": "industry-architecture",
+          "label": "Industry Architecture",
+          "label_zh": "行业架构",
+          "selectionStatus": "Selected",
+          "itemId": "Q-20260814-02",
+          "signalId": "SIG-20260814-R-001",
+          "pipelineOrigin": "published-research",
+          "sourceUrl": "https://zenodo.org/records/21010383",
+          "title": "Accountable-AI operating architecture must connect governance controls to front-stage and back-stage responsibilities",
+          "title_zh": "可问责 AI 运营架构必须把治理控制连接到前后台职责",
+          "priority": "P0",
+          "lifecycle": "Selected",
+          "source": "https://zenodo.org/records/21010383",
+          "source_zh": "Zenodo 当日一手研究产物",
+          "reason": "Selected from SIG-20260814-R-001 with Skill 02 score 38/50. It is the only run-date primary research object whose primary column is Industry Architecture and it poses a bounded architecture question: how accountable AI, trusted data, enterprise-system integration, KPI governance and operational resilience are connected across front-stage and back-stage airline functions. Selection reflects architectural relevance and novelty, not independent validation; the artifact must be read for its design-science method, evidence basis and external-validity limits before any broader conclusion.",
+          "reason_zh": "选自 SIG-20260814-R-001，Skill 02 评分 38/50。它是运行日唯一以行业架构为主栏目的当日一手研究对象，并形成有界架构问题：可问责 AI、可信数据、企业系统集成、KPI 治理与运营韧性如何连接航空前台与后台职能。选择基于架构相关性与新信息，不代表独立验证；后续必须核查其设计科学方法、证据基础与外部有效性边界，才能形成更广泛判断。",
+          "next": "Skill 03 Deep Reading must verify the artifact's design-science method, architecture components and interfaces, front-stage/back-stage responsibility mapping, accountability mechanisms, data and KPI assumptions, empirical or case evidence, claimed resilience effects, and explicit limitations. Do not treat Zenodo publication, framework completeness or author claims as independent proof of effectiveness.",
+          "next_zh": "Skill 03 Deep Reading 仅核查该产物的设计科学方法、架构组件与接口、前后台职责映射、问责机制、数据与 KPI 假设、实证或案例证据、所声称的韧性效果以及明确局限；不得把 Zenodo 发布、框架完整性或作者主张当作独立有效性证明。"
+        },
+        {
+          "id": "open-source-engineering",
+          "label": "Open-source Engineering",
+          "label_zh": "开源工程",
+          "selectionStatus": "Selected",
+          "itemId": "Q-20260814-03",
+          "signalId": "SIG-20260814-G-010",
+          "pipelineOrigin": "github-engineering",
+          "sourceUrl": "https://github.com/google-gemini/gemini-cli/commit/783f6cb494aedf3e7276d02e76f32f63a27551a0",
+          "title": "Cancellation-safe agent runtimes need request-level rollback boundaries, not partial-turn cleanup",
+          "title_zh": "可安全取消的 Agent Runtime 需要请求级回滚边界，而不是局部 Turn 清理",
+          "priority": "P0",
+          "lifecycle": "Selected",
+          "source": "https://github.com/google-gemini/gemini-cli/commit/783f6cb494aedf3e7276d02e76f32f63a27551a0",
+          "source_zh": "Google Gemini CLI 维护者合并变更",
+          "reason": "Selected from SIG-20260814-G-010 with Skill 02 score 45/50. It is the highest-scoring bounded Open-source Engineering object: cancellation and abort now roll back the entire multi-turn request instead of leaving partial request state. The mechanism is concrete, regression-testable and directly relevant to agent-runtime state integrity, recovery and observability. The operation-scoped sandbox/proxy snapshot signal is also strong, but this object has a cleaner transactional boundary and a more specific failure model for today's engineering slot.",
+          "reason_zh": "选自 SIG-20260814-G-010，Skill 02 评分 45/50。它是开源工程栏目中评分最高且边界清晰的对象：取消与中止现在回滚整个多 Turn 请求，而不是留下部分请求状态。该机制具体、可回归测试，并直接关联 Agent Runtime 的状态完整性、恢复与可观测。按操作快照 Sandbox/Proxy 状态的信号同样较强，但本对象具有更清晰的事务边界和更具体的失败模型，更适合作为今天的工程研究槽位。",
+          "next": "Skill 03 Deep Reading must verify the exact request state included in rollback, cancellation versus abort entry paths, rollback ordering, persistence and history effects, tool or external side-effect boundaries, nested/multi-turn behavior, and regression tests. Do not generalize request rollback into exactly-once guarantees for external effects unless the implementation proves them.",
+          "next_zh": "Skill 03 Deep Reading 仅核查回滚覆盖的确切 Request State、Cancel 与 Abort 的进入路径、回滚顺序、对持久化与历史记录的影响、工具或外部副作用边界、嵌套/多 Turn 行为以及回归测试；除非实现明确证明，不得把请求回滚泛化为外部副作用的 Exactly-once 保证。"
+        }
+      ]
+    },
+    "2026-08-15": {
+      "schema": "runtime-column-plan/v1",
+      "date": "2026-08-15",
+      "timezone": "Asia/Shanghai",
+      "status": "Completed",
+      "sourceTask": "Research Runtime Queue",
+      "sourceRecord": "research/runtime/2026/08/2026-08-15-runtime.md",
+      "updatedAt": "2026-08-15T10:02:56+08:00",
+      "githubCommit": "pending",
+      "columns": [
+        {
+          "id": "digital-employee",
+          "label": "Digital Employee",
+          "label_zh": "数字员工",
+          "selectionStatus": "Selected",
+          "itemId": "Q-20260815-01",
+          "signalId": "SIG-20260815-010",
+          "pipelineOrigin": "github-engineering",
+          "sourceUrl": "https://github.com/google/adk-python/commit/3fa71b6349dbabb47dff5a3e9dea689cae6904e9",
+          "title": "HITL resumption needs trusted session initialization and confirmation boundaries",
+          "title_zh": "HITL 恢复需要可信的会话初始化与确认边界",
+          "priority": "P0",
+          "lifecycle": "Selected",
+          "source": "https://github.com/google/adk-python/commit/3fa71b6349dbabb47dff5a3e9dea689cae6904e9",
+          "source_zh": "Google ADK 维护者合并变更",
+          "reason": "Selected from SIG-20260815-010 with Skill 02 score 46/50. It is the strongest bounded Digital Employee object in the run-date pool because it joins two runtime-authority boundaries in one concrete mechanism: client-supplied initialization events are prevented from seeding trusted session state, while HITL confirmation handling is tightened during resume. That yields a specific research question about which state may be admitted before a digital employee resumes after human intervention and how confirmation evidence is bound to the resumed execution. Guardian v2 policy-driven risk classification and explicit memory identity/topic controls are both strong candidates, but they are broader policy or memory-scope mechanisms rather than a direct resume-integrity boundary.",
+          "reason_zh": "选自 SIG-20260815-010，Skill 02 评分 46/50。它是运行日信号池中最强的有界数字员工对象，因为在一个具体机制中连接了两个运行时授权边界：客户端提供的初始化事件不能直接注入可信会话状态，同时 HITL 恢复时的确认处理被收紧。这形成一个明确研究问题：数字员工在人类介入后恢复执行之前，哪些状态可以被接纳，以及确认依据如何绑定到恢复后的执行。Guardian v2 的策略化风险分类和显式记忆身份/主题控制同样很强，但它们分别偏向更宽的策略或记忆作用域问题，不如该对象直接聚焦恢复完整性边界。",
+          "next": "Skill 03 Deep Reading must verify which initialization events are rejected or admitted, where trusted session state is constructed, the exact HITL confirmation/resume path, identity and occurrence binding, persistence effects, compatibility behavior, and tests. Separate the demonstrated ADK implementation from any broader claim that the mechanism is sufficient for safe digital-employee recovery.",
+          "next_zh": "Skill 03 Deep Reading 仅核查哪些初始化事件被拒绝或接纳、可信会话状态在哪里构造、HITL 确认与恢复的确切路径、身份与 occurrence 绑定、持久化影响、兼容行为以及测试；必须把已证明的 ADK 实现与“该机制足以保证数字员工安全恢复”的更广泛主张分开。"
+        },
+        {
+          "id": "industry-architecture",
+          "label": "Industry Architecture",
+          "label_zh": "行业架构",
+          "selectionStatus": "Selected",
+          "itemId": "Q-20260815-02",
+          "signalId": "SIG-20260815-008",
+          "pipelineOrigin": "github-engineering",
+          "sourceUrl": "https://github.com/google/adk-python/commit/72f3ff5cfb11fdf7432c6c2faa01befcc350ad7e",
+          "title": "Native A2A task execution needs explicit delegation scope, finish semantics, and terminal-state mapping",
+          "title_zh": "原生 A2A Task 执行需要显式委派作用域、完成语义与终态映射",
+          "priority": "P0",
+          "lifecycle": "Selected",
+          "source": "https://github.com/google/adk-python/commit/72f3ff5cfb11fdf7432c6c2faa01befcc350ad7e",
+          "source_zh": "Google ADK 维护者合并变更",
+          "reason": "Selected from SIG-20260815-008 with Skill 02 score 46/50. It exposes a bounded inter-agent execution architecture rather than only an instruction-distribution mechanism: RemoteA2aAgent gains native task mode, finish-task registration, delegation-scope aggregation and terminal-state mapping inside the A2A executor. The object therefore supports a concrete architecture question about how delegated work becomes a governed task with explicit completion and terminal semantics across an agent boundary. The model-catalog role-instruction signal remains a useful candidate, but it is primarily configuration/role distribution and has less execution-state depth than native A2A task mode.",
+          "reason_zh": "选自 SIG-20260815-008，Skill 02 评分 46/50。它暴露的是有界的 Agent 间执行架构，而不仅是指令分发机制：RemoteA2aAgent 获得原生 Task 模式、finish-task 注册、委派作用域聚合以及 A2A 执行器内的终态映射。因此可以形成具体架构问题：被委派的工作如何跨 Agent 边界成为具有显式完成语义和终态语义的受治理任务。模型目录角色指令信号仍是有价值候选，但它主要属于配置/角色分发，执行状态深度弱于原生 A2A Task 模式。",
+          "next": "Skill 03 Deep Reading must verify the task-mode entry path, finish-task registration, delegation-scope representation and aggregation, terminal-state mapping, cancellation/error behavior, remote/local responsibility split, protocol assumptions, and tests. Do not infer cross-framework interoperability or delivery guarantees beyond what the ADK implementation demonstrates.",
+          "next_zh": "Skill 03 Deep Reading 仅核查 Task 模式进入路径、finish-task 注册、委派作用域的表示与聚合、终态映射、取消/错误行为、远端与本地职责划分、协议假设以及测试；不得把 ADK 已证明的实现泛化为跨框架互操作性或交付保证。"
+        },
+        {
+          "id": "open-source-engineering",
+          "label": "Open-source Engineering",
+          "label_zh": "开源工程",
+          "selectionStatus": "Selected",
+          "itemId": "Q-20260815-03",
+          "signalId": "SIG-20260815-009",
+          "pipelineOrigin": "github-engineering",
+          "sourceUrl": "https://github.com/google/adk-python/commit/0088abbe6651da6a6c644cace087a79d6a674821",
+          "title": "Agent runtimes must own background tool-task cancellation at run teardown",
+          "title_zh": "Agent Runtime 必须在运行收尾时负责后台工具任务的取消",
+          "priority": "P0",
+          "lifecycle": "Selected",
+          "source": "https://github.com/google/adk-python/commit/0088abbe6651da6a6c644cace087a79d6a674821",
+          "source_zh": "Google ADK 维护者合并变更",
+          "reason": "Selected from SIG-20260815-009 with Skill 02 score 46/50. It is the strongest bounded Open-source Engineering object because it defines ownership of streaming and non-blocking background tool tasks at handoff or teardown, explicitly cancels them, and releases stale stream-registry entries instead of allowing orphaned work to outlive the run. The mechanism is concrete, failure-oriented and regression-testable, giving a focused engineering question about lifecycle ownership and cleanup boundaries in agent runtimes. Executor network-policy auditing and environment-configuration ownership are both strong candidates, but neither exposes as direct a resource-lifetime failure mode.",
+          "reason_zh": "选自 SIG-20260815-009，Skill 02 评分 46/50。它是开源工程栏目中最强的有界对象，因为它明确了交接或运行收尾时对流式与非阻塞后台工具任务的所有权：这些任务会被显式取消，同时释放陈旧的流注册项，而不是让孤儿工作继续超出本次 Run 生命周期。该机制具体、面向失败场景且可回归测试，形成一个聚焦的工程问题：Agent Runtime 如何定义资源生命周期所有权与清理边界。执行器网络策略审计和环境配置所有权同样是强候选，但都没有暴露如此直接的资源生命周期失败模型。",
+          "next": "Skill 03 Deep Reading must verify which task classes are tracked, where ownership is registered, handoff versus teardown paths, cancellation ordering, exception and timeout behavior, stream-registry cleanup, possible external side effects that outlive cancellation, and regression tests. Do not equate local task cancellation with exactly-once cleanup of external effects.",
+          "next_zh": "Skill 03 Deep Reading 仅核查哪些任务类型被跟踪、所有权在哪里登记、交接与收尾路径、取消顺序、异常与超时行为、流注册项清理、可能在取消后继续存在的外部副作用以及回归测试；不得把本地任务取消等同于外部副作用的 Exactly-once 清理。"
+        }
+      ]
+    }
+  }
 }
