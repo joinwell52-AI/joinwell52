@@ -1,0 +1,111 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "discovery",
+  "family": "daily",
+  "runtimeDate": "2026-08-15",
+  "status": "Completed",
+  "input": "Authoritative main commit 26d7f6663f2475ec9af75190012aa48c5f139b46; its Scheduler V3.0, Worker Control V1.3.0, exact Discovery prompt v1.0.0 with verified SHA-256 55636950fafe406c551975393b93d1493c1eb205f1d0174471729c4f0c5bcb17, all ten requiredSources, the 2026-08-15 wake receipt, and current configured P0 platform, GitHub and published-research sources.",
+  "input_zh": "权威 main 提交 26d7f6663f2475ec9af75190012aa48c5f139b46、其中的 Scheduler V3.0、Worker Control V1.3.0、经 SHA-256 55636950fafe406c551975393b93d1493c1eb205f1d0174471729c4f0c5bcb17 精确核验的 Discovery Prompt v1.0.0、全部 10 个 requiredSources、2026-08-15 Wake Receipt，以及当前配置的 P0 平台、GitHub 与已发表研究来源。",
+  "workResult": "Fail-closed admission succeeded for main/chatgpt-scheduled-task with the required GitHub read/write, command execution, file editing and web-research capabilities. A durable Wake Receipt, Execution Slot Opened event and Worker Claimed event were verified before substantive work. Discovery resolved all 45 due AI-platform channels, all 9 P0 daily GitHub repositories and all 9 P0 published-research sources. It retained 13 material same-day GitHub engineering signals after mechanism-level normalization and deduplication; platform and published-research scans retained zero material same-day signals. During the one admitted revision round, the stage-owned Intelligence validator gate was corrected so a completed Discovery Signal Pool can keep column decisions Waiting for Queue rather than forcing prohibited topic selection.",
+  "workResult_zh": "针对 main/chatgpt-scheduled-task 的 fail-closed 准入已通过，实际具备所要求的 GitHub 读写、命令执行、文件编辑与 Web Research 能力。任何实质工作前均已持久化并核验 Wake Receipt、Execution Slot Opened 与 Worker Claimed。Discovery 已解析全部 45 个到期 AI 平台渠道、全部 9 个 P0 每日 GitHub 仓库和全部 9 个 P0 已发表研究来源。经机制级规范化与去重后，保留 13 个重要的同日 GitHub 工程信号；平台与已发表研究扫描均未保留重要同日信号。在唯一允许的一轮修订中，已修复本阶段负责的 Intelligence 校验门禁，使已完成的 Discovery Signal Pool 可以继续将栏目决定保持为 Waiting，交由 Queue 处理，而不会强迫执行被禁止的选题。",
+  "output": "A completed 2026-08-15 Signal Pool at research/intelligence/runs/2026/08/2026-08-15-intelligence.json containing 13 unselected normalized signals; Digital Employee has 4 primary signals, Industry Architecture 2, and Open-source Engineering 7. All three column decisions remain Waiting.",
+  "output_zh": "已生成完成态的 2026-08-15 Signal Pool：research/intelligence/runs/2026/08/2026-08-15-intelligence.json，共包含 13 个未选题的规范化信号；数字员工主栏目 4 个、行业架构 2 个、开源工程 7 个。三个栏目决定均保持 Waiting。",
+  "next": "After this Discovery terminal result is durably finalized and GitHub-verified, Research Runtime Queue may independently score and triage only the 2026-08-15 Signal Pool at its governed execution time. Discovery must not perform Deep Reading, Analysis, writing or publication.",
+  "next_zh": "仅当本次 Discovery 终态完成持久化并通过 GitHub 核验后，Research Runtime Queue 才可在受治理执行时间独立评分和筛选 2026-08-15 Signal Pool。Discovery 不得执行 Deep Reading、Analysis、写作或发布。",
+  "metrics": [
+    {
+      "label": "Wake receipts",
+      "label_zh": "Wake Receipt 数量",
+      "value": 1
+    },
+    {
+      "label": "Execution start events",
+      "label_zh": "执行启动事件",
+      "value": 1
+    },
+    {
+      "label": "AI platform due / checked",
+      "label_zh": "AI 平台应查 / 已查",
+      "value": "45 / 45"
+    },
+    {
+      "label": "GitHub repositories due / checked",
+      "label_zh": "GitHub 仓库应查 / 已查",
+      "value": "9 / 9"
+    },
+    {
+      "label": "Published research sources due / checked",
+      "label_zh": "已发表研究来源应查 / 已查",
+      "value": "9 / 9"
+    },
+    {
+      "label": "Normalized signals",
+      "label_zh": "规范化信号",
+      "value": 13
+    },
+    {
+      "label": "Selected topics",
+      "label_zh": "已选主题",
+      "value": 0
+    },
+    {
+      "label": "Revision rounds used",
+      "label_zh": "已使用修订轮次",
+      "value": 1
+    }
+  ],
+  "evidence": [
+    {
+      "label": "Authoritative main identity",
+      "label_zh": "权威 main 身份",
+      "commit": "26d7f6663f2475ec9af75190012aa48c5f139b46"
+    },
+    {
+      "label": "Worker Control",
+      "label_zh": "Worker Control",
+      "path": "research/runtime/worker-prompts/generated/CONTROL.json"
+    },
+    {
+      "label": "Verified generated Discovery prompt",
+      "label_zh": "已核验的生成式 Discovery Prompt",
+      "value": "research/runtime/worker-prompts/generated/discovery.prompt.md @ SHA-256 55636950fafe406c551975393b93d1493c1eb205f1d0174471729c4f0c5bcb17"
+    },
+    {
+      "label": "Run-date Wake Receipt",
+      "label_zh": "运行日 Wake Receipt",
+      "path": "research/runtime/wakes/2026/08/2026-08-15/discovery-090340.json"
+    },
+    {
+      "label": "Research Intelligence Registry",
+      "label_zh": "Research Intelligence 注册表",
+      "path": "research/intelligence/REGISTRY.json"
+    },
+    {
+      "label": "Discovery Intelligence validation boundary repair",
+      "label_zh": "Discovery Intelligence 校验边界修复",
+      "commit": "c1bdb847dccb099fc45a26ff13878a6536b7101c"
+    }
+  ],
+  "artifacts": [
+    {
+      "label": "Signal Pool",
+      "label_zh": "Signal Pool",
+      "path": "research/intelligence/runs/2026/08/2026-08-15-intelligence.json"
+    },
+    {
+      "label": "Daily Runtime JSON",
+      "label_zh": "Daily Runtime JSON",
+      "path": "research/runtime/records/daily/2026/08/2026-08-15-daily-runtime.json"
+    },
+    {
+      "label": "Wake Receipt",
+      "label_zh": "Wake Receipt",
+      "path": "research/runtime/wakes/2026/08/2026-08-15/discovery-090340.json"
+    },
+    {
+      "label": "Discovery result",
+      "label_zh": "Discovery 结果",
+      "path": "research/runtime/results/2026/08/2026-08-15-discovery-result.json"
+    }
+  ]
+}
