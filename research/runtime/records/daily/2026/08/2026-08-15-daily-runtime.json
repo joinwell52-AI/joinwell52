@@ -8,13 +8,13 @@
   "date": "2026-08-15",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Blocked",
+  "status": "Running",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Blocked",
+    "production": "Running",
     "publication": "Waiting"
   },
   "results": {
@@ -876,170 +876,6 @@
       "githubCommit": "ff6e14dad7df5b0280cdaa598fb37d12c0501ae8",
       "commitVerify": "Completed",
       "verifiedAt": "2026-08-15T13:11:17+08:00"
-    },
-    "production": {
-      "schema": "runtime-shift-result/v2",
-      "task": "production",
-      "status": "Blocked",
-      "runtimeDate": "2026-08-15",
-      "reasonCode": "image-generation-context-contamination",
-      "reason": "Same-day terminal recovery successfully reopened Production under the current generated Production Prompt v2.8.0, but the ChatGPT cloud built-in image-generation path still could not isolate an article-only cover request from the surrounding Runtime recovery conversation. After a durable recovery Wake Receipt, a new Execution Slot and a fresh Worker Claimed event, three governed article-cover attempts for Q-20260815-01 were made with rich positive physical-scene/editorial-art-direction instructions only. Every output nevertheless rendered a Runtime Production Recovery dashboard/report rather than the requested editorial cover. No rejected image was admitted, coverGate remained failed, no Publication Candidate was persisted, and Publication remains ineligible.",
-      "reason_zh": "同日终端恢复已在当前 Generated Production Prompt v2.8.0 下成功重新打开 Production，但 ChatGPT 云端内置图像生成路径在本次自动化上下文中仍无法把“文章级题图请求”与周围的 Runtime Recovery 对话上下文隔离。新的 Recovery Wake Receipt、Execution Slot 和 fresh Worker Claimed 均已持久化后，针对 Q-20260815-01 按当前规则执行了 3 次正式题图尝试，每次只给出丰富的正向物理场景与编辑艺术指导；但三个输出仍全部生成 Runtime Production Recovery Dashboard / 报告画面，而不是要求的正式编辑题图。所有失败图均未接纳，coverGate 未通过，Publication Candidate 为 0，Publication 仍不具备执行资格。",
-      "input": "Latest main control for the same-day Production recovery, including Scheduler V3.0, Worker Control v1.3.0, generated Production Prompt v2.8.0 with SHA-256 f782b39f31f4a3f94d0a35c2041f05d99f42f8a537ddfebcb235a3985aafba67, all required Production sources, the explicit runtime-process-kick/v2 terminal-recovery authorization, the recovery Wake Receipt research/runtime/wakes/2026/08/2026-08-15/production-155939.json, the reopened Production execution epoch, durable Worker Claimed commit 84919df9a27652c33059a4e0f4ab9fc72bace23b, and the three same-date completed Research Objects Q-20260815-01, Q-20260815-02 and Q-20260815-03.",
-      "input_zh": "本次同日 Production Recovery 使用最新 main 控制面，包括 Scheduler V3.0、Worker Control v1.3.0、SHA-256 为 f782b39f31f4a3f94d0a35c2041f05d99f42f8a537ddfebcb235a3985aafba67 的 Generated Production Prompt v2.8.0、全部 Production Required Source、显式 runtime-process-kick/v2 terminal-recovery 授权、Recovery Wake Receipt research/runtime/wakes/2026/08/2026-08-15/production-155939.json、重新开启的 Production Execution Epoch、已持久化的 Worker Claimed 提交 84919df9a27652c33059a4e0f4ab9fc72bace23b，以及三份同日已完成 Research Object：Q-20260815-01、Q-20260815-02、Q-20260815-03。",
-      "workResult": "Recovery admission and ordered reconciliation succeeded. The current Production Prompt had already been strengthened with premium editorial-cover art direction: one dominant physical metaphor, foreground/midground/background depth, material language, cinematic key and rim light, volumetric atmosphere, controlled palette and magazine-cover composition. After fresh Worker Claim, Q-20260815-01 was translated into a physical scene separating preserved history/protocol state from a distinct human authorization act. Three positive-only scene variants were attempted. Despite those article-only instructions, each generated image was a high-density Runtime recovery dashboard/report, including fabricated Runtime milestones, gate tables and batch summaries. The repeated failure therefore did not come from insufficient visual richness in the article brief; it came from the image-generation path continuing to absorb the surrounding Runtime automation context. The mandatory Cover Gate correctly rejected every attempt and stopped the batch.",
-      "workResult_zh": "Recovery Admission 与有序 Reconciliation 均成功。当前 Production Prompt 已强化为正式高级题图艺术指导：单一主视觉隐喻、前中后景纵深、材质语言、电影级主光与轮廓光、体积氛围、克制配色和杂志封面构图。Fresh Worker Claim 之后，Q-20260815-01 被转换为“保存的 History / Protocol State 与独立 Human Authorization 行为分离”的物理场景，并按规则连续尝试 3 个纯正向场景版本。尽管给出的都是文章级视觉描述，每次生成结果仍然是高信息密度 Runtime Recovery Dashboard / 报告，并自动带入虚构的 Runtime 时间线、Gate 表格和 Batch 摘要。因此本轮失败不再是题图 Brief 过于简单，而是图像生成路径持续吸收外围 Runtime Automation 上下文。强制 Cover Gate 正确拒绝了全部尝试，并停止了批次。",
-      "output": "A governed Blocked Production result only. Zero accepted raster covers, zero Publication Candidates, zero public-page changes, and Publication remains ineligible.",
-      "output_zh": "仅形成受治理的 Blocked Production 结果。已接纳 Raster Cover 为 0，Publication Candidate 为 0，公开页面变更为 0，Publication 仍无执行资格。",
-      "next": "Do not enter Publication. The durable fix must change the image-generation execution boundary, not merely enrich the art-direction wording again. Article cover generation needs an isolated image-generation context whose effective conversation contains only one Article Cover Brief / sanitized visual scene and no Runtime recovery/control-plane narrative. Until that isolation exists, future Production runs should fail closed at Cover Gate rather than repeatedly rewriting the same prompt or admitting dashboard-like imagery.",
-      "next_zh": "不得进入 Publication。真正需要修复的是图像生成的执行边界，而不是继续增加艺术指导词。Article Cover Generation 需要独立的图像生成上下文，使图像模型的有效上下文只包含单篇 Article Cover Brief / sanitized visual scene，不包含 Runtime Recovery 或控制面叙事。在实现这种隔离之前，后续 Production 应继续在 Cover Gate Fail-closed，而不是反复改写同类 Prompt 或接纳 Dashboard 风格图像。",
-      "metrics": [
-        {
-          "label": "Research Objects eligible",
-          "label_zh": "符合 Production 条件的 Research Object",
-          "value": "3 / 3"
-        },
-        {
-          "label": "Recovery execution epochs opened",
-          "label_zh": "已开启 Recovery Execution Epoch",
-          "value": 1
-        },
-        {
-          "label": "Fresh Worker Claimed",
-          "label_zh": "Fresh Worker Claimed",
-          "value": 1
-        },
-        {
-          "label": "Governed current-prompt cover attempts",
-          "label_zh": "当前 Prompt 下正式题图尝试",
-          "value": 3
-        },
-        {
-          "label": "Dashboard/report semantic failures",
-          "label_zh": "Dashboard / 报告语义失败",
-          "value": 3
-        },
-        {
-          "label": "Article covers accepted",
-          "label_zh": "已接纳题图",
-          "value": 0
-        },
-        {
-          "label": "Publication Candidates persisted",
-          "label_zh": "已持久化 Publication Candidate",
-          "value": 0
-        },
-        {
-          "label": "OpenAI Image API calls",
-          "label_zh": "OpenAI Image API 调用",
-          "value": 0
-        },
-        {
-          "label": "API keys or GitHub Secrets used",
-          "label_zh": "使用 API Key 或 GitHub Secret",
-          "value": 0
-        }
-      ],
-      "evidence": [
-        {
-          "label": "Explicit terminal-recovery authorization",
-          "label_zh": "显式 Terminal Recovery 授权",
-          "path": "research/runtime/process-kick/2026-08-15-production-recovery-155939.json"
-        },
-        {
-          "label": "Recovery Wake Receipt",
-          "label_zh": "Recovery Wake Receipt",
-          "path": "research/runtime/wakes/2026/08/2026-08-15/production-155939.json"
-        },
-        {
-          "label": "Worker Claimed commit",
-          "label_zh": "Worker Claimed 提交",
-          "commit": "84919df9a27652c33059a4e0f4ab9fc72bace23b"
-        },
-        {
-          "label": "Authoritative Production prompt",
-          "label_zh": "权威 Production Prompt",
-          "path": "research/runtime/worker-prompts/generated/production.prompt.md"
-        },
-        {
-          "label": "Production prompt version",
-          "label_zh": "Production Prompt 版本",
-          "value": "2.8.0"
-        },
-        {
-          "label": "Production prompt SHA-256",
-          "label_zh": "Production Prompt SHA-256",
-          "value": "f782b39f31f4a3f94d0a35c2041f05d99f42f8a537ddfebcb235a3985aafba67"
-        },
-        {
-          "label": "Q-20260815-01 Research Object",
-          "label_zh": "Q-20260815-01 Research Object",
-          "path": "research/analysis/Q-20260815-01-protocol-state-admission-human-authorization.md"
-        },
-        {
-          "label": "Q-20260815-02 Research Object",
-          "label_zh": "Q-20260815-02 Research Object",
-          "path": "research/analysis/Q-20260815-02-delegation-lifecycle-semantic-return-contract.md"
-        },
-        {
-          "label": "Q-20260815-03 Research Object",
-          "label_zh": "Q-20260815-03 Research Object",
-          "path": "research/analysis/Q-20260815-03-handoff-routing-effect-ownership.md"
-        }
-      ],
-      "artifacts": [
-        {
-          "label": "Production result",
-          "label_zh": "Production 结果",
-          "path": "research/runtime/results/2026/08/2026-08-15-production-result.json"
-        },
-        {
-          "label": "Daily Runtime record",
-          "label_zh": "Daily Runtime 记录",
-          "path": "research/runtime/records/daily/2026/08/2026-08-15-daily-runtime.json"
-        }
-      ],
-      "imageGeneration": [
-        {
-          "itemId": "Q-20260815-01",
-          "briefId": "2026-08-15-cover-brief-q01-recovery-v2.8",
-          "attemptCount": 3,
-          "finalAssetPath": null,
-          "semanticDecision": "FAIL",
-          "technicalDecision": "NOT_ADMITTED",
-          "failureReason": "All three post-claim, current-prompt article-only scene attempts rendered Runtime Production Recovery dashboards/reports instead of the requested editorial cover, demonstrating context contamination at the image-generation execution boundary rather than a lack of art-direction richness.",
-          "attempts": [
-            {
-              "attempt": 1,
-              "generationId": "4370d532-7105-4aec-b212-04181597ac75",
-              "decision": "FAIL",
-              "reason": "Runtime recovery dashboard/report imagery."
-            },
-            {
-              "attempt": 2,
-              "generationId": "e8bb3c93-b2b4-43a4-90a5-0589e2dd0028",
-              "decision": "FAIL",
-              "reason": "Runtime recovery dashboard/report imagery."
-            },
-            {
-              "attempt": 3,
-              "generationId": "2ec1e63a-7c9b-4195-b6c6-90dd77f8d099",
-              "decision": "FAIL",
-              "reason": "Runtime recovery dashboard/report imagery."
-            }
-          ]
-        }
-      ],
-      "imageGenerationMethod": "ChatGPT cloud built-in image generation",
-      "openAIImageApiUsed": false,
-      "apiKeyUsed": false,
-      "githubSecretUsed": false,
-      "family": "daily",
-      "startedAt": "2026-08-15T16:00:44+08:00",
-      "completedAt": "2026-08-15T16:12:40+08:00",
-      "githubCommit": "ea79ca51e0f290f1e69877ec10d3fcd20d1f31af",
-      "commitVerify": "Completed",
-      "verifiedAt": "2026-08-15T16:12:45+08:00"
     }
   },
   "timeline": [
@@ -1210,12 +1046,19 @@
       "event": "GitHub Commit Verified",
       "status": "Completed",
       "detail": "Fetched and verified durable Research Runtime Production Blocked result commit ea79ca51e0f290f1e69877ec10d3fcd20d1f31af on main; 2 execution epoch(s) remain as audit evidence, every prior epoch is governed-closed, and the latest epoch contains a fresh Worker Claimed event before terminal finalization."
+    },
+    {
+      "time": "2026-08-15T16:40:20+08:00",
+      "task": "production",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Production reopened by Research Runtime Scheduler V3.0 under explicit governed terminal-recovery authorization."
     }
   ],
   "metrics": [],
   "evidence": [],
   "artifacts": [],
-  "githubCommit": "ea79ca51e0f290f1e69877ec10d3fcd20d1f31af",
-  "commitVerify": "Completed",
-  "updatedAt": "2026-08-15T16:12:45+08:00"
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-08-15T16:40:20+08:00"
 }
