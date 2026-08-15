@@ -1,0 +1,13 @@
+{
+  "schema": "isolated-cover-worker-input/v1",
+  "version": "1.0.0",
+  "briefSchema": "article-cover-brief/v1",
+  "receiptSchema": "cover-generation-receipt/v1",
+  "workerContext": "isolated-cover-worker",
+  "maxAttemptsPerArticle": 3,
+  "acceptedRasterExtensions": [".png", ".jpg", ".jpeg", ".webp"],
+  "briefFields": ["runDate", "itemId", "briefId", "sanitizedPrompt", "acceptedAssetPath", "receiptPath"],
+  "receiptFields": ["schema", "status", "workerContext", "runDate", "itemId", "briefId", "briefPath", "briefSha256", "sanitizedPrompt", "generationAttempts", "acceptedAssetPath", "assetSha256", "semanticReview", "editorialThumbnailReview", "createdAt"],
+  "imageInstruction": "Send exactly sanitizedPrompt as the image request. Keep one article in context until its accepted asset and receipt are durable, then begin the next article.",
+  "acceptance": "Accept only a clear article-specific premium editorial technology cover with strong focal hierarchy and thumbnail readability."
+}
