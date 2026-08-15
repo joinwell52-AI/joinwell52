@@ -8,6 +8,7 @@ article_type: engineering-insight
 edition: research-center
 research_question: "What trust boundaries must a resumable digital employee enforce when it imports prior history and later accepts a human confirmation for a tool action?"
 summary: "Resumability is safer when imported history, runtime-owned protocol state, action-occurrence binding, and human authorization are treated as different trust decisions. A recent ADK implementation demonstrates selective history admission and strong occurrence matching, but it does not establish confirmer authorization or trusted provenance for ordinary imported history."
+cover: staging/publication-candidates/2026-08-15-resumable-agent-trust-gates-cover.png
 sources:
   - research/analysis/Q-20260815-01-protocol-state-admission-human-authorization.md
   - research/reading/Q-20260815-01-trusted-session-initialization-hitl-confirmation-boundary.md
