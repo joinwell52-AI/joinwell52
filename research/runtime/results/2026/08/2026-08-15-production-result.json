@@ -1,0 +1,55 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "production",
+  "status": "Blocked",
+  "runtimeDate": "2026-08-15",
+  "reasonCode": "cover-semantic-review-failed",
+  "reason": "ChatGPT cloud built-in image generation was available, but all three allowed attempts for the first article cover failed semantic review because the generator repeatedly produced Runtime dashboard/report imagery instead of the article-level editorial visual required by the Article Cover Brief. No rejected image was admitted into a candidate asset path, no coverGate was passed, and no Publication Candidate was persisted.",
+  "reason_zh": "ChatGPT 云端内置图像生成能力本身可用，但第一篇文章题图的 3 次允许尝试全部未通过语义验收：生成器反复产出 Runtime Dashboard / 状态报告类画面，而不是 Article Cover Brief 要求的文章级主题化编辑视觉。任何被拒绝图像都没有写入 Candidate Asset Path，没有通过 coverGate，也没有持久化 Publication Candidate。",
+  "input": "Authoritative main control from the 2026-08-15 Production wake: Scheduler V3.0, Worker Control v1.3.0, generated Production prompt v2.1.0 with CONTROL and MANIFEST identity agreement and exact-head Validate Research Center 3.0 success, all required Production sources, the verified Production Wake Receipt, the verified Production Execution Slot and Worker Claimed event, and the three same-date completed Research Objects Q-20260815-01, Q-20260815-02 and Q-20260815-03.",
+  "input_zh": "来自 2026-08-15 Production 唤醒的权威 main 控制面：Scheduler V3.0、Worker Control v1.3.0、CONTROL 与 MANIFEST 身份一致且 Exact-head Validate Research Center 3.0 成功的 Generated Production Prompt v2.1.0、全部 Production Required Source、已核验 Production Wake Receipt、已核验 Production Execution Slot 与 Worker Claimed，以及三份同日已完成 Research Object：Q-20260815-01、Q-20260815-02、Q-20260815-03。",
+  "workResult": "Fail-closed admission succeeded for branch main, wake-source chatgpt-scheduled-task, the active Production window, GitHub read/write, command execution, file editing and image-generation capability. Runtime reconciliation granted Production as the earliest due unfinished task and the Worker Claimed event became durable on main before formal terminalization. The first article's cover concept was isolated around the boundary between imported history/protocol state and independent execution authorization. ChatGPT cloud image generation was invoked three times, using progressively simplified article-only physical-scene prompts. Each output was semantically rejected because it remained a Runtime dashboard/report artifact rather than an article-level editorial cover. In accordance with the mandatory cover policy, generation stopped after the maximum retry budget and the Production batch was not allowed to create or persist candidate members.",
+  "workResult_zh": "针对 main 分支、chatgpt-scheduled-task 唤醒源、有效 Production 时间窗，以及 GitHub 读写、命令执行、文件编辑与图像生成能力，Fail-closed Admission 已通过。Runtime Reconciliation 将 Production 授权为当前最早到期未收口任务，并在正式终态收口前把 Worker Claimed 持久化到 main。第一篇文章的题图概念被独立约束为“导入 History / Protocol State 与独立 Execution Authorization 之间的边界”。随后使用 ChatGPT Cloud Image Generation 连续调用 3 次，并逐次把提示词进一步收敛为文章级、物理场景化的正向描述；但每次输出都仍然是 Runtime Dashboard / 状态报告类画面，而不是文章级编辑题图，因此全部被语义拒绝。按照强制题图策略，达到最大重试预算后立即停止，不允许创建或持久化任何 Candidate Member。",
+  "output": "A governed Blocked Production result only. Zero Publication Candidates, zero accepted cover assets, zero public-page changes, and Publication remains ineligible.",
+  "output_zh": "仅形成受治理的 Blocked Production 结果。Publication Candidate 为 0，已接纳题图资产为 0，公开页面变更为 0，Publication 仍无执行资格。",
+  "next": "Do not enter Publication. A later governed Production recovery may retry only after the ChatGPT cloud image-generation path can produce an article-level thematic cover from the Article Cover Brief without collapsing into Runtime/dashboard imagery; recovery must perform fresh admission, ordered reconciliation and a new execution epoch under main control.",
+  "next_zh": "不得进入 Publication。只有当 ChatGPT 云端图像生成路径能够基于 Article Cover Brief 真实生成文章级主题化题图、而不再坍缩为 Runtime / Dashboard 画面后，后续受治理的 Production Recovery 才可重试；恢复时必须重新执行 Admission、有序 Reconciliation，并在 main 控制下开启新的 Execution Epoch。",
+  "metrics": [
+    {"label":"Research Objects eligible","label_zh":"符合 Production 条件的 Research Object","value":"3 / 3"},
+    {"label":"Article covers accepted","label_zh":"已接纳题图","value":"0"},
+    {"label":"Cloud image attempts for blocked article","label_zh":"阻塞文章的云端题图尝试次数","value":"3"},
+    {"label":"Semantic-review failures","label_zh":"语义验收失败次数","value":"3"},
+    {"label":"Publication Candidates persisted","label_zh":"已持久化 Publication Candidate","value":"0"},
+    {"label":"OpenAI Image API calls","label_zh":"OpenAI Image API 调用","value":"0"},
+    {"label":"API keys or GitHub Secrets used","label_zh":"使用 API Key 或 GitHub Secret","value":"0"}
+  ],
+  "evidence": [
+    {"label":"Production Wake Receipt","label_zh":"Production Wake Receipt","path":"research/runtime/wakes/2026/08/2026-08-15/production-150409.json"},
+    {"label":"Worker Claimed commit","label_zh":"Worker Claimed 提交","commit":"678a4c583f0f850303f0dcd563379ae883c76e12"},
+    {"label":"Authoritative Production prompt","label_zh":"权威 Production Prompt","path":"research/runtime/worker-prompts/generated/production.prompt.md"},
+    {"label":"Production prompt SHA-256 identity","label_zh":"Production Prompt SHA-256 身份","value":"1c57a2da8865998e86cbaff513b70cb22a365058899678dfd3b5bbfb65108952"},
+    {"label":"Exact-head validation fallback","label_zh":"Exact-head 校验回退","value":"Validate Research Center 3.0 succeeded on commit 6c4a46a13b8c7a34f971893406abab5f1bf0f895"},
+    {"label":"Q-20260815-01 Research Object","label_zh":"Q-20260815-01 Research Object","path":"research/analysis/Q-20260815-01-protocol-state-admission-human-authorization.md"},
+    {"label":"Q-20260815-02 Research Object","label_zh":"Q-20260815-02 Research Object","path":"research/analysis/Q-20260815-02-delegation-lifecycle-semantic-return-contract.md"},
+    {"label":"Q-20260815-03 Research Object","label_zh":"Q-20260815-03 Research Object","path":"research/analysis/Q-20260815-03-handoff-routing-effect-ownership.md"}
+  ],
+  "artifacts": [
+    {"label":"Production result","label_zh":"Production 结果","path":"research/runtime/results/2026/08/2026-08-15-production-result.json"},
+    {"label":"Daily Runtime record","label_zh":"Daily Runtime 记录","path":"research/runtime/records/daily/2026/08/2026-08-15-daily-runtime.json"}
+  ],
+  "imageGeneration": [
+    {
+      "itemId": "Q-20260815-01",
+      "briefId": "cover-brief-20260815-q01",
+      "attemptCount": 3,
+      "finalAssetPath": null,
+      "semanticDecision": "FAIL",
+      "technicalDecision": "NOT_ADMITTED",
+      "failureReason": "All three ChatGPT cloud image-generation outputs were Runtime dashboard/report visuals rather than the article-level thematic editorial cover required by the brief."
+    }
+  ],
+  "imageGenerationMethod": "ChatGPT cloud built-in image generation",
+  "openAIImageApiUsed": false,
+  "apiKeyUsed": false,
+  "githubSecretUsed": false
+}
