@@ -28,29 +28,19 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
+          import re
           path = Path('scripts/research-intelligence.mjs')
           text = path.read_text(encoding='utf-8')
-          old = """  if (run.status === 'Completed') {
-            if (!run.pipelines.every((pipeline) => pipeline.status === 'Completed')) {
-              die(`${path}: completed run requires all pipelines Completed`)
-            }
-            if (!run.columns.every((column) => ['Selected', 'No Selection'].includes(column.decision))) {
-              die(`${path}: completed run requires a decision for all three columns`)
-            }
-          }
-          """
-          new = """  if (run.status === 'Completed') {
-            if (!run.pipelines.every((pipeline) => pipeline.status === 'Completed')) {
-              die(`${path}: completed run requires all pipelines Completed`)
-            }
+          pattern = re.compile(r"\n\s*if \(!run\.columns\.every\(\(column\) => \['Selected', 'No Selection'\]\.includes\(column\.decision\)\)\) \{\n\s*die\(`\$\{path\}: completed run requires a decision for all three columns`\)\n\s*\}")
+          matches = list(pattern.finditer(text))
+          if len(matches) != 1:
+              raise SystemExit(f'Expected exactly one legacy Completed-column gate, found {len(matches)}')
+          replacement = """
             // Discovery owns the Intelligence run and may complete with column
             // decisions still Waiting. Queue owns Selected / No Selection and
-            // is validated separately through the same-day plan linkage below.
-          }
-          """
-          if text.count(old) != 1:
-              raise SystemExit('Expected exactly one legacy Completed-column gate')
-          path.write_text(text.replace(old, new), encoding='utf-8')
+            // is validated separately through the same-day plan linkage below."""
+          text = pattern.sub(replacement, text, count=1)
+          path.write_text(text, encoding='utf-8')
           PY
       - name: Validate repaired Intelligence contract
         run: |
