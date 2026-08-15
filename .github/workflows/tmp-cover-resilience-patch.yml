@@ -1,0 +1,66 @@
+name: Temporary Cover Resilience Patch
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temporary-cover-resilience-patch
+  cancel-in-progress: false
+
+jobs:
+  patch:
+    if: contains(github.event.head_commit.message, '[cover-resilience-patch]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Check patch helper
+        run: node --check scripts/apply-cover-resilience-patch.mjs
+      - name: Apply resilient baseline + optional upgrade architecture
+        run: node scripts/apply-cover-resilience-patch.mjs
+      - name: Check generated baseline cover script
+        run: |
+          node --check scripts/generate-baseline-cover.mjs
+          mkdir -p /tmp/joinwell52-cover-test
+          node scripts/generate-baseline-cover.mjs --output /tmp/joinwell52-cover-test/test.png --item Q-TEST-01 --column digital-employee --title "Baseline Cover Test"
+          node -e "const fs=require('fs');const b=fs.readFileSync('/tmp/joinwell52-cover-test/test.png');if(!b.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])))process.exit(1);console.log('baseline PNG signature PASS',b.length)"
+      - name: Rebuild authoritative worker prompt bundle
+        run: npm run worker-prompts:build
+      - name: Validate Production and publication boundaries
+        run: |
+          npm run worker-prompts:validate
+          npm run worker-control:test
+          npm run runtime:terminal:test
+          npm run runtime:recovery:test
+          npm run publication:bundle:test
+          npm run publication:layout:validate
+          npm run publication:editorial:validate
+          npm run runtime:validate
+      - name: Remove temporary patch machinery
+        run: git rm -f .github/workflows/tmp-cover-resilience-patch.yml scripts/apply-cover-resilience-patch.mjs
+      - name: Commit durable resilient cover architecture
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'fix(production): baseline covers with non-blocking upgrades'
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort || true
+            git fetch origin main
+            sleep $((attempt * 5))
+          done
+          exit 1
