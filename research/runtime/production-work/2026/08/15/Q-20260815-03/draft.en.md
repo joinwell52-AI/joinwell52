@@ -8,6 +8,7 @@ article_type: engineering-insight
 edition: research-center
 research_question: "What ownership facts must an agent runtime separate when background tool work may outlive the agent that created it during handoff or teardown?"
 summary: "Agent handoff is an ownership transfer, not merely a change of active agent name. Local execution cancellation, routing retirement, observed task termination and reconciliation of external effects are different facts; a recent ADK change demonstrates strong local cleanup and routing revocation while leaving external-effect closure outside its guarantee."
+cover: staging/publication-candidates/2026-08-15-agent-handoff-ownership-cover.png
 sources:
   - research/analysis/Q-20260815-03-handoff-routing-effect-ownership.md
   - research/reading/Q-20260815-03-live-background-tool-task-lifecycle-ownership.md
