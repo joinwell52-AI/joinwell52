@@ -14,6 +14,8 @@ Persist an accepted image only through the repository-defined GitHub Git Data Ba
 
 Only after durable main verification may you write the optional `cover-upgrade-receipt/v1`. If main advances before the ref update, re-fetch and rebuild without force within the bounded persistence attempt; otherwise leave the baseline untouched.
 
+If the candidate has already been publicly released for the same run date, also resolve that released item's exact public cover path from the same-date `runtime-publication-release/v1` manifest and update the canonical staging `coverPath` and the exact public cover path to the same accepted binary blob in one fast-forward tree/commit. Do not modify article prose, indexes, Runtime terminal state, or any unrelated public asset. Verify both staging and public paths from latest main before reporting the upgrade durable.
+
 If any attempt fails generation, semantic review, technical validation, persistence or remote verification, preserve the baseline bytes and move on or stop according to the input contract. An upgrade failure is never a Production failure and must never reopen, downgrade or Block a Completed Production.
 
 Finish with plain text only. Never generate a Runtime report image, dashboard, completion poster or execution evidence.
