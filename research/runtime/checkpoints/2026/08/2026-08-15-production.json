@@ -1,0 +1,49 @@
+{
+  "schema": "runtime-production-checkpoint/v1",
+  "runDate": "2026-08-15",
+  "node": "awaiting-isolated-covers",
+  "status": "Running",
+  "lastCompletedNode": "cover-briefs-persisted",
+  "artifacts": [
+    "research/runtime/production-work/2026/08/15/prepared-bundle.json",
+    "research/runtime/production-work/2026/08/15/Q-20260815-01/draft.zh.md",
+    "research/runtime/production-work/2026/08/15/Q-20260815-01/draft.en.md",
+    "research/runtime/production-work/2026/08/15/Q-20260815-01/cover-brief.json",
+    "research/runtime/production-work/2026/08/15/Q-20260815-02/draft.zh.md",
+    "research/runtime/production-work/2026/08/15/Q-20260815-02/draft.en.md",
+    "research/runtime/production-work/2026/08/15/Q-20260815-02/cover-brief.json",
+    "research/runtime/production-work/2026/08/15/Q-20260815-03/draft.zh.md",
+    "research/runtime/production-work/2026/08/15/Q-20260815-03/draft.en.md",
+    "research/runtime/production-work/2026/08/15/Q-20260815-03/cover-brief.json"
+  ],
+  "evidence": [
+    {
+      "type": "prompt-verification",
+      "promptPath": "research/runtime/worker-prompts/generated/production.prompt.md",
+      "promptVersion": "2.10.0",
+      "declaredPromptSha256": "24450c09d1eb239940c38df4aa744fe918650a8e043a52f37e1959461109b747",
+      "controlIdentity": "CONTROL/MANIFEST agreement on latest main"
+    },
+    {
+      "type": "terminal-recovery-authorization",
+      "path": "research/runtime/process-kick/2026-08-15-production-recovery-163846.json"
+    },
+    {
+      "type": "wake-receipt",
+      "path": "research/runtime/wakes/2026/08/2026-08-15/production-163846.json"
+    },
+    {
+      "type": "fresh-worker-claim",
+      "commit": "d117df32869215547663b5dd6cf753df17164daa"
+    },
+    {
+      "type": "prepared-bundle",
+      "path": "research/runtime/production-work/2026/08/15/prepared-bundle.json",
+      "eligibleItemIds": ["Q-20260815-01", "Q-20260815-02", "Q-20260815-03"],
+      "directImageGenerationCalls": 0,
+      "directPublicationActions": 0
+    }
+  ],
+  "sourceCommit": "c70c38b0bc4aa9cffe73fa2e955859ff9467f8d4",
+  "updatedAt": "2026-08-15T16:50:00+08:00"
+}
