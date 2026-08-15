@@ -8,6 +8,7 @@ article_type: technical-analysis
 edition: research-center
 research_question: "多 Agent 架构必须显式定义哪些要素，才能让远程委派任务暂停、恢复、完成并归还控制权，同时避免把 Transport Termination 误认成工作成功？"
 summary: "可靠委派至少需要两个一等合同：标识精确委派实例的稳定身份，以及定义什么才算成功完成的语义返回合同。近期一个 ADK Task Mode 实现展示了同一 Scope 如何贯穿暂停、恢复与终态匹配，但互操作、授权和外部副作用恢复仍是独立问题。"
+cover: staging/publication-candidates/2026-08-15-delegated-agent-return-contract-cover.png
 sources:
   - research/analysis/Q-20260815-02-delegation-lifecycle-semantic-return-contract.md
   - research/reading/Q-20260815-02-native-a2a-task-delegation-finish-terminal-boundary.md
