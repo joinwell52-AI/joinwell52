@@ -1,0 +1,46 @@
+name: Temporary Worker Prompt Sync
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: contains(github.event.head_commit.message, '[build-worker-prompts]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Rebuild generated worker prompts
+        run: npm run worker-prompts:build
+
+      - name: Validate generated worker prompts
+        run: npm run worker-prompts:validate
+
+      - name: Commit generated prompt control
+        shell: bash
+        run: |
+          if git diff --quiet -- research/runtime/worker-prompts/generated; then
+            echo "No generated prompt drift to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/runtime/worker-prompts/generated
+          git commit -m "chore(runtime): rebuild generated worker prompts"
+          git push origin HEAD:main
