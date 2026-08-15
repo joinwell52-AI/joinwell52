@@ -8,14 +8,14 @@
   "date": "2026-08-15",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Completed",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
     "production": "Completed",
-    "publication": "Running"
+    "publication": "Completed"
   },
   "results": {
     "discovery": {
@@ -989,6 +989,97 @@
       "githubCommit": "8f03021354751f5ace26af1a025e2fba18dc338e",
       "commitVerify": "Completed",
       "verifiedAt": "2026-08-15T20:10:53+08:00"
+    },
+    "publication": {
+      "schema": "runtime-shift-result/v2",
+      "task": "publication",
+      "family": "daily",
+      "runtimeDate": "2026-08-15",
+      "status": "Completed",
+      "input": {
+        "candidateBatch": "research/runtime/candidates/2026/08/2026-08-15-candidates.json",
+        "productionResult": "research/runtime/results/2026/08/2026-08-15-production-result.json",
+        "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-15/publication-212326.json",
+        "recoveryType": "explicit-same-day-stale-running-recovery"
+      },
+      "workResult": {
+        "summary": "Recovered the stale same-day Publication and mechanically released the three completed V2 candidates as six bilingual Research Center articles and three existing canonical raster covers. No new research, substantive rewriting, evidence repair, cover generation or Production recovery was performed.",
+        "summary_zh": "恢复同日陈旧 Publication，并机械发布三组已完成 V2 Candidate，形成六篇双语 Research Center 文章和三张既有规范栅格题图。全程未开展新研究、实质性改写、证据修复、题图生成或 Production 恢复。"
+      },
+      "output": {
+        "type": "Released Daily Research",
+        "outcome": "Released",
+        "releaseManifest": "research/runtime/releases/2026-08-15-publication.json",
+        "releasedItems": 3,
+        "bilingualArticleFiles": 6,
+        "coverAssets": 3,
+        "inlineFigureAssets": 0,
+        "communityEditions": 0
+      },
+      "next": {
+        "instruction": "Finalize Publication only after required validators, site build, release visibility and durable main verification pass.",
+        "instruction_zh": "仅在必需校验、网站构建、发布可见性与 main 持久核验全部通过后，才收口 Publication。"
+      },
+      "metrics": [
+        {
+          "name": "eligible_publication_candidates",
+          "value": 3
+        },
+        {
+          "name": "released_items",
+          "value": 3
+        },
+        {
+          "name": "bilingual_article_files",
+          "value": 6
+        },
+        {
+          "name": "cover_assets",
+          "value": 3
+        },
+        {
+          "name": "new_research_actions",
+          "value": 0
+        },
+        {
+          "name": "substantive_rewrites",
+          "value": 0
+        },
+        {
+          "name": "evidence_repairs",
+          "value": 0
+        },
+        {
+          "name": "cover_generation_actions",
+          "value": 0
+        },
+        {
+          "name": "production_recovery_actions",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        "research/runtime/candidates/2026/08/2026-08-15-candidates.json",
+        "research/runtime/results/2026/08/2026-08-15-production-result.json",
+        "research/runtime/worker-prompts/generated/publication.prompt.md",
+        "research/runtime/wakes/2026/08/2026-08-15/publication-212326.json",
+        "research/runtime/records/daily/2026/08/2026-08-15-daily-runtime.json"
+      ],
+      "artifacts": [
+        "docs/zh/digital-employee/2026-08-15-resumable-agent-trust-gates.md",
+        "docs/en/digital-employee/2026-08-15-resumable-agent-trust-gates.md",
+        "docs/public/assets/covers/daily-2026-08-15-resumable-agent-trust-gates-cover.png",
+        "docs/zh/industry/2026-08-15-delegated-agent-return-contract.md",
+        "docs/en/industry/2026-08-15-delegated-agent-return-contract.md",
+        "docs/public/assets/covers/daily-2026-08-15-delegated-agent-return-contract-cover.png",
+        "docs/zh/engineering/2026-08-15-agent-handoff-ownership.md",
+        "docs/en/engineering/2026-08-15-agent-handoff-ownership.md",
+        "docs/public/assets/covers/daily-2026-08-15-agent-handoff-ownership-cover.png",
+        "research/runtime/releases/2026-08-15-publication.json",
+        "research/runtime/results/2026/08/2026-08-15-publication-result.json"
+      ],
+      "startedAt": "2026-08-15T21:25:30+08:00",
+      "completedAt": "2026-08-15T21:39:44+08:00"
     }
   },
   "timeline": [
@@ -1229,6 +1320,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Publication after verifying research/runtime/wakes/2026/08/2026-08-15/publication-212326.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-08-15T21:39:44+08:00",
+      "task": "publication",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Publication closed as Completed through governed Runtime shift finalization after durable result validation for 2026-08-15."
     }
   ],
   "metrics": [],
@@ -1236,5 +1334,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-15T21:25:30+08:00"
+  "updatedAt": "2026-08-15T21:39:44+08:00"
 }
