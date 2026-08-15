@@ -189,7 +189,7 @@
     },
     {
       "task": "production",
-      "version": "2.9.0",
+      "version": "2.10.0",
       "effectiveDate": "2026-08-14",
       "template": "research/runtime/worker-prompts/templates/production.prompt.md",
       "output": "research/runtime/worker-prompts/generated/production.prompt.md",
@@ -211,18 +211,18 @@
       "rules": [
         "Produce complete bilingual V2 Publication Candidates only from completed same-run-date Research Objects.",
         "Apply dynamic article architecture, independent evidence grading, Research Center and Community Edition separation, and every declared gate.",
-        "Persist one article-cover-brief/v1 per eligible Research Object before any cover is accepted. Production must never call image generation from the Runtime conversation.",
-        "Consume Article Covers only through same-date cover-generation-receipt/v1 records created by a separate isolated cover-worker invocation. The isolated worker receives one article positive visual brief plus minimum destination metadata and no Runtime or recovery narrative.",
+        "At the 15:00 Production Preparation wake, persist complete bilingual pre-candidate drafts, one article-cover-brief/v1 per eligible Research Object, and production-prepared-bundle/v1; then persist the awaiting-isolated-covers checkpoint and stop. Production must never call image generation.",
+        "The separate 16:00 isolated cover worker reads one worker-safe contract and one article brief at a time, generates only that cover, and persists same-date cover-generation-receipt/v1 evidence plus the accepted raster asset.",
         "Reject stale, prior-date, mismatched, missing, non-raster or failed cover receipts/assets. Brief hash, itemId, briefId, accepted asset hash and candidate cover bytes must bind exactly.",
-        "A cover-worker receipt PASS is necessary but not sufficient: Production remains responsible for all editorial, evidence, bilingual, Cover, Inline Visual, Layout, candidate-bundle and terminal-proof gates.",
+        "After all receipts are durable, GitHub deterministic cover finalization mechanically assembles the already-prepared candidate bundle, runs validators and creates the Production completion request; no third ChatGPT wake is required.",
+        "A cover-worker receipt PASS is necessary but not sufficient: Production Preparation remains the semantic owner of article content, non-cover gates and candidate intent; deterministic finalization may only project those prepared facts after receipt validation.",
         "Resume only from the latest same-run-date checkpoint committed on main. If its Prompt identity is stale, reject that checkpoint as resumable progress and re-execute the earliest unproved node under current control; stale checkpoint rejection must not terminate an explicitly authorized recovery by itself.",
         "Verify the current Prompt directly when hashing is available. Otherwise require CONTROL and MANIFEST agreement plus a successful Validate Research Center 3.0 / build run for the exact pinned main HEAD, and record promptVerificationMode=exact-head-ci with the Actions run URL.",
         "For an explicitly authorized same-day recovery of Failed or Blocked Production, persist runtime-process-kick/v2 with requestMode=terminal-recovery, nominalTask=production and allowTerminalReopen=true. Ordinary v1 kicks and timer wakes must never reopen terminal state.",
-        "A Completed result with eligible inputs must declare productionMode=candidate-batch and pass npm run runtime:production:proof. If the Worker lacks command execution, Research Runtime Shift Finalization V2.1 must run that proof and persist the remotely verified terminal result before Completed may be reported.",
+        "A Completed result with eligible inputs must declare productionMode=candidate-batch and pass npm run runtime:production:proof. Research Runtime Shift Finalization V2.1 persists and remotely verifies the terminal state.",
         "The final task response is plain text only. Never create a Runtime report image, dashboard, poster, status summary or execution evidence.",
         "Build every candidate outside the canonical staging path until its Chinese article, English article, verified isolated cover receipt and source raster, candidate cover copy, optional Inline Figures and completed candidate-batch record are all ready.",
-        "Stage and commit the complete candidate bundle exactly once. Before commit run npm run publication:bundle:staged plus every declared validator; never commit one language, an article without its referenced assets, or an incomplete candidate batch.",
-        "Do not bypass the repository pre-commit hook, use --no-verify, or write candidate files directly through the GitHub Contents API. Stage candidates only; Production never publishes."
+        "Do not bypass the repository pre-commit hook, use --no-verify, or write candidate files directly through the GitHub Contents API. Production never publishes."
       ],
       "requiredSources": [
         "research/runtime/SCHEDULER.json",

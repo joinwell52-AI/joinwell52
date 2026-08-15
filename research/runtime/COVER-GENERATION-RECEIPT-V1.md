@@ -97,3 +97,11 @@ Stale, prior-date, unmatched, non-raster, missing or failed receipts are rejecte
 A receipt proves only that the isolated cover worker accepted one article-specific raster asset under this contract. It does not complete Production. Production still owns Research Value, Independence, Evidence, Structure, Language, Bilingual Consistency, Cover, Inline Visual, Layout, candidate-bundle, validator and terminal-proof gates.
 
 Inline Figures remain optional `0..N` article-body assets and are not part of this isolated Article Cover contract.
+
+## Production preparation bundle
+
+The 15:00 Production Preparation wake persists `research/runtime/production-work/YYYY/MM/DD/prepared-bundle.json` using `production-prepared-bundle/v1`. It contains the complete same-date semantic Production decision before raster covers exist: one item per eligible Research Object, pre-candidate Chinese and English draft paths, final staging article/cover paths, current Cover Brief and expected Receipt paths, complete candidate metadata with all non-cover gates decided by Production Preparation, and a meaningful `resultBase`. Production then persists checkpoint node `awaiting-isolated-covers` and leaves the formal Production shift open.
+
+## Deterministic cover finalization
+
+After all required same-date receipts are durable, `.github/workflows/research-production-cover-finalization.yml` runs `scripts/runtime-production-cover-finalize.mjs`. The script performs no research or writing. It validates every current brief/receipt/asset binding, copies the already-prepared bilingual drafts and accepted raster bytes into final staging paths, creates the completed candidate batch, advances the checkpoint to `validators-passed`, writes the prepared Production result as `Completed`, and creates the governed Production completion request. The workflow runs bundle, layout, editorial, Production proof and Runtime validators before committing. The existing Shift Finalization workflow then persists the terminal transition and remote verification. No additional ChatGPT wake is used.

@@ -356,5 +356,27 @@
         "Publishing without Program Review"
       ]
     }
+  ],
+  "auxiliaryWorkers": [
+    {
+      "id": "isolated-cover-worker",
+      "name": "Isolated Article Cover Worker",
+      "name_zh": "隔离题图工作器",
+      "ownerTask": "production",
+      "role": "production-auxiliary",
+      "schedule": {
+        "kind": "daily",
+        "time": "16:00",
+        "cron": "0 8 * * *"
+      },
+      "prompt": "research/runtime/worker-prompts/isolated-cover-worker.prompt.md",
+      "inputContract": "research/runtime/COVER-WORKER-INPUT-V1.json",
+      "receiptContract": "research/runtime/COVER-GENERATION-RECEIPT-V1.md",
+      "inputRoot": "research/runtime/production-work/YYYY/MM/DD",
+      "output": "cover-generation-receipt/v1 plus accepted raster asset",
+      "finalizationWorkflow": ".github/workflows/research-production-cover-finalization.yml",
+      "chatgptWake": true,
+      "formalRuntimeStage": false
+    }
   ]
 }

@@ -38,7 +38,8 @@
     "docs:build": "npm run runtime:build && node scripts/vitepress-build-strict.mjs && npm run runtime:projection:verify-dist",
     "docs:preview": "vitepress preview docs",
     "runtime:markdown": "node scripts/runtime-markdown.mjs render --all",
-    "runtime:markdown:validate": "node scripts/runtime-markdown.mjs validate --all"
+    "runtime:markdown:validate": "node scripts/runtime-markdown.mjs validate --all",
+    "runtime:cover:finalize": "node scripts/runtime-production-cover-finalize.mjs"
   },
   "devDependencies": {
     "ajv": "8.17.1",
