@@ -1,0 +1,15 @@
+{
+  "schema": "cover-upgrade-worker-input/v1",
+  "version": "1.0.0",
+  "repository": "joinwell52-AI/joinwell52",
+  "timezone": "Asia/Shanghai",
+  "requiredProductionStatus": "Completed",
+  "candidateContract": "runtime-publication-candidate/v2",
+  "briefSchema": "article-cover-brief/v1",
+  "receiptSchema": "cover-upgrade-receipt/v1",
+  "blocking": false,
+  "mayChangeProductionState": false,
+  "targetRule": "Replace only the exact existing candidate coverPath after the upgraded raster passes review; otherwise preserve the baseline bytes.",
+  "imageInstruction": "For one article at a time, send only its positive article-specific visual scene to ChatGPT built-in image generation.",
+  "acceptance": "Accept a replacement only when it is clearly article-specific, attractive at thumbnail scale, a real raster, and materially better than the baseline. Simple baseline quality is already valid and is never a reason to force replacement."
+}

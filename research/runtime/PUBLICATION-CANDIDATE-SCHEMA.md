@@ -104,7 +104,7 @@ Zero-output `Completed` remains valid with an exact bilingual `No Eligible Resea
   },
   "coverPath": "staging/publication-candidates/...-cover.webp",
   "coverBriefPath": "research/runtime/production-work/YYYY/MM/DD/Q-.../cover-brief.json",
-  "coverReceiptPath": "research/runtime/production-work/YYYY/MM/DD/Q-.../cover-generation-receipt.json",
+  "coverRole": "baseline",
   "inlineFigures": [],
   "coverGate": "PASS",
   "inlineVisualGate": "PASS",
@@ -176,7 +176,9 @@ The title, angle, heading structure, and discussion question differ from the Res
 
 The Article Cover and optional Inline Figures retain the V1.1 role separation and gates. Visuals do not determine article modules. `inlineFigures: []` is valid.
 
-For Production dates on or after 2026-08-15, every candidate also records `coverBriefPath` and `coverReceiptPath`. The receipt must conform to `research/runtime/COVER-GENERATION-RECEIPT-V1.md`, bind the current same-date brief by SHA-256, bind a real accepted raster asset by SHA-256, and pass semantic plus editorial-thumbnail review. Production must not create the image itself or infer PASS from file existence alone.
+For Production dates on or after 2026-08-15, every candidate must have a same-date canonical PNG `coverPath` before Production can complete. The 15:00 Production worker creates that baseline with `scripts/generate-baseline-cover.mjs` and records structured `coverEvidence[]` with `coverRole=baseline` and `generator=deterministic-baseline-v1`. `coverBriefPath` is optional upgrade metadata, not a completion dependency.
+
+The 16:00 Cover Upgrade Worker may later replace the exact same `coverPath` with a better article-specific generated raster and may record `cover-upgrade-receipt/v1`. The upgrade receipt is audit evidence only; it is never required for Production completion.
 
 ## Completion gate
 
@@ -186,7 +188,7 @@ A V2 candidate is complete only when:
 - Chinese and English files exist and use `publication-candidate-article/v2` metadata;
 - claim identity and strength are equivalent in both languages;
 - all six editorial gates are `PASS`;
-- the Article Cover is backed by a same-date valid isolated cover-worker receipt, and the Cover, Inline Visual, and Layout Gates pass;
+- the same-date baseline PNG exists and the Cover, Inline Visual, and Layout Gates pass; an optional later Cover Upgrade is not a completion dependency;
 - any Community Edition is separately framed and machine-valid;
 - the candidate is not yet in the public article directory.
 
@@ -194,14 +196,14 @@ The machine validator is `scripts/publication-editorial-validate.mjs`.
 
 ## Atomic commit gate
 
-A new candidate is one indivisible candidate commit bundle: the Chinese article, English article, candidate cover copy, optional Inline Figures, and the completed same-date candidate-batch record. The isolated worker's accepted pre-candidate raster and receipt are committed and remotely verified earlier under `research/runtime/production-work/`; Production verifies them, copies the exact accepted raster bytes into the candidate cover path, then builds the remaining candidate bundle outside the canonical staging path, moves all candidate members into place together, stages them together, and runs:
+A new candidate is one indivisible candidate commit bundle: the Chinese article, English article, deterministic baseline PNG, optional Inline Figures, and the completed same-date candidate-batch record. Production builds the bundle outside the canonical staging path, moves all members into place together, stages them together, and runs:
 
 ```text
 npm run publication:bundle:staged
 ```
 
-The repository pre-commit hook rejects a new candidate when its bilingual counterpart, referenced asset, or completed batch record is absent from the same Git index. Production must not bypass the hook, use `--no-verify`, split a candidate bundle by language, or write candidate members directly through the GitHub Contents API.
+The repository pre-commit hook rejects a new candidate when its bilingual counterpart, referenced asset, or completed batch record is absent from the same Git index. Production must not bypass the hook, use `--no-verify`, split a candidate bundle by language, or write candidate members directly through the GitHub Contents API. A later 16:00 Cover Upgrade is allowed to replace only the already-declared canonical cover file after Production is Completed; it does not rebuild the candidate bundle or change article text.
 
 ## Publication boundary
 
-Publication may copy complete Research Center and authorized Community Edition artifacts to their target surfaces, update metadata and indexes, commit, verify, and release. It must return any failed candidate upstream and must not perform new research, substantive rewriting, evidence repair, type selection, module repair, or claim-strength repair.
+Publication reads each candidate's current canonical coverPath at execution time, so a successful 16:00 same-path upgrade is used automatically and a failed upgrade leaves the baseline in force. Publication may copy complete Research Center and authorized Community Edition artifacts to their target surfaces, update metadata and indexes, commit, verify, and release. It must return any failed candidate upstream and must not perform new research, substantive rewriting, evidence repair, type selection, module repair, or claim-strength repair.

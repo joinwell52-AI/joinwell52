@@ -55,9 +55,11 @@ A valid cover should:
 - establish a clear foreground/midground/background relationship or another strong spatial hierarchy;
 - use controlled color and lighting rather than flat iconography or cartoon-like symbols.
 
-The Article Cover is a generated raster editorial asset, not a code-drawn visual. Production persists the article-specific Cover Brief, while a separate isolated cover-worker invocation uses ChatGPT cloud built-in image generation and persists the accepted raster plus `cover-generation-receipt/v1`; neither path calls the OpenAI Image API or requires an API-key Secret. Production never invokes image generation from its Runtime conversation. If the isolated worker cannot produce a valid receipt and raster asset, Production cannot mark `coverGate` as `PASS` and must follow governed recovery/terminal policy rather than substituting a hand-authored SVG, CSS composition, diagram or icon card.
+The 15:00 Production baseline Article Cover is a deterministic raster editorial asset produced by `scripts/generate-baseline-cover.mjs`. Its job is reliability: every complete candidate has a clean, simple, same-date PNG before Production closes. It does not call cloud image generation and must not be judged by high-end illustration standards.
 
-SVG remains valid for an Inline Figure when the article needs a precise explanatory diagram. It is forbidden as the page-level Article Cover.
+A separate 16:00 Cover Upgrade may replace that PNG with a higher-quality ChatGPT-generated article-specific raster. The upgrade is optional and non-blocking: failure leaves the baseline untouched and never changes a Completed Production state.
+
+SVG remains valid for an Inline Figure when the article needs a precise explanatory diagram. The baseline Article Cover itself is PNG so the later quality upgrade can replace the same canonical path without changing article or candidate metadata.
 
 A cover MUST be rejected when its primary composition is any of the following:
 
@@ -121,18 +123,15 @@ For an editorial cover, the source note may appear in article metadata or the vi
 
 ## Article-cover workflow
 
-1. Extract the article's single editorial proposition: what should the reader feel or recognize before reading, not what complete mechanism must be explained?
-2. Choose one semantic object, scene or visual metaphor that embodies that proposition.
-3. Choose a cover mode deliberately:
-   - portrait editorial cover: `720×900` or `800×1040`;
-   - landscape editorial cover: `1600×900`, `1376×768` or `960×600`;
-   - do not mix portrait composition with a landscape canvas.
-4. Write an article-cover brief with one positive physical/spatial visual scene plus complete editorial art direction. Keep negative constraints only in `reviewExclusions`; never append them to `sanitizedPrompt`. Persist the brief under the same-date Production-work path.
-5. Hand exactly one persisted brief to a separate isolated cover-worker invocation. That worker may read only the brief, the Cover Generation Receipt V1 contract and destination metadata; it must not receive Runtime, recovery or batch context.
-6. The isolated worker invokes ChatGPT cloud built-in image generation with exactly the positive `sanitizedPrompt`, inspects the generated image and performs bounded article-only retries when necessary.
-7. The isolated worker runs the Thumbnail acceptance test and persists the accepted raster plus `cover-generation-receipt/v1`.
-8. Production verifies the receipt, current brief hash, raster signature and accepted-asset hash, then copies the exact accepted bytes into the candidate cover path.
-9. Render the actual article page and approve the cover only after responsive QA.
+1. Extract a short article-level visual descriptor and select the canonical same-date `.png` cover path.
+2. During 15:00 Production, run `scripts/generate-baseline-cover.mjs` with item ID, column and English title.
+3. Verify the output is a real PNG, visually distinct at thumbnail scale and not a technical diagram or Runtime/report surface. Treat a clean simple result as valid baseline cover quality.
+4. Optionally persist a richer Article Cover Brief for the 16:00 Cover Upgrade.
+5. Complete Production using the baseline; never wait for the upgrade.
+6. At 16:00, the separate Cover Upgrade Worker may use ChatGPT built-in image generation with only the article-specific positive scene description.
+7. Replace the existing canonical cover path only after the upgraded raster passes article relevance and editorial-thumbnail review.
+8. If the upgrade fails for any reason, preserve the baseline bytes and do not alter Production state.
+9. Render the actual article page and approve the currently active cover during Publication QA.
 
 ## Mandatory safe area
 

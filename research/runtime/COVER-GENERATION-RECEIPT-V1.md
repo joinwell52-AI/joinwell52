@@ -1,5 +1,7 @@
 # Isolated Article Cover Generation Contract V1
 
+> Historical status after Production 2.11: this contract remains for audit of earlier isolated-cover runs. It is no longer a prerequisite for Production completion. Current non-blocking quality replacement uses `research/runtime/COVER-UPGRADE-V1.md`.
+
 ## Purpose
 
 Article Cover image generation is executed outside the Research Runtime Production conversation. Production owns article writing, Cover Brief creation, candidate assembly and every final gate. The isolated cover worker owns only one article-cover generation request at a time.

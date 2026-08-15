@@ -225,7 +225,7 @@
         "cron": "0 7 * * *"
       },
       "input": "Research Object",
-      "work": "Write complete bilingual V2 candidates using a selected article type and dynamic modules; classify claim identities and project relevance; persist one same-date Article Cover Brief per eligible object; consume only same-date isolated cover-worker receipts and accepted raster assets; decide and contextually insert 0..N Inline Figures; pass six editorial gates plus Cover, Inline Visual and Article Layout gates; and record an optional Community Edition decision.",
+      "work": "Write complete bilingual V2 candidates using a selected article type and dynamic modules; classify claim identities and project relevance; create one simple deterministic baseline raster Article Cover per candidate inside the same Production run; optionally persist one same-date Article Cover Brief for later quality upgrade; decide and contextually insert 0..N Inline Figures; pass six editorial gates plus Cover, Inline Visual and Article Layout gates; and record an optional Community Edition decision.",
       "output": "Publication Candidate",
       "skills": [
         "05 Research Writing",
@@ -244,8 +244,8 @@
         "Fixed Cover or Figure image-container sections",
         "Manufacturing unnecessary figures",
         "Copied or promotional Community Edition",
-        "Calling image generation from the Production Runtime conversation",
-        "Accepting an Article Cover without a valid isolated cover-worker receipt"
+        "Blocking Production on the optional 16:00 Cover Upgrade",
+        "Reopening or downgrading Completed Production because an optional cover upgrade failed"
       ]
     },
     {
@@ -359,24 +359,26 @@
   ],
   "auxiliaryWorkers": [
     {
-      "id": "isolated-cover-worker",
-      "name": "Isolated Article Cover Worker",
-      "name_zh": "隔离题图工作器",
+      "id": "cover-upgrade-worker",
+      "name": "Article Cover Upgrade Worker",
+      "name_zh": "文章题图升级工作器",
       "ownerTask": "production",
-      "role": "production-auxiliary",
+      "role": "post-production-quality-upgrade",
       "schedule": {
         "kind": "daily",
         "time": "16:00",
         "cron": "0 8 * * *"
       },
-      "prompt": "research/runtime/worker-prompts/isolated-cover-worker.prompt.md",
-      "inputContract": "research/runtime/COVER-WORKER-INPUT-V1.json",
-      "receiptContract": "research/runtime/COVER-GENERATION-RECEIPT-V1.md",
-      "inputRoot": "research/runtime/production-work/YYYY/MM/DD",
-      "output": "cover-generation-receipt/v1 plus accepted raster asset",
-      "finalizationWorkflow": ".github/workflows/research-production-cover-finalization.yml",
+      "prompt": "research/runtime/worker-prompts/cover-upgrade-worker.prompt.md",
+      "inputContract": "research/runtime/COVER-UPGRADE-INPUT-V1.json",
+      "upgradeContract": "research/runtime/COVER-UPGRADE-V1.md",
+      "inputRoot": "research/runtime/candidates/YYYY/MM",
+      "output": "optional cover-upgrade-receipt/v1 plus replacement raster at the existing candidate coverPath",
       "chatgptWake": true,
-      "formalRuntimeStage": false
+      "formalRuntimeStage": false,
+      "blocking": false,
+      "requiresProductionStatus": "Completed",
+      "mayChangeProductionState": false
     }
   ]
 }

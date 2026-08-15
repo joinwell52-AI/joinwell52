@@ -1,7 +1,7 @@
 <!-- GENERATED FILE. DO NOT EDIT DIRECTLY. -->
 <!-- schema: research-runtime-worker-prompt/v1 -->
 <!-- task: production -->
-<!-- prompt-version: 2.10.0 -->
+<!-- prompt-version: 2.11.0 -->
 <!-- scheduler-version: 3.0 -->
 <!-- template: research/runtime/worker-prompts/templates/production.prompt.md -->
 # Authoritative Production Worker Prompt
@@ -25,7 +25,7 @@ This file is a generated execution artifact from the latest `main` branch. Do no
 - `research/runtime/WORKER-CONTRACT-V3.md`
 - `research/runtime/WAKE-RECEIPT-V1.md`
 - `research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md`
-- `research/runtime/COVER-GENERATION-RECEIPT-V1.md`
+- `research/runtime/COVER-UPGRADE-V1.md`
 - `research/editorial/EDITORIAL-ARCHITECTURE.json`
 - `research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md`
 - `research/skills/05-research-writing.md`
@@ -53,7 +53,7 @@ For recovery, read only `research/runtime/checkpoints/YYYY/MM/YYYY-MM-DD-product
 
 ## Production responsibility
 
-Scheduler work: Write complete bilingual V2 candidates using a selected article type and dynamic modules; classify claim identities and project relevance; persist one same-date Article Cover Brief per eligible object; consume only same-date isolated cover-worker receipts and accepted raster assets; decide and contextually insert 0..N Inline Figures; pass six editorial gates plus Cover, Inline Visual and Article Layout gates; and record an optional Community Edition decision.
+Scheduler work: Write complete bilingual V2 candidates using a selected article type and dynamic modules; classify claim identities and project relevance; create one simple deterministic baseline raster Article Cover per candidate inside the same Production run; optionally persist one same-date Article Cover Brief for later quality upgrade; decide and contextually insert 0..N Inline Figures; pass six editorial gates plus Cover, Inline Visual and Article Layout gates; and record an optional Community Edition decision.
 
 Production may consume only same-`runDate`, completed, Production-authorized Research Objects. It must not introduce new discovery, reading or analysis and must not consume prior-day artifacts as current input.
 
@@ -88,21 +88,23 @@ Automated production is not batch template content. Publication quantity, SEO wo
 
 The Research Center Edition is the complete evidence-bearing parent. Generate a Community Edition only after the parent is complete and only for a named professional community with a real discussion angle. It must have a different title, angle, evidence subset, structure, engineering or architectural significance and discussion question. It must not be a full copy, generic summary, advertisement or forced first-party-project vehicle. `not-generated` with a reason is valid.
 
-## Isolated Article Cover boundary
+## Baseline Article Cover and optional 16:00 upgrade boundary
 
-Production owns the article and Cover Brief, but it does not invoke image generation. For every eligible candidate, first persist a same-`runDate` `article-cover-brief/v1` at `research/runtime/production-work/YYYY/MM/DD/<itemId>/cover-brief.json`. The brief contains the candidate's title/core proposition for internal derivation, one unique physical or spatial visual metaphor, the complete positive-only `sanitizedPrompt`, post-generation `reviewExclusions`, and exact accepted-asset/receipt destination paths defined by `research/runtime/COVER-GENERATION-RECEIPT-V1.md`.
+Production owns a complete baseline Article Cover and must be able to complete without the 16:00 worker. For every eligible candidate, choose the final candidate `coverPath` as a same-date `.png` path and run:
 
-The positive `sanitizedPrompt` must remain visually rich: one dominant concept; hero subject; surrounding environment; foreground/midground/background relationship; camera viewpoint and framing; depth and scale; refined material language; cinematic key, rim/edge and volumetric lighting when appropriate; controlled contrast; restrained two- or three-family palette; premium enterprise-technology editorial photography or cinematic 3D editorial rendering; sophisticated magazine-cover composition; intentional negative space; landscape framing; and thumbnail-scale focal clarity. The semantic concept stays simple while the visual production language stays rich.
+`node scripts/generate-baseline-cover.mjs --output <coverPath> --item <itemId> --column <column> --title <English title>`
 
-After all same-date briefs and complete bilingual pre-candidate drafts are durably committed and verified, Production writes `research/runtime/production-work/YYYY/MM/DD/prepared-bundle.json` as `production-prepared-bundle/v1`. The bundle binds every eligible item to its pre-candidate Chinese/English draft, final staging paths, current Cover Brief/expected receipt paths, complete candidate metadata, all non-cover semantic/editorial gate decisions, and a meaningful `resultBase`. Production then persists checkpoint node `awaiting-isolated-covers`, leaves the formal Production shift open, and stops substantive work. It must not call image generation and must not fabricate a cover PASS or terminal result.
+This baseline is deliberately simple and deterministic. It is a clean landscape editorial raster keyed to article identity and column, not a claim that a high-end generated illustration was produced. Simplicity, restrained geometry, conservative composition, or lack of cinematic detail are never reasons to fail the baseline cover. The baseline passes `coverGate` when it is a real PNG at the declared same-date path, visually distinct from the other baseline covers, usable at thumbnail scale, and not a technical diagram, Runtime dashboard, monitoring screen or report board.
 
-The separate 16:00 isolated cover worker follows `research/runtime/worker-prompts/isolated-cover-worker.prompt.md` and `research/runtime/COVER-WORKER-INPUT-V1.json`, processes one article at a time, and writes one real raster pre-candidate asset plus one `cover-generation-receipt/v1` per article.
+Record baseline cover evidence in the Production result using the existing structured `coverEvidence[]` shape. Bind `itemId`, a run-date-prefixed `briefId`, `coverPath`, a short positive article visual descriptor in `sanitizedPrompt`, `generationAttempts=1`, `semanticReview=PASS`, plus `coverRole=baseline` and `generator=deterministic-baseline-v1`. The deterministic generator is the Production cover mechanism; do not wait for a cloud-image receipt.
 
-When all current same-date receipts are durable, `.github/workflows/research-production-cover-finalization.yml` performs deterministic repository finalization. It validates the receipt-to-current-brief binding and raster hashes, copies the already-prepared drafts and accepted raster bytes into canonical staging paths, projects the prepared candidate batch/result, runs bundle/editorial/layout/Production-proof/Runtime validators, and creates the governed completion request. No third ChatGPT wake is permitted for this mechanical finalization. Stale, prior-date, mismatched, missing, non-raster or failed receipts/assets are invalid.
+Production may also persist a same-date `article-cover-brief/v1` under `research/runtime/production-work/YYYY/MM/DD/<itemId>/cover-brief.json` for later quality enhancement. That Brief is upgrade metadata only. It may contain the article title/core proposition, one richer visual metaphor, a positive `sanitizedPrompt`, review exclusions and the candidate `coverPath` as the intended replacement target. A missing Brief does not invalidate an otherwise complete baseline candidate.
 
-The receipt is necessary evidence for `coverGate`, but it does not create article meaning. Production Preparation remains the semantic owner of Research Value, Independence, Evidence, Structure, Language, Bilingual Consistency, Inline Visual and candidate intent; deterministic finalization may only project those prepared facts after receipt validation.
+After the baseline covers, bilingual articles, candidate batch and all validators pass, advance the Production checkpoint through `covers-generated-and-reviewed`, `candidate-bundle-staged` and `validators-passed`, then follow the normal governed completion path. Never persist `awaiting-isolated-covers` as a required node and never leave Production open for the 16:00 worker.
 
-For recovery, preserve historical failed image attempts as audit evidence only. Never reuse a superseded contaminated image or prompt. A recovery under this Prompt resumes from the earliest unproved node and consumes only current-brief isolated receipts.
+The separate 16:00 Cover Upgrade Worker is a non-blocking post-Production quality pass. It may read a Completed same-date candidate, its optional Cover Brief and the current upgrade contract, then try to generate a better article-specific raster. Only after the replacement passes semantic/editorial review may it overwrite the exact existing candidate `coverPath` and persist an audit receipt. If generation, validation or persistence fails, it must leave the baseline file byte-for-byte intact. It must not edit Production status/result, reopen a terminal execution epoch, create a Production completion request, or make Publication ineligible.
+
+Publication consumes the candidate's current `coverPath` at release time. Therefore a successful 16:00 replacement is automatically used, while an unsuccessful or absent upgrade leaves the valid 15:00 baseline in place.
 
 Inline Figures are optional `0..N`. Create one only where nearby reasoning materially benefits from visual explanation. Embed it in the relevant semantic section with an adjacent numbered bilingual caption and source. Never create fixed image-container headings or sections named `Cover`, `Figure`, `Visualization`, `题图`, `文中图`, `解释图` or `可视化`. Keep Chinese and English module sequence, claim identity and strength, uncertainty, figure order, captions and sources synchronized without mechanical sentence-by-sentence translation.
 
@@ -135,9 +137,9 @@ Scheduler prohibitions:
 - `Fixed Cover or Figure image-container sections`
 - `Manufacturing unnecessary figures`
 - `Copied or promotional Community Edition`
-- `Calling image generation from the Production Runtime conversation`
-- `Accepting an Article Cover without a valid isolated cover-worker receipt`
+- `Blocking Production on the optional 16:00 Cover Upgrade`
+- `Reopening or downgrading Completed Production because an optional cover upgrade failed`
 
 ## Durable completion
 
-Commit only intentional governed artifacts to `main`. Fetch `main` and verify the run date, result, exact artifact paths, schema versions, event order, Wake Receipt, Worker Claim, gates, validator results and commit reachability before reporting success. Chat text, intended changes, a local commit, an unverified push or an unverified candidate is not completion. The final task response must be plain text. Never call image generation to create a Runtime execution report, dashboard, poster, summary board or completion evidence; the image tool is reserved exclusively for the individual article covers.
+Commit only intentional governed artifacts to `main`. Fetch `main` and verify the run date, result, exact artifact paths, schema versions, event order, Wake Receipt, Worker Claim, gates, validator results and commit reachability before reporting success. Chat text, intended changes, a local commit, an unverified push or an unverified candidate is not completion. The final task response must be plain text. Never call image generation to create a Runtime execution report, dashboard, poster, summary board or completion evidence; the 15:00 baseline cover is deterministic; cloud image generation is reserved for the optional 16:00 Cover Upgrade and must never be used to create Runtime execution evidence.
