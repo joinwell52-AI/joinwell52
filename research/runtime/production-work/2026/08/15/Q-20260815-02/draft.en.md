@@ -8,6 +8,7 @@ article_type: technical-analysis
 edition: research-center
 research_question: "What must a multi-agent architecture make explicit so a delegated remote task can pause, resume, finish and return control without confusing transport termination with successful work?"
 summary: "Reliable delegation needs two first-class contracts: a stable identity for the exact delegated occurrence and a semantic finish contract for what counts as successful completion. A recent ADK task-mode implementation demonstrates how one scope can span pause/resume recovery and terminal matching, while leaving interoperability, authorization and side-effect recovery as separate problems."
+cover: staging/publication-candidates/2026-08-15-delegated-agent-return-contract-cover.png
 sources:
   - research/analysis/Q-20260815-02-delegation-lifecycle-semantic-return-contract.md
   - research/reading/Q-20260815-02-native-a2a-task-delegation-finish-terminal-boundary.md
