@@ -8,13 +8,13 @@
   "date": "2026-08-15",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Running",
+    "production": "Completed",
     "publication": "Waiting"
   },
   "results": {
@@ -876,6 +876,116 @@
       "githubCommit": "ff6e14dad7df5b0280cdaa598fb37d12c0501ae8",
       "commitVerify": "Completed",
       "verifiedAt": "2026-08-15T13:11:17+08:00"
+    },
+    "production": {
+      "schema": "runtime-shift-result/v2",
+      "task": "production",
+      "family": "daily",
+      "runtimeDate": "2026-08-15",
+      "status": "Completed",
+      "productionMode": "candidate-batch",
+      "input": {
+        "recoveryType": "explicit-same-day-terminal-recovery",
+        "promptVersion": "2.11.0",
+        "researchObjects": [
+          "Q-20260815-01",
+          "Q-20260815-02",
+          "Q-20260815-03"
+        ]
+      },
+      "workResult": {
+        "summary": "Recovered the stale Production execution by reusing six durable bilingual drafts, generating three deterministic baseline PNG covers, assembling the V2 candidate batch, and preparing governed finalization.",
+        "summary_zh": "从陈旧 Production 执行中恢复：复用六份已持久化双语草稿，生成三张确定性基础 PNG 题图，组装 V2 Candidate Batch，并准备受治理终态收口。"
+      },
+      "output": {
+        "type": "Publication Candidates",
+        "candidateBatch": "research/runtime/candidates/2026/08/2026-08-15-candidates.json",
+        "candidateCount": 3,
+        "bilingualArticleFiles": 6,
+        "coverAssets": 3,
+        "inlineFigureAssets": 0
+      },
+      "next": {
+        "task": "publication",
+        "instruction": "Publication may proceed only after this Production completion is durably finalized and GitHub-verified.",
+        "instruction_zh": "仅在本次 Production 完成状态持久化并完成 GitHub 核验后，Publication 才可继续。"
+      },
+      "coverEvidence": [
+        {
+          "itemId": "Q-20260815-01",
+          "briefId": "2026-08-15:Q-20260815-01-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-15-resumable-agent-trust-gates-cover.png",
+          "sanitizedPrompt": "Minimal geometric editorial landscape about layered trust, with separated luminous gates and a calm archival field in violet and cyan.",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260815-02",
+          "briefId": "2026-08-15:Q-20260815-02-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-15-delegated-agent-return-contract-cover.png",
+          "sanitizedPrompt": "Minimal geometric editorial landscape about delegated work returning through a clear terminal contract, with linked forms in teal and mint.",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260815-03",
+          "briefId": "2026-08-15:Q-20260815-03-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-15-agent-handoff-ownership-cover.png",
+          "sanitizedPrompt": "Minimal geometric editorial landscape about handoff and effect ownership, with separated routes and warm amber accents on deep blue.",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        }
+      ],
+      "metrics": [
+        {
+          "name": "research_objects_consumed",
+          "value": 3
+        },
+        {
+          "name": "publication_candidates",
+          "value": 3
+        },
+        {
+          "name": "bilingual_article_files",
+          "value": 6
+        },
+        {
+          "name": "cover_assets",
+          "value": 3
+        },
+        {
+          "name": "direct_image_generation_calls",
+          "value": 0
+        },
+        {
+          "name": "direct_publication_actions",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        "research/runtime/production-work/2026/08/15/prepared-bundle.json",
+        "research/runtime/worker-prompts/generated/production.prompt.md"
+      ],
+      "artifacts": [
+        "research/runtime/candidates/2026/08/2026-08-15-candidates.json",
+        "staging/publication-candidates/2026-08-15-resumable-agent-trust-gates.zh.md",
+        "staging/publication-candidates/2026-08-15-resumable-agent-trust-gates.en.md",
+        "staging/publication-candidates/2026-08-15-resumable-agent-trust-gates-cover.png",
+        "staging/publication-candidates/2026-08-15-delegated-agent-return-contract.zh.md",
+        "staging/publication-candidates/2026-08-15-delegated-agent-return-contract.en.md",
+        "staging/publication-candidates/2026-08-15-delegated-agent-return-contract-cover.png",
+        "staging/publication-candidates/2026-08-15-agent-handoff-ownership.zh.md",
+        "staging/publication-candidates/2026-08-15-agent-handoff-ownership.en.md",
+        "staging/publication-candidates/2026-08-15-agent-handoff-ownership-cover.png"
+      ],
+      "startedAt": "2026-08-15T19:18:51+08:00",
+      "completedAt": "2026-08-15T20:10:47+08:00"
     }
   },
   "timeline": [
@@ -1088,6 +1198,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Production after verifying research/runtime/wakes/2026/08/2026-08-15/production-191748.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-08-15T20:10:47+08:00",
+      "task": "production",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Production closed as Completed through governed Runtime shift finalization after durable result validation for 2026-08-15."
     }
   ],
   "metrics": [],
@@ -1095,5 +1212,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-15T19:21:08+08:00"
+  "updatedAt": "2026-08-15T20:10:47+08:00"
 }
