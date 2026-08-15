@@ -50,7 +50,7 @@ for (const [task, now] of admitted) {
 }
 
 expectDecision('production early wake', { task: 'production', now: '2026-08-14T14:59:00+08:00' }, 'Denied', 'not eligible before')
-expectDecision('production missing image generation', { task: 'production', now: '2026-08-14T15:00:00+08:00', capabilities: commonCapabilities }, 'Denied', 'missing capability image-generation')
+expectDecision('production isolated cover worker removes direct image generation capability', { task: 'production', now: '2026-08-14T15:00:00+08:00', capabilities: commonCapabilities }, 'Admitted')
 expectDecision('weekly wrong weekday', { task: 'weekly', now: '2026-08-12T20:30:00+08:00' }, 'Denied', 'not scheduled on')
 expectDecision('academic wrong weekday', { task: 'academic', now: '2026-08-13T16:00:00+08:00' }, 'Denied', 'not scheduled on')
 expectDecision('program wrong weekday', { task: 'program', now: '2026-08-18T12:00:00+08:00' }, 'Denied', 'not scheduled on')

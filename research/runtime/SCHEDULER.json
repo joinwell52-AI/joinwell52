@@ -43,11 +43,31 @@
     }
   ],
   "programs": [
-    { "id": "tmpa", "name": "TMPA", "name_zh": "TMPA" },
-    { "id": "fcop", "name": "FCoP", "name_zh": "FCoP" },
-    { "id": "codeflowmu", "name": "CodeFlowMu", "name_zh": "CodeFlowMu" },
-    { "id": "digital-employee", "name": "Digital Employee", "name_zh": "数字员工" },
-    { "id": "research-operating-system", "name": "Research Operating System", "name_zh": "研究操作系统" }
+    {
+      "id": "tmpa",
+      "name": "TMPA",
+      "name_zh": "TMPA"
+    },
+    {
+      "id": "fcop",
+      "name": "FCoP",
+      "name_zh": "FCoP"
+    },
+    {
+      "id": "codeflowmu",
+      "name": "CodeFlowMu",
+      "name_zh": "CodeFlowMu"
+    },
+    {
+      "id": "digital-employee",
+      "name": "Digital Employee",
+      "name_zh": "数字员工"
+    },
+    {
+      "id": "research-operating-system",
+      "name": "Research Operating System",
+      "name_zh": "研究操作系统"
+    }
   ],
   "runtimeFamilies": [
     {
@@ -56,7 +76,14 @@
       "name_zh": "每日运行",
       "purpose": "Discover, research, produce and publish same-day Daily Research.",
       "purpose_zh": "完成当天发现、当天研究、当天生产、当天发布。",
-      "taskIds": ["discovery", "queue", "reading", "analysis", "production", "publication"]
+      "taskIds": [
+        "discovery",
+        "queue",
+        "reading",
+        "analysis",
+        "production",
+        "publication"
+      ]
     },
     {
       "id": "weekly",
@@ -64,7 +91,9 @@
       "name_zh": "每周运行",
       "purpose": "Check due P2 objects and execute at most one triggered special study, then synthesize the week's validated research into an independently readable AI Research Brief.",
       "purpose_zh": "检查到期 P2 对象并最多执行一个被触发的专项研究，再把本周已验证研究综合为可独立阅读的 AI Research Brief。",
-      "taskIds": ["weekly"]
+      "taskIds": [
+        "weekly"
+      ]
     },
     {
       "id": "academic",
@@ -72,7 +101,9 @@
       "name_zh": "学术运行",
       "purpose": "Research papers, benchmarks, specifications and institutions only.",
       "purpose_zh": "只研究论文、基准、规范与机构。",
-      "taskIds": ["academic"]
+      "taskIds": [
+        "academic"
+      ]
     },
     {
       "id": "program",
@@ -80,118 +111,250 @@
       "name_zh": "研究计划运行",
       "purpose": "Advance long-term research programs through their own lifecycle, queue, review and publication.",
       "purpose_zh": "通过独立生命周期、队列、评审与发布推进长期研究计划。",
-      "taskIds": ["program"]
+      "taskIds": [
+        "program"
+      ]
     }
   ],
-  "statuses": ["Running", "Completed", "Blocked", "Failed", "Skipped", "Waiting"],
+  "statuses": [
+    "Running",
+    "Completed",
+    "Blocked",
+    "Failed",
+    "Skipped",
+    "Waiting"
+  ],
   "tasks": [
     {
       "id": "discovery",
       "family": "daily",
       "name": "Research Runtime Discovery",
       "name_zh": "研究运行发现",
-      "schedule": { "kind": "daily", "time": "09:00", "cron": "0 1 * * *" },
+      "schedule": {
+        "kind": "daily",
+        "time": "09:00",
+        "cron": "0 1 * * *"
+      },
       "input": "AI Platform Change Intelligence, GitHub Engineering Intelligence and Published Research Intelligence.",
       "work": "Execute the three intelligence profiles, normalize and deduplicate same-day signals.",
       "output": "Signal Pool",
-      "skills": ["01-P AI Platform Change Intelligence", "01-G GitHub Engineering Intelligence", "01-R Published Research Intelligence"],
-      "prohibitions": ["Topic selection", "Deep Reading", "Article writing"]
+      "skills": [
+        "01-P AI Platform Change Intelligence",
+        "01-G GitHub Engineering Intelligence",
+        "01-R Published Research Intelligence"
+      ],
+      "prohibitions": [
+        "Topic selection",
+        "Deep Reading",
+        "Article writing"
+      ]
     },
     {
       "id": "queue",
       "family": "daily",
       "name": "Research Runtime Queue",
       "name_zh": "研究运行队列",
-      "schedule": { "kind": "daily", "time": "10:00", "cron": "0 2 * * *" },
+      "schedule": {
+        "kind": "daily",
+        "time": "10:00",
+        "cron": "0 2 * * *"
+      },
       "input": "Same-day Signal Pool",
       "work": "Make one Selected or No Selection decision for each of the three research columns.",
       "output": "Today's Research Plan",
-      "skills": ["02 Three-Column Research Triage"],
-      "prohibitions": ["Leaving a column undecided", "Direct publication"]
+      "skills": [
+        "02 Three-Column Research Triage"
+      ],
+      "prohibitions": [
+        "Leaving a column undecided",
+        "Direct publication"
+      ]
     },
     {
       "id": "reading",
       "family": "daily",
       "name": "Research Runtime Reading",
       "name_zh": "研究运行阅读",
-      "schedule": { "kind": "daily", "time": "11:00", "cron": "0 3 * * *" },
+      "schedule": {
+        "kind": "daily",
+        "time": "11:00",
+        "cron": "0 3 * * *"
+      },
       "input": "Selected objects in Today's Research Plan",
       "work": "Perform source-complete Deep Reading and evidence extraction.",
       "output": "Reading Result",
-      "skills": ["03 Deep Reading"],
-      "prohibitions": ["Replacing reading with summaries", "Article writing"]
+      "skills": [
+        "03 Deep Reading"
+      ],
+      "prohibitions": [
+        "Replacing reading with summaries",
+        "Article writing"
+      ]
     },
     {
       "id": "analysis",
       "family": "daily",
       "name": "Research Runtime Analysis",
       "name_zh": "研究运行分析",
-      "schedule": { "kind": "daily", "time": "13:00", "cron": "0 5 * * *" },
+      "schedule": {
+        "kind": "daily",
+        "time": "13:00",
+        "cron": "0 5 * * *"
+      },
       "input": "Reading Result",
       "work": "State the research question, classify evidence identities, analyze and compare, form a bounded judgment, identify an article type and dynamic modules, map general implications, then test optional first-party relevance.",
       "output": "Research Object",
-      "skills": ["04 Research Analysis"],
-      "prohibitions": ["Analyzing unread material", "Fixed article outline", "Forced first-party project mapping", "Direct publication"]
+      "skills": [
+        "04 Research Analysis"
+      ],
+      "prohibitions": [
+        "Analyzing unread material",
+        "Fixed article outline",
+        "Forced first-party project mapping",
+        "Direct publication"
+      ]
     },
     {
       "id": "production",
       "family": "daily",
       "name": "Research Runtime Production",
       "name_zh": "研究运行生产",
-      "schedule": { "kind": "daily", "time": "15:00", "cron": "0 7 * * *" },
+      "schedule": {
+        "kind": "daily",
+        "time": "15:00",
+        "cron": "0 7 * * *"
+      },
       "input": "Research Object",
-      "work": "Write complete bilingual V2 candidates using a selected article type and dynamic modules; classify claim identities and project relevance; produce one formal editorial cover; decide and contextually insert 0..N Inline Figures; pass six editorial gates plus Cover, Inline Visual and Article Layout gates; and record an optional Community Edition decision.",
+      "work": "Write complete bilingual V2 candidates using a selected article type and dynamic modules; classify claim identities and project relevance; persist one same-date Article Cover Brief per eligible object; consume only same-date isolated cover-worker receipts and accepted raster assets; decide and contextually insert 0..N Inline Figures; pass six editorial gates plus Cover, Inline Visual and Article Layout gates; and record an optional Community Edition decision.",
       "output": "Publication Candidate",
-      "skills": ["05 Research Writing", "06 Visualization", "07 Evidence & Citation", "08 Publication Editing"],
-      "prohibitions": ["Writing from signals or Reading Results", "Publishing directly", "Universal body outline", "Forced TMPA/FCoP/CodeFlowMu section", "Publication-to-validation inference", "Implementation-to-general-validity inference", "Using technical diagrams as covers", "Fixed Cover or Figure image-container sections", "Manufacturing unnecessary figures", "Copied or promotional Community Edition"]
+      "skills": [
+        "05 Research Writing",
+        "06 Visualization",
+        "07 Evidence & Citation",
+        "08 Publication Editing"
+      ],
+      "prohibitions": [
+        "Writing from signals or Reading Results",
+        "Publishing directly",
+        "Universal body outline",
+        "Forced TMPA/FCoP/CodeFlowMu section",
+        "Publication-to-validation inference",
+        "Implementation-to-general-validity inference",
+        "Using technical diagrams as covers",
+        "Fixed Cover or Figure image-container sections",
+        "Manufacturing unnecessary figures",
+        "Copied or promotional Community Edition",
+        "Calling image generation from the Production Runtime conversation",
+        "Accepting an Article Cover without a valid isolated cover-worker receipt"
+      ]
     },
     {
       "id": "publication",
       "family": "daily",
       "name": "Research Runtime Publication",
       "name_zh": "研究运行发布",
-      "schedule": { "kind": "daily", "time": "20:00", "cron": "0 12 * * *" },
+      "schedule": {
+        "kind": "daily",
+        "time": "20:00",
+        "cron": "0 12 * * *"
+      },
       "input": "Complete Publication Candidates",
       "work": "Release complete Research Center Editions and separately authorized Community Editions; update GitHub, bilingual website surfaces and indexes; commit, verify and release.",
       "output": "Released Daily Research",
       "skills": [],
-      "prohibitions": ["New research", "Substantive rewriting", "Evidence repair"]
+      "prohibitions": [
+        "New research",
+        "Substantive rewriting",
+        "Evidence repair"
+      ]
     },
     {
       "id": "weekly",
       "family": "weekly",
       "name": "Research Runtime Weekly",
       "name_zh": "研究运行每周综合",
-      "schedule": { "kind": "weekly", "days": ["Sunday"], "time": "20:30", "cron": "30 12 * * 0" },
+      "schedule": {
+        "kind": "weekly",
+        "days": [
+          "Sunday"
+        ],
+        "time": "20:30",
+        "cron": "30 12 * * 0"
+      },
       "input": "Latest-main P2 Registry and checkpoints plus evidence-validated Daily Research from the previous seven days",
       "work": "Check every due P2 object, execute at most one triggered P2 special study, and produce an independently readable AI Research Brief about material weekly changes, connections, evidence, disputes, judgments and open questions.",
       "output": "P2 Check Record, zero or one P2 Special Study, and Weekly Synthesis",
-      "skills": ["01-G GitHub Engineering Intelligence", "03 Deep Reading", "04 Research Analysis", "05 Research Writing", "07 Evidence & Citation", "08 Publication Editing"],
-      "prohibitions": ["Separate P2 timer", "More than one P2 special study", "Direct publication of a P2 study", "Automatic first-party product change", "Silent omission of a due P2 object", "Copying or concatenating Daily Research", "Forced TMPA/FCoP/CodeFlowMu implications", "Mandatory conclusion"]
+      "skills": [
+        "01-G GitHub Engineering Intelligence",
+        "03 Deep Reading",
+        "04 Research Analysis",
+        "05 Research Writing",
+        "07 Evidence & Citation",
+        "08 Publication Editing"
+      ],
+      "prohibitions": [
+        "Separate P2 timer",
+        "More than one P2 special study",
+        "Direct publication of a P2 study",
+        "Automatic first-party product change",
+        "Silent omission of a due P2 object",
+        "Copying or concatenating Daily Research",
+        "Forced TMPA/FCoP/CodeFlowMu implications",
+        "Mandatory conclusion"
+      ]
     },
     {
       "id": "academic",
       "family": "academic",
       "name": "Research Runtime Academic",
       "name_zh": "研究运行学术观察",
-      "schedule": { "kind": "weekly", "days": ["Wednesday"], "time": "16:00", "cron": "0 8 * * 3" },
+      "schedule": {
+        "kind": "weekly",
+        "days": [
+          "Wednesday"
+        ],
+        "time": "16:00",
+        "cron": "0 8 * * 3"
+      },
       "input": "Paper, benchmark, specification or institution objects",
       "work": "Execute the complete reading, analysis, writing, evidence and editing pipeline.",
       "output": "Academic Observation",
-      "skills": ["03 Deep Reading", "04 Research Analysis", "05 Research Writing", "06 Visualization", "07 Evidence & Citation", "08 Publication Editing"],
-      "prohibitions": ["Ordinary product or industry news"]
+      "skills": [
+        "03 Deep Reading",
+        "04 Research Analysis",
+        "05 Research Writing",
+        "06 Visualization",
+        "07 Evidence & Citation",
+        "08 Publication Editing"
+      ],
+      "prohibitions": [
+        "Ordinary product or industry news"
+      ]
     },
     {
       "id": "program",
       "family": "program",
       "name": "Research Program Runtime",
       "name_zh": "研究计划运行",
-      "schedule": { "kind": "weekly", "days": ["Monday"], "time": "12:00", "cron": "0 4 * * 1" },
+      "schedule": {
+        "kind": "weekly",
+        "days": [
+          "Monday"
+        ],
+        "time": "12:00",
+        "cron": "0 4 * * 1"
+      },
       "input": "Independent queues for TMPA, FCoP, CodeFlowMu, Digital Employee and Research Operating System",
       "work": "Advance eligible program objects through Program Queue, Research, Review and Program Publication.",
       "output": "Program Runtime Record and governed program transition",
-      "skills": ["Program-specific research skills"],
-      "prohibitions": ["Entering Daily Runtime", "Consuming a Daily column slot", "Publishing without Program Review"]
+      "skills": [
+        "Program-specific research skills"
+      ],
+      "prohibitions": [
+        "Entering Daily Runtime",
+        "Consuming a Daily column slot",
+        "Publishing without Program Review"
+      ]
     }
   ]
 }

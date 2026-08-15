@@ -1,7 +1,7 @@
 <!-- GENERATED FILE. DO NOT EDIT DIRECTLY. -->
 <!-- schema: research-runtime-worker-prompt/v1 -->
 <!-- task: production -->
-<!-- prompt-version: 2.8.0 -->
+<!-- prompt-version: 2.9.0 -->
 <!-- scheduler-version: 3.0 -->
 <!-- template: research/runtime/worker-prompts/templates/production.prompt.md -->
 # Authoritative Production Worker Prompt
@@ -25,6 +25,7 @@ This file is a generated execution artifact from the latest `main` branch. Do no
 - `research/runtime/WORKER-CONTRACT-V3.md`
 - `research/runtime/WAKE-RECEIPT-V1.md`
 - `research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md`
+- `research/runtime/COVER-GENERATION-RECEIPT-V1.md`
 - `research/editorial/EDITORIAL-ARCHITECTURE.json`
 - `research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md`
 - `research/skills/05-research-writing.md`
@@ -52,7 +53,7 @@ For recovery, read only `research/runtime/checkpoints/YYYY/MM/YYYY-MM-DD-product
 
 ## Production responsibility
 
-Scheduler work: Write complete bilingual V2 candidates using a selected article type and dynamic modules; classify claim identities and project relevance; produce one formal editorial cover; decide and contextually insert 0..N Inline Figures; pass six editorial gates plus Cover, Inline Visual and Article Layout gates; and record an optional Community Edition decision.
+Scheduler work: Write complete bilingual V2 candidates using a selected article type and dynamic modules; classify claim identities and project relevance; persist one same-date Article Cover Brief per eligible object; consume only same-date isolated cover-worker receipts and accepted raster assets; decide and contextually insert 0..N Inline Figures; pass six editorial gates plus Cover, Inline Visual and Article Layout gates; and record an optional Community Edition decision.
 
 Production may consume only same-`runDate`, completed, Production-authorized Research Objects. It must not introduce new discovery, reading or analysis and must not consume prior-day artifacts as current input.
 
@@ -87,29 +88,19 @@ Automated production is not batch template content. Publication quantity, SEO wo
 
 The Research Center Edition is the complete evidence-bearing parent. Generate a Community Edition only after the parent is complete and only for a named professional community with a real discussion angle. It must have a different title, angle, evidence subset, structure, engineering or architectural significance and discussion question. It must not be a full copy, generic summary, advertisement or forced first-party-project vehicle. `not-generated` with a reason is valid.
 
-Create one dedicated professional editorial Article Cover for each candidate and place it before the H1 title. Use ChatGPT cloud built-in image generation directly; do not call the OpenAI Image API, require `OPENAI_API_KEY`, or require a GitHub Secret for image generation. Before each call, derive an article-specific Cover Brief from only that Research Object and candidate: title, core proposition, one unique visual metaphor, primary subject, composition, palette, review exclusions and landscape editorial-cover ratio. Never send Runtime, Scheduler, Dashboard or control-plane text as the image prompt, and never reuse one prompt or composition across the batch.
+## Isolated Article Cover boundary
 
-### Editorial cover art direction
+Production owns the article and Cover Brief, but it does not invoke image generation. For every eligible candidate, first persist a same-`runDate` `article-cover-brief/v1` at `research/runtime/production-work/YYYY/MM/DD/<itemId>/cover-brief.json`. The brief contains the candidate's title/core proposition for internal derivation, one unique physical or spatial visual metaphor, the complete positive-only `sanitizedPrompt`, post-generation `reviewExclusions`, and exact accepted-asset/receipt destination paths defined by `research/runtime/COVER-GENERATION-RECEIPT-V1.md`.
 
-The image-generation prompt must be article-specific but visually rich. `sanitizedPrompt` is NOT a minimal one-object description. It is the combination of the article's single semantic visual metaphor plus a complete professional editorial art direction. Preserve one dominant concept while supplying enough production language to achieve a premium technology-publication cover.
+The positive `sanitizedPrompt` must remain visually rich: one dominant concept; hero subject; surrounding environment; foreground/midground/background relationship; camera viewpoint and framing; depth and scale; refined material language; cinematic key, rim/edge and volumetric lighting when appropriate; controlled contrast; restrained two- or three-family palette; premium enterprise-technology editorial photography or cinematic 3D editorial rendering; sophisticated magazine-cover composition; intentional negative space; landscape framing; and thumbnail-scale focal clarity. The semantic concept stays simple while the visual production language stays rich.
 
-Build each `sanitizedPrompt` from positive descriptions of: the unique visual metaphor; hero subject; surrounding environment; foreground/midground/background relationship; camera viewpoint and framing; depth and scale; material language such as glass, metal, translucent surfaces, atmospheric particles or restrained reflections when appropriate; cinematic key light; rim or edge light; volumetric light or haze when appropriate; controlled contrast; restrained two- or three-family color palette; premium enterprise-technology editorial photography or cinematic 3D editorial rendering; sophisticated magazine-cover composition; low information density; landscape framing; and thumbnail-scale focal clarity.
+After all same-date briefs are durably committed and verified, Production reaches the `cover-briefs-persisted` checkpoint. It must not call ChatGPT image generation from this Runtime conversation. If a valid receipt is not yet available, persist the checkpoint and stop substantive Production work without fabricating a cover PASS. The actual image call belongs to a separate isolated cover-worker invocation whose effective context is restricted by the Cover Generation Receipt V1 contract to exactly one article brief plus minimum destination metadata.
 
-The semantic concept must stay simple, but the visual production language must stay rich. Do not simplify a rejected prompt by stripping lighting, material, depth, environment or composition. If the subject is semantically correct but visually plain, keep the same metaphor and enrich spatial depth, material detail, lighting hierarchy, atmosphere and editorial composition. If the subject is semantically wrong, change the hero subject or scene construction while preserving professional art direction.
+The isolated cover worker writes a real raster pre-candidate asset and `cover-generation-receipt/v1` under the same item's Production-work directory. Production resumes only by reading those durable same-date receipts. It must verify date, itemId, briefId, current brief SHA-256, exact positive `sanitizedPrompt`, attempt count, raster signature, accepted-asset SHA-256, semantic review and editorial-thumbnail review. Stale, prior-date, mismatched, missing, non-raster or failed receipts/assets are invalid.
 
-The image tool must receive only article-level visual scene and art-direction language. Do not send Runtime, Scheduler, Dashboard, control-plane state, task instructions, evidence bookkeeping, exclusions, rejection reasons, negative instructions, failed-image descriptions, article body text, other article themes or batch context. Do not ask the image itself to explain governance, lifecycle or state transitions. Translate abstract mechanisms into a physical or spatial visual metaphor first, then describe that scene richly.
+For a valid receipt, Production copies the accepted raster bytes into the candidate's canonical `staging/publication-candidates/...-cover.*` path while assembling the atomic candidate bundle and records `coverBriefPath` and `coverReceiptPath` in candidate metadata. Candidate cover bytes must be identical to the receipt-bound accepted asset. The receipt is necessary evidence for `coverGate`, but it does not complete Production; Production still runs every Research Value, Independence, Evidence, Structure, Language, Bilingual Consistency, Cover, Inline Visual, Layout, bundle, validator and terminal-proof gate.
 
-A good cover should read first as a serious research-magazine or enterprise-technology editorial image: dramatic but restrained light, strong focal hierarchy, dimensional depth, refined materials, intentional negative space and a distinctive visual identity. It must not collapse into a generic icon, a lone glowing sphere on an empty background, a simplistic gate symbol, clip-art abstraction, infographic, dashboard, UI panel, workflow or architecture diagram.
-
-Call image generation once per article, never for the batch or Runtime as a whole. Build a positive-only `sanitizedPrompt` using the rules above. The Cover Brief exclusions are a post-generation review checklist only. Retry a rejected cover with a newly composed positive physical scene, up to three attempts for that article; never describe the failed image in a retry prompt. Per-cover retries do not create a new Runtime recovery epoch.
-
-If same-date recovery encounters cover attempts made under a superseded Prompt, preserve those attempts and images as rejected `recoveryHistory` evidence but do not count them as the current Prompt's `generationAttempts`. An explicitly authorized recovery may start one bounded art-direction revision round from `cover-briefs-persisted`; it must not redo completed bilingual drafts or valid Cover Brief semantics. A superseded prompt's visually plain or contaminated attempts are historical evidence, not a reason to reuse their prompt wording.
-
-A hand-authored SVG, HTML/CSS/canvas composition, rasterized diagram or renamed vector asset is forbidden as an Article Cover. Reject Runtime dashboards, admin panels, monitoring screens, generic Agent networks, unrelated UI, placeholders, old assets, text-swapped duplicates and visibly reused compositions. Inspect each generated image itself at thumbnail size and verify that it expresses the article's proposition without title text, has professional editorial depth and is clearly distinguishable from the other covers. If review fails, revise the scene according to the semantic-versus-visual-quality distinction above and retry at most twice. If cloud image generation is unavailable or still fails semantic/editorial review, close Production through the governed terminal path as `Blocked`; do not leave `Running`, substitute another asset, or self-report `coverGate: PASS`.
-
-For every cover record its Brief identity, generation attempt count, accepted asset path, exact positive-only `sanitizedPrompt`, semantic review decision and rejection reason in the Production evidence. Only an accepted PNG, WebP or JPEG committed through the authorized GitHub connection may pass `coverGate`.
-
-For `Completed`, persist structured `coverEvidence[]` in the Production result. Every entry must bind `itemId`, a run-date-prefixed `briefId`, `coverPath`, the actual article-only `sanitizedPrompt`, `generationAttempts` from 1 through 3, and `semanticReview=PASS`. The result must declare `productionMode=candidate-batch` when same-date eligible inputs exist. A zero-output completion is allowed only when the repository contains zero same-date `ReadyForProduction` and `production_input_authorized=true` Research Objects, and must declare `productionMode=zero-output`.
+For recovery, preserve historical failed image attempts as audit evidence only. Never reuse a superseded contaminated image or prompt. A recovery under this Prompt resumes from the earliest unproved node and consumes only current-brief isolated receipts.
 
 Inline Figures are optional `0..N`. Create one only where nearby reasoning materially benefits from visual explanation. Embed it in the relevant semantic section with an adjacent numbered bilingual caption and source. Never create fixed image-container headings or sections named `Cover`, `Figure`, `Visualization`, `题图`, `文中图`, `解释图` or `可视化`. Keep Chinese and English module sequence, claim identity and strength, uncertainty, figure order, captions and sources synchronized without mechanical sentence-by-sentence translation.
 
@@ -142,6 +133,8 @@ Scheduler prohibitions:
 - `Fixed Cover or Figure image-container sections`
 - `Manufacturing unnecessary figures`
 - `Copied or promotional Community Edition`
+- `Calling image generation from the Production Runtime conversation`
+- `Accepting an Article Cover without a valid isolated cover-worker receipt`
 
 ## Durable completion
 

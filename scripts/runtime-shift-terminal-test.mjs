@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import assert from 'node:assert/strict'
+import { createHash } from 'node:crypto'
 import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
@@ -31,31 +32,70 @@ function writeJson(file, value) {
 }
 
 function writeCompletedProductionProof(root, date, result) {
-  const [year, month] = date.split('-')
+  const [year, month, day] = date.split('-')
   const compact = date.replaceAll('-', '')
   const itemId = `Q-${compact}-01`
   const slug = `${date}-proof-candidate`
   const zhPath = `staging/publication-candidates/${slug}.zh.md`
   const enPath = `staging/publication-candidates/${slug}.en.md`
   const coverPath = `staging/publication-candidates/${slug}-cover.png`
+  const workDir = `research/runtime/production-work/${year}/${month}/${day}/${itemId}`
+  const coverBriefPath = `${workDir}/cover-brief.json`
+  const acceptedAssetPath = `${workDir}/accepted-cover.png`
+  const coverReceiptPath = `${workDir}/cover-generation-receipt.json`
   const batchPath = `research/runtime/candidates/${year}/${month}/${date}-candidates.json`
   const checkpointPath = `research/runtime/checkpoints/${year}/${month}/${date}-production.json`
+  const sanitizedPrompt = 'Cinematic editorial landscape photography of one durable illuminated bridge crossing a dark interrupted valley, restrained steel blue and amber palette, strong focal hierarchy, wide sixteen by nine composition.'
 
   const article = (language) => `---\nschema: "publication-candidate-article/v2"\ntitle: "Proof ${language}"\ndate: "${date}"\ncover: "${coverPath}"\n---\n\n![Cover](${coverPath})\n\n# Proof ${language}\n`
   const analysis = `---\nschema: "research-analysis/v1"\nid: "AN-${compact}-01"\ndate: "${date}"\nqueue_item: "${itemId}"\nstatus: "ReadyForProduction"\nproduction_input_authorized: true\n---\n\n# Input\n`
   mkdirSync(path.dirname(path.join(root, zhPath)), { recursive: true })
   writeFileSync(path.join(root, zhPath), article('ZH'))
   writeFileSync(path.join(root, enPath), article('EN'))
-  writeFileSync(path.join(root, coverPath), Buffer.from([137, 80, 78, 71, 13, 10, 26, 10, 0]))
+  const coverBytes = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10, 0])
+  mkdirSync(path.dirname(path.join(root, acceptedAssetPath)), { recursive: true })
+  writeFileSync(path.join(root, acceptedAssetPath), coverBytes)
+  writeFileSync(path.join(root, coverPath), coverBytes)
   mkdirSync(path.join(root, 'research/analysis'), { recursive: true })
   writeFileSync(path.join(root, `research/analysis/${itemId}-proof.md`), analysis)
+
+  const brief = {
+    schema: 'article-cover-brief/v1',
+    runDate: date,
+    itemId,
+    briefId: `${date}:${itemId}:cover-v1`,
+    sanitizedPrompt,
+    reviewExclusions: ['review-only'],
+    acceptedAssetPath,
+    receiptPath: coverReceiptPath
+  }
+  const briefText = `${JSON.stringify(brief, null, 2)}\n`
+  writeFileSync(path.join(root, coverBriefPath), briefText)
+  writeJson(path.join(root, coverReceiptPath), {
+    schema: 'cover-generation-receipt/v1',
+    status: 'Accepted',
+    workerContext: 'isolated-cover-worker',
+    runDate: date,
+    itemId,
+    briefId: brief.briefId,
+    briefPath: coverBriefPath,
+    briefSha256: createHash('sha256').update(briefText).digest('hex'),
+    sanitizedPrompt,
+    generationAttempts: 1,
+    acceptedAssetPath,
+    assetSha256: createHash('sha256').update(coverBytes).digest('hex'),
+    semanticReview: 'PASS',
+    editorialThumbnailReview: 'PASS',
+    createdAt: `${date}T16:00:00+08:00`
+  })
+
   writeJson(path.join(root, batchPath), {
     schema: 'runtime-publication-candidate/v2',
     date,
     timezone: 'Asia/Shanghai',
     status: 'Completed',
     candidates: [{
-      itemId, zhPath, enPath, coverPath,
+      itemId, zhPath, enPath, coverPath, coverBriefPath, coverReceiptPath,
       gates: { researchValue: 'PASS', evidence: 'PASS' },
       coverGate: 'PASS', inlineVisualGate: 'PASS', layoutGate: 'PASS'
     }]
@@ -65,21 +105,13 @@ function writeCompletedProductionProof(root, date, result) {
     runDate: date,
     node: 'validators-passed',
     status: 'Completed',
-    artifacts: [batchPath, coverPath],
+    artifacts: [batchPath, coverPath, coverReceiptPath],
     evidence: [],
     sourceCommit: 'b'.repeat(40),
     updatedAt: `${date}T16:00:00+08:00`
   })
   result.productionMode = 'candidate-batch'
-  result.coverEvidence = [{
-    itemId,
-    briefId: `${date}:${itemId}:cover-v1`,
-    coverPath,
-    sanitizedPrompt: 'Cinematic editorial landscape photography of one durable illuminated bridge crossing a dark interrupted valley, restrained steel blue and amber palette, strong focal hierarchy, wide sixteen by nine composition.',
-    generationAttempts: 1,
-    semanticReview: 'PASS'
-  }]
-  result.artifacts = [batchPath, coverPath]
+  result.artifacts = [batchPath, coverPath, coverReceiptPath]
 }
 
 for (const terminalStatus of ['Completed', 'Failed', 'Blocked', 'Skipped']) {
@@ -143,6 +175,7 @@ for (const terminalStatus of ['Completed', 'Failed', 'Blocked', 'Skipped']) {
   const root = mkdtempSync(path.join(os.tmpdir(), 'runtime-contaminated-cover-prompt-'))
   try {
     const date = shanghaiDate()
+    const [year, month] = date.split('-')
     const result = {
       schema: 'runtime-shift-result/v2',
       task: 'production',
@@ -151,10 +184,14 @@ for (const terminalStatus of ['Completed', 'Failed', 'Blocked', 'Skipped']) {
       metrics: [], evidence: [], artifacts: []
     }
     writeCompletedProductionProof(root, date, result)
-    result.coverEvidence[0].sanitizedPrompt = 'No dashboard, no report, no text; show one bridge.'
+    const batch = JSON.parse(readFileSync(path.join(root, `research/runtime/candidates/${year}/${month}/${date}-candidates.json`), 'utf8'))
+    const receiptFile = path.join(root, batch.candidates[0].coverReceiptPath)
+    const receipt = JSON.parse(readFileSync(receiptFile, 'utf8'))
+    receipt.sanitizedPrompt = 'No dashboard, no report, no text; show one bridge.'
+    writeJson(receiptFile, receipt)
     assert.throws(
       () => validateProductionCompletion({ root, date, result }),
-      /positive-only article imagery/
+      /positive-only current brief prompt/
     )
   } finally {
     rmSync(root, { recursive: true, force: true })
@@ -216,4 +253,4 @@ for (const terminalStatus of ['Completed', 'Failed', 'Blocked', 'Skipped']) {
   }
 }
 
-console.log('Runtime shift terminal finalization tests passed for terminal states, stale-date rejection and positive-only cover prompts.')
+console.log('Runtime shift terminal finalization tests passed for terminal states, stale-date rejection and isolated cover receipt validation.')

@@ -9,11 +9,21 @@
     "version": "1.3.0",
     "state": "active",
     "failClosed": true,
-    "allowedBranches": ["main"],
-    "allowedWakeSources": ["chatgpt-scheduled-task", "manual-recovery"],
+    "allowedBranches": [
+      "main"
+    ],
+    "allowedWakeSources": [
+      "chatgpt-scheduled-task",
+      "manual-recovery"
+    ],
     "globalSerialExecution": true,
     "runtimeAuthorityRequired": true,
-    "requiredCapabilities": ["github-read", "github-write", "command-execution", "file-editing"]
+    "requiredCapabilities": [
+      "github-read",
+      "github-write",
+      "command-execution",
+      "file-editing"
+    ]
   },
   "tasks": [
     {
@@ -22,7 +32,9 @@
       "effectiveDate": "2026-08-12",
       "template": "research/runtime/worker-prompts/templates/stage.prompt.md",
       "output": "research/runtime/worker-prompts/generated/discovery.prompt.md",
-      "requiredCapabilities": ["web-research"],
+      "requiredCapabilities": [
+        "web-research"
+      ],
       "control": {
         "state": "active",
         "notBefore": "09:00",
@@ -54,7 +66,10 @@
         "research/skills/profiles/01g-github-engineering-intelligence.md",
         "research/skills/profiles/01r-published-research-intelligence.md"
       ],
-      "requiredCommands": ["npm run intelligence:validate", "npm run runtime:validate"]
+      "requiredCommands": [
+        "npm run intelligence:validate",
+        "npm run runtime:validate"
+      ]
     },
     {
       "task": "queue",
@@ -89,7 +104,9 @@
         "research/runtime/COLUMN-PLAN-SCHEMA.md",
         "research/skills/02-research-triage.md"
       ],
-      "requiredCommands": ["npm run runtime:validate"]
+      "requiredCommands": [
+        "npm run runtime:validate"
+      ]
     },
     {
       "task": "reading",
@@ -97,7 +114,9 @@
       "effectiveDate": "2026-08-12",
       "template": "research/runtime/worker-prompts/templates/stage.prompt.md",
       "output": "research/runtime/worker-prompts/generated/reading.prompt.md",
-      "requiredCapabilities": ["web-research"],
+      "requiredCapabilities": [
+        "web-research"
+      ],
       "control": {
         "state": "active",
         "notBefore": "11:00",
@@ -124,7 +143,9 @@
         "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
         "research/skills/03-deep-reading.md"
       ],
-      "requiredCommands": ["npm run runtime:validate"]
+      "requiredCommands": [
+        "npm run runtime:validate"
+      ]
     },
     {
       "task": "analysis",
@@ -162,15 +183,17 @@
         "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
         "research/skills/04-research-analysis.md"
       ],
-      "requiredCommands": ["npm run runtime:validate"]
+      "requiredCommands": [
+        "npm run runtime:validate"
+      ]
     },
     {
       "task": "production",
-      "version": "2.8.0",
+      "version": "2.9.0",
       "effectiveDate": "2026-08-14",
       "template": "research/runtime/worker-prompts/templates/production.prompt.md",
       "output": "research/runtime/worker-prompts/generated/production.prompt.md",
-      "requiredCapabilities": ["image-generation"],
+      "requiredCapabilities": [],
       "control": {
         "state": "active",
         "notBefore": "15:00",
@@ -188,16 +211,16 @@
       "rules": [
         "Produce complete bilingual V2 Publication Candidates only from completed same-run-date Research Objects.",
         "Apply dynamic article architecture, independent evidence grading, Research Center and Community Edition separation, and every declared gate.",
-        "Use ChatGPT cloud built-in image generation for every Article Cover. Derive one article-specific Cover Brief from that candidate only; do not call the OpenAI Image API, require OPENAI_API_KEY, or use a GitHub Secret for image generation.",
-        "Send the image tool only a positive physical scene composed from the unique visual metaphor, primary subject, composition, palette and style. Never send exclusions, negations, control terms, rejection reasons or descriptions of failed images; exclusions are post-generation review criteria only.",
-        "When recovering a cover failure produced under a superseded Prompt that sent exclusion or control language to image generation, preserve those attempts as rejected history and begin one bounded positive-prompt revision round under the current Prompt; do not count superseded contaminated calls as current generationAttempts.",
-        "Generate and review every cover independently. Reject dashboards, monitoring screens, generic Agent networks, reused compositions, placeholders and unrelated UI; after at most two prompt-correction retries, close the shift as Blocked instead of claiming coverGate PASS.",
+        "Persist one article-cover-brief/v1 per eligible Research Object before any cover is accepted. Production must never call image generation from the Runtime conversation.",
+        "Consume Article Covers only through same-date cover-generation-receipt/v1 records created by a separate isolated cover-worker invocation. The isolated worker receives one article positive visual brief plus minimum destination metadata and no Runtime or recovery narrative.",
+        "Reject stale, prior-date, mismatched, missing, non-raster or failed cover receipts/assets. Brief hash, itemId, briefId, accepted asset hash and candidate cover bytes must bind exactly.",
+        "A cover-worker receipt PASS is necessary but not sufficient: Production remains responsible for all editorial, evidence, bilingual, Cover, Inline Visual, Layout, candidate-bundle and terminal-proof gates.",
         "Resume only from the latest same-run-date checkpoint committed on main. If its Prompt identity is stale, reject that checkpoint as resumable progress and re-execute the earliest unproved node under current control; stale checkpoint rejection must not terminate an explicitly authorized recovery by itself.",
         "Verify the current Prompt directly when hashing is available. Otherwise require CONTROL and MANIFEST agreement plus a successful Validate Research Center 3.0 / build run for the exact pinned main HEAD, and record promptVerificationMode=exact-head-ci with the Actions run URL.",
         "For an explicitly authorized same-day recovery of Failed or Blocked Production, persist runtime-process-kick/v2 with requestMode=terminal-recovery, nominalTask=production and allowTerminalReopen=true. Ordinary v1 kicks and timer wakes must never reopen terminal state.",
         "A Completed result with eligible inputs must declare productionMode=candidate-batch and pass npm run runtime:production:proof. If the Worker lacks command execution, Research Runtime Shift Finalization V2.1 must run that proof and persist the remotely verified terminal result before Completed may be reported.",
-        "The final task response is plain text only. Never call image generation for a Runtime report, dashboard, poster, status summary or execution evidence; image generation is reserved exclusively for per-article covers.",
-        "Build every candidate outside the canonical staging path until its Chinese article, English article, dedicated cover, optional Inline Figures and completed candidate-batch record are all ready.",
+        "The final task response is plain text only. Never create a Runtime report image, dashboard, poster, status summary or execution evidence.",
+        "Build every candidate outside the canonical staging path until its Chinese article, English article, verified isolated cover receipt and source raster, candidate cover copy, optional Inline Figures and completed candidate-batch record are all ready.",
         "Stage and commit the complete candidate bundle exactly once. Before commit run npm run publication:bundle:staged plus every declared validator; never commit one language, an article without its referenced assets, or an incomplete candidate batch.",
         "Do not bypass the repository pre-commit hook, use --no-verify, or write candidate files directly through the GitHub Contents API. Stage candidates only; Production never publishes."
       ],
@@ -206,6 +229,7 @@
         "research/runtime/WORKER-CONTRACT-V3.md",
         "research/runtime/WAKE-RECEIPT-V1.md",
         "research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md",
+        "research/runtime/COVER-GENERATION-RECEIPT-V1.md",
         "research/editorial/EDITORIAL-ARCHITECTURE.json",
         "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
         "research/skills/05-research-writing.md",
@@ -213,7 +237,12 @@
         "research/skills/07-evidence-citation.md",
         "research/skills/08-publication-editing.md"
       ],
-      "requiredCommands": ["npm run publication:bundle:staged", "npm run publication:layout:validate", "npm run publication:editorial:validate", "npm run runtime:validate"]
+      "requiredCommands": [
+        "npm run publication:bundle:staged",
+        "npm run publication:layout:validate",
+        "npm run publication:editorial:validate",
+        "npm run runtime:validate"
+      ]
     },
     {
       "task": "publication",
@@ -252,7 +281,12 @@
         "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
         "research/skills/08-publication-editing.md"
       ],
-      "requiredCommands": ["npm run publication:layout:validate", "npm run publication:editorial:validate", "npm run runtime:validate", "npm run docs:build"]
+      "requiredCommands": [
+        "npm run publication:layout:validate",
+        "npm run publication:editorial:validate",
+        "npm run runtime:validate",
+        "npm run docs:build"
+      ]
     },
     {
       "task": "weekly",
@@ -260,7 +294,9 @@
       "effectiveDate": "2026-08-14",
       "template": "research/runtime/worker-prompts/templates/stage.prompt.md",
       "output": "research/runtime/worker-prompts/generated/weekly.prompt.md",
-      "requiredCapabilities": ["web-research"],
+      "requiredCapabilities": [
+        "web-research"
+      ],
       "control": {
         "state": "active",
         "notBefore": "20:30",
@@ -304,7 +340,13 @@
         "research/skills/07-evidence-citation.md",
         "research/skills/08-publication-editing.md"
       ],
-      "requiredCommands": ["npm run intelligence:validate", "npm run publication:layout:validate", "npm run publication:editorial:validate", "npm run runtime:validate", "npm run docs:build"]
+      "requiredCommands": [
+        "npm run intelligence:validate",
+        "npm run publication:layout:validate",
+        "npm run publication:editorial:validate",
+        "npm run runtime:validate",
+        "npm run docs:build"
+      ]
     },
     {
       "task": "academic",
@@ -312,7 +354,9 @@
       "effectiveDate": "2026-08-12",
       "template": "research/runtime/worker-prompts/templates/stage.prompt.md",
       "output": "research/runtime/worker-prompts/generated/academic.prompt.md",
-      "requiredCapabilities": ["web-research"],
+      "requiredCapabilities": [
+        "web-research"
+      ],
       "control": {
         "state": "active",
         "notBefore": "16:00",
@@ -348,7 +392,12 @@
         "research/skills/07-evidence-citation.md",
         "research/skills/08-publication-editing.md"
       ],
-      "requiredCommands": ["npm run publication:layout:validate", "npm run publication:editorial:validate", "npm run runtime:validate", "npm run docs:build"]
+      "requiredCommands": [
+        "npm run publication:layout:validate",
+        "npm run publication:editorial:validate",
+        "npm run runtime:validate",
+        "npm run docs:build"
+      ]
     },
     {
       "task": "program",
@@ -356,7 +405,9 @@
       "effectiveDate": "2026-08-12",
       "template": "research/runtime/worker-prompts/templates/stage.prompt.md",
       "output": "research/runtime/worker-prompts/generated/program.prompt.md",
-      "requiredCapabilities": ["web-research"],
+      "requiredCapabilities": [
+        "web-research"
+      ],
       "control": {
         "state": "active",
         "notBefore": "12:00",
@@ -389,7 +440,10 @@
         "research/program/queues/digital-employee.json",
         "research/program/queues/research-operating-system.json"
       ],
-      "requiredCommands": ["npm run runtime:validate", "npm run docs:build"]
+      "requiredCommands": [
+        "npm run runtime:validate",
+        "npm run docs:build"
+      ]
     }
   ]
 }

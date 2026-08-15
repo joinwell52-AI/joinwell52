@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { createHash } from 'node:crypto'
 import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import path from 'node:path'
 
@@ -13,6 +14,7 @@ const CHECKPOINT_ORDER = [
   'terminal-result-verified'
 ]
 const RASTER_EXTENSIONS = new Set(['.png', '.jpg', '.jpeg', '.webp'])
+const ISOLATED_COVER_EFFECTIVE_DATE = '2026-08-15'
 const PROMPT_CONTAMINATION = /\b(?:runtime|recovery|checkpoint|github|worker|control|status|completed|blocked|dashboard|report|table|ui|admin|workflow|logo|text|agent network|node diagram|no|without|avoid|exclude|forbid)\b|执行报告|运行控制|仪表盘|状态看板|不要|禁止|排除|避免|无文字|无标志/i
 
 function fail(message) {
@@ -93,6 +95,69 @@ function containsPromptContamination(prompt) {
   return PROMPT_CONTAMINATION.test(String(prompt || ''))
 }
 
+function sha256File(file) {
+  return createHash('sha256').update(readFileSync(file)).digest('hex')
+}
+
+function assertWorkPath(relative, date, itemId, label) {
+  const [year, month, day] = date.split('-')
+  const prefix = `research/runtime/production-work/${year}/${month}/${day}/${itemId}/`
+  if (!repoPath(relative).startsWith(prefix)) fail(`${itemId}: ${label} must stay under ${prefix}`)
+}
+
+function validateIsolatedCoverReceipt({ root, date, candidate, artifacts, requiredCheckpointArtifacts }) {
+  const briefPath = repoPath(candidate.coverBriefPath)
+  const receiptPath = repoPath(candidate.coverReceiptPath)
+  if (!briefPath || !receiptPath) fail(`${candidate.itemId}: isolated coverBriefPath and coverReceiptPath are required`)
+  assertWorkPath(briefPath, date, candidate.itemId, 'coverBriefPath')
+  assertWorkPath(receiptPath, date, candidate.itemId, 'coverReceiptPath')
+
+  const briefFile = absolute(root, briefPath)
+  const receiptFile = absolute(root, receiptPath)
+  if (!existsSync(briefFile)) fail(`${candidate.itemId}: missing cover brief ${briefPath}`)
+  if (!existsSync(receiptFile)) fail(`${candidate.itemId}: missing cover receipt ${receiptPath}`)
+  const brief = readJson(briefFile)
+  const receipt = readJson(receiptFile)
+
+  if (brief.schema !== 'article-cover-brief/v1') fail(`${candidate.itemId}: invalid cover brief schema`)
+  if (brief.runDate !== date || brief.itemId !== candidate.itemId) fail(`${candidate.itemId}: cover brief date/item mismatch`)
+  if (!String(brief.briefId || '').startsWith(`${date}:`)) fail(`${candidate.itemId}: cover briefId must be date-bound`)
+  if (!String(brief.sanitizedPrompt || '').trim() || containsPromptContamination(brief.sanitizedPrompt)) {
+    fail(`${candidate.itemId}: cover brief sanitizedPrompt must be positive-only article imagery`)
+  }
+
+  if (receipt.schema !== 'cover-generation-receipt/v1' || receipt.status !== 'Accepted') fail(`${candidate.itemId}: invalid isolated cover receipt`)
+  if (receipt.workerContext !== 'isolated-cover-worker') fail(`${candidate.itemId}: cover receipt workerContext must be isolated-cover-worker`)
+  if (receipt.runDate !== date || receipt.itemId !== candidate.itemId) fail(`${candidate.itemId}: cover receipt date/item mismatch`)
+  if (receipt.briefId !== brief.briefId || repoPath(receipt.briefPath) !== briefPath) fail(`${candidate.itemId}: cover receipt does not bind current brief identity/path`)
+  if (receipt.briefSha256 !== sha256File(briefFile)) fail(`${candidate.itemId}: cover receipt briefSha256 does not match current brief bytes`)
+  if (receipt.sanitizedPrompt !== brief.sanitizedPrompt || containsPromptContamination(receipt.sanitizedPrompt)) {
+    fail(`${candidate.itemId}: cover receipt sanitizedPrompt must equal the positive-only current brief prompt`)
+  }
+  if (!Number.isInteger(receipt.generationAttempts) || receipt.generationAttempts < 1 || receipt.generationAttempts > 3) {
+    fail(`${candidate.itemId}: isolated generationAttempts must be between 1 and 3`)
+  }
+  if (receipt.semanticReview !== 'PASS' || receipt.editorialThumbnailReview !== 'PASS') {
+    fail(`${candidate.itemId}: isolated semantic and editorial thumbnail reviews must PASS`)
+  }
+
+  const acceptedAssetPath = repoPath(receipt.acceptedAssetPath)
+  assertWorkPath(acceptedAssetPath, date, candidate.itemId, 'acceptedAssetPath')
+  const acceptedAssetFile = absolute(root, acceptedAssetPath)
+  if (!existsSync(acceptedAssetFile)) fail(`${candidate.itemId}: accepted isolated cover asset is missing`)
+  assertRaster(acceptedAssetFile, acceptedAssetPath)
+  const acceptedSha = sha256File(acceptedAssetFile)
+  if (!/^[0-9a-f]{64}$/.test(String(receipt.assetSha256 || '')) || receipt.assetSha256 !== acceptedSha) {
+    fail(`${candidate.itemId}: accepted isolated cover assetSha256 mismatch`)
+  }
+  if (sha256File(absolute(root, candidate.coverPath)) !== acceptedSha) {
+    fail(`${candidate.itemId}: candidate cover bytes do not match receipt-bound accepted asset`)
+  }
+  if (!artifacts.has(receiptPath)) fail(`result artifacts do not bind ${receiptPath}`)
+  requiredCheckpointArtifacts.add(receiptPath)
+  requiredCheckpointArtifacts.add(repoPath(candidate.coverPath))
+}
+
 export function validateProductionCompletion({ root = process.cwd(), date, result, timezone = 'Asia/Shanghai' }) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date || '')) fail(`invalid run date ${date || '(missing)'}`)
   if (result?.status !== 'Completed') fail('proof validation applies only to Completed Production results')
@@ -123,7 +188,7 @@ export function validateProductionCompletion({ root = process.cwd(), date, resul
     fail(`${batchPath}: candidate IDs ${actualIds.join(',') || 'none'} do not match eligible inputs ${inputs.join(',')}`)
   }
 
-  const evidence = new Map((result.coverEvidence || []).map((item) => [item.itemId, item]))
+  const legacyEvidence = new Map((result.coverEvidence || []).map((item) => [item.itemId, item]))
   const artifacts = artifactPaths(result)
   if (!artifacts.has(batchPath)) fail(`result artifacts do not bind ${batchPath}`)
   const requiredCheckpointArtifacts = new Set([batchPath])
@@ -149,20 +214,23 @@ export function validateProductionCompletion({ root = process.cwd(), date, resul
     }
     if (Object.values(candidate.gates || {}).some((value) => value !== 'PASS')) fail(`${candidate.itemId}: editorial gates must all PASS`)
 
-    const cover = evidence.get(candidate.itemId)
-    if (!cover) fail(`${candidate.itemId}: missing structured coverEvidence`)
-    if (repoPath(cover.coverPath) !== repoPath(candidate.coverPath)) fail(`${candidate.itemId}: coverEvidence path mismatch`)
-    if (cover.semanticReview !== 'PASS') fail(`${candidate.itemId}: semanticReview must be PASS`)
-    if (!Number.isInteger(cover.generationAttempts) || cover.generationAttempts < 1 || cover.generationAttempts > 3) {
-      fail(`${candidate.itemId}: generationAttempts must be between 1 and 3`)
+    if (date >= ISOLATED_COVER_EFFECTIVE_DATE) {
+      validateIsolatedCoverReceipt({ root, date, candidate, artifacts, requiredCheckpointArtifacts })
+    } else {
+      const cover = legacyEvidence.get(candidate.itemId)
+      if (!cover) fail(`${candidate.itemId}: missing structured coverEvidence`)
+      if (repoPath(cover.coverPath) !== repoPath(candidate.coverPath)) fail(`${candidate.itemId}: coverEvidence path mismatch`)
+      if (cover.semanticReview !== 'PASS') fail(`${candidate.itemId}: semanticReview must be PASS`)
+      if (!Number.isInteger(cover.generationAttempts) || cover.generationAttempts < 1 || cover.generationAttempts > 3) {
+        fail(`${candidate.itemId}: generationAttempts must be between 1 and 3`)
+      }
+      if (!String(cover.briefId || '').startsWith(`${date}:`)) fail(`${candidate.itemId}: briefId must be bound to ${date}`)
+      if (!String(cover.sanitizedPrompt || '').trim()) fail(`${candidate.itemId}: sanitizedPrompt is required`)
+      if (containsPromptContamination(cover.sanitizedPrompt)) {
+        fail(`${candidate.itemId}: sanitizedPrompt must be positive-only article imagery without control, exclusion or negation language`)
+      }
+      requiredCheckpointArtifacts.add(repoPath(candidate.coverPath))
     }
-    if (!String(cover.briefId || '').startsWith(`${date}:`)) fail(`${candidate.itemId}: briefId must be bound to ${date}`)
-    if (!String(cover.sanitizedPrompt || '').trim()) fail(`${candidate.itemId}: sanitizedPrompt is required`)
-    if (containsPromptContamination(cover.sanitizedPrompt)) {
-      fail(`${candidate.itemId}: sanitizedPrompt must be positive-only article imagery without control, exclusion or negation language`)
-    }
-    if (!artifacts.has(repoPath(candidate.coverPath))) fail(`result artifacts do not bind ${candidate.coverPath}`)
-    requiredCheckpointArtifacts.add(repoPath(candidate.coverPath))
   }
 
   const checkpointPath = `research/runtime/checkpoints/${year}/${month}/${date}-production.json`

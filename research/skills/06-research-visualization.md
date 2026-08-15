@@ -55,7 +55,7 @@ A valid cover should:
 - establish a clear foreground/midground/background relationship or another strong spatial hierarchy;
 - use controlled color and lighting rather than flat iconography or cartoon-like symbols.
 
-The Article Cover is a generated raster editorial asset, not a code-drawn visual. Production must use ChatGPT cloud built-in image generation and save the accepted cover as `.png`, `.webp`, `.jpg` or `.jpeg`; it does not call the OpenAI Image API or require an API-key Secret. If cloud image generation is unavailable, the shift closes as `Blocked`; Production must not substitute a hand-authored SVG, CSS composition, diagram or icon card and must not mark `coverGate` as `PASS`.
+The Article Cover is a generated raster editorial asset, not a code-drawn visual. Production persists the article-specific Cover Brief, while a separate isolated cover-worker invocation uses ChatGPT cloud built-in image generation and persists the accepted raster plus `cover-generation-receipt/v1`; neither path calls the OpenAI Image API or requires an API-key Secret. Production never invokes image generation from its Runtime conversation. If the isolated worker cannot produce a valid receipt and raster asset, Production cannot mark `coverGate` as `PASS` and must follow governed recovery/terminal policy rather than substituting a hand-authored SVG, CSS composition, diagram or icon card.
 
 SVG remains valid for an Inline Figure when the article needs a precise explanatory diagram. It is forbidden as the page-level Article Cover.
 
@@ -127,11 +127,12 @@ For an editorial cover, the source note may appear in article metadata or the vi
    - portrait editorial cover: `720×900` or `800×1040`;
    - landscape editorial cover: `1600×900`, `1376×768` or `960×600`;
    - do not mix portrait composition with a landscape canvas.
-4. Write an image-generation brief: proposition, real or physically credible subject, editorial mood, hierarchy, palette, exact optional text, language, intended canvas and explicit negative constraints (`no cartoon`, `no comic`, `no diagram`, `no flat icon`, `no text` unless required).
-5. Invoke ChatGPT cloud built-in image generation with only this article's Brief. Do not send Runtime Dashboard or control-plane context as the prompt, draw the cover in SVG, HTML, CSS or canvas, or convert an explanatory diagram into a raster file merely to satisfy the extension gate.
-6. Inspect the generated image itself and reject cartoon, comic, illustration-card, diagrammatic, generic-template or visibly synthetic failures.
-7. Run the Thumbnail acceptance test.
-8. Render the actual article page and approve the cover only after responsive QA.
+4. Write an article-cover brief with one positive physical/spatial visual scene plus complete editorial art direction. Keep negative constraints only in `reviewExclusions`; never append them to `sanitizedPrompt`. Persist the brief under the same-date Production-work path.
+5. Hand exactly one persisted brief to a separate isolated cover-worker invocation. That worker may read only the brief, the Cover Generation Receipt V1 contract and destination metadata; it must not receive Runtime, recovery or batch context.
+6. The isolated worker invokes ChatGPT cloud built-in image generation with exactly the positive `sanitizedPrompt`, inspects the generated image and performs bounded article-only retries when necessary.
+7. The isolated worker runs the Thumbnail acceptance test and persists the accepted raster plus `cover-generation-receipt/v1`.
+8. Production verifies the receipt, current brief hash, raster signature and accepted-asset hash, then copies the exact accepted bytes into the candidate cover path.
+9. Render the actual article page and approve the cover only after responsive QA.
 
 ## Mandatory safe area
 

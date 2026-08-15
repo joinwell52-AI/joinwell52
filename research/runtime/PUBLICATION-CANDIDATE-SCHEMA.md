@@ -103,6 +103,8 @@ Zero-output `Completed` remains valid with an exact bilingual `No Eligible Resea
     "bilingualConsistency": "PASS"
   },
   "coverPath": "staging/publication-candidates/...-cover.webp",
+  "coverBriefPath": "research/runtime/production-work/YYYY/MM/DD/Q-.../cover-brief.json",
+  "coverReceiptPath": "research/runtime/production-work/YYYY/MM/DD/Q-.../cover-generation-receipt.json",
   "inlineFigures": [],
   "coverGate": "PASS",
   "inlineVisualGate": "PASS",
@@ -174,6 +176,8 @@ The title, angle, heading structure, and discussion question differ from the Res
 
 The Article Cover and optional Inline Figures retain the V1.1 role separation and gates. Visuals do not determine article modules. `inlineFigures: []` is valid.
 
+For Production dates on or after 2026-08-15, every candidate also records `coverBriefPath` and `coverReceiptPath`. The receipt must conform to `research/runtime/COVER-GENERATION-RECEIPT-V1.md`, bind the current same-date brief by SHA-256, bind a real accepted raster asset by SHA-256, and pass semantic plus editorial-thumbnail review. Production must not create the image itself or infer PASS from file existence alone.
+
 ## Completion gate
 
 A V2 candidate is complete only when:
@@ -182,7 +186,7 @@ A V2 candidate is complete only when:
 - Chinese and English files exist and use `publication-candidate-article/v2` metadata;
 - claim identity and strength are equivalent in both languages;
 - all six editorial gates are `PASS`;
-- the Article Cover, Inline Visual, and Layout Gates pass;
+- the Article Cover is backed by a same-date valid isolated cover-worker receipt, and the Cover, Inline Visual, and Layout Gates pass;
 - any Community Edition is separately framed and machine-valid;
 - the candidate is not yet in the public article directory.
 
@@ -190,7 +194,7 @@ The machine validator is `scripts/publication-editorial-validate.mjs`.
 
 ## Atomic commit gate
 
-A new candidate is one indivisible commit bundle: the Chinese article, English article, dedicated cover, optional Inline Figures, and the completed same-date candidate-batch record. Production must build the bundle outside the canonical staging path, move all members into place together, stage them together, and run:
+A new candidate is one indivisible candidate commit bundle: the Chinese article, English article, candidate cover copy, optional Inline Figures, and the completed same-date candidate-batch record. The isolated worker's accepted pre-candidate raster and receipt are committed and remotely verified earlier under `research/runtime/production-work/`; Production verifies them, copies the exact accepted raster bytes into the candidate cover path, then builds the remaining candidate bundle outside the canonical staging path, moves all candidate members into place together, stages them together, and runs:
 
 ```text
 npm run publication:bundle:staged
