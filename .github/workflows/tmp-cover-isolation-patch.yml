@@ -34,6 +34,17 @@ jobs:
       - name: Apply isolated cover-worker patch
         run: node scripts/tmp-isolate-cover-worker.mjs
 
+      - name: Keep Production effective-date compatibility
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs'
+          const file = 'research/runtime/worker-prompts/CONFIG.json'
+          const config = JSON.parse(fs.readFileSync(file, 'utf8'))
+          const production = config.tasks.find((task) => task.task === 'production')
+          production.effectiveDate = '2026-08-14'
+          fs.writeFileSync(file, `${JSON.stringify(config, null, 2)}\n`, 'utf8')
+          NODE
+
       - name: Rebuild generated worker prompts
         run: npm run worker-prompts:build
 
