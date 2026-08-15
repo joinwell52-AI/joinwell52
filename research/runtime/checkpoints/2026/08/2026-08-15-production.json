@@ -1,9 +1,9 @@
 {
   "schema": "runtime-production-checkpoint/v1",
   "runDate": "2026-08-15",
-  "node": "awaiting-isolated-covers",
-  "status": "Running",
-  "lastCompletedNode": "cover-briefs-persisted",
+  "node": "validators-passed",
+  "status": "Completed",
+  "lastCompletedNode": "validators-passed",
   "artifacts": [
     "research/runtime/production-work/2026/08/15/prepared-bundle.json",
     "research/runtime/production-work/2026/08/15/Q-20260815-01/draft.zh.md",
@@ -14,7 +14,17 @@
     "research/runtime/production-work/2026/08/15/Q-20260815-02/cover-brief.json",
     "research/runtime/production-work/2026/08/15/Q-20260815-03/draft.zh.md",
     "research/runtime/production-work/2026/08/15/Q-20260815-03/draft.en.md",
-    "research/runtime/production-work/2026/08/15/Q-20260815-03/cover-brief.json"
+    "research/runtime/production-work/2026/08/15/Q-20260815-03/cover-brief.json",
+    "research/runtime/candidates/2026/08/2026-08-15-candidates.json",
+    "staging/publication-candidates/2026-08-15-resumable-agent-trust-gates.zh.md",
+    "staging/publication-candidates/2026-08-15-resumable-agent-trust-gates.en.md",
+    "staging/publication-candidates/2026-08-15-resumable-agent-trust-gates-cover.png",
+    "staging/publication-candidates/2026-08-15-delegated-agent-return-contract.zh.md",
+    "staging/publication-candidates/2026-08-15-delegated-agent-return-contract.en.md",
+    "staging/publication-candidates/2026-08-15-delegated-agent-return-contract-cover.png",
+    "staging/publication-candidates/2026-08-15-agent-handoff-ownership.zh.md",
+    "staging/publication-candidates/2026-08-15-agent-handoff-ownership.en.md",
+    "staging/publication-candidates/2026-08-15-agent-handoff-ownership-cover.png"
   ],
   "evidence": [
     {
@@ -39,11 +49,25 @@
     {
       "type": "prepared-bundle",
       "path": "research/runtime/production-work/2026/08/15/prepared-bundle.json",
-      "eligibleItemIds": ["Q-20260815-01", "Q-20260815-02", "Q-20260815-03"],
+      "eligibleItemIds": [
+        "Q-20260815-01",
+        "Q-20260815-02",
+        "Q-20260815-03"
+      ],
       "directImageGenerationCalls": 0,
       "directPublicationActions": 0
+    },
+    {
+      "type": "baseline-cover-recovery",
+      "generator": "deterministic-baseline-v1",
+      "promptVersion": "2.11.0",
+      "itemIds": [
+        "Q-20260815-01",
+        "Q-20260815-02",
+        "Q-20260815-03"
+      ]
     }
   ],
-  "sourceCommit": "c70c38b0bc4aa9cffe73fa2e955859ff9467f8d4",
-  "updatedAt": "2026-08-15T16:50:00+08:00"
+  "sourceCommit": "41dc7557de44d8468d90152b7b27652af0a238dc",
+  "updatedAt": "2026-08-15T12:10:08.824Z"
 }

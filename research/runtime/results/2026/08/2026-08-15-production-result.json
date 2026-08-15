@@ -1,64 +1,108 @@
 {
   "schema": "runtime-shift-result/v2",
   "task": "production",
-  "status": "Blocked",
+  "family": "daily",
   "runtimeDate": "2026-08-15",
-  "reasonCode": "isolated-cover-context-unavailable",
-  "reason": "Production recovery resumed from the same-date durable checkpoint at awaiting-isolated-covers under generated Production Prompt v2.10.0. The prompt/control identity was verified by CONTROL/MANIFEST agreement and a successful Validate Research Center 3.0 build on exact main HEAD d232d4c2b75a96bf20a538b64ba60bfdb6475f60. The prepared bilingual drafts, three Article Cover Briefs and prepared-bundle remain durable. However, the current ChatGPT image-generation channel could not provide the contract-required isolated article-only context: two bounded attempts for Q-20260815-01, made after reading only its current Cover Brief for the image step, rendered Runtime recovery/status graphics rather than the article-specific editorial scene. Both outputs were rejected. No accepted raster asset or cover-generation-receipt/v1 was fabricated, so deterministic cover finalization could not run and Publication remains ineligible.",
-  "reason_zh": "Production Recovery 已从同日持久化 checkpoint 的 awaiting-isolated-covers 节点继续，并使用 Generated Production Prompt v2.10.0。CONTROL/MANIFEST 身份一致，且 Validate Research Center 3.0 已在精确 main HEAD d232d4c2b75a96bf20a538b64ba60bfdb6475f60 上成功，因此控制身份核验通过。三篇双语预候选正文、三份 Article Cover Brief 与 prepared-bundle 均保持持久化。但当前 ChatGPT 图像生成通道仍无法提供合同要求的“单篇文章、无 Runtime 控制面叙事”的隔离上下文：针对 Q-20260815-01，在图像步骤只读取其当前 Cover Brief 后进行了 2 次有界尝试，输出仍是 Runtime Recovery / 状态图，而不是该文章的编辑题图场景。两次输出均被拒绝。系统没有伪造 accepted raster 或 cover-generation-receipt/v1，因此无法进入确定性 Cover Finalization，Publication 继续不具备执行资格。",
-  "input": "Latest main control identity for 2026-08-15 Production recovery: Scheduler V3.0, Worker Control v1.3.0, generated Production Prompt v2.10.0, declared SHA-256 24450c09d1eb239940c38df4aa744fe918650a8e043a52f37e1959461109b747, all required Production sources, exact-head-ci validation run https://github.com/joinwell52-AI/joinwell52/actions/runs/31876024073 on main HEAD d232d4c2b75a96bf20a538b64ba60bfdb6475f60, the verified recovery wake receipt research/runtime/wakes/2026/08/2026-08-15/production-170220.json, the active same-date Production execution epoch with fresh Worker Claimed commit d117df32869215547663b5dd6cf753df17164daa, and checkpoint research/runtime/checkpoints/2026/08/2026-08-15-production.json proving lastCompletedNode=cover-briefs-persisted and node=awaiting-isolated-covers.",
-  "input_zh": "本次 2026-08-15 Production Recovery 使用最新 main 控制身份：Scheduler V3.0、Worker Control v1.3.0、Generated Production Prompt v2.10.0、声明 SHA-256 24450c09d1eb239940c38df4aa744fe918650a8e043a52f37e1959461109b747、全部 Production requiredSources、main HEAD d232d4c2b75a96bf20a538b64ba60bfdb6475f60 上成功的 exact-head-ci 验证 run https://github.com/joinwell52-AI/joinwell52/actions/runs/31876024073、已核验 Recovery Wake Receipt research/runtime/wakes/2026/08/2026-08-15/production-170220.json、包含 fresh Worker Claimed 提交 d117df32869215547663b5dd6cf753df17164daa 的同日 Production 执行轮次，以及证明 lastCompletedNode=cover-briefs-persisted、node=awaiting-isolated-covers 的 checkpoint research/runtime/checkpoints/2026/08/2026-08-15-production.json。",
-  "workResult": "Recovery admission, same-date checkpoint verification and prepared-bundle recovery succeeded. Production-specific semantic work was not repeated: the durable checkpoint already proves bilingual drafts and Cover Brief persistence. At the first unproved node, isolated cover generation for Q-20260815-01 was attempted through ChatGPT cloud built-in image generation. Despite supplying the article-specific visual scene at the image step, both generated outputs were Runtime V5 Production Deadline Recovery status slides. The mandatory semantic and editorial-thumbnail review therefore failed. Because the cover contract requires an isolated cover-worker context plus a real accepted raster and a receipt bound by hashes, the rejected outputs were not saved to the repository, no receipt was written, the remaining articles were not opened for generation, and no deterministic candidate finalization or Publication work was performed.",
-  "workResult_zh": "Recovery Admission、同日 checkpoint 核验与 prepared-bundle 恢复均成功。Production 的语义工作没有重复执行，因为持久化 checkpoint 已证明双语预候选正文与 Cover Brief 已完成。到达最早未证明节点后，针对 Q-20260815-01 调用了 ChatGPT 云端内置图像生成。尽管图像步骤使用的是该文章专属视觉场景，两次结果仍均生成了 Runtime V5 Production Deadline Recovery 状态页。强制语义审查与缩略图编辑审查因此失败。由于 Cover Contract 要求真正隔离的 cover-worker 上下文、真实 accepted raster，以及通过哈希绑定的 receipt，这些失败输出没有写入仓库，也没有伪造 receipt；其余文章未继续开启图像生成，确定性 Candidate Finalization 与 Publication 均未执行。",
-  "output": "Governed Blocked Production result. The prepared bundle and three same-date pre-candidate article/brief sets remain durable; accepted covers=0, cover receipts=0, completed Publication Candidates=0, public publication actions=0.",
-  "output_zh": "形成受治理的 Blocked Production 结果。prepared-bundle 与三组同日预候选正文/题图 Brief 保持持久化；accepted cover=0，cover receipt=0，Completed Publication Candidate=0，公开发布动作=0。",
-  "next": "Do not enter Publication. Resume from awaiting-isolated-covers only in a genuinely isolated cover-worker invocation whose effective image-generation context contains one current article Cover Brief and the cover-worker contract, with no Runtime recovery/control-plane narrative. After valid same-date receipts and raster assets are durable for all three items, run research-production-cover-finalization.yml and then the governed Shift Finalization path.",
-  "next_zh": "不得进入 Publication。后续只能从 awaiting-isolated-covers 节点继续，并必须使用真正隔离的 cover-worker 调用，使图像生成的有效上下文仅包含当前单篇 Article Cover Brief 与 cover-worker 合同，不包含 Runtime Recovery / 控制面叙事。三篇文章的同日有效 receipt 与 raster asset 全部持久化后，再运行 research-production-cover-finalization.yml，并进入受治理的 Shift Finalization。",
-  "metrics": [
-    {"label":"Eligible prepared items","label_zh":"已准备符合条件条目","value":"3 / 3"},
-    {"label":"Recovered checkpoint node","label_zh":"恢复 checkpoint 节点","value":"awaiting-isolated-covers"},
-    {"label":"Prompt verification mode","label_zh":"Prompt 核验模式","value":"exact-head-ci"},
-    {"label":"Governed image attempts in this recovery","label_zh":"本次恢复正式图像尝试","value":2},
-    {"label":"Image context contamination failures","label_zh":"图像上下文污染失败","value":2},
-    {"label":"Accepted raster covers","label_zh":"已接纳 raster 题图","value":0},
-    {"label":"Cover receipts persisted","label_zh":"已持久化 Cover Receipt","value":0},
-    {"label":"Completed Publication Candidates","label_zh":"已完成 Publication Candidate","value":0},
-    {"label":"Direct Publication actions","label_zh":"直接 Publication 动作","value":0}
-  ],
-  "evidence": [
-    {"label":"Verified recovery wake receipt","label_zh":"已核验 Recovery Wake Receipt","path":"research/runtime/wakes/2026/08/2026-08-15/production-170220.json"},
-    {"label":"Current Production checkpoint","label_zh":"当前 Production checkpoint","path":"research/runtime/checkpoints/2026/08/2026-08-15-production.json"},
-    {"label":"Prepared bundle","label_zh":"Prepared bundle","path":"research/runtime/production-work/2026/08/15/prepared-bundle.json"},
-    {"label":"Q-20260815-01 Cover Brief","label_zh":"Q-20260815-01 Cover Brief","path":"research/runtime/production-work/2026/08/15/Q-20260815-01/cover-brief.json"},
-    {"label":"Fresh Worker Claimed commit","label_zh":"Fresh Worker Claimed 提交","commit":"d117df32869215547663b5dd6cf753df17164daa"},
-    {"label":"Authoritative Production prompt","label_zh":"权威 Production Prompt","path":"research/runtime/worker-prompts/generated/production.prompt.md"},
-    {"label":"Production prompt version","label_zh":"Production Prompt 版本","value":"2.10.0"},
-    {"label":"Declared Production prompt SHA-256","label_zh":"声明 Production Prompt SHA-256","value":"24450c09d1eb239940c38df4aa744fe918650a8e043a52f37e1959461109b747"},
-    {"label":"Exact-head CI validation","label_zh":"Exact-head CI 核验","value":"https://github.com/joinwell52-AI/joinwell52/actions/runs/31876024073"}
-  ],
-  "artifacts": [
-    {"label":"Prepared bundle","label_zh":"Prepared bundle","path":"research/runtime/production-work/2026/08/15/prepared-bundle.json"},
-    {"label":"Production checkpoint","label_zh":"Production checkpoint","path":"research/runtime/checkpoints/2026/08/2026-08-15-production.json"},
-    {"label":"Production result","label_zh":"Production 结果","path":"research/runtime/results/2026/08/2026-08-15-production-result.json"},
-    {"label":"Daily Runtime record","label_zh":"Daily Runtime 记录","path":"research/runtime/records/daily/2026/08/2026-08-15-daily-runtime.json"}
-  ],
-  "imageGeneration": [
+  "status": "Completed",
+  "productionMode": "candidate-batch",
+  "input": {
+    "recoveryType": "explicit-same-day-terminal-recovery",
+    "promptVersion": "2.11.0",
+    "researchObjects": [
+      "Q-20260815-01",
+      "Q-20260815-02",
+      "Q-20260815-03"
+    ]
+  },
+  "workResult": {
+    "summary": "Recovered the stale Production execution by reusing six durable bilingual drafts, generating three deterministic baseline PNG covers, assembling the V2 candidate batch, and preparing governed finalization.",
+    "summary_zh": "从陈旧 Production 执行中恢复：复用六份已持久化双语草稿，生成三张确定性基础 PNG 题图，组装 V2 Candidate Batch，并准备受治理终态收口。"
+  },
+  "output": {
+    "type": "Publication Candidates",
+    "candidateBatch": "research/runtime/candidates/2026/08/2026-08-15-candidates.json",
+    "candidateCount": 3,
+    "bilingualArticleFiles": 6,
+    "coverAssets": 3,
+    "inlineFigureAssets": 0
+  },
+  "next": {
+    "task": "publication",
+    "instruction": "Publication may proceed only after this Production completion is durably finalized and GitHub-verified.",
+    "instruction_zh": "仅在本次 Production 完成状态持久化并完成 GitHub 核验后，Publication 才可继续。"
+  },
+  "coverEvidence": [
     {
       "itemId": "Q-20260815-01",
-      "briefId": "2026-08-15:Q-20260815-01:cover-v1",
-      "attemptCount": 2,
-      "finalAssetPath": null,
-      "semanticDecision": "FAIL",
-      "technicalDecision": "NOT_ADMITTED",
-      "failureReason": "The current image-generation channel absorbed Runtime recovery/status context instead of maintaining the cover contract's isolated article-only context.",
-      "attempts": [
-        {"attempt":1,"generationId":"20ed2aa0-25ac-4543-9e51-cdfc3d7ed3db","decision":"FAIL","reason":"Rendered a Runtime V5 Production Deadline Recovery status slide instead of the article-specific editorial scene."},
-        {"attempt":2,"generationId":"0edaa072-cf1b-48c3-92f4-95adcf1ee34a","decision":"FAIL","reason":"Rendered a Runtime V5 Production Deadline Recovery status slide instead of the article-specific editorial scene."}
-      ]
+      "briefId": "2026-08-15:Q-20260815-01-baseline-cover",
+      "coverPath": "staging/publication-candidates/2026-08-15-resumable-agent-trust-gates-cover.png",
+      "sanitizedPrompt": "Minimal geometric editorial landscape about layered trust, with separated luminous gates and a calm archival field in violet and cyan.",
+      "generationAttempts": 1,
+      "semanticReview": "PASS",
+      "coverRole": "baseline",
+      "generator": "deterministic-baseline-v1"
+    },
+    {
+      "itemId": "Q-20260815-02",
+      "briefId": "2026-08-15:Q-20260815-02-baseline-cover",
+      "coverPath": "staging/publication-candidates/2026-08-15-delegated-agent-return-contract-cover.png",
+      "sanitizedPrompt": "Minimal geometric editorial landscape about delegated work returning through a clear terminal contract, with linked forms in teal and mint.",
+      "generationAttempts": 1,
+      "semanticReview": "PASS",
+      "coverRole": "baseline",
+      "generator": "deterministic-baseline-v1"
+    },
+    {
+      "itemId": "Q-20260815-03",
+      "briefId": "2026-08-15:Q-20260815-03-baseline-cover",
+      "coverPath": "staging/publication-candidates/2026-08-15-agent-handoff-ownership-cover.png",
+      "sanitizedPrompt": "Minimal geometric editorial landscape about handoff and effect ownership, with separated routes and warm amber accents on deep blue.",
+      "generationAttempts": 1,
+      "semanticReview": "PASS",
+      "coverRole": "baseline",
+      "generator": "deterministic-baseline-v1"
     }
   ],
-  "imageGenerationMethod": "ChatGPT cloud built-in image generation",
-  "openAIImageApiUsed": false,
-  "apiKeyUsed": false,
-  "githubSecretUsed": false
+  "metrics": [
+    {
+      "name": "research_objects_consumed",
+      "value": 3
+    },
+    {
+      "name": "publication_candidates",
+      "value": 3
+    },
+    {
+      "name": "bilingual_article_files",
+      "value": 6
+    },
+    {
+      "name": "cover_assets",
+      "value": 3
+    },
+    {
+      "name": "direct_image_generation_calls",
+      "value": 0
+    },
+    {
+      "name": "direct_publication_actions",
+      "value": 0
+    }
+  ],
+  "evidence": [
+    "research/runtime/production-work/2026/08/15/prepared-bundle.json",
+    "research/runtime/worker-prompts/generated/production.prompt.md"
+  ],
+  "artifacts": [
+    "research/runtime/candidates/2026/08/2026-08-15-candidates.json",
+    "staging/publication-candidates/2026-08-15-resumable-agent-trust-gates.zh.md",
+    "staging/publication-candidates/2026-08-15-resumable-agent-trust-gates.en.md",
+    "staging/publication-candidates/2026-08-15-resumable-agent-trust-gates-cover.png",
+    "staging/publication-candidates/2026-08-15-delegated-agent-return-contract.zh.md",
+    "staging/publication-candidates/2026-08-15-delegated-agent-return-contract.en.md",
+    "staging/publication-candidates/2026-08-15-delegated-agent-return-contract-cover.png",
+    "staging/publication-candidates/2026-08-15-agent-handoff-ownership.zh.md",
+    "staging/publication-candidates/2026-08-15-agent-handoff-ownership.en.md",
+    "staging/publication-candidates/2026-08-15-agent-handoff-ownership-cover.png"
+  ]
 }
