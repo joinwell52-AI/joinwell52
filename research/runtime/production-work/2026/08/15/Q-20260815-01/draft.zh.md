@@ -8,6 +8,7 @@ article_type: engineering-insight
 edition: research-center
 research_question: "可恢复数字员工在导入历史记录、并在之后接收人工工具确认时，必须分别建立哪些信任边界？"
 summary: "更安全的可恢复架构，不应把导入历史、Runtime 自有协议状态、具体动作绑定和人工授权合并成一次信任判断。近期一个 ADK 实现展示了选择性历史准入与较强的动作实例绑定，但并未证明确认者具有授权，也没有证明普通导入历史具备可信来源。"
+cover: staging/publication-candidates/2026-08-15-resumable-agent-trust-gates-cover.png
 sources:
   - research/analysis/Q-20260815-01-protocol-state-admission-human-authorization.md
   - research/reading/Q-20260815-01-trusted-session-initialization-hitl-confirmation-boundary.md
