@@ -1,0 +1,59 @@
+name: Sync 2026-08-15 Publication Build-Generated Metadata
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "research/runtime/manual-recovery-requests/2026-08-15-publication-build-sync.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-20260815-publication-build-generated
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout authoritative main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Sync latest main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Regenerate tracked build metadata
+        run: npm run runtime:build
+
+      - name: Persist tracked generated metadata if changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/.vitepress/generated/editorial-scorecard.json \
+                  docs/.vitepress/generated/p2-special-study.json \
+                  docs/.vitepress/generated/research-intelligence.json \
+                  docs/.vitepress/generated/runtime-legacy-records.json
+          if git diff --cached --quiet; then
+            echo "No tracked build-generated drift to persist."
+            exit 0
+          fi
+          git commit -m "runtime(publication): sync tracked build metadata before recovery retry"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
