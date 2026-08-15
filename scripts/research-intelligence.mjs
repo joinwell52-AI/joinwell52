@@ -313,9 +313,9 @@ function validateRun(run, path, registry) {
     if (!run.pipelines.every((pipeline) => pipeline.status === 'Completed')) {
       die(`${path}: completed run requires all pipelines Completed`)
     }
-    if (!run.columns.every((column) => ['Selected', 'No Selection'].includes(column.decision))) {
-      die(`${path}: completed run requires a decision for all three columns`)
-    }
+  // Discovery owns the Intelligence run and may complete with column
+  // decisions still Waiting. Queue owns Selected / No Selection and
+  // is validated separately through the same-day plan linkage below.
   }
   if (EFFECTIVE_TERMINAL.has(run.status) && run.status !== 'Completed' && !text(run.reason)) {
     die(`${path}: terminal run requires reason`)
