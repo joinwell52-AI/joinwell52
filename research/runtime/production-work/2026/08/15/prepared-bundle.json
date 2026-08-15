@@ -1,0 +1,179 @@
+{
+  "schema": "production-prepared-bundle/v1",
+  "runDate": "2026-08-15",
+  "timezone": "Asia/Shanghai",
+  "status": "AwaitingIsolatedCovers",
+  "sourcePrompt": {
+    "path": "research/runtime/worker-prompts/generated/production.prompt.md",
+    "version": "2.10.0",
+    "declaredSha256": "24450c09d1eb239940c38df4aa744fe918650a8e043a52f37e1959461109b747"
+  },
+  "items": [
+    {
+      "itemId": "Q-20260815-01",
+      "zhDraftPath": "research/runtime/production-work/2026/08/15/Q-20260815-01/draft.zh.md",
+      "enDraftPath": "research/runtime/production-work/2026/08/15/Q-20260815-01/draft.en.md",
+      "coverBriefPath": "research/runtime/production-work/2026/08/15/Q-20260815-01/cover-brief.json",
+      "coverReceiptPath": "research/runtime/production-work/2026/08/15/Q-20260815-01/cover-generation-receipt.json",
+      "targetZhPath": "staging/publication-candidates/2026-08-15-resumable-agent-trust-gates.zh.md",
+      "targetEnPath": "staging/publication-candidates/2026-08-15-resumable-agent-trust-gates.en.md",
+      "targetCoverPath": "staging/publication-candidates/2026-08-15-resumable-agent-trust-gates-cover.png",
+      "candidate": {
+        "column": "digital-employee",
+        "category": "daily",
+        "itemId": "Q-20260815-01",
+        "articleType": "engineering-insight",
+        "researchQuestion": "What trust boundaries must a resumable digital employee enforce when it imports prior history and later accepts a human confirmation for a tool action?",
+        "title": "Resumable Agents Need Separate Trust Gates for History, Protocol State, and Approval",
+        "title_zh": "可恢复 Agent 需要把历史、协议状态与人工批准分成不同信任门",
+        "sections": [
+          {"module":"trust-boundary-analysis","heading":"Imported history is data before it is authority","heading_zh":"导入历史首先是数据，不是权威"},
+          {"module":"trust-boundary-analysis","heading":"Occurrence binding solves reference integrity, not authorization","heading_zh":"动作实例绑定解决的是指向正确，不是谁有权批准"},
+          {"module":"engineering-implications","heading":"Engineering implications","heading_zh":"工程含义"},
+          {"module":"limitations","heading":"Limits of the evidence","heading_zh":"证据边界"},
+          {"module":"open-questions","heading":"Open questions","heading_zh":"仍待回答的问题"}
+        ],
+        "endingModule": "open-questions",
+        "evidenceClaims": [
+          {"id":"E1","identity":"public-fact","claim":"The selected ADK change validates client-supplied initialization events before session creation and rejects framework-owned protocol events while admitting ordinary history.","claim_zh":"所选 ADK 变更会在 Session 创建前校验客户端初始化事件，拒绝框架自有协议事件，同时允许普通历史。","source":"research/analysis/Q-20260815-01-protocol-state-admission-human-authorization.md","strength":"states","independent":false},
+          {"id":"E2","identity":"public-fact","claim":"Confirmation resolution binds a confirmation to a matching historical original tool occurrence.","claim_zh":"确认解析会把 Confirmation 绑定到匹配的历史原始 Tool Occurrence。","source":"research/analysis/Q-20260815-01-protocol-state-admission-human-authorization.md","strength":"states","independent":false},
+          {"id":"I1","identity":"our-interpretation","claim":"History admission, protocol-state admission, occurrence binding and approver authorization should remain separate trust gates.","claim_zh":"历史准入、协议状态准入、动作实例绑定和确认者授权应保持为不同信任门。","source":"research/analysis/Q-20260815-01-protocol-state-admission-human-authorization.md","strength":"suggests","independent":false}
+        ],
+        "projectRelevance": {"status":"none","projects":[],"rationale":"The argument is complete without first-party project mapping."},
+        "communityEdition": {"decision":"not-generated","rationale":"The complete Research Center edition already addresses the transferable engineering question."},
+        "gates": {"researchValue":"PASS","independence":"PASS","evidence":"PASS","structure":"PASS","language":"PASS","bilingualConsistency":"PASS"},
+        "inlineFigures": [],
+        "inlineVisualGate": "PASS",
+        "lifecycle": "Publication Candidate",
+        "evidenceStatus": "Completed",
+        "editingStatus": "Completed"
+      }
+    },
+    {
+      "itemId": "Q-20260815-02",
+      "zhDraftPath": "research/runtime/production-work/2026/08/15/Q-20260815-02/draft.zh.md",
+      "enDraftPath": "research/runtime/production-work/2026/08/15/Q-20260815-02/draft.en.md",
+      "coverBriefPath": "research/runtime/production-work/2026/08/15/Q-20260815-02/cover-brief.json",
+      "coverReceiptPath": "research/runtime/production-work/2026/08/15/Q-20260815-02/cover-generation-receipt.json",
+      "targetZhPath": "staging/publication-candidates/2026-08-15-delegated-agent-return-contract.zh.md",
+      "targetEnPath": "staging/publication-candidates/2026-08-15-delegated-agent-return-contract.en.md",
+      "targetCoverPath": "staging/publication-candidates/2026-08-15-delegated-agent-return-contract-cover.png",
+      "candidate": {
+        "column": "industry-architecture",
+        "category": "daily",
+        "itemId": "Q-20260815-02",
+        "articleType": "technical-analysis",
+        "researchQuestion": "What must a multi-agent architecture make explicit so a delegated remote task can pause, resume, finish and return control without confusing transport termination with successful work?",
+        "title": "Delegated Agent Work Needs a Return Contract, Not Just a Transport",
+        "title_zh": "多 Agent 委派需要返回合同，而不只是传输结束",
+        "sections": [
+          {"module":"lifecycle-analysis","heading":"One identity should survive the delegated lifecycle","heading_zh":"同一个身份应贯穿完整委派生命周期"},
+          {"module":"mechanism-comparison","heading":"A semantic finish is stronger than end-of-stream","heading_zh":"语义完成比 End-of-stream 更强"},
+          {"module":"architecture-implications","heading":"Cross-framework composition requires more contracts","heading_zh":"跨框架委派还需要额外兼容合同"},
+          {"module":"limitations","heading":"Limits of the evidence","heading_zh":"证据边界"},
+          {"module":"open-questions","heading":"Open questions","heading_zh":"仍待回答的问题"}
+        ],
+        "endingModule": "open-questions",
+        "evidenceClaims": [
+          {"id":"E1","identity":"public-fact","claim":"The selected ADK task mode reuses one coordinator FunctionCall identity as the delegated task isolation scope.","claim_zh":"所选 ADK Task Mode 复用一个 Coordinator FunctionCall Identity 作为委派任务 Isolation Scope。","source":"research/analysis/Q-20260815-02-delegation-lifecycle-semantic-return-contract.md","strength":"states","independent":false},
+          {"id":"E2","identity":"public-fact","claim":"Task completion uses explicit finish evidence whose output must satisfy the declared output schema, while failure classes remain distinct.","claim_zh":"Task Completion 使用显式 Finish Evidence，输出必须满足声明的 Output Schema，失败类别保持区分。","source":"research/analysis/Q-20260815-02-delegation-lifecycle-semantic-return-contract.md","strength":"states","independent":false},
+          {"id":"I1","identity":"our-interpretation","claim":"Reliable delegated work needs both stable occurrence identity and a semantic return contract.","claim_zh":"可靠委派工作需要稳定 Occurrence Identity 与 Semantic Return Contract 两类合同。","source":"research/analysis/Q-20260815-02-delegation-lifecycle-semantic-return-contract.md","strength":"suggests","independent":false}
+        ],
+        "projectRelevance": {"status":"none","projects":[],"rationale":"The delegation analysis is complete without first-party project mapping."},
+        "communityEdition": {"decision":"not-generated","rationale":"No separate community framing adds enough value beyond the complete Research Center analysis."},
+        "gates": {"researchValue":"PASS","independence":"PASS","evidence":"PASS","structure":"PASS","language":"PASS","bilingualConsistency":"PASS"},
+        "inlineFigures": [],
+        "inlineVisualGate": "PASS",
+        "lifecycle": "Publication Candidate",
+        "evidenceStatus": "Completed",
+        "editingStatus": "Completed"
+      }
+    },
+    {
+      "itemId": "Q-20260815-03",
+      "zhDraftPath": "research/runtime/production-work/2026/08/15/Q-20260815-03/draft.zh.md",
+      "enDraftPath": "research/runtime/production-work/2026/08/15/Q-20260815-03/draft.en.md",
+      "coverBriefPath": "research/runtime/production-work/2026/08/15/Q-20260815-03/cover-brief.json",
+      "coverReceiptPath": "research/runtime/production-work/2026/08/15/Q-20260815-03/cover-generation-receipt.json",
+      "targetZhPath": "staging/publication-candidates/2026-08-15-agent-handoff-ownership.zh.md",
+      "targetEnPath": "staging/publication-candidates/2026-08-15-agent-handoff-ownership.en.md",
+      "targetCoverPath": "staging/publication-candidates/2026-08-15-agent-handoff-ownership-cover.png",
+      "candidate": {
+        "column": "open-source-engineering",
+        "category": "daily",
+        "itemId": "Q-20260815-03",
+        "articleType": "engineering-insight",
+        "researchQuestion": "What ownership facts must an agent runtime separate when background tool work may outlive the agent that created it during handoff or teardown?",
+        "title": "Safe Agent Handoff Requires Separate Routing and Effect Ownership",
+        "title_zh": "安全的 Agent 交接必须分开路由所有权与外部效果所有权",
+        "sections": [
+          {"module":"lifecycle-analysis","heading":"Handoff is an ownership transfer","heading_zh":"Handoff 本质上是所有权转移"},
+          {"module":"failure-boundary","heading":"Cancellation requested is not the same as task stopped","heading_zh":"已请求取消，不等于 Task 已停止"},
+          {"module":"engineering-implications","heading":"External effects require provider-specific evidence","heading_zh":"外部效果需要 Provider-specific Evidence"},
+          {"module":"limitations","heading":"Limits of the evidence","heading_zh":"证据边界"},
+          {"module":"open-questions","heading":"Open questions","heading_zh":"仍待回答的问题"}
+        ],
+        "endingModule": "open-questions",
+        "evidenceClaims": [
+          {"id":"E1","identity":"public-fact","claim":"The selected ADK change makes a live agent run responsible for streaming and non-blocking background tasks and invokes cleanup before handoff.","claim_zh":"所选 ADK 变更让 Live Agent Run 对 Streaming 与 Non-blocking Background Task 负责，并在 Handoff 前执行 Cleanup。","source":"research/analysis/Q-20260815-03-handoff-routing-effect-ownership.md","strength":"states","independent":false},
+          {"id":"E2","identity":"public-fact","claim":"Registry retirement prevents stale streaming tools from receiving future live input but does not prove underlying task termination.","claim_zh":"Registry Retirement 阻止陈旧 Streaming Tool 接收未来 Live Input，但不证明底层 Task 已终止。","source":"research/analysis/Q-20260815-03-handoff-routing-effect-ownership.md","strength":"states","independent":false},
+          {"id":"I1","identity":"our-interpretation","claim":"Handoff safety requires separate evidence for execution ownership, routing ownership and external-effect ownership.","claim_zh":"Handoff Safety 需要分别证明 Execution Ownership、Routing Ownership 与 External-effect Ownership。","source":"research/analysis/Q-20260815-03-handoff-routing-effect-ownership.md","strength":"suggests","independent":false}
+        ],
+        "projectRelevance": {"status":"none","projects":[],"rationale":"The handoff argument is general to asynchronous agent runtimes and needs no first-party project insertion."},
+        "communityEdition": {"decision":"not-generated","rationale":"The complete Research Center edition already preserves the necessary mechanism and evidence boundaries."},
+        "gates": {"researchValue":"PASS","independence":"PASS","evidence":"PASS","structure":"PASS","language":"PASS","bilingualConsistency":"PASS"},
+        "inlineFigures": [],
+        "inlineVisualGate": "PASS",
+        "lifecycle": "Publication Candidate",
+        "evidenceStatus": "Completed",
+        "editingStatus": "Completed"
+      }
+    }
+  ],
+  "batchBase": {
+    "sourceTask": "Research Runtime Production",
+    "sourceRecord": "research/runtime/records/daily/2026/08/2026-08-15-daily-runtime.json",
+    "reason": "Production Preparation completed the full bilingual semantic candidate set and paused before cover acceptance so the separate isolated cover worker can supply receipt-bound raster assets."
+  },
+  "resultBase": {
+    "schema": "runtime-shift-result/v2",
+    "task": "production",
+    "family": "daily",
+    "runtimeDate": "2026-08-15",
+    "input": "Three same-date ReadyForProduction Research Objects Q-20260815-01, Q-20260815-02 and Q-20260815-03 under Production Prompt v2.10.0, with the isolated Article Cover worker boundary active.",
+    "input_zh": "同日三份 ReadyForProduction Research Object：Q-20260815-01、Q-20260815-02、Q-20260815-03；使用 Production Prompt v2.10.0，并启用隔离 Article Cover Worker 边界。",
+    "workResult": "Production Preparation completed six bilingual pre-candidate drafts, three article-specific cover briefs, all non-cover editorial and bilingual gate decisions, and a prepared candidate bundle. Final completion is projected only after deterministic validation of same-date isolated cover receipts and accepted raster assets.",
+    "workResult_zh": "Production Preparation 已完成六份双语预候选正文、三份文章专属 Cover Brief、全部非题图编辑与双语门禁判断，以及 Prepared Candidate Bundle。只有同日隔离题图 Receipt 与真实栅格资产通过确定性核验后，才允许投影最终 Completed。",
+    "output": "Three complete bilingual Publication Candidate intents with isolated-cover receipt bindings and no direct Publication action.",
+    "output_zh": "三组完整双语 Publication Candidate 意图，绑定隔离题图 Receipt；未执行任何直接 Publication。",
+    "next": "The isolated cover worker may now generate one article cover at a time from only the persisted article-specific briefs. GitHub deterministic finalization may complete Production only after all three valid receipts are durable.",
+    "next_zh": "隔离题图 Worker 现在可以只读取逐篇持久化 Brief，逐篇生成题图。只有三份有效 Receipt 全部持久化后，GitHub 确定性 Finalization 才可完成 Production。",
+    "metrics": [
+      {"name":"eligible_research_objects","value":3},
+      {"name":"bilingual_pre_candidate_files","value":6},
+      {"name":"cover_briefs","value":3},
+      {"name":"inline_figure_assets","value":0},
+      {"name":"direct_image_generation_calls","value":0},
+      {"name":"direct_publication_actions","value":0}
+    ],
+    "evidence": [
+      "research/analysis/Q-20260815-01-protocol-state-admission-human-authorization.md",
+      "research/analysis/Q-20260815-02-delegation-lifecycle-semantic-return-contract.md",
+      "research/analysis/Q-20260815-03-handoff-routing-effect-ownership.md",
+      "research/runtime/COVER-GENERATION-RECEIPT-V1.md",
+      "research/runtime/COVER-WORKER-INPUT-V1.json"
+    ],
+    "artifacts": [
+      "research/runtime/production-work/2026/08/15/prepared-bundle.json",
+      "research/runtime/production-work/2026/08/15/Q-20260815-01/draft.zh.md",
+      "research/runtime/production-work/2026/08/15/Q-20260815-01/draft.en.md",
+      "research/runtime/production-work/2026/08/15/Q-20260815-01/cover-brief.json",
+      "research/runtime/production-work/2026/08/15/Q-20260815-02/draft.zh.md",
+      "research/runtime/production-work/2026/08/15/Q-20260815-02/draft.en.md",
+      "research/runtime/production-work/2026/08/15/Q-20260815-02/cover-brief.json",
+      "research/runtime/production-work/2026/08/15/Q-20260815-03/draft.zh.md",
+      "research/runtime/production-work/2026/08/15/Q-20260815-03/draft.en.md",
+      "research/runtime/production-work/2026/08/15/Q-20260815-03/cover-brief.json"
+    ]
+  }
+}
