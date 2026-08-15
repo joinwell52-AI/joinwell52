@@ -1,0 +1,103 @@
+---
+title: "可恢复 Agent 需要把历史、协议状态与人工批准分成不同信任门"
+date: '2026-08-15'
+column: digital-employee
+category: daily
+article_type: engineering-insight
+edition: research-center
+research_question: "What trust boundaries must a resumable digital employee enforce when it imports prior history and later accepts a human confirmation for a tool action?"
+summary: "更安全的可恢复架构，不应把导入历史、Runtime 自有协议状态、具体动作绑定和人工授权合并成一次信任判断。近期一个 ADK 实现展示了选择性历史准入与较强的动作实例绑定，但并未证明确认者具有授权，也没有证明普通导入历史具备可信来源。"
+sources:
+  - research/analysis/Q-20260815-01-protocol-state-admission-human-authorization.md
+  - research/reading/Q-20260815-01-trusted-session-initialization-hitl-confirmation-boundary.md
+item_id: "Q-20260815-01"
+lifecycle: "Published"
+cover: "/assets/covers/daily-2026-08-15-resumable-agent-trust-gates-cover.png"
+evidence_status: "Completed"
+citation_status: "Completed"
+editing_status: "Completed"
+publication_authorized: true
+---
+
+<ArticleCover
+  image="/assets/covers/daily-2026-08-15-resumable-agent-trust-gates-cover.png"
+  kicker="数字员工 · 每日研究"
+  title="可恢复 Agent 需要把历史、协议状态与人工批准分成不同信任门"
+  summary="更安全的可恢复架构，不应把导入历史、Runtime 自有协议状态、具体动作绑定和人工授权合并成一次信任判断。近期一个 ADK 实现展示了选择性历史准入与较强的动作实例绑定，但并未证明确认者具有授权，也没有证明普通导入历史具备可信来源。"
+  version="Q-20260815-01"
+  status="Daily Runtime V5 · 2026-08-15"
+  languageHref="/en/digital-employee/2026-08-15-resumable-agent-trust-gates"
+  languageLabel="English"
+/>
+
+# 可恢复 Agent 需要把历史、协议状态与人工批准分成不同信任门
+
+可恢复 Agent 必须处理一种短时助手经常可以回避的问题：它要接收过去留下的状态，并判断这些状态在当前时刻究竟可以代表什么。进程重启后可能需要导入历史对话，工具调用可能要被重新识别，之后出现的人工确认还可能指向一个在当前 Session 创建之前就已经发生的动作。
+
+最危险的捷径，是把这些事实压缩成一次信任判断。历史被接纳，不代表它就自动成为 Runtime 的权威协议状态；确认的结构合法，也不代表这个确认已经具有业务授权。
+
+2026-08-15 的研究对象分析了 Google ADK 中一个已经合并的改动：它会在 Session 创建之前校验客户端传入的初始化事件，并在之后把 Human-in-the-loop 确认绑定到历史中真实存在的原始工具调用。这里的证据是维护者代码与回归测试构成的有界实现证据，并不是独立安全评估。但在这个证据边界内，它暴露出一个很重要的架构结论：**历史准入、协议状态准入、动作实例绑定和确认者授权，是四个不同的控制问题。**
+
+## 导入历史首先是数据，不是权威
+
+可恢复系统需要利用历史。若把所有导入事件全部拒绝，信任推理确实会简单很多，但真正的恢复能力也会一起消失。所选实现采用了更细的边界：普通文本和普通工具历史仍可进入，而框架自有 Runtime Marker、非默认 Runtime Action 和保留的 HITL 协议函数调用会在初始化阶段被拒绝。
+
+这个差异非常关键。一个历史事件可以描述“客户端声称发生过什么”，却不应因此自动升级为“Runtime 自己可以据此改变控制流的权威状态”。框架自有协议状态会影响暂停、恢复、批准与执行，它的可修改面应该明显小于普通对话历史。
+
+更一般的工程做法，是为导入历史附加明确的 Provenance 或 Evidence Class。历史可以继续作为有价值的上下文，但其权威级别不必与 Runtime 原生生成的控制状态相同。这样既保留恢复能力，也避免外部历史输入伪造执行权。
+
+## 在持久化之前完成控制相关校验
+
+所选改动会在根据初始化事件创建 Session 之前先进行校验。这个顺序本身就是一个重要设计选择。如果不可信协议状态先进入持久化 Session，再依赖后续流程修复，那么系统其实已经把潜在的权威事实写进了 Durable State。
+
+先校验、后持久化，会明显缩小失败面。这个原则并不限于某一个框架：只要导入或重建的数据可能影响控制流，Runtime 就应该在把它写成持久执行状态之前，先决定它被允许升级成哪一类状态。
+
+这并不意味着所有历史字段都必须做密码学验证。不同风险可以采用不同强度。普通对话可以使用较弱 Provenance，而 Runtime Marker、Approval State 与执行控制事件应采用更严格的准入规则。
+
+## 动作实例绑定解决的是“指向正确”，不是“谁有权批准”
+
+确认机制处理的是另一类边界。一个确认必须使用框架自有的确认函数，并且能够解析到历史中真实存在的原始 Tool Call。Occurrence Identity、Agent Ownership、已注册工具、是否需要确认、工具名称和参数都需要与原始动作一致。
+
+这比“Payload 形状正确”或“Request ID 看起来匹配”要强得多。结构相似的两个 Tool Call 可能代表完全不同的业务动作。把确认绑定到精确历史 Occurrence，可以阻止一类把批准语义错误借给另一个动作的替换问题。
+
+但“指向了正确动作”并不等于“确认者有权批准”。前一个问题是在问：这条确认是否对应正确的历史动作？后一个问题是在问：作出确认的人，是否拥有批准这项动作所需的身份、角色或授权？
+
+这两件事必须由不同控制面回答。Action Identity 负责说明批准的对象是什么；Approver Identity 与 Role Evidence 负责说明谁可以批准。长期运行的数字员工需要同时具备两者。
+
+## 一个更完整的四阶段信任合同
+
+更稳健的恢复链条可以表达为：
+
+**历史准入 → 协议状态准入 → 动作实例绑定 → 确认者授权**。
+
+第一道门决定哪些历史记录可以进入重建上下文，以及它们属于什么 Provenance Level；第二道门决定哪些记录可以升级为框架自有控制状态；第三道门把后续批准绑定到精确动作实例；第四道门再判断确认者是否拥有相应身份、角色、策略权限或被委派的批准权。
+
+这四个事实分开记录，也会显著改善审计能力。审计轨迹至少应能区分“历史事件已接纳”“Runtime 协议状态已准入”“确认已绑定到具体 Occurrence”“已授权批准已接纳”。如果系统只记录一个泛化的“Resume Success”，后续恢复将无法说明究竟是哪一道信任判断真正支持了执行。
+
+## 缺失的授权层不等于本地机制有错误
+
+所选 ADK 实现并没有认证确认者身份，没有建立授权级别，也没有用密码学方式证明历史事件来源，更没有提供 Replay-proof 或 Exactly-once Resumption。与此同时，它有意继续允许普通 Tool History 导入。
+
+这些边界并不说明本地机制错误，而是说明它解决了什么、没有解决什么。单用户、可信网络中的应用完全可以把身份与授权交给外围系统；对低风险业务，为所有普通历史建立强 Provenance 也可能带来不成比例的迁移与兼容成本。
+
+真正需要避免的是边界含糊。如果 Identity 由外部应用提供，Runtime 应知道是哪一个外部 Authority 提供；如果普通历史只有较弱 Provenance，策略就不应把它静默升级成权威执行状态。
+
+## 工程含义
+
+对于长期运行的 Agent 和数字员工，证据支持几条可迁移的设计原则。
+
+导入历史应携带 Provenance Class，而不是自动继承 Runtime Authority；Runtime 自有 Control Marker、Pause/Resume Protocol Call 与 Approval State 应拥有更窄的写入面；Approval Record 应分别绑定 Action Identity 与 Approver Authority；当不可信历史可能影响控制流时，Recovery 应尽量在创建或修改 Durable Execution State 之前完成校验；可观测与审计则应把每道信任判断记录成独立事实。
+
+具体实现可以很轻，也可以很重。真正不应丢失的是这些语义边界。
+
+## 证据边界
+
+本文证据来自一个已经合并的 ADK 实现及其回归测试，属于公开一手实现事实，而不是对通用可恢复数字员工安全架构的独立验证。所选改动没有覆盖所有可能的 Initial State 字段，并且明确允许普通 Tool History。
+
+这里没有证据建立 User Authentication、Role Authorization、Cryptographic Provenance、Replay Resistance、Distributed Recovery 或 Exactly-once External Effect。这些仍然是独立要求。
+
+## 仍待回答的问题
+
+导入的普通 Tool History 应携带怎样的 Provenance Level，才能让后续策略区分客户端重放数据与 Runtime 原生证据？高风险 Tool Action 重新准入之前，Human Confirmation 必须携带哪些 Identity 与 Role Evidence？Approval Occurrence Identity 又应如何跨 Durable Restart 存续，同时防止同一个 Confirmation 被重放？
+
+可恢复性不是一个“允许继续”的按钮，而是一连串信任决定。把这些决定拆开，系统才能恢复状态，而不顺手恢复出一个它从未真正获得过的权威。
