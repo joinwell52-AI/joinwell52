@@ -51,11 +51,33 @@ jobs:
             'Q-20260815-02': 'Minimal geometric editorial landscape about delegated work returning through a clear terminal contract, with linked forms in teal and mint.',
             'Q-20260815-03': 'Minimal geometric editorial landscape about handoff and effect ownership, with separated routes and warm amber accents on deep blue.'
           }
+          const sectionOverrides = {
+            'Q-20260815-01': [
+              { module:'technical-analysis', heading:'Imported history is data before it is authority', heading_zh:'导入历史首先是数据，不是权威' },
+              { module:'engineering-implications', heading:'Engineering implications', heading_zh:'工程含义' },
+              { module:'limitations', heading:'Limits of the evidence', heading_zh:'证据边界' },
+              { module:'open-questions', heading:'Open questions', heading_zh:'仍待回答的问题' }
+            ],
+            'Q-20260815-02': [
+              { module:'technical-analysis', heading:'One identity should survive the delegated lifecycle', heading_zh:'同一个身份应贯穿完整委派生命周期' },
+              { module:'architecture-implications', heading:'Architecture implications', heading_zh:'架构含义' },
+              { module:'limitations', heading:'Limits of the evidence', heading_zh:'证据边界' },
+              { module:'open-questions', heading:'Open questions', heading_zh:'仍待回答的问题' }
+            ],
+            'Q-20260815-03': [
+              { module:'technical-analysis', heading:'Handoff is an ownership transfer', heading_zh:'Handoff 本质上是所有权转移' },
+              { module:'engineering-implications', heading:'Engineering implications', heading_zh:'工程含义' },
+              { module:'limitations', heading:'Limits of the evidence', heading_zh:'证据边界' },
+              { module:'open-questions', heading:'Open questions', heading_zh:'仍待回答的问题' }
+            ]
+          }
           const candidates = []
           const coverEvidence = []
           const artifacts = []
           for (const item of prepared.items) {
             const c = structuredClone(item.candidate)
+            c.sections = sectionOverrides[item.itemId]
+            c.endingModule = 'open-questions'
             c.zhPath = item.targetZhPath
             c.enPath = item.targetEnPath
             c.coverPath = item.targetCoverPath
@@ -71,6 +93,7 @@ jobs:
               [item.zhDraftPath, item.targetZhPath, `${c.title_zh}题图`]
             ]) {
               let body = fs.readFileSync(source, 'utf8')
+              body = body.replace(/^research_question:\s*.*$/m, `research_question: ${JSON.stringify(c.researchQuestion)}`)
               const image = `![${alt}](${item.targetCoverPath})`
               const fm = body.match(/^---\r?\n[\s\S]*?\r?\n---\r?\n/)
               if (!fm) throw new Error(`Missing frontmatter: ${source}`)
