@@ -1,0 +1,74 @@
+name: Temporary Cover Isolation Patch
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temporary-cover-isolation-patch
+  cancel-in-progress: false
+
+jobs:
+  patch:
+    if: contains(github.event.head_commit.message, '[isolate-cover-worker]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Apply isolated cover-worker patch
+        run: node scripts/tmp-isolate-cover-worker.mjs
+
+      - name: Rebuild generated worker prompts
+        run: npm run worker-prompts:build
+
+      - name: Validate worker prompt identity
+        run: npm run worker-prompts:validate
+
+      - name: Validate terminal and recovery behavior
+        run: |
+          npm run runtime:terminal:test
+          npm run runtime:recovery:test
+
+      - name: Validate publication layout and editorial gates
+        run: |
+          npm run publication:layout:validate
+          npm run publication:editorial:validate
+
+      - name: Validate full Runtime
+        run: npm run runtime:validate
+
+      - name: Remove temporary patch machinery
+        run: git rm .github/workflows/tmp-cover-isolation-patch.yml scripts/tmp-isolate-cover-worker.mjs
+
+      - name: Commit durable isolated cover-worker boundary
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/runtime/COVER-GENERATION-RECEIPT-V1.md \
+                  research/runtime/SCHEDULER.json \
+                  research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md \
+                  research/runtime/worker-prompts/CONFIG.json \
+                  research/runtime/worker-prompts/templates/production.prompt.md \
+                  research/runtime/worker-prompts/generated \
+                  research/skills/06-research-visualization.md \
+                  scripts/runtime-production-proof.mjs \
+                  scripts/runtime-shift-terminal-test.mjs
+          git commit -m "fix(production): isolate Article Cover generation worker"
+          git pull --rebase origin main
+          git push origin HEAD:main
