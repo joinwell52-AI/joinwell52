@@ -8,13 +8,13 @@
   "date": "2026-08-16",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Running",
+    "production": "Completed",
     "publication": "Waiting"
   },
   "results": {
@@ -871,6 +871,128 @@
       "githubCommit": "9d8b43a32c87295386065d0e5bcb69074ff3c701",
       "commitVerify": "Completed",
       "verifiedAt": "2026-08-16T13:07:21+08:00"
+    },
+    "production": {
+      "schema": "runtime-shift-result/v2",
+      "task": "production",
+      "family": "daily",
+      "runtimeDate": "2026-08-16",
+      "status": "Completed",
+      "productionMode": "candidate-batch",
+      "input": {
+        "promptVersion": "2.11.0",
+        "promptVerificationMode": "exact-head-ci",
+        "researchObjects": [
+          "Q-20260816-01",
+          "Q-20260816-02",
+          "Q-20260816-03"
+        ],
+        "workerClaimCommit": "cff442fb94fcdfbcadc385361a5c45651dc11edd",
+        "validatedCandidateCommit": "fab2d1cf78deb437432c2c79157c8715e9328f45"
+      },
+      "workResult": {
+        "summary": "Converted all three eligible same-date Research Objects into complete bilingual V2 Publication Candidates, generated one deterministic baseline raster cover per candidate under the current Production cover contract, completed two bounded editorial revision rounds, and passed the exact-head Validate Research Center 3.0 gate.",
+        "summary_zh": "将同日全部三份合格 Research Object 转换为完整双语 V2 Publication Candidate，按当前 Production 题图合同为每篇生成一张确定性基础栅格题图，完成两轮有界编辑修订，并通过 exact-head Validate Research Center 3.0 门禁。"
+      },
+      "output": {
+        "type": "Publication Candidates",
+        "candidateBatch": "research/runtime/candidates/2026/08/2026-08-16-candidates.json",
+        "candidateCount": 3,
+        "bilingualArticleFiles": 6,
+        "coverAssets": 3,
+        "inlineFigureAssets": 0
+      },
+      "next": {
+        "task": "publication",
+        "instruction": "Do not execute Publication in this shift. Publication may act only at its own governed execution opportunity after this Production result is durably finalized and verified on main.",
+        "instruction_zh": "本班次不执行 Publication。仅在本次 Production 结果完成受治理的持久化与 main 核验后，Publication 才能在自己的正式执行机会中行动。"
+      },
+      "coverEvidence": [
+        {
+          "itemId": "Q-20260816-01",
+          "briefId": "2026-08-16:Q-20260816-01-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-16-occurrence-scoped-authorization-cover.png",
+          "sanitizedPrompt": "Layered authorization with one highlighted action occurrence inside a broader policy field",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260816-02",
+          "briefId": "2026-08-16:Q-20260816-02-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-16-reservation-materialization-cover.png",
+          "sanitizedPrompt": "A reserved marker leading toward a distinct fully formed execution object with a clear transition boundary",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260816-03",
+          "briefId": "2026-08-16:Q-20260816-03-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-16-config-provenance-cover.png",
+          "sanitizedPrompt": "Layered configuration channels converging into one effective setting with visible source hierarchy",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        }
+      ],
+      "metrics": [
+        {
+          "name": "research_objects_consumed",
+          "value": 3
+        },
+        {
+          "name": "publication_candidates",
+          "value": 3
+        },
+        {
+          "name": "bilingual_article_files",
+          "value": 6
+        },
+        {
+          "name": "cover_assets",
+          "value": 3
+        },
+        {
+          "name": "inline_figure_assets",
+          "value": 0
+        },
+        {
+          "name": "revision_rounds",
+          "value": 2
+        },
+        {
+          "name": "direct_cloud_image_generation_calls",
+          "value": 0
+        },
+        {
+          "name": "direct_publication_actions",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        "research/runtime/worker-prompts/generated/production.prompt.md",
+        "research/runtime/checkpoints/2026/08/2026-08-16-production.json",
+        "research/runtime/wakes/2026/08/2026-08-16/production-150223.json",
+        "https://github.com/joinwell52-AI/joinwell52/actions/runs/31934883366"
+      ],
+      "artifacts": [
+        "research/runtime/candidates/2026/08/2026-08-16-candidates.json",
+        "staging/publication-candidates/2026-08-16-occurrence-scoped-authorization.zh.md",
+        "staging/publication-candidates/2026-08-16-occurrence-scoped-authorization.en.md",
+        "staging/publication-candidates/2026-08-16-occurrence-scoped-authorization-cover.png",
+        "staging/publication-candidates/2026-08-16-reservation-materialization.zh.md",
+        "staging/publication-candidates/2026-08-16-reservation-materialization.en.md",
+        "staging/publication-candidates/2026-08-16-reservation-materialization-cover.png",
+        "staging/publication-candidates/2026-08-16-config-precedence-provenance.zh.md",
+        "staging/publication-candidates/2026-08-16-config-precedence-provenance.en.md",
+        "staging/publication-candidates/2026-08-16-config-provenance-cover.png"
+      ],
+      "startedAt": "2026-08-16T15:05:16+08:00",
+      "completedAt": "2026-08-16T15:51:45+08:00"
     }
   },
   "timeline": [
@@ -999,6 +1121,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Production after verifying research/runtime/wakes/2026/08/2026-08-16/production-150223.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-08-16T15:51:45+08:00",
+      "task": "production",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Production closed as Completed through governed Runtime shift finalization after durable result validation for 2026-08-16."
     }
   ],
   "metrics": [],
@@ -1006,5 +1135,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-16T15:06:53+08:00"
+  "updatedAt": "2026-08-16T15:51:45+08:00"
 }
