@@ -1,0 +1,175 @@
+{
+  "schema": "p2-special-study-run/v1",
+  "date": "2026-08-16",
+  "timezone": "Asia/Shanghai",
+  "repository": "joinwell52-AI/joinwell52",
+  "mode": "baseline-establishment",
+  "registry": "research/intelligence/REGISTRY.json",
+  "contract": "research/intelligence/P2-SPECIAL-STUDY-CONTRACT.md",
+  "due": 6,
+  "checked": 6,
+  "triggerCount": 0,
+  "selectedStudy": null,
+  "studyOutcome": "No Special Study",
+  "checkpointId": "P2-20260816-BASELINE-01",
+  "reason": "No prior completed P2 checkpoints existed on main. This first governed run establishes durable baselines for all six registered P2 objects; without a prior checkpoint there is no supported change delta to score as a Special Study trigger.",
+  "reason_zh": "main 上不存在既有已完成 P2 检查点。本次首次受治理运行用于为全部 6 个 P2 对象建立持久基线；在没有前序检查点时，不存在可被证据支持的变化增量，因此不把当前状态本身评分为专项研究触发。",
+  "objects": [
+    {
+      "repository": "HeadyZhang/agent-audit",
+      "frequency": "biweekly-or-release",
+      "category": "pre-deployment-agent-security",
+      "outcome": "Continue Watching",
+      "triggerScore": 0,
+      "baseline": true,
+      "defaultBranch": "master",
+      "mainCommit": "100978214b21909e95b5f0f0b1ea328bc73ab519",
+      "latestRelease": "v0.19.0",
+      "latestReleasePublishedAt": "2026-03-31T20:02:44Z",
+      "latestTagObserved": "v1",
+      "keyFileHashes": {
+        "README.md": "a17c070f6cfa4315eabfd216252cb757d46830d1"
+      },
+      "inspectedIssues": [],
+      "inspectedPullRequests": [],
+      "sourceRefs": [
+        "https://github.com/HeadyZhang/agent-audit/commit/100978214b21909e95b5f0f0b1ea328bc73ab519",
+        "https://github.com/HeadyZhang/agent-audit/releases/tag/v0.19.0"
+      ],
+      "boundedJudgment": "The baseline records an active pre-deployment security scanner with tool-boundary taint tracking, MCP configuration auditing and semantic secret detection. The latest observed main change hardens its benchmark gate; without a prior P2 checkpoint this is baseline evidence, not a newly detected trigger.",
+      "nextReleaseCheck": "2026-08-23",
+      "nextFullReviewNoLaterThan": "2026-08-30"
+    },
+    {
+      "repository": "Justin0504/Aegis",
+      "frequency": "biweekly-or-release",
+      "category": "runtime-policy-enforcement",
+      "outcome": "Continue Watching",
+      "triggerScore": 0,
+      "baseline": true,
+      "defaultBranch": "main",
+      "mainCommit": "e8ee6d0f1f36868e425569a64c2ae55647b6f510",
+      "latestRelease": "v0.2.0",
+      "latestReleasePublishedAt": "2026-06-29T08:07:55Z",
+      "releaseAssetsUpdatedAt": "2026-08-15T09:48:43Z",
+      "keyFileHashes": {
+        "README.md": "2805044b06c6ab9b0422addf7afccbad412a9b57"
+      },
+      "inspectedIssues": [],
+      "inspectedPullRequests": [],
+      "sourceRefs": [
+        "https://github.com/Justin0504/Aegis/commit/e8ee6d0f1f36868e425569a64c2ae55647b6f510",
+        "https://github.com/Justin0504/Aegis/releases/tag/v0.2.0"
+      ],
+      "boundedJudgment": "The baseline confirms Aegis presents itself as a pre-execution tool-call interception and policy layer. The freshest main change repairs release artifact attachment paths; it does not by itself establish a material change to enforcement, approval or audit-trail semantics.",
+      "nextReleaseCheck": "2026-08-23",
+      "nextFullReviewNoLaterThan": "2026-08-30"
+    },
+    {
+      "repository": "yzhao062/agent-style",
+      "frequency": "biweekly-or-release",
+      "category": "agent-writing-quality",
+      "outcome": "Continue Watching",
+      "triggerScore": 0,
+      "baseline": true,
+      "defaultBranch": "main",
+      "mainCommit": "05fc6c8a77d4a8efc08ddfdc4d01534cb98ed2c8",
+      "latestRelease": "v0.4.2",
+      "latestReleasePublishedAt": "2026-08-14T03:44:15Z",
+      "keyFileHashes": {
+        "README.md": "e92e782a63753f026790f1e6e4f0abb370393386"
+      },
+      "inspectedIssues": [],
+      "inspectedPullRequests": [],
+      "sourceRefs": [
+        "https://github.com/yzhao062/agent-style/commit/05fc6c8a77d4a8efc08ddfdc4d01534cb98ed2c8",
+        "https://github.com/yzhao062/agent-style/releases/tag/v0.4.2"
+      ],
+      "boundedJudgment": "Release v0.4.2 repairs Python-version compatibility and package-bundle loading while explicitly stating that the ruleset, adapters and CLI interface are unchanged and that the re-scored benchmark did not move. It therefore establishes a useful baseline but does not satisfy the configured trigger for a new rule or checker comparable to the editorial scorecard.",
+      "nextReleaseCheck": "2026-08-23",
+      "nextFullReviewNoLaterThan": "2026-08-30"
+    },
+    {
+      "repository": "yzhao062/cs-paper-checklist",
+      "frequency": "biweekly-or-release",
+      "category": "research-publication-quality",
+      "outcome": "Continue Watching",
+      "triggerScore": 0,
+      "baseline": true,
+      "defaultBranch": "main",
+      "mainCommit": "7820bca049e11ab3d45e9c6148b6cda2d27927e6",
+      "latestRelease": null,
+      "latestTagObserved": null,
+      "keyFileHashes": {
+        "README.md": "5e82105757cbd623f392a6fb2bc80fe5df4716a3"
+      },
+      "inspectedIssues": [],
+      "inspectedPullRequests": [3],
+      "sourceRefs": [
+        "https://github.com/yzhao062/cs-paper-checklist/commit/7820bca049e11ab3d45e9c6148b6cda2d27927e6"
+      ],
+      "boundedJudgment": "The baseline captures a practical CS-paper checklist and its existing agent-style drafting callout. The latest main commit predates this P2 baseline by months and does not establish a new checklist change during this run.",
+      "nextReleaseCheck": "2026-08-23",
+      "nextFullReviewNoLaterThan": "2026-08-30"
+    },
+    {
+      "repository": "yzhao062/pyod",
+      "frequency": "monthly",
+      "category": "anomaly-detection-method",
+      "outcome": "Continue Watching",
+      "triggerScore": 0,
+      "baseline": true,
+      "defaultBranch": "master",
+      "mainCommit": "3d0169a32ab8ce68aeaf7f0bb408c281f2fb1b1e",
+      "latestRelease": "v3.6.4",
+      "latestReleasePublishedAt": "2026-08-02T12:30:54Z",
+      "keyFileHashes": {
+        "README.rst": "50ce4e1092c1b050653b8ca5489a5de70e475cc0"
+      },
+      "inspectedIssues": [713, 714, 715],
+      "inspectedPullRequests": [718],
+      "sourceRefs": [
+        "https://github.com/yzhao062/pyod/commit/3d0169a32ab8ce68aeaf7f0bb408c281f2fb1b1e",
+        "https://github.com/yzhao062/pyod/releases/tag/v3.6.4"
+      ],
+      "boundedJudgment": "PyOD v3.6.4 is explicitly a documentation-accuracy release with no runtime behavior change. Its current baseline is relevant to anomaly-detection tooling but does not establish a method or evaluation change directly applicable to Agent runtime anomaly signals.",
+      "nextFullReviewNoLaterThan": "2026-09-06"
+    },
+    {
+      "repository": "yzhao062/anomaly-detection-resources",
+      "frequency": "monthly",
+      "category": "anomaly-detection-research-index",
+      "outcome": "Continue Watching",
+      "triggerScore": 0,
+      "baseline": true,
+      "defaultBranch": "master",
+      "mainCommit": "5ad16ee816bc23c9546f47da9f52388287d7d4b9",
+      "latestRelease": null,
+      "latestTagObserved": null,
+      "keyFileHashes": {
+        "README.rst": "859e9f014eb0ab9d1c2b838417e16e04f5628366"
+      },
+      "inspectedIssues": [50],
+      "inspectedPullRequests": [],
+      "sourceRefs": [
+        "https://github.com/yzhao062/anomaly-detection-resources/commit/5ad16ee816bc23c9546f47da9f52388287d7d4b9"
+      ],
+      "boundedJudgment": "The baseline captures a broad anomaly-detection research index. The latest main change observed is a March 2026 resource addition and does not establish a new cluster that materially connects anomaly detection to Agent behavior or runtime governance in this run.",
+      "nextFullReviewNoLaterThan": "2026-09-06"
+    }
+  ],
+  "next": "Use this run as the comparison baseline. On 2026-08-23 perform release/material-commit checks for biweekly-or-release objects; perform full reviews by 2026-08-30. Resolve monthly objects again no later than the first Weekly run in September.",
+  "evidence": [
+    "research/intelligence/REGISTRY.json",
+    "research/intelligence/P2-SPECIAL-STUDY-CONTRACT.md",
+    "https://github.com/HeadyZhang/agent-audit/commit/100978214b21909e95b5f0f0b1ea328bc73ab519",
+    "https://github.com/Justin0504/Aegis/commit/e8ee6d0f1f36868e425569a64c2ae55647b6f510",
+    "https://github.com/yzhao062/agent-style/commit/05fc6c8a77d4a8efc08ddfdc4d01534cb98ed2c8",
+    "https://github.com/yzhao062/cs-paper-checklist/commit/7820bca049e11ab3d45e9c6148b6cda2d27927e6",
+    "https://github.com/yzhao062/pyod/commit/3d0169a32ab8ce68aeaf7f0bb408c281f2fb1b1e",
+    "https://github.com/yzhao062/anomaly-detection-resources/commit/5ad16ee816bc23c9546f47da9f52388287d7d4b9"
+  ],
+  "artifacts": [
+    "research/intelligence/p2-runs/2026/08/2026-08-16-p2-special.json"
+  ]
+}
