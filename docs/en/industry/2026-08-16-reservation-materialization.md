@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260816-02-reservation-materialization-ownership.md
 item_id: "Q-20260816-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-16-reservation-materialization-cover.svg"
+cover: "/assets/covers/daily-2026-08-16-reservation-materialization-cover.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-16-reservation-materialization-cover.svg"
+  image="/assets/covers/daily-2026-08-16-reservation-materialization-cover.png"
   kicker="Industry Architecture · Daily Research"
   title="Reserved Identity Is Not Materialized State"
   summary="Pre-materialization orchestration is clearer when reserved identity, pending host intent, authoritative materialization, and cleanup are explicit lifecycle phases. A reservation gives components a stable correlation key; it is not evidence that the execution object already exists."
@@ -41,7 +41,7 @@ A reserved identifier is valuable because the host and the runtime can name the 
 
 That asymmetry is meaningful. Reservation belongs to the path toward a new materialized object. Resume belongs to an object that should already have authoritative existence evidence.
 
-Host-owned metadata is also kept in a pending registry keyed by the reserved ID rather than being written immediately as if a full object record already existed. The state database is required. On the first successful metadata update, the pending information can be merged and then consumed.
+Host-owned Metadata is also kept in a pending registry keyed by the reserved ID rather than being written immediately as if a full object record already existed. The state database is required. On the first successful metadata update, the pending information can be merged and then consumed.
 
 This creates a clearer lifecycle:
 
