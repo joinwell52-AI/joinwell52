@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const CANDIDATE_ROOT = join(ROOT, 'research/runtime/candidates')
-const EFFECTIVE_DATE = '2026-08-16'
+const EFFECTIVE_DATE = '2026-08-17'
 const errors = []
 let checked = 0
 

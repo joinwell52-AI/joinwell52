@@ -2,9 +2,9 @@
 
 ## Compatibility
 
-The canonical machine schema remains `runtime-publication-candidate/v2` so historical V2 batches remain valid and immutable. Editorial Architecture 2.1 requirements apply only to new automated Production on or after `2026-08-16`.
+The canonical machine schema remains `runtime-publication-candidate/v2` so historical V2 batches remain valid and immutable. Editorial Architecture 2.1 requirements apply only to new automated Production on or after `2026-08-17`.
 
-Historical V1/V2 candidates are not upgraded in place.
+Historical V1/V2 candidates are not upgraded in place. The already-produced 2026-08-16 batch remains governed by the prior V2 contract because its 15:00 Production completed before this upgrade was merged.
 
 ## Purpose
 
@@ -31,7 +31,7 @@ A candidate is complete release input, not an unfinished draft. Publication may 
 
 ## Candidate planning evidence
 
-For Production dates on or after 2026-08-16 every non-zero candidate records:
+For Production dates on or after 2026-08-17 every non-zero candidate records:
 
 ```json
 {
@@ -126,7 +126,7 @@ A new Editorial Architecture 2.1 candidate is complete only when:
 - Cover, Inline Visual and Layout gates pass;
 - the candidate is not yet in the public article directory.
 
-The machine validator remains `scripts/publication-editorial-validate.mjs` and must enforce structural facts while leaving semantic quality judgments to the Production Agent's persisted gate results.
+The machine validator remains `scripts/publication-editorial-validate.mjs` plus the date-gated `scripts/publication-editorial-v21-validate.mjs`. Validators enforce structural facts while semantic quality judgments remain the Production Agent's persisted gate results.
 
 ## Atomic commit gate
 
