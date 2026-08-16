@@ -29,7 +29,7 @@
     "publication:layout:validate": "node scripts/research-publication-layout-validate.mjs",
     "publication:bundle:staged": "node scripts/publication-candidate-bundle-guard.mjs staged",
     "publication:bundle:test": "node scripts/publication-candidate-bundle-guard-test.mjs",
-    "publication:editorial:validate": "node scripts/publication-editorial-validate.mjs",
+    "publication:editorial:validate": "node scripts/publication-editorial-validate.mjs && node scripts/publication-editorial-v21-validate.mjs",
     "tmpa:s0.4:conformance": "node research/conformance/tmpa-core-s0.4/runner.mjs",
     "tmpa:s0.5:conformance": "node research/conformance/tmpa-core-s0.5/runner.mjs",
     "tmpa:s0.6:conformance": "node research/conformance/tmpa-core-s0.6/runner.mjs",
