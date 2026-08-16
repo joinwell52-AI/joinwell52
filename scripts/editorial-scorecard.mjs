@@ -11,7 +11,6 @@ const mode = process.argv[2] || 'validate'
 const readJson = async path => JSON.parse(await readFile(path, 'utf8'))
 const rubric = await readJson(RUBRIC_PATH)
 const errors = []
-
 const fail = message => errors.push(message)
 const levelFor = score => rubric.levels.find(level => score >= level.min && score <= level.max)
 
@@ -39,14 +38,14 @@ const normalizedDimensions = (record, item) => {
   return Object.fromEntries(rubric.scoring.dimensions.map((dimension, index) => {
     const reasonRef = item.reasonRefs?.[index] || record.defaultReasonRefs?.[index]
     const evidenceRef = item.evidenceRefs?.[index] || record.defaultEvidenceRefs?.[index]
-    const reason = record.reasonLegend?.[reasonRef]
     return [dimension.id, {
       score: item.dimensionScores[index],
-      reason: reason || '',
+      reason: record.reasonLegend?.[reasonRef] || '',
       evidence: evidenceRef ? [evidenceRef] : []
     }]
   }))
 }
+const normalizedEditorialNote = (record, item) => item.editorialNote || record.defaultEditorialNote || null
 
 const validateRubric = () => {
   const dimensions = rubric.scoring?.dimensions || []
@@ -105,10 +104,11 @@ const validateFormal = (record, path) => {
     const total = scores.reduce((sum, score) => sum + (Number.isInteger(score) ? score : 0), 0)
     if (item.score !== total) fail(`${path}: ${item.path} total must equal the four dimension scores.`)
     const level = levelFor(item.score)
-    if (!level || item.internalLevel !== level.internal || item.publicLabel !== level.publicLabel || item.publicLabel_en !== level.publicLabel_en) {
+    if (!level || (item.internalLevel && item.internalLevel !== level.internal) || item.publicLabel !== level.publicLabel || (item.publicLabel_en && item.publicLabel_en !== level.publicLabel_en)) {
       fail(`${path}: ${item.path} level fields do not match score ${item.score}.`)
     }
-    if (!item.editorialNote?.zh || !item.editorialNote?.en) fail(`${path}: ${item.path} requires bilingual editorial notes.`)
+    const note = normalizedEditorialNote(record, item)
+    if (!note?.zh || !note?.en) fail(`${path}: ${item.path} requires bilingual editorial notes.`)
   }
 }
 
@@ -145,7 +145,7 @@ const items = (selected?.record.items || []).map(item => {
     score: item.score,
     publicLabel: level?.publicLabel || '',
     publicLabel_en: level?.publicLabel_en || '',
-    editorialNote: item.editorialNote || null,
+    editorialNote: normalizedEditorialNote(selected.record, item),
     dimensions,
     scoringMode: item.scoringMode || (selected?.record.schema === 'observation-scorecard-manual-baseline/v1' ? 'legacy-weighted-backfill' : selected.record.mode)
   }
