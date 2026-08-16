@@ -1,0 +1,59 @@
+{
+  "schema": "cover-upgrade-article-job/v1",
+  "version": "1.0.0",
+  "scope": "exactly-one-article",
+  "freshInvocationRequired": true,
+  "imageGenerationOwner": "article-job-only",
+  "controllerMayCallImageGeneration": false,
+  "inputs": {
+    "required": [
+      "runDate",
+      "itemId",
+      "candidateBatchPath",
+      "coverPath",
+      "articleTitle"
+    ],
+    "preferred": [
+      "articleCoverBrief"
+    ],
+    "fallback": "If the same-date Article Cover Brief is absent, derive one concise positive visual brief only from this item's own candidate title, subtitle/research question and same-date Research Object identity."
+  },
+  "imageHandoff": {
+    "positiveFieldsOnly": [
+      "articleTitle",
+      "coreProposition",
+      "uniqueVisualMetaphor",
+      "heroSubject",
+      "environmentAndComposition",
+      "paletteLightingMaterialDepth",
+      "landscapeEditorialCoverRequirement"
+    ],
+    "mustNotContain": [
+      "repository or GitHub details",
+      "Runtime or Scheduler state",
+      "worker or controller identity",
+      "Cover Upgrade task language",
+      "baseline or replacement language",
+      "validation, status, success or failure language",
+      "report, dashboard, before/after, receipt or evidence language",
+      "another article's title, brief, image or prompt",
+      "prior failed image prompt or prior generated image"
+    ]
+  },
+  "acceptance": {
+    "articleSpecific": true,
+    "thumbnailSuitable": true,
+    "materiallyBetterThanCurrentCover": true,
+    "realRasterRequired": true
+  },
+  "persistence": {
+    "contract": "research/runtime/COVER-UPGRADE-V1.md",
+    "target": "exact canonical coverPath only, plus exact already-released public cover path when the contract requires it",
+    "verifyLatestMainBytesAndGitBlobSha": true
+  },
+  "failure": {
+    "preserveCurrentCover": true,
+    "mayChangeProductionState": false,
+    "mayRunPublication": false
+  }
+}
