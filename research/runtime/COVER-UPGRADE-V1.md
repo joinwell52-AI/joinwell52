@@ -34,20 +34,23 @@ The image handoff must not contain Runtime state, Scheduler/control text, reposi
 
 An upgrade is accepted only if the generated asset is a real PNG/JPEG/WebP, clearly represents the article, is suitable at thumbnail scale, and is materially better than the current baseline.
 
+The accepted asset must be the original generated raster file, not a conversation preview, UI thumbnail, screenshot, report composite or downscaled derivative. Before persistence, decode the actual file and verify width >= 1536, height >= 864 and aspect ratio approximately 16:9 (absolute ratio error <= 0.02). A smaller preview must be rejected even when it looks semantically correct.
+
 ## Binary persistence bridge
 
 Accepted raster bytes must be persisted through the GitHub Git Data API bridge, not through a UTF-8 contents write and not through an external image host:
 
-1. obtain the generated image as a real conversation/library file and materialize/read its raw bytes;
-2. normalize to a web-safe raster when needed and encode the exact bytes as Base64;
-3. call GitHub `create_blob` with `encoding=base64` to create a real binary blob;
-4. fetch latest `main` immediately before commit construction;
-5. create a tree based on the latest main tree with exactly the candidate's canonical `coverPath` pointing at the new binary blob (`mode=100644`, `type=blob`);
-6. create a single fast-forward commit on the latest main parent and update `refs/heads/main` without force;
-7. fetch the canonical `coverPath` from `main` with Base64 encoding and verify that its Git blob SHA equals the accepted blob SHA and that the decoded bytes are a valid raster;
-8. only after that verification may the worker record the upgrade as successful and write the optional receipt.
+1. obtain the original generated image as a real conversation/library file and materialize/read its raw bytes;
+2. decode and verify the real raster dimensions and format before upload; reject previews/thumbnails smaller than the upgrade minimum;
+3. normalize only when needed to a web-safe raster that still satisfies width >= 1536, height >= 864 and approximately 16:9, then encode the exact bytes as Base64;
+4. call GitHub `create_blob` with `encoding=base64` to create a real binary blob;
+5. fetch latest `main` immediately before commit construction;
+6. create a tree based on the latest main tree with exactly the candidate's canonical `coverPath` pointing at the new binary blob (`mode=100644`, `type=blob`);
+7. create a single fast-forward commit on the latest main parent and update `refs/heads/main` without force;
+8. fetch the canonical `coverPath` from `main` with Base64 encoding and verify that its Git blob SHA equals the accepted blob SHA; decode the fetched bytes again and verify valid raster format, width >= 1536, height >= 864 and approximately 16:9;
+9. only after that remote byte-and-dimension verification may the worker record the upgrade as successful and write the optional receipt.
 
-The bridge must never write Base64 text into a `.png`, `.jpg`, `.jpeg` or `.webp` path. A generated report image, dashboard, poster, claimed SHA written inside an image, chat text, local file, unattached blob, unreferenced tree or unpushed commit is not persistence evidence.
+The bridge must never write Base64 text into a `.png`, `.jpg`, `.jpeg` or `.webp` path. A generated report image, dashboard, poster, claimed SHA written inside an image, chat text, local file, preview/thumbnail, unattached blob, unreferenced tree or unpushed commit is not persistence evidence.
 
 If main advances between fetch and ref update, do not force. Re-fetch latest main and rebuild the tree/commit or preserve the baseline and stop that article according to the bounded attempt policy.
 
@@ -57,8 +60,10 @@ If generation, semantic review, technical validation, persistence or verificatio
 
 If the candidate has already been publicly released for the same run date, resolve that released item's exact public cover path from the same-date `runtime-publication-release/v1` manifest. Update the canonical staging `coverPath` and the exact public cover path to the same accepted binary blob in one fast-forward tree/commit. Do not modify article prose, indexes, Runtime terminal state or unrelated public assets. Verify both paths from latest main before reporting the upgrade durable.
 
+The public cover path must therefore resolve to the exact same verified full-resolution blob as the staging `coverPath`; Publication or post-publication synchronization must never substitute a generated preview or independently downscaled copy.
+
 ## Receipt
 
-A successful replacement may write `cover-upgrade-receipt/v1` under `research/runtime/cover-upgrades/YYYY/MM/DD/<itemId>.json` with: runDate, itemId, candidateBatchPath, coverPath, previousAssetSha256, upgradedAssetSha256, upgradedGitBlobSha, briefId when available, generationAttempts, semanticReview=PASS, editorialThumbnailReview=PASS, persistenceBridge=`github-git-data-base64-blob`, executionMode=`fresh-article-job`, and createdAt.
+A successful replacement may write `cover-upgrade-receipt/v1` under `research/runtime/cover-upgrades/YYYY/MM/DD/<itemId>.json` with: runDate, itemId, candidateBatchPath, coverPath, previousAssetSha256, upgradedAssetSha256, upgradedGitBlobSha, briefId when available, generationAttempts, semanticReview=PASS, editorialThumbnailReview=PASS, width, height, persistenceBridge=`github-git-data-base64-blob`, executionMode=`fresh-article-job`, and createdAt.
 
 The receipt is audit evidence only. Publication uses the current bytes at the candidate's canonical `coverPath` whether or not a receipt exists.
