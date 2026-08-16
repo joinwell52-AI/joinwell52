@@ -37,8 +37,8 @@ const normalizedDimensions = (record, item) => {
   if (item.dimensions && !Array.isArray(item.dimensions)) return item.dimensions
   if (!Array.isArray(item.dimensionScores)) return null
   return Object.fromEntries(rubric.scoring.dimensions.map((dimension, index) => {
-    const reasonRef = item.reasonRefs?.[index]
-    const evidenceRef = item.evidenceRefs?.[index]
+    const reasonRef = item.reasonRefs?.[index] || record.defaultReasonRefs?.[index]
+    const evidenceRef = item.evidenceRefs?.[index] || record.defaultEvidenceRefs?.[index]
     const reason = record.reasonLegend?.[reasonRef]
     return [dimension.id, {
       score: item.dimensionScores[index],
