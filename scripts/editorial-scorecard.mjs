@@ -45,7 +45,6 @@ const normalizedDimensions = (record, item) => {
     }]
   }))
 }
-const normalizedEditorialNote = (record, item) => item.editorialNote || record.defaultEditorialNote || null
 
 const validateRubric = () => {
   const dimensions = rubric.scoring?.dimensions || []
@@ -87,7 +86,11 @@ const validateFormal = (record, path) => {
   if (record.rubricVersion !== rubric.version) fail(`${path}: rubricVersion must equal ${rubric.version}.`)
   if (record.coverage?.rate !== 1) fail(`${path}: a Completed scorecard requires 100% coverage.`)
   if (record.coverage?.eligible !== record.items?.length) fail(`${path}: eligible count must equal item count.`)
+  if (record.defaultEditorialNote) fail(`${path}: Completed scorecards may not use defaultEditorialNote; every article requires its own editorialNote.`)
+
   const seen = new Set()
+  const editorialNotesZh = new Map()
+  const editorialNotesEn = new Map()
   for (const item of record.items || []) {
     if (seen.has(item.path)) fail(`${path}: duplicate path ${item.path}.`)
     seen.add(item.path)
@@ -107,8 +110,17 @@ const validateFormal = (record, path) => {
     if (!level || (item.internalLevel && item.internalLevel !== level.internal) || item.publicLabel !== level.publicLabel || (item.publicLabel_en && item.publicLabel_en !== level.publicLabel_en)) {
       fail(`${path}: ${item.path} level fields do not match score ${item.score}.`)
     }
-    const note = normalizedEditorialNote(record, item)
-    if (!note?.zh || !note?.en) fail(`${path}: ${item.path} requires bilingual editorial notes.`)
+    if (!item.editorialNote?.zh || !item.editorialNote?.en) {
+      fail(`${path}: ${item.path} requires its own bilingual editorialNote.`)
+    } else {
+      const zh = item.editorialNote.zh.trim()
+      const en = item.editorialNote.en.trim()
+      if (zh.length < 12 || en.length < 20) fail(`${path}: ${item.path} editorialNote is too generic/short.`)
+      if (editorialNotesZh.has(zh)) fail(`${path}: ${item.path} duplicates Chinese editorialNote used by ${editorialNotesZh.get(zh)}.`)
+      else editorialNotesZh.set(zh, item.path)
+      if (editorialNotesEn.has(en)) fail(`${path}: ${item.path} duplicates English editorialNote used by ${editorialNotesEn.get(en)}.`)
+      else editorialNotesEn.set(en, item.path)
+    }
   }
 }
 
@@ -145,7 +157,7 @@ const items = (selected?.record.items || []).map(item => {
     score: item.score,
     publicLabel: level?.publicLabel || '',
     publicLabel_en: level?.publicLabel_en || '',
-    editorialNote: normalizedEditorialNote(selected.record, item),
+    editorialNote: item.editorialNote || null,
     dimensions,
     scoringMode: item.scoringMode || (selected?.record.schema === 'observation-scorecard-manual-baseline/v1' ? 'legacy-weighted-backfill' : selected.record.mode)
   }
