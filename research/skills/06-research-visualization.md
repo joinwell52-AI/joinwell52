@@ -1,102 +1,92 @@
-# Skill 06 — Research Visualization
+# Skill 06 — Research Visualization V2.1
 
 ## Purpose
 
-Convert research structure and evidence into clear visual explanations without inventing data.
-
-The visual is part of the research evidence surface. Treat composition, cropping, terminology and responsive rendering as publication requirements, not decoration.
+Convert research structure and evidence into clear visual explanations without inventing data. Visuals are part of the argument, not decoration.
 
 ## Mandatory visual-role separation
 
-Every substantial Research Note must distinguish two different visual jobs:
+Every substantial Research Note distinguishes two visual jobs:
 
-1. **Article Cover** — an editorial title image that creates recognition, visual tension and a memorable concept before the reader enters the article;
-2. **Inline Figure / In-article Figure** — an explanatory diagram, table, chart, workflow, lifecycle or architecture visual inserted where the article uses it to explain evidence or mechanism.
+1. **Article Cover** — editorial title image that creates recognition, visual tension and a memorable concept before the reader enters the article;
+2. **Inline Figure** — explanatory diagram, table, chart, workflow, lifecycle or architecture visual inserted where the article uses it to explain evidence or mechanism.
 
 The same asset MUST NOT satisfy both roles.
 
-A visual that requires the reader to inspect arrows, boxes, labels, legends, small text or state transitions in order to understand it is an **Inline Figure**, not an Article Cover.
+## Figure Plan authority
 
-## Visual package
+For Editorial Architecture 2.1 Production, visual work consumes `article-figure-plan/v1`. Every Inline Figure must declare:
 
-Every Daily Research Note must include:
+- `figureId`;
+- `argumentNodeId`;
+- `purpose`;
+- `visualType`;
+- `proposition`;
+- `sourceBasis`;
+- `productionMethod`;
+- `captionIntent`.
 
-1. exactly one dedicated editorial Article Cover;
-2. zero or more Inline Figures selected by explanatory need;
-3. a meaningful comparison when multiple products, papers or mechanisms are discussed.
+The referenced `argumentNodeId` must exist in the same article's `argument-architecture/v1`.
 
-`Inline Figures: 0..N` is valid. Do not create a technical figure merely to satisfy an asset count. When a table or the prose already explains the mechanism clearly, an additional Inline Figure is unnecessary.
+`inlineFigures: []` is valid. Never create a figure merely to satisfy an asset count.
 
-Use a numeric chart only when reliable quantitative data exists.
+## Visual Argument Gate
 
-## Cover Gate — editorial title image
+Before approving an Inline Figure, ask:
 
-Default Daily Research Cover Direction:
+> If this figure were removed, would understanding its bound argument node become materially harder?
 
-```text
-formal editorial technology cover with cinematic lighting,
-controlled contrast, strong focal hierarchy,
-one dominant visual metaphor, low information density,
-professional research-publication tone
-```
+If not, normally delete the figure.
 
-The cover is the page's first visual entrance. It should use light, space, subject and editorial metaphor to communicate the article theme before the reader enters the body.
+Reject:
 
-The cover must communicate one strong concept at thumbnail scale. It is not responsible for explaining the complete mechanism.
+- decorative AI imagery inside the article;
+- orphan figures with no argument-node binding;
+- repeated diagrams that add no explanatory value beyond nearby prose;
+- fake quantitative precision;
+- copied vendor diagrams without permission or attribution.
 
-A valid cover should:
+## Production method selection
 
-- use one dominant semantic object, scene, tension or visual metaphor derived from the article;
-- remain recognizable when reduced to a small card or feed thumbnail;
-- communicate the article theme even if internal explanatory text is unreadable;
-- use little or no text beyond a short title, kicker or single key phrase;
-- prioritize composition, focal hierarchy, silhouette, contrast and editorial atmosphere over information density;
-- feel like the opening image of a serious technology or research publication, not a slide, architecture chart or dashboard screenshot.
-- establish a clear foreground/midground/background relationship or another strong spatial hierarchy;
-- use controlled color and lighting rather than flat iconography or cartoon-like symbols.
+Use deterministic visuals when exact relationships matter:
 
-The 15:00 Production baseline Article Cover is a deterministic raster editorial asset produced by `scripts/generate-baseline-cover.mjs`. Its job is reliability: every complete candidate has a clean, simple, same-date PNG before Production closes. It does not call cloud image generation and must not be judged by high-end illustration standards.
+- architecture, workflow, lifecycle, mechanism, state transition, evidence map → SVG or deterministic renderer;
+- strict textual comparison → HTML/table;
+- quantitative chart → only with reliable sourced numerical data;
+- generated image → editorial metaphor or genuinely visual conceptual explanation.
 
-A separate 16:00 Cover Upgrade may replace that PNG with a higher-quality ChatGPT-generated article-specific raster. The upgrade is optional and non-blocking: failure leaves the baseline untouched and never changes a Completed Production state.
+Principle:
 
-SVG remains valid for an Inline Figure when the article needs a precise explanatory diagram. The baseline Article Cover itself is PNG so the later quality upgrade can replace the same canonical path without changing article or candidate metadata.
+`Precise relationship → deterministic visual`
 
-A cover MUST be rejected when its primary composition is any of the following:
+`Editorial metaphor → generated visual`
 
-- boxes connected by arrows;
-- a workflow or lifecycle diagram;
-- an architecture stack or layer map;
-- a comparison table or matrix;
-- a labeled state machine;
-- a dense node network;
-- a technical figure whose meaning depends on reading multiple labels;
-- a body figure enlarged and reused as the title image.
+## Article Cover
 
-If the research proposition is itself architectural, translate it into an editorial visual metaphor for the cover and place the exact architecture diagram inside the article as an Inline Figure when the body needs it.
+The cover communicates one strong article-level concept at thumbnail scale. It is not responsible for explaining the complete mechanism.
 
-### Thumbnail acceptance test
+A valid cover should use one dominant semantic object, scene, tension or visual metaphor derived from the approved Article Brief and Figure Plan. It should remain recognizable near 320px width, use little or no text, and feel like the opening image of a serious technology publication rather than a slide or dashboard.
 
-Before approving a cover, render or inspect it at approximately `320px` wide.
+Reject covers whose primary composition is boxes and arrows, workflow diagrams, architecture stacks, comparison tables, state machines, dense node networks or enlarged body figures.
 
-Reject it if:
+The 15:00 Production baseline remains a deterministic PNG produced by `scripts/generate-baseline-cover.mjs`. It guarantees a complete candidate and is not judged by high-end generated-illustration standards.
 
-- the central idea disappears at thumbnail size;
-- the reader must zoom or read small labels to understand the image;
-- it looks primarily like documentation, a slide, a schematic or an internal engineering diagram;
-- visual interest depends mainly on text rather than composition.
+The separate 16:00 Cover Upgrade remains optional and non-blocking. Its article-specific brief should inherit the approved `coreProposition`, `visualMetaphor`, `semanticObject`, `compositionIntent` and exclusions from Production planning rather than reinterpreting the Runtime prompt.
 
-## Inline Figure Gate — explanatory visual
+## Inline Figure gate
 
 Inline Figures may use the full grammar of technical explanation:
 
-- Architecture diagram: layers, responsibilities and interfaces;
-- Workflow diagram: ordered work and decision stages;
-- Lifecycle diagram: states, transitions and authority;
-- Comparison table: products, mechanisms, scope and limitations;
-- Timeline: version or industry evolution;
-- Data table or chart: sourced measurements, counts or evaluation results.
+- architecture diagram;
+- workflow diagram;
+- lifecycle diagram;
+- mechanism diagram;
+- comparison table;
+- timeline;
+- evidence map;
+- sourced data chart.
 
-Inline Figures should optimize for precision, traceability and explanatory value rather than cover-like visual impact. They must be inserted next to the argument they explain, followed by a matching caption and source statement, and remain readable on mobile screens.
+Each figure is inserted next to the reasoning node it explains, followed by a matching bilingual caption and source statement. Terminology must match the article and remain readable on mobile screens.
 
 ## Source labels
 
@@ -107,65 +97,20 @@ Every visual must state one of:
 - `Research Center synthesis based on cited official sources`;
 - `Research Center architecture proposal`.
 
-For an editorial cover, the source note may appear in article metadata or the visual manifest rather than as prominent text inside the artwork. Inline Figures must keep their source basis visible in the adjacent caption or figure content.
+For an editorial cover, the source note may appear in metadata or the visual manifest. Inline Figures keep source basis visible in the adjacent caption or figure content.
 
-## Rules
+## Safe area and responsive gate
 
-- Do not create decorative charts from subjective scores.
-- Do not convert qualitative comparisons into fake numerical precision.
-- Do not copy a vendor diagram without permission or attribution.
-- Prefer original diagrams that synthesize cited material.
-- Keep visual terminology identical to the article terminology.
-- Ensure diagrams remain readable on mobile screens.
-- Never reuse an Inline Figure as the Article Cover merely because it already exists.
-- Never create fixed Markdown sections named `## Cover`, `## Figure` or `## Visualization` merely to contain image assets.
-- Never treat an Inline Figure as a second publication object; it is part of the article body.
+Keep semantic content inside the existing safe-area rules and validate complete article rendering at:
 
-## Article-cover workflow
+- 1440×900;
+- 1024×768;
+- 390×844.
 
-1. Extract a short article-level visual descriptor and select the canonical same-date `.png` cover path.
-2. During 15:00 Production, run `scripts/generate-baseline-cover.mjs` with item ID, column and English title.
-3. Verify the output is a real PNG, visually distinct at thumbnail scale and not a technical diagram or Runtime/report surface. Treat a clean simple result as valid baseline cover quality.
-4. Optionally persist a richer Article Cover Brief for the 16:00 Cover Upgrade.
-5. Complete Production using the baseline; never wait for the upgrade.
-6. At 16:00, the separate Cover Upgrade Worker may use ChatGPT built-in image generation with only the article-specific positive scene description.
-7. Replace the existing canonical cover path only after the upgraded raster passes article relevance and editorial-thumbnail review.
-8. If the upgrade fails for any reason, preserve the baseline bytes and do not alter Production state.
-9. Render the actual article page and approve the currently active cover during Publication QA.
-
-## Mandatory safe area
-
-- Keep every title, number, logo, label, rule and explanatory line inside the central safe area.
-- Reserve at least `8%` of canvas height at the top and bottom and `7.5%` of canvas width at the left and right.
-- Decorative shapes may bleed. Semantic content may not bleed or touch the canvas edge.
-- Never rely on CSS cropping to hide unfinished composition.
-- Never position oversized letters partly outside the viewBox.
-- Keep the lowest semantic text at least `10%` above the bottom edge because captions and browser scaling expose this region differently.
-
-## Responsive acceptance gate
-
-Render the complete article page, not the SVG alone, at all of these widths:
-
-- desktop: `1440×900`;
-- compact desktop/tablet: `1024×768`;
-- mobile: `390×844`.
-
-Reject and revise the visual if any of the following occurs:
-
-- a title, number, icon or footer line is clipped;
-- text crosses the image boundary or becomes hidden behind article metadata;
-- the browser applies `object-fit: cover` to semantic content;
-- portrait artwork is forced into a landscape crop;
-- the visual requires zooming to understand its primary proposition;
-- light and dark themes produce insufficient contrast.
-
-Record the three rendered screenshots as visual QA evidence before publication.
+Reject clipping, unreadable semantic text, incorrect object-fit cropping, insufficient contrast or figures that require zooming to understand their primary proposition.
 
 ## Anti-template rules
 
-- Reject generic gradient cards, arbitrary grids, glowing orbs, circuitry, humanoid robots and decorative node networks unless the article's argument requires them.
-- Do not use a giant acronym as the main image merely to fill space.
-- Do not repeat one cover composition across unrelated articles by changing only the title and color.
-- Prefer a distinctive semantic object derived from the article, but express it editorially on the cover rather than diagrammatically.
-- Use Research Center typography and palette as constraints, then vary composition according to the research proposition.
-- A responsibility boundary, evidence ledger, queue, lifecycle, handoff, control plane or runtime state may inspire the cover metaphor; the literal labeled diagram belongs inside the article.
+Reject generic gradient cards, arbitrary grids, glowing orbs, circuitry, humanoid robots and decorative node networks unless the article's argument specifically requires them. Do not repeat one cover composition across unrelated articles by changing only title and color.
+
+A responsibility boundary, evidence ledger, queue, lifecycle, handoff, control plane or runtime state may inspire the cover metaphor; the literal labeled diagram belongs inside the article when its argument node needs it.
