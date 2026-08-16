@@ -1,6 +1,6 @@
 {
   "schema": "cover-upgrade-worker-input/v1",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "repository": "joinwell52-AI/joinwell52",
   "timezone": "Asia/Shanghai",
   "requiredProductionStatus": "Completed",
@@ -15,5 +15,6 @@
   "briefFallbackRule": "A missing same-date Article Cover Brief must not by itself prevent an upgrade attempt. Derive a concise positive visual brief only from that article's own candidate title, subtitle/research question and same-date Research Object identity.",
   "targetRule": "Replace only the exact existing candidate coverPath after the upgraded raster passes review; otherwise preserve the baseline bytes.",
   "imageInstruction": "Each fresh Article Cover Image Job sends only its single article's positive visual brief to ChatGPT built-in image generation and must not carry any other article or control-plane context into the image handoff.",
-  "acceptance": "Accept a replacement only when it is clearly article-specific, attractive at thumbnail scale, a real raster, and materially better than the baseline. Simple baseline quality is already valid and is never a reason to force replacement."
+  "assetRule": "Persist the original generated raster file, never a conversation preview, UI thumbnail, screenshot, report composite, or downscaled derivative. The accepted raster must be at least 1536x864 and approximately 16:9, and those dimensions must be re-verified from the decoded bytes fetched from latest main after persistence.",
+  "acceptance": "Accept a replacement only when it is clearly article-specific, attractive at thumbnail scale, a real full-resolution raster, at least 1536x864, approximately 16:9, and materially better than the baseline. Simple baseline quality is already valid and is never a reason to force replacement."
 }
