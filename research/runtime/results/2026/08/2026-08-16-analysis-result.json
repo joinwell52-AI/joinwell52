@@ -1,0 +1,153 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "analysis",
+  "family": "daily",
+  "runtimeDate": "2026-08-16",
+  "status": "Completed",
+  "input": {
+    "scheduler": "research/runtime/SCHEDULER.json",
+    "workerControl": "research/runtime/worker-prompts/generated/CONTROL.json",
+    "workerControlVersion": "1.3.0",
+    "authoritativePrompt": {
+      "path": "research/runtime/worker-prompts/generated/analysis.prompt.md",
+      "version": "2.0.0",
+      "sha256": "4f40dff2d12569f647bf265f344b60cb0f0cd0349f0b2d5cf1023f50947dfea2",
+      "hashVerified": true,
+      "sourceCommit": "5ff8b0a8016c244e80bd8893823012a2576e100d"
+    },
+    "requiredSources": [
+      "research/runtime/SCHEDULER.json",
+      "research/runtime/WORKER-CONTRACT-V3.md",
+      "research/runtime/WAKE-RECEIPT-V1.md",
+      "research/editorial/EDITORIAL-ARCHITECTURE.json",
+      "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+      "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+      "research/skills/04-research-analysis.md"
+    ],
+    "admission": {
+      "decision": "Admitted",
+      "date": "2026-08-16",
+      "branch": "main",
+      "wakeSource": "chatgpt-scheduled-task",
+      "requiredCapabilities": ["github-read", "github-write", "command-execution", "file-editing"],
+      "availableCapabilities": ["github-read", "github-write", "command-execution", "file-editing", "web-research"],
+      "limits": {
+        "maxRunMinutes": 120,
+        "maxRecoveryAttempts": 2,
+        "maxRevisionRounds": 2,
+        "maxOutputItems": 3,
+        "zeroOutputAllowed": true,
+        "directPublicationAllowed": false,
+        "requireSameRunDateInputs": true,
+        "requirePromptHashVerification": true,
+        "requireRemoteCommitVerification": true
+      }
+    },
+    "readingStatus": "Completed",
+    "readingVerifiedAt": "2026-08-16T11:11:34+08:00",
+    "readingArtifacts": [
+      "research/reading/Q-20260816-01-exact-call-approval-overrides-sticky-default.md",
+      "research/reading/Q-20260816-02-reserved-thread-id-pending-metadata-ownership.md",
+      "research/reading/Q-20260816-03-typescript-sdk-raw-config-override-precedence.md"
+    ],
+    "controlPlane": {
+      "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-16/analysis-130058.json",
+      "executionSlotOpenedAt": "2026-08-16T13:02:23+08:00",
+      "workerClaimedAt": "2026-08-16T13:02:56+08:00",
+      "workerClaimCommit": "520bfc4cea3000758039cc472004b285a2317137",
+      "globalOrderVerified": true,
+      "earlierDueTasksClosed": ["discovery", "queue", "reading"]
+    }
+  },
+  "workResult": {
+    "summary": "Executed only Skill 04 Research Analysis after fail-closed admission, deterministic verification of the authoritative Analysis prompt SHA-256, complete reading of all seven required control/editorial/evidence sources, durable same-date Wake Receipt, repository-granted global-serial execution authority and verified Worker Claimed. Consumed only the three completed 2026-08-16 Reading Results and produced exactly three Research Objects. Q-20260816-01 concludes that durable human-in-the-loop authorization should separate broad default policy, an occurrence-scoped exception, actor/authority evidence and external-effect evidence; exact-call persistence establishes a narrow resumable decision but not approver identity or exactly-once effects. Q-20260816-02 concludes that pre-materialization orchestration should separate reserved stable identity, bounded pending host intent, authoritative materialization and abandonment/reconciliation cleanup; reservation is correlation rather than proof of object existence, and the selected Codex mechanism is local rather than a distributed reservation transaction. Q-20260816-03 concludes that deterministic configuration precedence resolves which value wins but not provenance or authorization; raw escape hatches are safer when later execution-owned settings retain explicit precedence and security-sensitive effective values can be traced to their source layer. No article drafting, visualization, Publication Candidate creation or publication was performed.",
+    "summary_zh": "在完成 Fail-closed Admission、权威 Analysis Prompt SHA-256 的确定性核验、全部 7 个 Required Control/Editorial/Evidence Source 的完整读取、同日 Wake Receipt 持久核验、仓库授予的全局串行执行权与 Worker Claimed 核验后，仅执行 Skill 04 Research Analysis。只消费 2026-08-16 当日三份已完成 Reading Result，并恰好形成三份 Research Object。Q-20260816-01 的判断是：持久化 Human-in-the-loop Authorization 应分离宽泛 Default Policy、Occurrence-scoped Exception、Actor/Authority Evidence 与 External-effect Evidence；Exact-call Persistence 建立的是窄范围、可恢复的决定，而不是 Approver Identity 或 Exactly-once Effect。Q-20260816-02 的判断是：Pre-materialization Orchestration 应分离 Reserved Stable Identity、有限 Pending Host Intent、Authoritative Materialization 与 Abandonment/Reconciliation Cleanup；Reservation 是 Correlation，而不是 Object Existence 的证明，且所选 Codex 机制是本地实现，不是分布式 Reservation Transaction。Q-20260816-03 的判断是：Deterministic Configuration Precedence 解决的是哪个值获胜，而不是 Provenance 或 Authorization；Raw Escape Hatch 更安全的前提是更晚的 Execution-owned Setting 保持明确优先级，并且安全相关 Effective Value 能追溯 Source Layer。未执行文章撰写、可视化、Publication Candidate 创建或发布。",
+    "researchObjects": [
+      {
+        "column": "digital-employee",
+        "itemId": "Q-20260816-01",
+        "artifact": "research/analysis/Q-20260816-01-occurrence-scoped-authorization-state.md",
+        "articleType": "engineering-insight",
+        "projectRelevance": "none",
+        "judgment": "Durable authorization should preserve a broad default and a narrow occurrence-scoped exception while keeping actor/authority evidence and effect evidence separate; persistence of the exact decision does not prove approver identity or exactly-once external execution.",
+        "judgment_zh": "持久化 Authorization 应同时保留宽泛 Default 与窄范围 Occurrence-scoped Exception，并把 Actor/Authority Evidence、Effect Evidence 分离；Exact Decision 的持久化不能证明 Approver Identity 或外部 Exactly-once Execution。"
+      },
+      {
+        "column": "industry-architecture",
+        "itemId": "Q-20260816-02",
+        "artifact": "research/analysis/Q-20260816-02-reservation-materialization-ownership.md",
+        "articleType": "technical-analysis",
+        "projectRelevance": "none",
+        "judgment": "Pre-materialization coordination should distinguish reserved identity, pending host intent, authoritative materialization and cleanup/reconciliation; a reservation provides correlation but is not proof that the object exists.",
+        "judgment_zh": "Pre-materialization Coordination 应区分 Reserved Identity、Pending Host Intent、Authoritative Materialization 与 Cleanup/Reconciliation；Reservation 提供 Correlation，但不是对象已经存在的证明。"
+      },
+      {
+        "column": "open-source-engineering",
+        "itemId": "Q-20260816-03",
+        "artifact": "research/analysis/Q-20260816-03-config-precedence-provenance.md",
+        "articleType": "engineering-insight",
+        "projectRelevance": "none",
+        "judgment": "Deterministic configuration precedence defines conflict resolution, not authorization; robust multi-layer configuration should also expose provenance for security-relevant effective values and preserve explicit ownership of later execution-scoped settings.",
+        "judgment_zh": "Deterministic Configuration Precedence 定义的是冲突解析，而不是 Authorization；稳健的多层配置还应暴露安全相关 Effective Value 的 Provenance，并保留更晚 Execution-scoped Setting 的显式 Ownership。"
+      }
+    ],
+    "boundary": {
+      "unreadMaterialAnalyzed": false,
+      "priorDayResearchInputsReused": false,
+      "fixedArticleOutline": false,
+      "forcedFirstPartyMapping": false,
+      "articleWriting": false,
+      "visualization": false,
+      "publicationCandidate": false,
+      "publication": false
+    }
+  },
+  "output": {
+    "type": "Research Objects",
+    "researchObjectCount": 3,
+    "artifacts": [
+      "research/analysis/Q-20260816-01-occurrence-scoped-authorization-state.md",
+      "research/analysis/Q-20260816-02-reservation-materialization-ownership.md",
+      "research/analysis/Q-20260816-03-config-precedence-provenance.md"
+    ]
+  },
+  "next": {
+    "task": "production",
+    "scheduledTime": "15:00",
+    "instruction": "Production may consume only these three completed 2026-08-16 Research Objects after its formal time gate, fresh admission, authoritative prompt verification, global serial-order check and Worker Claim. It must preserve the bounded evidence identities: occurrence identity is not approver identity or effect finality; reservation is not materialization; deterministic configuration order is not authorization or security provenance.",
+    "instruction_zh": "Production 只能在 15:00 正式时间门禁之后，并完成新的 Admission、权威 Prompt Verification、全局串行顺序检查与 Worker Claim 后，消费这三份 2026-08-16 已完成 Research Object。必须保留有界 Evidence Identity：Occurrence Identity 不等于 Approver Identity 或 Effect Finality；Reservation 不等于 Materialization；Deterministic Configuration Order 不等于 Authorization 或 Security Provenance。"
+  },
+  "metrics": [
+    {"name": "reading_results_consumed", "value": 3},
+    {"name": "research_objects", "value": 3},
+    {"name": "prompt_hash_verified", "value": 1},
+    {"name": "required_sources_read", "value": 7},
+    {"name": "prior_day_research_inputs_reused", "value": 0},
+    {"name": "first_party_project_mappings_forced", "value": 0},
+    {"name": "article_drafts", "value": 0},
+    {"name": "publication_actions", "value": 0}
+  ],
+  "evidence": [
+    "5ff8b0a8016c244e80bd8893823012a2576e100d",
+    "research/runtime/wakes/2026/08/2026-08-16/analysis-130058.json",
+    "research/runtime/records/daily/2026/08/2026-08-16-daily-runtime.json",
+    "research/runtime/worker-prompts/generated/CONTROL.json",
+    "research/runtime/worker-prompts/generated/analysis.prompt.md",
+    "research/runtime/WORKER-CONTRACT-V3.md",
+    "research/runtime/WAKE-RECEIPT-V1.md",
+    "research/editorial/EDITORIAL-ARCHITECTURE.json",
+    "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+    "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+    "research/skills/04-research-analysis.md",
+    "research/reading/Q-20260816-01-exact-call-approval-overrides-sticky-default.md",
+    "research/reading/Q-20260816-02-reserved-thread-id-pending-metadata-ownership.md",
+    "research/reading/Q-20260816-03-typescript-sdk-raw-config-override-precedence.md",
+    "520bfc4cea3000758039cc472004b285a2317137"
+  ],
+  "artifacts": [
+    "research/analysis/Q-20260816-01-occurrence-scoped-authorization-state.md",
+    "research/analysis/Q-20260816-02-reservation-materialization-ownership.md",
+    "research/analysis/Q-20260816-03-config-precedence-provenance.md",
+    "research/runtime/results/2026/08/2026-08-16-analysis-result.json"
+  ]
+}
