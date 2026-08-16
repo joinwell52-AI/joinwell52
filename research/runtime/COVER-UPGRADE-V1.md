@@ -10,9 +10,27 @@ This is a non-blocking post-Production quality contract. It is not a Production 
 - the same-date `runtime-publication-candidate/v2` batch exists;
 - the candidate already references a valid baseline PNG at `coverPath`.
 
-## Upgrade rule
+## Execution architecture
 
-The 16:00 worker processes one article at a time. It may read the candidate identity, title, optional same-date Article Cover Brief and exact canonical `coverPath`. Before image generation, the effective image request contains only the positive article-specific visual scene.
+The 16:00 Cover Upgrade wake is a controller wake. The controller must not call image generation directly.
+
+For every eligible same-date candidate, the controller creates exactly one fresh isolated Article Cover Image Job. Each job handles exactly one article and follows `research/runtime/COVER-UPGRADE-ARTICLE-JOB-V1.json`.
+
+A single ChatGPT image-generation context must never process two different articles. An Article Cover Image Job must never reuse another article's generated image, prompt, brief, retry history or visual context.
+
+If the platform cannot create a fresh isolated Article Cover Image Job, do not fall back to in-controller or multi-article image generation. Preserve the current baseline for that article.
+
+## Article-specific visual input
+
+Prefer the candidate's valid same-date Article Cover Brief when it exists.
+
+If the same-date Article Cover Brief is absent, that absence alone does not cancel the upgrade attempt. Derive one concise positive visual brief only from this article's own candidate title, subtitle/research question and same-date Research Object identity.
+
+Before image generation, the effective image handoff contains only positive article-specific visual semantics: article title, core proposition, one unique visual metaphor, hero subject, environment/composition, palette/lighting/material/depth direction and the landscape editorial-cover requirement.
+
+The image handoff must not contain Runtime state, Scheduler/control text, repository or GitHub details, worker/controller identity, Cover Upgrade task language, baseline/replacement wording, verification/status language, report/dashboard/before-after/receipt/evidence wording, another article's content, or prior failed prompts/images.
+
+## Upgrade rule
 
 An upgrade is accepted only if the generated asset is a real PNG/JPEG/WebP, clearly represents the article, is suitable at thumbnail scale, and is materially better than the current baseline.
 
@@ -35,8 +53,12 @@ If main advances between fetch and ref update, do not force. Re-fetch latest mai
 
 If generation, semantic review, technical validation, persistence or verification fails, the worker leaves the baseline file unchanged. It must not modify Production status/result, reopen Production, create a Production completion request, or make Publication ineligible.
 
+## Released-article synchronization
+
+If the candidate has already been publicly released for the same run date, resolve that released item's exact public cover path from the same-date `runtime-publication-release/v1` manifest. Update the canonical staging `coverPath` and the exact public cover path to the same accepted binary blob in one fast-forward tree/commit. Do not modify article prose, indexes, Runtime terminal state or unrelated public assets. Verify both paths from latest main before reporting the upgrade durable.
+
 ## Receipt
 
-A successful replacement may write `cover-upgrade-receipt/v1` under `research/runtime/cover-upgrades/YYYY/MM/DD/<itemId>.json` with: runDate, itemId, candidateBatchPath, coverPath, previousAssetSha256, upgradedAssetSha256, upgradedGitBlobSha, briefId when available, generationAttempts, semanticReview=PASS, editorialThumbnailReview=PASS, persistenceBridge=`github-git-data-base64-blob`, and createdAt.
+A successful replacement may write `cover-upgrade-receipt/v1` under `research/runtime/cover-upgrades/YYYY/MM/DD/<itemId>.json` with: runDate, itemId, candidateBatchPath, coverPath, previousAssetSha256, upgradedAssetSha256, upgradedGitBlobSha, briefId when available, generationAttempts, semanticReview=PASS, editorialThumbnailReview=PASS, persistenceBridge=`github-git-data-base64-blob`, executionMode=`fresh-article-job`, and createdAt.
 
 The receipt is audit evidence only. Publication uses the current bytes at the candidate's canonical `coverPath` whether or not a receipt exists.
