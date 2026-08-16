@@ -1,0 +1,66 @@
+---
+schema: publication-candidate-article/v2
+title: "Reserved Identity Is Not Materialized State"
+date: '2026-08-16'
+column: industry-architecture
+category: daily
+article_type: technical-analysis
+edition: research-center
+research_question: "How can an orchestration system let a host attach state before an execution object fully materializes without confusing reserved identity, object existence and metadata authority?"
+summary: "Pre-materialization orchestration is clearer when reserved identity, pending host intent, authoritative materialization, and cleanup are explicit lifecycle phases. A reservation gives components a stable correlation key; it is not evidence that the execution object already exists."
+cover: staging/publication-candidates/2026-08-16-reservation-materialization-cover.png
+sources:
+  - research/analysis/Q-20260816-02-reservation-materialization-ownership.md
+---
+
+![Reserved Identity Is Not Materialized State cover](staging/publication-candidates/2026-08-16-reservation-materialization-cover.png)
+
+# Reserved Identity Is Not Materialized State
+
+Orchestration systems often need to refer to work before that work fully exists. A host may want a stable identifier early so it can attach metadata, prepare routing, or correlate later events. The architectural risk is subtle: once an identifier exists, other components may start treating it as proof that the object itself exists and that pending metadata is already authoritative.
+
+The 2026-08-16 Research Object examined a merged Codex implementation that reserves the final ThreadId before startup and stages host-owned metadata against that reserved identity. The mechanism is deliberately local and bounded. It demonstrates a useful separation between identity reservation and materialization, but it does not establish a distributed reservation transaction.
+
+## Reservation, intent, and existence are different states
+
+A reserved identifier is valuable because the host and the runtime can name the same future object without inventing a temporary alias and later performing an identity handoff. In the selected implementation, the reserved ThreadId is used for new, cleared, or forked thread creation, while resume of an already existing thread rejects a reserved ID.
+
+That asymmetry is meaningful. Reservation belongs to the path toward a new materialized object. Resume belongs to an object that should already have authoritative existence evidence.
+
+Host-owned metadata is also kept in a pending registry keyed by the reserved ID rather than being written immediately as if a full object record already existed. The state database is required. On the first successful metadata update, the pending information can be merged and then consumed.
+
+This creates a clearer lifecycle:
+
+**reserve identity → stage bounded host intent → materialize and merge → consume or reconcile**.
+
+The key point is that each arrow changes the status of a different fact. The stable identifier becomes available before object existence is proven. Pending metadata expresses host intent before final metadata ownership is resolved. A successful materialization path closes the pending phase.
+
+## Merge and cleanup need explicit ownership
+
+Pre-materialization state becomes dangerous when overwrite behavior is implicit. If both the host and the newly materialized object can supply a field, the system needs a declared ownership or precedence rule. Otherwise a pending value can accidentally override a later authoritative observation, or a later write can silently erase intent that the host expected to survive.
+
+The selected Codex mechanism contains useful boundaries. `rollout_path` cannot be staged. Later observed metadata can participate in merge precedence. Pending state is consumed after a successful merge rather than remaining indefinitely active.
+
+Abandonment is equally important. A reserved ID that never materializes should not silently accumulate permanent state. Shutdown or discard can clear pending metadata when the object remained unmaterialized. But when rollout existence is uncertain, the implementation favors conservative preservation over destructive cleanup.
+
+That behavior exposes a broader rule: **cleanup is also an evidence-sensitive transition**. In an uncertain distributed environment, failure to prove materialization is not necessarily proof that materialization did not occur.
+
+## Architecture implications
+
+Control planes that support pre-start work should model “identity reserved” and “object materialized” as separate observable facts. Pending state should declare field ownership and merge precedence instead of relying on accidental write order. Abandoned reservations should enter visible cleanup or reconciliation rather than disappearing through undocumented garbage collection.
+
+The local mechanism also clarifies what a distributed version would still need. A cross-host reservation protocol needs explicit lease or expiry semantics, multi-writer ownership rules, conflict handling, and evidence for materialization that may complete on another host. None of those guarantees follows merely from having a pending registry keyed by a stable ID.
+
+There are valid simpler alternatives. Short-lived in-process objects may not justify a separate reservation phase. A host can hold metadata externally and attach it after startup. Systems in which stale reservations are harmless may use TTL cleanup. The right design depends on whether early correlation is valuable enough to justify another lifecycle state.
+
+## Limits of the evidence
+
+The evidence establishes one Codex local-store mechanism and its tests. It does not establish distributed consensus, a general reservation transaction, cross-host garbage collection, or identical behavior across all ThreadStore implementations.
+
+Reserved identity does not guarantee successful materialization. Pending metadata is not an immutable claim on the final record. The evidence supports the separation of lifecycle facts; broader distributed guarantees remain an architectural extension.
+
+## Open questions
+
+Should reserved-but-never-materialized identities carry a lease, a TTL, or an explicit reconciliation queue? Can field ownership and merge precedence be declared as a machine-readable contract? In a distributed system, what evidence should formally close the reservation phase when creation and persistence may complete on another host?
+
+A stable ID is a powerful correlation tool. Its safety depends on resisting the temptation to treat correlation as existence.

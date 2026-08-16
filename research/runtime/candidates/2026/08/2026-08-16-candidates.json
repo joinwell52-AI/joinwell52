@@ -1,0 +1,122 @@
+{
+  "schema": "runtime-publication-candidate/v2",
+  "date": "2026-08-16",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Production",
+  "sourceRecord": "research/runtime/records/daily/2026/08/2026-08-16-daily-runtime.json",
+  "updatedAt": "2026-08-16T15:31:53+08:00",
+  "githubCommit": "pending",
+  "reason": "Same-date Production converted three completed Research Objects into complete bilingual V2 candidates with deterministic baseline PNG covers under Production Prompt v2.11.0.",
+  "reason_zh": "同日 Production 按 Production Prompt v2.11.0 将三份已完成 Research Object 转换为完整双语 V2 候选，并生成确定性基础 PNG 题图。",
+  "candidates": [
+    {
+      "column": "digital-employee",
+      "category": "daily",
+      "itemId": "Q-20260816-01",
+      "articleType": "engineering-insight",
+      "researchQuestion": "How should a durable agent runtime represent one human decision for one concrete tool-call occurrence when a broader sticky authorization default already exists?",
+      "title": "Durable Agent Approval Needs an Occurrence Boundary",
+      "title_zh": "持久化 Agent 授权需要动作实例边界",
+      "zhPath": "staging/publication-candidates/2026-08-16-occurrence-scoped-authorization.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-16-occurrence-scoped-authorization.en.md",
+      "sections": [
+        {"module":"technical-analysis","heading":"A durable decision needs a narrow object","heading_zh":"持久决定需要窄范围授权对象"},
+        {"module":"governance-implications","heading":"Separate the decision from the actor and the effect","heading_zh":"把决定、主体与外部效果分开"},
+        {"module":"limitations","heading":"What this mechanism does not establish","heading_zh":"这个机制没有建立什么"},
+        {"module":"open-questions","heading":"Open questions for high-risk resumable actions","heading_zh":"高风险恢复动作仍待回答的问题"}
+      ],
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {"id":"E1","identity":"public-fact","claim":"OpenAI Agents Python RunState schema 1.16 resolves exact approved or rejected call IDs before sticky defaults, allowing one concrete call to override a broader tool-level decision without changing sibling calls.","claim_zh":"OpenAI Agents Python RunState Schema 1.16 会先解析精确 Approved/Rejected Call ID，再回退到 Sticky Default，因此单个具体 Call 可以覆盖更宽的 Tool-level 决定而不改变其他调用。","source":"research/analysis/Q-20260816-01-occurrence-scoped-authorization-state.md","strength":"states","independent":false},
+        {"id":"E2","identity":"public-fact","claim":"Reversing an exact decision removes the same call ID from the opposite exact-decision list, and serialization/resume tests preserve the exact exception together with the sticky default.","claim_zh":"反转精确决定时会从相反的 Exact-decision List 移除同一 Call ID；序列化与 Resume 测试保留 Exact Exception 与 Sticky Default。","source":"research/analysis/Q-20260816-01-occurrence-scoped-authorization-state.md","strength":"states","independent":false},
+        {"id":"E3","identity":"public-fact","claim":"The selected mechanism does not authenticate the approver, make call IDs cryptographically unforgeable or establish exactly-once external effects.","claim_zh":"所选机制不会认证 Approver 身份，不会使 Call ID 具备密码学不可伪造性，也不会建立外部 Exactly-once Effect。","source":"research/analysis/Q-20260816-01-occurrence-scoped-authorization-state.md","strength":"states","independent":false},
+        {"id":"I1","identity":"our-interpretation","claim":"Durable authorization is clearer when default policy, occurrence-scoped exception, actor/authority evidence and external-effect evidence remain separate state layers.","claim_zh":"当 Default Policy、Occurrence-scoped Exception、Actor/Authority Evidence 与 External-effect Evidence 保持为不同状态层时，持久化 Authorization 更清晰。","source":"research/analysis/Q-20260816-01-occurrence-scoped-authorization-state.md","strength":"suggests","independent":false}
+      ],
+      "projectRelevance":{"status":"none","projects":[],"rationale":"The conclusion is general to durable agent and digital-employee authorization; no first-party project is required."},
+      "communityEdition":{"decision":"not-generated","rationale":"The complete Research Center edition already addresses the transferable engineering question."},
+      "gates":{"researchValue":"PASS","independence":"PASS","evidence":"PASS","structure":"PASS","language":"PASS","bilingualConsistency":"PASS"},
+      "coverPath":"staging/publication-candidates/2026-08-16-occurrence-scoped-authorization-cover.png",
+      "coverRole":"baseline",
+      "inlineFigures":[],
+      "coverGate":"PASS",
+      "inlineVisualGate":"PASS",
+      "layoutGate":"PASS",
+      "lifecycle":"Publication Candidate",
+      "evidenceStatus":"Completed",
+      "editingStatus":"Completed"
+    },
+    {
+      "column":"industry-architecture",
+      "category":"daily",
+      "itemId":"Q-20260816-02",
+      "articleType":"technical-analysis",
+      "researchQuestion":"How can an orchestration system let a host attach state before an execution object fully materializes without confusing reserved identity, object existence and metadata authority?",
+      "title":"Reserved Identity Is Not Materialized State",
+      "title_zh":"预留身份不等于对象已经物化",
+      "zhPath":"staging/publication-candidates/2026-08-16-reservation-materialization.zh.md",
+      "enPath":"staging/publication-candidates/2026-08-16-reservation-materialization.en.md",
+      "sections":[
+        {"module":"technical-analysis","heading":"Reservation, intent, and existence are different states","heading_zh":"Reservation、Intent 与 Existence 是不同状态"},
+        {"module":"architecture-implications","heading":"Merge and cleanup need explicit ownership","heading_zh":"Merge 与 Cleanup 都需要明确 Ownership"},
+        {"module":"limitations","heading":"Limits of the evidence","heading_zh":"证据边界"},
+        {"module":"open-questions","heading":"Open questions","heading_zh":"仍待回答的问题"}
+      ],
+      "endingModule":"open-questions",
+      "evidenceClaims":[
+        {"id":"E1","identity":"public-fact","claim":"Codex can reserve the final ThreadId before startup for new, cleared or forked creation and rejects a reserved ID for resume of an existing thread.","claim_zh":"Codex 可在启动前预留最终 ThreadId 用于 New、Cleared 或 Forked 创建，并拒绝用 Reserved ID Resume 已存在 Thread。","source":"research/analysis/Q-20260816-02-reservation-materialization-ownership.md","strength":"states","independent":false},
+        {"id":"E2","identity":"public-fact","claim":"Host-owned metadata is staged in a pending registry keyed by the reserved ID, merged into the first successful metadata update and then consumed; unmaterialized shutdown or discard can clear it.","claim_zh":"Host-owned Metadata 按 Reserved ID 暂存在 Pending Registry 中，在第一次成功 Metadata Update 时合并并随后消费；未 Materialize 的 Shutdown 或 Discard 可清理它。","source":"research/analysis/Q-20260816-02-reservation-materialization-ownership.md","strength":"states","independent":false},
+        {"id":"E3","identity":"public-fact","claim":"The mechanism limits staging and preserves pending state conservatively when rollout existence is uncertain.","claim_zh":"该机制限制可暂存字段，并在 Rollout Existence 不确定时保守保留 Pending State。","source":"research/analysis/Q-20260816-02-reservation-materialization-ownership.md","strength":"states","independent":false},
+        {"id":"I1","identity":"our-interpretation","claim":"Pre-materialization orchestration is clearer when identity reservation, bounded host intent, authoritative materialization and cleanup are explicit lifecycle phases.","claim_zh":"当 Identity Reservation、有限 Host Intent、Authoritative Materialization 与 Cleanup 成为显式生命周期阶段时，Pre-materialization Orchestration 更清晰。","source":"research/analysis/Q-20260816-02-reservation-materialization-ownership.md","strength":"suggests","independent":false}
+      ],
+      "projectRelevance":{"status":"none","projects":[],"rationale":"The lifecycle distinction is general to orchestration architecture and requires no first-party project mapping."},
+      "communityEdition":{"decision":"not-generated","rationale":"No separate community framing adds enough value beyond the complete Research Center analysis."},
+      "gates":{"researchValue":"PASS","independence":"PASS","evidence":"PASS","structure":"PASS","language":"PASS","bilingualConsistency":"PASS"},
+      "coverPath":"staging/publication-candidates/2026-08-16-reservation-materialization-cover.png",
+      "coverRole":"baseline",
+      "inlineFigures":[],
+      "coverGate":"PASS",
+      "inlineVisualGate":"PASS",
+      "layoutGate":"PASS",
+      "lifecycle":"Publication Candidate",
+      "evidenceStatus":"Completed",
+      "editingStatus":"Completed"
+    },
+    {
+      "column":"open-source-engineering",
+      "category":"daily",
+      "itemId":"Q-20260816-03",
+      "articleType":"engineering-insight",
+      "researchQuestion":"How should an SDK expose a raw configuration escape hatch for values its structured serializer cannot represent while keeping effective configuration understandable and preventing accidental ownership inversion?",
+      "title":"Configuration Precedence Needs Provenance",
+      "title_zh":"配置优先级还需要来源追踪",
+      "zhPath":"staging/publication-candidates/2026-08-16-config-precedence-provenance.zh.md",
+      "enPath":"staging/publication-candidates/2026-08-16-config-precedence-provenance.en.md",
+      "sections":[
+        {"module":"technical-analysis","heading":"Deterministic order solves conflict, not meaning","heading_zh":"确定顺序解决冲突，但不解释含义"},
+        {"module":"engineering-implications","heading":"Provenance is the missing half of configuration governance","heading_zh":"Provenance 是配置治理缺失的另一半"},
+        {"module":"limitations","heading":"Limits of the evidence","heading_zh":"证据边界"},
+        {"module":"open-questions","heading":"Open questions","heading_zh":"仍待回答的问题"}
+      ],
+      "endingModule":"open-questions",
+      "evidenceClaims":[
+        {"id":"E1","identity":"public-fact","claim":"CodexOptions adds ordered raw configOverrides that are forwarded unchanged after structured configuration and preserve caller order, including duplicate keys.","claim_zh":"CodexOptions 新增有序 Raw configOverrides，在 Structured Configuration 之后原样转发，并保留调用方顺序，包括 Duplicate Key。","source":"research/analysis/Q-20260816-03-config-precedence-provenance.md","strength":"states","independent":false},
+        {"id":"E2","identity":"public-fact","claim":"SDK-managed and thread/run-specific settings are emitted after raw overrides, yielding the observed precedence structured global configuration < ordered raw overrides < SDK-managed settings < thread/run-specific settings.","claim_zh":"SDK-managed 与 Thread/Run-specific Setting 在 Raw Override 之后输出，形成观察到的 Structured Global < Ordered Raw < SDK-managed < Thread/Run-specific 优先级。","source":"research/analysis/Q-20260816-03-config-precedence-provenance.md","strength":"states","independent":false},
+        {"id":"E3","identity":"public-fact","claim":"The raw channel preserves literal TOML structures, but the SDK does not validate the security meaning of arbitrary raw values and deterministic ordering is not a security guarantee.","claim_zh":"Raw Channel 保留 Literal TOML Structure，但 SDK 不验证任意 Raw Value 的安全含义，Deterministic Ordering 也不是安全保证。","source":"research/analysis/Q-20260816-03-config-precedence-provenance.md","strength":"states","independent":false},
+        {"id":"I1","identity":"our-interpretation","claim":"Multi-layer configuration needs provenance in addition to precedence so security-relevant effective values can be traced to their source layer and ownership boundary.","claim_zh":"多层配置除 Precedence 外还需要 Provenance，使安全相关 Effective Value 可追溯到 Source Layer 与 Ownership Boundary。","source":"research/analysis/Q-20260816-03-config-precedence-provenance.md","strength":"suggests","independent":false}
+      ],
+      "projectRelevance":{"status":"none","projects":[],"rationale":"The conclusion concerns general SDK and CLI configuration architecture; no first-party project is required."},
+      "communityEdition":{"decision":"not-generated","rationale":"The Research Center edition already contains the necessary mechanism, evidence boundaries and engineering implications."},
+      "gates":{"researchValue":"PASS","independence":"PASS","evidence":"PASS","structure":"PASS","language":"PASS","bilingualConsistency":"PASS"},
+      "coverPath":"staging/publication-candidates/2026-08-16-config-provenance-cover.png",
+      "coverRole":"baseline",
+      "inlineFigures":[],
+      "coverGate":"PASS",
+      "inlineVisualGate":"PASS",
+      "layoutGate":"PASS",
+      "lifecycle":"Publication Candidate",
+      "evidenceStatus":"Completed",
+      "editingStatus":"Completed"
+    }
+  ]
+}
