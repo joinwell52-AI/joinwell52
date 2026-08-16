@@ -92,7 +92,7 @@ const validateFormal = (record, path) => {
   const editorialNotesZh = new Map()
   const editorialNotesEn = new Map()
   const bannedZh = [/本轮/, /本次周评/, /相对强项/, /最值得继续提升/, /下一轮建议/, /按当前正文/, /重校/]
-  const bannedEn = [/this review/i, /relative strength/i, /improvement area/i, /next, /recalibrat/i]
+  const bannedEn = [/this review/i, /relative strength/i, /improvement area/i, /recalibrat/i]
 
   for (const item of record.items || []) {
     if (seen.has(item.path)) fail(`${path}: duplicate path ${item.path}.`)
