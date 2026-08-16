@@ -6,7 +6,7 @@ export type ResearchColumn =
   | 'open-source-engineering'
 
 export type ResearchCategory = 'daily' | 'weekly' | 'academic'
-type SourceResearchCategory = ResearchCategory | 'manifesto'
+type SourceResearchCategory = ResearchCategory | 'manifesto' | 'visual-essay'
 
 export interface ResearchNoteRecord {
   title: string
@@ -25,10 +25,10 @@ const columns = new Set<ResearchColumn>([
   'open-source-engineering'
 ])
 
-const sourceCategories = new Set<SourceResearchCategory>(['daily', 'weekly', 'academic', 'manifesto'])
+const sourceCategories = new Set<SourceResearchCategory>(['daily', 'weekly', 'academic', 'manifesto', 'visual-essay'])
 
 const displayCategory = (category: SourceResearchCategory): ResearchCategory =>
-  category === 'manifesto' ? 'daily' : category
+  category === 'manifesto' || category === 'visual-essay' ? 'daily' : category
 
 export default createContentLoader('**/*.md', {
   excerpt: false,
