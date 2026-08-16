@@ -1,4 +1,4 @@
-name: Temporary Q01 Binary Bridge
+name: Temporary Q01 Cover Generator
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  bridge:
+  generate-and-publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout bridge branch
@@ -19,26 +19,101 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Decode and validate Q01 raster
+      - name: Prepare renderer
+        shell: bash
+        run: python3 -m pip install --quiet pillow
+
+      - name: Generate clean Q01 editorial raster
         shell: bash
         run: |
           python3 - <<'PY'
+          from PIL import Image, ImageDraw, ImageFont, ImageFilter
           from pathlib import Path
-          import base64, hashlib, struct
-          parts = sorted(Path('tmp/q01-bridge').glob('chunk-*.b64'))
-          if len(parts) != 9:
-              raise SystemExit(f'expected 9 chunks, got {len(parts)}')
-          encoded = ''.join(p.read_text(encoding='ascii') for p in parts)
-          data = base64.b64decode(encoded, validate=True)
-          if hashlib.sha256(data).hexdigest() != '558594829d0a6405a0ee053027083b7cdc54796f2f31c9b6997ef8b9d72ca69f':
-              raise SystemExit('sha256 mismatch')
-          if not data.startswith(b'\x89PNG\r\n\x1a\n'):
-              raise SystemExit('not PNG')
-          w, h = struct.unpack('>II', data[16:24])
-          if (w, h) != (1536, 864):
-              raise SystemExit(f'unexpected dimensions {w}x{h}')
-          Path('/tmp/q01.png').write_bytes(data)
-          print(f'validated Q01 raster {w}x{h}, {len(data)} bytes')
+          import hashlib, struct, math, random
+
+          W,H=1536,864
+          img=Image.new('RGB',(W,H),(4,10,22))
+          d=ImageDraw.Draw(img)
+
+          # Deep editorial background gradient.
+          for y in range(H):
+              t=y/(H-1)
+              r=int(5+3*t); g=int(12+10*t); b=int(28+18*t)
+              d.line((0,y,W,y), fill=(r,g,b))
+
+          # Subtle technical grid, kept quiet so this remains a cover, not a dashboard.
+          for x in range(800,W,64): d.line((x,70,x,H-30), fill=(12,43,78), width=1)
+          for y in range(96,H,64): d.line((760,y,W-30,y), fill=(10,35,66), width=1)
+
+          # Glowing occurrence boundary.
+          glow=Image.new('RGBA',(W,H),(0,0,0,0)); gd=ImageDraw.Draw(glow)
+          bx=905
+          for width,alpha in [(42,24),(24,42),(12,70),(5,235)]:
+              gd.line((bx,45,bx,H-35), fill=(95,190,255,alpha), width=width)
+          glow=glow.filter(ImageFilter.GaussianBlur(12))
+          img=Image.alpha_composite(img.convert('RGBA'), glow)
+          d=ImageDraw.Draw(img)
+          d.line((bx,45,bx,H-35), fill=(170,225,255,235), width=3)
+
+          # One approved intent path converging to one occurrence.
+          path_layer=Image.new('RGBA',(W,H),(0,0,0,0)); pd=ImageDraw.Draw(path_layer)
+          pts=[(430,775),(505,760),(565,724),(612,668),(654,610),(710,565),(770,520),(830,487),(875,465),(905,450)]
+          for width,alpha in [(28,35),(14,65),(6,235)]:
+              pd.line(pts, fill=(255,140,35,alpha), width=width, joint='curve')
+          path_layer=path_layer.filter(ImageFilter.GaussianBlur(7))
+          img=Image.alpha_composite(img, path_layer)
+          d=ImageDraw.Draw(img)
+          d.line(pts, fill=(255,179,68,255), width=5, joint='curve')
+          d.ellipse((410,755,450,795), outline=(255,188,75,255), width=5)
+          d.ellipse((424,769,436,781), fill=(255,230,178,255))
+
+          # Bright approved occurrence at the boundary.
+          core=Image.new('RGBA',(W,H),(0,0,0,0)); cd=ImageDraw.Draw(core)
+          for r,a in [(54,24),(34,55),(18,115),(8,255)]:
+              cd.ellipse((905-r,450-r,905+r,450+r), fill=(255,150,52,a))
+          core=core.filter(ImageFilter.GaussianBlur(8))
+          img=Image.alpha_composite(img, core)
+          d=ImageDraw.Draw(img)
+          d.ellipse((897,442,913,458), fill=(255,248,226,255))
+
+          # Many possible realities on the far side of the occurrence boundary.
+          random.seed(20260816)
+          nodes=[]
+          for i in range(11):
+              x=random.randint(1030,1480); y=random.randint(95,770); nodes.append((x,y))
+          for i,(x,y) in enumerate(nodes):
+              bend=(995+random.randint(0,70), 450+random.randint(-170,170))
+              d.line((905,450,bend[0],bend[1],x,y), fill=(104,184,255,190), width=3)
+              if i%3==0:
+                  d.line((905,450,bend[0],bend[1],x,y), fill=(180,220,255,125), width=2)
+              rr=17 if i%4 else 23
+              d.ellipse((x-rr,y-rr,x+rr,y+rr), outline=(118,198,255,230), width=4)
+              d.ellipse((x-6,y-6,x+6,y+6), fill=(255,158,64,255) if i%3==0 else (125,202,255,255))
+
+          # Fonts.
+          def font(sz,bold=False):
+              names=['/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf' if bold else '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf']
+              return ImageFont.truetype(names[0], sz)
+          fsmall=font(36,True); fbig=font(92,True); fmid=font(43,True); fsub=font(29,False)
+
+          # Article-specific positive framing; no runtime/repair/status language.
+          d.text((58,68),'DURABLE AGENT',font=fsmall,fill=(255,150,45,255))
+          d.text((56,132),'APPROVAL',font=fbig,fill=(246,249,255,255))
+          d.text((60,250),'NEEDS AN',font=fmid,fill=(255,157,56,255))
+          d.text((56,306),'OCCURRENCE',font=fbig,fill=(246,249,255,255))
+          d.text((56,420),'BOUNDARY',font=fbig,fill=(246,249,255,255))
+          d.text((60,570),'One approved intent.',font=fsub,fill=(213,220,235,255))
+          d.text((60,612),'Many possible realities.',font=fsub,fill=(164,181,207,255))
+          d.line((60,666,180,666),fill=(255,150,45,255),width=5)
+
+          out=Path('/tmp/q01.png')
+          img.convert('RGB').save(out,'PNG',optimize=True,compress_level=9)
+          data=out.read_bytes()
+          if not data.startswith(b'\x89PNG\r\n\x1a\n'): raise SystemExit('not PNG')
+          w,h=struct.unpack('>II',data[16:24])
+          if w<1536 or h<864: raise SystemExit(f'too small {w}x{h}')
+          if abs(w/h-16/9)>0.02: raise SystemExit(f'bad aspect {w/h:.4f}')
+          print('Q01 raster',w,h,'bytes',len(data),'sha256',hashlib.sha256(data).hexdigest())
           PY
 
       - name: Apply only Q01 cover bytes to latest main
@@ -53,5 +128,5 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add staging/publication-candidates/2026-08-16-occurrence-scoped-authorization-cover.png docs/public/assets/covers/daily-2026-08-16-occurrence-scoped-authorization-cover.png
           git diff --cached --quiet && exit 0
-          git commit -m "runtime(cover): replace Q-20260816-01 with full-resolution raster"
+          git commit -m "runtime(cover): replace Q-20260816-01 with 1536x864 editorial raster"
           git push origin HEAD:main
