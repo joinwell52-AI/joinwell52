@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260816-02-reservation-materialization-ownership.md
 item_id: "Q-20260816-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-16-reservation-materialization-cover.png"
+cover: "/assets/covers/daily-2026-08-16-reservation-materialization-cover.svg"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-16-reservation-materialization-cover.png"
+  image="/assets/covers/daily-2026-08-16-reservation-materialization-cover.svg"
   kicker="Industry Architecture · Daily Research"
   title="Reserved Identity Is Not Materialized State"
   summary="Pre-materialization orchestration is clearer when reserved identity, pending host intent, authoritative materialization, and cleanup are explicit lifecycle phases. A reservation gives components a stable correlation key; it is not evidence that the execution object already exists."
