@@ -33,6 +33,21 @@ const backfillDimensions = score => {
   }]))
 }
 
+const normalizedDimensions = (record, item) => {
+  if (item.dimensions && !Array.isArray(item.dimensions)) return item.dimensions
+  if (!Array.isArray(item.dimensionScores)) return null
+  return Object.fromEntries(rubric.scoring.dimensions.map((dimension, index) => {
+    const reasonRef = item.reasonRefs?.[index]
+    const evidenceRef = item.evidenceRefs?.[index]
+    const reason = record.reasonLegend?.[reasonRef]
+    return [dimension.id, {
+      score: item.dimensionScores[index],
+      reason: reason || '',
+      evidence: evidenceRef ? [evidenceRef] : []
+    }]
+  }))
+}
+
 const validateRubric = () => {
   const dimensions = rubric.scoring?.dimensions || []
   if (dimensions.reduce((sum, item) => sum + item.maxScore, 0) !== 100) fail('Rubric dimension maximums must sum to 100.')
@@ -77,13 +92,15 @@ const validateFormal = (record, path) => {
   for (const item of record.items || []) {
     if (seen.has(item.path)) fail(`${path}: duplicate path ${item.path}.`)
     seen.add(item.path)
+    if (!item.path?.startsWith('/')) fail(`${path}: item path must be canonical.`)
     if (!/^[a-f0-9]{64}$/.test(item.contentHash || '')) fail(`${path}: ${item.path} requires a SHA-256 contentHash.`)
-    const scores = rubric.scoring.dimensions.map(dimension => item.dimensions?.[dimension.id]?.score)
+    const dimensions = normalizedDimensions(record, item)
+    const scores = rubric.scoring.dimensions.map(dimension => dimensions?.[dimension.id]?.score)
     rubric.scoring.dimensions.forEach((dimension, index) => {
       const score = scores[index]
       if (!Number.isInteger(score) || score < 0 || score > dimension.maxScore) fail(`${path}: invalid ${dimension.id} score for ${item.path}.`)
-      if (!item.dimensions?.[dimension.id]?.reason) fail(`${path}: ${item.path} requires a ${dimension.id} reason.`)
-      if (!item.dimensions?.[dimension.id]?.evidence?.length) fail(`${path}: ${item.path} requires ${dimension.id} evidence pointers.`)
+      if (!dimensions?.[dimension.id]?.reason) fail(`${path}: ${item.path} requires a ${dimension.id} reason.`)
+      if (!dimensions?.[dimension.id]?.evidence?.length) fail(`${path}: ${item.path} requires ${dimension.id} evidence pointers.`)
     })
     const total = scores.reduce((sum, score) => sum + (Number.isInteger(score) ? score : 0), 0)
     if (item.score !== total) fail(`${path}: ${item.path} total must equal the four dimension scores.`)
@@ -120,7 +137,9 @@ const selected = formal || baseline
 
 const items = (selected?.record.items || []).map(item => {
   const level = levelFor(item.score)
-  const dimensions = item.dimensions || (selected?.record.schema === 'observation-scorecard-manual-baseline/v1' ? backfillDimensions(item.score) : null)
+  const dimensions = selected?.record.schema === 'observation-scorecard-manual-baseline/v1'
+    ? (item.dimensions || backfillDimensions(item.score))
+    : normalizedDimensions(selected.record, item)
   return {
     path: item.path,
     score: item.score,
@@ -128,7 +147,7 @@ const items = (selected?.record.items || []).map(item => {
     publicLabel_en: level?.publicLabel_en || '',
     editorialNote: item.editorialNote || null,
     dimensions,
-    scoringMode: item.scoringMode || (item.dimensions ? selected.record.mode : 'legacy-weighted-backfill')
+    scoringMode: item.scoringMode || (selected?.record.schema === 'observation-scorecard-manual-baseline/v1' ? 'legacy-weighted-backfill' : selected.record.mode)
   }
 })
 
