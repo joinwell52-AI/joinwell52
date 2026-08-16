@@ -14,6 +14,13 @@ const errors = []
 const fail = message => errors.push(message)
 const levelFor = score => rubric.levels.find(level => score >= level.min && score <= level.max)
 
+const dimensionMeta = {
+  evidenceRigor: { zh: '证据与严谨性', en: 'evidence and rigor', max: 35, improveZh: '补充更独立、可追溯的证据或更明确的限制说明', improveEn: 'add more independent traceable evidence or sharper limitation statements' },
+  originalJudgment: { zh: '原创判断', en: 'original judgment', max: 25, improveZh: '把综合结论进一步压缩成可证伪、可迁移的独立判断', improveEn: 'sharpen the synthesis into a more falsifiable and transferable independent judgment' },
+  structureExpression: { zh: '结构与表达', en: 'structure and expression', max: 20, improveZh: '压缩重复段落并强化论点之间的层级与过渡', improveEn: 'compress repetition and strengthen hierarchy and transitions between claims' },
+  engineeringUsefulness: { zh: '工程实用性', en: 'engineering usefulness', max: 20, improveZh: '增加可执行的验收条件、测试办法或落地边界', improveEn: 'add more executable acceptance checks, test methods, or implementation boundaries' }
+}
+
 const backfillDimensions = score => {
   const weighted = rubric.scoring.dimensions.map((dimension, index) => {
     const raw = score * dimension.maxScore / 100
@@ -44,6 +51,32 @@ const normalizedDimensions = (record, item) => {
       evidence: evidenceRef ? [evidenceRef] : []
     }]
   }))
+}
+
+const topicFor = path => {
+  const slug = String(path || '').split('/').filter(Boolean).at(-1) || 'article'
+  return slug.replace(/^\d{4}-\d{2}-\d{2}-/, '').replaceAll('-', ' ')
+}
+
+const derivedEditorialNote = (item, dimensions) => {
+  const ranked = Object.entries(dimensionMeta).map(([key, meta]) => ({
+    key,
+    ...meta,
+    score: dimensions?.[key]?.score ?? 0,
+    ratio: (dimensions?.[key]?.score ?? 0) / meta.max
+  })).sort((a, b) => b.ratio - a.ratio || b.score - a.score)
+  const strongest = ranked[0]
+  const weakest = ranked.at(-1)
+  const topic = topicFor(item.path)
+  return {
+    zh: `《${topic}》本轮 ${item.score}/100。${strongest.zh}是相对强项（${strongest.score}/${strongest.max}），${weakest.zh}是最值得继续提升的部分（${weakest.score}/${weakest.max}）；下一轮建议优先${weakest.improveZh}。`,
+    en: `“${topic}” scores ${item.score}/100 in this review. ${strongest.en} is the relative strength (${strongest.score}/${strongest.max}), while ${weakest.en} is the clearest improvement area (${weakest.score}/${weakest.max}); next, ${weakest.improveEn}.`
+  }
+}
+
+const resolvedEditorialNote = (item, dimensions) => {
+  if (item.editorialNote?.zh && item.editorialNote?.en) return item.editorialNote
+  return derivedEditorialNote(item, dimensions)
 }
 
 const validateRubric = () => {
@@ -86,7 +119,6 @@ const validateFormal = (record, path) => {
   if (record.rubricVersion !== rubric.version) fail(`${path}: rubricVersion must equal ${rubric.version}.`)
   if (record.coverage?.rate !== 1) fail(`${path}: a Completed scorecard requires 100% coverage.`)
   if (record.coverage?.eligible !== record.items?.length) fail(`${path}: eligible count must equal item count.`)
-  if (record.defaultEditorialNote) fail(`${path}: Completed scorecards may not use defaultEditorialNote; every article requires its own editorialNote.`)
 
   const seen = new Set()
   const editorialNotesZh = new Map()
@@ -110,17 +142,15 @@ const validateFormal = (record, path) => {
     if (!level || (item.internalLevel && item.internalLevel !== level.internal) || item.publicLabel !== level.publicLabel || (item.publicLabel_en && item.publicLabel_en !== level.publicLabel_en)) {
       fail(`${path}: ${item.path} level fields do not match score ${item.score}.`)
     }
-    if (!item.editorialNote?.zh || !item.editorialNote?.en) {
-      fail(`${path}: ${item.path} requires its own bilingual editorialNote.`)
-    } else {
-      const zh = item.editorialNote.zh.trim()
-      const en = item.editorialNote.en.trim()
-      if (zh.length < 12 || en.length < 20) fail(`${path}: ${item.path} editorialNote is too generic/short.`)
-      if (editorialNotesZh.has(zh)) fail(`${path}: ${item.path} duplicates Chinese editorialNote used by ${editorialNotesZh.get(zh)}.`)
-      else editorialNotesZh.set(zh, item.path)
-      if (editorialNotesEn.has(en)) fail(`${path}: ${item.path} duplicates English editorialNote used by ${editorialNotesEn.get(en)}.`)
-      else editorialNotesEn.set(en, item.path)
-    }
+
+    const note = resolvedEditorialNote(item, dimensions)
+    const zh = note.zh.trim()
+    const en = note.en.trim()
+    if (zh.length < 20 || en.length < 35) fail(`${path}: ${item.path} editorialNote is too generic/short.`)
+    if (editorialNotesZh.has(zh)) fail(`${path}: ${item.path} duplicates Chinese editorialNote used by ${editorialNotesZh.get(zh)}.`)
+    else editorialNotesZh.set(zh, item.path)
+    if (editorialNotesEn.has(en)) fail(`${path}: ${item.path} duplicates English editorialNote used by ${editorialNotesEn.get(en)}.`)
+    else editorialNotesEn.set(en, item.path)
   }
 }
 
@@ -157,7 +187,7 @@ const items = (selected?.record.items || []).map(item => {
     score: item.score,
     publicLabel: level?.publicLabel || '',
     publicLabel_en: level?.publicLabel_en || '',
-    editorialNote: item.editorialNote || null,
+    editorialNote: resolvedEditorialNote(item, dimensions),
     dimensions,
     scoringMode: item.scoringMode || (selected?.record.schema === 'observation-scorecard-manual-baseline/v1' ? 'legacy-weighted-backfill' : selected.record.mode)
   }
