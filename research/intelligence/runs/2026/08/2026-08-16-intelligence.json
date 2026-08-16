@@ -3,64 +3,64 @@
   "version": "1.0",
   "date": "2026-08-16",
   "timezone": "Asia/Shanghai",
-  "status": "Waiting",
+  "status": "Completed",
   "registryVersion": "1.0",
-  "sourceTask": "Research Runtime Queue",
-  "updatedAt": "",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-08-16T09:08:06+08:00",
   "githubCommit": "pending",
-  "reason": "Research Runtime Queue has not completed the three intelligence pipelines.",
-  "reason_zh": "研究运行队列尚未完成三条情报发现管线。",
+  "reason": "Discovery completed all three configured intelligence pipelines for the run date, resolved every due P0 source, and retained 13 normalized same-day GitHub engineering signals. Topic selection remains exclusively owned by Queue, so all three column decisions remain Waiting.",
+  "reason_zh": "Discovery 已完成运行日三条配置情报管线，解析全部到期 P0 来源，并保留 13 个规范化的同日 GitHub 工程信号。选题仍完全由 Queue 负责，因此三个栏目决定均保持 Waiting。",
   "pipelines": [
     {
       "id": "ai-platform",
       "label": "AI Platform Change Intelligence",
-      "label_zh": "AI 平台变更情报发现",
-      "status": "Waiting",
+      "label_zh": "AI 平台变化情报",
+      "status": "Completed",
       "due": 45,
-      "checked": 0,
+      "checked": 45,
       "inaccessible": [],
       "failed": [],
       "signals": 0,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All 45 configured public P0 platform channels were checked against current authoritative release, documentation, repository, status and public-forum surfaces. No material 2026-08-16 platform mechanism change survived normalization and same-day filtering.",
+      "reason_zh": "已检查全部 45 个配置的公开 P0 平台渠道，并以当前权威发布、文档、仓库、状态页及公开论坛页面为准核验。经机制规范化与同日过滤后，没有保留 2026-08-16 的重要平台机制变化。"
     },
     {
       "id": "github-engineering",
       "label": "GitHub Engineering Intelligence",
-      "label_zh": "GitHub 工程情报发现",
-      "status": "Waiting",
+      "label_zh": "GitHub 工程情报",
+      "status": "Completed",
       "due": 9,
-      "checked": 0,
+      "checked": 9,
       "inaccessible": [],
       "failed": [],
-      "signals": 0,
+      "signals": 13,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All nine P0 daily repositories were checked from the run-date boundary. Material same-day maintainer changes in openai/codex, openai/openai-agents-python and google/adk-python were normalized into 13 unselected signals; related changes on the same mechanism were deduplicated.",
+      "reason_zh": "已从运行日边界检查全部 9 个 P0 每日仓库。openai/codex、openai/openai-agents-python 与 google/adk-python 的同日重要维护者变更经机制规范化后形成 13 个未选题信号；同一机制的相关变更已合并去重。"
     },
     {
       "id": "published-research",
       "label": "Published Research Intelligence",
-      "label_zh": "论文与研究成果情报发现",
-      "status": "Waiting",
+      "label_zh": "已发表研究情报",
+      "status": "Completed",
       "due": 9,
-      "checked": 0,
+      "checked": 9,
       "inaccessible": [],
       "failed": [],
       "signals": 0,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All nine configured P0 research sources were checked against current primary or publisher surfaces. No material research object first published on 2026-08-16 met the configured evidence and topic rules.",
+      "reason_zh": "已对照当前一手来源或出版方页面检查全部 9 个配置的 P0 研究来源。没有发现首次发表于 2026-08-16 且同时符合配置证据与主题规则的重要研究对象。"
     }
   ],
   "columns": [
@@ -69,40 +69,269 @@
       "label": "Digital Employee",
       "label_zh": "数字员工",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 5,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded five primary-column signals; Queue must independently score and decide selection.",
+      "reason_zh": "Discovery 记录 5 个以该栏目为主栏目的信号；后续必须由 Queue 独立评分并决定是否选题。"
     },
     {
       "id": "industry-architecture",
       "label": "Industry Architecture",
       "label_zh": "行业架构",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 2,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded two primary-column signals; Queue must independently score and decide selection.",
+      "reason_zh": "Discovery 记录 2 个以该栏目为主栏目的信号；后续必须由 Queue 独立评分并决定是否选题。"
     },
     {
       "id": "open-source-engineering",
       "label": "Open-source Engineering",
       "label_zh": "开源工程",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 6,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded six primary-column signals; Queue must independently score and decide selection.",
+      "reason_zh": "Discovery 记录 6 个以该栏目为主栏目的信号；后续必须由 Queue 独立评分并决定是否选题。"
     }
   ],
-  "signals": []
+  "signals": [
+    {
+      "id": "SIG-20260816-001",
+      "pipeline": "github-engineering",
+      "title": "Codex can stage host metadata before a reserved thread is materialized",
+      "title_zh": "Codex 可在线程实例化前为预留线程暂存宿主元数据",
+      "sourceUrl": "https://github.com/openai/codex/commit/fcdae21073bac8613b3418047fc3e2a3e15cb6f0",
+      "publishedAt": "2026-08-16",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "digital-employee",
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:reserved-thread-id-metadata-staging",
+      "summary": "Codex adds reserved thread identities and lets the thread store stage host-owned metadata before Core starts the thread, merging that metadata on the first successful materialization and cleaning it up if the thread never materializes.",
+      "summary_zh": "Codex 增加预留线程身份，并允许线程存储在线程由 Core 启动前暂存宿主拥有的元数据；首次成功实例化时合并这些元数据，若线程未实例化则清理暂存状态。"
+    },
+    {
+      "id": "SIG-20260816-002",
+      "pipeline": "github-engineering",
+      "title": "Codex keeps active-turn model and approval settings stable until the next turn",
+      "title_zh": "Codex 将活动轮次的模型与审批设置冻结到下一轮再更新",
+      "sourceUrl": "https://github.com/openai/codex/commit/00f6a8a60e5c5e93d185c7fe67fd596b7e62240f",
+      "publishedAt": "2026-08-16",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "industry-architecture",
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:step-scoped-model-approval-settings",
+      "summary": "Codex snapshots model, reasoning, service-tier, approval and model-attributed telemetry settings into step context so a thread update cannot change execution semantics partway through an active turn; updates take effect on the next turn.",
+      "summary_zh": "Codex 将模型、推理、服务层级、审批以及模型归属遥测设置快照到 Step Context，避免线程设置更新在活动轮次中途改变执行语义；新设置从下一轮开始生效。"
+    },
+    {
+      "id": "SIG-20260816-003",
+      "pipeline": "github-engineering",
+      "title": "Codex separates executor policy audit telemetry from persistent state logs",
+      "title_zh": "Codex 将执行器策略审计遥测与持久状态日志分离",
+      "sourceUrl": "https://github.com/openai/codex/commit/899d1715c87a504ce4c9ec85c2fd7753e33a7be4",
+      "publishedAt": "2026-08-16",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering",
+        "industry-architecture"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:executor-policy-log-only-audit-telemetry",
+      "summary": "Forwarded network-policy decisions now use a log-only OpenTelemetry target, preserving exportable audit evidence while keeping those events out of the persistent runtime state log.",
+      "summary_zh": "转发的网络策略决定现在进入仅日志的 OpenTelemetry 目标，在保留可导出的审计证据同时，不再把这类事件写入持久运行状态日志。"
+    },
+    {
+      "id": "SIG-20260816-004",
+      "pipeline": "github-engineering",
+      "title": "OpenAI Agents SDK isolates sandbox working directories per run",
+      "title_zh": "OpenAI Agents SDK 按运行隔离沙箱工作目录",
+      "sourceUrl": "https://github.com/openai/openai-agents-python/commit/cb8a2e7e7dd83a427cff9076e58356d00c4f90b2",
+      "publishedAt": "2026-08-16",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering",
+        "industry-architecture"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/openai-agents-python:run-scoped-sandbox-working-directories",
+      "summary": "The Agents SDK adds run-scoped sandbox working directories, tightening filesystem isolation between independent agent runs rather than relying on one shared sandbox working location.",
+      "summary_zh": "Agents SDK 增加按运行范围划分的沙箱工作目录，加强不同 Agent 运行之间的文件系统隔离，而不是依赖同一个共享沙箱工作位置。"
+    },
+    {
+      "id": "SIG-20260816-005",
+      "pipeline": "github-engineering",
+      "title": "OpenAI Agents SDK preserves exact tool-call approval decisions",
+      "title_zh": "OpenAI Agents SDK 精确保留工具调用审批决定",
+      "sourceUrl": "https://github.com/openai/openai-agents-python/commit/dde0bc99fd4e5a4e28f36be479c4b864249bc503",
+      "publishedAt": "2026-08-16",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering",
+        "industry-architecture"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/openai-agents-python:exact-call-approval-decisions",
+      "summary": "The Agents SDK fixes approval handling so the exact decision attached to a tool call is honored, strengthening the link between human or policy authorization and the concrete action that is executed.",
+      "summary_zh": "Agents SDK 修复审批处理，使绑定到具体工具调用的精确审批决定得到遵守，加强人工或策略授权与实际执行动作之间的对应关系。"
+    },
+    {
+      "id": "SIG-20260816-006",
+      "pipeline": "github-engineering",
+      "title": "Google ADK bounds in-memory retrieval to the ten most relevant events",
+      "title_zh": "Google ADK 将内存检索限制为相关性最高的十个事件",
+      "sourceUrl": "https://github.com/google/adk-python/commit/f3fae72e6a52f33c4fca4a7b90d37270c64990be",
+      "publishedAt": "2026-08-16",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "industry-architecture",
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "google/adk-python:ranked-bounded-inmemory-memory-search",
+      "summary": "ADK now ranks in-memory search results by distinct query-word overlap and returns only the ten best events, preventing broad low-relevance retrieval from flooding each model call through preload_memory.",
+      "summary_zh": "ADK 现在按不同查询词的匹配数量排序内存检索结果，并只返回最佳十个事件，避免低相关的大量历史内容通过 preload_memory 灌入每次模型调用。"
+    },
+    {
+      "id": "SIG-20260816-007",
+      "pipeline": "github-engineering",
+      "title": "OpenAI Agents SDK closes all MultiProvider children after failures",
+      "title_zh": "OpenAI Agents SDK 在失败后关闭全部 MultiProvider 子提供者",
+      "sourceUrl": "https://github.com/openai/openai-agents-python/commit/7ab35c35167f7c2bb90b3230e183c57d5d5155b1",
+      "publishedAt": "2026-08-16",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "digital-employee",
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/openai-agents-python:multiprovider-failure-cleanup",
+      "summary": "The Agents SDK changes MultiProvider failure cleanup so all child providers are closed after failures, reducing leaked lifecycle state and improving failure containment across provider fan-out.",
+      "summary_zh": "Agents SDK 调整 MultiProvider 的失败清理逻辑，在失败后关闭全部子 Provider，减少生命周期状态泄漏，并改善 Provider 扇出场景的故障隔离。"
+    },
+    {
+      "id": "SIG-20260816-008",
+      "pipeline": "github-engineering",
+      "title": "Codex TypeScript SDK adds ordered raw configuration overrides",
+      "title_zh": "Codex TypeScript SDK 增加有序原始配置覆盖",
+      "sourceUrl": "https://github.com/openai/codex/commit/5ba12929f8870400695292eb805af440c25ec5ae",
+      "publishedAt": "2026-08-16",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:typescript-sdk-raw-config-overrides",
+      "summary": "The TypeScript SDK can now pass ordered raw CLI configuration overrides for TOML structures such as permission maps with literal path keys, while retaining explicit precedence with SDK-managed and thread-specific settings.",
+      "summary_zh": "TypeScript SDK 现在可以为包含字面路径键的权限映射等 TOML 结构传递有序的原始 CLI 配置覆盖，同时保持与 SDK 管理设置和线程级设置之间的明确优先级。"
+    },
+    {
+      "id": "SIG-20260816-009",
+      "pipeline": "github-engineering",
+      "title": "Codex adds a protocol-safe health endpoint to its code-mode gRPC listener",
+      "title_zh": "Codex 为 code-mode gRPC 监听器增加协议安全的健康检查端点",
+      "sourceUrl": "https://github.com/openai/codex/commit/b3cc21737803549679e2009193c04205f7d8d19c",
+      "publishedAt": "2026-08-16",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:grpc-healthz-http-endpoint",
+      "summary": "The code-mode listener now serves GET /healthz over HTTP/1.1 and HTTP/2 while continuing to require HTTP/2 for all other requests, adding operational health probing without exposing gRPC methods through HTTP/1.1.",
+      "summary_zh": "code-mode 监听器现在可通过 HTTP/1.1 和 HTTP/2 提供 GET /healthz，同时其他请求仍强制使用 HTTP/2，从而增加运维健康探测但不把 gRPC 方法暴露给 HTTP/1.1。"
+    },
+    {
+      "id": "SIG-20260816-010",
+      "pipeline": "github-engineering",
+      "title": "Codex doctor adds workspace storage and Windows Dev Drive diagnostics",
+      "title_zh": "Codex doctor 增加工作区存储与 Windows Dev Drive 诊断",
+      "sourceUrl": "https://github.com/openai/codex/commit/6efcdad4c3c167741ac3791766152c15b03e3653",
+      "publishedAt": "2026-08-16",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:doctor-storage-dev-drive-diagnostics",
+      "summary": "codex doctor now checks free space for CODEX_HOME and the active worktree, applies warning/failure thresholds, and on Windows reports whether the active worktree is on a trusted Dev Drive with remediation guidance.",
+      "summary_zh": "codex doctor 现在检查 CODEX_HOME 与活动工作树的可用空间并应用警告/失败阈值；在 Windows 上还会报告工作树是否位于受信任的 Dev Drive，并给出修复提示。"
+    },
+    {
+      "id": "SIG-20260816-011",
+      "pipeline": "github-engineering",
+      "title": "OpenAI Agents SDK normalizes apply_patch paths to POSIX form",
+      "title_zh": "OpenAI Agents SDK 将 apply_patch 路径规范化为 POSIX 形式",
+      "sourceUrl": "https://github.com/openai/openai-agents-python/commit/05c789fe4d6f8196b13137983f4ec25c684e1d4b",
+      "publishedAt": "2026-08-16",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/openai-agents-python:apply-patch-posix-path-normalization",
+      "summary": "The Agents SDK normalizes apply_patch paths to POSIX form inside the sandbox path model, reducing cross-platform path ambiguity in agent-generated patches.",
+      "summary_zh": "Agents SDK 在沙箱路径模型中将 apply_patch 路径规范化为 POSIX 形式，降低 Agent 生成补丁时的跨平台路径歧义。"
+    },
+    {
+      "id": "SIG-20260816-012",
+      "pipeline": "github-engineering",
+      "title": "OpenAI Agents SDK improves reasoning replay for Chat Completions",
+      "title_zh": "OpenAI Agents SDK 改进 Chat Completions 的推理重放",
+      "sourceUrl": "https://github.com/openai/openai-agents-python/commit/60482a3d6b61a7399ae82d95f7cbced4f8af4ff9",
+      "publishedAt": "2026-08-16",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/openai-agents-python:chat-completions-reasoning-replay",
+      "summary": "The Agents SDK fixes reasoning replay behavior on the Chat Completions path, improving continuity when prior reasoning-associated state must be reconstructed across calls.",
+      "summary_zh": "Agents SDK 修复 Chat Completions 路径上的推理重放行为，提高在跨调用重建先前推理相关状态时的连续性。"
+    },
+    {
+      "id": "SIG-20260816-013",
+      "pipeline": "github-engineering",
+      "title": "OpenAI Agents SDK includes compaction usage in run-level accounting",
+      "title_zh": "OpenAI Agents SDK 将压缩用量计入运行级统计",
+      "sourceUrl": "https://github.com/openai/openai-agents-python/commit/583fede12e8a0b29a9900c27755f781d9038d067",
+      "publishedAt": "2026-08-16",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/openai-agents-python:compaction-usage-run-accounting",
+      "summary": "Session compaction usage is now included in run-level usage totals, making runtime cost and token accounting more complete for long-running agent sessions that compact context.",
+      "summary_zh": "会话压缩产生的用量现在计入运行级用量总计，使需要压缩上下文的长时 Agent 会话在成本与 Token 统计上更加完整。"
+    }
+  ]
 }
