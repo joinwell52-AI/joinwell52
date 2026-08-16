@@ -1,6 +1,6 @@
 {
   "schema": "cover-upgrade-article-job/v1",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "scope": "exactly-one-article",
   "freshInvocationRequired": true,
   "imageGenerationOwner": "article-job-only",
@@ -44,12 +44,19 @@
     "articleSpecific": true,
     "thumbnailSuitable": true,
     "materiallyBetterThanCurrentCover": true,
-    "realRasterRequired": true
+    "realRasterRequired": true,
+    "originalGeneratedFileRequired": true,
+    "previewOrThumbnailForbidden": true,
+    "minimumWidth": 1536,
+    "minimumHeight": 864,
+    "targetAspectRatio": "16:9",
+    "aspectRatioTolerance": 0.02
   },
   "persistence": {
     "contract": "research/runtime/COVER-UPGRADE-V1.md",
     "target": "exact canonical coverPath only, plus exact already-released public cover path when the contract requires it",
-    "verifyLatestMainBytesAndGitBlobSha": true
+    "verifyLatestMainBytesAndGitBlobSha": true,
+    "verifyDecodedDimensionsAfterPersistence": true
   },
   "failure": {
     "preserveCurrentCover": true,
