@@ -1,7 +1,7 @@
 {
   "schema": "research-editorial-architecture/v2",
-  "version": "2.0",
-  "effectiveDate": "2026-08-12",
+  "version": "2.1",
+  "effectiveDate": "2026-08-16",
   "extensionPolicy": "New article types and modules may be registered without changing the publication lifecycle or forcing existing articles to migrate.",
   "principles": [
     "research-question-first",
@@ -10,131 +10,40 @@
     "evidence-identity-before-claim-strength",
     "publication-does-not-imply-validation",
     "people-first-original-value",
-    "research-center-and-community-editions-are-distinct"
+    "research-center-and-community-editions-are-distinct",
+    "editorial-planning-before-writing",
+    "single-core-proposition",
+    "argument-driven-writing",
+    "visuals-as-argument",
+    "reader-value-before-publication-volume"
   ],
   "articleTypes": {
-    "research-brief": {
-      "name": "Research Brief",
-      "name_zh": "研究简报",
-      "purpose": "Synthesize a material recent research, product or industry change.",
-      "defaultProjectRole": "none",
-      "suggestedModules": ["research-question", "what-changed", "evidence", "key-findings", "what-remains-unclear"]
-    },
-    "technical-analysis": {
-      "name": "Technical Analysis",
-      "name_zh": "技术分析",
-      "purpose": "Explain a technical mechanism, problem or architectural change in depth.",
-      "defaultProjectRole": "none",
-      "suggestedModules": ["research-question", "context", "technical-analysis", "architecture-implications", "limitations"]
-    },
-    "engineering-insight": {
-      "name": "Engineering Insight",
-      "name_zh": "工程洞察",
-      "purpose": "Derive general engineering consequences from technical evidence.",
-      "defaultProjectRole": "none",
-      "suggestedModules": ["research-question", "evidence", "engineering-implications", "operational-implications", "open-questions"]
-    },
-    "comparative-study": {
-      "name": "Comparative Study",
-      "name_zh": "比较研究",
-      "purpose": "Compare frameworks, protocols, architectures or methods on explicit dimensions.",
-      "defaultProjectRole": "comparison-object-only",
-      "suggestedModules": ["research-question", "comparison", "counterarguments", "limitations", "key-findings"]
-    },
-    "experiment-report": {
-      "name": "Experiment Report",
-      "name_zh": "实验报告",
-      "purpose": "Report method, environment, evidence, results, failures and boundaries.",
-      "defaultProjectRole": "depends-on-experiment-object",
-      "suggestedModules": ["research-question", "experiment", "evidence", "limitations", "open-questions"]
-    },
-    "case-study": {
-      "name": "Case Study",
-      "name_zh": "案例研究",
-      "purpose": "Analyze a real engineering case and its bounded lessons.",
-      "defaultProjectRole": "depends-on-case",
-      "suggestedModules": ["context", "evidence", "technical-analysis", "engineering-implications", "limitations"]
-    },
-    "research-note": {
-      "name": "Research Note",
-      "name_zh": "研究札记",
-      "purpose": "Record a useful but not yet mature judgment and its open verification needs.",
-      "defaultProjectRole": "none",
-      "suggestedModules": ["research-question", "our-interpretation", "counterarguments", "open-questions"]
-    },
-    "project-research": {
-      "name": "Project Research",
-      "name_zh": "项目研究",
-      "purpose": "Study TMPA, FCoP, CodeFlowMu or another declared first-party research system directly.",
-      "defaultProjectRole": "research-object",
-      "suggestedModules": ["research-question", "evidence", "experiment", "limitations", "what-remains-unclear"]
-    },
-    "perspective": {
-      "name": "Perspective",
-      "name_zh": "观点与范式文章",
-      "purpose": "Propose a concept, judgment or future direction while preserving its evidentiary boundary.",
-      "defaultProjectRole": "none",
-      "suggestedModules": ["research-question", "context", "our-interpretation", "counterarguments", "open-questions"]
-    }
+    "research-brief": {"name":"Research Brief","name_zh":"研究简报","purpose":"Synthesize a material recent research, product or industry change.","defaultProjectRole":"none","suggestedModules":["research-question","what-changed","evidence","key-findings","what-remains-unclear"]},
+    "technical-analysis": {"name":"Technical Analysis","name_zh":"技术分析","purpose":"Explain a technical mechanism, problem or architectural change in depth.","defaultProjectRole":"none","suggestedModules":["research-question","context","technical-analysis","architecture-implications","limitations"]},
+    "engineering-insight": {"name":"Engineering Insight","name_zh":"工程洞察","purpose":"Derive general engineering consequences from technical evidence.","defaultProjectRole":"none","suggestedModules":["research-question","evidence","engineering-implications","operational-implications","open-questions"]},
+    "comparative-study": {"name":"Comparative Study","name_zh":"比较研究","purpose":"Compare frameworks, protocols, architectures or methods on explicit dimensions.","defaultProjectRole":"comparison-object-only","suggestedModules":["research-question","comparison","counterarguments","limitations","key-findings"]},
+    "experiment-report": {"name":"Experiment Report","name_zh":"实验报告","purpose":"Report method, environment, evidence, results, failures and boundaries.","defaultProjectRole":"depends-on-experiment-object","suggestedModules":["research-question","experiment","evidence","limitations","open-questions"]},
+    "case-study": {"name":"Case Study","name_zh":"案例研究","purpose":"Analyze a real engineering case and its bounded lessons.","defaultProjectRole":"depends-on-case","suggestedModules":["context","evidence","technical-analysis","engineering-implications","limitations"]},
+    "research-note": {"name":"Research Note","name_zh":"研究札记","purpose":"Record a useful but not yet mature judgment and its open verification needs.","defaultProjectRole":"none","suggestedModules":["research-question","our-interpretation","counterarguments","open-questions"]},
+    "project-research": {"name":"Project Research","name_zh":"项目研究","purpose":"Study TMPA, FCoP, CodeFlowMu or another declared first-party research system directly.","defaultProjectRole":"research-object","suggestedModules":["research-question","evidence","experiment","limitations","what-remains-unclear"]},
+    "perspective": {"name":"Perspective","name_zh":"观点与范式文章","purpose":"Propose a concept, judgment or future direction while preserving its evidentiary boundary.","defaultProjectRole":"none","suggestedModules":["research-question","context","our-interpretation","counterarguments","open-questions"]}
   },
   "modules": {
-    "research-question": "Research Question",
-    "context": "Context",
-    "what-changed": "What Changed",
-    "evidence": "Evidence",
-    "key-findings": "Key Findings",
-    "technical-analysis": "Technical Analysis",
-    "architecture-implications": "Architecture Implications",
-    "engineering-implications": "Engineering Implications",
-    "operational-implications": "Operational Implications",
-    "governance-implications": "Governance Implications",
-    "research-implications": "Research Implications",
-    "comparison": "Comparison",
-    "experiment": "Experiment",
-    "limitations": "Limitations",
-    "counterarguments": "Counterarguments",
-    "what-remains-unclear": "What Remains Unclear",
-    "open-questions": "Open Questions",
-    "our-interpretation": "Our Interpretation",
-    "current-work-implications": "Implications for Current Work",
-    "conclusion": "Conclusion"
+    "research-question":"Research Question","context":"Context","what-changed":"What Changed","evidence":"Evidence","key-findings":"Key Findings","technical-analysis":"Technical Analysis","architecture-implications":"Architecture Implications","engineering-implications":"Engineering Implications","operational-implications":"Operational Implications","governance-implications":"Governance Implications","research-implications":"Research Implications","comparison":"Comparison","experiment":"Experiment","limitations":"Limitations","counterarguments":"Counterarguments","what-remains-unclear":"What Remains Unclear","open-questions":"Open Questions","our-interpretation":"Our Interpretation","current-work-implications":"Implications for Current Work","conclusion":"Conclusion"
   },
   "evidenceIdentities": {
-    "public-fact": ["fact", "states", "reports"],
-    "source-reported-claim": ["claims", "reports"],
-    "our-observation": ["observed", "suggests", "consistent-with"],
-    "our-interpretation": ["suggests", "supports", "consistent-with"],
-    "internal-experimental-evidence": ["observed", "suggests", "supports", "consistent-with"],
-    "independent-evidence": ["observed", "reports", "supports", "consistent-with"],
-    "hypothesis": ["hypothesis"],
-    "open-question": ["open-question"]
+    "public-fact":["fact","states","reports"],"source-reported-claim":["claims","reports"],"our-observation":["observed","suggests","consistent-with"],"our-interpretation":["suggests","supports","consistent-with"],"internal-experimental-evidence":["observed","suggests","supports","consistent-with"],"independent-evidence":["observed","reports","supports","consistent-with"],"hypothesis":["hypothesis"],"open-question":["open-question"]
   },
-  "projectRelevanceStatuses": [
-    "none",
-    "research-object",
-    "case-evidence",
-    "substantive-relationship"
-  ],
-  "requiredGates": [
-    "researchValue",
-    "independence",
-    "evidence",
-    "structure",
-    "language",
-    "bilingualConsistency"
-  ],
+  "projectRelevanceStatuses":["none","research-object","case-evidence","substantive-relationship"],
+  "requiredGates":["researchValue","independence","evidence","structure","language","bilingualConsistency"],
+  "v21RequiredGates":["editorialValue","researchValue","independence","evidence","structure","narrative","language","bilingualConsistency","visualArgument"],
   "editions": {
-    "research-center": {
-      "purpose": "Preserve the complete source-backed research, evidence, uncertainty and analysis."
-    },
-    "community": {
-      "purpose": "Reframe one community-relevant question rather than copying, summarizing or advertising the Research Center article.",
-      "requiredDifference": ["title", "angle", "structure", "discussion-question"]
-    }
+    "research-center":{"purpose":"Preserve the complete source-backed research, evidence, uncertainty and analysis."},
+    "community":{"purpose":"Reframe one community-relevant question rather than copying, summarizing or advertising the Research Center article.","requiredDifference":["title","angle","structure","discussion-question"]}
   },
   "weeklyResearch": {
-    "requiredReasoning": ["important-changes", "connections", "evidence-and-controversies", "judgments", "open-questions"],
-    "optionalReasoning": ["current-work-implications"],
-    "forbiddenDefault": "A mandatory TMPA/FCoP/CodeFlowMu impact section"
+    "requiredReasoning":["important-changes","connections","evidence-and-controversies","judgments","open-questions"],
+    "optionalReasoning":["current-work-implications"],
+    "forbiddenDefault":"A mandatory TMPA/FCoP/CodeFlowMu impact section"
   }
 }

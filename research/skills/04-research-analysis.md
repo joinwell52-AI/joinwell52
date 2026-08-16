@@ -1,8 +1,8 @@
-# Skill 04 — Research Analysis V2
+# Skill 04 — Research Analysis V2.1
 
 ## Purpose
 
-Transform verified reading evidence into a question-driven Research Object without presupposing an article outline or a first-party project conclusion.
+Transform verified reading evidence into a question-driven Research Object without presupposing a final article outline or a first-party project conclusion.
 
 ## Required reasoning
 
@@ -10,9 +10,15 @@ Transform verified reading evidence into a question-driven Research Object witho
 2. Separate public facts, source-reported claims, our observations, and our interpretations.
 3. Identify what the evidence supports, contradicts, and leaves unknown.
 4. Form a bounded research judgment.
-5. Identify the most suitable article type and only the content modules the judgment needs.
+5. Recommend the most suitable article type and only the content modules the judgment appears to need.
 6. Evaluate general implications for the affected systems and practices.
 7. Test first-party project relevance after the judgment exists.
+
+## Editorial boundary
+
+`article_type` and `selected_modules` are **research-side editorial recommendations**. They are not a final table of contents and do not authorize direct drafting.
+
+For Editorial Architecture 2.1, Production must independently qualify the Research Object through Article Brief, Editorial Value Gate, Argument Architecture and Figure Plan before formal writing. Production may reorganize presentation while preserving the Research Object's evidence identities, bounded judgment and unsupported boundaries.
 
 ## Evidence identities
 
