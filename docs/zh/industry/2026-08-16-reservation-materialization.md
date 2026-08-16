@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260816-02-reservation-materialization-ownership.md
 item_id: "Q-20260816-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-16-reservation-materialization-cover.svg"
+cover: "/assets/covers/daily-2026-08-16-reservation-materialization-cover.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-16-reservation-materialization-cover.svg"
+  image="/assets/covers/daily-2026-08-16-reservation-materialization-cover.png"
   kicker="行业架构 · 每日研究"
   title="预留身份不等于对象已经物化"
   summary="Pre-materialization Orchestration 更清晰的做法，是把 Reserved Identity、Pending Host Intent、Authoritative Materialization 与 Cleanup 建模为显式生命周期阶段。Reservation 提供稳定 Correlation Key，但它不是执行对象已经存在的证据。"
