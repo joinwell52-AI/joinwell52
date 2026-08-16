@@ -60,6 +60,11 @@ if (duplicatePaths.length) {
   throw new Error(`Duplicate canonical observation paths: ${[...new Set(duplicatePaths)].join(', ')}`)
 }
 
+const missingZhPairs = files.filter(item => !item.pairedZhSourcePath).map(item => item.path)
+if (missingZhPairs.length) {
+  throw new Error(`Eligible observations require a paired Chinese source for English canonical identity: ${missingZhPairs.join(', ')}`)
+}
+
 const inventory = {
   schema: 'observation-scorecard-inventory/v1',
   hashAlgorithm: 'sha256',
