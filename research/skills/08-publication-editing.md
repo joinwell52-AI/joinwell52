@@ -1,8 +1,18 @@
-# Skill 08 — Publication Editing V2
+# Skill 08 — Publication Editing V2.1
 
 ## Purpose
 
-Apply the final editorial, evidence, independence, bilingual, visual, and edition gates before a research article is released.
+Apply the final editorial, evidence, independence, narrative, bilingual, visual, and edition gates before a research article is released.
+
+## Gate 0 — Editorial Value
+
+- An approved `article-brief/v1` exists for new V2.1 Production.
+- The target audience is specific enough to guide editorial choices.
+- A real reader problem and `whyNow` are stated.
+- The article has one evidence-bounded core proposition.
+- `originalValue` identifies analysis, synthesis, comparison, model, engineering judgment or case inference beyond source restatement.
+- `editorialDecision=PASS` before formal drafting.
+- Daily publication volume is never a reason for PASS.
 
 ## Gate A — Research Value
 
@@ -13,11 +23,12 @@ Apply the final editorial, evidence, independence, bilingual, visual, and editio
 
 ## Gate B — Independence
 
-For non-`project-research`, remove TMPA, FCoP, and CodeFlowMu names mentally and confirm that the core argument still stands.
+For non-`project-research`, remove TMPA, FCoP, CodeFlowMu and other first-party names mentally and confirm both:
 
-- `projectRelevance.status=none` requires no first-party project insertion.
-- Any project that appears is declared as research object, case evidence, or a substantive relationship produced by the findings.
-- Internal links and promotion are not valid relevance rationales.
+1. the core argument still stands;
+2. the article remains worth reading for its named target audience.
+
+Internal links and promotion are not valid relevance rationales.
 
 ## Gate C — Evidence
 
@@ -32,45 +43,77 @@ For non-`project-research`, remove TMPA, FCoP, and CodeFlowMu names mentally and
 - The selected article type fits the research purpose.
 - Every body module advances the answer; empty template sections are absent.
 - Module order follows the argument rather than the previous article.
+- `selected_modules` from Analysis are recommendations, not a mandatory final outline.
 - `Engineering Impact`, `Implications for Current Work`, and `Conclusion` are not forced.
-- Ending with Limitations, What Remains Unclear, or Open Questions is allowed.
 
-## Gate E — Language
+## Gate E — Narrative
+
+For V2.1 Production, an `argument-architecture/v1` must exist and the article must preserve its semantic reasoning progression.
+
+Check:
+
+### Core proposition
+
+The article is organized around the single approved proposition rather than several unrelated themes.
+
+### Progression
+
+Each major passage adds at least one of: fact, evidence, inference, comparison, boundary, counterpoint, consequence, or reader progress.
+
+### Opening
+
+The opening establishes an evidence-bearing Hook → Problem → Core Proposition rather than generic trend language or a table-of-contents announcement.
+
+### Redundancy
+
+Remove repeated summaries, empty transitions, forced three-part structures and paragraphs that only paraphrase earlier material.
+
+### Ending
+
+The ending performs logical work: bounded judgment, limitation, implication, unresolved disagreement or open question. A generic future-looking conclusion is not required.
+
+### External readability
+
+A qualified reader can understand the argument without prior knowledge of Research Center internals or first-party projects.
+
+## Gate F — Language
 
 - Title and lead are accurate rather than inflated.
 - Claim strength matches evidence identity.
 - Terms are necessary and consistent.
 - Chinese avoids unnecessary English mixing; necessary professional names remain consistent.
+- AI-like completeness is not a virtue: semantic repetition and empty prose are revised even when grammatically fluent.
 
 ## Bilingual Consistency Gate
 
-- Chinese and English preserve the same research question, evidence identities, claim strengths, uncertainty, and conclusion boundary.
-- Dynamic modules correspond semantically, while headings and prose are naturally edited in each language.
-- Neither language upgrades `suggests` to `proves`, internal evidence to independent evidence, or publication status to validation.
+Chinese and English preserve the same research question, core proposition, argument progression, evidence identities, claim strengths, uncertainty, figure order and conclusion boundary. Headings and prose may be naturally edited in each language.
+
+## Visual Argument Gate
+
+For V2.1 Production, an `article-figure-plan/v1` must exist.
+
+- Each Inline Figure binds to an existing argument node.
+- Each figure materially improves understanding of that node.
+- Zero Inline Figures remains valid where prose or tables already explain the argument sufficiently.
+- Deterministic diagrams are preferred for exact relationships; generated imagery is not a substitute for technical precision.
+- No invented quantitative data is used.
+- Cover and Inline Figure roles remain separate.
 
 ## Article Layout Gate
 
 The rendered candidate reads as a finished publication: page-level editorial cover, title and lead, dynamically structured body, contextual Inline Figures where useful, and a complete citation surface.
 
-`## Cover`, `## Figure`, `## Visualization`, `## 题图`, `## 文中图`, or `## 解释图` used merely as image containers is **NEEDS REVISION**.
-
-## Visual gates
-
-- A dedicated editorial Article Cover exists and remains meaningful near `320px` width.
-- Inline Figures are optional (`0..N`), separate from the cover, contextually placed, captioned, source-labeled, terminology-consistent, and readable.
-- No invented quantitative data is used.
-- Desktop, compact desktop/tablet, and mobile rendering pass visual QA.
+Fixed image-container headings such as `## Cover`, `## Figure`, `## Visualization`, `## 题图`, `## 文中图`, or `## 解释图` are NEEDS REVISION.
 
 ## Community Edition Gate
 
-When generated, Community Edition has a named target community, different title, selected discussion angle, different structure, bounded evidence subset, concrete engineering or architectural significance, and an open discussion question. It is not identical to the Research Center article, a generic summary, or an advertisement.
+When generated, Community Edition has a named target community, different title, selected discussion angle, different structure, bounded evidence subset, concrete engineering or architectural significance, and an open discussion question. It is not an identical copy, generic summary, or advertisement.
 
 ## Publishing
 
-- V2 editorial metadata and all six gates are machine-valid.
+- Candidate metadata and all applicable gates are machine-valid.
 - Article paths and edition paths are correct.
 - Website build, static layout validation, and editorial-contract validation succeed.
-- Changes enter Git history without manual count or chronological-list edits.
 - Historical and formally archived publications are not rewritten by this workflow.
 
 ## Release decision
@@ -86,4 +129,4 @@ REJECT
   weak value, insufficient evidence, fabricated material, unsupported conclusion, or promotional/template output
 ```
 
-No Git commit means no official delivery. A commit proves the release state and provenance, not the correctness of every claim.
+No Git commit means no official delivery. A commit proves release state and provenance, not the correctness of every claim.
