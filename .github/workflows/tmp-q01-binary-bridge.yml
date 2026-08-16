@@ -1,0 +1,57 @@
+name: Temporary Q01 Binary Bridge
+
+on:
+  push:
+    branches:
+      - tmp-q01-binary-bridge-20260816
+    paths:
+      - 'tmp/q01-bridge/READY'
+
+permissions:
+  contents: write
+
+jobs:
+  bridge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout bridge branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Decode and validate Q01 raster
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64, hashlib, struct
+          parts = sorted(Path('tmp/q01-bridge').glob('chunk-*.b64'))
+          if len(parts) != 9:
+              raise SystemExit(f'expected 9 chunks, got {len(parts)}')
+          encoded = ''.join(p.read_text(encoding='ascii') for p in parts)
+          data = base64.b64decode(encoded, validate=True)
+          if hashlib.sha256(data).hexdigest() != '558594829d0a6405a0ee053027083b7cdc54796f2f31c9b6997ef8b9d72ca69f':
+              raise SystemExit('sha256 mismatch')
+          if not data.startswith(b'\x89PNG\r\n\x1a\n'):
+              raise SystemExit('not PNG')
+          w, h = struct.unpack('>II', data[16:24])
+          if (w, h) != (1536, 864):
+              raise SystemExit(f'unexpected dimensions {w}x{h}')
+          Path('/tmp/q01.png').write_bytes(data)
+          print(f'validated Q01 raster {w}x{h}, {len(data)} bytes')
+          PY
+
+      - name: Apply only Q01 cover bytes to latest main
+        shell: bash
+        run: |
+          git fetch origin main
+          git checkout -B q01-publish origin/main
+          mkdir -p staging/publication-candidates docs/public/assets/covers
+          cp /tmp/q01.png staging/publication-candidates/2026-08-16-occurrence-scoped-authorization-cover.png
+          cp /tmp/q01.png docs/public/assets/covers/daily-2026-08-16-occurrence-scoped-authorization-cover.png
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add staging/publication-candidates/2026-08-16-occurrence-scoped-authorization-cover.png docs/public/assets/covers/daily-2026-08-16-occurrence-scoped-authorization-cover.png
+          git diff --cached --quiet && exit 0
+          git commit -m "runtime(cover): replace Q-20260816-01 with full-resolution raster"
+          git push origin HEAD:main
