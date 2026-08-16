@@ -6,7 +6,7 @@ column: open-source-engineering
 category: daily
 article_type: engineering-insight
 edition: research-center
-research_question: "当 Structured Serializer 无法安全表达某些配置时，SDK 应如何提供 Raw Configuration Escape Hatch，同时让 Effective Configuration 可解释，并避免意外反转配置 Ownership？"
+research_question: "How should an SDK expose a raw configuration escape hatch for values its structured serializer cannot represent while keeping effective configuration understandable and preventing accidental ownership inversion?"
 summary: "确定性配置顺序能够解决哪个值最终生效，却不能解释这个值由谁提供、该 Layer 是否有权控制它。Raw Escape Hatch 更稳健的前提，是它位于显式 Precedence Chain 中，并让安全相关 Effective Value 保留可观察 Provenance。"
 cover: staging/publication-candidates/2026-08-16-config-provenance-cover.png
 sources:

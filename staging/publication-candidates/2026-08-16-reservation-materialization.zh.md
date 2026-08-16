@@ -6,7 +6,7 @@ column: industry-architecture
 category: daily
 article_type: technical-analysis
 edition: research-center
-research_question: "编排系统如何允许 Host 在执行对象完全 Materialize 之前附加状态，同时又不混淆 Reserved Identity、Object Existence 与 Metadata Authority？"
+research_question: "How can an orchestration system let a host attach state before an execution object fully materializes without confusing reserved identity, object existence and metadata authority?"
 summary: "Pre-materialization Orchestration 更清晰的做法，是把 Reserved Identity、Pending Host Intent、Authoritative Materialization 与 Cleanup 建模为显式生命周期阶段。Reservation 提供稳定 Correlation Key，但它不是执行对象已经存在的证据。"
 cover: staging/publication-candidates/2026-08-16-reservation-materialization-cover.png
 sources:
@@ -17,7 +17,7 @@ sources:
 
 # 预留身份不等于对象已经物化
 
-编排系统经常需要在工作真正创建完成之前就引用它。Host 可能希望提前拿到稳定 Identifier，用来附加 Metadata、准备 Routing，或者关联后续 Event。风险也从这里开始：一旦 Identifier 已经存在，其他组件很容易把它误当成“对象已经存在”的证明，甚至把 Pending Metadata 当成已经成立的权威状态。
+编排系统经常需要在工作真正创建完成之前就指向它。Host 可能希望提前拿到稳定 Identifier，用来附加 Metadata、准备 Routing，或者关联后续 Event。风险也从这里开始：一旦 Identifier 已经存在，其他组件很容易把它误当成“对象已经存在”的证明，甚至把 Pending Metadata 当成已经成立的权威状态。
 
 2026-08-16 的 Research Object 分析了 Codex 的一个已合并实现：系统可以在启动前预留最终 ThreadId，并按这个 Reserved Identity 暂存 Host-owned Metadata。这个机制是本地、有限范围的实现事实。它很好地展示了 Identity Reservation 与 Materialization 的分离，但并不能据此推导出分布式 Reservation Transaction。
 

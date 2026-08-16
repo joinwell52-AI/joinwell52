@@ -6,7 +6,7 @@ column: digital-employee
 category: daily
 article_type: engineering-insight
 edition: research-center
-research_question: "当系统已经存在较宽的 Sticky Authorization Default 时，持久化 Agent Runtime 应如何表示针对某一个具体 Tool-call Occurrence 的单次人工决定？"
+research_question: "How should a durable agent runtime represent one human decision for one concrete tool-call occurrence when a broader sticky authorization default already exists?"
 summary: "更稳健的持久化授权，需要把宽泛默认策略与单次动作实例例外作为不同事实保存。精确 Call Identity 可以让一次决定跨恢复继续有效，但它并不能证明审批者身份、策略来源或外部效果恰好执行一次。"
 cover: staging/publication-candidates/2026-08-16-occurrence-scoped-authorization-cover.png
 sources:
@@ -19,7 +19,7 @@ sources:
 
 一个可以长期运行的 Agent，可能在工具调用前暂停，等待人工决定，保存状态，重启后再继续执行。连续性带来一个看似简单、实际上非常关键的问题：人工究竟授权了什么？
 
-“这个工具默认允许或拒绝”与“这一次具体调用允许或拒绝”不是同一个事实。如果用户只是批准某一次调用，而系统为了保存这次批准去修改更宽的默认规则，就会静默扩大人工决定的作用范围。更精确的做法，是保留原来的宽泛规则，再把单次例外绑定到具体的待执行动作实例。
+“这个工具默认允许或拒绝”与“这一次具体调用允许或拒绝”不是同一个事实。如果用户只是批准某一次调用，而系统为了保存这次批准去修改更宽的默认规则，就会静默扩大人工决定的作用范围。更精确的做法，是保留原来的宽泛规则；动作实例决定记录具体的待执行动作实例。
 
 2026-08-16 的 Research Object 分析了 OpenAI Agents Python 的一个已合并变更：系统先解析精确的 Approved/Rejected Call ID，再回退到 Sticky Default。相关回归测试与序列化证据表明，单次 Exception 可以和宽泛 Default 一起跨 Resume 保存；当精确决定发生反转时，实现会移除相反记录，而不是让互相矛盾的状态同时存在。这里的证据来自维护者代码与测试，是有边界的一手实现事实，不是企业授权体系的独立评估。
 
@@ -27,7 +27,9 @@ sources:
 
 Occurrence-scoped State 的第一个价值，是控制授权范围。Sticky Policy 天生用于重复适用，例如“以后这个 Tool 都允许”或“以后这个 Tool 都拒绝”。Exact-call Exception 的含义不同：它表示“对于已经记录的这一次调用，使用这个决定”。
 
-恢复时，这个区别尤其重要。如果 Exception 在重启后消失，系统可能重新落回更宽的 Default，导致有效授权语义发生变化；如果为了保留一次例外而改写 Default，又可能误伤其他同类调用。把两层状态分别持久化，可以同时避免这两类问题。
+恢复时，这个区别尤其重要。如枔 Exact Call ID 只明一个闞题：**这个具定例边界挄可以咪一起跩证扈亪是。谀做���时仚的 Trust Domain 的信任界信信，也不证明外部效果证据外神，也不证明外部效果证据扆行重放是同时存。
+
+## 把两层状态分别持久化，可以同时避免这两类问题。
 
 决定反转也应当成为显式状态替换。某个具体 Call 从批准改为拒绝，或者从拒绝改为批准时，相反的 Exact Entry 应被清除。一个动作实例不应同时携带两个互相冲突的终态决定。
 
