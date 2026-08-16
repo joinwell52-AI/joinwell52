@@ -1,0 +1,227 @@
+name: Execute 2026-08-16 Publication
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "research/runtime/manual-execution-requests/2026-08-16-publication.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: execute-20260816-publication
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Release and validate 2026-08-16 Publication candidates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout authoritative main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Sync latest main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify authoritative Publication admission
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs')
+          const crypto = require('crypto')
+          const date = '2026-08-16'
+          const wakeReceipt = 'research/runtime/wakes/2026/08/2026-08-16/publication-200106.json'
+          const recordPath = 'research/runtime/records/daily/2026/08/2026-08-16-daily-runtime.json'
+          const scheduler = JSON.parse(fs.readFileSync('research/runtime/SCHEDULER.json','utf8'))
+          if (scheduler.schema !== 'research-runtime-scheduler/v3' || scheduler.version !== '3.0') throw new Error('Unexpected Scheduler identity')
+          const control = JSON.parse(fs.readFileSync(scheduler.workerControlManifest,'utf8'))
+          if (control.state !== 'active' || control.failClosed !== true || !control.allowedBranches.includes('main')) throw new Error('Worker Control admission failed')
+          if (!control.allowedWakeSources.includes('chatgpt-scheduled-task')) throw new Error('Scheduled wake source is not admitted')
+          const task = control.tasks?.publication
+          if (!task || task.state !== 'active' || task.family !== 'daily' || task.directPublicationAllowed !== true) throw new Error('Publication task is not active')
+          if (task.prompt?.version !== '2.0.0' || task.prompt?.path !== 'research/runtime/worker-prompts/generated/publication.prompt.md') throw new Error('Unexpected Publication prompt identity')
+          const actualHash = crypto.createHash('sha256').update(fs.readFileSync(task.prompt.path)).digest('hex')
+          if (actualHash !== task.prompt.sha256) throw new Error(`Publication prompt SHA mismatch: ${actualHash}`)
+          for (const source of task.prompt.requiredSources || []) {
+            if (!fs.existsSync(source)) throw new Error(`Unreadable required source: ${source}`)
+            fs.readFileSync(source)
+          }
+          const receipt = JSON.parse(fs.readFileSync(wakeReceipt,'utf8'))
+          if (receipt.schema !== 'runtime-wake-receipt/v1' || receipt.date !== date || receipt.nominalTask !== 'publication' || receipt.source !== 'chatgpt-scheduled-task' || receipt.status !== 'Received') throw new Error('Wake Receipt invalid')
+          const record = JSON.parse(fs.readFileSync(recordPath,'utf8'))
+          if (record.taskStatus?.production !== 'Completed') throw new Error('Production is not Completed')
+          if (record.taskStatus?.publication !== 'Running') throw new Error(`Publication must be Running, got ${record.taskStatus?.publication}`)
+          const timeline = record.timeline || []
+          let start = -1
+          for (let i = timeline.length - 1; i >= 0; i -= 1) {
+            const e = timeline[i]
+            if (e.task === 'publication' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time||'').startsWith(date)) { start = i; break }
+          }
+          if (start < 0) throw new Error('Missing Publication Execution Slot Opened')
+          const claim = timeline.slice(start + 1).find(e => e.task === 'publication' && e.event === 'Worker Claimed' && e.status === 'Running' && String(e.time||'').startsWith(date))
+          if (!claim) throw new Error('Missing fresh Publication Worker Claimed')
+          if (!String(claim.detail||'').includes(wakeReceipt)) throw new Error('Worker Claimed is not bound to this Wake Receipt')
+          const productionResultPath = 'research/runtime/results/2026/08/2026-08-16-production-result.json'
+          const productionResult = JSON.parse(fs.readFileSync(productionResultPath,'utf8'))
+          if (productionResult.schema !== 'runtime-shift-result/v2' || productionResult.task !== 'production' || productionResult.runtimeDate !== date || productionResult.status !== 'Completed') throw new Error('Production result invalid')
+          const batchPath = 'research/runtime/candidates/2026/08/2026-08-16-candidates.json'
+          const batch = JSON.parse(fs.readFileSync(batchPath,'utf8'))
+          const expected = ['Q-20260816-01','Q-20260816-02','Q-20260816-03']
+          if (batch.schema !== 'runtime-publication-candidate/v2' || batch.date !== date || batch.status !== 'Completed') throw new Error('Candidate batch invalid')
+          if (JSON.stringify((batch.candidates||[]).map(c=>c.itemId)) !== JSON.stringify(expected)) throw new Error('Candidate identities mismatch')
+          if (batch.candidates.length > task.maxOutputItems) throw new Error('Candidate count exceeds maxOutputItems')
+          for (const c of batch.candidates) {
+            const gates = Object.values(c.gates || {})
+            if (gates.length !== 6 || gates.some(v => v !== 'PASS') || c.coverGate !== 'PASS' || c.inlineVisualGate !== 'PASS' || c.layoutGate !== 'PASS' || c.evidenceStatus !== 'Completed' || c.editingStatus !== 'Completed') throw new Error(`Incomplete gates for ${c.itemId}`)
+            for (const p of [c.zhPath,c.enPath,c.coverPath]) if (!fs.existsSync(p)) throw new Error(`Missing candidate artifact ${p}`)
+            if (c.communityEdition?.decision === 'generated') throw new Error(`Unexpected Community Edition ${c.itemId}`)
+          }
+          console.log(`Publication admission PASS; prompt SHA-256 ${actualHash}; Worker Claimed ${claim.time}; candidates ${expected.join(', ')}`)
+          NODE
+
+      - name: Release complete Research Center editions mechanically
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs')
+          const path = require('path')
+          const cp = require('child_process')
+          const date = '2026-08-16'
+          const batchPath = 'research/runtime/candidates/2026/08/2026-08-16-candidates.json'
+          const productionResultPath = 'research/runtime/results/2026/08/2026-08-16-production-result.json'
+          const wakeReceipt = 'research/runtime/wakes/2026/08/2026-08-16/publication-200106.json'
+          const recordPath = 'research/runtime/records/daily/2026/08/2026-08-16-daily-runtime.json'
+          const batch = JSON.parse(fs.readFileSync(batchPath,'utf8'))
+          const record = JSON.parse(fs.readFileSync(recordPath,'utf8'))
+          const latestClaim = [...(record.timeline||[])].reverse().find(e => e.task === 'publication' && e.event === 'Worker Claimed' && e.status === 'Running' && String(e.time||'').startsWith(date))
+          if (!latestClaim) throw new Error('Missing Publication Worker Claimed')
+          const columnDir = {'digital-employee':'digital-employee','industry-architecture':'industry','open-source-engineering':'engineering'}
+          const kickerEn = {'digital-employee':'Digital Employee · Daily Research','industry-architecture':'Industry Architecture · Daily Research','open-source-engineering':'Open-source Engineering · Daily Research'}
+          const kickerZh = {'digital-employee':'数字员工 · 每日研究','industry-architecture':'行业架构 · 每日研究','open-source-engineering':'开源工程 · 每日研究'}
+          const scalar = (fm,key) => {
+            const m = fm.match(new RegExp(`^${key}:\\s*(.+)$`,'m'))
+            if (!m) throw new Error(`Missing frontmatter ${key}`)
+            const raw = m[1].trim()
+            if (raw.startsWith('"')) return JSON.parse(raw)
+            if (raw.startsWith("'")) return raw.slice(1,-1)
+            return raw
+          }
+          const sources = fm => {
+            const lines = fm.split(/\r?\n/)
+            const i = lines.findIndex(line => /^sources:\s*$/.test(line))
+            if (i < 0) throw new Error('Missing sources')
+            const out=[]
+            for (let j=i+1;j<lines.length;j+=1) { const m=lines[j].match(/^\s{2}-\s+(.+)$/); if(!m) break; out.push(m[1].trim()) }
+            if (!out.length) throw new Error('Empty sources')
+            return out
+          }
+          const escapeAttr = s => String(s).replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;')
+          const render = (candidate,language,publicCover,otherRoute) => {
+            const sourcePath = language === 'en' ? candidate.enPath : candidate.zhPath
+            const raw = fs.readFileSync(sourcePath,'utf8')
+            const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/)
+            if (!match) throw new Error(`Missing frontmatter ${sourcePath}`)
+            const fm = match[1]
+            let body = raw.slice(match[0].length)
+            body = body.replace(/^\s*!\[[^\]]*\]\([^\n]+\)\s*/,'')
+            const title = scalar(fm,'title')
+            const summary = scalar(fm,'summary')
+            const articleType = scalar(fm,'article_type')
+            const srcs = sources(fm)
+            const frontmatter = ['---',`title: ${JSON.stringify(title)}`,`date: '${date}'`,`column: ${candidate.column}`,'category: daily',`article_type: ${articleType}`,'edition: research-center',`research_question: ${JSON.stringify(candidate.researchQuestion)}`,`summary: ${JSON.stringify(summary)}`,'sources:',...srcs.map(s=>`  - ${s}`),`item_id: ${JSON.stringify(candidate.itemId)}`,'lifecycle: "Published"',`cover: ${JSON.stringify(publicCover)}`,'evidence_status: "Completed"','citation_status: "Completed"','editing_status: "Completed"','publication_authorized: true','---',''].join('\n')
+            const component = ['<ArticleCover',`  image="${escapeAttr(publicCover)}"`,`  kicker="${escapeAttr(language === 'en' ? kickerEn[candidate.column] : kickerZh[candidate.column])}"`,`  title="${escapeAttr(title)}"`,`  summary="${escapeAttr(summary)}"`,`  version="${escapeAttr(candidate.itemId)}"`,`  status="Daily Runtime V5 · ${date}"`,`  languageHref="${escapeAttr(otherRoute)}"`,`  languageLabel="${language === 'en' ? '中文' : 'English'}"`,'/>','',''].join('\n')
+            return `${frontmatter}\n${component}${body.replace(/^\s+/, '')}`
+          }
+          const releasedItems=[]
+          const publicArtifacts=[]
+          for (const candidate of batch.candidates) {
+            const dir=columnDir[candidate.column]
+            if (!dir) throw new Error(`Unknown column ${candidate.column}`)
+            const enBase=path.basename(candidate.enPath).replace(/\.en\.md$/,'')
+            const zhBase=path.basename(candidate.zhPath).replace(/\.zh\.md$/,'')
+            if (enBase !== zhBase) throw new Error(`Bilingual slug mismatch ${candidate.itemId}`)
+            const slug=enBase
+            const enOut=`docs/en/${dir}/${slug}.md`
+            const zhOut=`docs/zh/${dir}/${slug}.md`
+            const coverOut=`docs/public/assets/covers/daily-${slug}-cover.png`
+            const publicCover=`/assets/covers/daily-${slug}-cover.png`
+            fs.mkdirSync(path.dirname(enOut),{recursive:true}); fs.mkdirSync(path.dirname(zhOut),{recursive:true}); fs.mkdirSync(path.dirname(coverOut),{recursive:true})
+            fs.writeFileSync(enOut,render(candidate,'en',publicCover,`/zh/${dir}/${slug}`))
+            fs.writeFileSync(zhOut,render(candidate,'zh',publicCover,`/en/${dir}/${slug}`))
+            fs.copyFileSync(candidate.coverPath,coverOut)
+            releasedItems.push({itemId:candidate.itemId,column:candidate.column,zh:zhOut,en:enOut,cover:coverOut})
+            publicArtifacts.push(zhOut,enOut,coverOut)
+          }
+          const releasePath=`research/runtime/releases/${date}-publication.json`
+          fs.mkdirSync(path.dirname(releasePath),{recursive:true})
+          const workerClaimCommit=cp.execFileSync('git',['log','-1','--format=%H','--',recordPath],{encoding:'utf8'}).trim()
+          const release={schema:'runtime-publication-release/v1',date,timezone:'Asia/Shanghai',status:'Released',sourceCandidates:batchPath,sourceProductionResult:productionResultPath,wakeReceipt,workerClaimRecord:recordPath,workerClaimCommit,startStateCommit:cp.execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),releaseContentCommit:'pending',schedulerFallback:false,releasedItems,metrics:{eligibleCandidates:3,releasedItems:3,bilingualArticleFiles:6,coverAssets:3,inlineFigureAssets:0,communityEditions:0,visualizationAssets:3},prohibitionsObserved:{newResearch:0,substantiveRewriting:0,evidenceRepair:0}}
+          fs.writeFileSync(releasePath,`${JSON.stringify(release,null,2)}\n`)
+          const resultPath='research/runtime/results/2026/08/2026-08-16-publication-result.json'
+          const result={schema:'runtime-shift-result/v2',task:'publication',family:'daily',runtimeDate:date,status:'Completed',input:{candidateBatch:batchPath,productionResult:productionResultPath,wakeReceipt,executionType:'scheduled-same-day-publication'},workResult:{summary:'Mechanically released the three complete same-date V2 candidates as six bilingual Research Center articles and three existing canonical raster covers. No new research, substantive rewriting, evidence repair, cover generation or Production recovery was performed.',summary_zh:'机械发布同日三组完整 V2 Candidate，形成六篇双语 Research Center 文章和三张既有规范栅格题图。全程未开展新研究、实质性改写、证据修复、题图生成或 Production 恢复。'},output:{type:'Released Daily Research',outcome:'Released',releaseManifest:releasePath,releasedItems:3,bilingualArticleFiles:6,coverAssets:3,inlineFigureAssets:0,communityEditions:0},next:{instruction:'Finalize Publication only after required validators, site build, release visibility and durable main verification pass.',instruction_zh:'仅在必需校验、网站构建、发布可见性与 main 持久核验全部通过后，才收口 Publication。'},metrics:[{name:'eligible_publication_candidates',value:3},{name:'released_items',value:3},{name:'bilingual_article_files',value:6},{name:'cover_assets',value:3},{name:'new_research_actions',value:0},{name:'substantive_rewrites',value:0},{name:'evidence_repairs',value:0},{name:'cover_generation_actions',value:0},{name:'production_recovery_actions',value:0}],evidence:[batchPath,productionResultPath,'research/runtime/worker-prompts/generated/publication.prompt.md',wakeReceipt,recordPath],artifacts:[...publicArtifacts,releasePath,resultPath],startedAt:latestClaim.time}
+          fs.writeFileSync(resultPath,`${JSON.stringify(result,null,2)}\n`)
+          NODE
+
+      - name: Run mandatory Publication validation and site build
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run publication:layout:validate
+          npm run publication:editorial:validate
+          npm run runtime:validate
+          npm run docs:build
+          node scripts/publication-visibility.mjs
+
+      - name: Commit and push durable release content
+        id: release
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/en/digital-employee docs/zh/digital-employee docs/en/industry docs/zh/industry docs/en/engineering docs/zh/engineering docs/public/assets/covers research/runtime/releases/2026-08-16-publication.json research/runtime/results/2026/08/2026-08-16-publication-result.json
+          git commit -m "runtime(publication): release 2026-08-16 research"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main; then
+              release_sha="$(git rev-parse HEAD)"
+              if git push origin HEAD:main; then echo "release_sha=$release_sha" >> "$GITHUB_OUTPUT"; exit 0; fi
+            fi
+            git rebase --abort || true
+            if [[ "$attempt" -eq 3 ]]; then exit 1; fi
+            sleep $((attempt * 5))
+          done
+
+      - name: Verify durable release bytes on main
+        shell: bash
+        env:
+          RELEASE_SHA: ${{ steps.release.outputs.release_sha }}
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git merge-base --is-ancestor "$RELEASE_SHA" origin/main
+          git reset --hard origin/main
+          node <<'NODE'
+          const fs=require('fs')
+          const release=JSON.parse(fs.readFileSync('research/runtime/releases/2026-08-16-publication.json','utf8'))
+          if (release.status !== 'Released' || release.releasedItems?.length !== 3) throw new Error('Release manifest is not durably Released')
+          for (const item of release.releasedItems) for (const key of ['zh','en','cover']) if (!fs.existsSync(item[key])) throw new Error(`Missing durable release artifact ${item[key]}`)
+          const result=JSON.parse(fs.readFileSync('research/runtime/results/2026/08/2026-08-16-publication-result.json','utf8'))
+          if (result.status !== 'Completed' || result.output?.releasedItems !== 3) throw new Error('Publication result is not durable Completed evidence')
+          console.log('Verified 3 released items, 6 bilingual articles and 3 raster covers on origin/main.')
+          NODE
