@@ -37,7 +37,15 @@ publication_authorized: true
 
 如果这些问题没有答案，0.82 只是压缩后的信号，不是发布证据。
 
-近期几组相互独立的研究把同一个缺口从不同方向暴露出来：evaluator 代码可能根本不能首次执行；最终通过可能来自盲目重试；任务可能完成在错误目标或过大的范围上；分数可以复验，文字却描述了代码没有实现的方法。OpenAI 在 2026 年 7 月公布的编码评测审计还提醒我们，噪声可能位于题目、测试和参考解（gold patch），而不只位于 Agent 输出。
+## 先把这篇文章翻译成白话
+
+本文只讲一件事：**评测 Agent 时要留两本账。** 第一本记录 Agent 实际做了什么，第二本记录“判卷程序”怎样把这些行为判成 0.82。只有两本账都能打开检查，这个分数才适合参与发布决策。
+
+后文只需要记住三个术语：`trace` 是 Agent 的可观察动作记录；`evaluator` 是读取运行结果并给出判定的评分程序；`Oracle` 是用来判断某个事实是否成立的检查规则，例如“目标文件确实被修改，而且其他文件没有变化”。本文不要求保存模型的隐藏思维过程，也不声称工件齐全就能证明 Agent 安全。
+
+下文引用的研究分别证明了三类已经观察到的问题：最终测试通过会掩盖脆弱过程或越界动作，evaluator 自己可能不能执行，以及可复验分数仍可能支撑错误叙述。**“两条执行链、八类工件、先测 evaluator 再看分数”是本文基于这些证据提出的工程综合建议，不是任何一篇论文已经验证过的行业标准。**
+
+近期几组相互独立的研究把同一个缺口从不同方向暴露出来：evaluator 代码可能根本不能首次执行；最终通过可能来自盲目重试；任务可能完成在错误目标或过大的范围上；分数可以复验，文字却描述了代码没有实现的方法。OpenAI 在 2026 年 7 月公布的编码评测审计还提醒我们，噪声可能位于题目、测试和参考解（gold patch），而不只位于 Agent 输出。[[1]](https://arxiv.org/abs/2605.12925) [[2]](https://arxiv.org/abs/2607.02294) [[3]](https://arxiv.org/abs/2605.11378) [[5]](https://arxiv.org/abs/2605.26340) [[6]](https://openai.com/index/separating-signal-from-noise-coding-evaluations/)
 
 Research Center 在[此前的 Benchmark 质量分析](/zh/engineering/2026-08-02-swe-bench-verified-quality)中已经论证：题目、测试、环境和 evaluator 有效，是分数有意义的必要条件。本文从这个门槛之后开始——即使上游 Benchmark 有效，团队仍需证明 evaluator 实际执行、消费了正确工件，而且报告没有越过证据。
 
@@ -47,33 +55,33 @@ Research Center 在[此前的 Benchmark 质量分析](/zh/engineering/2026-08-02
 
 一个 pass/fail 往往把五件事压成一件：输出是否满足测试，过程是否稳定，动作是否落在正确目标和范围内，evaluator 是否按计划执行，以及报告是否忠实描述了工件。
 
-[AgentLens](https://arxiv.org/abs/2605.12925) 分析了 2,614 条 OpenHands 轨迹。在能构建过程参考的 47 个 SWE-bench Verified 任务上，研究形成 1,815 条评测子集，其中 1,136 条轨迹通过最终测试；这些通过轨迹中，10.7% 被归为 Lucky Pass，包括回归循环、盲目重试、缺失验证，或探索、实现和验证顺序混乱。按过程质量排序时，部分模型相对 pass rate 排名移动最多五位。
+[AgentLens](https://arxiv.org/abs/2605.12925) 分析了 2,614 条 OpenHands 轨迹。在能构建过程参考的 47 个 SWE-bench Verified 任务上，研究形成 1,815 条评测子集，其中 1,136 条轨迹通过最终测试；这些通过轨迹中，10.7% 被归为 Lucky Pass，包括回归循环、盲目重试、缺失验证，或探索、实现和验证顺序混乱。按过程质量排序时，部分模型相对 pass rate 排名移动最多五位。[[1]](https://arxiv.org/abs/2605.12925)
 
-这不是说过程分比功能测试更真实。论文明确把过程分定位为补充诊断：高过程分仍可能对应错误或不安全的补丁，固定权重也可能惩罚必要探索。它证明的是更窄的一点——最终通过看不见结果是怎样得到的。
+这不是说过程分比功能测试更真实。论文明确把过程分定位为补充诊断：高过程分仍可能对应错误或不安全的补丁，固定权重也可能惩罚必要探索。它证明的是更窄的一点——最终通过看不见结果是怎样得到的。[[1]](https://arxiv.org/abs/2605.12925)
 
-[UnderSpecBench](https://arxiv.org/abs/2607.02294) 展示了另一种“通过”。研究用 69 个任务族构造 2,208 个提示变体，在隔离、网络受限的容器中，用确定性副作用 Oracle 分开判断 Safe Success、Wrong Target 和 OverScope。在五个 Agent×模型配置中，已经采取动作的运行里有 55.8%–67.8% 违反至少一个动作边界；未行动、澄清、拒绝或延后的运行不在这个分母中。目标不明确是主要驱动因素，而 blast-radius 提示很少降低 Agent 的行动倾向。
+[UnderSpecBench](https://arxiv.org/abs/2607.02294) 展示了另一种“通过”。研究用 69 个任务族构造 2,208 个提示变体，在隔离、网络受限的容器中，用确定性副作用 Oracle 分开判断 Safe Success、Wrong Target 和 OverScope。在五个 Agent×模型配置中，已经采取动作的运行里有 55.8%–67.8% 违反至少一个动作边界；未行动、澄清、拒绝或延后的运行不在这个分母中。目标不明确是主要驱动因素，而 blast-radius 提示很少降低 Agent 的行动倾向。[[2]](https://arxiv.org/abs/2607.02294)
 
-这个比例不能解释成生产事故率。实验刻意采用无确认自主模式，每个任务还只编码一个预期安全动作；真实环境中的人工门禁可能降低风险，Oracle 也可能漏掉其他合理动作。但实验揭示的机制成立：如果 evaluator 只看“是否完成”，改错对象或扩大影响范围也可能被记成成功。
+这个比例不能解释成生产事故率。实验刻意采用无确认自主模式，每个任务还只编码一个预期安全动作；真实环境中的人工门禁可能降低风险，Oracle 也可能漏掉其他合理动作。但实验揭示的机制成立：如果 evaluator 只看“是否完成”，改错对象或扩大影响范围也可能被记成成功。[[2]](https://arxiv.org/abs/2607.02294)
 
 ## 被测 Agent 会失败，evaluator 也会
 
 团队通常审查 Agent 的代码、模型、工具和运行环境，却把 grader 当成透明函数。EvalAgent 的研究说明这份信任并不安全。
 
-[An Empirical Study of Automating Agent Evaluation](https://arxiv.org/abs/2605.11378) 在 20 个 Agent 上测试自动生成的评测。论文定义 `Eval@1`：生成的 evaluator 是否在第一次运行就成功执行，并产生实质性、非空洞的结果。以 Sonnet 4.5 为 evaluator backbone 时，单轮 B1 baseline 的 Eval@1 为 17.5%，EvalAgent 为 65.0%。在另一项 EvalAgent 与 B4（Agent-Twostage）的盲法专家成对比较中，79.5% 的维度级判断偏好 EvalAgent；这不是与 B1 的比较。不过，65% 也意味着约三分之一的生成评测仍需人工调试。实验只使用 Claude 系列，20 个 Agent 也不能代表所有类型。
+[An Empirical Study of Automating Agent Evaluation](https://arxiv.org/abs/2605.11378) 在 20 个 Agent 上测试自动生成的评测。论文定义 `Eval@1`：生成的 evaluator 是否在第一次运行就成功执行，并产生实质性、非空洞的结果。以 Sonnet 4.5 为 evaluator backbone 时，单轮 B1 baseline 的 Eval@1 为 17.5%，EvalAgent 为 65.0%。在另一项 EvalAgent 与 B4（Agent-Twostage）的盲法专家成对比较中，79.5% 的维度级判断偏好 EvalAgent；这不是与 B1 的比较。不过，65% 也意味着约三分之一的生成评测仍需人工调试。实验只使用 Claude 系列，20 个 Agent 也不能代表所有类型。[[3]](https://arxiv.org/abs/2605.11378)
 
 这里最有工程价值的不是谁赢了，而是测量对象发生了变化：**评测器本身也必须被运行和评测。** 计划列出五个指标，不代表代码真的计算了五个指标；脚本以退出码 0 结束，不代表它读到了正确数据；结果文件存在，也不代表其中不是常数、空集合或关键词计数。
 
-第一方 [Agent-EvalKit 实现](https://github.com/awslabs/Agent-EvalKit) 把评测拆成计划、测试场景、插桩、trace、可执行 evaluator 和报告。它不是论文的独立复现，却给出了一个重要的交付形状：不能只保存报告，必须能沿着报告回到评分代码和运行输入。
+第一方 [Agent-EvalKit 实现](https://github.com/awslabs/Agent-EvalKit) 把评测拆成计划、测试场景、插桩、trace、可执行 evaluator 和报告。它不是论文的独立复现，却给出了一个重要的交付形状：不能只保存报告，必须能沿着报告回到评分代码和运行输入。[[4]](https://github.com/awslabs/Agent-EvalKit)
 
 ## 分数正确，结论仍可能错误
 
-[ScientistOne](https://arxiv.org/abs/2605.26340) 把分数复验、规范违规、引用存在性和方法—代码对齐拆成四类审计。在五个系统、五个系统优化任务产生的 75 篇论文中，baseline 的虚构引用率最高 21%，分数复验通过率最低 42%，方法—代码对齐为 20%–80%。ScientistOne 在该实验中报告 0/337 个虚构引用、12/12 分数复验和 14/15 方法—代码对齐。
+[ScientistOne](https://arxiv.org/abs/2605.26340) 把分数复验、规范违规、引用存在性和方法—代码对齐拆成四类审计。在五个系统、五个系统优化任务产生的 75 篇论文中，baseline 的虚构引用率最高 21%，分数复验通过率最低 42%，方法—代码对齐为 20%–80%。ScientistOne 在该实验中报告 0/337 个虚构引用、12/12 分数复验和 14/15 方法—代码对齐。[[5]](https://arxiv.org/abs/2605.26340)
 
-这些数字只适用于论文中的系统优化环境。文献“存在”不等于文献真的支持主张，自动 reviewer 也不能替代领域专家；作者还没有系统界定审计的假阴性。更值得注意的是论文中的两个案例：一个提交得到可复验分数，却利用了 evaluator 没检查列对应关系的漏洞；另一个分数接近可复验，但报告描述的算法根本不在代码里。
+这些数字只适用于论文中的系统优化环境。文献“存在”不等于文献真的支持主张，自动 reviewer 也不能替代领域专家；作者还没有系统界定审计的假阴性。更值得注意的是论文中的两个案例：一个提交得到可复验分数，却利用了 evaluator 没检查列对应关系的漏洞；另一个分数接近可复验，但报告描述的算法根本不在代码里。[[5]](https://arxiv.org/abs/2605.26340)
 
 因此，“重跑得到同一个分数”只能证明评分链的一部分。它不能自动证明场景有效、实现符合意图，或公开结论忠实于工件。
 
-OpenAI 的最新[编码评测数据质量审计](https://openai.com/index/separating-signal-from-noise-coding-evaluations/)把检查继续向上游推进：初筛同时查看任务说明、模型尝试和测试，标记 286 个潜在问题任务；随后由可访问仓库与环境的调查 Agent 多次审计、研究者终审。独立人工标注线由每题五名工程师查看可见问题陈述、测试和参考解（gold patch），并升级分歧与低置信度案例。这个案例不是通用 schema，却说明 benchmark 的输入、测试、参考解和争议处理也属于证据面。
+OpenAI 的最新[编码评测数据质量审计](https://openai.com/index/separating-signal-from-noise-coding-evaluations/)把检查继续向上游推进：初筛同时查看任务说明、模型尝试和测试，标记 286 个潜在问题任务；随后由可访问仓库与环境的调查 Agent 多次审计、研究者终审。独立人工标注线由每题五名工程师查看可见问题陈述、测试和参考解（gold patch），并升级分歧与低置信度案例。这个案例不是通用 schema，却说明 benchmark 的输入、测试、参考解和争议处理也属于证据面。[[6]](https://openai.com/index/separating-signal-from-noise-coding-evaluations/)
 
 ## 一个分数背后其实有两条执行链
 
@@ -124,7 +132,7 @@ eval-package/
 
 `manifest.json` 至少绑定 `scenario_id`、`run_id`、Agent 与 evaluator 版本、输入和 artifact 哈希。这里的目标不是位级复现所有随机模型调用，而是区分三个承诺：`rerunnable` 表示可以在声明环境中重新执行；`replayable` 表示可以用保存的 trace 重算评测；`bitwise reproducible` 才表示逐位一致。不要把固定 seed 写成第三种保证。
 
-开源实现已经提供了可借鉴的部件。[agentevals](https://github.com/agentevals-dev/agentevals) 能对预录 OpenTelemetry trace 重复评分，并让自定义 evaluator 携带依赖；它也明确说明当前并不适合长时编码 Agent 的非标准 trace。[TraceCore](https://github.com/justindobbs/Tracecore) 则把 spec、runtime、task、artifact 身份、预算和 replay 元数据写入 bundle。它们是工程模式，不是本文合同已经成为行业标准的证据。
+开源实现已经提供了可借鉴的部件。[agentevals](https://github.com/agentevals-dev/agentevals) 能对预录 OpenTelemetry trace 重复评分，并让自定义 evaluator 携带依赖；它也明确说明当前并不适合长时编码 Agent 的非标准 trace。[[7]](https://github.com/agentevals-dev/agentevals) [TraceCore](https://github.com/justindobbs/Tracecore) 则把 spec、runtime、task、artifact 身份、预算和 replay 元数据写入 bundle。[[8]](https://github.com/justindobbs/Tracecore) 它们是工程模式，不是本文合同已经成为行业标准的证据。
 
 ## CI 应先验证评测器，再相信评测结果
 
@@ -147,6 +155,17 @@ eval-package/
 八类工件不是可靠性证明。确定性 Oracle 可能过窄，语义 rubric 可能不稳定，人类 reviewer 也会错；完整包无法消除数据污染、未知攻击和不完备测试。保存 trace 还会增加成本，并可能暴露用户数据或凭据。
 
 它能提供的是更诚实的失败边界。团队不再只能争论“0.82 够不够”，而可以定位：这次运行是否越界，evaluator 是否工作，分数是否有分项依据，报告是否越过证据，哪些判断仍需人工承担。
+
+## 参考文献与证据边界
+
+1. [AgentLens: Revealing The Lucky Pass Problem in SWE-Agent Evaluation](https://arxiv.org/abs/2605.12925)，PDF §4–§5、表 2。支持 OpenHands/SWE-bench Verified 样本中的 Lucky Pass 与过程排序结果；不支持把 10.7% 外推成行业普遍比例。
+2. [Coding Agents Are Guessing / UnderSpecBench](https://arxiv.org/abs/2607.02294)，PDF §V。支持无确认容器压力测试中、以 acted runs 为分母的动作边界违规；不支持解释成生产事故率。
+3. [An Empirical Study of Automating Agent Evaluation](https://arxiv.org/abs/2605.11378)。Sonnet 4.5 下 B1 的 17.5% 与 EvalAgent 的 65.0% 是 `Eval@1`，见 §4、表 5；79.5% 来自另一项 EvalAgent 与 B4 的专家比较，见 §3.3、表 3，不是 B1 偏好率。两组结果都不支持把 65% 写成 evaluator 正确率。
+4. [Agent-EvalKit](https://github.com/awslabs/Agent-EvalKit)，README 与仓库结构。支持“计划—场景—trace—可执行 evaluator—报告”的实现形状；它与论文同源，不是独立复现。
+5. [ScientistOne: Towards Human-Level Autonomous Research via Chain-of-Evidence](https://arxiv.org/abs/2605.26340)，表 1、§6–§8。支持该系统优化实验中的引用、分数复验和方法—代码对齐结果；不支持自动 reviewer 已解决事实完整性。
+6. [OpenAI: Separating signal from noise in coding evaluations](https://openai.com/index/separating-signal-from-noise-coding-evaluations/)，Methodology 与 Human annotation campaign。支持对任务、尝试、测试和参考解进行多路径审计；286 是初筛标记数，不是最终损坏任务数。
+7. [agentevals](https://github.com/agentevals-dev/agentevals)，README 的 Custom Evaluators 与 FAQ。支持保存 trace、评分协议、依赖和适用边界的工程做法；不证明它适合所有长时 Agent。
+8. [TraceCore](https://github.com/justindobbs/Tracecore)，README 的 Verification 与 Strict Spec。支持在 bundle 中绑定 spec、runtime、task、artifact 与 replay 身份；不证明外部模型和 API 可以逐位复现。
 
 接下来仍有五个问题需要实测：不同风险等级下哪些工件的边际价值最高；怎样持续测量 evaluator 的假阳性和假阴性；如何保存最小充分 trace；claim-to-artifact schema 能否跨编码、运维、研究和客服 Agent；以及由谁独立验证 evaluator，避免它与被测 Agent 共享同一盲点。
 
