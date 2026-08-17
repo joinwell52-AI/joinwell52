@@ -1,0 +1,58 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-17",
+  "itemId": "Q-20260817-01",
+  "coreProposition": "Forward-compatible agent APIs should preserve general unknown-field tolerance while explicitly rejecting retired fields whose silent loss would change authorization or execution meaning.",
+  "openingMove": {
+    "type": "contradiction",
+    "purpose": "Show that permissive decoding can be structurally compatible yet semantically unsafe for one retired security-significant field.",
+    "evidenceRefs": ["E1", "E2"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is universal unknown-field handling the wrong abstraction?",
+      "claim": "Structural tolerance and authorization-semantic tolerance are separate compatibility decisions.",
+      "evidenceRefs": ["E1", "E2", "I1"],
+      "reasoningRole": "comparison",
+      "readerProgress": "The reader can distinguish harmless unknown metadata from a retired field whose loss changes security expectations.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What does a targeted fail-closed retirement mechanism provide?",
+      "claim": "A pre-decode rejection with a named replacement preserves the general compatibility rule, makes stale-client behavior observable and can remain request-local.",
+      "evidenceRefs": ["E1", "E2"],
+      "reasoningRole": "mechanism",
+      "readerProgress": "The reader understands the demonstrated control point and why it need not become connection-level failure.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "How should teams decide which retired fields receive this treatment?",
+      "claim": "Field retirement should be governed by semantic risk, affected lifecycle methods, replacement semantics and telemetry rather than by schema novelty alone.",
+      "evidenceRefs": ["I1"],
+      "reasoningRole": "engineering-implication",
+      "readerProgress": "The reader gains a bounded decision rule without mistaking it for a complete authorization architecture.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Where does the evidence stop?",
+      "claim": "The implementation proves a narrow compatibility boundary on four methods, not caller identity, policy provenance, complete path coverage or end-to-end authorization safety.",
+      "evidenceRefs": ["E3"],
+      "reasoningRole": "boundary",
+      "readerProgress": "The reader can use the pattern without overclaiming its security effect.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Strict versioned schemas or a proven compatibility translation can be preferable when clients advance in lockstep or old and new semantics are demonstrably equivalent.",
+    "responseBoundary": "The evidence supports targeted rejection only where silent loss changes meaning; it does not justify rejecting all unknown fields."
+  },
+  "endingStrategy": {
+    "type": "open-question",
+    "purpose": "End with the unresolved classification and telemetry questions that must be answered before generalizing the mechanism."
+  }
+}

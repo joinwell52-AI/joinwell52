@@ -1,0 +1,45 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-17",
+  "itemId": "Q-20260817-01",
+  "researchObjectId": "AN-20260817-01",
+  "targetAudience": {
+    "primary": "Agent API and control-plane engineers responsible for compatibility and authorization boundaries",
+    "knowledgeAssumption": "The reader understands permissive request schemas, API migration and basic authorization semantics.",
+    "readerProblem": "A retired request field can disappear silently under forward-compatible decoding even when that disappearance changes the caller's security expectation."
+  },
+  "whyNow": "A same-day merged Codex app-server change demonstrates a narrow mechanism that preserves general unknown-field tolerance while rejecting one obsolete permission field before permissive decoding.",
+  "externalHook": {
+    "type": "contradiction",
+    "description": "The same unknown-field tolerance that enables forward compatibility can erase security-significant intent when a retired field is silently ignored.",
+    "evidenceRefs": ["E1", "E2", "E3"]
+  },
+  "coreProposition": "Forward-compatible agent APIs should preserve general unknown-field tolerance while explicitly rejecting retired fields whose silent loss would change authorization or execution meaning.",
+  "originalValue": {
+    "type": "engineering-judgment",
+    "description": "Separates structural schema compatibility from authorization-semantic compatibility and turns that distinction into a bounded retirement decision rule."
+  },
+  "readerTakeaway": "Classify retired fields by semantic risk, reject dangerous removals before permissive decoding, provide a migration path and keep the failure request-local when possible.",
+  "evidenceBoundary": {
+    "supported": [
+      "One merged implementation rejects permissionProfile on four app-server methods before permissive deserialization.",
+      "Unrelated unknown fields remain accepted, named permissions remain usable and rejection does not poison the connection."
+    ],
+    "unsupported": [
+      "End-to-end authorization safety",
+      "Complete coverage of every permission-bearing path",
+      "Caller or approver authentication"
+    ],
+    "uncertain": [
+      "Which future field retirements warrant the same fail-closed exception",
+      "How stale-client telemetry should be governed"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article's value and argument concern general agent API governance and do not depend on any first-party project."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The same-day primary implementation evidence supports a narrow mechanism, while the Research Object supplies an original and explicitly bounded compatibility-governance judgment."
+}
