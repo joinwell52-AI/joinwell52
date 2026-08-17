@@ -1,0 +1,98 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "production",
+  "family": "daily",
+  "runtimeDate": "2026-08-17",
+  "status": "Completed",
+  "productionMode": "candidate-batch",
+  "input": {
+    "promptVersion": "2.12.0",
+    "promptPath": "research/runtime/worker-prompts/generated/production.prompt.md",
+    "promptSha256": "ad3aaa7ff984a45d555899a56f96d89c5f39a78fbbfd18abb8b87d05257a71d5",
+    "promptVerificationMode": "direct-sha256",
+    "controlSourceCommit": "86069fd46e877069f0fdd9ac0f0204f74b5bcee1",
+    "researchObjects": ["Q-20260817-01", "Q-20260817-02", "Q-20260817-03"],
+    "workerClaimCommit": "d4fc59ae2a0be95274c54244a6fb7fb552c9a84b",
+    "validatedCandidateCommit": "7eb2c3c67837cf124149ce9e9f51f0529119a9e4"
+  },
+  "workResult": {
+    "summary": "Converted all three eligible same-date Research Objects into complete bilingual Editorial Architecture 2.1 Publication Candidates through separately persisted article segments. Each segment contains a validated Article Brief, Argument Architecture, Figure Plan, bilingual pre-candidate drafts, a deterministic 1600x900 baseline PNG and verified SHA-256 bindings. The atomic candidate batch then passed checkpoint, bundle, layout, editorial and full Runtime validation. No Inline Figure was manufactured because the approved Figure Plans found no argument node that materially required one.",
+    "summary_zh": "通过分别持久化的文章段，将同日全部三份合格 Research Object 转换为完整双语 Editorial Architecture 2.1 Publication Candidate。每段均包含已核验的 Article Brief、Argument Architecture、Figure Plan、双语预候选、确定性 1600x900 基础 PNG，以及已验证的 SHA-256 绑定。随后原子 Candidate Batch 通过 Checkpoint、Bundle、Layout、Editorial 与完整 Runtime 验证。经批准的 Figure Plan 未发现任何必须借助图形才能理解的论证节点，因此没有制造 Inline Figure。"
+  },
+  "output": {
+    "type": "Publication Candidates",
+    "candidateBatch": "research/runtime/candidates/2026/08/2026-08-17-candidates.json",
+    "candidateCount": 3,
+    "bilingualArticleFiles": 6,
+    "coverAssets": 3,
+    "inlineFigureAssets": 0
+  },
+  "next": {
+    "task": "publication",
+    "instruction": "Do not execute Publication in this shift. Publication may act only at its own governed execution opportunity after this Production result is durably finalized and verified on main.",
+    "instruction_zh": "本班次不执行 Publication。仅在本次 Production 结果完成受治理的持久化与 main 核验后，Publication 才能在自己的正式执行机会中行动。"
+  },
+  "coverEvidence": [
+    {
+      "itemId": "Q-20260817-01",
+      "briefId": "2026-08-17:Q-20260817-01-baseline-cover",
+      "coverPath": "staging/publication-candidates/2026-08-17-selective-fail-closed-api-cover.png",
+      "sanitizedPrompt": "A precise gate distinguishing one obsolete permission key from a broad stream of compatible inputs",
+      "generationAttempts": 1,
+      "semanticReview": "PASS",
+      "coverRole": "baseline",
+      "generator": "deterministic-baseline-v1"
+    },
+    {
+      "itemId": "Q-20260817-02",
+      "briefId": "2026-08-17:Q-20260817-02-baseline-cover",
+      "coverPath": "staging/publication-candidates/2026-08-17-environment-owned-policy-cover.png",
+      "sanitizedPrompt": "A selected execution chamber carrying a coherent environmental envelope into active work",
+      "generationAttempts": 1,
+      "semanticReview": "PASS",
+      "coverRole": "baseline",
+      "generator": "deterministic-baseline-v1"
+    },
+    {
+      "itemId": "Q-20260817-03",
+      "briefId": "2026-08-17:Q-20260817-03-baseline-cover",
+      "coverPath": "staging/publication-candidates/2026-08-17-compact-transcript-evidence-cover.png",
+      "sanitizedPrompt": "A concise folded surface opening onto a long intact layered execution record",
+      "generationAttempts": 1,
+      "semanticReview": "PASS",
+      "coverRole": "baseline",
+      "generator": "deterministic-baseline-v1"
+    }
+  ],
+  "metrics": [
+    {"name":"research_objects_consumed","value":3},
+    {"name":"publication_candidates","value":3},
+    {"name":"persisted_article_segments","value":3},
+    {"name":"planning_artifacts","value":9},
+    {"name":"bilingual_article_files","value":6},
+    {"name":"cover_assets","value":3},
+    {"name":"inline_figure_assets","value":0},
+    {"name":"revision_rounds","value":0},
+    {"name":"direct_cloud_image_generation_calls","value":0},
+    {"name":"direct_publication_actions","value":0}
+  ],
+  "evidence": [
+    "86069fd46e877069f0fdd9ac0f0204f74b5bcee1",
+    "7eb2c3c67837cf124149ce9e9f51f0529119a9e4",
+    "research/runtime/worker-prompts/generated/production.prompt.md",
+    "research/runtime/checkpoints/2026/08/2026-08-17-production.json",
+    "research/runtime/wakes/2026/08/2026-08-17/production-172324.json"
+  ],
+  "artifacts": [
+    "research/runtime/candidates/2026/08/2026-08-17-candidates.json",
+    "staging/publication-candidates/2026-08-17-selective-fail-closed-api.zh.md",
+    "staging/publication-candidates/2026-08-17-selective-fail-closed-api.en.md",
+    "staging/publication-candidates/2026-08-17-selective-fail-closed-api-cover.png",
+    "staging/publication-candidates/2026-08-17-environment-owned-policy.zh.md",
+    "staging/publication-candidates/2026-08-17-environment-owned-policy.en.md",
+    "staging/publication-candidates/2026-08-17-environment-owned-policy-cover.png",
+    "staging/publication-candidates/2026-08-17-compact-transcript-evidence.zh.md",
+    "staging/publication-candidates/2026-08-17-compact-transcript-evidence.en.md",
+    "staging/publication-candidates/2026-08-17-compact-transcript-evidence-cover.png"
+  ]
+}
