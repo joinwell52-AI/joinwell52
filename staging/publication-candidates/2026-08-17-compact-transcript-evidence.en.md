@@ -1,0 +1,57 @@
+---
+schema: publication-candidate-article/v2
+title: "Compact Operations Should Not Compress Away Execution Evidence"
+date: '2026-08-17'
+column: open-source-engineering
+category: daily
+article_type: engineering-insight
+edition: research-center
+research_question: "How can an agent runtime reduce command-noise in an operational UI without destroying the detailed execution evidence needed for inspection and replay?"
+summary: "Operational compaction should be a bounded, replayable view transform over a richer transcript. Routine success may be grouped, but failure, interaction, and active-work boundaries should remain visible and command detail recoverable; formal audit still needs separate durability, provenance, tamper-evidence, and external-effect contracts."
+cover: staging/publication-candidates/2026-08-17-compact-transcript-evidence-cover.png
+sources:
+  - research/analysis/Q-20260817-03-presentation-transcript-separation.md
+---
+
+![Compact Operations Should Not Compress Away Execution Evidence cover](staging/publication-candidates/2026-08-17-compact-transcript-evidence-cover.png)
+
+# Compact Operations Should Not Compress Away Execution Evidence
+
+Showing every command in full looks transparent, but in an operational interface it can bury failures, approvals, and important decisions under repetitive output. Grouping many commands into one line improves readability. If grouping deletes the only detailed record, however, the cleaner interface also destroys the basis for inspection and replay.
+
+The 2026-08-17 Research Object examined a merged Codex TUI change. It groups only successful Agent and UnifiedExecStartup command activity. Failures, non-groupable events, and interaction-visible boundaries flush the group, and one completed group is capped at 32 calls. The display can show a summary such as `Ran N commands` while `transcript_lines` retains each original command and output. Replay follows the same grouping principle, tests avoid duplicate command starts, and overlapping active work is not collapsed prematurely.
+
+The mechanism supports a more useful engineering judgment than simply “show more” or “show less”: **the presentation model may be compacted without destructively rewriting the evidence model.**
+
+## Readability and evidence retention are independent axes
+
+An operational UI manages present attention. It should emphasize anomalies, waits, and state changes rather than assign equal visual weight to every routine success. A transcript serves later inspection: command order, output detail, and event identity need to remain addressable. Those tasks do not require the same degree of expansion.
+
+The safest compaction model derives a compact view from retained events. The operator sees a bounded summary and can reach uncompressed detail when an investigation needs it. If deletion is appropriate, it should follow risk, retention, and data-governance policy rather than occur as an implicit side effect of collapsing the UI.
+
+This separation also improves failure analysis. A summary can report that a batch of routine commands completed while the underlying evidence still answers what ran, in which order, and which output was unusual. Lower display density does not require lower evidence granularity.
+
+## Some boundaries should resist a success summary
+
+The selected implementation treats failure, non-groupable activity, and interaction-visible events as flush boundaries. That is an important attention rule: routine success may aggregate, while events that change control flow or require human judgment regain independent visibility.
+
+Overlapping active commands should not be folded into a completed summary before they finish. Otherwise an operator can mistake in-flight work for closed work. The fixed 32-call cap also limits how much activity one line can obscure; compaction cannot grow without bound.
+
+Production systems can extend the resistant set to approvals, elicitation, permission changes, retry-policy changes, and confirmation of external effects. The exact list depends on operational risk. The governing principle is that a summary must not cross a boundary that changes interpretation or responsibility.
+
+## Replay needs versioned presentation rules
+
+If live display and replay apply different rules to the same events, the historical view can change command counts, perceived order, or identity. The selected evidence shows replay applying the grouping principle while avoiding duplicate starts. That supports reconstructible presentation, but it does not yet establish long-term version compatibility.
+
+A stronger event model preserves stable event identity and order and records a transformation version as part of the presentation contract. A future UI may use a new style, but it should know which grouping boundaries governed the historical view when semantic reproduction matters. Machine-readable access to the uncompressed model also lets incident and verification tools operate without depending on terminal layout.
+
+## A transcript is not automatically an audit log
+
+Retained command detail improves inspectability. It does not automatically establish formal auditability. The evidence does not show that the transcript is append-only, cryptographically tamper-evident, durably stored outside the UI, or complete with respect to external effects.
+
+Command text and stdout can also be incomplete. Output may be truncated or redacted, and a remote system can change state in ways terminal content cannot prove. A formal audit surface needs durable event identity, provenance, retention, tamper evidence, and separate effect records for outcomes such as payments, deployments, or sent messages.
+
+Indefinite retention may be unjustified for low-risk interactive sessions, so policy can tier retention by risk. A sufficiently strong structured event log could also serve display and audit consumers, but only if its persistence, compatibility, and integrity contracts are strong enough.
+
+The three promises should therefore remain separate. The presentation layer promises readability and prominent decision boundaries. The evidence layer promises recoverable, addressable, replayable detail. The audit layer promises stronger provenance, integrity, and external-effect evidence. A compact interface can sit above rich evidence, but one summary line cannot substitute for that evidence, and an ordinary transcript should not be mislabeled as an audit ledger.
+
