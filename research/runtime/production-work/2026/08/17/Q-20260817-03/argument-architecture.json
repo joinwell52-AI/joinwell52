@@ -1,0 +1,58 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-17",
+  "itemId": "Q-20260817-03",
+  "coreProposition": "Operational compaction should be a bounded, replayable view transform over recoverable execution evidence, while formal auditability remains a separate durability and provenance contract.",
+  "openingMove": {
+    "type": "contradiction",
+    "purpose": "Establish that exhaustive display can hide important events through noise, while destructive compaction hides them by deletion.",
+    "evidenceRefs": ["E1", "E2"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "How can readability change without changing evidence?",
+      "claim": "The display model may aggregate routine successful activity if the evidence model retains ordered command and output detail independently.",
+      "evidenceRefs": ["E1", "E2", "I1"],
+      "reasoningRole": "mechanism",
+      "readerProgress": "The reader distinguishes a view transform from destructive record mutation.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Which boundaries should resist compaction?",
+      "claim": "Failures, non-groupable activity, human interaction, overlapping active work and a fixed group-size cap should remain visible boundaries.",
+      "evidenceRefs": ["E1", "E3"],
+      "reasoningRole": "engineering-implication",
+      "readerProgress": "The reader gains explicit operational rules that keep decisions and anomalies prominent.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What must replay preserve?",
+      "claim": "Replay should version and deterministically reapply presentation rules without duplicating event starts or changing historical counts and identities.",
+      "evidenceRefs": ["E3", "I1"],
+      "reasoningRole": "consequence",
+      "readerProgress": "The reader understands that replay compatibility belongs to the view contract as well as the event model.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Why is retained transcript detail not yet a formal audit log?",
+      "claim": "Auditability additionally requires durable identity, provenance, retention, tamper evidence and separate records of external effects.",
+      "evidenceRefs": ["E4"],
+      "reasoningRole": "boundary",
+      "readerProgress": "The reader can claim inspectability without inferring immutability or effect completeness.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "For low-stakes sessions, retaining all output indefinitely may cost more than its debugging value, and a sufficiently strong structured event log could serve both display and audit consumers.",
+    "responseBoundary": "Retention may be risk-based, but deletion should be a governed evidence policy rather than an accidental side effect of UI compaction."
+  },
+  "endingStrategy": {
+    "type": "judgment",
+    "purpose": "Close by assigning separate promises to the presentation, evidence and audit layers."
+  }
+}

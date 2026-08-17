@@ -1,0 +1,46 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-17",
+  "itemId": "Q-20260817-03",
+  "researchObjectId": "AN-20260817-03",
+  "targetAudience": {
+    "primary": "Engineers designing operational interfaces, replay and evidence retention for agent runtimes",
+    "knowledgeAssumption": "The reader understands command transcripts, UI compaction and the difference between logs and formal audit records.",
+    "readerProblem": "Showing every command overwhelms operators, but destructive summarization can erase the execution detail needed to inspect failures and reconstruct work."
+  },
+  "whyNow": "A same-day merged Codex TUI change demonstrates bounded grouping of successful commands while retaining individual command and output detail in transcript_lines and applying compatible replay behavior.",
+  "externalHook": {
+    "type": "contradiction",
+    "description": "Operational readability improves when routine success is compacted, yet governance weakens if compaction mutates the only evidence-bearing record.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "Operational compaction should be a bounded, replayable view transform over recoverable execution evidence, while formal auditability remains a separate durability and provenance contract.",
+  "originalValue": {
+    "type": "synthesis",
+    "description": "Separates presentation, evidence and audit models; derives explicit compaction boundaries for failures, interaction, group size, replay and external-effect evidence."
+  },
+  "readerTakeaway": "Compact routine success only in the view layer, keep detailed events addressable, preserve failures and interaction boundaries, version replay rules and do not label a transcript as an audit log without stronger guarantees.",
+  "evidenceBoundary": {
+    "supported": [
+      "Only successful Agent and UnifiedExecStartup activity is grouped, with a 32-call bound and several flush boundaries.",
+      "Compact display can coexist with retained individual commands and output in transcript_lines.",
+      "Replay applies the grouping principle without duplicate starts and overlapping active work remains visible."
+    ],
+    "unsupported": [
+      "Cryptographic or append-only auditability",
+      "External persistence durability",
+      "Complete provenance or side-effect reconstruction"
+    ],
+    "uncertain": [
+      "The transcript's retention and mutation guarantees",
+      "How transformation versions should be persisted"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument concerns general operational UI and evidence-model design and stands without first-party project references."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The source provides a concrete bounded mechanism and the Research Object adds an independently useful three-layer model with explicit non-audit boundaries."
+}
