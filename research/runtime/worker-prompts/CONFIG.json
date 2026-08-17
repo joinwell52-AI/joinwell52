@@ -21,7 +21,6 @@
     "requiredCapabilities": [
       "github-read",
       "github-write",
-      "command-execution",
       "file-editing"
     ]
   },
@@ -189,8 +188,8 @@
     },
     {
       "task": "production",
-      "version": "2.12.0",
-      "effectiveDate": "2026-08-17",
+      "version": "2.13.0",
+      "effectiveDate": "2026-08-18",
       "template": "research/runtime/worker-prompts/templates/production.prompt.md",
       "output": "research/runtime/worker-prompts/generated/production.prompt.md",
       "requiredCapabilities": [],
@@ -221,12 +220,15 @@
         "Same-day Deadline Recovery recovers only genuinely incomplete 15:00 Production work. Missing, failed or not-yet-run Cover Upgrade activity is never an unfinished Production node.",
         "Resume only from the latest same-run-date checkpoint committed on main. If its Prompt identity is stale, re-execute the earliest unproved Production node under current control; historical isolated-cover checkpoints remain audit evidence only.",
         "Verify the current Prompt directly when hashing is available. Otherwise require CONTROL and MANIFEST agreement plus a successful Validate Research Center 3.0 / build run for the exact pinned main HEAD, and record promptVerificationMode=exact-head-ci with the Actions run URL.",
+        "Command execution is optional for the scheduled Production Worker. Missing command-execution must not produce ToolUnavailable, Failed or Blocked when GitHub read/write, file operations and GitHub Actions are available.",
+        "When command execution is unavailable, persist text work artifacts and a governed runtime-production-action-request/v1. Research Runtime Production Actions Bridge generates the deterministic baseline PNG, calculates SHA-256 values, advances the checkpoint, stages the complete candidate bundle and runs the required validators on GitHub Actions.",
+        "The scheduled Worker must read the Actions run and the resulting fetched-main checkpoint before continuing. A request commit alone is not a completed item or completed batch.",
         "For an explicitly authorized same-day recovery of Failed or Blocked Production, persist runtime-process-kick/v2 with requestMode=terminal-recovery, nominalTask=production and allowTerminalReopen=true. Ordinary v1 kicks and timer wakes must never reopen terminal state.",
-        "A Completed result with eligible inputs must declare productionMode=candidate-batch and pass npm run runtime:production:proof. Research Runtime Shift Finalization V2.1 persists and remotely verifies the terminal state.",
+        "A Completed result with eligible inputs must declare productionMode=candidate-batch and pass runtime:production:proof either directly or through Research Runtime Shift Finalization V2.1. The finalization workflow persists and remotely verifies the terminal state.",
         "The final task response is plain text only. Never create a Runtime report image, dashboard, poster, status summary or execution evidence.",
         "Build every candidate outside the canonical staging path until its Chinese article, English article, deterministic baseline PNG, optional Inline Figures and completed candidate-batch record are all ready.",
-        "Stage and commit the complete candidate bundle exactly once. Before commit run npm run publication:bundle:staged plus every declared validator; never commit one language, an article without its referenced assets, or an incomplete candidate batch.",
-        "Do not bypass the repository pre-commit hook, use --no-verify, or write candidate members directly through the GitHub Contents API. Production never publishes."
+        "Stage and commit the complete candidate bundle exactly once. Run publication:bundle:staged plus every declared validator directly when command execution exists, otherwise require the successful Production Actions Bridge run for the exact request commit; never expose one language, an article without its referenced assets, or an incomplete candidate batch.",
+        "Do not bypass repository validation. A GitHub API-only Worker may write incremental artifacts only under production-work and production-action-requests; the Actions Bridge alone promotes a complete bundle to canonical staging. Production never publishes."
       ],
       "requiredSources": [
         "research/runtime/SCHEDULER.json",
@@ -234,6 +236,7 @@
         "research/runtime/WAKE-RECEIPT-V1.md",
         "research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md",
         "research/runtime/PRODUCTION-CHECKPOINT-V2.md",
+        "research/runtime/PRODUCTION-ACTIONS-BRIDGE-V1.md",
         "research/runtime/COVER-UPGRADE-V1.md",
         "research/editorial/EDITORIAL-ARCHITECTURE.json",
         "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",

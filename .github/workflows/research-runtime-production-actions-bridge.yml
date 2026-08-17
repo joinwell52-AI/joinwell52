@@ -1,0 +1,134 @@
+name: Research Runtime Production Actions Bridge V1
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "research/runtime/production-action-requests/*.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: research-runtime-production-actions-bridge-v1
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    name: Materialize and validate GitHub-native Production work
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout authoritative repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch latest durable facts
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Resolve governed request
+        id: request
+        shell: bash
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          EVENT_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          request_path="$(git diff --name-only "$BEFORE_SHA" "$EVENT_SHA" -- 'research/runtime/production-action-requests/*.json' | tail -n 1)"
+          if [[ -z "$request_path" ]]; then
+            request_path="$(git show --pretty='' --name-only "$EVENT_SHA" -- 'research/runtime/production-action-requests/*.json' | tail -n 1)"
+          fi
+          if [[ -z "$request_path" || ! -f "$request_path" ]]; then
+            echo "No durable Production Actions Bridge request found."
+            exit 1
+          fi
+          REQUEST_PATH="$request_path" node <<'NODE'
+          const fs = require('fs')
+          const request = JSON.parse(fs.readFileSync(process.env.REQUEST_PATH, 'utf8'))
+          if (request.schema !== 'runtime-production-action-request/v1') throw new Error('Invalid request schema')
+          if (!['materialize-item', 'stage-batch'].includes(request.mode)) throw new Error('Invalid request mode')
+          if (!/^\d{4}-\d{2}-\d{2}$/.test(request.date || '')) throw new Error('Invalid request date')
+          if (!/^[0-9a-f]{40}$/.test(request.sourceCommit || '')) throw new Error('Invalid sourceCommit')
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `request_path=${process.env.REQUEST_PATH}\n`)
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `mode=${request.mode}\n`)
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `runtime_date=${request.date}\n`)
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `source_commit=${request.sourceCommit}\n`)
+          NODE
+          git merge-base --is-ancestor "$(node -e "const r=require('./$request_path');process.stdout.write(r.sourceCommit)")" origin/main
+
+      - name: Materialize governed artifacts
+        env:
+          REQUEST_PATH: ${{ steps.request.outputs.request_path }}
+        run: node scripts/runtime-production-actions-bridge.mjs --request "$REQUEST_PATH"
+
+      - name: Validate item checkpoint
+        if: steps.request.outputs.mode == 'materialize-item'
+        env:
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+        run: npm run runtime:production:checkpoint -- --date "$RUNTIME_DATE" --checkpoint "research/runtime/checkpoints/${RUNTIME_DATE:0:4}/${RUNTIME_DATE:5:2}/${RUNTIME_DATE}-production.json"
+
+      - name: Validate complete candidate bundle
+        if: steps.request.outputs.mode == 'stage-batch'
+        env:
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+        run: |
+          npm run runtime:production:checkpoint -- --date "$RUNTIME_DATE" --checkpoint "research/runtime/checkpoints/${RUNTIME_DATE:0:4}/${RUNTIME_DATE:5:2}/${RUNTIME_DATE}-production.json"
+          npm run publication:bundle:staged
+          npm run publication:layout:validate
+          npm run publication:editorial:validate
+          npm run runtime:validate
+          node scripts/runtime-production-actions-bridge.mjs --mark-validated true --date "$RUNTIME_DATE"
+          npm run runtime:production:checkpoint -- --date "$RUNTIME_DATE" --checkpoint "research/runtime/checkpoints/${RUNTIME_DATE:0:4}/${RUNTIME_DATE:5:2}/${RUNTIME_DATE}-production.json"
+
+      - name: Commit bridge result
+        id: commit
+        shell: bash
+        env:
+          MODE: ${{ steps.request.outputs.mode }}
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+        run: |
+          set -euo pipefail
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime/production-work research/runtime/production-action-requests research/runtime/checkpoints research/runtime/candidates staging/publication-candidates
+          if git diff --cached --quiet; then
+            echo "Production Actions Bridge produced no durable changes."
+            exit 1
+          fi
+          git commit -m "runtime(production): ${MODE} ${RUNTIME_DATE} through Actions bridge"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main; then
+              commit_sha="$(git rev-parse HEAD)"
+              if git push origin HEAD:main; then
+                echo "commit_sha=$commit_sha" >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
+            fi
+            git rebase --abort || true
+            if [[ "$attempt" -eq 3 ]]; then exit 1; fi
+            sleep $((attempt * 5))
+          done
+
+      - name: Verify exact fetched-main result
+        env:
+          BRIDGE_COMMIT: ${{ steps.commit.outputs.commit_sha }}
+          MODE: ${{ steps.request.outputs.mode }}
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+        run: |
+          git fetch origin main
+          git merge-base --is-ancestor "$BRIDGE_COMMIT" origin/main
+          git reset --hard origin/main
+          npm run runtime:production:checkpoint -- --date "$RUNTIME_DATE" --checkpoint "research/runtime/checkpoints/${RUNTIME_DATE:0:4}/${RUNTIME_DATE:5:2}/${RUNTIME_DATE}-production.json"
+          if [[ "$MODE" == "stage-batch" ]]; then
+            npm run publication:bundle:staged
+            npm run publication:layout:validate
+            npm run publication:editorial:validate
+            npm run runtime:validate
+          fi

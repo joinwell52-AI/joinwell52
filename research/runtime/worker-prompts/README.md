@@ -8,7 +8,7 @@ At wake time, an automation must:
 2. read the Worker Control path declared by `SCHEDULER.json` and pass admission;
 3. resolve its task ID and authoritative prompt reference from that control file;
 4. read that prompt completely from the same commit;
-5. verify the declared version and SHA-256 with a deterministic tool;
+5. verify the declared version and SHA-256 directly, or through exact-HEAD CI when local hashing is unavailable;
 6. execute the generated prompt within the declared limits and without cached or embedded business rules.
 
 `CONFIG.json`, the Scheduler and the task template are source inputs. Files under `generated/` are deterministic committed artifacts and must not be edited directly.
@@ -39,7 +39,7 @@ npm run worker-control:resolve -- \
   --task production \
   --branch main \
   --wake-source chatgpt-scheduled-task \
-  --capabilities github-read,github-write,command-execution,file-editing \
+  --capabilities github-read,github-write,file-editing \
   --now 2026-08-12T15:00:00+08:00
 ```
 

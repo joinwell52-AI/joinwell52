@@ -22,7 +22,7 @@ The checkpoint contains one ordered item for every same-date Production-authoriz
   "status": "Running",
   "promptIdentity": {
     "path": "research/runtime/worker-prompts/generated/production.prompt.md",
-    "version": "2.12.0",
+    "version": "2.13.0",
     "sha256": "..."
   },
   "items": [
@@ -60,6 +60,8 @@ For each item, Production performs the following bounded segment:
 4. calculate artifact hashes;
 5. update the checkpoint item to `Ready`;
 6. commit the work directory and checkpoint to `main`, fetch `main`, and verify both before starting the next item.
+
+When the scheduled Worker has no command execution, it commits the five text artifacts and a governed `runtime-production-action-request/v1` instead of generating the PNG or hashes itself. `Research Runtime Production Actions Bridge V1` performs steps 3–5 on GitHub Actions and persists the checkpoint. The request commit alone is not a `Ready` item.
 
 The Worker must stop before its admitted time budget expires. A non-terminal stop with at least one durable `Ready` item is recoverable progress, not completion.
 

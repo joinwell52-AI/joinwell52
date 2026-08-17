@@ -1,7 +1,7 @@
 <!-- GENERATED FILE. DO NOT EDIT DIRECTLY. -->
 <!-- schema: research-runtime-worker-prompt/v1 -->
 <!-- task: production -->
-<!-- prompt-version: 2.12.0 -->
+<!-- prompt-version: 2.13.0 -->
 <!-- scheduler-version: 3.0 -->
 <!-- template: research/runtime/worker-prompts/templates/production.prompt.md -->
 # Authoritative Production Worker Prompt
@@ -26,6 +26,7 @@ This file is a generated execution artifact from the latest `main` branch. Do no
 - `research/runtime/WAKE-RECEIPT-V1.md`
 - `research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md`
 - `research/runtime/PRODUCTION-CHECKPOINT-V2.md`
+- `research/runtime/PRODUCTION-ACTIONS-BRIDGE-V1.md`
 - `research/runtime/COVER-UPGRADE-V1.md`
 - `research/editorial/EDITORIAL-ARCHITECTURE.json`
 - `research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md`
@@ -50,7 +51,7 @@ Daily dependencies are `queue <- discovery`, `reading <- queue`, `analysis <- re
 
 Find the earliest due unfinished task. Recover and claim the same task if it is `Running` without a fresh verified Worker Claim. If it is `Waiting` and eligible, persist and verify `Execution Slot Opened` and `Worker Claimed` before substantive work. Execute only the earliest authorized task. If Production does not hold execution authority, perform zero Production-specific work. After any selected task reaches a durably verified terminal result, reconcile again and continue only an already-overdue next task in order.
 
-For recovery, read only `research/runtime/checkpoints/YYYY/MM/YYYY-MM-DD-production.json` for the current `runDate`. New work uses `runtime-production-checkpoint/v2`. Resume only after `npm run runtime:production:checkpoint -- --date <runDate> --checkpoint <checkpoint-path>` validates every `Ready` item's paths and SHA-256 values on fetched `main`. Skip verified `Ready` items and continue at `nextItemId`. If the same-date checkpoint is absent or invalid, restart from the earliest unproved item. Chat messages, generated execution reports, report images, demos, an empty control commit, `Worker Claimed` alone and prior-date checkpoints are never article progress.
+For recovery, read only `research/runtime/checkpoints/YYYY/MM/YYYY-MM-DD-production.json` for the current `runDate`. New work uses `runtime-production-checkpoint/v2`. When command execution is available, run `npm run runtime:production:checkpoint -- --date <runDate> --checkpoint <checkpoint-path>`. When it is unavailable, require a successful `Research Runtime Production Actions Bridge V1` run for the exact request commit, then fetch `main` and verify the resulting checkpoint paths, item states and recorded SHA-256 values. Skip verified `Ready` items and continue at `nextItemId`. If the same-date checkpoint is absent or invalid, restart from the earliest unproved item. Chat messages, generated execution reports, report images, demos, an empty control commit, `Worker Claimed` alone and prior-date checkpoints are never article progress.
 
 ## Bounded article segments
 
@@ -58,10 +59,9 @@ Do not attempt the entire three-article batch as one uninterrupted cloud operati
 
 1. create and validate `article-brief.json`, `argument-architecture.json` and `figure-plan.json`;
 2. write `draft.zh.md` and `draft.en.md` as pre-candidate documents;
-3. generate `baseline-cover.png` with the deterministic generator;
-4. calculate SHA-256 for all six artifacts;
-5. mark the item `Ready` in the V2 checkpoint and set `nextItemId` to the first incomplete item;
-6. commit the item workspace and checkpoint to `main`, fetch `main`, and verify them before beginning another item.
+3. generate `baseline-cover.png` with the deterministic generator and calculate SHA-256 for all six artifacts when command execution exists; otherwise commit the five text artifacts plus a governed `materialize-item` Actions Bridge request;
+4. mark the item `Ready` in the V2 checkpoint and set `nextItemId` to the first incomplete item, either directly or through the Actions Bridge;
+5. commit the item workspace and checkpoint to `main`, fetch `main`, and verify them before beginning another item.
 
 At 45 elapsed minutes, do not start another item. Persist the current valid progress checkpoint and stop cleanly before the admitted 50-minute limit. A later same-day recovery continues at `nextItemId`; it must not rewrite verified `Ready` items.
 
@@ -110,6 +110,8 @@ Production owns a complete baseline Article Cover and must be able to complete w
 
 `node scripts/generate-baseline-cover.mjs --output <coverPath> --item <itemId> --column <column> --title <English title>`
 
+When the Worker has no command execution, it must not stop at this command. Persist the article text artifacts and submit a `materialize-item` Actions Bridge request; the repository workflow executes this exact deterministic generator and writes the verified PNG and checkpoint hashes back to `main`.
+
 This baseline is deliberately simple and deterministic. It is a clean landscape editorial raster keyed to article identity and column, not a claim that a high-end generated illustration was produced. Simplicity, restrained geometry, conservative composition, or lack of cinematic detail are never reasons to fail the baseline cover. The baseline passes `coverGate` when it is a real PNG at the declared same-date path, visually distinct from the other baseline covers, usable at thumbnail scale, and not a technical diagram, Runtime dashboard, monitoring screen or report board.
 
 Record baseline cover evidence in the Production result using the existing structured `coverEvidence[]` shape. Bind `itemId`, a run-date-prefixed `briefId`, `coverPath`, a short positive article visual descriptor in `sanitizedPrompt`, `generationAttempts=1`, `semanticReview=PASS`, plus `coverRole=baseline` and `generator=deterministic-baseline-v1`. The deterministic generator is the Production cover mechanism; do not wait for a cloud-image receipt.
@@ -128,7 +130,7 @@ Inline Figures are optional `0..N`. Create one only where nearby reasoning mater
 
 Produce staging candidates only. Do not publish and do not modify public article, index or release surfaces. New output must use `runtime-publication-candidate/v2` and `publication-candidate-article/v2`. Record `articleType`, `sections[]`, `endingModule`, `evidenceClaims[]`, `projectRelevance`, `communityEdition`, `inlineFigures[]`, and `PASS` results for Research Value, Independence, Evidence, Structure, Language, Bilingual Consistency, `coverGate`, `inlineVisualGate` and `layoutGate`. Legacy `figurePath` alone is insufficient.
 
-Required validation commands:
+Required validation gates:
 
 - `npm run runtime:production:checkpoint`
 - `npm run publication:bundle:staged`
@@ -136,7 +138,9 @@ Required validation commands:
 - `npm run publication:editorial:validate`
 - `npm run runtime:validate`
 
-Before requesting a `Completed` Production terminal state, run `npm run runtime:production:proof -- --date <runDate> --result <result-path>` when command execution is available. If the connected Worker cannot execute repository commands, it must create the governed same-date completion request and let `Research Runtime Shift Finalization V2.1` execute the proof and all Runtime validators on GitHub Actions; the shift is not `Completed` until that workflow persists and remotely verifies the terminal result. GitHub Runtime finalization repeats the same proof and rejects stale dates, missing eligible objects, mismatched candidate IDs, old article or cover paths, non-raster cover files, missing structured cover evidence, or a checkpoint earlier than `validators-passed`.
+Command execution is optional for the scheduled Production Worker. Its absence is not `ToolUnavailable`, `Failed` or `Blocked` when GitHub read/write, file operations and GitHub Actions are available. When command execution is unavailable, use `runtime-production-action-request/v1` exactly as defined by `PRODUCTION-ACTIONS-BRIDGE-V1.md`: the Actions Bridge generates baseline PNG files, calculates checkpoint hashes, atomically promotes a complete candidate bundle and runs the validation gates. The Worker must fetch and inspect the resulting `main` commit and successful Actions run; the request commit by itself proves nothing.
+
+Before requesting a `Completed` Production terminal state, run `npm run runtime:production:proof -- --date <runDate> --result <result-path>` when command execution is available. Otherwise create the governed same-date completion request and let `Research Runtime Shift Finalization V2.1` execute the proof and all Runtime validators on GitHub Actions. The shift is not `Completed` until that workflow persists and remotely verifies the terminal result. GitHub Runtime finalization repeats the same proof and rejects stale dates, missing eligible objects, mismatched candidate IDs, old article or cover paths, non-raster cover files, missing structured cover evidence, or a checkpoint earlier than `validators-passed`.
 
 Any research-value, independence, evidence, structure, language, bilingual parity, asset, caption/source, edition, layout or gate failure is `NEEDS REVISION` and must not be committed as `Completed`. Production owns content repair. Publication may release only a complete candidate and must return failures upstream; Publication must not perform new research, substantive rewriting, evidence repair, type selection, module repair or claim-strength repair.
 
