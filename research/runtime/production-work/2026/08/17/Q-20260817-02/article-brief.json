@@ -1,0 +1,46 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-17",
+  "itemId": "Q-20260817-02",
+  "researchObjectId": "AN-20260817-02",
+  "targetAudience": {
+    "primary": "Runtime, orchestration and platform engineers operating selectable execution environments",
+    "knowledgeAssumption": "The reader understands process environments, configuration precedence and durable task resume.",
+    "readerProblem": "A turn can execute in one resolved environment while inheriting process-variable policy from another scope, creating split-brain configuration authority."
+  },
+  "whyNow": "A same-day merged Codex change moves ShellEnvironmentPolicy into EnvironmentConfig and routes regular shell, user-shell and unified-exec construction through the selected environment with an explicit fallback.",
+  "externalHook": {
+    "type": "engineering-problem",
+    "description": "Selecting an execution environment is incomplete if subprocess configuration still comes from a stale thread-global owner.",
+    "evidenceRefs": ["E1", "E2", "E3"]
+  },
+  "coreProposition": "Execution-scoped configuration should follow the resolved environment that owns the work, with explicit fallback and precedence plus a stable policy identity for durable resume.",
+  "originalValue": {
+    "type": "model",
+    "description": "Frames execution context as a configuration-authority boundary and separates selected-environment ownership, fallback, precedence, provenance and confidentiality controls."
+  },
+  "readerTakeaway": "Bind every subprocess launcher to a declared environment policy source, make fallback and merge order visible, compare policy identity during resume and treat debug redaction as only one observability safeguard.",
+  "evidenceBoundary": {
+    "supported": [
+      "EnvironmentConfig carries ShellEnvironmentPolicy and redacts it from Debug output.",
+      "Three shell execution paths consume the selected turn environment policy with a session-derived fallback.",
+      "Tests use conflicting policies to show that selected-environment filtering wins while its explicit values survive."
+    ],
+    "unsupported": [
+      "Complete process isolation",
+      "Universal subprocess and integration coverage",
+      "Secret non-disclosure across output and telemetry"
+    ],
+    "uncertain": [
+      "Coverage of MCP servers, hooks and other integrations",
+      "The correct policy-fingerprint and resume response contract"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument applies generally to runtimes with selectable execution environments and does not require a first-party project."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The implementation provides concrete ownership and precedence evidence, while the Research Object adds a bounded configuration-authority model useful beyond the source patch."
+}

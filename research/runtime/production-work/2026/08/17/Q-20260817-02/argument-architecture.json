@@ -1,0 +1,58 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-17",
+  "itemId": "Q-20260817-02",
+  "coreProposition": "Execution-scoped configuration should follow the resolved environment that owns the work, with explicit fallback and precedence plus a stable policy identity for durable resume.",
+  "openingMove": {
+    "type": "failure",
+    "purpose": "Expose the split-brain failure in which resource and permission context follow one environment while process variables follow another.",
+    "evidenceRefs": ["E2", "E3", "I1"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is a selected environment also a configuration-authority boundary?",
+      "claim": "When environment selection changes per turn, process-variable policy must follow the same resolved scope or execution meaning can split across owners.",
+      "evidenceRefs": ["E1", "E2", "I1"],
+      "reasoningRole": "mechanism",
+      "readerProgress": "The reader sees that execution context governs policy meaning, not merely resource location.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What contract makes ownership operational?",
+      "claim": "All subprocess launchers need a declared policy source, deterministic fallback and explicit merge precedence for inherited and environment-owned values.",
+      "evidenceRefs": ["E2", "E3"],
+      "reasoningRole": "engineering-implication",
+      "readerProgress": "The reader gains a checklist for avoiding divergent configuration across executors.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What changes when work is durable?",
+      "claim": "Resume and replay should compare a stable policy identity or fingerprint so the same environment name cannot hide changed execution semantics.",
+      "evidenceRefs": ["I1"],
+      "reasoningRole": "consequence",
+      "readerProgress": "The reader understands why deterministic current values alone are insufficient for recoverable work.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Which safety claims remain outside this mechanism?",
+      "claim": "Filtering and Debug redaction do not establish full process isolation, complete integration coverage, authorization over explicit values or confidentiality of downstream output.",
+      "evidenceRefs": ["E4"],
+      "reasoningRole": "boundary",
+      "readerProgress": "The reader can distinguish configuration ownership from broader isolation and secret-protection controls.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "A truly immutable thread environment or an intentionally non-overridable organization policy may justify centralized ownership.",
+    "responseBoundary": "The selected evidence supports environment ownership for dynamically selectable environments; it does not make decentralization universally correct."
+  },
+  "endingStrategy": {
+    "type": "limitation",
+    "purpose": "End by separating policy-source correctness from process isolation and confidentiality guarantees."
+  }
+}
