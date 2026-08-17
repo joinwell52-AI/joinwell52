@@ -1,0 +1,216 @@
+{
+  "schema": "research-intelligence-run/v1",
+  "version": "1.0",
+  "date": "2026-08-17",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "registryVersion": "1.0",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-08-17T09:06:10+08:00",
+  "githubCommit": "pending",
+  "reason": "Discovery resolved every due source across the three configured P0 pipelines. Six material same-day maintainer changes from openai/codex survived mechanism-level normalization; no same-day platform announcement or published-research object met the retention rule. Topic selection remains exclusively owned by Queue, so all three column decisions remain Waiting.",
+  "reason_zh": "Discovery 已解析三条配置 P0 管线的全部到期来源。经机制级规范化后，保留 openai/codex 的 6 个同日重要维护者变更；没有同日平台公告或已发表研究对象满足保留规则。选题仍完全由 Queue 负责，因此三个栏目决定均保持 Waiting。",
+  "pipelines": [
+    {
+      "id": "ai-platform",
+      "label": "AI Platform Change Intelligence",
+      "label_zh": "AI 平台变化情报",
+      "status": "Completed",
+      "due": 45,
+      "checked": 44,
+      "inaccessible": [],
+      "failed": [
+        {
+          "source": "cursor-forum-announcements",
+          "url": "https://forum.cursor.com/c/announcements/11",
+          "reason": "Configured public forum section returned an internal retrieval error during this run; the failure is recorded rather than counted as checked."
+        }
+      ],
+      "signals": 0,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All 45 configured public P0 platform channels were resolved as checked or explicit retrieval failure. Current authoritative release notes, documentation, status, repository and public-forum surfaces exposed no material mechanism change first published on 2026-08-17 that met the same-day retention rule.",
+      "reason_zh": "全部 45 个配置的公开 P0 平台渠道均已解析为已检查或明确抓取失败。当前权威发布说明、文档、状态页、仓库与公开论坛表面没有发现首次发表于 2026-08-17 且满足同日保留规则的重要机制变化。"
+    },
+    {
+      "id": "github-engineering",
+      "label": "GitHub Engineering Intelligence",
+      "label_zh": "GitHub 工程情报",
+      "status": "Completed",
+      "due": 9,
+      "checked": 9,
+      "inaccessible": [],
+      "failed": [],
+      "signals": 6,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 daily repositories were checked from the 2026-08-17 Asia/Shanghai date boundary. Six same-day openai/codex maintainer changes were material to permission enforcement, execution isolation, persistent-state correctness, diagnostics and audit observability; unrelated UI/build-only changes and mechanisms already captured in the prior-day Signal Pool were not retained again.",
+      "reason_zh": "已从 2026-08-17 上海日期边界检查全部 9 个 P0 每日仓库。openai/codex 有 6 个同日维护者变更与权限执行、执行隔离、持久状态正确性、诊断和审计可观测性直接相关；无关 UI/构建变更以及前一日 Signal Pool 已捕获的同机制变化未重复保留。"
+    },
+    {
+      "id": "published-research",
+      "label": "Published Research Intelligence",
+      "label_zh": "已发表研究情报",
+      "status": "Completed",
+      "due": 9,
+      "checked": 7,
+      "inaccessible": [],
+      "failed": [
+        {
+          "source": "jss",
+          "url": "https://www.sciencedirect.com/journal/journal-of-systems-and-software",
+          "reason": "Publisher surface returned an internal retrieval error during this run."
+        },
+        {
+          "source": "zenodo",
+          "url": "https://zenodo.org/",
+          "reason": "Repository surface returned an internal retrieval error during this run."
+        }
+      ],
+      "signals": 0,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine configured P0 research sources were resolved as checked or explicit retrieval failure. The successfully checked primary/publisher surfaces exposed no material research object first published on 2026-08-17 that met the configured evidence and topic rules.",
+      "reason_zh": "全部 9 个配置的 P0 研究来源均已解析为已检查或明确抓取失败。成功检查的一手来源或出版方表面没有发现首次发表于 2026-08-17 且同时满足配置证据与主题规则的重要研究对象。"
+    }
+  ],
+  "columns": [
+    {
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded two primary-column permission-governance signals; Queue must independently score and decide selection.",
+      "reason_zh": "Discovery 记录 2 个以该栏目为主栏目的权限治理信号；后续必须由 Queue 独立评分并决定是否选题。"
+    },
+    {
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded two primary-column state and execution-isolation signals; Queue must independently score and decide selection.",
+      "reason_zh": "Discovery 记录 2 个以该栏目为主栏目的状态与执行隔离信号；后续必须由 Queue 独立评分并决定是否选题。"
+    },
+    {
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded two primary-column diagnostics and observability signals; Queue must independently score and decide selection.",
+      "reason_zh": "Discovery 记录 2 个以该栏目为主栏目的诊断与可观测性信号；后续必须由 Queue 独立评分并决定是否选题。"
+    }
+  ],
+  "signals": [
+    {
+      "id": "SIG-20260817-001",
+      "pipeline": "github-engineering",
+      "title": "Codex rejects obsolete permission-profile fields instead of silently ignoring requested policy",
+      "title_zh": "Codex 拒绝过时权限字段，避免请求的权限策略被静默忽略",
+      "sourceUrl": "https://github.com/openai/codex/commit/935b1c4e3d25ec0c04bccde0144125f46314180b",
+      "publishedAt": "2026-08-17",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["industry-architecture", "open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:obsolete-permission-profile-fail-closed",
+      "summary": "App-server request handling now rejects the removed permissionProfile field on thread/start, thread/resume, thread/fork and turn/start instead of allowing deserialization to ignore it, preventing a caller from believing a permission request took effect when it did not.",
+      "summary_zh": "App Server 现在会在 thread/start、thread/resume、thread/fork 与 turn/start 上拒绝已移除的 permissionProfile 字段，而不是让反序列化静默忽略，从而避免调用方误以为权限请求已经生效。"
+    },
+    {
+      "id": "SIG-20260817-002",
+      "pipeline": "github-engineering",
+      "title": "Codex preserves legacy project-root restrictions as workspace-root policy",
+      "title_zh": "Codex 将旧 project_roots 继续解释为 workspace_roots 权限策略",
+      "sourceUrl": "https://github.com/openai/codex/commit/772e88c8ae987445b81d932ea0f38fa0cc8fb5dc",
+      "publishedAt": "2026-08-17",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering", "industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:legacy-project-roots-permission-compatibility",
+      "summary": "Codex parses legacy :project_roots entries as an alias for :workspace_roots, preserving deny rules and read-only carve-outs that could otherwise be dropped when older permission profiles are loaded.",
+      "summary_zh": "Codex 将旧版 :project_roots 解析为 :workspace_roots 的别名，保留拒绝规则与只读子路径例外，避免加载旧权限 Profile 时意外丢失文件系统限制。"
+    },
+    {
+      "id": "SIG-20260817-003",
+      "pipeline": "github-engineering",
+      "title": "Codex applies shell-variable policy from the selected execution environment",
+      "title_zh": "Codex 按所选执行环境应用 Shell 变量策略",
+      "sourceUrl": "https://github.com/openai/codex/commit/6c108912eeacabfc82723bf44f8a23f6e2f86585",
+      "publishedAt": "2026-08-17",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee", "open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:per-environment-shell-variable-policy",
+      "summary": "Resolved EnvironmentConfig now carries its ShellEnvironmentPolicy, and shell handlers filter inherited variables according to the selected turn environment while preserving that environment's explicit overrides.",
+      "summary_zh": "解析后的 EnvironmentConfig 现在携带各自的 ShellEnvironmentPolicy；Shell 处理器按当前 Turn 选择的环境过滤继承变量，同时保留该环境的显式覆盖。"
+    },
+    {
+      "id": "SIG-20260817-004",
+      "pipeline": "github-engineering",
+      "title": "Codex restores independent persisted thread timestamp maxima correctly",
+      "title_zh": "Codex 独立恢复持久化线程时间戳最大值",
+      "sourceUrl": "https://github.com/openai/codex/commit/375996d3f5b9130edf12f4af8073703df2724570",
+      "publishedAt": "2026-08-17",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["open-source-engineering", "digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:independent-thread-timestamp-maxima-restore",
+      "summary": "State initialization now loads updated_at_ms and recency_at_ms maxima with independent scalar subqueries so each counter is restored correctly even when the maxima belong to different threads, with a reopen regression test covering the case.",
+      "summary_zh": "状态初始化现在通过独立标量子查询加载 updated_at_ms 与 recency_at_ms 最大值，因此即使两个最大值来自不同线程也能分别正确恢复，并增加了重开状态数据库的回归测试。"
+    },
+    {
+      "id": "SIG-20260817-005",
+      "pipeline": "github-engineering",
+      "title": "Codex compacts successful command activity without discarding the full transcript",
+      "title_zh": "Codex 压缩成功命令活动展示但保留完整执行记录",
+      "sourceUrl": "https://github.com/openai/codex/commit/1f41cc5d92722748e45cae9cecc6d883a4e7cbb1",
+      "publishedAt": "2026-08-17",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee", "industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:compact-command-activity-transcript-preservation",
+      "summary": "The TUI groups consecutive successful agent and unified-exec startup commands into compact entries while preserving the full transcript, and flushes groups at failures, interaction boundaries and a bounded group size; replay follows the same rules.",
+      "summary_zh": "TUI 将连续成功的 Agent 与 unified-exec 启动命令聚合为紧凑条目，同时保留完整 Transcript；失败、交互边界以及达到有界分组大小时会刷新分组，历史重放也使用相同规则。"
+    },
+    {
+      "id": "SIG-20260817-006",
+      "pipeline": "github-engineering",
+      "title": "Codex doctor classifies route-aware network failures into actionable diagnostics",
+      "title_zh": "Codex doctor 将路由感知网络故障分类为可操作诊断",
+      "sourceUrl": "https://github.com/openai/codex/commit/c8ddb210d2429cacacf86593e157114b00634f13",
+      "publishedAt": "2026-08-17",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:route-aware-network-diagnostics",
+      "summary": "codex doctor now probes the configured Responses inference endpoint through the route-aware client and classifies TLS, proxy authentication, proxy configuration, resolution and timeout failures while accounting for custom CA and provider-specific routing.",
+      "summary_zh": "codex doctor 现在通过路由感知客户端探测配置的 Responses 推理端点，并对 TLS、代理认证、代理配置、域名解析与超时故障分类，同时考虑自定义 CA 与 Provider 特定路由。"
+    }
+  ]
+}
