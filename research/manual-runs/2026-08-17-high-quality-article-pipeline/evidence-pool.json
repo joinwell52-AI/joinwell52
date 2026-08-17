@@ -1,0 +1,82 @@
+{
+  "schema": "manual-topic-linked-evidence-pool/v1",
+  "date": "2026-08-17",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "topicId": "TP-20260817-04",
+  "researchQuestion": "What must an executable evaluation package contain to distinguish a genuinely reliable agent run from a final output that merely happens to pass?",
+  "admissionMode": "cross-source",
+  "signals": [
+    {
+      "id": "HQ-SIG-20260817-001",
+      "topicIds": ["TP-20260817-04"],
+      "title": "EvalAgent packages evaluation planning, traces, executable code and reports, then measures whether the generated evaluation works on the first run",
+      "sourceUrl": "https://arxiv.org/abs/2605.11378",
+      "sourceIdentity": "aws-ai-labs:evalagent",
+      "evidenceType": "research",
+      "publishedAt": "2026-05-12",
+      "accessedAt": "2026-08-17",
+      "evidenceLevel": "primary-preprint",
+      "supports": "The evaluator is a software artifact whose plan, code, execution and result quality must all be inspected; evaluation-specific skills materially improve first-run executability in the reported benchmark.",
+      "doesNotSupport": "Universal performance across models or agent domains; the study used 20 agents and the Claude model family, and roughly one third of generated evaluations still required debugging."
+    },
+    {
+      "id": "HQ-SIG-20260817-002",
+      "topicIds": ["TP-20260817-04"],
+      "title": "Agent-EvalKit releases an inspectable six-step evaluation workflow",
+      "sourceUrl": "https://github.com/awslabs/Agent-EvalKit",
+      "sourceIdentity": "awslabs:agent-evalkit-repository",
+      "evidenceType": "first-party-test",
+      "publishedAt": "2026",
+      "accessedAt": "2026-08-17",
+      "evidenceLevel": "maintainer-implementation",
+      "supports": "A concrete implementation surface exists for planning, test generation, tracing, execution, evaluator code and reporting.",
+      "doesNotSupport": "Independent reproduction of the paper's reported metrics or production readiness for every framework."
+    },
+    {
+      "id": "HQ-SIG-20260817-003",
+      "topicIds": ["TP-20260817-04"],
+      "title": "AgentLens finds that a passing patch can still come from a weak execution process",
+      "sourceUrl": "https://arxiv.org/abs/2605.12925",
+      "sourceIdentity": "microsoft-uiuc:agentlens",
+      "evidenceType": "benchmark",
+      "publishedAt": "2026-05-13",
+      "accessedAt": "2026-08-17",
+      "evidenceLevel": "primary-preprint-with-reproducible-method",
+      "supports": "Outcome-only scoring hides process defects; in the study's eligible subset, 10.7% of passing trajectories were classified as Lucky Passes and process-aware ranking changed model order.",
+      "doesNotSupport": "Automatic release approval, generalization beyond OpenHands-style SWE-bench Verified traces, or proof that a high process score implies a secure patch."
+    },
+    {
+      "id": "HQ-SIG-20260817-004",
+      "topicIds": ["TP-20260817-04"],
+      "title": "UnderSpecBench separates safe success from wrong-target and over-scoped action",
+      "sourceUrl": "https://arxiv.org/abs/2607.02294",
+      "sourceIdentity": "hkust-tongji:underspecbench",
+      "evidenceType": "benchmark",
+      "publishedAt": "2026-07-02",
+      "accessedAt": "2026-08-17",
+      "evidenceLevel": "primary-preprint-with-deterministic-oracles",
+      "supports": "A completed action is not necessarily a safe success; the benchmark uses deterministic side-effect oracles to distinguish intended action, wrong target and over-scope, and reports boundary violations in 55.8%-67.8% of acted runs across the tested configurations.",
+      "doesNotSupport": "A prediction of real incident rates; the authors describe the containerized autonomous setting as a stress test with an abstraction gap."
+    },
+    {
+      "id": "HQ-SIG-20260817-005",
+      "topicIds": ["TP-20260817-04"],
+      "title": "ScientistOne audits score, specification, references and method-code alignment through a chain of evidence",
+      "sourceUrl": "https://arxiv.org/abs/2605.26340",
+      "sourceIdentity": "google-cloud-ai-research:scientistone",
+      "evidenceType": "research",
+      "publishedAt": "2026-05-25",
+      "accessedAt": "2026-08-17",
+      "evidenceLevel": "primary-preprint",
+      "supports": "Professional-looking outputs can hide broken evidence chains; typed claim-to-artifact links and post-hoc integrity checks expose score, specification, reference and method-code mismatches.",
+      "doesNotSupport": "Complete scientific validity, passage-level citation entailment, novelty, or bounded false-negative rates across open-ended scientific domains."
+    }
+  ],
+  "independenceCheck": {
+    "distinctSourceIdentities": 5,
+    "distinctEvidenceTypes": ["research", "benchmark", "first-party-test"],
+    "sameRepositoryCommitCount": 0,
+    "decision": "PASS"
+  }
+}

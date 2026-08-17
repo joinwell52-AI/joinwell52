@@ -1,0 +1,66 @@
+{
+  "schema": "runtime-topic-plan/v1",
+  "version": "1.0",
+  "date": "2026-08-17",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Manual high-quality article pipeline",
+  "policySource": {
+    "commit": "ac2f9fcbc5760e3e9410bd02292a15f2b91a9139",
+    "path": "research/editorial/TOPIC-FIRST-POLICY.md",
+    "note": "Applied prospectively to this manual rerun without rewriting the completed 2026-08-17 official Runtime history."
+  },
+  "createdBeforeEvidenceDiscovery": true,
+  "createdAt": "2026-08-17T22:24:00+08:00",
+  "readerFeedback": {
+    "status": "Available",
+    "checkedAt": "2026-08-17T22:23:00+08:00",
+    "refs": [
+      "codex-thread:01a01016-a552-7331-b814-52bb3204029c"
+    ],
+    "summary": "The user identified that the official signal-first selection was wrong and pointed to the same-day topic-first pipeline correction."
+  },
+  "columns": [
+    {
+      "id": "digital-employee",
+      "planningStatus": "No Topic",
+      "reason": "The recent corpus already covers human approval, completion verification, handoff ownership and execution authority. A same-day additional topic would have high duplication risk.",
+      "reason_zh": "过去 30 天已经连续覆盖人工批准、完成核验、交接所有权与执行权；同日再做相邻选题有较高重复风险。"
+    },
+    {
+      "id": "industry-architecture",
+      "planningStatus": "No Topic",
+      "reason": "The environment-policy question selected by the earlier run overlaps directly with the 2026-08-16 configuration-precedence article, and no separate agenda gap is strong enough to justify another article today.",
+      "reason_zh": "早间选中的执行环境策略问题与 2026-08-16 的配置优先级文章直接重叠；今天没有另一项足够强的议程缺口值得再写一篇。"
+    },
+    {
+      "id": "open-source-engineering",
+      "planningStatus": "Planned",
+      "topicId": "TP-20260817-04",
+      "programTrack": "codeflowmu",
+      "origin": "research-agenda",
+      "researchQuestion": "What must an executable evaluation package contain to distinguish a genuinely reliable agent run from a final output that merely happens to pass?",
+      "researchQuestion_zh": "一个可执行的 Agent 评测包必须包含什么，才能区分真正可靠的运行与仅仅碰巧通过的最终输出？",
+      "audienceNeed": "Agent platform engineers and evaluation owners need a reviewable contract for admitting agent changes to release, not another leaderboard score.",
+      "audienceNeed_zh": "Agent 平台工程师与评测负责人需要一套可审查的发布准入合同，而不是又一个排行榜分数。",
+      "researchGap": "The existing corpus argues that completion needs verification, but it does not specify how evaluation plans, traces, executable checks, claim-to-evidence links and meta-evaluation should be packaged together.",
+      "researchGap_zh": "现有文章已经论证完成声明需要核验，但尚未说明如何把评测计划、执行轨迹、可执行检查、事实—证据链接与元评测组合成一个完整评测包。",
+      "whyNow": "Several independent 2026 studies now expose different failure modes of outcome-only agent evaluation and provide concrete, inspectable alternatives, making synthesis actionable rather than speculative.",
+      "whyNow_zh": "2026 年多项相互独立的研究从不同角度暴露了只看结果的 Agent 评测缺陷，并给出可检查的替代机制，现在已经可以形成可操作的工程综合判断。",
+      "searchQuestions": [
+        "How often do passing agent runs still exhibit unsafe, wasteful or unverifiable behavior?",
+        "Which artifacts let a reviewer reproduce or audit an evaluation claim?",
+        "How should teams test the evaluator itself before trusting its scores?",
+        "Which guarantees remain outside the scope of trace and evidence packaging?"
+      ],
+      "requiredEvidence": [
+        "At least two independent research source identities",
+        "At least one reproducible benchmark or released implementation",
+        "Methods and limitations from the full primary papers",
+        "A counterexample showing why final-output success is insufficient"
+      ],
+      "preliminarySources": [],
+      "editorialExceptionReason": ""
+    }
+  ]
+}

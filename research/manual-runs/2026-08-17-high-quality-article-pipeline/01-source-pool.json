@@ -1,0 +1,225 @@
+{
+  "runId": "2026-08-17-high-quality-article-pipeline",
+  "stage": 1,
+  "stageName": "multi-source-discovery",
+  "accessDate": "2026-08-17",
+  "timezone": "Asia/Shanghai",
+  "selectionPolicy": {
+    "topicFirst": true,
+    "ordinaryCommitMayBeTopicOrigin": false,
+    "minimumIndependentReliableSourcesPerArticle": 2,
+    "articleLimit": 3,
+    "articleQuota": 0
+  },
+  "coverage": {
+    "officialPlatformOrResearchChanges": 3,
+    "githubEngineeringRepositories": 4,
+    "papersOrBenchmarks": 4,
+    "independentSourceIdentities": 10
+  },
+  "sources": [
+    {
+      "id": "SRC-01",
+      "kind": "official-research-change",
+      "identity": "OpenAI",
+      "title": "Separating signal from noise in coding evaluations",
+      "url": "https://openai.com/index/separating-signal-from-noise-coding-evaluations/",
+      "publishedOrUpdated": "2026-07-08",
+      "accessedAt": "2026-08-17T22:34:31+08:00",
+      "supports": [
+        "OpenAI reported that its audit pipeline flagged 286 potentially broken SWE-Bench Pro tasks.",
+        "Flagged tasks were reviewed through agent-assisted investigation and a separate human annotation campaign.",
+        "Evaluation inputs, tests, attempts and human disagreement handling are part of benchmark validity, not merely the final score."
+      ],
+      "doesNotSupport": [
+        "It does not define a universal artifact schema for all agent evaluations.",
+        "It does not prove that every benchmark has the same defect rate."
+      ],
+      "topicUse": "selected-topic-evidence"
+    },
+    {
+      "id": "SRC-02",
+      "kind": "official-platform-change",
+      "identity": "OpenAI",
+      "title": "Introducing AgentKit (June 3, 2026 update)",
+      "url": "https://openai.com/index/introducing-agentkit/",
+      "publishedOrUpdated": "2026-06-03",
+      "accessedAt": "2026-08-17T22:34:31+08:00",
+      "supports": [
+        "OpenAI announced that Agent Builder and Evals products will be wound down from November 30, 2026 and recommends code-based Agents SDK workflows for continuing use cases.",
+        "The product description identifies datasets and trace grading as evaluation capabilities."
+      ],
+      "doesNotSupport": [
+        "The product update does not establish that code-based evaluation is automatically reproducible or trustworthy.",
+        "It does not validate the proposed evaluation-package contract."
+      ],
+      "topicUse": "discovery-context-only"
+    },
+    {
+      "id": "SRC-03",
+      "kind": "official-platform-reference",
+      "identity": "OpenAI API",
+      "title": "Evals API Reference",
+      "url": "https://platform.openai.com/docs/api-reference/evals",
+      "publishedOrUpdated": "current documentation inspected 2026-08-17",
+      "accessedAt": "2026-08-17T22:34:31+08:00",
+      "supports": [
+        "An eval has an explicit data-source schema, testing criteria and graders, and can be run against model and parameter variants."
+      ],
+      "doesNotSupport": [
+        "API object availability does not by itself prove evaluator correctness, task validity or process quality.",
+        "The reference is not evidence for benchmark defect rates."
+      ],
+      "topicUse": "engineering-context"
+    },
+    {
+      "id": "SRC-04",
+      "kind": "github-engineering",
+      "identity": "AWS AI Labs / awslabs",
+      "title": "Agent-EvalKit",
+      "url": "https://github.com/awslabs/Agent-EvalKit",
+      "publishedOrUpdated": "repository inspected 2026-08-17",
+      "accessedAt": "2026-08-17T22:34:31+08:00",
+      "supports": [
+        "The research implementation treats evaluation as generated executable code plus instrumentation, traces and a report.",
+        "The repository provides first-party implementation evidence for the EvalAgent paper."
+      ],
+      "doesNotSupport": [
+        "A first-party repository is not an independent replication of the paper's reported results.",
+        "Repository presence does not prove the generated evaluators are correct for unseen agents."
+      ],
+      "topicUse": "selected-topic-implementation-evidence"
+    },
+    {
+      "id": "SRC-05",
+      "kind": "github-engineering",
+      "identity": "agentevals-dev",
+      "title": "agentevals",
+      "url": "https://github.com/agentevals-dev/agentevals",
+      "publishedOrUpdated": "repository inspected 2026-08-17",
+      "accessedAt": "2026-08-17T22:34:31+08:00",
+      "supports": [
+        "The project evaluates pre-recorded OpenTelemetry traces against golden eval sets and supports code-based evaluators with declared dependencies.",
+        "Its own documentation states explicit applicability limits for long-running coding-agent traces."
+      ],
+      "doesNotSupport": [
+        "Project claims are not independent evidence that trace grading detects every semantic failure.",
+        "The project explicitly says it is not currently optimized for long-running coding-agent sessions."
+      ],
+      "topicUse": "selected-topic-engineering-example"
+    },
+    {
+      "id": "SRC-06",
+      "kind": "github-engineering",
+      "identity": "TraceCore maintainers",
+      "title": "TraceCore",
+      "url": "https://github.com/justindobbs/Tracecore",
+      "publishedOrUpdated": "repository inspected 2026-08-17",
+      "accessedAt": "2026-08-17T22:34:31+08:00",
+      "supports": [
+        "The project publishes a runnable artifact schema with runtime identity, task hash, artifact hash, budgets and deterministic replay metadata.",
+        "It demonstrates an engineering pattern for locally and externally verifying an evaluation bundle."
+      ],
+      "doesNotSupport": [
+        "A project specification does not establish broad adoption or empirical superiority.",
+        "Deterministic replay metadata cannot make nondeterministic model behavior fully reproducible."
+      ],
+      "topicUse": "selected-topic-engineering-example"
+    },
+    {
+      "id": "SRC-07",
+      "kind": "github-engineering",
+      "identity": "Future AGI maintainers",
+      "title": "future-agi",
+      "url": "https://github.com/future-agi/future-agi",
+      "publishedOrUpdated": "repository inspected 2026-08-17",
+      "accessedAt": "2026-08-17T22:34:31+08:00",
+      "supports": [
+        "The project exposes evaluators, prompts and traces rather than presenting only a black-box score.",
+        "Its implementation combines trace capture with multiple grader types."
+      ],
+      "doesNotSupport": [
+        "Vendor-maintainer performance claims are not treated as independently verified benchmarks.",
+        "The repository does not establish a complete release-admission contract."
+      ],
+      "topicUse": "discovery-corroboration"
+    },
+    {
+      "id": "SRC-08",
+      "kind": "paper",
+      "identity": "AWS AI Labs research team",
+      "title": "An Empirical Study of Automating Agent Evaluation",
+      "url": "https://arxiv.org/abs/2605.11378",
+      "publishedOrUpdated": "2026-05",
+      "accessedAt": "2026-08-17T22:34:31+08:00",
+      "supports": [
+        "With Sonnet 4.5 as the evaluator backbone, the study reports Eval@1 of 17.5% for the single-turn B1 baseline and 65.0% for EvalAgent; the abstract uses this as its representative comparison.",
+        "The proposed pipeline includes planning, test cases, instrumentation, trace collection, executable evaluator code and a report."
+      ],
+      "doesNotSupport": [
+        "The study covers 20 agents and Claude-family models only.",
+        "A 65% first-run success rate leaves substantial evaluator debugging work and does not prove universal evaluator correctness."
+      ],
+      "topicUse": "selected-topic-core-evidence"
+    },
+    {
+      "id": "SRC-09",
+      "kind": "paper",
+      "identity": "Microsoft Research and University of Illinois Urbana-Champaign",
+      "title": "AgentLens: Revealing the Lucky Pass Problem in SWE-Agent Evaluation",
+      "url": "https://arxiv.org/abs/2605.12925",
+      "publishedOrUpdated": "2026-05",
+      "accessedAt": "2026-08-17T22:34:31+08:00",
+      "supports": [
+        "The study reports that 10.7% of passing trajectories in its evaluation subset were classified as lucky passes.",
+        "Pass-rate rankings and process-quality rankings can differ when trajectories, waste and divergence are evaluated."
+      ],
+      "doesNotSupport": [
+        "The result is scoped to OpenHands trajectories and sampled SWE-bench Verified tasks.",
+        "A high process score does not guarantee a correct or secure patch."
+      ],
+      "topicUse": "selected-topic-core-evidence"
+    },
+    {
+      "id": "SRC-10",
+      "kind": "paper-benchmark",
+      "identity": "HKUST and Tongji University",
+      "title": "Coding Agents Are Guessing: Measuring Action-Boundary Violations in Underspecified DevOps Instructions",
+      "url": "https://arxiv.org/abs/2607.02294",
+      "publishedOrUpdated": "2026-07",
+      "accessedAt": "2026-08-17T22:34:31+08:00",
+      "supports": [
+        "UnderSpecBench uses isolated, network-restricted containers and deterministic side-effect oracles across 2,208 prompt variants.",
+        "The study separates Safe Success, Wrong Target and OverScope rather than collapsing outcomes into a single success label."
+      ],
+      "doesNotSupport": [
+        "The autonomous no-confirmation stress test is not an estimate of real-world incident rates.",
+        "Its intended-safe-action oracle can omit other defensible actions."
+      ],
+      "topicUse": "selected-topic-core-evidence"
+    },
+    {
+      "id": "SRC-11",
+      "kind": "paper",
+      "identity": "Google Cloud AI Research",
+      "title": "ScientistOne: Towards Human-Level Autonomous Research via Chain-of-Evidence",
+      "url": "https://arxiv.org/abs/2605.26340",
+      "publishedOrUpdated": "2026-05",
+      "accessedAt": "2026-08-17T22:34:31+08:00",
+      "supports": [
+        "The paper audits score verification, specification violations, reference verification and method-code alignment across 75 generated papers.",
+        "Its chain-of-evidence design attaches claims to artifacts and adds post-hoc verification."
+      ],
+      "doesNotSupport": [
+        "The benchmark concerns systems-optimization research, not all agent products.",
+        "Reference existence is not equivalent to claim entailment, and automated review does not replace expert review."
+      ],
+      "topicUse": "selected-topic-core-evidence"
+    }
+  ],
+  "discoveryDecision": {
+    "checkpoint": "PASS",
+    "reason": "The pool covers three official platform/research records, four GitHub engineering identities, and four full-text research papers. No adjacent commits or single repository controls article capacity.",
+    "nextStage": "topic-gates"
+  }
+}
