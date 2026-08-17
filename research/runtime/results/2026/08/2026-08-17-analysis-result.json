@@ -1,0 +1,152 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "analysis",
+  "family": "daily",
+  "runtimeDate": "2026-08-17",
+  "status": "Completed",
+  "input": {
+    "scheduler": "research/runtime/SCHEDULER.json",
+    "workerControl": "research/runtime/worker-prompts/generated/CONTROL.json",
+    "workerControlVersion": "1.3.0",
+    "authoritativePrompt": {
+      "path": "research/runtime/worker-prompts/generated/analysis.prompt.md",
+      "version": "2.0.0",
+      "sha256": "4f40dff2d12569f647bf265f344b60cb0f0cd0349f0b2d5cf1023f50947dfea2",
+      "hashVerified": true,
+      "sourceCommit": "cb36936f3026de4ced7e859a09cd199d69b319d0"
+    },
+    "requiredSources": [
+      "research/runtime/SCHEDULER.json",
+      "research/runtime/WORKER-CONTRACT-V3.md",
+      "research/runtime/WAKE-RECEIPT-V1.md",
+      "research/editorial/EDITORIAL-ARCHITECTURE.json",
+      "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+      "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+      "research/skills/04-research-analysis.md"
+    ],
+    "admission": {
+      "decision": "Admitted",
+      "date": "2026-08-17",
+      "branch": "main",
+      "wakeSource": "chatgpt-scheduled-task",
+      "requiredCapabilities": ["github-read", "github-write", "command-execution", "file-editing"],
+      "availableCapabilities": ["github-read", "github-write", "command-execution", "file-editing", "web-research"],
+      "limits": {
+        "maxRunMinutes": 120,
+        "maxRecoveryAttempts": 2,
+        "maxRevisionRounds": 2,
+        "maxOutputItems": 3,
+        "zeroOutputAllowed": true,
+        "directPublicationAllowed": false,
+        "requireSameRunDateInputs": true,
+        "requirePromptHashVerification": true,
+        "requireRemoteCommitVerification": true
+      }
+    },
+    "readingStatus": "Completed",
+    "readingArtifacts": [
+      "research/reading/Q-20260817-01-fail-closed-obsolete-permission-field-rejection.md",
+      "research/reading/Q-20260817-02-per-environment-shell-variable-policy.md",
+      "research/reading/Q-20260817-03-compact-command-activity-preserves-transcript.md"
+    ],
+    "controlPlane": {
+      "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-17/analysis-130046.json",
+      "executionSlotOpenedAt": "2026-08-17T13:01:39+08:00",
+      "workerClaimedAt": "2026-08-17T13:02:11+08:00",
+      "workerClaimCommit": "f8f566319a987c4b4d2a9bb6766187e0bee569bb",
+      "globalOrderVerified": true,
+      "earlierDueTasksClosed": ["discovery", "queue", "reading", "program"]
+    }
+  },
+  "workResult": {
+    "summary": "Executed only Skill 04 Research Analysis after fail-closed admission, deterministic verification of the authoritative Analysis prompt SHA-256, complete reading of all seven required control/editorial/evidence sources, a durable same-date Wake Receipt, repository-granted global-serial execution authority and a verified Worker Claimed event. Consumed only the three completed 2026-08-17 Reading Results and produced exactly three Research Objects. Q-20260817-01 concludes that forward-compatible agent APIs should treat security-significant schema retirement as an explicit fail-closed compatibility exception when silently dropping a removed field would change authorization meaning; this preserves generic unknown-field tolerance without claiming end-to-end authorization safety. Q-20260817-02 concludes that execution-scoped configuration should follow the selected resolved environment, with explicit fallback and precedence, to avoid split-brain policy ownership; Debug redaction is only one observability control and not a confidentiality guarantee. Q-20260817-03 concludes that operational command compaction should be a reversible presentation transform over a richer evidence-bearing transcript, while formal auditability still requires separate durability, provenance, tamper-evidence and external-effect contracts. No article drafting, visualization, Publication Candidate creation or publication was performed.",
+    "summary_zh": "在完成 Fail-closed Admission、权威 Analysis Prompt SHA-256 的确定性核验、全部 7 个 Required Control/Editorial/Evidence Source 的完整读取、同日 Wake Receipt 持久核验、仓库授予的全局串行执行权与 Worker Claimed 核验后，仅执行 Skill 04 Research Analysis。只消费 2026-08-17 当日三份已完成 Reading Result，并恰好形成三份 Research Object。Q-20260817-01 的判断是：当前向兼容 Agent API 中某个退役字段被静默丢弃会改变授权语义时，应把这类具有安全意义的 Schema Retirement 作为显式 Fail-closed Compatibility Exception；这样既保留通用未知字段容忍，也不把该机制夸大为端到端授权安全。Q-20260817-02 的判断是：执行级配置应跟随已选择的 Resolved Environment，并明确 Fallback 与 Precedence，以避免 Split-brain Policy Ownership；Debug Redaction 只是一项可观测性控制，不是保密保证。Q-20260817-03 的判断是：运维命令压缩应是富证据 Transcript 之上的可逆 Presentation Transform；正式审计仍需要独立的 Durability、Provenance、防篡改与 External-effect Contract。未执行文章撰写、可视化、Publication Candidate 创建或发布。",
+    "researchObjects": [
+      {
+        "column": "digital-employee",
+        "itemId": "Q-20260817-01",
+        "artifact": "research/analysis/Q-20260817-01-security-significant-schema-retirement.md",
+        "articleType": "engineering-insight",
+        "projectRelevance": "none",
+        "judgment": "Security-significant schema retirement should be an explicit fail-closed compatibility exception when silent field loss would change authorization or execution expectations; generic unknown-field tolerance may remain, but this pattern is not a substitute for end-to-end authorization controls.",
+        "judgment_zh": "当静默丢失字段会改变授权或执行预期时，具有安全意义的 Schema Retirement 应成为显式 Fail-closed Compatibility Exception；通用未知字段容忍可以保留，但这一模式不能替代端到端授权控制。"
+      },
+      {
+        "column": "industry-architecture",
+        "itemId": "Q-20260817-02",
+        "artifact": "research/analysis/Q-20260817-02-environment-owned-execution-policy.md",
+        "articleType": "technical-analysis",
+        "projectRelevance": "none",
+        "judgment": "Execution-scoped policy should follow the resolved environment that owns the work, with explicit fallback, merge precedence and preferably a stable policy identity/fingerprint for durable resume; redaction does not imply complete secret isolation.",
+        "judgment_zh": "执行级 Policy 应跟随实际拥有工作的 Resolved Environment，并明确 Fallback、Merge Precedence；对 Durable Resume 最好再提供稳定的 Policy Identity/Fingerprint；Redaction 不等于完整 Secret Isolation。"
+      },
+      {
+        "column": "open-source-engineering",
+        "itemId": "Q-20260817-03",
+        "artifact": "research/analysis/Q-20260817-03-presentation-transcript-separation.md",
+        "articleType": "engineering-insight",
+        "projectRelevance": "none",
+        "judgment": "Operational compaction should remain a view-layer transformation over recoverable execution evidence, with failures and interaction boundaries resistant to compaction; a retained transcript supports inspection but is not automatically an immutable audit or external-effect ledger.",
+        "judgment_zh": "运维压缩应保持为可恢复执行证据之上的 View-layer Transformation，并让失败与交互边界避免被压缩；保留 Transcript 可以支持检查，但不会自动成为不可变 Audit 或 External-effect Ledger。"
+      }
+    ],
+    "boundary": {
+      "unreadMaterialAnalyzed": false,
+      "priorDayResearchInputsReused": false,
+      "fixedArticleOutline": false,
+      "forcedFirstPartyMapping": false,
+      "articleWriting": false,
+      "visualization": false,
+      "publicationCandidate": false,
+      "publication": false
+    }
+  },
+  "output": {
+    "type": "Research Objects",
+    "researchObjectCount": 3,
+    "artifacts": [
+      "research/analysis/Q-20260817-01-security-significant-schema-retirement.md",
+      "research/analysis/Q-20260817-02-environment-owned-execution-policy.md",
+      "research/analysis/Q-20260817-03-presentation-transcript-separation.md"
+    ]
+  },
+  "next": {
+    "task": "production",
+    "scheduledTime": "15:00",
+    "instruction": "Production may consume only these three completed 2026-08-17 Research Objects after its formal time gate, fresh admission, authoritative prompt verification, global serial-order check and Worker Claim. It must preserve the bounded evidence identities: targeted obsolete-field rejection is not end-to-end authorization proof; selected-environment variable policy is not complete process or secret isolation; transcript preservation is not an immutable audit log or complete external-effect record.",
+    "instruction_zh": "Production 只能在 15:00 正式时间门禁之后，并完成新的 Admission、权威 Prompt Verification、全局串行顺序检查与 Worker Claim 后，消费这三份 2026-08-17 已完成 Research Object。必须保留有界 Evidence Identity：定向过时字段拒绝不等于端到端授权证明；已选择环境的变量策略不等于完整进程或 Secret Isolation；Transcript 保留不等于不可变 Audit Log 或完整 External-effect Record。"
+  },
+  "metrics": [
+    {"name": "reading_results_consumed", "value": 3},
+    {"name": "research_objects", "value": 3},
+    {"name": "prompt_hash_verified", "value": 1},
+    {"name": "required_sources_read", "value": 7},
+    {"name": "prior_day_research_inputs_reused", "value": 0},
+    {"name": "first_party_project_mappings_forced", "value": 0},
+    {"name": "article_drafts", "value": 0},
+    {"name": "publication_actions", "value": 0}
+  ],
+  "evidence": [
+    "cb36936f3026de4ced7e859a09cd199d69b319d0",
+    "research/runtime/wakes/2026/08/2026-08-17/analysis-130046.json",
+    "research/runtime/records/daily/2026/08/2026-08-17-daily-runtime.json",
+    "research/runtime/worker-prompts/generated/CONTROL.json",
+    "research/runtime/worker-prompts/generated/analysis.prompt.md",
+    "research/runtime/WORKER-CONTRACT-V3.md",
+    "research/runtime/WAKE-RECEIPT-V1.md",
+    "research/editorial/EDITORIAL-ARCHITECTURE.json",
+    "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+    "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+    "research/skills/04-research-analysis.md",
+    "research/reading/Q-20260817-01-fail-closed-obsolete-permission-field-rejection.md",
+    "research/reading/Q-20260817-02-per-environment-shell-variable-policy.md",
+    "research/reading/Q-20260817-03-compact-command-activity-preserves-transcript.md",
+    "f8f566319a987c4b4d2a9bb6766187e0bee569bb"
+  ],
+  "artifacts": [
+    "research/analysis/Q-20260817-01-security-significant-schema-retirement.md",
+    "research/analysis/Q-20260817-02-environment-owned-execution-policy.md",
+    "research/analysis/Q-20260817-03-presentation-transcript-separation.md",
+    "research/runtime/results/2026/08/2026-08-17-analysis-result.json"
+  ]
+}
