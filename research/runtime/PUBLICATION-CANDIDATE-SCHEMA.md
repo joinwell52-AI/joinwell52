@@ -130,9 +130,11 @@ The machine validator remains `scripts/publication-editorial-validate.mjs` plus 
 
 ## Atomic commit gate
 
-A new candidate remains one indivisible bundle: Chinese article, English article, deterministic baseline PNG, optional Inline Figures, three required planning artifacts, and the completed same-date candidate batch record.
+A new candidate remains one indivisible release-admission bundle: Chinese article, English article, deterministic baseline PNG, optional Inline Figures, three required planning artifacts, and the completed same-date candidate batch record.
 
-Production must stage the bundle together and run `npm run publication:bundle:staged`. Do not bypass hooks or split a candidate by language or planning artifact.
+Production may commit planning artifacts, bilingual pre-candidate drafts and a temporary deterministic cover incrementally under `research/runtime/production-work/` according to `PRODUCTION-CHECKPOINT-V2.md`. Those files are checkpoint workspace and do not become a candidate by themselves.
+
+After every item is checkpoint-verified as `Ready`, Production must stage the canonical bilingual articles, canonical cover assets and completed candidate batch together and run `npm run publication:bundle:staged`. Do not bypass hooks or expose one language or an article without its completed batch record.
 
 ## Publication boundary
 

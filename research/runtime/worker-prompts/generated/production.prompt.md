@@ -1,7 +1,7 @@
 <!-- GENERATED FILE. DO NOT EDIT DIRECTLY. -->
 <!-- schema: research-runtime-worker-prompt/v1 -->
 <!-- task: production -->
-<!-- prompt-version: 2.11.0 -->
+<!-- prompt-version: 2.12.0 -->
 <!-- scheduler-version: 3.0 -->
 <!-- template: research/runtime/worker-prompts/templates/production.prompt.md -->
 # Authoritative Production Worker Prompt
@@ -25,6 +25,7 @@ This file is a generated execution artifact from the latest `main` branch. Do no
 - `research/runtime/WORKER-CONTRACT-V3.md`
 - `research/runtime/WAKE-RECEIPT-V1.md`
 - `research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md`
+- `research/runtime/PRODUCTION-CHECKPOINT-V2.md`
 - `research/runtime/COVER-UPGRADE-V1.md`
 - `research/editorial/EDITORIAL-ARCHITECTURE.json`
 - `research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md`
@@ -49,11 +50,26 @@ Daily dependencies are `queue <- discovery`, `reading <- queue`, `analysis <- re
 
 Find the earliest due unfinished task. Recover and claim the same task if it is `Running` without a fresh verified Worker Claim. If it is `Waiting` and eligible, persist and verify `Execution Slot Opened` and `Worker Claimed` before substantive work. Execute only the earliest authorized task. If Production does not hold execution authority, perform zero Production-specific work. After any selected task reaches a durably verified terminal result, reconcile again and continue only an already-overdue next task in order.
 
-For recovery, read only `research/runtime/checkpoints/YYYY/MM/YYYY-MM-DD-production.json` for the current `runDate`. Resume from its latest node only when the checkpoint itself and its `sourceCommit` are committed on fetched `main`. If the same-date checkpoint is absent or does not prove a node, restart from the earliest unproved node. Chat messages, generated execution reports, report images, demos and prior-date checkpoints are never progress evidence.
+For recovery, read only `research/runtime/checkpoints/YYYY/MM/YYYY-MM-DD-production.json` for the current `runDate`. New work uses `runtime-production-checkpoint/v2`. Resume only after `npm run runtime:production:checkpoint -- --date <runDate> --checkpoint <checkpoint-path>` validates every `Ready` item's paths and SHA-256 values on fetched `main`. Skip verified `Ready` items and continue at `nextItemId`. If the same-date checkpoint is absent or invalid, restart from the earliest unproved item. Chat messages, generated execution reports, report images, demos, an empty control commit, `Worker Claimed` alone and prior-date checkpoints are never article progress.
+
+## Bounded article segments
+
+Do not attempt the entire three-article batch as one uninterrupted cloud operation. For each eligible Research Object, complete one bounded item segment under `research/runtime/production-work/YYYY/MM/DD/<itemId>/`:
+
+1. create and validate `article-brief.json`, `argument-architecture.json` and `figure-plan.json`;
+2. write `draft.zh.md` and `draft.en.md` as pre-candidate documents;
+3. generate `baseline-cover.png` with the deterministic generator;
+4. calculate SHA-256 for all six artifacts;
+5. mark the item `Ready` in the V2 checkpoint and set `nextItemId` to the first incomplete item;
+6. commit the item workspace and checkpoint to `main`, fetch `main`, and verify them before beginning another item.
+
+At 45 elapsed minutes, do not start another item. Persist the current valid progress checkpoint and stop cleanly before the admitted 50-minute limit. A later same-day recovery continues at `nextItemId`; it must not rewrite verified `Ready` items.
+
+Only after every item is `Ready` may Production copy the verified work artifacts into canonical staging paths and commit the completed candidate batch atomically. The `production-work` directory is recoverable workspace, not a Publication Candidate or public surface.
 
 ## Production responsibility
 
-Scheduler work: Write complete bilingual V2 candidates using a selected article type and dynamic modules; classify claim identities and project relevance; create one simple deterministic baseline raster Article Cover per candidate inside the same Production run; optionally persist one same-date Article Cover Brief for later quality upgrade; decide and contextually insert 0..N Inline Figures; pass six editorial gates plus Cover, Inline Visual and Article Layout gates; and record an optional Community Edition decision.
+Scheduler work: Build complete bilingual V2 candidates in article-sized durable segments. Persist and remotely verify each item's Article Brief, Argument Architecture, Figure Plan, bilingual pre-candidate drafts, deterministic baseline PNG and runtime-production-checkpoint/v2 state before starting the next item; then atomically stage the verified complete candidate batch and pass all editorial, visual and layout gates.
 
 Production may consume only same-`runDate`, completed, Production-authorized Research Objects. It must not introduce new discovery, reading or analysis and must not consume prior-day artifacts as current input.
 
@@ -114,6 +130,7 @@ Produce staging candidates only. Do not publish and do not modify public article
 
 Required validation commands:
 
+- `npm run runtime:production:checkpoint`
 - `npm run publication:bundle:staged`
 - `npm run publication:layout:validate`
 - `npm run publication:editorial:validate`

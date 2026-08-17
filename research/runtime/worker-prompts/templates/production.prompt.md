@@ -33,7 +33,22 @@ Daily dependencies are `queue <- discovery`, `reading <- queue`, `analysis <- re
 
 Find the earliest due unfinished task. Recover and claim the same task if it is `Running` without a fresh verified Worker Claim. If it is `Waiting` and eligible, persist and verify `Execution Slot Opened` and `Worker Claimed` before substantive work. Execute only the earliest authorized task. If Production does not hold execution authority, perform zero Production-specific work. After any selected task reaches a durably verified terminal result, reconcile again and continue only an already-overdue next task in order.
 
-For recovery, read only `research/runtime/checkpoints/YYYY/MM/YYYY-MM-DD-production.json` for the current `runDate`. Resume from its latest node only when the checkpoint itself and its `sourceCommit` are committed on fetched `main`. If the same-date checkpoint is absent or does not prove a node, restart from the earliest unproved node. Chat messages, generated execution reports, report images, demos and prior-date checkpoints are never progress evidence.
+For recovery, read only `research/runtime/checkpoints/YYYY/MM/YYYY-MM-DD-production.json` for the current `runDate`. New work uses `runtime-production-checkpoint/v2`. Resume only after `npm run runtime:production:checkpoint -- --date <runDate> --checkpoint <checkpoint-path>` validates every `Ready` item's paths and SHA-256 values on fetched `main`. Skip verified `Ready` items and continue at `nextItemId`. If the same-date checkpoint is absent or invalid, restart from the earliest unproved item. Chat messages, generated execution reports, report images, demos, an empty control commit, `Worker Claimed` alone and prior-date checkpoints are never article progress.
+
+## Bounded article segments
+
+Do not attempt the entire three-article batch as one uninterrupted cloud operation. For each eligible Research Object, complete one bounded item segment under `research/runtime/production-work/YYYY/MM/DD/<itemId>/`:
+
+1. create and validate `article-brief.json`, `argument-architecture.json` and `figure-plan.json`;
+2. write `draft.zh.md` and `draft.en.md` as pre-candidate documents;
+3. generate `baseline-cover.png` with the deterministic generator;
+4. calculate SHA-256 for all six artifacts;
+5. mark the item `Ready` in the V2 checkpoint and set `nextItemId` to the first incomplete item;
+6. commit the item workspace and checkpoint to `main`, fetch `main`, and verify them before beginning another item.
+
+At 45 elapsed minutes, do not start another item. Persist the current valid progress checkpoint and stop cleanly before the admitted 50-minute limit. A later same-day recovery continues at `nextItemId`; it must not rewrite verified `Ready` items.
+
+Only after every item is `Ready` may Production copy the verified work artifacts into canonical staging paths and commit the completed candidate batch atomically. The `production-work` directory is recoverable workspace, not a Publication Candidate or public surface.
 
 ## Production responsibility
 

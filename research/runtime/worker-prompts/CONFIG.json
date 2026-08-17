@@ -189,8 +189,8 @@
     },
     {
       "task": "production",
-      "version": "2.11.0",
-      "effectiveDate": "2026-08-15",
+      "version": "2.12.0",
+      "effectiveDate": "2026-08-17",
       "template": "research/runtime/worker-prompts/templates/production.prompt.md",
       "output": "research/runtime/worker-prompts/generated/production.prompt.md",
       "requiredCapabilities": [],
@@ -198,7 +198,7 @@
         "state": "active",
         "notBefore": "15:00",
         "lateWakePolicy": "reconcile-earliest-due",
-        "maxRunMinutes": 120,
+        "maxRunMinutes": 50,
         "maxRecoveryAttempts": 3,
         "maxRevisionRounds": 3,
         "maxOutputItems": 3,
@@ -210,6 +210,9 @@
       },
       "rules": [
         "Produce complete bilingual V2 Publication Candidates only from completed same-run-date Research Objects.",
+        "Use runtime-production-checkpoint/v2. Persist and remotely verify each article's planning artifacts, bilingual pre-candidate drafts and deterministic baseline PNG under production-work before starting the next article.",
+        "At 45 elapsed minutes, stop starting new article work. Commit the current valid item checkpoint and return a recoverable non-terminal result before the 50 minute admitted budget expires.",
+        "Recovery must validate every Ready item's artifact paths and SHA-256 values with npm run runtime:production:checkpoint, skip verified Ready items, and continue at nextItemId. Worker Claimed, an empty commit or chat text is not article progress.",
         "Apply dynamic article architecture, independent evidence grading, Research Center and Community Edition separation, and every declared gate.",
         "At 15:00, create one simple deterministic baseline PNG for every eligible candidate with scripts/generate-baseline-cover.mjs. Baseline generation is part of Production and does not call cloud image generation.",
         "A baseline cover is intentionally simple: it must be a real raster, visually clean, distinct by article identity/column, readable at thumbnail scale, and not a Runtime dashboard or technical diagram. Cinematic complexity is not required for baseline PASS.",
@@ -230,6 +233,7 @@
         "research/runtime/WORKER-CONTRACT-V3.md",
         "research/runtime/WAKE-RECEIPT-V1.md",
         "research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md",
+        "research/runtime/PRODUCTION-CHECKPOINT-V2.md",
         "research/runtime/COVER-UPGRADE-V1.md",
         "research/editorial/EDITORIAL-ARCHITECTURE.json",
         "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
@@ -239,6 +243,7 @@
         "research/skills/08-publication-editing.md"
       ],
       "requiredCommands": [
+        "npm run runtime:production:checkpoint",
         "npm run publication:bundle:staged",
         "npm run publication:layout:validate",
         "npm run publication:editorial:validate",

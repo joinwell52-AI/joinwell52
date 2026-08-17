@@ -176,7 +176,7 @@
     },
     "production": {
       "state": "active",
-      "effectiveDate": "2026-08-15",
+      "effectiveDate": "2026-08-17",
       "family": "daily",
       "schedule": {
         "kind": "daily",
@@ -186,7 +186,7 @@
       "notBefore": "15:00",
       "lateWakePolicy": "reconcile-earliest-due",
       "requiredCapabilities": [],
-      "maxRunMinutes": 120,
+      "maxRunMinutes": 50,
       "maxRecoveryAttempts": 3,
       "maxRevisionRounds": 3,
       "maxOutputItems": 3,
@@ -197,14 +197,15 @@
       "requireRemoteCommitVerification": true,
       "prompt": {
         "schema": "research-runtime-worker-prompt/v1",
-        "version": "2.11.0",
+        "version": "2.12.0",
         "path": "research/runtime/worker-prompts/generated/production.prompt.md",
-        "sha256": "a3301ea9418c8f3d177f5a3c70ca6465a0623799c317df6a47b08f83b40165f7",
+        "sha256": "ad3aaa7ff984a45d555899a56f96d89c5f39a78fbbfd18abb8b87d05257a71d5",
         "requiredSources": [
           "research/runtime/SCHEDULER.json",
           "research/runtime/WORKER-CONTRACT-V3.md",
           "research/runtime/WAKE-RECEIPT-V1.md",
           "research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md",
+          "research/runtime/PRODUCTION-CHECKPOINT-V2.md",
           "research/runtime/COVER-UPGRADE-V1.md",
           "research/editorial/EDITORIAL-ARCHITECTURE.json",
           "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",

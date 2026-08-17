@@ -10,7 +10,7 @@ const LEASE_MINUTES = {
   queue: 30,
   reading: 60,
   analysis: 60,
-  production: 90,
+  production: 55,
   publication: 60,
   weekly: 90,
   academic: 90,

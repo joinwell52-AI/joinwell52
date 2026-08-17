@@ -2,6 +2,7 @@
 
 import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import path from 'node:path'
+import { validateProductionCheckpoint } from './runtime-production-checkpoint.mjs'
 
 const CHECKPOINT_ORDER = [
   'admission-and-inputs-verified',
@@ -169,8 +170,14 @@ export function validateProductionCompletion({ root = process.cwd(), date, resul
   const checkpointFile = absolute(root, checkpointPath)
   if (!existsSync(checkpointFile)) fail(`missing same-date checkpoint ${checkpointPath}`)
   const checkpoint = readJson(checkpointFile)
-  if (checkpoint.schema !== 'runtime-production-checkpoint/v1') fail(`${checkpointPath}: invalid schema`)
+  if (!['runtime-production-checkpoint/v1', 'runtime-production-checkpoint/v2'].includes(checkpoint.schema)) fail(`${checkpointPath}: invalid schema`)
   if (checkpoint.runDate !== date || checkpoint.status !== 'Completed') fail(`${checkpointPath}: runDate/status mismatch`)
+  if (checkpoint.schema === 'runtime-production-checkpoint/v2') {
+    const progress = validateProductionCheckpoint({ root, checkpoint, date })
+    if (progress.ready !== inputs.length || progress.nextItemId !== null) {
+      fail(`${checkpointPath}: V2 checkpoint must have every eligible item Ready before completion`)
+    }
+  }
   if (CHECKPOINT_ORDER.indexOf(checkpoint.node) < CHECKPOINT_ORDER.indexOf('validators-passed')) {
     fail(`${checkpointPath}: latest durable node ${checkpoint.node} is before validators-passed`)
   }
