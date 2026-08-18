@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: research-runtime-production-actions-bridge-v1
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   materialize:
@@ -102,7 +102,7 @@ jobs:
             return 0
           }
 
-          run_check npm run runtime:production:checkpoint -- --date "$RUNTIME_DATE" --checkpoint "research/runtime/checkpoints/${RUNTIME_DATE:0:4}/${RUNTIME_DATE:5:2}/${RUNTIME_DATE}-production.json" || exit 0
+          run_check npm run runtime:production:checkpoint -- --date "$RUNTIME_DATE" --checkpoint "research/runtime/checkpoints/${RUNTIME_DATE:0:4}/${RUNTIME_DATE}-production.json" || exit 0
           run_check npm run publication:bundle:staged || exit 0
           run_check npm run publication:layout:validate || exit 0
           run_check npm run publication:editorial:validate || exit 0
