@@ -89,17 +89,45 @@ FCoP uses four IPC envelopes to keep different claims separate:
 | `ISSUE` | What is blocking the work? | symptom, impact, attempted actions, required decision |
 | `REVIEW` | Who made what judgment on which evidence? | subject, reviewer, verdict, rationale, next action |
 
-Paths then express current state. A task enters `_lifecycle/inbox`, moves to `active`, may be submitted to `review`, reaches `done`, and is eventually archived. Events record each transition with time, source, destination, actor, and tool.
+## Five lifecycle buckets: use location to answer “where is the task now?”
 
-These layers are deliberately non-interchangeable:
+The five directories under `_lifecycle/` form a minimal observable state machine: **a TASK may occupy only one bucket at a time; moving the file is the state transition.**
 
-- file content says what the artifact is;
-- path says where it is now;
-- event history says how it got there.
+| Lifecycle bucket | Question it answers | Typical action |
+| --- | --- | --- |
+| `inbox/` | A new task exists. Who will claim it? | create, then wait for `claim` |
+| `active/` | Who is executing or reworking it? | claim; rejected work returns here |
+| `review/` | Delivery was submitted. Who will decide? | `submit`, then approve or reject |
+| `done/` | Did the protocol lifecycle finish or receive approval? | `finish` or `approve`; this is not yet business acceptance |
+| `archive/` | Has the work left the active collaboration surface? | archive after upstream acceptance |
 
-> **A `status: done` field is not lifecycle state. Path is the authoritative present; compressing location and transition history into one field destroys the review trail.**
+```text
+inbox --claim--> active --submit--> review --approve--> done --archive--> archive
+                    |   ^                   |
+                    |   +------reject-------+
+                    +---------finish------->+
+```
 
-Collapsing them into a mutable `status: done` field makes it impossible to tell whether work passed review or a worker merely announced completion.
+Four rules keep this model unambiguous:
+
+1. **One current location:** the same TASK cannot exist in both `active` and `done`.
+2. **Move, do not relabel:** state changes through controlled migration, not an Agent editing a mutable status field.
+3. **Separate now from history:** the path answers “where is it now”; append-only `transitions:` records how it arrived there.
+4. **Separate state from credentials:** REPORT, ISSUE and REVIEW are delivery, blocking and governance evidence, not current task state.
+
+FCoP v2's `tasks / reports / issues / shared / log` were the old five buckets organized by **artifact type**. FCoP v3's `_lifecycle/` buckets organize TASK files by **work stage**. They are different concepts.
+
+Likewise, `_lifecycle/review/` means a TASK awaits a decision, while `reviews/REVIEW-*.md` is an independent governance judgment.
+
+The resulting ledger has three distinct layers:
+
+- artifact content explains what the work is, what happened, and what evidence supports it;
+- path identifies the TASK's current lifecycle stage;
+- `transitions:` records how it arrived there.
+
+> **For current lifecycle position, the path is the authoritative NOW fact. For business completion, the upstream role's acceptance of the REPORT and its evidence is decisive.**
+
+This distinction keeps a worker's completion claim, protocol approval, and upstream acceptance from collapsing into one ambiguous `done` label.
 
 ## Inspectability changes the quality of rework
 
@@ -131,21 +159,35 @@ The useful separation is between an **artifact plane**, which preserves readable
 
 ## A minimum structure you can build today
 
-Start with one real project using the following **generic ledger layout**. This is not a literal copy of FCoP v3: current FCoP keeps lifecycle history in the TASK front matter as `transitions:`, while the example uses a separate `events/` directory to show another valid storage choice.
+For an article about FCoP v3, the useful minimum is the protocol's actual structure rather than a separate `events/` directory that could be mistaken for another authority:
 
 ```text
-work/
-  _lifecycle/
-    inbox/
-    active/
-    review/
-    done/
-    archive/
-  reports/
-  issues/
-  reviews/
-  events/
+project/
+  fcop/
+    fcop.json
+    _lifecycle/
+      inbox/
+      active/
+      review/
+      done/
+      archive/
+    reports/
+    issues/
+    shared/
+    reviews/
+    history/
+      YYYY-MM-DD/
+  workspace/
+    <slug>/
 ```
+
+This structure contains three different planes:
+
+- `_lifecycle/` is the **current TASK state plane**;
+- `reports/`, `issues/`, and `reviews/` form the **evidence and governance plane** and do not move with TASK state;
+- `history/` is the **long-term history plane** for closed tasks and paired reports.
+
+Each TASK keeps append-only migration history in `transitions:`. A separate `events/` directory would create another truth that could drift from the TASK file.
 
 Then ask seven questions:
 
@@ -159,13 +201,25 @@ Then ask seven questions:
 
 If most answers are “no,” adding more agents will usually increase ambiguity rather than throughput.
 
-## Start by making governance visible
+## What “everything is a file” contributes to engineering
 
-Starting with files is neither nostalgia nor an objection to infrastructure. It uses a durable engineering advantage: open, simple, composable interfaces let different tools share facts with little coupling.
+The point is not to replace databases, queues, and workflow engines with Markdown. It is to establish an open protocol surface with five engineering properties:
 
-When a system is moving from one agent to several, its first risk is often not insufficient throughput. It is the inability to name the current task, owner, evidence, and decision. Externalizing those facts through files, paths, and events reveals the real pressure: discovery, contention, recovery, authorization, or scheduling. Only then does adopting a database, queue, or workflow engine become an evidence-based upgrade.
+| Engineering property | How the ledger provides it |
+| --- | --- |
+| **Addressable** | stable task identity, sender, recipient, and parent relationships |
+| **Observable** | lifecycle buckets expose the current stage directly |
+| **Replayable** | `transitions:` preserves time, source, destination, actor, and tool |
+| **Verifiable** | TASK, REPORT, ISSUE, and REVIEW can be checked against each other |
+| **Composable and evolvable** | editors, Git, CLIs, and web views share the same artifacts, while stronger infrastructure can be added later |
 
-FCoP is not an industry standard and it is not a final answer. It is a concrete engineering proposition: **before expanding the control plane, make the collaboration itself visible to the people responsible for it.**
+> **Stable identity + path state + transition history + delivery evidence = a governable shared work ledger.**
+
+The ledger does not solve contention, transactions, authorization, retries, or scheduling by itself. It first answers more basic questions: was the work formally delegated, who owns it now, why was it rejected, and what evidence justified acceptance?
+
+Starting with files is neither nostalgia nor a rejection of infrastructure. Its engineering value is to let humans, Agents, and tools share the same inspectable facts, then upgrade the execution plane in response to real pressure.
+
+FCoP is not an industry standard or a final answer. It offers a testable starting point: **before expanding the control plane, make the collaboration visible, machine-readable, and evidence-checkable.**
 
 Once files provide the work ledger, the next question is how to implement transitions without exposing partial artifacts and how to test every invariant. Continue with [Files, Paths, and Events: Implementing and Testing the FCoP State Machine](/en/engineering/2026-08-18-fcop-file-state-machine).
 
