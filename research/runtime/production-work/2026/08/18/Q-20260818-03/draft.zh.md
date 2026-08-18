@@ -6,7 +6,7 @@ column: open-source-engineering
 category: daily
 article_type: engineering-insight
 edition: research-center
-research_question: "当一次 Request Trace 覆盖从 Queue Receipt 到 Terminal Operational Outcome 时，它究竟能证明什么；外部副作用还需要哪些独立证据？"
+research_question: "What can a request trace prove when it covers queue receipt through a terminal operational outcome, and what evidence must remain separate for external effects?"
 summary: "Request Lifecycle Telemetry 可以重建 Queue Receipt、Admission、Execution 与 Terminal Transport Outcome，但不能替代 External-effect Evidence。Codex 当日合并变更增强了请求路径可观测性，也让剩余的证据边界更清晰。"
 cover: staging/publication-candidates/2026-08-18-trace-effect-evidence-cover.png
 sources:
