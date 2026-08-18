@@ -1,0 +1,23 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-18",
+  "itemId": "Q-20260818-02",
+  "coreProposition": "Durable agent work should separate persistence from reconciliation: stored state needs external-change detection, durable object-level change identity, lifecycle reconciliation and isolated retry ownership before a live runtime can reliably rediscover and attempt progress.",
+  "openingMove": {
+    "type": "paradox",
+    "purpose": "Show that durable storage can preserve work without making a live runtime aware that the work is actionable.",
+    "evidenceRefs": ["E1", "I1"]
+  },
+  "argumentNodes": [
+    {"nodeId":"A1","question":"Why does persistence fail to provide liveness by itself?","claim":"Storage preserves intent, but cross-process writes require a separate discovery mechanism before an idle runtime can notice actionable work.","evidenceRefs":["E1","I1"],"reasoningRole":"problem-separation","readerProgress":"The reader distinguishes survival of state from rediscovery of state.","visualNeed":"none"},
+    {"nodeId":"A2","question":"How can reconciliation narrow change efficiently?","claim":"A coarse store-level change signal plus durable per-object revisions separates 'something changed' from 'which loaded object changed'.","evidenceRefs":["E1","E2"],"reasoningRole":"mechanism","readerProgress":"The reader understands the two-level detection pattern and why the revision is not an execution token.","visualNeed":"none"},
+    {"nodeId":"A3","question":"Why do lifecycle events and retry ownership need their own paths?","claim":"Objects can become locally relevant without a new global mutation, and independent per-object retries prevent one blocked wake from serializing unrelated progress.","evidenceRefs":["E3","E4","I2"],"reasoningRole":"liveness-architecture","readerProgress":"The reader sees reconciliation as lifecycle discovery plus bounded execution ownership, not merely polling.","visualNeed":"none"},
+    {"nodeId":"A4","question":"What stronger guarantees still require another contract?","claim":"Revisions and successful wakes do not establish exclusive execution, duplicate suppression, exactly-once behavior or distributed ordering.","evidenceRefs":["E5"],"reasoningRole":"boundary","readerProgress":"The reader knows where claim, lease and idempotency mechanisms must begin.","visualNeed":"none"}
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "A single-process runtime or a persistence layer with reliable change streams may not need the demonstrated polling mechanism.",
+    "responseBoundary": "The transport for change notification may differ, but missed notifications, resume and crash recovery still require an explicit reconciliation contract when durable work can outlive one process."
+  },
+  "endingStrategy": {"type":"architecture-boundary","purpose":"End by locating claim/lease/idempotency as the next layer rather than overclaiming reconciliation."}
+}

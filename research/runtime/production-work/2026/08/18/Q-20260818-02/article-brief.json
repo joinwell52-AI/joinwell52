@@ -1,0 +1,39 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-18",
+  "itemId": "Q-20260818-02",
+  "researchObjectId": "AN-20260818-02",
+  "targetAudience": {
+    "primary": "Architects and reliability engineers building durable agent runtimes, task queues and multi-process workers",
+    "knowledgeAssumption": "The reader understands persisted queues, runtime resume and basic asynchronous retry patterns.",
+    "readerProblem": "Persisted work can survive in storage yet remain dormant because the live runtime has no mechanism to notice cross-process changes or retry a blocked wake without stalling unrelated work."
+  },
+  "whyNow": "A same-day merged Codex change shows a concrete SQLite-backed reconciliation design using a coarse external-change signal, durable per-thread revisions, lifecycle reconciliation and independent per-thread retries.",
+  "externalHook": {
+    "type": "paradox",
+    "description": "A task can be durable enough to survive a process and still be invisible to the process that is supposed to resume it.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "Durable agent work should separate persistence from reconciliation: stored state needs external-change detection, durable object-level change identity, lifecycle reconciliation and isolated retry ownership before a live runtime can reliably rediscover and attempt progress.",
+  "originalValue": {
+    "type": "architecture-model",
+    "description": "Turns one queue-watcher implementation into a bounded four-responsibility reconciliation model while explicitly separating liveness from exactly-once and distributed ownership claims."
+  },
+  "readerTakeaway": "Design durability as two contracts: preserve state, then separately define how live runtimes discover changed or resumed work, own retries and hand off to a claim/idempotency layer when exclusive execution matters.",
+  "evidenceBoundary": {
+    "supported": [
+      "SQLite PRAGMA data_version is used as a coarse detector for writes through another connection.",
+      "Durable per-thread revisions identify changed loaded queues and change across insert, update and delete with migration backfill.",
+      "Created/resumed threads are reconciled separately, and per-thread watcher tasks retry unresolved wakeups on a fixed 10-second interval."
+    ],
+    "unsupported": ["Distributed exactly-once execution", "Consensus or global ordering", "Crash-proof duplicate suppression", "Multi-host exclusive ownership"],
+    "uncertain": ["How multiple runtimes coordinate after observing the same change", "Appropriate backoff, fairness and load shedding at scale", "Store-independent equivalents outside SQLite"]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article is a general durable-work architecture analysis and does not depend on a first-party project."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The implementation provides mechanism-level evidence for discovery and retry, while the Research Object adds a reusable separation between persistence, reconciliation and stronger execution guarantees."
+}
