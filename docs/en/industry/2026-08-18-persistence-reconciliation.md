@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260818-02-persistence-reconciliation-separation.md
 item_id: "Q-20260818-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-18-persistence-reconciliation-cover.png"
+cover: "/assets/covers/daily-2026-08-18-persistence-reconciliation-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-18-persistence-reconciliation-cover.png"
+  image="/assets/covers/daily-2026-08-18-persistence-reconciliation-cover-v2.png"
   kicker="Industry Architecture · Daily Research"
   title="Persistence Is Not a Wake-Up Mechanism"
   summary="Persistence and reconciliation are different responsibilities. A same-day Codex queue change shows one practical design: detect cross-connection changes coarsely, identify changed queues with durable revisions, reconcile created or resumed objects separately, and give each affected thread its own retry ownership. None of this proves exactly-once execution or distributed exclusivity."

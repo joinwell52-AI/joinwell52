@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260818-01-accountable-origin-human-approval.md
 item_id: "Q-20260818-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-18-accountable-human-approval-cover.png"
+cover: "/assets/covers/daily-2026-08-18-accountable-human-approval-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-18-accountable-human-approval-cover.png"
+  image="/assets/covers/daily-2026-08-18-accountable-human-approval-cover-v2.png"
   kicker="数字员工 · 每日研究"
   title="“用户角色”响应不等于真人审批"
   summary="Agent Runtime 不应把 user-role 语法直接等同为审批权。Google ADK 当日合并变更表明，接收端拥有的来源标记可以在确认匹配之前对远程 A2A 审批类别进行 Fail-closed；而真人身份认证与授权仍是独立要求。"

@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260818-03-lifecycle-telemetry-effect-certainty.md
 item_id: "Q-20260818-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-18-trace-effect-evidence-cover.png"
+cover: "/assets/covers/daily-2026-08-18-trace-effect-evidence-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-18-trace-effect-evidence-cover.png"
+  image="/assets/covers/daily-2026-08-18-trace-effect-evidence-cover-v2.png"
   kicker="开源工程 · 每日研究"
   title="Trace 已收口，不等于外部 Effect 已确定"
   summary="Request Lifecycle Telemetry 可以重建 Queue Receipt、Admission、Execution 与 Terminal Transport Outcome，但不能替代 External-effect Evidence。Codex 当日合并变更增强了请求路径可观测性，也让剩余的证据边界更清晰。"

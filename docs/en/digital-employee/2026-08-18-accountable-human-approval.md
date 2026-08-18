@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260818-01-accountable-origin-human-approval.md
 item_id: "Q-20260818-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-18-accountable-human-approval-cover.png"
+cover: "/assets/covers/daily-2026-08-18-accountable-human-approval-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-18-accountable-human-approval-cover.png"
+  image="/assets/covers/daily-2026-08-18-accountable-human-approval-cover-v2.png"
   kicker="Digital Employee · Daily Research"
   title="A User-Role Reply Is Not Yet a Human Approval"
   summary="Agent runtimes should not equate user-role syntax with approval authority. A same-day Google ADK change shows how receiver-owned origin provenance can fail-close a remote A2A approval class before confirmation matching, while leaving positive human authentication and authorization as separate requirements."

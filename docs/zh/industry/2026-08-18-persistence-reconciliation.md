@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260818-02-persistence-reconciliation-separation.md
 item_id: "Q-20260818-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-18-persistence-reconciliation-cover.png"
+cover: "/assets/covers/daily-2026-08-18-persistence-reconciliation-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-18-persistence-reconciliation-cover.png"
+  image="/assets/covers/daily-2026-08-18-persistence-reconciliation-cover-v2.png"
   kicker="行业架构 · 每日研究"
   title="持久化不等于唤醒机制"
   summary="Persistence 与 Reconciliation 是两项不同责任。Codex 当日合并的 Queue 变更展示了一个具体方案：粗粒度发现跨连接变化，用持久 Per-thread Revision 定位变化 Queue，单独处理 Created/Resumed 生命周期，再把重试所有权隔离到每个 Thread。它并不证明 Exactly-once 或分布式排他执行。"
