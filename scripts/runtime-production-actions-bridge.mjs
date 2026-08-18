@@ -149,11 +149,6 @@ export function materializeItem({ root = ROOT, request }) {
     checkpoint = initialCheckpoint(request)
   }
 
-  // A Ready item is only Ready while its recorded hashes still match the durable workspace.
-  // During governed recovery, one article revision can make several previously Ready items stale
-  // before they are rematerialized. Downgrade those stale siblings to Waiting so each subsequent
-  // materialize-item request can refresh them in order without the whole checkpoint becoming
-  // permanently uncommittable.
   checkpoint.items = checkpoint.items.map((entry) => {
     if (entry.itemId === item.itemId || entry.status !== 'Ready') return entry
     try {
@@ -265,6 +260,36 @@ export function markValidated({ root = ROOT, date }) {
   return { checkpoint: relative, node: checkpoint.node }
 }
 
+function runChecked(command, args, label) {
+  const result = spawnSync(command, args, { cwd: ROOT, encoding: 'utf8', stdio: 'inherit' })
+  if (result.status !== 0) fail(`${label} failed with status ${result.status}`)
+}
+
+export function publicationRelease({ root = ROOT, request }) {
+  if (request.schema !== REQUEST_SCHEMA || request.publicationRelease !== true) fail('invalid Publication bridge request')
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(request.date || '') || request.timezone !== 'Asia/Shanghai') fail('invalid Publication date/timezone')
+  if (request.task !== 'publication') fail('Publication bridge request task must be publication')
+  if (!/^[0-9a-f]{40}$/.test(request.sourceCommit || '')) fail('Publication bridge request requires sourceCommit')
+  if (!String(request.wakeReceipt || '').startsWith('research/runtime/wakes/')) fail('Publication bridge request requires Wake Receipt')
+  const helper = path.join(root, 'scripts/runtime-publication-release-current.mjs')
+  runChecked(process.execPath, [helper, '--date', request.date, '--wake', request.wakeReceipt], 'Publication materialization')
+  runChecked('npm', ['run', 'publication:layout:validate'], 'Publication layout validation')
+  runChecked('npm', ['run', 'publication:editorial:validate'], 'Publication editorial validation')
+  runChecked('npm', ['run', 'runtime:validate'], 'Runtime validation')
+  runChecked('npm', ['run', 'docs:build'], 'VitePress site build')
+  runChecked(process.execPath, ['scripts/publication-visibility.mjs'], 'Publication visibility validation')
+  runChecked('git', ['config', 'user.name', 'joinwell52 Research Runtime'], 'git config user')
+  runChecked('git', ['config', 'user.email', 'actions@users.noreply.github.com'], 'git config email')
+  runChecked('git', ['add', 'docs/en/digital-employee', 'docs/zh/digital-employee', 'docs/en/industry', 'docs/zh/industry', 'docs/en/engineering', 'docs/zh/engineering', 'docs/public/assets/covers', 'docs/public/assets/figures', `research/runtime/releases/${request.date}-publication.json`, `research/runtime/results/${request.date.slice(0,4)}/${request.date.slice(5,7)}/${request.date}-publication-result.json`], 'stage Publication release')
+  const diff = spawnSync('git', ['diff', '--cached', '--quiet'], { cwd: root })
+  if (diff.status === 0) fail('Publication helper produced no governed release changes')
+  runChecked('git', ['commit', '-m', `runtime(publication): release ${request.date} research`], 'Publication release commit')
+  runChecked('git', ['pull', '--rebase', 'origin', 'main'], 'Publication release rebase')
+  const sha = spawnSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).stdout.trim()
+  runChecked('git', ['push', 'origin', 'HEAD:main'], 'Publication release push')
+  return { publicationRelease: true, date: request.date, releaseCommit: sha }
+}
+
 function argsOf(argv) {
   const args = {}
   for (let index = 2; index < argv.length; index += 1) {
@@ -279,9 +304,11 @@ if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(import.met
   const args = argsOf(process.argv)
   if (args.request) {
     const request = readJson(ROOT, args.request)
-    const result = request.mode === 'materialize-item'
-      ? materializeItem({ root: ROOT, request })
-      : stageBatch({ root: ROOT, request })
+    const result = request.publicationRelease === true
+      ? publicationRelease({ root: ROOT, request })
+      : request.mode === 'materialize-item'
+        ? materializeItem({ root: ROOT, request })
+        : stageBatch({ root: ROOT, request })
     console.log(JSON.stringify(result))
   } else if (args['mark-validated'] && args.date) {
     console.log(JSON.stringify(markValidated({ root: ROOT, date: args.date })))
