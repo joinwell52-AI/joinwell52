@@ -1181,6 +1181,20 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Publication after verifying research/runtime/wakes/2026/08/2026-08-18/publication-200522.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-08-18T21:45:14+08:00",
+      "task": "publication",
+      "event": "Running Lease Expired",
+      "status": "Waiting",
+      "detail": "publication exceeded its 60 minute Running lease without a terminal result. The execution slot is no longer treated as proof of active work and returns to governed recovery."
+    },
+    {
+      "time": "2026-08-18T21:45:14+08:00",
+      "task": "publication",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Publication started by Research Runtime Scheduler V3.0."
     }
   ],
   "metrics": [],
@@ -1188,5 +1202,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-18T20:09:13+08:00"
+  "updatedAt": "2026-08-18T21:45:14+08:00"
 }
