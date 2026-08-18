@@ -1,0 +1,92 @@
+name: Recover 2026-08-18 Production Final Stage
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "research/runtime/emergency-recovery-requests/2026-08-18-production-final-*.txt"
+
+permissions:
+  contents: write
+
+jobs:
+  recover:
+    name: Stage, validate and persist 2026-08-18 Production batch
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout authoritative repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch latest durable facts
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Stage governed candidate batch and validate
+        shell: bash
+        run: |
+          set -euo pipefail
+          log="research/runtime/production-action-diagnostics/2026-08-18-emergency-final-stage.log"
+          mkdir -p "$(dirname "$log")"
+          : > "$log"
+          run_check() {
+            echo "==> $*" | tee -a "$log"
+            "$@" 2>&1 | tee -a "$log"
+          }
+          request="research/runtime/production-action-requests/2026-08-18-stage-batch-r8-1800.json"
+          run_check node scripts/runtime-production-actions-bridge.mjs --request "$request"
+          git add research/runtime/production-work research/runtime/checkpoints research/runtime/candidates staging/publication-candidates
+          run_check npm run runtime:production:checkpoint -- --date 2026-08-18 --checkpoint research/runtime/checkpoints/2026/08/2026-08-18-production.json
+          run_check npm run publication:bundle:staged
+          run_check npm run publication:layout:validate
+          run_check npm run publication:editorial:validate
+          run_check npm run runtime:validate
+          run_check node scripts/runtime-production-actions-bridge.mjs --mark-validated true --date 2026-08-18
+          run_check npm run runtime:production:checkpoint -- --date 2026-08-18 --checkpoint research/runtime/checkpoints/2026/08/2026-08-18-production.json
+          rm -f "$log"
+
+      - name: Commit validated batch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime/production-work research/runtime/checkpoints research/runtime/candidates staging/publication-candidates
+          if git diff --cached --quiet; then
+            echo "No validated Production changes to persist."
+            exit 1
+          fi
+          git commit -m "runtime(production): persist validated 2026-08-18 candidate batch"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort || true
+            if [[ "$attempt" -eq 3 ]]; then exit 1; fi
+            sleep $((attempt * 5))
+          done
+
+      - name: Persist recovery diagnostic on failure
+        if: failure()
+        shell: bash
+        run: |
+          set -euo pipefail
+          log="research/runtime/production-action-diagnostics/2026-08-18-emergency-final-stage.log"
+          mkdir -p "$(dirname "$log")"
+          if [[ ! -f "$log" ]]; then
+            printf '%s\n' 'Recovery failed before validator logging completed.' > "$log"
+          fi
+          git reset
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$log"
+          git commit -m "runtime(production): persist emergency final-stage diagnostic 2026-08-18" || exit 0
+          git pull --rebase origin main
+          git push origin HEAD:main
