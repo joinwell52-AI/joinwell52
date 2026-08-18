@@ -149,6 +149,27 @@ export function materializeItem({ root = ROOT, request }) {
     checkpoint = initialCheckpoint(request)
   }
 
+  // A Ready item is only Ready while its recorded hashes still match the durable workspace.
+  // During governed recovery, one article revision can make several previously Ready items stale
+  // before they are rematerialized. Downgrade those stale siblings to Waiting so each subsequent
+  // materialize-item request can refresh them in order without the whole checkpoint becoming
+  // permanently uncommittable.
+  checkpoint.items = checkpoint.items.map((entry) => {
+    if (entry.itemId === item.itemId || entry.status !== 'Ready') return entry
+    try {
+      for (const field of pathFields) {
+        const relative = repoPath(entry[field])
+        const file = absolute(root, relative)
+        if (!existsSync(file) || entry.artifactHashes?.[relative] !== sha256(file)) {
+          return { itemId: entry.itemId, status: 'Waiting' }
+        }
+      }
+      return entry
+    } catch {
+      return { itemId: entry.itemId, status: 'Waiting' }
+    }
+  })
+
   const hashes = Object.fromEntries(pathFields.map((field) => {
     const relative = item[field]
     return [relative, sha256(absolute(root, relative))]
