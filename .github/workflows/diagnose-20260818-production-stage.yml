@@ -1,0 +1,54 @@
+name: Diagnose 2026-08-18 Production Stage
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "research/runtime/production-diagnostic-requests/2026-08-18-stage-*.txt"
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Use latest main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+      - name: Reproduce governed stage-batch and validators
+        shell: bash
+        run: |
+          set +e
+          log="research/runtime/production-action-diagnostics/2026-08-18-stage-diagnostic.log"
+          mkdir -p "$(dirname "$log")"
+          : > "$log"
+          request="research/runtime/production-action-requests/2026-08-18-stage-batch-r5-1725.json"
+          run_check() {
+            echo "==> $*" | tee -a "$log"
+            "$@" 2>&1 | tee -a "$log"
+            rc=${PIPESTATUS[0]}
+            echo "RC=$rc" | tee -a "$log"
+            return "$rc"
+          }
+          run_check node scripts/runtime-production-actions-bridge.mjs --request "$request" || true
+          git add research/runtime/production-work research/runtime/checkpoints research/runtime/candidates staging/publication-candidates
+          run_check npm run runtime:production:checkpoint -- --date 2026-08-18 --checkpoint research/runtime/checkpoints/2026/08/2026-08-18-production.json || true
+          run_check npm run publication:bundle:staged || true
+          run_check npm run publication:layout:validate || true
+          run_check npm run publication:editorial:validate || true
+          run_check npm run runtime:validate || true
+          git reset
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$log"
+          git commit -m "runtime(production): persist 2026-08-18 stage diagnostic"
+          git pull --rebase origin main
+          git push origin HEAD:main
