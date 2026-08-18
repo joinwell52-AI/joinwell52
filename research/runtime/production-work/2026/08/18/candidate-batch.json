@@ -5,7 +5,7 @@
   "status": "Completed",
   "sourceTask": "Research Runtime Production",
   "sourceRecord": "research/runtime/records/daily/2026/08/2026-08-18-daily-runtime.json",
-  "updatedAt": "2026-08-18T16:51:20+08:00",
+  "updatedAt": "2026-08-18T17:18:00+08:00",
   "githubCommit": "pending",
   "reason": "Same-date recovery converted the three completed 2026-08-18 Research Objects into complete bilingual Editorial Architecture 2.1 candidates with durable planning artifacts and deterministic baseline covers.",
   "reason_zh": "同日恢复将三份已完成的 2026-08-18 Research Object 转换为完整双语 Editorial Architecture 2.1 候选，并具备持久计划工件与确定性基础题图。",
@@ -27,10 +27,10 @@
       "sections": [
         {"module":"technical-analysis","heading":"role=user answers the wrong question","heading_zh":"role=user 回答不了谁有权批准"},
         {"module":"governance-implications","heading":"Provenance qualification should happen before approval matching","heading_zh":"来源资格应先于确认内容匹配"},
-        {"module":"governance-implications","heading":"An approval record needs more than a message","heading_zh":"一次可追责审批需要比一条消息更多的身份"},
+        {"module":"operational-implications","heading":"An approval record needs more than a message","heading_zh":"一次可追责审批需要比一条消息更多的身份"},
         {"module":"limitations","heading":"The negative gate does not authenticate the positive channel","heading_zh":"负向门禁不能反推出正向真人已经可信"}
       ],
-      "endingModule": "open-questions",
+      "endingModule": "limitations",
       "evidenceClaims": [
         {"id":"E1","identity":"public-fact","claim":"The merged ADK change always marks A2A-originated invocations with receiver-owned a2a_metadata, including requests whose peer metadata is empty or absent.","claim_zh":"已合并的 ADK 变更会始终以接收端写入的 a2a_metadata 标记 A2A 来源 Invocation，即使对端 Metadata 为空或缺失也不会丢失该来源标记。","source":"research/analysis/Q-20260818-01-accountable-origin-human-approval.md","strength":"states","independent":false},
         {"id":"E2","identity":"public-fact","claim":"The changed confirmation processor returns before confirmation-event resolution when the A2A marker is present.","claim_zh":"当 A2A Marker 存在时，变更后的确认处理器会在解析确认事件之前返回。","source":"research/analysis/Q-20260818-01-accountable-origin-human-approval.md","strength":"states","independent":false},
@@ -71,7 +71,7 @@
         {"module":"operational-implications","heading":"Retry ownership should be narrow","heading_zh":"Retry Ownership 应尽量窄"},
         {"module":"limitations","heading":"Reconciliation is not exclusive execution","heading_zh":"Reconciliation 不是排他执行证明"}
       ],
-      "endingModule": "architecture-boundary",
+      "endingModule": "limitations",
       "evidenceClaims": [
         {"id":"E1","identity":"public-fact","claim":"The merged implementation uses SQLite PRAGMA data_version as a coarse detector for writes committed through another connection.","claim_zh":"已合并实现使用 SQLite PRAGMA data_version 作为发现其他连接已提交写入的粗粒度检测器。","source":"research/analysis/Q-20260818-02-persistence-reconciliation-separation.md","strength":"states","independent":false},
         {"id":"E2","identity":"public-fact","claim":"Durable per-thread revisions identify which loaded queues changed and are updated across insert, update and delete with migration backfill.","claim_zh":"持久化 Per-thread Revision 用于识别哪些已加载 Queue 发生变化，并在 Insert、Update、Delete 时更新且在迁移时回填。","source":"research/analysis/Q-20260818-02-persistence-reconciliation-separation.md","strength":"states","independent":false},
@@ -113,7 +113,7 @@
         {"module":"engineering-implications","heading":"External effects need their own authoritative identity","heading_zh":"外部 Effect 需要自己的权威身份"},
         {"module":"limitations","heading":"Better telemetry does not create stronger guarantees by itself","heading_zh":"更好的 Telemetry 不会自动产生更强保证"}
       ],
-      "endingModule": "operational-rule",
+      "endingModule": "limitations",
       "evidenceClaims": [
         {"id":"E1","identity":"public-fact","claim":"The merged exec-server change creates the inbound request span and queue timestamp at connection-queue receipt before dispatcher admission.","claim_zh":"已合并的 Exec-server 变更会在 Dispatcher Admission 之前、Connection Queue 收到请求时创建 Inbound Request Span 与排队时间戳。","source":"research/analysis/Q-20260818-03-lifecycle-telemetry-effect-certainty.md","strength":"states","independent":false},
         {"id":"E2","identity":"public-fact","claim":"Validated optional W3C parent context is attached to that span and the same span is carried through server/client queues and route execution.","claim_zh":"经过验证的可选 W3C Parent Context 会附着到该 Span，同一 Span 随后贯穿 Server/Client Queue 与 Route Execution。","source":"research/analysis/Q-20260818-03-lifecycle-telemetry-effect-certainty.md","strength":"states","independent":false},
