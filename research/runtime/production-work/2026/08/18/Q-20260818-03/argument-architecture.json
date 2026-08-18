@@ -1,0 +1,23 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-18",
+  "itemId": "Q-20260818-03",
+  "coreProposition": "Agent runtimes should model request-lifecycle telemetry and external-effect certainty as separate evidence planes linked by stable correlation identity; a terminal request outcome explains the instrumented path but does not by itself prove the state of the external effect.",
+  "openingMove": {
+    "type": "epistemic-gap",
+    "purpose": "Show that a terminal request trace can coexist with uncertainty about an external side effect.",
+    "evidenceRefs": ["E4", "E5", "I1"]
+  },
+  "argumentNodes": [
+    {"nodeId":"A1","question":"What becomes knowable when tracing begins at queue receipt?","claim":"Creating span ownership before admission makes pre-dispatch waiting, route execution and terminal transport outcome part of one reconstructable request lifecycle.","evidenceRefs":["E1","E2","E3","E4"],"reasoningRole":"mechanism","readerProgress":"The reader sees why handler-only tracing misses a material part of request behavior.","visualNeed":"none"},
+    {"nodeId":"A2","question":"Why is a closed span not an effect receipt?","claim":"A terminal telemetry state proves the instrumented request path reached an outcome, not that the external side-effect-owning system reached the same state.","evidenceRefs":["E4","E5","I1"],"reasoningRole":"evidence-separation","readerProgress":"The reader distinguishes operational completion from external-effect certainty.","visualNeed":"none"},
+    {"nodeId":"A3","question":"How should runtimes connect the two evidence planes?","claim":"Request traces and effect evidence should share stable correlation identity, while authoritative effect receipts or reconciliation establish committed, rejected, unknown or compensated states.","evidenceRefs":["I2"],"reasoningRole":"engineering-implication","readerProgress":"The reader gains a practical model for post-disconnect reconciliation without overloading trace status.","visualNeed":"none"},
+    {"nodeId":"A4","question":"What does the implementation still not establish?","claim":"The evidence does not prove complete causal propagation, caller authentication, exporter retention, exactly-once effects or rollback after disconnect.","evidenceRefs":["E5"],"reasoningRole":"boundary","readerProgress":"The reader knows which guarantees must come from other mechanisms and evidence sources.","visualNeed":"none"}
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "For fully local transactionally coupled operations, request completion may closely approximate effect completion.",
+    "responseBoundary": "That coupling itself is the evidence. Once effects cross an external boundary or can outlive the response path, the effect state should not be inferred solely from request telemetry."
+  },
+  "endingStrategy": {"type":"operational-rule","purpose":"End with disconnect as a terminal telemetry state that may require effect reconciliation rather than automatic success or failure inference."}
+}

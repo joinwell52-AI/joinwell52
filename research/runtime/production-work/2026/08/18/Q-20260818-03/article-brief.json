@@ -1,0 +1,39 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-18",
+  "itemId": "Q-20260818-03",
+  "researchObjectId": "AN-20260818-03",
+  "targetAudience": {
+    "primary": "Agent-runtime, platform and observability engineers who need to distinguish operational telemetry from evidence of external side effects",
+    "knowledgeAssumption": "The reader understands spans, queues, request outcomes and asynchronous external operations.",
+    "readerProblem": "A request trace can reach a terminal state while the external system that owns the side effect remains in an unknown state, especially after disconnect."
+  },
+  "whyNow": "A same-day merged Codex exec-server change moves request-span ownership to queue receipt, carries it through asynchronous dispatch and records terminal outcomes including disconnect, exposing exactly where lifecycle telemetry becomes stronger—and where it still cannot prove external effects.",
+  "externalHook": {
+    "type": "epistemic-gap",
+    "description": "A cleanly closed span can tell you what happened to the instrumented request while saying nothing definitive about whether the outside world committed the requested effect.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4", "E5"]
+  },
+  "coreProposition": "Agent runtimes should model request-lifecycle telemetry and external-effect certainty as separate evidence planes linked by stable correlation identity; a terminal request outcome explains the instrumented path but does not by itself prove the state of the external effect.",
+  "originalValue": {
+    "type": "evidence-model",
+    "description": "Separates request-path outcome from effect outcome and turns disconnect into an explicit reconciliation trigger rather than overloading one success/error status field."
+  },
+  "readerTakeaway": "Trace queue receipt through terminal transport outcome, but use independent authoritative receipts, transaction/idempotency identities or reconciliation to establish whether external effects committed, failed or remain unknown.",
+  "evidenceBoundary": {
+    "supported": [
+      "The request span and queue timestamp are created at connection-queue receipt before admission.",
+      "Validated W3C parent context can be attached and the same span is carried through server/client queues and route execution.",
+      "Queue duration is emitted after admission with bounded route labels, and terminal outcomes include success, error and disconnected."
+    ],
+    "unsupported": ["Complete causal tracing of every descendant task", "Authentication of the caller", "Exactly-once external effects", "Rollback of effects after disconnect", "Guaranteed telemetry retention"],
+    "uncertain": ["Which effect identities should support deterministic reconciliation", "How long-lived detached tasks correlate after request closure", "What retention guarantees are needed for formal audit"]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The conclusion concerns a general evidence boundary for observable agent runtimes and does not require a first-party project."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The merged implementation creates concrete lifecycle evidence, while the Research Object contributes a bounded two-plane model that prevents request telemetry from being overclaimed as business-effect certainty."
+}
