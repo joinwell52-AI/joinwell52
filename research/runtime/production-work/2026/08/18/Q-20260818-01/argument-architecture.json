@@ -1,0 +1,23 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-18",
+  "itemId": "Q-20260818-01",
+  "coreProposition": "Agent runtimes should qualify receiver-controlled origin provenance before treating user-role content as accountable human approval; positive human authentication and authorization remain separate gates.",
+  "openingMove": {
+    "type": "contradiction",
+    "purpose": "Show why a user-role response can be semantically valid yet lack accountable approval authority.",
+    "evidenceRefs": ["E1", "E2", "I1"]
+  },
+  "argumentNodes": [
+    {"nodeId":"A1","question":"Why is role=user insufficient evidence of human approval?","claim":"Content role and approval authority are different dimensions; authority depends on provenance and principal qualification, not syntax alone.","evidenceRefs":["E1","E2","I1"],"reasoningRole":"conceptual-separation","readerProgress":"The reader stops treating message role as proof of who is authorized to approve.","visualNeed":"none"},
+    {"nodeId":"A2","question":"What does receiver-owned origin provenance change?","claim":"An origin marker established by the receiver can fail-close a remote approval class before semantic matching, even when the peer omits metadata.","evidenceRefs":["E1","E2","E3","I2"],"reasoningRole":"mechanism","readerProgress":"The reader sees why provenance must not be optional metadata controlled by the actor being evaluated.","visualNeed":"none"},
+    {"nodeId":"A3","question":"What evidence should a complete approval event preserve?","claim":"A durable approval record should separate content role, transport origin, principal identity, authorization scope and the exact approval occurrence.","evidenceRefs":["I1","I2"],"reasoningRole":"governance-implication","readerProgress":"The reader gains a reusable approval-evidence model beyond the demonstrated negative gate.","visualNeed":"none"},
+    {"nodeId":"A4","question":"Where does the demonstrated guarantee end?","claim":"Rejecting A2A-origin confirmations blocks one remote self-approval path but does not authenticate the allowed human channel, prevent replay or prove complete HITL coverage.","evidenceRefs":["E4"],"reasoningRole":"boundary","readerProgress":"The reader can apply the pattern without turning a negative gate into a positive identity claim.","visualNeed":"none"}
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Some systems may intentionally authorize non-human delegated approvers or operate in a closed trust domain.",
+    "responseBoundary": "Such delegation should be represented as its own principal and capability contract rather than being relabeled as human approval."
+  },
+  "endingStrategy": {"type":"open-question","purpose":"End with the remaining positive-authorization, replay and delegation questions required for accountable approval."}
+}

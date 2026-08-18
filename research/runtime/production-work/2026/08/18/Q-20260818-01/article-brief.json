@@ -1,0 +1,39 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-18",
+  "itemId": "Q-20260818-01",
+  "researchObjectId": "AN-20260818-01",
+  "targetAudience": {
+    "primary": "Agent-runtime, digital-employee and AI governance engineers who design human approval boundaries for consequential tool calls",
+    "knowledgeAssumption": "The reader understands user-role messages, tool confirmations and basic authorization concepts.",
+    "readerProblem": "A response can be syntactically valid user input yet originate from a remote agent that is not authorized to satisfy a human approval gate."
+  },
+  "whyNow": "A same-day merged Google ADK change demonstrates a receiver-owned A2A origin marker and an early fail-closed confirmation check, including the no-peer-metadata case that previously allowed origin to disappear.",
+  "externalHook": {
+    "type": "authority-confusion",
+    "description": "Message role describes content semantics; it does not by itself establish which trust domain produced the approval.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "Agent runtimes should qualify receiver-controlled origin provenance before treating user-role content as accountable human approval; positive human authentication and authorization remain separate gates.",
+  "originalValue": {
+    "type": "governance-model",
+    "description": "Separates content role, transport origin, principal identity, authorization scope and approval occurrence identity into distinct approval evidence rather than overloading role=user."
+  },
+  "readerTakeaway": "Fail closed on disallowed origin classes before approval matching, then authenticate and authorize the positive approver independently and bind that decision to the exact approval occurrence.",
+  "evidenceBoundary": {
+    "supported": [
+      "Merged ADK code always marks A2A-originated invocations with receiver-owned a2a_metadata, even when peer metadata is empty or absent.",
+      "The changed confirmation processor returns before confirmation-event resolution when the A2A marker is present.",
+      "Regression tests cover metadata-present and no-metadata A2A requests."
+    ],
+    "unsupported": ["Complete HITL security", "Authentication of the eventual human approver", "Cryptographic provenance", "Coverage of every transport and confirmation processor"],
+    "uncertain": ["How mixed-origin workflows should transition to a legitimate later human approval", "How delegated non-human approvers should be represented without being mistaken for humans"]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The judgment concerns a general trust boundary for agent approvals and does not depend on a first-party project."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The same-day merged implementation provides a concrete negative origin gate, and the Research Object contributes an independently useful, explicitly bounded approval-evidence model."
+}
