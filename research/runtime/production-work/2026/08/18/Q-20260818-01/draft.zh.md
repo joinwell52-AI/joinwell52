@@ -6,7 +6,7 @@ column: digital-employee
 category: daily
 article_type: engineering-insight
 edition: research-center
-research_question: "Agent Runtime 在把一个语法上有效的 user-role 响应视为可追责的真人审批之前，必须知道什么？"
+research_question: "What must an agent runtime know before it may treat a syntactically valid user-role response as an accountable human approval?"
 summary: "Agent Runtime 不应把 user-role 语法直接等同为审批权。Google ADK 当日合并变更表明，接收端拥有的来源标记可以在确认匹配之前对远程 A2A 审批类别进行 Fail-closed；而真人身份认证与授权仍是独立要求。"
 cover: staging/publication-candidates/2026-08-18-accountable-human-approval-cover.png
 sources:
