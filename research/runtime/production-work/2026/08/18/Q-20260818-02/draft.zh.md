@@ -6,7 +6,7 @@ column: industry-architecture
 category: daily
 article_type: technical-analysis
 edition: research-center
-research_question: "为什么持久化存储本身不足以保证已经落盘的 Agent 工作一定会被活跃 Runtime 发现并恢复？"
+research_question: "Why is durable storage insufficient to guarantee that persisted agent work will be noticed and resumed by a live runtime?"
 summary: "Persistence 与 Reconciliation 是两项不同责任。Codex 当日合并的 Queue 变更展示了一个具体方案：粗粒度发现跨连接变化，用持久 Per-thread Revision 定位变化 Queue，单独处理 Created/Resumed 生命周期，再把重试所有权隔离到每个 Thread。它并不证明 Exactly-once 或分布式排他执行。"
 cover: staging/publication-candidates/2026-08-18-persistence-reconciliation-cover.png
 sources:
