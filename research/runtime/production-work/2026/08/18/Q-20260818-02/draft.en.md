@@ -8,12 +8,12 @@ article_type: technical-analysis
 edition: research-center
 research_question: "Why is durable storage insufficient to guarantee that persisted agent work will be noticed and resumed by a live runtime?"
 summary: "Persistence and reconciliation are different responsibilities. A same-day Codex queue change shows one practical design: detect cross-connection changes coarsely, identify changed queues with durable revisions, reconcile created or resumed objects separately, and give each affected thread its own retry ownership. None of this proves exactly-once execution or distributed exclusivity."
-cover: research/runtime/production-work/2026/08/18/Q-20260818-02/baseline-cover.png
+cover: staging/publication-candidates/2026-08-18-persistence-reconciliation-cover.png
 sources:
   - research/analysis/Q-20260818-02-persistence-reconciliation-separation.md
 ---
 
-![Persistence Is Not a Wake-Up Mechanism cover](research/runtime/production-work/2026/08/18/Q-20260818-02/baseline-cover.png)
+![Persistence Is Not a Wake-Up Mechanism cover](staging/publication-candidates/2026-08-18-persistence-reconciliation-cover.png)
 
 # Persistence Is Not a Wake-Up Mechanism
 

@@ -8,12 +8,12 @@ article_type: engineering-insight
 edition: research-center
 research_question: "What must an agent runtime know before it may treat a syntactically valid user-role response as an accountable human approval?"
 summary: "Agent runtimes should not equate user-role syntax with approval authority. A same-day Google ADK change shows how receiver-owned origin provenance can fail-close a remote A2A approval class before confirmation matching, while leaving positive human authentication and authorization as separate requirements."
-cover: research/runtime/production-work/2026/08/18/Q-20260818-01/baseline-cover.png
+cover: staging/publication-candidates/2026-08-18-accountable-human-approval-cover.png
 sources:
   - research/analysis/Q-20260818-01-accountable-origin-human-approval.md
 ---
 
-![A User-Role Reply Is Not Yet a Human Approval cover](research/runtime/production-work/2026/08/18/Q-20260818-01/baseline-cover.png)
+![A User-Role Reply Is Not Yet a Human Approval cover](staging/publication-candidates/2026-08-18-accountable-human-approval-cover.png)
 
 # A User-Role Reply Is Not Yet a Human Approval
 

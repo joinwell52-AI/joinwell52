@@ -8,12 +8,12 @@ article_type: engineering-insight
 edition: research-center
 research_question: "What can a request trace prove when it covers queue receipt through a terminal operational outcome, and what evidence must remain separate for external effects?"
 summary: "Request lifecycle telemetry can reconstruct queue receipt, admission, execution and terminal transport outcome, but it should not be used as a substitute for external-effect evidence. A same-day Codex change strengthens the request trace while making the remaining evidence boundary easier to see."
-cover: research/runtime/production-work/2026/08/18/Q-20260818-03/baseline-cover.png
+cover: staging/publication-candidates/2026-08-18-trace-effect-evidence-cover.png
 sources:
   - research/analysis/Q-20260818-03-lifecycle-telemetry-effect-certainty.md
 ---
 
-![A Closed Trace Is Not an Effect Receipt cover](research/runtime/production-work/2026/08/18/Q-20260818-03/baseline-cover.png)
+![A Closed Trace Is Not an Effect Receipt cover](staging/publication-candidates/2026-08-18-trace-effect-evidence-cover.png)
 
 # A Closed Trace Is Not an Effect Receipt
 
