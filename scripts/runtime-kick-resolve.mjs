@@ -34,7 +34,19 @@ if (kick.schema === 'runtime-process-kick/v3' && kick.publicationRelease === tru
   run('git', ['config', 'user.name', 'joinwell52 Research Runtime'], 'git config user')
   run('git', ['config', 'user.email', 'actions@users.noreply.github.com'], 'git config email')
   const [year, month] = kick.date.split('-')
-  run('git', ['add', 'docs/en/digital-employee', 'docs/zh/digital-employee', 'docs/en/industry', 'docs/zh/industry', 'docs/en/engineering', 'docs/zh/engineering', 'docs/public/assets/covers', 'docs/public/assets/figures', releasePath, `research/runtime/results/${year}/${month}/${kick.date}-publication-result.json`], 'stage Publication release')
+  const releaseArtifacts = [
+    'docs/en/digital-employee',
+    'docs/zh/digital-employee',
+    'docs/en/industry',
+    'docs/zh/industry',
+    'docs/en/engineering',
+    'docs/zh/engineering',
+    'docs/public/assets/covers',
+    'docs/public/assets/figures',
+    releasePath,
+    `research/runtime/results/${year}/${month}/${kick.date}-publication-result.json`
+  ].filter((artifact) => existsSync(artifact))
+  run('git', ['add', ...releaseArtifacts], 'stage Publication release')
   const diff = spawnSync('git', ['diff', '--cached', '--quiet'])
   if (diff.status === 0) throw new Error('Publication materialization produced no governed release changes')
   run('git', ['commit', '-m', `runtime(publication): release ${kick.date} research`], 'Publication release commit')
