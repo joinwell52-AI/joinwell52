@@ -1,0 +1,81 @@
+{
+  "schema": "first-party-reading-record/v1",
+  "runId": "2026-08-18-guided-article-pipeline-round1",
+  "runDate": "2026-08-18",
+  "status": "Completed",
+  "completedAt": "2026-08-18T18:30:00+08:00",
+  "sources": [
+    {
+      "id": "FP-POSITION-01",
+      "role": "positioning",
+      "path": "D:/TMPA/joinwell52-production-recovery-fix/docs/zh/digital-employee/architecture.md",
+      "readCompletely": true,
+      "supports": "支持 TMPA、FCoP、CodeFlowMu 的分层关系，以及数字员工对外是岗位、对内是多角色团队的定位。",
+      "doesNotSupport": "这是公开架构草案，不能把通用 EmployeeDefinition、跨行业生产机和尚未过 Gate 的目标能力写成已实现产品事实。"
+    },
+    {
+      "id": "FP-NORM-01",
+      "role": "normative",
+      "path": "D:/TMPA/FCoP/adr/ADR-0038-fcop-boundary-charter.md",
+      "readCompletely": true,
+      "supports": "支持 FCoP 是外化协调协议而非执行运行时，并定义 Identity、Location、Event 与协议边界。",
+      "doesNotSupport": "不支持把调度、执行、队列、沙箱或自动恢复归为 FCoP 自身能力。"
+    },
+    {
+      "id": "FP-NORM-02",
+      "role": "normative",
+      "path": "D:/TMPA/FCoP/spec/fcop-v3-spec.zh.md",
+      "readCompletely": true,
+      "supports": "支持当前位置为状态真相、transitions 记录迁移历史、TASK/REPORT/ISSUE/REVIEW 四类信封，以及生命周期 review 与治理 REVIEW 相互独立。",
+      "doesNotSupport": "规范定义协议语义和合规要求，不自动证明某个宿主已正确实现全部工具、人工审批或端到端产品效果。"
+    },
+    {
+      "id": "FP-NORM-03",
+      "role": "normative",
+      "path": "D:/TMPA/FCoP/docs/releases/3.2.5.md",
+      "readCompletely": true,
+      "supports": "补充当前 3.2.5 协作闭环语义：执行者 REPORT 后停步、归档需要 ADMIN/leader 授权，并把 parent 提升为正式任务字段。",
+      "doesNotSupport": "发布记录标注 PyPI 待发布，不能仅凭该文件声称包注册表已经完成 3.2.5 发布或产生独立采用效果。"
+    },
+    {
+      "id": "FP-IMPL-01",
+      "role": "implementation",
+      "path": "D:/TMPA/CodeFlowMu-open/README.md",
+      "readCompletely": true,
+      "supports": "支持公开版已提供 PM、DEV、OPS、QA 与独立 EVAL、FCoP 工件、PC Panel、PWA、项目隔离和人工审批入口。",
+      "doesNotSupport": "公开版当前只声明 Cursor SDK 接入，且不包含私有 1.9.0 母版能力，不能据此宣称多 Provider 或所有数字员工场景已经公开实现。"
+    },
+    {
+      "id": "FP-FIELD-01",
+      "role": "field-evidence",
+      "path": "D:/TMPA/FCoP/tests/test_lifecycle/test_project_v3_writes.py",
+      "readCompletely": true,
+      "supports": "测试覆盖 TASK 写入 inbox、创建事件、合法生命周期归档链、重复归档幂等和跨生命周期目录解析。",
+      "doesNotSupport": "单元测试只证明该版本实现的受测行为，不证明跨主机、跨文件系统或任意多 Agent 环境的普遍可靠性。"
+    },
+    {
+      "id": "FP-FIELD-02",
+      "role": "field-evidence",
+      "path": "D:/TMPA/FCoP/docs/tutorials/assets/tetris-en/evidence/transcripts/agent-feedback-coder.md",
+      "readCompletely": true,
+      "supports": "真实 dogfood 转录支持 ISSUE 作为规格歧义的反馈路径，以及审查驳回通过新 TASK 形成更清晰返工说明的现场观察。",
+      "doesNotSupport": "这是单次第一方现场记录和 Agent 自述，不能证明所有 Agent 都会因此提高质量，也不能替代独立实验。"
+    },
+    {
+      "id": "FP-HISTORY-01",
+      "role": "research-history",
+      "path": "D:/TMPA/joinwell52-production-recovery-fix/research/knowledge/CURRENT.md",
+      "readCompletely": true,
+      "supports": "支持当前研究主线是责任边界、持久工作事实、执行证据、独立验证与受治理恢复。",
+      "doesNotSupport": "多个架构候选仍停留在 Knowledge 或证据 Gate 前，不能作为已经晋级的正式架构结论。"
+    },
+    {
+      "id": "FP-RECENT-01",
+      "role": "recent-content",
+      "path": "D:/TMPA/joinwell52-production-recovery-fix/research/manual-runs/2026-08-17-high-quality-article-pipeline/15-final-quality-and-qa.md",
+      "readCompletely": true,
+      "supports": "支持最近一轮已发布主题集中在成本计量和可审查 Agent 计划，可用于本轮问题、结论、证据和读者行动去重。",
+      "doesNotSupport": "只覆盖上一轮最终候选包；正式写作前仍需继续扫描完整 30 天站内文章索引和所有相邻主题全文。"
+    }
+  ]
+}

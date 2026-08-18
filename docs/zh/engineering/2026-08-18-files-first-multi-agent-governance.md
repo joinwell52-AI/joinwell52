@@ -1,0 +1,177 @@
+---
+title: "多 Agent 治理为什么可以从文件开始？‘万物皆文件’的工程价值"
+date: '2026-08-18'
+column: open-source-engineering
+category: daily
+article_type: technical-analysis
+edition: research-center
+research_question: "为什么文件、路径与事件适合作为本地优先多 Agent 治理的起点，它们又明确不保证什么？"
+summary: "文件不是消息队列或工作流引擎的廉价替代品；它的首要价值是先建立一份人和 Agent 都能检查的共同工作账本，再用真实压力决定是否升级基础设施。"
+item_id: "MANUAL-20260818-FILES"
+lifecycle: "Published"
+cover: "/assets/covers/daily-2026-08-18-files-first-multi-agent-governance-cover.webp"
+evidence_status: "Completed"
+citation_status: "Completed"
+editing_status: "Completed"
+publication_authorized: true
+sources:
+  - research/manual-runs/2026-08-18-guided-article-pipeline-round1/02-source-register.md
+  - research/manual-runs/2026-08-18-guided-article-pipeline-round1/02-fact-matrices.md
+  - research/manual-runs/2026-08-18-guided-article-pipeline-round1/02-article-briefs.md
+  - research/manual-runs/2026-08-18-guided-article-pipeline-round1/02-independent-editorial-review.md
+---
+
+<ArticleCover
+  image="/assets/covers/daily-2026-08-18-files-first-multi-agent-governance-cover.webp"
+  kicker="开源工程 · 研究文章"
+  title="多 Agent 治理为什么可以从文件开始？‘万物皆文件’的工程价值"
+  summary="文件不是消息队列或工作流引擎的廉价替代品；它的首要价值是先建立一份人和 Agent 都能检查的共同工作账本，再用真实压力决定是否升级基础设施。"
+  version="MANUAL-20260818-FILES"
+  status="Independent Editorial PASS · 2026-08-18"
+  languageHref="/en/engineering/2026-08-18-files-first-multi-agent-governance"
+  languageLabel="English"
+/>
+
+# 多 Agent 治理为什么可以从文件开始？“万物皆文件”的工程价值
+
+> 文件不是消息队列、数据库和工作流引擎的廉价替代品。它更适合承担第一份治理基础设施：一份人和 Agent 都能直接读取、检查、复制与恢复的工作账本。
+
+**系列导航：**本篇解释为什么从文件开始；接着阅读[状态机实现篇](/zh/engineering/2026-08-18-fcop-file-state-machine)，再进入[Cursor 团队实操篇](/zh/digital-employee/2026-08-18-cursor-ai-development-team)。三篇分别回答治理价值、协议内核和真实交付。
+
+四个 Agent 分别在四个对话里工作。一个写代码，一个补测试，一个检查部署，一个负责验收。两小时后，所有窗口都显示“完成”，但负责人仍回答不了几个最普通的问题：当前正式任务是哪一版？谁改了范围？测试报告对应哪次实现？被驳回的理由有没有进入下一轮任务？
+
+问题不在模型是否聪明，而在团队没有一份共同事实。
+
+很多系统在这一步会直接讨论更重的基础设施。但对于单机、本地优先、低到中等并发的 Agent 协作，第一步往往可以更朴素：先把任务、状态、回执和审查判断写成文件，让目录位置表达当前状态，让只追加事件保留迁移历史。FCoP 把这个原则概括为：**文件承载协议，路径表达状态，事件记录历史。**
+
+这不是“文件包打天下”。它是一条治理顺序：先让工作可见、可检查，再根据真实压力决定是否升级运行时。
+
+## “万物皆文件”真正值得借鉴的，不是口号
+
+Ritchie 和 Thompson 在 [The UNIX Time-Sharing System](https://pdos.csail.mit.edu/6.828/2014/readings/ritchie78unix.pdf) 中描述的工程价值，比后来流行的口号更具体：Unix 用分层目录组织对象，尽量让普通文件、设备和进程间 I/O 共享兼容的读写接口；命令通过标准输入输出和 pipe 组合，而不要求每个程序理解所有上游和下游。
+
+这里有三条可以迁移到 Agent 治理的原则。
+
+第一，**使用共同接口降低接入成本**。人可以用编辑器读任务，Agent 可以解析 front matter，CLI 可以扫描目录，网页面板可以建立索引。它们不必先共享同一个 SDK 才能理解工作事实。
+
+第二，**让名称和位置携带稳定语义**。路径不只是存储地址。`inbox/`、`active/`、`review/`、`done/` 可以成为人和程序都看得懂的状态面。
+
+第三，**把复杂能力放在可组合的小工具中**。创建、校验、迁移、审查和归档可以由不同工具完成，只要它们遵守同一份工件契约。
+
+但原论文也直接提醒我们不要神化文件：Unix 内部仍需要互锁；两个进程同时写同一个文件会破坏内容；pipe、process 和权限机制都不是“文件”二字自动提供的。因而本文采用的“万物皆文件”，只指**优先把协作事实外化为通用、可读的工件**，不指所有运行时问题都由文件系统解决。
+
+## 文件为什么适合做多 Agent 的“黑板”
+
+H. Penny Nii 在 [黑板模型](https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/537) 中总结了一类经典问题求解架构：多个知识源围绕共享黑板读取当前问题状态，并把新的中间结果写回去。没有哪个知识源必须保存全局真相；协作发生在共享工作面上。
+
+文件目录可以成为这种共享工作面的一个实现，但二者不能画等号。黑板可以放在内存或数据库里，文件也可能只是杂乱无章的日志。文件只有同时满足以下条件，才开始具有治理价值：
+
+1. 每个工件有明确身份，而不是随手命名的笔记；
+2. 当前状态有唯一可判定的位置，而不是正文里互相冲突的 `status` 字段；
+3. 状态变化留下可排序事件，而不是移动后抹掉历史；
+4. 角色知道自己能创建、迁移和批准什么；
+5. 结束条件由可验证证据决定，而不是 Agent 的一句“已完成”。
+
+这也是“保存聊天记录”与“建立工作账本”的区别。聊天记录按说话顺序组织，工作账本按工作对象和责任组织。
+
+![多个角色写入同一文件、路径与事件事实面，再由人、Agent 和工具共同读取](/assets/covers/daily-2026-08-18-files-first-shared-ledger.png)
+
+*图 1：文件式治理首先建立共同事实面；它协调任务、状态和证据，但不替代执行引擎或分布式一致性系统。来源：Research Center 根据 Unix、FCoP 与 TMPA 资料整理。*
+
+## 一份最小工作账本需要四类事实
+
+FCoP 使用四种 IPC envelope，把协作行为分成四类：
+
+| 工件 | 回答的问题 | 最小内容 |
+| --- | --- | --- |
+| `TASK` | 谁被要求交付什么？ | sender、recipient、priority、parent、scope、acceptance |
+| `REPORT` | 执行者实际做了什么？ | 对应任务、变更、测试、剩余风险、证据路径 |
+| `ISSUE` | 什么阻碍了交付？ | 现象、影响、已尝试动作、需要谁决策 |
+| `REVIEW` | 谁基于什么证据作出什么判断？ | subject、reviewer、verdict、理由、后续动作 |
+
+然后，路径给出当前状态：任务从 `_lifecycle/inbox` 进入 `active`，提交后进入 `review`，完成后进入 `done`，最后才归档。事件则记录每次迁移的时间、来源、去向、执行者和工具。
+
+三层信息不能互相替代：
+
+- 文件正文说明“这是什么”；
+- 所在路径说明“它现在在哪里”；
+- 事件说明“它如何来到这里”。
+
+> **正文里的 `status: done` 不等于状态，路径才是唯一生命周期事实。把位置与事件压缩成一个字段，你将失去整个审查历史。**
+
+把三者压缩成一个可随意改写的 `status: done`，人就无法区分任务真的通过验收，还是执行者刚刚宣告完成。
+
+## 可检查性如何改变一次返工
+
+FCoP 仓库的 [Tetris dogfood 记录](https://github.com/joinwell52-AI/FCoP/tree/a859e6747fe6e5e2d686e0114c77774726d7f748/docs/tutorials/assets/tetris-en/evidence) 保存了一个小而真实的失败：任务规格不充分，执行者没有使用已有的 ISSUE 路径，而是自行猜测；缺陷随后出现在被猜测的区域。审查驳回后，管理员重新生成了一张范围更清楚的返工任务。
+
+这个案例不能证明文件式治理能降低多少缺陷率，也不能外推到大型团队。它只证明一件较小但重要的事：当任务、执行回执、审查判断和返工任务分别存在时，失败不必只剩下一段模糊回忆。负责人可以追问：遗漏最早出现在哪份规格？执行者何时开始猜测？审查意见是否进入了下一张任务？
+
+这就是工作账本带来的效果：不是消灭错误，而是**让错误能够被定位、讨论和转化为下一步行动**。
+
+## 文件起步适用于什么边界
+
+文件式工作账本尤其适合这些条件：
+
+- 单机或明确的共享工作区；
+- 任务吞吐量不高，人工可读性比毫秒级延迟更重要；
+- 工件需要进入 Git、备份或普通文件工具链；
+- 人需要直接检查、修订和批准 Agent 的工作；
+- 团队仍在摸索协议，尚未稳定到值得建设复杂控制平面。
+
+出现下列压力时，则应把文件保留为证据面，同时升级运行时或索引层：
+
+- 多机对同一任务高频竞争；
+- 需要严格事务、细粒度权限或复杂查询；
+- 需要明确的重试、租约、超时调度和吞吐保证；
+- 网络文件系统的缓存、一致性和故障语义无法满足要求；
+- 工件规模使目录扫描和人工检索成为瓶颈。
+
+重点不是在“文件”和“重型系统”之间宣誓效忠，而是分清两个平面：**工件平面负责留下可读事实，执行平面负责调度、隔离、重试和扩展。** 两者可以从同一台机器上的一个目录开始，也可以逐步演化为不同组件。
+
+## 今天就能建立的最小结构
+
+可以先为一个真实项目建立如下**通用账本结构**；它不是 FCoP v3 的逐目录复制。FCoP 当前把生命周期历史保存在 TASK front matter 的 `transitions:` 中，而下例用独立 `events/` 表示其他系统也可采用的事件存储方式。
+
+```text
+work/
+  _lifecycle/
+    inbox/
+    active/
+    review/
+    done/
+    archive/
+  reports/
+  issues/
+  reviews/
+  events/
+```
+
+再用七个问题检查它：
+
+1. 每项工作是否有唯一身份和明确接收者？
+2. 人能否在一分钟内找到当前正式版本？
+3. “完成”是否附带测试、diff 或其他环境证据？
+4. 审查判断是否与执行者回执分开保存？
+5. 驳回后是否生成了可追踪的下一步，而不是回到聊天里口头修改？
+6. 状态迁移是否保留时间、执行者和来源/去向？
+7. 如果运行时进程现在崩溃，重启后能否仅凭磁盘工件恢复“发生过什么”？
+
+若七个问题大多答不上来，系统缺少的通常不是更多 Agent，而是第一份共同工作账本。
+
+## 结论：文件的价值，是先把治理变成可见事实
+
+“从文件开始”不是怀旧，也不是拒绝基础设施。它利用了一个长期有效的工程优势：开放、简单、可组合的接口能让不同工具在最低耦合下共享事实。
+
+对于刚从单 Agent 走向多 Agent 的系统，最危险的并不是吞吐不够，而是团队连当前任务、责任和证据都说不清。先用文件、路径与事件把这些事实外化，团队才能观察真实摩擦：究竟慢在检索、竞争、恢复、权限还是调度。到那时，是否引入数据库、队列或工作流引擎，就不再是架构偏好，而是有证据的升级决定。
+
+FCoP 在这里不是行业标准，也不是最终答案。它是一项正在实践的工程主张：**在增加控制平面之前，先让协作本身能够被人看见。**
+
+理解了文件作为账本的治理价值后，下一步是把它落成不会向读者暴露半成品、且每条迁移都能被测试的协议内核。继续阅读：《[文件、路径与事件：FCoP 协作状态机如何实现和测试](/zh/engineering/2026-08-18-fcop-file-state-machine)》。
+
+## 参考资料
+
+- [Ritchie & Thompson, The UNIX Time-Sharing System](https://pdos.csail.mit.edu/6.828/2014/readings/ritchie78unix.pdf)
+- [H. Penny Nii, The Blackboard Model of Problem Solving and the Evolution of Blackboard Architectures](https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/537)
+- [FCoP v3 specification](https://github.com/joinwell52-AI/FCoP/blob/a859e6747fe6e5e2d686e0114c77774726d7f748/spec/fcop-v3-spec.md)
+- [ADR-0038: FCoP Boundary Charter](https://github.com/joinwell52-AI/FCoP/blob/a859e6747fe6e5e2d686e0114c77774726d7f748/adr/ADR-0038-fcop-boundary-charter.md)

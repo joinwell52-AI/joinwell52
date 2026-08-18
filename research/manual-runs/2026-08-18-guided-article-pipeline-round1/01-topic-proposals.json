@@ -1,0 +1,201 @@
+{
+  "schema": "guided-topic-proposals/v2",
+  "runId": "2026-08-18-guided-article-pipeline-round1",
+  "runDate": "2026-08-18",
+  "status": "AwaitingUserSelection",
+  "recommendedSelection": [
+    "T1",
+    "T2",
+    "T3"
+  ],
+  "seriesMap": {
+    "source": "用户提供的三栏目七层次选题地图",
+    "tracks": [
+      "理论与治理深度",
+      "开源实现与协议工程",
+      "数字员工与场景落地"
+    ],
+    "policy": "21 个槽位进入长期题库，不构成日更配额；每轮只选择有第一方证据且完成独立核验的 1–3 题。"
+  },
+  "proposals": [
+    {
+      "id": "T1",
+      "articleType": "project-research",
+      "framing": "first-party-strength",
+      "researchObjects": [
+        "TMPA",
+        "FCoP",
+        "CodeFlowMu Open"
+      ],
+      "track": "理论与治理深度",
+      "tone": "思想型",
+      "title": "多 Agent 协作为什么需要一份所有人都能读懂的工作账本？",
+      "targetAudience": "正在设计多 Agent 团队、数字员工或 AI 工作流的技术负责人和架构师",
+      "readerProblem": "任务、责任、异议和完成证据散落在多个 Agent 对话中，导致人和其他 Agent 无法快速重建当前事实。",
+      "coreQuestion": "多 Agent 协作中，为什么需要把派工、状态、报告和审查外化成一套人和机器共同可读的持久工件？",
+      "coreProposition": "多 Agent 治理的第一步不是增加调度复杂度，而是建立一份可检查、可交接、可追溯的共同工作账本。",
+      "whyNow": "FCoP 已形成位置状态、迁移事件和四类协作信封，CodeFlowMu Open 已把这些工件接入真实角色团队与界面。",
+      "readerAction": "读者可以用工作账本最小模型审查自己的 Agent 系统是否保留了任务、责任、证据和验收链。",
+      "expectedResult": "形成一张多 Agent 工作账本结构图、一份最小字段清单和一套判断协作是否可检查的设计问题。",
+      "verifiedStrengths": [
+        {
+          "claim": "FCoP 把当前状态、历史事件和协作信封外化为共同可读的文件工件。",
+          "readerValue": "读者可以直接检查任务事实，而不必依赖某个会话继续在线或准确回忆。",
+          "sourceRefs": [
+            "FP-NORM-01",
+            "FP-NORM-02",
+            "FP-FIELD-01"
+          ]
+        },
+        {
+          "claim": "CodeFlowMu Open 将任务、报告、审批和活动状态投影到 PC Panel 与 PWA。",
+          "readerValue": "读者能看到共同工作账本怎样进入真实产品界面。",
+          "sourceRefs": [
+            "FP-POSITION-01",
+            "FP-IMPL-01"
+          ]
+        }
+      ],
+      "evidencePlan": {
+        "requiredSourceIdentities": [
+          "独立的多 Agent 共享状态、交接或可追溯工作研究",
+          "独立的组织工作记录、事件溯源或协作协议工程资料"
+        ]
+      },
+      "outline": [
+        "一个任务分散在四个对话里时，人为什么很难回答现在发生了什么",
+        "共同工作账本必须记录的四类事实：任务、当前状态、执行回执和审查判断",
+        "文件、位置和事件怎样分别承载内容、当前状态与历史",
+        "TASK、REPORT、ISSUE、REVIEW 怎样让协作行为有明确身份",
+        "人、Agent 和界面为什么可以读取同一份事实，而不需要三套状态",
+        "真实案例中一次规格遗漏、实现错误、审查驳回和返工如何被完整保留",
+        "读者如何判断自己的 Agent 系统是否已经具备一份合格的工作账本"
+      ],
+      "visualPlan": {
+        "coverConcept": "一个集中构图的未来 Agent 团队围绕一本发光的共同工作账本，所有任务流汇入同一中心。",
+        "inlineFigures": [
+          "共同工作账本四类事实结构图"
+        ]
+      }
+    },
+    {
+      "id": "T2",
+      "articleType": "project-research",
+      "framing": "first-party-strength",
+      "researchObjects": [
+        "FCoP"
+      ],
+      "track": "开源实现与协议工程",
+      "tone": "硬核技术型",
+      "title": "从 TASK 到 REVIEW：用文件状态机实现一条可检查的 Agent 协作链",
+      "targetAudience": "Agent Runtime、MCP 工具、本地开发工具和开源协议的工程开发者",
+      "readerProblem": "很多多 Agent 原型只有内存状态和聊天记录，难以测试任务流转、拒绝非法迁移并还原历史。",
+      "coreQuestion": "怎样用文件位置、追加事件和强类型信封，实现一条可以测试、审查和复现的 Agent 协作链？",
+      "coreProposition": "文件式协议的工程价值不在于把文件叫作队列，而在于把状态真相、迁移规则和历史证据拆成可以独立验证的机制。",
+      "whyNow": "FCoP v3 已具备当前规范、3.2.5 协作闭环、Python 实现和生命周期测试，可以做代码级拆解。",
+      "readerAction": "读者可以按文中的目录、状态迁移表和测试样例，实现并验证一个最小文件状态机。",
+      "expectedResult": "交付一份最小状态机实现、合法迁移表、事件格式、TASK/REPORT/ISSUE/REVIEW 示例和对应自动化测试。",
+      "verifiedStrengths": [
+        {
+          "claim": "FCoP 当前规范明确分离文件身份、路径状态、迁移事件和治理 REVIEW。",
+          "readerValue": "读者可以按独立机制实现，而不是复制一个不可解释的整体框架。",
+          "sourceRefs": [
+            "FP-NORM-01",
+            "FP-NORM-02",
+            "FP-FIELD-01"
+          ]
+        },
+        {
+          "claim": "现有测试覆盖任务创建、合法迁移、非法跳转拒绝、迁移历史和重复归档行为。",
+          "readerValue": "文章能够给出真实测试而不是仅画概念流程图。",
+          "sourceRefs": [
+            "FP-NORM-02",
+            "FP-FIELD-01"
+          ]
+        }
+      ],
+      "evidencePlan": {
+        "requiredSourceIdentities": [
+          "文件系统与持久状态机的一手工程规范",
+          "独立的事件溯源、状态机测试或本地优先系统实现"
+        ]
+      },
+      "outline": [
+        "为什么聊天记录和内存变量不足以充当可检查的任务状态",
+        "文件身份：TASK、REPORT、ISSUE、REVIEW 的命名和职责",
+        "路径状态：inbox、active、review、done、archive 的合法迁移",
+        "事件历史：每次迁移怎样把时间、来源、去向、执行者和工具追加到任务中",
+        "两种 review 为什么必须区分：生命周期阶段与治理判定文件",
+        "代码和测试：创建、认领、提交、驳回、完成与归档如何被验证",
+        "最终交付：最小实现、状态图、示例文件和自动化测试清单"
+      ],
+      "visualPlan": {
+        "coverConcept": "单一集中的文件状态轨道从 TASK 进入 REVIEW，沿途由少量明确节点组成，未来感但不做零碎仪表盘。",
+        "inlineFigures": [
+          "FCoP 文件状态机与四类信封关系图",
+          "合法迁移与拒绝路径测试图"
+        ]
+      }
+    },
+    {
+      "id": "T3",
+      "articleType": "project-research",
+      "framing": "first-party-strength",
+      "researchObjects": [
+        "CodeFlowMu Open",
+        "FCoP"
+      ],
+      "track": "数字员工与场景落地",
+      "tone": "生活化实战型",
+      "title": "一人怎样带一支 AI 开发团队：从需求拆解到测试验收的完整工作流",
+      "targetAudience": "独立开发者、小团队负责人和希望把 Agent 用进真实项目的工程实践者",
+      "readerProblem": "一个人同时使用多个 Agent 时，容易变成不停复制提示词、追问进度和人工拼接结果，反而承担更多协调负担。",
+      "coreQuestion": "一个人怎样通过明确角色、正式任务、执行报告和验收循环，带领一支本地 AI 开发团队完成真实需求？",
+      "coreProposition": "一人 AI 团队的核心优势不是同时打开更多聊天窗口，而是让 PM、DEV、OPS、QA 围绕同一条可见任务链承担不同责任。",
+      "whyNow": "CodeFlowMu Open 已公开固定开发团队、任务与报告界面、PWA、EVAL 和项目隔离，FCoP dogfood 也保留了真实返工案例。",
+      "readerAction": "读者可以按文章提供的角色表和任务模板，在本地项目执行一次需求拆解、实现、运行、测试和验收。",
+      "expectedResult": "交付一份一人 AI 开发团队运行手册、四角色责任表、一条真实任务时间线和项目验收清单。",
+      "verifiedStrengths": [
+        {
+          "claim": "CodeFlowMu Open 已提供 PM、DEV、OPS、QA 和独立 EVAL 的固定开发团队及可见任务流程。",
+          "readerValue": "读者可以使用现有公开产品复现文章中的团队工作方式。",
+          "sourceRefs": [
+            "FP-POSITION-01",
+            "FP-IMPL-01"
+          ]
+        },
+        {
+          "claim": "真实 dogfood 保留了从模糊任务、实现缺陷、审查驳回到新返工任务的协作轨迹。",
+          "readerValue": "文章能够展示团队犯错和修正的完整过程，而不只展示顺利完成的演示。",
+          "sourceRefs": [
+            "FP-NORM-03",
+            "FP-FIELD-02"
+          ]
+        }
+      ],
+      "evidencePlan": {
+        "requiredSourceIdentities": [
+          "独立的多 Agent 软件工程或角色分工研究",
+          "独立的 AI 编程团队实践、评测或真实项目报告"
+        ]
+      },
+      "outline": [
+        "一个人同时开四个 Agent 窗口，为什么不等于拥有一支团队",
+        "先定岗位：PM、DEV、OPS、QA 分别负责什么，不允许互相代替什么",
+        "需求怎样由 PM 变成带范围、依赖和验收条件的正式任务",
+        "DEV、OPS、QA 怎样围绕同一任务分别实现、运行和验证",
+        "REPORT、REVIEW 和 EVAL 怎样让完成声明接受检查",
+        "一次真实返工：第一版为什么被驳回，下一张任务怎样变得更清楚",
+        "PC、PWA 和磁盘工件怎样让一个人掌握团队状态",
+        "最终交付：四角色责任表、任务模板、操作步骤和验收清单"
+      ],
+      "visualPlan": {
+        "coverConcept": "一名人类负责人位于中心，四个未来感 Agent 角色沿同一条交付轨道集中协作，画面清晰且不做界面拼贴。",
+        "inlineFigures": [
+          "一人 AI 开发团队角色与交付链图",
+          "需求到验收的真实任务时间线"
+        ]
+      }
+    }
+  ]
+}
