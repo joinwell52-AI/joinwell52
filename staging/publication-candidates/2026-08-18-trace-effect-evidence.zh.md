@@ -33,7 +33,7 @@ sources:
 
 实现还会把 Route Label 规范化，以控制 Metric Cardinality。Per-request Trace 可以保留更多细节，而 Fleet-level Histogram 使用有界 Route Identity。二者服务不同运维目的，不需要暴露完全相同的维度。
 
-## Terminal Telemetry 说明的是“请求路径发生了什么”
+## Terminal Telemetry 说明的是请求路径发生了什么
 
 变更后的 Request Span 拥有明确的 Terminal Operational Result。Server-side 路径会记录完成与 Error；Client-handled Callback 则通过 Outcome Guard，在没有更具体结果时把未解决终止默认记录为 `disconnected`。
 
