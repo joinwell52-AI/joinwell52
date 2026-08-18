@@ -1,0 +1,47 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "reading",
+  "family": "daily",
+  "runtimeDate": "2026-08-18",
+  "status": "Completed",
+  "input": "Fail-closed Reading admission resolved from authoritative main commit 5f8704a48ab8bbddf29b02867c9d6a4b5b57b475 using Scheduler V3.0 and Worker Control V1.3.0 for branch=main, wake-source=chatgpt-scheduled-task, the active 2026-08-18 Reading window, and the Worker capabilities GitHub read/write, file editing and web research. The generated Reading prompt research/runtime/worker-prompts/generated/reading.prompt.md version 1.0.0 was deterministically verified at SHA-256 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5, and all five required sources were read completely from that pinned control commit. The same-date Wake Receipt research/runtime/wakes/2026/08/2026-08-18/reading-110050.json was durably committed and fetched. Repository reconciliation found Discovery and Queue durably Completed, granted Reading as the earliest due unfinished task, opened its execution slot, and the Worker Claimed state was durably verified on main at commit 8dc3b4411b53ffce72d900e2dcf3c9905b59b7b7. Reading consumed only the same-date plan objects Q-20260818-01, Q-20260818-02 and Q-20260818-03 and their three primary merged maintainer commits. No prior-day Reading Result or Research Object was used as current-day input.",
+  "input_zh": "基于权威 main 提交 5f8704a48ab8bbddf29b02867c9d6a4b5b57b475 中的 Scheduler V3.0 与 Worker Control V1.3.0，使用 branch=main、wake-source=chatgpt-scheduled-task、2026-08-18 有效 Reading 时段，以及当前 Worker 实际具备的 GitHub 读写、文件编辑与 Web Research 能力，完成 Reading 的 Fail-closed Admission。确定性核验生成版 Reading Prompt research/runtime/worker-prompts/generated/reading.prompt.md v1.0.0 的 SHA-256 为 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5，并从该固定控制提交完整读取全部五个 Required Source。随后将同日 Wake Receipt research/runtime/wakes/2026/08/2026-08-18/reading-110050.json 持久提交并重新 Fetch 核验。仓库 Reconciliation 确认 Discovery 与 Queue 已持久 Completed，把 Reading 判定为最早到期未收口任务并授予执行权，打开 Execution Slot；Worker Claimed 状态随后在 main 提交 8dc3b4411b53ffce72d900e2dcf3c9905b59b7b7 上完成持久核验。Reading 仅消费同日 Research Plan 中的 Q-20260818-01、Q-20260818-02、Q-20260818-03 及其三个维护者一手合并提交。未把前一日 Reading Result 或 Research Object 作为当天输入。",
+  "workResult": "Completed Skill 03 source-complete Deep Reading for all three same-date selected objects after ordered Runtime authority and Worker Claimed were durably established. Q-20260818-01 verified that Google ADK now always marks A2A-originated invocations, including requests whose peer metadata is empty or absent, and that the changed tool-confirmation processor returns before resolving confirmation events when that A2A marker is present; regression tests cover both metadata-present and no-metadata cases, blocking the demonstrated remote-peer self-approval path without proving complete HITL security. Q-20260818-02 verified a SQLite-backed durable queue wakeup architecture: PRAGMA data_version detects cross-connection change, durable per-thread revisions identify affected loaded queues and are backfilled/updated across insert, update and delete, newly loaded/resumed threads are reconciled separately, and per-thread 10-second retry tasks allow one blocked wake to retry without stalling unrelated queues; this is not distributed exactly-once execution. Q-20260818-03 verified an exec-server observability boundary in which the inbound request span and queue timestamp are created at connection-queue receipt, optional W3C parent context is validated, the same span survives server/client queues and route execution, queue latency is emitted only after admission with a bounded route label, and terminal operational outcomes including error/disconnect are recorded; this does not prove complete causal tracing or external-side-effect rollback. Three durable Reading Notes were produced. No Research Analysis, article drafting, visualization or publication was performed.",
+  "workResult_zh": "仅在有序 Runtime 执行权与 Worker Claimed 均完成持久核验后，才对三个同日已选对象完成 Skill 03 Source-complete Deep Reading。Q-20260818-01 核验了 Google ADK 现在始终标记 A2A 来源的 Invocation，即使远端 Metadata 为空或缺失也保留 A2A Marker；变更后的工具确认处理器一旦检测到该 Marker，就会在解析确认事件之前直接返回。回归测试同时覆盖有 Metadata 与无 Metadata 两种情况，阻断已证明的远程对端自我审批路径，但不能扩大解释为完整 HITL 安全。Q-20260818-02 核验了基于 SQLite 的持久队列唤醒架构：PRAGMA data_version 用于发现跨连接变化，持久 Thread Revision 用于定位受影响的已加载队列，并在 Insert、Update、Delete 时更新且对旧队列迁移回填；新加载/恢复 Thread 另行 Reconcile；每个 Thread 拥有独立的固定 10 秒重试任务，使单个阻塞 Wake 不拖住无关队列。该机制不等于分布式 Exactly-once。Q-20260818-03 核验了 Exec-server 请求可观测边界：请求进入 Connection Queue 时即创建 Inbound Span 与排队时间戳，可选 W3C Parent Context 会先验证；同一 Span 贯穿 Server/Client Queue 与 Route Execution；Queue Latency 仅在 Admission 之后按有界 Route Label 记录；Error/Disconnect 等终态会被记录。该机制不能扩大解释为完整因果追踪或外部副作用回滚。共形成 3 份持久 Reading Note。未执行 Research Analysis、文章写作、可视化或发布。",
+  "output": "Three durable Skill 03 Reading Notes for Q-20260818-01, Q-20260818-02 and Q-20260818-03, each recording source-backed problem, facts, mechanisms, evidence, limitations, comparisons, unresolved questions and a strict Reading boundary.",
+  "output_zh": "形成 Q-20260818-01、Q-20260818-02、Q-20260818-03 三份持久 Skill 03 Reading Note；每份均记录来源支持的 Problem、Facts、Mechanisms、Evidence、Limitations、Comparisons、Unresolved Questions 与严格 Reading Boundary。",
+  "next": "Research Runtime Analysis may consume only these 2026-08-18 Reading Notes after Reading completion and durable GitHub verification. Analysis must keep demonstrated merged-code facts separate from broader inference: it must not treat the A2A-origin confirmation rejection as proof of complete HITL security, infer distributed exactly-once or global ordering from SQLite queue revisions and independent retries, or equate request-span coverage with complete causal tracing, authentication or external-side-effect certainty.",
+  "next_zh": "只有在 Reading 完成并通过 GitHub 持久核验后，Research Runtime Analysis 才可消费这三份 2026-08-18 Reading Note。Analysis 必须把已证明的 Merged-code Fact 与更广泛推论分开：不得把 A2A 来源确认拒绝视为完整 HITL 安全证明，不得从 SQLite Queue Revision 与独立重试推断分布式 Exactly-once 或全局排序，也不得把 Request Span 覆盖等同于完整因果追踪、身份认证或外部副作用确定性。",
+  "metrics": [
+    {"label":"Selected objects read","label_zh":"已深读对象","value":"3 / 3"},
+    {"label":"Primary-source objects read","label_zh":"已读一手对象","value":"3"},
+    {"label":"Merged maintainer commits read","label_zh":"已读维护者合并提交","value":"3"},
+    {"label":"Durable Reading Notes","label_zh":"持久 Reading Note","value":"3"},
+    {"label":"Generated prompt SHA-256 verified","label_zh":"已核验 Generated Prompt SHA-256","value":"1"},
+    {"label":"Required control sources read","label_zh":"已完整读取 Required Source","value":"5 / 5"},
+    {"label":"Prior-day research inputs reused","label_zh":"复用前一日研究输入","value":"0"},
+    {"label":"Research Analysis performed","label_zh":"已执行 Research Analysis","value":"0"},
+    {"label":"Publication copy produced","label_zh":"已生成发布文案","value":"0"}
+  ],
+  "evidence": [
+    {"label":"Pinned control-plane commit","label_zh":"固定控制面提交","commit":"5f8704a48ab8bbddf29b02867c9d6a4b5b57b475"},
+    {"label":"Worker Control version","label_zh":"Worker Control 版本","value":"1.3.0"},
+    {"label":"Verified generated Reading prompt SHA-256","label_zh":"已核验生成版 Reading Prompt SHA-256","value":"9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"},
+    {"label":"Reading Wake Receipt","label_zh":"Reading 唤醒回执","path":"research/runtime/wakes/2026/08/2026-08-18/reading-110050.json"},
+    {"label":"Run-date Research Plan","label_zh":"运行日 Research Plan","path":"research/runtime/plans/2026/08/2026-08-18-plan.json"},
+    {"label":"Skill 03","label_zh":"Skill 03","path":"research/skills/03-deep-reading.md"},
+    {"label":"Q-20260818-01 primary source","label_zh":"Q-20260818-01 一手来源","url":"https://github.com/google/adk-python/commit/9e9eaa69bdcc16f004af9c63f40f1dae6404c29b"},
+    {"label":"Q-20260818-02 primary source","label_zh":"Q-20260818-02 一手来源","url":"https://github.com/openai/codex/commit/eeb82a156d1b3944dca4234c3043296529ec5837"},
+    {"label":"Q-20260818-03 primary source","label_zh":"Q-20260818-03 一手来源","url":"https://github.com/openai/codex/commit/fd34ad7297d86ef8f679927db55a3c1d09735f55"},
+    {"label":"Reading Worker Claim commit","label_zh":"Reading Worker Claim 提交","commit":"8dc3b4411b53ffce72d900e2dcf3c9905b59b7b7"},
+    {"label":"Reading Runtime record","label_zh":"Reading Runtime 记录","path":"research/runtime/records/daily/2026/08/2026-08-18-daily-runtime.json"}
+  ],
+  "artifacts": [
+    {"label":"Q-20260818-01 Reading Note","label_zh":"Q-20260818-01 Reading Note","path":"research/reading/Q-20260818-01-a2a-human-confirmation-trust-boundary.md"},
+    {"label":"Q-20260818-02 Reading Note","label_zh":"Q-20260818-02 Reading Note","path":"research/reading/Q-20260818-02-cross-process-durable-queue-wakeup.md"},
+    {"label":"Q-20260818-03 Reading Note","label_zh":"Q-20260818-03 Reading Note","path":"research/reading/Q-20260818-03-request-lifecycle-observability.md"},
+    {"label":"Reading result","label_zh":"Reading 结果","path":"research/runtime/results/2026/08/2026-08-18-reading-result.json"},
+    {"label":"Daily Runtime JSON","label_zh":"Daily Runtime JSON","path":"research/runtime/records/daily/2026/08/2026-08-18-daily-runtime.json"},
+    {"label":"Runtime Markdown ledger","label_zh":"Runtime Markdown 账本","path":"research/runtime/2026/08/2026-08-18-runtime.md"}
+  ]
+}
