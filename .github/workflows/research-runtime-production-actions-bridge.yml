@@ -75,19 +75,64 @@ jobs:
         run: npm run runtime:production:checkpoint -- --date "$RUNTIME_DATE" --checkpoint "research/runtime/checkpoints/${RUNTIME_DATE:0:4}/${RUNTIME_DATE:5:2}/${RUNTIME_DATE}-production.json"
 
       - name: Validate complete candidate bundle
+        id: candidate_validation
         if: steps.request.outputs.mode == 'stage-batch'
+        shell: bash
         env:
           RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
         run: |
-          npm run runtime:production:checkpoint -- --date "$RUNTIME_DATE" --checkpoint "research/runtime/checkpoints/${RUNTIME_DATE:0:4}/${RUNTIME_DATE:5:2}/${RUNTIME_DATE}-production.json"
-          npm run publication:bundle:staged
-          npm run publication:layout:validate
-          npm run publication:editorial:validate
-          npm run runtime:validate
-          node scripts/runtime-production-actions-bridge.mjs --mark-validated true --date "$RUNTIME_DATE"
-          npm run runtime:production:checkpoint -- --date "$RUNTIME_DATE" --checkpoint "research/runtime/checkpoints/${RUNTIME_DATE:0:4}/${RUNTIME_DATE:5:2}/${RUNTIME_DATE}-production.json"
+          set +e
+          log="research/runtime/production-action-diagnostics/${RUNTIME_DATE}-stage-batch.log"
+          mkdir -p "$(dirname "$log")"
+          : > "$log"
+
+          # The atomic-bundle guard validates the Git index, so stage the bridge output before
+          # validation rather than allowing the guard to pass vacuously with zero staged files.
+          git add research/runtime/production-work research/runtime/checkpoints research/runtime/candidates staging/publication-candidates
+
+          run_check() {
+            echo "==> $*" | tee -a "$log"
+            "$@" 2>&1 | tee -a "$log"
+            rc=${PIPESTATUS[0]}
+            if [[ "$rc" -ne 0 ]]; then
+              echo "FAILED($rc): $*" | tee -a "$log"
+              echo "validation_failed=true" >> "$GITHUB_OUTPUT"
+              return "$rc"
+            fi
+            return 0
+          }
+
+          run_check npm run runtime:production:checkpoint -- --date "$RUNTIME_DATE" --checkpoint "research/runtime/checkpoints/${RUNTIME_DATE:0:4}/${RUNTIME_DATE:5:2}/${RUNTIME_DATE}-production.json" || exit 0
+          run_check npm run publication:bundle:staged || exit 0
+          run_check npm run publication:layout:validate || exit 0
+          run_check npm run publication:editorial:validate || exit 0
+          run_check npm run runtime:validate || exit 0
+          run_check node scripts/runtime-production-actions-bridge.mjs --mark-validated true --date "$RUNTIME_DATE" || exit 0
+          run_check npm run runtime:production:checkpoint -- --date "$RUNTIME_DATE" --checkpoint "research/runtime/checkpoints/${RUNTIME_DATE:0:4}/${RUNTIME_DATE:5:2}/${RUNTIME_DATE}-production.json" || exit 0
+          rm -f "$log"
+          echo "validation_failed=false" >> "$GITHUB_OUTPUT"
+
+      - name: Persist failed stage-batch diagnostic
+        if: steps.request.outputs.mode == 'stage-batch' && steps.candidate_validation.outputs.validation_failed == 'true'
+        shell: bash
+        env:
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+        run: |
+          set -euo pipefail
+          git reset
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add "research/runtime/production-action-diagnostics/${RUNTIME_DATE}-stage-batch.log"
+          git commit -m "runtime(production): persist stage-batch validation diagnostic ${RUNTIME_DATE}"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Stop after failed stage-batch validation
+        if: steps.request.outputs.mode == 'stage-batch' && steps.candidate_validation.outputs.validation_failed == 'true'
+        run: exit 1
 
       - name: Commit bridge result
+        if: steps.request.outputs.mode != 'stage-batch' || steps.candidate_validation.outputs.validation_failed == 'false'
         id: commit
         shell: bash
         env:
@@ -117,6 +162,7 @@ jobs:
           done
 
       - name: Verify exact fetched-main result
+        if: steps.request.outputs.mode != 'stage-batch' || steps.candidate_validation.outputs.validation_failed == 'false'
         env:
           BRIDGE_COMMIT: ${{ steps.commit.outputs.commit_sha }}
           MODE: ${{ steps.request.outputs.mode }}
@@ -127,7 +173,6 @@ jobs:
           git reset --hard origin/main
           npm run runtime:production:checkpoint -- --date "$RUNTIME_DATE" --checkpoint "research/runtime/checkpoints/${RUNTIME_DATE:0:4}/${RUNTIME_DATE:5:2}/${RUNTIME_DATE}-production.json"
           if [[ "$MODE" == "stage-batch" ]]; then
-            npm run publication:bundle:staged
             npm run publication:layout:validate
             npm run publication:editorial:validate
             npm run runtime:validate
