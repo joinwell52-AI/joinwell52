@@ -40,6 +40,8 @@ jobs:
           date_value="$(node -e "const r=require('./${REQUEST_PATH}'); if(r.schema!=='runtime-publication-execution-request/v1') process.exit(2); process.stdout.write(r.date)")"
           wake_value="$(node -e "const r=require('./${REQUEST_PATH}'); process.stdout.write(r.wakeReceipt)")"
           IFS=- read -r year month day <<< "$date_value"
+          release_path="research/runtime/releases/${date_value}-publication.json"
+          result_path="research/runtime/results/${year}/${month}/${date_value}-publication-result.json"
           diag="research/runtime/diagnostics/${date_value}-publication-release-diagnostic.json"
           log="/tmp/publication-release-${date_value}.log"
           : > "$log"
@@ -62,6 +64,20 @@ jobs:
 
           run_step "npm ci" npm ci || true
           if [[ -z "$failed_step" ]]; then run_step "publication materialization" node scripts/runtime-publication-release-current.mjs --date "$date_value" --wake "$wake_value" || true; fi
+
+          # Freeze the exact authorized release candidate set in the Git index immediately
+          # after materialization. Validators/build may normalize or restore the worktree, but
+          # nothing is committed or pushed unless every governed gate below passes.
+          if [[ -z "$failed_step" ]]; then
+            git add docs/en/digital-employee docs/zh/digital-employee docs/en/industry docs/zh/industry docs/en/engineering docs/zh/engineering docs/public/assets/covers docs/public/assets/figures "$release_path" "$result_path" >> "$log" 2>&1 || true
+            echo "===== staged release after materialization =====" >> "$log"
+            git diff --cached --stat >> "$log" 2>&1 || true
+            if git diff --cached --quiet; then
+              failed_step="materialization produced no staged release changes"
+              failed_code=3
+            fi
+          fi
+
           if [[ -z "$failed_step" ]]; then run_step "publication layout validation" npm run publication:layout:validate || true; fi
           if [[ -z "$failed_step" ]]; then run_step "publication editorial validation" npm run publication:editorial:validate || true; fi
           if [[ -z "$failed_step" ]]; then run_step "runtime validation" npm run runtime:validate || true; fi
@@ -72,12 +88,11 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
 
           if [[ -z "$failed_step" ]]; then
-            release_path="research/runtime/releases/${date_value}-publication.json"
-            result_path="research/runtime/results/${year}/${month}/${date_value}-publication-result.json"
-            git add docs/en/digital-employee docs/zh/digital-employee docs/en/industry docs/zh/industry docs/en/engineering docs/zh/engineering docs/public/assets/covers docs/public/assets/figures "$release_path" "$result_path" || true
+            echo "===== final staged release before commit =====" >> "$log"
+            git diff --cached --stat >> "$log" 2>&1 || true
             if git diff --cached --quiet; then
-              failed_step="release staging produced no changes"
-              failed_code=3
+              failed_step="validated release lost staged changes"
+              failed_code=4
             else
               git commit -m "runtime(publication): release ${date_value} research"
               if git pull --rebase origin main && git push origin HEAD:main; then
@@ -85,7 +100,7 @@ jobs:
               fi
               git rebase --abort || true
               failed_step="release push"
-              failed_code=4
+              failed_code=5
             fi
           fi
 
