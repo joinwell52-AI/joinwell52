@@ -64,6 +64,19 @@ The generated prompt bundle is deterministic repository state. Its version, sche
 - Output: Released Daily Research.
 - Forbidden: new research, substantive rewriting or evidence repair.
 
+#### Stable governed Publication Actions bridge
+
+When a Publication worker has already obtained durable same-run-date execution authority and a fresh verified `Worker Claimed` event but cannot safely perform the repository build/release commands in its own execution environment, it may use the stable governed Actions bridge instead of creating a date-specific workflow.
+
+- Stable workflow: `.github/workflows/execute-governed-publication.yml`
+- Stable request path: `research/runtime/manual-execution-requests/publication.json`
+- Request schema: `runtime-publication-execution-request/v1`
+- Required request fields: `date`, `wakeReceipt`, `source`, `requestedAt`, `reason`, `triggerNonce`.
+- `date` and `wakeReceipt` must identify the same Runtime date and the already-verified Publication wake; the request does not create execution authority.
+- The bridge must call `scripts/runtime-publication-release-current.mjs` and therefore revalidate Scheduler identity, Worker Control, generated Publication Prompt SHA-256, every required source, Wake Receipt, current `Publication=Running`, Production completion, the fresh Worker Claim, same-date candidate identity and all Publication gates before writing public release artifacts.
+- Never create or retarget `execute-YYYYMMDD-publication.yml` or a date-stamped manual trigger as the normal daily path. Historical date-specific workflows are audit artifacts only.
+- After the durable release result is verified on `main`, the worker must still use the normal terminal Runtime finalization and GitHub Commit Verified path. Release content alone is not a terminal Runtime state.
+
 ## Weekly Runtime worker
 
 - Input: evidence-validated Daily Research from the previous seven days.

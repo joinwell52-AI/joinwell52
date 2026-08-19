@@ -1,0 +1,129 @@
+name: Execute Governed Publication Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "research/runtime/manual-execution-requests/publication.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: execute-governed-publication
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Validate and release governed Publication
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout authoritative main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Sync and install
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+          npm ci
+
+      - name: Resolve stable Publication execution request
+        id: request
+        shell: bash
+        env:
+          REQUEST_PATH: research/runtime/manual-execution-requests/publication.json
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('fs')
+          const p = process.env.REQUEST_PATH
+          if (!fs.existsSync(p)) throw new Error(`Missing ${p}`)
+          const request = JSON.parse(fs.readFileSync(p, 'utf8'))
+          if (request.schema !== 'runtime-publication-execution-request/v1') throw new Error('Invalid Publication execution request schema')
+          if (!/^\d{4}-\d{2}-\d{2}$/.test(request.date || '')) throw new Error('Invalid request.date')
+          if (!/^research\/runtime\/wakes\/\d{4}\/\d{2}\/\d{4}-\d{2}-\d{2}\/publication-\d{6}\.json$/.test(request.wakeReceipt || '')) throw new Error('Invalid request.wakeReceipt')
+          if (!request.wakeReceipt.includes(`/${request.date}/`)) throw new Error('Wake Receipt date does not match request.date')
+          if (!['chatgpt-scheduled-task', 'manual-recovery'].includes(request.source)) throw new Error('Invalid request.source')
+          if (!fs.existsSync(request.wakeReceipt)) throw new Error(`Wake Receipt not found: ${request.wakeReceipt}`)
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `date=${request.date}\n`)
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `wake=${request.wakeReceipt}\n`)
+          console.log(`Resolved governed Publication request for ${request.date} using ${request.wakeReceipt}`)
+          NODE
+
+      - name: Materialize only currently authorized Publication candidates
+        env:
+          RUNTIME_DATE: ${{ steps.request.outputs.date }}
+          WAKE_RECEIPT: ${{ steps.request.outputs.wake }}
+        run: node scripts/runtime-publication-release-current.mjs --date "$RUNTIME_DATE" --wake "$WAKE_RECEIPT"
+
+      - name: Run authoritative Publication validators and build
+        run: |
+          npm run publication:layout:validate
+          npm run publication:editorial:validate
+          npm run runtime:validate
+          npm run docs:build
+          node scripts/publication-visibility.mjs
+
+      - name: Commit and push durable release
+        id: release
+        shell: bash
+        env:
+          RUNTIME_DATE: ${{ steps.request.outputs.date }}
+        run: |
+          set -euo pipefail
+          IFS=- read -r YEAR MONTH DAY <<< "$RUNTIME_DATE"
+          RELEASE_PATH="research/runtime/releases/${RUNTIME_DATE}-publication.json"
+          RESULT_PATH="research/runtime/results/${YEAR}/${MONTH}/${RUNTIME_DATE}-publication-result.json"
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/en/digital-employee docs/zh/digital-employee docs/en/industry docs/zh/industry docs/en/engineering docs/zh/engineering docs/public/assets/covers docs/public/assets/figures "$RELEASE_PATH" "$RESULT_PATH" || true
+          if git diff --cached --quiet; then
+            echo "No governed release content staged."
+            exit 1
+          fi
+          git commit -m "runtime(publication): release ${RUNTIME_DATE} research"
+          git restore --worktree .
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main; then
+              sha="$(git rev-parse HEAD)"
+              if git push origin HEAD:main; then
+                echo "release_sha=$sha" >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
+            fi
+            git rebase --abort || true
+            if [[ "$attempt" -eq 3 ]]; then exit 1; fi
+            sleep $((attempt * 5))
+          done
+
+      - name: Verify durable release on main
+        shell: bash
+        env:
+          RELEASE_SHA: ${{ steps.release.outputs.release_sha }}
+          RUNTIME_DATE: ${{ steps.request.outputs.date }}
+        run: |
+          set -euo pipefail
+          IFS=- read -r YEAR MONTH DAY <<< "$RUNTIME_DATE"
+          git fetch origin main
+          git merge-base --is-ancestor "$RELEASE_SHA" origin/main
+          git reset --hard origin/main
+          node <<'NODE'
+          const fs = require('fs')
+          const date = process.env.RUNTIME_DATE
+          const [year, month] = date.split('-')
+          const release = JSON.parse(fs.readFileSync(`research/runtime/releases/${date}-publication.json`, 'utf8'))
+          const result = JSON.parse(fs.readFileSync(`research/runtime/results/${year}/${month}/${date}-publication-result.json`, 'utf8'))
+          if (release.status !== 'Released' || release.date !== date || release.releasedItems?.length > 3) throw new Error('Release manifest invalid')
+          if (result.status !== 'Completed' || result.runtimeDate !== date || result.output?.releasedItems !== release.releasedItems.length) throw new Error('Publication result invalid')
+          for (const item of release.releasedItems) for (const key of ['zh', 'en', 'cover']) if (!fs.existsSync(item[key])) throw new Error(`Missing durable ${item[key]}`)
+          console.log(`Verified ${release.releasedItems.length} released items on origin/main at ${process.env.RELEASE_SHA}.`)
+          NODE
