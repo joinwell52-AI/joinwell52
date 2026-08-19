@@ -1,0 +1,383 @@
+{
+  "schema": "runtime-publication-candidate/v2",
+  "date": "2026-08-19",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Production",
+  "sourceRecord": "research/runtime/records/daily/2026/08/2026-08-19-daily-runtime.json",
+  "updatedAt": "2026-08-19T15:15:23+08:00",
+  "githubCommit": "pending",
+  "reason": "Three completed 2026-08-19 Research Objects were converted into complete bilingual Editorial Architecture 2.1 candidates with verified planning artifacts and deterministic baseline covers.",
+  "reason_zh": "三份已完成的 2026-08-19 Research Object 已转换为完整双语 Editorial Architecture 2.1 候选，并具备已核验的规划工件与确定性基础题图。",
+  "candidates": [
+    {
+      "column": "digital-employee",
+      "category": "daily",
+      "itemId": "Q-20260819-01",
+      "articleType": "engineering-insight",
+      "researchQuestion": "How can a delegated child-agent role enable useful specialization without becoming a parallel authority plane, including after resume or reconstruction?",
+      "title": "A Delegated Role Should Narrow Authority, Not Create It",
+      "title_zh": "委派角色只能收缩权限，不能另起一套权威",
+      "zhPath": "staging/publication-candidates/2026-08-19-monotonic-delegation-authority.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-19-monotonic-delegation-authority.en.md",
+      "articleBriefPath": "research/runtime/production-work/2026/08/19/Q-20260819-01/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/08/19/Q-20260819-01/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/08/19/Q-20260819-01/figure-plan.json",
+      "coreProposition": "Delegated agent roles should be monotonic authority deltas under an inherited maximum authority envelope: they may specialize declared behavior and reduce bounded capabilities, but authority-bearing configuration must remain inherited across spawn, resume and reconstruction.",
+      "sections": [
+        {
+          "module": "technical-analysis",
+          "heading": "Role configuration and authority configuration answer different questions",
+          "heading_zh": "角色配置与权威配置不是同一种东西"
+        },
+        {
+          "module": "governance-implications",
+          "heading": "A monotonic delta turns delegation into an ordering rule",
+          "heading_zh": "单调差量给委派建立了可测试的顺序"
+        },
+        {
+          "module": "operational-implications",
+          "heading": "Resume and reconstruction are authority transitions too",
+          "heading_zh": "恢复和重建也是权限转换"
+        },
+        {
+          "module": "limitations",
+          "heading": "Bounded configuration is not complete delegation security",
+          "heading_zh": "受限配置并不等于完整委派安全"
+        }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "The merged Codex change projects role files into a typed AgentRoleOverrides set rather than an unrestricted high-precedence configuration layer.",
+          "claim_zh": "已合并的 Codex 变更把角色文件投影为类型化 AgentRoleOverrides 集合，而不是不受限制的高优先级配置层。",
+          "source": "research/analysis/Q-20260819-01-monotonic-delegation-authority.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "public-fact",
+          "claim": "Regression tests preserve parent permissions, provider configuration, approval reviewer, MCP servers, base URL and notifications against hostile role settings.",
+          "claim_zh": "回归测试验证，即使面对敌意角色设置，父级权限、服务提供方配置、审批审查者、MCP 服务器、基础地址和通知配置仍保持继承。",
+          "source": "research/analysis/Q-20260819-01-monotonic-delegation-authority.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "public-fact",
+          "claim": "Selected role-controlled capabilities are reduction-oriented and managed requirements remain effective.",
+          "claim_zh": "部分受角色控制的能力是收缩导向的，托管要求继续生效。",
+          "source": "research/analysis/Q-20260819-01-monotonic-delegation-authority.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E4",
+          "identity": "public-fact",
+          "claim": "Symlinked user role files are rejected and cold-resumed workers reuse the bounded role path with provider-inheritance coverage.",
+          "claim_zh": "符号链接形式的用户角色文件会被拒绝，冷恢复工作器复用同一受限角色路径，并有服务提供方继承回归覆盖。",
+          "source": "research/analysis/Q-20260819-01-monotonic-delegation-authority.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E5",
+          "identity": "public-fact",
+          "claim": "The demonstrated guarantee is limited to the covered configuration boundary and does not establish runtime effect containment or complete delegation security.",
+          "claim_zh": "已演示保证仅限于当前配置边界，不建立运行时外部效果约束或完整委派安全。",
+          "source": "research/analysis/Q-20260819-01-monotonic-delegation-authority.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "I1",
+          "identity": "our-interpretation",
+          "claim": "A delegated role should be modeled as a monotonic policy delta over inherited authority.",
+          "claim_zh": "委派角色应被建模为继承权威之上的单调策略差量。",
+          "source": "research/analysis/Q-20260819-01-monotonic-delegation-authority.md",
+          "strength": "suggests",
+          "independent": false
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The conclusion concerns a general delegation and digital-employee authority invariant."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already addresses the transferable engineering question; a separate community edition would not add enough distinct value."
+      },
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverPath": "staging/publication-candidates/2026-08-19-monotonic-delegation-authority-cover.png",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    },
+    {
+      "column": "industry-architecture",
+      "category": "daily",
+      "itemId": "Q-20260819-02",
+      "articleType": "technical-analysis",
+      "researchQuestion": "How should a long-running agent system separate user-visible progress delivery from model reasoning context while preserving replayable delivery evidence?",
+      "title": "User Delivery Is Not Model Reasoning Context",
+      "title_zh": "用户可见交付，不等于模型推理上下文",
+      "zhPath": "staging/publication-candidates/2026-08-19-delivery-context-separation.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-19-delivery-context-separation.en.md",
+      "articleBriefPath": "research/runtime/production-work/2026/08/19/Q-20260819-02/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/08/19/Q-20260819-02/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/08/19/Q-20260819-02/figure-plan.json",
+      "coreProposition": "Long-running agent systems should separate the user-delivery plane from the model reasoning-context plane while correlating both through stable message identity and replayable metadata; local acceptance or emission is not evidence of external delivery.",
+      "sections": [
+        {
+          "module": "technical-analysis",
+          "heading": "What the user saw is not the same as what the model reasoned over",
+          "heading_zh": "“用户看见了什么”与“模型依据什么推理”不是同一记录"
+        },
+        {
+          "module": "evidence",
+          "heading": "Local acceptance is not external delivery evidence",
+          "heading_zh": "本地接收成功不是外部送达证明"
+        },
+        {
+          "module": "architecture-implications",
+          "heading": "Correlate with identity, not copied text",
+          "heading_zh": "关联应依靠消息身份，而不是复制文本"
+        },
+        {
+          "module": "limitations",
+          "heading": "Separate planes do not create a reliable messaging system by themselves",
+          "heading_zh": "分离平面并不会自动提供可靠消息系统"
+        }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "The merged Codex change adds a root-only asynchronous user-message tool gated by feature state and model support.",
+          "claim_zh": "已合并的 Codex 变更新增仅限根智能体使用的异步用户消息工具，并受功能状态和模型支持门禁。",
+          "source": "research/analysis/Q-20260819-02-delivery-context-separation.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "public-fact",
+          "claim": "A valid call creates a typed asynchronous AgentMessage item and returns local acceptance after item lifecycle emission.",
+          "claim_zh": "有效调用会创建类型化异步 AgentMessage 项，并在本地项目生命周期发出后返回接收成功。",
+          "source": "research/analysis/Q-20260819-02-delivery-context-separation.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "public-fact",
+          "claim": "Integration tests show that the visible text is not inserted into the next model request as synthetic assistant context.",
+          "claim_zh": "集成测试表明，可见文本不会作为合成助手上下文进入下一次模型请求。",
+          "source": "research/analysis/Q-20260819-02-delivery-context-separation.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E4",
+          "identity": "public-fact",
+          "claim": "Protocol, app-server and thread-history paths preserve the message delivery classification.",
+          "claim_zh": "协议、应用服务器和线程历史路径会保留消息交付分类。",
+          "source": "research/analysis/Q-20260819-02-delivery-context-separation.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E5",
+          "identity": "public-fact",
+          "claim": "The demonstrated mechanism does not establish external delivery, acknowledgement, retry, cancellation, exactly-once semantics or global ordering.",
+          "claim_zh": "已演示机制不建立外部送达、确认、重试、取消、仅一次语义或全局顺序。",
+          "source": "research/analysis/Q-20260819-02-delivery-context-separation.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "I1",
+          "identity": "our-interpretation",
+          "claim": "User delivery and model reasoning context should be separate durable planes correlated by stable message identity.",
+          "claim_zh": "用户交付与模型推理上下文应成为由稳定消息身份关联的独立持久平面。",
+          "source": "research/analysis/Q-20260819-02-delivery-context-separation.md",
+          "strength": "suggests",
+          "independent": false
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The conclusion concerns general communication, reasoning-context and delivery-evidence architecture."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already addresses the transferable engineering question; a separate community edition would not add enough distinct value."
+      },
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverPath": "staging/publication-candidates/2026-08-19-delivery-context-separation-cover.png",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    },
+    {
+      "column": "open-source-engineering",
+      "category": "daily",
+      "itemId": "Q-20260819-03",
+      "articleType": "engineering-insight",
+      "researchQuestion": "What state should an OAuth client expose when the authorization server has issued refreshed credentials but local durable persistence fails afterward?",
+      "title": "OAuth Refresh Can Succeed Before Persistence Fails",
+      "title_zh": "OAuth 刷新成功后，持久化失败不是普通失败",
+      "zhPath": "staging/publication-candidates/2026-08-19-oauth-refresh-split-commit.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-19-oauth-refresh-split-commit.en.md",
+      "articleBriefPath": "research/runtime/production-work/2026/08/19/Q-20260819-03/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/08/19/Q-20260819-03/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/08/19/Q-20260819-03/figure-plan.json",
+      "coreProposition": "OAuth refresh should be modeled as a split-commit workflow whenever remote credential issuance and local durable persistence are separate operations; persistence failure after remote success is a distinct partial-success state that must remain visible for reconciliation.",
+      "sections": [
+        {
+          "module": "technical-analysis",
+          "heading": "The two operations commit in different authority planes",
+          "heading_zh": "两个操作成功在不同的权威面"
+        },
+        {
+          "module": "evidence",
+          "heading": "The catch boundary is part of the reliability model",
+          "heading_zh": "`catch` 边界本身就是可靠性模型"
+        },
+        {
+          "module": "operational-implications",
+          "heading": "Visibility is a prerequisite for recovery, not recovery itself",
+          "heading_zh": "保持可见是恢复前提，不是恢复本身"
+        },
+        {
+          "module": "limitations",
+          "heading": "Error propagation is not transactionality",
+          "heading_zh": "错误传播不等于事务性"
+        }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "Before the merged change, refreshAuthorization and saveTokens shared a catch path whose selected failures could fall through to reauthorization.",
+          "claim_zh": "变更前，refreshAuthorization 与 saveTokens 共用异常路径，部分失败可能继续进入重新授权。",
+          "source": "research/analysis/Q-20260819-03-oauth-refresh-split-commit.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "public-fact",
+          "claim": "The merged implementation keeps only remote refresh inside the guarded block and lets saveTokens rejection propagate afterward.",
+          "claim_zh": "已合并实现仅把远端刷新留在受保护区块中，随后让 saveTokens 的拒绝直接传播。",
+          "source": "research/analysis/Q-20260819-03-oauth-refresh-split-commit.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "public-fact",
+          "claim": "A regression test obtains fresh tokens, forces disk-full persistence failure and verifies that authorization redirect is not called.",
+          "claim_zh": "回归测试取得新令牌后强制磁盘已满的持久化失败，并验证没有调用授权重定向。",
+          "source": "research/analysis/Q-20260819-03-oauth-refresh-split-commit.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E4",
+          "identity": "public-fact",
+          "claim": "Genuine refresh-request failures remain differentiated and selected deliberate reauthorization paths now emit warnings.",
+          "claim_zh": "真正的刷新请求失败仍保持区分，部分有意重新授权路径现在会发出警告。",
+          "source": "research/analysis/Q-20260819-03-oauth-refresh-split-commit.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E5",
+          "identity": "public-fact",
+          "claim": "The change does not provide rollback, distributed atomicity, exactly-once persistence or a universal retry policy.",
+          "claim_zh": "该变更不提供回滚、分布式原子性、仅一次持久化或通用重试策略。",
+          "source": "research/analysis/Q-20260819-03-oauth-refresh-split-commit.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "I1",
+          "identity": "our-interpretation",
+          "claim": "Remote refresh success followed by local persistence failure is a split-commit partial-success state.",
+          "claim_zh": "远端刷新成功后的本地持久化失败属于分段提交的部分成功状态。",
+          "source": "research/analysis/Q-20260819-03-oauth-refresh-split-commit.md",
+          "strength": "suggests",
+          "independent": false
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The conclusion concerns a general external-state and local-persistence reliability boundary."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already addresses the transferable engineering question; a separate community edition would not add enough distinct value."
+      },
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverPath": "staging/publication-candidates/2026-08-19-oauth-refresh-split-commit-cover.png",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    }
+  ]
+}
