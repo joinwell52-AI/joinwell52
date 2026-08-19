@@ -1,0 +1,77 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-19",
+  "itemId": "Q-20260819-02",
+  "coreProposition": "Long-running agent systems should separate the user-delivery plane from the model reasoning-context plane while correlating both through stable message identity and replayable metadata; local acceptance or emission is not evidence of external delivery.",
+  "openingMove": {
+    "type": "anomaly",
+    "purpose": "Show how a user can see a progress message that should not automatically become synthetic assistant context for the next model turn.",
+    "evidenceRefs": [
+      "E2",
+      "E3",
+      "I1"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why are user delivery and model context different facts?",
+      "claim": "User delivery records communication toward a person; model context records information intentionally admitted into subsequent reasoning.",
+      "evidenceRefs": [
+        "E2",
+        "E3",
+        "I1"
+      ],
+      "reasoningRole": "conceptual-separation",
+      "readerProgress": "The reader stops treating one append-only transcript as the only valid history model.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What does the demonstrated mechanism actually guarantee?",
+      "claim": "It establishes gated local acceptance, typed asynchronous item emission and context exclusion while preserving delivery classification in protocol and history structures.",
+      "evidenceRefs": [
+        "E1",
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "reasoningRole": "mechanism",
+      "readerProgress": "The reader can distinguish local runtime evidence from external transport evidence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "How should the planes remain correlated?",
+      "claim": "Stable message identity and replayable metadata should connect delivery events, transport receipts and any later explicit memory admission without copying visible text into model context by default.",
+      "evidenceRefs": [
+        "E4",
+        "I1",
+        "I2"
+      ],
+      "reasoningRole": "architecture-implication",
+      "readerProgress": "The reader gains a durable multi-plane design rather than simply deleting messages from history.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Where are the reliability boundaries?",
+      "claim": "Local accepted=true and item emission do not establish external delivery, acknowledgement, retry, cancellation, exactly-once behavior or global ordering.",
+      "evidenceRefs": [
+        "E5"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "The reader avoids promoting local API success into end-to-end delivery certainty.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "A single transcript is operationally simpler and guarantees that the model can see every user-facing update.",
+    "responseBoundary": "When later reasoning truly needs a delivered fact, an explicit workflow-state or memory admission can add it with provenance; implicit echo is not the only option."
+  },
+  "endingStrategy": {
+    "type": "open-question",
+    "purpose": "End with delivery-receipt ownership, retry identity and explicit memory admission questions."
+  }
+}

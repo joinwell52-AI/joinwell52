@@ -1,0 +1,55 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-19",
+  "itemId": "Q-20260819-02",
+  "researchObjectId": "AN-20260819-02",
+  "targetAudience": {
+    "primary": "Architects and engineers building long-running agent runtimes, asynchronous progress delivery and replayable conversation systems",
+    "knowledgeAssumption": "The reader understands model turns, tool calls, event streams and conversation history.",
+    "readerProblem": "A user-visible progress message may need durable audit history without being echoed into later model requests as if the model had reasoned over it."
+  },
+  "whyNow": "A same-day merged Codex change adds a gated asynchronous user-message tool whose typed delivery record survives protocol and history paths while its visible text is excluded from the next model request.",
+  "externalHook": {
+    "type": "plane-confusion",
+    "description": "What the user was told and what the model reasons over are related facts, but treating them as the same history stream creates false context and weak audit semantics.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "E4",
+      "E5"
+    ]
+  },
+  "coreProposition": "Long-running agent systems should separate the user-delivery plane from the model reasoning-context plane while correlating both through stable message identity and replayable metadata; local acceptance or emission is not evidence of external delivery.",
+  "originalValue": {
+    "type": "architecture-model",
+    "description": "Separates local message acceptance, user-facing delivery, model reasoning context and durable replay evidence into correlated but non-equivalent planes."
+  },
+  "readerTakeaway": "Persist a typed message identity and delivery classification, keep user delivery out of model context by default, and collect separate receipts for external delivery, acknowledgement and retry outcomes.",
+  "evidenceBoundary": {
+    "supported": [
+      "The merged Codex tool is root-only and gated by feature and model support.",
+      "A valid call creates a typed asynchronous AgentMessage item and locally emits its lifecycle before returning accepted=true.",
+      "Integration tests show the visible text is not synthesized into the next model request.",
+      "Protocol, app-server and thread-history paths preserve delivery classification."
+    ],
+    "unsupported": [
+      "End-to-end external delivery",
+      "User acknowledgement",
+      "Retry or cancellation semantics",
+      "Exactly-once delivery",
+      "Global ordering across clients and threads"
+    ],
+    "uncertain": [
+      "Which component owns final user-facing delivery receipts",
+      "How delivered facts should enter later reasoning when genuinely needed"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article concerns a general agent-runtime separation and needs no first-party project."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The merged mechanism is concrete and timely, and the Research Object adds a reusable model for separating communication, reasoning context and delivery evidence."
+}
