@@ -3,7 +3,7 @@
   "date": "2026-08-19",
   "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-19/publication-200420.json",
   "source": "manual-recovery",
-  "requestedAt": "2026-08-19T22:14:00+08:00",
-  "reason": "Resume 2026-08-19 Publication only after the stale 20:09 epoch was durably expired, a fresh recovery Execution Slot was opened, and a fresh Worker Claimed event was durably verified. Consume only the existing same-date completed Production candidates; do not rerun Production or rewrite article content.",
-  "triggerNonce": "20260819-fresh-epoch-2214"
+  "requestedAt": "2026-08-19T22:27:00+08:00",
+  "reason": "Execute 2026-08-19 Publication from the fresh recovered Runtime epoch after fixing the release staging bug. Consume only existing same-date completed Production candidates; run all authoritative validators/build/visibility gates; commit and verify the durable release. Do not rerun Production or rewrite articles.",
+  "triggerNonce": "20260819-final-release-after-optional-path-fix"
 }
