@@ -403,6 +403,36 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
+    <section class="rc-section rc-codeflow-video">
+      <div class="rc-shell">
+        <div class="rc-section__intro rc-section__intro--light">
+          <div>
+            <p class="rc-kicker">{{ zh ? 'CODEFLOWMU · 产品介绍' : 'CODEFLOWMU · PRODUCT OVERVIEW' }}</p>
+            <h2 class="rc-section__title">{{ zh ? '看见多 AI 团队，如何完成一次真实协作' : 'See a multi-agent team complete real work' }}</h2>
+          </div>
+          <p>{{ zh ? '80 秒真实产品演示：手机发起任务、PM 自动拆解、多个角色并行工作、PC 全局观察、报告回流，以及最终人类审批。片尾说明 TMPA、FCoP 与 CodeFlowMu 从理论、协议到运行产品的关系。' : 'An 80-second real product demonstration: mobile task entry, automatic PM decomposition, parallel roles, full PC observation, report return, and final human approval. Chinese narration with on-screen product context.' }}</p>
+        </div>
+        <div class="rc-codeflow-video__frame">
+          <video
+            controls
+            playsinline
+            preload="metadata"
+            :poster="link('/assets/video/codeflowmu-product-intro-zh-poster.jpg')"
+            :aria-label="zh ? 'CodeFlowMu 正式产品介绍视频' : 'CodeFlowMu formal product introduction video in Chinese'"
+          >
+            <source :src="link('/assets/video/codeflowmu-product-intro-zh.mp4')" type="video/mp4">
+          </video>
+        </div>
+        <div class="rc-codeflow-video__meta">
+          <span>{{ zh ? '真实 PC + 手机录屏 · 中文旁白 · 1080p' : 'Real PC + mobile captures · Chinese narration · 1080p' }}</span>
+          <nav>
+            <a href="https://github.com/joinwell52-AI">GitHub ↗</a>
+            <a href="https://github.com/joinwell52-AI/CodeFlowMu-open">CodeFlowMu Open ↗</a>
+          </nav>
+        </div>
+      </div>
+    </section>
+
     <section class="rc-section rc-tmpa">
       <div class="rc-shell">
         <div class="rc-section__intro rc-section__intro--light">
@@ -686,6 +716,14 @@ onBeforeUnmount(() => {
 .rc-section__intro > p { margin: 0 0 5px; color: var(--rc-muted); font-size: 15px; line-height: 1.75; }
 .rc-section__title { margin: 0; font-size: clamp(48px, 5vw, 72px); line-height: .98; letter-spacing: -.06em; font-weight: 840; }
 .rc-section__intro--light > p { color: #aeb4ae; }
+
+.rc-codeflow-video { color: #fff; background: radial-gradient(circle at 82% 14%, rgba(54,203,232,.14), transparent 32%), radial-gradient(circle at 12% 82%, rgba(109,93,252,.16), transparent 34%), #07101f; border-color: #23334d; }
+.rc-codeflow-video__frame { margin-top: 56px; padding: 14px; overflow: hidden; background: #020711; border: 1px solid rgba(118,215,238,.28); border-radius: 30px; box-shadow: 0 34px 90px rgba(0,0,0,.34); }
+.rc-codeflow-video__frame video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 20px; }
+.rc-codeflow-video__meta { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 20px; color: #9fb0c9; font: 720 11px/1.4 ui-sans-serif, system-ui, sans-serif; letter-spacing: .035em; }
+.rc-codeflow-video__meta nav { display: flex; gap: 10px; }
+.rc-codeflow-video__meta a { padding: 11px 14px; color: #e9fbff !important; border: 1px solid rgba(118,215,238,.3); border-radius: 999px; }
+.rc-codeflow-video__meta a:hover { color: #07101f !important; background: #76d7ee; border-color: #76d7ee; }
 
 .rc-tmpa, .rc-research { color: #fff; background: var(--rc-night); border-color: #313631; }
 .rc-research { padding-bottom: 0; }
@@ -1117,5 +1155,9 @@ onBeforeUnmount(() => {
 
 @media (max-width: 699px) {
   .rc-site-footer__owner { flex-wrap: wrap; white-space: normal; }
+  .rc-codeflow-video__frame { margin-top: 38px; padding: 7px; border-radius: 18px; }
+  .rc-codeflow-video__frame video { border-radius: 12px; }
+  .rc-codeflow-video__meta { align-items: flex-start; flex-direction: column; }
+  .rc-codeflow-video__meta nav { flex-wrap: wrap; }
 }
 </style>

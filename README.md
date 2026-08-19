@@ -23,6 +23,16 @@
   <a href="https://joinwell52-ai.github.io/joinwell52/en/publications/implementation-case-i1.0"><img alt="Implementation I1.0" src="https://img.shields.io/badge/CodeFlowMu-14%2F14_PASS-15803d?style=for-the-badge"></a>
 </p>
 
+## CodeFlowMu product overview
+
+<p align="center">
+  <a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-intro-zh.mp4">
+    <img src="./docs/public/assets/video/codeflowmu-product-intro-zh-poster.jpg" alt="CodeFlowMu product overview: TMPA theory, FCoP protocol, and CodeFlowMu runtime" width="920">
+  </a>
+</p>
+
+<p align="center"><strong><a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-intro-zh.mp4">Watch the 80-second product demonstration →</a></strong><br><sub>Real PC and mobile captures · Chinese narration · multi-agent execution · final human approval</sub></p>
+
 ---
 
 # TMPA
