@@ -1,0 +1,51 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-19",
+  "itemId": "Q-20260804-11",
+  "researchObjectId": "AN-Q-20260804-11-SENTINELBENCH",
+  "targetAudience": {
+    "primary": "Agent-runtime, automation and digital-employee engineers designing long-running monitoring work",
+    "knowledgeAssumption": "The reader understands scheduled jobs, polling, agent tool loops and basic event-driven systems.",
+    "readerProblem": "Long-running monitors are often implemented as repeated agent turns or fixed polling, which entangles waiting, reasoning, cost and completion semantics."
+  },
+  "whyNow": "SentinelBench provides a newly released primary benchmark, open-source environments and same-model baselines that make waiting behavior, false-positive completion, reaction time and resource cost directly measurable.",
+  "externalHook": {
+    "type": "monitoring-contradiction",
+    "description": "For some agent jobs, the correct next action is to do nothing until the world changes; forcing continuous action can spend more while completing less.",
+    "evidenceRefs": ["E1", "E3", "E4", "E5", "E6"]
+  },
+  "coreProposition": "Waiting should be represented as durable runtime state with explicit condition, observation, admission and effect-evidence boundaries, rather than as repeated free-form agent turns.",
+  "originalValue": {
+    "type": "runtime-correctness-model",
+    "description": "Derives a four-boundary monitoring correctness envelope from SentinelBench's task design and baseline evidence, separating condition state, observation policy, condition admission and external effect evidence."
+  },
+  "readerTakeaway": "Keep the monitored condition and its baseline outside the model turn, make observation policy swappable and budgeted, require evidence to admit a condition, and verify the resulting notification or action separately.",
+  "evidenceBoundary": {
+    "supported": [
+      "SentinelBench contains 100 tasks across 10 synthetic time-evolving web environments and explicitly includes no-op, active/passive and absolute/relative task dimensions.",
+      "The benchmark evaluates resulting database state plus timing rather than relying on plausible agent output alone.",
+      "The authors report substantial cost and completion differences between wait_for and sleep under the same GPT-5.4 model, especially when task duration is stretched.",
+      "The reported reaction-time results are mixed, preserving a latency-cost tradeoff rather than a universal win.",
+      "The released wait_for prototype keeps condition and timeout explicit while managing page diffing, LLM checks, reload and backoff outside the main agent loop."
+    ],
+    "unsupported": [
+      "Production reliability of SentinelBench's wait_for implementation",
+      "Crash-safe exactly-once monitor recovery",
+      "Real-world event timing generality",
+      "Reliability on subjective or ephemeral conditions",
+      "Independent reproduction of the complete reported baseline"
+    ],
+    "uncertain": [
+      "Best observation mechanism for production workloads",
+      "How to allocate latency and cost budgets across many concurrent monitors",
+      "How to benchmark provider-native event streams and webhooks under the same contract"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The analysis concerns a general monitoring-runtime architecture and does not require a first-party project mapping."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The primary paper, released benchmark implementation and baseline results provide concrete mechanism-level evidence, while the Research Center adds a bounded production-oriented monitoring correctness model beyond source restatement."
+}
