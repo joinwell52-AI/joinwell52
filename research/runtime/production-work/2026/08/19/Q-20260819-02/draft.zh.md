@@ -6,7 +6,7 @@ column: industry-architecture
 category: daily
 article_type: technical-analysis
 edition: research-center
-research_question: "长时间运行的智能体系统应如何把用户可见进度交付与模型推理上下文分离，同时保留可回放的交付证据？"
+research_question: "How should a long-running agent system separate user-visible progress delivery from model reasoning context while preserving replayable delivery evidence?"
 summary: "用户收到了一条进度消息，不代表下一次模型请求就应把同样文本当作助手历史。Codex 当日合并变更展示了一个有界机制：异步消息以类型化交付记录进入协议和历史路径，但其可见文本不会被合成为下一轮模型上下文。"
 cover: staging/publication-candidates/2026-08-19-delivery-context-separation-cover.png
 sources:
