@@ -1,0 +1,76 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-19",
+  "itemId": "Q-20260819-01",
+  "coreProposition": "Delegated agent roles should be monotonic authority deltas under an inherited maximum authority envelope: they may specialize declared behavior and reduce bounded capabilities, but authority-bearing configuration must remain inherited across spawn, resume and reconstruction.",
+  "openingMove": {
+    "type": "contradiction",
+    "purpose": "Contrast useful role specialization with the danger of letting a role file become a parallel authority source.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "I1"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is a role not ordinary configuration?",
+      "claim": "A role controls specialization inside a parent-owned authority boundary; treating it as arbitrary high-precedence configuration turns delegation into authority creation.",
+      "evidenceRefs": [
+        "E1",
+        "E2",
+        "I1"
+      ],
+      "reasoningRole": "conceptual-separation",
+      "readerProgress": "The reader distinguishes behavioral customization from permission and infrastructure authority.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What does monotonic delegation require?",
+      "claim": "Typed projection and reduction-oriented capability rules make the child equal or narrower on authority-bearing dimensions while allowing declared behavioral changes.",
+      "evidenceRefs": [
+        "E1",
+        "E2",
+        "E3",
+        "I1"
+      ],
+      "reasoningRole": "mechanism",
+      "readerProgress": "The reader gains a testable ordering rule rather than a vague inheritance promise.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "Why must the rule survive resume and reconstruction?",
+      "claim": "Lifecycle reconstruction is another authority transition; it must re-derive the parent envelope before applying the same bounded role delta.",
+      "evidenceRefs": [
+        "E4",
+        "I2"
+      ],
+      "reasoningRole": "lifecycle",
+      "readerProgress": "The reader sees that spawn-only checks leave a recovery-time privilege path.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Where does the guarantee end?",
+      "claim": "A bounded configuration invariant does not authenticate provenance, authorize every runtime effect or prove complete delegation security.",
+      "evidenceRefs": [
+        "E5"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "The reader can apply the pattern without overclaiming its security scope.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Some deployments intentionally let a delegated worker select providers or acquire additional tools.",
+    "responseBoundary": "Those changes are capability expansion and should use an explicit delegated-authority contract and approval event, not an ordinary role override."
+  },
+  "endingStrategy": {
+    "type": "open-question",
+    "purpose": "End with schema evolution, explicit expansion and runtime-effect qualification questions."
+  }
+}

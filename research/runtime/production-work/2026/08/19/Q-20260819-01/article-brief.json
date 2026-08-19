@@ -1,0 +1,54 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-19",
+  "itemId": "Q-20260819-01",
+  "researchObjectId": "AN-20260819-01",
+  "targetAudience": {
+    "primary": "Agent-runtime, digital-employee and AI governance engineers designing delegated worker roles",
+    "knowledgeAssumption": "The reader understands agent roles, configuration inheritance and capability permissions.",
+    "readerProblem": "A role intended for specialization can accidentally become a second authority plane, especially when a worker is resumed or reconstructed."
+  },
+  "whyNow": "A same-day merged Codex change projects role files through a typed override set, preserves parent-owned authority-bearing configuration, permits bounded capability reduction and applies the same constrained path on cold resume.",
+  "externalHook": {
+    "type": "authority-boundary",
+    "description": "Behavioral specialization is useful only when the child cannot turn its role file into a new permission, routing or infrastructure authority.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "E4",
+      "E5"
+    ]
+  },
+  "coreProposition": "Delegated agent roles should be monotonic authority deltas under an inherited maximum authority envelope: they may specialize declared behavior and reduce bounded capabilities, but authority-bearing configuration must remain inherited across spawn, resume and reconstruction.",
+  "originalValue": {
+    "type": "governance-model",
+    "description": "Frames role configuration as an ordered authority transformation, separating behavioral delta, capability reduction and explicit capability expansion rather than treating every role setting as equivalent configuration."
+  },
+  "readerTakeaway": "Define a typed, allowlisted role delta; prove child authority never exceeds the inherited envelope; and require a separate approved event for any capability expansion.",
+  "evidenceBoundary": {
+    "supported": [
+      "The merged Codex implementation projects role files into typed AgentRoleOverrides.",
+      "Regression tests preserve parent permissions, provider configuration, approval reviewer, MCP servers, base URL and notifications against hostile role settings.",
+      "Selected role-controlled capabilities are reduction-oriented; managed requirements remain effective.",
+      "Symlinked user role files are rejected and cold resume uses the bounded role path."
+    ],
+    "unsupported": [
+      "Complete delegation security",
+      "Runtime containment of every tool call or external effect",
+      "Cryptographic role provenance",
+      "A universal agent capability model"
+    ],
+    "uncertain": [
+      "How schema evolution automatically identifies new authority-bearing fields",
+      "How explicit child capability expansion should be represented and approved"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article concerns a general delegation invariant and does not require a first-party project."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The merged implementation gives concrete mechanism-level evidence, while the Research Object contributes a reusable and bounded authority model for delegated agents."
+}
