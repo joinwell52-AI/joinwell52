@@ -1,0 +1,83 @@
+{
+  "schema": "article-figure-plan/v1",
+  "date": "2026-08-19",
+  "batch": "2026-08-19-guided-article-pipeline-round1",
+  "items": [
+    {
+      "itemId": "2026-08-19-taskbook-to-task-graph",
+      "coverBrief": "03-cover-brief-1-taskbook-to-task-graph.md",
+      "inlineFigures": [
+        {
+          "figureId": "F1",
+          "argumentNodeId": "end-to-end-responsibility-chain",
+          "purpose": "让读者在一屏内看清两万字需求如何经过五个阶段变成正式任务与验收证据",
+          "visualType": "workflow",
+          "proposition": "每一步都有输入、责任主体、输出和阻断条件，FCoP 工件只在正式协作阶段出现",
+          "sourceBasis": [
+            "CodeFlowMu pm-long-horizon-planning/SKILL.md",
+            "CodeFlowMu pm-planning-governance.md",
+            "FCoP v3 specification"
+          ],
+          "mustShow": ["来源锁定", "需求台账", "工作包与依赖", "确定性校验与人工批准", "TASK/REPORT/REVIEW 与验收"],
+          "mustNotShow": ["ledger.yaml 是 FCoP 正式格式", "全部工作包一次放行", "AI 自己验收"],
+          "productionMethod": "svg",
+          "required": true,
+          "languages": ["zh", "en"],
+          "status": "RenderedAndEmbedded",
+          "outputs": [
+            "03-visuals/figure-taskbook-five-stage-pipeline.zh.png",
+            "03-visuals/figure-taskbook-five-stage-pipeline.en.png"
+          ]
+        }
+      ]
+    },
+    {
+      "itemId": "2026-08-19-fault-injection-dispatch",
+      "coverBrief": "03-cover-brief-2-fault-injection-dispatch.md",
+      "inlineFigures": [
+        {
+          "figureId": "F1",
+          "argumentNodeId": "theory-protocol-runtime-validation",
+          "purpose": "解释 TMPA、FCoP、CodeFlowMu 与故障验证之间的职责和证据边界",
+          "visualType": "architecture",
+          "proposition": "治理语义、文件协议、运行责任和测试结果必须逐层建立，不能互相代证",
+          "sourceBasis": ["TMPA Core S1.0", "FCoP v3 specification", "CodeFlowMu runtime code and experiment log"],
+          "mustShow": ["TMPA Core", "FCoP Profile", "CodeFlowMu", "C01-C14 与 12 项故障清单分离"],
+          "mustNotShow": ["12 项全部通过", "TMPA 只适用于文件", "FCoP 负责调度"],
+          "productionMethod": "svg",
+          "required": true,
+          "languages": ["zh", "en"],
+          "status": "RenderedAndEmbedded",
+          "outputs": [
+            "03-visuals/figure-governance-to-fault-testing.zh.png",
+            "03-visuals/figure-governance-to-fault-testing.en.png"
+          ]
+        }
+      ]
+    },
+    {
+      "itemId": "2026-08-19-local-runtime-mobile-control",
+      "coverBrief": "03-cover-brief-3-local-runtime-mobile-control.md",
+      "inlineFigures": [
+        {
+          "figureId": "F1",
+          "argumentNodeId": "mobile-decision-boundary",
+          "purpose": "让读者理解手机一次决定怎样回到本地权威服务，并区分任务 REVIEW 与高风险 Operation Approval",
+          "visualType": "architecture",
+          "proposition": "手机只是请求入口；服务端重新检查设备、权限、版本和重复请求，批准与执行结果分离",
+          "sourceBasis": ["TMPA Core S1.0", "FCoP v3 specification", "CodeFlowMu operation approval boundary", "CodeFlowMu mobile device and routes code"],
+          "mustShow": ["Mobile PWA", "CodeFlowMu local runtime", "FCoP task review", "Operation Approval", "result remains separate"],
+          "mustNotShow": ["TMPA 规定 PC 是唯一主体", "所有批准写 REVIEW", "批准即完成", "自动发布"],
+          "productionMethod": "svg",
+          "required": true,
+          "languages": ["zh", "en"],
+          "status": "RenderedAndEmbedded",
+          "outputs": [
+            "03-visuals/figure-mobile-decision-boundary.zh.png",
+            "03-visuals/figure-mobile-decision-boundary.en.png"
+          ]
+        }
+      ]
+    }
+  ]
+}

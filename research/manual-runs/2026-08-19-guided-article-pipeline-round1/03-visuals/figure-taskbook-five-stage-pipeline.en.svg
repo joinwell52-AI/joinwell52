@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8fbff"/><stop offset="1" stop-color="#eef4ff"/></linearGradient>
+    <linearGradient id="rail" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#2563eb"/><stop offset="0.5" stop-color="#0ea5a4"/><stop offset="1" stop-color="#f59e0b"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#1e3a5f" flood-opacity="0.12"/></filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#64748b"/></marker>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="800" y="82" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="38" font-weight="700" fill="#0f172a">From a Long Requirement to an Executable, Reviewable Delivery Chain</text>
+  <text x="800" y="124" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="20" fill="#475569">Every stage has an input, an accountable role, an output, and a blocking condition</text>
+  <rect x="90" y="170" width="1420" height="8" rx="4" fill="url(#rail)"/>
+
+  <g font-family="Segoe UI, sans-serif" filter="url(#shadow)">
+    <g transform="translate(50,225)">
+      <rect width="280" height="360" rx="28" fill="#ffffff" stroke="#bfdbfe" stroke-width="3"/>
+      <circle cx="46" cy="48" r="24" fill="#2563eb"/><text x="46" y="56" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">1</text>
+      <text x="78" y="56" font-size="19" font-weight="700" fill="#0f172a">Lock the source</text>
+      <text x="28" y="112" font-size="18" font-weight="700" fill="#2563eb">INPUT</text>
+      <text x="28" y="144" font-size="14" fill="#334155">Requirements, sources, code revision</text>
+      <text x="28" y="198" font-size="18" font-weight="700" fill="#2563eb">OWNER</text>
+      <text x="28" y="230" font-size="14" fill="#334155">PM reads; tool binds source identity</text>
+      <text x="28" y="284" font-size="18" font-weight="700" fill="#2563eb">OUTPUT</text>
+      <text x="28" y="316" font-size="14" fill="#334155">Revision, extent, read record, digest</text>
+    </g>
+    <g transform="translate(355,225)">
+      <rect width="280" height="360" rx="28" fill="#ffffff" stroke="#bae6fd" stroke-width="3"/>
+      <circle cx="46" cy="48" r="24" fill="#0284c7"/><text x="46" y="56" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">2</text>
+      <text x="78" y="56" font-size="19" font-weight="700" fill="#0f172a">Build the ledger</text>
+      <text x="28" y="112" font-size="18" font-weight="700" fill="#0284c7">INPUT</text>
+      <text x="28" y="144" font-size="14" fill="#334155">The complete, locked source</text>
+      <text x="28" y="198" font-size="18" font-weight="700" fill="#0284c7">OWNER</text>
+      <text x="28" y="230" font-size="14" fill="#334155">PM classifies; human resolves conflicts</text>
+      <text x="28" y="284" font-size="18" font-weight="700" fill="#0284c7">OUTPUT</text>
+      <text x="28" y="316" font-size="14" fill="#334155">REQ, source span, owner, disposition</text>
+    </g>
+    <g transform="translate(660,225)">
+      <rect width="280" height="360" rx="28" fill="#ffffff" stroke="#99f6e4" stroke-width="3"/>
+      <circle cx="46" cy="48" r="24" fill="#0f9f8f"/><text x="46" y="56" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">3</text>
+      <text x="78" y="56" font-size="19" font-weight="700" fill="#0f172a">Draw the work graph</text>
+      <text x="28" y="112" font-size="18" font-weight="700" fill="#0f9f8f">INPUT</text>
+      <text x="28" y="144" font-size="14" fill="#334155">Ledger plus current project facts</text>
+      <text x="28" y="198" font-size="18" font-weight="700" fill="#0f9f8f">OWNER</text>
+      <text x="28" y="230" font-size="14" fill="#334155">PM designs WPs; scripts check structure</text>
+      <text x="28" y="284" font-size="18" font-weight="700" fill="#0f9f8f">OUTPUT</text>
+      <text x="28" y="316" font-size="14" fill="#334155">Dependencies, tests, evidence, recovery</text>
+    </g>
+    <g transform="translate(965,225)">
+      <rect width="280" height="360" rx="28" fill="#ffffff" stroke="#fde68a" stroke-width="3"/>
+      <circle cx="46" cy="48" r="24" fill="#d97706"/><text x="46" y="56" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">4</text>
+      <text x="78" y="56" font-size="19" font-weight="700" fill="#0f172a">Validate and approve</text>
+      <text x="28" y="112" font-size="18" font-weight="700" fill="#d97706">INPUT</text>
+      <text x="28" y="144" font-size="14" fill="#334155">Graph, fact snapshot, full plan</text>
+      <text x="28" y="198" font-size="18" font-weight="700" fill="#d97706">OWNER</text>
+      <text x="28" y="230" font-size="14" fill="#334155">System checks; ADMIN authorizes</text>
+      <text x="28" y="284" font-size="18" font-weight="700" fill="#d97706">BLOCK</text>
+      <text x="28" y="316" font-size="14" fill="#334155">Only matching WP-00 can open work</text>
+    </g>
+    <g transform="translate(1270,225)">
+      <rect width="280" height="360" rx="28" fill="#ffffff" stroke="#fed7aa" stroke-width="3"/>
+      <circle cx="46" cy="48" r="24" fill="#ea580c"/><text x="46" y="56" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">5</text>
+      <text x="78" y="56" font-size="19" font-weight="700" fill="#0f172a">Dispatch and accept</text>
+      <text x="28" y="112" font-size="18" font-weight="700" fill="#ea580c">INPUT</text>
+      <text x="28" y="144" font-size="14" fill="#334155">Approved plan and open WP</text>
+      <text x="28" y="198" font-size="18" font-weight="700" fill="#ea580c">OWNER</text>
+      <text x="28" y="230" font-size="14" fill="#334155">PM dispatches; DEV builds; QA verifies</text>
+      <text x="28" y="284" font-size="18" font-weight="700" fill="#ea580c">OUTPUT</text>
+      <text x="28" y="316" font-size="14" fill="#334155">TASK, REPORT, REVIEW, evidence</text>
+    </g>
+  </g>
+
+  <g stroke="#64748b" stroke-width="4" fill="none" marker-end="url(#arrow)">
+    <path d="M330 405 H347"/><path d="M635 405 H652"/><path d="M940 405 H957"/><path d="M1245 405 H1262"/>
+  </g>
+  <rect x="170" y="665" width="1260" height="120" rx="28" fill="#0f172a"/>
+  <text x="800" y="713" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="23" font-weight="700" fill="#fff">BOUNDARY</text>
+  <text x="800" y="754" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="19" fill="#dbeafe">The ledger and WPs belong to CodeFlowMu planning; formal collaboration uses FCoP TASK / REPORT / REVIEW</text>
+  <text x="800" y="850" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="15" fill="#64748b">Based on the CodeFlowMu long-task planning contract, PM governance specification, and FCoP v3</text>
+</svg>
