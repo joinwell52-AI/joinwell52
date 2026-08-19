@@ -1,0 +1,79 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-19",
+  "itemId": "Q-20260819-03",
+  "coreProposition": "OAuth refresh should be modeled as a split-commit workflow whenever remote credential issuance and local durable persistence are separate operations; persistence failure after remote success is a distinct partial-success state that must remain visible for reconciliation.",
+  "openingMove": {
+    "type": "failure-anomaly",
+    "purpose": "Start at the moment the authorization server has already issued fresh credentials but local durable storage reports failure.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "I1"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is persistence failure not ordinary refresh failure?",
+      "claim": "Remote issuance has succeeded while local durability has not, so the two authorities have advanced differently.",
+      "evidenceRefs": [
+        "E1",
+        "E2",
+        "E3",
+        "I1"
+      ],
+      "reasoningRole": "state-classification",
+      "readerProgress": "The reader identifies a partial-success state instead of one generic authentication failure.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "How can exception structure erase evidence?",
+      "claim": "Putting remote exchange and local persistence under one catch sends semantically different failures into the same fallback and can trigger misleading reauthorization.",
+      "evidenceRefs": [
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "reasoningRole": "mechanism",
+      "readerProgress": "The reader sees catch boundaries as part of the reliability model.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What does fail-visible propagation improve?",
+      "claim": "Propagating the storage fault preserves which side committed so retry, reconciliation or operator handling can start from the actual state.",
+      "evidenceRefs": [
+        "E2",
+        "E3",
+        "E4",
+        "I2"
+      ],
+      "reasoningRole": "engineering-implication",
+      "readerProgress": "The reader understands why visibility is a prerequisite for recovery but not recovery itself.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What remains unsolved?",
+      "claim": "The change supplies no rollback, distributed atomicity, exactly-once storage or universal retry policy; provider and server semantics remain decisive.",
+      "evidenceRefs": [
+        "E5"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "The reader avoids treating better error propagation as transactional correctness.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Some clients prefer automatic reauthorization because local token storage is disposable and forward progress matters more than preserving partial state.",
+    "responseBoundary": "That policy can be valid only when explicitly declared; it should not arise accidentally from a catch that cannot distinguish exchange failure from persistence failure."
+  },
+  "endingStrategy": {
+    "type": "operational-question",
+    "purpose": "End with structured partial-success errors, provider durability contracts and headless operator alerts."
+  }
+}

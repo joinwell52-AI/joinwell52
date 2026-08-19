@@ -1,0 +1,55 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-19",
+  "itemId": "Q-20260819-03",
+  "researchObjectId": "AN-20260819-03",
+  "targetAudience": {
+    "primary": "Open-source maintainers and platform engineers implementing OAuth clients, token providers and headless authentication recovery",
+    "knowledgeAssumption": "The reader understands access-token refresh, local credential persistence and exception handling.",
+    "readerProblem": "A broad catch can silently classify local persistence failure as remote refresh failure, hiding that the authorization server may already have advanced credential state."
+  },
+  "whyNow": "A same-day merged MCP TypeScript SDK change moves token persistence outside the guarded refresh catch, propagates saveTokens rejection and adds regression coverage for persistence failure without redirect.",
+  "externalHook": {
+    "type": "partial-success",
+    "description": "The remote server can issue new credentials successfully while the client fails to durably save them, leaving the two sides at different commit points.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "E4",
+      "E5"
+    ]
+  },
+  "coreProposition": "OAuth refresh should be modeled as a split-commit workflow whenever remote credential issuance and local durable persistence are separate operations; persistence failure after remote success is a distinct partial-success state that must remain visible for reconciliation.",
+  "originalValue": {
+    "type": "reliability-model",
+    "description": "Interprets refresh and persistence as a split-commit boundary, separating exchange failure, persistence failure, deliberate reauthorization and recovery completion instead of collapsing them into one authentication error."
+  },
+  "readerTakeaway": "Expose which side committed, propagate persistence faults, retain safe recovery evidence, and define retry or operator reconciliation separately from the remote refresh exchange.",
+  "evidenceBoundary": {
+    "supported": [
+      "The pre-change path grouped refreshAuthorization and saveTokens under one catch.",
+      "The merged change keeps only the remote refresh call in the guarded refresh block and lets saveTokens rejection propagate.",
+      "A regression test forces disk-full persistence failure after new tokens are returned and verifies that redirect is not called.",
+      "Genuine refresh errors remain differentiated and deliberate reauthorization paths gain warnings."
+    ],
+    "unsupported": [
+      "Distributed atomicity",
+      "Rollback of server-side token rotation",
+      "Exactly-once persistence",
+      "Automatic safe retry",
+      "Universal refresh-token rotation"
+    ],
+    "uncertain": [
+      "How providers should advertise durability and atomic replace",
+      "Which non-secret recovery metadata a structured partial-success error should carry"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article concerns a general external-state and local-persistence reliability boundary."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The code change gives direct failure-path evidence, and the Research Object contributes a transferable split-commit model with explicit limits."
+}
