@@ -31,7 +31,13 @@
   </a>
 </p>
 
-<p align="center"><strong><a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-intro-zh.mp4">Watch the 80-second product demonstration →</a></strong><br><sub>Real PC and mobile captures · Chinese narration · multi-agent execution · final human approval</sub></p>
+<p align="center">
+  <strong><a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-teaser-zh.mp4">Watch the 12-second teaser →</a></strong>
+  ·
+  <strong><a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-intro-zh.mp4">Watch the 80-second product demonstration →</a></strong>
+  <br>
+  <sub>Real PC and mobile captures · Chinese narration · multi-agent execution · final human approval</sub>
+</p>
 
 ---
 

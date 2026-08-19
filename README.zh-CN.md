@@ -31,7 +31,13 @@
   </a>
 </p>
 
-<p align="center"><strong><a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-intro-zh.mp4">观看 80 秒正式产品演示 →</a></strong><br><sub>真实 PC 与手机录屏 · 中文旁白 · 多 AI 自动协作 · 最终人类审批</sub></p>
+<p align="center">
+  <strong><a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-teaser-zh.mp4">先看 12 秒产品预告 →</a></strong>
+  ·
+  <strong><a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-intro-zh.mp4">观看 80 秒正式产品演示 →</a></strong>
+  <br>
+  <sub>真实 PC 与手机录屏 · 中文旁白 · 多 AI 自动协作 · 最终人类审批</sub>
+</p>
 
 ---
 
