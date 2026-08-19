@@ -32,9 +32,12 @@
 </p>
 
 <p align="center">
-  <strong><a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-teaser-zh.mp4">Watch the 12-second teaser →</a></strong>
-  ·
-  <strong><a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-intro-zh.mp4">Watch the 80-second product demonstration →</a></strong>
+  <a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-teaser-zh.mp4">
+    <img src="https://img.shields.io/badge/12%20sec%20Teaser-Play%20Now-0ea5e9?style=for-the-badge&logo=youtube&logoColor=white" alt="Watch 12-second teaser">
+  </a>
+  <a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-intro-zh.mp4">
+    <img src="https://img.shields.io/badge/80%20sec%20Demo-Watch%20Now-22c55e?style=for-the-badge&logo=videocam&logoColor=white" alt="Watch 80-second demo">
+  </a>
   <br>
   <sub>Real PC and mobile captures · Chinese narration · multi-agent execution · final human approval</sub>
 </p>
