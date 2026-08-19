@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useData, withBase } from 'vitepress'
 import ResponsiveTitle from './ResponsiveTitle.vue'
 import ResearchSkillGlyph from './ResearchSkillGlyph.vue'
@@ -22,7 +22,7 @@ const copy = computed(() => zh.value ? {
   heroCompact: ['让通用 AI', '成为数字员工'],
   heroMobile: ['让通用 AI', '成为数字员工'],
   heroLead: '让 AI 拥有岗位、职责、技能和工作流程，持续完成真实任务，并留下可核验的工作成果。',
-  primary: '查看生产线', secondary: '进入观察笔记', tertiary: '检查运行证据',
+  primary: '观看 80 秒产品演示', secondary: '查看生产线', tertiary: '进入观察笔记',
   ledger: '运行状态', live: '正在生产', ledgerRows: [
     ['生产岗位', '研究分析员'], ['工作入口', '任务队列'], ['交付门禁', 'GitHub + VitePress'], ['事实来源', 'main 分支']
   ],
@@ -100,7 +100,7 @@ const copy = computed(() => zh.value ? {
   heroCompact: ['Turn general-purpose AI', 'into Digital', 'Employees'],
   heroMobile: ['Turn general-purpose AI', 'into Digital', 'Employees'],
   heroLead: 'Give AI a position, responsibilities, skills, and a workflow so it can continuously complete real tasks and leave verifiable work results.',
-  primary: 'Inspect the production line', secondary: 'Explore Observation Notes', tertiary: 'Inspect Runtime Evidence',
+  primary: 'Watch the 80-second demo', secondary: 'Inspect the production line', tertiary: 'Explore Observation Notes',
   ledger: 'Runtime status', live: 'IN PRODUCTION', ledgerRows: [
     ['Production position', 'Research Analyst'], ['Work intake', 'Task Queue'], ['Delivery gate', 'GitHub + VitePress'], ['Source of truth', 'main branch']
   ],
@@ -211,6 +211,23 @@ const runtimeStatusLabel = computed(() => zh.value
 let researchRotation: ReturnType<typeof setInterval> | undefined
 const activeSkill = ref(0)
 let skillRotation: ReturnType<typeof setInterval> | undefined
+const videoDialogOpen = ref(false)
+const fullVideo = ref<HTMLVideoElement>()
+
+const openFullVideo = async () => {
+  videoDialogOpen.value = true
+  await nextTick()
+  fullVideo.value?.play().catch(() => undefined)
+}
+
+const closeFullVideo = () => {
+  fullVideo.value?.pause()
+  videoDialogOpen.value = false
+}
+
+const handleVideoKeydown = (event: KeyboardEvent) => {
+  if (event.key === 'Escape' && videoDialogOpen.value) closeFullVideo()
+}
 
 const startResearchRotation = () => {
   if (typeof window === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
@@ -241,10 +258,15 @@ const categoryLabel = (category: ResearchNoteRecord['category']) => zh.value
   ? ({ daily: '每日观察', weekly: '每周综合', academic: '学术观察' }[category])
   : ({ daily: 'Daily observation', weekly: 'Weekly synthesis', academic: 'Academic observation' }[category])
 
-onMounted(() => { startResearchRotation(); startSkillRotation() })
+onMounted(() => {
+  startResearchRotation()
+  startSkillRotation()
+  window.addEventListener('keydown', handleVideoKeydown)
+})
 onBeforeUnmount(() => {
   if (researchRotation) clearInterval(researchRotation)
   if (skillRotation) clearInterval(skillRotation)
+  window.removeEventListener('keydown', handleVideoKeydown)
 })
 </script>
 
@@ -282,28 +304,38 @@ onBeforeUnmount(() => {
           />
           <p class="rc-hero__lead">{{ copy.heroLead }}</p>
           <div class="rc-actions">
-            <a class="rc-button rc-button--primary" href="#production-line">{{ copy.primary }} <span>↓</span></a>
-            <a class="rc-button" :href="link(researchOverview)">{{ copy.secondary }} <span>→</span></a>
-            <a class="rc-text-link" :href="link(runtimePath)">{{ copy.tertiary }} <span>↗</span></a>
+            <button class="rc-button rc-button--primary" type="button" @click="openFullVideo">{{ copy.primary }} <span>▶</span></button>
+            <a class="rc-button" href="#production-line">{{ copy.secondary }} <span>↓</span></a>
+            <a class="rc-text-link" :href="link(researchOverview)">{{ copy.tertiary }} <span>↗</span></a>
           </div>
         </div>
 
-        <aside class="rc-ledger" :aria-label="copy.ledger">
-          <header><span>{{ copy.ledger }}</span><b><i></i>{{ copy.live }}</b></header>
-          <div class="rc-ledger__release">
-            <small>{{ copy.latestRelease }}</small>
-            <strong>{{ copy.ledgerMark }}</strong>
-            <p>{{ copy.ledgerDetail }}</p>
-          </div>
-          <dl>
-            <div v-for="row in copy.ledgerRows" :key="row[0]"><dt>{{ row[0] }}</dt><dd>{{ row[1] }}</dd></div>
-          </dl>
-          <footer><span>2026—08</span><b>{{ copy.inspected }}</b></footer>
-        </aside>
-
-        <div class="rc-mobile-ledger">
-          <span><i></i>{{ copy.live }}</span><b>{{ copy.ledgerMark }} · {{ zh ? '正在交付' : 'DELIVERING' }}</b><small>{{ copy.inspected }}</small>
-        </div>
+        <button
+          class="rc-hero-video"
+          type="button"
+          :aria-label="zh ? '播放 CodeFlowMu 80 秒正式产品介绍' : 'Play the 80-second CodeFlowMu product introduction'"
+          @click="openFullVideo"
+        >
+          <video
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            :poster="link('/assets/video/codeflowmu-product-intro-zh-poster.jpg')"
+            aria-hidden="true"
+          >
+            <source :src="link('/assets/video/codeflowmu-product-teaser-zh.mp4')" type="video/mp4">
+          </video>
+          <span class="rc-hero-video__shade" aria-hidden="true"></span>
+          <span class="rc-hero-video__top"><b>CODEFLOWMU</b><i>{{ zh ? '12 秒预告 · 静音播放' : '12s teaser · muted' }}</i></span>
+          <span class="rc-hero-video__play" aria-hidden="true">▶</span>
+          <span class="rc-hero-video__caption">
+            <strong>{{ zh ? '多 AI 自动工作，最终由人类审批' : 'Multiple AI agents work; humans give final approval' }}</strong>
+            <small>{{ zh ? '点击观看 80 秒完整演示（有声音）' : 'Watch the full 80-second demo with sound' }}</small>
+          </span>
+          <span class="rc-hero-video__url">github.com/joinwell52-AI</span>
+        </button>
       </div>
 
       <div class="rc-shell rc-hero__index">
@@ -313,6 +345,35 @@ onBeforeUnmount(() => {
         <div><span>04</span><b>{{ zh ? '交付' : 'DELIVERY' }}</b><small>{{ zh ? '生产验证通过' : 'PRODUCTION VERIFIED' }}</small></div>
       </div>
     </section>
+
+    <div
+      v-if="videoDialogOpen"
+      class="rc-video-modal"
+      role="dialog"
+      aria-modal="true"
+      :aria-label="zh ? 'CodeFlowMu 正式产品介绍' : 'CodeFlowMu product introduction'"
+      @click.self="closeFullVideo"
+    >
+      <div class="rc-video-modal__panel">
+        <header>
+          <div><span>CODEFLOWMU · PRODUCT DEMO</span><strong>{{ zh ? '多 AI 真实协作 · 80 秒' : 'Real multi-agent collaboration · 80 seconds' }}</strong></div>
+          <button type="button" :aria-label="zh ? '关闭视频' : 'Close video'" @click="closeFullVideo">×</button>
+        </header>
+        <video
+          ref="fullVideo"
+          controls
+          playsinline
+          preload="metadata"
+          :poster="link('/assets/video/codeflowmu-product-intro-zh-poster.jpg')"
+        >
+          <source :src="link('/assets/video/codeflowmu-product-intro-zh.mp4')" type="video/mp4">
+        </video>
+        <footer>
+          <span>{{ zh ? '手机发起 · PM 拆解 · 多角色并行 · 人类终审' : 'Mobile intake · PM decomposition · Parallel roles · Human final approval' }}</span>
+          <a href="https://github.com/joinwell52-AI/CodeFlowMu-open">CodeFlowMu Open ↗</a>
+        </footer>
+      </div>
+    </div>
 
     <section id="production-line" class="rc-section rc-engine">
       <div class="rc-shell">
@@ -399,6 +460,36 @@ onBeforeUnmount(() => {
               <b>{{ system.cta }} <span>↗</span></b>
             </div>
           </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="rc-section rc-codeflow-video">
+      <div class="rc-shell">
+        <div class="rc-section__intro rc-section__intro--light">
+          <div>
+            <p class="rc-kicker">{{ zh ? 'CODEFLOWMU · 产品介绍' : 'CODEFLOWMU · PRODUCT OVERVIEW' }}</p>
+            <h2 class="rc-section__title">{{ zh ? '看见多 AI 团队，如何完成一次真实协作' : 'See a multi-agent team complete real work' }}</h2>
+          </div>
+          <p>{{ zh ? '80 秒真实产品演示：手机发起任务、PM 自动拆解、多个角色并行工作、PC 全局观察、报告回流，以及最终人类审批。片尾说明 TMPA、FCoP 与 CodeFlowMu 从理论、协议到运行产品的关系。' : 'An 80-second real product demonstration: mobile task entry, automatic PM decomposition, parallel roles, full PC observation, report return, and final human approval. Chinese narration with on-screen product context.' }}</p>
+        </div>
+        <div class="rc-codeflow-video__frame">
+          <video
+            controls
+            playsinline
+            preload="metadata"
+            :poster="link('/assets/video/codeflowmu-product-intro-zh-poster.jpg')"
+            :aria-label="zh ? 'CodeFlowMu 正式产品介绍视频' : 'CodeFlowMu formal product introduction video in Chinese'"
+          >
+            <source :src="link('/assets/video/codeflowmu-product-intro-zh.mp4')" type="video/mp4">
+          </video>
+        </div>
+        <div class="rc-codeflow-video__meta">
+          <span>{{ zh ? '真实 PC + 手机录屏 · 中文旁白 · 1080p' : 'Real PC + mobile captures · Chinese narration · 1080p' }}</span>
+          <nav>
+            <a href="https://github.com/joinwell52-AI">GitHub ↗</a>
+            <a href="https://github.com/joinwell52-AI/CodeFlowMu-open">CodeFlowMu Open ↗</a>
+          </nav>
         </div>
       </div>
     </section>
@@ -642,8 +733,8 @@ onBeforeUnmount(() => {
 :global(.dark .rc-language a:hover),
 :global(.dark .rc-appearance:hover) { color: #fff !important; background: rgba(255,255,255,.1); }
 :global(.dark .rc-appearance) { color: #fff; }
-.rc-hero__layout { position: relative; display: grid; grid-template-columns: minmax(0, 1.34fr) minmax(340px, .66fr); gap: 72px; align-items: end; padding-top: 82px; }
-.rc-home:not(.is-zh) .rc-hero__layout { grid-template-columns: minmax(0, 1fr) 340px; gap: 52px; }
+.rc-hero__layout { position: relative; display: grid; grid-template-columns: minmax(390px, .88fr) minmax(500px, 1.12fr); gap: 44px; align-items: center; padding-top: 82px; }
+.rc-home:not(.is-zh) .rc-hero__layout { grid-template-columns: minmax(390px, .88fr) minmax(500px, 1.12fr); gap: 44px; }
 .rc-kicker { display: flex; align-items: center; gap: 13px; margin: 0 0 22px; color: #f0f4ff; font: 800 13px/1.4 "Noto Sans SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif; letter-spacing: .025em; }
 .rc-kicker span { width: 30px; height: 2px; background: var(--rc-red); }
 .rc-kicker--dark { color: var(--rc-ink); }
@@ -653,9 +744,33 @@ onBeforeUnmount(() => {
 .rc-hero__title :deep(.is-accent) { color: transparent; background: linear-gradient(100deg, #9b8cff 5%, #6882ff 48%, #54d9ee 96%); background-clip: text; -webkit-background-clip: text; }
 .rc-hero__lead { max-width: 740px; margin: 32px 0 0; color: #aeb8d4; font-size: 17px; line-height: 1.75; }
 .rc-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
-.rc-button { display: inline-flex; align-items: center; justify-content: space-between; min-height: 48px; gap: 24px; padding: 0 18px; border: 1px solid rgba(255,255,255,.2); color: #fff !important; font-size: 13px; font-weight: 760; }
+.rc-button { display: inline-flex; align-items: center; justify-content: space-between; min-height: 48px; gap: 24px; padding: 0 18px; border: 1px solid rgba(255,255,255,.2); color: #fff !important; background: transparent; cursor: pointer; font: 760 13px/1.2 ui-sans-serif, system-ui, sans-serif; }
 .rc-button--primary { color: #fff !important; background: linear-gradient(120deg, #6d5dfc, #477fe9); border-color: transparent; box-shadow: 0 16px 38px rgba(83,78,235,.28); }
 .rc-text-link { margin-left: 8px; color: #fff !important; font-size: 12px; font-weight: 760; border-bottom: 1px solid rgba(255,255,255,.45); }
+.rc-hero-video { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; padding: 0; overflow: hidden; color: #fff; text-align: left; background: #020711; border: 1px solid rgba(118,215,238,.32); border-radius: 24px; box-shadow: 0 34px 90px rgba(0,0,0,.42), 14px 14px 0 rgba(7,12,27,.72); cursor: pointer; isolation: isolate; }
+.rc-hero-video::after { position: absolute; inset: 10px; z-index: 3; border: 1px solid rgba(255,255,255,.18); border-radius: 16px; content: ''; pointer-events: none; }
+.rc-hero-video video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+.rc-hero-video:hover video { transform: scale(1.025); }
+.rc-hero-video__shade { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(1,6,17,.46) 0%, transparent 38%, rgba(1,6,17,.9) 100%); }
+.rc-hero-video__top { position: absolute; z-index: 4; top: 24px; right: 26px; left: 26px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.rc-hero-video__top b { color: #80e2f1; font: 850 11px/1 ui-monospace, monospace; letter-spacing: .12em; }
+.rc-hero-video__top i { padding: 7px 10px; color: #eafaff; background: rgba(3,11,27,.58); border: 1px solid rgba(255,255,255,.18); border-radius: 999px; font: 720 10px/1 ui-sans-serif, system-ui, sans-serif; font-style: normal; backdrop-filter: blur(10px); }
+.rc-hero-video__play { position: absolute; z-index: 4; top: 50%; left: 50%; display: grid; width: 72px; height: 72px; padding-left: 5px; place-items: center; color: #07101f; background: rgba(128,226,241,.94); border: 7px solid rgba(255,255,255,.18); border-radius: 50%; box-shadow: 0 16px 42px rgba(0,0,0,.38); font-size: 22px; transform: translate(-50%, -50%); transition: transform .2s ease, background .2s ease; }
+.rc-hero-video:hover .rc-hero-video__play { background: #fff; transform: translate(-50%, -50%) scale(1.08); }
+.rc-hero-video__caption { position: absolute; z-index: 4; right: 26px; bottom: 30px; left: 26px; display: flex; flex-direction: column; gap: 7px; padding-right: 170px; }
+.rc-hero-video__caption strong { font-size: 18px; line-height: 1.32; letter-spacing: -.025em; }
+.rc-hero-video__caption small { color: #b9c8dc; font-size: 11px; line-height: 1.4; }
+.rc-hero-video__url { position: absolute; z-index: 4; right: 26px; bottom: 31px; color: #80e2f1; font: 720 10px/1.4 ui-monospace, monospace; }
+.rc-video-modal { position: fixed; inset: 0; z-index: 500; display: grid; padding: 34px; place-items: center; overflow-y: auto; background: rgba(1,5,14,.88); backdrop-filter: blur(18px); }
+.rc-video-modal__panel { width: min(1180px, 100%); padding: 16px; color: #fff; background: #050b16; border: 1px solid rgba(118,215,238,.34); border-radius: 26px; box-shadow: 0 40px 120px rgba(0,0,0,.62); }
+.rc-video-modal__panel > header { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 2px 4px 14px 10px; }
+.rc-video-modal__panel > header div { display: flex; align-items: baseline; gap: 14px; }
+.rc-video-modal__panel > header span { color: #80e2f1; font: 820 10px/1 ui-monospace, monospace; letter-spacing: .1em; }
+.rc-video-modal__panel > header strong { color: #d9e5f5; font-size: 13px; }
+.rc-video-modal__panel > header button { display: grid; width: 38px; height: 38px; padding: 0; place-items: center; color: #fff; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); border-radius: 50%; cursor: pointer; font-size: 25px; line-height: 1; }
+.rc-video-modal__panel > video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 16px; }
+.rc-video-modal__panel > footer { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 15px 8px 3px; color: #9fb0c9; font-size: 11px; }
+.rc-video-modal__panel > footer a { color: #80e2f1 !important; font-weight: 760; }
 .rc-ledger { position: relative; min-height: 442px; color: #fff; background: linear-gradient(145deg, rgba(22,31,63,.9), rgba(9,17,38,.92)); border: 1px solid rgba(255,255,255,.12); padding: 26px; box-shadow: 18px 18px 0 rgba(0,0,0,.34); }
 .rc-ledger::before { content: ""; position: absolute; inset: 0; opacity: .14; background-image: linear-gradient(rgba(255,255,255,.25) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.25) 1px, transparent 1px); background-size: 54px 54px; pointer-events: none; }
 .rc-ledger > * { position: relative; }
@@ -686,6 +801,14 @@ onBeforeUnmount(() => {
 .rc-section__intro > p { margin: 0 0 5px; color: var(--rc-muted); font-size: 15px; line-height: 1.75; }
 .rc-section__title { margin: 0; font-size: clamp(48px, 5vw, 72px); line-height: .98; letter-spacing: -.06em; font-weight: 840; }
 .rc-section__intro--light > p { color: #aeb4ae; }
+
+.rc-codeflow-video { color: #fff; background: radial-gradient(circle at 82% 14%, rgba(54,203,232,.14), transparent 32%), radial-gradient(circle at 12% 82%, rgba(109,93,252,.16), transparent 34%), #07101f; border-color: #23334d; }
+.rc-codeflow-video__frame { margin-top: 56px; padding: 14px; overflow: hidden; background: #020711; border: 1px solid rgba(118,215,238,.28); border-radius: 30px; box-shadow: 0 34px 90px rgba(0,0,0,.34); }
+.rc-codeflow-video__frame video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 20px; }
+.rc-codeflow-video__meta { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 20px; color: #9fb0c9; font: 720 11px/1.4 ui-sans-serif, system-ui, sans-serif; letter-spacing: .035em; }
+.rc-codeflow-video__meta nav { display: flex; gap: 10px; }
+.rc-codeflow-video__meta a { padding: 11px 14px; color: #e9fbff !important; border: 1px solid rgba(118,215,238,.3); border-radius: 999px; }
+.rc-codeflow-video__meta a:hover { color: #07101f !important; background: #76d7ee; border-color: #76d7ee; }
 
 .rc-tmpa, .rc-research { color: #fff; background: var(--rc-night); border-color: #313631; }
 .rc-research { padding-bottom: 0; }
@@ -947,9 +1070,9 @@ onBeforeUnmount(() => {
 @media (max-width: 1199px) {
   .rc-shell { width: min(100% - 56px, 940px); }
   .rc-hero { min-height: 768px; }
-  .rc-hero__layout { grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr); gap: 44px; padding-top: 64px; }
+  .rc-hero__layout { grid-template-columns: minmax(340px, .9fr) minmax(450px, 1.1fr); gap: 30px; padding-top: 64px; }
   .rc-hero__title { font-size: 62px; }
-  .rc-home:not(.is-zh) .rc-hero__layout { grid-template-columns: minmax(0, 1fr) 300px; gap: 36px; }
+  .rc-home:not(.is-zh) .rc-hero__layout { grid-template-columns: minmax(340px, .9fr) minmax(450px, 1.1fr); gap: 30px; }
   .rc-home:not(.is-zh) .rc-hero__title { font-size: 56px; }
   .rc-hero__lead { max-width: 560px; font-size: 15px; }
   .rc-ledger { min-height: 418px; padding: 22px; box-shadow: 12px 12px 0 var(--rc-ink); }
@@ -1015,6 +1138,23 @@ onBeforeUnmount(() => {
   .rc-button { width: 100%; min-height: 47px; }
   .rc-text-link { width: max-content; margin: 8px 0 0; }
   .rc-ledger { display: none; }
+  .rc-hero-video { margin-top: 34px; border-radius: 17px; box-shadow: 0 24px 60px rgba(0,0,0,.38), 7px 7px 0 rgba(7,12,27,.72); }
+  .rc-hero-video::after { inset: 6px; border-radius: 12px; }
+  .rc-hero-video__top { top: 15px; right: 16px; left: 16px; }
+  .rc-hero-video__top i { font-size: 8px; }
+  .rc-hero-video__play { width: 54px; height: 54px; border-width: 5px; font-size: 17px; }
+  .rc-hero-video__caption { right: 16px; bottom: 17px; left: 16px; gap: 3px; padding-right: 0; }
+  .rc-hero-video__caption strong { font-size: 13px; }
+  .rc-hero-video__caption small { display: none; }
+  .rc-hero-video__url { display: none; }
+  .rc-video-modal { padding: 12px; }
+  .rc-video-modal__panel { padding: 8px; border-radius: 17px; }
+  .rc-video-modal__panel > header { padding: 4px 2px 10px 6px; }
+  .rc-video-modal__panel > header div { display: block; }
+  .rc-video-modal__panel > header strong { display: block; margin-top: 5px; font-size: 11px; }
+  .rc-video-modal__panel > header button { width: 34px; height: 34px; }
+  .rc-video-modal__panel > video { border-radius: 10px; }
+  .rc-video-modal__panel > footer { align-items: flex-start; flex-direction: column; gap: 9px; padding: 12px 5px 4px; }
   .rc-mobile-ledger { display: grid; grid-template-columns: auto 1fr; gap: 9px 12px; align-items: center; margin-top: 40px; padding: 17px; color: #fff; background: linear-gradient(145deg, #171d3d, #102c43); box-shadow: 8px 8px 0 rgba(0,0,0,.34); }
   .rc-mobile-ledger span { display: flex; align-items: center; gap: 7px; font: 700 10px/1 ui-sans-serif, system-ui, sans-serif; }
   .rc-mobile-ledger b { text-align: right; font-size: 13px; }
@@ -1117,5 +1257,9 @@ onBeforeUnmount(() => {
 
 @media (max-width: 699px) {
   .rc-site-footer__owner { flex-wrap: wrap; white-space: normal; }
+  .rc-codeflow-video__frame { margin-top: 38px; padding: 7px; border-radius: 18px; }
+  .rc-codeflow-video__frame video { border-radius: 12px; }
+  .rc-codeflow-video__meta { align-items: flex-start; flex-direction: column; }
+  .rc-codeflow-video__meta nav { flex-wrap: wrap; }
 }
 </style>
