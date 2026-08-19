@@ -85,7 +85,14 @@ jobs:
           RESULT_PATH="research/runtime/results/${YEAR}/${MONTH}/${RUNTIME_DATE}-publication-result.json"
           git config user.name "joinwell52 Research Runtime"
           git config user.email "actions@users.noreply.github.com"
-          git add docs/en/digital-employee docs/zh/digital-employee docs/en/industry docs/zh/industry docs/en/engineering docs/zh/engineering docs/public/assets/covers docs/public/assets/figures "$RELEASE_PATH" "$RESULT_PATH" || true
+          for path in \
+            docs/en/digital-employee docs/zh/digital-employee \
+            docs/en/industry docs/zh/industry \
+            docs/en/engineering docs/zh/engineering \
+            docs/public/assets/covers docs/public/assets/figures \
+            "$RELEASE_PATH" "$RESULT_PATH"; do
+            if [[ -e "$path" ]]; then git add "$path"; fi
+          done
           if git diff --cached --quiet; then
             echo "No governed release content staged."
             exit 1
