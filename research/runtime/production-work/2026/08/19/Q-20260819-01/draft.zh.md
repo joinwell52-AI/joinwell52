@@ -6,7 +6,7 @@ column: digital-employee
 category: daily
 article_type: engineering-insight
 edition: research-center
-research_question: "委派出的子智能体角色如何既允许有效专业化，又不成为平行权威，并在恢复或重建后保持这一边界？"
+research_question: "How can a delegated child-agent role enable useful specialization without becoming a parallel authority plane, including after resume or reconstruction?"
 summary: "角色文件不应成为第二套权限系统。Codex 当日合并变更展示了一种有界做法：只把角色配置投影为类型化覆盖项，保留父级掌握的权限、路由和基础设施配置，并把部分能力变化限制为收缩。"
 cover: staging/publication-candidates/2026-08-19-monotonic-delegation-authority-cover.png
 sources:
