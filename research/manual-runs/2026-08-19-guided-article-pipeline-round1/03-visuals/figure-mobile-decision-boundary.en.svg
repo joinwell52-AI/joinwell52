@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fbfdff"/><stop offset="1" stop-color="#edf8f7"/></linearGradient>
+    <filter id="s3"><feDropShadow dx="0" dy="10" stdDeviation="13" flood-color="#16324f" flood-opacity="0.12"/></filter>
+    <marker id="a3" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto"><path d="M0 0L12 6L0 12Z" fill="#64748b"/></marker>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg3)"/>
+  <text x="800" y="72" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="38" font-weight="700" fill="#0f172a">What Must the Server Do When You Tap “Approve” on a Phone?</text>
+  <text x="800" y="113" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="20" fill="#475569">The phone is an entry point; local authority rechecks version, permission, replay, and outcome</text>
+
+  <g font-family="Segoe UI, sans-serif" filter="url(#s3)">
+    <g transform="translate(90,205)">
+      <rect width="310" height="330" rx="38" fill="#ffffff" stroke="#7dd3fc" stroke-width="4"/>
+      <rect x="65" y="38" width="180" height="220" rx="28" fill="#e9f7ff" stroke="#0ea5e9" stroke-width="3"/>
+      <circle cx="155" cy="226" r="15" fill="#0ea5e9"/>
+      <text x="155" y="286" text-anchor="middle" font-size="25" font-weight="700" fill="#075985">Mobile PWA</text>
+      <text x="155" y="316" text-anchor="middle" font-size="17" fill="#475569">View current or stale state</text>
+      <text x="155" y="340" text-anchor="middle" font-size="17" fill="#475569">Submit a bounded request</text>
+    </g>
+    <g transform="translate(510,165)">
+      <rect width="580" height="410" rx="34" fill="#ffffff" stroke="#5eead4" stroke-width="4"/>
+      <text x="290" y="52" text-anchor="middle" font-size="29" font-weight="700" fill="#0f766e">Target Local Authority Boundary</text>
+      <g font-size="19" fill="#334155">
+        <rect x="42" y="88" width="496" height="54" rx="16" fill="#ecfeff"/><text x="70" y="122">1. Is the device session valid and not revoked?</text>
+        <rect x="42" y="156" width="496" height="54" rx="16" fill="#ecfeff"/><text x="70" y="190">2. Does this role have the required capability?</text>
+        <rect x="42" y="224" width="496" height="54" rx="16" fill="#ecfeff"/><text x="70" y="258">3. Does the target still match the viewed revision?</text>
+        <rect x="42" y="292" width="496" height="54" rx="16" fill="#ecfeff"/><text x="70" y="326">4. Has this idempotency key already been handled?</text>
+      </g>
+      <text x="290" y="382" text-anchor="middle" font-size="17" font-weight="700" fill="#b45309">Any uncertainty: stay read-only, reject, or return “outcome unknown”</text>
+    </g>
+    <g transform="translate(1200,205)">
+      <rect width="310" height="330" rx="38" fill="#ffffff" stroke="#fbbf24" stroke-width="4"/>
+      <rect x="55" y="48" width="200" height="145" rx="28" fill="#fff7ed" stroke="#f59e0b" stroke-width="3"/>
+      <circle cx="155" cy="120" r="38" fill="#f59e0b"/><path d="M136 120l13 14 27-32" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="155" y="238" text-anchor="middle" font-size="25" font-weight="700" fill="#92400e">Human Decision</text>
+      <text x="155" y="274" text-anchor="middle" font-size="17" fill="#475569">Approval permits an attempt</text>
+      <text x="155" y="300" text-anchor="middle" font-size="17" fill="#475569">It does not prove success</text>
+    </g>
+  </g>
+
+  <g stroke="#64748b" stroke-width="5" fill="none" marker-end="url(#a3)">
+    <path d="M400 370 H500"/><path d="M1090 370 H1190"/>
+  </g>
+  <text x="450" y="346" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="16" fill="#64748b">Revision + request ID</text>
+  <text x="1140" y="346" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="16" fill="#64748b">Authoritative verdict</text>
+
+  <g font-family="Segoe UI, sans-serif">
+    <line x1="800" y1="575" x2="800" y2="640" stroke="#64748b" stroke-width="5" marker-end="url(#a3)"/>
+    <rect x="270" y="650" width="500" height="130" rx="28" fill="#eaf2ff" stroke="#7299e8" stroke-width="3"/>
+    <text x="520" y="698" text-anchor="middle" font-size="25" font-weight="700" fill="#1e3a8a">Task Plane: FCoP REVIEW</text>
+    <text x="520" y="736" text-anchor="middle" font-size="18" fill="#334155">Records review, rejection, or acceptance relations</text>
+    <text x="520" y="765" text-anchor="middle" font-size="16" fill="#64748b">Does not grant Git push or external-write authority</text>
+    <rect x="830" y="650" width="500" height="130" rx="28" fill="#fff3df" stroke="#f3b44c" stroke-width="3"/>
+    <text x="1080" y="698" text-anchor="middle" font-size="25" font-weight="700" fill="#92400e">Operation Plane: Approval</text>
+    <text x="1080" y="736" text-anchor="middle" font-size="18" fill="#334155">Authorizes one digest-bound high-risk attempt</text>
+    <text x="1080" y="765" text-anchor="middle" font-size="16" fill="#64748b">Later reports and verification state the actual outcome</text>
+    <text x="800" y="854" text-anchor="middle" font-size="15" fill="#64748b">Target protocol model based on TMPA Core S1.0, FCoP v3, and verified CodeFlowMu implementation boundaries</text>
+  </g>
+</svg>

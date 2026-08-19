@@ -1,0 +1,166 @@
+{
+  "schema": "guided-topic-proposals/v2",
+  "runId": "2026-08-19-guided-article-pipeline-round1",
+  "runDate": "2026-08-19",
+  "status": "AwaitingUserSelection",
+  "recommendedSelection": ["T1", "T2", "T3"],
+  "seriesMap": {
+    "source": "用户确认的三栏目长期研究版图",
+    "tracks": ["理论与治理深度", "开源实现与协议工程", "数字员工与场景落地"],
+    "todayTheme": "把 CodeFlowMu 作为工程轨道机来研究：复杂工作如何进入轨道、轨道如何经受故障、人在离开电脑后如何继续治理。",
+    "policy": "本轮只提出题目、效果和大纲；用户确认后才定向搜集独立来源并开始双语写作。"
+  },
+  "proposals": [
+    {
+      "id": "T1",
+      "articleType": "project-research",
+      "framing": "first-party-strength",
+      "researchObjects": ["CodeFlowMu Open", "FCoP", "TMPA"],
+      "track": "理论与治理深度",
+      "tone": "深度技术与方法型",
+      "title": "两万字需求，怎样变成 Agent 团队能执行的任务图？",
+      "targetAudience": "要把长任务书、跨模块改造或长期研发计划交给 Agent 团队的技术负责人、架构师和 PM",
+      "readerProblem": "长任务书直接交给 Agent 后，最常见的损失不是看不懂，而是要求被漏读、现状与目标混淆、任务顺序无法计算，最后得到一份流畅但不可执行的计划。",
+      "coreQuestion": "怎样把一份长而可能矛盾的任务书，编译为可追踪、可计算、可审查且能安全开始执行的任务图？",
+      "coreProposition": "长任务规划不应是一次摘要写作，而应是一条受治理的编译链：完整摄入、需求台账、现场事实冻结、工作包 DAG、确定性校验，再由人只开放第一个执行边界。",
+      "whyNow": "CodeFlowMu 已把长周期触发、Requirement Ledger、规划摘要绑定、修订历史和 Planning Gate 落入运行时代码与自动化测试，具备写机制而非写愿景的条件。",
+      "readerAction": "读者可以用文中的需求编译清单，把自己的长任务书转换为 REQ→WP→Gate→Test→Evidence 映射，并在派单前发现遗漏、冲突和不真实计划。",
+      "expectedResult": "得到一份长任务书编译流程、一张需求到任务图、一份 Requirement Ledger 样例、一个最小 WP/DAG 模板和一套开工前门禁清单。",
+      "verifiedStrengths": [
+        {
+          "claim": "CodeFlowMu 已把完整源读取、Requirement Ledger、事实冻结、WP DAG、预算与规划 Gate 定义为长周期规划的正式路径。",
+          "readerValue": "读者能看到怎样把大模型的规划文字变成可核验的工程工件。",
+          "sourceRefs": ["FP-NORM-02", "FP-IMPL-01", "FP-FIELD-01"]
+        },
+        {
+          "claim": "运行时会把 source、body 和 validation digest 绑定到修订，并拒绝过期 Gate 决定，只在匹配批准后开放 WP-00。",
+          "readerValue": "读者可以复用一种防止旧计划、旧批准和新正文错配的具体控制方法。",
+          "sourceRefs": ["FP-IMPL-01", "FP-FIELD-01", "FP-HISTORY-01"]
+        }
+      ],
+      "evidencePlan": {
+        "requiredSourceIdentities": [
+          "任务图、关键路径或需求追踪的官方工程资料",
+          "独立的复杂软件任务规划、需求遗漏或 Agent 计划质量研究"
+        ]
+      },
+      "outline": [
+        "一份两万字任务书为什么不能直接等同于一份可执行计划",
+        "第一步不是摘要：从首字节读到 EOF，并冻结版本、SHA、行数和引用集合",
+        "把自然语言拆成 Requirement Ledger：必须、目标、现状、估算、假设和权限边界",
+        "先找冲突再排期：哪些矛盾可以规范化，哪些必须停下来让人决定",
+        "从 REQ 编译到 WP：需求、工作包、依赖、角色、Gate、测试、证据与恢复如何一一映射",
+        "DAG、关键路径和预算怎样从工作包自底向上计算，而不是先拍一个总工期",
+        "为什么通过校验仍不能自动开工：正文摘要、验证摘要、修订号和人工决定必须一致",
+        "CodeFlowMu 与 FCoP 的分工：协议保存协作事实，工程轨道负责规划、派发与门禁",
+        "读者可直接复用的 Requirement Ledger、WP 模板和开工前检查表"
+      ],
+      "deduplication": "不同于 8 月 17 日的《别让 Agent 立刻写代码——也别盲信它的计划》：旧文回答计划为何必须可审查，本题只研究超长任务书怎样被编译成可执行任务图及其摘要绑定和开工门禁。",
+      "visualPlan": {
+        "coverConcept": "一份集中展开的长任务书进入单条未来工程轨道，被压缩为清晰的需求节点、工作包和一个人工 Gate；元素集中，不做仪表盘拼贴。",
+        "inlineFigures": ["任务书→Requirement Ledger→WP DAG→Planning Gate 编译链", "REQ→WP→Gate→Test→Evidence 映射样例"]
+      }
+    },
+    {
+      "id": "T2",
+      "articleType": "project-research",
+      "framing": "first-party-strength",
+      "researchObjects": ["CodeFlowMu Open", "FCoP"],
+      "track": "开源实现与协议工程",
+      "tone": "硬核测试与实现型",
+      "title": "怎样测试一个文件式多 Agent 运行时？从状态不变量到故障注入",
+      "targetAudience": "正在开发 Agent Runtime、任务调度器、MCP 宿主或本地多 Agent 工具链的工程师",
+      "readerProblem": "一个 happy path 能跑通，只能说明演示成立；Watcher 重复事件、Windows rename 失败、同一 Agent 忙碌、依赖未完成和进程中断会让同一任务被漏派、重派或产生错误状态。",
+      "coreQuestion": "文件式多 Agent 运行时应测试哪些跨层不变量，才能把协议正确、存储正确、派发正确和恢复正确分开验证？",
+      "coreProposition": "可靠性测试不能围绕页面动作编写，而要围绕不变量组织：一个任务身份、一个当前权威位置、有限次写入重试、幂等观察、受依赖约束的派发，以及可追踪的失败结果。",
+      "whyNow": "FCoP 已提供协议不变量，CodeFlowMu Runtime 已形成两阶段派发、依赖门禁、原子写入、重复观察抑制和 Windows 故障注入测试，可以公开一套可复现测试方法。",
+      "readerAction": "读者可以把文中的测试矩阵移植到自己的 Agent Runtime，至少覆盖重复触发、半写入、忙碌冲突、依赖阻塞、崩溃恢复和幂等重放。",
+      "expectedResult": "得到一张协议层与运行时层不变量表、一个最小故障注入夹具、12 个必测场景和一套判断测试是否只覆盖 happy path 的审查清单。",
+      "verifiedStrengths": [
+        {
+          "claim": "CodeFlowMu 的派发测试已经覆盖可信来源、未知来源 hold、重复观察去重、依赖未满足和显式控制面唤醒。",
+          "readerValue": "读者能直接看到调度轨道的关键分支怎样被变成可执行验收。",
+          "sourceRefs": ["FP-NORM-01", "FP-FIELD-02", "FP-RECENT-02"]
+        },
+        {
+          "claim": "原子写入测试会实际注入 Windows EPERM/ENOENT，并验证有限重试、失败退出与最终文件边界。",
+          "readerValue": "读者可以复用一种比 mock 成功路径更接近真实本地运行问题的测试方式。",
+          "sourceRefs": ["FP-NORM-01", "FP-FIELD-03", "FP-HISTORY-01"]
+        }
+      ],
+      "evidencePlan": {
+        "requiredSourceIdentities": [
+          "文件系统原子性、持久化与平台差异的官方系统文档",
+          "独立的分布式/事件驱动系统故障注入、幂等或状态机测试资料"
+        ]
+      },
+      "outline": [
+        "为什么跑通一次 TASK→REPORT 不能证明运行时可靠",
+        "先画边界：FCoP 规定协作语义，CodeFlowMu 宿主负责 Watcher、派发、会话、依赖和恢复",
+        "六个核心不变量：身份唯一、当前位置唯一、历史只增、派发可归因、依赖先满足、失败可重建",
+        "存储故障注入：临时文件、rename、fsync、Windows EPERM/ENOENT 和有限重试分别测什么",
+        "事件故障注入：重复 Watcher 事件与周期对账同时发生时，为什么不能重复派发或重复写历史",
+        "调度故障注入：未知来源、同一 Agent 忙碌、显式唤醒和业务依赖阻塞",
+        "崩溃与重放：写入成功但会话未启动、会话启动但回执未落盘时如何判断下一步",
+        "怎样建立测试金字塔：纯函数、存储契约、Runtime 集成、真实进程与 Windows 回归",
+        "12 个必测场景和一个可复现的故障注入夹具"
+      ],
+      "deduplication": "不同于昨日的 FCoP 状态机文章：旧文验证协议的合法迁移与提交边界，本题研究宿主 Runtime 在重复事件、依赖、会话、平台错误和崩溃交错下如何建立跨层测试体系。",
+      "visualPlan": {
+        "coverConcept": "单一任务工件沿集中测试轨道前进，轨道上由四个明确故障门模拟重复事件、磁盘错误、忙碌冲突和崩溃，最终进入绿色验收区。",
+        "inlineFigures": ["协议不变量与 Runtime 测试层次图", "四类故障注入时序图"]
+      }
+    },
+    {
+      "id": "T3",
+      "articleType": "project-research",
+      "framing": "first-party-strength",
+      "researchObjects": ["CodeFlowMu Open", "FCoP"],
+      "track": "数字员工与场景落地",
+      "tone": "偏生活化的工程实战型",
+      "title": "人离开电脑后，怎样继续掌握 AI 团队？本地运行与手机控制面的双端设计",
+      "targetAudience": "在本机运行长期 Agent 任务、但需要从手机查看进度和处理关键决定的独立开发者与小团队负责人",
+      "readerProblem": "长期 Agent 工作一旦离开电脑，操作者要么失去状态，要么为了远程方便把整个执行环境暴露出去；更常见的问题是手机端又复制一套状态，和本机真实任务逐渐分叉。",
+      "coreQuestion": "怎样让 Agent 继续在本机执行，同时让手机只承担查看、发任务、沟通和明确审批，并始终引用同一份任务事实？",
+      "coreProposition": "移动端不应成为第二个 Runtime；更稳妥的双端设计是本机拥有执行和持久事实，PWA 通过受绑定的控制面读取同一任务、报告和审批记录，只把少数人类动作代理回正式服务。",
+      "whyNow": "CodeFlowMu Open 已有 PC Panel、真实 PWA 页面、设备绑定、任务/报告/审批 API、移动端鉴权与 Open Edition Gateway 发布边界，具备从产品和代码两层解释双端控制面的条件。",
+      "readerAction": "读者可以按文中的双端边界和验收清单，为自己的本地 Agent 系统增加安全的手机观察面，而不复制状态或把审批误写成执行成功。",
+      "expectedResult": "得到一张本机执行面—手机控制面架构图、一份 PWA 最小页面清单、设备绑定与权限边界表，以及弱网、重连、审批和隐私验收清单。",
+      "verifiedStrengths": [
+        {
+          "claim": "CodeFlowMu PWA 已读取本机同一套任务、报告、审批和动态，并提供设备绑定、角色消息与状态查看。",
+          "readerValue": "读者可以看到移动端如何成为既有工程轨道的观察和决策入口，而不是第二套工作流。",
+          "sourceRefs": ["FP-POSITION-01", "FP-IMPL-02", "FP-FIELD-04"]
+        },
+        {
+          "claim": "移动 API 测试覆盖绑定令牌、任务父子关系、拒绝理由、幂等决定和 Gateway 未启动状态；Open Edition 还显式禁止远程发布 PWA。",
+          "readerValue": "读者能复用具体的鉴权、理由、幂等和版本边界，而不只得到一个手机界面截图。",
+          "sourceRefs": ["FP-IMPL-02", "FP-FIELD-04", "FP-HISTORY-01"]
+        }
+      ],
+      "evidencePlan": {
+        "requiredSourceIdentities": [
+          "PWA、Service Worker、设备绑定或 Web 安全的官方平台文档",
+          "独立的本地优先软件、远程运维控制面或移动审批工程资料"
+        ]
+      },
+      "outline": [
+        "一个日常场景：Agent 在家中电脑上跑长任务，人已经离开电脑",
+        "先分清两层：本机 Runtime 拥有执行和持久事实，手机只提供观察与少量决策入口",
+        "PWA 最少需要看什么：团队状态、任务线、报告、审批、动态、聊天和设备状态",
+        "为什么手机不能复制一份任务数据库：列表、详情、父子任务和报告必须来自同一事实源",
+        "设备怎样绑定：一次性入口、会话令牌、设备启停和最后在线时间",
+        "手机审批怎样不越权：必须说明理由、保持幂等，批准只表示允许尝试而不是执行成功",
+        "LAN 与 Gateway 的两条路径：可达性、重连、状态展示和 Open Edition 的发布禁区",
+        "弱网、缓存和版本更新：什么时候展示旧数据，什么时候必须失败关闭",
+        "隐私与公开截图：二维码、绑定链接、令牌、聊天正文和真实任务数据为什么不能入库",
+        "读者可直接使用的双端架构表、绑定流程和 15 项验收清单"
+      ],
+      "deduplication": "不同于昨日的 Cursor 团队实操：旧文讲一项需求如何被团队交付，本题只研究人在离开 PC 后怎样通过受约束 PWA 继续观察和作出少量决定，重点是双端事实一致、绑定与权限。",
+      "visualPlan": {
+        "coverConcept": "明亮集中构图：左侧一台本机工作站承载运行中的 AI 团队，右侧一部手机通过一条受保护的连接读取同一条任务轨道，中间只有一个事实核心。",
+        "inlineFigures": ["本机执行面—手机控制面—共同事实源架构图", "绑定、查看、审批、回到报告核验的交互时序"]
+      }
+    }
+  ]
+}

@@ -13,6 +13,8 @@
 
 内部证据、去重、事实矩阵、Article Brief、独立编辑和视觉 QA 仍然保留，但不得越过用户确认门。
 
+所有选题、正文、独立编辑和视觉工作开始前，必须完整读取并执行 [`COMMUNITY-TECHNICAL-WRITING-STANDARD.md`](./COMMUNITY-TECHNICAL-WRITING-STANDARD.md)。所有题图、文中图和图文预览还必须完整读取并执行 [`EDITORIAL-VISUAL-STANDARD.md`](./EDITORIAL-VISUAL-STANDARD.md)。两份文件分别是全局技术文章标准和全局视觉标准；单次运行复盘只能补充，不能降低它们。
+
 ## 检查点
 
 | Checkpoint | 允许的工作 | 必须停下等待 |
@@ -51,6 +53,8 @@ Research Center 的自有项目研究不得从外部热点、竞品能力或本�
 - `publication` 未记录为用户批准时，不得进入 `Publishing` 或 `Published`。
 - 题目确认不是证据豁免。定向资料搜集后仍可因证据不足收窄、降级或退回用户重新选择。
 - 文中图是可选项；只有能降低理解成本时才制作。
+- 用户、模型或编辑建议只提供编辑方向，不建立技术事实；必须先按全局技术文章标准完成规范、代码和测试核验。
+- 返工导致事实、数字、结论或证据边界变化时，中英文稿必须同步复核，旧版独立编辑分数不得沿用。
 - 发布只限 Research Center，除非用户另行明确指定其他平台。
 
 ## 文件约定

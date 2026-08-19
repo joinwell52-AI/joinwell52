@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fbfdff"/><stop offset="1" stop-color="#eff6ff"/></linearGradient>
+    <filter id="s2"><feDropShadow dx="0" dy="10" stdDeviation="13" flood-color="#1e3a5f" flood-opacity="0.12"/></filter>
+    <marker id="a2" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto"><path d="M0 0L12 6L0 12Z" fill="#64748b"/></marker>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg2)"/>
+  <text x="800" y="74" text-anchor="middle" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="38" font-weight="700" fill="#0f172a">从治理语义到故障证据：四层不能互相代证</text>
+  <text x="800" y="116" text-anchor="middle" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="20" fill="#475569">先定义什么不能被破坏，再验证故障发生后留下什么结果</text>
+
+  <g font-family="Microsoft YaHei, Segoe UI, sans-serif" filter="url(#s2)">
+    <g transform="translate(180,165)">
+      <rect width="1240" height="120" rx="26" fill="#e8efff" stroke="#93b4ff" stroke-width="3"/>
+      <circle cx="70" cy="60" r="34" fill="#315fce"/><text x="70" y="69" text-anchor="middle" font-size="24" font-weight="700" fill="#fff">1</text>
+      <text x="128" y="48" font-size="28" font-weight="700" fill="#16336f">TMPA Core｜治理语义</text>
+      <text x="128" y="84" font-size="20" fill="#334155">稳定身份 · 责任归属 · 生命周期/验收分离 · 对象不可变 · 冲突保留 · 确定性重建</text>
+      <rect x="990" y="30" width="210" height="60" rx="18" fill="#fff"/><text x="1095" y="67" text-anchor="middle" font-size="18" font-weight="700" fill="#315fce">定义“应当成立”</text>
+    </g>
+    <g transform="translate(180,335)">
+      <rect width="1240" height="120" rx="26" fill="#e5f8f5" stroke="#5dc9bb" stroke-width="3"/>
+      <circle cx="70" cy="60" r="34" fill="#0f9f8f"/><text x="70" y="69" text-anchor="middle" font-size="24" font-weight="700" fill="#fff">2</text>
+      <text x="128" y="48" font-size="28" font-weight="700" fill="#075e55">FCoP Profile｜文件协议投影</text>
+      <text x="128" y="84" font-size="20" fill="#334155">TASK / REPORT / ISSUE / REVIEW · 路径表示当前状态 · 迁移事件留下历史</text>
+      <rect x="990" y="30" width="210" height="60" rx="18" fill="#fff"/><text x="1095" y="67" text-anchor="middle" font-size="18" font-weight="700" fill="#0f9f8f">规定“怎样表达”</text>
+    </g>
+    <g transform="translate(180,505)">
+      <rect width="1240" height="120" rx="26" fill="#fff3df" stroke="#f3b44c" stroke-width="3"/>
+      <circle cx="70" cy="60" r="34" fill="#d97706"/><text x="70" y="69" text-anchor="middle" font-size="24" font-weight="700" fill="#fff">3</text>
+      <text x="128" y="48" font-size="28" font-weight="700" fill="#854d0e">CodeFlowMu｜运行责任</text>
+      <text x="128" y="84" font-size="20" fill="#334155">文件观察 · 依赖检查 · 执行轮次 · 会话启动 · 有时限的执行权 · 恢复策略</text>
+      <rect x="990" y="30" width="210" height="60" rx="18" fill="#fff"/><text x="1095" y="67" text-anchor="middle" font-size="18" font-weight="700" fill="#d97706">实现“怎样运行”</text>
+    </g>
+  </g>
+  <g stroke="#64748b" stroke-width="4" marker-end="url(#a2)"><line x1="800" y1="286" x2="800" y2="326"/><line x1="800" y1="456" x2="800" y2="496"/></g>
+
+  <g font-family="Microsoft YaHei, Segoe UI, sans-serif">
+    <rect x="180" y="680" width="590" height="140" rx="26" fill="#fff" stroke="#94a3b8" stroke-width="3"/>
+    <text x="475" y="724" text-anchor="middle" font-size="25" font-weight="700" fill="#0f172a">TMPA 一致性测试 C01—C14</text>
+    <text x="475" y="763" text-anchor="middle" font-size="18" fill="#475569">检查治理对象、Reader、冲突、恢复和验收行为</text>
+    <text x="475" y="795" text-anchor="middle" font-size="16" fill="#64748b">当前精确 Bundle 的作者运行证据，不能替代产品故障测试</text>
+    <rect x="830" y="680" width="590" height="140" rx="26" fill="#fff" stroke="#fb923c" stroke-width="3"/>
+    <text x="1125" y="724" text-anchor="middle" font-size="25" font-weight="700" fill="#9a3412">本文 12 项故障场景清单</text>
+    <text x="1125" y="763" text-anchor="middle" font-size="18" fill="#475569">检查磁盘、通知、派发和测试裁决的具体故障</text>
+    <text x="1125" y="795" text-anchor="middle" font-size="16" fill="#64748b">清单是待验证目标；真实 PASS / NOT RUN / 待补测逐项报告</text>
+    <text x="800" y="864" text-anchor="middle" font-size="15" fill="#64748b">依据：TMPA Core S1.0、FCoP v3、CodeFlowMu 当前代码与 2026-08-19 实验记录</text>
+  </g>
+</svg>

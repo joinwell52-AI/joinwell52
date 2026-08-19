@@ -1,0 +1,113 @@
+{
+  "schema": "first-party-reading-record/v1",
+  "runId": "2026-08-19-guided-article-pipeline-round1",
+  "runDate": "2026-08-19",
+  "status": "Completed",
+  "completedAt": "2026-08-19T11:20:00+08:00",
+  "sources": [
+    {
+      "id": "FP-POSITION-01",
+      "role": "positioning",
+      "path": "D:/TMPA/CodeFlowMu-open/README.zh.md",
+      "readCompletely": true,
+      "supports": "支持 TMPA、FCoP 与 CodeFlowMu Open 的分层关系；支持 CodeFlowMu Open 是本地优先的 PM、DEV、OPS、QA 开发团队应用，并提供 PC Panel 与 Mobile PWA。",
+      "doesNotSupport": "README 是项目自述，不能单独证明跨环境可靠性、普遍生产效果或未公开母版能力。"
+    },
+    {
+      "id": "FP-NORM-01",
+      "role": "normative",
+      "path": "D:/TMPA/FCoP/adr/ADR-0038-fcop-boundary-charter.md",
+      "readCompletely": true,
+      "supports": "支持 FCoP 是外化协调协议而非 Runtime、Scheduler 或 Executor；调度、重试、工具执行与权限强制属于宿主运行时。",
+      "doesNotSupport": "不能把 CodeFlowMu 的调度、规划、恢复或 PWA 能力归为 FCoP 协议自身能力。"
+    },
+    {
+      "id": "FP-NORM-02",
+      "role": "normative",
+      "path": "D:/TMPA/CodeFlowMu-open/docs/skills/pm-planning-governance.md",
+      "readCompletely": true,
+      "supports": "支持 CodeFlowMu 将复杂规划分级，并为长周期任务规定完整读取、Requirement Ledger、事实冻结、WP DAG、预算、验证摘要和 Planning Gate。",
+      "doesNotSupport": "这是 CodeFlowMu 产品工作流，不是所有 FCoP 项目的通用强制规则，也不能证明该方法已在外部团队普遍有效。"
+    },
+    {
+      "id": "FP-IMPL-01",
+      "role": "implementation",
+      "path": "D:/TMPA/CodeFlowMu-open/packages/codeflowmu-runtime/src/pm/LongHorizonPlanning.ts",
+      "readCompletely": true,
+      "supports": "支持长周期触发分类、源文本与正文摘要绑定、规划模型校验、阻断 finding 和可持久化验证记录已经进入运行时代码。",
+      "doesNotSupport": "实现存在不等于长任务质量必然提高；语义分类和 ADMIN 意图仍不能由确定性校验器替代。"
+    },
+    {
+      "id": "FP-IMPL-02",
+      "role": "implementation",
+      "path": "D:/TMPA/CodeFlowMu-open/docs/open/help.zh.md",
+      "readCompletely": true,
+      "supports": "支持 PC Panel 与 PWA 的真实操作面：任务、报告、审批、动态、聊天、绑定、项目切换与运行状态，并明确审批不等于执行成功。",
+      "doesNotSupport": "操作手册和截图不能单独证明公网可达性、任意网络环境稳定性或无人值守安全。"
+    },
+    {
+      "id": "FP-FIELD-01",
+      "role": "field-evidence",
+      "path": "D:/TMPA/CodeFlowMu-open/packages/codeflowmu-runtime/src/pm/__tests__/LongHorizonPlanning.test.ts",
+      "readCompletely": true,
+      "supports": "测试覆盖长周期触发与覆盖、源摘要篡改、修订历史、过期 Gate 决定拒绝，以及只有匹配验证和 ADMIN approve_wp00 才开放首个工作包。",
+      "doesNotSupport": "这些是第一方自动化测试，不是独立用户研究，也不能量化规划对交付成功率的提升。"
+    },
+    {
+      "id": "FP-FIELD-02",
+      "role": "field-evidence",
+      "path": "D:/TMPA/CodeFlowMu-open/packages/codeflowmu-runtime/src/scheduler/__tests__/TaskDispatcher.twoPhaseDispatch.test.ts",
+      "readCompletely": true,
+      "supports": "测试覆盖可信来源自动派发、未知来源 hold、重复观察不重复追加、依赖未满足时阻止 QA，以及显式控制面唤醒等派发路径。",
+      "doesNotSupport": "受控测试不代表高并发、跨主机或所有崩溃时序已被穷尽。"
+    },
+    {
+      "id": "FP-FIELD-03",
+      "role": "field-evidence",
+      "path": "D:/TMPA/CodeFlowMu-open/packages/codeflowmu-runtime/src/_internal/__tests__/atomic-write.test.ts",
+      "readCompletely": true,
+      "supports": "测试以 Windows NTFS 的 EPERM/ENOENT 故障注入验证有限重试、失败边界、唯一临时文件与原子写入辅助逻辑。",
+      "doesNotSupport": "它不证明网络文件系统或跨挂载点 rename 的原子性，也不提供 exactly-once 执行保证。"
+    },
+    {
+      "id": "FP-FIELD-04",
+      "role": "field-evidence",
+      "path": "D:/TMPA/CodeFlowMu-open/codeflowmu-shell/src/__tests__/mobile-api.test.ts",
+      "readCompletely": true,
+      "supports": "测试覆盖手机端绑定会话、任务与父子关系读取、报告、审批动作、拒绝理由、幂等事实核查决定和 Gateway 状态。",
+      "doesNotSupport": "API 测试不证明实际弱网、不同手机浏览器、长期后台运行或公网 Gateway 的用户体验。"
+    },
+    {
+      "id": "FP-HISTORY-01",
+      "role": "research-history",
+      "path": "D:/TMPA/joinwell52-article-20260819/research/knowledge/CURRENT.md",
+      "readCompletely": true,
+      "supports": "支持当前研究主线仍是工作边界、执行证据、独立验证、恢复和控制面/工作 Runtime 分层。",
+      "doesNotSupport": "处于 Knowledge 或 evidence gate pending 的候选不能写成已晋级、已独立验证的架构结论。"
+    },
+    {
+      "id": "FP-RECENT-01",
+      "role": "recent-content",
+      "path": "D:/TMPA/joinwell52-article-20260819/docs/zh/engineering/2026-08-17-reviewable-agent-plan.md",
+      "readCompletely": true,
+      "supports": "用于确认近期已经讨论自由文本计划的权威倒置、需求映射和计划复核。",
+      "doesNotSupport": "该文没有讲 CodeFlowMu 如何把超长任务书编译为带摘要绑定、WP DAG、预算和 Planning Gate 的可执行规划工件。"
+    },
+    {
+      "id": "FP-RECENT-02",
+      "role": "recent-content",
+      "path": "D:/TMPA/joinwell52-article-20260819/docs/zh/engineering/2026-08-18-fcop-file-state-machine.md",
+      "readCompletely": true,
+      "supports": "用于确认昨日已经讲过 FCoP 文件身份、路径状态、迁移事件与原子提交边界。",
+      "doesNotSupport": "该文没有建立宿主 Runtime 的派发、会话、依赖、重复观察和故障注入测试体系。"
+    },
+    {
+      "id": "FP-RECENT-03",
+      "role": "recent-content",
+      "path": "D:/TMPA/joinwell52-article-20260819/docs/zh/digital-employee/2026-08-18-cursor-ai-development-team.md",
+      "readCompletely": true,
+      "supports": "用于确认昨日已经讲过在 Cursor 中从需求、角色拆解到测试验收的完整入门工作流。",
+      "doesNotSupport": "该文只把 PC/PWA 作为观察入口，没有解释本地执行面与手机控制面如何共享事实、绑定设备并保持审批边界。"
+    }
+  ]
+}

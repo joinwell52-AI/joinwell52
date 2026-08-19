@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8fbff"/><stop offset="1" stop-color="#eef4ff"/></linearGradient>
+    <linearGradient id="rail" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#2563eb"/><stop offset="0.5" stop-color="#0ea5a4"/><stop offset="1" stop-color="#f59e0b"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#1e3a5f" flood-opacity="0.12"/></filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#64748b"/></marker>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="800" y="82" text-anchor="middle" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="38" font-weight="700" fill="#0f172a">两万字需求如何变成可执行、可验收的工程链</text>
+  <text x="800" y="124" text-anchor="middle" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="20" fill="#475569">每一步都有输入、责任主体、输出和阻断条件</text>
+  <rect x="90" y="170" width="1420" height="8" rx="4" fill="url(#rail)"/>
+
+  <g font-family="Microsoft YaHei, Segoe UI, sans-serif" filter="url(#shadow)">
+    <g transform="translate(50,225)">
+      <rect width="280" height="360" rx="28" fill="#ffffff" stroke="#bfdbfe" stroke-width="3"/>
+      <circle cx="46" cy="48" r="24" fill="#2563eb"/><text x="46" y="56" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">1</text>
+      <text x="82" y="56" font-size="26" font-weight="700" fill="#0f172a">锁定来源</text>
+      <text x="28" y="112" font-size="18" font-weight="700" fill="#2563eb">输入</text>
+      <text x="28" y="144" font-size="18" fill="#334155">原始任务书、引用与代码版本</text>
+      <text x="28" y="198" font-size="18" font-weight="700" fill="#2563eb">责任</text>
+      <text x="28" y="230" font-size="16" fill="#334155">PM 完整读取；工具绑定来源身份</text>
+      <text x="28" y="284" font-size="18" font-weight="700" fill="#2563eb">输出</text>
+      <text x="28" y="316" font-size="18" fill="#334155">版本、行数、读取范围、校验码</text>
+    </g>
+    <g transform="translate(355,225)">
+      <rect width="280" height="360" rx="28" fill="#ffffff" stroke="#bae6fd" stroke-width="3"/>
+      <circle cx="46" cy="48" r="24" fill="#0284c7"/><text x="46" y="56" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">2</text>
+      <text x="82" y="56" font-size="26" font-weight="700" fill="#0f172a">编制需求台账</text>
+      <text x="28" y="112" font-size="18" font-weight="700" fill="#0284c7">输入</text>
+      <text x="28" y="144" font-size="18" fill="#334155">已锁定版本的完整原文</text>
+      <text x="28" y="198" font-size="18" font-weight="700" fill="#0284c7">责任</text>
+      <text x="28" y="230" font-size="18" fill="#334155">PM 分类；人类裁决阻断冲突</text>
+      <text x="28" y="284" font-size="18" font-weight="700" fill="#0284c7">输出</text>
+      <text x="28" y="316" font-size="18" fill="#334155">REQ、原文位置、责任与去向</text>
+    </g>
+    <g transform="translate(660,225)">
+      <rect width="280" height="360" rx="28" fill="#ffffff" stroke="#99f6e4" stroke-width="3"/>
+      <circle cx="46" cy="48" r="24" fill="#0f9f8f"/><text x="46" y="56" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">3</text>
+      <text x="82" y="56" font-size="26" font-weight="700" fill="#0f172a">生成施工图</text>
+      <text x="28" y="112" font-size="18" font-weight="700" fill="#0f9f8f">输入</text>
+      <text x="28" y="144" font-size="18" fill="#334155">需求台账与当前工程事实</text>
+      <text x="28" y="198" font-size="18" font-weight="700" fill="#0f9f8f">责任</text>
+      <text x="28" y="230" font-size="18" fill="#334155">PM 设计工作包；脚本检查结构</text>
+      <text x="28" y="284" font-size="18" font-weight="700" fill="#0f9f8f">输出</text>
+      <text x="28" y="316" font-size="18" fill="#334155">依赖、测试、证据、恢复方案</text>
+    </g>
+    <g transform="translate(965,225)">
+      <rect width="280" height="360" rx="28" fill="#ffffff" stroke="#fde68a" stroke-width="3"/>
+      <circle cx="46" cy="48" r="24" fill="#d97706"/><text x="46" y="56" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">4</text>
+      <text x="82" y="56" font-size="26" font-weight="700" fill="#0f172a">校验与批准</text>
+      <text x="28" y="112" font-size="18" font-weight="700" fill="#d97706">输入</text>
+      <text x="28" y="144" font-size="18" fill="#334155">规划结构、事实快照与正文</text>
+      <text x="28" y="198" font-size="18" font-weight="700" fill="#d97706">责任</text>
+      <text x="28" y="230" font-size="16" fill="#334155">系统校验；ADMIN 决定放行</text>
+      <text x="28" y="284" font-size="18" font-weight="700" fill="#d97706">阻断</text>
+      <text x="28" y="316" font-size="18" fill="#334155">仅匹配版本的 WP-00 可开放</text>
+    </g>
+    <g transform="translate(1270,225)">
+      <rect width="280" height="360" rx="28" fill="#ffffff" stroke="#fed7aa" stroke-width="3"/>
+      <circle cx="46" cy="48" r="24" fill="#ea580c"/><text x="46" y="56" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">5</text>
+      <text x="82" y="56" font-size="26" font-weight="700" fill="#0f172a">派工与验收</text>
+      <text x="28" y="112" font-size="18" font-weight="700" fill="#ea580c">输入</text>
+      <text x="28" y="144" font-size="18" fill="#334155">已批准计划与开放工作包</text>
+      <text x="28" y="198" font-size="18" font-weight="700" fill="#ea580c">责任</text>
+      <text x="28" y="230" font-size="15" fill="#334155">PM 派工；DEV/OPS 实现；QA 验证</text>
+      <text x="28" y="284" font-size="18" font-weight="700" fill="#ea580c">输出</text>
+      <text x="28" y="316" font-size="18" fill="#334155">TASK、REPORT、REVIEW 与证据</text>
+    </g>
+  </g>
+
+  <g stroke="#64748b" stroke-width="4" fill="none" marker-end="url(#arrow)">
+    <path d="M330 405 H347"/><path d="M635 405 H652"/><path d="M940 405 H957"/><path d="M1245 405 H1262"/>
+  </g>
+  <rect x="170" y="665" width="1260" height="120" rx="28" fill="#0f172a"/>
+  <text x="800" y="713" text-anchor="middle" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="23" font-weight="700" fill="#fff">关键边界</text>
+  <text x="800" y="754" text-anchor="middle" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="20" fill="#dbeafe">需求台账与工作包属于 CodeFlowMu 规划层；正式协作阶段才使用 FCoP 的 TASK / REPORT / REVIEW</text>
+  <text x="800" y="850" text-anchor="middle" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="15" fill="#64748b">依据：CodeFlowMu 长任务规划合同、PM 规划治理规范、FCoP v3 协作规范</text>
+</svg>

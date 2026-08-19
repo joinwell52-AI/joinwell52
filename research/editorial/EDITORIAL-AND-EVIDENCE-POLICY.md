@@ -111,6 +111,8 @@ A Community Edition must declare its target community, new title, selected angle
 
 ## 9. Pre-publication gates
 
+Research Center 技术文章还必须完整执行 [`COMMUNITY-TECHNICAL-WRITING-STANDARD.md`](./COMMUNITY-TECHNICAL-WRITING-STANDARD.md)。该标准覆盖选题可理解性、第一屏读者价值、术语解释、端到端责任链、理论/协议/实现/验证分账、用户建议核验、双语同步与视觉门禁。
+
 Every V2 candidate records `PASS` for:
 
 1. **Research Value** — clear question, original information/analysis/synthesis, value without prior project familiarity;
