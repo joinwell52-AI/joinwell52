@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "research/runtime/manual-execution-requests/2026-08-18-publication-retry.json"
+      - "research/runtime/manual-execution-requests/2026-08-19-publication-retry.json"
 
 permissions:
   contents: write
@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   publish:
-    name: Validate and release 2026-08-18 Publication
+    name: Validate and release 2026-08-19 Publication
     runs-on: ubuntu-latest
     steps:
       - name: Checkout authoritative main
@@ -36,7 +36,7 @@ jobs:
           npm ci
 
       - name: Materialize only currently authorized Publication candidates
-        run: node scripts/runtime-publication-release-current.mjs --date 2026-08-18 --wake research/runtime/wakes/2026/08/2026-08-18/publication-200522.json
+        run: node scripts/runtime-publication-release-current.mjs --date 2026-08-19 --wake research/runtime/wakes/2026/08/2026-08-19/publication-200420.json
 
       - name: Run authoritative Publication validators and build
         run: |
@@ -53,12 +53,12 @@ jobs:
           set -euo pipefail
           git config user.name "joinwell52 Research Runtime"
           git config user.email "actions@users.noreply.github.com"
-          git add docs/en/digital-employee docs/zh/digital-employee docs/en/industry docs/zh/industry docs/en/engineering docs/zh/engineering docs/public/assets/covers docs/public/assets/figures research/runtime/releases/2026-08-18-publication.json research/runtime/results/2026/08/2026-08-18-publication-result.json || true
+          git add docs/en/digital-employee docs/zh/digital-employee docs/en/industry docs/zh/industry docs/en/engineering docs/zh/engineering docs/public/assets/covers docs/public/assets/figures research/runtime/releases/2026-08-19-publication.json research/runtime/results/2026/08/2026-08-19-publication-result.json || true
           if git diff --cached --quiet; then
             echo "No governed release content staged."
             exit 1
           fi
-          git commit -m "runtime(publication): release 2026-08-18 research"
+          git commit -m "runtime(publication): release 2026-08-19 research"
           git restore --worktree .
           for attempt in 1 2 3; do
             if git pull --rebase origin main; then
@@ -83,10 +83,10 @@ jobs:
           git reset --hard origin/main
           node <<'NODE'
           const fs=require('fs')
-          const release=JSON.parse(fs.readFileSync('research/runtime/releases/2026-08-18-publication.json','utf8'))
-          const result=JSON.parse(fs.readFileSync('research/runtime/results/2026/08/2026-08-18-publication-result.json','utf8'))
-          if(release.status!=='Released'||release.date!=='2026-08-18'||release.releasedItems?.length>3)throw new Error('Release manifest invalid')
-          if(result.status!=='Completed'||result.runtimeDate!=='2026-08-18'||result.output?.releasedItems!==release.releasedItems.length)throw new Error('Publication result invalid')
+          const release=JSON.parse(fs.readFileSync('research/runtime/releases/2026-08-19-publication.json','utf8'))
+          const result=JSON.parse(fs.readFileSync('research/runtime/results/2026/08/2026-08-19-publication-result.json','utf8'))
+          if(release.status!=='Released'||release.date!=='2026-08-19'||release.releasedItems?.length>3)throw new Error('Release manifest invalid')
+          if(result.status!=='Completed'||result.runtimeDate!=='2026-08-19'||result.output?.releasedItems!==release.releasedItems.length)throw new Error('Publication result invalid')
           for(const item of release.releasedItems)for(const key of ['zh','en','cover'])if(!fs.existsSync(item[key]))throw new Error(`Missing durable ${item[key]}`)
           console.log(`Verified ${release.releasedItems.length} released items on origin/main.`)
           NODE
