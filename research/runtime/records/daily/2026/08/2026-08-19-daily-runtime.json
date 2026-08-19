@@ -8,13 +8,13 @@
   "date": "2026-08-19",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Running",
+    "production": "Completed",
     "publication": "Waiting"
   },
   "results": {
@@ -821,6 +821,136 @@
       "githubCommit": "42404f6ffb1cf84181c6a5ff2ad946543fadfd1c",
       "commitVerify": "Completed",
       "verifiedAt": "2026-08-19T13:12:18+08:00"
+    },
+    "production": {
+      "schema": "runtime-shift-result/v2",
+      "task": "production",
+      "family": "daily",
+      "runtimeDate": "2026-08-19",
+      "status": "Completed",
+      "productionMode": "candidate-batch",
+      "input": {
+        "promptVersion": "2.13.0",
+        "promptPath": "research/runtime/worker-prompts/generated/production.prompt.md",
+        "promptSha256": "d8b0cd52d22d976d6356558a23c5c2dc28ed5aa8f51793538fa8fbebfb80996f",
+        "researchObjects": [
+          "Q-20260819-01",
+          "Q-20260819-02",
+          "Q-20260819-03"
+        ],
+        "stagedCandidateCommit": "18ea464cf173678c26945b126b105d6b961c1648"
+      },
+      "workResult": {
+        "summary": "Converted all three authorized same-date Research Objects into complete bilingual Editorial Architecture 2.1 candidate bundles, materialized deterministic baseline raster covers through the governed Actions bridge, and passed the repository-defined Production checkpoint, atomic-bundle, runtime, editorial, evidence and layout validators without executing Publication.",
+        "summary_zh": "将当日获授权的三份 Research Object 全部转换为完整的双语 Editorial Architecture 2.1 候选包，通过受管 Actions 桥生成确定性基础栅格题图，并通过仓库定义的 Production 检查点、原子候选包、运行时、编辑、证据与版式校验；未执行 Publication。"
+      },
+      "output": {
+        "type": "Publication Candidates",
+        "candidateBatch": "research/runtime/candidates/2026/08/2026-08-19-candidates.json",
+        "candidateCount": 3,
+        "bilingualArticleFiles": 6,
+        "coverAssets": 3,
+        "inlineFigureAssets": 0
+      },
+      "next": {
+        "task": "publication",
+        "instruction": "Do not execute Publication in this Production run. Publication remains a separate governed task.",
+        "instruction_zh": "本次 Production 不执行 Publication；Publication 仍是独立受治理任务。"
+      },
+      "coverEvidence": [
+        {
+          "itemId": "Q-20260819-01",
+          "briefId": "2026-08-19:Q-20260819-01-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-19-monotonic-delegation-authority-cover.png",
+          "sanitizedPrompt": "A smaller precision key contained within a larger master-key authority boundary",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260819-02",
+          "briefId": "2026-08-19:Q-20260819-02-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-19-delivery-context-separation-cover.png",
+          "sanitizedPrompt": "One message capsule moving toward a user-facing window while its shadow stops before a separate reasoning chamber",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260819-03",
+          "briefId": "2026-08-19:Q-20260819-03-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-19-oauth-refresh-split-commit-cover.png",
+          "sanitizedPrompt": "A newly issued credential token crossing a boundary while its durable vault slot remains open",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        }
+      ],
+      "metrics": [
+        {
+          "name": "research_objects_consumed",
+          "value": 3
+        },
+        {
+          "name": "publication_candidates",
+          "value": 3
+        },
+        {
+          "name": "persisted_article_segments",
+          "value": 3
+        },
+        {
+          "name": "planning_artifacts",
+          "value": 9
+        },
+        {
+          "name": "bilingual_article_files",
+          "value": 6
+        },
+        {
+          "name": "cover_assets",
+          "value": 3
+        },
+        {
+          "name": "inline_figure_assets",
+          "value": 0
+        },
+        {
+          "name": "revision_rounds",
+          "value": 2
+        },
+        {
+          "name": "direct_cloud_image_generation_calls",
+          "value": 0
+        },
+        {
+          "name": "direct_publication_actions",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        "18ea464cf173678c26945b126b105d6b961c1648",
+        "research/runtime/worker-prompts/generated/production.prompt.md",
+        "research/runtime/checkpoints/2026/08/2026-08-19-production.json",
+        "research/runtime/wakes/2026/08/2026-08-19/production-150140.json"
+      ],
+      "artifacts": [
+        "research/runtime/candidates/2026/08/2026-08-19-candidates.json",
+        "staging/publication-candidates/2026-08-19-monotonic-delegation-authority.zh.md",
+        "staging/publication-candidates/2026-08-19-monotonic-delegation-authority.en.md",
+        "staging/publication-candidates/2026-08-19-monotonic-delegation-authority-cover.png",
+        "staging/publication-candidates/2026-08-19-delivery-context-separation.zh.md",
+        "staging/publication-candidates/2026-08-19-delivery-context-separation.en.md",
+        "staging/publication-candidates/2026-08-19-delivery-context-separation-cover.png",
+        "staging/publication-candidates/2026-08-19-oauth-refresh-split-commit.zh.md",
+        "staging/publication-candidates/2026-08-19-oauth-refresh-split-commit.en.md",
+        "staging/publication-candidates/2026-08-19-oauth-refresh-split-commit-cover.png"
+      ],
+      "startedAt": "2026-08-19T15:06:33+08:00",
+      "completedAt": "2026-08-19T15:33:43+08:00"
     }
   },
   "timeline": [
@@ -949,6 +1079,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Production after verifying research/runtime/wakes/2026/08/2026-08-19/production-150140.json, the authoritative Production prompt v2.13.0 SHA-256 and current execution authority on main."
+    },
+    {
+      "time": "2026-08-19T15:33:43+08:00",
+      "task": "production",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Production closed as Completed through governed Runtime shift finalization after durable result validation for 2026-08-19."
     }
   ],
   "metrics": [],
@@ -956,5 +1093,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-19T15:07:13+08:00"
+  "updatedAt": "2026-08-19T15:33:43+08:00"
 }
