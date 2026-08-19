@@ -1,0 +1,67 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-19",
+  "itemId": "Q-20260804-11",
+  "coreProposition": "Waiting should be represented as durable runtime state with explicit condition, observation, admission and effect-evidence boundaries, rather than as repeated free-form agent turns.",
+  "openingMove": {
+    "type": "contradiction",
+    "purpose": "Open with the inversion that a capable monitoring agent often succeeds by not acting until external state changes, so continuous action can be the failure mode rather than the solution.",
+    "evidenceRefs": ["E1", "E3", "E4", "E5"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is monitoring a different workload from ordinary long-horizon execution?",
+      "claim": "In SentinelBench, the environment changes independently of the agent, so progress can depend on preserving a condition and waiting rather than generating more actions.",
+      "evidenceRefs": ["E1", "E2", "E3"],
+      "reasoningRole": "problem-definition",
+      "readerProgress": "The reader distinguishes long duration from externally driven monitoring and understands why continuous action is not a neutral default.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What does the benchmark make measurable that ordinary completion tests miss?",
+      "claim": "No-op tasks, relative conditions, database-state scoring, reaction time and resource use jointly expose false-positive completion, lost baseline state and the latency-cost tradeoff.",
+      "evidenceRefs": ["E1", "E3", "E6"],
+      "reasoningRole": "measurement",
+      "readerProgress": "The reader sees that monitoring correctness is multidimensional and that doing nothing can be a legitimate successful outcome.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What actually changes when waiting moves into a runtime primitive?",
+      "claim": "The evaluated wait_for tool keeps condition and timeout explicit while moving page observation, diff deduplication, backoff and selective model checks outside the main reasoning loop.",
+      "evidenceRefs": ["E7"],
+      "reasoningRole": "mechanism",
+      "readerProgress": "The reader understands the architectural separation between condition state, observation policy and model reasoning without confusing the prototype with a production event system.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Do the baseline results support a universal wait_for advantage?",
+      "claim": "No: the authors report major cost and completion advantages in the long-duration GPT-5.4 condition, but reaction latency remains a real tradeoff and the complete baseline lacks independent reproduction identified in this run.",
+      "evidenceRefs": ["E4", "E5", "E6", "E9"],
+      "reasoningRole": "evidence-boundary",
+      "readerProgress": "The reader can use the result without turning one prototype comparison into a general theorem about polling or event systems.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What production contract follows from the evidence without overclaiming?",
+      "claim": "A production monitor should separate durable condition state, swappable observation policy, evidence-based condition admission and separately verified external effects; this is a Research Center synthesis rather than a SentinelBench claim.",
+      "evidenceRefs": ["E2", "E3", "E7", "E8", "I1"],
+      "reasoningRole": "synthesis",
+      "readerProgress": "The reader leaves with a concrete four-boundary monitoring model and knows which parts remain unvalidated by SentinelBench.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "A sufficiently capable model might learn an efficient polling policy without a dedicated waiting primitive.",
+    "responseBoundary": "SentinelBench does not disprove that possibility; its narrower evidence is that same-model harness/tool design materially changes cost and completion, so runtime semantics remain an independent engineering variable."
+  },
+  "endingStrategy": {
+    "type": "open-question",
+    "purpose": "End on the missing production evidence: restart-safe monitor identity, ephemeral events, subjective admission, deduplicated side effects and independent real-world reproduction."
+  }
+}
