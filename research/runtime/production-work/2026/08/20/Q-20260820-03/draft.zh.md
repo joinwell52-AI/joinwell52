@@ -27,7 +27,7 @@ sources:
 
 如果在内容完成前就创建 Final Version Directory，Reservation 看起来就像 Publication。Reader 可能发现一个 Payload 或 Metadata 尚不完整的 Version。In-process Lock 能串行化 Thread，却不能让未完成状态在结构上对 Reader 隐藏，也未必能协调独立 Process。
 
-Hidden Pending Namespace 改变了 Discovery 的含义。Pending Directory 证明 Writer 已预留 Identity，不表示 Version 可以被消费。普通枚举只接受 Integer-version Name，因此未完成工作不会误入“已发布 Artifact”的定义。
+Hidden Pending Namespace 改变了 Discovery 的含义。Pending Directory 只记录 Writer 已预留 Identity，并不表示 Version 可以被消费。普通枚举只接受 Integer-version Name，因此未完成工作不会误入“已发布 Artifact”的定义。
 
 只有 Payload 与 Metadata 组成完整 Staged Representation 后，Final Rename 才跨越 Visibility Boundary。Namespace 本身携带 Lifecycle Meaning：Hidden 表示仍在准备，Integer-named 表示已获得 Reader Visibility Authority。
 
