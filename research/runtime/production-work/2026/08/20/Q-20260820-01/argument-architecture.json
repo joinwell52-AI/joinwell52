@@ -1,0 +1,58 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-20",
+  "itemId": "Q-20260820-01",
+  "coreProposition": "For digital employees, a nominal action name is evidence of intent, not execution authority; when configuration, wrappers or environment can redirect behavior, admission must bind executable identity, execution context and governing policy, while approval and effect containment remain separate gates.",
+  "openingMove": {
+    "type": "counterexample",
+    "purpose": "Open with a read-only-looking Git command whose repository configuration can execute a helper.",
+    "evidenceRefs": ["E1", "E4"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is the command name incomplete authority evidence?",
+      "claim": "A nominal label records operator intent, while executable path and mutable configuration can change the behavior that will actually run.",
+      "evidenceRefs": ["E1", "E3", "I1"],
+      "reasoningRole": "conceptual-separation",
+      "readerProgress": "The reader separates visible intent from effective execution identity.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What does the Codex change prove at the admission boundary?",
+      "claim": "Removing Git from the automatic known-safe shortcut makes classification fail closed while leaving explicit policy modes and rules to decide authorization.",
+      "evidenceRefs": ["E1", "E2", "E4"],
+      "reasoningRole": "mechanism",
+      "readerProgress": "The reader sees classification as evidence for policy, not the policy decision itself.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What should a stronger execution contract bind?",
+      "claim": "Admission should bind nominal intent, executable identity, relevant context and an attributable policy decision as separate audit facts.",
+      "evidenceRefs": ["E2", "E3", "I1", "I2"],
+      "reasoningRole": "governance-model",
+      "readerProgress": "The reader gains a concrete four-part authorization record instead of a larger command allowlist.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Why is approval still not effect containment?",
+      "claim": "Approval authorizes a bounded execution decision but does not prove binary provenance, helper behavior, sandbox enforcement or external-effect reconciliation.",
+      "evidenceRefs": ["E4", "I2"],
+      "reasoningRole": "boundary",
+      "readerProgress": "The reader avoids promoting an approval receipt into a complete safety guarantee.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Lexical classifiers are cheap and can be appropriate in immutable, independently constrained environments.",
+    "responseBoundary": "Use them as optimizations only when the effective execution context is actually fixed and independently enforced; otherwise fail closed to policy."
+  },
+  "endingStrategy": {
+    "type": "open-question",
+    "purpose": "End with the evidence an approval interface must expose and how policy identity should react to repository changes."
+  }
+}

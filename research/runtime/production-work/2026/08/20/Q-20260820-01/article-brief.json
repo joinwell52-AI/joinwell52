@@ -1,0 +1,48 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-20",
+  "itemId": "Q-20260820-01",
+  "researchObjectId": "AN-20260820-01",
+  "targetAudience": {
+    "primary": "Digital-employee, agent-runtime and approval-policy engineers",
+    "knowledgeAssumption": "The reader understands command execution, approval policies and mutable repository configuration.",
+    "readerProblem": "An action that looks harmless from its command name can execute configured helpers, so a lexical allowlist can silently grant more authority than intended."
+  },
+  "whyNow": "A same-day merged Codex change removed Git from known-safe command classification on Unix and Windows after demonstrating that repository configuration can make nominally read-only Git operations execute helpers.",
+  "externalHook": {
+    "type": "authority-mismatch",
+    "description": "The visible command expresses intent, but configuration, executable path and policy determine what authority is actually exercised.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "For digital employees, a nominal action name is evidence of intent, not execution authority; when configuration, wrappers or environment can redirect behavior, admission must bind executable identity, execution context and governing policy, while approval and effect containment remain separate gates.",
+  "originalValue": {
+    "type": "execution-governance-model",
+    "description": "Separates nominal intent, effective execution identity, policy authority and downstream effect containment into distinct auditable facts instead of treating a command label as a complete safety decision."
+  },
+  "readerTakeaway": "Treat lexical safety as one admission signal, bind authorization to the effective executable and context, version the governing policy, and keep approval separate from sandboxing and effect verification.",
+  "evidenceBoundary": {
+    "supported": [
+      "The merged Codex implementation removes Git from known-safe classification on Unix and Windows.",
+      "Under UnlessTrusted, plain git status reaches approval unless an explicit execution-policy rule authorizes it.",
+      "Absolute-path tests distinguish a policy-covered host executable from another unmatched Git path.",
+      "An end-to-end test reaches human approval and preserves denial as the command result."
+    ],
+    "unsupported": [
+      "That every Git command is unsafe under every policy",
+      "That approval proves helper behavior or downstream effect containment",
+      "Binary provenance, sandbox integrity or repository-configuration integrity",
+      "Independent security validation across agent runtimes"
+    ],
+    "uncertain": [
+      "The minimum effective-execution evidence required for informed approval",
+      "How policy authority should expire when repository state changes"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article develops a general execution-governance pattern without relying on a first-party project."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The merged code and tests establish a concrete failure of lexical safety classification, while the Research Object contributes a reusable and evidence-bounded authority model."
+}
