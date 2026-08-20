@@ -1,9 +1,9 @@
 {
   "schema": "runtime-publication-execution-request/v1",
-  "date": "2026-08-19",
-  "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-19/publication-200420.json",
-  "source": "manual-recovery",
-  "requestedAt": "2026-08-19T22:27:00+08:00",
-  "reason": "Execute 2026-08-19 Publication from the fresh recovered Runtime epoch after fixing the release staging bug. Consume only existing same-date completed Production candidates; run all authoritative validators/build/visibility gates; commit and verify the durable release. Do not rerun Production or rewrite articles.",
-  "triggerNonce": "20260819-final-release-after-optional-path-fix"
+  "date": "2026-08-20",
+  "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-20/publication-200259.json",
+  "source": "chatgpt-scheduled-task",
+  "requestedAt": "2026-08-20T20:08:04+08:00",
+  "reason": "Execute the current governed Publication release from the durable 2026-08-20 Runtime publication epoch after verified ordered reconciliation and fresh Worker Claimed. Consume only complete same-date Production candidates, run the authoritative validators/build/visibility gates, and persist the governed release result without upstream repair or rewrite.",
+  "triggerNonce": "20260820-publication-200804-c1f0a3a8"
 }
