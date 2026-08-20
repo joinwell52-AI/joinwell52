@@ -1,0 +1,49 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-20",
+  "itemId": "Q-20260820-03",
+  "researchObjectId": "AN-20260820-03",
+  "targetAudience": {
+    "primary": "Storage, artifact-service, runtime and reliability engineers",
+    "knowledgeAssumption": "The reader understands versioned artifacts, filesystem rename and concurrent writers.",
+    "readerProblem": "A system can expose a complete version atomically and still lack crash durability, while a single Published flag hides ownership, completeness, visibility and persistence as different lifecycle facts."
+  },
+  "whyNow": "A same-day merged Google ADK implementation reserves hidden pending versions, stages payload and metadata, rechecks the destination and exposes the completed tree through rename while explicitly excluding fsync-backed power-loss durability.",
+  "externalHook": {
+    "type": "success-state-split",
+    "description": "The instant readers can see a complete version is not the same instant storage has proven it will survive a crash.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4", "E5"]
+  },
+  "coreProposition": "Artifact publication should model reservation, staged completeness, reader visibility and durable persistence as separate lifecycle facts: pending isolation plus atomic rename can establish process-level visibility under stated filesystem assumptions, but rename success is not crash-durability evidence and abandoned-state recovery needs independent ownership proof.",
+  "originalValue": {
+    "type": "artifact-lifecycle-model",
+    "description": "Turns an implementation-specific pending-directory protocol into a four-state engineering model that prevents atomic visibility, durability and recovery authority from collapsing into one success flag."
+  },
+  "readerTakeaway": "Hide incomplete state structurally, arbitrate writer ownership in the relevant fault domain, publish through an explicit visibility boundary, and require separate evidence for durability and stale-owner cleanup.",
+  "evidenceBoundary": {
+    "supported": [
+      "Hidden pending directories are ignored by ordinary integer-version discovery.",
+      "Payload and metadata are staged before one os.replace makes the complete tree visible.",
+      "Directory creation arbitrates reservations and a destination recheck prevents stale-list overwrite.",
+      "The maintainers explicitly exclude full power-loss durability without fsync.",
+      "Abandoned reservations may leave permanent version gaps when stale ownership cannot be proven."
+    ],
+    "unsupported": [
+      "fsync-backed crash durability",
+      "Distributed or multi-artifact transactionality",
+      "Automatic safe reclamation of abandoned reservations",
+      "Equivalent rename semantics on every filesystem"
+    ],
+    "uncertain": [
+      "Which filesystem capabilities should be verified before relying on rename",
+      "How to garbage-collect pending state without misclassifying a slow live writer"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article develops a general storage-publication and recovery pattern without first-party project dependence."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The source provides explicit code, tests and limitation statements, while the Research Object adds a reusable lifecycle distinction with clear operational consequences."
+}

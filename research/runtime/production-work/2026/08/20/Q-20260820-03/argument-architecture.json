@@ -1,0 +1,58 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-20",
+  "itemId": "Q-20260820-03",
+  "coreProposition": "Artifact publication should model reservation, staged completeness, reader visibility and durable persistence as separate lifecycle facts: pending isolation plus atomic rename can establish process-level visibility under stated filesystem assumptions, but rename success is not crash-durability evidence and abandoned-state recovery needs independent ownership proof.",
+  "openingMove": {
+    "type": "success-state-contradiction",
+    "purpose": "Contrast a version that is atomically visible to readers with storage that has not proven crash durability.",
+    "evidenceRefs": ["E2", "E4", "I2"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why should incomplete state live outside the reader namespace?",
+      "claim": "A hidden pending namespace makes visibility an explicit publication decision rather than a side effect of reserving a version number.",
+      "evidenceRefs": ["E1", "E2", "I1"],
+      "reasoningRole": "visibility-boundary",
+      "readerProgress": "The reader separates reservation and staging from publication.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "How does the protocol coordinate concurrent writers?",
+      "claim": "Filesystem directory creation arbitrates reservation ownership, and a destination recheck prevents a stale writer from replacing an already published version.",
+      "evidenceRefs": ["E3", "E5"],
+      "reasoningRole": "concurrency-mechanism",
+      "readerProgress": "The reader sees ownership and final visibility as separate synchronization points.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What exactly does rename establish?",
+      "claim": "Under the demonstrated filesystem assumptions, rename exposes a complete tree atomically to normal readers, but it does not certify persistence ordering or power-loss survival.",
+      "evidenceRefs": ["E2", "E4", "I2"],
+      "reasoningRole": "claim-boundary",
+      "readerProgress": "The reader can name process-level atomic visibility without overclaiming crash durability.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Why can conservative recovery leave version gaps?",
+      "claim": "Reclaiming a pending reservation without trustworthy stale-owner evidence risks stealing work from a slow live writer, so gaps can be the safer audit fact.",
+      "evidenceRefs": ["E5", "I1"],
+      "reasoningRole": "recovery-governance",
+      "readerProgress": "The reader understands that contiguous numbering is weaker than ownership safety.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "A full fsync protocol may be unnecessarily expensive for low-value recoverable artifacts.",
+    "responseBoundary": "Durability strength should match recovery requirements, but the state and evidence must be named accurately rather than inferred from visibility."
+  },
+  "endingStrategy": {
+    "type": "bounded-judgment",
+    "purpose": "End by making Visible not Durable the operational test for schemas, APIs and recovery policy."
+  }
+}
