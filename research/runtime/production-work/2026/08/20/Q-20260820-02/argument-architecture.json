@@ -1,0 +1,58 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-20",
+  "itemId": "Q-20260820-02",
+  "coreProposition": "Cross-agent history should be a destination-specific, policy-enforcing projection of mixed-trust local state: remove unauthorized control material while its semantic structure is still available, preserve legitimate local evidence separately, and do not mistake selective projection for general confidentiality or peer trust.",
+  "openingMove": {
+    "type": "dual-status-contradiction",
+    "purpose": "Show that one event may be valid evidence locally and forbidden disclosure remotely.",
+    "evidenceRefs": ["E1", "E4", "I1"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is stored history not automatically transferable context?",
+      "claim": "Local storage ownership says nothing about whether every event is authorized for a destination trust domain.",
+      "evidenceRefs": ["E1", "E4", "I1"],
+      "reasoningRole": "trust-boundary",
+      "readerProgress": "The reader separates retention authority from disclosure authority.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Why must filtering precede rendering?",
+      "claim": "Structured control-call identity and nested credential shape provide stronger classification evidence than flattened natural-language text.",
+      "evidenceRefs": ["E2", "E3", "I2"],
+      "reasoningRole": "ordering-mechanism",
+      "readerProgress": "The reader sees representation order as part of the security boundary.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "How can the system preserve evidence without forwarding secrets?",
+      "claim": "A deep-copied destination projection can remove only unauthorized parts while retaining the richer original event for local audit.",
+      "evidenceRefs": ["E3", "E4", "I2"],
+      "reasoningRole": "architecture",
+      "readerProgress": "The reader gains a two-view model instead of choosing between full replay and destructive deletion.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What remains outside this projection guarantee?",
+      "claim": "Selective scrubbing does not authenticate peers, encrypt transport, protect local storage or classify every future credential shape.",
+      "evidenceRefs": ["E3", "I1", "I2"],
+      "reasoningRole": "boundary",
+      "readerProgress": "The reader can apply the pattern without calling it complete A2A confidentiality.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "A universal sensitivity-label system could be stronger than name-and-shape detection.",
+    "responseBoundary": "Labels help only if every producer assigns them correctly and every transformation preserves them; the current bounded fix remains useful but schema-dependent."
+  },
+  "endingStrategy": {
+    "type": "open-question",
+    "purpose": "End with how to prove mandatory projection coverage and retain audit evidence about intentional withholding."
+  }
+}

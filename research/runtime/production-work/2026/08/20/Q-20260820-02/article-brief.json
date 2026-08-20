@@ -1,0 +1,48 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-20",
+  "itemId": "Q-20260820-02",
+  "researchObjectId": "AN-20260820-02",
+  "targetAudience": {
+    "primary": "Multi-agent runtime, A2A integration and agent-security architects",
+    "knowledgeAssumption": "The reader understands session histories, structured tool calls and cross-agent context handoff.",
+    "readerProblem": "A locally legitimate session event can become an unauthorized disclosure when replayed to another agent, especially after rendering erases the structure needed for filtering."
+  },
+  "whyNow": "A same-day merged Google ADK fix removes credential-bearing request calls from RemoteA2aAgent outbound history before rendering, while preserving the richer original local event and non-secret siblings.",
+  "externalHook": {
+    "type": "trust-boundary",
+    "description": "A session log can be valid local evidence and invalid remote context at the same time.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "Cross-agent history should be a destination-specific, policy-enforcing projection of mixed-trust local state: remove unauthorized control material while its semantic structure is still available, preserve legitimate local evidence separately, and do not mistake selective projection for general confidentiality or peer trust.",
+  "originalValue": {
+    "type": "trust-boundary-architecture",
+    "description": "Reframes history reconstruction as an outbound disclosure decision, separating local evidence retention, destination authorization, representation order and transport trust."
+  },
+  "readerTakeaway": "Introduce an explicit projection stage before rendering or serialization, give sensitive control events durable semantic identity, and audit withholding without reproducing the secret.",
+  "evidenceBoundary": {
+    "supported": [
+      "RemoteA2aAgent reconstructs outbound messages from local session history.",
+      "Credential-bearing request calls are removed before rendering can inline structured arguments into text.",
+      "The detector combines known call names with nested AuthConfig shape and preserves ordinary siblings.",
+      "Filtering uses a deep-copied outbound representation and leaves the original local event intact."
+    ],
+    "unsupported": [
+      "General A2A confidentiality or remote-peer authorization",
+      "Encryption or local secret-at-rest protection",
+      "Universal sensitive-data classification",
+      "Coverage of every outbound adapter and future transformation"
+    ],
+    "uncertain": [
+      "How every event producer should attach durable disclosure labels",
+      "How a runtime proves all outbound adapters use the mandatory projection boundary"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article concerns general multi-agent context architecture and requires no first-party project mapping."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The implementation exposes a precise ordering-sensitive disclosure boundary, and the Research Object derives a broadly useful architecture without exceeding the source evidence."
+}
