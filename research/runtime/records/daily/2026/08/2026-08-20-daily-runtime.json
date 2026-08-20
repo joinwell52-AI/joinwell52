@@ -8,13 +8,13 @@
   "date": "2026-08-20",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Running",
+    "production": "Completed",
     "publication": "Waiting"
   },
   "results": {
@@ -917,6 +917,136 @@
       "githubCommit": "a90bd3d540d6ef013013218a8486154949ae3d92",
       "commitVerify": "Completed",
       "verifiedAt": "2026-08-20T13:08:13+08:00"
+    },
+    "production": {
+      "schema": "runtime-shift-result/v2",
+      "task": "production",
+      "family": "daily",
+      "runtimeDate": "2026-08-20",
+      "status": "Completed",
+      "productionMode": "candidate-batch",
+      "input": {
+        "promptVersion": "2.13.0",
+        "promptPath": "research/runtime/worker-prompts/generated/production.prompt.md",
+        "promptSha256": "d8b0cd52d22d976d6356558a23c5c2dc28ed5aa8f51793538fa8fbebfb80996f",
+        "researchObjects": [
+          "Q-20260820-01",
+          "Q-20260820-02",
+          "Q-20260820-03"
+        ],
+        "stagedCandidateCommit": "25fd7a512612151e4e7e480bed26ffe16c24360d"
+      },
+      "workResult": {
+        "summary": "Converted all three authorized same-date Research Objects into complete bilingual Editorial Architecture 2.1 candidates, materialized deterministic baseline raster covers through the governed Actions bridge, repaired one validator-detected wording ambiguity, and passed the repository-defined Production checkpoint, atomic-bundle, runtime, editorial, evidence and layout gates without executing Publication.",
+        "summary_zh": "将当日获授权的三份 Research Object 全部转换为完整的双语 Editorial Architecture 2.1 候选，通过受管 Actions Bridge 生成确定性基础栅格题图，修复一处由验证器发现的措辞歧义，并通过仓库定义的 Production Checkpoint、原子候选包、Runtime、编辑、证据与版式门禁；未执行 Publication。"
+      },
+      "output": {
+        "type": "Publication Candidates",
+        "candidateBatch": "research/runtime/candidates/2026/08/2026-08-20-candidates.json",
+        "candidateCount": 3,
+        "bilingualArticleFiles": 6,
+        "coverAssets": 3,
+        "inlineFigureAssets": 0
+      },
+      "next": {
+        "task": "publication",
+        "instruction": "Do not execute Publication in this Production run. Publication remains a separate governed task.",
+        "instruction_zh": "本次 Production 不执行 Publication；Publication 仍是独立受治理任务。"
+      },
+      "coverEvidence": [
+        {
+          "itemId": "Q-20260820-01",
+          "briefId": "2026-08-20:Q-20260820-01-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-20-command-name-execution-authority-cover.png",
+          "sanitizedPrompt": "A familiar metal key casting a complex mechanical shadow of gears and a second latch",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260820-02",
+          "briefId": "2026-08-20:Q-20260820-02-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-20-history-is-not-transfer-contract-cover.png",
+          "sanitizedPrompt": "A glass archive prism retaining a rich spectrum locally and releasing a narrow indigo beam across a luminous boundary",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260820-03",
+          "briefId": "2026-08-20:Q-20260820-03-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-20-visible-is-not-durable-cover.png",
+          "sanitizedPrompt": "A finished glass artifact appearing through a bright aperture above a heavy teal stone foundation",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        }
+      ],
+      "metrics": [
+        {
+          "name": "research_objects_consumed",
+          "value": 3
+        },
+        {
+          "name": "publication_candidates",
+          "value": 3
+        },
+        {
+          "name": "persisted_article_segments",
+          "value": 3
+        },
+        {
+          "name": "planning_artifacts",
+          "value": 9
+        },
+        {
+          "name": "bilingual_article_files",
+          "value": 6
+        },
+        {
+          "name": "cover_assets",
+          "value": 3
+        },
+        {
+          "name": "inline_figure_assets",
+          "value": 0
+        },
+        {
+          "name": "revision_rounds",
+          "value": 1
+        },
+        {
+          "name": "direct_cloud_image_generation_calls",
+          "value": 0
+        },
+        {
+          "name": "direct_publication_actions",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        "25fd7a512612151e4e7e480bed26ffe16c24360d",
+        "research/runtime/worker-prompts/generated/production.prompt.md",
+        "research/runtime/checkpoints/2026/08/2026-08-20-production.json",
+        "research/runtime/wakes/2026/08/2026-08-20/production-145902.json"
+      ],
+      "artifacts": [
+        "research/runtime/candidates/2026/08/2026-08-20-candidates.json",
+        "staging/publication-candidates/2026-08-20-command-name-execution-authority.zh.md",
+        "staging/publication-candidates/2026-08-20-command-name-execution-authority.en.md",
+        "staging/publication-candidates/2026-08-20-command-name-execution-authority-cover.png",
+        "staging/publication-candidates/2026-08-20-history-is-not-transfer-contract.zh.md",
+        "staging/publication-candidates/2026-08-20-history-is-not-transfer-contract.en.md",
+        "staging/publication-candidates/2026-08-20-history-is-not-transfer-contract-cover.png",
+        "staging/publication-candidates/2026-08-20-visible-is-not-durable.zh.md",
+        "staging/publication-candidates/2026-08-20-visible-is-not-durable.en.md",
+        "staging/publication-candidates/2026-08-20-visible-is-not-durable-cover.png"
+      ],
+      "startedAt": "2026-08-20T15:01:45+08:00",
+      "completedAt": "2026-08-20T15:18:59+08:00"
     }
   },
   "timeline": [
@@ -1045,6 +1175,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Production after verifying research/runtime/wakes/2026/08/2026-08-20/production-145902.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-08-20T15:18:59+08:00",
+      "task": "production",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Production closed as Completed through governed Runtime shift finalization after durable result validation for 2026-08-20."
     }
   ],
   "metrics": [],
@@ -1052,5 +1189,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-20T15:03:00+08:00"
+  "updatedAt": "2026-08-20T15:18:59+08:00"
 }
