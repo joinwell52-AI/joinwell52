@@ -8,11 +8,11 @@
   "date": "2026-08-20",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -562,6 +562,164 @@
       "githubCommit": "2bde0148d4a440db8a9259457983902df8427c91",
       "commitVerify": "Completed",
       "verifiedAt": "2026-08-20T10:08:50+08:00"
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "family": "daily",
+      "runtimeDate": "2026-08-20",
+      "status": "Completed",
+      "input": "Fail-closed Reading admission resolved from authoritative control commit d937c719ac73088fdac7cc91301cf7668ab3d528 using Scheduler V3.0 and Worker Control V1.3.0 for branch=main, wake-source=chatgpt-scheduled-task, the active 2026-08-20 Reading window after its 11:00 Asia/Shanghai notBefore boundary, and the Worker capabilities GitHub read/write, file editing and web research. The generated Reading prompt research/runtime/worker-prompts/generated/reading.prompt.md version 1.0.0 was deterministically verified at SHA-256 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5, and all five required sources were read completely from that pinned control commit. The same-date Wake Receipt research/runtime/wakes/2026/08/2026-08-20/reading-105708.json was durably committed and fetched. Repository reconciliation found Discovery and Queue durably Completed, granted Reading as the earliest due unfinished task, opened its execution slot at 11:02:32 Asia/Shanghai, and the Worker Claimed state was durably verified on main at commit 0d4f64fecae61429fd43891f6419798cb8b903a4. Reading consumed only the same-date plan objects Q-20260820-01, Q-20260820-02 and Q-20260820-03 and their three primary merged maintainer commits. No prior-day Reading Result or Research Object was used as current-day input.",
+      "input_zh": "基于权威控制提交 d937c719ac73088fdac7cc91301cf7668ab3d528 中的 Scheduler V3.0 与 Worker Control V1.3.0，使用 branch=main、wake-source=chatgpt-scheduled-task、上海时间 2026-08-20 Reading 的 11:00 notBefore 边界之后有效时段，以及当前 Worker 实际具备的 GitHub 读写、文件编辑与 Web Research 能力，完成 Reading 的 Fail-closed Admission。确定性核验生成版 Reading Prompt research/runtime/worker-prompts/generated/reading.prompt.md v1.0.0 的 SHA-256 为 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5，并从该固定控制提交完整读取全部五个 Required Source。随后将同日 Wake Receipt research/runtime/wakes/2026/08/2026-08-20/reading-105708.json 持久提交并重新 Fetch 核验。仓库 Reconciliation 确认 Discovery 与 Queue 已持久 Completed，把 Reading 判定为最早到期未收口任务并授予执行权，于上海时间 11:02:32 打开 Execution Slot；Worker Claimed 状态随后在 main 提交 0d4f64fecae61429fd43891f6419798cb8b903a4 上完成持久核验。Reading 仅消费同日 Research Plan 中的 Q-20260820-01、Q-20260820-02、Q-20260820-03 及其三个维护者一手合并提交。未把前一日 Reading Result 或 Research Object 作为当天输入。",
+      "workResult": "Completed Skill 03 source-complete Deep Reading for all three same-date selected objects after ordered Runtime authority and Worker Claimed were durably established. Q-20260820-01 verified that Codex removed Git from the known-safe command shortcut on Unix and Windows because repository configuration can redirect nominally read-only Git operations into helper execution; under UnlessTrusted, plain git status now requires approval unless an explicit execution-policy rule allows it, while OnRequest retains its own policy semantics and absolute-path tests distinguish declared host executables from unmatched Git paths. This establishes an effective-execution approval boundary, not a claim that every Git invocation is dangerous or that approval alone contains all side effects. Q-20260820-02 verified that Google ADK now scrubs credential-bearing request function calls from RemoteA2aAgent session-history reconstruction before other-agent rendering can inline their arguments; detection uses the known adk_request_credential name plus nested AuthConfig shape, preserves ordinary top-level auth_scheme calls, non-secret text siblings, the mock-auth prompt and the original local history, and keeps existing response-side credential filtering. This is a demonstrated remote-history projection boundary, not general A2A confidentiality or local secret-at-rest protection. Q-20260820-03 verified that ADK FileArtifactService now reserves hidden .{version}.pending directories, stages payload and metadata there, publishes only through one os.replace to the integer version name, cleans failed staging, avoids concurrent/stale-version collisions, intentionally permits version gaps from abandoned reservations, and explicitly does not provide fsync-backed power-loss durability. This is process-level atomic publication under the demonstrated filesystem model, not distributed transactionality or crash-consistent storage durability. Three durable Reading Notes were produced. No Research Analysis, article drafting, visualization or publication was performed.",
+      "workResult_zh": "仅在有序 Runtime 执行权与 Worker Claimed 均完成持久核验后，才对三个同日已选对象完成 Skill 03 Source-complete Deep Reading。Q-20260820-01 核验了 Codex 因仓库配置可能把名义只读 Git 操作重定向为 helper 执行，而在 Unix 与 Windows 路径上取消 Git 的 Known-safe 快捷分类；在 UnlessTrusted 下，普通 git status 现在需要审批，除非显式 Execution Policy Rule 允许；OnRequest 仍保留自己的策略语义，Absolute-path 测试也区分已声明 Host Executable 与未匹配的 Git 路径。该结论证明的是 Effective Execution 的审批边界，不是“所有 Git 调用都危险”，也不是“审批本身即可约束全部外部副作用”。Q-20260820-02 核验了 Google ADK 现在会在 RemoteA2aAgent 从 Session History 重建远端消息时，先于 Other-agent Rendering 清除携带凭据的 Request Function Call，避免参数被内联为文本后再处理；检测同时使用已知 adk_request_credential 名称与嵌套 AuthConfig Shape，并保留普通顶层 auth_scheme 调用、非秘密 Text Sibling、Mock-auth Prompt 与原始本地 History，同时继续保留既有 Response-side Credential Filtering。该机制证明的是远端 History Projection 的凭据清除边界，不是一般性的 A2A 机密性或本地 Secret-at-rest 保护。Q-20260820-03 核验了 ADK FileArtifactService 现在通过隐藏 .{version}.pending 目录预留版本，在其中写入 Payload 与 Metadata，最后仅通过一次 os.replace 把完整目录发布为整数版本；失败 Staging 会清理，并发写入与 Stale Version List 不再覆盖既有版本；Abandoned Reservation 会故意留下版本缺口，且实现明确没有 fsync 支持的断电持久性保证。该结论证明的是所示文件系统模型下的 Process-level Atomic Publication，不是分布式事务或 Crash-consistent Storage Durability。共形成 3 份持久 Reading Note。未执行 Research Analysis、文章写作、可视化或发布。",
+      "output": "Three durable Skill 03 Reading Notes for Q-20260820-01, Q-20260820-02 and Q-20260820-03, each recording source-backed problem, facts, maintainer claims, mechanisms, evidence, limitations, comparisons, unresolved questions and a strict Reading boundary.",
+      "output_zh": "形成 Q-20260820-01、Q-20260820-02、Q-20260820-03 三份持久 Skill 03 Reading Note；每份均记录来源支持的 Problem、Facts、Maintainer Claims、Mechanisms、Evidence、Limitations、Comparisons、Unresolved Questions 与严格 Reading Boundary。",
+      "next": "Research Runtime Analysis may consume only these 2026-08-20 Reading Notes after Reading completion and durable GitHub verification. Analysis must keep demonstrated merged-code facts separate from broader inference: it must not interpret removal of Git from the safe shortcut as proof that all Git execution is unsafe, interpret outbound history credential scrubbing as general A2A confidentiality, or interpret pending-directory rename publication as fsync-backed crash durability or a distributed transaction.",
+      "next_zh": "只有在 Reading 完成并通过 GitHub 持久核验后，Research Runtime Analysis 才可消费这三份 2026-08-20 Reading Note。Analysis 必须把已证明的 Merged-code Fact 与更广泛推论分开：不得把 Git 移出 Safe Shortcut 解释为所有 Git 执行都不安全，不得把 Outbound History 的 Credential Scrubbing 解释为一般性 A2A 机密性，也不得把 Pending-directory Rename Publication 解释为具有 fsync 保证的 Crash Durability 或分布式事务。",
+      "metrics": [
+        {
+          "label": "Selected objects read",
+          "label_zh": "已深读对象",
+          "value": "3 / 3"
+        },
+        {
+          "label": "Primary-source objects read",
+          "label_zh": "已读一手对象",
+          "value": "3"
+        },
+        {
+          "label": "Merged maintainer commits read",
+          "label_zh": "已读维护者合并提交",
+          "value": "3"
+        },
+        {
+          "label": "Durable Reading Notes",
+          "label_zh": "持久 Reading Note",
+          "value": "3"
+        },
+        {
+          "label": "Generated prompt SHA-256 verified",
+          "label_zh": "已核验 Generated Prompt SHA-256",
+          "value": "1"
+        },
+        {
+          "label": "Required control sources read",
+          "label_zh": "已完整读取 Required Source",
+          "value": "5 / 5"
+        },
+        {
+          "label": "Prior-day research inputs reused",
+          "label_zh": "复用前一日研究输入",
+          "value": "0"
+        },
+        {
+          "label": "Revision rounds used",
+          "label_zh": "已使用修订轮次",
+          "value": "0"
+        },
+        {
+          "label": "Research Analysis performed",
+          "label_zh": "已执行 Research Analysis",
+          "value": "0"
+        },
+        {
+          "label": "Publication copy produced",
+          "label_zh": "已生成发布文案",
+          "value": "0"
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Pinned control-plane commit",
+          "label_zh": "固定控制面提交",
+          "commit": "d937c719ac73088fdac7cc91301cf7668ab3d528"
+        },
+        {
+          "label": "Worker Control version",
+          "label_zh": "Worker Control 版本",
+          "value": "1.3.0"
+        },
+        {
+          "label": "Verified generated Reading prompt SHA-256",
+          "label_zh": "已核验生成版 Reading Prompt SHA-256",
+          "value": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"
+        },
+        {
+          "label": "Reading Wake Receipt",
+          "label_zh": "Reading 唤醒回执",
+          "path": "research/runtime/wakes/2026/08/2026-08-20/reading-105708.json"
+        },
+        {
+          "label": "Run-date Research Plan",
+          "label_zh": "运行日 Research Plan",
+          "path": "research/runtime/plans/2026/08/2026-08-20-plan.json"
+        },
+        {
+          "label": "Skill 03",
+          "label_zh": "Skill 03",
+          "path": "research/skills/03-deep-reading.md"
+        },
+        {
+          "label": "Q-20260820-01 primary source",
+          "label_zh": "Q-20260820-01 一手来源",
+          "url": "https://github.com/openai/codex/commit/3b45c29062ff0e76e71c91b6753290400e7fa8da"
+        },
+        {
+          "label": "Q-20260820-02 primary source",
+          "label_zh": "Q-20260820-02 一手来源",
+          "url": "https://github.com/google/adk-python/commit/2aea8595fb1c5e0fddef7893a1985dc96dc82692"
+        },
+        {
+          "label": "Q-20260820-03 primary source",
+          "label_zh": "Q-20260820-03 一手来源",
+          "url": "https://github.com/google/adk-python/commit/94475c9a76c7c71246d6f5e4b083b3c3ee6869c0"
+        },
+        {
+          "label": "Reading Worker Claim commit",
+          "label_zh": "Reading Worker Claim 提交",
+          "commit": "0d4f64fecae61429fd43891f6419798cb8b903a4"
+        },
+        {
+          "label": "Reading Runtime record",
+          "label_zh": "Reading Runtime 记录",
+          "path": "research/runtime/records/daily/2026/08/2026-08-20-daily-runtime.json"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Q-20260820-01 Reading Note",
+          "label_zh": "Q-20260820-01 Reading Note",
+          "path": "research/reading/Q-20260820-01-git-effective-execution-approval-boundary.md"
+        },
+        {
+          "label": "Q-20260820-02 Reading Note",
+          "label_zh": "Q-20260820-02 Reading Note",
+          "path": "research/reading/Q-20260820-02-a2a-history-credential-scrubbing.md"
+        },
+        {
+          "label": "Q-20260820-03 Reading Note",
+          "label_zh": "Q-20260820-03 Reading Note",
+          "path": "research/reading/Q-20260820-03-atomic-artifact-version-publication.md"
+        },
+        {
+          "label": "Reading result",
+          "label_zh": "Reading 结果",
+          "path": "research/runtime/results/2026/08/2026-08-20-reading-result.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "path": "research/runtime/records/daily/2026/08/2026-08-20-daily-runtime.json"
+        },
+        {
+          "label": "Runtime Markdown ledger",
+          "label_zh": "Runtime Markdown 账本",
+          "path": "research/runtime/2026/08/2026-08-20-runtime.md"
+        }
+      ],
+      "startedAt": "2026-08-20T11:02:32+08:00",
+      "completedAt": "2026-08-20T11:10:14+08:00"
     }
   },
   "timeline": [
@@ -634,6 +792,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Reading after verifying research/runtime/wakes/2026/08/2026-08-20/reading-105708.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-08-20T11:10:14+08:00",
+      "task": "reading",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Reading closed as Completed through governed Runtime shift finalization after durable result validation for 2026-08-20."
     }
   ],
   "metrics": [],
@@ -641,5 +806,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-20T11:03:27+08:00"
+  "updatedAt": "2026-08-20T11:10:14+08:00"
 }
