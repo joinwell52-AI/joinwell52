@@ -1,0 +1,58 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-21",
+  "itemId": "Q-20260821-03",
+  "coreProposition": "Executable configuration should have separate capabilities for code execution and ambient secret or host-resource authority: workspace trust can authorize a repository-controlled helper to run without implicitly authorizing inherited credentials, while credential-environment filtering is a least-authority control rather than a sandbox.",
+  "openingMove": {
+    "type": "hidden-authority",
+    "purpose": "Open with a repository configuration field that is actually shell execution and can emit authentication headers.",
+    "evidenceRefs": ["E2", "E3"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is headersHelper an execution boundary rather than passive configuration?",
+      "claim": "It runs arbitrary shell logic and converts JSON output into connection headers, so repository-controlled declarations are executable code.",
+      "evidenceRefs": ["E1", "E3"],
+      "reasoningRole": "execution-reclassification",
+      "readerProgress": "The reader recognizes executable configuration as code requiring admission evidence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Why does workspace trust not authorize ambient secrets?",
+      "claim": "Trust answers whether code may run; inherited credentials and host resources are separate capabilities with different blast radii.",
+      "evidenceRefs": ["E1", "E2", "I1"],
+      "reasoningRole": "capability-separation",
+      "readerProgress": "The reader separates code admission from the authority granted after admission.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What replaces broad ambient inheritance?",
+      "claim": "Helpers should receive explicit purpose-specific context and intentionally granted capabilities, with denials surfaced distinctly from ordinary helper failure.",
+      "evidenceRefs": ["E2", "E4", "I2"],
+      "reasoningRole": "least-authority-contract",
+      "readerProgress": "The reader gains a practical child-process contract based on allowlisted inputs and explicit grants.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What does credential-environment filtering not prove?",
+      "claim": "It reduces one ambient-authority channel but does not establish filesystem, network, keychain, process or external-effect isolation.",
+      "evidenceRefs": ["E2", "I1", "I2"],
+      "reasoningRole": "boundary",
+      "readerProgress": "The reader avoids promoting environment sanitization into a sandbox claim.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Complete sandboxing may be disproportionate for low-risk local helpers and strict credential stripping can break legitimate integrations.",
+    "responseBoundary": "Match capability controls to effect and secret sensitivity, but keep grants explicit and independently reviewable from workspace trust."
+  },
+  "endingStrategy": {
+    "type": "open-question",
+    "purpose": "End with capability declaration, filter maintenance and trust-invalidation questions left unsupported by public evidence."
+  }
+}

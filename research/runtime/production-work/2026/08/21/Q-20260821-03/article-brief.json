@@ -1,0 +1,48 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-21",
+  "itemId": "Q-20260821-03",
+  "researchObjectId": "AN-20260821-03",
+  "targetAudience": {
+    "primary": "Open-source toolchain, agent-runtime and capability-security engineers",
+    "knowledgeAssumption": "The reader understands repository configuration, child processes, environment variables and MCP helpers.",
+    "readerProblem": "Repository-supplied executable configuration may legitimately run after workspace trust while still receiving unrelated ambient credentials from the launching process."
+  },
+  "whyNow": "Claude Code v2.1.238 release material documents folder-trust admission for project-controlled MCP helpers and separate removal of inherited credential environment variables for selected helper origins.",
+  "externalHook": {
+    "type": "two-capability-boundary",
+    "description": "Permission to execute repository-controlled code and permission to receive ambient secrets are separate grants with different blast radii.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "Executable configuration should have separate capabilities for code execution and ambient secret or host-resource authority: workspace trust can authorize a repository-controlled helper to run without implicitly authorizing inherited credentials, while credential-environment filtering is a least-authority control rather than a sandbox.",
+  "originalValue": {
+    "type": "two-gate-capability-model",
+    "description": "Separates origin-aware code admission from post-admission capability grants and turns explicit task context into a replacement for accidental parent-process authority."
+  },
+  "readerTakeaway": "Treat executable configuration as code, gate it by origin and trust, provide allowlisted task context, grant secrets separately, and require independent evidence for filesystem, network, process and external-effect isolation.",
+  "evidenceBoundary": {
+    "supported": [
+      "Published v2.1.238 notes require folder trust for named project and agent-file MCP helper paths.",
+      "The same release notes state that selected project, plugin and agent-file headersHelper commands do not inherit credential environment variables.",
+      "Official documentation describes headersHelper as shell execution whose JSON output becomes connection headers.",
+      "Official documentation exposes purpose-specific helper variables."
+    ],
+    "unsupported": [
+      "The exact credential-variable filter or regression-test matrix",
+      "An empty subprocess environment",
+      "Filesystem, network, process or credential-store sandboxing",
+      "Independent validation of the private implementation"
+    ],
+    "uncertain": [
+      "How the credential classification is maintained as providers change",
+      "How helpers declare and receive explicit capabilities beyond environment context"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article develops a general capability-security pattern for executable configuration and agent tooling without relying on a first-party project."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The release and documentation provide a concrete two-control example, while the Research Object contributes a transferable post-admission capability model with clear evidence limits."
+}
