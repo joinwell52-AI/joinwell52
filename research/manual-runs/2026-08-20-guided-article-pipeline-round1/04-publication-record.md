@@ -1,6 +1,6 @@
 # 2026-08-20 三篇双语文章发布记录
 
-状态：`Publishing`
+状态：`Published`
 
 发布范围：仅 Research Center 的 GitHub 来源与 GitHub Pages；未向 DEV、Cursor Forum、CSDN、掘金或其他第三方平台提交。
 
@@ -31,4 +31,22 @@
 
 - 内容独立复核：三篇均 PASS，内容 86/90，证据 24/25。
 - 最终图文复核：T1 94/100、T2 94/100、T3 95/100，全部 PASS。
-- Git 提交、GitHub Actions、GitHub Pages 与六个公开页面验收：执行中。
+- 本地门禁：guided pipeline、publication layout、publication editorial、strict VitePress build 全部 PASS。
+
+## GitHub 发布
+
+- 发布拉取请求：[PR #151](https://github.com/joinwell52-AI/joinwell52/pull/151)
+- 合并提交：[`314c140eab4d64457042a5d28699cbf29e150468`](https://github.com/joinwell52-AI/joinwell52/commit/314c140eab4d64457042a5d28699cbf29e150468)
+- PR 构建校验：[Validate Research Center 3.0 #32452904806](https://github.com/joinwell52-AI/joinwell52/actions/runs/32452904806) — PASS
+- 公开站部署：[Deploy Research Center Pages #32453035829](https://github.com/joinwell52-AI/joinwell52/actions/runs/32453035829) — PASS
+- 线上验收时间：2026-08-21 14:12（Asia/Shanghai）
+
+## 线上验收
+
+- 六个中英文文章页面：全部 HTTP 200。
+- 六个页面标题：与最终稿一致。
+- 三张题图和三张文中图：全部 HTTP 200，`Content-Type: image/png`。
+- 六个页面图片引用：PASS。
+- 三组中英文互链：PASS。
+
+最终结论：三篇双语文章已公开发布并完成线上核验。
