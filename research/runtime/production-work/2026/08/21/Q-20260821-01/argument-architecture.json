@@ -1,0 +1,58 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-21",
+  "itemId": "Q-20260821-01",
+  "coreProposition": "For digital employees, provenance evidence, immediate content utility and durable memory-reuse authority should be separate governance decisions: external-context material may remain visible and useful while memory reuse fails closed, and a pollution state is policy evidence rather than authenticated-source proof or end-to-end safety.",
+  "openingMove": {
+    "type": "productive-contradiction",
+    "purpose": "Open with the same standalone tool output being retained for audit and images while being denied durable memory reuse.",
+    "evidenceRefs": ["E2", "E3", "E4"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is one trusted/untrusted label insufficient?",
+      "claim": "Provenance classification, immediate utility and durable behavioral influence answer different governance questions.",
+      "evidenceRefs": ["E1", "E3", "E4", "I1"],
+      "reasoningRole": "conceptual-separation",
+      "readerProgress": "The reader separates artifact identity from permissions granted to different consumers.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "How can a runtime preserve evidence while failing closed on memory?",
+      "claim": "The Codex mechanism keeps attributable content but changes memory eligibility under an explicit policy, showing that protection need not mean erasure.",
+      "evidenceRefs": ["E1", "E2", "E3"],
+      "reasoningRole": "mechanism",
+      "readerProgress": "The reader sees evidence retention and memory suppression as compatible controls.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What should the authority record bind?",
+      "claim": "Durable reuse authority should bind provenance quality, consumer, purpose and lifecycle, with separate rules for text, images and future memory stores.",
+      "evidenceRefs": ["E2", "E4", "I1", "I2"],
+      "reasoningRole": "governance-model",
+      "readerProgress": "The reader gains a consumer-scoped authorization model rather than a global pollution bit.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What does a polluted state not establish?",
+      "claim": "It records a bounded memory-policy outcome, not authenticated source identity, correct enforcement by every consumer or end-to-end safety.",
+      "evidenceRefs": ["E1", "E2", "E4", "I2"],
+      "reasoningRole": "boundary",
+      "readerProgress": "The reader avoids converting policy state into stronger security evidence than the implementation provides.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "A single thread-level polluted flag is operationally simple and can be a prudent fail-closed default.",
+    "responseBoundary": "Keep the coarse default when needed, but do not let it erase provenance or silently define authorization for unrelated consumers."
+  },
+  "endingStrategy": {
+    "type": "open-question",
+    "purpose": "End with requalification, clearing and non-text integrity questions that require additional evidence."
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-21",
+  "itemId": "Q-20260821-01",
+  "researchObjectId": "AN-20260821-01",
+  "targetAudience": {
+    "primary": "Digital-employee, agent-memory and runtime-governance engineers",
+    "knowledgeAssumption": "The reader understands tool calls, conversation history and persistent agent memory.",
+    "readerProblem": "Useful external tool output can enter a thread without the execution binding normally used to establish provenance, yet erasing it would also remove evidence and utility."
+  },
+  "whyNow": "A same-day merged Codex change classifies standalone FunctionCallOutput without call_id as possible external context, can mark memory polluted under policy, preserves transcript attribution and still allows a separate image consumer to use the artifact.",
+  "externalHook": {
+    "type": "authority-separation",
+    "description": "One artifact can remain visible and useful while being denied authority to shape durable memory.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "For digital employees, provenance evidence, immediate content utility and durable memory-reuse authority should be separate governance decisions: external-context material may remain visible and useful while memory reuse fails closed, and a pollution state is policy evidence rather than authenticated-source proof or end-to-end safety.",
+  "originalValue": {
+    "type": "consumer-scoped-memory-governance-model",
+    "description": "Separates evidence retention, task-bounded use and durable behavioral reuse, then shows why each consumer needs its own authority decision instead of inheriting one global trust bit."
+  },
+  "readerTakeaway": "Retain attributable evidence, authorize reuse by purpose and consumer, audit state transitions, and never promote a memory-eligibility flag into source authentication or universal safety evidence.",
+  "evidenceBoundary": {
+    "supported": [
+      "Merged Codex code classifies FunctionCallOutput without call_id as possible external context.",
+      "With the configured policy enabled, demonstrated injection and fork paths can durably mark thread memory polluted.",
+      "Transcript paths preserve named tool attribution while non-text bodies use a placeholder.",
+      "Recent-image selection can still use standalone or unpaired tool-output images."
+    ],
+    "unsupported": [
+      "That every tool output is untrusted",
+      "That missing call_id authenticates an external principal",
+      "That every memory or context consumer enforces the polluted state",
+      "That the implementation provides end-to-end contamination resistance"
+    ],
+    "uncertain": [
+      "Which consumers must consult memory eligibility before reuse",
+      "What evidence can safely requalify externally supplied content"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article develops a general memory-governance pattern for digital employees and agent runtimes without relying on a first-party project."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The merged implementation provides a concrete multi-consumer boundary, while the Research Object contributes an original and transferable authority model with explicit limitations."
+}
