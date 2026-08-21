@@ -1,0 +1,169 @@
+{
+  "schema": "first-party-reading-record/v1",
+  "runId": "2026-08-20-guided-article-pipeline-round1",
+  "runDate": "2026-08-20",
+  "status": "Completed",
+  "completedAt": "2026-08-20T14:05:58+08:00",
+  "sources": [
+    {
+      "id": "FP-POSITION-01",
+      "role": "positioning",
+      "path": "D:/TMPA/CodeFlowMu-open/README.zh.md",
+      "readCompletely": true,
+      "supports": "支持 TMPA 是治理理论层、FCoP 是文件协作协议层、CodeFlowMu 是实际运行产品；支持公开版的本地优先、多角色、项目管理和人工审批定位。",
+      "doesNotSupport": "项目 README 不能单独证明外部采用效果、任意模型兼容性或未公开版本能力；公开版当前只声明 Cursor SDK。"
+    },
+    {
+      "id": "FP-NORM-01",
+      "role": "normative",
+      "path": "D:/TMPA/joinwell52-article-20260820/docs/public/releases/tmpa/v1.0/artifacts/tmpa-core-specification-s1.0-zh.md",
+      "readCompletely": true,
+      "supports": "支持角色与权限、稳定主载体、单写者流、确定性重建、冲突保留、证据归因以及生命周期完成与业务接受分离。",
+      "doesNotSupport": "TMPA 是治理规范，不自动证明某个具体 Runtime 已正确实现，也不允许把 Knowledge 阶段候选写成已晋级架构。"
+    },
+    {
+      "id": "FP-NORM-02",
+      "role": "normative",
+      "path": "D:/TMPA/FCoP/spec/fcop-v3-spec.zh.md",
+      "readCompletely": true,
+      "supports": "支持文件即协议、位置定义当前状态、事件记录历史，TASK/REPORT/ISSUE/REVIEW 信封及能力声明与宿主执行边界。",
+      "doesNotSupport": "FCoP 不负责运行时调度、工具执行、项目热切换、权限强制或业务验收。"
+    },
+    {
+      "id": "FP-NORM-03",
+      "role": "normative",
+      "path": "D:/TMPA/FCoP/adr/ADR-0038-fcop-boundary-charter.md",
+      "readCompletely": true,
+      "supports": "支持 FCoP 是协议而非 Agent OS，Runtime、Scheduler、Executor、重试与平台策略必须留在宿主工程层。",
+      "doesNotSupport": "不能把 CodeFlowMu 的产品实现或策略写成 FCoP 的通用协议保证。"
+    },
+    {
+      "id": "FP-IMPL-01",
+      "role": "implementation",
+      "path": "D:/TMPA/CodeFlowMu-open/docs/skills/skill-layers.md",
+      "readCompletely": true,
+      "supports": "支持 Agent Playbook Skill 负责行为与编排建议，MCP Skill 负责受控工具注册和执行，两者必须保持不同生命周期和证据边界。",
+      "doesNotSupport": "文档设计不能单独证明所有技能路由或每一种工具权限都已在生产环境覆盖。"
+    },
+    {
+      "id": "FP-IMPL-02",
+      "role": "implementation",
+      "path": "D:/TMPA/CodeFlowMu-open/packages/codeflowmu-runtime/src/skills/SkillContextRouter.ts",
+      "readCompletely": true,
+      "supports": "支持运行时按角色、意图和任务信号懒加载少量 Playbook，而不是把完整技能目录塞进每次提示；同时记录自动注入调用。",
+      "doesNotSupport": "关键词匹配只是一种当前路由实现，不能证明语义分类永不误判，也不能把被加载的建议等同于执行授权或执行证据。"
+    },
+    {
+      "id": "FP-IMPL-03",
+      "role": "implementation",
+      "path": "D:/TMPA/CodeFlowMu-open/packages/codeflowmu-runtime/src/registry/RoleToolCapabilityGate.ts",
+      "readCompletely": true,
+      "supports": "支持角色工具门先检查精确能力，操作影响、项目逃逸和治理绕过另由统一操作策略与审批链处理。",
+      "doesNotSupport": "角色能力表不是完整安全证明；工具名获准不等于任意参数和副作用都获准。"
+    },
+    {
+      "id": "FP-IMPL-04",
+      "role": "implementation",
+      "path": "D:/TMPA/CodeFlowMu-open/packages/codeflowmu-runtime/src/project/ProjectExecutionContext.ts",
+      "readCompletely": true,
+      "supports": "支持一次请求创建不可变项目执行上下文，把任务准入、提交、生命周期和证据根绑定到同一项目根，并对根不一致失败。",
+      "doesNotSupport": "请求级绑定本身不等于整个热切换事务完成，也不能证明进程崩溃期间不会出现任何外部副作用。"
+    },
+    {
+      "id": "FP-IMPL-05",
+      "role": "implementation",
+      "path": "D:/TMPA/CodeFlowMu-open/codeflowmu-shell/src/web-panel.ts",
+      "readCompletely": true,
+      "supports": "支持项目切换会先取消无法继续的 Agent 会话、停止旧 Runtime、持久化新根、应用项目作用域配置并调度重载；持久化失败会回滚活动项目标识。",
+      "doesNotSupport": "这是当前公开实现，不证明任意并发、任意平台或所有外部工具都具有事务级原子切换。"
+    },
+    {
+      "id": "FP-IMPL-06",
+      "role": "implementation",
+      "path": "D:/TMPA/CodeFlowMu-open/packages/codeflowmu-runtime/src/pm/reportAttribution.ts",
+      "readCompletely": true,
+      "supports": "支持关键 DEV 回执需要文件名推断任务、frontmatter task_id 和 references 首项三处一致，不一致会被归因门禁拒绝。",
+      "doesNotSupport": "三字段规则是 CodeFlowMu 当前验收约束，不是 FCoP 对所有 REPORT 文件名和全部角色的普遍强制规则。"
+    },
+    {
+      "id": "FP-FIELD-01",
+      "role": "field-evidence",
+      "path": "D:/TMPA/CodeFlowMu-open/packages/codeflowmu-runtime/src/skills/__tests__/SkillContextRouter.test.ts",
+      "readCompletely": true,
+      "supports": "测试覆盖无关聊天不加载技能、按任务信号加载有限技能、角色隔离、中英文研究任务路由及长周期规划技能门。",
+      "doesNotSupport": "当前工作树未安装依赖，本轮尚未重新执行；源码测试存在不等于今天已得到新的通过记录。"
+    },
+    {
+      "id": "FP-FIELD-02",
+      "role": "field-evidence",
+      "path": "D:/TMPA/CodeFlowMu-open/codeflowmu-shell/src/__tests__/project-registry.test.ts",
+      "readCompletely": true,
+      "supports": "测试覆盖项目注册与活动项目切换、消失项目回退、安装根保护，以及 Runtime、MCP、Watcher 与 Cursor 工作目录共享同一绑定计划。",
+      "doesNotSupport": "自动化测试是第一方受控证据，不能直接外推为所有第三方 MCP、IDE 或网络环境都已验证。"
+    },
+    {
+      "id": "FP-FIELD-03",
+      "role": "field-evidence",
+      "path": "D:/TMPA/CodeFlowMu-open/packages/codeflowmu-runtime/src/pm/__tests__/panel104Regression.test.ts",
+      "readCompletely": true,
+      "supports": "测试覆盖报告三字段归因失败、QA 缺失或失败阻止最终汇总，以及 diagnostics 为零仍不能替代归因通过。",
+      "doesNotSupport": "这些测试只验证当前门禁案例，不能证明所有自然语言报告都能自动正确归属。"
+    },
+    {
+      "id": "FP-HISTORY-01",
+      "role": "research-history",
+      "path": "D:/TMPA/joinwell52-article-20260820/research/knowledge/CURRENT.md",
+      "readCompletely": true,
+      "supports": "支持当前长期研究主线是责任边界、执行证据、独立验证、接受裁决与受治理恢复。",
+      "doesNotSupport": "五个架构候选仍处于 Knowledge 或证据门前，不能写成正式架构晋级结论。"
+    },
+    {
+      "id": "FP-HISTORY-02",
+      "role": "research-history",
+      "path": "D:/TMPA/joinwell52-article-20260820/research/architecture/CURRENT.md",
+      "readCompletely": true,
+      "supports": "支持控制平面与工作 Runtime、证据信封、人类权威节点和版本化验证合同仍是待实验证明的架构候选。",
+      "doesNotSupport": "当前没有新 Architecture、Specification、Publication 或 Release 对象被 Gate 授权。"
+    },
+    {
+      "id": "FP-RECENT-01",
+      "role": "recent-content",
+      "path": "D:/TMPA/joinwell52-article-20260820/docs/zh/engineering/2026-08-02-agent-capability-packaging.md",
+      "readCompletely": true,
+      "supports": "用于确认近 30 天已讨论技能、插件、工具和契约的行业封装趋势。",
+      "doesNotSupport": "旧文没有讲 CodeFlowMu 怎样把行为手册路由、角色工具能力和按操作影响审批拆成三层。"
+    },
+    {
+      "id": "FP-RECENT-02",
+      "role": "recent-content",
+      "path": "D:/TMPA/joinwell52-article-20260820/docs/zh/engineering/2026-08-06-codeflowmu-multi-agent-fact-checking.md",
+      "readCompletely": true,
+      "supports": "用于确认近 30 天已用 WP-13 讲过 Agent 自称完成与团队事实核验。",
+      "doesNotSupport": "旧文没有研究多份并行 REPORT 怎样避免错挂任务、串线验收和错误汇总。"
+    },
+    {
+      "id": "FP-RECENT-03",
+      "role": "recent-content",
+      "path": "D:/TMPA/joinwell52-article-20260820/research/manual-runs/2026-08-19-guided-article-pipeline-round1/02-article-1-taskbook-to-task-graph.zh.md",
+      "readCompletely": true,
+      "supports": "用于确认昨日已讲长需求到任务图、责任分工和开工门禁。",
+      "doesNotSupport": "昨日文章没有讨论项目切换根绑定、技能与权限分层或报告归因。"
+    },
+    {
+      "id": "FP-RECENT-04",
+      "role": "recent-content",
+      "path": "D:/TMPA/joinwell52-article-20260820/research/manual-runs/2026-08-19-guided-article-pipeline-round1/02-article-2-runtime-testing.zh.md",
+      "readCompletely": true,
+      "supports": "用于确认昨日已讲故障注入与调度系统可靠性测试。",
+      "doesNotSupport": "今日三个题目不以通用故障注入为主线，避免重复昨日的测试框架。"
+    },
+    {
+      "id": "FP-RECENT-05",
+      "role": "recent-content",
+      "path": "D:/TMPA/joinwell52-article-20260820/research/manual-runs/2026-08-19-guided-article-pipeline-round1/02-article-3-local-runtime-mobile-control.zh.md",
+      "readCompletely": true,
+      "supports": "用于确认昨日已讲本地执行与手机控制面。",
+      "doesNotSupport": "今日三个题目均不再复述移动审批、弱网或双端架构。"
+    }
+  ]
+}
