@@ -1,6 +1,40 @@
-# Why Is the Agent Still Editing the Old Project? Safely Rebinding an Execution Chain
+---
+title: "Why Is the Agent Still Editing the Old Project? Safely Rebinding an Execution Chain"
+date: '2026-08-20'
+column: open-source-engineering
+category: daily
+article_type: project-research
+edition: research-center
+research_question: "How can a local Agent execution chain rebind every project-scoped component without leaving hidden work attached to the old root?"
+summary: "Project switching is not a UI-label change. It must stop old effects, persist the new root, rebuild runtime and tool bindings, and verify one-root coherence while keeping Windows handles, symlink aliases, and graceful draining as explicit boundaries."
+item_id: "MANUAL-20260820-PROJECT-ROOT"
+lifecycle: "Published"
+cover: "/assets/covers/daily-2026-08-20-project-root-switch-cover.png"
+evidence_status: "Completed"
+citation_status: "Completed"
+editing_status: "Completed"
+publication_authorized: true
+sources:
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-source-register.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-fact-claim-matrices.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-article-briefs.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-experiment-run-log.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-independent-editorial-review-round4.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/03-independent-visual-package-review.md
+---
 
-![The execution chain changes identity at an isolation seam from inactive Project A and terminates only in the larger Project B root](../../../docs/public/assets/covers/daily-2026-08-20-project-root-switch-cover.png)
+<ArticleCover
+  image="/assets/covers/daily-2026-08-20-project-root-switch-cover.png"
+  kicker="Open-source Engineering · Project Research"
+  title="Why Is the Agent Still Editing the Old Project? Safely Rebinding an Execution Chain"
+  summary="A safe switch stops old side effects, persists the new root, rebuilds every binding, and proves tasks and evidence now share one root."
+  version="MANUAL-20260820-PROJECT-ROOT"
+  status="Independent Editorial PASS · 2026-08-21"
+  languageHref="/zh/engineering/2026-08-20-project-root-switch"
+  languageLabel="中文"
+/>
+
+# Why Is the Agent Still Editing the Old Project? Safely Rebinding an Execution Chain
 
 You switch the interface from project A to B, but the agent still patches A. Tests run in B while build output keeps contaminating A. Every local step looks successful; the delivery now combines two projects.
 
@@ -70,9 +104,9 @@ The current public switch route lives in [`web-panel.ts`](https://github.com/joi
 9. Let the UI wait until health reports the target projectRoot
 ```
 
-![Project rebinding closes old effects, persists the new root, rebuilds all bindings, and verifies one root; draining, handle probes, and real-path checks are marked as recommended enhancements](../../../docs/public/assets/covers/daily-2026-08-20-project-root-switch-figure-1.png)
+![Project rebinding closes old effects, persists the new root, rebuilds all bindings, and verifies one root; draining, handle probes, and real-path checks are marked as recommended enhancements](/assets/covers/daily-2026-08-20-project-root-switch-figure-1.png)
 
-*Figure 1. Execution-chain rebinding sequence. The solid main path summarizes the current public implementation; the dashed draining, Windows-handle, and real-path checks are recommendations, not existing end-to-end functionality.*
+*Figure 1. Execution-chain rebinding sequence. Source: author synthesis from the pinned CodeFlowMu implementation. The solid main path summarizes the current public implementation; the dashed draining, Windows-handle, and real-path checks are recommendations, not existing end-to-end functionality.*
 
 The decisive step is not refreshing the UI. It is closing the channels through which old-project work can continue producing effects.
 

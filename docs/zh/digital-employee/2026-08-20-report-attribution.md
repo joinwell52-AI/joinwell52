@@ -1,6 +1,40 @@
-# AI 团队同时交回三份报告，怎样保证验收没有串账？
+---
+title: "AI 团队同时交回三份报告，怎样保证验收没有串账？"
+date: '2026-08-20'
+column: digital-employee
+category: daily
+article_type: project-research
+edition: research-center
+research_question: "多 Agent 验收系统怎样证明每份报告属于哪个任务和哪次执行，而不是从正文里猜？"
+summary: "展示可以辅助挂树，验收必须核对唯一任务身份、执行轮次、版本替代与独立 QA。本文解释三字段门的有效边界、报告版本状态和错属工件的隔离策略。"
+item_id: "MANUAL-20260820-REPORT-ATTRIBUTION"
+lifecycle: "Published"
+cover: "/assets/covers/daily-2026-08-20-report-attribution-cover.png"
+evidence_status: "Completed"
+citation_status: "Completed"
+editing_status: "Completed"
+publication_authorized: true
+sources:
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-source-register.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-fact-claim-matrices.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-article-briefs.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-experiment-run-log.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-independent-editorial-review-round4.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/03-independent-visual-package-review.md
+---
 
-![TASK 42 的执行事实与独立验证形成一条证据链，属于 TASK 17 的完整工件被保留在红色归属边界外](../../../docs/public/assets/covers/daily-2026-08-20-report-attribution-cover.png)
+<ArticleCover
+  image="/assets/covers/daily-2026-08-20-report-attribution-cover.png"
+  kicker="数字员工 · 项目研究"
+  title="AI 团队同时交回三份报告，怎样保证验收没有串账？"
+  summary="展示可以辅助挂树，验收必须核对唯一任务身份、执行轮次、版本替代与独立 QA。"
+  version="MANUAL-20260820-REPORT-ATTRIBUTION"
+  status="Independent Editorial PASS · 2026-08-21"
+  languageHref="/en/digital-employee/2026-08-20-report-attribution"
+  languageLabel="English"
+/>
+
+# AI 团队同时交回三份报告，怎样保证验收没有串账？
 
 开发、测试和运维三个 AI 智能体几乎同时交回报告。三份报告都说成功，系统也顺利生成“开发完成、测试通过、部署正常”的总结；但测试验收的是返工前版本，运维报告属于另一个任务，开发报告又写错了任务编号。系统没有漏掉任何文件，却拼出了一笔从未发生过的交付。
 
@@ -65,9 +99,9 @@ references:
 
 更强的目标设计是：智能体只提交报告正文和执行证据，权威元数据由运行系统根据当前会话注入。文件名、任务编号、父任务、执行轮次和逻辑序号不由模型自由书写；运行系统再把封包后的完整工件交给归因门复核。当前 CodeFlowMu 的三字段门已经能发现明显错配，但本文没有证据证明所有报告入口都统一采用了这种“运行系统封包”流程，所以这部分明确作为下一步合同，而不是现成功能。
 
-![任务身份与执行轮次绑定开发事实和 QA 验证；报告新旧由替代关系裁决，错属工件被隔离](../../../docs/public/assets/covers/daily-2026-08-20-report-attribution-figure-1.png)
+![任务身份与执行轮次绑定开发事实和 QA 验证；报告新旧由替代关系裁决，错属工件被隔离](/assets/covers/daily-2026-08-20-report-attribution-figure-1.png)
 
-*图 1：报告从身份、执行轮次、版本替代到 QA 验证的归属链。运行系统注入全部权威元数据仍是目标合同；图中没有把它冒充当前全路径能力。*
+*图 1：报告从身份、执行轮次、版本替代到 QA 验证的归属链。来源：本文根据 CodeFlowMu 固定提交与 W3C/OpenTelemetry 的身份传播边界整理。运行系统注入全部权威元数据仍是目标合同。*
 
 ## 为什么需要身份传播，但不能把 Trace 当验收
 

@@ -2,27 +2,27 @@
 
 ## 第一篇
 
-- 中文：[AI Agent 的技能不是工具权限](../../../staging/publication-candidates/2026-08-20-skill-vs-tool-authority.zh.md)
-- English: [An AI Agent’s Skill Is Not Its Permission](../../../staging/publication-candidates/2026-08-20-skill-vs-tool-authority.en.md)
+- 中文：[AI Agent 的技能不是工具权限](../../../docs/zh/industry/2026-08-20-skill-vs-tool-authority.md)
+- English: [An AI Agent’s Skill Is Not Its Permission](../../../docs/en/industry/2026-08-20-skill-vs-tool-authority.md)
 - 读者结果：得到“行为手册—角色工具—操作影响—明确批准”四层模型与回归清单。
 - 测试：22/22 基础门禁 + 13/13 批准服务，共 35 项 PASS。
-- 配图：[题图](../../../staging/publication-candidates/2026-08-20-skill-vs-tool-authority-cover.png)；[文中图](../../../staging/publication-candidates/2026-08-20-skill-vs-tool-authority-figure-1.png)。
+- 配图：[题图](../../../docs/public/assets/covers/daily-2026-08-20-skill-vs-tool-authority-cover.png)；[文中图](../../../docs/public/assets/covers/daily-2026-08-20-skill-vs-tool-authority-figure-1.png)。
 
 ## 第二篇
 
-- 中文：[切换项目后，Agent 为什么还在改旧目录？](../../../staging/publication-candidates/2026-08-20-project-root-switch.zh.md)
-- English: [Why Is the Agent Still Editing the Old Project?](../../../staging/publication-candidates/2026-08-20-project-root-switch.en.md)
+- 中文：[切换项目后，Agent 为什么还在改旧目录？](../../../docs/zh/engineering/2026-08-20-project-root-switch.md)
+- English: [Why Is the Agent Still Editing the Old Project?](../../../docs/en/engineering/2026-08-20-project-root-switch.md)
 - 读者结果：得到项目执行链安全换根时序、七项同根不变量和失败回滚边界。
 - 测试：27/27 PASS。
-- 配图：[题图](../../../staging/publication-candidates/2026-08-20-project-root-switch-cover.png)；[文中图](../../../staging/publication-candidates/2026-08-20-project-root-switch-figure-1.png)。
+- 配图：[题图](../../../docs/public/assets/covers/daily-2026-08-20-project-root-switch-cover.png)；[文中图](../../../docs/public/assets/covers/daily-2026-08-20-project-root-switch-figure-1.png)。
 
 ## 第三篇
 
-- 中文：[AI 团队同时交回三份报告，怎样保证验收没有串账？](../../../staging/publication-candidates/2026-08-20-report-attribution.zh.md)
-- English: [Three Agents Returned Three Reports](../../../staging/publication-candidates/2026-08-20-report-attribution.en.md)
+- 中文：[AI 团队同时交回三份报告，怎样保证验收没有串账？](../../../docs/zh/digital-employee/2026-08-20-report-attribution.md)
+- English: [Three Agents Returned Three Reports](../../../docs/en/digital-employee/2026-08-20-report-attribution.md)
 - 读者结果：得到报告身份证、展示挂树与验收归属分层、最终汇总检查清单。
 - 测试：44/44 PASS。
-- 配图：[题图](../../../staging/publication-candidates/2026-08-20-report-attribution-cover.png)；[文中图](../../../staging/publication-candidates/2026-08-20-report-attribution-figure-1.png)。
+- 配图：[题图](../../../docs/public/assets/covers/daily-2026-08-20-report-attribution-cover.png)；[文中图](../../../docs/public/assets/covers/daily-2026-08-20-report-attribution-figure-1.png)。
 
 ## 支撑材料
 

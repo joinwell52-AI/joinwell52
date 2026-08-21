@@ -1,6 +1,40 @@
-# Three Agents Returned Three Reports. How Do You Keep Acceptance from Charging the Wrong Task?
+---
+title: "Three Agents Returned Three Reports. How Do You Keep Acceptance from Charging the Wrong Task?"
+date: '2026-08-20'
+column: digital-employee
+category: daily
+article_type: project-research
+edition: research-center
+research_question: "How can a multi-Agent acceptance system prove which task and execution attempt each report belongs to without guessing from prose?"
+summary: "Display may assist with parenting, but acceptance must verify task identity, execution attempt, supersession, and independent QA. The article defines the three-field gate’s limits and a safer artifact-version contract."
+item_id: "MANUAL-20260820-REPORT-ATTRIBUTION"
+lifecycle: "Published"
+cover: "/assets/covers/daily-2026-08-20-report-attribution-cover.png"
+evidence_status: "Completed"
+citation_status: "Completed"
+editing_status: "Completed"
+publication_authorized: true
+sources:
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-source-register.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-fact-claim-matrices.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-article-briefs.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-experiment-run-log.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-independent-editorial-review-round4.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/03-independent-visual-package-review.md
+---
 
-![Execution facts and independent verification form one TASK 42 evidence chain while the complete TASK 17 artifact remains preserved beyond a red ownership boundary](../../../docs/public/assets/covers/daily-2026-08-20-report-attribution-cover.png)
+<ArticleCover
+  image="/assets/covers/daily-2026-08-20-report-attribution-cover.png"
+  kicker="Digital Employee · Project Research"
+  title="Three Agents Returned Three Reports. How Do You Keep Acceptance from Charging the Wrong Task?"
+  summary="Display may assist with parenting, but acceptance must verify task identity, execution attempt, supersession, and independent QA."
+  version="MANUAL-20260820-REPORT-ATTRIBUTION"
+  status="Independent Editorial PASS · 2026-08-21"
+  languageHref="/zh/digital-employee/2026-08-20-report-attribution"
+  languageLabel="中文"
+/>
+
+# Three Agents Returned Three Reports. How Do You Keep Acceptance from Charging the Wrong Task?
 
 A development agent, a QA agent, and an operations agent return reports at almost the same time. All three say “success,” so the system produces a reassuring summary: implementation complete, tests passed, deployment healthy.
 
@@ -63,9 +97,9 @@ This boundary needs precision. It is an application-level CodeFlowMu rule for a 
 
 The check rejects disagreement. It cannot detect three fields that all repeat the same wrong task identifier—for example, when a model copies an old template and changes nothing. A stronger target design lets the Agent submit only the report body and evidence; the runtime injects the filename, direct owner, parent, execution attempt, and logical event sequence from the active execution context. That is a design recommendation, not a claim that every current CodeFlowMu report path already provides this envelope-injection contract.
 
-![Task identity and execution attempt bind development facts and QA verification; supersession selects the effective artifact and isolates the wrong owner](../../../docs/public/assets/covers/daily-2026-08-20-report-attribution-figure-1.png)
+![Task identity and execution attempt bind development facts and QA verification; supersession selects the effective artifact and isolates the wrong owner](/assets/covers/daily-2026-08-20-report-attribution-figure-1.png)
 
-*Figure 1. Attribution from task identity and execution attempt through supersession and QA. Runtime injection of all authoritative metadata remains a target contract, not a claim about every current path.*
+*Figure 1. Attribution from task identity and execution attempt through supersession and QA. Source: author synthesis from the pinned CodeFlowMu implementation and W3C/OpenTelemetry identity-propagation boundaries. Runtime injection of all authoritative metadata remains a target contract.*
 
 ## Propagate identity—but do not confuse tracing with acceptance
 

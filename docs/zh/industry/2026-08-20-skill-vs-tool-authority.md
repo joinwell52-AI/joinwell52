@@ -1,6 +1,40 @@
-# AI Agent 的技能不是工具权限：为什么“会怎么做”和“允许做什么”必须分开？
+---
+title: "AI Agent 的技能不是工具权限：为什么‘会怎么做’和‘允许做什么’必须分开？"
+date: '2026-08-20'
+column: industry-architecture
+category: daily
+article_type: project-research
+edition: research-center
+research_question: "为什么 Agent 运行时必须把行为知识、工具能力、操作影响与单次批准分开？"
+summary: "行为手册只教方法，角色能力决定可调用工具，操作策略判断真实副作用，单次批准只放行一个匹配动作。本文用公开实现与35项定向测试给出可审计的四层权限模型。"
+item_id: "MANUAL-20260820-SKILL-AUTHORITY"
+lifecycle: "Published"
+cover: "/assets/covers/daily-2026-08-20-skill-vs-tool-authority-cover.png"
+evidence_status: "Completed"
+citation_status: "Completed"
+editing_status: "Completed"
+publication_authorized: true
+sources:
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-source-register.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-fact-claim-matrices.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-article-briefs.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-experiment-run-log.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-independent-editorial-review-round4.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/03-independent-visual-package-review.md
+---
 
-![一个计算智能体已掌握蓝色方法结构，但琥珀色高风险动作仍停在独立授权边界，等待一次性批准](../../../docs/public/assets/covers/daily-2026-08-20-skill-vs-tool-authority-cover.png)
+<ArticleCover
+  image="/assets/covers/daily-2026-08-20-skill-vs-tool-authority-cover.png"
+  kicker="行业架构 · 项目研究"
+  title="AI Agent 的技能不是工具权限：为什么‘会怎么做’和‘允许做什么’必须分开？"
+  summary="行为手册只教方法，角色能力决定可调用工具，操作策略判断真实副作用，单次批准只放行一个匹配动作。"
+  version="MANUAL-20260820-SKILL-AUTHORITY"
+  status="Independent Editorial PASS · 2026-08-21"
+  languageHref="/en/industry/2026-08-20-skill-vs-tool-authority"
+  languageLabel="English"
+/>
+
+# AI Agent 的技能不是工具权限：为什么“会怎么做”和“允许做什么”必须分开？
 
 给一个 AI 智能体一份应用发布手册，再给它终端和文件写入工具。它学会了构建、测试和部署，是否就可以把代码推向生产？当然不可以。真正危险的配置错误，是系统把“知道怎样做”误当成“已经获准去做”：本来等待审核的版本，可能因为工具恰好可见而直接进入发布链。
 
@@ -14,10 +48,6 @@
 这次会影响谁  → 操作影响判断
 是否允许发生  → 明确批准
 ```
-
-![四层分别回答怎样做、能调用什么、这次影响谁、是否允许这一次；匹配批准只获得一次受控执行尝试](../../../docs/public/assets/covers/daily-2026-08-20-skill-vs-tool-authority-figure-1.png)
-
-*图 1：四层权限责任链。来源：本文根据 CodeFlowMu 固定提交、MCP 与 NIST 边界整理；字段是机制归纳，不是 FCoP 或 MCP 的统一格式。*
 
 读完后，你可以用同一套结构检查自己的 Agent：它到底只是学会了方法，还是已经被授予了执行权？
 
@@ -38,6 +68,10 @@
 > 被加载的行为建议不是执行授权，也不是执行成功的证据。
 
 提示词可以告诉 Agent “测试通过后再提交”，却不能证明测试真的运行了，更不能因此授予它远程推送权限。
+
+![四层分别回答怎样做、能调用什么、这次影响谁、是否允许这一次；匹配批准只获得一次受控执行尝试](/assets/covers/daily-2026-08-20-skill-vs-tool-authority-figure-1.png)
+
+*图 1：四层权限责任链。来源：本文根据 CodeFlowMu 固定提交、MCP 与 NIST 边界整理；字段是机制归纳，不是 FCoP 或 MCP 的统一格式。*
 
 ## 第二层：角色工具能力只回答“能否发起调用”
 

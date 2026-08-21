@@ -1,6 +1,40 @@
-# An AI Agent’s Skill Is Not Its Permission: Why “Knows How” Must Stay Separate from “May Do”
+---
+title: "An AI Agent’s Skill Is Not Its Permission: Why ‘Knows How’ Must Stay Separate from ‘May Do’"
+date: '2026-08-20'
+column: industry-architecture
+category: daily
+article_type: project-research
+edition: research-center
+research_question: "Why must an Agent runtime keep behavioral knowledge separate from tool capability, operation effects, and occurrence-scoped approval?"
+summary: "Playbooks teach methods, role capabilities allocate callable tools, effect policy evaluates real consequences, and one-time approval releases only one matching action. Public code and 35 targeted tests ground the four-layer model."
+item_id: "MANUAL-20260820-SKILL-AUTHORITY"
+lifecycle: "Published"
+cover: "/assets/covers/daily-2026-08-20-skill-vs-tool-authority-cover.png"
+evidence_status: "Completed"
+citation_status: "Completed"
+editing_status: "Completed"
+publication_authorized: true
+sources:
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-source-register.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-fact-claim-matrices.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-article-briefs.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-experiment-run-log.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-independent-editorial-review-round4.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/03-independent-visual-package-review.md
+---
 
-![A computational agent contains a blue learned method while an amber consequential action pauses at a separate authorization boundary for a one-time approval](../../../docs/public/assets/covers/daily-2026-08-20-skill-vs-tool-authority-cover.png)
+<ArticleCover
+  image="/assets/covers/daily-2026-08-20-skill-vs-tool-authority-cover.png"
+  kicker="Industry Architecture · Project Research"
+  title="An AI Agent’s Skill Is Not Its Permission: Why ‘Knows How’ Must Stay Separate from ‘May Do’"
+  summary="Playbooks teach methods, role capabilities allocate callable tools, effect policy evaluates consequences, and one-time approval releases one matching action."
+  version="MANUAL-20260820-SKILL-AUTHORITY"
+  status="Independent Editorial PASS · 2026-08-21"
+  languageHref="/zh/industry/2026-08-20-skill-vs-tool-authority"
+  languageLabel="中文"
+/>
+
+# An AI Agent’s Skill Is Not Its Permission: Why “Knows How” Must Stay Separate from “May Do”
 
 Give an AI agent a deployment manual, a terminal, and file-writing tools. It can now build, test, and deploy. Does that mean it may push code toward production? Of course not. The dangerous configuration error is to treat “knows how” as “has been authorized”: a release that was supposed to wait for review can enter the deployment path simply because the relevant tool is visible.
 
@@ -12,10 +46,6 @@ What may be called → role capability
 What this call affects → operation policy
 Whether it may happen → explicit approval
 ```
-
-![Four layers separately answer how, what may be called, who is affected, and whether this occurrence is approved; approval grants only one controlled execution attempt](../../../docs/public/assets/covers/daily-2026-08-20-skill-vs-tool-authority-figure-1.png)
-
-*Figure 1. Four separate authority responsibilities. Source: author synthesis from the pinned CodeFlowMu implementation and MCP/NIST boundaries; this is not a universal FCoP or MCP field format.*
 
 The practical question is simple: did the agent merely learn a method, or did the system actually grant authority for this action?
 
@@ -30,6 +60,10 @@ The separation yields two benefits. Irrelevant guidance does not consume every p
 > Auto-loaded guidance is neither execution authorization nor evidence that execution succeeded.
 
 A prompt can tell an agent to test before committing. It cannot prove a test ran, and it cannot authorize a remote push.
+
+![Four layers separately answer how, what may be called, who is affected, and whether this occurrence is approved; approval grants only one controlled execution attempt](/assets/covers/daily-2026-08-20-skill-vs-tool-authority-figure-1.png)
+
+*Figure 1. Four separate authority responsibilities. Source: author synthesis from the pinned CodeFlowMu implementation and MCP/NIST boundaries; this is not a universal FCoP or MCP field format.*
 
 ## A role capability allows a class of calls
 

@@ -1,6 +1,40 @@
-# 切换项目后，Agent 为什么还在改旧目录？一条执行链怎样安全换根
+---
+title: "切换项目后，Agent 为什么还在改旧目录？一条执行链怎样安全换根"
+date: '2026-08-20'
+column: open-source-engineering
+category: daily
+article_type: project-research
+edition: research-center
+research_question: "本地 Agent 执行链怎样让所有项目作用域组件安全换根，不留下仍绑定旧目录的隐藏工作？"
+summary: "项目切换不是改界面标签，而是停止旧副作用、保存新根、重建运行程序与工具绑定并核对同根事实。本文同时说明 Windows 句柄、符号链接和优雅排空仍属于需要验证的增强边界。"
+item_id: "MANUAL-20260820-PROJECT-ROOT"
+lifecycle: "Published"
+cover: "/assets/covers/daily-2026-08-20-project-root-switch-cover.png"
+evidence_status: "Completed"
+citation_status: "Completed"
+editing_status: "Completed"
+publication_authorized: true
+sources:
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-source-register.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-fact-claim-matrices.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-article-briefs.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-experiment-run-log.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/02-independent-editorial-review-round4.md
+  - research/manual-runs/2026-08-20-guided-article-pipeline-round1/03-independent-visual-package-review.md
+---
 
-![执行链从失活的项目 A 在隔离界面完成身份切换，全部连接只进入更大的项目 B 根](../../../docs/public/assets/covers/daily-2026-08-20-project-root-switch-cover.png)
+<ArticleCover
+  image="/assets/covers/daily-2026-08-20-project-root-switch-cover.png"
+  kicker="开源工程 · 项目研究"
+  title="切换项目后，Agent 为什么还在改旧目录？一条执行链怎样安全换根"
+  summary="安全切换要停止旧副作用、保存新根、整体重建绑定，并验证任务与证据只落在新根。"
+  version="MANUAL-20260820-PROJECT-ROOT"
+  status="Independent Editorial PASS · 2026-08-21"
+  languageHref="/en/engineering/2026-08-20-project-root-switch"
+  languageLabel="English"
+/>
+
+# 切换项目后，Agent 为什么还在改旧目录？一条执行链怎样安全换根
 
 界面已经从项目 A 切到 B，AI 智能体却仍把补丁写进 A；测试在 B 运行，构建产物甚至可能继续污染 A。每个局部步骤都显示成功，最终交付却来自两个项目。问题不在模型记错名字，而在后台存在多个互相矛盾的“当前项目”。
 
@@ -80,9 +114,9 @@ CodeFlowMu 当前公开的项目切换路径位于 [`web-panel.ts`](https://gith
 9. 前端等待健康检查报告的新 projectRoot
 ```
 
-![项目换根依次关闭旧副作用、保存新根、整体重建并核对同根；排空、句柄探测和真实路径核对标为建议增强](../../../docs/public/assets/covers/daily-2026-08-20-project-root-switch-figure-1.png)
+![项目换根依次关闭旧副作用、保存新根、整体重建并核对同根；排空、句柄探测和真实路径核对标为建议增强](/assets/covers/daily-2026-08-20-project-root-switch-figure-1.png)
 
-*图 1：执行链换根时序。实线主流程来自当前公开实现；虚线框中的排空、Windows 句柄探测和真实路径核对是本文建议，不冒充现成功能。*
+*图 1：执行链换根时序。来源：本文根据 CodeFlowMu 固定提交整理。实线主流程来自当前公开实现；虚线框中的排空、Windows 句柄探测和真实路径核对是本文建议，不冒充现成功能。*
 
 这个顺序的核心不是“刷新页面”，而是关闭旧项目继续产生副作用的通道。若第 2 步失败，继续保存新根只会制造两个同时有效的世界。
 
