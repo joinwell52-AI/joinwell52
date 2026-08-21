@@ -1,0 +1,48 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-21",
+  "itemId": "Q-20260821-02",
+  "researchObjectId": "AN-20260821-02",
+  "targetAudience": {
+    "primary": "Agent-platform, multi-agent protocol and human-authorization architects",
+    "knowledgeAssumption": "The reader understands human-in-the-loop tool approval and message relays such as A2A and HTTP.",
+    "readerProblem": "An approval can travel through several channels, but transport metadata and user-shaped message roles do not identify the human principal authorized to approve the exact action."
+  },
+  "whyNow": "A same-day Google ADK revert removed an A2A-metadata confirmation guard because it blocked legitimate relayed approvals while leaving equivalent approval ingress elsewhere; the underlying issue was explicitly reopened without a replacement principal-binding mechanism.",
+  "externalHook": {
+    "type": "failed-trust-proxy",
+    "description": "A security guard correctly identifies a channel but answers the wrong authorization question and must be reverted.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "Human approval in agent systems should be a principal-bound authorization object that binds the authenticated approver, exact pending action, scope or policy, and freshness or replay boundary; transport provenance is supporting risk context rather than authority, and the ADK revert leaves the replacement mechanism unresolved.",
+  "originalValue": {
+    "type": "principal-bound-approval-contract",
+    "description": "Turns the failure of transport gating into a concrete authorization record that separates channel, principal, pending action, scope and freshness."
+  },
+  "readerTakeaway": "Use transport as contextual evidence, authenticate the approving principal end to end, bind approval to the exact pending effect and prevent replay; do not treat a revert as a completed security fix.",
+  "evidenceBoundary": {
+    "supported": [
+      "The selected ADK commit reverts an A2A-metadata confirmation guard and reopens the issue.",
+      "The reporter describes A2A and HTTP paths for confirmation-shaped input.",
+      "The reverted guard rejected confirmation based on transport metadata and did not address other ingress.",
+      "The selected revert adds no replacement principal identifier, credential, signature or verifier in the shown path."
+    ],
+    "unsupported": [
+      "That the reported exploit was independently reproduced here",
+      "That all ADK deployments expose unauthenticated ingress",
+      "That the revert solves human-approval authorization",
+      "That one specific replacement design has been selected by maintainers"
+    ],
+    "uncertain": [
+      "Which principal representation should survive every supported relay",
+      "How pending actions and approval freshness will be bound in a future implementation"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article develops a general authorization architecture for agent systems and does not rely on a first-party project."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The revert, issue and prior mitigation expose a concrete trust-proxy failure, and the Research Object derives a bounded authorization contract without claiming an unimplemented fix."
+}

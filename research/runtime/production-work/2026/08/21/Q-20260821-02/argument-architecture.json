@@ -1,0 +1,58 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-21",
+  "itemId": "Q-20260821-02",
+  "coreProposition": "Human approval in agent systems should be a principal-bound authorization object that binds the authenticated approver, exact pending action, scope or policy, and freshness or replay boundary; transport provenance is supporting risk context rather than authority, and the ADK revert leaves the replacement mechanism unresolved.",
+  "openingMove": {
+    "type": "reverted-mitigation",
+    "purpose": "Open with a guard that blocks legitimate approval on one transport while missing equivalent approval-shaped input on another.",
+    "evidenceRefs": ["E1", "E2", "E3"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why can transport provenance not establish approval authority?",
+      "claim": "A channel identifies how a message arrived, while authorization depends on which authenticated principal approved which action.",
+      "evidenceRefs": ["E2", "E3", "I1"],
+      "reasoningRole": "trust-object-separation",
+      "readerProgress": "The reader separates delivery context from actor authority.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "How did the A2A guard fail in both directions?",
+      "claim": "It was overbroad because legitimate operator approval could traverse A2A and incomplete because equivalent approval input remained reachable through other ingress.",
+      "evidenceRefs": ["E1", "E2", "E3"],
+      "reasoningRole": "failure-analysis",
+      "readerProgress": "The reader sees why blocking one channel is not equivalent to authenticating the approver.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What must a real approval object bind?",
+      "claim": "It should bind authenticated principal evidence, exact pending call and parameters, effect scope or policy, and freshness or anti-replay evidence.",
+      "evidenceRefs": ["E4", "I1", "I2"],
+      "reasoningRole": "authorization-contract",
+      "readerProgress": "The reader gains a concrete principal-bound approval record that works across relays.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What does the selected revert establish and leave open?",
+      "claim": "It restores legitimate flow and makes the defective proxy explicit, but it does not implement or validate the replacement authorization mechanism.",
+      "evidenceRefs": ["E1", "E4", "I2"],
+      "reasoningRole": "boundary",
+      "readerProgress": "The reader avoids interpreting issue governance or a revert as a solved security property.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Transport metadata remains useful for risk scoring, routing and audit context.",
+    "responseBoundary": "Keep it as supporting evidence, but never let channel identity substitute for authenticated approving-principal authority."
+  },
+  "endingStrategy": {
+    "type": "unresolved-design",
+    "purpose": "End with the regression and protocol questions a future principal-bound mechanism must answer."
+  }
+}
