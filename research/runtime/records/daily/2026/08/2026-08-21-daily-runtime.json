@@ -8,12 +8,12 @@
   "date": "2026-08-21",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
-    "analysis": "Running",
+    "analysis": "Completed",
     "production": "Waiting",
     "publication": "Waiting"
   },
@@ -913,6 +913,197 @@
       "githubCommit": "0d36c193f7458a15e2d82f61692bf70c0f8a9bf9",
       "commitVerify": "Completed",
       "verifiedAt": "2026-08-21T11:11:53+08:00"
+    },
+    "analysis": {
+      "schema": "runtime-shift-result/v2",
+      "task": "analysis",
+      "family": "daily",
+      "runtimeDate": "2026-08-21",
+      "status": "Completed",
+      "input": {
+        "scheduler": "research/runtime/SCHEDULER.json",
+        "workerControl": "research/runtime/worker-prompts/generated/CONTROL.json",
+        "workerControlVersion": "1.3.0",
+        "authoritativePrompt": {
+          "path": "research/runtime/worker-prompts/generated/analysis.prompt.md",
+          "version": "2.0.0",
+          "sha256": "4f40dff2d12569f647bf265f344b60cb0f0cd0349f0b2d5cf1023f50947dfea2",
+          "hashVerified": true,
+          "sourceCommit": "ddac8bf6f1a707a010fd52fe2a5d03d2198b78f2"
+        },
+        "requiredSources": [
+          "research/runtime/SCHEDULER.json",
+          "research/runtime/WORKER-CONTRACT-V3.md",
+          "research/runtime/WAKE-RECEIPT-V1.md",
+          "research/editorial/EDITORIAL-ARCHITECTURE.json",
+          "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+          "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+          "research/skills/04-research-analysis.md"
+        ],
+        "admission": {
+          "decision": "Admitted",
+          "date": "2026-08-21",
+          "branch": "main",
+          "wakeSource": "chatgpt-scheduled-task",
+          "requiredCapabilities": [
+            "github-read",
+            "github-write",
+            "file-editing"
+          ],
+          "availableCapabilities": [
+            "github-read",
+            "github-write",
+            "file-editing",
+            "deterministic-hash"
+          ],
+          "limits": {
+            "maxRunMinutes": 120,
+            "maxRecoveryAttempts": 2,
+            "maxRevisionRounds": 2,
+            "maxOutputItems": 3,
+            "zeroOutputAllowed": true,
+            "directPublicationAllowed": false,
+            "requireSameRunDateInputs": true,
+            "requirePromptHashVerification": true,
+            "requireRemoteCommitVerification": true
+          }
+        },
+        "readingStatus": "Completed",
+        "readingArtifacts": [
+          "research/reading/Q-20260821-01-external-tool-output-memory-contamination-boundary.md",
+          "research/reading/Q-20260821-02-approval-principal-vs-transport-boundary.md",
+          "research/reading/Q-20260821-03-mcp-helper-trust-credential-isolation.md"
+        ],
+        "controlPlane": {
+          "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-21/analysis-130213.json",
+          "executionSlotOpenedAt": "2026-08-21T13:03:19+08:00",
+          "workerClaimedAt": "2026-08-21T13:04:40+08:00",
+          "workerClaimCommit": "a90a7eac17a42a4304f4e69359152ac2da6ee091",
+          "globalOrderVerified": true,
+          "earlierDueTasksClosed": [
+            "discovery",
+            "queue",
+            "reading"
+          ]
+        }
+      },
+      "workResult": {
+        "summary": "Executed only Skill 04 Research Analysis after fail-closed admission, deterministic SHA-256 verification of the authoritative generated Analysis prompt, complete reading of all seven required control/editorial/evidence sources, a durable same-date Wake Receipt, repository-granted global-serial execution authority and a verified Worker Claimed event. Consumed only the three completed 2026-08-21 Reading Results and produced exactly three Research Objects. Q-20260821-01 concludes that provenance evidence, immediate content utility and durable memory-reuse authority should be separate governance decisions: external-context material may remain visible and useful while memory reuse fails closed, and a pollution state is policy evidence rather than authenticated-source proof or end-to-end safety. Q-20260821-02 concludes that human approval must bind an authenticated approving principal to the exact pending action and policy scope; transport provenance is supporting context rather than authorization, and the ADK revert leaves the principal-binding gap explicitly unresolved. Q-20260821-03 concludes that executable configuration needs separate authority gates for code admission and ambient secret/capability access: workspace trust can authorize helper execution without implicitly authorizing inherited credentials, while environment sanitization remains a least-authority control rather than a sandbox. No prior-day research input, article drafting, visualization, Publication Candidate creation or publication was used or performed.",
+        "summary_zh": "在完成 Fail-closed Admission、权威 Generated Analysis Prompt 的 SHA-256 确定性核验、全部 7 个 Required Control/Editorial/Evidence Source 的完整读取、同日 Wake Receipt 持久核验、仓库授予的全局串行执行权与 Worker Claimed 核验后，仅执行 Skill 04 Research Analysis。只消费 2026-08-21 当日三份已完成 Reading Result，并恰好形成三份 Research Object。Q-20260821-01 的判断是：Provenance Evidence、即时 Content Utility 与持久 Memory-reuse Authority 应作为不同治理决策；External-context Material 可以继续可见且有用，同时 Memory Reuse Fail-closed，而 Pollution State 只是 Policy Evidence，不是 Authenticated-source Proof 或端到端 Safety。Q-20260821-02 的判断是：Human Approval 必须把经过认证的 Approving Principal 绑定到准确 Pending Action 与 Policy Scope；Transport Provenance 只是辅助上下文而不是 Authorization，ADK 的 Revert 使 Principal-binding Gap 保持明确未解决。Q-20260821-03 的判断是：Executable Configuration 需要分离 Code Admission 与 Ambient Secret/Capability Access 的 Authority Gate；Workspace Trust 可以授权 Helper Execution，而不隐式授权 Inherited Credential，Environment Sanitization 则只是 Least-authority Control，不是 Sandbox。未复用前一日研究输入，也未执行文章撰写、可视化、Publication Candidate 创建或发布。",
+        "researchObjects": [
+          {
+            "column": "digital-employee",
+            "itemId": "Q-20260821-01",
+            "artifact": "research/analysis/Q-20260821-01-provenance-memory-authority-separation.md",
+            "articleType": "engineering-insight",
+            "projectRelevance": "none",
+            "judgment": "For digital employees, provenance evidence and memory authority should be separate governance planes. Standalone external-context content may remain visible, attributable and useful for bounded tasks, while durable memory reuse requires its own policy decision tied to provenance quality, purpose and consumer; a pollution state is not authenticated-source evidence or an end-to-end safety guarantee.",
+            "judgment_zh": "对数字员工而言，Provenance Evidence 与 Memory Authority 应是独立治理平面。Standalone External-context Content 可以继续可见、可归因，并在有界任务中保持可用，但持久 Memory Reuse 必须由绑定 Provenance Quality、Purpose 与 Consumer 的独立 Policy Decision 授权；Pollution State 不是已认证 Source Evidence，也不是端到端 Safety Guarantee。"
+          },
+          {
+            "column": "industry-architecture",
+            "itemId": "Q-20260821-02",
+            "artifact": "research/analysis/Q-20260821-02-principal-bound-approval-authority.md",
+            "articleType": "technical-analysis",
+            "projectRelevance": "none",
+            "judgment": "Human approval in agent systems should be a principal-bound authorization object that binds the authenticated approver, exact pending action, scope/policy and freshness or replay boundary. Transport provenance is supporting risk context, not authority; the ADK revert demonstrates why channel gating can be overbroad and bypassable while leaving the replacement principal-binding mechanism unresolved.",
+            "judgment_zh": "Agent System 中的 Human Approval 应是 Principal-bound Authorization Object，绑定经过认证的 Approver、准确 Pending Action、Scope/Policy 与 Freshness 或 Replay Boundary。Transport Provenance 只是辅助 Risk Context，不是 Authority；ADK 的 Revert 展示了 Channel Gating 为什么会同时过宽且可绕过，而替代性的 Principal-binding Mechanism 仍未解决。"
+          },
+          {
+            "column": "open-source-engineering",
+            "itemId": "Q-20260821-03",
+            "artifact": "research/analysis/Q-20260821-03-execution-trust-secret-authority-separation.md",
+            "articleType": "engineering-insight",
+            "projectRelevance": "none",
+            "judgment": "Executable configuration should have separate capabilities for code execution and ambient secret or host-resource authority. Workspace trust can satisfy code admission for repository-controlled helpers without implicitly authorizing inherited credentials; credential-environment filtering is a least-authority control rather than proof of sandbox, filesystem, network or process isolation.",
+            "judgment_zh": "Executable Configuration 应分离 Code Execution 与 Ambient Secret/Host-resource Authority 的 Capability。Workspace Trust 可以满足 Repository-controlled Helper 的 Code Admission，而不隐式授权 Inherited Credential；Credential-environment Filtering 是 Least-authority Control，并不能证明 Sandbox、Filesystem、Network 或 Process Isolation。"
+          }
+        ],
+        "boundary": {
+          "unreadMaterialAnalyzed": false,
+          "priorDayResearchInputsReused": false,
+          "fixedArticleOutline": false,
+          "forcedFirstPartyMapping": false,
+          "articleWriting": false,
+          "visualization": false,
+          "publicationCandidate": false,
+          "publication": false
+        }
+      },
+      "output": {
+        "type": "Research Objects",
+        "researchObjectCount": 3,
+        "artifacts": [
+          "research/analysis/Q-20260821-01-provenance-memory-authority-separation.md",
+          "research/analysis/Q-20260821-02-principal-bound-approval-authority.md",
+          "research/analysis/Q-20260821-03-execution-trust-secret-authority-separation.md"
+        ]
+      },
+      "next": {
+        "task": "production",
+        "scheduledTime": "15:00",
+        "instruction": "Production may consume only these three completed 2026-08-21 Research Objects after its formal time gate, fresh admission, authoritative prompt verification, global serial-order check and Worker Claim. It must preserve the bounded evidence identities: external-context classification and a polluted memory state are not source authentication or universal downstream safety; transport metadata and user-role semantics are not principal-bound human authorization and the ADK issue remains unresolved; workspace trust plus credential-environment filtering is not a sandbox or complete secret-isolation guarantee, and the exact Claude Code credential filter remains Unknown in public evidence.",
+        "instruction_zh": "Production 只能在 15:00 正式时间门禁之后，并完成新的 Admission、权威 Prompt Verification、全局串行顺序检查与 Worker Claim 后，消费这三份 2026-08-21 已完成 Research Object。必须保留有界 Evidence Identity：External-context Classification 与 polluted Memory State 不等于 Source Authentication 或所有下游 Consumer 的普遍 Safety；Transport Metadata 与 User-role Semantics 不等于 Principal-bound Human Authorization，且 ADK Issue 仍未解决；Workspace Trust + Credential-environment Filtering 不等于 Sandbox 或完整 Secret-isolation Guarantee，Claude Code 准确 Credential Filter 在公开证据中仍为 Unknown。"
+      },
+      "metrics": [
+        {
+          "name": "reading_results_consumed",
+          "value": 3
+        },
+        {
+          "name": "research_objects",
+          "value": 3
+        },
+        {
+          "name": "prompt_hash_verified",
+          "value": 1
+        },
+        {
+          "name": "required_sources_read",
+          "value": 7
+        },
+        {
+          "name": "prior_day_research_inputs_reused",
+          "value": 0
+        },
+        {
+          "name": "first_party_project_mappings_forced",
+          "value": 0
+        },
+        {
+          "name": "article_drafts",
+          "value": 0
+        },
+        {
+          "name": "publication_actions",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        "ddac8bf6f1a707a010fd52fe2a5d03d2198b78f2",
+        "research/runtime/wakes/2026/08/2026-08-21/analysis-130213.json",
+        "research/runtime/records/daily/2026/08/2026-08-21-daily-runtime.json",
+        "research/runtime/worker-prompts/generated/CONTROL.json",
+        "research/runtime/worker-prompts/generated/analysis.prompt.md",
+        "research/runtime/WORKER-CONTRACT-V3.md",
+        "research/runtime/WAKE-RECEIPT-V1.md",
+        "research/editorial/EDITORIAL-ARCHITECTURE.json",
+        "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+        "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+        "research/skills/04-research-analysis.md",
+        "research/reading/Q-20260821-01-external-tool-output-memory-contamination-boundary.md",
+        "research/reading/Q-20260821-02-approval-principal-vs-transport-boundary.md",
+        "research/reading/Q-20260821-03-mcp-helper-trust-credential-isolation.md",
+        "a90a7eac17a42a4304f4e69359152ac2da6ee091"
+      ],
+      "artifacts": [
+        "research/analysis/Q-20260821-01-provenance-memory-authority-separation.md",
+        "research/analysis/Q-20260821-02-principal-bound-approval-authority.md",
+        "research/analysis/Q-20260821-03-execution-trust-secret-authority-separation.md",
+        "research/runtime/results/2026/08/2026-08-21-analysis-result.json"
+      ],
+      "startedAt": "2026-08-21T13:03:19+08:00",
+      "completedAt": "2026-08-21T13:08:12+08:00"
     }
   },
   "timeline": [
@@ -1013,6 +1204,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Analysis after verifying research/runtime/wakes/2026/08/2026-08-21/analysis-130213.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-08-21T13:08:12+08:00",
+      "task": "analysis",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Analysis closed as Completed through governed Runtime shift finalization after durable result validation for 2026-08-21."
     }
   ],
   "metrics": [],
@@ -1020,5 +1218,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-21T13:04:40+08:00"
+  "updatedAt": "2026-08-21T13:08:12+08:00"
 }
