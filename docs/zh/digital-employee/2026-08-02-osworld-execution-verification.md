@@ -12,7 +12,7 @@ outline: deep
 ---
 
 <ArticleCover
-  image="/assets/covers/academic-osworld.svg"
+  image="/assets/covers/osworld-execution-verification-cover-v2.jpg"
   kicker="数字员工 · 学术观察 001"
   title="OSWorld 说明工作必须通过执行结果验证"
   summary="真实计算机工作需要受控初始状态、可观测动作，以及可执行的最终状态评估。"

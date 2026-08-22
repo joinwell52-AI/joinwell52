@@ -11,7 +11,7 @@ outline: deep
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-computer-use-loop.svg"
+  image="/assets/covers/computer-use-action-state-loop-cover-v2.jpg"
   kicker="Digital Employee · Daily 003"
   title="Computer Use Requires an Observable Action–State Loop"
   summary="A model does not complete GUI work by intention alone; a governed harness must observe, act, capture, approve, and verify."

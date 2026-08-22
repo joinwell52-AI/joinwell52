@@ -12,7 +12,7 @@ outline: deep
 ---
 
 <ArticleCover
-  image="/assets/covers/academic-osworld.svg"
+  image="/assets/covers/osworld-execution-verification-cover-v2.jpg"
   kicker="Digital Employee · Academic Observation 001"
   title="OSWorld Shows Why Work Must Be Verified by Execution"
   summary="Real computer work requires controlled initial state, observable actions, and executable final-state evaluation."

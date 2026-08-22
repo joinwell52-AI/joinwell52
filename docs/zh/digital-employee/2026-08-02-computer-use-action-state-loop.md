@@ -11,7 +11,7 @@ outline: deep
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-computer-use-loop.svg"
+  image="/assets/covers/computer-use-action-state-loop-cover-v2.jpg"
   kicker="数字员工 · 每日观察 003"
   title="Computer Use 必须运行在可观测的动作—状态循环中"
   summary="模型的意图不能完成 GUI 工作；受治理的 Runtime 必须观察、执行、取证、审批和验证。"
