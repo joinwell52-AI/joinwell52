@@ -14,6 +14,7 @@ export interface ResearchNoteRecord {
   column: ResearchColumn
   category: ResearchCategory
   summary: string
+  cover?: string
   url: string
   lang: 'en' | 'zh'
   articleType?: string
@@ -48,6 +49,7 @@ export default createContentLoader('**/*.md', {
         column: frontmatter.column as ResearchColumn,
         category: displayCategory(frontmatter.category as SourceResearchCategory),
         summary: String(frontmatter.summary || frontmatter.description || ''),
+        cover: frontmatter.cover ? String(frontmatter.cover) : undefined,
         url,
         lang: url.startsWith('/zh/') ? 'zh' : 'en',
         articleType: frontmatter.article_type ? String(frontmatter.article_type) : undefined

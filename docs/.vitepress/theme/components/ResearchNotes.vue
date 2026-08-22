@@ -243,7 +243,12 @@ const clearDate = () => {
     </template>
 
     <section v-if="displayedNotes.length" class="rn-list">
-      <a v-for="(note, index) in displayedNotes" :key="note.url" :href="withBase(note.url)">
+      <a
+        v-for="(note, index) in displayedNotes"
+        :key="note.url"
+        :href="withBase(note.url)"
+        :class="{ 'has-cover': note.cover }"
+      >
         <span class="rn-index">{{ String((currentPage - 1) * pageSize + index + 1).padStart(2, '0') }}</span>
         <time>{{ note.date }}</time>
         <div class="rn-main">
@@ -259,6 +264,9 @@ const clearDate = () => {
           </div>
           <h3>{{ note.title }}</h3>
           <p v-if="note.summary">{{ note.summary }}</p>
+        </div>
+        <div v-if="note.cover" class="rn-thumb" aria-hidden="true">
+          <img :src="withBase(note.cover)" alt="" loading="lazy" decoding="async">
         </div>
         <b class="rn-arrow">→</b>
       </a>
@@ -291,4 +299,12 @@ const clearDate = () => {
 .rn-pagination{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:28px 0 8px;padding-top:22px;border-top:1px solid var(--vp-c-divider)}.rn-pagination>button,.rn-pagination__pages button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 15px;border:1px solid var(--vp-c-divider);border-radius:12px;background:var(--vp-c-bg);color:var(--vp-c-text-1);font-size:12px;font-weight:750;cursor:pointer;transition:.18s ease}.rn-pagination>button:hover:not(:disabled),.rn-pagination__pages button:hover,.rn-pagination__pages button.active{border-color:var(--vp-c-brand-1);color:var(--vp-c-brand-1);background:var(--vp-c-brand-soft)}.rn-pagination>button:disabled{opacity:.38;cursor:not-allowed}.rn-pagination__pages{display:flex;align-items:center;justify-content:center;gap:7px}.rn-pagination__pages button{width:40px;padding:0}.rn-pagination__ellipsis{display:grid;width:24px;place-items:center;color:var(--vp-c-text-3)}@media(max-width:620px){.rn-pagination{gap:8px}.rn-pagination>button{padding:0 10px;font-size:0}.rn-pagination>button span{font-size:14px}.rn-pagination__pages{gap:4px}.rn-pagination__pages button{width:36px;min-height:36px}}
 .rn-tags .rn-article-type{border:1px solid color-mix(in srgb,var(--vp-c-brand-1) 35%,transparent);background:var(--vp-c-brand-soft);color:var(--vp-c-brand-1)}
 .rn-tags .rn-rating{border:1px solid transparent;font-weight:850}.rn-tags .rn-rating.rating-benchmark{border-color:rgba(249,115,22,.58);background:rgba(249,115,22,.13);color:#c2410c}.rn-tags .rn-rating.rating-excellent{border-color:rgba(242,201,76,.62);background:rgba(242,201,76,.14);color:#c28a00}.rn-tags .rn-rating.rating-quality{border-color:rgba(94,234,212,.52);background:rgba(94,234,212,.12);color:#159c91}.rn-tags .rn-rating.rating-passing{border-color:rgba(96,165,250,.5);background:rgba(96,165,250,.11);color:#347bd1}.rn-tags .rn-rating.rating-foundation{border-color:rgba(148,163,184,.46);background:rgba(148,163,184,.1);color:#64748b}.rn-tags .rn-rating.pending{border-style:dashed;color:var(--vp-c-text-3)}:global(.dark .rn-rating.rating-benchmark){color:#fb923c}:global(.dark .rn-rating.rating-excellent){color:#f2c94c}:global(.dark .rn-rating.rating-quality){color:#5eead4}:global(.dark .rn-rating.rating-passing){color:#7db8ff}:global(.dark .rn-rating.rating-foundation){color:#aab6c7}
+
+/* Article-list cover thumbnails */
+.rn-list>a.has-cover{grid-template-columns:44px 100px minmax(0,1fr) 168px 28px}
+.rn-thumb{aspect-ratio:16/9;overflow:hidden;border:1px solid var(--vp-c-divider);border-radius:12px;background:var(--vp-c-bg-soft);box-shadow:0 8px 24px rgba(15,23,42,.08)}
+.rn-thumb img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .28s ease}
+.rn-list>a:hover .rn-thumb img{transform:scale(1.035)}
+@media(max-width:900px){.rn-list>a.has-cover{grid-template-columns:38px 88px minmax(0,1fr) 136px 24px}}
+@media(max-width:640px){.rn-list>a.has-cover{width:100%;max-width:calc(100vw - 24px);grid-template-columns:32px minmax(0,1fr) 88px;box-sizing:border-box;overflow:hidden}.rn-list>a.has-cover .rn-main{min-width:0}.rn-list>a.has-cover .rn-main h3,.rn-list>a.has-cover .rn-main p{overflow-wrap:anywhere}.rn-thumb{grid-column:3;grid-row:1/3;align-self:center;border-radius:9px}.rn-list>a.has-cover .rn-arrow{display:none}}
 </style>
