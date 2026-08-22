@@ -1,0 +1,95 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "production",
+  "family": "daily",
+  "runtimeDate": "2026-08-22",
+  "status": "Completed",
+  "productionMode": "candidate-batch",
+  "input": {
+    "promptVersion": "2.13.0",
+    "promptPath": "research/runtime/worker-prompts/generated/production.prompt.md",
+    "promptSha256": "d8b0cd52d22d976d6356558a23c5c2dc28ed5aa8f51793538fa8fbebfb80996f",
+    "promptVerificationMode": "direct-sha256",
+    "researchObjects": ["Q-20260822-01", "Q-20260822-02", "Q-20260822-03"],
+    "stagedCandidateCommit": "b8245cc53ae136cd36c822c71c19eb79886ef1f9"
+  },
+  "workResult": {
+    "summary": "Converted all three authorized same-date Research Objects into complete bilingual Editorial Architecture 2.1 candidates, persisted and remotely verified each bounded item segment with its deterministic baseline raster cover, atomically staged the complete candidate batch, and passed the repository-defined Production checkpoint, atomic-bundle, runtime, editorial, evidence and layout gates without executing Publication.",
+    "summary_zh": "将当日获授权的三份 Research Object 全部转换为完整双语 Editorial Architecture 2.1 候选；每个有界条目段及其确定性基础栅格题图均完成持久化与远端核验；随后原子化装配完整候选批次，并通过仓库定义的 Production Checkpoint、原子候选包、Runtime、编辑、证据与版式门禁；未执行 Publication。"
+  },
+  "output": {
+    "type": "Publication Candidates",
+    "candidateBatch": "research/runtime/candidates/2026/08/2026-08-22-candidates.json",
+    "candidateCount": 3,
+    "bilingualArticleFiles": 6,
+    "coverAssets": 3,
+    "inlineFigureAssets": 0
+  },
+  "next": {
+    "task": "publication",
+    "instruction": "Do not execute Publication in this Production run. Publication remains a separate governed task.",
+    "instruction_zh": "本次 Production 不执行 Publication；Publication 仍是独立受治理任务。"
+  },
+  "coverEvidence": [
+    {
+      "itemId": "Q-20260822-01",
+      "briefId": "2026-08-22:Q-20260822-01-baseline-cover",
+      "coverPath": "staging/publication-candidates/2026-08-22-authorization-needs-provenance-cover.png",
+      "sanitizedPrompt": "A sealed message crossing a narrow review threshold through an intact origin aperture",
+      "generationAttempts": 1,
+      "semanticReview": "PASS",
+      "coverRole": "baseline",
+      "generator": "deterministic-baseline-v1"
+    },
+    {
+      "itemId": "Q-20260822-02",
+      "briefId": "2026-08-22:Q-20260822-02-baseline-cover",
+      "coverPath": "staging/publication-candidates/2026-08-22-protected-constraints-reviewable-grants-cover.png",
+      "sanitizedPrompt": "An immovable boundary with one precisely controlled illuminated gate",
+      "generationAttempts": 1,
+      "semanticReview": "PASS",
+      "coverRole": "baseline",
+      "generator": "deterministic-baseline-v1"
+    },
+    {
+      "itemId": "Q-20260822-03",
+      "briefId": "2026-08-22:Q-20260822-03-baseline-cover",
+      "coverPath": "staging/publication-candidates/2026-08-22-missing-cache-entry-not-deletion-evidence-cover.png",
+      "sanitizedPrompt": "An authoritative inventory plate deflecting a stale wave from preserved artifacts",
+      "generationAttempts": 1,
+      "semanticReview": "PASS",
+      "coverRole": "baseline",
+      "generator": "deterministic-baseline-v1"
+    }
+  ],
+  "metrics": [
+    {"name": "research_objects_consumed", "value": 3},
+    {"name": "publication_candidates", "value": 3},
+    {"name": "persisted_article_segments", "value": 3},
+    {"name": "planning_artifacts", "value": 9},
+    {"name": "bilingual_article_files", "value": 6},
+    {"name": "cover_assets", "value": 3},
+    {"name": "inline_figure_assets", "value": 0},
+    {"name": "revision_rounds", "value": 1},
+    {"name": "direct_cloud_image_generation_calls", "value": 0},
+    {"name": "direct_publication_actions", "value": 0}
+  ],
+  "evidence": [
+    "b8245cc53ae136cd36c822c71c19eb79886ef1f9",
+    "research/runtime/worker-prompts/generated/production.prompt.md",
+    "research/runtime/checkpoints/2026/08/2026-08-22-production.json",
+    "research/runtime/wakes/2026/08/2026-08-22/production-150052.json"
+  ],
+  "artifacts": [
+    "research/runtime/candidates/2026/08/2026-08-22-candidates.json",
+    "staging/publication-candidates/2026-08-22-authorization-needs-provenance.zh.md",
+    "staging/publication-candidates/2026-08-22-authorization-needs-provenance.en.md",
+    "staging/publication-candidates/2026-08-22-authorization-needs-provenance-cover.png",
+    "staging/publication-candidates/2026-08-22-protected-constraints-reviewable-grants.zh.md",
+    "staging/publication-candidates/2026-08-22-protected-constraints-reviewable-grants.en.md",
+    "staging/publication-candidates/2026-08-22-protected-constraints-reviewable-grants-cover.png",
+    "staging/publication-candidates/2026-08-22-missing-cache-entry-not-deletion-evidence.zh.md",
+    "staging/publication-candidates/2026-08-22-missing-cache-entry-not-deletion-evidence.en.md",
+    "staging/publication-candidates/2026-08-22-missing-cache-entry-not-deletion-evidence-cover.png"
+  ]
+}
