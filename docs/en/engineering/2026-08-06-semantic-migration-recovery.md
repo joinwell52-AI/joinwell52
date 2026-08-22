@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-06-semantic-migration-recovery-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-06-semantic-migration-recovery.svg"
+  image="/assets/covers/daily-2026-08-06-semantic-migration-recovery-cover-v2.jpg"
   kicker="Open-source Engineering · Daily Research"
   title="Agent History Migration Must Preserve Semantics, Not Just Files"
   summary="Rollback, compaction, and late lifecycle events can make physical record order diverge from logical session boundaries; reliable migration must reconstruct semantics before journaled, idempotent publication and recovery."

@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-08-lifecycle-revalidated-policy-plane-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-08-lifecycle-revalidated-policy-plane.svg"
+  image="/assets/covers/daily-2026-08-08-lifecycle-revalidated-policy-plane-cover-v2.jpg"
   kicker="行业架构 · 每日研究"
   title="企业 Agent 治理需要生命周期重验证的策略平面"
   summary="企业 Agent 的中央策略不能只在启动时读取一次。更可靠的控制平面应把托管策略编译为运行时不变量，并在恢复、分叉、模型切换和关键设置变化时重新验证，同时把强制修正、拒绝与可信例外分别留下审计证据。"

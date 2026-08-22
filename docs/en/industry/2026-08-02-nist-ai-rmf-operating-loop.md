@@ -9,10 +9,11 @@ sources:
   - NIST AI RMF Playbook
   - NIST AI 600-1 Generative AI Profile
 outline: deep
+cover: "/assets/covers/nist-ai-rmf-operating-loop-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/academic-nist-ai-rmf.svg"
+  image="/assets/covers/nist-ai-rmf-operating-loop-cover-v2.jpg"
   kicker="Industry Architecture · Academic Observation 001"
   title="NIST AI RMF Defines a Governance Operating Loop, Not a Checklist"
   summary="Govern, Map, Measure, and Manage describe connected risk functions across the AI lifecycle; execution requires durable operational records."

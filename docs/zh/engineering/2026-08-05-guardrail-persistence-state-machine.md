@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-05-guardrail-persistence-state-machine-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-05-guardrail-persistence-state-machine.svg"
+  image="/assets/covers/daily-2026-08-05-guardrail-persistence-state-machine-cover-v2.jpg"
   kicker="开源工程 · 每日研究"
   title="输出门禁需要持久化状态机，而不只是“晚一点保存”"
   summary="把最终消息推迟到门禁完成后再持久化是必要的，但被接受输出、保留的工具证据与可回放失败材料仍需要不同的持久状态。"

@@ -5,10 +5,11 @@ column: open-source-engineering
 category: daily
 summary: An engineering benchmark for skills, connection health, automation triggers, runtime options and operator experience.
 outline: deep
+cover: "/assets/covers/openhands-agent-canvas-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/openhands.svg"
+  image="/assets/covers/openhands-agent-canvas-cover-v2.jpg"
   kicker="Open-source Engineering"
   title="OpenHands Agent Canvas"
   summary="An engineering benchmark for skills, connection health, automation triggers, runtime options and operator experience."

@@ -10,10 +10,11 @@ sources:
   - AutoGen teams, application stack, memory, and logging documentation
   - LangGraph runtime and human-in-the-loop documentation
 outline: deep
+cover: "/assets/covers/agent-capability-packaging-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/engineering-weekly-002.svg"
+  image="/assets/covers/agent-capability-packaging-cover-v2.jpg"
   kicker="Open-source Engineering · Weekly 002"
   title="Agent Capability Is Being Packaged as Skills, Plugins, and Contracts"
   summary="Reusable capability is moving out of hidden prompts and into explicit packages, interfaces, workflow nodes, and events."

@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/verifiable-completion-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-05-verifiable-completion.svg"
+  image="/assets/covers/verifiable-completion-cover-v2.jpg"
   kicker="Digital Employee · Daily Research"
   title="A Digital Employee Is Not Done Until Completion Is Independently Accepted"
   summary="Computer-use agents need a completion contract that separates process evidence, business outcome and failure classification. The worker may claim completion, but it must not accept its own claim."

@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-06-governed-revisable-work-graph-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-06-governed-revisable-work-graph.svg"
+  image="/assets/covers/daily-2026-08-06-governed-revisable-work-graph-cover-v2.jpg"
   kicker="数字员工 · 每日研究"
   title="可修订工作图仍需超越“图就绪”的授权边界"
   summary="计算机操作型数字员工可以用可修订 DAG 表达长任务，但节点进入 ready frontier 只证明依赖满足，不能证明权限、资源和外部副作用已获授权。"

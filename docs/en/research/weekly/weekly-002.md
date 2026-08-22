@@ -5,10 +5,11 @@ column: digital-employee
 category: weekly
 summary: A synthesis of Workday Agent System of Record, OpenHands Agent Canvas, and the engineering direction of CodeFlowMu.
 outline: deep
+cover: "/assets/covers/weekly-002-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/weekly-002.svg"
+  image="/assets/covers/weekly-002-cover-v2.jpg"
   kicker="Weekly Research · 002"
   title="Digital Employee Control Plane and Work Runtime"
   summary="A synthesis of Workday Agent System of Record, OpenHands Agent Canvas, and the engineering direction of CodeFlowMu."

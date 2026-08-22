@@ -11,10 +11,11 @@ sources:
   - CrewAI flows and production documentation
   - AutoGen state and logging documentation
 outline: deep
+cover: "/assets/covers/durable-agent-runtime-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/engineering-weekly-001.svg"
+  image="/assets/covers/durable-agent-runtime-cover-v2.jpg"
   kicker="Open-source Engineering · Weekly 001"
   title="Durable Agent Runtime Is Becoming the Baseline"
   summary="Persistence, checkpoints, interruption, recovery, sandboxing, and structured runtime operations are becoming standard infrastructure."

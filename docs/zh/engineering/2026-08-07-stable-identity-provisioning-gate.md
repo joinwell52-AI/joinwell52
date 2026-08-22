@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-07-stable-identity-provisioning-gate-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-07-stable-identity-provisioning-gate.svg"
+  image="/assets/covers/daily-2026-08-07-stable-identity-provisioning-gate-cover-v2.jpg"
   kicker="开源工程 · 每日研究"
   title="延迟 Agent 环境需要稳定身份，而不是替换式 Provisioning"
   summary="延迟环境的关键不是不断 upsert 新对象，而是在同一逻辑身份上显式报告 Pending、Ready、Failed，并让 materialize 与 report 收敛到同一生命周期对象；进程内幂等仍不等于重启后耐久或分布式 exactly-once。"

@@ -9,10 +9,11 @@ sources:
   - NIST AI RMF Playbook
   - NIST AI 600-1 Generative AI Profile
 outline: deep
+cover: "/assets/covers/nist-ai-rmf-operating-loop-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/academic-nist-ai-rmf.svg"
+  image="/assets/covers/nist-ai-rmf-operating-loop-cover-v2.jpg"
   kicker="行业架构 · 学术观察 001"
   title="NIST AI RMF 定义的是治理运行循环，而不是检查清单"
   summary="Govern、Map、Measure 与 Manage 是贯穿 AI Lifecycle 的关联风险 Function；执行需要持久运营记录。"

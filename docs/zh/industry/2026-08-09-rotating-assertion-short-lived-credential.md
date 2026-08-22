@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-09-rotating-assertion-short-lived-credential-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-09-rotating-assertion-short-lived-credential.svg"
+  image="/assets/covers/daily-2026-08-09-rotating-assertion-short-lived-credential-cover-v2.jpg"
   kicker="行业架构 · 每日研究"
   title="企业智能体身份平面应把可轮换断言、凭据租约与传播边界分开"
   summary="文件型 Workload Identity 不应直接成为长期运行凭据。更稳健的身份平面在每次交换时重新读取权威断言，派生短期 Token，合并并发刷新并控制日志暴露；同时必须把 Token 如何传播到子进程和工具边界作为另一项独立治理。"

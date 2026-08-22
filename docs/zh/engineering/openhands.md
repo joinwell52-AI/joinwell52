@@ -5,10 +5,11 @@ column: open-source-engineering
 category: daily
 summary: 围绕 Skill、连接健康、自动触发、Runtime 选择与操作者体验的工程对标。
 outline: deep
+cover: "/assets/covers/openhands-agent-canvas-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/openhands.svg"
+  image="/assets/covers/openhands-agent-canvas-cover-v2.jpg"
   kicker="开源工程观察"
   title="OpenHands Agent Canvas"
   summary="围绕 Skill、连接健康、自动触发、Runtime 选择与操作者体验的工程对标。"

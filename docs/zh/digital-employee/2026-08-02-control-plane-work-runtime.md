@@ -4,7 +4,7 @@ date: '2026-08-02'
 column: digital-employee
 category: daily
 summary: Workday、ServiceNow 与 Microsoft 正在把跨 Agent 治理和具体工作执行拆成两个层次，数字员工平台因此需要控制面与工作 Runtime。
-cover: "/assets/covers/daily-2026-08-02-control-plane-work-runtime-cover.png"
+cover: "/assets/covers/control-plane-work-runtime-cover-v2.jpg"
 sources:
   - Workday Agent System of Record and Agent Gateway
   - ServiceNow AI Control Tower and Autonomous Workforce
@@ -13,7 +13,7 @@ outline: deep
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-02-control-plane-work-runtime-cover.png"
+  image="/assets/covers/control-plane-work-runtime-cover-v2.jpg"
   kicker="数字员工 · 每日观察 002"
   title="控制面与工作 Runtime 是两个不同系统"
   summary="一个系统管理身份、所有权与准入，另一个系统推进具体工作；两者必须分开建模，并通过有边界的契约连接。"

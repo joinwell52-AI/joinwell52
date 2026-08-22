@@ -4,7 +4,7 @@ date: '2026-08-06'
 column: open-source-engineering
 category: daily
 summary: 'This is not model-level hallucination detection. It is protocol-and-organization governance: FCoP externalizes facts, CodeFlowMu runs the roles, and PM rejects unsupported completion claims.'
-cover: "/assets/covers/wp13-codeflowmu-fact-check-cover-en.svg"
+cover: "/assets/covers/daily-2026-08-06-codeflowmu-multi-agent-fact-checking-cover-v2.jpg"
 item_id: WP13-CODEFLOWMU-FACT-CHECK
 lifecycle: Published
 evidence_status: Completed
@@ -15,7 +15,7 @@ outline: deep
 ---
 
 <ArticleCover
-  image="/assets/covers/wp13-codeflowmu-fact-check-cover-en.svg"
+  image="/assets/covers/daily-2026-08-06-codeflowmu-multi-agent-fact-checking-cover-v2.jpg"
   kicker="Open-source Engineering · CodeFlowMu Field Case"
   title="One Agent Said ‘Done.’ Why Didn’t the Team Release It?"
   summary="This is not model-level hallucination detection. FCoP provides the fact track, CodeFlowMu runs the roles, and PM can say no when evidence does not support completion."

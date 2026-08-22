@@ -5,10 +5,11 @@ column: industry-architecture
 category: daily
 summary: 数字员工持久所有权、生命周期、成本、合规与劳动力级可观测的控制面对标。
 outline: deep
+cover: "/assets/covers/workday-system-of-record-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/workday.svg"
+  image="/assets/covers/workday-system-of-record-cover-v2.jpg"
   kicker="行业架构"
   title="Workday Agent System of Record"
   summary="数字员工持久所有权、生命周期、成本、合规与劳动力级可观测的控制面对标。"

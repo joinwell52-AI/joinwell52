@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-09-revocation-coupled-run-reconciliation-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-09-revocation-coupled-run-reconciliation.svg"
+  image="/assets/covers/daily-2026-08-09-revocation-coupled-run-reconciliation-cover-v2.jpg"
   kicker="数字员工 · 每日研究"
   title="删除数字员工工作上下文时，必须同步撤销权限并清理未结工作"
   summary="删除 Conversation、WorkOrder 或其他长期工作上下文，不能只是把对象从界面隐藏。更可靠的运行机制是把删除解释为权限撤销，在与任务准入相同的序列化边界内清理全部未结子任务，并用 Worker Lease 处理已经进入物理执行的工作。"

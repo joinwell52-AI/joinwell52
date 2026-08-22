@@ -9,10 +9,11 @@ sources:
   - Industry Architecture Daily 003 — A2A and MCP Define Different Interoperability Boundaries
   - Open-source Engineering Daily 003 — Manager Orchestration and Handoffs Encode Different Ownership Models
 outline: deep
+cover: "/assets/covers/weekly-003-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/weekly-003.svg"
+  image="/assets/covers/weekly-003-cover-v2.jpg"
   kicker="Weekly Research · 003"
   title="Ownership Is the Control Plane of Agentic Work"
   summary="Reliable Agent systems do not merely route actions. They make ownership, authority, evidence, and completion explicit at every boundary."

@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-06-enterprise-agent-decision-envelope-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-06-enterprise-agent-decision-envelope.svg"
+  image="/assets/covers/daily-2026-08-06-enterprise-agent-decision-envelope-cover-v2.jpg"
   kicker="行业架构 · 每日研究"
   title="企业 Agent 控制平面需要决策信封，而不只是配置优先级"
   summary="托管设置可以表达组织意图，但真正的企业 Agent 治理需要把政策来源、主体、能力、模型、沙箱和恢复上下文绑定到每次关键执行，并由各执行点返回证据收据。"

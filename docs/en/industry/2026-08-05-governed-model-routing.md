@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-05-governed-model-routing-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-05-governed-model-routing.svg"
+  image="/assets/covers/daily-2026-08-05-governed-model-routing-cover-v2.jpg"
   kicker="Industry Architecture · Daily Research"
   title="Model Routing Must Optimize Inside Policy, Not Replace It"
   summary="Automatic model selection becomes enterprise architecture only when eligibility, authority, fallback and audit are explicit and durable."

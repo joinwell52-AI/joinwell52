@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-08-lifecycle-revalidated-policy-plane-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-08-lifecycle-revalidated-policy-plane.svg"
+  image="/assets/covers/daily-2026-08-08-lifecycle-revalidated-policy-plane-cover-v2.jpg"
   kicker="Industry Architecture · Daily Research"
   title="Enterprise Agent Governance Needs a Lifecycle-Revalidated Policy Plane"
   summary="Central agent policy cannot be read once at startup and then forgotten. A stronger enterprise control plane compiles managed policy into runtime invariants, revalidates them at resume, fork, model change, and material settings transitions, and audits coercion, rejection, and trusted exceptions separately."

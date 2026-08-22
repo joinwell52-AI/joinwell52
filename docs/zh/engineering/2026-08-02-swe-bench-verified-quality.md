@@ -9,10 +9,11 @@ sources:
   - SWE-bench official repository and evaluation harness
   - OpenAI SWE-bench Verified report
 outline: deep
+cover: "/assets/covers/swe-bench-verified-quality-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/academic-swe-bench-verified.svg"
+  image="/assets/covers/swe-bench-verified-quality-cover-v2.jpg"
   kicker="开源工程 · 学术观察 001"
   title="SWE-bench Verified 说明 Benchmark 质量本身就是工程质量"
   summary="只有 Issue、Test、Environment 与 Evaluator 都有效且可重建，Coding Agent Score 才有意义。"

@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-05-guardrail-persistence-state-machine-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-05-guardrail-persistence-state-machine.svg"
+  image="/assets/covers/daily-2026-08-05-guardrail-persistence-state-machine-cover-v2.jpg"
   kicker="Open-source Engineering · Daily Research"
   title="Guardrails Need a Persistence State Machine, Not a Later Save Call"
   summary="Deferring final-message persistence until guardrails complete is necessary, but accepted output, retained tool evidence and replayable failure material still need different durable states."

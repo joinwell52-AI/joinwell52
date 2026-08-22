@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-06-semantic-migration-recovery-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-06-semantic-migration-recovery.svg"
+  image="/assets/covers/daily-2026-08-06-semantic-migration-recovery-cover-v2.jpg"
   kicker="开源工程 · 每日研究"
   title="Agent 历史迁移必须保留语义，而不只是搬运文件"
   summary="回滚、压缩和迟到事件会让物理记录顺序偏离逻辑会话边界；可靠迁移必须先重建语义，再通过带 journal 的幂等阶段发布和恢复。"

@@ -10,10 +10,11 @@ sources:
   - microsoft/fara Universal Verifier implementation
   - microsoft/CUAVerifierBench dataset card
 outline: deep
+cover: "/assets/covers/universal-verifier-completion-contract-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/academic-universal-verifier.svg"
+  image="/assets/covers/universal-verifier-completion-contract-cover-v2.jpg"
   kicker="数字员工 · 学术观察 002"
   title="完成是一项声明，而不是已接受状态"
   summary="工作者可以声明完成；独立验证器与接受权限主体决定该声明能否成为持久事实。"

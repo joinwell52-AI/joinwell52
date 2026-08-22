@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-06-enterprise-agent-decision-envelope-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-06-enterprise-agent-decision-envelope.svg"
+  image="/assets/covers/daily-2026-08-06-enterprise-agent-decision-envelope-cover-v2.jpg"
   kicker="Industry Architecture · Daily Research"
   title="Enterprise Agent Control Planes Need Decision Envelopes, Not Configuration Precedence Alone"
   summary="Managed settings can express organizational intent, but enterprise agent governance must bind policy provenance, principal, capability, model, sandbox, and resumed context to each consequential execution and collect enforcement receipts."

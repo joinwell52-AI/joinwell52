@@ -8,10 +8,11 @@ sources:
   - A2A Protocol v1.0 documentation and specification
   - Model Context Protocol specification 2026-07-28
 outline: deep
+cover: "/assets/covers/a2a-mcp-interoperability-boundaries-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-a2a-mcp-boundaries.svg"
+  image="/assets/covers/a2a-mcp-interoperability-boundaries-cover-v2.jpg"
   kicker="Industry Architecture · Daily 003"
   title="A2A and MCP Define Different Interoperability Boundaries"
   summary="Agent-to-agent collaboration and agent-to-capability integration are complementary boundaries, not interchangeable protocol labels."

@@ -4,7 +4,7 @@ date: '2026-08-02'
 column: digital-employee
 category: daily
 summary: Workday, ServiceNow, and Microsoft separate fleet governance from task execution, indicating that a Digital Employee platform needs both a control plane and a work runtime.
-cover: "/assets/covers/daily-2026-08-02-control-plane-work-runtime-cover.png"
+cover: "/assets/covers/control-plane-work-runtime-cover-v2.jpg"
 sources:
   - Workday Agent System of Record and Agent Gateway
   - ServiceNow AI Control Tower and Autonomous Workforce
@@ -13,7 +13,7 @@ outline: deep
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-02-control-plane-work-runtime-cover.png"
+  image="/assets/covers/control-plane-work-runtime-cover-v2.jpg"
   kicker="Digital Employee · Daily 002"
   title="Control Plane and Work Runtime Are Different Systems"
   summary="One system governs identity, ownership, and admission while another advances concrete work; they require separate models joined by a bounded contract."

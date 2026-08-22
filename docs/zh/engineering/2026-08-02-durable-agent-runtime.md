@@ -10,10 +10,11 @@ sources:
   - CrewAI flows and production documentation
   - AutoGen state and logging documentation
 outline: deep
+cover: "/assets/covers/durable-agent-runtime-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/engineering-weekly-001-zh.svg"
+  image="/assets/covers/durable-agent-runtime-cover-v2.jpg"
   kicker="开源工程观察 · 周报 001"
   title="持久化智能体运行时正在成为基础能力"
   summary="持久化、检查点、中断、恢复、隔离环境与结构化运行正在成为智能体运行时的标准设施。"

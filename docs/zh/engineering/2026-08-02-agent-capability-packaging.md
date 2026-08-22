@@ -10,10 +10,11 @@ sources:
   - AutoGen 团队、应用栈、记忆与日志文档
   - LangGraph 运行时与人在回路文档
 outline: deep
+cover: "/assets/covers/agent-capability-packaging-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/engineering-weekly-002-zh.svg"
+  image="/assets/covers/agent-capability-packaging-cover-v2.jpg"
   kicker="开源工程观察 · 周报 002"
   title="智能体能力正在被封装为技能、插件与契约"
   summary="可复用能力正在离开隐藏提示词，进入显式能力包、接口、工作流节点与事件。"

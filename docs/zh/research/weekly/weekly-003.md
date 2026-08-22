@@ -9,10 +9,11 @@ sources:
   - Industry Architecture Daily 003 — A2A 与 MCP 定义不同的互操作边界
   - Open-source Engineering Daily 003 — Manager 编排与 Handoff 表达不同的所有权模型
 outline: deep
+cover: "/assets/covers/weekly-003-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/weekly-003.svg"
+  image="/assets/covers/weekly-003-cover-v2.jpg"
   kicker="研究周报 · 003"
   title="所有权是智能体工作的控制平面"
   summary="可靠的 Agent 系统不只是传递动作，而是在每个边界明确所有权、权限、证据与完成判断。"

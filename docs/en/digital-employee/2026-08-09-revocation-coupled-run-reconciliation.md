@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-09-revocation-coupled-run-reconciliation-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-09-revocation-coupled-run-reconciliation.svg"
+  image="/assets/covers/daily-2026-08-09-revocation-coupled-run-reconciliation-cover-v2.jpg"
   kicker="Digital Employee · Daily Research"
   title="Deleting a Digital Employee Context Must Revoke Authority and Reconcile Unsettled Work"
   summary="Deleting a Conversation, WorkOrder or other durable work context cannot be reduced to hiding an object from the UI. A governed runtime treats deletion as authority revocation, reconciles all unsettled child work under the same serialization boundary used for admission, and uses worker leases to bound physical execution that has already escaped the database transaction."

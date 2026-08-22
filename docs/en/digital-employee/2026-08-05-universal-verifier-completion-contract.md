@@ -10,10 +10,11 @@ sources:
   - microsoft/fara Universal Verifier implementation
   - microsoft/CUAVerifierBench dataset card
 outline: deep
+cover: "/assets/covers/universal-verifier-completion-contract-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/academic-universal-verifier.svg"
+  image="/assets/covers/universal-verifier-completion-contract-cover-v2.jpg"
   kicker="Digital Employee · Academic Observation 002"
   title="Completion Is a Claim, Not an Accepted State"
   summary="A worker may claim completion; an independent verifier and acceptance authority decide whether the claim becomes durable truth."

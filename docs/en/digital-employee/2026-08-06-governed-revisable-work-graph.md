@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-06-governed-revisable-work-graph-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-06-governed-revisable-work-graph.svg"
+  image="/assets/covers/daily-2026-08-06-governed-revisable-work-graph-cover-v2.jpg"
   kicker="Digital Employee · Daily Research"
   title="A Revisable Work Graph Still Needs Authority Beyond Graph Readiness"
   summary="A computer-use Digital Employee can represent long work as a revisable DAG, but entry into the ready frontier proves dependency readiness, not permission, isolation, or acceptance of consequential effects."

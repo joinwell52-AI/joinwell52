@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-08-correlated-multistream-host-contract-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-08-correlated-multistream-host-contract.svg"
+  image="/assets/covers/daily-2026-08-08-correlated-multistream-host-contract-cover-v2.jpg"
   kicker="开源工程 · 每日研究"
   title="远程 Agent Host 需要关联式多流契约，而不是依赖消息到达顺序"
   summary="远程 Agent 执行一旦把控制事件、工具调用和结果拆成独立流，跨流乱序就会成为正常条件。可靠终态必须依赖 execution ID、invocation ID、序列号、确认与 drain watermark，而不能把外层 completed 或到达顺序直接映射为业务成功。"

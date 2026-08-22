@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-09-executed-conformance-migration-safety-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-09-executed-conformance-migration-safety.svg"
+  image="/assets/covers/daily-2026-08-09-executed-conformance-migration-safety-cover-v2.jpg"
   kicker="Open-source Engineering · Daily Research"
   title="Migration Safety Requires Executed Conformance, Not Merely Correct Output"
   summary="A persisted-state migration can preserve visible output while breaking the mechanism that was supposed to keep replay bounded. Governed migration requires readers that understand every supported historical representation and CI evidence that the shared conformance suite actually executes against each governed backend."

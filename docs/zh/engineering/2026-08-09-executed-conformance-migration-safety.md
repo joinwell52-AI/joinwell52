@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-09-executed-conformance-migration-safety-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-09-executed-conformance-migration-safety.svg"
+  image="/assets/covers/daily-2026-08-09-executed-conformance-migration-safety-cover-v2.jpg"
   kicker="开源工程 · 每日研究"
   title="迁移安全不能只看输出正确，还要证明 Conformance 真正在每个后端执行"
   summary="持久状态迁移可能在结果仍然正确时破坏关键机制，例如把有界增量回放退化成每次从根历史重放。治理迁移需要读端兼容所有受支持的历史表示，并把跨后端 Conformance 的实际执行情况作为 CI 事实，而不是把测试文件存在等同于覆盖。"

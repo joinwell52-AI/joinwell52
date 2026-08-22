@@ -11,10 +11,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/weekly-004-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/weekly-004.svg"
+  image="/assets/covers/weekly-004-cover-v2.jpg"
   kicker="Weekly Research · 004"
   title="权限是一条生命周期，不是一个配置项"
   summary="持久化 Agent 工作需要明确的准入、有限执行租约、生命周期重验证、撤销对账，以及独立验收。"

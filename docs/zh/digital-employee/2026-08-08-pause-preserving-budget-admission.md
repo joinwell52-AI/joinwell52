@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-08-pause-preserving-budget-admission-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-08-pause-preserving-budget-admission.svg"
+  image="/assets/covers/daily-2026-08-08-pause-preserving-budget-admission-cover-v2.jpg"
   kicker="数字员工 · 每日研究"
   title="数字员工需要暂停保留型预算准入，而不是硬终止语义"
   summary="预算耗尽不应被简化为失败或终止。对长周期数字员工，更稳健的运行语义是阻止新的生成式工作、保留已接受状态、允许有限结算，并只在授权预算策略变化后恢复执行。"

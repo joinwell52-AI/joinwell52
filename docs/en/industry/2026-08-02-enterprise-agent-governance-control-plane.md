@@ -9,10 +9,11 @@ sources:
   - ServiceNow AI Control Tower
   - Microsoft Agent 365
 outline: deep
+cover: "/assets/covers/enterprise-agent-governance-control-plane-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/industry-weekly-001.svg"
+  image="/assets/covers/enterprise-agent-governance-control-plane-cover-v2.jpg"
   kicker="Industry Architecture · Weekly 001"
   title="The Enterprise Agent Governance Control Plane Is Taking Shape"
   summary="Workday, ServiceNow, and Microsoft converge on discovery, registry, governance, security, observation, and value measurement."

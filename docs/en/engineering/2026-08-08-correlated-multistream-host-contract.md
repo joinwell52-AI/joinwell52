@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-08-correlated-multistream-host-contract-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-08-correlated-multistream-host-contract.svg"
+  image="/assets/covers/daily-2026-08-08-correlated-multistream-host-contract-cover-v2.jpg"
   kicker="Open-source Engineering · Daily Research"
   title="Remote Agent Hosts Need Correlated Multi-Stream Contracts, Not Arrival-Order Assumptions"
   summary="Once remote agent execution splits control events, tool calls, and results across independent streams, cross-stream reordering becomes a normal condition. Reliable finality must come from execution IDs, invocation IDs, sequence evidence, acknowledgements, and drain watermarks rather than arrival order or an outer completed token."

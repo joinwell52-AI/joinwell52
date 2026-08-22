@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-07-verification-gated-state-admission-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-07-verification-gated-state-admission.svg"
+  image="/assets/covers/daily-2026-08-07-verification-gated-state-admission-cover-v2.jpg"
   kicker="数字员工 · 每日研究"
   title="持久数字员工需要“验证门控的状态准入”，而不只是耐久记忆"
   summary="长周期数字员工不仅要保存发生过什么，还要区分哪些状态获准影响未来工作：事件历史可以只增不删，但可复用记忆、完成结论和派生保证必须经过证据与责任所有者的状态准入门禁。"

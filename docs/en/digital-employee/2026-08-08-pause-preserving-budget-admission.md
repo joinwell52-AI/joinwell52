@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-08-pause-preserving-budget-admission-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-08-pause-preserving-budget-admission.svg"
+  image="/assets/covers/daily-2026-08-08-pause-preserving-budget-admission-cover-v2.jpg"
   kicker="Digital Employee · Daily Research"
   title="Digital Employees Need Pause-Preserving Budget Admission, Not Hard-Stop Semantics"
   summary="Budget exhaustion should not collapse into failure or termination. For long-running Digital Employees, the safer runtime semantics are to block new generative work, preserve accepted state, allow narrowly scoped settlement, and resume only after an authorized budget-policy change."

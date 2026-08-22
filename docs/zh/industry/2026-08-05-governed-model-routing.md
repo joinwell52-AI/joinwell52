@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-05-governed-model-routing-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-05-governed-model-routing.svg"
+  image="/assets/covers/daily-2026-08-05-governed-model-routing-cover-v2.jpg"
   kicker="行业架构 · 每日研究"
   title="模型路由必须在政策边界内优化，而不是取代政策"
   summary="只有当资格、权限、回退与审计都被明确并持久化，自动模型选择才构成企业级架构。"

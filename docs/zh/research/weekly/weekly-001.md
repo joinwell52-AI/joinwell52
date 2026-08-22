@@ -5,10 +5,11 @@ column: digital-employee
 category: weekly
 summary: 首期综合互操作协议、开源 Runtime 工程、企业数字劳动力产品与 CodeFlowMu 定位。
 outline: deep
+cover: "/assets/covers/weekly-001-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/weekly-001.svg"
+  image="/assets/covers/weekly-001-cover-v2.jpg"
   kicker="研究周报 · 001"
   title="从 Agent 框架走向可治理数字员工"
   summary="首期综合互操作协议、开源 Runtime 工程、企业数字劳动力产品与 CodeFlowMu 定位。"

@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-07-role-aware-agent-resource-plane-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-07-role-aware-agent-resource-plane.svg"
+  image="/assets/covers/daily-2026-08-07-role-aware-agent-resource-plane-cover-v2.jpg"
   kicker="行业架构 · 每日研究"
   title="Agent 资源平面需要角色感知调度，而不只是平均利用率目标"
   summary="生产级 Agent 工作流同时包含控制路径、工具 Runner 和推理服务；平均 CPU/GPU 空闲率不足以指导安全回收，资源策略必须按角色和并发形态调度，并在尾延迟或争用恶化时可逆退出。"

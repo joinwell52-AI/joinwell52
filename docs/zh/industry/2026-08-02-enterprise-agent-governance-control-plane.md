@@ -9,10 +9,11 @@ sources:
   - ServiceNow AI Control Tower
   - Microsoft Agent 365
 outline: deep
+cover: "/assets/covers/enterprise-agent-governance-control-plane-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/industry-weekly-001.svg"
+  image="/assets/covers/enterprise-agent-governance-control-plane-cover-v2.jpg"
   kicker="行业架构 · 观察周报 001"
   title="企业 Agent 治理控制面正在形成"
   summary="Workday、ServiceNow 与 Microsoft 的共同方向：发现、注册、治理、安全、观察与价值衡量。"

@@ -9,10 +9,11 @@ sources:
   - Salesforce Agentforce
   - ServiceNow Autonomous Workforce
 outline: deep
+cover: "/assets/covers/systems-of-record-to-execution-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/industry-weekly-002.svg"
+  image="/assets/covers/systems-of-record-to-execution-cover-v2.jpg"
   kicker="Industry Architecture · Weekly 002"
   title="Enterprise Software Is Moving from Systems of Record to Systems of Execution"
   summary="Oracle, Salesforce, and ServiceNow embed Agents into business objects, workflows, authority, approvals, and audit."

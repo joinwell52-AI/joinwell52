@@ -8,10 +8,11 @@ sources:
   - A2A Protocol v1.0 documentation and specification
   - Model Context Protocol specification 2026-07-28
 outline: deep
+cover: "/assets/covers/a2a-mcp-interoperability-boundaries-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-a2a-mcp-boundaries.svg"
+  image="/assets/covers/a2a-mcp-interoperability-boundaries-cover-v2.jpg"
   kicker="行业架构 · 每日观察 003"
   title="A2A 与 MCP 定义了不同的互操作边界"
   summary="Agent-to-Agent 协作与 Agent-to-Capability 集成是互补边界，而不是可互换的协议标签。"

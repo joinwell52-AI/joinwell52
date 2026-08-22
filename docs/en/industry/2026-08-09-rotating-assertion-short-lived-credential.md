@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-09-rotating-assertion-short-lived-credential-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-09-rotating-assertion-short-lived-credential.svg"
+  image="/assets/covers/daily-2026-08-09-rotating-assertion-short-lived-credential-cover-v2.jpg"
   kicker="Industry Architecture · Daily Research"
   title="Enterprise Agent Identity Planes Should Separate Rotating Assertions, Credential Leases and Propagation"
   summary="A file-backed workload identity should not become a long-lived execution credential. A stronger identity plane rereads the authoritative assertion at exchange time, derives a short-lived token, coalesces refreshes and controls log exposure, while treating propagation into child processes and tool boundaries as a separate governance problem."

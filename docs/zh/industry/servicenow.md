@@ -5,10 +5,11 @@ column: industry-architecture
 category: daily
 summary: 岗位化 AI 工作者、确定性工作流、权限、升级与集中治理的企业对标。
 outline: deep
+cover: "/assets/covers/servicenow-autonomous-workforce-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/servicenow.svg"
+  image="/assets/covers/servicenow-autonomous-workforce-cover-v2.jpg"
   kicker="行业架构"
   title="ServiceNow Autonomous Workforce"
   summary="岗位化 AI 工作者、确定性工作流、权限、升级与集中治理的企业对标。"

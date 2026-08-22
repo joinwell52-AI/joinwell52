@@ -4,7 +4,7 @@ date: '2026-08-02'
 column: digital-employee
 category: daily
 summary: Workday, ServiceNow, and Microsoft increasingly manage AI workers through persistent ownership, defined roles, scoped authority, and lifecycle controls rather than model capability alone.
-cover: "/assets/covers/daily-2026-08-02-position-ownership-authority-cover.png"
+cover: "/assets/covers/position-ownership-authority-cover-v2.jpg"
 sources:
   - Workday Agent System of Record
   - ServiceNow Autonomous Workforce
@@ -13,7 +13,7 @@ outline: deep
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-02-position-ownership-authority-cover.png"
+  image="/assets/covers/position-ownership-authority-cover-v2.jpg"
   kicker="Digital Employee · Daily 001"
   title="Position, Ownership, and Authority Before Agent Capability"
   summary="A Digital Employee begins as an organizational object with a position, accountable owner, and bounded authority; Agent capability is assigned underneath that contract."

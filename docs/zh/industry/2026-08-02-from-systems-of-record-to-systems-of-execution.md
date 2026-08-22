@@ -9,10 +9,11 @@ sources:
   - Salesforce Agentforce
   - ServiceNow Autonomous Workforce
 outline: deep
+cover: "/assets/covers/systems-of-record-to-execution-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/industry-weekly-002.svg"
+  image="/assets/covers/systems-of-record-to-execution-cover-v2.jpg"
   kicker="行业架构 · 观察周报 002"
   title="企业软件正从记录系统走向执行系统"
   summary="Oracle、Salesforce 与 ServiceNow 正把 Agent 嵌入业务对象、工作流、权限、审批与审计。"

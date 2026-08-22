@@ -5,10 +5,11 @@ column: industry-architecture
 category: daily
 summary: A control-plane benchmark for persistent ownership, lifecycle, cost, compliance and workforce-level observability.
 outline: deep
+cover: "/assets/covers/workday-system-of-record-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/workday.svg"
+  image="/assets/covers/workday-system-of-record-cover-v2.jpg"
   kicker="Industry Architecture"
   title="Workday Agent System of Record"
   summary="A control-plane benchmark for persistent ownership, lifecycle, cost, compliance and workforce-level observability."

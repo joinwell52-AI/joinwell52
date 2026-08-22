@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/verifiable-completion-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-05-verifiable-completion.svg"
+  image="/assets/covers/verifiable-completion-cover-v2.jpg"
   kicker="数字员工 · 每日研究"
   title="数字员工不是“做完了”，而是“完成声明被独立验收了”"
   summary="计算机操作型数字员工需要一份完成契约，把过程证据、业务结果与失败分类分开。执行者可以声明完成，但不能自行验收自己的声明。"

@@ -11,10 +11,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/weekly-004-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/weekly-004.svg"
+  image="/assets/covers/weekly-004-cover-v2.jpg"
   kicker="Weekly Research · 004"
   title="Authority Is a Lifecycle, Not a Setting"
   summary="Durable agent work needs explicit admission, bounded execution leases, lifecycle revalidation, revocation reconciliation, and independent acceptance."

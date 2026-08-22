@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-07-role-aware-agent-resource-plane-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-07-role-aware-agent-resource-plane.svg"
+  image="/assets/covers/daily-2026-08-07-role-aware-agent-resource-plane-cover-v2.jpg"
   kicker="Industry Architecture · Daily Research"
   title="Agent Resource Planes Need Role-Aware Scheduling, Not Average Utilization Targets"
   summary="Production agent workflows alternate among control paths, tool runners, and inference services. Average CPU/GPU idle time is not a safe reclamation signal; scheduling must be role-aware, workload-sensitive, reversible, and separate from trust policy."

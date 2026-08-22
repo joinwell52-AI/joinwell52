@@ -9,10 +9,11 @@ sources:
   - SWE-bench official repository and evaluation harness
   - OpenAI SWE-bench Verified report
 outline: deep
+cover: "/assets/covers/swe-bench-verified-quality-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/academic-swe-bench-verified.svg"
+  image="/assets/covers/swe-bench-verified-quality-cover-v2.jpg"
   kicker="Open-source Engineering · Academic Observation 001"
   title="SWE-bench Verified Shows That Benchmark Quality Is Engineering Quality"
   summary="A coding Agent score is meaningful only when the issue, tests, environment, and evaluator are valid and reproducible."

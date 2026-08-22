@@ -8,10 +8,11 @@ sources:
   - OpenAI Agents SDK agent orchestration documentation
   - OpenAI Agents SDK handoffs, guardrails, and tracing documentation
 outline: deep
+cover: "/assets/covers/manager-handoff-ownership-models-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-manager-handoff.svg"
+  image="/assets/covers/manager-handoff-ownership-models-cover-v2.jpg"
   kicker="Open-source Engineering · Daily 003"
   title="Manager Orchestration and Handoffs Encode Different Ownership Models"
   summary="Calling a specialist while retaining control is not the same operation as transferring the active conversation and responsibility."

@@ -5,10 +5,11 @@ column: digital-employee
 category: weekly
 summary: 综合 Workday Agent System of Record、OpenHands Agent Canvas 与 CodeFlowMu 的工程方向。
 outline: deep
+cover: "/assets/covers/weekly-002-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/weekly-002.svg"
+  image="/assets/covers/weekly-002-cover-v2.jpg"
   kicker="研究周报 · 002"
   title="数字员工控制面与工作 Runtime"
   summary="综合 Workday Agent System of Record、OpenHands Agent Canvas 与 CodeFlowMu 的工程方向。"

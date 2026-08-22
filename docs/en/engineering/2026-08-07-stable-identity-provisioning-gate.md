@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-07-stable-identity-provisioning-gate-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-07-stable-identity-provisioning-gate.svg"
+  image="/assets/covers/daily-2026-08-07-stable-identity-provisioning-gate-cover-v2.jpg"
   kicker="Open-source Engineering · Daily Research"
   title="Deferred Agent Environments Need Stable Identity, Not Replacement-Based Provisioning"
   summary="Deferred environments should converge report-first and materialize-first flows on one stable logical identity with explicit Pending, Ready, and Failed states. Local idempotence reduces ambiguity but does not prove restart durability or distributed exactly-once provisioning."

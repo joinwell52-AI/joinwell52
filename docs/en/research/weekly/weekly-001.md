@@ -5,10 +5,11 @@ column: digital-employee
 category: weekly
 summary: The first synthesis of interoperability, open-source runtime engineering, enterprise digital workforce products and CodeFlowMu positioning.
 outline: deep
+cover: "/assets/covers/weekly-001-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/weekly-001.svg"
+  image="/assets/covers/weekly-001-cover-v2.jpg"
   kicker="Weekly Research · 001"
   title="From Agent Frameworks to Governed Digital Employees"
   summary="The first synthesis of interoperability, open-source runtime engineering, enterprise digital workforce products and CodeFlowMu positioning."

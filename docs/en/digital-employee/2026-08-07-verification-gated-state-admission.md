@@ -13,10 +13,11 @@ citation_status: Completed
 editing_status: Completed
 publication_authorized: true
 outline: deep
+cover: "/assets/covers/daily-2026-08-07-verification-gated-state-admission-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-07-verification-gated-state-admission.svg"
+  image="/assets/covers/daily-2026-08-07-verification-gated-state-admission-cover-v2.jpg"
   kicker="Digital Employee · Daily Research"
   title="Persistent Digital Employees Need Verification-Gated State Admission, Not Durable Memory Alone"
   summary="A long-running Digital Employee must separate the history it preserves from the state allowed to shape future work: evidence can be append-only, while reusable memory, completion verdicts, and assurance projections require explicit admission authority."

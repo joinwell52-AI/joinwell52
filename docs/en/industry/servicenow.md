@@ -5,10 +5,11 @@ column: industry-architecture
 category: daily
 summary: An enterprise benchmark for role-defined AI workers, deterministic workflows, authority, escalation and centralized governance.
 outline: deep
+cover: "/assets/covers/servicenow-autonomous-workforce-cover-v2.jpg"
 ---
 
 <ArticleCover
-  image="/assets/covers/servicenow.svg"
+  image="/assets/covers/servicenow-autonomous-workforce-cover-v2.jpg"
   kicker="Industry Architecture"
   title="ServiceNow Autonomous Workforce"
   summary="An enterprise benchmark for role-defined AI workers, deterministic workflows, authority, escalation and centralized governance."
