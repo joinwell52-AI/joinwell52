@@ -29,7 +29,7 @@ sources:
   title="Three Agents Returned Three Reports. How Do You Keep Acceptance from Charging the Wrong Task?"
   summary="Display may assist with parenting, but acceptance must verify task identity, execution attempt, supersession, and independent QA."
   version="MANUAL-20260820-REPORT-ATTRIBUTION"
-  status="Independent Editorial PASS · 2026-08-21"
+  status="Community Readability PASS · 2026-08-22"
   languageHref="/zh/digital-employee/2026-08-20-report-attribution"
   languageLabel="中文"
 />
@@ -41,6 +41,29 @@ A development agent, a QA agent, and an operations agent return reports at almos
 But QA tested the pre-rework version. The operations report belongs to a different root task in the same thread. The developer report’s filename contradicts the task identifier in its metadata. No file is missing; three real artifacts have been assembled into a delivery that never existed.
 
 The remedy is not another language model reading the prose. The runtime must bind each receipt to a unique task and execution attempt, keep display placement separate from acceptance ownership, and stop when ownership remains ambiguous. This article gives you an identity gate, a report-version state model, and a final-summary checklist that can be applied to your own Agent runtime.
+
+Start with three plain questions:
+
+| Attribution question | What it means | What can establish it |
+|---|---|---|
+| Who did the work? | which project, task, and execution produced this report | task identity, parent, project root, and a runtime-recorded attempt |
+| What proves the claim? | whether “success” is backed by machine evidence | the actual command, exit code, raw test output, and captured code version |
+| Which contract accepts it? | which task owns the evidence and who may accept it | unique task binding, report supersession, independent QA, and final acceptance |
+
+These questions prevent three different failures: charging A’s report to B, treating model-written prose as a test log, and allowing the executor to accept its own work. The current CodeFlowMu implementation provides hard checks on selected consequential paths. Runtime injection of every authoritative field remains a target contract.
+
+```text
+task dispatch
+  → bind task and execution context
+  → agent invokes tools
+  → capture command, exit code, tests, and code version
+  → assemble the report envelope
+  → verify task, attempt, and report version
+  → independent QA
+  → authorized acceptance or rejection
+```
+
+Not every arrow is uniformly implemented across every current tool and report path. The article distinguishes existing checks from the target design.
 
 ## A report can exist without belonging to this task
 
@@ -100,6 +123,19 @@ The check rejects disagreement. It cannot detect three fields that all repeat th
 ![Task identity and execution attempt bind development facts and QA verification; supersession selects the effective artifact and isolates the wrong owner](/assets/covers/daily-2026-08-20-report-attribution-figure-1.png)
 
 *Figure 1. Attribution from task identity and execution attempt through supersession and QA. Source: author synthesis from the pinned CodeFlowMu implementation and W3C/OpenTelemetry identity-propagation boundaries. Runtime injection of all authoritative metadata remains a target contract.*
+
+## A practical attribution veto list
+
+A useful gate needs explicit rejection conditions. Rejection here means stale, conflicting, or insufficient evidence—not an accusation of malicious fraud:
+
+- the report’s code version differs from the workspace that was actually tested: quarantine it as stale or conflicting evidence;
+- the report says “tests passed” but lacks the command, exit code, or raw output: do not admit it to a success summary;
+- filename, task field, and first reference agree with each other but disagree with the runtime’s dispatch record: attribution fails;
+- one task has several reports without an attempt number or explicit supersession relation: do not guess which file wins;
+- file modification time is the only ordering signal: it cannot establish causality;
+- an expired execution right may veto a report only on paths that actually implement such a bounded right; do not invent lease semantics elsewhere.
+
+The safe result is often `undetermined`. That is preferable to assembling three genuine artifacts into a delivery that never happened.
 
 ## Propagate identity—but do not confuse tracing with acceptance
 

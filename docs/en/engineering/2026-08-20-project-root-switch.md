@@ -29,7 +29,7 @@ sources:
   title="Why Is the Agent Still Editing the Old Project? Safely Rebinding an Execution Chain"
   summary="A safe switch stops old side effects, persists the new root, rebuilds every binding, and proves tasks and evidence now share one root."
   version="MANUAL-20260820-PROJECT-ROOT"
-  status="Independent Editorial PASS · 2026-08-21"
+  status="Community Readability PASS · 2026-08-22"
   languageHref="/zh/engineering/2026-08-20-project-root-switch"
   languageLabel="中文"
 />
@@ -40,19 +40,25 @@ You switch the interface from project A to B, but the agent still patches A. Tes
 
 The model did not necessarily forget a name. The application had competing versions of “current project” in the UI, runtime, tool processes, watchers, and child-process working directories. A safe switch is therefore an ordered execution-chain rebind: stop new side effects in the old root, persist the new root, rebuild every project-scoped component from one binding plan, and verify that tasks and evidence land together. This article also covers Windows handles, symlink aliases, and draining failures that a selector cannot solve.
 
+Think of a construction crew moving sites. The sign now says B, but workers are still demolishing A, the tool truck has reached B, cameras still watch A, and the inspector records everything in B’s notebook. Every participant followed an address; the combined project is still impossible to accept. A safe rebind moves the entire crew, not just the sign.
+
 ## “Current project” is not one string
 
 A local agent application commonly uses a project root in at least seven places:
 
-1. runtime configuration and session startup;
-2. MCP servers or other tool subprocesses;
-3. watchers observing code and coordination artifacts;
-4. agent terminals and child-process working directories;
-5. task admission and submission records;
-6. FCoP lifecycle state;
-7. runtime logs and execution evidence.
+| Component | Crew role | Failure when it keeps the old root |
+|---|---|---|
+| runtime | site coordinator | starts sessions from old configuration |
+| MCP server or tool process | tool truck | runs commands and file tools in the old directory |
+| watcher | site camera | treats old-directory changes as current events |
+| agent terminal and child-process `cwd` | worker | writes, builds, and tests the wrong project |
+| task admission and submission root | dispatch desk | files new work under the wrong project |
+| FCoP lifecycle root | work ledger | mixes tasks, reports, and reviews |
+| log and evidence root | acceptance archive | attributes old execution to the new project |
 
 Switch six and leave one behind, and the system can produce a convincing cross-project fiction: code changes in A, a passing test in B, and a report attached to B’s task. Each local operation succeeded. The combined delivery is invalid.
+
+The remedy can be remembered as four commands: **stop old effects → lock the new address → issue one binding plan to the whole crew → verify task and evidence roots before reopening work.**
 
 The [Node.js child-process documentation](https://nodejs.org/api/child_process.html) establishes one low-level fact: a child has an explicit `cwd`; without one, it inherits the parent’s current working directory, and a missing directory produces `ENOENT`. A UI label cannot retroactively change a process that is already running.
 

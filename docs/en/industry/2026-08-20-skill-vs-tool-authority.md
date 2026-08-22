@@ -29,7 +29,7 @@ sources:
   title="An AI Agent’s Skill Is Not Its Permission: Why ‘Knows How’ Must Stay Separate from ‘May Do’"
   summary="Playbooks teach methods, role capabilities allocate callable tools, effect policy evaluates consequences, and one-time approval releases one matching action."
   version="MANUAL-20260820-SKILL-AUTHORITY"
-  status="Independent Editorial PASS · 2026-08-21"
+  status="Community Readability PASS · 2026-08-22"
   languageHref="/zh/industry/2026-08-20-skill-vs-tool-authority"
   languageLabel="中文"
 />
@@ -40,14 +40,16 @@ Give an AI agent a deployment manual, a terminal, and file-writing tools. It can
 
 The remedy is not a longer prompt. Execution authority needs four independent gates: a playbook describes how to work, role capability decides which tool may be called, operation policy inspects the real target and side effects, and human approval releases one exact action. This article turns those gates into an implementation and audit checklist.
 
-```text
-How to work       → playbook
-What may be called → role capability
-What this call affects → operation policy
-Whether it may happen → explicit approval
-```
+Think of a controlled office release. A Skill is the operating manual. A Tool is the machine that can actually change a file or run a command. Role capability is the access badge. Operation policy is the work order naming the target and consequences. Approval is the signature on this one work order. Reading the manual, reaching the machine, holding a badge, and receiving approval are four different facts.
 
-The practical question is simple: did the agent merely learn a method, or did the system actually grant authority for this action?
+| Question | Plain-language role | Engineering layer | What it decides |
+|---|---|---|---|
+| How should the work be done? | operating manual | Skill / playbook | methods, steps, and checks |
+| What may this role call? | access badge | role capability | eligibility to initiate a class of tool calls |
+| What will this call affect? | concrete work order | operation policy | arguments, targets, paths, and side effects |
+| May this occurrence proceed? | one-use sign-off | approval | one exact matching action |
+
+A Tool is not permission and is not inherently safe. It is an effect-producing interface. A badly configured gate or an overprivileged process can still make that Tool dangerous.
 
 ## A playbook describes behavior, not authority
 
