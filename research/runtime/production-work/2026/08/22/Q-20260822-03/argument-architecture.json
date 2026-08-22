@@ -1,0 +1,67 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-22",
+  "itemId": "Q-20260822-03",
+  "coreProposition": "Asynchronous authoritative-cache reconciliation should bind each snapshot to both principal identity and causal generation, serialize participating mutation paths, reject stale publication and require positive completeness evidence before destructive cleanup, while modeling remote membership separately from local materialization readiness.",
+  "openingMove": {
+    "type": "destructive-race",
+    "purpose": "Open with an incomplete old snapshot deleting a still-installed entry after the account or local cache has already changed.",
+    "evidenceRefs": ["E1", "E2", "E4"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why does cache freshness need both principal and causal scope?",
+      "claim": "Identity prevents cross-principal publication, while a generation prevents older same-principal work from overwriting newer state.",
+      "evidenceRefs": ["E1", "E2", "E5", "I1"],
+      "reasoningRole": "two-dimensional-validity",
+      "readerProgress": "The reader stops treating elapsed time or configuration alone as sufficient cache identity.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Which races require serialization?",
+      "claim": "Reconciliation and every represented direct mutation that can race with cleanup must share a coordination boundary, with narrower markers protecting longer per-item lifecycles.",
+      "evidenceRefs": ["E3", "E5"],
+      "reasoningRole": "coordination-mechanism",
+      "readerProgress": "The reader identifies participating writers instead of assuming a background refresher is the only cache mutator.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "When is absence strong enough to authorize deletion?",
+      "claim": "Only a complete, validated authoritative inventory can classify a local entry as stale; partial failure or invalid rows remove deletion authority.",
+      "evidenceRefs": ["E3", "E4", "I2"],
+      "reasoningRole": "destructive-gate",
+      "readerProgress": "The reader treats completeness as positive evidence rather than assuming missing data means absence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Why must remote membership differ from local readiness?",
+      "claim": "A failed local download does not revoke authoritative remote installation status and should not become false uninstall evidence.",
+      "evidenceRefs": ["E4", "I2"],
+      "reasoningRole": "state-separation",
+      "readerProgress": "The reader models authoritative truth and materialization health as independent dimensions.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What guarantees remain outside the mechanism?",
+      "claim": "Generation guards and scoped gates provide bounded coordination, not cross-process isolation, atomic rollback or exactly-once semantics.",
+      "evidenceRefs": ["E2", "E3", "E5"],
+      "reasoningRole": "boundary",
+      "readerProgress": "The reader can state the mechanism's real guarantee without promoting it into a transaction.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "For a cheap, synchronous and strongly consistent inventory, generations and mutation markers may add more complexity than needed.",
+    "responseBoundary": "Use the controls where identity changes, asynchronous refresh and destructive cleanup create real stale-state races."
+  },
+  "endingStrategy": {
+    "type": "bounded-judgment",
+    "purpose": "End by defining reconciliation as evidence-driven coordination rather than a transaction."
+  }
+}

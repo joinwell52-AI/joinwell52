@@ -1,0 +1,49 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-22",
+  "itemId": "Q-20260822-03",
+  "researchObjectId": "AN-20260822-03",
+  "targetAudience": {
+    "primary": "Open-source maintainers and engineers building asynchronous remote-state caches",
+    "knowledgeAssumption": "The reader understands background refresh, local caches and concurrent install or uninstall operations.",
+    "readerProblem": "An old or cross-account remote snapshot can race with newer mutations, while an incomplete refresh can make valid local entries appear stale and trigger destructive cleanup."
+  },
+  "whyNow": "A same-day merged Codex change scopes plugin-cache state to authentication identity, adds causal generations and shared mutation coordination, and validates a complete remote snapshot before deleting stale local entries.",
+  "externalHook": {
+    "type": "destructive-absence-paradox",
+    "description": "Absence in a refresh result is deletion evidence only after the system proves that the snapshot is complete and still belongs to the current principal and generation.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4", "E5"]
+  },
+  "coreProposition": "Asynchronous authoritative-cache reconciliation should bind each snapshot to both principal identity and causal generation, serialize participating mutation paths, reject stale publication and require positive completeness evidence before destructive cleanup, while modeling remote membership separately from local materialization readiness.",
+  "originalValue": {
+    "type": "four-boundary-reconciliation-model",
+    "description": "Unifies principal scope, causal scope, participating-writer serialization and validate-before-destroy into a bounded reconciliation model that avoids claiming transactions or exactly-once behavior."
+  },
+  "readerTakeaway": "Make cache validity identity-aware, carry an epoch through background work, coordinate every represented writer, reject stale publication and never turn partial refresh absence or local download failure into deletion authority.",
+  "evidenceBoundary": {
+    "supported": [
+      "Merged Codex code adds composite authentication identity to remote installed-plugin cache state and loaded-plugin keys.",
+      "Generation and reconciliation-generation checks reject stale publication.",
+      "Full sync, reconciliation, direct install and uninstall share a per-cache-root gate with per-plugin mutation markers.",
+      "The remote installed snapshot is fully canonicalized before downloads, publication or stale deletion.",
+      "Valid installed metadata is retained when local materialization fails, and cancellation invalidates the active reconciliation generation."
+    ],
+    "unsupported": [
+      "Database transaction or atomic rollback semantics",
+      "Exactly-once execution",
+      "Cross-process mutual exclusion for uncoordinated writers",
+      "Proof that every possible filesystem mutation participates in the gate"
+    ],
+    "uncertain": [
+      "Which causal state must persist across process restart",
+      "How retry and lock timeouts avoid starvation during sustained churn"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article develops a general asynchronous cache-reconciliation reliability pattern without relying on a first-party project."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The implementation supplies a concrete destructive-race case, and the Research Object contributes a reusable four-boundary model with explicit coordination limits."
+}
