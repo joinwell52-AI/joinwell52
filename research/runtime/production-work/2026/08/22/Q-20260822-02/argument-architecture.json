@@ -1,0 +1,58 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-22",
+  "itemId": "Q-20260822-02",
+  "coreProposition": "Multi-owner remote-execution policy should compose monotonically for explicitly protected constraints while representing every permitted expansion as a separate reviewable transition with defined scope and invalidation; the effective policy must be revalidated after composition and enforced across escalation paths.",
+  "openingMove": {
+    "type": "false-binary",
+    "purpose": "Reject the choice between union and pure intersection by showing that ceilings and reviewable grants require asymmetric semantics.",
+    "evidenceRefs": ["E2", "E3"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why do union and pure intersection both fail as universal merge rules?",
+      "claim": "Union can erase owner ceilings, while pure intersection cannot represent legitimate, governed exceptions.",
+      "evidenceRefs": ["E2", "E3", "I1", "I2"],
+      "reasoningRole": "problem-framing",
+      "readerProgress": "The reader sees policy composition as a typed authority problem rather than a set operation.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "How does asymmetric composition preserve protected constraints?",
+      "claim": "The demonstrated network path restores inherited denials, intersects socket and boolean permissions, and preserves fixed allowlist ceilings after later policy layers.",
+      "evidenceRefs": ["E1", "E2", "E3"],
+      "reasoningRole": "mechanism",
+      "readerProgress": "The reader understands why grant and denial fields cannot share one precedence rule.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "Where should legitimate expansion occur?",
+      "claim": "Permitted expansion should enter through a separately reviewable grant with identity, scope and invalidation, not as an implicit side effect of merge order.",
+      "evidenceRefs": ["E3", "E4", "I2"],
+      "reasoningRole": "governance-design",
+      "readerProgress": "The reader gains an explicit transition model for controlled widening of authority.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Why are post-composition validation and escalation checks necessary?",
+      "claim": "Individually valid fragments can still yield an invalid effective policy, and a secondary execution mode can bypass the primary constraint plane unless checked against the same result.",
+      "evidenceRefs": ["E4", "I1"],
+      "reasoningRole": "enforcement-boundary",
+      "readerProgress": "The reader connects merge semantics to runtime enforcement rather than treating composition as configuration only.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Some environments legitimately own the full policy, so controller-preserved ceilings are not universally correct.",
+    "responseBoundary": "The model depends on declared ownership; it requires explicit delegation rather than assuming either the environment or controller always dominates."
+  },
+  "endingStrategy": {
+    "type": "scope-boundary",
+    "purpose": "End by limiting the pattern to demonstrated network-policy semantics and identifying invalidation and running-execution questions."
+  }
+}

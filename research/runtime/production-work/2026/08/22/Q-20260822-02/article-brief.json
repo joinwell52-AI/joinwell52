@@ -1,0 +1,48 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-22",
+  "itemId": "Q-20260822-02",
+  "researchObjectId": "AN-20260822-02",
+  "targetAudience": {
+    "primary": "Remote-execution, platform-security and policy-engineering architects",
+    "knowledgeAssumption": "The reader understands allowlists, sandbox escalation and layered policy enforcement.",
+    "readerProblem": "Policies owned by environments, controllers and prior approval systems can combine in ways that silently erase a protected ceiling or hide a legitimate expansion inside merge precedence."
+  },
+  "whyNow": "A same-day merged Codex change implements network-policy composition across attachment ownership, controller constraints and saved decisions while preserving protected denials and separating strict from reviewable expansion paths.",
+  "externalHook": {
+    "type": "asymmetric-policy-composition",
+    "description": "A safe merge cannot be summarized as either union or intersection: protected constraints and governed grants follow different rules.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "Multi-owner remote-execution policy should compose monotonically for explicitly protected constraints while representing every permitted expansion as a separate reviewable transition with defined scope and invalidation; the effective policy must be revalidated after composition and enforced across escalation paths.",
+  "originalValue": {
+    "type": "typed-asymmetric-policy-composition-model",
+    "description": "Reframes policy merging as typed governance semantics: immutable ceilings, reviewable grants and implementation-only settings must be owned and composed differently."
+  },
+  "readerTakeaway": "Type policy fields by ownership and expandability, preserve denials and ceilings across later layers, make grants explicit and reviewable, then validate and enforce the resulting effective policy on every execution path.",
+  "evidenceBoundary": {
+    "supported": [
+      "Merged Codex code composes environment network policy with controller constraints.",
+      "Protected domain and socket denials are restored or intersected after owner rules and saved decisions.",
+      "Strict allowlist ceilings suppress approval-based expansion while reviewable paths can admit saved grants.",
+      "Sandbox escalation is rejected when it would bypass attachment-owned network policy, and the final proxy policy is validated."
+    ],
+    "unsupported": [
+      "That all remote capabilities are non-expandable",
+      "Coverage of filesystem, process, credential or application authorization",
+      "Complete invalidation semantics for every saved network decision",
+      "Security against every normalization or runtime enforcement flaw"
+    ],
+    "uncertain": [
+      "How saved grants should be versioned when environment identity or policy changes",
+      "Which non-network capability classes can safely reuse the same composition pattern"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article develops a general multi-owner policy-composition model for remote execution without relying on a first-party project."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The implementation provides concrete asymmetric merge mechanics, and the Research Object extracts a transferable governance model with explicit network-only limits."
+}
