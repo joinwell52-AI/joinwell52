@@ -1,0 +1,48 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-22",
+  "itemId": "Q-20260822-01",
+  "researchObjectId": "AN-20260822-01",
+  "targetAudience": {
+    "primary": "Digital-employee, multi-agent and authorization-governance engineers",
+    "knowledgeAssumption": "The reader understands delegated agents, approval gates and conversation roles.",
+    "readerProblem": "A downstream agent can receive prose claiming that a user approved an action, but the wording alone cannot establish who actually supplied the authorization."
+  },
+  "whyNow": "A same-day merged Codex change carries bounded, role-preserving root-conversation evidence into MultiAgent V2 Guardian review while excluding synthetic and forwarded authorization claims.",
+  "externalHook": {
+    "type": "provenance-boundary",
+    "description": "The same sentence can be authorization evidence or untrusted context depending on its structured origin and role.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "For delegated digital employees, authorization provenance should travel through a structured review-plane evidence channel whose authoritative source and role remain separate from work-plane prose; this improves admission decisions, but long-lived, scoped and revocable authority still requires a distinct durable authorization state.",
+  "originalValue": {
+    "type": "authorization-evidence-versus-state-model",
+    "description": "Separates role-preserving evidence used at a review point from the durable authorization state required to carry principal, scope, freshness and revocation across time."
+  },
+  "readerTakeaway": "Treat agent-forwarded approval claims as context, bind review evidence to an authoritative source and structured role, and represent persistent authority with an independently governed state machine.",
+  "evidenceBoundary": {
+    "supported": [
+      "Merged Codex code resolves the actual root thread and preserves User and Assistant roles for bounded Guardian review evidence.",
+      "Only structured root-user messages are designated as authorization evidence; assistant and forwarded claims remain context.",
+      "Synthetic summaries, user_action items and review artifacts are excluded from the root authorization feed.",
+      "The evidence channel is bounded and isolated from the ordinary worker model context."
+    ],
+    "unsupported": [
+      "End-to-end authorization safety",
+      "Cryptographic authentication of the human principal",
+      "A durable authorization ledger or reusable capability token",
+      "Coverage of every approval path or arbitrary subagent operation"
+    ],
+    "uncertain": [
+      "How approvals and revocations should persist after the evidence window rotates",
+      "Which review paths need capability-style authorization rather than conversational evidence"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article develops a general authorization-provenance pattern for delegated agent systems without relying on a first-party project."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The merged implementation supplies a concrete boundary, and the Research Object adds a transferable model that distinguishes review evidence from durable authorization state."
+}

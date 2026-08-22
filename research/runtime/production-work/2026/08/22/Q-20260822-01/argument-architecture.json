@@ -1,0 +1,58 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-22",
+  "itemId": "Q-20260822-01",
+  "coreProposition": "For delegated digital employees, authorization provenance should travel through a structured review-plane evidence channel whose authoritative source and role remain separate from work-plane prose; this improves admission decisions, but long-lived, scoped and revocable authority still requires a distinct durable authorization state.",
+  "openingMove": {
+    "type": "role-identity-contradiction",
+    "purpose": "Open with identical approval wording carrying different authority when one copy comes from a root user and the other from an assistant or forwarded agent.",
+    "evidenceRefs": ["E2", "E3"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why can approval wording not establish authority by itself?",
+      "claim": "Natural-language content loses provenance when forwarded, while structured source and role remain inspectable evidence.",
+      "evidenceRefs": ["E1", "E2", "E3", "I1"],
+      "reasoningRole": "provenance-separation",
+      "readerProgress": "The reader distinguishes what a message says from where it authoritatively originated.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Why should authorization evidence live on the review plane?",
+      "claim": "A bounded role-preserving feed lets a Guardian evaluate authority without copying the complete root transcript into the worker's ordinary context.",
+      "evidenceRefs": ["E1", "E2", "E4"],
+      "reasoningRole": "mechanism",
+      "readerProgress": "The reader sees provenance preservation and context minimization as compatible controls.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What must durable authorization add beyond review evidence?",
+      "claim": "Long-lived authority needs explicit principal, action or resource scope, freshness, expiry and revocation semantics outside a rotating evidence window.",
+      "evidenceRefs": ["E4", "I2"],
+      "reasoningRole": "governance-model",
+      "readerProgress": "The reader gains a concrete boundary between evidence observed by a reviewer and authority granted to an executor.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What does the demonstrated mechanism not prove?",
+      "claim": "It improves bounded Guardian admission evidence but does not authenticate a human principal, cover every approval path or provide end-to-end authorization safety.",
+      "evidenceRefs": ["E1", "E4", "I2"],
+      "reasoningRole": "boundary",
+      "readerProgress": "The reader avoids promoting an implementation safeguard into a universal authorization guarantee.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Low-risk workflows may reasonably accept conversational approval without a separate evidence plane.",
+    "responseBoundary": "Use proportional controls, but do not let convenience at low-risk paths define authority for sensitive or long-lived delegated actions."
+  },
+  "endingStrategy": {
+    "type": "bounded-operational-test",
+    "purpose": "End by asking whether an audit can show both what evidence the reviewer observed and what authority the executor actually received."
+  }
+}
