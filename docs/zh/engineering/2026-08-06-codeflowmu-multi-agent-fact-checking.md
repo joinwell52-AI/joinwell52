@@ -4,6 +4,7 @@ date: '2026-08-06'
 column: open-source-engineering
 category: daily
 summary: '这不是模型层面的幻觉检测，而是协议与组织结构层面的治理：FCoP 外化事实，CodeFlowMu 运行角色，PM 依据证据拒绝无证据的“完成”。'
+cover: "/assets/covers/wp13-codeflowmu-fact-check-cover-zh.svg"
 item_id: WP13-CODEFLOWMU-FACT-CHECK
 lifecycle: Published
 evidence_status: Completed
