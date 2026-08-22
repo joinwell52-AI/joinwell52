@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260822-03-principal-scoped-causal-cache-reconciliation.md
 item_id: "Q-20260822-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-22-missing-cache-entry-not-deletion-evidence-cover.png"
+cover: "/assets/covers/daily-2026-08-22-missing-cache-entry-not-deletion-evidence-cover-v2.jpg"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-22-missing-cache-entry-not-deletion-evidence-cover.png"
+  image="/assets/covers/daily-2026-08-22-missing-cache-entry-not-deletion-evidence-cover-v2.jpg"
   kicker="Open-source Engineering · Daily Research"
   title="A Missing Cache Entry Is Not Deletion Evidence"
   summary="Safe asynchronous reconciliation needs principal identity, causal generations, coordination among participating writers and positive snapshot-completeness evidence before deletion. These controls bound races without creating a transaction."

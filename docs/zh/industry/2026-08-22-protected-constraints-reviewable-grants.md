@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260822-02-monotonic-policy-composition-reviewable-expansion.md
 item_id: "Q-20260822-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-22-protected-constraints-reviewable-grants-cover.png"
+cover: "/assets/covers/daily-2026-08-22-protected-constraints-reviewable-grants-cover-v2.jpg"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-22-protected-constraints-reviewable-grants-cover.png"
+  image="/assets/covers/daily-2026-08-22-protected-constraints-reviewable-grants-cover-v2.jpg"
   kicker="行业架构 · 每日研究"
   title="受保护约束与可审查授权，需要不同合并规则"
   summary="安全的 Multi-owner Policy Merge 既不是全面 Union，也不是全面 Intersection。Protected Ceiling 必须穿过后续 Layer 保持有效，而 Legitimate Expansion 应成为显式、限定 Scope、可失效的 Review Transition。"

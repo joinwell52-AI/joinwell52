@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260822-02-monotonic-policy-composition-reviewable-expansion.md
 item_id: "Q-20260822-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-22-protected-constraints-reviewable-grants-cover.png"
+cover: "/assets/covers/daily-2026-08-22-protected-constraints-reviewable-grants-cover-v2.jpg"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-22-protected-constraints-reviewable-grants-cover.png"
+  image="/assets/covers/daily-2026-08-22-protected-constraints-reviewable-grants-cover-v2.jpg"
   kicker="Industry Architecture · Daily Research"
   title="Protected Constraints and Reviewable Grants Need Different Merge Rules"
   summary="A safe multi-owner policy merge is neither a blanket union nor a blanket intersection. Protected ceilings must survive later layers, while legitimate expansion belongs in an explicit, scoped and invalidatable review transition."

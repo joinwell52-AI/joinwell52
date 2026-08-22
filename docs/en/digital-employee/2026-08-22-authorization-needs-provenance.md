@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260822-01-structured-authorization-evidence-channel.md
 item_id: "Q-20260822-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-22-authorization-needs-provenance-cover.png"
+cover: "/assets/covers/daily-2026-08-22-authorization-needs-provenance-cover-v2.jpg"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-22-authorization-needs-provenance-cover.png"
+  image="/assets/covers/daily-2026-08-22-authorization-needs-provenance-cover-v2.jpg"
   kicker="Digital Employee · Daily Research"
   title="Authorization Needs Provenance, Not Persuasive Wording"
   summary="Role-preserving root-conversation evidence gives an agent reviewer a firmer basis than forwarded approval prose. It is still review evidence, not a durable authorization ledger or proof of a human principal."

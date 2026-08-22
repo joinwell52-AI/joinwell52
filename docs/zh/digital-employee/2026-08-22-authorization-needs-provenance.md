@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260822-01-structured-authorization-evidence-channel.md
 item_id: "Q-20260822-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-22-authorization-needs-provenance-cover.png"
+cover: "/assets/covers/daily-2026-08-22-authorization-needs-provenance-cover-v2.jpg"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-22-authorization-needs-provenance-cover.png"
+  image="/assets/covers/daily-2026-08-22-authorization-needs-provenance-cover-v2.jpg"
   kicker="数字员工 · 每日研究"
   title="授权需要来源，不需要更像真的措辞"
   summary="保留角色的根会话证据，比转发审批措辞更适合支撑 Agent Review；但它仍只是 Review Evidence，不是持久 Authorization Ledger，也不是对真人 Principal 的认证。"

@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260822-03-principal-scoped-causal-cache-reconciliation.md
 item_id: "Q-20260822-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-22-missing-cache-entry-not-deletion-evidence-cover.png"
+cover: "/assets/covers/daily-2026-08-22-missing-cache-entry-not-deletion-evidence-cover-v2.jpg"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-22-missing-cache-entry-not-deletion-evidence-cover.png"
+  image="/assets/covers/daily-2026-08-22-missing-cache-entry-not-deletion-evidence-cover-v2.jpg"
   kicker="开源工程 · 每日研究"
   title="缓存里没有，不足以授权删除"
   summary="安全的异步 Reconciliation 需要 Principal Identity、Causal Generation、参与 Writer 协调，以及删除前的正向 Snapshot-completeness Evidence。这些控制约束 Race，却不会创造 Transaction。"
