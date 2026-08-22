@@ -1,0 +1,189 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "analysis",
+  "family": "daily",
+  "runtimeDate": "2026-08-22",
+  "status": "Completed",
+  "input": {
+    "scheduler": "research/runtime/SCHEDULER.json",
+    "workerControl": "research/runtime/worker-prompts/generated/CONTROL.json",
+    "workerControlVersion": "1.3.0",
+    "authoritativePrompt": {
+      "path": "research/runtime/worker-prompts/generated/analysis.prompt.md",
+      "version": "2.0.0",
+      "sha256": "4f40dff2d12569f647bf265f344b60cb0f0cd0349f0b2d5cf1023f50947dfea2",
+      "hashVerified": true,
+      "sourceCommit": "0dd255cc45200813d4c54f3964692ea0c40082d4"
+    },
+    "requiredSources": [
+      "research/runtime/SCHEDULER.json",
+      "research/runtime/WORKER-CONTRACT-V3.md",
+      "research/runtime/WAKE-RECEIPT-V1.md",
+      "research/editorial/EDITORIAL-ARCHITECTURE.json",
+      "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+      "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+      "research/skills/04-research-analysis.md"
+    ],
+    "admission": {
+      "decision": "Admitted",
+      "date": "2026-08-22",
+      "branch": "main",
+      "wakeSource": "chatgpt-scheduled-task",
+      "requiredCapabilities": [
+        "github-read",
+        "github-write",
+        "file-editing"
+      ],
+      "availableCapabilities": [
+        "github-read",
+        "github-write",
+        "file-editing",
+        "deterministic-hash"
+      ],
+      "limits": {
+        "maxRunMinutes": 120,
+        "maxRecoveryAttempts": 2,
+        "maxRevisionRounds": 2,
+        "maxOutputItems": 3,
+        "zeroOutputAllowed": true,
+        "directPublicationAllowed": false,
+        "requireSameRunDateInputs": true,
+        "requirePromptHashVerification": true,
+        "requireRemoteCommitVerification": true
+      }
+    },
+    "readingStatus": "Completed",
+    "readingArtifacts": [
+      "research/reading/Q-20260822-01-root-user-authorization-provenance.md",
+      "research/reading/Q-20260822-02-monotonic-remote-network-policy-composition.md",
+      "research/reading/Q-20260822-03-account-scoped-plugin-cache-reconciliation.md"
+    ],
+    "controlPlane": {
+      "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-22/analysis-130205.json",
+      "executionSlotOpenedAt": "2026-08-22T13:04:37+08:00",
+      "workerClaimedAt": "2026-08-22T13:05:16+08:00",
+      "workerClaimCommit": "c412c3c44d3a29c8d376a56d375441e1b88cb511",
+      "globalOrderVerified": true,
+      "earlierDueTasksClosed": [
+        "discovery",
+        "queue",
+        "reading"
+      ]
+    }
+  },
+  "workResult": {
+    "summary": "Executed only Skill 04 Research Analysis after fail-closed admission, deterministic SHA-256 verification of the authoritative generated Analysis prompt, complete reading of all seven required control/editorial/evidence sources, a durable same-date Wake Receipt, repository-granted global-serial execution authority and a verified Worker Claimed event. Consumed only the three completed 2026-08-22 Reading Results and produced exactly three Research Objects. Q-20260822-01 concludes that delegated digital employees should carry authorization provenance through a structured review-plane evidence channel bound to authoritative source and role, while forwarded claims, summaries and assistant-authored text remain context rather than user authority; bounded review evidence is not a durable authorization ledger, so long-lived approval/revocation needs separate principal, scope and freshness state. Q-20260822-02 concludes that multi-owner remote-execution policy should compose monotonically on explicitly protected constraints while permitted expansion remains an explicit reviewable transition; effective policy must be validated after composition and escalation cannot become a bypass path, but the evidence is network-specific rather than proof that all capabilities are non-expandable. Q-20260822-03 concludes that asynchronous authoritative-cache reconciliation should bind snapshots to principal identity and causal generation, serialize participating mutation paths, reject stale publication and validate snapshot completeness before destructive cleanup while separating remote membership from local materialization readiness; these are bounded coordination/recovery semantics, not a transaction or exactly-once guarantee. No prior-day research input, article drafting, visualization, Publication Candidate creation or publication was used or performed.",
+    "summary_zh": "在完成 Fail-closed Admission、权威 Generated Analysis Prompt 的 SHA-256 确定性核验、全部 7 个 Required Control/Editorial/Evidence Source 的完整读取、同日 Wake Receipt 持久核验、仓库授予的全局串行执行权与 Worker Claimed 核验后，仅执行 Skill 04 Research Analysis。只消费 2026-08-22 当日三份已完成 Reading Result，并恰好形成三份 Research Object。Q-20260822-01 的判断是：被委派数字员工应通过绑定权威 Source 与 Role 的结构化 Review-plane Evidence Channel 携带 Authorization Provenance；Forwarded Claim、Summary 与 Assistant-authored Text 仍属于 Context，而不是 User Authority；有界 Review Evidence 不是持久 Authorization Ledger，因此长期 Approval/Revocation 还需要独立 Principal、Scope 与 Freshness State。Q-20260822-02 的判断是：Multi-owner Remote-execution Policy 对显式 Protected Constraint 应保持单调，而允许的 Expansion 应成为显式可 Review Transition；Effective Policy 必须在组合后再次验证，Escalation 也不能形成绕过路径，但现有证据只针对 Network Policy，不能证明所有 Capability 都不可扩张。Q-20260822-03 的判断是：异步 Authoritative-cache Reconciliation 应把 Snapshot 绑定到 Principal Identity 与 Causal Generation，串行化参与的 Mutation Path，拒绝 Stale Publication，并在 Destructive Cleanup 前验证 Snapshot Completeness，同时分离 Remote Membership 与 Local Materialization Readiness；这些属于有界 Coordination/Recovery Semantics，不是 Transaction 或 Exactly-once Guarantee。未复用前一日研究输入，也未执行文章撰写、可视化、Publication Candidate 创建或发布。",
+    "researchObjects": [
+      {
+        "column": "digital-employee",
+        "itemId": "Q-20260822-01",
+        "artifact": "research/analysis/Q-20260822-01-structured-authorization-evidence-channel.md",
+        "articleType": "engineering-insight",
+        "projectRelevance": "none",
+        "judgment": "For delegated digital employees, authorization provenance should be a structured review-plane evidence channel whose source and role are preserved independently of the work-plane narrative. Forwarded claims, summaries and assistant-authored text may remain useful context but should not acquire user authority by wording alone. When authorization must survive beyond a bounded review window, systems need a separate durable authorization state that binds principal identity, scope, freshness and revocation; the demonstrated Guardian mechanism is evidence for admission, not an end-to-end authorization guarantee.",
+        "judgment_zh": "对于被委派的数字员工，Authorization Provenance 应成为结构化 Review-plane Evidence Channel，其 Source 与 Role 必须独立于 Work-plane Narrative 被保留。Forwarded Claim、Summary 与 Assistant-authored Text 可以继续作为有用 Context，但不能仅凭措辞获得 User Authority。当 Authorization 需要超越有界 Review Window 持续存在时，系统还需要独立的持久 Authorization State，用于绑定 Principal Identity、Scope、Freshness 与 Revocation；当前 Guardian Mechanism 是 Admission Evidence，而不是端到端 Authorization Guarantee。"
+      },
+      {
+        "column": "industry-architecture",
+        "itemId": "Q-20260822-02",
+        "artifact": "research/analysis/Q-20260822-02-monotonic-policy-composition-reviewable-expansion.md",
+        "articleType": "technical-analysis",
+        "projectRelevance": "none",
+        "judgment": "For multi-owner remote execution, policy composition should be monotonic on explicitly protected constraints and explicit about every permitted expansion path. Denials and non-expandable ceilings should survive later layers by typed intersection or restoration, while legitimate grants should enter through a reviewable transition with defined scope and invalidation. The effective policy should be validated after composition, and privilege escalation must not create an alternate path around owner constraints. This is a network-policy pattern, not proof that all remote capabilities are globally non-expandable.",
+        "judgment_zh": "对于 Multi-owner Remote Execution，Policy Composition 应对显式 Protected Constraint 保持单调，并对每一条允许的 Expansion Path 保持显式。Denial 与 Non-expandable Ceiling 应通过 Typed Intersection 或 Restoration 穿过后续 Layer；Legitimate Grant 则应通过具有明确 Scope 与 Invalidation 的可 Review Transition 进入。组合后的 Effective Policy 必须再次验证，而且 Privilege Escalation 不能形成绕过 Owner Constraint 的替代路径。这是一种 Network-policy Pattern，不是所有 Remote Capability 全局不可扩张的证明。"
+      },
+      {
+        "column": "open-source-engineering",
+        "itemId": "Q-20260822-03",
+        "artifact": "research/analysis/Q-20260822-03-principal-scoped-causal-cache-reconciliation.md",
+        "articleType": "engineering-insight",
+        "projectRelevance": "none",
+        "judgment": "Asynchronous authoritative-cache reconciliation should bind every snapshot to both principal identity and a causal generation, serialize represented mutation paths that can race with reconciliation, reject stale publication after identity or generation changes, and require completeness validation before destructive cleanup. Remote installation truth should remain distinct from local materialization readiness so partial local failures do not become false deletion evidence. These controls provide bounded coordination and recovery semantics; they are not a transaction, exactly-once guarantee or proof that uncoordinated writers cannot race.",
+        "judgment_zh": "异步 Authoritative-cache Reconciliation 应把每个 Snapshot 同时绑定到 Principal Identity 与 Causal Generation；对会与 Reconciliation 竞争的已表示 Mutation Path 进行串行化；在 Identity 或 Generation 改变后拒绝 Stale Publication；并要求在 Destructive Cleanup 之前先验证 Completeness。Remote Installation Truth 还应与 Local Materialization Readiness 分离，避免局部 Local Failure 变成错误的 Deletion Evidence。这些控制提供的是有界 Coordination 与 Recovery Semantics，而不是 Transaction、Exactly-once Guarantee，也不能证明未参与协调的 Writer 不会发生竞争。"
+      }
+    ],
+    "boundary": {
+      "unreadMaterialAnalyzed": false,
+      "priorDayResearchInputsReused": false,
+      "fixedArticleOutline": false,
+      "forcedFirstPartyMapping": false,
+      "articleWriting": false,
+      "visualization": false,
+      "publicationCandidate": false,
+      "publication": false
+    }
+  },
+  "output": {
+    "type": "Research Objects",
+    "researchObjectCount": 3,
+    "artifacts": [
+      "research/analysis/Q-20260822-01-structured-authorization-evidence-channel.md",
+      "research/analysis/Q-20260822-02-monotonic-policy-composition-reviewable-expansion.md",
+      "research/analysis/Q-20260822-03-principal-scoped-causal-cache-reconciliation.md"
+    ]
+  },
+  "next": {
+    "task": "production",
+    "scheduledTime": "15:00",
+    "instruction": "Production may consume only these three completed 2026-08-22 Research Objects after its formal time gate, fresh admission, authoritative prompt verification, global serial-order check and Worker Claim. It must preserve the bounded evidence identities: structured root-user provenance is review evidence rather than cryptographic principal authentication or a durable authorization ledger; protected monotonicity is demonstrated for network-policy ceilings and does not imply every remote capability is non-expandable; principal-scoped generation guards, serialized participating mutations and validate-before-destroy are reconciliation controls rather than transaction, cross-process isolation or exactly-once proof.",
+    "instruction_zh": "Production 只能在 15:00 正式时间门禁之后，并完成新的 Admission、权威 Prompt Verification、全局串行顺序检查与 Worker Claim 后，消费这三份 2026-08-22 已完成 Research Object。必须保留有界 Evidence Identity：结构化 Root-user Provenance 属于 Review Evidence，不是 Cryptographic Principal Authentication 或持久 Authorization Ledger；Protected Monotonicity 只在 Network-policy Ceiling 范围内得到展示，并不意味着所有 Remote Capability 都不可扩张；Principal-scoped Generation Guard、参与 Mutation 的串行化与 Validate-before-destroy 属于 Reconciliation Control，不是 Transaction、Cross-process Isolation 或 Exactly-once Proof。"
+  },
+  "metrics": [
+    {
+      "name": "reading_results_consumed",
+      "value": 3
+    },
+    {
+      "name": "research_objects",
+      "value": 3
+    },
+    {
+      "name": "prompt_hash_verified",
+      "value": 1
+    },
+    {
+      "name": "required_sources_read",
+      "value": 7
+    },
+    {
+      "name": "prior_day_research_inputs_reused",
+      "value": 0
+    },
+    {
+      "name": "first_party_project_mappings_forced",
+      "value": 0
+    },
+    {
+      "name": "article_drafts",
+      "value": 0
+    },
+    {
+      "name": "publication_actions",
+      "value": 0
+    }
+  ],
+  "evidence": [
+    "0dd255cc45200813d4c54f3964692ea0c40082d4",
+    "research/runtime/wakes/2026/08/2026-08-22/analysis-130205.json",
+    "research/runtime/records/daily/2026/08/2026-08-22-daily-runtime.json",
+    "research/runtime/worker-prompts/generated/CONTROL.json",
+    "research/runtime/worker-prompts/generated/analysis.prompt.md",
+    "research/runtime/WORKER-CONTRACT-V3.md",
+    "research/runtime/WAKE-RECEIPT-V1.md",
+    "research/editorial/EDITORIAL-ARCHITECTURE.json",
+    "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+    "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+    "research/skills/04-research-analysis.md",
+    "research/reading/Q-20260822-01-root-user-authorization-provenance.md",
+    "research/reading/Q-20260822-02-monotonic-remote-network-policy-composition.md",
+    "research/reading/Q-20260822-03-account-scoped-plugin-cache-reconciliation.md",
+    "c412c3c44d3a29c8d376a56d375441e1b88cb511"
+  ],
+  "artifacts": [
+    "research/analysis/Q-20260822-01-structured-authorization-evidence-channel.md",
+    "research/analysis/Q-20260822-02-monotonic-policy-composition-reviewable-expansion.md",
+    "research/analysis/Q-20260822-03-principal-scoped-causal-cache-reconciliation.md",
+    "research/runtime/results/2026/08/2026-08-22-analysis-result.json"
+  ]
+}
