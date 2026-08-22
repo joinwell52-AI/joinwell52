@@ -1,0 +1,73 @@
+{
+  "schema": "guided-topic-proposals/v2",
+  "runId": "2026-08-22-codeflowmu-rail-state-series-round1",
+  "runDate": "2026-08-22",
+  "proposals": [
+    {
+      "id": "T1",
+      "title": "多个 Agent 怎样真正组成团队？治理模型、文件状态机与工程轨道机",
+      "targetAudience": "正在设计多 Agent 工程系统的技术负责人、架构师和平台工程师",
+      "readerProblem": "系统拥有多个模型会话，却缺少统一任务身份、状态事实、证据归属和最终验收权。",
+      "coreQuestion": "TMPA、FCoP 与 CodeFlowMu 分别承担什么责任，三层怎样连接成可治理的协作系统？",
+      "coreProposition": "多 Agent 团队不是多个会话的集合，而是治理语义、文件状态事实与运行轨道三层分工后的可重建协作系统。",
+      "whyNow": "CodeFlowMu V1.9.7 已把事实内核和轨道非裁决边界收口，具备解释当前三层关系的最新代码与运行证据。",
+      "readerAction": "绘制自己的三层责任图，检查是否把协议、状态、调度和业务决定混在同一个组件中。",
+      "expectedResult": "一张三层责任地图、一条端到端协作链和一份架构自查表。",
+      "articleType": "project-research",
+      "framing": "first-party-strength",
+      "researchObjects": ["TMPA", "FCoP", "CodeFlowMu V1.9.7"],
+      "verifiedStrengths": [{
+        "claim": "当前体系已经把治理语义、文件协议和运行轨道分为不同责任层。",
+        "readerValue": "读者可以避免把状态文件当调度器、把运行时判断当治理规范。",
+        "sourceRefs": ["FP-POSITIONING", "FP-FCOP-SPEC", "FP-CODE-197", "FP-EVIDENCE-197"]
+      }],
+      "outline": ["团队失败场景", "TMPA 治理层", "FCoP 状态层", "CodeFlowMu 轨道层", "端到端案例", "代码合同", "边界与检查表"],
+      "evidencePlan": {"requiredSourceIdentities": ["正式论文与规范", "V1.9.7 母版代码", "V1.9.7 固定测试与实机记录", "W3C/NIST 官方资料"]},
+      "visualPlan": {"coverConcept": "三个紧密咬合的语义层共同形成一支可观察的 Agent 团队", "inlineFigures": ["三层责任图", "一次任务协作链"]}
+    },
+    {
+      "id": "T2",
+      "title": "任务怎样在 Agent 团队中流转？文件状态机如何记录领取、执行、审查与完成",
+      "targetAudience": "需要实现本地多 Agent 任务流转、审查与恢复的工程师",
+      "readerProblem": "界面、文件正文、报告和运行时可能同时给出不同的完成信号，系统容易提前放行或把报告挂错任务。",
+      "coreQuestion": "一张任务怎样在文件状态机和运行轨道中保持唯一身份，并经过合法迁移到最终验收？",
+      "coreProposition": "可靠流转必须把当前路径、迁移事件、执行报告和验收决定分成四类事实，再由轨道机机械连接。",
+      "whyNow": "V1.9.7 已统一任务身份、命令防重复、显式依赖与报告续接，可展示比协议说明更完整的真实执行链。",
+      "readerAction": "为自己的任务系统建立生命周期、身份、依赖、防重复和验收五组不变量。",
+      "expectedResult": "一张任务流转图、一段命令合同代码和一份端到端验收清单。",
+      "articleType": "project-research",
+      "framing": "first-party-strength",
+      "researchObjects": ["FCoP", "TMPA", "CodeFlowMu V1.9.7"],
+      "verifiedStrengths": [{
+        "claim": "FCoP 当前状态机与 CodeFlowMu V1.9.7 的命令、派工、报告和验收轴可以形成不串线的任务链。",
+        "readerValue": "读者可以定位任务系统中最常见的状态压缩、重复执行和验收越界。",
+        "sourceRefs": ["FP-FCOP-SPEC", "FP-TMPA-CORE", "FP-CODE-197", "FP-EVIDENCE-197"]
+      }],
+      "outline": ["四种互相矛盾的完成信号", "文件路径与事件", "身份与命令合同", "依赖排队", "执行与报告", "人工验收", "边界与不变量"],
+      "evidencePlan": {"requiredSourceIdentities": ["FCoP 当前规范", "TMPA Core S1.0", "V1.9.7 母版代码", "POSIX 官方规范"]},
+      "visualPlan": {"coverConcept": "一张任务沿清晰状态轨迹流经 Agent 团队并在验收点收口", "inlineFigures": ["任务四事实链", "状态迁移图"]}
+    },
+    {
+      "id": "T3",
+      "title": "轨道机怎样带动一支 Agent 团队？派工、恢复与人工裁决的工程边界",
+      "targetAudience": "正在实现 Agent 编排、恢复和治理控制面的 Runtime 负责人",
+      "readerProblem": "轨道过弱会让协作失序，轨道过强又会用分类器、超时或证据检查替 PM 作业务决定。",
+      "coreQuestion": "哪些动作可以由轨道机机械执行或拒绝，哪些判断必须保留给 Agent、PM 或 ADMIN？",
+      "coreProposition": "好的轨道机应扩大事实可见性和技术恢复能力，但只在冻结负面清单内机械阻断，不拥有业务决定权。",
+      "whyNow": "V1.9.7 正是一次围绕轨道辅助边界的当前工程收口，并有固定回归与实机重启证据。",
+      "readerAction": "把自己的自动化规则分成事实、建议、机械负面清单和业务裁决四类，删除隐性裁决。",
+      "expectedResult": "一张自动化权责边界表、一份冻结负面清单和一套验证方法。",
+      "articleType": "project-research",
+      "framing": "first-party-strength",
+      "researchObjects": ["CodeFlowMu V1.9.7", "TMPA", "FCoP"],
+      "verifiedStrengths": [{
+        "claim": "V1.9.7 已将轨道输出改为中立事实、建议与有限机械阻断，并显式保留业务决定主体。",
+        "readerValue": "读者可以识别治理自动化何时从辅助滑向越权。",
+        "sourceRefs": ["FP-CODE-197", "FP-EVIDENCE-197", "FP-TMPA-CORE", "FP-FCOP-SPEC"]
+      }],
+      "outline": ["过弱与过强的轨道", "辅助合同", "冻结负面清单", "派工与恢复", "人工裁决", "V1.9.7 验证", "残余风险与检查表"],
+      "evidencePlan": {"requiredSourceIdentities": ["V1.9.7 母版代码", "固定回归与实机记录", "TMPA/FCoP 正式规范", "NIST 官方治理资料"]},
+      "visualPlan": {"coverConcept": "中心轨道稳定带动多个计算 Agent，但最终裁决保留在独立控制点", "inlineFigures": ["辅助与裁决边界图"]}
+    }
+  ]
+}

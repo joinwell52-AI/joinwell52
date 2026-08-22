@@ -1,0 +1,65 @@
+{
+  "schema": "first-party-reading-record/v1",
+  "runId": "2026-08-22-codeflowmu-rail-state-series-round1",
+  "runDate": "2026-08-22",
+  "status": "Completed",
+  "completedAt": "2026-08-22T21:30:00+08:00",
+  "sources": [
+    {
+      "id": "FP-POSITIONING",
+      "role": "positioning",
+      "path": "D:/TMPA/joinwell52-article-20260820/docs/public/releases/tmpa/v1.0/artifacts/tmpa-architecture-paper-a1.0-zh.md",
+      "readCompletely": true,
+      "supports": "TMPA、Core、FCoP 与 CodeFlowMu 的当前指导和实现关系，以及 TMPA 不等于 Runtime 的边界。",
+      "doesNotSupport": "不证明 CodeFlowMu V1.9.7 当前代码已经实现所有 TMPA 要求。"
+    },
+    {
+      "id": "FP-TMPA-CORE",
+      "role": "normative",
+      "path": "D:/TMPA/joinwell52-article-20260820/docs/public/releases/tmpa/v1.0/artifacts/tmpa-core-specification-s1.0-zh.md",
+      "readCompletely": true,
+      "supports": "稳定主载体、单写者流、角色权限、生命周期、冲突保留和确定性 Reader 等规范语义。",
+      "doesNotSupport": "不规定 CodeFlowMu 的具体调度器、UI、进程或存储实现。"
+    },
+    {
+      "id": "FP-FCOP-SPEC",
+      "role": "normative",
+      "path": "D:/TMPA/FCoP/spec/fcop-v3-spec.zh.md",
+      "readCompletely": true,
+      "supports": "文件、路径、迁移事件、TASK/REPORT/ISSUE/REVIEW 信封和生命周期工具的当前协议语义。",
+      "doesNotSupport": "FCoP 不运行 Agent，不拥有调度、沙箱、心跳、重试和恢复策略。"
+    },
+    {
+      "id": "FP-CODE-197",
+      "role": "implementation",
+      "path": "D:/TMPA/joinwell52-article-20260820/research/manual-runs/2026-08-22-codeflowmu-rail-state-series-round1/01-codeflowmu-v197-source-inspection.md",
+      "readCompletely": true,
+      "supports": "V1.9.7 母版当前事实内核、轨道辅助合同、命令内核、角色能力、派工与持久作业实现边界。",
+      "doesNotSupport": "不构成公开源码发布或独立安全认证。"
+    },
+    {
+      "id": "FP-EVIDENCE-197",
+      "role": "field-evidence",
+      "path": "D:/TMPA/joinwell52-article-20260820/research/manual-runs/2026-08-22-codeflowmu-rail-state-series-round1/01-codeflowmu-v197-release-evidence-inspection.md",
+      "readCompletely": true,
+      "supports": "固定提交、固定工作站上的测试、构建和受控重启结果。",
+      "doesNotSupport": "不支持跨平台、第三方复现、渗透测试或正式 RELEASED 状态。"
+    },
+    {
+      "id": "FP-HISTORY-I10",
+      "role": "research-history",
+      "path": "D:/TMPA/joinwell52-article-20260820/docs/public/releases/tmpa/v1.0/artifacts/tmpa-implementation-case-i1.0-zh.md",
+      "readCompletely": true,
+      "supports": "V1.8.0 产品 Reader 对固定 S1.0 Bundle 的 14/14 和 71 项强制断言作者运行证据。",
+      "doesNotSupport": "不能替代 V1.9.7 当前代码检查，也不是独立认证。"
+    },
+    {
+      "id": "FP-RECENT-30D",
+      "role": "recent-content",
+      "path": "D:/TMPA/joinwell52-article-20260820/research/manual-runs/2026-08-22-codeflowmu-rail-state-series-round1/01-recent-content-dedup.md",
+      "readCompletely": true,
+      "supports": "三题与近 30 天内容在核心问题、证据对象、结论和读者行动上的差异。",
+      "doesNotSupport": "不能保证站外没有相似文章。"
+    }
+  ]
+}
