@@ -31,7 +31,14 @@ const sourceCategories = new Set<SourceResearchCategory>(['daily', 'weekly', 'ac
 const displayCategory = (category: SourceResearchCategory): ResearchCategory =>
   category === 'manifesto' || category === 'visual-essay' ? 'daily' : category
 
+const articleCoverImage = (src: string | undefined) => {
+  if (!src) return undefined
+  const articleCoverTag = src.match(/<ArticleCover\b[\s\S]*?>/)?.[0]
+  return articleCoverTag?.match(/\bimage\s*=\s*["']([^"']+)["']/)?.[1]
+}
+
 export default createContentLoader('**/*.md', {
+  includeSrc: true,
   excerpt: false,
   transform(rawData): ResearchNoteRecord[] {
     return rawData
@@ -43,13 +50,13 @@ export default createContentLoader('**/*.md', {
           sourceCategories.has(frontmatter.category)
         )
       })
-      .map(({ url, frontmatter }) => ({
+      .map(({ url, frontmatter, src }) => ({
         title: String(frontmatter.title),
         date: String(frontmatter.date),
         column: frontmatter.column as ResearchColumn,
         category: displayCategory(frontmatter.category as SourceResearchCategory),
         summary: String(frontmatter.summary || frontmatter.description || ''),
-        cover: frontmatter.cover ? String(frontmatter.cover) : undefined,
+        cover: frontmatter.cover ? String(frontmatter.cover) : articleCoverImage(src),
         url,
         lang: url.startsWith('/zh/') ? 'zh' : 'en',
         articleType: frontmatter.article_type ? String(frontmatter.article_type) : undefined

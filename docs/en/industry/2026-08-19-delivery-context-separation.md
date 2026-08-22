@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260819-02-delivery-context-separation.md
 item_id: "Q-20260819-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-19-delivery-context-separation-cover.png"
+cover: "/assets/covers/daily-2026-08-19-delivery-context-separation-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-19-delivery-context-separation-cover.png"
+  image="/assets/covers/daily-2026-08-19-delivery-context-separation-cover-v2.png"
   kicker="Industry Architecture · Daily Research"
   title="User Delivery Is Not Model Reasoning Context"
   summary="A user receiving a progress update does not mean the next model request should ingest the same text as synthetic assistant history. A same-day Codex change demonstrates a bounded mechanism: an asynchronous message remains a typed delivery record in protocol and history paths while its visible text is excluded from the next model context."

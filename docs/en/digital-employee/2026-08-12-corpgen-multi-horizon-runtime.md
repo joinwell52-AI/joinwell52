@@ -9,11 +9,11 @@ edition: "research-center"
 research_question: "What architectural claims are actually supported by CorpGen's published evidence for concurrent multi-horizon work, and which parts remain hypotheses for production Digital Employee runtimes?"
 summary: "Microsoft Research's CorpGen study suggests that concurrent long-horizon agent work is best treated as an explicit scheduling, isolation, memory and evaluation problem rather than one ever-growing context, while its controlled benchmark leaves production reliability and independent validation unresolved."
 sources: "arXiv:2602.14229; Microsoft Research CorpGen publication and technical article; research/reading/Q-20260803-09-corpgen-multi-horizon.md; research/analysis/Q-20260803-09-corpgen-multi-horizon.md"
-cover: "/assets/covers/academic-corpgen-multi-horizon.svg"
+cover: "/assets/covers/academic-corpgen-multi-horizon-cover-v2.png"
 ---
 
 <ArticleCover
-  image="/assets/covers/academic-corpgen-multi-horizon.svg"
+  image="/assets/covers/academic-corpgen-multi-horizon-cover-v2.png"
   kicker="Digital Employee · Academic Observation 003"
   title="Multi-Horizon Work Needs a Runtime"
   summary="Long-horizon work becomes a systems problem when many tasks coexist: ownership, scheduling, memory, failure and evidence have to become explicit runtime state."

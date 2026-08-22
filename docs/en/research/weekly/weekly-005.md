@@ -14,11 +14,11 @@ evidence_status: Completed
 citation_status: Completed
 editing_status: Completed
 publication_authorized: true
-cover: '/assets/covers/weekly-005.svg'
+cover: '/assets/covers/weekly-005-cover-v2.png'
 ---
 
 <ArticleCover
-  image="/assets/covers/weekly-005.svg"
+  image="/assets/covers/weekly-005-cover-v2.png"
   kicker="Weekly Research · 005"
   title="Every Handoff Needs a Receipt"
   summary="Identity, authority, execution, and effects must cross system boundaries as separate, evidence-bearing facts."

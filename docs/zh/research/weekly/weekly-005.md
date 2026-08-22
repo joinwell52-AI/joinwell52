@@ -14,11 +14,11 @@ evidence_status: Completed
 citation_status: Completed
 editing_status: Completed
 publication_authorized: true
-cover: '/assets/covers/weekly-005.svg'
+cover: '/assets/covers/weekly-005-cover-v2.png'
 ---
 
 <ArticleCover
-  image="/assets/covers/weekly-005.svg"
+  image="/assets/covers/weekly-005-cover-v2.png"
   kicker="Weekly Research · 005"
   title="每一次交接都需要回执"
   summary="身份、权限、执行与副作用跨越系统边界时，必须作为彼此独立、可留证的事实传递。"

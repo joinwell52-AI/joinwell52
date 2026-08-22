@@ -9,11 +9,11 @@ edition: "research-center"
 research_question: "CorpGen 已公开证据究竟支持哪些关于并发多时间跨度工作的架构判断，哪些部分对生产级数字员工 Runtime 仍只是待验证假设？"
 summary: "Microsoft Research 的 CorpGen 研究表明，并发长周期 Agent 工作更适合被视为显式调度、隔离、记忆与评估问题，而不是不断扩大的单一上下文；但受控基准尚不能证明生产可靠性或独立有效性。"
 sources: "arXiv:2602.14229；Microsoft Research CorpGen 论文页与技术文章；research/reading/Q-20260803-09-corpgen-multi-horizon.md；research/analysis/Q-20260803-09-corpgen-multi-horizon.md"
-cover: "/assets/covers/academic-corpgen-multi-horizon.svg"
+cover: "/assets/covers/academic-corpgen-multi-horizon-cover-v2.png"
 ---
 
 <ArticleCover
-  image="/assets/covers/academic-corpgen-multi-horizon.svg"
+  image="/assets/covers/academic-corpgen-multi-horizon-cover-v2.png"
   kicker="数字员工 · 学术观察 003"
   title="多时间跨度工作需要 Runtime"
   summary="当多个任务同时存在时，长周期工作会变成系统问题：所有权、调度、记忆、失败与证据都必须成为显式 Runtime 状态。"

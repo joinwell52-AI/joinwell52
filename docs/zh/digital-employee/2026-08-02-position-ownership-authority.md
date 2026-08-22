@@ -4,12 +4,24 @@ date: '2026-08-02'
 column: digital-employee
 category: daily
 summary: Workday、ServiceNow 与 Microsoft 正在把 AI 工作者从一次性 Agent 转变为具有持久所有权、明确岗位、有限权限与生命周期治理的组织对象。
+cover: "/assets/covers/daily-2026-08-02-position-ownership-authority-cover.png"
 sources:
   - Workday Agent System of Record
   - ServiceNow Autonomous Workforce
   - Microsoft Agent 365
 outline: deep
 ---
+
+<ArticleCover
+  image="/assets/covers/daily-2026-08-02-position-ownership-authority-cover.png"
+  kicker="数字员工 · 每日观察 001"
+  title="Agent 能力之前，先有岗位、所有权与权限"
+  summary="数字员工首先是具有岗位、责任所有者和有限权限的组织对象；Agent 能力只是被绑定在这一契约之下的执行资源。"
+  version="DD001"
+  status="Research Note · 2026-08-02"
+  languageHref="/en/digital-employee/2026-08-02-position-ownership-authority"
+  languageLabel="English"
+/>
 
 # 数字员工每日观察 001 — Agent 能力之前，先有岗位、所有权与权限
 

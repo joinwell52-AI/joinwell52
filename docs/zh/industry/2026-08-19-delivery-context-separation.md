@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260819-02-delivery-context-separation.md
 item_id: "Q-20260819-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-19-delivery-context-separation-cover.png"
+cover: "/assets/covers/daily-2026-08-19-delivery-context-separation-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-19-delivery-context-separation-cover.png"
+  image="/assets/covers/daily-2026-08-19-delivery-context-separation-cover-v2.png"
   kicker="行业架构 · 每日研究"
   title="用户可见交付，不等于模型推理上下文"
   summary="用户收到了一条进度消息，不代表下一次模型请求就应把同样文本当作助手历史。Codex 当日合并变更展示了一个有界机制：异步消息以类型化交付记录进入协议和历史路径，但其可见文本不会被合成为下一轮模型上下文。"
