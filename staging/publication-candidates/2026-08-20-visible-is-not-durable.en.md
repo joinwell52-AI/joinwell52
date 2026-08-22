@@ -8,12 +8,12 @@ article_type: engineering-insight
 edition: research-center
 research_question: "What should an artifact version mean operationally when visibility, writer ownership and durable storage are separate state transitions?"
 summary: "A version can become atomically visible to readers without proving crash durability. A same-day Google ADK change demonstrates a compact publication protocol and the value of separating reservation, completeness, visibility and persistence."
-cover: staging/publication-candidates/2026-08-20-visible-is-not-durable-cover.png
+cover: staging/publication-candidates/2026-08-20-visible-is-not-durable-cover-v2.png
 sources:
   - research/analysis/Q-20260820-03-visibility-durability-separation.md
 ---
 
-![Visible Is Not Durable cover](staging/publication-candidates/2026-08-20-visible-is-not-durable-cover.png)
+![Visible Is Not Durable cover](staging/publication-candidates/2026-08-20-visible-is-not-durable-cover-v2.png)
 
 # Visible Is Not Durable
 

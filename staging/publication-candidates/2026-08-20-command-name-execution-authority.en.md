@@ -8,12 +8,12 @@ article_type: engineering-insight
 edition: research-center
 research_question: "When the visible action name does not fully determine what will execute, what evidence should a digital employee use before treating an action as authorized?"
 summary: "A command label records intent, not the full behavior that configuration and executable context can produce. A same-day Codex change shows why execution admission should fail closed to explicit policy when syntax cannot establish the effective action."
-cover: staging/publication-candidates/2026-08-20-command-name-execution-authority-cover.png
+cover: staging/publication-candidates/2026-08-20-command-name-execution-authority-cover-v2.png
 sources:
   - research/analysis/Q-20260820-01-effective-execution-authority.md
 ---
 
-![A Safe Command Name Is Not Execution Authority cover](staging/publication-candidates/2026-08-20-command-name-execution-authority-cover.png)
+![A Safe Command Name Is Not Execution Authority cover](staging/publication-candidates/2026-08-20-command-name-execution-authority-cover-v2.png)
 
 # A Safe Command Name Is Not Execution Authority
 

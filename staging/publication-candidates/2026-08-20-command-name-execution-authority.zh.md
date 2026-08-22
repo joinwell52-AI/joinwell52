@@ -8,12 +8,12 @@ article_type: engineering-insight
 edition: research-center
 research_question: "When the visible action name does not fully determine what will execute, what evidence should a digital employee use before treating an action as authorized?"
 summary: "命令标签记录的是意图，不是配置与可执行上下文可能产生的全部行为。同日 Codex 变更说明：当语法无法确定实际动作时，执行准入应 Fail-closed，并交由显式策略裁决。"
-cover: staging/publication-candidates/2026-08-20-command-name-execution-authority-cover.png
+cover: staging/publication-candidates/2026-08-20-command-name-execution-authority-cover-v2.png
 sources:
   - research/analysis/Q-20260820-01-effective-execution-authority.md
 ---
 
-![安全的命令名，不等于执行权限题图](staging/publication-candidates/2026-08-20-command-name-execution-authority-cover.png)
+![安全的命令名，不等于执行权限题图](staging/publication-candidates/2026-08-20-command-name-execution-authority-cover-v2.png)
 
 # 安全的命令名，不等于执行权限
 

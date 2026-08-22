@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260820-01-effective-execution-authority.md
 item_id: "Q-20260820-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-20-command-name-execution-authority-cover.png"
+cover: "/assets/covers/daily-2026-08-20-command-name-execution-authority-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-20-command-name-execution-authority-cover.png"
+  image="/assets/covers/daily-2026-08-20-command-name-execution-authority-cover-v2.png"
   kicker="数字员工 · 每日研究"
   title="安全的命令名，不等于执行权限"
   summary="命令标签记录的是意图，不是配置与可执行上下文可能产生的全部行为。同日 Codex 变更说明：当语法无法确定实际动作时，执行准入应 Fail-closed，并交由显式策略裁决。"

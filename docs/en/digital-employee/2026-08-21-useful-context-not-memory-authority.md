@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260821-01-provenance-memory-authority-separation.md
 item_id: "Q-20260821-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-21-useful-context-not-memory-authority-cover.png"
+cover: "/assets/covers/daily-2026-08-21-useful-context-not-memory-authority-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-21-useful-context-not-memory-authority-cover.png"
+  image="/assets/covers/daily-2026-08-21-useful-context-not-memory-authority-cover-v2.png"
   kicker="Digital Employee · Daily Research"
   title="Useful Context Is Not Memory Authority"
   summary="A standalone tool result can remain visible and useful without being authorized to shape durable agent memory. A same-day Codex change makes this separation concrete and exposes why provenance, utility and reuse authority need different records."

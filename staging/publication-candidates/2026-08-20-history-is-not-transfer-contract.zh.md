@@ -8,12 +8,12 @@ article_type: technical-analysis
 edition: research-center
 research_question: "Should cross-agent history be replayed as stored, or reconstructed as a policy-governed projection of mixed-trust local state?"
 summary: "在本地合法的 Session Event，并不自动获得发送给另一个 Agent 的授权。同日 Google ADK 修复说明：Cross-agent Context 应在 Rendering 抹去识别敏感控制材料所需的语义结构之前完成 Policy Projection。"
-cover: staging/publication-candidates/2026-08-20-history-is-not-transfer-contract-cover.png
+cover: staging/publication-candidates/2026-08-20-history-is-not-transfer-contract-cover-v2.png
 sources:
   - research/analysis/Q-20260820-02-policy-enforcing-history-projection.md
 ---
 
-![历史记录不是跨 Agent 传输契约题图](staging/publication-candidates/2026-08-20-history-is-not-transfer-contract-cover.png)
+![历史记录不是跨 Agent 传输契约题图](staging/publication-candidates/2026-08-20-history-is-not-transfer-contract-cover-v2.png)
 
 # 历史记录不是跨 Agent 传输契约
 

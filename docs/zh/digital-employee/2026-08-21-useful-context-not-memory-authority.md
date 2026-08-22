@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260821-01-provenance-memory-authority-separation.md
 item_id: "Q-20260821-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-21-useful-context-not-memory-authority-cover.png"
+cover: "/assets/covers/daily-2026-08-21-useful-context-not-memory-authority-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-21-useful-context-not-memory-authority-cover.png"
+  image="/assets/covers/daily-2026-08-21-useful-context-not-memory-authority-cover-v2.png"
   kicker="数字员工 · 每日研究"
   title="有用上下文，不等于记忆权限"
   summary="独立 Tool Result 可以保持可见与有用，同时不被授权塑造持久 Agent Memory。同日 Codex 变更把这种分离变得具体，也说明 Provenance、Utility 与 Reuse Authority 为什么必须分别记录。"

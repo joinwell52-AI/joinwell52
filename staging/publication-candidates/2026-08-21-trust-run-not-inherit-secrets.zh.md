@@ -8,12 +8,12 @@ article_type: engineering-insight
 edition: research-center
 research_question: "When repository- or plugin-supplied configuration can execute a helper, how should an engineering runtime separate authority to execute code from authority to inherit ambient credentials and other host capabilities?"
 summary: "Workspace Trust 可以授权 Repository-controlled Helper 执行，却不必同时授予 Parent Process 继承来的所有 Credential。Claude Code v2.1.238 材料揭示了这种双门禁设计的价值与边界。"
-cover: staging/publication-candidates/2026-08-21-trust-run-not-inherit-secrets-cover.png
+cover: staging/publication-candidates/2026-08-21-trust-run-not-inherit-secrets-cover-v2.png
 sources:
   - research/analysis/Q-20260821-03-execution-trust-secret-authority-separation.md
 ---
 
-![信任执行，不等于授权继承秘密题图](staging/publication-candidates/2026-08-21-trust-run-not-inherit-secrets-cover.png)
+![信任执行，不等于授权继承秘密题图](staging/publication-candidates/2026-08-21-trust-run-not-inherit-secrets-cover-v2.png)
 
 # 信任执行，不等于授权继承秘密
 

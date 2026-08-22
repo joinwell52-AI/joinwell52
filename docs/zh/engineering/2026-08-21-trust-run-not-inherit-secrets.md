@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260821-03-execution-trust-secret-authority-separation.md
 item_id: "Q-20260821-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-21-trust-run-not-inherit-secrets-cover.png"
+cover: "/assets/covers/daily-2026-08-21-trust-run-not-inherit-secrets-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-21-trust-run-not-inherit-secrets-cover.png"
+  image="/assets/covers/daily-2026-08-21-trust-run-not-inherit-secrets-cover-v2.png"
   kicker="开源工程 · 每日研究"
   title="信任执行，不等于授权继承秘密"
   summary="Workspace Trust 可以授权 Repository-controlled Helper 执行，却不必同时授予 Parent Process 继承来的所有 Credential。Claude Code v2.1.238 材料揭示了这种双门禁设计的价值与边界。"

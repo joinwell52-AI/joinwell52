@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260821-02-principal-bound-approval-authority.md
 item_id: "Q-20260821-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-21-approval-must-name-approver-cover.png"
+cover: "/assets/covers/daily-2026-08-21-approval-must-name-approver-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-21-approval-must-name-approver-cover.png"
+  image="/assets/covers/daily-2026-08-21-approval-must-name-approver-cover-v2.png"
   kicker="Industry Architecture · Daily Research"
   title="Approval Must Name the Approver"
   summary="A transport can tell an agent system how an approval-shaped message arrived, but not who had authority to approve the exact action. A same-day Google ADK revert exposes why channel gating can be both overbroad and incomplete."

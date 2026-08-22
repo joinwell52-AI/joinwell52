@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260820-01-effective-execution-authority.md
 item_id: "Q-20260820-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-20-command-name-execution-authority-cover.png"
+cover: "/assets/covers/daily-2026-08-20-command-name-execution-authority-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-20-command-name-execution-authority-cover.png"
+  image="/assets/covers/daily-2026-08-20-command-name-execution-authority-cover-v2.png"
   kicker="Digital Employee · Daily Research"
   title="A Safe Command Name Is Not Execution Authority"
   summary="A command label records intent, not the full behavior that configuration and executable context can produce. A same-day Codex change shows why execution admission should fail closed to explicit policy when syntax cannot establish the effective action."

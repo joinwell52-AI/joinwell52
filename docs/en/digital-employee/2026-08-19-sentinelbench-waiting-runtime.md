@@ -9,11 +9,11 @@ edition: "research-center"
 research_question: "What architectural conclusion is actually supported by SentinelBench about long-running monitoring agents: is reliable waiting primarily a model capability, a polling strategy, or a runtime state that should be separated from continuous reasoning and action?"
 summary: "SentinelBench provides primary evidence that monitoring is a distinct agent workload: condition-aware waiting can reduce cost and improve completion on long waits, but production monitoring still needs durable condition state, explicit admission and separately verified effects."
 sources: "arXiv:2606.05342v2; Microsoft Research SentinelBench article; microsoft/sentinel_environments @ 0faca33cc58ea62e97a928b67cd3beec7176b408; research/reading/Q-20260804-11-sentinelbench-monitoring.md; research/analysis/Q-20260804-11-sentinelbench-monitoring.md"
-cover: "/assets/covers/academic-sentinelbench-waiting-runtime.svg"
+cover: "/assets/covers/academic-sentinelbench-waiting-runtime-v2.png"
 ---
 
 <ArticleCover
-  image="/assets/covers/academic-sentinelbench-waiting-runtime.svg"
+  image="/assets/covers/academic-sentinelbench-waiting-runtime-v2.png"
   kicker="Digital Employee · Academic Observation 004"
   title="Waiting Is a Runtime State"
   summary="A monitoring agent should preserve what it is waiting for independently of the model turn that happens to be awake."

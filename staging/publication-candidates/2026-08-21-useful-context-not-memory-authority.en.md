@@ -8,12 +8,12 @@ article_type: engineering-insight
 edition: research-center
 research_question: "When useful tool output arrives without a local execution binding, how should a digital employee separate provenance evidence, immediate usability and authority to persist or reuse that content as memory?"
 summary: "A standalone tool result can remain visible and useful without being authorized to shape durable agent memory. A same-day Codex change makes this separation concrete and exposes why provenance, utility and reuse authority need different records."
-cover: staging/publication-candidates/2026-08-21-useful-context-not-memory-authority-cover.png
+cover: staging/publication-candidates/2026-08-21-useful-context-not-memory-authority-cover-v2.png
 sources:
   - research/analysis/Q-20260821-01-provenance-memory-authority-separation.md
 ---
 
-![Useful Context Is Not Memory Authority cover](staging/publication-candidates/2026-08-21-useful-context-not-memory-authority-cover.png)
+![Useful Context Is Not Memory Authority cover](staging/publication-candidates/2026-08-21-useful-context-not-memory-authority-cover-v2.png)
 
 # Useful Context Is Not Memory Authority
 

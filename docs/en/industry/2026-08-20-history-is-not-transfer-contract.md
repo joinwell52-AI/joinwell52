@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260820-02-policy-enforcing-history-projection.md
 item_id: "Q-20260820-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-20-history-is-not-transfer-contract-cover.png"
+cover: "/assets/covers/daily-2026-08-20-history-is-not-transfer-contract-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-20-history-is-not-transfer-contract-cover.png"
+  image="/assets/covers/daily-2026-08-20-history-is-not-transfer-contract-cover-v2.png"
   kicker="Industry Architecture · Daily Research"
   title="History Is Not a Transfer Contract"
   summary="A locally valid session event is not automatically authorized for another agent. A same-day Google ADK fix shows why cross-agent context should be projected before rendering removes the semantic structure needed to identify sensitive control material."

@@ -8,12 +8,12 @@ article_type: engineering-insight
 edition: research-center
 research_question: "How can a delegated child-agent role enable useful specialization without becoming a parallel authority plane, including after resume or reconstruction?"
 summary: "A role file should not become a second permission system. A same-day Codex change demonstrates a bounded pattern: project role configuration through typed overrides, preserve parent-owned permission, routing and infrastructure settings, and allow selected capability changes only in the reducing direction."
-cover: staging/publication-candidates/2026-08-19-monotonic-delegation-authority-cover.png
+cover: staging/publication-candidates/2026-08-19-monotonic-delegation-authority-cover-v2.png
 sources:
   - research/analysis/Q-20260819-01-monotonic-delegation-authority.md
 ---
 
-![A Delegated Role Should Narrow Authority, Not Create It cover](staging/publication-candidates/2026-08-19-monotonic-delegation-authority-cover.png)
+![A Delegated Role Should Narrow Authority, Not Create It cover](staging/publication-candidates/2026-08-19-monotonic-delegation-authority-cover-v2.png)
 
 # A Delegated Role Should Narrow Authority, Not Create It
 

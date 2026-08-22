@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260819-01-monotonic-delegation-authority.md
 item_id: "Q-20260819-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-19-monotonic-delegation-authority-cover.png"
+cover: "/assets/covers/daily-2026-08-19-monotonic-delegation-authority-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-19-monotonic-delegation-authority-cover.png"
+  image="/assets/covers/daily-2026-08-19-monotonic-delegation-authority-cover-v2.png"
   kicker="Digital Employee · Daily Research"
   title="A Delegated Role Should Narrow Authority, Not Create It"
   summary="A role file should not become a second permission system. A same-day Codex change demonstrates a bounded pattern: project role configuration through typed overrides, preserve parent-owned permission, routing and infrastructure settings, and allow selected capability changes only in the reducing direction."

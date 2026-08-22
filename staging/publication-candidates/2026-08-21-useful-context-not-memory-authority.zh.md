@@ -8,12 +8,12 @@ article_type: engineering-insight
 edition: research-center
 research_question: "When useful tool output arrives without a local execution binding, how should a digital employee separate provenance evidence, immediate usability and authority to persist or reuse that content as memory?"
 summary: "独立 Tool Result 可以保持可见与有用，同时不被授权塑造持久 Agent Memory。同日 Codex 变更把这种分离变得具体，也说明 Provenance、Utility 与 Reuse Authority 为什么必须分别记录。"
-cover: staging/publication-candidates/2026-08-21-useful-context-not-memory-authority-cover.png
+cover: staging/publication-candidates/2026-08-21-useful-context-not-memory-authority-cover-v2.png
 sources:
   - research/analysis/Q-20260821-01-provenance-memory-authority-separation.md
 ---
 
-![有用上下文，不等于记忆权限题图](staging/publication-candidates/2026-08-21-useful-context-not-memory-authority-cover.png)
+![有用上下文，不等于记忆权限题图](staging/publication-candidates/2026-08-21-useful-context-not-memory-authority-cover-v2.png)
 
 # 有用上下文，不等于记忆权限
 

@@ -9,11 +9,11 @@ edition: "research-center"
 research_question: "SentinelBench 对长时间监控智能体究竟支持什么架构结论：可靠等待主要是模型能力、轮询策略，还是应该从持续推理和动作中分离出来的运行时状态？"
 summary: "SentinelBench 提供了一手实验依据，说明监控是一类独立的智能体工作负载：条件感知等待可以在长时间等待中显著降低成本并改善完成率，但生产级监控仍需要持久条件状态、明确准入以及独立核验的外部效果证据。"
 sources: "arXiv:2606.05342v2; Microsoft Research SentinelBench article; microsoft/sentinel_environments @ 0faca33cc58ea62e97a928b67cd3beec7176b408; research/reading/Q-20260804-11-sentinelbench-monitoring.md; research/analysis/Q-20260804-11-sentinelbench-monitoring.md"
-cover: "/assets/covers/academic-sentinelbench-waiting-runtime.svg"
+cover: "/assets/covers/academic-sentinelbench-waiting-runtime-v2.png"
 ---
 
 <ArticleCover
-  image="/assets/covers/academic-sentinelbench-waiting-runtime.svg"
+  image="/assets/covers/academic-sentinelbench-waiting-runtime-v2.png"
   kicker="数字员工 · Academic Observation 004"
   title="等待应该是运行时状态"
   summary="监控智能体应该独立保存“正在等待什么”，而不是把它寄存在某一次恰好醒着的模型对话里。"

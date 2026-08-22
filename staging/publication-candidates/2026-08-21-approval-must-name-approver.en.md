@@ -8,12 +8,12 @@ article_type: technical-analysis
 edition: research-center
 research_question: "In agent systems where a human approval can be relayed through multiple transports, what evidence should establish approval authority without confusing the delivery channel with the approving principal?"
 summary: "A transport can tell an agent system how an approval-shaped message arrived, but not who had authority to approve the exact action. A same-day Google ADK revert exposes why channel gating can be both overbroad and incomplete."
-cover: staging/publication-candidates/2026-08-21-approval-must-name-approver-cover.png
+cover: staging/publication-candidates/2026-08-21-approval-must-name-approver-cover-v2.png
 sources:
   - research/analysis/Q-20260821-02-principal-bound-approval-authority.md
 ---
 
-![Approval Must Name the Approver cover](staging/publication-candidates/2026-08-21-approval-must-name-approver-cover.png)
+![Approval Must Name the Approver cover](staging/publication-candidates/2026-08-21-approval-must-name-approver-cover-v2.png)
 
 # Approval Must Name the Approver
 

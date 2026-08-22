@@ -8,12 +8,12 @@ article_type: engineering-insight
 edition: research-center
 research_question: "What state should an OAuth client expose when the authorization server has issued refreshed credentials but local durable persistence fails afterward?"
 summary: "远端刷新成功与本地保存失败可以同时成立。MCP TypeScript SDK 当日合并变更把两者从同一异常分支中拆开，使持久化错误保持可见；这改善了恢复所需的状态证据，但并不提供回滚或分布式原子性。"
-cover: staging/publication-candidates/2026-08-19-oauth-refresh-split-commit-cover.png
+cover: staging/publication-candidates/2026-08-19-oauth-refresh-split-commit-cover-v2.png
 sources:
   - research/analysis/Q-20260819-03-oauth-refresh-split-commit.md
 ---
 
-![OAuth 刷新成功后，持久化失败不是普通失败 题图](staging/publication-candidates/2026-08-19-oauth-refresh-split-commit-cover.png)
+![OAuth 刷新成功后，持久化失败不是普通失败 题图](staging/publication-candidates/2026-08-19-oauth-refresh-split-commit-cover-v2.png)
 
 # OAuth 刷新成功后，持久化失败不是普通失败
 

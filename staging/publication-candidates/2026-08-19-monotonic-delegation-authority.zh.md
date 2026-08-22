@@ -8,12 +8,12 @@ article_type: engineering-insight
 edition: research-center
 research_question: "How can a delegated child-agent role enable useful specialization without becoming a parallel authority plane, including after resume or reconstruction?"
 summary: "角色文件不应成为第二套权限系统。Codex 当日合并变更展示了一种有界做法：只把角色配置投影为类型化覆盖项，保留父级掌握的权限、路由和基础设施配置，并把部分能力变化限制为收缩。"
-cover: staging/publication-candidates/2026-08-19-monotonic-delegation-authority-cover.png
+cover: staging/publication-candidates/2026-08-19-monotonic-delegation-authority-cover-v2.png
 sources:
   - research/analysis/Q-20260819-01-monotonic-delegation-authority.md
 ---
 
-![委派角色只能收缩权限，不能另起一套权威 题图](staging/publication-candidates/2026-08-19-monotonic-delegation-authority-cover.png)
+![委派角色只能收缩权限，不能另起一套权威 题图](staging/publication-candidates/2026-08-19-monotonic-delegation-authority-cover-v2.png)
 
 # 委派角色只能收缩权限，不能另起一套权威
 

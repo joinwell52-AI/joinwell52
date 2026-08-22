@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260819-03-oauth-refresh-split-commit.md
 item_id: "Q-20260819-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-19-oauth-refresh-split-commit-cover.png"
+cover: "/assets/covers/daily-2026-08-19-oauth-refresh-split-commit-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-19-oauth-refresh-split-commit-cover.png"
+  image="/assets/covers/daily-2026-08-19-oauth-refresh-split-commit-cover-v2.png"
   kicker="开源工程 · 每日研究"
   title="OAuth 刷新成功后，持久化失败不是普通失败"
   summary="远端刷新成功与本地保存失败可以同时成立。MCP TypeScript SDK 当日合并变更把两者从同一异常分支中拆开，使持久化错误保持可见；这改善了恢复所需的状态证据，但并不提供回滚或分布式原子性。"

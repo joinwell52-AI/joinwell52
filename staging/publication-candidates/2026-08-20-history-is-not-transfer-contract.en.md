@@ -8,12 +8,12 @@ article_type: technical-analysis
 edition: research-center
 research_question: "Should cross-agent history be replayed as stored, or reconstructed as a policy-governed projection of mixed-trust local state?"
 summary: "A locally valid session event is not automatically authorized for another agent. A same-day Google ADK fix shows why cross-agent context should be projected before rendering removes the semantic structure needed to identify sensitive control material."
-cover: staging/publication-candidates/2026-08-20-history-is-not-transfer-contract-cover.png
+cover: staging/publication-candidates/2026-08-20-history-is-not-transfer-contract-cover-v2.png
 sources:
   - research/analysis/Q-20260820-02-policy-enforcing-history-projection.md
 ---
 
-![History Is Not a Transfer Contract cover](staging/publication-candidates/2026-08-20-history-is-not-transfer-contract-cover.png)
+![History Is Not a Transfer Contract cover](staging/publication-candidates/2026-08-20-history-is-not-transfer-contract-cover-v2.png)
 
 # History Is Not a Transfer Contract
 

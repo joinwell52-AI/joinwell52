@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260820-03-visibility-durability-separation.md
 item_id: "Q-20260820-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-20-visible-is-not-durable-cover.png"
+cover: "/assets/covers/daily-2026-08-20-visible-is-not-durable-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-20-visible-is-not-durable-cover.png"
+  image="/assets/covers/daily-2026-08-20-visible-is-not-durable-cover-v2.png"
   kicker="Open-source Engineering · Daily Research"
   title="Visible Is Not Durable"
   summary="A version can become atomically visible to readers without proving crash durability. A same-day Google ADK change demonstrates a compact publication protocol and the value of separating reservation, completeness, visibility and persistence."

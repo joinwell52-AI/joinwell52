@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260820-03-visibility-durability-separation.md
 item_id: "Q-20260820-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-20-visible-is-not-durable-cover.png"
+cover: "/assets/covers/daily-2026-08-20-visible-is-not-durable-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-20-visible-is-not-durable-cover.png"
+  image="/assets/covers/daily-2026-08-20-visible-is-not-durable-cover-v2.png"
   kicker="开源工程 · 每日研究"
   title="可见，不等于持久"
   summary="一个 Version 可以原子地对 Reader 可见，却没有证明自己具备 Crash Durability。同日 Google ADK 变更演示了紧凑 Publication Protocol，也说明 Reservation、Completeness、Visibility 与 Persistence 必须分开记录。"

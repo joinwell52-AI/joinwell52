@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260821-02-principal-bound-approval-authority.md
 item_id: "Q-20260821-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-21-approval-must-name-approver-cover.png"
+cover: "/assets/covers/daily-2026-08-21-approval-must-name-approver-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-21-approval-must-name-approver-cover.png"
+  image="/assets/covers/daily-2026-08-21-approval-must-name-approver-cover-v2.png"
   kicker="行业架构 · 每日研究"
   title="审批必须绑定批准者"
   summary="Transport 可以告诉 Agent System 一条 Approval-shaped Message 如何抵达，却不能说明谁有权批准准确动作。同日 Google ADK Revert 暴露了 Channel Gating 为什么会同时过宽且不完整。"

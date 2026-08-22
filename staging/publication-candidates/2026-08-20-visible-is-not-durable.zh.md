@@ -8,12 +8,12 @@ article_type: engineering-insight
 edition: research-center
 research_question: "What should an artifact version mean operationally when visibility, writer ownership and durable storage are separate state transitions?"
 summary: "一个 Version 可以原子地对 Reader 可见，却没有证明自己具备 Crash Durability。同日 Google ADK 变更演示了紧凑 Publication Protocol，也说明 Reservation、Completeness、Visibility 与 Persistence 必须分开记录。"
-cover: staging/publication-candidates/2026-08-20-visible-is-not-durable-cover.png
+cover: staging/publication-candidates/2026-08-20-visible-is-not-durable-cover-v2.png
 sources:
   - research/analysis/Q-20260820-03-visibility-durability-separation.md
 ---
 
-![可见，不等于持久题图](staging/publication-candidates/2026-08-20-visible-is-not-durable-cover.png)
+![可见，不等于持久题图](staging/publication-candidates/2026-08-20-visible-is-not-durable-cover-v2.png)
 
 # 可见，不等于持久
 

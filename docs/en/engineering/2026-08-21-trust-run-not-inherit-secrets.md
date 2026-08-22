@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260821-03-execution-trust-secret-authority-separation.md
 item_id: "Q-20260821-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-21-trust-run-not-inherit-secrets-cover.png"
+cover: "/assets/covers/daily-2026-08-21-trust-run-not-inherit-secrets-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-21-trust-run-not-inherit-secrets-cover.png"
+  image="/assets/covers/daily-2026-08-21-trust-run-not-inherit-secrets-cover-v2.png"
   kicker="Open-source Engineering · Daily Research"
   title="Trust to Run Is Not Authority to Inherit Secrets"
   summary="Workspace trust can authorize repository-controlled helper execution without granting the helper every credential inherited by the parent process. Claude Code v2.1.238 material exposes the value—and the limits—of that two-gate design."

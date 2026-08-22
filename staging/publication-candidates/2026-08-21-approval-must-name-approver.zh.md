@@ -8,12 +8,12 @@ article_type: technical-analysis
 edition: research-center
 research_question: "In agent systems where a human approval can be relayed through multiple transports, what evidence should establish approval authority without confusing the delivery channel with the approving principal?"
 summary: "Transport 可以告诉 Agent System 一条 Approval-shaped Message 如何抵达，却不能说明谁有权批准准确动作。同日 Google ADK Revert 暴露了 Channel Gating 为什么会同时过宽且不完整。"
-cover: staging/publication-candidates/2026-08-21-approval-must-name-approver-cover.png
+cover: staging/publication-candidates/2026-08-21-approval-must-name-approver-cover-v2.png
 sources:
   - research/analysis/Q-20260821-02-principal-bound-approval-authority.md
 ---
 
-![审批必须绑定批准者题图](staging/publication-candidates/2026-08-21-approval-must-name-approver-cover.png)
+![审批必须绑定批准者题图](staging/publication-candidates/2026-08-21-approval-must-name-approver-cover-v2.png)
 
 # 审批必须绑定批准者
 

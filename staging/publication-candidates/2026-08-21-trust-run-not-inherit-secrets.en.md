@@ -8,12 +8,12 @@ article_type: engineering-insight
 edition: research-center
 research_question: "When repository- or plugin-supplied configuration can execute a helper, how should an engineering runtime separate authority to execute code from authority to inherit ambient credentials and other host capabilities?"
 summary: "Workspace trust can authorize repository-controlled helper execution without granting the helper every credential inherited by the parent process. Claude Code v2.1.238 material exposes the value—and the limits—of that two-gate design."
-cover: staging/publication-candidates/2026-08-21-trust-run-not-inherit-secrets-cover.png
+cover: staging/publication-candidates/2026-08-21-trust-run-not-inherit-secrets-cover-v2.png
 sources:
   - research/analysis/Q-20260821-03-execution-trust-secret-authority-separation.md
 ---
 
-![Trust to Run Is Not Authority to Inherit Secrets cover](staging/publication-candidates/2026-08-21-trust-run-not-inherit-secrets-cover.png)
+![Trust to Run Is Not Authority to Inherit Secrets cover](staging/publication-candidates/2026-08-21-trust-run-not-inherit-secrets-cover-v2.png)
 
 # Trust to Run Is Not Authority to Inherit Secrets
 

@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260820-02-policy-enforcing-history-projection.md
 item_id: "Q-20260820-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-20-history-is-not-transfer-contract-cover.png"
+cover: "/assets/covers/daily-2026-08-20-history-is-not-transfer-contract-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-20-history-is-not-transfer-contract-cover.png"
+  image="/assets/covers/daily-2026-08-20-history-is-not-transfer-contract-cover-v2.png"
   kicker="行业架构 · 每日研究"
   title="历史记录不是跨 Agent 传输契约"
   summary="在本地合法的 Session Event，并不自动获得发送给另一个 Agent 的授权。同日 Google ADK 修复说明：Cross-agent Context 应在 Rendering 抹去识别敏感控制材料所需的语义结构之前完成 Policy Projection。"

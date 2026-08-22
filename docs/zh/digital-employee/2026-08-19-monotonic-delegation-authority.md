@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260819-01-monotonic-delegation-authority.md
 item_id: "Q-20260819-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-19-monotonic-delegation-authority-cover.png"
+cover: "/assets/covers/daily-2026-08-19-monotonic-delegation-authority-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-19-monotonic-delegation-authority-cover.png"
+  image="/assets/covers/daily-2026-08-19-monotonic-delegation-authority-cover-v2.png"
   kicker="数字员工 · 每日研究"
   title="委派角色只能收缩权限，不能另起一套权威"
   summary="角色文件不应成为第二套权限系统。Codex 当日合并变更展示了一种有界做法：只把角色配置投影为类型化覆盖项，保留父级掌握的权限、路由和基础设施配置，并把部分能力变化限制为收缩。"

@@ -8,12 +8,12 @@ article_type: engineering-insight
 edition: research-center
 research_question: "What state should an OAuth client expose when the authorization server has issued refreshed credentials but local durable persistence fails afterward?"
 summary: "Remote refresh success and local persistence failure can both be true. A same-day MCP TypeScript SDK change separates them from one catch path and keeps the storage fault visible. That preserves evidence needed for recovery, but it does not provide rollback or distributed atomicity."
-cover: staging/publication-candidates/2026-08-19-oauth-refresh-split-commit-cover.png
+cover: staging/publication-candidates/2026-08-19-oauth-refresh-split-commit-cover-v2.png
 sources:
   - research/analysis/Q-20260819-03-oauth-refresh-split-commit.md
 ---
 
-![OAuth Refresh Can Succeed Before Persistence Fails cover](staging/publication-candidates/2026-08-19-oauth-refresh-split-commit-cover.png)
+![OAuth Refresh Can Succeed Before Persistence Fails cover](staging/publication-candidates/2026-08-19-oauth-refresh-split-commit-cover-v2.png)
 
 # OAuth Refresh Can Succeed Before Persistence Fails
 
