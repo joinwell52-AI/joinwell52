@@ -1,0 +1,562 @@
+{
+  "schema": "research-intelligence-run/v1",
+  "version": "1.0",
+  "date": "2026-08-22",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "registryVersion": "1.0",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-08-22T09:06:33+08:00",
+  "githubCommit": "pending",
+  "reason": "All three due Discovery pipelines were resolved for 2026-08-22. Twenty-five material same-day maintainer changes survived prior-day and cross-pipeline mechanism-level normalization; Discovery made no Queue selections.",
+  "reason_zh": "2026-08-22 三条到期 Discovery 管线均已完成解析。经前一日与跨管线机制级去重后保留 25 个重要同日维护者变更；Discovery 未执行任何 Queue 选题。",
+  "pipelines": [
+    {
+      "id": "ai-platform",
+      "label": "AI Platform Change Intelligence",
+      "label_zh": "AI 平台变更情报发现",
+      "status": "Completed",
+      "due": 44,
+      "checked": 43,
+      "inaccessible": [],
+      "failed": [
+        {
+          "source": "microsoft-copilot-platform/copilot-studio-discussions",
+          "reason": "The registered public Copilot Studio discussion-section URL returned an internal retrieval error during the run-date scan."
+        }
+      ],
+      "signals": 0,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All 44 registered P0 public channels were resolved as 43 checked and one explicit retrieval failure. No run-date-bound platform-only change survived freshness and cross-pipeline deduplication; repository-backed changes are represented once in GitHub Engineering.",
+      "reason_zh": "44 个注册 P0 公共通道全部解析为 43 个已检查 + 1 个明确抓取失败。没有平台独有变更同时满足运行日新鲜度与跨管线去重要求；仓库型变更仅在 GitHub Engineering 中保留一次。"
+    },
+    {
+      "id": "github-engineering",
+      "label": "GitHub Engineering Intelligence",
+      "label_zh": "GitHub 工程情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 9,
+      "inaccessible": [],
+      "failed": [],
+      "signals": 25,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 daily repositories were checked. Twenty-five material merged-maintainer changes dated to the 2026-08-22 Asia/Shanghai run window remained after prior-day and same-mechanism normalization.",
+      "reason_zh": "9 个 P0 Daily 仓库全部检查。按 Asia/Shanghai 运行日窗口核对后，经前一日与同机制去重，保留 25 个重要 merged-maintainer 变更。"
+    },
+    {
+      "id": "published-research",
+      "label": "Published Research Intelligence",
+      "label_zh": "论文与研究成果情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 8,
+      "inaccessible": [],
+      "failed": [
+        {
+          "source": "jss",
+          "reason": "The registered Journal of Systems and Software landing page returned an internal retrieval error during the run-date scan."
+        }
+      ],
+      "signals": 0,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 daily research sources were resolved as eight checked and one explicit retrieval failure. No research artifact could be bound to the 2026-08-22 run date with sufficient registered freshness and materiality evidence.",
+      "reason_zh": "9 个 P0 Daily 研究来源全部解析为 8 个已检查 + 1 个明确抓取失败。没有研究产物能够以足够证据绑定到 2026-08-22 运行日并同时满足注册的新鲜度与重要性阈值。"
+    }
+  ],
+  "columns": [
+    {
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "decision": "Waiting",
+      "signals": 10,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery retained 10 signals primarily serving this column; Queue must independently score and decide Selection or No Selection.",
+      "reason_zh": "Discovery 保留 10 个以该栏目为主栏目的信号；后续必须由 Queue 独立评分并决定 Selected 或 No Selection。"
+    },
+    {
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "decision": "Waiting",
+      "signals": 6,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery retained 6 signals primarily serving this column; Queue must independently score and decide Selection or No Selection.",
+      "reason_zh": "Discovery 保留 6 个以该栏目为主栏目的信号；后续必须由 Queue 独立评分并决定 Selected 或 No Selection。"
+    },
+    {
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "decision": "Waiting",
+      "signals": 9,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery retained 9 signals primarily serving this column; Queue must independently score and decide Selection or No Selection.",
+      "reason_zh": "Discovery 保留 9 个以该栏目为主栏目的信号；后续必须由 Queue 独立评分并决定 Selected 或 No Selection。"
+    }
+  ],
+  "signals": [
+    {
+      "id": "SIG-20260822-001",
+      "pipeline": "github-engineering",
+      "title": "Codex can suspend an unfinished root turn without terminalizing it",
+      "title_zh": "Codex 可挂起未完成 Root Turn 而不写入终态",
+      "sourceUrl": "https://github.com/openai/codex/commit/4f39251a010a8bd7d692d25fb33832ff06f1635a",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering",
+        "industry-architecture"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:unfinished-root-turn-suspension",
+      "summary": "A root turn can be suspended after history flush and task shutdown without recording completion or abort, preserving unfinished history so another runtime can recover the same turn ID after descendant guards clear.",
+      "summary_zh": "Root Turn 可在刷新历史并停止任务后挂起，而不记录 Completed 或 Aborted；未完成历史被保留，待 Descendant Guard 清除后可由另一 Runtime 以同一 Turn ID 恢复。"
+    },
+    {
+      "id": "SIG-20260822-002",
+      "pipeline": "github-engineering",
+      "title": "Codex preserves canonical strict MCP auto-review denial, timeout and abort outcomes",
+      "title_zh": "Codex 保留 Strict MCP Auto-Review 的规范拒绝、超时与中止结果",
+      "sourceUrl": "https://github.com/openai/codex/commit/970b7f2ff4f612b8e8cd340eb6b6d789d7141dd2",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "industry-architecture",
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:strict-mcp-review-canonical-outcomes",
+      "summary": "Strict MCP auto-review now propagates canonical denial, timeout and abort responses with reviewer action, metadata and rationale instead of collapsing them into a generic decline, while still failing closed without a canonical decision.",
+      "summary_zh": "Strict MCP Auto-Review 现在保留规范 Denial、Timeout 与 Abort 回应及 Reviewer Action、Metadata、Rationale，不再统一压成 Generic Decline；缺少规范 Decision 时仍 Fail-Closed。"
+    },
+    {
+      "id": "SIG-20260822-003",
+      "pipeline": "github-engineering",
+      "title": "Codex emits structured Guardian V2 classification audit events",
+      "title_zh": "Codex 为 Guardian V2 分类结果输出结构化审计事件",
+      "sourceUrl": "https://github.com/openai/codex/commit/50ea8fd411422b3f7bc906bcde6c1c4432019a2e",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee",
+        "industry-architecture"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:guardian-v2-structured-classification-audit",
+      "summary": "Every completed Guardian V2 classification now logs thread, turn, tool call, risk score, threshold, sample time and whether the score was accepted or superseded, with integration coverage through log export.",
+      "summary_zh": "每次完成的 Guardian V2 分类都会记录 Thread、Turn、Tool Call、Risk Score、Threshold、Sample Time 以及结果被接受或替代的状态，并通过日志导出集成测试核验。"
+    },
+    {
+      "id": "SIG-20260822-004",
+      "pipeline": "github-engineering",
+      "title": "Codex aligns unified-exec sandbox escalation with granular approval policy",
+      "title_zh": "Codex 将 Unified Exec 沙箱升级与细粒度审批策略统一",
+      "sourceUrl": "https://github.com/openai/codex/commit/9445ef227e4007b0483ffe16938ab9479ec38d7c",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "digital-employee",
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:unified-exec-granular-sandbox-approval",
+      "summary": "Unified exec now uses the shared approval-policy check for sandbox escalation: require_escalated commands may prompt only when granular sandbox approval is enabled and remain rejected when it is disabled.",
+      "summary_zh": "Unified Exec 的 Sandbox Escalation 现在使用共享 Approval Policy：仅在启用 Granular Sandbox Approval 时，require_escalated 命令才能请求审批；禁用时仍保持拒绝。"
+    },
+    {
+      "id": "SIG-20260822-005",
+      "pipeline": "github-engineering",
+      "title": "Codex couples Guardian approval cancellation to the underlying tool call",
+      "title_zh": "Codex 将 Guardian 审批取消与底层 Tool Call 生命周期绑定",
+      "sourceUrl": "https://github.com/openai/codex/commit/6143217c6730e147f4a1a5a3405d10f580fe9244",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:guardian-review-tool-cancellation-coupling",
+      "summary": "Tool cancellation tokens now propagate into Guardian approval reviews and server-initiated MCP approval elicitation, so interrupting a tool aborts its pending review instead of leaving detached approval work alive.",
+      "summary_zh": "Tool Cancellation Token 现在传播到 Guardian Approval Review 和服务端发起的 MCP Approval Elicitation；中断工具会同步终止其待处理 Review，避免形成脱离原任务的审批工作。"
+    },
+    {
+      "id": "SIG-20260822-006",
+      "pipeline": "github-engineering",
+      "title": "Codex makes browser and computer-use permissions typed, layered policy",
+      "title_zh": "Codex 将 Browser / Computer Use 权限升级为类型化、分层策略",
+      "sourceUrl": "https://github.com/openai/codex/commit/95118dff65321f36af6408383a605618f2fab0be",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "digital-employee",
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:typed-layered-browser-computer-use-policy",
+      "summary": "Same-day Codex changes add typed browser history, per-origin access/download/upload/CDP controls and typed computer-use app identities, preserve layered requirement sources, and expose the merged controls through app-server schemas.",
+      "summary_zh": "Codex 同日变更加入类型化 Browser History、按 Origin 的访问/下载/上传/CDP 控制，以及 Computer Use 应用身份规则；同时保留分层 Requirement 来源并通过 App Server Schema 暴露合并后的控制。"
+    },
+    {
+      "id": "SIG-20260822-007",
+      "pipeline": "github-engineering",
+      "title": "Codex serializes remote plugin cache reconciliation and scopes it to the active account",
+      "title_zh": "Codex 串行化远程 Plugin Cache 对账并绑定 Active Account",
+      "sourceUrl": "https://github.com/openai/codex/commit/e6a3877e95788b52c3aa5e9a143dba87f04720dc",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee",
+        "industry-architecture"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:account-scoped-serialized-plugin-cache-reconciliation",
+      "summary": "Installed-plugin snapshots are account-scoped, in-flight loads are discarded on account changes, reconciliation is serialized with installs/uninstalls, generations prevent stale overwrite, and the full snapshot is validated before destructive cache changes.",
+      "summary_zh": "Installed Plugin Snapshot 现在按账号隔离；账号变化会丢弃 In-Flight Load；Reconciliation 与安装/卸载串行化；Generation 防止旧刷新覆盖新状态，并在破坏性 Cache 变更前验证完整 Snapshot。"
+    },
+    {
+      "id": "SIG-20260822-008",
+      "pipeline": "github-engineering",
+      "title": "Codex reuses bounded Guardian review evidence with explicit invalidation boundaries",
+      "title_zh": "Codex 复用有界 Guardian Review Evidence，并设置明确失效边界",
+      "sourceUrl": "https://github.com/openai/codex/commit/9949c9eafae057110bbb23273b5b4be894ef7448",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "industry-architecture",
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:bounded-guardian-evidence-reuse-invalidation",
+      "summary": "Completed synchronous Guardian allow/deny evidence can seed later async risk scoring as isolated trusted developer context, but is bounded, escaped and invalidated after history rewrites or new root-user messages including authorization changes.",
+      "summary_zh": "已完成的同步 Guardian Allow/Deny Evidence 可作为隔离的 Trusted Developer Context 供后续异步 Risk Scoring 使用，但会被有界截断与转义，并在 History Rewrite 或新的 Root User Message（含授权变化）后失效。"
+    },
+    {
+      "id": "SIG-20260822-009",
+      "pipeline": "github-engineering",
+      "title": "Codex forces escalated commands through synchronous Guardian review",
+      "title_zh": "Codex 强制 Escalated Command 经过同步 Guardian Review",
+      "sourceUrl": "https://github.com/openai/codex/commit/dbe9dac1ae0050dc14097d7e30d23109a2744121",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "digital-employee",
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:escalated-command-synchronous-guardian-gate",
+      "summary": "Commands requesting require_escalated are now routed through full synchronous Guardian review regardless of retry state, bypassing extension approvals and Guardian V2 shortcuts so escalation cannot skip the strict review path.",
+      "summary_zh": "请求 require_escalated 的命令无论是否 Retry 都必须进入完整同步 Guardian Review，并绕过 Extension Approval 与 Guardian V2 Shortcut，防止权限升级跳过严格 Review 路径。"
+    },
+    {
+      "id": "SIG-20260822-010",
+      "pipeline": "github-engineering",
+      "title": "Codex prevents runtime permission updates from weakening managed deny-read rules",
+      "title_zh": "Codex 防止 Runtime Permission Update 削弱 Managed Deny-Read 规则",
+      "sourceUrl": "https://github.com/openai/codex/commit/ad9e8097fd3d0d2f1c1166575d2c6cd8cb9e1833",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "digital-employee",
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:managed-deny-read-nonweakenable-permission-update",
+      "summary": "Managed deny-read requirements are retained separately and merged into updated profiles; conflicting permission profiles, legacy sandbox policies and request-specific command/exec sandbox policies are rejected.",
+      "summary_zh": "Managed Deny-Read Requirement 被独立保留并合并进更新后的 Permission Profile；与之冲突的 Permission Profile、Legacy Sandbox Policy 和 Command/Exec Request-Specific Sandbox Policy 都会被拒绝。"
+    },
+    {
+      "id": "SIG-20260822-011",
+      "pipeline": "github-engineering",
+      "title": "Codex redacts provider and authentication credentials from app-server diagnostics",
+      "title_zh": "Codex 从 App Server 日志与诊断中隐藏 Provider 与认证凭据",
+      "sourceUrl": "https://github.com/openai/codex/commit/79b760680381cf8e615a0ffbdaec7fa9bc6a8988",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:diagnostic-credential-redaction",
+      "summary": "RedactedString and safer logging paths now keep bearer tokens, header/query values, auth command arguments and attestation tokens out of persisted and submitted diagnostics while retaining safe error categories.",
+      "summary_zh": "新增 RedactedString 与安全日志路径，确保 Bearer Token、Header/Query Value、认证命令参数和 Attestation Token 不进入持久化或上报诊断，同时保留安全的错误类别信息。"
+    },
+    {
+      "id": "SIG-20260822-012",
+      "pipeline": "github-engineering",
+      "title": "Codex preserves event ordering while bounding active-thread draining",
+      "title_zh": "Codex 在限制 Active Thread Drain 时保持事件顺序",
+      "sourceUrl": "https://github.com/openai/codex/commit/f6519a355a309155c6c9d8f33fc22ab4d4a9ffdb",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:bounded-drain-event-ordering",
+      "summary": "Active-thread notification draining is bounded to a frame interval and queued app events take priority, ensuring replay/startup state is applied before buffered closures while excess notifications remain queued for later frames.",
+      "summary_zh": "Active Thread Notification Drain 被限制在单个 Frame Interval 内，并优先处理排队的 App Event，使 Replay/Startup State 在 Buffered Closure 前生效；超额通知留待后续 Frame。"
+    },
+    {
+      "id": "SIG-20260822-013",
+      "pipeline": "github-engineering",
+      "title": "Codex bypasses cached risk scores for models requiring automatic review",
+      "title_zh": "Codex 对必须 Auto-Review 的模型绕过缓存 Risk Score",
+      "sourceUrl": "https://github.com/openai/codex/commit/c517cc6d8436f1e8f0b7879278d88aeb514a3bdc",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "industry-architecture",
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:required-auto-review-bypasses-cached-risk",
+      "summary": "Models configured as requiring automatic review now always take the full review path, cached SecurityRiskScore is cleared, and failed thread lookups advance score lag so stale risk evidence cannot approve later tool calls.",
+      "summary_zh": "配置为必须 Auto-Review 的模型现在始终走完整 Review 路径，并清除缓存 SecurityRiskScore；Thread Lookup 失败会推进 Score Lag，防止旧 Risk Evidence 批准后续 Tool Call。"
+    },
+    {
+      "id": "SIG-20260822-014",
+      "pipeline": "github-engineering",
+      "title": "Codex enforces attachment-owned network policy during remote execution",
+      "title_zh": "Codex 在 Remote Execution 中强制执行 Attachment-Owned Network Policy",
+      "sourceUrl": "https://github.com/openai/codex/commit/f580dd886fe57259168c0afc0e3e7820942eed14",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "digital-employee",
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:remote-execution-network-policy-composition",
+      "summary": "Remote environment network policy is resolved per command and composed with controller constraints and saved decisions; inherited domain/socket denies remain, strict allowlists cannot expand, and escalation that bypasses owner policy is rejected.",
+      "summary_zh": "Remote Environment Network Policy 现在按命令解析，并与 Controller Constraint 和已保存 Decision 组合；继承的 Domain/Socket Deny 保持有效，Strict Allowlist 不可扩张，绕过 Owner Policy 的 Escalation 会被拒绝。"
+    },
+    {
+      "id": "SIG-20260822-015",
+      "pipeline": "github-engineering",
+      "title": "Codex negotiates MCP bearer-token handling against executor capabilities",
+      "title_zh": "Codex 根据 Executor Capability 协商 MCP Bearer Token 处理方式",
+      "sourceUrl": "https://github.com/openai/codex/commit/8edb95f274ae70faac9dc35f079ed7b997dd862c",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "industry-architecture",
+        "digital-employee"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:mcp-executor-header-capability-negotiation",
+      "summary": "Executors advertise httpHeaderEnvVars support; bearer-token resolution is delegated only when supported, otherwise host resolution is used, and incompatible executor-owned MCP servers are excluded without breaking compatible servers.",
+      "summary_zh": "Executor 通过 httpHeaderEnvVars 声明能力；仅支持时才委托其解析 Bearer Token，否则由 Host 解析；不兼容的 Executor-Owned MCP Server 会被排除，同时保留兼容 Server。"
+    },
+    {
+      "id": "SIG-20260822-016",
+      "pipeline": "github-engineering",
+      "title": "Codex carries genuine root-user authorization into subagent Guardian review",
+      "title_zh": "Codex 将真实 Root User 授权带入 Subagent Guardian Review",
+      "sourceUrl": "https://github.com/openai/codex/commit/d12a7f3fd8a3f0dcffc665d515b9ee0dd3714315",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "industry-architecture",
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:root-user-authorization-subagent-review",
+      "summary": "MultiAgent V2 worker reviews now receive bounded root-conversation context while treating only root user messages as authorization; summaries, review artifacts, assistant commentary and forwarded claims cannot establish authority.",
+      "summary_zh": "MultiAgent V2 Worker Review 现在接收有界 Root Conversation Context，但只有 Root User Message 可作为授权证据；Summary、Review Artifact、Assistant Commentary 与转发的 Agent Claim 都不能建立 Authority。"
+    },
+    {
+      "id": "SIG-20260822-017",
+      "pipeline": "github-engineering",
+      "title": "Claude Code 2.1.239 hardens resumability, MCP recovery and cross-session coordination",
+      "title_zh": "Claude Code 2.1.239 强化恢复、MCP 重连与跨会话协作",
+      "sourceUrl": "https://github.com/anthropics/claude-code/commit/16440d0f6ee8c47f34169687044b89eafa8b0f8d",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering",
+        "industry-architecture"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "anthropics/claude-code:v2.1.239-runtime-recovery-coordination",
+      "summary": "The 2.1.239 release fixes idle-worker plan-mode recovery, transient remote MCP reconnect recovery, trace continuity after deferred PreToolUse hooks, request re-send after organization-policy rejection, long-hook keep-alives, and adds Windows cross-session SendMessage/ListAgents.",
+      "summary_zh": "2.1.239 修复 Idle Worker Restart 后 Plan Mode 恢复、Remote MCP 临时 5xx 重连、Deferred PreToolUse Hook 后 Trace Continuity、组织策略拒绝后的重复请求与 Long Hook Keep-Alive，并为 Windows 增加跨会话 SendMessage/ListAgents。"
+    },
+    {
+      "id": "SIG-20260822-018",
+      "pipeline": "github-engineering",
+      "title": "Gemini CLI isolates container runtime control surfaces inside macOS Seatbelt",
+      "title_zh": "Gemini CLI 在 macOS Seatbelt 中隔离容器运行时控制面",
+      "sourceUrl": "https://github.com/google-gemini/gemini-cli/commit/5411f113cafae26161b4969b0237b8e1e024e2c2",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "industry-architecture",
+        "digital-employee"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "google-gemini/gemini-cli:macos-container-runtime-socket-isolation",
+      "summary": "Gemini CLI tightened its macOS Seatbelt sandbox so Docker and other container runtime sockets and binaries are isolated, reducing the risk that a sandboxed coding agent reaches host-level container control surfaces.",
+      "summary_zh": "Gemini CLI 收紧 macOS Seatbelt 沙箱，对 Docker 等 Container Runtime Socket 与 Binary 进行隔离，降低沙箱内 Coding Agent 触达宿主级容器控制面的风险。"
+    },
+    {
+      "id": "SIG-20260822-019",
+      "pipeline": "github-engineering",
+      "title": "Google ADK makes MCP session liveness resilient to SDK private-field movement",
+      "title_zh": "Google ADK 让 MCP Session Liveness 不再依赖 SDK 私有字段稳定性",
+      "sourceUrl": "https://github.com/google/adk-python/commit/d9f4d3d288257593471fc708a9ab851779005ca5",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "google/adk-python:mcp-session-liveness-defensive-probe",
+      "summary": "ADK now reads MCP SDK private stream-closed fields defensively and falls back to its own task-liveness signal, preventing SDK field movement from crashing session health checks while still detecting dead transport tasks.",
+      "summary_zh": "ADK 现在防御式读取 MCP SDK 私有 Stream Closed 字段，并回退到自身 Task Liveness Signal，避免 SDK 字段变化导致 Session Health Check 崩溃，同时仍可识别已死亡的 Transport Task。"
+    },
+    {
+      "id": "SIG-20260822-020",
+      "pipeline": "github-engineering",
+      "title": "Google ADK exposes private Cloud Build worker pools for Agent Engine deployment",
+      "title_zh": "Google ADK 为 Agent Engine 部署暴露 Private Cloud Build Worker Pool",
+      "sourceUrl": "https://github.com/google/adk-python/commit/e577c301d5f4a50b2a3c827631c53463268bb5fc",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "open-source-engineering",
+        "digital-employee"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "google/adk-python:agent-engine-private-worker-pool-deploy",
+      "summary": "Agent Engine deployment now accepts validated private Cloud Build worker pools through CLI or config with explicit precedence, enabling VPC-SC/private-network builds without falling back to the public build pool.",
+      "summary_zh": "Agent Engine 部署现在可通过 CLI 或 Config 使用经过验证的 Private Cloud Build Worker Pool，并明确优先级，使 VPC-SC / Private Network 构建无需回退到 Public Build Pool。"
+    },
+    {
+      "id": "SIG-20260822-021",
+      "pipeline": "github-engineering",
+      "title": "Google ADK preserves event actions during PostgreSQL session migration",
+      "title_zh": "Google ADK 在 PostgreSQL Session Migration 中保留 Event Actions",
+      "sourceUrl": "https://github.com/google/adk-python/commit/e3ae4ac2b431c589887e9bf2d70b452e8360f0c5",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "google/adk-python:postgres-session-migration-event-action-preservation",
+      "summary": "The v0 PostgreSQL session migration no longer drops event actions, preserving behavioral state carried by events across persistence-schema migration.",
+      "summary_zh": "v0 PostgreSQL Session Migration 不再丢失 Event Actions，使事件携带的行为状态能够跨持久化 Schema Migration 保留。"
+    },
+    {
+      "id": "SIG-20260822-022",
+      "pipeline": "github-engineering",
+      "title": "Google ADK records context-cache state on LLM call spans",
+      "title_zh": "Google ADK 在 LLM Call Span 中记录 Context Cache 状态",
+      "sourceUrl": "https://github.com/google/adk-python/commit/c0614d65806be5e7525b72e662e0987378996b53",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "google/adk-python:llm-span-context-cache-state",
+      "summary": "ADK adds context-cache state to LLM call tracing, making cache behavior part of the observable execution record rather than an implicit runtime condition.",
+      "summary_zh": "ADK 将 Context Cache 状态加入 LLM Call Trace，使 Cache 行为成为可观测执行记录的一部分，而不再只是隐含 Runtime 条件。"
+    },
+    {
+      "id": "SIG-20260822-023",
+      "pipeline": "github-engineering",
+      "title": "Google ADK preserves MCP tool-error and schema semantics across SDK 1.x and 2.x",
+      "title_zh": "Google ADK 跨 MCP SDK 1.x / 2.x 保持 Tool Error 与 Schema 语义",
+      "sourceUrl": "https://github.com/google/adk-python/commit/d18df2fa1c9cd8ceaad7e54c79a5acbcff95b812",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "industry-architecture",
+        "digital-employee"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "google/adk-python:mcp-sdk-version-field-compatibility",
+      "summary": "ADK now reads both camelCase and snake_case MCP result/schema fields so 2.x renames do not silently hide tool errors or crash declaration extraction, while avoiding alias changes to returned payloads.",
+      "summary_zh": "ADK 现在同时读取 MCP Result/Schema 的 camelCase 与 snake_case 字段，避免 2.x 重命名静默隐藏 Tool Error 或导致 Declaration Extraction 崩溃，同时不改变返回 Payload 的 Alias 形态。"
+    },
+    {
+      "id": "SIG-20260822-024",
+      "pipeline": "github-engineering",
+      "title": "Google ADK separates streaming-tool user messages from model context",
+      "title_zh": "Google ADK 将 Streaming Tool 的用户消息与 Model Context 分离",
+      "sourceUrl": "https://github.com/google/adk-python/commit/98896eb2aaafb57577c02fc00b62db4367cb003c",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering",
+        "industry-architecture"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "google/adk-python:streaming-tool-direct-user-event-lane",
+      "summary": "Streaming tools can now emit Event messages directly to the user through the invocation event queue while ordinary yielded values remain FunctionResponses for the model, separating delivery traffic from model-context effects.",
+      "summary_zh": "Streaming Tool 现在可通过 Invocation Event Queue 直接向用户发送 Event Message，而普通 Yield Value 仍作为 FunctionResponse 进入模型，从而把交付流量与 Model Context 影响分离。"
+    },
+    {
+      "id": "SIG-20260822-025",
+      "pipeline": "github-engineering",
+      "title": "OpenAI Agents SDK adds labels to Docker sandbox containers",
+      "title_zh": "OpenAI Agents SDK 为 Docker Sandbox Container 增加 Label",
+      "sourceUrl": "https://github.com/openai/openai-agents-python/commit/4c2810c11c38e67a5c5215a5a624c2f7da3e50f7",
+      "publishedAt": "2026-08-22",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai/openai-agents-python:docker-sandbox-container-labels",
+      "summary": "Docker sandbox containers can now carry labels, adding explicit deployment metadata that can support ownership, lifecycle management, cleanup and runtime inspection around sandboxed agent execution.",
+      "summary_zh": "Docker Sandbox Container 现在可携带 Label，为沙箱 Agent 执行增加显式 Deployment Metadata，可用于 Ownership、Lifecycle Management、Cleanup 与 Runtime Inspection。"
+    }
+  ]
+}
