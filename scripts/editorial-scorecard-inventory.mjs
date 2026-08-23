@@ -1,4 +1,4 @@
-import { access, readdir, readFile } from 'node:fs/promises'
+import { access, readdir, readFile, writeFile } from 'node:fs/promises'
 import { createHash } from 'node:crypto'
 import { join, relative, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url'
 const ROOT = fileURLToPath(new URL('..', import.meta.url))
 const EN_ROOT = join(ROOT, 'docs', 'en')
 const ZH_ROOT = join(ROOT, 'docs', 'zh')
+const DEBUG_OUTPUT = join(ROOT, 'docs', 'public', '_scorecard-inventory-run.json')
 const ELIGIBLE_COLUMNS = new Set([
   'digital-employee',
   'industry-architecture',
@@ -104,4 +105,5 @@ const inventory = {
   items: files
 }
 
+await writeFile(DEBUG_OUTPUT, `${JSON.stringify(inventory, null, 2)}\n`, 'utf8')
 console.log(`OBSERVATION_SCORECARD_INVENTORY=${JSON.stringify(inventory)}`)
