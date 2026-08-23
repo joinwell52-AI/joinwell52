@@ -58,7 +58,8 @@ NIST's [AI RMF 1.0](https://www.nist.gov/publications/artificial-intelligence-ri
 |---|---|---|
 | Fact service | Does a report exist? What is the current revision? | The rail records and exposes it; agents use it to continue their work |
 | Advisory service | Is evidence probably incomplete? Would another test help? | The rail explains the concern and suggests an action; an authorized agent or PM decides |
-| Mechanical negative | Is identity conflicting, scope unauthorized, task terminal, execution duplicate, or an explicit dependency pending? | The rail denies the current operation and preserves evidence; it does not close business work |
+| Mechanical wait | Is an explicit dependency still pending, so that this task is not eligible yet? | Return `waiting_dependency`; wait the current operation rather than rejecting it or declaring task failure |
+| Mechanical denial | Is identity conflicting, scope unauthorized, task terminal, or execution duplicate? | Return `negative_list_denied`, reject the current operation, and preserve evidence; do not close business work |
 | Business decision | Should QA be dispatched? Is the result acceptable? Is more rework worth doing? | Hand the decision to an authorized agent, PM, or ADMIN |
 
 ![The automation boundary: facts, advice, mechanical denials, and business decisions belong to different actors](/assets/covers/daily-2026-08-22-agent-rail-decision-boundary-figure-1.svg)
@@ -81,7 +82,7 @@ type RailAssistanceDisposition =
 
 - `neutral`: facts are available, but the rail issues no allow/deny verdict;
 - `unknown_reconcile`: sources are missing or conflicting and require reconciliation;
-- `waiting_dependency`: an explicit dependency in the formal TASK is pending;
+- `waiting_dependency`: an explicit dependency in the formal TASK is pending, so the current operation waits rather than being denied;
 - `negative_list_denied`: a frozen mechanical condition rejects the current operation.
 
 The result also names `decision_owner` as AGENT, PM, or ADMIN. The governance snapshot fixes:
@@ -92,7 +93,7 @@ business_decision: null
 
 Together, these details create a testable boundary. The rail can supply facts and command surfaces without smuggling a business verdict into the snapshot.
 
-`unknown_reconcile` and `negative_list_denied` are not the same category. The former means sources are missing or conflicting and must be reconciled; the rail can return uncertain facts, recommended actions, and the next decision owner. The latter means a frozen mechanical condition requires rejection of the current operation. The inspected V1.9.7 contract permits mechanical waiting only for explicit dependencies and hard denial only for its frozen negative list. It would therefore be inaccurate to call `unknown_reconcile` an existing automatic freeze, PM notification, or rollback mechanism. If a high-risk downstream operation must stop on conflict, its basis has to be a formal TASK prerequisite, a frozen mechanical rule, or an explicit PM/ADMIN decision; the system may not use a heuristic to select a conflicting branch.
+The three non-business dispositions are not interchangeable. `unknown_reconcile` means sources are missing or conflicting and must be reconciled; `waiting_dependency` means a formal TASK dependency is pending, so the current operation waits; only `negative_list_denied` means a frozen mechanical condition requires rejection of the current operation. The inspected V1.9.7 contract separates those outcomes. It would therefore be inaccurate to call `unknown_reconcile` an existing automatic freeze, PM notification, or rollback mechanism, or to call a pending dependency a denial or task failure. If a high-risk downstream operation must stop on conflict, its basis has to be a formal TASK prerequisite, a frozen mechanical rule, or an explicit PM/ADMIN decision; the system may not use a heuristic to select a conflicting branch.
 
 The excerpts come from the private CodeFlowMu parent implementation at fixed commit `2c901972`, not from CodeFlowMu Open. This narrow interface contract is shown so readers can inspect the architectural boundary—what the rail may and may not return. It neither opens the full implementation nor constitutes product evidence that the public can reproduce.
 
@@ -105,12 +106,13 @@ The current V1.9.7 contract limits mechanical denial to a closed, reviewable set
 3. an inconsistency in the canonical task-identity fields defined by the contract;
 4. a terminal task state;
 5. duplicate execution;
-6. an explicit TASK dependency that remains pending;
-7. an integrity or safety error.
+6. an integrity or safety error.
 
 These conditions share one property: they can be reviewed from deterministic facts without asking the Runtime to decide whether a plan is intelligent or a result is good enough. Item 3 cannot be hidden behind the vague phrase “real conflict”: a concrete contract must name the compared fields, their canonicalization, and the outcome of a mismatch. Bound task, root-task, thread, and revision fields can, for example, be part of that comparison. Missing fields, an undefined comparison rule, or contradictory facts belong in `unknown_reconcile`, not in a pretended mechanical denial. The inspected material discloses those command bindings but not a complete composite-identity predicate, so this article does not present one as an exhaustively verified algorithm.
 
 A source conflict normally enters `unknown_reconcile` first; it is not automatically inserted into the negative list. Only if it satisfies a deterministic predicate already written into the contract—such as a mismatch in defined identity fields, a scope mismatch, or an explicit decision forbidding the current operation—may the rail turn the **current operation** into `negative_list_denied`. Otherwise it preserves the conflict and asks an authorized actor to reconcile it.
+
+An explicit dependency is a different reviewable mechanical condition: it returns `waiting_dependency`, holding the current operation in a queue until the upstream contract is met. It is not in the frozen negative list and is not a rejection of the task or a business conclusion.
 
 As the list grows, business preference tends to disguise itself as infrastructure fact. “The plan has fewer than three steps,” “no ISSUE was filed first,” and “the run exceeded ten minutes” may be useful warnings. None universally implies that the task should stop. A PM or ADMIN may write a condition into a task during creation, revision, or formal approval; they must not turn a new preference into a mechanical block at runtime and thereby create a back door through the service layer. The rail only checks conditions already frozen in the contract or an explicit decision.
 
