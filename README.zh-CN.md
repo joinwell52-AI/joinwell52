@@ -36,7 +36,7 @@
     <img src="https://img.shields.io/badge/12%E7%A7%92%E9%A2%84%E5%91%8A-立即播放-0ea5e9?style=for-the-badge&logo=youtube&logoColor=white" alt="12秒预告">
   </a>
   <a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-intro-zh.mp4">
-    <img src="https://img.shields.io/badge/80%E7%A7%92%E6%AD%A3%E5%BC%8F%E6%BC%94%E7%A4%BA-观看完整版-22c55e?style=for-the-badge&logo=videocam&logoColor=white" alt="80秒完整版">
+    <img src="https://img.shields.io/badge/60%E7%A7%92%E6%AD%A3%E5%BC%8F%E7%89%87-观看完整版-22c55e?style=for-the-badge&logo=videocam&logoColor=white" alt="60秒正式片">
   </a>
   <br>
   <sub>真实 PC 与手机录屏 · 中文旁白 · 多 AI 自动协作 · 最终人类审批</sub>
