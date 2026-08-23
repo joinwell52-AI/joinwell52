@@ -8,11 +8,11 @@
   "date": "2026-08-23",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -405,6 +405,169 @@
       "githubCommit": "5f6a8eb701fd7ac88b83e4b7e3f8363518e5993c",
       "commitVerify": "Completed",
       "verifiedAt": "2026-08-23T10:08:53+08:00"
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "family": "daily",
+      "runtimeDate": "2026-08-23",
+      "status": "Completed",
+      "input": "The verified 2026-08-23 Reading Wake Receipt at research/runtime/wakes/2026/08/2026-08-23/reading-110328.json; pinned control-source commit 8697d8c7da771bc2cea72c8a63a508cbb2e430b3 containing Scheduler V3.0, Worker Control v1.3.0, generated Reading Prompt v1.0.0 and all five required sources; the generated Reading Prompt with deterministically verified SHA-256 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5; the same-run-date Daily Runtime Record with Discovery and Queue durably Completed, Reading execution authority opened by repository reconciliation at 11:05:47 and Worker Claimed durably verified at commit 870d412ef1cc92cccac522fba1174e812d26ac2f; and the completed 2026-08-23 Research Plan selecting exactly Q-20260823-01, Q-20260823-02 and Q-20260823-03.",
+      "input_zh": "已核验的 2026-08-23 Reading Wake Receipt（research/runtime/wakes/2026/08/2026-08-23/reading-110328.json）；固定控制源提交 8697d8c7da771bc2cea72c8a63a508cbb2e430b3，其中包含 Scheduler V3.0、Worker Control v1.3.0、Generated Reading Prompt v1.0.0 及全部五个 Required Source；经确定性工具核验 SHA-256 为 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5 的 Generated Reading Prompt；Discovery 与 Queue 已持久 Completed、Repository Reconciliation 于 11:05:47 为 Reading 打开执行权、且 Worker Claimed 已在提交 870d412ef1cc92cccac522fba1174e812d26ac2f 持久核验的同运行日 Daily Runtime Record；以及仅选择 Q-20260823-01、Q-20260823-02、Q-20260823-03 的 2026-08-23 Research Plan。",
+      "workResult": "Fail-closed admission passed for branch main, wake source chatgpt-scheduled-task, the active 2026-08-23 Reading window and the worker's available GitHub read/write, file-editing and primary-source research capabilities. The unique Reading Wake Receipt was committed and fetched before Runtime business work. Global serial reconciliation found Discovery and Queue closed and Reading Waiting as the earliest due unfinished task; the repository scheduler durably opened Reading at 11:05:47 and the native claim workflow persisted Worker Claimed at 11:06:27 before substantive Deep Reading. Skill 03 completed primary-source reading for all three same-day P0 objects and produced exactly three durable Reading Notes. Q-20260823-01 verifies the ADK workflow resume path: user FunctionResponses tied to interrupts are reconstructed into resume inputs, and the single-turn LLM wrapper now suppresses duplicate synthetic user-event injection whenever resume inputs are present, removing the demonstrated shadowing mechanism without claiming general HITL exactly-once safety. Q-20260823-02 verifies Codex creation-time thread-source provenance: new and forked threads can carry persisted source classifications, arbitrary non-reserved source strings become Feature classifications, while the TypeScript resume path deliberately does not forward a new source for an existing thread; this is provenance metadata, not authenticated identity or authorization. Q-20260823-03 verifies that MCPServerManager normalizes repeated server entries before lifecycle ownership, preserves first-occurrence order, and connects/cleans the tested repeated instance once; the helper uses Python set/equality membership, so the defensible guarantee is local manager deduplication rather than distributed exactly-once or unconditional object-identity semantics. Reading performed no Research Analysis, article writing, visualization, Production or Publication and used no prior-day Runtime artifact as a business input.",
+      "workResult_zh": "针对 main 分支、chatgpt-scheduled-task 唤醒源、2026-08-23 有效 Reading 时段，以及当前 Worker 实际具备的 GitHub 读写、文件编辑与一手来源研究能力，Fail-Closed Admission 通过。任何 Runtime 业务工作前，唯一 Reading Wake Receipt 已提交并重新 Fetch 核验。全局串行 Reconciliation 发现 Discovery 与 Queue 已收口，Reading 是最早到期未收口任务；仓库 Scheduler 于 11:05:47 持久打开 Reading 执行槽，原生 Claim Workflow 于 11:06:27 持久写入 Worker Claimed，之后才开始实质 Deep Reading。Skill 03 对当天三个 P0 对象全部完成一手来源深读，并恰好生成三份持久 Reading Note。Q-20260823-01 核验 ADK Workflow Resume 路径：与 Interrupt 绑定的 User FunctionResponse 会被重建为 Resume Inputs，而 Single-Turn LLM Wrapper 在存在 Resume Inputs 时不再重复注入 Synthetic User Event，从而移除已证明的遮蔽机制，但不把该修复扩大解释为通用 HITL Exactly-Once 安全。Q-20260823-02 核验 Codex 创建时 Thread Source 来源证据：新建与 Fork Thread 可以携带持久 Source Classification，非保留字符串会成为 Feature Classification，而 TypeScript Resume 路径明确不会为既有 Thread 转发新的 Source；这是来源元数据，不是经过认证的身份或授权。Q-20260823-03 核验 MCPServerManager 在接管生命周期前规范化重复 Server Entry，保持首次出现顺序，并对测试中的同一重复实例只 Connect/Cleanup 一次；唯一性 Helper 使用 Python Set/Equality Membership，因此可辩护结论是本地 Manager 去重，而不是分布式 Exactly-Once 或无条件的对象 Identity 语义。Reading 未执行 Research Analysis、文章写作、可视化、Production 或 Publication，也未把前一日 Runtime Artifact 作为业务输入。",
+      "output": "Exactly three durable Reading Notes were written: research/reading/Q-20260823-01-hitl-resume-function-response-preservation.md, research/reading/Q-20260823-02-durable-thread-source-provenance.md and research/reading/Q-20260823-03-mcp-server-instance-deduplication.md.",
+      "output_zh": "恰好写入三份持久 Reading Note：research/reading/Q-20260823-01-hitl-resume-function-response-preservation.md、research/reading/Q-20260823-02-durable-thread-source-provenance.md、research/reading/Q-20260823-03-mcp-server-instance-deduplication.md。",
+      "next": "After this Reading terminal result is durably finalized and GitHub Commit Verified, Runtime must reconcile formal-time order again. Analysis remains ineligible before 13:00 Asia/Shanghai and may start only at or after its formal time if Reading remains durably closed and no earlier due task is unfinished.",
+      "next_zh": "本次 Reading 终态完成持久 Finalization 与 GitHub Commit Verified 后，Runtime 必须重新按 Formal Time 对账。Analysis 在上海时间 13:00 前仍不具备执行资格；只有达到或超过其正式时间、Reading 仍已持久收口且不存在更早到期未收口任务时，才可开始 Analysis。",
+      "metrics": [
+        {
+          "label": "Wake receipts verified",
+          "label_zh": "已核验 Wake Receipt",
+          "value": 1
+        },
+        {
+          "label": "Generated prompt SHA-256 verified",
+          "label_zh": "Generated Prompt SHA-256 已核验",
+          "value": 1
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 Required Source",
+          "value": 5
+        },
+        {
+          "label": "Selected objects read",
+          "label_zh": "已深读 Selected Object",
+          "value": 3
+        },
+        {
+          "label": "Primary maintainer commits read",
+          "label_zh": "已读取维护者一手提交",
+          "value": 3
+        },
+        {
+          "label": "Durable Reading Notes",
+          "label_zh": "持久 Reading Note",
+          "value": 3
+        },
+        {
+          "label": "Reading execution-slot openings",
+          "label_zh": "Reading 执行槽开启",
+          "value": 1
+        },
+        {
+          "label": "Reading worker claims",
+          "label_zh": "Reading Worker Claimed",
+          "value": 1
+        },
+        {
+          "label": "Prior-day Runtime business inputs",
+          "label_zh": "前一日 Runtime 业务输入",
+          "value": 0
+        },
+        {
+          "label": "Research Analysis performed",
+          "label_zh": "执行 Research Analysis",
+          "value": 0
+        },
+        {
+          "label": "Articles written",
+          "label_zh": "文章写作数量",
+          "value": 0
+        },
+        {
+          "label": "Revision rounds used",
+          "label_zh": "已使用修订轮次",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Reading Wake Receipt",
+          "label_zh": "Reading 唤醒回执",
+          "path": "research/runtime/wakes/2026/08/2026-08-23/reading-110328.json"
+        },
+        {
+          "label": "Pinned control source commit",
+          "label_zh": "固定控制源提交",
+          "commit": "8697d8c7da771bc2cea72c8a63a508cbb2e430b3"
+        },
+        {
+          "label": "Worker Control manifest",
+          "label_zh": "Worker Control Manifest",
+          "path": "research/runtime/worker-prompts/generated/CONTROL.json"
+        },
+        {
+          "label": "Generated Reading prompt",
+          "label_zh": "Generated Reading Prompt",
+          "path": "research/runtime/worker-prompts/generated/reading.prompt.md"
+        },
+        {
+          "label": "Generated Reading prompt SHA-256",
+          "label_zh": "Generated Reading Prompt SHA-256",
+          "value": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"
+        },
+        {
+          "label": "Run-date Research Plan",
+          "label_zh": "运行日 Research Plan",
+          "path": "research/runtime/plans/2026/08/2026-08-23-plan.json"
+        },
+        {
+          "label": "Reading Worker Claimed commit",
+          "label_zh": "Reading Worker Claimed 提交",
+          "commit": "870d412ef1cc92cccac522fba1174e812d26ac2f"
+        },
+        {
+          "label": "Q-20260823-01 primary source",
+          "label_zh": "Q-20260823-01 一手来源",
+          "url": "https://github.com/google/adk-python/commit/e753651b7df26febe00bde2cb043225e644cd207"
+        },
+        {
+          "label": "Q-20260823-02 primary source",
+          "label_zh": "Q-20260823-02 一手来源",
+          "url": "https://github.com/openai/codex/commit/a73485dc76e5b2d31d28109a57f6876f4e1dcc24"
+        },
+        {
+          "label": "Q-20260823-03 primary source",
+          "label_zh": "Q-20260823-03 一手来源",
+          "url": "https://github.com/openai/openai-agents-python/commit/042d84a15c37bc6f66058dca3deda0311883db38"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Q-20260823-01 Reading Note",
+          "label_zh": "Q-20260823-01 深读笔记",
+          "path": "research/reading/Q-20260823-01-hitl-resume-function-response-preservation.md"
+        },
+        {
+          "label": "Q-20260823-02 Reading Note",
+          "label_zh": "Q-20260823-02 深读笔记",
+          "path": "research/reading/Q-20260823-02-durable-thread-source-provenance.md"
+        },
+        {
+          "label": "Q-20260823-03 Reading Note",
+          "label_zh": "Q-20260823-03 深读笔记",
+          "path": "research/reading/Q-20260823-03-mcp-server-instance-deduplication.md"
+        },
+        {
+          "label": "Reading result",
+          "label_zh": "Reading 结果",
+          "path": "research/runtime/results/2026/08/2026-08-23-reading-result.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "path": "research/runtime/records/daily/2026/08/2026-08-23-daily-runtime.json"
+        },
+        {
+          "label": "Runtime Markdown ledger",
+          "label_zh": "Runtime Markdown 账本",
+          "path": "research/runtime/2026/08/2026-08-23-runtime.md"
+        }
+      ],
+      "startedAt": "2026-08-23T11:05:47+08:00",
+      "completedAt": "2026-08-23T11:11:10+08:00"
     }
   },
   "timeline": [
@@ -477,6 +640,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Reading after verifying research/runtime/wakes/2026/08/2026-08-23/reading-110328.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-08-23T11:11:10+08:00",
+      "task": "reading",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Reading closed as Completed through governed Runtime shift finalization after durable result validation for 2026-08-23."
     }
   ],
   "metrics": [],
@@ -484,5 +654,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-23T11:06:27+08:00"
+  "updatedAt": "2026-08-23T11:11:10+08:00"
 }
