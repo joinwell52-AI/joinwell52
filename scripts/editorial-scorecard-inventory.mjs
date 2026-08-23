@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url'
 const ROOT = fileURLToPath(new URL('..', import.meta.url))
 const EN_ROOT = join(ROOT, 'docs', 'en')
 const ZH_ROOT = join(ROOT, 'docs', 'zh')
-const DEBUG_OUTPUT = join(ROOT, 'docs', 'public', '_scorecard-inventory-run.json')
+const DEBUG_OUTPUT = join(ROOT, 'docs', 'public', '_scorecard-inventory-run.txt')
 const ELIGIBLE_COLUMNS = new Set([
   'digital-employee',
   'industry-architecture',
@@ -105,5 +105,6 @@ const inventory = {
   items: files
 }
 
-await writeFile(DEBUG_OUTPUT, `${JSON.stringify(inventory, null, 2)}\n`, 'utf8')
+const verificationRows = files.map(item => `${item.path}\t${item.contentHash}\t${item.column}\t${item.category}\t${item.date}`)
+await writeFile(DEBUG_OUTPUT, `${verificationRows.join('\n')}\n`, 'utf8')
 console.log(`OBSERVATION_SCORECARD_INVENTORY=${JSON.stringify(inventory)}`)
