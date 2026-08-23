@@ -186,6 +186,8 @@ The reusable lesson is not the three project names. It is the chain of responsib
 
 ## Sources and evidence boundaries
 
+For how this series distinguishes public specifications, private code excerpts, first-party execution records, and independent material, see [How to Read Engineering Evidence at the Digital Employee Works](../methodology/evidence-boundaries). The sources below still support only the specific claims stated in this article.
+
 - [TMPA Architecture Paper A1.0](https://github.com/joinwell52-AI/joinwell52/blob/main/docs/public/releases/tmpa/v1.0/artifacts/tmpa-architecture-paper-a1.0-en.md), [TMPA Core S1.0](https://github.com/joinwell52-AI/joinwell52/blob/main/docs/public/releases/tmpa/v1.0/artifacts/tmpa-core-specification-s1.0-en.md), and the [FCoP 3.0 specification](https://github.com/joinwell52-AI/FCoP/blob/main/spec/fcop-3.0-spec.md) support the account of this research's governance objects, file artifacts, and lifecycle semantics; they do not constitute public reproduction of a private runtime.
 - [W3C PROV-O](https://www.w3.org/TR/prov-o/) is an independent reference for separating entities, activities, and responsible agents. It does not specify TMPA/FCoP paths or envelopes.
 - [NIST AI RMF 1.0](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10) supports the general governance context of roles and oversight throughout the lifecycle. It neither endorses nor certifies this implementation.
