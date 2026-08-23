@@ -1,0 +1,47 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-23",
+  "itemId": "Q-20260823-01",
+  "researchObjectId": "AN-20260823-01",
+  "targetAudience": {
+    "primary": "Engineers designing resumable digital employees and human-in-the-loop agent workflows",
+    "knowledgeAssumption": "The reader understands agent context assembly, interruption and resume semantics.",
+    "readerProblem": "A resumed agent can receive both a real operator response and regenerated context, yet ordinary message recency can make the synthetic event appear more authoritative."
+  },
+  "whyNow": "A same-day merged Google ADK change prevents workflow-wrapped single-turn agents from appending synthetic input when reconstructed resume inputs are present, exposing a precise evidence-ordering boundary.",
+  "externalHook": {
+    "type": "authority-ordering-failure",
+    "description": "A newer synthetic event can be less authoritative than the older human response that actually resolves an interruption.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "Resumable agent systems should preserve a monotonic, occurrence-scoped evidence order before model interpretation: once an operator response is reconstructed and admitted for a specific interruption, regenerated context must not silently outrank it, while identity, freshness and exactly-once effects remain separate controls.",
+  "originalValue": {
+    "type": "resume-evidence-authority-model",
+    "description": "Reframes duplicate resume input as an authority-ordering failure and separates evidence continuity from operator authentication, approval freshness and downstream effect guarantees."
+  },
+  "readerTakeaway": "Attach interruption identity to resume evidence, resolve precedence before context assembly, and audit authorization and external effects independently of conversational ordering.",
+  "evidenceBoundary": {
+    "supported": [
+      "ADK reconstructs known interrupt FunctionResponses into resume inputs.",
+      "The single-turn wrapper skips synthetic input injection when resume inputs are non-empty.",
+      "The regression test verifies the decisive guard with a representative resume-input mapping."
+    ],
+    "unsupported": [
+      "Authenticated operator identity",
+      "Universal HITL safety",
+      "Exactly-once approval or external effects",
+      "Applicability to every agent resume path"
+    ],
+    "uncertain": [
+      "Whether unrelated resume inputs can suppress legitimate regeneration",
+      "How intentional supersession should be represented"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article develops a general resumable-agent evidence-ordering rule without relying on a first-party project."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The merged mechanism is concrete, the failure mode is consequential for HITL continuation, and the Research Object supports a transferable bounded control model."
+}

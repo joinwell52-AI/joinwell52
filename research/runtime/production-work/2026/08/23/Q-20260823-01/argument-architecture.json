@@ -1,0 +1,58 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-23",
+  "itemId": "Q-20260823-01",
+  "coreProposition": "Resumable agent systems should preserve a monotonic, occurrence-scoped evidence order before model interpretation: once an operator response is reconstructed and admitted for a specific interruption, regenerated context must not silently outrank it, while identity, freshness and exactly-once effects remain separate controls.",
+  "openingMove": {
+    "type": "recency-authority-contradiction",
+    "purpose": "Open with a later synthetic user event displacing the human response that resolved the interruption.",
+    "evidenceRefs": ["E1", "E2", "E3"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is duplicate resume input an authority problem rather than only a text problem?",
+      "claim": "Temporal recency can silently reorder evidence with different semantic authority when synthetic input is appended after an operator FunctionResponse.",
+      "evidenceRefs": ["E1", "E2", "E3", "I1"],
+      "reasoningRole": "problem-reframing",
+      "readerProgress": "The reader distinguishes event order from evidence authority.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Where should precedence be enforced?",
+      "claim": "Resume lineage should suppress lower-authority reconstruction before model-context assembly rather than asking the model to infer precedence after conflicting events exist.",
+      "evidenceRefs": ["E1", "E2", "I1"],
+      "reasoningRole": "control-point",
+      "readerProgress": "The reader locates the strongest control at input admission.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What controls remain independent?",
+      "claim": "Evidence continuity does not authenticate the operator, prove approval freshness or guarantee exactly-once downstream effects.",
+      "evidenceRefs": ["E4", "I2"],
+      "reasoningRole": "guarantee-separation",
+      "readerProgress": "The reader avoids upgrading an ordering safeguard into an authorization guarantee.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Where is the demonstrated rule still coarse?",
+      "claim": "A guard on any non-empty resume input is simple but may need occurrence-specific refinement when several interruption channels share context.",
+      "evidenceRefs": ["E4", "I2"],
+      "reasoningRole": "boundary-and-open-test",
+      "readerProgress": "The reader leaves with a concrete failure-injection and end-to-end testing agenda.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Low-risk workflows may accept a fresh-turn model or intentionally allow new instructions to supersede an older response.",
+    "responseBoundary": "Supersession can be valid, but it should be explicit, occurrence-scoped and auditable rather than an accidental consequence of append order."
+  },
+  "endingStrategy": {
+    "type": "bounded-test-question",
+    "purpose": "End with the end-to-end evidence required to distinguish preserved response order from authenticated, fresh and exactly-once approval."
+  }
+}
