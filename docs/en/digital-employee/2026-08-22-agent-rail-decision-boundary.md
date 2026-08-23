@@ -1,12 +1,12 @@
 ---
-title: "How Far Should an Agent Rail Go? Dispatch, Recovery, and the Boundary of Human Judgment"
+title: "How Can an Agent Team Work Autonomously? The Rail as a Service for Dispatch, Recovery, and Judgment"
 date: '2026-08-22'
 column: digital-employee
 category: daily
 article_type: engineering-judgment
 edition: research-center
-research_question: "Which actions may a multi-agent rail execute or reject mechanically, and which judgments must remain with an agent, PM, or ADMIN?"
-summary: "A weak rail loses coordination; an overpowered rail becomes an unauthorized manager. The CodeFlowMu V1.9.7 candidate narrows the rail to facts, dispatch, audit, and technical recovery, with hard denial limited to a frozen negative list."
+research_question: "How can an agent team work autonomously within authorized tasks, and which coordination services should a rail provide without deciding for agents, PMs, or ADMIN?"
+summary: "Agents should advance work autonomously within explicit responsibilities. The rail supplies dispatch, facts, audit, and technical recovery, while limiting hard denial to a frozen negative list rather than becoming an unauthorized manager."
 item_id: "MANUAL-20260822-AGENT-RAIL-BOUNDARY"
 lifecycle: "Published"
 cover: "/assets/covers/daily-2026-08-22-agent-rail-decision-boundary-cover.png"
@@ -22,39 +22,43 @@ sources:
 <ArticleCover
   image="/assets/covers/daily-2026-08-22-agent-rail-decision-boundary-cover.png"
   kicker="Digital Employee · Project Research"
-  title="How Far Should an Agent Rail Go? Dispatch, Recovery, and the Boundary of Human Judgment"
-  summary="A rail should automate facts, dispatch, and technical recovery; scope, acceptance, rework, and final conclusions remain with an authorized agent, PM, or ADMIN."
+  title="How Can an Agent Team Work Autonomously? The Rail as a Service for Dispatch, Recovery, and Judgment"
+  summary="Agents advance autonomously within explicit authority; the rail serves dispatch, facts, and technical recovery. Scope, acceptance, rework, and final conclusions remain with an authorized agent, PM, or ADMIN."
   version="MANUAL-20260822-AGENT-RAIL-BOUNDARY"
   status="Editorial &amp; Visual PASS · 2026-08-23"
   languageHref="/zh/digital-employee/2026-08-22-agent-rail-decision-boundary"
   languageLabel="中文"
 />
 
-# How Far Should an Agent Rail Go? Dispatch, Recovery, and the Boundary of Human Judgment
+# How Can an Agent Team Work Autonomously? The Rail as a Service for Dispatch, Recovery, and Judgment
+
+The point of an agent team is not to wait for a central controller to decide every next move. It is to keep advancing work that its members can complete within clear task, role, and authority boundaries. A rail should be a service layer: it tells the team what can be claimed, where facts reside, when dependencies release, and how interrupted execution can recover. It must not replace an agent's professional judgment or a PM's or ADMIN's business decision.
 
 Multi-agent systems fail in two opposite ways.
 
-With no rail, tasks move through chat, two agents start the same work, reports lose their upstream binding, and a process crash leaves nobody able to distinguish retry from stop.
+With no rail service, tasks move through chat, two agents start the same work, reports lose their upstream binding, and a process crash leaves nobody able to distinguish retry from stop. Each agent appears free, but the team cannot coordinate reliably.
 
-With an overpowered rail, a classifier decides that a plan is “incomplete” and blocks PM dispatch. A temporarily missing artifact becomes a terminal failure. A fixed retry limit silently turns technical backoff into a business decision.
+With an overpowered rail service, a classifier decides that a plan is “incomplete” and blocks PM dispatch. A temporarily missing artifact becomes a terminal failure. A fixed retry limit silently turns technical backoff into a business decision. The service layer has displaced accountable people and deprived agents of legitimate room to act.
 
-A sound engineering rail must avoid both extremes: **automate facts, dispatch, audit, and technical recovery aggressively, while reserving hard denial for a small set of deterministic conditions. Scope, acceptance, rework, and final conclusions remain with an accountable agent, PM, or ADMIN.** The CodeFlowMu V1.9.7 candidate is a useful bounded case because that responsibility boundary is the center of its current change.
+A sound engineering rail must avoid both extremes: **let agents act autonomously within authorized tasks; automate facts, dispatch, audit, and technical recovery as a service; and reserve hard denial for a closed, reviewable set of mechanical conditions. Scope, acceptance, rework, and final conclusions remain with an accountable agent, PM, or ADMIN.** The CodeFlowMu V1.9.7 candidate is a useful bounded case because that responsibility boundary is the center of its current change.
 
-## A rail is neither the state machine nor the PM
+## A rail serves autonomous collaboration; it is neither the state machine nor the PM
 
 The file state machine answers where a task is now and how it moved. The rail answers which role receives the work, which session runs, whether a capability is available, when a dependency releases, and how technical execution is recovered.
 
-The rail is also not a project manager. A PM interprets requirements, chooses an execution route, evaluates evidence, and decides whether to accept or rework. Those judgments contain business meaning. They cannot be derived safely from file presence, elapsed minutes, retry count, or classifier score alone.
+The rail is also not a project manager or a manager above the agents. A PM interprets requirements, chooses an execution route, evaluates evidence, and decides whether to accept or rework. An executing agent must likewise plan, implement, and submit evidence within its authorized task and tool boundary. Those judgments contain business or professional meaning. They cannot be derived safely from file presence, elapsed minutes, retry count, or classifier score alone.
+
+Autonomy is not unconstrained behavior. It is **independent progress within a visible task contract, role capability, current revision, and evidence requirements**. The rail makes those constraints and coordination facts reliable services, so agents do not have to guess whether work is claimed, a dependency is met, or an old session remains valid. It may not inflate that service role into deciding the team's goal or conclusion.
 
 NIST's [AI RMF 1.0](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10) places governance, defined roles, and human oversight across the AI lifecycle. It does not define an engineering rail, but it offers an independent reference point: automation must operate inside an explicit responsibility structure.
 
-## Classify every automation rule into one of four categories
+## Separate autonomous agent action from rail services
 
-| Category | Typical question | Correct system behavior |
+| Category | Typical question | Correct division of responsibility |
 |---|---|---|
-| Fact | Does a report exist? What is the current revision? | Record and expose it |
-| Advisory | Is evidence probably incomplete? Would another test help? | Explain the concern and suggest an action |
-| Mechanical negative | Is identity conflicting, scope unauthorized, task terminal, execution duplicate, or an explicit dependency pending? | Deny the current operation and preserve evidence |
+| Fact service | Does a report exist? What is the current revision? | The rail records and exposes it; agents use it to continue their work |
+| Advisory service | Is evidence probably incomplete? Would another test help? | The rail explains the concern and suggests an action; an authorized agent or PM decides |
+| Mechanical negative | Is identity conflicting, scope unauthorized, task terminal, execution duplicate, or an explicit dependency pending? | The rail denies the current operation and preserves evidence; it does not close business work |
 | Business decision | Should QA be dispatched? Is the result acceptable? Is more rework worth doing? | Hand the decision to an authorized agent, PM, or ADMIN |
 
 ![The automation boundary: facts, advice, mechanical denials, and business decisions belong to different actors](/assets/covers/daily-2026-08-22-agent-rail-decision-boundary-figure-1.svg)
@@ -90,25 +94,25 @@ Together, these details create a testable boundary. The rail can supply facts an
 
 `unknown_reconcile` and `negative_list_denied` are not the same category. The former means sources are missing or conflicting and must be reconciled; the rail can return uncertain facts, recommended actions, and the next decision owner. The latter means a frozen mechanical condition requires rejection of the current operation. The inspected V1.9.7 contract permits mechanical waiting only for explicit dependencies and hard denial only for its frozen negative list. It would therefore be inaccurate to call `unknown_reconcile` an existing automatic freeze, PM notification, or rollback mechanism. If a high-risk downstream operation must stop on conflict, its basis has to be a formal TASK prerequisite, a frozen mechanical rule, or an explicit PM/ADMIN decision; the system may not use a heuristic to select a conflicting branch.
 
-The excerpts come from the private CodeFlowMu parent implementation at fixed commit `2c901972`, not from CodeFlowMu Open. They are reproduced narrowly to explain the contract. The private repository is not presented as publicly reproducible source evidence.
+The excerpts come from the private CodeFlowMu parent implementation at fixed commit `2c901972`, not from CodeFlowMu Open. This narrow interface contract is shown so readers can inspect the architectural boundary—what the rail may and may not return. It neither opens the full implementation nor constitutes product evidence that the public can reproduce.
 
-## Why a frozen negative list should stay short
+## Why mechanical denials must be closed and reviewable
 
-The current V1.9.7 contract permits mechanical denial for a limited set of conditions:
+The current V1.9.7 contract limits mechanical denial to a closed, reviewable set of conditions:
 
 1. an explicit ADMIN or authority decision that denies the current operation;
 2. an authorization-scope mismatch;
-3. a real canonical identity conflict;
+3. an inconsistency in the canonical task-identity fields defined by the contract;
 4. a terminal task state;
 5. duplicate execution;
 6. an explicit TASK dependency that remains pending;
 7. an integrity or safety error.
 
-These conditions share one property: they can be reviewed from deterministic facts without asking the Runtime to decide whether a plan is intelligent or a result is good enough.
+These conditions share one property: they can be reviewed from deterministic facts without asking the Runtime to decide whether a plan is intelligent or a result is good enough. Item 3 cannot be hidden behind the vague phrase “real conflict”: a concrete contract must name the compared fields, their canonicalization, and the outcome of a mismatch. Bound task, root-task, thread, and revision fields can, for example, be part of that comparison. Missing fields, an undefined comparison rule, or contradictory facts belong in `unknown_reconcile`, not in a pretended mechanical denial. The inspected material discloses those command bindings but not a complete composite-identity predicate, so this article does not present one as an exhaustively verified algorithm.
 
-A source conflict normally enters `unknown_reconcile` first; it is not automatically inserted into the negative list. Only if the conflict also satisfies a frozen fact—for example, a true canonical-task identity conflict, a scope mismatch, or an existing explicit decision that forbids the current operation—may the rail turn the **current operation** into `negative_list_denied`. Otherwise it preserves the conflict and asks an authorized actor to reconcile it; it cannot choose a report, declare failure, or permanently close the task on their behalf.
+A source conflict normally enters `unknown_reconcile` first; it is not automatically inserted into the negative list. Only if it satisfies a deterministic predicate already written into the contract—such as a mismatch in defined identity fields, a scope mismatch, or an explicit decision forbidding the current operation—may the rail turn the **current operation** into `negative_list_denied`. Otherwise it preserves the conflict and asks an authorized actor to reconcile it.
 
-As the list grows, business preference tends to disguise itself as infrastructure fact. “The plan has fewer than three steps,” “no ISSUE was filed first,” and “the run exceeded ten minutes” may be useful warnings. None universally implies that the task should stop. The rail gains authority only when a formal contract or accountable decision turns such a condition into a real constraint.
+As the list grows, business preference tends to disguise itself as infrastructure fact. “The plan has fewer than three steps,” “no ISSUE was filed first,” and “the run exceeded ten minutes” may be useful warnings. None universally implies that the task should stop. A PM or ADMIN may write a condition into a task during creation, revision, or formal approval; they must not turn a new preference into a mechanical block at runtime and thereby create a back door through the service layer. The rail only checks conditions already frozen in the contract or an explicit decision.
 
 ## What the rail should automate
 
@@ -118,7 +122,7 @@ A task command should bind task, root, thread, round, and revision. Commands aga
 
 ### Enforce role/tool capability
 
-Development, QA, operations, and review roles should not share one mutable tool surface. V1.9.7 checks canonical tool identity and active capability. PM task mutations enter the shared TaskCommandKernel so that identity, scope, and retry semantics are not bypassed.
+Development, QA, operations, and review roles should not share one mutable tool surface. V1.9.7 checks canonical tool identity and active capability. On the inspected PM task-mutation path, requests enter the shared TaskCommandKernel, so identity, scope, and duplicate-prevention checks execute on that path. That evidence does not exhaust every legacy or alternative endpoint. Proving that no bypass exists would also require an endpoint inventory, static scans, and rejection tests for bypass paths.
 
 This is tool admission, not complete effect analysis. Path escape, command parameters, and operating-system privileges still require lower-level policy and sandbox controls.
 
@@ -127,6 +131,8 @@ Tool admission should not depend on a static role alone. An engineering design s
 ### Queue and release explicit dependencies
 
 When a QA task explicitly depends on a DEV child, the rail may keep QA waiting until the upstream contract is satisfied. The hold comes from a reviewable TASK edge, not a classifier's interpretation of prose.
+
+Consider the contrast. If QA starts simply because it sees an old-round DEV report, it can treat a previous output as input to the current task. A sound contract binds the QA task to a specific upstream task and its current revision; before that dependency is satisfied, it returns `waiting_dependency` rather than launching QA. Only when completion evidence matches the bound version does the rail release the edge. This is a design example of a reviewable dependency; it is not a claim that V1.9.7 has tests for every report–revision matching combination.
 
 ### Preserve technical facts for long jobs
 
@@ -155,7 +161,7 @@ Runtime sees missing attachment
 A bounded implementation distinguishes two cases:
 
 ```text
-If the formal TASK says the log is mandatory for acceptance, and an accountable decision has mapped that prerequisite to a frozen mechanical condition in the current implementation:
+If the formal TASK, at creation, revision, or formal approval, has already written “this log is required for acceptance” as a frozen deterministic prerequisite:
 → record the evidence gap and reject this acceptance attempt
 → PM decides whether to retest, rework, or change the contract
 
@@ -164,9 +170,7 @@ If the log is only a classifier recommendation:
 → PM decides based on risk and available evidence
 ```
 
-The first branch is a contract-design illustration, not a claim that V1.9.7 automatically turns every missing attachment into a denial. If the current interface has no explicit mapping, the correct behavior remains to record the evidence gap and hand the decision to PM.
-
-The rail may stop an operation whose explicit precondition is absent. It may not expand “this operation cannot proceed yet” into “the entire business task is over.”
+The first branch is a contract-design illustration, not a claim that V1.9.7 automatically turns every missing attachment into a denial. If the current interface has no pre-frozen predicate, the correct behavior remains to record the evidence gap and hand the decision to PM.
 
 ## What V1.9.7 actually verified
 
@@ -177,6 +181,8 @@ The first-party candidate packet `V1.9.7-RAIL-ASSISTANCE-RC-20260822-001` for ca
 - Shell full regression at 936/936;
 - passing Runtime typecheck, Shell production build, REPORT identity, and version-consistency checks;
 - a controlled restart after which the process loaded V1.9.7, reported `health=ok`, and retained an online gateway, ownership of the single-writer lock by the current process, and a consistent project-root binding.
+
+These figures are totals from test sets at different levels. They cannot be added together or read as equal coverage of all four rail-assistance dispositions. The available packet does not record the number of direct cases for `neutral`, `unknown_reconcile`, `waiting_dependency`, and `negative_list_denied`; this article therefore does not use 115, 1706, or 936 to claim complete validation of those boundaries. The next evidence packet should list named cases, expected dispositions, and observed results for each state.
 
 This article does not use CodeFlowMu Open source or Open-edition test counts as product evidence.
 
@@ -207,7 +213,7 @@ For each automation rule, answer:
 7. Do retry, cooldown, timeout, and recovery change only technical state rather than silently decide a business outcome?
 8. Is there a test proving that classifier scores, elapsed time, and artifact gaps cannot silently become business verdicts?
 
-The value of a rail is not that it decides everything for the agents. It gives the team stable facts, controlled motion, and recoverable execution. **The more reliable the rail becomes, the clearer the ownership of business judgment should be.**
+The value of a rail is not that it decides everything for agents. It lets each agent work more autonomously within the right boundary while giving the team stable facts, controlled motion, and recoverable execution. **The more reliable the rail becomes, the clearer both agent autonomy and the ownership of business judgment should be.**
 
 ## Sources and evidence boundaries
 

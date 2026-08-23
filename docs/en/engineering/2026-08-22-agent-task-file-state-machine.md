@@ -77,6 +77,18 @@ There is one more boundary. If an implementation publishes a new destination fil
 
 The precise claim is therefore: **rename can provide an atomic destination-publication point inside the declared filesystem boundary; it does not make an entire multi-agent system inherently concurrency-safe.**
 
+### An easy-to-miss gap: complete publication is not exclusive claim
+
+This is not wordplay, but it is not the normal topology of the current local-first deployment. The tested CodeFlowMu V1.9.7 shape is **one Runtime service for one local project root**. Its controlled-restart record shows the current process holding the writer lock and retaining a consistent root binding. The inspected material does not declare two independent CodeFlowMu Runtimes sharing one project folder as supported, and it provides no dual-Runtime claim stress test. The following contention is therefore a boundary analysis for a future shared-workspace extension, not an assertion of an existing failure in the current single-Runtime local mode.
+
+The boundary still matters because, in the public FCoP path, `claim_task` first reads whether a TASK is still in `inbox/`, then the [atomic-commit implementation](https://github.com/joinwell52-AI/FCoP/blob/main/src/fcop/lifecycle/atomic.py) publishes a temporary file into `active/` with `os.replace()`. If a future design allows agents A and B as independent claimants, and both pass the “still in inbox” check before the source is removed, both can construct a claim event from the same old content. A can publish first; B can publish later. POSIX-style replacement permits the later destination name to replace the earlier one, while both callers may treat their own call as successful and start work.
+
+This does not turn a valid serial dependency graph into a genuine parallel branch. It creates a more dangerous **false parallelism**: one work item that should have one executor starts two agent sessions. The disk may retain only the later `active/` file, but that cannot retract the earlier tool call or code modification already started by the first agent.
+
+The current write-and-replace path therefore solves “do not read a half-file”; it **does not prove exclusive claim for a future multi-Runtime shared workspace**. The public specification and inspected material do not provide evidence of a same-TASK double-claim stress test, a non-replaceable claim reservation, a lease, or heartbeat reclamation. This article must not describe them as existing features. If a future design explicitly permits competing claimants, the claim entry point needs a separate mutual-exclusion primitive: for example, a non-replaceable exclusive reservation (`O_CREAT | O_EXCL` where supported), or Runtime-side serialization/compare-and-swap against the canonical task identity. The primitive must be validated separately for Windows, local filesystems, and network filesystems; the local semantics of `link()`, a file lock, or `rename` cannot be generalized into a cross-platform guarantee.
+
+A minimally credible claim test launches two claims against the same TASK at once. Exactly one caller may receive an executable claim credential. The loser must receive a deterministic “already claimed/contention lost” result and must not start a model session or tool call.
+
 ### 3. Execution: the rail dispatches and checks preconditions
 
 Once the TASK is active, the file state machine says it has been claimed. Code generation, tool mounting, testing, and output capture belong to the engineering runtime.
@@ -107,7 +119,9 @@ export function canonicalThreadKey(value: unknown): string {
 
 Second, `expected_revision` rejects a write based on stale facts. If a PM prepared an action against revision A and the task has moved to revision B, the old action cannot be applied unchanged.
 
-Do not turn an interface field into an unverified algorithm. The inspected private-parent evidence proves only that a command binds and checks `expected_revision`; it does not disclose whether the value is produced from a content digest, monotonic version, event sequence, or another canonicalization scheme. This article therefore treats it as a precondition token for the current task version, not as an mtime-based mechanism; filesystem modification time cannot carry causal versioning. To test its strength, change the body, transition event, and evidence reference separately on a fixed task, then replay an old token and observe which changes invalidate the command.
+Do not turn an interface field into an unverified algorithm. The inspected private-parent evidence proves only that a command binds and checks `expected_revision`; it does not disclose whether the value is produced from a content digest, monotonic version, event sequence, or another canonicalization scheme. This article therefore treats it as a precondition token for the current task version, not as an mtime-based mechanism; filesystem modification time cannot carry causal versioning.
+
+That also means there is **not yet an assessable versioning closure**. If the token covers the whole TASK content, does appending a `transitions` event create needless expiry for a concurrent command? If it covers only business content, can an evidence-reference or authorization change evade the stale-action check? The current material does not answer those questions. To test the design, alter body, transition, evidence reference, and authorization scope separately on a fixed task, then replay an old token and observe which changes invalidate the command. Until those results exist, the field cannot be claimed to solve optimistic concurrency control or false aborts.
 
 Third, the idempotency key distinguishes a transport retry from a new business intent. Replaying the same intent under the same key returns the existing result; reusing the key for a different intent creates a conflict. This reduces duplicate task, attempt, and dispatch creation. It does not prove exactly-once execution for every external tool effect.
 
@@ -119,7 +133,9 @@ The correct meaning is “QA is not eligible yet,” not “QA failed.” Waking
 
 The dependency must also reference the current child task. A thread can contain several rounds of DEV rework. The nearest completed DEV task from an older round must not satisfy the new QA contract.
 
-There is another question that cannot be skipped: a dependency cycle. If A waits for B and B waits for A, a queue has not created an answer. The inspected V1.9.7 material proves explicit-dependency waiting and release; it does not prove a complete directed acyclic graph (DAG) check. It would be inaccurate to describe automatic exceptional suspension on cycle detection as a current feature. Instead, cycle submission belongs in the dispatcher's test contract: before the work is queued, a cyclic graph should yield an inspectable conflict or issue record rather than indefinite waiting.
+There is another question that cannot be skipped: a dependency cycle. If A waits for B and B waits for A, a queue has not created an answer. The inspected V1.9.7 material proves explicit-dependency waiting and release; it does not prove a complete directed acyclic graph (DAG) check. It would be inaccurate to describe automatic exceptional suspension on cycle detection as a current feature.
+
+A static admission check is not enough either. If an agent can add or modify a downstream dependency while work is running, every dependency change must be rechecked for cycles or explicitly prohibited. A timeout may report that a policy window was exceeded; it cannot guess which edge to delete or declare business failure. The current material does not prove dynamic dependency mutation, deadlock timeout, or a cycle-breaking protocol. They belong in the dispatcher's next test contract: a submitted cycle, a cycle introduced during execution, and prolonged lack of upstream progress should each produce an inspectable issue for an authorized actor—not indefinite waiting or a heuristic choice of branch.
 
 ### 5. Return and acceptance: executors submit, authorities decide
 
@@ -141,6 +157,8 @@ The task lifecycle is not a good place to record every instant of a compiler pro
 Each managed job is bound to task, session, attempt, and lease information (time-bounded execution ownership). Its per-job `job.json` is authoritative; the aggregate index is rebuildable. After a restart, the Runtime can rediscover a running or terminal job instead of inferring business outcome from the disappearance of the original agent session.
 
 Microsoft's [Job Objects documentation](https://learn.microsoft.com/en-us/windows/win32/procthread/job-objects) provides a related operating-system concept: a process group can be managed as a unit. It does not prove that CodeFlowMu uses every Job Object facility. It reinforces the distinction among task lifecycle, model-session lifecycle, and process lifecycle.
+
+In particular, “short commands may use the host” must not be read as “short commands are already recoverable and terminable.” A host child process outside the managed service has no service-authored `job.json`, and the current material does not prove that it is uniformly enrolled in a Job Object, parent/child cleanup tree, or orphan-process scan. If an agent session exits unexpectedly, such a command may retain a file, port, or workspace. Production deployment needs separate tests for short-command ownership, timeout termination, residual-handle detection, and failure cleanup. Until evidence exists, this is a risk—not a shipped capability.
 
 ## Five invariant groups to test
 
@@ -167,6 +185,7 @@ Microsoft's [Job Objects documentation](https://learn.microsoft.com/en-us/window
 - Role capability, task scope, and current revision are rechecked before action.
 - A network retry of the same business command does not manufacture duplicate work.
 - A dependent agent is not started before an explicit prerequisite is satisfied.
+- Concurrent claim of the same TASK lets only one executor start; a contention loser never begins work merely because its local call returned.
 
 ### Acceptance
 
@@ -178,7 +197,7 @@ These invariants do not prove that report content is true. They do not replace s
 
 A task does not move reliably because its filename is elegant. It moves reliably because **state, history, execution, report, and acceptance retain separate meanings while a stable identity connects them.** That is where the file state machine and the engineering rail genuinely meet.
 
-This file state machine also has a hard boundary: a single-host `rename` cannot be promoted into multi-host strong consistency, and a directory timestamp cannot replace a causal revision. The current material does not cover every crash point, external tool side effect, or platform. The next validation step is fault injection around write, persistence, and rename, followed by replay of stale-revision commands and tests for dependency misbinding and dual-stage conflicts. Version files and the live process report V1.9.7, but the release remains a candidate until ADMIN makes the final `RELEASED` decision.
+This file state machine also has a hard boundary: a single-host `rename` cannot be promoted into multi-host strong consistency, and a directory timestamp cannot replace a causal revision. Preserving a dual-stage conflict and waiting for authorized recovery prioritizes factual integrity, but it is not an unattended self-healing contract: the current material does not prove a lease, heartbeat, timeout reclamation, write-ahead log, or automatic rollback. It also does not cover every crash point, external tool side effect, or platform. The next validation step is fault injection around write, persistence, and rename, together with double-claim contention, stale-revision replay, dynamic dependency cycles, short-command orphan processes, and authorized recovery of dual-stage conflict. Version files and the live process report V1.9.7, but the release remains a candidate until ADMIN makes the final `RELEASED` decision.
 
 ## Sources and evidence boundaries
 
