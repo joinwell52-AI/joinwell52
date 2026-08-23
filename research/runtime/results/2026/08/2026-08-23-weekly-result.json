@@ -1,0 +1,48 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "weekly",
+  "family": "weekly",
+  "runtimeDate": "2026-08-23",
+  "status": "Completed",
+  "input": "Evidence-validated Daily Research publications for 2026-08-17 through 2026-08-23; current main Scheduler V3.0, Worker Control V1.3.0 and Weekly Prompt v2.1.0; the verified 2026-08-23 Weekly Wake Receipt and Worker claim; the P2 Registry and P2 Special Study contract; current editorial/evidence policies; and current primary GitHub evidence for every due P2 object.",
+  "input_zh": "2026-08-17 至 2026-08-23 已通过证据验证的 Daily Research Publication、当前 main 上的 Scheduler V3.0 / Worker Control V1.3.0 / Weekly Prompt v2.1.0、已核验的 2026-08-23 Weekly Wake Receipt 与 Worker Claim、P2 Registry 与 P2 Special Study Contract、当前编辑与证据政策，以及全部到期 P2 对象的当前 GitHub 一手证据。",
+  "workResult": "Synthesized seven fully published Daily Runtime days comprising 21 eligible research notes into Weekly 006 without concatenating Daily articles. The recurring failure this week is provenance loss during transformation: values survive compaction, resume, delegation, caching, normalization, reconstruction and persistence while the authority conditions that originally made them safe may not. The synthesis introduces Provenance-Preserving Admission: operational facts retain origin, principal, scope, policy epoch, occurrence identity, transformation lineage, durability and verification state, and state transformations may preserve or narrow authority but must not silently expand it. The P2 lane resolved all four due biweekly-or-release objects; two monthly objects were not due; no trigger reached 5; no full Special Study ran. The run also corrected the agent-style checkpoint identity without falsely treating an already-preexisting README clarification as a new weekly change.",
+  "workResult_zh": "将连续七个已完成公开发布的 Daily Runtime 日、共 21 篇合格研究综合为 Weekly 006，而不是拼接 Daily 文章。本周反复出现的故障是 Transformation 过程中的 Provenance 丢失：Value 可以穿过压缩、恢复、委派、缓存、规范化、重建与持久化继续存在，但原先让它安全可用的 Authority 条件未必一起存在。本次提出 Provenance-Preserving Admission：Operational Fact 保留 Origin、Principal、Scope、Policy Epoch、Occurrence Identity、Transformation Lineage、Durability 与 Verification State；State Transformation 可以保持或收窄权限，但不得静默扩大权限。P2 通道完成 4 个到期 biweekly-or-release 对象的终态检查；2 个 monthly 对象本周不到期；没有 Trigger 达到 5 分；没有运行完整 Special Study。本次还纠正了 agent-style 的 Checkpoint Identity，并避免把前次运行前就已存在的 README 澄清提交误报为本周新增变化。",
+  "output": "Weekly 006 — Authority Needs Lineage, published as independent English and Chinese Weekly Research pages with an editorial cover, plus a contract-valid 2026-08-23 P2 check record covering all four due objects and explicitly recording two monthly objects as not due.",
+  "output_zh": "发布 Weekly 006《权限需要血缘链》的中英文独立 Weekly Research 页面与编辑题图，并形成符合合同的 2026-08-23 P2 检查记录，覆盖全部 4 个到期对象，并明确记录 2 个 monthly 对象本周不到期。",
+  "next": "Next week, test resume under a changed policy epoch, test whether transcript compaction preserves resolvable authority evidence, and test authoritative negative evidence by removing a resource only from a local cache. For P2, use the corrected 2026-08-23 checkpoints as the next comparison baseline; continue weekly release/material-commit checks for biweekly-or-release objects and monthly cadence for monthly objects.",
+  "next_zh": "下一周优先验证三项机制：在 Policy Epoch 变化后 Resume；验证 Transcript Compaction 是否保留可解析的 Authority Evidence；只从 Local Cache 删除资源，测试系统能否拒绝把 Cache Miss 升级为 Authoritative Deletion。P2 方面，以 2026-08-23 纠正后的检查点作为下次比较基线；biweekly-or-release 对象继续执行每周 Release / Material-commit Check，monthly 对象继续按月度节奏治理。",
+  "metrics": [
+    {"label":"Daily days covered","label_zh":"覆盖 Daily 天数","value":7},
+    {"label":"Eligible Daily Research notes","label_zh":"合格 Daily Research 篇数","value":21},
+    {"label":"P2 due / resolved","label_zh":"P2 到期 / 已收口","value":"4 / 4"},
+    {"label":"P2 not due","label_zh":"P2 本周不到期","value":2},
+    {"label":"P2 triggers","label_zh":"P2 触发数","value":0},
+    {"label":"P2 full studies","label_zh":"P2 完整专项研究","value":0},
+    {"label":"Weekly language editions","label_zh":"Weekly 语言版本","value":2}
+  ],
+  "evidence": [
+    "research/runtime/SCHEDULER.json",
+    "research/runtime/worker-prompts/generated/CONTROL.json",
+    "research/runtime/worker-prompts/generated/weekly.prompt.md",
+    "research/runtime/wakes/2026/08/2026-08-23/weekly-203032.json",
+    "research/runtime/results/2026/08/2026-08-17-publication-result.json",
+    "research/runtime/results/2026/08/2026-08-18-publication-result.json",
+    "research/runtime/results/2026/08/2026-08-19-publication-result.json",
+    "research/runtime/results/2026/08/2026-08-20-publication-result.json",
+    "research/runtime/results/2026/08/2026-08-21-publication-result.json",
+    "research/runtime/results/2026/08/2026-08-22-publication-result.json",
+    "research/runtime/results/2026/08/2026-08-23-publication-result.json",
+    "research/intelligence/p2-runs/2026/08/2026-08-23-p2-special.json"
+  ],
+  "artifacts": [
+    "docs/en/research/weekly/weekly-006.md",
+    "docs/zh/research/weekly/weekly-006.md",
+    "docs/public/assets/covers/weekly-006-authority-needs-lineage-cover.svg",
+    "research/intelligence/p2-runs/2026/08/2026-08-23-p2-special.json",
+    "research/runtime/results/2026/08/2026-08-23-weekly-result.json",
+    "research/runtime/records/weekly/2026/08/2026-08-23-weekly-runtime.json"
+  ],
+  "startedAt": "2026-08-23T20:33:31+08:00",
+  "completedAt": "2026-08-23T20:40:57+08:00"
+}
