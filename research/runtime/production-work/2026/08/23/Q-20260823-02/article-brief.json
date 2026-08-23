@@ -1,0 +1,47 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-23",
+  "itemId": "Q-20260823-02",
+  "researchObjectId": "AN-20260823-02",
+  "targetAudience": {
+    "primary": "Architects of durable agent threads, job systems and provenance-sensitive automation",
+    "knowledgeAssumption": "The reader understands create, resume and fork lifecycle operations.",
+    "readerProblem": "A long-lived work object can be resumed or derived many times, but a single mutable source label cannot distinguish stable origin, local role and parent lineage."
+  },
+  "whyNow": "A same-day merged OpenAI Codex change persists thread-source classification at creation, permits a fork to set its own source while retaining lineage, and prevents ordinary TypeScript resume from forwarding an override.",
+  "externalHook": {
+    "type": "continuation-derivation-distinction",
+    "description": "Resume re-enters an existing durable identity; fork creates a new object with both a local role and a parent relationship.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "Durable agent provenance should separate continuation-stable creation source from derivation lineage: ordinary resume must not silently relabel origin, while fork may establish a new local classification and retain its parent relation; neither label becomes authorization without an independent trust binding.",
+  "originalValue": {
+    "type": "two-axis-provenance-model",
+    "description": "Separates local creation classification from derivation lineage and identifies compatibility defaults and application-controlled labels as interpretations rather than security authority."
+  },
+  "readerTakeaway": "Define metadata by lifecycle scope, preserve creation provenance across resume, record fork lineage independently and keep descriptive labels outside authorization decisions unless bound to trusted identity."
+  ,"evidenceBoundary": {
+    "supported": [
+      "Codex persists User, Subagent, Feature(String) and MemoryConsolidation source classifications.",
+      "Fork can establish a new local source while retaining parent lineage.",
+      "The inspected TypeScript resume path suppresses a conflicting source override."
+    ],
+    "unsupported": [
+      "Cryptographically authenticated actor identity",
+      "Immutability across every lower-level API",
+      "Authorization, retention or tamper resistance",
+      "A cross-platform provenance benchmark"
+    ],
+    "uncertain": [
+      "How governed source correction should preserve history",
+      "Whether historical missing source should be Unknown in sensitive analytics"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article is a general durable-work provenance analysis and does not require a first-party project."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The implementation exposes a concrete lifecycle distinction and supports a reusable two-axis provenance model with explicit security boundaries."
+}

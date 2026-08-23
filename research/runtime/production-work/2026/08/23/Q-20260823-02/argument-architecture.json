@@ -1,0 +1,58 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-23",
+  "itemId": "Q-20260823-02",
+  "coreProposition": "Durable agent provenance should separate continuation-stable creation source from derivation lineage: ordinary resume must not silently relabel origin, while fork may establish a new local classification and retain its parent relation; neither label becomes authorization without an independent trust binding.",
+  "openingMove": {
+    "type": "lifecycle-identity-question",
+    "purpose": "Ask whether a week-old thread changes origin merely because a different client resumes it today.",
+    "evidenceRefs": ["E2", "E3"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why should resume preserve creation source?",
+      "claim": "Resume continues the same durable object, so caller-local defaults should not retroactively rewrite its origin classification.",
+      "evidenceRefs": ["E1", "E3", "I1"],
+      "reasoningRole": "continuation-invariant",
+      "readerProgress": "The reader identifies creation source as continuation-stable metadata.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Why may fork set a different source?",
+      "claim": "Fork creates a new durable object, so it can carry its own local classification while parent lineage preserves derivation.",
+      "evidenceRefs": ["E2", "I2"],
+      "reasoningRole": "two-axis-model",
+      "readerProgress": "The reader separates local role from where the derived object came from.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What prevents provenance from becoming an unsafe principal?",
+      "claim": "Application-controlled source strings remain descriptive until independently bound to authenticated actor and policy evidence.",
+      "evidenceRefs": ["E4", "I3"],
+      "reasoningRole": "trust-boundary",
+      "readerProgress": "The reader avoids using durable classification as authorization.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "How should compatibility and repair be represented?",
+      "claim": "A default inferred for missing historical metadata and a governed correction should remain distinguishable from directly observed creation provenance.",
+      "evidenceRefs": ["E1", "E4", "I3"],
+      "reasoningRole": "audit-boundary",
+      "readerProgress": "The reader gains an operational metadata-scope and correction model.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "A coarse mutable source may be sufficient for telemetry, and administrative correction can be legitimate.",
+    "responseBoundary": "Use the lighter model where appropriate, but record correction as a governed transition when the field supports audit or policy decisions."
+  },
+  "endingStrategy": {
+    "type": "metadata-scope-checklist",
+    "purpose": "End by requiring every durable field to declare whether it is creation-scoped, continuation-stable, derivation-scoped or repairable."
+  }
+}
