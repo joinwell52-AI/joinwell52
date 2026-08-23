@@ -1,0 +1,58 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-23",
+  "itemId": "Q-20260823-03",
+  "coreProposition": "Resource managers should establish one canonical owned population before lifecycle side effects and reuse one documented identity relation across connect, retry and cleanup; deduplication and serialized mutation improve in-process accounting but do not establish endpoint uniqueness or distributed exactly-once execution.",
+  "openingMove": {
+    "type": "double-ownership-anomaly",
+    "purpose": "Open with one server object appearing twice and therefore being connected and cleaned as if it were two owned resources.",
+    "evidenceRefs": ["E1", "E3"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Where should deduplication occur?",
+      "claim": "The ownership boundary should define a canonical resource population before any lifecycle path can perform side effects.",
+      "evidenceRefs": ["E1", "E3", "I1"],
+      "reasoningRole": "ownership-invariant",
+      "readerProgress": "The reader moves from per-call patches to a reusable manager-level population.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What does duplicate mean?",
+      "claim": "Object identity, equality and logical endpoint keys are distinct relations, so the manager contract must state which relation defines one owned resource.",
+      "evidenceRefs": ["E2", "I2"],
+      "reasoningRole": "identity-contract",
+      "readerProgress": "The reader sees uniqueness semantics as an explicit design choice.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "Why are a lock and deduplication both needed?",
+      "claim": "Canonicalization controls population cardinality while a lifecycle lock controls temporal overlap; neither substitutes for the other.",
+      "evidenceRefs": ["E3", "E4", "I1"],
+      "reasoningRole": "mechanism-separation",
+      "readerProgress": "The reader separates two failure classes and tests them independently.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Why is the result not exactly-once?",
+      "claim": "External endpoints, concurrent managers and process failures remain outside the demonstrated local population and lock boundary.",
+      "evidenceRefs": ["E4", "I3"],
+      "reasoningRole": "guarantee-boundary",
+      "readerProgress": "The reader knows what additional evidence stronger claims require.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Central canonicalization may be unnecessary when duplicates are impossible or all lifecycle operations are independently idempotent.",
+    "responseBoundary": "That can be a valid contract, but the impossibility or idempotency assumption should be explicit and tested at every participating side-effect boundary."
+  },
+  "endingStrategy": {
+    "type": "external-boundary-question",
+    "purpose": "End by asking which receipt, idempotency key or reconciliation proof is available at the external effect boundary."
+  }
+}

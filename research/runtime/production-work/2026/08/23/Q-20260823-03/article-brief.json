@@ -1,0 +1,48 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-23",
+  "itemId": "Q-20260823-03",
+  "researchObjectId": "AN-20260823-03",
+  "targetAudience": {
+    "primary": "Open-source maintainers and engineers responsible for resource-manager lifecycle reliability",
+    "knowledgeAssumption": "The reader understands connection managers, cleanup, retries and object identity.",
+    "readerProblem": "Duplicate resource entries can trigger repeated connect and cleanup side effects, while ad hoc deduplication across lifecycle methods produces inconsistent ownership semantics."
+  },
+  "whyNow": "A same-day merged OpenAI Agents Python change canonicalizes repeated MCP server entries before manager ownership and reuses the same uniqueness helper across connect, retry and cleanup paths.",
+  "externalHook": {
+    "type": "ownership-before-side-effects",
+    "description": "A manager should decide which resources it owns before the first connect, retry or cleanup side effect occurs.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "Resource managers should establish one canonical owned population before lifecycle side effects and reuse one documented identity relation across connect, retry and cleanup; deduplication and serialized mutation improve in-process accounting but do not establish endpoint uniqueness or distributed exactly-once execution.",
+  "originalValue": {
+    "type": "ownership-admission-invariant",
+    "description": "Moves deduplication from per-operation repair into the ownership boundary, separates population identity from temporal serialization, and defines the evidence needed before making stronger exactly-once claims."
+  },
+  "readerTakeaway": "Canonicalize once before ownership, document whether uniqueness means object identity, equality or a logical key, and test every lifecycle phase without promoting local call counts into distributed guarantees.",
+  "evidenceBoundary": {
+    "supported": [
+      "MCPServerManager canonicalizes incoming entries before lifecycle ownership.",
+      "The helper preserves first-occurrence order and uses set/equality membership.",
+      "The repeated-object regression observes one connect and one cleanup.",
+      "Lifecycle mutation is serialized by a process-local lock."
+    ],
+    "unsupported": [
+      "Endpoint-level uniqueness",
+      "Cross-process ownership exclusion",
+      "Distributed exactly-once effects",
+      "Correctness for every custom equality implementation"
+    ],
+    "uncertain": [
+      "Whether uniqueness should use identity, equality or a logical resource key",
+      "How intentionally separate sessions to one endpoint should be represented"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article develops a general resource-lifecycle ownership pattern without first-party project dependence."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The merged implementation and regression supply a concrete ownership defect, and the Research Object adds a transferable identity and guarantee model."
+}
