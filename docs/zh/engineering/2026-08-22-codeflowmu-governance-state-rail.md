@@ -184,6 +184,8 @@ NIST 的 [AI RMF 1.0](https://www.nist.gov/publications/artificial-intelligence-
 
 ## 资料与证据边界
 
+本系列如何区分公开规范、私有代码摘录、第一方运行记录与独立资料，见[《如何阅读数字员工工场的工程证据》](../methodology/evidence-boundaries)。以下来源仍只支持本篇明确写出的主张。
+
 - [TMPA 架构论文 A1.0](https://github.com/joinwell52-AI/joinwell52/blob/main/docs/public/releases/tmpa/v1.0/artifacts/tmpa-architecture-paper-a1.0-zh.md)、[TMPA Core S1.0](https://github.com/joinwell52-AI/joinwell52/blob/main/docs/public/releases/tmpa/v1.0/artifacts/tmpa-core-specification-s1.0-zh.md) 与 [FCoP v3](https://github.com/joinwell52-AI/FCoP/blob/main/spec/fcop-v3-spec.zh.md)：支持本文对本研究的治理对象、文件工件和生命周期语义的描述；不构成对任何私有运行时的公开复现证明。
 - [W3C PROV-O](https://www.w3.org/TR/prov-o/)：提供实体、活动与责任主体分离建模的独立参照；不规定 TMPA 或 FCoP 的具体目录和信封格式。
 - [NIST AI RMF 1.0](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10)：支持“治理、角色责任与监督应贯穿生命周期”的通用背景；不认可或认证本文的三层实现。

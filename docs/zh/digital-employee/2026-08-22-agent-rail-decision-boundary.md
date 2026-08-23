@@ -217,6 +217,8 @@ V1.9.7 的第一方候选证据包 `V1.9.7-RAIL-ASSISTANCE-RC-20260822-001`（�
 
 ## 资料与证据边界
 
+本系列如何区分公开规范、私有代码摘录、第一方运行记录与独立资料，见[《如何阅读数字员工工场的工程证据》](../methodology/evidence-boundaries)。以下来源仍只支持本篇明确写出的主张。
+
 - [NIST AI RMF 1.0](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10)：支持治理、责任角色与人工监督贯穿 AI 生命周期的通用背景；不定义本文的轨道机，也不认证 CodeFlowMu。
 - [OWASP AI Agent Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/AI_Agent_Security_Cheat_Sheet.html)：支持对 Agent 工具调用需要最小权限、明确授权与隔离防线的通用安全要求；不证明本文所有工具策略已经完备。
 - [W3C PROV-O](https://www.w3.org/TR/prov-o/)：为事实、活动和责任主体分离提供独立的来源建模参照；不规定本文的业务裁决或恢复策略。

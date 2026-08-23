@@ -217,6 +217,8 @@ The value of a rail is not that it decides everything for agents. It lets each a
 
 ## Sources and evidence boundaries
 
+For how this series distinguishes public specifications, private code excerpts, first-party execution records, and independent material, see [How to Read Engineering Evidence at the Digital Employee Works](../methodology/evidence-boundaries). The sources below still support only the specific claims stated in this article.
+
 - [NIST AI RMF 1.0](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10) supports the general context of governance, accountable roles, and human oversight across an AI lifecycle. It neither defines an engineering rail nor certifies CodeFlowMu.
 - [OWASP AI Agent Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/AI_Agent_Security_Cheat_Sheet.html) supports the general security need for explicit authorization, least privilege, and isolation around agent tool calls. It does not prove that every tool policy here is complete.
 - [W3C PROV-O](https://www.w3.org/TR/prov-o/) is an independent provenance-modeling reference for separating facts, activities, and responsible agents. It does not prescribe this article's business-decision or recovery policy.
