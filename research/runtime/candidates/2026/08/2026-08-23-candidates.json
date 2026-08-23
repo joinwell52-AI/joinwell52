@@ -1,0 +1,383 @@
+{
+  "schema": "runtime-publication-candidate/v2",
+  "date": "2026-08-23",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Production",
+  "sourceRecord": "research/runtime/records/daily/2026/08/2026-08-23-daily-runtime.json",
+  "updatedAt": "2026-08-23T15:18:00+08:00",
+  "githubCommit": "pending",
+  "reason": "Three completed 2026-08-23 Research Objects were converted into complete bilingual Editorial Architecture 2.1 candidates with verified planning artifacts and deterministic baseline covers.",
+  "reason_zh": "三份已完成的 2026-08-23 Research Object 已转换为完整双语 Editorial Architecture 2.1 候选，并具备已核验的规划工件与确定性基础题图。",
+  "candidates": [
+    {
+      "column": "digital-employee",
+      "category": "daily",
+      "itemId": "Q-20260823-01",
+      "articleType": "engineering-insight",
+      "researchQuestion": "When a digital employee resumes after a human interruption, how should reconstructed operator evidence be ordered relative to regenerated or synthetic context?",
+      "title": "Resume Recency Is Not Resume Authority",
+      "title_zh": "恢复时序不等于恢复权威",
+      "zhPath": "staging/publication-candidates/2026-08-23-resume-recency-not-authority.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-23-resume-recency-not-authority.en.md",
+      "articleBriefPath": "research/runtime/production-work/2026/08/23/Q-20260823-01/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/08/23/Q-20260823-01/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/08/23/Q-20260823-01/figure-plan.json",
+      "coreProposition": "Resumable agent systems should preserve a monotonic, occurrence-scoped evidence order before model interpretation: once an operator response is reconstructed and admitted for a specific interruption, regenerated context must not silently outrank it, while identity, freshness and exactly-once effects remain separate controls.",
+      "sections": [
+        {
+          "module": "context",
+          "heading": "A later event can be less authoritative",
+          "heading_zh": "更晚的事件，可能更不权威"
+        },
+        {
+          "module": "technical-analysis",
+          "heading": "Enforce precedence before model interpretation",
+          "heading_zh": "在模型解释之前落实优先级"
+        },
+        {
+          "module": "governance-implications",
+          "heading": "Evidence continuity is not authorization",
+          "heading_zh": "证据连续性不是授权"
+        },
+        {
+          "module": "limitations",
+          "heading": "The guard is narrow, and the boundary matters",
+          "heading_zh": "这条 Guard 很窄，边界也很重要"
+        }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "ADK reconstructs user FunctionResponses associated with known interrupt ids into resume inputs.",
+          "claim_zh": "ADK 会把与已知 Interrupt ID 关联的 User FunctionResponse 重建为 Resume Input。",
+          "source": "research/analysis/Q-20260823-01-resume-evidence-authority.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "public-fact",
+          "claim": "The workflow-wrapped single-turn input path skips synthetic user-event injection when resume inputs are non-empty.",
+          "claim_zh": "当 Resume Input 非空时，Workflow-wrapped Single-turn Input Path 会跳过 Synthetic User Event 注入。",
+          "source": "research/analysis/Q-20260823-01-resume-evidence-authority.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "source-reported-claim",
+          "claim": "The maintainer reports repeated HITL confirmation caused by synthetic input shadowing the operator FunctionResponse.",
+          "claim_zh": "维护者报告，Synthetic Input 遮蔽 Operator FunctionResponse 会导致 HITL 重复确认。",
+          "source": "research/analysis/Q-20260823-01-resume-evidence-authority.md",
+          "strength": "reports",
+          "independent": false
+        },
+        {
+          "id": "E4",
+          "identity": "public-fact",
+          "claim": "The regression test verifies a representative non-empty resume-input guard rather than a complete persisted tool-confirmation loop.",
+          "claim_zh": "Regression Test 验证的是代表性非空 Resume-input Guard，而不是完整持久 Tool-confirmation Loop。",
+          "source": "research/analysis/Q-20260823-01-resume-evidence-authority.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "I1",
+          "identity": "our-interpretation",
+          "claim": "Occurrence-scoped resume lineage should determine evidence precedence before model-context assembly.",
+          "claim_zh": "面向具体 Occurrence 的 Resume Lineage 应在 Model-context Assembly 前决定 Evidence Precedence。",
+          "source": "research/analysis/Q-20260823-01-resume-evidence-authority.md",
+          "strength": "suggests",
+          "independent": false
+        },
+        {
+          "id": "I2",
+          "identity": "our-interpretation",
+          "claim": "Preserved evidence order does not authenticate the operator or establish exactly-once external effects.",
+          "claim_zh": "保留 Evidence Order 不会认证 Operator，也不会建立 Exactly-once External Effect。",
+          "source": "research/analysis/Q-20260823-01-resume-evidence-authority.md",
+          "strength": "suggests",
+          "independent": false
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The conclusion concerns general resumable-agent and HITL evidence governance."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The Research Center edition already addresses the complete transferable engineering question; a separate community edition would not add a distinct evidence subset or discussion angle."
+      },
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverPath": "staging/publication-candidates/2026-08-23-resume-recency-not-authority-cover.png",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    },
+    {
+      "column": "industry-architecture",
+      "category": "daily",
+      "itemId": "Q-20260823-02",
+      "articleType": "technical-analysis",
+      "researchQuestion": "For durable agent work that can be created, forked and resumed, which provenance properties should remain stable across continuation, and which lifecycle transitions may establish a new local provenance identity?",
+      "title": "Creation Provenance Should Survive Resume",
+      "title_zh": "创建来源应跨恢复保持稳定",
+      "zhPath": "staging/publication-candidates/2026-08-23-creation-provenance-survives-resume.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-23-creation-provenance-survives-resume.en.md",
+      "articleBriefPath": "research/runtime/production-work/2026/08/23/Q-20260823-02/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/08/23/Q-20260823-02/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/08/23/Q-20260823-02/figure-plan.json",
+      "coreProposition": "Durable agent provenance should separate continuation-stable creation source from derivation lineage: ordinary resume must not silently relabel origin, while fork may establish a new local classification and retain its parent relation; neither label becomes authorization without an independent trust binding.",
+      "sections": [
+        {
+          "module": "technical-analysis",
+          "heading": "Resume should not relabel origin",
+          "heading_zh": "Resume 不应重标来源"
+        },
+        {
+          "module": "architecture-implications",
+          "heading": "Fork creates a second provenance axis",
+          "heading_zh": "Fork 会产生第二条 Provenance 轴"
+        },
+        {
+          "module": "governance-implications",
+          "heading": "A durable label still needs a trust binding",
+          "heading_zh": "持久 Label 仍需要 Trust Binding"
+        },
+        {
+          "module": "limitations",
+          "heading": "Compatibility defaults are interpretations",
+          "heading_zh": "兼容默认值是一种解释"
+        }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "Codex persists User, Subagent, Feature(String) and MemoryConsolidation thread-source classifications, with a compatibility default for missing source.",
+          "claim_zh": "Codex 持久化 User、Subagent、Feature(String) 与 MemoryConsolidation Thread-source Classification，并为缺失 Source 提供兼容默认值。",
+          "source": "research/analysis/Q-20260823-02-creation-provenance-continuity.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "public-fact",
+          "claim": "A fork can establish its own local source classification while retaining parent lineage metadata.",
+          "claim_zh": "Fork 可以建立自己的 Local Source Classification，同时保留 Parent Lineage Metadata。",
+          "source": "research/analysis/Q-20260823-02-creation-provenance-continuity.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "public-fact",
+          "claim": "The inspected TypeScript resume path does not forward a new threadSource when an existing threadId is present.",
+          "claim_zh": "已检查的 TypeScript Resume Path 在已有 Thread ID 时不会转发新的 threadSource。",
+          "source": "research/analysis/Q-20260823-02-creation-provenance-continuity.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E4",
+          "identity": "public-fact",
+          "claim": "Arbitrary non-reserved source strings become application-controlled Feature classifications rather than authenticated identities.",
+          "claim_zh": "任意非保留 Source String 会成为 Application-controlled Feature Classification，而不是 Authenticated Identity。",
+          "source": "research/analysis/Q-20260823-02-creation-provenance-continuity.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "I1",
+          "identity": "our-interpretation",
+          "claim": "Creation source should remain stable through ordinary continuation while derivation is represented separately.",
+          "claim_zh": "Creation Source 应在普通 Continuation 中保持稳定，而 Derivation 应单独表示。",
+          "source": "research/analysis/Q-20260823-02-creation-provenance-continuity.md",
+          "strength": "suggests",
+          "independent": false
+        },
+        {
+          "id": "I2",
+          "identity": "our-interpretation",
+          "claim": "A durable provenance label should not acquire authorization power without an independent trust binding.",
+          "claim_zh": "Durable Provenance Label 在没有独立 Trust Binding 时不应获得 Authorization Power。",
+          "source": "research/analysis/Q-20260823-02-creation-provenance-continuity.md",
+          "strength": "suggests",
+          "independent": false
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The conclusion concerns general durable-work provenance architecture."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already provides the architecture model; a separate community edition would not add a genuinely different professional angle."
+      },
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverPath": "staging/publication-candidates/2026-08-23-creation-provenance-survives-resume-cover.png",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    },
+    {
+      "column": "open-source-engineering",
+      "category": "daily",
+      "itemId": "Q-20260823-03",
+      "articleType": "engineering-insight",
+      "researchQuestion": "When one manager owns resource lifecycle side effects, where should duplicate-resource normalization occur so connect, retry and cleanup remain replayable without overstating the guarantee?",
+      "title": "Canonicalize Resources Before Lifecycle Side Effects",
+      "title_zh": "先规范资源，再执行生命周期副作用",
+      "zhPath": "staging/publication-candidates/2026-08-23-canonicalize-before-lifecycle.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-23-canonicalize-before-lifecycle.en.md",
+      "articleBriefPath": "research/runtime/production-work/2026/08/23/Q-20260823-03/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/08/23/Q-20260823-03/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/08/23/Q-20260823-03/figure-plan.json",
+      "coreProposition": "Resource managers should establish one canonical owned population before lifecycle side effects and reuse one documented identity relation across connect, retry and cleanup; deduplication and serialized mutation improve in-process accounting but do not establish endpoint uniqueness or distributed exactly-once execution.",
+      "sections": [
+        {
+          "module": "technical-analysis",
+          "heading": "Deduplicate at the ownership boundary",
+          "heading_zh": "在 Ownership Boundary 去重"
+        },
+        {
+          "module": "engineering-implications",
+          "heading": "Identity is part of the lifecycle contract",
+          "heading_zh": "Identity 是 Lifecycle Contract 的一部分"
+        },
+        {
+          "module": "operational-implications",
+          "heading": "A lock and a unique set solve different failures",
+          "heading_zh": "Lock 与 Unique Set 解决不同故障"
+        },
+        {
+          "module": "limitations",
+          "heading": "Exactly-once begins beyond the process boundary",
+          "heading_zh": "Exactly-once 从进程边界之外开始"
+        }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "MCPServerManager canonicalizes incoming server entries before establishing lifecycle ownership.",
+          "claim_zh": "MCPServerManager 在建立 Lifecycle Ownership 前规范化输入 Server Entry。",
+          "source": "research/analysis/Q-20260823-03-canonical-lifecycle-ownership.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "public-fact",
+          "claim": "The uniqueness helper preserves first-occurrence order and uses Python set/equality membership.",
+          "claim_zh": "Unique Helper 保留 First-occurrence Order，并使用 Python Set/Equality Membership。",
+          "source": "research/analysis/Q-20260823-03-canonical-lifecycle-ownership.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "public-fact",
+          "claim": "The repeated-object regression observes one managed entry, one connect and one cleanup, and internal subsets reuse normalization.",
+          "claim_zh": "Repeated-object Regression 观察到一个 Managed Entry、一次 Connect 与一次 Cleanup，内部 Subset 也复用 Normalization。",
+          "source": "research/analysis/Q-20260823-03-canonical-lifecycle-ownership.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E4",
+          "identity": "public-fact",
+          "claim": "An asynchronous manager lock serializes participating lifecycle mutation only within one manager process.",
+          "claim_zh": "Async Manager Lock 只在一个 Manager Process 内串行化参与的 Lifecycle Mutation。",
+          "source": "research/analysis/Q-20260823-03-canonical-lifecycle-ownership.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "I1",
+          "identity": "our-interpretation",
+          "claim": "Canonicalization should be an ownership-admission invariant shared by all side-effecting lifecycle paths.",
+          "claim_zh": "Canonicalization 应成为所有 Side-effecting Lifecycle Path 共享的 Ownership-admission Invariant。",
+          "source": "research/analysis/Q-20260823-03-canonical-lifecycle-ownership.md",
+          "strength": "suggests",
+          "independent": false
+        },
+        {
+          "id": "I2",
+          "identity": "our-interpretation",
+          "claim": "Local canonicalization and serialization do not establish endpoint uniqueness or distributed exactly-once effects.",
+          "claim_zh": "Local Canonicalization 与 Serialization 不会建立 Endpoint Uniqueness 或分布式 Exactly-once Effect。",
+          "source": "research/analysis/Q-20260823-03-canonical-lifecycle-ownership.md",
+          "strength": "suggests",
+          "independent": false
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The conclusion concerns general resource-lifecycle engineering and open-source reliability."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The Research Center edition already provides the transferable lifecycle contract; a separate community edition would repeat the same evidence and structure."
+      },
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverPath": "staging/publication-candidates/2026-08-23-canonicalize-before-lifecycle-cover.png",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    }
+  ]
+}
