@@ -45,6 +45,8 @@ A DOI belonging to another repository or publication must never be presented as 
 
 `CITATION.cff` must live at the repository root so GitHub can expose **Cite this repository**.
 
+CFF 1.2 schema note: the root `type` is limited to `software` or `dataset`. A research/specification repository that also contains executable research software may use `type: software` at the root and redirect the preferred human citation to a paper, report, or publication set with `preferred-citation`. Reference-level entries may use `generic` and other CFF reference types.
+
 Use these rules:
 
 - Software repository with its own DOI: cite the software DOI and repository.
