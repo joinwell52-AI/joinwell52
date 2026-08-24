@@ -15,6 +15,7 @@
 }
 
 .rc-home .rc-program--employee,
+.rc-home .rc-program--xiaodian,
 .rcv5-program-grid .rcv5-program.employee {
   order: 4 !important;
 }
@@ -25,6 +26,7 @@
   .rc-home .rc-program--fcop { grid-column: 2 !important; grid-row: 1 !important; }
   .rc-home .rc-program--codeflow { grid-column: 1 !important; grid-row: 2 !important; }
   .rc-home .rc-program--employee { grid-column: 2 !important; grid-row: 2 !important; }
+  .rc-home .rc-program--xiaodian { grid-column: 2 !important; grid-row: 2 !important; }
 }
 
 /* Visible serial numbers follow the hierarchy. */
@@ -38,6 +40,7 @@
 .rc-home .rc-program--fcop .rc-program__cover > b::after { content: '02'; }
 .rc-home .rc-program--codeflow .rc-program__cover > b::after { content: '03'; }
 .rc-home .rc-program--employee .rc-program__cover > b::after { content: '04'; }
+.rc-home .rc-program--xiaodian .rc-program__cover > b::after { content: '04'; }
 
 /* Homepage header stays inside the 1440px hero bounds. */
 .portal-v5-page .VPNavBar .container {
@@ -255,7 +258,8 @@ html.dark[lang='zh-CN'] .portal-v5-page .VPNavBarTitle .title span {
   .rc-home .rc-program--tmpa,
   .rc-home .rc-program--fcop,
   .rc-home .rc-program--codeflow,
-  .rc-home .rc-program--employee {
+  .rc-home .rc-program--employee,
+  .rc-home .rc-program--xiaodian {
     grid-column: auto !important;
     grid-row: auto !important;
   }
