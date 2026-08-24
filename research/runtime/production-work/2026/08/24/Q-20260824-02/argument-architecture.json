@@ -1,0 +1,14 @@
+{
+  "schema":"argument-architecture/v1","date":"2026-08-24","itemId":"Q-20260824-02",
+  "coreProposition":"Forked-agent contexts need two separate control planes: typed lineage must preserve whether instructions are inherited, replaced or child-local across derivation, while independent authority records must identify the principal, policy source and scope that permit those instructions.",
+  "openingMove":{"type":"typed-but-unauthorized-contradiction","purpose":"Open with a child instruction that is correctly typed and scoped yet still lacks evidence of who was permitted to provide it.","evidenceRefs":["E1","E3"]},
+  "argumentNodes":[
+    {"nodeId":"A1","question":"What does typed provenance improve?","claim":"A dedicated developer-instruction fragment makes semantic identity and child scope inspectable instead of preserving only unclassified text.","evidenceRefs":["E1","E3","I1"],"reasoningRole":"semantic-identity","readerProgress":"The reader sees lineage as more than copied content.","visualNeed":"none"},
+    {"nodeId":"A2","question":"How should the fork boundary behave?","claim":"Parent-derived material and child-local guidance must be separated so the parent excludes child control and the child represents it once.","evidenceRefs":["E2","E3","I1"],"reasoningRole":"derivation-boundary","readerProgress":"The reader gains concrete non-leakage and single-representation tests.","visualNeed":"none"},
+    {"nodeId":"A3","question":"Why is provenance not permission?","claim":"Developer role identifies message semantics but does not authenticate the principal or decide precedence against external policy.","evidenceRefs":["E1","E4","I2"],"reasoningRole":"authority-separation","readerProgress":"The reader separates the lineage plane from the authority plane.","visualNeed":"none"},
+    {"nodeId":"A4","question":"Where can privilege drift reappear?","claim":"Compaction, resume and replay must preserve or explicitly re-authorize instruction lineage rather than silently copying control text.","evidenceRefs":["E4","I1","I2"],"reasoningRole":"lifecycle-boundary","readerProgress":"The reader leaves with a cross-transition verification agenda.","visualNeed":"none"}
+  ],
+  "counterpoint":{"required":true,"claim":"A tightly controlled single-process caller may already be trusted, making a separate authority record appear redundant.","responseBoundary":"That may be acceptable for low-risk ephemeral forks, but the trust assumption should be explicit and must not be inferred from the developer label itself."},
+  "endingStrategy":{"type":"two-plane-audit-test","purpose":"End by asking whether an audit can show both where each instruction came from and which policy allowed it."
+  }
+}
