@@ -40,6 +40,9 @@ The problem is not a shortage of agents. The agents were answering in parallel, 
 
 The central argument of this article is that a multi-agent team needs at least three distinct layers: **a governance model that defines legitimate collaboration, a file state machine that externalizes current facts and transition history, and an engineering rail that performs dispatch, execution, observation, and recovery.** By the end, you should be able to draw the same responsibility map for your own system and identify where policy, fact, execution, and final judgment actually live.
 
+> [!NOTE]
+> **Series order (1/3).** This article defines the three responsibility layers. [Part 2](./2026-08-22-agent-task-file-state-machine) examines the TASK file state machine, atomic transitions, and concurrency boundary. [Part 3](../digital-employee/2026-08-22-agent-rail-decision-boundary) separates mechanical rail behavior from decisions that belong to an agent, PM, or ADMIN. The three articles share one vocabulary and evidence boundary; none should be read alone as a complete implementation claim.
+
 ## Three layers, three different jobs
 
 TMPA, FCoP, and CodeFlowMu are not three competing orchestration frameworks.
@@ -135,7 +138,17 @@ The four dispositions have distinct meanings:
 
 The current contract does not define `unknown_reconcile` as a fixed automatic rollback, circuit-breaker, quarantine queue, or notification flow. Those are caller and runtime policies; they cannot be inferred from this enum alone. If a high-risk downstream action cannot continue while sources conflict, the contract must explicitly make completed reconciliation a prerequisite, so the downstream action returns `waiting_dependency`; if an operation must be rejected, it must meet a pre-frozen deterministic condition. An enum name alone cannot promote unknown state into automatic quarantine or failure.
 
+The dual-stage path conflict in Part 2, sources that cannot be normalized, and incomplete identity fields all enter this same `unknown_reconcile` disposition; they are not three parallel recovery mechanisms. A shared enum still does not make the operating mechanism complete. Unattended reconciliation needs at least a `reconcile_owner`, trigger reason, canonical task identity and revision, `opened_at`, a deadline, escalation route, and permitted terminal outcomes. A reconciling task must not keep waking a model and burning tokens. The V1.9.7 evidence does not establish a unified implementation of those fields, SLA, notification, or circuit breaker, so they remain admission requirements rather than current product claims.
+
 The same version applies exact role/tool capability checks and routes PM task mutations through a shared task-command kernel. That kernel verifies task identity, scope, revision, and an idempotency key—a stable identifier used to coalesce transport retries of one business intent. These are deterministic software boundaries around who may act on which task; they are not prompt-based etiquette.
+
+One cross-layer contract is still necessary: **the dependency graph is a governance-bearing artifact, not ordinary execution data.** An executing agent may report that an edge is wrong and propose a change, but it may not rewrite an existing TASK dependency merely because it is running. Dependency creation or mutation belongs to PM, ADMIN, or an actor explicitly delegated by the active governance policy. The change must create a new task revision, rerun identity, scope, and cycle checks, and preserve who changed which edge under which policy version. The inspected material does not prove that every dynamic dependency write path already enforces this contract, so the series does not claim that V1.9.7 has completed it.
+
+### How governance reaches implementation
+
+TMPA rules cannot remain only in a paper, and they should not dissolve into untraceable `if` statements inside CodeFlowMu. The sound engineering boundary is a **versioned governance policy bundle** that names its policy ID, version, content digest, supported Runtime range, role and scope predicates, identity canonicalization, dependency-mutation authority, mechanical denial predicates, migration requirements, and rollback conditions. Every rail result should record the policy version it actually consumed.
+
+Updateable does not mean silently hot-swappable in the middle of a run. One task round binds a stable policy. A new policy becomes effective only at a declared boundary after validation and ADMIN authorization. A concurrency patch follows the same rule: an exclusive reservation or compare-and-swap prevents two winners, while mapping a failed reservation to wait, denial, or reconciliation is governance semantics. An emergency fix may disable multi-claimant operation or contract the deployment to one Runtime. Changing who obtains execution authority or adding a mechanical denial requires the policy bundle and evidence matrix to change before the implementation does.
 
 The capability gate is not a complete sandbox. Its own source states that it checks canonical tool identity and active capability, not every command effect. It can be a compliance filter for a collaboration contract; it cannot substitute for host-appropriate operating-system isolation such as restricted accounts, filesystem permissions, containers, or platform-native process isolation. If an agent has host access that can bypass the application layer, the gate alone cannot stop it from changing out-of-scope files or starting an unauthorized command. Treating a governance contract as a security sandbox is an architectural error. The inspected material does not prove that CodeFlowMu has deployed those isolation controls uniformly. The parent repository is private, so this article reproduces only the short contract required to explain the claim. It does not present private source as independently reproducible public evidence.
 
@@ -167,6 +180,19 @@ This architecture is sometimes misread as a universal claim that all multi-agent
 Within one project root, one consistent filesystem, and a controlled writer boundary, the inspectability and low infrastructure cost of an FCoP profile are valuable. Multi-host writers, relaxed network filesystems, cross-trust-domain operation, or strong consistency requirements need an additional consistency layer and may be better served by a database or event service. The TMPA governance semantics may remain useful even when the file profile does not.
 
 There is also a simpler counterexample. If three agents are brainstorming in a low-risk, one-off session with no external effects, a complete governed lifecycle may cost more than it saves. Governance depth should track duration, conflict risk, reversibility, and acceptance responsibility.
+
+## What remains between one Runtime and concurrent production
+
+“Not currently supported” cannot be the permanent answer to concurrency. A candid roadmap separates consistency boundaries:
+
+| Stage | Target topology | New admission evidence required |
+|---|---|---|
+| Current | One machine, one project root, one Runtime writer | Restart recovery, root binding, writer lock, and existing regression |
+| Next | Multiple processes competing for one task on one host | Non-replaceable claim, zero loser-side effects, lease/reclamation, contention stress, and fault injection |
+| Later | Multiple Runtimes sharing one local filesystem | Exclusive canonical-task claim, policy-version agreement, preserved write conflict, repeatable recovery |
+| Multi-host | Network filesystem or cross-trust domain | A separate consistency profile, failure model, and authority model; local `rename` results cannot simply be carried over |
+
+CodeFlowMu's digital-employee direction will encounter multi-instance production. Crossing that boundary requires a new protocol profile, policy version, and test evidence—not merely removing the words “local-first.”
 
 ## Seven questions for your architecture
 

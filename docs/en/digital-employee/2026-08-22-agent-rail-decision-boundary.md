@@ -42,6 +42,8 @@ With an overpowered rail service, a classifier decides that a plan is “incompl
 
 A sound engineering rail must avoid both extremes: **let agents act autonomously within authorized tasks; automate facts, dispatch, audit, and technical recovery as a service; and reserve hard denial for a closed, reviewable set of mechanical conditions. Scope, acceptance, rework, and final conclusions remain with an accountable agent, PM, or ADMIN.** The CodeFlowMu V1.9.7 candidate is a useful bounded case because that responsibility boundary is the center of its current change.
 
+> **Series order (3/3).** [Part 1](../engineering/2026-08-22-codeflowmu-governance-state-rail) defines the TMPA–FCoP–CodeFlowMu boundary. [Part 2](../engineering/2026-08-22-agent-task-file-state-machine) tests task identity, lifecycle, dependency, and claim concurrency. This article closes the series by defining the rail's decision boundary and the governance contract that must bind its implementation.
+
 ## A rail serves autonomous collaboration; it is neither the state machine nor the PM
 
 The file state machine answers where a task is now and how it moved. The rail answers which role receives the work, which session runs, whether a capability is available, when a dependency releases, and how technical execution is recovered.
@@ -95,6 +97,8 @@ Together, these details create a testable boundary. The rail can supply facts an
 
 The three non-business dispositions are not interchangeable. `unknown_reconcile` means sources are missing or conflicting and must be reconciled; `waiting_dependency` means a formal TASK dependency is pending, so the current operation waits; only `negative_list_denied` means a frozen mechanical condition requires rejection of the current operation. The inspected V1.9.7 contract separates those outcomes. It would therefore be inaccurate to call `unknown_reconcile` an existing automatic freeze, PM notification, or rollback mechanism, or to call a pending dependency a denial or task failure. If a high-risk downstream operation must stop on conflict, its basis has to be a formal TASK prerequisite, a frozen mechanical rule, or an explicit PM/ADMIN decision; the system may not use a heuristic to select a conflicting branch.
 
+`unknown_reconcile` also needs one operating contract across the whole series. Source conflicts, a TASK found in two lifecycle stages, and incomplete composite identity are different triggers for the same disposition—not independent recovery systems. An unattended implementation needs a `reconcile_owner`, trigger reason, canonical task identity and revision, `opened_at`, a deadline, escalation route, and permitted terminal outcomes. It must not poll a model indefinitely while waiting. The inspected evidence does not yet prove that SLA, notification, circuit breaker, or terminal-transition implementation.
+
 The excerpts come from the private CodeFlowMu parent implementation at fixed commit `2c901972`, not from CodeFlowMu Open. This narrow interface contract is shown so readers can inspect the architectural boundary—what the rail may and may not return. It neither opens the full implementation nor constitutes product evidence that the public can reproduce.
 
 ## Why mechanical denials must be closed and reviewable
@@ -114,7 +118,17 @@ A source conflict normally enters `unknown_reconcile` first; it is not automatic
 
 An explicit dependency is a different reviewable mechanical condition: it returns `waiting_dependency`, holding the current operation in a queue until the upstream contract is met. It is not in the frozen negative list and is not a rejection of the task or a business conclusion.
 
+“Closed” must therefore mean more than a short enum. Every mechanical predicate—including composite identity, dependency authority, and claim contention—must be inspectable inside one versioned policy bundle. Otherwise the list is closed only by name while an opaque predicate or emergency code patch can keep changing who may act.
+
 As the list grows, business preference tends to disguise itself as infrastructure fact. “The plan has fewer than three steps,” “no ISSUE was filed first,” and “the run exceeded ten minutes” may be useful warnings. None universally implies that the task should stop. A PM or ADMIN may write a condition into a task during creation, revision, or formal approval; they must not turn a new preference into a mechanical block at runtime and thereby create a back door through the service layer. The rail only checks conditions already frozen in the contract or an explicit decision.
+
+## How governance enters the rail without being rewritten by a patch
+
+TMPA constraints should reach CodeFlowMu through a **versioned governance policy bundle**, not scattered TypeScript branches or an unbounded hot reload. At minimum, the bundle identifies its policy ID, version and digest, supported Runtime range, role and scope predicates, identity canonicalization, dependency-mutation authority, mechanical denial predicates, migration requirements, rollback conditions, and approving actor. Every disposition records the policy version actually used, and that version remains stable for one task round unless an authorized migration creates a new revision.
+
+This matters most for urgent concurrency fixes. An exclusive reservation, lock file, or compare-and-swap can prevent two physical winners, but it also affects execution authority. Engineering may fail closed—disable competing claimants or contract the deployment back to one Runtime—without changing who is eligible. It may not silently add a new winner-selection or denial rule and explain the governance later. Any authority change must first enter the policy bundle, receive accountable approval, and gain named tests and persisted evidence.
+
+The same rule applies to dependencies. A running agent may propose an edge change, but only PM, ADMIN, or an explicitly delegated actor may mutate the graph. The accepted change creates a new task revision and reruns identity, scope, and cycle checks before execution continues.
 
 ## What the rail should automate
 
@@ -185,6 +199,8 @@ The first-party candidate packet `V1.9.7-RAIL-ASSISTANCE-RC-20260822-001` for ca
 - a controlled restart after which the process loaded V1.9.7, reported `health=ok`, and retained an online gateway, ownership of the single-writer lock by the current process, and a consistent project-root binding.
 
 These figures are totals from test sets at different levels. They cannot be added together or read as equal coverage of all four rail-assistance dispositions. The available packet does not record the number of direct cases for `neutral`, `unknown_reconcile`, `waiting_dependency`, and `negative_list_denied`; this article therefore does not use 115, 1706, or 936 to claim complete validation of those boundaries. The next evidence packet should list named cases, expected dispositions, and observed results for each state.
+
+That next packet should be a traceable matrix rather than another aggregate total: **governance claim → policy predicate and version → CodeFlowMu entry point → named positive and negative test → persisted result and commit**. It should separately cover unauthorized dependency mutation, stale policy or task revision, same-TASK concurrent claim with exactly one executable credential and zero loser side effects, each of the four dispositions, reconciliation timeout and escalation, and authorized recovery. Only that matrix can show that governance semantics and engineering behavior moved together.
 
 This article does not use CodeFlowMu Open source or Open-edition test counts as product evidence.
 

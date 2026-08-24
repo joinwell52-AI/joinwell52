@@ -38,6 +38,8 @@ The reliable answer is not to pick the field that looks most complete. These sig
 
 This article follows one task through its full lifecycle and shows how a file state machine and an engineering rail cooperate. The deliverable is a set of invariants that can become tests, not merely a guide to directory naming.
 
+> **Series order (2/3).** [Part 1](./2026-08-22-codeflowmu-governance-state-rail) defines the responsibility boundary among TMPA, FCoP, and CodeFlowMu. This article tests that boundary against task identity, lifecycle, dependencies, and concurrent claim. [Part 3](../digital-employee/2026-08-22-agent-rail-decision-boundary) defines which outcomes may be mechanical and which must remain accountable decisions.
+
 ## Do not compress four facts into one `done`
 
 | Fact | Question answered | Typical carrier in this system |
@@ -87,6 +89,8 @@ This does not turn a valid serial dependency graph into a genuine parallel branc
 
 The current write-and-replace path therefore solves “do not read a half-file”; it **does not prove exclusive claim for a future multi-Runtime shared workspace**. The public specification and inspected material do not provide evidence of a same-TASK double-claim stress test, a non-replaceable claim reservation, a lease, or heartbeat reclamation. This article must not describe them as existing features. If a future design explicitly permits competing claimants, the claim entry point needs a separate mutual-exclusion primitive: for example, a non-replaceable exclusive reservation (`O_CREAT | O_EXCL` where supported), or Runtime-side serialization/compare-and-swap against the canonical task identity. The primitive must be validated separately for Windows, local filesystems, and network filesystems; the local semantics of `link()`, a file lock, or `rename` cannot be generalized into a cross-platform guarantee.
 
+Even a correct exclusive primitive answers only **who won the physical race**. It does not decide who was eligible to compete, which policy version authorized the claim, or whether the loser should wait, be denied, or enter reconciliation. Those are governance semantics. A lock added as an engineering patch must therefore not silently create a new authority rule.
+
 A minimally credible claim test launches two claims against the same TASK at once. Exactly one caller may receive an executable claim credential. The loser must receive a deterministic “already claimed/contention lost” result and must not start a model session or tool call.
 
 ### 3. Execution: the rail dispatches and checks preconditions
@@ -135,7 +139,9 @@ The dependency must also reference the current child task. A thread can contain 
 
 There is another question that cannot be skipped: a dependency cycle. If A waits for B and B waits for A, a queue has not created an answer. The inspected V1.9.7 material proves explicit-dependency waiting and release; it does not prove a complete directed acyclic graph (DAG) check. It would be inaccurate to describe automatic exceptional suspension on cycle detection as a current feature.
 
-A static admission check is not enough either. If an agent can add or modify a downstream dependency while work is running, every dependency change must be rechecked for cycles or explicitly prohibited. A timeout may report that a policy window was exceeded; it cannot guess which edge to delete or declare business failure. The current material does not prove dynamic dependency mutation, deadlock timeout, or a cycle-breaking protocol. Future dispatcher tests must make a dependency graph containing a cycle an explicit admission-rejection case: whether the cycle is submitted up front, introduced during execution, or accompanied by prolonged lack of upstream progress, it should produce an inspectable issue for an authorized actor—not indefinite waiting or a heuristic choice of branch.
+A static admission check is not enough either. A running agent may propose a downstream dependency change, but it must not rewrite an existing TASK graph by default. Dependency creation or mutation belongs to PM, ADMIN, or an actor explicitly delegated by the active governance policy. An approved change creates a new task revision, records the actor and policy version, and reruns identity, scope, and cycle checks before dispatch can continue.
+
+A timeout may report that a policy window was exceeded; it cannot guess which edge to delete or declare business failure. The current material does not prove universal enforcement of dependency-mutation authority, dynamic DAG revalidation, deadlock timeout, or a cycle-breaking protocol. Future dispatcher tests must make an unauthorized edge write and a dependency graph containing a cycle explicit rejection cases: whether the cycle is submitted up front, introduced during execution, or accompanied by prolonged lack of upstream progress, the result should be an inspectable issue for an authorized actor—not indefinite waiting or a heuristic choice of branch.
 
 ### 5. Return and acceptance: executors submit, authorities decide
 
@@ -185,7 +191,8 @@ In particular, “short commands may use the host” must not be read as “shor
 - Role capability, task scope, and current revision are rechecked before action.
 - A network retry of the same business command does not manufacture duplicate work.
 - A dependent agent is not started before an explicit prerequisite is satisfied.
-- Concurrent claim of the same TASK lets only one executor start; a contention loser never begins work merely because its local call returned.
+- An executor cannot mutate the dependency graph without explicit authority; an authorized change creates a new revision and reruns identity, scope, and DAG checks.
+- Concurrent claim of the same TASK lets only one executor start; a contention loser starts no model session or tool side effect merely because its local call returned.
 
 ### Acceptance
 
@@ -198,6 +205,8 @@ These invariants do not prove that report content is true. They do not replace s
 A task does not move reliably because its filename is elegant. It moves reliably because **state, history, execution, report, and acceptance retain separate meanings while a stable identity connects them.** That is where the file state machine and the engineering rail genuinely meet.
 
 This file state machine also has a hard boundary: a single-host `rename` cannot be promoted into multi-host strong consistency, and a directory timestamp cannot replace a causal revision. Preserving a dual-stage conflict and waiting for authorized recovery prioritizes factual integrity, but it is not an unattended self-healing contract: the current material does not prove a lease, heartbeat, timeout reclamation, write-ahead log, or automatic rollback. It also does not cover every crash point, external tool side effect, or platform. The next validation step is fault injection around write, persistence, and rename, together with double-claim contention, stale-revision replay, dynamic dependency cycles, short-command orphan processes, and authorized recovery of dual-stage conflict. Version files and the live process report V1.9.7, but the release remains a candidate until ADMIN makes the final `RELEASED` decision.
+
+The dual-stage conflict described here is not a separate recovery invention. It enters the same `unknown_reconcile` disposition used elsewhere in this series. A production envelope still needs a named reconciliation owner, opening time, deadline, escalation route, and permitted terminal outcomes; while it waits, the Runtime must not repeatedly wake a model and consume tokens. The inspected V1.9.7 evidence does not yet prove that complete operating contract.
 
 ## Sources and evidence boundaries
 
