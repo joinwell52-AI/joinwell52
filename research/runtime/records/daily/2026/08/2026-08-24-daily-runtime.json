@@ -8,11 +8,11 @@
   "date": "2026-08-24",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -411,6 +411,169 @@
       "githubCommit": "e8bdc1d9a3845f2fbe978c7096dfc6e92e323297",
       "commitVerify": "Completed",
       "verifiedAt": "2026-08-24T10:08:58+08:00"
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "family": "daily",
+      "runtimeDate": "2026-08-24",
+      "status": "Completed",
+      "input": "The verified 2026-08-24 Reading Wake Receipt at research/runtime/wakes/2026/08/2026-08-24/reading-110328.json; pinned control-source commit 08825883df023cdcc37ce9cc0f7c74278864484e containing Scheduler V3.0, Worker Control v1.3.0, generated Reading Prompt v1.0.0 and all five required sources; the generated Reading Prompt with declared and repository-validated SHA-256 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5; the same-run-date Daily Runtime Record with Discovery and Queue durably Completed, Reading execution authority opened by repository reconciliation at 11:04:35 and Worker Claimed durably verified at commit 119e72bb6a553e443680c87486dd12b5a8e69887; and the completed 2026-08-24 Research Plan selecting exactly Q-20260824-01, Q-20260824-02 and Q-20260824-03.",
+      "input_zh": "已核验的 2026-08-24 Reading Wake Receipt（research/runtime/wakes/2026/08/2026-08-24/reading-110328.json）；固定控制源提交 08825883df023cdcc37ce9cc0f7c74278864484e，其中包含 Scheduler V3.0、Worker Control v1.3.0、Generated Reading Prompt v1.0.0 及全部五个 Required Source；声明并经仓库原生校验链核验 SHA-256 为 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5 的 Generated Reading Prompt；Discovery 与 Queue 已持久 Completed、Repository Reconciliation 于 11:04:35 为 Reading 打开执行权、且 Worker Claimed 已在提交 119e72bb6a553e443680c87486dd12b5a8e69887 持久核验的同运行日 Daily Runtime Record；以及仅选择 Q-20260824-01、Q-20260824-02、Q-20260824-03 的 2026-08-24 Research Plan。",
+      "workResult": "Fail-closed admission passed for branch main, wake source chatgpt-scheduled-task, the active 2026-08-24 Reading window and the worker's available GitHub read/write, file-editing and primary-source research capabilities. The unique Reading Wake Receipt was committed and fetched before Runtime business work. Global serial reconciliation found Discovery and Queue closed and Reading Waiting as the earliest due unfinished task; the repository scheduler durably opened Reading at 11:04:35 and the native claim workflow persisted Worker Claimed at 11:05:29 before substantive Deep Reading. That native claim workflow ran npm run runtime:validate before persisting the claim; Worker Contract V3 binds that validation to deterministic worker-prompts:validate verification of prompt version, required sources and SHA-256, so the declared Reading Prompt digest was checked before substantive reading. Skill 03 then completed primary-source reading for all three same-day P0 objects and produced exactly three durable Reading Notes. Q-20260824-01 verifies a narrow streaming error-precedence repair: once the default MaxTurnsExceeded is stored, _max_turns_handled is now set immediately, preventing a later final _check_errors() call from recreating max-turn failure and clobbering an already-captured InputGuardrailTripwireTriggered; a deterministic asyncio.Event regression forces the max-turn condition before the guardrail resolves and still expects the tripwire. Q-20260824-02 verifies child-only developer-instruction provenance in Codex full-history subagent forks: a dedicated DeveloperInstructions contextual fragment carries developer role plus generic.developer_instructions classification, the demonstrated parent request excludes the child-only text, and the child request contains it exactly once; this is provenance, not authorization or distributed exactly-once delivery. Q-20260824-03 verifies cancellation-safe owned sandbox cleanup: Dependencies captures the first CancelledError during owned-result close, continues closing remaining owned results, clears internal lifecycle state, then re-raises cancellation; repeated aclose calls reuse one close task and the regression keeps both tested close counters at one, while ordinary close exceptions remain best-effort and suppressed. Reading performed no Research Analysis, article writing, visualization, Production or Publication and used no prior-day Runtime artifact as a business input.",
+      "workResult_zh": "针对 main 分支、chatgpt-scheduled-task 唤醒源、2026-08-24 有效 Reading 时段，以及当前 Worker 实际具备的 GitHub 读写、文件编辑与一手来源研究能力，Fail-Closed Admission 通过。任何 Runtime 业务工作前，唯一 Reading Wake Receipt 已提交并重新 Fetch 核验。全局串行 Reconciliation 发现 Discovery 与 Queue 已收口、Reading 是最早到期未收口任务；仓库 Scheduler 于 11:04:35 持久打开 Reading 执行槽，原生 Claim Workflow 于 11:05:29 持久写入 Worker Claimed，之后才开始实质 Deep Reading。该原生 Claim Workflow 在持久化 Claim 前执行 npm run runtime:validate；Worker Contract V3 明确该校验包含 worker-prompts:validate，对 Prompt 版本、Required Sources 与 SHA-256 做确定性核验，因此 Reading Prompt 声明哈希在实质阅读前已被仓库校验链检查。随后 Skill 03 对当天三个 P0 对象全部完成一手来源深读，并恰好生成三份持久 Reading Note。Q-20260824-01 核验一个范围明确的 Streaming 异常优先级修复：默认 MaxTurnsExceeded 首次写入后立即设置 _max_turns_handled，避免最终阶段再次调用 _check_errors() 时重新生成 Max-Turn 异常并覆盖已经捕获的 InputGuardrailTripwireTriggered；确定性 asyncio.Event 回归测试强制先达到 Max-Turn 条件、后完成 Guardrail，最终仍要求抛出 Tripwire。Q-20260824-02 核验 Codex Full-History Subagent Fork 中仅子级 Developer Instruction 的来源边界：专用 DeveloperInstructions Contextual Fragment 同时保留 developer Role 与 generic.developer_instructions 分类，已证明的父请求不含该子级文本，子请求中该文本恰好一次出现；这是 Provenance，不是 Authorization，也不是分布式 Exactly-Once Delivery。Q-20260824-03 核验 Owned Sandbox Dependency 的 Cancellation-Safe 清理：Dependencies 在 Owned Result Close 中捕获第一次 CancelledError，继续关闭其余 Owned Results，清空内部生命周期状态，最后重新抛出 Cancellation；重复 aclose 复用同一个 Close Task，回归测试中两个资源的 Close 计数始终为 1，同时普通 Close Exception 仍按 Best-Effort 被吞掉。Reading 未执行 Research Analysis、文章写作、可视化、Production 或 Publication，也未把前一日 Runtime Artifact 作为业务输入。",
+      "output": "Exactly three durable Reading Notes were written: research/reading/Q-20260824-01-streaming-guardrail-max-turn-precedence.md, research/reading/Q-20260824-02-subagent-developer-instruction-provenance.md and research/reading/Q-20260824-03-cancellation-safe-owned-dependency-cleanup.md.",
+      "output_zh": "恰好写入三份持久 Reading Note：research/reading/Q-20260824-01-streaming-guardrail-max-turn-precedence.md、research/reading/Q-20260824-02-subagent-developer-instruction-provenance.md、research/reading/Q-20260824-03-cancellation-safe-owned-dependency-cleanup.md。",
+      "next": "After this Reading terminal result is durably finalized and GitHub Commit Verified, Runtime must reconcile formal-time order again. Program remains ineligible before 12:00 Asia/Shanghai and Analysis remains ineligible before 13:00; either may start only at or after its own formal time when all earlier due tasks are execution-closed under the global serial rule.",
+      "next_zh": "本次 Reading 终态完成持久 Finalization 与 GitHub Commit Verified 后，Runtime 必须重新按 Formal Time 对账。Program 在上海时间 12:00 前仍不具备执行资格，Analysis 在 13:00 前仍不具备执行资格；只有达到各自正式时间且全局串行规则下所有更早到期任务均已收口时，才可开始。",
+      "metrics": [
+        {
+          "label": "Wake receipts verified",
+          "label_zh": "已核验 Wake Receipt",
+          "value": 1
+        },
+        {
+          "label": "Generated prompt SHA-256 verified",
+          "label_zh": "Generated Prompt SHA-256 已核验",
+          "value": 1
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 Required Source",
+          "value": 5
+        },
+        {
+          "label": "Selected objects read",
+          "label_zh": "已深读 Selected Object",
+          "value": 3
+        },
+        {
+          "label": "Primary maintainer commits read",
+          "label_zh": "已读取维护者一手提交",
+          "value": 3
+        },
+        {
+          "label": "Durable Reading Notes",
+          "label_zh": "持久 Reading Note",
+          "value": 3
+        },
+        {
+          "label": "Reading execution-slot openings",
+          "label_zh": "Reading 执行槽开启",
+          "value": 1
+        },
+        {
+          "label": "Reading worker claims",
+          "label_zh": "Reading Worker Claimed",
+          "value": 1
+        },
+        {
+          "label": "Prior-day Runtime business inputs",
+          "label_zh": "前一日 Runtime 业务输入",
+          "value": 0
+        },
+        {
+          "label": "Research Analysis performed",
+          "label_zh": "执行 Research Analysis",
+          "value": 0
+        },
+        {
+          "label": "Articles written",
+          "label_zh": "文章写作数量",
+          "value": 0
+        },
+        {
+          "label": "Revision rounds used",
+          "label_zh": "已使用修订轮次",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Reading Wake Receipt",
+          "label_zh": "Reading 唤醒回执",
+          "path": "research/runtime/wakes/2026/08/2026-08-24/reading-110328.json"
+        },
+        {
+          "label": "Pinned control source commit",
+          "label_zh": "固定控制源提交",
+          "commit": "08825883df023cdcc37ce9cc0f7c74278864484e"
+        },
+        {
+          "label": "Worker Control manifest",
+          "label_zh": "Worker Control Manifest",
+          "path": "research/runtime/worker-prompts/generated/CONTROL.json"
+        },
+        {
+          "label": "Generated Reading prompt",
+          "label_zh": "Generated Reading Prompt",
+          "path": "research/runtime/worker-prompts/generated/reading.prompt.md"
+        },
+        {
+          "label": "Generated Reading prompt SHA-256",
+          "label_zh": "Generated Reading Prompt SHA-256",
+          "value": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"
+        },
+        {
+          "label": "Run-date Research Plan",
+          "label_zh": "运行日 Research Plan",
+          "path": "research/runtime/plans/2026/08/2026-08-24-plan.json"
+        },
+        {
+          "label": "Reading Worker Claimed commit",
+          "label_zh": "Reading Worker Claimed 提交",
+          "commit": "119e72bb6a553e443680c87486dd12b5a8e69887"
+        },
+        {
+          "label": "Q-20260824-01 primary source",
+          "label_zh": "Q-20260824-01 一手来源",
+          "url": "https://github.com/openai/openai-agents-python/commit/1a55d70d8e28769bd2c3eb85eaf6fe501864ced8"
+        },
+        {
+          "label": "Q-20260824-02 primary source",
+          "label_zh": "Q-20260824-02 一手来源",
+          "url": "https://github.com/openai/codex/commit/a70974c1a0837e17769e3c41f83ad5e592c703fb"
+        },
+        {
+          "label": "Q-20260824-03 primary source",
+          "label_zh": "Q-20260824-03 一手来源",
+          "url": "https://github.com/openai/openai-agents-python/commit/72b2c670546942bdaaf66cc8d6b3a67d1a2fe5bc"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Q-20260824-01 Reading Note",
+          "label_zh": "Q-20260824-01 深读笔记",
+          "path": "research/reading/Q-20260824-01-streaming-guardrail-max-turn-precedence.md"
+        },
+        {
+          "label": "Q-20260824-02 Reading Note",
+          "label_zh": "Q-20260824-02 深读笔记",
+          "path": "research/reading/Q-20260824-02-subagent-developer-instruction-provenance.md"
+        },
+        {
+          "label": "Q-20260824-03 Reading Note",
+          "label_zh": "Q-20260824-03 深读笔记",
+          "path": "research/reading/Q-20260824-03-cancellation-safe-owned-dependency-cleanup.md"
+        },
+        {
+          "label": "Reading result",
+          "label_zh": "Reading 结果",
+          "path": "research/runtime/results/2026/08/2026-08-24-reading-result.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "path": "research/runtime/records/daily/2026/08/2026-08-24-daily-runtime.json"
+        },
+        {
+          "label": "Runtime Markdown ledger",
+          "label_zh": "Runtime Markdown 账本",
+          "path": "research/runtime/2026/08/2026-08-24-runtime.md"
+        }
+      ],
+      "startedAt": "2026-08-24T11:04:35+08:00",
+      "completedAt": "2026-08-24T11:09:40+08:00"
     }
   },
   "timeline": [
@@ -483,6 +646,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Reading after verifying research/runtime/wakes/2026/08/2026-08-24/reading-110328.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-08-24T11:09:40+08:00",
+      "task": "reading",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Reading closed as Completed through governed Runtime shift finalization after durable result validation for 2026-08-24."
     }
   ],
   "metrics": [],
@@ -490,5 +660,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-24T11:05:29+08:00"
+  "updatedAt": "2026-08-24T11:09:40+08:00"
 }
