@@ -1,0 +1,15 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-24",
+  "itemId": "Q-20260824-01",
+  "coreProposition": "Concurrent terminal conditions should use explicit consumption and arbitration state: once a generic condition has become a candidate outcome, replaying it during finalization must not erase later, more specific safety evidence, while external-effect state and the complete priority policy remain separate concerns.",
+  "openingMove": {"type":"last-writer-contradiction","purpose":"Open with final cleanup replacing a captured safety tripwire by recreating an older generic limit failure.","evidenceRefs":["E1","E2","E3"]},
+  "argumentNodes": [
+    {"nodeId":"A1","question":"Why is recurrence not new evidence?","claim":"A generic condition already materialized into arbitration does not gain new semantic authority merely because finalization evaluates it again.","evidenceRefs":["E1","E2","E3","I1"],"reasoningRole":"problem-reframing","readerProgress":"The reader separates event time from informational novelty.","visualNeed":"none"},
+    {"nodeId":"A2","question":"What state transition stabilizes precedence?","claim":"Marking the generic condition handled at first materialization converts it from a repeatable predicate into a consumed fact.","evidenceRefs":["E1","E3","E4","I1"],"reasoningRole":"mechanism","readerProgress":"The reader identifies consumption state as the narrow control point.","visualNeed":"none"},
+    {"nodeId":"A3","question":"What should a broader arbitration model preserve?","claim":"Observation, consumption, surfaced exception and external-effect state should be separate records even when the caller receives one outcome.","evidenceRefs":["E2","E4","I2"],"reasoningRole":"architecture-extension","readerProgress":"The reader gains a richer model without overstating the patch.","visualNeed":"none"},
+    {"nodeId":"A4","question":"What does the fix not prove?","claim":"The demonstrated race does not define every failure priority or roll back effects already started before the safety condition surfaced.","evidenceRefs":["E4","I2"],"reasoningRole":"boundary","readerProgress":"The reader keeps exception visibility separate from effect safety.","visualNeed":"none"}
+  ],
+  "counterpoint": {"required":true,"claim":"Some runtimes may intentionally let a later generic condition dominate or may prefer a priority enum over handled flags.","responseBoundary":"That is valid only as an explicit policy; incidental finalization order should not silently define precedence."},
+  "endingStrategy": {"type":"causal-test-agenda","purpose":"End with deterministic race tests and a requirement to retain concurrent facts even when one exception is raised."}
+}

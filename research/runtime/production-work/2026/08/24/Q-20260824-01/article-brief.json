@@ -1,0 +1,44 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-24",
+  "itemId": "Q-20260824-01",
+  "researchObjectId": "AN-20260824-01",
+  "targetAudience": {
+    "primary": "Engineers designing digital-employee runtimes, streaming agents and safety guardrails",
+    "knowledgeAssumption": "The reader understands asynchronous run loops, terminal exceptions and guardrails.",
+    "readerProblem": "Several terminal conditions can race for one mutable exception slot, allowing a generic condition recreated during cleanup to erase a more specific safety event."
+  },
+  "whyNow": "A same-day merged OpenAI Agents Python change marks max-turn handling consumed at first materialization so final streaming cleanup cannot overwrite an input-guardrail tripwire.",
+  "externalHook": {
+    "type": "replayed-failure-precedence",
+    "description": "A failure recreated later can be older information with less semantic priority than the safety condition already observed.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "Concurrent terminal conditions should use explicit consumption and arbitration state: once a generic condition has become a candidate outcome, replaying it during finalization must not erase later, more specific safety evidence, while external-effect state and the complete priority policy remain separate concerns.",
+  "originalValue": {
+    "type": "terminal-condition-consumption-model",
+    "description": "Reframes last-writer exception storage as a state-lifecycle defect and separates observed conditions, consumed conditions, surfaced outcomes and external effects."
+  },
+  "readerTakeaway": "Make terminal conditions single-consumption where policy requires, preserve all observed facts for telemetry, and test causal concurrency boundaries instead of relying on cleanup order."
+  ,"evidenceBoundary": {
+    "supported": [
+      "The max-turn handled flag is set when the default exception is first stored.",
+      "A later input-guardrail tripwire remains the surfaced exception through final cleanup.",
+      "The regression synchronizes the race with asyncio.Event rather than timing sleeps."
+    ],
+    "unsupported": [
+      "A universal exception-priority lattice",
+      "Rollback or compensation for external effects",
+      "Equivalent behavior for every runner and guardrail type",
+      "Independent cross-runtime validation"
+    ],
+    "uncertain": [
+      "Which conditions should legitimately re-enter arbitration",
+      "Whether the API should expose a structured set of terminal facts"
+    ]
+  },
+  "firstPartyRole": {"status":"none","rationale":"The article develops a general runtime arbitration pattern without relying on a first-party project."},
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The merged mechanism and deterministic regression support a precise, transferable state-consumption lesson with explicit limits."
+}
