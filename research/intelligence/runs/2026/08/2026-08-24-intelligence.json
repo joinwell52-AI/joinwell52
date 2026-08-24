@@ -1,0 +1,198 @@
+{
+  "schema": "research-intelligence-run/v1",
+  "version": "1.0",
+  "date": "2026-08-24",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "registryVersion": "1.0",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-08-24T09:10:46+08:00",
+  "githubCommit": "pending",
+  "reason": "All three due Discovery pipelines were resolved for 2026-08-24. Five material same-day merged-maintainer mechanisms survived prior-day, same-mechanism and cross-pipeline normalization; Discovery made no Queue selections.",
+  "reason_zh": "2026-08-24 三条到期 Discovery 管线均已完成解析。经前一日、同机制与跨管线去重后保留 5 个重要同日 merged-maintainer 机制；Discovery 未执行任何 Queue 选题。",
+  "pipelines": [
+    {
+      "id": "ai-platform",
+      "label": "AI Platform Change Intelligence",
+      "label_zh": "AI 平台变更情报发现",
+      "status": "Completed",
+      "due": 45,
+      "checked": 44,
+      "inaccessible": [],
+      "failed": [
+        {
+          "source": "cursor/bug-reports",
+          "reason": "The registered public Cursor Bug Reports section returned HTTP 429 Too Many Requests on the run-date scan and again on the bounded retry."
+        }
+      ],
+      "signals": 0,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All 45 registered P0 public channels were resolved as 44 checked and one explicit retrieval failure. No platform-only change bound to the 2026-08-24 Asia/Shanghai run window survived freshness and cross-pipeline deduplication; repository-backed mechanisms are represented once in GitHub Engineering.",
+      "reason_zh": "45 个注册 P0 公共通道全部解析为 44 个已检查 + 1 个明确抓取失败。没有平台独有变更同时满足 2026-08-24 Asia/Shanghai 运行日新鲜度与跨管线去重要求；仓库型机制仅在 GitHub Engineering 中保留一次。"
+    },
+    {
+      "id": "github-engineering",
+      "label": "GitHub Engineering Intelligence",
+      "label_zh": "GitHub 工程情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 9,
+      "inaccessible": [],
+      "failed": [],
+      "signals": 5,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 daily repositories were checked. Five material merged-maintainer mechanisms in the 2026-08-24 Asia/Shanghai run window remained after prior-day, same-mechanism and cross-pipeline normalization.",
+      "reason_zh": "9 个 P0 Daily 仓库全部检查。按 2026-08-24 Asia/Shanghai 运行日窗口核对后，经前一日、同机制与跨管线去重，保留 5 个重要 merged-maintainer 机制。"
+    },
+    {
+      "id": "published-research",
+      "label": "Published Research Intelligence",
+      "label_zh": "论文与研究成果情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 7,
+      "inaccessible": [],
+      "failed": [
+        {
+          "source": "jss",
+          "reason": "The registered Journal of Systems and Software articles-in-press endpoint returned an internal retrieval error during the run-date scan."
+        },
+        {
+          "source": "zenodo",
+          "reason": "The registered Zenodo search endpoint returned an internal retrieval error during the run-date scan."
+        }
+      ],
+      "signals": 0,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 daily research sources were resolved as seven checked and two explicit retrieval failures. arXiv's current cs.AI recent list still began with Friday 2026-08-21 submissions at scan time, and no checked research source exposed a material artifact that could be bound to the 2026-08-24 run date with registered freshness evidence.",
+      "reason_zh": "9 个 P0 Daily 研究来源全部解析为 7 个已检查 + 2 个明确抓取失败。扫描时 arXiv 当前 cs.AI Recent 列表仍从 2026-08-21 周五提交开始，其余已检查研究来源也没有出现能够以注册新鲜度证据绑定到 2026-08-24 运行日的重要研究产物。"
+    }
+  ],
+  "columns": [
+    {
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery retained 2 signals primarily serving this column; Queue must independently score and decide Selection or No Selection.",
+      "reason_zh": "Discovery 保留 2 个以该栏目为主栏目的信号；后续必须由 Queue 独立评分并决定 Selected 或 No Selection。"
+    },
+    {
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "decision": "Waiting",
+      "signals": 1,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery retained 1 signal primarily serving this column; Queue must independently score and decide Selection or No Selection.",
+      "reason_zh": "Discovery 保留 1 个以该栏目为主栏目的信号；后续必须由 Queue 独立评分并决定 Selected 或 No Selection。"
+    },
+    {
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery retained 2 signals primarily serving this column; Queue must independently score and decide Selection or No Selection.",
+      "reason_zh": "Discovery 保留 2 个以该栏目为主栏目的信号；后续必须由 Queue 独立评分并决定 Selected 或 No Selection。"
+    }
+  ],
+  "signals": [
+    {
+      "id": "SIG-20260824-001",
+      "pipeline": "github-engineering",
+      "title": "Codex hardens the bubblewrap synthetic-mount registry against writable overlap and symlink redirection",
+      "title_zh": "Codex 强化 Bubblewrap Synthetic-Mount Registry，防止可写重叠与 Symlink 重定向",
+      "sourceUrl": "https://github.com/openai/codex/commit/fb0781b9eee6d2da741b984bed9dde95834d909d",
+      "publishedAt": "2026-08-24",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee", "industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:bubblewrap-synthetic-mount-registry-isolation",
+      "summary": "Codex now protects its Linux bubblewrap synthetic-mount registry with a read-only bind when a writable filesystem bind would expose it, applies that protection before deny masks, and rejects a pre-existing registry symlink before registration or command execution. Regression coverage exercises symlink rejection and denied temporary directories under both full-root and minimal policies.",
+      "summary_zh": "Codex 现在会在可写 Filesystem Bind 可能暴露 Linux Bubblewrap Synthetic-Mount Registry 时为该 Registry 加入只读 Bind，并在 Deny Mask 之前实施保护；同时在注册或命令执行前拒绝预先存在的 Registry Symlink。回归测试覆盖 Symlink 拒绝，以及 Full-Root / Minimal Policy 下被拒绝的临时目录。"
+    },
+    {
+      "id": "SIG-20260824-002",
+      "pipeline": "github-engineering",
+      "title": "Codex preserves child-only developer-instruction provenance across full-history subagent forks",
+      "title_zh": "Codex 在 Full-History Subagent Fork 中保留仅属于子 Agent 的 Developer Instruction 来源分类",
+      "sourceUrl": "https://github.com/openai/codex/commit/a70974c1a0837e17769e3c41f83ad5e592c703fb",
+      "publishedAt": "2026-08-24",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee", "open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:subagent-developer-instruction-provenance",
+      "summary": "Codex adds a dedicated contextual fragment for developer instructions and uses it in full-history subagent forks so child-specific guidance retains the generic.developer_instructions classification, reaches the child exactly once, and does not appear in the parent request.",
+      "summary_zh": "Codex 为 Developer Instructions 增加专用 Contextual Fragment，并在 Full-History Subagent Fork 中使用它，使仅属于子 Agent 的指导保留 generic.developer_instructions 分类、恰好一次到达子 Agent，同时不进入父请求。"
+    },
+    {
+      "id": "SIG-20260824-003",
+      "pipeline": "github-engineering",
+      "title": "Codex extends Guardian computer-use evidence and policy handling to cua_repl-backed MCP execution",
+      "title_zh": "Codex 将 Guardian 的 Computer-Use 证据与策略处理扩展到 cua_repl 支撑的 MCP 执行",
+      "sourceUrl": "https://github.com/openai/codex/commit/2161ec272a7d6b775c9c721e6206f4fe63e383f2",
+      "publishedAt": "2026-08-24",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["industry-architecture", "open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "openai/codex:cua-repl-guardian-policy-evidence-parity",
+      "summary": "Codex now recognizes cua_repl alongside node_repl when collecting bounded Guardian review evidence, applying computer-use policy, capturing transcript images and rendering REPL history. The change also preserves failed MCP call status and result content when app-server history is replayed.",
+      "summary_zh": "Codex 现在在收集有界 Guardian Review Evidence、应用 Computer-Use Policy、捕获 Transcript Image 与渲染 REPL History 时，将 cua_repl 与 node_repl 同等识别；同时在 App-Server History Replay 时保留失败 MCP Call 的状态与结果内容。"
+    },
+    {
+      "id": "SIG-20260824-004",
+      "pipeline": "github-engineering",
+      "title": "OpenAI Agents SDK completes owned sandbox dependency cleanup before propagating cancellation",
+      "title_zh": "OpenAI Agents SDK 在传播 Cancellation 前完成所拥有 Sandbox Dependency 的清理",
+      "sourceUrl": "https://github.com/openai/openai-agents-python/commit/72b2c670546942bdaaf66cc8d6b3a67d1a2fe5bc",
+      "publishedAt": "2026-08-24",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "openai/openai-agents-python:sandbox-dependency-cancellation-cleanup",
+      "summary": "The sandbox dependency owner now records cancellation raised by one owned result, continues closing the remaining owned results exactly once, clears internal dependency state, and only then re-raises the first cancellation. Regression coverage verifies repeated close calls do not duplicate cleanup.",
+      "summary_zh": "Sandbox Dependency Owner 现在会记录某个 Owned Result 抛出的 Cancellation，继续恰好一次关闭其余 Owned Results，清理内部依赖状态后才重新抛出第一次 Cancellation；回归测试验证重复 Close 不会造成重复清理。"
+    },
+    {
+      "id": "SIG-20260824-005",
+      "pipeline": "github-engineering",
+      "title": "OpenAI Agents SDK preserves a tripped streaming input-guardrail exception when max-turns is also exceeded",
+      "title_zh": "OpenAI Agents SDK 在同时超过 Max Turns 时仍保留已触发的 Streaming Input Guardrail 异常",
+      "sourceUrl": "https://github.com/openai/openai-agents-python/commit/1a55d70d8e28769bd2c3eb85eaf6fe501864ced8",
+      "publishedAt": "2026-08-24",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["industry-architecture", "open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "openai/openai-agents-python:streaming-guardrail-exception-precedence",
+      "summary": "RunResultStreaming now marks the default MaxTurnsExceeded path as handled so a later error check cannot overwrite an already captured InputGuardrailTripwireTriggered exception. The regression test deterministically orders the max-turn condition and guardrail completion rather than relying on timing sleeps.",
+      "summary_zh": "RunResultStreaming 现在会把默认 MaxTurnsExceeded 路径标记为已处理，从而避免后续 Error Check 覆盖已经捕获的 InputGuardrailTripwireTriggered 异常；回归测试通过确定性同步 Max-Turn 条件与 Guardrail 完成顺序，而不是依赖 Sleep 猜测时序。"
+    }
+  ]
+}
