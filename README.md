@@ -27,7 +27,7 @@
 
 <p align="center">
   <a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-intro-zh.mp4?v=20-rolefix">
-    <img src="./docs/public/assets/video/codeflowmu-product-intro-zh-poster.jpg" alt="CodeFlowMu product overview: TMPA theory, FCoP protocol, and CodeFlowMu runtime" width="920">
+    <img src="./docs/public/assets/video/codeflowmu-product-intro-zh-poster.jpg?v=20-rolefix-cover" alt="CodeFlowMu product overview: TMPA theory, FCoP protocol, and CodeFlowMu runtime" width="920">
   </a>
 </p>
 
