@@ -1,0 +1,392 @@
+{
+  "schema": "runtime-publication-candidate/v2",
+  "date": "2026-08-24",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Production",
+  "sourceRecord": "research/runtime/records/daily/2026/08/2026-08-24-daily-runtime.json",
+  "updatedAt": "2026-08-24T15:24:00+08:00",
+  "githubCommit": "pending",
+  "reason": "Three completed 2026-08-24 Research Objects were converted into complete bilingual Editorial Architecture 2.1 candidates with verified planning artifacts and deterministic baseline covers.",
+  "reason_zh": "三份已完成的 2026-08-24 Research Object 已转换为完整双语 Editorial Architecture 2.1 候选，并具备已核验的规划工件与确定性基础题图。",
+  "candidates": [
+    {
+      "column": "digital-employee",
+      "category": "daily",
+      "itemId": "Q-20260824-01",
+      "articleType": "engineering-insight",
+      "researchQuestion": "When an agent runtime observes several terminal conditions asynchronously, how should it prevent a generic condition from being regenerated later and erasing more specific safety evidence?",
+      "title": "A Repeated Failure Is Not New Evidence",
+      "title_zh": "重复故障不是新证据",
+      "zhPath": "staging/publication-candidates/2026-08-24-repeated-failure-not-new-evidence.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-24-repeated-failure-not-new-evidence.en.md",
+      "articleBriefPath": "research/runtime/production-work/2026/08/24/Q-20260824-01/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/08/24/Q-20260824-01/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/08/24/Q-20260824-01/figure-plan.json",
+      "coreProposition": "Concurrent terminal conditions should use explicit consumption and arbitration state: once a generic condition has become a candidate outcome, replaying it during finalization must not erase later, more specific safety evidence, while external-effect state and the complete priority policy remain separate concerns.",
+      "sections": [
+        {
+          "module": "context",
+          "heading": "Last-writer storage confuses time with meaning",
+          "heading_zh": "Last-writer Storage 把时间误当成语义"
+        },
+        {
+          "module": "technical-analysis",
+          "heading": "Consumption state makes the narrow rule explicit",
+          "heading_zh": "Consumption State 明确了这条有界规则"
+        },
+        {
+          "module": "architecture-implications",
+          "heading": "Preserve facts separately from the surfaced outcome",
+          "heading_zh": "把事实与最终 Outcome 分开保存"
+        },
+        {
+          "module": "limitations",
+          "heading": "Exception fidelity is not effect safety",
+          "heading_zh": "Exception 保真度不是 Effect Safety"
+        }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "RunResultStreaming marks max turns handled when the default MaxTurnsExceeded is first stored.",
+          "claim_zh": "RunResultStreaming 在首次存储默认 MaxTurnsExceeded 时把 Max Turns 标记为 Handled。",
+          "source": "research/analysis/Q-20260824-01-terminal-condition-consumption-precedence.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "public-fact",
+          "claim": "The same error check evaluates max turns before draining completed input-guardrail results.",
+          "claim_zh": "同一 Error Check 会先评估 Max Turns，再处理已完成的 Input-guardrail Result。",
+          "source": "research/analysis/Q-20260824-01-terminal-condition-consumption-precedence.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "public-fact",
+          "claim": "Before the patch, final cleanup could recreate MaxTurnsExceeded and overwrite an already captured guardrail tripwire.",
+          "claim_zh": "修复前，最终 Cleanup 可以重新创建 MaxTurnsExceeded 并覆盖已捕获的 Guardrail Tripwire。",
+          "source": "research/analysis/Q-20260824-01-terminal-condition-consumption-precedence.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E4",
+          "identity": "public-fact",
+          "claim": "A deterministic asyncio.Event regression still surfaces InputGuardrailTripwireTriggered after max-turn state occurs first.",
+          "claim_zh": "确定性 asyncio.Event Regression 在 Max-turn State 先发生时仍暴露 InputGuardrailTripwireTriggered。",
+          "source": "research/analysis/Q-20260824-01-terminal-condition-consumption-precedence.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "I1",
+          "identity": "our-interpretation",
+          "claim": "A generic terminal condition already consumed into arbitration should not re-enter as new evidence during finalization.",
+          "claim_zh": "已被 Arbitration 消费的通用 Terminal Condition 不应在 Finalization 中作为 New Evidence 重新进入。",
+          "source": "research/analysis/Q-20260824-01-terminal-condition-consumption-precedence.md",
+          "strength": "suggests",
+          "independent": false
+        },
+        {
+          "id": "I2",
+          "identity": "our-interpretation",
+          "claim": "Preserving the surfaced safety exception does not define every failure priority or protect external effects.",
+          "claim_zh": "保留 Surfaced Safety Exception 不会定义所有 Failure Priority，也不会保护 External Effect。",
+          "source": "research/analysis/Q-20260824-01-terminal-condition-consumption-precedence.md",
+          "strength": "suggests",
+          "independent": false
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The conclusion concerns general agent-runtime terminal-condition arbitration."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already addresses the transferable runtime pattern; a separate community edition would not add a distinct evidence subset."
+      },
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverPath": "staging/publication-candidates/2026-08-24-repeated-failure-not-new-evidence-cover.png",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    },
+    {
+      "column": "industry-architecture",
+      "category": "daily",
+      "itemId": "Q-20260824-02",
+      "articleType": "technical-analysis",
+      "researchQuestion": "When a subagent inherits parent history but receives child-specific developer instructions, how should the architecture preserve instruction lineage without turning provenance labels into implicit authorization?",
+      "title": "Instruction Lineage Is Not Instruction Authority",
+      "title_zh": "指令来源不是指令授权",
+      "zhPath": "staging/publication-candidates/2026-08-24-instruction-lineage-not-authority.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-24-instruction-lineage-not-authority.en.md",
+      "articleBriefPath": "research/runtime/production-work/2026/08/24/Q-20260824-02/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/08/24/Q-20260824-02/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/08/24/Q-20260824-02/figure-plan.json",
+      "coreProposition": "Forked-agent contexts need two separate control planes: typed lineage must preserve whether instructions are inherited, replaced or child-local across derivation, while independent authority records must identify the principal, policy source and scope that permit those instructions.",
+      "sections": [
+        {
+          "module": "context",
+          "heading": "Typed context preserves semantic identity",
+          "heading_zh": "Typed Context 保留语义身份"
+        },
+        {
+          "module": "technical-analysis",
+          "heading": "The fork must preserve both exclusion and representation",
+          "heading_zh": "Fork 必须同时保证排除与表示"
+        },
+        {
+          "module": "governance-implications",
+          "heading": "A developer label cannot authorize its own source",
+          "heading_zh": "Developer Label 不能为自己的来源授权"
+        },
+        {
+          "module": "limitations",
+          "heading": "Lifecycle transitions must declare what happens to control",
+          "heading_zh": "Lifecycle Transition 必须声明如何处理 Control"
+        }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "Codex adds a DeveloperInstructions fragment with developer role and generic.developer_instructions content kind.",
+          "claim_zh": "Codex 新增带 Developer Role 与 generic.developer_instructions Content Kind 的 DeveloperInstructions Fragment。",
+          "source": "research/analysis/Q-20260824-02-instruction-lineage-authority-separation.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "public-fact",
+          "claim": "Full-history fork construction filters inherited developer text and conditionally injects child-only guidance.",
+          "claim_zh": "Full-history Fork Construction 会过滤继承 Developer Text，并按条件注入 Child-only Guidance。",
+          "source": "research/analysis/Q-20260824-02-instruction-lineage-authority-separation.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "public-fact",
+          "claim": "The request-level regression verifies parent exclusion, child classification and one exact child occurrence.",
+          "claim_zh": "Request-level Regression 验证 Parent Exclusion、Child Classification 与精确一次 Child Occurrence。",
+          "source": "research/analysis/Q-20260824-02-instruction-lineage-authority-separation.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E4",
+          "identity": "public-fact",
+          "claim": "The fork path retains text-oriented rewriting and a TODO for more precise fragment provenance.",
+          "claim_zh": "Fork Path 仍保留 Text-oriented Rewrite 与更精确 Fragment Provenance 的 TODO。",
+          "source": "research/analysis/Q-20260824-02-instruction-lineage-authority-separation.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "I1",
+          "identity": "our-interpretation",
+          "claim": "Inherited, replaced and child-local instructions need typed lineage across context transformations.",
+          "claim_zh": "Inherited、Replaced 与 Child-local Instruction 需要跨 Context Transformation 的 Typed Lineage。",
+          "source": "research/analysis/Q-20260824-02-instruction-lineage-authority-separation.md",
+          "strength": "suggests",
+          "independent": false
+        },
+        {
+          "id": "I2",
+          "identity": "our-interpretation",
+          "claim": "Developer provenance does not authenticate the principal or determine precedence against external policy.",
+          "claim_zh": "Developer Provenance 不会认证 Principal，也不会决定相对 External Policy 的 Precedence。",
+          "source": "research/analysis/Q-20260824-02-instruction-lineage-authority-separation.md",
+          "strength": "suggests",
+          "independent": false
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The conclusion concerns general multi-agent context and authority architecture."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already provides the two-plane architecture; a separate community edition would not add a different professional angle."
+      },
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverPath": "staging/publication-candidates/2026-08-24-instruction-lineage-not-authority-cover.png",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    },
+    {
+      "column": "open-source-engineering",
+      "category": "daily",
+      "itemId": "Q-20260824-03",
+      "articleType": "engineering-insight",
+      "researchQuestion": "How should an asynchronous resource owner react when cancellation arrives during teardown so it neither leaks remaining owned resources nor swallows the caller's cancellation signal?",
+      "title": "Cancellation Ends Waiting, Not Ownership",
+      "title_zh": "取消结束等待，不结束所有权",
+      "zhPath": "staging/publication-candidates/2026-08-24-cancellation-ends-waiting.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-24-cancellation-ends-waiting.en.md",
+      "articleBriefPath": "research/runtime/production-work/2026/08/24/Q-20260824-03/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/08/24/Q-20260824-03/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/08/24/Q-20260824-03/figure-plan.json",
+      "coreProposition": "Cancellation during teardown should be deferred, not swallowed or immediately propagated: a lifecycle owner must finish its bounded local cleanup obligations and clear ownership state before returning cancellation, while remote cleanup success and ordinary failure observability require separate evidence.",
+      "sections": [
+        {
+          "module": "context",
+          "heading": "Ownership survives the caller's control-flow decision",
+          "heading_zh": "Ownership 不随 Caller 的控制流决定消失"
+        },
+        {
+          "module": "technical-analysis",
+          "heading": "Defer propagation without swallowing cancellation",
+          "heading_zh": "延迟传播，但不吞掉 Cancellation"
+        },
+        {
+          "module": "engineering-implications",
+          "heading": "One close task creates local teardown identity",
+          "heading_zh": "一个 Close Task 建立本地 Teardown Identity"
+        },
+        {
+          "module": "limitations",
+          "heading": "Best effort still needs an evidence channel",
+          "heading_zh": "Best Effort 仍需要 Evidence Channel"
+        }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "Dependencies records factory results as owned only when owns_result is true and reuses one close task.",
+          "claim_zh": "Dependencies 只在 owns_result 为 True 时记录 Owned Factory Result，并复用一个 Close Task。",
+          "source": "research/analysis/Q-20260824-03-cancellation-defers-owner-teardown.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "public-fact",
+          "claim": "The close path awaits active factory tasks, then reverse-traverses owned results and deduplicates repeated object references.",
+          "claim_zh": "Close Path 会等待 Active Factory Task，再逆序遍历 Owned Result 并去重重复 Object Reference。",
+          "source": "research/analysis/Q-20260824-03-cancellation-defers-owner-teardown.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "public-fact",
+          "claim": "The first CancelledError is stored while remaining closes and local state clearing continue before cancellation is re-raised.",
+          "claim_zh": "第一个 CancelledError 被保存，其余 Close 与 Local State Clearing 完成后才重新抛出。",
+          "source": "research/analysis/Q-20260824-03-cancellation-defers-owner-teardown.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E4",
+          "identity": "public-fact",
+          "claim": "The regression observes one close for both owned values and no extra calls from a repeated aclose.",
+          "claim_zh": "Regression 观察到两个 Owned Value 各一次 Close，重复 aclose 不增加调用。",
+          "source": "research/analysis/Q-20260824-03-cancellation-defers-owner-teardown.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E5",
+          "identity": "public-fact",
+          "claim": "Ordinary close exceptions are intentionally suppressed by the best-effort close policy.",
+          "claim_zh": "普通 Close Exception 会被 Best-effort Close Policy 有意吞掉。",
+          "source": "research/analysis/Q-20260824-03-cancellation-defers-owner-teardown.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "I1",
+          "identity": "our-interpretation",
+          "claim": "Cancellation should be deferred until the owner's bounded local teardown obligations finish.",
+          "claim_zh": "Cancellation 应延迟到 Owner 的有界 Local Teardown Obligation 完成后传播。",
+          "source": "research/analysis/Q-20260824-03-cancellation-defers-owner-teardown.md",
+          "strength": "suggests",
+          "independent": false
+        },
+        {
+          "id": "I2",
+          "identity": "our-interpretation",
+          "claim": "Local close-task reuse cannot prove remote cleanup success or distributed exactly-once effects.",
+          "claim_zh": "Local Close-task Reuse 不能证明 Remote Cleanup Success 或分布式 Exactly-once Effect。",
+          "source": "research/analysis/Q-20260824-03-cancellation-defers-owner-teardown.md",
+          "strength": "suggests",
+          "independent": false
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The conclusion concerns general asynchronous resource ownership and teardown reliability."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already addresses the transferable ownership pattern; a separate community edition would repeat the same evidence."
+      },
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverPath": "staging/publication-candidates/2026-08-24-cancellation-ends-waiting-cover.png",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    }
+  ]
+}
