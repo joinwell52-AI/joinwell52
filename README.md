@@ -26,7 +26,7 @@
 ## CodeFlowMu product overview
 
 <p align="center">
-  <a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-intro-zh.mp4">
+  <a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-intro-zh.mp4?v=20-rolefix">
     <img src="./docs/public/assets/video/codeflowmu-product-intro-zh-poster.jpg" alt="CodeFlowMu product overview: TMPA theory, FCoP protocol, and CodeFlowMu runtime" width="920">
   </a>
 </p>
@@ -35,7 +35,7 @@
   <a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-teaser-zh.mp4">
     <img src="https://img.shields.io/badge/12%20sec%20Teaser-Play%20Now-0ea5e9?style=for-the-badge&logo=youtube&logoColor=white" alt="Watch 12-second teaser">
   </a>
-  <a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-intro-zh.mp4">
+  <a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-intro-zh.mp4?v=20-rolefix">
     <img src="https://img.shields.io/badge/60%20sec%20Film-Watch%20Now-22c55e?style=for-the-badge&logo=videocam&logoColor=white" alt="Watch 60-second product film">
   </a>
   <br>
