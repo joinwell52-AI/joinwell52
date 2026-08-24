@@ -2,7 +2,6 @@
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useData, withBase } from 'vitepress'
 import ResponsiveTitle from './ResponsiveTitle.vue'
-import ResearchSkillGlyph from './ResearchSkillGlyph.vue'
 import EditorialScorecard from './EditorialScorecard.vue'
 import { data as allNotes } from './research-notes.data'
 import type { ResearchColumn, ResearchNoteRecord } from './research-notes.data'
@@ -22,7 +21,7 @@ const copy = computed(() => zh.value ? {
   heroCompact: ['让通用 AI', '成为数字员工'],
   heroMobile: ['让通用 AI', '成为数字员工'],
   heroLead: '让 AI 拥有岗位、职责、技能和工作流程，持续完成真实任务，并留下可核验的工作成果。',
-  primary: '观看 60 秒产品演示', secondary: '查看生产线', tertiary: '进入观察笔记',
+  primary: '进入观察笔记',
   ledger: '运行状态', live: '正在生产', ledgerRows: [
     ['生产岗位', '研究分析员'], ['工作入口', '任务队列'], ['交付门禁', 'GitHub + VitePress'], ['事实来源', 'main 分支']
   ],
@@ -65,8 +64,7 @@ const copy = computed(() => zh.value ? {
     { no:'01', kind:'理论', role:'文本化多智能体流程架构', name:['TMPA'], description:'独立记录治理理论、规范对象与 Reader 行为，通过 Core 与 FCoP 指导 CodeFlowMu 工程落实，但不把工程结果自动当作理论证明。', path:'/zh/publications/tmpa-architecture-paper-a1.0', logo:'/logo.svg?v=tmpa-20260807-5', tone:'tmpa', cta:'论文与规范' },
     { no:'02', kind:'协议', role:'基于文件的协同协议', name:['FCoP'], description:'以项目可见文件承载任务、报告、审阅与生命周期证据，为 CodeFlowMu 与数字员工提供可重建的协同事实。', path:'https://joinwell52-ai.github.io/FCoP/', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'打开 FCoP 官网' },
     { no:'03', kind:'运行', role:'数字员工开发与工作 Runtime', name:['CodeFlowMu'], description:'承载数字员工开发、受治理执行、恢复与持久工作证据，是工场能力的运行层与开源参考环境。', path:'https://github.com/joinwell52-AI/CodeFlowMu-open', logo:'/assets/logos/codeflowmu.png', tone:'codeflow', cta:'打开 GitHub' },
-    { no:'04', kind:'产品', role:'工场直接生产的数字劳动力', name:['Digital','Employee'], description:'面向组织岗位、权限、工作流、成果与评价的受治理数字劳动力，是工场的产品与交付对象。', path:'/zh/digital-employee/', tone:'employee', cta:'查看产品层' },
-    { no:'05', kind:'应用', role:'企业 AI 应用 · PWA DEMO', name:['小典','AI'], description:'源于早期企业 AI 应用实践，并促成对多角色开发、业务治理与数字员工架构的持续探索。现开放 PWA Demo 供交互体验；这是体验入口，不是生产服务。', path:'https://demo.chedian.cc', mark:'XD', tone:'xiaodian', cta:'打开 PWA Demo' }
+    { no:'04', kind:'应用', role:'企业 AI 应用 · PWA DEMO', name:['小典','AI'], description:'源于早期企业 AI 应用实践，并促成对多角色开发、业务治理与数字员工架构的持续探索。现开放 PWA Demo 供交互体验；这是体验入口，不是生产服务。', path:'https://demo.chedian.cc', mark:'XD', tone:'xiaodian', cta:'打开 PWA Demo' }
   ],
   researchLabel: '04 · 工场观察',
   researchTitle: '观察笔记 持续更新',
@@ -100,7 +98,7 @@ const copy = computed(() => zh.value ? {
   heroCompact: ['Turn general-purpose AI', 'into Digital', 'Employees'],
   heroMobile: ['Turn general-purpose AI', 'into Digital', 'Employees'],
   heroLead: 'Give AI a position, responsibilities, skills, and a workflow so it can continuously complete real tasks and leave verifiable work results.',
-  primary: 'Watch the 60-second demo', secondary: 'Inspect the production line', tertiary: 'Explore Observation Notes',
+  primary: 'Explore Observation Notes',
   ledger: 'Runtime status', live: 'IN PRODUCTION', ledgerRows: [
     ['Production position', 'Research Analyst'], ['Work intake', 'Task Queue'], ['Delivery gate', 'GitHub + VitePress'], ['Source of truth', 'main branch']
   ],
@@ -143,8 +141,7 @@ const copy = computed(() => zh.value ? {
     { no:'01', kind:'THEORY', role:'TEXTUAL MULTI-AGENT PROCESS ARCHITECTURE', name:['TMPA'], description:'Independently records governance theory, normative objects, and Reader behavior. Through Core and FCoP it guides CodeFlowMu engineering without treating implementation results as automatic proof of theory.', path:'/en/publications/tmpa-architecture-paper-a1.0', logo:'/logo.svg?v=tmpa-20260807-5', tone:'tmpa', cta:'Paper & specification' },
     { no:'02', kind:'PROTOCOL', role:'FILE-BASED COORDINATION PROTOCOL', name:['FCoP'], description:'Project-visible files carry tasks, reports, reviews, and lifecycle evidence, providing reconstructable coordination facts for CodeFlowMu and Digital Employees.', path:'https://joinwell52-ai.github.io/FCoP/', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'Open FCoP site' },
     { no:'03', kind:'RUNTIME', role:'DIGITAL EMPLOYEE DEVELOPMENT AND WORK RUNTIME', name:['CodeFlowMu'], description:'The runtime layer for Digital Employee development, governed execution, recovery, and durable work evidence, with an open-source reference environment.', path:'https://github.com/joinwell52-AI/CodeFlowMu-open', logo:'/assets/logos/codeflowmu.png', tone:'codeflow', cta:'Open GitHub' },
-    { no:'04', kind:'PRODUCT', role:'DIGITAL WORKFORCE PRODUCED BY THE WORKS', name:['Digital','Employee'], description:'Governed digital labor organized around positions, authority, workflows, deliverables, and evaluation—the product and delivery object of the Works.', path:'/en/digital-employee/', tone:'employee', cta:'View product layer' },
-    { no:'05', kind:'APPLICATION', role:'ENTERPRISE AI APPLICATION · PWA DEMO', name:['Xiaodian','AI'], description:'An early enterprise AI application that helped surface the need for multi-role development, business governance, and the Digital Employee architecture. Its PWA demo is open for hands-on exploration; it is an experience entry point, not a production service.', path:'https://demo.chedian.cc', mark:'XD', tone:'xiaodian', cta:'Open PWA Demo' }
+    { no:'04', kind:'APPLICATION', role:'ENTERPRISE AI APPLICATION · PWA DEMO', name:['Xiaodian','AI'], description:'An early enterprise AI application that helped surface the need for multi-role development, business governance, and the Digital Employee architecture. Its PWA demo is open for hands-on exploration; it is an experience entry point, not a production service.', path:'https://demo.chedian.cc', mark:'XD', tone:'xiaodian', cta:'Open PWA Demo' }
   ],
   researchLabel: '04 · FACTORY OBSERVATION',
   researchTitle: 'Observation Notes Always updating',
@@ -209,8 +206,6 @@ const runtimeStatusLabel = computed(() => zh.value
   : runtimeLatest.status
 )
 let researchRotation: ReturnType<typeof setInterval> | undefined
-const activeSkill = ref(0)
-let skillRotation: ReturnType<typeof setInterval> | undefined
 const videoDialogOpen = ref(false)
 const fullVideo = ref<HTMLVideoElement>()
 
@@ -243,29 +238,16 @@ const selectResearchColumn = (column: ResearchColumn) => {
   startResearchRotation()
 }
 
-const startSkillRotation = () => {
-  if (typeof window === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-  if (skillRotation) clearInterval(skillRotation)
-  skillRotation = setInterval(() => { activeSkill.value = (activeSkill.value + 1) % copy.value.skills.length }, 1450)
-}
-
-const selectSkill = (index: number) => {
-  activeSkill.value = index
-  startSkillRotation()
-}
-
 const categoryLabel = (category: ResearchNoteRecord['category']) => zh.value
   ? ({ daily: '每日观察', weekly: '每周综合', academic: '学术观察' }[category])
   : ({ daily: 'Daily observation', weekly: 'Weekly synthesis', academic: 'Academic observation' }[category])
 
 onMounted(() => {
   startResearchRotation()
-  startSkillRotation()
   window.addEventListener('keydown', handleVideoKeydown)
 })
 onBeforeUnmount(() => {
   if (researchRotation) clearInterval(researchRotation)
-  if (skillRotation) clearInterval(skillRotation)
   window.removeEventListener('keydown', handleVideoKeydown)
 })
 </script>
@@ -304,9 +286,7 @@ onBeforeUnmount(() => {
           />
           <p class="rc-hero__lead">{{ copy.heroLead }}</p>
           <div class="rc-actions">
-            <button class="rc-button rc-button--primary" type="button" @click="openFullVideo">{{ copy.primary }} <span>▶</span></button>
-            <a class="rc-button" href="#production-line">{{ copy.secondary }} <span>↓</span></a>
-            <a class="rc-text-link" :href="link(researchOverview)">{{ copy.tertiary }} <span>↗</span></a>
+            <a class="rc-button rc-button--primary" :href="link(researchOverview)">{{ copy.primary }} <span>↗</span></a>
           </div>
         </div>
 
@@ -338,12 +318,6 @@ onBeforeUnmount(() => {
         </button>
       </div>
 
-      <div class="rc-shell rc-hero__index">
-        <div><span>01</span><b>{{ zh ? '岗位' : 'POSITION' }}</b><small>{{ zh ? '数字员工' : 'DIGITAL EMPLOYEE' }}</small></div>
-        <div><span>02</span><b>{{ zh ? '工作链' : 'WORKFLOW' }}</b><small>{{ zh ? '持续运行' : 'CONTINUOUS' }}</small></div>
-        <div><span>03</span><b>{{ zh ? '证据' : 'EVIDENCE' }}</b><small>{{ zh ? '可检查可重建' : 'RECONSTRUCTABLE' }}</small></div>
-        <div><span>04</span><b>{{ zh ? '交付' : 'DELIVERY' }}</b><small>{{ zh ? '生产验证通过' : 'PRODUCTION VERIFIED' }}</small></div>
-      </div>
     </section>
 
     <div
@@ -374,58 +348,6 @@ onBeforeUnmount(() => {
         </footer>
       </div>
     </div>
-
-    <section id="production-line" class="rc-section rc-engine">
-      <div class="rc-shell">
-        <div class="rc-section__intro">
-          <div>
-            <p class="rc-kicker rc-kicker--dark">{{ copy.engineLabel }}</p>
-            <ResponsiveTitle tag="h2" class="rc-section__title" :label="copy.engineTitle" :wide="copy.engineWide" :compact="copy.engineCompact" :mobile="copy.engineMobile" />
-          </div>
-          <p>{{ copy.engineLead }}</p>
-        </div>
-        <div class="rc-engine__grid">
-          <article class="rc-position-card">
-            <header><span>{{ copy.position }}</span><b>{{ copy.verified }}</b></header>
-            <div class="rc-position-card__mark">RA</div>
-            <h3>{{ copy.positionName }}</h3><p>{{ copy.worker }}</p>
-            <div class="rc-position-card__live">
-              <span><i></i>{{ copy.workflowLive }}</span>
-              <b>{{ String(activeSkill + 1).padStart(2, '0') }} / 08</b>
-              <strong><small>{{ copy.currentStep }}</small>{{ copy.skills[activeSkill] }}</strong>
-            </div>
-            <a :href="link(zh ? '/zh/publications/research-report-production-engine-v1.0' : '/en/publications/research-report-production-engine-v1.0')">{{ copy.engineLink }} <span>↗</span></a>
-          </article>
-          <div class="rc-skill-flow" :class="`is-step-${activeSkill + 1}`">
-            <header><b>{{ copy.workflowLabel }}</b><span><i></i>{{ copy.workflowLive }} · {{ String(activeSkill + 1).padStart(2, '0') }}/08</span></header>
-            <div class="rc-skill-flow__map">
-              <svg viewBox="0 0 1000 470" preserveAspectRatio="none" aria-hidden="true">
-                <path class="rc-skill-flow__rail" d="M250 58H750Q790 58 790 98V136Q790 176 750 176H250Q210 176 210 216V254Q210 294 250 294H750Q790 294 790 334V372Q790 412 750 412H250" />
-                <path class="rc-skill-flow__pulse" d="M250 58H750Q790 58 790 98V136Q790 176 750 176H250Q210 176 210 216V254Q210 294 250 294H750Q790 294 790 334V372Q790 412 750 412H250" />
-              </svg>
-              <span class="rc-work-pass" aria-hidden="true"><b>RA</b><i></i></span>
-              <ol class="rc-skills">
-                <li v-for="(skill, index) in copy.skills" :key="skill" :class="{ 'is-active': activeSkill === index }">
-                  <button type="button" :aria-pressed="activeSkill === index" @click="selectSkill(index)">
-                    <span class="rc-office-lamp" aria-hidden="true"></span>
-                    <span class="rc-office-sign" aria-hidden="true"><ResearchSkillGlyph :step="index" :active="activeSkill === index" :label="skill" /></span>
-                    <span class="rc-office-door">
-                      <span class="rc-skill-copy"><small>{{ String(index + 1).padStart(2, '0') }} · {{ copy.skillStages[index] }}</small><b>{{ skill }}</b></span>
-                      <i class="rc-office-handle" aria-hidden="true"></i>
-                    </span>
-                  </button>
-                </li>
-              </ol>
-            </div>
-          </div>
-        </div>
-        <aside class="rc-governance-note">
-          <span>{{ zh ? '治理边界' : 'GOVERNANCE BOUNDARY' }}</span>
-          <h3>{{ copy.governanceTitle }}</h3>
-          <p>{{ copy.governanceText }}</p>
-        </aside>
-      </div>
-    </section>
 
     <section class="rc-section rc-field">
       <div class="rc-shell">
@@ -708,7 +630,7 @@ onBeforeUnmount(() => {
 .rc-home a { text-decoration: none !important; }
 .rc-shell { width: min(1220px, calc(100% - 72px)); margin-inline: auto; }
 
-.rc-hero { position: relative; min-height: 770px; color: #fff; border-bottom: 1px solid rgba(255,255,255,.1); background: radial-gradient(circle at 82% 10%, rgba(54,203,232,.18), transparent 28%), radial-gradient(circle at 17% 82%, rgba(109,93,252,.2), transparent 32%), linear-gradient(135deg, #070d1a 0%, #101a36 56%, #072333 100%); }
+.rc-hero { position: relative; min-height: 640px; color: #fff; border-bottom: 1px solid rgba(255,255,255,.1); background: radial-gradient(circle at 82% 10%, rgba(54,203,232,.18), transparent 28%), radial-gradient(circle at 17% 82%, rgba(109,93,252,.2), transparent 32%), linear-gradient(135deg, #070d1a 0%, #101a36 56%, #072333 100%); }
 .rc-hero::before { content: "WORKS"; position: absolute; right: -34px; top: 38px; color: transparent; -webkit-text-stroke: 1px var(--rc-watermark); font-size: clamp(110px, 16vw, 230px); font-weight: 900; letter-spacing: -.08em; line-height: 1; pointer-events: none; }
 .rc-product-mark { display: inline-flex; align-items: center; gap: 12px; }
 .rc-product-mark a { display: grid; width: 36px; height: 36px; place-items: center; opacity: .82; transition: opacity .18s ease, transform .18s ease; }
@@ -733,7 +655,7 @@ onBeforeUnmount(() => {
 :global(.dark .rc-language a:hover),
 :global(.dark .rc-appearance:hover) { color: #fff !important; background: rgba(255,255,255,.1); }
 :global(.dark .rc-appearance) { color: #fff; }
-.rc-hero__layout { position: relative; display: grid; grid-template-columns: minmax(390px, .88fr) minmax(500px, 1.12fr); gap: 44px; align-items: center; padding-top: 82px; }
+.rc-hero__layout { position: relative; display: grid; grid-template-columns: minmax(390px, .88fr) minmax(500px, 1.12fr); gap: 44px; align-items: center; padding: 82px 0 72px; }
 .rc-home:not(.is-zh) .rc-hero__layout { grid-template-columns: minmax(390px, .88fr) minmax(500px, 1.12fr); gap: 44px; }
 .rc-kicker { display: flex; align-items: center; gap: 13px; margin: 0 0 22px; color: #f0f4ff; font: 800 13px/1.4 "Noto Sans SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif; letter-spacing: .025em; }
 .rc-kicker span { width: 30px; height: 2px; background: var(--rc-red); }
@@ -1069,8 +991,8 @@ onBeforeUnmount(() => {
 
 @media (max-width: 1199px) {
   .rc-shell { width: min(100% - 56px, 940px); }
-  .rc-hero { min-height: 768px; }
-  .rc-hero__layout { grid-template-columns: minmax(340px, .9fr) minmax(450px, 1.1fr); gap: 30px; padding-top: 64px; }
+  .rc-hero { min-height: 620px; }
+  .rc-hero__layout { grid-template-columns: minmax(340px, .9fr) minmax(450px, 1.1fr); gap: 30px; padding: 64px 0 56px; }
   .rc-hero__title { font-size: 62px; }
   .rc-home:not(.is-zh) .rc-hero__layout { grid-template-columns: minmax(340px, .9fr) minmax(450px, 1.1fr); gap: 30px; }
   .rc-home:not(.is-zh) .rc-hero__title { font-size: 56px; }
@@ -1128,7 +1050,7 @@ onBeforeUnmount(() => {
   .rc-language strong,
   .rc-language a { min-height: 30px; padding-inline: 8px; }
   .rc-appearance { min-height: 30px; padding-inline: 9px; font-size: 12px; }
-  .rc-hero__layout { display: block; padding-top: 54px; }
+  .rc-hero__layout { display: block; padding: 54px 0 64px; }
   .rc-kicker { margin-bottom: 17px; font-size: 11px; line-height: 1.4; letter-spacing: .015em; }
   .rc-kicker span { width: 20px; }
   .rc-hero__title { font-size: 49px; line-height: .91; letter-spacing: -.062em; }
