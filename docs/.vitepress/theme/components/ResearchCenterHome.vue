@@ -22,7 +22,7 @@ const copy = computed(() => zh.value ? {
   heroCompact: ['让通用 AI', '成为数字员工'],
   heroMobile: ['让通用 AI', '成为数字员工'],
   heroLead: '让 AI 拥有岗位、职责、技能和工作流程，持续完成真实任务，并留下可核验的工作成果。',
-  primary: '观看 80 秒产品演示', secondary: '查看生产线', tertiary: '进入观察笔记',
+  primary: '观看 60 秒产品演示', secondary: '查看生产线', tertiary: '进入观察笔记',
   ledger: '运行状态', live: '正在生产', ledgerRows: [
     ['生产岗位', '研究分析员'], ['工作入口', '任务队列'], ['交付门禁', 'GitHub + VitePress'], ['事实来源', 'main 分支']
   ],
@@ -100,7 +100,7 @@ const copy = computed(() => zh.value ? {
   heroCompact: ['Turn general-purpose AI', 'into Digital', 'Employees'],
   heroMobile: ['Turn general-purpose AI', 'into Digital', 'Employees'],
   heroLead: 'Give AI a position, responsibilities, skills, and a workflow so it can continuously complete real tasks and leave verifiable work results.',
-  primary: 'Watch the 80-second demo', secondary: 'Inspect the production line', tertiary: 'Explore Observation Notes',
+  primary: 'Watch the 60-second demo', secondary: 'Inspect the production line', tertiary: 'Explore Observation Notes',
   ledger: 'Runtime status', live: 'IN PRODUCTION', ledgerRows: [
     ['Production position', 'Research Analyst'], ['Work intake', 'Task Queue'], ['Delivery gate', 'GitHub + VitePress'], ['Source of truth', 'main branch']
   ],
@@ -313,7 +313,7 @@ onBeforeUnmount(() => {
         <button
           class="rc-hero-video"
           type="button"
-          :aria-label="zh ? '播放 CodeFlowMu 80 秒正式产品介绍' : 'Play the 80-second CodeFlowMu product introduction'"
+          :aria-label="zh ? '播放 CodeFlowMu 60 秒正式产品介绍' : 'Play the 60-second CodeFlowMu product introduction'"
           @click="openFullVideo"
         >
           <video
@@ -332,7 +332,7 @@ onBeforeUnmount(() => {
           <span class="rc-hero-video__play" aria-hidden="true">▶</span>
           <span class="rc-hero-video__caption">
             <strong>{{ zh ? '多 AI 自动工作，最终由人类审批' : 'Multiple AI agents work; humans give final approval' }}</strong>
-            <small>{{ zh ? '点击观看 80 秒完整演示（有声音）' : 'Watch the full 80-second demo with sound' }}</small>
+            <small>{{ zh ? '点击观看 60 秒完整演示（有声音）' : 'Watch the full 60-second demo with sound' }}</small>
           </span>
           <span class="rc-hero-video__url">github.com/joinwell52-AI</span>
         </button>
@@ -356,7 +356,7 @@ onBeforeUnmount(() => {
     >
       <div class="rc-video-modal__panel">
         <header>
-          <div><span>CODEFLOWMU · PRODUCT DEMO</span><strong>{{ zh ? '多 AI 真实协作 · 80 秒' : 'Real multi-agent collaboration · 80 seconds' }}</strong></div>
+          <div><span>CODEFLOWMU · PRODUCT DEMO</span><strong>{{ zh ? '多 AI 真实协作 · 60 秒' : 'Real multi-agent collaboration · 60 seconds' }}</strong></div>
           <button type="button" :aria-label="zh ? '关闭视频' : 'Close video'" @click="closeFullVideo">×</button>
         </header>
         <video
@@ -471,7 +471,7 @@ onBeforeUnmount(() => {
             <p class="rc-kicker">{{ zh ? 'CODEFLOWMU · 产品介绍' : 'CODEFLOWMU · PRODUCT OVERVIEW' }}</p>
             <h2 class="rc-section__title">{{ zh ? '看见多 AI 团队，如何完成一次真实协作' : 'See a multi-agent team complete real work' }}</h2>
           </div>
-          <p>{{ zh ? '80 秒真实产品演示：手机发起任务、PM 自动拆解、多个角色并行工作、PC 全局观察、报告回流，以及最终人类审批。片尾说明 TMPA、FCoP 与 CodeFlowMu 从理论、协议到运行产品的关系。' : 'An 80-second real product demonstration: mobile task entry, automatic PM decomposition, parallel roles, full PC observation, report return, and final human approval. Chinese narration with on-screen product context.' }}</p>
+          <p>{{ zh ? '60 秒真实产品演示：手机发起任务、PM 自动拆解、多个角色并行工作、PC 全局观察、报告回流，以及最终人类审批。片尾说明 TMPA、FCoP 与 CodeFlowMu 从理论、协议到运行产品的关系。' : 'A 60-second real product demonstration: mobile task entry, automatic PM decomposition, parallel roles, full PC observation, report return, and final human approval. Chinese narration with on-screen product context.' }}</p>
         </div>
         <div class="rc-codeflow-video__frame">
           <video
