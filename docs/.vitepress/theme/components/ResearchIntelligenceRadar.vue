@@ -18,9 +18,9 @@ const props = withDefaults(defineProps<{lang?:'en'|'zh'}>(), { lang:'en' })
 const zh = computed(() => props.lang === 'zh')
 const run = computed(() => data.currentRun)
 const copy = computed(() => zh.value ? {
-  kicker:'RESEARCH INTELLIGENCE SYSTEM V1.0', title:'研究情报雷达', lead:'AI 平台、GitHub 工程、论文与研究成果三条情报管线，共同服务数字员工、行业架构和开源工程三个板块。', pipelines:'三条情报管线', columns:'三栏选题结果', due:'应检查', checked:'已检查', inaccessible:'受限', signals:'信号', candidates:'候选', selected:'入选', noSelection:'未选题', waiting:'待执行', registry:'情报源明细', run:'今日扫描记录', effective:'生效日期', sourceNote:'完成标准是覆盖率和可追溯结果，不是强行找到一篇文章。', p2Title:'P2 专项研究', p2Note:'周任务只生成内部报告；雷达显示处理状态，正文在本地审稿中心查看。', reports:'报告', pendingReview:'待处理', processed:'已处理', latestReport:'最近报告', noReport:'无报告', reviewDecision:'审核结论', status:{Waiting:'待执行',Running:'运行中',Completed:'已完成',Blocked:'已阻塞',Failed:'失败',Skipped:'已跳过'}
+  kicker:'RESEARCH INTELLIGENCE SYSTEM V1.0', title:'研究情报雷达', lead:'AI 平台、GitHub 工程、论文与研究成果三条情报管线，共同服务数字员工、行业架构和开源工程三个板块。', pipelines:'三条情报管线', columns:'三栏选题结果', due:'应检查', checked:'已检查', inaccessible:'受限', signals:'信号', candidates:'候选', selected:'入选', noSelection:'未选题', waiting:'待执行', registry:'情报源明细', run:'今日扫描记录', score:'评分记录', effective:'生效日期', sourceNote:'完成标准是覆盖率和可追溯结果，不是强行找到一篇文章。', p2Title:'P2 专项研究', p2Note:'周任务只生成内部报告；雷达显示处理状态，正文在本地审稿中心查看。', reports:'报告', pendingReview:'待处理', processed:'已处理', latestReport:'最近报告', noReport:'无报告', reviewDecision:'审核结论', status:{Waiting:'待执行',Running:'运行中',Completed:'已完成',Blocked:'已阻塞',Failed:'失败',Skipped:'已跳过'}
 } : {
-  kicker:'RESEARCH INTELLIGENCE SYSTEM V1.0', title:'Research Intelligence Radar', lead:'AI Platform, GitHub Engineering, and Published Research intelligence jointly serve the Digital Employee, Industry Architecture, and Open-source Engineering columns.', pipelines:'Three Intelligence Pipelines', columns:'Three-Column Decisions', due:'Due', checked:'Checked', inaccessible:'Restricted', signals:'Signals', candidates:'Candidates', selected:'Selected', noSelection:'No Selection', waiting:'Waiting', registry:'Intelligence Sources', run:"Today's Scan Record", effective:'Effective', sourceNote:'Completion is measured by source coverage and traceable outcomes, not by forcing an article.', p2Title:'P2 Special Studies', p2Note:'The weekly task creates internal reports; the Radar shows workflow status while report bodies stay in the local review center.', reports:'Reports', pendingReview:'Pending', processed:'Processed', latestReport:'Latest report', noReport:'No report', reviewDecision:'Review decision', status:{Waiting:'Waiting',Running:'Running',Completed:'Completed',Blocked:'Blocked',Failed:'Failed',Skipped:'Skipped'}
+  kicker:'RESEARCH INTELLIGENCE SYSTEM V1.0', title:'Research Intelligence Radar', lead:'AI Platform, GitHub Engineering, and Published Research intelligence jointly serve the Digital Employee, Industry Architecture, and Open-source Engineering columns.', pipelines:'Three Intelligence Pipelines', columns:'Three-Column Decisions', due:'Due', checked:'Checked', inaccessible:'Restricted', signals:'Signals', candidates:'Candidates', selected:'Selected', noSelection:'No Selection', waiting:'Waiting', registry:'Intelligence Sources', run:"Today's Scan Record", score:'Score Record', effective:'Effective', sourceNote:'Completion is measured by source coverage and traceable outcomes, not by forcing an article.', p2Title:'P2 Special Studies', p2Note:'The weekly task creates internal reports; the Radar shows workflow status while report bodies stay in the local review center.', reports:'Reports', pendingReview:'Pending', processed:'Processed', latestReport:'Latest report', noReport:'No report', reviewDecision:'Review decision', status:{Waiting:'Waiting',Running:'Running',Completed:'Completed',Blocked:'Blocked',Failed:'Failed',Skipped:'Skipped'}
 })
 const statusLabel = (status:Status) => copy.value.status[status]
 const statusClass = (status:Status) => `s-${status.toLowerCase()}`
@@ -33,6 +33,7 @@ const columnStatus = (item:ColumnResult) => item.decision === 'Selected' ? copy.
 const columnClass = (item:ColumnResult) => item.decision === 'Selected' ? 's-completed' : item.decision === 'No Selection' ? 's-skipped' : 's-waiting'
 const repoUrl = (path:string) => `https://github.com/joinwell52-AI/joinwell52/blob/main/${path}`
 const registryPage = computed(() => withBase(zh.value ? '/zh/runtime/intelligence-sources' : '/en/runtime/intelligence-sources'))
+const scorePage = computed(() => withBase(zh.value ? '/zh/runtime/editorial-scorecard' : '/en/runtime/editorial-scorecard'))
 const runPath = computed(() => `research/intelligence/runs/${run.value.date.slice(0,4)}/${run.value.date.slice(5,7)}/${run.value.date}-intelligence.json`)
 const p2Label = computed(() => p2.review.status === 'No Report' ? copy.value.noReport : p2.review.status === 'Pending' ? copy.value.pendingReview : copy.value.processed)
 const p2Class = computed(() => p2.review.status === 'Pending' ? 's-waiting' : p2.review.status === 'Processed' ? 's-completed' : 's-skipped')
@@ -85,7 +86,7 @@ const reviewDecision = computed(() => {
           </article>
         </div>
       </section>
-      <footer><a :href="registryPage">{{ copy.registry }} ↗</a><a :href="repoUrl(runPath)">{{ copy.run }} ↗</a></footer>
+      <footer><a :href="registryPage">{{ copy.registry }} ↗</a><a :href="repoUrl(runPath)">{{ copy.run }} ↗</a><a :href="scorePage">{{ copy.score }} ↗</a></footer>
     </div>
   </section>
 </template>
