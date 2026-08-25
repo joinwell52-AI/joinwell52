@@ -1,7 +1,7 @@
 # Q-20260825-03 — Startup Rollout Migration Must Rediscover Paths Under Concurrent Mutation
 
 - Runtime date: 2026-08-25 (Asia/Shanghai)
-- Queue signal: SIG-20260825-010
+- Queue signal: SIG-20260825-006
 - Primary source: https://github.com/openai/codex/commit/465eafacbc2db4ff828cd6d18ed8f25d22e48f53
 - Evidence level: `merged_maintainer_change`
 - Scope: Codex startup rollout migration, writer-lock contention, archive/compression path movement, busy retry and terminal-failure cursor behavior
