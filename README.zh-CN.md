@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://joinwell52-ai.github.io/CodeFlowMu-open/"><strong>了解 CodeFlowMu Open</strong></a>
+  <a href="https://joinwell52-ai.github.io/CodeFlowMu-open/"><strong>CodeFlowMu Open（历史版）</strong></a>
   ·
   <a href="https://joinwell52-ai.github.io/FCoP/"><strong>了解 FCoP</strong></a>
   ·
@@ -18,7 +18,9 @@
 
 <p align="center">
   <a href="https://github.com/joinwell52-AI/joinwell52/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/joinwell52-AI/joinwell52?style=for-the-badge&logo=github&label=Star"></a>
+  <a href="https://github.com/joinwell52-AI/joinwell52/releases/tag/tmpa-v1.0"><img alt="TMPA V1.0 Release" src="https://img.shields.io/badge/release-TMPA%20V1.0-2563eb?style=for-the-badge"></a>
   <a href="https://doi.org/10.5281/zenodo.21888488"><img alt="DOI" src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21888488-1682D4?style=for-the-badge"></a>
+  <a href="./CITATION.cff"><img alt="引用本仓库" src="https://img.shields.io/badge/%E5%BC%95%E7%94%A8-CITATION.cff-8b5cf6?style=for-the-badge"></a>
   <a href="https://joinwell52-ai.github.io/joinwell52/zh/publications/tmpa-core-specification-s1.0"><img alt="TMPA Core S1.0" src="https://img.shields.io/badge/Core-S1.0-7c3aed?style=for-the-badge"></a>
   <a href="https://joinwell52-ai.github.io/joinwell52/zh/publications/implementation-case-i1.0"><img alt="Implementation I1.0" src="https://img.shields.io/badge/CodeFlowMu-14%2F14_PASS-15803d?style=for-the-badge"></a>
 </p>
@@ -48,7 +50,7 @@
 
 **TMPA（Textual Multi-Agent Process Architecture，文本化多智能体流程架构）**是一套厂商中立的治理架构，用于管理由 AI Agent 与人类共同承担的长周期工作。它把持久工作事实从模型的易失性记忆中剥离出来，在异步执行中保留责任边界，并依据可检查证据重构生命周期、权限、冲突与审计状态。
 
-本仓库是 TMPA 的公开研究、规范、可执行符合性测试与证据基座。[**CodeFlowMu Open**](https://github.com/joinwell52-AI/CodeFlowMu-open)（[产品主页](https://joinwell52-ai.github.io/CodeFlowMu-open/)）是采用 MIT 许可证、可以安装和实际使用的开源产品：由 **PM / DEV / OPS / QA** 组成四人开发团队，EVAL 在旁路独立观察。当前公开版的 Agent 入口**只对接 Cursor SDK**。[**FCoP**](https://github.com/joinwell52-AI/FCoP)（[协议主页](https://joinwell52-ai.github.io/FCoP/)）是该团队采用的 MIT 开源文件式行为治理协议。
+本仓库是 TMPA 的公开研究、规范、可执行符合性测试与证据基座。[**CodeFlowMu Open**](https://github.com/joinwell52-AI/CodeFlowMu-open)（[历史主页](https://joinwell52-ai.github.io/CodeFlowMu-open/)）是**已冻结的历史开源版本**，于 **2026-08-22** 冻结在 **V1.2.29-open**，用于工程历史、可复现性与研究引用。它不是当前 CodeFlowMu 产品的分发路径。[**FCoP**](https://github.com/joinwell52-AI/FCoP)（[协议主页](https://joinwell52-ai.github.io/FCoP/)）是这一工程谱系中的 MIT 开源文件式行为治理协议。
 
 > 如果你正在构建必须经受重启、交接、争议、复核与真实组织问责的 Agent 系统，这个仓库就是为你准备的。**Star 本仓库，即可持续关注稳定规范、可执行示例与证据化发布。**
 
@@ -56,7 +58,7 @@
 
 | 你想做什么 | 最合适的入口 |
 |---|---|
-| 安装真正的开源产品 | [GitHub](https://github.com/joinwell52-AI/CodeFlowMu-open) · [产品主页](https://joinwell52-ai.github.io/CodeFlowMu-open/)——四人开发团队，当前只对接 Cursor |
+| 查看历史开源实现 | [GitHub](https://github.com/joinwell52-AI/CodeFlowMu-open) · [历史主页](https://joinwell52-ai.github.io/CodeFlowMu-open/)——冻结在 V1.2.29-open；不是当前产品分发路径 |
 | 为 Agent 加入文件式协作 | [GitHub](https://github.com/joinwell52-AI/FCoP) · [协议主页](https://joinwell52-ai.github.io/FCoP/)——Python 包、MCP Server 与协议 |
 | 五分钟理解核心问题 | [为什么执行轨迹不等于治理](#执行轨迹不等于治理) |
 | 以完整视觉方式浏览项目 | [进入 Digital Employee Works →](https://joinwell52-ai.github.io/joinwell52/zh/) |
@@ -71,9 +73,9 @@
 |---|---|---|---|
 | **TMPA / joinwell52** | 理论、规范、符合性测试、研究与证据 | [源码与 Star](https://github.com/joinwell52-AI/joinwell52) | [Digital Employee Works](https://joinwell52-ai.github.io/joinwell52/zh/) |
 | **FCoP** | 文件式行为治理协议、Python 包与 MCP Server | [源码与 Star](https://github.com/joinwell52-AI/FCoP) | [FCoP 主页](https://joinwell52-ai.github.io/FCoP/) |
-| **CodeFlowMu Open** | 可安装的四人开发团队产品 | [源码与 Star](https://github.com/joinwell52-AI/CodeFlowMu-open) | [产品主页](https://joinwell52-ai.github.io/CodeFlowMu-open/) |
+| **CodeFlowMu Open** | 历史开源实现与可复现记录 | [源码与 Star](https://github.com/joinwell52-AI/CodeFlowMu-open) | [历史主页](https://joinwell52-ai.github.io/CodeFlowMu-open/) |
 
-每个仓库都有一个清楚的被发现与被 Star 的理由：**TMPA 解释并定义，FCoP 把协作能力做成可复用协议，CodeFlowMu Open 把二者变成可以安装的产品。** 产品使用继续产生现场证据、协议改进与新的规范问题。
+每个仓库都有一个清楚的被发现与被 Star 的理由：**TMPA 解释并定义，FCoP 把协作能力做成可复用协议，CodeFlowMu Open 保留把这些思想连接到真实产品中的历史公开实现。** 当前 CodeFlowMu 产品线已独立闭源开发，不由冻结的开源仓库代表。
 
 ## 工程起点：小典 AI
 
@@ -81,11 +83,11 @@ TMPA、FCoP 与 CodeFlowMu 的问题意识，不是先从论文定义出发，�
 
 > **当前公开边界：**小典 AI 的 [PWA Demo](https://demo.chedian.cc/) 已开放，供读者进行交互体验；源码与生产系统仍不公开。Demo 只是公开体验入口，不代表 TMPA S1.0 符合性、独立验证、生产可用性或“已消除幻觉”的证据。
 
-## 安装开源产品
+## 历史 CodeFlowMu Open 实现
 
-[CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open) 不是概念图或文档 Demo，而是拥有[独立产品主页](https://joinwell52-ai.github.io/CodeFlowMu-open/)、可以安装的本地应用。它提供 PC Panel、Mobile PWA、项目隔离、人工审批门禁、FCoP 工作工件，以及固定的 `PM / DEV / OPS / QA` 四人执行团队；`EVAL` 独立观察交付质量与风险。
+[CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open) 保留最后一个公开的本地应用版本及其[历史产品主页](https://joinwell52-ai.github.io/CodeFlowMu-open/)，包括 PC Panel、Mobile PWA、项目隔离、人工审批门禁、FCoP 工作工件，以及固定的 `PM / DEV / OPS / QA` 四人执行团队；`EVAL` 独立观察交付质量与风险。
 
-> **当前 Provider 边界：**公开产品目前只使用 **Cursor SDK / Cursor API Key**。当前版本没有包含、也不宣称支持其他 Agent Provider。
+> **历史边界：**CodeFlowMu Open 已于 **2026-08-22** 冻结在 **V1.2.29-open**。下面命令仅保留用于复现与历史使用，不是当前闭源 CodeFlowMu 产品线的安装路径。
 
 ```bat
 cd /d D:\
@@ -100,7 +102,7 @@ START-CODEFLOWMU-OPEN.bat
   </a>
 </p>
 
-<p align="center"><sub>真实产品截图 · 点击进入产品仓库，查看安装方法与完整 PC/PWA 图文说明。</sub></p>
+<p align="center"><sub>历史产品截图 · 点击进入历史仓库查看完整 PC/PWA 图文资料。</sub></p>
 
 ## 执行轨迹不等于治理
 
@@ -132,7 +134,7 @@ CodeFlowMu V1.8.0           产品 Adapter 与 Governance Reader
 数字员工应用                在真实生产语境中承担受治理工作
 ```
 
-这个方向不能颠倒：架构论文解释理论，Core 定义规范行为，[FCoP](https://github.com/joinwell52-AI/FCoP) 提供协议 Profile，[CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open) 是公开、可安装的产品线，实施案例只报告精确版本证据真正支持的结果。
+这个方向不能颠倒：架构论文解释理论，Core 定义规范行为，[FCoP](https://github.com/joinwell52-AI/FCoP) 提供协议 Profile，[CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open) 保留历史公开实现；当前 CodeFlowMu 产品线已独立闭源开发。实施案例只报告精确版本证据真正支持的结果。
 
 ### 四条相互连接的规则
 
@@ -157,7 +159,7 @@ npm run demo
 npm run tmpa:s1.0:conformance
 ```
 
-`npm run demo` 会展示同一份交付：开发者自审时被拒绝，增加独立 QA 证据后才被接受。这是一个小型 TMPA 规范演示；真正可以安装使用的产品是 [CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open)。
+`npm run demo` 会展示同一份交付：开发者自审时被拒绝，增加独立 QA 证据后才被接受。这是一个小型 TMPA 规范演示；如需查看历史公开实现，可参考 [CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open)，但它不是当前产品分发路径。
 
 预期参考结果：
 
@@ -205,7 +207,7 @@ I1.0 使用被冻结的 TMPA Core S1.0 Bundle，评估 CodeFlowMu V1.8.0 的真�
 | S1.0 Schema、Fixture、Runner 与 Reference Reader | 是 | 源码可见、可以运行 |
 | CodeFlowMu 符合性证据 | 是 | 冻结证据与精确版本登记 |
 | [FCoP GitHub](https://github.com/joinwell52-AI/FCoP) · [主页](https://joinwell52-ai.github.io/FCoP/) | 独立仓库 | MIT 开源协议、Python 包与 MCP Server |
-| [CodeFlowMu Open GitHub](https://github.com/joinwell52-AI/CodeFlowMu-open) · [主页](https://joinwell52-ai.github.io/CodeFlowMu-open/) | 独立仓库 | MIT 开源可安装产品；四人团队；当前只对接 Cursor |
+| [CodeFlowMu Open GitHub](https://github.com/joinwell52-AI/CodeFlowMu-open) · [历史主页](https://joinwell52-ai.github.io/CodeFlowMu-open/) | 独立仓库 | MIT 历史开源实现；V1.2.29-open 冻结；用于历史、复现与研究引用 |
 
 本仓库中的 TMPA 研究内容适用 [`LICENSE.md`](./LICENSE.md)；上述两个软件仓库分别采用各自的 MIT 许可证。软件开源许可与 TMPA 出版内容许可相互独立。
 
