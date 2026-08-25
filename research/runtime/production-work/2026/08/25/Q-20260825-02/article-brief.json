@@ -1,0 +1,44 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-25",
+  "itemId": "Q-20260825-02",
+  "researchObjectId": "AN-20260825-02",
+  "targetAudience": {
+    "primary": "Architects building resumable agents, durable sessions and recovery control planes",
+    "knowledgeAssumption": "The reader understands checkpoints, durable appends, retries and model-call lifecycles.",
+    "readerProblem": "A failed acknowledgement leaves the runtime unable to tell whether a Session append committed, so blind retry can duplicate history and blind skip can lose it."
+  },
+  "whyNow": "A same-day merged OpenAI Agents Python change persists pending Session writes and reconciles them against authoritative history before resumed model execution.",
+  "externalHook": {
+    "type": "uncertain-durability-gate",
+    "description": "A checkpoint can restart execution without proving whether the preceding durable effect committed.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "Uncertain persistence is a first-class recovery state that must suspend continuation authority: persist the unresolved intent, reread authoritative history, classify committed, absent or ambiguous state, and fail closed on ambiguity before any new model execution.",
+  "originalValue": {
+    "type": "continuation-authority-gate",
+    "description": "Separates process resumability from durable-state certainty and frames reconciliation as evidence required for permission to continue."
+  },
+  "readerTakeaway": "Store pending durable intent in the checkpoint, reconcile it before new reasoning, and add a distinct ownership primitive when multiple restored workers can race.",
+  "evidenceBoundary": {
+    "supported": [
+      "Pending Session-write identity and fingerprints are persisted in RunState.",
+      "Streaming and non-streaming resume paths reconcile before the next model call.",
+      "Exact history comparison distinguishes committed, unchanged and ambiguous outcomes."
+    ],
+    "unsupported": [
+      "Distributed exactly-once persistence",
+      "Cross-process serialization",
+      "Transactional rollback of external tool effects",
+      "Independent multi-backend validation"
+    ],
+    "uncertain": [
+      "How legitimate concurrent history extension should be merged",
+      "Whether future Session backends should expose revision or CAS tokens"
+    ]
+  },
+  "firstPartyRole": {"status": "none", "rationale": "The article develops a general resumable-runtime recovery pattern without a first-party project."},
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The merged implementation supports a precise pre-model reconciliation rule and explicitly exposes the distributed limit."
+}

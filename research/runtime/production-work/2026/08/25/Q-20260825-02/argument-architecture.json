@@ -1,0 +1,15 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-25",
+  "itemId": "Q-20260825-02",
+  "coreProposition": "Uncertain persistence is a first-class recovery state that must suspend continuation authority: persist the unresolved intent, reread authoritative history, classify committed, absent or ambiguous state, and fail closed on ambiguity before any new model execution.",
+  "openingMove": {"type": "two-dangerous-guesses", "purpose": "Open with one failed append acknowledgement that makes both retry and skip unsafe guesses.", "evidenceRefs": ["E1", "E3"]},
+  "argumentNodes": [
+    {"nodeId": "A1", "question": "Why does a checkpoint not prove safe continuation?", "claim": "A checkpoint can preserve control state while leaving the commit status of a durable append epistemically unresolved.", "evidenceRefs": ["E1", "I1"], "reasoningRole": "problem-reframing", "readerProgress": "The reader separates resumability from durability evidence.", "visualNeed": "none"},
+    {"nodeId": "A2", "question": "What resolves the uncertainty?", "claim": "Persisted intent plus authoritative reread and exact fingerprints classify the prior effect before the next model call.", "evidenceRefs": ["E1", "E2", "E3"], "reasoningRole": "mechanism", "readerProgress": "The reader sees reconciliation as a continuation gate.", "visualNeed": "none"},
+    {"nodeId": "A3", "question": "Why fail closed on changed history?", "claim": "Ambiguous history cannot justify replay or acceptance without risking duplication, loss or re-execution of completed work.", "evidenceRefs": ["E3", "I1"], "reasoningRole": "governance", "readerProgress": "The reader understands ambiguity as a governed state, not a generic retry.", "visualNeed": "none"},
+    {"nodeId": "A4", "question": "Where does the pattern stop?", "claim": "Without distributed CAS, independently restored workers and external effects remain outside the proven safety boundary.", "evidenceRefs": ["E4", "I2"], "reasoningRole": "boundary", "readerProgress": "The reader avoids claiming exactly-once semantics.", "visualNeed": "none"}
+  ],
+  "counterpoint": {"required": true, "claim": "Failing closed on any unexpected history change can reject legitimate concurrent extension.", "responseBoundary": "That cost is deliberate until the backend exposes an ownership or merge primitive strong enough to classify concurrent writes safely."},
+  "endingStrategy": {"type": "recovery-evidence-checklist", "purpose": "End with the durable facts and ownership primitives needed before resume authority can be granted."}
+}
