@@ -1,0 +1,15 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-25",
+  "itemId": "Q-20260825-03",
+  "coreProposition": "For mutable runtime resources, discovery is provisional evidence rather than execution authority: after writer ownership is acquired and before mutation, revalidate logical identity, current location and decision-relevant state, while keeping busy contention distinct from terminal failure.",
+  "openingMove": {"type": "stale-locator-race", "purpose": "Open with a rollout path that moves between discovery and lock acquisition.", "evidenceRefs": ["E1", "E3"]},
+  "argumentNodes": [
+    {"nodeId": "A1", "question": "What does discovery actually prove?", "claim": "Discovery provides a provisional locator and observation, not durable ownership of a mutable resource.", "evidenceRefs": ["E1", "I1"], "reasoningRole": "problem-reframing", "readerProgress": "The reader separates identity, location and authority.", "visualNeed": "none"},
+    {"nodeId": "A2", "question": "Which facts must be reread after authority?", "claim": "After acquiring the writer lock, the worker must revalidate current path, logical identity and any state that controls the mutation decision.", "evidenceRefs": ["E2", "E3", "I1"], "reasoningRole": "mechanism", "readerProgress": "The reader sees post-claim reread as correctness work.", "visualNeed": "none"},
+    {"nodeId": "A3", "question": "Why distinguish busy from terminal failure?", "claim": "Busy means authority was not acquired and future eligibility remains; terminal failure records an attempted operation that needs explicit recovery.", "evidenceRefs": ["E4", "I2"], "reasoningRole": "lifecycle", "readerProgress": "The reader gains a more truthful recovery state machine.", "visualNeed": "none"},
+    {"nodeId": "A4", "question": "What does local revalidation not provide?", "claim": "A local writer lock and rediscovery rule do not create distributed exclusion, transactions or exactly-once migration.", "evidenceRefs": ["I2"], "reasoningRole": "boundary", "readerProgress": "The reader retains the local scope of the evidence.", "visualNeed": "none"}
+  ],
+  "counterpoint": {"required": true, "claim": "Repeated rediscovery and reread add complexity when most paths do not move.", "responseBoundary": "The cost is justified only at mutable decision boundaries; immutable resources can retain snapshot assumptions when that immutability is itself guaranteed."},
+  "endingStrategy": {"type": "identity-and-escalation-agenda", "purpose": "End with stable identity, revision evidence and busy-starvation questions."}
+}

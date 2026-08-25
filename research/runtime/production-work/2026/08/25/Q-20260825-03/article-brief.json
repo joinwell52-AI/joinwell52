@@ -1,0 +1,44 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-25",
+  "itemId": "Q-20260825-03",
+  "researchObjectId": "AN-20260825-03",
+  "targetAudience": {
+    "primary": "Engineers building concurrent file-backed runtimes, migrations and recovery workers",
+    "knowledgeAssumption": "The reader understands discovery, locks, mutable paths and retryable lifecycle states.",
+    "readerProblem": "A worker can act on a path or emptiness observation that became stale before it acquired authority to mutate the resource."
+  },
+  "whyNow": "A same-day merged Codex change hardens startup rollout migration with post-lock rereads, path rediscovery, retryable busy state and separate terminal failure.",
+  "externalHook": {
+    "type": "post-authority-revalidation",
+    "description": "Discovery locates a mutable resource; only post-authority revalidation can justify mutation.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "For mutable runtime resources, discovery is provisional evidence rather than execution authority: after writer ownership is acquired and before mutation, revalidate logical identity, current location and decision-relevant state, while keeping busy contention distinct from terminal failure.",
+  "originalValue": {
+    "type": "authority-coupled-resource-revalidation",
+    "description": "Separates stable logical identity from mutable locator and turns post-claim reread into a correctness obligation rather than a retry optimization."
+  },
+  "readerTakeaway": "Treat pre-lock observations as hints, re-resolve the resource after authority acquisition, and model busy, failed and completed outcomes as different lifecycle facts.",
+  "evidenceBoundary": {
+    "supported": [
+      "Rollout paths can be rediscovered after NotFound or archive/compression movement.",
+      "Apparently empty rollouts are reread while holding the writer lock.",
+      "Writer contention remains busy and retryable while terminal failure is recorded separately."
+    ],
+    "unsupported": [
+      "Distributed locking or consensus",
+      "Transactional filesystem behavior",
+      "Generic exactly-once migration",
+      "Automatic repair of terminal failures"
+    ],
+    "uncertain": [
+      "Which stable identity should survive every path transition",
+      "When repeated busy outcomes should escalate"
+    ]
+  },
+  "firstPartyRole": {"status": "none", "rationale": "The article develops a general mutable-resource concurrency pattern without a first-party project."},
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The merged mechanisms and concurrency regressions support a transferable post-authority revalidation discipline with explicit scope."
+}
