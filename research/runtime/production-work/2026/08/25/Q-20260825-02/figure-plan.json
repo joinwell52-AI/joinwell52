@@ -3,7 +3,7 @@
   "date": "2026-08-25",
   "itemId": "Q-20260825-02",
   "cover": {
-    "coreProposition": "A resumable runtime must reconcile uncertain durable intent before it regains authority to continue.",
+    "coreProposition": "Uncertain persistence is a first-class recovery state that must suspend continuation authority: persist the unresolved intent, reread authoritative history, classify committed, absent or ambiguous state, and fail closed on ambiguity before any new model execution.",
     "visualMetaphor": "A violet pause gate suspended between an unfinished trace and a verified gold continuation line",
     "semanticObject": "One unresolved trace stopping at a clear gate before a single verified path resumes",
     "compositionIntent": "Landscape editorial cover with a dominant violet gate, gold continuation signal, deep neutral field and strong negative space",

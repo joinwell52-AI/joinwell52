@@ -1,0 +1,374 @@
+{
+  "schema": "runtime-publication-candidate/v2",
+  "date": "2026-08-25",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Production",
+  "sourceRecord": "research/runtime/records/daily/2026/08/2026-08-25-daily-runtime.json",
+  "updatedAt": "2026-08-25T15:21:26+08:00",
+  "githubCommit": "pending",
+  "reason": "Three completed 2026-08-25 Research Objects were converted into complete bilingual Editorial Architecture 2.1 candidates with verified planning artifacts and deterministic baseline covers.",
+  "reason_zh": "三份已完成的 2026-08-25 Research Object 已转换为完整双语 Editorial Architecture 2.1 候选，并具备已核验的规划工件与确定性基础题图。",
+  "candidates": [
+    {
+      "column": "digital-employee",
+      "category": "daily",
+      "itemId": "Q-20260825-01",
+      "articleType": "technical-analysis",
+      "researchQuestion": "When a security-sensitive runtime component becomes authoritative for credential-provider state, how should a layered configuration system prevent a lower-trust project layer from regaining control through ordinary precedence rules?",
+      "title": "Precedence Is Not Configuration Authority",
+      "title_zh": "优先级不是配置授权",
+      "zhPath": "staging/publication-candidates/2026-08-25-precedence-not-configuration-authority.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-25-precedence-not-configuration-authority.en.md",
+      "articleBriefPath": "research/runtime/production-work/2026/08/25/Q-20260825-01/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/08/25/Q-20260825-01/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/08/25/Q-20260825-01/figure-plan.json",
+      "coreProposition": "Security-sensitive layered configuration must model authority ownership separately from value precedence: when an effective policy gives a credential broker control of provider and startup inputs, lower-trust project configuration should lose that decision surface rather than merely lose a value comparison.",
+      "sections": [
+        {
+          "module": "context",
+          "heading": "A winning value can still leave the wrong participant in the room",
+          "heading_zh": "获胜的值，也可能让错误的参与者留在场内"
+        },
+        {
+          "module": "technical-analysis",
+          "heading": "Effective state turns ownership into an executable rule",
+          "heading_zh": "Effective State 把 Ownership 变成可执行规则"
+        },
+        {
+          "module": "governance-implications",
+          "heading": "An authority boundary creates maintenance and audit obligations",
+          "heading_zh": "Authority Boundary 同时带来维护与审计义务"
+        },
+        {
+          "module": "limitations",
+          "heading": "A narrow boundary is not universal credential isolation",
+          "heading_zh": "有界边界不是通用 Credential Isolation"
+        }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "The merged Codex change distinguishes unconfigured, disabled and enabled credential-broker states and hardens the project layer only when brokering is effectively enabled.",
+          "claim_zh": "已合并 Codex 变更区分 Unconfigured、Disabled 与 Enabled Broker State，并只在 Brokering 实际启用时强化项目层。",
+          "source": "research/analysis/Q-20260825-01-broker-owned-config-authority-boundary.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "public-fact",
+          "claim": "The enabled branch removes project shell snapshot/profile controls and protected provider/startup environment keys.",
+          "claim_zh": "Enabled Branch 会移除项目 Shell Snapshot/Profile 控制与受保护 Provider/Startup 环境键。",
+          "source": "research/analysis/Q-20260825-01-broker-owned-config-authority-boundary.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "public-fact",
+          "claim": "The disabled branch preserves ordinary project shell configuration.",
+          "claim_zh": "Disabled Branch 保留普通项目 Shell Configuration。",
+          "source": "research/analysis/Q-20260825-01-broker-owned-config-authority-boundary.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "I1",
+          "identity": "our-interpretation",
+          "claim": "Security-sensitive ownership must remove unauthorized participation rather than merely rank competing values.",
+          "claim_zh": "安全敏感 Ownership 必须移除未授权参与，而不是只排列竞争值。",
+          "source": "research/analysis/Q-20260825-01-broker-owned-config-authority-boundary.md",
+          "strength": "suggests",
+          "independent": false
+        },
+        {
+          "id": "I2",
+          "identity": "our-interpretation",
+          "claim": "The demonstrated project boundary does not prove universal credential isolation.",
+          "claim_zh": "已证明项目边界不能推出通用 Credential Isolation。",
+          "source": "research/analysis/Q-20260825-01-broker-owned-config-authority-boundary.md",
+          "strength": "suggests",
+          "independent": false
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The conclusion concerns general layered-configuration authority."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already provides the transferable pattern; a separate community edition would repeat the same evidence."
+      },
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverPath": "staging/publication-candidates/2026-08-25-precedence-not-configuration-authority-cover.png",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    },
+    {
+      "column": "industry-architecture",
+      "category": "daily",
+      "itemId": "Q-20260825-02",
+      "articleType": "technical-analysis",
+      "researchQuestion": "When a resumable agent cannot know whether a durable Session append committed before an interruption, what state must be resolved before the runtime is allowed to continue model execution?",
+      "title": "A Checkpoint Is Not Permission to Resume",
+      "title_zh": "有检查点，不等于可以继续执行",
+      "zhPath": "staging/publication-candidates/2026-08-25-checkpoint-not-permission-to-resume.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-25-checkpoint-not-permission-to-resume.en.md",
+      "articleBriefPath": "research/runtime/production-work/2026/08/25/Q-20260825-02/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/08/25/Q-20260825-02/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/08/25/Q-20260825-02/figure-plan.json",
+      "coreProposition": "Uncertain persistence is a first-class recovery state that must suspend continuation authority: persist the unresolved intent, reread authoritative history, classify committed, absent or ambiguous state, and fail closed on ambiguity before any new model execution.",
+      "sections": [
+        {
+          "module": "context",
+          "heading": "Resumability preserves state, not certainty",
+          "heading_zh": "Resumability 保存状态，不保存确定性"
+        },
+        {
+          "module": "technical-analysis",
+          "heading": "Reconciliation is the gate before new reasoning",
+          "heading_zh": "Reconciliation 是新 Reasoning 之前的门禁"
+        },
+        {
+          "module": "architecture-implications",
+          "heading": "Recovery evidence and execution progress are different records",
+          "heading_zh": "Recovery Evidence 与 Execution Progress 是不同记录"
+        },
+        {
+          "module": "limitations",
+          "heading": "Session reconciliation does not make external effects transactional",
+          "heading_zh": "Session Reconciliation 不会让 External Effect 具有事务性"
+        }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "The Agents SDK persists a pending Session write with identity, item batch, pre-write fingerprint and item count.",
+          "claim_zh": "Agents SDK 持久化带 Identity、Item Batch、Pre-write Fingerprint 与 Item Count 的 Pending Session Write。",
+          "source": "research/analysis/Q-20260825-02-uncertain-persistence-gates-resume.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "public-fact",
+          "claim": "Streaming and non-streaming resume reconcile pending persistence before the next model call.",
+          "claim_zh": "Streaming 与 Non-streaming Resume 都在下一次 Model Call 前处理 Pending Persistence。",
+          "source": "research/analysis/Q-20260825-02-uncertain-persistence-gates-resume.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "public-fact",
+          "claim": "Exact fingerprints distinguish already committed, unchanged and ambiguous history outcomes.",
+          "claim_zh": "精确 Fingerprint 区分 Already Committed、Unchanged 与 Ambiguous History Outcome。",
+          "source": "research/analysis/Q-20260825-02-uncertain-persistence-gates-resume.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E4",
+          "identity": "public-fact",
+          "claim": "The implementation has no distributed compare-and-swap and its guard is process-local.",
+          "claim_zh": "实现没有分布式 Compare-and-swap，Guard 只在进程内有效。",
+          "source": "research/analysis/Q-20260825-02-uncertain-persistence-gates-resume.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "I1",
+          "identity": "our-interpretation",
+          "claim": "Uncertain persistence should withhold continuation authority until authoritative storage classifies the effect.",
+          "claim_zh": "Uncertain Persistence 应在权威 Storage 完成 Effect 分类前暂停 Continuation Authority。",
+          "source": "research/analysis/Q-20260825-02-uncertain-persistence-gates-resume.md",
+          "strength": "suggests",
+          "independent": false
+        },
+        {
+          "id": "I2",
+          "identity": "our-interpretation",
+          "claim": "Bounded replay protection does not create distributed exactly-once semantics.",
+          "claim_zh": "有界 Replay Protection 不会产生分布式 Exactly-once Semantics。",
+          "source": "research/analysis/Q-20260825-02-uncertain-persistence-gates-resume.md",
+          "strength": "suggests",
+          "independent": false
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The conclusion concerns general resumable-runtime persistence."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already provides the transferable pattern; a separate community edition would repeat the same evidence."
+      },
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverPath": "staging/publication-candidates/2026-08-25-checkpoint-not-permission-to-resume-cover.png",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    },
+    {
+      "column": "open-source-engineering",
+      "category": "daily",
+      "itemId": "Q-20260825-03",
+      "articleType": "engineering-insight",
+      "researchQuestion": "When a mutable runtime resource can move or change between discovery and lock acquisition, which observations remain trustworthy once the migration actually obtains authority to act?",
+      "title": "Finding a Resource Is Not Owning It",
+      "title_zh": "找到资源，不等于拥有资源",
+      "zhPath": "staging/publication-candidates/2026-08-25-finding-resource-not-owning-it.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-25-finding-resource-not-owning-it.en.md",
+      "articleBriefPath": "research/runtime/production-work/2026/08/25/Q-20260825-03/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/08/25/Q-20260825-03/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/08/25/Q-20260825-03/figure-plan.json",
+      "coreProposition": "For mutable runtime resources, discovery is provisional evidence rather than execution authority: after writer ownership is acquired and before mutation, revalidate logical identity, current location and decision-relevant state, while keeping busy contention distinct from terminal failure.",
+      "sections": [
+        {
+          "module": "context",
+          "heading": "A path is a locator, not a durable identity",
+          "heading_zh": "Path 是 Locator，不是 Durable Identity"
+        },
+        {
+          "module": "technical-analysis",
+          "heading": "Authority changes which observations can justify mutation",
+          "heading_zh": "Authority 改变哪些 Observation 足以支持 Mutation"
+        },
+        {
+          "module": "engineering-implications",
+          "heading": "Busy and failed are different lifecycle facts",
+          "heading_zh": "Busy 与 Failed 是不同 Lifecycle Fact"
+        },
+        {
+          "module": "limitations",
+          "heading": "Local recovery is not a distributed migration protocol",
+          "heading_zh": "Local Recovery 不是 Distributed Migration Protocol"
+        }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "The Codex migration can rediscover rollout paths instead of binding execution to the first locator.",
+          "claim_zh": "Codex Migration 可以重新发现 Rollout Path，而不是把 Execution 绑定到第一个 Locator。",
+          "source": "research/analysis/Q-20260825-03-post-authority-resource-revalidation.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "public-fact",
+          "claim": "Apparently empty rollouts are reread while holding the writer lock.",
+          "claim_zh": "看似为空的 Rollout 会在持有 Writer Lock 时重新读取。",
+          "source": "research/analysis/Q-20260825-03-post-authority-resource-revalidation.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "public-fact",
+          "claim": "Path movement between metadata read and lock acquisition triggers post-lock rediscovery.",
+          "claim_zh": "Metadata Read 与 Lock Acquisition 之间发生 Path Movement 时会触发 Post-lock Rediscovery。",
+          "source": "research/analysis/Q-20260825-03-post-authority-resource-revalidation.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E4",
+          "identity": "public-fact",
+          "claim": "Writer contention remains busy and retryable while terminal failure is tracked separately.",
+          "claim_zh": "Writer Contention 保持 Busy 与可重试，Terminal Failure 单独跟踪。",
+          "source": "research/analysis/Q-20260825-03-post-authority-resource-revalidation.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "I1",
+          "identity": "our-interpretation",
+          "claim": "Pre-lock discovery is provisional evidence and must be revalidated after authority acquisition.",
+          "claim_zh": "Pre-lock Discovery 是临时证据，必须在取得 Authority 后重新核验。",
+          "source": "research/analysis/Q-20260825-03-post-authority-resource-revalidation.md",
+          "strength": "suggests",
+          "independent": false
+        },
+        {
+          "id": "I2",
+          "identity": "our-interpretation",
+          "claim": "Local revalidation does not establish distributed locking or exactly-once migration.",
+          "claim_zh": "Local Revalidation 不能建立 Distributed Locking 或 Exactly-once Migration。",
+          "source": "research/analysis/Q-20260825-03-post-authority-resource-revalidation.md",
+          "strength": "suggests",
+          "independent": false
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The conclusion concerns general mutable-resource concurrency."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already provides the transferable pattern; a separate community edition would repeat the same evidence."
+      },
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverPath": "staging/publication-candidates/2026-08-25-finding-resource-not-owning-it-cover.png",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    }
+  ]
+}
