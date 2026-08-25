@@ -20,10 +20,22 @@
   <a href="https://github.com/joinwell52-AI/joinwell52/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/joinwell52-AI/joinwell52?style=for-the-badge&logo=github&label=Star"></a>
   <a href="https://github.com/joinwell52-AI/joinwell52/releases/tag/tmpa-v1.0"><img alt="TMPA V1.0 Release" src="https://img.shields.io/badge/release-TMPA%20V1.0-2563eb?style=for-the-badge"></a>
   <a href="https://doi.org/10.5281/zenodo.21888488"><img alt="DOI" src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21888488-1682D4?style=for-the-badge"></a>
+  <a href="https://osf.io/2jvqd/"><img alt="TMPA OSF Registration 2jvqd" src="https://img.shields.io/badge/OSF-2jvqd-2F80ED?style=for-the-badge&logo=osf&logoColor=white"></a>
+  <a href="https://doi.org/10.5281/zenodo.20457285"><img alt="FCoP DOI" src="https://img.shields.io/badge/FCoP_DOI-10.5281%2Fzenodo.20457285-1682D4?style=for-the-badge"></a>
+  <a href="https://osf.io/92nwm/"><img alt="FCoP OSF Registration 92nwm" src="https://img.shields.io/badge/OSF-92nwm-2F80ED?style=for-the-badge&logo=osf&logoColor=white"></a>
   <a href="./CITATION.cff"><img alt="引用本仓库" src="https://img.shields.io/badge/%E5%BC%95%E7%94%A8-CITATION.cff-8b5cf6?style=for-the-badge"></a>
   <a href="https://joinwell52-ai.github.io/joinwell52/zh/publications/tmpa-core-specification-s1.0"><img alt="TMPA Core S1.0" src="https://img.shields.io/badge/Core-S1.0-7c3aed?style=for-the-badge"></a>
   <a href="https://joinwell52-ai.github.io/joinwell52/zh/publications/implementation-case-i1.0"><img alt="Implementation I1.0" src="https://img.shields.io/badge/CodeFlowMu-14%2F14_PASS-15803d?style=for-the-badge"></a>
 </p>
+
+## 开放科学标准引用凭证
+
+| 成果 | Zenodo DOI | OSF Registration |
+|---|---|---|
+| **TMPA** | [10.5281/zenodo.21888488](https://doi.org/10.5281/zenodo.21888488) | [`2jvqd`](https://osf.io/2jvqd/) |
+| **FCoP** | [10.5281/zenodo.20457285](https://doi.org/10.5281/zenodo.20457285) | [`92nwm`](https://osf.io/92nwm/) |
+
+Zenodo DOI 对应可引用的正式版本档案；OSF Registration 对应不可变、带时间戳的开放科学快照。
 
 ## CodeFlowMu 产品介绍
 
@@ -65,7 +77,7 @@
 | 阅读稳定理论与规范 | [架构论文 A1.0](https://joinwell52-ai.github.io/joinwell52/zh/publications/tmpa-architecture-paper-a1.0) · [核心规范 S1.0](https://joinwell52-ai.github.io/joinwell52/zh/publications/tmpa-core-specification-s1.0) |
 | 现在就运行 | [执行 S1.0 Reference Reader](#运行-reference-reader) |
 | 检查工程主张 | [实施案例 I1.0](https://joinwell52-ai.github.io/joinwell52/zh/publications/implementation-case-i1.0) · [证据包](./docs/public/evidence/tmpa/i1.0/) |
-| 引用这项工作 | [Zenodo DOI](https://doi.org/10.5281/zenodo.21888488) · [`CITATION.cff`](./CITATION.cff) |
+| 引用这项工作 | [TMPA DOI](https://doi.org/10.5281/zenodo.21888488) · [TMPA OSF `2jvqd`](https://osf.io/2jvqd/) · [FCoP DOI](https://doi.org/10.5281/zenodo.20457285) · [FCoP OSF `92nwm`](https://osf.io/92nwm/) · [`CITATION.cff`](./CITATION.cff) |
 
 ## 三个公开仓库，一套完整体系
 
