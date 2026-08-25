@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://joinwell52-ai.github.io/CodeFlowMu-open/"><strong>Explore CodeFlowMu Open</strong></a>
+  <a href="https://joinwell52-ai.github.io/CodeFlowMu-open/"><strong>CodeFlowMu Open (Historical)</strong></a>
   ·
   <a href="https://joinwell52-ai.github.io/FCoP/"><strong>Explore FCoP</strong></a>
   ·
@@ -18,7 +18,9 @@
 
 <p align="center">
   <a href="https://github.com/joinwell52-AI/joinwell52/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/joinwell52-AI/joinwell52?style=for-the-badge&logo=github&label=Star"></a>
+  <a href="https://github.com/joinwell52-AI/joinwell52/releases/tag/tmpa-v1.0"><img alt="TMPA V1.0 Release" src="https://img.shields.io/badge/release-TMPA%20V1.0-2563eb?style=for-the-badge"></a>
   <a href="https://doi.org/10.5281/zenodo.21888488"><img alt="DOI" src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21888488-1682D4?style=for-the-badge"></a>
+  <a href="./CITATION.cff"><img alt="Cite this repository" src="https://img.shields.io/badge/citation-CITATION.cff-8b5cf6?style=for-the-badge"></a>
   <a href="https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-core-specification-s1.0"><img alt="TMPA Core S1.0" src="https://img.shields.io/badge/Core-S1.0-7c3aed?style=for-the-badge"></a>
   <a href="https://joinwell52-ai.github.io/joinwell52/en/publications/implementation-case-i1.0"><img alt="Implementation I1.0" src="https://img.shields.io/badge/CodeFlowMu-14%2F14_PASS-15803d?style=for-the-badge"></a>
 </p>
@@ -48,7 +50,7 @@
 
 **TMPA (Textual Multi-Agent Process Architecture)** is a vendor-neutral governance architecture for long-running work performed by AI agents and humans. It moves durable work facts out of volatile model memory, preserves responsibility across asynchronous execution, and reconstructs lifecycle, authority, conflict, and audit state from inspectable evidence.
 
-This repository is TMPA's public research, specification, executable conformance, and evidence base. [**CodeFlowMu Open**](https://github.com/joinwell52-AI/CodeFlowMu-open) ([site](https://joinwell52-ai.github.io/CodeFlowMu-open/)) is the installable MIT-licensed product: a local four-role development team—**PM / DEV / OPS / QA**—with EVAL observing independently. Its current public release connects to agents through **Cursor SDK only**. [**FCoP**](https://github.com/joinwell52-AI/FCoP) ([site](https://joinwell52-ai.github.io/FCoP/)) is the MIT-licensed file-based behavior-governance protocol used by that team.
+This repository is TMPA's public research, specification, executable conformance, and evidence base. [**CodeFlowMu Open**](https://github.com/joinwell52-AI/CodeFlowMu-open) ([site](https://joinwell52-ai.github.io/CodeFlowMu-open/)) is the **frozen historical open-source edition**, preserved at **V1.2.29-open** for engineering history, reproducibility, and research reference. It is not the current CodeFlowMu product distribution path. [**FCoP**](https://github.com/joinwell52-AI/FCoP) ([site](https://joinwell52-ai.github.io/FCoP/)) is the MIT-licensed file-based behavior-governance protocol used across this engineering lineage.
 
 > If you are building agents that must survive restarts, handoffs, disputes, review, and real organizational accountability, this repository is for you. **Star it to follow stable specifications, executable examples, and evidence-backed releases.**
 
@@ -56,7 +58,7 @@ This repository is TMPA's public research, specification, executable conformance
 
 | I want to… | Best entry point |
 |---|---|
-| Install the real open-source product | [GitHub](https://github.com/joinwell52-AI/CodeFlowMu-open) · [Product site](https://joinwell52-ai.github.io/CodeFlowMu-open/) — four-role development team, currently Cursor-only |
+| Inspect the historical open-source implementation | [GitHub](https://github.com/joinwell52-AI/CodeFlowMu-open) · [Historical site](https://joinwell52-ai.github.io/CodeFlowMu-open/) — frozen at V1.2.29-open; not the current product distribution path |
 | Add file-based coordination to agents | [GitHub](https://github.com/joinwell52-AI/FCoP) · [Protocol site](https://joinwell52-ai.github.io/FCoP/) — Python package, MCP server, and protocol |
 | Understand the idea in five minutes | [Why TMPA exists](#trace-is-not-governance) |
 | Browse the complete project visually | [Open Digital Employee Works →](https://joinwell52-ai.github.io/joinwell52/) |
@@ -71,9 +73,9 @@ This repository is TMPA's public research, specification, executable conformance
 |---|---|---|---|
 | **TMPA / joinwell52** | Theory, specification, conformance, research, and evidence | [Source & Star](https://github.com/joinwell52-AI/joinwell52) | [Digital Employee Works](https://joinwell52-ai.github.io/joinwell52/) |
 | **FCoP** | File-based behavior-governance protocol, Python package, and MCP server | [Source & Star](https://github.com/joinwell52-AI/FCoP) | [FCoP site](https://joinwell52-ai.github.io/FCoP/) |
-| **CodeFlowMu Open** | Installable four-role development team product | [Source & Star](https://github.com/joinwell52-AI/CodeFlowMu-open) | [Product site](https://joinwell52-ai.github.io/CodeFlowMu-open/) |
+| **CodeFlowMu Open** | Historical open-source implementation and reproducibility record | [Source & Star](https://github.com/joinwell52-AI/CodeFlowMu-open) | [Historical site](https://joinwell52-ai.github.io/CodeFlowMu-open/) |
 
-Each repository has one clear reason to be discovered and starred: **TMPA explains and specifies; FCoP makes coordination reusable; CodeFlowMu Open turns both into a product people can install.** Product use produces field evidence, protocol improvements, and new questions for the specification.
+Each repository has one clear reason to be discovered and starred: **TMPA explains and specifies; FCoP makes coordination reusable; CodeFlowMu Open preserves the historical public implementation that connected these ideas in a working product.** The current CodeFlowMu product line is developed separately and is not represented by the frozen open repository.
 
 ## Engineering origin: Xiaodian AI
 
@@ -81,11 +83,11 @@ The problem framing behind TMPA, FCoP, and CodeFlowMu did not begin with a paper
 
 > **Current public boundary:** The [Xiaodian AI PWA Demo](https://demo.chedian.cc/) is now public for hands-on exploration; its source code and production systems remain private. The demo is a public experience entry point, not evidence of TMPA S1.0 conformance, independent validation, production readiness, or elimination of hallucinations.
 
-## Install the open-source product
+## Historical CodeFlowMu Open implementation
 
-[CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open) is not a mockup or a documentation demo. It is an installable local application with a [dedicated product site](https://joinwell52-ai.github.io/CodeFlowMu-open/), PC Panel, Mobile PWA, project isolation, approval gates, FCoP work artifacts, and the fixed execution team `PM / DEV / OPS / QA`. `EVAL` observes delivery quality and risk independently.
+[CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open) preserves the last open-source edition of the local application with its [historical product site](https://joinwell52-ai.github.io/CodeFlowMu-open/), PC Panel, Mobile PWA, project isolation, approval gates, FCoP work artifacts, and the fixed execution team `PM / DEV / OPS / QA`. `EVAL` observes delivery quality and risk independently.
 
-> **Current provider boundary:** the public product uses **Cursor SDK / Cursor API Key only**. Other agent providers are not included or claimed by the current open release.
+> **Historical boundary:** CodeFlowMu Open was frozen on **2026-08-22** at **V1.2.29-open**. The commands below are retained only for reproducibility and historical use. They are not the installation path for the current closed-source CodeFlowMu product line.
 
 ```bat
 cd /d D:\
@@ -100,7 +102,7 @@ START-CODEFLOWMU-OPEN.bat
   </a>
 </p>
 
-<p align="center"><sub>Real product capture · open the product repository for installation and the complete PC/PWA walkthrough.</sub></p>
+<p align="center"><sub>Historical product capture · open the frozen repository for the preserved PC/PWA walkthrough.</sub></p>
 
 ## Trace is not governance
 
@@ -132,7 +134,7 @@ Implementation Case I1.0     bounded, inspectable engineering evidence
 Digital Employee apps        governed work in real production contexts
 ```
 
-The direction matters. The architecture explains the theory; Core defines normative behavior; [FCoP](https://github.com/joinwell52-AI/FCoP) supplies a protocol profile; [CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open) is the public installable product line; the case report states only what the exact-version evidence demonstrates.
+The direction matters. The architecture explains the theory; Core defines normative behavior; [FCoP](https://github.com/joinwell52-AI/FCoP) supplies a protocol profile; [CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open) preserves the historical public implementation, while the current CodeFlowMu product line is developed separately; the case report states only what the exact-version evidence demonstrates.
 
 ### Four connected rules
 
@@ -157,7 +159,7 @@ npm run demo
 npm run tmpa:s1.0:conformance
 ```
 
-`npm run demo` shows one delivery rejected because the developer reviews its own `done` claim, then accepted after independent QA evidence is added. This is a small TMPA specification demo; the actual installable product is [CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open).
+`npm run demo` shows one delivery rejected because the developer reviews its own `done` claim, then accepted after independent QA evidence is added. This is a small TMPA specification demo; the historical public CodeFlowMu implementation is preserved in [CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open), while the current product line is separate.
 
 Expected reference result:
 
@@ -205,7 +207,7 @@ Transparency matters more than an attractive label:
 | S1.0 schemas, fixtures, runner, and Reference Reader | Yes | Source-visible and executable |
 | CodeFlowMu conformance evidence | Yes | Frozen evidence and exact-version registration |
 | [FCoP GitHub](https://github.com/joinwell52-AI/FCoP) · [Site](https://joinwell52-ai.github.io/FCoP/) | Separate repository | MIT-licensed protocol, Python package, and MCP server |
-| [CodeFlowMu Open GitHub](https://github.com/joinwell52-AI/CodeFlowMu-open) · [Site](https://joinwell52-ai.github.io/CodeFlowMu-open/) | Separate repository | MIT-licensed installable product; four-role team; Cursor-only today |
+| [CodeFlowMu Open GitHub](https://github.com/joinwell52-AI/CodeFlowMu-open) · [Site](https://joinwell52-ai.github.io/CodeFlowMu-open/) | Separate repository | MIT-licensed historical open implementation; frozen at V1.2.29-open |
 
 The TMPA research content in this repository uses the terms in [`LICENSE.md`](./LICENSE.md). The two software repositories above carry their own MIT licenses. Their licenses and product boundaries are intentionally separate from the TMPA publication license.
 
