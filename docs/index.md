@@ -20,15 +20,20 @@ description: A governed production line that continuously delivers verifiable Di
   left: max(258px, calc((100vw - 1440px) / 2 + 215px)) !important;
 }
 
-.rc-home:not(.is-zh) .rc-hero__layout {
-  grid-template-columns: minmax(0, 1fr) 360px !important;
-  gap: 44px !important;
+.rc-home:not(.is-zh) .rc-hero__headline-row {
+  grid-template-columns: minmax(0, 1.15fr) minmax(420px, .85fr) !important;
+  gap: clamp(72px, 6vw, 96px) !important;
 }
 
 .rc-home:not(.is-zh) .rc-hero__copy {
   min-width: 0 !important;
-  max-width: 790px !important;
-  overflow: hidden !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+}
+
+.rc-home:not(.is-zh) .rc-hero__summary {
+  width: min(100%, 480px) !important;
+  justify-self: end !important;
 }
 
 .rc-home:not(.is-zh) .rc-hero__title {
@@ -47,6 +52,15 @@ description: A governed production line that continuously delivers verifiable Di
 }
 
 @media (max-width: 1199px) and (min-width: 700px) {
+  .rc-home:not(.is-zh) .rc-hero__headline-row {
+    grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr) !important;
+    gap: 52px !important;
+  }
+
+  .rc-home:not(.is-zh) .rc-hero__summary {
+    width: min(100%, 360px) !important;
+  }
+
   .rc-home:not(.is-zh) .rc-hero__title {
     font-size: 48px !important;
   }
