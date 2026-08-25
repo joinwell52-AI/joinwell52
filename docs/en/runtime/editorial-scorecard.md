@@ -5,6 +5,10 @@ sidebar: false
 aside: false
 ---
 
+<script setup>
+import EditorialScorecard from '../../.vitepress/theme/components/EditorialScorecard.vue'
+</script>
+
 # Observation Notes Score Record
 
 <EditorialScorecard lang="en" />
