@@ -1,7 +1,7 @@
 # Q-20260825-01 — Credential Broker Isolation from Project Shell Configuration
 
 - Runtime date: 2026-08-25 (Asia/Shanghai)
-- Queue signal: SIG-20260825-013
+- Queue signal: SIG-20260825-008
 - Primary source: https://github.com/openai/codex/commit/fd1bf50410623cb25dec8e172ba8ae3ec679397a
 - Evidence level: `merged_maintainer_change`
 - Scope: Codex project-config loading while credential brokering is effectively enabled, provider environment isolation, shell-startup settings and regression coverage
