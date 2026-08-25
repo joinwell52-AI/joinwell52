@@ -53,13 +53,14 @@ Use these rules:
 - Research/specification repository: identify the repository itself and use `preferred-citation` for the canonical publication when appropriate.
 - Historical software without its own DOI: cite the historical software repository itself; place related papers or research DOI under `references` or clearly labelled README links.
 - When a protocol or product is derived from a research architecture, link the research work as a related reference rather than silently replacing the software citation.
+- When Zenodo provides both a **concept DOI** and a **version/snapshot DOI**, keep the concept DOI as a series identifier when useful, but make `preferred-citation` match the exact DOI that the README/site tells humans to cite. A fixed archival snapshot should therefore use its version/snapshot DOI as the preferred citation.
 
 ## 5. Three-repository identity map
 
 | Repository | Canonical identity | Citation identity | Lifecycle |
 |---|---|---|---|
 | `joinwell52-AI/joinwell52` | TMPA research, specification, conformance, evidence, and public research site | Repository + TMPA V1.0 publication set, DOI `10.5281/zenodo.21888488` | Active |
-| `joinwell52-AI/FCoP` | File-based behavior-governance protocol and reference software | FCoP concept DOI `10.5281/zenodo.19886035` | Active |
+| `joinwell52-AI/FCoP` | File-based behavior-governance protocol and reference software | Concept DOI `10.5281/zenodo.19886035`; preferred archived snapshot DOI `10.5281/zenodo.19886036` | Active |
 | `joinwell52-AI/CodeFlowMu-open` | Historical open-source CodeFlowMu implementation | Historical software repository; TMPA DOI is related research only | Frozen / historical |
 
 ## 6. Recommended GitHub descriptions
@@ -114,6 +115,7 @@ Before considering a repository standardized, verify:
 - [ ] Root `CITATION.cff` exists and parses as YAML/CFF.
 - [ ] GitHub shows **Cite this repository** on the default branch.
 - [ ] README DOI links belong to the object they claim to identify.
+- [ ] Concept DOI and fixed version/snapshot DOI are not confused; `preferred-citation` matches the human-facing citation instruction.
 - [ ] License badge matches the actual repository license.
 - [ ] Release/version badge matches the current or explicitly historical release.
 - [ ] Repository description matches the README's current identity.
