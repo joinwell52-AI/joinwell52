@@ -37,9 +37,10 @@ const copy = computed(() => zh.value ? {
     { version:'I1.0', kind:'工程案例', title:['TMPA–FCoP–','CodeFlowMu','实施案例'], status:'V1.8.0 · S1.0 14/14', path:'/zh/publications/implementation-case-i1.0', tone:'case' }
   ],
   readPublication: '阅读正式文档',
-  tmpaArchiveStatus: 'V1.0 · Zenodo DOI 已登记',
-  tmpaPaperAddress: '架构论文地址',
-  tmpaArchiveLink: 'Zenodo 正式归档',
+  tmpaArchiveStatus: '标准引用凭证',
+  fcopDoiLink: 'FCoP DOI · 10.5281/zenodo.20457285',
+  tmpaRegistrationLink: 'TMPA · OSF 2jvqd',
+  fcopRegistrationLink: 'FCoP · OSF 92nwm',
   engineLabel: '01 · 数字员工生产线',
   engineTitle: '一个生产岗位 一条可核验产线',
   engineWide: ['一个生产岗位', '一条可核验产线'],
@@ -113,9 +114,10 @@ const copy = computed(() => zh.value ? {
     { version:'I1.0', kind:'ENGINEERING CASE', title:['TMPA–FCoP–','CodeFlowMu','Implementation Case'], status:'V1.8.0 · S1.0 14/14', path:'/en/publications/implementation-case-i1.0', tone:'case' }
   ],
   readPublication: 'Read formal document',
-  tmpaArchiveStatus: 'V1.0 · Zenodo DOI registered',
-  tmpaPaperAddress: 'Architecture paper',
-  tmpaArchiveLink: 'Zenodo archival record',
+  tmpaArchiveStatus: 'Citation credentials',
+  fcopDoiLink: 'FCoP DOI · 10.5281/zenodo.20457285',
+  tmpaRegistrationLink: 'TMPA · OSF 2jvqd',
+  fcopRegistrationLink: 'FCoP · OSF 92nwm',
   engineLabel: '01 · DIGITAL EMPLOYEE PRODUCTION LINE',
   engineTitle: 'One production position One verifiable line',
   engineWide: ['One production position', 'One verifiable line'],
@@ -396,7 +398,7 @@ onBeforeUnmount(() => {
           </div>
           <p>{{ copy.tmpaLead }}</p>
         </div>
-        <div class="rc-tmpa__archive" aria-label="TMPA V1.0 Zenodo archive">
+        <div class="rc-tmpa__archive" aria-label="Zenodo DOI and OSF registrations">
           <a class="rc-doi-badge" href="https://doi.org/10.5281/zenodo.21888488">
             <span>DOI</span>
             <strong>10.5281/zenodo.21888488</strong>
@@ -405,8 +407,9 @@ onBeforeUnmount(() => {
           <div class="rc-tmpa__archive-meta">
             <b>{{ copy.tmpaArchiveStatus }}</b>
             <nav>
-              <a :href="link(zh ? '/zh/publications/tmpa-architecture-paper-a1.0' : '/en/publications/tmpa-architecture-paper-a1.0')">{{ copy.tmpaPaperAddress }} <span>↗</span></a>
-              <a href="https://zenodo.org/records/21888488">{{ copy.tmpaArchiveLink }} <span>↗</span></a>
+              <a href="https://doi.org/10.5281/zenodo.20457285">{{ copy.fcopDoiLink }} <span>↗</span></a>
+              <a href="https://osf.io/2jvqd/">{{ copy.tmpaRegistrationLink }} <span>↗</span></a>
+              <a href="https://osf.io/92nwm/">{{ copy.fcopRegistrationLink }} <span>↗</span></a>
             </nav>
           </div>
         </div>
@@ -707,7 +710,7 @@ onBeforeUnmount(() => {
 .rc-doi-badge i { margin-left: auto; font-style: normal; }
 .rc-tmpa__archive-meta { display: flex; flex: 1; align-items: center; justify-content: space-between; gap: 24px; padding: 14px 18px; }
 .rc-tmpa__archive-meta > b { color: #d9dfd9; font: 760 11px/1.3 ui-sans-serif, system-ui, sans-serif; letter-spacing: .04em; }
-.rc-tmpa__archive-meta nav { display: flex; align-items: center; gap: 8px; }
+.rc-tmpa__archive-meta nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px; }
 .rc-tmpa__archive-meta a { padding: 9px 11px; color: #fff !important; border: 1px solid #4b514c; font: 750 11px/1.2 ui-sans-serif, system-ui, sans-serif; }
 .rc-tmpa__archive-meta a:hover { color: var(--rc-night) !important; background: var(--rc-lime); border-color: var(--rc-lime); }
 .rc-tmpa__archive + .rc-publications { margin-top: 34px; }
@@ -1061,8 +1064,8 @@ onBeforeUnmount(() => {
   .rc-doi-badge { min-width: 0; padding: 15px 16px; }
   .rc-doi-badge strong { font-size: 12px; }
   .rc-tmpa__archive-meta { display: block; padding: 15px 16px; }
-  .rc-tmpa__archive-meta nav { margin-top: 12px; }
-  .rc-tmpa__archive-meta a { flex: 1; text-align: center; }
+  .rc-tmpa__archive-meta nav { display: grid; grid-template-columns: 1fr; margin-top: 12px; }
+  .rc-tmpa__archive-meta a { text-align: center; }
   .rc-tmpa__archive + .rc-publications { margin-top: 24px; }
   .rc-publications { grid-template-columns: 1fr; gap: 13px; margin-top: 44px; }
   .rc-publication { grid-template-columns: 112px 1fr; grid-template-rows: 1fr; min-height: 250px; }
