@@ -1,0 +1,15 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-25",
+  "itemId": "Q-20260825-01",
+  "coreProposition": "Security-sensitive layered configuration must model authority ownership separately from value precedence: when an effective policy gives a credential broker control of provider and startup inputs, lower-trust project configuration should lose that decision surface rather than merely lose a value comparison.",
+  "openingMove": {"type": "winning-is-not-owning", "purpose": "Open with a project value that can still influence broker behavior even though another layer nominally has higher precedence.", "evidenceRefs": ["E1", "E2"]},
+  "argumentNodes": [
+    {"nodeId": "A1", "question": "Why is precedence insufficient?", "claim": "Precedence ranks participating values but does not decide whether a lower-trust layer should participate in a broker-owned decision at all.", "evidenceRefs": ["E1", "E2", "I1"], "reasoningRole": "problem-reframing", "readerProgress": "The reader separates merge order from authorization.", "visualNeed": "none"},
+    {"nodeId": "A2", "question": "How does effective state change authority?", "claim": "Enabled broker state suppresses protected project inputs, while disabled state restores ordinary configurability, making ownership state-dependent rather than a global denylist.", "evidenceRefs": ["E1", "E2", "E3"], "reasoningRole": "mechanism", "readerProgress": "The reader sees authority transfer as a runtime state transition.", "visualNeed": "none"},
+    {"nodeId": "A3", "question": "What must an implementation preserve?", "claim": "Owned-key classification, reload ordering and value-free audit events are necessary to keep the boundary complete and observable.", "evidenceRefs": ["I1", "I2"], "reasoningRole": "engineering-extension", "readerProgress": "The reader gains testable design obligations.", "visualNeed": "none"},
+    {"nodeId": "A4", "question": "What remains outside the evidence?", "claim": "Project-layer suppression does not prove universal credential isolation or containment after credentials are issued.", "evidenceRefs": ["I2"], "reasoningRole": "boundary", "readerProgress": "The reader avoids turning a narrow boundary into a security guarantee.", "visualNeed": "none"}
+  ],
+  "counterpoint": {"required": true, "claim": "A high-precedence managed value can appear sufficient because it wins the final merge.", "responseBoundary": "It is sufficient only if lower-layer inputs cannot redirect intermediate provider or startup behavior before the winning value is consumed."},
+  "endingStrategy": {"type": "authority-registry-agenda", "purpose": "End with concrete ownership, reload and audit questions rather than a claim of complete credential isolation."}
+}

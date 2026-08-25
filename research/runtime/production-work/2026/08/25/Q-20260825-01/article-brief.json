@@ -1,0 +1,44 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-25",
+  "itemId": "Q-20260825-01",
+  "researchObjectId": "AN-20260825-01",
+  "targetAudience": {
+    "primary": "Engineers designing agent runtimes, credential brokers and layered configuration systems",
+    "knowledgeAssumption": "The reader understands configuration precedence, environment-based providers and trust boundaries.",
+    "readerProblem": "A lower-trust project layer can remain able to steer broker-owned inputs even when a higher layer nominally wins precedence."
+  },
+  "whyNow": "A same-day merged Codex change removes protected provider and shell-startup inputs from project configuration only when credential brokering is effectively enabled.",
+  "externalHook": {
+    "type": "authority-versus-precedence",
+    "description": "Winning a merge is weaker than owning the right to participate in a sensitive decision.",
+    "evidenceRefs": ["E1", "E2", "E3"]
+  },
+  "coreProposition": "Security-sensitive layered configuration must model authority ownership separately from value precedence: when an effective policy gives a credential broker control of provider and startup inputs, lower-trust project configuration should lose that decision surface rather than merely lose a value comparison.",
+  "originalValue": {
+    "type": "state-dependent-configuration-authority",
+    "description": "Reframes broker hardening as an ownership transfer that activates with effective broker state, while exposing classifier drift and higher-layer scope as separate obligations."
+  },
+  "readerTakeaway": "Record who owns each sensitive configuration decision, remove owned inputs from unauthorized layers when that owner is active, and audit suppressed keys without logging their values.",
+  "evidenceBoundary": {
+    "supported": [
+      "The merged change distinguishes unconfigured, disabled and enabled broker states.",
+      "The enabled branch removes project shell snapshot/profile controls and protected provider/startup environment keys.",
+      "The disabled branch preserves ordinary project shell configuration."
+    ],
+    "unsupported": [
+      "Universal credential isolation",
+      "Isolation from every user, host, managed-policy or process source",
+      "Post-issuance secret non-exfiltration",
+      "Independent cross-runtime validation"
+    ],
+    "uncertain": [
+      "How protected-key classification evolves with new providers",
+      "Which higher configuration layers intentionally retain authority"
+    ]
+  },
+  "firstPartyRole": {"status": "none", "rationale": "The article establishes a general configuration-governance pattern without a first-party project."},
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The merged mechanism and branch-specific tests support a precise distinction between configuration authority and precedence with explicit limits."
+}
