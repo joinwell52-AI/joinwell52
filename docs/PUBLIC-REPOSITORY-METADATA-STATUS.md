@@ -23,6 +23,7 @@ Authority: [`REPOSITORY-DISCOVERY-AND-CITATION-STANDARD.md`](./REPOSITORY-DISCOV
 - English and Chinese root READMEs no longer describe CodeFlowMu Open as the current product distribution path.
 - Historical CodeFlowMu Open installation commands are retained only as reproducibility/history instructions.
 - Chinese synchronization passed `Validate Research Center 3.0` before PR #163 was merged.
+- GitHub Release `tmpa-v1.0` preserves the original 2026-08-11 pending-deposit context while explicitly recording the subsequently published DOI `10.5281/zenodo.21888488`; release artifacts and checksums were not changed.
 
 ### FCoP
 
@@ -84,14 +85,9 @@ The currently connected GitHub tool can read repository metadata and modify repo
 
 `codeflowmu`, `historical-software`, `multi-agent`, `ai-agents`, `ai-team`, `human-ai-collaboration`, `agent-governance`, `fcop`, `tmpa`, `cursor`, `desktop-app`, `pwa`, `developer-tools`, `open-source`, `typescript`, `mcp`, `software-engineering`
 
-## Remaining public metadata item
-
-TMPA GitHub Release `tmpa-v1.0` still contains a historical release-body sentence saying DOI status was pending at the time that GitHub Release was created. The DOI was subsequently published as `10.5281/zenodo.21888488`. If/when a compatible Release edit action is available, update or append the release note so the current archival status is explicit without changing the historical release artifacts.
-
 ## Completion rule
 
-The README/CFF/file-layer standardization is complete. The broader three-repository metadata standardization is not fully complete until:
+The README/CFF/Release file-and-publication metadata standardization is complete. The broader GitHub repository-page metadata standardization is not fully complete until:
 
 - repository descriptions match the target identities;
-- Topics are populated and repository-specific;
-- the stale public TMPA Release DOI-status sentence is corrected or explicitly superseded.
+- Topics are populated and repository-specific.
