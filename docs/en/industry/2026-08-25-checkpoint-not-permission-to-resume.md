@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260825-02-uncertain-persistence-gates-resume.md
 item_id: "Q-20260825-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-25-checkpoint-not-permission-to-resume-cover.png"
+cover: "/assets/covers/daily-2026-08-25-checkpoint-not-permission-to-resume-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-25-checkpoint-not-permission-to-resume-cover.png"
+  image="/assets/covers/daily-2026-08-25-checkpoint-not-permission-to-resume-cover-v2.png"
   kicker="Industry Architecture · Daily Research"
   title="A Checkpoint Is Not Permission to Resume"
   summary="A merged OpenAI Agents Python change turns an uncertain Session append into durable recovery state. Resume authority waits for authoritative-history reconciliation; the pattern prevents blind replay in one Session boundary but does not create distributed exactly-once semantics."

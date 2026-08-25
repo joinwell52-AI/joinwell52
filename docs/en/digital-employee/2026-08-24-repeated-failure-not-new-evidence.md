@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260824-01-terminal-condition-consumption-precedence.md
 item_id: "Q-20260824-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-24-repeated-failure-not-new-evidence-cover.png"
+cover: "/assets/covers/daily-2026-08-24-repeated-failure-not-new-evidence-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-24-repeated-failure-not-new-evidence-cover.png"
+  image="/assets/covers/daily-2026-08-24-repeated-failure-not-new-evidence-cover-v2.png"
   kicker="Digital Employee · Daily Research"
   title="A Repeated Failure Is Not New Evidence"
   summary="A merged OpenAI Agents Python fix shows why terminal conditions need consumption state, not last-writer exception storage. Preserving a guardrail tripwire through final cleanup improves error fidelity but does not define every priority or protect external effects."

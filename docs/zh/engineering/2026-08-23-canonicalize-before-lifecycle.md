@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260823-03-canonical-lifecycle-ownership.md
 item_id: "Q-20260823-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-23-canonicalize-before-lifecycle-cover.png"
+cover: "/assets/covers/daily-2026-08-23-canonicalize-before-lifecycle-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-23-canonicalize-before-lifecycle-cover.png"
+  image="/assets/covers/daily-2026-08-23-canonicalize-before-lifecycle-cover-v2.png"
   kicker="开源工程 · 每日研究"
   title="先规范资源，再执行生命周期副作用"
   summary="OpenAI Agents Python 的一项已合并修复把 MCP Server 去重提升为 Ownership-admission Invariant。只有明确 Identity Semantics，这个模式才能改善本地 Lifecycle Accounting；它距离分布式 Exactly-once 仍很远。"

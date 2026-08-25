@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260825-03-post-authority-resource-revalidation.md
 item_id: "Q-20260825-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-25-finding-resource-not-owning-it-cover.png"
+cover: "/assets/covers/daily-2026-08-25-finding-resource-not-owning-it-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-25-finding-resource-not-owning-it-cover.png"
+  image="/assets/covers/daily-2026-08-25-finding-resource-not-owning-it-cover-v2.png"
   kicker="开源工程 · 每日研究"
   title="找到资源，不等于拥有资源"
   summary="Codex 的一项已合并 Rollout Migration 变更把 Path 与 Pre-lock Observation 视为临时证据。正确 Mutation 需要在取得 Authority 后重新发现与重读，同时把 Busy Contention 与 Terminal Failure 保存为不同 Lifecycle Fact。"

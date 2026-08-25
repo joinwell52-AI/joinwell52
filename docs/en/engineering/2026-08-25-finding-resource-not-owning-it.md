@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260825-03-post-authority-resource-revalidation.md
 item_id: "Q-20260825-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-25-finding-resource-not-owning-it-cover.png"
+cover: "/assets/covers/daily-2026-08-25-finding-resource-not-owning-it-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-25-finding-resource-not-owning-it-cover.png"
+  image="/assets/covers/daily-2026-08-25-finding-resource-not-owning-it-cover-v2.png"
   kicker="Open-source Engineering · Daily Research"
   title="Finding a Resource Is Not Owning It"
   summary="A merged Codex rollout-migration change treats paths and pre-lock observations as provisional. Correct mutation requires post-authority rediscovery and reread, while busy contention and terminal failure remain distinct lifecycle facts."

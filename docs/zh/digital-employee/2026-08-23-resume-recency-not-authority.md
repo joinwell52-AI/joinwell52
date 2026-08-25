@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260823-01-resume-evidence-authority.md
 item_id: "Q-20260823-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-23-resume-recency-not-authority-cover.png"
+cover: "/assets/covers/daily-2026-08-23-resume-recency-not-authority-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-23-resume-recency-not-authority-cover.png"
+  image="/assets/covers/daily-2026-08-23-resume-recency-not-authority-cover-v2.png"
   kicker="数字员工 · 每日研究"
   title="恢复时序不等于恢复权威"
   summary="Google ADK 的一项已合并变更说明：可恢复 Agent 需要在模型解释前建立面向具体中断的证据优先级。保留操作员响应可以消除一种遮蔽故障，但不能认证操作员，也不能保证 Exactly-once Effect。"

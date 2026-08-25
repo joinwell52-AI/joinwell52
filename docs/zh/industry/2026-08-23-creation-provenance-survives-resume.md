@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260823-02-creation-provenance-continuity.md
 item_id: "Q-20260823-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-23-creation-provenance-survives-resume-cover.png"
+cover: "/assets/covers/daily-2026-08-23-creation-provenance-survives-resume-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-23-creation-provenance-survives-resume-cover.png"
+  image="/assets/covers/daily-2026-08-23-creation-provenance-survives-resume-cover-v2.png"
   kicker="行业架构 · 每日研究"
   title="创建来源应跨恢复保持稳定"
   summary="Creation Source 与 Derivation Lineage 回答不同问题。持久 Thread 应在 Resume 中保留 Origin，Fork 则可以采用新的 Local Classification；二者都不能被误当成经过认证的 Authority。"

@@ -14,11 +14,11 @@ evidence_status: Completed
 citation_status: Completed
 editing_status: Completed
 publication_authorized: true
-cover: '/assets/covers/weekly-006-authority-needs-lineage-cover.svg'
+cover: '/assets/covers/weekly-006-authority-needs-lineage-cover-v2.png'
 ---
 
 <ArticleCover
-  image="/assets/covers/weekly-006-authority-needs-lineage-cover.svg"
+  image="/assets/covers/weekly-006-authority-needs-lineage-cover-v2.png"
   kicker="Weekly Research · 006"
   title="Authority Needs Lineage"
   summary="State can survive transformation without carrying the authority that once made it valid."

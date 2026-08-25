@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260823-01-resume-evidence-authority.md
 item_id: "Q-20260823-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-23-resume-recency-not-authority-cover.png"
+cover: "/assets/covers/daily-2026-08-23-resume-recency-not-authority-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-23-resume-recency-not-authority-cover.png"
+  image="/assets/covers/daily-2026-08-23-resume-recency-not-authority-cover-v2.png"
   kicker="Digital Employee · Daily Research"
   title="Resume Recency Is Not Resume Authority"
   summary="A merged Google ADK change shows why resumed agents need occurrence-scoped evidence precedence before model interpretation. Preserving the operator response prevents one shadowing failure, but it does not authenticate the operator or guarantee exactly-once effects."

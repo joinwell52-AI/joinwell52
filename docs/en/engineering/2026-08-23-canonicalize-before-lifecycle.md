@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260823-03-canonical-lifecycle-ownership.md
 item_id: "Q-20260823-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-23-canonicalize-before-lifecycle-cover.png"
+cover: "/assets/covers/daily-2026-08-23-canonicalize-before-lifecycle-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-23-canonicalize-before-lifecycle-cover.png"
+  image="/assets/covers/daily-2026-08-23-canonicalize-before-lifecycle-cover-v2.png"
   kicker="Open-source Engineering · Daily Research"
   title="Canonicalize Resources Before Lifecycle Side Effects"
   summary="A merged OpenAI Agents Python fix turns MCP server deduplication into an ownership-admission invariant. The pattern improves local lifecycle accounting only when identity semantics are explicit, and it remains far short of distributed exactly-once execution."

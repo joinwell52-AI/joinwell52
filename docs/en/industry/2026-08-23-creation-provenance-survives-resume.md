@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260823-02-creation-provenance-continuity.md
 item_id: "Q-20260823-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-23-creation-provenance-survives-resume-cover.png"
+cover: "/assets/covers/daily-2026-08-23-creation-provenance-survives-resume-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-23-creation-provenance-survives-resume-cover.png"
+  image="/assets/covers/daily-2026-08-23-creation-provenance-survives-resume-cover-v2.png"
   kicker="Industry Architecture · Daily Research"
   title="Creation Provenance Should Survive Resume"
   summary="Creation source and derivation lineage answer different questions. A durable thread should preserve its origin across resume, while a fork may adopt a new local classification; neither field should be mistaken for authenticated authority."

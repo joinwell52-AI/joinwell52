@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260825-01-broker-owned-config-authority-boundary.md
 item_id: "Q-20260825-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-25-precedence-not-configuration-authority-cover.png"
+cover: "/assets/covers/daily-2026-08-25-precedence-not-configuration-authority-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-25-precedence-not-configuration-authority-cover.png"
+  image="/assets/covers/daily-2026-08-25-precedence-not-configuration-authority-cover-v2.png"
   kicker="数字员工 · 每日研究"
   title="优先级不是配置授权"
   summary="Codex 的一项已合并变更说明，安全敏感配置需要 Ownership Boundary，而不只是 Merge Order。Broker 启用时，项目层不再能提供受保护输入；但这不能证明通用 Credential Isolation 或签发后的 Secret Containment。"

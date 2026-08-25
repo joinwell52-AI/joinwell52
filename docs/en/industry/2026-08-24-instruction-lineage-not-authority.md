@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260824-02-instruction-lineage-authority-separation.md
 item_id: "Q-20260824-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-24-instruction-lineage-not-authority-cover.png"
+cover: "/assets/covers/daily-2026-08-24-instruction-lineage-not-authority-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-24-instruction-lineage-not-authority-cover.png"
+  image="/assets/covers/daily-2026-08-24-instruction-lineage-not-authority-cover-v2.png"
   kicker="Industry Architecture · Daily Research"
   title="Instruction Lineage Is Not Instruction Authority"
   summary="A merged Codex change gives child-only developer instructions typed provenance and a tested parent/child boundary. That makes context derivation inspectable, but a separate authority plane is still required to establish who may supply or override instructions."

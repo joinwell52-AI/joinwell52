@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260824-01-terminal-condition-consumption-precedence.md
 item_id: "Q-20260824-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-24-repeated-failure-not-new-evidence-cover.png"
+cover: "/assets/covers/daily-2026-08-24-repeated-failure-not-new-evidence-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-24-repeated-failure-not-new-evidence-cover.png"
+  image="/assets/covers/daily-2026-08-24-repeated-failure-not-new-evidence-cover-v2.png"
   kicker="数字员工 · 每日研究"
   title="重复故障不是新证据"
   summary="OpenAI Agents Python 的一项已合并修复说明，Terminal Condition 需要 Consumption State，而不是 Last-writer Exception Storage。让 Guardrail Tripwire 穿过最终清理可以提高错误保真度，但不会定义所有优先级，也不会保护外部副作用。"

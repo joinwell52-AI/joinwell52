@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260824-03-cancellation-defers-owner-teardown.md
 item_id: "Q-20260824-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-24-cancellation-ends-waiting-cover.png"
+cover: "/assets/covers/daily-2026-08-24-cancellation-ends-waiting-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-24-cancellation-ends-waiting-cover.png"
+  image="/assets/covers/daily-2026-08-24-cancellation-ends-waiting-cover-v2.png"
   kicker="开源工程 · 每日研究"
   title="取消结束等待，不结束所有权"
   summary="OpenAI Agents Python 的一项已合并修复把 Owned Dependency Cleanup 期间的 Cancellation 视为 Deferred Control Flow：先完成有界本地 Teardown、清理 Ownership State，再重新抛出。它在本地保留两类合同，但不能证明 Remote Cleanup 成功。"

@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260824-03-cancellation-defers-owner-teardown.md
 item_id: "Q-20260824-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-24-cancellation-ends-waiting-cover.png"
+cover: "/assets/covers/daily-2026-08-24-cancellation-ends-waiting-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-24-cancellation-ends-waiting-cover.png"
+  image="/assets/covers/daily-2026-08-24-cancellation-ends-waiting-cover-v2.png"
   kicker="Open-source Engineering · Daily Research"
   title="Cancellation Ends Waiting, Not Ownership"
   summary="A merged OpenAI Agents Python fix treats cancellation during owned dependency cleanup as deferred control flow: finish bounded local teardown, clear ownership state, then re-raise. This preserves two contracts locally but does not prove remote cleanup success."

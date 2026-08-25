@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260824-02-instruction-lineage-authority-separation.md
 item_id: "Q-20260824-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-24-instruction-lineage-not-authority-cover.png"
+cover: "/assets/covers/daily-2026-08-24-instruction-lineage-not-authority-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-24-instruction-lineage-not-authority-cover.png"
+  image="/assets/covers/daily-2026-08-24-instruction-lineage-not-authority-cover-v2.png"
   kicker="行业架构 · 每日研究"
   title="指令来源不是指令授权"
   summary="Codex 的一项已合并变更为 Child-only Developer Instruction 增加 Typed Provenance，并测试 Parent/Child Boundary。它让 Context Derivation 可检查，但仍需独立 Authority Plane 说明谁可以提供或覆盖 Instruction。"

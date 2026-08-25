@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260825-01-broker-owned-config-authority-boundary.md
 item_id: "Q-20260825-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-25-precedence-not-configuration-authority-cover.png"
+cover: "/assets/covers/daily-2026-08-25-precedence-not-configuration-authority-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-25-precedence-not-configuration-authority-cover.png"
+  image="/assets/covers/daily-2026-08-25-precedence-not-configuration-authority-cover-v2.png"
   kicker="Digital Employee · Daily Research"
   title="Precedence Is Not Configuration Authority"
   summary="A merged Codex change shows why security-sensitive configuration needs an ownership boundary, not just a merge order. Broker-enabled project hardening removes protected inputs from the lower-trust layer, but proves neither universal credential isolation nor post-issuance containment."

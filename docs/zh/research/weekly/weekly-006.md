@@ -14,11 +14,11 @@ evidence_status: Completed
 citation_status: Completed
 editing_status: Completed
 publication_authorized: true
-cover: '/assets/covers/weekly-006-authority-needs-lineage-cover.svg'
+cover: '/assets/covers/weekly-006-authority-needs-lineage-cover-v2.png'
 ---
 
 <ArticleCover
-  image="/assets/covers/weekly-006-authority-needs-lineage-cover.svg"
+  image="/assets/covers/weekly-006-authority-needs-lineage-cover-v2.png"
   kicker="Weekly Research · 006"
   title="权限需要血缘链"
   summary="状态可以穿过变换继续存在，但原先使它有效的权限未必一起保留。"

@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260825-02-uncertain-persistence-gates-resume.md
 item_id: "Q-20260825-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-25-checkpoint-not-permission-to-resume-cover.png"
+cover: "/assets/covers/daily-2026-08-25-checkpoint-not-permission-to-resume-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-25-checkpoint-not-permission-to-resume-cover.png"
+  image="/assets/covers/daily-2026-08-25-checkpoint-not-permission-to-resume-cover-v2.png"
   kicker="行业架构 · 每日研究"
   title="有检查点，不等于可以继续执行"
   summary="OpenAI Agents Python 的一项已合并变更把不确定 Session Append 变成持久 Recovery State。Resume Authority 必须等待权威 History Reconciliation；该模式避免一个 Session 边界上的 Blind Replay，但不会产生分布式 Exactly-once Semantics。"
