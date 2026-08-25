@@ -8,9 +8,9 @@ Authority: [`REPOSITORY-DISCOVERY-AND-CITATION-STANDARD.md`](./REPOSITORY-DISCOV
 
 | Repository | Root CFF | README discovery/status | DOI / release identity | License identity | GitHub Description | GitHub Topics |
 |---|---|---|---|---|---|---|
-| `joinwell52-AI/joinwell52` | DONE | DONE (English root README) | DONE — TMPA V1.0 DOI `10.5281/zenodo.21888488`, Release `tmpa-v1.0` | Custom TMPA terms via `LICENSE.md`; no MIT claim | PENDING | PENDING |
-| `joinwell52-AI/FCoP` | DONE | PARTIAL — FCoP badges/citation are strong, but top ecosystem wording still describes CodeFlowMu Open as a current installable product | DONE — concept DOI `10.5281/zenodo.19886035`; preferred archived snapshot DOI `10.5281/zenodo.19886036`; Release `v3.2.5` | DONE — MIT | PENDING | PENDING — currently empty |
-| `joinwell52-AI/CodeFlowMu-open` | DONE | DONE — explicitly frozen/historical | DONE — historical edition `V1.2.29-open`; related TMPA DOI is clearly labelled as related research | DONE — MIT | PENDING | PENDING |
+| `joinwell52-AI/joinwell52` | DONE | DONE — English + Chinese root READMEs aligned | DONE — TMPA V1.0 DOI `10.5281/zenodo.21888488`, Release `tmpa-v1.0` | Custom TMPA terms via `LICENSE.md`; no MIT claim | PENDING | PENDING |
+| `joinwell52-AI/FCoP` | DONE | DONE — English + Chinese root READMEs aligned | DONE — concept DOI `10.5281/zenodo.19886035`; preferred archived snapshot DOI `10.5281/zenodo.19886036`; Release `v3.2.5` | DONE — MIT | PENDING | PENDING — currently empty |
+| `joinwell52-AI/CodeFlowMu-open` | DONE | DONE — English + Chinese explicitly frozen/historical | DONE — historical edition `V1.2.29-open`; related TMPA DOI is clearly labelled as related research | DONE — MIT | PENDING | PENDING |
 
 ## Completed file-layer changes
 
@@ -19,24 +19,38 @@ Authority: [`REPOSITORY-DISCOVERY-AND-CITATION-STANDARD.md`](./REPOSITORY-DISCOV
 - Root `CITATION.cff` is CFF 1.2-compatible.
 - Preferred citation points to the TMPA V1.0 publication set DOI `10.5281/zenodo.21888488`.
 - Machine-readable references connect TMPA to FCoP and the historical CodeFlowMu Open repository.
-- Root README now exposes Star, TMPA V1.0 Release, DOI, Citation, Core S1.0, and implementation-evidence badges.
-- Root README no longer describes CodeFlowMu Open as the current product distribution path.
+- English and Chinese root READMEs expose Star, TMPA V1.0 Release, DOI, Citation, Core S1.0, and implementation-evidence signals.
+- English and Chinese root READMEs no longer describe CodeFlowMu Open as the current product distribution path.
 - Historical CodeFlowMu Open installation commands are retained only as reproducibility/history instructions.
+- Chinese synchronization passed `Validate Research Center 3.0` before PR #163 was merged.
 
 ### FCoP
 
 - Root `CITATION.cff` retains the Zenodo concept DOI `10.5281/zenodo.19886035` as a series identifier.
-- Preferred citation now matches the human-facing README/site instruction and uses the fixed research-snapshot DOI `10.5281/zenodo.19886036` (`research-snapshot-2026-04-29`).
+- Preferred citation matches the human-facing README/site instruction and uses the fixed research-snapshot DOI `10.5281/zenodo.19886036` (`research-snapshot-2026-04-29`).
 - TMPA V1.0 and historical CodeFlowMu Open are represented as related references.
-- Existing MIT, release, MCP Registry, and snapshot DOI signals remain intact.
+- English and Chinese root READMEs expose Citation alongside the existing MIT, release, MCP Registry, and snapshot DOI signals.
+- English and Chinese ecosystem tables identify CodeFlowMu Open as the frozen historical implementation, not the current product distribution path.
+- README current-release metadata is aligned to FCoP `v3.2.5`.
+- These README changes were reviewed and merged through protected-main PR #13.
 
 ### CodeFlowMu Open
 
 - Root `CITATION.cff` has been added.
 - Citation metadata explicitly identifies the repository as the frozen historical open-source edition.
-- README discovery strip exposes Stars, MIT, last open edition, Citation, and related TMPA research.
+- English and Chinese READMEs expose Stars, MIT, last open edition, Citation, and related TMPA research.
 - TMPA DOI is not presented as a CodeFlowMu Open DOI.
-- README explicitly separates the frozen open repository from the current closed-source CodeFlowMu product line.
+- Both READMEs explicitly separate the frozen open repository from the current closed-source CodeFlowMu product line.
+
+## README synchronization state
+
+The six public root README variants are now synchronized at the metadata/lifecycle level:
+
+- `joinwell52-AI/joinwell52`: `README.md`, `README.zh-CN.md`
+- `joinwell52-AI/FCoP`: `README.md`, `README.zh.md`
+- `joinwell52-AI/CodeFlowMu-open`: `README.md`, `README.zh.md`
+
+File-layer README standardization is complete.
 
 ## Remaining GitHub settings work
 
@@ -70,17 +84,14 @@ The currently connected GitHub tool can read repository metadata and modify repo
 
 `codeflowmu`, `historical-software`, `multi-agent`, `ai-agents`, `ai-team`, `human-ai-collaboration`, `agent-governance`, `fcop`, `tmpa`, `cursor`, `desktop-app`, `pwa`, `developer-tools`, `open-source`, `typescript`, `mcp`, `software-engineering`
 
-## Remaining content synchronization
+## Remaining public metadata item
 
-1. FCoP root README ecosystem table still needs a safe local edit so `CodeFlowMu Open` is labelled historical/frozen rather than current installable product.
-2. Bilingual/Chinese README variants should mirror the same CodeFlowMu lifecycle distinction where applicable.
-3. TMPA GitHub Release `tmpa-v1.0` still contains an old release-body sentence saying DOI status was pending at release time. The DOI was subsequently published; if GitHub release-edit capability becomes available, append/update the release notes to point to `10.5281/zenodo.21888488` without changing the historical release artifacts.
+TMPA GitHub Release `tmpa-v1.0` still contains a historical release-body sentence saying DOI status was pending at the time that GitHub Release was created. The DOI was subsequently published as `10.5281/zenodo.21888488`. If/when a compatible Release edit action is available, update or append the release note so the current archival status is explicit without changing the historical release artifacts.
 
 ## Completion rule
 
-Do not call the three-repository metadata standardization fully complete until:
+The README/CFF/file-layer standardization is complete. The broader three-repository metadata standardization is not fully complete until:
 
 - repository descriptions match the target identities;
 - Topics are populated and repository-specific;
-- the remaining FCoP/Chinese README lifecycle wording is synchronized;
-- any stale public release-note DOI status is corrected or explicitly superseded.
+- the stale public TMPA Release DOI-status sentence is corrected or explicitly superseded.
