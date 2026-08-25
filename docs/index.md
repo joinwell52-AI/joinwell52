@@ -51,6 +51,10 @@ description: A governed production line that continuously delivers verifiable Di
   letter-spacing: -.045em !important;
 }
 
+.rc-home:not(.is-zh) .rc-research > .rc-shell > .scorecard {
+  display: none !important;
+}
+
 @media (max-width: 1199px) and (min-width: 700px) {
   .rc-home:not(.is-zh) .rc-hero__headline-row {
     grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr) !important;
