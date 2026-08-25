@@ -207,7 +207,34 @@ const runtimeStatusLabel = computed(() => zh.value
 )
 let researchRotation: ReturnType<typeof setInterval> | undefined
 const videoDialogOpen = ref(false)
+const teaserVideo = ref<HTMLVideoElement>()
+const teaserSrc = ref('')
 const fullVideo = ref<HTMLVideoElement>()
+let teaserObserver: IntersectionObserver | undefined
+
+const enableDesktopTeaser = async () => {
+  const isMobile = window.matchMedia('(max-width: 699px)').matches
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (isMobile || reduceMotion) return
+
+  teaserSrc.value = link('/assets/video/codeflowmu-product-teaser-zh.mp4')
+  await nextTick()
+
+  const video = teaserVideo.value
+  if (!video) return
+  video.load()
+
+  if (!('IntersectionObserver' in window)) {
+    video.play().catch(() => undefined)
+    return
+  }
+
+  teaserObserver = new IntersectionObserver(([entry]) => {
+    if (entry?.isIntersecting) video.play().catch(() => undefined)
+    else video.pause()
+  }, { rootMargin: '200px 0px', threshold: 0.1 })
+  teaserObserver.observe(video)
+}
 
 const openFullVideo = async () => {
   videoDialogOpen.value = true
@@ -244,10 +271,13 @@ const categoryLabel = (category: ResearchNoteRecord['category']) => zh.value
 
 onMounted(() => {
   startResearchRotation()
+  enableDesktopTeaser()
   window.addEventListener('keydown', handleVideoKeydown)
 })
 onBeforeUnmount(() => {
   if (researchRotation) clearInterval(researchRotation)
+  teaserObserver?.disconnect()
+  teaserVideo.value?.pause()
   window.removeEventListener('keydown', handleVideoKeydown)
 })
 </script>
@@ -293,6 +323,14 @@ onBeforeUnmount(() => {
           </div>
         </div>
 
+        <nav class="rc-hero-credentials" :aria-label="zh ? '开放科学标准引用凭证' : 'Open-science citation credentials'">
+          <span><b>OPEN SCIENCE</b><small>{{ zh ? '标准引用凭证' : 'Citation credentials' }}</small></span>
+          <a href="https://doi.org/10.5281/zenodo.21888488" target="_blank" rel="noreferrer"><small>TMPA · ZENODO DOI</small><strong>10.5281/zenodo.21888488</strong></a>
+          <a href="https://osf.io/2jvqd/" target="_blank" rel="noreferrer"><small>TMPA · OSF REGISTRATION</small><strong>2jvqd ↗</strong></a>
+          <a href="https://doi.org/10.5281/zenodo.20457285" target="_blank" rel="noreferrer"><small>FCoP · ZENODO DOI</small><strong>10.5281/zenodo.20457285</strong></a>
+          <a href="https://osf.io/92nwm/" target="_blank" rel="noreferrer"><small>FCoP · OSF REGISTRATION</small><strong>92nwm ↗</strong></a>
+        </nav>
+
         <button
           class="rc-hero-video"
           type="button"
@@ -300,16 +338,15 @@ onBeforeUnmount(() => {
           @click="openFullVideo"
         >
           <video
-            autoplay
+            ref="teaserVideo"
             muted
             loop
             playsinline
             preload="metadata"
+            :src="teaserSrc || undefined"
             :poster="link('/assets/video/codeflowmu-product-intro-zh-poster.jpg')"
             aria-hidden="true"
-          >
-            <source :src="link('/assets/video/codeflowmu-product-teaser-zh.mp4')" type="video/mp4">
-          </video>
+          ></video>
           <span class="rc-hero-video__shade" aria-hidden="true"></span>
           <span class="rc-hero-video__top"><b>CODEFLOWMU</b><i>{{ zh ? '12 秒预告 · 静音播放' : '12s teaser · muted' }}</i></span>
           <span class="rc-hero-video__play" aria-hidden="true">▶</span>
@@ -646,6 +683,15 @@ onBeforeUnmount(() => {
 .rc-button--primary { min-width: 172px; border-radius: 10px; color: #fff !important; background: linear-gradient(120deg, #765ff8, #3f82e8); border-color: transparent; box-shadow: 0 14px 32px rgba(65,91,231,.3); transition: transform .18s ease, box-shadow .18s ease; }
 .rc-button--primary:hover { transform: translateY(-2px); box-shadow: 0 18px 38px rgba(65,91,231,.4); }
 .rc-text-link { margin-left: 8px; color: #fff !important; font-size: 12px; font-weight: 760; border-bottom: 1px solid rgba(255,255,255,.45); }
+.rc-hero-credentials { display: grid; grid-template-columns: minmax(118px, .55fr) repeat(4, minmax(0, 1fr)); margin-top: 16px; overflow: hidden; border: 1px solid rgba(128,226,241,.24); border-radius: 12px; background: rgba(3,10,24,.46); backdrop-filter: blur(12px); }
+.rc-hero-credentials > span,
+.rc-hero-credentials > a { display: flex; min-width: 0; min-height: 58px; flex-direction: column; justify-content: center; gap: 5px; padding: 9px 12px; border-right: 1px solid rgba(255,255,255,.13); }
+.rc-hero-credentials > a:last-child { border-right: 0; }
+.rc-hero-credentials > span b { color: #80e2f1; font: 850 9px/1 ui-monospace, monospace; letter-spacing: .1em; }
+.rc-hero-credentials small { overflow: hidden; color: #92a4c0; font: 720 8px/1.2 ui-monospace, monospace; letter-spacing: .04em; text-overflow: ellipsis; white-space: nowrap; }
+.rc-hero-credentials strong { overflow: hidden; color: #f3f7ff; font: 760 10px/1.25 ui-monospace, monospace; text-overflow: ellipsis; white-space: nowrap; }
+.rc-hero-credentials > a { transition: background .18s ease; }
+.rc-hero-credentials > a:hover { background: rgba(128,226,241,.1); }
 .rc-hero-video { position: relative; display: block; flex: 1 1 auto; width: 100%; min-height: 320px; margin-top: 24px; padding: 0; overflow: hidden; color: #fff; text-align: left; background: #020711; border: 1px solid rgba(118,215,238,.3); border-radius: 20px; box-shadow: 0 24px 72px rgba(0,0,0,.38); cursor: pointer; isolation: isolate; }
 .rc-hero-video::after { position: absolute; inset: 9px; z-index: 3; border: 1px solid rgba(255,255,255,.16); border-radius: 13px; content: ''; pointer-events: none; }
 .rc-hero-video video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
@@ -1027,6 +1073,11 @@ onBeforeUnmount(() => {
   .rc-actions { display: grid; grid-template-columns: 1fr; margin-top: 28px; }
   .rc-button { width: 100%; min-height: 47px; }
   .rc-text-link { width: max-content; margin: 8px 0 0; }
+  .rc-hero-credentials { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 22px; }
+  .rc-hero-credentials > span { grid-column: 1 / -1; min-height: 45px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.13); }
+  .rc-hero-credentials > a { min-height: 54px; border-bottom: 1px solid rgba(255,255,255,.13); }
+  .rc-hero-credentials > a:nth-child(odd) { border-right: 0; }
+  .rc-hero-credentials > a:nth-last-child(-n+2) { border-bottom: 0; }
   .rc-ledger { display: none; }
   .rc-hero-video { height: auto; min-height: 0; aspect-ratio: 16 / 9; margin-top: 30px; border-radius: 17px; box-shadow: 0 24px 60px rgba(0,0,0,.38), 7px 7px 0 rgba(7,12,27,.72); }
   .rc-hero-video::after { inset: 6px; border-radius: 12px; }
