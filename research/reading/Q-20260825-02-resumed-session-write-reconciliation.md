@@ -1,7 +1,7 @@
 # Q-20260825-02 — Resumed Sessions Must Reconcile Uncertain Durable Writes Before New Model Calls
 
 - Runtime date: 2026-08-25 (Asia/Shanghai)
-- Queue signal: SIG-20260825-017
+- Queue signal: SIG-20260825-012
 - Primary source: https://github.com/openai/openai-agents-python/commit/40f0d9fccbe03bf704e4ef044c7c81b807e594da
 - Evidence level: `merged_maintainer_change`
 - Scope: OpenAI Agents SDK resumable Session writes, pending-write persistence, history fingerprints, replay avoidance and fail-closed ambiguity handling
