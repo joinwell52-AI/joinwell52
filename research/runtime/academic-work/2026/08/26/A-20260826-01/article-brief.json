@@ -1,0 +1,49 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-26",
+  "itemId": "A-20260826-01",
+  "researchObjectId": "AN-A-20260826-01-MPBENCH",
+  "targetAudience": {
+    "primary": "Multi-agent runtime, reliability and debugging engineers",
+    "knowledgeAssumption": "The reader understands agent execution traces, root-cause analysis and basic evaluation metrics.",
+    "readerProblem": "Multi-agent incident tooling often forces one root-cause label even when several causal explanations remain plausible and actionable."
+  },
+  "whyNow": "MP-Bench turns multi-perspective failure attribution into a concrete expert-annotated benchmark and exposes large disagreement among screened annotators, making causal ambiguity measurable rather than anecdotal.",
+  "externalHook": {
+    "type": "diagnostic-contradiction",
+    "description": "A failed execution can have one immutable trace but several reasonable causal explanations; forcing one label may discard useful diagnostic evidence.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "Failure attribution should be represented as a ranked diagnostic evidence set, not a single root-cause label.",
+  "originalValue": {
+    "type": "diagnostic-evidence-envelope",
+    "description": "Derives a four-layer runtime model separating immutable trace facts, plural failure hypotheses, consensus/salience, and a singular governed repair decision."
+  },
+  "readerTakeaway": "Preserve causal ambiguity without blocking action: store hypotheses append-only with provenance, rank them without confusing consensus with independent proof, and let one bounded repair decision cite several still-plausible causes.",
+  "evidenceBoundary": {
+    "supported": [
+      "MP-Bench contains 289 failed logs from 121 MAS configurations and uses three independent expert annotators per instance.",
+      "The paper reports that only 16.2% of failure-labeled steps are identified by all three annotators, while 56.1% are identified by only one.",
+      "The benchmark ranks failure steps by annotator consensus and evaluates predicted rankings with nDCG rather than a single oracle label.",
+      "The paper reports benefits from non-deterministic sampling and tested cross-model combinations within its evaluation protocol."
+    ],
+    "unsupported": [
+      "That every real MAS failure has multiple equally valid causes",
+      "That consensus proves causal truth",
+      "That multi-LLM attribution is universally superior in production",
+      "Independent reproduction of the complete MP-Bench results"
+    ],
+    "uncertain": [
+      "How to calibrate causal confidence across correlated diagnostic agents",
+      "When a hypothesis should become operationally decisive",
+      "How the approach transfers to software engineering and enterprise incidents"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The conclusion is a general multi-agent reliability architecture and does not require a first-party project mapping."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The paper supplies concrete expert disagreement, benchmark construction and evaluation mechanisms; the Research Center adds a bounded diagnostic evidence model that is useful beyond source summary."
+}
