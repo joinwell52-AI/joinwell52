@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260826-01-detached-work-parent-terminal-accounting.md
 item_id: "Q-20260826-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-26-foreground-completion-not-workflow-completion-cover.png"
+cover: "/assets/covers/daily-2026-08-26-foreground-completion-not-workflow-completion-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-26-foreground-completion-not-workflow-completion-cover.png"
+  image="/assets/covers/daily-2026-08-26-foreground-completion-not-workflow-completion-cover-v2.png"
   kicker="Digital Employee · Daily Research"
   title="Foreground Completion Is Not Workflow Completion"
   summary="A merged Google ADK change makes tracked in-flight detached dynamic work participate in parent terminal truth. The pattern is ownership-based: parent success waits for owned outcomes, without claiming remote-effect certainty or distributed exactly-once behavior."

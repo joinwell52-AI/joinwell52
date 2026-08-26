@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260826-02-attachment-owned-permission-authority.md
 item_id: "Q-20260826-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-26-permission-authority-belongs-to-attachment-cover.png"
+cover: "/assets/covers/daily-2026-08-26-permission-authority-belongs-to-attachment-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-26-permission-authority-belongs-to-attachment-cover.png"
+  image="/assets/covers/daily-2026-08-26-permission-authority-belongs-to-attachment-cover-v2.png"
   kicker="行业架构 · 每日研究"
   title="权限权威属于附件"
   summary="Codex 的一项已合并变更把 MCP Permission Profile 绑定到 Enabled Server，并在 Attachment Authority 无法解析时拒绝 Call Preparation。该架构收窄 Authority Ownership 与 Refresh Scope，但不能证明分布式 Revocation 或通用 Race Freedom。"

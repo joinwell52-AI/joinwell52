@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260826-01-detached-work-parent-terminal-accounting.md
 item_id: "Q-20260826-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-26-foreground-completion-not-workflow-completion-cover.png"
+cover: "/assets/covers/daily-2026-08-26-foreground-completion-not-workflow-completion-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-26-foreground-completion-not-workflow-completion-cover.png"
+  image="/assets/covers/daily-2026-08-26-foreground-completion-not-workflow-completion-cover-v2.png"
   kicker="数字员工 · 每日研究"
   title="前台完成，不等于工作流完成"
   summary="Google ADK 的一项已合并变更让仍在 In-flight 的 Detached Dynamic Work 参与 Parent Terminal Truth。这个模式以 Ownership 为中心：Parent Success 必须等待 Owned Outcome，但不能据此声称 Remote-effect Certainty 或分布式 Exactly-once。"

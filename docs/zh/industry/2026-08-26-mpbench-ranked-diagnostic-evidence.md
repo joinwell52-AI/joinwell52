@@ -9,11 +9,11 @@ edition: "research-center"
 research_question: "当一次失败的多智能体执行同时支持几个合理的因果解释时，诊断系统应该强制选择一个根因步骤，还是保留一组排序后的假设，直到证据足以支持修复决策？"
 summary: "MP-Bench 把归因歧义变成了可测量对象：经过筛选的专家经常会对同一条多智能体失败轨迹给出不同的失败步骤判断。更稳妥的 Runtime 设计，应把不可变的轨迹事实、多个因果假设、共识/显著性以及最终修复决定分开保存。"
 sources: "arXiv:2603.25001v1; adobe-research/multi-agent-eval-bench @ b8042d410850672ea5bee4b1031c6cde9028e099; yeonjun-in/MP-Bench; research/reading/A-20260826-01-mp-bench-failure-attribution.md; research/analysis/A-20260826-01-mp-bench-failure-attribution.md"
-cover: "/assets/covers/academic-mpbench-ranked-diagnostic-evidence.svg"
+cover: "/assets/covers/academic-mpbench-ranked-diagnostic-evidence-cover-v2.png"
 ---
 
 <ArticleCover
-  image="/assets/covers/academic-mpbench-ranked-diagnostic-evidence.svg"
+  image="/assets/covers/academic-mpbench-ranked-diagnostic-evidence-cover-v2.png"
   kicker="行业架构 · Academic Observation 005"
   title="一次多智能体失败，可能不只有一个合理原因"
   summary="轨迹保持事实，因果假设允许并存，修复决定单独治理，而不是把一种解释过早写成唯一真相。"

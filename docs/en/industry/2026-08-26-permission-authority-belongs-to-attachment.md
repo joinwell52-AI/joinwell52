@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260826-02-attachment-owned-permission-authority.md
 item_id: "Q-20260826-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-26-permission-authority-belongs-to-attachment-cover.png"
+cover: "/assets/covers/daily-2026-08-26-permission-authority-belongs-to-attachment-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-26-permission-authority-belongs-to-attachment-cover.png"
+  image="/assets/covers/daily-2026-08-26-permission-authority-belongs-to-attachment-cover-v2.png"
   kicker="Industry Architecture · Daily Research"
   title="Permission Authority Belongs to the Attachment"
   summary="A merged Codex change binds MCP permission profiles to enabled servers and blocks call preparation when attachment authority is unresolved. The architecture narrows authority ownership and refresh scope without proving distributed revocation or universal race freedom."

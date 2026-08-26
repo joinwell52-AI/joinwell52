@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260826-03-copy-on-mutation-request-option-isolation.md
 item_id: "Q-20260826-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-26-copy-options-keep-client-cover.png"
+cover: "/assets/covers/daily-2026-08-26-copy-options-keep-client-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-26-copy-options-keep-client-cover.png"
+  image="/assets/covers/daily-2026-08-26-copy-options-keep-client-cover-v2.png"
   kicker="开源工程 · 每日研究"
   title="复制配置，不要复制客户端"
   summary="Google ADK 的一项已合并变更为每次 Invocation 复制 Request-mutable HTTP Option Container，同时保留 Live Client Identity。这个模式避免已展示的 Clone Crash 与 Top-level Mutation Leak，但不会产生 Deep Isolation 或 Client-internal Isolation。"
