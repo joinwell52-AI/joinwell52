@@ -1,0 +1,158 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "analysis",
+  "family": "daily",
+  "runtimeDate": "2026-08-26",
+  "status": "Completed",
+  "input": {
+    "scheduler": "research/runtime/SCHEDULER.json",
+    "workerControl": "research/runtime/worker-prompts/generated/CONTROL.json",
+    "workerControlVersion": "1.3.0",
+    "authoritativePrompt": {
+      "path": "research/runtime/worker-prompts/generated/analysis.prompt.md",
+      "version": "2.0.0",
+      "sha256": "4f40dff2d12569f647bf265f344b60cb0f0cd0349f0b2d5cf1023f50947dfea2",
+      "hashVerified": true,
+      "sourceCommit": "241aff434cc94a72fdb374dbf1bfab34a18520ad"
+    },
+    "requiredSources": [
+      "research/runtime/SCHEDULER.json",
+      "research/runtime/WORKER-CONTRACT-V3.md",
+      "research/runtime/WAKE-RECEIPT-V1.md",
+      "research/editorial/EDITORIAL-ARCHITECTURE.json",
+      "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+      "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+      "research/skills/04-research-analysis.md"
+    ],
+    "admission": {
+      "decision": "Admitted",
+      "date": "2026-08-26",
+      "branch": "main",
+      "wakeSource": "chatgpt-scheduled-task",
+      "requiredCapabilities": ["github-read", "github-write", "file-editing"],
+      "availableCapabilities": ["github-read", "github-write", "file-editing", "deterministic-hash"],
+      "notBefore": "13:00",
+      "wakeReceivedAt": "13:01:40",
+      "limits": {
+        "maxRunMinutes": 120,
+        "maxRecoveryAttempts": 2,
+        "maxRevisionRounds": 2,
+        "maxOutputItems": 3,
+        "zeroOutputAllowed": true,
+        "directPublicationAllowed": false,
+        "requireSameRunDateInputs": true,
+        "requirePromptHashVerification": true,
+        "requireRemoteCommitVerification": true
+      }
+    },
+    "readingStatus": "Completed",
+    "readingArtifacts": [
+      "research/reading/Q-20260826-01-detached-workflow-terminal-truth.md",
+      "research/reading/Q-20260826-02-mcp-attachment-owned-permission-authority.md",
+      "research/reading/Q-20260826-03-http-options-copy-on-mutation-isolation.md"
+    ],
+    "controlPlane": {
+      "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-26/analysis-130140.json",
+      "executionSlotOpenedAt": "2026-08-26T13:03:57+08:00",
+      "workerClaimCommit": "22d2674e157af58cc8dc6e0313ee961f96a9892d",
+      "workerClaimVerified": true,
+      "globalOrderVerified": true,
+      "earlierDueTasksClosed": ["discovery", "queue", "reading"]
+    }
+  },
+  "workResult": {
+    "summary": "Executed only Skill 04 Research Analysis after fail-closed admission, deterministic SHA-256 verification of the authoritative generated Analysis prompt, complete reading of all seven required control/editorial/evidence sources, durable same-date Wake Receipt verification, repository-granted global-serial execution authority and a verified Worker Claimed event. Consumed only the three completed 2026-08-26 Reading Results and produced exactly three Research Objects. Q-20260826-01 concludes that detached work must remain part of parent workflow terminal truth until it reaches a terminal state under that parent or is explicitly transferred to another governed owner; foreground return or spawn acknowledgement is not terminal evidence. Q-20260826-02 concludes that permission and connected-tool authority should be owned at the lifecycle scope of the attachment/runtime it governs, so an unrelated runtime refresh cannot replace authoritative state for another attachment. Q-20260826-03 concludes that templated mutable HTTP request options should be copied into invocation-owned state before per-call mutation while intentionally shared live transport objects may remain shared under separate controls. Each judgment preserves the Reading Result's evidence boundary: no distributed exactly-once, crash-durability, generic race-freedom, deep request-state isolation or external-effect certainty is claimed. No prior-day research input, fixed article outline, forced first-party project mapping, article drafting, visualization, Publication Candidate creation or publication was used or performed.",
+    "summary_zh": "在完成 Fail-closed Admission、权威 Generated Analysis Prompt 的 SHA-256 确定性核验、全部 7 个 Required Control/Editorial/Evidence Source 的完整读取、同日 Wake Receipt 持久核验、仓库授予的全局串行执行权与 Worker Claimed 核验后，仅执行 Skill 04 Research Analysis。只消费 2026-08-26 当日三份已完成 Reading Result，并恰好形成三份 Research Object。Q-20260826-01 的判断是：Detached Work 必须持续参与 Parent Workflow 的 Terminal Truth，直到它在 Parent 名下达到终态，或被显式转移给另一个受治理 Owner；Foreground Return 或 Spawn Acknowledgement 不是 Terminal Evidence。Q-20260826-02 的判断是：Permission 与 Connected-tool Authority 应由它所治理的 Attachment/Runtime 同一 Lifecycle Scope 拥有，从而避免无关 Runtime Refresh 替换另一个 Attachment 的权威状态。Q-20260826-03 的判断是：模板化 Mutable HTTP Request Option 应在 Per-call Mutation 前复制成 Invocation-owned State；有意共享的 Live Transport Object 可在独立控制下继续共享。三项判断均保留 Reading Result 的证据边界：不声称分布式 Exactly-once、Crash Durability、通用 Race Freedom、Deep Request-state Isolation 或 External-effect Certainty。未复用前一日研究输入，也未使用固定文章大纲、强行映射自有项目，未执行文章撰写、可视化、Publication Candidate 创建或发布。",
+    "researchObjects": [
+      {
+        "column": "digital-employee",
+        "itemId": "Q-20260826-01",
+        "artifact": "research/analysis/Q-20260826-01-detached-work-parent-terminal-accounting.md",
+        "articleType": "technical-analysis",
+        "projectRelevance": "none",
+        "judgment": "Detached work should remain part of parent workflow terminal truth until it either reaches a terminal state under the parent or is explicitly transferred to another governed owner. A foreground return, spawn acknowledgement or background label is not terminal evidence. The demonstrated pattern is stable detached-action identity, owned lifecycle registration and a parent terminal barrier, not distributed exactly-once execution or remote-effect certainty.",
+        "judgment_zh": "Detached Work 应持续参与 Parent Workflow 的 Terminal Truth，直到它在 Parent 名下达到终态，或被显式转移给另一个受治理 Owner。Foreground Return、Spawn Acknowledgement 或 Background Label 都不是 Terminal Evidence。已证明模式是稳定 Detached-action Identity、Owned Lifecycle Registration 与 Parent Terminal Barrier，而不是分布式 Exactly-once Execution 或 Remote-effect Certainty。"
+      },
+      {
+        "column": "industry-architecture",
+        "itemId": "Q-20260826-02",
+        "artifact": "research/analysis/Q-20260826-02-attachment-owned-permission-authority.md",
+        "articleType": "technical-analysis",
+        "projectRelevance": "none",
+        "judgment": "Authority-bearing permission and connected-tool state should be owned at the same lifecycle scope as the attachment/runtime occurrence it governs. A refresh or authorization completion in one runtime should not replace authoritative state for unrelated attachments. Per-session ownership narrows replacement blast radius but does not prove distributed consistency, durable authorization state, universal race freedom or exactly-once transitions.",
+        "judgment_zh": "携带 Authority 的 Permission 与 Connected-tool State 应由其所治理的 Attachment/Runtime Occurrence 同一 Lifecycle Scope 拥有。一个 Runtime 的 Refresh 或 Authorization Completion 不应替换无关 Attachment 的权威状态。Per-session Ownership 缩小 Replacement Blast Radius，但不能证明分布式一致性、Durable Authorization State、通用 Race Freedom 或 Exactly-once Transition。"
+      },
+      {
+        "column": "open-source-engineering",
+        "itemId": "Q-20260826-03",
+        "artifact": "research/analysis/Q-20260826-03-copy-on-mutation-request-option-isolation.md",
+        "articleType": "engineering-insight",
+        "projectRelevance": "none",
+        "judgment": "Reusable clients should treat templated mutable request options as read-mostly baseline state and create an invocation-owned copy before per-call enrichment. This prevents top-level option aliasing across calls while allowing intentionally shared live client/transport objects to remain shared under separate controls. The evidence does not prove deep isolation, cookie/session isolation, custom-client safety or generic concurrency correctness.",
+        "judgment_zh": "可复用 Client 应把模板化 Mutable Request Option 视为 Read-mostly Baseline State，并在 Per-call Enrichment 前创建 Invocation-owned Copy。这样可阻止 Top-level Option Aliasing 跨调用泄漏，同时允许有意共享的 Live Client/Transport Object 在独立控制下继续共享。证据不能证明 Deep Isolation、Cookie/Session Isolation、Custom-client Safety 或通用 Concurrency Correctness。"
+      }
+    ],
+    "boundary": {
+      "unreadMaterialAnalyzed": false,
+      "priorDayResearchInputsReused": false,
+      "fixedArticleOutline": false,
+      "forcedFirstPartyMapping": false,
+      "articleWriting": false,
+      "visualization": false,
+      "publicationCandidate": false,
+      "publication": false
+    }
+  },
+  "output": {
+    "type": "Research Objects",
+    "researchObjectCount": 3,
+    "artifacts": [
+      "research/analysis/Q-20260826-01-detached-work-parent-terminal-accounting.md",
+      "research/analysis/Q-20260826-02-attachment-owned-permission-authority.md",
+      "research/analysis/Q-20260826-03-copy-on-mutation-request-option-isolation.md"
+    ]
+  },
+  "next": {
+    "task": "production",
+    "scheduledTime": "15:00",
+    "instruction": "Production may consume only these three completed 2026-08-26 Research Objects after its 15:00 formal time gate, fresh admission, authoritative prompt verification, global serial-order check and Worker Claim. Preserve the bounded evidence identities: parent terminal accounting does not prove remote-effect completion or distributed exactly-once; attachment-scoped permission ownership does not prove distributed consistency or universal race freedom; copy-on-mutation of top-level request options does not prove deep isolation or custom-client safety.",
+    "instruction_zh": "Production 只能在 15:00 正式时间门禁之后，并完成新的 Admission、权威 Prompt Verification、全局串行顺序检查与 Worker Claim 后，消费这三份 2026-08-26 已完成 Research Object。必须保留有界 Evidence Identity：Parent Terminal Accounting 不能证明 Remote-effect Completion 或分布式 Exactly-once；Attachment-scoped Permission Ownership 不能证明分布式一致性或通用 Race Freedom；Top-level Request Option 的 Copy-on-mutation 不能证明 Deep Isolation 或 Custom-client Safety。"
+  },
+  "metrics": [
+    {"name": "reading_results_consumed", "value": 3},
+    {"name": "research_objects", "value": 3},
+    {"name": "prompt_hash_verified", "value": 1},
+    {"name": "required_sources_read", "value": 7},
+    {"name": "wake_receipts_verified", "value": 1},
+    {"name": "worker_claims_verified", "value": 1},
+    {"name": "prior_day_research_inputs_reused", "value": 0},
+    {"name": "first_party_project_mappings_forced", "value": 0},
+    {"name": "article_drafts", "value": 0},
+    {"name": "publication_actions", "value": 0},
+    {"name": "revision_rounds_used", "value": 0}
+  ],
+  "evidence": [
+    "241aff434cc94a72fdb374dbf1bfab34a18520ad",
+    "research/runtime/wakes/2026/08/2026-08-26/analysis-130140.json",
+    "research/runtime/records/daily/2026/08/2026-08-26-daily-runtime.json",
+    "research/runtime/worker-prompts/generated/CONTROL.json",
+    "research/runtime/worker-prompts/generated/analysis.prompt.md",
+    "research/runtime/WORKER-CONTRACT-V3.md",
+    "research/runtime/WAKE-RECEIPT-V1.md",
+    "research/editorial/EDITORIAL-ARCHITECTURE.json",
+    "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+    "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+    "research/skills/04-research-analysis.md",
+    "research/runtime/results/2026/08/2026-08-26-reading-result.json",
+    "research/reading/Q-20260826-01-detached-workflow-terminal-truth.md",
+    "research/reading/Q-20260826-02-mcp-attachment-owned-permission-authority.md",
+    "research/reading/Q-20260826-03-http-options-copy-on-mutation-isolation.md",
+    "22d2674e157af58cc8dc6e0313ee961f96a9892d"
+  ],
+  "artifacts": [
+    "research/analysis/Q-20260826-01-detached-work-parent-terminal-accounting.md",
+    "research/analysis/Q-20260826-02-attachment-owned-permission-authority.md",
+    "research/analysis/Q-20260826-03-copy-on-mutation-request-option-isolation.md",
+    "research/runtime/results/2026/08/2026-08-26-analysis-result.json"
+  ]
+}
