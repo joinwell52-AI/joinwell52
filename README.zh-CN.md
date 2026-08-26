@@ -32,7 +32,7 @@
 
 | 成果 | Zenodo DOI | OSF Registration |
 |---|---|---|
-| **TMPA** | [10.5281/zenodo.21888488](https://doi.org/10.5281/zenodo.21888488) | [`2jvqd`](https://osf.io/2jvqd/) |
+| **TMPA** | [10.5281/zenodo.21888488](https://doi.org/10.5281/zenodo.21888488) | [`2jvqd`](https://osf.io/2jvqd/) · [10.17605/OSF.IO/2JVQD](https://doi.org/10.17605/OSF.IO/2JVQD) |
 | **FCoP** | [10.5281/zenodo.20457285](https://doi.org/10.5281/zenodo.20457285) | [`92nwm`](https://osf.io/92nwm/) |
 
 Zenodo DOI 对应可引用的正式版本档案；OSF Registration 对应不可变、带时间戳的开放科学快照。

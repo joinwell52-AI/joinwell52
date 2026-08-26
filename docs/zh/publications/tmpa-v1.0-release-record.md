@@ -37,3 +37,11 @@ CodeFlowMu V1.8.0 产品 Reader 针对精确 S1.0 冻结候选字节执行，在
 - **Implementation evidence SHA-256：** `9b92b06c3e46c8019362f55075be4ed066cb7a9c0d9859945b6c3b7de8840d04`
 
 Zenodo 是 TMPA V1.0 Publication System 的不可变归档平台。GitHub 仓库 `joinwell52-AI/joinwell52` 仍是可编辑内容与版本历史的唯一事实源。该 DOI 标识完整的 TMPA V1.0 出版套件，并非 A1.0、S1.0 与 I1.0 各自拥有不同 DOI。早期 RA1、RC1、A0.x、S0.x 与 I0.x 记录继续作为不可变出版历史保留。
+
+## OSF 不可变登记
+
+- **Registration：** [`2jvqd`](https://osf.io/2jvqd/)
+- **DOI：** [10.17605/OSF.IO/2JVQD](https://doi.org/10.17605/OSF.IO/2JVQD)
+- **状态：** Public registration
+
+OSF Registration 是 TMPA V1.0 登记内容的不可变、带时间戳开放科学快照。它补充而不替代 Zenodo 发行档案：Zenodo 继续承载可引用的正式出版套件，OSF 保存登记快照及其公开来源记录。

@@ -37,3 +37,11 @@ The evidence is author-run and fixed-bundle. The CodeFlowMu evidence commit was 
 - **Implementation evidence SHA-256:** `9b92b06c3e46c8019362f55075be4ed066cb7a9c0d9859945b6c3b7de8840d04`
 
 Zenodo is the immutable archival platform for the TMPA V1.0 Publication System. The GitHub repository `joinwell52-AI/joinwell52` remains the single source of truth for editable content and version history. The DOI identifies the complete TMPA V1.0 publication suite; it is not a set of separate DOIs for A1.0, S1.0, and I1.0. Earlier RA1, RC1, A0.x, S0.x, and I0.x records remain immutable publication history.
+
+## OSF immutable registration
+
+- **Registration:** [`2jvqd`](https://osf.io/2jvqd/)
+- **DOI:** [10.17605/OSF.IO/2JVQD](https://doi.org/10.17605/OSF.IO/2JVQD)
+- **Status:** Public registration
+
+The OSF Registration is the immutable, timestamped open-science snapshot of the TMPA V1.0 registration. It complements rather than replaces the Zenodo release archive: Zenodo remains the citable publication dossier, while OSF preserves the registered snapshot and its public provenance.
