@@ -8,16 +8,130 @@
   "date": "2026-08-26",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
-    "discovery": "Running",
+    "discovery": "Completed",
     "queue": "Waiting",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
   },
-  "results": {},
+  "results": {
+    "discovery": {
+      "schema": "runtime-shift-result/v2",
+      "task": "discovery",
+      "family": "daily",
+      "runtimeDate": "2026-08-26",
+      "status": "Completed",
+      "input": "Authoritative main-branch Research Runtime Scheduler V3.0 and generated Discovery Prompt v1.0.0 (SHA-256 099dc7e54d1d1f9651b79d14d9234f985686764a32f83ed71d1c94a351afd432), its worker control manifest and ten required sources, the Research Intelligence Registry v1.0, the prior-day 2026-08-25 intelligence run for deduplication, and current primary/authoritative platform, repository and research sources.",
+      "input_zh": "权威 main 分支 Research Runtime Scheduler V3.0、生成的 Discovery Prompt v1.0.0（SHA-256 099dc7e54d1d1f9651b79d14d9234f985686764a32f83ed71d1c94a351afd432）、其 Worker Control Manifest 与 10 个 requiredSources、Research Intelligence Registry v1.0、用于去重的 2026-08-25 前一日 Intelligence Run，以及当前一手/权威平台、仓库与研究来源。",
+      "workResult": "Fail-closed admission was resolved from the fetched main control plane, the run-date wake receipt was durably verified, Discovery was granted global serial execution authority as the earliest due unfinished task, and a Worker Claimed event was persisted before substantive work. All three formal Discovery profiles were executed. AI Platform coverage resolved 45/45 registered P0 public channels as checked. GitHub Engineering checked all 9/9 P0 daily repositories. Published Research resolved all 9 due P0 sources as 8 checked plus one explicit Journal of Systems and Software retrieval failure. Prior-day, same-mechanism and cross-pipeline normalization retained 18 material run-date signals. No Queue selection, Deep Reading, Research Analysis, writing or publication was performed.",
+      "workResult_zh": "依据已获取的 main 控制面完成 Fail-closed Admission；运行日 Wake Receipt 已持久化并核验；Discovery 作为最早到期且未收口任务获得全局串行执行权，并在实质工作前持久化 Worker Claimed。随后执行全部三个正式 Discovery Profile。AI Platform 的 45/45 个注册 P0 公共通道全部完成检查；GitHub Engineering 的 9/9 个 P0 Daily 仓库全部检查；Published Research 的 9 个 P0 到期来源全部终态解析为 8 个已检查 + 1 个 Journal of Systems and Software 明确抓取失败。经前一日、同机制与跨管线去重后，保留 18 个重要运行日 Signal。未执行 Queue 选题、Deep Reading、Research Analysis、写作或发布。",
+      "output": "A completed 2026-08-26 Research Intelligence run containing 18 normalized, unselected signals. Primary-column distribution is Digital Employee 6, Industry Architecture 5 and Open-source Engineering 7; all three column decisions remain Waiting for Queue.",
+      "output_zh": "生成已完成的 2026-08-26 Research Intelligence Run，共包含 18 个规范化、未选题 Signal。主栏目分布为数字员工 6 个、行业架构 5 个、开源工程 7 个；三个栏目 Decision 全部保持 Waiting，交由 Queue 处理。",
+      "next": "Research Runtime Queue may independently score and triage the run-date Signal Pool when it becomes due. Discovery must not select topics or perform Deep Reading, Research Analysis, Production or Publication.",
+      "next_zh": "当 Research Runtime Queue 到达执行时点后，可独立评分与筛选运行日 Signal Pool。Discovery 不得选题，也不得执行 Deep Reading、Research Analysis、Production 或 Publication。",
+      "metrics": [
+        {
+          "label": "Discovery start events",
+          "label_zh": "Discovery 启动事件",
+          "value": 1
+        },
+        {
+          "label": "AI Platform due / checked / inaccessible / failed",
+          "label_zh": "AI 平台应查 / 已查 / 不可访问 / 失败",
+          "value": "45 / 45 / 0 / 0"
+        },
+        {
+          "label": "GitHub Engineering repositories checked",
+          "label_zh": "GitHub Engineering 已检查仓库",
+          "value": "9 / 9"
+        },
+        {
+          "label": "Published Research due / checked / failed",
+          "label_zh": "Published Research 应查 / 已查 / 失败",
+          "value": "9 / 8 / 1"
+        },
+        {
+          "label": "Normalized signals",
+          "label_zh": "规范化 Signal",
+          "value": 18
+        },
+        {
+          "label": "Selected topics",
+          "label_zh": "已选主题",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Authoritative scheduler commit",
+          "label_zh": "权威 Scheduler 提交",
+          "value": "8021b126b2b162cf35f8eb366e8a514968b44959"
+        },
+        {
+          "label": "Generated Discovery Prompt",
+          "label_zh": "生成的 Discovery Prompt",
+          "path": "research/runtime/worker-prompts/generated/discovery.prompt.md"
+        },
+        {
+          "label": "Generated prompt SHA-256",
+          "label_zh": "生成 Prompt SHA-256",
+          "value": "099dc7e54d1d1f9651b79d14d9234f985686764a32f83ed71d1c94a351afd432"
+        },
+        {
+          "label": "Worker control manifest",
+          "label_zh": "Worker Control Manifest",
+          "path": "research/runtime/worker-prompts/generated/CONTROL.json"
+        },
+        {
+          "label": "Research Intelligence registry",
+          "label_zh": "Research Intelligence Registry",
+          "path": "research/intelligence/REGISTRY.json"
+        },
+        {
+          "label": "Wake receipt",
+          "label_zh": "Wake Receipt",
+          "path": "research/runtime/wakes/2026/08/2026-08-26/discovery-090240.json"
+        },
+        {
+          "label": "Prior-day deduplication baseline",
+          "label_zh": "前一日去重基线",
+          "path": "research/intelligence/runs/2026/08/2026-08-25-intelligence.json"
+        },
+        {
+          "label": "Claude Code run-date release evidence",
+          "label_zh": "Claude Code 运行日发布证据",
+          "commit": "005c5dade90c2c59c88d819d8723e7b579addb5e"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Research Intelligence run",
+          "label_zh": "Research Intelligence 运行记录",
+          "path": "research/intelligence/runs/2026/08/2026-08-26-intelligence.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "path": "research/runtime/records/daily/2026/08/2026-08-26-daily-runtime.json"
+        },
+        {
+          "label": "Wake receipt",
+          "label_zh": "Wake Receipt",
+          "path": "research/runtime/wakes/2026/08/2026-08-26/discovery-090240.json"
+        },
+        {
+          "label": "Human-readable Runtime ledger",
+          "label_zh": "可读 Runtime 账本",
+          "path": "research/runtime/2026/08/2026-08-26-runtime.md"
+        }
+      ],
+      "startedAt": "2026-08-26T09:06:23+08:00",
+      "completedAt": "2026-08-26T09:14:03+08:00"
+    }
+  },
   "timeline": [
     {
       "time": "2026-08-26T09:06:23+08:00",
@@ -32,6 +146,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed the admitted Discovery execution after verifying the run-date wake receipt and execution authority from main."
+    },
+    {
+      "time": "2026-08-26T09:14:03+08:00",
+      "task": "discovery",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Discovery closed as Completed through governed Runtime shift finalization after durable result validation for 2026-08-26."
     }
   ],
   "metrics": [],
@@ -39,5 +160,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-26T09:06:40+08:00"
+  "updatedAt": "2026-08-26T09:14:03+08:00"
 }
