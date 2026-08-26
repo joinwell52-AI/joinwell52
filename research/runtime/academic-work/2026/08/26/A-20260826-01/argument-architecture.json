@@ -1,0 +1,58 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-26",
+  "itemId": "A-20260826-01",
+  "coreProposition": "Failure attribution should be represented as a ranked diagnostic evidence set, not a single root-cause label.",
+  "openingMove": {
+    "type": "contradiction",
+    "purpose": "Open with the distinction between one immutable execution trace and several plausible explanations of why it failed.",
+    "evidenceRefs": ["E2", "E3"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is one root-cause label too restrictive for multi-agent failures?",
+      "claim": "MP-Bench's expert annotations show substantial disagreement over which steps are failure-inducing, even when annotators inspect the same complete trace.",
+      "evidenceRefs": ["E2", "E3"],
+      "reasoningRole": "problem-definition",
+      "readerProgress": "The reader separates trace certainty from causal certainty.",
+      "visualNeed": "inline"
+    },
+    {
+      "nodeId": "A2",
+      "question": "How does MP-Bench preserve ambiguity without making diagnosis unusable?",
+      "claim": "It ranks failure-inducing steps by consensus rate, preserving several perspectives while prioritizing high-agreement failures for debugging.",
+      "evidenceRefs": ["E4"],
+      "reasoningRole": "mechanism",
+      "readerProgress": "The reader sees that plural explanations can still produce an ordered diagnostic queue.",
+      "visualNeed": "inline"
+    },
+    {
+      "nodeId": "A3",
+      "question": "Does model diversity prove causal truth?",
+      "claim": "No. The paper reports that stochastic and cross-model diversity can improve benchmark ranking performance, but diversity remains a hypothesis-generation signal rather than independent causal evidence.",
+      "evidenceRefs": ["E5", "E6", "E9"],
+      "reasoningRole": "evidence-boundary",
+      "readerProgress": "The reader avoids equating agreement or model diversity with verification.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What runtime model follows from the evidence?",
+      "claim": "A governed diagnostic runtime should separate Trace Facts, Failure Hypotheses, Consensus/Salience and Repair Decision so uncertainty can survive while action remains possible.",
+      "evidenceRefs": ["E3", "E4", "I1"],
+      "reasoningRole": "synthesis",
+      "readerProgress": "The reader leaves with a concrete four-layer diagnostic evidence envelope.",
+      "visualNeed": "inline"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Incident response needs one root cause so engineers can act quickly.",
+    "responseBoundary": "A repair decision can be singular while the diagnosis remains plural; the runtime can choose a reversible mitigation based on risk without rewriting uncertain causality as fact."
+  },
+  "endingStrategy": {
+    "type": "operational-principle",
+    "purpose": "End by separating what happened, what may have caused it, how strongly perspectives converge, and what repair is currently authorized."
+  }
+}
