@@ -1,1 +1,682 @@
-{"schema":"daily-runtime-record/v1","runtimeVersion":"5.0","schedulerVersion":"3.0","runtimeFamily":"daily","runtimeFamilyName":"Daily Runtime","runtimeFamilyName_zh":"每日运行","date":"2026-08-26","timezone":"Asia/Shanghai","repository":"joinwell52-AI/joinwell52","status":"Running","taskStatus":{"discovery":"Completed","queue":"Running","reading":"Waiting","analysis":"Waiting","production":"Waiting","publication":"Waiting"},"results":{"discovery":{"schema":"runtime-shift-result/v2","task":"discovery","family":"daily","runtimeDate":"2026-08-26","status":"Completed","input":"Authoritative main-branch Research Runtime Scheduler V3.0 and generated Discovery Prompt v1.0.0 (SHA-256 099dc7e54d1d1f9651b79d14d9234f985686764a32f83ed71d1c94a351afd432), its worker control manifest and ten required sources, the Research Intelligence Registry v1.0, the prior-day 2026-08-25 intelligence run for deduplication, and current primary/authoritative platform, repository and research sources.","input_zh":"权威 main 分支 Research Runtime Scheduler V3.0、生成的 Discovery Prompt v1.0.0（SHA-256 099dc7e54d1d1f9651b79d14d9234f985686764a32f83ed71d1c94a351afd432）、其 Worker Control Manifest 与 10 个 requiredSources、Research Intelligence Registry v1.0、用于去重的 2026-08-25 前一日 Intelligence Run，以及当前一手/权威平台、仓库与研究来源。","workResult":"Fail-closed admission was resolved from the fetched main control plane, the run-date wake receipt was durably verified, Discovery was granted global serial execution authority as the earliest due unfinished task, and a Worker Claimed event was persisted before substantive work. All three formal Discovery profiles were executed. AI Platform coverage resolved 45/45 registered P0 public channels as checked. GitHub Engineering checked all 9/9 P0 daily repositories. Published Research resolved all 9 due P0 sources as 8 checked plus one explicit Journal of Systems and Software retrieval failure. Prior-day, same-mechanism and cross-pipeline normalization retained 18 material run-date signals. No Queue selection, Deep Reading, Research Analysis, writing or publication was performed.","workResult_zh":"依据已获取的 main 控制面完成 Fail-closed Admission；运行日 Wake Receipt 已持久化并核验；Discovery 作为最早到期且未收口任务获得全局串行执行权，并在实质工作前持久化 Worker Claimed。随后执行全部三个正式 Discovery Profile。AI Platform 的 45/45 个注册 P0 公共通道全部完成检查；GitHub Engineering 的 9/9 个 P0 Daily 仓库全部检查；Published Research 的 9 个 P0 到期来源全部终态解析为 8 个已检查 + 1 个 Journal of Systems and Software 明确抓取失败。经前一日、同机制与跨管线去重后，保留 18 个重要运行日 Signal。未执行 Queue 选题、Deep Reading、Research Analysis、写作或发布。","output":"A completed 2026-08-26 Research Intelligence run containing 18 normalized, unselected signals. Primary-column distribution is Digital Employee 6, Industry Architecture 5 and Open-source Engineering 7; all three column decisions remain Waiting for Queue.","output_zh":"生成已完成的 2026-08-26 Research Intelligence Run，共包含 18 个规范化、未选题 Signal。主栏目分布为数字员工 6 个、行业架构 5 个、开源工程 7 个；三个栏目 Decision 全部保持 Waiting，交由 Queue 处理。","next":"Research Runtime Queue may independently score and triage the run-date Signal Pool when it becomes due. Discovery must not select topics or perform Deep Reading, Research Analysis, Production or Publication.","next_zh":"当 Research Runtime Queue 到达执行时点后，可独立评分与筛选运行日 Signal Pool。Discovery 不得选题，也不得执行 Deep Reading、Research Analysis、Production 或 Publication。","metrics":[{"label":"Discovery start events","label_zh":"Discovery 启动事件","value":1},{"label":"AI Platform due / checked / inaccessible / failed","label_zh":"AI 平台应查 / 已查 / 不可访问 / 失败","value":"45 / 45 / 0 / 0"},{"label":"GitHub Engineering repositories checked","label_zh":"GitHub Engineering 已检查仓库","value":"9 / 9"},{"label":"Published Research due / checked / failed","label_zh":"Published Research 应查 / 已查 / 失败","value":"9 / 8 / 1"},{"label":"Normalized signals","label_zh":"规范化 Signal","value":18},{"label":"Selected topics","label_zh":"已选主题","value":0}],"evidence":[{"label":"Authoritative scheduler commit","label_zh":"权威 Scheduler 提交","value":"8021b126b2b162cf35f8eb366e8a514968b44959"},{"label":"Generated Discovery Prompt","label_zh":"生成的 Discovery Prompt","path":"research/runtime/worker-prompts/generated/discovery.prompt.md"},{"label":"Generated prompt SHA-256","label_zh":"生成 Prompt SHA-256","value":"099dc7e54d1d1f9651b79d14d9234f985686764a32f83ed71d1c94a351afd432"},{"label":"Worker control manifest","label_zh":"Worker Control Manifest","path":"research/runtime/worker-prompts/generated/CONTROL.json"},{"label":"Research Intelligence registry","label_zh":"Research Intelligence Registry","path":"research/intelligence/REGISTRY.json"},{"label":"Wake receipt","label_zh":"Wake Receipt","path":"research/runtime/wakes/2026/08/2026-08-26/discovery-090240.json"},{"label":"Prior-day deduplication baseline","label_zh":"前一日去重基线","path":"research/intelligence/runs/2026/08/2026-08-25-intelligence.json"},{"label":"Claude Code run-date release evidence","label_zh":"Claude Code 运行日发布证据","commit":"005c5dade90c2c59c88d819d8723e7b579addb5e"}],"artifacts":[{"label":"Research Intelligence run","label_zh":"Research Intelligence 运行记录","path":"research/intelligence/runs/2026/08/2026-08-26-intelligence.json"},{"label":"Daily Runtime JSON","label_zh":"Daily Runtime JSON","path":"research/runtime/records/daily/2026/08/2026-08-26-daily-runtime.json"},{"label":"Wake receipt","label_zh":"Wake Receipt","path":"research/runtime/wakes/2026/08/2026-08-26/discovery-090240.json"},{"label":"Human-readable Runtime ledger","label_zh":"可读 Runtime 账本","path":"research/runtime/2026/08/2026-08-26-runtime.md"}],"startedAt":"2026-08-26T09:06:23+08:00","completedAt":"2026-08-26T09:14:03+08:00","githubCommit":"f5d9c28ab0b617ecd1b99ce2f35e0f2da640b41f","commitVerify":"Completed","verifiedAt":"2026-08-26T09:14:10+08:00"}},"timeline":[{"time":"2026-08-26T09:06:23+08:00","task":"discovery","event":"Execution Slot Opened","status":"Running","detail":"Research Runtime reconciliation granted substantive execution authority to Discovery as the earliest due unfinished task for the run date."},{"time":"2026-08-26T09:06:40+08:00","task":"discovery","event":"Worker Claimed","status":"Running","detail":"ChatGPT Automation claimed the admitted Discovery execution after verifying the run-date wake receipt and execution authority from main."},{"time":"2026-08-26T09:14:03+08:00","task":"discovery","event":"Shift Completed","status":"Completed","detail":"Research Runtime Discovery closed as Completed through governed Runtime shift finalization after durable result validation for 2026-08-26."},{"time":"2026-08-26T09:14:10+08:00","task":"discovery","event":"GitHub Commit Verified","status":"Completed","detail":"Fetched and verified durable Research Runtime Discovery Completed result commit f5d9c28ab0b617ecd1b99ce2f35e0f2da640b41f on main; 1 execution epoch(s) remain as audit evidence, every prior epoch is governed-closed, and the latest epoch contains a fresh Worker Claimed event before terminal finalization."},{"time":"2026-08-26T10:05:13+08:00","task":"queue","event":"Execution Slot Opened","status":"Running","detail":"Research Runtime reconciliation granted substantive execution authority to Queue as the earliest due unfinished task for the run date after verified Discovery completion."},{"time":"2026-08-26T10:06:17+08:00","task":"queue","event":"Worker Claimed","status":"Running","detail":"ChatGPT Automation claimed the admitted Queue execution after verifying the run-date Wake Receipt, prompt identity and global serial execution authority from main."}],"metrics":[],"evidence":[],"artifacts":[],"githubCommit":"pending","commitVerify":"Waiting","updatedAt":"2026-08-26T10:06:17+08:00"}
+{
+  "schema": "daily-runtime-record/v1",
+  "runtimeVersion": "5.0",
+  "schedulerVersion": "3.0",
+  "runtimeFamily": "daily",
+  "runtimeFamilyName": "Daily Runtime",
+  "runtimeFamilyName_zh": "每日运行",
+  "date": "2026-08-26",
+  "timezone": "Asia/Shanghai",
+  "repository": "joinwell52-AI/joinwell52",
+  "status": "Waiting",
+  "taskStatus": {
+    "discovery": "Completed",
+    "queue": "Completed",
+    "reading": "Waiting",
+    "analysis": "Waiting",
+    "production": "Waiting",
+    "publication": "Waiting"
+  },
+  "results": {
+    "discovery": {
+      "schema": "runtime-shift-result/v2",
+      "task": "discovery",
+      "family": "daily",
+      "runtimeDate": "2026-08-26",
+      "status": "Completed",
+      "input": "Authoritative main-branch Research Runtime Scheduler V3.0 and generated Discovery Prompt v1.0.0 (SHA-256 099dc7e54d1d1f9651b79d14d9234f985686764a32f83ed71d1c94a351afd432), its worker control manifest and ten required sources, the Research Intelligence Registry v1.0, the prior-day 2026-08-25 intelligence run for deduplication, and current primary/authoritative platform, repository and research sources.",
+      "input_zh": "权威 main 分支 Research Runtime Scheduler V3.0、生成的 Discovery Prompt v1.0.0（SHA-256 099dc7e54d1d1f9651b79d14d9234f985686764a32f83ed71d1c94a351afd432）、其 Worker Control Manifest 与 10 个 requiredSources、Research Intelligence Registry v1.0、用于去重的 2026-08-25 前一日 Intelligence Run，以及当前一手/权威平台、仓库与研究来源。",
+      "workResult": "Fail-closed admission was resolved from the fetched main control plane, the run-date wake receipt was durably verified, Discovery was granted global serial execution authority as the earliest due unfinished task, and a Worker Claimed event was persisted before substantive work. All three formal Discovery profiles were executed. AI Platform coverage resolved 45/45 registered P0 public channels as checked. GitHub Engineering checked all 9/9 P0 daily repositories. Published Research resolved all 9 due P0 sources as 8 checked plus one explicit Journal of Systems and Software retrieval failure. Prior-day, same-mechanism and cross-pipeline normalization retained 18 material run-date signals. No Queue selection, Deep Reading, Research Analysis, writing or publication was performed.",
+      "workResult_zh": "依据已获取的 main 控制面完成 Fail-closed Admission；运行日 Wake Receipt 已持久化并核验；Discovery 作为最早到期且未收口任务获得全局串行执行权，并在实质工作前持久化 Worker Claimed。随后执行全部三个正式 Discovery Profile。AI Platform 的 45/45 个注册 P0 公共通道全部完成检查；GitHub Engineering 的 9/9 个 P0 Daily 仓库全部检查；Published Research 的 9 个 P0 到期来源全部终态解析为 8 个已检查 + 1 个 Journal of Systems and Software 明确抓取失败。经前一日、同机制与跨管线去重后，保留 18 个重要运行日 Signal。未执行 Queue 选题、Deep Reading、Research Analysis、写作或发布。",
+      "output": "A completed 2026-08-26 Research Intelligence run containing 18 normalized, unselected signals. Primary-column distribution is Digital Employee 6, Industry Architecture 5 and Open-source Engineering 7; all three column decisions remain Waiting for Queue.",
+      "output_zh": "生成已完成的 2026-08-26 Research Intelligence Run，共包含 18 个规范化、未选题 Signal。主栏目分布为数字员工 6 个、行业架构 5 个、开源工程 7 个；三个栏目 Decision 全部保持 Waiting，交由 Queue 处理。",
+      "next": "Research Runtime Queue may independently score and triage the run-date Signal Pool when it becomes due. Discovery must not select topics or perform Deep Reading, Research Analysis, Production or Publication.",
+      "next_zh": "当 Research Runtime Queue 到达执行时点后，可独立评分与筛选运行日 Signal Pool。Discovery 不得选题，也不得执行 Deep Reading、Research Analysis、Production 或 Publication。",
+      "metrics": [
+        {
+          "label": "Discovery start events",
+          "label_zh": "Discovery 启动事件",
+          "value": 1
+        },
+        {
+          "label": "AI Platform due / checked / inaccessible / failed",
+          "label_zh": "AI 平台应查 / 已查 / 不可访问 / 失败",
+          "value": "45 / 45 / 0 / 0"
+        },
+        {
+          "label": "GitHub Engineering repositories checked",
+          "label_zh": "GitHub Engineering 已检查仓库",
+          "value": "9 / 9"
+        },
+        {
+          "label": "Published Research due / checked / failed",
+          "label_zh": "Published Research 应查 / 已查 / 失败",
+          "value": "9 / 8 / 1"
+        },
+        {
+          "label": "Normalized signals",
+          "label_zh": "规范化 Signal",
+          "value": 18
+        },
+        {
+          "label": "Selected topics",
+          "label_zh": "已选主题",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Authoritative scheduler commit",
+          "label_zh": "权威 Scheduler 提交",
+          "value": "8021b126b2b162cf35f8eb366e8a514968b44959"
+        },
+        {
+          "label": "Generated Discovery Prompt",
+          "label_zh": "生成的 Discovery Prompt",
+          "path": "research/runtime/worker-prompts/generated/discovery.prompt.md"
+        },
+        {
+          "label": "Generated prompt SHA-256",
+          "label_zh": "生成 Prompt SHA-256",
+          "value": "099dc7e54d1d1f9651b79d14d9234f985686764a32f83ed71d1c94a351afd432"
+        },
+        {
+          "label": "Worker control manifest",
+          "label_zh": "Worker Control Manifest",
+          "path": "research/runtime/worker-prompts/generated/CONTROL.json"
+        },
+        {
+          "label": "Research Intelligence registry",
+          "label_zh": "Research Intelligence Registry",
+          "path": "research/intelligence/REGISTRY.json"
+        },
+        {
+          "label": "Wake receipt",
+          "label_zh": "Wake Receipt",
+          "path": "research/runtime/wakes/2026/08/2026-08-26/discovery-090240.json"
+        },
+        {
+          "label": "Prior-day deduplication baseline",
+          "label_zh": "前一日去重基线",
+          "path": "research/intelligence/runs/2026/08/2026-08-25-intelligence.json"
+        },
+        {
+          "label": "Claude Code run-date release evidence",
+          "label_zh": "Claude Code 运行日发布证据",
+          "commit": "005c5dade90c2c59c88d819d8723e7b579addb5e"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Research Intelligence run",
+          "label_zh": "Research Intelligence 运行记录",
+          "path": "research/intelligence/runs/2026/08/2026-08-26-intelligence.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "path": "research/runtime/records/daily/2026/08/2026-08-26-daily-runtime.json"
+        },
+        {
+          "label": "Wake receipt",
+          "label_zh": "Wake Receipt",
+          "path": "research/runtime/wakes/2026/08/2026-08-26/discovery-090240.json"
+        },
+        {
+          "label": "Human-readable Runtime ledger",
+          "label_zh": "可读 Runtime 账本",
+          "path": "research/runtime/2026/08/2026-08-26-runtime.md"
+        }
+      ],
+      "startedAt": "2026-08-26T09:06:23+08:00",
+      "completedAt": "2026-08-26T09:14:03+08:00",
+      "githubCommit": "f5d9c28ab0b617ecd1b99ce2f35e0f2da640b41f",
+      "commitVerify": "Completed",
+      "verifiedAt": "2026-08-26T09:14:10+08:00"
+    },
+    "queue": {
+      "schema": "runtime-shift-result/v2",
+      "task": "queue",
+      "family": "daily",
+      "runtimeDate": "2026-08-26",
+      "status": "Completed",
+      "input": "The verified 2026-08-26 Queue Wake Receipt at research/runtime/wakes/2026/08/2026-08-26/queue-100218.json; pinned authoritative control-source commit 97bfa06601bf8c36293ef385f429cb0ec61cab44 containing Scheduler V3.0, Worker Control v1.3.0, generated Queue Prompt v1.0.0 and all five required sources; the generated Queue Prompt with deterministically verified SHA-256 a0c42d5b8bfdedd9a237741ec74310bfe531ee7656a32f0e682945b4096443df; the same-run-date Daily Runtime Record with Discovery durably Completed, Queue execution authority opened by repository reconciliation and a verified Worker Claimed event; and the completed 2026-08-26 Research Intelligence run containing 18 normalized untriaged signals from all three resolved Discovery pipelines.",
+      "input_zh": "已核验的 2026-08-26 Queue Wake Receipt（research/runtime/wakes/2026/08/2026-08-26/queue-100218.json）；固定权威控制源提交 97bfa06601bf8c36293ef385f429cb0ec61cab44，其中包含 Scheduler V3.0、Worker Control v1.3.0、Generated Queue Prompt v1.0.0 及全部五个 Required Source；经确定性工具核验 SHA-256 为 a0c42d5b8bfdedd9a237741ec74310bfe531ee7656a32f0e682945b4096443df 的 Generated Queue Prompt；Discovery 已持久 Completed、仓库 Reconciliation 已为 Queue 打开执行权且 Worker Claimed 已核验的同运行日 Daily Runtime Record；以及包含 18 个规范化未筛选 Signal、三条 Discovery Pipeline 均已解析完成的 2026-08-26 Research Intelligence Run。",
+      "workResult": "Fail-closed admission passed for branch main, wake source chatgpt-scheduled-task, the active 2026-08-26 Queue window and the worker's available GitHub read/write and file-editing capabilities. The Queue Wake Receipt was committed and fetched before Runtime business work. Repository reconciliation then granted Queue authority as the earliest due unfinished formal task after verified Discovery completion, and the Worker Claimed event was durably verified before triage. Skill 02 scored all 18 same-day signals across the ten declared dimensions. Digital Employee selected SIG-20260826-014 as Q-20260826-01 to study how detached work participates in enclosing workflow terminal truth. Industry Architecture selected SIG-20260826-012 as Q-20260826-02 to study attachment-owned MCP server authority surviving runtime refresh. Open-source Engineering selected SIG-20260826-016 as Q-20260826-03 to study copy-on-mutation isolation of per-invocation HTTP options without cloning live clients. The remaining 15 signals were retained as Candidate because they expose bounded same-day mechanisms but their primary-column slots were taken by more structurally central objects. No signal was rejected. Queue performed no Deep Reading, Research Analysis, article writing or publication.",
+      "workResult_zh": "针对 main 分支、chatgpt-scheduled-task 唤醒源、2026-08-26 有效 Queue 时段，以及当前 Worker 实际具备的 GitHub 读写与文件编辑能力，Fail-Closed Admission 通过。任何 Runtime 业务工作前，Queue Wake Receipt 已提交并重新 Fetch 核验。随后仓库 Reconciliation 在 Discovery 已完成并核验后把 Queue 判定为最早到期未收口任务并授予执行权，且筛选前 Worker Claimed 已完成持久核验。Skill 02 按十个声明评分维度对当天全部 18 个 Signal 完成评分。数字员工选择 SIG-20260826-014，形成 Q-20260826-01，研究 Detached Work 如何参与所属 Workflow 的终态真值；行业架构选择 SIG-20260826-012，形成 Q-20260826-02，研究 Attachment-owned MCP Server Authority 如何跨 Runtime Refresh 保持；开源工程选择 SIG-20260826-016，形成 Q-20260826-03，研究不复制 Live Client 前提下每次 Invocation HTTP Option 的 Copy-on-Mutation 隔离。其余 15 个 Signal 保留为 Candidate；它们均暴露同日有界机制，但对应主栏目位置由结构上更核心的对象占用。0 个 Signal 被 Rejected。Queue 未执行 Deep Reading、Research Analysis、文章写作或发布。",
+      "output": "Today's Research Plan was written to research/runtime/plans/2026/08/2026-08-26-plan.json with exactly three Selected P0 objects: Q-20260826-01, Q-20260826-02 and Q-20260826-03, one for each registered Daily research column.",
+      "output_zh": "Today's Research Plan 已写入 research/runtime/plans/2026/08/2026-08-26-plan.json，恰好包含 3 个 Selected P0 对象：Q-20260826-01、Q-20260826-02、Q-20260826-03，分别对应三个已注册 Daily Research 栏目。",
+      "next": "At or after 11:00 Asia/Shanghai, Runtime reconciliation may grant Reading execution authority only if this Queue terminal result is durably committed and verified on main and no earlier due task remains unfinished. Reading may consume only Q-20260826-01, Q-20260826-02 and Q-20260826-03 for Skill 03 Deep Reading.",
+      "next_zh": "到达或超过上海时间 11:00 后，只有当本次 Queue 终态已在 main 上持久提交并核验，且不存在更早到期未收口任务时，Runtime Reconciliation 才可授予 Reading 执行权。Reading 只能消费 Q-20260826-01、Q-20260826-02、Q-20260826-03 执行 Skill 03 Deep Reading。",
+      "metrics": [
+        {
+          "label": "Wake receipts verified",
+          "label_zh": "已核验 Wake Receipt",
+          "value": 1
+        },
+        {
+          "label": "Generated prompt SHA-256 verified",
+          "label_zh": "Generated Prompt SHA-256 已核验",
+          "value": 1
+        },
+        {
+          "label": "Signal pool count",
+          "label_zh": "Signal Pool 数量",
+          "value": 18
+        },
+        {
+          "label": "Column decisions",
+          "label_zh": "栏目决定",
+          "value": 3
+        },
+        {
+          "label": "Selected objects",
+          "label_zh": "已选对象",
+          "value": 3
+        },
+        {
+          "label": "Candidate signals",
+          "label_zh": "Candidate Signal",
+          "value": 15
+        },
+        {
+          "label": "Rejected signals",
+          "label_zh": "Rejected Signal",
+          "value": 0
+        },
+        {
+          "label": "No Selection decisions",
+          "label_zh": "No Selection 决定",
+          "value": 0
+        },
+        {
+          "label": "Queue execution-slot openings",
+          "label_zh": "Queue 执行槽开启",
+          "value": 1
+        },
+        {
+          "label": "Queue worker claims",
+          "label_zh": "Queue Worker Claimed",
+          "value": 1
+        },
+        {
+          "label": "Revision rounds used",
+          "label_zh": "已使用修订轮次",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Queue Wake Receipt",
+          "label_zh": "Queue 唤醒回执",
+          "path": "research/runtime/wakes/2026/08/2026-08-26/queue-100218.json"
+        },
+        {
+          "label": "Pinned control source commit",
+          "label_zh": "固定控制源提交",
+          "commit": "97bfa06601bf8c36293ef385f429cb0ec61cab44"
+        },
+        {
+          "label": "Worker Control manifest",
+          "label_zh": "Worker Control Manifest",
+          "path": "research/runtime/worker-prompts/generated/CONTROL.json"
+        },
+        {
+          "label": "Generated Queue prompt",
+          "label_zh": "Generated Queue Prompt",
+          "path": "research/runtime/worker-prompts/generated/queue.prompt.md"
+        },
+        {
+          "label": "Generated Queue prompt SHA-256",
+          "label_zh": "Generated Queue Prompt SHA-256",
+          "value": "a0c42d5b8bfdedd9a237741ec74310bfe531ee7656a32f0e682945b4096443df"
+        },
+        {
+          "label": "Run-date Research Intelligence",
+          "label_zh": "运行日 Research Intelligence",
+          "path": "research/intelligence/runs/2026/08/2026-08-26-intelligence.json"
+        },
+        {
+          "label": "Column Plan contract",
+          "label_zh": "Column Plan 合同",
+          "path": "research/runtime/COLUMN-PLAN-SCHEMA.md"
+        },
+        {
+          "label": "Skill 02",
+          "label_zh": "Skill 02",
+          "path": "research/skills/02-research-triage.md"
+        },
+        {
+          "label": "Queue Worker Claimed commit",
+          "label_zh": "Queue Worker Claimed 提交",
+          "commit": "c021c76200c2a5a3aa8384d7700080b9b7d6fae1"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Today's Research Plan",
+          "label_zh": "今日研究计划",
+          "path": "research/runtime/plans/2026/08/2026-08-26-plan.json"
+        },
+        {
+          "label": "Queue result",
+          "label_zh": "Queue 结果",
+          "path": "research/runtime/results/2026/08/2026-08-26-queue-result.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "path": "research/runtime/records/daily/2026/08/2026-08-26-daily-runtime.json"
+        },
+        {
+          "label": "Runtime Markdown ledger",
+          "label_zh": "Runtime Markdown 账本",
+          "path": "research/runtime/2026/08/2026-08-26-runtime.md"
+        }
+      ],
+      "triage": [
+        {
+          "signalId": "SIG-20260826-001",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 4,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 4,
+            "sourceQuality": 4,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 43,
+          "decision": "candidate",
+          "reason": "Interrupted MCP calls preserve failure truth, but the selected invocation-configuration isolation object is more structurally central to reusable runtime correctness."
+        },
+        {
+          "signalId": "SIG-20260826-002",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 4,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 4,
+            "engineeringValue": 4,
+            "novelInformation": 4,
+            "sourceQuality": 4,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 41,
+          "decision": "candidate",
+          "reason": "Phantom approval removal is a useful startup-governance fix, but the selected detached-work object exposes a broader terminal-truth boundary for delegated work."
+        },
+        {
+          "signalId": "SIG-20260826-003",
+          "primaryColumn": "industry-architecture",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 4,
+            "codeFlowMuRelevance": 4,
+            "engineeringValue": 5,
+            "novelInformation": 5,
+            "sourceQuality": 4,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 43,
+          "decision": "candidate",
+          "reason": "Host-bound gateway credentials define a clear trust boundary, but the selected attachment-owned MCP authority object spans the richer runtime-refresh lifecycle."
+        },
+        {
+          "signalId": "SIG-20260826-004",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 5,
+            "sourceQuality": 4,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 45,
+          "decision": "candidate",
+          "reason": "Mandatory user interaction becoming non-bypassable is a strong authority rule, but the selected detached-work object more directly tests whether delegated execution is represented truthfully at workflow completion."
+        },
+        {
+          "signalId": "SIG-20260826-005",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 4,
+            "sourceQuality": 4,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 44,
+          "decision": "candidate",
+          "reason": "Automatic continuation after transport failure improves liveness, but the selected object addresses the more fundamental terminal-truth contract for delegated work."
+        },
+        {
+          "signalId": "SIG-20260826-006",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 4,
+            "novelInformation": 5,
+            "sourceQuality": 4,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 44,
+          "decision": "candidate",
+          "reason": "Explicit partial status at maxTurns improves completion semantics, but the selected detached-node failure propagation mechanism is the stronger workflow-level terminal-truth question."
+        },
+        {
+          "signalId": "SIG-20260826-007",
+          "primaryColumn": "industry-architecture",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 4,
+            "digitalEmployeeRelevance": 4,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 4,
+            "sourceQuality": 4,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 42,
+          "decision": "candidate",
+          "reason": "Worktree launch isolation is architecturally useful, but the selected MCP permission-profile object provides a sharper authority-ownership boundary across runtime refresh."
+        },
+        {
+          "signalId": "SIG-20260826-008",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 4,
+            "digitalEmployeeRelevance": 4,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 4,
+            "novelInformation": 4,
+            "sourceQuality": 4,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 41,
+          "decision": "candidate",
+          "reason": "Malformed poll retry improves runner resilience, but the selected RunConfig isolation mechanism addresses reusable invocation-state contamination more directly."
+        },
+        {
+          "signalId": "SIG-20260826-009",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 4,
+            "sourceQuality": 4,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 44,
+          "decision": "candidate",
+          "reason": "Bash permission matching hardening is a strong safety mechanism, but the selected object exposes a more general implementation boundary between live shared resources and invocation-local mutable state."
+        },
+        {
+          "signalId": "SIG-20260826-010",
+          "primaryColumn": "industry-architecture",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 5,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 46,
+          "decision": "candidate",
+          "reason": "Enterprise issuer, identity and MCP resource binding is a strong identity architecture signal, but the selected permission-profile object is more tightly bounded around authority ownership across runtime lifecycle changes."
+        },
+        {
+          "signalId": "SIG-20260826-011",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 4,
+            "digitalEmployeeRelevance": 3,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 5,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 43,
+          "decision": "candidate",
+          "reason": "Typed MCP result preservation improves result fidelity, but the selected object has a more direct mutable-state safety and cross-invocation isolation mechanism."
+        },
+        {
+          "signalId": "SIG-20260826-012",
+          "primaryColumn": "industry-architecture",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 5,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 46,
+          "decision": "selected",
+          "reason": "Selected because each enabled MCP server retains an attachment-owned permission profile across runtime refresh, rejects calls when authority is absent, and reuses the profile across approval, elicitation and sandbox metadata."
+        },
+        {
+          "signalId": "SIG-20260826-013",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 4,
+            "digitalEmployeeRelevance": 3,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 4,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 42,
+          "decision": "candidate",
+          "reason": "Version-skew compatibility tests are valuable release engineering, but the selected invocation-state isolation object exposes the more immediate runtime correctness boundary."
+        },
+        {
+          "signalId": "SIG-20260826-014",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 5,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 46,
+          "decision": "selected",
+          "reason": "Selected because detached dynamic-node work can outlive static graph completion, and propagating its failure or interruption prevents the enclosing workflow from reporting success while delegated work actually failed."
+        },
+        {
+          "signalId": "SIG-20260826-015",
+          "primaryColumn": "industry-architecture",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 5,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 46,
+          "decision": "candidate",
+          "reason": "Invocation-owned function responses are a strong identity and routing mechanism, but the selected permission-profile object covers a broader authority lifecycle across runtime refresh and multiple control surfaces."
+        },
+        {
+          "signalId": "SIG-20260826-016",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 4,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 5,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 45,
+          "decision": "selected",
+          "reason": "Selected because mutation-specific copies keep live HTTP clients shared by reference while isolating mutable RunConfig containers, preventing callback mutations from leaking caller-owned state into later invocations."
+        },
+        {
+          "signalId": "SIG-20260826-017",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 4,
+            "digitalEmployeeRelevance": 3,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 4,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 42,
+          "decision": "candidate",
+          "reason": "Credential redaction in debug logs tightens observability safety, but the selected object addresses the deeper runtime-state isolation boundary."
+        },
+        {
+          "signalId": "SIG-20260826-018",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 4,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 4,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 44,
+          "decision": "candidate",
+          "reason": "Unary nested AgentTool execution ensures complete tool results, but the selected detached-work mechanism is the stronger workflow-level terminal-truth question."
+        }
+      ],
+      "startedAt": "2026-08-26T10:05:13+08:00",
+      "completedAt": "2026-08-26T10:12:43+08:00"
+    }
+  },
+  "timeline": [
+    {
+      "time": "2026-08-26T09:06:23+08:00",
+      "task": "discovery",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime reconciliation granted substantive execution authority to Discovery as the earliest due unfinished task for the run date."
+    },
+    {
+      "time": "2026-08-26T09:06:40+08:00",
+      "task": "discovery",
+      "event": "Worker Claimed",
+      "status": "Running",
+      "detail": "ChatGPT Automation claimed the admitted Discovery execution after verifying the run-date wake receipt and execution authority from main."
+    },
+    {
+      "time": "2026-08-26T09:14:03+08:00",
+      "task": "discovery",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Discovery closed as Completed through governed Runtime shift finalization after durable result validation for 2026-08-26."
+    },
+    {
+      "time": "2026-08-26T09:14:10+08:00",
+      "task": "discovery",
+      "event": "GitHub Commit Verified",
+      "status": "Completed",
+      "detail": "Fetched and verified durable Research Runtime Discovery Completed result commit f5d9c28ab0b617ecd1b99ce2f35e0f2da640b41f on main; 1 execution epoch(s) remain as audit evidence, every prior epoch is governed-closed, and the latest epoch contains a fresh Worker Claimed event before terminal finalization."
+    },
+    {
+      "time": "2026-08-26T10:05:13+08:00",
+      "task": "queue",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime reconciliation granted substantive execution authority to Queue as the earliest due unfinished task for the run date after verified Discovery completion."
+    },
+    {
+      "time": "2026-08-26T10:06:17+08:00",
+      "task": "queue",
+      "event": "Worker Claimed",
+      "status": "Running",
+      "detail": "ChatGPT Automation claimed the admitted Queue execution after verifying the run-date Wake Receipt, prompt identity and global serial execution authority from main."
+    },
+    {
+      "time": "2026-08-26T10:12:43+08:00",
+      "task": "queue",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Queue closed as Completed through governed Runtime shift finalization after durable result validation for 2026-08-26."
+    }
+  ],
+  "metrics": [],
+  "evidence": [],
+  "artifacts": [],
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-08-26T10:12:43+08:00"
+}
