@@ -1,0 +1,49 @@
+{
+  "schema": "academic-runtime-record/v1",
+  "runtimeVersion": "5.0",
+  "schedulerVersion": "3.0",
+  "runtimeFamily": "academic",
+  "runtimeFamilyName": "Academic Runtime",
+  "runtimeFamilyName_zh": "学术运行",
+  "date": "2026-08-26",
+  "timezone": "Asia/Shanghai",
+  "repository": "joinwell52-AI/joinwell52",
+  "status": "Running",
+  "taskStatus": {
+    "academic": "Running"
+  },
+  "results": {},
+  "timeline": [
+    {
+      "time": "2026-08-26T16:05:38+08:00",
+      "task": "academic",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Academic Runtime admitted from the authoritative main-branch Worker Control after the verified scheduled-task wake receipt; Wednesday applicability, not-before time, branch, wake source and required capabilities passed fail-closed admission."
+    },
+    {
+      "time": "2026-08-26T16:05:39+08:00",
+      "task": "academic",
+      "event": "Worker Claimed",
+      "status": "Running",
+      "detail": "ChatGPT scheduled-task Worker claimed the admitted Academic Runtime execution slot after verifying the generated Academic Prompt v2.0.0 identity and all required-source contracts from one authoritative main commit."
+    }
+  ],
+  "metrics": [],
+  "evidence": [
+    {
+      "label": "Wake receipt",
+      "label_zh": "唤醒回执",
+      "path": "research/runtime/wakes/2026/08/2026-08-26/academic-155723.json"
+    },
+    {
+      "label": "Worker Control baseline",
+      "label_zh": "Worker Control 基线",
+      "commit": "843ebb720d09512c3dcd59775e1eae49168248ce"
+    }
+  ],
+  "artifacts": [],
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-08-26T16:05:39+08:00"
+}
