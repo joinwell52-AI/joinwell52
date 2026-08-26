@@ -28,20 +28,6 @@ publication_authorized: true
   languageHref="/en/digital-employee/2026-08-26-observer-audit-without-adjudication"
   languageLabel="English"
 />
----
-schema: publication-candidate-article/v3
-title: "审计 Agent 为什么不能替团队签字？从 Anywhere Agents 到旁观式事实核查"
-date: '2026-08-26'
-column: digital-employee
-category: daily
-article_type: engineering-case-study
-edition: research-center
-summary: "一条页面上的“等待验收”揭开了旁观审计越权：检查员为什么不能进入签字链，以及我们怎样让重复操作只留下记录、不改变任务。"
-sources: "research/2026-08-26-execution-boundary-record-study/38-four-case-data-book.md"
-project_relevance: first-party-engineering-case
-status: content-candidate-v3
-cover: "./2026-08-26-observer-audit-without-adjudication-cover-v2.png"
----
 
 # 审计 Agent 为什么不能替团队签字？从 Anywhere Agents 到旁观式事实核查
 
@@ -96,9 +82,9 @@ ADMIN 在实现前叫停了它。理由是：只要运行时输出“允许”�
 
 后来保留下来的做法更克制：Runtime 可以把事实、风险和建议递给负责人；对于身份不一致、根任务关闭、明确授权缺失等可机械核对的问题，拒绝当前动作；至于“方案够不够好”“这份报告该不该收”，仍由有权角色决定。
 
-## 后来看到 Anywhere Agents，我们知道这不是孤例
+## 后来看到赵越的 Anywhere Agents，我们知道这不是孤例
 
-[Anywhere Agents 的提交 `53bd8fa`](https://github.com/yzhao062/anywhere-agents/commit/53bd8fa43c7339ae9958c03c55434fac7baddaf3) 也把建议式审计隔在 reviewer 的 prompt、历史和正式结论之外。它面对的工程不同，却给出了相同的分工：审计帮助人理解事实，不替人签字。
+[赵越的 Anywhere Agents 提交 `53bd8fa`](https://github.com/yzhao062/anywhere-agents/commit/53bd8fa43c7339ae9958c03c55434fac7baddaf3) 也把建议式审计隔在 reviewer 的 prompt、历史和正式结论之外。它面对的工程不同，却给出了相同的分工：审计帮助人理解事实，不替人签字。
 
 这篇文章不把它关于 `authored / carried / observed / generated` 的文本来源标签说成 CodeFlowMu 已有功能。我们目前没有可证明的端到端来源传播链；路径或文件名更不能被拿来作为授权凭据。我们能够诚实主张的，只是这条已被修复和测试的行为：旁观报告不会通过重复操作改写任务生命周期。
 
@@ -110,6 +96,5 @@ ADMIN 在实现前叫停了它。理由是：只要运行时输出“允许”�
 
 ### 来源与证据边界
 
-- [Anywhere Agents commit `53bd8fa`](https://github.com/yzhao062/anywhere-agents/commit/53bd8fa43c7339ae9958c03c55434fac7baddaf3)，2026-08-26 复核。本文引用其建议式审计不进入正式结论的设计，不将其文本来源标签视为 CodeFlowMu 既有能力。
-- CodeFlowMu 私有证据包：`V1.9.4-EVAL-OBSERVED-SEMANTICS-20260818-001`、`RAIL-NON-ADJUDICATION-20260822-002`、`RAIL-SERVICE-BARRIERS-20260822-001`。本文数据仅覆盖各包指定验证集。
-- 数据口径与原始路径见 `D:/TMPA/research/2026-08-26-execution-boundary-record-study/38-four-case-data-book.md`。
+- [赵越的 Anywhere Agents commit `53bd8fa`](https://github.com/yzhao062/anywhere-agents/commit/53bd8fa43c7339ae9958c03c55434fac7baddaf3)，2026-08-26 复核。本文引用其建议式审计不进入正式结论的设计，不将其文本来源标签视为 CodeFlowMu 既有能力。
+- 本文数据的测试范围、汇总计数和不可外推边界见[公开、脱敏的四案例数据包](/zh/digital-employee/2026-08-26-execution-boundary-evidence-data)。原始日志、任务内容和本机路径不公开。

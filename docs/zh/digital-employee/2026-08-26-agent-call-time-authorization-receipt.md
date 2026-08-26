@@ -28,20 +28,6 @@ publication_authorized: true
   languageHref="/en/digital-employee/2026-08-26-agent-call-time-authorization-receipt"
   languageLabel="English"
 />
----
-schema: publication-candidate-article/v3
-title: "Agent 有工具权限，为什么还要为每一次执行重新核对？从 GitHub MCP 到任务证据链"
-date: '2026-08-26'
-column: digital-employee
-category: daily
-article_type: engineering-case-study
-edition: research-center
-summary: "一次安全门禁误伤正常历史任务的真实复盘：规则如何把提醒读成禁令，三次复验又怎样证明代码、测试和页面必须一起被纠正。"
-sources: "research/2026-08-26-execution-boundary-record-study/38-four-case-data-book.md"
-project_relevance: first-party-engineering-case
-status: content-candidate-v3
-cover: "./2026-08-26-agent-call-time-authorization-receipt-cover-v1.png"
----
 
 # Agent 有工具权限，为什么还要为每一次执行重新核对？从 GitHub MCP 到任务证据链
 
@@ -126,5 +112,4 @@ CodeFlowMu 这次并没有实现 GitHub 的 OAuth 挑战机制，也不能把 Gi
 ### 来源与证据边界
 
 - [GitHub MCP Server PR #3128](https://github.com/github/github-mcp-server/pull/3128)，2026-08-26 复核。该 PR 已合并，本文引用其“按本次调用参数计算 scope”的设计；它不是 CodeFlowMu 的实现来源。
-- CodeFlowMu 私有证据包：`V1.9.6-TASK-GOVERNANCE-20260821-001`。本文的失败、回归和受控重启数据仅覆盖此包列出的测试集合和现场检查，不代表全系统可靠性结论。
-- 数据口径与原始路径见 `D:/TMPA/research/2026-08-26-execution-boundary-record-study/38-four-case-data-book.md`。
+- 本文数据的测试范围、汇总计数和不可外推边界见[公开、脱敏的四案例数据包](/zh/digital-employee/2026-08-26-execution-boundary-evidence-data)。原始日志、任务内容和本机路径不公开。

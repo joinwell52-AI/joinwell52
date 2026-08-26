@@ -28,20 +28,6 @@ publication_authorized: true
   languageHref="/en/digital-employee/2026-08-26-agent-failure-and-delivery-boundary"
   languageLabel="English"
 />
----
-schema: publication-candidate-article/v3
-title: "失败不能被绿勾覆盖：从 CrewAI 看 Agent 团队怎样保留技术失败与业务结论的边界"
-date: '2026-08-26'
-column: digital-employee
-category: daily
-article_type: engineering-case-study
-edition: research-center
-summary: "一枚绿勾背后，重复报告、被打回记录、历史 ISSUE 和仍开放的问题如何各归其位。用两次真实修复说明：当前页面不能改写过去发生过的事。"
-sources: "research/2026-08-26-execution-boundary-record-study/38-four-case-data-book.md"
-project_relevance: first-party-engineering-case
-status: content-candidate-v3
-cover: "./2026-08-26-agent-failure-and-delivery-boundary-cover-v6.png"
----
 
 # 失败不能被绿勾覆盖：从 CrewAI 看 Agent 团队怎样保留技术失败与业务结论的边界
 
@@ -111,5 +97,4 @@ CrewAI 把内部 Flow 与用户真正发起的执行分开；CodeFlowMu 则把�
 ### 来源与证据边界
 
 - [CrewAI PR #7079](https://github.com/crewAIInc/crewAI/pull/7079)，2026-08-26 复核。本文引用其内部 Flow 与用户业务动作分层的设计；它不是 CodeFlowMu 的直接实现或故障证明。
-- CodeFlowMu 私有证据包：`CFM-194-REPORT-REVIEW-PROJECTION-20260819-001`、`TASK-20260825-REPORT-ISSUE-STATE-CLOSURE-002`。数据仅覆盖指定回归和现场快照。
-- 数据口径与原始路径见 `D:/TMPA/research/2026-08-26-execution-boundary-record-study/38-four-case-data-book.md`。
+- 本文数据的测试范围、汇总计数和不可外推边界见[公开、脱敏的四案例数据包](/zh/digital-employee/2026-08-26-execution-boundary-evidence-data)。原始日志、任务内容和本机路径不公开。

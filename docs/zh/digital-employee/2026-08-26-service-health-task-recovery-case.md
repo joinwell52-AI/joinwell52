@@ -28,20 +28,6 @@ publication_authorized: true
   languageHref="/en/digital-employee/2026-08-26-service-health-task-recovery-case"
   languageLabel="English"
 />
----
-schema: publication-candidate-article/v3
-title: "服务在线，任务为什么仍交不出来？从 OpenHands 到一次真实的 Agent 团队恢复案例"
-date: '2026-08-26'
-column: digital-employee
-category: daily
-article_type: engineering-case-study
-edition: research-center
-summary: "一次真实恢复中，控制台在线却不能安全重跑任务。受限 PM 授权、两项任务恢复、QA 过早释放的因果缺口与 78 项复验共同说明：在线不等于可以继续派工。"
-sources: "research/2026-08-26-execution-boundary-record-study/38-four-case-data-book.md"
-project_relevance: first-party-engineering-case
-status: content-candidate-v3
-cover: "./2026-08-26-service-health-task-recovery-case-cover-v4.png"
----
 
 # 服务在线，任务为什么仍交不出来？从 OpenHands 到一次真实的 Agent 团队恢复案例
 
@@ -112,5 +98,4 @@ OpenHands 将答案落在会话关闭与执行活性上；CodeFlowMu 的这次�
 ### 来源与证据边界
 
 - [OpenHands PR #4548](https://github.com/OpenHands/software-agent-sdk/pull/4548)，2026-08-26 复核。本文引用其 health 正常但会话关闭卡住的事故和有界关闭修复；它不是 CodeFlowMu 的根因。
-- CodeFlowMu 私有案例：`GOVERNANCE-SYSTEM-RECOVERY-20260825-001` 与 `PM-PROACTIVE-RAIL-RECOVERY-20260825-001`。时间线和 78 项断言仅覆盖这一次恢复与指定测试。
-- 数据口径与原始路径见 `D:/TMPA/research/2026-08-26-execution-boundary-record-study/38-four-case-data-book.md`。
+- 本文数据的测试范围、汇总计数和不可外推边界见[公开、脱敏的四案例数据包](/zh/digital-employee/2026-08-26-execution-boundary-evidence-data)。原始日志、任务内容和本机路径不公开。
