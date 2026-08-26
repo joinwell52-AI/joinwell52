@@ -15,6 +15,7 @@ export interface ResearchNoteRecord {
   category: ResearchCategory
   summary: string
   cover?: string
+  thumbnail?: string
   url: string
   lang: 'en' | 'zh'
   articleType?: string
@@ -37,6 +38,12 @@ const articleCoverImage = (src: string | undefined) => {
   return articleCoverTag?.match(/\bimage\s*=\s*["']([^"']+)["']/)?.[1]
 }
 
+const articleCoverThumbnail = (cover: string | undefined) => {
+  if (!cover?.startsWith('/assets/covers/')) return cover
+  const basename = cover.split('/').pop()?.replace(/\.[^.]+$/, '')
+  return basename ? `/assets/cover-thumbnails/${basename}.webp` : cover
+}
+
 export default createContentLoader('**/*.md', {
   includeSrc: true,
   excerpt: false,
@@ -50,17 +57,21 @@ export default createContentLoader('**/*.md', {
           sourceCategories.has(frontmatter.category)
         )
       })
-      .map(({ url, frontmatter, src }) => ({
-        title: String(frontmatter.title),
-        date: String(frontmatter.date),
-        column: frontmatter.column as ResearchColumn,
-        category: displayCategory(frontmatter.category as SourceResearchCategory),
-        summary: String(frontmatter.summary || frontmatter.description || ''),
-        cover: frontmatter.cover ? String(frontmatter.cover) : articleCoverImage(src),
-        url,
-        lang: url.startsWith('/zh/') ? 'zh' : 'en',
-        articleType: frontmatter.article_type ? String(frontmatter.article_type) : undefined
-      }))
+      .map(({ url, frontmatter, src }) => {
+        const cover = frontmatter.cover ? String(frontmatter.cover) : articleCoverImage(src)
+        return {
+          title: String(frontmatter.title),
+          date: String(frontmatter.date),
+          column: frontmatter.column as ResearchColumn,
+          category: displayCategory(frontmatter.category as SourceResearchCategory),
+          summary: String(frontmatter.summary || frontmatter.description || ''),
+          cover,
+          thumbnail: articleCoverThumbnail(cover),
+          url,
+          lang: url.startsWith('/zh/') ? 'zh' : 'en',
+          articleType: frontmatter.article_type ? String(frontmatter.article_type) : undefined
+        }
+      })
       .sort((a, b) => {
         const byDate = b.date.localeCompare(a.date)
         return byDate || a.title.localeCompare(b.title)

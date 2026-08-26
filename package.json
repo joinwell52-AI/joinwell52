@@ -37,12 +37,13 @@
     "publication:bundle:staged": "node scripts/publication-candidate-bundle-guard.mjs staged",
     "publication:bundle:test": "node scripts/publication-candidate-bundle-guard-test.mjs",
     "publication:editorial:validate": "node scripts/publication-editorial-validate.mjs && node scripts/publication-editorial-v21-validate.mjs",
+    "covers:thumbnails": "node scripts/article-cover-thumbnails.mjs",
     "tmpa:s0.4:conformance": "node research/conformance/tmpa-core-s0.4/runner.mjs",
     "tmpa:s0.5:conformance": "node research/conformance/tmpa-core-s0.5/runner.mjs",
     "tmpa:s0.6:conformance": "node research/conformance/tmpa-core-s0.6/runner.mjs",
     "tmpa:s1.0:conformance": "node research/conformance/tmpa-core-s1.0/runner.mjs",
-    "docs:dev": "npm run runtime:build && vitepress dev docs",
-    "docs:build": "npm run runtime:build && node scripts/vitepress-build-strict.mjs && npm run runtime:projection:verify-dist",
+    "docs:dev": "npm run runtime:build && npm run covers:thumbnails && vitepress dev docs",
+    "docs:build": "npm run runtime:build && npm run covers:thumbnails && node scripts/vitepress-build-strict.mjs && npm run runtime:projection:verify-dist",
     "docs:preview": "vitepress preview docs",
     "runtime:markdown": "node scripts/runtime-markdown.mjs render --all",
     "runtime:markdown:validate": "node scripts/runtime-markdown.mjs validate --all"
@@ -50,6 +51,7 @@
   "devDependencies": {
     "ajv": "8.17.1",
     "ajv-formats": "3.0.1",
+    "sharp": "^0.35.4",
     "vitepress": "^1.6.4",
     "vue": "^3.5.13"
   }

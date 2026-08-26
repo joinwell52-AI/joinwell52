@@ -266,7 +266,7 @@ const clearDate = () => {
           <p v-if="note.summary">{{ note.summary }}</p>
         </div>
         <div v-if="note.cover" class="rn-thumb" aria-hidden="true">
-          <img :src="withBase(note.cover)" alt="" loading="lazy" decoding="async">
+          <img :src="withBase(note.thumbnail || note.cover)" alt="" loading="lazy" decoding="async" width="336" height="189">
         </div>
         <b class="rn-arrow">→</b>
       </a>
