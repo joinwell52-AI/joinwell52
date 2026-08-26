@@ -1,0 +1,44 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-26",
+  "itemId": "Q-20260826-02",
+  "researchObjectId": "AN-20260826-02",
+  "targetAudience": {
+    "primary": "Architects of agent platforms, MCP runtimes and permission systems",
+    "knowledgeAssumption": "The reader understands runtime sessions, capability attachment and authorization refresh.",
+    "readerProblem": "A broad mutable permission object lets one runtime refresh overwrite authority belonging to another attachment."
+  },
+  "whyNow": "A same-day merged Codex change publishes explicit per-server MCP permission profiles and refuses call preparation when attachment authority cannot be resolved.",
+  "externalHook": {
+    "type": "resource-identity-versus-authority-ownership",
+    "description": "Sharing a server identity does not imply sharing the mutable authority that governs its tools.",
+    "evidenceRefs": ["E1", "E2", "E3"]
+  },
+  "coreProposition": "Permission authority should follow the attachment/runtime lifecycle it governs: resolve and publish authority per server, reject unresolved authority, and let refresh replace only the owning scope rather than a broad shared manager.",
+  "originalValue": {
+    "type": "attachment-scoped-authority",
+    "description": "Separates resource discovery from authority ownership and treats refresh as a versioned scoped transition rather than global configuration replacement."
+  },
+  "readerTakeaway": "Give every permission snapshot an owner, lifecycle and replacement boundary; fail closed when ownership is unresolved and audit which scope a refresh changes.",
+  "evidenceBoundary": {
+    "supported": [
+      "Enabled MCP servers receive explicit published permission profiles.",
+      "Unresolved server authority prevents MCP call preparation.",
+      "Approval, elicitation and sandbox-sensitive paths consume server-specific authority across demonstrated refresh paths."
+    ],
+    "unsupported": [
+      "Universal capability authorization correctness",
+      "Distributed revocation",
+      "Durable permission snapshots",
+      "Generic race freedom"
+    ],
+    "uncertain": [
+      "Revocation behavior for already-prepared calls",
+      "The right scope for future threadless MCP operations"
+    ]
+  },
+  "firstPartyRole": {"status": "none", "rationale": "The article establishes a general authority-ownership pattern without a first-party project."},
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The per-server profile map, preparation guard and downstream consumers support a bounded attachment-authority argument."
+}

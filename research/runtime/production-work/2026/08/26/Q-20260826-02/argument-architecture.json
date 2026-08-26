@@ -1,0 +1,15 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-26",
+  "itemId": "Q-20260826-02",
+  "coreProposition": "Permission authority should follow the attachment/runtime lifecycle it governs: resolve and publish authority per server, reject unresolved authority, and let refresh replace only the owning scope rather than a broad shared manager.",
+  "openingMove": {"type": "shared-name-wrong-authority", "purpose": "Open with a server that remains discoverable while the authority used to expose its tools comes from the wrong lifecycle scope.", "evidenceRefs": ["E1", "E2"]},
+  "argumentNodes": [
+    {"nodeId": "A1", "question": "Why is a thread-wide profile insufficient?", "claim": "Execution context and attachment ownership can differ, so convenient ambient authority can widen or erase server permissions.", "evidenceRefs": ["E1", "I1"], "reasoningRole": "problem-reframing", "readerProgress": "The reader separates server identity from server authority.", "visualNeed": "none"},
+    {"nodeId": "A2", "question": "How is authority bound?", "claim": "Publishing a profile per enabled server and refusing preparation without one turns attachment resolution into a fail-closed call boundary.", "evidenceRefs": ["E2", "E3"], "reasoningRole": "mechanism", "readerProgress": "The reader understands the prepared-call authority snapshot.", "visualNeed": "none"},
+    {"nodeId": "A3", "question": "What changes during refresh?", "claim": "New runtime configurations may publish new profiles while already-prepared calls retain their captured snapshot, making refresh a lifecycle transition rather than retroactive magic.", "evidenceRefs": ["E3", "I1"], "reasoningRole": "lifecycle-analysis", "readerProgress": "The reader sees the revocation boundary.", "visualNeed": "none"},
+    {"nodeId": "A4", "question": "What remains unproved?", "claim": "The design does not prove resolver correctness, cross-process consistency, universal race freedom or appropriate defaults for every threadless operation.", "evidenceRefs": ["I2"], "reasoningRole": "boundary", "readerProgress": "The reader avoids claiming a complete authorization protocol.", "visualNeed": "none"}
+  ],
+  "counterpoint": {"required": true, "claim": "A single thread-wide profile is simpler and already represents the current execution sandbox.", "responseBoundary": "It is valid only when the thread is the actual authority owner; an attached server can be governed by a different environment or runtime scope."},
+  "endingStrategy": {"type": "revocation-and-audit-agenda", "purpose": "End with versioning, revocation and audit requirements rather than a claim of total authorization correctness."}
+}
