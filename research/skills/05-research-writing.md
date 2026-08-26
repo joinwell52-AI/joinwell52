@@ -1,4 +1,4 @@
-# Skill 05 — Research Writing V2.1
+# Skill 05 — Research Writing V2.2
 
 ## Purpose
 
@@ -95,9 +95,27 @@ The test is semantic: does the sentence or paragraph add information, reasoning,
 - Do not write to an SEO word count or publication quota.
 - When evidence is insufficient, produce no article or downgrade explicitly to `research-note` through the Article Brief gate.
 
+## Chinese-first technical prose
+
+The Chinese Research Center Edition is written for a Chinese reader, not as English technical notes with Chinese grammar wrapped around them.
+
+Hard rules for Chinese titles, summaries, headings and body prose:
+
+1. Express the argument in natural Chinese first. Do not use English concept words as ordinary Chinese sentence components when a clear Chinese expression exists.
+2. When an English product name, protocol name, acronym, API/class identifier or genuinely necessary professional term must remain in the Chinese article, its **first prose occurrence** must immediately provide a Chinese explanation using full-width parentheses: `English Term（中文解释）`.
+3. Examples: `Agent Workflow（智能体工作流）`, `Terminal Truth（最终完成事实）`, `MCP（模型上下文协议）`, `OAuth（开放授权协议）`, and `` `wait_for_completion`（等待完成接口） ``.
+4. After a term or acronym has been defined, later uses may retain the established official name or acronym when it improves precision. Ordinary conceptual discussion should revert to the Chinese term instead of repeatedly switching languages.
+5. Chinese headings must also be Chinese-first. A heading may contain a necessary English proper term only when that term is immediately explained in Chinese on first occurrence.
+6. Do not chain English abstractions such as `Foreground Completion / Terminal Truth / Owned Work / Detached Outcome` through a Chinese paragraph. Translate the concepts and preserve the English label only where identity or source fidelity requires it.
+7. Do not use English merely because the source repository, paper, code or internal Research Object used English terminology. Source vocabulary does not determine the publication language.
+8. Code blocks and literal syntax may remain unchanged. In surrounding Chinese prose, explain what the identifier means before relying on it as a concept.
+9. A Chinese paragraph remains unacceptable when English density makes it read like bilingual notes, even if individual terms were technically defined once.
+
+Failure of these rules is a language-gate failure and requires revision before the candidate may become `Completed`.
+
 ## Bilingual rule
 
-Chinese and English are independently edited documents with shared core proposition, argument progression, claim identity, strength, uncertainty, figure order and conclusion boundaries. They preserve the same semantic reasoning sequence and evidence set, but headings and prose may be naturally written for each language. Mechanical sentence-by-sentence translation and unnecessary English-heavy Chinese prose are both discouraged.
+Chinese and English are independently edited documents with shared core proposition, argument progression, claim identity, strength, uncertainty, figure order and conclusion boundaries. They preserve the same semantic reasoning sequence and evidence set, but headings and prose must be naturally written for each language. Mechanical sentence-by-sentence translation and English-heavy Chinese prose are not acceptable substitutes for bilingual editing.
 
 ## Community Edition rule
 
