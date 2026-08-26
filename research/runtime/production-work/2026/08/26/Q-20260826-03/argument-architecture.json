@@ -1,0 +1,16 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-26",
+  "itemId": "Q-20260826-03",
+  "coreProposition": "Reusable runtimes should snapshot request-mutable option containers per invocation while intentionally preserving live clients by reference; this copy-on-mutation boundary avoids demonstrated aliasing and cloning failures without pretending to provide deep isolation.",
+  "openingMove": {"type": "two-bad-copy-extremes", "purpose": "Open with deep-copy crashes on live resources and raw-sharing leaks from request mutation.", "evidenceRefs": ["E1", "E2"]},
+  "argumentNodes": [
+    {"nodeId": "A1", "question": "Why do both obvious strategies fail?", "claim": "Recursive cloning treats live capabilities as values, while raw sharing treats request-mutable templates as invocation-owned state.", "evidenceRefs": ["E1", "I1"], "reasoningRole": "problem-reframing", "readerProgress": "The reader sees two distinct ownership domains.", "visualNeed": "none"},
+    {"nodeId": "A2", "question": "What does the helper copy?", "claim": "The demonstrated implementation detaches top-level mutable containers and retry options while preserving live client identity.", "evidenceRefs": ["E2", "E3"], "reasoningRole": "mechanism", "readerProgress": "The reader understands mutation-specific copying.", "visualNeed": "none"},
+    {"nodeId": "A3", "question": "How should the contract be tested?", "claim": "Tests must assert both non-aliasing for mutable configuration and identity preservation for intentionally shared live resources across sequential invocations.", "evidenceRefs": ["E2", "E3", "I1"], "reasoningRole": "testing-implications", "readerProgress": "The reader gains executable ownership checks.", "visualNeed": "none"},
+    {"nodeId": "A4", "question": "Where does shallow isolation end?", "claim": "Nested mutable values and state inside a shared client remain shared unless separately governed.", "evidenceRefs": ["I2"], "reasoningRole": "boundary", "readerProgress": "The reader avoids claiming deep isolation or generic thread safety.", "visualNeed": "none"}
+  ],
+  "counterpoint": {"required": true, "claim": "A deep copy provides the safest general isolation.", "responseBoundary": "It is not general when the graph contains locks, SSL contexts or live clients, and it copies beyond the demonstrated mutation domain."},
+  "endingStrategy": {"type": "field-ownership-checklist", "purpose": "End with schema evolution, nested mutability and custom-client questions."
+  }
+}

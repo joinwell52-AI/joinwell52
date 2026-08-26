@@ -1,0 +1,44 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-26",
+  "itemId": "Q-20260826-03",
+  "researchObjectId": "AN-20260826-03",
+  "targetAudience": {
+    "primary": "Open-source maintainers building reusable agent, LLM and HTTP client runtimes",
+    "knowledgeAssumption": "The reader understands shallow copying, request configuration and reusable live clients.",
+    "readerProblem": "Deep copying configuration crashes on live resources, while sharing all mutable options leaks per-call mutation into later invocations."
+  },
+  "whyNow": "A same-day merged Google ADK change introduces mutation-specific HTTP option copying and narrow live-session restart copying.",
+  "externalHook": {
+    "type": "copy-the-mutable-boundary",
+    "description": "Isolation should follow the fields that are actually mutated, not recursively clone every live object reachable from configuration.",
+    "evidenceRefs": ["E1", "E2", "E3"]
+  },
+  "coreProposition": "Reusable runtimes should snapshot request-mutable option containers per invocation while intentionally preserving live clients by reference; this copy-on-mutation boundary avoids demonstrated aliasing and cloning failures without pretending to provide deep isolation.",
+  "originalValue": {
+    "type": "mutation-specific-copying",
+    "description": "Turns copying from a generic object operation into an explicit ownership contract for each configuration field."
+  },
+  "readerTakeaway": "Classify fields as invocation-mutable, immutable or shared live resources; copy only the first class before mutation and test both identity preservation and leak prevention.",
+  "evidenceBoundary": {
+    "supported": [
+      "Headers, extra body, client args and async client args receive new dictionary containers.",
+      "Retry options receive a separate model copy.",
+      "Caller-supplied live HTTP clients remain shared by identity while demonstrated container mutation is isolated."
+    ],
+    "unsupported": [
+      "Deep isolation of nested values",
+      "Cookie or session isolation",
+      "Custom-client safety",
+      "Generic concurrency correctness"
+    ],
+    "uncertain": [
+      "How future mutable fields are enrolled in the helper",
+      "Which nested values require stronger ownership rules"
+    ]
+  },
+  "firstPartyRole": {"status": "none", "rationale": "The article establishes a general mutable-state ownership pattern without a first-party project."},
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The helper implementation and identity/mutation regressions support a practical, bounded copy-on-mutation pattern."
+}
