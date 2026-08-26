@@ -8,13 +8,13 @@
   "date": "2026-08-26",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Running",
+    "production": "Completed",
     "publication": "Waiting"
   },
   "results": {
@@ -998,6 +998,139 @@
       "githubCommit": "f483802c4a10c650a66478dc496306e0752c56e9",
       "commitVerify": "Completed",
       "verifiedAt": "2026-08-26T13:11:01+08:00"
+    },
+    "production": {
+      "schema": "runtime-shift-result/v2",
+      "task": "production",
+      "family": "daily",
+      "runtimeDate": "2026-08-26",
+      "status": "Completed",
+      "productionMode": "candidate-batch",
+      "input": {
+        "promptVersion": "2.13.0",
+        "promptPath": "research/runtime/worker-prompts/generated/production.prompt.md",
+        "promptSha256": "d8b0cd52d22d976d6356558a23c5c2dc28ed5aa8f51793538fa8fbebfb80996f",
+        "promptVerificationMode": "direct-sha256",
+        "researchObjects": [
+          "Q-20260826-01",
+          "Q-20260826-02",
+          "Q-20260826-03"
+        ],
+        "stagedCandidateCommit": "4d3a7e57390e295b3a77a11300d068e7e7ad84f1"
+      },
+      "workResult": {
+        "summary": "Converted all three authorized same-date Research Objects into complete bilingual Editorial Architecture 2.1 candidates, persisted and remotely verified each bounded item segment with its deterministic baseline raster cover, atomically staged the complete candidate batch, and passed the repository-defined Production checkpoint, atomic-bundle, runtime, editorial, evidence and layout gates without executing Publication.",
+        "summary_zh": "将当日获授权的三份 Research Object 全部转换为完整双语 Editorial Architecture 2.1 候选；每个有界条目段及其确定性基础栅格题图均完成持久化与远端核验；随后原子化装配完整候选批次，并通过仓库定义的 Production Checkpoint、原子候选包、Runtime、编辑、证据与版式门禁；未执行 Publication。"
+      },
+      "output": {
+        "type": "Publication Candidates",
+        "candidateBatch": "research/runtime/candidates/2026/08/2026-08-26-candidates.json",
+        "candidateCount": 3,
+        "bilingualArticleFiles": 6,
+        "coverAssets": 3,
+        "inlineFigureAssets": 0
+      },
+      "next": {
+        "task": "publication",
+        "instruction": "Do not execute Publication in this Production run. Publication remains a separate governed task.",
+        "instruction_zh": "本次 Production 不执行 Publication；Publication 仍是独立受治理任务。"
+      },
+      "coverEvidence": [
+        {
+          "itemId": "Q-20260826-01",
+          "briefId": "2026-08-26:Q-20260826-01-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-26-foreground-completion-not-workflow-completion-cover.png",
+          "sanitizedPrompt": "One foreground path reaches a gate while a second amber orbit remains connected and unfinished",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260826-02",
+          "briefId": "2026-08-26:Q-20260826-02-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-26-permission-authority-belongs-to-attachment-cover.png",
+          "sanitizedPrompt": "Several shared ports each carry a distinct authorization seal within a calm modular field",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260826-03",
+          "briefId": "2026-08-26:Q-20260826-03-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-26-copy-options-keep-client-cover.png",
+          "sanitizedPrompt": "A stable central conduit feeds several fresh translucent option sleeves",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        }
+      ],
+      "metrics": [
+        {
+          "name": "research_objects_consumed",
+          "value": 3
+        },
+        {
+          "name": "publication_candidates",
+          "value": 3
+        },
+        {
+          "name": "persisted_article_segments",
+          "value": 3
+        },
+        {
+          "name": "planning_artifacts",
+          "value": 9
+        },
+        {
+          "name": "bilingual_article_files",
+          "value": 6
+        },
+        {
+          "name": "cover_assets",
+          "value": 3
+        },
+        {
+          "name": "inline_figure_assets",
+          "value": 0
+        },
+        {
+          "name": "revision_rounds",
+          "value": 2
+        },
+        {
+          "name": "direct_cloud_image_generation_calls",
+          "value": 0
+        },
+        {
+          "name": "direct_publication_actions",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        "4d3a7e57390e295b3a77a11300d068e7e7ad84f1",
+        "research/runtime/worker-prompts/generated/production.prompt.md",
+        "research/runtime/checkpoints/2026/08/2026-08-26-production.json",
+        "research/runtime/wakes/2026/08/2026-08-26/production-145729.json",
+        "f2ff524d3b059ebf7e22d587ba5466f3b562aa07"
+      ],
+      "artifacts": [
+        "research/runtime/candidates/2026/08/2026-08-26-candidates.json",
+        "research/runtime/checkpoints/2026/08/2026-08-26-production.json",
+        "staging/publication-candidates/2026-08-26-foreground-completion-not-workflow-completion.zh.md",
+        "staging/publication-candidates/2026-08-26-foreground-completion-not-workflow-completion.en.md",
+        "staging/publication-candidates/2026-08-26-foreground-completion-not-workflow-completion-cover.png",
+        "staging/publication-candidates/2026-08-26-permission-authority-belongs-to-attachment.zh.md",
+        "staging/publication-candidates/2026-08-26-permission-authority-belongs-to-attachment.en.md",
+        "staging/publication-candidates/2026-08-26-permission-authority-belongs-to-attachment-cover.png",
+        "staging/publication-candidates/2026-08-26-copy-options-keep-client.zh.md",
+        "staging/publication-candidates/2026-08-26-copy-options-keep-client.en.md",
+        "staging/publication-candidates/2026-08-26-copy-options-keep-client-cover.png"
+      ],
+      "startedAt": "2026-08-26T15:02:02+08:00",
+      "completedAt": "2026-08-26T15:20:49+08:00"
     }
   },
   "timeline": [
@@ -1126,6 +1259,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Production after verifying research/runtime/wakes/2026/08/2026-08-26/production-145729.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-08-26T15:20:49+08:00",
+      "task": "production",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Production closed as Completed through governed Runtime shift finalization after durable result validation for 2026-08-26."
     }
   ],
   "metrics": [],
@@ -1133,5 +1273,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-26T15:03:14+08:00"
+  "updatedAt": "2026-08-26T15:20:49+08:00"
 }
