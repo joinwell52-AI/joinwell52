@@ -7,7 +7,7 @@ category: daily
 article_type: engineering-insight
 edition: research-center
 research_question: "How should a reusable client/runtime separate template HTTP configuration from per-invocation mutation without needlessly cloning heavyweight live client objects?"
-summary: "Google ADK 的一项已合并变更为每次 Invocation 复制 Request-mutable HTTP Option Container，同时保留 Live Client 引用。这个模式避免已证明的 Clone Crash 与 Top-level Mutation Leak，但不会产生 Deep Isolation 或 Client-internal Isolation。"
+summary: "Google ADK 的一项已合并变更为每次 Invocation 复制 Request-mutable HTTP Option Container，同时保留 Live Client Identity。这个模式避免已展示的 Clone Crash 与 Top-level Mutation Leak，但不会产生 Deep Isolation 或 Client-internal Isolation。"
 cover: staging/publication-candidates/2026-08-26-copy-options-keep-client-cover.png
 sources:
   - research/analysis/Q-20260826-03-copy-on-mutation-request-option-isolation.md
