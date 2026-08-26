@@ -62,6 +62,12 @@ function contextAt(text, index) {
   return text.slice(Math.max(0, index - 32), Math.min(text.length, index + 90)).replace(/\s+/g, ' ').trim()
 }
 
+function insideChineseParenthetical(text, index) {
+  const open = text.lastIndexOf('（', index)
+  const close = text.lastIndexOf('）', index)
+  return open > close
+}
+
 export function validateChineseTechnicalProse(raw, context = '(document)') {
   const text = normalizeMarkdown(raw)
   const errors = []
@@ -69,6 +75,8 @@ export function validateChineseTechnicalProse(raw, context = '(document)') {
   let match
 
   while ((match = ENGLISH_TERM.exec(text)) !== null) {
+    if (insideChineseParenthetical(text, match.index)) continue
+
     const term = match[1] || match[2] || ''
     const key = termKey(term)
     if (!key || defined.has(key)) continue
@@ -86,8 +94,9 @@ export function validateChineseTechnicalProse(raw, context = '(document)') {
 
   const paragraphs = text.split(/\n\s*\n/).map((item) => item.trim()).filter(Boolean)
   for (const paragraph of paragraphs) {
-    const chinese = (paragraph.match(/[\u3400-\u9fff]/g) || []).length
-    const latin = (paragraph.match(/[A-Za-z]/g) || []).length
+    const densityText = paragraph.replace(/（[^）]*）/g, '（）')
+    const chinese = (densityText.match(/[\u3400-\u9fff]/g) || []).length
+    const latin = (densityText.match(/[A-Za-z]/g) || []).length
     if (chinese < 20 || latin < 30) continue
     const ratio = latin / (latin + chinese)
     if (ratio > 0.28) {
