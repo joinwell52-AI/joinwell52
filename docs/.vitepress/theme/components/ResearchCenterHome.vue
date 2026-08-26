@@ -39,8 +39,8 @@ const copy = computed(() => zh.value ? {
   readPublication: '阅读正式文档',
   tmpaArchiveStatus: '标准引用凭证',
   fcopDoiLink: 'FCoP DOI · 10.5281/zenodo.20457285',
-  tmpaRegistrationLink: 'TMPA · OSF 2jvqd',
-  fcopRegistrationLink: 'FCoP · OSF 92nwm',
+  tmpaRegistrationLink: 'TMPA · 10.17605/OSF.IO/2JVQD',
+  fcopRegistrationLink: 'FCoP · 10.17605/OSF.IO/92NWM',
   engineLabel: '01 · 数字员工生产线',
   engineTitle: '一个生产岗位 一条可核验产线',
   engineWide: ['一个生产岗位', '一条可核验产线'],
@@ -116,8 +116,8 @@ const copy = computed(() => zh.value ? {
   readPublication: 'Read formal document',
   tmpaArchiveStatus: 'Citation credentials',
   fcopDoiLink: 'FCoP DOI · 10.5281/zenodo.20457285',
-  tmpaRegistrationLink: 'TMPA · OSF 2jvqd',
-  fcopRegistrationLink: 'FCoP · OSF 92nwm',
+  tmpaRegistrationLink: 'TMPA · 10.17605/OSF.IO/2JVQD',
+  fcopRegistrationLink: 'FCoP · 10.17605/OSF.IO/92NWM',
   engineLabel: '01 · DIGITAL EMPLOYEE PRODUCTION LINE',
   engineTitle: 'One production position One verifiable line',
   engineWide: ['One production position', 'One verifiable line'],
@@ -437,8 +437,8 @@ onBeforeUnmount(() => {
             <b>{{ copy.tmpaArchiveStatus }}</b>
             <nav>
               <a href="https://doi.org/10.5281/zenodo.20457285">{{ copy.fcopDoiLink }} <span>↗</span></a>
-              <a href="https://osf.io/2jvqd/">{{ copy.tmpaRegistrationLink }} <span>↗</span></a>
-              <a href="https://osf.io/92nwm/">{{ copy.fcopRegistrationLink }} <span>↗</span></a>
+              <a href="https://doi.org/10.17605/OSF.IO/2JVQD">{{ copy.tmpaRegistrationLink }} <span>↗</span></a>
+              <a href="https://doi.org/10.17605/OSF.IO/92NWM">{{ copy.fcopRegistrationLink }} <span>↗</span></a>
             </nav>
           </div>
         </div>

@@ -20,9 +20,9 @@
   <a href="https://github.com/joinwell52-AI/joinwell52/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/joinwell52-AI/joinwell52?style=for-the-badge&logo=github&label=Star"></a>
   <a href="https://github.com/joinwell52-AI/joinwell52/releases/tag/tmpa-v1.0"><img alt="TMPA V1.0 Release" src="https://img.shields.io/badge/release-TMPA%20V1.0-2563eb?style=for-the-badge"></a>
   <a href="https://doi.org/10.5281/zenodo.21888488"><img alt="DOI" src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21888488-1682D4?style=for-the-badge"></a>
-  <a href="https://osf.io/2jvqd/"><img alt="TMPA OSF Registration 2jvqd" src="https://img.shields.io/badge/OSF-2jvqd-2F80ED?style=for-the-badge&logo=osf&logoColor=white"></a>
+  <a href="https://doi.org/10.17605/OSF.IO/2JVQD"><img alt="TMPA OSF DOI 10.17605/OSF.IO/2JVQD" src="https://img.shields.io/badge/OSF_DOI-10.17605%2FOSF.IO%2F2JVQD-2F80ED?style=for-the-badge&logo=osf&logoColor=white"></a>
   <a href="https://doi.org/10.5281/zenodo.20457285"><img alt="FCoP DOI" src="https://img.shields.io/badge/FCoP_DOI-10.5281%2Fzenodo.20457285-1682D4?style=for-the-badge"></a>
-  <a href="https://osf.io/92nwm/"><img alt="FCoP OSF Registration 92nwm" src="https://img.shields.io/badge/OSF-92nwm-2F80ED?style=for-the-badge&logo=osf&logoColor=white"></a>
+  <a href="https://doi.org/10.17605/OSF.IO/92NWM"><img alt="FCoP OSF DOI 10.17605/OSF.IO/92NWM" src="https://img.shields.io/badge/OSF_DOI-10.17605%2FOSF.IO%2F92NWM-2F80ED?style=for-the-badge&logo=osf&logoColor=white"></a>
   <a href="./CITATION.cff"><img alt="Cite this repository" src="https://img.shields.io/badge/citation-CITATION.cff-8b5cf6?style=for-the-badge"></a>
   <a href="https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-core-specification-s1.0"><img alt="TMPA Core S1.0" src="https://img.shields.io/badge/Core-S1.0-7c3aed?style=for-the-badge"></a>
   <a href="https://joinwell52-ai.github.io/joinwell52/en/publications/implementation-case-i1.0"><img alt="Implementation I1.0" src="https://img.shields.io/badge/CodeFlowMu-14%2F14_PASS-15803d?style=for-the-badge"></a>
@@ -30,10 +30,10 @@
 
 ## Open-science citation records
 
-| Work | Zenodo DOI | OSF Registration |
+| Work | Zenodo DOI | OSF DOI |
 |---|---|---|
-| **TMPA** | [10.5281/zenodo.21888488](https://doi.org/10.5281/zenodo.21888488) | [`2jvqd`](https://osf.io/2jvqd/) · [10.17605/OSF.IO/2JVQD](https://doi.org/10.17605/OSF.IO/2JVQD) |
-| **FCoP** | [10.5281/zenodo.20457285](https://doi.org/10.5281/zenodo.20457285) | [`92nwm`](https://osf.io/92nwm/) |
+| **TMPA** | [10.5281/zenodo.21888488](https://doi.org/10.5281/zenodo.21888488) | [10.17605/OSF.IO/2JVQD](https://doi.org/10.17605/OSF.IO/2JVQD) |
+| **FCoP** | [10.5281/zenodo.20457285](https://doi.org/10.5281/zenodo.20457285) | [10.17605/OSF.IO/92NWM](https://doi.org/10.17605/OSF.IO/92NWM) |
 
 The Zenodo DOI records the citable release archive; the OSF Registration is the immutable, timestamped open-science snapshot.
 
@@ -77,7 +77,7 @@ This repository is TMPA's public research, specification, executable conformance
 | Read the stable theory and specification | [Architecture A1.0](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-architecture-paper-a1.0) · [Core S1.0](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-core-specification-s1.0) |
 | Run something now | [Execute the S1.0 Reference Reader](#run-the-reference-reader) |
 | Inspect the engineering claim | [Implementation Case I1.0](https://joinwell52-ai.github.io/joinwell52/en/publications/implementation-case-i1.0) · [Evidence package](./docs/public/evidence/tmpa/i1.0/) |
-| Cite the work | [TMPA DOI](https://doi.org/10.5281/zenodo.21888488) · [TMPA OSF `2jvqd`](https://osf.io/2jvqd/) · [FCoP DOI](https://doi.org/10.5281/zenodo.20457285) · [FCoP OSF `92nwm`](https://osf.io/92nwm/) · [`CITATION.cff`](./CITATION.cff) |
+| Cite the work | [TMPA DOI](https://doi.org/10.5281/zenodo.21888488) · [TMPA OSF DOI](https://doi.org/10.17605/OSF.IO/2JVQD) · [FCoP DOI](https://doi.org/10.5281/zenodo.20457285) · [FCoP OSF DOI](https://doi.org/10.17605/OSF.IO/92NWM) · [`CITATION.cff`](./CITATION.cff) |
 
 ## Three public repositories, one system
 
