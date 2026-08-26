@@ -1,0 +1,15 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-26",
+  "itemId": "Q-20260826-01",
+  "coreProposition": "Detached work must remain part of parent workflow terminal truth until it reaches a governed terminal state or its ownership is explicitly transferred; foreground return and static-graph completion are not sufficient terminal evidence.",
+  "openingMove": {"type": "false-success-window", "purpose": "Open with a workflow whose visible path ends while delegated work is still deciding the real outcome.", "evidenceRefs": ["E1", "E3"]},
+  "argumentNodes": [
+    {"nodeId": "A1", "question": "What makes the success false?", "claim": "The parent still owns work whose outcome has not entered its terminal decision.", "evidenceRefs": ["E1", "I1"], "reasoningRole": "problem-reframing", "readerProgress": "The reader separates call-stack completion from workflow completion.", "visualNeed": "none"},
+    {"nodeId": "A2", "question": "What mechanism closes the gap?", "claim": "A registry of in-flight dynamic work, a post-static join and outcome inspection make demonstrated detached outcomes participate in parent truth.", "evidenceRefs": ["E2", "E3"], "reasoningRole": "mechanism", "readerProgress": "The reader sees the bounded terminal barrier.", "visualNeed": "none"},
+    {"nodeId": "A3", "question": "What does ownership add?", "claim": "Stable occurrence identity and explicit handoff distinguish work the parent must close from work transferred to another governed owner.", "evidenceRefs": ["I1", "I2"], "reasoningRole": "governance-extension", "readerProgress": "The reader gains design obligations for long-lived background work.", "visualNeed": "none"},
+    {"nodeId": "A4", "question": "Where does the proof stop?", "claim": "Local task terminal state does not attest remote effects, crash durability or exactly-once behavior, and already-finished or cancelled detached work remains outside parts of the demonstrated boundary.", "evidenceRefs": ["I2"], "reasoningRole": "boundary", "readerProgress": "The reader avoids overclaiming distributed guarantees.", "visualNeed": "none"}
+  ],
+  "counterpoint": {"required": true, "claim": "Detached work is intentionally independent, so parent completion should not wait.", "responseBoundary": "Independence is valid only after an explicit ownership transfer; merely placing work in the background does not transfer terminal responsibility."},
+  "endingStrategy": {"type": "open-operational-questions", "purpose": "End with cancellation, handoff and crash-recovery questions rather than a claim of universal async correctness."}
+}

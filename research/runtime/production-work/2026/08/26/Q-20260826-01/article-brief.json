@@ -1,0 +1,44 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-26",
+  "itemId": "Q-20260826-01",
+  "researchObjectId": "AN-20260826-01",
+  "targetAudience": {
+    "primary": "Engineers designing digital-employee and agent workflow runtimes",
+    "knowledgeAssumption": "The reader understands asynchronous tasks, workflow completion and error propagation.",
+    "readerProblem": "A parent workflow can report success while detached work it still owns remains active or has failed."
+  },
+  "whyNow": "A same-day merged Google ADK change makes tracked in-flight detached dynamic work participate in enclosing workflow terminal truth.",
+  "externalHook": {
+    "type": "foreground-return-versus-terminal-truth",
+    "description": "Returning from the foreground path is not proof that all work owned by the workflow is terminal.",
+    "evidenceRefs": ["E1", "E2", "E3"]
+  },
+  "coreProposition": "Detached work must remain part of parent workflow terminal truth until it reaches a governed terminal state or its ownership is explicitly transferred; foreground return and static-graph completion are not sufficient terminal evidence.",
+  "originalValue": {
+    "type": "owned-work-terminal-accounting",
+    "description": "Reframes background-task correctness around ownership and terminal evidence, while separating local lifecycle closure from external-effect certainty."
+  },
+  "readerTakeaway": "Maintain stable identities for owned detached work, join and inspect it before parent success, and model transfer, cancellation and crash recovery as distinct governed outcomes.",
+  "evidenceBoundary": {
+    "supported": [
+      "The merged ADK path waits for tracked in-flight detached dynamic tasks after static work completes.",
+      "Raised exceptions, returned child errors and non-resumable detached interrupts can prevent clean parent success.",
+      "Focused tests cover in-flight detached success, failure and interrupt outcomes."
+    ],
+    "unsupported": [
+      "Distributed exactly-once execution",
+      "External-effect completion",
+      "Crash-durable ownership",
+      "Universal background-task coverage"
+    ],
+    "uncertain": [
+      "How already-finished detached runs should be distinguished from awaited work",
+      "How cancellation should affect parent terminal truth"
+    ]
+  },
+  "firstPartyRole": {"status": "none", "rationale": "The article establishes a general workflow-terminal accounting pattern without a first-party project."},
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The merged mechanism and focused tests support a precise ownership-based terminal-truth conclusion with explicit limits."
+}
