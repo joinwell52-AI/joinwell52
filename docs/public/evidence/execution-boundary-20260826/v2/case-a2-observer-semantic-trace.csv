@@ -1,0 +1,7 @@
+scenario,before,after,verification,why_it_matters
+observer-report-acceptance,"pending; formal report requires acceptance","not applicable; observer report recorded","8/8 governance checks; 6/6 panel checks","A fact-checking report is not a delivery awaiting a business signature."
+repeat-approve-on-observer,"ordinary lifecycle approval could reach a completed task and return a technical conflict","audited no-change; already observed","109/109 web-panel API checks","Repeating observation leaves an audit record but does not move lifecycle state."
+repeat-reject-on-observer,"ordinary rejection path was reachable","audited no-change; observer report is not business-decidable","109/109 web-panel API checks","The observer cannot manufacture a rejection decision either."
+handled-historical-conflict,"an old immutable conflict was rendered as a current unresolved red badge","historical conflict shown as handled; formal review unchanged","18/18 closeout checks","History is visible without being promoted into a new current decision."
+ordinary-worker-reports,"acceptance required","unchanged","semantic comparison","The boundary does not weaken normal DEV, QA, or OPS acceptance."
+default-allow-proposal,"proposal considered","blocked before product-code change","service and boundary review","Observer assistance must not become a runtime business adjudicator."

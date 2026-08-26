@@ -94,6 +94,16 @@ ADMIN 在实现前叫停了它。理由是：只要运行时输出“允许”�
 
 若答案说不清，审计 Agent 很容易从检查员变成隐形审批人。多 Agent 协作里，最危险的未必是模型看错一条信息；更可能是系统在无人授权时，悄悄把“我看过了”升级成“团队已批准”。
 
+## 公开证据：一次重复点击，应该留下什么
+
+这个案例的起点很反直觉：基线的 7 项核心规则和 4 项页面规则都通过了，但实际缺陷仍在——一份已完成任务上的 EVAL（事实核查）报告会被投影成待处理的正式验收，重复点击“批准”会落到技术冲突。也就是说，“测试通过”并不等于测到了用户真正会走的路径。
+
+修复后，重复 EVAL 操作 109 次都返回 `no_change / already_observed`：观察被保留，但不创建业务决定、不迁移任务生命周期。再加上核心规则 8 / 8、页面规则 6 / 6、收口检查 18 / 18，才形成了这篇文章的结论：旁观可以记录事实，不能借一次重复请求取得签字权。
+
+- [查看 A2 基线、修复和重复操作记录（CSV）](/evidence/execution-boundary-20260826/v2/case-a2-observer-semantic-trace.csv)
+- [查看 A2 脱敏测试摘录（GitHub）](https://github.com/joinwell52-AI/joinwell52/blob/main/docs/public/evidence/execution-boundary-20260826/v2/transcript-a2.md)
+- [核对本文主张对应哪一条证据（GitHub）](https://github.com/joinwell52-AI/joinwell52/blob/main/docs/public/evidence/execution-boundary-20260826/v2/claim-evidence-map.csv)
+
 ### 来源与证据边界
 
 - [赵越的 Anywhere Agents commit `53bd8fa`](https://github.com/yzhao062/anywhere-agents/commit/53bd8fa43c7339ae9958c03c55434fac7baddaf3)，2026-08-26 复核。本文引用其建议式审计不进入正式结论的设计，不将其文本来源标签视为 CodeFlowMu 既有能力。

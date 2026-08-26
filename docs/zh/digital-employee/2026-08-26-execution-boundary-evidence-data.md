@@ -13,17 +13,29 @@ lifecycle: Published
 
 # 执行边界四案例：公开脱敏数据包与统计口径
 
-这不是原始运行日志，也不是产品可靠性报告。它是四篇工程案例所引用数字的**公开、脱敏汇总**：读者可以下载数据文件、检查每个数字属于哪一组测试，并知道它不能证明什么。
+这不是原始运行日志，也不是产品可靠性报告。它是四篇工程案例所引用事实的**公开、脱敏证据包**：读者可以查看每一次失败、修复和复验的顺序，检查每个数字属于哪一组测试，并知道它不能证明什么。
 
-- [下载数据包（ZIP）](/evidence/execution-boundary-20260826/execution-boundary-four-cases-public-data-20260826.zip)
-- [校验 ZIP 的 SHA-256](https://raw.githubusercontent.com/joinwell52-AI/joinwell52/main/docs/public/evidence/execution-boundary-20260826/execution-boundary-four-cases-public-data-20260826.zip.sha256)
-- [下载案例明细（CSV）](/evidence/execution-boundary-20260826/cases.csv)
-- [下载机器可读摘要（JSON）](/evidence/execution-boundary-20260826/summary.json)
-- [阅读数据说明（README）](https://github.com/joinwell52-AI/joinwell52/blob/main/docs/public/evidence/execution-boundary-20260826/README.md)
+- [下载证据包 v2（ZIP）](/evidence/execution-boundary-20260826/execution-boundary-four-cases-public-evidence-dossier-20260826-v2.zip)
+- [校验 ZIP 的 SHA-256](https://raw.githubusercontent.com/joinwell52-AI/joinwell52/main/docs/public/evidence/execution-boundary-20260826/execution-boundary-four-cases-public-evidence-dossier-20260826-v2.zip.sha256)
+- [查看 A1：门禁失败→修复→复验](/evidence/execution-boundary-20260826/v2/case-a1-gate-run-trace.csv)
+- [查看 A2：旁观核查语义前后差异](/evidence/execution-boundary-20260826/v2/case-a2-observer-semantic-trace.csv)
+- [查看 A3：历史投影与重复提交](/evidence/execution-boundary-20260826/v2/case-a3-projection-precedence-trace.csv)
+- [查看 A4：恢复时间线与验证](/evidence/execution-boundary-20260826/v2/case-a4-recovery-timeline.csv)
+- [阅读数据包说明](https://github.com/joinwell52-AI/joinwell52/blob/main/docs/public/evidence/execution-boundary-20260826/v2/README.md)
 
 ## 如何读这些数字
 
-每一行的分母只属于它列出的测试集合，不能相加为一个“大通过率”。`PASS` 只表示某项指定命令、指定环境或指定现场快照通过；首次失败、阻断和未覆盖问题同样被保留。
+每一行的分母只属于它列出的测试集合，不能相加为一个“大通过率”。`PASS` 只表示某项指定命令、指定环境或指定现场快照通过；首次失败、阻断和未覆盖问题同样被保留。四个 CSV 是证据主体，汇总表只是导航。
+
+## 证据包里到底有什么
+
+它不是把“87/87”换一张表再写一遍。每个案例都包含三层可检查材料：
+
+1. **逐轮事件记录**：先发生的失败、修复后重复验证、现场检查的顺序。
+2. **脱敏后的测试与运行输出摘录**：保留命令、退出码、断言数量、失败原因与关键返回值；所有删去的位置会以方括号标出，不把删减伪装成原文。
+3. **主张—证据映射与完整性清单**：文章每个关键判断对应哪一份摘录、哪一行记录，以及受限原始材料的 SHA-256。
+
+因此读者能够区分三件事：实际出现过什么问题、修复后哪一组检查通过、以及这些检查仍然没有证明什么。
 
 | 案例 | 公开数据记录的关键过程 | 这组数据支持什么 | 它不支持什么 |
 | --- | --- | --- | --- |

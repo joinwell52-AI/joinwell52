@@ -94,6 +94,16 @@ CrewAI 把内部 Flow 与用户真正发起的执行分开；CodeFlowMu 则把�
 
 一枚绿勾不是审计结论，只是当前状态的一小块投影。可信的系统不是从不出现失败，而是失败、重试、替换和仍未解决的问题都各有位置，谁也不能被一个更漂亮的状态悄悄覆盖。
 
+## 公开证据：先有 55 / 57 的反证，才有后来的全绿
+
+报告投影的首轮定向检查不是成功，而是 55 / 57。两份已被替换或判为无效的最终报告，仍被页面挑成“当前主报告”。这比“页面没有报错”更危险：读者会据此把历史版本当作现在应执行的结论。
+
+修复后，同一集合达到 57 / 57；新增语义检查 14 / 14、集成检查 221 / 221。受控现场快照还记录了 1 份当前主报告、4 份子报告、12 份历史记录、6 条已解决 ISSUE 与 1 条仍开放 ISSUE。这些数据不能外推成全局失败率，却足以说明这次修复不是删除历史来换取一个绿勾，而是让当前、历史和未解决事项各自回到正确位置。
+
+- [查看 A3 报告投影逐轮记录（CSV）](/evidence/execution-boundary-20260826/v2/case-a3-projection-precedence-trace.csv)
+- [查看 A3 脱敏测试与现场摘录（GitHub）](https://github.com/joinwell52-AI/joinwell52/blob/main/docs/public/evidence/execution-boundary-20260826/v2/transcript-a3.md)
+- [核对本文主张对应哪一条证据（GitHub）](https://github.com/joinwell52-AI/joinwell52/blob/main/docs/public/evidence/execution-boundary-20260826/v2/claim-evidence-map.csv)
+
 ### 来源与证据边界
 
 - [Lucas Gomide 的 CrewAI PR #7079](https://github.com/crewAIInc/crewAI/pull/7079)，2026-08-26 复核。本文引用其内部 Flow 与用户业务动作分层的设计；它不是 CodeFlowMu 的直接实现或故障证明。

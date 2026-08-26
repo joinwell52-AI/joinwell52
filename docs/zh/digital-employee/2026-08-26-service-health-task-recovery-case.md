@@ -95,6 +95,16 @@ OpenHands 将答案落在会话关闭与执行活性上；CodeFlowMu 的这次�
 
 真正可靠的恢复，不是让更多 Agent 立刻开始做事，而是让每一次继续都能回答：我为什么现在可以继续？
 
+## 公开证据：恢复不是一个“成功”按钮
+
+这次恢复留下的不是一句“系统已恢复”，而是一条可检查的时间线：受限授权先进入有效状态，随后投递给 PM；两项上游任务先后恢复派工；QA 被释放后，OPS 与 DEV 的终态报告才陆续到达；最后才完成修复提交和分组回归。这个顺序既证明恢复确实发生，也暴露一个不能被漂亮结局掩盖的缺口：仅凭现有物理时间，无法证明 QA 的释放已经绑定了完整的上游因果依据。
+
+因此公开包同时给出修复后的 78 项分组断言：生命周期 16 / 16、派工 46 / 46、文件状态回退 4 / 4、PM 路由 7 / 7、恢复技能路由 5 / 5，以及类型检查结果。它们支持“指定修复路径可重放”，不支持“所有恢复顺序都已被证明正确”。这正是把一次真实恢复当作工程证据，而非宣传故事的原因。
+
+- [查看 A4 授权、恢复与验证时间线（CSV）](/evidence/execution-boundary-20260826/v2/case-a4-recovery-timeline.csv)
+- [查看 A4 脱敏审计与回归摘录（GitHub）](https://github.com/joinwell52-AI/joinwell52/blob/main/docs/public/evidence/execution-boundary-20260826/v2/transcript-a4.md)
+- [核对本文主张对应哪一条证据（GitHub）](https://github.com/joinwell52-AI/joinwell52/blob/main/docs/public/evidence/execution-boundary-20260826/v2/claim-evidence-map.csv)
+
 ### 来源与证据边界
 
 - [Aaron Abu Usama 的 OpenHands PR #4548](https://github.com/OpenHands/software-agent-sdk/pull/4548)，2026-08-26 复核。本文引用其 health 正常但会话关闭卡住的事故和有界关闭修复；它不是 CodeFlowMu 的根因。

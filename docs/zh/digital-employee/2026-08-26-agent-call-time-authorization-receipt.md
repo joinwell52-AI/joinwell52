@@ -109,6 +109,16 @@ CodeFlowMu 这次并没有实现 GitHub 的 OAuth 挑战机制，也不能把 Gi
 
 系统当然应该阻止越界、无权和危险的动作；可当它只看到“计划还不够理想”时，更可靠的做法不是替人关门，而是明确说出自己缺少什么判断依据，把决定交还给负责人。一条真正可靠的门禁，必须说清自己为什么在这一次把门关上，也必须知道什么时候不该替人把门关上。
 
+## 公开证据：一次误拦是怎样被找出来的
+
+这次问题不是“测一次、全绿、宣布完成”。第一轮 Runtime 全量回归先失败，暴露出一条建议性验收信息仍被当作硬性阻断；修正后，Runtime 的 1,702 项回归通过。接着，Shell 全量回归又暴露出 3 条页面断言仍沿用旧语义；受控重启还发现 API 少输出一个页面兼容字段。三次失败来自不同层：规则、测试、运行中的数据契约。
+
+这正是此案例的价值：如果只引用最后的 1,702 / 1,702，就会错过后来仍会把“未知”显示成“冲突”的页面问题。公开包保留了每一轮的命令、退出结果、通过/失败计数、持续时间和脱敏后的观察结论；它不含任务正文、提示词、本机绝对路径或凭据。
+
+- [查看 A1 逐轮核验记录（CSV）](/evidence/execution-boundary-20260826/v2/case-a1-gate-run-trace.csv)
+- [查看 A1 脱敏运行摘录（GitHub）](https://github.com/joinwell52-AI/joinwell52/blob/main/docs/public/evidence/execution-boundary-20260826/v2/transcript-a1.md)
+- [核对本文主张对应哪一条证据（GitHub）](https://github.com/joinwell52-AI/joinwell52/blob/main/docs/public/evidence/execution-boundary-20260826/v2/claim-evidence-map.csv)
+
 ### 来源与证据边界
 
 - [Sam Morrow 的 GitHub MCP Server PR #3128](https://github.com/github/github-mcp-server/pull/3128)，2026-08-26 复核。该 PR 已合并，本文引用其“按本次调用参数计算 scope”的设计；它不是 CodeFlowMu 的实现来源。
