@@ -83,7 +83,7 @@ ADMIN 发出的正式指令，只允许 PM 做四件事：修复“任务还没�
 
 ## OpenHands 让这个问题更容易看见
 
-在整理这条记录时，我们读到 [OpenHands #4548](https://github.com/OpenHands/software-agent-sdk/pull/4548)：健康接口仍返回 200，浏览器工具会话却卡住 8 小时 21 分。它的修复会取消剩余任务，并把关闭等待限制在默认 10 秒；维护者也明确说明这是尽力而为的保护，不保证所有资源已清完。
+在整理这条记录时，我们读到 [Aaron Abu Usama 提交的 OpenHands PR #4548](https://github.com/OpenHands/software-agent-sdk/pull/4548)：健康接口仍返回 200，浏览器工具会话却卡住 8 小时 21 分。它的修复会取消剩余任务，并把关闭等待限制在默认 10 秒；维护者也明确说明这是尽力而为的保护，不保证所有资源已清完。
 
 它不是 CodeFlowMu 的根因，也不能替我们的修复背书。但两起事故问的是同一句话：一个“在线”信号究竟说明什么？
 
@@ -97,5 +97,5 @@ OpenHands 将答案落在会话关闭与执行活性上；CodeFlowMu 的这次�
 
 ### 来源与证据边界
 
-- [OpenHands PR #4548](https://github.com/OpenHands/software-agent-sdk/pull/4548)，2026-08-26 复核。本文引用其 health 正常但会话关闭卡住的事故和有界关闭修复；它不是 CodeFlowMu 的根因。
+- [Aaron Abu Usama 的 OpenHands PR #4548](https://github.com/OpenHands/software-agent-sdk/pull/4548)，2026-08-26 复核。本文引用其 health 正常但会话关闭卡住的事故和有界关闭修复；它不是 CodeFlowMu 的根因。
 - 本文数据的测试范围、汇总计数和不可外推边界见[公开、脱敏的四案例数据包](/zh/digital-employee/2026-08-26-execution-boundary-evidence-data)。原始日志、任务内容和本机路径不公开。

@@ -77,7 +77,7 @@ publication_authorized: true
 
 前半段的教训是：不要把建议当禁令。这个问题解决后，还有另一个更窄、但同样重要的问题：即使工具名字没变，系统是否也该根据这一次调用的参数，重新决定边界？
 
-在这次修复之后，我们看到 [GitHub MCP Server 的 PR #3128](https://github.com/github/github-mcp-server/pull/3128) 已合并。它处理的是 OAuth，不是本地任务调度；它启发的正是后一件事——同一项工具能力，面对不同参数时，所需许可可能不同。
+在这次修复之后，我们看到 [Sam Morrow 提交的 GitHub MCP Server PR #3128](https://github.com/github/github-mcp-server/pull/3128) 已合并。它处理的是 OAuth，不是本地任务调度；它启发的正是后一件事——同一项工具能力，面对不同参数时，所需许可可能不同。
 
 它举的例子是文件写入。普通仓库文件与工作流文件都由“写文件”工具处理，但改工作流文件会额外要求 `workflow` scope。工具名字没有变化，系统却在实际调用时检查目标，再决定需要什么授权。
 
@@ -111,5 +111,5 @@ CodeFlowMu 这次并没有实现 GitHub 的 OAuth 挑战机制，也不能把 Gi
 
 ### 来源与证据边界
 
-- [GitHub MCP Server PR #3128](https://github.com/github/github-mcp-server/pull/3128)，2026-08-26 复核。该 PR 已合并，本文引用其“按本次调用参数计算 scope”的设计；它不是 CodeFlowMu 的实现来源。
+- [Sam Morrow 的 GitHub MCP Server PR #3128](https://github.com/github/github-mcp-server/pull/3128)，2026-08-26 复核。该 PR 已合并，本文引用其“按本次调用参数计算 scope”的设计；它不是 CodeFlowMu 的实现来源。
 - 本文数据的测试范围、汇总计数和不可外推边界见[公开、脱敏的四案例数据包](/zh/digital-employee/2026-08-26-execution-boundary-evidence-data)。原始日志、任务内容和本机路径不公开。

@@ -84,7 +84,7 @@ CodeFlowMu 的两次修复正好围绕这个问题展开。它们没有让页面
 
 ## CrewAI 的提醒：别让机器内部的动作冒充用户做的事
 
-[CrewAI #7079](https://github.com/crewAIInc/crewAI/pull/7079) 处理的是另一个场景：记忆检索、路由等框架内部 Flow，不应被当成调用者发起的业务动作。它解决的不是 CodeFlowMu 的报告投影，却和我们面对的是同一类错误——系统不能只看一个事件的表面名字，就替它决定应该进入哪一本账。
+[CrewAI 维护者 Lucas Gomide 的 PR #7079](https://github.com/crewAIInc/crewAI/pull/7079) 处理的是另一个场景：记忆检索、路由等框架内部 Flow，不应被当成调用者发起的业务动作。它解决的不是 CodeFlowMu 的报告投影，却和我们面对的是同一类错误——系统不能只看一个事件的表面名字，就替它决定应该进入哪一本账。
 
 CrewAI 把内部 Flow 与用户真正发起的执行分开；CodeFlowMu 则把当前报告、历史报告、已解决 ISSUE 与仍开放 ISSUE 分开。两者都在防止一件事：一条记录被放错位置之后，看起来可能仍然“正常”，但团队据此作出的判断已经不可靠。
 
@@ -96,5 +96,5 @@ CrewAI 把内部 Flow 与用户真正发起的执行分开；CodeFlowMu 则把�
 
 ### 来源与证据边界
 
-- [CrewAI PR #7079](https://github.com/crewAIInc/crewAI/pull/7079)，2026-08-26 复核。本文引用其内部 Flow 与用户业务动作分层的设计；它不是 CodeFlowMu 的直接实现或故障证明。
+- [Lucas Gomide 的 CrewAI PR #7079](https://github.com/crewAIInc/crewAI/pull/7079)，2026-08-26 复核。本文引用其内部 Flow 与用户业务动作分层的设计；它不是 CodeFlowMu 的直接实现或故障证明。
 - 本文数据的测试范围、汇总计数和不可外推边界见[公开、脱敏的四案例数据包](/zh/digital-employee/2026-08-26-execution-boundary-evidence-data)。原始日志、任务内容和本机路径不公开。
