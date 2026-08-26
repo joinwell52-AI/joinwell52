@@ -3,7 +3,7 @@
   "date": "2026-08-26",
   "itemId": "Q-20260826-02",
   "cover": {
-    "coreProposition": "Permission authority belongs to the attachment lifecycle that governs the server, not to ambient thread state.",
+    "coreProposition": "Permission authority should follow the attachment/runtime lifecycle it governs: resolve and publish authority per server, reject unresolved authority, and let refresh replace only the owning scope rather than a broad shared manager.",
     "visualMetaphor": "Several shared ports, each carrying its own distinct authorization seal",
     "semanticObject": "A central resource identity connected to scoped permission seals without merging them",
     "compositionIntent": "Landscape editorial cover with precise modular forms, isolated authority colors and restrained depth",
