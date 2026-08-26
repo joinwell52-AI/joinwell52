@@ -16,10 +16,10 @@ lifecycle: Published
 这不是原始运行日志，也不是产品可靠性报告。它是四篇工程案例所引用数字的**公开、脱敏汇总**：读者可以下载数据文件、检查每个数字属于哪一组测试，并知道它不能证明什么。
 
 - [下载数据包（ZIP）](/evidence/execution-boundary-20260826/execution-boundary-four-cases-public-data-20260826.zip)
-- [校验 ZIP 的 SHA-256](/evidence/execution-boundary-20260826/execution-boundary-four-cases-public-data-20260826.zip.sha256)
+- [校验 ZIP 的 SHA-256](https://raw.githubusercontent.com/joinwell52-AI/joinwell52/main/docs/public/evidence/execution-boundary-20260826/execution-boundary-four-cases-public-data-20260826.zip.sha256)
 - [下载案例明细（CSV）](/evidence/execution-boundary-20260826/cases.csv)
 - [下载机器可读摘要（JSON）](/evidence/execution-boundary-20260826/summary.json)
-- [阅读数据说明（README）](/evidence/execution-boundary-20260826/README.md)
+- [阅读数据说明（README）](https://github.com/joinwell52-AI/joinwell52/blob/main/docs/public/evidence/execution-boundary-20260826/README.md)
 
 ## 如何读这些数字
 
