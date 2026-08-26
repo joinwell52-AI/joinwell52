@@ -1,4 +1,4 @@
-# Skill 08 — Publication Editing V2.1
+# Skill 08 — Publication Editing V2.2
 
 ## Purpose
 
@@ -81,12 +81,18 @@ A qualified reader can understand the argument without prior knowledge of Resear
 - Title and lead are accurate rather than inflated.
 - Claim strength matches evidence identity.
 - Terms are necessary and consistent.
-- Chinese avoids unnecessary English mixing; necessary professional names remain consistent.
+- Chinese titles, summaries, headings and body prose are Chinese-first and must read naturally as Chinese technical writing.
+- A necessary English product name, protocol name, acronym, API/class identifier or professional term must, at its first prose occurrence in the Chinese edition, be immediately followed by a full-width Chinese explanation: `English Term（中文解释）`.
+- English terminology from a source is not exempt merely because the source used that wording. Translate the concept into Chinese unless preserving the official English identity is necessary.
+- Repeated English abstraction chains in Chinese prose are a language failure. Defining terms once does not permit an English-heavy paragraph.
+- Code blocks may preserve literal syntax; surrounding Chinese prose must explain what the identifier means before using it conceptually.
 - AI-like completeness is not a virtue: semantic repetition and empty prose are revised even when grammatically fluent.
+
+From 2026-08-27 onward, the repository's Chinese technical-prose validator is part of the mandatory Editorial gate. A candidate that fails it is `NEEDS REVISION`; the worker may not self-declare `language=PASS` over a validator failure.
 
 ## Bilingual Consistency Gate
 
-Chinese and English preserve the same research question, core proposition, argument progression, evidence identities, claim strengths, uncertainty, figure order and conclusion boundary. Headings and prose may be naturally edited in each language.
+Chinese and English preserve the same research question, core proposition, argument progression, evidence identities, claim strengths, uncertainty, figure order and conclusion boundary. Headings and prose are independently edited for their language. Bilingual consistency means semantic parity, not English terminology copied into Chinese sentences.
 
 ## Visual Argument Gate
 
