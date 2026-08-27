@@ -6,8 +6,8 @@ column: digital-employee
 category: daily
 article_type: technical-analysis
 edition: research-center
-research_question: "What evidence should a digital-employee runtime require before publishing an externally visible Running state?"
-summary: "Claude Code 2.1.247 修复了一类过早发布“运行中”状态的问题。这个案例说明：状态是面向消费者的证据声明，调度、认领、进程启动与真正就绪不应被压缩成同一个标签。"
+research_question: "数字员工运行体在发布对外可见的“运行中”状态之前，应要求什么证据？"
+summary: "Claude Code（命令行智能体工具）2.1.247 修复了一类过早发布“运行中”状态的问题。这个案例说明：状态是面向消费者的证据声明，调度、认领、进程启动与真正就绪不应被压缩成同一个标签。"
 cover: staging/publication-candidates/2026-08-27-running-is-an-evidence-claim-cover.png
 sources:
   - research/analysis/Q-20260827-01-execution-readiness-before-running-state.md
@@ -19,7 +19,7 @@ sources:
 
 一个会话已经被调度，不等于执行它的进程已经存在；进程已经创建，也不等于它完成初始化、建立连接并能够接受所有工作。只要下游界面或自动化会依据状态采取行动，这些差别就不能被一个“运行中”标签抹平。
 
-Anthropic 在 Claude Code 2.1.247 的官方发布说明中记录了一项修复：受影响的自托管运行器会话曾在 Claude Code 尚未启动时就报告“运行中”，桌面端因此可能过早提示 Claude 正在等待用户输入。这个现象把抽象的状态建模问题变成了可观察故障——控制面只有调度意图，消费者却把它理解成可执行事实。
+Anthropic（Claude 的开发公司）在 Claude Code 2.1.247 的官方发布说明中记录了一项修复：受影响的自托管运行器会话曾在 Claude Code 尚未启动时就报告“运行中”，桌面端因此可能过早提示执行体正在等待用户输入。这个现象把抽象的状态建模问题变成了可观察故障——控制面只有调度意图，消费者却把它理解成可执行事实。
 
 可辩护的结论是：**对外可见的“运行中”状态，必须由足以支撑消费者所依赖语义的执行就绪证据来决定。调度、分配和工作器认领必须与就绪保持可区分；而本次披露的进程启动边界，也不能被扩大解释成完整健康证明。**
 

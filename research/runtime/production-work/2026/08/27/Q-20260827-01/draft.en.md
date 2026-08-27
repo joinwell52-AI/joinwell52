@@ -6,7 +6,7 @@ column: digital-employee
 category: daily
 article_type: technical-analysis
 edition: research-center
-research_question: "What evidence should a digital-employee runtime require before publishing an externally visible Running state?"
+research_question: "数字员工运行体在发布对外可见的“运行中”状态之前，应要求什么证据？"
 summary: "Claude Code 2.1.247 fixes a premature Running report on an affected self-hosted runner path. The incident shows that a state is an evidence claim to consumers: scheduling, claim, process startup and readiness should not collapse into one label."
 cover: staging/publication-candidates/2026-08-27-running-is-an-evidence-claim-cover.png
 sources:
