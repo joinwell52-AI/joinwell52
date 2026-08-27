@@ -48,7 +48,7 @@ taskkill /PID <wrapper> /T /F
 
 公开材料：
 
-- [2026-08-27-r1-windows-taskkill-tree-probe.cjs](/assets/evidence/2026-08-27-r1-windows-taskkill-tree-probe.cjs)
+- [2026-08-27-r1-windows-taskkill-tree-probe.mjs](/assets/evidence/2026-08-27-r1-windows-taskkill-tree-probe.mjs)
 - [2026-08-27-r1-windows-taskkill-recorded-result.json](/assets/evidence/2026-08-27-r1-windows-taskkill-recorded-result.json)
 - [2026-08-27-r1-windows-taskkill-recorded-result-check.mjs](/assets/evidence/2026-08-27-r1-windows-taskkill-recorded-result-check.mjs)
 
@@ -77,7 +77,7 @@ node 2026-08-27-r1-windows-taskkill-recorded-result-check.mjs
 要重新实验 `taskkill /T /F`，必须在 **Windows** 上运行：
 
 ```text
-node 2026-08-27-r1-windows-taskkill-tree-probe.cjs
+node 2026-08-27-r1-windows-taskkill-tree-probe.mjs
 ```
 
 probe 会创建临时 wrapper + direct child，等待两者可观察，再执行 `taskkill /T /F` 并分别检查两个 PID。非 Windows 主机直接拒绝运行，而不是给出假 PASS。
@@ -206,7 +206,7 @@ node 2026-08-27-r1-windows-taskkill-recorded-result-check.mjs
 R1 Windows 重跑：
 
 ```text
-node 2026-08-27-r1-windows-taskkill-tree-probe.cjs
+node 2026-08-27-r1-windows-taskkill-tree-probe.mjs
 ```
 
 R2：
