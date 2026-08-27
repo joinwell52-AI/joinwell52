@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 
 const fixture = JSON.parse(await readFile(new URL("./2026-08-27-r2-v204-dynamic-diagnostic-snapshots.json", import.meta.url), "utf8"));
 assert.equal(fixture.task_id, "TASK-20260827-030-PM-to-QA");
+assert.equal(fixture.task_role, "QA");
 assert.equal(fixture.source.same_task, true);
 const active = fixture.snapshots.find((row) => row.label === "active");
 const review = fixture.snapshots.find((row) => row.label === "review");
@@ -12,5 +13,6 @@ assert.equal(active.visible_edges.find((row) => row.edge === "report_to_task")?.
 assert.equal(active.visible_edges.find((row) => row.edge === "report_to_review")?.status, "not_applicable");
 assert.equal(review.visible_edges.find((row) => row.edge === "report_to_task")?.status, "linked");
 assert.equal(review.visible_edges.find((row) => row.edge === "report_to_review")?.status, "linked");
+assert.equal(review.visible_edges.find((row) => row.edge === "eval_to_review")?.status, "not_applicable");
 assert.equal(review.visible_edges.find((row) => row.edge === "eval_to_review")?.reason_code, "eval_not_present");
-console.log(JSON.stringify({ fixture: fixture.fixture_kind, same_task: true, transition: "active_to_review", status: "PASS" }));
+console.log(JSON.stringify({ fixture: fixture.fixture_kind, same_task: true, role: fixture.task_role, transition: "active_to_review", no_visible_false_positive: true, status: "PASS" }));
