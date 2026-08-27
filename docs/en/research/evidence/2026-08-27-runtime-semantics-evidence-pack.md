@@ -5,7 +5,7 @@ date: '2026-08-27'
 
 # Runtime Semantics: Public Evidence Pack for Three Articles
 
-Status: **Published**. This page accompanies the three Runtime-semantics articles dated 2026-08-27. The material is deidentified and inspectable; R2 and R3 include public, network-free reproducers.
+Status: **Published**. This page accompanies the three Runtime-semantics articles dated 2026-08-27. The material is deidentified and inspectable. R1 includes a Windows-specific public probe plus a recorded deidentified result; R2 and R3 include network-free public Readers and checks.
 
 The purpose is not to certify the whole system. It is to let readers inspect the samples, rules, expected outputs, and non-generalization boundaries behind the published claims.
 
@@ -13,7 +13,7 @@ The purpose is not to certify the whole system. It is to let readers inspect the
 
 | Article | Public material | What it can answer | What it cannot answer |
 | --- | --- | --- | --- |
-| Agent cancellation / child-process article | Deidentified result and experiment contract for a two-level Windows Node process-tree probe | Whether `taskkill /T /F` on the observed host made both the wrapper and its direct child disappear in that sample | Arbitrary-depth trees, escaped descendants, containers, or remote workers |
+| Agent cancellation / child-process article | Public two-level Windows Node process-tree probe, deidentified recorded result, result-check | Whether `taskkill /T /F` on one observed Windows host made both a wrapper and one direct child disappear in that sample; readers can also rerun the same contract on their own Windows host | Arbitrary-depth trees, escaped descendants, privilege boundaries, containers, or remote workers |
 | Review / REPORT association article | 10 deidentified REPORT association records, public Reader, check script | How explicit task keys classify the sample as `linked / missing / conflict` | Failure rate, report truthfulness, business acceptance, or current product quality |
 | Green-status / UI projection article | 5 deidentified Session observations, public Reader, check script, projection counterexample matrix | Whether the five disclosed observation semantics can be independently reproduced and which UI facts must remain orthogonal | Certification of all desktop, PWA, viewer-authority, and end-to-end delivery paths |
 
@@ -21,17 +21,21 @@ This pack does not publish task bodies, agent content, prompts, absolute paths, 
 
 ---
 
-## 2. R1 | Windows cancellation probe
+## 2. R1 | Windows cancellation and stop evidence
+
+This section supports the agent-cancellation / child-process article.
 
 ### Experiment contract
 
-A wrapper process starts one long-lived direct child in a new temporary directory. After both PIDs are observed, the experiment runs:
+A wrapper process starts one long-lived direct child in a fresh temporary directory. After both PIDs are observed, the experiment runs:
 
 ```text
 taskkill /PID <wrapper> /T /F
 ```
 
 and checks within three seconds whether the wrapper and direct child remain observable.
+
+The recorded controlled-host result is:
 
 | Check | Result |
 | --- | --- |
@@ -40,16 +44,45 @@ and checks within three seconds whether the wrapper and direct child remain obse
 | wrapper exit observed | yes |
 | direct child exit observed | yes |
 | result | `PASS` |
+| `kernel_containment_proven` | `false` |
 
-Deidentified result:
+Public artifacts:
+
+- [2026-08-27-r1-windows-taskkill-tree-probe.cjs](/assets/evidence/2026-08-27-r1-windows-taskkill-tree-probe.cjs)
+- [2026-08-27-r1-windows-taskkill-recorded-result.json](/assets/evidence/2026-08-27-r1-windows-taskkill-recorded-result.json)
+- [2026-08-27-r1-windows-taskkill-recorded-result-check.mjs](/assets/evidence/2026-08-27-r1-windows-taskkill-recorded-result-check.mjs)
+
+The deidentified recorded result explicitly preserves the claim boundary:
 
 ```json
-{"status":"PASS","scope":"windows_taskkill_tree_probe_only","wrapper_exit_observed":true,"child_exit_observed":true,"termination_exit_code":0}
+{"status":"PASS","scope":"windows_taskkill_tree_probe_only","wrapper_exit_observed":true,"child_exit_observed":true,"termination_exit_code":0,"kernel_containment_proven":false}
 ```
 
-This result deliberately does not claim `kernel_containment_proven`. It is one host-level observation over a two-level process relationship. Detached children, privilege boundaries, additional descendants, containers, and remote workers require separate counterexamples.
+### Two checks must not be confused
 
-R1 currently publishes the experiment contract and result, not an independent probe script. Its reproduction strength is therefore lower than R2 and R3, and that limitation is stated explicitly.
+To validate the published record itself:
+
+```text
+node 2026-08-27-r1-windows-taskkill-recorded-result-check.mjs
+```
+
+Expected output:
+
+```json
+{"fixture":"deidentified_windows_taskkill_tree_probe_result","status":"PASS","kernel_containment_proven":false}
+```
+
+That checks the structure and claim boundary of the published record. It does not rerun the operating-system experiment.
+
+To rerun the `taskkill /T /F` experiment, use **Windows**:
+
+```text
+node 2026-08-27-r1-windows-taskkill-tree-probe.cjs
+```
+
+The probe creates a temporary wrapper plus direct child, waits until both are observable, invokes `taskkill /T /F`, and then checks the two PIDs separately. On non-Windows systems it refuses to run instead of reporting a false PASS.
+
+Even another PASS establishes only that the two known PIDs in this public contract were observed to exit. It does not prove that the execution tree was a kernel-bounded closed set. Escaped children, transient intermediates that create grandchildren, deeper descendants, different privileges, containers, and remote workers require separate counterexamples.
 
 ---
 
@@ -147,7 +180,19 @@ These combinations test orthogonality: viewer authority, connectivity, Session l
 
 ## 5. Independent checks
 
-R2 and R3 are network-free Node checks when their files are downloaded into the same directory.
+None of the public checks needs access to the private repository. The real R1 probe requires Windows; the R1 record-check, R2, and R3 require only Node.
+
+R1 published-record check:
+
+```text
+node 2026-08-27-r1-windows-taskkill-recorded-result-check.mjs
+```
+
+R1 Windows rerun:
+
+```text
+node 2026-08-27-r1-windows-taskkill-tree-probe.cjs
+```
 
 R2:
 
@@ -163,17 +208,18 @@ node 2026-08-27-r3-ui-status-projection-check.mjs
 
 A reviewer should confirm that:
 
-1. R2 deidentification preserves equality, absence, and conflict relations;
-2. R1 `PASS` is not expanded into arbitrary process-tree containment;
-3. R3's five public assertions are not expanded into complete UI / PWA certification;
-4. `technical_error` is not rewritten as business failure, and `completed_waiting_report` is not rewritten as formal acceptance;
-5. Gateway, Session, progress, REPORT, lifecycle, and evidence association do not sign for one another.
+1. R1 `PASS` is not expanded into arbitrary process-tree containment;
+2. the R1 public probe and recorded result are different evidence objects: one can rerun the experiment, the other preserves a prior host observation;
+3. R2 deidentification preserves equality, absence, and conflict relations;
+4. R3's five public assertions are not expanded into complete UI / PWA certification;
+5. `technical_error` is not rewritten as business failure, and `completed_waiting_report` is not rewritten as formal acceptance;
+6. cancellation request, command exit code, PID disappearance, Gateway, Session, progress, REPORT, lifecycle, and evidence association do not sign for one another.
 
 ## 6. Overall evidence boundary
 
 This pack is a collection of **reviewable engineering slices**, not product certification and not a large-sample statistical benchmark.
 
-- R1: one Windows host, one wrapper + direct-child sample;
+- R1: one prior Windows-host two-level sample plus a public same-contract probe;
 - R2: 10 deidentified historical association records;
 - R3: 5 semantic classification inputs plus a projection counterexample matrix.
 
