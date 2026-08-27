@@ -1,5 +1,5 @@
 ---
-title: "看见问题，不等于有权裁决：从 Anywhere Agents 到 CodeFlowMu 的审计分权边界"
+title: "看见问题，不等于有权裁决：从 Anywhere Agents 看 Agent 审计与裁决边界"
 date: '2026-08-26'
 column: industry-architecture
 category: daily
@@ -21,7 +21,7 @@ publication_authorized: true
 <ArticleCover
   image="/assets/covers/daily-2026-08-26-observer-audit-without-adjudication-cover.png"
   kicker="数字员工 · 工程研究"
-  title="看见问题，不等于有权裁决：从 Anywhere Agents 到 CodeFlowMu 的审计分权边界"
+  title="看见问题，不等于有权裁决：从 Anywhere Agents 看 Agent 审计与裁决边界"
   summary="观察可以深入事实，也可以影响后续工作；但它是否拥有阻塞、批准、驳回或改变生命周期的后果，必须由另一条明确的权力边界决定。"
   version="EBR-20260826-02"
   status="工程研究 · 2026-08-26"
@@ -29,7 +29,7 @@ publication_authorized: true
   languageLabel="English"
 />
 
-# 看见问题，不等于有权裁决：从 Anywhere Agents 到 CodeFlowMu 的审计分权边界
+# 看见问题，不等于有权裁决：从 Anywhere Agents 看 Agent 审计与裁决边界
 
 **一个 Agent 能发现问题，不等于它有权决定任务通过还是驳回。观察是一种事实输入，裁决是一种治理权力。真正可靠的审计系统，不只是“检查得更仔细”，还要把审计结果能产生多大后果写进架构。**
 
@@ -107,7 +107,7 @@ issue 最初提出了一个很自然的方向：把检查做成固定脚本，�
 
 如果一个标记只影响“要不要多提示一句”，信任成本较低；如果它会决定“能不能绕过 deny”，同一个标记就不能成为一键逃生口。Anywhere Agents 甚至明确考虑了 `repo/agent-io/proposal.md` 这种看似合法、实际可能把真实 prose 伪装成 carried text 的路径。
 
-`style-audit.py` 里还有同样的证据意识：它审的是 **staged blob**，不是当前 working tree，因为“用 staged 行号过滤 working-tree 内容”可能既漏掉真正准备提交的问题，也把未暂存内容错误归到本次提交。该提交报告 whole-file 359 条历史 findings，在只看本次改动行后收敛到 2 条。这个数字是 Anywhere Agents 自己的工程测量，不是本文独立复现的准确率；我们更看重的是它背后的方法：**审计对象必须和真正被审查、被提交的对象一致。**
+`style-audit.py` 里还有同样的证据意识：它审的是 **staged blob**，不是当前 working tree，因为“用 staged 行号过滤 working-tree 内容”可能既漏掉真正准备提交的问题，也把未暂存内容错误归到本次提交。该提交报告 whole-file 359 条历史 findings，在只看本次改动行后收敛到 2 条。这个数字是 Anywhere Agents 自己的工程测量，本文没有独立复现；真正重要的是方法：**被审计的对象必须和真正要被 review 的对象一致。**
 
 ## 5. 两条独立路径，为什么会在同一个边界上收敛？
 
