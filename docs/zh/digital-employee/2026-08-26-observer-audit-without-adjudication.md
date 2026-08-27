@@ -37,6 +37,16 @@ publication_authorized: true
 
 **CodeFlowMu 是一个本地运行的多 Agent 协作系统，用任务、角色、门禁、报告与审批，把多个 Agent 的工作组织成可追踪、可恢复、可验证的执行链。** 本文讨论的不是“审计 Agent 应不应该有用”，而是一个更窄的问题：**谁有权把一条观察变成业务后果？**
 
+## 这不是一次偶然交叉
+
+我们对这条研究线的关注早于这次 Anywhere Agents 的工程对照。TMPA 的参考文献 [17] 已经引用 Yi Nian、Aojie Yuan、Haiyue Zhang、Jiate Li 与 Yue Zhao 合著的 **“Auditable Agents”**（arXiv:2604.05485）。那篇工作讨论的是 Agent 可审计性；而从 Yue Zhao 当前公开项目继续往下看，可以看到一条相当连贯的工程研究线。
+
+`GRADE` 把一次 Agent run 表示成两层图：一层是实际执行顺序，另一层是步骤之间“依赖了什么”的关系，并明确区分 observed、declared 与 inferred 的依赖证据。`auditable` 又把问题推进到决策记录与恢复：记录一次决定依赖的状态，在 live state 下重新 replay，并在前提已经不成立时通过补偿路径 rollback。`awesome-auditable-ai` 对 auditability 的定义则非常直接：一个系统最终应能够建立 Agent **做了什么、依赖了什么、为什么这样做，以及这个动作是否正确**。
+
+这些项目和 CodeFlowMu / TMPA 并不是同一实现链，我们也不把其中任何一个项目当作自己架构的功能背书。但研究问题的重叠非常明显：**仅有执行日志不够；真正可审计的 Agent 系统还需要依赖、来源、责任与决策边界。** TMPA 更关注多 Agent 任务治理和责任结构，CodeFlowMu 把这些问题落到长期运行的任务、门禁、报告和审批链；Yue Zhao 这一侧则持续从运行图、依赖、audit trail、replay / recovery 和实际 Agent tooling 去推进相邻问题。
+
+因此，本文引用 Anywhere Agents 不是因为某一个 commit 恰好“像 CodeFlowMu”，而是因为它是同一条持续值得跟踪的研究线上，一个非常具体的工程切面：**审计信息怎样变得更强，而裁决权仍然保持明确边界。**
+
 ## 1. 真实故障：7 / 7 和 4 / 4 都是绿的，边界仍然错了
 
 CodeFlowMu 中的 EVAL 用来做事实核查：读证据、发现矛盾、留下观察。正式验收则属于有权角色。按设计，两者应该分开。
@@ -154,9 +164,13 @@ Anywhere Agents 的 issue #35 和 `53bd8fa` 很有价值的地方，是它没有
 
 ## 来源与证据边界
 
-### Anywhere Agents
+### Yue Zhao 相关公开研究与工程
 
-- [**Yue Zhao / Anywhere Agents issue #35**](https://github.com/yzhao062/anywhere-agents/issues/35)：本文引用其从“可选、手工审计”走向确定性脚本，以及后续对 `Style status`、review-body 注入和 review-loop 阻塞风险的讨论。
+- [**“Auditable Agents”**](https://arxiv.org/abs/2604.05485)，Yi Nian、Aojie Yuan、Haiyue Zhang、Jiate Li、Yue Zhao，2026。TMPA 参考文献 [17] 已引用该工作。本文只用它说明我们持续关注的研究主题，不将后续仓库简单视作该论文的直接实现。
+- [**GRADE**](https://github.com/yzhao062/grade)：本文引用其 execution / dependency 双层 run representation，以及 observed / declared / inferred 的依赖证据区分作为研究背景。
+- [**auditable**](https://github.com/yzhao062/auditable)：本文引用其 decision dependency capture、live-state replay 与 rollback 方向作为研究背景。
+- [**Awesome Auditable AI**](https://github.com/yzhao062/awesome-auditable-ai)：本文引用其对 auditability / reliability 问题空间的公开整理作为研究背景。
+- [**Anywhere Agents issue #35**](https://github.com/yzhao062/anywhere-agents/issues/35)：本文引用其从“可选、手工审计”走向确定性脚本，以及后续对 `Style status`、review-body 注入和 review-loop 阻塞风险的讨论。
 - [**Anywhere Agents commit `53bd8fa`**](https://github.com/yzhao062/anywhere-agents/commit/53bd8fa43c7339ae9958c03c55434fac7baddaf3)，2026-08-25：本文引用其 `agent-io` scope、不同 guard 的不同信任深度，以及 advisory audit 不进入 reviewer prompt、Round history 和 final verdict 的设计。
 - [**`style-audit.py`（对应提交版本）**](https://github.com/yzhao062/anywhere-agents/blob/53bd8fa43c7339ae9958c03c55434fac7baddaf3/skills/implement-review/scripts/style-audit.py)：用于核对 staged-blob 审计、changed-line scoping 和“advisory by construction”的实现说明。
 
