@@ -5,7 +5,7 @@
   "status": "Completed",
   "sourceTask": "Research Runtime Production",
   "sourceRecord": "research/runtime/records/daily/2026/08/2026-08-27-daily-runtime.json",
-  "updatedAt": "2026-08-27T15:20:00+08:00",
+  "updatedAt": "2026-08-27T15:29:00+08:00",
   "githubCommit": "pending",
   "reason": "Three completed 2026-08-27 Research Objects were converted into complete bilingual Editorial Architecture 2.1 candidates with verified planning artifacts, evidence-bounded claims and deterministic baseline covers.",
   "reason_zh": "三份已完成的 2026-08-27 Research Object 已转换为完整双语 Editorial Architecture 2.1 候选，具备已核验的规划工件、有边界的证据声明和确定性基础题图。",
@@ -26,12 +26,12 @@
       "coreProposition": "An externally visible Running state should be published only after the runtime holds evidence sufficient for the execution-readiness semantics its consumers rely on; scheduling, assignment and worker claim must remain distinguishable from readiness, and the demonstrated process-start boundary does not prove full health.",
       "sections": [
         {
-          "module": "contract-analysis",
+          "module": "context",
           "heading": "A status becomes an interface contract when it triggers behavior",
           "heading_zh": "状态一旦触发行为，就成为接口合同"
         },
         {
-          "module": "state-model",
+          "module": "technical-analysis",
           "heading": "Separate the facts consumers tend to collapse",
           "heading_zh": "把容易混淆的事实拆成证据阶梯"
         },
@@ -140,12 +140,12 @@
       "coreProposition": "Authority-bearing access context should be minted by the host that can verify the governing identity, should replace caller-supplied copies, and should cross only an explicitly qualified capability edge; unverifiable state must collapse to a non-authorizing result, while downstream enforcement remains a separate obligation.",
       "sections": [
         {
-          "module": "authority-boundary",
+          "module": "context",
           "heading": "The requester cannot issue its own authority evidence",
           "heading_zh": "请求者不能同时签发自己的权限证据"
         },
         {
-          "module": "capability-scope",
+          "module": "technical-analysis",
           "heading": "Capability scope is a conjunction, not a feature flag",
           "heading_zh": "能力范围应是一组同时成立的条件"
         },
@@ -263,22 +263,22 @@
       "coreProposition": "An invoked skill should influence authorization only after the host records the actual invocation and verifies resource provenance against an authority-owned trusted root; canonical location proves a bounded origin under that trust model, not content identity, semantic safety, immutability or contemporaneous user approval.",
       "sections": [
         {
-          "module": "occurrence-boundary",
+          "module": "context",
           "heading": "Prove the invocation occurred before interpreting it",
           "heading_zh": "先证明“发生过调用”，再讨论调用意味着什么"
         },
         {
-          "module": "provenance-mechanism",
+          "module": "technical-analysis",
           "heading": "Canonical trusted roots answer an origin question",
           "heading_zh": "规范化可信根解决的是来源问题"
         },
         {
-          "module": "evidence-shaping",
+          "module": "evidence",
           "heading": "Path-only evidence reduces risk and loses content identity",
           "heading_zh": "路径证据收缩风险，也牺牲内容身份"
         },
         {
-          "module": "governance-model",
+          "module": "governance-implications",
           "heading": "Five evidence dimensions must not substitute for one another",
           "heading_zh": "五种证据不能互相替代"
         },
