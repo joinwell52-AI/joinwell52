@@ -1,5 +1,5 @@
 ---
-title: "一盏绿灯到底在说什么？多 Agent 面板怎样避免把“在线”写成“正在交付”"
+title: "一盏绿灯到底在说什么？从 Sutando 的协作者进度缺失看 Agent UI 状态投影边界"
 date: '2026-08-27'
 column: digital-employee
 category: daily
@@ -21,7 +21,7 @@ publication_authorized: true
 <ArticleCover
   image="/assets/covers/daily-2026-08-27-agent-ui-status-projection-cover.png"
   kicker="数字员工 · 工程研究"
-  title="一盏绿灯到底在说什么？多 Agent 面板怎样避免把“在线”写成“正在交付”"
+  title="一盏绿灯到底在说什么？从 Sutando 的协作者进度缺失看 Agent UI 状态投影边界"
   summary="从 Sutando 一次“协作者确实在执行却没有进度流”的公开反例出发，审计多 Agent 面板中五种常被压成绿灯的事实，并给出可执行的投影检查表。"
   version="RSEM-20260827-03"
   status="工程研究 · 2026-08-27"
@@ -29,7 +29,7 @@ publication_authorized: true
   languageLabel="English"
 />
 
-# 一盏绿灯到底在说什么？多 Agent 面板怎样避免把“在线”写成“正在交付”
+# 一盏绿灯到底在说什么？从 Sutando 的协作者进度缺失看 Agent UI 状态投影边界
 
 一个协作者正在真实的 live session（实时会话）里工作，也在持续写入进度文件。可团队页面上，他的任务没有任何进度。不是网络断了，不是 Agent 没启动，也不是数据没有产生；页面只是先问了一句“他是不是 owner（所有者）”，不是 owner 就不推送。
 
