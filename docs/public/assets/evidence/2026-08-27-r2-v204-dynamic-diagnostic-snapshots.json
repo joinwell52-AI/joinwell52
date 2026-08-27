@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "fixture_kind": "first_party_ui_observation_transcript",
+  "product": "CodeFlowMu V2.0.4",
+  "task_id": "TASK-20260827-030-PM-to-QA",
+  "source": {
+    "kind": "two_first_party_local_ui_screenshots",
+    "same_task": true,
+    "redaction": [
+      "local absolute paths outside the task-relative lifecycle path",
+      "instance nonce",
+      "unrelated live-console text"
+    ]
+  },
+  "claim_boundary": "Evidence association describes relationships among records. It does not establish task delivery, acceptance, or verification success.",
+  "snapshots": [
+    {
+      "label": "active",
+      "lifecycle_bucket": "active",
+      "visible_summary": {
+        "linked": 4,
+        "missing": 0,
+        "conflict": 0,
+        "observer_only": 0
+      },
+      "visible_edges": [
+        { "edge": "task_to_attempt", "status": "linked", "reason_code": "task_attempt_stable_key_match" },
+        { "edge": "attempt_to_lease", "status": "linked", "reason_code": "attempt_lease_stable_key_match" },
+        { "edge": "attempt_to_execution", "status": "linked", "reason_code": "attempt_execution_stable_key_match" },
+        { "edge": "execution_to_action", "status": "linked", "reason_code": "execution_action_stable_key_match" },
+        { "edge": "report_to_task", "status": "not_applicable", "reason_code": "lifecycle_does_not_require_report" },
+        { "edge": "report_to_review", "status": "not_applicable", "reason_code": "report_not_available" }
+      ]
+    },
+    {
+      "label": "review",
+      "lifecycle_bucket": "review",
+      "visible_edges": [
+        { "edge": "attempt_to_lease", "status": "linked", "reason_code": "attempt_lease_stable_key_match" },
+        { "edge": "attempt_to_execution", "status": "linked", "reason_code": "attempt_execution_stable_key_match" },
+        { "edge": "execution_to_action", "status": "linked", "reason_code": "execution_action_stable_key_match" },
+        { "edge": "report_to_task", "status": "linked", "reason_code": "report_task_stable_key_match" },
+        { "edge": "report_to_review", "status": "linked", "reason_code": "report_review_stable_key_match" },
+        { "edge": "eval_to_review", "status": "not_applicable", "reason_code": "eval_not_present" }
+      ],
+      "visible_actions": [
+        "copy_reconciliation_summary",
+        "refresh_evidence_association"
+      ]
+    }
+  ]
+}
