@@ -6,7 +6,7 @@ column: industry-architecture
 category: daily
 article_type: technical-analysis
 edition: research-center
-research_question: "智能体平台应如何把账户权限证据传给工具，同时避免请求方伪造、扩大或继续使用过期权限？"
+research_question: "How should an agent platform carry account-derived authority evidence to tools without allowing the requester to forge, widen or reuse stale authority?"
 summary: "OpenAI Codex 的一项已合并变更展示了有界的权限证据代理模式：宿主移除调用方副本，核验当前账户，只在全部能力条件成立时注入上下文，无法核验则收缩为无授权状态。"
 cover: staging/publication-candidates/2026-08-27-authority-context-must-be-host-minted-cover.png
 sources:
