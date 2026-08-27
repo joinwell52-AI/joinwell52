@@ -92,7 +92,25 @@ The diagnostic reads formal sources and produces derived snapshots. It does not 
 
 That is why the feature is better understood as an X-ray than a judge.
 
-## 3. Real-task calibration during development
+## 3. An independent CrewAI reference: a process is not one completion event
+
+This problem is not unique to our task ledger. A recent CrewAI change provides a useful independent engineering reference.
+
+In [CrewAI PR #7115](https://github.com/crewAIInc/crewAI/pull/7115), João Moura did **not** move the existing deployment-creation event to the success point. The change deliberately keeps `Create Crew Deployment` as the pre-call **creation-attempt** event and adds a separate post-success `Crew Deployment Created` event that can carry the UUID returned only after creation succeeds. The PR was merged on August 27, 2026.
+
+That separation matters because an attempt and a confirmed success are different facts. Moving the original event would silently change the historical meaning of the metric from attempts to successes. PR #7115 explicitly avoids that semantic substitution.
+
+The PR body also reports that `create_deployment` was reading 76,015 historical events with zero UUID-bearing records at that point. That figure is source-reported by the CrewAI authors; we did not independently reproduce it and do not present it as our own measurement.
+
+The same author’s [CrewAI PR #7118](https://github.com/crewAIInc/crewAI/pull/7118) remains open. It proposes a separate ungated `Crew Completed` terminal event carrying `outcome` and `duration_ms`, joinable to the existing crew-start/creation records. Because the PR is still open, this article treats it as directional public material, not as a shipped CrewAI capability.
+
+The relationship to R2 is deliberately narrow:
+
+> **Each stage needs its own evidence. A creation request is not a confirmed creation; an execution attempt is not a submitted REPORT; a submitted REPORT is not an accepted REVIEW.**
+
+CrewAI is not an implementation source for CodeFlowMu, and #7115/#7118 do not prove that R2 is correct. They are independent public references showing another agent-engineering project separating process events, terminal events, and joinable identifiers rather than collapsing them into one generic completion fact.
+
+## 4. Real-task calibration during development
 
 Once the theory entered code, the important work was not to display more edges as quickly as possible. It was to determine which values were actually comparable and which relations were truly required at a given stage.
 
@@ -108,7 +126,7 @@ Fourth, when progress and final reports coexist, the current formal REPORT needs
 
 These were normal engineering-calibration decisions for a new diagnostic capability. They narrowed the meaning of revision, ownership, execution, and current REPORT until the implementation matched the intended evidence contract.
 
-## 4. V2.0.4 formal release: the same QA task changes diagnosis from `active` to `review`
+## 5. V2.0.4 formal release: the same QA task changes diagnosis from `active` to `review`
 
 After the feature was complete and V2.0.4 was formally released, we captured two local UI views of the same task:
 
@@ -161,7 +179,7 @@ The pair therefore demonstrates a specific production capability:
 
 > **Evidence requirements change with lifecycle stage and role, and the diagnostic changes with the formal facts instead of forcing every edge into linked or missing.**
 
-## 5. `not_applicable` is a first-class semantic state
+## 6. `not_applicable` is a first-class semantic state
 
 A useful agent-runtime diagnostic needs more than healthy/unhealthy.
 
@@ -181,7 +199,7 @@ The diagnostic therefore distinguishes at least:
 
 This is not UI decoration. It is part of the semantic contract.
 
-## 6. The most important boundary in the UI
+## 7. The most important boundary in the UI
 
 The V2.0.4 task detail states:
 
@@ -201,7 +219,7 @@ It does not establish that:
 
 Evidence association is an observation layer. Delivery and acceptance remain separate decisions.
 
-## 7. Two practical actions make it an engineering tool
+## 8. Two practical actions make it an engineering tool
 
 The review-stage UI also exposes:
 
@@ -216,7 +234,7 @@ Neither action changes formal lifecycle state.
 
 That is why V2.0.4 adds more than a task-detail view. It adds an operational evidence-association diagnostic.
 
-## 8. Why this is a genuine research-to-engineering case
+## 9. Why this is a genuine research-to-engineering case
 
 The sequence matters:
 
@@ -232,7 +250,7 @@ The sequence matters:
 
 That is the research value: **the theory survived contact with the real data model, lifecycle, roles, and runtime state required to become a usable product capability.**
 
-## 9. Public verification
+## 10. Public verification
 
 The complete [R2 → CodeFlowMu V2.0.4 engineering evidence pack](/en/research/evidence/2026-08-27-r2-v204-evidence-association) is published separately.
 
@@ -272,6 +290,9 @@ That is the engineering capability the original research finding became.
 
 ## Sources and evidence boundary
 
+- [CrewAI #7115](https://github.com/crewAIInc/crewAI/pull/7115) was merged on August 27, 2026. This article uses it only as an independent public engineering reference for keeping creation attempts distinct from confirmed creations. The PR’s 76,015-event / zero-UUID observation is source-reported and was not independently reproduced here.
+- [CrewAI #7118](https://github.com/crewAIInc/crewAI/pull/7118) remains open at the time of this review. It is cited only as directional public material about a separate terminal record, not as a merged or shipped CrewAI capability.
+- CrewAI and CodeFlowMu are not presented here as one implementation lineage. CrewAI does not prove R2 correct, and R2 is not used to judge CrewAI product quality.
 - The historical `4 / 4 / 2` result comes from one fixed ten-report deidentified slice. It is not a defect rate or system-wide quality measure.
 - `TASK-20260827-024` is used only as a development-stage calibration case for evidence semantics and formal anchors; this article does not present normal development work as a released-product failure.
 - `TASK-20260827-030-PM-to-QA` is a first-party V2.0.4 same-task `active → review` observation used to demonstrate stage- and role-aware dynamic diagnosis.
