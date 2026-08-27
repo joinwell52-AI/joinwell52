@@ -1,5 +1,5 @@
 ---
-title: "Seeing a Problem Is Not Authority to Decide: Audit Separation from Anywhere Agents to CodeFlowMu"
+title: "Seeing a Problem Is Not Authority to Decide: Agent Audit and Adjudication Boundaries Through the Lens of Anywhere Agents"
 date: '2026-08-26'
 column: industry-architecture
 category: daily
@@ -21,7 +21,7 @@ publication_authorized: true
 <ArticleCover
   image="/assets/covers/daily-2026-08-26-observer-audit-without-adjudication-cover.png"
   kicker="Digital Employee · Engineering Research"
-  title="Seeing a Problem Is Not Authority to Decide: Audit Separation from Anywhere Agents to CodeFlowMu"
+  title="Seeing a Problem Is Not Authority to Decide: Agent Audit and Adjudication Boundaries Through the Lens of Anywhere Agents"
   summary="Observation can be deep and operationally useful. Whether it may block, approve, reject, or mutate lifecycle state must remain a separate authority boundary."
   version="EBR-20260826-02"
   status="Engineering Research · 2026-08-26"
@@ -29,7 +29,7 @@ publication_authorized: true
   languageLabel="中文"
 />
 
-# Seeing a Problem Is Not Authority to Decide: Audit Separation from Anywhere Agents to CodeFlowMu
+# Seeing a Problem Is Not Authority to Decide: Agent Audit and Adjudication Boundaries Through the Lens of Anywhere Agents
 
 **An agent's ability to find a problem does not give it authority to decide whether a delivery passes or fails. Observation is evidence input; adjudication is governance authority. A reliable audit system therefore has to specify not only what an audit can detect, but also what consequences an audit result is allowed to cause.**
 
