@@ -1,5 +1,5 @@
 ---
-title: "绿勾只代表现在：从 CrewAI 到 CodeFlowMu，为什么失败事实与交付结论必须同时保留"
+title: "绿勾只代表现在：从 CrewAI 的失败遥测修复看 Agent 的交付边界"
 date: '2026-08-26'
 column: digital-employee
 category: daily
@@ -21,7 +21,7 @@ publication_authorized: true
 <ArticleCover
   image="/assets/covers/daily-2026-08-26-agent-failure-and-delivery-boundary-cover.png"
   kicker="数字员工 · 工程研究"
-  title="绿勾只代表现在：从 CrewAI 到 CodeFlowMu，为什么失败事实与交付结论必须同时保留"
+  title="绿勾只代表现在：从 CrewAI 的失败遥测修复看 Agent 的交付边界"
   summary="技术失败不能被成功状态覆盖，当前交付也不能擦掉历史；执行事实、交付证据、正式验收必须各自有账。"
   version="EBR-20260826-03"
   status="工程研究 · 2026-08-26"
@@ -29,7 +29,7 @@ publication_authorized: true
   languageLabel="English"
 />
 
-# 绿勾只代表现在：从 CrewAI 到 CodeFlowMu，为什么失败事实与交付结论必须同时保留
+# 绿勾只代表现在：从 CrewAI 的失败遥测修复看 Agent 的交付边界
 
 一个 Agent 任务最后显示“完成”，能不能推出它从来没有失败过？
 
