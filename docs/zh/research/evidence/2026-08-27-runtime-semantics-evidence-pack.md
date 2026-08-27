@@ -5,7 +5,7 @@ date: '2026-08-27'
 
 # Runtime 语义三篇文章：公开证据包
 
-状态：**Published**。本页随 2026-08-27 三篇 Runtime 语义文章公开，材料已脱敏，可下载、可检查；其中 R2 与 R3 提供无网络依赖的公开复现器。
+状态：**Published**。本页随 2026-08-27 三篇 Runtime 语义文章公开，材料已脱敏，可下载、可检查。R1 提供 Windows 专用公开 probe 与脱敏记录；R2、R3 提供无网络依赖的公开 Reader / check。
 
 目的不是证明“当前系统全部正确”，而是让文章里的样本、分类规则、实验结果和不可外推边界能够被读者独立检查。
 
@@ -13,7 +13,7 @@ date: '2026-08-27'
 
 | 文章 | 公开材料 | 能回答什么 | 不能回答什么 |
 | --- | --- | --- | --- |
-| 《取消了 Agent，子进程真的停了吗？》 | Windows 二层 Node 进程树探针的脱敏结果、实验合同与通过条件 | 该主机上的 `taskkill /T /F` 在一个 wrapper + 直接 child 样本中是否同时观察到两者退出 | 任意深度进程树、逃逸后代、容器、远程 worker 是否都被收拢 |
+| 《取消了 Agent，子进程真的停了吗？》 | Windows 二层 Node 进程树 probe、脱敏已记录结果、record-check | 在一个 wrapper + 直接 child 合同下，某台 Windows 主机上的 `taskkill /T /F` 是否同时观察到两者退出；读者也可在自己的 Windows 主机重跑同一合同 | 任意深度进程树、逃逸后代、跨权限、容器、远程 worker 是否都被收拢 |
 | 《任务在审查中，就等于证据没有串账吗？》 | 10 条脱敏 REPORT 关联样本、公开 Reader、check script | 只使用显式 task key 时，样本如何分成 `linked / missing / conflict` | 故障率、REPORT 内容真实性、业务验收或当前产品质量 |
 | 《一盏绿灯到底在说什么？》 | 5 条脱敏 Session 观察输入、公开 Reader、check script、投影反例矩阵 | 五类已披露观察语义能否被独立复现，以及哪些 UI 事实不能互相替代 | 所有桌面端、PWA、权限过滤器和端到端交付路径是否都已认证 |
 
@@ -21,7 +21,9 @@ date: '2026-08-27'
 
 ---
 
-## 2. R1｜Windows 取消探针
+## 2. R1｜Windows 取消与“停止”证据
+
+这部分对应《取消了 Agent，子进程真的停了吗？》一文。
 
 ### 实验合同
 
@@ -33,6 +35,8 @@ taskkill /PID <wrapper> /T /F
 
 并在三秒内分别检查 wrapper 与直接 child 是否仍可观察。
 
+第一次受控主机记录为：
+
 | 检查项 | 结果 |
 | --- | --- |
 | wrapper 与直接 child 在终止前可观察 | 是 |
@@ -40,16 +44,45 @@ taskkill /PID <wrapper> /T /F
 | wrapper 退出被观察 | 是 |
 | 直接 child 退出被观察 | 是 |
 | 结果 | `PASS` |
+| `kernel_containment_proven` | `false` |
 
-脱敏结果：
+公开材料：
+
+- [2026-08-27-r1-windows-taskkill-tree-probe.cjs](/assets/evidence/2026-08-27-r1-windows-taskkill-tree-probe.cjs)
+- [2026-08-27-r1-windows-taskkill-recorded-result.json](/assets/evidence/2026-08-27-r1-windows-taskkill-recorded-result.json)
+- [2026-08-27-r1-windows-taskkill-recorded-result-check.mjs](/assets/evidence/2026-08-27-r1-windows-taskkill-recorded-result-check.mjs)
+
+脱敏已记录结果明确包含：
 
 ```json
-{"status":"PASS","scope":"windows_taskkill_tree_probe_only","wrapper_exit_observed":true,"child_exit_observed":true,"termination_exit_code":0}
+{"status":"PASS","scope":"windows_taskkill_tree_probe_only","wrapper_exit_observed":true,"child_exit_observed":true,"termination_exit_code":0,"kernel_containment_proven":false}
 ```
 
-这个结果刻意不声称 `kernel_containment_proven`。它只是一次二层进程关系的主机级观察；child 脱离父进程、跨权限、继续派生、容器化或远程 worker 都需要新的反例实验。
+### 两种检查不能混为一谈
 
-R1 当前公开的是**实验合同 + 脱敏结果**，还没有像 R2/R3 一样发布独立 probe 脚本，因此复现强度低一档。这一点属于证据包本身的限制，而不是隐藏条件。
+检查公开记录本身：
+
+```text
+node 2026-08-27-r1-windows-taskkill-recorded-result-check.mjs
+```
+
+预期输出：
+
+```json
+{"fixture":"deidentified_windows_taskkill_tree_probe_result","status":"PASS","kernel_containment_proven":false}
+```
+
+这只验证公开记录的结构和声明边界，不重新执行操作系统实验。
+
+要重新实验 `taskkill /T /F`，必须在 **Windows** 上运行：
+
+```text
+node 2026-08-27-r1-windows-taskkill-tree-probe.cjs
+```
+
+probe 会创建临时 wrapper + direct child，等待两者可观察，再执行 `taskkill /T /F` 并分别检查两个 PID。非 Windows 主机直接拒绝运行，而不是给出假 PASS。
+
+即使再次得到 PASS，它仍然只说明这个公开合同中的两个已知 PID 被观察到退出。它不证明进程树在内核意义上是一个封闭集合；child 脱离原关系、短寿命中间进程生成 grandchild、跨权限、继续派生、容器化或远程 worker 都需要新的反例实验。
 
 ---
 
@@ -162,7 +195,19 @@ node 2026-08-27-r3-ui-status-projection-check.mjs
 
 ## 5. 如何独立检查
 
-R2 和 R3 都是不依赖网络的 Node 脚本。下载对应 JSON 与两个 `.mjs` 文件到同一目录后即可运行。
+R1、R2、R3 的公开附件都不需要访问私有仓库。R1 的真实 probe 需要 Windows；R1 record-check、R2 与 R3 使用 Node 即可。
+
+R1 公开记录检查：
+
+```text
+node 2026-08-27-r1-windows-taskkill-recorded-result-check.mjs
+```
+
+R1 Windows 重跑：
+
+```text
+node 2026-08-27-r1-windows-taskkill-tree-probe.cjs
+```
 
 R2：
 
@@ -178,17 +223,18 @@ node 2026-08-27-r3-ui-status-projection-check.mjs
 
 检查者应特别确认：
 
-1. R2 脱敏没有改变 task key 的相等、缺失和冲突关系；
-2. R1 的 `PASS` 没有被扩写成任意进程树 containment 保证；
-3. R3 的五类公开断言没有被扩写成全端 UI / PWA 回归；
-4. `technical_error` 没有被写成业务失败，`completed_waiting_report` 没有被写成正式验收；
-5. 文章没有让 Gateway、Session、progress、REPORT 或 lifecycle 中任何一层替另一层签字。
+1. R1 的 `PASS` 没有被扩写成任意进程树 containment 保证；
+2. R1 的 public probe 与 recorded result 是两种不同证据：一个可重新实验，一个记录既有主机观察；
+3. R2 脱敏没有改变 task key 的相等、缺失和冲突关系；
+4. R3 的五类公开断言没有被扩写成全端 UI / PWA 回归；
+5. `technical_error` 没有被写成业务失败，`completed_waiting_report` 没有被写成正式验收；
+6. 文章没有让取消请求、命令返回码、PID 消失、Gateway、Session、progress、REPORT 或 lifecycle 中任何一层替另一层签字。
 
 ## 6. 总体证据边界
 
 这个公开包是一组**可审查的工程切片**，不是产品认证，也不是统计学意义上的大样本评测。
 
-- R1：一个 Windows 主机、一个 wrapper + direct child 样本；
+- R1：一份既有 Windows 主机二层样本 + 一个公开同合同 probe；
 - R2：10 条脱敏历史关联样本；
 - R3：5 条语义分类输入 + 投影反例矩阵。
 
