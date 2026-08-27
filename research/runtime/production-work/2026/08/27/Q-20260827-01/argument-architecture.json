@@ -1,0 +1,75 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-27",
+  "itemId": "Q-20260827-01",
+  "coreProposition": "An externally visible Running state should be published only after the runtime holds evidence sufficient for the execution-readiness semantics its consumers rely on; scheduling, assignment and worker claim must remain distinguishable from readiness, and the demonstrated process-start boundary does not prove full health.",
+  "openingMove": {
+    "type": "state-causes-behavior",
+    "purpose": "Open with a desktop notification that reveals Running was treated as executable truth, not decoration.",
+    "evidenceRefs": [
+      "E2",
+      "E3"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is premature Running more than a UI defect?",
+      "claim": "A consumer-visible state is an interface contract when downstream systems trigger behavior from it.",
+      "evidenceRefs": [
+        "E2",
+        "I1"
+      ],
+      "reasoningRole": "problem-reframing",
+      "readerProgress": "The reader sees state as a claim with operational consequences.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Which facts must remain separate?",
+      "claim": "Scheduling, assignment, claim, process start and consumer-required readiness are different evidence levels and should not collapse into one label.",
+      "evidenceRefs": [
+        "E2",
+        "E3",
+        "I1",
+        "I2"
+      ],
+      "reasoningRole": "state-model",
+      "readerProgress": "The reader gains an evidence ladder for lifecycle design.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "How should a readiness gate be chosen?",
+      "claim": "The threshold should be derived backward from the semantics promised to each consumer, with stronger promises requiring stronger evidence.",
+      "evidenceRefs": [
+        "I1",
+        "I2"
+      ],
+      "reasoningRole": "design-rule",
+      "readerProgress": "The reader can define state contracts and projections.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Where does the evidence stop?",
+      "claim": "The disclosed fix establishes process-start ordering for one affected path, not full health, protocol readiness or universal work acceptance.",
+      "evidenceRefs": [
+        "E1",
+        "E3"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "The reader avoids upgrading a bounded vendor claim into a universal readiness rule.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Some systems intentionally call assignment or startup-in-progress Running.",
+    "responseBoundary": "That definition can be valid only when explicit and when consumers do not infer execution readiness; otherwise use distinct Scheduled, Claimed or Starting states."
+  },
+  "endingStrategy": {
+    "type": "operational-test",
+    "purpose": "End with a test for state truth: identify the consumer action and the exact evidence that justifies it."
+  }
+}

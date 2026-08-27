@@ -1,0 +1,51 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-27",
+  "itemId": "Q-20260827-01",
+  "researchObjectId": "AN-20260827-01",
+  "targetAudience": {
+    "primary": "Engineers designing digital-employee runtimes and externally visible task state",
+    "knowledgeAssumption": "The reader understands schedulers, workers and lifecycle states.",
+    "readerProblem": "A system can publish Running when it knows only that work was scheduled or claimed, causing downstream clients to act on a state stronger than the evidence."
+  },
+  "whyNow": "Anthropic's same-day available Claude Code v2.1.247 release note documents an affected self-hosted runner path that could report running before the Claude Code process started and trigger a premature desktop notification.",
+  "externalHook": {
+    "type": "premature-running-state",
+    "description": "A user-facing Running label escaped the control plane before the execution process existed.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "coreProposition": "An externally visible Running state should be published only after the runtime holds evidence sufficient for the execution-readiness semantics its consumers rely on; scheduling, assignment and worker claim must remain distinguishable from readiness, and the demonstrated process-start boundary does not prove full health.",
+  "originalValue": {
+    "type": "evidence-defined-runtime-state",
+    "description": "Treats each externally visible lifecycle state as an evidence claim whose threshold is derived from the promise downstream consumers rely on."
+  },
+  "readerTakeaway": "Separate Scheduled, Claimed, Starting and Running; define the minimum evidence for each consumer-visible state and keep stronger health claims outside a process-start observation.",
+  "evidenceBoundary": {
+    "supported": [
+      "Anthropic published the v2.1.247 release note and reported the affected premature Running behavior.",
+      "The disclosed fix prevents the affected Running publication from preceding Claude Code process startup.",
+      "A downstream desktop client acted on the premature state."
+    ],
+    "unsupported": [
+      "The exact internal readiness primitive",
+      "Full initialization or health after process start",
+      "A universal runtime lifecycle standard",
+      "Independent reproduction of the fix"
+    ],
+    "uncertain": [
+      "Whether the new gate is process spawn, handshake, heartbeat or another signal",
+      "How startup failure and timeout are represented"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article develops a general runtime-state truth principle without relying on a first-party project."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The official release note supports a concrete false-state incident and a bounded ordering conclusion with clear operational implications."
+}
