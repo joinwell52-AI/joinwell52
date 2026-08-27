@@ -8,10 +8,10 @@
   "date": "2026-08-27",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Waiting",
+  "status": "Running",
   "taskStatus": {
     "discovery": "Completed",
-    "queue": "Waiting",
+    "queue": "Running",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
@@ -33,24 +33,80 @@
       "next": "At or after its formal time, Research Runtime Queue may consume only this same-day Signal Pool and independently score each column. Discovery must not select topics or perform downstream research stages.",
       "next_zh": "到达正式时间后，Research Runtime Queue 只能消费本日 Signal Pool，并独立完成三个栏目的评分与筛选；Discovery 不得选题，也不得执行后续研究阶段。",
       "metrics": [
-        {"label":"AI platform due / checked / failed","label_zh":"AI 平台应查 / 已查 / 失败","value":"45 / 44 / 1"},
-        {"label":"GitHub P0 repositories checked","label_zh":"GitHub P0 仓库已检查","value":"9 / 9"},
-        {"label":"Research sources due / checked / failed","label_zh":"研究来源应查 / 已查 / 失败","value":"9 / 8 / 1"},
-        {"label":"Normalized signals","label_zh":"规范化信号","value":22},
-        {"label":"Selected topics","label_zh":"已选主题","value":0}
+        {
+          "label": "AI platform due / checked / failed",
+          "label_zh": "AI 平台应查 / 已查 / 失败",
+          "value": "45 / 44 / 1"
+        },
+        {
+          "label": "GitHub P0 repositories checked",
+          "label_zh": "GitHub P0 仓库已检查",
+          "value": "9 / 9"
+        },
+        {
+          "label": "Research sources due / checked / failed",
+          "label_zh": "研究来源应查 / 已查 / 失败",
+          "value": "9 / 8 / 1"
+        },
+        {
+          "label": "Normalized signals",
+          "label_zh": "规范化信号",
+          "value": 22
+        },
+        {
+          "label": "Selected topics",
+          "label_zh": "已选主题",
+          "value": 0
+        }
       ],
       "evidence": [
-        {"label":"Scheduler authority commit","label_zh":"Scheduler 权威提交","value":"491c2442785dcf8082dca626ef7484d44a6079f6"},
-        {"label":"Worker Control","label_zh":"Worker Control","value":"research/runtime/worker-prompts/generated/CONTROL.json"},
-        {"label":"Generated Discovery Prompt","label_zh":"生成式 Discovery Prompt","value":"research/runtime/worker-prompts/generated/discovery.prompt.md@1.0.0 sha256=55636950fafe406c551975393b93d1493c1eb205f1d0174471729c4f0c5bcb17"},
-        {"label":"Wake receipt","label_zh":"Wake Receipt","value":"research/runtime/wakes/2026/08/2026-08-27/discovery-085722.json"},
-        {"label":"Pre-terminal exact-head validation","label_zh":"终态前 Exact-head 校验","value":"Validate Research Center 3.0 run 33029127218 / Validate Runtime Center success"},
-        {"label":"Terminal commit exact-head validation","label_zh":"终态提交 Exact-head 校验","value":"Validate Research Center 3.0 run 33029198360 / Validate Runtime Center success"}
+        {
+          "label": "Scheduler authority commit",
+          "label_zh": "Scheduler 权威提交",
+          "value": "491c2442785dcf8082dca626ef7484d44a6079f6"
+        },
+        {
+          "label": "Worker Control",
+          "label_zh": "Worker Control",
+          "value": "research/runtime/worker-prompts/generated/CONTROL.json"
+        },
+        {
+          "label": "Generated Discovery Prompt",
+          "label_zh": "生成式 Discovery Prompt",
+          "value": "research/runtime/worker-prompts/generated/discovery.prompt.md@1.0.0 sha256=55636950fafe406c551975393b93d1493c1eb205f1d0174471729c4f0c5bcb17"
+        },
+        {
+          "label": "Wake receipt",
+          "label_zh": "Wake Receipt",
+          "value": "research/runtime/wakes/2026/08/2026-08-27/discovery-085722.json"
+        },
+        {
+          "label": "Pre-terminal exact-head validation",
+          "label_zh": "终态前 Exact-head 校验",
+          "value": "Validate Research Center 3.0 run 33029127218 / Validate Runtime Center success"
+        },
+        {
+          "label": "Terminal commit exact-head validation",
+          "label_zh": "终态提交 Exact-head 校验",
+          "value": "Validate Research Center 3.0 run 33029198360 / Validate Runtime Center success"
+        }
       ],
       "artifacts": [
-        {"label":"Research Intelligence run","label_zh":"Research Intelligence 运行记录","value":"research/intelligence/runs/2026/08/2026-08-27-intelligence.json"},
-        {"label":"Daily Runtime JSON","label_zh":"Daily Runtime JSON","value":"research/runtime/records/daily/2026/08/2026-08-27-daily-runtime.json"},
-        {"label":"Human-readable Runtime ledger","label_zh":"人类可读 Runtime 账本","value":"research/runtime/2026/08/2026-08-27-runtime.md"}
+        {
+          "label": "Research Intelligence run",
+          "label_zh": "Research Intelligence 运行记录",
+          "value": "research/intelligence/runs/2026/08/2026-08-27-intelligence.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "value": "research/runtime/records/daily/2026/08/2026-08-27-daily-runtime.json"
+        },
+        {
+          "label": "Human-readable Runtime ledger",
+          "label_zh": "人类可读 Runtime 账本",
+          "value": "research/runtime/2026/08/2026-08-27-runtime.md"
+        }
       ],
       "startedAt": "2026-08-27T09:02:48+08:00",
       "completedAt": "2026-08-27T09:09:08+08:00"
@@ -84,12 +140,19 @@
       "event": "GitHub Commit Verified",
       "status": "Completed",
       "detail": "Fetched current main after completion; governed completion commit 9b2ceeac655fa8a9b8c898c6283c9a597c50d995 is directly reachable through main commit afb78a911f987c1f342255da99e695161b0a1e1f, and the terminal commit passed Validate Runtime Center in run 33029198360."
+    },
+    {
+      "time": "2026-08-27T10:03:13+08:00",
+      "task": "queue",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Queue started by Research Runtime Scheduler V3.0."
     }
   ],
   "metrics": [],
   "evidence": [],
   "artifacts": [],
-  "githubCommit": "9b2ceeac655fa8a9b8c898c6283c9a597c50d995",
-  "commitVerify": "Completed",
-  "updatedAt": "2026-08-27T09:10:12+08:00"
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-08-27T10:03:13+08:00"
 }
