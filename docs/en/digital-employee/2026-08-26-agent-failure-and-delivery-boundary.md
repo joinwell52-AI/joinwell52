@@ -1,5 +1,5 @@
 ---
-title: "A Green Check Describes the Present: Why Agent Systems Must Preserve Both Failure Facts and Delivery Conclusions"
+title: "A Green Check Describes the Present: Why Failure Facts and Delivery Conclusions Must Both Survive from CrewAI to CodeFlowMu"
 date: '2026-08-26'
 column: digital-employee
 category: daily
@@ -21,7 +21,7 @@ publication_authorized: true
 <ArticleCover
   image="/assets/covers/daily-2026-08-26-agent-failure-and-delivery-boundary-cover.png"
   kicker="Digital Employee · Engineering Research"
-  title="A Green Check Describes the Present: Why Agent Systems Must Preserve Both Failure Facts and Delivery Conclusions"
+  title="A Green Check Describes the Present: Why Failure Facts and Delivery Conclusions Must Both Survive from CrewAI to CodeFlowMu"
   summary="A later success must not rewrite an earlier failure, and a current delivery view must not erase history. Execution facts, evidence, and acceptance need separate ledgers."
   version="EBR-20260826-03"
   status="Engineering Research · 2026-08-26"
@@ -29,7 +29,7 @@ publication_authorized: true
   languageLabel="中文"
 />
 
-# A Green Check Describes the Present: Why Agent Systems Must Preserve Both Failure Facts and Delivery Conclusions
+# A Green Check Describes the Present: Why Failure Facts and Delivery Conclusions Must Both Survive from CrewAI to CodeFlowMu
 
 If an agent task ends with a green “completed” state, does that prove nothing failed along the way?
 
