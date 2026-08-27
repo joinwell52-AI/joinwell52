@@ -7,7 +7,7 @@ article_type: engineering-case-study
 edition: research-center
 research_question: "一个关于证据归属的研究结论，怎样经过真实任务反例、误报修复和生命周期重算，变成可运行、只读、不会替业务裁决签字的诊断能力？"
 summary: "R2 最初只是从 10 条历史 REPORT 中发现‘生命周期位置不能证明证据归属’。随后这个原则进入 CodeFlowMu，经历真实任务误报纠偏，并在 V2.0.4 中成为会随 active→review 动态重算的证据关联诊断。"
-sources: "/zh/research/evidence/2026-08-27-runtime-semantics-evidence-pack"
+sources: "/zh/research/evidence/2026-08-27-r2-v204-evidence-association"
 project_relevance: first-party-research
 item_id: "RSEM-20260827-02"
 lifecycle: "Published"
@@ -121,7 +121,7 @@ V2.0.4 对 R2 做了几项关键收紧。
 
 ![图 2：同一任务从 active 到 review 时，证据关联诊断随阶段变化](/assets/figures/2026-08-27-review-status-evidence-association-v204-dynamic.svg)
 
-*图 2：根据同一任务两次 CodeFlowMu V2.0.4 本地实机截图结构化整理。公开图省略本机绝对路径、实例 nonce 和无关控制台内容；对应结构化转录与检查脚本已公开。*
+*图 2：根据同一任务两次 CodeFlowMu V2.0.4 本地实机截图结构化整理。公开图省略本机绝对路径、实例 nonce 和无关控制台内容；对应结构化转录与检查脚本已公开。来源：第一方本地实机观察。*
 
 ### 阶段 A：`active` —— 没有 REPORT，不等于 REPORT 缺失
 
@@ -231,7 +231,9 @@ V2.0.4 的任务详情里有一句边界说明，我认为比“已关联 5 条�
 
 ## 8. 公开复核：从历史样本到 V2.0.4 动态现场
 
-原来的 R2 公开证据仍然保留，因为它记录理论从哪里来：
+完整的 [R2 → CodeFlowMu V2.0.4 工程化证据包](/zh/research/evidence/2026-08-27-r2-v204-evidence-association) 已单独公开。
+
+原来的 R2 证据仍然保留，因为它记录理论从哪里来：
 
 - [10 条脱敏 REPORT 关联样本](/assets/evidence/2026-08-27-r2-report-association-fixture.json)
 - [公开 Reader](/assets/evidence/2026-08-27-r2-association-reader.mjs)
