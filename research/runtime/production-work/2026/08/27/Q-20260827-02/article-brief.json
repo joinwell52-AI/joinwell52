@@ -1,0 +1,53 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-27",
+  "itemId": "Q-20260827-02",
+  "researchObjectId": "AN-20260827-02",
+  "targetAudience": {
+    "primary": "Architects of agent platforms, plugin hosts and MCP capability boundaries",
+    "knowledgeAssumption": "The reader understands authentication context, plugins and tool invocation.",
+    "readerProblem": "A requesting capability can forge, widen or reuse authority metadata if the platform treats caller-provided context as evidence."
+  },
+  "whyNow": "A merged OpenAI Codex maintainer change exposes a concrete local plugin MCP mechanism that strips caller entitlement metadata, verifies current account access in the host and injects a bounded result only across a conjunctively qualified edge.",
+  "externalHook": {
+    "type": "requester-versus-authority-issuer",
+    "description": "The component asking to exercise authority must not also be the issuer of the evidence that grants it.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "E4"
+    ]
+  },
+  "coreProposition": "Authority-bearing access context should be minted by the host that can verify the governing identity, should replace caller-supplied copies, and should cross only an explicitly qualified capability edge; unverifiable state must collapse to a non-authorizing result, while downstream enforcement remains a separate obligation.",
+  "originalValue": {
+    "type": "authority-evidence-broker-boundary",
+    "description": "Separates authority issuance, capability eligibility, identity continuity and downstream enforcement into auditable obligations instead of one ambient metadata field."
+  },
+  "readerTakeaway": "Make the host the authority issuer, strip caller copies, declare every eligibility predicate, bind verification to current identity and define unknown as non-authorizing at both producer and consumer.",
+  "evidenceBoundary": {
+    "supported": [
+      "Caller-supplied entitlement context is removed before host production.",
+      "Verified context is injected only when the documented conjunction of plugin, environment, transport, annotation and argument predicates holds.",
+      "Lookup time, redirects, response size and identity continuity are bounded.",
+      "Unverifiable or inconsistent state becomes unknown with empty grants."
+    ],
+    "unsupported": [
+      "Complete end-to-end authorization correctness",
+      "Correct downstream policy enforcement",
+      "Cryptographic freshness of provider policy",
+      "Applicability to all MCP transports or entitlement types"
+    ],
+    "uncertain": [
+      "How every downstream consumer treats unknown",
+      "How revocation is represented when account identity is stable"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article is an independent architecture analysis of a public Codex change."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "Inspectable merged implementation and tests support a precise authority-issuance and capability-scope pattern with explicit limits."
+}

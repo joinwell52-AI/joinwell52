@@ -1,0 +1,74 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-27",
+  "itemId": "Q-20260827-02",
+  "coreProposition": "Authority-bearing access context should be minted by the host that can verify the governing identity, should replace caller-supplied copies, and should cross only an explicitly qualified capability edge; unverifiable state must collapse to a non-authorizing result, while downstream enforcement remains a separate obligation.",
+  "openingMove": {
+    "type": "self-asserted-authority-paradox",
+    "purpose": "Open with the circular failure created when a caller supplies the metadata that is supposed to authorize its own request.",
+    "evidenceRefs": [
+      "E1",
+      "I1"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Who may mint authority-bearing context?",
+      "claim": "Only the component that can verify the governing identity and policy state should issue the evidence; caller copies must be removed rather than trusted.",
+      "evidenceRefs": [
+        "E1",
+        "I1"
+      ],
+      "reasoningRole": "authority-owner",
+      "readerProgress": "The reader separates the requester from the evidence issuer.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Where may verified evidence cross?",
+      "claim": "Eligibility should be a visible conjunction of provenance, transport, environment, mutability and argument predicates, not a broad feature flag.",
+      "evidenceRefs": [
+        "E2",
+        "I2"
+      ],
+      "reasoningRole": "capability-scope",
+      "readerProgress": "The reader sees scope as part of authority rather than a later filter.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "How should time and failure affect evidence?",
+      "claim": "Verification should be bounded and identity-continuity-aware; failure should produce an explicit non-authorizing state instead of stale positive context.",
+      "evidenceRefs": [
+        "E3",
+        "E4",
+        "I2"
+      ],
+      "reasoningRole": "freshness-and-failure",
+      "readerProgress": "The reader gains operational rules for account changes and lookup failure.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What remains outside the proof?",
+      "claim": "Host-minted metadata is an authority-evidence broker input, not a credential, cryptographic proof or complete downstream authorization decision.",
+      "evidenceRefs": [
+        "E4",
+        "I1"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "The reader avoids equating better provenance with complete enforcement.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "A restrictive conjunction may reject legitimate remote, argument-bearing or mutable operations.",
+    "responseBoundary": "Those uses may be valid, but expanding them requires a new explicit contract and evidence model rather than silently weakening the demonstrated predicate."
+  },
+  "endingStrategy": {
+    "type": "four-part-audit-contract",
+    "purpose": "End with the four records an implementation needs: issuer, predicates, identity version and consumer semantics."
+  }
+}
