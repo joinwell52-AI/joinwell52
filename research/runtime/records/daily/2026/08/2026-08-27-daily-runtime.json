@@ -44,7 +44,8 @@
         {"label":"Worker Control","label_zh":"Worker Control","value":"research/runtime/worker-prompts/generated/CONTROL.json"},
         {"label":"Generated Discovery Prompt","label_zh":"生成式 Discovery Prompt","value":"research/runtime/worker-prompts/generated/discovery.prompt.md@1.0.0 sha256=55636950fafe406c551975393b93d1493c1eb205f1d0174471729c4f0c5bcb17"},
         {"label":"Wake receipt","label_zh":"Wake Receipt","value":"research/runtime/wakes/2026/08/2026-08-27/discovery-085722.json"},
-        {"label":"Exact-head validation run","label_zh":"Exact-head 校验运行","value":"Validate Research Center 3.0 run 33029127218 / Validate Runtime Center success"}
+        {"label":"Pre-terminal exact-head validation","label_zh":"终态前 Exact-head 校验","value":"Validate Research Center 3.0 run 33029127218 / Validate Runtime Center success"},
+        {"label":"Terminal commit exact-head validation","label_zh":"终态提交 Exact-head 校验","value":"Validate Research Center 3.0 run 33029198360 / Validate Runtime Center success"}
       ],
       "artifacts": [
         {"label":"Research Intelligence run","label_zh":"Research Intelligence 运行记录","value":"research/intelligence/runs/2026/08/2026-08-27-intelligence.json"},
@@ -76,12 +77,19 @@
       "event": "Shift Completed",
       "status": "Completed",
       "detail": "Discovery completed all three due P0 intelligence pipelines, retained 22 normalized same-day signals, and passed exact-head Runtime/Intelligence validation before terminal completion."
+    },
+    {
+      "time": "2026-08-27T09:10:12+08:00",
+      "task": "discovery",
+      "event": "GitHub Commit Verified",
+      "status": "Completed",
+      "detail": "Fetched current main after completion; governed completion commit 9b2ceeac655fa8a9b8c898c6283c9a597c50d995 is directly reachable through main commit afb78a911f987c1f342255da99e695161b0a1e1f, and the terminal commit passed Validate Runtime Center in run 33029198360."
     }
   ],
   "metrics": [],
   "evidence": [],
   "artifacts": [],
-  "githubCommit": "pending",
-  "commitVerify": "Waiting",
-  "updatedAt": "2026-08-27T09:09:08+08:00"
+  "githubCommit": "9b2ceeac655fa8a9b8c898c6283c9a597c50d995",
+  "commitVerify": "Completed",
+  "updatedAt": "2026-08-27T09:10:12+08:00"
 }
