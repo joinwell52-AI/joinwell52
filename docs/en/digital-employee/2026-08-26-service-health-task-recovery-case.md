@@ -1,5 +1,5 @@
 ---
-title: "A Healthy Service Does Not Mean the Task May Continue: Why Agent Recovery Must Re-Prove Eligibility and Causality"
+title: "A Healthy Service Does Not Mean the Task May Continue: Recovery Eligibility and Causal Boundaries from OpenHands to CodeFlowMu"
 date: '2026-08-26'
 column: digital-employee
 category: daily
@@ -21,7 +21,7 @@ publication_authorized: true
 <ArticleCover
   image="/assets/covers/daily-2026-08-26-service-health-task-recovery-case-cover.png"
   kicker="Digital Employee · Engineering Research"
-  title="A Healthy Service Does Not Mean the Task May Continue: Why Agent Recovery Must Re-Prove Eligibility and Causality"
+  title="A Healthy Service Does Not Mean the Task May Continue: Recovery Eligibility and Causal Boundaries from OpenHands to CodeFlowMu"
   summary="Health only says the service still answers. Real recovery has to re-prove task eligibility, prerequisite satisfaction, and the evidence behind every release."
   version="EBR-20260826-04"
   status="Engineering Research · 2026-08-26"
@@ -29,7 +29,7 @@ publication_authorized: true
   languageLabel="中文"
 />
 
-# A Healthy Service Does Not Mean the Task May Continue: Why Agent Recovery Must Re-Prove Eligibility and Causality
+# A Healthy Service Does Not Mean the Task May Continue: Recovery Eligibility and Causal Boundaries from OpenHands to CodeFlowMu
 
 **A 200 response proves only that some endpoint still answers. It does not prove that the session is making progress, and it certainly does not prove that the current task is still eligible to continue. Reliable agent recovery has to re-establish who is authorized to recover, whether the task is in a legal executable state, whether the current execution right is still valid, and whether the upstream facts required for downstream release are actually satisfied.**
 
