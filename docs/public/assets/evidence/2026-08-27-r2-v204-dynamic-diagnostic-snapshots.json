@@ -3,6 +3,7 @@
   "fixture_kind": "first_party_ui_observation_transcript",
   "product": "CodeFlowMu V2.0.4",
   "task_id": "TASK-20260827-030-PM-to-QA",
+  "task_role": "QA",
   "source": {
     "kind": "two_first_party_local_ui_screenshots",
     "same_task": true,
@@ -13,6 +14,10 @@
     ]
   },
   "claim_boundary": "Evidence association describes relationships among records. It does not establish task delivery, acceptance, or verification success.",
+  "applicability_notes": {
+    "active_report_edges": "The task is still active and no formal REPORT exists yet, so REPORT-related edges are correctly not_applicable rather than missing.",
+    "review_eval_edge": "This is a QA task. In the current workflow, EVAL is produced on the PM path, so EVAL->REVIEW is correctly not_applicable here when no EVAL record is present."
+  },
   "snapshots": [
     {
       "label": "active",
