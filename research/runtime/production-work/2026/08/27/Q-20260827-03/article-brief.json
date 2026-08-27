@@ -1,0 +1,54 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-27",
+  "itemId": "Q-20260827-03",
+  "researchObjectId": "AN-20260827-03",
+  "targetAudience": {
+    "primary": "Open-source maintainers designing skill, plugin and approval systems",
+    "knowledgeAssumption": "The reader understands extensions, filesystem paths and approval gates.",
+    "readerProblem": "Repository-controlled text or path-like data can impersonate user authority unless invocation and provenance are qualified by the host."
+  },
+  "whyNow": "A merged OpenAI Codex Guardian v2 change records invoked user-owned skills as bounded approval evidence only after canonical trusted-root checks, with explicit negative coverage for repository forgeries and symlink escapes.",
+  "externalHook": {
+    "type": "provenance-is-not-semantics",
+    "description": "A path under a trusted root can establish bounded origin while still saying nothing about the exact bytes, meaning or freshness of approval.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "E4"
+    ]
+  },
+  "coreProposition": "An invoked skill should influence authorization only after the host records the actual invocation and verifies resource provenance against an authority-owned trusted root; canonical location proves a bounded origin under that trust model, not content identity, semantic safety, immutability or contemporaneous user approval.",
+  "originalValue": {
+    "type": "authorization-evidence-dimensions",
+    "description": "Separates occurrence, location provenance, content identity, semantic safety and current approval so one verified dimension cannot silently stand in for the others."
+  },
+  "readerTakeaway": "Record the host-observed invocation, canonical resource and trust-root decision; add a content digest when replay matters; keep repository assertions non-authorizing and expose evidence truncation.",
+  "evidenceBoundary": {
+    "supported": [
+      "Guardian records a skill only after host resolution through configured trusted user roots.",
+      "Canonicalization and root containment reject repository skills and symlink escapes on the demonstrated path.",
+      "Guardian receives a bounded deduplicated path list rather than privileged full skill bodies.",
+      "Maintainer tests cover trusted invocation and negative provenance cases."
+    ],
+    "unsupported": [
+      "Semantic safety of trusted skill contents",
+      "Immutable identity of the invoked bytes",
+      "Contemporaneous human approval",
+      "A universal filesystem or authorization standard"
+    ],
+    "uncertain": [
+      "Revocation behavior after a trusted skill changes",
+      "How later audit proves the exact version invoked",
+      "How omitted evidence is surfaced when budgets truncate the list"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article presents a general open-source extension-provenance pattern without first-party project dependency."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The merged implementation and tests support a concrete provenance qualification mechanism and expose a useful multi-dimensional evidence boundary."
+}

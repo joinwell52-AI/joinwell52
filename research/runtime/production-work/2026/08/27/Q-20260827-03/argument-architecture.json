@@ -1,0 +1,74 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-27",
+  "itemId": "Q-20260827-03",
+  "coreProposition": "An invoked skill should influence authorization only after the host records the actual invocation and verifies resource provenance against an authority-owned trusted root; canonical location proves a bounded origin under that trust model, not content identity, semantic safety, immutability or contemporaneous user approval.",
+  "openingMove": {
+    "type": "repository-can-forge-labels",
+    "purpose": "Open with the circular risk of allowing the object under review to manufacture trusted-looking skill labels or paths.",
+    "evidenceRefs": [
+      "E2",
+      "E4",
+      "I1"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "What occurrence may become evidence?",
+      "claim": "Only a skill invocation observed by the host should enter authorization review; existence, names and embedded markup remain claims rather than occurrences.",
+      "evidenceRefs": [
+        "E1",
+        "I1"
+      ],
+      "reasoningRole": "occurrence-boundary",
+      "readerProgress": "The reader separates observed execution from self-described extension data.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "How is location provenance qualified?",
+      "claim": "Canonicalizing both candidate and root, then requiring the real file to remain under an authority-owned trusted root, blocks textual path imitation and symlink escape on the demonstrated path.",
+      "evidenceRefs": [
+        "E2",
+        "E4"
+      ],
+      "reasoningRole": "provenance-mechanism",
+      "readerProgress": "The reader sees why resolved containment is stronger than displayed paths.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What does path-only evidence trade off?",
+      "claim": "A bounded deduplicated path list reduces privileged prompt-injection surface but cannot attest the exact bytes, semantic meaning or later immutability of the skill.",
+      "evidenceRefs": [
+        "E3",
+        "I2"
+      ],
+      "reasoningRole": "evidence-shaping",
+      "readerProgress": "The reader can choose when a digest or immutable version identity is required.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Which evidence dimensions must remain separate?",
+      "claim": "Invocation occurrence, provenance, content identity, semantic safety and contemporaneous approval are distinct claims and require distinct attestations.",
+      "evidenceRefs": [
+        "I1",
+        "I2"
+      ],
+      "reasoningRole": "governance-model",
+      "readerProgress": "The reader avoids turning one trusted root decision into universal authorization.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "A user-owned trusted path should be enough because the user installed the skill.",
+    "responseBoundary": "Installation establishes a bounded ownership or provenance signal, not which current bytes ran, whether the instructions are safe, or whether the user approves this action now."
+  },
+  "endingStrategy": {
+    "type": "audit-record-design",
+    "purpose": "End with the minimum receipt fields needed for replay, revocation and bounded-evidence disclosure."
+  }
+}
