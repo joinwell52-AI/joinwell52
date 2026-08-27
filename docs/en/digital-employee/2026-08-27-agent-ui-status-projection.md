@@ -1,5 +1,5 @@
 ---
-title: "What Does a Green Agent Status Actually Mean?"
+title: "What Does a Green Agent Status Actually Mean? What Sutando's Missing Collaborator Progress Reveals About Agent UI Projection Boundaries"
 date: '2026-08-27'
 column: digital-employee
 category: daily
@@ -21,7 +21,7 @@ publication_authorized: true
 <ArticleCover
   image="/assets/covers/daily-2026-08-27-agent-ui-status-projection-cover.png"
   kicker="Digital Employee · Engineering Research"
-  title="What Does a Green Agent Status Actually Mean?"
+  title="What Does a Green Agent Status Actually Mean? What Sutando's Missing Collaborator Progress Reveals About Agent UI Projection Boundaries"
   summary="A Sutando collaborator-progress bug and a local projection audit show why an agent console must not use one green state as a substitute for distinct sources of truth."
   version="RSEM-20260827-03"
   status="Engineering Research · 2026-08-27"
@@ -29,7 +29,7 @@ publication_authorized: true
   languageLabel="中文"
 />
 
-# What Does a Green Agent Status Actually Mean?
+# What Does a Green Agent Status Actually Mean? What Sutando's Missing Collaborator Progress Reveals About Agent UI Projection Boundaries
 
 A collaborator was doing real work in a live session and updating the system’s progress file. The team still saw no progress at all.
 
