@@ -6,7 +6,7 @@ column: digital-employee
 category: daily
 article_type: technical-analysis
 edition: research-center
-research_question: "数字员工运行体在发布对外可见的“运行中”状态之前，应要求什么证据？"
+research_question: "What evidence should a digital-employee runtime require before publishing an externally visible Running state?"
 summary: "Claude Code 2.1.247 修复了一类过早发布“运行中”状态的问题。这个案例说明：状态是面向消费者的证据声明，调度、认领、进程启动与真正就绪不应被压缩成同一个标签。"
 cover: staging/publication-candidates/2026-08-27-running-is-an-evidence-claim-cover.png
 sources:
