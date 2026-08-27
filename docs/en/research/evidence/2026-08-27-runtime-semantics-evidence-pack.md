@@ -48,7 +48,7 @@ The recorded controlled-host result is:
 
 Public artifacts:
 
-- [2026-08-27-r1-windows-taskkill-tree-probe.cjs](/assets/evidence/2026-08-27-r1-windows-taskkill-tree-probe.cjs)
+- [2026-08-27-r1-windows-taskkill-tree-probe.mjs](/assets/evidence/2026-08-27-r1-windows-taskkill-tree-probe.mjs)
 - [2026-08-27-r1-windows-taskkill-recorded-result.json](/assets/evidence/2026-08-27-r1-windows-taskkill-recorded-result.json)
 - [2026-08-27-r1-windows-taskkill-recorded-result-check.mjs](/assets/evidence/2026-08-27-r1-windows-taskkill-recorded-result-check.mjs)
 
@@ -77,7 +77,7 @@ That checks the structure and claim boundary of the published record. It does no
 To rerun the `taskkill /T /F` experiment, use **Windows**:
 
 ```text
-node 2026-08-27-r1-windows-taskkill-tree-probe.cjs
+node 2026-08-27-r1-windows-taskkill-tree-probe.mjs
 ```
 
 The probe creates a temporary wrapper plus direct child, waits until both are observable, invokes `taskkill /T /F`, and then checks the two PIDs separately. On non-Windows systems it refuses to run instead of reporting a false PASS.
@@ -191,7 +191,7 @@ node 2026-08-27-r1-windows-taskkill-recorded-result-check.mjs
 R1 Windows rerun:
 
 ```text
-node 2026-08-27-r1-windows-taskkill-tree-probe.cjs
+node 2026-08-27-r1-windows-taskkill-tree-probe.mjs
 ```
 
 R2:
