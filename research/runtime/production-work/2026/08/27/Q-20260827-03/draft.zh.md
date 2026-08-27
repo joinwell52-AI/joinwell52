@@ -6,7 +6,7 @@ column: open-source-engineering
 category: daily
 article_type: engineering-insight
 edition: research-center
-research_question: "什么时候，被调用的技能才能成为授权证据，又不让仓库文本或伪造路径冒充用户意图？"
+research_question: "When may an invoked skill contribute authorization evidence without letting repository text or forged paths impersonate user intent?"
 summary: "OpenAI Codex Guardian v2 的一项已合并变更先由宿主记录真实调用，再通过规范化可信根核验来源。这个机制能建立有界调用来源，却不能证明技能内容安全、字节未变或用户此刻批准当前动作。"
 cover: staging/publication-candidates/2026-08-27-trusted-path-proves-provenance-not-approval-cover.png
 sources:
