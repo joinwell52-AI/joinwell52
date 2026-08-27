@@ -7,7 +7,7 @@ date: '2026-08-27'
 
 Status: **Published**.
 
-This page records one complete research-to-engineering loop. A fixed historical REPORT slice first exposed the fact that lifecycle location does not prove evidence ownership. R2 then became a read-only evidence-association diagnostic. Real tasks exposed false positives in the first implementation. After V2.0.4 tightened the semantics, the same task could move from `active` to `review` and have its evidence relationships recomputed from the formal facts available at each stage.
+This page records a complete research-to-engineering loop. A fixed historical REPORT slice first exposed the fact that lifecycle location does not prove evidence ownership. R2 then became a read-only evidence-association diagnostic. The first live implementation produced false positives. After V2.0.4 tightened the semantics, a different real QA task provided a positive validation: as the same task moved from `active` to `review`, the diagnosis changed with the lifecycle and did not turn normal not-applicable edges into missing or conflict states within the visible evidence scope.
 
 This is not product certification, and no diagnostic result is promoted into delivery or acceptance.
 
@@ -23,18 +23,6 @@ The fixed sample yields `linked = 4`, `missing = 4`, and `conflict = 2`.
 
 This is not a defect rate. It supports one research finding only: **location is not ownership proof; missing and conflicting evidence must not be repaired by inference.**
 
-Run:
-
-```text
-node 2026-08-27-r2-association-reader-check.mjs
-```
-
-Expected:
-
-```json
-{"fixture":"deidentified_historical_association","counts":{"linked":4,"missing":4,"conflict":2},"status":"PASS"}
-```
-
 ## 2. Engineering translation: R2 becomes a read-only association diagnostic
 
 The V2.0.4 first-party implementation decomposes the evidence chain into explicit edges such as:
@@ -49,9 +37,7 @@ EVAL → REVIEW
 
 The diagnostic reads formal sources and produces a derived snapshot. Its API returns `diagnostic_only: true`. Reader failure does not change formal state, and the diagnostic queue is built from snapshots whose conflict count is greater than zero.
 
-The public article does not reproduce private production source. This page discloses only the semantics required to verify the article's claims.
-
-## 3. Live counterexample: the first diagnostic produced false positives
+## 3. Counterexample scene: the first diagnostic produced false positives
 
 Real task `TASK-20260827-024` exposed false positives involving revision mismatch, REPORT ownership, missing execution, and missing formal REVIEW.
 
@@ -66,11 +52,13 @@ V2.0.4 therefore tightened the contract: compare only explicit revisions from th
 
 The recomputed `TASK-20260827-024` scene selected `REPORT-20260827-028-PM-to-ADMIN` and its corresponding REVIEW and returned `linked=6 / missing=0 / conflict=0`.
 
-## 4. Same task, two stages: V2.0.4 dynamic diagnosis
+## 4. Positive validation scene: the same QA task from `active` to `review`
 
 Two first-party local screenshots show the same task:
 
 `TASK-20260827-030-PM-to-QA`
+
+This is a **QA task**. These screenshots are not a false-positive scene; they are a post-fix positive validation of V2.0.4.
 
 Public structured artifacts:
 
@@ -84,23 +72,30 @@ Visible summary: `linked=4 / missing=0 / conflict=0 / observer_only=0`.
 
 Visible linked edges include task revision→attempt, attempt→lease, attempt→execution, and execution→action evidence.
 
-The REPORT edges are not missing:
+No formal REPORT exists yet, so the REPORT edges are correctly **not applicable**, not missing:
 
 - `REPORT → Task`: `not_applicable` / `lifecycle_does_not_require_report`
 - `REPORT → REVIEW`: `not_applicable` / `report_not_available`
 
+The important result here is `missing=0 / conflict=0`: the absence of a REPORT is normal for this stage and is not reported as a defect.
+
 ### `review`
 
-After the same task enters review, the visible graph shows:
+After the same task enters review, the formal REPORT and REVIEW exist and the graph correctly shows:
 
 - attempt→lease: linked
 - attempt→execution: linked
 - execution→action evidence: linked
 - REPORT→Task: linked
 - REPORT→REVIEW: linked
-- EVAL→REVIEW: `not_applicable` / `eval_not_present`
 
-The UI also exposes copy-reconciliation-summary and refresh-evidence-association actions. Refresh recomputes the diagnostic without driving lifecycle state.
+`EVAL → REVIEW` remains:
+
+- `not_applicable` / `eval_not_present`
+
+That is also correct, not missing. This is a QA task; in the current workflow, EVAL is produced on the PM path, so this QA task is not expected to carry an EVAL report.
+
+The pair therefore shows the intended dynamic behavior: REPORT edges remain not applicable while the task is active, become linked when review evidence appears, and the non-required EVAL edge stays not applicable.
 
 Run:
 
@@ -111,7 +106,7 @@ node 2026-08-27-r2-v204-dynamic-diagnostic-check.mjs
 Expected:
 
 ```json
-{"fixture":"first_party_ui_observation_transcript","same_task":true,"transition":"active_to_review","status":"PASS"}
+{"fixture":"first_party_ui_observation_transcript","same_task":true,"role":"QA","transition":"active_to_review","no_visible_false_positive":true,"status":"PASS"}
 ```
 
 ## 5. The critical adjudication boundary
@@ -125,6 +120,7 @@ Therefore `REPORT → REVIEW = linked` establishes a stable-key relationship onl
 ## 6. Public boundary
 
 - The historical `4/4/2` result comes from one fixed ten-record slice.
+- `TASK-20260827-024` is the first-implementation false-positive counterexample; `TASK-20260827-030-PM-to-QA` is the V2.0.4 post-fix positive validation. They must not be conflated.
 - The V2.0.4 dynamic scene comes from two first-party local screenshots of the same task; the public artifact is a structured transcript that omits local absolute paths, instance identifiers, and unrelated console content.
-- The evidence supports the claim that a research finding entered real engineering and survived counterexample-driven repair. It does not certify all tasks, lifecycle combinations, desktop paths, or PWA paths.
+- “No false positive” is scoped only to the visible edges and stage semantics in these screenshots. It is not certification of all tasks, lifecycle combinations, desktop paths, or PWA paths.
 - CodeFlowMu V2.0.4 engineering notes still distinguish an engineering candidate from a formal RELEASED tag; this page does not cross that release boundary.
