@@ -1,12 +1,12 @@
 ---
-title: "Seeing a Problem Is Not Authority to Decide: Why Agent Auditing Must Be Separated from Formal Acceptance"
+title: "Seeing a Problem Is Not Authority to Decide: Audit Separation from Anywhere Agents to CodeFlowMu"
 date: '2026-08-26'
 column: industry-architecture
 category: daily
 article_type: technical-analysis
 edition: research-center
-research_question: "How can an agent discover risk, preserve evidence, and alert a responsible role without having those observations automatically become acceptance, rejection, or lifecycle decisions?"
-summary: "Starting from a real CodeFlowMu EVAL projection defect and comparing it with Anywhere Agents' advisory audit, this study separates observation, attention, formal adjudication, and lifecycle writes."
+research_question: "How can an agent discover risk, preserve evidence, and alert a responsible role without allowing those observations to become blocking, approval, rejection, or lifecycle authority?"
+summary: "Starting from a real CodeFlowMu EVAL projection defect, this study compares Yue Zhao's Anywhere Agents design for advisory audits, agent-io scope, and review-loop isolation with task-level separation between observation and adjudication."
 sources: "Public primary sources and the bounded scope of access-controlled first-party evidence are listed in the article."
 project_relevance: case-evidence
 item_id: "EBR-20260826-02"
@@ -21,240 +21,127 @@ publication_authorized: true
 <ArticleCover
   image="/assets/covers/daily-2026-08-26-observer-audit-without-adjudication-cover.png"
   kicker="Digital Employee · Engineering Research"
-  title="Seeing a Problem Is Not Authority to Decide: Why Agent Auditing Must Be Separated from Formal Acceptance"
-  summary="An audit agent may discover problems, preserve evidence, and alert a responsible role. Those capabilities must not silently become authority to approve, reject, or move task lifecycle state."
+  title="Seeing a Problem Is Not Authority to Decide: Audit Separation from Anywhere Agents to CodeFlowMu"
+  summary="Observation can be deep and operationally useful. Whether it may block, approve, reject, or mutate lifecycle state must remain a separate authority boundary."
   version="EBR-20260826-02"
   status="Engineering Research · 2026-08-26"
   languageHref="/zh/digital-employee/2026-08-26-observer-audit-without-adjudication"
   languageLabel="中文"
 />
 
-# Seeing a Problem Is Not Authority to Decide: Why Agent Auditing Must Be Separated from Formal Acceptance
+# Seeing a Problem Is Not Authority to Decide: Audit Separation from Anywhere Agents to CodeFlowMu
 
-**An agent's ability to discover a problem does not give it authority to decide whether a delivery passes or fails. Observation is evidence input; adjudication is governance authority. If a runtime connects both to the same interface or UI path, an observer can quietly become an approver without ever being granted that responsibility.**
+**An agent's ability to find a problem does not give it authority to decide whether a delivery passes or fails. Observation is evidence input; adjudication is governance authority. A reliable audit system therefore has to specify not only what an audit can detect, but also what consequences an audit result is allowed to cause.**
 
-## Start with the actual failure
+We recently repaired a real EVAL path in CodeFlowMu. We then read further into Yue Zhao's Anywhere Agents issue #35, commit `53bd8fa`, and the corresponding `style-audit.py`. The two engineering paths address different problems, yet converge on a similar boundary: **an observation may be visible, persistent, and influential without automatically acquiring the power to block, approve, reject, or mutate lifecycle state.**
 
-**CodeFlowMu is a locally run multi-agent collaboration system that uses tasks, roles, gates, reports, and approvals to organize agent work into an execution chain that can be traced, recovered, and verified.**
+**CodeFlowMu is a locally run multi-agent collaboration system that uses tasks, roles, gates, reports, and approvals to organize agent work into an execution chain that can be traced, recovered, and verified.** The narrow question here is not whether audit agents should be useful. It is: **who is authorized to turn an observation into a business consequence?**
 
-Within that system, EVAL is used for fact checking: it reads evidence, identifies contradictions, and records observations. Formal acceptance belongs to authorized review roles. Those responsibilities are supposed to remain separate.
+## 1. A real defect: 7 / 7 and 4 / 4 were green while the authority boundary was still wrong
 
-One real path showed that the separation had broken down. An EVAL report existed on a task whose lifecycle was already complete, but the governance snapshot projected it as `acceptance=pending / formal_report_requires_acceptance`. The panel then routed that report into a wait-for-PM acceptance state. If approval was repeated, the request could still reach the ordinary approval path and only then fail with HTTP 409 because the task was already done.
+CodeFlowMu uses EVAL for fact checking: inspect evidence, identify contradictions, and record observations. Formal acceptance belongs to an authorized review role. Those responsibilities are intended to remain separate.
 
-The more important detail is that the baseline tests were green when this defect existed: **7/7 governance-kernel tests and 4/4 panel terminal-status tests passed.** The system had tests; they simply did not cover the user path where an observation acquired formal acceptance semantics.
+A real path violated that separation. An EVAL report existed on a task whose lifecycle was already complete, yet the governance snapshot projected it as `acceptance=pending / formal_report_requires_acceptance`. The panel then placed it into a wait-for-PM acceptance state. Repeating approval could still reach the ordinary approval path, only to fail with HTTP 409 because the task was already done.
 
-That turns the incident from a labeling bug into an authority-boundary bug:
+The more important detail is that the baseline was still green: **7 / 7 governance-kernel tests and 4 / 4 panel terminal-status tests passed.** The defect was therefore not “no tests.” The tests did not cover the deeper authority-propagation path:
 
-> **EVAL had observation authority, but projection and API routing attached adjudication semantics to it.**
+**EVAL writes an observation → projection interprets it as a formal delivery → UI exposes pending-acceptance semantics → approve / reject becomes reachable**
 
----
+The dangerous escalation did not begin with an agent deliberately exceeding its role. **Projection, API routing, and UI semantics added authority later.** A role boundary that exists only in a prompt or role description, but disappears in state projection and write paths, is not an implemented boundary.
 
-## 1. An agent system needs at least four distinct powers
-
-Human teams already distinguish finding a problem from signing a decision. Durable agent systems need that separation in schemas and interfaces rather than relying on prompt wording.
+## 2. Durable agent systems need at least four distinct powers
 
 | Layer | Question | Legitimate effect | Must not silently do |
 |---|---|---|---|
-| Observation | What was found? | Preserve facts, contradictions, and evidence references | Change the business conclusion |
-| Attention | Who should look? | Create an actionable signal for a responsible role | Upgrade risk directly into rejection |
+| Observation | What was found? | Preserve facts, contradictions, evidence references | Change the business conclusion |
+| Attention | Who should look? | Create an actionable signal | Upgrade risk directly into rejection |
 | Formal adjudication | Is this delivery accepted? | Accept, return, or reject with accountable reasoning | Pretend to be the underlying execution fact |
-| Lifecycle write | What state does the task enter? | Apply an already authorized decision | Decide on its own whether the content is “good enough” |
+| Lifecycle write | What state does the task enter? | Apply an already authorized decision | Decide on its own whether content is “good enough” |
 
-These layers can reference one another, but they cannot impersonate one another.
+These layers can reference one another, but they cannot impersonate one another. **Observation is not approval. Attention is not rejection. A lifecycle write is not a business judgment.**
 
-**Observation is not approval. Attention is not rejection. A lifecycle write is not a business judgment.**
+The repair therefore did not stop at hiding a button. At the data and API boundary, an EVAL report became “observation recorded; formal acceptance not applicable.” Repeated approve or reject returns `no_change / already_observed` while preserving several invariants: `action_taken=false`, no business decision, no lifecycle action, a byte-identical lifecycle task file, and unchanged acceptance requirements for ordinary DEV, QA, and OPS reports.
 
-If a fact-checking report becomes “awaiting acceptance” merely because it lives in a report collection, the system has confused a data-shape similarity with an authority equivalence.
+The repaired paths were verified separately: governance kernel **8 / 8**, panel terminal-state rules **6 / 6**, Web Panel / API **109 / 109**, and EVAL display closeout **18 / 18**. These numbers do not prove that every future UI, plugin, or integration lacks a bypass. They support a narrower claim: **on the named paths, an observation may be acknowledged without acquiring adjudication authority through a repeated request.**
 
----
+## 3. The interesting part of Anywhere Agents is not merely “advisory only”
 
-## 2. The dangerous escalation can happen in projection, not in the agent
+Anywhere Agents issue #35 began with a different engineering failure mode. Its writing-style audit was optional and partly reconstructed by each reviewer. Some semantic rules depended on hand-written `grep`; an observed shell-locale failure caused a grep to match nothing, making “the audit failed to run” look indistinguishable from “the prose is clean.”
 
-Many authorization failures do not begin with an agent deliberately exceeding its role. The extra power is added later by projection or routing.
+The initial direction was straightforward: ship a deterministic script, trigger it from content rather than operator choice, and surface a `Style status` with verification-like discipline. But calibration revealed a second problem: **if mechanical style findings are injected into the formal review loop, an advisory can quietly become a requirement.** In one long session, review prompts themselves reportedly drew seven to twelve RULE-12 findings. RULE-12 flags sentences over thirty words and has no stable fixed point: splitting one sentence can create another long sentence. If each prose edit creates a diff and another review round, mechanical findings can keep an otherwise acceptable review open.
 
-That is what happened here. EVAL wrote an observation. The governance snapshot supplied “formal acceptance required.” The panel routed the record into a wait-for-PM state. Ordinary approve/reject handling became reachable.
+The maintainer constraint that followed is unusually clear:
 
-The escalation can be compressed into one line:
+> **The style audit must be visible, but it must never be able to hold the review loop open.**
 
-**EVAL observation → projected as formal report → shown as awaiting acceptance → ordinary decision path reachable → lifecycle boundary blurred**
+The constraint is implemented structurally rather than left as prose. The audit runs at fixed points outside the round loop—pre-flight before Round 1, or report-only after PASS. Normal audit outcomes do not block through exit status. Findings stay out of reviewer prompts, Round history, and the final verdict. `CLEAN`, `FINDINGS: N`, `SKIPPED`, and `FAILED` can all be observable without their values becoming verdict authority.
 
-No individual step looks dramatic. Most of them resemble harmless component reuse. In combination, however, an observational artifact gains a business consequence it was never supposed to carry.
+That separates two questions that are often collapsed:
 
-This leads to a broader engineering rule:
+> **“Did the audit run, and is its result visible?” is one question. “May that result block the process?” is another.**
 
-> **Role authority must survive projection, API routing, and state transition—not just the agent prompt or role definition.**
+## 4. The `agent-io` detail: stronger consequences require stronger trust boundaries
 
-If the backend says EVAL is non-adjudicatory while the UI still exposes an approval path, non-adjudication has not actually been implemented.
+Commit `53bd8fa` adds another useful distinction. The writing-style guards had largely scoped by file extension, so prose an agent was authoring and text it was merely carrying—dispatch prompts, captured review output—could be treated alike. The author reports 2,227 advisory lines across 34 session transcripts, with substantial prose-extension traffic in scratch areas used by the review loop.
 
----
+One part of the repair lets callers mark carried text under `agent-io`. But not every guard gives that marker the same trust:
 
-## 3. The repair was not “hide the button”; it removed adjudication semantics from the observation
+| Anywhere Agents behavior | Cost of a false exemption | Trust placed in `agent-io` |
+|---|---|---|
+| Advisory message | At worst, one advisory is missed | Marker can be trusted relatively broadly |
+| Deny gate | A real writing restriction could be bypassed | Marker is accepted only under a temporary root containing no repository, after symlink resolution |
 
-The important change was not cosmetic. The EVAL report was reclassified as **an observation already recorded, not a delivery awaiting formal acceptance**.
+The more general principle matters more than the directory name:
 
-After the repair, repeated approval or rejection of an EVAL report returns:
+> **The stronger the consequence, the stronger the authorization and evidence threshold should be.**
 
-`no_change / already_observed`
+If a marker only decides whether to print another advisory, a mistaken exemption has limited effect. If the same marker can bypass a deny gate, it cannot become a one-token escape hatch. The commit explicitly considers the possibility of a path such as `repo/agent-io/proposal.md` masquerading as carried text to evade a real prose restriction.
 
-The strings matter less than the invariants behind them:
+The same evidence discipline appears in `style-audit.py`. It audits the **staged blob**, not the working tree, because filtering working-tree content with staged line numbers can both miss what is actually being committed and attribute unstaged content to the commit. The change reports a reduction from 359 whole-file historical findings to two findings on changed lines. Those are source-reported engineering measurements, not an independently reproduced accuracy result. The stronger point is methodological: **the object being audited should be the object actually under review.**
 
-- `action_taken=false`;
-- no new business decision is created;
-- no lifecycle action is triggered;
-- the lifecycle task file remains byte-identical;
-- ordinary DEV, QA, and OPS report acceptance remains unchanged.
+## 5. Two independent paths converge on consequence separation
 
-The system can therefore say:
+CodeFlowMu's defect occurs in task governance; Anywhere Agents is working at writing guards and review-loop semantics. They are not the same implementation, and neither validates the other. But their structures can be compared without forcing equivalence:
 
-> “This observation has already been recorded.”
+| Anywhere Agents | CodeFlowMu |
+|---|---|
+| Style audit produces findings | EVAL produces observations |
+| Audit result is visible but does not enter verdict | Observation is recorded but is not formal acceptance |
+| `Style status` may exist while its value does not gate PASS | `already_observed / no_change` creates no business decision |
+| Higher-consequence deny gate demands a stronger `agent-io` trust boundary | accept / reject / lifecycle writes demand stronger formal authority |
+| staged blob + changed-line scoping keeps audit object aligned | byte-identical lifecycle file proves observer action did not mutate task state |
 
-It cannot smuggle in:
+CodeFlowMu also encountered a related trap: if the Runtime should not adjudicate business quality, should everything outside a short negative list be `default allow`? That proposal was BLOCKED before product-code change. The reason is the same: **default allow is still an adjudication.** Non-adjudication does not mean always saying Yes; it means making decisions only over facts for which the system actually owns mechanical authority.
 
-> “Therefore the task is approved.”
+A mature supporting layer therefore needs more than `ALLOW / DENY`. It also needs concepts such as `OBSERVE / ATTENTION / REVIEW REQUIRED`, keeping “I found a problem” orthogonal to “I am authorized to decide it.”
 
-or:
+## 6. A next question: can provenance travel while remaining orthogonal to authority?
 
-> “Therefore the task is rejected.”
+Anywhere Agents already distinguishes text the agent **authored** from text it **carried** at a concrete engineering boundary. CodeFlowMu is distinguishing what was **observed** from what was **formally decided**. A useful next question is not how to give observers more power, but how to make evidence relationships more explicit without coupling provenance to authority.
 
-The repair trail is more informative than a single final green check:
+Could provenance types such as `authored / carried / observed / generated` travel across tool calls, agent handoffs, and review chains while remaining orthogonal to the authority to block, approve, reject, or mutate state?
 
-| Check | Result | What the result actually establishes |
-|---|---:|---|
-| Governance kernel | 8 / 8 | EVAL no longer requires formal acceptance |
-| Panel terminal-state rules | 6 / 6 | EVAL is projected separately from ordinary pending acceptance |
-| Web Panel / API | 109 / 109 | repeated approve/reject produces audited no-change |
-| EVAL display closeout | 18 / 18 | historical conflict can remain visible without manufacturing a current decision |
+For CodeFlowMu, a more complete responsibility chain could become:
 
-These figures do not prove that every future UI, plugin, or extension lacks a bypass. They do support the bounded conclusion for the named paths: **an observation may be acknowledged repeatedly without acquiring the power to move task lifecycle state.**
-
----
-
-## 4. Non-adjudication does not mean default allow
-
-There is another subtle trap.
-
-Once we decide that the Runtime should not make business judgments, a tempting implementation is: deny a small set of explicit bad conditions and `default allow` everything else.
-
-That sounds neutral. It is not.
-
-The moment the Runtime says “allow,” it has answered a business question:
-
-> **May this work proceed now?**
-
-CodeFlowMu's engineering record contains a proposal for negative-list-only default allow that was BLOCKED before product-code modification. The public A2 evidence records the same case as `default-allow-proposal`: considered, then stopped during boundary review.
-
-That makes non-adjudication more precise:
-
-> **Non-adjudication is not always saying Yes. It is deciding only facts for which the system actually owns mechanical decision authority.**
-
-Identity mismatch, a closed root task, or a clearly missing required authorization can be hard gates. Whether a design is good enough, whether a report should be accepted, or whether a risk is sufficient to reject a delivery belongs to an accountable review role.
-
-A mature supporting runtime therefore needs more than:
-
-**ALLOW / DENY**
-
-It also needs concepts such as:
-
-**OBSERVE / ATTENTION / REVIEW REQUIRED**
-
-so that “I found a problem” cannot silently become “I have authority to decide it.”
-
----
-
-## 5. Anywhere Agents provides an independent external comparison
-
-Yue Zhao's Anywhere Agents commit `53bd8fa`, dated 2026-08-25, addresses a different but structurally similar boundary.
-
-Its writing-style guards had been relying heavily on file extensions and therefore scanned two very different kinds of text: prose an agent was actually authoring, and dispatch prompts or review output it was merely carrying. The author reports 2,227 advisory lines across 34 session transcripts. Some text under scratch directories belonged to the review loop itself; rewriting it as if it were authored prose would change instructions or falsify carried history.
-
-The commit introduces an `agent-io` scope for carried text and keeps the style audit **advisory only**. More importantly for this article, the audit is deliberately kept beside the formal review loop rather than inside its verdict path: it always exits 0, and its findings stay out of the reviewer prompt, Round history, and final verdict. It therefore cannot hold the review loop open or sign the review result by itself.
-
-This is not the same implementation or business layer as CodeFlowMu.
-
-**Anywhere Agents:** authored / carried boundary → advisory audit does not become verdict
-
-**CodeFlowMu:** observation / delivery boundary → EVAL does not become formal acceptance or lifecycle decision
-
-The shared structural choice is narrower:
-
-> **Audit information may be deep and useful, but whether it has business effect must be governed by a separate authority boundary.**
-
-The Anywhere Agents commit does not validate CodeFlowMu, and CodeFlowMu's A2 evidence does not establish that the Anywhere Agents approach generalizes to every agent system. The comparison is about architecture: **an observation can inform a decision without becoming the decision itself.**
-
----
-
-## 6. Why this matters more for digital employees
-
-In a human team, when QA, an auditor, or a fact checker writes “there is a problem here,” people usually understand that this is not yet the final business decision.
-
-Agent systems do not inherit that social distinction automatically.
-
-Without an explicit schema/API/UI boundary, an observation can travel through automation as:
-
-**risk found → automatic reject → lifecycle transition → task closed**
-
-No single component may look obviously malicious or even obviously wrong. The systemic failure is that **nothing stops observation from crossing into adjudication.**
-
-A durable digital-employee runtime therefore needs to preserve at least three distinct facts:
-
-**observation fact → formal decision → lifecycle result**
-
-They may reference one another, but each should retain its own author, evidence, and authority source. That lets an auditor answer:
-
-- Who discovered the problem?
-- Who actually made the decision?
-- Which observations informed that decision?
-- Which controlled action changed task state?
-- If the observation is later shown to be wrong, can the business decision be reviewed separately?
-
-That is a much stronger governance record than a single `approved=true` or `risk=high` flag.
-
----
-
-## 7. The next step is not a stronger EVAL; it is a clearer evidence relationship
-
-This repair establishes a negative boundary: **EVAL must not obtain business decision authority through ordinary approve/reject handling.**
-
-It does not prove that a complete audit-governance model already exists. The next research step is to make observations more traceable without expanding their authority.
-
-A future observation record, for example, could link:
-
-- observation ID;
-- observer and run;
-- inspected subject;
-- rule or factual source;
-- supporting evidence;
-- the formal review that cited it;
-- whether the reviewer adopted, partially adopted, or rejected it;
-- the controlled lifecycle action that ultimately followed.
-
-The responsibility chain then becomes:
-
-**observation → reviewed → formal decision → state change**
+**observation → cited by a formal review → adopted / partially adopted / rejected by reviewer → formal decision → controlled lifecycle write**
 
 rather than:
 
 **observation → state change**
 
-The latter looks more autonomous. In practice, it removes the most important accountability boundary.
+The first structure preserves audit value and accountable authority. The second looks more autonomous while erasing the most important governance boundary.
 
----
+## Conclusion: the stronger the audit, the clearer its non-authority should be
 
-## Conclusion: the most important audit capability may not be “being right”
+An audit agent does not become weak because it lacks the final signature. It can inspect evidence deeply, expose contradictions, retain provenance, raise risk, and change what an accountable reviewer ultimately decides. What needs separation is the consequence: **an observation must not automatically inherit business authority.**
 
-Why should an audit agent not sign for the team?
+What is particularly useful in Anywhere Agents issue #35 and commit `53bd8fa` is that the work did not stop at “make the style audit run reliably.” It continued to ask how to make the audit visible without allowing it to control the review loop. CodeFlowMu's EVAL defect exposes the same class of risk from another direction: even when the observer itself lacks approval authority, projection, UI, and API routing can attach adjudication semantics later.
 
-Because its first responsibility is to increase visibility, not to expand authority.
+The shared lesson is therefore narrower than “audits should be advisory”:
 
-A strong observer may find contradictions, preserve evidence, identify risk, and sometimes see more detail than the final decision-maker. Whether a delivery is accepted, however, is a different responsibility. Separating the two does not weaken the agent; it protects the collaboration system's accountability.
+> **Audit is not a weaker form of adjudication. It is a separate evidence channel.**
 
-The lesson from this case is therefore not “audit agents must be read-only.” It is narrower and more useful:
-
-> **Observations may write evidence; they must not automatically write conclusions.**
-
-> **Seeing a problem is not authority to decide it. Being able to alert is not the same as being able to sign.**
-
-In a digital-employee system, the most dangerous failure may not be one incorrect model judgment. It may be an unaccountable component quietly acquiring the ability to change business state.
+> **Seeing a problem is not authority to decide it. The stronger the consequence, the stricter the authority and evidence boundary should be.**
 
 ---
 
@@ -269,12 +156,14 @@ In a digital-employee system, the most dangerous failure may not be one incorrec
 
 ### Anywhere Agents
 
-- [**Yue Zhao / Anywhere Agents commit `53bd8fa`**](https://github.com/yzhao062/anywhere-agents/commit/53bd8fa43c7339ae9958c03c55434fac7baddaf3), reviewed 2026-08-26. This article cites its Agent I/O scope and advisory-audit design: carried text is distinguished from authored text, advisory findings stay out of the reviewer prompt, Round history, and final verdict, and the audit is constructed not to block the review loop. Counts such as 34 session transcripts, 2,227 advisory lines, and 359→2 findings are source-reported and were not independently reproduced here.
+- [**Yue Zhao / Anywhere Agents issue #35**](https://github.com/yzhao062/anywhere-agents/issues/35): used for the design evolution from optional hand-rolled audit to deterministic scripting, and the later discussion of `Style status`, review-body injection, and review-loop blocking risk.
+- [**Anywhere Agents commit `53bd8fa`**](https://github.com/yzhao062/anywhere-agents/commit/53bd8fa43c7339ae9958c03c55434fac7baddaf3), 2026-08-25: used for `agent-io` scope, different trust depth between advisory and deny behavior, and the construction that keeps advisory findings out of reviewer prompts, Round history, and final verdict.
+- [**`style-audit.py` at the referenced commit**](https://github.com/yzhao062/anywhere-agents/blob/53bd8fa43c7339ae9958c03c55434fac7baddaf3/skills/implement-review/scripts/style-audit.py): used to verify the staged-blob, changed-line scoping, and “advisory by construction” rationale.
+
+Figures such as 34 session transcripts, 2,227 advisory lines, and 359→2 findings are measurements reported by the Anywhere Agents author in the cited issue / commit. They were not independently reproduced here and are not treated as universal accuracy or effectiveness metrics.
 
 ### CodeFlowMu
 
-The CodeFlowMu claims in this article are limited to the named paths covered by the public A2 evidence. The record supports that the 7/7 and 4/4 baselines did not cover the observed defect; after the repair, governance was 8/8, panel rules 6/6, Web Panel/API 109/109, and EVAL closeout 18/18. Repeated EVAL approve/reject returns audited no-change, creates no business decision, performs no lifecycle action, and leaves the lifecycle task file unchanged.
+The CodeFlowMu claims are limited to the named paths covered by the public A2 evidence. That record supports that the 7 / 7 and 4 / 4 baselines did not cover the observed defect; after repair, governance was 8 / 8, panel rules 6 / 6, Web Panel / API 109 / 109, and EVAL closeout 18 / 18. Repeated EVAL approve / reject creates no business decision, performs no lifecycle action, and leaves the lifecycle task file unchanged.
 
-This evidence **does not prove** that every future UI, plugin, or external integration lacks a bypass; it does not establish that EVAL observations are always correct; and it does not show that a complete provenance or responsibility chain is already implemented.
-
-Raw logs, task contents, and local machine paths are not public. Conclusions should be read together with the corresponding version, test sets, and evidence boundary.
+This evidence **does not prove** that every future UI, plugin, or external integration lacks a bypass; it does not establish that EVAL observations are always correct; and it does not show that a complete provenance / responsibility chain is already implemented. Raw logs, task contents, and local machine paths are not public. Conclusions should be read with the corresponding version, test sets, and evidence boundary.
