@@ -7,7 +7,7 @@ article_type: engineering-case-study
 edition: research-center
 research_question: "How can a research finding about evidence ownership survive implementation, real-task counterexamples, false-positive repair, and lifecycle-aware recomputation without becoming a hidden business judge?"
 summary: "R2 began with ten historical reports and one finding: lifecycle location does not prove evidence ownership. That principle entered CodeFlowMu, failed against real-task edge cases, was corrected in V2.0.4, and now recomputes evidence relationships as the same task moves from active to review."
-sources: "/en/research/evidence/2026-08-27-runtime-semantics-evidence-pack"
+sources: "/en/research/evidence/2026-08-27-r2-v204-evidence-association"
 project_relevance: first-party-research
 item_id: "RSEM-20260827-02"
 lifecycle: "Published"
@@ -125,7 +125,7 @@ That pair makes the implementation much more interesting than a static “diagno
 
 ![Figure 2: The same task recomputes its evidence relationships from active to review](/assets/figures/2026-08-27-review-status-evidence-association-v204-dynamic.svg)
 
-*Figure 2. Structured from two local CodeFlowMu V2.0.4 screenshots of the same task. The public figure omits local absolute paths, instance nonce, and unrelated console text. The underlying transcript and a public consistency check are available below.*
+*Figure 2. Structured from two local CodeFlowMu V2.0.4 screenshots of the same task. The public figure omits local absolute paths, instance nonce, and unrelated console text. The underlying transcript and a public consistency check are available below. Source: first-party local runtime observation.*
 
 ### Stage A: `active` — no REPORT is not the same as a missing REPORT
 
@@ -232,6 +232,8 @@ That is the part that makes this more than a feature story:
 > **Theory was not merely implemented. The implementation was allowed to produce counterevidence that changed the theory’s operational form.**
 
 ## 8. Public verification now covers both the original research slice and the V2.0.4 dynamic scene
+
+The complete [R2 → CodeFlowMu V2.0.4 engineering evidence pack](/en/research/evidence/2026-08-27-r2-v204-evidence-association) is published separately.
 
 The original R2 artifacts remain public because they explain where the research finding came from:
 
