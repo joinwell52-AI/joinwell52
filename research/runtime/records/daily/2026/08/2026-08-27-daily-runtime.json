@@ -8,10 +8,10 @@
   "date": "2026-08-27",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
-    "queue": "Running",
+    "queue": "Completed",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
@@ -110,6 +110,569 @@
       ],
       "startedAt": "2026-08-27T09:02:48+08:00",
       "completedAt": "2026-08-27T09:09:08+08:00"
+    },
+    "queue": {
+      "schema": "runtime-shift-result/v2",
+      "task": "queue",
+      "family": "daily",
+      "runtimeDate": "2026-08-27",
+      "status": "Completed",
+      "input": "The verified 2026-08-27 Queue Wake Receipt at research/runtime/wakes/2026/08/2026-08-27/queue-100057.json; pinned authoritative control-source commit 9d071ea7e83c5ba22480cdf1a09ba423ee417a17 containing Scheduler V3.0, Worker Control v1.3.0, generated Queue Prompt v1.0.0 and all five required sources; the generated Queue Prompt with deterministically verified SHA-256 a0c42d5b8bfdedd9a237741ec74310bfe531ee7656a32f0e682945b4096443df; the same-run-date Daily Runtime Record with Discovery durably Completed, Queue execution authority opened by repository reconciliation and a verified Worker Claimed event; and the completed 2026-08-27 Research Intelligence run containing 22 normalized untriaged signals from all three resolved Discovery pipelines.",
+      "input_zh": "已核验的 2026-08-27 Queue Wake Receipt（research/runtime/wakes/2026/08/2026-08-27/queue-100057.json）；固定权威控制源提交 9d071ea7e83c5ba22480cdf1a09ba423ee417a17，其中包含 Scheduler V3.0、Worker Control v1.3.0、Generated Queue Prompt v1.0.0 及全部五个 Required Source；经确定性工具核验 SHA-256 为 a0c42d5b8bfdedd9a237741ec74310bfe531ee7656a32f0e682945b4096443df 的 Generated Queue Prompt；Discovery 已持久 Completed、仓库 Reconciliation 已为 Queue 打开执行权且 Worker Claimed 已核验的同运行日 Daily Runtime Record；以及包含 22 个规范化未筛选 Signal、三条 Discovery Pipeline 均已解析完成的 2026-08-27 Research Intelligence Run。",
+      "workResult": "Fail-closed admission passed for branch main, wake source chatgpt-scheduled-task, the active 2026-08-27 Queue window and the worker's available GitHub read/write and file-editing capabilities. The Queue Wake Receipt was committed and fetched before Runtime business work. Repository reconciliation then granted Queue authority as the earliest due unfinished formal task after verified Discovery completion, and the Worker Claimed event was durably verified before triage. Skill 02 scored all 22 same-day signals across the ten declared dimensions. Digital Employee selected SIG-20260827-004 as Q-20260827-01 to study why externally visible execution state must wait for actual agent-process readiness. Industry Architecture selected SIG-20260827-008 as Q-20260827-02 to study host-owned, capability-scoped injection of verified account access context. Open-source Engineering selected SIG-20260827-007 as Q-20260827-03 to study trusted-root provenance as a prerequisite for using invoked skills as authorization evidence. The remaining 19 signals were retained as Candidate because they expose bounded same-day mechanisms but their primary-column slots were taken by more structurally central objects. No signal was rejected. Queue performed no Deep Reading, Research Analysis, article writing or publication.",
+      "workResult_zh": "针对 main 分支、chatgpt-scheduled-task 唤醒源、2026-08-27 有效 Queue 时段，以及当前 Worker 实际具备的 GitHub 读写与文件编辑能力，Fail-Closed Admission 通过。任何 Runtime 业务工作前，Queue Wake Receipt 已提交并重新 Fetch 核验。随后仓库 Reconciliation 在 Discovery 已完成并核验后把 Queue 判定为最早到期未收口任务并授予执行权，且筛选前 Worker Claimed 已完成持久核验。Skill 02 按十个声明评分维度对当天全部 22 个 Signal 完成评分。数字员工选择 SIG-20260827-004，形成 Q-20260827-01，研究为何对外执行状态必须等待 Agent 进程真实就绪；行业架构选择 SIG-20260827-008，形成 Q-20260827-02，研究经验证账户访问上下文如何由宿主持有并按能力范围注入；开源工程选择 SIG-20260827-007，形成 Q-20260827-03，研究为什么只有通过可信根来源核验的 Skill 调用才能形成授权证据。其余 19 个 Signal 保留为 Candidate；它们均暴露同日有界机制，但对应主栏目位置由结构上更核心的对象占用。0 个 Signal 被 Rejected。Queue 未执行 Deep Reading、Research Analysis、文章写作或发布。",
+      "output": "Today's Research Plan was written to research/runtime/plans/2026/08/2026-08-27-plan.json with exactly three Selected P0 objects: Q-20260827-01, Q-20260827-02 and Q-20260827-03, one for each registered Daily research column.",
+      "output_zh": "Today's Research Plan 已写入 research/runtime/plans/2026/08/2026-08-27-plan.json，恰好包含 3 个 Selected P0 对象：Q-20260827-01、Q-20260827-02、Q-20260827-03，分别对应三个已注册 Daily Research 栏目。",
+      "next": "At or after 11:00 Asia/Shanghai, Runtime reconciliation may grant Reading execution authority only if this Queue terminal result is durably committed and verified on main and no earlier due task remains unfinished. Reading may consume only Q-20260827-01, Q-20260827-02 and Q-20260827-03 for Skill 03 Deep Reading.",
+      "next_zh": "到达或超过上海时间 11:00 后，只有当本次 Queue 终态已在 main 上持久提交并核验，且不存在更早到期未收口任务时，Runtime Reconciliation 才可授予 Reading 执行权。Reading 只能消费 Q-20260827-01、Q-20260827-02、Q-20260827-03 执行 Skill 03 Deep Reading。",
+      "metrics": [
+        {
+          "label": "Wake receipts verified",
+          "label_zh": "已核验 Wake Receipt",
+          "value": 1
+        },
+        {
+          "label": "Generated prompt SHA-256 verified",
+          "label_zh": "Generated Prompt SHA-256 已核验",
+          "value": 1
+        },
+        {
+          "label": "Signal pool count",
+          "label_zh": "Signal Pool 数量",
+          "value": 22
+        },
+        {
+          "label": "Column decisions",
+          "label_zh": "栏目决定",
+          "value": 3
+        },
+        {
+          "label": "Selected objects",
+          "label_zh": "已选对象",
+          "value": 3
+        },
+        {
+          "label": "Candidate signals",
+          "label_zh": "Candidate Signal",
+          "value": 19
+        },
+        {
+          "label": "Rejected signals",
+          "label_zh": "Rejected Signal",
+          "value": 0
+        },
+        {
+          "label": "No Selection decisions",
+          "label_zh": "No Selection 决定",
+          "value": 0
+        },
+        {
+          "label": "Queue execution-slot openings",
+          "label_zh": "Queue 执行槽开启",
+          "value": 1
+        },
+        {
+          "label": "Queue worker claims",
+          "label_zh": "Queue Worker Claimed",
+          "value": 1
+        },
+        {
+          "label": "Revision rounds used",
+          "label_zh": "已使用修订轮次",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Queue Wake Receipt",
+          "label_zh": "Queue 唤醒回执",
+          "path": "research/runtime/wakes/2026/08/2026-08-27/queue-100057.json"
+        },
+        {
+          "label": "Pinned control source commit",
+          "label_zh": "固定控制源提交",
+          "commit": "9d071ea7e83c5ba22480cdf1a09ba423ee417a17"
+        },
+        {
+          "label": "Worker Control manifest",
+          "label_zh": "Worker Control Manifest",
+          "path": "research/runtime/worker-prompts/generated/CONTROL.json"
+        },
+        {
+          "label": "Generated Queue prompt",
+          "label_zh": "Generated Queue Prompt",
+          "path": "research/runtime/worker-prompts/generated/queue.prompt.md"
+        },
+        {
+          "label": "Generated Queue prompt SHA-256",
+          "label_zh": "Generated Queue Prompt SHA-256",
+          "value": "a0c42d5b8bfdedd9a237741ec74310bfe531ee7656a32f0e682945b4096443df"
+        },
+        {
+          "label": "Run-date Research Intelligence",
+          "label_zh": "运行日 Research Intelligence",
+          "path": "research/intelligence/runs/2026/08/2026-08-27-intelligence.json"
+        },
+        {
+          "label": "Column Plan contract",
+          "label_zh": "Column Plan 合同",
+          "path": "research/runtime/COLUMN-PLAN-SCHEMA.md"
+        },
+        {
+          "label": "Skill 02",
+          "label_zh": "Skill 02",
+          "path": "research/skills/02-research-triage.md"
+        },
+        {
+          "label": "Queue Worker Claimed commit",
+          "label_zh": "Queue Worker Claimed 提交",
+          "commit": "4a5c781216cf3e647450f2ce16ab6f133c618e2c"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Today's Research Plan",
+          "label_zh": "今日研究计划",
+          "path": "research/runtime/plans/2026/08/2026-08-27-plan.json"
+        },
+        {
+          "label": "Queue result",
+          "label_zh": "Queue 结果",
+          "path": "research/runtime/results/2026/08/2026-08-27-queue-result.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "path": "research/runtime/records/daily/2026/08/2026-08-27-daily-runtime.json"
+        },
+        {
+          "label": "Runtime Markdown ledger",
+          "label_zh": "Runtime Markdown 账本",
+          "path": "research/runtime/2026/08/2026-08-27-runtime.md"
+        }
+      ],
+      "triage": [
+        {
+          "signalId": "SIG-20260827-001",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 4,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 4,
+            "engineeringValue": 4,
+            "novelInformation": 4,
+            "sourceQuality": 4,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 41,
+          "decision": "candidate",
+          "reason": "First-call model fallback improves delegated liveness, but the selected runner-readiness object gives a sharper externally observable execution-truth boundary."
+        },
+        {
+          "signalId": "SIG-20260827-002",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 4,
+            "sourceQuality": 4,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 44,
+          "decision": "candidate",
+          "reason": "Dead-host detection and restartability are strong recovery mechanics, but the selected object more directly separates scheduled state from actual executable readiness."
+        },
+        {
+          "signalId": "SIG-20260827-003",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 4,
+            "novelInformation": 5,
+            "sourceQuality": 4,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 44,
+          "decision": "candidate",
+          "reason": "Explicit lost-work reporting improves recovery truth, but the selected object addresses the earlier control-plane boundary where false Running can mislead downstream actors."
+        },
+        {
+          "signalId": "SIG-20260827-004",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 5,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 46,
+          "decision": "selected",
+          "reason": "Selected: process readiness is a bounded, high-value state-truth boundary for digital work execution."
+        },
+        {
+          "signalId": "SIG-20260827-005",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 4,
+            "digitalEmployeeRelevance": 4,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 4,
+            "novelInformation": 4,
+            "sourceQuality": 4,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 41,
+          "decision": "candidate",
+          "reason": "Model-visible MCP connection failure improves tool-state fidelity, but the selected skill-provenance object carries a stronger authorization-boundary mechanism."
+        },
+        {
+          "signalId": "SIG-20260827-006",
+          "primaryColumn": "industry-architecture",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 4,
+            "engineeringValue": 5,
+            "novelInformation": 4,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 44,
+          "decision": "candidate",
+          "reason": "Fail-closed managed settings is a strong administrative-authority rule, but the selected account-context object provides a richer capability-scoped identity-injection architecture."
+        },
+        {
+          "signalId": "SIG-20260827-007",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 5,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 46,
+          "decision": "selected",
+          "reason": "Selected: verified trusted-root provenance converts skill invocation into bounded authorization evidence with clear negative cases."
+        },
+        {
+          "signalId": "SIG-20260827-008",
+          "primaryColumn": "industry-architecture",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 5,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 46,
+          "decision": "selected",
+          "reason": "Selected: host-owned verified account context and narrow capability eligibility define a precise identity/authority injection boundary."
+        },
+        {
+          "signalId": "SIG-20260827-009",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 4,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 5,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 45,
+          "decision": "candidate",
+          "reason": "URI-native fail-closed filesystem boundaries are strong policy engineering, but the selected skill-provenance object is more directly tied to extension authorization evidence."
+        },
+        {
+          "signalId": "SIG-20260827-010",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 4,
+            "digitalEmployeeRelevance": 4,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 5,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 44,
+          "decision": "candidate",
+          "reason": "Anonymous listener handoff and sandbox-bound bridge lifetime are valuable isolation mechanics, but the selected object exposes a more reusable trust-provenance rule."
+        },
+        {
+          "signalId": "SIG-20260827-011",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 5,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 46,
+          "decision": "candidate",
+          "reason": "Durable standalone tool outputs across resume are highly relevant to reconstructable work history, but the selected object is the stronger immediate execution-state truth boundary for this column."
+        },
+        {
+          "signalId": "SIG-20260827-012",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 4,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 45,
+          "decision": "candidate",
+          "reason": "Fresh approval plus post-approval process revalidation is a strong authority mechanism, but the selected object addresses the more foundational question of when a worker may be truthfully reported as running."
+        },
+        {
+          "signalId": "SIG-20260827-013",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 4,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 5,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 45,
+          "decision": "candidate",
+          "reason": "MCP provenance in lifecycle callbacks improves extension observability, but the selected object goes further by using verified provenance as an authorization input."
+        },
+        {
+          "signalId": "SIG-20260827-014",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 4,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 45,
+          "decision": "candidate",
+          "reason": "Rejecting unpaired function outputs materially strengthens tool/conversation state integrity, but the selected object has a broader extension-trust and authorization boundary."
+        },
+        {
+          "signalId": "SIG-20260827-015",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 4,
+            "digitalEmployeeRelevance": 3,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 4,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 42,
+          "decision": "candidate",
+          "reason": "The MCP OAuth SSRF fix is important security hardening, but the retained signal is narrower than the selected generalizable provenance-authorization mechanism."
+        },
+        {
+          "signalId": "SIG-20260827-016",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 4,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 4,
+            "novelInformation": 4,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 43,
+          "decision": "candidate",
+          "reason": "Turning unknown tools into model-visible feedback preserves agent-loop recovery, but the selected object is more central to runtime status truth and downstream coordination."
+        },
+        {
+          "signalId": "SIG-20260827-017",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 4,
+            "tmpaRelevance": 3,
+            "digitalEmployeeRelevance": 4,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 4,
+            "novelInformation": 3,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 4
+          },
+          "total": 38,
+          "decision": "candidate",
+          "reason": "Hot-reload correctness reduces stale development state, but the mechanism is less central and less bounded for production digital-work governance than the selected object."
+        },
+        {
+          "signalId": "SIG-20260827-018",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 4,
+            "novelInformation": 4,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 44,
+          "decision": "candidate",
+          "reason": "Session-ID normalization strengthens identity consistency, but the selected object exposes a more consequential externally visible runtime-state invariant."
+        },
+        {
+          "signalId": "SIG-20260827-019",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 3,
+            "digitalEmployeeRelevance": 3,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 4,
+            "novelInformation": 3,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 39,
+          "decision": "candidate",
+          "reason": "Retrying configured exception subclasses aligns behavior with inheritance, but it is narrower and less novel than the selected trust-root authorization mechanism."
+        },
+        {
+          "signalId": "SIG-20260827-020",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 5,
+            "digitalEmployeeRelevance": 5,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 5,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 46,
+          "decision": "candidate",
+          "reason": "Direct-sub-agent escalation scoping is a strong multi-agent propagation boundary, but the selected object provides a more immediate state-truth contract for execution coordination."
+        },
+        {
+          "signalId": "SIG-20260827-021",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 5,
+            "tmpaRelevance": 4,
+            "digitalEmployeeRelevance": 4,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 5,
+            "novelInformation": 4,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 43,
+          "decision": "candidate",
+          "reason": "Preserving the primary upload failure against cleanup errors improves causal diagnostics, but the selected object has greater security and provenance leverage."
+        },
+        {
+          "signalId": "SIG-20260827-022",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "columnRelevance": 5,
+            "directionRelevance": 4,
+            "tmpaRelevance": 3,
+            "digitalEmployeeRelevance": 3,
+            "codeFlowMuRelevance": 5,
+            "engineeringValue": 4,
+            "novelInformation": 4,
+            "sourceQuality": 5,
+            "crossSourceSupport": 1,
+            "boundedQuestion": 5
+          },
+          "total": 39,
+          "decision": "candidate",
+          "reason": "Retained-image compaction budgeting improves resource correctness, but it is less central to governance and authorization than the selected object."
+        }
+      ],
+      "startedAt": "2026-08-27T10:03:13+08:00",
+      "completedAt": "2026-08-27T10:11:17+08:00"
     }
   },
   "timeline": [
@@ -154,6 +717,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Queue after verifying research/runtime/wakes/2026/08/2026-08-27/queue-100057.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-08-27T10:11:17+08:00",
+      "task": "queue",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Queue closed as Completed through governed Runtime shift finalization after durable result validation for 2026-08-27."
     }
   ],
   "metrics": [],
@@ -161,5 +731,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-27T10:05:35+08:00"
+  "updatedAt": "2026-08-27T10:11:17+08:00"
 }
