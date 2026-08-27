@@ -6,8 +6,8 @@ column: open-source-engineering
 category: daily
 article_type: engineering-insight
 edition: research-center
-research_question: "When may an invoked skill contribute authorization evidence without letting repository text or forged paths impersonate user intent?"
-summary: "OpenAI Codex Guardian v2 的一项已合并变更先由宿主记录真实调用，再通过规范化可信根核验来源。这个机制能建立有界调用来源，却不能证明技能内容安全、字节未变或用户此刻批准当前动作。"
+research_question: "什么时候，被调用的技能才能成为授权证据，又不让仓库文本或伪造路径冒充用户意图？"
+summary: "OpenAI Codex（代码智能体）的 Guardian（授权审查器）v2 的一项已合并变更先由宿主记录真实调用，再通过规范化可信根核验来源。这个机制能建立有界调用来源，却不能证明技能内容安全、字节未变或用户此刻批准当前动作。"
 cover: staging/publication-candidates/2026-08-27-trusted-path-proves-provenance-not-approval-cover.png
 sources:
   - research/analysis/Q-20260827-03-host-verified-skill-invocation-provenance.md
@@ -19,7 +19,7 @@ sources:
 
 技能可以表达用户预先配置的工作方式，因此可能为一次授权判断提供有价值的上下文。但技能名称、显示路径或嵌入仓库的标记都不能自动成为用户权威：被评审的仓库完全可以伪造这些文字，符号链接也可以让看似可信的路径最终指向根目录之外。
 
-OpenAI Codex Guardian v2 的一项已合并维护者变更展示了更严格的边界。系统只在宿主实际观察到技能调用后，才把它列为候选证据；随后解析技能资源，规范化候选路径和可信根，并要求真实文件仍位于由宿主管理的用户可信根之下。仓库技能和逃逸可信根的符号链接不能通过这条路径获得同等地位。
+Codex 的 Guardian 授权审查器 v2 的一项已合并维护者变更展示了更严格的边界。系统只在宿主实际观察到技能调用后，才把它列为候选证据；随后解析技能资源，规范化候选路径和可信根，并要求真实文件仍位于由宿主管理的用户可信根之下。仓库技能和逃逸可信根的符号链接不能通过这条路径获得同等地位。
 
 核心结论是：**被调用的技能只有在宿主记录真实调用，并依据权威方拥有的可信根核验资源来源后，才可以影响授权判断。规范化位置只能证明特定信任模型下的有界来源，不能证明内容身份、语义安全、不可变性或用户此刻批准当前动作。**
 
@@ -41,7 +41,7 @@ OpenAI Codex Guardian v2 的一项已合并维护者变更展示了更严格的�
 
 ## 路径证据收缩风险，也牺牲内容身份
 
-Guardian 获得的是有界、去重后的规范化路径列表，而不是把完整技能正文提升为高权限上下文。这样能够减少两类风险：仓库或技能内容通过长文本扩大提示注入面，以及无限证据占用评审预算。
+授权审查器获得的是有界、去重后的规范化路径列表，而不是把完整技能正文提升为高权限上下文。这样能够减少两类风险：仓库或技能内容通过长文本扩大提示注入面，以及无限证据占用评审预算。
 
 代价是路径无法回答“当时究竟执行了哪些字节”。如果技能在调用后被修改，后续审计只能看到同一个位置，不能证明历史内容。若系统需要重放或精确归责，就应在调用时同时记录内容摘要、不可变版本标识或经过签名的快照，而不能让路径替代内容身份。
 

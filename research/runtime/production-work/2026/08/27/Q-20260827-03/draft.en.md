@@ -6,7 +6,7 @@ column: open-source-engineering
 category: daily
 article_type: engineering-insight
 edition: research-center
-research_question: "When may an invoked skill contribute authorization evidence without letting repository text or forged paths impersonate user intent?"
+research_question: "什么时候，被调用的技能才能成为授权证据，又不让仓库文本或伪造路径冒充用户意图？"
 summary: "A merged OpenAI Codex Guardian v2 change records an actual invocation in the host and then verifies provenance through canonical trusted roots. The mechanism establishes bounded invocation origin, not safe content, immutable bytes or contemporaneous approval."
 cover: staging/publication-candidates/2026-08-27-trusted-path-proves-provenance-not-approval-cover.png
 sources:
