@@ -6,8 +6,8 @@ column: industry-architecture
 category: daily
 article_type: technical-analysis
 edition: research-center
-research_question: "How should an agent platform carry account-derived authority evidence to tools without allowing the requester to forge, widen or reuse stale authority?"
-summary: "OpenAI Codex 的一项已合并变更展示了有界的权限证据代理模式：宿主移除调用方副本，核验当前账户，只在全部能力条件成立时注入上下文，无法核验则收缩为无授权状态。"
+research_question: "智能体平台应如何把账户权限证据传给工具，同时避免请求方伪造、扩大或继续使用过期权限？"
+summary: "OpenAI Codex（代码智能体）的一项已合并变更展示了有界的权限证据代理模式：宿主移除调用方副本，核验当前账户，只在全部能力条件成立时注入上下文，无法核验则收缩为无授权状态。"
 cover: staging/publication-candidates/2026-08-27-authority-context-must-be-host-minted-cover.png
 sources:
   - research/analysis/Q-20260827-02-host-minted-capability-scoped-access-evidence.md
@@ -19,7 +19,7 @@ sources:
 
 如果一个工具调用可以自己附带“我拥有某项权限”的元数据，而平台又把这段元数据当作授权依据，请求方就同时成为了证据的声明者和受益者。无论字段名称多正式，这仍然是一条循环授权路径。
 
-OpenAI Codex 的一项已合并维护者变更提供了一个可检查的反例。针对特定的本地插件 MCP 调用，宿主不会信任调用方提供的 openai/entitlementContext，而是先移除它，再利用当前 ChatGPT 账户身份查询访问状态。只有多个条件同时成立时，核验结果才会进入工具调用；无法核验、账户切换或返回数据异常都会收缩为 unknown 和空授权集合。
+OpenAI Codex 的一项已合并维护者变更提供了一个可检查的反例。针对特定的本地插件 MCP（模型上下文协议）调用，宿主不会信任调用方提供的 openai/entitlementContext，而是先移除它，再利用当前 ChatGPT（对话式人工智能服务）账户身份查询访问状态。只有多个条件同时成立时，核验结果才会进入工具调用；无法核验、账户切换或返回数据异常都会收缩为 unknown 和空授权集合。
 
 由此得到的核心判断是：**携带权限的访问上下文，应由能够核验支配身份的宿主生成，应替换而不是信任调用方副本，并且只能跨越显式合格的能力边界；无法核验时必须降级为无授权状态。至于下游是否正确执行，仍是另一项独立责任。**
 
@@ -43,7 +43,7 @@ OpenAI Codex 的一项已合并维护者变更提供了一个可检查的反例�
 
 长时间运行的会话中，用户可能切换账户，组织策略也可能变化。只在会话创建时读取一次账户状态，会让后来执行的工具调用继续携带陈旧证据。
 
-公开代码把查询限制在 2.5 秒内，禁止重定向，限制响应体为 1 MiB，并在请求前后检查账户身份是否一致。不支持的认证、请求失败、超时、数据异常、状态不一致或账户切换都会得到宿主生成的 unknown 与空授权，而不会回退到调用方提供的积极声明。
+公开代码把查询限制在 2.5 秒内，禁止重定向，限制响应体为 1 MiB（兆二进制字节），并在请求前后检查账户身份是否一致。不支持的认证、请求失败、超时、数据异常、状态不一致或账户切换都会得到宿主生成的 unknown 与空授权，而不会回退到调用方提供的积极声明。
 
 这里的安全价值依赖两个方向同时闭合。生产端必须在不确定时收缩；消费端也必须把 unknown 和空授权解释为“不可授权”。如果下游把 unknown 当成“没有限制”，或退回另一个未经核验的来源，上游的失败关闭就会失效。
 

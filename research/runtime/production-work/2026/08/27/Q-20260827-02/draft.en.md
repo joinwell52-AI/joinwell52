@@ -6,7 +6,7 @@ column: industry-architecture
 category: daily
 article_type: technical-analysis
 edition: research-center
-research_question: "How should an agent platform carry account-derived authority evidence to tools without allowing the requester to forge, widen or reuse stale authority?"
+research_question: "智能体平台应如何把账户权限证据传给工具，同时避免请求方伪造、扩大或继续使用过期权限？"
 summary: "A merged OpenAI Codex change demonstrates a bounded authority-evidence broker: the host removes caller copies, verifies current account access, injects context only when every capability predicate holds, and contracts unverifiable state to a non-authorizing result."
 cover: staging/publication-candidates/2026-08-27-authority-context-must-be-host-minted-cover.png
 sources:
