@@ -5,8 +5,8 @@ column: open-source-engineering
 category: daily
 article_type: engineering-case-study
 edition: research-center
-research_question: "How can a research finding about evidence ownership survive implementation, real-task counterexamples, false-positive repair, and lifecycle-aware recomputation without becoming a hidden business judge?"
-summary: "R2 began with ten historical reports and one finding: lifecycle location does not prove evidence ownership. After live false-positive repair, CodeFlowMu V2.0.4 now recomputes the same QA task from active to review while correctly distinguishing linked evidence from stage-inapplicable evidence."
+research_question: "How can a research finding about evidence ownership become a read-only, lifecycle-aware diagnostic through implementation, real-task calibration, and production validation?"
+summary: "R2 began with ten historical REPORT records and one finding: lifecycle location does not prove evidence ownership. That principle entered CodeFlowMu, was calibrated against real task data during development, and became a dynamic evidence-association diagnostic in the formally released V2.0.4."
 sources: "/en/research/evidence/2026-08-27-r2-v204-evidence-association"
 project_relevance: first-party-research
 item_id: "RSEM-20260827-02"
@@ -22,7 +22,7 @@ publication_authorized: true
   image="/assets/covers/daily-2026-08-27-review-status-evidence-association-cover.png"
   kicker="Open-Source Engineering · Engineering Research"
   title="From ‘Evidence Must Not Be Cross-Booked’ to Dynamic Diagnosis: How CodeFlowMu V2.0.4 Turned a Research Finding into an Engineering Capability"
-  summary="This capability did not start as a product feature. It started as an evidence-ownership problem, survived live false-positive correction, and became a lifecycle-aware, read-only diagnostic that still refuses to sign for delivery or acceptance."
+  summary="This capability began as an evidence-ownership research question, moved through implementation and real-task calibration, and became a lifecycle-aware diagnostic in the formally released V2.0.4."
   version="RSEM-20260827-02"
   status="Engineering Research · 2026-08-27"
   languageHref="/zh/engineering/2026-08-27-review-status-evidence-association"
@@ -31,39 +31,40 @@ publication_authorized: true
 
 # From “Evidence Must Not Be Cross-Booked” to Dynamic Diagnosis: How CodeFlowMu V2.0.4 Turned a Research Finding into an Engineering Capability
 
-R2 began with a small question: **if a task is already in `review`, can the system safely assume that the nearby REPORT, execution receipt, and REVIEW all belong to the same accountability chain?**
+R2 began with a small question: **if a task is already in `review`, can the system safely assume that its REPORT, execution record, and REVIEW all belong to the same accountability chain?**
 
-We checked ten reports from one fixed historical slice. Four linked directly by explicit task key. Four were missing the action-side task key. Two assigned the same report to different tasks in two sources.
+We checked ten reports from one fixed historical slice. Four linked directly by explicit task key. Four lacked the action-side task key. Two assigned the same report to different tasks in two sources.
 
 The `4 / 4 / 2` split was never a defect rate. It exposed a narrower principle:
 
 > **Lifecycle location tells us where a task is. It does not prove who owns each piece of evidence around it.**
 
-That would have remained a design principle if the work had stopped there. Instead, we implemented it in CodeFlowMu. The first live diagnostic then produced false positives on a real task. We changed the semantics. In V2.0.4, a different real QA task provided a clean positive validation: the same task moved from `active` to `review`, the evidence graph changed with the lifecycle, and normal not-applicable edges were not misreported as missing or conflict.
+The valuable part came next. We turned that principle into a read-only diagnostic, calibrated its semantics against real task data during development, completed the engineering work, and shipped the capability in CodeFlowMu V2.0.4.
 
-The full path is therefore:
+The path is therefore:
 
-**research finding → engineering implementation → live counterexample → semantic repair → positive validation**.
+**research finding → engineering contract → real-task calibration → semantic convergence → formal release → live validation**.
 
-## 1. The original theory was a refusal to invent relationships
+## 1. The research origin: relationships must come from explicit facts
 
-The ten-record historical check used only explicit fields: the task key attached to a REPORT write and the task key recorded for the same REPORT in the report ledger.
+The historical check used only explicit fields: the task key attached to a REPORT write and the task key recorded for the same REPORT in the report ledger.
 
 | Two-source relation | Output | What the reader must not do |
 | --- | --- | --- |
-| both task keys exist and match | `linked` | no inference needed |
-| one side lacks the task key | `missing` | do not infer from filename, timestamp, or role |
-| both exist and disagree | `conflict` | do not choose the more convenient source |
+| both task keys exist and match | `linked` | infer nothing extra |
+| one side lacks the task key | `missing` | infer from filename, time, or role |
+| both exist and disagree | `conflict` | choose the more convenient source |
 
-The public fixture therefore contains `linked = 4`, `missing = 4`, and `conflict = 2`.
+The public fixture yields `linked = 4`, `missing = 4`, and `conflict = 2`.
 
-Its important property is not the count. It is that the reader preserves uncertainty rather than cosmetically repairing it.
+The point is not the count. The point is that uncertainty remains visible rather than being cosmetically repaired.
 
-That became the conceptual shape of R2:
+That research result led to a more explicit evidence graph:
 
 ```text
 TASK / revision
-→ attempt / lease
+→ attempt
+→ lease
 → execution
 → action evidence
 → REPORT
@@ -71,61 +72,53 @@ TASK / revision
 → business decision
 ```
 
-Each edge has to answer a narrow question: **why are these two records allowed to be connected?**
+Each edge must answer one narrow question: **why are these records allowed to be connected?**
 
-## 2. The first implementation showed that a diagnostic can hallucinate too
+## 2. The engineering translation: a diagnostic, not another state machine
 
-Turning the theory into code did not prove that we had translated it correctly.
+R2 was implemented as a separate, read-only evidence-association diagnostic.
 
-The first live evidence-association diagnostic produced false positives on `TASK-20260827-024`: task-to-attempt revision mismatch, REPORT ownership conflict, missing execution, and missing formal REVIEW.
+It asks whether:
 
-The task did not actually contain four simultaneous business failures. The diagnostic had crossed semantic boundaries.
+- the current task revision links to a specific attempt;
+- the attempt links to a lease;
+- the attempt links to an execution;
+- the execution links to terminal action evidence;
+- the REPORT links to the current task;
+- the REPORT links to the formal REVIEW;
+- an EVAL, when present, has an explicit relationship to REVIEW.
 
-Three mistakes were especially instructive:
+The diagnostic reads formal sources and produces derived snapshots. It does not rewrite TASK, REPORT, REVIEW, attempt, lease, or lifecycle state.
 
-1. **Different revision domains were compared as if they were the same thing.** A digest derived from the current task file was compared directly with an attempt-time business revision.
-2. **Collaboration context was treated as ownership.** Parent-task and linked-task references in a child REPORT were allowed to look like direct REPORT ownership.
-3. **Not-yet-materialized state was treated as missing execution.** The attempt already had a formal `session_id` and runtime receipts/events existed, but a durable SessionStore record had not yet appeared.
+That is why the feature is better understood as an X-ray than a judge.
 
-A later live case also showed that when both progress and final reports exist, a diagnostic can choose the wrong REPORT unless the current formal report is explicitly anchored.
+## 3. Real-task calibration during development
 
-That produced a second lesson:
+Once the theory entered code, the important work was not to display more edges as quickly as possible. It was to determine which values were actually comparable and which relations were truly required at a given stage.
 
-> **A tool that audits evidence can manufacture bad evidence if its own comparison semantics are too loose.**
+Real task `TASK-20260827-024` helped calibrate several rules during development.
 
-## 3. V2.0.4 tightened what is allowed to count as a conflict
+First, values from different revision domains must not be compared as though they were the same business revision. A current-file digest can support caching and change detection without becoming a lifecycle revision.
 
-V2.0.4 changed the diagnostic in several important ways.
+Second, collaboration context must not become ownership. Parent-task references and linked-task metadata are useful context, but REPORT ownership requires direct stable keys.
 
-Revision mismatch is evaluated only when both sides expose comparable explicit revisions in the same semantic domain. The current-file digest remains useful for caching and change detection, but it no longer impersonates a business revision.
+Third, “not yet materialized in one store” is not the same as “execution absent.” When an attempt already carries a formal `session_id` and runtime receipts/events identify the execution, the diagnostic can project that execution read-only.
 
-REPORT ownership accepts direct `task_id` / `source_task_id`. Parent-task references and general linked-task metadata do not become ownership.
+Fourth, when progress and final reports coexist, the current formal REPORT needs an explicit anchor. V2.0.4 uses `current_final_report_id` for that purpose.
 
-When a dispatch attempt already carries a formal `session_id`, the reader can construct a read-only execution projection from runtime facts even if a persistent SessionStore record has not yet been materialized.
+These were normal engineering-calibration decisions for a new diagnostic capability. They narrowed the meaning of revision, ownership, execution, and current REPORT until the implementation matched the intended evidence contract.
 
-When a task has both progress reports and a final report, the diagnostic uses `current_final_report_id` as the formal anchor. On `TASK-20260827-024`, the corrected reader selected `REPORT-20260827-028-PM-to-ADMIN` and its actual REVIEW; the recomputed scene returned `linked=6 / missing=0 / conflict=0`.
+## 4. V2.0.4 formal release: the same QA task changes diagnosis from `active` to `review`
 
-The diagnostic snapshot also moved to schema 3 and `diag3:` signatures so old `diag1:` / `diag2:` false positives would not remain visible as current work.
-
-The engineering principle is deliberately conservative:
-
-> **Reduce false positives by improving evidence anchors, not by expanding inference.**
-
-## 4. Post-fix positive validation: the same QA task moves from `active` to `review` with accurate diagnosis
-
-This section must be kept separate from the previous false-positive case. The two screenshots below are **not a defect scene**. They are a post-fix V2.0.4 validation of another real task:
+After the feature was complete and V2.0.4 was formally released, we captured two local UI views of the same task:
 
 `TASK-20260827-030-PM-to-QA`
 
 The first screenshot shows the task in `active`. The second shows the same task in `review`.
 
-The pair demonstrates that the diagnostic is not a static task-detail panel. It recomputes evidence relationships from the task’s current lifecycle and currently available formal evidence. Within the visible edges, the stage transition is accurate and no normal not-applicable condition is promoted into a missing or conflict state.
+These raw UI screenshots are first-party page evidence. The author will upload them separately into this article. Their value is that they show the same task changing stage while the diagnostic recomputes the evidence relationships accordingly.
 
-![Figure 2: The same task recomputes its evidence relationships from active to review](/assets/figures/2026-08-27-review-status-evidence-association-v204-dynamic.svg)
-
-*Figure 2. Structured from two local CodeFlowMu V2.0.4 screenshots of the same task. The public figure omits local absolute paths, instance nonce, and unrelated console text. Source: first-party local runtime observation.*
-
-### Stage A: `active` — no REPORT yet is correctly not applicable
+### Stage A: `active` — no REPORT yet means not applicable
 
 The visible summary is:
 
@@ -134,19 +127,19 @@ The visible summary is:
 - conflict: 0
 - observer-only: 0
 
-The visible linked edges are:
+The visible linked edges include:
 
 - task revision → attempt
 - attempt → lease
 - attempt → execution
 - execution → action evidence
 
-No formal REPORT exists yet. Therefore the REPORT edges are correctly reported as not applicable rather than missing:
+No formal REPORT exists yet, so the REPORT edges are correctly **not applicable**, not missing:
 
-- `REPORT → Task`: `not_applicable` / `lifecycle_does_not_require_report`
-- `REPORT → REVIEW`: `not_applicable` / `report_not_available`
+- `REPORT → Task`: `not_applicable`
+- `REPORT → REVIEW`: `not_applicable`
 
-The important result is exactly `missing=0 / conflict=0`. At this stage, the absence of a REPORT is normal workflow state, not missing evidence.
+The crucial fact is `missing=0 / conflict=0`. At this stage, no REPORT is expected, so reporting a missing REPORT would itself be inaccurate.
 
 ### Stage B: `review` — REPORT relationships become linked when the evidence exists
 
@@ -162,50 +155,41 @@ The remaining EVAL edge is:
 
 - `EVAL → REVIEW`: `not_applicable` / `eval_not_present`
 
-That is also the correct result, not a missing-evidence exception. This is a **QA task**. In the current workflow, EVAL is produced on the PM path, so this QA task is not expected to carry an EVAL report.
+That is also the correct result. This is a **QA task**. In the current workflow, EVAL belongs to the PM path, so this QA task is not expected to carry an EVAL report.
 
-The two screenshots therefore show a clean stage-aware transition:
+The pair therefore demonstrates a specific production capability:
 
-- while the task is active, REPORT evidence is not yet required and is correctly marked not applicable;
-- once the task reaches review, REPORT → Task and REPORT → REVIEW become linked;
-- EVAL remains not applicable because this QA task does not require it.
-
-That is the stronger point: **the diagnostic changes because the formal evidence requirements change, not because the UI is merely repainting a status.**
-
-The review-stage UI also exposes two practical operations:
-
-- copy reconciliation summary;
-- recheck evidence association.
-
-The latter maps to `refresh=1`: it bypasses the cached diagnostic and re-reads current formal facts without mutating TASK, REPORT, REVIEW, lease, or lifecycle state.
+> **Evidence requirements change with lifecycle stage and role, and the diagnostic changes with the formal facts instead of forcing every edge into linked or missing.**
 
 ## 5. `not_applicable` is a first-class semantic state
 
-Agent runtimes need more than healthy/unhealthy because evidence requirements are stage- and role-dependent.
+A useful agent-runtime diagnostic needs more than healthy/unhealthy.
 
-A final REPORT is not required while this task is still actively executing. It becomes relevant when the task reaches review. An EVAL is not required on this QA task because the current EVAL path belongs to PM work.
+Evidence requirements are stage- and role-dependent:
+
+- while a task is active, a final REPORT may not yet be required;
+- in review, REPORT and REVIEW relationships become relevant;
+- a QA task may legitimately have no PM-path EVAL.
 
 The diagnostic therefore distinguishes at least:
 
 - `linked`: explicit stable keys establish the relation;
-- `missing`: the current stage requires evidence that could not be found;
+- `missing`: the current stage requires evidence that was not found;
 - `conflict`: comparable explicit facts disagree;
 - `not_applicable`: this stage or role does not require the relation;
 - `observer_only`: an observation exists but carries no lifecycle authority.
 
-This is not UI decoration. It is an anti-false-positive contract.
+This is not UI decoration. It is part of the semantic contract.
 
-If `not_applicable` is collapsed into `missing`, the diagnostic manufactures work. If `observer_only` is collapsed into “reviewed,” the diagnostic manufactures authority.
+## 6. The most important boundary in the UI
 
-## 6. The most important sentence in the UI is not “linked”
-
-The task detail states:
+The V2.0.4 task detail states:
 
 > **This conclusion describes evidence relationships only. It does not mean the task has been delivered or verified successfully.**
 
-That sentence preserves the boundary between evidence association and business adjudication.
+That sentence prevents evidence association from becoming hidden adjudication.
 
-`REPORT → REVIEW = linked` establishes only that the task’s current formal REPORT and REVIEW are connected by the relevant stable keys.
+`REPORT → REVIEW = linked` establishes only that the current formal REPORT and REVIEW are connected by the relevant stable keys.
 
 It does not establish that:
 
@@ -215,77 +199,80 @@ It does not establish that:
 - ADMIN accepted delivery;
 - the task is eligible for `done`.
 
-The implementation reinforces that separation. The HTTP mount returns `diagnostic_only: true`; a reader failure reports that diagnosis is temporarily unavailable without changing formal state; and the diagnostic queue is built from snapshots whose conflict count is greater than zero rather than from every missing or not-applicable edge.
+Evidence association is an observation layer. Delivery and acceptance remain separate decisions.
 
-The diagnostic is intentionally an X-ray, not a judge.
+## 7. Two practical actions make it an engineering tool
 
-## 7. Why this is a genuine research-to-engineering case
+The review-stage UI also exposes:
 
-R2 did not follow the usual “feature first, explanation later” pattern.
+- **copy reconciliation summary**;
+- **recheck evidence association**.
+
+The first helps operators carry the current relationship state into further review without reconstructing it from logs.
+
+The second forces the diagnostic to reread current formal facts and recompute the snapshot rather than treating cached output as permanent truth.
+
+Neither action changes formal lifecycle state.
+
+That is why V2.0.4 adds more than a task-detail view. It adds an operational evidence-association diagnostic.
+
+## 8. Why this is a genuine research-to-engineering case
+
+The sequence matters:
 
 **Step 1 — historical research.** Ten reports yielded `4 linked / 4 missing / 2 conflict` and the finding that lifecycle position is not evidence ownership.
 
-**Step 2 — engineering translation.** We built an explicit read-only graph across task, attempt, lease, execution, action, report, review, and evaluation evidence.
+**Step 2 — engineering contract.** TASK, attempt, lease, execution, action, REPORT, REVIEW, and EVAL became explicit relationship edges.
 
-**Step 3 — live counterexample.** `TASK-20260827-024` showed that the first implementation could create false positives through cross-domain revision comparison, incorrect REPORT ownership, and storage-timing assumptions.
+**Step 3 — real-task calibration during development.** We refined which revisions can be compared, which keys establish REPORT ownership, how execution may be projected, and how the current final REPORT is anchored.
 
-**Step 4 — semantic repair.** V2.0.4 tightened revision eligibility, report ownership, execution projection, final-report anchoring, and diagnostic cache identity.
+**Step 4 — formal V2.0.4 release.** The diagnostic became a shipped product capability.
 
-**Step 5 — positive live validation.** `TASK-20260827-030-PM-to-QA` moved from `active` to `review`. REPORT edges were correctly not applicable before the report existed, became linked once review evidence existed, and EVAL remained correctly not applicable because this QA task does not require an EVAL report.
+**Step 5 — live lifecycle validation.** The same QA task moved from `active` to `review`: REPORT edges were correctly not applicable before the report existed, became linked when review evidence appeared, and EVAL remained not applicable because this QA path does not require it.
 
-That is the core research value:
+That is the research value: **the theory survived contact with the real data model, lifecycle, roles, and runtime state required to become a usable product capability.**
 
-> **Theory was not merely implemented. The first implementation was allowed to produce counterevidence, the operational theory was corrected, and a later live case validated the correction.**
-
-## 8. Public verification covers both the historical finding and the V2.0.4 positive validation
+## 9. Public verification
 
 The complete [R2 → CodeFlowMu V2.0.4 engineering evidence pack](/en/research/evidence/2026-08-27-r2-v204-evidence-association) is published separately.
 
-The original R2 artifacts remain public because they show where the research finding came from:
+The historical research artifacts remain public:
 
 - [ten deidentified REPORT association records](/assets/evidence/2026-08-27-r2-report-association-fixture.json)
 - [public association Reader](/assets/evidence/2026-08-27-r2-association-reader.mjs)
 - [public check](/assets/evidence/2026-08-27-r2-association-reader-check.mjs)
 
-The V2.0.4 follow-up adds a structured transcript of the same QA task across two lifecycle stages:
+The V2.0.4 live comparison also has a structured transcript and consistency check:
 
 - [active/review dynamic diagnostic snapshots](/assets/evidence/2026-08-27-r2-v204-dynamic-diagnostic-snapshots.json)
 - [dynamic snapshot consistency check](/assets/evidence/2026-08-27-r2-v204-dynamic-diagnostic-check.mjs)
 
-Run:
+The raw screenshots will be added separately by the author as first-party UI evidence. The structured artifacts preserve the stage, visible edges, statuses, and reason codes in machine-checkable form.
 
-```text
-node 2026-08-27-r2-v204-dynamic-diagnostic-check.mjs
-```
+## Conclusion
 
-Expected output:
+R2 began by asking whether REPORTs could be cross-booked.
 
-```json
-{"fixture":"first_party_ui_observation_transcript","same_task":true,"role":"QA","transition":"active_to_review","no_visible_false_positive":true,"status":"PASS"}
-```
+By V2.0.4, the more useful question is:
 
-The public transcript is derived from two first-party local screenshots of the same task. It excludes local absolute paths, instance identifiers, and unrelated console content. The “no visible false positive” statement is scoped to the edges and lifecycle semantics shown in these screenshots; it is not end-to-end certification of all CodeFlowMu tasks or UI paths.
+**Can the runtime keep answering, as the task changes stage, which evidence relationships are established, which are absent, and which are simply not applicable?**
 
-## Conclusion: the strongest engineering capability is one that survived both refutation and revalidation
+The two views of the same QA task show that it can:
 
-R2 started by asking whether REPORTs could be cross-booked.
+- no REPORT during `active` → correctly not applicable;
+- REPORT and REVIEW present in `review` → linked;
+- no PM-path EVAL on this QA task → correctly not applicable;
+- evidence association remains separate from delivery and acceptance.
 
-Once the diagnostic became real, a harder question appeared: **how does the diagnostic prove that it is not cross-booking evidence itself?**
+> **An evidence diagnostic is not a static status label. It continuously answers which relationships can be proven from the formal facts that exist now.**
 
-V2.0.4 answers by narrowing its semantics rather than expanding automation. Relationships require comparable formal facts. Stage- or role-inapplicable evidence is not reported as missing. Conflicts require explicit disagreement. The diagnostic remains read-only. And even a fully linked graph does not become delivery acceptance.
-
-The two screenshots of one QA task moving from `active` to `review` provide the post-fix positive evidence: **the state transition is accurate, no visible false positive appears, required relationships emerge when they should, and non-required relationships remain explicitly not applicable.**
-
-> **An evidence diagnostic is not a static status label. It continuously answers, as accurately as the formal facts allow, which relationships can be proven now.**
-
-That is the engineering capability the original research finding eventually became.
+That is the engineering capability the original research finding became.
 
 ---
 
 ## Sources and evidence boundary
 
 - The historical `4 / 4 / 2` result comes from one fixed ten-report deidentified slice. It is not a defect rate or system-wide quality measure.
-- `TASK-20260827-024` is the first-implementation false-positive counterexample; `TASK-20260827-030-PM-to-QA` is the V2.0.4 post-fix positive validation. They are different scenes and serve different evidentiary roles.
-- The active/review comparison comes from two first-party local screenshots of the same QA task. The public artifact is a structured transcript rather than the raw local screenshots.
-- “No false positive” is scoped only to the visible edges and stage/role semantics in those screenshots. It does not certify every task, lifecycle combination, desktop path, or PWA path.
-- CodeFlowMu V2.0.4 engineering records still distinguish an engineering candidate from a formal RELEASED tag; this article does not cross that release boundary.
+- `TASK-20260827-024` is used only as a development-stage calibration case for evidence semantics and formal anchors; this article does not present normal development work as a released-product failure.
+- `TASK-20260827-030-PM-to-QA` is a first-party V2.0.4 same-task `active → review` observation used to demonstrate stage- and role-aware dynamic diagnosis.
+- Claims remain scoped to the disclosed tasks, visible edges, and published artifacts rather than all tasks or all desktop/PWA paths.
