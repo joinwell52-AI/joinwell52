@@ -212,7 +212,7 @@ Anywhere Agents 的 `report-state` 提醒我们：**观察失败不能变成结�
 ## 公开证据
 
 - [**Runtime 语义三篇文章：公开证据包**](/zh/research/evidence/2026-08-27-runtime-semantics-evidence-pack)
-- [**R1 Windows `taskkill /T /F` 公开探针**](/assets/evidence/2026-08-27-r1-windows-taskkill-tree-probe.cjs)
+- [**R1 Windows `taskkill /T /F` 公开探针**](/assets/evidence/2026-08-27-r1-windows-taskkill-tree-probe.mjs)
 - [**R1 脱敏已记录结果**](/assets/evidence/2026-08-27-r1-windows-taskkill-recorded-result.json)
 - [**R1 已记录结果检查脚本**](/assets/evidence/2026-08-27-r1-windows-taskkill-recorded-result-check.mjs)
 
