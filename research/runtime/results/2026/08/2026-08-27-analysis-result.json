@@ -1,0 +1,172 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "analysis",
+  "family": "daily",
+  "runtimeDate": "2026-08-27",
+  "status": "Completed",
+  "input": {
+    "scheduler": "research/runtime/SCHEDULER.json",
+    "workerControl": "research/runtime/worker-prompts/generated/CONTROL.json",
+    "workerControlVersion": "1.3.0",
+    "authoritativePrompt": {
+      "path": "research/runtime/worker-prompts/generated/analysis.prompt.md",
+      "version": "2.0.0",
+      "sha256": "4f40dff2d12569f647bf265f344b60cb0f0cd0349f0b2d5cf1023f50947dfea2",
+      "hashVerified": true,
+      "sourceCommit": "61e38d48de1092943db70811302e3b9af0e4dc56"
+    },
+    "requiredSources": [
+      "research/runtime/SCHEDULER.json",
+      "research/runtime/WORKER-CONTRACT-V3.md",
+      "research/runtime/WAKE-RECEIPT-V1.md",
+      "research/editorial/EDITORIAL-ARCHITECTURE.json",
+      "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+      "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+      "research/skills/04-research-analysis.md"
+    ],
+    "admission": {
+      "decision": "Admitted",
+      "date": "2026-08-27",
+      "branch": "main",
+      "wakeSource": "chatgpt-scheduled-task",
+      "requiredCapabilities": [
+        "github-read",
+        "github-write",
+        "file-editing"
+      ],
+      "availableCapabilities": [
+        "github-read",
+        "github-write",
+        "file-editing",
+        "deterministic-hash"
+      ],
+      "notBefore": "13:00",
+      "wakeReceivedAt": "13:02:27",
+      "limits": {
+        "maxRunMinutes": 120,
+        "maxRecoveryAttempts": 2,
+        "maxRevisionRounds": 2,
+        "maxOutputItems": 3,
+        "zeroOutputAllowed": true,
+        "directPublicationAllowed": false,
+        "requireSameRunDateInputs": true,
+        "requirePromptHashVerification": true,
+        "requireRemoteCommitVerification": true
+      }
+    },
+    "readingStatus": "Completed",
+    "readingArtifacts": [
+      "research/reading/Q-20260827-01-runner-process-readiness-runtime-truth.md",
+      "research/reading/Q-20260827-02-host-owned-capability-scoped-entitlement-context.md",
+      "research/reading/Q-20260827-03-trusted-root-skill-provenance-authorization-evidence.md"
+    ],
+    "controlPlane": {
+      "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-27/analysis-130227.json",
+      "executionSlotOpenedAt": "2026-08-27T13:04:40+08:00",
+      "workerClaimedAt": "2026-08-27T13:05:21+08:00",
+      "workerClaimCommit": "cf3d0861641ece3aa3f12c4313d7ce2eb111ba41",
+      "workerClaimVerified": true,
+      "globalOrderVerified": true,
+      "earlierDueTasksClosed": [
+        "discovery",
+        "queue",
+        "reading"
+      ]
+    }
+  },
+  "workResult": {
+    "summary": "Executed only Skill 04 Research Analysis after fail-closed admission, deterministic SHA-256 verification of the authoritative generated Analysis prompt, complete reading of all seven required control/editorial/evidence sources, durable same-date Wake Receipt verification, repository-granted global-serial execution authority and a verified Worker Claimed event. Consumed only the three completed 2026-08-27 Reading Results and produced exactly three Research Objects. Q-20260827-01 concludes that externally visible Running should be an evidence-backed execution-readiness state rather than scheduler intent, assignment or worker claim; the selected Claude Code evidence establishes only that the affected Running publication must not precede process startup, not that process startup equals full health or universal readiness. Q-20260827-02 concludes that authority-bearing account context should be minted by the host that can verify governing identity, caller copies should be stripped, propagation should be capability-scoped by explicit conjunctive predicates, and unverifiable state should fail closed; this is a bounded authority-evidence broker pattern rather than proof of complete downstream authorization. Q-20260827-03 concludes that an invoked skill should influence authorization only after host-observed invocation provenance is resolved through an authority-owned trusted-root boundary; canonical path provenance does not prove semantic safety, immutable content identity or contemporaneous human approval. No prior-day research input, fixed article outline, forced first-party project mapping, article drafting, visualization, Publication Candidate creation or publication was used or performed.",
+    "summary_zh": "在完成 Fail-closed Admission、权威 Generated Analysis Prompt 的 SHA-256 确定性核验、全部 7 个 Required Control/Editorial/Evidence Source 的完整读取、同日 Wake Receipt 持久核验、仓库授予的全局串行执行权与 Worker Claimed 核验后，仅执行 Skill 04 Research Analysis。只消费 2026-08-27 当日三份已完成 Reading Result，并恰好形成三份 Research Object。Q-20260827-01 的判断是：对外可见 Running 应是有 Evidence 支持的 Execution-readiness State，而不是 Scheduler Intent、Assignment 或 Worker Claim；所选 Claude Code 证据只建立受影响 Running Publication 不得早于 Process Startup，不能把 Process Startup 扩大解释为 Full Health 或 Universal Readiness。Q-20260827-02 的判断是：携带 Authority 的 Account Context 应由能够核验 Governing Identity 的 Host 生成，Caller Copy 应被移除，传播应通过显式合取 Predicate 按 Capability 范围收缩，无法核验时应 Fail Closed；这是一种有界 Authority-evidence Broker Pattern，不是完整 Downstream Authorization 的证明。Q-20260827-03 的判断是：被调用 Skill 只有在 Host 已观察真实 Invocation，并通过 Authority-owned Trusted-root Boundary 解析其 Provenance 后，才应影响 Authorization；Canonical Path Provenance 不能证明 Semantic Safety、Immutable Content Identity 或当前真人 Approval。未复用前一日研究输入，也未使用固定文章大纲、强行映射自有项目，未执行文章撰写、可视化、Publication Candidate 创建或发布。",
+    "researchObjects": [
+      {
+        "column": "digital-employee",
+        "itemId": "Q-20260827-01",
+        "artifact": "research/analysis/Q-20260827-01-execution-readiness-before-running-state.md",
+        "articleType": "technical-analysis",
+        "projectRelevance": "none",
+        "judgment": "Externally visible Running should be published only after the runtime holds the evidence required to justify the semantics downstream consumers attach to that state. Scheduler intent, assignment and worker claim should remain distinguishable from execution readiness. Claude Code v2.1.247 establishes process-start ordering for the affected path, not a universal definition of full readiness.",
+        "judgment_zh": "对外可见的 Running 只有在 Runtime 已持有足以支撑下游消费者对该状态所赋语义的证据后才应发布。Scheduler Intent、Assignment、Worker Claim 与 Execution Readiness 应保持可区分。Claude Code v2.1.247 建立的是受影响路径上的 Process-start Ordering，而不是 Full Readiness 的通用定义。"
+      },
+      {
+        "column": "industry-architecture",
+        "itemId": "Q-20260827-02",
+        "artifact": "research/analysis/Q-20260827-02-host-minted-capability-scoped-access-evidence.md",
+        "articleType": "technical-analysis",
+        "projectRelevance": "none",
+        "judgment": "Authority-bearing access context should be minted by the host that can verify governing account identity, should replace rather than trust caller copies, and should be injected only across an explicitly qualified capability edge. Verification should be bounded and fail closed when identity continuity or evidence cannot be established. The demonstrated mechanism is a narrow authority-evidence broker, not a complete authorization system.",
+        "judgment_zh": "携带 Authority 的 Access Context 应由能够核验 Governing Account Identity 的 Host 生成，应替换而不是信任 Caller Copy，并且只应跨越显式合格的 Capability Edge 注入。Verification 应有边界，并在无法建立 Identity Continuity 或 Evidence 时 Fail Closed。所展示机制是狭窄的 Authority-evidence Broker，而不是完整 Authorization System。"
+      },
+      {
+        "column": "open-source-engineering",
+        "itemId": "Q-20260827-03",
+        "artifact": "research/analysis/Q-20260827-03-host-verified-skill-invocation-provenance.md",
+        "articleType": "engineering-insight",
+        "projectRelevance": "none",
+        "judgment": "An invoked skill should contribute authorization evidence only after the host has observed the invocation and verified its provenance against an authority-owned trust boundary such as canonical trusted roots. Repository-controlled labels, markup and path-like text should remain non-authorizing. The demonstrated Guardian pattern establishes bounded invocation provenance, not semantic safety, immutable content identity or universal user authorization.",
+        "judgment_zh": "被调用 Skill 只有在 Host 已观察到真实 Invocation，并依据 Authority-owned Trust Boundary（例如 Canonical Trusted Root）核验其 Provenance 后，才应贡献 Authorization Evidence。Repository-controlled Label、Markup 与 Path-like Text 应保持 Non-authorizing。所展示 Guardian Pattern 建立的是有界 Invocation Provenance，而不是 Semantic Safety、Immutable Content Identity 或通用 User Authorization。"
+      }
+    ],
+    "boundary": {
+      "unreadMaterialAnalyzed": false,
+      "priorDayResearchInputsReused": false,
+      "fixedArticleOutline": false,
+      "forcedFirstPartyMapping": false,
+      "articleWriting": false,
+      "visualization": false,
+      "publicationCandidate": false,
+      "publication": false
+    }
+  },
+  "output": {
+    "type": "Research Objects",
+    "researchObjectCount": 3,
+    "artifacts": [
+      "research/analysis/Q-20260827-01-execution-readiness-before-running-state.md",
+      "research/analysis/Q-20260827-02-host-minted-capability-scoped-access-evidence.md",
+      "research/analysis/Q-20260827-03-host-verified-skill-invocation-provenance.md"
+    ]
+  },
+  "next": {
+    "task": "production",
+    "scheduledTime": "15:00",
+    "instruction": "Production may consume only these three completed 2026-08-27 Research Objects after its 15:00 formal time gate, fresh admission, authoritative prompt verification, global serial-order check and Worker Claim. Preserve the bounded evidence identities: process-start ordering does not prove full health or universal readiness; host-minted access context does not prove complete downstream authorization; trusted-root invocation provenance does not prove skill-content safety, immutability or universal user authorization.",
+    "instruction_zh": "Production 只能在 15:00 正式时间门禁之后，并完成新的 Admission、权威 Prompt Verification、全局串行顺序检查与 Worker Claim 后，消费这三份 2026-08-27 已完成 Research Object。必须保留有界 Evidence Identity：Process-start Ordering 不能证明 Full Health 或 Universal Readiness；Host-minted Access Context 不能证明完整 Downstream Authorization；Trusted-root Invocation Provenance 不能证明 Skill-content Safety、Immutability 或通用 User Authorization。"
+  },
+  "metrics": [
+    {"name": "reading_results_consumed", "value": 3},
+    {"name": "research_objects", "value": 3},
+    {"name": "prompt_hash_verified", "value": 1},
+    {"name": "required_sources_read", "value": 7},
+    {"name": "wake_receipts_verified", "value": 1},
+    {"name": "worker_claims_verified", "value": 1},
+    {"name": "prior_day_research_inputs_reused", "value": 0},
+    {"name": "first_party_project_mappings_forced", "value": 0},
+    {"name": "article_drafts", "value": 0},
+    {"name": "publication_actions", "value": 0},
+    {"name": "revision_rounds_used", "value": 0}
+  ],
+  "evidence": [
+    "61e38d48de1092943db70811302e3b9af0e4dc56",
+    "research/runtime/wakes/2026/08/2026-08-27/analysis-130227.json",
+    "research/runtime/records/daily/2026/08/2026-08-27-daily-runtime.json",
+    "research/runtime/worker-prompts/generated/CONTROL.json",
+    "research/runtime/worker-prompts/generated/analysis.prompt.md",
+    "research/runtime/WORKER-CONTRACT-V3.md",
+    "research/runtime/WAKE-RECEIPT-V1.md",
+    "research/editorial/EDITORIAL-ARCHITECTURE.json",
+    "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+    "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+    "research/skills/04-research-analysis.md",
+    "research/runtime/results/2026/08/2026-08-27-reading-result.json",
+    "research/reading/Q-20260827-01-runner-process-readiness-runtime-truth.md",
+    "research/reading/Q-20260827-02-host-owned-capability-scoped-entitlement-context.md",
+    "research/reading/Q-20260827-03-trusted-root-skill-provenance-authorization-evidence.md",
+    "cf3d0861641ece3aa3f12c4313d7ce2eb111ba41"
+  ],
+  "artifacts": [
+    "research/analysis/Q-20260827-01-execution-readiness-before-running-state.md",
+    "research/analysis/Q-20260827-02-host-minted-capability-scoped-access-evidence.md",
+    "research/analysis/Q-20260827-03-host-verified-skill-invocation-provenance.md",
+    "research/runtime/results/2026/08/2026-08-27-analysis-result.json"
+  ]
+}
