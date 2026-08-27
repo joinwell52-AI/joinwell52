@@ -1,5 +1,5 @@
 ---
-title: "服务在线，不代表任务可以继续：从 OpenHands 到 CodeFlowMu 的恢复资格与因果边界"
+title: "服务在线，不代表任务可以继续：OpenHands 的会话故障与 Agent 恢复边界"
 date: '2026-08-26'
 column: digital-employee
 category: daily
@@ -21,7 +21,7 @@ publication_authorized: true
 <ArticleCover
   image="/assets/covers/daily-2026-08-26-service-health-task-recovery-case-cover.png"
   kicker="数字员工 · 工程研究"
-  title="服务在线，不代表任务可以继续：从 OpenHands 到 CodeFlowMu 的恢复资格与因果边界"
+  title="服务在线，不代表任务可以继续：OpenHands 的会话故障与 Agent 恢复边界"
   summary="健康只能说明服务还能回答；真正恢复还要重新证明任务可执行、依赖已满足，并把每一次继续与对应证据绑定。"
   version="EBR-20260826-04"
   status="工程研究 · 2026-08-26"
@@ -29,7 +29,7 @@ publication_authorized: true
   languageLabel="English"
 />
 
-# 服务在线，不代表任务可以继续：从 OpenHands 到 CodeFlowMu 的恢复资格与因果边界
+# 服务在线，不代表任务可以继续：OpenHands 的会话故障与 Agent 恢复边界
 
 **服务还能返回 200，只能说明某个接口仍然活着；它不能证明会话还在推进，更不能证明当前任务现在有资格继续。一次可靠的 Agent 恢复，真正需要重新证明的是：谁有权恢复、任务是否已经进入合法可执行状态、当前执行权是否仍有效，以及下游释放所依赖的上游事实是否真的成立。**
 
