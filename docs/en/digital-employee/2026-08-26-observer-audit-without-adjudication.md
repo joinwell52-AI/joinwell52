@@ -37,6 +37,16 @@ We recently repaired a real EVAL path in CodeFlowMu. We then read further into Y
 
 **CodeFlowMu is a locally run multi-agent collaboration system that uses tasks, roles, gates, reports, and approvals to organize agent work into an execution chain that can be traced, recovered, and verified.** The narrow question here is not whether audit agents should be useful. It is: **who is authorized to turn an observation into a business consequence?**
 
+## This is not an accidental overlap
+
+Our interest in this line of work predates the present Anywhere Agents comparison. TMPA already cites **“Auditable Agents”** by Yi Nian, Aojie Yuan, Haiyue Zhang, Jiate Li, and Yue Zhao (arXiv:2604.05485) as reference [17]. That paper studies agent auditability. Yue Zhao's current public projects continue along a closely related engineering line.
+
+`GRADE` represents an agent run as two graph layers: execution order and what each step depended on, while distinguishing observed, declared, and inferred dependency evidence. `auditable` pushes further into decision records and recovery: it captures the state a decision relied on, replays the decision against live state, and can route rollback when the original preconditions no longer hold. `awesome-auditable-ai` states the auditability goal directly: a system should be able to establish what an agent did, what it relied on, why it acted, and whether the action was right.
+
+These projects are not one implementation lineage with CodeFlowMu or TMPA, and we do not treat any of them as feature evidence for our own system. The research overlap is nevertheless substantial: **execution logs alone are not enough; an auditable agent system also needs dependency, provenance, responsibility, and decision boundaries.** TMPA emphasizes multi-agent task governance and responsibility structure. CodeFlowMu operationalizes those questions through long-running tasks, gates, reports, and approvals. Yue Zhao's recent work approaches adjacent questions through run graphs, dependency structure, audit trails, replay / recovery, and practical agent tooling.
+
+That is why Anywhere Agents appears here not because one commit merely “looks like CodeFlowMu,” but because it provides a concrete engineering slice of a research line we have already been following: **how auditability can become stronger while adjudication authority remains explicitly bounded.**
+
 ## 1. A real defect: 7 / 7 and 4 / 4 were green while the authority boundary was still wrong
 
 CodeFlowMu uses EVAL for fact checking: inspect evidence, identify contradictions, and record observations. Formal acceptance belongs to an authorized review role. Those responsibilities are intended to remain separate.
@@ -154,11 +164,15 @@ The shared lesson is therefore narrower than “audits should be advisory”:
 
 ## Sources and evidence boundary
 
-### Anywhere Agents
+### Public Yue Zhao research and engineering context
 
-- [**Yue Zhao / Anywhere Agents issue #35**](https://github.com/yzhao062/anywhere-agents/issues/35): used for the design evolution from optional hand-rolled audit to deterministic scripting, and the later discussion of `Style status`, review-body injection, and review-loop blocking risk.
+- [**“Auditable Agents”**](https://arxiv.org/abs/2604.05485), Yi Nian, Aojie Yuan, Haiyue Zhang, Jiate Li, and Yue Zhao, 2026. TMPA already cites this work as reference [17]. It is used here to establish continuity of research interest, not to imply that subsequent repositories are direct implementations of the paper.
+- [**GRADE**](https://github.com/yzhao062/grade): used as background for execution / dependency two-layer run representation and observed / declared / inferred dependency evidence.
+- [**auditable**](https://github.com/yzhao062/auditable): used as background for decision dependency capture, live-state replay, and rollback.
+- [**Awesome Auditable AI**](https://github.com/yzhao062/awesome-auditable-ai): used as background for the public auditability / reliability problem map.
+- [**Anywhere Agents issue #35**](https://github.com/yzhao062/anywhere-agents/issues/35): used for the design evolution from optional hand-rolled audit to deterministic scripting, and the later discussion of `Style status`, review-body injection, and review-loop blocking risk.
 - [**Anywhere Agents commit `53bd8fa`**](https://github.com/yzhao062/anywhere-agents/commit/53bd8fa43c7339ae9958c03c55434fac7baddaf3), 2026-08-25: used for `agent-io` scope, different trust depth between advisory and deny behavior, and the construction that keeps advisory findings out of reviewer prompts, Round history, and final verdict.
-- [**`style-audit.py` at the referenced commit**](https://github.com/yzhao062/anywhere-agents/blob/53bd8fa43c7339ae9958c03c55434fac7baddaf3/skills/implement-review/scripts/style-audit.py): used to verify the staged-blob, changed-line scoping, and “advisory by construction” rationale.
+- [**`style-audit.py` at the referenced commit**](https://github.com/yzhao062/anywhere-agents/blob/53bd8fa43c7339ae9958c03c55434fac7baddaf3/skills/implement-review/scripts/style-audit.py): used to verify staged-blob auditing, changed-line scoping, and the “advisory by construction” rationale.
 
 Figures such as 34 session transcripts, 2,227 advisory lines, and 359→2 findings are measurements reported by the Anywhere Agents author in the cited issue / commit. They were not independently reproduced here and are not treated as universal accuracy or effectiveness metrics.
 
