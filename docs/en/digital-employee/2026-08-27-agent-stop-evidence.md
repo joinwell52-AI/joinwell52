@@ -212,7 +212,7 @@ A reliable agent runtime does not need to pretend it knows everything. Before re
 ## Public evidence
 
 - [**Runtime Semantics: Public Evidence Pack for Three Articles**](/en/research/evidence/2026-08-27-runtime-semantics-evidence-pack)
-- [**R1 public Windows `taskkill /T /F` probe**](/assets/evidence/2026-08-27-r1-windows-taskkill-tree-probe.cjs)
+- [**R1 public Windows `taskkill /T /F` probe**](/assets/evidence/2026-08-27-r1-windows-taskkill-tree-probe.mjs)
 - [**R1 deidentified recorded result**](/assets/evidence/2026-08-27-r1-windows-taskkill-recorded-result.json)
 - [**R1 recorded-result check**](/assets/evidence/2026-08-27-r1-windows-taskkill-recorded-result-check.mjs)
 
