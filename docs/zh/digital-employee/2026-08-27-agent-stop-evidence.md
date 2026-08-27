@@ -1,12 +1,12 @@
 ---
-title: "取消了 Agent，子进程真的停了吗？本地多 Agent 运行时的“停止”证据该怎么读"
+title: "取消了 Agent，子进程真的停了吗？从 Anywhere Agents 看 Agent Runtime 的停止证据边界"
 date: '2026-08-27'
 column: digital-employee
 category: daily
 article_type: engineering-analysis
 edition: research-center
-research_question: "在本地多 Agent 运行时中，一次取消请求、根进程退出与整棵执行树已收拢，能否被同一个“已停止”状态代替？"
-summary: "从一批“结果不见、尾部还在”的真实外部工作单元出发，结合一次 Windows 窄探针，讨论为什么取消请求不能被写成进程树已经收拢。"
+research_question: "一次取消请求、终止命令成功、已知 PID 消失、执行树收拢与重新派工资格，能否被同一个“已停止”状态代替？"
+summary: "从 Anywhere Agents 对遗留结果与孤儿进程的连续审计出发，结合一份可公开重跑的 Windows 二层进程探针，讨论 Agent Runtime 为什么必须把“发出取消”与“证明执行树已经停止”分开。"
 sources: "/zh/research/evidence/2026-08-27-runtime-semantics-evidence-pack"
 project_relevance: first-party-research
 item_id: "RSEM-20260827-01"
@@ -21,79 +21,210 @@ publication_authorized: true
 <ArticleCover
   image="/assets/covers/daily-2026-08-27-agent-stop-evidence-cover.png"
   kicker="数字员工 · 工程研究"
-  title="取消了 Agent，子进程真的停了吗？本地多 Agent 运行时的“停止”证据该怎么读"
-  summary="从一批“结果不见、尾部还在”的真实外部工作单元出发，结合一次 Windows 窄探针，讨论为什么取消请求不能被写成进程树已经收拢。"
+  title="取消了 Agent，子进程真的停了吗？从 Anywhere Agents 看 Agent Runtime 的停止证据边界"
+  summary="取消是一项控制动作，停止是一组需要证明的后置条件。PID 消失、命令返回 0、执行树收拢与重新派工资格不能互相代替。"
   version="RSEM-20260827-01"
   status="工程研究 · 2026-08-27"
   languageHref="/en/digital-employee/2026-08-27-agent-stop-evidence"
   languageLabel="English"
 />
 
-# 取消了 Agent，子进程真的停了吗？本地多 Agent 运行时的“停止”证据该怎么读
+# 取消了 Agent，子进程真的停了吗？从 Anywhere Agents 看 Agent Runtime 的停止证据边界
 
-有一类 Agent 故障最容易被界面掩盖：任务已经停了，留下的尾部输出还在，记录里也有一个结果路径；可那个结果文件已经不在原处。此时最自然的冲动是“把任务再派一次”。可只要旧的执行者或子进程还在写工作区，第二次派工就可能把两次执行叠在一起。
+**取消是一项动作；停止是一组后置条件。**
 
-赵岳在 Anywhere Agents 的一次维护中遇到过这样的遗留现场：**27 个工作单元记录过结果路径，但目标结果文件已经消失，仍有 24.3 MiB 尾部输出可供检查。** 他没有把这些单元统一叫作“可恢复”或“已失败”。相反，工具把“路径能否解析”和“结果能否观察”分成两个字段；读取权限错误、I/O 错误和不存在是不同结果。只有确实收到 `FileNotFoundError`，它才说文件“缺失”。[原始提交](https://github.com/yzhao062/anywhere-agents/commit/570c89f4c4bfa03bc5cea0a43a7fcf9fef0261ab)把这条规则写得很克制：观察失败，不能变成执行结论。
+这两个概念在 Agent 系统里很容易被一枚“已取消”图标合并。用户点击 Cancel，Runtime 发出终止命令，命令返回成功，于是页面显示“Stopped”。但如果旧 child 仍在写文件、一个 grandchild 已经脱离原进程组，或者结果文件只是暂时不可读，那么“停止成功”其实把几种完全不同的事实压成了一个结论。
 
-这件事让我们回头看取消按钮。CodeFlowMu 是我们正在开发的一个本地运行多 Agent 协作系统。取消一条 DEV 任务时，页面要不要显示“已停止”？在回答之前，我们先问了一个更具体的问题：**系统究竟看到了什么？**
+真正重要的问题不是 Cancel 按钮有没有生效，而是：**系统到底证明到了哪一层？**
 
-## 一个取消按钮后面，其实站着四个不同的事实
+## 1. Anywhere Agents 先给出了一条很严格的观察规则：看不到，不等于不存在
 
-假设一个 Agent 正在构建项目。负责人发现它拿到的是旧需求，于是取消本轮执行。接下来可能依次发生：Runtime 发出终止请求；外层 wrapper 进程退出；它启动的直接 child 退出；结果文件停止变化；任务获得新一轮执行资格。
+Yue Zhao 在 Anywhere Agents 的提交 `570c89f` 中处理了一批被中断后留下的 `prun-task-*` 工作单元。作者报告：有 **27 个 unit 已记录 result path，但对应 result file 已经消失；同时仍保留 24.3 MiB tail output**。这些数字来自该提交的工程现场报告，本文没有独立复现。
 
-这些不能合成一句“停止成功”。
+更值得注意的不是数量，而是它对“观察失败”的处理方式。`report-state` 没有把 unit 简化成“可恢复 / 已失败 / 可重派”，而是拆成两个正交字段：
 
-| 现场里发生的事 | 它可以证明什么 | 它不能证明什么 |
+- `result_path_state`：记录的结果路径是否能被解析；
+- `result`：目标文件当前到底是 `present / empty / missing / unknown`。
+
+只有明确收到 `FileNotFoundError`，工具才允许把结果写成 `missing`。权限拒绝、I/O 错误、非普通文件、入口过长或根目录不可读都不会被偷换成“不存在”。提交里把原则写得非常直接：
+
+> **failed observation never becomes an outcome**
+
+也就是：**观察失败，不能自动升级成执行结论。**
+
+这条规则对“取消 Agent”同样适用。根 PID 看不到，最多说明根 PID 当前不可观察；只有拥有更强的 containment 证据，系统才有资格把结论扩大到整个执行树。
+
+## 2. Issue #29 更进一步：四轮更强的“已回收”都被反例推翻
+
+Anywhere Agents 的开放 Issue #29 很有研究价值，因为它不是只提出“孤儿进程难处理”，而是记录了四轮逐步加强的 `reap-orphans` 方案，以及每一轮为什么仍然不足。
+
+| 轮次 | 当时想证明什么 | 被什么反例推翻 |
 | --- | --- | --- |
-| Runtime 记录了取消请求 | 系统确实尝试停下本轮执行 | 操作系统已经终止任何进程 |
-| wrapper PID 消失 | 已知的外层进程不再存在 | 后代进程、文件句柄或端口已清理 |
-| 直接 child 也消失 | 当前观察范围内的一层 child 已退出 | 没有逃逸的后代在别处继续运行 |
-| 结果路径不可读 | 当前无法从该位置取得结果 | 任务没有其他副本，或生产者不会再写入 |
-| PM 允许重新派工 | 一条新的正式执行被允许 | 上一次执行树已被完全收拢 |
+| Round 1 | signal 已发送，所以可以说 `REAPED` | `kill` 全部失败，仍然报告 `REAPED` |
+| Round 2 | 记录的 root 已消失 | descendant 忽略 `TERM` 后继续存活 |
+| Round 3 | process group 已为空 | descendant 用 `setsid` 离开原 group |
+| Round 4 | 多轮快照 fixed point 已收敛 | 短寿命 intermediate 在两次枚举之间生成 grandchild 后退出，grandchild 从未进入 seen set |
 
-![图 1：一次取消实际证明到哪里](/assets/figures/2026-08-27-agent-stop-evidence-figure-1.svg)
+Round 4 尤其关键：它不需要 PID reuse、不需要查询失败、也不需要扫描超时。纯粹依靠时序，就可以出现：reaper 认为已经收敛、打印 `REAPED`，但 grandchild 仍然活着。
 
-*图 1：取消请求、外层进程退出和一层直接子进程退出，是三种可以分别观察的事实；它们共同构成本轮 Windows 检查的范围，但不等于已经证明任意深度的进程树都被收拢。来源：公开候选证据包 R1。*
+因此 issue 最后的结论不是“再多扫几遍”，而是把证明责任前移到 **dispatch time**：如果 worker 在启动时没有被放进内核可约束的 closed set，之后的 reaper 只能通过 PID、parent link 和 process group 去推断成员，而这些关系都可以逃逸。
 
-真正危险的，是最后两行被偷换：某个结果没读到，或负责人想尽快恢复，不会自动清空旧现场。
+作者提出的方向是：Windows 用 **Job Object**，POSIX 保证 session / `setsid`；只有 containment 先在 spawn 时成立，后续 reaper 才有资格对整个执行树作更强的 postcondition 声明。该 issue 甚至把 `REAPED` 保留给 kernel-backed containment，在这一前提真正实现之前不让它成为可达结果。
 
-## “根进程没了”为什么仍然不够
+这不是 CodeFlowMu 的实现依据，也不证明我们的 Runtime 存在同样 bug。但它给出一个非常有用的审计原则：
 
-Anywhere Agents 的 [Issue #29](https://github.com/yzhao062/anywhere-agents/issues/29) 把这个问题推进得更深。作者复盘了四轮“reap orphan”（回收孤儿进程）实现：一开始只证明信号已发送；后来证明记录的根进程不在；再后来检查进程组；最后尝试从多轮快照收敛。每一轮都被一个更窄的反例推翻：后代可以忽略信号、离开进程组，或在两次枚举之间产生新的 child。
+> **停止范围越大，证明责任越不能只靠“我现在没看见它”。**
 
-因此这个开放 issue 主张把 worker 放进内核可约束的容器，让“已回收”成为可证明的事实，而不是从 PID、父子关系和进程组推出来的猜测。它讨论的是 Anywhere Agents 的设计路线，并不说明 CodeFlowMu 有同一种 bug；它给我们的提醒只有一条，却足够重要：**看不见一个进程，和能证明它不存在，是两种能力。**
+## 3. 一个“已停止”状态至少压着六种不同事实
 
-## 我们做了一次很小的 Windows 检查
+为了避免把动作和后置条件混在一起，可以把取消现场拆成下面几层：
 
-CodeFlowMu 的受管命令记录已经区分任务、执行轮次、租约、wrapper/child PID、心跳、取消请求与取消结果。Windows 取消路径会调用 `taskkill /PID <pid> /T /F`，尝试结束该 PID 及其子树。
+| 事实层 | 能证明什么 | 不能证明什么 |
+| --- | --- | --- |
+| cancellation requested | Runtime 确实发出了取消意图 | 操作系统已经停止任何进程 |
+| termination command succeeded | 终止工具返回了成功结果 | 所有 descendant 已退出 |
+| root exit observed | 已知 root / wrapper PID 不再可观察 | child、grandchild、句柄、端口都清理完毕 |
+| known child exit observed | 已知 direct child 已退出 | 没有逃逸 descendant |
+| containment proven | 执行单元属于可被整体约束的 closed set | 工作区一定没有异步尾部写入 |
+| redispatch eligible | 调度规则允许新一轮执行 | 上一轮所有 OS 资源都已被证明消失 |
 
-为了知道这句话到底能说到哪里，我们没有直接把它写成“进程树安全回收”，而是在隔离临时目录创建了一个 wrapper 和一个直接 child，再让 Runtime 使用同一条 `taskkill /T /F` 路径终止 wrapper。探针结果是 **1/1 PASS**：wrapper 与这个直接 child 都退出。
+这六层可以互相引用，但不能互相代签。
 
-这个结果解决了一次具体疑问：在这台 Windows 主机、这类两层进程关系中，`/T` 确实没有只杀掉外层。它没有解决更大的问题：child 能不能脱离原关系？更深的后代、不同权限、容器和远程执行器怎么办？代码阅读中也还没有发现 Windows Job Object（作业对象）一类内核级 containment 的实现或回归夹具。
+尤其要避免两种跳跃：
 
-我们还重跑了一个既有的静默作业夹具：一个受管命令经历模拟两小时、101 次观察以及索引丢失后的重启恢复，仍被保留为可诊断记录，结果 **1/1 通过**。这条测试回答的不是“进程都死了吗”，而是另一件同样重要的事：没有新输出，不能被 Runtime 悄悄写成“已经死亡”。
+**`taskkill exit 0 → entire tree gone`**
 
-## 交接给下一位 Agent 的，不应是一句“已停止”
+以及：
 
-真正有用的做法是把停止结果交成一张小小的证据单。下一位 Agent 或 PM 不需要先读一屏日志，只需要看清下面几项：
+**`PM allowed retry → old execution definitely gone`**
+
+前者把工具结果扩写成 OS containment 事实；后者把治理许可扩写成进程事实。
+
+## 4. 我们自己的 Windows 探针到底证明了什么
+
+CodeFlowMu 是我们正在开发的本地多 Agent Runtime。第一方代码路径在 Windows 上使用：
 
 ```text
-本轮执行：取消请求已发送
-外层进程：已观察退出
-已知直接 child：已观察退出
-执行树收拢：未验证
-结果文件：当前不可读 / 仍待确认
-下一步：由既有重派规则或 PM 决定
+taskkill /PID <pid> /T /F
 ```
 
-这里“未验证”不是失败，也不是逃避。它阻止的是一种昂贵的误操作：系统把未知现场当作清理完毕，然后让新的 Agent 在同一工作区开始第二轮修改。
+来终止受管命令的 wrapper 及其 Windows 进程树视图。
 
-本地优先并不要求我们装作已经解决了分布式进程管理。当前产品范围是一个本地工作区与一个受控 Runtime；同一任务在本地调度路径中的并发领取已有租约互斥，另一方会收到 `LEASE_CONFLICT`。这降低了同一路径把两个 DEV 同时派到同一任务的风险，但不能外推成两个独立 Runtime、网络文件系统或任意进程树的保证。
+我们没有直接把这条命令写成“进程树已安全收拢”。相反，我们做了一个故意很窄的实验：在新的临时目录里启动一个 wrapper，再由 wrapper 启动一个长寿命 direct child；确认两个 PID 都存在后，对 wrapper 执行同一条 `taskkill /T /F`，随后分别观察两个 PID。
 
-下一步值得建设的不是更醒目的“取消成功”绿勾，而是三类反例：wrapper 异常退出但 child 继续运行；child 脱离原进程关系；结果仍在写入时又收到取消和重派。每个反例都应该留下同一组答案：系统看到了什么、没看到什么、据此允许了什么。
+那次受控 Windows 主机记录为：
 
-一条可靠的取消记录不必假装无所不知。它只要让团队在重新派工前，清楚地区分：已经停下的部分，和仍然需要被证明的部分。
+- `taskkill` exit code = `0`；
+- wrapper exit observed = `true`；
+- direct child exit observed = `true`；
+- `kernel_containment_proven = false`。
+
+因此这次 **PASS** 只能支持一句很窄的话：
+
+> **在这个 Windows 主机、这个 wrapper + direct child 样本中，`/T` 没有只结束 wrapper；两个已知 PID 都被观察到退出。**
+
+它不能支持：
+
+> “任意深度 Windows Agent 进程树都已被证明收拢。”
+
+目前公开证据包已经把这个实验合同物化成 Windows 专用 probe，并公开了脱敏 recorded result 和 record-check。读者可以在自己的 Windows 机器上重新运行同一二层合同；非 Windows 主机则直接拒绝运行，不会返回假 PASS。
+
+这比只给一行“1/1 PASS”更重要，因为**可重跑不等于扩大结论**。即使别的 Windows 主机再次 PASS，也仍然没有覆盖 escaped descendant、短寿命 intermediate、跨权限、更深层级、容器或远程 worker。
+
+## 5. `cancelled` 更适合被理解成控制面结果，而不是 containment 证明
+
+这里还有一个值得我们自己继续收紧的语义问题。
+
+当前第一方受管命令路径在终止工具成功后，可以把本次 command 记录进入 `cancelled`。这个字段对控制面是有价值的：它说明**这次取消操作已经按当前机制执行完**。但如果 UI 或后续调度把 `cancelled` 直接解释成“所有 descendant 都不存在”，语义就超出了当前证据。
+
+更稳健的停止记录应该拆成独立字段或独立证据轴，例如：
+
+```text
+cancel_request          sent
+termination_command     exit_0
+root_exit               observed
+known_child_exit        observed
+containment             unverified
+workspace_quiescence    unverified
+redispatch_eligibility  decided_by_existing_rule
+```
+
+这样，“未知”不会被强行塞进“失败”，也不会因为控制命令成功就被涂成全绿。
+
+## 6. 静默也不能被写成死亡
+
+停止证据还有另一面：不仅不能把“看不到”写成“已经死了”，也不能把“暂时没有输出”写成“已经失活”。
+
+我们重跑过一个既有 managed-command fixture：受管作业经历模拟两小时静默、101 次观察，以及索引丢失后的 restart recovery，仍然保持为可诊断记录。这个定向 test 是 **1/1 PASS**。
+
+它回答的不是进程树 containment，而是另一条语义边界：
+
+> **silence ≠ death**
+
+和前面的：
+
+> **cancel requested ≠ tree gone**
+
+其实属于同一种纪律——Runtime 应记录它真正观察到的事实，而不是用缺少新信号来补一个更方便的结论。
+
+## 7. 真正危险的是取消和重派之间的空白区
+
+为什么要这么较真？因为最昂贵的事故往往不是第一次执行失败，而是**第二次执行启动得太早**。
+
+旧 wrapper 已经退出，但某个 descendant 仍在写文件；PM 根据业务规则批准 retry；新的 Agent 又拿到同一个 workspace。此时 lease 可以阻止同一调度路径上的两个正式 attempt 同时占有执行权，但 lease 本身不能杀掉一个已经逃逸到 Runtime 观察之外的 OS 进程。
+
+所以“能否重派”至少要明确区分两种判断：
+
+- **governance / scheduling eligibility**：这项任务是否允许产生新 attempt；
+- **execution-environment safety evidence**：旧执行现场是否已经达到当前要求的收拢程度。
+
+前者是任务治理问题，后者是运行环境问题。一个正确的调度许可不能替操作系统签字。
+
+## 8. 下一批反例比再加一个绿色状态更有价值
+
+如果继续研究这条问题，我认为最值得补的不是一个更漂亮的 `Stopped` badge，而是更具攻击性的反例：
+
+- wrapper 退出，direct child 继续运行；
+- child 主动脱离原 process group / parent relation；
+- transient intermediate 在两次观察之间生成 grandchild；
+- 旧结果文件在 root exit 后继续增长；
+- 取消完成与 redispatch 同时竞争；
+- 进程退出但端口、文件锁或外部 helper 仍未释放。
+
+每个实验都应该输出同一套结构：
+
+**发生了什么动作 → 观察到哪些对象 → 哪些 postcondition 已证明 → 哪些仍未知 → 因此允许什么下一步。**
+
+这比把所有结果压成 `cancelled=true` 更适合长期运行的 Agent Runtime。
+
+## 结论：停止不是一个按钮结果，而是一份有范围的证明
+
+Anywhere Agents 的 `report-state` 提醒我们：**观察失败不能变成结果。** Issue #29 又进一步说明：**如果执行树从一开始就不是一个被内核约束的 closed set，事后枚举很难证明它已经完全消失。**
+
+我们的 Windows 二层探针则给出一个更小、更具体的事实：`taskkill /T /F` 在一个 wrapper + direct child 样本上确实观察到了两者退出。这个事实值得保留，但也必须停在这里。
+
+> **取消请求是一项动作；停止是一组后置条件；执行树收拢是一项更强的证明。**
+
+可靠的 Agent Runtime 不需要假装知道所有事。它只需要在重新派工之前，明确告诉下一位执行者：**什么已经停下，什么只是没看见，什么仍然没有被证明。**
+
+---
+
+## 公开证据
+
+- [**Runtime 语义三篇文章：公开证据包**](/zh/research/evidence/2026-08-27-runtime-semantics-evidence-pack)
+- [**R1 Windows `taskkill /T /F` 公开 probe**](/assets/evidence/2026-08-27-r1-windows-taskkill-tree-probe.cjs)
+- [**R1 脱敏已记录结果**](/assets/evidence/2026-08-27-r1-windows-taskkill-recorded-result.json)
+- [**R1 recorded-result check**](/assets/evidence/2026-08-27-r1-windows-taskkill-recorded-result-check.mjs)
 
 ## 来源与证据边界
 
-本文外部现场来自赵岳的 [Anywhere Agents commit 570c89f](https://github.com/yzhao062/anywhere-agents/commit/570c89f4c4bfa03bc5cea0a43a7fcf9fef0261ab) 与仍开放的 [Issue #29](https://github.com/yzhao062/anywhere-agents/issues/29)。[公开证据包](/zh/research/evidence/2026-08-27-runtime-semantics-evidence-pack)给出 Windows 探针的逐项条件与脱敏输出。第一方材料仅覆盖本文列出的受控范围；它们不证明 CodeFlowMu 已实现内核级进程收拢，也不提供任意 Windows 进程树的回收保证。
+### Anywhere Agents
+
+- [**commit `570c89f`**](https://github.com/yzhao062/anywhere-agents/commit/570c89f4c4bfa03bc5cea0a43a7fcf9fef0261ab)：本文引用其 `report-state` 对 result-path observation 与 result outcome 的拆分，以及作者报告的 27 个遗留 unit、24.3 MiB tail。数字为作者工程现场报告，本文未独立复现。
+- [**Issue #29**](https://github.com/yzhao062/anywhere-agents/issues/29)：本文引用四轮 orphan-reaping 方案被 live counterexample 逐步推翻、以及将 tree-wide 证明前移到 dispatch-time kernel-backed containment 的设计讨论。该 issue 仍为开放状态，不能视为已发布完成方案。
+
+Anywhere Agents 只作为公开研究与工程参照；本文不据此声称 CodeFlowMu 与其共享根因、实现或已达到同一 containment 设计。
+
+### 第一方证据
+
+R1 只覆盖一台 Windows 主机上的一个 wrapper + direct child 样本。公开 probe 让相同二层合同可以被重跑，但并不把历史 PASS 升级成 Job Object / kernel containment 证明。本文也不声称所有 Windows 进程树、独立 Runtime、网络文件系统、容器或远程 worker 已获得同样保证。
