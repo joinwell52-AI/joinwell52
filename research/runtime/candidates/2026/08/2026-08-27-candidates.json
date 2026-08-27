@@ -1,0 +1,379 @@
+{
+  "schema": "runtime-publication-candidate/v2",
+  "date": "2026-08-27",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Production",
+  "sourceRecord": "research/runtime/records/daily/2026/08/2026-08-27-daily-runtime.json",
+  "updatedAt": "2026-08-27T15:41:00+08:00",
+  "githubCommit": "pending",
+  "reason": "Three completed 2026-08-27 Research Objects were converted into complete bilingual Editorial Architecture 2.1 candidates with verified planning artifacts, evidence-bounded claims and deterministic baseline covers.",
+  "reason_zh": "三份已完成的 2026-08-27 Research Object 已转换为完整双语 Editorial Architecture 2.1 候选，具备已核验的规划工件、有边界的证据声明和确定性基础题图。",
+  "candidates": [
+    {
+      "column": "digital-employee",
+      "category": "daily",
+      "itemId": "Q-20260827-01",
+      "articleType": "technical-analysis",
+      "researchQuestion": "数字员工运行体在发布对外可见的“运行中”状态之前，应要求什么证据？",
+      "title": "Running Is an Evidence Claim, Not a Scheduler Event",
+      "title_zh": "“运行中”是一项证据声明，不是调度事件",
+      "zhPath": "staging/publication-candidates/2026-08-27-running-is-an-evidence-claim.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-27-running-is-an-evidence-claim.en.md",
+      "articleBriefPath": "research/runtime/production-work/2026/08/27/Q-20260827-01/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/08/27/Q-20260827-01/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/08/27/Q-20260827-01/figure-plan.json",
+      "coreProposition": "An externally visible Running state should be published only after the runtime holds evidence sufficient for the execution-readiness semantics its consumers rely on; scheduling, assignment and worker claim must remain distinguishable from readiness, and the demonstrated process-start boundary does not prove full health.",
+      "sections": [
+        {
+          "module": "context",
+          "heading": "A status becomes an interface contract when it triggers behavior",
+          "heading_zh": "状态一旦触发行为，就成为接口合同"
+        },
+        {
+          "module": "technical-analysis",
+          "heading": "Separate the facts consumers tend to collapse",
+          "heading_zh": "把容易混淆的事实拆成证据阶梯"
+        },
+        {
+          "module": "operational-implications",
+          "heading": "Derive the readiness gate from the consumer promise",
+          "heading_zh": "从消费者承诺反推就绪门槛"
+        },
+        {
+          "module": "limitations",
+          "heading": "The boundary matters more than a louder conclusion",
+          "heading_zh": "已知边界比更响亮的结论更重要"
+        }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "Anthropic published Claude Code v2.1.247 with a release-note entry for the affected self-hosted runner state behavior.",
+          "claim_zh": "Anthropic 发布 Claude Code 2.1.247，并记录了受影响的自托管运行器状态问题。",
+          "source": "research/analysis/Q-20260827-01-execution-readiness-before-running-state.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "source-reported-claim",
+          "claim": "Anthropic reports that affected sessions could report running before Claude Code started and could trigger a premature desktop notification.",
+          "claim_zh": "Anthropic 报告称，受影响会话可能在 Claude Code 启动前报告“运行中”，并触发过早的桌面通知。",
+          "source": "research/analysis/Q-20260827-01-execution-readiness-before-running-state.md",
+          "strength": "reports",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "source-reported-claim",
+          "claim": "The release note describes the fix as preventing the affected Running report from preceding process startup.",
+          "claim_zh": "发布说明将修复描述为阻止受影响的“运行中”报告早于进程启动。",
+          "source": "research/analysis/Q-20260827-01-execution-readiness-before-running-state.md",
+          "strength": "reports",
+          "independent": false
+        },
+        {
+          "id": "I1",
+          "identity": "our-interpretation",
+          "claim": "Consumer-visible Running should be evidence-backed execution readiness rather than scheduling, assignment or claim alone.",
+          "claim_zh": "面向消费者的“运行中”应是有证据支撑的执行就绪，而不能只是调度、分配或认领。",
+          "source": "research/analysis/Q-20260827-01-execution-readiness-before-running-state.md",
+          "strength": "suggests",
+          "independent": false
+        },
+        {
+          "id": "I2",
+          "identity": "our-interpretation",
+          "claim": "Process startup is a bounded ordering fact and does not establish full health or universal readiness.",
+          "claim_zh": "进程启动只是有界的顺序事实，不能建立完整健康或通用就绪。",
+          "source": "research/analysis/Q-20260827-01-execution-readiness-before-running-state.md",
+          "strength": "suggests",
+          "independent": false
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The conclusion concerns general runtime-state truth."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already provides the transferable state-evidence pattern; a separate edition would repeat the same evidence."
+      },
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverPath": "staging/publication-candidates/2026-08-27-running-is-an-evidence-claim-cover.png",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    },
+    {
+      "column": "industry-architecture",
+      "category": "daily",
+      "itemId": "Q-20260827-02",
+      "articleType": "technical-analysis",
+      "researchQuestion": "智能体平台应如何把账户权限证据传给工具，同时避免请求方伪造、扩大或继续使用过期权限？",
+      "title": "Authority Context Must Be Minted by the Host",
+      "title_zh": "权限上下文必须由宿主生成",
+      "zhPath": "staging/publication-candidates/2026-08-27-authority-context-must-be-host-minted.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-27-authority-context-must-be-host-minted.en.md",
+      "articleBriefPath": "research/runtime/production-work/2026/08/27/Q-20260827-02/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/08/27/Q-20260827-02/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/08/27/Q-20260827-02/figure-plan.json",
+      "coreProposition": "Authority-bearing access context should be minted by the host that can verify the governing identity, should replace caller-supplied copies, and should cross only an explicitly qualified capability edge; unverifiable state must collapse to a non-authorizing result, while downstream enforcement remains a separate obligation.",
+      "sections": [
+        {
+          "module": "context",
+          "heading": "The requester cannot issue its own authority evidence",
+          "heading_zh": "请求者不能同时签发自己的权限证据"
+        },
+        {
+          "module": "technical-analysis",
+          "heading": "Capability scope is a conjunction, not a feature flag",
+          "heading_zh": "能力范围应是一组同时成立的条件"
+        },
+        {
+          "module": "governance-implications",
+          "heading": "Identity continuity and failure semantics determine freshness",
+          "heading_zh": "身份连续性与失败语义决定证据是否仍然有效"
+        },
+        {
+          "module": "limitations",
+          "heading": "Better provenance is not complete authorization",
+          "heading_zh": "更好的来源不等于完整授权"
+        }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "The merged Codex implementation removes caller-supplied entitlement context before producing host-owned context.",
+          "claim_zh": "已合并 Codex 实现会先移除调用方提供的权限上下文，再生成宿主拥有的上下文。",
+          "source": "research/analysis/Q-20260827-02-host-minted-capability-scoped-access-evidence.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "public-fact",
+          "claim": "Verified context is injected only when the documented conjunction of entitlement, plugin, environment, transport, mutability and argument predicates holds.",
+          "claim_zh": "只有声明的权限、插件、环境、传输、可变性与参数条件全部成立时，核验上下文才会注入。",
+          "source": "research/analysis/Q-20260827-02-host-minted-capability-scoped-access-evidence.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "public-fact",
+          "claim": "The lookup is time- and size-bounded, disables redirects and checks account identity continuity.",
+          "claim_zh": "访问查询具有时间和大小上限，禁止重定向，并检查账户身份连续性。",
+          "source": "research/analysis/Q-20260827-02-host-minted-capability-scoped-access-evidence.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E4",
+          "identity": "public-fact",
+          "claim": "Unverifiable or inconsistent conditions produce host-generated unknown with empty grants instead of preserving caller authority.",
+          "claim_zh": "无法核验或不一致的情况会产生宿主生成的 unknown 与空授权，而不会保留调用方权限。",
+          "source": "research/analysis/Q-20260827-02-host-minted-capability-scoped-access-evidence.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "I1",
+          "identity": "our-interpretation",
+          "claim": "The authority issuer and the requesting capability should remain separate.",
+          "claim_zh": "权限证据签发方与提出请求的能力应保持分离。",
+          "source": "research/analysis/Q-20260827-02-host-minted-capability-scoped-access-evidence.md",
+          "strength": "suggests",
+          "independent": false
+        },
+        {
+          "id": "I2",
+          "identity": "our-interpretation",
+          "claim": "Verified evidence should cross only an explicitly scoped capability edge and fail closed when continuity cannot be established.",
+          "claim_zh": "已核验证据只能跨越显式限定的能力边界；无法建立连续性时应失败关闭。",
+          "source": "research/analysis/Q-20260827-02-host-minted-capability-scoped-access-evidence.md",
+          "strength": "suggests",
+          "independent": false
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The conclusion concerns a general authority-evidence broker boundary."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The Research Center edition already supplies the complete evidence-bounded architecture pattern."
+      },
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverPath": "staging/publication-candidates/2026-08-27-authority-context-must-be-host-minted-cover.png",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    },
+    {
+      "column": "open-source-engineering",
+      "category": "daily",
+      "itemId": "Q-20260827-03",
+      "articleType": "engineering-insight",
+      "researchQuestion": "什么时候，被调用的技能才能成为授权证据，又不让仓库文本或伪造路径冒充用户意图？",
+      "title": "A Trusted Path Proves Provenance, Not Approval",
+      "title_zh": "可信路径证明来源，不等于批准",
+      "zhPath": "staging/publication-candidates/2026-08-27-trusted-path-proves-provenance-not-approval.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-27-trusted-path-proves-provenance-not-approval.en.md",
+      "articleBriefPath": "research/runtime/production-work/2026/08/27/Q-20260827-03/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/08/27/Q-20260827-03/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/08/27/Q-20260827-03/figure-plan.json",
+      "coreProposition": "An invoked skill should influence authorization only after the host records the actual invocation and verifies resource provenance against an authority-owned trusted root; canonical location proves a bounded origin under that trust model, not content identity, semantic safety, immutability or contemporaneous user approval.",
+      "sections": [
+        {
+          "module": "context",
+          "heading": "Prove the invocation occurred before interpreting it",
+          "heading_zh": "先证明“发生过调用”，再讨论调用意味着什么"
+        },
+        {
+          "module": "technical-analysis",
+          "heading": "Canonical trusted roots answer an origin question",
+          "heading_zh": "规范化可信根解决的是来源问题"
+        },
+        {
+          "module": "evidence",
+          "heading": "Path-only evidence reduces risk and loses content identity",
+          "heading_zh": "路径证据收缩风险，也牺牲内容身份"
+        },
+        {
+          "module": "governance-implications",
+          "heading": "Five evidence dimensions must not substitute for one another",
+          "heading_zh": "五种证据不能互相替代"
+        },
+        {
+          "module": "operational-implications",
+          "heading": "Design the record for audit and revocation",
+          "heading_zh": "面向审计与撤销的下一步"
+        }
+      ],
+      "endingModule": "operational-implications",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "The merged Guardian v2 implementation records an invoked skill only after host resolution through configured trusted user roots.",
+          "claim_zh": "已合并 Guardian v2 实现只有在宿主通过配置的用户可信根解析资源后，才会记录技能调用。",
+          "source": "research/analysis/Q-20260827-03-host-verified-skill-invocation-provenance.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "public-fact",
+          "claim": "Canonicalization and real-file containment keep repository skills and symlink escapes outside the demonstrated trusted path.",
+          "claim_zh": "规范化和真实文件包含检查，使仓库技能与符号链接逃逸无法进入已展示的可信路径。",
+          "source": "research/analysis/Q-20260827-03-host-verified-skill-invocation-provenance.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "public-fact",
+          "claim": "Guardian receives a bounded deduplicated list of verified canonical paths rather than privileged full skill bodies.",
+          "claim_zh": "Guardian 接收有界、去重的已核验规范化路径列表，而不是提升完整技能正文的权限。",
+          "source": "research/analysis/Q-20260827-03-host-verified-skill-invocation-provenance.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E4",
+          "identity": "public-fact",
+          "claim": "Maintainer tests cover trusted invocations, repository forgery, symlink escape, deduplication and evidence limits.",
+          "claim_zh": "维护者测试覆盖可信调用、仓库伪造、符号链接逃逸、去重和证据上限。",
+          "source": "research/analysis/Q-20260827-03-host-verified-skill-invocation-provenance.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "I1",
+          "identity": "our-interpretation",
+          "claim": "Authorization evidence should begin with host-observed occurrence and host-verified provenance, not extension assertions.",
+          "claim_zh": "授权证据应从宿主观察到的发生事实和宿主核验的来源开始，而不能从扩展自我声明开始。",
+          "source": "research/analysis/Q-20260827-03-host-verified-skill-invocation-provenance.md",
+          "strength": "suggests",
+          "independent": false
+        },
+        {
+          "id": "I2",
+          "identity": "our-interpretation",
+          "claim": "Location provenance cannot substitute for content identity, semantic safety, immutability or current approval.",
+          "claim_zh": "位置来源不能替代内容身份、语义安全、不可变性或当前批准。",
+          "source": "research/analysis/Q-20260827-03-host-verified-skill-invocation-provenance.md",
+          "strength": "suggests",
+          "independent": false
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The conclusion concerns general extension provenance and authorization evidence."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The Research Center edition already provides the complete multi-dimensional evidence model; a separate edition would repeat it."
+      },
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverPath": "staging/publication-candidates/2026-08-27-trusted-path-proves-provenance-not-approval-cover.png",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    }
+  ]
+}
