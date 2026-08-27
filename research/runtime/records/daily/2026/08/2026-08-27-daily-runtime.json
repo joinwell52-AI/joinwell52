@@ -8,16 +8,53 @@
   "date": "2026-08-27",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
-    "discovery": "Running",
+    "discovery": "Completed",
     "queue": "Waiting",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
   },
-  "results": {},
+  "results": {
+    "discovery": {
+      "schema": "runtime-shift-result/v2",
+      "task": "discovery",
+      "family": "daily",
+      "runtimeDate": "2026-08-27",
+      "status": "Completed",
+      "input": "Latest main Worker Control v1.3.0 and generated Discovery Prompt v1.0.0 at admitted authority commit 491c2442785dcf8082dca626ef7484d44a6079f6; all ten prompt-required sources from that same commit; the 2026-08-27 verified wake receipt; and current authoritative public platform, GitHub and research sources.",
+      "input_zh": "准入权威提交 491c2442785dcf8082dca626ef7484d44a6079f6 上的最新 Worker Control v1.3.0、生成式 Discovery Prompt v1.0.0、同一提交的 10 个 requiredSources、2026-08-27 已核验 Wake Receipt，以及当前权威的公开平台、GitHub 与研究来源。",
+      "workResult": "Fail-closed admission passed for branch main, chatgpt-scheduled-task wake source and the available github-read, github-write, file-editing and web-research capabilities. The generated Discovery prompt identity and deterministic validation were verified before work. All three Discovery profiles were executed. AI Platform coverage resolved 45 due public channels as 44 checked plus 1 explicit retrieval failure. GitHub Engineering checked all 9 P0 daily repositories incrementally. Published Research resolved 9 due P0 sources as 8 checked plus 1 explicit retrieval failure. Mechanism-level normalization retained 22 material same-day signals and did not perform topic selection, Deep Reading, Analysis, writing or publication. Exact-head Runtime validation, which includes Intelligence validation, passed before terminal completion.",
+      "workResult_zh": "对 main 分支、chatgpt-scheduled-task Wake Source 以及当前可用的 github-read、github-write、file-editing、web-research 能力完成 fail-closed 准入并通过。工作开始前已核验生成式 Discovery Prompt 身份与确定性校验。随后执行全部三条 Discovery Profile：AI Platform 的 45 个到期公共通道收口为 44 个已检查 + 1 个明确抓取失败；GitHub Engineering 对 9 个 P0 Daily 仓库全部完成增量检查；Published Research 的 9 个 P0 到期来源收口为 8 个已检查 + 1 个明确抓取失败。经机制级规范化后保留 22 个实质性同日信号，未执行选题、Deep Reading、Analysis、写作或发布。进入终态前，包含 Intelligence 校验在内的 exact-head Runtime validation 已通过。",
+      "output": "Completed 2026-08-27 Research Intelligence run with 22 unselected signals: 6 AI-platform, 16 GitHub-engineering and 0 published-research. Primary-column distribution is Digital Employee 10, Industry Architecture 2 and Open-source Engineering 10; all three column decisions remain Waiting for Queue.",
+      "output_zh": "完成 2026-08-27 Research Intelligence Run，共保留 22 个未选题信号：AI Platform 6 个、GitHub Engineering 16 个、Published Research 0 个。主栏目分布为数字员工 10、行业架构 2、开源工程 10；三个栏目 Decision 均保持 Waiting，交由 Queue 后续独立筛选。",
+      "next": "At or after its formal time, Research Runtime Queue may consume only this same-day Signal Pool and independently score each column. Discovery must not select topics or perform downstream research stages.",
+      "next_zh": "到达正式时间后，Research Runtime Queue 只能消费本日 Signal Pool，并独立完成三个栏目的评分与筛选；Discovery 不得选题，也不得执行后续研究阶段。",
+      "metrics": [
+        {"label":"AI platform due / checked / failed","label_zh":"AI 平台应查 / 已查 / 失败","value":"45 / 44 / 1"},
+        {"label":"GitHub P0 repositories checked","label_zh":"GitHub P0 仓库已检查","value":"9 / 9"},
+        {"label":"Research sources due / checked / failed","label_zh":"研究来源应查 / 已查 / 失败","value":"9 / 8 / 1"},
+        {"label":"Normalized signals","label_zh":"规范化信号","value":22},
+        {"label":"Selected topics","label_zh":"已选主题","value":0}
+      ],
+      "evidence": [
+        {"label":"Scheduler authority commit","label_zh":"Scheduler 权威提交","value":"491c2442785dcf8082dca626ef7484d44a6079f6"},
+        {"label":"Worker Control","label_zh":"Worker Control","value":"research/runtime/worker-prompts/generated/CONTROL.json"},
+        {"label":"Generated Discovery Prompt","label_zh":"生成式 Discovery Prompt","value":"research/runtime/worker-prompts/generated/discovery.prompt.md@1.0.0 sha256=55636950fafe406c551975393b93d1493c1eb205f1d0174471729c4f0c5bcb17"},
+        {"label":"Wake receipt","label_zh":"Wake Receipt","value":"research/runtime/wakes/2026/08/2026-08-27/discovery-085722.json"},
+        {"label":"Exact-head validation run","label_zh":"Exact-head 校验运行","value":"Validate Research Center 3.0 run 33029127218 / Validate Runtime Center success"}
+      ],
+      "artifacts": [
+        {"label":"Research Intelligence run","label_zh":"Research Intelligence 运行记录","value":"research/intelligence/runs/2026/08/2026-08-27-intelligence.json"},
+        {"label":"Daily Runtime JSON","label_zh":"Daily Runtime JSON","value":"research/runtime/records/daily/2026/08/2026-08-27-daily-runtime.json"},
+        {"label":"Human-readable Runtime ledger","label_zh":"人类可读 Runtime 账本","value":"research/runtime/2026/08/2026-08-27-runtime.md"}
+      ],
+      "startedAt": "2026-08-27T09:02:48+08:00",
+      "completedAt": "2026-08-27T09:09:08+08:00"
+    }
+  },
   "timeline": [
     {
       "time": "2026-08-27T09:02:48+08:00",
@@ -32,6 +69,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT scheduled-task worker claimed the verified Discovery slot under Worker Control v1.3.0."
+    },
+    {
+      "time": "2026-08-27T09:09:08+08:00",
+      "task": "discovery",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Discovery completed all three due P0 intelligence pipelines, retained 22 normalized same-day signals, and passed exact-head Runtime/Intelligence validation before terminal completion."
     }
   ],
   "metrics": [],
@@ -39,5 +83,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-27T09:03:02+08:00"
+  "updatedAt": "2026-08-27T09:09:08+08:00"
 }
