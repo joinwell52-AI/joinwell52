@@ -1,0 +1,50 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-28",
+  "itemId": "Q-20260828-01",
+  "researchObjectId": "AN-20260828-01",
+  "targetAudience": {
+    "primary": "Engineers designing digital-employee runtimes with delegated workers and resource limits",
+    "knowledgeAssumption": "The reader understands agent delegation, budgets, checkpoints and lifecycle control.",
+    "readerProblem": "Per-worker accounting can let nested delegation hide the total cost of one authorized objective, while a root total alone can erase which worker caused the spend."
+  },
+  "whyNow": "A same-day merged OpenAI Codex maintainer change demonstrates shared root-goal token accounting across nested workers, idle progress, goal replacement, checkpoint races and an unloaded intermediate parent.",
+  "externalHook": {
+    "type": "delegation-budget-accounting",
+    "description": "Nested workers publish usage into a shared root accumulator without losing worker-level origin.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "coreProposition": "Delegated resource consumption should preserve worker-level origin evidence while charging the inherited budget to the root objective that authorized the work; accurate shared-root accounting closes a demonstrated delegation escape but does not itself prove immediate cancellation, generalized quotas or exactly-once enforcement.",
+  "originalValue": {
+    "type": "dual-identity-resource-governance",
+    "description": "Separates the factual origin of resource use from the governance identity that owns the inherited budget, then separates accounting truth from enforcement proof."
+  },
+  "readerTakeaway": "Track both descendant origin and root-objective budget ownership; treat limit detection, admission denial and cancellation as separate evidenced transitions.",
+  "evidenceBoundary": {
+    "supported": [
+      "The merged implementation routes descendant token increments into shared root accounting.",
+      "The demonstrated mechanism covers active and idle progress, goal replacement, checkpoint concurrency and an unloaded intermediate parent.",
+      "Combined root and descendant token usage can move the root goal into a budget-limited state."
+    ],
+    "unsupported": [
+      "Immediate cancellation of every descendant",
+      "Generalized quotas for money, time, memory, network or tool calls",
+      "Distributed exactly-once charging or cross-host enforcement"
+    ],
+    "uncertain": [
+      "The safest enforcement boundary after budget exhaustion",
+      "The durable receipt needed across process crashes and objective migration"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article develops a general delegated-resource governance pattern without relying on a first-party project."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The source-level change and regression coverage support a concrete accounting mechanism, an original dual-identity interpretation and a clear enforcement boundary."
+}

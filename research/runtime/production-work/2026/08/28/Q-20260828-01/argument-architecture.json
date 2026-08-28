@@ -1,0 +1,73 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-28",
+  "itemId": "Q-20260828-01",
+  "coreProposition": "Delegated resource consumption should preserve worker-level origin evidence while charging the inherited budget to the root objective that authorized the work; accurate shared-root accounting closes a demonstrated delegation escape but does not itself prove immediate cancellation, generalized quotas or exactly-once enforcement.",
+  "openingMove": {
+    "type": "delegation-budget-escape",
+    "purpose": "Open with the failure mode: each child looks locally compliant while the root objective silently exceeds its budget.",
+    "evidenceRefs": [
+      "E1",
+      "I1"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Which identity spent the resource, and which identity owns the budget?",
+      "claim": "Delegation creates a worker-origin identity and a root-objective ownership identity that must remain linked rather than collapsed.",
+      "evidenceRefs": [
+        "E1",
+        "I1"
+      ],
+      "reasoningRole": "identity-separation",
+      "readerProgress": "The reader gains the two-account view needed for diagnosis and governance.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "How does shared root accounting close the demonstrated escape?",
+      "claim": "Publishing descendant deltas into a root accumulator preserves inherited cost across nesting, idle progress, runtime unloading, goal replacement and checkpoint concurrency.",
+      "evidenceRefs": [
+        "E1",
+        "E2"
+      ],
+      "reasoningRole": "mechanism",
+      "readerProgress": "The reader understands why continuous deltas and checkpoint-safe accounting are stronger than end-of-turn recursive sums.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What must operators observe separately?",
+      "claim": "Telemetry should retain worker-level origin while showing the inherited effect on the root budget, so expensive workers and expensive objectives remain distinguishable.",
+      "evidenceRefs": [
+        "I1",
+        "I2"
+      ],
+      "reasoningRole": "operational-design",
+      "readerProgress": "The reader can design an audit view without weakening budget ownership.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What does correct accounting not prove?",
+      "claim": "A budget-limited state is accounting evidence, not proof of synchronous revocation, admission denial, safe cancellation or exactly-once charging.",
+      "evidenceRefs": [
+        "E3",
+        "I2"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "The reader avoids upgrading attribution evidence into an unsupported enforcement claim.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Some systems intentionally give each subagent an independent budget.",
+    "responseBoundary": "Independent local budgets remain compatible if delegation also creates an explicit inherited root charge or admission rule; otherwise child boundaries become budget reset points."
+  },
+  "endingStrategy": {
+    "type": "evidence-split",
+    "purpose": "End by requiring separate receipts for measured use, inherited charge, limit transition and execution revocation."
+  }
+}
