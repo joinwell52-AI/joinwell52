@@ -1,0 +1,135 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "production",
+  "family": "daily",
+  "runtimeDate": "2026-08-28",
+  "status": "Completed",
+  "productionMode": "candidate-batch",
+  "input": {
+    "promptVersion": "2.13.0",
+    "promptPath": "research/runtime/worker-prompts/generated/production.prompt.md",
+    "promptSha256": "d8b0cd52d22d976d6356558a23c5c2dc28ed5aa8f51793538fa8fbebfb80996f",
+    "promptVerificationMode": "direct-sha256",
+    "researchObjects": [
+      "Q-20260828-01",
+      "Q-20260828-02",
+      "Q-20260828-03"
+    ],
+    "stagedCandidateCommit": "947e758896ec7a3ff27137fd4e5c23202ef72ae1"
+  },
+  "workResult": {
+    "summary": "Converted all three authorized same-date Research Objects into complete bilingual Editorial Architecture 2.1 candidates, persisted and remotely verified every article-sized workspace segment with a deterministic baseline raster cover, repaired Chinese technical-language preflight issues within the admitted revision budget, atomically staged the complete candidate batch, and passed the repository-defined Production checkpoint, atomic-bundle, runtime, editorial, evidence, language, bilingual-consistency and layout gates without executing Publication.",
+    "summary_zh": "将当日获授权的三份 Research Object 全部转换为完整双语 Editorial Architecture 2.1 候选；每个文章级工作段及其确定性基础栅格题图均完成持久化与远端核验；在允许的修订预算内修复中文技术语言预检问题；随后原子化装配完整候选批次，并通过仓库定义的 Production Checkpoint、原子候选包、Runtime、编辑、证据、语言、双语一致性与版式门禁；未执行 Publication。"
+  },
+  "output": {
+    "type": "Publication Candidates",
+    "candidateBatch": "research/runtime/candidates/2026/08/2026-08-28-candidates.json",
+    "candidateCount": 3,
+    "bilingualArticleFiles": 6,
+    "coverAssets": 3,
+    "inlineFigureAssets": 0
+  },
+  "next": {
+    "task": "publication",
+    "instruction": "Do not execute Publication in this Production run. Publication remains a separate governed task.",
+    "instruction_zh": "本次 Production 不执行 Publication；Publication 仍是独立受治理任务。"
+  },
+  "coverEvidence": [
+    {
+      "itemId": "Q-20260828-01",
+      "briefId": "2026-08-28:Q-20260828-01-baseline-cover",
+      "coverPath": "staging/publication-candidates/2026-08-28-delegation-budgets-belong-to-root-objective-cover.png",
+      "sanitizedPrompt": "Several small tributaries feed one guarded reservoir while each tributary remains individually visible",
+      "generationAttempts": 1,
+      "semanticReview": "PASS",
+      "coverRole": "baseline",
+      "generator": "deterministic-baseline-v1"
+    },
+    {
+      "itemId": "Q-20260828-02",
+      "briefId": "2026-08-28:Q-20260828-02-baseline-cover",
+      "coverPath": "staging/publication-candidates/2026-08-28-cached-policy-is-evidence-not-current-authority-cover.png",
+      "sanitizedPrompt": "A preserved document remains visible behind glass while a separate permission gate waits for a fresh seal",
+      "generationAttempts": 1,
+      "semanticReview": "PASS",
+      "coverRole": "baseline",
+      "generator": "deterministic-baseline-v1"
+    },
+    {
+      "itemId": "Q-20260828-03",
+      "briefId": "2026-08-28:Q-20260828-03-baseline-cover",
+      "coverPath": "staging/publication-candidates/2026-08-28-approval-caches-need-authorization-identity-cover.png",
+      "sanitizedPrompt": "A reusable approval seal waits at a final gate until its current identity ring aligns with the original ring",
+      "generationAttempts": 1,
+      "semanticReview": "PASS",
+      "coverRole": "baseline",
+      "generator": "deterministic-baseline-v1"
+    }
+  ],
+  "metrics": [
+    {
+      "name": "research_objects_consumed",
+      "value": 3
+    },
+    {
+      "name": "publication_candidates",
+      "value": 3
+    },
+    {
+      "name": "persisted_article_segments",
+      "value": 3
+    },
+    {
+      "name": "planning_artifacts",
+      "value": 9
+    },
+    {
+      "name": "bilingual_article_files",
+      "value": 6
+    },
+    {
+      "name": "cover_assets",
+      "value": 3
+    },
+    {
+      "name": "inline_figure_assets",
+      "value": 0
+    },
+    {
+      "name": "revision_rounds",
+      "value": 1
+    },
+    {
+      "name": "required_sources_read",
+      "value": 13
+    },
+    {
+      "name": "direct_cloud_image_generation_calls",
+      "value": 0
+    },
+    {
+      "name": "direct_publication_actions",
+      "value": 0
+    }
+  ],
+  "evidence": [
+    "947e758896ec7a3ff27137fd4e5c23202ef72ae1",
+    "research/runtime/worker-prompts/generated/production.prompt.md",
+    "research/runtime/checkpoints/2026/08/2026-08-28-production.json",
+    "research/runtime/wakes/2026/08/2026-08-28/production-150011.json",
+    "061304c75ce2e95f538232a2ad0f4c308cf518bb"
+  ],
+  "artifacts": [
+    "research/runtime/candidates/2026/08/2026-08-28-candidates.json",
+    "research/runtime/checkpoints/2026/08/2026-08-28-production.json",
+    "staging/publication-candidates/2026-08-28-delegation-budgets-belong-to-root-objective.zh.md",
+    "staging/publication-candidates/2026-08-28-delegation-budgets-belong-to-root-objective.en.md",
+    "staging/publication-candidates/2026-08-28-delegation-budgets-belong-to-root-objective-cover.png",
+    "staging/publication-candidates/2026-08-28-cached-policy-is-evidence-not-current-authority.zh.md",
+    "staging/publication-candidates/2026-08-28-cached-policy-is-evidence-not-current-authority.en.md",
+    "staging/publication-candidates/2026-08-28-cached-policy-is-evidence-not-current-authority-cover.png",
+    "staging/publication-candidates/2026-08-28-approval-caches-need-authorization-identity.zh.md",
+    "staging/publication-candidates/2026-08-28-approval-caches-need-authorization-identity.en.md",
+    "staging/publication-candidates/2026-08-28-approval-caches-need-authorization-identity-cover.png"
+  ]
+}
