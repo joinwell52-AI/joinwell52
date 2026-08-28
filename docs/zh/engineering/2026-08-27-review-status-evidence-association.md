@@ -171,7 +171,7 @@ V2.0.4 功能完成并正式发版后，我们用同一张真实 QA 任务做了
 
 如果系统在 `active` 阶段因为没有 REPORT 就报“缺失”，那才是不准确。V2.0.4 在这里正确地区分了“不适用”和“缺失”。
 
-![同一张 QA 任务处于 active 阶段时的证据关联诊断：四条执行链已关联，REPORT 关系显示当前阶段不适用](/assets/figures/2026-08-27-r2-diagnostic-active.png)
+[![同一张 QA 任务处于 active 阶段时的证据关联诊断：四条执行链已关联，REPORT 关系显示当前阶段不适用](/assets/figures/2026-08-27-r2-diagnostic-active.png)](/assets/figures/2026-08-27-r2-diagnostic-active.png)
 
 *图 1：同一张 QA 任务仍在 `active`。任务修订、attempt、lease、执行和工具证据已能关联；正式 REPORT 尚未产生，因此 REPORT 关系显示“当前阶段不适用”，而不是“缺失”。*
 
@@ -195,7 +195,7 @@ V2.0.4 功能完成并正式发版后，我们用同一张真实 QA 任务做了
 
 因为这是一张 **QA 任务**。当前工作流里 EVAL 出现在 PM 路径，这张 QA 任务本来就不要求 EVAL 报告。因此 `eval_not_present` 在这里不是异常，也不是“少了一份材料”，而是角色/流程语义上的正常不适用。
 
-![同一张 QA 任务进入 review 阶段后的证据关联诊断：REPORT 到 Task 和 REVIEW 均已关联，EVAL 到 REVIEW 显示当前阶段不适用](/assets/figures/2026-08-27-r2-diagnostic-review.png)
+[![同一张 QA 任务进入 review 阶段后的证据关联诊断：REPORT 到 Task 和 REVIEW 均已关联，EVAL 到 REVIEW 显示当前阶段不适用](/assets/figures/2026-08-27-r2-diagnostic-review.png)](/assets/figures/2026-08-27-r2-diagnostic-review.png)
 
 *图 2：同一任务进入 `review` 后，诊断重算当前正式事实。REPORT → Task 与 REPORT → REVIEW 从先前的不适用变为已关联；EVAL 仍因这条 QA 路径不要求而显示不适用。*
 

@@ -159,7 +159,7 @@ No formal REPORT exists yet, so the REPORT edges are correctly **not applicable*
 
 The crucial fact is `missing=0 / conflict=0`. At this stage, no REPORT is expected, so reporting a missing REPORT would itself be inaccurate.
 
-![Evidence-association diagnostic for the same QA task in active: four execution-chain relations are linked and REPORT relations are not applicable at this stage](/assets/figures/2026-08-27-r2-diagnostic-active.png)
+[![Evidence-association diagnostic for the same QA task in active: four execution-chain relations are linked and REPORT relations are not applicable at this stage](/assets/figures/2026-08-27-r2-diagnostic-active.png)](/assets/figures/2026-08-27-r2-diagnostic-active.png)
 
 *Figure 1. The same QA task is still `active`. Its revision, attempt, lease, execution, and action evidence can be connected. A formal REPORT has not yet been produced, so REPORT relations are **not applicable**, rather than missing.*
 
@@ -179,7 +179,7 @@ The remaining EVAL edge is:
 
 That is also the correct result. This is a **QA task**. In the current workflow, EVAL belongs to the PM path, so this QA task is not expected to carry an EVAL report.
 
-![Evidence-association diagnostic for the same QA task in review: REPORT to Task and REPORT to REVIEW are linked, while EVAL to REVIEW remains not applicable](/assets/figures/2026-08-27-r2-diagnostic-review.png)
+[![Evidence-association diagnostic for the same QA task in review: REPORT to Task and REPORT to REVIEW are linked, while EVAL to REVIEW remains not applicable](/assets/figures/2026-08-27-r2-diagnostic-review.png)](/assets/figures/2026-08-27-r2-diagnostic-review.png)
 
 *Figure 2. Once the same task reaches `review`, the diagnostic rereads the formal facts. REPORT → Task and REPORT → REVIEW move from not applicable to linked; EVAL remains not applicable because this QA path does not require one.*
 
