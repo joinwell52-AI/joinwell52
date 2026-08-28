@@ -59,4 +59,4 @@ GitHub Copilot CLI（命令行代码助手）1.0.81 的官方变更说明提供�
 
 设计评审应继续追问：策略证据绑定了哪个权威身份？取得与使用之间是否会发生切换？拒绝回执能否区分旧权限、网络故障和数据错误？哪些能力允许宽限，批准者是谁？这些答案决定“最新策略”是可核查的授权条件，还是只有名称的刷新动作。
 
-**证据说明：** [2026-08-28 Research Object](https://github.com/joinwell52-AI/joinwell52/blob/main/research/analysis/Q-20260828-02-fresh-authority-over-cache-availability.md) 对 GitHub Copilot CLI 1.0.81 官方变更说明进行了有界分析；该来源支持被点名能力的产品行为，不构成底层认证与验证机制的源码级证明。
+**证据说明：** [同日研究对象](https://github.com/joinwell52-AI/joinwell52/blob/main/research/analysis/Q-20260828-02-fresh-authority-over-cache-availability.md) 对命令行代码助手 1.0.81 的官方变更说明进行了有界分析；该来源支持被点名能力的产品行为，不构成底层认证与验证机制的源码级证明。
