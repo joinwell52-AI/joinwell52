@@ -1,0 +1,84 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-28",
+  "itemId": "Q-20260828-02",
+  "coreProposition": "When current remote authority is explicitly required, stale cached policy may remain stored evidence but must not retain authorization power; the runtime should represent unresolved freshness as an explicit restrictive authority state with named affected capabilities and recovery conditions.",
+  "openingMove": {
+    "type": "readable-but-not-authorizing",
+    "purpose": "Open with the counterintuitive fact that cached data can remain valid for display while becoming invalid for permission decisions.",
+    "evidenceRefs": [
+      "E1",
+      "I1"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why does a readable cached policy not necessarily remain current authority?",
+      "claim": "Storage validity, semantic provenance and authorization admissibility are separate properties; explicit freshness can invalidate permission use without deleting the cached evidence.",
+      "evidenceRefs": [
+        "E1",
+        "I1"
+      ],
+      "reasoningRole": "property-separation",
+      "readerProgress": "The reader stops treating cache presence as permission continuity.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What changes when freshness is part of the admission predicate?",
+      "claim": "The forced-refresh path rejects both the ordinary fast path and stale fallback, so availability shortcuts cannot satisfy a current-authority requirement.",
+      "evidenceRefs": [
+        "E1",
+        "E3"
+      ],
+      "reasoningRole": "mechanism-boundary",
+      "readerProgress": "The reader sees freshness as governance input rather than performance metadata.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "How should unresolved authority be represented?",
+      "claim": "Affected capabilities should enter an explicit restrictive undetermined state that names the denied scope, reason and recovery event instead of silently reusing last-known permissions.",
+      "evidenceRefs": [
+        "E2",
+        "I2"
+      ],
+      "reasoningRole": "state-model",
+      "readerProgress": "The reader gains an auditable failure posture for enterprise policy.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Where may availability exceptions exist?",
+      "claim": "Any stale grace period must be an explicit capability-specific governance decision with bounded risk, not an automatic cache fallback hidden beneath authorization.",
+      "evidenceRefs": [
+        "I1",
+        "I2"
+      ],
+      "reasoningRole": "counterpoint",
+      "readerProgress": "The reader can separate deliberate emergency policy from accidental stale authority.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What remains unknown from the release note?",
+      "claim": "The evidence does not disclose freshness identity, authentication, retry, malformed-response or validation internals, so implementation and security claims must remain bounded.",
+      "evidenceRefs": [
+        "E3"
+      ],
+      "reasoningRole": "open-boundary",
+      "readerProgress": "The reader leaves with concrete questions for design review rather than false implementation certainty.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Strict freshness can make useful capabilities unavailable during control-plane outages.",
+    "responseBoundary": "Availability can justify a governed exception for a named low-risk capability, but the exception must be explicit and cannot be smuggled in as an ordinary stale-cache fallback."
+  },
+  "endingStrategy": {
+    "type": "implementation-questions",
+    "purpose": "End with the identity, scope, recovery and audit questions required before a fresh-policy gate can be trusted."
+  }
+}

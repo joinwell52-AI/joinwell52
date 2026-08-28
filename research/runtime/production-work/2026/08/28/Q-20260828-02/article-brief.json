@@ -1,0 +1,51 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-28",
+  "itemId": "Q-20260828-02",
+  "researchObjectId": "AN-20260828-02",
+  "targetAudience": {
+    "primary": "Architects of enterprise agent platforms, managed configuration and policy-governed tool access",
+    "knowledgeAssumption": "The reader understands caches, remote policy and fail-closed authorization.",
+    "readerProblem": "A cache layer can preserve availability by returning stale configuration even after the governing authority may have changed, silently turning readable data into continuing permission."
+  },
+  "whyNow": "GitHub Copilot CLI 1.0.81 documents a forced-refresh path that rejects both the normal cache fast path and a 24-hour stale fallback, restricting named capabilities until fresh managed policy is obtained.",
+  "externalHook": {
+    "type": "stale-policy-authority-rejection",
+    "description": "A product release contract distinguishes cached policy availability from admissible current authority.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "coreProposition": "When current remote authority is explicitly required, stale cached policy may remain stored evidence but must not retain authorization power; the runtime should represent unresolved freshness as an explicit restrictive authority state with named affected capabilities and recovery conditions.",
+  "originalValue": {
+    "type": "authority-admissibility-state-model",
+    "description": "Reframes freshness from a cache optimization into part of the authorization predicate and models unresolved authority as a bounded governed state rather than a generic fetch failure."
+  },
+  "readerTakeaway": "Keep cached policy for evidence and diagnosis, but require an explicit current-authority decision before it grants capabilities; record which capabilities are restricted, why, and what event restores eligibility.",
+  "evidenceBoundary": {
+    "supported": [
+      "The official changelog says the forced-refresh path rejects the one-hour fast path and 24-hour stale fallback.",
+      "Named policy-governed capabilities enter a restrictive posture while fresh managed policy is unresolved.",
+      "The restrictive condition ends after fresh managed policy is successfully fetched."
+    ],
+    "unsupported": [
+      "The undisclosed freshness key, transport authentication or response-validation implementation",
+      "Source-level regression coverage",
+      "All capabilities or all policy-refresh paths"
+    ],
+    "uncertain": [
+      "How revision, account and organization identity define freshness",
+      "How already-running governed capabilities react mid-session",
+      "The operational availability cost of strict freshness"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article develops a general enterprise authority-freshness pattern without a first-party project mapping."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The official product contract supports a concrete stale-authority boundary and a useful architectural distinction while the article explicitly preserves implementation uncertainty."
+}
