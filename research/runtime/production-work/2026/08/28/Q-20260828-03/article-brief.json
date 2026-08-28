@@ -1,0 +1,51 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-28",
+  "itemId": "Q-20260828-03",
+  "researchObjectId": "AN-20260828-03",
+  "targetAudience": {
+    "primary": "Engineers building agent tool-approval, risk-classification and authorization caches",
+    "knowledgeAssumption": "The reader understands approval workflows, cache keys, revocation and concurrent execution.",
+    "readerProblem": "A recent low-risk classification can be reused after the user's governing authorization changes, especially when revocation races an in-flight classifier."
+  },
+  "whyNow": "A same-day merged OpenAI Codex Guardian v2 change binds cached low-risk scores to local and optional root authorization versions and revalidates the identity immediately before fast approval.",
+  "externalHook": {
+    "type": "revocation-aware-approval-cache",
+    "description": "Cached approval evidence becomes stale when its recorded authorization identity no longer equals the current one, including an in-flight race.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "coreProposition": "Reusable approval evidence should be bound to the authorization identity under which it was produced and revalidated immediately before it becomes execution authority; recency and action identity alone cannot make a cache revocation-aware, while version equality proves only the authority dimensions encoded by that version.",
+  "originalValue": {
+    "type": "use-time-authority-binding",
+    "description": "Treats a cached classifier result as evidence produced under a particular authority identity, not as a time-limited permission token, and makes consumption-time revalidation the decisive safety boundary."
+  },
+  "readerTakeaway": "Key reusable approval evidence by action, risk, time and authority identity; recompute the represented authority at consumption, and fall back to review when it differs.",
+  "evidenceBoundary": {
+    "supported": [
+      "The merged change defines a structured authorization version from selected conversation and host-produced input facts.",
+      "Successful cached scores record local and optional root authorization identity.",
+      "The fast-approval path recomputes current authorization and rejects mismatch, including an in-flight authorization change."
+    ],
+    "unsupported": [
+      "Classifier correctness",
+      "Completeness of all authorization-relevant inputs",
+      "Atomic authorization and tool effect",
+      "Signed durable audit or distributed principal consistency"
+    ],
+    "uncertain": [
+      "Which external policy and tool-configuration identities should enter the version",
+      "How cached evidence should survive fork, resume and cross-process recovery"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article develops a general revocation-aware approval-cache pattern without relying on a first-party project."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The merged implementation and race regression support a concrete mechanism and a useful engineering rule while leaving classifier, tuple-completeness and effect-time claims bounded."
+}

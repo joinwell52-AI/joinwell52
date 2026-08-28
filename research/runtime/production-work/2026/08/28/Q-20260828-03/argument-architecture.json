@@ -1,0 +1,73 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-28",
+  "itemId": "Q-20260828-03",
+  "coreProposition": "Reusable approval evidence should be bound to the authorization identity under which it was produced and revalidated immediately before it becomes execution authority; recency and action identity alone cannot make a cache revocation-aware, while version equality proves only the authority dimensions encoded by that version.",
+  "openingMove": {
+    "type": "recent-but-revoked",
+    "purpose": "Open with a cached low-risk result that is still recent and action-matched but was produced before authorization changed.",
+    "evidenceRefs": [
+      "E2",
+      "I1"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why are action identity and recency insufficient cache keys?",
+      "claim": "They can prove the same action was classified recently but cannot prove the governing authorization context is unchanged.",
+      "evidenceRefs": [
+        "I1",
+        "I2"
+      ],
+      "reasoningRole": "cache-key-gap",
+      "readerProgress": "The reader sees authorization staleness as independent from time staleness.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What identity should cached evidence carry?",
+      "claim": "A successful score should record the local and, where delegation applies, root authorization versions under which it was produced.",
+      "evidenceRefs": [
+        "E1",
+        "E2"
+      ],
+      "reasoningRole": "identity-binding",
+      "readerProgress": "The reader gains a selective invalidation key tied to authority rather than arbitrary event activity.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "When must authorization be revalidated?",
+      "claim": "The system must recompute current authority at the point cached evidence is converted into fast approval, because authorization can change while classification is in flight.",
+      "evidenceRefs": [
+        "E2",
+        "E3"
+      ],
+      "reasoningRole": "concurrency-boundary",
+      "readerProgress": "The reader identifies use-time revalidation as the demonstrated race-closing check.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What does version equality actually prove?",
+      "claim": "Equality establishes continuity only for the authority inputs encoded by the version tuple; omitted policy, configuration or principal facts remain outside the proof.",
+      "evidenceRefs": [
+        "E1",
+        "I2"
+      ],
+      "reasoningRole": "proof-boundary",
+      "readerProgress": "The reader avoids treating a bounded tuple as universal authorization continuity.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Flushing every approval cache on every event is simpler and more conservative.",
+    "responseBoundary": "Global invalidation removes reuse value and is not necessarily safer if revocation-relevant facts remain unidentified; a reviewed authority-version schema provides narrower, explainable invalidation."
+  },
+  "endingStrategy": {
+    "type": "schema-review-rule",
+    "purpose": "End by requiring authority-version review whenever a new policy source or authorization-bearing input is added."
+  }
+}
