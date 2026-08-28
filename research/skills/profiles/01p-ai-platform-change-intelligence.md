@@ -1,92 +1,167 @@
-# Skill 01-P — AI Platform Change Intelligence
+# Skill 01-P — Product / Competitor Sample Intelligence
 
-**中文名称：AI 平台变更情报发现**
+**中文名称：产品与竞品样本情报发现**
+
+> Runtime compatibility note: the pipeline identifier remains `ai-platform`, but its research role is no longer “platform release research.”
 
 ## Purpose
 
-Continuously detect material changes in major AI platforms and convert them into evidence-graded signals for all three research columns.
+Observe product and competitor samples to discover **governance failures, mechanisms, operating patterns and product lessons** relevant to governed digital employees.
 
-This profile studies product and operating architecture, not general AI news.
+Platform releases, changelogs and announcements are monitored only as change triggers or evidence leads. They are not research subjects by themselves.
 
-## P0 daily platforms
+## Highest priority
 
-- OpenAI / ChatGPT / Codex
-- Anthropic / Claude / Claude Code
-- Google / Gemini
-- Cursor
-- GitHub Copilot
-- Microsoft Copilot Platform
+**Agent Governance comes first.** Prefer evidence about:
 
-The authoritative channels are stored in `research/intelligence/REGISTRY.json`.
+- identity and authority;
+- capability versus call-time authorization;
+- delegation and task ownership;
+- human approval and escalation;
+- policy enforcement;
+- evidence, audit and completion truth;
+- recovery and rollback;
+- credential, secret, memory and context isolation;
+- responsibility and accountability.
 
-## Channel matrix
+## Sample families
 
-For every due platform, check the applicable channels:
+### Digital Employee products
 
-1. official release notes or changelog;
-2. product and developer documentation;
-3. API, SDK and model lifecycle changes;
-4. official blog, research report, system card or roadmap;
-5. official forum or community;
-6. official GitHub organization or repository;
-7. status page, incident and security notice;
-8. pricing, quota, policy and enterprise-control changes.
+Maintain bounded awareness of product samples such as:
 
-A channel requiring authentication must be recorded as `authentication-required`; it must not be reported as “checked with no update.”
+- Paperclip;
+- StaffDeck;
+- iML Work;
+- Orkas;
+- Fusion;
+- TSA AI Workforce;
+- Eigent;
+- OneManCompany;
+- OpenHire;
+- CrewMeld;
+- OpenVort;
+- OACP / KiloLoop;
+- Gas Town + Beads;
+- Microsoft Sico;
+- Palmier;
+- SIDJUA.
 
-## Public forum routing
+### Enterprise governance / control-plane products
 
-Official forums are collected through two separate lanes:
+- Microsoft Agent Framework + Agent Governance Toolkit;
+- ServiceNow AI Control Tower;
+- IBM watsonx Orchestrate / Agentic Control Plane;
+- UiPath Maestro;
+- Salesforce Agentforce SOMA / Agent Gateway.
 
-1. **Official notice** — an announcement category, official community blog, or staff-authored notice index. These items may establish a platform fact only when the author is verified as the platform or its staff.
-2. **Precision section** — a product-specific category such as API, Codex, coding agents, Apps SDK, bug reports, release feedback, governance, or evaluation. These items are research leads until reproduced or officially corroborated.
+### Existing Registry platform sources
 
-The registry stores the forum home page only as `communityNavigation`. Opening that home page does not satisfy coverage. Each due section URL must be checked independently.
+OpenAI, Anthropic, Google, Cursor, GitHub Copilot and Microsoft Copilot remain useful **platform evidence sources**, but ordinary model, UI, quota, pricing or release changes have no automatic research priority.
 
-Only sources readable without authentication enter the due-channel count. A community that requires sign-in or membership is excluded from the active watchlist and recorded under `communityExclusion`; it is not reported as checked, failed, or inaccessible on every run.
+## What to collect
 
-### Current public forum map
+For each sample, prefer durable product and mechanism evidence over update summaries.
 
-| Platform | Official notice lane | Precision sections |
-| --- | --- | --- |
-| OpenAI | Announcements | API, Codex, ChatGPT Apps SDK, Open Models, Community projects |
-| Google | Announcement tag; staff authorship must be verified | Gemini API, Google AI Studio, Google Antigravity |
-| Cursor | Announcements | Release Discussions, Bug Reports, Ideas, Discussions |
-| GitHub Copilot | Copilot News and Announcements | Copilot Conversations |
-| Microsoft Copilot | Copilot Studio Blog | Copilot Studio Discussions |
-| Anthropic | Public news and release notes only | Discord excluded because anonymous inspection is unavailable |
+### 1. Failure / limitation
 
-## Change taxonomy
+- permission leakage;
+- unsafe credential inheritance;
+- duplicate execution;
+- stale or false completion state;
+- supervisor bottleneck;
+- failed recovery;
+- approval reuse or expiry problems;
+- memory/context contamination;
+- infrastructure or always-on cost problems;
+- product deployment or installation failure modes.
 
-- model launch, update, migration or retirement;
-- Agent, long-running task, Computer Use and scheduled work;
-- coding agent, IDE, CLI and cloud-agent changes;
-- API, SDK, tool, Skill, MCP, connector and webhook changes;
-- Workspace, Team, Enterprise, RBAC, identity and approval;
-- security, privacy, data retention, audit and incident;
-- benchmark, evaluation, system card and technical report;
-- pricing, quota, billing and product-boundary changes.
+### 2. Mechanism
 
-## Forum evidence levels
+- identity and role model;
+- authority and policy model;
+- task claim / ownership model;
+- approval flow;
+- state machine;
+- checkpoint / resume / replay;
+- audit and evidence model;
+- exception handling;
+- human-agent handoff;
+- multi-agent organization;
+- desktop/mobile supervision pattern;
+- packaging, local-first or enterprise deployment pattern when it materially affects governance or operability.
 
-```text
-official_announcement
-official_staff_confirmation
-reproducible_community_report
-unverified_discussion
+### 3. Finding
+
+Capture measured, reproducible or well-supported observations about what works, fails or scales poorly.
+
+### 4. Implication
+
+State the potential consequence for governed digital employees without forcing a first-party project conclusion during Discovery.
+
+## Channel policy
+
+The authoritative due-channel list remains in `research/intelligence/REGISTRY.json` for Runtime coverage accounting.
+
+For every due source, official documentation, architecture, security, incident, roadmap and repository evidence should be preferred over marketing summaries.
+
+Official forums may contribute reproducible failure evidence or product clarification, subject to the Registry evidence rules.
+
+## Release / changelog boundary
+
+A new version, release, model launch, changelog entry, pricing change or announcement may create:
+
+```yaml
+signal_role: sample-change-trigger
 ```
 
-Only the first two may establish an official platform fact. Community reports remain leads until corroborated.
+It may be promoted to substantive evidence only when it exposes at least one of:
+
+- a reusable governance problem;
+- an architectural mechanism;
+- a failure or regression;
+- a measurable finding;
+- a changed authority, recovery, evidence or organizational boundary;
+- a meaningful industry product pattern relevant to digital employees.
+
+The following is **not** sufficient:
+
+> “Product X released version Y with feature Z.”
+
+The following can be useful:
+
+> “Product X changed how delegated workers obtain authority; this supplies evidence for the research question of delegation authority inheritance.”
+
+## Research-theme binding
+
+Every substantive product signal should bind to at least one theme from Skill 01, for example:
+
+```text
+call-time-authorization
+delegation-authority
+task-ownership-responsibility
+human-approval-authority
+evidence-completion-truth
+recovery-authority
+memory-context-isolation
+role-organizational-design
+human-agent-workflow
+digital-employee-work-design
+```
+
+A product change that cannot be connected to a substantive research theme remains background intelligence.
 
 ## Three-column routing
 
-- **Digital Employee:** position work, task execution, waiting, recovery, approval, delivery and evaluation.
-- **Industry Architecture:** platform products, workspace, control plane, enterprise management, permissions, connectors and commercial boundaries.
-- **Open-source Engineering:** SDKs, CLI, runtime mechanisms, protocols, tests, security and reproducible implementation.
+- **Digital Employee:** position work, responsibility, governed execution, task ownership, waiting, approval, recovery, delivery and evaluation.
+- **Industry Architecture:** organizational runtime, control plane, policy gateway, multi-agent topology, enterprise governance and human-agent process.
+- **Open-source Engineering:** reproducible runtime, authorization, state, recovery, protocol, audit, test and evaluation mechanisms.
 
-One signal has one primary column and optional secondary columns.
+Columns do not grant research admission.
 
-## Output
+## Output enrichment
+
+Keep the Runtime-compatible signal fields and add when evidence supports them:
 
 ```yaml
 platform_signal:
@@ -98,23 +173,25 @@ platform_signal:
   authority_level:
   change_type:
   observed_change:
+  signal_role:
+  research_themes:
+  sample_ids:
+  research_value:
+    failure:
+    finding:
+    mechanism:
+    implication:
   corroborating_sources:
   primary_column:
   secondary_columns:
-  relevance:
-    tmpa:
-    digital_employee:
-    codeflowmu:
   confidence:
   triage_status:
 ```
 
 ## Completion gate
 
-The profile is complete only when every due P0 platform is:
+Coverage remains the completion criterion for due Registry sources. Finding a release is not completion, and a release is not a research candidate merely because it is new.
 
-- checked;
-- explicitly inaccessible with a reason; or
-- failed with a recorded error and next action.
+## Hard rule
 
-Finding an article is not the completion criterion. Coverage is.
+**Platform release/update content must never be selected as a Research Object solely because the platform changed.** Preserve it as evidence, or reject it from research admission.
