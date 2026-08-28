@@ -8,10 +8,10 @@
   "date": "2026-08-28",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Waiting",
+  "status": "Running",
   "taskStatus": {
     "discovery": "Completed",
-    "queue": "Waiting",
+    "queue": "Running",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
@@ -33,32 +33,120 @@
       "next": "Research Runtime Queue may independently score and triage only the 2026-08-28 Signal Pool after the Discovery terminal commit and GitHub verification are durable on main. Discovery must not select topics or carry out Deep Reading, Research Analysis, Production or Publication.",
       "next_zh": "仅当 Discovery 终态提交与 GitHub Verification 在 main 上完成持久核验后，Research Runtime Queue 才可独立评分与筛选 2026-08-28 Signal Pool；Discovery 不得选题，也不得执行 Deep Reading、Research Analysis、Production 或 Publication。",
       "metrics": [
-        {"label": "Prompt SHA-256 verified", "label_zh": "Prompt SHA-256 已核验", "value": "55636950fafe406c551975393b93d1493c1eb205f1d0174471729c4f0c5bcb17"},
-        {"label": "Required sources read", "label_zh": "已读取 requiredSources", "value": "10 / 10"},
-        {"label": "AI Platform due / checked / failed", "label_zh": "AI 平台应查 / 已查 / 失败", "value": "45 / 45 / 0"},
-        {"label": "GitHub repositories checked", "label_zh": "GitHub 已检查仓库", "value": "9 / 9"},
-        {"label": "Research sources due / checked / failed", "label_zh": "研究来源应查 / 已查 / 失败", "value": "9 / 8 / 1"},
-        {"label": "Normalized signals", "label_zh": "规范化信号", "value": 26},
-        {"label": "Digital Employee signals", "label_zh": "数字员工信号", "value": 11},
-        {"label": "Industry Architecture signals", "label_zh": "行业架构信号", "value": 5},
-        {"label": "Open-source Engineering signals", "label_zh": "开源工程信号", "value": 10},
-        {"label": "Selected topics", "label_zh": "已选主题", "value": 0}
+        {
+          "label": "Prompt SHA-256 verified",
+          "label_zh": "Prompt SHA-256 已核验",
+          "value": "55636950fafe406c551975393b93d1493c1eb205f1d0174471729c4f0c5bcb17"
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 requiredSources",
+          "value": "10 / 10"
+        },
+        {
+          "label": "AI Platform due / checked / failed",
+          "label_zh": "AI 平台应查 / 已查 / 失败",
+          "value": "45 / 45 / 0"
+        },
+        {
+          "label": "GitHub repositories checked",
+          "label_zh": "GitHub 已检查仓库",
+          "value": "9 / 9"
+        },
+        {
+          "label": "Research sources due / checked / failed",
+          "label_zh": "研究来源应查 / 已查 / 失败",
+          "value": "9 / 8 / 1"
+        },
+        {
+          "label": "Normalized signals",
+          "label_zh": "规范化信号",
+          "value": 26
+        },
+        {
+          "label": "Digital Employee signals",
+          "label_zh": "数字员工信号",
+          "value": 11
+        },
+        {
+          "label": "Industry Architecture signals",
+          "label_zh": "行业架构信号",
+          "value": 5
+        },
+        {
+          "label": "Open-source Engineering signals",
+          "label_zh": "开源工程信号",
+          "value": 10
+        },
+        {
+          "label": "Selected topics",
+          "label_zh": "已选主题",
+          "value": 0
+        }
       ],
       "evidence": [
-        {"label": "Authority commit", "label_zh": "权威提交", "value": "38cc70d19ccfdaf330c9fa886431a0b176150de5"},
-        {"label": "Worker control manifest", "label_zh": "Worker Control Manifest", "source": "research/runtime/worker-prompts/generated/CONTROL.json"},
-        {"label": "Generated Discovery Prompt", "label_zh": "Generated Discovery Prompt", "source": "research/runtime/worker-prompts/generated/discovery.prompt.md"},
-        {"label": "Wake Receipt", "label_zh": "Wake Receipt", "source": "research/runtime/wakes/2026/08/2026-08-28/discovery-090332.json"},
-        {"label": "AI Platform profile", "label_zh": "AI 平台 Profile", "source": "research/skills/profiles/01p-ai-platform-change-intelligence.md"},
-        {"label": "GitHub Engineering profile", "label_zh": "GitHub 工程 Profile", "source": "research/skills/profiles/01g-github-engineering-intelligence.md"},
-        {"label": "Published Research profile", "label_zh": "已发表研究 Profile", "source": "research/skills/profiles/01r-published-research-intelligence.md"},
-        {"label": "Pre-terminal validator run", "label_zh": "终态前验证 Run", "value": "Validate Research Center 3.0 #33132024110 — Validate Runtime Center success"},
-        {"label": "Terminal validator run", "label_zh": "终态验证 Run", "value": "Validate Research Center 3.0 #33132114380 — Validate Runtime Center success"}
+        {
+          "label": "Authority commit",
+          "label_zh": "权威提交",
+          "value": "38cc70d19ccfdaf330c9fa886431a0b176150de5"
+        },
+        {
+          "label": "Worker control manifest",
+          "label_zh": "Worker Control Manifest",
+          "source": "research/runtime/worker-prompts/generated/CONTROL.json"
+        },
+        {
+          "label": "Generated Discovery Prompt",
+          "label_zh": "Generated Discovery Prompt",
+          "source": "research/runtime/worker-prompts/generated/discovery.prompt.md"
+        },
+        {
+          "label": "Wake Receipt",
+          "label_zh": "Wake Receipt",
+          "source": "research/runtime/wakes/2026/08/2026-08-28/discovery-090332.json"
+        },
+        {
+          "label": "AI Platform profile",
+          "label_zh": "AI 平台 Profile",
+          "source": "research/skills/profiles/01p-ai-platform-change-intelligence.md"
+        },
+        {
+          "label": "GitHub Engineering profile",
+          "label_zh": "GitHub 工程 Profile",
+          "source": "research/skills/profiles/01g-github-engineering-intelligence.md"
+        },
+        {
+          "label": "Published Research profile",
+          "label_zh": "已发表研究 Profile",
+          "source": "research/skills/profiles/01r-published-research-intelligence.md"
+        },
+        {
+          "label": "Pre-terminal validator run",
+          "label_zh": "终态前验证 Run",
+          "value": "Validate Research Center 3.0 #33132024110 — Validate Runtime Center success"
+        },
+        {
+          "label": "Terminal validator run",
+          "label_zh": "终态验证 Run",
+          "value": "Validate Research Center 3.0 #33132114380 — Validate Runtime Center success"
+        }
       ],
       "artifacts": [
-        {"label": "Research Intelligence run", "label_zh": "Research Intelligence 运行记录", "value": "research/intelligence/runs/2026/08/2026-08-28-intelligence.json"},
-        {"label": "Daily Runtime JSON", "label_zh": "Daily Runtime JSON", "value": "research/runtime/records/daily/2026/08/2026-08-28-daily-runtime.json"},
-        {"label": "Human-readable Runtime ledger", "label_zh": "人类可读 Runtime 账本", "value": "research/runtime/2026/08/2026-08-28-runtime.md"}
+        {
+          "label": "Research Intelligence run",
+          "label_zh": "Research Intelligence 运行记录",
+          "value": "research/intelligence/runs/2026/08/2026-08-28-intelligence.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "value": "research/runtime/records/daily/2026/08/2026-08-28-daily-runtime.json"
+        },
+        {
+          "label": "Human-readable Runtime ledger",
+          "label_zh": "人类可读 Runtime 账本",
+          "value": "research/runtime/2026/08/2026-08-28-runtime.md"
+        }
       ],
       "startedAt": "2026-08-28T09:05:36+08:00",
       "completedAt": "2026-08-28T09:11:03+08:00"
@@ -92,12 +180,19 @@
       "event": "GitHub Commit Verified",
       "status": "Completed",
       "detail": "Fetched current main and verified governed Discovery completion commit 2e0ea0bb08b9a4367d999c5e9fcf46d02db01f33 is directly reachable through main ledger-sync commit 18ca11d80023ac9a170edfc4ec71e2fcaa944249; terminal commit passed Validate Runtime Center in Validate Research Center 3.0 run 33132114380."
+    },
+    {
+      "time": "2026-08-28T10:08:55+08:00",
+      "task": "queue",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Queue started by Research Runtime Scheduler V3.0."
     }
   ],
   "metrics": [],
   "evidence": [],
   "artifacts": [],
-  "githubCommit": "2e0ea0bb08b9a4367d999c5e9fcf46d02db01f33",
-  "commitVerify": "Completed",
-  "updatedAt": "2026-08-28T09:12:46+08:00"
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-08-28T10:08:55+08:00"
 }
