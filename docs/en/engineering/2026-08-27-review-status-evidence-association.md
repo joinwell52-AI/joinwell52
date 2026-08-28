@@ -134,7 +134,7 @@ After the feature was complete and V2.0.4 was formally released, we captured two
 
 The first screenshot shows the task in `active`. The second shows the same task in `review`.
 
-These raw UI screenshots are first-party page evidence. The author will upload them separately into this article. Their value is that they show the same task changing stage while the diagnostic recomputes the evidence relationships accordingly.
+The two raw UI screenshots below are first-party page evidence for the **same task**, not static mockups. The first shows `active`; the second shows that task after it reaches `review`. Their value is that the diagnostic recomputes evidence relationships as the formal lifecycle facts change.
 
 ### Stage A: `active` — no REPORT yet means not applicable
 
@@ -159,6 +159,10 @@ No formal REPORT exists yet, so the REPORT edges are correctly **not applicable*
 
 The crucial fact is `missing=0 / conflict=0`. At this stage, no REPORT is expected, so reporting a missing REPORT would itself be inaccurate.
 
+![Evidence-association diagnostic for the same QA task in active: four execution-chain relations are linked and REPORT relations are not applicable at this stage](/assets/figures/2026-08-27-r2-diagnostic-active.png)
+
+*Figure 1. The same QA task is still `active`. Its revision, attempt, lease, execution, and action evidence can be connected. A formal REPORT has not yet been produced, so REPORT relations are **not applicable**, rather than missing.*
+
 ### Stage B: `review` — REPORT relationships become linked when the evidence exists
 
 After the same task enters `review`, the diagnostic recomputes the graph:
@@ -174,6 +178,10 @@ The remaining EVAL edge is:
 - `EVAL → REVIEW`: `not_applicable` / `eval_not_present`
 
 That is also the correct result. This is a **QA task**. In the current workflow, EVAL belongs to the PM path, so this QA task is not expected to carry an EVAL report.
+
+![Evidence-association diagnostic for the same QA task in review: REPORT to Task and REPORT to REVIEW are linked, while EVAL to REVIEW remains not applicable](/assets/figures/2026-08-27-r2-diagnostic-review.png)
+
+*Figure 2. Once the same task reaches `review`, the diagnostic rereads the formal facts. REPORT → Task and REPORT → REVIEW move from not applicable to linked; EVAL remains not applicable because this QA path does not require one.*
 
 The pair therefore demonstrates a specific production capability:
 
@@ -265,7 +273,7 @@ The V2.0.4 live comparison also has a structured transcript and consistency chec
 - [active/review dynamic diagnostic snapshots](/assets/evidence/2026-08-27-r2-v204-dynamic-diagnostic-snapshots.json)
 - [dynamic snapshot consistency check](/assets/evidence/2026-08-27-r2-v204-dynamic-diagnostic-check.mjs)
 
-The raw screenshots will be added separately by the author as first-party UI evidence. The structured artifacts preserve the stage, visible edges, statuses, and reason codes in machine-checkable form.
+The two first-party UI screenshots are embedded above. The structured artifacts preserve the stage, visible edges, statuses, and reason codes in machine-checkable form.
 
 ## Conclusion
 
