@@ -1,85 +1,171 @@
-# Skill 01-R — Published Research Intelligence
+# Skill 01-R — Published Research & Industry Application Intelligence
 
-**中文名称：论文与研究成果情报发现**
+**中文名称：论文、Benchmark 与行业应用情报发现**
+
+> Runtime compatibility note: the pipeline identifier remains `published-research`.
 
 ## Purpose
 
-Discover new papers and primary research artifacts that can support Digital Employee, Industry Architecture and Open-source Engineering research.
+Discover research findings, benchmarks, standards, datasets and industry application evidence that can improve the design of governed digital employees and multi-agent systems.
 
-The scope is broader than formally published journal papers. It includes:
+The purpose is not to publish a paper digest. The purpose is to learn what others discovered, what failed, what mechanisms work, and what evidence should influence digital-employee engineering.
 
-- peer-reviewed conference and journal papers;
-- arXiv and other preprints;
-- research-lab technical reports;
-- benchmark and dataset papers;
-- system cards and model cards;
-- specifications and standards;
-- paper-associated repositories, datasets and evaluation tools.
+## Priority order
+
+### P0 — Agent Governance
+
+Prioritize research on:
+
+- identity and authority;
+- delegation and responsibility;
+- human approval and oversight;
+- policy enforcement;
+- evidence, audit and completion verification;
+- recovery and rollback;
+- memory/context/credential isolation;
+- accountability and failure attribution.
+
+### P1 — Multi-Agent Architecture
+
+- supervisor, manager, peer and decentralized organization;
+- coordination topology;
+- handoff and communication;
+- A2A / MCP / interoperability;
+- long-running runtime and durable state;
+- deadlock, resource contention and duplicate execution;
+- multi-agent evaluation and verification.
+
+### P1 — Industry applications
+
+Actively look for multi-agent work in:
+
+- software engineering;
+- scientific research;
+- finance and investment research;
+- supply chain, procurement and negotiation;
+- cybersecurity and SOC operations;
+- healthcare and clinical collaboration;
+- customer service and enterprise operations;
+- robotics, autonomous systems and embodied agents;
+- agent markets, agent economy and cross-organization interaction.
+
+The value of an industry application is not “this sector uses agents.” Extract the role structure, authority boundary, coordination mechanism, failure mode, evidence model and human responsibility.
 
 ## Source registry
 
-The authoritative research sources and topics are stored in:
+The authoritative source inventory remains:
 
 ```text
 research/intelligence/REGISTRY.json
 ```
 
-P0 daily sources include major preprint/review systems and official research laboratories. Conference proceedings and digital libraries are scanned on their configured schedule.
+Curated indexes are navigation only. Every useful entry must be followed to the original paper, benchmark, standard, official repository, dataset or primary technical artifact before it is used as evidence.
 
-Curated research indexes may be registered as P1 weekly navigation sources. They discover papers, datasets, benchmarks, tools and standards, but cannot establish a research fact by themselves. Every useful entry must be followed to its original paper, official repository, dataset, benchmark or standard before triage or citation. A configured taxonomy change, standards cluster or high-value mechanism may trigger a bounded special study.
+## Rolling research window
 
-## Topic families
+Do not require research evidence to be published on the run date.
 
-- Digital Employee and enterprise agent;
-- long-running Agent and task scheduling;
-- Computer Use and browser operation;
-- coding Agent and software engineering;
-- multi-Agent coordination;
-- Agent governance, authority and human collaboration;
-- memory, tools and workflow;
-- recovery, resume and completion verification;
-- evaluation, benchmark and observability;
-- runtime, sandbox, MCP and A2A.
+Use a rolling window appropriate to the source:
 
-## Complete research object
+- preprints, conference papers, benchmarks and standards: normally 7–30 days;
+- important prior work: older evidence remains admissible when directly needed by an active research question;
+- newly released code or dataset companions: use current artifact state and preserve the paper/version binding.
 
-A paper signal should seek the complete evidence package:
+A day with no same-day paper may still contain important research evidence.
+
+## Complete evidence package
+
+For a paper or benchmark seek:
 
 ```text
 Paper
-+ Appendix or Supplement
++ Appendix / Supplement
 + Project Page
 + Official Repository
 + Dataset / Benchmark
 + Evaluation Method
++ Known Limitations
 ```
 
 Missing companions must be recorded rather than invented.
 
-## Evidence extraction
+## What to extract
 
 For every candidate capture:
 
-- research question;
-- claimed contribution;
+### Research problem
+- what problem is actually being studied;
+- why it matters for multi-agent or digital-employee systems.
+
+### Finding
+- measured or experimentally supported result;
+- whether the result generalizes or is narrow to the tested setting.
+
+### Failure
+- observed failure mode;
+- negative result;
+- coordination breakdown;
+- safety, reliability or evaluation weakness.
+
+### Mechanism
+- architecture;
+- topology;
+- protocol;
+- governance model;
+- state/recovery design;
+- human-in-the-loop design;
+- evaluation or verification mechanism.
+
+### Evidence quality
 - method;
-- evaluation design;
-- datasets and benchmarks;
-- reported limitations;
-- reproducibility status;
-- associated code or artifacts;
-- institution and venue;
-- relation to existing Research Center objects.
+- dataset;
+- baseline;
+- benchmark;
+- statistical or empirical support;
+- reproducibility;
+- limitations and contradictions.
 
-## Three-column routing
+### Digital-employee implication
+Record the plausible implication as a bounded research lead, not as a forced project conclusion.
 
-- Digital Employee: position work, long tasks, memory, approval, recovery and evaluation.
-- Industry Architecture: enterprise Agent architecture, control planes, platform governance, identity and organizational work.
-- Open-source Engineering: runtime, protocol, SDK, sandbox, evaluation, benchmark and software-engineering Agent mechanisms.
+## Research-theme binding
 
-A paper may affect all three, but it has one primary column.
+Every substantive research signal should bind to one or more themes from Skill 01, such as:
+
+```text
+agent-identity-authority
+call-time-authorization
+delegation-authority
+task-ownership-responsibility
+human-approval-authority
+evidence-completion-truth
+recovery-authority
+memory-context-isolation
+coordination-topology
+failure-deadlock-duplicate-execution
+multi-agent-evaluation
+industry-application-patterns
+agent-economy-negotiation
+```
+
+## Research signal roles
+
+Prefer:
+
+```text
+research-finding
+failure-evidence
+benchmark-evidence
+mechanism-evidence
+industry-application-evidence
+comparative-evidence
+```
+
+A paper announcement without reading the primary artifact is only a lead.
 
 ## Output
+
+Keep the existing Runtime-compatible research signal and enrich it when possible:
 
 ```yaml
 research_signal:
@@ -99,18 +185,30 @@ research_signal:
     repository:
     dataset:
     benchmark:
+  signal_role:
+  research_themes:
+  sample_ids:
   research_question:
   claimed_contribution:
   method:
   evaluation:
+  findings:
+  failures:
+  mechanisms:
   limitations:
   reproducibility_status:
+  digital_employee_implication:
   primary_column:
   secondary_columns:
   triage_status:
   next_skill:
 ```
 
-## Boundary
+## Hard rules
 
-An abstract or vendor summary alone cannot establish an engineering conclusion. Deep Reading must use the primary paper and available methods or artifacts.
+- An abstract or vendor/research-lab summary alone cannot establish an engineering conclusion.
+- Do not discard strong research because it is not same-day.
+- Do not prefer a platform paper merely because the platform is already on the daily watchlist.
+- Prefer evidence that explains a failure, finding, mechanism or industry pattern.
+- Agent Governance receives first priority when relevance and evidence quality are comparable.
+- Research may challenge current assumptions; do not search only for evidence that supports existing designs.
