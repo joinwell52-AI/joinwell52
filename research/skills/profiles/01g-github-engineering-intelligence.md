@@ -1,128 +1,185 @@
-# Skill 01-G — GitHub Engineering Intelligence
+# Skill 01-G — Multi-Agent Engineering & Mechanism Intelligence
 
-**中文名称：GitHub 工程情报发现**
+**中文名称：多 Agent 工程与机制情报发现**
+
+> Runtime compatibility note: the pipeline identifier remains `github-engineering`.
 
 ## Purpose
 
-Maintain a precise, incremental engineering radar over GitHub without pretending to scan the entire platform.
+Maintain a precise engineering radar over repositories and technical artifacts to discover **reusable mechanisms, failures, benchmarks and implementation evidence** for governed digital employees and multi-agent systems.
+
+This is not a Release feed.
 
 ## Scan architecture
 
+Keep the Registry-controlled incremental scan and bounded exploration model, but rank evidence by research value rather than release recency.
+
 ```text
-70% fixed organization and repository watchlist
-20% versioned topic × change-type queries
-10% bounded new-project exploration
+fixed sample / repository watchlist
++ research-theme queries
++ bounded new-project exploration
 ```
 
-The authoritative organizations, repositories and query policy are stored in `research/intelligence/REGISTRY.json`.
+## Priority sample families
 
-## Repository tiers
+### Governance and runtime
 
-- **P0 / daily:** official platform SDKs, coding agents, protocols and directly relevant runtimes.
-- **P1 / weekly:** major Agent frameworks, browser/computer-use systems, evaluation and observability projects.
-- **P2 / biweekly, monthly or release-triggered:** focused research tools, audit/security projects, writing and publication quality tools, and adjacent methods. A P2 source enters deeper research only when its configured trigger is met.
-- **Exploration:** new projects discovered through fixed queries; not admitted until maintenance and evidence checks pass.
+- Microsoft Agent Framework;
+- Microsoft Agent Governance Toolkit;
+- A2A;
+- MCP;
+- LangGraph;
+- CrewAI;
+- CAMEL;
+- OpenHands;
+- Letta;
+- AG2 / AutoGen lineage;
+- Magentic-One.
 
-Repository ownership must remain explicit. A thematic group may contain projects from different owners and must not be presented as one researcher's repository group.
+### Role and organizational systems
 
-## Incremental events
+- MetaGPT;
+- ChatDev / DevAll;
+- digital-employee and workforce products with public technical artifacts.
 
-For each repository, inspect only changes after the last checkpoint:
+### Failure, evaluation and audit
 
-1. Releases and Tags;
-2. merged Pull Requests;
-3. high-value Issues;
-4. official Discussions, Announcements, RFCs and Roadmaps;
-5. Security Advisories;
-6. changes to README, CHANGELOG, SECURITY, RFC, architecture, benchmark, evaluation and test paths.
+- multi-agent failure taxonomies and trace datasets;
+- coordination and topology benchmarks;
+- failure attribution;
+- auditability, replay and rollback;
+- runtime policy enforcement;
+- anomaly detection where it directly applies to agent behavior.
 
-Do not re-scan the full repository history every day.
+The authoritative organizations and repositories remain in `research/intelligence/REGISTRY.json`. The sample families above guide bounded exploration and comparison when the Registry does not yet contain a specific object.
 
-## High-value filters
+## What to inspect
 
-### Objects
+Incrementally inspect:
 
-- agent runtime
-- coding agent
-- digital employee
-- computer use
-- long-running agent
-- multi-agent
-- MCP / A2A
-- evaluation and benchmark
-- recovery and resume
-- human approval
-- observability
-- sandbox and isolation
+1. architecture and design documents;
+2. RFCs and protocol specifications;
+3. merged Pull Requests that materially change a mechanism;
+4. reproducible Issues and regressions;
+5. benchmark, evaluation and dataset changes;
+6. security advisories;
+7. state-machine, recovery, policy, identity and audit implementations;
+8. Releases and Tags only as pointers to potentially important mechanism changes.
 
-### Change types
+Do not treat a Release or merged PR as important merely because it exists.
 
-- Release
-- breaking change
-- deprecation
-- security
-- architecture
-- benchmark
-- roadmap
-- migration
-- regression
-- new API
-- enterprise policy
+## Research-theme query matrix
+
+Prioritize queries around:
+
+### P0 governance
+
+- agent identity / authority;
+- call-time authorization;
+- capability scope;
+- delegation authority;
+- task ownership;
+- approval and escalation;
+- audit / provenance / receipts;
+- completion verification;
+- recovery authority;
+- credential and memory isolation;
+- runtime policy enforcement.
+
+### P1 multi-agent engineering
+
+- supervisor / manager / worker organization;
+- handoff and peer collaboration;
+- A2A / MCP / interoperability;
+- long-running workflow;
+- checkpoint / resume / replay / fork;
+- deadlock / duplicate execution / resource contention;
+- human-agent workflow;
+- multi-agent benchmark and failure attribution.
+
+## Signal-value test
+
+Before creating a substantive candidate signal, ask:
+
+```text
+Does this artifact reveal a Failure, Finding, Mechanism, Benchmark result,
+or Comparative difference relevant to a named research theme?
+```
+
+If no, the event may be recorded for coverage but should not become a research candidate.
+
+## Release boundary
+
+A Release, Tag or routine merged PR is normally:
+
+```yaml
+signal_role: sample-change-trigger
+```
+
+It becomes mechanism evidence only after reading the underlying implementation, design, issue, test, benchmark or specification and identifying a transferable research point.
+
+Forbidden candidate rationale:
+
+> “Repository X released version Y.”
+
+Acceptable research rationale:
+
+> “Repository X changed delegated-worker authority from inherited to explicitly scoped; compare this with other delegation models.”
+
+## Cross-sample comparison
+
+Whenever possible, merge related evidence under a research problem rather than a vendor event.
+
+Example:
+
+```yaml
+research_problem: recovery-authority
+sample_evidence:
+  - LangGraph checkpoint/resume
+  - Microsoft Agent Framework rehydrate
+  - OpenHands recovery behavior
+  - failure benchmark or incident evidence
+```
+
+A comparison may remain a signal until Queue determines whether the evidence is sufficient.
 
 ## Evidence levels
 
 ```text
-official_release
+specification_or_architecture
 merged_maintainer_change
-official_maintainer_statement
-security_advisory
 reproducible_issue
+security_advisory
+benchmark_or_dataset
+maintainer_statement
 community_report
 exploratory_repository
 ```
 
+Map these to the Registry-supported evidence level when persisting the Runtime signal.
+
 Stars and trending position are discovery hints only.
-
-## Three-column routing
-
-GitHub serves all three columns:
-
-- Digital Employee: long tasks, Computer Use, memory, approval, recovery, completion and evaluation;
-- Industry Architecture: official platform repositories, enterprise SDKs, connectors, identity and policy mechanisms;
-- Open-source Engineering: runtimes, protocols, SDKs, tools, tests, benchmarks and observability.
-
-## Change-object deduplication
-
-A Release, PR, Issue, Discussion and documentation change concerning the same mechanism are merged:
-
-```yaml
-change_object:
-  repository:
-  feature:
-  release:
-  pull_requests:
-  issues:
-  discussions:
-  documentation:
-  evidence_level:
-```
 
 ## Required scan record
 
+Keep the existing Runtime-compatible coverage fields. Signal objects should additionally preserve when available:
+
 ```yaml
-github_scan:
-  organizations_due:
-  organizations_checked:
-  repositories_due:
-  repositories_checked:
-  releases_found:
-  merged_prs_reviewed:
-  high_value_issues_reviewed:
-  discussions_reviewed:
-  security_advisories_reviewed:
-  new_repositories_found:
-  signals_created:
-  scan_failures:
+signal_role:
+research_themes:
+sample_ids:
+research_value:
+  failure:
+  finding:
+  mechanism:
+  implication:
 ```
 
-“Checked with no important change” and “not checked” must remain separate.
+## Hard rules
+
+- Do not re-scan full history every day.
+- Do not promote ordinary releases, tags or commits directly to Research Objects.
+- Prefer reproducible mechanism and failure evidence over vendor cadence.
+- Prefer cross-sample evidence when studying a general governance or multi-agent question.
+- Agent Governance receives first-priority attention when evidence quality is comparable.
+- New projects are admitted for research only after maintenance, technical relevance and evidence checks pass.
