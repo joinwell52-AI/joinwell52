@@ -1,4 +1,4 @@
-# Research Intelligence Run Contract V1.1
+# Research Intelligence Run Contract V1.2
 
 ## Purpose
 
@@ -9,7 +9,8 @@ The Runtime JSON schema and pipeline identifiers remain V1-compatible. The seman
 - signals are evidence or research leads;
 - Release/update events do not automatically become research candidates;
 - Queue owns Research Object admission;
-- Agent Governance is the highest-priority research direction.
+- Agent Governance is the highest-priority research direction;
+- Discovery must actively scan long-term samples and rolling research windows, not only same-day changes.
 
 ## Canonical path
 
@@ -27,6 +28,8 @@ The schema name remains unchanged for compatibility with existing Runtime record
 
 ## Required top-level fields
 
+The existing V1 fields remain required. For runs on or after `2026-08-30`, `researchCoverage` is also required.
+
 ```json
 {
   "schema": "research-intelligence-run/v1",
@@ -35,14 +38,15 @@ The schema name remains unchanged for compatibility with existing Runtime record
   "timezone": "Asia/Shanghai",
   "status": "Waiting | Running | Completed | Blocked | Failed | Skipped",
   "registryVersion": "1.0",
-  "sourceTask": "Research Runtime Queue",
+  "sourceTask": "Research Runtime Discovery",
   "updatedAt": "ISO-8601 or empty while waiting",
   "githubCommit": "full SHA or pending",
   "reason": "English summary",
   "reason_zh": "中文摘要",
   "pipelines": [],
   "columns": [],
-  "signals": []
+  "signals": [],
+  "researchCoverage": {}
 }
 ```
 
@@ -65,6 +69,38 @@ Each entry records:
 - bilingual reason.
 
 `Completed` means every due Registry source is resolved as checked, inaccessible or failed with a recorded reason. It does not mean that a Research Object was found.
+
+## Active research coverage
+
+Formal Registry coverage is necessary but no longer sufficient for Discovery completion.
+
+For runs on or after `2026-08-30`, Discovery must also persist:
+
+```yaml
+researchCoverage:
+  policy: theme-sample-v1
+  rollingResearchWindowDays: 30
+  sampleFamilies:
+    product-governance:
+      checked: []
+      qualifiedSignals: 0
+    multi-agent-mechanism:
+      checked: []
+      qualifiedSignals: 0
+    research-benchmark-industry:
+      checked: []
+      qualifiedSignals: 0
+```
+
+Requirements:
+
+- each `checked` list contains at least two distinct approved samples or research/application families actually inspected during the run;
+- sample choices should rotate against recent run history rather than repeatedly selecting only the fastest-moving repositories;
+- `rollingResearchWindowDays` must be at least `30`;
+- a family with no qualified signal still records the checked samples and `qualifiedSignals: 0`;
+- the `published-research` pipeline may legitimately produce zero retained signals, but only after the rolling research pass has been completed and recorded.
+
+A statement such as “no paper was published on the run date” is never sufficient to close the research pipeline.
 
 ## Column decisions
 
@@ -106,7 +142,7 @@ The existing required signal fields remain valid:
 }
 ```
 
-Discovery should enrich a signal when possible with:
+For runs on or after `2026-08-30`, every retained signal must also contain:
 
 ```yaml
 signalRole: sample-change-trigger | failure-evidence | research-finding | mechanism-evidence | benchmark-evidence | industry-application-evidence | incident-or-regression-evidence | comparative-evidence
@@ -119,7 +155,21 @@ researchValue:
   implication:
 ```
 
-These enrichment fields are optional at the V1 JSON validator layer but are operationally significant to Skill 02.
+`researchThemes` and `sampleIds` must be non-empty.
+
+For any role other than `sample-change-trigger`, at least one `researchValue` field must contain a substantive value.
+
+## Trigger-density guard
+
+A Release, commit, changelog, tag, roadmap item or announcement may still be retained as a `sample-change-trigger` when it is useful evidence.
+
+But from the policy effective date onward:
+
+> **Pure `sample-change-trigger` signals may not exceed 50% of the retained Signal Pool.**
+
+If qualified non-trigger evidence is scarce, Discovery must retain fewer total signals rather than filling the Signal Pool with Releases and commits.
+
+This rule prevents fast-moving coding-platform repositories from crowding out competitor architecture, failures, papers, benchmarks and industry applications.
 
 ## Release / update boundary
 
@@ -177,7 +227,7 @@ Different evidence classes use different windows:
 
 - platform/repository change triggers are incremental;
 - current product/competitor architecture may be studied without same-day change;
-- papers, benchmarks and standards use a rolling window;
+- papers, benchmarks and standards use a rolling 7–30 day window;
 - older prior art and failures remain usable when directly relevant to an active research question.
 
 The Research Center must not structurally favor sources that publish software changes every day over sources that publish research or benchmarks less frequently.
@@ -185,6 +235,8 @@ The Research Center must not structurally favor sources that publish software ch
 ## Completion gate
 
 A completed Queue plan on or after the Registry effective date requires a completed Intelligence run for the same date.
+
+For runs on or after `2026-08-30`, a Completed Discovery result additionally requires valid `researchCoverage`, enriched signal metadata, and compliance with the trigger-density guard.
 
 The selected item ID for each column must match between:
 
