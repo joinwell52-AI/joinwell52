@@ -8,13 +8,13 @@
   "date": "2026-08-29",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Waiting",
+  "status": "Running",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Waiting",
+    "production": "Running",
     "publication": "Waiting"
   },
   "results": {
@@ -1234,12 +1234,19 @@
       "event": "GitHub Commit Verified",
       "status": "Completed",
       "detail": "Fetched and verified durable Research Runtime Analysis Completed result commit a42fe070229162aa568c2bf0d46ed35b126138bf on main; 1 execution epoch(s) remain as audit evidence, every prior epoch is governed-closed, and the latest epoch contains a fresh Worker Claimed event before terminal finalization."
+    },
+    {
+      "time": "2026-08-29T15:02:23+08:00",
+      "task": "production",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Production started after durable verification of the 2026-08-29 wake receipt, fail-closed admission against the current main control source, the 15:00 notBefore boundary, and closure of Discovery, Queue, Reading and Analysis."
     }
   ],
   "metrics": [],
   "evidence": [],
   "artifacts": [],
-  "githubCommit": "a42fe070229162aa568c2bf0d46ed35b126138bf",
-  "commitVerify": "Completed",
-  "updatedAt": "2026-08-29T13:12:43+08:00"
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-08-29T15:02:23+08:00"
 }
