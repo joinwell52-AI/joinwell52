@@ -1,9 +1,12 @@
 import { spawnSync } from 'node:child_process'
+import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import process from 'node:process'
 
 const root = resolve(import.meta.dirname, '..')
 const resolver = resolve(root, 'scripts/worker-prompts.mjs')
+const control = JSON.parse(readFileSync(resolve(root, 'research/runtime/worker-prompts/generated/CONTROL.json'), 'utf8'))
+const discoveryEffectiveDate = control.tasks.discovery.effectiveDate
 const commonCapabilities = 'github-read,github-write,file-editing'
 const allCapabilities = `${commonCapabilities},web-research,image-generation`
 
@@ -34,7 +37,7 @@ function expectDecision(name, input, decision, reasonFragment = null) {
 }
 
 const admitted = [
-  ['discovery', '2026-08-12T09:00:00+08:00'],
+  ['discovery', `${discoveryEffectiveDate}T09:00:00+08:00`],
   ['queue', '2026-08-12T10:00:00+08:00'],
   ['reading', '2026-08-12T11:00:00+08:00'],
   ['analysis', '2026-08-12T13:00:00+08:00'],
@@ -55,7 +58,7 @@ expectDecision('production GitHub Actions path needs no command execution capabi
 expectDecision('weekly wrong weekday', { task: 'weekly', now: '2026-08-12T20:30:00+08:00' }, 'Denied', 'not scheduled on')
 expectDecision('academic wrong weekday', { task: 'academic', now: '2026-08-13T16:00:00+08:00' }, 'Denied', 'not scheduled on')
 expectDecision('program wrong weekday', { task: 'program', now: '2026-08-18T12:00:00+08:00' }, 'Denied', 'not scheduled on')
-expectDecision('discovery missing web research', { task: 'discovery', now: '2026-08-12T09:00:00+08:00', capabilities: commonCapabilities }, 'Denied', 'missing capability web-research')
+expectDecision('discovery missing web research', { task: 'discovery', now: `${discoveryEffectiveDate}T09:00:00+08:00`, capabilities: commonCapabilities }, 'Denied', 'missing capability web-research')
 expectDecision('wrong branch', { task: 'queue', now: '2026-08-12T10:00:00+08:00', branch: 'feature/test' }, 'Denied', 'is not allowed')
 expectDecision('wrong wake source', { task: 'queue', now: '2026-08-12T10:00:00+08:00', wakeSource: 'unknown-timer' }, 'Denied', 'wake source')
 
