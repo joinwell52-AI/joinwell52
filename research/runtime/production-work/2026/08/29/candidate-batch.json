@@ -1,371 +1,371 @@
 {
-  "schema": "runtime-publication-candidate/v2",
-  "date": "2026-08-29",
-  "timezone": "Asia/Shanghai",
-  "status": "Completed",
-  "sourceTask": "Research Runtime Production",
-  "sourceRecord": "research/runtime/records/daily/2026/08/2026-08-29-daily-runtime.json",
-  "updatedAt": "2026-08-29T15:12:06+08:00",
-  "githubCommit": "pending",
-  "reason": "Three completed 2026-08-29 Research Objects were converted into complete bilingual Editorial Architecture 2.1 candidates with verified planning artifacts, evidence-bounded claims and deterministic baseline covers.",
-  "reason_zh": "三份已完成的 2026-08-29 Research Object 已转换为完整双语 Editorial Architecture 2.1 候选，具备已核验的规划工件、有边界的证据声明和确定性基础题图。",
   "candidates": [
     {
-      "column": "digital-employee",
-      "category": "daily",
-      "itemId": "Q-20260829-01",
-      "articleType": "technical-analysis",
-      "researchQuestion": "可恢复智能体应如何区分上下文重建权与当前执行权？",
-      "title": "Restoring Context Does Not Restore Authority",
-      "title_zh": "恢复上下文，不等于恢复权限",
-      "zhPath": "staging/publication-candidates/2026-08-29-restoring-context-does-not-restore-authority.zh.md",
-      "enPath": "staging/publication-candidates/2026-08-29-restoring-context-does-not-restore-authority.en.md",
-      "articleBriefPath": "research/runtime/production-work/2026/08/29/Q-20260829-01/article-brief.json",
       "argumentArchitecturePath": "research/runtime/production-work/2026/08/29/Q-20260829-01/argument-architecture.json",
-      "figurePlanPath": "research/runtime/production-work/2026/08/29/Q-20260829-01/figure-plan.json",
+      "articleBriefPath": "research/runtime/production-work/2026/08/29/Q-20260829-01/article-brief.json",
+      "articleType": "technical-analysis",
+      "category": "daily",
+      "column": "digital-employee",
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already carries the transferable argument; a separate community edition would repeat the same evidence without a distinct discussion angle."
+      },
       "coreProposition": "A durable snapshot may be authoritative enough to reconstruct context without being authoritative enough to authorize action; resumable Agent runtimes should keep reconstruction evidence, lineage and freshness identity, and current execution authorization separately inspectable, revalidating permission-bearing restored state before it can shape capabilities or effects.",
-      "sections": [
-        {
-          "module": "evidence",
-          "heading": "What Evidence Is Strong Enough for Continuity",
-          "heading_zh": "什么证据足以恢复连续性"
-        },
-        {
-          "module": "technical-analysis",
-          "heading": "Why Reconstruction Eligibility Is Not Permission",
-          "heading_zh": "为什么重建资格不是执行许可"
-        },
-        {
-          "module": "governance-implications",
-          "heading": "Audit Three Identities Separately",
-          "heading_zh": "审计应保留三种身份"
-        },
-        {
-          "module": "limitations",
-          "heading": "What the Evidence Does Not Prove",
-          "heading_zh": "仍未证明的边界"
-        },
-        {
-          "module": "open-questions",
-          "heading": "Open Questions",
-          "heading_zh": "开放问题"
-        }
-      ],
+      "coverGate": "PASS",
+      "coverPath": "staging/publication-candidates/2026-08-29-restoring-context-does-not-restore-authority-cover.png",
+      "coverRole": "baseline",
+      "editingStatus": "Completed",
+      "enPath": "staging/publication-candidates/2026-08-29-restoring-context-does-not-restore-authority.en.md",
       "endingModule": "open-questions",
       "evidenceClaims": [
         {
-          "id": "E1",
-          "identity": "public-fact",
           "claim": "The merged Codex change allows an eligible full WorldState snapshot to establish a context baseline without making the segment count as a user turn.",
           "claim_zh": "已合并变更允许合格的完整世界状态快照建立上下文基线，同时不把该片段计作用户轮次。",
+          "id": "E1",
+          "identity": "public-fact",
+          "independent": false,
           "source": "research/analysis/Q-20260829-01-reconstruction-authority-separate-from-execution-authority.md",
-          "strength": "states",
-          "independent": false
+          "strength": "states"
         },
         {
-          "id": "E2",
-          "identity": "public-fact",
           "claim": "Bare TurnContext, patch-only state and compaction-superseded snapshots are rejected in the demonstrated tests.",
           "claim_zh": "已展示测试拒绝裸露轮次上下文、只含增量的状态和已被压缩淘汰的快照。",
+          "id": "E2",
+          "identity": "public-fact",
+          "independent": false,
           "source": "research/analysis/Q-20260829-01-reconstruction-authority-separate-from-execution-authority.md",
-          "strength": "states",
-          "independent": false
+          "strength": "states"
         },
         {
-          "id": "E3",
-          "identity": "public-fact",
           "claim": "Persisted and nested histories exercise restoration across serialization, forks and compaction.",
           "claim_zh": "持久化与嵌套历史测试覆盖序列化、分叉和压缩之后的恢复。",
+          "id": "E3",
+          "identity": "public-fact",
+          "independent": false,
           "source": "research/analysis/Q-20260829-01-reconstruction-authority-separate-from-execution-authority.md",
-          "strength": "states",
-          "independent": false
+          "strength": "states"
         },
         {
-          "id": "I1",
-          "identity": "our-interpretation",
           "claim": "Reconstruction authority should remain separate from current execution authorization.",
           "claim_zh": "上下文重建权应与当前执行授权保持分离。",
+          "id": "I1",
+          "identity": "our-interpretation",
+          "independent": false,
           "source": "research/analysis/Q-20260829-01-reconstruction-authority-separate-from-execution-authority.md",
-          "strength": "supports",
-          "independent": false
+          "strength": "supports"
         },
         {
-          "id": "I2",
-          "identity": "our-interpretation",
           "claim": "Compaction eligibility cannot substitute for checking current external policy, credentials or resources.",
           "claim_zh": "压缩资格不能替代对当前外部策略、凭据或资源的检查。",
+          "id": "I2",
+          "identity": "our-interpretation",
+          "independent": false,
           "source": "research/analysis/Q-20260829-01-reconstruction-authority-separate-from-execution-authority.md",
-          "strength": "suggests",
-          "independent": false
+          "strength": "suggests"
         }
       ],
-      "coverPath": "staging/publication-candidates/2026-08-29-restoring-context-does-not-restore-authority-cover.png",
-      "projectRelevance": {
-        "status": "none",
-        "projects": [],
-        "rationale": "The conclusion is a general engineering and governance pattern that remains independently valuable without a first-party project mapping."
+      "evidenceStatus": "Completed",
+      "figurePlanPath": "research/runtime/production-work/2026/08/29/Q-20260829-01/figure-plan.json",
+      "gates": {
+        "bilingualConsistency": "PASS",
+        "editorialValue": "PASS",
+        "evidence": "PASS",
+        "independence": "PASS",
+        "language": "PASS",
+        "narrative": "PASS",
+        "researchValue": "PASS",
+        "structure": "PASS",
+        "visualArgument": "PASS"
       },
+      "inlineFigures": [],
+      "inlineVisualGate": "PASS",
+      "itemId": "Q-20260829-01",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "projectRelevance": {
+        "projects": [],
+        "rationale": "The conclusion is a general engineering and governance pattern that remains independently valuable without a first-party project mapping.",
+        "status": "none"
+      },
+      "researchQuestion": "可恢复智能体应如何区分上下文重建权与当前执行权？",
+      "sections": [
+        {
+          "heading": "What Evidence Is Strong Enough for Continuity",
+          "heading_zh": "什么证据足以恢复连续性",
+          "module": "evidence"
+        },
+        {
+          "heading": "Why Reconstruction Eligibility Is Not Permission",
+          "heading_zh": "为什么重建资格不是执行许可",
+          "module": "technical-analysis"
+        },
+        {
+          "heading": "Audit Three Identities Separately",
+          "heading_zh": "审计应保留三种身份",
+          "module": "governance-implications"
+        },
+        {
+          "heading": "What the Evidence Does Not Prove",
+          "heading_zh": "仍未证明的边界",
+          "module": "limitations"
+        },
+        {
+          "heading": "Open Questions",
+          "heading_zh": "开放问题",
+          "module": "open-questions"
+        }
+      ],
+      "title": "Restoring Context Does Not Restore Authority",
+      "title_zh": "恢复上下文，不等于恢复权限",
+      "zhPath": "staging/publication-candidates/2026-08-29-restoring-context-does-not-restore-authority.zh.md"
+    },
+    {
+      "argumentArchitecturePath": "research/runtime/production-work/2026/08/29/Q-20260829-02/argument-architecture.json",
+      "articleBriefPath": "research/runtime/production-work/2026/08/29/Q-20260829-02/article-brief.json",
+      "articleType": "technical-analysis",
+      "category": "daily",
+      "column": "industry-architecture",
       "communityEdition": {
         "decision": "not-generated",
         "rationale": "The complete Research Center edition already carries the transferable argument; a separate community edition would repeat the same evidence without a distinct discussion angle."
       },
-      "gates": {
-        "editorialValue": "PASS",
-        "researchValue": "PASS",
-        "independence": "PASS",
-        "evidence": "PASS",
-        "structure": "PASS",
-        "narrative": "PASS",
-        "language": "PASS",
-        "bilingualConsistency": "PASS",
-        "visualArgument": "PASS"
-      },
-      "coverRole": "baseline",
-      "inlineFigures": [],
-      "coverGate": "PASS",
-      "inlineVisualGate": "PASS",
-      "layoutGate": "PASS",
-      "lifecycle": "Publication Candidate",
-      "evidenceStatus": "Completed",
-      "editingStatus": "Completed"
-    },
-    {
-      "column": "industry-architecture",
-      "category": "daily",
-      "itemId": "Q-20260829-02",
-      "articleType": "technical-analysis",
-      "researchQuestion": "工作区信任如何从状态标签变成可执行的能力准入边界？",
-      "title": "Trust Must Change the Executable Surface",
-      "title_zh": "信任必须改变可执行能力面",
-      "zhPath": "staging/publication-candidates/2026-08-29-trust-must-change-the-executable-surface.zh.md",
-      "enPath": "staging/publication-candidates/2026-08-29-trust-must-change-the-executable-surface.en.md",
-      "articleBriefPath": "research/runtime/production-work/2026/08/29/Q-20260829-02/article-brief.json",
-      "argumentArchitecturePath": "research/runtime/production-work/2026/08/29/Q-20260829-02/argument-architecture.json",
-      "figurePlanPath": "research/runtime/production-work/2026/08/29/Q-20260829-02/figure-plan.json",
       "coreProposition": "Workspace trust becomes an enforceable authority boundary only when its result shapes capability admission: negative or unresolved trust should reduce the effective executable surface before materialization, while revoking capability instances that already exist remains a separate lifecycle responsibility.",
-      "sections": [
-        {
-          "module": "architecture-implications",
-          "heading": "From Status Label to Admission Transform",
-          "heading_zh": "从状态标签到准入变换"
-        },
-        {
-          "module": "governance-implications",
-          "heading": "Unresolved Is Not Temporary Permission",
-          "heading_zh": "未决不是临时许可"
-        },
-        {
-          "module": "technical-analysis",
-          "heading": "Admission Filtering Is Not Live Revocation",
-          "heading_zh": "准入过滤不是实时撤销"
-        },
-        {
-          "module": "limitations",
-          "heading": "Evidence Boundary",
-          "heading_zh": "证据边界"
-        },
-        {
-          "module": "governance-implications",
-          "heading": "Governance Implications",
-          "heading_zh": "治理含义"
-        }
-      ],
+      "coverGate": "PASS",
+      "coverPath": "staging/publication-candidates/2026-08-29-trust-must-change-the-executable-surface-cover.png",
+      "coverRole": "baseline",
+      "editingStatus": "Completed",
+      "enPath": "staging/publication-candidates/2026-08-29-trust-must-change-the-executable-surface.en.md",
       "endingModule": "governance-implications",
       "evidenceClaims": [
         {
-          "id": "E1",
-          "identity": "public-fact",
           "claim": "The merged Gemini CLI change gives restrictive trust signals precedence.",
           "claim_zh": "已合并变更给予限制性信任信号更高优先级。",
+          "id": "E1",
+          "identity": "public-fact",
+          "independent": false,
           "source": "research/analysis/Q-20260829-02-trust-admission-coupled-to-effective-capability-surface.md",
-          "strength": "states",
-          "independent": false
+          "strength": "states"
         },
         {
-          "id": "E2",
-          "identity": "public-fact",
           "claim": "Unresolved trust becomes false and malformed trust configuration is fatal in the demonstrated implementation.",
           "claim_zh": "已展示实现把未决信任落为不可信，并让错误的信任配置直接失败。",
+          "id": "E2",
+          "identity": "public-fact",
+          "independent": false,
           "source": "research/analysis/Q-20260829-02-trust-admission-coupled-to-effective-capability-surface.md",
-          "strength": "states",
-          "independent": false
+          "strength": "states"
         },
         {
-          "id": "E3",
-          "identity": "public-fact",
           "claim": "Named workspace-controlled capability settings are removed from effective configuration when the workspace is untrusted.",
           "claim_zh": "工作区不可信时，已点名的工作区受控能力设置会从有效配置中移除。",
+          "id": "E3",
+          "identity": "public-fact",
+          "independent": false,
           "source": "research/analysis/Q-20260829-02-trust-admission-coupled-to-effective-capability-surface.md",
-          "strength": "states",
-          "independent": false
+          "strength": "states"
         },
         {
-          "id": "I1",
-          "identity": "our-interpretation",
           "claim": "Trust becomes enforceable when it changes capability admission before materialization.",
           "claim_zh": "当信任在实例化前改变能力准入时，它才成为可执行边界。",
+          "id": "I1",
+          "identity": "our-interpretation",
+          "independent": false,
           "source": "research/analysis/Q-20260829-02-trust-admission-coupled-to-effective-capability-surface.md",
-          "strength": "supports",
-          "independent": false
+          "strength": "supports"
         },
         {
-          "id": "I2",
-          "identity": "our-interpretation",
           "claim": "Admission-time filtering does not prove live revocation of existing capability instances.",
           "claim_zh": "准入阶段过滤不能证明已存在能力实例得到实时撤销。",
+          "id": "I2",
+          "identity": "our-interpretation",
+          "independent": false,
           "source": "research/analysis/Q-20260829-02-trust-admission-coupled-to-effective-capability-surface.md",
-          "strength": "suggests",
-          "independent": false
+          "strength": "suggests"
         }
       ],
-      "coverPath": "staging/publication-candidates/2026-08-29-trust-must-change-the-executable-surface-cover.png",
-      "projectRelevance": {
-        "status": "none",
-        "projects": [],
-        "rationale": "The conclusion is a general engineering and governance pattern that remains independently valuable without a first-party project mapping."
+      "evidenceStatus": "Completed",
+      "figurePlanPath": "research/runtime/production-work/2026/08/29/Q-20260829-02/figure-plan.json",
+      "gates": {
+        "bilingualConsistency": "PASS",
+        "editorialValue": "PASS",
+        "evidence": "PASS",
+        "independence": "PASS",
+        "language": "PASS",
+        "narrative": "PASS",
+        "researchValue": "PASS",
+        "structure": "PASS",
+        "visualArgument": "PASS"
       },
+      "inlineFigures": [],
+      "inlineVisualGate": "PASS",
+      "itemId": "Q-20260829-02",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "projectRelevance": {
+        "projects": [],
+        "rationale": "The conclusion is a general engineering and governance pattern that remains independently valuable without a first-party project mapping.",
+        "status": "none"
+      },
+      "researchQuestion": "工作区信任如何从状态标签变成可执行的能力准入边界？",
+      "sections": [
+        {
+          "heading": "From Status Label to Admission Transform",
+          "heading_zh": "从状态标签到准入变换",
+          "module": "architecture-implications"
+        },
+        {
+          "heading": "Unresolved Is Not Temporary Permission",
+          "heading_zh": "未决不是临时许可",
+          "module": "context"
+        },
+        {
+          "heading": "Admission Filtering Is Not Live Revocation",
+          "heading_zh": "准入过滤不是实时撤销",
+          "module": "technical-analysis"
+        },
+        {
+          "heading": "Evidence Boundary",
+          "heading_zh": "证据边界",
+          "module": "limitations"
+        },
+        {
+          "heading": "Governance Implications",
+          "heading_zh": "治理含义",
+          "module": "governance-implications"
+        }
+      ],
+      "title": "Trust Must Change the Executable Surface",
+      "title_zh": "信任必须改变可执行能力面",
+      "zhPath": "staging/publication-candidates/2026-08-29-trust-must-change-the-executable-surface.zh.md"
+    },
+    {
+      "argumentArchitecturePath": "research/runtime/production-work/2026/08/29/Q-20260829-03/argument-architecture.json",
+      "articleBriefPath": "research/runtime/production-work/2026/08/29/Q-20260829-03/article-brief.json",
+      "articleType": "engineering-insight",
+      "category": "daily",
+      "column": "open-source-engineering",
       "communityEdition": {
         "decision": "not-generated",
         "rationale": "The complete Research Center edition already carries the transferable argument; a separate community edition would repeat the same evidence without a distinct discussion angle."
       },
-      "gates": {
-        "editorialValue": "PASS",
-        "researchValue": "PASS",
-        "independence": "PASS",
-        "evidence": "PASS",
-        "structure": "PASS",
-        "narrative": "PASS",
-        "language": "PASS",
-        "bilingualConsistency": "PASS",
-        "visualArgument": "PASS"
-      },
-      "coverRole": "baseline",
-      "inlineFigures": [],
-      "coverGate": "PASS",
-      "inlineVisualGate": "PASS",
-      "layoutGate": "PASS",
-      "lifecycle": "Publication Candidate",
-      "evidenceStatus": "Completed",
-      "editingStatus": "Completed"
-    },
-    {
-      "column": "open-source-engineering",
-      "category": "daily",
-      "itemId": "Q-20260829-03",
-      "articleType": "engineering-insight",
-      "researchQuestion": "当一次工具调用派生后代进程时，超时应拥有并终结什么生命周期边界？",
-      "title": "Timeouts Must Close the Lifecycle They Own",
-      "title_zh": "超时必须终结它所拥有的生命周期",
-      "zhPath": "staging/publication-candidates/2026-08-29-timeouts-must-close-the-lifecycle-they-own.zh.md",
-      "enPath": "staging/publication-candidates/2026-08-29-timeouts-must-close-the-lifecycle-they-own.en.md",
-      "articleBriefPath": "research/runtime/production-work/2026/08/29/Q-20260829-03/article-brief.json",
-      "argumentArchitecturePath": "research/runtime/production-work/2026/08/29/Q-20260829-03/argument-architecture.json",
-      "figurePlanPath": "research/runtime/production-work/2026/08/29/Q-20260829-03/figure-plan.json",
       "coreProposition": "Bounded execution should follow lifecycle ownership beyond the direct process: an invocation-owned process domain, shared timeout and cancellation teardown, and bounded cleanup can close the demonstrated descendant and pipe hang, while terminal evidence must remain narrower than claims about escaped descendants, non-POSIX trees or external effects.",
-      "sections": [
-        {
-          "module": "technical-analysis",
-          "heading": "Expand Ownership Beyond the Direct Process",
-          "heading_zh": "从直接进程扩展到调用所有权"
-        },
-        {
-          "module": "operational-implications",
-          "heading": "Cleanup Needs Its Own Deadline",
-          "heading_zh": "清理也必须有截止时间"
-        },
-        {
-          "module": "engineering-implications",
-          "heading": "Cancellation Does Not Abandon Owned Work",
-          "heading_zh": "取消不能抛弃拥有的工作"
-        },
-        {
-          "module": "evidence",
-          "heading": "Report What the Terminal Evidence Proves",
-          "heading_zh": "终态应报告真正证明的事实"
-        },
-        {
-          "module": "limitations",
-          "heading": "Scope of the Mechanism",
-          "heading_zh": "适用边界"
-        }
-      ],
+      "coverGate": "PASS",
+      "coverPath": "staging/publication-candidates/2026-08-29-timeouts-must-close-the-lifecycle-they-own-cover.png",
+      "coverRole": "baseline",
+      "editingStatus": "Completed",
+      "enPath": "staging/publication-candidates/2026-08-29-timeouts-must-close-the-lifecycle-they-own.en.md",
       "endingModule": "limitations",
       "evidenceClaims": [
         {
-          "id": "E1",
-          "identity": "public-fact",
           "claim": "The merged ADK change launches covered commands in a new POSIX session and uses process-group signaling for cleanup.",
           "claim_zh": "已合并变更让已覆盖命令在新的可移植操作系统接口会话中启动，并用进程组信号执行清理。",
+          "id": "E1",
+          "identity": "public-fact",
+          "independent": false,
           "source": "research/analysis/Q-20260829-03-bounded-lifecycle-ownership-beyond-direct-pid.md",
-          "strength": "states",
-          "independent": false
+          "strength": "states"
         },
         {
-          "id": "E2",
-          "identity": "public-fact",
           "claim": "Timeout and caller cancellation share bounded SIGTERM-to-SIGKILL cleanup around one shielded drain.",
           "claim_zh": "超时与调用者取消围绕同一个受保护输出读取任务共享有界的终止到强制结束清理。",
+          "id": "E2",
+          "identity": "public-fact",
+          "independent": false,
           "source": "research/analysis/Q-20260829-03-bounded-lifecycle-ownership-beyond-direct-pid.md",
-          "strength": "states",
-          "independent": false
+          "strength": "states"
         },
         {
-          "id": "E3",
-          "identity": "public-fact",
           "claim": "Covered tests show the background heartbeat descendant stops after timeout and cancellation.",
           "claim_zh": "已覆盖测试显示后台心跳后代会在超时和取消后停止。",
+          "id": "E3",
+          "identity": "public-fact",
+          "independent": false,
           "source": "research/analysis/Q-20260829-03-bounded-lifecycle-ownership-beyond-direct-pid.md",
-          "strength": "states",
-          "independent": false
+          "strength": "states"
         },
         {
-          "id": "I1",
-          "identity": "our-interpretation",
           "claim": "Execution deadlines govern an ownership domain rather than only the direct PID.",
           "claim_zh": "执行截止时间治理的是所有权域，而不只是直接进程标识。",
+          "id": "I1",
+          "identity": "our-interpretation",
+          "independent": false,
           "source": "research/analysis/Q-20260829-03-bounded-lifecycle-ownership-beyond-direct-pid.md",
-          "strength": "supports",
-          "independent": false
+          "strength": "supports"
         },
         {
-          "id": "I2",
-          "identity": "our-interpretation",
           "claim": "Terminal evidence should distinguish bounded owned-group cleanup from unproved termination of escaped resources and external effects.",
           "claim_zh": "终态证据应区分所拥有进程组的有界清理与未被证明的逃逸资源、外部效果终止。",
+          "id": "I2",
+          "identity": "our-interpretation",
+          "independent": false,
           "source": "research/analysis/Q-20260829-03-bounded-lifecycle-ownership-beyond-direct-pid.md",
-          "strength": "suggests",
-          "independent": false
+          "strength": "suggests"
         }
       ],
-      "coverPath": "staging/publication-candidates/2026-08-29-timeouts-must-close-the-lifecycle-they-own-cover.png",
-      "projectRelevance": {
-        "status": "none",
-        "projects": [],
-        "rationale": "The conclusion is a general engineering and governance pattern that remains independently valuable without a first-party project mapping."
-      },
-      "communityEdition": {
-        "decision": "not-generated",
-        "rationale": "The complete Research Center edition already carries the transferable argument; a separate community edition would repeat the same evidence without a distinct discussion angle."
-      },
+      "evidenceStatus": "Completed",
+      "figurePlanPath": "research/runtime/production-work/2026/08/29/Q-20260829-03/figure-plan.json",
       "gates": {
-        "editorialValue": "PASS",
-        "researchValue": "PASS",
-        "independence": "PASS",
-        "evidence": "PASS",
-        "structure": "PASS",
-        "narrative": "PASS",
-        "language": "PASS",
         "bilingualConsistency": "PASS",
+        "editorialValue": "PASS",
+        "evidence": "PASS",
+        "independence": "PASS",
+        "language": "PASS",
+        "narrative": "PASS",
+        "researchValue": "PASS",
+        "structure": "PASS",
         "visualArgument": "PASS"
       },
-      "coverRole": "baseline",
       "inlineFigures": [],
-      "coverGate": "PASS",
       "inlineVisualGate": "PASS",
+      "itemId": "Q-20260829-03",
       "layoutGate": "PASS",
       "lifecycle": "Publication Candidate",
-      "evidenceStatus": "Completed",
-      "editingStatus": "Completed"
+      "projectRelevance": {
+        "projects": [],
+        "rationale": "The conclusion is a general engineering and governance pattern that remains independently valuable without a first-party project mapping.",
+        "status": "none"
+      },
+      "researchQuestion": "当一次工具调用派生后代进程时，超时应拥有并终结什么生命周期边界？",
+      "sections": [
+        {
+          "heading": "Expand Ownership Beyond the Direct Process",
+          "heading_zh": "从直接进程扩展到调用所有权",
+          "module": "technical-analysis"
+        },
+        {
+          "heading": "Cleanup Needs Its Own Deadline",
+          "heading_zh": "清理也必须有截止时间",
+          "module": "operational-implications"
+        },
+        {
+          "heading": "Cancellation Does Not Abandon Owned Work",
+          "heading_zh": "取消不能抛弃拥有的工作",
+          "module": "engineering-implications"
+        },
+        {
+          "heading": "Report What the Terminal Evidence Proves",
+          "heading_zh": "终态应报告真正证明的事实",
+          "module": "evidence"
+        },
+        {
+          "heading": "Scope of the Mechanism",
+          "heading_zh": "适用边界",
+          "module": "limitations"
+        }
+      ],
+      "title": "Timeouts Must Close the Lifecycle They Own",
+      "title_zh": "超时必须终结它所拥有的生命周期",
+      "zhPath": "staging/publication-candidates/2026-08-29-timeouts-must-close-the-lifecycle-they-own.zh.md"
     }
-  ]
+  ],
+  "date": "2026-08-29",
+  "githubCommit": "pending",
+  "reason": "Three completed 2026-08-29 Research Objects were converted into complete bilingual Editorial Architecture 2.1 candidates with verified planning artifacts, evidence-bounded claims and deterministic baseline covers.",
+  "reason_zh": "三份已完成的 2026-08-29 Research Object 已转换为完整双语 Editorial Architecture 2.1 候选，具备已核验的规划工件、有边界的证据声明和确定性基础题图。",
+  "schema": "runtime-publication-candidate/v2",
+  "sourceRecord": "research/runtime/records/daily/2026/08/2026-08-29-daily-runtime.json",
+  "sourceTask": "Research Runtime Production",
+  "status": "Completed",
+  "timezone": "Asia/Shanghai",
+  "updatedAt": "2026-08-29T15:13:32+08:00"
 }
