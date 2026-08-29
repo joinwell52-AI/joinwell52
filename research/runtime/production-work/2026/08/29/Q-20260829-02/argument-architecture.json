@@ -1,0 +1,71 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-29",
+  "itemId": "Q-20260829-02",
+  "coreProposition": "Workspace trust becomes an enforceable authority boundary only when its result shapes capability admission: negative or unresolved trust should reduce the effective executable surface before materialization, while revoking capability instances that already exist remains a separate lifecycle responsibility.",
+  "openingMove": {
+    "type": "decorative-trust-label",
+    "purpose": "Open with the failure mode in which a workspace is marked untrusted but its configuration still creates executable capabilities.",
+    "evidenceRefs": [
+      "E1",
+      "I1"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "When does trust become enforceable?",
+      "claim": "Trust becomes an authority boundary when it transforms the effective capability surface before materialization.",
+      "evidenceRefs": [
+        "E1",
+        "E2"
+      ],
+      "reasoningRole": "authority-coupling",
+      "readerProgress": "The reader connects a trust decision to actual executable consequences.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Why should unresolved authority fail closed?",
+      "claim": "Unknown or malformed trust cannot safely inherit the broader trusted configuration because absence of proof is not permission.",
+      "evidenceRefs": [
+        "E2"
+      ],
+      "reasoningRole": "fail-closed-admission",
+      "readerProgress": "The reader gains a deterministic admission rule.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What is the correct filtering unit?",
+      "claim": "Filtering should remove untrusted contributions from the effective configuration while preserving independently authorized user or administrator sources.",
+      "evidenceRefs": [
+        "E3",
+        "I1"
+      ],
+      "reasoningRole": "configuration-provenance",
+      "readerProgress": "The reader avoids equating workspace distrust with removal of every capability.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What happens after capabilities already exist?",
+      "claim": "Admission-time filtering does not prove live revocation; active instances need generation binding and reconciliation.",
+      "evidenceRefs": [
+        "I2"
+      ],
+      "reasoningRole": "lifecycle-boundary",
+      "readerProgress": "The reader separates prevention from revocation.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "A warning banner may be sufficient if users can decide whether to continue.",
+    "responseBoundary": "A warning communicates risk but does not prevent untrusted configuration from materializing capabilities; explicit override, if allowed, must itself be an authority decision."
+  },
+  "endingStrategy": {
+    "type": "governance-implications",
+    "purpose": "End with the need to bind capability generations to the trust decision that admitted them."
+  }
+}

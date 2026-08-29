@@ -1,0 +1,50 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-29",
+  "itemId": "Q-20260829-02",
+  "researchObjectId": "AN-20260829-02",
+  "targetAudience": {
+    "primary": "Platform architects governing workspace-controlled agent capabilities",
+    "knowledgeAssumption": "The reader understands configuration layering, workspace trust and tool materialization.",
+    "readerProblem": "A trust result can remain decorative while untrusted configuration still creates executable capabilities."
+  },
+  "whyNow": "A same-day merged Gemini CLI change gives restrictive trust signals precedence, maps unresolved trust to false, fails on malformed trust configuration, and removes demonstrated workspace-controlled capability settings from effective configuration.",
+  "externalHook": {
+    "type": "workspace-trust-capability-admission",
+    "description": "Workspace trust changes the configuration that is allowed to materialize tools, policies and related capabilities.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "coreProposition": "Workspace trust becomes an enforceable authority boundary only when its result shapes capability admission: negative or unresolved trust should reduce the effective executable surface before materialization, while revoking capability instances that already exist remains a separate lifecycle responsibility.",
+  "originalValue": {
+    "type": "trust-to-surface-governance",
+    "description": "Treats trust as a capability-admission transform rather than a status label, while separating admission-time filtering from live revocation."
+  },
+  "readerTakeaway": "Compute the effective capability surface from trust before materialization, fail closed on unresolved authority, and design a separate reconciliation mechanism for already-created capabilities.",
+  "evidenceBoundary": {
+    "supported": [
+      "Restrictive trust signals take precedence and unresolved trust becomes false in the demonstrated implementation.",
+      "Malformed trust configuration fails rather than silently broadening authority.",
+      "Named workspace-controlled MCP, policy, tool and telemetry settings are removed from effective configuration when untrusted."
+    ],
+    "unsupported": [
+      "Universal live revocation",
+      "Coverage of every capability source",
+      "Safety of all trusted workspaces"
+    ],
+    "uncertain": [
+      "How active capability instances should be reconciled after trust changes",
+      "Which observation capabilities require separate governance"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The conclusion is a general workspace-trust and capability-admission pattern."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The source change supports a concrete fail-closed admission mechanism and a bounded distinction between configuration filtering and lifecycle revocation."
+}
