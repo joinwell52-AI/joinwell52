@@ -8,13 +8,13 @@
   "date": "2026-08-29",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Running",
+    "production": "Completed",
     "publication": "Waiting"
   },
   "results": {
@@ -1120,6 +1120,143 @@
       "githubCommit": "a42fe070229162aa568c2bf0d46ed35b126138bf",
       "commitVerify": "Completed",
       "verifiedAt": "2026-08-29T13:12:43+08:00"
+    },
+    "production": {
+      "schema": "runtime-shift-result/v2",
+      "task": "production",
+      "family": "daily",
+      "runtimeDate": "2026-08-29",
+      "status": "Completed",
+      "productionMode": "candidate-batch",
+      "input": {
+        "promptVersion": "2.13.0",
+        "promptPath": "research/runtime/worker-prompts/generated/production.prompt.md",
+        "promptSha256": "d8b0cd52d22d976d6356558a23c5c2dc28ed5aa8f51793538fa8fbebfb80996f",
+        "promptVerificationMode": "direct-sha256",
+        "researchObjects": [
+          "Q-20260829-01",
+          "Q-20260829-02",
+          "Q-20260829-03"
+        ],
+        "stagedCandidateCommit": "1926a8f7f8594bdeb880b87d0d936273a3ea599a"
+      },
+      "workResult": {
+        "summary": "Converted all three authorized same-date Research Objects into complete bilingual Editorial Architecture 2.1 candidates, persisted and remotely verified every article-sized workspace segment with a deterministic baseline raster cover, repaired one candidate module-identity issue within the admitted revision budget, atomically staged the complete candidate batch, and passed the repository-defined Production checkpoint, atomic-bundle, runtime, editorial, evidence, language, bilingual-consistency and layout gates without executing Publication.",
+        "summary_zh": "将当日获授权的三份 Research Object 全部转换为完整双语 Editorial Architecture 2.1 候选；每个文章级工作段及其确定性基础栅格题图均完成持久化与远端核验；在允许的修订预算内修复一个候选模块身份问题；随后原子化装配完整候选批次，并通过仓库定义的 Production Checkpoint、原子候选包、Runtime、编辑、证据、语言、双语一致性与版式门禁；未执行 Publication。"
+      },
+      "output": {
+        "type": "Publication Candidates",
+        "candidateBatch": "research/runtime/candidates/2026/08/2026-08-29-candidates.json",
+        "candidateCount": 3,
+        "bilingualArticleFiles": 6,
+        "coverAssets": 3,
+        "inlineFigureAssets": 0
+      },
+      "next": {
+        "task": "publication",
+        "instruction": "Do not execute Publication in this Production run. Publication remains a separate governed task.",
+        "instruction_zh": "本次 Production 不执行 Publication；Publication 仍是独立受治理任务。"
+      },
+      "coverEvidence": [
+        {
+          "itemId": "Q-20260829-01",
+          "briefId": "2026-08-29:Q-20260829-01-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-29-restoring-context-does-not-restore-authority-cover.png",
+          "sanitizedPrompt": "A sealed archive capsule passes through a separate illuminated permission gate",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260829-02",
+          "briefId": "2026-08-29:Q-20260829-02-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-29-trust-must-change-the-executable-surface-cover.png",
+          "sanitizedPrompt": "A workspace package reaches a guarded aperture that allows only independently authorized tools through",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260829-03",
+          "briefId": "2026-08-29:Q-20260829-03-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-29-timeouts-must-close-the-lifecycle-they-own-cover.png",
+          "sanitizedPrompt": "A single tether encloses a branching process cluster inside a bounded shutdown frontier",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        }
+      ],
+      "metrics": [
+        {
+          "name": "research_objects_consumed",
+          "value": 3
+        },
+        {
+          "name": "publication_candidates",
+          "value": 3
+        },
+        {
+          "name": "persisted_article_segments",
+          "value": 3
+        },
+        {
+          "name": "planning_artifacts",
+          "value": 9
+        },
+        {
+          "name": "bilingual_article_files",
+          "value": 6
+        },
+        {
+          "name": "cover_assets",
+          "value": 3
+        },
+        {
+          "name": "inline_figure_assets",
+          "value": 0
+        },
+        {
+          "name": "revision_rounds",
+          "value": 1
+        },
+        {
+          "name": "required_sources_read",
+          "value": 13
+        },
+        {
+          "name": "direct_cloud_image_generation_calls",
+          "value": 0
+        },
+        {
+          "name": "direct_publication_actions",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        "1926a8f7f8594bdeb880b87d0d936273a3ea599a",
+        "research/runtime/worker-prompts/generated/production.prompt.md",
+        "research/runtime/checkpoints/2026/08/2026-08-29-production.json",
+        "research/runtime/wakes/2026/08/2026-08-29/production-145928.json",
+        "9b10bf0fde3e60c8ae91e4f8ce9240f0808bb960"
+      ],
+      "artifacts": [
+        "research/runtime/candidates/2026/08/2026-08-29-candidates.json",
+        "research/runtime/checkpoints/2026/08/2026-08-29-production.json",
+        "staging/publication-candidates/2026-08-29-restoring-context-does-not-restore-authority.zh.md",
+        "staging/publication-candidates/2026-08-29-restoring-context-does-not-restore-authority.en.md",
+        "staging/publication-candidates/2026-08-29-restoring-context-does-not-restore-authority-cover.png",
+        "staging/publication-candidates/2026-08-29-trust-must-change-the-executable-surface.zh.md",
+        "staging/publication-candidates/2026-08-29-trust-must-change-the-executable-surface.en.md",
+        "staging/publication-candidates/2026-08-29-trust-must-change-the-executable-surface-cover.png",
+        "staging/publication-candidates/2026-08-29-timeouts-must-close-the-lifecycle-they-own.zh.md",
+        "staging/publication-candidates/2026-08-29-timeouts-must-close-the-lifecycle-they-own.en.md",
+        "staging/publication-candidates/2026-08-29-timeouts-must-close-the-lifecycle-they-own-cover.png"
+      ],
+      "startedAt": "2026-08-29T15:02:23+08:00",
+      "completedAt": "2026-08-29T15:15:44+08:00"
     }
   },
   "timeline": [
@@ -1248,6 +1385,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Production after verifying research/runtime/wakes/2026/08/2026-08-29/production-145928.json, generated Production Prompt v2.13.0 SHA-256 d8b0cd52d22d976d6356558a23c5c2dc28ed5aa8f51793538fa8fbebfb80996f, all 13 requiredSources from the same authoritative main commit, and global serial order."
+    },
+    {
+      "time": "2026-08-29T15:15:44+08:00",
+      "task": "production",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Production closed as Completed through governed Runtime shift finalization after durable result validation for 2026-08-29."
     }
   ],
   "metrics": [],
@@ -1255,5 +1399,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-29T15:02:34+08:00"
+  "updatedAt": "2026-08-29T15:15:44+08:00"
 }
