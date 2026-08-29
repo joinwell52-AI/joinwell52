@@ -27,8 +27,8 @@
   "tasks": [
     {
       "task": "discovery",
-      "version": "1.0.0",
-      "effectiveDate": "2026-08-12",
+      "version": "1.1.0",
+      "effectiveDate": "2026-08-29",
       "template": "research/runtime/worker-prompts/templates/stage.prompt.md",
       "output": "research/runtime/worker-prompts/generated/discovery.prompt.md",
       "requiredCapabilities": [
@@ -49,9 +49,12 @@
         "requireRemoteCommitVerification": true
       },
       "rules": [
-        "Execute all three declared intelligence profiles against the fetched Registry and Scan Contract.",
-        "Record coverage, authentication failures and source freshness; never silently treat an unreachable source as checked.",
-        "Normalize and deduplicate by underlying mechanism, retain only material same-day signals, and stop before topic selection or reading."
+        "Execute all three declared intelligence profiles against the fetched Registry and Scan Contract, then execute the theme-first approved-sample overlay declared by Skill 01.",
+        "Record formal due-source coverage and separate active sample/theme coverage; never silently treat an unreachable source or an unscanned sample family as checked.",
+        "Treat Release, commit, changelog, tag, roadmap and announcement events as `sample-change-trigger` evidence only; they must not define the research agenda or crowd out failure, finding, mechanism, benchmark, industry-application or comparative evidence.",
+        "Published Research must use a rolling research window: prioritize the latest 7 days, expand through 30 days when needed, and admit older prior art when directly relevant to an active research theme. Publication on `runDate` is never a retention requirement.",
+        "After formal Registry coverage, perform a bounded theme-first overlay scan covering at least two approved product/governance samples, two multi-agent protocol/framework/runtime samples, and two research/benchmark/industry-application samples; rotate choices against recent run history and record checked families even when no signal qualifies.",
+        "Normalize and deduplicate by underlying research problem. Pure `sample-change-trigger` signals may not exceed 50% of the retained Signal Pool; when qualified non-trigger evidence is scarce, retain fewer signals rather than filling an output quota. Stop before topic selection or reading."
       ],
       "requiredSources": [
         "research/runtime/SCHEDULER.json",
