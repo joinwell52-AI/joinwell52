@@ -96,7 +96,7 @@ A signal with no credible relationship to one of these themes normally remains b
 
 ## Approved sample overlay
 
-In addition to Registry due-source accounting, Discovery should maintain bounded awareness of these long-term sample families when public evidence is available.
+In addition to Registry due-source accounting, Discovery maintains bounded awareness of these long-term sample families when public evidence is available.
 
 ### Digital Employee / product samples
 
@@ -155,9 +155,29 @@ In addition to Registry due-source accounting, Discovery should maintain bounded
 
 These samples are not all daily due sources. They are a **research sample map** used for comparison, bounded exploration and cross-source corroboration.
 
+## Daily active sample coverage
+
+After formal Registry due-source coverage, Discovery must perform an additional **theme-first active sample pass**. This pass is required even when none of the samples has a same-day Release or commit.
+
+For each run, check at least:
+
+- two approved `product-governance` samples;
+- two approved `multi-agent-mechanism` samples;
+- two approved `research-benchmark-industry` samples.
+
+Rotate the checked samples against recent run history so the same fast-moving repositories do not monopolize attention.
+
+The `published-research` profile must use a rolling window:
+
+- first inspect the latest 7 days;
+- expand through 30 days when the 7-day window does not yield enough qualified research evidence;
+- use older prior art or negative results when directly relevant to an active research theme.
+
+**Publication on the run date is never a qualification requirement.**
+
 ## Signal roles
 
-Every signal should identify one of these roles when possible:
+Every retained signal must identify one of these roles:
 
 ```text
 sample-change-trigger
@@ -171,6 +191,8 @@ comparative-evidence
 ```
 
 `sample-change-trigger` is never sufficient by itself for Queue selection.
+
+From the policy effective date onward, pure `sample-change-trigger` signals may not exceed 50% of the retained Signal Pool. If there is not enough qualified non-trigger evidence, retain fewer signals rather than filling a quota with Releases or commits.
 
 ## Research-value extraction
 
@@ -188,7 +210,7 @@ What concrete architecture, policy, state machine, protocol, workflow or control
 ### Implication
 What does this change for governed digital employees or multi-agent systems?
 
-A useful signal does not need all four, but it must contain at least one substantive research value beyond “a new version exists.”
+A useful non-trigger signal must contain at least one substantive research value beyond “a new version exists.”
 
 ## Source freshness
 
@@ -213,20 +235,13 @@ Open-source Engineering
 
 Columns are publication/navigation surfaces, not the primary research ontology. Research themes are cross-column.
 
-Every signal still contains:
+Every retained JSON signal still contains the existing compatibility fields and additionally records:
 
 ```yaml
-primary_column:
-secondary_columns:
-```
-
-and should additionally record when available:
-
-```yaml
-signal_role:
-research_themes:
-sample_ids:
-research_value:
+signalRole:
+researchThemes:
+sampleIds:
+researchValue:
   failure:
   finding:
   mechanism:
@@ -251,21 +266,41 @@ An announcement can establish that a vendor announced something. It does not est
 Load Registry
 → Determine due sources
 → Scan the three intelligence pipelines
-→ Apply approved sample and theme overlay
+→ Execute theme-first active sample pass
 → Record checked, inaccessible and failed due sources
+→ Record active sample/theme coverage
 → Normalize evidence signals
 → Merge duplicate evidence about the same mechanism/problem
-→ Bind signals to research themes
+→ Bind every retained signal to research themes
 → Classify signal role and research value
+→ Apply trigger-density guard
 → Assign primary and secondary columns
 → Send the unified evidence pool to Skill 02
 ```
 
 ## Required output
 
-The daily intelligence run keeps the existing Runtime-compatible structure and should enrich individual signals with theme/value fields when evidence supports them.
+The daily Intelligence run keeps the existing Runtime-compatible structure and, for runs on or after `2026-08-30`, must add:
 
-“No important update” is valid only after due-source coverage is recorded. “Not checked” and “checked with no qualified signal” remain different facts.
+```yaml
+researchCoverage:
+  policy: theme-sample-v1
+  rollingResearchWindowDays: 30
+  sampleFamilies:
+    product-governance:
+      checked: []
+      qualifiedSignals: 0
+    multi-agent-mechanism:
+      checked: []
+      qualifiedSignals: 0
+    research-benchmark-industry:
+      checked: []
+      qualifiedSignals: 0
+```
+
+Every retained signal on or after that date must contain `signalRole`, non-empty `researchThemes`, non-empty `sampleIds`, and `researchValue`.
+
+“No important update” is valid only after due-source coverage **and active sample coverage** are recorded. “Not checked” and “checked with no qualified signal” remain different facts.
 
 ## Hard rules
 
