@@ -1,0 +1,50 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-29",
+  "itemId": "Q-20260829-01",
+  "researchObjectId": "AN-20260829-01",
+  "targetAudience": {
+    "primary": "Engineers and architects building resumable agent runtimes",
+    "knowledgeAssumption": "The reader understands persisted state, compaction, recovery and tool authorization.",
+    "readerProblem": "A valid recovery snapshot can be mistaken for a current permission grant."
+  },
+  "whyNow": "A same-day merged OpenAI Codex change demonstrates context restoration from an eligible surviving full WorldState snapshot after nested-agent history transformation while rejecting partial and superseded state.",
+  "externalHook": {
+    "type": "resumable-agent-context-reconstruction",
+    "description": "A qualified full state baseline can restore continuity even when the originating task message no longer survives.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "coreProposition": "A durable snapshot may be authoritative enough to reconstruct context without being authoritative enough to authorize action; resumable Agent runtimes should keep reconstruction evidence, lineage and freshness identity, and current execution authorization separately inspectable, revalidating permission-bearing restored state before it can shape capabilities or effects.",
+  "originalValue": {
+    "type": "two-authority-recovery-model",
+    "description": "Separates evidence that authorizes reconstruction from current policy that authorizes action, with lineage and freshness retained as a separately inspectable identity."
+  },
+  "readerTakeaway": "Validate completeness and lineage to reconstruct context, then independently revalidate current authority before restored state can affect tools, credentials or external effects.",
+  "evidenceBoundary": {
+    "supported": [
+      "An eligible surviving full WorldState snapshot can establish context continuity without counting as a user turn.",
+      "Bare TurnContext, patch-only state and compaction-superseded snapshots are rejected in the demonstrated tests.",
+      "Persisted and nested histories exercise restoration across serialization, forks and compaction."
+    ],
+    "unsupported": [
+      "Current permission validity of every restored field",
+      "Cryptographically authenticated provenance",
+      "Universal cross-host or distributed recovery safety"
+    ],
+    "uncertain": [
+      "Which restored fields require fresh authorization",
+      "How generation identity should survive migrations"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument is a general resumable-agent governance pattern and does not rely on a first-party project."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The implementation and negative tests support a concrete reconstruction boundary and a distinct, evidence-bounded governance interpretation."
+}

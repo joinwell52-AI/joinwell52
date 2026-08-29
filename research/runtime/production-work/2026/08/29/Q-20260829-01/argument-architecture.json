@@ -1,0 +1,72 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-29",
+  "itemId": "Q-20260829-01",
+  "coreProposition": "A durable snapshot may be authoritative enough to reconstruct context without being authoritative enough to authorize action; resumable Agent runtimes should keep reconstruction evidence, lineage and freshness identity, and current execution authorization separately inspectable, revalidating permission-bearing restored state before it can shape capabilities or effects.",
+  "openingMove": {
+    "type": "recovery-authority-confusion",
+    "purpose": "Open with the risk that durable state continuity is silently upgraded into permission continuity.",
+    "evidenceRefs": [
+      "E1",
+      "I1"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "What is strong enough to reconstruct context?",
+      "claim": "A qualified surviving full snapshot provides a middle boundary between missing-message rejection and fragment-based overreach.",
+      "evidenceRefs": [
+        "E1",
+        "E2"
+      ],
+      "reasoningRole": "evidence-boundary",
+      "readerProgress": "The reader can distinguish admissible baselines from partial or superseded state.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Why is reconstruction not authorization?",
+      "claim": "Structural eligibility establishes continuity, while permission-bearing state remains subject to current policy and resource conditions.",
+      "evidenceRefs": [
+        "I1",
+        "I2"
+      ],
+      "reasoningRole": "authority-separation",
+      "readerProgress": "The reader gains a two-gate recovery model.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What should a runtime persist and audit?",
+      "claim": "Baseline identity, lineage and freshness, and the later authorization decision should remain separately inspectable.",
+      "evidenceRefs": [
+        "E3",
+        "I1"
+      ],
+      "reasoningRole": "governance-design",
+      "readerProgress": "The reader can design truthful recovery receipts.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What remains unproved?",
+      "claim": "The demonstrated compaction boundary does not authenticate provenance or detect external credential and policy revocation.",
+      "evidenceRefs": [
+        "I2"
+      ],
+      "reasoningRole": "limitation",
+      "readerProgress": "The reader avoids generalizing one rollout mechanism into universal authorization safety.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Rejecting all context whose user message is absent is simpler.",
+    "responseBoundary": "That policy sacrifices valid continuity demonstrated by the nested-fork case; a second authorization gate preserves continuity without upgrading old state into permission."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with field-level reauthorization and durable generation identity."
+  }
+}
