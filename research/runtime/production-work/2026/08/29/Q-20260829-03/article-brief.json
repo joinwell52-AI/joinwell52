@@ -1,0 +1,50 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-29",
+  "itemId": "Q-20260829-03",
+  "researchObjectId": "AN-20260829-03",
+  "targetAudience": {
+    "primary": "Engineers building agent tool runtimes and command-execution sandboxes",
+    "knowledgeAssumption": "The reader understands subprocesses, cancellation, pipes and timeout handling.",
+    "readerProblem": "Killing only the direct child can leave descendants or output drains alive, so a reported timeout may still hang."
+  },
+  "whyNow": "A same-day merged Google ADK Python change demonstrates a POSIX process-group lifecycle with one shielded drain and bounded SIGTERM-to-SIGKILL cleanup shared by timeout and cancellation.",
+  "externalHook": {
+    "type": "owned-process-domain-cleanup",
+    "description": "One invocation owns a POSIX process group and one output-drain lifecycle rather than only a direct PID.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "coreProposition": "Bounded execution should follow lifecycle ownership beyond the direct process: an invocation-owned process domain, shared timeout and cancellation teardown, and bounded cleanup can close the demonstrated descendant and pipe hang, while terminal evidence must remain narrower than claims about escaped descendants, non-POSIX trees or external effects.",
+  "originalValue": {
+    "type": "ownership-graph-timeout-semantics",
+    "description": "Reframes a deadline as governance over delegated lifecycle ownership and separates bounded owned-domain cleanup from stronger unproved termination claims."
+  },
+  "readerTakeaway": "Give each invocation an explicit ownership domain, make timeout and cancellation share bounded teardown, and report exactly which domain was terminated, escalated or left uncertain.",
+  "evidenceBoundary": {
+    "supported": [
+      "Covered commands launch in a new POSIX session and receive process-group signaling.",
+      "Timeout and cancellation share bounded SIGTERM then SIGKILL cleanup around one shielded drain.",
+      "Tests show the covered background descendant stops after timeout and cancellation."
+    ],
+    "unsupported": [
+      "Termination of arbitrary escaped descendants",
+      "Equivalent behavior on non-POSIX systems",
+      "Complete output or external-effect rollback"
+    ],
+    "uncertain": [
+      "A host-neutral ownership abstraction",
+      "How to type escaped-resource uncertainty"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article is a general lifecycle-ownership engineering pattern."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The source and tests establish a concrete bounded-cleanup mechanism, while the article preserves platform and evidence limits."
+}
