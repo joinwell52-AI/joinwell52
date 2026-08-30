@@ -1,0 +1,50 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-30",
+  "itemId": "Q-20260830-01",
+  "researchObjectId": "AN-20260830-01",
+  "targetAudience": {
+    "primary": "Engineers designing resumable digital employees and nested human-in-the-loop workflows",
+    "knowledgeAssumption": "The reader understands checkpoints, tool calls, branches and replay.",
+    "readerProblem": "A restored checkpoint can attach a late answer to the wrong call or replay work whose effect is uncertain."
+  },
+  "whyNow": "A same-day merged Google ADK Python change demonstrates typed continuation decisions, whole-component branch identity and nested replay beyond a fixed event window.",
+  "externalHook": {
+    "type": "nested-hitl-continuation-identity",
+    "description": "Nested answers are bound through call and branch identity before the runtime chooses continue, pause or replay.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "coreProposition": "Safe continuation requires a compound authority identity that binds workflow frame, call occurrence, branch identity, responder evidence and known effect state; robust event matching can decide pause, replay or continue, but it cannot authenticate the responder or prove exactly-once external effects.",
+  "originalValue": {
+    "type": "five-part-continuation-authority",
+    "description": "Elevates continuation from state restoration to a compound authority identity and separates event-history correctness from responder and effect authorization."
+  },
+  "readerTakeaway": "Persist frame, call, branch, responder and effect identities separately; allow replay only when the live frame and effect evidence justify it.",
+  "evidenceBoundary": {
+    "supported": [
+      "The implementation expresses continue, pause and replay as typed decisions.",
+      "Whole run-id components and branch relationships bind nested responses.",
+      "Tests cover historical pauses, parallel calls, unrelated branches and replay."
+    ],
+    "unsupported": [
+      "Authentication of the human responder",
+      "Authorization of the approval",
+      "Exactly-once external effects"
+    ],
+    "uncertain": [
+      "How cancellation revokes late answers",
+      "Which effect receipt makes non-idempotent replay safe"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument is a general continuation-governance pattern."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The merged implementation and regression matrix support a concrete continuation mechanism and a distinct evidence-bounded authority model."
+}

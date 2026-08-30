@@ -1,0 +1,74 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-30",
+  "itemId": "Q-20260830-01",
+  "coreProposition": "Safe continuation requires a compound authority identity that binds workflow frame, call occurrence, branch identity, responder evidence and known effect state; robust event matching can decide pause, replay or continue, but it cannot authenticate the responder or prove exactly-once external effects.",
+  "openingMove": {
+    "type": "wrong-frame-resume",
+    "purpose": "Open with a late human answer arriving after several nested calls and the risk of binding it to the wrong occurrence.",
+    "evidenceRefs": [
+      "E1",
+      "E2"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is a checkpoint insufficient?",
+      "claim": "State continuity does not identify which outstanding call occurrence owns a response.",
+      "evidenceRefs": [
+        "E1",
+        "I1"
+      ],
+      "reasoningRole": "problem-separation",
+      "readerProgress": "The reader separates restored state from continuation authority.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "How does event identity narrow the decision?",
+      "claim": "Whole call components, branch ownership and historical event search support typed continue, pause or replay decisions.",
+      "evidenceRefs": [
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "reasoningRole": "mechanism",
+      "readerProgress": "The reader understands the demonstrated binding mechanism.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What remains outside event history?",
+      "claim": "Responder authorization and prior external-effect state remain independent evidence requirements.",
+      "evidenceRefs": [
+        "I1",
+        "I2"
+      ],
+      "reasoningRole": "authority-boundary",
+      "readerProgress": "The reader avoids treating event matching as approval or exactly-once proof.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What should a continuation receipt contain?",
+      "claim": "A receipt should bind frame, call occurrence, branch, responder evidence and known effect state, and record cancellation or supersession.",
+      "evidenceRefs": [
+        "I1",
+        "I2"
+      ],
+      "reasoningRole": "governance-design",
+      "readerProgress": "The reader can design a recoverable audit boundary.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Idempotent tools make replay identity less important.",
+    "responseBoundary": "Declared idempotency can reduce effect risk but does not solve wrong-call binding, stale approval or falsely assumed idempotency."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with revocation of late responses and effect receipts for non-idempotent replay."
+  }
+}
