@@ -3,64 +3,69 @@
   "version": "1.0",
   "date": "2026-08-30",
   "timezone": "Asia/Shanghai",
-  "status": "Waiting",
+  "status": "Completed",
   "registryVersion": "1.0",
-  "sourceTask": "Research Runtime Queue",
-  "updatedAt": "",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-08-30T09:07:30+08:00",
   "githubCommit": "pending",
-  "reason": "Research Runtime Queue has not completed the three intelligence pipelines.",
-  "reason_zh": "研究运行队列尚未完成三条情报发现管线。",
+  "reason": "All three formal Discovery pipelines resolved their due coverage and the required theme-first active-sample pass completed. Eleven qualified signals were retained after problem-level deduplication: two product/governance signals, seven multi-agent engineering/mechanism signals and two primary-research findings. No topic selection was performed.",
+  "reason_zh": "三条正式 Discovery 管线均完成到期来源覆盖，并完成强制的主题优先主动样本检查。按研究问题去重后保留 11 个合格信号：2 个产品/治理信号、7 个多 Agent 工程/机制信号、2 个一手研究发现；未执行选题。",
   "pipelines": [
     {
       "id": "ai-platform",
       "label": "AI Platform Change Intelligence",
       "label_zh": "AI 平台变更情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 45,
-      "checked": 0,
+      "checked": 45,
       "inaccessible": [],
       "failed": [],
-      "signals": 0,
+      "signals": 2,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All 45 due P0 public platform channels were checked. No ordinary release/update was promoted merely for novelty. The active governance-sample overlay retained two reusable control mechanisms from ServiceNow AI Control Tower and IBM watsonx Orchestrate.",
+      "reason_zh": "45 个到期 P0 公共平台通道全部完成检查。普通版本/更新没有因为“新”而被直接提升；主动治理样本覆盖从 ServiceNow AI Control Tower 与 IBM watsonx Orchestrate 保留了 2 个可复用控制机制。"
     },
     {
       "id": "github-engineering",
       "label": "GitHub Engineering Intelligence",
       "label_zh": "GitHub 工程情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 9,
-      "checked": 0,
+      "checked": 9,
       "inaccessible": [],
       "failed": [],
-      "signals": 0,
+      "signals": 7,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All nine P0 daily repositories were checked incrementally against the prior run. Five run-date mechanisms were retained from Codex, Google ADK and GitHub Copilot CLI; the rotated multi-agent overlay added LangGraph DeltaChannel and AG2 approval middleware as two further mechanism signals.",
+      "reason_zh": "9 个 P0 Daily 仓库均按前一轮检查点完成增量检查。从 Codex、Google ADK、GitHub Copilot CLI 保留 5 个运行日机制；轮换后的多 Agent 主动样本覆盖又加入 LangGraph DeltaChannel 与 AG2 Approval Middleware 两个机制信号。"
     },
     {
       "id": "published-research",
       "label": "Published Research Intelligence",
       "label_zh": "论文与研究成果情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 9,
-      "checked": 0,
+      "checked": 8,
       "inaccessible": [],
-      "failed": [],
-      "signals": 0,
+      "failed": [
+        {
+          "source": "jss",
+          "reason": "The registered Journal of Systems and Software page returned an internal retrieval error during this run; it is recorded as failed rather than checked."
+        }
+      ],
+      "signals": 2,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All nine P0 research sources were resolved as eight checked plus one explicit Journal of Systems and Software retrieval failure. The mandatory rolling research pass inspected the latest seven days and retained two primary-research findings on runtime authorization and action gating; the 30-day window was also used for comparative coverage.",
+      "reason_zh": "9 个 P0 研究来源全部收口为 8 个已检查 + 1 个 Journal of Systems and Software 明确抓取失败。强制滚动研究检查先覆盖最近 7 天，并保留 2 个关于运行时授权与行动门禁的一手研究发现；同时扩展到 30 天窗口完成比较覆盖。"
     }
   ],
   "columns": [
@@ -69,40 +74,323 @@
       "label": "Digital Employee",
       "label_zh": "数字员工",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 3,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded three primary Digital Employee signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 3 个以数字员工为主栏目的信号；评分与选题由 Queue 独立负责。"
     },
     {
       "id": "industry-architecture",
       "label": "Industry Architecture",
       "label_zh": "行业架构",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 5,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded five primary Industry Architecture signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 5 个以行业架构为主栏目的信号；评分与选题由 Queue 独立负责。"
     },
     {
       "id": "open-source-engineering",
       "label": "Open-source Engineering",
       "label_zh": "开源工程",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 3,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded three primary Open-source Engineering signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 3 个以开源工程为主栏目的信号；评分与选题由 Queue 独立负责。"
     }
   ],
-  "signals": []
+  "signals": [
+    {
+      "id": "SIG-20260830-001",
+      "pipeline": "github-engineering",
+      "title": "Codex restores thread cwd only from settings snapshots owned by the resumed thread",
+      "title_zh": "Codex 恢复线程 cwd 时只信任归属于被恢复线程的设置快照",
+      "sourceUrl": "https://github.com/openai/codex/commit/f5636bb733c4653a6b91413fed1aaf8842374f2e",
+      "publishedAt": "2026-08-30",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["industry-architecture", "open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "codex/thread-owned-resume-settings-provenance",
+      "summary": "Resume now records the owning thread ID on settings snapshots, ignores copied snapshots owned by another forked thread, and checkpoints current settings after compaction so restored cwd comes from accepted current state.",
+      "summary_zh": "恢复流程现在在设置快照上记录所属线程 ID，忽略来自其他 Fork 线程的复制快照，并在压缩后重新检查点当前设置，使 cwd 恢复只来自已接纳的当前状态。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["memory-context-isolation", "audit-provenance-accountability", "durable-runtime-state", "recovery-authority"],
+      "sampleIds": ["openai-codex"],
+      "researchValue": {
+        "failure": "Forked or compacted histories can expose stale or foreign settings snapshots during resume.",
+        "finding": "",
+        "mechanism": "Bind persisted settings snapshots to an owning thread, reject foreign ownership on replay, and serialize post-compaction checkpoints with settings updates.",
+        "implication": "Durable agent resume needs provenance-bearing state ownership, not merely a latest-value lookup."
+      }
+    },
+    {
+      "id": "SIG-20260830-002",
+      "pipeline": "github-engineering",
+      "title": "Codex separates diagnostic core-event delivery from retryable attachment delivery",
+      "title_zh": "Codex 将诊断核心事件交付与可重试附件交付分离",
+      "sourceUrl": "https://github.com/openai/codex/commit/aaa7ed042eaa1f8c6c03e41673bdf0efc7851c14",
+      "publishedAt": "2026-08-30",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee", "industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "codex/diagnostic-stable-id-nonreplay-delivery",
+      "summary": "Diagnostic reports now persist a stable report ID, send the core event before attachments, bound payload sizes, and retry transient attachment failures under a shared budget without replaying the core event.",
+      "summary_zh": "诊断报告现在持久化稳定 Report ID，先发送核心事件再发送附件，对载荷大小设界，并在共享预算内仅重试瞬时失败的附件而不重放核心事件。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["evidence-completion-truth", "audit-provenance-accountability", "failure-deadlock-duplicate-execution", "durable-runtime-state"],
+      "sampleIds": ["openai-codex"],
+      "researchValue": {
+        "failure": "A response-loss or attachment failure can otherwise cause whole-report replay, duplication, or unbounded payload behavior.",
+        "finding": "",
+        "mechanism": "Use a stable report identity and split durable core-event acceptance from independently retryable bounded attachments.",
+        "implication": "Idempotency should be defined at each durable result boundary rather than at the outer request alone."
+      }
+    },
+    {
+      "id": "SIG-20260830-003",
+      "pipeline": "github-engineering",
+      "title": "Google ADK supports multi-turn nested HITL pause and resumption across workflows and agent tools",
+      "title_zh": "Google ADK 支持跨工作流与 Agent Tool 的多轮嵌套 HITL 暂停与恢复",
+      "sourceUrl": "https://github.com/google/adk-python/commit/6d145180611956b2065704189517fd6a0ff1a063",
+      "publishedAt": "2026-08-30",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["industry-architecture", "open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "google-adk/nested-hitl-pause-resume",
+      "summary": "ADK fixes nested human-in-the-loop workflows so a tool or sub-workflow can pause for human input and resume across multiple turns without losing the surrounding workflow state.",
+      "summary_zh": "ADK 修复了嵌套人机协同工作流，使 Tool 或子工作流能够为人工输入暂停，并在多轮之后恢复而不丢失外围工作流状态。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["human-approval-authority", "human-agent-workflow", "durable-runtime-state", "recovery-authority"],
+      "sampleIds": ["google-adk"],
+      "researchValue": {
+        "failure": "Nested HITL boundaries can lose continuation state or resume the wrong workflow frame across multiple turns.",
+        "finding": "",
+        "mechanism": "Preserve nested pause/resume state across workflow and agent-tool boundaries.",
+        "implication": "Digital-employee approval cannot be modeled as a one-shot prompt; it needs durable continuation semantics."
+      }
+    },
+    {
+      "id": "SIG-20260830-004",
+      "pipeline": "github-engineering",
+      "title": "Google ADK labels dynamic instructions so models do not misread them as user turns",
+      "title_zh": "Google ADK 为动态指令标注来源，避免模型把它误读成用户轮次",
+      "sourceUrl": "https://github.com/google/adk-python/commit/8cdbbb158c70d22c414bd943ad29ec080d1a52b6",
+      "publishedAt": "2026-08-30",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee", "open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "google-adk/dynamic-instruction-role-provenance",
+      "summary": "ADK explicitly labels dynamic instruction content so the model does not interpret it as a user turn and imitate it, preserving the distinction between control instructions and conversational evidence.",
+      "summary_zh": "ADK 对动态指令内容进行显式标注，避免模型将其解释为用户轮次并模仿，从而保持控制指令与会话证据之间的来源边界。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["agent-identity-authority", "audit-provenance-accountability", "handoff-and-inter-agent-trust", "policy-enforcement"],
+      "sampleIds": ["google-adk"],
+      "researchValue": {
+        "failure": "Unlabeled control text can be interpreted as user-authored content, collapsing instruction provenance and authority.",
+        "finding": "",
+        "mechanism": "Carry explicit role/provenance labels for dynamically injected instructions.",
+        "implication": "Agent control planes need typed source identity for context, not just ordered text concatenation."
+      }
+    },
+    {
+      "id": "SIG-20260830-005",
+      "pipeline": "github-engineering",
+      "title": "GitHub Copilot CLI fixes a worktree-switch race caused by concurrent user input",
+      "title_zh": "GitHub Copilot CLI 修复 Worktree 切换期间并发用户输入导致的状态竞争",
+      "sourceUrl": "https://github.com/github/copilot-cli/releases/tag/v1.0.82",
+      "publishedAt": "2026-08-29",
+      "evidenceLevel": "official_announcement",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "github-copilot-cli/worktree-transition-input-race",
+      "summary": "Copilot CLI v1.0.82 reports that a message typed while /worktree or /move is preparing a worktree no longer breaks the switch, exposing a concrete transition-race boundary between interactive input and workspace state mutation.",
+      "summary_zh": "Copilot CLI v1.0.82 明确修复：在 /worktree 或 /move 准备 Worktree 时输入消息不再破坏切换，暴露了交互输入与工作区状态变更之间的真实转换竞争边界。",
+      "signalRole": "incident-or-regression-evidence",
+      "researchThemes": ["failure-deadlock-duplicate-execution", "durable-runtime-state", "task-ownership-responsibility"],
+      "sampleIds": ["github-copilot-cli"],
+      "researchValue": {
+        "failure": "Concurrent user input during workspace preparation could corrupt or abort the intended worktree transition.",
+        "finding": "",
+        "mechanism": "Serialize or otherwise guard interactive input against an in-flight workspace-state transition.",
+        "implication": "Agent runtime state transitions need explicit concurrency ownership even when the competing event is ordinary user input."
+      }
+    },
+    {
+      "id": "SIG-20260830-006",
+      "pipeline": "ai-platform",
+      "title": "ServiceNow can block deployment and tool visibility for unapproved MCP servers",
+      "title_zh": "ServiceNow 可阻止未审批 MCP Server 的部署与 Tool 可见性",
+      "sourceUrl": "https://www.servicenow.com/docs/r/intelligent-experiences/ai-control-tower/explore-approvals.html",
+      "publishedAt": "2026-03-12",
+      "evidenceLevel": "official_documentation",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "servicenow-ai-control-tower/mcp-steward-admission-gate",
+      "summary": "AI Control Tower can require AI-steward approval before assets deploy and can block unapproved MCP servers from being used in AI Agent Studio, including preventing tool display until approval is granted.",
+      "summary_zh": "AI Control Tower 可要求 AI Steward 在资产部署前审批，并可阻止未审批 MCP Server 在 AI Agent Studio 中使用，包括在获批前不显示其 Tool。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["human-approval-authority", "call-time-authorization", "policy-enforcement", "a2a-mcp-interoperability"],
+      "sampleIds": ["servicenow-ai-control-tower"],
+      "researchValue": {
+        "failure": "",
+        "finding": "",
+        "mechanism": "Bind MCP server admission to an AI-steward-controlled approval state and enforce the decision before tool exposure/use.",
+        "implication": "Enterprise agent governance benefits from separating static tool discovery from governed admission into an execution environment."
+      }
+    },
+    {
+      "id": "SIG-20260830-007",
+      "pipeline": "ai-platform",
+      "title": "IBM turns agent evaluation metrics into continuous governance-enforcement evidence",
+      "title_zh": "IBM 将 Agent 评估指标转化为持续的治理执行证据",
+      "sourceUrl": "https://www.ibm.com/new/announcements/from-governance-policies-to-governance-proof-with-enforcement-tracking-for-watsonx-orchestrate",
+      "publishedAt": "2026-08-11",
+      "evidenceLevel": "official_announcement",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "ibm-watsonx-orchestrate/enforcement-tracking-evidence",
+      "summary": "watsonx.governance Enforcement Tracking automatically imports agent evaluation metrics and records them as evidence that deployed agents are operating within defined policies.",
+      "summary_zh": "watsonx.governance Enforcement Tracking 会自动导入 Agent 评估指标，并把这些指标记录为已部署 Agent 是否在既定策略内运行的执行证据。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["policy-enforcement", "evidence-completion-truth", "audit-provenance-accountability", "multi-agent-evaluation"],
+      "sampleIds": ["ibm-watsonx-orchestrate"],
+      "researchValue": {
+        "failure": "",
+        "finding": "Governance policy can be linked to continuously collected operational evaluation evidence instead of remaining a static declaration.",
+        "mechanism": "Ingest agent evaluation metrics into the governance plane as enforcement-tracking evidence.",
+        "implication": "A digital-employee control plane can distinguish policy definition from independently inspectable proof of policy enforcement."
+      }
+    },
+    {
+      "id": "SIG-20260830-008",
+      "pipeline": "github-engineering",
+      "title": "LangGraph DeltaChannel bounds long-running checkpoint growth while preserving resume semantics",
+      "title_zh": "LangGraph DeltaChannel 在保持恢复语义的同时限制长运行 Checkpoint 增长",
+      "sourceUrl": "https://www.langchain.com/blog/delta-channels-evolving-agent-runtime",
+      "publishedAt": "2026-05-12",
+      "evidenceLevel": "official_announcement",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee", "industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "langgraph/delta-channel-checkpoint-scaling",
+      "summary": "DeltaChannel stores per-step deltas with periodic full snapshots instead of repeatedly persisting full state, bounding resume latency while avoiding quadratic checkpoint growth for long-running agents.",
+      "summary_zh": "DeltaChannel 以逐步 Delta + 周期性完整快照替代每一步重复持久化完整状态，在避免长运行 Agent Checkpoint 二次方增长的同时限制恢复延迟。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["durable-runtime-state", "recovery-authority", "failure-deadlock-duplicate-execution"],
+      "sampleIds": ["langgraph"],
+      "researchValue": {
+        "failure": "Full-state checkpoints at every step can grow storage quadratically as long-running agent histories expand.",
+        "finding": "",
+        "mechanism": "Persist incremental channel deltas and periodic full snapshots while retaining checkpoint-based resume and HITL semantics.",
+        "implication": "Durability design must scale storage cost independently from logical execution history length."
+      }
+    },
+    {
+      "id": "SIG-20260830-009",
+      "pipeline": "github-engineering",
+      "title": "AG2 places a human approval checkpoint between tool selection and sensitive tool execution",
+      "title_zh": "AG2 在 Tool 选择与敏感 Tool 执行之间设置人工审批检查点",
+      "sourceUrl": "https://docs.ag2.ai/docs/user-guide/tools/approval_required/",
+      "publishedAt": "2026-06-26",
+      "evidenceLevel": "official_documentation",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "ag2/approval-required-tool-middleware",
+      "summary": "AG2 approval_required middleware pauses a sensitive tool after the model selects it but before execution, asks the HITL hook for approval, and fails rather than silently proceeding when no human-input hook exists.",
+      "summary_zh": "AG2 的 approval_required Middleware 在模型选定敏感 Tool 后、实际执行前暂停，通过 HITL Hook 请求人工批准；缺少人工输入 Hook 时会失败而不是静默继续。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["human-approval-authority", "call-time-authorization", "human-agent-workflow", "policy-enforcement"],
+      "sampleIds": ["ag2"],
+      "researchValue": {
+        "failure": "",
+        "finding": "",
+        "mechanism": "Insert an explicit human decision point after tool intent is known but before side effects execute; absence of the approval channel is fail-closed.",
+        "implication": "Call-time authorization should bind a concrete invocation and arguments, not merely a static tool permission."
+      }
+    },
+    {
+      "id": "SIG-20260830-010",
+      "pipeline": "published-research",
+      "title": "SARA separates action induction from runtime authorization and preserves action-origin provenance",
+      "title_zh": "SARA 分离 Action Induction 与运行时授权，并持久保存动作来源",
+      "sourceUrl": "https://arxiv.org/abs/2608.27146",
+      "publishedAt": "2026-08-27",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee", "open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "research/sara-action-induction-runtime-authorization",
+      "summary": "SARA treats tool-output-induced actions and execution authorization as distinct runtime roles, persistently records action-origin provenance, authorizes calls only against user objectives plus audited successful execution evidence, and prevents history from laundering action origin into authority.",
+      "summary_zh": "SARA 将 Tool Output 诱导的动作与执行授权视为不同运行时角色，持久记录动作来源，只依据用户目标与经审计的成功执行证据授权调用，并阻止历史重复把动作来源“洗白”为执行权。",
+      "signalRole": "research-finding",
+      "researchThemes": ["call-time-authorization", "audit-provenance-accountability", "handoff-and-inter-agent-trust", "policy-enforcement"],
+      "sampleIds": ["arxiv-2608.27146"],
+      "researchValue": {
+        "failure": "Untrusted tool observations can become implicit commands and induce side effects beyond the user's intent.",
+        "finding": "Across AgentDojo and AgentDyn, the proposed separation keeps reported attack success rate at or below 0.63% in four primary settings while maintaining competitive utility.",
+        "mechanism": "Separate induction from authorization, persist action-origin provenance, authorize against user intent and audited executions, and forbid history-based authority promotion.",
+        "implication": "Runtime evidence history should inform authorization without granting authority merely because an action has appeared before."
+      }
+    },
+    {
+      "id": "SIG-20260830-011",
+      "pipeline": "published-research",
+      "title": "Fabricated professional-looking evidence can raise agent commitment without changing belief",
+      "title_zh": "伪造的专业外观证据可在几乎不改变信念的情况下显著提高 Agent 行动承诺",
+      "sourceUrl": "https://arxiv.org/abs/2608.27167",
+      "publishedAt": "2026-08-27",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "research/fabricated-evidence-action-gate",
+      "summary": "Across 12 frontier models, professional-looking evidence sharply raises commitment on provably unknowable questions even when every displayed number is fabricated; stated probabilities barely move, locating the failure in the act/don't-act gate rather than belief calibration.",
+      "summary_zh": "在 12 个前沿模型上，专业外观证据会显著提高模型对本质不可预测问题的行动承诺，即使面板上的数字全部伪造；而模型陈述概率几乎不变，说明失败集中在“行动/不行动”门禁而非信念校准。",
+      "signalRole": "research-finding",
+      "researchThemes": ["evidence-completion-truth", "call-time-authorization", "policy-enforcement", "multi-agent-evaluation"],
+      "sampleIds": ["arxiv-2608.27167"],
+      "researchValue": {
+        "failure": "Authoritative-looking but non-informative evidence can push an agent to act on unknowable questions.",
+        "finding": "Commitment rises from 6.5% to 54.0% across the evidence gradient; fully fabricated displays still materially increase commitment while stated probabilities barely change.",
+        "mechanism": "The failure is localized to the action gate; supervised training can suppress it, but rigid output formats can break the learned abstention behavior.",
+        "implication": "Governance needs an explicit action-admission layer that evaluates evidence sufficiency independently from model confidence and presentation authority."
+      }
+    }
+  ],
+  "researchCoverage": {
+    "policy": "theme-sample-v1",
+    "rollingResearchWindowDays": 30,
+    "sampleFamilies": {
+      "product-governance": {
+        "checked": ["ServiceNow AI Control Tower", "IBM watsonx Orchestrate / Agentic Control Plane"],
+        "qualifiedSignals": 2
+      },
+      "multi-agent-mechanism": {
+        "checked": ["OpenAI Codex", "Google ADK", "LangGraph", "AG2"],
+        "qualifiedSignals": 4
+      },
+      "research-benchmark-industry": {
+        "checked": ["SARA action-induction/runtime-authorization study (arXiv:2608.27146)", "Fabricated-evidence action-gate study (arXiv:2608.27167)"],
+        "qualifiedSignals": 2
+      }
+    }
+  }
 }
