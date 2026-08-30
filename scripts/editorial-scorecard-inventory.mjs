@@ -64,7 +64,11 @@ const walkMarkdown = async directory => {
   return nested.flat()
 }
 
+const canonicalOfRelative = relativePath => `/${relativePath.replace(/\.md$/, '').replace(/\/index$/, '')}` || '/'
 const files = []
+const seenCanonical = new Set()
+
+// Preferred source: the English research-center article. Its path defines the canonical identity.
 for (const sourcePath of await walkMarkdown(EN_ROOT)) {
   const bytes = await readFile(sourcePath)
   const text = bytes.toString('utf8')
@@ -72,17 +76,44 @@ for (const sourcePath of await walkMarkdown(EN_ROOT)) {
   if (!isEligiblePublicObservation(frontmatter)) continue
 
   const relativeEnglishPath = normalize(relative(EN_ROOT, sourcePath))
-  const canonicalPath = `/${relativeEnglishPath.replace(/\.md$/, '').replace(/\/index$/, '')}`
+  const canonicalPath = canonicalOfRelative(relativeEnglishPath)
   const zhSourcePath = join(ZH_ROOT, relativeEnglishPath)
   files.push({
-    path: canonicalPath || '/',
+    path: canonicalPath,
     sourcePath: normalize(relative(ROOT, sourcePath)),
     pairedZhSourcePath: await exists(zhSourcePath) ? normalize(relative(ROOT, zhSourcePath)) : null,
+    sourceLanguage: 'en',
     contentHash: sha256(bytes),
     column: frontmatter.column,
     category: frontmatter.category,
     date: frontmatter.date
   })
+  seenCanonical.add(canonicalPath)
+}
+
+// Public Research Notes scans both locales. If a currently published eligible note exists only
+// in Chinese, it still belongs to the scorecard corpus. Preserve the English-form canonical URL
+// as its identity, but hash/review the actual Chinese source until an English counterpart exists.
+// When an English file is later added, the source/hash changes and normal direct-rescore rules apply.
+for (const zhSourcePath of await walkMarkdown(ZH_ROOT)) {
+  const bytes = await readFile(zhSourcePath)
+  const frontmatter = frontmatterOf(bytes.toString('utf8'))
+  if (!isEligiblePublicObservation(frontmatter)) continue
+  const relativeZhPath = normalize(relative(ZH_ROOT, zhSourcePath))
+  const canonicalPath = canonicalOfRelative(relativeZhPath)
+  if (seenCanonical.has(canonicalPath)) continue
+
+  files.push({
+    path: canonicalPath,
+    sourcePath: normalize(relative(ROOT, zhSourcePath)),
+    pairedZhSourcePath: normalize(relative(ROOT, zhSourcePath)),
+    sourceLanguage: 'zh-only',
+    contentHash: sha256(bytes),
+    column: frontmatter.column,
+    category: frontmatter.category,
+    date: frontmatter.date
+  })
+  seenCanonical.add(canonicalPath)
 }
 
 files.sort((a, b) => a.path.localeCompare(b.path))
@@ -91,27 +122,9 @@ if (duplicatePaths.length) {
   throw new Error(`Duplicate canonical observation paths: ${[...new Set(duplicatePaths)].join(', ')}`)
 }
 
-const missingZhPairs = files.filter(item => !item.pairedZhSourcePath).map(item => item.path)
+const missingZhPairs = files.filter(item => item.sourceLanguage === 'en' && !item.pairedZhSourcePath).map(item => item.path)
 if (missingZhPairs.length) {
-  throw new Error(`Eligible observations require a paired Chinese source for English canonical identity: ${missingZhPairs.join(', ')}`)
-}
-
-// The public Research Notes loader scans both locales. Enforce the identity contract in both
-// directions so a Chinese-only eligible note cannot appear publicly while silently escaping
-// the English-canonical scorecard corpus.
-const extraZhEligible = []
-for (const zhSourcePath of await walkMarkdown(ZH_ROOT)) {
-  const bytes = await readFile(zhSourcePath)
-  const frontmatter = frontmatterOf(bytes.toString('utf8'))
-  if (!isEligiblePublicObservation(frontmatter)) continue
-  const relativeZhPath = normalize(relative(ZH_ROOT, zhSourcePath))
-  const enSourcePath = join(EN_ROOT, relativeZhPath)
-  if (!(await exists(enSourcePath))) {
-    extraZhEligible.push(`/${relativeZhPath.replace(/\.md$/, '').replace(/\/index$/, '')}`)
-  }
-}
-if (extraZhEligible.length) {
-  throw new Error(`Eligible Chinese observations require a paired English canonical source: ${extraZhEligible.sort().join(', ')}`)
+  throw new Error(`Eligible English observations require a paired Chinese source: ${missingZhPairs.join(', ')}`)
 }
 
 const inventory = {
@@ -123,6 +136,6 @@ const inventory = {
   items: files
 }
 
-const verificationRows = files.map(item => `${item.path}\t${item.contentHash}\t${item.column}\t${item.category}\t${item.date}`)
+const verificationRows = files.map(item => `${item.path}\t${item.contentHash}\t${item.sourceLanguage}\t${item.column}\t${item.category}\t${item.date}`)
 await writeFile(DEBUG_OUTPUT, `${verificationRows.join('\n')}\n`, 'utf8')
 console.log(`OBSERVATION_SCORECARD_INVENTORY=${JSON.stringify(inventory)}`)
