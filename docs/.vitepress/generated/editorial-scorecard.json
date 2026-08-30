@@ -1732,6 +1732,47 @@
       "scoringMode": "direct"
     },
     {
+      "path": "/digital-employee/2026-08-28-skill-session-evidence",
+      "score": 96,
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {
+        "zh": "用59条历史记录、SessionStore 核验与独立 QA 把“技能存在、会话归属、真实调用、结果验证”四层证据拆得很清楚；不足是关键实现与 QA 仍依赖受限母版材料，外部复现能力有限。",
+        "en": "The article cleanly separates skill existence, session attribution, actual invocation, and result verification using 59 historical records, SessionStore checks, and independent QA; key implementation and QA evidence still depends on restricted first-party material, limiting external reproduction."
+      },
+      "dimensions": {
+        "evidenceRigor": {
+          "score": 34,
+          "reason": "依据来源可追溯性、事实与判断分离、限制及反证处理评估。",
+          "evidence": [
+            "source citations / evidence boundary"
+          ]
+        },
+        "originalJudgment": {
+          "score": 24,
+          "reason": "依据是否形成非平凡判断、机制解释及证据边界评估。",
+          "evidence": [
+            "central judgment / mechanism"
+          ]
+        },
+        "structureExpression": {
+          "score": 19,
+          "reason": "依据研究问题、论证路径、章节组织与可读性评估。",
+          "evidence": [
+            "argument structure / limitations"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 19,
+          "reason": "依据是否形成可执行设计、验证方法、边界或下一步决策评估。",
+          "evidence": [
+            "engineering implications / validation"
+          ]
+        }
+      },
+      "scoringMode": "direct"
+    },
+    {
       "path": "/digital-employee/2026-08-29-restoring-context-does-not-restore-authority",
       "score": 93,
       "publicLabel": "卓越",
@@ -3404,6 +3445,88 @@
         },
         "engineeringUsefulness": {
           "score": 19,
+          "reason": "依据是否形成可执行设计、验证方法、边界或下一步决策评估。",
+          "evidence": [
+            "engineering implications / validation"
+          ]
+        }
+      },
+      "scoringMode": "direct"
+    },
+    {
+      "path": "/engineering/2026-08-28-event-consumer-visibility",
+      "score": 97,
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {
+        "zh": "从 OpenHands 的 41 次 POST、20,440 条历史事件一路收敛到服务端递归白名单，并用误裁字段的失败回归反证边界，论证完整；不足是三类消费者之外的真实网络出口仍未覆盖。",
+        "en": "It moves from OpenHands' 41 POSTs and 20,440 historical events to server-side recursive allowlists, strengthened by a failed over-trimming regression; real network-facing paths beyond the three tested consumers remain outside the evidence."
+      },
+      "dimensions": {
+        "evidenceRigor": {
+          "score": 34,
+          "reason": "依据来源可追溯性、事实与判断分离、限制及反证处理评估。",
+          "evidence": [
+            "source citations / evidence boundary"
+          ]
+        },
+        "originalJudgment": {
+          "score": 24,
+          "reason": "依据是否形成非平凡判断、机制解释及证据边界评估。",
+          "evidence": [
+            "central judgment / mechanism"
+          ]
+        },
+        "structureExpression": {
+          "score": 20,
+          "reason": "依据研究问题、论证路径、章节组织与可读性评估。",
+          "evidence": [
+            "argument structure / limitations"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 19,
+          "reason": "依据是否形成可执行设计、验证方法、边界或下一步决策评估。",
+          "evidence": [
+            "engineering implications / validation"
+          ]
+        }
+      },
+      "scoringMode": "direct"
+    },
+    {
+      "path": "/engineering/2026-08-28-response-loss-idempotency",
+      "score": 98,
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {
+        "zh": "用报告不重复、任务却重复的正反实验把响应丢失窗口定位得很准，再落到三阶段回执、摘要冲突和八路并发复用，工程闭环扎实；不足是结论仍限定于受测创建路径，不能外推到全部副作用工具。",
+        "en": "The report-versus-task counterexample precisely isolates the response-loss window, then closes it with staged receipts, digest conflicts, and eight-way concurrent reuse; the evidence still applies only to the tested creation path, not every side-effecting tool."
+      },
+      "dimensions": {
+        "evidenceRigor": {
+          "score": 34,
+          "reason": "依据来源可追溯性、事实与判断分离、限制及反证处理评估。",
+          "evidence": [
+            "source citations / evidence boundary"
+          ]
+        },
+        "originalJudgment": {
+          "score": 24,
+          "reason": "依据是否形成非平凡判断、机制解释及证据边界评估。",
+          "evidence": [
+            "central judgment / mechanism"
+          ]
+        },
+        "structureExpression": {
+          "score": 20,
+          "reason": "依据研究问题、论证路径、章节组织与可读性评估。",
+          "evidence": [
+            "argument structure / limitations"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 20,
           "reason": "依据是否形成可执行设计、验证方法、边界或下一步决策评估。",
           "evidence": [
             "engineering implications / validation"

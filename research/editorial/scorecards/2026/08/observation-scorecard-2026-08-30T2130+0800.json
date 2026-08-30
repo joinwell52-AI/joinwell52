@@ -40,8 +40,8 @@
     "engineering implications / validation"
   ],
   "coverage": {
-    "eligible": 130,
-    "reviewed": 47,
+    "eligible": 133,
+    "reviewed": 50,
     "inherited": 83,
     "audited": 10,
     "rate": 1
@@ -64,7 +64,8 @@
       "editorialNote": {
         "zh": "把动作、授权、执行、状态和验收拆成独立环节，控制边界清楚；不足是来源集中在少量平台案例，对不同交互环境的适用性验证还不够。",
         "en": "It cleanly separates action, authority, execution, state, and acceptance; the evidence base is still concentrated in a small set of platform examples, leaving broader interaction environments under-tested."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-02-control-plane-work-runtime",
@@ -83,7 +84,8 @@
       "editorialNote": {
         "zh": "控制面与工作运行时的分层完整，接口和中小企业落地路径具体；但与相邻治理文章概念重叠较多，独立的新证据和案例还可加强。",
         "en": "The control-plane/runtime layering and SME implementation path are concrete; however, it overlaps conceptually with adjacent governance notes and would benefit from more independent evidence and cases."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-02-osworld-execution-verification",
@@ -102,7 +104,8 @@
       "editorialNote": {
         "zh": "抓住 OSWorld 中 Evaluator 对执行结果验证的核心价值，并清楚限定版本和外推范围；不足是尚未把评测机制接到真实企业任务的失败与验收链路。",
         "en": "It correctly centers OSWorld on evaluator-backed execution verification and states version and extrapolation limits; the missing step is connecting that mechanism to real enterprise failure and acceptance chains."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-02-position-ownership-authority",
@@ -121,7 +124,8 @@
       "editorialNote": {
         "zh": "用多家企业产品交叉说明“岗位先于 Agent”的组织视角，判断有价值；但材料仍以厂商资料为主，真实岗位重构和长期运营证据不足。",
         "en": "The cross-vendor comparison makes the position-before-agent argument useful; the evidence remains vendor-heavy, with limited observation of real job redesign and long-running operations."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-05-universal-verifier-completion-contract",
@@ -140,7 +144,8 @@
       "editorialNote": {
         "zh": "完成合同把数据、版本差异、反证和可迁移边界连成一个可验证模型，论证很强；不足是跨框架统一验证器的实现成本和误判率仍缺实测。",
         "en": "The completion contract tightly connects data, version differences, counterevidence, and transfer boundaries into a verifiable model; implementation cost and false-positive behavior of a cross-framework verifier remain unmeasured."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-05-verifiable-completion",
@@ -159,7 +164,8 @@
       "editorialNote": {
         "zh": "把“声明完成”和“可验证完成”区分得简洁有效，适合作为治理入门框架；但关键数据和论证较多留在上游研究对象，单篇自足性不足。",
         "en": "The distinction between claimed and verifiable completion is concise and useful as a governance frame; too much of the supporting data and reasoning remains upstream, weakening standalone completeness."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-06-governed-revisable-work-graph",
@@ -178,7 +184,8 @@
       "editorialNote": {
         "zh": "“依赖就绪不等于授权就绪”的判断有洞察，工作图与治理状态分离明确；不足是直接失败案例较少，关键证据仍较依赖上游对象。",
         "en": "The insight that dependency-ready is not authority-ready is strong and the graph/governance split is clear; direct failure cases are sparse and key evidence remains dependent on upstream objects."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-07-verification-gated-state-admission",
@@ -197,7 +204,8 @@
       "editorialNote": {
         "zh": "把历史耐久与当前权威耐久分开，并用投影过期和反例解释重新准入的必要性；不足是统一运行状态仍主要是架构推导，跨系统实证有限。",
         "en": "It usefully separates durable history from durable authority and explains re-admission through stale projections and counterexamples; the unified runtime state remains mostly architectural inference with limited cross-system evidence."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-08-pause-preserving-budget-admission",
@@ -216,7 +224,8 @@
       "editorialNote": {
         "zh": "把预算从计费指标提升为运行时准入状态，暂停与恢复边界设计得很实用；不足是证据来源较单一，复杂预算冲突和多人审批尚未验证。",
         "en": "Treating budget as a runtime admission state makes pause and resume operationally useful; the evidence is narrow, and complex budget conflicts or multi-party approvals are not yet validated."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-09-revocation-coupled-run-reconciliation",
@@ -235,7 +244,8 @@
       "editorialNote": {
         "zh": "把撤销、Worker 停止、租约和副作用补偿拆开，恢复语义非常清楚；不足是分布式延迟与外部效果一致性仍缺真实故障数据。",
         "en": "The separation of revocation, worker stopping, leases, and side-effect compensation is precise; distributed delay and external-effect consistency still lack real fault data."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-10-governed-input-admission-boundary",
@@ -253,7 +263,8 @@
         "en": "Grounding input identity and side-effect boundaries in issues, PRs, and commits is strong engineering; ambiguous or malicious input propagation across toolchains still lacks systematic testing."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-11-execution-authority-ordered-work",
@@ -271,7 +282,8 @@
         "en": "It clearly separates work arrival, claiming, and execution authority, with a useful multi-session model; cross-process preemption, lease expiry, and stale-worker writes remain under-tested."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-12-acceptance-persistence-handoff",
@@ -289,7 +301,8 @@
         "en": "Three crash points cleanly separate acceptance, custody, and persistence, with clear falsification paths; cross-service eventual consistency and duplicate delivery still need fault experiments."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-12-corpgen-multi-horizon-runtime",
@@ -307,7 +320,8 @@
         "en": "It turns a complete paper reading into a well-bounded runtime argument with data and open questions; enterprise role migration and long-horizon operating outcomes remain empirically thin."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-13-resume-capability-reconstruction",
@@ -325,7 +339,8 @@
         "en": "It convincingly separates state restoration from current capability reconstruction; the argument rests mainly on one ADK transfer path, so broader applicability still needs validation."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-14-durable-work-execution-authority",
@@ -343,7 +358,8 @@
         "en": "It prevents durable work identity from being confused with execution or resume authority; multi-worker leases and external-effect safety remain largely design-level rather than demonstrated."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-15-resumable-agent-trust-gates",
@@ -361,7 +377,8 @@
         "en": "The four trust gates for history, protocol state, action binding, and approval are well separated; approver identity and event provenance still lack complete implementation evidence."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-16-occurrence-scoped-authorization",
@@ -379,7 +396,8 @@
         "en": "Exact call identity usefully keeps one-time approval from widening a sticky default; approver identity, policy provenance, and external-effect finality remain outside the demonstrated mechanism."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-17-selective-fail-closed-api",
@@ -397,7 +415,8 @@
         "en": "Placing targeted rejection before permissive parsing preserves forward compatibility without silently accepting retired security semantics; the evidence is one Codex interface and does not establish end-to-end authorization."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-18-accountable-human-approval",
@@ -415,7 +434,8 @@
         "en": "It correctly separates human-looking origin from actual approval authority and keeps A2A origin checks distinct from action matching; legitimate approver identity still requires an external authentication mechanism."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-18-cursor-ai-development-team",
@@ -433,7 +453,8 @@
         "en": "It turns PM, DEV, QA, and OPS tasks, evidence, rework, and acceptance into an actionable development workflow; the article is long and heavily grounded in the project's own system, with limited independent team replication."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-19-local-runtime-mobile-control",
@@ -451,7 +472,8 @@
         "en": "The PC/mobile split is concrete, with revision binding, idempotency, and fail-closed weak-network behavior; evidence remains centered on one local product setup with limited long-running cross-platform data."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-19-monotonic-delegation-authority",
@@ -469,7 +491,8 @@
         "en": "The monotonic rule that child authority may only stay equal or narrow is clear across customization and resume; configuration monotonicity alone does not establish complete delegation security or effect control."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-19-sentinelbench-waiting-runtime",
@@ -487,7 +510,8 @@
         "en": "It translates SentinelBench's waiting-task evidence into a runtime-state argument with careful treatment of metrics, cost, and latency; the benchmark is synthetic and lacks independent reproduction or real long-running task validation."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-20-command-name-execution-authority",
@@ -505,7 +529,8 @@
         "en": "The Git example makes the distinction between a familiar command name and execution authority concrete; executable provenance, sandbox behavior, and downstream effects remain outside the demonstrated boundary."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-20-report-attribution",
@@ -523,7 +548,8 @@
         "en": "It builds a rigorous attribution chain across task identity, execution attempt, supersession, and independent QA, backed by 44 tests; the article is long, and three matching identifiers still cannot detect a consistently wrong report."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-21-useful-context-not-memory-authority",
@@ -541,7 +567,8 @@
         "en": "It separates provenance, immediate utility, and durable memory eligibility so useful content does not become permanent authority; the thread-level pollution marker is coarse and policy across non-text consumers remains incomplete."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-22-agent-rail-decision-boundary",
@@ -558,7 +585,8 @@
       "editorialNote": {
         "zh": "把轨道从状态机和 PM 判断中剥离，只负责事实、调度、审计和机械拒绝，并补足 policy bundle 与并发边界，体系更完整；不足是关键 V1.9.7 证据仍来自私有候选实现，外部复现有限。",
         "en": "It sharply separates the rail from lifecycle state and PM judgment, while adding policy-bundle and concurrency boundaries; decisive V1.9.7 evidence still comes from a private candidate implementation, limiting external reproduction."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-22-authorization-needs-provenance",
@@ -576,7 +604,8 @@
         "en": "Role-preserving root-history evidence prevents forwarded prose from impersonating user authority and cleanly separates review from work context; it remains review evidence rather than a durable, revocable authorization ledger."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-23-resume-recency-not-authority",
@@ -593,7 +622,8 @@
       "editorialNote": {
         "zh": "用真实 FunctionResponse 被合成输入遮蔽的恢复缺陷说明“更晚不等于更有权威”，并把 precedence 放到模型前；不足是回归仍非完整持久 HITL，多中断与授权身份未验证。",
         "en": "The concrete FunctionResponse shadowing defect shows why later context is not necessarily more authoritative and moves precedence before model interpretation; the regression is not a full durable HITL loop and does not cover multiple interruptions or approver identity."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-24-repeated-failure-not-new-evidence",
@@ -610,7 +640,8 @@
       "editorialNote": {
         "zh": "把重复终态识别为旧事实重入，并用消费状态与因果同步测试固定仲裁顺序，论证扎实；不足是只覆盖一种 guardrail/turn-limit 竞态，尚未证明通用终态仲裁。",
         "en": "It treats repeated terminal failure as old evidence re-entering the system and uses consumed-state plus causal synchronization to define arbitration; the evidence covers one guardrail/turn-limit race rather than a general terminal-arbitration mechanism."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-25-precedence-not-configuration-authority",
@@ -627,7 +658,8 @@
       "editorialNote": {
         "zh": "把配置优先级与谁有资格进入配置竞争分开，且用 broker 开关验证权威面收缩，边界清楚；不足是仍局限于一个 Codex 凭据路径，跨环境策略传播尚未实测。",
         "en": "It separates precedence from eligibility to participate in configuration and uses the broker switch to demonstrate authority contraction; evidence remains limited to one Codex credential path, without cross-environment policy-propagation tests."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-26-agent-call-time-authorization-receipt",
@@ -644,7 +676,8 @@
       "editorialNote": {
         "zh": "把真实 gate 误拒、分层回归失败与 GitHub MCP 调用时 scope challenge 串成任务级授权证据链，工程证据很强；不足是 Authorization Receipt 仍属模型提案，未覆盖全部工具和外部效果。",
         "en": "It connects a real gate misclassification, layered regression failures, and a GitHub MCP call-time scope challenge into a task-level authorization evidence chain; the Authorization Receipt remains a proposed model and has not been validated across all tools or external effects."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-26-agent-failure-and-delivery-boundary",
@@ -661,7 +694,8 @@
       "editorialNote": {
         "zh": "用 CrewAI 假绿 telemetry 与 CodeFlowMu 报告投影缺陷交叉说明执行、交付、验收和历史必须分账，案例链完整；不足是仍缺从工具失败到正式验收的端到端跨层追踪实验。",
         "en": "CrewAI false-green telemetry and a CodeFlowMu report-projection defect jointly show why execution, delivery, acceptance, and history need separate records; an end-to-end cross-layer experiment from tool failure through formal acceptance is still missing."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-26-foreground-completion-not-workflow-completion",
@@ -678,7 +712,8 @@
       "editorialNote": {
         "zh": "把后台任务是否仍由父流程负责转成终态屏障，并用成功、失败、interrupt 回归覆盖关键分支；不足是只证明内存内在途任务，崩溃恢复和外部效果仍无闭环。",
         "en": "It turns ownership of background work into a terminal barrier and covers success, failure, and interrupt paths with regressions; the evidence concerns in-memory in-flight tasks, leaving crash recovery and external effects unresolved."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-26-observer-audit-without-adjudication",
@@ -695,7 +730,8 @@
       "editorialNote": {
         "zh": "把观察、注意、裁决和生命周期写入拆成四种权力，并用真实 EVAL 缺陷和 Anywhere Agents 交叉校准，证据丰富；不足是自动 reconcile 的 SLA 与统一运行机制仍未被实现证明。",
         "en": "It separates observation, attention, adjudication, and lifecycle mutation into four powers and cross-checks a real EVAL defect with Anywhere Agents; the evidence is rich, but a unified unattended reconciliation mechanism and SLA remain unproven."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-26-service-health-task-recovery-case",
@@ -712,7 +748,8 @@
       "editorialNote": {
         "zh": "用 OpenHands 健康假象和 CodeFlowMu 恢复时间线区分健康、活性、准入与因果前置，且保留时间顺序无法证明因果的反证；不足是历史 QA 放行仍缺可绑定的 prerequisite receipt。",
         "en": "The OpenHands health illusion and CodeFlowMu recovery timeline clearly separate health, liveness, admission, and causal prerequisites while preserving the limits of temporal order; historical QA release still lacks a bindable prerequisite receipt."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-27-agent-stop-evidence",
@@ -729,7 +766,8 @@
       "editorialNote": {
         "zh": "用 Anywhere Agents 四轮反例和可重跑 Windows 探针把取消、进程退出、树级 containment 与重派资格逐层拆开，证据边界很强；不足是任意深度后代和跨平台 containment 仍未证明。",
         "en": "Four Anywhere Agents counterexamples plus a rerunnable Windows probe separate cancellation, process exit, tree containment, and redispatch eligibility with strong evidence boundaries; arbitrary-depth descendants and cross-platform containment remain unproven."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-27-agent-ui-status-projection",
@@ -746,7 +784,8 @@
       "editorialNote": {
         "zh": "从 Sutando 的 collaborator 反例推导 UI 状态必须声明来源、对象、时效和冲突策略，并提供五类公开复现夹具；不足是公开 reader 仍不是完整生产 UI 与权限链的端到端验证。",
         "en": "A Sutando collaborator counterexample motivates status projections that declare source, object, freshness, and conflict policy, backed by five public fixtures; the public reader is still not an end-to-end validation of a production UI and authority chain."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-27-running-is-an-evidence-claim",
@@ -763,7 +802,8 @@
       "editorialNote": {
         "zh": "用 Claude Code 过早 Running 的具体故障说明状态标签一旦触发消费者行为就成为证据契约，层次划分清楚；不足是依据仅为官方 release note，真实 readiness 门槛和回归细节未公开。",
         "en": "The Claude Code premature-Running defect shows that a status label becomes an evidence contract once consumers act on it; the argument is clear, but the source is an official release note without public readiness criteria or regression details."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-28-delegation-budgets-belong-to-root-objective",
@@ -780,7 +820,26 @@
       "editorialNote": {
         "zh": "把资源消费来源与根目标预算归属分成两种身份，并覆盖嵌套、卸载和 checkpoint 并发，机制完整；不足是 token 账本不能推出即时撤销、跨主机一致性或通用配额。",
         "en": "It separates the source of resource consumption from the root objective that owns the budget and covers nesting, unloading, and checkpoint concurrency; a token ledger does not prove immediate revocation, cross-host consistency, or general quota enforcement."
-      }
+      },
+      "sourceLanguage": "en"
+    },
+    {
+      "path": "/digital-employee/2026-08-28-skill-session-evidence",
+      "sourceLanguage": "zh-only",
+      "scoringMode": "direct",
+      "dimensionScores": [
+        34,
+        24,
+        19,
+        19
+      ],
+      "score": 96,
+      "publicLabel": "超凡",
+      "editorialNote": {
+        "zh": "用59条历史记录、SessionStore 核验与独立 QA 把“技能存在、会话归属、真实调用、结果验证”四层证据拆得很清楚；不足是关键实现与 QA 仍依赖受限母版材料，外部复现能力有限。",
+        "en": "The article cleanly separates skill existence, session attribution, actual invocation, and result verification using 59 historical records, SessionStore checks, and independent QA; key implementation and QA evidence still depends on restricted first-party material, limiting external reproduction."
+      },
+      "contentHash": "500ce6c58b33e80692fa0e9e7a0ce531347cc6670acd02f3526425ae79480f32"
     },
     {
       "path": "/digital-employee/2026-08-29-restoring-context-does-not-restore-authority",
@@ -797,7 +856,8 @@
       "editorialNote": {
         "zh": "把完整快照的重建资格与当前执行授权拆成两道门，并用 seed、lineage、compaction 反例限定恢复边界；不足是仅有一个 Codex 状态路径，外部资源撤销与跨主机一致性未验证。",
         "en": "It separates reconstructability of a complete snapshot from current execution authority and uses seed, lineage, and compaction counterexamples to bound recovery; evidence is one Codex state path, without external-resource revocation or cross-host consistency tests."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/digital-employee/2026-08-30-resume-needs-more-than-a-checkpoint",
@@ -814,7 +874,8 @@
       "editorialNote": {
         "zh": "把 workflow frame、call occurrence、branch 与 replay 决策组合成恢复身份，解决嵌套 HITL 的历史歧义；不足是 responder 身份和外部副作用仍需独立证据，不能由 event 匹配替代。",
         "en": "It combines workflow frame, call occurrence, branch, and replay decision into a recovery identity that resolves nested HITL ambiguity; responder identity and external side effects still require independent evidence rather than event matching."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-02-agent-capability-packaging",
@@ -832,7 +893,8 @@
         "en": "The Skill Contract makes capability packaging, inputs, outputs, and dependencies actionable; comparing several capability abstractions creates conceptual stretch and there are few measured migration cases."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-02-durable-agent-runtime",
@@ -850,7 +912,8 @@
         "en": "The four-framework runtime matrix makes persistence, recovery, and governance differences easy to compare; most evidence is documentary rather than a controlled same-task experiment."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-02-manager-handoff-ownership-models",
@@ -868,7 +931,8 @@
         "en": "The separation of session, authority, guardrails, and completion rights yields a clear ownership model from SDK behavior; deeper multi-level handoffs and abnormal recovery cases remain limited."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-02-swe-bench-verified-quality",
@@ -886,7 +950,8 @@
         "en": "It treats benchmark, environment, tests, and review as one quality system rather than trusting a final score; ongoing evaluation cost in real development teams remains largely unmeasured."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-05-guardrail-persistence-state-machine",
@@ -904,7 +969,8 @@
         "en": "The guardrail state taxonomy is concise and practical, separating persistence from runtime judgment; it reads like a compressed design note with limited alternatives, counterexamples, and fault data."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-06-codeflowmu-multi-agent-fact-checking",
@@ -922,7 +988,8 @@
         "en": "The field case connects evidence packs, hashes, tests, and authority boundaries into a traceable fact-checking chain; the prose repeats some points and external system comparison remains limited."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-06-semantic-migration-recovery",
@@ -940,7 +1007,8 @@
         "en": "It rigorously separates semantic replay, single-file atomicity, and cross-store recovery without overstating transactional guarantees; scale, performance, and high-concurrency fault behavior remain unquantified."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-07-stable-identity-provisioning-gate",
@@ -958,7 +1026,8 @@
         "en": "Stable identity, lifecycle, and durability boundaries are handled professionally and are directly useful for resource design; cross-node conflict, reclamation, and stale-identity reuse remain under-tested."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-08-correlated-multistream-host-contract",
@@ -976,7 +1045,8 @@
         "en": "It accurately connects cross-stream ordering, finality, acknowledgements, and watermarks into a reusable host contract; the article is dense and lacks a simplified end-to-end operational example."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-09-executed-conformance-migration-safety",
@@ -994,7 +1064,8 @@
         "en": "The insight that correct output can hide degraded mechanisms is strong, supported by solid reader and CI-skip analysis; a general automated method for detecting such degradation is still missing."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-10-serialized-tool-lifecycle-authority",
@@ -1012,7 +1083,8 @@
         "en": "It traces issue, PR, and commit evidence into serialization, cancellation safety, timeout, and fencing; cross-process and remote-execution boundaries remain mostly architectural inference."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-11-durable-event-identity-terminal-evidence",
@@ -1030,7 +1102,8 @@
         "en": "Stable event identity, retries, and terminal evidence are rigorously separated while avoiding exactly-once overclaims; external-effect deduplication and reconciliation remain incomplete."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-12-scoped-callback-concurrency",
@@ -1048,7 +1121,8 @@
         "en": "Framing concurrency through ownership, lifetime, capacity, and isolation yields reusable review criteria; high-load throughput, starvation, and fairness are not quantitatively evaluated."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-13-bounded-extension-point",
@@ -1066,7 +1140,8 @@
         "en": "The five boundaries of scope, ownership, lifetime, resources, and observability make dynamic integration highly reviewable; credential refresh and durable audit remain open problems."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-14-cancellation-rollback-effect-boundary",
@@ -1084,7 +1159,8 @@
         "en": "It correctly shows that local cancellation rollback cannot undo the external world and separates effect reconciliation from retry admission; end-to-end compensation, idempotency, and unknown-outcome experiments are still absent."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-15-agent-handoff-ownership",
@@ -1102,7 +1178,8 @@
         "en": "It separates execution, routing, termination, and external-effect ownership so local cancellation is not mistaken for global closure; distributed workers and remote side effects remain untested."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-16-config-precedence-provenance",
@@ -1120,7 +1197,8 @@
         "en": "It correctly separates configuration precedence from provenance, showing that which value wins is not the same as who may set it; effective-configuration provenance remains a proposed rather than demonstrated mechanism."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-17-compact-transcript-evidence",
@@ -1138,7 +1216,8 @@
         "en": "Treating UI compaction as a replayable view over richer execution evidence balances readability and investigation; the underlying transcript still lacks durability, tamper evidence, and authoritative external-effect proof."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-17-executable-agent-evaluation-package",
@@ -1156,7 +1235,8 @@
         "en": "The two-chain audit model for agent and evaluator execution is strongly grounded across multiple studies and yields a practical eight-artifact package; its operational cost and cross-team adoption effects are not yet measured."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-17-reviewable-agent-plan",
@@ -1174,7 +1254,8 @@
         "en": "It uses E2EDevBench to reject the idea that any plan improves reliability and correctly treats plans as traceable derivatives rather than new authority; the proposed six-part Plan Contract still lacks independent controlled evaluation."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-18-fcop-file-state-machine",
@@ -1192,7 +1273,8 @@
         "en": "The FCoP state machine is grounded in specification, implementation, and 22 tests across locations, transitions, and atomic publication; contention, network filesystems, and crash durability remain directly untested."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-18-files-first-multi-agent-governance",
@@ -1210,7 +1292,8 @@
         "en": "It uses Unix and blackboard ideas to explain files as an inspectable work ledger without pretending they replace queues or databases; the central benefits remain largely architectural, with limited scale data from the project itself."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-18-trace-effect-evidence",
@@ -1228,7 +1311,8 @@
         "en": "It cleanly separates request-lifecycle telemetry from external effect receipts, preventing a closed span from implying business completion; stable effect identity and reconciliation protocols remain unimplemented."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-19-agent-dispatch-fault-injection",
@@ -1246,7 +1330,8 @@
         "en": "The invariant × fault location × observable verdict method is highly practical and honestly separates PASS, FAIL, and NOT RUN; the 12 cases are still a minimum plan and key duplicate-start crash windows are not all proven."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-19-oauth-refresh-split-commit",
@@ -1264,7 +1349,8 @@
         "en": "It precisely identifies OAuth refresh as a split commit when remote issuance succeeds before local persistence fails; no structured partial-success object, rollback, or persistence-retry protocol is yet provided."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-19-taskbook-to-task-graph",
@@ -1282,7 +1368,8 @@
         "en": "It compiles long requirements into source locking, a requirement ledger, task graph, tests, evidence, and approval, making omissions diagnosable; the method is heavy and lacks controlled evidence of improved long-task completion."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-20-project-root-switch",
@@ -1300,7 +1387,8 @@
         "en": "It correctly treats project switching as stopping old effects, persisting the new root, rebinding the chain, and verifying coherence, backed by 27 tests; Windows handles, symlink aliases, and high-frequency concurrent switches remain uncovered."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-20-visible-is-not-durable",
@@ -1318,7 +1406,8 @@
         "en": "It precisely separates reservation, staged completeness, reader visibility, and crash durability, keeping atomic rename claims bounded; fsync-backed durability and distributed publication are not demonstrated."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-21-trust-run-not-inherit-secrets",
@@ -1336,7 +1425,8 @@
         "en": "It cleanly separates permission to execute repository-controlled code from permission to inherit host credentials; public evidence confirms filtering exists but not its implementation or a complete isolation matrix."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-22-agent-task-file-state-machine",
@@ -1353,7 +1443,8 @@
       "editorialNote": {
         "zh": "把路径状态、迁移历史、REPORT、验收、并发 claim 与版本前置统一放进一条任务生命周期，边界和反例都很细；不足是多 Runtime 争用与 revision token 的真实闭环仍未实测。",
         "en": "It unifies path state, transition history, reports, acceptance, claim contention, and revision preconditions in one task lifecycle with careful counterexamples; real multi-runtime contention and revision-token closure remain untested."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-22-codeflowmu-governance-state-rail",
@@ -1370,7 +1461,8 @@
       "editorialNote": {
         "zh": "用一项工作贯穿 TMPA 治理、FCoP 状态和 CodeFlowMu 执行，并把 unknown、wait、deny 与 business decision 分得清楚；不足是关键 rail contract 仍来自私有 V1.9.7 候选，外部复现性有限。",
         "en": "One work item cleanly connects TMPA governance, FCoP state, and CodeFlowMu execution while separating unknown, wait, deny, and business decisions; the key rail contract still comes from a private V1.9.7 candidate, limiting external reproduction."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-22-missing-cache-entry-not-deletion-evidence",
@@ -1388,7 +1480,8 @@
         "en": "Principal identity, causal generations, writer coordination, and snapshot completeness form a strong deletion-evidence model; the controls cover participating writers only and do not create cross-process transactions or exactly-once behavior."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-23-canonicalize-before-lifecycle",
@@ -1405,7 +1498,8 @@
       "editorialNote": {
         "zh": "把去重提升为生命周期所有权准入不变量，并把集合语义、锁与外部 exactly-once 分层说明，论证更准确；不足是 Python equality 仍可能误合并不同资源，跨进程资源唯一性未解决。",
         "en": "It elevates deduplication into a lifecycle-ownership admission invariant and separates population semantics, locking, and external exactly-once claims; Python equality can still collapse distinct resources, and cross-process uniqueness remains unresolved."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-24-cancellation-ends-waiting",
@@ -1422,7 +1516,8 @@
       "editorialNote": {
         "zh": "把取消视为延迟传播的控制流，同时让所有已接管资源完成有界 teardown，兼顾调用者与所有者契约；不足是普通 close 异常被 best-effort 抑制，远端清理成功仍无证据。",
         "en": "It models cancellation as delayed control flow while requiring bounded teardown of owned resources, balancing caller and owner contracts; ordinary close errors are best-effort suppressed and remote cleanup success still lacks authoritative evidence."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-25-finding-resource-not-owning-it",
@@ -1439,7 +1534,8 @@
       "editorialNote": {
         "zh": "把路径发现明确降级为获取写锁前的临时证据，并在获得权限后重新发现和读取，TOCTOU 边界处理准确；不足是仍只覆盖本地文件迁移，分布式租约和多写者身份冲突未解决。",
         "en": "It correctly demotes path discovery to provisional evidence before acquiring write authority and re-discovers under the lock, closing a TOCTOU boundary; the mechanism remains local-file specific and does not solve distributed leases or multi-writer identity conflicts."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-26-copy-options-keep-client",
@@ -1456,7 +1552,8 @@
       "editorialNote": {
         "zh": "按可变请求容器与共享 live client 的所有权差异实施 copy-on-mutation，既避开深拷贝崩溃也防止顶层串写；不足是嵌套可变对象和 client 内部状态仍可跨请求泄漏。",
         "en": "Copy-on-mutation follows the ownership difference between mutable request containers and a shared live client, avoiding deep-copy failure and top-level cross-request writes; nested mutable objects and client-internal state can still leak across requests."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-27-review-status-evidence-association",
@@ -1473,7 +1570,8 @@
       "editorialNote": {
         "zh": "把十份历史 REPORT 的归属问题一路推进到 V2.0.4 动态诊断，并用同一 QA 任务 active→review 的实屏变化验证语义，工程闭环很完整；不足是关键能力仍以自有系统证据为主，跨项目复现有限。",
         "en": "It carries a ten-report attribution problem through to V2.0.4 live diagnostics and validates the same QA task changing from active to review in the UI, forming a strong engineering loop; the decisive evidence remains first-party, with limited cross-project reproduction."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-27-trusted-path-proves-provenance-not-approval",
@@ -1490,7 +1588,8 @@
       "editorialNote": {
         "zh": "先由 Host 记录真实技能调用，再用 canonical trusted root 验证 provenance，能阻止仓库文本和 symlink 冒充用户来源；不足是路径只证明来源，不证明内容版本、安全性或当前审批。",
         "en": "Host-recorded skill invocation plus canonical trusted-root checks prevent repository text or symlinks from impersonating user provenance; a trusted path proves origin only, not content version, safety, or current approval."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-28-approval-caches-need-authorization-identity",
@@ -1507,7 +1606,44 @@
       "editorialNote": {
         "zh": "把缓存低风险结果绑定到授权版本，并在真正 fast-approve 前再次核对，准确关闭并发撤销竞态；不足是版本 tuple 只覆盖已编码的权威事实，外部政策和 effect-time 竞态仍存在。",
         "en": "Binding cached low-risk results to authorization identity and rechecking before fast approval precisely closes a concurrent-revocation race; the version tuple covers only encoded authority facts, leaving external policy and effect-time races."
-      }
+      },
+      "sourceLanguage": "en"
+    },
+    {
+      "path": "/engineering/2026-08-28-event-consumer-visibility",
+      "sourceLanguage": "zh-only",
+      "scoringMode": "direct",
+      "dimensionScores": [
+        34,
+        24,
+        20,
+        19
+      ],
+      "score": 97,
+      "publicLabel": "超凡",
+      "editorialNote": {
+        "zh": "从 OpenHands 的 41 次 POST、20,440 条历史事件一路收敛到服务端递归白名单，并用误裁字段的失败回归反证边界，论证完整；不足是三类消费者之外的真实网络出口仍未覆盖。",
+        "en": "It moves from OpenHands' 41 POSTs and 20,440 historical events to server-side recursive allowlists, strengthened by a failed over-trimming regression; real network-facing paths beyond the three tested consumers remain outside the evidence."
+      },
+      "contentHash": "5b7ddf78a01346ac49d495674b2ce0e5e701574dd7ddea00f0c2f157fd910cb5"
+    },
+    {
+      "path": "/engineering/2026-08-28-response-loss-idempotency",
+      "sourceLanguage": "zh-only",
+      "scoringMode": "direct",
+      "dimensionScores": [
+        34,
+        24,
+        20,
+        20
+      ],
+      "score": 98,
+      "publicLabel": "超凡",
+      "editorialNote": {
+        "zh": "用报告不重复、任务却重复的正反实验把响应丢失窗口定位得很准，再落到三阶段回执、摘要冲突和八路并发复用，工程闭环扎实；不足是结论仍限定于受测创建路径，不能外推到全部副作用工具。",
+        "en": "The report-versus-task counterexample precisely isolates the response-loss window, then closes it with staged receipts, digest conflicts, and eight-way concurrent reuse; the evidence still applies only to the tested creation path, not every side-effecting tool."
+      },
+      "contentHash": "bcd22ab34df271df267a2ef474d91490d05daf77827c973bd5bee6722d10dbc6"
     },
     {
       "path": "/engineering/2026-08-29-timeouts-must-close-the-lifecycle-they-own",
@@ -1524,7 +1660,8 @@
       "editorialNote": {
         "zh": "把 timeout 的责任边界扩展到进程组，并让超时与取消共享有界 TERM→KILL→drain 清理，生命周期语义完整；不足是 POSIX 进程组不等于任意进程树，更不覆盖远程任务和外部效果。",
         "en": "It extends timeout responsibility to the process group and gives timeout and cancellation one bounded TERM→KILL→drain lifecycle; a POSIX process group is not an arbitrary process tree and says nothing about remote jobs or external effects."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/2026-08-30-a-durable-checkpoint-can-still-be-unrecoverable",
@@ -1541,7 +1678,8 @@
       "editorialNote": {
         "zh": "把 delta checkpoint 的耐久性与 seed、写入顺序、reducer 和迁移组成的 replay 完整性分开，直接指出 keep-latest 的危险；不足是存储收益来自供应商模拟，恢复成本和生产故障仍缺独立实测。",
         "en": "It separates delta-checkpoint durability from replay integrity across seed, write order, reducer, and migration, exposing the danger of naive keep-latest retention; storage gains are vendor-simulated and recovery cost plus production failures lack independent measurement."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/engineering/openhands",
@@ -1559,7 +1697,8 @@
         "en": "The OpenHands positioning and differentiation remain useful, but direct citations, pinned versions, and reproducible tests are missing; its evidence depth is noticeably weaker than later engineering notes."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-02-a2a-mcp-interoperability-boundaries",
@@ -1577,7 +1716,8 @@
         "en": "Distinguishing A2A and MCP by work and control ownership rather than feature lists is mature; real combined deployments are sparse and operational complexity is not quantified."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-02-enterprise-agent-governance-control-plane",
@@ -1595,7 +1735,8 @@
         "en": "The three-platform governance matrix is useful and filters marketing claims; evidence remains vendor-documentation heavy with limited independent validation and failure cases."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-02-from-systems-of-record-to-systems-of-execution",
@@ -1613,7 +1754,8 @@
         "en": "The systems-of-record versus governed-execution framing gives a clear strategic account of enterprise agent control; migration cost, organizational resistance, and failure conditions are underdeveloped."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-02-nist-ai-rmf-operating-loop",
@@ -1631,7 +1773,8 @@
         "en": "It translates Govern, Map, Measure, and Manage into a continuous operating loop with clear engineering limits; a full enterprise case showing all four stages working together is still missing."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-05-governed-model-routing",
@@ -1649,7 +1792,8 @@
         "en": "It usefully reframes model routing as a governance decision rather than only performance optimization; real multi-model conflict cases and data are limited, so the piece reads more like an architecture memo."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-06-enterprise-agent-decision-envelope",
@@ -1667,7 +1811,8 @@
         "en": "The distinction between configuration authority and enforcement consistency captures an important enterprise-agent gap; standalone readability is reduced by dependence on upstream research objects."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-07-role-aware-agent-resource-plane",
@@ -1685,7 +1830,8 @@
         "en": "Using negative operating points avoids turning resource optimization into a trust claim and keeps optimization separate from governance; real cost-benefit and cross-role contention data remain limited."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-08-lifecycle-revalidated-policy-plane",
@@ -1703,7 +1849,8 @@
         "en": "It clearly argues that historical state may persist while historical authority must be revalidated; policy changes, caching, and revalidation latency are not quantified."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-09-rotating-assertion-short-lived-credential",
@@ -1721,7 +1868,8 @@
         "en": "It separates identity, exchange, short-lived credentials, and propagation while rejecting the idea that short-lived means safe; rotation failure and cross-domain revocation lack real incident evidence."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-10-authority-plane-cascade-containment",
@@ -1739,7 +1887,8 @@
         "en": "It accurately separates retry from semantic repair and states the information advantages and extrapolation limits; recovery strategies still lack comparative cost and outcome testing."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-10-saaw-software-as-an-agent-worker",
@@ -1757,7 +1906,8 @@
         "en": "The SaaW thesis coherently moves software from tool to governed worker with TMPA, FCoP, and CodeFlowMu anchors; it is long, and market or organizational evidence is weaker than the technical argument."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-11-governed-connector-action-handoff",
@@ -1775,7 +1925,8 @@
         "en": "The connector handoff usefully separates availability, authorization, submission, and final outcome; its structure is somewhat formulaic and cross-vendor failure evidence remains narrow."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-12-consent-effective-policy",
@@ -1793,7 +1944,8 @@
         "en": "Separating user intent, normalized decision, and effective policy gives the dual-record model direct governance value; revocation conflicts, multi-party consent, and competing policies remain under-tested."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-13-session-rebinding-execution-continuity",
@@ -1811,7 +1963,8 @@
         "en": "Generation identity cleanly separates session rebinding from old-work continuity and prevents stale cell authority; durable generation across client restart and recovery of old results remain unresolved."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-14-kpi-decision-rights-governance",
@@ -1829,7 +1982,8 @@
         "en": "It moves KPIs from visibility into ownership, thresholds, escalation, and closure evidence with clear governance implications; the design-science source lacks live operating outcomes, so effectiveness cannot be verified."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-14-trace-governance-saaw-visual-essay",
@@ -1847,7 +2001,8 @@
         "en": "The visual essay clearly explains Trace ≠ Governance and the TMPA–FCoP–CodeFlowMu–SaaW lineage; it is heavily self-referential and offers limited external architecture comparison or counterevidence."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-15-delegated-agent-return-contract",
@@ -1865,7 +2020,8 @@
         "en": "Stable delegation occurrence identity and semantic finish form two strong contracts across recovery and terminal matching; cross-framework authorization, schema negotiation, and side-effect recovery remain open."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-16-reservation-materialization",
@@ -1883,7 +2039,8 @@
         "en": "It cleanly separates reserved identity, pending host intent, materialization, and cleanup so an ID is not mistaken for existence; distributed leases, conflicts, and reclamation remain architectural extensions."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-17-environment-owned-policy",
@@ -1901,7 +2058,8 @@
         "en": "Binding process-variable policy to the selected execution environment prevents split authority across roots; coverage of MCP servers, hooks, and other executors remains unknown."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-17-token-is-not-a-bill",
@@ -1919,7 +2077,8 @@
         "en": "Separating token usage, entitlements, and billed amount into three ledgers is strongly grounded across FOCUS, Cursor, GitHub, and OpenAI; the cross-vendor event contract remains an author synthesis rather than a standard."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-18-persistence-reconciliation",
@@ -1937,7 +2096,8 @@
         "en": "It clearly shows that persistence does not wake a live runtime and separates global change detection, object revisions, and retry ownership; multi-process exclusive execution still needs a separate claim or lease."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-19-delivery-context-separation",
@@ -1955,7 +2115,8 @@
         "en": "Separating user-visible delivery from later model context while preserving replayable delivery identity is semantically clean; local acceptance still does not prove transport delivery or client acknowledgement."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-20-history-is-not-transfer-contract",
@@ -1973,7 +2134,8 @@
         "en": "Treating cross-agent history as a destination-specific policy projection, filtered before structure is flattened, is a strong disclosure boundary; the evidence covers one A2A reconstruction path, not end-to-end confidentiality."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-20-skill-vs-tool-authority",
@@ -1991,7 +2153,8 @@
         "en": "The four-layer split among skill, role capability, effect policy, and one-use approval is backed by 35 tests and highly actionable; uniform TOCTOU pre-state binding, sandboxing, and complex command analysis remain unproven."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-21-approval-must-name-approver",
@@ -2009,7 +2172,8 @@
         "en": "The reverted A2A channel guard makes the case that transport is not the approver and motivates principal-bound approval; the exploit evidence is reporter-supplied and no replacement identity mechanism is yet implemented."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-22-protected-constraints-reviewable-grants",
@@ -2027,7 +2191,8 @@
         "en": "The asymmetric merge of protected ceilings and reviewable grants is more precise than blanket union or intersection and makes ownership explicit; evidence is limited to network policy and saved-grant invalidation remains incomplete."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-23-creation-provenance-survives-resume",
@@ -2044,7 +2209,8 @@
       "editorialNote": {
         "zh": "把 creation source、resume 稳定性和 fork lineage 分成不同 provenance 轴，并明确兼容默认不是历史事实，模型完整；不足是 Feature 标签由应用自报，仍缺认证主体和防篡改审计绑定。",
         "en": "It separates creation source, resume stability, and fork lineage into distinct provenance axes and correctly treats compatibility defaults as interpretations rather than history; Feature labels are application-asserted and still lack authenticated-principal or tamper-evident bindings."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-24-instruction-lineage-not-authority",
@@ -2061,7 +2227,8 @@
       "editorialNote": {
         "zh": "用 child-only developer instruction 的实际请求边界说明 provenance 与 authority 必须分开，父子排除与单次表示测试清楚；不足是调用者授权、重放与 compaction 后的权威连续性仍未证明。",
         "en": "The child-only developer-instruction boundary cleanly separates provenance from authority and tests parent exclusion plus single representation; caller authorization, replay behavior, and authority continuity after compaction remain unproven."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-25-checkpoint-not-permission-to-resume",
@@ -2078,7 +2245,8 @@
       "editorialNote": {
         "zh": "把不确定 Session append 持久化成待对账状态，并在下一次模型调用前通过 authoritative history 三分法解决，恢复门设计扎实；不足是仍无分布式 CAS，也不能覆盖外部工具 exactly-once。",
         "en": "It persists an uncertain Session append as recoverable reconciliation state and resolves it with a three-way authoritative-history test before another model call; there is still no distributed CAS and no exactly-once guarantee for external tools."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-26-mpbench-ranked-diagnostic-evidence",
@@ -2095,7 +2263,8 @@
       "editorialNote": {
         "zh": "用 289 条失败轨迹和三专家分歧证明单一 rootCause 会压扁诊断证据，并把 plural hypotheses 与 repair decision 分开，学术支撑强；不足是 benchmark 未证明多视角诊断能提升真实高风险事故修复率。",
         "en": "Using 289 failed traces and three-expert disagreement, it strongly shows why a single rootCause can erase diagnostic evidence and separates plural hypotheses from repair decisions; the benchmark does not yet show that multi-perspective diagnosis improves repair quality in real high-risk incidents."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-26-permission-authority-belongs-to-attachment",
@@ -2112,7 +2281,8 @@
       "editorialNote": {
         "zh": "把 MCP 权限归属绑定到具体 attachment/runtime，而非共享 server 身份或线程环境，并在缺失权威时拒绝 call preparation；不足是已准备调用的即时撤销和跨进程 profile 一致性尚无保证。",
         "en": "It binds MCP permission authority to the specific attachment/runtime rather than shared server identity or ambient thread context and refuses call preparation when authority is absent; live revocation of prepared calls and cross-process profile consistency remain unproven."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-27-authority-context-must-be-host-minted",
@@ -2129,7 +2299,8 @@
       "editorialNote": {
         "zh": "Host 先删除请求方 entitlement，再用当前账户和多项 capability 谓词签发上下文，能切断自我授权路径；不足是下游插件如何解释 verified/unknown 仍是独立责任，端到端执行权未证明。",
         "en": "The host removes caller entitlement claims before minting context from current account state and conjunctive capability predicates, cutting the self-authorization path; downstream interpretation of verified/unknown remains a separate responsibility and end-to-end execution authority is not proved."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-28-cached-policy-is-evidence-not-current-authority",
@@ -2146,7 +2317,8 @@
       "editorialNote": {
         "zh": "把缓存可读性与当前政策的授权可接受性分开，明确强制刷新时 stale fallback 不能继续放权，治理判断很清楚；不足是只有官方 changelog，没有鉴权、版本绑定和在途撤销的实现级证据。",
         "en": "It cleanly separates cache readability from authority admissibility and makes stale fallback non-authorizing under forced refresh; the evidence is an official changelog, without implementation-level proof of authentication, revision binding, or in-flight revocation."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-29-trust-must-change-the-executable-surface",
@@ -2163,7 +2335,8 @@
       "editorialNote": {
         "zh": "把 workspace trust 从 UI 标签落实为 capability materialization 前的配置过滤，并让 unknown/malformed 失效关闭，执行边界明确；不足是只能证明新能力的准入收缩，已有对象的 live revocation 尚未覆盖。",
         "en": "It turns workspace trust from a UI label into configuration filtering before capability materialization and fails closed on unknown or malformed trust; this proves admission contraction for new capabilities, not live revocation of existing objects."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/2026-08-30-stronger-looking-evidence-does-not-make-action-safe",
@@ -2180,7 +2353,8 @@
       "editorialNote": {
         "zh": "用真实与伪造专业面板几乎同样提升 commitment 的实验把展示形式与行动资格分开，外置 gate 的论证直接；不足是新 preprint 尚无独立复现，ANSWER commitment 也不等同真实工具副作用。",
         "en": "The experiment showing similar commitment under real and fabricated professional panels cleanly separates presentation from action qualification and motivates an external gate; the new preprint lacks independent replication and ANSWER commitment is not equivalent to a real tool side effect."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/servicenow",
@@ -2198,7 +2372,8 @@
         "en": "The ServiceNow governance framing is clear and useful for control-plane thinking; direct citations, pinned versions, and counterevidence are missing, so it remains primarily product interpretation."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/industry/workday",
@@ -2216,7 +2391,8 @@
         "en": "The Workday registry projection and control-plane framing are practically useful with clear responsibility boundaries; direct sources, counterevidence, and real operating outcomes remain too thin for stronger claims."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/research/daily/2026-08-01",
@@ -2234,7 +2410,8 @@
         "en": "It works as a portal decision record and information-architecture explanation; the research question, external evidence, and full argument are too weak for a mature research article."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/research/weekly/weekly-001",
@@ -2252,7 +2429,8 @@
         "en": "The early direction is clear and quickly motivates governance plus engineering for digital employees; it is brief and uncited, reading more like a research manifesto than a mature synthesis."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/research/weekly/weekly-002",
@@ -2270,7 +2448,8 @@
         "en": "The two-layer architecture usefully connects research judgment with engineering execution; evidence is still mostly internal to earlier work, with limited external sourcing and counterevidence."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/research/weekly/weekly-003",
@@ -2288,7 +2467,8 @@
         "en": "It unifies GUI, protocol, and orchestration through an ownership model with strong original synthesis; the piece is somewhat long and would benefit from more independent validation."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/research/weekly/weekly-004",
@@ -2306,7 +2486,8 @@
         "en": "It converges fifteen observations into a coherent authority lifecycle with strong evidence coverage; density is high and the key counterexamples and conclusions could be more concentrated."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/research/weekly/weekly-005",
@@ -2324,7 +2505,8 @@
         "en": "It extracts a strong cross-note invariant—every consequential handoff needs evidence—from twenty-one studies; the abstraction is high-level and still lacks a complete end-to-end handoff experiment."
       },
       "scoringMode": "inherited",
-      "inheritedFrom": "2026-08-23"
+      "inheritedFrom": "2026-08-23",
+      "sourceLanguage": "en"
     },
     {
       "path": "/research/weekly/weekly-006",
@@ -2341,7 +2523,8 @@
       "editorialNote": {
         "zh": "把二十一篇材料收敛成 transfer 与 transformation 两阶段都必须保留 authority lineage，并逐类落到缓存、恢复、凭据与身份，综合很强；不足是 Provenance-Preserving Admission 仍缺跨机制统一实现和基准验证。",
         "en": "It synthesizes twenty-one notes into an authority-lineage requirement across both transfer and transformation, then grounds it in caching, resume, credentials, and identity; Provenance-Preserving Admission still lacks a unified cross-mechanism implementation and benchmark."
-      }
+      },
+      "sourceLanguage": "en"
     },
     {
       "path": "/research/weekly/weekly-007",
@@ -2358,7 +2541,8 @@
         "zh": "把七天21篇研究收敛为“恢复即重新准入”，并系统串联重建、当前权威、发生身份与生命周期，综合性很强；不足是统一模型仍主要来自跨文综合，缺少单一端到端恢复实验验证。",
         "en": "It synthesizes twenty-one notes into a strong recovery-as-re-admission model spanning reconstruction, current authority, occurrence identity, and lifecycle closure; the unified model is still cross-note synthesis rather than one end-to-end recovery experiment."
       },
-      "contentHash": "6d890233682f9a11c635072210c8dbca0816120bf1c9c224451ded17d93273d6"
+      "contentHash": "6d890233682f9a11c635072210c8dbca0816120bf1c9c224451ded17d93273d6",
+      "sourceLanguage": "en"
     }
   ]
 }
