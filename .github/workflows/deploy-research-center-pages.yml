@@ -142,7 +142,8 @@ jobs:
             throw new Error('Runtime page shell marker missing from generated HTML.')
           }
 
-          const scorecardProjection = JSON.parse(fs.readFileSync(path.join('docs', '.vitepress', 'generated', 'editorial-scorecard.json'), 'utf8'))
+          const scorecardProjectionPath = path.join('docs', '.vitepress', 'generated', 'editorial-scorecard.json')
+          const scorecardProjection = JSON.parse(fs.readFileSync(scorecardProjectionPath, 'utf8'))
           if (scorecardProjection.status !== 'Completed') throw new Error('Editorial scorecard projection is not Completed.')
           if (scorecardProjection.reviewDate === shanghaiToday && scorecardProjection.coverageRate !== 1) {
             throw new Error(`Current-day editorial scorecard coverage is ${scorecardProjection.coverageRate}; refusing partial publication.`)
@@ -150,15 +151,22 @@ jobs:
           if (!Array.isArray(scorecardProjection.items) || scorecardProjection.items.length === 0) {
             throw new Error('Editorial scorecard projection has no article items.')
           }
-          const zhResearchHtml = fs.readFileSync(path.join(dist, 'zh/research/index.html'), 'utf8')
-          const enResearchHtml = fs.readFileSync(path.join(dist, 'en/research/index.html'), 'utf8')
-          const zhHasScorecard = zhResearchHtml.includes('scorecard__header') || zhResearchHtml.includes('class="scorecard"')
-          const enHasScorecard = enResearchHtml.includes('scorecard__header') || enResearchHtml.includes('class="scorecard"')
-          if (!zhHasScorecard || !enHasScorecard || !zhResearchHtml.includes(scorecardProjection.reviewDate) || !enResearchHtml.includes(scorecardProjection.reviewDate)) {
-            throw new Error(`Research scorecard page does not render the scorecard shell and reviewDate=${scorecardProjection.reviewDate}.`)
+          if (!scorecardProjection.sourceRecord || !fs.existsSync(scorecardProjection.sourceRecord)) {
+            throw new Error(`Editorial scorecard sourceRecord is missing: ${scorecardProjection.sourceRecord || '(none)'}.`)
+          }
+          const sourceScorecard = JSON.parse(fs.readFileSync(scorecardProjection.sourceRecord, 'utf8'))
+          if (sourceScorecard.status !== 'Completed') throw new Error('Editorial scorecard source record is not Completed.')
+          if (sourceScorecard.reviewDate !== scorecardProjection.reviewDate) {
+            throw new Error(`Editorial projection/source date mismatch: projection=${scorecardProjection.reviewDate}, source=${sourceScorecard.reviewDate}.`)
+          }
+          if (sourceScorecard.coverage?.rate !== 1) {
+            throw new Error(`Editorial source scorecard coverage is ${sourceScorecard.coverage?.rate}; refusing partial publication.`)
+          }
+          if (!Array.isArray(sourceScorecard.items) || sourceScorecard.items.length !== scorecardProjection.items.length) {
+            throw new Error(`Editorial projection/source item-count mismatch: projection=${scorecardProjection.items.length}, source=${sourceScorecard.items?.length || 0}.`)
           }
 
-          console.log(`Verified ${requiredRoutes.length} public routes, Runtime V5 ordering, Shanghai freshness=${shanghaiToday}, editorial scorecard=${scorecardProjection.reviewDate}, items=${scorecardProjection.items.length}.`)
+          console.log(`Verified ${requiredRoutes.length} public routes, Runtime V5 ordering, Shanghai freshness=${shanghaiToday}, editorial scorecard=${scorecardProjection.reviewDate}, items=${scorecardProjection.items.length}, coverage=100%.`)
           NODE
 
           # Released articles must remain publicly routable and discoverable through
