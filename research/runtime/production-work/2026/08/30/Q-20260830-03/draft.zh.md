@@ -7,7 +7,7 @@ category: daily
 article_type: engineering-insight
 edition: research-center
 research_question: "增量检查点经过压缩和裁剪后，什么证据才能证明每个保留状态仍可重建？"
-summary: "LangGraph DeltaChannel（增量状态通道）把检查点从自包含状态变成对种子快照和有序写入链的引用。文件已持久化不等于状态可恢复；安全压缩必须同时证明种子、写入顺序、归约器身份和迁移仍然有效。"
+summary: "LangGraph（图状态运行框架）的 DeltaChannel（增量状态通道）把检查点从自包含状态变成对种子快照和有序写入链的引用。文件已持久化不等于状态可恢复；安全压缩必须同时证明种子、写入顺序、归约器身份和迁移仍然有效。"
 cover: staging/publication-candidates/2026-08-30-a-durable-checkpoint-can-still-be-unrecoverable-cover.png
 sources:
   - research/analysis/Q-20260830-03-checkpoint-durability-separate-from-replay-integrity.md
@@ -19,7 +19,7 @@ sources:
 
 检查点文件存在、校验和正确、数据库也确认写入成功，系统却在恢复时得到空消息列表。这不是存储层说谎，而是检查点只保存了增量引用；它依赖的种子快照或祖先写入已经被“只保留最新”策略删除。
 
-LangGraph DeltaChannel（增量状态通道）把这一风险变得清晰。普通检查点不再重复保存完整累计值，而是从最近的种子快照开始，按顺序重放祖先写入。这样可以显著减少长对话和文件状态的重复序列化，却把正确性边界从一个数据块扩展为一张持久化图。
+LangGraph（图状态运行框架）的 DeltaChannel（增量状态通道）把这一风险变得清晰。普通检查点不再重复保存完整累计值，而是从最近的种子快照开始，按顺序重放祖先写入。这样可以显著减少长对话和文件状态的重复序列化，却把正确性边界从一个数据块扩展为一张持久化图。
 
 核心判断是：**检查点持久性与重放链完整性是两项不同属性。保留的增量检查点只有在种子、有序写入、确定的归约器身份和迁移都仍有效时，才真正可恢复。**
 
@@ -51,7 +51,7 @@ LangGraph DeltaChannel（增量状态通道）把这一风险变得清晰。普�
 
 ## 存储收益不是重放证明
 
-Deep Agents（深度智能体）作者报告，在一个模拟二百轮多文件编码任务中，全量快照使用 5.27 GB，增量通道使用 129 MB，并认为不同工作负载可能获得十到一百倍缩减。
+Deep Agents（深度智能体）作者报告，在一个模拟二百轮多文件编码任务中，全量快照使用 5.27 GB（吉字节），增量通道使用 129 MB（兆字节），并认为不同工作负载可能获得十到一百倍缩减。
 
 这个结果说明优化值得关注，但属于厂商报告的特定工作负载，不是独立性能验证。它不证明所有后端有相同比例，也不证明恢复延迟恒定，更不能替代重放正确性测试。
 
@@ -65,4 +65,4 @@ Deep Agents（深度智能体）作者报告，在一个模拟二百轮多文件
 
 最准确的结论是：**增量存储节省的是重复状态，不是对历史依赖的责任。检查点只有连同完整、可证明的重放链，才构成真正的恢复证据。**
 
-**主要来源：** [Deep Agents 0.6](https://www.langchain.com/blog/deep-agents-0-6) 及 LangGraph 实现文档；存储数字为来源方报告。
+**主要来源：** [Deep Agents 0.6](https://www.langchain.com/blog/deep-agents-0-6) 及 LangGraph（图状态运行框架）实现文档；存储数字为来源方报告。
