@@ -147,13 +147,18 @@ jobs:
           if (scorecardProjection.reviewDate === shanghaiToday && scorecardProjection.coverageRate !== 1) {
             throw new Error(`Current-day editorial scorecard coverage is ${scorecardProjection.coverageRate}; refusing partial publication.`)
           }
+          if (!Array.isArray(scorecardProjection.items) || scorecardProjection.items.length === 0) {
+            throw new Error('Editorial scorecard projection has no article items.')
+          }
           const zhResearchHtml = fs.readFileSync(path.join(dist, 'zh/research/index.html'), 'utf8')
           const enResearchHtml = fs.readFileSync(path.join(dist, 'en/research/index.html'), 'utf8')
-          if (!zhResearchHtml.includes(`AI 编辑评分 · ${scorecardProjection.reviewDate}`) || !enResearchHtml.includes(scorecardProjection.reviewDate)) {
-            throw new Error(`Research scorecard page does not render reviewDate=${scorecardProjection.reviewDate}.`)
+          const zhHasScorecard = zhResearchHtml.includes('scorecard__header') || zhResearchHtml.includes('class="scorecard"')
+          const enHasScorecard = enResearchHtml.includes('scorecard__header') || enResearchHtml.includes('class="scorecard"')
+          if (!zhHasScorecard || !enHasScorecard || !zhResearchHtml.includes(scorecardProjection.reviewDate) || !enResearchHtml.includes(scorecardProjection.reviewDate)) {
+            throw new Error(`Research scorecard page does not render the scorecard shell and reviewDate=${scorecardProjection.reviewDate}.`)
           }
 
-          console.log(`Verified ${requiredRoutes.length} public routes, Runtime V5 ordering, Shanghai freshness=${shanghaiToday}, and editorial scorecard=${scorecardProjection.reviewDate}.`)
+          console.log(`Verified ${requiredRoutes.length} public routes, Runtime V5 ordering, Shanghai freshness=${shanghaiToday}, editorial scorecard=${scorecardProjection.reviewDate}, items=${scorecardProjection.items.length}.`)
           NODE
 
           # Released articles must remain publicly routable and discoverable through
