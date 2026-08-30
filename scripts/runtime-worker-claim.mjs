@@ -60,10 +60,14 @@ for (let i = record.timeline.length - 1; i >= 0; i -= 1) {
 }
 if (latestStart < 0) fail(`missing current-day Execution Slot Opened for ${taskId}`)
 const existingClaim = record.timeline.slice(latestStart + 1).find((event) =>
-  event.task === taskId && event.event === 'Worker Claimed' && event.status === 'Running' && String(event.time || '').startsWith(date)
+  event.task === taskId &&
+  event.event === 'Worker Claimed' &&
+  event.status === 'Running' &&
+  String(event.time || '').startsWith(date) &&
+  (!receipt || String(event.detail || '').includes(receipt))
 )
 if (existingClaim) {
-  console.log(`Worker claim already present for latest ${taskId} execution epoch at ${existingClaim.time}.`)
+  console.log(`Worker claim already present for latest ${taskId} execution epoch at ${existingClaim.time}${receipt ? ` bound to ${receipt}` : ''}.`)
   process.exit(0)
 }
 const claimedAt = `${now.date}T${now.time}+08:00`
@@ -80,4 +84,4 @@ record.updatedAt = claimedAt
 record.githubCommit = 'pending'
 record.commitVerify = 'Waiting'
 writeJson(file, record)
-console.log(`Recorded Worker Claimed for ${taskId} ${date} at ${claimedAt}.`)
+console.log(`Recorded Worker Claimed for ${taskId} ${date} at ${claimedAt}${receipt ? ` bound to ${receipt}` : ''}.`)
