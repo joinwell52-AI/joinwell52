@@ -3,7 +3,7 @@
   "date": "2026-08-30",
   "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-30/publication-195808.json",
   "source": "chatgpt-scheduled-task",
-  "requestedAt": "2026-08-30T20:40:41+08:00",
-  "reason": "Execute the current governed Publication release after ordered reconciliation granted Publication authority and a fresh Worker Claimed event was durably verified. Consume only complete 2026-08-30 Production candidates, run the authoritative validators/build/visibility gates, and persist the governed release result without upstream repair or rewrite.",
-  "triggerNonce": "20260830-publication-204041-weekly-reconcile"
+  "requestedAt": "2026-08-30T20:45:10+08:00",
+  "reason": "Retry governed Publication after repairing Worker Claim wake-binding idempotence and durably verifying a fresh Publication Worker Claimed event bound to the same publication wake receipt. Consume only complete 2026-08-30 Production candidates and preserve all downstream gates.",
+  "triggerNonce": "20260830-publication-204510-wake-binding-retry"
 }
