@@ -8,13 +8,13 @@
   "date": "2026-08-30",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Running",
+    "production": "Completed",
     "publication": "Waiting"
   },
   "results": {
@@ -910,6 +910,143 @@
       "githubCommit": "4f08c62eaaf16993a1d1a242cbb794776dd9a985",
       "commitVerify": "Completed",
       "verifiedAt": "2026-08-30T15:06:01+08:00"
+    },
+    "production": {
+      "schema": "runtime-shift-result/v2",
+      "task": "production",
+      "family": "daily",
+      "runtimeDate": "2026-08-30",
+      "status": "Completed",
+      "productionMode": "candidate-batch",
+      "input": {
+        "promptVersion": "2.13.0",
+        "promptPath": "research/runtime/worker-prompts/generated/production.prompt.md",
+        "promptSha256": "d8b0cd52d22d976d6356558a23c5c2dc28ed5aa8f51793538fa8fbebfb80996f",
+        "promptVerificationMode": "direct-sha256",
+        "researchObjects": [
+          "Q-20260830-01",
+          "Q-20260830-02",
+          "Q-20260830-03"
+        ],
+        "stagedCandidateCommit": "134d20b1b2fdfe740a0e2df0d074ed63e605a0c8"
+      },
+      "workResult": {
+        "summary": "After governed recovery and durable completion of the overdue Analysis dependency, converted all three authorized same-date Research Objects into complete bilingual Editorial Architecture 2.1 candidates. Persisted and remotely verified every article-sized segment with a deterministic baseline raster cover, repaired three Chinese technical-term first-occurrence annotations within one revision round, atomically staged the candidate batch, and passed the repository-defined checkpoint, atomic-bundle, runtime, editorial, evidence, language, bilingual-consistency and layout gates without executing Publication.",
+        "summary_zh": "在按治理规则恢复并持久完成逾期 Analysis 依赖后，将当日获授权的三份 Research Object 全部转换为完整双语 Editorial Architecture 2.1 候选。每个文章级工作段及其确定性基础栅格题图均完成持久化与远端核验；在一个修订轮次内修复三个中文技术术语首现注释；随后原子化装配候选批次，并通过仓库定义的检查点、原子候选包、Runtime、编辑、证据、语言、双语一致性与版式门禁；未执行 Publication。"
+      },
+      "output": {
+        "type": "Publication Candidates",
+        "candidateBatch": "research/runtime/candidates/2026/08/2026-08-30-candidates.json",
+        "candidateCount": 3,
+        "bilingualArticleFiles": 6,
+        "coverAssets": 3,
+        "inlineFigureAssets": 0
+      },
+      "next": {
+        "task": "publication",
+        "instruction": "Do not execute Publication in this Production run. Publication remains a separate governed task.",
+        "instruction_zh": "本次 Production 不执行 Publication；Publication 仍是独立受治理任务。"
+      },
+      "coverEvidence": [
+        {
+          "itemId": "Q-20260830-01",
+          "briefId": "2026-08-30:Q-20260830-01-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-30-resume-needs-more-than-a-checkpoint-cover.png",
+          "sanitizedPrompt": "Five concentric identity rings aligned around a luminous branching path",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260830-02",
+          "briefId": "2026-08-30:Q-20260830-02-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-30-stronger-looking-evidence-does-not-make-action-safe-cover.png",
+          "sanitizedPrompt": "A polished evidence frame beside a restrained bronze action threshold",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260830-03",
+          "briefId": "2026-08-30:Q-20260830-03-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-08-30-a-durable-checkpoint-can-still-be-unrecoverable-cover.png",
+          "sanitizedPrompt": "A compact state capsule linked to an intact ordered chain and seed anchor",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        }
+      ],
+      "metrics": [
+        {
+          "name": "research_objects_consumed",
+          "value": 3
+        },
+        {
+          "name": "publication_candidates",
+          "value": 3
+        },
+        {
+          "name": "persisted_article_segments",
+          "value": 3
+        },
+        {
+          "name": "planning_artifacts",
+          "value": 9
+        },
+        {
+          "name": "bilingual_article_files",
+          "value": 6
+        },
+        {
+          "name": "cover_assets",
+          "value": 3
+        },
+        {
+          "name": "inline_figure_assets",
+          "value": 0
+        },
+        {
+          "name": "revision_rounds",
+          "value": 1
+        },
+        {
+          "name": "required_sources_read",
+          "value": 13
+        },
+        {
+          "name": "direct_cloud_image_generation_calls",
+          "value": 0
+        },
+        {
+          "name": "direct_publication_actions",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        "134d20b1b2fdfe740a0e2df0d074ed63e605a0c8",
+        "research/runtime/worker-prompts/generated/production.prompt.md",
+        "research/runtime/checkpoints/2026/08/2026-08-30-production.json",
+        "research/runtime/wakes/2026/08/2026-08-30/production-145928.json",
+        "597c576571e3b7315a0e2c3e4f7a99d9da59de61"
+      ],
+      "artifacts": [
+        "research/runtime/candidates/2026/08/2026-08-30-candidates.json",
+        "research/runtime/checkpoints/2026/08/2026-08-30-production.json",
+        "staging/publication-candidates/2026-08-30-resume-needs-more-than-a-checkpoint.zh.md",
+        "staging/publication-candidates/2026-08-30-resume-needs-more-than-a-checkpoint.en.md",
+        "staging/publication-candidates/2026-08-30-resume-needs-more-than-a-checkpoint-cover.png",
+        "staging/publication-candidates/2026-08-30-stronger-looking-evidence-does-not-make-action-safe.zh.md",
+        "staging/publication-candidates/2026-08-30-stronger-looking-evidence-does-not-make-action-safe.en.md",
+        "staging/publication-candidates/2026-08-30-stronger-looking-evidence-does-not-make-action-safe-cover.png",
+        "staging/publication-candidates/2026-08-30-a-durable-checkpoint-can-still-be-unrecoverable.zh.md",
+        "staging/publication-candidates/2026-08-30-a-durable-checkpoint-can-still-be-unrecoverable.en.md",
+        "staging/publication-candidates/2026-08-30-a-durable-checkpoint-can-still-be-unrecoverable-cover.png"
+      ],
+      "startedAt": "2026-08-30T15:06:28+08:00",
+      "completedAt": "2026-08-30T15:24:17+08:00"
     }
   },
   "timeline": [
@@ -1059,6 +1196,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Production after verifying research/runtime/wakes/2026/08/2026-08-30/production-145928.json, generated Production Prompt v2.13.0 SHA-256 d8b0cd52d22d976d6356558a23c5c2dc28ed5aa8f51793538fa8fbebfb80996f, all 13 requiredSources from the same current main authority 0d538e39cb042c93ad16bba939078aee5c4376af, and durable closure of Discovery, Queue, Reading and recovered Analysis."
+    },
+    {
+      "time": "2026-08-30T15:24:17+08:00",
+      "task": "production",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Production closed as Completed through governed Runtime shift finalization after durable result validation for 2026-08-30."
     }
   ],
   "metrics": [],
@@ -1066,5 +1210,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-30T15:07:08+08:00"
+  "updatedAt": "2026-08-30T15:24:17+08:00"
 }
