@@ -1,0 +1,606 @@
+{
+  "schema": "observation-scorecard/v1",
+  "status": "Draft",
+  "reviewDate": "2026-08-30",
+  "window": { "type": "weekly", "through": "2026-08-30" },
+  "rubricVersion": "1.0.0",
+  "reviewer": { "type": "AI", "name": "ChatGPT Editorial Evaluator" },
+  "mode": "weekly-incremental-draft",
+  "phase": "awaiting-weekly-completion",
+  "prerequisite": {
+    "name": "Research Runtime Weekly",
+    "date": "2026-08-30",
+    "requiredStatus": "Completed",
+    "observedStatus": "Running",
+    "reason": "The scorecard contract requires weekly scoring after Sunday Weekly synthesis completes. The latest Weekly Runtime is still Running, so this Draft preserves completed article-level review work without replacing the prior Completed scorecard."
+  },
+  "reasonLegend": {
+    "e": "依据来源可追溯性、事实与判断分离、限制及反证处理评估。",
+    "o": "依据是否形成非平凡判断、机制解释及证据边界评估。",
+    "s": "依据研究问题、论证路径、章节组织与可读性评估。",
+    "u": "依据是否形成可执行设计、验证方法、边界或下一步决策评估。"
+  },
+  "defaultReasonRefs": ["e", "o", "s", "u"],
+  "defaultEvidenceRefs": ["source citations / evidence boundary", "central judgment / mechanism", "argument structure / limitations", "engineering implications / validation"],
+  "coverage": {
+    "eligible": 129,
+    "reviewed": 46,
+    "inherited": 0,
+    "audited": 10,
+    "rate": 0.3565891472868217
+  },
+  "items": [
+    {
+      "path": "/digital-employee/2026-08-02-computer-use-action-state-loop",
+      "contentHash": "3d5fc5385abfbd848beb4514433b11ba89d37a68d0a3acb52fee2db854c03e3d",
+      "scoringMode": "audited",
+      "audited": true,
+      "inheritedFrom": "2026-08-23",
+      "dimensionScores": [32, 22, 18, 18],
+      "score": 90,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "把动作、授权、执行、状态和验收拆成独立环节，控制边界清楚；不足是来源集中在少量平台案例，对不同交互环境的适用性验证还不够。",
+        "en": "It cleanly separates action, authority, execution, state, and acceptance; the evidence base is still concentrated in a small set of platform examples, leaving broader interaction environments under-tested."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-02-control-plane-work-runtime",
+      "contentHash": "3a4917a4ae04e9a65759463159bd648471dbde67e59af937591c69423fdc4147",
+      "scoringMode": "audited",
+      "audited": true,
+      "inheritedFrom": "2026-08-23",
+      "dimensionScores": [31, 22, 18, 17],
+      "score": 88,
+      "publicLabel": "优质",
+      "editorialNote": {
+        "zh": "控制面与工作运行时的分层完整，接口和中小企业落地路径具体；但与相邻治理文章概念重叠较多，独立的新证据和案例还可加强。",
+        "en": "The control-plane/runtime layering and SME implementation path are concrete; however, it overlaps conceptually with adjacent governance notes and would benefit from more independent evidence and cases."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-02-osworld-execution-verification",
+      "contentHash": "37e931b147bcb4d93051202b59e4e7d280895ac4a6f6474c28a11e2b99c2a537",
+      "scoringMode": "audited",
+      "audited": true,
+      "inheritedFrom": "2026-08-23",
+      "dimensionScores": [32, 23, 19, 19],
+      "score": 93,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "抓住 OSWorld 中 Evaluator 对执行结果验证的核心价值，并清楚限定版本和外推范围；不足是尚未把评测机制接到真实企业任务的失败与验收链路。",
+        "en": "It correctly centers OSWorld on evaluator-backed execution verification and states version and extrapolation limits; the missing step is connecting that mechanism to real enterprise failure and acceptance chains."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-02-position-ownership-authority",
+      "contentHash": "689a22d113e8dc9a2991a21aa9be55b1834cc2eaffdcb84fea59799ce4487758",
+      "scoringMode": "audited",
+      "audited": true,
+      "inheritedFrom": "2026-08-23",
+      "dimensionScores": [30, 22, 17, 17],
+      "score": 86,
+      "publicLabel": "优质",
+      "editorialNote": {
+        "zh": "用多家企业产品交叉说明“岗位先于 Agent”的组织视角，判断有价值；但材料仍以厂商资料为主，真实岗位重构和长期运营证据不足。",
+        "en": "The cross-vendor comparison makes the position-before-agent argument useful; the evidence remains vendor-heavy, with limited observation of real job redesign and long-running operations."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-05-universal-verifier-completion-contract",
+      "contentHash": "84d4e93628c166a314db67a309ac829d8c9dc158e5008a4f05e1212adb01a6ba",
+      "scoringMode": "audited",
+      "audited": true,
+      "inheritedFrom": "2026-08-23",
+      "dimensionScores": [34, 24, 19, 19],
+      "score": 96,
+      "publicLabel": "超凡",
+      "editorialNote": {
+        "zh": "完成合同把数据、版本差异、反证和可迁移边界连成一个可验证模型，论证很强；不足是跨框架统一验证器的实现成本和误判率仍缺实测。",
+        "en": "The completion contract tightly connects data, version differences, counterevidence, and transfer boundaries into a verifiable model; implementation cost and false-positive behavior of a cross-framework verifier remain unmeasured."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-05-verifiable-completion",
+      "contentHash": "7648331bccad159086a445a56585fd983a80258ecc0ec1f23cad9e06c67e23c7",
+      "scoringMode": "audited",
+      "audited": true,
+      "inheritedFrom": "2026-08-23",
+      "dimensionScores": [29, 21, 17, 17],
+      "score": 84,
+      "publicLabel": "优质",
+      "editorialNote": {
+        "zh": "把“声明完成”和“可验证完成”区分得简洁有效，适合作为治理入门框架；但关键数据和论证较多留在上游研究对象，单篇自足性不足。",
+        "en": "The distinction between claimed and verifiable completion is concise and useful as a governance frame; too much of the supporting data and reasoning remains upstream, weakening standalone completeness."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-06-governed-revisable-work-graph",
+      "contentHash": "8a57684912321ebd15da704f2bafffee203d9ae026d5b42283bbe5574b12726e",
+      "scoringMode": "audited",
+      "audited": true,
+      "inheritedFrom": "2026-08-23",
+      "dimensionScores": [31, 22, 18, 17],
+      "score": 88,
+      "publicLabel": "优质",
+      "editorialNote": {
+        "zh": "“依赖就绪不等于授权就绪”的判断有洞察，工作图与治理状态分离明确；不足是直接失败案例较少，关键证据仍较依赖上游对象。",
+        "en": "The insight that dependency-ready is not authority-ready is strong and the graph/governance split is clear; direct failure cases are sparse and key evidence remains dependent on upstream objects."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-07-verification-gated-state-admission",
+      "contentHash": "baa2210b7aeeedbc84c7f294901c7df4e2362dd2fbb1927fe5d40b9c4fafedbe",
+      "scoringMode": "audited",
+      "audited": true,
+      "inheritedFrom": "2026-08-23",
+      "dimensionScores": [32, 23, 18, 18],
+      "score": 91,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "把历史耐久与当前权威耐久分开，并用投影过期和反例解释重新准入的必要性；不足是统一运行状态仍主要是架构推导，跨系统实证有限。",
+        "en": "It usefully separates durable history from durable authority and explains re-admission through stale projections and counterexamples; the unified runtime state remains mostly architectural inference with limited cross-system evidence."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-08-pause-preserving-budget-admission",
+      "contentHash": "33f871d495dd702971e88b06dc89c6583f3914b9a5e6ec6834f938e93363e25f",
+      "scoringMode": "audited",
+      "audited": true,
+      "inheritedFrom": "2026-08-23",
+      "dimensionScores": [31, 22, 18, 18],
+      "score": 89,
+      "publicLabel": "优质",
+      "editorialNote": {
+        "zh": "把预算从计费指标提升为运行时准入状态，暂停与恢复边界设计得很实用；不足是证据来源较单一，复杂预算冲突和多人审批尚未验证。",
+        "en": "Treating budget as a runtime admission state makes pause and resume operationally useful; the evidence is narrow, and complex budget conflicts or multi-party approvals are not yet validated."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-09-revocation-coupled-run-reconciliation",
+      "contentHash": "de580ab0ce311a53fdc7c954951c7ce970bc56248837889ca96b99ac76fd9b39",
+      "scoringMode": "audited",
+      "audited": true,
+      "inheritedFrom": "2026-08-23",
+      "dimensionScores": [32, 23, 19, 18],
+      "score": 92,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "把撤销、Worker 停止、租约和副作用补偿拆开，恢复语义非常清楚；不足是分布式延迟与外部效果一致性仍缺真实故障数据。",
+        "en": "The separation of revocation, worker stopping, leases, and side-effect compensation is precise; distributed delay and external-effect consistency still lack real fault data."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-22-agent-rail-decision-boundary",
+      "contentHash": "e718461c442ac415cf14de68ef7c363a97de8cf7fa20f829e9d22399c4ff0e05",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 24, 19, 19],
+      "score": 95,
+      "publicLabel": "超凡",
+      "editorialNote": {
+        "zh": "把轨道从状态机和 PM 判断中剥离，只负责事实、调度、审计和机械拒绝，并补足 policy bundle 与并发边界，体系更完整；不足是关键 V1.9.7 证据仍来自私有候选实现，外部复现有限。",
+        "en": "It sharply separates the rail from lifecycle state and PM judgment, while adding policy-bundle and concurrency boundaries; decisive V1.9.7 evidence still comes from a private candidate implementation, limiting external reproduction."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-23-resume-recency-not-authority",
+      "contentHash": "8d204f7aef1230e17c55a1bc7305cfb27a2ae2f4342fc1fb17d2376a1f10c33d",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 23, 19, 18],
+      "score": 93,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "用真实 FunctionResponse 被合成输入遮蔽的恢复缺陷说明“更晚不等于更有权威”，并把 precedence 放到模型前；不足是回归仍非完整持久 HITL，多中断与授权身份未验证。",
+        "en": "The concrete FunctionResponse shadowing defect shows why later context is not necessarily more authoritative and moves precedence before model interpretation; the regression is not a full durable HITL loop and does not cover multiple interruptions or approver identity."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-24-repeated-failure-not-new-evidence",
+      "contentHash": "77968665cc2027722f37b77acbf1298b61cecf1164a93f35d39328ed714c9cbc",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 23, 19, 19],
+      "score": 94,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "把重复终态识别为旧事实重入，并用消费状态与因果同步测试固定仲裁顺序，论证扎实；不足是只覆盖一种 guardrail/turn-limit 竞态，尚未证明通用终态仲裁。",
+        "en": "It treats repeated terminal failure as old evidence re-entering the system and uses consumed-state plus causal synchronization to define arbitration; the evidence covers one guardrail/turn-limit race rather than a general terminal-arbitration mechanism."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-25-precedence-not-configuration-authority",
+      "contentHash": "062f9b3068976877bc92b750398903472269b196a8794ef7577072adf492b3b2",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 23, 19, 18],
+      "score": 93,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "把配置优先级与谁有资格进入配置竞争分开，且用 broker 开关验证权威面收缩，边界清楚；不足是仍局限于一个 Codex 凭据路径，跨环境策略传播尚未实测。",
+        "en": "It separates precedence from eligibility to participate in configuration and uses the broker switch to demonstrate authority contraction; evidence remains limited to one Codex credential path, without cross-environment policy-propagation tests."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-26-agent-call-time-authorization-receipt",
+      "contentHash": "86f1b05556879a8fb862256c0de2d3c0d3208a5d8e4323dcacba9588a7a308bb",
+      "scoringMode": "direct",
+      "dimensionScores": [34, 24, 19, 20],
+      "score": 97,
+      "publicLabel": "超凡",
+      "editorialNote": {
+        "zh": "把真实 gate 误拒、分层回归失败与 GitHub MCP 调用时 scope challenge 串成任务级授权证据链，工程证据很强；不足是 Authorization Receipt 仍属模型提案，未覆盖全部工具和外部效果。",
+        "en": "It connects a real gate misclassification, layered regression failures, and a GitHub MCP call-time scope challenge into a task-level authorization evidence chain; the Authorization Receipt remains a proposed model and has not been validated across all tools or external effects."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-26-agent-failure-and-delivery-boundary",
+      "contentHash": "7f410e1c2a56f9d1ebe3568b22894a5b6c20bf6bd87293bcedc548386e7efaab",
+      "scoringMode": "direct",
+      "dimensionScores": [34, 24, 19, 19],
+      "score": 96,
+      "publicLabel": "超凡",
+      "editorialNote": {
+        "zh": "用 CrewAI 假绿 telemetry 与 CodeFlowMu 报告投影缺陷交叉说明执行、交付、验收和历史必须分账，案例链完整；不足是仍缺从工具失败到正式验收的端到端跨层追踪实验。",
+        "en": "CrewAI false-green telemetry and a CodeFlowMu report-projection defect jointly show why execution, delivery, acceptance, and history need separate records; an end-to-end cross-layer experiment from tool failure through formal acceptance is still missing."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-26-foreground-completion-not-workflow-completion",
+      "contentHash": "d92e3963e7b9e46e3011a92080828f35e2a83d264dce6136c8defbe9dac7c68b",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 23, 19, 19],
+      "score": 94,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "把后台任务是否仍由父流程负责转成终态屏障，并用成功、失败、interrupt 回归覆盖关键分支；不足是只证明内存内在途任务，崩溃恢复和外部效果仍无闭环。",
+        "en": "It turns ownership of background work into a terminal barrier and covers success, failure, and interrupt paths with regressions; the evidence concerns in-memory in-flight tasks, leaving crash recovery and external effects unresolved."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-26-observer-audit-without-adjudication",
+      "contentHash": "311cb1de4f00092cb6058460165e822086e89b90c1bfa7b1ca828fcc0b2c1619",
+      "scoringMode": "direct",
+      "dimensionScores": [34, 24, 20, 19],
+      "score": 97,
+      "publicLabel": "超凡",
+      "editorialNote": {
+        "zh": "把观察、注意、裁决和生命周期写入拆成四种权力，并用真实 EVAL 缺陷和 Anywhere Agents 交叉校准，证据丰富；不足是自动 reconcile 的 SLA 与统一运行机制仍未被实现证明。",
+        "en": "It separates observation, attention, adjudication, and lifecycle mutation into four powers and cross-checks a real EVAL defect with Anywhere Agents; the evidence is rich, but a unified unattended reconciliation mechanism and SLA remain unproven."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-26-service-health-task-recovery-case",
+      "contentHash": "dfd15981bcd9537a39f45089fe466c2c8997cff0f6b4848f965dcd9817898fd8",
+      "scoringMode": "direct",
+      "dimensionScores": [34, 24, 19, 19],
+      "score": 96,
+      "publicLabel": "超凡",
+      "editorialNote": {
+        "zh": "用 OpenHands 健康假象和 CodeFlowMu 恢复时间线区分健康、活性、准入与因果前置，且保留时间顺序无法证明因果的反证；不足是历史 QA 放行仍缺可绑定的 prerequisite receipt。",
+        "en": "The OpenHands health illusion and CodeFlowMu recovery timeline clearly separate health, liveness, admission, and causal prerequisites while preserving the limits of temporal order; historical QA release still lacks a bindable prerequisite receipt."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-27-agent-stop-evidence",
+      "contentHash": "619115d6cd2255e7fa97bf22343ae59addf08c3004e035be1cee012f8d282b16",
+      "scoringMode": "direct",
+      "dimensionScores": [34, 24, 20, 19],
+      "score": 97,
+      "publicLabel": "超凡",
+      "editorialNote": {
+        "zh": "用 Anywhere Agents 四轮反例和可重跑 Windows 探针把取消、进程退出、树级 containment 与重派资格逐层拆开，证据边界很强；不足是任意深度后代和跨平台 containment 仍未证明。",
+        "en": "Four Anywhere Agents counterexamples plus a rerunnable Windows probe separate cancellation, process exit, tree containment, and redispatch eligibility with strong evidence boundaries; arbitrary-depth descendants and cross-platform containment remain unproven."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-27-agent-ui-status-projection",
+      "contentHash": "356a34d2b23581211ddd4bf91b30eb823ef7a1d21038daad40576f9952159404",
+      "scoringMode": "direct",
+      "dimensionScores": [34, 24, 20, 19],
+      "score": 97,
+      "publicLabel": "超凡",
+      "editorialNote": {
+        "zh": "从 Sutando 的 collaborator 反例推导 UI 状态必须声明来源、对象、时效和冲突策略，并提供五类公开复现夹具；不足是公开 reader 仍不是完整生产 UI 与权限链的端到端验证。",
+        "en": "A Sutando collaborator counterexample motivates status projections that declare source, object, freshness, and conflict policy, backed by five public fixtures; the public reader is still not an end-to-end validation of a production UI and authority chain."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-27-running-is-an-evidence-claim",
+      "contentHash": "1edf8fe3bf5e0115c1554f3c30354d6606d7f6f4378f873c83a695329a979532",
+      "scoringMode": "direct",
+      "dimensionScores": [32, 23, 19, 18],
+      "score": 92,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "用 Claude Code 过早 Running 的具体故障说明状态标签一旦触发消费者行为就成为证据契约，层次划分清楚；不足是依据仅为官方 release note，真实 readiness 门槛和回归细节未公开。",
+        "en": "The Claude Code premature-Running defect shows that a status label becomes an evidence contract once consumers act on it; the argument is clear, but the source is an official release note without public readiness criteria or regression details."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-28-delegation-budgets-belong-to-root-objective",
+      "contentHash": "b59a3dcb306d54c56b4bcb844ada2f86f00b2919dcfd781177acf2c539f22b8b",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 23, 19, 19],
+      "score": 94,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "把资源消费来源与根目标预算归属分成两种身份，并覆盖嵌套、卸载和 checkpoint 并发，机制完整；不足是 token 账本不能推出即时撤销、跨主机一致性或通用配额。",
+        "en": "It separates the source of resource consumption from the root objective that owns the budget and covers nesting, unloading, and checkpoint concurrency; a token ledger does not prove immediate revocation, cross-host consistency, or general quota enforcement."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-29-restoring-context-does-not-restore-authority",
+      "contentHash": "38cf86cb250f79cae8569aceb87e25fcfc34b74a94f7f59186cd0f6429d0c904",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 23, 19, 18],
+      "score": 93,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "把完整快照的重建资格与当前执行授权拆成两道门，并用 seed、lineage、compaction 反例限定恢复边界；不足是仅有一个 Codex 状态路径，外部资源撤销与跨主机一致性未验证。",
+        "en": "It separates reconstructability of a complete snapshot from current execution authority and uses seed, lineage, and compaction counterexamples to bound recovery; evidence is one Codex state path, without external-resource revocation or cross-host consistency tests."
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-30-resume-needs-more-than-a-checkpoint",
+      "contentHash": "d89f6d7be01c69a4439ab6d76fc50e659800a5d51c2f16b2c90c6be1586dfdd0",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 24, 19, 19],
+      "score": 95,
+      "publicLabel": "超凡",
+      "editorialNote": {
+        "zh": "把 workflow frame、call occurrence、branch 与 replay 决策组合成恢复身份，解决嵌套 HITL 的历史歧义；不足是 responder 身份和外部副作用仍需独立证据，不能由 event 匹配替代。",
+        "en": "It combines workflow frame, call occurrence, branch, and replay decision into a recovery identity that resolves nested HITL ambiguity; responder identity and external side effects still require independent evidence rather than event matching."
+      }
+    },
+    {
+      "path": "/engineering/2026-08-22-agent-task-file-state-machine",
+      "contentHash": "009831f73a68aeb96a64baba089b021655f752e2b28a2cbc1c72eef1dc1d0715",
+      "scoringMode": "direct",
+      "dimensionScores": [34, 24, 19, 19],
+      "score": 96,
+      "publicLabel": "超凡",
+      "editorialNote": {
+        "zh": "把路径状态、迁移历史、REPORT、验收、并发 claim 与版本前置统一放进一条任务生命周期，边界和反例都很细；不足是多 Runtime 争用与 revision token 的真实闭环仍未实测。",
+        "en": "It unifies path state, transition history, reports, acceptance, claim contention, and revision preconditions in one task lifecycle with careful counterexamples; real multi-runtime contention and revision-token closure remain untested."
+      }
+    },
+    {
+      "path": "/engineering/2026-08-22-codeflowmu-governance-state-rail",
+      "contentHash": "0dd9a972a002afdae34d8d941b73b1c209fddb95d9b1744769f8fb133fe98b70",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 24, 19, 19],
+      "score": 95,
+      "publicLabel": "超凡",
+      "editorialNote": {
+        "zh": "用一项工作贯穿 TMPA 治理、FCoP 状态和 CodeFlowMu 执行，并把 unknown、wait、deny 与 business decision 分得清楚；不足是关键 rail contract 仍来自私有 V1.9.7 候选，外部复现性有限。",
+        "en": "One work item cleanly connects TMPA governance, FCoP state, and CodeFlowMu execution while separating unknown, wait, deny, and business decisions; the key rail contract still comes from a private V1.9.7 candidate, limiting external reproduction."
+      }
+    },
+    {
+      "path": "/engineering/2026-08-23-canonicalize-before-lifecycle",
+      "contentHash": "90688b4054d08919d4319306145d3997d1dd3370ad5a5d834aed6ea21dd4ab5c",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 23, 19, 18],
+      "score": 93,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "把去重提升为生命周期所有权准入不变量，并把集合语义、锁与外部 exactly-once 分层说明，论证更准确；不足是 Python equality 仍可能误合并不同资源，跨进程资源唯一性未解决。",
+        "en": "It elevates deduplication into a lifecycle-ownership admission invariant and separates population semantics, locking, and external exactly-once claims; Python equality can still collapse distinct resources, and cross-process uniqueness remains unresolved."
+      }
+    },
+    {
+      "path": "/engineering/2026-08-24-cancellation-ends-waiting",
+      "contentHash": "287cea0357a00d9c187418e96b2807b516d4031a81ee5b35ecf2ed23988b7553",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 23, 19, 18],
+      "score": 93,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "把取消视为延迟传播的控制流，同时让所有已接管资源完成有界 teardown，兼顾调用者与所有者契约；不足是普通 close 异常被 best-effort 抑制，远端清理成功仍无证据。",
+        "en": "It models cancellation as delayed control flow while requiring bounded teardown of owned resources, balancing caller and owner contracts; ordinary close errors are best-effort suppressed and remote cleanup success still lacks authoritative evidence."
+      }
+    },
+    {
+      "path": "/engineering/2026-08-25-finding-resource-not-owning-it",
+      "contentHash": "56cc6565e89c37477d53c9d9593de64f250c9e0a5c04e9b30c45654bfec698db",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 23, 19, 19],
+      "score": 94,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "把路径发现明确降级为获取写锁前的临时证据，并在获得权限后重新发现和读取，TOCTOU 边界处理准确；不足是仍只覆盖本地文件迁移，分布式租约和多写者身份冲突未解决。",
+        "en": "It correctly demotes path discovery to provisional evidence before acquiring write authority and re-discovers under the lock, closing a TOCTOU boundary; the mechanism remains local-file specific and does not solve distributed leases or multi-writer identity conflicts."
+      }
+    },
+    {
+      "path": "/engineering/2026-08-26-copy-options-keep-client",
+      "contentHash": "144456d761e6fb0ac50bc250a0e33aed51ef7c4b165a00fb8dbbd202af008d23",
+      "scoringMode": "direct",
+      "dimensionScores": [32, 23, 19, 18],
+      "score": 92,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "按可变请求容器与共享 live client 的所有权差异实施 copy-on-mutation，既避开深拷贝崩溃也防止顶层串写；不足是嵌套可变对象和 client 内部状态仍可跨请求泄漏。",
+        "en": "Copy-on-mutation follows the ownership difference between mutable request containers and a shared live client, avoiding deep-copy failure and top-level cross-request writes; nested mutable objects and client-internal state can still leak across requests."
+      }
+    },
+    {
+      "path": "/engineering/2026-08-27-review-status-evidence-association",
+      "contentHash": "d25d99773a287638b37e2ada50a2d8290d200dc4c44af864e4db9a52af8596ce",
+      "scoringMode": "direct",
+      "dimensionScores": [34, 24, 20, 19],
+      "score": 97,
+      "publicLabel": "超凡",
+      "editorialNote": {
+        "zh": "把十份历史 REPORT 的归属问题一路推进到 V2.0.4 动态诊断，并用同一 QA 任务 active→review 的实屏变化验证语义，工程闭环很完整；不足是关键能力仍以自有系统证据为主，跨项目复现有限。",
+        "en": "It carries a ten-report attribution problem through to V2.0.4 live diagnostics and validates the same QA task changing from active to review in the UI, forming a strong engineering loop; the decisive evidence remains first-party, with limited cross-project reproduction."
+      }
+    },
+    {
+      "path": "/engineering/2026-08-27-trusted-path-proves-provenance-not-approval",
+      "contentHash": "2ebda5f63f90cc37179d1eab46fb7ba4856e4bfb0bd1e75cf272f6be7ead306c",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 23, 19, 18],
+      "score": 93,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "先由 Host 记录真实技能调用，再用 canonical trusted root 验证 provenance，能阻止仓库文本和 symlink 冒充用户来源；不足是路径只证明来源，不证明内容版本、安全性或当前审批。",
+        "en": "Host-recorded skill invocation plus canonical trusted-root checks prevent repository text or symlinks from impersonating user provenance; a trusted path proves origin only, not content version, safety, or current approval."
+      }
+    },
+    {
+      "path": "/engineering/2026-08-28-approval-caches-need-authorization-identity",
+      "contentHash": "f5d7ac505805e8e5a5c41edb23788231827e4b049d96c01339004e78bc56ae13",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 23, 19, 19],
+      "score": 94,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "把缓存低风险结果绑定到授权版本，并在真正 fast-approve 前再次核对，准确关闭并发撤销竞态；不足是版本 tuple 只覆盖已编码的权威事实，外部政策和 effect-time 竞态仍存在。",
+        "en": "Binding cached low-risk results to authorization identity and rechecking before fast approval precisely closes a concurrent-revocation race; the version tuple covers only encoded authority facts, leaving external policy and effect-time races."
+      }
+    },
+    {
+      "path": "/engineering/2026-08-29-timeouts-must-close-the-lifecycle-they-own",
+      "contentHash": "e1eae4361d638c3d3087f97d0ef48b9fb6cebabd6e6a364c692d40b471e6f85b",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 23, 19, 19],
+      "score": 94,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "把 timeout 的责任边界扩展到进程组，并让超时与取消共享有界 TERM→KILL→drain 清理，生命周期语义完整；不足是 POSIX 进程组不等于任意进程树，更不覆盖远程任务和外部效果。",
+        "en": "It extends timeout responsibility to the process group and gives timeout and cancellation one bounded TERM→KILL→drain lifecycle; a POSIX process group is not an arbitrary process tree and says nothing about remote jobs or external effects."
+      }
+    },
+    {
+      "path": "/engineering/2026-08-30-a-durable-checkpoint-can-still-be-unrecoverable",
+      "contentHash": "e2c7e85d219a5bdc4595a651b4d54a8083a57eb8d801b01166ef6e31b4d92151",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 24, 19, 19],
+      "score": 95,
+      "publicLabel": "超凡",
+      "editorialNote": {
+        "zh": "把 delta checkpoint 的耐久性与 seed、写入顺序、reducer 和迁移组成的 replay 完整性分开，直接指出 keep-latest 的危险；不足是存储收益来自供应商模拟，恢复成本和生产故障仍缺独立实测。",
+        "en": "It separates delta-checkpoint durability from replay integrity across seed, write order, reducer, and migration, exposing the danger of naive keep-latest retention; storage gains are vendor-simulated and recovery cost plus production failures lack independent measurement."
+      }
+    },
+    {
+      "path": "/industry/2026-08-23-creation-provenance-survives-resume",
+      "contentHash": "8b3c7116ee5e08b0062f76dec7485983fc2297e2037f3f92b049c1a18095aba0",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 23, 19, 18],
+      "score": 93,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "把 creation source、resume 稳定性和 fork lineage 分成不同 provenance 轴，并明确兼容默认不是历史事实，模型完整；不足是 Feature 标签由应用自报，仍缺认证主体和防篡改审计绑定。",
+        "en": "It separates creation source, resume stability, and fork lineage into distinct provenance axes and correctly treats compatibility defaults as interpretations rather than history; Feature labels are application-asserted and still lack authenticated-principal or tamper-evident bindings."
+      }
+    },
+    {
+      "path": "/industry/2026-08-24-instruction-lineage-not-authority",
+      "contentHash": "79e5a4693c06e35c8424640ec60a5a1787dd200437d26c766f4bca9981881986",
+      "scoringMode": "direct",
+      "dimensionScores": [32, 23, 19, 18],
+      "score": 92,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "用 child-only developer instruction 的实际请求边界说明 provenance 与 authority 必须分开，父子排除与单次表示测试清楚；不足是调用者授权、重放与 compaction 后的权威连续性仍未证明。",
+        "en": "The child-only developer-instruction boundary cleanly separates provenance from authority and tests parent exclusion plus single representation; caller authorization, replay behavior, and authority continuity after compaction remain unproven."
+      }
+    },
+    {
+      "path": "/industry/2026-08-25-checkpoint-not-permission-to-resume",
+      "contentHash": "14e539d3d3fb638555ae17e54fde049a0aecbab1a2f9f6982df2547ca4a0b9de",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 23, 19, 19],
+      "score": 94,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "把不确定 Session append 持久化成待对账状态，并在下一次模型调用前通过 authoritative history 三分法解决，恢复门设计扎实；不足是仍无分布式 CAS，也不能覆盖外部工具 exactly-once。",
+        "en": "It persists an uncertain Session append as recoverable reconciliation state and resolves it with a three-way authoritative-history test before another model call; there is still no distributed CAS and no exactly-once guarantee for external tools."
+      }
+    },
+    {
+      "path": "/industry/2026-08-26-mpbench-ranked-diagnostic-evidence",
+      "contentHash": "d7cdf22f364d9ad917183ac9238585e0635935808bffb082708c36651cfd1b71",
+      "scoringMode": "direct",
+      "dimensionScores": [34, 24, 20, 19],
+      "score": 97,
+      "publicLabel": "超凡",
+      "editorialNote": {
+        "zh": "用 289 条失败轨迹和三专家分歧证明单一 rootCause 会压扁诊断证据，并把 plural hypotheses 与 repair decision 分开，学术支撑强；不足是 benchmark 未证明多视角诊断能提升真实高风险事故修复率。",
+        "en": "Using 289 failed traces and three-expert disagreement, it strongly shows why a single rootCause can erase diagnostic evidence and separates plural hypotheses from repair decisions; the benchmark does not yet show that multi-perspective diagnosis improves repair quality in real high-risk incidents."
+      }
+    },
+    {
+      "path": "/industry/2026-08-26-permission-authority-belongs-to-attachment",
+      "contentHash": "f3a622d1a63534f712aa37d44b534f331e597ae4c32219c25882c5848a30d665",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 23, 19, 18],
+      "score": 93,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "把 MCP 权限归属绑定到具体 attachment/runtime，而非共享 server 身份或线程环境，并在缺失权威时拒绝 call preparation；不足是已准备调用的即时撤销和跨进程 profile 一致性尚无保证。",
+        "en": "It binds MCP permission authority to the specific attachment/runtime rather than shared server identity or ambient thread context and refuses call preparation when authority is absent; live revocation of prepared calls and cross-process profile consistency remain unproven."
+      }
+    },
+    {
+      "path": "/industry/2026-08-27-authority-context-must-be-host-minted",
+      "contentHash": "0c41c0471ef99e6bd32bd98d6b9ba8597669fdbb510f5199a40e631289faa3d9",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 23, 19, 19],
+      "score": 94,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "Host 先删除请求方 entitlement，再用当前账户和多项 capability 谓词签发上下文，能切断自我授权路径；不足是下游插件如何解释 verified/unknown 仍是独立责任，端到端执行权未证明。",
+        "en": "The host removes caller entitlement claims before minting context from current account state and conjunctive capability predicates, cutting the self-authorization path; downstream interpretation of verified/unknown remains a separate responsibility and end-to-end execution authority is not proved."
+      }
+    },
+    {
+      "path": "/industry/2026-08-28-cached-policy-is-evidence-not-current-authority",
+      "contentHash": "b0d244598cdf7945bc89adc5eeae533b1cd80296cbac784900523821e7b64450",
+      "scoringMode": "direct",
+      "dimensionScores": [31, 23, 18, 17],
+      "score": 89,
+      "publicLabel": "优质",
+      "editorialNote": {
+        "zh": "把缓存可读性与当前政策的授权可接受性分开，明确强制刷新时 stale fallback 不能继续放权，治理判断很清楚；不足是只有官方 changelog，没有鉴权、版本绑定和在途撤销的实现级证据。",
+        "en": "It cleanly separates cache readability from authority admissibility and makes stale fallback non-authorizing under forced refresh; the evidence is an official changelog, without implementation-level proof of authentication, revision binding, or in-flight revocation."
+      }
+    },
+    {
+      "path": "/industry/2026-08-29-trust-must-change-the-executable-surface",
+      "contentHash": "09f6cbc862dc8dcbc46cba6a5363adc253dbf7793583d90fc5456e7d7b4b88ca",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 23, 19, 19],
+      "score": 94,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "把 workspace trust 从 UI 标签落实为 capability materialization 前的配置过滤，并让 unknown/malformed 失效关闭，执行边界明确；不足是只能证明新能力的准入收缩，已有对象的 live revocation 尚未覆盖。",
+        "en": "It turns workspace trust from a UI label into configuration filtering before capability materialization and fails closed on unknown or malformed trust; this proves admission contraction for new capabilities, not live revocation of existing objects."
+      }
+    },
+    {
+      "path": "/industry/2026-08-30-stronger-looking-evidence-does-not-make-action-safe",
+      "contentHash": "d38efe6cb52db57543ddde5001fb58db23922c37d2ddc654491a8343186e6bd2",
+      "scoringMode": "direct",
+      "dimensionScores": [33, 24, 19, 18],
+      "score": 94,
+      "publicLabel": "卓越",
+      "editorialNote": {
+        "zh": "用真实与伪造专业面板几乎同样提升 commitment 的实验把展示形式与行动资格分开，外置 gate 的论证直接；不足是新 preprint 尚无独立复现，ANSWER commitment 也不等同真实工具副作用。",
+        "en": "The experiment showing similar commitment under real and fabricated professional panels cleanly separates presentation from action qualification and motivates an external gate; the new preprint lacks independent replication and ANSWER commitment is not equivalent to a real tool side effect."
+      }
+    },
+    {
+      "path": "/research/weekly/weekly-006",
+      "contentHash": "1045796e6198a37655b5231432ab974aabf51a9ed4795108ad46bb6db8f0dc55",
+      "scoringMode": "direct",
+      "dimensionScores": [34, 24, 20, 19],
+      "score": 97,
+      "publicLabel": "超凡",
+      "editorialNote": {
+        "zh": "把二十一篇材料收敛成 transfer 与 transformation 两阶段都必须保留 authority lineage，并逐类落到缓存、恢复、凭据与身份，综合很强；不足是 Provenance-Preserving Admission 仍缺跨机制统一实现和基准验证。",
+        "en": "It synthesizes twenty-one notes into an authority-lineage requirement across both transfer and transformation, then grounds it in caching, resume, credentials, and identity; Provenance-Preserving Admission still lacks a unified cross-mechanism implementation and benchmark."
+      }
+    }
+  ]
+}
