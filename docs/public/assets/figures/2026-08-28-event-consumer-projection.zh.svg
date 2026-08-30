@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
   <title id="title">接上同一总线，不代表看见同一份载荷</title>
-  <desc id="desc">同一个内部规范事件经服务端消费者身份和字段策略投影后，为 Panel、Analytics、Webhook 和内部调试生成不同视图。</desc>
+  <desc id="desc">V2.1.2 对内部事件按服务端消费者身份与字段规则投影，生成 Web Panel、Activity API、Analytics 三类消费者对象。</desc>
   <defs>
     <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbfaf7"/><stop offset="1" stop-color="#eef5ff"/></linearGradient>
     <linearGradient id="core" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f4acb"/><stop offset="1" stop-color="#27b7ff"/></linearGradient>
@@ -46,9 +46,8 @@
   <text x="720" y="652" text-anchor="middle" class="tag" fill="#b96500">请求参数不能自报身份</text>
 
   <path d="M858 390 C930 320 940 270 1002 250" fill="none" stroke="#3b82f6" stroke-width="5" marker-end="url(#arrow2)"/>
-  <path d="M865 425 C945 405 955 392 1002 388" fill="none" stroke="#3b82f6" stroke-width="5" marker-end="url(#arrow2)"/>
-  <path d="M865 475 C945 495 955 508 1002 512" fill="none" stroke="#3b82f6" stroke-width="5" marker-end="url(#arrow2)"/>
-  <path d="M858 510 C930 580 940 630 1002 650" fill="none" stroke="#7c3aed" stroke-width="5" marker-end="url(#arrow2)"/>
+  <path d="M865 450 C945 450 955 429 1002 429" fill="none" stroke="#3b82f6" stroke-width="5" marker-end="url(#arrow2)"/>
+  <path d="M858 510 C930 580 940 607 1002 607" fill="none" stroke="#3b82f6" stroke-width="5" marker-end="url(#arrow2)"/>
 
   <g filter="url(#shadow2)">
     <rect x="1030" y="172" width="490" height="158" rx="25" fill="#ffffff" stroke="#8bc5ff" stroke-width="2"/>
@@ -59,22 +58,17 @@
 
     <rect x="1030" y="350" width="490" height="158" rx="25" fill="#ffffff" stroke="#88d7d0" stroke-width="2"/>
     <rect x="1030" y="350" width="16" height="158" rx="8" fill="#19a99b"/>
-    <text x="1075" y="396" class="boxh">Analytics 投影</text>
-    <text x="1075" y="436" class="field">类型 · 耗时 · 结果类别 · 稳定关联键</text>
-    <text x="1075" y="473" class="tag" fill="#168a80">token 与 raw：默认不可见</text>
+    <text x="1075" y="396" class="boxh">Activity API 投影</text>
+    <text x="1075" y="436" class="field">事件 · 状态 · 关联键 · 受控摘要</text>
+    <text x="1075" y="473" class="tag" fill="#168a80">内部完整 payload：不透传</text>
 
     <rect x="1030" y="528" width="490" height="158" rx="25" fill="#ffffff" stroke="#ffd28c" stroke-width="2"/>
     <rect x="1030" y="528" width="16" height="158" rx="8" fill="#f59e0b"/>
-    <text x="1075" y="574" class="boxh">Webhook 投影</text>
-    <text x="1075" y="614" class="field">仅交付合同明确允许的业务事件</text>
-    <text x="1075" y="651" class="tag" fill="#bd6a00">流式增量：默认拒绝</text>
-
-    <rect x="1030" y="706" width="490" height="118" rx="25" fill="#ffffff" stroke="#b69cf8" stroke-width="2"/>
-    <rect x="1030" y="706" width="16" height="118" rx="8" fill="#7c3aed"/>
-    <text x="1075" y="752" class="boxh">内部调试投影</text>
-    <text x="1075" y="792" class="field">独立受权后才可读取更完整证据</text>
+    <text x="1075" y="574" class="boxh">Analytics 投影</text>
+    <text x="1075" y="614" class="field">分析所需、已登记的结构化事件字段</text>
+    <text x="1075" y="651" class="tag" fill="#bd6a00">raw 与未登记嵌套字段：不可见</text>
   </g>
 
   <rect x="70" y="770" width="860" height="58" rx="18" fill="#17263e"/>
-  <text x="105" y="807" font-size="21" font-weight="700" style="fill:#ffffff">待实现合同：未知 event_type 或新增嵌套字段 → 默认隐藏或明确拒绝</text>
+  <text x="105" y="807" font-size="20" font-weight="700" style="fill:#ffffff">V2.1.2 已实现：未知 payload 与未登记字段默认不可见</text>
 </svg>
