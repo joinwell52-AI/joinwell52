@@ -8,6 +8,7 @@ on:
       - "docs/**"
       - "research/runtime/**"
       - "research/intelligence/**"
+      - "research/editorial/**"
       - "scripts/**"
       - "package.json"
       - "package-lock.json"
@@ -51,6 +52,29 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Finalize eligible weekly editorial scorecard
+        run: node scripts/editorial-scorecard-finalize-current.mjs
+
+      - name: Validate and build editorial scorecard projection
+        run: |
+          npm run editorial:scorecard:validate
+          npm run editorial:scorecard:build
+
+      - name: Persist weekly scorecard and public projection
+        shell: bash
+        run: |
+          set -euo pipefail
+          git checkout -- docs/public/_scorecard-inventory-run.txt || true
+          if git diff --quiet -- research/editorial/scorecards docs/.vitepress/generated/editorial-scorecard.json; then
+            echo "No weekly scorecard/projection changes to persist."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/editorial/scorecards docs/.vitepress/generated/editorial-scorecard.json
+          git commit -m "editorial: finalize weekly scorecard projection"
+          git push origin HEAD:main
 
       - name: Build VitePress site
         run: npm run docs:build
@@ -118,7 +142,18 @@ jobs:
             throw new Error('Runtime page shell marker missing from generated HTML.')
           }
 
-          console.log(`Verified ${requiredRoutes.length} public routes, Runtime V5 ordering and Shanghai freshness=${shanghaiToday}.`)
+          const scorecardProjection = JSON.parse(fs.readFileSync(path.join('docs', '.vitepress', 'generated', 'editorial-scorecard.json'), 'utf8'))
+          if (scorecardProjection.status !== 'Completed') throw new Error('Editorial scorecard projection is not Completed.')
+          if (scorecardProjection.reviewDate === shanghaiToday && scorecardProjection.coverageRate !== 1) {
+            throw new Error(`Current-day editorial scorecard coverage is ${scorecardProjection.coverageRate}; refusing partial publication.`)
+          }
+          const zhResearchHtml = fs.readFileSync(path.join(dist, 'zh/research/index.html'), 'utf8')
+          const enResearchHtml = fs.readFileSync(path.join(dist, 'en/research/index.html'), 'utf8')
+          if (!zhResearchHtml.includes(`AI 编辑评分 · ${scorecardProjection.reviewDate}`) || !enResearchHtml.includes(scorecardProjection.reviewDate)) {
+            throw new Error(`Research scorecard page does not render reviewDate=${scorecardProjection.reviewDate}.`)
+          }
+
+          console.log(`Verified ${requiredRoutes.length} public routes, Runtime V5 ordering, Shanghai freshness=${shanghaiToday}, and editorial scorecard=${scorecardProjection.reviewDate}.`)
           NODE
 
           # Released articles must remain publicly routable and discoverable through
