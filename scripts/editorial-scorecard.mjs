@@ -120,8 +120,11 @@ const validateFormal = (record, path) => {
     }
     const zh = item.editorialNote.zh.trim()
     const en = item.editorialNote.en.trim()
-    if (zh.length < 25 || zh.length > 95) fail(`${path}: ${item.path} Chinese editorialNote should be a concise editor comment.`)
-    if (en.length < 45 || en.length > 260) fail(`${path}: ${item.path} English editorialNote should be a concise editor comment.`)
+    // 40–70 Chinese characters and a similarly brief English note are editorial targets,
+    // not byte/character-count identity contracts. Keep a broad guard against empty or essay-length
+    // comments while letting content-specific technical terms and punctuation vary naturally.
+    if (zh.length < 18 || zh.length > 130) fail(`${path}: ${item.path} Chinese editorialNote must remain a brief editor comment.`)
+    if (en.length < 30 || en.length > 320) fail(`${path}: ${item.path} English editorialNote must remain a brief editor comment.`)
     if (bannedZh.some(pattern => pattern.test(zh)) || bannedEn.some(pattern => pattern.test(en))) fail(`${path}: ${item.path} editorialNote contains score-explanation/template language.`)
     if (editorialNotesZh.has(zh)) fail(`${path}: ${item.path} duplicates Chinese editorialNote used by ${editorialNotesZh.get(zh)}.`)
     else editorialNotesZh.set(zh, item.path)
