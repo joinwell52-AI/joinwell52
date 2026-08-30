@@ -96,6 +96,24 @@ if (missingZhPairs.length) {
   throw new Error(`Eligible observations require a paired Chinese source for English canonical identity: ${missingZhPairs.join(', ')}`)
 }
 
+// The public Research Notes loader scans both locales. Enforce the identity contract in both
+// directions so a Chinese-only eligible note cannot appear publicly while silently escaping
+// the English-canonical scorecard corpus.
+const extraZhEligible = []
+for (const zhSourcePath of await walkMarkdown(ZH_ROOT)) {
+  const bytes = await readFile(zhSourcePath)
+  const frontmatter = frontmatterOf(bytes.toString('utf8'))
+  if (!isEligiblePublicObservation(frontmatter)) continue
+  const relativeZhPath = normalize(relative(ZH_ROOT, zhSourcePath))
+  const enSourcePath = join(EN_ROOT, relativeZhPath)
+  if (!(await exists(enSourcePath))) {
+    extraZhEligible.push(`/${relativeZhPath.replace(/\.md$/, '').replace(/\/index$/, '')}`)
+  }
+}
+if (extraZhEligible.length) {
+  throw new Error(`Eligible Chinese observations require a paired English canonical source: ${extraZhEligible.sort().join(', ')}`)
+}
+
 const inventory = {
   schema: 'observation-scorecard-inventory/v1',
   hashAlgorithm: 'sha256',
