@@ -1,0 +1,52 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "weekly",
+  "family": "weekly",
+  "runtimeDate": "2026-08-30",
+  "status": "Completed",
+  "input": "Evidence-validated Daily Research publications for 2026-08-24 through 2026-08-30; current main Scheduler V3.0, Worker Control V1.3.0 and Weekly Prompt v2.1.0; the original 2026-08-30 Weekly wake receipt plus the verified manual-recovery wake receipt research/runtime/wakes/2026/08/2026-08-30/weekly-224204.json; the fresh recovery Worker Claimed event after the stale lease expired; the P2 Registry and P2 Special Study contract; current editorial/evidence policies; and current primary GitHub evidence for every due P2 object.",
+  "input_zh": "2026-08-24 至 2026-08-30 已通过证据验证的 Daily Research Publication、当前 main 上的 Scheduler V3.0 / Worker Control V1.3.0 / Weekly Prompt v2.1.0、2026-08-30 原始 Weekly Wake Receipt 与已核验的 manual-recovery Wake Receipt research/runtime/wakes/2026/08/2026-08-30/weekly-224204.json、旧执行租约过期后的 fresh recovery Worker Claimed、P2 Registry 与 P2 Special Study Contract、当前编辑/证据政策，以及所有到期 P2 对象的当前 GitHub 一手证据。",
+  "workResult": "Recovered the stale first Weekly execution epoch without deleting its audit history: the 20:48:09 Worker Claimed lease was expired under the repository's 90-minute Running watchdog, a fresh execution slot was opened and a manual-recovery worker was claimed before substantive work. The recovered worker then resolved all four due biweekly-or-release P2 objects, found two monthly objects not due, triggered zero full P2 studies, and synthesized seven fully published Daily Runtime days comprising 21 eligible Research Center notes into Weekly 007. The recurring mechanism is that recovery is not restoration: reconstructed or durable state is candidate evidence for continuity, while current authority, ownership, occurrence identity, lifecycle closure, budget scope and replay integrity must be re-established before execution is admitted again. The synthesis introduces a Recovery Admission Envelope and distinguishes reconstruction proof from admission proof.",
+  "workResult_zh": "在不删除旧审计历史的前提下恢复了失效的第一轮 Weekly 执行：20:48:09 的 Worker Claimed 已依据仓库 90 分钟 Running Watchdog 判定租约过期，随后打开 fresh Execution Slot，并在实质工作前由 manual-recovery Worker 完成新的 Claim。恢复 Worker 完成 4 个到期 biweekly-or-release P2 对象的终态检查，确认 2 个 monthly 对象本周不到期，0 个对象触发完整 P2 专项研究；随后把连续 7 个已完成发布的 Daily Runtime 日、共 21 篇合格 Research Center 研究综合为 Weekly 007。本周反复出现的机制是 Recovery 不等于 Restoration：重建或持久状态只能作为 Continuity 的候选证据；当前 Authority、Ownership、Occurrence Identity、Lifecycle Closure、Budget Scope 与 Replay Integrity 必须重新成立，执行才能再次获得准入。本次综合提出 Recovery Admission Envelope，并明确区分 Reconstruction Proof 与 Admission Proof。",
+  "output": "Weekly 007 — Recovery Is Re-Admission, published as independent English and Chinese Weekly Research pages with an editorial cover, plus a contract-valid 2026-08-30 P2 check record covering all four due objects and explicitly recording two monthly objects as not due.",
+  "output_zh": "发布 Weekly 007《恢复不是复原，而是重新准入》的中英文独立 Weekly Research 页面与编辑题图，并形成符合合同的 2026-08-30 P2 检查记录，覆盖全部 4 个到期对象，并明确记录 2 个 monthly 对象本周不到期。",
+  "next": "Next week, test worker-lease evidence and stale-Running recovery before maximum runtime expiry; test checkpoint replay-integrity proofs; test occurrence-bound HITL continuation under worker replacement; and continue P2 release/material-commit checks from the verified 2026-08-30 checkpoints.",
+  "next_zh": "下一周优先验证 Worker Lease 证据与 Max Runtime 到期前的 stale-Running Recovery、Checkpoint Replay Integrity Proof、Worker Replacement 下绑定 Occurrence 的 HITL Continuation，并以 2026-08-30 已核验检查点继续 P2 Release / Material-commit Check。",
+  "metrics": [
+    {"label":"Daily days covered","label_zh":"覆盖 Daily 天数","value":7},
+    {"label":"Eligible Daily Research notes","label_zh":"合格 Daily Research 篇数","value":21},
+    {"label":"P2 due / resolved","label_zh":"P2 到期 / 已收口","value":"4 / 4"},
+    {"label":"P2 not due","label_zh":"P2 本周不到期","value":2},
+    {"label":"P2 triggers","label_zh":"P2 触发数","value":0},
+    {"label":"P2 full studies","label_zh":"P2 完整专项研究","value":0},
+    {"label":"Weekly language editions","label_zh":"Weekly 语言版本","value":2},
+    {"label":"Expired stale execution leases","label_zh":"过期旧执行租约","value":1},
+    {"label":"Fresh recovery worker claims","label_zh":"Fresh Recovery Worker Claim","value":1}
+  ],
+  "evidence": [
+    "research/runtime/SCHEDULER.json",
+    "research/runtime/worker-prompts/generated/CONTROL.json",
+    "research/runtime/worker-prompts/generated/weekly.prompt.md",
+    "research/runtime/wakes/2026/08/2026-08-30/weekly-202939.json",
+    "research/runtime/wakes/2026/08/2026-08-30/weekly-224204.json",
+    "research/runtime/process-kick/2026-08-30-weekly-224349-recovery.json",
+    "research/runtime/results/2026/08/2026-08-24-publication-result.json",
+    "research/runtime/results/2026/08/2026-08-25-publication-result.json",
+    "research/runtime/results/2026/08/2026-08-26-publication-result.json",
+    "research/runtime/results/2026/08/2026-08-27-publication-result.json",
+    "research/runtime/results/2026/08/2026-08-28-publication-result.json",
+    "research/runtime/results/2026/08/2026-08-29-publication-result.json",
+    "research/runtime/results/2026/08/2026-08-30-publication-result.json",
+    "research/intelligence/p2-runs/2026/08/2026-08-30-p2-special.json"
+  ],
+  "artifacts": [
+    "docs/en/research/weekly/weekly-007.md",
+    "docs/zh/research/weekly/weekly-007.md",
+    "docs/public/assets/covers/weekly-007-recovery-is-readmission-cover.svg",
+    "research/intelligence/p2-runs/2026/08/2026-08-30-p2-special.json",
+    "research/runtime/results/2026/08/2026-08-30-weekly-result.json",
+    "research/runtime/records/weekly/2026/08/2026-08-30-weekly-runtime.json"
+  ],
+  "startedAt": "2026-08-30T22:44:21+08:00",
+  "completedAt": "2026-08-30T23:02:10+08:00"
+}
