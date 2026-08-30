@@ -1,0 +1,371 @@
+{
+  "schema": "runtime-publication-candidate/v2",
+  "date": "2026-08-30",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Production",
+  "sourceRecord": "research/runtime/records/daily/2026/08/2026-08-30-daily-runtime.json",
+  "updatedAt": "2026-08-30T15:15:25+08:00",
+  "githubCommit": "pending",
+  "reason": "Three completed 2026-08-30 Research Objects were converted into complete bilingual Editorial Architecture 2.1 candidates with verified planning artifacts, evidence-bounded claims and deterministic baseline covers.",
+  "reason_zh": "三份已完成的 2026-08-30 Research Object 已转换为完整双语 Editorial Architecture 2.1 候选，具备已核验的规划工件、有边界的证据声明和确定性基础题图。",
+  "candidates": [
+    {
+      "column": "digital-employee",
+      "category": "daily",
+      "itemId": "Q-20260830-01",
+      "articleType": "technical-analysis",
+      "researchQuestion": "嵌套人工确认恢复时，什么身份才能把响应绑定到仍具权威的调用帧？",
+      "title": "A Resume Needs More Than a Checkpoint",
+      "title_zh": "恢复工作流，需要的不只是一份检查点",
+      "zhPath": "staging/publication-candidates/2026-08-30-resume-needs-more-than-a-checkpoint.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-30-resume-needs-more-than-a-checkpoint.en.md",
+      "articleBriefPath": "research/runtime/production-work/2026/08/30/Q-20260830-01/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/08/30/Q-20260830-01/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/08/30/Q-20260830-01/figure-plan.json",
+      "coreProposition": "Safe continuation requires a compound authority identity that binds workflow frame, call occurrence, branch identity, responder evidence and known effect state; robust event matching can decide pause, replay or continue, but it cannot authenticate the responder or prove exactly-once external effects.",
+      "sections": [
+        {
+          "module": "context",
+          "heading": "A Checkpoint Restores State, Not Occurrence Identity",
+          "heading_zh": "检查点恢复了状态，却没有恢复发生身份"
+        },
+        {
+          "module": "technical-analysis",
+          "heading": "Explicit Continuation Decisions Beat Implicit Guessing",
+          "heading_zh": "显式续行决定比隐式猜测更可靠"
+        },
+        {
+          "module": "governance-implications",
+          "heading": "Responder and Effect Evidence Remain Separate Gates",
+          "heading_zh": "响应者与效果仍需要独立门禁"
+        },
+        {
+          "module": "operational-implications",
+          "heading": "A Continuation Receipt Needs Five Facts",
+          "heading_zh": "续行回执应记录五类事实"
+        },
+        {
+          "module": "limitations",
+          "heading": "Evidence Boundary",
+          "heading_zh": "证据边界"
+        }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "The merged ADK change introduces explicit CONTINUE, PAUSE and REPLAY_CALLS decisions.",
+          "claim_zh": "已合并变更引入显式继续、暂停与重放调用决策。",
+          "source": "research/analysis/Q-20260830-01-continuation-authority-compound-identity.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "public-fact",
+          "claim": "Whole run-id components and branch relationships bind nested responses to call occurrences.",
+          "claim_zh": "完整运行标识组件与分支关系把嵌套响应绑定到调用发生。",
+          "source": "research/analysis/Q-20260830-01-continuation-authority-compound-identity.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "public-fact",
+          "claim": "Tests cover historical pauses, parallel calls, unrelated branches and nested replay.",
+          "claim_zh": "测试覆盖历史暂停、并行调用、无关分支与嵌套重放。",
+          "source": "research/analysis/Q-20260830-01-continuation-authority-compound-identity.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "I1",
+          "identity": "our-interpretation",
+          "claim": "Continuation authority should bind frame, call, branch, responder evidence and effect state.",
+          "claim_zh": "续行权威应绑定帧、调用、分支、响应者证据与效果状态。",
+          "source": "research/analysis/Q-20260830-01-continuation-authority-compound-identity.md",
+          "strength": "supports",
+          "independent": false
+        },
+        {
+          "id": "I2",
+          "identity": "our-interpretation",
+          "claim": "Event-history correctness cannot establish responder authorization or exactly-once effects.",
+          "claim_zh": "事件历史正确不能建立响应者授权或外部效果恰好一次。",
+          "source": "research/analysis/Q-20260830-01-continuation-authority-compound-identity.md",
+          "strength": "suggests",
+          "independent": false
+        }
+      ],
+      "coverPath": "staging/publication-candidates/2026-08-30-resume-needs-more-than-a-checkpoint-cover.png",
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The conclusion is a general research and engineering pattern that remains independently valuable without a first-party project mapping."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already provides the transferable argument; a separate community edition would repeat the same evidence without a distinct discussion angle."
+      },
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    },
+    {
+      "column": "industry-architecture",
+      "category": "daily",
+      "itemId": "Q-20260830-02",
+      "articleType": "research-brief",
+      "researchQuestion": "当展示形式提高行动承诺却没有提高可知性时，智能体应如何独立核验行动资格？",
+      "title": "Stronger-Looking Evidence Does Not Make Action Safe",
+      "title_zh": "证据看起来更强，不等于行动更安全",
+      "zhPath": "staging/publication-candidates/2026-08-30-stronger-looking-evidence-does-not-make-action-safe.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-30-stronger-looking-evidence-does-not-make-action-safe.en.md",
+      "articleBriefPath": "research/runtime/production-work/2026/08/30/Q-20260830-02/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/08/30/Q-20260830-02/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/08/30/Q-20260830-02/figure-plan.json",
+      "coreProposition": "Epistemic evidence should feed an independently inspectable action-qualification predicate: professional presentation and the model's generated commitment must not become execution authority when the underlying question remains unresolved, and the gate must be tested across presentation and output-format changes.",
+      "sections": [
+        {
+          "module": "key-findings",
+          "heading": "Action Moves Much More Than Stated Belief",
+          "heading_zh": "行动变化远大于陈述信念变化"
+        },
+        {
+          "module": "evidence",
+          "heading": "The Fabricated Panel Is the Causal Lever",
+          "heading_zh": "虚构面板隔离了展示效应"
+        },
+        {
+          "module": "technical-analysis",
+          "heading": "Knowability-First Reveals Another Decision Path",
+          "heading_zh": "先判断可知性，能暴露另一条决策路径"
+        },
+        {
+          "module": "architecture-implications",
+          "heading": "An Executable Action-Qualification Gate",
+          "heading_zh": "一个可执行的行动资格门禁"
+        },
+        {
+          "module": "limitations",
+          "heading": "Evidence Limits",
+          "heading_zh": "证据限制"
+        }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "source-reported-claim",
+          "claim": "The preprint reports commitment rising from 6.5% to 54.0% across evidence escalation.",
+          "claim_zh": "预印本报告证据升级下的行动承诺从 6.5% 上升到 54.0%。",
+          "source": "research/analysis/Q-20260830-02-action-qualification-independent-of-presentation.md",
+          "strength": "reports",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "source-reported-claim",
+          "claim": "Fully fabricated and real panels are statistically equivalent in the reported comparison.",
+          "claim_zh": "全虚构面板与真实面板在所报告比较中统计等价。",
+          "source": "research/analysis/Q-20260830-02-action-qualification-independent-of-presentation.md",
+          "strength": "reports",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "source-reported-claim",
+          "claim": "Knowability-first and one fine-tuning intervention reduce commitment, while rigid formats can remove protection.",
+          "claim_zh": "先判断可知性与一次微调干预降低了承诺，但刚性格式可能移除保护。",
+          "source": "research/analysis/Q-20260830-02-action-qualification-independent-of-presentation.md",
+          "strength": "reports",
+          "independent": false
+        },
+        {
+          "id": "I1",
+          "identity": "our-interpretation",
+          "claim": "Generated action choice should not self-authorize execution.",
+          "claim_zh": "模型生成的行动选择不应自我授权执行。",
+          "source": "research/analysis/Q-20260830-02-action-qualification-independent-of-presentation.md",
+          "strength": "supports",
+          "independent": false
+        },
+        {
+          "id": "I2",
+          "identity": "our-interpretation",
+          "claim": "Qualification should be regression-tested across presentation and output-format changes.",
+          "claim_zh": "资格门禁应跨展示与输出格式变化接受回归测试。",
+          "source": "research/analysis/Q-20260830-02-action-qualification-independent-of-presentation.md",
+          "strength": "suggests",
+          "independent": false
+        }
+      ],
+      "coverPath": "staging/publication-candidates/2026-08-30-stronger-looking-evidence-does-not-make-action-safe-cover.png",
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The conclusion is a general research and engineering pattern that remains independently valuable without a first-party project mapping."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already provides the transferable argument; a separate community edition would repeat the same evidence without a distinct discussion angle."
+      },
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    },
+    {
+      "column": "open-source-engineering",
+      "category": "daily",
+      "itemId": "Q-20260830-03",
+      "articleType": "engineering-insight",
+      "researchQuestion": "增量检查点经过压缩和裁剪后，什么证据才能证明每个保留状态仍可重建？",
+      "title": "A Durable Checkpoint Can Still Be Unrecoverable",
+      "title_zh": "检查点已经落盘，仍然可能无法恢复",
+      "zhPath": "staging/publication-candidates/2026-08-30-a-durable-checkpoint-can-still-be-unrecoverable.zh.md",
+      "enPath": "staging/publication-candidates/2026-08-30-a-durable-checkpoint-can-still-be-unrecoverable.en.md",
+      "articleBriefPath": "research/runtime/production-work/2026/08/30/Q-20260830-03/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/08/30/Q-20260830-03/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/08/30/Q-20260830-03/figure-plan.json",
+      "coreProposition": "Checkpoint durability and replay-chain integrity are separate properties: a retained delta checkpoint is reconstructable only when its seed, ordered writes, deterministic reducer identity and migration remain valid, so compaction and pruning should require explicit reconstructability proof rather than treating deletion as storage housekeeping.",
+      "sections": [
+        {
+          "module": "context",
+          "heading": "A Delta Checkpoint Is Not Self-Contained State",
+          "heading_zh": "增量检查点不再是自包含状态"
+        },
+        {
+          "module": "technical-analysis",
+          "heading": "Replay Correctness Depends on Four Invariants",
+          "heading_zh": "重放正确性依赖四个不变量"
+        },
+        {
+          "module": "engineering-implications",
+          "heading": "Periodic Seeds Bound Cost but Do Not Prove Safety",
+          "heading_zh": "周期快照限制成本，不会自动保证安全"
+        },
+        {
+          "module": "evidence",
+          "heading": "Storage Benefit Is Not Replay Proof",
+          "heading_zh": "存储收益不是重放证明"
+        },
+        {
+          "module": "operational-implications",
+          "heading": "Make Recoverability a Separate Health Property",
+          "heading_zh": "把可恢复性变成独立健康属性"
+        }
+      ],
+      "endingModule": "operational-implications",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "DeltaChannel reconstructs state from a seed snapshot and ordered ancestor writes.",
+          "claim_zh": "DeltaChannel 从种子快照与有序祖先写入重建状态。",
+          "source": "research/analysis/Q-20260830-03-checkpoint-durability-separate-from-replay-integrity.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "public-fact",
+          "claim": "Reducers must be deterministic and batching-invariant, and writes become durable before dependent checkpoints.",
+          "claim_zh": "归约器必须确定且不受批次分组影响，写入必须先于依赖检查点持久化。",
+          "source": "research/analysis/Q-20260830-03-checkpoint-durability-separate-from-replay-integrity.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "source-reported-claim",
+          "claim": "Deep Agents reports reducing one simulated workload from 5.27 GB to 129 MB.",
+          "claim_zh": "Deep Agents 报告把一个模拟工作负载从 5.27 GB 降至 129 MB。",
+          "source": "research/analysis/Q-20260830-03-checkpoint-durability-separate-from-replay-integrity.md",
+          "strength": "reports",
+          "independent": false
+        },
+        {
+          "id": "I1",
+          "identity": "our-interpretation",
+          "claim": "Checkpoint durability and replay-chain integrity should be separately observable.",
+          "claim_zh": "检查点持久性与重放链完整性应分别可观察。",
+          "source": "research/analysis/Q-20260830-03-checkpoint-durability-separate-from-replay-integrity.md",
+          "strength": "supports",
+          "independent": false
+        },
+        {
+          "id": "I2",
+          "identity": "our-interpretation",
+          "claim": "Safe pruning should require an explicit reconstructability proof.",
+          "claim_zh": "安全裁剪应要求显式可重建性证明。",
+          "source": "research/analysis/Q-20260830-03-checkpoint-durability-separate-from-replay-integrity.md",
+          "strength": "suggests",
+          "independent": false
+        }
+      ],
+      "coverPath": "staging/publication-candidates/2026-08-30-a-durable-checkpoint-can-still-be-unrecoverable-cover.png",
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The conclusion is a general research and engineering pattern that remains independently valuable without a first-party project mapping."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already provides the transferable argument; a separate community edition would repeat the same evidence without a distinct discussion angle."
+      },
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "evidenceStatus": "Completed",
+      "editingStatus": "Completed"
+    }
+  ]
+}
