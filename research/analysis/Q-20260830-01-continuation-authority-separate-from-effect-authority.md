@@ -12,10 +12,13 @@ input_contract: "Reading Result"
 input_reading: "research/reading/Q-20260830-01-nested-hitl-continuation-identity.md"
 output_contract: "Research Object"
 research_object: "Continuation Authority Must Remain Separate from Effect Authority"
-status: "ReadyForProduction"
-production_input_authorized: true
+status: "Superseded"
+production_input_authorized: false
 publication_authorized: false
 ---
+
+
+<!-- Runtime recovery note: superseded on 2026-08-30 by the durably finalized Analysis result, which authorizes research/analysis/Q-20260830-01-continuation-authority-compound-identity.md as the sole Q-20260830-01 Production input. Preserved for audit; not Production-authorized. -->
 
 # Research Object — Continuation Authority Must Remain Separate from Effect Authority
 
