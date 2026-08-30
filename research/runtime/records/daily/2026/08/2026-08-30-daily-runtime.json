@@ -8,11 +8,11 @@
   "date": "2026-08-30",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -540,6 +540,164 @@
       "githubCommit": "83cf0368b39c489bde0df6d961d38601689faa20",
       "commitVerify": "Completed",
       "verifiedAt": "2026-08-30T10:16:42+08:00"
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "family": "daily",
+      "runtimeDate": "2026-08-30",
+      "status": "Completed",
+      "input": "The verified 2026-08-30 Reading Wake Receipt at research/runtime/wakes/2026/08/2026-08-30/reading-105928.json; authoritative Worker Control v1.3.0 and generated Reading Prompt v1.0.0 from the same pinned Runtime control source used by the current worker; the generated Reading Prompt with deterministically verified SHA-256 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5; all five required Reading sources; the same-run-date Daily Runtime Record with Discovery and Queue durably Completed, Reading execution authority durably opened by ordered reconciliation at 13:05:53 and Worker Claimed durably verified at commit 3db2b63024979539b0f0ea5ad48685250fe88011; and the completed 2026-08-30 Research Plan selecting exactly Q-20260830-01, Q-20260830-02 and Q-20260830-03.",
+      "input_zh": "已核验的 2026-08-30 Reading Wake Receipt（research/runtime/wakes/2026/08/2026-08-30/reading-105928.json）；当前 Worker 所使用同一固定 Runtime 控制源中的 Worker Control v1.3.0 与 Generated Reading Prompt v1.0.0；经确定性工具核验 SHA-256 为 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5 的 Generated Reading Prompt；Reading 全部 5 个 requiredSources；Discovery 与 Queue 已持久 Completed、Reading 于 13:05:53 由 Ordered Reconciliation 持久获得执行权、Worker Claimed 已在提交 3db2b63024979539b0f0ea5ad48685250fe88011 完成持久核验的同运行日 Daily Runtime Record；以及只选择 Q-20260830-01、Q-20260830-02、Q-20260830-03 的 2026-08-30 Research Plan。",
+      "workResult": "The 13:00 Analysis wake found Reading still Waiting even though the 11:00 Reading wake receipt already existed and Queue was durably Completed. Under global serial execution, Analysis therefore performed zero Analysis-specific work and requested repository reconciliation for the overdue earlier task. The native Scheduler durably opened Reading, and the native Worker Claim workflow persisted and verified Worker Claimed before substantive work. Skill 03 then completed source-complete primary reading for all three same-day P0 objects and produced exactly three durable Reading Notes. Q-20260830-01 verifies Google ADK's merged nested-HITL resume mechanism: resume state is decided as CONTINUE, PAUSE or REPLAY_CALLS; whole branch run ids rather than substrings bind nested answers; unresolved pauses are found beyond a two-event window; id/name/sub-branch matching distinguishes responses; and tests cover LROs, unrelated branches, parallel calls and replay. This supports durable continuation identity but does not authenticate the human principal or prove exactly-once external effects. Q-20260830-02 verifies the primary-research evidence in arXiv:2608.27167: across 12 frontier models, evidence presentation can sharply increase commitment on aleatorically unknowable questions while stated belief barely moves; fully fabricated panels produce commitment statistically equivalent to real panels in the reported experiment; answerable controls rule out simple incapacity or blanket refusal in the tested protocol; a small-model fine-tuning intervention can train a gate, but rigid response formats can remove that protection. The effect is heterogeneous and the paper preserves important transfer-set and weather limitations, so it is not universal proof. Q-20260830-03 verifies LangGraph DeltaChannel's storage/replay mechanism: ordinary checkpoints store deltas, reconstruction replays ordered ancestor writes from a seed snapshot, reducers must be deterministic and batching-invariant, write durability must precede dependent checkpoint durability, periodic snapshots bound replay depth, and naive pruning can sever the replay chain. The reported 5.27 GB to 129 MB Deep Agents example is vendor-reported benchmark evidence, not independent validation. Reading performed no Research Analysis, article writing, visualization, Production or Publication and used no prior-day Runtime artifact as a business input.",
+      "workResult_zh": "13:00 Analysis Wake 发现 Reading 仍为 Waiting，尽管 11:00 Reading Wake Receipt 已存在且 Queue 已持久 Completed。依据全局串行执行规则，本次 Analysis 因此没有执行任何 Analysis 专属业务，而是请求仓库对更早逾期的 Reading 进行 Reconciliation。原生 Scheduler 随后持久打开 Reading 执行槽，原生 Worker Claim Workflow 在实质工作前持久写入并核验 Worker Claimed。之后 Skill 03 对当天三个 P0 对象全部完成一手来源深读，并恰好生成 3 份持久 Reading Note。Q-20260830-01 核验 Google ADK 已合并的 Nested-HITL Resume 机制：Resume 明确判定为 CONTINUE、PAUSE 或 REPLAY_CALLS；用完整 Branch Run ID 而不是子串绑定嵌套响应；可发现超出两事件窗口的未解决 Pause；通过 ID、Name 与 Sub-branch 区分响应；测试覆盖 LRO、无关 Branch、并行调用与 Replay。它支持持久 Continuation Identity，但不能据此认证真人 Principal 或证明外部副作用 Exactly-once。Q-20260830-02 核验 arXiv:2608.27167 的一手研究证据：在 12 个前沿模型上，证据呈现可在模型陈述 Belief 几乎不变时显著提高对 Aleatoric Unknowable 问题的 Commitment；论文报告 Fully Fabricated Panel 与 Real Panel 的 Commitment 在实验中统计等价；Matched Answerable Control 在该协议下排除了简单能力不足或全部拒绝；小模型 Fine-tuning 可训练 Gate，但刚性 Response Format 又可能消除保护。效应具有明显模型异质性，论文也保留 Transfer-set 与 Weather 等重要局限，因此不能扩大成普遍证明。Q-20260830-03 核验 LangGraph DeltaChannel 的存储与 Replay 机制：普通 Checkpoint 存 Delta，重建从 Seed Snapshot 沿祖先链按序 Replay Write；Reducer 必须确定且满足批处理不变性；依赖 Write 的 Checkpoint 不能先于 Write 持久；周期 Snapshot 限制 Replay Depth；Naive Pruning 会切断 Replay Chain。Deep Agents 报告的 5.27 GB → 129 MB 案例属于厂商自报 Benchmark，不是独立验证。Reading 未执行 Research Analysis、文章写作、可视化、Production 或 Publication，也未把前一日 Runtime Artifact 作为业务输入。",
+      "output": "Exactly three durable Reading Notes were written: research/reading/Q-20260830-01-nested-hitl-continuation-identity.md, research/reading/Q-20260830-02-action-qualification-gate-fabricated-evidence.md and research/reading/Q-20260830-03-delta-checkpoint-compaction-replay-boundary.md.",
+      "output_zh": "恰好写入三份持久 Reading Note：research/reading/Q-20260830-01-nested-hitl-continuation-identity.md、research/reading/Q-20260830-02-action-qualification-gate-fabricated-evidence.md、research/reading/Q-20260830-03-delta-checkpoint-compaction-replay-boundary.md。",
+      "next": "After the Reading terminal result is durably finalized, validated and GitHub Commit Verified, Runtime must reconcile formal-time order immediately. Because Analysis is already overdue, it becomes eligible only after Reading is execution-closed and repository reconciliation grants Analysis a fresh execution slot; the 13:00 timer itself does not grant that authority.",
+      "next_zh": "Reading 终态结果完成持久 Finalization、Validation 与 GitHub Commit Verified 后，Runtime 必须立即重新按 Formal Time 对账。由于 Analysis 已逾期，只有 Reading 完成执行收口且仓库 Reconciliation 为 Analysis 授予新的执行槽后，Analysis 才具备资格；13:00 定时器本身不授予执行权。",
+      "metrics": [
+        {
+          "label": "Reading Wake Receipt verified",
+          "label_zh": "Reading Wake Receipt 已核验",
+          "value": 1
+        },
+        {
+          "label": "Generated Reading prompt SHA-256 verified",
+          "label_zh": "Generated Reading Prompt SHA-256 已核验",
+          "value": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"
+        },
+        {
+          "label": "Required Reading sources read",
+          "label_zh": "已读取 Reading Required Source",
+          "value": "5 / 5"
+        },
+        {
+          "label": "Selected objects read",
+          "label_zh": "已深读 Selected Object",
+          "value": 3
+        },
+        {
+          "label": "Durable Reading Notes",
+          "label_zh": "持久 Reading Note",
+          "value": 3
+        },
+        {
+          "label": "Reading execution-slot openings",
+          "label_zh": "Reading 执行槽开启",
+          "value": 1
+        },
+        {
+          "label": "Reading worker claims",
+          "label_zh": "Reading Worker Claimed",
+          "value": 1
+        },
+        {
+          "label": "Prior-day Runtime business inputs",
+          "label_zh": "前一日 Runtime 业务输入",
+          "value": 0
+        },
+        {
+          "label": "Research Analysis performed before Reading terminal",
+          "label_zh": "Reading 终态前执行 Research Analysis",
+          "value": 0
+        },
+        {
+          "label": "Articles written",
+          "label_zh": "文章写作数量",
+          "value": 0
+        },
+        {
+          "label": "Publication actions",
+          "label_zh": "Publication 操作数量",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Reading Wake Receipt",
+          "label_zh": "Reading 唤醒回执",
+          "path": "research/runtime/wakes/2026/08/2026-08-30/reading-105928.json"
+        },
+        {
+          "label": "Analysis Wake Receipt that detected the deferred earlier task",
+          "label_zh": "发现更早任务被延后的 Analysis Wake Receipt",
+          "path": "research/runtime/wakes/2026/08/2026-08-30/analysis-125803.json"
+        },
+        {
+          "label": "Worker Control manifest",
+          "label_zh": "Worker Control Manifest",
+          "path": "research/runtime/worker-prompts/generated/CONTROL.json"
+        },
+        {
+          "label": "Generated Reading prompt",
+          "label_zh": "Generated Reading Prompt",
+          "path": "research/runtime/worker-prompts/generated/reading.prompt.md"
+        },
+        {
+          "label": "Run-date Research Plan",
+          "label_zh": "运行日 Research Plan",
+          "path": "research/runtime/plans/2026/08/2026-08-30-plan.json"
+        },
+        {
+          "label": "Reading ordered reconciliation commit",
+          "label_zh": "Reading 顺序对账提交",
+          "commit": "6356be70db04552bdf8585d6873e741264a9dc1b"
+        },
+        {
+          "label": "Reading Worker Claimed commit",
+          "label_zh": "Reading Worker Claimed 提交",
+          "commit": "3db2b63024979539b0f0ea5ad48685250fe88011"
+        },
+        {
+          "label": "Q-20260830-01 primary source",
+          "label_zh": "Q-20260830-01 一手来源",
+          "url": "https://github.com/google/adk-python/commit/6d145180611956b2065704189517fd6a0ff1a063"
+        },
+        {
+          "label": "Q-20260830-02 primary source",
+          "label_zh": "Q-20260830-02 一手来源",
+          "url": "https://arxiv.org/abs/2608.27167"
+        },
+        {
+          "label": "Q-20260830-03 primary source",
+          "label_zh": "Q-20260830-03 一手来源",
+          "url": "https://www.langchain.com/blog/deep-agents-0-6"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Q-20260830-01 Reading Note",
+          "label_zh": "Q-20260830-01 深读笔记",
+          "path": "research/reading/Q-20260830-01-nested-hitl-continuation-identity.md"
+        },
+        {
+          "label": "Q-20260830-02 Reading Note",
+          "label_zh": "Q-20260830-02 深读笔记",
+          "path": "research/reading/Q-20260830-02-action-qualification-gate-fabricated-evidence.md"
+        },
+        {
+          "label": "Q-20260830-03 Reading Note",
+          "label_zh": "Q-20260830-03 深读笔记",
+          "path": "research/reading/Q-20260830-03-delta-checkpoint-compaction-replay-boundary.md"
+        },
+        {
+          "label": "Reading result",
+          "label_zh": "Reading 结果",
+          "path": "research/runtime/results/2026/08/2026-08-30-reading-result.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "path": "research/runtime/records/daily/2026/08/2026-08-30-daily-runtime.json"
+        },
+        {
+          "label": "Runtime Markdown ledger",
+          "label_zh": "Runtime Markdown 账本",
+          "path": "research/runtime/2026/08/2026-08-30-runtime.md"
+        }
+      ],
+      "startedAt": "2026-08-30T13:05:53+08:00",
+      "completedAt": "2026-08-30T13:17:24+08:00"
     }
   },
   "timeline": [
@@ -612,6 +770,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Reading after verifying research/runtime/wakes/2026/08/2026-08-30/reading-105928.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-08-30T13:17:24+08:00",
+      "task": "reading",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Reading closed as Completed through governed Runtime shift finalization after durable result validation for 2026-08-30."
     }
   ],
   "metrics": [],
@@ -619,5 +784,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-08-30T13:06:31+08:00"
+  "updatedAt": "2026-08-30T13:17:24+08:00"
 }
