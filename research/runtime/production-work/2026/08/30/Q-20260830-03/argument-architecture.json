@@ -1,0 +1,72 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-30",
+  "itemId": "Q-20260830-03",
+  "coreProposition": "Checkpoint durability and replay-chain integrity are separate properties: a retained delta checkpoint is reconstructable only when its seed, ordered writes, deterministic reducer identity and migration remain valid, so compaction and pruning should require explicit reconstructability proof rather than treating deletion as storage housekeeping.",
+  "openingMove": {
+    "type": "durable-but-empty-recovery",
+    "purpose": "Open with a retained checkpoint whose file exists but reconstructs empty state after naive pruning.",
+    "evidenceRefs": [
+      "E1",
+      "I1"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "What changes when checkpoints store deltas?",
+      "claim": "A checkpoint becomes a reference into a persistence graph rather than a self-contained state object.",
+      "evidenceRefs": [
+        "E1",
+        "I1"
+      ],
+      "reasoningRole": "model-shift",
+      "readerProgress": "The reader locates correctness in seed, writes and reducer.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Which replay invariants make reconstruction truthful?",
+      "claim": "Seed identity, ordered writes, deterministic batching-invariant reducers and write-before-checkpoint durability must all hold.",
+      "evidenceRefs": [
+        "E1",
+        "E2"
+      ],
+      "reasoningRole": "mechanism",
+      "readerProgress": "The reader gains a concrete integrity checklist.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "How does compaction remain safe?",
+      "claim": "Periodic snapshots bound replay depth, while pruning must preserve a seed-to-target path or materialize a fresh seed first.",
+      "evidenceRefs": [
+        "E1",
+        "I2"
+      ],
+      "reasoningRole": "lifecycle-governance",
+      "readerProgress": "The reader understands pruning as a guarded transition.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What does the storage benchmark prove?",
+      "claim": "It shows possible workload-specific benefit but does not independently validate universal ratios, recovery latency or backend correctness.",
+      "evidenceRefs": [
+        "E3"
+      ],
+      "reasoningRole": "evidence-boundary",
+      "readerProgress": "The reader separates performance motivation from replay proof.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Keeping frequent full snapshots avoids replay complexity.",
+    "responseBoundary": "That can be a valid risk choice, but append-heavy workloads may recover quadratic storage growth; the trade must be explicit."
+  },
+  "endingStrategy": {
+    "type": "operational-implications",
+    "purpose": "End with separate health indicators and a reconstructability receipt before pruning."
+  }
+}

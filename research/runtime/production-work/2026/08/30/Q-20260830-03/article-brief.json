@@ -1,0 +1,50 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-30",
+  "itemId": "Q-20260830-03",
+  "researchObjectId": "AN-20260830-03",
+  "targetAudience": {
+    "primary": "Engineers operating durable agent runtimes and checkpoint stores",
+    "knowledgeAssumption": "The reader understands snapshots, reducers, write-ahead persistence and retention.",
+    "readerProblem": "A checkpoint can be durably stored yet reconstruct empty or incorrect state after its replay ancestors are pruned."
+  },
+  "whyNow": "LangGraph DeltaChannel implementation and documentation expose delta reconstruction, write ordering, snapshot cadence and pruning boundaries, while Deep Agents reports a large workload-specific storage reduction.",
+  "externalHook": {
+    "type": "delta-checkpoint-replay-integrity",
+    "description": "Delta checkpoints trade self-contained blobs for ordered replay from seeds and writes.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "coreProposition": "Checkpoint durability and replay-chain integrity are separate properties: a retained delta checkpoint is reconstructable only when its seed, ordered writes, deterministic reducer identity and migration remain valid, so compaction and pruning should require explicit reconstructability proof rather than treating deletion as storage housekeeping.",
+  "originalValue": {
+    "type": "dual-health-checkpoint-model",
+    "description": "Separates durable presence from reconstructability and treats compaction as a proof-producing transition over a persistence graph."
+  },
+  "readerTakeaway": "Track checkpoint durability and replay integrity separately; pin reducer and migration identity, and prove every retained checkpoint reconstructs before deleting ancestors.",
+  "evidenceBoundary": {
+    "supported": [
+      "DeltaChannel reconstructs from seed snapshots and ordered ancestor writes.",
+      "Reducers must be deterministic and batching-invariant; writes become durable before dependent checkpoints.",
+      "Periodic snapshots bound replay depth and naive pruning can sever the chain."
+    ],
+    "unsupported": [
+      "Independent validation of the 5.27 GB to 129 MB benchmark",
+      "Replay safety for arbitrary reducers or backends",
+      "Constant recovery latency"
+    ],
+    "uncertain": [
+      "The best compaction receipt",
+      "How reducer versions should migrate"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The conclusion is a general checkpoint and compaction engineering pattern."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "Implementation evidence supports concrete replay invariants, while the benchmark and beta status remain clearly bounded."
+}
