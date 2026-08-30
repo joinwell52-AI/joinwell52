@@ -1,0 +1,204 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "analysis",
+  "family": "daily",
+  "runtimeDate": "2026-08-30",
+  "status": "Completed",
+  "input": {
+    "scheduler": "research/runtime/SCHEDULER.json",
+    "workerControl": "research/runtime/worker-prompts/generated/CONTROL.json",
+    "workerControlVersion": "1.3.0",
+    "authoritativePrompt": {
+      "path": "research/runtime/worker-prompts/generated/analysis.prompt.md",
+      "version": "2.0.0",
+      "sha256": "4f40dff2d12569f647bf265f344b60cb0f0cd0349f0b2d5cf1023f50947dfea2",
+      "hashVerified": true,
+      "sourceCommit": "2f864a46031267b694ade6dc164c813599e5275b"
+    },
+    "requiredSources": [
+      "research/runtime/SCHEDULER.json",
+      "research/runtime/WORKER-CONTRACT-V3.md",
+      "research/runtime/WAKE-RECEIPT-V1.md",
+      "research/editorial/EDITORIAL-ARCHITECTURE.json",
+      "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+      "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+      "research/skills/04-research-analysis.md"
+    ],
+    "admission": {
+      "decision": "Admitted",
+      "date": "2026-08-30",
+      "branch": "main",
+      "wakeSource": "chatgpt-scheduled-task",
+      "requiredCapabilities": [
+        "github-read",
+        "github-write",
+        "file-editing"
+      ],
+      "availableCapabilities": [
+        "github-read",
+        "github-write",
+        "file-editing",
+        "deterministic-hash"
+      ],
+      "notBefore": "13:00",
+      "wakeReceivedAt": "15:01:39",
+      "limits": {
+        "maxRunMinutes": 120,
+        "maxRecoveryAttempts": 2,
+        "maxRevisionRounds": 2,
+        "maxOutputItems": 3,
+        "zeroOutputAllowed": true,
+        "directPublicationAllowed": false,
+        "requireSameRunDateInputs": true,
+        "requirePromptHashVerification": true,
+        "requireRemoteCommitVerification": true
+      }
+    },
+    "readingStatus": "Completed",
+    "readingArtifacts": [
+      "research/reading/Q-20260830-01-nested-hitl-continuation-identity.md",
+      "research/reading/Q-20260830-02-action-qualification-gate-fabricated-evidence.md",
+      "research/reading/Q-20260830-03-delta-checkpoint-compaction-replay-boundary.md"
+    ],
+    "controlPlane": {
+      "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-30/analysis-150139.json",
+      "workerClaimCommit": "526d2e4e654f45882377376147a48ff23d8850e9",
+      "workerClaimVerified": true,
+      "globalOrderVerified": true,
+      "earlierDueTasksClosed": [
+        "discovery",
+        "queue",
+        "reading"
+      ],
+      "recoveryReason": "Latest reopened Analysis execution epoch had no fresh Worker Claimed event after prior lease expiry."
+    }
+  },
+  "workResult": {
+    "summary": "Recovered the overdue same-date Analysis execution epoch after its prior lease expired and the repository reopened it without a fresh Worker Claim. Verified the generated Analysis Prompt v2.0.0 SHA-256 and all seven required sources from one current main authority, consumed only the three completed 2026-08-30 Reading Results, and produced exactly three Research Objects. Q-20260830-01 models continuation authority as a compound identity binding workflow frame, call occurrence, branch, responder evidence and effect state; event matching and typed replay decisions do not authenticate the responder or prove exactly-once effects. Q-20260830-02 separates epistemic evidence from action qualification: professional presentation can change commitment without improving knowability, so generated action choice must not self-authorize execution; the evidence remains heterogeneous preprint research without independent replication. Q-20260830-03 separates checkpoint durability from replay-chain integrity: delta reconstruction depends on a valid seed, ordered writes, deterministic reducer identity and migration, while the reported storage gain remains vendor evidence. No prior-day research input, fixed article outline, forced first-party mapping, article drafting, visualization, candidate creation or publication was performed.",
+    "summary_zh": "在旧租约过期、仓库重开 Analysis 执行轮次但没有新 Worker Claim 后，完成同日 Analysis 恢复。已从同一当前 main 权威核验 Generated Analysis Prompt v2.0.0 的 SHA-256 与全部 7 个必读来源，只消费 2026-08-30 当日三份已完成 Reading Result，并形成三份 Research Object。Q-20260830-01 把续行权威建模为工作流帧、调用发生、分支、响应者证据与效果状态组成的复合身份；事件匹配与类型化重放决策不认证响应者，也不证明外部效果恰好一次。Q-20260830-02 分离认知证据与行动资格：专业化展示可在不改善可知性的情况下改变行动承诺，因此模型生成的行动选择不能自我授权；现有证据仍是异质的预印本研究，没有独立复现。Q-20260830-03 分离检查点持久性与重放链完整性：增量重建依赖有效种子、有序写入、确定的归约器身份与迁移；所报告的存储收益仍是厂商证据。未使用前一日研究输入、固定文章大纲或强制自有项目映射，也未执行文章撰写、可视化、候选创建或发布。",
+    "researchObjects": [
+      {
+        "column": "digital-employee",
+        "itemId": "Q-20260830-01",
+        "artifact": "research/analysis/Q-20260830-01-continuation-authority-compound-identity.md",
+        "articleType": "technical-analysis",
+        "projectRelevance": "none",
+        "judgment": "Continuation authority should bind workflow frame, call occurrence, branch identity, responder evidence and known effect state. Event-history correctness does not authenticate the responder or establish exactly-once effects.",
+        "judgment_zh": "续行权威应绑定工作流帧、调用发生、分支身份、响应者证据与已知效果状态。事件历史正确不认证响应者，也不建立外部效果恰好一次。"
+      },
+      {
+        "column": "industry-architecture",
+        "itemId": "Q-20260830-02",
+        "artifact": "research/analysis/Q-20260830-02-action-qualification-independent-of-presentation.md",
+        "articleType": "research-brief",
+        "projectRelevance": "none",
+        "judgment": "Epistemic evidence should feed an independently inspectable action-qualification predicate; polished presentation and the model's generated commitment must not become execution authority.",
+        "judgment_zh": "认知证据应进入可独立检查的行动资格谓词；精美展示与模型生成的行动承诺不能成为执行权威。"
+      },
+      {
+        "column": "open-source-engineering",
+        "itemId": "Q-20260830-03",
+        "artifact": "research/analysis/Q-20260830-03-checkpoint-durability-separate-from-replay-integrity.md",
+        "articleType": "engineering-insight",
+        "projectRelevance": "none",
+        "judgment": "Checkpoint durability and replay-chain integrity are separate properties. Safe compaction requires proof that seed, ordered writes, reducer identity and migration remain reconstructable.",
+        "judgment_zh": "检查点持久性与重放链完整性是两项不同属性。安全压缩需要证明种子、有序写入、归约器身份与迁移仍可重建。"
+      }
+    ],
+    "boundary": {
+      "unreadMaterialAnalyzed": false,
+      "priorDayResearchInputsReused": false,
+      "fixedArticleOutline": false,
+      "forcedFirstPartyMapping": false,
+      "articleWriting": false,
+      "visualization": false,
+      "publicationCandidate": false,
+      "publication": false
+    }
+  },
+  "output": {
+    "type": "Research Objects",
+    "researchObjectCount": 3,
+    "artifacts": [
+      "research/analysis/Q-20260830-01-continuation-authority-compound-identity.md",
+      "research/analysis/Q-20260830-02-action-qualification-independent-of-presentation.md",
+      "research/analysis/Q-20260830-03-checkpoint-durability-separate-from-replay-integrity.md"
+    ]
+  },
+  "next": {
+    "task": "production",
+    "scheduledTime": "15:00",
+    "instruction": "Production may consume only these three completed 2026-08-30 Research Objects after fresh admission, authoritative Production Prompt verification, global serial-order reconciliation and Worker Claim. Preserve responder/effect boundaries, preprint heterogeneity and replay-chain evidence limits.",
+    "instruction_zh": "Production 只能在完成新的准入、权威 Production Prompt 核验、全局串行顺序协调与 Worker Claim 后消费这三份 2026-08-30 Research Object，并保留响应者/效果边界、预印本异质性与重放链证据限制。"
+  },
+  "metrics": [
+    {
+      "name": "reading_results_consumed",
+      "value": 3
+    },
+    {
+      "name": "research_objects",
+      "value": 3
+    },
+    {
+      "name": "prompt_hash_verified",
+      "value": 1
+    },
+    {
+      "name": "required_sources_read",
+      "value": 7
+    },
+    {
+      "name": "wake_receipts_verified",
+      "value": 1
+    },
+    {
+      "name": "worker_claims_verified",
+      "value": 1
+    },
+    {
+      "name": "prior_day_research_inputs_reused",
+      "value": 0
+    },
+    {
+      "name": "first_party_project_mappings_forced",
+      "value": 0
+    },
+    {
+      "name": "article_drafts",
+      "value": 0
+    },
+    {
+      "name": "publication_actions",
+      "value": 0
+    },
+    {
+      "name": "revision_rounds_used",
+      "value": 0
+    }
+  ],
+  "evidence": [
+    "2f864a46031267b694ade6dc164c813599e5275b",
+    "research/runtime/wakes/2026/08/2026-08-30/analysis-150139.json",
+    "research/runtime/records/daily/2026/08/2026-08-30-daily-runtime.json",
+    "research/runtime/worker-prompts/generated/CONTROL.json",
+    "research/runtime/worker-prompts/generated/analysis.prompt.md",
+    "research/runtime/WORKER-CONTRACT-V3.md",
+    "research/runtime/WAKE-RECEIPT-V1.md",
+    "research/editorial/EDITORIAL-ARCHITECTURE.json",
+    "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+    "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+    "research/skills/04-research-analysis.md",
+    "research/runtime/results/2026/08/2026-08-30-reading-result.json",
+    "research/reading/Q-20260830-01-nested-hitl-continuation-identity.md",
+    "research/reading/Q-20260830-02-action-qualification-gate-fabricated-evidence.md",
+    "research/reading/Q-20260830-03-delta-checkpoint-compaction-replay-boundary.md",
+    "526d2e4e654f45882377376147a48ff23d8850e9"
+  ],
+  "artifacts": [
+    "research/analysis/Q-20260830-01-continuation-authority-compound-identity.md",
+    "research/analysis/Q-20260830-02-action-qualification-independent-of-presentation.md",
+    "research/analysis/Q-20260830-03-checkpoint-durability-separate-from-replay-integrity.md",
+    "research/runtime/results/2026/08/2026-08-30-analysis-result.json"
+  ]
+}
