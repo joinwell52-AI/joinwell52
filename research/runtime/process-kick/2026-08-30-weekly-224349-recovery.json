@@ -1,0 +1,10 @@
+{
+  "schema": "runtime-process-kick/v2",
+  "date": "2026-08-30",
+  "requestedAt": "2026-08-30T22:43:49+08:00",
+  "source": "manual-recovery",
+  "requestMode": "terminal-recovery",
+  "nominalTask": "weekly",
+  "allowTerminalReopen": true,
+  "reason": "Same-day recovery of a stale Weekly execution lease. Preserve the original 20:47:39 Execution Slot Opened and 20:48:09 Worker Claimed events as audit history, expire the stale Running lease under current Watchdog rules, and resume Weekly from the earliest unproved node."
+}
