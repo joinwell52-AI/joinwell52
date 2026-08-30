@@ -27,23 +27,19 @@ const weeklyRuntimePath = join(ROOT, 'research', 'runtime', 'records', 'weekly',
 const reviewPath = join(REVIEW_ROOT, year, month, `${runDate}-weekly-007-review.json`)
 
 if (!(await exists(draftPath))) {
-  console.log(`No scorecard draft for ${runDate}; nothing to finalize.`)
+  console.log(`No scorecard record for ${runDate}; nothing to finalize.`)
   process.exit(0)
 }
 
 const current = await readJson(draftPath)
-if (current.status === 'Completed') {
-  console.log(`Scorecard ${runDate} is already Completed.`)
-  process.exit(0)
-}
 if (!(await exists(weeklyRuntimePath))) {
-  console.log(`Weekly Runtime ${runDate} is not present; scorecard remains Draft.`)
+  console.log(`Weekly Runtime ${runDate} is not present; scorecard remains ${current.status}.`)
   process.exit(0)
 }
 const weekly = await readJson(weeklyRuntimePath)
 const weeklyResult = weekly.results?.weekly
 if (weekly.status !== 'Completed' || weekly.taskStatus?.weekly !== 'Completed' || weeklyResult?.status !== 'Completed' || weeklyResult?.commitVerify !== 'Completed') {
-  console.log(`Weekly Runtime ${runDate} is not durably verified Completed; scorecard remains Draft.`)
+  console.log(`Weekly Runtime ${runDate} is not durably verified Completed; scorecard remains ${current.status}.`)
   process.exit(0)
 }
 
@@ -52,6 +48,16 @@ const marker = 'OBSERVATION_SCORECARD_INVENTORY='
 const inventoryLine = inventoryOutput.split(/\r?\n/).find(line => line.startsWith(marker))
 if (!inventoryLine) throw new Error('Inventory script did not emit OBSERVATION_SCORECARD_INVENTORY.')
 const inventory = JSON.parse(inventoryLine.slice(marker.length))
+
+const currentByPath = new Map((current.items || []).map(item => [item.path, item]))
+const currentAlreadyCoversInventory = current.status === 'Completed' &&
+  current.coverage?.rate === 1 &&
+  current.coverage?.eligible === inventory.eligible &&
+  inventory.items.every(item => currentByPath.get(item.path)?.contentHash === item.contentHash)
+if (currentAlreadyCoversInventory) {
+  console.log(`Scorecard ${runDate} already covers the current ${inventory.eligible}-item corpus.`)
+  process.exit(0)
+}
 
 const walkJson = async directory => {
   const entries = await readdir(directory, { withFileTypes: true })
@@ -92,9 +98,11 @@ for (const inventoryItem of inventory.items) {
   if (reviewed && (!reviewed.contentHash || reviewed.contentHash === inventoryItem.contentHash)) {
     const item = {
       ...reviewed,
-      contentHash: inventoryItem.contentHash
+      contentHash: inventoryItem.contentHash,
+      sourceLanguage: inventoryItem.sourceLanguage || reviewed.sourceLanguage
     }
     if (item.audited || item.scoringMode === 'audited') audited += 1
+    else if (item.scoringMode === 'inherited') inherited += 1
     else direct += 1
     resolved.push(item)
     continue
@@ -105,7 +113,8 @@ for (const inventoryItem of inventory.items) {
     resolved.push({
       ...previous,
       scoringMode: 'inherited',
-      inheritedFrom: prior.reviewDate
+      inheritedFrom: prior.reviewDate,
+      sourceLanguage: inventoryItem.sourceLanguage || previous.sourceLanguage
     })
     inherited += 1
     continue
@@ -148,5 +157,9 @@ const completed = {
   items: resolved
 }
 
+const distribution = { '超凡': 0, '卓越': 0, '优质': 0, '合格': 0, '基础': 0 }
+for (const item of resolved) distribution[item.publicLabel] = (distribution[item.publicLabel] || 0) + 1
+const average = resolved.reduce((sum, item) => sum + item.score, 0) / resolved.length
+
 await writeFile(draftPath, `${JSON.stringify(completed, null, 2)}\n`, 'utf8')
-console.log(`Finalized ${relative(ROOT, draftPath)}: eligible=${inventory.eligible}, direct=${direct}, audited=${audited}, inherited=${inherited}.`)
+console.log(`Finalized ${relative(ROOT, draftPath)}: eligible=${inventory.eligible}, direct=${direct}, audited=${audited}, inherited=${inherited}, average=${average.toFixed(1)}, distribution=${JSON.stringify(distribution)}.`)
