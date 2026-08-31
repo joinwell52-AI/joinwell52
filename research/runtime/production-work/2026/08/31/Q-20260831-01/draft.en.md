@@ -6,7 +6,7 @@ column: digital-employee
 category: daily
 article_type: technical-analysis
 edition: research-center
-research_question: "How can a digital employee reuse standing permission preferences without silently converting them into final authority for a concrete consequential occurrence?"
+research_question: "数字员工如何复用长期权限偏好，同时避免把偏好静默变成某次具体后果性行动的最终授权？"
 summary: "A 113-participant study reports that reusable consequence policies reduce prompts while changing overreach blocking, and that 114 of 140 authored rules preserve a later Ask decision. A safer design treats standing decision routing and concrete action authority as separate governance objects."
 cover: staging/publication-candidates/2026-08-31-a-standing-rule-is-not-this-actions-authority-cover.png
 sources:

@@ -6,7 +6,7 @@ column: industry-architecture
 category: daily
 article_type: technical-analysis
 edition: research-center
-research_question: "Which authority facts must survive context transformation so downstream agents and permission reviewers can distinguish original user authority from low-privilege content reconstructed into a stronger role?"
+research_question: "上下文转换必须保留哪些权威事实，才能让下游智能体或权限审查器区分真实用户权威与被重建到高权限位置的低权限内容？"
 summary: "A study of six coding-agent harnesses reports that low-privilege content reconstructed as user-level instruction can defeat automatic permission review that rejects conventional dangerous-instruction baselines. Safer architecture keeps original principal, origin channel, privilege class, and explicit privilege transitions independent of reconstructed message role."
 cover: staging/publication-candidates/2026-08-31-a-reconstructed-role-is-not-proof-of-authority-cover.png
 sources:

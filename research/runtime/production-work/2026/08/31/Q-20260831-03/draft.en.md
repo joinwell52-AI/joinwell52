@@ -6,7 +6,7 @@ column: open-source-engineering
 category: daily
 article_type: engineering-insight
 edition: research-center
-research_question: "What must a governed agent runtime hold constant, and what may it change, for a recovery experiment to support a causal repair claim rather than merely a lucky rerun?"
+research_question: "受治理智能体运行体在恢复实验中必须固定什么、允许改变什么，才能支持因果修复，而不只是一次幸运重跑？"
 summary: "A study of 536 confirmed failures across three multi-agent frameworks reports that unguided reruns often reproduce failure but rarely repair it. Controlled replay freezes a failed logical prefix, rejects divergence, and resumes live execution after an explicit intervention anchor; external state remains a separate validity gate."
 cover: staging/publication-candidates/2026-08-31-a-successful-rerun-does-not-prove-the-repair-cover.png
 sources:
