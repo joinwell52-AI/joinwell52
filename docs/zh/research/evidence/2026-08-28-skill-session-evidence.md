@@ -1,7 +1,7 @@
 ---
 title: "A3 公开证据包：技能与会话证据链"
 date: '2026-08-28'
-updated: '2026-08-30'
+updated: '2026-08-31'
 column: research-evidence
 category: evidence
 article_type: evidence-pack
@@ -66,8 +66,8 @@ C1 是内部验收编号，与本页 A3 公开包编号不同。这次合法绑�
 | --- | --- | --- |
 | 修改前缺口、SessionStore 绑定及失败分支 | `RUNTIME-BOUNDARY-20260830-001`：phase0、targeted 记录及实现 | 私有母版材料，访问受限 |
 | C1 三键与完整性验证 | `RUNTIME-BOUNDARY-QA-20260830-001`：independent-qa 记录 | 私有母版材料，访问受限 |
-| V2.1.2 正式发布及最终回归 | `V2.1.2-R3`、`V2.1.2-PUBLICATION-20260830-001`；Runtime 1842 pass / 0 fail / 1 skip，Shell 1037 pass / 0 fail | 已登录 GitHub 接口及本地记录核对，2026-08-30 |
+| V2.1.2 正式发布及最终回归 | `V2.1.2-R3`、`V2.1.2-PUBLICATION-20260830-001`；Runtime 1842 pass / 0 fail / 1 skip，Shell 1037 pass / 0 fail | 第一方发布记录，2026-08-30 |
 
-[V2.1.2 发布说明（需母版仓库访问权限）](https://github.com/joinwell52-AI/codeflowmu/releases/tag/V2.1.2)。公开页提供脱敏摘要及来源映射，完整源码和原始日志访问受限；不把历史 fixture 包称作新版端到端复现包。
+[CodeFlowMu V2.1.2 公开发布摘要](/zh/research/evidence/2026-08-30-codeflowmu-v2.1.2-public-release-summary) 汇总 SessionStore 核验边界、三项 Runtime 改造、C1 独立 QA、兼容性、发布门禁和残余风险。完整源码与原始日志仍为受限第一方材料，不作为公开入口；历史 fixture 也不被包装成新版端到端复现包。
 
 V2.1.2 发布不回填历史 session，也不把 `outcome=ok` 或完整性有效当成 TASK 完成。未发布 Open Edition、未切换在线实例；开发与发布阶段的既有告警、Windows 符号链接 skip 和真实部署未覆盖继续保留。
