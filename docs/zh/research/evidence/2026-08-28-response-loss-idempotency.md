@@ -11,6 +11,8 @@ lifecycle: "Published"
 publication_authorized: true
 ---
 
+[English Version](/en/research/evidence/2026-08-28-response-loss-idempotency)
+
 # A1｜响应丢失与逐工具幂等
 
 ## 主张
