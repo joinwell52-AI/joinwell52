@@ -38,7 +38,7 @@ publication_authorized: true
 
 本文所谓“提前发现”，不是预测恢复后一定会发生第二次效果，而是问：**在第二次执行发生之前，第一次效果已经发生这一事实，当时是否已经有证据可读？** 如果恢复决策没有读取这份证据，就可能把本可识别的效果事实当成未知。
 
-研究线索来自 [CatchBench](https://arxiv.org/abs/2608.22808)，一个研究“Agent 的失败什么时候能够被发现”的学术评测项目，不是数字员工产品。作者 Yue Zhao（赵岳）是南加州大学计算机科学助理教授，研究异常检测与可审计 AI 系统。[作者背景](https://viterbi.usc.edu/directory/faculty/Zhao/Yue)
+研究线索来自 [CatchBench](https://arxiv.org/abs/2608.22808)，一个研究“Agent 的失败什么时候能够被发现”的学术评测项目，不是数字员工产品。作者 Yue Zhao（赵越）是南加州大学计算机科学助理教授，研究异常检测与可审计 AI 系统。[作者背景](https://viterbi.usc.edu/directory/faculty/Zhao/Yue)
 
 我们开发和维护的 CodeFlowMu 是本地多 Agent 协作系统，组织不同角色的 Agent 处理工程任务，并管理会话、工具执行、人工审批和结果记录。我们需要知道这些记录究竟能支持怎样的判断。因此，本轮先复跑 CatchBench 的公开执行前（PRE）基准，再对自己的审批故障实验做分时证据截断，回答：**结论变了，究竟是判断方法变了，还是可读取的信息变了？**
 
