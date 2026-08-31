@@ -291,7 +291,7 @@ Mature observability is not “everything is visible everywhere.” It is:
 
 ## From engineering patch to formal version
 
-CodeFlowMu V2.1.2 completed the private mother Runtime/Shell release on 2026-08-30. Activity safe projection shipped together with persistent task idempotency and Session identity verification as one Runtime boundary-safety patch.
+CodeFlowMu V2.1.2 was released on August 30, 2026. Its Runtime and Shell source code is maintained in a private repository. Activity safe projection shipped together with persistent task idempotency and Session identity verification as one Runtime boundary-safety patch.
 
 Public articles do not send readers to inaccessible private CodeFlowMu repository links. Publicly reviewable version facts, sanitized B1 results, compatibility and residual risks are available in the [public evidence pack](/en/research/evidence/2026-08-28-event-consumer-visibility) and the [V2.1.2 Public Release Summary](/en/research/evidence/2026-08-30-codeflowmu-v2.1.2-public-release-summary).
 
@@ -343,5 +343,5 @@ Who should be allowed to see which parts of it is another fact that must be desi
 
 - [Historical data, old query probe, V2.1.2 engineering update and public release evidence](/en/research/evidence/2026-08-28-event-consumer-visibility): historical JSON fixture, Reader and check validate frozen material; the public page also maps sanitized implementation facts, B1 independent QA, release gates and residual risks.
 - [OpenHands SDK PR #4689](https://github.com/OpenHands/software-agent-sdk/pull/4689): provides the external consumer-subscription case with 41 → 1 POSTs; it is not evidence for CodeFlowMu's field-projection implementation or acceptance.
-- CodeFlowMu V2.1.2 implementation, independent-QA and raw release logs remain in the restricted private mother repository; this public article does not expose inaccessible private links as reader-facing evidence.
+- CodeFlowMu V2.1.2 implementation, independent-QA and raw release logs remain in the private repository; this public article does not expose inaccessible private links as reader-facing evidence.
 - The existence of complete internal data does not prove unauthorized access occurred. This article does not claim that the entire Runtime has eliminated all information risk or that real-network deployments, future unknown consumers or independent Open Edition were included in this validation.

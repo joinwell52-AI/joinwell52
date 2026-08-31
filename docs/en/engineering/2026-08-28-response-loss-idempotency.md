@@ -172,7 +172,7 @@ For the engineering issue at hand, however, the before/after distinction is conc
 
 ## From patch to product version: release gates still matter
 
-CodeFlowMu V2.1.2 completed the private master Runtime/Shell release on 2026-08-30. Public articles do not link directly to the private CodeFlowMu repository; externally reviewable version facts, sanitized QA results, and scope statements are consolidated in the [public evidence pack](/en/research/evidence/2026-08-28-response-loss-idempotency) and the [V2.1.2 Public Release Summary](/en/research/evidence/2026-08-30-codeflowmu-v2.1.2-public-release-summary).
+CodeFlowMu V2.1.2 was released on August 30, 2026. Its Runtime and Shell source code is maintained in a private repository. Public articles do not link directly to the private CodeFlowMu repository; externally reviewable version facts, sanitized QA results, and scope statements are consolidated in the [public evidence pack](/en/research/evidence/2026-08-28-response-loss-idempotency) and the [V2.1.2 Public Release Summary](/en/research/evidence/2026-08-30-codeflowmu-v2.1.2-public-release-summary).
 
 Final release validation recorded:
 
@@ -183,7 +183,7 @@ Final release validation recorded:
 
 These are results of the release test suites. They must not be added together or described as an “idempotency reliability rate.”
 
-The released object is the private CodeFlowMu master Runtime/Shell. It is not Open Dev Team Edition and it does not imply that real LAN/Gateway environments, browser profiles, or user production projects were covered by the same fixtures. The one Windows symlink-permission skip, pre-existing dependency-audit warnings, and the Python targeted-fixture warning remain part of the evidence notes.
+The release covers the CodeFlowMu Runtime and Shell maintained in a private repository. It is not Open Dev Team Edition and it does not imply that real LAN/Gateway environments, browser profiles, or user production projects were covered by the same fixtures. The one Windows symlink-permission skip, pre-existing dependency-audit warnings, and the Python targeted-fixture warning remain part of the evidence notes.
 
 ## What the engineering change actually changed
 
@@ -231,5 +231,5 @@ It was whether the system had enough durable facts to answer, when the second ca
 
 - [Historical experiment, V2.1.2 engineering update, and public version evidence](/en/research/evidence/2026-08-28-response-loss-idempotency): public JSON fixture, Reader, and check validate frozen historical material; the page also maps the sanitized implementation evidence, independent QA, release gate, and residual-risk statements.
 - [LlamaIndex PR #22841](https://github.com/run-llama/llama_index/pull/22841): external failure model and calling-convention fix context; it is not CodeFlowMu implementation or acceptance evidence.
-- CodeFlowMu V2.1.2 implementation, independent QA, and raw release logs remain in the restricted private master; this public article does not provide inaccessible private-repository links as reader-facing evidence.
+- CodeFlowMu V2.1.2 implementation, independent QA, and raw release logs remain in the private repository; this public article does not provide inaccessible private-repository links as reader-facing evidence.
 - Production incidence, every operating system, real LAN/Gateway deployments, and user production projects are outside this article's evidence scope.

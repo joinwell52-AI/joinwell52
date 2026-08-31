@@ -290,7 +290,7 @@ The principle established here is therefore broader than “better logging”:
 
 ## From engineering patch to formal version
 
-CodeFlowMu V2.1.2 completed the private mother Runtime/Shell release on 2026-08-30. Session identity verification shipped together with persistent task idempotency and Activity safe projection as one Runtime boundary-safety patch.
+CodeFlowMu V2.1.2 was released on August 30, 2026. Its Runtime and Shell source code is maintained in a private repository. Session identity verification shipped together with persistent task idempotency and Activity safe projection as one Runtime boundary-safety patch.
 
 Public articles do not point readers to inaccessible private CodeFlowMu repository links. Publicly reviewable version facts, sanitized C1 results, compatibility and residual risks are available in the [public evidence pack](/en/research/evidence/2026-08-28-skill-session-evidence) and the [V2.1.2 Public Release Summary](/en/research/evidence/2026-08-30-codeflowmu-v2.1.2-public-release-summary).
 
@@ -303,7 +303,7 @@ Final release validation recorded:
 
 These numbers describe the overall V2.1.2 release test set. They are not a “Session evidence trust rate,” and they do not prove coverage of every Host, real LAN/Gateway deployment, browser profile or user production project.
 
-The release targets the private mother Runtime/Shell. It does not include an independent Open Dev Team Edition, and it requires no migration of existing TASK, REPORT, Session or Activity files.
+The release covers the CodeFlowMu Runtime and Shell maintained in a private repository. It does not include an independent Open Dev Team Edition, and it requires no migration of existing TASK, REPORT, Session or Activity files.
 
 ## A review checklist for other Agent Runtimes
 
@@ -341,5 +341,5 @@ It is the evidence boundary for answering:
 
 - [Historical profile, mixed evidence sample, V2.1.2 engineering update and public release evidence](/en/research/evidence/2026-08-28-skill-session-evidence): historical fixture, Reader and check validate frozen material; the public page also maps sanitized implementation facts, C1 independent QA, release gates and residual risks.
 - [OpenHands PR #16971](https://github.com/OpenHands/OpenHands/pull/16971): recorded in the 2026-08-28 research as an open proposal; it provides the adjacent problem model of configuration entering a Session, not CodeFlowMu source code or delivery proof.
-- CodeFlowMu V2.1.2 implementation, independent-QA and raw release logs remain in the restricted private mother repository; this public article does not expose inaccessible private links as reader-facing evidence.
+- CodeFlowMu V2.1.2 implementation, independent-QA and raw release logs remain in the private repository; this public article does not expose inaccessible private links as reader-facing evidence.
 - This article does not prove that skill advice was correct, that an Agent fully followed a skill, that invocation evidence replaces result acceptance, or that historical Session identities can be safely inferred and backfilled.
