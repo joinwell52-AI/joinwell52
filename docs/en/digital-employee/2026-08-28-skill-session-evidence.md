@@ -221,6 +221,10 @@ The two proofs cannot substitute for one another.
 
 That is a key difference between evidence systems and ordinary logs: **more fields do not automatically mean stronger evidence; the authority source of each field matters.**
 
+![Four different facts behind “the skill is active”](/assets/figures/2026-08-28-skill-session-evidence-chain.en.svg)
+
+*Figure 1: Configuration existence, Session loading, invocation, and result verification are separate evidence layers. V2.1.2 adds Runtime-verified persistent Session attribution for ordinary invocations; it does not replace result verification. Source: [RBE-20260828-03](/en/research/evidence/2026-08-28-skill-session-evidence).*
+
 ## Independent QA: verify one real SessionStore binding chain
 
 Independent QA did not merely check whether a new `session_id` field appeared in the journal.
