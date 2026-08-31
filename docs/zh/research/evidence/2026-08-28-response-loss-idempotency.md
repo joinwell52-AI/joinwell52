@@ -1,7 +1,7 @@
 ---
 title: "A1 公开证据包：响应丢失与逐工具幂等"
 date: '2026-08-28'
-updated: '2026-08-30'
+updated: '2026-08-31'
 column: research-evidence
 category: evidence
 article_type: evidence-pack
@@ -64,10 +64,10 @@ V2.1.1 固定提交 `36e5c83b` 上的修改前复跑确认任务创建缺口仍�
 | 修改前复现、回执实现与开发回归 | `RUNTIME-BOUNDARY-20260830-001`：phase0、targeted、full-regression 记录 | 私有母版材料，访问受限 |
 | A2/A4 独立结果 | `RUNTIME-BOUNDARY-QA-20260830-001`：independent-qa 记录 | 私有母版材料，访问受限 |
 | 发布测试通过 | `V2.1.2-R3` 发布证据；Runtime 1842 pass / 0 fail / 1 skip，Shell 1037 pass / 0 fail | 私有母版材料，访问受限 |
-| 标签、附件与正式发布 | `V2.1.2-PUBLICATION-20260830-001` 发布回执；标签源码 `cb8869a3`，main `919c3b48` 追加回执 | 已登录 GitHub 接口已核对，2026-08-30 |
+| 标签、附件与正式发布 | `V2.1.2-PUBLICATION-20260830-001` 发布回执；标签源码 `cb8869a3`，main `919c3b48` 追加回执 | 第一方发布回执，2026-08-30 |
 
-[V2.1.2 发布说明与源码附件（需母版仓库访问权限）](https://github.com/joinwell52-AI/codeflowmu/releases/tag/V2.1.2)。公开读者可核对本页脱敏说明和旧附件，但尚不能通过本页独立重跑私有实现；不把上述受限材料宣称为公开 fixture。
+[CodeFlowMu V2.1.2 公开发布摘要](/zh/research/evidence/2026-08-30-codeflowmu-v2.1.2-public-release-summary) 汇总对外可引用的版本事实、三项 Runtime 边界改造、最终验证结果、兼容性和残余限制。完整源码、原始 QA 日志与发布回执仍属于受限第一方材料，不作为公开阅读入口；本页也不把历史 fixture 包称作新版端到端复现包。
 
-新保证要求重试复用稳定 `client_submission_id` 与相同语义摘要；无 ID 的旧调用保持 legacy 行为。正式发布不等于在线实例已升级，也不包含 Open Edition。授权下载应使用 `source-clean.zip`，自动生成的完整仓库包仍含历史运行文件。
+新保证要求重试复用稳定 `client_submission_id` 与相同语义摘要；无 ID 的旧调用保持 legacy 行为。正式发布不等于在线实例已升级，也不包含 Open Edition。
 
 Windows 符号链接权限性 skip、既有依赖审计告警、Python 定向夹具 SDK 环境 warning、真实 LAN/Gateway 与生产项目未覆盖范围仍保留。发布 R1/R2 的失败记录没有被 R3 通过结果覆盖。
