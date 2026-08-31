@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260830-02-action-qualification-independent-of-presentation.md
 item_id: "Q-20260830-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-30-stronger-looking-evidence-does-not-make-action-safe-cover.png"
+cover: "/assets/covers/daily-2026-08-30-stronger-looking-evidence-does-not-make-action-safe-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-30-stronger-looking-evidence-does-not-make-action-safe-cover.png"
+  image="/assets/covers/daily-2026-08-30-stronger-looking-evidence-does-not-make-action-safe-cover-v2.png"
   kicker="Industry Architecture · Daily Research"
   title="Stronger-Looking Evidence Does Not Make Action Safe"
   summary="A preprint covering twelve frontier models reports that professional evidence displays sharply increase commitment on aleatorically unknowable questions. Fully fabricated and real panels have similar reported effects while stated belief barely moves. Action qualification should be decided by a separate inspectable gate."

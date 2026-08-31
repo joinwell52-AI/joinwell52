@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260829-01-reconstruction-authority-separate-from-execution-authority.md
 item_id: "Q-20260829-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-29-restoring-context-does-not-restore-authority-cover.png"
+cover: "/assets/covers/daily-2026-08-29-restoring-context-does-not-restore-authority-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-29-restoring-context-does-not-restore-authority-cover.png"
+  image="/assets/covers/daily-2026-08-29-restoring-context-does-not-restore-authority-cover-v2.png"
   kicker="Digital Employee · Daily Research"
   title="Restoring Context Does Not Restore Authority"
   summary="A merged OpenAI Codex change shows how an eligible full state snapshot can restore context continuity. That reconstruction evidence does not automatically become current permission: reliable recovery needs separate gates for completeness, lineage, and present authorization."

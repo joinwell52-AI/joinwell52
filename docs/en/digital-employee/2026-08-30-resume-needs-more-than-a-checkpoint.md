@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260830-01-continuation-authority-compound-identity.md
 item_id: "Q-20260830-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-30-resume-needs-more-than-a-checkpoint-cover.png"
+cover: "/assets/covers/daily-2026-08-30-resume-needs-more-than-a-checkpoint-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-30-resume-needs-more-than-a-checkpoint-cover.png"
+  image="/assets/covers/daily-2026-08-30-resume-needs-more-than-a-checkpoint-cover-v2.png"
   kicker="Digital Employee · Daily Research"
   title="A Resume Needs More Than a Checkpoint"
   summary="A merged Google ADK Python change shows that nested HITL recovery needs more than restored state: it must identify the workflow frame, call occurrence, and branch, then explicitly decide whether to continue, pause, or replay. Event identity cannot replace responder authorization or external-effect evidence."

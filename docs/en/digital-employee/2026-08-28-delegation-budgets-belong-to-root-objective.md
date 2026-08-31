@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260828-01-root-owned-delegation-resource-budget.md
 item_id: "Q-20260828-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-28-delegation-budgets-belong-to-root-objective-cover.png"
+cover: "/assets/covers/daily-2026-08-28-delegation-budgets-belong-to-root-objective-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-28-delegation-budgets-belong-to-root-objective-cover.png"
+  image="/assets/covers/daily-2026-08-28-delegation-budgets-belong-to-root-objective-cover-v2.png"
   kicker="Digital Employee · Daily Research"
   title="Delegation Budgets Belong to the Root Objective"
   summary="A merged OpenAI Codex change demonstrates shared root-objective accounting: descendants remain the origin of measured usage while the objective that authorized delegation owns the inherited budget charge. The mechanism closes a demonstrated escape without proving immediate revocation or generalized quotas."

@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260829-03-bounded-lifecycle-ownership-beyond-direct-pid.md
 item_id: "Q-20260829-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-29-timeouts-must-close-the-lifecycle-they-own-cover.png"
+cover: "/assets/covers/daily-2026-08-29-timeouts-must-close-the-lifecycle-they-own-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-29-timeouts-must-close-the-lifecycle-they-own-cover.png"
+  image="/assets/covers/daily-2026-08-29-timeouts-must-close-the-lifecycle-they-own-cover-v2.png"
   kicker="Open-source Engineering · Daily Research"
   title="Timeouts Must Close the Lifecycle They Own"
   summary="A merged Google ADK Python change demonstrates a bounded process lifecycle: each invocation owns a process group, timeout and cancellation share cleanup, and teardown has graceful and forced limits. It proves bounded cleanup of the owned group, not disappearance of arbitrary process trees or external effects."

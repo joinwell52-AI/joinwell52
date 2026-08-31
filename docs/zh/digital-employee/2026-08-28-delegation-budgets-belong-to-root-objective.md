@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260828-01-root-owned-delegation-resource-budget.md
 item_id: "Q-20260828-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-28-delegation-budgets-belong-to-root-objective-cover.png"
+cover: "/assets/covers/daily-2026-08-28-delegation-budgets-belong-to-root-objective-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-28-delegation-budgets-belong-to-root-objective-cover.png"
+  image="/assets/covers/daily-2026-08-28-delegation-budgets-belong-to-root-objective-cover-v2.png"
   kicker="数字员工 · 每日研究"
   title="委派预算属于根目标"
   summary="OpenAI Codex（代码智能体）的一项已合并变更展示了共享根目标记账：子执行体保留消耗来源，预算则归集到授权委派的根目标。这个机制关闭了已证明的委派逃逸，但不等于即时撤销或通用配额。"

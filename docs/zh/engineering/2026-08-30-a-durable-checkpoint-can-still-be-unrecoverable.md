@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260830-03-checkpoint-durability-separate-from-replay-integrity.md
 item_id: "Q-20260830-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-30-a-durable-checkpoint-can-still-be-unrecoverable-cover.png"
+cover: "/assets/covers/daily-2026-08-30-a-durable-checkpoint-can-still-be-unrecoverable-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-30-a-durable-checkpoint-can-still-be-unrecoverable-cover.png"
+  image="/assets/covers/daily-2026-08-30-a-durable-checkpoint-can-still-be-unrecoverable-cover-v2.png"
   kicker="开源工程 · 每日研究"
   title="检查点已经落盘，仍然可能无法恢复"
   summary="LangGraph（图状态运行框架）的 DeltaChannel（增量状态通道）把检查点从自包含状态变成对种子快照和有序写入链的引用。文件已持久化不等于状态可恢复；安全压缩必须同时证明种子、写入顺序、归约器身份和迁移仍然有效。"

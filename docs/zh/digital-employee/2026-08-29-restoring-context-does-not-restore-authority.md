@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260829-01-reconstruction-authority-separate-from-execution-authority.md
 item_id: "Q-20260829-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-29-restoring-context-does-not-restore-authority-cover.png"
+cover: "/assets/covers/daily-2026-08-29-restoring-context-does-not-restore-authority-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-29-restoring-context-does-not-restore-authority-cover.png"
+  image="/assets/covers/daily-2026-08-29-restoring-context-does-not-restore-authority-cover-v2.png"
   kicker="数字员工 · 每日研究"
   title="恢复上下文，不等于恢复权限"
   summary="OpenAI Codex（代码智能体）的一项已合并变更表明，合格的完整状态快照可以恢复上下文连续性；但这份重建证据不能自动成为当前权限。可靠恢复需要把完整性、谱系与现行授权分成可独立核验的关口。"

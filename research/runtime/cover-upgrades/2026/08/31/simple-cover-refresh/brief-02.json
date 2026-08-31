@@ -1,0 +1,42 @@
+{
+  "itemId": "Q-20260830-03",
+  "briefId": "20260831-delta-chain-v2",
+  "article": "docs/zh/engineering/2026-08-30-a-durable-checkpoint-can-still-be-unrecoverable.md",
+  "title": "检查点已经落盘，仍然可能无法恢复",
+  "coreProposition": "持久化的增量引用仍需完整种子、有序祖先与固定归约器才能重建。",
+  "synopsis": "LangGraph增量检查点省空间，但只留最新会切断祖先依赖，即使文件完好仍恢复为空。",
+  "causalScene": "完好的蓝色存储晶体连接一条精密历史链，祖先链中被抽走的一节留下断口，光到断口停止。",
+  "titlePromise": "完整存储不等于完整恢复链",
+  "readerProblem": "裁剪历史后存储看似健康但状态不可重建",
+  "dominantSubject": "完整晶体与断开的承载链组成一体",
+  "singleAction": "祖先缺段阻断重建",
+  "visibleResult": "晶体内部完好、连接光在断口中止",
+  "semanticAnchors": [
+    "完好末端存储",
+    "有序前序链",
+    "缺失历史",
+    "断开的恢复路径"
+  ],
+  "colorMeanings": {
+    "cobalt": "持久化数据",
+    "cyan": "重放连续性",
+    "amber": "缺段风险"
+  },
+  "relativeAuthority": "末端晶体与断口同一主体，断口为视觉焦点",
+  "composition": {
+    "foreground": "锋利真实链节断口",
+    "midground": "完整存储晶体",
+    "background": "远处祖先链逐渐柔焦"
+  },
+  "materials": "蓝宝石玻璃、钛合金有序关节、玄武岩底座",
+  "lighting": "深蓝侧光、断口细微琥珀反射",
+  "palette": "石墨、深蓝、青、少量琥珀",
+  "atmosphere": "静谧、脆弱的连续性",
+  "ratio": "16:9",
+  "outputPath": "docs/public/assets/covers/daily-2026-08-30-a-durable-checkpoint-can-still-be-unrecoverable-cover-v2.png",
+  "reviewExclusions": [
+    "无文字图解",
+    "不可画成数据晶体本体损坏"
+  ],
+  "sanitizedPrompt": "High-end cinematic editorial art in a wide 16:9 frame. A pristine sapphire data crystal sits firmly inside a finely machined titanium cradle on the right, its dense cobalt internal strata perfectly intact. A heavy articulated optical chain stretches from the crystal diagonally into the deep left background, composed of ordered precisely fitted glass-and-metal segments. Close to the crystal, one whole segment has been removed: two clean separated coupling faces leave a conspicuous air gap. A narrow cyan light traveling along the ancestral chain stops sharply at the near edge of that gap, illuminating the empty space with a restrained amber rim reflection. The intact crystal and broken continuity form one compact dramatic object group. Low three-quarter camera, tactile metal machining, crisp foreground joint, softly receding dark laboratory depth, polished basalt base, cinematic navy atmosphere, physical optical detail, unmarked sculptural surfaces."
+}

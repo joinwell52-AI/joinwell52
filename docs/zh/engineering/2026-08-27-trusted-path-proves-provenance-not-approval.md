@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260827-03-host-verified-skill-invocation-provenance.md
 item_id: "Q-20260827-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-27-trusted-path-proves-provenance-not-approval-cover.png"
+cover: "/assets/covers/daily-2026-08-27-trusted-path-proves-provenance-not-approval-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-27-trusted-path-proves-provenance-not-approval-cover.png"
+  image="/assets/covers/daily-2026-08-27-trusted-path-proves-provenance-not-approval-cover-v2.png"
   kicker="开源工程 · 每日研究"
   title="可信路径证明来源，不等于批准"
   summary="OpenAI Codex（代码智能体）的 Guardian（授权审查器）v2 的一项已合并变更先由宿主记录真实调用，再通过规范化可信根核验来源。这个机制能建立有界调用来源，却不能证明技能内容安全、字节未变或用户此刻批准当前动作。"

@@ -1,0 +1,42 @@
+{
+  "itemId": "Q-20260829-03",
+  "briefId": "20260831-owned-lifecycle-v2",
+  "article": "docs/zh/engineering/2026-08-29-timeouts-must-close-the-lifecycle-they-own.md",
+  "title": "超时必须终结它所拥有的生命周期",
+  "coreProposition": "超时清理需覆盖调用拥有的进程组，且清理自身有界；不能推称所有外部效果消失。",
+  "synopsis": "ADK通过同一进程组和共享读取任务完成有界终止、升级强杀及放弃读取，避免只杀父进程留下后代。",
+  "causalScene": "同一机械断路横梁抬起，将一个封闭接线域中的主线和两条分支一起断开。",
+  "titlePromise": "截止时间作用于拥有的整组工作",
+  "readerProblem": "父进程已退出但后代继续持有输出管道",
+  "dominantSubject": "一体多极生命周期断路器",
+  "singleAction": "同一断路横梁释放全部所属触点",
+  "visibleResult": "主线与两支路均出现清晰间隙",
+  "semanticAnchors": [
+    "共同所有权边界",
+    "主线和后代",
+    "一次统一断开",
+    "有界而非全局清除"
+  ],
+  "colorMeanings": {
+    "cyan": "被拥有的活动",
+    "amber": "截止与终止",
+    "navy": "已断开的末端"
+  },
+  "relativeAuthority": "共同断路梁大于任何分支",
+  "composition": {
+    "foreground": "三组同时分离触点",
+    "midground": "同一宽机械梁与闭合壳体边界",
+    "background": "深色散焦光纤"
+  },
+  "materials": "石墨陶瓷、拉丝钢、铜触点、光导玻璃",
+  "lighting": "斜顶强光强调触点间距",
+  "palette": "深蓝、金属银、青与琥珀",
+  "atmosphere": "干净果断的工程终止",
+  "ratio": "16:9",
+  "outputPath": "docs/public/assets/covers/daily-2026-08-29-timeouts-must-close-the-lifecycle-they-own-cover-v2.png",
+  "reviewExclusions": [
+    "不要无限进程树或全局归零寓意",
+    "无计时数字和流程图"
+  ],
+  "sanitizedPrompt": "Cinematic macro editorial photograph in a wide 16:9 frame. A powerful unified three-pole optical disconnect assembly rests inside one clearly bounded black ceramic housing. A single broad brushed-steel crossbar has lifted all three copper contact bridges together, revealing three crisp air gaps at the same depth: one thick central feed and two narrower descendant feeds share this one mechanism. Cyan light remains contained in the upstream glass conduits, while the separated downstream tips are dark. A small amber-lit mechanical stop cam on the crossbar shows the motion has reached its physical limit. Tight diagonal three-quarter composition, common crossbar dominates, tactile separated contacts in the foreground, coherent enclosure in midground, soft navy fiber-optic infrastructure far behind. Real metal wear, precise ceramic edges, cool directional key light, restrained warm copper reflections, serious high-end industrial editorial imagery, unmarked surfaces."
+}

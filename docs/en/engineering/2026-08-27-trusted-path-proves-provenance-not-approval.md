@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260827-03-host-verified-skill-invocation-provenance.md
 item_id: "Q-20260827-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-27-trusted-path-proves-provenance-not-approval-cover.png"
+cover: "/assets/covers/daily-2026-08-27-trusted-path-proves-provenance-not-approval-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-27-trusted-path-proves-provenance-not-approval-cover.png"
+  image="/assets/covers/daily-2026-08-27-trusted-path-proves-provenance-not-approval-cover-v2.png"
   kicker="Open-source Engineering · Daily Research"
   title="A Trusted Path Proves Provenance, Not Approval"
   summary="A merged OpenAI Codex Guardian v2 change records an actual invocation in the host and then verifies provenance through canonical trusted roots. The mechanism establishes bounded invocation origin, not safe content, immutable bytes or contemporaneous approval."

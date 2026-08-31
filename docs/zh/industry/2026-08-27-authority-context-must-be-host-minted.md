@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260827-02-host-minted-capability-scoped-access-evidence.md
 item_id: "Q-20260827-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-27-authority-context-must-be-host-minted-cover.png"
+cover: "/assets/covers/daily-2026-08-27-authority-context-must-be-host-minted-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-27-authority-context-must-be-host-minted-cover.png"
+  image="/assets/covers/daily-2026-08-27-authority-context-must-be-host-minted-cover-v2.png"
   kicker="行业架构 · 每日研究"
   title="权限上下文必须由宿主生成"
   summary="OpenAI Codex（代码智能体）的一项已合并变更展示了有界的权限证据代理模式：宿主移除调用方副本，核验当前账户，只在全部能力条件成立时注入上下文，无法核验则收缩为无授权状态。"

@@ -14,11 +14,11 @@ evidence_status: Completed
 citation_status: Completed
 editing_status: Completed
 publication_authorized: true
-cover: '/assets/covers/weekly-007-recovery-is-readmission-cover.svg'
+cover: '/assets/covers/weekly-007-recovery-is-readmission-cover-v2.png'
 ---
 
 <ArticleCover
-  image="/assets/covers/weekly-007-recovery-is-readmission-cover.svg"
+  image="/assets/covers/weekly-007-recovery-is-readmission-cover-v2.png"
   kicker="Weekly Research · 007"
   title="Recovery Is Re-Admission"
   summary="Durable state can reconstruct continuity. It cannot grant current execution authority by itself."

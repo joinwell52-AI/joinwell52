@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260829-02-trust-admission-coupled-to-effective-capability-surface.md
 item_id: "Q-20260829-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-29-trust-must-change-the-executable-surface-cover.png"
+cover: "/assets/covers/daily-2026-08-29-trust-must-change-the-executable-surface-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-29-trust-must-change-the-executable-surface-cover.png"
+  image="/assets/covers/daily-2026-08-29-trust-must-change-the-executable-surface-cover-v2.png"
   kicker="行业架构 · 每日研究"
   title="信任必须改变可执行能力面"
   summary="Gemini CLI（命令行智能体）的一项已合并变更展示了可执行的工作区信任：限制性信号优先，未决信任按不可信处理，错误配置直接失败，并在能力实例化前缩小有效配置。它证明的是准入过滤，不是已存在能力的实时撤销。"

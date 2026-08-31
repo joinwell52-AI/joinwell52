@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260828-02-fresh-authority-over-cache-availability.md
 item_id: "Q-20260828-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-28-cached-policy-is-evidence-not-current-authority-cover.png"
+cover: "/assets/covers/daily-2026-08-28-cached-policy-is-evidence-not-current-authority-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-28-cached-policy-is-evidence-not-current-authority-cover.png"
+  image="/assets/covers/daily-2026-08-28-cached-policy-is-evidence-not-current-authority-cover-v2.png"
   kicker="行业架构 · 每日研究"
   title="缓存策略是证据，不是当前权限"
   summary="GitHub Copilot CLI（命令行代码助手）1.0.81 的官方变更说明区分了缓存可读性与权限准入：旧策略可以继续作为证据保存，但在最新远程权限未确认前，不能静默维持受治理能力。"

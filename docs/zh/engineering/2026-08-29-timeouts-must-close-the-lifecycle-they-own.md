@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260829-03-bounded-lifecycle-ownership-beyond-direct-pid.md
 item_id: "Q-20260829-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-29-timeouts-must-close-the-lifecycle-they-own-cover.png"
+cover: "/assets/covers/daily-2026-08-29-timeouts-must-close-the-lifecycle-they-own-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-29-timeouts-must-close-the-lifecycle-they-own-cover.png"
+  image="/assets/covers/daily-2026-08-29-timeouts-must-close-the-lifecycle-they-own-cover-v2.png"
   kicker="开源工程 · 每日研究"
   title="超时必须终结它所拥有的生命周期"
   summary="Google ADK Python（智能体开发工具包）的一项已合并变更展示了有界的进程生命周期：每次调用拥有一个进程组，超时与取消共享清理路径，并给清理本身设定终止与强制结束上界。它证明的是所拥有进程组的有界清理，不是任意进程树或外部效果都已消失。"

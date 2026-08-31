@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260827-01-execution-readiness-before-running-state.md
 item_id: "Q-20260827-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-27-running-is-an-evidence-claim-cover.png"
+cover: "/assets/covers/daily-2026-08-27-running-is-an-evidence-claim-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-27-running-is-an-evidence-claim-cover.png"
+  image="/assets/covers/daily-2026-08-27-running-is-an-evidence-claim-cover-v2.png"
   kicker="数字员工 · 每日研究"
   title="“运行中”是一项证据声明，不是调度事件"
   summary="Claude Code（命令行智能体工具）2.1.247 修复了一类过早发布“运行中”状态的问题。这个案例说明：状态是面向消费者的证据声明，调度、认领、进程启动与真正就绪不应被压缩成同一个标签。"

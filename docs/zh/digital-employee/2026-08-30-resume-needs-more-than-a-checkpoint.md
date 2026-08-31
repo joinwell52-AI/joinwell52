@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260830-01-continuation-authority-compound-identity.md
 item_id: "Q-20260830-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-30-resume-needs-more-than-a-checkpoint-cover.png"
+cover: "/assets/covers/daily-2026-08-30-resume-needs-more-than-a-checkpoint-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-30-resume-needs-more-than-a-checkpoint-cover.png"
+  image="/assets/covers/daily-2026-08-30-resume-needs-more-than-a-checkpoint-cover-v2.png"
   kicker="数字员工 · 每日研究"
   title="恢复工作流，需要的不只是一份检查点"
   summary="Google ADK Python（智能体开发工具包）的一项已合并变更表明，嵌套人工确认的恢复不仅要恢复状态，还要识别工作流帧、调用发生与分支，并在继续、暂停和重放之间作出显式决定。事件身份不能替代响应者授权或外部效果证据。"

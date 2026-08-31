@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260830-02-action-qualification-independent-of-presentation.md
 item_id: "Q-20260830-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-30-stronger-looking-evidence-does-not-make-action-safe-cover.png"
+cover: "/assets/covers/daily-2026-08-30-stronger-looking-evidence-does-not-make-action-safe-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-30-stronger-looking-evidence-does-not-make-action-safe-cover.png"
+  image="/assets/covers/daily-2026-08-30-stronger-looking-evidence-does-not-make-action-safe-cover-v2.png"
   kicker="行业架构 · 每日研究"
   title="证据看起来更强，不等于行动更安全"
   summary="一项覆盖十二个前沿模型的预印本研究报告，专业化证据展示会显著提高模型对随机不可知问题的行动承诺；全虚构面板与真实面板在所报告实验中效果接近，而陈述信念变化很小。行动资格应由独立、可检查的门禁决定。"

@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260830-03-checkpoint-durability-separate-from-replay-integrity.md
 item_id: "Q-20260830-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-30-a-durable-checkpoint-can-still-be-unrecoverable-cover.png"
+cover: "/assets/covers/daily-2026-08-30-a-durable-checkpoint-can-still-be-unrecoverable-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-30-a-durable-checkpoint-can-still-be-unrecoverable-cover.png"
+  image="/assets/covers/daily-2026-08-30-a-durable-checkpoint-can-still-be-unrecoverable-cover-v2.png"
   kicker="Open-source Engineering · Daily Research"
   title="A Durable Checkpoint Can Still Be Unrecoverable"
   summary="LangGraph DeltaChannel turns a checkpoint from self-contained state into a reference to a seed snapshot and ordered write chain. Durable storage does not equal recoverability; safe compaction must also prove that seed, write order, reducer identity, and migration remain valid."

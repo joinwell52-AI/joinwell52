@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260827-02-host-minted-capability-scoped-access-evidence.md
 item_id: "Q-20260827-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-27-authority-context-must-be-host-minted-cover.png"
+cover: "/assets/covers/daily-2026-08-27-authority-context-must-be-host-minted-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-27-authority-context-must-be-host-minted-cover.png"
+  image="/assets/covers/daily-2026-08-27-authority-context-must-be-host-minted-cover-v2.png"
   kicker="Industry Architecture · Daily Research"
   title="Authority Context Must Be Minted by the Host"
   summary="A merged OpenAI Codex change demonstrates a bounded authority-evidence broker: the host removes caller copies, verifies current account access, injects context only when every capability predicate holds, and contracts unverifiable state to a non-authorizing result."

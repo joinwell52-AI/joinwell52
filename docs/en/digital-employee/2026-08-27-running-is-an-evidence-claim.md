@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260827-01-execution-readiness-before-running-state.md
 item_id: "Q-20260827-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-27-running-is-an-evidence-claim-cover.png"
+cover: "/assets/covers/daily-2026-08-27-running-is-an-evidence-claim-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-27-running-is-an-evidence-claim-cover.png"
+  image="/assets/covers/daily-2026-08-27-running-is-an-evidence-claim-cover-v2.png"
   kicker="Digital Employee · Daily Research"
   title="Running Is an Evidence Claim, Not a Scheduler Event"
   summary="Claude Code 2.1.247 fixes a premature Running report on an affected self-hosted runner path. The incident shows that a state is an evidence claim to consumers: scheduling, claim, process startup and readiness should not collapse into one label."

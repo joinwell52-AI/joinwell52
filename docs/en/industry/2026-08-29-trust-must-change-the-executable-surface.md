@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260829-02-trust-admission-coupled-to-effective-capability-surface.md
 item_id: "Q-20260829-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-29-trust-must-change-the-executable-surface-cover.png"
+cover: "/assets/covers/daily-2026-08-29-trust-must-change-the-executable-surface-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-29-trust-must-change-the-executable-surface-cover.png"
+  image="/assets/covers/daily-2026-08-29-trust-must-change-the-executable-surface-cover-v2.png"
   kicker="Industry Architecture · Daily Research"
   title="Trust Must Change the Executable Surface"
   summary="A merged Gemini CLI change makes workspace trust executable: restrictive signals win, unresolved trust becomes false, malformed trust configuration fails, and the effective configuration is narrowed before capability materialization. It demonstrates admission filtering, not live revocation of existing capabilities."

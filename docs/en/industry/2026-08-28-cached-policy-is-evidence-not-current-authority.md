@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260828-02-fresh-authority-over-cache-availability.md
 item_id: "Q-20260828-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-28-cached-policy-is-evidence-not-current-authority-cover.png"
+cover: "/assets/covers/daily-2026-08-28-cached-policy-is-evidence-not-current-authority-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-28-cached-policy-is-evidence-not-current-authority-cover.png"
+  image="/assets/covers/daily-2026-08-28-cached-policy-is-evidence-not-current-authority-cover-v2.png"
   kicker="Industry Architecture · Daily Research"
   title="Cached Policy Is Evidence, Not Current Authority"
   summary="GitHub Copilot CLI 1.0.81's official changelog separates cache readability from authority admissibility: stale policy may remain evidence, but it must not silently preserve governed capabilities while fresh remote authority is unresolved."
