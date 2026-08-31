@@ -1,0 +1,175 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "analysis",
+  "family": "daily",
+  "runtimeDate": "2026-08-31",
+  "status": "Completed",
+  "input": {
+    "scheduler": "research/runtime/SCHEDULER.json",
+    "workerControl": "research/runtime/worker-prompts/generated/CONTROL.json",
+    "workerControlVersion": "1.3.0",
+    "authoritativePrompt": {
+      "path": "research/runtime/worker-prompts/generated/analysis.prompt.md",
+      "version": "2.0.0",
+      "sha256": "4f40dff2d12569f647bf265f344b60cb0f0cd0349f0b2d5cf1023f50947dfea2",
+      "hashVerified": true,
+      "sourceCommit": "f1c7684b66eedf01b8755c5283b80564b074baa1"
+    },
+    "requiredSources": [
+      "research/runtime/SCHEDULER.json",
+      "research/runtime/WORKER-CONTRACT-V3.md",
+      "research/runtime/WAKE-RECEIPT-V1.md",
+      "research/editorial/EDITORIAL-ARCHITECTURE.json",
+      "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+      "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+      "research/skills/04-research-analysis.md"
+    ],
+    "admission": {
+      "decision": "Admitted",
+      "date": "2026-08-31",
+      "branch": "main",
+      "wakeSource": "chatgpt-scheduled-task",
+      "requiredCapabilities": [
+        "github-read",
+        "github-write",
+        "file-editing"
+      ],
+      "availableCapabilities": [
+        "github-read",
+        "github-write",
+        "file-editing",
+        "deterministic-hash"
+      ],
+      "notBefore": "13:00",
+      "wakeReceivedAt": "13:02:38",
+      "limits": {
+        "maxRunMinutes": 120,
+        "maxRecoveryAttempts": 2,
+        "maxRevisionRounds": 2,
+        "maxOutputItems": 3,
+        "zeroOutputAllowed": true,
+        "directPublicationAllowed": false,
+        "requireSameRunDateInputs": true,
+        "requirePromptHashVerification": true,
+        "requireRemoteCommitVerification": true
+      }
+    },
+    "readingStatus": "Completed",
+    "readingArtifacts": [
+      "research/reading/Q-20260831-01-standing-policy-runtime-commitment-authority.md",
+      "research/reading/Q-20260831-02-instruction-privilege-provenance-context-reconstruction.md",
+      "research/reading/Q-20260831-03-controlled-failure-replay-causal-repair-test.md"
+    ],
+    "controlPlane": {
+      "wakeReceipt": "research/runtime/wakes/2026/08/2026-08-31/analysis-130238.json",
+      "workerClaimCommit": "206b260fe868936e76c1cc0de6dc93c49ad2918f",
+      "workerClaimVerified": true,
+      "globalOrderVerified": true,
+      "earlierDueTasksClosed": [
+        "discovery",
+        "queue",
+        "reading",
+        "program"
+      ],
+      "executionSlotOpenedAt": "2026-08-31T13:05:26+08:00",
+      "workerClaimedAt": "2026-08-31T13:06:23+08:00"
+    }
+  },
+  "workResult": {
+    "summary": "Admitted Analysis from the pinned main control source, deterministically verified generated Analysis Prompt v2.0.0 and read all seven required sources completely before substantive work. The 2026-08-31 Wake Receipt was durably verified, global reconciliation confirmed Discovery, Queue, Reading and the Monday Program shift were execution-closed, Analysis received an Execution Slot at 13:05:26 and Worker Claimed was durably verified at 13:06:23. Analysis consumed only the three completed same-date Reading Results and produced exactly three Research Objects. Q-20260831-01 separates standing permission preference from occurrence authority: the reported 113-participant study shows policy prompting can fall while overreach blocking also falls, and 114/140 authored rules select Ask, preserving a later runtime commitment boundary. Q-20260831-02 separates reconstructed role from authority provenance: the reported harness attacks succeed after low-privilege content is upgraded during context reconstruction even where conventional automatic-review baselines are rejected, so downstream review cannot repair a corrupted principal premise. Q-20260831-03 separates rerun, controlled replay and causal repair: an authoritative logical prefix and intervention anchor improve causal interpretation, but external-state qualification remains a separate validity gate and represented-prefix exactness does not establish arbitrary physical replay or exactly-once effects. No prior-day research input, fixed article outline, forced first-party mapping, article drafting, visualization, Publication Candidate creation or publication was performed.",
+    "summary_zh": "Analysis 依据固定 main 控制源完成准入，在实质工作前确定性核验 Generated Analysis Prompt v2.0.0，并完整读取全部 7 个 Required Source。2026-08-31 Wake Receipt 已持久核验；全局 Reconciliation 确认 Discovery、Queue、Reading 与周一 Program 班次均已收口，Analysis 于 13:05:26 获得 Execution Slot，Worker Claimed 于 13:06:23 持久核验。随后只消费 2026-08-31 当日三份已完成 Reading Result，并恰好生成三份 Research Object。Q-20260831-01 分离 Standing Permission Preference 与 Occurrence Authority：113 人研究报告显示 Policy Prompt 可减少，但 Overreach Blocking 也下降，而 140 条用户规则中 114 条选择 Ask，明确保留后续 Runtime Commitment 边界。Q-20260831-02 分离 Reconstructed Role 与 Authority Provenance：报告中的 Harness Attack 在低权限内容经 Context Reconstruction 被提升后成功，而传统 Automatic-review Baseline 可被拒绝，因此下游 Review 无法修复已经被污染的 Principal Premise。Q-20260831-03 分离 Rerun、Controlled Replay 与 Causal Repair：权威 Logical Prefix 与 Intervention Anchor 能提升因果解释力，但 External-state Qualification 仍是独立有效性门禁，Represented-prefix Exactness 也不建立任意 Physical Replay 或外部效果恰好一次。未使用前一日研究输入、固定文章大纲或强制自有项目映射，也未执行文章撰写、可视化、Publication Candidate 创建或发布。",
+    "researchObjects": [
+      {
+        "column": "digital-employee",
+        "itemId": "Q-20260831-01",
+        "artifact": "research/analysis/Q-20260831-01-standing-policy-separate-from-occurrence-authority.md",
+        "articleType": "technical-analysis",
+        "projectRelevance": "none",
+        "judgment": "Standing permission policy and occurrence authority should be separate governance objects. Policy can route a future occurrence to Allow, Ask or Never, but whenever the decision remains open the final authority must bind the concrete occurrence and be independently auditable.",
+        "judgment_zh": "Standing Permission Policy 与 Occurrence Authority 应是两个独立治理对象。Policy 可以把未来发生路由到 Allow、Ask 或 Never；只要决定仍留到运行时，最终权威就必须绑定具体 Occurrence 并可独立审计。"
+      },
+      {
+        "column": "industry-architecture",
+        "itemId": "Q-20260831-02",
+        "artifact": "research/analysis/Q-20260831-02-reconstructed-role-not-authority-provenance.md",
+        "articleType": "technical-analysis",
+        "projectRelevance": "none",
+        "judgment": "Reconstructed message role is not sufficient authority provenance. Original principal, origin channel, privilege class and any trusted privilege transition should remain independently inspectable across persistence, handoff and reconstruction.",
+        "judgment_zh": "Reconstructed Message Role 不是充分的 Authority Provenance。Original Principal、Origin Channel、Privilege Class 与任何可信 Privilege Transition 应在持久化、Handoff 与 Reconstruction 全程保持可独立检查。"
+      },
+      {
+        "column": "open-source-engineering",
+        "itemId": "Q-20260831-03",
+        "artifact": "research/analysis/Q-20260831-03-controlled-replay-causal-repair-validity.md",
+        "articleType": "engineering-insight",
+        "projectRelevance": "none",
+        "judgment": "Causal repair requires an authoritative failed logical prefix, fail-closed divergence detection, an explicit intervention anchor and separate qualification of external state needed by the live suffix. Rerun success alone is resampling evidence, not proof of repair.",
+        "judgment_zh": "Causal Repair 需要权威 Failed Logical Prefix、Fail-closed Divergence Detection、显式 Intervention Anchor，以及对 Live Suffix 所需 External State 的独立资格核验。Rerun 成功本身只是 Resampling Evidence，不是 Repair 证明。"
+      }
+    ],
+    "boundary": {
+      "unreadMaterialAnalyzed": false,
+      "priorDayResearchInputsReused": false,
+      "fixedArticleOutline": false,
+      "forcedFirstPartyMapping": false,
+      "articleWriting": false,
+      "visualization": false,
+      "publicationCandidate": false,
+      "publication": false
+    }
+  },
+  "output": {
+    "type": "Research Objects",
+    "researchObjectCount": 3,
+    "artifacts": [
+      "research/analysis/Q-20260831-01-standing-policy-separate-from-occurrence-authority.md",
+      "research/analysis/Q-20260831-02-reconstructed-role-not-authority-provenance.md",
+      "research/analysis/Q-20260831-03-controlled-replay-causal-repair-validity.md"
+    ]
+  },
+  "next": {
+    "task": "production",
+    "scheduledTime": "15:00",
+    "instruction": "Production may consume only these three completed 2026-08-31 Research Objects after fresh admission, authoritative Production Prompt verification, global serial-order reconciliation and Worker Claim. Preserve the boundaries between preference and occurrence authority, reconstructed role and provenance, and logical replay versus external-state validity.",
+    "instruction_zh": "Production 只能在完成新的准入、权威 Production Prompt 核验、全局串行顺序协调与 Worker Claim 后消费这三份 2026-08-31 Research Object，并保留 Preference/Occurrence Authority、Reconstructed Role/Provenance、Logical Replay/External-state Validity 之间的边界。"
+  },
+  "metrics": [
+    {"name":"reading_results_consumed","value":3},
+    {"name":"research_objects","value":3},
+    {"name":"prompt_hash_verified","value":1},
+    {"name":"required_sources_read","value":7},
+    {"name":"wake_receipts_verified","value":1},
+    {"name":"worker_claims_verified","value":1},
+    {"name":"earlier_due_tasks_closed","value":4},
+    {"name":"prior_day_research_inputs_reused","value":0},
+    {"name":"first_party_project_mappings_forced","value":0},
+    {"name":"article_drafts","value":0},
+    {"name":"publication_actions","value":0},
+    {"name":"revision_rounds_used","value":0}
+  ],
+  "evidence": [
+    "f1c7684b66eedf01b8755c5283b80564b074baa1",
+    "research/runtime/wakes/2026/08/2026-08-31/analysis-130238.json",
+    "research/runtime/records/daily/2026/08/2026-08-31-daily-runtime.json",
+    "research/runtime/records/program/2026/08/2026-08-31-program-runtime.json",
+    "research/runtime/worker-prompts/generated/CONTROL.json",
+    "research/runtime/worker-prompts/generated/analysis.prompt.md",
+    "research/runtime/WORKER-CONTRACT-V3.md",
+    "research/runtime/WAKE-RECEIPT-V1.md",
+    "research/editorial/EDITORIAL-ARCHITECTURE.json",
+    "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+    "research/intelligence/EVIDENCE-LEVEL-CONTRACT.md",
+    "research/skills/04-research-analysis.md",
+    "research/runtime/results/2026/08/2026-08-31-reading-result.json",
+    "research/reading/Q-20260831-01-standing-policy-runtime-commitment-authority.md",
+    "research/reading/Q-20260831-02-instruction-privilege-provenance-context-reconstruction.md",
+    "research/reading/Q-20260831-03-controlled-failure-replay-causal-repair-test.md",
+    "206b260fe868936e76c1cc0de6dc93c49ad2918f"
+  ],
+  "artifacts": [
+    "research/analysis/Q-20260831-01-standing-policy-separate-from-occurrence-authority.md",
+    "research/analysis/Q-20260831-02-reconstructed-role-not-authority-provenance.md",
+    "research/analysis/Q-20260831-03-controlled-replay-causal-repair-validity.md",
+    "research/runtime/results/2026/08/2026-08-31-analysis-result.json"
+  ]
+}
