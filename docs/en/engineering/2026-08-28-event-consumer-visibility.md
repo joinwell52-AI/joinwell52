@@ -206,7 +206,7 @@ That is how complete internal evidence and least-visible ordinary consumption ca
 
 ![V2.1.2 server-side recursive projections for three ordinary consumers](/assets/figures/2026-08-28-event-consumer-projection.en.svg)
 
-*Figure 1: V2.1.2 separates complete internal events from ordinary consumer projections. Unknown event payloads, unregistered fields and unknown nested values do not enter the result by default. Source: [RBE-20260828-02](/en/research/evidence/2026-08-28-event-consumer-visibility).*
+*Figure 1. V2.1.2 separates complete internal events from ordinary consumer projections. Unknown event payloads, unregistered fields and unknown nested values do not enter the result by default. Source: [RBE-20260828-02](/en/research/evidence/2026-08-28-event-consumer-visibility).*
 
 ## The first regression failed: minimization can also delete what the system genuinely needs
 
