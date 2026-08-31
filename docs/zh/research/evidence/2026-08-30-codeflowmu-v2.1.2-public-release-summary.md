@@ -11,6 +11,8 @@ lifecycle: "Published"
 publication_authorized: true
 ---
 
+[English Version](/en/research/evidence/2026-08-30-codeflowmu-v2.1.2-public-release-summary)
+
 # CodeFlowMu V2.1.2 公开发布摘要
 
 > 发布日期：2026-08-30  
