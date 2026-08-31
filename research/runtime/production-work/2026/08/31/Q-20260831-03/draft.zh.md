@@ -67,4 +67,4 @@ sources:
 
 最准确的结论是：**重跑告诉我们系统还能不能碰到成功；受控重放让我们检验指定变化；只有逻辑前缀与外部状态两项有效性都成立，才有基础把后续成功解释为因果修复。**
 
-**一手证据：** [Repair or Resample? Rethinking Failure Debugging in LLM Multi-Agent Systems](https://arxiv.org/abs/2608.25920)
+**一手证据：** [修复还是重采样？重新审视大语言模型多智能体系统中的失败调试](https://arxiv.org/abs/2608.25920)

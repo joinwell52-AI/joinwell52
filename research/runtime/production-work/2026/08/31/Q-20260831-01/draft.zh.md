@@ -67,4 +67,4 @@ sources:
 
 最稳健的结论不是“永远询问”，而是：**让长期策略负责路由，让具体发生的承诺负责授权；只要决定仍留到运行时，这两类证据就必须分别持久、分别审计。**
 
-**一手证据：** [Do User-Authored Permission Policies Improve Protection Against AI Agent Overreach?](https://arxiv.org/abs/2608.27443)
+**一手证据：** [用户自定义权限策略能否改善对 AI 智能体越权的防护？](https://arxiv.org/abs/2608.27443)
