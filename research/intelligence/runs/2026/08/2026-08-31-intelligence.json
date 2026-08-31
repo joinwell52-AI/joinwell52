@@ -3,106 +3,42 @@
   "version": "1.0",
   "date": "2026-08-31",
   "timezone": "Asia/Shanghai",
-  "status": "Waiting",
+  "status": "Completed",
   "registryVersion": "1.0",
-  "sourceTask": "Research Runtime Queue",
-  "updatedAt": "",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-08-31T09:14:03+08:00",
   "githubCommit": "pending",
-  "reason": "Research Runtime Queue has not completed the three intelligence pipelines.",
-  "reason_zh": "研究运行队列尚未完成三条情报发现管线。",
+  "reason": "All three formal Discovery pipelines resolved their due coverage and the required theme-first active-sample pass completed. Ten qualified signals were retained after problem-level normalization and prior-run deduplication: two product/governance signals, five multi-agent engineering/mechanism signals and three primary-research findings. No topic selection was performed.",
+  "reason_zh": "三条正式 Discovery 管线均完成到期来源覆盖，并完成强制的主题优先主动样本检查。按研究问题规范化并与前一轮去重后保留 10 个合格信号：2 个产品/治理信号、5 个多 Agent 工程/机制信号、3 个一手研究发现；未执行选题。",
   "pipelines": [
-    {
-      "id": "ai-platform",
-      "label": "AI Platform Change Intelligence",
-      "label_zh": "AI 平台变更情报发现",
-      "status": "Waiting",
-      "due": 45,
-      "checked": 0,
-      "inaccessible": [],
-      "failed": [],
-      "signals": 0,
-      "candidates": 0,
-      "selected": 0,
-      "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
-    },
-    {
-      "id": "github-engineering",
-      "label": "GitHub Engineering Intelligence",
-      "label_zh": "GitHub 工程情报发现",
-      "status": "Waiting",
-      "due": 9,
-      "checked": 0,
-      "inaccessible": [],
-      "failed": [],
-      "signals": 0,
-      "candidates": 0,
-      "selected": 0,
-      "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
-    },
-    {
-      "id": "published-research",
-      "label": "Published Research Intelligence",
-      "label_zh": "论文与研究成果情报发现",
-      "status": "Waiting",
-      "due": 9,
-      "checked": 0,
-      "inaccessible": [],
-      "failed": [],
-      "signals": 0,
-      "candidates": 0,
-      "selected": 0,
-      "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
-    }
+    {"id":"ai-platform","label":"AI Platform Change Intelligence","label_zh":"AI 平台变更情报发现","status":"Completed","due":45,"checked":45,"inaccessible":[],"failed":[],"signals":2,"candidates":0,"selected":0,"rejected":0,"coveragePercent":100,"reason":"All 45 due P0 public platform channels were checked. Ordinary release notes were not promoted merely for novelty. The rotated product/governance overlay retained two reusable orchestration and runtime-governance mechanisms from Microsoft Agent Governance Toolkit and UiPath Maestro Flow.","reason_zh":"45 个到期 P0 公共平台通道全部完成检查。普通版本说明没有因为“新”而被直接提升；轮换后的产品/治理主动样本覆盖从 Microsoft Agent Governance Toolkit 与 UiPath Maestro Flow 保留了 2 个可复用的运行时治理与编排机制。"},
+    {"id":"github-engineering","label":"GitHub Engineering Intelligence","label_zh":"GitHub 工程情报发现","status":"Completed","due":9,"checked":9,"inaccessible":[],"failed":[],"signals":5,"candidates":0,"selected":0,"rejected":0,"coveragePercent":100,"reason":"All nine P0 daily repositories were checked incrementally against the prior run. Four fresh run-date mechanisms were retained from Codex and Google ADK, and the rotated multi-agent sample overlay retained CrewAI's fail-closed propagation of model-call policy denials. OpenHands was also inspected but produced no non-duplicate retained signal.","reason_zh":"9 个 P0 Daily 仓库均按前一轮检查点完成增量检查。从 Codex 与 Google ADK 保留 4 个新的运行日机制；轮换后的多 Agent 主动样本覆盖又保留 CrewAI 对模型调用策略拒绝的 Fail-closed 传播机制。OpenHands 也完成检查，但没有产生非重复的保留信号。"},
+    {"id":"published-research","label":"Published Research Intelligence","label_zh":"论文与研究成果情报发现","status":"Completed","due":9,"checked":7,"inaccessible":[],"failed":[{"source":"jss","reason":"The registered Journal of Systems and Software page returned an internal retrieval error during this run; it is recorded as failed rather than checked."},{"source":"zenodo","reason":"The registered Zenodo page returned an internal retrieval error during this run; it is recorded as failed rather than checked."}],"signals":3,"candidates":0,"selected":0,"rejected":0,"coveragePercent":100,"reason":"All nine P0 research sources were resolved as seven checked plus two explicit retrieval failures. The mandatory rolling research pass covered the latest seven days and expanded to 30 days for comparison, retaining three primary findings on controlled multi-agent failure replay, harness instruction-privilege escalation and user-authored permission-policy limits.","reason_zh":"9 个 P0 研究来源全部收口为 7 个已检查 + 2 个明确抓取失败。强制滚动研究检查先覆盖最近 7 天，并扩展到 30 天窗口做比较，保留 3 个一手研究发现：受控多 Agent 失败重放、Harness 指令权限提升，以及用户自定义权限策略的保护边界。"}
   ],
   "columns": [
-    {
-      "id": "digital-employee",
-      "label": "Digital Employee",
-      "label_zh": "数字员工",
-      "decision": "Waiting",
-      "signals": 0,
-      "candidates": 0,
-      "selectedItemId": "",
-      "selectedTitle": "",
-      "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
-    },
-    {
-      "id": "industry-architecture",
-      "label": "Industry Architecture",
-      "label_zh": "行业架构",
-      "decision": "Waiting",
-      "signals": 0,
-      "candidates": 0,
-      "selectedItemId": "",
-      "selectedTitle": "",
-      "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
-    },
-    {
-      "id": "open-source-engineering",
-      "label": "Open-source Engineering",
-      "label_zh": "开源工程",
-      "decision": "Waiting",
-      "signals": 0,
-      "candidates": 0,
-      "selectedItemId": "",
-      "selectedTitle": "",
-      "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
-    }
+    {"id":"digital-employee","label":"Digital Employee","label_zh":"数字员工","decision":"Waiting","signals":4,"candidates":0,"selectedItemId":"","selectedTitle":"","selectedTitle_zh":"","reason":"Discovery recorded four primary Digital Employee signals; Queue owns scoring and selection.","reason_zh":"Discovery 记录了 4 个以数字员工为主栏目的信号；评分与选题由 Queue 独立负责。"},
+    {"id":"industry-architecture","label":"Industry Architecture","label_zh":"行业架构","decision":"Waiting","signals":3,"candidates":0,"selectedItemId":"","selectedTitle":"","selectedTitle_zh":"","reason":"Discovery recorded three primary Industry Architecture signals; Queue owns scoring and selection.","reason_zh":"Discovery 记录了 3 个以行业架构为主栏目的信号；评分与选题由 Queue 独立负责。"},
+    {"id":"open-source-engineering","label":"Open-source Engineering","label_zh":"开源工程","decision":"Waiting","signals":3,"candidates":0,"selectedItemId":"","selectedTitle":"","selectedTitle_zh":"","reason":"Discovery recorded three primary Open-source Engineering signals; Queue owns scoring and selection.","reason_zh":"Discovery 记录了 3 个以开源工程为主栏目的信号；评分与选题由 Queue 独立负责。"}
   ],
-  "signals": []
+  "signals": [
+    {"id":"SIG-20260831-001","pipeline":"github-engineering","title":"Codex preserves Guardian authorization across history compaction by separating user-message revision from history generation","title_zh":"Codex 通过分离用户消息修订号与历史代际，使 Guardian 授权跨 History Compaction 保持有效","sourceUrl":"https://github.com/openai/codex/commit/0a12b855a0b21068108a8a3b311d492712737e0f","publishedAt":"2026-08-30","evidenceLevel":"merged_maintainer_change","primaryColumn":"digital-employee","secondaryColumns":["industry-architecture","open-source-engineering"],"triageStatus":"signal","changeObject":"codex/guardian-authorization-user-revision","summary":"Codex now tracks a host-owned user-message revision separately from conversation-history generation, preserving an otherwise valid Guardian review across compaction and internal context injection while invalidating it for genuine user input and rollback.","summary_zh":"Codex 现在把 Host 拥有的用户消息修订号与会话历史代际分开跟踪：Compaction 与内部上下文注入不会无端使有效 Guardian Review 失效，而真实用户输入与 Rollback 会触发失效。","signalRole":"mechanism-evidence","researchThemes":["human-approval-authority","audit-provenance-accountability","durable-runtime-state","recovery-authority"],"sampleIds":["openai-codex"],"researchValue":{"failure":"Treating any model-visible history rewrite as a new authorization event invalidates safe cached reviews and conflates host context maintenance with user intent changes.","finding":"","mechanism":"Version genuine user authority separately from mutable conversation-history generation and bind review reuse to that user-owned revision.","implication":"Durable authorization needs its own provenance clock; context mutation alone should neither grant nor revoke authority."}},
+    {"id":"SIG-20260831-002","pipeline":"github-engineering","title":"Codex makes planning-tool exposure opt-in and removes matching prompt guidance when the capability is absent","title_zh":"Codex 将 Planning Tool 暴露改为显式启用，并在能力不存在时同步移除对应 Prompt 指导","sourceUrl":"https://github.com/openai/codex/commit/a9519cbcdd2d664530edb2469224ee03c1056799","publishedAt":"2026-08-31","evidenceLevel":"merged_maintainer_change","primaryColumn":"industry-architecture","secondaryColumns":["digital-employee","open-source-engineering"],"triageStatus":"signal","changeObject":"codex/update-plan-capability-prompt-consistency","summary":"Codex defaults update_plan to disabled and removes bundled update_plan guidance across model, collaboration, multi-agent, compaction, prewarm and goal-continuation prompts unless the tool is explicitly enabled, while preserving unrelated custom instructions.","summary_zh":"Codex 默认关闭 update_plan；只有显式启用工具时，模型、协作、多 Agent、Compaction、Prewarm 与 Goal Continuation Prompt 才保留对应指导，同时保留无关的自定义指令。","signalRole":"mechanism-evidence","researchThemes":["capability-admission","policy-enforcement","agent-identity-authority"],"sampleIds":["openai-codex"],"researchValue":{"failure":"Prompt text can promise a capability that the runtime does not actually expose, causing false plans and authority confusion.","finding":"","mechanism":"Generate capability-specific instructions from actual enabled tool registration rather than maintaining an unconditional prompt copy.","implication":"Agent capability declarations and model instructions should be derived from the same admitted capability state."}},
+    {"id":"SIG-20260831-003","pipeline":"github-engineering","title":"Google ADK skips rewound invocations when deciding what agent to resume","title_zh":"Google ADK 在决定恢复哪个 Agent 时跳过已经 Rewind 的 Invocation","sourceUrl":"https://github.com/google/adk-python/commit/ed1306f58796648a58b5ee2f99f80e81e92cd7de","publishedAt":"2026-08-31","evidenceLevel":"merged_maintainer_change","primaryColumn":"digital-employee","secondaryColumns":["open-source-engineering","industry-architecture"],"triageStatus":"signal","changeObject":"google-adk/resume-skip-rewound-invocations","summary":"ADK changes agent-resume selection so invocations already marked as rewound are not treated as current continuation candidates.","summary_zh":"ADK 修改 Agent Resume 选择逻辑，使已经被标记为 Rewound 的 Invocation 不再被当作当前 Continuation 候选。","signalRole":"mechanism-evidence","researchThemes":["recovery-authority","durable-runtime-state","failure-deadlock-duplicate-execution"],"sampleIds":["google-adk"],"researchValue":{"failure":"A recovery search that ignores rewind state can resume an invalidated execution branch and re-authorize work that was intentionally rolled back.","finding":"","mechanism":"Exclude rewound invocation identities from resume-candidate resolution.","implication":"Rollback must alter future admission, not merely edit historical presentation."}},
+    {"id":"SIG-20260831-004","pipeline":"github-engineering","title":"Google ADK prevents duplicate durable user events when an invocation is retried","title_zh":"Google ADK 在 Invocation Retry 时阻止重复追加 Durable User Event","sourceUrl":"https://github.com/google/adk-python/commit/d06a7fed56dff71cbfa709edb5bb1d72989eca8e","publishedAt":"2026-08-31","evidenceLevel":"merged_maintainer_change","primaryColumn":"open-source-engineering","secondaryColumns":["digital-employee"],"triageStatus":"signal","changeObject":"google-adk/retry-user-event-idempotency","summary":"ADK now skips appending the same user event again when an invocation is retried, separating retry execution from durable input creation.","summary_zh":"ADK 现在在 Invocation Retry 时跳过重复追加同一个 User Event，把重试执行与 Durable Input 创建分离。","signalRole":"mechanism-evidence","researchThemes":["failure-deadlock-duplicate-execution","durable-runtime-state","audit-provenance-accountability"],"sampleIds":["google-adk"],"researchValue":{"failure":"Invocation retry can duplicate durable user input, corrupting event order and making replay indistinguishable from a second user action.","finding":"","mechanism":"Make input-event append idempotent across retries while allowing execution to retry independently.","implication":"Retry identity and durable-input identity must be separate if event logs are to remain authoritative."}},
+    {"id":"SIG-20260831-005","pipeline":"github-engineering","title":"CrewAI propagates model-call policy denials through every execution path instead of degrading them into provider failures","title_zh":"CrewAI 让模型调用策略拒绝沿所有执行路径 Fail-closed 传播，而不是降级成 Provider Failure","sourceUrl":"https://github.com/crewAIInc/crewAI/commit/e9d4c57b2a40668a476f1e321acf7a5d6cbd8927","publishedAt":"2026-08-28","evidenceLevel":"merged_maintainer_change","primaryColumn":"open-source-engineering","secondaryColumns":["digital-employee","industry-architecture"],"triageStatus":"signal","changeObject":"crewai/model-call-policy-deny-propagation","summary":"CrewAI closes multiple paths where pre-model-call denials were swallowed, mislabeled as provider outages, retried, or allowed to continue without plans or knowledge; explicit policy aborts now propagate as deliberate stops across planning, guardrails, knowledge and retry boundaries.","summary_zh":"CrewAI 修复多个策略拒绝被吞掉、误标为 Provider Outage、被重试或在缺少 Plan/Knowledge 时继续执行的路径；显式 Policy Abort 现在会穿过 Planning、Guardrail、Knowledge 与 Retry 边界作为受控停止传播。","signalRole":"mechanism-evidence","researchThemes":["policy-enforcement","tool-call-mediation","failure-deadlock-duplicate-execution","audit-provenance-accountability"],"sampleIds":["crewai"],"researchValue":{"failure":"A deny that is caught as a generic exception can be retried or degraded, converting a policy decision into eventual execution.","finding":"","mechanism":"Use a typed deliberate-stop exception and re-raise it across every broad error boundary that otherwise fails open.","implication":"Call-time authorization is only as strong as its end-to-end exception semantics; every caller must preserve deny identity."}},
+    {"id":"SIG-20260831-006","pipeline":"ai-platform","title":"Microsoft Agent Governance Toolkit places deterministic policy interception directly on the runtime action path","title_zh":"Microsoft Agent Governance Toolkit 把确定性策略拦截直接放到 Runtime Action Path","sourceUrl":"https://opensource.microsoft.com/blog/2026/04/02/introducing-the-agent-governance-toolkit-open-source-runtime-security-for-ai-agents/","publishedAt":"2026-04-02","evidenceLevel":"official_announcement","primaryColumn":"industry-architecture","secondaryColumns":["digital-employee","open-source-engineering"],"triageStatus":"signal","changeObject":"microsoft-agent-governance/runtime-action-interception","summary":"Microsoft's toolkit describes a stateless policy engine that intercepts agent actions before execution, combines capability gating with identity and dynamic trust, and integrates through framework-native middleware rather than replacing the agent framework.","summary_zh":"Microsoft Toolkit 描述一个 Stateless Policy Engine：在 Agent Action 执行前拦截，结合 Capability Gating、Identity 与 Dynamic Trust，并通过 Framework Native Middleware 接入而不是替换原 Agent Framework。","signalRole":"mechanism-evidence","researchThemes":["policy-enforcement","tool-call-mediation","agent-identity-authority","capability-admission"],"sampleIds":["microsoft-agent-governance-toolkit"],"researchValue":{"failure":"Static agent capability lists do not decide whether a concrete action is permitted at execution time.","finding":"","mechanism":"Insert deterministic, stateless policy mediation before execution and bind decisions to identity, trust and capability context.","implication":"Enterprise agent governance is converging on a runtime mediation layer between reasoning and side effects."}},
+    {"id":"SIG-20260831-007","pipeline":"ai-platform","title":"UiPath Maestro Flow treats the governed business process as the durable production artifact around coding agents","title_zh":"UiPath Maestro Flow 把 Coding Agent 外围的受治理业务流程本身作为 Durable Production Artifact","sourceUrl":"https://www.uipath.com/newsroom/uipath-launches-maestro-flow","publishedAt":"2026-08-19","evidenceLevel":"official_announcement","primaryColumn":"digital-employee","secondaryColumns":["industry-architecture"],"triageStatus":"signal","changeObject":"uipath-maestro-flow/governed-process-artifact","summary":"UiPath Maestro Flow lets supported coding agents design, run, observe and govern an end-to-end business process as a single durable artifact intended to move from prototype to production without rebuilding the process boundary.","summary_zh":"UiPath Maestro Flow 让受支持的 Coding Agent 围绕同一个端到端业务流程 Artifact 进行设计、运行、观测与治理，目标是从 Prototype 到 Production 不重建流程边界。","signalRole":"mechanism-evidence","researchThemes":["human-agent-workflow","durable-runtime-state","audit-provenance-accountability","digital-employee-production"],"sampleIds":["uipath-maestro-flow"],"researchValue":{"failure":"Agent-generated automation can remain a prototype if the production process model, observability and governance are separate artifacts that must be rebuilt later.","finding":"","mechanism":"Use one governed process artifact across design, execution, observation and production transition while agents remain replaceable builders or workers inside it.","implication":"Digital-employee products may compete on durable process ownership more than on the agent model itself."}},
+    {"id":"SIG-20260831-008","pipeline":"published-research","title":"SymTrace shows that unguided multi-agent reruns often resample failures rather than causally repair them","title_zh":"SymTrace 表明无引导的多 Agent 重跑常常只是在重新采样失败，而不是因果修复","sourceUrl":"https://arxiv.org/abs/2608.25920","publishedAt":"2026-08-26","evidenceLevel":"peer_reviewed_or_primary_research","primaryColumn":"open-source-engineering","secondaryColumns":["digital-employee","industry-architecture"],"triageStatus":"signal","changeObject":"research/symtrace-controlled-failure-replay","summary":"SymTrace replays a recorded prefix up to an intervention anchor and regenerates only downstream execution. On 536 human-annotated failures across three MAS frameworks, unguided reruns reproduced failures 67.97% of the time but repaired only 6.90%; symptom-driven intervention repaired 20.15%.","summary_zh":"SymTrace 将记录过的执行前缀重放到 Intervention Anchor，只重新生成下游轨迹。在 3 个 MAS Framework 的 536 条人工标注失败轨迹上，无引导重跑的失败复现率为 67.97%，修复率仅 6.90%；症状驱动干预修复率达到 20.15%。","signalRole":"research-finding","researchThemes":["failure-attribution","replay-and-rollback","evaluation-verification","recovery-authority"],"sampleIds":["arxiv-2608.25920"],"researchValue":{"failure":"Full reruns change upstream stochastic decisions, so a later success cannot prove that the intended repair fixed the original failure.","finding":"Controlled replay exposes a large gap between stochastic rerun success and causal repair effectiveness.","mechanism":"Freeze the execution prefix, anchor the intervention point, and regenerate only downstream behavior so repair effects are attributable.","implication":"Agent recovery evaluation should preserve the failed execution as evidence and distinguish replay, resampling and repair."}},
+    {"id":"SIG-20260831-009","pipeline":"published-research","title":"Harness context construction can elevate low-privilege content into user-level instructions","title_zh":"Harness Context Construction 会把低权限内容提升成 User-level Instruction","sourceUrl":"https://arxiv.org/abs/2608.27299","publishedAt":"2026-08-27","evidenceLevel":"peer_reviewed_or_primary_research","primaryColumn":"industry-architecture","secondaryColumns":["digital-employee","open-source-engineering"],"triageStatus":"signal","changeObject":"research/harness-instruction-privilege-escalation","summary":"The study defines instruction privilege escalation in agent harnesses: low-level attacker-controlled content is re-encoded by context construction as higher-privilege instructions. Attacks achieved all 13 objectives on six harnesses with unrestricted execution and all 13 on the three harnesses offering automatic permission review.","summary_zh":"研究定义了 Agent Harness 中的 Instruction Privilege Escalation：低权限攻击者内容被 Context Construction 重新编码成更高权限指令。在无限制执行下，6 个 Harness 的 13/13 攻击目标全部成功；在提供自动权限审查的 3 个 Harness 上同样是 13/13。","signalRole":"research-finding","researchThemes":["agent-identity-authority","handoff-and-inter-agent-trust","policy-enforcement","context-provenance"],"sampleIds":["arxiv-2608.27299"],"researchValue":{"failure":"A model-side instruction hierarchy can be defeated before inference if the harness drops source provenance while rebuilding context or handing work to a subagent.","finding":"Automatic permission review can also authorize the escalated request because it receives a transcript where attacker content already appears user-authored.","mechanism":"Preserve instruction-origin provenance and privilege across context construction, handoff, persistence and review rather than inferring authority from the final message role.","implication":"The security boundary is partly in the harness serializer and handoff layer, not only in the model or permission reviewer."}},
+    {"id":"SIG-20260831-010","pipeline":"published-research","title":"User-authored standing permission policies reduced prompts but blocked less agent overreach than per-action review","title_zh":"用户自定义 Standing Permission Policy 虽减少 Prompt，却比逐动作审查更难阻止 Agent Overreach","sourceUrl":"https://arxiv.org/abs/2608.27443","publishedAt":"2026-08-27","evidenceLevel":"peer_reviewed_or_primary_research","primaryColumn":"digital-employee","secondaryColumns":["industry-architecture"],"triageStatus":"signal","changeObject":"research/user-authored-permission-policy-overreach","summary":"In a study of 113 non-professional users supervising an 18-action simulated day with seven overreach actions, reusable user-authored consequence policies blocked 20.1 percentage points less overreach than per-action HITL and 14.5 points less than automated per-action review. Users chose ask for 114 of 140 rules, returning many decisions to runtime.","summary_zh":"在 113 名非专业用户监督包含 7 个 Overreach Action 的 18 动作模拟日实验中，可复用的用户自定义 Consequence Policy 比逐动作 HITL 少阻止 20.1 个百分点的越界，比自动逐动作审查少 14.5 个百分点。140 条规则中有 114 条选择 Ask，使大量决定重新回到 Runtime。","signalRole":"research-finding","researchThemes":["human-approval-authority","policy-enforcement","digital-employee-production","evaluation-verification"],"sampleIds":["arxiv-2608.27443"],"researchValue":{"failure":"A reusable preference policy can look like durable authorization while users still want runtime judgment on most consequential actions.","finding":"Standing rules reduced runtime prompts but did not provide stronger overreach protection than per-action approval in this experiment.","mechanism":"Separate reusable preference defaults from runtime commitment authority, preserving an explicit ask path where consequence-specific approval is still required.","implication":"Enterprise approval design should not collapse preference, policy and final action authorization into one configuration layer."}}
+  ],
+  "researchCoverage": {
+    "policy":"theme-sample-v1",
+    "rollingResearchWindowDays":30,
+    "sampleFamilies":{
+      "product-governance":{"checked":["Microsoft Agent Governance Toolkit","UiPath Maestro Flow"],"qualifiedSignals":2},
+      "multi-agent-mechanism":{"checked":["OpenAI Codex","Google ADK","CrewAI","OpenHands"],"qualifiedSignals":5},
+      "research-benchmark-industry":{"checked":["SymTrace/SymFail controlled-replay study (arXiv:2608.25920)","Harness instruction-privilege-escalation study (arXiv:2608.27299)","User-authored permission-policy study (arXiv:2608.27443)"],"qualifiedSignals":3}
+    }
+  }
 }
