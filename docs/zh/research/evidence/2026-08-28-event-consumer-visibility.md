@@ -11,6 +11,8 @@ lifecycle: "Published"
 publication_authorized: true
 ---
 
+[English Version](/en/research/evidence/2026-08-28-event-consumer-visibility)
+
 # A2｜事件消费者可见性
 
 ## 主张
