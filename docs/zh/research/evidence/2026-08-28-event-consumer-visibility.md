@@ -1,7 +1,7 @@
 ---
 title: "A2 公开证据包：事件消费者可见性"
 date: '2026-08-28'
-updated: '2026-08-30'
+updated: '2026-08-31'
 column: research-evidence
 category: evidence
 article_type: evidence-pack
@@ -65,8 +65,8 @@ V2.1.1 `36e5c83b` 修改前复跑确认 raw marker 仍能返回。V2.1.2 实现�
 | 修改前 marker 可见、白名单实现 | `RUNTIME-BOUNDARY-20260830-001`，实现 `3302ca61` | 私有母版材料，访问受限 |
 | 字段误裁及修复 19/20 → 20/20 | 同包 failures 与 targeted-final 记录 | 私有母版材料，访问受限 |
 | B1 独立验证 | `RUNTIME-BOUNDARY-QA-20260830-001`：independent-qa 记录 | 私有母版材料，访问受限 |
-| V2.1.2 发布与最终回归 | `V2.1.2-R3`、`V2.1.2-PUBLICATION-20260830-001`；Runtime 1842 pass / 0 fail / 1 skip，Shell 1037 pass / 0 fail | 已登录 GitHub 接口及本地记录核对，2026-08-30 |
+| V2.1.2 发布与最终回归 | `V2.1.2-R3`、`V2.1.2-PUBLICATION-20260830-001`；Runtime 1842 pass / 0 fail / 1 skip，Shell 1037 pass / 0 fail | 第一方发布记录，2026-08-30 |
 
-[V2.1.2 发布说明（需母版仓库访问权限）](https://github.com/joinwell52-AI/codeflowmu/releases/tag/V2.1.2)。新结果在此作为受限第一方验证的脱敏摘要公开，不伪称现有历史 JSON 可以重跑新版产品。
+[CodeFlowMu V2.1.2 公开发布摘要](/zh/research/evidence/2026-08-30-codeflowmu-v2.1.2-public-release-summary) 汇总递归白名单、安全投影、B1 独立 QA、兼容性、发布门禁与残余风险。完整源码和原始发布材料继续作为受限第一方证据，不作为公开阅读入口；现有历史 JSON 也不会被伪称为可重跑新版产品的公开夹具。
 
 本次三类消费者投影不等于通用敏感内容检测、所有订阅者治理或真实网络授权审计。未发布 Open Edition，未切换在线实例；既有依赖告警、符号链接权限性 skip、真实 LAN/Gateway 未覆盖仍保留。历史 681 条 raw=0 样本也不能用来替代新实现测试。
