@@ -1,0 +1,82 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-31",
+  "itemId": "Q-20260831-02",
+  "coreProposition": "Reconstructed message role is not sufficient authority provenance: original principal, origin channel, privilege class and any trusted privilege transition must remain independently inspectable across persistence, summarization, handoff and context reconstruction.",
+  "openingMove": {
+    "type": "danger-seen-authority-misattributed",
+    "purpose": "Open with a reviewer recognizing a dangerous command yet approving it because reconstructed context falsely attributes it to the user.",
+    "evidenceRefs": [
+      "E2"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "What changed if the instruction text stayed the same?",
+      "claim": "Context reconstruction upgraded effective privilege while preserving semantic content.",
+      "evidenceRefs": [
+        "E1",
+        "E3"
+      ],
+      "reasoningRole": "failure-mechanism",
+      "readerProgress": "The reader sees reconstruction as an authority-bearing transformation.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Why did automatic review not repair the problem?",
+      "claim": "Risk review consumed a corrupted principal premise and therefore answered a different question from authority validation.",
+      "evidenceRefs": [
+        "E2"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "The reader separates content risk from instruction authority.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "Which facts must survive transformation?",
+      "claim": "Original principal, origin channel, privilege class and trusted privilege transition must remain independently inspectable.",
+      "evidenceRefs": [
+        "I1",
+        "I2"
+      ],
+      "reasoningRole": "architecture-design",
+      "readerProgress": "The reader gains a minimum provenance model.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Where are the real control-plane boundaries?",
+      "claim": "Persistence, summarization, scheduled rehydration and cross-agent handoff are provenance-preservation boundaries.",
+      "evidenceRefs": [
+        "E3",
+        "I1"
+      ],
+      "reasoningRole": "system-implication",
+      "readerProgress": "The reader expands review beyond the final prompt.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "How should unknown provenance behave?",
+      "claim": "For high-impact action, lost provenance remains an authority defect unless a trusted explicit transition re-establishes it.",
+      "evidenceRefs": [
+        "I2"
+      ],
+      "reasoningRole": "governance-gate",
+      "readerProgress": "The reader can define fail-closed handling without permanently tainting adopted content.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Message roles are already the model’s authority structure.",
+    "responseBoundary": "Roles remain useful for prompt composition, but after lossy transformation they do not prove original principal or authorized elevation."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with provenance tuple, privilege elevation and legacy-context migration questions."
+  }
+}

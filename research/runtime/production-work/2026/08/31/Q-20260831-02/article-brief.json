@@ -1,0 +1,50 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-31",
+  "itemId": "Q-20260831-02",
+  "researchObjectId": "AN-20260831-02",
+  "targetAudience": {
+    "primary": "Architects and security engineers building agent harnesses, memory layers and permission review",
+    "knowledgeAssumption": "The reader understands message roles, tool output, persistence and approval gates.",
+    "readerProblem": "Low-privilege content can be reconstructed into a stronger prompt position and then mistaken for authorized user intent."
+  },
+  "whyNow": "A primary study over six coding-agent harnesses reports all 13 tested attack objectives succeeding after tool-origin content was reconstructed with user-effective privilege, including under automatic permission review.",
+  "externalHook": {
+    "type": "context-privilege-escalation",
+    "description": "Context reconstruction preserves instruction text while upgrading its effective authority.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "coreProposition": "Reconstructed message role is not sufficient authority provenance: original principal, origin channel, privilege class and any trusted privilege transition must remain independently inspectable across persistence, summarization, handoff and context reconstruction.",
+  "originalValue": {
+    "type": "provenance-survives-role-reconstruction",
+    "description": "Separates conversational role from authority provenance and treats persistence and handoff as privilege-preservation boundaries."
+  },
+  "readerTakeaway": "Authorize high-impact actions from original principal and explicit privilege-transition evidence, not from the role label emitted by prompt assembly.",
+  "evidenceBoundary": {
+    "supported": [
+      "All 13 tested objectives succeeded across six harnesses in the reported full-access setting.",
+      "In three automatic-review harnesses, transformed context succeeded where the conventional comparison was 0/13.",
+      "The study covers persistence through goals, scheduled tasks and skill-like mechanisms."
+    ],
+    "unsupported": [
+      "A universal mitigation or optimal provenance representation",
+      "Production prevalence or organization-specific blast radius",
+      "Security of any proposed signed-envelope or capability design"
+    ],
+    "uncertain": [
+      "The minimum provenance tuple",
+      "How provenance composes through summarization and synthesis"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument is a general agent-harness authority-provenance problem."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The comparative attack results isolate context privilege transformation from ordinary risk review and support an independently valuable architecture boundary."
+}
