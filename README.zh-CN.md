@@ -229,7 +229,7 @@ I1.0 使用被冻结的 TMPA Core S1.0 Bundle，评估 CodeFlowMu V1.8.0 的真�
 
 ### 推荐文章与外部发布记录
 
-置顶文章可以在外发前登记，外发后直接在同一行补充平台链接。普通外部发布记录从 **2026-08-12** 开始，不回填此前的历史发布；同一文章的中文、英文及各平台链接集中在一行。当前已登记 **7 个外部渠道**：**CSDN、DEV Community、Cursor Forum、OpenAI Developer Community、Zenodo、掘金和 X**。其中 CSDN、DEV 与掘金承载文章外发，X 用于短研究摘要与准确归因，Cursor Forum 与 OpenAI Developer Community 用于社区讨论，Zenodo 用于研究成果存档与发现。
+置顶文章可以在外发前登记，外发后直接在同一行补充平台链接。普通外部发布记录从 **2026-08-12** 开始，不回填此前的历史发布；同一文章的中文、英文及各平台链接集中在一行。当前已登记 **8 个外部渠道**：**CSDN、DEV Community、Cursor Forum、OpenAI Developer Community、Codex GitHub Discussions、Zenodo、掘金和 X**。其中 CSDN、DEV 与掘金承载文章外发，X 用于短研究摘要与准确归因，Cursor Forum、OpenAI Developer Community 与 Codex GitHub Discussions 用于技术讨论，Zenodo 用于研究成果存档与发现。标为“技术讨论”的链接是独立问题帖，不代表全文转载。
 
 | # | 标题 | 发布版本 | 一句话 |
 |---:|---|---|---|
@@ -259,6 +259,8 @@ I1.0 使用被冻结的 TMPA Core S1.0 Bundle，评估 CodeFlowMu V1.8.0 的真�
 | 22 | **取消了 Agent，子进程真的停了吗？** | [研究主页中文](https://joinwell52-ai.github.io/joinwell52/zh/digital-employee/2026-08-27-agent-stop-evidence.html) · [Research Center English](https://joinwell52-ai.github.io/joinwell52/en/digital-employee/2026-08-27-agent-stop-evidence.html) · [DEV English](https://dev.to/joinwell52/you-cancelled-the-agent-did-its-child-processes-actually-stop-3mml) · [掘金中文（审核中）](https://juejin.cn/post/7678915860469006371) | 用 Anywhere Agents 的公开反例与可重跑 Windows 二层探针，区分“取消动作”与“执行树已经停止”的证据边界。 |
 | 23 | **从“证据不能串账”到动态诊断** | [研究主页中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-08-27-review-status-evidence-association.html) · [Research Center English](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-08-27-review-status-evidence-association.html) · [DEV English](https://dev.to/joinwell52/from-evidence-ownership-to-dynamic-diagnosis-in-a-multi-agent-runtime-5dhn) · [CSDN 中文](https://blog.csdn.net/m0_51507544/article/details/164144376) | 从 10 条历史报告的 `4 / 4 / 2` 对账发现出发，说明 CodeFlowMu V2.0.4 如何实现只读、随生命周期重算的证据关联诊断。 |
 | 24 | **一盏绿灯到底在说什么？** | [研究主页中文](https://joinwell52-ai.github.io/joinwell52/zh/digital-employee/2026-08-27-agent-ui-status-projection.html) · [Research Center English](https://joinwell52-ai.github.io/joinwell52/en/digital-employee/2026-08-27-agent-ui-status-projection.html) · [DEV English](https://dev.to/joinwell52/what-does-a-green-agent-status-actually-mean-508p) | 对照 Sutando 的协作者进度反例，要求 Agent 面板把状态来源、对象、时效和证据边界分开呈现。 |
+| 25 | **有检查点，不等于可以继续执行** | [研究主页中文](https://joinwell52-ai.github.io/joinwell52/zh/industry/2026-08-25-checkpoint-not-permission-to-resume) · [Research Center English](https://joinwell52-ai.github.io/joinwell52/en/industry/2026-08-25-checkpoint-not-permission-to-resume) · [OpenAI API · 技术讨论](https://community.openai.com/t/agents-sdk-how-do-you-serialize-session-access-during-recovery/1393735) | 从 Agents SDK 的不确定 Session 写入恢复，讨论多 Worker 应在哪里串行化历史回读、恢复判断与追加；明确未做多 Worker 复现。 |
+| 26 | **审批缓存必须绑定授权身份** | [研究主页中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-08-28-approval-caches-need-authorization-identity) · [Research Center English](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-08-28-approval-caches-need-authorization-identity) · [Codex Q&A · 技术讨论](https://github.com/openai/codex/discussions/41780) | 从 Guardian 的授权版本检查，询问线程外工具权限变化是否另有缓存失效或调用时校验路径；不宣称已复现陈旧批准。 |
 
 补充参考：[数字员工生产机架构 V0.3.1 草案](https://joinwell52-ai.github.io/joinwell52/zh/digital-employee/architecture)。
 
