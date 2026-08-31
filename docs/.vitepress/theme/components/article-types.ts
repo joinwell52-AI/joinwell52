@@ -5,6 +5,9 @@ export const articleTypes: Record<string, { en: string; zh: string }> = {
   'comparative-study': { en: 'Comparative Study', zh: '比较研究' },
   'experiment-report': { en: 'Experiment Report', zh: '实验报告' },
   'case-study': { en: 'Case Study', zh: '案例研究' },
+  'engineering-case-study': { en: 'Engineering Case Study', zh: '工程案例研究' },
+  'comparative-engineering-analysis': { en: 'Comparative Engineering Analysis', zh: '比较工程分析' },
+  'research-methodology': { en: 'Research Methodology', zh: '研究方法' },
   'research-note': { en: 'Research Note', zh: '研究札记' },
   'project-research': { en: 'Project Research', zh: '项目研究' },
   'perspective': { en: 'Perspective', zh: '研究观点' }
