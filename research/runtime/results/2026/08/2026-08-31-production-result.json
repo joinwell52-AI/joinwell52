@@ -1,0 +1,135 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "production",
+  "family": "daily",
+  "runtimeDate": "2026-08-31",
+  "status": "Completed",
+  "productionMode": "candidate-batch",
+  "input": {
+    "promptVersion": "2.13.0",
+    "promptPath": "research/runtime/worker-prompts/generated/production.prompt.md",
+    "promptSha256": "d8b0cd52d22d976d6356558a23c5c2dc28ed5aa8f51793538fa8fbebfb80996f",
+    "promptVerificationMode": "direct-sha256",
+    "researchObjects": [
+      "Q-20260831-01",
+      "Q-20260831-02",
+      "Q-20260831-03"
+    ],
+    "stagedCandidateCommit": "df01edf25bc8edd611a600c41a5172da000eddee"
+  },
+  "workResult": {
+    "summary": "Converted all three authorized same-date Research Objects into complete bilingual Editorial Architecture 2.1 candidates. Persisted and remotely verified every article-sized segment with deterministic baseline raster covers, repaired candidate architecture and Chinese technical-prose violations within the allowed three revision rounds, atomically staged the candidate batch, and passed the repository-defined checkpoint, atomic-bundle, runtime, editorial, evidence, language, bilingual-consistency and layout gates without executing Publication.",
+    "summary_zh": "将当日获授权的三份 Research Object 全部转换为完整双语 Editorial Architecture 2.1 候选。每个文章级工作段及其确定性基础栅格题图均完成持久化与远端核验；在允许的三个修订轮次内修复候选结构与中文技术文本问题；随后原子化装配候选批次，并通过仓库定义的检查点、原子候选包、Runtime、编辑、证据、语言、双语一致性与版式门禁；未执行 Publication。"
+  },
+  "output": {
+    "type": "Publication Candidates",
+    "candidateBatch": "research/runtime/candidates/2026/08/2026-08-31-candidates.json",
+    "candidateCount": 3,
+    "bilingualArticleFiles": 6,
+    "coverAssets": 3,
+    "inlineFigureAssets": 0
+  },
+  "next": {
+    "task": "publication",
+    "instruction": "Do not execute Publication in this Production run. Publication remains a separate governed task.",
+    "instruction_zh": "本次 Production 不执行 Publication；Publication 仍是独立受治理任务。"
+  },
+  "coverEvidence": [
+    {
+      "itemId": "Q-20260831-01",
+      "briefId": "2026-08-31:Q-20260831-01-baseline-cover",
+      "coverPath": "staging/publication-candidates/2026-08-31-a-standing-rule-is-not-this-actions-authority-cover.png",
+      "sanitizedPrompt": "A branching route marker beside one distinct sealed action token",
+      "generationAttempts": 1,
+      "semanticReview": "PASS",
+      "coverRole": "baseline",
+      "generator": "deterministic-baseline-v1"
+    },
+    {
+      "itemId": "Q-20260831-02",
+      "briefId": "2026-08-31:Q-20260831-02-baseline-cover",
+      "coverPath": "staging/publication-candidates/2026-08-31-a-reconstructed-role-is-not-proof-of-authority-cover.png",
+      "sanitizedPrompt": "One provenance seal traveling through layered translucent frames",
+      "generationAttempts": 1,
+      "semanticReview": "PASS",
+      "coverRole": "baseline",
+      "generator": "deterministic-baseline-v1"
+    },
+    {
+      "itemId": "Q-20260831-03",
+      "briefId": "2026-08-31:Q-20260831-03-baseline-cover",
+      "coverPath": "staging/publication-candidates/2026-08-31-a-successful-rerun-does-not-prove-the-repair-cover.png",
+      "sanitizedPrompt": "A stable trace rail with one precise hinge and a newly lit continuation",
+      "generationAttempts": 1,
+      "semanticReview": "PASS",
+      "coverRole": "baseline",
+      "generator": "deterministic-baseline-v1"
+    }
+  ],
+  "metrics": [
+    {
+      "name": "research_objects_consumed",
+      "value": 3
+    },
+    {
+      "name": "publication_candidates",
+      "value": 3
+    },
+    {
+      "name": "persisted_article_segments",
+      "value": 3
+    },
+    {
+      "name": "planning_artifacts",
+      "value": 9
+    },
+    {
+      "name": "bilingual_article_files",
+      "value": 6
+    },
+    {
+      "name": "cover_assets",
+      "value": 3
+    },
+    {
+      "name": "inline_figure_assets",
+      "value": 0
+    },
+    {
+      "name": "revision_rounds",
+      "value": 3
+    },
+    {
+      "name": "required_sources_read",
+      "value": 13
+    },
+    {
+      "name": "direct_cloud_image_generation_calls",
+      "value": 0
+    },
+    {
+      "name": "direct_publication_actions",
+      "value": 0
+    }
+  ],
+  "evidence": [
+    "df01edf25bc8edd611a600c41a5172da000eddee",
+    "research/runtime/worker-prompts/generated/production.prompt.md",
+    "research/runtime/checkpoints/2026/08/2026-08-31-production.json",
+    "research/runtime/wakes/2026/08/2026-08-31/production-151326.json",
+    "0452466190b813dc9dc286a0026d559a35f36350"
+  ],
+  "artifacts": [
+    "research/runtime/candidates/2026/08/2026-08-31-candidates.json",
+    "research/runtime/checkpoints/2026/08/2026-08-31-production.json",
+    "staging/publication-candidates/2026-08-31-a-standing-rule-is-not-this-actions-authority.zh.md",
+    "staging/publication-candidates/2026-08-31-a-standing-rule-is-not-this-actions-authority.en.md",
+    "staging/publication-candidates/2026-08-31-a-standing-rule-is-not-this-actions-authority-cover.png",
+    "staging/publication-candidates/2026-08-31-a-reconstructed-role-is-not-proof-of-authority.zh.md",
+    "staging/publication-candidates/2026-08-31-a-reconstructed-role-is-not-proof-of-authority.en.md",
+    "staging/publication-candidates/2026-08-31-a-reconstructed-role-is-not-proof-of-authority-cover.png",
+    "staging/publication-candidates/2026-08-31-a-successful-rerun-does-not-prove-the-repair.zh.md",
+    "staging/publication-candidates/2026-08-31-a-successful-rerun-does-not-prove-the-repair.en.md",
+    "staging/publication-candidates/2026-08-31-a-successful-rerun-does-not-prove-the-repair-cover.png"
+  ]
+}
