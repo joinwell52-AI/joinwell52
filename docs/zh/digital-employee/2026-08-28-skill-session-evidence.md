@@ -34,21 +34,25 @@ publication_authorized: true
 
 但只要再问一句——**这次调用到底属于哪一个真实 Agent Session？**——很多看似完整的日志就会暴露出证据等级的问题。
 
+## CodeFlowMu 是什么，为什么 Session 会成为核心证据
+
+CodeFlowMu 是一个**本地优先的多 Agent 协作与数字员工运行体**。它让不同职责的 Agent 在受控工作空间里持续执行任务，Runtime 则负责维护任务对象、线程、Session、工具调用、Activity、恢复状态和审计证据。
+
+在这种系统里，一张 TASK 往往不只对应一次模型调用。它可能经历首次执行、崩溃恢复、返工、再次验证，甚至由不同 Agent 在不同 Session 中接续工作。于是仅有 `task_id` 已经不够回答“某个动作到底发生在哪一次真实执行里”。
+
+这也是 Session 证据的重要性：它不是聊天界面的临时上下文标签，而是 Runtime 区分执行轮次、恢复边界和审计归属的身份事实。
+
 最直接的做法似乎很简单：让调用方多传一个 `session_id`，原样写进日志。
 
 这仍然不够。
 
-因为一个非空的 `session_id` 首先只是**调用方声明**。它可能来自正确会话，也可能已经结束、属于另一个任务、另一个 Agent，甚至根本没有在 Runtime 中注册。如果系统因为“字符串存在”就把它标记为可信绑定，审计记录反而会比真实事实更强。
+因为一个非空 `session_id` 首先只是**调用方声明**。它可能来自正确会话，也可能已经结束、属于另一个任务、另一个 Agent，甚至根本没有在 Runtime 中注册。如果系统因为“字符串存在”就把它标记为可信绑定，审计记录反而会比真实事实更强。
 
-CodeFlowMu 在把数字员工运行链路工程化时遇到的正是这个问题。历史版本首先暴露了 session 传播缺口；进一步设计时，我们又确认：真正要补的不是一个字段，而是一条 **执行身份的权威核验边界**。
+CodeFlowMu 在把数字员工运行链路工程化时遇到的正是这个问题。历史版本首先暴露了 Session 传播缺口；进一步设计时，我们又确认：真正要补的不是一个字段，而是一条**执行身份的权威核验边界**。
 
 V2.1.2 最终把这条边界落在 Runtime：技能调用携带的会话身份不再直接成为事实，而是先与 SessionStore 中的权威记录核对，再形成 `verified`、`sessionless/not_applicable` 或 `invalid_claim` 等明确审计语义。
 
-这篇文章讨论的因此不是“技能有没有加载”，而是一个更基础的问题：
-
-> 当系统以后要复盘、恢复、EVAL 或审计一次工具执行时，什么证据足以证明“就是这个 Agent，在这个任务、这条线程、这次 Session 里做了这件事”？
-
-完整历史剖面和公开证据见：[RBE-20260828-03 证据页](/zh/research/evidence/2026-08-28-skill-session-evidence)。
+完整历史剖面、版本边界与公开证据见：[RBE-20260828-03 证据页](/zh/research/evidence/2026-08-28-skill-session-evidence)。
 
 ## 外部研究起点：配置存在，不等于进入了这次会话
 
@@ -68,13 +72,13 @@ CodeFlowMu 这次的问题更靠后：`已经观察到调用 → 这条调用记
 
 因此两者是相邻问题，不是同一个 Bug，也不是同一份实现。
 
-## 历史断点：Runtime 知道 session，持久证据却丢了它
+## 历史断点：Runtime 知道 Session，持久证据却丢了它
 
 在 CodeFlowMu V2.0.4 固定提交 `2ba1ad9b` 的普通 Playbook 读取路径中，运行时实际上已经接收 agent、session、task 和 thread。它能识别 SDK 工具调用是否读取技能文件，也会使用 `session_id + skill_id` 做短期去重。
 
 但在最终写入调用 journal 的 `recordSkillInvocation()` 路径里，task 和 thread 被继续传递，session 却没有进入持久记录。
 
-也就是说，当时存在这样一个传播断点：
+传播断点因此非常明确：
 
 `运行时知道 Session → 用 Session 做短期处理 → 持久证据丢失 Session 归属`
 
@@ -90,17 +94,15 @@ CodeFlowMu 这次的问题更靠后：`已经观察到调用 → 这条调用记
 
 这 59 条记录只是一批冻结历史样本，不代表所有版本、所有技能入口或生产频率。它们能说明的是：**这批持久记录具有完整性字段，却无法仅靠自身还原真实会话归属。**
 
-这里还有一个非常重要的区别：`integrity` 存在不代表 session 身份真实。
+这里还有一个重要区别：`integrity` 存在不代表 Session 身份真实。
 
 一条记录可以“从写入后没有被篡改”，但它写进去的身份本身仍可能错误。完整性只能证明记录保持原样，不能证明原始声明就是事实。
 
-## 同一系统里的反例，说明目标不是“给所有技能补 session 字段”
+## 同一系统里的反例：目标不是“给所有技能补一个 session 字段”
 
 CodeFlowMu 并不是所有技能证据都处于同一强度。
 
 同一固定版本里的 `pm.record_planning_skill_evidence` 是一个更强的规划证据入口：它会把请求与 Runtime 已掌握的 task、session、caller 和 thread 等上下文核对，再保存规划技能证据。
-
-这给出了一个很重要的反例：
 
 | 记录类型 | 已能证明 | 仍不能证明 |
 | --- | --- | --- |
@@ -113,13 +115,13 @@ CodeFlowMu 并不是所有技能证据都处于同一强度。
 
 这一步是从日志工程走向证据工程的分界。
 
-## 为什么“把 session_id 原样写进去”反而可能制造假证据
+## 为什么把 `session_id` 原样写进去反而可能制造假证据
 
-假设一个调用请求里出现：
+假设调用请求里出现：
 
 `session_id = session-042`
 
-系统至少还不知道五件事：
+系统至少还不知道：
 
 1. `session-042` 是否真实存在于当前 Runtime 的 SessionStore；
 2. 它是否属于当前 `task_id`；
@@ -127,13 +129,11 @@ CodeFlowMu 并不是所有技能证据都处于同一强度。
 4. 它记录的 Agent 是否与当前调用 Agent 一致；
 5. 当前 caller 是否有资格把这次调用归属于该 Session，以及 Session 当前状态是否仍可接受。
 
-如果这些都不核对，只因为字符串长得像 session ID 就持久化为“已绑定”，以后 EVAL、恢复器、审计面板或 ADMIN 看到的就不是弱证据，而是**被系统包装过的错误强证据**。
+如果这些都不核对，只因为字符串长得像 Session ID 就持久化为“已绑定”，以后 EVAL、恢复器、审计面板或 ADMIN 看到的就不是弱证据，而是**被系统包装过的错误强证据**。
 
-这种错误比字段为空更危险。
+这种错误比字段为空更危险。字段为空至少明确告诉后续消费者“这里不知道”；未经核验却显示为可信的 Session，则会让系统错误地回答“我知道这次是谁、在哪一轮执行的”。
 
-字段为空至少明确告诉后续消费者“这里不知道”。一个未经核验却显示为可信的 session，则会让系统错误地回答“我知道这次是谁、在哪一轮执行的”。
-
-因此 V2.1.2 的设计原则是：
+因此 V2.1.2 的原则是：
 
 > **声明可以保存，但只有 Runtime 自己能够核验的声明，才能升级为执行身份事实。**
 
@@ -148,27 +148,27 @@ V2.1.2 不再把调用方提交的 `session_id` 直接视为执行证据，而�
 - caller；
 - Session 是否存在、状态是否处于可接受范围。
 
-核验后，调用 journal 不再只有“有 session / 没 session”两个模糊状态，而是形成明确的证据语义：
+核验后，调用 journal 不再只有“有 Session / 没 Session”两个模糊状态，而是形成明确的证据语义：
 
 | 情况 | 持久化语义 | 审计含义 |
 | --- | --- | --- |
 | SessionStore 记录存在，身份和已有上下文一致 | `session_binding=verified` | 这次调用的会话归属得到 Runtime 权威事实支持 |
-| 该调用按设计合法不需要 Session，并有 Runtime 原因 | `sessionless/not_applicable`（现有日志字段可表现为 `session_id:null`、`session_binding=not_applicable`） | 无 Session 是合法语义，不是漏写 |
+| 该调用按设计合法不需要 Session，并有 Runtime 原因 | `sessionless/not_applicable` | 无 Session 是合法语义，不是漏写 |
 | Session 未注册、状态不接受、Agent/caller/task/thread 等出现不一致 | `session_binding=invalid_claim` | 保留为负面审计事实，不能升级为已验证执行证据 |
 
-这三个状态的价值，在于它们把过去混在一起的三种情况拆开了：
+这三个状态把过去混在一起的三种情况拆开了：
 
 **真的绑定成功、设计上不需要绑定、有人声称绑定但事实不支持。**
 
 尤其是 `invalid_claim`，它不能被悄悄丢弃。
 
-如果系统发现一个错误 Session 就直接改成 `session_id=null`，以后审计只能看到“没有 Session”，却看不到“曾经有人声称这是某个 Session，但核验失败”。V2.1.2 因此把错误声明保留下来，作为负面证据。
+如果系统发现一个错误 Session 就直接改成 `session_id=null`，以后审计只能看到“没有 Session”，却看不到“曾经有人声称这是某个 Session，但核验失败”。V2.1.2 因此把错误声明留下来，作为负面证据。
 
 负面证据同样是证据。
 
 ## `invalid_claim` 为什么不能自动“修好”
 
-Agent 系统里很容易出现一种看似友好的自动修复冲动：调用方给错了 session，如果 Runtime 能猜到“它可能想写另一个 session”，是否可以自动替换？
+Agent 系统里很容易出现一种看似友好的自动修复冲动：调用方给错了 Session，如果 Runtime 能猜到“它可能想写另一个 Session”，是否可以自动替换？
 
 对执行证据来说，这种自动修复风险很高。
 
@@ -182,22 +182,18 @@ Agent 系统里很容易出现一种看似友好的自动修复冲动：调用�
 
 `claim → best guess → pretend verified`
 
-这也是为什么 V2.1.2 把不一致声明记录成 `invalid_claim`，而不是静默修成 `verified`。
-
 未来如果业务层需要恢复、重新绑定或人工纠正，那应该产生新的、独立可追踪的治理动作，而不是修改历史调用证据的含义。
 
 ## task、thread、session、agent、caller 不能互相替代
 
-Session 身份之所以容易被写弱，一个原因是很多系统已经有 task 或 thread，于是会产生“有任务编号就够了”的错觉。
-
-实际上这些键回答的是不同问题：
+这些身份键回答的是不同问题：
 
 | 身份键 | 回答的问题 |
 | --- | --- |
 | `task_id` | 这次执行服务哪个业务任务 |
 | `thread_key` | 它位于哪条业务协作或因果链 |
 | `session_id` | 它属于哪一次具体运行会话 |
-| agent | 哪个执行角色/Agent 进行了动作 |
+| agent | 哪个执行角色 / Agent 进行了动作 |
 | caller | 谁发起了这次调用 |
 
 一个任务完全可能经历首次执行、崩溃恢复、返工和再次验证等多个 Session。同一 thread 也可能跨越多个角色与任务阶段。
@@ -208,16 +204,12 @@ V2.1.2 的价值，就是把这些身份维度放回同一个 Runtime authority 
 
 ## 身份真实性与记录完整性，是两套不同证明
 
-调用 journal 本来就有完整性机制，这次 Session 工程化并没有取代它。
+调用 journal 原本就有完整性机制，这次 Session 工程化并没有取代它。
 
-现在两条证明各自回答不同问题：
+- **SessionStore 核验**回答：这条身份声明是否与 Runtime 权威会话事实一致？
+- **journal 完整性验证**回答：这条已经持久化的记录是否保持可验证完整性？
 
-- **SessionStore 核验**：这条身份声明是否与 Runtime 权威会话事实一致？
-- **journal 完整性验证**：这条已经持久化的记录是否保持可验证完整性？
-
-一条错误 session claim 即使拥有合法完整性摘要，仍然只是“完整保存了一条错误声明”。
-
-反过来，一条已经 `verified` 的身份记录如果后来被篡改，也仍需要完整性机制发现。
+一条错误 Session claim 即使拥有合法完整性摘要，仍然只是“完整保存了一条错误声明”。反过来，一条已经 `verified` 的身份记录如果后来被篡改，也仍需要完整性机制发现。
 
 这两条证据不能互相代替。
 
@@ -225,11 +217,9 @@ V2.1.2 的价值，就是把这些身份维度放回同一个 Runtime authority 
 
 ## 独立 QA：验证的是一条真实 SessionStore 绑定链
 
-实现完成后，独立 QA 没有只检查“journal 多了一个 session 字段”。
+实现完成后，独立 QA 没有只检查“journal 多了一个 Session 字段”。
 
 C1 场景先创建真实 SessionStore 记录，再通过普通技能读取入口产生 invocation，随后读取持久 journal，并核对身份和完整性。
-
-独立观察结果包括：
 
 | 检查项 | 结果 |
 | --- | --- |
@@ -242,32 +232,19 @@ C1 场景先创建真实 SessionStore 记录，再通过普通技能读取入口
 | `evidence_source` | `sdk_tool_call` |
 | 完整性验证 | 通过 |
 
-V2.1.2 发布说明把 C1 的发布门禁进一步概括为：真实 SessionStore 绑定的 task/thread/session/agent/caller 全部一致。
+这里同样要保留证据边界。C1 证明的是一个真实、合法 Session 的完整正向绑定链。伪造或未注册 Session、合法 sessionless、跨会话区分和同会话去重等失败/边界分支由定向测试覆盖，不能拿一次 C1 代替所有失败路径的独立 QA。
 
-这里同样要保留证据边界。C1 证明的是一个真实、合法 Session 的完整正向绑定链。伪造或未注册 session、合法 sessionless、跨会话区分和同会话去重等失败/边界分支由开发定向测试覆盖，不能拿一次 C1 代替所有失败路径的独立 QA。
-
-历史 59 条缺少 session 的旧记录也不会因为新版本发布就被自动升级成 `verified`。没有可靠来源可以恢复的历史身份，继续保持未知；不猜测回填，本身就是证据纪律的一部分。
+历史 59 条缺少 Session 的旧记录也不会因为新版本发布就被自动升级成 `verified`。没有可靠来源可以恢复的历史身份继续保持未知；不猜测回填，本身就是证据纪律的一部分。
 
 ## `verified` 证明执行归属，不证明工作结果正确
 
-这条边界如果不写清楚，很容易造成另一个方向的过度工程化。
+假设一条 journal 已经显示正确 task、正确 thread、正确 Session、正确 Agent/caller，并且 `session_binding=verified`、`outcome=ok`。
 
-假设一条 journal 记录已经显示：
+它能证明的是：**Runtime 有证据支持“这个身份组合下发生了这次技能调用，并且调用本身按接口语义完成”。**
 
-- 正确 task；
-- 正确 thread；
-- 正确 session；
-- 正确 Agent / caller；
-- `session_binding=verified`；
-- `outcome=ok`。
+它仍然不能证明：
 
-它能证明什么？
-
-它能证明：**Runtime 有证据支持“这个身份组合下发生了这次技能调用，并且调用本身按其接口语义完成”。**
-
-它不能证明：
-
-- 技能给出的建议是正确的；
+- 技能给出的建议正确；
 - Agent 完整遵循了技能；
 - 代码改动正确；
 - 测试覆盖充分；
@@ -285,9 +262,7 @@ V2.1.2 补的是**调用归属真实性**，不是给 Runtime 增加业务裁判
 
 ## 对数字员工运行体意味着什么
 
-Session 证据看起来只是日志层的小字段，但对长时间运行的数字员工系统，它实际决定了很多后续能力能否可信建立。
-
-例如：
+Session 证据看起来只是日志层的小字段，但对长时间运行的数字员工系统，它实际决定了很多后续能力能否可信建立：
 
 - 崩溃恢复时，系统能否判断某条调用属于旧 Session 还是新恢复 Session；
 - EVAL 复盘时，能否把某项行为准确归到具体执行轮次；
@@ -303,20 +278,20 @@ Session 证据看起来只是日志层的小字段，但对长时间运行的数
 
 ## 从工程补丁到正式版本
 
-V2.1.2 于 2026-08-30 正式发布，Session 身份核验与任务幂等、Activity 安全投影一起构成本次 Runtime 边界安全补丁。
+V2.1.2 于 2026-08-30 完成私有母版 Runtime/Shell 发布。Session 身份核验与任务幂等、Activity 安全投影一起构成本次 Runtime 边界安全补丁。
+
+公开文章不直接链接私有 CodeFlowMu 仓库；对外可核查的版本事实、脱敏 C1 结果、兼容性与残余风险统一见本文的[公开证据页](/zh/research/evidence/2026-08-28-skill-session-evidence)。
 
 最终发布验证记录为：
 
 - Runtime：**1842 pass / 0 fail / 1 skip**；
 - Shell：**1037 pass / 0 fail / 0 skip**；
-- V2.1.1 与 V2.1.2 同协议关键场景各连续 10 轮，Runtime **1630/1630**、Shell **550/550**；
+- V2.1.1 与 V2.1.2 同协议关键场景各连续 10 轮：Runtime **1630/1630**、Shell **550/550**；
 - typecheck、Shell build、安装器契约、规则与版本一致性全部通过。
 
 这些是整个 V2.1.2 发布集合的验证结果，不是“Session 证据可信率”，也不能由此推出所有 Host、真实 LAN/Gateway、浏览器 profile 或用户生产项目均已覆盖。
 
 本次发布是私有母版 Runtime/Shell，不包含独立 Open Dev Team Edition，也不要求现有 TASK、REPORT、Session 或 Activity 文件做数据迁移。
-
-[CodeFlowMu V2.1.2 发布说明](https://github.com/joinwell52-AI/codeflowmu/blob/main/docs/releases/V2.1.2-RELEASE-NOTES.md)
 
 ## 可以迁移到其他 Agent Runtime 的审查方法
 
@@ -332,7 +307,7 @@ V2.1.2 于 2026-08-30 正式发布，Session 身份核验与任务幂等、Activ
 8. 调用成功是否仍与工程结果、业务结果的验证分离？
 9. 历史缺失身份是否保持未知，而不是为了“数据完整”而推断补齐？
 
-这些问题比“日志有没有 session 字段”更能判断系统是否真正拥有可信执行证据。
+这些问题比“日志有没有 Session 字段”更能判断系统是否真正拥有可信执行证据。
 
 ## 工程结论
 
@@ -350,7 +325,7 @@ CodeFlowMu 这次工程化最重要的变化，不是让技能 journal 多保存
 
 ## 证据范围与主要来源
 
-- [历史剖面、混合证据样本及 V2.1.2 更新说明](/zh/research/evidence/2026-08-28-skill-session-evidence)：旧 fixture、Reader 与 check 用于验证冻结历史材料的一致性，不运行当前私有 Runtime；历史 `current_probe_persisted_session=false` 不能用于描述 V2.1.2 当前行为。
+- [历史剖面、混合证据样本、V2.1.2 工程更新与公开版本说明](/zh/research/evidence/2026-08-28-skill-session-evidence)：旧 fixture、Reader 与 check 用于验证冻结历史材料的一致性；公开页同时给出脱敏实现、C1 独立 QA、发布门禁与残余风险说明。
 - [OpenHands PR #16971](https://github.com/OpenHands/OpenHands/pull/16971)：原研究于 2026-08-28 记录为开放提案，提供“配置进入会话”的相邻问题模型，不是 CodeFlowMu 本次能力的来源代码或交付证明。
-- [CodeFlowMu V2.1.2 发布说明](https://github.com/joinwell52-AI/codeflowmu/blob/main/docs/releases/V2.1.2-RELEASE-NOTES.md)：记录 SessionStore 核验边界、C1 独立 QA、兼容性、发布门禁与残余风险。
-- 实现、独立 QA 与发布原始日志属于受限第一方材料。本文不证明技能建议正确、不证明 Agent 完整遵循技能、不把调用证据替代工程结果验收，也不声称历史 Session 身份可以被安全推断回填。
+- CodeFlowMu V2.1.2 的实现、独立 QA 与发布原始日志位于受限私有母版中；本文不向公共读者提供不可访问的私有仓库链接。
+- 本文不证明技能建议正确、不证明 Agent 完整遵循技能、不把调用证据替代工程结果验收，也不声称历史 Session 身份可以被安全推断回填。
