@@ -1,0 +1,43 @@
+{
+  "schema": "manual-editorial-cover-brief/v1",
+  "itemId": "Q-20260828-03",
+  "date": "2026-08-31",
+  "title": "审批缓存必须绑定授权身份",
+  "source": "docs/zh/engineering/2026-08-28-approval-caches-need-authorization-identity.md",
+  "coreProposition": "缓存中的低风险审批即使完整且新鲜，也不能脱离当前本地与根授权身份重复使用。",
+  "synopsis": "Codex 将低风险分类结果绑定到 local/root authorization version，在分类提交与缓存消费时比较当前版本。版本变化使旧结论不能继续快速放行。文章明确这不是工具副作用与授权检查之间的通用原子保证，也不能证明未纳入版本的外部策略未变化。",
+  "causalChain": "先前凭证完好保存 → 当前授权形状改变 → 两者不再匹配 → 旧凭证被挡住，不能自动放行。",
+  "titlePromise": "区分缓存结论仍然存在与当前授权仍然有效。",
+  "readerProblem": "把近期的低风险判断误当成持续有效的执行许可。",
+  "dominantSubject": "较大的钛金属当前授权接合件与一枚完好的旧紫色光学玻璃凭证",
+  "singleAction": "旧凭证尝试接合改变后的授权轮廓",
+  "visibleResult": "错位齿形在接触点被实体阻挡，留下可见间隙",
+  "semanticAnchors": [
+    "完好旧凭证",
+    "新的不对称接合轮廓",
+    "无法插入的接触点"
+  ],
+  "colorMeaning": {
+    "violet": "保留的先前证据",
+    "cobalt": "当前授权条件",
+    "amber": "不匹配时暂缓放行"
+  },
+  "authoritySize": "当前授权接合件明显大于旧凭证，突出当前授权优先。",
+  "foreground": "两件接合轮廓及狭窄阻挡间隙",
+  "midground": "深蓝黑石台与可信接触阴影",
+  "background": "静谧石墨深蓝空间",
+  "materials": "钛金属、紫色光学玻璃、钴蓝陶瓷、深色石板",
+  "lighting": "冷色侧主光，阻挡接触点少量暖光",
+  "palette": "navy / graphite / cobalt / violet / restrained amber",
+  "atmosphere": "精密、克制、真实材质的电影感工程静物",
+  "landscape": "16:9, 2048x1152 requested",
+  "intendedPath": "docs/public/assets/covers/daily-2026-08-28-approval-caches-need-authorization-identity-cover-v2.png",
+  "reviewExclusions": [
+    "不画仪表板或流程图",
+    "不暗示旧凭证本身损坏或过期",
+    "不暗示所有外部权限都已纳入版本",
+    "不把版本比较画成副作用执行的全局原子保证",
+    "不复用旧图的矩形面板和连线"
+  ],
+  "sanitizedPrompt": "Create a premium cinematic editorial still life, landscape composition 16:9, 2048 by 1152 pixels. A single precision-machined authorization coupling rests on dark blue-black slate. On the left, one pristine thick violet optical-glass credential blade extends diagonally toward the much larger titanium receiving block on the right. Its three asymmetric crystal teeth meet a newly shifted set of cobalt ceramic recesses: the first tooth clearly rests against a solid titanium ledge, physically stopping insertion, with a narrow visible air gap beneath the remaining teeth. This mismatch is the central, immediately legible event. The saved glass credential remains beautiful, intact, and faintly luminous; the receiving block has a distinctly different asymmetric profile, large enough to read in a small thumbnail. One tiny restrained amber glint at the point of obstruction marks withheld passage. The receiving block occupies the middle-right foreground, the old credential occupies the middle-left, and a quiet graphite background recedes into soft deep navy darkness. The physical scale feels like a crafted optical instrument photographed on a tabletop. Brushed titanium microtexture, dense violet refraction, polished cobalt ceramic, subtle edge wear on the metal, realistic contact shadows and reflections. A broad cool side light from upper left sculpts the geometry; a warm grazing highlight touches only the blocked contact. Shallow but sufficient depth of field keeps the two mating profiles sharply readable. Strong simple silhouette, understated luxury industrial photography, spacious composition, high material realism, tactile depth, a restrained cobalt-violet-amber palette. The image conveys an intact earlier credential meeting changed present authorization and being stopped."
+}

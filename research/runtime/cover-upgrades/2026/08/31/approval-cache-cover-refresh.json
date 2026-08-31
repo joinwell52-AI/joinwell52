@@ -1,0 +1,69 @@
+{
+  "schema": "article-cover-refresh/v1",
+  "runDate": "2026-08-31",
+  "reason": "User-requested replacement of approval-cache article cover",
+  "executionMode": "manual-article-semantic-refresh",
+  "sourceBaseCommit": "eb4338da4c627738ab9c0ba74d053b1c2320d53f",
+  "generator": "Codex built-in image generation",
+  "style": "Deep navy cinematic industrial still life; titanium, violet optical glass and cobalt ceramic; a single blocked mismatch; text-free surfaces",
+  "items": [
+    {
+      "itemId": "Q-20260828-03",
+      "article": "approval-caches-need-authorization-identity",
+      "attemptCount": 3,
+      "attempts": [
+        {
+          "attempt": 1,
+          "result": "rejected",
+          "reason": "Added lettering and a year, which distract from authorization mismatch and suggest age-based expiry."
+        },
+        {
+          "attempt": 2,
+          "result": "rejected",
+          "reason": "The requested smooth surfaces did not remove lettering.",
+          "sanitizedPrompt": "Refine this cinematic precision-instrument still life while preserving its exact composition, materials, lighting, violet credential blade, cobalt asymmetric recesses, amber contact glow and visibly blocked insertion. Give every exposed metal and glass face a continuous clean material finish: the broad front titanium face is uninterrupted brushed metal with natural microtexture; the broad violet credential face is uninterrupted translucent optical glass with subtle reflections; the small lower metal face has the same continuous brushed finish. The visual meaning comes entirely from the mismatched interlocking profiles and the intact pristine glass blade stopping against the changed receiving shape. Keep all geometric edges, lens focus, contrast, scale and 16:9 landscape framing intact. Final full-resolution editorial image."
+        },
+        {
+          "attempt": 3,
+          "result": "accepted",
+          "reason": "Lettering removed; the intact credential and mismatched receiver remain legible.",
+          "sanitizedPrompt": "Retouch the attached image in exactly three places. 1. Replace the engraved words \"AUTHORIZATION PRESENT\" and their decorative horizontal lines on the upper central titanium face with seamless plain brushed titanium matching the surrounding surface. 2. Replace the words \"AUTHORIZATION ISSUED 2019\", the vertical separator and the geometric logo on the lower-left violet blade with seamless clear violet optical glass matching the surrounding blade. 3. Replace the tiny hexagonal logo on the bottom center of the titanium face with seamless plain brushed titanium. These three regions must become smooth continuous material surfaces. Preserve the blade shape, metal shape, cobalt recesses, amber glow, composition and light. Deliver the retouched full-resolution landscape photograph."
+        }
+      ],
+      "coverPath": "docs/public/assets/covers/daily-2026-08-28-approval-caches-need-authorization-identity-cover-v2.png",
+      "originalCoverPreserved": "docs/public/assets/covers/daily-2026-08-28-approval-caches-need-authorization-identity-cover.png",
+      "sha256": "4963eed7941b01035c9bd18bccbb9fec10ead9305b5d34ba8b3d09880accddca",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2123876,
+      "thumbnailPath": "research/runtime/cover-upgrades/2026/08/31/approval-cache-cover-v2-320.webp",
+      "publicThumbnailPath": "/assets/cover-thumbnails/daily-2026-08-28-approval-caches-need-authorization-identity-cover-v2.webp",
+      "publicThumbnailBytes": 7212,
+      "publicThumbnailDimensions": [
+        336,
+        189
+      ],
+      "semanticReview": "Passed: pristine retained credential meets a changed asymmetric present-authority shape and cannot fully enter. The receiver dominates. Amber marks only the obstructed contact; the scene does not rely on a clock, date or damaged credential.",
+      "thumbnailReview": "Passed at 320x180: mismatched silhouettes and blocked contact remain distinct.",
+      "uniquenessComparison": "Replaces flat panels and connectors with a single tangible asymmetric coupling; not a flow diagram, information card or portal sequence.",
+      "reviewLimitation": "A visual metaphor for cache identity checks, not a depiction or proof of implementation-wide atomicity."
+    }
+  ],
+  "articleProseChanged": false,
+  "articleCoverReferencesChanged": true,
+  "languages": [
+    "zh",
+    "en"
+  ],
+  "historicalRuntimeRecordsChanged": false,
+  "validation": {
+    "proseComparison": "PASS: normalizing only v2 cover filename yields exact original text in both languages",
+    "runtimeBuild": "PASS",
+    "coverThumbnails": "PASS: 138 generated",
+    "vitepressStrictBuild": "PASS",
+    "runtimeProjectionDist": "PASS",
+    "bilingualArticleAndResearchHtml": "PASS",
+    "publicationVisibility": "PASS"
+  },
+  "deployment": "Pending GitHub push and Pages verification at receipt creation."
+}

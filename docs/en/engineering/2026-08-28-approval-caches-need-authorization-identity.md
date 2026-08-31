@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260828-03-approval-cache-bound-to-authorization-version.md
 item_id: "Q-20260828-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-28-approval-caches-need-authorization-identity-cover.png"
+cover: "/assets/covers/daily-2026-08-28-approval-caches-need-authorization-identity-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-28-approval-caches-need-authorization-identity-cover.png"
+  image="/assets/covers/daily-2026-08-28-approval-caches-need-authorization-identity-cover-v2.png"
   kicker="Open-source Engineering · Daily Research"
   title="Approval Caches Need an Authorization Identity"
   summary="A merged OpenAI Codex Guardian v2 change binds cached low-risk results to authorization versions and revalidates them before fast approval. It closes a demonstrated concurrent-revocation race, but only for the authority facts represented by the version tuple."

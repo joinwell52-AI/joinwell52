@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260828-03-approval-cache-bound-to-authorization-version.md
 item_id: "Q-20260828-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-08-28-approval-caches-need-authorization-identity-cover.png"
+cover: "/assets/covers/daily-2026-08-28-approval-caches-need-authorization-identity-cover-v2.png"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-08-28-approval-caches-need-authorization-identity-cover.png"
+  image="/assets/covers/daily-2026-08-28-approval-caches-need-authorization-identity-cover-v2.png"
   kicker="开源工程 · 每日研究"
   title="审批缓存必须绑定授权身份"
   summary="OpenAI Codex Guardian（授权审查器）第二版的一项已合并变更把缓存的低风险结果绑定到授权版本，并在快速批准前重新核验。它关闭了已展示的并发撤销竞态，但只覆盖版本元组实际编码的权限事实。"
