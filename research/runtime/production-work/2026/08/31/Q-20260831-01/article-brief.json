@@ -1,0 +1,50 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-31",
+  "itemId": "Q-20260831-01",
+  "researchObjectId": "AN-20260831-01",
+  "targetAudience": {
+    "primary": "Engineers and governance leads designing digital employees that act under reusable user preferences",
+    "knowledgeAssumption": "The reader understands approval prompts, policy rules and consequential tool actions.",
+    "readerProblem": "A reusable permission preference can silently become broad execution authority for a concrete action."
+  },
+  "whyNow": "A 113-participant primary study reports that reusable consequence policies reduce prompts while changing overreach blocking, and that 114 of 140 authored rules preserve a later Ask decision.",
+  "externalHook": {
+    "type": "standing-policy-occurrence-authority",
+    "description": "A policy interface can reuse preferences without proving that every matching future occurrence is authorized.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "coreProposition": "Standing permission policy and occurrence authority should be separate governance objects: a reusable policy may route a future action to Allow, Ask or Never, but whenever the decision remains open, final authority must bind the concrete occurrence and be independently auditable.",
+  "originalValue": {
+    "type": "two-object-authorization-model",
+    "description": "Separates durable decision routing from occurrence-specific commitment and identifies the evidence each object should preserve."
+  },
+  "readerTakeaway": "Persist the policy version and the concrete occurrence separately; treat Ask as a real governance state, and make any standing Allow derive authority from explicit scope and current validity.",
+  "evidenceBoundary": {
+    "supported": [
+      "The study reports lower raw overreach blocking for the policy condition than per-action HITL while required-action completion remains high.",
+      "114 of 140 authored rules selected Ask.",
+      "The main comparison used a fixed researcher-checked action-to-consequence mapping."
+    ],
+    "unsupported": [
+      "A universal requirement for fresh approval on every consequential action",
+      "An enterprise-wide risk threshold",
+      "Independent replication or production incident rates"
+    ],
+    "uncertain": [
+      "Which consequence classes qualify for bounded standing Allow",
+      "How learned preferences should expire or be revoked"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument concerns general human-agent authorization design."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The reported supervision tradeoff and user-rule distribution support a concrete, evidence-bounded distinction between routing preference and occurrence authority."
+}

@@ -1,0 +1,82 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-31",
+  "itemId": "Q-20260831-01",
+  "coreProposition": "Standing permission policy and occurrence authority should be separate governance objects: a reusable policy may route a future action to Allow, Ask or Never, but whenever the decision remains open, final authority must bind the concrete occurrence and be independently auditable.",
+  "openingMove": {
+    "type": "reused-preference-wrong-authority",
+    "purpose": "Open with a digital employee applying an old standing preference to a new consequential occurrence.",
+    "evidenceRefs": [
+      "E1",
+      "I1"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "What changes when approval moves into a standing policy?",
+      "claim": "Prompt reduction changes when the decision is made; it does not prove equivalent overreach protection.",
+      "evidenceRefs": [
+        "E1"
+      ],
+      "reasoningRole": "problem-separation",
+      "readerProgress": "The reader separates interaction cost from protection.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What does the participant behavior show?",
+      "claim": "The dominant authored rule was Ask, preserving a later runtime decision rather than eliminating approval.",
+      "evidenceRefs": [
+        "E2"
+      ],
+      "reasoningRole": "evidence",
+      "readerProgress": "The reader sees reusable policy as routing rather than blanket authority.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "Why are policy and occurrence different objects?",
+      "claim": "A policy expresses reusable routing preference; occurrence authority decides whether one concrete proposed effect is authorized now.",
+      "evidenceRefs": [
+        "E3",
+        "I1"
+      ],
+      "reasoningRole": "technical-analysis",
+      "readerProgress": "The reader gains a two-object authorization model.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What should an occurrence commitment bind?",
+      "claim": "It should bind policy version, matched consequence class, proposed effect, target and final decision.",
+      "evidenceRefs": [
+        "I2"
+      ],
+      "reasoningRole": "governance-design",
+      "readerProgress": "The reader can define an auditable commitment record.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "When can standing Allow be legitimate?",
+      "claim": "Standing Allow can be valid only through explicit bounded scope and current validity, not merely durable preference.",
+      "evidenceRefs": [
+        "I1",
+        "I2"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "The reader avoids both blanket automation and universal re-prompting.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Fresh approval for every action is safest.",
+    "responseBoundary": "Universal per-action approval can create fatigue; the evidence supports separating the objects, not one mandatory threshold."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with scope, expiry, revocation and learned-preference questions."
+  }
+}
