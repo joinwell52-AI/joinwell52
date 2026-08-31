@@ -11,6 +11,8 @@ lifecycle: "Published"
 publication_authorized: true
 ---
 
+[English Version](/en/research/evidence/2026-08-28-skill-session-evidence)
+
 # A3｜技能与会话证据链
 
 ## 主张
