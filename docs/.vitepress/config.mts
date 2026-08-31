@@ -101,6 +101,11 @@ export default defineConfig({
   description: 'Digital Employee Works — turning general-purpose AI into Digital Employees with positions, responsibilities, skills, workflows, and verifiable work results',
   base: '/joinwell52/',
   cleanUrls: true,
+  // Evidence attachments are copied as static files. They are not VitePress pages.
+  srcExclude: ['public/**'],
+  ignoreDeadLinks: [
+    /\/assets\/evidence\/2026-08-31-runtime-continuity\/(?:fixtures\/(?:catchbench-pre|existing-tests)\.log|reproduce-product\.mts)$/
+  ],
   lastUpdated: true,
   head: [
     ['link', { rel: 'icon', href: '/joinwell52/favicon.svg' }],
