@@ -74,7 +74,7 @@ The original experiment was fixed to CodeFlowMu V2.0.4 commit `2ba1ad9b`. It was
 
 ![Historical response-loss experiment: one report, two tasks](/assets/figures/2026-08-28-response-loss-comparison.en.svg)
 
-*Figure 1: Historical V2.0.4 comparison, not V2.1.2 behavior. Counts apply only to the tested paths and are not production incidence. Source: [RBE-20260828-01 evidence pack](/en/research/evidence/2026-08-28-response-loss-idempotency).*
+*Figure 1. Historical V2.0.4 comparison, not V2.1.2 behavior. Counts apply only to the tested paths and are not production incidence. Source: [RBE-20260828-01 evidence pack](/en/research/evidence/2026-08-28-response-loss-idempotency).*
 
 This comparison matters because it rules out an overbroad conclusion. The result was not “all CodeFlowMu write tools lack idempotency.”
 
