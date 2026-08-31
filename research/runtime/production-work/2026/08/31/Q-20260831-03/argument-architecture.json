@@ -1,0 +1,84 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-08-31",
+  "itemId": "Q-20260831-03",
+  "coreProposition": "A causal repair claim requires an authoritative failed logical prefix, fail-closed divergence detection, an explicit intervention anchor, and independent qualification of external state needed by the live suffix; rerun success alone is resampling evidence, not proof of repair.",
+  "openingMove": {
+    "type": "lucky-rerun",
+    "purpose": "Open with a failed task passing on retry while model, tool, schedule and intermediate decisions all changed.",
+    "evidenceRefs": [
+      "E1",
+      "E2"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is successful rerun weak repair evidence?",
+      "claim": "A full rerun changes the suspected defect together with unrelated stochastic choices.",
+      "evidenceRefs": [
+        "E1",
+        "E2"
+      ],
+      "reasoningRole": "problem-separation",
+      "readerProgress": "The reader separates availability sampling from causal repair.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What does controlled replay hold fixed?",
+      "claim": "It preserves an authoritative represented prefix, checks event position and request identity, and fails closed at first divergence.",
+      "evidenceRefs": [
+        "E3"
+      ],
+      "reasoningRole": "mechanism",
+      "readerProgress": "The reader understands replay as a versioned test fixture.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "Where is the causal boundary?",
+      "claim": "An explicit intervention anchor divides frozen evidence from the live suffix allowed to respond to the fix.",
+      "evidenceRefs": [
+        "E1",
+        "E3"
+      ],
+      "reasoningRole": "causal-design",
+      "readerProgress": "The reader can state what changed and what stayed fixed.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Why is logical equality insufficient?",
+      "claim": "Captured-prefix exactness does not recreate uncaptured external side effects required by the live suffix.",
+      "evidenceRefs": [
+        "E4",
+        "I1"
+      ],
+      "reasoningRole": "validity-boundary",
+      "readerProgress": "The reader separates logical fidelity from external-state validity.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "How should a governed runtime report recovery?",
+      "claim": "Rerun, replay and repair should be separate operations with separate receipts and metrics.",
+      "evidenceRefs": [
+        "I1",
+        "I2"
+      ],
+      "reasoningRole": "operational-implication",
+      "readerProgress": "The reader can design auditable recovery evidence.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Full reruns are sufficient because only the final pass matters.",
+    "responseBoundary": "They remain useful for reliability and pass-rate measurement; the narrower limit is that success does not isolate the repair mechanism."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with determinism boundaries, external-state contracts and multi-hypothesis isolation."
+  }
+}

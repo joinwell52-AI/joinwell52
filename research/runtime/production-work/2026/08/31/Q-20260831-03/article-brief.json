@@ -1,0 +1,52 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-08-31",
+  "itemId": "Q-20260831-03",
+  "researchObjectId": "AN-20260831-03",
+  "targetAudience": {
+    "primary": "Engineers evaluating failure recovery and automated repair in agent runtimes",
+    "knowledgeAssumption": "The reader understands traces, retries, tool calls and nondeterministic execution.",
+    "readerProblem": "A full rerun succeeds, but too many variables changed to show that the proposed fix addressed the original failure."
+  },
+  "whyNow": "A primary study over 536 confirmed failures across three multi-agent frameworks reports higher same-failure reproduction with controlled replay and much higher repair from symptom-driven intervention than from unguided rerun.",
+  "externalHook": {
+    "type": "controlled-failure-replay",
+    "description": "Freeze a represented failed prefix, fail closed on divergence, intervene at an explicit anchor, and regenerate only the suffix.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "E4"
+    ]
+  },
+  "coreProposition": "A causal repair claim requires an authoritative failed logical prefix, fail-closed divergence detection, an explicit intervention anchor, and independent qualification of external state needed by the live suffix; rerun success alone is resampling evidence, not proof of repair.",
+  "originalValue": {
+    "type": "two-gate-causal-repair",
+    "description": "Separates logical-prefix fidelity from external-state validity and gives rerun, replay and repair different evidence semantics."
+  },
+  "readerTakeaway": "Treat recovery experiments as versioned test fixtures; require both prefix fidelity and external-state qualification before interpreting suffix success as causal repair.",
+  "evidenceBoundary": {
+    "supported": [
+      "The study reports controlled replay reproducing the same failure more often than unguided rerun under tested protocols.",
+      "Unguided rerun repairs 6.90% at pass@3 while symptom-driven single-attempt intervention repairs 20.15%.",
+      "The replay mechanism validates position/request alignment and stops on divergence.",
+      "Reported exactness is limited to represented captured state."
+    ],
+    "unsupported": [
+      "Arbitrary physical or distributed replay",
+      "Exactly-once external effects",
+      "Universal automatic repair"
+    ],
+    "uncertain": [
+      "The sufficient external-state contract for each tool class",
+      "Canonicalization that ignores harmless differences without accepting material divergence"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The conclusion is a general recovery-verification pattern for agent runtimes."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The benchmark and explicit replay limitations support a concrete causal-test design with bounded validity claims."
+}
