@@ -8,10 +8,10 @@
   "date": "2026-09-01",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
-    "queue": "Running",
+    "queue": "Completed",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
@@ -178,6 +178,369 @@
       "githubCommit": "4c285791ceacdecc11747b01a2489d7dc2c9d760",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-01T09:13:09+08:00"
+    },
+    "queue": {
+      "schema": "runtime-shift-result/v2",
+      "task": "queue",
+      "family": "daily",
+      "runtimeDate": "2026-09-01",
+      "status": "Completed",
+      "input": "The verified 2026-09-01 Reading wake receipt was used only as the Process Manager wake that exposed an overdue Queue; repository reconciliation opened Queue as the earliest due unfinished task after Discovery had been durably Completed and verified. Queue then used the same-commit authoritative Queue Prompt v1.0.0 and its five required sources at main commit b2545e4ae1f5a3788824bd2f170b754c36c49bbe, the deterministically validated Queue prompt identity SHA-256 a0c42d5b8bfdedd9a237741ec74310bfe531ee7656a32f0e682945b4096443df, the verified Queue Worker Claimed event, and the completed same-day Research Intelligence run containing 12 normalized signals across all three pipelines.",
+      "input_zh": "已核验的 2026-09-01 Reading Wake Receipt 仅作为 Process Manager 的唤醒事实，用于暴露此前尚未收口的 Queue；Discovery 已持久 Completed 并核验后，仓库 Reconciliation 将 Queue 作为最早到期未完成任务打开执行槽。随后 Queue 使用 main 提交 b2545e4ae1f5a3788824bd2f170b754c36c49bbe 上同一提交的权威 Queue Prompt v1.0.0 与全部 5 个 requiredSources、经确定性校验的 Queue Prompt SHA-256 a0c42d5b8bfdedd9a237741ec74310bfe531ee7656a32f0e682945b4096443df、已核验的 Queue Worker Claimed，以及覆盖三条 Pipeline、包含 12 个规范化 Signal 的同日 Research Intelligence Run。",
+      "workResult": "Fail-closed execution conditions were satisfied for the overdue Queue after the Reading timer wake was durably recorded. Queue applied Skill 02 to all 12 same-day signals and enforced the research-object admission, evidence-sufficiency, source-concentration and semantic-concentration gates. Digital Employee selected SIG-20260901-011 as Q-20260901-01 to investigate independently verified recoverability before self-improvement adoption. Open-source Engineering selected SIG-20260901-010 as Q-20260901-03 to investigate peer-process plugin isolation plus an external durable recovery transcript. Industry Architecture made an explicit No Selection decision: its strongest candidates—WebMCP confirmation boundaries, runtime policy/credential control planes, DPoP sender-constrained tokens and A2A commitment boundaries—each had only one primary implementation or vendor source in today's Signal Pool and therefore did not satisfy the stronger evidence-sufficiency threshold for a Daily Research Object. The remaining ten signals were retained as candidates; none was rejected. Queue performed no Deep Reading, Research Analysis, article writing, Production or Publication.",
+      "workResult_zh": "Reading 定时唤醒完成持久记录后，逾期 Queue 的 Fail-closed 执行条件得到满足。Queue 按 Skill 02 对同日 12 个 Signal 全量评分，并执行 Research Object Admission、Evidence Sufficiency、Source Concentration 与 Semantic Concentration 门禁。数字员工选择 SIG-20260901-011，形成 Q-20260901-01，研究自我改进在采纳前的独立可恢复性验证；开源工程选择 SIG-20260901-010，形成 Q-20260901-03，研究 Peer-process Plugin 隔离与外部持久 Recovery Transcript。行业架构明确作出 No Selection：当天最强候选包括 WebMCP 确认边界、Runtime Policy/Credential Control Plane、DPoP Sender-constrained Token 与 A2A Commitment Boundary，但每个问题在当天 Signal Pool 中都只有一个主要实现或厂商来源，未达到 Daily Research Object 所需的更强 Evidence Sufficiency 门槛。其余 10 个 Signal 全部保留为 Candidate，0 个 Rejected。Queue 未执行 Deep Reading、Research Analysis、文章写作、Production 或 Publication。",
+      "output": "Today's Research Plan was written to research/runtime/plans/2026/09/2026-09-01-plan.json with two Selected P0 objects—Q-20260901-01 and Q-20260901-03—and one explicit Industry Architecture No Selection decision.",
+      "output_zh": "Today's Research Plan 已写入 research/runtime/plans/2026/09/2026-09-01-plan.json，包含 2 个 Selected P0 对象 Q-20260901-01、Q-20260901-03，以及 1 个明确的行业架构 No Selection 决定。",
+      "next": "After Queue reaches durable terminal completion and GitHub verification, Runtime reconciliation may grant the already-overdue Reading execution authority. Reading may consume only Q-20260901-01 and Q-20260901-03 for Skill 03 Deep Reading and must perform no Industry Architecture reading for the explicit No Selection column.",
+      "next_zh": "Queue 达到持久终态并完成 GitHub Verification 后，Runtime Reconciliation 可向已经逾期的 Reading 授予执行权。Reading 只能消费 Q-20260901-01 与 Q-20260901-03 执行 Skill 03 Deep Reading；行业架构已明确 No Selection，不得为该栏目补做 Reading。",
+      "metrics": [
+        {
+          "label": "Generated prompt SHA-256 verified",
+          "label_zh": "Generated Prompt SHA-256 已核验",
+          "value": "a0c42d5b8bfdedd9a237741ec74310bfe531ee7656a32f0e682945b4096443df"
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 requiredSources",
+          "value": "5 / 5"
+        },
+        {
+          "label": "Signal pool count",
+          "label_zh": "Signal Pool 数量",
+          "value": 12
+        },
+        {
+          "label": "Column decisions",
+          "label_zh": "栏目决定",
+          "value": 3
+        },
+        {
+          "label": "Selected objects",
+          "label_zh": "已选对象",
+          "value": 2
+        },
+        {
+          "label": "No Selection decisions",
+          "label_zh": "No Selection 决定",
+          "value": 1
+        },
+        {
+          "label": "Candidate signals",
+          "label_zh": "Candidate Signal",
+          "value": 10
+        },
+        {
+          "label": "Rejected signals",
+          "label_zh": "Rejected Signal",
+          "value": 0
+        },
+        {
+          "label": "Revision rounds used",
+          "label_zh": "已使用修订轮次",
+          "value": 1
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Reading Wake Receipt used by Process Manager",
+          "label_zh": "Process Manager 使用的 Reading Wake Receipt",
+          "path": "research/runtime/wakes/2026/09/2026-09-01/reading-105756.json"
+        },
+        {
+          "label": "Pinned Queue control commit",
+          "label_zh": "固定 Queue 控制提交",
+          "commit": "b2545e4ae1f5a3788824bd2f170b754c36c49bbe"
+        },
+        {
+          "label": "Generated Queue prompt",
+          "label_zh": "Generated Queue Prompt",
+          "path": "research/runtime/worker-prompts/generated/queue.prompt.md"
+        },
+        {
+          "label": "Generated Queue prompt SHA-256",
+          "label_zh": "Generated Queue Prompt SHA-256",
+          "value": "a0c42d5b8bfdedd9a237741ec74310bfe531ee7656a32f0e682945b4096443df"
+        },
+        {
+          "label": "Run-date Research Intelligence",
+          "label_zh": "运行日 Research Intelligence",
+          "path": "research/intelligence/runs/2026/09/2026-09-01-intelligence.json"
+        },
+        {
+          "label": "Column Plan contract",
+          "label_zh": "Column Plan 合同",
+          "path": "research/runtime/COLUMN-PLAN-SCHEMA.md"
+        },
+        {
+          "label": "Skill 02",
+          "label_zh": "Skill 02",
+          "path": "research/skills/02-research-triage.md"
+        },
+        {
+          "label": "Queue Worker Claimed commit",
+          "label_zh": "Queue Worker Claimed 提交",
+          "commit": "b2545e4ae1f5a3788824bd2f170b754c36c49bbe"
+        },
+        {
+          "label": "Exact-head deterministic validation",
+          "label_zh": "精确 HEAD 确定性校验",
+          "value": "Validate Research Center 3.0 #33464713352 — runtime validation and worker-prompts validation passed"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Today's Research Plan",
+          "label_zh": "今日研究计划",
+          "path": "research/runtime/plans/2026/09/2026-09-01-plan.json"
+        },
+        {
+          "label": "Queue result",
+          "label_zh": "Queue 结果",
+          "path": "research/runtime/results/2026/09/2026-09-01-queue-result.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "path": "research/runtime/records/daily/2026/09/2026-09-01-daily-runtime.json"
+        },
+        {
+          "label": "Runtime Markdown ledger",
+          "label_zh": "Runtime Markdown 账本",
+          "path": "research/runtime/2026/09/2026-09-01-runtime.md"
+        }
+      ],
+      "triage": [
+        {
+          "signalId": "SIG-20260901-001",
+          "primaryColumn": "industry-architecture",
+          "scores": {
+            "governanceValue": 5,
+            "digitalEmployeeValue": 4,
+            "multiAgentValue": 3,
+            "failureLearningValue": 3,
+            "mechanismValue": 4,
+            "findingValue": 2,
+            "crossSampleSupport": 2,
+            "sourceQuality": 4,
+            "novelResearchDelta": 3,
+            "boundedQuestion": 5
+          },
+          "total": 35,
+          "decision": "candidate",
+          "reason": "Useful discovery-versus-authorization boundary, but today's evidence is one official product announcement without an independent mechanism comparison."
+        },
+        {
+          "signalId": "SIG-20260901-002",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "governanceValue": 5,
+            "digitalEmployeeValue": 5,
+            "multiAgentValue": 3,
+            "failureLearningValue": 4,
+            "mechanismValue": 5,
+            "findingValue": 2,
+            "crossSampleSupport": 2,
+            "sourceQuality": 4,
+            "novelResearchDelta": 3,
+            "boundedQuestion": 5
+          },
+          "total": 38,
+          "decision": "candidate",
+          "reason": "Execution-side kill-switch governance is relevant, but the current Signal Pool contains only ServiceNow documentation and no independent containment outcome evidence."
+        },
+        {
+          "signalId": "SIG-20260901-003",
+          "primaryColumn": "industry-architecture",
+          "scores": {
+            "governanceValue": 5,
+            "digitalEmployeeValue": 4,
+            "multiAgentValue": 3,
+            "failureLearningValue": 3,
+            "mechanismValue": 5,
+            "findingValue": 2,
+            "crossSampleSupport": 2,
+            "sourceQuality": 4,
+            "novelResearchDelta": 3,
+            "boundedQuestion": 5
+          },
+          "total": 36,
+          "decision": "candidate",
+          "reason": "The policy/credential/access control-plane mechanism is credible but remains announcement-level single-vendor evidence."
+        },
+        {
+          "signalId": "SIG-20260901-004",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "governanceValue": 5,
+            "digitalEmployeeValue": 5,
+            "multiAgentValue": 3,
+            "failureLearningValue": 4,
+            "mechanismValue": 5,
+            "findingValue": 3,
+            "crossSampleSupport": 2,
+            "sourceQuality": 5,
+            "novelResearchDelta": 4,
+            "boundedQuestion": 5
+          },
+          "total": 41,
+          "decision": "candidate",
+          "reason": "Turn-scoped permission lifetime is strong implementation evidence, but the selected Digital Employee object adds primary research evidence about independent recovery verification rather than another single implementation."
+        },
+        {
+          "signalId": "SIG-20260901-005",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "governanceValue": 4,
+            "digitalEmployeeValue": 4,
+            "multiAgentValue": 4,
+            "failureLearningValue": 3,
+            "mechanismValue": 5,
+            "findingValue": 2,
+            "crossSampleSupport": 2,
+            "sourceQuality": 5,
+            "novelResearchDelta": 4,
+            "boundedQuestion": 5
+          },
+          "total": 38,
+          "decision": "candidate",
+          "reason": "Trace-parentage preservation is implementable audit evidence, but it has weaker failure and comparative evidence than the selected process-isolation/recovery study."
+        },
+        {
+          "signalId": "SIG-20260901-006",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "governanceValue": 5,
+            "digitalEmployeeValue": 5,
+            "multiAgentValue": 3,
+            "failureLearningValue": 5,
+            "mechanismValue": 5,
+            "findingValue": 3,
+            "crossSampleSupport": 2,
+            "sourceQuality": 5,
+            "novelResearchDelta": 4,
+            "boundedQuestion": 5
+          },
+          "total": 42,
+          "decision": "candidate",
+          "reason": "TOCTOU-resistant permission mediation is high-value, but the same-day evidence remains one maintainer changelog and does not meet the stronger evidence-sufficiency threshold for selection."
+        },
+        {
+          "signalId": "SIG-20260901-007",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "governanceValue": 4,
+            "digitalEmployeeValue": 4,
+            "multiAgentValue": 3,
+            "failureLearningValue": 5,
+            "mechanismValue": 5,
+            "findingValue": 3,
+            "crossSampleSupport": 2,
+            "sourceQuality": 5,
+            "novelResearchDelta": 4,
+            "boundedQuestion": 5
+          },
+          "total": 40,
+          "decision": "candidate",
+          "reason": "Explicit duplicate-session conflict is a clear ownership mechanism, but it remains a single implementation and is narrower than the selected failure-domain study."
+        },
+        {
+          "signalId": "SIG-20260901-008",
+          "primaryColumn": "industry-architecture",
+          "scores": {
+            "governanceValue": 5,
+            "digitalEmployeeValue": 4,
+            "multiAgentValue": 3,
+            "failureLearningValue": 4,
+            "mechanismValue": 5,
+            "findingValue": 2,
+            "crossSampleSupport": 2,
+            "sourceQuality": 5,
+            "novelResearchDelta": 4,
+            "boundedQuestion": 5
+          },
+          "total": 39,
+          "decision": "candidate",
+          "reason": "DPoP is a strong credential-binding mechanism, but the same-day Signal Pool supplies only the SDK implementation; no independent comparison, benchmark or incident evidence is present for Daily selection."
+        },
+        {
+          "signalId": "SIG-20260901-009",
+          "primaryColumn": "industry-architecture",
+          "scores": {
+            "governanceValue": 4,
+            "digitalEmployeeValue": 4,
+            "multiAgentValue": 5,
+            "failureLearningValue": 3,
+            "mechanismValue": 5,
+            "findingValue": 2,
+            "crossSampleSupport": 2,
+            "sourceQuality": 5,
+            "novelResearchDelta": 4,
+            "boundedQuestion": 5
+          },
+          "total": 39,
+          "decision": "candidate",
+          "reason": "The negotiation-to-durable-task commitment boundary is useful protocol evidence, but today's evidence is a single A2A implementation change."
+        },
+        {
+          "signalId": "SIG-20260901-010",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "governanceValue": 5,
+            "digitalEmployeeValue": 5,
+            "multiAgentValue": 4,
+            "failureLearningValue": 5,
+            "mechanismValue": 5,
+            "findingValue": 5,
+            "crossSampleSupport": 4,
+            "sourceQuality": 5,
+            "novelResearchDelta": 5,
+            "boundedQuestion": 5
+          },
+          "total": 48,
+          "decision": "selected",
+          "reason": "Primary research directly couples process-level fault isolation, an external append-only recovery transcript and effect-safe resume behavior, producing a bounded engineering question with explicit failure and recovery evidence."
+        },
+        {
+          "signalId": "SIG-20260901-011",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "governanceValue": 5,
+            "digitalEmployeeValue": 5,
+            "multiAgentValue": 3,
+            "failureLearningValue": 5,
+            "mechanismValue": 5,
+            "findingValue": 5,
+            "crossSampleSupport": 4,
+            "sourceQuality": 5,
+            "novelResearchDelta": 5,
+            "boundedQuestion": 5
+          },
+          "total": 47,
+          "decision": "selected",
+          "reason": "Primary research establishes a direct counterexample to treating capability improvement as safe adoption and makes recoverability an independently verifiable property across counterfactual states."
+        },
+        {
+          "signalId": "SIG-20260901-012",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "governanceValue": 4,
+            "digitalEmployeeValue": 5,
+            "multiAgentValue": 5,
+            "failureLearningValue": 5,
+            "mechanismValue": 5,
+            "findingValue": 5,
+            "crossSampleSupport": 4,
+            "sourceQuality": 5,
+            "novelResearchDelta": 5,
+            "boundedQuestion": 5
+          },
+          "total": 48,
+          "decision": "candidate",
+          "reason": "Targeted failure attribution is strong research evidence, but the Open-source Engineering slot selected Logos because it adds a distinct runtime-isolation and durable-recovery mechanism while avoiding concentration around recent failure-attribution coverage."
+        }
+      ],
+      "startedAt": "2026-09-01T11:02:11+08:00",
+      "completedAt": "2026-09-01T11:10:38+08:00"
     }
   },
   "timeline": [
@@ -222,6 +585,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Queue after verifying research/runtime/wakes/2026/09/2026-09-01/reading-105756.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-01T11:10:38+08:00",
+      "task": "queue",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Queue closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-01."
     }
   ],
   "metrics": [],
@@ -229,5 +599,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-01T11:03:17+08:00"
+  "updatedAt": "2026-09-01T11:10:38+08:00"
 }
