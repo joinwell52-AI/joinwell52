@@ -3,64 +3,69 @@
   "version": "1.0",
   "date": "2026-09-01",
   "timezone": "Asia/Shanghai",
-  "status": "Waiting",
+  "status": "Completed",
   "registryVersion": "1.0",
-  "sourceTask": "Research Runtime Queue",
-  "updatedAt": "",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-09-01T09:07:15+08:00",
   "githubCommit": "pending",
-  "reason": "Research Runtime Queue has not completed the three intelligence pipelines.",
-  "reason_zh": "研究运行队列尚未完成三条情报发现管线。",
+  "reason": "All three formal Discovery pipelines reached terminal coverage and the required theme-first active-sample pass completed. Twelve qualified signals were retained after research-problem normalization and prior-run deduplication: three platform/governance mechanisms, six engineering mechanisms, and three primary-research findings. No topic selection was performed.",
+  "reason_zh": "三条正式 Discovery 管线均完成终态覆盖，并完成强制的主题优先主动样本检查。按研究问题规范化并与前一轮去重后保留 12 个合格信号：3 个平台/治理机制、6 个工程机制、3 个一手研究发现；未执行选题。",
   "pipelines": [
     {
       "id": "ai-platform",
       "label": "AI Platform Change Intelligence",
       "label_zh": "AI 平台变更情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 45,
-      "checked": 0,
+      "checked": 45,
       "inaccessible": [],
       "failed": [],
-      "signals": 0,
+      "signals": 3,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All 45 due P0 public platform channels were resolved. A transient Copilot Studio release-notes fetch was retried through the same official Microsoft source and completed. One fresh OpenAI WebMCP boundary and two rotated enterprise-governance mechanisms from ServiceNow and IBM were retained.",
+      "reason_zh": "45 个到期 P0 公共平台通道全部收口。Copilot Studio Release Notes 首次抓取超时后通过同一 Microsoft 官方来源重试成功。保留 1 个新的 OpenAI WebMCP 工具边界，以及轮换检查 ServiceNow、IBM 后得到的 2 个企业治理机制。"
     },
     {
       "id": "github-engineering",
       "label": "GitHub Engineering Intelligence",
       "label_zh": "GitHub 工程情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 9,
-      "checked": 0,
+      "checked": 9,
       "inaccessible": [],
       "failed": [],
-      "signals": 0,
+      "signals": 6,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All nine P0 daily repositories were checked incrementally. Six non-duplicate mechanisms were retained from Codex, Claude Code, Google ADK, the MCP TypeScript SDK and A2A. The rotated multi-agent overlay also inspected LangGraph and found no additional non-duplicate signal worth retaining.",
+      "reason_zh": "9 个 P0 Daily 仓库均完成增量检查。从 Codex、Claude Code、Google ADK、MCP TypeScript SDK 与 A2A 保留 6 个非重复机制。轮换后的多 Agent 主动样本同时检查了 LangGraph，但没有产生值得额外保留的非重复信号。"
     },
     {
       "id": "published-research",
       "label": "Published Research Intelligence",
       "label_zh": "论文与研究成果情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 9,
-      "checked": 0,
+      "checked": 8,
       "inaccessible": [],
-      "failed": [],
-      "signals": 0,
+      "failed": [
+        {
+          "source": "jss",
+          "reason": "The registered Journal of Systems and Software page returned an internal retrieval error during this run; it is recorded as failed rather than checked."
+        }
+      ],
+      "signals": 3,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All nine P0 research sources resolved as eight checked plus one explicit retrieval failure. The rolling research pass covered the latest seven days and the 30-day comparison window, retaining three primary findings on cross-process fault isolation, independently verified recoverability of self-modification, and targeted multi-agent failure attribution.",
+      "reason_zh": "9 个 P0 研究来源全部收口为 8 个已检查 + 1 个明确抓取失败。滚动研究检查覆盖最近 7 天并扩展到 30 天比较窗口，保留 3 个一手研究发现：跨进程故障隔离、自修改的独立可恢复性验证，以及多 Agent 定向失败归因。"
     }
   ],
   "columns": [
@@ -69,40 +74,347 @@
       "label": "Digital Employee",
       "label_zh": "数字员工",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 4,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded four primary Digital Employee signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 4 个以数字员工为主栏目的信号；评分与选题由 Queue 独立负责。"
     },
     {
       "id": "industry-architecture",
       "label": "Industry Architecture",
       "label_zh": "行业架构",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 4,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded four primary Industry Architecture signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 4 个以行业架构为主栏目的信号；评分与选题由 Queue 独立负责。"
     },
     {
       "id": "open-source-engineering",
       "label": "Open-source Engineering",
       "label_zh": "开源工程",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 4,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded four primary Open-source Engineering signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 4 个以开源工程为主栏目的信号；评分与选题由 Queue 独立负责。"
     }
   ],
-  "signals": []
+  "signals": [
+    {
+      "id": "SIG-20260901-001",
+      "pipeline": "ai-platform",
+      "title": "ChatGPT Work and Codex can discover website-provided WebMCP tools while keeping sensitive-action confirmations in force",
+      "title_zh": "ChatGPT Work 与 Codex 可发现网站提供的 WebMCP 工具，同时保留敏感动作确认",
+      "sourceUrl": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+      "publishedAt": "2026-08-31",
+      "evidenceLevel": "official_announcement",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee", "open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "openai/webmcp-site-tool-discovery-confirmation-boundary",
+      "summary": "OpenAI says ChatGPT Work and Codex can discover tools exposed by supported websites in the desktop built-in browser through WebMCP, while existing website-access and sensitive-action confirmations still apply.",
+      "summary_zh": "OpenAI 表示，ChatGPT Work 与 Codex 可在桌面端内置浏览器中通过 WebMCP 发现受支持网站暴露的工具，同时既有的网站访问确认与敏感动作确认仍然生效。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["tool-call-mediation", "capability-admission", "human-approval-authority", "connector-governance"],
+      "sampleIds": ["openai-webmcp"],
+      "researchValue": {
+        "failure": "Discovering a website tool can be mistaken for permission to execute sensitive operations exposed by that tool.",
+        "finding": "",
+        "mechanism": "Separate tool discovery from action authorization and preserve sensitive-action confirmation after capability discovery.",
+        "implication": "Dynamic tool acquisition needs a second call-time authority boundary; capability visibility is not execution authority."
+      }
+    },
+    {
+      "id": "SIG-20260901-002",
+      "pipeline": "ai-platform",
+      "title": "ServiceNow AI Control Tower couples agent identity with runtime containment and reversible deactivation",
+      "title_zh": "ServiceNow AI Control Tower 将 Agent Identity 与 Runtime Containment、可逆停用结合",
+      "sourceUrl": "https://www.servicenow.com/docs/r/intelligent-experiences/gov-sec-configure-ai-agent-containment.html",
+      "publishedAt": "2026-07-21",
+      "evidenceLevel": "official_documentation",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "servicenow-ai-control-tower/runtime-containment-kill-switch",
+      "summary": "ServiceNow documents a kill-switch protocol that connects governance to the hyperscaler hosting an agent and can deactivate or reinstate governed agents; related Control Tower governance tracks identity, access, dependencies and retained permissions.",
+      "summary_zh": "ServiceNow 文档给出 Kill Switch Protocol：治理面通过连接器对接 Agent 所在 Hyperscaler，可停用或重新启用受治理 Agent；相关 Control Tower 治理还跟踪 Identity、Access、依赖关系与残留权限。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["agent-identity-authority", "recovery-authority", "policy-enforcement"],
+      "sampleIds": ["servicenow-ai-control-tower"],
+      "researchValue": {
+        "failure": "A governance dashboard that only records risk cannot reliably stop an already-running agent or prove that revocation reached the execution host.",
+        "finding": "",
+        "mechanism": "Bind governed agent identity to host connectors and provide an explicit deactivate/reinstate control path.",
+        "implication": "Enterprise agent revocation is moving from metadata into an execution-side containment protocol with a governed recovery path."
+      }
+    },
+    {
+      "id": "SIG-20260901-003",
+      "pipeline": "ai-platform",
+      "title": "IBM Agentic Control Plane joins runtime policy, credential health and agent-access visibility in one operating layer",
+      "title_zh": "IBM Agentic Control Plane 将 Runtime Policy、Credential Health 与 Agent Access Visibility 放进同一运行层",
+      "sourceUrl": "https://www.ibm.com/new/announcements/introducing-the-agentic-control-plane",
+      "publishedAt": "2026-07-02",
+      "evidenceLevel": "official_announcement",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "ibm-agentic-control-plane/runtime-governance-access-credential-health",
+      "summary": "IBM describes a control plane that enforces runtime policies, monitors credential health, exposes which agents can access which integrations and data sources, and keeps operations, audit and optimization in the same enterprise layer.",
+      "summary_zh": "IBM 描述的 Agentic Control Plane 在同一企业运行层中执行 Runtime Policy、监控 Credential Health、展示 Agent 对 Integration 与 Data Source 的访问关系，并统一 Operations、Audit 与 Optimization。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["policy-enforcement", "credential-secret-boundary", "agent-identity-authority", "audit-provenance-accountability"],
+      "sampleIds": ["ibm-agentic-control-plane"],
+      "researchValue": {
+        "failure": "Policy, credentials and access graphs managed in separate systems leave operators unable to tell whether a failing or risky agent is still authorized to act.",
+        "finding": "",
+        "mechanism": "Co-locate runtime policy enforcement, credential-health monitoring and agent-to-resource access visibility in the operational control plane.",
+        "implication": "Production agent governance increasingly treats credential condition and resource reachability as live runtime state rather than static configuration."
+      }
+    },
+    {
+      "id": "SIG-20260901-004",
+      "pipeline": "github-engineering",
+      "title": "Codex rebinds extension permissions every turn and rechecks filesystem authority while skill references are being read",
+      "title_zh": "Codex 每轮重新绑定 Extension Permission，并在 Skill Reference 读取过程中持续重查文件系统权限",
+      "sourceUrl": "https://github.com/openai/codex/commit/c2e5692e2c923ed222c77487b3141829881757cd",
+      "publishedAt": "2026-09-01",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering", "industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "codex/turn-scoped-extension-permission-rebinding",
+      "summary": "Codex adds regression coverage requiring extension permissions to rebind on every turn, preserving session grants but expiring turn-only grants, and verifies skill-reference reads under current filesystem permissions even across paginated reads and intervening permission or content changes.",
+      "summary_zh": "Codex 新增回归覆盖，要求 Extension Permission 每轮重新绑定：Session Grant 可保留、Turn-only Grant 必须过期；Skill Reference 即使跨分页读取且中途权限或文件发生变化，也必须按当前文件系统权限重新验证。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["call-time-authorization", "capability-admission", "context-provenance"],
+      "sampleIds": ["openai-codex"],
+      "researchValue": {
+        "failure": "A permission decision cached for the wrong lifetime can survive into a later turn or continue authorizing reads after the underlying resource or policy changes.",
+        "finding": "",
+        "mechanism": "Give grants explicit lifetimes and re-evaluate authority at turn and resource-read boundaries rather than only when a tool is first attached.",
+        "implication": "Durable digital workers need permission state that ages independently from session state and is revalidated against current resource facts."
+      }
+    },
+    {
+      "id": "SIG-20260901-005",
+      "pipeline": "github-engineering",
+      "title": "Codex preserves trace parentage across nested tool callbacks and records each exec process as its own lifecycle span",
+      "title_zh": "Codex 在 Nested Tool Callback 中保持 Trace Parentage，并把每个 Exec Process 记录为独立生命周期 Span",
+      "sourceUrl": "https://github.com/openai/codex/commit/55e5158e1841bb4b0b392a462c24b4d9fc38d597",
+      "publishedAt": "2026-09-01",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "codex/nested-tool-exec-trace-parentage",
+      "summary": "Codex now preserves execution context for callbacks that outlive the original request, parents streamed callbacks to the concrete tool-invocation span, and records process lifetime and completion separately from the request span.",
+      "summary_zh": "Codex 现在会为可能晚于原始请求结束的 Callback 保留 Execution Context，把流式 Callback 绑定到具体 Tool Invocation Span，并让进程生命周期与完成结果独立于 Request Span 记录。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["audit-provenance-accountability", "tool-call-mediation", "durable-runtime-state"],
+      "sampleIds": ["openai-codex"],
+      "researchValue": {
+        "failure": "Asynchronous callbacks and child processes can outlive their initiating request, breaking causal trace chains and obscuring which tool invocation produced a later side effect.",
+        "finding": "",
+        "mechanism": "Carry explicit execution context across task boundaries and model tool/process lifetimes as distinct spans with stable parentage.",
+        "implication": "Runtime auditability requires causality to survive process and callback lifetime boundaries, not just request logging."
+      }
+    },
+    {
+      "id": "SIG-20260901-006",
+      "pipeline": "github-engineering",
+      "title": "Claude Code hardens permission checks against resource substitution and routes browser actions through the same authority path",
+      "title_zh": "Claude Code 防止 Permission Check 后资源替换，并让 Browser Action 统一经过同一权限路径",
+      "sourceUrl": "https://github.com/anthropics/claude-code/blob/f275fa282e76c5e5456912268f2c367a7f4f4797/CHANGELOG.md",
+      "publishedAt": "2026-08-31",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering", "industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "claude-code/permission-check-use-time-resource-binding",
+      "summary": "Claude Code 2.1.251 fixes file tools following symlinks swapped after permission checks, applies deny rules through symlinked search paths, rejects plugin path traversal, moves Workflow scriptPath reads behind permission checks, and routes Chrome actions through Claude Code permission checks.",
+      "summary_zh": "Claude Code 2.1.251 修复 Permission Check 后 Symlink 被替换导致越界读写、Symlink Search Path 绕过 Deny Rule、Plugin Path Traversal、Workflow 在权限检查前读取 scriptPath 等问题，并把 Chrome Browser Action 统一送入 Claude Code Permission Check。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["call-time-authorization", "tool-call-mediation", "policy-enforcement"],
+      "sampleIds": ["claude-code"],
+      "researchValue": {
+        "failure": "Checking a pathname or tool route once does not bind the later side effect to the same resource or authorization path; a symlink swap or alternate action surface can invalidate the decision.",
+        "finding": "",
+        "mechanism": "Recheck the effective resource/action path at use time and converge alternate surfaces on one permission mediator.",
+        "implication": "Authorization receipts should bind concrete resource identity and execution route, not merely the request text seen before a TOCTOU window."
+      }
+    },
+    {
+      "id": "SIG-20260901-007",
+      "pipeline": "github-engineering",
+      "title": "Google ADK makes concurrent session creation fail explicitly instead of silently racing to ambiguous ownership",
+      "title_zh": "Google ADK 让并发 Create Session 显式失败，而不是把竞争写入变成模糊所有权",
+      "sourceUrl": "https://github.com/google/adk-python/commit/cbccae64b3dc1a1e1de29aad674f2c13fba7f5bd",
+      "publishedAt": "2026-09-01",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "google-adk/concurrent-session-create-conflict",
+      "summary": "Google ADK changes concurrent create_session races to raise an AlreadyExistsError, giving competing creators a typed conflict instead of an ambiguous or backend-specific result.",
+      "summary_zh": "Google ADK 将并发 create_session 竞争改为抛出 AlreadyExistsError，让竞争创建者得到明确的 Typed Conflict，而不是模糊或依赖后端实现的结果。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["durable-runtime-state", "failure-deadlock-duplicate-execution", "task-ownership-responsibility"],
+      "sampleIds": ["google-adk"],
+      "researchValue": {
+        "failure": "Two workers racing to materialize the same session can create duplicate ownership or make later recovery unable to tell which session is authoritative.",
+        "finding": "",
+        "mechanism": "Turn duplicate creation into an explicit conflict with a stable error identity that callers can reconcile idempotently.",
+        "implication": "Session creation is an ownership claim and should have compare-and-claim semantics rather than best-effort persistence."
+      }
+    },
+    {
+      "id": "SIG-20260901-008",
+      "pipeline": "github-engineering",
+      "title": "MCP TypeScript SDK adds DPoP sender-constrained tokens to bind authorization material to the client key",
+      "title_zh": "MCP TypeScript SDK 增加 DPoP Sender-constrained Token，把授权材料绑定到 Client Key",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/commit/dcc01028ff6a499a5728c2b6181c1727d52e2fab",
+      "publishedAt": "2026-08-31",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["open-source-engineering", "digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "mcp-typescript/dpop-sender-constrained-token",
+      "summary": "The MCP TypeScript SDK adds RFC 9449 DPoP support so OAuth access tokens can be sender-constrained rather than reusable bearer credentials detached from the presenting client.",
+      "summary_zh": "MCP TypeScript SDK 新增 RFC 9449 DPoP，使 OAuth Access Token 可成为 Sender-constrained Credential，而不是与实际提交客户端脱钩、可被复制重放的 Bearer Token。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["credential-secret-boundary", "a2a-mcp-interoperability", "agent-identity-authority"],
+      "sampleIds": ["mcp-typescript-sdk"],
+      "researchValue": {
+        "failure": "A stolen bearer token can authorize MCP calls from a different process or host even when the original connector identity was trusted.",
+        "finding": "",
+        "mechanism": "Cryptographically bind token presentation to a client-controlled key and proof rather than accepting possession alone.",
+        "implication": "Connector authorization can move from secret possession toward proof-of-possession identity, reducing credential replay across workers or hosts."
+      }
+    },
+    {
+      "id": "SIG-20260901-009",
+      "pipeline": "github-engineering",
+      "title": "A2A distinguishes lightweight negotiation messages from the durable Task created only when work is committed",
+      "title_zh": "A2A 区分轻量 Negotiation Message 与承诺执行后才创建的 Durable Task",
+      "sourceUrl": "https://github.com/a2aproject/A2A/commit/7a6ba4077e9e1248e2a6b700712f7a356645c6e3",
+      "publishedAt": "2026-08-31",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee", "open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "a2a/hybrid-agent-negotiation-to-task-commitment",
+      "summary": "A2A's clarified Hybrid Agent lifecycle says messages carry scope negotiation and a Task is created once there is committed work to execute and observe, making commitment a distinct protocol boundary from conversation.",
+      "summary_zh": "A2A 对 Hybrid Agent Lifecycle 的澄清指出：Message 用于 Scope Negotiation；只有形成需要执行与观测的 Committed Work 后才创建 Task，从协议上把工作承诺与对话分开。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["handoff-and-inter-agent-trust", "task-ownership-responsibility", "durable-runtime-state", "a2a-mcp-interoperability"],
+      "sampleIds": ["a2a-life-of-a-task"],
+      "researchValue": {
+        "failure": "Treating every inter-agent message as durable work can create phantom tasks, duplicate ownership and audit records that do not distinguish negotiation from commitment.",
+        "finding": "",
+        "mechanism": "Use messages for negotiation and materialize a Task only at the protocol point where executable, observable work is committed.",
+        "implication": "Multi-agent runtimes benefit from an explicit commitment boundary between communication and owned work."
+      }
+    },
+    {
+      "id": "SIG-20260901-010",
+      "pipeline": "published-research",
+      "title": "Logos isolates agent plugins into peer processes and resumes killed sessions from an append-only transcript without repeating effects",
+      "title_zh": "Logos 将 Agent Plugin 隔离到 Peer Process，并从 Append-only Transcript 恢复且不重复副作用",
+      "sourceUrl": "https://arxiv.org/abs/2608.28553",
+      "publishedAt": "2026-08-28",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee", "industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "research/logos-cross-process-agent-harness",
+      "summary": "Logos moves each plugin into a separate process with only an append-only transcript shared across the harness. The paper reports 80 sessions resuming with no repeated effect after kills at four tool-call boundaries, while peer-process isolation confines a process fault to one node.",
+      "summary_zh": "Logos 将每个 Plugin 放入独立 Process，Harness 之间只共享 Append-only Transcript。论文报告在 Tool-call Cycle 的 4 个边界注入 Kill 后，80 个 Session 均可恢复且不重复副作用；Peer-process 隔离还能把进程故障限制在单个 Node。",
+      "signalRole": "research-finding",
+      "researchThemes": ["durable-runtime-state", "failure-deadlock-duplicate-execution", "recovery-authority"],
+      "sampleIds": ["arxiv-2608.28553"],
+      "researchValue": {
+        "failure": "A single-process harness makes every plugin and co-resident session share one failure domain, so one crash can suspend unrelated work and blur recovery boundaries.",
+        "finding": "The reported fault-injection study resumes 80 sessions without repeating effects and confines peer-process failures to one node.",
+        "mechanism": "Separate plugin execution into processes while externalizing cross-step state into an append-only transcript used for recovery.",
+        "implication": "Agent isolation can be a runtime topology property, and durable transcript state can support recovery without forcing all workers into one process failure domain."
+      }
+    },
+    {
+      "id": "SIG-20260901-011",
+      "pipeline": "published-research",
+      "title": "EvoUndo finds that capability-improving self-modifications can still be unrecoverable and must be independently verified across counterfactual states",
+      "title_zh": "EvoUndo 发现能力提升型自修改仍可能不可恢复，必须跨 Counterfactual State 独立验证",
+      "sourceUrl": "https://arxiv.org/abs/2608.28363",
+      "publishedAt": "2026-08-28",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering", "industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "research/evoundo-recoverability-constrained-self-evolution",
+      "summary": "EvoUndo studies model-generated changes to prompts, tools, middleware and harness resources. Among 600 unseen tasks it identifies 197 capability-improving mutations that fail recoverability verification; richer recovery representations plus exact state grounding recover most oracle-recoverable failures, but results also expose model-dependent interactions.",
+      "summary_zh": "EvoUndo 研究模型对 Prompt、Tool、Middleware 与 Harness Resource 的自修改。在 600 个未见任务中识别出 197 个虽然提升能力却无法通过 Recoverability Verification 的 Mutation；更丰富的 Recovery Representation 与精确 State Grounding 可恢复大部分 Oracle 可恢复失败，同时仍出现模型依赖的交互。",
+      "signalRole": "research-finding",
+      "researchThemes": ["recovery-authority", "multi-agent-evaluation", "audit-provenance-accountability"],
+      "sampleIds": ["arxiv-2608.28363"],
+      "researchValue": {
+        "failure": "A self-change can improve the immediate task and still leave persistent state that cannot be safely reversed later.",
+        "finding": "Recoverability failures remain common even among capability-improving mutations, and ordinary iterative repair does not demonstrate reversibility.",
+        "mechanism": "Make recoverability an independently verified property over counterfactual states with explicit state addressing, witness semantics and a sufficiently expressive recovery language.",
+        "implication": "Self-improving digital employees need an adoption gate that tests rollback semantics independently from the worker that proposed the improvement."
+      }
+    },
+    {
+      "id": "SIG-20260901-012",
+      "pipeline": "published-research",
+      "title": "DoCtOR attributes multi-agent failure to the decisive error agent before reflection to avoid contaminating unaffected agents",
+      "title_zh": "DoCtOR 先定位 Decisive Error Agent 再反思，避免污染未出错 Agent 的记忆",
+      "sourceUrl": "https://arxiv.org/abs/2608.28264",
+      "publishedAt": "2026-08-28",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "research/doctor-targeted-multi-agent-failure-attribution",
+      "summary": "DoCtOR first identifies the decisive error step and agent, counterfactually corrects that step, and asks only the responsible agent to reflect. The paper reports 22%, 26% and 27% improvements over initial success rates on three benchmarks and argues that forcing all agents to reflect can contaminate otherwise-correct memories.",
+      "summary_zh": "DoCtOR 先识别 Decisive Error Step 与责任 Agent，再对该步骤做 Counterfactual Correction，只让责任 Agent 反思。论文在三个 Benchmark 上报告相对初始成功率提升 22%、26%、27%，并指出让所有 Agent 一起反思会污染原本正确的 Agent Memory。",
+      "signalRole": "research-finding",
+      "researchThemes": ["multi-agent-evaluation", "memory-context-isolation", "task-ownership-responsibility"],
+      "sampleIds": ["arxiv-2608.28264"],
+      "researchValue": {
+        "failure": "System-wide reflection after a localized failure can overwrite correct agent behavior with lessons derived from another agent's mistake.",
+        "finding": "Targeting the decisive error agent and step improved benchmark outcomes relative to broad reflection baselines in the reported experiments.",
+        "mechanism": "Attribute failure before remediation, preserve unaffected agents, and scope reflection to the responsible execution branch.",
+        "implication": "Multi-agent recovery should separate root-cause ownership from team-wide state and avoid propagating unverified corrections across healthy workers."
+      }
+    }
+  ],
+  "researchCoverage": {
+    "policy": "theme-sample-v1",
+    "rollingResearchWindowDays": 30,
+    "sampleFamilies": {
+      "product-governance": {
+        "checked": ["ServiceNow AI Control Tower", "IBM watsonx Orchestrate Agentic Control Plane"],
+        "qualifiedSignals": 2
+      },
+      "multi-agent-mechanism": {
+        "checked": ["A2A Life of a Task", "LangGraph checkpoint/auth and tracing mechanisms"],
+        "qualifiedSignals": 1
+      },
+      "research-benchmark-industry": {
+        "checked": ["Logos cross-process agent harness (arXiv:2608.28553)", "EvoUndo recoverability study (arXiv:2608.28363)", "DoCtOR multi-agent failure attribution (arXiv:2608.28264)"],
+        "qualifiedSignals": 3
+      }
+    }
+  }
 }
