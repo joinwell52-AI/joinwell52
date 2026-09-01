@@ -8,14 +8,14 @@
   "date": "2026-09-01",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Completed",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
     "production": "Completed",
-    "publication": "Running"
+    "publication": "Completed"
   },
   "results": {
     "discovery": {
@@ -999,6 +999,90 @@
       "githubCommit": "f9b2132d8842f41ca8764f4eaff8fc2d5e13f6c4",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-01T15:17:13+08:00"
+    },
+    "publication": {
+      "schema": "runtime-shift-result/v2",
+      "task": "publication",
+      "family": "daily",
+      "runtimeDate": "2026-09-01",
+      "status": "Completed",
+      "input": {
+        "candidateBatch": null,
+        "productionResult": "research/runtime/results/2026/09/2026-09-01-production-result.json",
+        "wakeReceipt": "research/runtime/wakes/2026/09/2026-09-01/publication-200106.json",
+        "promptPath": "research/runtime/worker-prompts/generated/publication.prompt.md",
+        "promptVersion": "2.0.0",
+        "promptSha256": "a4fefa79b616aaaeef94119299fe2fb1939948680a2440b54c4ed9e07c20b8e9",
+        "executionType": "scheduled-same-day-publication"
+      },
+      "workResult": {
+        "summary": "Publication found zero complete same-date Publication Candidates because Production had already closed as a verified zero-output run. No prior-day candidate was reused, no article or release manifest was fabricated, and no new research, substantive rewriting, evidence repair, public article change or asset change was performed.",
+        "summary_zh": "Publication 核验到当日完整发布候选为 0，因为 Production 已经以经核验的零输出结果收口。本轮未复用前一日候选，未虚构文章或发布清单，也未开展新研究、实质性改写、证据修复、公开文章修改或资源修改。"
+      },
+      "output": {
+        "type": "Zero Output",
+        "outcome": "No Publication Candidates",
+        "releaseManifest": null,
+        "releasedItems": 0,
+        "bilingualArticleFiles": 0,
+        "coverAssets": 0,
+        "inlineFigureAssets": 0,
+        "communityEditions": 0
+      },
+      "next": {
+        "instruction": "Close Publication as a governed zero-output Completed shift after the required validators, site build, Runtime finalization and durable main verification pass. Do not publish historical or unauthorized candidates.",
+        "instruction_zh": "在必需校验、网站构建、Runtime 终态收口与 main 持久核验全部通过后，将 Publication 以受治理的零输出 Completed 班次关闭；不得发布历史候选或未经授权的候选。"
+      },
+      "metrics": [
+        {
+          "name": "eligible_publication_candidates",
+          "value": 0
+        },
+        {
+          "name": "released_items",
+          "value": 0
+        },
+        {
+          "name": "bilingual_article_files",
+          "value": 0
+        },
+        {
+          "name": "cover_assets",
+          "value": 0
+        },
+        {
+          "name": "inline_figure_assets",
+          "value": 0
+        },
+        {
+          "name": "new_research_actions",
+          "value": 0
+        },
+        {
+          "name": "substantive_rewrites",
+          "value": 0
+        },
+        {
+          "name": "evidence_repairs",
+          "value": 0
+        },
+        {
+          "name": "revision_rounds_used",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        "research/runtime/results/2026/09/2026-09-01-production-result.json",
+        "research/runtime/worker-prompts/generated/publication.prompt.md",
+        "research/runtime/wakes/2026/09/2026-09-01/publication-200106.json",
+        "research/runtime/records/daily/2026/09/2026-09-01-daily-runtime.json",
+        "2d2ef60cb7b419647f9887596851b55aa73318f9"
+      ],
+      "artifacts": [
+        "research/runtime/results/2026/09/2026-09-01-publication-result.json"
+      ],
+      "startedAt": "2026-09-01T20:08:45+08:00",
+      "completedAt": "2026-09-01T20:11:35+08:00"
     }
   },
   "timeline": [
@@ -1155,6 +1239,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Publication after verifying research/runtime/wakes/2026/09/2026-09-01/publication-200106.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-01T20:11:35+08:00",
+      "task": "publication",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Publication closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-01."
     }
   ],
   "metrics": [],
@@ -1162,5 +1253,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-01T20:08:45+08:00"
+  "updatedAt": "2026-09-01T20:11:35+08:00"
 }
