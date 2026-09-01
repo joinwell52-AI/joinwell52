@@ -1,0 +1,289 @@
+{
+  "schema": "runtime-publication-candidate/v2",
+  "date": "2026-09-01",
+  "timezone": "Asia/Shanghai",
+  "sourceTask": "Research Runtime Production",
+  "sourceRecord": "research/runtime/records/daily/2026/09/2026-09-01-daily-runtime.json",
+  "status": "Completed",
+  "reason": "Two completed 2026-09-01 Research Objects were converted into complete bilingual Editorial Architecture 2.1 candidates with verified planning artifacts, evidence-bounded claims and deterministic baseline covers; the governed Industry Architecture No Selection was preserved.",
+  "reason_zh": "两份已完成的 2026-09-01 Research Object 已转换为完整双语 Editorial Architecture 2.1 候选，具备已核验的规划工件、有边界的证据声明和确定性基础题图；行业架构栏目的治理性 No Selection 保持不变。",
+  "updatedAt": "2026-09-01T15:11:00+08:00",
+  "githubCommit": "pending",
+  "candidates": [
+    {
+      "itemId": "Q-20260901-01",
+      "column": "digital-employee",
+      "category": "daily",
+      "articleType": "technical-analysis",
+      "lifecycle": "Publication Candidate",
+      "title": "Capability Gain Is Not Recovery Authority",
+      "title_zh": "能力提升，不是恢复授权",
+      "researchQuestion": "当自我改进带来的能力提升与可恢复性可能分离时，受治理数字员工运行体在允许修改生效前应要求什么证据？",
+      "coreProposition": "Capability qualification and recoverability qualification must be independent adoption gates: activation should bind an exact, independently verified recovery bundle for the frozen mutation rather than infer recoverability from forward improvement or the modifying worker’s own account.",
+      "articleBriefPath": "research/runtime/production-work/2026/09/01/Q-20260901-01/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/01/Q-20260901-01/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/01/Q-20260901-01/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-01-capability-gain-is-not-recovery-authority.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-01-capability-gain-is-not-recovery-authority.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-01-capability-gain-is-not-recovery-authority-cover.png",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "sections": [
+        {
+          "heading": "Forward Success Can Hide Recovery Failure",
+          "heading_zh": "向前成功，也可能掩盖恢复失败",
+          "module": "evidence"
+        },
+        {
+          "heading": "Recovery Is a Relation, Not a Snapshot",
+          "heading_zh": "恢复是一种关系，不是一份快照",
+          "module": "technical-analysis"
+        },
+        {
+          "heading": "Freeze the Mutation Before Diagnosing Recovery",
+          "heading_zh": "先冻结修改，再诊断恢复",
+          "module": "key-findings"
+        },
+        {
+          "heading": "Four Authorities Should Not Collapse into One",
+          "heading_zh": "四种权威不能压成一种",
+          "module": "governance-implications"
+        },
+        {
+          "heading": "Activation Must Bind an Exact Recovery Bundle",
+          "heading_zh": "生效必须绑定精确恢复证据包",
+          "module": "operational-implications"
+        },
+        {
+          "heading": "Evidence Boundary and Open Questions",
+          "heading_zh": "证据边界与未决问题",
+          "module": "limitations"
+        }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "source-reported-claim",
+          "claim": "The study reports 197 capability-positive mutations that fail recovery verification among 281 candidates admitted to capability and recovery evaluation.",
+          "claim_zh": "研究报告：281 个进入能力与恢复评估的候选中，有 197 个修改改善了能力目标却未通过恢复验证。",
+          "source": "research/analysis/Q-20260901-01-self-improvement-independent-recoverability-gate.md",
+          "strength": "reports",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "source-reported-claim",
+          "claim": "At the reported budget, conventional repair recovers 0/197 failures; a deterministic oracle reaches 48/197 under L0 and 191/197 under L1.",
+          "claim_zh": "在报告预算下，常规修复对 197 个失败对象的恢复数为 0；确定性预言器在 L0 中达到 48/197，在 L1 中达到 191/197。",
+          "source": "research/analysis/Q-20260901-01-self-improvement-independent-recoverability-gate.md",
+          "strength": "reports",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "public-fact",
+          "claim": "The study defines recovery over a frozen mutation, pre-state witness, independently derived effect surface, counterfactual states and typed observational equivalence.",
+          "claim_zh": "研究把恢复定义为冻结修改、修改前见证、独立推导的影响范围、反事实状态与类型化观察等价之间的关系。",
+          "source": "research/analysis/Q-20260901-01-self-improvement-independent-recoverability-gate.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E4",
+          "identity": "source-reported-claim",
+          "claim": "The paper reports full-snapshot restoration at 0/300 when legitimate subsequent state must be preserved.",
+          "claim_zh": "论文报告：当合法后续状态必须保留时，整份快照恢复为 0/300。",
+          "source": "research/analysis/Q-20260901-01-self-improvement-independent-recoverability-gate.md",
+          "strength": "reports",
+          "independent": false
+        },
+        {
+          "id": "I1",
+          "identity": "our-observation",
+          "claim": "Capability success cannot serve as activation evidence for an independently unproved recovery property.",
+          "claim_zh": "能力成功不能替尚未独立证明的恢复性质充当生效证据。",
+          "source": "research/analysis/Q-20260901-01-self-improvement-independent-recoverability-gate.md",
+          "strength": "observed",
+          "independent": false
+        },
+        {
+          "id": "I2",
+          "identity": "our-interpretation",
+          "claim": "Activation should bind the exact mutation, witness, effect surface, recovery mechanism, counterfactual set, equivalence contract and verifier result.",
+          "claim_zh": "生效应绑定精确修改、见证、影响范围、恢复机制、反事实集合、等价合同与验证结果。",
+          "source": "research/analysis/Q-20260901-01-self-improvement-independent-recoverability-gate.md",
+          "strength": "suggests",
+          "independent": false
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The governance boundary stands without first-party project mapping."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already carries the evidence and governance argument; a separate edition would repeat it without a distinct community angle."
+      },
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS"
+    },
+    {
+      "itemId": "Q-20260901-03",
+      "column": "open-source-engineering",
+      "category": "daily",
+      "articleType": "engineering-insight",
+      "lifecycle": "Publication Candidate",
+      "title": "A Restartable Plugin Still Needs External Recovery Truth",
+      "title_zh": "插件可以重启，恢复事实必须留在进程之外",
+      "researchQuestion": "在进程隔离能够支持可信恢复之前，哪些持久状态必须存在于可丢弃插件或工作进程之外？",
+      "coreProposition": "Process isolation becomes trustworthy recovery only when session truth, stable effect identity, durable-before-visible settlement, and ownership generations survive outside the failed worker; effects beyond that represented boundary still require independent provider-side evidence.",
+      "articleBriefPath": "research/runtime/production-work/2026/09/01/Q-20260901-03/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/01/Q-20260901-03/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/01/Q-20260901-03/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-01-a-restartable-plugin-still-needs-external-recovery-truth.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-01-a-restartable-plugin-still-needs-external-recovery-truth.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-01-a-restartable-plugin-still-needs-external-recovery-truth-cover.png",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "sections": [
+        {
+          "heading": "Isolation Limits Failure but Does Not Reconstruct History",
+          "heading_zh": "隔离能限制故障，却不能重建历史",
+          "module": "evidence"
+        },
+        {
+          "heading": "Three Similar Crash States Need Different Decisions",
+          "heading_zh": "三个相似崩溃状态，需要不同决定",
+          "module": "technical-analysis"
+        },
+        {
+          "heading": "Put Recovery Truth Outside the Worker",
+          "heading_zh": "把恢复事实放到工作进程之外",
+          "module": "architecture-implications"
+        },
+        {
+          "heading": "Durable Before Visible Creates a Replay Boundary",
+          "heading_zh": "先持久、后可见，才能形成重放边界",
+          "module": "engineering-implications"
+        },
+        {
+          "heading": "External Effects Need Their Own Receipts",
+          "heading_zh": "外部效果需要自己的回执",
+          "module": "operational-implications"
+        },
+        {
+          "heading": "Evidence Boundary and Open Questions",
+          "heading_zh": "证据边界与未决问题",
+          "module": "limitations"
+        }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "The reported architecture stores session truth in an append-only transcript outside its peer processes and rebuilds model-visible history as a projection.",
+          "claim_zh": "报告架构把会话事实存入对等进程之外的只追加记录，并把模型可见历史重建为该记录的投影。",
+          "source": "research/analysis/Q-20260901-03-plugin-isolation-durable-recovery-transcript.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "public-fact",
+          "claim": "The protocol records represented completion durably before announcing downstream visibility.",
+          "claim_zh": "协议在向下游宣布可见前，先持久记录被表示的完成。",
+          "source": "research/analysis/Q-20260901-03-plugin-isolation-durable-recovery-transcript.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "public-fact",
+          "claim": "Control delivery is at least once; stable global call identifiers and idempotent pairing handle duplicates.",
+          "claim_zh": "控制消息采用至少一次交付；重复由稳定全局调用标识与幂等配对处理。",
+          "source": "research/analysis/Q-20260901-03-plugin-isolation-durable-recovery-transcript.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E4",
+          "identity": "source-reported-claim",
+          "claim": "The study reports 12/12 session recoveries, 80/80 selected crash-point trials without repeating represented settled effects, and zero pairing-invariant violations in 3,500 calls.",
+          "claim_zh": "研究报告 12/12 个会话恢复、80/80 次选定崩溃点试验未重复被表示的已结算效果，以及 3500 次调用中的配对不变量违规数为 0。",
+          "source": "research/analysis/Q-20260901-03-plugin-isolation-durable-recovery-transcript.md",
+          "strength": "reports",
+          "independent": false
+        },
+        {
+          "id": "E5",
+          "identity": "source-reported-claim",
+          "claim": "One reported fault path recomputes six interim results and remains materially slower, showing that effect suppression does not eliminate repeated work.",
+          "claim_zh": "一个报告故障路径重新计算六个中间结果且明显更慢，说明效果抑制并不消除重复工作。",
+          "source": "research/analysis/Q-20260901-03-plugin-isolation-durable-recovery-transcript.md",
+          "strength": "reports",
+          "independent": false
+        },
+        {
+          "id": "E6",
+          "identity": "public-fact",
+          "claim": "Arbitrary external effects and multi-machine partition semantics are outside the study’s strongest demonstrated guarantee.",
+          "claim_zh": "任意外部效果与多机网络分区语义不在该研究最强证明范围内。",
+          "source": "research/analysis/Q-20260901-03-plugin-isolation-durable-recovery-transcript.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "I1",
+          "identity": "our-observation",
+          "claim": "Fault isolation and replay authority are separate properties because replay decisions require evidence outside the failed process.",
+          "claim_zh": "故障隔离与重放权威是不同性质，因为重放决定需要失败进程之外的证据。",
+          "source": "research/analysis/Q-20260901-03-plugin-isolation-durable-recovery-transcript.md",
+          "strength": "observed",
+          "independent": false
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The recovery boundary is general to plugin and worker architectures."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "A separate community edition would duplicate the same failure boundary and evidence without a distinct professional discussion problem."
+      },
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS"
+    }
+  ]
+}
