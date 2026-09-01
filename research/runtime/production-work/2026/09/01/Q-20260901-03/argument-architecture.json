@@ -1,0 +1,90 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-01",
+  "itemId": "Q-20260901-03",
+  "coreProposition": "Process isolation becomes trustworthy recovery only when session truth, stable effect identity, durable-before-visible settlement, and ownership generations survive outside the failed worker; effects beyond that represented boundary still require independent provider-side evidence.",
+  "openingMove": {
+    "type": "restart-with-ambiguous-effect",
+    "purpose": "Open with a plugin restart that cannot distinguish an unstarted call from an acknowledged-lost or already-settled effect.",
+    "evidenceRefs": [
+      "E1",
+      "E3",
+      "I1"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "What does process isolation actually guarantee?",
+      "claim": "Isolation limits the failed process’s blast radius but does not reconstruct session or settlement history.",
+      "evidenceRefs": [
+        "E1",
+        "I1"
+      ],
+      "reasoningRole": "problem-separation",
+      "readerProgress": "The reader separates fault containment from recovery authority.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Which crash states must replay distinguish?",
+      "claim": "Never-started, executed-with-lost-acknowledgement and durably settled calls require different replay decisions.",
+      "evidenceRefs": [
+        "E2",
+        "E3",
+        "I1"
+      ],
+      "reasoningRole": "failure-analysis",
+      "readerProgress": "The reader sees why restart alone is unsafe.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What truth must live outside the worker?",
+      "claim": "Append-only session truth, stable effect identity, settlement order and ownership generation must survive the worker failure domain.",
+      "evidenceRefs": [
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "reasoningRole": "architecture-design",
+      "readerProgress": "The reader gains a recovery-truth plane model.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What does durable-before-visible settlement establish?",
+      "claim": "It creates an auditable replay boundary for represented effects while allowing duplicate control delivery and repeated computation.",
+      "evidenceRefs": [
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "reasoningRole": "engineering-mechanism",
+      "readerProgress": "The reader distinguishes logical effect suppression from unique execution.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "Where does transcript authority stop?",
+      "claim": "External payments, messages and third-party writes need provider receipts, idempotency or compensation because transcript settlement is not atomic with them.",
+      "evidenceRefs": [
+        "E6",
+        "I1"
+      ],
+      "reasoningRole": "operational-boundary",
+      "readerProgress": "The reader avoids an exactly-once overclaim.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Putting every plugin in its own process and keeping an append-only log makes retries safe.",
+    "responseBoundary": "Isolation restores compute capacity and the transcript can govern represented effects, but arbitrary external effects and distributed ownership remain outside the demonstrated guarantee."
+  },
+  "endingStrategy": {
+    "type": "limitations-and-open-questions",
+    "purpose": "End with external commit windows, transcript compaction, stale ownership and machine-loss durability."
+  }
+}

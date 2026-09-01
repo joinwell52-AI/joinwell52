@@ -1,0 +1,53 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-01",
+  "itemId": "Q-20260901-03",
+  "researchObjectId": "AN-20260901-03",
+  "targetAudience": {
+    "primary": "Engineers building agent runtimes, plugin hosts, tool workers and crash-recovery protocols",
+    "knowledgeAssumption": "The reader understands process isolation, retries, durable logs and external tool effects.",
+    "readerProblem": "A restarted plugin cannot tell whether an operation never ran, ran without acknowledgement, or already settled unless authoritative recovery facts survive elsewhere."
+  },
+  "whyNow": "A primary process-isolation study reports recovery through selected process kills by combining an external append-only transcript, stable call identity and durable-before-visible settlement while retaining at-least-once delivery and external-effect limits.",
+  "externalHook": {
+    "type": "externalized-recovery-truth",
+    "description": "A disposable process is recoverable only when the facts that authorize replay survive outside its failure domain.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "E4",
+      "E5",
+      "E6"
+    ]
+  },
+  "coreProposition": "Process isolation becomes trustworthy recovery only when session truth, stable effect identity, durable-before-visible settlement, and ownership generations survive outside the failed worker; effects beyond that represented boundary still require independent provider-side evidence.",
+  "originalValue": {
+    "type": "isolation-recovery-authority-separation",
+    "description": "Separates blast-radius containment from replay authority and identifies the durable truth and external-effect evidence each boundary requires."
+  },
+  "readerTakeaway": "Externalize session truth and stable effect identity, record represented settlement before downstream visibility, track ownership generations, and use provider receipts or idempotency evidence for effects outside the transcript boundary.",
+  "evidenceBoundary": {
+    "supported": [
+      "The reported system stores session truth in an append-only transcript outside peer processes.",
+      "Its protocol uses stable call identities and durable-before-visible settlement under at-least-once control delivery.",
+      "The study reports successful recovery across selected process-kill trials without repeating represented settled effects."
+    ],
+    "unsupported": [
+      "Exactly-once execution for arbitrary external actions",
+      "Distributed consensus or partition-safe ownership",
+      "Hostile multi-tenant sandbox security"
+    ],
+    "uncertain": [
+      "How the transcript should survive machine loss and corruption",
+      "How provider commit receipts should close the external-effect crash window"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The recovery boundary is general to plugin and worker architectures."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The architecture and bounded fault experiments support a concrete distinction between process isolation, durable replay authority and external-effect certainty."
+}
