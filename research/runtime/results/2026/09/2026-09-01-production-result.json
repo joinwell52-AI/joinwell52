@@ -1,0 +1,121 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "production",
+  "family": "daily",
+  "runtimeDate": "2026-09-01",
+  "status": "Completed",
+  "productionMode": "candidate-batch",
+  "input": {
+    "promptVersion": "2.13.0",
+    "promptPath": "research/runtime/worker-prompts/generated/production.prompt.md",
+    "promptSha256": "d8b0cd52d22d976d6356558a23c5c2dc28ed5aa8f51793538fa8fbebfb80996f",
+    "promptVerificationMode": "direct-sha256",
+    "researchObjects": [
+      "Q-20260901-01",
+      "Q-20260901-03"
+    ],
+    "stagedCandidateCommit": "06dfb2153fd8629c0d4c344307cf9b7a0d0ed22e"
+  },
+  "workResult": {
+    "summary": "Converted both authorized same-date Research Objects into complete bilingual Editorial Architecture 2.1 candidates while preserving the governed Industry Architecture No Selection. Persisted and remotely verified every article-sized segment with deterministic baseline raster covers, repaired two Chinese technical-prose violations in one revision round, atomically staged the candidate batch, and passed the repository-defined checkpoint, atomic-bundle, runtime, editorial, evidence, language, bilingual-consistency and layout gates without executing Publication.",
+    "summary_zh": "将当日获授权的两份 Research Object 全部转换为完整双语 Editorial Architecture 2.1 候选，并保留行业架构栏目的治理性 No Selection。每个文章级工作段及其确定性基础栅格题图均完成持久化与远端核验；在一个修订轮次内修复两项中文技术文本问题；随后原子化装配候选批次，并通过仓库定义的检查点、原子候选包、Runtime、编辑、证据、语言、双语一致性与版式门禁；未执行 Publication。"
+  },
+  "output": {
+    "type": "Publication Candidates",
+    "candidateBatch": "research/runtime/candidates/2026/09/2026-09-01-candidates.json",
+    "candidateCount": 2,
+    "bilingualArticleFiles": 4,
+    "coverAssets": 2,
+    "inlineFigureAssets": 0
+  },
+  "next": {
+    "task": "publication",
+    "instruction": "Do not execute Publication in this Production run. Publication remains a separate governed task.",
+    "instruction_zh": "本次 Production 不执行 Publication；Publication 仍是独立受治理任务。"
+  },
+  "coverEvidence": [
+    {
+      "itemId": "Q-20260901-01",
+      "briefId": "2026-09-01:Q-20260901-01-baseline-cover",
+      "coverPath": "staging/publication-candidates/2026-09-01-capability-gain-is-not-recovery-authority-cover.png",
+      "sanitizedPrompt": "An ascending amber path beside a distinct sealed return key",
+      "generationAttempts": 1,
+      "semanticReview": "PASS",
+      "coverRole": "baseline",
+      "generator": "deterministic-baseline-v1"
+    },
+    {
+      "itemId": "Q-20260901-03",
+      "briefId": "2026-09-01:Q-20260901-03-baseline-cover",
+      "coverPath": "staging/publication-candidates/2026-09-01-a-restartable-plugin-still-needs-external-recovery-truth-cover.png",
+      "sanitizedPrompt": "A detachable cobalt capsule beside an intact luminous trace rail",
+      "generationAttempts": 1,
+      "semanticReview": "PASS",
+      "coverRole": "baseline",
+      "generator": "deterministic-baseline-v1"
+    }
+  ],
+  "metrics": [
+    {
+      "name": "research_objects_consumed",
+      "value": 2
+    },
+    {
+      "name": "publication_candidates",
+      "value": 2
+    },
+    {
+      "name": "persisted_article_segments",
+      "value": 2
+    },
+    {
+      "name": "planning_artifacts",
+      "value": 6
+    },
+    {
+      "name": "bilingual_article_files",
+      "value": 4
+    },
+    {
+      "name": "cover_assets",
+      "value": 2
+    },
+    {
+      "name": "inline_figure_assets",
+      "value": 0
+    },
+    {
+      "name": "revision_rounds",
+      "value": 1
+    },
+    {
+      "name": "required_sources_read",
+      "value": 13
+    },
+    {
+      "name": "direct_cloud_image_generation_calls",
+      "value": 0
+    },
+    {
+      "name": "direct_publication_actions",
+      "value": 0
+    }
+  ],
+  "evidence": [
+    "06dfb2153fd8629c0d4c344307cf9b7a0d0ed22e",
+    "research/runtime/worker-prompts/generated/production.prompt.md",
+    "research/runtime/checkpoints/2026/09/2026-09-01-production.json",
+    "research/runtime/wakes/2026/09/2026-09-01/production-145919.json",
+    "a7fce5843f1a2b458f6f323bb29c5e258ef9747b"
+  ],
+  "artifacts": [
+    "research/runtime/candidates/2026/09/2026-09-01-candidates.json",
+    "research/runtime/checkpoints/2026/09/2026-09-01-production.json",
+    "staging/publication-candidates/2026-09-01-capability-gain-is-not-recovery-authority.zh.md",
+    "staging/publication-candidates/2026-09-01-capability-gain-is-not-recovery-authority.en.md",
+    "staging/publication-candidates/2026-09-01-capability-gain-is-not-recovery-authority-cover.png",
+    "staging/publication-candidates/2026-09-01-a-restartable-plugin-still-needs-external-recovery-truth.zh.md",
+    "staging/publication-candidates/2026-09-01-a-restartable-plugin-still-needs-external-recovery-truth.en.md",
+    "staging/publication-candidates/2026-09-01-a-restartable-plugin-still-needs-external-recovery-truth-cover.png"
+  ]
+}
