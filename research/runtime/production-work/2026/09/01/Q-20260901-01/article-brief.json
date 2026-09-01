@@ -1,0 +1,51 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-01",
+  "itemId": "Q-20260901-01",
+  "researchObjectId": "AN-20260901-01",
+  "targetAudience": {
+    "primary": "Architects and governance engineers designing self-improving digital employees and agent runtimes",
+    "knowledgeAssumption": "The reader understands staged activation, rollback, evaluation gates and stateful tool execution.",
+    "readerProblem": "A modification can improve forward capability while silently weakening the system’s ability to recover after activation."
+  },
+  "whyNow": "A primary study reports 197 capability-positive mutations that fail recovery verification, showing that forward improvement and recoverability can diverge at the adoption boundary.",
+  "externalHook": {
+    "type": "capability-recoverability-divergence",
+    "description": "A self-modification may pass its forward objective yet remain unqualified for recovery under later state evolution.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "E4"
+    ]
+  },
+  "coreProposition": "Capability qualification and recoverability qualification must be independent adoption gates: activation should bind an exact, independently verified recovery bundle for the frozen mutation rather than infer recoverability from forward improvement or the modifying worker’s own account.",
+  "originalValue": {
+    "type": "independent-recoverability-admission",
+    "description": "Separates proposal, capability, recovery and activation authority and defines the exact recovery evidence bundle that activation should consume."
+  },
+  "readerTakeaway": "Freeze the candidate mutation, derive its material effect surface independently, test recovery against counterfactual states and a typed equivalence contract, then bind activation to that exact verified bundle.",
+  "evidenceBoundary": {
+    "supported": [
+      "The study reports 197 capability-positive candidates that fail recovery verification.",
+      "Recovery is evaluated against a frozen mutation, pre-state witness, effect surface, counterfactual states and observational equivalence.",
+      "Whole-state restoration can erase legitimate later state in the reported benchmark."
+    ],
+    "unsupported": [
+      "Universal rollback for arbitrary enterprise or third-party effects",
+      "Transactional equivalence or exactly-once execution",
+      "Independent production validation of the proposed lifecycle"
+    ],
+    "uncertain": [
+      "How recovery certificates should expire under continuing state drift",
+      "How overlapping mutations should share or invalidate effect ownership"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The governance boundary stands independently of any first-party project."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The capability/recovery partition and the study’s explicit recovery relation support a concrete adoption-control argument without extending beyond the demonstrated benchmark."
+}

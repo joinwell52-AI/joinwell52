@@ -1,0 +1,86 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-01",
+  "itemId": "Q-20260901-01",
+  "coreProposition": "Capability qualification and recoverability qualification must be independent adoption gates: activation should bind an exact, independently verified recovery bundle for the frozen mutation rather than infer recoverability from forward improvement or the modifying worker’s own account.",
+  "openingMove": {
+    "type": "successful-change-failed-return-path",
+    "purpose": "Open with a self-improving worker whose new version performs better but cannot restore an acceptable earlier state after later changes.",
+    "evidenceRefs": [
+      "E1",
+      "I1"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Can forward success establish recoverability?",
+      "claim": "The reported capability-positive recovery failures show that these are separate qualification properties.",
+      "evidenceRefs": [
+        "E1",
+        "E2",
+        "I1"
+      ],
+      "reasoningRole": "problem-separation",
+      "readerProgress": "The reader stops treating successful improvement as self-authenticating adoption evidence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Why is a snapshot not a complete recovery contract?",
+      "claim": "Recovery must preserve authoritative later state outside the mutation’s effect ownership rather than restore an entire historical image.",
+      "evidenceRefs": [
+        "E3",
+        "E4"
+      ],
+      "reasoningRole": "technical-analysis",
+      "readerProgress": "The reader understands recovery as a relation over mutation, state and equivalence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "Why must the mutation remain frozen?",
+      "claim": "Changing the candidate while diagnosing rollback makes the recovery result refer to a different object.",
+      "evidenceRefs": [
+        "E3",
+        "I2"
+      ],
+      "reasoningRole": "causal-boundary",
+      "readerProgress": "The reader gains a stable evidence identity for recovery qualification.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Which authorities should remain separate?",
+      "claim": "Proposal, capability evaluation, recovery verification and activation should be distinct evidence and decision roles.",
+      "evidenceRefs": [
+        "I1",
+        "I2"
+      ],
+      "reasoningRole": "governance-design",
+      "readerProgress": "The reader can design a multi-gate adoption lifecycle.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What exactly should activation consume?",
+      "claim": "Activation should bind the frozen mutation, pre-state witness, independently derived effect surface, recovery mechanism, counterfactual set, equivalence contract and verifier result.",
+      "evidenceRefs": [
+        "E3",
+        "I2"
+      ],
+      "reasoningRole": "operational-design",
+      "readerProgress": "The reader gains an auditable activation receipt shape.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Passing forward tests plus a stored snapshot is sufficient for safe adoption.",
+    "responseBoundary": "The reported benchmark shows capability-positive recovery failures and whole-state restoration that destroys legitimate later state; it does not establish one universal replacement protocol."
+  },
+  "endingStrategy": {
+    "type": "limitations-and-open-questions",
+    "purpose": "End with irreversible effects, overlapping mutations, verifier compromise and certificate expiry."
+  }
+}
