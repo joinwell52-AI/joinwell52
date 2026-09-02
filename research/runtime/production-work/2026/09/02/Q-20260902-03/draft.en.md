@@ -6,7 +6,7 @@ column: open-source-engineering
 category: daily
 article_type: engineering-insight
 edition: research-center
-research_question: "What must remain invariant before a compressed or rewritten skill bundle can keep the original capability identity?"
+research_question: "压缩或动态改写后的技能包要继续沿用原能力身份，必须保持哪些不变量？"
 summary: "SkillZip Pro reports meaningful token reductions under protected compression and a sharp loss under an aggressive configuration. The engineering lesson is not simply to compress less: progressively loaded skills need version-bound evidence for public entries, routes, resource boundaries and behavior."
 cover: staging/publication-candidates/2026-09-02-a-smaller-skill-is-not-the-same-skill-cover.png
 sources:
