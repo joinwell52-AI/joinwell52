@@ -6,7 +6,7 @@ column: industry-architecture
 category: daily
 article_type: comparative-study
 edition: research-center
-research_question: "Which authority identities and decisions must be bound before an enterprise-agent connector call may execute?"
+research_question: "企业智能体执行连接器调用前，必须绑定哪些权限身份与决策？"
 summary: "OpenAI Epic documentation, Microsoft Entra Agent ID documentation, and a pinned Codex implementation expose one governance failure: an Installed or Enabled state cannot prove who is acting, what the target permits, whether policy allows this occurrence, or what effect the provider accepted."
 cover: staging/publication-candidates/2026-09-02-installed-is-not-authorized-cover.png
 sources:
