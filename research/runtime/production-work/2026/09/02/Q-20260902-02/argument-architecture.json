@@ -1,0 +1,15 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-02",
+  "itemId": "Q-20260902-02",
+  "coreProposition": "Connector governance must keep administrative availability, configured capability, acting principal/account, target-resource permission, runtime policy and provider effect evidence separate; installation or enablement cannot authorize a call by itself.",
+  "openingMove": {"type": "enabled-button-ambiguity", "purpose": "Open with an Enabled connector whose selected account changed and target permission was revoked.", "evidenceRefs": ["E1", "E2", "E3"]},
+  "argumentNodes": [
+    {"nodeId": "A1", "question": "What does Installed or Enabled prove?", "claim": "It proves administrative availability or configured capability, not authority for a particular occurrence.", "evidenceRefs": ["E1", "E2"], "reasoningRole": "problem-separation", "readerProgress": "The reader stops treating capability discovery as execution permission.", "visualNeed": "none"},
+    {"nodeId": "A2", "question": "Which identities and decisions remain distinct?", "claim": "Acting principal, selected account link, target-resource permission and runtime policy answer separate authorization questions.", "evidenceRefs": ["E1", "E2", "E3"], "reasoningRole": "cross-sample-comparison", "readerProgress": "The reader can map each proposition to its owner and evidence source.", "visualNeed": "none"},
+    {"nodeId": "A3", "question": "Why is provider effect evidence another layer?", "claim": "Pre-call authority establishes permission to attempt; the provider result establishes what was accepted or changed.", "evidenceRefs": ["E4"], "reasoningRole": "effect-boundary", "readerProgress": "The reader separates authorization from outcome and reconciliation.", "visualNeed": "none"},
+    {"nodeId": "A4", "question": "How should remembered approval be scoped?", "claim": "Approval must bind connector, tool, account link, target scope and occurrence conditions.", "evidenceRefs": ["E3", "E4"], "reasoningRole": "governance-design", "readerProgress": "The reader gains a fail-closed admission rule.", "visualNeed": "none"}
+  ],
+  "counterpoint": {"required": true, "claim": "One Enabled indicator is simpler.", "responseBoundary": "It may remain a presentation summary, but runtime and audit records must preserve the layers and fail closed when one is missing or stale."},
+  "endingStrategy": {"type": "open-questions", "purpose": "End with portable receipts, provider permissions, reapproval and reconciliation."}
+}

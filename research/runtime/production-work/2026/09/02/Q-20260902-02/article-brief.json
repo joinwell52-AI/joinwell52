@@ -1,0 +1,36 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-02",
+  "itemId": "Q-20260902-02",
+  "researchObjectId": "Q-20260902-02",
+  "targetAudience": {
+    "primary": "Enterprise architects, security engineers and governance leads responsible for agent connectors",
+    "knowledgeAssumption": "The reader understands connectors, linked accounts, runtime policy and provider permissions.",
+    "readerProblem": "An Installed or Enabled connector can be mistaken for proof that a specific call is currently authorized."
+  },
+  "whyNow": "Current first-party documentation and implementation evidence expose different authority layers across Epic integrations, Entra Agent IDs and Codex application-tool policy evaluation.",
+  "externalHook": {
+    "type": "enabled-flag-authority-compression",
+    "description": "One visible Enabled state can hide the acting account, target permission, runtime policy and provider effect.",
+    "evidenceRefs": ["E1", "E2", "E3"]
+  },
+  "coreProposition": "Connector governance must keep administrative availability, configured capability, acting principal/account, target-resource permission, runtime policy and provider effect evidence separate; installation or enablement cannot authorize a call by itself.",
+  "originalValue": {
+    "type": "six-layer-authority-chain",
+    "description": "Synthesizes three non-equivalent product samples into a bounded call-admission and audit model without claiming a universal protocol."
+  },
+  "readerTakeaway": "Treat Installed and Enabled as capability signals; admit each call only when principal, account link, target scope and runtime policy are current, then record provider effects separately.",
+  "evidenceBoundary": {
+    "supported": [
+      "OpenAI Epic documentation separates setup and scopes from clinician sign-in and existing patient-chart permissions.",
+      "Microsoft documents configured connector permissions with runtime connector-policy and DLP revalidation.",
+      "The cited Codex revision passes selected account-link and tool information into application-tool policy evaluation."
+    ],
+    "unsupported": ["One universal connector authorization protocol", "Exactly-once provider effects", "Uniform revocation behavior across providers"],
+    "uncertain": ["The smallest portable authority receipt", "When permission changes require explicit reapproval"]
+  },
+  "firstPartyRole": {"status": "none", "rationale": "The article compares general authority layers across documented systems."},
+  "recommendedArticleType": "comparative-study",
+  "editorialDecision": "PASS",
+  "decisionReason": "The sources expose complementary failure boundaries and support an independently useful six-layer authority model."
+}
