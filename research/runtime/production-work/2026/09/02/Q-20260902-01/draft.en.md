@@ -6,7 +6,7 @@ column: digital-employee
 category: daily
 article_type: technical-analysis
 edition: research-center
-research_question: "How should a long-running digital employee demonstrate effective working memory rather than merely staying within a token budget?"
+research_question: "长期运行的数字员工应如何证明其工作记忆有效，而不是只证明没有超过令牌预算？"
 summary: "A primary study of 55 coding-agent trajectories separates stored state, delivered context, management work, and task/process outcome. The split shows why equal budgets need not deliver equal information and why final success cannot substitute for evidence about the memory path."
 cover: staging/publication-candidates/2026-09-02-token-budget-is-not-working-memory-evidence-cover.png
 sources:
