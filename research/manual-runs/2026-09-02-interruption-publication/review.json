@@ -1,0 +1,56 @@
+{
+  "date": "2026-09-02",
+  "scope": "Two bilingual research articles, original covers, localized explanatory figures, bilingual public evidence",
+  "product_code_touched": false,
+  "image_mode": "built-in image_gen",
+  "user_response": "很好",
+  "covers": [
+    {
+      "itemId": "RIR-20260901-01",
+      "brief": "takeover-evidence-key-v1.json",
+      "attempts": 1,
+      "path": "docs/public/assets/covers/daily-2026-09-01-interrupted-task-takeover-cover.png",
+      "sha256": "d97605415c3594af5a39bfe25c374a12f10c3352947613b60ed4a68a542ffd6e",
+      "thumbnail": "takeover-cover-thumb.webp",
+      "review": "PASS: interrupted cobalt connection and central violet evidence key remain recognizable at thumbnail size; upper/lower margins retained; single group."
+    },
+    {
+      "itemId": "RIR-20260901-02",
+      "brief": "decision-folio-binding-v1.json",
+      "attempts": 1,
+      "path": "docs/public/assets/covers/daily-2026-09-01-decision-evidence-continuity-cover.png",
+      "sha256": "ab784a56b0e5eac9a781daa35ccff2b6cf4777b296f7655182eb433e40569f7d",
+      "thumbnail": "continuity-cover-thumb.webp",
+      "review": "PASS: folded cobalt folio is distinct from the optical bridge; violet connection ties bounded references; readable at thumbnail size."
+    }
+  ],
+  "figures": {
+    "format": "SVG source + 3200x2000 PNG",
+    "languages": [
+      "zh",
+      "en"
+    ],
+    "count": 4,
+    "review": "Inspected all four raster outputs; shortened two English labels that overflowed, then rerendered. Figure contracts explicitly separate not_admitted from dispositions and observers from dispatch."
+  },
+  "evidence": {
+    "public_check": "PASS; consistency and hash checks only",
+    "product_rerun": false,
+    "limitations": "Original preserved run summaries and fixture, not complete raw stdout; no independent QA claimed."
+  },
+  "content_edits": [
+    "Contract frozen, not implemented/QA-passed",
+    "Normal rework excluded from technical interruption admission",
+    "Separate historical receipt, recovery authority and operation authority",
+    "Stale-owner fencing separate from admission disposition",
+    "AG2 and Paperclip PR statuses reverified as merged",
+    "Early quarantine input preserved in fixture, public term hold_for_review"
+  ],
+  "validation": {
+    "layout": "PASS: 324 articles, 68 figures, 22 batches",
+    "editorial": "PASS: 63 V2 candidates, 311 evidence claims",
+    "first_build": "FAILED: Markdown download links treated as page routes; fixed to explicit download URLs",
+    "final_build": "PASS: docs:build exit 0; strict SSR and dist projection checks passed. Existing bundle-size advisory only.",
+    "browser": "PASS: Chinese article and English companion rendered; both cover and localized inline PNG loaded; full-resolution link opened the 3200x2000 original; Chinese article-type label and cross-language link verified."
+  }
+}
