@@ -6,7 +6,7 @@
   "nominalTime": "16:00",
   "wakeTime": "16:00:39",
   "source": "chatgpt-scheduled-task",
-  "status": "Received",
+  "status": "Deferred",
   "branch": "main",
   "controlCommit": "58a7d364ec6d007907c8ae5e82ea5a954cae66bf",
   "capabilities": [
@@ -14,5 +14,10 @@
     "github-write",
     "file-editing",
     "web-research"
-  ]
+  ],
+  "executionAuthorityGranted": false,
+  "earliestDueUnfinished": "production",
+  "earliestDueFormalTime": "15:00",
+  "observedEarliestDueStatus": "Running",
+  "reason": "Academic is applicable and capability-admissible, but global serial reconciliation withholds Academic execution authority while the earlier due Production shift remains Running. Timer activation does not grant execution authority."
 }
