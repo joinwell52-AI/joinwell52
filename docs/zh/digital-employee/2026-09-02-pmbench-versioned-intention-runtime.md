@@ -9,11 +9,11 @@ edition: "research-center"
 research_question: "当 Agent 必须在未来正确触发点执行最新有效意图，而不只是把它回忆出来时，Runtime 需要怎样的架构？"
 summary: "PM-Bench 把“记得指令”和“在真正到期时行动”拆开。它的结果说明，更频繁监测本身并不够；长期运行 Agent 需要版本化意图状态、观察策略、到期准入和持久效果证据。"
 sources: "arXiv:2607.12385; genglinliu/PMBench @ e1093c470c8981daf522d4ef047a7c3a71e077d7; research/reading/A-20260902-01-pmbench-prospective-memory.md; research/analysis/A-20260902-01-pmbench-prospective-memory.md"
-cover: "/assets/covers/academic-pmbench-versioned-intention-runtime.svg"
+cover: "/assets/covers/academic-pmbench-versioned-intention-runtime.png"
 ---
 
 <ArticleCover
-  image="/assets/covers/academic-pmbench-versioned-intention-runtime.svg"
+  image="/assets/covers/academic-pmbench-versioned-intention-runtime.png"
   kicker="数字员工 · Academic Observation 006"
   title="延迟意图不是一条记忆"
   summary="记住未来任务，不等于现在拥有执行它的权力。"

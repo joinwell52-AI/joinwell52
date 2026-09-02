@@ -9,11 +9,11 @@ edition: "research-center"
 research_question: "What runtime architecture is required when an agent must execute the latest valid deferred intention at the correct future cue rather than merely recall it?"
 summary: "PM-Bench separates remembering an instruction from acting when it is actually due. Its results suggest that more monitoring alone is not enough; a long-running agent needs versioned intention state, an observation policy, due-state admission and durable effect evidence."
 sources: "arXiv:2607.12385; genglinliu/PMBench @ e1093c470c8981daf522d4ef047a7c3a71e077d7; research/reading/A-20260902-01-pmbench-prospective-memory.md; research/analysis/A-20260902-01-pmbench-prospective-memory.md"
-cover: "/assets/covers/academic-pmbench-versioned-intention-runtime.svg"
+cover: "/assets/covers/academic-pmbench-versioned-intention-runtime.png"
 ---
 
 <ArticleCover
-  image="/assets/covers/academic-pmbench-versioned-intention-runtime.svg"
+  image="/assets/covers/academic-pmbench-versioned-intention-runtime.png"
   kicker="Digital Employee · Academic Observation 006"
   title="A Deferred Intention Is Not a Memory Entry"
   summary="Remembering a future task is not the same as having authority to execute it now."
