@@ -19,51 +19,216 @@
   },
   "results": {
     "discovery": {
-      "schema": "runtime-shift-result/v2", "task": "discovery", "family": "daily", "runtimeDate": "2026-09-02", "status": "Completed",
+      "schema": "runtime-shift-result/v2",
+      "task": "discovery",
+      "family": "daily",
+      "runtimeDate": "2026-09-02",
+      "status": "Completed",
       "input": "Frozen control commit 8067d6e8c4d7ef06a6298b398dbdf9576caf9f83, current-day wake evidence, and the already-persisted 2026-09-02 Intelligence run.",
       "input_zh": "固定控制提交 8067d6e8c4d7ef06a6298b398dbdf9576caf9f83、当日 Wake Evidence，以及已经持久化的 2026-09-02 Intelligence Run。",
       "workResult": "Recovered a stale Discovery control epoch without regenerating the same-date evidence pool. The same-day Intelligence artifact and recovered terminal state both passed remote validation.",
       "workResult_zh": "在不重新生成同日 Evidence Pool 的前提下恢复过期的 Discovery 控制轮次；同日 Intelligence Artifact 与恢复后的终态状态均通过远端验证。",
       "output": "research/intelligence/runs/2026/09/2026-09-02-intelligence.json — 11 normalized signals.",
       "output_zh": "research/intelligence/runs/2026/09/2026-09-02-intelligence.json —— 11 个规范化信号。",
-      "next": "Queue may triage the verified same-date Signal Pool.", "next_zh": "Queue 可筛选已核验的同日 Signal Pool。",
-      "metrics": [{"label":"Signals","label_zh":"信号","value":11}],
-      "evidence": [{"label":"Terminal validation","label_zh":"终态验证","value":"Validate Research Center 3.0 #33593763441 success"}],
-      "artifacts": [{"label":"Research Intelligence run","label_zh":"Research Intelligence 运行记录","value":"research/intelligence/runs/2026/09/2026-09-02-intelligence.json"}],
-      "startedAt": "2026-09-02T13:04:19+08:00", "completedAt": "2026-09-02T13:11:55+08:00", "githubCommit": "5610be294b2848fe3d394d1c2a1443aabb098a4c", "commitVerify": "Completed", "verifiedAt": "2026-09-02T13:13:43+08:00"
+      "next": "Queue may triage the verified same-date Signal Pool.",
+      "next_zh": "Queue 可筛选已核验的同日 Signal Pool。",
+      "metrics": [
+        {
+          "label": "Signals",
+          "label_zh": "信号",
+          "value": 11
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Terminal validation",
+          "label_zh": "终态验证",
+          "value": "Validate Research Center 3.0 #33593763441 success"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Research Intelligence run",
+          "label_zh": "Research Intelligence 运行记录",
+          "value": "research/intelligence/runs/2026/09/2026-09-02-intelligence.json"
+        }
+      ],
+      "startedAt": "2026-09-02T13:04:19+08:00",
+      "completedAt": "2026-09-02T13:11:55+08:00",
+      "githubCommit": "5610be294b2848fe3d394d1c2a1443aabb098a4c",
+      "commitVerify": "Completed",
+      "verifiedAt": "2026-09-02T13:13:43+08:00"
     },
     "queue": {
-      "schema": "runtime-shift-result/v2", "task": "queue", "family": "daily", "runtimeDate": "2026-09-02", "status": "Completed",
+      "schema": "runtime-shift-result/v2",
+      "task": "queue",
+      "family": "daily",
+      "runtimeDate": "2026-09-02",
+      "status": "Completed",
       "input": "Frozen Queue Prompt v1.0.0 from control commit 8067d6e8c4d7ef06a6298b398dbdf9576caf9f83, its five required sources, verified queue-100149 wake receipt, verified Discovery result and same-date Signal Pool.",
       "input_zh": "来自固定控制提交 8067d6e8c4d7ef06a6298b398dbdf9576caf9f83 的 Queue Prompt v1.0.0 及其 5 个 requiredSources、已核验的 queue-100149 Wake Receipt、已核验的 Discovery 结果与同日 Signal Pool。",
       "workResult": "Selected exactly one bounded research object for each Daily column: working-memory evaluation for Digital Employee, layered connector authority for Industry Architecture, and routing-preserving skill compression for Open-source Engineering. No downstream stage work was performed.",
       "workResult_zh": "三个 Daily 栏目分别选择且只选择一个有边界的 Research Object：数字员工的 Working-memory Evaluation、行业架构的 Layered Connector Authority、开源工程的 Routing-preserving Skill Compression；未执行任何下游阶段工作。",
       "output": "research/runtime/plans/2026/09/2026-09-02-plan.json with Q-20260902-01, Q-20260902-02 and Q-20260902-03.",
       "output_zh": "research/runtime/plans/2026/09/2026-09-02-plan.json，包含 Q-20260902-01、Q-20260902-02 与 Q-20260902-03。",
-      "next": "Reading may Deep Read only the three selected same-date objects.", "next_zh": "Reading 只能 Deep Read 当日三个 Selected Object。",
-      "metrics": [{"label":"Signals reviewed","label_zh":"已审阅信号","value":11},{"label":"Selected objects","label_zh":"已选对象","value":3}],
-      "evidence": [{"label":"Plan commit validation","label_zh":"Plan 提交验证","value":"Validate Research Center 3.0 #33594063546 success"},{"label":"Queue terminal validation","label_zh":"Queue 终态验证","value":"Validate Research Center 3.0 #33594176994 success"}],
-      "artifacts": [{"label":"Today's Research Plan","label_zh":"今日研究计划","value":"research/runtime/plans/2026/09/2026-09-02-plan.json"}],
-      "startedAt": "2026-09-02T13:13:44+08:00", "completedAt": "2026-09-02T13:18:17+08:00", "githubCommit": "7645d2692b7b428230925876dcc29411ac86626d", "commitVerify": "Completed", "verifiedAt": "2026-09-02T13:20:10+08:00"
+      "next": "Reading may Deep Read only the three selected same-date objects.",
+      "next_zh": "Reading 只能 Deep Read 当日三个 Selected Object。",
+      "metrics": [
+        {
+          "label": "Signals reviewed",
+          "label_zh": "已审阅信号",
+          "value": 11
+        },
+        {
+          "label": "Selected objects",
+          "label_zh": "已选对象",
+          "value": 3
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Plan commit validation",
+          "label_zh": "Plan 提交验证",
+          "value": "Validate Research Center 3.0 #33594063546 success"
+        },
+        {
+          "label": "Queue terminal validation",
+          "label_zh": "Queue 终态验证",
+          "value": "Validate Research Center 3.0 #33594176994 success"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Today's Research Plan",
+          "label_zh": "今日研究计划",
+          "value": "research/runtime/plans/2026/09/2026-09-02-plan.json"
+        }
+      ],
+      "startedAt": "2026-09-02T13:13:44+08:00",
+      "completedAt": "2026-09-02T13:18:17+08:00",
+      "githubCommit": "7645d2692b7b428230925876dcc29411ac86626d",
+      "commitVerify": "Completed",
+      "verifiedAt": "2026-09-02T13:20:10+08:00"
     }
   },
   "timeline": [
-    {"time":"2026-09-02T09:03:41+08:00","task":"discovery","event":"Execution Slot Opened","status":"Running","detail":"Original Discovery epoch opened."},
-    {"time":"2026-09-02T09:05:24+08:00","task":"discovery","event":"Worker Claimed","status":"Running","detail":"Original Discovery worker claimed after verifying discovery-085843 wake receipt."},
-    {"time":"2026-09-02T10:02:49+08:00","task":"queue","event":"Execution Deferred","status":"Waiting","detail":"Queue wake queue-100149 was received; Discovery still held execution authority."},
-    {"time":"2026-09-02T11:04:25+08:00","task":"reading","event":"Execution Deferred","status":"Waiting","detail":"Reading wake reading-110205 was received; Discovery still held execution authority."},
-    {"time":"2026-09-02T13:03:20+08:00","task":"discovery","event":"Running Lease Expired","status":"Waiting","detail":"Discovery exceeded its 45-minute Running lease without a terminal result."},
-    {"time":"2026-09-02T13:03:20+08:00","task":"analysis","event":"Execution Deferred","status":"Waiting","detail":"Analysis wake analysis-125750 was received and verified; earlier Discovery remained unfinished."},
-    {"time":"2026-09-02T13:04:19+08:00","task":"discovery","event":"Execution Slot Opened","status":"Running","detail":"Recovered Discovery opened as earliest due unfinished task."},
-    {"time":"2026-09-02T13:04:42+08:00","task":"discovery","event":"Worker Claimed","status":"Running","detail":"Recovery worker claimed Discovery using the verified Analysis Process Manager wake."},
-    {"time":"2026-09-02T13:11:55+08:00","task":"discovery","event":"Shift Completed","status":"Completed","detail":"Recovered Discovery closed by verifying the existing same-date Intelligence artifact."},
-    {"time":"2026-09-02T13:13:43+08:00","task":"discovery","event":"GitHub Commit Verified","status":"Completed","detail":"Discovery completion was re-fetched on main and validator run 33593763441 succeeded."},
-    {"time":"2026-09-02T13:13:44+08:00","task":"queue","event":"Execution Slot Opened","status":"Running","detail":"Queue opened as earliest overdue task after durable Discovery verification."},
-    {"time":"2026-09-02T13:15:16+08:00","task":"queue","event":"Worker Claimed","status":"Running","detail":"Queue worker claimed after verifying queue-100149 wake receipt and current execution authority."},
-    {"time":"2026-09-02T13:18:17+08:00","task":"queue","event":"Shift Completed","status":"Completed","detail":"Queue persisted the same-date Research Plan."},
-    {"time":"2026-09-02T13:20:10+08:00","task":"queue","event":"GitHub Commit Verified","status":"Completed","detail":"Queue completion commit 7645d2692b7b428230925876dcc29411ac86626d was re-fetched on main; validator run 33594176994 concluded success."},
-    {"time":"2026-09-02T13:20:11+08:00","task":"reading","event":"Execution Slot Opened","status":"Running","detail":"Reading opened as the earliest overdue task after durable Queue verification."}
+    {
+      "time": "2026-09-02T09:03:41+08:00",
+      "task": "discovery",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Original Discovery epoch opened."
+    },
+    {
+      "time": "2026-09-02T09:05:24+08:00",
+      "task": "discovery",
+      "event": "Worker Claimed",
+      "status": "Running",
+      "detail": "Original Discovery worker claimed after verifying discovery-085843 wake receipt."
+    },
+    {
+      "time": "2026-09-02T10:02:49+08:00",
+      "task": "queue",
+      "event": "Execution Deferred",
+      "status": "Waiting",
+      "detail": "Queue wake queue-100149 was received; Discovery still held execution authority."
+    },
+    {
+      "time": "2026-09-02T11:04:25+08:00",
+      "task": "reading",
+      "event": "Execution Deferred",
+      "status": "Waiting",
+      "detail": "Reading wake reading-110205 was received; Discovery still held execution authority."
+    },
+    {
+      "time": "2026-09-02T13:03:20+08:00",
+      "task": "discovery",
+      "event": "Running Lease Expired",
+      "status": "Waiting",
+      "detail": "Discovery exceeded its 45-minute Running lease without a terminal result."
+    },
+    {
+      "time": "2026-09-02T13:03:20+08:00",
+      "task": "analysis",
+      "event": "Execution Deferred",
+      "status": "Waiting",
+      "detail": "Analysis wake analysis-125750 was received and verified; earlier Discovery remained unfinished."
+    },
+    {
+      "time": "2026-09-02T13:04:19+08:00",
+      "task": "discovery",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Recovered Discovery opened as earliest due unfinished task."
+    },
+    {
+      "time": "2026-09-02T13:04:42+08:00",
+      "task": "discovery",
+      "event": "Worker Claimed",
+      "status": "Running",
+      "detail": "Recovery worker claimed Discovery using the verified Analysis Process Manager wake."
+    },
+    {
+      "time": "2026-09-02T13:11:55+08:00",
+      "task": "discovery",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Recovered Discovery closed by verifying the existing same-date Intelligence artifact."
+    },
+    {
+      "time": "2026-09-02T13:13:43+08:00",
+      "task": "discovery",
+      "event": "GitHub Commit Verified",
+      "status": "Completed",
+      "detail": "Discovery completion was re-fetched on main and validator run 33593763441 succeeded."
+    },
+    {
+      "time": "2026-09-02T13:13:44+08:00",
+      "task": "queue",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Queue opened as earliest overdue task after durable Discovery verification."
+    },
+    {
+      "time": "2026-09-02T13:15:16+08:00",
+      "task": "queue",
+      "event": "Worker Claimed",
+      "status": "Running",
+      "detail": "Queue worker claimed after verifying queue-100149 wake receipt and current execution authority."
+    },
+    {
+      "time": "2026-09-02T13:18:17+08:00",
+      "task": "queue",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Queue persisted the same-date Research Plan."
+    },
+    {
+      "time": "2026-09-02T13:20:10+08:00",
+      "task": "queue",
+      "event": "GitHub Commit Verified",
+      "status": "Completed",
+      "detail": "Queue completion commit 7645d2692b7b428230925876dcc29411ac86626d was re-fetched on main; validator run 33594176994 concluded success."
+    },
+    {
+      "time": "2026-09-02T13:20:11+08:00",
+      "task": "reading",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Reading opened as the earliest overdue task after durable Queue verification."
+    },
+    {
+      "time": "2026-09-02T13:33:46+08:00",
+      "task": "reading",
+      "event": "Worker Claimed",
+      "status": "Running",
+      "detail": "ChatGPT Automation claimed Research Runtime Reading after verifying research/runtime/wakes/2026/09/2026-09-02/analysis-132611.json and the current execution authority on main."
+    }
   ],
-  "metrics": [], "evidence": [], "artifacts": [],
-  "githubCommit": "pending", "commitVerify": "Waiting", "updatedAt": "2026-09-02T13:20:11+08:00"
+  "metrics": [],
+  "evidence": [],
+  "artifacts": [],
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-09-02T13:33:46+08:00"
 }
