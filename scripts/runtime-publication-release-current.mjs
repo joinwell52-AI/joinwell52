@@ -23,7 +23,7 @@ const scheduler = JSON.parse(fs.readFileSync('research/runtime/SCHEDULER.json', 
 if (scheduler.schema !== 'research-runtime-scheduler/v3' || scheduler.version !== '3.0' || scheduler.timezone !== 'Asia/Shanghai') throw new Error('Unexpected Scheduler identity')
 const control = JSON.parse(fs.readFileSync(scheduler.workerControlManifest, 'utf8'))
 const task = control.tasks?.publication
-if (control.state !== 'active' || control.failClosed !== true || control.sourceBranch !== 'main' || !control.allowedBranches.includes('main') || !control.allowedWakeSources.includes('chatgpt-scheduled-task')) throw new Error('Publication admission denied')
+if (control.state !== 'active' || control.failClosed !== true || control.sourceBranch !== 'main' || !control.allowedBranches.includes('main') || !Array.isArray(control.allowedWakeSources) || control.allowedWakeSources.length === 0) throw new Error('Publication admission denied')
 if (!task || task.state !== 'active' || task.family !== 'daily' || task.directPublicationAllowed !== true || task.requireSameRunDateInputs !== true || task.prompt?.version !== '2.0.0') throw new Error('Publication task not active')
 const promptHash = crypto.createHash('sha256').update(fs.readFileSync(task.prompt.path)).digest('hex')
 if (promptHash !== task.prompt.sha256) throw new Error(`Publication prompt SHA mismatch ${promptHash}`)
@@ -32,7 +32,7 @@ for (const source of task.prompt.requiredSources || []) {
   fs.readFileSync(source)
 }
 const receipt = JSON.parse(fs.readFileSync(wake, 'utf8'))
-if (receipt.schema !== 'runtime-wake-receipt/v1' || receipt.date !== date || receipt.timezone !== 'Asia/Shanghai' || receipt.nominalTask !== 'publication' || receipt.nominalTime !== '20:00' || receipt.source !== 'chatgpt-scheduled-task' || receipt.status !== 'Received') throw new Error('Wake Receipt invalid')
+if (receipt.schema !== 'runtime-wake-receipt/v1' || receipt.date !== date || receipt.timezone !== 'Asia/Shanghai' || receipt.nominalTask !== 'publication' || receipt.nominalTime !== '20:00' || !control.allowedWakeSources.includes(receipt.source) || receipt.status !== 'Received') throw new Error('Wake Receipt invalid')
 const record = JSON.parse(fs.readFileSync(recordPath, 'utf8'))
 if (record.date !== date || record.taskStatus?.production !== 'Completed' || record.taskStatus?.publication !== 'Running') throw new Error('Publication Runtime authority absent')
 const timeline = record.timeline || []
