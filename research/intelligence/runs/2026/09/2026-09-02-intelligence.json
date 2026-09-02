@@ -3,64 +3,69 @@
   "version": "1.0",
   "date": "2026-09-02",
   "timezone": "Asia/Shanghai",
-  "status": "Waiting",
+  "status": "Completed",
   "registryVersion": "1.0",
-  "sourceTask": "Research Runtime Queue",
-  "updatedAt": "",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-09-02T09:14:30+08:00",
   "githubCommit": "pending",
-  "reason": "Research Runtime Queue has not completed the three intelligence pipelines.",
-  "reason_zh": "研究运行队列尚未完成三条情报发现管线。",
+  "reason": "All three formal Discovery pipelines reached terminal coverage and the required theme-first active-sample pass completed. Eleven qualified signals were retained after research-problem normalization and prior-run deduplication: three product/platform governance mechanisms, five engineering mechanisms, and three primary-research findings. No topic selection was performed.",
+  "reason_zh": "三条正式 Discovery 管线均完成终态覆盖，并完成强制的主题优先主动样本检查。按研究问题规范化并与前一轮去重后保留 11 个合格信号：3 个产品/平台治理机制、5 个工程机制、3 个一手研究发现；未执行选题。",
   "pipelines": [
     {
       "id": "ai-platform",
       "label": "AI Platform Change Intelligence",
       "label_zh": "AI 平台变更情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 45,
-      "checked": 0,
+      "checked": 45,
       "inaccessible": [],
       "failed": [],
-      "signals": 0,
+      "signals": 3,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All 45 due P0 public platform channels were resolved. Fresh retained evidence centers on layered read-only healthcare connector authority and Microsoft Entra agent identity as a runtime-governed connector boundary plus a concrete missing-identity recovery failure.",
+      "reason_zh": "45 个到期 P0 公共平台通道全部收口。新保留证据聚焦于只读医疗连接器的分层授权，以及 Microsoft Entra Agent Identity 作为受 Runtime Governance 约束的连接器边界，并保留一个“身份丢失导致 Agent 失联”的具体恢复失败。"
     },
     {
       "id": "github-engineering",
       "label": "GitHub Engineering Intelligence",
       "label_zh": "GitHub 工程情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 9,
-      "checked": 0,
+      "checked": 9,
       "inaccessible": [],
       "failed": [],
-      "signals": 0,
+      "signals": 5,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All nine P0 daily repositories were checked incrementally. Five non-duplicate mechanisms were retained from Codex and Google ADK: account-link-scoped approvals, executor-context permission resolution, remote-platform-aware exec safety, transfer-reason loop control, and resume-input/checkpoint separation.",
+      "reason_zh": "9 个 P0 Daily 仓库均完成增量检查。保留 5 个非重复机制，来自 Codex 与 Google ADK：按账户连接限定 Approval、按执行器上下文解析权限、按远端平台执行安全检查、Transfer Reason 防循环，以及 Resume Input 与 Checkpoint 分离。"
     },
     {
       "id": "published-research",
       "label": "Published Research Intelligence",
       "label_zh": "论文与研究成果情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 9,
-      "checked": 0,
+      "checked": 8,
       "inaccessible": [],
-      "failed": [],
-      "signals": 0,
+      "failed": [
+        {
+          "source": "jss",
+          "reason": "The registered Journal of Systems and Software page returned an internal retrieval error during this run; it is recorded as failed rather than checked."
+        }
+      ],
+      "signals": 3,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All nine P0 research sources resolved as eight checked plus one explicit retrieval failure. The rolling 7-day pass, with 30-day coverage available, retained three primary findings on coding-agent working-memory evaluation, outcome-grounded action credit, and routing-preserving compression of progressively loaded agent skills.",
+      "reason_zh": "9 个 P0 研究来源全部收口为 8 个已检查 + 1 个明确抓取失败。滚动 7 天研究检查（并保留 30 天覆盖窗口）保留 3 个一手研究发现：Coding Agent Working Memory 评估、Outcome-grounded Action Credit，以及保持路由语义的渐进式 Agent Skill 压缩。"
     }
   ],
   "columns": [
@@ -69,40 +74,323 @@
       "label": "Digital Employee",
       "label_zh": "数字员工",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 4,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded four primary Digital Employee signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 4 个以数字员工为主栏目的信号；评分与选题由 Queue 独立负责。"
     },
     {
       "id": "industry-architecture",
       "label": "Industry Architecture",
       "label_zh": "行业架构",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 3,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded three primary Industry Architecture signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 3 个以行业架构为主栏目的信号；评分与选题由 Queue 独立负责。"
     },
     {
       "id": "open-source-engineering",
       "label": "Open-source Engineering",
       "label_zh": "开源工程",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 4,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded four primary Open-source Engineering signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 4 个以开源工程为主栏目的信号；评分与选题由 Queue 独立负责。"
     }
   ],
-  "signals": []
+  "signals": [
+    {
+      "id": "SIG-20260902-001",
+      "pipeline": "ai-platform",
+      "title": "OpenAI healthcare plugins separate plugin availability, app access, user sign-in, and underlying record permissions",
+      "title_zh": "OpenAI 医疗插件把插件可用性、App Access、用户登录与底层记录权限分层",
+      "sourceUrl": "https://openai.com/products/release-notes/",
+      "publishedAt": "2026-09-01",
+      "evidenceLevel": "official_announcement",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "openai-healthcare-plugins/layered-read-only-connector-authority",
+      "summary": "OpenAI's healthcare plugins are read-only. Epic access requires an administrator-configured EHR app, an individual Epic sign-in, and existing patient-chart permissions, while workspace admins manage plugin availability and app access separately.",
+      "summary_zh": "OpenAI 医疗插件为只读；Epic 访问同时要求管理员配置的 EHR App、个人 Epic 登录和既有 Patient Chart 权限，而 Workspace Admin 还分别管理 Plugin Availability 与 App Access。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["agent-identity-authority", "call-time-authorization", "human-approval-authority"],
+      "sampleIds": ["openai-healthcare-plugins"],
+      "researchValue": {
+        "failure": "A plugin being visible or installed can be mistaken for authority to read sensitive application data.",
+        "finding": "",
+        "mechanism": "Layer plugin availability, app access, individual application sign-in, existing record permissions, and a read-only action boundary.",
+        "implication": "Connector discovery and installation should not collapse into data authority; each runtime data access still needs its own identity and resource-permission boundary."
+      }
+    },
+    {
+      "id": "SIG-20260902-002",
+      "pipeline": "ai-platform",
+      "title": "Copilot Studio exposes connector scopes on Agent ID but revalidates them against runtime policy",
+      "title_zh": "Copilot Studio 将 Connector Scope 暴露到 Agent ID，同时在 Runtime 重新校验治理策略",
+      "sourceUrl": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/admin-use-entra-agent-identities",
+      "publishedAt": "2026-08-27",
+      "evidenceLevel": "official_documentation",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "microsoft-copilot-studio/entra-agent-id-runtime-policy-revalidation",
+      "summary": "Copilot Studio attaches connector API permissions to an agent's Entra Agent ID at publish time for administrative visibility, but the connector runtime revalidates those scopes against Advanced Connector Policies and DLP; Conditional Access can also gate token issuance.",
+      "summary_zh": "Copilot Studio 在发布时把 Connector API Permission 附到 Agent 的 Entra Agent ID 上供管理员查看，但 Connector Runtime 仍会依据 Advanced Connector Policies 与 DLP 重新校验这些 Scope；Conditional Access 还可控制 Token 签发。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["agent-identity-authority", "call-time-authorization", "policy-enforcement"],
+      "sampleIds": ["microsoft-copilot-studio-agent-identity"],
+      "researchValue": {
+        "failure": "Persisted identity metadata can be mistaken for permanent authority and used to bypass changed runtime governance.",
+        "finding": "",
+        "mechanism": "Expose connector capability on a durable agent identity while independently revalidating the call against current runtime policies.",
+        "implication": "Agent identity should describe reachable capability, while call-time policy remains a separate live admission boundary."
+      }
+    },
+    {
+      "id": "SIG-20260902-003",
+      "pipeline": "ai-platform",
+      "title": "Missing Microsoft Entra agent registration can make a Teams agent unresponsive and recovery re-provisions identity",
+      "title_zh": "Microsoft Entra Agent Registration 丢失会让 Teams Agent 失联，恢复需要重新 Provision Identity",
+      "sourceUrl": "https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/known-issues",
+      "publishedAt": "2026-08-31",
+      "evidenceLevel": "official_documentation",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "microsoft-copilot-studio/missing-agent-identity-reprovision-recovery",
+      "summary": "Microsoft documents that a Teams-deployed Copilot Studio agent can become unresponsive when its Entra app registration—the agent identity—is missing. Disconnecting and reconnecting the Teams channel and republishing should trigger identity provisioning; recreating the agent is the fallback.",
+      "summary_zh": "Microsoft 记录了一个明确故障：部署到 Teams 的 Copilot Studio Agent 若其 Entra App Registration（Agent Identity）从 Tenant Directory 中缺失，会变得无响应。断开并重连 Teams Channel 后重新发布，可触发 Identity Provisioning；仍失败时需重建 Agent。",
+      "signalRole": "failure-evidence",
+      "researchThemes": ["agent-identity-authority", "recovery-authority", "evidence-completion-truth"],
+      "sampleIds": ["microsoft-copilot-studio-agent-identity"],
+      "researchValue": {
+        "failure": "The runtime surface can exist while its underlying agent identity artifact has disappeared, producing an apparently deployed but nonfunctional worker.",
+        "finding": "Microsoft treats the missing identity registration as an execution dependency rather than a cosmetic directory inconsistency.",
+        "mechanism": "Recovery re-enters identity provisioning by republishing the channel, with full agent recreation as the fallback.",
+        "implication": "Recovery of a digital employee may require re-admission and re-provisioning of identity, not merely restarting the conversation or runtime."
+      }
+    },
+    {
+      "id": "SIG-20260902-004",
+      "pipeline": "github-engineering",
+      "title": "Codex scopes remembered MCP approvals to the selected app account link",
+      "title_zh": "Codex 将记忆的 MCP Approval 绑定到具体 App Account Link",
+      "sourceUrl": "https://github.com/openai/codex/commit/2393b5c9208aab4233cf5e9b1c57d1a17425bef6",
+      "publishedAt": "2026-09-01",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering", "industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "codex/mcp-session-approval-account-link-scope",
+      "summary": "Codex now includes the selected app link_id in MCP tool approval keys, so a remembered session approval applies only to the approved account link; another link or a call without a selector requires its own approval.",
+      "summary_zh": "Codex 现在把所选 App 的 link_id 纳入 MCP Tool Approval Key，使 Session Approval 只对当时批准的 Account Link 生效；换另一个 Link 或不带 Selector 的调用都必须重新取得 Approval。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["call-time-authorization", "agent-identity-authority"],
+      "sampleIds": ["openai-codex"],
+      "researchValue": {
+        "failure": "Remembering approval only by connector and tool can silently authorize the same action against a different account.",
+        "finding": "",
+        "mechanism": "Bind reusable approval state to connector, tool, and selected account-link identity.",
+        "implication": "Authorization memory must preserve target identity; 'same tool' is not the same authorization object when the account changes."
+      }
+    },
+    {
+      "id": "SIG-20260902-005",
+      "pipeline": "github-engineering",
+      "title": "Codex evaluates permission paths in the originating executor environment",
+      "title_zh": "Codex 在原始 Executor Environment 中解析 Permission Path",
+      "sourceUrl": "https://github.com/openai/codex/commit/cd8bd62c6e289b96d5f8eb0443c6d8561c2e8c54",
+      "publishedAt": "2026-09-01",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee", "industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "codex/executor-context-permission-path-resolution",
+      "summary": "Codex resolves relative and home-relative permission paths using the selected executor's path convention, home, workspace roots, temporary directories, and sandbox context. Pending permission requests retain the originating environment so delayed grants are normalized against the same context.",
+      "summary_zh": "Codex 使用所选 Executor 的路径规则、Home、Workspace Root、临时目录与 Sandbox Context 来解析相对路径和 Home-relative Permission；Pending Permission Request 会保留原始 Environment，使延迟返回的 Grant 仍在同一个执行上下文中归一化。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["call-time-authorization", "policy-enforcement"],
+      "sampleIds": ["openai-codex"],
+      "researchValue": {
+        "failure": "A permission request interpreted using host or response-time path semantics can authorize a different resource than the one originally requested.",
+        "finding": "",
+        "mechanism": "Persist the originating executor environment and intersect requested/granted paths inside that environment's sandbox semantics.",
+        "implication": "Authority over files and commands must be bound to execution location and namespace, not only to textual path strings."
+      }
+    },
+    {
+      "id": "SIG-20260902-006",
+      "pipeline": "github-engineering",
+      "title": "Codex classifies dangerous commands using the remote executor platform rather than the host platform",
+      "title_zh": "Codex 按远端 Executor Platform 而不是 Host Platform 判断危险命令",
+      "sourceUrl": "https://github.com/openai/codex/commit/1f4c47343a1bff2d8cddc429c5d39503fb5a6c30",
+      "publishedAt": "2026-09-01",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "codex/remote-platform-aware-exec-safety",
+      "summary": "Codex threads the executor platform through command parsing and dangerous-command classification so remote Windows/PowerShell execution is judged using remote semantics. Unknown reported platforms use Windows rules conservatively.",
+      "summary_zh": "Codex 将 Executor Platform 贯穿到命令解析和 Dangerous-command Classification，使远端 Windows/PowerShell 命令按远端语义而不是 Host 语义判断；未知平台则保守采用 Windows 规则。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["policy-enforcement", "call-time-authorization"],
+      "sampleIds": ["openai-codex"],
+      "researchValue": {
+        "failure": "Safety classification based on the host OS can miss dangerous commands executed on a different remote operating system.",
+        "finding": "",
+        "mechanism": "Classify execution using the target executor's platform semantics and fail conservatively for unknown platforms.",
+        "implication": "Tool safety belongs to the actual execution boundary; remote workers require policy evaluation against remote facts."
+      }
+    },
+    {
+      "id": "SIG-20260902-007",
+      "pipeline": "github-engineering",
+      "title": "Google ADK adds transfer reason to inter-agent handoff to reduce transfer loops",
+      "title_zh": "Google ADK 在 Agent Handoff 中加入 Transfer Reason 以减少循环转交",
+      "sourceUrl": "https://github.com/google/adk-python/commit/22ab4d82ca026adc87ffbf47a7ea2ed8e99676d1",
+      "publishedAt": "2026-09-01",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["open-source-engineering", "digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "google-adk/transfer-reason-loop-control",
+      "summary": "Google ADK adds an opt-in transfer_reason argument to transfer_to_agent so the receiving agent gets explicit handoff context, with the stated purpose of preventing multi-agent transfer loops.",
+      "summary_zh": "Google ADK 为 transfer_to_agent 增加可选的 transfer_reason，让接收 Agent 获得明确的 Handoff Context，提交说明直接把防止 Multi-Agent Transfer Loop 作为目的。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["delegation-authority", "handoff-and-inter-agent-trust", "failure-deadlock-duplicate-execution"],
+      "sampleIds": ["google-adk"],
+      "researchValue": {
+        "failure": "Agents can bounce a task back and forth when a handoff carries destination but not the reason and responsibility context for the transfer.",
+        "finding": "",
+        "mechanism": "Attach explicit transfer rationale to the delegation event and expose it to the receiving agent.",
+        "implication": "A governed handoff needs semantic provenance for why ownership moved, not only the identity of the next worker."
+      }
+    },
+    {
+      "id": "SIG-20260902-008",
+      "pipeline": "github-engineering",
+      "title": "Google ADK removes resume-only inputs from durable resumable-node checkpoints",
+      "title_zh": "Google ADK 将仅用于 Resume 的 Input 从 Durable Checkpoint 中移除",
+      "sourceUrl": "https://github.com/google/adk-python/commit/790cb7c4c7af3f2a0812ba86f50a2b0154f769ae",
+      "publishedAt": "2026-09-01",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee", "industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "google-adk/resume-input-checkpoint-separation",
+      "summary": "Google ADK changes resumable workflow checkpointing so resume inputs are not stored as durable node checkpoint state, separating one-time recovery input from the persisted execution state that later replays consume.",
+      "summary_zh": "Google ADK 修改 Resumable Workflow Checkpoint：Resume Input 不再作为 Durable Node Checkpoint State 持久化，从而把一次性的恢复输入与未来 Replay 会消费的持久执行状态分开。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["recovery-authority", "durable-runtime-state", "memory-context-isolation"],
+      "sampleIds": ["google-adk"],
+      "researchValue": {
+        "failure": "One-time resume instructions can become stale authoritative state if copied into the durable checkpoint and replayed later.",
+        "finding": "",
+        "mechanism": "Keep resume-only input ephemeral while persisting only the durable workflow state.",
+        "implication": "Recovery input and checkpoint truth should have different lifetimes; resumption should not silently rewrite the durable source of truth."
+      }
+    },
+    {
+      "id": "SIG-20260902-009",
+      "pipeline": "published-research",
+      "title": "Coding-agent working-memory evaluation needs four levels beyond nominal token budget",
+      "title_zh": "Coding Agent Working Memory 评估需要超越名义 Token Budget 的四层度量",
+      "sourceUrl": "https://arxiv.org/abs/2608.31057",
+      "publishedAt": "2026-08-31",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "research/coding-agent-working-memory-four-level-evaluation",
+      "summary": "Across 55 archived coding-agent trajectories, the paper finds semantically different working-memory objects have different retention and compression behavior; equal token budgets do not imply equal delivered context or management cost. It proposes evaluating stored state, delivered context, management work, and task/process outcome.",
+      "summary_zh": "该研究分析 55 条归档 Coding Agent Trajectory，发现不同语义的 Working-memory Object 具有不同保留与压缩行为；相同 Token Budget 并不等于相同 Delivered Context 或 Management Cost，并提出 Stored State、Delivered Context、Management Work、Task/Process Outcome 四层评估。",
+      "signalRole": "research-finding",
+      "researchThemes": ["memory-context-isolation", "durable-runtime-state", "multi-agent-evaluation"],
+      "sampleIds": ["arxiv-2608.31057"],
+      "researchValue": {
+        "failure": "A single token-budget metric can hide context loss, serving limits, and memory-management overhead.",
+        "finding": "Semantic object types behave differently under retention and compression, and calibration gains may not transfer to held-out tasks.",
+        "mechanism": "Evaluate memory management at four layers: stored state, delivered context, management work, and final task/process outcome.",
+        "implication": "Long-running digital employees need memory observability that separates what is stored from what is actually delivered and useful at execution time."
+      }
+    },
+    {
+      "id": "SIG-20260902-010",
+      "pipeline": "published-research",
+      "title": "TASPO keeps verified outcome direction while redistributing credit at executable-action granularity",
+      "title_zh": "TASPO 保留 Verified Outcome 的更新方向，同时在 Executable Action 粒度重新分配 Credit",
+      "sourceUrl": "https://arxiv.org/abs/2608.31077",
+      "publishedAt": "2026-08-31",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "research/outcome-grounded-action-credit",
+      "summary": "TASPO addresses the gap between fine-grained process supervision and actual executable-action credit by keeping verified task outcome as the update direction and average scale while using privileged-information likelihood shifts only to redistribute credit across actions. The work reports a 10.6% improvement over GRPO across three agentic benchmarks and is marked work in progress.",
+      "summary_zh": "TASPO 针对“细粒度 Process Supervision 并不等于可执行 Action Credit”的缺口：Verified Task Outcome 决定更新方向与平均尺度，Privileged Information 的 Likelihood Shift 只负责在 Action 间重分配 Credit。论文在 3 个 Agentic Benchmark 上报告相对 GRPO 提升 10.6%，并明确标注为 Work in Progress。",
+      "signalRole": "research-finding",
+      "researchThemes": ["evidence-completion-truth", "audit-provenance-accountability", "multi-agent-evaluation"],
+      "sampleIds": ["arxiv-2608.31077"],
+      "researchValue": {
+        "failure": "Trajectory-level outcome credit is too coarse, while fine-grained supervision signals can be misaligned with the executable decisions that actually caused the outcome.",
+        "finding": "Outcome-grounded action-level credit reports better benchmark performance and unseen-task generalization than the compared GRPO baseline.",
+        "mechanism": "Use verified outcome for update direction and bounded mean scale, then redistribute credit across executable actions using decision-applicable privileged information.",
+        "implication": "Agent evaluation and failure attribution should distinguish evidence about process quality from evidence that assigns responsibility to concrete actions."
+      }
+    },
+    {
+      "id": "SIG-20260902-011",
+      "pipeline": "published-research",
+      "title": "SkillZip Pro compresses progressive skill bundles while preserving routing and public entry contracts",
+      "title_zh": "SkillZip Pro 在保持 Routing 与 Public Entry Contract 的同时压缩渐进加载 Skill Bundle",
+      "sourceUrl": "https://arxiv.org/abs/2608.30785",
+      "publishedAt": "2026-08-31",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "research/progressive-skill-bundle-routing-preserving-compression",
+      "summary": "SkillZip Pro treats production skills as progressively loaded directory bundles rather than flat prompts. It preserves routing and callable entries while compressing across files; on one industrial multi-round harness it reports 38% fewer bundle tokens and 10.4% fewer per-run tokens with no quality loss, whereas an unprotected 71% compression setting lost up to 26 accuracy points.",
+      "summary_zh": "SkillZip Pro 把 Production Skill 视为渐进加载的 Directory Bundle 而不是扁平 Prompt，在跨文件压缩时保留 Routing 与可调用 Entry。其一个工业 Multi-round Harness 报告 Bundle Token 减少 38%、Per-run Token 减少 10.4% 且无质量损失；未受保护的 71% 压缩配置则最高损失 26 个准确率点。",
+      "signalRole": "research-finding",
+      "researchThemes": ["memory-context-isolation", "durable-runtime-state", "multi-agent-evaluation"],
+      "sampleIds": ["arxiv-2608.30785"],
+      "researchValue": {
+        "failure": "Flattening or over-compressing a skill bundle can destroy progressive-loading routes and silently remove execution-critical public entries.",
+        "finding": "Routing-aware compression reduced context cost without quality loss in the reported harness, while aggressive unprotected compression materially reduced accuracy.",
+        "mechanism": "Preserve entry contracts and routing reachability while removing cross-file duplication; separate persistent bundle rewriting from transient task-specific views.",
+        "implication": "Agent skill optimization must preserve execution topology and public capability contracts, not merely minimize prompt tokens."
+      }
+    }
+  ],
+  "researchCoverage": {
+    "policy": "theme-sample-v1",
+    "rollingResearchWindowDays": 30,
+    "sampleFamilies": {
+      "product-governance": {
+        "checked": ["OpenAI Healthcare plugin governance", "Microsoft Copilot Studio / Agent 365 identity governance"],
+        "qualifiedSignals": 3
+      },
+      "multi-agent-mechanism": {
+        "checked": ["Google ADK transfer/resume mechanics", "LangGraph checkpoint and recovery semantics"],
+        "qualifiedSignals": 2
+      },
+      "research-benchmark-industry": {
+        "checked": ["Coding-agent working-memory evaluation (arXiv:2608.31057)", "Outcome-grounded action-credit study (arXiv:2608.31077)", "SkillZip Pro progressive-skill compression study (arXiv:2608.30785)"],
+        "qualifiedSignals": 3
+      }
+    }
+  }
 }
