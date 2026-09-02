@@ -1,0 +1,50 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-02",
+  "itemId": "Q-20260902-01",
+  "researchObjectId": "Q-20260902-01",
+  "targetAudience": {
+    "primary": "Engineers and governance leads responsible for long-running digital employees",
+    "knowledgeAssumption": "The reader understands context windows, retrieval and agent task traces.",
+    "readerProblem": "A nominal token budget or successful task can hide what memory was retained, delivered, or costly to manage."
+  },
+  "whyNow": "A primary study of 55 archived coding-agent trajectories reports semantic differences among memory objects, unequal delivered context and management cost under equal nominal budgets, and calibration gains that do not always transfer.",
+  "externalHook": {
+    "type": "equal-budget-unequal-memory",
+    "description": "Two runs can fit the same token budget while delivering different usable context and paying different management cost.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "coreProposition": "Working-memory governance must evaluate stored state, delivered context, management work, and task/process outcome separately; nominal token budget or final success cannot substitute for layer-specific, version-bound evidence.",
+  "originalValue": {
+    "type": "four-layer-governance-model",
+    "description": "Turns the reported measurement split into an occurrence-bound evidence model for policy admission, recovery and audit."
+  },
+  "readerTakeaway": "Keep capacity, stored state, delivered context, management work and process outcome as separate evidence surfaces; revalidate every changed memory policy against the workload boundary it will govern.",
+  "evidenceBoundary": {
+    "supported": [
+      "The source reports 55 archived coding-agent trajectories.",
+      "The study separates stored state, delivered context, management work and task/process outcome.",
+      "Equal nominal budgets can produce unequal delivery and management cost, and some calibration gains do not transfer."
+    ],
+    "unsupported": [
+      "One universally optimal memory strategy",
+      "General safety for arbitrary enterprise digital employees",
+      "Identity, authorization or exactly-once effect guarantees"
+    ],
+    "uncertain": [
+      "Minimum privacy-preserving delivery evidence",
+      "The revalidation trigger for distribution shift"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument concerns general working-memory governance."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The study supplies a concrete negative result and mechanism from which a bounded, independently useful governance model follows."
+}

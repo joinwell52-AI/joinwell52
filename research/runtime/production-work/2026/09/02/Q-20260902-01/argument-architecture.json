@@ -1,0 +1,72 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-02",
+  "itemId": "Q-20260902-01",
+  "coreProposition": "Working-memory governance must evaluate stored state, delivered context, management work, and task/process outcome separately; nominal token budget or final success cannot substitute for layer-specific, version-bound evidence.",
+  "openingMove": {
+    "type": "equal-budget-divergence",
+    "purpose": "Open with two runs that share a token budget but receive different usable context.",
+    "evidenceRefs": [
+      "E2",
+      "E3"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why does token budget fail as a memory-quality proxy?",
+      "claim": "Capacity does not identify retained objects, occurrence-specific delivery or management cost.",
+      "evidenceRefs": [
+        "E2",
+        "E3"
+      ],
+      "reasoningRole": "problem-separation",
+      "readerProgress": "The reader stops treating one scalar as complete evidence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What do the four layers measure?",
+      "claim": "Stored state, delivered context, management work and task/process outcome support different claims.",
+      "evidenceRefs": [
+        "E1",
+        "E2"
+      ],
+      "reasoningRole": "technical-analysis",
+      "readerProgress": "The reader can map a claim to its evidence surface.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What changes when the memory policy changes?",
+      "claim": "Evidence must bind the emitted policy version and evaluated distribution; prior calibration does not silently transfer.",
+      "evidenceRefs": [
+        "E3",
+        "I1"
+      ],
+      "reasoningRole": "governance-design",
+      "readerProgress": "The reader gains an admission rule for adaptive memory.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Why is final success insufficient?",
+      "claim": "Task completion can coexist with stale, omitted or expensive memory behavior.",
+      "evidenceRefs": [
+        "I1"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "The reader separates outcome truth from memory-path truth.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Fine-grained memory evidence is too expensive to retain.",
+    "responseBoundary": "Evidence may be summarized or sampled, but the layer identity and information loss must remain explicit."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with privacy, sampling and distribution-shift thresholds."
+  }
+}
