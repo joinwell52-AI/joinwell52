@@ -1,0 +1,16 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-02",
+  "itemId": "Q-20260902-03",
+  "coreProposition": "Progressive skill compression must preserve public callable entries, route reachability, resource classifications and version/provenance; routing evidence is necessary but not sufficient for semantic, permission or effect equivalence.",
+  "openingMove": {"type": "smaller-but-different", "purpose": "Open with a compressed bundle whose files remain present while a public entry or conditional route stops working.", "evidenceRefs": ["E1", "E3"]},
+  "argumentNodes": [
+    {"nodeId": "A1", "question": "Why is a skill not just a prompt?", "claim": "Progressive loading makes the bundle a routed graph of entries, references, schemas, scripts, assets and subskills.", "evidenceRefs": ["E1"], "reasoningRole": "mechanism", "readerProgress": "The reader evaluates structure and reachability, not file presence alone.", "visualNeed": "none"},
+    {"nodeId": "A2", "question": "What do the reported results establish?", "claim": "Protected compression can reduce tokens in the evaluated harness, while aggressive unprotected compression can cause asymmetric accuracy loss.", "evidenceRefs": ["E2", "E3"], "reasoningRole": "evidence-boundary", "readerProgress": "The reader treats savings as bounded evidence rather than universal equivalence.", "visualNeed": "none"},
+    {"nodeId": "A3", "question": "Which invariants form the preservation contract?", "claim": "Public entry identity, route reachability, resource visibility, environment assumptions and bundle provenance must remain auditable.", "evidenceRefs": ["E1", "E4"], "reasoningRole": "contract-design", "readerProgress": "The reader gains a pre-adoption structural checklist.", "visualNeed": "none"},
+    {"nodeId": "A4", "question": "Why is route preservation insufficient?", "claim": "A reached resource can still change semantics, permissions, environmental requirements or external effects.", "evidenceRefs": ["E4"], "reasoningRole": "boundary", "readerProgress": "The reader separates routing evidence from behavioral and effect evidence.", "visualNeed": "none"},
+    {"nodeId": "A5", "question": "How should continuous rewriting be governed?", "claim": "Each emitted bundle is a candidate version with immutable source identity, transform provenance, validation evidence and an explicit adoption decision.", "evidenceRefs": ["E4"], "reasoningRole": "lifecycle-governance", "readerProgress": "The reader can design safe Zip-on-Write adoption and rollback.", "visualNeed": "none"}
+  ],
+  "counterpoint": {"required": true, "claim": "Full validation after every compression would erase optimization gains.", "responseBoundary": "Static route and entry audits can be cheap, but adoption claims still require bounded task-level evidence; the validation depth should match the claimed equivalence and risk."},
+  "endingStrategy": {"type": "open-questions", "purpose": "End with static invariants, sampling, permission contracts and rollback triggers."}
+}
