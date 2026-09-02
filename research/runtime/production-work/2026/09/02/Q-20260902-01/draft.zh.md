@@ -65,4 +65,4 @@ sources:
 
 接下来真正困难的问题是：怎样在不长期保存敏感全文的情况下证明送达事实；数千次执行中应如何抽样；哪些分布变化必须触发重新验证；以及记忆策略回滚怎样与外部任务效果的恢复分开处理。
 
-**一手来源：** [Measure Before You Manage: Evaluating Agent Working Memory in Coding Agents](https://arxiv.org/abs/2608.31057)
+**一手来源：** [工作记忆评估研究](https://arxiv.org/abs/2608.31057)
