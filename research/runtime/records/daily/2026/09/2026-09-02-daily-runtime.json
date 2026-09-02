@@ -8,11 +8,11 @@
   "date": "2026-09-02",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -109,6 +109,139 @@
       "githubCommit": "7645d2692b7b428230925876dcc29411ac86626d",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-02T13:20:10+08:00"
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "family": "daily",
+      "runtimeDate": "2026-09-02",
+      "status": "Completed",
+      "input": "Verified same-date Analysis Process Manager wake receipt research/runtime/wakes/2026/09/2026-09-02/analysis-132611.json used only to recover the earliest overdue task; authoritative control-source main commit 49f839e06ae9b1a917785c7a5b1e51d7281bd3fc containing Scheduler V3.0, Worker Control v1.3.0, generated Reading Prompt v1.0.0 and all five required sources; generated Reading Prompt SHA-256 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5 verified deterministically; same-date Daily Runtime with Discovery and Queue durably Completed; Reading Execution Slot Opened at 13:20:11 and Worker Claimed durably recorded before substantive work; and the completed 2026-09-02 Research Plan selecting Q-20260902-01, Q-20260902-02 and Q-20260902-03.",
+      "input_zh": "已核验的同日 Analysis Process Manager Wake Receipt research/runtime/wakes/2026/09/2026-09-02/analysis-132611.json 仅用于恢复最早到期未收口任务；权威控制源 main 提交 49f839e06ae9b1a917785c7a5b1e51d7281bd3fc，其中包含 Scheduler V3.0、Worker Control v1.3.0、Generated Reading Prompt v1.0.0 与全部 5 个 Required Source；Generated Reading Prompt SHA-256 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5 已确定性核验；同日 Daily Runtime 中 Discovery 与 Queue 已持久 Completed；Reading 于 13:20:11 打开 Execution Slot，并在实质工作前持久写入 Worker Claimed；以及选择 Q-20260902-01、Q-20260902-02、Q-20260902-03 的 2026-09-02 Research Plan。",
+      "workResult": "Global serial reconciliation correctly kept Analysis waiting and recovered Reading first. Skill 03 completed source-bounded Deep Reading for exactly the three same-date Queue-selected objects. Q-20260902-01 found that working-memory evaluation must separate stored state, delivered context, management work and task/process outcome: the 55-trajectory primary study reports semantic heterogeneity, non-transfer of some calibration gains, and that equal token budgets do not imply equal delivered context or management cost. Q-20260902-02 compared official OpenAI Epic, Microsoft Copilot Studio/Entra Agent ID and OpenAI Codex implementation evidence and found a layered connector-authority boundary: administrative availability, configured agent capability, acting principal/account, target-resource permission and runtime policy are distinct propositions; the samples do not prove a universal end-to-end authorization protocol. Q-20260902-03 found that progressively loaded skill compression must preserve routing and public callable-entry contracts: SkillZip Pro reports protected compression with token savings and no quality loss in its evaluated harness while an aggressive unprotected 71% configuration loses up to 26 accuracy points. Reading produced no Research Analysis, article writing, visualization, Production or Publication and used no prior-day Runtime artifact as a business input.",
+      "workResult_zh": "全局串行 Reconciliation 正确保持 Analysis Waiting，并先恢复 Reading。Skill 03 只对同日 Queue 选中的三个对象完成有边界的 Deep Reading。Q-20260902-01 发现 Working Memory 评估必须拆分 Stored State、Delivered Context、Management Work 与 Task/Process Outcome：55 条 Trajectory 的一手研究显示语义异质性、部分 Calibration Gain 不能迁移，以及相同 Token Budget 不代表相同 Delivered Context 或 Management Cost。Q-20260902-02 对 OpenAI Epic 官方资料、Microsoft Copilot Studio/Entra Agent ID 官方资料与 OpenAI Codex 实现证据进行比较，得到分层 Connector Authority 边界：Administrative Availability、Configured Agent Capability、Acting Principal/Account、Target-resource Permission 与 Runtime Policy 是不同命题；这些样本不能证明通用的端到端 Authorization Protocol。Q-20260902-03 发现渐进加载 Skill 压缩必须保留 Routing 与 Public Callable-entry Contract：SkillZip Pro 在其评估 Harness 中报告受保护压缩可降低 Token 且无质量损失，而未受保护的激进 71% 压缩最多损失 26 个 Accuracy Point。Reading 未执行 Research Analysis、文章写作、可视化、Production 或 Publication，也未将前一日 Runtime Artifact 作为业务输入。",
+      "output": "Exactly three durable same-date Reading Notes: research/reading/Q-20260902-01-working-memory-four-layer-evaluation.md; research/reading/Q-20260902-02-connector-layered-authority.md; research/reading/Q-20260902-03-skill-compression-routing-contract.md.",
+      "output_zh": "恰好生成三份同日持久 Reading Note：research/reading/Q-20260902-01-working-memory-four-layer-evaluation.md、research/reading/Q-20260902-02-connector-layered-authority.md、research/reading/Q-20260902-03-skill-compression-routing-contract.md。",
+      "next": "After durable Reading finalization and GitHub Commit Verified, Runtime must reconcile formal-time order immediately. Analysis is already overdue and may execute only after Reading is execution-closed and verified.",
+      "next_zh": "Reading 完成持久 Finalization 与 GitHub Commit Verified 后，Runtime 必须立即重新按 Formal Time 对账；Analysis 已经延误，但只能在 Reading 完成并核验收口后取得执行权。",
+      "metrics": [
+        {
+          "label": "Wake receipts verified",
+          "label_zh": "已核验 Wake Receipt",
+          "value": 1
+        },
+        {
+          "label": "Generated prompt identity verified",
+          "label_zh": "Generated Prompt 身份已核验",
+          "value": 1
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 Required Source",
+          "value": 5
+        },
+        {
+          "label": "Queue-selected objects read",
+          "label_zh": "已深读 Queue Selected Object",
+          "value": 3
+        },
+        {
+          "label": "Durable Reading Notes",
+          "label_zh": "持久 Reading Note",
+          "value": 3
+        },
+        {
+          "label": "Prior-day Runtime business inputs",
+          "label_zh": "前一日 Runtime 业务输入",
+          "value": 0
+        },
+        {
+          "label": "Research Analysis performed",
+          "label_zh": "执行 Research Analysis",
+          "value": 0
+        },
+        {
+          "label": "Publication actions",
+          "label_zh": "Publication 操作数量",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Process Manager Wake Receipt",
+          "label_zh": "Process Manager 唤醒回执",
+          "path": "research/runtime/wakes/2026/09/2026-09-02/analysis-132611.json"
+        },
+        {
+          "label": "Pinned Reading control source commit",
+          "label_zh": "固定 Reading 控制源提交",
+          "commit": "49f839e06ae9b1a917785c7a5b1e51d7281bd3fc"
+        },
+        {
+          "label": "Generated Reading prompt SHA-256",
+          "label_zh": "Generated Reading Prompt SHA-256",
+          "value": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"
+        },
+        {
+          "label": "Run-date Research Plan",
+          "label_zh": "运行日 Research Plan",
+          "path": "research/runtime/plans/2026/09/2026-09-02-plan.json"
+        },
+        {
+          "label": "Reading Worker Claimed commit",
+          "label_zh": "Reading Worker Claimed 提交",
+          "commit": "5ea25a076cb46a65c3e0f35c4bbeee166a14d24a"
+        },
+        {
+          "label": "Q-20260902-01 primary source",
+          "label_zh": "Q-20260902-01 一手来源",
+          "url": "https://arxiv.org/abs/2608.31057"
+        },
+        {
+          "label": "Q-20260902-02 OpenAI primary source",
+          "label_zh": "Q-20260902-02 OpenAI 一手来源",
+          "url": "https://help.openai.com/articles/20001490-using-the-epic-plugin-with-chatgpt-and-codex"
+        },
+        {
+          "label": "Q-20260902-02 Microsoft primary source",
+          "label_zh": "Q-20260902-02 Microsoft 一手来源",
+          "url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/admin-use-entra-agent-identities"
+        },
+        {
+          "label": "Q-20260902-02 Codex implementation source",
+          "label_zh": "Q-20260902-02 Codex 实现来源",
+          "url": "https://github.com/openai/codex/blob/eb10d91e48ccbd0930427461fb392337addb1ac0/codex-rs/core/src/mcp_tool_call.rs"
+        },
+        {
+          "label": "Q-20260902-03 primary source",
+          "label_zh": "Q-20260902-03 一手来源",
+          "url": "https://arxiv.org/abs/2608.30785"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Q-20260902-01 Reading Note",
+          "label_zh": "Q-20260902-01 深读笔记",
+          "path": "research/reading/Q-20260902-01-working-memory-four-layer-evaluation.md"
+        },
+        {
+          "label": "Q-20260902-02 Reading Note",
+          "label_zh": "Q-20260902-02 深读笔记",
+          "path": "research/reading/Q-20260902-02-connector-layered-authority.md"
+        },
+        {
+          "label": "Q-20260902-03 Reading Note",
+          "label_zh": "Q-20260902-03 深读笔记",
+          "path": "research/reading/Q-20260902-03-skill-compression-routing-contract.md"
+        },
+        {
+          "label": "Reading result",
+          "label_zh": "Reading 结果",
+          "path": "research/runtime/results/2026/09/2026-09-02-reading-result.json"
+        }
+      ],
+      "startedAt": "2026-09-02T13:20:11+08:00",
+      "completedAt": "2026-09-02T13:48:09+08:00"
     }
   },
   "timeline": [
@@ -223,6 +356,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Reading after verifying research/runtime/wakes/2026/09/2026-09-02/analysis-132611.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-02T13:48:09+08:00",
+      "task": "reading",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Reading closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-02."
     }
   ],
   "metrics": [],
@@ -230,5 +370,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-02T13:33:46+08:00"
+  "updatedAt": "2026-09-02T13:48:09+08:00"
 }
