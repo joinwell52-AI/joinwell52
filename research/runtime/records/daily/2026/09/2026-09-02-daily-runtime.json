@@ -32,6 +32,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Discovery after verifying research/runtime/wakes/2026/09/2026-09-02/discovery-085843.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-02T10:02:49+08:00",
+      "task": "queue",
+      "event": "Execution Deferred",
+      "status": "Waiting",
+      "detail": "Queue wake research/runtime/wakes/2026/09/2026-09-02/queue-100149.json was received, but Queue did not receive execution authority because earlier due task discovery remained Running with a verified Worker Claimed event. Queue business work was not started."
     }
   ],
   "metrics": [],
@@ -39,5 +46,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-02T09:05:24+08:00"
+  "updatedAt": "2026-09-02T10:02:49+08:00"
 }
