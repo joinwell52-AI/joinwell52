@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "scope": "Manual author publication only; not product QA",
+  "articles": [
+    {
+      "file": "docs/zh/engineering/2026-09-03-empty-test-results-verified.md",
+      "sha256": "91fc90bd86dd65b64dd773a85d63af5680faf54cd1fff9a1a3ea6202a41228a1",
+      "sections": 5,
+      "full_article": true,
+      "bilingual_links": true,
+      "assets_resolved": true,
+      "research_index": true
+    },
+    {
+      "file": "docs/zh/engineering/2026-09-03-process-alive-owner-identity.md",
+      "sha256": "1dc9027986fc82402deab98b7ec5adfd7354d46175d9b6f16762513fe185f97b",
+      "sections": 5,
+      "full_article": true,
+      "bilingual_links": true,
+      "assets_resolved": true,
+      "research_index": true
+    },
+    {
+      "file": "docs/zh/digital-employee/2026-09-03-cursor-self-hosted-agent-outlook.md",
+      "sha256": "b36879a31d90e7c87f69fd9019db89c7f31f7a640b569bb97844d60011f76cd1",
+      "sections": 6,
+      "full_article": true,
+      "bilingual_links": true,
+      "assets_resolved": true,
+      "research_index": true
+    },
+    {
+      "file": "docs/en/engineering/2026-09-03-empty-test-results-verified.md",
+      "sha256": "68c2586da29b7b23265aacaafe08c02e63b78c1e8bf9012922bd3ea095d47b39",
+      "sections": 5,
+      "full_article": true,
+      "bilingual_links": true,
+      "assets_resolved": true,
+      "research_index": true
+    },
+    {
+      "file": "docs/en/engineering/2026-09-03-process-alive-owner-identity.md",
+      "sha256": "b555a0d874a75984947809bcc92767ffc4310d91d78408f886572dc44babbe16",
+      "sections": 5,
+      "full_article": true,
+      "bilingual_links": true,
+      "assets_resolved": true,
+      "research_index": true
+    },
+    {
+      "file": "docs/en/digital-employee/2026-09-03-cursor-self-hosted-agent-outlook.md",
+      "sha256": "4b478428d8f5c5c50953d0fed4695ad26f4907a07d198cebfa95610a1e447870",
+      "sections": 6,
+      "full_article": true,
+      "bilingual_links": true,
+      "assets_resolved": true,
+      "research_index": true
+    }
+  ],
+  "evidence": "check.mjs PASS; all 38 observation rows retained; two regression rounds checked",
+  "build": "docs:build PASS; strict SSR gate and Runtime dist projection PASS",
+  "validation": "Publication layout/editorial validators PASS; these existing validators do not replace the article-specific checks above",
+  "visual_review": "Three English diagrams inspected at full resolution; no clipping; existing approved Chinese diagrams/covers retained",
+  "known_warning": "Existing VitePress bundle-size warning (>500 kB); build successful",
+  "exclusions": [
+    "Later Cursor Agent iOS manuscript",
+    "CodeFlowMu product code",
+    "Other working-tree edits",
+    "Existing scheduled Runtime shift states"
+  ]
+}

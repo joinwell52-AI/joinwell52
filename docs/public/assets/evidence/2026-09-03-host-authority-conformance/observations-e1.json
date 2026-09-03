@@ -1,0 +1,1262 @@
+{
+  "run_at": "2026-09-03T13:38:42.613Z",
+  "scope": "Production control-plane service and persistence; only registry/staging/probe result seam injected. No npm install, live provider, sync approval, host adoption, or SDK start.",
+  "results": [
+    {
+      "host": "cursor",
+      "kind": "full",
+      "repeat": 1,
+      "expected_verified": true,
+      "actual_verified": true,
+      "assertion": "PASS",
+      "plan": [
+        "cursor.supply-chain",
+        "cursor.types-exports",
+        "cursor.agent-list",
+        "cursor.managed-live-send"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "SYNC_APPROVAL_PENDING",
+      "provided_results": [
+        {
+          "test_id": "cursor.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.types-exports",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.agent-list",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.managed-live-send",
+          "status": "PASS"
+        }
+      ],
+      "run": {
+        "status": "PASS",
+        "admission_decision": "VERIFIED",
+        "started_at": "2026-09-03T13:38:42.395Z",
+        "finished_at": "2026-09-03T13:38:42.396Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 4
+      }
+    },
+    {
+      "host": "cursor",
+      "kind": "empty",
+      "repeat": 1,
+      "expected_verified": false,
+      "actual_verified": true,
+      "assertion": "COUNTEREXAMPLE",
+      "plan": [
+        "cursor.supply-chain",
+        "cursor.types-exports",
+        "cursor.agent-list",
+        "cursor.managed-live-send"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "SYNC_APPROVAL_PENDING",
+      "provided_results": [],
+      "run": {
+        "status": "PASS",
+        "admission_decision": "VERIFIED",
+        "started_at": "2026-09-03T13:38:42.405Z",
+        "finished_at": "2026-09-03T13:38:42.406Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 0
+      }
+    },
+    {
+      "host": "cursor",
+      "kind": "partial",
+      "repeat": 1,
+      "expected_verified": false,
+      "actual_verified": true,
+      "assertion": "COUNTEREXAMPLE",
+      "plan": [
+        "cursor.supply-chain",
+        "cursor.types-exports",
+        "cursor.agent-list",
+        "cursor.managed-live-send"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "SYNC_APPROVAL_PENDING",
+      "provided_results": [
+        {
+          "test_id": "cursor.supply-chain",
+          "status": "PASS"
+        }
+      ],
+      "run": {
+        "status": "PASS",
+        "admission_decision": "VERIFIED",
+        "started_at": "2026-09-03T13:38:42.414Z",
+        "finished_at": "2026-09-03T13:38:42.414Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 1
+      }
+    },
+    {
+      "host": "cursor",
+      "kind": "duplicate",
+      "repeat": 1,
+      "expected_verified": false,
+      "actual_verified": true,
+      "assertion": "COUNTEREXAMPLE",
+      "plan": [
+        "cursor.supply-chain",
+        "cursor.types-exports",
+        "cursor.agent-list",
+        "cursor.managed-live-send"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "SYNC_APPROVAL_PENDING",
+      "provided_results": [
+        {
+          "test_id": "cursor.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.supply-chain",
+          "status": "PASS"
+        }
+      ],
+      "run": {
+        "status": "PASS",
+        "admission_decision": "VERIFIED",
+        "started_at": "2026-09-03T13:38:42.421Z",
+        "finished_at": "2026-09-03T13:38:42.422Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 4
+      }
+    },
+    {
+      "host": "cursor",
+      "kind": "unknown-id",
+      "repeat": 1,
+      "expected_verified": false,
+      "actual_verified": true,
+      "assertion": "COUNTEREXAMPLE",
+      "plan": [
+        "cursor.supply-chain",
+        "cursor.types-exports",
+        "cursor.agent-list",
+        "cursor.managed-live-send"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "SYNC_APPROVAL_PENDING",
+      "provided_results": [
+        {
+          "test_id": "unregistered.probe",
+          "status": "PASS"
+        }
+      ],
+      "run": {
+        "status": "PASS",
+        "admission_decision": "VERIFIED",
+        "started_at": "2026-09-03T13:38:42.429Z",
+        "finished_at": "2026-09-03T13:38:42.429Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 1
+      }
+    },
+    {
+      "host": "cursor",
+      "kind": "blocked",
+      "repeat": 1,
+      "expected_verified": false,
+      "actual_verified": false,
+      "assertion": "PASS",
+      "plan": [
+        "cursor.supply-chain",
+        "cursor.types-exports",
+        "cursor.agent-list",
+        "cursor.managed-live-send"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "INTERNAL_TESTING",
+      "provided_results": [
+        {
+          "test_id": "cursor.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.types-exports",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.agent-list",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.managed-live-send",
+          "status": "BLOCKED"
+        }
+      ],
+      "run": {
+        "status": "BLOCKED",
+        "admission_decision": "PENDING",
+        "started_at": "2026-09-03T13:38:42.436Z",
+        "finished_at": "2026-09-03T13:38:42.436Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 4
+      }
+    },
+    {
+      "host": "cursor",
+      "kind": "failed",
+      "repeat": 1,
+      "expected_verified": false,
+      "actual_verified": false,
+      "assertion": "PASS",
+      "plan": [
+        "cursor.supply-chain",
+        "cursor.types-exports",
+        "cursor.agent-list",
+        "cursor.managed-live-send"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "ADAPTER_CHANGES_REQUIRED",
+      "provided_results": [
+        {
+          "test_id": "cursor.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.types-exports",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.agent-list",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.managed-live-send",
+          "status": "FAIL"
+        }
+      ],
+      "run": {
+        "status": "FAIL",
+        "admission_decision": "PENDING",
+        "started_at": "2026-09-03T13:38:42.443Z",
+        "finished_at": "2026-09-03T13:38:42.444Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 4
+      }
+    },
+    {
+      "host": "cursor",
+      "kind": "throws",
+      "repeat": 1,
+      "expected_verified": false,
+      "actual_verified": false,
+      "assertion": "PASS",
+      "plan": [
+        "cursor.supply-chain",
+        "cursor.types-exports",
+        "cursor.agent-list",
+        "cursor.managed-live-send"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "INTERNAL_TESTING",
+      "provided_results": [
+        {
+          "test_id": "cursor.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.types-exports",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.agent-list",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.managed-live-send",
+          "status": "PASS"
+        }
+      ],
+      "run": null,
+      "error": "CONTROLLED_PROBE_EXCEPTION",
+      "progress": {
+        "total": 4,
+        "completed": 0
+      }
+    },
+    {
+      "host": "codex",
+      "kind": "full",
+      "repeat": 1,
+      "expected_verified": true,
+      "actual_verified": true,
+      "assertion": "PASS",
+      "plan": [
+        "codex.supply-chain",
+        "codex.cli-version",
+        "codex.schema-four-groups",
+        "codex.managed-live-turn"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "SYNC_APPROVAL_PENDING",
+      "provided_results": [
+        {
+          "test_id": "codex.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.cli-version",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.schema-four-groups",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.managed-live-turn",
+          "status": "PASS"
+        }
+      ],
+      "run": {
+        "status": "PASS",
+        "admission_decision": "VERIFIED",
+        "started_at": "2026-09-03T13:38:42.457Z",
+        "finished_at": "2026-09-03T13:38:42.457Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 4
+      }
+    },
+    {
+      "host": "codex",
+      "kind": "empty",
+      "repeat": 1,
+      "expected_verified": false,
+      "actual_verified": true,
+      "assertion": "COUNTEREXAMPLE",
+      "plan": [
+        "codex.supply-chain",
+        "codex.cli-version",
+        "codex.schema-four-groups",
+        "codex.managed-live-turn"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "SYNC_APPROVAL_PENDING",
+      "provided_results": [],
+      "run": {
+        "status": "PASS",
+        "admission_decision": "VERIFIED",
+        "started_at": "2026-09-03T13:38:42.464Z",
+        "finished_at": "2026-09-03T13:38:42.465Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 0
+      }
+    },
+    {
+      "host": "codex",
+      "kind": "partial",
+      "repeat": 1,
+      "expected_verified": false,
+      "actual_verified": true,
+      "assertion": "COUNTEREXAMPLE",
+      "plan": [
+        "codex.supply-chain",
+        "codex.cli-version",
+        "codex.schema-four-groups",
+        "codex.managed-live-turn"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "SYNC_APPROVAL_PENDING",
+      "provided_results": [
+        {
+          "test_id": "codex.supply-chain",
+          "status": "PASS"
+        }
+      ],
+      "run": {
+        "status": "PASS",
+        "admission_decision": "VERIFIED",
+        "started_at": "2026-09-03T13:38:42.472Z",
+        "finished_at": "2026-09-03T13:38:42.473Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 1
+      }
+    },
+    {
+      "host": "codex",
+      "kind": "duplicate",
+      "repeat": 1,
+      "expected_verified": false,
+      "actual_verified": true,
+      "assertion": "COUNTEREXAMPLE",
+      "plan": [
+        "codex.supply-chain",
+        "codex.cli-version",
+        "codex.schema-four-groups",
+        "codex.managed-live-turn"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "SYNC_APPROVAL_PENDING",
+      "provided_results": [
+        {
+          "test_id": "codex.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.supply-chain",
+          "status": "PASS"
+        }
+      ],
+      "run": {
+        "status": "PASS",
+        "admission_decision": "VERIFIED",
+        "started_at": "2026-09-03T13:38:42.479Z",
+        "finished_at": "2026-09-03T13:38:42.480Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 4
+      }
+    },
+    {
+      "host": "codex",
+      "kind": "unknown-id",
+      "repeat": 1,
+      "expected_verified": false,
+      "actual_verified": true,
+      "assertion": "COUNTEREXAMPLE",
+      "plan": [
+        "codex.supply-chain",
+        "codex.cli-version",
+        "codex.schema-four-groups",
+        "codex.managed-live-turn"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "SYNC_APPROVAL_PENDING",
+      "provided_results": [
+        {
+          "test_id": "unregistered.probe",
+          "status": "PASS"
+        }
+      ],
+      "run": {
+        "status": "PASS",
+        "admission_decision": "VERIFIED",
+        "started_at": "2026-09-03T13:38:42.488Z",
+        "finished_at": "2026-09-03T13:38:42.489Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 1
+      }
+    },
+    {
+      "host": "codex",
+      "kind": "blocked",
+      "repeat": 1,
+      "expected_verified": false,
+      "actual_verified": false,
+      "assertion": "PASS",
+      "plan": [
+        "codex.supply-chain",
+        "codex.cli-version",
+        "codex.schema-four-groups",
+        "codex.managed-live-turn"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "INTERNAL_TESTING",
+      "provided_results": [
+        {
+          "test_id": "codex.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.cli-version",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.schema-four-groups",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.managed-live-turn",
+          "status": "BLOCKED"
+        }
+      ],
+      "run": {
+        "status": "BLOCKED",
+        "admission_decision": "PENDING",
+        "started_at": "2026-09-03T13:38:42.495Z",
+        "finished_at": "2026-09-03T13:38:42.496Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 4
+      }
+    },
+    {
+      "host": "codex",
+      "kind": "failed",
+      "repeat": 1,
+      "expected_verified": false,
+      "actual_verified": false,
+      "assertion": "PASS",
+      "plan": [
+        "codex.supply-chain",
+        "codex.cli-version",
+        "codex.schema-four-groups",
+        "codex.managed-live-turn"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "ADAPTER_CHANGES_REQUIRED",
+      "provided_results": [
+        {
+          "test_id": "codex.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.cli-version",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.schema-four-groups",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.managed-live-turn",
+          "status": "FAIL"
+        }
+      ],
+      "run": {
+        "status": "FAIL",
+        "admission_decision": "PENDING",
+        "started_at": "2026-09-03T13:38:42.503Z",
+        "finished_at": "2026-09-03T13:38:42.503Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 4
+      }
+    },
+    {
+      "host": "codex",
+      "kind": "throws",
+      "repeat": 1,
+      "expected_verified": false,
+      "actual_verified": false,
+      "assertion": "PASS",
+      "plan": [
+        "codex.supply-chain",
+        "codex.cli-version",
+        "codex.schema-four-groups",
+        "codex.managed-live-turn"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "INTERNAL_TESTING",
+      "provided_results": [
+        {
+          "test_id": "codex.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.cli-version",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.schema-four-groups",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.managed-live-turn",
+          "status": "PASS"
+        }
+      ],
+      "run": null,
+      "error": "CONTROLLED_PROBE_EXCEPTION",
+      "progress": {
+        "total": 4,
+        "completed": 0
+      }
+    },
+    {
+      "host": "cursor",
+      "kind": "full",
+      "repeat": 2,
+      "expected_verified": true,
+      "actual_verified": true,
+      "assertion": "PASS",
+      "plan": [
+        "cursor.supply-chain",
+        "cursor.types-exports",
+        "cursor.agent-list",
+        "cursor.managed-live-send"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "SYNC_APPROVAL_PENDING",
+      "provided_results": [
+        {
+          "test_id": "cursor.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.types-exports",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.agent-list",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.managed-live-send",
+          "status": "PASS"
+        }
+      ],
+      "run": {
+        "status": "PASS",
+        "admission_decision": "VERIFIED",
+        "started_at": "2026-09-03T13:38:42.515Z",
+        "finished_at": "2026-09-03T13:38:42.515Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 4
+      }
+    },
+    {
+      "host": "cursor",
+      "kind": "empty",
+      "repeat": 2,
+      "expected_verified": false,
+      "actual_verified": true,
+      "assertion": "COUNTEREXAMPLE",
+      "plan": [
+        "cursor.supply-chain",
+        "cursor.types-exports",
+        "cursor.agent-list",
+        "cursor.managed-live-send"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "SYNC_APPROVAL_PENDING",
+      "provided_results": [],
+      "run": {
+        "status": "PASS",
+        "admission_decision": "VERIFIED",
+        "started_at": "2026-09-03T13:38:42.521Z",
+        "finished_at": "2026-09-03T13:38:42.522Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 0
+      }
+    },
+    {
+      "host": "cursor",
+      "kind": "partial",
+      "repeat": 2,
+      "expected_verified": false,
+      "actual_verified": true,
+      "assertion": "COUNTEREXAMPLE",
+      "plan": [
+        "cursor.supply-chain",
+        "cursor.types-exports",
+        "cursor.agent-list",
+        "cursor.managed-live-send"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "SYNC_APPROVAL_PENDING",
+      "provided_results": [
+        {
+          "test_id": "cursor.supply-chain",
+          "status": "PASS"
+        }
+      ],
+      "run": {
+        "status": "PASS",
+        "admission_decision": "VERIFIED",
+        "started_at": "2026-09-03T13:38:42.528Z",
+        "finished_at": "2026-09-03T13:38:42.529Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 1
+      }
+    },
+    {
+      "host": "cursor",
+      "kind": "duplicate",
+      "repeat": 2,
+      "expected_verified": false,
+      "actual_verified": true,
+      "assertion": "COUNTEREXAMPLE",
+      "plan": [
+        "cursor.supply-chain",
+        "cursor.types-exports",
+        "cursor.agent-list",
+        "cursor.managed-live-send"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "SYNC_APPROVAL_PENDING",
+      "provided_results": [
+        {
+          "test_id": "cursor.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.supply-chain",
+          "status": "PASS"
+        }
+      ],
+      "run": {
+        "status": "PASS",
+        "admission_decision": "VERIFIED",
+        "started_at": "2026-09-03T13:38:42.535Z",
+        "finished_at": "2026-09-03T13:38:42.536Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 4
+      }
+    },
+    {
+      "host": "cursor",
+      "kind": "unknown-id",
+      "repeat": 2,
+      "expected_verified": false,
+      "actual_verified": true,
+      "assertion": "COUNTEREXAMPLE",
+      "plan": [
+        "cursor.supply-chain",
+        "cursor.types-exports",
+        "cursor.agent-list",
+        "cursor.managed-live-send"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "SYNC_APPROVAL_PENDING",
+      "provided_results": [
+        {
+          "test_id": "unregistered.probe",
+          "status": "PASS"
+        }
+      ],
+      "run": {
+        "status": "PASS",
+        "admission_decision": "VERIFIED",
+        "started_at": "2026-09-03T13:38:42.541Z",
+        "finished_at": "2026-09-03T13:38:42.542Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 1
+      }
+    },
+    {
+      "host": "cursor",
+      "kind": "blocked",
+      "repeat": 2,
+      "expected_verified": false,
+      "actual_verified": false,
+      "assertion": "PASS",
+      "plan": [
+        "cursor.supply-chain",
+        "cursor.types-exports",
+        "cursor.agent-list",
+        "cursor.managed-live-send"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "INTERNAL_TESTING",
+      "provided_results": [
+        {
+          "test_id": "cursor.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.types-exports",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.agent-list",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.managed-live-send",
+          "status": "BLOCKED"
+        }
+      ],
+      "run": {
+        "status": "BLOCKED",
+        "admission_decision": "PENDING",
+        "started_at": "2026-09-03T13:38:42.548Z",
+        "finished_at": "2026-09-03T13:38:42.549Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 4
+      }
+    },
+    {
+      "host": "cursor",
+      "kind": "failed",
+      "repeat": 2,
+      "expected_verified": false,
+      "actual_verified": false,
+      "assertion": "PASS",
+      "plan": [
+        "cursor.supply-chain",
+        "cursor.types-exports",
+        "cursor.agent-list",
+        "cursor.managed-live-send"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "ADAPTER_CHANGES_REQUIRED",
+      "provided_results": [
+        {
+          "test_id": "cursor.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.types-exports",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.agent-list",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.managed-live-send",
+          "status": "FAIL"
+        }
+      ],
+      "run": {
+        "status": "FAIL",
+        "admission_decision": "PENDING",
+        "started_at": "2026-09-03T13:38:42.555Z",
+        "finished_at": "2026-09-03T13:38:42.555Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 4
+      }
+    },
+    {
+      "host": "cursor",
+      "kind": "throws",
+      "repeat": 2,
+      "expected_verified": false,
+      "actual_verified": false,
+      "assertion": "PASS",
+      "plan": [
+        "cursor.supply-chain",
+        "cursor.types-exports",
+        "cursor.agent-list",
+        "cursor.managed-live-send"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "INTERNAL_TESTING",
+      "provided_results": [
+        {
+          "test_id": "cursor.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.types-exports",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.agent-list",
+          "status": "PASS"
+        },
+        {
+          "test_id": "cursor.managed-live-send",
+          "status": "PASS"
+        }
+      ],
+      "run": null,
+      "error": "CONTROLLED_PROBE_EXCEPTION",
+      "progress": {
+        "total": 4,
+        "completed": 0
+      }
+    },
+    {
+      "host": "codex",
+      "kind": "full",
+      "repeat": 2,
+      "expected_verified": true,
+      "actual_verified": true,
+      "assertion": "PASS",
+      "plan": [
+        "codex.supply-chain",
+        "codex.cli-version",
+        "codex.schema-four-groups",
+        "codex.managed-live-turn"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "SYNC_APPROVAL_PENDING",
+      "provided_results": [
+        {
+          "test_id": "codex.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.cli-version",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.schema-four-groups",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.managed-live-turn",
+          "status": "PASS"
+        }
+      ],
+      "run": {
+        "status": "PASS",
+        "admission_decision": "VERIFIED",
+        "started_at": "2026-09-03T13:38:42.566Z",
+        "finished_at": "2026-09-03T13:38:42.567Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 4
+      }
+    },
+    {
+      "host": "codex",
+      "kind": "empty",
+      "repeat": 2,
+      "expected_verified": false,
+      "actual_verified": true,
+      "assertion": "COUNTEREXAMPLE",
+      "plan": [
+        "codex.supply-chain",
+        "codex.cli-version",
+        "codex.schema-four-groups",
+        "codex.managed-live-turn"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "SYNC_APPROVAL_PENDING",
+      "provided_results": [],
+      "run": {
+        "status": "PASS",
+        "admission_decision": "VERIFIED",
+        "started_at": "2026-09-03T13:38:42.572Z",
+        "finished_at": "2026-09-03T13:38:42.572Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 0
+      }
+    },
+    {
+      "host": "codex",
+      "kind": "partial",
+      "repeat": 2,
+      "expected_verified": false,
+      "actual_verified": true,
+      "assertion": "COUNTEREXAMPLE",
+      "plan": [
+        "codex.supply-chain",
+        "codex.cli-version",
+        "codex.schema-four-groups",
+        "codex.managed-live-turn"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "SYNC_APPROVAL_PENDING",
+      "provided_results": [
+        {
+          "test_id": "codex.supply-chain",
+          "status": "PASS"
+        }
+      ],
+      "run": {
+        "status": "PASS",
+        "admission_decision": "VERIFIED",
+        "started_at": "2026-09-03T13:38:42.579Z",
+        "finished_at": "2026-09-03T13:38:42.579Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 1
+      }
+    },
+    {
+      "host": "codex",
+      "kind": "duplicate",
+      "repeat": 2,
+      "expected_verified": false,
+      "actual_verified": true,
+      "assertion": "COUNTEREXAMPLE",
+      "plan": [
+        "codex.supply-chain",
+        "codex.cli-version",
+        "codex.schema-four-groups",
+        "codex.managed-live-turn"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "SYNC_APPROVAL_PENDING",
+      "provided_results": [
+        {
+          "test_id": "codex.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.supply-chain",
+          "status": "PASS"
+        }
+      ],
+      "run": {
+        "status": "PASS",
+        "admission_decision": "VERIFIED",
+        "started_at": "2026-09-03T13:38:42.585Z",
+        "finished_at": "2026-09-03T13:38:42.585Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 4
+      }
+    },
+    {
+      "host": "codex",
+      "kind": "unknown-id",
+      "repeat": 2,
+      "expected_verified": false,
+      "actual_verified": true,
+      "assertion": "COUNTEREXAMPLE",
+      "plan": [
+        "codex.supply-chain",
+        "codex.cli-version",
+        "codex.schema-four-groups",
+        "codex.managed-live-turn"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "SYNC_APPROVAL_PENDING",
+      "provided_results": [
+        {
+          "test_id": "unregistered.probe",
+          "status": "PASS"
+        }
+      ],
+      "run": {
+        "status": "PASS",
+        "admission_decision": "VERIFIED",
+        "started_at": "2026-09-03T13:38:42.591Z",
+        "finished_at": "2026-09-03T13:38:42.592Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 1
+      }
+    },
+    {
+      "host": "codex",
+      "kind": "blocked",
+      "repeat": 2,
+      "expected_verified": false,
+      "actual_verified": false,
+      "assertion": "PASS",
+      "plan": [
+        "codex.supply-chain",
+        "codex.cli-version",
+        "codex.schema-four-groups",
+        "codex.managed-live-turn"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "INTERNAL_TESTING",
+      "provided_results": [
+        {
+          "test_id": "codex.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.cli-version",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.schema-four-groups",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.managed-live-turn",
+          "status": "BLOCKED"
+        }
+      ],
+      "run": {
+        "status": "BLOCKED",
+        "admission_decision": "PENDING",
+        "started_at": "2026-09-03T13:38:42.598Z",
+        "finished_at": "2026-09-03T13:38:42.599Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 4
+      }
+    },
+    {
+      "host": "codex",
+      "kind": "failed",
+      "repeat": 2,
+      "expected_verified": false,
+      "actual_verified": false,
+      "assertion": "PASS",
+      "plan": [
+        "codex.supply-chain",
+        "codex.cli-version",
+        "codex.schema-four-groups",
+        "codex.managed-live-turn"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "ADAPTER_CHANGES_REQUIRED",
+      "provided_results": [
+        {
+          "test_id": "codex.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.cli-version",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.schema-four-groups",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.managed-live-turn",
+          "status": "FAIL"
+        }
+      ],
+      "run": {
+        "status": "FAIL",
+        "admission_decision": "PENDING",
+        "started_at": "2026-09-03T13:38:42.604Z",
+        "finished_at": "2026-09-03T13:38:42.605Z"
+      },
+      "error": null,
+      "progress": {
+        "total": 4,
+        "completed": 4
+      }
+    },
+    {
+      "host": "codex",
+      "kind": "throws",
+      "repeat": 2,
+      "expected_verified": false,
+      "actual_verified": false,
+      "assertion": "PASS",
+      "plan": [
+        "codex.supply-chain",
+        "codex.cli-version",
+        "codex.schema-four-groups",
+        "codex.managed-live-turn"
+      ],
+      "probe_calls": 1,
+      "candidate_lifecycle": "INTERNAL_TESTING",
+      "provided_results": [
+        {
+          "test_id": "codex.supply-chain",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.cli-version",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.schema-four-groups",
+          "status": "PASS"
+        },
+        {
+          "test_id": "codex.managed-live-turn",
+          "status": "PASS"
+        }
+      ],
+      "run": null,
+      "error": "CONTROLLED_PROBE_EXCEPTION",
+      "progress": {
+        "total": 4,
+        "completed": 0
+      }
+    }
+  ]
+}
