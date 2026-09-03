@@ -1,5 +1,5 @@
 ---
-title: "Digital Workers and SaaW (3): Open Source, Protocols and Product Roadmap"
+title: "Global Real Digital Workers & SaaW Commercial Landscape 2026-3"
 date: '2026-09-03'
 research_date: '2026-08-30'
 prepared_date: '2026-09-03'
@@ -20,16 +20,14 @@ publication_authorized: true
 <ArticleCover
   image="/assets/covers/saaw-2026-part-3-cover.png"
   kicker="Open-source Engineering · SaaW Landscape (3)"
-  title="Digital Workers and SaaW (3): Open Source, Protocols and Product Roadmap"
+  title="Global Real Digital Workers & SaaW Commercial Landscape 2026-3"
   summary="Comparing 23 public projects and distinct protocol responsibilities, this article explores multi-agent roles, local execution, human oversight and the CodeFlowMu product roadmap."
   version="SaaW 2026 · 3/3"
   languageHref="/zh/engineering/2026-09-03-saaw-open-source-protocols-roadmap"
   languageLabel="中文版"
 />
 
-<!-- saaw-native-cover-note -->
-<p class="saaw-cover-note">AI-generated conceptual cover. Screen interfaces and numbers are illustrative, not actual product screenshots or research data.</p>
-<!-- /saaw-native-cover-note -->
+<ArticleTableScroll language="en" />
 
 # Global Real Digital Workers & SaaW Commercial Landscape 2026-3
 ## Open Technology, Protocol Roles, and CodeFlowMu Product Direction

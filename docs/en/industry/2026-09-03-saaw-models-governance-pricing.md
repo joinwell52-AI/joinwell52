@@ -1,5 +1,5 @@
 ---
-title: "Digital Workers and SaaW (2): Models, Governance and Pricing"
+title: "Global Real Digital Workers & SaaW Commercial Landscape 2026-2"
 date: '2026-09-03'
 research_date: '2026-08-30'
 prepared_date: '2026-09-03'
@@ -20,16 +20,14 @@ publication_authorized: true
 <ArticleCover
   image="/assets/covers/saaw-2026-part-2-cover.png"
   kicker="Industry Architecture · SaaW Landscape (2)"
-  title="Digital Workers and SaaW (2): Models, Governance and Pricing"
+  title="Global Real Digital Workers & SaaW Commercial Landscape 2026-2"
   summary="Separating model capability from reliable delivery, this article examines evidence, authority, recovery, pricing structures and admission requirements for digital-worker roles."
   version="SaaW 2026 · 2/3"
   languageHref="/zh/industry/2026-09-03-saaw-models-governance-pricing"
   languageLabel="中文版"
 />
 
-<!-- saaw-native-cover-note -->
-<p class="saaw-cover-note">AI-generated conceptual cover. Screen interfaces and numbers are illustrative, not actual product screenshots or research data.</p>
-<!-- /saaw-native-cover-note -->
+<ArticleTableScroll language="en" />
 
 # Global Real Digital Workers & SaaW Commercial Landscape 2026-2
 ## Models, Governance, Pricing, and Capability Tiers

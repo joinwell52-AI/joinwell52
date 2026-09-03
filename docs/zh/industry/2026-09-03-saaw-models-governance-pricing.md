@@ -1,5 +1,5 @@
 ---
-title: "数字员工与 SaaW（二）：模型、治理与收费"
+title: "全球真实数字员工与 SaaW 商业全景报告 2026-2"
 date: '2026-09-03'
 research_date: '2026-08-30'
 prepared_date: '2026-09-03'
@@ -20,16 +20,14 @@ publication_authorized: true
 <ArticleCover
   image="/assets/covers/saaw-2026-part-2-cover.png"
   kicker="行业架构 · SaaW 商业全景（二）"
-  title="数字员工与 SaaW（二）：模型、治理与收费"
+  title="全球真实数字员工与 SaaW 商业全景报告 2026-2"
   summary="区分模型能力与系统交付可靠性，分析数字员工的证据、权限、恢复、收费结构和岗位准入条件。"
   version="SaaW 2026 · 2/3"
   languageHref="/en/industry/2026-09-03-saaw-models-governance-pricing"
   languageLabel="English"
 />
 
-<!-- saaw-native-cover-note -->
-<p class="saaw-cover-note">题图为 AI 生成的概念场景；屏幕界面与数字仅作示意，不是真实产品截图或研究数据。</p>
-<!-- /saaw-native-cover-note -->
+<ArticleTableScroll language="zh" />
 
 # 全球真实数字员工与 SaaW 商业全景报告 2026-2
 ## 底层模型、治理、收费与能力分级

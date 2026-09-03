@@ -1,5 +1,5 @@
 ---
-title: "数字员工与 SaaW（三）：开源技术、协议与产品路线"
+title: "全球真实数字员工与 SaaW 商业全景报告 2026-3"
 date: '2026-09-03'
 research_date: '2026-08-30'
 prepared_date: '2026-09-03'
@@ -20,16 +20,14 @@ publication_authorized: true
 <ArticleCover
   image="/assets/covers/saaw-2026-part-3-cover.png"
   kicker="开源工程 · SaaW 商业全景（三）"
-  title="数字员工与 SaaW（三）：开源技术、协议与产品路线"
+  title="全球真实数字员工与 SaaW 商业全景报告 2026-3"
   summary="比较 23 个公开项目与不同协议的职责边界，讨论多智能体岗位协作、本地运行、人类监督及 CodeFlowMu 的产品路线。"
   version="SaaW 2026 · 3/3"
   languageHref="/en/engineering/2026-09-03-saaw-open-source-protocols-roadmap"
   languageLabel="English"
 />
 
-<!-- saaw-native-cover-note -->
-<p class="saaw-cover-note">题图为 AI 生成的概念场景；屏幕界面与数字仅作示意，不是真实产品截图或研究数据。</p>
-<!-- /saaw-native-cover-note -->
+<ArticleTableScroll language="zh" />
 
 # 全球真实数字员工与 SaaW 商业全景报告 2026-3
 ## 开源技术、协议分工与 CodeFlowMu 产品路线
