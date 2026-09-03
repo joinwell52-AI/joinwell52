@@ -1,0 +1,349 @@
+{
+  "schema": "runtime-publication-candidate/v2",
+  "date": "2026-09-03",
+  "timezone": "Asia/Shanghai",
+  "sourceTask": "Research Runtime Production",
+  "sourceRecord": "research/runtime/records/daily/2026/09/2026-09-03-daily-runtime.json",
+  "status": "Completed",
+  "reason": "Three authorized 2026-09-03 Research Objects were converted into complete bilingual Editorial Architecture 2.1 candidates with verified planning artifacts, evidence-bounded claims and deterministic baseline covers.",
+  "reason_zh": "三份已授权的 2026-09-03 Research Object 已转换为完整双语 Editorial Architecture 2.1 候选，具备已核验的规划工件、有边界的证据声明和确定性基础题图。",
+  "updatedAt": "2026-09-03T15:41:00+08:00",
+  "githubCommit": "pending",
+  "candidates": [
+    {
+      "itemId": "Q-20260903-01",
+      "column": "digital-employee",
+      "articleType": "technical-analysis",
+      "title": "A Checkpoint Is Not a Recovery Contract",
+      "title_zh": "检查点，不是恢复合同",
+      "researchQuestion": "检查点必须绑定哪些要素，才能让长期运行的数字员工恢复为同一项可问责工作，而不是只从旧文件状态重新开始？",
+      "coreProposition": "Causally aligned context and workspace checkpoints are necessary for evaluated long-horizon recovery, but accountable resumption also requires occurrence-bound authority and reconciliation of effects outside the snapshot boundary.",
+      "articleBriefPath": "research/runtime/production-work/2026/09/03/Q-20260903-01/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/03/Q-20260903-01/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/03/Q-20260903-01/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-03-a-checkpoint-is-not-a-recovery-contract.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-03-a-checkpoint-is-not-a-recovery-contract.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-03-a-checkpoint-is-not-a-recovery-contract-cover.png",
+      "sections": [
+        {
+          "heading": "Aligned Rewind Repairs Internal Causal Mismatch",
+          "heading_zh": "对齐回退先解决内部因果错位",
+          "module": "technical-analysis"
+        },
+        {
+          "heading": "Effects Outside the Snapshot Do Not Rewind",
+          "heading_zh": "边界之外的影响不会自动回退",
+          "module": "evidence"
+        },
+        {
+          "heading": "Recovery Must Regain Authority",
+          "heading_zh": "恢复还必须重新取得权限",
+          "module": "governance-implications"
+        },
+        {
+          "heading": "A Ledger Does Not Replace Idempotency or Compensation",
+          "heading_zh": "台账不能替代幂等与补偿",
+          "module": "counterarguments"
+        },
+        {
+          "heading": "Evidence Boundary and Open Questions",
+          "heading_zh": "证据边界与开放问题",
+          "module": "open-questions"
+        }
+      ],
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "source-reported-claim",
+          "claim": "AgentRewind records aligned agent-context and controlled-workspace checkpoints and restores both at a selected rewind point.",
+          "claim_zh": "来源报告称，AgentRewind 记录并在选定回退点恢复对齐的智能体上下文与受控工作区检查点。",
+          "source": "research/analysis/Q-20260903-01-aligned-checkpoint-recovery-boundary.md",
+          "strength": "reports",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "source-reported-claim",
+          "claim": "The study reports gains on 82 MettleBench tasks and complementary value from environment rewind, context rewind and rewind memory.",
+          "claim_zh": "研究在 82 个 MettleBench 任务上报告收益，并报告环境回退、上下文回退与失败记忆的互补价值。",
+          "source": "research/analysis/Q-20260903-01-aligned-checkpoint-recovery-boundary.md",
+          "strength": "reports",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "public-fact",
+          "claim": "The implementation rollback boundary is the workspace directory tree; network and external-service state are not undone.",
+          "claim_zh": "实现的回退边界是工作区目录树；网络和外部服务状态不会被撤销。",
+          "source": "research/analysis/Q-20260903-01-aligned-checkpoint-recovery-boundary.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E4",
+          "identity": "our-interpretation",
+          "claim": "A governed recovery contract should bind checkpoint identity to current recovery authority and an external-effect ledger.",
+          "claim_zh": "受治理的恢复合同应把检查点身份绑定到当前恢复权限与外部影响台账。",
+          "source": "research/analysis/Q-20260903-01-aligned-checkpoint-recovery-boundary.md",
+          "strength": "supports",
+          "independent": false
+        }
+      ],
+      "category": "daily",
+      "lifecycle": "Publication Candidate",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The argument concerns general recovery governance."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already carries the transferable argument."
+      },
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS"
+    },
+    {
+      "itemId": "Q-20260903-02",
+      "column": "industry-architecture",
+      "articleType": "technical-analysis",
+      "title": "Delegation Is a Stateful Authorization Program",
+      "title_zh": "委派，是一段有状态的授权程序",
+      "researchQuestion": "当有害结果可能由委派链上多个单独获准的调用组合而成时，企业多智能体运行时应如何约束委派权限？",
+      "coreProposition": "Delegated multi-agent authority should be enforced as a stateful authorization program: scope narrows across principal hops, budgets and prior actions accumulate, and composition closure is checked atomically before effects.",
+      "articleBriefPath": "research/runtime/production-work/2026/09/03/Q-20260903-02/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/03/Q-20260903-02/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/03/Q-20260903-02/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-03-delegation-is-a-stateful-authorization-program.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-03-delegation-is-a-stateful-authorization-program.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-03-delegation-is-a-stateful-authorization-program-cover.png",
+      "sections": [
+        {
+          "heading": "Static Permissions Describe a Ceiling, Not the Task",
+          "heading_zh": "静态权限描述上限，不描述任务",
+          "module": "technical-analysis"
+        },
+        {
+          "heading": "The Session Envelope Holds Program State",
+          "heading_zh": "会话信封保存授权程序的状态",
+          "module": "architecture-implications"
+        },
+        {
+          "heading": "Composition Closure Constrains Accumulated Outcomes",
+          "heading_zh": "组合闭包约束累计结果",
+          "module": "evidence"
+        },
+        {
+          "heading": "Blocking Has a Utility Cost",
+          "heading_zh": "阻断率之外还有效用成本",
+          "module": "counterarguments"
+        },
+        {
+          "heading": "Recovery and Cross-Session Composition Remain Open",
+          "heading_zh": "恢复与跨会话问题仍未解决",
+          "module": "open-questions"
+        },
+        {
+          "heading": "Evidence Boundary",
+          "heading_zh": "证据边界",
+          "module": "limitations"
+        }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "source-reported-claim",
+          "claim": "The Agentic Principal Chain models a signed session envelope whose authority narrows and restrictions accumulate at each delegation hop.",
+          "claim_zh": "来源报告的智能体主体验证链采用签名会话信封，使权限在每次委派中收窄、限制持续累积。",
+          "source": "research/analysis/Q-20260903-02-principal-chain-composition-closure.md",
+          "strength": "reports",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "source-reported-claim",
+          "claim": "The formal guarantees require cumulative budget tracking, complete restriction coverage and serialized admission.",
+          "claim_zh": "其形式保证依赖累计预算跟踪、完整限制覆盖和串行准入。",
+          "source": "research/analysis/Q-20260903-02-principal-chain-composition-closure.md",
+          "strength": "reports",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "source-reported-claim",
+          "claim": "The evaluation reports strong blocking of covered exfiltration cases, an 8.6-point utility cost, and 39.9% data stealing when one composition pair is removed.",
+          "claim_zh": "评测报告了对覆盖外泄样例的强阻断、8.6 个百分点的效用成本，以及移除一个组合对后 39.9% 的数据窃取率。",
+          "source": "research/analysis/Q-20260903-02-principal-chain-composition-closure.md",
+          "strength": "reports",
+          "independent": false
+        },
+        {
+          "id": "E4",
+          "identity": "our-interpretation",
+          "claim": "Multi-agent authorization should be audited as a stateful program whose policy coverage and classifier quality are operational evidence.",
+          "claim_zh": "多智能体授权应作为有状态程序审计，并把策略覆盖与分类质量视为运行证据。",
+          "source": "research/analysis/Q-20260903-02-principal-chain-composition-closure.md",
+          "strength": "supports",
+          "independent": false
+        }
+      ],
+      "category": "daily",
+      "lifecycle": "Publication Candidate",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The argument concerns general delegated authorization architecture."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already carries the transferable argument."
+      },
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS"
+    },
+    {
+      "itemId": "Q-20260903-03",
+      "column": "open-source-engineering",
+      "articleType": "comparative-study",
+      "title": "Discovery Must Not Redefine Credential Authority",
+      "title_zh": "发现端点，不能改写凭据授权方",
+      "researchQuestion": "当有效网址与响应仍可能属于错误的授权方时，MCP（模型上下文协议）客户端应如何在元数据发现和授权回调之间保持授权服务器身份？",
+      "coreProposition": "MCP OAuth clients should select expected issuer identity before following discovery indirection, bind every authority-bearing artifact and response to it, and fail closed on mismatch or downgrade; discovery location must not redefine credential authority.",
+      "articleBriefPath": "research/runtime/production-work/2026/09/03/Q-20260903-03/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/03/Q-20260903-03/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/03/Q-20260903-03/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-03-discovery-must-not-redefine-credential-authority.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-03-discovery-must-not-redefine-credential-authority.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-03-discovery-must-not-redefine-credential-authority-cover.png",
+      "sections": [
+        {
+          "heading": "A Valid Endpoint Is Not the Expected Identity",
+          "heading_zh": "有效地址不等于正确身份",
+          "module": "technical-analysis"
+        },
+        {
+          "heading": "The Fixes Cover Different Occurrences",
+          "heading_zh": "两项修复覆盖不同发生点",
+          "module": "comparison"
+        },
+        {
+          "heading": "Comparison Semantics Are a Security Boundary",
+          "heading_zh": "比较语义本身就是安全边界",
+          "module": "engineering-implications"
+        },
+        {
+          "heading": "Mismatch Must Invalidate Related State",
+          "heading_zh": "不匹配应使相关状态失效",
+          "module": "operational-implications"
+        },
+        {
+          "heading": "Issuer Binding Is Not Complete OAuth Security",
+          "heading_zh": "授权方绑定不是完整的 OAuth 安全",
+          "module": "limitations"
+        }
+      ],
+      "endingModule": "limitations",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "The MCP Python SDK derives or accepts an expected issuer, validates discovered metadata, and refuses token construction from another issuer.",
+          "claim_zh": "模型上下文协议的 Python 软件开发工具包派生或接收预期授权方，核验发现元数据，并拒绝用另一授权方构造令牌流程。",
+          "source": "research/analysis/Q-20260903-03-issuer-identity-across-oauth-discovery.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "public-fact",
+          "claim": "Gemini CLI validates RFC 9207 issuer at the callback and fails closed when the expected issuer is missing or mismatched.",
+          "claim_zh": "Gemini 命令行工具在回调处核验 RFC 9207 授权方，并在预期值缺失或不匹配时失败关闭。",
+          "source": "research/analysis/Q-20260903-03-issuer-identity-across-oauth-discovery.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "our-observation",
+          "claim": "The implementations address complementary occurrences and use non-identical issuer comparison semantics.",
+          "claim_zh": "两项实现覆盖互补发生点，并采用并不相同的授权方比较语义。",
+          "source": "research/analysis/Q-20260903-03-issuer-identity-across-oauth-discovery.md",
+          "strength": "observed",
+          "independent": false
+        },
+        {
+          "id": "E4",
+          "identity": "our-interpretation",
+          "claim": "MCP needs an occurrence-complete issuer-binding contract and normative comparison profile.",
+          "claim_zh": "模型上下文协议需要覆盖全部相关发生点的授权方绑定合同与规范比较规则。",
+          "source": "research/analysis/Q-20260903-03-issuer-identity-across-oauth-discovery.md",
+          "strength": "supports",
+          "independent": false
+        }
+      ],
+      "category": "daily",
+      "lifecycle": "Publication Candidate",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The argument compares general open-source protocol implementations."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already carries the transferable argument."
+      },
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS"
+    }
+  ]
+}
