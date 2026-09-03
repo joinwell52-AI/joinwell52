@@ -1,0 +1,417 @@
+---
+title: "Cursor 正在成为 Agent 的 iOS 吗？"
+date: "2026-09-03"
+language: zh-CN
+article_type: perspective
+summary: "Self-Hosted Machines、长生命周期 Agent 与事件订阅正在勾勒 Cursor 的平台位置。本文讨论从操作软件到交代工作的变化，以及企业如何把通用 Agent 能力组织成自己的数字员工。"
+publication_authorized: true
+lifecycle: Published
+column: industry-architecture
+category: daily
+edition: research-center
+cover: "/assets/covers/cursor-agent-ios-cover.png"
+---
+
+<ArticleCover
+  image="/assets/covers/cursor-agent-ios-cover.png"
+  kicker="行业架构 · 发展展望"
+  title="Cursor 正在成为 Agent 的 iOS 吗？"
+  summary="Self-Hosted Machines、长生命周期 Agent 与事件订阅正在勾勒 Cursor 的平台位置。本文讨论从操作软件到交代工作的变化，以及企业如何把通用 Agent 能力组织成自己的数字员工。"
+  version="2026-09-03"
+  languageHref="/en/industry/2026-09-03-cursor-agent-ios"
+  languageLabel="English"
+/>
+
+# Cursor 正在成为 Agent 的 iOS 吗？
+
+2026 年 9 月 2 日，Cursor 发布 Self-Hosted Machines。表面上看，这是一项企业部署能力：Cloud Agents 可以把文件编辑、终端命令、浏览器操作、本地 MCP 等实际工具执行放到企业自己管理的机器上。但真正值得注意的，也许不是 Cursor 又增加了一种运行环境，而是**企业自己的机器开始成为 Cursor Agent 可以调度和使用的执行资源**。
+
+Cursor 对这一架构的边界写得很清楚：在 My Machines 和 Self-Hosted Pool 中，Agent loop 仍然运行在 Cursor 云端，而文件编辑、终端、浏览器以及内部网络访问等 tool calls 则发生在企业自己的机器或 worker 上。对于企业级 Pool，企业还可以管理 worker fleet、专用硬件、Kubernetes、扩缩容和网络环境。([cursor.com](https://cursor.com/docs/cloud-agent/self-hosted-guides/choose-runtime?utm_source=chatgpt.com))
+
+如果只看这一项功能，它仍然可以被解释成“云端 Agent + 企业执行机器”。但把 Cursor 最近的产品演进连起来看，一个明显大于 Self-Hosted Machines 本身的方向已经开始出现：**Cursor 正在把 Agent 从一次性的智能调用，逐渐做成一种能够长期存在、等待外部事件、重新唤醒、保持目标并持续工作的执行主体。**
+
+这也是为什么，我越来越觉得“AI IDE”已经不足以描述 Cursor 正在建设的东西。一个更值得讨论的问题是：
+
+**Cursor 会不会正在走向一种 Agent 的 iOS？**
+
+这里说的当然不是字面意义上的操作系统，而是一种新的平台位置。
+
+## 1. 为什么越来越像 Agent 的 iOS
+
+iOS 最重要的价值，从来不只是让一个 App 能运行在某块芯片上。它真正建立的是一套统一的应用运行世界：应用怎样取得权限，怎样访问设备，怎样保持生命周期，怎样使用通知、身份、网络和硬件能力，都不需要每个开发者重新发明。
+
+换句话说，iOS 真正掌握的不是某一个 App，而是 **App 怎样存在、怎样获得能力，以及怎样与人和设备发生关系**。
+
+如果用这个视角看 Cursor 最近的变化，会发现它正在形成非常相似的结构。模型可以选择，Agent 可以拥有持续目标，可以被事件重新唤醒，可以装载 Skill、MCP 和不同工具；Cloud Agent 有独立运行环境，subagent 可以进入自己的虚拟机，企业还可以通过 API、service account 和 worker pool 把 Agent 接进自己的自动化与基础设施。
+
+Cursor 8 月 19 日的更新尤其值得注意。官方直接提出，希望 always-on agents 能够 “operate as a system”：Agent 可以订阅 PR、Slack thread 和 scheduled tasks 等事件，在事件发生后重新醒来；`/goal` 可以让 Agent 持有一个长期目标，而不是执行一次 prompt 就结束；由 Cloud Agent 创建的 PR 还可以被继续跟踪，在 CI 或自动反馈出现以后继续推进。([cursor.com](https://cursor.com/changelog/08-19-26?utm_source=chatgpt.com))
+
+Cloud Agents API 又进一步把 Agent 和一次执行拆开。新的 v1 API 明确采用 **durable agent + per-prompt runs**：Agent 是一个持续存在的对象，每一次新的工作则形成一个 run。([prod.cursor.com](https://prod.cursor.com/docs/cloud-agent/api/endpoints?utm_source=chatgpt.com))
+
+这些能力连起来以后，Cursor 提供的已经越来越不像“这里有一个会写代码的 AI”，而更像：
+
+**把工作交给一个平台，由平台负责让 Agent 存在、获得智能、取得工具、找到执行环境，并在必要的时候重新回来继续工作。**
+
+目前 Cursor 的核心仍然是软件开发，所以把它称为 **Software Agent Platform**，或者说它正在出现一种“Software Agent 的 iOS”轮廓，更加严谨。它会不会进一步成为通用企业 Agent OS，现在还不能提前下结论。
+
+但方向已经非常值得关注。
+
+## 2. Cursor 真正领先的地方之一，是开始认真解决 Agent 的长生命周期
+
+这一点值得专门肯定 Cursor。
+
+过去相当多 Agent 产品都把注意力放在一次执行上：模型推理更强了多少、tool use 能走多少步、benchmark 又提高了多少。但真实工作最大的困难，往往不是一次能不能做完，而是**工作根本不会一次结束**。
+
+一个真实开发任务可能持续几个小时甚至几天。它会等待 CI，等待同事回复，等待代码审查，等待外部系统状态改变；机器可能休眠，网络可能中断，人可能在过程中修改要求，Agent 还需要在几个小时以后重新理解自己为什么停在那里。
+
+Cursor 最近一系列产品设计让我觉得，它已经明显不满足于“让 Agent 连续运行更多步骤”，而是在把**等待、恢复、唤醒和长期目标**当成 Agent 正常生命周期的一部分。
+
+Subscriptions、scheduled tasks、长期 `/goal`、PR 自动跟进、独立 VM subagents、durable agent、Self-Hosted workers 和 pool routing，这些能力单独拿出来都不是无法复制的，但把它们做成一套普通开发者真正能够使用的产品体验，是另一回事。([cursor.com](https://cursor.com/changelog/08-19-26?utm_source=chatgpt.com))
+
+这一点上，我认为 Cursor 目前在软件开发 Agent 的产品化上确实走得非常靠前，而且路线非常连贯。
+
+当然，这并不是说 Google 没有认真研究长生命周期 Agent。恰恰相反，Google Cloud 在 2026 年发布的 Agent Executor 明确面向可以持续数小时甚至数天的 Agent，原生考虑 durable execution、event log、snapshot、resume、connection recovery 和分布式 session consistency。Google 在底层运行时问题上的思考很深。([cloud.google.com](https://cloud.google.com/blog/products/ai-machine-learning/agent-executor-googles-distributed-agent-runtime/?utm_source=chatgpt.com))
+
+两者目前给我的感觉更像是：**Google 在建设很强的 Agent 基础设施，而 Cursor 更快地把长生命周期直接变成了开发者每天可以触摸到的产品行为。**
+
+所以 Cursor 最值得学习的地方之一，不只是“Agent 能做什么”，而是它正在认真回答一个更难的问题：
+
+**Agent 怎样长期工作。**
+
+[![长生命周期 Agent 的执行、等待与继续](/assets/figures/cursor-agent-ios/01-agent-lifecycle.zh.png)](/assets/figures/cursor-agent-ios/01-agent-lifecycle.zh.png)
+
+*图 1：长期目标和 Agent 身份贯穿多个工作片段。机制依据 [Cursor 更新说明](https://cursor.com/changelog/08-19-26) 与 [Cloud Agents API](https://prod.cursor.com/docs/cloud-agent/api/endpoints) 整理。*
+
+## 3. Self-Hosted Machines 真正改变的，不是“云端还是本地”
+
+理解这一点以后，Self-Hosted Machines 的意义就更加清楚。
+
+过去我们很习惯把 Agent 产品分成两类：云端或者本地。但 Cursor 展示的是第三种结构：**企业可以拥有执行环境，而 Agent Platform 继续拥有控制循环。**
+
+企业的代码 checkout 可以留在自己的机器，内部 build tools、package registry、secret 和内网服务也可以由自己的 worker 提供；企业可以维护专用 GPU、高内存机器或者 Kubernetes worker fleet。但 Agent loop 本身仍然运行在 Cursor 云端。([cursor.com](https://cursor.com/docs/cloud-agent/self-hosted-guides/choose-runtime?utm_source=chatgpt.com))
+
+所以 Self-Hosted Machines 不能简单理解成 Cursor 向“本地软件”倒退了一步。
+
+某种意义上恰恰相反：
+
+**Cursor 正在证明，Agent Platform 不需要拥有企业的机器，也可以把自己的 Agent 控制面延伸到企业内部。**
+
+机器属于企业，网络属于企业，很多业务软件也属于企业，但“这项工作交给哪个 Agent、Agent 什么时候继续、下一步调用什么工具”，仍然可以由 Agent Platform 组织。
+
+这比“本地还是云端”重要得多。
+
+[![Cursor 云端与企业自托管机器的执行边界](/assets/figures/cursor-agent-ios/02-cloud-enterprise-boundary.zh.png)](/assets/figures/cursor-agent-ios/02-cloud-enterprise-boundary.zh.png)
+
+*图 2：自托管工具执行与云端 Agent loop 的分工。来源：[Cursor 运行环境说明](https://cursor.com/docs/cloud-agent/self-hosted/choose-runtime)。*
+
+## 4. Agent 的 iOS 根本不需要成为每一种 SaaS
+
+因此，我现在觉得继续问“Cursor 会不会成为一家企业 SaaS 公司”，其实把问题说小了。
+
+如果它真的走向 Agent 的 iOS，它根本不需要成为 CRM、ERP、邮箱、项目管理或者财务软件。就像 iOS 不需要自己成为银行、地图、出租车、电商和社交应用一样。
+
+Agent Platform 真正需要掌握的，是 **Agent 怎样获得这些系统的能力**。
+
+长期 Agent、事件触发、Schedule、MCP、service account、computer use、资源调度、身份和权限，这些都不是天然只能用于写代码的能力。一旦它们越来越通用，Agent Platform 完全可能站在大量现有软件之上。
+
+这时候真正值得问的不是：
+
+“Cursor 会不会替代 Salesforce？”
+
+而是：
+
+**当一个人需要完成一项工作时，他以后是不是还需要首先进入 Salesforce？**
+
+这两个问题完全不同。
+
+## 5. 真正可能被改写的，是“人操作软件”这种方式
+
+邮箱就是最简单的例子。
+
+过去我要处理邮箱，需要自己打开 Gmail 或 Outlook，进入收件箱，寻找邮件，阅读内容，翻看历史往来，判断重要程度，再决定回复、转发还是归档。
+
+现在，如果 Agent 获得了经过授权的邮箱能力，我已经可以直接提出工作要求：看看今天有没有需要我处理的重要邮件，把重要内容整理出来，需要回复的准备好回复。
+
+Agent 可以去读取邮箱、理解上下文、查找历史记录、进行分类。得到进一步授权以后，还可以执行归档、标签或者发送。
+
+邮箱没有消失。
+
+邮件服务器没有消失。
+
+Gmail 的网页也不会消失。
+
+但是一个非常重要的变化已经发生：
+
+**我不一定需要亲自进入那个页面了。**
+
+同样的事情可以发生在 Calendar、CRM、ERP、GitHub、文件系统、项目管理平台和大量企业内部软件中。过去是“我要打开一个软件做一件事”，未来则越来越可能变成“我要完成一件事，让 Agent 判断应该使用哪些软件”。
+
+这不是简单的 SaaS 替代，而可能是一种更底层的计算方式变化：
+
+从 **application-centric computing**，逐渐转向 **task-centric computing**。
+
+过去，计算机首先向人展示应用；未来，Agent 可能首先从人那里接收工作，然后在后台组织应用。
+
+[![以应用为中心和以任务为中心的工作入口比较](/assets/figures/cursor-agent-ios/03-task-entry.zh.png)](/assets/figures/cursor-agent-ios/03-task-entry.zh.png)
+
+*图 3：软件继续提供业务能力，人的第一入口可能转向 Agent。根据本文第 4—7 节绘制。*
+
+## 6. GUI 不会消失，但可能不再是工作的第一入口
+
+这并不是说 Windows、macOS、浏览器或者各种软件页面会消失。GUI 在探索信息、视觉设计、检查复杂结果、处理异常以及高影响决策中仍然非常重要。
+
+真正变化的是：**GUI 是否仍然必须成为每一项数字工作的必经入口。**
+
+今天一个知识工作者每天可能要打开邮箱、Slack、浏览器、CRM、ERP、Word、Excel、项目管理系统和大量内部应用。很多所谓“会使用软件”，实际上是在学习哪个功能在哪个菜单、哪个状态应该去哪个系统修改，以及一段信息应该从哪里复制到哪里。
+
+如果 Agent 能理解工作的目标，再自己选择 API、MCP、terminal、browser 或 computer use，大量这种软件操作知识就可能从人转移给 Agent。
+
+人越来越少地问：
+
+“按钮在哪里？”
+
+而越来越多地表达：
+
+**“我要什么结果。”**
+
+Computer use 在这个方向上尤其有意思，因为企业几十年来积累了大量没有现代 API、没有 MCP、甚至没有良好自动化接口的软件。对于这些系统，Agent 可以优先使用 API 或 MCP；如果不存在现代接口，在合适的授权和安全边界下，仍然可能通过 browser 或 GUI 使用原有软件。
+
+这意味着旧软件并不一定需要全部重新开发成所谓 AI Native，Agent 才能进入企业。
+
+Windows 和 macOS 也不会因此失去意义。它们反而可能增加一个新角色：不仅给人运行软件，也成为 Agent 使用企业已有数字资产的执行环境。
+
+GUI 甚至可能逐渐成为一种 **Agent Compatibility Layer**——Agent 与整个旧软件世界之间的兼容接口。
+
+## 7. Agent iOS 真正争夺的是“工作的第一入口”
+
+这样看，Agent Platform 真正争夺的位置就比某一个 SaaS 市场大得多。
+
+过去，一个人想完成数字工作，通常先打开 Windows、浏览器或者某个 SaaS，然后找到对应功能。未来，他可能首先告诉 Agent：“检查今天有哪些客户需要跟进”“把这个版本做完”“看看为什么项目没有交付”“处理今天的采购异常”。
+
+接下来是读取邮箱还是 CRM，是运行 shell 还是调用 MCP，是进入 ERP 还是操作浏览器，都由 Agent 自己决定。
+
+传统软件当然不会全部消失。ERP 仍然保存订单，CRM 仍然保存客户事实，GitHub 仍然保存代码，银行系统仍然保存真实账户。很多 System of Record 甚至会因为 Agent 的广泛使用而变得更加重要。
+
+发生变化的，是它们可能逐渐从“人每天亲自进去工作的地方”，转变为：
+
+**Agent 可以调用的业务能力和事实系统。**
+
+所以 Agent iOS 真正争夺的是：
+
+**当人要完成一项工作时，第一个去找谁。**
+
+这是一个比“下一代 SaaS”大得多的位置。
+
+## 8. 但进入企业以后，“会做”远远不够
+
+走到这里，Agent Platform 和数字员工开始出现明显区别。
+
+一个 Agent 会写代码，不等于它就是软件工程师；能看邮箱，不等于它就是销售助理；会操作 ERP，也不代表它天然拥有采购权限。
+
+企业从来不会只按照“一个员工会使用哪些工具”来定义岗位。员工进入一家企业以后，还要知道自己的岗位、职责、领导关系、工作制度、权限范围、交付标准以及发生异常后的处理方式。
+
+数字员工同样如此。
+
+所以从 Agent 到数字员工，中间还缺少一层非常重要的企业语义：
+
+**岗位。**
+
+Agent 能力回答的是：
+
+“能不能做？”
+
+企业岗位回答的是：
+
+**“为什么做、应该怎样做、做到什么程度才算完成？”**
+
+Agent OS 越成熟，“能不能做”这一层可能越标准化；真正属于每一家企业自己的部分，反而越来越集中在后一个问题。
+
+## 9. Agent Platform 的治理，与企业自己的工作治理不是一回事
+
+这里也必须公平评价 Cursor。不能因为企业需要自己的治理，就反过来假设 Cursor 自己没有治理。
+
+相反，如果 Cursor 真要成为 Agent Platform，它必然会不断加强平台治理：Agent 使用什么模型、可以访问什么工具、什么网络可以连接、哪个 service account 启动运行、哪个 worker 执行任务、平台发生了什么事件，这些本来就应该由 Agent Platform 管好。
+
+Google 也在沿着类似方向建设 Agent Runtime 和集中式治理能力。([cloud.google.com](https://cloud.google.com/blog/topics/developers-practitioners/io26-news-for-agent-developers-on-google-cloud?utm_source=chatgpt.com))
+
+但企业还有另一种不能交出去的权力：
+
+**定义自己的工作。**
+
+一次 Agent Run 成功，不一定代表一项企业任务已经完成；平台记录一个动作发生过，也不等于这个动作依据企业制度已经获得授权。平台拥有完整 session，也不意味着整段 session 自动成为正式业务事实。
+
+因此，我更愿意把两层治理区分开：
+
+**Agent Platform Governance 管 Agent 怎样安全、可靠地运行；Enterprise Work Governance 管企业为什么让这件工作发生，以及什么结果最终成立。**
+
+每个企业都需要后一种治理权，但这不意味着每家公司都必须再购买一套新的 Governance SaaS。小团队完全可能用 Cursor、GitHub、现有审批和人工 Review 就解决；大型企业则可能需要跨多个 Agent、多个部门和多个业务系统建立更正式的治理基础设施。
+
+软件实现可以不同，真正不能失去的是：
+
+**企业对自己工作的最终解释权。**
+
+也就是企业的“工作主权”。
+
+[![Agent 平台治理与企业工作治理的职责区别](/assets/figures/cursor-agent-ios/04-two-governance-layers.zh.png)](/assets/figures/cursor-agent-ios/04-two-governance-layers.zh.png)
+
+*图 4：平台负责运行，企业定义工作与验收。根据本文第 8—12 节的职责划分模型绘制。*
+
+## 10. 一个数字员工为什么可能是一个团队？
+
+这里还会出现一个很有意思的问题。
+
+我们通常把数字员工想象成：
+
+一个 Agent = 一个员工。
+
+但真实岗位并不是单一职能。
+
+一个成熟的人类员工会同时理解任务、制定计划、执行专业工作、检查结果、处理异常、汇报进度，并判断什么时候应该向上级请示。这些不同职能在人身上隐藏在同一个大脑里，因此我们平时不会特别区分。
+
+到了 Agent 系统，如果全部交给一个 Agent，就很容易形成一种结构：自己理解，自己安排，自己执行，自己检查，最后再自己宣布完成。
+
+技术上当然可以运行，但一旦开始承担越来越真实的企业工作，这种结构未必总是合理。
+
+因此，多 Agent 的意义未必首先在“多几个模型”，而可能在 **Multi-Role**。
+
+不同 Agent 承担的是不同职能角色。例如经理角色负责理解目标、组织和推进工作，专业角色负责实际执行，QA 承担独立检查，OPS 负责环境、运行和恢复，必要时还可以存在独立于执行团队的评价角色。
+
+底层这些角色完全可以使用同一个模型，甚至同一个 Agent Platform。真正重要的是它们拥有不同职责、上下文、权限和正式工作关系。
+
+反过来，就算启动五个模型，如果没有明确职能，只是在一起讨论，也并没有形成一个企业工作组织。
+
+所以，一个值得研究的定义是：
+
+**一个数字员工，不一定是一个万能 Agent，也可以是一个按照不同职能分工的最小工作团队。**
+
+这不是因为 Multi-Agent 听起来更高级，而是因为真实岗位本来就包含多种职能。
+
+## 11. 从通用 Agent 到“本地化数字员工”
+
+到了这里，还需要再加一个重要限定：
+
+企业真正需要的不是抽象意义上的“数字员工”，而是**本地化的数字员工**。
+
+这里的“本地化”不是简单指模型必须运行在本机，也不等于所谓完全离线部署。它更重要的含义是：这个数字员工真正进入了一家具体企业的环境和工作体系。
+
+它使用这家企业的机器、文件和内部系统，承担这家企业定义的岗位，依据这家企业自己的制度和流程工作，在这家企业自己的权限边界内行动，并形成这家企业能够保存、检查和解释的正式工作事实。
+
+同一个通用 Agent 进入两家不同公司以后，不应该仍然是同一个“员工”。因为两家公司的岗位不同、制度不同、权限不同、工作对象不同，责任关系也不同。
+
+所以 Agent Platform 提供的是通用能力，而本地化解决的是：
+
+**这些通用能力怎样变成“这家企业自己的员工”。**
+
+这可能是 Agent 真正进入企业以后非常关键的一步。
+
+## 12. 这也引出了我们正在研究的“本地化数字员工工作站”
+
+把问题缩小到一台普通企业 Windows PC，会更容易理解。
+
+假设未来 Cursor 已经成为非常成熟的 Agent OS：模型、Harness、MCP、browser、computer use、Agent lifecycle 和长期执行能力都由它提供；Windows 则继续提供真实机器、文件、Office、浏览器、Git、企业软件和各种历史应用。
+
+这时候企业仍然缺少另一类东西：这台机器上的数字员工到底承担什么岗位，今天有哪些工作，内部有哪些职能角色，依据哪些企业规则工作，哪些动作需要授权，谁检查结果，出了问题以后向谁报告。
+
+我们正在研究和开发的 **CodeFlowMu**，试图解决的正是这一类问题。
+
+CodeFlowMu 目前可以被理解成一个正在验证中的 **本地化数字员工工作站（Localized Digital Employee Workstation）** 研究方向。它不是另一个 Windows，也不是另一个 Cursor；它试图把 Cursor、Codex 或其他通用 Agent 能力进一步组织成按照一家企业自己的岗位、角色、规则和任务持续工作的数字员工。
+
+如果这个方向成立，那么一台企业机器上的几个层次可以这样理解：Windows 提供数字工作环境，Cursor、Codex 等 Agent Platform 提供智能和执行能力，而本地化数字员工工作站进一步把这些能力组织成企业自己的岗位和工作团队。
+
+这里必须强调，“本地化数字员工工作站”目前仍然是我们正在研究和开发的产品概念，而不是已经得到市场验证的行业分类。
+
+真正需要继续验证的问题是：
+
+**当 Agent 已经越来越会使用软件以后，企业还需要什么，才能让它真正成为属于这家企业、有岗位、有职责、有规则、有协作关系和交付责任的数字员工？**
+
+## 13. CodeFlowMu 里的 Multi-Agent，本质上正在成为 Multi-Role
+
+CodeFlowMu 是一个正在开发中的数字员工运行体研究项目。我们现在越来越明确的一点是，其中所谓 Multi-Agent，真正重要的并不是同时启动多少模型，而是能不能把数字员工内部不同的工作职能显式分开。
+
+例如，一个开发型数字员工可以由 PM 承担理解 ADMIN 要求、组织任务和推进结果的职能，DEV 承担专业开发，QA 承担独立检查，OPS 负责运行、环境和恢复，必要时再由独立 EVAL 对执行团队的过程与结果进行观察和评价。
+
+这些角色可以使用不同模型，也完全可以使用同一个模型。真正决定它们是不是不同工作角色的，不是模型名字，而是职责、权限、上下文和正式工作关系。
+
+所以我们说“一个数字员工可以是一个团队”，并不是把几个独立员工强行塞在一起。
+
+更准确地说，是：
+
+**把一个真实岗位原本隐藏在人脑中的计划、执行、检查、保障和评价等不同职能，显式组织成一个数字员工内部的多角色团队。**
+
+Multi-Agent 在这里，本质上是 Multi-Role。
+
+## 14. FCoP 研究的，是这些角色怎样正式协作
+
+与 CodeFlowMu 同时进行的另一项研究是 FCoP。
+
+FCoP 并不试图规定 Cursor 怎样调 worker，也不规定 Codex 怎样推理，更不应该把某一种模型、Harness 或 UI 固定进协议核心。
+
+它关注的是另一组更基础、更持久的工作事实：TASK、REPORT、ISSUE、REVIEW、对象之间的关系、授权引用、持久幂等，以及并发、重试和恢复以后，一项正式工作怎样继续被识别和解释。
+
+这些东西属于工作本身，而不是某一家 Agent Platform。
+
+今天底层可以使用 Cursor，明天可以换成 Codex，不同角色甚至可以使用完全不同的模型；执行机器也可以从 Windows 换成 Cloud worker。但一项企业 TASK 不应该因此重新退化成一段聊天，已经形成的 REPORT 不应该因为换 Host 而消失，授权也不能因为模型变化就失去依据。
+
+所以目前我们正在探索的分工可以概括成：
+
+**Agent Platform 提供通用智能和执行能力；CodeFlowMu 研究怎样把这些能力本地化成一家企业自己的数字员工；FCoP 研究数字员工内部不同角色怎样形成正式、持久、可恢复的工作关系。**
+
+这是我们正在开发和验证的方向，而不是已经证明完成的产业架构。
+
+[![CodeFlowMu 数字员工内部的多角色分工及 FCoP 工作事实](/assets/figures/cursor-agent-ios/05-multi-role-worker.zh.png)](/assets/figures/cursor-agent-ios/05-multi-role-worker.zh.png)
+
+*图 5：PM、DEV、QA、OPS 与独立 EVAL 的角色关系，以及 FCoP 关注的工作事实。根据本文第 10—14 节的研究方案绘制。*
+
+## 15. Cursor 越成功，这个问题反而越值得研究
+
+从这个角度看，Cursor 越来越强，并不会自动否定本地化数字员工的问题。
+
+恰恰相反。
+
+如果 Cursor、Codex 和未来其他 Agent Platform 已经把模型、Harness、MCP、browser、computer use、worker infrastructure、长期 Agent、event 和 schedule 全部做得非常成熟，那么企业数字员工就越来越没有必要重新制造这些通用基础能力。
+
+剩下的问题会越来越接近企业本身：
+
+岗位是什么，内部需要哪些职能角色，任务依据什么制度执行，谁有授权，谁负责检查，什么结果才算交付，发生异常以后如何恢复。
+
+这些东西不可能由一个通用 Agent Platform 替全世界的企业一次性定义，因为企业本来就不同。
+
+所以 Cursor 最近的快速进展反而帮助我们把两个问题分得越来越清楚：
+
+**Cursor 正在非常有力地回答：“Agent 怎样变得越来越会工作？”**
+
+而我们正在研究的另一个问题是：
+
+**“当 Agent 已经非常会工作以后，怎样让它按照一家具体企业自己的方式工作？”**
+
+后一个问题，并不是因为 Cursor 做得不够好才存在。
+
+恰恰是因为 Agent Platform 越来越成熟，它才逐渐成为一个独立问题。
+
+## 16. Agent 的 iOS 可能正在出现，而数字员工才刚刚开始
+
+回头再看 Self-Hosted Machines，它真正重要的地方已经不只是让 Cursor Cloud Agent 使用企业自己的机器。它与长期 Goal、Subscriptions、durable agent、worker pool、MCP 和 computer use 连在一起以后，让一种新的计算方式开始变得清晰。
+
+过去，人操作软件；未来，人可能越来越多地交代工作，由 Agent 去组织软件。
+
+过去，Windows、浏览器和 SaaS 页面是人的主要数字工作入口；未来，它们可能越来越多地成为 Agent 的执行环境、工具和事实系统。
+
+过去，软件组织人的操作流程；未来，Agent Platform 可能开始组织软件，为人的工作目标服务。
+
+如果这一步继续发展，Agent Platform 所争夺的就不只是某一个软件市场，而可能是**所有数字工作之上的第一入口**。
+
+Cursor 目前在这个方向上的推进值得高度评价。特别是在软件开发 Agent 的长生命周期产品化上，它已经不再把 Agent 看成一次模型调用，而是在认真构建一种能够等待、被事件重新唤醒、保持长期目标、使用不同执行环境并持续推进工作的软件执行主体。([cursor.com](https://cursor.com/changelog/08-19-26?utm_source=chatgpt.com))
+
+但是，当 Agent 真正进入企业以后，下一个问题才刚刚出现。
+
+企业最终需要的不是一个无所不能的通用 Agent，而是研发数字员工、销售数字员工、研究数字员工、运营数字员工和财务数字员工。它们必须拥有不同岗位，遵守不同制度，承担不同责任；一个复杂岗位内部，还可能进一步由多个不同职能角色组成。
+
+所以未来的软件世界，也许会逐渐形成三个不同层次：
+
+**软件继续提供真实的数字能力和业务事实；Agent OS 负责组织和调用这些能力；企业再按照自己的岗位、制度和责任，把通用 Agent 能力本地化成真正属于自己的数字员工。**
+
+Cursor 正在非常积极地探索第二层。
+
+而第三层究竟应该怎样成立，我们才刚刚开始研究。
+
+**Agent 的 iOS 可能正在出现。真正属于每一家企业自己的数字员工，才刚刚开始上班。**
