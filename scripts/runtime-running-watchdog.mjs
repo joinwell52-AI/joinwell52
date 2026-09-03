@@ -5,6 +5,7 @@ import path from 'node:path'
 
 const MANIFEST_PATH = 'research/runtime/SCHEDULER.json'
 const DEFAULT_LEASE_MINUTES = 45
+const UNCLAIMED_SLOT_LEASE_MINUTES = 5
 const LEASE_MINUTES = {
   discovery: 45,
   queue: 30,
@@ -44,9 +45,20 @@ function recordPath(manifest, family, now) {
   return path.join(manifest.recordRoots[family], now.year, now.month, `${now.date}-${family}-runtime.json`)
 }
 
-function latestOpen(record, taskId) {
-  return [...(record.timeline || [])].reverse().find((event) =>
-    event.task === taskId && event.event === 'Execution Slot Opened' && event.status === 'Running'
+function latestOpenIndex(record, taskId) {
+  const timeline = record.timeline || []
+  for (let i = timeline.length - 1; i >= 0; i -= 1) {
+    const event = timeline[i]
+    if (event.task === taskId && event.event === 'Execution Slot Opened' && event.status === 'Running') return i
+  }
+  return -1
+}
+
+function claimAfter(record, taskId, openIndex) {
+  if (openIndex < 0) return null
+  const timeline = record.timeline || []
+  return timeline.slice(openIndex + 1).find((event) =>
+    event.task === taskId && event.event === 'Worker Claimed' && event.status === 'Running'
   ) || null
 }
 
@@ -79,27 +91,37 @@ for (const family of manifest.runtimeFamilies) {
 
   for (const taskId of family.taskIds) {
     if (record.taskStatus?.[taskId] !== 'Running') continue
-    const opened = latestOpen(record, taskId)
+    const openIndex = latestOpenIndex(record, taskId)
+    const opened = openIndex >= 0 ? record.timeline[openIndex] : null
     const openedAt = parseShanghaiIso(opened?.time)
-    const leaseMinutes = LEASE_MINUTES[taskId] || DEFAULT_LEASE_MINUTES
     if (!openedAt) continue
-    const ageMinutes = Math.floor((nowInstant.getTime() - openedAt.getTime()) / 60000)
+
+    const claim = claimAfter(record, taskId, openIndex)
+    const claimAt = parseShanghaiIso(claim?.time)
+    const leaseStart = claimAt || openedAt
+    const leaseMinutes = claimAt ? (LEASE_MINUTES[taskId] || DEFAULT_LEASE_MINUTES) : UNCLAIMED_SLOT_LEASE_MINUTES
+    const ageMinutes = Math.floor((nowInstant.getTime() - leaseStart.getTime()) / 60000)
     if (ageMinutes <= leaseMinutes) continue
 
     record.taskStatus[taskId] = 'Waiting'
     record.timeline = Array.isArray(record.timeline) ? record.timeline : []
+    const unclaimed = !claimAt
     record.timeline.push({
       time: `${now.date}T${now.time}+08:00`,
       task: taskId,
-      event: 'Running Lease Expired',
+      event: unclaimed ? 'Unclaimed Execution Slot Expired' : 'Running Lease Expired',
       status: 'Waiting',
-      detail: `${taskId} exceeded its ${leaseMinutes} minute Running lease without a terminal result. The execution slot is no longer treated as proof of active work and returns to governed recovery.`
+      detail: unclaimed
+        ? `${taskId} had an Execution Slot Opened but no Worker Claimed event within ${UNCLAIMED_SLOT_LEASE_MINUTES} minutes. An unclaimed slot is readiness evidence only, not active work, so the task returns to Waiting for governed continuation.`
+        : `${taskId} exceeded its ${leaseMinutes} minute claimed-worker Running lease without a terminal result. The execution epoch is no longer treated as live work and returns to governed recovery.`
     })
     record.updatedAt = `${now.date}T${now.time}+08:00`
     record.githubCommit = 'pending'
     record.commitVerify = 'Waiting'
     dirty = true
-    expired.push(`${taskId}:${ageMinutes}m>${leaseMinutes}m`)
+    expired.push(unclaimed
+      ? `${taskId}:unclaimed:${ageMinutes}m>${UNCLAIMED_SLOT_LEASE_MINUTES}m`
+      : `${taskId}:claimed:${ageMinutes}m>${leaseMinutes}m`)
   }
 
   if (dirty) {
