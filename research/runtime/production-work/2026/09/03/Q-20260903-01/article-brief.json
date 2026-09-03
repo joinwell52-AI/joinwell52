@@ -1,0 +1,50 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-03",
+  "itemId": "Q-20260903-01",
+  "researchObjectId": "Q-20260903-01",
+  "targetAudience": {
+    "primary": "Engineers and governance leads responsible for long-running digital employees",
+    "knowledgeAssumption": "The reader understands checkpoints, agent context, workspaces and external tool effects.",
+    "readerProblem": "A technically restorable snapshot can be mistaken for proof that resumption is authorized, causally consistent and safe."
+  },
+  "whyNow": "AgentRewind reports gains from restoring aligned agent context and controlled workspace state on 82 long-horizon engineering tasks, while explicitly leaving network and external-service effects outside the rollback boundary.",
+  "externalHook": {
+    "type": "aligned-rewind-incomplete-contract",
+    "description": "A rewind may restore files and context while leaving already-committed external effects untouched.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "coreProposition": "Causally aligned context and workspace checkpoints are necessary for evaluated long-horizon recovery, but accountable resumption also requires occurrence-bound authority and reconciliation of effects outside the snapshot boundary.",
+  "originalValue": {
+    "type": "four-part-recovery-contract",
+    "description": "Extends checkpoint alignment into a recovery contract binding occurrence identity, current authority, execution evidence and external-effect reconciliation."
+  },
+  "readerTakeaway": "Treat restoration as one mechanism, not the whole authorization; bind snapshot, epoch, policy, principal and effect ledger before resuming.",
+  "evidenceBoundary": {
+    "supported": [
+      "Aligned context/workspace rewind is reported and evaluated on 82 tasks.",
+      "The rollback boundary covers the workspace, not network or external-service state.",
+      "Ablations report complementary value from environment rewind, context rewind and rewind memory."
+    ],
+    "unsupported": [
+      "Enterprise-wide exactly-once execution",
+      "Universal safety for arbitrary tools",
+      "A complete recovery protocol evaluated in production"
+    ],
+    "uncertain": [
+      "Minimum sufficient effect ledger",
+      "When recovery becomes a new work occurrence"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument concerns general recovery governance."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The research supplies a concrete mechanism, measured results and an explicit boundary from which a bounded governance design follows."
+}

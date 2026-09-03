@@ -1,0 +1,70 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-03",
+  "itemId": "Q-20260903-01",
+  "coreProposition": "Causally aligned context and workspace checkpoints are necessary for evaluated long-horizon recovery, but accountable resumption also requires occurrence-bound authority and reconciliation of effects outside the snapshot boundary.",
+  "openingMove": {
+    "type": "restored-state-divergence",
+    "purpose": "Open with files and context rewound while an external message remains sent.",
+    "evidenceRefs": [
+      "E3",
+      "E4"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "What does aligned rewind solve?",
+      "claim": "Restoring agent context and workspace together reduces causal mismatch inside the controlled boundary.",
+      "evidenceRefs": [
+        "E1",
+        "E2"
+      ],
+      "reasoningRole": "mechanism",
+      "readerProgress": "Understand why two-state alignment matters.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What remains outside?",
+      "claim": "Network, service and irreversible effects survive rewind and can make replay unsafe.",
+      "evidenceRefs": [
+        "E3"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "Separate snapshot state from committed effects.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What makes recovery governed?",
+      "claim": "Snapshot, epoch, principal, policy and effect ledger must share one occurrence identity.",
+      "evidenceRefs": [
+        "E4"
+      ],
+      "reasoningRole": "governance-design",
+      "readerProgress": "Gain a concrete admission rule.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "When is a ledger insufficient?",
+      "claim": "Recorded effects do not authorize a revoked principal or make non-idempotent actions safe.",
+      "evidenceRefs": [
+        "E4"
+      ],
+      "reasoningRole": "counterargument",
+      "readerProgress": "Keep the design bounded.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "A versioned coding workspace makes an effect ledger unnecessary.",
+    "responseBoundary": "Possibly for fully local work, not for messaging, cloud administration, payments or approvals."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with authority, effect reconciliation and occurrence boundaries."
+  }
+}
