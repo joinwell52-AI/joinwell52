@@ -8,11 +8,11 @@
   "date": "2026-09-03",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -475,6 +475,129 @@
       "githubCommit": "b9da7730d0c2ed7c0d07079082c74aabbe67df14",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-03T12:59:27+08:00"
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "family": "daily",
+      "runtimeDate": "2026-09-03",
+      "status": "Completed",
+      "input": "Authoritative control-source main commit f76c219333ed93fdb1a9672d81adcee3c460b5e8 containing Scheduler V3.0, Worker Control v1.3.0, generated Reading Prompt v1.0.0 and all five required sources; generated Reading Prompt SHA-256 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5 verified deterministically; verified same-date Reading wake receipt research/runtime/wakes/2026/09/2026-09-03/reading-105851.json; Reading Execution Slot Opened at 13:00:19 and Worker Claimed at 13:01:17 before substantive work; and the completed 2026-09-03 Research Plan selecting Q-20260903-01, Q-20260903-02 and Q-20260903-03.",
+      "input_zh": "权威控制源 main 提交 f76c219333ed93fdb1a9672d81adcee3c460b5e8，其中包含 Scheduler V3.0、Worker Control v1.3.0、Generated Reading Prompt v1.0.0 与全部 5 个 Required Source；Generated Reading Prompt SHA-256 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5 已确定性核验；已核验的同日 Reading Wake Receipt research/runtime/wakes/2026/09/2026-09-03/reading-105851.json；Reading 于 13:00:19 打开 Execution Slot 并在实质工作前于 13:01:17 写入 Worker Claimed；以及选择 Q-20260903-01、Q-20260903-02、Q-20260903-03 的同日已完成 Research Plan。",
+      "workResult": "Skill 03 completed source-bounded Deep Reading for exactly the three same-date Queue-selected objects. Q-20260903-01 verified AgentRewind's aligned context/workspace checkpoint mechanism, 82-task MettleBench design, paired recovery and component ablations, while preserving the explicit boundary that network and external-service effects are not rolled back. Q-20260903-02 extracted APC's principal-chain scope attenuation, cumulative budgets, prior-action composition closure, six-condition external enforcement, formal assumptions and 3,154-instance evaluation; it retained the reported 8.6-point interactive utility cost, policy-completeness dependence, 60.4% single-action residual and per-session boundary. Q-20260903-03 compared two independent merged implementations: the MCP Python SDK binds discovered authorization-server metadata and token construction to an expected issuer, while Gemini CLI validates RFC 9207 issuer identity in the callback; Reading preserved their different occurrence boundaries and comparison semantics. No Research Analysis, article writing, visualization, Production or Publication was performed.",
+      "workResult_zh": "Skill 03 只对同日 Queue 选中的三个对象完成有来源边界的 Deep Reading。Q-20260903-01 核验了 AgentRewind 的 Context/Workspace 对齐 Checkpoint 机制、82 项任务的 MettleBench 设计、Paired Recovery 与 Component Ablation，同时保留 Network 与 External-service Effect 不会被回滚的明确边界。Q-20260903-02 提取了 APC 的 Principal-chain Scope Attenuation、累计 Budget、Prior-action Composition Closure、六条件模型外 Enforcement、形式化假设与 3,154 个 Instance 的评估，并保留 8.6 个百分点的 Interactive Utility Cost、对 Policy Completeness 的依赖、60.4% Single-action Residual 与 Per-session Boundary。Q-20260903-03 比较两个独立合并实现：MCP Python SDK 将发现到的 Authorization-server Metadata 与 Token Construction 绑定到 Expected Issuer，Gemini CLI 则在 Callback 校验 RFC 9207 Issuer Identity；Reading 保留两者在发生位置与比较语义上的差异。本阶段未执行 Research Analysis、文章写作、可视化、Production 或 Publication。",
+      "output": "Exactly three durable same-date Reading Notes: research/reading/Q-20260903-01-aligned-context-environment-checkpoints.md; research/reading/Q-20260903-02-principal-chain-composition-authorization.md; research/reading/Q-20260903-03-mcp-oauth-issuer-binding.md.",
+      "output_zh": "恰好生成三份同日持久 Reading Note：research/reading/Q-20260903-01-aligned-context-environment-checkpoints.md、research/reading/Q-20260903-02-principal-chain-composition-authorization.md、research/reading/Q-20260903-03-mcp-oauth-issuer-binding.md。",
+      "next": "After durable Reading finalization and GitHub Commit Verified, Runtime must reconcile formal-time order immediately. Analysis is already due and may consume only these three Reading Notes after Reading is execution-closed and verified.",
+      "next_zh": "Reading 完成持久 Finalization 与 GitHub Commit Verified 后，Runtime 必须立即重新按 Formal Time 对账；Analysis 已到期，但只能在 Reading 完成并核验收口后消费这三份 Reading Note。",
+      "metrics": [
+        {
+          "label": "Wake receipts verified",
+          "label_zh": "已核验 Wake Receipt",
+          "value": 1
+        },
+        {
+          "label": "Generated prompt identity verified",
+          "label_zh": "Generated Prompt 身份已核验",
+          "value": 1
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 Required Source",
+          "value": 5
+        },
+        {
+          "label": "Queue-selected objects read",
+          "label_zh": "已深读 Queue Selected Object",
+          "value": 3
+        },
+        {
+          "label": "Durable Reading Notes",
+          "label_zh": "持久 Reading Note",
+          "value": 3
+        },
+        {
+          "label": "Primary source objects",
+          "label_zh": "一手来源对象",
+          "value": 4
+        },
+        {
+          "label": "Research Analysis performed",
+          "label_zh": "执行 Research Analysis",
+          "value": 0
+        },
+        {
+          "label": "Publication actions",
+          "label_zh": "Publication 操作数量",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Reading Wake Receipt",
+          "label_zh": "Reading Wake Receipt",
+          "path": "research/runtime/wakes/2026/09/2026-09-03/reading-105851.json"
+        },
+        {
+          "label": "Pinned Reading control and Worker Claimed commit",
+          "label_zh": "固定 Reading 控制与 Worker Claimed 提交",
+          "commit": "f76c219333ed93fdb1a9672d81adcee3c460b5e8"
+        },
+        {
+          "label": "Generated Reading prompt SHA-256",
+          "label_zh": "Generated Reading Prompt SHA-256",
+          "value": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"
+        },
+        {
+          "label": "Run-date Research Plan",
+          "label_zh": "运行日 Research Plan",
+          "path": "research/runtime/plans/2026/09/2026-09-03-plan.json"
+        },
+        {
+          "label": "AgentRewind primary source",
+          "label_zh": "AgentRewind 一手来源",
+          "url": "https://arxiv.org/abs/2608.14380"
+        },
+        {
+          "label": "Bounded Agents primary source",
+          "label_zh": "Bounded Agents 一手来源",
+          "url": "https://arxiv.org/abs/2608.15888"
+        },
+        {
+          "label": "MCP Python SDK implementation",
+          "label_zh": "MCP Python SDK 实现",
+          "url": "https://github.com/modelcontextprotocol/python-sdk/commit/d060b36e1d095ef6e93e07ba5d59bb69b2ad449a"
+        },
+        {
+          "label": "Gemini CLI implementation",
+          "label_zh": "Gemini CLI 实现",
+          "url": "https://github.com/google-gemini/gemini-cli/commit/55b495d6db1794bf5b7f37a9bc03ebcab5103673"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Q-20260903-01 Reading Note",
+          "label_zh": "Q-20260903-01 深读笔记",
+          "path": "research/reading/Q-20260903-01-aligned-context-environment-checkpoints.md"
+        },
+        {
+          "label": "Q-20260903-02 Reading Note",
+          "label_zh": "Q-20260903-02 深读笔记",
+          "path": "research/reading/Q-20260903-02-principal-chain-composition-authorization.md"
+        },
+        {
+          "label": "Q-20260903-03 Reading Note",
+          "label_zh": "Q-20260903-03 深读笔记",
+          "path": "research/reading/Q-20260903-03-mcp-oauth-issuer-binding.md"
+        },
+        {
+          "label": "Reading result",
+          "label_zh": "Reading 结果",
+          "path": "research/runtime/results/2026/09/2026-09-03-reading-result.json"
+        }
+      ],
+      "startedAt": "2026-09-03T13:00:19+08:00",
+      "completedAt": "2026-09-03T13:07:05+08:00"
     }
   },
   "timeline": [
@@ -582,6 +705,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Reading after verifying research/runtime/wakes/2026/09/2026-09-03/reading-105851.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-03T13:07:05+08:00",
+      "task": "reading",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Reading closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-03."
     }
   ],
   "metrics": [],
@@ -589,5 +719,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-03T13:01:17+08:00"
+  "updatedAt": "2026-09-03T13:07:05+08:00"
 }
