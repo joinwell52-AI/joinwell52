@@ -6,7 +6,7 @@ column: open-source-engineering
 category: daily
 article_type: comparative-study
 edition: research-center
-research_question: "当有效网址与响应仍可能属于错误的授权方时，MCP 客户端应如何在元数据发现和授权回调之间保持授权服务器身份？"
+research_question: "当有效网址与响应仍可能属于错误的授权方时，MCP（模型上下文协议）客户端应如何在元数据发现和授权回调之间保持授权服务器身份？"
 summary: "The MCP Python SDK and Gemini CLI independently added issuer binding at metadata and callback boundaries. Together they support identity-before-indirection while exposing issuer-comparison semantics as an unresolved interoperability boundary."
 cover: staging/publication-candidates/2026-09-03-discovery-must-not-redefine-credential-authority-cover.png
 sources:
