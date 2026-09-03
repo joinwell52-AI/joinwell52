@@ -8,16 +8,145 @@
   "date": "2026-09-03",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
-    "discovery": "Running",
+    "discovery": "Completed",
     "queue": "Waiting",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
   },
-  "results": {},
+  "results": {
+    "discovery": {
+      "schema": "runtime-shift-result/v2",
+      "task": "discovery",
+      "family": "daily",
+      "runtimeDate": "2026-09-03",
+      "status": "Completed",
+      "input": "Authoritative control-source main commit 65ed08be009e0be5713e3852ee7b9e4c136179d9; Research Runtime Scheduler V3.0; Worker Control v1.3.0; generated Discovery Prompt v1.1.0 with verified SHA-256 3b91ab2769fe035ddec1bdedd27ffc7b34fa5c1da3232c2a05ed7653fc8c28bc; all ten requiredSources from that same commit; verified manual-recovery Wake Receipt research/runtime/wakes/2026/09/2026-09-03/discovery-123400.json; and the already-persisted same-date Intelligence run produced by the original execution epoch.",
+      "input_zh": "权威控制源 main 提交 65ed08be009e0be5713e3852ee7b9e4c136179d9、Research Runtime Scheduler V3.0、Worker Control v1.3.0、已核验 SHA-256 3b91ab2769fe035ddec1bdedd27ffc7b34fa5c1da3232c2a05ed7653fc8c28bc 的 Generated Discovery Prompt v1.1.0、同一提交上的全部 10 个 requiredSources、已核验的人工恢复 Wake Receipt research/runtime/wakes/2026/09/2026-09-03/discovery-123400.json，以及原执行轮次已经持久化的同日 Intelligence Run。",
+      "workResult": "Recovered the expired original Discovery execution without regenerating or duplicating its eleven same-date signals. The recovery added the required theme-sample-v1 researchCoverage record, normalized five non-contract signalRole aliases to the canonical role enum, preserved all source provenance and research values, and passed both the complete local Intelligence validation and full Runtime validation. Validate Research Center 3.0 run 33715829946 also verified the repaired Intelligence commit 398451715201ae046f2726402cae33f5eb12d8f4.",
+      "workResult_zh": "在不重新生成或复制当日 11 个 Signal 的前提下，恢复已过期的原 Discovery 执行轮次；补齐必需的 theme-sample-v1 researchCoverage，将 5 个合同外 signalRole 别名规范化为合同枚举，并保留全部来源、研究主题与研究价值。完整本地 Intelligence 校验与 Runtime 校验均已通过；Validate Research Center 3.0 Run 33715829946 也核验了修复提交 398451715201ae046f2726402cae33f5eb12d8f4。",
+      "output": "research/intelligence/runs/2026/09/2026-09-03-intelligence.json — 11 normalized, unselected signals with complete active-sample coverage.",
+      "output_zh": "research/intelligence/runs/2026/09/2026-09-03-intelligence.json —— 11 个已规范化、未选题且主动样本覆盖完整的 Signal。",
+      "next": "Queue may immediately triage the verified 2026-09-03 Signal Pool as the next overdue task after Discovery completion is durably verified on main.",
+      "next_zh": "Discovery 完成状态在 main 上持久核验后，Queue 可作为下一项已逾期任务立即筛选已核验的 2026-09-03 Signal Pool。",
+      "metrics": [
+        {
+          "label": "Prompt SHA-256 verified",
+          "label_zh": "Prompt SHA-256 已核验",
+          "value": "3b91ab2769fe035ddec1bdedd27ffc7b34fa5c1da3232c2a05ed7653fc8c28bc"
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 requiredSources",
+          "value": "10 / 10"
+        },
+        {
+          "label": "AI Platform due / checked / failed",
+          "label_zh": "AI 平台应查 / 已查 / 失败",
+          "value": "45 / 45 / 0"
+        },
+        {
+          "label": "GitHub repositories due / checked / failed",
+          "label_zh": "GitHub 仓库应查 / 已查 / 失败",
+          "value": "9 / 9 / 0"
+        },
+        {
+          "label": "Research sources due / checked / failed",
+          "label_zh": "研究来源应查 / 已查 / 失败",
+          "value": "9 / 9 / 0"
+        },
+        {
+          "label": "Active product-governance samples",
+          "label_zh": "主动产品治理样本",
+          "value": "3 checked / 3 qualified"
+        },
+        {
+          "label": "Active multi-agent mechanism samples",
+          "label_zh": "主动多 Agent 机制样本",
+          "value": "3 checked / 1 qualified signal"
+        },
+        {
+          "label": "Active research/benchmark objects",
+          "label_zh": "主动研究/基准对象",
+          "value": "3 checked / 3 qualified"
+        },
+        {
+          "label": "Normalized signals",
+          "label_zh": "规范化信号",
+          "value": 11
+        },
+        {
+          "label": "Canonicalized signal roles",
+          "label_zh": "已规范化 Signal Role",
+          "value": 5
+        },
+        {
+          "label": "Pure sample-change-trigger density",
+          "label_zh": "纯 Sample Change Trigger 密度",
+          "value": "0%"
+        },
+        {
+          "label": "Selected topics",
+          "label_zh": "已选主题",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Authority control-source commit",
+          "label_zh": "权威控制源提交",
+          "value": "65ed08be009e0be5713e3852ee7b9e4c136179d9"
+        },
+        {
+          "label": "Recovery Wake Receipt",
+          "label_zh": "恢复 Wake Receipt",
+          "source": "research/runtime/wakes/2026/09/2026-09-03/discovery-123400.json"
+        },
+        {
+          "label": "Worker control manifest",
+          "label_zh": "Worker Control Manifest",
+          "source": "research/runtime/worker-prompts/generated/CONTROL.json"
+        },
+        {
+          "label": "Generated Discovery Prompt",
+          "label_zh": "Generated Discovery Prompt",
+          "source": "research/runtime/worker-prompts/generated/discovery.prompt.md"
+        },
+        {
+          "label": "Repaired Intelligence commit",
+          "label_zh": "已修复 Intelligence 提交",
+          "value": "398451715201ae046f2726402cae33f5eb12d8f4"
+        },
+        {
+          "label": "Remote validation",
+          "label_zh": "远程校验",
+          "value": "Validate Research Center 3.0 #33715829946 success"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Research Intelligence run",
+          "label_zh": "Research Intelligence 运行记录",
+          "value": "research/intelligence/runs/2026/09/2026-09-03-intelligence.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "value": "research/runtime/records/daily/2026/09/2026-09-03-daily-runtime.json"
+        },
+        {
+          "label": "Human-readable Runtime ledger",
+          "label_zh": "人类可读 Runtime 账本",
+          "value": "research/runtime/2026/09/2026-09-03-runtime.md"
+        }
+      ],
+      "startedAt": "2026-09-03T12:35:08+08:00",
+      "completedAt": "2026-09-03T12:42:30+08:00"
+    }
+  },
   "timeline": [
     {
       "time": "2026-09-03T09:10:04+08:00",
@@ -67,6 +196,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Discovery after verifying research/runtime/wakes/2026/09/2026-09-03/discovery-123400.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-03T12:42:30+08:00",
+      "task": "discovery",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Discovery closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-03."
     }
   ],
   "metrics": [],
@@ -74,5 +210,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-03T12:35:08+08:00"
+  "updatedAt": "2026-09-03T12:42:30+08:00"
 }
