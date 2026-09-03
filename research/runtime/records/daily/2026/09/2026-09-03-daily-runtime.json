@@ -8,13 +8,13 @@
   "date": "2026-09-03",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Running",
+    "production": "Completed",
     "publication": "Waiting"
   },
   "results": {
@@ -712,6 +712,160 @@
       "githubCommit": "8ee081f26f7e173faeb47d6a725b4c79361d4d64",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-03T13:13:36+08:00"
+    },
+    "production": {
+      "schema": "runtime-shift-result/v2",
+      "task": "production",
+      "family": "daily",
+      "runtimeDate": "2026-09-03",
+      "status": "Completed",
+      "productionMode": "candidate-batch",
+      "input": {
+        "promptVersion": "2.13.0",
+        "promptPath": "research/runtime/worker-prompts/generated/production.prompt.md",
+        "promptSha256": "d8b0cd52d22d976d6356558a23c5c2dc28ed5aa8f51793538fa8fbebfb80996f",
+        "promptVerificationMode": "exact-head-ci",
+        "controlSourceCommit": "5141d3eb3a06e752105d4ef319f42bdfcf5efe74",
+        "workerClaimCommit": "88d7db01bdb21e8574f65f27057e55715a620773",
+        "wakeReceipt": "research/runtime/wakes/2026/09/2026-09-03/production-212923.json",
+        "researchObjects": [
+          "Q-20260903-01",
+          "Q-20260903-02",
+          "Q-20260903-03"
+        ],
+        "recoveredFromFailedResultCommit": "d38c25cb19fcbf477f4c66863617ece52be58e8d",
+        "stagedCandidateCommit": "ea81b4f8a8588cc3d89b81dfa38216be2fe922f5"
+      },
+      "workResult": {
+        "summary": "Governed same-day terminal recovery resumed from durable Production evidence without rewriting the two already-valid items. It repaired the sole remaining Q-20260903-03 English/shared research-question mismatch, rematerialized that item, atomically restaged all three same-date candidates, and passed the repository-defined checkpoint, atomic-bundle, Runtime, editorial, evidence, language, bilingual-consistency and layout gates. Publication was not executed.",
+        "summary_zh": "同日受治理终态恢复从既有持久 Production 证据继续，没有重写两项已通过的工作。恢复仅修复 Q-20260903-03 英文稿与共享研究问题之间唯一剩余的不一致，重新物化该项后原子化装配三项同日候选，并通过仓库定义的检查点、原子候选包、Runtime、编辑、证据、语言、双语一致性与版式门禁；未执行 Publication。"
+      },
+      "output": {
+        "type": "Publication Candidates",
+        "candidateBatch": "research/runtime/candidates/2026/09/2026-09-03-candidates.json",
+        "candidateCount": 3,
+        "bilingualArticleFiles": 6,
+        "coverAssets": 3,
+        "inlineFigureAssets": 0
+      },
+      "next": {
+        "task": "publication",
+        "instruction": "Do not execute Publication in this Production recovery. Publication remains a separate governed task and must be reconciled independently under current main.",
+        "instruction_zh": "本次 Production 恢复不得执行 Publication；Publication 仍是独立受治理任务，必须按当前 main 另行对账。"
+      },
+      "coverEvidence": [
+        {
+          "itemId": "Q-20260903-01",
+          "briefId": "2026-09-03:Q-20260903-01-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-09-03-a-checkpoint-is-not-a-recovery-contract-cover.png",
+          "sanitizedPrompt": "Two aligned translucent state planes rewind together while a bright external trace remains beyond their boundary",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260903-02",
+          "briefId": "2026-09-03:Q-20260903-02-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-09-03-delegation-is-a-stateful-authorization-program-cover.png",
+          "sanitizedPrompt": "A chain of narrowing gates remembers each passing action and blocks the final harmful combination",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260903-03",
+          "briefId": "2026-09-03:Q-20260903-03-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-09-03-discovery-must-not-redefine-credential-authority-cover.png",
+          "sanitizedPrompt": "One credential path follows several redirects while a fixed luminous identity anchor rejects a divergent endpoint",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        }
+      ],
+      "metrics": [
+        {
+          "name": "research_objects_consumed",
+          "value": 3
+        },
+        {
+          "name": "publication_candidates",
+          "value": 3
+        },
+        {
+          "name": "persisted_article_segments",
+          "value": 3
+        },
+        {
+          "name": "planning_artifacts",
+          "value": 9
+        },
+        {
+          "name": "bilingual_article_files",
+          "value": 6
+        },
+        {
+          "name": "cover_assets",
+          "value": 3
+        },
+        {
+          "name": "inline_figure_assets",
+          "value": 0
+        },
+        {
+          "name": "revision_rounds",
+          "value": 3
+        },
+        {
+          "name": "recovery_attempts",
+          "value": 1
+        },
+        {
+          "name": "recovered_items_rematerialized",
+          "value": 1
+        },
+        {
+          "name": "required_sources_read",
+          "value": 13
+        },
+        {
+          "name": "direct_cloud_image_generation_calls",
+          "value": 0
+        },
+        {
+          "name": "direct_publication_actions",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        "5141d3eb3a06e752105d4ef319f42bdfcf5efe74",
+        "88d7db01bdb21e8574f65f27057e55715a620773",
+        "440c6ae0b622d067d6da94ad1d4dff5da37de525",
+        "0183f11f9b0dce804630310a4a4070c0d265835f",
+        "ea81b4f8a8588cc3d89b81dfa38216be2fe922f5",
+        "research/runtime/worker-prompts/generated/production.prompt.md",
+        "research/runtime/checkpoints/2026/09/2026-09-03-production.json",
+        "research/runtime/wakes/2026/09/2026-09-03/production-212923.json",
+        "https://github.com/joinwell52-AI/joinwell52/actions/runs/33761444618",
+        "https://github.com/joinwell52-AI/joinwell52/actions/runs/33761970253"
+      ],
+      "artifacts": [
+        "research/runtime/candidates/2026/09/2026-09-03-candidates.json",
+        "research/runtime/checkpoints/2026/09/2026-09-03-production.json",
+        "staging/publication-candidates/2026-09-03-a-checkpoint-is-not-a-recovery-contract.zh.md",
+        "staging/publication-candidates/2026-09-03-a-checkpoint-is-not-a-recovery-contract.en.md",
+        "staging/publication-candidates/2026-09-03-a-checkpoint-is-not-a-recovery-contract-cover.png",
+        "staging/publication-candidates/2026-09-03-delegation-is-a-stateful-authorization-program.zh.md",
+        "staging/publication-candidates/2026-09-03-delegation-is-a-stateful-authorization-program.en.md",
+        "staging/publication-candidates/2026-09-03-delegation-is-a-stateful-authorization-program-cover.png",
+        "staging/publication-candidates/2026-09-03-discovery-must-not-redefine-credential-authority.zh.md",
+        "staging/publication-candidates/2026-09-03-discovery-must-not-redefine-credential-authority.en.md",
+        "staging/publication-candidates/2026-09-03-discovery-must-not-redefine-credential-authority-cover.png"
+      ],
+      "startedAt": "2026-09-03T21:28:19+08:00",
+      "completedAt": "2026-09-03T21:41:00+08:00"
     }
   },
   "timeline": [
@@ -903,6 +1057,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Production after verifying research/runtime/wakes/2026/09/2026-09-03/production-212923.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-03T21:41:00+08:00",
+      "task": "production",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Production closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-03."
     }
   ],
   "metrics": [],
@@ -910,5 +1071,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-03T21:33:05+08:00"
+  "updatedAt": "2026-09-03T21:41:00+08:00"
 }
