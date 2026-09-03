@@ -1,0 +1,72 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-03",
+  "itemId": "Q-20260903-02",
+  "coreProposition": "Delegated multi-agent authority should be enforced as a stateful authorization program: scope narrows across principal hops, budgets and prior actions accumulate, and composition closure is checked atomically before effects.",
+  "openingMove": {
+    "type": "allowed-pair-harm",
+    "purpose": "Open with two permitted actions whose combination crosses a prohibited outcome boundary.",
+    "evidenceRefs": [
+      "E2",
+      "E3"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why do static permissions fail?",
+      "claim": "A maximum action set does not encode the delegated task, cumulative budget or prior-action history.",
+      "evidenceRefs": [
+        "E1"
+      ],
+      "reasoningRole": "problem-separation",
+      "readerProgress": "See why local allow decisions are incomplete.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What state must delegation carry?",
+      "claim": "Ordered principals, monotone scope, budgets, intent, approvals, evidence commitments and prior actions form one session envelope.",
+      "evidenceRefs": [
+        "E1",
+        "E2"
+      ],
+      "reasoningRole": "mechanism",
+      "readerProgress": "Understand the authorization-program abstraction.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "How is harmful composition blocked?",
+      "claim": "Admission denies a call whose action type would complete a prohibited pair or ordered tuple, with atomic state update before effects.",
+      "evidenceRefs": [
+        "E2",
+        "E3"
+      ],
+      "reasoningRole": "technical-analysis",
+      "readerProgress": "Connect history to call-time enforcement.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Where does the guarantee stop?",
+      "claim": "Coverage gaps, classification errors, concurrent races and gateway compromise remain outside the mechanism's guarantee.",
+      "evidenceRefs": [
+        "E3",
+        "E4"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "Evaluate tradeoffs without overclaiming.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Existing role-based controls and delegated tokens already represent authority.",
+    "responseBoundary": "They remain necessary, but do not automatically enforce per-hop attenuation or history-sensitive action compositions."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with policy coverage, concurrency and recovery-state questions."
+  }
+}

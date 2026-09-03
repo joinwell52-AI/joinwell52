@@ -1,0 +1,50 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-03",
+  "itemId": "Q-20260903-02",
+  "researchObjectId": "Q-20260903-02",
+  "targetAudience": {
+    "primary": "Architects, security engineers and governance leads operating enterprise multi-agent systems",
+    "knowledgeAssumption": "The reader understands roles, delegated credentials, tool calls and policy enforcement.",
+    "readerProblem": "Individually permitted calls can combine into a harmful outcome while every agent appears locally compliant."
+  },
+  "whyNow": "A primary preprint reports an Agentic Principal Chain mechanism over 3,154 evaluation instances, including strong blocking for policy-covered exfiltration cases alongside utility cost and residual uncovered harm.",
+  "externalHook": {
+    "type": "locally-allowed-globally-harmful",
+    "description": "A read call and a send call may each be allowed while their composition exfiltrates data.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "coreProposition": "Delegated multi-agent authority should be enforced as a stateful authorization program: scope narrows across principal hops, budgets and prior actions accumulate, and composition closure is checked atomically before effects.",
+  "originalValue": {
+    "type": "authorization-program-model",
+    "description": "Reframes delegated authority from per-agent permissions into infrastructure-held session state with monotone narrowing and composition closure."
+  },
+  "readerTakeaway": "Bind every delegated call to an ordered principal chain, narrowed scope, cumulative budget and prior-action state; serialize the admission update before effectful execution.",
+  "evidenceBoundary": {
+    "supported": [
+      "The source reports a signed principal-chain session envelope and six conjunctive admission checks.",
+      "Covered exfiltration cases were strongly blocked in the reported benchmark.",
+      "Removing a required composition pair produced a reported 39.9% data-stealing rate and interactive enforcement incurred utility cost."
+    ],
+    "unsupported": [
+      "Complete enterprise protection",
+      "Safety when the enforcement gateway is compromised",
+      "Automatic discovery of every harmful action composition"
+    ],
+    "uncertain": [
+      "Scalable policy authoring",
+      "Distributed serialization and cross-session composition"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument concerns general delegated authorization architecture."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The source exposes a concrete stateful mechanism, measurable tradeoffs and failure under incomplete composition policy."
+}
