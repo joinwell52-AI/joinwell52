@@ -1,0 +1,71 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-03",
+  "itemId": "Q-20260903-03",
+  "coreProposition": "MCP OAuth clients should select expected issuer identity before following discovery indirection, bind every authority-bearing artifact and response to it, and fail closed on mismatch or downgrade; discovery location must not redefine credential authority.",
+  "openingMove": {
+    "type": "valid-location-wrong-identity",
+    "purpose": "Open with a well-formed discovery response that silently changes which server receives credentials.",
+    "evidenceRefs": [
+      "E1",
+      "E2"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is endpoint validity insufficient?",
+      "claim": "Location and authority are separate; indirection can lead to a valid artifact from the wrong issuer.",
+      "evidenceRefs": [
+        "E1",
+        "E2"
+      ],
+      "reasoningRole": "failure-model",
+      "readerProgress": "Separate transport location from credential authority.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Where do implementations bind issuer?",
+      "claim": "The Python SDK checks metadata and token construction, while Gemini CLI checks authorization callback issuer.",
+      "evidenceRefs": [
+        "E1",
+        "E2"
+      ],
+      "reasoningRole": "cross-sample-comparison",
+      "readerProgress": "See complementary occurrences in one flow.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "Why do comparison rules matter?",
+      "claim": "Exact comparison and bounded URL normalization can accept different forms and create inconsistent boundaries.",
+      "evidenceRefs": [
+        "E3"
+      ],
+      "reasoningRole": "interoperability-analysis",
+      "readerProgress": "Treat normalization as protocol policy.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What remains independent?",
+      "claim": "TLS, state, PKCE, redirect validation, resource indicators, token audience and backend authorization remain required.",
+      "evidenceRefs": [
+        "E4"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "Avoid a single-control security claim.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Strict issuer matching rejects harmless deployment differences.",
+    "responseBoundary": "A normative comparison profile and migration diagnostics are preferable to silent permissiveness."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with normalization, compatibility and cache migration."
+  }
+}

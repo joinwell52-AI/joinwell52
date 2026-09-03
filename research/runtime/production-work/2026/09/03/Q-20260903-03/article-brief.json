@@ -1,0 +1,50 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-03",
+  "itemId": "Q-20260903-03",
+  "researchObjectId": "Q-20260903-03",
+  "targetAudience": {
+    "primary": "Open-source maintainers and security engineers implementing MCP OAuth clients",
+    "knowledgeAssumption": "The reader understands OAuth metadata, redirects, callbacks, state and PKCE.",
+    "readerProblem": "A client can accept syntactically valid metadata or callbacks from the wrong authorization server because location is mistaken for identity."
+  },
+  "whyNow": "Two independent maintainer changes in the MCP Python SDK and Gemini CLI converged on issuer binding at different occurrences while exposing different comparison semantics.",
+  "externalHook": {
+    "type": "valid-response-wrong-authority",
+    "description": "A valid URL and well-formed response can still belong to an authorization server the client did not intend to trust.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "coreProposition": "MCP OAuth clients should select expected issuer identity before following discovery indirection, bind every authority-bearing artifact and response to it, and fail closed on mismatch or downgrade; discovery location must not redefine credential authority.",
+  "originalValue": {
+    "type": "identity-before-indirection",
+    "description": "Unifies metadata and callback fixes into an occurrence-complete issuer-binding rule and identifies comparison semantics as an interoperability boundary."
+  },
+  "readerTakeaway": "Choose expected issuer identity before discovery; bind metadata, token construction and callbacks to it; invalidate state and fail closed on mismatch, with explicit lower-assurance compatibility modes.",
+  "evidenceBoundary": {
+    "supported": [
+      "The Python SDK validates discovered authorization-server metadata and token construction against expected issuer.",
+      "Gemini CLI validates RFC 9207 issuer at the local callback and rejects missing or mismatched values when expected.",
+      "The two implementations use different observed issuer comparison semantics."
+    ],
+    "unsupported": [
+      "A complete interoperable profile across MCP clients",
+      "Protection without TLS, state, PKCE or audience binding",
+      "Measured production incident reduction"
+    ],
+    "uncertain": [
+      "Normative normalization rules",
+      "Safe token-cache migration across issuer changes"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument compares general open-source protocol implementations."
+  },
+  "recommendedArticleType": "comparative-study",
+  "editorialDecision": "PASS",
+  "decisionReason": "Independent implementations address the same authority-confusion class at complementary protocol occurrences and expose a concrete interoperability gap."
+}
