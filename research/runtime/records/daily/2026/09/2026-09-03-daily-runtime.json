@@ -8,13 +8,13 @@
   "date": "2026-09-03",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Failed",
+  "status": "Running",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Failed",
+    "production": "Running",
     "publication": "Waiting"
   },
   "results": {
@@ -712,123 +712,6 @@
       "githubCommit": "8ee081f26f7e173faeb47d6a725b4c79361d4d64",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-03T13:13:36+08:00"
-    },
-    "production": {
-      "schema": "runtime-shift-result/v2",
-      "task": "production",
-      "family": "daily",
-      "runtimeDate": "2026-09-03",
-      "status": "Failed",
-      "reason": "Production exhausted the repository-admitted maximum of three revision rounds without satisfying every mandatory candidate gate. The final attempted batch passed checkpoint, atomic-bundle and layout validation but failed bilingual consistency because Q-20260903-03 English research_question did not exactly match the shared candidate question. No candidate batch was durably promoted and Publication was not executed.",
-      "reason_zh": "Production 已耗尽仓库允许的 3 个修订轮次，仍未通过全部必需候选门禁。最后一次批次尝试已通过检查点、原子候选包与版式校验，但 Q-20260903-03 英文稿的 research_question 与共享候选问题不完全一致，因而双语一致性失败。没有候选批次被持久提升，也未执行 Publication。",
-      "productionMode": "candidate-batch-attempt",
-      "input": {
-        "promptVersion": "2.13.0",
-        "promptPath": "research/runtime/worker-prompts/generated/production.prompt.md",
-        "promptSha256": "d8b0cd52d22d976d6356558a23c5c2dc28ed5aa8f51793538fa8fbebfb80996f",
-        "promptVerificationMode": "direct-sha256",
-        "researchObjects": [
-          "Q-20260903-01",
-          "Q-20260903-02",
-          "Q-20260903-03"
-        ],
-        "workerClaimCommit": "8283810d2fb937fb516707151f4b726d2e52e83d"
-      },
-      "workResult": {
-        "summary": "Materialized and remotely verified three article-sized bilingual work segments with deterministic baseline covers. The initial batch failed eight Chinese terminology checks; three governed revisions repaired those findings and synchronized the Chinese shared question, but the final revision exposed one remaining English/shared-question mismatch. The revision limit was reached, so no canonical candidate batch was promoted.",
-        "summary_zh": "已逐项物化并远程核验 3 个双语文章级工作段及其确定性基础题图。首次批次因 8 处中文术语规则失败；3 个受治理修订轮次修复了这些问题并同步中文共享问题，但最后一轮仍发现英文稿与共享问题有 1 处不一致。因修订次数已达上限，没有提升规范候选批次。"
-      },
-      "output": {
-        "type": "No validated Publication Candidates",
-        "candidateBatch": "research/runtime/candidates/2026/09/2026-09-03-candidates.json",
-        "candidateCount": 0,
-        "bilingualArticleFilesPromoted": 0,
-        "coverAssetsPromoted": 0,
-        "inlineFigureAssetsPromoted": 0
-      },
-      "next": {
-        "task": "production-recovery",
-        "instruction": "Do not execute Publication. A later same-day recovery requires explicit governed terminal-recovery authority and must resume from durable evidence under the then-current main contract.",
-        "instruction_zh": "不得执行 Publication。若同日稍后恢复，必须取得显式的受治理终态恢复权限，并按届时 main 上的当前合同从持久证据继续。"
-      },
-      "metrics": [
-        {
-          "name": "research_objects_consumed",
-          "value": 3
-        },
-        {
-          "name": "article_segments_materialized",
-          "value": 3
-        },
-        {
-          "name": "planning_artifacts",
-          "value": 9
-        },
-        {
-          "name": "pre_candidate_bilingual_files",
-          "value": 6
-        },
-        {
-          "name": "baseline_cover_assets",
-          "value": 3
-        },
-        {
-          "name": "revision_rounds",
-          "value": 3
-        },
-        {
-          "name": "validated_publication_candidates",
-          "value": 0
-        },
-        {
-          "name": "required_sources_read",
-          "value": 13
-        },
-        {
-          "name": "direct_cloud_image_generation_calls",
-          "value": 0
-        },
-        {
-          "name": "direct_publication_actions",
-          "value": 0
-        }
-      ],
-      "evidence": [
-        "8283810d2fb937fb516707151f4b726d2e52e83d",
-        "research/runtime/worker-prompts/generated/production.prompt.md",
-        "research/runtime/checkpoints/2026/09/2026-09-03-production.json",
-        "research/runtime/wakes/2026/09/2026-09-03/production-150017.json",
-        "https://github.com/joinwell52-AI/joinwell52/actions/runs/33727271644",
-        "https://github.com/joinwell52-AI/joinwell52/actions/runs/33727385202",
-        "https://github.com/joinwell52-AI/joinwell52/actions/runs/33727735328",
-        "https://github.com/joinwell52-AI/joinwell52/actions/runs/33727862613"
-      ],
-      "artifacts": [
-        "research/runtime/checkpoints/2026/09/2026-09-03-production.json",
-        "research/runtime/production-work/2026/09/03/Q-20260903-01/article-brief.json",
-        "research/runtime/production-work/2026/09/03/Q-20260903-01/argument-architecture.json",
-        "research/runtime/production-work/2026/09/03/Q-20260903-01/figure-plan.json",
-        "research/runtime/production-work/2026/09/03/Q-20260903-01/draft.zh.md",
-        "research/runtime/production-work/2026/09/03/Q-20260903-01/draft.en.md",
-        "research/runtime/production-work/2026/09/03/Q-20260903-01/baseline-cover.png",
-        "research/runtime/production-work/2026/09/03/Q-20260903-02/article-brief.json",
-        "research/runtime/production-work/2026/09/03/Q-20260903-02/argument-architecture.json",
-        "research/runtime/production-work/2026/09/03/Q-20260903-02/figure-plan.json",
-        "research/runtime/production-work/2026/09/03/Q-20260903-02/draft.zh.md",
-        "research/runtime/production-work/2026/09/03/Q-20260903-02/draft.en.md",
-        "research/runtime/production-work/2026/09/03/Q-20260903-02/baseline-cover.png",
-        "research/runtime/production-work/2026/09/03/Q-20260903-03/article-brief.json",
-        "research/runtime/production-work/2026/09/03/Q-20260903-03/argument-architecture.json",
-        "research/runtime/production-work/2026/09/03/Q-20260903-03/figure-plan.json",
-        "research/runtime/production-work/2026/09/03/Q-20260903-03/draft.zh.md",
-        "research/runtime/production-work/2026/09/03/Q-20260903-03/draft.en.md",
-        "research/runtime/production-work/2026/09/03/Q-20260903-03/baseline-cover.png"
-      ],
-      "startedAt": "2026-09-03T15:01:56+08:00",
-      "completedAt": "2026-09-03T15:26:47+08:00",
-      "githubCommit": "d38c25cb19fcbf477f4c66863617ece52be58e8d",
-      "commitVerify": "Completed",
-      "verifiedAt": "2026-09-03T15:26:55+08:00"
     }
   },
   "timeline": [
@@ -1006,12 +889,19 @@
       "event": "GitHub Commit Verified",
       "status": "Completed",
       "detail": "Fetched and verified durable Research Runtime Production Failed result commit d38c25cb19fcbf477f4c66863617ece52be58e8d on main; 1 execution epoch(s) remain as audit evidence, every prior epoch is governed-closed, and the latest epoch contains a fresh Worker Claimed event before terminal finalization."
+    },
+    {
+      "time": "2026-09-03T21:28:19+08:00",
+      "task": "production",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Production reopened by Research Runtime Scheduler V3.0 under explicit governed terminal-recovery authorization."
     }
   ],
   "metrics": [],
   "evidence": [],
   "artifacts": [],
-  "githubCommit": "d38c25cb19fcbf477f4c66863617ece52be58e8d",
-  "commitVerify": "Completed",
-  "updatedAt": "2026-09-03T15:26:55+08:00"
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-09-03T21:28:19+08:00"
 }
