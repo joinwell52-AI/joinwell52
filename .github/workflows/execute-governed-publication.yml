@@ -5,10 +5,16 @@ on:
     branches: [main]
     paths:
       - "research/runtime/manual-execution-requests/publication.json"
+  workflow_run:
+    workflows:
+      - "Research Runtime Shift Finalization V2.1"
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: execute-governed-publication-stable-v1
@@ -17,6 +23,7 @@ concurrency:
 jobs:
   publish:
     name: Validate and release governed Publication
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout authoritative main
@@ -40,9 +47,15 @@ jobs:
         id: request
         shell: bash
         env:
+          EVENT_NAME: ${{ github.event_name }}
           REQUEST_PATH: research/runtime/manual-execution-requests/publication.json
         run: |
           set -euo pipefail
+          if [[ "$EVENT_NAME" == "workflow_run" ]]; then
+            node scripts/runtime-publication-continuation.mjs
+            exit 0
+          fi
+
           node <<'NODE'
           const fs = require('fs')
           const p = process.env.REQUEST_PATH
@@ -54,18 +67,117 @@ jobs:
           if (!request.wakeReceipt.includes(`/${request.date}/`)) throw new Error('Wake Receipt date does not match request.date')
           if (!['chatgpt-scheduled-task', 'manual-recovery'].includes(request.source)) throw new Error('Invalid request.source')
           if (!fs.existsSync(request.wakeReceipt)) throw new Error(`Wake Receipt not found: ${request.wakeReceipt}`)
-          fs.appendFileSync(process.env.GITHUB_OUTPUT, `date=${request.date}\n`)
-          fs.appendFileSync(process.env.GITHUB_OUTPUT, `wake=${request.wakeReceipt}\n`)
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, 'eligible=true\n')
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `runtime_date=${request.date}\n`)
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `wake_receipt=${request.wakeReceipt}\n`)
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, 'publication_status=Running\n')
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `reason=explicit governed Publication execution request from ${request.source}\n`)
           console.log(`Resolved governed Publication request for ${request.date} using ${request.wakeReceipt}`)
           NODE
 
-      - name: Materialize only currently authorized Publication candidates
+      - name: Report no deferred Publication continuation
+        if: steps.request.outputs.eligible != 'true'
+        run: echo "No governed Publication continuation is eligible. ${{ steps.request.outputs.reason }}"
+
+      - name: Claim deferred Publication execution
+        if: github.event_name == 'workflow_run' && steps.request.outputs.eligible == 'true'
+        id: continuation_claim
+        shell: bash
         env:
-          RUNTIME_DATE: ${{ steps.request.outputs.date }}
-          WAKE_RECEIPT: ${{ steps.request.outputs.wake }}
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+          WAKE_RECEIPT: ${{ steps.request.outputs.wake_receipt }}
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git reset --hard origin/main
+
+          # Re-resolve after synchronization so an already-claimed ChatGPT worker always wins.
+          resolution="$(node scripts/runtime-publication-continuation.mjs)"
+          eligible="$(node -e 'const r=JSON.parse(process.argv[1]); process.stdout.write(String(r.eligible))' "$resolution")"
+          if [[ "$eligible" != "true" ]]; then
+            echo "Deferred Publication was claimed or closed before continuation took authority: $resolution"
+            echo "claimed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          node scripts/runtime-v5.mjs schedule --task publication
+          node scripts/runtime-worker-claim.mjs \
+            --task publication \
+            --date "$RUNTIME_DATE" \
+            --receipt "$WAKE_RECEIPT" \
+            --worker github-deferred-publication-continuation
+          node scripts/runtime-markdown.mjs render --date "$RUNTIME_DATE"
+          npm run runtime:validate
+          node scripts/runtime-markdown.mjs validate --date "$RUNTIME_DATE"
+
+          git config user.name "joinwell52 Research Runtime"
+          git config user.email "actions@users.noreply.github.com"
+          git add research/runtime/records research/runtime/[0-9][0-9][0-9][0-9]
+          if git diff --cached --quiet; then
+            echo "Deferred Publication claim was already durable."
+            echo "claimed=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "runtime(publication): claim deferred continuation for ${RUNTIME_DATE}"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main; then
+              claim_sha="$(git rev-parse HEAD)"
+              if git push origin HEAD:main; then
+                echo "claimed=true" >> "$GITHUB_OUTPUT"
+                echo "claim_sha=$claim_sha" >> "$GITHUB_OUTPUT"
+                break
+              fi
+            fi
+            git rebase --abort || true
+            if [[ "$attempt" -eq 3 ]]; then exit 1; fi
+            sleep $((attempt * 5))
+          done
+
+          git fetch origin main
+          git reset --hard origin/main
+          node <<'NODE'
+          const fs = require('fs')
+          const path = require('path')
+          const date = process.env.RUNTIME_DATE
+          const [y,m] = date.split('-')
+          const file = path.join('research/runtime/records/daily', y, m, `${date}-daily-runtime.json`)
+          const record = JSON.parse(fs.readFileSync(file, 'utf8'))
+          if (record.taskStatus?.publication !== 'Running') throw new Error(`Expected publication=Running, got ${record.taskStatus?.publication}`)
+          const timeline = record.timeline || []
+          let start = -1
+          for (let i = timeline.length - 1; i >= 0; i -= 1) {
+            const e = timeline[i]
+            if (e.task === 'publication' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith(date)) { start = i; break }
+          }
+          if (start < 0) throw new Error('Missing deferred Publication Execution Slot Opened')
+          const claim = timeline.slice(start + 1).find(e => e.task === 'publication' && e.event === 'Worker Claimed' && e.status === 'Running' && String(e.detail || '').includes(process.env.WAKE_RECEIPT) && String(e.detail || '').includes('GitHub deferred Publication continuation worker'))
+          if (!claim) throw new Error('Missing verified GitHub deferred Publication Worker Claimed event')
+          console.log(`Verified deferred Publication claim at ${claim.time}.`)
+          NODE
+
+      - name: Reconfirm continuation authority after claim race
+        id: authority
+        if: steps.request.outputs.eligible == 'true'
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          CONTINUATION_CLAIMED: ${{ steps.continuation_claim.outputs.claimed }}
+        run: |
+          if [[ "$EVENT_NAME" == "workflow_run" && "$CONTINUATION_CLAIMED" != "true" ]]; then
+            echo "authorized=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "authorized=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Materialize only currently authorized Publication candidates
+        if: steps.authority.outputs.authorized == 'true'
+        env:
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+          WAKE_RECEIPT: ${{ steps.request.outputs.wake_receipt }}
         run: node scripts/runtime-publication-release-current.mjs --date "$RUNTIME_DATE" --wake "$WAKE_RECEIPT"
 
       - name: Run authoritative Publication validators and build
+        if: steps.authority.outputs.authorized == 'true'
         run: |
           npm run publication:layout:validate
           npm run publication:editorial:validate
@@ -74,10 +186,11 @@ jobs:
           node scripts/publication-visibility.mjs
 
       - name: Commit and push durable release
+        if: steps.authority.outputs.authorized == 'true'
         id: release
         shell: bash
         env:
-          RUNTIME_DATE: ${{ steps.request.outputs.date }}
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
         run: |
           set -euo pipefail
           IFS=- read -r YEAR MONTH DAY <<< "$RUNTIME_DATE"
@@ -113,10 +226,11 @@ jobs:
           done
 
       - name: Verify durable release on main
+        if: steps.authority.outputs.authorized == 'true'
         shell: bash
         env:
           RELEASE_SHA: ${{ steps.release.outputs.release_sha }}
-          RUNTIME_DATE: ${{ steps.request.outputs.date }}
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
         run: |
           set -euo pipefail
           IFS=- read -r YEAR MONTH DAY <<< "$RUNTIME_DATE"
@@ -134,3 +248,20 @@ jobs:
           for (const item of release.releasedItems) for (const key of ['zh', 'en', 'cover']) if (!fs.existsSync(item[key])) throw new Error(`Missing durable ${item[key]}`)
           console.log(`Verified ${release.releasedItems.length} released items on origin/main at ${process.env.RELEASE_SHA}.`)
           NODE
+
+      - name: Dispatch governed Publication finalization
+        if: steps.authority.outputs.authorized == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+        run: |
+          set -euo pipefail
+          IFS=- read -r YEAR MONTH DAY <<< "$RUNTIME_DATE"
+          RESULT_PATH="research/runtime/results/${YEAR}/${MONTH}/${RUNTIME_DATE}-publication-result.json"
+          gh workflow run research-runtime-shift-completion.yml \
+            --ref main \
+            -f runtime_task=publication \
+            -f runtime_date="$RUNTIME_DATE" \
+            -f result_path="$RESULT_PATH" \
+            -f allow_historical=false
+          echo "Dispatched governed Publication finalization for ${RUNTIME_DATE}."
