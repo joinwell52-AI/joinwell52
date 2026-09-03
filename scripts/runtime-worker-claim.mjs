@@ -37,9 +37,18 @@ const args = argsOf(process.argv)
 const taskId = String(args.task || '')
 const date = String(args.date || '')
 const receipt = String(args.receipt || '')
+const worker = String(args.worker || 'chatgpt-automation')
+const allowedWorkers = new Set(['chatgpt-automation', 'github-deferred-publication-continuation'])
 const task = manifest.tasks.find((item) => item.id === taskId)
 if (!task) fail(`unknown task ${taskId}`)
 if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) fail(`invalid date ${date}`)
+if (!allowedWorkers.has(worker)) fail(`invalid worker ${worker}`)
+if (worker === 'github-deferred-publication-continuation' && taskId !== 'publication') {
+  fail('GitHub deferred continuation is restricted to the mechanical Publication stage')
+}
+if (worker === 'github-deferred-publication-continuation' && !receipt) {
+  fail('GitHub deferred Publication continuation requires the original formal Wake Receipt')
+}
 const now = clock()
 if (date !== now.date) fail(`claim date ${date} is not active Shanghai date ${now.date}`)
 if (receipt && !/^research\/runtime\/wakes\/.+\.json$/.test(receipt)) fail(`invalid wake receipt path ${receipt}`)
@@ -71,17 +80,20 @@ if (existingClaim) {
   process.exit(0)
 }
 const claimedAt = `${now.date}T${now.time}+08:00`
+const detail = worker === 'github-deferred-publication-continuation'
+  ? `GitHub deferred Publication continuation worker claimed ${task.name} after verifying the original formal Wake Receipt ${receipt}, Production=Completed, and current execution authority on main. This worker is restricted to mechanical Publication release work and may not perform research, substantive rewriting or evidence repair.`
+  : receipt
+    ? `ChatGPT Automation claimed ${task.name} after verifying ${receipt} and the current execution authority on main.`
+    : `ChatGPT Automation claimed ${task.name} after verifying the current execution authority on main.`
 record.timeline.push({
   time: claimedAt,
   task: taskId,
   event: 'Worker Claimed',
   status: 'Running',
-  detail: receipt
-    ? `ChatGPT Automation claimed ${task.name} after verifying ${receipt} and the current execution authority on main.`
-    : `ChatGPT Automation claimed ${task.name} after verifying the current execution authority on main.`
+  detail
 })
 record.updatedAt = claimedAt
 record.githubCommit = 'pending'
 record.commitVerify = 'Waiting'
 writeJson(file, record)
-console.log(`Recorded Worker Claimed for ${taskId} ${date} at ${claimedAt}${receipt ? ` bound to ${receipt}` : ''}.`)
+console.log(`Recorded Worker Claimed for ${taskId} ${date} at ${claimedAt}${receipt ? ` bound to ${receipt}` : ''} by ${worker}.`)
