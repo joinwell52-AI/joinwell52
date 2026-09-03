@@ -46,6 +46,27 @@
       "event": "Execution Deferred",
       "status": "Waiting",
       "detail": "Reading wake research/runtime/wakes/2026/09/2026-09-03/reading-105851.json was durably verified, but the earlier 09:00 Discovery task remains Running with a fresh verified Worker Claimed event at 09:11:29 within its admitted 120-minute run window. Reading received no execution authority and performed zero reading-specific business work. The deterministic Runtime validation triggered by the wake commit verified all 9 generated worker prompts, then failed later on a Discovery-owned Theme-Sample Intelligence coverage defect; Reading did not repair or consume that upstream output."
+    },
+    {
+      "time": "2026-09-03T12:35:08+08:00",
+      "task": "discovery",
+      "event": "Running Lease Expired",
+      "status": "Waiting",
+      "detail": "discovery exceeded its 45 minute Running lease without a terminal result. The execution slot is no longer treated as proof of active work and returns to governed recovery."
+    },
+    {
+      "time": "2026-09-03T12:35:08+08:00",
+      "task": "discovery",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Discovery started by Research Runtime Scheduler V3.0."
+    },
+    {
+      "time": "2026-09-03T12:35:08+08:00",
+      "task": "discovery",
+      "event": "Worker Claimed",
+      "status": "Running",
+      "detail": "ChatGPT Automation claimed Research Runtime Discovery after verifying research/runtime/wakes/2026/09/2026-09-03/discovery-123400.json and the current execution authority on main."
     }
   ],
   "metrics": [],
@@ -53,5 +74,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-03T11:01:20+08:00"
+  "updatedAt": "2026-09-03T12:35:08+08:00"
 }
