@@ -4,6 +4,7 @@ import type { Theme } from 'vitepress'
 import { withBase } from 'vitepress'
 import PortalHome from './components/PortalHome.vue'
 import ArticleCover from './components/ArticleCover.vue'
+import ArticleTableScroll from './components/ArticleTableScroll.vue'
 import ArticleTypeBadge from './components/ArticleTypeBadge.vue'
 import ResearchNotes from './components/ResearchNotes.vue'
 import ResearchCategory from './components/ResearchCategory.vue'
@@ -263,6 +264,7 @@ export default {
   enhanceApp({ app, router }) {
     app.component('PortalHome', PortalHome)
     app.component('ArticleCover', ArticleCover)
+    app.component('ArticleTableScroll', ArticleTableScroll)
     app.component('ArticleTypeBadge', ArticleTypeBadge)
     app.component('ResearchNotes', ResearchNotes)
     app.component('ResearchCategory', ResearchCategory)

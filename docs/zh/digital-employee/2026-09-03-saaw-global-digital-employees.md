@@ -1,5 +1,5 @@
 ---
-title: "数字员工与 SaaW（一）：全球样本与能力分级"
+title: "全球真实数字员工与 SaaW 商业全景报告 2026-1"
 date: '2026-09-03'
 research_date: '2026-08-30'
 prepared_date: '2026-09-03'
@@ -20,16 +20,14 @@ publication_authorized: true
 <ArticleCover
   image="/assets/covers/saaw-2026-part-1-cover.png"
   kicker="数字员工 · SaaW 商业全景（一）"
-  title="数字员工与 SaaW（一）：全球样本与能力分级"
+  title="全球真实数字员工与 SaaW 商业全景报告 2026-1"
   summary="从自研小典 AI 与 CodeFlowMu 的工程实践出发，建立数字员工的判定框架，比较全球 55 个产品条目的岗位持续性、工具能力与交付边界。"
   version="SaaW 2026 · 1/3"
   languageHref="/en/digital-employee/2026-09-03-saaw-global-digital-employees"
   languageLabel="English"
 />
 
-<!-- saaw-native-cover-note -->
-<p class="saaw-cover-note">题图为 AI 生成的概念场景；屏幕界面与数字仅作示意，不是真实产品截图或研究数据。</p>
-<!-- /saaw-native-cover-note -->
+<ArticleTableScroll language="zh" />
 
 # 全球真实数字员工与 SaaW 商业全景报告 2026-1
 ## 研究方法、全球样本库与区域市场

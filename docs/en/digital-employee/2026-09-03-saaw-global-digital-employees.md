@@ -1,5 +1,5 @@
 ---
-title: "Digital Workers and SaaW (1): Global Products and Capability Levels"
+title: "Global Real Digital Workers & SaaW Commercial Landscape 2026-1"
 date: '2026-09-03'
 research_date: '2026-08-30'
 prepared_date: '2026-09-03'
@@ -20,16 +20,14 @@ publication_authorized: true
 <ArticleCover
   image="/assets/covers/saaw-2026-part-1-cover.png"
   kicker="Digital Employee · SaaW Landscape (1)"
-  title="Digital Workers and SaaW (1): Global Products and Capability Levels"
+  title="Global Real Digital Workers & SaaW Commercial Landscape 2026-1"
   summary="Starting from Xiaodian AI and CodeFlowMu, this article defines a digital-worker assessment framework and compares role continuity, tool use and delivery boundaries across 55 product entries."
   version="SaaW 2026 · 1/3"
   languageHref="/zh/digital-employee/2026-09-03-saaw-global-digital-employees"
   languageLabel="中文版"
 />
 
-<!-- saaw-native-cover-note -->
-<p class="saaw-cover-note">AI-generated conceptual cover. Screen interfaces and numbers are illustrative, not actual product screenshots or research data.</p>
-<!-- /saaw-native-cover-note -->
+<ArticleTableScroll language="en" />
 
 # Global Real Digital Workers & SaaW Commercial Landscape 2026-1
 ## Method, Global Sample Library, and Regional Markets
