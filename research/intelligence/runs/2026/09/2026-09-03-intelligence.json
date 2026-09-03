@@ -64,43 +64,438 @@
     }
   ],
   "columns": [
-    {"id":"digital-employee","label":"Digital Employee","label_zh":"数字员工","decision":"Waiting","signals":4,"candidates":0,"selectedItemId":"","selectedTitle":"","selectedTitle_zh":"","reason":"Discovery recorded four primary Digital Employee signals; Queue owns scoring and selection.","reason_zh":"Discovery 记录了 4 个以数字员工为主栏目的信号；评分与选题由 Queue 独立负责。"},
-    {"id":"industry-architecture","label":"Industry Architecture","label_zh":"行业架构","decision":"Waiting","signals":3,"candidates":0,"selectedItemId":"","selectedTitle":"","selectedTitle_zh":"","reason":"Discovery recorded three primary Industry Architecture signals; Queue owns scoring and selection.","reason_zh":"Discovery 记录了 3 个以行业架构为主栏目的信号；评分与选题由 Queue 独立负责。"},
-    {"id":"open-source-engineering","label":"Open-source Engineering","label_zh":"开源工程","decision":"Waiting","signals":4,"candidates":0,"selectedItemId":"","selectedTitle":"","selectedTitle_zh":"","reason":"Discovery recorded four primary Open-source Engineering signals; Queue owns scoring and selection.","reason_zh":"Discovery 记录了 4 个以开源工程为主栏目的信号；评分与选题由 Queue 独立负责。"}
+    {
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "decision": "Waiting",
+      "signals": 4,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded four primary Digital Employee signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 4 个以数字员工为主栏目的信号；评分与选题由 Queue 独立负责。"
+    },
+    {
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "decision": "Waiting",
+      "signals": 3,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded three primary Industry Architecture signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 3 个以行业架构为主栏目的信号；评分与选题由 Queue 独立负责。"
+    },
+    {
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "decision": "Waiting",
+      "signals": 4,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded four primary Open-source Engineering signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 4 个以开源工程为主栏目的信号；评分与选题由 Queue 独立负责。"
+    }
   ],
   "signals": [
     {
-      "id":"SIG-20260903-001","pipeline":"ai-platform","title":"Cursor self-hosted machines keep agent tool execution, code, build outputs, and secrets inside enterprise infrastructure","title_zh":"Cursor Self-hosted Machines 将 Agent Tool Execution、代码、构建产物与 Secrets 留在企业基础设施内","sourceUrl":"https://cursor.com/changelog","publishedAt":"2026-09-02","evidenceLevel":"official_announcement","primaryColumn":"industry-architecture","secondaryColumns":["digital-employee"],"triageStatus":"signal","changeObject":"cursor-cloud-agents/self-hosted-execution-trust-boundary","summary":"Cursor now supports self-hosted machines and team worker pools for Cloud Agents. Tool calls execute on customer-controlled infrastructure while codebase, build outputs, and secrets remain on internal machines; pools can dynamically claim work and restore hibernated workers within a reconnect window.","summary_zh":"Cursor 现支持 Cloud Agents 使用 Self-hosted Machines 与 Team Worker Pools。Tool Call 在客户控制的基础设施上执行，Codebase、Build Output 与 Secrets 留在内部机器；Pool 可动态认领工作，并在 Reconnect Window 内恢复休眠 Worker。","signalRole":"mechanism-evidence","researchThemes":["runtime-execution-boundary","sandbox-isolation","agent-identity-authority","recovery-authority"],"sampleIds":["cursor-cloud-agents"],"researchValue":{"failure":"A cloud control plane can accidentally be treated as the execution and secret-trust boundary even when enterprise policy requires actions to stay on customer infrastructure.","finding":"","mechanism":"Separate cloud orchestration from customer-hosted execution, keep sensitive artifacts local, and let named worker pools claim and recover work under an explicit reconnect lifecycle.","implication":"Digital-employee runtimes should model Host/Workspace/Secret authority separately from the cloud scheduler that assigns work."}
+      "id": "SIG-20260903-001",
+      "pipeline": "ai-platform",
+      "title": "Cursor self-hosted machines keep agent tool execution, code, build outputs, and secrets inside enterprise infrastructure",
+      "title_zh": "Cursor Self-hosted Machines 将 Agent Tool Execution、代码、构建产物与 Secrets 留在企业基础设施内",
+      "sourceUrl": "https://cursor.com/changelog",
+      "publishedAt": "2026-09-02",
+      "evidenceLevel": "official_announcement",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "cursor-cloud-agents/self-hosted-execution-trust-boundary",
+      "summary": "Cursor now supports self-hosted machines and team worker pools for Cloud Agents. Tool calls execute on customer-controlled infrastructure while codebase, build outputs, and secrets remain on internal machines; pools can dynamically claim work and restore hibernated workers within a reconnect window.",
+      "summary_zh": "Cursor 现支持 Cloud Agents 使用 Self-hosted Machines 与 Team Worker Pools。Tool Call 在客户控制的基础设施上执行，Codebase、Build Output 与 Secrets 留在内部机器；Pool 可动态认领工作，并在 Reconnect Window 内恢复休眠 Worker。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": [
+        "runtime-execution-boundary",
+        "sandbox-isolation",
+        "agent-identity-authority",
+        "recovery-authority"
+      ],
+      "sampleIds": [
+        "cursor-cloud-agents"
+      ],
+      "researchValue": {
+        "failure": "A cloud control plane can accidentally be treated as the execution and secret-trust boundary even when enterprise policy requires actions to stay on customer infrastructure.",
+        "finding": "",
+        "mechanism": "Separate cloud orchestration from customer-hosted execution, keep sensitive artifacts local, and let named worker pools claim and recover work under an explicit reconnect lifecycle.",
+        "implication": "Digital-employee runtimes should model Host/Workspace/Secret authority separately from the cloud scheduler that assigns work."
+      }
     },
     {
-      "id":"SIG-20260903-002","pipeline":"ai-platform","title":"Copilot Studio makes the GitHub Copilot harness a governed execution choice with sandbox and environment telemetry","title_zh":"Copilot Studio 将 GitHub Copilot Harness 变成带 Sandbox 与环境 Telemetry 的受治理执行选择","sourceUrl":"https://www.microsoft.com/en-us/microsoft-copilot/blog/copilot-studio/new-and-improved-github-copilot-harness-agent-skills-and-richer-context/","publishedAt":"2026-09-02","evidenceLevel":"official_announcement","primaryColumn":"digital-employee","secondaryColumns":["industry-architecture"],"triageStatus":"signal","changeObject":"microsoft-copilot-studio/github-copilot-harness-governed-runtime","summary":"Microsoft made the GitHub Copilot harness generally available in Copilot Studio alongside the standard harness. The harness mediates model calls, context, tools, MCP servers, and connected agents; tasks run in a secure sandbox governed by Copilot Studio, while environment-level telemetry can be exported for administration and audit.","summary_zh":"Microsoft 在 Copilot Studio 中将 GitHub Copilot Harness 与 Standard Harness 并列 GA。Harness 负责中介 Model Call、Context、Tools、MCP Server 与 Connected Agents；任务运行在由 Copilot Studio 治理的 Secure Sandbox 中，同时 Environment-level Telemetry 可导出用于管理与审计。","signalRole":"mechanism-evidence","researchThemes":["agent-runtime-harness","sandbox-isolation","runtime-observability","policy-enforcement"],"sampleIds":["microsoft-copilot-studio"],"researchValue":{"failure":"Treating the base model as the runtime obscures which layer actually selects tools, supplies context, isolates actions, and emits operational evidence.","finding":"","mechanism":"Expose harness selection as a first-class runtime choice and bind recursive reasoning/action to a governed sandbox plus environment telemetry.","implication":"A digital employee should declare its harness/runtime profile independently from its model identity and make that profile auditable."}
+      "id": "SIG-20260903-002",
+      "pipeline": "ai-platform",
+      "title": "Copilot Studio makes the GitHub Copilot harness a governed execution choice with sandbox and environment telemetry",
+      "title_zh": "Copilot Studio 将 GitHub Copilot Harness 变成带 Sandbox 与环境 Telemetry 的受治理执行选择",
+      "sourceUrl": "https://www.microsoft.com/en-us/microsoft-copilot/blog/copilot-studio/new-and-improved-github-copilot-harness-agent-skills-and-richer-context/",
+      "publishedAt": "2026-09-02",
+      "evidenceLevel": "official_announcement",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "microsoft-copilot-studio/github-copilot-harness-governed-runtime",
+      "summary": "Microsoft made the GitHub Copilot harness generally available in Copilot Studio alongside the standard harness. The harness mediates model calls, context, tools, MCP servers, and connected agents; tasks run in a secure sandbox governed by Copilot Studio, while environment-level telemetry can be exported for administration and audit.",
+      "summary_zh": "Microsoft 在 Copilot Studio 中将 GitHub Copilot Harness 与 Standard Harness 并列 GA。Harness 负责中介 Model Call、Context、Tools、MCP Server 与 Connected Agents；任务运行在由 Copilot Studio 治理的 Secure Sandbox 中，同时 Environment-level Telemetry 可导出用于管理与审计。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": [
+        "agent-runtime-harness",
+        "sandbox-isolation",
+        "runtime-observability",
+        "policy-enforcement"
+      ],
+      "sampleIds": [
+        "microsoft-copilot-studio"
+      ],
+      "researchValue": {
+        "failure": "Treating the base model as the runtime obscures which layer actually selects tools, supplies context, isolates actions, and emits operational evidence.",
+        "finding": "",
+        "mechanism": "Expose harness selection as a first-class runtime choice and bind recursive reasoning/action to a governed sandbox plus environment telemetry.",
+        "implication": "A digital employee should declare its harness/runtime profile independently from its model identity and make that profile auditable."
+      }
     },
     {
-      "id":"SIG-20260903-003","pipeline":"ai-platform","title":"GitHub is unifying chat, mobile, and cloud-agent policy while extending agent-session retention to account lifetime","title_zh":"GitHub 将 Chat、Mobile 与 Cloud Agent 统一到同一 Policy，并把 Agent Session 数据保留延长到 Account Lifetime","sourceUrl":"https://github.blog/changelog/2026-08-28-upcoming-changes-to-github-copilot-policies-and-billing/","publishedAt":"2026-08-28","evidenceLevel":"official_announcement","primaryColumn":"industry-architecture","secondaryColumns":["digital-employee"],"triageStatus":"signal","changeObject":"github-copilot/unified-agent-policy-and-retention-boundary","summary":"GitHub announced that Copilot Chat on github.com, GitHub Mobile, and the cloud agent will move to one unified Copilot policy no earlier than September 28. The experiences also converge on agent sessions, changing chat data retention from 28 days to the life of the account for the unified surface.","summary_zh":"GitHub 宣布最早自 9 月 28 日起，将 github.com Copilot Chat、GitHub Mobile 与 Cloud Agent 合并到统一 Copilot Policy，并统一到 Agent Sessions；统一 Surface 的 Chat Data Retention 将从 28 天变为 Account Lifetime。","signalRole":"governance-evidence","researchThemes":["policy-enforcement","agent-lifecycle","evidence-retention","enterprise-governance"],"sampleIds":["github-copilot"],"researchValue":{"failure":"Separate product surfaces can appear to have independent privacy and policy boundaries even after they share the same agent session and retention substrate.","finding":"","mechanism":"Unify administrative policy and session substrate across surfaces, with one explicit retention lifecycle.","implication":"When agent surfaces converge, governance must be defined at the durable session/identity layer rather than copied per UI."}
+      "id": "SIG-20260903-003",
+      "pipeline": "ai-platform",
+      "title": "GitHub is unifying chat, mobile, and cloud-agent policy while extending agent-session retention to account lifetime",
+      "title_zh": "GitHub 将 Chat、Mobile 与 Cloud Agent 统一到同一 Policy，并把 Agent Session 数据保留延长到 Account Lifetime",
+      "sourceUrl": "https://github.blog/changelog/2026-08-28-upcoming-changes-to-github-copilot-policies-and-billing/",
+      "publishedAt": "2026-08-28",
+      "evidenceLevel": "official_announcement",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "github-copilot/unified-agent-policy-and-retention-boundary",
+      "summary": "GitHub announced that Copilot Chat on github.com, GitHub Mobile, and the cloud agent will move to one unified Copilot policy no earlier than September 28. The experiences also converge on agent sessions, changing chat data retention from 28 days to the life of the account for the unified surface.",
+      "summary_zh": "GitHub 宣布最早自 9 月 28 日起，将 github.com Copilot Chat、GitHub Mobile 与 Cloud Agent 合并到统一 Copilot Policy，并统一到 Agent Sessions；统一 Surface 的 Chat Data Retention 将从 28 天变为 Account Lifetime。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": [
+        "policy-enforcement",
+        "agent-lifecycle",
+        "evidence-retention",
+        "enterprise-governance"
+      ],
+      "sampleIds": [
+        "github-copilot"
+      ],
+      "researchValue": {
+        "failure": "Separate product surfaces can appear to have independent privacy and policy boundaries even after they share the same agent session and retention substrate.",
+        "finding": "",
+        "mechanism": "Unify administrative policy and session substrate across surfaces, with one explicit retention lifecycle.",
+        "implication": "When agent surfaces converge, governance must be defined at the durable session/identity layer rather than copied per UI."
+      }
     },
     {
-      "id":"SIG-20260903-004","pipeline":"github-engineering","title":"Codex authorizes apply_patch using the selected executor's filesystem and path convention","title_zh":"Codex 按所选 Executor 的 Filesystem 与 Path Convention 授权 apply_patch","sourceUrl":"https://github.com/openai/codex/commit/fe140d4c8e7d47950d4d2e35ff7c58e55b744f65","publishedAt":"2026-09-02","evidenceLevel":"merged_maintainer_change","primaryColumn":"open-source-engineering","secondaryColumns":["digital-employee","industry-architecture"],"triageStatus":"signal","changeObject":"codex/apply-patch-executor-context-authorization","summary":"Codex now evaluates patch targets as PathUri values under the active filesystem policy and selected executor path convention, distinguishing executor-managed sandboxing from local platform sandboxing and honoring remote Windows/POSIX roots when normalizing write permissions.","summary_zh":"Codex 现在把 Patch Target 作为 PathUri，在 Active Filesystem Policy 与所选 Executor 的 Path Convention 下评估，并区分 Executor-managed Sandbox 与 Local Platform Sandbox；在规范化 Write Permission 时也遵循远端 Windows/POSIX Roots。","signalRole":"mechanism-evidence","researchThemes":["call-time-authorization","sandbox-isolation","runtime-execution-boundary"],"sampleIds":["openai-codex"],"researchValue":{"failure":"Authorizing a remote patch with host-native path semantics can misclassify writable roots and grant or deny the wrong filesystem capability.","finding":"","mechanism":"Evaluate authorization in the originating executor's filesystem context rather than translating the request into host assumptions first.","implication":"Tool authorization should bind to execution context, not merely command name and textual path."}
+      "id": "SIG-20260903-004",
+      "pipeline": "github-engineering",
+      "title": "Codex authorizes apply_patch using the selected executor's filesystem and path convention",
+      "title_zh": "Codex 按所选 Executor 的 Filesystem 与 Path Convention 授权 apply_patch",
+      "sourceUrl": "https://github.com/openai/codex/commit/fe140d4c8e7d47950d4d2e35ff7c58e55b744f65",
+      "publishedAt": "2026-09-02",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee",
+        "industry-architecture"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "codex/apply-patch-executor-context-authorization",
+      "summary": "Codex now evaluates patch targets as PathUri values under the active filesystem policy and selected executor path convention, distinguishing executor-managed sandboxing from local platform sandboxing and honoring remote Windows/POSIX roots when normalizing write permissions.",
+      "summary_zh": "Codex 现在把 Patch Target 作为 PathUri，在 Active Filesystem Policy 与所选 Executor 的 Path Convention 下评估，并区分 Executor-managed Sandbox 与 Local Platform Sandbox；在规范化 Write Permission 时也遵循远端 Windows/POSIX Roots。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": [
+        "call-time-authorization",
+        "sandbox-isolation",
+        "runtime-execution-boundary"
+      ],
+      "sampleIds": [
+        "openai-codex"
+      ],
+      "researchValue": {
+        "failure": "Authorizing a remote patch with host-native path semantics can misclassify writable roots and grant or deny the wrong filesystem capability.",
+        "finding": "",
+        "mechanism": "Evaluate authorization in the originating executor's filesystem context rather than translating the request into host assumptions first.",
+        "implication": "Tool authorization should bind to execution context, not merely command name and textual path."
+      }
     },
     {
-      "id":"SIG-20260903-005","pipeline":"github-engineering","title":"Codex lets a Ready report supersede a stale deferred-environment provisioning failure without changing environment identity","title_zh":"Codex 允许 Ready Report 覆盖 Deferred Environment 的陈旧 Provisioning Failure，同时保持 Environment Identity","sourceUrl":"https://github.com/openai/codex/commit/e6249b52969028e0f50833bc536946763b74dbeb","publishedAt":"2026-09-02","evidenceLevel":"merged_maintainer_change","primaryColumn":"open-source-engineering","secondaryColumns":["digital-employee"],"triageStatus":"signal","changeObject":"codex/deferred-environment-recoverable-provisioning-state","summary":"Codex changed deferred environments so a valid Ready report can replace a prior provisioning failure while preserving the same environment instance. Stale failures are retryable, and a late failure cannot overwrite a newer Ready state.","summary_zh":"Codex 调整 Deferred Environment：有效 Ready Report 可以覆盖此前的 Provisioning Failure，同时保持同一个 Environment Instance。陈旧 Failure 可重试，且迟到的 Failure 不能覆盖更新的 Ready State。","signalRole":"recovery-mechanism-evidence","researchThemes":["recovery-authority","agent-lifecycle","runtime-state-machine"],"sampleIds":["openai-codex"],"researchValue":{"failure":"An earlier asynchronous provisioning failure can arrive after recovery and incorrectly regress an environment that is already healthy.","finding":"","mechanism":"Treat provisioning failure as recoverable state, preserve environment identity, and order competing reports so later stale failure evidence cannot override a verified Ready state.","implication":"Recovery requires monotonic authority over state transitions, not simple last-write-wins event handling."}
+      "id": "SIG-20260903-005",
+      "pipeline": "github-engineering",
+      "title": "Codex lets a Ready report supersede a stale deferred-environment provisioning failure without changing environment identity",
+      "title_zh": "Codex 允许 Ready Report 覆盖 Deferred Environment 的陈旧 Provisioning Failure，同时保持 Environment Identity",
+      "sourceUrl": "https://github.com/openai/codex/commit/e6249b52969028e0f50833bc536946763b74dbeb",
+      "publishedAt": "2026-09-02",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "codex/deferred-environment-recoverable-provisioning-state",
+      "summary": "Codex changed deferred environments so a valid Ready report can replace a prior provisioning failure while preserving the same environment instance. Stale failures are retryable, and a late failure cannot overwrite a newer Ready state.",
+      "summary_zh": "Codex 调整 Deferred Environment：有效 Ready Report 可以覆盖此前的 Provisioning Failure，同时保持同一个 Environment Instance。陈旧 Failure 可重试，且迟到的 Failure 不能覆盖更新的 Ready State。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": [
+        "recovery-authority",
+        "agent-lifecycle",
+        "runtime-state-machine"
+      ],
+      "sampleIds": [
+        "openai-codex"
+      ],
+      "researchValue": {
+        "failure": "An earlier asynchronous provisioning failure can arrive after recovery and incorrectly regress an environment that is already healthy.",
+        "finding": "",
+        "mechanism": "Treat provisioning failure as recoverable state, preserve environment identity, and order competing reports so later stale failure evidence cannot override a verified Ready state.",
+        "implication": "Recovery requires monotonic authority over state transitions, not simple last-write-wins event handling."
+      }
     },
     {
-      "id":"SIG-20260903-006","pipeline":"github-engineering","title":"Google ADK binds resumption of auth-gated tool calls to the original function-call author","title_zh":"Google ADK 将 Auth-gated Tool Call 的恢复绑定到原始 Function-call Author","sourceUrl":"https://github.com/google/adk-python/commit/328ecb938d0db97738de92dd6e7c92d57f76e39b","publishedAt":"2026-09-03","evidenceLevel":"merged_maintainer_change","primaryColumn":"digital-employee","secondaryColumns":["open-source-engineering","industry-architecture"],"triageStatus":"signal","changeObject":"google-adk/auth-gated-resume-author-binding","summary":"ADK's authentication resume path previously found a tool call by ID in session history and could execute it without checking whether that call was authored by the current agent. The fix now requires original_fc_event.author to match agent.name before resuming, aligning it with the existing confirmation path.","summary_zh":"ADK 的 Authentication Resume Path 过去会按 ID 从 Session History 找到 Tool Call 并恢复执行，却未校验该 Call 是否由当前 Agent 发起。修复后要求 original_fc_event.author 与 agent.name 匹配，再允许 Resume，并与既有 Confirmation Path 对齐。","signalRole":"failure-and-mechanism-evidence","researchThemes":["agent-identity-authority","recovery-authority","call-time-authorization"],"sampleIds":["google-adk"],"researchValue":{"failure":"A resumed authorization flow can replay a valid historical tool-call ID under the wrong agent identity.","finding":"","mechanism":"Bind resume admission to both historical call identity and original author identity before re-entering the gated action.","implication":"Resume is a fresh authorization boundary; durable history is evidence, not current authority by itself."}
+      "id": "SIG-20260903-006",
+      "pipeline": "github-engineering",
+      "title": "Google ADK binds resumption of auth-gated tool calls to the original function-call author",
+      "title_zh": "Google ADK 将 Auth-gated Tool Call 的恢复绑定到原始 Function-call Author",
+      "sourceUrl": "https://github.com/google/adk-python/commit/328ecb938d0db97738de92dd6e7c92d57f76e39b",
+      "publishedAt": "2026-09-03",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering",
+        "industry-architecture"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "google-adk/auth-gated-resume-author-binding",
+      "summary": "ADK's authentication resume path previously found a tool call by ID in session history and could execute it without checking whether that call was authored by the current agent. The fix now requires original_fc_event.author to match agent.name before resuming, aligning it with the existing confirmation path.",
+      "summary_zh": "ADK 的 Authentication Resume Path 过去会按 ID 从 Session History 找到 Tool Call 并恢复执行，却未校验该 Call 是否由当前 Agent 发起。修复后要求 original_fc_event.author 与 agent.name 匹配，再允许 Resume，并与既有 Confirmation Path 对齐。",
+      "signalRole": "failure-evidence",
+      "researchThemes": [
+        "agent-identity-authority",
+        "recovery-authority",
+        "call-time-authorization"
+      ],
+      "sampleIds": [
+        "google-adk"
+      ],
+      "researchValue": {
+        "failure": "A resumed authorization flow can replay a valid historical tool-call ID under the wrong agent identity.",
+        "finding": "",
+        "mechanism": "Bind resume admission to both historical call identity and original author identity before re-entering the gated action.",
+        "implication": "Resume is a fresh authorization boundary; durable history is evidence, not current authority by itself."
+      }
     },
     {
-      "id":"SIG-20260903-007","pipeline":"github-engineering","title":"MCP clients are converging on authorization-server issuer binding during OAuth discovery","title_zh":"MCP Clients 正在 OAuth Discovery 中收敛到 Authorization-server Issuer Binding","sourceUrl":"https://github.com/modelcontextprotocol/python-sdk/commit/d060b36e1d095ef6e93e07ba5d59bb69b2ad449a","publishedAt":"2026-09-02","evidenceLevel":"merged_maintainer_change","primaryColumn":"open-source-engineering","secondaryColumns":["industry-architecture"],"triageStatus":"signal","changeObject":"mcp/oauth-discovery-issuer-binding-convergence","summary":"The MCP Python SDK now validates authorization-server metadata issuer on every discovery path. Independently, Gemini CLI added RFC 9207 issuer identification to its MCP OAuth flow the same day, showing cross-implementation convergence on binding discovered metadata to the expected issuer rather than accepting endpoint metadata by location alone.","summary_zh":"MCP Python SDK 现在在所有 Discovery Path 校验 Authorization-server Metadata Issuer；同日 Gemini CLI 也为 MCP OAuth Flow 加入 RFC 9207 Issuer Identification，显示不同实现正共同收敛到“把发现到的 Metadata 绑定到预期 Issuer”，而不是只按 Endpoint Location 信任。","signalRole":"cross-implementation-mechanism-evidence","researchThemes":["agent-identity-authority","credential-isolation","protocol-security"],"sampleIds":["mcp-python-sdk","gemini-cli"],"researchValue":{"failure":"OAuth discovery can accept metadata from the wrong authorization server even when the transport endpoint itself appears valid.","finding":"Independent clients adopted issuer binding in the same window.","mechanism":"Validate discovered authorization metadata against an expected issuer identity on every discovery route.","implication":"Protocol discovery must preserve authority identity across redirects and metadata indirection."}
+      "id": "SIG-20260903-007",
+      "pipeline": "github-engineering",
+      "title": "MCP clients are converging on authorization-server issuer binding during OAuth discovery",
+      "title_zh": "MCP Clients 正在 OAuth Discovery 中收敛到 Authorization-server Issuer Binding",
+      "sourceUrl": "https://github.com/modelcontextprotocol/python-sdk/commit/d060b36e1d095ef6e93e07ba5d59bb69b2ad449a",
+      "publishedAt": "2026-09-02",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "mcp/oauth-discovery-issuer-binding-convergence",
+      "summary": "The MCP Python SDK now validates authorization-server metadata issuer on every discovery path. Independently, Gemini CLI added RFC 9207 issuer identification to its MCP OAuth flow the same day, showing cross-implementation convergence on binding discovered metadata to the expected issuer rather than accepting endpoint metadata by location alone.",
+      "summary_zh": "MCP Python SDK 现在在所有 Discovery Path 校验 Authorization-server Metadata Issuer；同日 Gemini CLI 也为 MCP OAuth Flow 加入 RFC 9207 Issuer Identification，显示不同实现正共同收敛到“把发现到的 Metadata 绑定到预期 Issuer”，而不是只按 Endpoint Location 信任。",
+      "signalRole": "comparative-evidence",
+      "researchThemes": [
+        "agent-identity-authority",
+        "credential-isolation",
+        "protocol-security"
+      ],
+      "sampleIds": [
+        "mcp-python-sdk",
+        "gemini-cli"
+      ],
+      "researchValue": {
+        "failure": "OAuth discovery can accept metadata from the wrong authorization server even when the transport endpoint itself appears valid.",
+        "finding": "Independent clients adopted issuer binding in the same window.",
+        "mechanism": "Validate discovered authorization metadata against an expected issuer identity on every discovery route.",
+        "implication": "Protocol discovery must preserve authority identity across redirects and metadata indirection."
+      }
     },
     {
-      "id":"SIG-20260903-008","pipeline":"github-engineering","title":"A2A separates lightweight negotiation messages from the durable Task created only after work is committed","title_zh":"A2A 将轻量协商 Message 与“真正承诺工作后才创建”的 Durable Task 分离","sourceUrl":"https://github.com/a2aproject/A2A/commit/7a6ba4077e9e1248e2a6b700712f7a356645c6e3","publishedAt":"2026-08-31","evidenceLevel":"merged_maintainer_change","primaryColumn":"open-source-engineering","secondaryColumns":["industry-architecture","digital-employee"],"triageStatus":"signal","changeObject":"a2a/life-of-task-negotiation-versus-committed-work","summary":"A2A clarified its Hybrid Agents model: messages carry lightweight scope negotiation, while a Task is created only once there is committed work to execute and observe. The change is documentation, not new normative protocol semantics, but it makes the intended durable-work boundary explicit and self-contained.","summary_zh":"A2A 明确 Hybrid Agents 模型：Message 用于轻量 Scope Negotiation；只有在形成需要执行和观察的 Committed Work 后才创建 Task。该提交是文档澄清而非新的 Normative Semantics，但把 Durable Work Boundary 明确写成自包含规则。","signalRole":"mechanism-clarification","researchThemes":["multi-agent-protocol","task-lifecycle","durable-work-identity"],"sampleIds":["a2a-protocol"],"researchValue":{"failure":"Creating durable task state during tentative negotiation can turn discussion into execution state before responsibility and scope are actually committed.","finding":"","mechanism":"Keep negotiation as messages and materialize durable Task identity only at the commitment-to-execute boundary.","implication":"Multi-agent protocols need an explicit transition from conversation to accountable work object."}
+      "id": "SIG-20260903-008",
+      "pipeline": "github-engineering",
+      "title": "A2A separates lightweight negotiation messages from the durable Task created only after work is committed",
+      "title_zh": "A2A 将轻量协商 Message 与“真正承诺工作后才创建”的 Durable Task 分离",
+      "sourceUrl": "https://github.com/a2aproject/A2A/commit/7a6ba4077e9e1248e2a6b700712f7a356645c6e3",
+      "publishedAt": "2026-08-31",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "industry-architecture",
+        "digital-employee"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "a2a/life-of-task-negotiation-versus-committed-work",
+      "summary": "A2A clarified its Hybrid Agents model: messages carry lightweight scope negotiation, while a Task is created only once there is committed work to execute and observe. The change is documentation, not new normative protocol semantics, but it makes the intended durable-work boundary explicit and self-contained.",
+      "summary_zh": "A2A 明确 Hybrid Agents 模型：Message 用于轻量 Scope Negotiation；只有在形成需要执行和观察的 Committed Work 后才创建 Task。该提交是文档澄清而非新的 Normative Semantics，但把 Durable Work Boundary 明确写成自包含规则。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": [
+        "multi-agent-protocol",
+        "task-lifecycle",
+        "durable-work-identity"
+      ],
+      "sampleIds": [
+        "a2a-protocol"
+      ],
+      "researchValue": {
+        "failure": "Creating durable task state during tentative negotiation can turn discussion into execution state before responsibility and scope are actually committed.",
+        "finding": "",
+        "mechanism": "Keep negotiation as messages and materialize durable Task identity only at the commitment-to-execute boundary.",
+        "implication": "Multi-agent protocols need an explicit transition from conversation to accountable work object."
+      }
     },
     {
-      "id":"SIG-20260903-009","pipeline":"published-research","title":"AgentRewind aligns agent-context and environment checkpoints so long-horizon execution can roll back and resume","title_zh":"AgentRewind 对齐 Agent Context 与 Environment Checkpoint，使 Long-horizon Execution 可以回滚后恢复","sourceUrl":"https://arxiv.org/abs/2608.14380","publishedAt":"2026-08-14","evidenceLevel":"peer_reviewed_or_primary_research","primaryColumn":"digital-employee","secondaryColumns":["industry-architecture"],"triageStatus":"signal","changeObject":"agentrewind/aligned-context-environment-checkpoint-recovery","summary":"AgentRewind records aligned checkpoints of agent context and controlled environment, allowing a long-horizon agent to return to an earlier joint state and resume with information from prior attempts. MettleBench evaluates both task completion and partial progress on long engineering assignments, and the paper reports improved success and checklist progress across models and harnesses.","summary_zh":"AgentRewind 记录对齐的 Agent Context 与 Controlled Environment Checkpoint，使 Long-horizon Agent 能返回更早的联合状态，并携带前次尝试信息 Resume。MettleBench 同时评估长工程任务的 Task Completion 与 Partial Progress，论文报告其在多模型、多 Harness 下提升成功率与 Checklist Progress。","signalRole":"research-finding","researchThemes":["recovery-authority","checkpointing","long-running-agent","evaluation"],"sampleIds":["agentrewind"],"researchValue":{"failure":"Rolling back only conversation state or only environment state can leave the two sides causally inconsistent after an early error.","finding":"Joint context-environment checkpoints improve recoverability and partial progress across long-horizon tasks.","mechanism":"Checkpoint causally aligned agent and environment state, then resume from the aligned pair with prior-attempt information.","implication":"Recoverable digital work needs a checkpoint contract that spans reasoning state and external effects."}
+      "id": "SIG-20260903-009",
+      "pipeline": "published-research",
+      "title": "AgentRewind aligns agent-context and environment checkpoints so long-horizon execution can roll back and resume",
+      "title_zh": "AgentRewind 对齐 Agent Context 与 Environment Checkpoint，使 Long-horizon Execution 可以回滚后恢复",
+      "sourceUrl": "https://arxiv.org/abs/2608.14380",
+      "publishedAt": "2026-08-14",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "agentrewind/aligned-context-environment-checkpoint-recovery",
+      "summary": "AgentRewind records aligned checkpoints of agent context and controlled environment, allowing a long-horizon agent to return to an earlier joint state and resume with information from prior attempts. MettleBench evaluates both task completion and partial progress on long engineering assignments, and the paper reports improved success and checklist progress across models and harnesses.",
+      "summary_zh": "AgentRewind 记录对齐的 Agent Context 与 Controlled Environment Checkpoint，使 Long-horizon Agent 能返回更早的联合状态，并携带前次尝试信息 Resume。MettleBench 同时评估长工程任务的 Task Completion 与 Partial Progress，论文报告其在多模型、多 Harness 下提升成功率与 Checklist Progress。",
+      "signalRole": "research-finding",
+      "researchThemes": [
+        "recovery-authority",
+        "checkpointing",
+        "long-running-agent",
+        "evaluation"
+      ],
+      "sampleIds": [
+        "agentrewind"
+      ],
+      "researchValue": {
+        "failure": "Rolling back only conversation state or only environment state can leave the two sides causally inconsistent after an early error.",
+        "finding": "Joint context-environment checkpoints improve recoverability and partial progress across long-horizon tasks.",
+        "mechanism": "Checkpoint causally aligned agent and environment state, then resume from the aligned pair with prior-attempt information.",
+        "implication": "Recoverable digital work needs a checkpoint contract that spans reasoning state and external effects."
+      }
     },
     {
-      "id":"SIG-20260903-010","pipeline":"published-research","title":"Bounded Agents treats delegation as a principal chain with cumulative scope and composition checks","title_zh":"Bounded Agents 将 Delegation 建模为带累计 Scope 与 Composition Check 的 Principal Chain","sourceUrl":"https://arxiv.org/abs/2608.15888","publishedAt":"2026-08-16","evidenceLevel":"peer_reviewed_or_primary_research","primaryColumn":"industry-architecture","secondaryColumns":["digital-employee"],"triageStatus":"signal","changeObject":"bounded-agents/agentic-principal-chain-delegation-security","summary":"Bounded Agents proposes an Agentic Principal Chain that carries and restricts delegated scope and budgets from principal to sub-agent, evaluates each request against accumulated session state, and checks prohibited action compositions outside the model. Its compromised-model evaluation reports blocking all tested InjecAgent data-stealing cases and eliminating AgentDojo exfiltration in the evaluated domains, with stated utility costs and theorem assumptions.","summary_zh":"Bounded Agents 提出 Agentic Principal Chain：从 Principal 到 Sub-agent 逐级携带并收缩 Delegated Scope 与 Budget，每次请求都对累计 Session State 进行校验，并在模型外检查 Prohibited Action Composition。其 Compromised-model Evaluation 报告阻断全部被测 InjecAgent 数据窃取案例，并在被测 AgentDojo Domain 中消除 Exfiltration，同时明确给出 Utility Cost 与定理假设。","signalRole":"research-finding","researchThemes":["delegation-authority","multi-agent-governance","call-time-authorization","prompt-injection"],"sampleIds":["bounded-agents"],"researchValue":{"failure":"Static per-agent permissions do not prevent individually allowed actions from composing into a prohibited outcome or being over-delegated to sub-agents.","finding":"The evaluated principal-chain checks strongly reduced attack success under a compromised-model setting, while imposing measurable utility tradeoffs.","mechanism":"Track delegated authority as a narrowing principal chain and evaluate each action against cumulative state, scope, budget, and prohibited compositions outside the model.","implication":"Multi-agent authorization should be transitive but non-expansive, and policy must reason about action sequences rather than isolated calls."}
+      "id": "SIG-20260903-010",
+      "pipeline": "published-research",
+      "title": "Bounded Agents treats delegation as a principal chain with cumulative scope and composition checks",
+      "title_zh": "Bounded Agents 将 Delegation 建模为带累计 Scope 与 Composition Check 的 Principal Chain",
+      "sourceUrl": "https://arxiv.org/abs/2608.15888",
+      "publishedAt": "2026-08-16",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "bounded-agents/agentic-principal-chain-delegation-security",
+      "summary": "Bounded Agents proposes an Agentic Principal Chain that carries and restricts delegated scope and budgets from principal to sub-agent, evaluates each request against accumulated session state, and checks prohibited action compositions outside the model. Its compromised-model evaluation reports blocking all tested InjecAgent data-stealing cases and eliminating AgentDojo exfiltration in the evaluated domains, with stated utility costs and theorem assumptions.",
+      "summary_zh": "Bounded Agents 提出 Agentic Principal Chain：从 Principal 到 Sub-agent 逐级携带并收缩 Delegated Scope 与 Budget，每次请求都对累计 Session State 进行校验，并在模型外检查 Prohibited Action Composition。其 Compromised-model Evaluation 报告阻断全部被测 InjecAgent 数据窃取案例，并在被测 AgentDojo Domain 中消除 Exfiltration，同时明确给出 Utility Cost 与定理假设。",
+      "signalRole": "research-finding",
+      "researchThemes": [
+        "delegation-authority",
+        "multi-agent-governance",
+        "call-time-authorization",
+        "prompt-injection"
+      ],
+      "sampleIds": [
+        "bounded-agents"
+      ],
+      "researchValue": {
+        "failure": "Static per-agent permissions do not prevent individually allowed actions from composing into a prohibited outcome or being over-delegated to sub-agents.",
+        "finding": "The evaluated principal-chain checks strongly reduced attack success under a compromised-model setting, while imposing measurable utility tradeoffs.",
+        "mechanism": "Track delegated authority as a narrowing principal chain and evaluate each action against cumulative state, scope, budget, and prohibited compositions outside the model.",
+        "implication": "Multi-agent authorization should be transitive but non-expansive, and policy must reason about action sequences rather than isolated calls."
+      }
     },
     {
-      "id":"SIG-20260903-011","pipeline":"published-research","title":"SkillTriage attributes agent failures by differential comparison instead of treating loaded skills as uniformly beneficial","title_zh":"SkillTriage 用差分比较归因 Agent Failure，而不是默认 Loaded Skill 一律有益","sourceUrl":"https://arxiv.org/abs/2608.11888","publishedAt":"2026-08-12","evidenceLevel":"peer_reviewed_or_primary_research","primaryColumn":"digital-employee","secondaryColumns":["open-source-engineering"],"triageStatus":"signal","changeObject":"skilltriage/differential-skill-induced-failure-attribution","summary":"The paper compares a skill-guided run against a no-skill or semantically matched reference run to attribute functional failures and cost regressions to the loaded skill. Across SkillsBench and SWE-Skills-Bench it identifies 307 skill-induced failures, including 125 functional failures and 182 efficiency regressions; excessive verification and heavy implementation pipelines are major efficiency failure sources.","summary_zh":"该研究把 Skill-guided Run 与 No-skill 或 Semantically Matched Reference Run 做差分比较，将 Functional Failure 与 Cost Regression 归因到具体 Loaded Skill。其在 SkillsBench 与 SWE-Skills-Bench 上识别 307 个 Skill-induced Failure，其中 125 个功能失败、182 个效率回退；Excessive Verification 与 Heavy Implementation Pipeline 是主要效率失败来源。","signalRole":"research-finding","researchThemes":["agent-skill-governance","failure-attribution","evaluation","cost-governance"],"sampleIds":["skilltriage"],"researchValue":{"failure":"Reusable skills can silently convert guidance into mandatory procedure, causing both wrong implementation and unnecessary verification cost even when the skill appears relevant.","finding":"Differential paired-run evidence can isolate skill-induced functional and efficiency regressions more directly than aggregate task success alone.","mechanism":"Compare skill-guided trajectories with matched reference trajectories, extract differential evidence, and attribute regressions to specific procedural effects.","implication":"Skill libraries for digital employees need admission, attribution, and retirement evidence rather than assuming every installed skill is harmless reusable knowledge."}
+      "id": "SIG-20260903-011",
+      "pipeline": "published-research",
+      "title": "SkillTriage attributes agent failures by differential comparison instead of treating loaded skills as uniformly beneficial",
+      "title_zh": "SkillTriage 用差分比较归因 Agent Failure，而不是默认 Loaded Skill 一律有益",
+      "sourceUrl": "https://arxiv.org/abs/2608.11888",
+      "publishedAt": "2026-08-12",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "skilltriage/differential-skill-induced-failure-attribution",
+      "summary": "The paper compares a skill-guided run against a no-skill or semantically matched reference run to attribute functional failures and cost regressions to the loaded skill. Across SkillsBench and SWE-Skills-Bench it identifies 307 skill-induced failures, including 125 functional failures and 182 efficiency regressions; excessive verification and heavy implementation pipelines are major efficiency failure sources.",
+      "summary_zh": "该研究把 Skill-guided Run 与 No-skill 或 Semantically Matched Reference Run 做差分比较，将 Functional Failure 与 Cost Regression 归因到具体 Loaded Skill。其在 SkillsBench 与 SWE-Skills-Bench 上识别 307 个 Skill-induced Failure，其中 125 个功能失败、182 个效率回退；Excessive Verification 与 Heavy Implementation Pipeline 是主要效率失败来源。",
+      "signalRole": "research-finding",
+      "researchThemes": [
+        "agent-skill-governance",
+        "failure-attribution",
+        "evaluation",
+        "cost-governance"
+      ],
+      "sampleIds": [
+        "skilltriage"
+      ],
+      "researchValue": {
+        "failure": "Reusable skills can silently convert guidance into mandatory procedure, causing both wrong implementation and unnecessary verification cost even when the skill appears relevant.",
+        "finding": "Differential paired-run evidence can isolate skill-induced functional and efficiency regressions more directly than aggregate task success alone.",
+        "mechanism": "Compare skill-guided trajectories with matched reference trajectories, extract differential evidence, and attribute regressions to specific procedural effects.",
+        "implication": "Skill libraries for digital employees need admission, attribution, and retirement evidence rather than assuming every installed skill is harmless reusable knowledge."
+      }
     }
-  ]
+  ],
+  "researchCoverage": {
+    "policy": "theme-sample-v1",
+    "rollingResearchWindowDays": 30,
+    "sampleFamilies": {
+      "product-governance": {
+        "checked": [
+          "Cursor Cloud Agents self-hosted machines",
+          "Microsoft Copilot Studio governed harness",
+          "GitHub Copilot unified agent policy"
+        ],
+        "qualifiedSignals": 3
+      },
+      "multi-agent-mechanism": {
+        "checked": [
+          "OpenAI Codex isolated subagent execution",
+          "Google ADK multi-agent transfer behavior",
+          "A2A Life of a Task"
+        ],
+        "qualifiedSignals": 1
+      },
+      "research-benchmark-industry": {
+        "checked": [
+          "AgentRewind and MettleBench (arXiv:2608.14380)",
+          "Bounded Agents (arXiv:2608.15888)",
+          "SkillTriage (arXiv:2608.11888)"
+        ],
+        "qualifiedSignals": 3
+      }
+    }
+  }
 }
