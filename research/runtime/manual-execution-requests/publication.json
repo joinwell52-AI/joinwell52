@@ -1,9 +1,9 @@
 {
   "schema": "runtime-publication-execution-request/v1",
-  "date": "2026-09-02",
-  "wakeReceipt": "research/runtime/wakes/2026/09/2026-09-02/publication-225031.json",
-  "source": "manual-recovery",
-  "requestedAt": "2026-09-02T22:56:40+08:00",
-  "reason": "Publication retains durable execution authority after the governed bridge rejected an admitted manual-recovery Wake Receipt due to a source-validation implementation defect. The validator now honors Worker Control allowedWakeSources; retry only the same complete 2026-09-02 candidates through all required gates.",
-  "triggerNonce": "20260902-publication-225640-manual-recovery-retry"
+  "date": "2026-09-03",
+  "wakeReceipt": "research/runtime/wakes/2026/09/2026-09-03/publication-200021.json",
+  "source": "chatgpt-scheduled-task",
+  "requestedAt": "2026-09-03T22:24:45+08:00",
+  "reason": "The 20:00 Publication wake was durably received but execution was deferred because same-day Production had not completed. Production later reached durable Completed and Scheduler opened Publication at 21:41:37; a fresh Publication Worker Claim is now verified. Execute only the complete same-date candidates through the governed Publication bridge and required visibility gates.",
+  "triggerNonce": "20260903-publication-delayed-resume-222445"
 }
