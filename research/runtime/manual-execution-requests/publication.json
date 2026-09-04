@@ -1,9 +1,9 @@
 {
   "schema": "runtime-publication-execution-request/v1",
-  "date": "2026-09-03",
-  "wakeReceipt": "research/runtime/wakes/2026/09/2026-09-03/publication-200021.json",
+  "date": "2026-09-04",
+  "wakeReceipt": "research/runtime/wakes/2026/09/2026-09-04/publication-200419.json",
   "source": "chatgpt-scheduled-task",
-  "requestedAt": "2026-09-03T22:24:45+08:00",
-  "reason": "The 20:00 Publication wake was durably received but execution was deferred because same-day Production had not completed. Production later reached durable Completed and Scheduler opened Publication at 21:41:37; a fresh Publication Worker Claim is now verified. Execute only the complete same-date candidates through the governed Publication bridge and required visibility gates.",
-  "triggerNonce": "20260903-publication-delayed-resume-222445"
+  "requestedAt": "2026-09-04T20:05:54+08:00",
+  "reason": "The same-day 20:00 Publication wake is durably verified, Production is Completed and GitHub Commit Verified, Scheduler opened Publication at 20:02:19, and a fresh Publication Worker Claimed event bound to this Wake Receipt is durable on main. Execute only the complete 2026-09-04 Publication Candidate batch through the stable governed Publication Actions bridge and required visibility gates; perform no new research, substantive rewriting or evidence repair.",
+  "triggerNonce": "20260904-publication-200554"
 }
