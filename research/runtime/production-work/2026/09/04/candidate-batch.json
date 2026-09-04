@@ -1,0 +1,129 @@
+{
+  "schema": "runtime-publication-candidate/v2",
+  "date": "2026-09-04",
+  "timezone": "Asia/Shanghai",
+  "sourceTask": "Research Runtime Production",
+  "sourceRecord": "research/runtime/records/daily/2026/09/2026-09-04-daily-runtime.json",
+  "status": "Completed",
+  "reason": "One authorized 2026-09-04 Research Object was converted into a complete bilingual Editorial Architecture 2.1 candidate with verified planning artifacts, evidence-bounded claims and a deterministic baseline cover.",
+  "reason_zh": "一份已授权的 2026-09-04 Research Object 已转换为完整双语 Editorial Architecture 2.1 候选，具备已核验的规划工件、有边界的证据声明和确定性基础题图。",
+  "updatedAt": "2026-09-04T15:08:00+08:00",
+  "githubCommit": "pending",
+  "candidates": [
+    {
+      "itemId": "Q-20260904-03",
+      "column": "open-source-engineering",
+      "articleType": "comparative-study",
+      "title": "Recovery Evidence Is Not Replay Authority",
+      "title_zh": "恢复证据，不是重放授权",
+      "researchQuestion": "当认证或人工批准中断工具调用时，智能体运行时应如何保存恢复证据，同时阻止在外部影响仍不确定时静默重放？",
+      "coreProposition": "An interrupted tool call should preserve recovery evidence, execution authority, and effect evidence as separate state dimensions; a later authentication or approval event may restore authority but must not silently authorize replay while the prior external effect remains unknown.",
+      "articleBriefPath": "research/runtime/production-work/2026/09/04/Q-20260904-03/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/04/Q-20260904-03/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/04/Q-20260904-03/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-04-recovery-evidence-is-not-replay-authority.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-04-recovery-evidence-is-not-replay-authority.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-04-recovery-evidence-is-not-replay-authority-cover.png",
+      "sections": [
+        {
+          "heading": "Two Fixes Guard Different Interruption Boundaries",
+          "heading_zh": "两项修复守住了不同的中断边界",
+          "module": "comparison"
+        },
+        {
+          "heading": "Recovery Information Does Not Grant Execution Authority",
+          "heading_zh": "知道如何恢复，不等于有权执行",
+          "module": "technical-analysis"
+        },
+        {
+          "heading": "Renewed Authority Does Not Resolve the First Effect",
+          "heading_zh": "重新取得权限，仍未回答第一次调用发生了什么",
+          "module": "evidence"
+        },
+        {
+          "heading": "One Occurrence, Three Independent Evidence Dimensions",
+          "heading_zh": "三类证据需要同一发生身份，但不能合并",
+          "module": "architecture-implications"
+        },
+        {
+          "heading": "Replay Safety Should Not Become Blanket Blocking",
+          "heading_zh": "安全边界不应变成无条件阻断",
+          "module": "counterarguments"
+        },
+        {
+          "heading": "Evidence Boundary and Open Questions",
+          "heading_zh": "证据边界与开放问题",
+          "module": "open-questions"
+        }
+      ],
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "OpenAI Codex preserves one or more MCP authentication challenges after bounded silent OAuth recovery fails and returns a failed tool-call result without automatically replaying the rejected call in that branch.",
+          "claim_zh": "OpenAI Codex 在有限的 OAuth 静默恢复失败后保留一个或多个 MCP 认证挑战，并返回失败工具调用结果，而不会在该分支自动重放被拒绝的调用。",
+          "source": "research/analysis/Q-20260904-03-recovery-evidence-replay-authority.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "public-fact",
+          "claim": "Google ADK sets skip_summarization when an MCP tool pauses for confirmation, preventing the pause result from re-entering the model loop and triggering another invocation.",
+          "claim_zh": "Google ADK 在 MCP 工具等待确认时设置跳过摘要标记，防止暂停结果重新进入模型循环并触发另一次调用。",
+          "source": "research/analysis/Q-20260904-03-recovery-evidence-replay-authority.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "our-observation",
+          "claim": "The two implementations suppress autonomous replay at different interruption boundaries while preserving recovery information.",
+          "claim_zh": "本次比较观察到，两项实现在不同中断边界阻止自主重放，同时保留恢复所需信息。",
+          "source": "research/analysis/Q-20260904-03-recovery-evidence-replay-authority.md",
+          "strength": "observed",
+          "independent": false
+        },
+        {
+          "id": "E4",
+          "identity": "our-interpretation",
+          "claim": "Governed runtimes should model recovery evidence, resume or execution authority, and effect evidence as separate state dimensions under a stable occurrence identity.",
+          "claim_zh": "本文据此解释，受治理的运行时应在稳定的调用发生身份下，分别建模恢复证据、继续执行权限与外部影响证据。",
+          "source": "research/analysis/Q-20260904-03-recovery-evidence-replay-authority.md",
+          "strength": "supports",
+          "independent": false
+        }
+      ],
+      "category": "daily",
+      "lifecycle": "Publication Candidate",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The argument compares general open-source agent-runtime mechanisms."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already carries the transferable engineering and governance argument."
+      },
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS"
+    }
+  ]
+}
