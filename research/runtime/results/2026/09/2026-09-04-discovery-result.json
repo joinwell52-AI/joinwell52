@@ -1,0 +1,41 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "discovery",
+  "family": "daily",
+  "runtimeDate": "2026-09-04",
+  "status": "Completed",
+  "input": "Authoritative control-source main commit a4d8bd35933e0eec84fb02f5c8ba08320ea41ac7; Research Runtime Scheduler V3.0; Worker Control v1.3.0; generated Discovery Prompt v1.1.0 with verified SHA-256 3b91ab2769fe035ddec1bdedd27ffc7b34fa5c1da3232c2a05ed7653fc8c28bc; all ten requiredSources from that same commit; verified Wake Receipt research/runtime/wakes/2026/09/2026-09-04/discovery-090111.json; and the fresh Worker Claimed event for the same-date Discovery execution.",
+  "input_zh": "权威控制源 main 提交 a4d8bd35933e0eec84fb02f5c8ba08320ea41ac7、Research Runtime Scheduler V3.0、Worker Control v1.3.0、已核验 SHA-256 3b91ab2769fe035ddec1bdedd27ffc7b34fa5c1da3232c2a05ed7653fc8c28bc 的 Generated Discovery Prompt v1.1.0、同一提交上的全部 10 个 requiredSources、已核验 Wake Receipt research/runtime/wakes/2026/09/2026-09-04/discovery-090111.json，以及同日 Discovery 的 fresh Worker Claimed 事件。",
+  "workResult": "Completed all three formal Discovery pipelines and the theme-sample-v1 active-sample overlay without performing topic selection. Six qualified, non-duplicate signals were retained: two product/platform mechanisms, three engineering mechanisms, and one reproducible primary-research artifact. The signal contract was canonicalized at commit 347b679ef5ae25b8a76eda7f2c70c5b2bea2cfc4 and Validate Research Center 3.0 run 33825392247 completed successfully, including Runtime and Intelligence validation plus the site build.",
+  "workResult_zh": "完成三条正式 Discovery 管线与 theme-sample-v1 主动样本检查，未执行选题。按研究问题去重后保留 6 个合格 Signal：2 个产品/平台机制、3 个工程机制、1 个可复现的一手研究 Artifact。Signal 合同已在提交 347b679ef5ae25b8a76eda7f2c70c5b2bea2cfc4 规范化，Validate Research Center 3.0 Run 33825392247 已成功完成，包括 Runtime、Intelligence 校验与站点构建。",
+  "output": "research/intelligence/runs/2026/09/2026-09-04-intelligence.json — 6 normalized, unselected signals with complete formal pipeline coverage and active-sample coverage.",
+  "output_zh": "research/intelligence/runs/2026/09/2026-09-04-intelligence.json —— 6 个已规范化、未选题的 Signal，正式管线覆盖与主动样本覆盖均已收口。",
+  "next": "Queue may triage the verified 2026-09-04 Signal Pool only after Discovery completion is durably verified on main.",
+  "next_zh": "仅在 Discovery 完成状态已在 main 上持久核验后，Queue 才可筛选已核验的 2026-09-04 Signal Pool。",
+  "metrics": [
+    {"label": "Prompt SHA-256 verified", "label_zh": "Prompt SHA-256 已核验", "value": "3b91ab2769fe035ddec1bdedd27ffc7b34fa5c1da3232c2a05ed7653fc8c28bc"},
+    {"label": "Required sources read", "label_zh": "已读取 requiredSources", "value": "10 / 10"},
+    {"label": "AI Platform due / checked / failed", "label_zh": "AI 平台应查 / 已查 / 失败", "value": "45 / 45 / 0"},
+    {"label": "GitHub repositories due / checked / failed", "label_zh": "GitHub 仓库应查 / 已查 / 失败", "value": "9 / 9 / 0"},
+    {"label": "Research sources due / checked / failed", "label_zh": "研究来源应查 / 已查 / 失败", "value": "9 / 9 / 0"},
+    {"label": "Active product-governance samples", "label_zh": "主动产品治理样本", "value": "3 checked / 2 qualified"},
+    {"label": "Active multi-agent mechanism samples", "label_zh": "主动多 Agent 机制样本", "value": "3 checked / 2 qualified"},
+    {"label": "Active research/benchmark objects", "label_zh": "主动研究/基准对象", "value": "3 checked / 1 qualified"},
+    {"label": "Normalized signals", "label_zh": "规范化信号", "value": 6},
+    {"label": "Selected topics", "label_zh": "已选主题", "value": 0}
+  ],
+  "evidence": [
+    {"label": "Authority control-source commit", "label_zh": "权威控制源提交", "value": "a4d8bd35933e0eec84fb02f5c8ba08320ea41ac7"},
+    {"label": "Wake Receipt", "label_zh": "Wake Receipt", "source": "research/runtime/wakes/2026/09/2026-09-04/discovery-090111.json"},
+    {"label": "Worker control manifest", "label_zh": "Worker Control Manifest", "source": "research/runtime/worker-prompts/generated/CONTROL.json"},
+    {"label": "Generated Discovery Prompt", "label_zh": "Generated Discovery Prompt", "source": "research/runtime/worker-prompts/generated/discovery.prompt.md"},
+    {"label": "Canonical Intelligence commit", "label_zh": "规范化 Intelligence 提交", "value": "347b679ef5ae25b8a76eda7f2c70c5b2bea2cfc4"},
+    {"label": "Remote validation", "label_zh": "远程校验", "value": "Validate Research Center 3.0 #33825392247 success"}
+  ],
+  "artifacts": [
+    {"label": "Research Intelligence run", "label_zh": "Research Intelligence 运行记录", "value": "research/intelligence/runs/2026/09/2026-09-04-intelligence.json"},
+    {"label": "Daily Runtime JSON", "label_zh": "Daily Runtime JSON", "value": "research/runtime/records/daily/2026/09/2026-09-04-daily-runtime.json"},
+    {"label": "Human-readable Runtime ledger", "label_zh": "人类可读 Runtime 账本", "value": "research/runtime/2026/09/2026-09-04-runtime.md"}
+  ],
+  "startedAt": "2026-09-04T09:10:00+08:00"
+}
