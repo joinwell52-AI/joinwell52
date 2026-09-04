@@ -1,4 +1,5 @@
 export const articleTypes: Record<string, { en: string; zh: string }> = {
+  'policy-analysis': { en: 'Policy Analysis', zh: '政策解读' },
   'research-brief': { en: 'Research Brief', zh: '研究简报' },
   'technical-analysis': { en: 'Technical Analysis', zh: '技术分析' },
   'engineering-insight': { en: 'Engineering Insight', zh: '工程洞察' },
