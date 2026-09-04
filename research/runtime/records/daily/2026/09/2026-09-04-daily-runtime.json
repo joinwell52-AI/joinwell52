@@ -8,11 +8,11 @@
   "date": "2026-09-04",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -385,6 +385,114 @@
       "githubCommit": "793c9968f694a99b8d0d5f39da3e9e331e7951b3",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-04T10:22:41+08:00"
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "family": "daily",
+      "runtimeDate": "2026-09-04",
+      "status": "Completed",
+      "input": "Same-run-date Reading recovery after the upstream Queue owner corrected Q-20260904-03 source identity from invalid Codex SHA 0650d6d1ca451b67009a0a22b97d1847febb9b2 to authoritative maintainer commit 0650d6d1ca451b67009b3969a82b87e76979975f at 13:07:09+08:00. Reading control remained Scheduler V3.0 / Worker Control v1.3.0 / generated Reading Prompt v1.0.0 with declared and previously deterministically verified SHA-256 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5 and all five requiredSources. The recovery Worker Claimed event was durably recorded at 13:07:41+08:00 from the verified Analysis wake opportunity, after which Reading consumed only the corrected same-date Research Plan and the two authoritative maintainer commits selected/cross-cited by that plan.",
+      "input_zh": "同运行日 Reading Recovery：上游 Queue Owner 已于 13:07:09+08:00 将 Q-20260904-03 的 Codex 来源身份从无效 SHA 0650d6d1ca451b67009a0a22b97d1847febb9b2 正式修正为权威 Maintainer Commit 0650d6d1ca451b67009b3969a82b87e76979975f。Reading 控制保持 Scheduler V3.0、Worker Control v1.3.0、Generated Reading Prompt v1.0.0；其声明且此前已确定性核验的 SHA-256 为 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5，并读取全部 5 个 Required Source。Recovery Worker Claimed 已于 13:07:41+08:00 持久记录；此后 Reading 只消费修正后的同日 Research Plan，以及该 Plan 选中/交叉引用的两个权威 Maintainer Commit。",
+      "workResult": "Skill 03 completed source-bounded Deep Reading for the only selected same-date object Q-20260904-03 after the owning Queue stage repaired its source identity. OpenAI Codex commit 0650d6d1ca451b67009b3969a82b87e76979975f preserves one or more WWW-Authenticate challenges after silent OAuth recovery fails and converts the interruption into a failed MCP tool-call result carrying mcp/www_authenticate metadata rather than automatically replaying the rejected call; its integration coverage observes the agent event stream and constrains the rejected MCP tools/call to one occurrence. Google ADK commit cb0eb2288bfe6536bd6e98f0601d3736844062ca fixes an independent confirmation-pause recurrence path by setting tool_context.actions.skip_summarization=True when an MCP call requests confirmation, preventing the pause result from returning to the model loop and re-invoking the tool; targeted tests cover both constant and callable confirmation policies. Reading distinguishes bounded silent recovery, human-confirmation resume, model reinvocation and a genuinely new tool invocation, and preserves the negative boundary that neither implementation proves exactly-once external effects, distributed deduplication or that a remote side effect could not have committed before an observed failure. No Research Analysis, article writing, visualization, Production or Publication was performed in Reading.",
+      "workResult_zh": "在拥有内容权的 Queue Stage 完成 Source Identity 修复后，Skill 03 对同日唯一 Selected Object Q-20260904-03 完成了有来源边界的 Deep Reading。OpenAI Codex 提交 0650d6d1ca451b67009b3969a82b87e76979975f 在 Silent OAuth Recovery 失败后保留一个或多个 WWW-Authenticate Challenge，并把中断转换为携带 mcp/www_authenticate Metadata 的 Failed MCP Tool-call Result，而不是自动重放被拒绝的调用；其 Integration Test 观察 Agent Event Stream，并把被拒绝的 MCP tools/call 约束为一次。Google ADK 提交 cb0eb2288bfe6536bd6e98f0601d3736844062ca 修复了独立的 Confirmation-pause 重入路径：当 MCP Call 请求确认时设置 tool_context.actions.skip_summarization=True，阻止 Pause Result 回到 Model Loop 并再次调用工具；Targeted Tests 同时覆盖常量与 Callable Confirmation Policy。Reading 明确区分 Bounded Silent Recovery、Human-confirmation Resume、Model Reinvocation 与真正的新 Tool Invocation，并保留负面边界：两项实现都不能证明 External Effect Exactly-once、Distributed Deduplication，也不能证明远端副作用在客户端观察到 Failure 前绝未提交。Reading 阶段未执行 Research Analysis、文章写作、可视化、Production 或 Publication。",
+      "output": "One durable same-date Reading Note: research/reading/Q-20260904-03-interrupted-tool-call-replay-safety.md.",
+      "output_zh": "生成一份同日持久 Reading Note：research/reading/Q-20260904-03-interrupted-tool-call-replay-safety.md。",
+      "next": "After durable Reading finalization and GitHub Commit Verified, Runtime must reconcile immediately. Analysis is already overdue and may consume only this source-complete same-date Reading Note once Reading is execution-closed and verified.",
+      "next_zh": "Reading 完成持久 Finalization 与 GitHub Commit Verified 后，Runtime 必须立即重新对账。Analysis 已经逾期，但只能在 Reading 执行收口并核验后消费这份 Source-complete 的同日 Reading Note。",
+      "metrics": [
+        {
+          "label": "Generated prompt identity verified",
+          "label_zh": "Generated Prompt 身份已核验",
+          "value": 1
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 Required Source",
+          "value": 5
+        },
+        {
+          "label": "Queue-selected objects read",
+          "label_zh": "已深读 Queue Selected Object",
+          "value": 1
+        },
+        {
+          "label": "Upstream source-identity corrections adopted",
+          "label_zh": "已采纳上游 Source Identity 修正",
+          "value": 1
+        },
+        {
+          "label": "Durable Reading Notes",
+          "label_zh": "持久 Reading Note",
+          "value": 1
+        },
+        {
+          "label": "Primary maintainer changes inspected",
+          "label_zh": "已核验 Maintainer Change",
+          "value": 2
+        },
+        {
+          "label": "Research Analysis performed",
+          "label_zh": "执行 Research Analysis",
+          "value": 0
+        },
+        {
+          "label": "Publication actions",
+          "label_zh": "Publication 操作数量",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Original Reading Wake Receipt",
+          "label_zh": "原始 Reading Wake Receipt",
+          "path": "research/runtime/wakes/2026/09/2026-09-04/reading-110113.json"
+        },
+        {
+          "label": "Recovery wake receipt",
+          "label_zh": "Recovery Wake Receipt",
+          "path": "research/runtime/wakes/2026/09/2026-09-04/analysis-130100.json"
+        },
+        {
+          "label": "Generated Reading prompt SHA-256",
+          "label_zh": "Generated Reading Prompt SHA-256",
+          "value": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"
+        },
+        {
+          "label": "Corrected run-date Research Plan",
+          "label_zh": "已修正运行日 Research Plan",
+          "path": "research/runtime/plans/2026/09/2026-09-04-plan.json"
+        },
+        {
+          "label": "Recovery Worker Claimed commit",
+          "label_zh": "Recovery Worker Claimed 提交",
+          "commit": "3cc67bd7a51c56d9e882e23cf25fef5571ae0546"
+        },
+        {
+          "label": "OpenAI Codex maintainer implementation",
+          "label_zh": "OpenAI Codex Maintainer 实现",
+          "url": "https://github.com/openai/codex/commit/0650d6d1ca451b67009b3969a82b87e76979975f"
+        },
+        {
+          "label": "Google ADK maintainer implementation",
+          "label_zh": "Google ADK Maintainer 实现",
+          "url": "https://github.com/google/adk-python/commit/cb0eb2288bfe6536bd6e98f0601d3736844062ca"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Q-20260904-03 Reading Note",
+          "label_zh": "Q-20260904-03 深读笔记",
+          "path": "research/reading/Q-20260904-03-interrupted-tool-call-replay-safety.md"
+        },
+        {
+          "label": "Reading result",
+          "label_zh": "Reading 结果",
+          "path": "research/runtime/results/2026/09/2026-09-04-reading-result.json"
+        }
+      ],
+      "startedAt": "2026-09-04T11:04:55+08:00",
+      "completedAt": "2026-09-04T13:12:15+08:00"
     }
   },
   "timeline": [
@@ -485,6 +593,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Reading after verifying research/runtime/wakes/2026/09/2026-09-04/analysis-130100.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-04T13:12:15+08:00",
+      "task": "reading",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Reading closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-04."
     }
   ],
   "metrics": [],
@@ -492,5 +607,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-04T13:07:36+08:00"
+  "updatedAt": "2026-09-04T13:12:15+08:00"
 }
