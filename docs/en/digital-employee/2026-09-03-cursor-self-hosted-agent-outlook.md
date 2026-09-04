@@ -8,7 +8,7 @@ article_type: perspective
 edition: research-center
 research_question: "If major Agent platforms can execute on enterprise-owned machines, where can an independent local Agent product still add value?"
 summary: "The enterprise can own the machine while the platform retains the work entry point and Agent loop. Cursor Self-Hosted Machines change the competitive value of local execution and raise a larger question: who organizes, constrains, and accepts the work?"
-cover: "/assets/host-research-20260903/cover-03-enterprise-execution-v1.png"
+cover: "/assets/covers/host-research-20260903-enterprise-execution.png"
 language: en
 lifecycle: Published
 publication_authorized: true
@@ -16,7 +16,7 @@ evidence_status: "Official product sources checked; analysis and forecasts disti
 ---
 
 <ArticleCover
-  image="/assets/host-research-20260903/cover-03-enterprise-execution-v1.png"
+  image="/assets/covers/host-research-20260903-enterprise-execution.png"
   kicker="Digital employees · Product outlook"
   title="When Agents Enter the Enterprise Network: What Do Cursor Self-Hosted Machines Change?"
   summary="The enterprise can own the machine while the platform retains the work entry point and Agent loop. Local execution is only one part of the boundary."
