@@ -3,7 +3,7 @@ title: "MIIT Document No. 414 Explained: From Model Supply to Application Delive
 date: "2026-09-04"
 language: en
 article_type: policy-analysis
-summary: "MIIT Document No. 414 uses provider pools, service consortia, real-world scenarios, and ongoing evaluation to build scalable AI application delivery capacity. This article examines the policy mechanism, participation requirements, and implications for CodeFlowMu and FCoP."
+summary: "MIIT Document No. 414 uses provider pools, service consortia, real-world scenarios, and ongoing evaluation to build scalable AI application delivery capacity. This article examines the policy mechanism, participation requirements, and opportunities in application delivery."
 publication_authorized: true
 lifecycle: Published
 column: industry-architecture
@@ -16,7 +16,7 @@ cover: "/assets/covers/miit-414-policy-cover.png"
   image="/assets/covers/miit-414-policy-cover.png"
   kicker="Industry Architecture · Policy Analysis"
   title="MIIT Document No. 414 Explained: From Model Supply to Application Delivery"
-  summary="MIIT Document No. 414 uses provider pools, service consortia, real-world scenarios, and ongoing evaluation to build scalable AI application delivery capacity. This article examines the policy mechanism, participation requirements, and implications for CodeFlowMu and FCoP."
+  summary="MIIT Document No. 414 uses provider pools, service consortia, real-world scenarios, and ongoing evaluation to build scalable AI application delivery capacity. This article examines the policy mechanism, participation requirements, and opportunities in application delivery."
   version="2026-09-04"
   languageHref="/zh/industry/2026-09-04-miit-414-ai-application-delivery"
   languageLabel="中文版"
@@ -358,32 +358,6 @@ The strongest opportunities are likely to favor:
 
 Providers with demonstrations but no contractual delivery cases, thin wrappers around a single model that cannot connect to customer systems, and projects without post-launch operators or clear accountability will find it harder to earn organizational customers' long-term trust.
 
-## What this means for CodeFlowMu and FCoP
-
-Document No. 414 clarifies CodeFlowMu's potential industrial position.
-
-CodeFlowMu should not be described as just another generic agent framework, nor exaggerated into an operating system for every aspect of enterprise digital transformation. A more precise position is: **a workstation and operations foundation for locally deployed digital employees, helping application service providers deliver them to enterprises and support continuing operations, security governance, and audit.**
-
-Three service categories are directly relevant:
-
-| Service category in Document No. 414 | Capabilities CodeFlowMu can support |
-| --- | --- |
-| Delivery and implementation | Install digital employees, configure roles, and connect models and business tools |
-| Operations management | Long-lived tasks, monitoring, state management, failure recovery, and version updates |
-| Security governance | Invocation authorization, evidence records, independent evaluation, responsibility boundaries, and audit trails |
-
-FCoP is better positioned as an open protocol layer. It defines verifiable facts about tasks, reports, issues, reviews, authorization relationships, concurrency, and recovery so that different models, tools, and operating environments can collaborate without blurring responsibility. CodeFlowMu turns these capabilities into a product that users can install and operate; FCoP makes the underlying facts and boundaries exchangeable and reviewable.
-
-The emphasis on multi-model coordination, compliance, complete service documentation, and ongoing operations aligns with our research into authorization, independent EVAL, task acceptance, idempotent recovery, and evidence chains. Questions once seen as excessive engineering rigor are becoming practical requirements for organizational AI delivery.
-
-The policy also imposes a practical constraint on us. If a CodeFlowMu-related entity applies, an open-source repository, technical articles, protocol design, and test counts cannot replace customer service cases. Participation requires a domestic operating entity, a stable service team of at least three, standardized service documentation, and the applicable 10- or 30-case evidence, including contracts or application proof, implementation periods, and outcomes.
-
-The priority is therefore not to add features for pool membership. It is to select one to three frequent, essential scenarios and turn the product, installation, delivery, operations, governance, acceptance, and support into complete packages validated by actual customers. Without delivery facts, technical sophistication has not yet become a service provider qualification.
-
-[![CodeFlowMu and FCoP in application delivery](/assets/figures/miit-414/en/05-codeflowmu-fcop-position.png)](/assets/figures/miit-414/en/05-codeflowmu-fcop-position.png)
-
-*Figure 5. CodeFlowMu and FCoP in application delivery. Select the image to view it at full size.*
-
 ## A three-stage outlook
 
 ### Stage 1: before the end of 2026, visibility and organizational participation
@@ -424,7 +398,7 @@ The answer is not one model vendor or one employee who knows how to write prompt
 
 Provider profiles, national pools, consortia, real scenarios, first-use mechanisms, risk compensation, computing vouchers, FDEs, customer evidence, and local evaluation form a connected policy mechanism. Government is seeking to accelerate the formation of a dispersed market by reducing information costs, initial procurement risk, and access costs for foundational resources.
 
-For entrepreneurs, the opportunity is to become capable of real delivery. For software firms, it is to make frequent business needs into reusable products. For CodeFlowMu, it is to turn local digital employees from experimental multi-agent systems into production tools that service providers can install, operate, govern, and audit.
+For entrepreneurs, the opportunity is to become capable of real delivery. For software firms, it is to make frequent business needs into reusable products.
 
 As the industry moves from asking whose model is stronger to asking who can keep AI working over time, the deeper competition is only beginning.
 
@@ -450,4 +424,3 @@ Forward-looking statements in this article are analysis based on current policy 
   }
 }
 </style>
-
