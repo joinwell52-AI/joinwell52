@@ -8,7 +8,7 @@ article_type: experiment-report
 edition: research-center
 research_question: "Does an old execution record reliably identify the currently live process as its original owner?"
 summary: "Codex's Windows process-identity changes highlight a distinction: a live PID is not necessarily the original executor. In a controlled CodeFlowMu comparison, writer locks recognized a timestamp contradiction while approval records retained executing."
-cover: "/assets/covers/host-research-20260903-process-identity.png"
+cover: "/assets/host-research-20260903/cover-02-process-identity-v1.png"
 language: en
 lifecycle: Published
 publication_authorized: true
@@ -16,7 +16,7 @@ evidence_status: "Controlled durable-state reproduction on V2.2.6; no induced OS
 ---
 
 <ArticleCover
-  image="/assets/covers/host-research-20260903-process-identity.png"
+  image="/assets/host-research-20260903/cover-02-process-identity-v1.png"
   kicker="Open-source engineering · Controlled experiment"
   title="The Process Is Alive. Is It Still the Original Executor?"
   summary="A live PID does not establish executor identity. Two existing record paths interpret the same controlled timestamp contradiction differently."
