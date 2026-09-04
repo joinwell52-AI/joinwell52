@@ -1,0 +1,84 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-04",
+  "itemId": "Q-20260904-03",
+  "coreProposition": "An interrupted tool call should preserve recovery evidence, execution authority, and effect evidence as separate state dimensions; a later authentication or approval event may restore authority but must not silently authorize replay while the prior external effect remains unknown.",
+  "openingMove": {
+    "type": "recovery-authority-effect-contradiction",
+    "purpose": "Open with a call whose interruption cause is known and whose later continuation is authorized while the original external effect remains unknown.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E4"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "What do the two maintainer fixes actually establish?",
+      "claim": "Codex and ADK suppress autonomous replay at different interruption boundaries while retaining evidence needed for later recovery.",
+      "evidenceRefs": [
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "reasoningRole": "comparison",
+      "readerProgress": "See the shared invariant without erasing the differences between authentication failure and human confirmation.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Why is recovery evidence not authority?",
+      "claim": "Information explaining how to recover does not itself grant permission to execute another effectful attempt.",
+      "evidenceRefs": [
+        "E3",
+        "E4"
+      ],
+      "reasoningRole": "mechanism",
+      "readerProgress": "Separate diagnostic/recovery metadata from a later authority transition.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "Why is renewed authority still insufficient for replay?",
+      "claim": "Authentication or approval can restore authority while leaving the first attempt's external effect unresolved.",
+      "evidenceRefs": [
+        "E4"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "Distinguish permission to continue from evidence that replay is harmless.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What state should a governed runtime preserve?",
+      "claim": "Recovery evidence, resume/execution authority, and effect evidence should be tracked independently under one stable occurrence identity.",
+      "evidenceRefs": [
+        "E4"
+      ],
+      "reasoningRole": "governance-design",
+      "readerProgress": "Gain an implementable interruption-state model.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "When may replay proceed?",
+      "claim": "Replay requires an explicit replay-safe contract, known pre-effect rejection, idempotency, reconciliation, compensation, or a fresh human decision that accepts the ambiguity.",
+      "evidenceRefs": [
+        "E4"
+      ],
+      "reasoningRole": "operational-implication",
+      "readerProgress": "Translate the model into admission checks and negative-path tests.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Blocking replay sacrifices liveness and is unnecessary for harmless or naturally idempotent tools.",
+    "responseBoundary": "That is valid when replay safety or pre-effect rejection is explicit; the contract should avoid blocking proven-safe cases while refusing to infer safety from a generic interruption."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with unresolved protocol and freshness questions rather than claiming exactly-once execution."
+  }
+}

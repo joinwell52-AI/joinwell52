@@ -1,0 +1,52 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-04",
+  "itemId": "Q-20260904-03",
+  "researchObjectId": "Q-20260904-03",
+  "targetAudience": {
+    "primary": "Engineers and governance leads building agent runtimes that call effectful external tools",
+    "knowledgeAssumption": "The reader understands tool calls, authentication, human approval, retries, and external side effects.",
+    "readerProblem": "A runtime may mistake evidence that explains an interruption—or a later approval that permits continuation—for proof that replaying the original call is safe."
+  },
+  "whyNow": "Two independent maintainer fixes in OpenAI Codex and Google ADK suppress autonomous reinvocation at authentication and human-confirmation boundaries, exposing a common recovery-safety invariant.",
+  "externalHook": {
+    "type": "interruption-evidence-without-replay-authority",
+    "description": "Authentication challenges and confirmation pauses preserve information needed for recovery while deliberately stopping the current execution path from issuing another effectful attempt.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "coreProposition": "An interrupted tool call should preserve recovery evidence, execution authority, and effect evidence as separate state dimensions; a later authentication or approval event may restore authority but must not silently authorize replay while the prior external effect remains unknown.",
+  "originalValue": {
+    "type": "three-dimension-interruption-model",
+    "description": "Separates recovery evidence, resume/execution authority, and external-effect evidence so that recovery cannot silently become replay authorization."
+  },
+  "readerTakeaway": "Model interruption as an evidence-bearing pause: retain occurrence identity and recovery metadata, then require fresh authority plus effect-state reconciliation before any replay.",
+  "evidenceBoundary": {
+    "supported": [
+      "OpenAI Codex preserves MCP authentication challenges after bounded silent OAuth recovery fails and returns a failed tool-call result instead of replaying in that branch.",
+      "Google ADK prevents a confirmation-pause result from returning to the model loop and causing another tool invocation.",
+      "Both fixes support a bounded higher-order invariant that interruption evidence may survive while autonomous replay authority is withheld."
+    ],
+    "unsupported": [
+      "Exactly-once external effects",
+      "A universal retry protocol for all tools",
+      "Proof of approver identity or approval scope",
+      "Proof that a remote side effect did not commit before an observed failure"
+    ],
+    "uncertain": [
+      "Which tool protocols can prove pre-effect rejection",
+      "How long approval remains fresh after arguments, credentials, or target state change",
+      "Which receipt schema best binds an external effect to a tool-call occurrence"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument compares general open-source agent-runtime mechanisms and does not depend on a first-party project."
+  },
+  "recommendedArticleType": "comparative-study",
+  "editorialDecision": "PASS",
+  "decisionReason": "The two implementation samples support a concrete cross-sample comparison, a bounded runtime-state model, and actionable engineering consequences without claiming universal validity."
+}
