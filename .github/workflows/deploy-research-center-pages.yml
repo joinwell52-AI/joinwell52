@@ -16,7 +16,7 @@ on:
   workflow_run:
     workflows:
       - "Research Runtime Scheduler V3.0"
-      - "Research Runtime Shift Completion V2.0"
+      - "Research Runtime Shift Finalization V2.1"
     types:
       - completed
   workflow_dispatch:
@@ -195,5 +195,5 @@ jobs:
             "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
             gh-pages
 
-# Runtime state may be committed by GITHUB_TOKEN. Scheduler and generic completion workflow_run
+# Runtime state may be committed by GITHUB_TOKEN. Scheduler and Shift Finalization workflow_run
 # events are therefore first-class synchronization paths, not merely push fallbacks.
