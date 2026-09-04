@@ -8,10 +8,10 @@
   "date": "2026-09-04",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
-    "queue": "Running",
+    "queue": "Completed",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
@@ -138,6 +138,250 @@
       "githubCommit": "ce186f70992e7a8f41559d154abb8fd71a2c63b8",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-04T09:24:48+08:00"
+    },
+    "queue": {
+      "schema": "runtime-shift-result/v2",
+      "task": "queue",
+      "family": "daily",
+      "runtimeDate": "2026-09-04",
+      "status": "Completed",
+      "input": "Authoritative control-source main commit be148877382109e1afa2f3351e4bc72efe04be65 with Research Runtime Scheduler V3.0, Worker Control v1.3.0, generated Queue Prompt v1.0.0 whose SHA-256 was deterministically verified as 0424c42ef3e47fbe28d65365b21e9c0142d5c3e6efeb32e7ae899863baa63e96, all five requiredSources, verified Queue Wake Receipt research/runtime/wakes/2026/09/2026-09-04/queue-095752.json, durable Queue Worker Claimed commit 2763a2576218e8ae434f9f1d54992d4829cd6359 at 10:17:47+08:00, and the completed same-date Research Intelligence run containing six normalized signals with all three pipeline coverages.",
+      "input_zh": "权威控制源 main 提交 be148877382109e1afa2f3351e4bc72efe04be65、Research Runtime Scheduler V3.0、Worker Control v1.3.0、经确定性核验 SHA-256 为 0424c42ef3e47fbe28d65365b21e9c0142d5c3e6efeb32e7ae899863baa63e96 的 Generated Queue Prompt v1.0.0、全部 5 个 requiredSources、已核验 Queue Wake Receipt research/runtime/wakes/2026/09/2026-09-04/queue-095752.json、10:17:47+08:00 在提交 2763a2576218e8ae434f9f1d54992d4829cd6359 上持久化的 Queue Worker Claimed，以及覆盖全部三条 Pipeline、包含 6 个规范化 Signal 的同日 Completed Research Intelligence Run。",
+      "workResult": "Applied Skill 02 to all six same-date signals and enforced problem-first admission, release boundary, evidence sufficiency, source concentration, semantic concentration and recent-research-problem deduplication against the 2026-09-01 through 2026-09-03 Research Plans. Digital Employee recorded No Selection: the Codex iOS operator-queue signal is announcement-only, while the stronger Google ADK confirmation-pause implementation is used as cross-sample evidence rather than duplicated into a second object. Industry Architecture recorded No Selection: the GitHub billing-principal model-admission mechanism remains a legitimate candidate but has only one vendor announcement in today's pool. Open-source Engineering selected SIG-20260904-004 as Q-20260904-03, independently cross-supported by SIG-20260904-005, to study a common failure class across Codex and Google ADK: an authorization or human-approval interruption must preserve recovery evidence while preventing autonomous replay of the tool call until an explicit subsequent authorization/resume event. The remaining five signals were retained as candidates and none was rejected. Queue performed no Deep Reading, analysis, writing, Production or Publication.",
+      "workResult_zh": "按 Skill 02 对同日 6 个 Signal 全量筛选，并执行 Problem-first Admission、Release Boundary、Evidence Sufficiency、Source Concentration、Semantic Concentration，以及与 2026-09-01 至 2026-09-03 Research Plan 的研究问题去重。数字员工栏目明确 No Selection：Codex iOS Operator Queue 目前只有公告级证据；更强的 Google ADK Confirmation-pause 实现则作为 Cross-sample Evidence 使用，不重复制造第二个研究对象。行业架构栏目明确 No Selection：GitHub 的 Billing-principal Model-admission 机制是合法 Candidate，但今天的 Signal Pool 只有一份厂商官方公告。开源工程栏目选择 SIG-20260904-004，形成 Q-20260904-03，并由独立样本 SIG-20260904-005 交叉支持，研究 Codex 与 Google ADK 共同暴露的 Failure Class：Authorization 或 Human Approval 中断 Tool Call 后，Runtime 必须保留 Recovery Evidence，同时阻止自主重放，直到出现显式的后续授权或 Resume Event。其余 5 个 Signal 保留为 Candidate，0 个 Rejected。Queue 未执行 Deep Reading、Analysis、写作、Production 或 Publication。",
+      "output": "Today's Research Plan at research/runtime/plans/2026/09/2026-09-04-plan.json with three explicit column decisions: Digital Employee = No Selection, Industry Architecture = No Selection, Open-source Engineering = Selected Q-20260904-03.",
+      "output_zh": "Today's Research Plan 已写入 research/runtime/plans/2026/09/2026-09-04-plan.json，并包含三个显式栏目决定：Digital Employee = No Selection、Industry Architecture = No Selection、Open-source Engineering = Selected Q-20260904-03。",
+      "next": "After durable Queue terminal completion and GitHub verification, Reading must remain Waiting until its 11:00 not-before time. Once Runtime later grants Reading authority, it may consume only Q-20260904-03 and must execute Skill 03 before any Analysis or article writing.",
+      "next_zh": "Queue 达到持久终态并完成 GitHub Verification 后，Reading 在 11:00 Not-before 之前必须继续保持 Waiting。之后只有 Runtime 正式授予 Reading 执行权时，Reading 才可消费 Q-20260904-03，并必须先执行 Skill 03，方可进入 Analysis 或文章写作。",
+      "metrics": [
+        {
+          "label": "Generated prompt SHA-256 verified",
+          "label_zh": "Generated Prompt SHA-256 已核验",
+          "value": "0424c42ef3e47fbe28d65365b21e9c0142d5c3e6efeb32e7ae899863baa63e96"
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 requiredSources",
+          "value": "5 / 5"
+        },
+        {
+          "label": "Signal pool count",
+          "label_zh": "Signal Pool 数量",
+          "value": 6
+        },
+        {
+          "label": "Column decisions",
+          "label_zh": "栏目决定",
+          "value": 3
+        },
+        {
+          "label": "Selected objects",
+          "label_zh": "已选对象",
+          "value": 1
+        },
+        {
+          "label": "No Selection columns",
+          "label_zh": "No Selection 栏目",
+          "value": 2
+        },
+        {
+          "label": "Candidate signals",
+          "label_zh": "Candidate Signal",
+          "value": 5
+        },
+        {
+          "label": "Rejected signals",
+          "label_zh": "Rejected Signal",
+          "value": 0
+        },
+        {
+          "label": "Revision rounds used",
+          "label_zh": "已使用修订轮次",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Queue Wake Receipt",
+          "label_zh": "Queue Wake Receipt",
+          "path": "research/runtime/wakes/2026/09/2026-09-04/queue-095752.json"
+        },
+        {
+          "label": "Pinned Queue control-source commit",
+          "label_zh": "固定 Queue 控制源提交",
+          "commit": "be148877382109e1afa2f3351e4bc72efe04be65"
+        },
+        {
+          "label": "Durable Queue Worker Claimed commit",
+          "label_zh": "持久 Queue Worker Claimed 提交",
+          "commit": "2763a2576218e8ae434f9f1d54992d4829cd6359"
+        },
+        {
+          "label": "Generated Queue prompt",
+          "label_zh": "Generated Queue Prompt",
+          "path": "research/runtime/worker-prompts/generated/queue.prompt.md"
+        },
+        {
+          "label": "Run-date Research Intelligence",
+          "label_zh": "运行日 Research Intelligence",
+          "path": "research/intelligence/runs/2026/09/2026-09-04-intelligence.json"
+        },
+        {
+          "label": "Column Plan contract",
+          "label_zh": "Column Plan 合同",
+          "path": "research/runtime/COLUMN-PLAN-SCHEMA.md"
+        },
+        {
+          "label": "Skill 02",
+          "label_zh": "Skill 02",
+          "path": "research/skills/02-research-triage.md"
+        },
+        {
+          "label": "Recent Research Plans checked for research-problem deduplication",
+          "label_zh": "用于研究问题去重的近期 Research Plan",
+          "value": "2026-09-01, 2026-09-02, 2026-09-03"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Today's Research Plan",
+          "label_zh": "今日研究计划",
+          "path": "research/runtime/plans/2026/09/2026-09-04-plan.json"
+        },
+        {
+          "label": "Queue result",
+          "label_zh": "Queue 结果",
+          "path": "research/runtime/results/2026/09/2026-09-04-queue-result.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "path": "research/runtime/records/daily/2026/09/2026-09-04-daily-runtime.json"
+        },
+        {
+          "label": "Runtime Markdown ledger",
+          "label_zh": "Runtime Markdown 账本",
+          "path": "research/runtime/2026/09/2026-09-04-runtime.md"
+        }
+      ],
+      "triage": [
+        {
+          "signalId": "SIG-20260904-001",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "governanceValue": 4,
+            "digitalEmployeeValue": 5,
+            "multiAgentValue": 2,
+            "failureLearningValue": 3,
+            "mechanismValue": 4,
+            "findingValue": 1,
+            "crossSampleSupport": 1,
+            "sourceQuality": 4,
+            "novelResearchDelta": 4,
+            "boundedQuestion": 4
+          },
+          "total": 32,
+          "decision": "candidate",
+          "reason": "The host-synchronized mobile operator queue is a bounded mechanism, but today it is supported only by one official product announcement and does not pass the evidence-sufficiency gate for selection."
+        },
+        {
+          "signalId": "SIG-20260904-002",
+          "primaryColumn": "industry-architecture",
+          "scores": {
+            "governanceValue": 5,
+            "digitalEmployeeValue": 4,
+            "multiAgentValue": 3,
+            "failureLearningValue": 3,
+            "mechanismValue": 5,
+            "findingValue": 1,
+            "crossSampleSupport": 1,
+            "sourceQuality": 4,
+            "novelResearchDelta": 4,
+            "boundedQuestion": 5
+          },
+          "total": 35,
+          "decision": "candidate",
+          "reason": "Billing-principal model admission is a strong bounded authority question, but the same-day pool contains only GitHub's announcement and no independent comparison, implementation, benchmark or incident evidence."
+        },
+        {
+          "signalId": "SIG-20260904-003",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "governanceValue": 5,
+            "digitalEmployeeValue": 5,
+            "multiAgentValue": 3,
+            "failureLearningValue": 5,
+            "mechanismValue": 5,
+            "findingValue": 3,
+            "crossSampleSupport": 2,
+            "sourceQuality": 5,
+            "novelResearchDelta": 5,
+            "boundedQuestion": 5
+          },
+          "total": 43,
+          "decision": "candidate",
+          "reason": "Compaction-checkpoint authorization provenance is concrete and high-value implementation evidence, but it remains one implementation and is less evidence-complete than the selected cross-sample tool-interruption comparison."
+        },
+        {
+          "signalId": "SIG-20260904-004",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "governanceValue": 5,
+            "digitalEmployeeValue": 5,
+            "multiAgentValue": 3,
+            "failureLearningValue": 5,
+            "mechanismValue": 5,
+            "findingValue": 3,
+            "crossSampleSupport": 5,
+            "sourceQuality": 5,
+            "novelResearchDelta": 5,
+            "boundedQuestion": 5
+          },
+          "total": 46,
+          "decision": "selected",
+          "reason": "Together with independent Google ADK evidence in SIG-20260904-005, this exposes the same bounded failure class across authentication and human-confirmation interruptions: recovery evidence must survive while autonomous tool replay remains suppressed."
+        },
+        {
+          "signalId": "SIG-20260904-005",
+          "primaryColumn": "digital-employee",
+          "scores": {
+            "governanceValue": 5,
+            "digitalEmployeeValue": 5,
+            "multiAgentValue": 3,
+            "failureLearningValue": 5,
+            "mechanismValue": 5,
+            "findingValue": 3,
+            "crossSampleSupport": 5,
+            "sourceQuality": 5,
+            "novelResearchDelta": 5,
+            "boundedQuestion": 5
+          },
+          "total": 46,
+          "decision": "candidate",
+          "reason": "This is retained as the independent cross-sample evidence for selected object Q-20260904-03 rather than selected again as a second semantically overlapping object."
+        },
+        {
+          "signalId": "SIG-20260904-006",
+          "primaryColumn": "open-source-engineering",
+          "scores": {
+            "governanceValue": 5,
+            "digitalEmployeeValue": 3,
+            "multiAgentValue": 3,
+            "failureLearningValue": 4,
+            "mechanismValue": 4,
+            "findingValue": 5,
+            "crossSampleSupport": 5,
+            "sourceQuality": 5,
+            "novelResearchDelta": 4,
+            "boundedQuestion": 5
+          },
+          "total": 43,
+          "decision": "candidate",
+          "reason": "The reproducible cross-benchmark artifact is strong research evidence and remains a serious candidate, but today's Open-source slot gives priority to the higher-scoring direct agent-governance failure around interrupted tool-call replay."
+        }
+      ],
+      "startedAt": "2026-09-04T10:17:47+08:00",
+      "completedAt": "2026-09-04T10:22:34+08:00"
     }
   },
   "timeline": [
@@ -182,6 +426,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Queue after verifying research/runtime/wakes/2026/09/2026-09-04/queue-095752.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-04T10:22:34+08:00",
+      "task": "queue",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Queue closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-04."
     }
   ],
   "metrics": [],
@@ -189,5 +440,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-04T10:17:47+08:00"
+  "updatedAt": "2026-09-04T10:22:34+08:00"
 }
