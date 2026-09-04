@@ -1,0 +1,119 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "production",
+  "family": "daily",
+  "runtimeDate": "2026-09-04",
+  "status": "Completed",
+  "productionMode": "candidate-batch",
+  "input": {
+    "promptVersion": "2.13.0",
+    "promptPath": "research/runtime/worker-prompts/generated/production.prompt.md",
+    "promptSha256": "d8b0cd52d22d976d6356558a23c5c2dc28ed5aa8f51793538fa8fbebfb80996f",
+    "promptVerificationMode": "exact-head-ci",
+    "promptVerificationEvidence": "https://github.com/joinwell52-AI/joinwell52/actions/runs/33840384258",
+    "controlSourceCommit": "3b3cfff1975cd92531738678a97caf3a430a5bb9",
+    "workerClaimCommit": "9a8ff47a673eb570d13a52d7b00e821538fac8f3",
+    "wakeReceipt": "research/runtime/wakes/2026/09/2026-09-04/production-150016.json",
+    "researchObjects": [
+      "Q-20260904-03"
+    ],
+    "stagedCandidateCommit": "c162461c4775f31aa1969b2f01a3913d281ce3e7"
+  },
+  "workResult": {
+    "summary": "Converted the only same-date Production-authorized Research Object into one complete bilingual comparative-study candidate. The article segment, deterministic baseline cover and V2 checkpoint were persisted and remotely verified before staging. Two bounded revision rounds repaired Chinese technical-term first-occurrence explanations; the final atomic candidate bundle then passed checkpoint, bundle, layout, editorial, evidence, language, bilingual-consistency and Runtime validation. Publication was not executed.",
+    "summary_zh": "将同日唯一获得 Production 授权的 Research Object 转换为一份完整双语比较研究候选。文章分段、确定性基础题图与 V2 检查点均在候选装配前完成持久化与远程核验。两轮有界修订修复了中文技术术语首现说明；最终原子候选包通过检查点、候选包、版式、编辑、证据、语言、双语一致性与 Runtime 校验。未执行 Publication。"
+  },
+  "output": {
+    "type": "Publication Candidates",
+    "candidateBatch": "research/runtime/candidates/2026/09/2026-09-04-candidates.json",
+    "candidateCount": 1,
+    "bilingualArticleFiles": 2,
+    "coverAssets": 1,
+    "inlineFigureAssets": 0
+  },
+  "next": {
+    "task": "publication",
+    "instruction": "Do not execute Publication in this Production run. Publication remains a separate governed task and must be reconciled independently under current main.",
+    "instruction_zh": "本次 Production 不得执行 Publication；Publication 仍是独立受治理任务，必须按当前 main 另行对账。"
+  },
+  "coverEvidence": [
+    {
+      "itemId": "Q-20260904-03",
+      "briefId": "2026-09-04:Q-20260904-03-baseline-cover",
+      "coverPath": "staging/publication-candidates/2026-09-04-recovery-evidence-is-not-replay-authority-cover.png",
+      "sanitizedPrompt": "A luminous interrupted path holds three separate evidence tokens while a second path waits behind an amber gate in a dark indigo field",
+      "generationAttempts": 1,
+      "semanticReview": "PASS",
+      "coverRole": "baseline",
+      "generator": "deterministic-baseline-v1"
+    }
+  ],
+  "metrics": [
+    {
+      "name": "research_objects_consumed",
+      "value": 1
+    },
+    {
+      "name": "publication_candidates",
+      "value": 1
+    },
+    {
+      "name": "persisted_article_segments",
+      "value": 1
+    },
+    {
+      "name": "planning_artifacts",
+      "value": 3
+    },
+    {
+      "name": "bilingual_article_files",
+      "value": 2
+    },
+    {
+      "name": "cover_assets",
+      "value": 1
+    },
+    {
+      "name": "inline_figure_assets",
+      "value": 0
+    },
+    {
+      "name": "revision_rounds",
+      "value": 2
+    },
+    {
+      "name": "recovery_attempts",
+      "value": 0
+    },
+    {
+      "name": "required_sources_read",
+      "value": 13
+    },
+    {
+      "name": "direct_cloud_image_generation_calls",
+      "value": 0
+    },
+    {
+      "name": "direct_publication_actions",
+      "value": 0
+    }
+  ],
+  "evidence": [
+    "3b3cfff1975cd92531738678a97caf3a430a5bb9",
+    "9a8ff47a673eb570d13a52d7b00e821538fac8f3",
+    "51cfe1623ee9d9ac436cb5256a859a8dc46015b6",
+    "c162461c4775f31aa1969b2f01a3913d281ce3e7",
+    "research/runtime/worker-prompts/generated/production.prompt.md",
+    "research/runtime/checkpoints/2026/09/2026-09-04-production.json",
+    "research/runtime/wakes/2026/09/2026-09-04/production-150016.json",
+    "https://github.com/joinwell52-AI/joinwell52/actions/runs/33847749030",
+    "https://github.com/joinwell52-AI/joinwell52/actions/runs/33847823776"
+  ],
+  "artifacts": [
+    "research/runtime/candidates/2026/09/2026-09-04-candidates.json",
+    "research/runtime/checkpoints/2026/09/2026-09-04-production.json",
+    "staging/publication-candidates/2026-09-04-recovery-evidence-is-not-replay-authority.zh.md",
+    "staging/publication-candidates/2026-09-04-recovery-evidence-is-not-replay-authority.en.md",
+    "staging/publication-candidates/2026-09-04-recovery-evidence-is-not-replay-authority-cover.png"
+  ]
+}
