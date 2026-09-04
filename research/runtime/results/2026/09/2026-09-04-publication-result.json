@@ -1,0 +1,84 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "publication",
+  "family": "daily",
+  "runtimeDate": "2026-09-04",
+  "status": "Completed",
+  "input": {
+    "candidateBatch": "research/runtime/candidates/2026/09/2026-09-04-candidates.json",
+    "productionResult": "research/runtime/results/2026/09/2026-09-04-production-result.json",
+    "wakeReceipt": "research/runtime/wakes/2026/09/2026-09-04/publication-200419.json",
+    "executionType": "scheduled-same-day-publication"
+  },
+  "workResult": {
+    "summary": "Mechanically released 1 complete same-date Editorial Architecture 2.1 candidates as 2 bilingual Research Center articles and 1 existing canonical raster covers. No new research, substantive rewriting or evidence repair was performed.",
+    "summary_zh": "机械发布同日 1 组完整 Editorial Architecture 2.1 Candidate，形成 2 篇双语 Research Center 文章和 1 张既有规范栅格题图。全程未开展新研究、实质性改写或证据修复。"
+  },
+  "output": {
+    "type": "Released Daily Research",
+    "outcome": "Released",
+    "releaseManifest": "research/runtime/releases/2026-09-04-publication.json",
+    "releasedItems": 1,
+    "bilingualArticleFiles": 2,
+    "coverAssets": 1,
+    "inlineFigureAssets": 0,
+    "communityEditions": 0
+  },
+  "next": {
+    "instruction": "Finalize Publication only after required validators, site build, release visibility and durable main verification pass.",
+    "instruction_zh": "仅在必需校验、网站构建、发布可见性与 main 持久核验全部通过后，才收口 Publication。"
+  },
+  "metrics": [
+    {
+      "name": "eligible_publication_candidates",
+      "value": 1
+    },
+    {
+      "name": "released_items",
+      "value": 1
+    },
+    {
+      "name": "bilingual_article_files",
+      "value": 2
+    },
+    {
+      "name": "cover_assets",
+      "value": 1
+    },
+    {
+      "name": "inline_figure_assets",
+      "value": 0
+    },
+    {
+      "name": "new_research_actions",
+      "value": 0
+    },
+    {
+      "name": "substantive_rewrites",
+      "value": 0
+    },
+    {
+      "name": "evidence_repairs",
+      "value": 0
+    },
+    {
+      "name": "revision_rounds_used",
+      "value": 0
+    }
+  ],
+  "evidence": [
+    "research/runtime/candidates/2026/09/2026-09-04-candidates.json",
+    "research/runtime/results/2026/09/2026-09-04-production-result.json",
+    "research/runtime/worker-prompts/generated/publication.prompt.md",
+    "research/runtime/wakes/2026/09/2026-09-04/publication-200419.json",
+    "research/runtime/records/daily/2026/09/2026-09-04-daily-runtime.json"
+  ],
+  "artifacts": [
+    "docs/zh/engineering/2026-09-04-recovery-evidence-is-not-replay-authority.md",
+    "docs/en/engineering/2026-09-04-recovery-evidence-is-not-replay-authority.md",
+    "docs/public/assets/covers/daily-2026-09-04-recovery-evidence-is-not-replay-authority-cover.png",
+    "research/runtime/releases/2026-09-04-publication.json",
+    "research/runtime/results/2026/09/2026-09-04-publication-result.json"
+  ],
+  "startedAt": "2026-09-04T20:05:29+08:00"
+}
