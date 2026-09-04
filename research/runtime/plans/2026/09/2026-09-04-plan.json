@@ -5,7 +5,7 @@
   "status": "Completed",
   "sourceTask": "Research Runtime Queue",
   "sourceRecord": "research/runtime/2026/09/2026-09-04-runtime.md",
-  "updatedAt": "2026-09-04T10:19:45+08:00",
+  "updatedAt": "2026-09-04T13:07:09+08:00",
   "githubCommit": "pending",
   "columns": [
     {
@@ -50,17 +50,24 @@
       "itemId": "Q-20260904-03",
       "signalId": "SIG-20260904-004",
       "pipelineOrigin": "github-engineering",
-      "sourceUrl": "https://github.com/openai/codex/commit/0650d6d1ca451b67009a0a22b97d1847febb9b2",
+      "sourceUrl": "https://github.com/openai/codex/commit/0650d6d1ca451b67009b3969a82b87e76979975f",
       "title": "Interrupted tool calls must preserve recovery evidence without automatic replay",
       "title_zh": "被中断的 Tool Call 必须保留恢复证据，但不能自动重放",
       "priority": "P0",
       "lifecycle": "Selected",
-      "source": "https://github.com/openai/codex/commit/0650d6d1ca451b67009a0a22b97d1847febb9b2",
+      "source": "https://github.com/openai/codex/commit/0650d6d1ca451b67009b3969a82b87e76979975f",
       "source_zh": "OpenAI Codex 与 Google ADK 两个独立 Maintainer 实现共同支持的 Tool-call Interruption / Replay Safety 比较问题",
       "reason": "Selected from SIG-20260904-004 and independently cross-supported by SIG-20260904-005 after Skill 02 triage. Codex preserves MCP authentication challenges when silent refresh fails but explicitly avoids automatically replaying the rejected tool call; Google ADK suppresses summarization of an MCP call paused for human confirmation so the model does not invoke the same tool again. These different control boundaries expose one bounded engineering problem that remains meaningful without either vendor: when authorization or approval interrupts a tool call, which recovery evidence must survive and which runtime state must prevent autonomous replay until an explicit subsequent authorization/resume event? Two independent implementations of the same failure class satisfy the evidence-sufficiency gate and provide stronger agent-governance value than today's single-source release mechanisms.",
       "reason_zh": "经 Skill 02 筛选后，以 SIG-20260904-004 为锚点，并由独立样本 SIG-20260904-005 交叉支持。Codex 在 Silent Refresh 失败时保留 MCP Authentication Challenge，但明确不自动重放被拒绝的 Tool Call；Google ADK 则让等待人工确认而暂停的 MCP Call 跳过 Summarization，避免模型再次调用同一工具。这两个不同的控制边界共同形成一个去掉厂商名称仍成立的有界工程问题：当 Authorization 或 Approval 中断 Tool Call 时，哪些 Recovery Evidence 必须保留，哪些 Runtime State 必须阻止自动重放，直到出现显式的后续授权或 Resume Event？两个独立实现针对同一 Failure Class，满足 Evidence Sufficiency Gate，并且比今天的单一来源 Release Mechanism 具有更强的 Agent Governance 研究价值。",
       "next": "Skill 03 Deep Reading must verify both maintainer commits and tests, trace the exact authentication-challenge and human-confirmation pause transitions, distinguish retry from resume, determine whether any side effect may have committed before interruption, identify idempotency assumptions, and state what the implementation evidence does not prove about exactly-once execution across arbitrary tools.",
-      "next_zh": "Skill 03 Deep Reading 需核验两个 Maintainer Commit 及其 Test，追踪 Authentication Challenge 与 Human-confirmation Pause 的精确状态转换，区分 Retry 与 Resume，确认中断前是否可能已有 Side Effect 提交，识别 Idempotency 假设，并明确这些实现证据不能证明任意 Tool 的 Exactly-once Execution。"
+      "next_zh": "Skill 03 Deep Reading 需核验两个 Maintainer Commit 及其 Test，追踪 Authentication Challenge 与 Human-confirmation Pause 的精确状态转换，区分 Retry 与 Resume，确认中断前是否可能已有 Side Effect 提交，识别 Idempotency 假设，并明确这些实现证据不能证明任意 Tool 的 Exactly-once Execution。",
+      "sourceIdentityCorrection": {
+        "previousSha": "0650d6d1ca451b67009a0a22b97d1847febb9b2",
+        "correctedSha": "0650d6d1ca451b67009b3969a82b87e76979975f",
+        "correctedAt": "2026-09-04T13:07:09+08:00",
+        "adoptedBy": "Queue recovery",
+        "reason": "The selected object's maintainer source identity was corrected after authoritative GitHub verification; the research question, selected signal and cross-sample evidence are unchanged."
+      }
     }
   ]
 }
