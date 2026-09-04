@@ -8,7 +8,7 @@ article_type: experiment-report
 edition: research-center
 research_question: "真实 Host 准入服务是否拒绝没有覆盖测试计划的内部结果？"
 summary: "计划要求四项测试，结果却可以在零项回执时变成 VERIFIED。一次穿过真实 Host 准入服务的受控实验表明：没有收到失败，不等于已经收齐成功证据。"
-cover: "/assets/covers/host-research-20260903-empty-evidence.png"
+cover: "/assets/host-research-20260903/cover-01-empty-evidence-v1.png"
 language: zh-CN
 lifecycle: Published
 publication_authorized: true
@@ -16,7 +16,7 @@ evidence_status: "Controlled reproduction on V2.2.6; no remediation implemented 
 ---
 
 <ArticleCover
-  image="/assets/covers/host-research-20260903-empty-evidence.png"
+  image="/assets/host-research-20260903/cover-01-empty-evidence-v1.png"
   kicker="开源工程观察 · 受控实验"
   title="测试结果是空的，为什么还显示“验证通过”？"
   summary="计划要求四项测试，结果却可以在零项回执时变成 VERIFIED。一次穿过真实 Host 准入服务的受控实验表明：没有收到失败，不等于已经收齐成功证据。"

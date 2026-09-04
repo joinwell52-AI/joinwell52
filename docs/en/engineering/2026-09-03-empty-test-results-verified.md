@@ -8,7 +8,7 @@ article_type: experiment-report
 edition: research-center
 research_question: "Does the real Host admission service reject internal results that do not cover its test plan?"
 summary: "A plan requires four tests, yet zero returned results can still produce VERIFIED. A controlled experiment through the real Host admission service shows why receiving no failure is not evidence of complete success."
-cover: "/assets/covers/host-research-20260903-empty-evidence.png"
+cover: "/assets/host-research-20260903/cover-01-empty-evidence-v1.png"
 language: en
 lifecycle: Published
 publication_authorized: true
@@ -16,7 +16,7 @@ evidence_status: "Controlled reproduction on V2.2.6; no remediation implemented 
 ---
 
 <ArticleCover
-  image="/assets/covers/host-research-20260903-empty-evidence.png"
+  image="/assets/host-research-20260903/cover-01-empty-evidence-v1.png"
   kicker="Open-source engineering · Controlled experiment"
   title="The Test Results Are Empty. Why Does the System Still Say “Verified”?"
   summary="A plan requires four tests, yet zero returned results can still produce VERIFIED. Receiving no failure is not evidence of complete success."

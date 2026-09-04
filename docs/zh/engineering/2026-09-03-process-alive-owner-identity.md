@@ -8,7 +8,7 @@ article_type: experiment-report
 edition: research-center
 research_question: "旧执行记录的 owner 身份是否与当前存活进程可靠对应？"
 summary: "Codex 的 Windows 进程身份改动提醒我们：PID 存活不等于原执行者仍在。对 CodeFlowMu 两套记录的受控比较发现，写锁已经能识别时间矛盾，审批执行记录却仍可能保留 executing。"
-cover: "/assets/covers/host-research-20260903-process-identity.png"
+cover: "/assets/host-research-20260903/cover-02-process-identity-v1.png"
 language: zh-CN
 lifecycle: Published
 publication_authorized: true
@@ -16,7 +16,7 @@ evidence_status: "Controlled durable-state reproduction on V2.2.6; no induced OS
 ---
 
 <ArticleCover
-  image="/assets/covers/host-research-20260903-process-identity.png"
+  image="/assets/host-research-20260903/cover-02-process-identity-v1.png"
   kicker="开源工程观察 · 受控实验"
   title="进程还活着，原来的执行者还在吗？"
   summary="Codex 的 Windows 进程身份改动提醒我们：PID 存活不等于原执行者仍在。对 CodeFlowMu 两套记录的受控比较发现，写锁已经能识别时间矛盾，审批执行记录却仍可能保留 executing。"

@@ -8,7 +8,7 @@ article_type: perspective
 edition: research-center
 research_question: "企业拥有执行机器以后，Agent 平台与企业分别掌握什么，产品差异化如何变化？"
 summary: "机器可以归企业，Agent 的工作入口与控制循环仍可归平台。Cursor Self-Hosted Machines 的意义不只是远程执行：它正在改变本地运行的竞争价值，并把问题推向谁来组织、约束和验收数字员工的工作。"
-cover: "/assets/covers/host-research-20260903-enterprise-execution.png"
+cover: "/assets/host-research-20260903/cover-03-enterprise-execution-v1.png"
 language: zh-CN
 lifecycle: Published
 publication_authorized: true
@@ -16,7 +16,7 @@ evidence_status: "Official product sources verified; analysis and forecasts dist
 ---
 
 <ArticleCover
-  image="/assets/covers/host-research-20260903-enterprise-execution.png"
+  image="/assets/host-research-20260903/cover-03-enterprise-execution-v1.png"
   kicker="数字员工 · 发展展望"
   title="当 Agent 开进企业内网：Cursor Self-Hosted Machines 改变了什么？"
   summary="机器可以归企业，Agent 的工作入口与控制循环仍可归平台。Cursor Self-Hosted Machines 的意义不只是远程执行：它正在改变本地运行的竞争价值，并把问题推向谁来组织、约束和验收数字员工的工作。"
