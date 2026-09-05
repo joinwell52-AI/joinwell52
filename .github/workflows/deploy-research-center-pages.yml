@@ -181,6 +181,29 @@ jobs:
           set -euo pipefail
           source_sha="$(git rev-parse HEAD)"
 
+          # A cancelled or delayed build must never overwrite Pages with an older main snapshot.
+          # Re-read both authoritative main and the currently deployed source immediately before
+          # the force push. A newer main/deployment owns publication and this run exits cleanly.
+          git fetch origin \
+            +refs/heads/main:refs/remotes/origin/main \
+            +refs/heads/gh-pages:refs/remotes/origin/gh-pages
+          latest_main="$(git rev-parse origin/main)"
+          if [[ "$source_sha" != "$latest_main" ]]; then
+            echo "Skip stale Pages publish: built ${source_sha}, latest main is ${latest_main}."
+            exit 0
+          fi
+
+          deployed_subject="$(git log -1 --format=%s origin/gh-pages 2>/dev/null || true)"
+          deployed_source=""
+          if [[ "$deployed_subject" =~ ^deploy:\ ([0-9a-f]{40})$ ]]; then
+            deployed_source="${BASH_REMATCH[1]}"
+          fi
+          if [[ -n "$deployed_source" && "$deployed_source" != "$source_sha" ]] && \
+             git merge-base --is-ancestor "$source_sha" "$deployed_source" 2>/dev/null; then
+            echo "Skip stale Pages publish: deployed source ${deployed_source} already contains built source ${source_sha}."
+            exit 0
+          fi
+
           cd docs/.vitepress/dist
           touch .nojekyll
 
