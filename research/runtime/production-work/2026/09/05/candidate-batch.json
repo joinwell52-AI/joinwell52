@@ -109,7 +109,7 @@
       "coverPath": "staging/publication-candidates/2026-09-05-passing-tests-is-not-operational-capability-cover.png",
       "sections": [
         {"heading": "An Iterative Trace Matters, but It Describes What Was Exercised", "heading_zh": "迭代过程很重要，但它只说明练过什么", "module": "evidence"},
-        {"heading": "Scale Introduces New Failure Propositions", "heading_zh": "规模扩大后，新的故障命题才出现", "module": "research-finding"},
+        {"heading": "Scale Introduces New Failure Propositions", "heading_zh": "规模扩大后，新的故障命题才出现", "module": "evidence"},
         {"heading": "Five Evidence Layers Should Not Collapse into One Green State", "heading_zh": "五层证据，不要压成一个绿色状态", "module": "technical-analysis"},
         {"heading": "Ordinary Engineering Should Translate the Dimensions, Not Copy HPC Metrics", "heading_zh": "普通工程不需要照搬超级计算机指标", "module": "operational-implications"},
         {"heading": "Reproducible Does Not Mean Generally Reliable", "heading_zh": "可复现不等于普遍可靠", "module": "limitations"},
@@ -122,7 +122,7 @@
           "identity": "independent-evidence",
           "claim": "The independent Agentic Julia study uses iterative planning, code and test generation, execution, repair, and performance experimentation, and publishes prompts, artifacts, logs, tests, and runtime data.",
           "claim_zh": "独立的 Agentic Julia 研究采用迭代规划、代码与测试生成、执行、修复和性能实验，并公开提示词、工件、日志、测试与运行数据。",
-          "source": "research/analysis/Q-20260905-03-operational-capability-evidence.md",
+          "source": "https://github.com/BaLinuss/Agentic-AI-Generated-Julia-Code-on-Supercomputers",
           "strength": "reports",
           "independent": true,
           "independentActor": "BaLinuss/Agentic-AI-Generated-Julia-Code-on-Supercomputers research authors"
@@ -132,7 +132,7 @@
           "identity": "independent-evidence",
           "claim": "In the reported supercomputing experiments, some generated implementations that passed small functional checks later deadlocked, oversubscribed resources, exhausted memory, crashed, or timed out at larger workloads or parallelism.",
           "claim_zh": "据该超级计算实验报告，部分通过小规模功能检查的生成实现，在更大负载或并行度下随后出现死锁、资源过度订阅、内存耗尽、崩溃或超时。",
-          "source": "research/analysis/Q-20260905-03-operational-capability-evidence.md",
+          "source": "https://arxiv.org/abs/2606.16534",
           "strength": "supports",
           "independent": true,
           "independentActor": "BaLinuss/Agentic-AI-Generated-Julia-Code-on-Supercomputers research authors"
@@ -142,7 +142,7 @@
           "identity": "independent-evidence",
           "claim": "The study reports material differences between the generation environment and the target supercomputer's distributed-memory topology, process placement, resource constraints, and core counts.",
           "claim_zh": "该研究报告称，生成环境与目标超级计算机的分布式内存拓扑、进程放置、资源限制和核心数量存在实质差异。",
-          "source": "research/analysis/Q-20260905-03-operational-capability-evidence.md",
+          "source": "https://arxiv.org/abs/2606.16534",
           "strength": "reports",
           "independent": true,
           "independentActor": "BaLinuss/Agentic-AI-Generated-Julia-Code-on-Supercomputers research authors"
