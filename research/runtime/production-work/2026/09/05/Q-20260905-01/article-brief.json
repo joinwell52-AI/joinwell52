@@ -1,0 +1,50 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-05",
+  "itemId": "Q-20260905-01",
+  "researchObjectId": "Q-20260905-01",
+  "targetAudience": {
+    "primary": "Engineering leads, security architects, and governance owners designing AI-assisted approval flows",
+    "knowledgeAssumption": "The reader understands code review, policy gates, delegated agents, and auditable state transitions.",
+    "readerProblem": "A positive AI judgment may be mistaken for authority to approve, or an old approval may remain effective after its target, policy, or authorization evidence changes."
+  },
+  "whyNow": "GitHub Copilot's documented review controls and OpenAI Codex's versioned Guardian authorization lifecycle expose the same governance boundary at organizational and agent-runtime layers.",
+  "externalHook": {
+    "type": "judgment-authority-freshness-separation",
+    "description": "Two independent product layers distinguish a model's positive judgment from the policy and fresh evidence that make it operationally effective.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "An AI approval judgment becomes an effective sign-off only when separately authorized for a named gate, scope, and freshness identity; changes to the reviewed object, governing evidence, or authority-sensitive context must invalidate or re-evaluate that authority.",
+  "originalValue": {
+    "type": "five-dimension-approval-model",
+    "description": "Decomposes approval into judgment, approval capability, effective gate authority, scope, and freshness identity, then maps invalidation across organizational review and delegated-agent context changes."
+  },
+  "readerTakeaway": "Represent recommendation, authority grant, gate satisfaction, scope, and freshness as distinct auditable facts; invalidate the authority when any governing identity changes.",
+  "evidenceBoundary": {
+    "supported": [
+      "GitHub documents that Copilot review assessment, permission to submit approval, and effect on merge requirements are separate controls.",
+      "GitHub documents scope and freshness constraints, including policy hierarchy, optional path qualification, and dismissal after new commits.",
+      "The examined Codex maintainer implementation versions Guardian root-authorization evidence and cancels or strips stale or inherited approval in covered paths.",
+      "The comparison supports a bounded invariant that positive judgment is not self-authorizing and authority must have a checkable freshness identity."
+    ],
+    "unsupported": [
+      "A universal approval schema",
+      "Proof of a legal or human principal identity",
+      "Non-repudiation",
+      "Exactly-once downstream effects",
+      "Equivalence between GitHub organizational policy and Codex runtime authorization"
+    ],
+    "uncertain": [
+      "A portable approval-authority identity",
+      "Which harmless changes may preserve authority",
+      "How in-flight effects should be cancelled or reconciled when authority becomes stale"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article compares external public policy and open-source implementation evidence; no first-party project is needed for the argument."
+  },
+  "recommendedArticleType": "comparative-study",
+  "editorialDecision": "PASS",
+  "decisionReason": "The two distinct samples support an actionable governance model with explicit counterarguments and evidence boundaries without claiming protocol equivalence."
+}

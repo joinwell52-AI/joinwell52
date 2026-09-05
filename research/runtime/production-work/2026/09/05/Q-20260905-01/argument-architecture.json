@@ -1,0 +1,67 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-05",
+  "itemId": "Q-20260905-01",
+  "coreProposition": "An AI approval judgment becomes an effective sign-off only when separately authorized for a named gate, scope, and freshness identity; changes to the reviewed object, governing evidence, or authority-sensitive context must invalidate or re-evaluate that authority.",
+  "openingMove": {
+    "type": "stale-approval-incident",
+    "purpose": "Open with a review that was reasonable when written but becomes unsafe after the target or governing authority changes.",
+    "evidenceRefs": ["E1", "E2", "E3"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Which facts are hidden inside the word approval?",
+      "claim": "Judgment, capability to approve, effective gate authority, scope, and freshness answer different governance questions.",
+      "evidenceRefs": ["E1", "E2", "E4", "E5"],
+      "reasoningRole": "mechanism",
+      "readerProgress": "Replace an overloaded approval flag with five independently auditable dimensions.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What does the organizational review sample establish?",
+      "claim": "GitHub separates Copilot assessment, approval enablement, merge-gate effect, path scope, and reviewed-commit freshness.",
+      "evidenceRefs": ["E1", "E2"],
+      "reasoningRole": "evidence",
+      "readerProgress": "See that a positive assessment does not automatically become qualifying sign-off.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What does the agent-runtime sample add?",
+      "claim": "Codex versions authorization evidence, rejects stale or incomplete evidence, preserves bounded context through compaction, and strips parent-only approvals on worker fork in covered paths.",
+      "evidenceRefs": ["E3"],
+      "reasoningRole": "comparison",
+      "readerProgress": "Extend freshness from reviewed objects to authority-sensitive context transitions without claiming identical protocols.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "When should authority be invalidated?",
+      "claim": "A material change in target identity, governing evidence, policy, scope, or context ownership requires re-evaluation unless a narrower preservation rule is explicit and auditable.",
+      "evidenceRefs": ["E2", "E3", "E4", "E5"],
+      "reasoningRole": "governance-design",
+      "readerProgress": "Gain a practical invalidation checklist and state transition model.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What remains outside the evidence?",
+      "claim": "The samples do not prove human identity, legal accountability, non-repudiation, or safe downstream effect handling.",
+      "evidenceRefs": ["E5"],
+      "reasoningRole": "boundary",
+      "readerProgress": "Avoid converting an authority-freshness pattern into a universal security claim.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Invalidating approval after every change can create unnecessary review cost, and a user interface may legitimately combine states for simplicity.",
+    "responseBoundary": "A narrower invalidation rule is acceptable when it proves which changes preserve the approved proposition; presentation may simplify, but the durable control plane must retain the distinctions."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with unresolved identity, invalidation, and in-flight cancellation questions rather than presenting a universal approval protocol."
+  }
+}
