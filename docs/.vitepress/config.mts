@@ -148,7 +148,7 @@ export default defineConfig({
           { text: 'Product Stack', items: [
             { text: 'TMPA', link: '/en/publications/tmpa-architecture-paper-a1.0' },
             { text: 'FCoP Official Site', link: 'https://joinwell52-ai.github.io/FCoP/' },
-            { text: 'CodeFlowMu', link: 'https://github.com/joinwell52-AI/CodeFlowMu-open' },
+            { text: 'CodeFlowMu · Windows', link: 'https://github.com/joinwell52-AI/CodeflowMu-Distribution' },
             { text: 'Research Report Production Engine V1.3', link: '/en/publications/research-report-production-engine-v1.3' },
             { text: 'Digital Employee Architecture', link: '/en/digital-employee/architecture' },
             { text: 'Research Runtime Center V5.0', link: '/en/runtime/' }
@@ -173,7 +173,7 @@ export default defineConfig({
           { text: '能力体系', items: [
             { text: 'TMPA', link: '/zh/publications/tmpa-architecture-paper-a1.0' },
             { text: 'FCoP 官网', link: 'https://joinwell52-ai.github.io/FCoP/' },
-            { text: 'CodeFlowMu', link: 'https://github.com/joinwell52-AI/CodeFlowMu-open' },
+            { text: 'CodeFlowMu · Windows', link: 'https://github.com/joinwell52-AI/CodeflowMu-Distribution' },
             { text: '研究报告生产机 V1.3', link: '/zh/publications/research-report-production-engine-v1.3' },
             { text: '数字员工纲领性架构', link: '/zh/digital-employee/architecture' },
             { text: 'Research Runtime Center V5.0', link: '/zh/runtime/' }

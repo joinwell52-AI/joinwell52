@@ -63,7 +63,7 @@ const copy = computed(() => zh.value ? {
   systems: [
     { no:'01', kind:'理论', role:'文本化多智能体流程架构', name:['TMPA'], description:'独立记录治理理论、规范对象与 Reader 行为，通过 Core 与 FCoP 指导 CodeFlowMu 工程落实，但不把工程结果自动当作理论证明。', path:'/zh/publications/tmpa-architecture-paper-a1.0', logo:'/logo.svg?v=tmpa-20260807-5', tone:'tmpa', cta:'论文与规范' },
     { no:'02', kind:'协议', role:'基于文件的协同协议', name:['FCoP'], description:'以项目可见文件承载任务、报告、审阅与生命周期证据，为 CodeFlowMu 与数字员工提供可重建的协同事实。', path:'https://joinwell52-ai.github.io/FCoP/', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'打开 FCoP 官网' },
-    { no:'03', kind:'运行', role:'数字员工开发与工作 Runtime', name:['CodeFlowMu'], description:'承载数字员工开发、受治理执行、恢复与持久工作证据，是工场能力的运行层与开源参考环境。', path:'https://github.com/joinwell52-AI/CodeFlowMu-open', logo:'/assets/logos/codeflowmu.png', tone:'codeflow', cta:'打开 GitHub' },
+    { no:'03', kind:'运行', role:'数字员工开发与工作 Runtime', name:['CodeFlowMu'], description:'承载数字员工开发、受治理执行、恢复与持久工作证据，提供 Windows x64 专有软件免费预览版，安装与更新统一进入公开发版仓库。', path:'https://github.com/joinwell52-AI/CodeflowMu-Distribution', logo:'/assets/logos/codeflowmu.png', tone:'codeflow', cta:'应用与 Windows 下载' },
     { no:'04', kind:'应用', role:'企业 AI 应用 · PWA DEMO', name:['小典','AI'], description:'源于早期企业 AI 应用实践，并促成对多角色开发、业务治理与数字员工架构的持续探索。现开放 PWA Demo 供交互体验；这是体验入口，不是生产服务。', path:'https://demo.chedian.cc', mark:'XD', tone:'xiaodian', cta:'打开 PWA Demo' }
   ],
   researchLabel: '04 · 工场观察',
@@ -140,7 +140,7 @@ const copy = computed(() => zh.value ? {
   systems: [
     { no:'01', kind:'THEORY', role:'TEXTUAL MULTI-AGENT PROCESS ARCHITECTURE', name:['TMPA'], description:'Independently records governance theory, normative objects, and Reader behavior. Through Core and FCoP it guides CodeFlowMu engineering without treating implementation results as automatic proof of theory.', path:'/en/publications/tmpa-architecture-paper-a1.0', logo:'/logo.svg?v=tmpa-20260807-5', tone:'tmpa', cta:'Paper & specification' },
     { no:'02', kind:'PROTOCOL', role:'FILE-BASED COORDINATION PROTOCOL', name:['FCoP'], description:'Project-visible files carry tasks, reports, reviews, and lifecycle evidence, providing reconstructable coordination facts for CodeFlowMu and Digital Employees.', path:'https://joinwell52-ai.github.io/FCoP/', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'Open FCoP site' },
-    { no:'03', kind:'RUNTIME', role:'DIGITAL EMPLOYEE DEVELOPMENT AND WORK RUNTIME', name:['CodeFlowMu'], description:'The runtime layer for Digital Employee development, governed execution, recovery, and durable work evidence, with an open-source reference environment.', path:'https://github.com/joinwell52-AI/CodeFlowMu-open', logo:'/assets/logos/codeflowmu.png', tone:'codeflow', cta:'Open GitHub' },
+    { no:'03', kind:'RUNTIME', role:'DIGITAL EMPLOYEE DEVELOPMENT AND WORK RUNTIME', name:['CodeFlowMu'], description:'The runtime layer for Digital Employee development, governed execution, recovery, and durable work evidence, available as a proprietary free preview for Windows x64 through the public distribution repository.', path:'https://github.com/joinwell52-AI/CodeflowMu-Distribution', logo:'/assets/logos/codeflowmu.png', tone:'codeflow', cta:'App & Windows downloads' },
     { no:'04', kind:'APPLICATION', role:'ENTERPRISE AI APPLICATION · PWA DEMO', name:['Xiaodian','AI'], description:'An early enterprise AI application that helped surface the need for multi-role development, business governance, and the Digital Employee architecture. Its PWA demo is open for hands-on exploration; it is an experience entry point, not a production service.', path:'https://demo.chedian.cc', mark:'XD', tone:'xiaodian', cta:'Open PWA Demo' }
   ],
   researchLabel: '04 · FACTORY OBSERVATION',
@@ -316,8 +316,11 @@ onBeforeUnmount(() => {
             />
             <div class="rc-hero__summary">
               <p class="rc-hero__lead">{{ copy.heroLead }}</p>
+              <p>{{ zh ? 'CodeFlowMu Windows x64 免费预览版现已公开下载 · 专有软件' : 'CodeFlowMu Windows x64 free preview is publicly available · Proprietary software' }}</p>
               <div class="rc-actions">
-                <a class="rc-button rc-button--primary" :href="link(researchOverview)">{{ copy.primary }} <span>↗</span></a>
+                <a class="rc-button rc-button--primary" href="https://github.com/joinwell52-AI/CodeflowMu-Distribution/releases">{{ zh ? '下载 CodeFlowMu · Windows' : 'Download CodeFlowMu · Windows' }} <span>↗</span></a>
+                <a class="rc-button" href="https://github.com/joinwell52-AI/CodeflowMu-Distribution">{{ zh ? '应用介绍与安装指南' : 'App & installation guide' }} <span>↗</span></a>
+                <a class="rc-button" :href="link(researchOverview)">{{ copy.primary }} <span>↗</span></a>
               </div>
             </div>
           </div>
@@ -376,7 +379,7 @@ onBeforeUnmount(() => {
         </video>
         <footer>
           <span>{{ zh ? '手机发起 · PM 拆解 · 多角色并行 · 人类终审' : 'Mobile intake · PM decomposition · Parallel roles · Human final approval' }}</span>
-          <a href="https://github.com/joinwell52-AI/CodeFlowMu-open">CodeFlowMu Open ↗</a>
+          <a href="https://github.com/joinwell52-AI/CodeflowMu-Distribution">{{ zh ? 'CodeFlowMu 应用与下载' : 'CodeFlowMu app & downloads' }} ↗</a>
         </footer>
       </div>
     </div>
@@ -558,13 +561,13 @@ onBeforeUnmount(() => {
           <div class="rc-product-mark rc-product-mark--footer" aria-label="TMPA, FCoP, CodeFlowMu">
             <a :href="link(zh ? '/zh/publications/tmpa-architecture-paper-a1.0' : '/en/publications/tmpa-architecture-paper-a1.0')" title="TMPA"><img src="/logo.svg?v=tmpa-20260807-5" alt="TMPA logo"><span>TMPA</span></a>
             <a href="https://joinwell52-ai.github.io/FCoP/" title="FCoP"><img src="https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png" alt="FCoP logo"><span>FCoP</span></a>
-            <a href="https://github.com/joinwell52-AI/CodeFlowMu-open" title="CodeFlowMu"><img src="/assets/logos/codeflowmu.png" alt="CodeFlowMu logo"><span>CodeFlowMu</span></a>
+            <a href="https://github.com/joinwell52-AI/CodeflowMu-Distribution" title="CodeFlowMu"><img src="/assets/logos/codeflowmu.png" alt="CodeFlowMu logo"><span>CodeFlowMu</span></a>
           </div>
           <h2>{{ zh ? '数字员工工场' : 'Digital Employee Works' }}</h2>
           <p>{{ copy.footerAbout }}</p>
         </div>
-        <nav><h3>{{ copy.footerCode }}</h3><a href="https://github.com/joinwell52-AI/joinwell52">{{ copy.repository }} ↗</a><a href="https://joinwell52-ai.github.io/FCoP/">{{ copy.fcop }} ↗</a><a href="https://github.com/joinwell52-AI/CodeFlowMu-open">{{ copy.codeflow }} ↗</a></nav>
-        <nav><h3>{{ copy.footerRead }}</h3><a :href="link(researchOverview)">{{ copy.researchNotes }} →</a><a :href="link(publicationOverview)">{{ copy.publicationCenter }} →</a><a :href="link(runtimePath)">{{ copy.runtimeCenter }} →</a></nav>
+        <nav><h3>{{ copy.footerCode }}</h3><a href="https://github.com/joinwell52-AI/joinwell52">{{ copy.repository }} ↗</a><a href="https://joinwell52-ai.github.io/FCoP/">{{ copy.fcop }} ↗</a><a href="https://github.com/joinwell52-AI/CodeflowMu-Distribution">{{ copy.codeflow }} ↗</a></nav>
+        <nav><h3>{{ copy.footerRead }}</h3><a :href="link(researchOverview)">{{ copy.researchNotes }} →</a><a :href="link(publicationOverview)">{{ copy.publicationCenter }} →</a><a :href="link(runtimePath)">{{ copy.runtimeCenter }} →</a><a href="https://github.com/joinwell52-AI/CodeFlowMu-open">{{ zh ? 'CodeFlowMu Open · 历史研究记录' : 'CodeFlowMu Open · historical research' }} ↗</a></nav>
         <nav><h3>{{ copy.footerCite }}</h3><a href="https://github.com/joinwell52-AI/joinwell52/blob/main/CITATION.cff">{{ copy.citationFile }} ↗</a><a href="https://github.com/joinwell52-AI/joinwell52/blob/main/LICENSE.md">{{ copy.license }} ↗</a><b>{{ copy.licenseName }}</b></nav>
       </div>
       <div class="rc-shell rc-site-footer__legal">
