@@ -1,0 +1,265 @@
+{
+  "schema": "runtime-publication-candidate/v2",
+  "date": "2026-09-05",
+  "timezone": "Asia/Shanghai",
+  "sourceTask": "Research Runtime Production",
+  "sourceRecord": "research/runtime/records/daily/2026/09/2026-09-05-daily-runtime.json",
+  "status": "Completed",
+  "reason": "Two authorized 2026-09-05 Research Objects were converted into complete bilingual Editorial Architecture 2.1 candidates with verified planning artifacts, evidence-bounded claims, independent reader value, and deterministic baseline covers.",
+  "reason_zh": "两份已授权的 2026-09-05 Research Object 已转换为完整双语 Editorial Architecture 2.1 候选，具备已核验规划工件、有边界的证据声明、独立读者价值与确定性基础题图。",
+  "updatedAt": "2026-09-05T15:13:00+08:00",
+  "githubCommit": "pending",
+  "candidates": [
+    {
+      "itemId": "Q-20260905-01",
+      "column": "digital-employee",
+      "articleType": "comparative-study",
+      "title": "A Positive Judgment Is Not Yet an Effective Approval",
+      "title_zh": "判断通过，不等于批准生效",
+      "researchQuestion": "在人工智能生成的批准判断成为组织内有效签署之前，必须具备哪些证据；哪些变化应当使这份权限失效或收窄？",
+      "coreProposition": "An AI approval judgment becomes an effective sign-off only when separately authorized for a named gate, scope, and freshness identity; changes to the reviewed object, governing evidence, or authority-sensitive context must invalidate or re-evaluate that authority.",
+      "articleBriefPath": "research/runtime/production-work/2026/09/05/Q-20260905-01/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/05/Q-20260905-01/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/05/Q-20260905-01/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-05-judgment-is-not-effective-approval.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-05-judgment-is-not-effective-approval.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-05-judgment-is-not-effective-approval-cover.png",
+      "sections": [
+        {
+          "heading": "One Word Hides Five Governance Questions",
+          "heading_zh": "一个词藏着五个不同问题",
+          "module": "technical-analysis"
+        },
+        {
+          "heading": "The Organizational Sample Separates Assessment, Submission, and Gate Effect",
+          "heading_zh": "组织审查样本：评价、提交与门禁效力分开",
+          "module": "evidence"
+        },
+        {
+          "heading": "The Agent-Runtime Sample Makes Context an Authority Boundary",
+          "heading_zh": "智能体运行样本：上下文连续不等于权限连续",
+          "module": "comparison"
+        },
+        {
+          "heading": "Invalidation Should Follow Enumerated Change, Not Intuition",
+          "heading_zh": "失效规则要绑定变化，而不是绑定感觉",
+          "module": "governance-implications"
+        },
+        {
+          "heading": "Simple Interfaces Need Not Erase Durable Facts",
+          "heading_zh": "简化界面可以，简化控制事实不可以",
+          "module": "counterarguments"
+        },
+        {
+          "heading": "Evidence Boundary and Open Questions",
+          "heading_zh": "证据边界与开放问题",
+          "module": "open-questions"
+        }
+      ],
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "GitHub documents that a Copilot approval assessment is distinct from administrator-enabled permission to submit approving reviews and from whether that approval can satisfy merge requirements.",
+          "claim_zh": "GitHub 文档把 Copilot 的批准评价、由管理员启用的批准提交能力，以及批准能否满足合并要求区分为不同事实。",
+          "source": "research/analysis/Q-20260905-01-approval-authority-freshness.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E2",
+          "identity": "public-fact",
+          "claim": "GitHub documents policy hierarchy, optional changed-file path qualification, and dismissal of earlier Copilot approval after new commits.",
+          "claim_zh": "GitHub 文档记录了策略层级、可选的变更文件路径资格，以及新提交后旧 Copilot 批准被撤销的规则。",
+          "source": "research/analysis/Q-20260905-01-approval-authority-freshness.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E3",
+          "identity": "public-fact",
+          "claim": "OpenAI Codex maintainer commit 87628df versions Guardian root-authorization evidence, cancels stale Allow results, treats missing required evidence as incomplete, restores bounded evidence across compaction, and strips parent-only approvals on worker fork in covered paths.",
+          "claim_zh": "OpenAI Codex 维护者提交 87628df 在覆盖路径中版本化 Guardian 根授权证据、取消过期允许结果、把缺失必要证据视为不完整、在上下文压缩后恢复有界证据，并在派生工作智能体时移除父级专属批准。",
+          "source": "research/analysis/Q-20260905-01-approval-authority-freshness.md",
+          "strength": "states",
+          "independent": false
+        },
+        {
+          "id": "E4",
+          "identity": "our-observation",
+          "claim": "The two samples place authority-freshness boundaries at different layers while preserving a shared distinction between positive judgment and operational authority.",
+          "claim_zh": "本次比较观察到，两个样本在不同层设置权限新鲜度边界，同时都区分正面判断与可产生效力的权限。",
+          "source": "research/analysis/Q-20260905-01-approval-authority-freshness.md",
+          "strength": "observed",
+          "independent": false
+        },
+        {
+          "id": "E5",
+          "identity": "our-interpretation",
+          "claim": "Governed approval should be represented by separate judgment, capability, effective-gate, scope, and freshness facts whose protected identities have explicit invalidation rules.",
+          "claim_zh": "本文据此解释，受治理的批准应分别记录判断、能力、门禁效力、范围与新鲜度，并为受保护身份定义显式失效规则。",
+          "source": "research/analysis/Q-20260905-01-approval-authority-freshness.md",
+          "strength": "supports",
+          "independent": false
+        }
+      ],
+      "category": "daily",
+      "lifecycle": "Publication Candidate",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The argument compares external organizational-review policy and open-source agent-runtime mechanisms."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already provides the transferable governance model and action checklist without a distinct community angle."
+      },
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS"
+    },
+    {
+      "itemId": "Q-20260905-03",
+      "column": "open-source-engineering",
+      "articleType": "engineering-insight",
+      "title": "Passing Tests Is Not Operational Capability",
+      "title_zh": "测试通过，不等于具备运行能力",
+      "researchQuestion": "在什么证据充分具备之后，才能把智能体生成并迭代的软件称为具有运行能力，而不只是通过了生成期间可用的功能测试？",
+      "coreProposition": "Functional success and a rich agent development trace are necessary but insufficient evidence of operational capability; stronger completion claims require a separate, risk-proportionate qualification gate over the relevant workload, concurrency, resource, topology, and reproducibility dimensions.",
+      "articleBriefPath": "research/runtime/production-work/2026/09/05/Q-20260905-03/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/05/Q-20260905-03/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/05/Q-20260905-03/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-05-passing-tests-is-not-operational-capability.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-05-passing-tests-is-not-operational-capability.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-05-passing-tests-is-not-operational-capability-cover.png",
+      "sections": [
+        {
+          "heading": "An Iterative Trace Matters, but It Describes What Was Exercised",
+          "heading_zh": "迭代过程很重要，但它只说明练过什么",
+          "module": "evidence"
+        },
+        {
+          "heading": "Scale Introduces New Failure Propositions",
+          "heading_zh": "规模扩大后，新的故障命题才出现",
+          "module": "comparison"
+        },
+        {
+          "heading": "Five Evidence Layers Should Not Collapse into One Green State",
+          "heading_zh": "五层证据，不要压成一个绿色状态",
+          "module": "technical-analysis"
+        },
+        {
+          "heading": "Ordinary Engineering Should Translate the Dimensions, Not Copy HPC Metrics",
+          "heading_zh": "普通工程不需要照搬超级计算机指标",
+          "module": "operational-implications"
+        },
+        {
+          "heading": "Reproducible Does Not Mean Generally Reliable",
+          "heading_zh": "可复现不等于普遍可靠",
+          "module": "limitations"
+        },
+        {
+          "heading": "Evidence Boundary and Open Questions",
+          "heading_zh": "证据边界与开放问题",
+          "module": "open-questions"
+        }
+      ],
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "independent-evidence",
+          "claim": "The independent Agentic Julia study uses iterative planning, code and test generation, execution, repair, and performance experimentation, and publishes prompts, artifacts, logs, tests, and runtime data.",
+          "claim_zh": "独立的 Agentic Julia 研究采用迭代规划、代码与测试生成、执行、修复和性能实验，并公开提示词、工件、日志、测试与运行数据。",
+          "source": "https://github.com/BaLinuss/Agentic-AI-Generated-Julia-Code-on-Supercomputers",
+          "strength": "reports",
+          "independent": true,
+          "independentActor": "BaLinuss/Agentic-AI-Generated-Julia-Code-on-Supercomputers research authors"
+        },
+        {
+          "id": "E2",
+          "identity": "independent-evidence",
+          "claim": "In the reported supercomputing experiments, some generated implementations that passed small functional checks later deadlocked, oversubscribed resources, exhausted memory, crashed, or timed out at larger workloads or parallelism.",
+          "claim_zh": "据该超级计算实验报告，部分通过小规模功能检查的生成实现，在更大负载或并行度下随后出现死锁、资源过度订阅、内存耗尽、崩溃或超时。",
+          "source": "https://arxiv.org/abs/2606.16534",
+          "strength": "supports",
+          "independent": true,
+          "independentActor": "BaLinuss/Agentic-AI-Generated-Julia-Code-on-Supercomputers research authors"
+        },
+        {
+          "id": "E3",
+          "identity": "independent-evidence",
+          "claim": "The study reports material differences between the generation environment and the target supercomputer's distributed-memory topology, process placement, resource constraints, and core counts.",
+          "claim_zh": "该研究报告称，生成环境与目标超级计算机的分布式内存拓扑、进程放置、资源限制和核心数量存在实质差异。",
+          "source": "https://arxiv.org/abs/2606.16534",
+          "strength": "reports",
+          "independent": true,
+          "independentActor": "BaLinuss/Agentic-AI-Generated-Julia-Code-on-Supercomputers research authors"
+        },
+        {
+          "id": "E4",
+          "identity": "our-observation",
+          "claim": "Functional, development-process, operational-failure-envelope, scaling, and transfer/reproducibility evidence answer distinct completion propositions.",
+          "claim_zh": "本次分析观察到，功能、开发过程、运行故障边界、伸缩与迁移/可复现证据回答不同的完成命题。",
+          "source": "research/analysis/Q-20260905-03-operational-capability-evidence.md",
+          "strength": "observed",
+          "independent": false
+        },
+        {
+          "id": "E5",
+          "identity": "our-interpretation",
+          "claim": "Agent-generated software should advance through qualified completion gates matched to the operational consequence being claimed, rather than inheriting production readiness from local test success.",
+          "claim_zh": "本文据此解释，智能体生成的软件应按所声明的运行后果通过分层完成门禁，而不能从本地测试成功直接继承生产就绪结论。",
+          "source": "research/analysis/Q-20260905-03-operational-capability-evidence.md",
+          "strength": "supports",
+          "independent": false
+        }
+      ],
+      "category": "daily",
+      "lifecycle": "Publication Candidate",
+      "coverRole": "baseline",
+      "inlineFigures": [],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The argument derives from independent public research and remains useful without any first-party project."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The Research Center edition already supplies the practical evidence model and risk-proportionate checklist; no distinct professional-community angle would add enough value."
+      },
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS"
+    }
+  ]
+}
