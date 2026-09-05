@@ -1,0 +1,50 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-05",
+  "itemId": "Q-20260905-03",
+  "researchObjectId": "Q-20260905-03",
+  "targetAudience": {
+    "primary": "Engineering managers, platform engineers, and evaluation owners deploying agent-generated software",
+    "knowledgeAssumption": "The reader understands repository tests, continuous integration, concurrency, resource limits, and deployment environments.",
+    "readerProblem": "A rich plan-test-refine trace and passing local tests may be accepted as production readiness even though load, parallelism, memory pressure, or target topology has not been qualified."
+  },
+  "whyNow": "A reproducible agentic Julia and supercomputing study exposes failures that appear only as workload and parallelism increase, despite earlier functional success.",
+  "externalHook": {
+    "type": "functional-success-operational-failure-gap",
+    "description": "Agent-generated implementations can pass small correctness tests and later deadlock, exhaust memory, crash, or time out under realistic execution conditions.",
+    "evidenceRefs": ["E1", "E2", "E3"]
+  },
+  "coreProposition": "Functional success and a rich agent development trace are necessary but insufficient evidence of operational capability; stronger completion claims require a separate, risk-proportionate qualification gate over the relevant workload, concurrency, resource, topology, and reproducibility dimensions.",
+  "originalValue": {
+    "type": "five-layer-qualified-completion-model",
+    "description": "Separates functional correctness, development-process evidence, operational failure envelope, performance/scalability evidence, and transfer/reproducibility evidence so each gate closes only the proposition it actually tested."
+  },
+  "readerTakeaway": "Label the evidence layer that passed, then add operational qualification only for the failure dimensions material to the intended deployment.",
+  "evidenceBoundary": {
+    "supported": [
+      "The examined study uses iterative planning, generation, testing, repair, and performance experimentation rather than one-shot code generation.",
+      "The public research package exposes prompts, generated artifacts, interaction logs, tests, and runtime data.",
+      "Some generated implementations that passed small functional checks later encountered deadlock, oversubscription, out-of-memory failure, crash, or timeout at larger workloads or parallelism.",
+      "The evidence supports separating functional acceptance from operational qualification."
+    ],
+    "unsupported": [
+      "A universal production-readiness threshold",
+      "A general ranking of programming frameworks",
+      "Guaranteed discovery of every operational failure",
+      "Direct transfer of Julia or supercomputing metrics to all enterprise software",
+      "Population-level model reliability from one generation per condition"
+    ],
+    "uncertain": [
+      "How many independent generations are needed for model-level reliability claims",
+      "Which target-environment facts should be exposed during refinement",
+      "How to avoid benchmark overfitting while improving operational evidence"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument derives from independent public research and does not require a first-party project."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The study supplies a reproducible failure contrast and supports a practical completion-gate model while preserving transfer and sample-size limits."
+}

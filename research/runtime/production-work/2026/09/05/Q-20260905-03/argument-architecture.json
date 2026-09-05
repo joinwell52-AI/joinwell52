@@ -1,0 +1,67 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-05",
+  "itemId": "Q-20260905-03",
+  "coreProposition": "Functional success and a rich agent development trace are necessary but insufficient evidence of operational capability; stronger completion claims require a separate, risk-proportionate qualification gate over the relevant workload, concurrency, resource, topology, and reproducibility dimensions.",
+  "openingMove": {
+    "type": "green-tests-red-operations-contrast",
+    "purpose": "Open with an artifact that passes the available tests but fails under the target workload, making the claim mismatch visible before technical detail.",
+    "evidenceRefs": ["E1", "E2"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is an iterative agent trace meaningful but insufficient?",
+      "claim": "Planning, tool use, testing, debugging, and refinement show real development behavior, but they establish only what the admitted environment exercised.",
+      "evidenceRefs": ["E1", "E3", "E4"],
+      "reasoningRole": "evidence",
+      "readerProgress": "Value the process trace without treating it as deployment evidence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What changes at operational scale?",
+      "claim": "Larger workloads and parallel execution expose deadlock, oversubscription, memory exhaustion, crashes, and timeouts that small functional tests do not probe.",
+      "evidenceRefs": ["E2", "E3"],
+      "reasoningRole": "finding",
+      "readerProgress": "Understand the operational failure envelope as a separate evidence object.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "Which evidence layers should completion preserve?",
+      "claim": "Functional, process, failure-envelope, scaling, and transfer/reproducibility evidence close different propositions and should remain separately auditable.",
+      "evidenceRefs": ["E1", "E2", "E3", "E4"],
+      "reasoningRole": "mechanism",
+      "readerProgress": "Gain a five-layer qualification model instead of one aggregate passed state.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "How should ordinary engineering teams apply the model?",
+      "claim": "Qualification should be proportional to risk and target failures, mapping supercomputing dimensions to relevant enterprise loads, dependencies, retries, recovery, data volume, and resource ceilings.",
+      "evidenceRefs": ["E4", "E5"],
+      "reasoningRole": "operational-implication",
+      "readerProgress": "Turn the evidence model into a practical admission checklist.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What cannot be generalized from the study?",
+      "claim": "One reproducible supercomputing study does not set a universal threshold, rank all frameworks, or estimate generation-to-generation reliability.",
+      "evidenceRefs": ["E2", "E3", "E5"],
+      "reasoningRole": "boundary",
+      "readerProgress": "Preserve sample, environment, and transfer limits in the completion claim.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Most software changes do not justify large-scale stress or distributed-system testing.",
+    "responseBoundary": "Operational qualification should match the consequence claimed; small deterministic utilities may need no scalability gate, while high-impact concurrent or resource-sensitive software does."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with test-selection, repeated-generation, environment-disclosure, and durable-receipt questions rather than a universal readiness score."
+  }
+}
