@@ -3,64 +3,97 @@
   "version": "1.0",
   "date": "2026-09-05",
   "timezone": "Asia/Shanghai",
-  "status": "Waiting",
+  "status": "Completed",
   "registryVersion": "1.0",
-  "sourceTask": "Research Runtime Queue",
-  "updatedAt": "",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-09-05T09:08:31+08:00",
   "githubCommit": "pending",
-  "reason": "Research Runtime Queue has not completed the three intelligence pipelines.",
-  "reason_zh": "研究运行队列尚未完成三条情报发现管线。",
+  "researchCoverage": {
+    "policy": "theme-sample-v1",
+    "rollingResearchWindowDays": 30,
+    "sampleFamilies": {
+      "product-governance": {
+        "checked": [
+          "OpenAI Codex managed browser and native-app policy",
+          "Anthropic Claude Code Remote Control permission and session state",
+          "GitHub Copilot pull-request approval authority"
+        ],
+        "qualifiedSignals": 3
+      },
+      "multi-agent-mechanism": {
+        "checked": [
+          "OpenAI Codex Guardian root-authorization versioning",
+          "Gemini CLI extension environment consent boundary",
+          "MCP Python SDK same-origin redirect boundary"
+        ],
+        "qualifiedSignals": 3
+      },
+      "research-benchmark-industry": {
+        "checked": [
+          "Agentic Julia code generation on supercomputers (Zenodo 22299039)",
+          "JAAMAS coordinated multi-agent path finding",
+          "Microsoft Research BlueCodeAgent"
+        ],
+        "qualifiedSignals": 1
+      }
+    }
+  },
+  "reason": "All three formal Discovery pipelines reached terminal coverage and the theme-first active-sample overlay was completed. Seven qualified, non-duplicate signals were retained after research-problem normalization: two public platform/governance mechanisms, four merged engineering mechanisms, and one primary reproducible research artifact. No topic selection was performed.",
+  "reason_zh": "三条正式 Discovery 管线均完成终态覆盖，并完成主题优先主动样本检查。按研究问题规范化并与前一轮去重后保留 7 个合格信号：2 个公开平台/治理机制、4 个已合并工程机制、1 个一手可复现研究 Artifact；未执行选题。",
   "pipelines": [
     {
       "id": "ai-platform",
       "label": "AI Platform Change Intelligence",
       "label_zh": "AI 平台变更情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 45,
-      "checked": 0,
-      "inaccessible": [],
+      "checked": 43,
+      "inaccessible": [
+        "https://github.com/orgs/community/discussions/categories/news-and-announcements",
+        "https://github.com/microsoft/CopilotStudioSamples/discussions"
+      ],
       "failed": [],
-      "signals": 0,
+      "signals": 2,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All 45 due P0 platform channels were terminally resolved across the six registered source groups: 43 were directly checked and two public discussion surfaces were inaccessible in this run. Two non-duplicate governance mechanisms were retained around managed browser/native-app authority and AI-assisted pull-request sign-off authority.",
+      "reason_zh": "六组注册来源共 45 个到期 P0 平台通道全部终态收口：43 个直接完成检查，2 个公共 Discussion Surface 本轮不可访问。保留 2 个非重复治理机制：受管浏览器/原生应用权限，以及 AI 辅助 PR Sign-off Authority。"
     },
     {
       "id": "github-engineering",
       "label": "GitHub Engineering Intelligence",
       "label_zh": "GitHub 工程情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 9,
-      "checked": 0,
+      "checked": 9,
       "inaccessible": [],
       "failed": [],
-      "signals": 0,
+      "signals": 4,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All nine P0 daily repositories were checked incrementally. Four non-duplicate mechanisms were retained: versioned root-authorization evidence for Guardian review, host-owned Remote Control state, explicit consent around extension-driven environment mutation, and same-origin redirect enforcement for MCP endpoints.",
+      "reason_zh": "9 个 P0 Daily 仓库均完成增量检查。保留 4 个非重复机制：Guardian Review 的 Root Authorization Evidence 版本化、Host-Owned Remote Control State、Extension 引发环境变更时的显式 Consent，以及 MCP Endpoint 的 Same-Origin Redirect Enforcement。"
     },
     {
       "id": "published-research",
       "label": "Published Research Intelligence",
       "label_zh": "论文与研究成果情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 9,
-      "checked": 0,
+      "checked": 9,
       "inaccessible": [],
       "failed": [],
-      "signals": 0,
+      "signals": 1,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All nine P0 research sources were resolved using the rolling seven-day pass with a thirty-day expansion where needed. One non-duplicate primary research artifact was retained because it evaluates agentic code generation under parallel and scalable supercomputing constraints rather than single-shot code generation alone.",
+      "reason_zh": "9 个 P0 研究来源全部收口；先执行滚动 7 天检查，必要时扩展到 30 天。保留 1 个非重复的一手研究 Artifact，因为它评估的是 Agentic Code Generation 在并行与可扩展超算约束下的表现，而不是只看 Single-Shot Code Generation。"
     }
   ],
   "columns": [
@@ -69,40 +102,209 @@
       "label": "Digital Employee",
       "label_zh": "数字员工",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 2,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded two primary Digital Employee signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以数字员工为主栏目的信号；评分与选题由 Queue 独立负责。"
     },
     {
       "id": "industry-architecture",
       "label": "Industry Architecture",
       "label_zh": "行业架构",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 2,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded two primary Industry Architecture signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以行业架构为主栏目的信号；评分与选题由 Queue 独立负责。"
     },
     {
       "id": "open-source-engineering",
       "label": "Open-source Engineering",
       "label_zh": "开源工程",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 3,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded three primary Open-source Engineering signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 3 个以开源工程为主栏目的信号；评分与选题由 Queue 独立负责。"
     }
   ],
-  "signals": []
+  "signals": [
+    {
+      "id": "SIG-20260905-001",
+      "pipeline": "ai-platform",
+      "title": "Codex makes browser and native-app authority a managed policy layer with approval lifetimes",
+      "title_zh": "Codex 将浏览器与原生应用权限提升为带 Approval Lifetime 的受管策略层",
+      "sourceUrl": "https://openai.com/products/release-notes/",
+      "publishedAt": "2026-09-03",
+      "evidenceLevel": "official_announcement",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "openai-codex/browser-native-app-policy-approval-lifetime",
+      "summary": "OpenAI's September 3 Codex update gives enterprise administrators browser website defaults and exceptions, upload/download/history/developer-access restrictions, controls for automatic review and saved approvals, explicit approval lifetimes, and native-app allow/block rules.",
+      "summary_zh": "OpenAI 9 月 3 日的 Codex 更新让企业管理员能够配置 Browser Website Default/Exception、Upload/Download/History/Developer Access 限制、Automatic Review 与 Saved Approval 控制、显式 Approval Lifetime，以及 Native App Allow/Block Rule。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["call-time-authorization", "policy-enforcement", "browser-use", "computer-use"],
+      "sampleIds": ["openai-codex"],
+      "researchValue": {
+        "failure": "Per-site or per-app approvals can silently become indefinite authority when duration, destination class, and managed policy are not first-class runtime facts.",
+        "finding": "",
+        "mechanism": "Separate browser and native-app policy defaults/exceptions from individual approvals, and bind saved approvals to an explicit lifetime under administrator policy.",
+        "implication": "Enterprise digital-employee runtimes should model browser/app authority, destination exceptions, and approval TTL independently from the immediate tool prompt."
+      }
+    },
+    {
+      "id": "SIG-20260905-002",
+      "pipeline": "ai-platform",
+      "title": "GitHub separates Copilot's approval judgment from authority to sign off a pull request",
+      "title_zh": "GitHub 将 Copilot 的 Approval Judgment 与实际 PR Sign-off Authority 分离",
+      "sourceUrl": "https://github.blog/changelog/2026-09-01-copilot-code-review-can-now-approve-pull-requests/",
+      "publishedAt": "2026-09-01",
+      "evidenceLevel": "official_announcement",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "github-copilot/pr-approval-assessment-vs-signoff-authority",
+      "summary": "GitHub now lets Copilot code review provide an approval assessment on every review while keeping actual pull-request sign-off disabled by default and subject to explicit enterprise, organization, or repository administrator authorization.",
+      "summary_zh": "GitHub 现在允许 Copilot Code Review 在每次 Review 中给出 Approval Assessment，但真正的 Pull Request Sign-off 默认关闭，只有 Enterprise、Organization 或 Repository 管理员显式授权后才可生效。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["agent-identity-authority", "approval", "human-governance", "software-engineering"],
+      "sampleIds": ["github-copilot"],
+      "researchValue": {
+        "failure": "An AI reviewer can be treated as having merge-governance authority merely because it can produce an approval-like judgment.",
+        "finding": "",
+        "mechanism": "Keep assessment generation always available while separately gating the authority to create an approval that participates in repository merge policy.",
+        "implication": "Digital employees should separate recommendation or judgment from the organizational authority that turns the judgment into an effective approval."
+      }
+    },
+    {
+      "id": "SIG-20260905-003",
+      "pipeline": "github-engineering",
+      "title": "Codex versions root authorization evidence so a cached Guardian allow cannot outlive changed authority",
+      "title_zh": "Codex 对 Root Authorization Evidence 版本化，防止 Cached Guardian Allow 越过权限变化继续生效",
+      "sourceUrl": "https://github.com/openai/codex/commit/87628df77ab1a2622d1193ad835df02ced565bf2",
+      "publishedAt": "2026-09-04",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "openai-codex/guardian-root-authorization-versioned-review",
+      "summary": "Codex retains root instructions and verified answers for delegated Guardian reviews, versions that authorization evidence so an allow result is cancelled when the evidence changes, recovers it across parent compaction, and strips parent-only Guardian approvals when worker history is forked.",
+      "summary_zh": "Codex 为 Delegated Guardian Review 保留 Root Instruction 与 Verified Answer，对这组授权证据进行版本化，使 Evidence 变化时既有 Allow Result 自动失效；同时支持 Parent Compaction 后恢复，并在 Worker Fork 时剥离 Parent-Only Guardian Approval。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["call-time-authorization", "delegation", "context-compaction", "subagent"],
+      "sampleIds": ["openai-codex"],
+      "researchValue": {
+        "failure": "A cached allow can remain effective after root instructions or verified answers change, or a parent-only approval can accidentally become child-local authority after a worker fork.",
+        "finding": "",
+        "mechanism": "Version the root authorization evidence used by review, invalidate allows when its version changes, preserve required evidence across compaction, and remove parent-only approvals on fork.",
+        "implication": "Long-running multi-agent runtimes should version authorization evidence and treat compaction and fork as authority-sensitive transitions rather than transparent context operations."
+      }
+    },
+    {
+      "id": "SIG-20260905-004",
+      "pipeline": "github-engineering",
+      "title": "Claude Code treats remote permission, stop, and offline delivery as host-owned session state",
+      "title_zh": "Claude Code 将远程 Permission、Stop 与离线 Delivery 作为 Host-Owned Session State",
+      "sourceUrl": "https://github.com/anthropics/claude-code/commit/d7dbd9a09f59775726ed14bbea8fc9dfdff62f7b",
+      "publishedAt": "2026-09-04",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "claude-code/remote-control-host-owned-session-state",
+      "summary": "Claude Code 2.1.261 fixes Remote Control so attached phone/browser clients reflect the terminal's current permission mode, remote Stop interrupts the actual turn, and messages to an offline remote session report queued delivery instead of falsely appearing delivered.",
+      "summary_zh": "Claude Code 2.1.261 修复 Remote Control：手机/浏览器接入后显示 Terminal 当前真实 Permission Mode；远程 Stop 会中断实际 Turn；向离线 Remote Session 发送消息时明确显示 Queued，而不是误报 Delivered。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["mobile-remote", "agent-lifecycle", "authority-state", "delivery-semantics"],
+      "sampleIds": ["anthropic-claude-code"],
+      "researchValue": {
+        "failure": "A remote operator surface can project stale permission, completion, or delivery state and thereby mislead the human about what the execution host is actually doing.",
+        "finding": "",
+        "mechanism": "Treat the execution host as the owner of permission, turn lifecycle, and delivery state, and project those facts to remote clients instead of letting the client infer success locally.",
+        "implication": "Mobile and web control surfaces for digital employees should be projections of host-owned runtime facts, not independent chat-state replicas."
+      }
+    },
+    {
+      "id": "SIG-20260905-005",
+      "pipeline": "github-engineering",
+      "title": "Gemini CLI requires consent before extensions mutate the runtime environment",
+      "title_zh": "Gemini CLI 在 Extension 改变 Runtime Environment 前要求显式 Consent",
+      "sourceUrl": "https://github.com/google-gemini/gemini-cli/commit/60d35f48a84a32115dc7095f2a59ab47ab467988",
+      "publishedAt": "2026-09-04",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "gemini-cli/extensions-environment-mutation-consent-boundary",
+      "summary": "Gemini CLI now prompts for consent when extensions change environment variables and sanitizes runtime-altering environment variables, making extension installation or activation distinct from permission to alter the execution environment.",
+      "summary_zh": "Gemini CLI 现在会在 Extension 修改 Environment Variable 时请求 Consent，并清理会改变 Runtime 行为的环境变量，从而把 Extension 安装/启用与修改执行环境的权限明确分开。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["extension-security", "call-time-authorization", "environment-isolation", "supply-chain"],
+      "sampleIds": ["google-gemini-cli"],
+      "researchValue": {
+        "failure": "An installed extension can acquire indirect execution power by mutating loader, proxy, path, or toolchain environment without a distinct authorization event.",
+        "finding": "",
+        "mechanism": "Detect extension-driven environment changes, require explicit consent, and sanitize variables that can alter runtime execution semantics.",
+        "implication": "Agent plugin systems should treat environment mutation as a separate privileged capability rather than an incidental side effect of plugin configuration."
+      }
+    },
+    {
+      "id": "SIG-20260905-006",
+      "pipeline": "github-engineering",
+      "title": "MCP Python SDK restricts endpoint redirects to the original trust origin",
+      "title_zh": "MCP Python SDK 将 Endpoint Redirect 限定在原始 Trust Origin 内",
+      "sourceUrl": "https://github.com/modelcontextprotocol/python-sdk/commit/c6762e821c527925f0b617db216d00fbd1d0bf99",
+      "publishedAt": "2026-09-04",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "mcp-python-sdk/same-origin-endpoint-redirect-boundary",
+      "summary": "The MCP Python SDK now follows redirects only within the MCP endpoint's origin, constraining discovery and transport redirects so endpoint trust does not silently expand to another origin.",
+      "summary_zh": "MCP Python SDK 现在只允许在 MCP Endpoint 原始 Origin 内跟随 Redirect，把 Discovery/Transport Redirect 限制在既有 Trust Boundary 内，避免端点信任静默扩展到其他 Origin。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["mcp", "authentication", "redirect", "trust-boundary"],
+      "sampleIds": ["mcp-python-sdk"],
+      "researchValue": {
+        "failure": "An authenticated or trusted MCP endpoint can redirect a client across origins and thereby transfer endpoint trust, credentials, or session semantics to an unintended destination.",
+        "finding": "",
+        "mechanism": "Permit redirect following only when the target remains inside the original MCP endpoint origin.",
+        "implication": "Protocol clients should bind redirect authority to the admitted endpoint trust scope instead of treating HTTP redirect as neutral transport behavior."
+      }
+    },
+    {
+      "id": "SIG-20260905-007",
+      "pipeline": "published-research",
+      "title": "A reproducible study evaluates agentic Julia code generation under parallel and scalable supercomputing constraints",
+      "title_zh": "一份可复现研究在并行与可扩展超算约束下评估 Agentic Julia Code Generation",
+      "sourceUrl": "https://zenodo.org/records/22299039",
+      "publishedAt": "2026-09-04",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "agentic-codegen/hpc-agentic-julia-reproducibility",
+      "summary": "The Zenodo artifact studies agentic code generation in Julia on supercomputers using an agent extended with Julia documentation that autonomously plans, generates, and refines code through tool use, shifting evaluation beyond single-shot generation toward parallel and scalable execution constraints.",
+      "summary_zh": "该 Zenodo Artifact 研究 Julia 在 Supercomputer 上的 Agentic Code Generation：Agent 接入 Julia Documentation 后通过 Tool Use 自主规划、生成并迭代代码，把评估从 Single-Shot Generation 扩展到并行与可扩展执行约束。",
+      "signalRole": "research-finding",
+      "researchThemes": ["agentic-code-generation", "evaluation", "tool-use", "reproducibility", "hpc"],
+      "sampleIds": ["zenodo-agentic-julia-hpc"],
+      "researchValue": {
+        "failure": "Code-generation benchmarks can overstate engineering readiness when they measure only one-shot correctness and omit the agent's iterative tool-use behavior and the generated program's scaling constraints.",
+        "finding": "The artifact evaluates an autonomous plan-generate-refine loop for Julia code in a supercomputing setting rather than limiting assessment to single-shot output.",
+        "mechanism": "Use a reproducible agent loop and HPC execution setting to evaluate generated code under parallel and scalability constraints.",
+        "implication": "Agentic software-engineering evaluation should record tool-mediated refinement and operational scaling evidence separately from code-generation accuracy."
+      }
+    }
+  ]
 }
