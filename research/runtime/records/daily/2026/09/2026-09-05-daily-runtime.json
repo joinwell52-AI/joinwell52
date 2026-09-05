@@ -8,13 +8,13 @@
   "date": "2026-09-05",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Running",
+    "production": "Completed",
     "publication": "Waiting"
   },
   "results": {
@@ -744,6 +744,142 @@
       "githubCommit": "205613c0ac9a72bc3c3cb5b1cdd2405cc759e93c",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-05T13:12:17+08:00"
+    },
+    "production": {
+      "schema": "runtime-shift-result/v2",
+      "task": "production",
+      "family": "daily",
+      "runtimeDate": "2026-09-05",
+      "status": "Completed",
+      "productionMode": "candidate-batch",
+      "input": {
+        "promptVersion": "2.13.0",
+        "promptPath": "research/runtime/worker-prompts/generated/production.prompt.md",
+        "promptSha256": "d8b0cd52d22d976d6356558a23c5c2dc28ed5aa8f51793538fa8fbebfb80996f",
+        "promptVerificationMode": "exact-head-ci",
+        "promptVerificationEvidence": "https://github.com/joinwell52-AI/joinwell52/actions/runs/33951403081",
+        "controlSourceCommit": "09e22b670799853033c0d03697387e4ec9017a03",
+        "workerClaimCommit": "e53c96d1d5148c55190009fb3ff4bd3afaa5dfb4",
+        "wakeReceipt": "research/runtime/wakes/2026/09/2026-09-05/production-150123.json",
+        "researchObjects": [
+          "Q-20260905-01",
+          "Q-20260905-03"
+        ],
+        "stagedCandidateCommit": "22c0f941ee15a07fb54340bb937ab882ad3d752a"
+      },
+      "workResult": {
+        "summary": "Converted both same-date Production-authorized Research Objects into complete bilingual candidates: a comparative study separating AI judgment from effective approval authority, and an engineering insight separating functional test success from operational capability. Each article's five text artifacts, deterministic baseline cover and six SHA-256 values were persisted and remotely verified before atomic staging. Three bounded revision rounds repaired candidate-module metadata, independent-source URLs and Chinese technical-term first-occurrence explanations. The final bundle passed checkpoint, atomic-bundle, layout, editorial, evidence, language, bilingual-consistency and Runtime validation. Publication was not executed.",
+        "summary_zh": "将同日两份获得 Production 授权的 Research Object 转换为完整双语候选：一篇区分人工智能判断与有效批准权限的比较研究，以及一篇区分功能测试成功与运行能力的工程分析。每篇文章的五项文本工件、确定性基础题图与六项 SHA-256 均在原子装配前完成持久化和远程核验。三轮有界修订修复了候选模块元数据、独立来源网址与中文技术术语首现说明。最终候选包通过检查点、原子候选包、版式、编辑、证据、语言、双语一致性与 Runtime 校验。未执行 Publication。"
+      },
+      "output": {
+        "type": "Publication Candidates",
+        "candidateBatch": "research/runtime/candidates/2026/09/2026-09-05-candidates.json",
+        "candidateCount": 2,
+        "bilingualArticleFiles": 4,
+        "coverAssets": 2,
+        "inlineFigureAssets": 0
+      },
+      "next": {
+        "task": "publication",
+        "instruction": "Do not execute Publication in this Production run. Publication remains a separate governed task and must be reconciled independently under current main.",
+        "instruction_zh": "本次 Production 不得执行 Publication；Publication 仍是独立受治理任务，必须按当前 main 另行对账。"
+      },
+      "coverEvidence": [
+        {
+          "itemId": "Q-20260905-01",
+          "briefId": "2026-09-05:Q-20260905-01-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-09-05-judgment-is-not-effective-approval-cover.png",
+          "sanitizedPrompt": "An amber authority seal aligns with a cobalt version boundary and a narrow illuminated passage in a deep teal field",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260905-03",
+          "briefId": "2026-09-05:Q-20260905-03-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-09-05-passing-tests-is-not-operational-capability-cover.png",
+          "sanitizedPrompt": "A bright software form crosses from a compact cobalt field into widening parallel bands and a single amber fracture over charcoal",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        }
+      ],
+      "metrics": [
+        {
+          "name": "research_objects_consumed",
+          "value": 2
+        },
+        {
+          "name": "publication_candidates",
+          "value": 2
+        },
+        {
+          "name": "persisted_article_segments",
+          "value": 2
+        },
+        {
+          "name": "planning_artifacts",
+          "value": 6
+        },
+        {
+          "name": "bilingual_article_files",
+          "value": 4
+        },
+        {
+          "name": "cover_assets",
+          "value": 2
+        },
+        {
+          "name": "inline_figure_assets",
+          "value": 0
+        },
+        {
+          "name": "revision_rounds",
+          "value": 3
+        },
+        {
+          "name": "recovery_attempts",
+          "value": 0
+        },
+        {
+          "name": "required_sources_read",
+          "value": 13
+        },
+        {
+          "name": "direct_cloud_image_generation_calls",
+          "value": 0
+        },
+        {
+          "name": "direct_publication_actions",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        "09e22b670799853033c0d03697387e4ec9017a03",
+        "e53c96d1d5148c55190009fb3ff4bd3afaa5dfb4",
+        "e1179af334f47c4d29bb9188f229ce8c3c997cf9",
+        "428345011622e5b61da74ee0174e5a47dc7515f5",
+        "22c0f941ee15a07fb54340bb937ab882ad3d752a",
+        "research/runtime/worker-prompts/generated/production.prompt.md",
+        "research/runtime/checkpoints/2026/09/2026-09-05-production.json",
+        "research/runtime/wakes/2026/09/2026-09-05/production-150123.json",
+        "https://github.com/joinwell52-AI/joinwell52/actions/runs/33951403081",
+        "https://github.com/joinwell52-AI/joinwell52/actions/runs/33952681028"
+      ],
+      "artifacts": [
+        "research/runtime/candidates/2026/09/2026-09-05-candidates.json",
+        "research/runtime/checkpoints/2026/09/2026-09-05-production.json",
+        "staging/publication-candidates/2026-09-05-judgment-is-not-effective-approval.zh.md",
+        "staging/publication-candidates/2026-09-05-judgment-is-not-effective-approval.en.md",
+        "staging/publication-candidates/2026-09-05-judgment-is-not-effective-approval-cover.png",
+        "staging/publication-candidates/2026-09-05-passing-tests-is-not-operational-capability.zh.md",
+        "staging/publication-candidates/2026-09-05-passing-tests-is-not-operational-capability.en.md",
+        "staging/publication-candidates/2026-09-05-passing-tests-is-not-operational-capability-cover.png"
+      ],
+      "startedAt": "2026-09-05T15:03:10+08:00",
+      "completedAt": "2026-09-05T15:31:35+08:00"
     }
   },
   "timeline": [
@@ -872,6 +1008,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Production after verifying research/runtime/wakes/2026/09/2026-09-05/production-150123.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-05T15:31:35+08:00",
+      "task": "production",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Production closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-05."
     }
   ],
   "metrics": [],
@@ -879,5 +1022,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-05T15:04:30+08:00"
+  "updatedAt": "2026-09-05T15:31:35+08:00"
 }
