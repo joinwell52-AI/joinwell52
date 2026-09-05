@@ -7,7 +7,7 @@ category: daily
 article_type: comparative-study
 edition: research-center
 research_question: "在人工智能生成的批准判断成为组织内有效签署之前，必须具备哪些证据；哪些变化应当使这份权限失效或收窄？"
-summary: "GitHub 的代码审查策略与 OpenAI Codex 的授权证据生命周期共同揭示：模型判断、批准能力、门禁效力、适用范围与新鲜度是五个不同事实。目标、策略或授权证据变化后，旧批准必须重新评估。"
+summary: "代码托管平台的审查策略与开源编程智能体的授权证据生命周期共同揭示：模型判断、批准能力、门禁效力、适用范围与新鲜度是五个不同事实。目标、策略或授权证据变化后，旧批准必须重新评估。"
 cover: staging/publication-candidates/2026-09-05-judgment-is-not-effective-approval-cover.png
 sources:
   - research/analysis/Q-20260905-01-approval-authority-freshness.md
@@ -37,7 +37,7 @@ sources:
 
 ## 组织审查样本：评价、提交与门禁效力分开
 
-GitHub Copilot（GitHub 的人工智能代码助手）的公开说明把多个层次分开。Copilot 的代码审查可以给出批准评价，但该评价并不自动计入拉取请求的合并要求。真正提交批准的能力默认关闭，需要管理员启用；批准能否满足合并要求又是一个单独配置。仓库还可以按变更文件路径限定哪些批准具有资格。
+GitHub（代码托管平台）的 Copilot（人工智能代码助手）公开说明把多个层次分开。Copilot 的代码审查可以给出批准评价，但该评价并不自动计入拉取请求的合并要求。真正提交批准的能力默认关闭，需要管理员启用；批准能否满足合并要求又是一个单独配置。仓库还可以按变更文件路径限定哪些批准具有资格。
 
 新提交会撤销此前的批准，这使目标新鲜度成为显式规则。批准不是附着在“这个拉取请求大体没问题”的自然语言上，而是依赖被审查对象的版本。目标变化后，即使原判断在当时合理，组织门禁也要求重新建立效力。
 
@@ -47,7 +47,7 @@ GitHub Copilot（GitHub 的人工智能代码助手）的公开说明把多个�
 
 OpenAI Codex（OpenAI 开源编程智能体）的一项维护者实现，在 Guardian（守护式审查机制）路径中为根授权证据建立版本。被允许的操作如果尚未消费，而根授权证据版本先发生变化，旧的允许结果会被取消；缺少必要证据时，审查保持不完整。该实现还覆盖两个容易被忽略的上下文变换：压缩上下文时恢复必要的根授权证据，派生工作智能体时移除只属于父级的批准。
 
-这里的对象不是拉取请求，门禁也不是组织合并规则。Codex 处理的是运行中的智能体能否依据当前根指令与已核验回答继续动作。它与 GitHub 样本并非同一协议；可比较的是更高一层的不变量：正面判断必须引用一份仍然有效的授权依据，不能因为文字或上下文被保留下来，就推断权限也原样继承。
+这里的对象不是拉取请求，门禁也不是组织合并规则。该编程智能体处理的是运行中的智能体能否依据当前根指令与已核验回答继续动作。它与组织审查样本并非同一协议；可比较的是更高一层的不变量：正面判断必须引用一份仍然有效的授权依据，不能因为文字或上下文被保留下来，就推断权限也原样继承。
 
 这项证据来自合并的维护者代码与定向测试，能说明该提交覆盖的实现路径，不能外推为所有智能体、所有工具或整套组织治理已经获得独立安全验证。
 
@@ -83,7 +83,6 @@ OpenAI Codex（OpenAI 开源编程智能体）的一项维护者实现，在 Gua
 
 **证据与引用：**
 
-- [GitHub：Copilot code review can now approve pull requests（2026-09-01 产品公告）](https://github.blog/changelog/2026-09-01-copilot-code-review-can-now-approve-pull-requests/)
-- [GitHub Docs：Configuring Copilot code review（配置文档）](https://docs.github.com/en/copilot/customizing-copilot/configuring-copilot-code-review/configuring-copilot-code-review)
-- [OpenAI Codex 维护者提交：版本化 Guardian 根授权证据](https://github.com/openai/codex/commit/87628df77ab1a2622d1193ad835df02ced565bf2)
-
+- [代码托管平台公告：人工智能代码审查现在可以批准拉取请求（2026-09-01）](https://github.blog/changelog/2026-09-01-copilot-code-review-can-now-approve-pull-requests/)
+- [代码托管平台配置文档：配置人工智能代码审查](https://docs.github.com/en/copilot/customizing-copilot/configuring-copilot-code-review/configuring-copilot-code-review)
+- [开源编程智能体维护者提交：版本化守护式审查的根授权证据](https://github.com/openai/codex/commit/87628df77ab1a2622d1193ad835df02ced565bf2)
