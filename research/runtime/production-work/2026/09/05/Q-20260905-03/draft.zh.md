@@ -87,7 +87,6 @@ sources:
 
 **证据与引用：**
 
-- [Zenodo：Agentic AI Generated Julia Code on Supercomputers（研究工件记录 22299039）](https://zenodo.org/records/22299039)
-- [arXiv：Agentic AI Generated Julia Code on Supercomputers（论文 2606.16534）](https://arxiv.org/abs/2606.16534)
-- [GitHub：BaLinuss/Agentic-AI-Generated-Julia-Code-on-Supercomputers（复现仓库）](https://github.com/BaLinuss/Agentic-AI-Generated-Julia-Code-on-Supercomputers)
-
+- [开放研究资料存储库：超级计算机上的智能体式人工智能生成 Julia 代码（工件记录 22299039）](https://zenodo.org/records/22299039)
+- [预印本：超级计算机上的智能体式人工智能生成 Julia 代码（论文 2606.16534）](https://arxiv.org/abs/2606.16534)
+- [复现代码仓库：超级计算机上的智能体式人工智能生成 Julia 代码](https://github.com/BaLinuss/Agentic-AI-Generated-Julia-Code-on-Supercomputers)
