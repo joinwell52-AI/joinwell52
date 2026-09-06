@@ -1,0 +1,89 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-06",
+  "itemId": "Q-20260906-02",
+  "coreProposition": "Resilience is a phase-indexed lifecycle rather than a terminal boolean: degradation, containment, restoration, cumulative burden, and authoritative state mutation require distinct evidence even when the final state is recovered.",
+  "openingMove": {
+    "type": "green-now-bad-incident",
+    "purpose": "Open with a system that is healthy now but failed its resilience objective during the path to recovery.",
+    "evidenceRefs": [
+      "E2",
+      "E3",
+      "E4"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is recovered an incomplete claim?",
+      "claim": "A terminal state cannot reveal degradation speed, containment delay, restoration quality, or accumulated harm.",
+      "evidenceRefs": [
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "reasoningRole": "mechanism",
+      "readerProgress": "Replace a terminal boolean with lifecycle questions.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What does the simulation establish?",
+      "claim": "A 5,076-agent model reports phase-divergent outcomes and separates agent proposals from environment-authoritative allocation and commit.",
+      "evidenceRefs": [
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "reasoningRole": "evidence",
+      "readerProgress": "See both measurement and authority boundaries.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What should a governed record preserve?",
+      "claim": "One incident identity should retain separate degradation, containment, restoration, cumulative-burden, and terminal-state evidence.",
+      "evidenceRefs": [
+        "E4",
+        "E5"
+      ],
+      "reasoningRole": "governance-design",
+      "readerProgress": "Gain an implementable evidence model.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Does aggregation ever make sense?",
+      "claim": "A compact score is acceptable only when governed dimensions remain queryable and the aggregate cannot erase policy breaches.",
+      "evidenceRefs": [
+        "E4",
+        "E5"
+      ],
+      "reasoningRole": "counterpoint",
+      "readerProgress": "Allow operational simplicity without semantic loss.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What remains outside the evidence?",
+      "claim": "Simulation results do not prove deployed enterprise behavior, universal trust settings, or centralized authority across firms.",
+      "evidenceRefs": [
+        "E1",
+        "E3",
+        "E5"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "Keep transfer claims bounded.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Operational teams need one simple health indicator.",
+    "responseBoundary": "A simple surface is compatible with retained phase evidence and explicit policy thresholds underneath."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with multi-owner state certification and burden-comparison questions."
+  }
+}
