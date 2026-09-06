@@ -1,0 +1,42 @@
+{
+  "schema": "weekly-runtime-record/v1",
+  "runtimeVersion": "5.0",
+  "schedulerVersion": "3.0",
+  "runtimeFamily": "weekly",
+  "runtimeFamilyName": "Weekly Runtime",
+  "runtimeFamilyName_zh": "每周运行",
+  "date": "2026-09-06",
+  "timezone": "Asia/Shanghai",
+  "repository": "joinwell52-AI/joinwell52",
+  "status": "Running",
+  "taskStatus": {
+    "weekly": "Running"
+  },
+  "results": {},
+  "timeline": [
+    {
+      "time": "2026-09-06T20:32:28+08:00",
+      "task": "weekly",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Process Manager granted Weekly execution authority after verifying the 2026-09-06 wake receipt, confirming all earlier applicable formal tasks were execution-closed, and admitting Weekly from pinned main control commit c114aa98d19bbc305547e854eaee28cb6ae8b293."
+    }
+  ],
+  "metrics": [],
+  "evidence": [
+    {
+      "label": "Wake Receipt",
+      "label_zh": "唤醒回执",
+      "source": "research/runtime/wakes/2026/09/2026-09-06/weekly-202821.json"
+    },
+    {
+      "label": "Pinned control commit",
+      "label_zh": "固定控制提交",
+      "value": "c114aa98d19bbc305547e854eaee28cb6ae8b293"
+    }
+  ],
+  "artifacts": [],
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-09-06T20:32:28+08:00"
+}
