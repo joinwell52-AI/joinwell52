@@ -1,0 +1,55 @@
+{
+  "schema": "observation-scorecard-review-shard/v1",
+  "reviewDate": "2026-09-06",
+  "rubricVersion": "1.0.0",
+  "mode": "monthly-full",
+  "scope": {
+    "canonicalPrefix": "/digital-employee/",
+    "sourceLanguage": "en",
+    "identity": "english-canonical-path",
+    "eligibility": "same-frontmatter-filter-as-research-notes.data.ts",
+    "evaluatedMain": "fc4141ca739d31a329b24cf8457eac77e640329b",
+    "segment": "DE-B-PATH-FIX"
+  },
+  "eligible": 1,
+  "directlyScored": 1,
+  "inherited": 0,
+  "coverageRate": 1,
+  "items": [
+    {
+      "path": "/digital-employee/2026-08-30-resume-needs-more-than-a-checkpoint",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 93,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "把嵌套 HITL 恢复从“有 checkpoint 就继续”提升为 workflow frame、call occurrence、branch、responder 与 effect state 的复合身份问题；不足是响应者认证与外部副作用 exactly-once 仍明确留在合同之外。",
+        "en": "It upgrades nested HITL resume from checkpoint restoration to compound identity across frame, call occurrence, branch, responder evidence, and effect state. Responder authentication and exactly-once external effects remain explicitly outside the demonstrated mechanism."
+      },
+      "dimensions": {
+        "evidenceRigor": {
+          "score": 32,
+          "reason": "The argument is tied to a merged Google ADK implementation with long-running, parallel, id-less, and nested replay cases.",
+          "evidence": ["Google ADK commit 6d145180"]
+        },
+        "originalJudgment": {
+          "score": 24,
+          "reason": "The compound continuation identity sharply distinguishes history matching from authority and effect safety.",
+          "evidence": ["CONTINUE / PAUSE / REPLAY_CALLS"]
+        },
+        "structureExpression": {
+          "score": 18,
+          "reason": "Checkpoint, occurrence identity, continuation decision, responder authority, and effect evidence are presented in a disciplined sequence.",
+          "evidence": ["five-fact continuation receipt"]
+        },
+        "engineeringUsefulness": {
+          "score": 19,
+          "reason": "The typed continuation outcomes and replay preconditions are directly usable in resumable workflow design.",
+          "evidence": ["effect-state qualification before replay"]
+        }
+      }
+    }
+  ]
+}
