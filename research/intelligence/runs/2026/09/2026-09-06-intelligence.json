@@ -3,106 +3,62 @@
   "version": "1.0",
   "date": "2026-09-06",
   "timezone": "Asia/Shanghai",
-  "status": "Waiting",
+  "status": "Completed",
   "registryVersion": "1.0",
-  "sourceTask": "Research Runtime Queue",
-  "updatedAt": "",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-09-06T09:08:48+08:00",
   "githubCommit": "pending",
-  "reason": "Research Runtime Queue has not completed the three intelligence pipelines.",
-  "reason_zh": "研究运行队列尚未完成三条情报发现管线。",
-  "pipelines": [
-    {
-      "id": "ai-platform",
-      "label": "AI Platform Change Intelligence",
-      "label_zh": "AI 平台变更情报发现",
-      "status": "Waiting",
-      "due": 45,
-      "checked": 0,
-      "inaccessible": [],
-      "failed": [],
-      "signals": 0,
-      "candidates": 0,
-      "selected": 0,
-      "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
-    },
-    {
-      "id": "github-engineering",
-      "label": "GitHub Engineering Intelligence",
-      "label_zh": "GitHub 工程情报发现",
-      "status": "Waiting",
-      "due": 9,
-      "checked": 0,
-      "inaccessible": [],
-      "failed": [],
-      "signals": 0,
-      "candidates": 0,
-      "selected": 0,
-      "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
-    },
-    {
-      "id": "published-research",
-      "label": "Published Research Intelligence",
-      "label_zh": "论文与研究成果情报发现",
-      "status": "Waiting",
-      "due": 9,
-      "checked": 0,
-      "inaccessible": [],
-      "failed": [],
-      "signals": 0,
-      "candidates": 0,
-      "selected": 0,
-      "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+  "researchCoverage": {
+    "policy": "theme-sample-v1",
+    "rollingResearchWindowDays": 30,
+    "sampleFamilies": {
+      "product-governance": {
+        "checked": ["Cursor Cloud Agents account-level MCP discovery readiness", "GitHub Copilot app/CLI content exclusion enforcement", "GitHub Copilot approval judgment versus sign-off authority"],
+        "qualifiedSignals": 2
+      },
+      "multi-agent-mechanism": {
+        "checked": ["OpenAI Codex managed worktree fork admission", "OpenAI Agents SDK stable RunState agent graph identity", "MCP Python bearer-token resource binding"],
+        "qualifiedSignals": 3
+      },
+      "research-benchmark-industry": {
+        "checked": ["Cost-aware multi-agent protocol routing (arXiv:2608.14927)", "Supply-chain temporal resilience under collaboration and trust", "JAAMAS coordinated multi-agent path finding"],
+        "qualifiedSignals": 2
+      }
     }
+  },
+  "reason": "All three formal Discovery pipelines reached terminal coverage and the theme-first active-sample overlay was completed. Seven qualified, non-duplicate signals were retained after research-problem normalization and prior-run deduplication: two product/platform governance mechanisms, three merged engineering mechanisms, and two primary-research findings. No topic selection was performed.",
+  "reason_zh": "三条正式 Discovery 管线均完成终态覆盖，并完成主题优先主动样本检查。按研究问题规范化并与前序运行去重后保留 7 个合格信号：2 个产品/平台治理机制、3 个已合并工程机制、2 个一手研究发现；未执行选题。",
+  "pipelines": [
+    {"id":"ai-platform","label":"AI Platform Change Intelligence","label_zh":"AI 平台变更情报发现","status":"Completed","due":45,"checked":45,"inaccessible":[],"failed":[],"signals":2,"candidates":0,"selected":0,"rejected":0,"coveragePercent":100,"reason":"All 45 due P0 public platform channels were terminally resolved across the six registered source groups. Two non-duplicate mechanisms were retained: executable-readiness failure caused by account-level MCP discovery in Cursor Cloud Agents, and cross-surface content-exclusion enforcement in GitHub Copilot app/CLI agentic workflows.","reason_zh":"六组注册来源共 45 个到期 P0 公共平台通道全部终态收口。保留 2 个非重复机制：Cursor Cloud Agents 中 Account-level MCP Discovery 导致的可执行就绪失败，以及 GitHub Copilot App/CLI Agentic Workflow 跨 Surface 的 Content Exclusion 强制执行。"},
+    {"id":"github-engineering","label":"GitHub Engineering Intelligence","label_zh":"GitHub 工程情报发现","status":"Completed","due":9,"checked":9,"inaccessible":[],"failed":[],"signals":3,"candidates":0,"selected":0,"rejected":0,"coveragePercent":100,"reason":"All nine P0 daily repositories were checked incrementally. Three non-duplicate mechanisms were retained: trust- and configuration-gated managed-worktree forks, stable agent-graph identity shared by RunState/tool tracking/sandbox resume, and MCP bearer-token resource binding.","reason_zh":"9 个 P0 Daily 仓库均完成增量检查。保留 3 个非重复机制：受 Trust/Configuration Gate 约束的 Managed Worktree Fork、由 RunState/Tool Tracking/Sandbox Resume 共享的稳定 Agent Graph Identity，以及 MCP Bearer Token 的 Resource Binding。"},
+    {"id":"published-research","label":"Published Research Intelligence","label_zh":"论文与研究成果情报发现","status":"Completed","due":9,"checked":9,"inaccessible":[],"failed":[],"signals":2,"candidates":0,"selected":0,"rejected":0,"coveragePercent":100,"reason":"All nine P0 research sources were resolved using the rolling seven-day pass with a thirty-day expansion where needed. Two non-duplicate primary findings were retained: failure-risk prediction versus protocol-specific collaboration value, and phase-specific resilience shaped by trust-mediated coordination in supply networks.","reason_zh":"9 个 P0 研究来源全部收口；先执行滚动 7 天检查，必要时扩展到 30 天。保留 2 个非重复的一手研究发现：失败风险预测与特定协作协议价值之间的差距，以及供应网络中由 Trust-mediated Coordination 塑造的分阶段韧性。"}
   ],
   "columns": [
-    {
-      "id": "digital-employee",
-      "label": "Digital Employee",
-      "label_zh": "数字员工",
-      "decision": "Waiting",
-      "signals": 0,
-      "candidates": 0,
-      "selectedItemId": "",
-      "selectedTitle": "",
-      "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
-    },
-    {
-      "id": "industry-architecture",
-      "label": "Industry Architecture",
-      "label_zh": "行业架构",
-      "decision": "Waiting",
-      "signals": 0,
-      "candidates": 0,
-      "selectedItemId": "",
-      "selectedTitle": "",
-      "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
-    },
-    {
-      "id": "open-source-engineering",
-      "label": "Open-source Engineering",
-      "label_zh": "开源工程",
-      "decision": "Waiting",
-      "signals": 0,
-      "candidates": 0,
-      "selectedItemId": "",
-      "selectedTitle": "",
-      "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
-    }
+    {"id":"digital-employee","label":"Digital Employee","label_zh":"数字员工","decision":"Waiting","signals":2,"candidates":0,"selectedItemId":"","selectedTitle":"","selectedTitle_zh":"","reason":"Discovery recorded two primary Digital Employee signals; Queue owns scoring and selection.","reason_zh":"Discovery 记录了 2 个以数字员工为主栏目的信号；评分与选题由 Queue 独立负责。"},
+    {"id":"industry-architecture","label":"Industry Architecture","label_zh":"行业架构","decision":"Waiting","signals":2,"candidates":0,"selectedItemId":"","selectedTitle":"","selectedTitle_zh":"","reason":"Discovery recorded two primary Industry Architecture signals; Queue owns scoring and selection.","reason_zh":"Discovery 记录了 2 个以行业架构为主栏目的信号；评分与选题由 Queue 独立负责。"},
+    {"id":"open-source-engineering","label":"Open-source Engineering","label_zh":"开源工程","decision":"Waiting","signals":3,"candidates":0,"selectedItemId":"","selectedTitle":"","selectedTitle_zh":"","reason":"Discovery recorded three primary Open-source Engineering signals; Queue owns scoring and selection.","reason_zh":"Discovery 记录了 3 个以开源工程为主栏目的信号；评分与选题由 Queue 独立负责。"}
   ],
-  "signals": []
+  "signals": [
+    {
+      "id":"SIG-20260906-001","pipeline":"ai-platform","title":"Cursor Cloud Agents can be Running before executable readiness when account-level MCP discovery stalls","title_zh":"Cursor Cloud Agents 在 Account-level MCP Discovery 阻塞时会出现 Running 但尚未达到可执行就绪","sourceUrl":"https://forum.cursor.com/t/cloud-agents-stuck-on-planning-next-moves-env-running-zero-model-output-2026-09-03/170433","publishedAt":"2026-09-03","evidenceLevel":"reproducible_community_report","primaryColumn":"digital-employee","secondaryColumns":["industry-architecture","open-source-engineering"],"triageStatus":"signal","changeObject":"cursor-cloud-agents/mcp-discovery-running-vs-executable-readiness","summary":"A reproducible Cursor Cloud Agents failure reached environment/API Running while the first model call never left the service. Cursor staff traced the affected runs to newly enabled account-level HTTP MCP servers; disabling the two offending servers restored first-token output, isolating the failure to MCP discovery/auth before model execution.","summary_zh":"一组可复现的 Cursor Cloud Agents 故障显示：Environment/API 已进入 Running，但首个 Model Call 从未离开服务端。Cursor 员工把受影响运行追溯到新启用的 Account-level HTTP MCP Server；禁用两个问题 Server 后 First-token Output 恢复，从而把故障定位到 Model Execution 之前的 MCP Discovery/Auth。","signalRole":"failure-evidence","researchThemes":["agent-lifecycle","mcp","dependency-admission","failure-attribution"],"sampleIds":["cursor-cloud-agents"],"researchValue":{"failure":"A runtime can report Running after environment creation even though dependency discovery prevents the worker from becoming executable and no model/tool work can start.","finding":"Disabling the two newly added account-level MCP servers restored first-token output across fresh runs while other connected services remained enabled.","mechanism":"Separate environment/process Running from executable readiness, make MCP discovery/auth a terminating dependency-admission state, and surface the exact failing dependency before declaring active work.","implication":"Digital-employee dashboards should distinguish slot/process state from worker-ready state and treat tool discovery as an observable admission gate with timeout and fault attribution."}
+    },
+    {
+      "id":"SIG-20260906-002","pipeline":"ai-platform","title":"GitHub moves content exclusions into the shared context boundary for Copilot app and CLI agentic workflows","title_zh":"GitHub 将 Content Exclusion 下沉到 Copilot App 与 CLI Agentic Workflow 的共享 Context Boundary","sourceUrl":"https://github.blog/changelog/2026-09-02-content-exclusions-generally-available-in-copilot-app-and-cli/","publishedAt":"2026-09-02","evidenceLevel":"official_announcement","primaryColumn":"industry-architecture","secondaryColumns":["digital-employee"],"triageStatus":"signal","changeObject":"github-copilot/content-exclusions-agentic-workflows","summary":"GitHub Copilot app and CLI now honor enterprise, organization, and repository content-exclusion policies so excluded files are not used as context across agentic workflows.","summary_zh":"GitHub Copilot App 与 CLI 现在遵循 Enterprise、Organization 与 Repository 配置的 Content Exclusion Policy，使被排除文件不会进入 Agentic Workflow 的上下文。","signalRole":"mechanism-evidence","researchThemes":["policy-enforcement","context-isolation","enterprise-governance","agent-runtime-harness"],"sampleIds":["github-copilot"],"researchValue":{"failure":"A sensitive path can remain protected in one UI while leaking into another agentic surface if exclusion is implemented per client rather than at context admission.","finding":"","mechanism":"Apply administrator-defined content exclusions when constructing agent context across app and CLI surfaces instead of treating exclusions as a presentation-layer feature.","implication":"Governed digital employees should enforce content-access policy at the shared harness/context boundary so every execution surface consumes the same admissible evidence set."}
+    },
+    {
+      "id":"SIG-20260906-003","pipeline":"github-engineering","title":"Codex re-admits managed worktree forks against destination trust, configuration, and session state","title_zh":"Codex 在 Managed Worktree Fork 时按目标 Trust、Configuration 与 Session State 重新准入","sourceUrl":"https://github.com/openai/codex/commit/f6976ab0369921a59e23416083587149807d8f93","publishedAt":"2026-09-06","evidenceLevel":"merged_maintainer_change","primaryColumn":"open-source-engineering","secondaryColumns":["digital-employee"],"triageStatus":"signal","changeObject":"openai-codex/managed-worktree-fork-admission","summary":"Codex added managed worktree creation for new and forked conversations. It loads destination configuration, binds the replacement thread to the checkout, inherits history only for forks, rejects explicitly untrusted sources, requires an idle primary session without queued input, and refuses forks when developer instructions differ.","summary_zh":"Codex 新增 Managed Worktree，可为新会话或 Fork 会话创建受管 Checkout。它读取目标 Configuration、把 Replacement Thread 绑定到目标 Checkout，仅在 Fork 时继承 History；同时拒绝显式 Untrusted Source，要求 Primary Session Idle 且无 Queued Input，并在 Developer Instructions 不一致时拒绝 Fork。","signalRole":"mechanism-evidence","researchThemes":["agent-lifecycle","workspace-identity","recovery-authority","context-provenance"],"sampleIds":["openai-codex"],"researchValue":{"failure":"Forking conversation history into a checkout with different developer instructions, untrusted provenance, or active queued work can transfer context and authority into an incompatible execution environment.","finding":"","mechanism":"Re-evaluate source trust and destination configuration before fork, require an idle source session, bind the new thread to the destination checkout, and inherit history only when destination policy remains compatible.","implication":"Workspace/session transitions in long-running agents should be treated as re-admission points rather than transparent filesystem operations."}
+    },
+    {
+      "id":"SIG-20260906-004","pipeline":"github-engineering","title":"OpenAI Agents SDK gives the agent graph a stable identity shared by RunState, tool tracking, and sandbox resume","title_zh":"OpenAI Agents SDK 为 Agent Graph 建立由 RunState、Tool Tracking 与 Sandbox Resume 共享的稳定身份","sourceUrl":"https://github.com/openai/openai-agents-python/commit/4a11d20d126ebc844e362ae3abfe13b775dbaee3","publishedAt":"2026-09-05","evidenceLevel":"merged_maintainer_change","primaryColumn":"open-source-engineering","secondaryColumns":["digital-employee"],"triageStatus":"signal","changeObject":"openai-agents-python/runstate-agent-graph-identity","summary":"OpenAI Agents SDK extracted deterministic agent-graph identity shared by RunState, tool tracking, and sandbox resume. The graph traverses handoffs and agent-as-tool instances so nested approvals can be restored and differentiates otherwise colliding agent identities with normalized tool/capability signatures.","summary_zh":"OpenAI Agents SDK 抽离出由 RunState、Tool Tracking 与 Sandbox Resume 共享的确定性 Agent Graph Identity。该图遍历 Handoff 与 Agent-as-tool 实例，使 Nested Approval 可在恢复时重新绑定，并通过规范化 Tool/Capability Signature 区分潜在冲突的 Agent Identity。","signalRole":"mechanism-evidence","researchThemes":["agent-identity-authority","session-resume","multi-agent","tool-call-mediation"],"sampleIds":["openai-agents-python"],"researchValue":{"failure":"After serialization or resume, nested approvals and sandbox/tool state can bind to transient object identity or an ambiguous same-name agent rather than the original execution principal.","finding":"","mechanism":"Derive deterministic identities from the reachable agent graph, including handoffs, agent-as-tool relationships, and normalized tool/capability signatures, and reuse those identities across persisted runtime subsystems.","implication":"Durable multi-agent runtimes need a stable principal graph separate from in-process object identity so recovered authority and tool state attach to the correct agent."}
+    },
+    {
+      "id":"SIG-20260906-005","pipeline":"github-engineering","title":"MCP Python SDK binds bearer-token authority to the exact resource server","title_zh":"MCP Python SDK 将 Bearer Token 权限绑定到确切 Resource Server","sourceUrl":"https://github.com/modelcontextprotocol/python-sdk/commit/0c9136841ff092987a20700ff9c2c9789bda2f40","publishedAt":"2026-09-05","evidenceLevel":"merged_maintainer_change","primaryColumn":"open-source-engineering","secondaryColumns":["industry-architecture"],"triageStatus":"signal","changeObject":"mcp-python/bearer-token-resource-binding","summary":"MCP Python SDK added AuthSettings.validate_token_resource so a resource server can reject a bearer token whose AccessToken.resource does not match the exact resource_server_url. The migration path warns when resource validation is not configured and plans to make validation the default for resource servers in 3.0.","summary_zh":"MCP Python SDK 新增 AuthSettings.validate_token_resource，使 Resource Server 可拒绝 AccessToken.resource 与确切 resource_server_url 不匹配的 Bearer Token。迁移路径会在未配置 Resource Validation 时警告，并计划在 3.0 对 Resource Server 默认启用验证。","signalRole":"mechanism-evidence","researchThemes":["mcp","authentication","call-time-authorization","confused-deputy"],"sampleIds":["modelcontextprotocol-python-sdk"],"researchValue":{"failure":"A token can be validly signed and carry sufficient scopes yet still be intended for another resource, creating a confused-deputy authorization path if the target audience is not checked.","finding":"","mechanism":"Bind accepted bearer tokens to the current MCP endpoint by validating AccessToken.resource against the exact resource_server_url, or require the verifier to enforce an equivalent audience binding.","implication":"Tool capability and token possession are insufficient; MCP call-time authorization should include the concrete target resource in the authority check."}
+    },
+    {
+      "id":"SIG-20260906-006","pipeline":"published-research","title":"Failure-risk prediction is useful for escalation, but does not identify which collaboration protocol pays off","title_zh":"失败风险预测可用于 Escalation，但不足以判断哪种 Collaboration Protocol 值得付出成本","sourceUrl":"https://arxiv.org/abs/2608.14927","publishedAt":"2026-08-14","evidenceLevel":"peer_reviewed_or_primary_research","primaryColumn":"digital-employee","secondaryColumns":["open-source-engineering","industry-architecture"],"triageStatus":"signal","changeObject":"research/cost-aware-multi-agent-protocol-routing","summary":"A controlled study runs each problem under four collaboration protocols while holding the solver fixed. A post-answer failure probe predicts baseline failure strongly, but its ability to predict value from specific planner-executor-reviewer or broadcast protocols is much weaker; conservative routers under-escalate and higher-solve routers often over-escalate.","summary_zh":"一项受控研究在固定 Solver 的情况下让每个问题分别运行四种 Collaboration Protocol。Post-answer Failure Probe 对 Baseline Failure 的预测很强，但对特定 Planner-Executor-Reviewer 或 Broadcast Protocol 是否有价值的预测明显较弱；保守 Router 容易 Under-escalate，而高 Solve Router 又常 Over-escalate。","signalRole":"benchmark-evidence","researchThemes":["multi-agent-evaluation","delegation-authority","cost-budget","coordination-topology"],"sampleIds":["arxiv-2608.14927"],"researchValue":{"failure":"A single confidence or failure-risk gate can decide that more collaboration is needed while still choosing the wrong collaboration structure or spending substantially more tokens than its benefit justifies.","finding":"On 4,181 competition-level math problems, the post-answer probe ranked baseline failures at 0.8847 AUROC, but protocol-specific value prediction for PER and Broadcast was much weaker at 0.1674 and 0.1041 AUPRC; protocol profiles also varied by task.","mechanism":"Separate failure-risk admission from protocol-specific routing and evaluate candidate protocols under paired tasks with explicit solve and token-cost accounting.","implication":"Digital-employee escalation should not be a binary 'add more agents' switch; admission, collaboration topology, and cost budget should be independently governed."}
+    },
+    {
+      "id":"SIG-20260906-007","pipeline":"published-research","title":"Supply-network resilience is phase-specific and emerges from trust-mediated agent coordination","title_zh":"供应网络韧性具有阶段性，并由 Trust-mediated Agent Coordination 共同塑造","sourceUrl":"https://link.springer.com/article/10.1007/s10479-026-07406-4","publishedAt":"2026-09-03","evidenceLevel":"peer_reviewed_or_primary_research","primaryColumn":"industry-architecture","secondaryColumns":["digital-employee"],"triageStatus":"signal","changeObject":"research/supply-chain-temporal-collaboration-trust-recovery","summary":"An open-access agent-based supply-chain study models load redistribution under trust and capacity constraints and evaluates absorptive, adaptive, containment, and recovery phases separately. It finds heterogeneous temporal outcomes across heuristic, supervised-imitation, online-adaptive, and cross-entropy policies and across network structures.","summary_zh":"一项开放获取的 Agent-based Supply-chain 研究在 Trust 与 Capacity Constraint 下建模 Load Redistribution，并分别评估 Absorptive、Adaptive、Containment 与 Recovery 阶段。研究显示，不同 Heuristic、Supervised Imitation、Online Adaptive、Cross-entropy Policy 以及不同 Network Structure 会形成异质的时序结果。","signalRole":"industry-application-evidence","researchThemes":["industry-application-patterns","coordination-topology","recovery-authority","task-ownership-responsibility"],"sampleIds":["springer-s10479-026-07406-4"],"researchValue":{"failure":"Static topology or eventual recovery metrics can hide whether a multi-agent organization absorbs a shock, adapts, contains cascades, and recovers at the right times.","finding":"The study reports phase-specific differences in absorptive, adaptive, and recovery behavior as trust-mediated decision policies and network structures vary.","mechanism":"Represent disruption response as policy-driven load redistribution among capacity-constrained agents with trust-dependent local decisions, then evaluate resilience by phase rather than by one terminal metric.","implication":"Operational digital-employee teams may need phase-specific resilience and trust metrics instead of treating eventual completion as sufficient evidence of healthy recovery."}
+    }
+  ]
 }
