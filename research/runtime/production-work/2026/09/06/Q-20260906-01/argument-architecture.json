@@ -1,0 +1,90 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-06",
+  "itemId": "Q-20260906-01",
+  "coreProposition": "Failure-risk admission, protocol-specific value, and budget admission are separate evidence decisions: detecting likely failure does not select a collaboration topology, and selecting a topology does not authorize its cost.",
+  "openingMove": {
+    "type": "high-risk-wrong-protocol",
+    "purpose": "Open with a router that correctly detects danger but still chooses an expensive or ineffective topology.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why does a strong failure detector not solve escalation?",
+      "claim": "Failure risk answers whether to consider escalation, not which protocol will improve the task.",
+      "evidenceRefs": [
+        "E1",
+        "E2",
+        "E5"
+      ],
+      "reasoningRole": "mechanism",
+      "readerProgress": "Separate admission from selection.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What do the matched experiments establish?",
+      "claim": "Protocol-specific value is harder to predict than baseline failure and expensive protocols do not dominate every matched case.",
+      "evidenceRefs": [
+        "E1",
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "reasoningRole": "evidence",
+      "readerProgress": "Understand the evidence gap between risk and topology.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "How should the runtime represent the decisions?",
+      "claim": "Use separate risk, protocol-value, and budget evidence identities with a bounded fallback for uncertainty.",
+      "evidenceRefs": [
+        "E5",
+        "E6"
+      ],
+      "reasoningRole": "governance-design",
+      "readerProgress": "Gain an implementable three-gate model.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What practical objections remain?",
+      "claim": "A unified learned policy may implement all decisions, but audit evidence must still distinguish estimation, ranking, and budget failures.",
+      "evidenceRefs": [
+        "E3",
+        "E6"
+      ],
+      "reasoningRole": "counterpoint",
+      "readerProgress": "Preserve the distinction without requiring three separate models.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What remains unknown?",
+      "claim": "The study does not establish universal thresholds, transfer, or production-time predictors free of outcome leakage.",
+      "evidenceRefs": [
+        "E1",
+        "E2",
+        "E6"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "Keep deployment claims bounded.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "A single learned router can optimize quality and cost jointly.",
+    "responseBoundary": "Joint implementation is compatible with separate evidence semantics and explicit failure attribution."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with deployable-feature, calibration, and multi-resource budget questions."
+  }
+}
