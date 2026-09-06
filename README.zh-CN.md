@@ -7,7 +7,9 @@
 </p>
 
 <p align="center">
-  <a href="https://joinwell52-ai.github.io/CodeFlowMu-open/"><strong>CodeFlowMu Open（历史版）</strong></a>
+  <a href="https://github.com/joinwell52-AI/CodeflowMu-Distribution"><strong>CodeFlowMu 应用</strong></a>
+  ·
+  <a href="https://github.com/joinwell52-AI/CodeflowMu-Distribution/releases"><strong>下载 Windows 预览版</strong></a>
   ·
   <a href="https://joinwell52-ai.github.io/FCoP/"><strong>了解 FCoP</strong></a>
   ·
@@ -27,6 +29,16 @@
   <a href="https://joinwell52-ai.github.io/joinwell52/zh/publications/tmpa-core-specification-s1.0"><img alt="TMPA Core S1.0" src="https://img.shields.io/badge/Core-S1.0-7c3aed?style=for-the-badge"></a>
   <a href="https://joinwell52-ai.github.io/joinwell52/zh/publications/implementation-case-i1.0"><img alt="Implementation I1.0" src="https://img.shields.io/badge/CodeFlowMu-14%2F14_PASS-15803d?style=for-the-badge"></a>
 </p>
+
+## 使用 CodeFlowMu
+
+CodeFlowMu 是本地运行的 PM / DEV / QA / OPS 多角色 AI 开发团队，提供 PC 控制中心与手机 PWA 远程操作入口。**Windows x64 免费预览版现已公开下载。**
+
+**[进入 CodeFlowMu 发版仓库](https://github.com/joinwell52-AI/CodeflowMu-Distribution) · [下载 Windows 版](https://github.com/joinwell52-AI/CodeflowMu-Distribution/releases) · [安装指南](https://github.com/joinwell52-AI/CodeflowMu-Distribution/blob/main/CUSTOMER-INSTALL.md)**
+
+在 Releases 中选择公开发布的版本，下载该版本的 Windows 安装包及 `SHA256SUMS.txt`，按安装指南完成校验与安装。当前提供专有软件预览版；具体要求、已知问题与支持状态以所选 Release 为准。
+
+本仓库继续维护 TMPA 研究、规范与工程证据。CodeFlowMu 的应用、安装与更新统一进入发版仓库；旧版 CodeFlowMu Open 仅保留为历史研究记录。
 
 ## 开放科学标准引用凭证
 
@@ -70,6 +82,7 @@ Zenodo DOI 对应可引用的正式版本档案；OSF Registration 对应不可�
 
 | 你想做什么 | 最合适的入口 |
 |---|---|
+| 下载并使用 CodeFlowMu | [应用与文档](https://github.com/joinwell52-AI/CodeflowMu-Distribution) · [Windows 下载](https://github.com/joinwell52-AI/CodeflowMu-Distribution/releases) |
 | 查看历史开源实现 | [GitHub](https://github.com/joinwell52-AI/CodeFlowMu-open) · [历史主页](https://joinwell52-ai.github.io/CodeFlowMu-open/)——冻结在 V1.2.29-open；不是当前产品分发路径 |
 | 为 Agent 加入文件式协作 | [GitHub](https://github.com/joinwell52-AI/FCoP) · [协议主页](https://joinwell52-ai.github.io/FCoP/)——Python 包、MCP Server 与协议 |
 | 五分钟理解核心问题 | [为什么执行轨迹不等于治理](#执行轨迹不等于治理) |
@@ -79,15 +92,16 @@ Zenodo DOI 对应可引用的正式版本档案；OSF Registration 对应不可�
 | 检查工程主张 | [实施案例 I1.0](https://joinwell52-ai.github.io/joinwell52/zh/publications/implementation-case-i1.0) · [证据包](./docs/public/evidence/tmpa/i1.0/) |
 | 引用这项工作 | [TMPA DOI](https://doi.org/10.5281/zenodo.21888488) · [TMPA OSF DOI](https://doi.org/10.17605/OSF.IO/2JVQD) · [FCoP DOI](https://doi.org/10.5281/zenodo.20457285) · [FCoP OSF DOI](https://doi.org/10.17605/OSF.IO/92NWM) · [`CITATION.cff`](./CITATION.cff) |
 
-## 三个公开仓库，一套完整体系
+## 理论、协议、应用与历史记录
 
 | 仓库 | 首要职责 | GitHub | 项目网站 |
 |---|---|---|---|
 | **TMPA / joinwell52** | 理论、规范、符合性测试、研究与证据 | [源码与 Star](https://github.com/joinwell52-AI/joinwell52) | [Digital Employee Works](https://joinwell52-ai.github.io/joinwell52/zh/) |
 | **FCoP** | 文件式行为治理协议、Python 包与 MCP Server | [源码与 Star](https://github.com/joinwell52-AI/FCoP) | [FCoP 主页](https://joinwell52-ai.github.io/FCoP/) |
+| **CodeFlowMu Distribution** | 当前 CodeFlowMu 专有软件的公开发版与使用文档 | [应用与文档](https://github.com/joinwell52-AI/CodeflowMu-Distribution) | [Windows 下载](https://github.com/joinwell52-AI/CodeflowMu-Distribution/releases) |
 | **CodeFlowMu Open** | 历史开源实现与可复现记录 | [源码与 Star](https://github.com/joinwell52-AI/CodeFlowMu-open) | [历史主页](https://joinwell52-ai.github.io/CodeFlowMu-open/) |
 
-每个仓库都有一个清楚的被发现与被 Star 的理由：**TMPA 解释并定义，FCoP 把协作能力做成可复用协议，CodeFlowMu Open 保留把这些思想连接到真实产品中的历史公开实现。** 当前 CodeFlowMu 产品线已独立闭源开发，不由冻结的开源仓库代表。
+**TMPA 解释并定义治理，FCoP 提供协作协议，CodeFlowMu Distribution 提供可下载的当前应用。** CodeFlowMu Open 仅用于历史研究、工程追溯与引用，不再作为实际应用或安装入口。
 
 ## 工程起点：小典 AI
 
@@ -97,24 +111,9 @@ TMPA、FCoP 与 CodeFlowMu 的问题意识，不是先从论文定义出发，�
 
 ## 历史 CodeFlowMu Open 实现
 
-[CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open) 保留最后一个公开的本地应用版本及其[历史产品主页](https://joinwell52-ai.github.io/CodeFlowMu-open/)，包括 PC Panel、Mobile PWA、项目隔离、人工审批门禁、FCoP 工作工件，以及固定的 `PM / DEV / OPS / QA` 四人执行团队；`EVAL` 独立观察交付质量与风险。
+[CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open) 于 **2026-08-22** 冻结在 **V1.2.29-open**，仅保留早期实现、工程历史与研究引用。历史代码、界面和运行方式不代表当前应用；相关资料可在旧仓库查阅。
 
-> **历史边界：**CodeFlowMu Open 已于 **2026-08-22** 冻结在 **V1.2.29-open**。下面命令仅保留用于复现与历史使用，不是当前闭源 CodeFlowMu 产品线的安装路径。
-
-```bat
-cd /d D:\
-git clone https://github.com/joinwell52-AI/CodeFlowMu-open.git
-cd CodeFlowMu-open
-START-CODEFLOWMU-OPEN.bat
-```
-
-<p align="center">
-  <a href="https://github.com/joinwell52-AI/CodeFlowMu-open#真实界面">
-    <img src="https://raw.githubusercontent.com/joinwell52-AI/CodeFlowMu-open/main/docs/images/pc/V1.2.6/zh/pc-dashboard-V1.2.6-zh.png" alt="CodeFlowMu Open 真实产品仪表盘" width="920">
-  </a>
-</p>
-
-<p align="center"><sub>历史产品截图 · 点击进入历史仓库查看完整 PC/PWA 图文资料。</sub></p>
+**实际使用 CodeFlowMu，请前往[公开发版仓库](https://github.com/joinwell52-AI/CodeflowMu-Distribution)及 [Windows 下载页](https://github.com/joinwell52-AI/CodeflowMu-Distribution/releases)。**
 
 ## 执行轨迹不等于治理
 
@@ -221,7 +220,9 @@ I1.0 使用被冻结的 TMPA Core S1.0 Bundle，评估 CodeFlowMu V1.8.0 的真�
 | [FCoP GitHub](https://github.com/joinwell52-AI/FCoP) · [主页](https://joinwell52-ai.github.io/FCoP/) | 独立仓库 | MIT 开源协议、Python 包与 MCP Server |
 | [CodeFlowMu Open GitHub](https://github.com/joinwell52-AI/CodeFlowMu-open) · [历史主页](https://joinwell52-ai.github.io/CodeFlowMu-open/) | 独立仓库 | MIT 历史开源实现；V1.2.29-open 冻结；用于历史、复现与研究引用 |
 
-本仓库中的 TMPA 研究内容适用 [`LICENSE.md`](./LICENSE.md)；上述两个软件仓库分别采用各自的 MIT 许可证。软件开源许可与 TMPA 出版内容许可相互独立。
+当前应用通过 [CodeFlowMu Distribution](https://github.com/joinwell52-AI/CodeflowMu-Distribution) 提供专有软件 Windows 免费预览版；公开下载不代表开放源码或授予开源许可。
+
+本仓库中的 TMPA 研究内容适用 [`LICENSE.md`](./LICENSE.md)；FCoP 与历史 CodeFlowMu Open 版本分别采用各自的 MIT 许可证。这些许可与 TMPA 出版内容许可、当前 CodeFlowMu 产品许可相互独立。
 
 ## 研究与生产系统
 

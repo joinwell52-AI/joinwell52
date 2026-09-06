@@ -7,7 +7,9 @@
 </p>
 
 <p align="center">
-  <a href="https://joinwell52-ai.github.io/CodeFlowMu-open/"><strong>CodeFlowMu Open (Historical)</strong></a>
+  <a href="https://github.com/joinwell52-AI/CodeflowMu-Distribution"><strong>CodeFlowMu app</strong></a>
+  ·
+  <a href="https://github.com/joinwell52-AI/CodeflowMu-Distribution/releases"><strong>Download Windows preview</strong></a>
   ·
   <a href="https://joinwell52-ai.github.io/FCoP/"><strong>Explore FCoP</strong></a>
   ·
@@ -27,6 +29,16 @@
   <a href="https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-core-specification-s1.0"><img alt="TMPA Core S1.0" src="https://img.shields.io/badge/Core-S1.0-7c3aed?style=for-the-badge"></a>
   <a href="https://joinwell52-ai.github.io/joinwell52/en/publications/implementation-case-i1.0"><img alt="Implementation I1.0" src="https://img.shields.io/badge/CodeFlowMu-14%2F14_PASS-15803d?style=for-the-badge"></a>
 </p>
+
+## Use CodeFlowMu
+
+CodeFlowMu is a local PM / DEV / QA / OPS AI development team, with a PC control center and a mobile PWA for remote operation. **The free Windows x64 preview is now publicly available.**
+
+**[Open the CodeFlowMu distribution repository](https://github.com/joinwell52-AI/CodeflowMu-Distribution) · [Download for Windows](https://github.com/joinwell52-AI/CodeflowMu-Distribution/releases) · [Installation guide](https://github.com/joinwell52-AI/CodeflowMu-Distribution/blob/main/CUSTOMER-INSTALL.md)**
+
+Choose a published version in Releases, download its Windows installer and `SHA256SUMS.txt`, and follow the installation guide. This is a proprietary software preview; requirements, known issues, and support status are defined by the selected Release.
+
+This repository continues to maintain TMPA research, specifications, and engineering evidence. Use the distribution repository for the CodeFlowMu application, installation, and updates; CodeFlowMu Open is retained only as a historical research record.
 
 ## Open-science citation records
 
@@ -70,6 +82,7 @@ This repository is TMPA's public research, specification, executable conformance
 
 | I want to… | Best entry point |
 |---|---|
+| Download and use CodeFlowMu | [Application & documentation](https://github.com/joinwell52-AI/CodeflowMu-Distribution) · [Windows downloads](https://github.com/joinwell52-AI/CodeflowMu-Distribution/releases) |
 | Inspect the historical open-source implementation | [GitHub](https://github.com/joinwell52-AI/CodeFlowMu-open) · [Historical site](https://joinwell52-ai.github.io/CodeFlowMu-open/) — frozen at V1.2.29-open; not the current product distribution path |
 | Add file-based coordination to agents | [GitHub](https://github.com/joinwell52-AI/FCoP) · [Protocol site](https://joinwell52-ai.github.io/FCoP/) — Python package, MCP server, and protocol |
 | Understand the idea in five minutes | [Why TMPA exists](#trace-is-not-governance) |
@@ -79,15 +92,16 @@ This repository is TMPA's public research, specification, executable conformance
 | Inspect the engineering claim | [Implementation Case I1.0](https://joinwell52-ai.github.io/joinwell52/en/publications/implementation-case-i1.0) · [Evidence package](./docs/public/evidence/tmpa/i1.0/) |
 | Cite the work | [TMPA DOI](https://doi.org/10.5281/zenodo.21888488) · [TMPA OSF DOI](https://doi.org/10.17605/OSF.IO/2JVQD) · [FCoP DOI](https://doi.org/10.5281/zenodo.20457285) · [FCoP OSF DOI](https://doi.org/10.17605/OSF.IO/92NWM) · [`CITATION.cff`](./CITATION.cff) |
 
-## Three public repositories, one system
+## Theory, protocol, application, and historical record
 
 | Repository | Primary job | GitHub | Website |
 |---|---|---|---|
 | **TMPA / joinwell52** | Theory, specification, conformance, research, and evidence | [Source & Star](https://github.com/joinwell52-AI/joinwell52) | [Digital Employee Works](https://joinwell52-ai.github.io/joinwell52/) |
 | **FCoP** | File-based behavior-governance protocol, Python package, and MCP server | [Source & Star](https://github.com/joinwell52-AI/FCoP) | [FCoP site](https://joinwell52-ai.github.io/FCoP/) |
+| **CodeFlowMu Distribution** | Public releases and documentation for the current proprietary application | [Application & docs](https://github.com/joinwell52-AI/CodeflowMu-Distribution) | [Windows downloads](https://github.com/joinwell52-AI/CodeflowMu-Distribution/releases) |
 | **CodeFlowMu Open** | Historical open-source implementation and reproducibility record | [Source & Star](https://github.com/joinwell52-AI/CodeFlowMu-open) | [Historical site](https://joinwell52-ai.github.io/CodeFlowMu-open/) |
 
-Each repository has one clear reason to be discovered and starred: **TMPA explains and specifies; FCoP makes coordination reusable; CodeFlowMu Open preserves the historical public implementation that connected these ideas in a working product.** The current CodeFlowMu product line is developed separately and is not represented by the frozen open repository.
+**TMPA explains and specifies governance; FCoP supplies the coordination protocol; CodeFlowMu Distribution provides the current downloadable application.** CodeFlowMu Open is retained for historical research, engineering provenance, and citation, and is no longer an application or installation entry point.
 
 ## Engineering origin: Xiaodian AI
 
@@ -97,24 +111,9 @@ The problem framing behind TMPA, FCoP, and CodeFlowMu did not begin with a paper
 
 ## Historical CodeFlowMu Open implementation
 
-[CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open) preserves the last open-source edition of the local application with its [historical product site](https://joinwell52-ai.github.io/CodeFlowMu-open/), PC Panel, Mobile PWA, project isolation, approval gates, FCoP work artifacts, and the fixed execution team `PM / DEV / OPS / QA`. `EVAL` observes delivery quality and risk independently.
+[CodeFlowMu Open](https://github.com/joinwell52-AI/CodeFlowMu-open) was frozen on **2026-08-22** at **V1.2.29-open**. It preserves the early implementation for engineering history and research citation. Its code, screenshots, and run instructions do not represent the current application; historical materials remain in the old repository.
 
-> **Historical boundary:** CodeFlowMu Open was frozen on **2026-08-22** at **V1.2.29-open**. The commands below are retained only for reproducibility and historical use. They are not the installation path for the current closed-source CodeFlowMu product line.
-
-```bat
-cd /d D:\
-git clone https://github.com/joinwell52-AI/CodeFlowMu-open.git
-cd CodeFlowMu-open
-START-CODEFLOWMU-OPEN.bat
-```
-
-<p align="center">
-  <a href="https://github.com/joinwell52-AI/CodeFlowMu-open#real-product-screens">
-    <img src="https://raw.githubusercontent.com/joinwell52-AI/CodeFlowMu-open/main/docs/images/pc/V1.2.6/en/pc-dashboard-V1.2.6-en.png" alt="CodeFlowMu Open real product dashboard" width="920">
-  </a>
-</p>
-
-<p align="center"><sub>Historical product capture · open the frozen repository for the preserved PC/PWA walkthrough.</sub></p>
+**To use CodeFlowMu, visit the [public distribution repository](https://github.com/joinwell52-AI/CodeflowMu-Distribution) and [Windows downloads](https://github.com/joinwell52-AI/CodeflowMu-Distribution/releases).**
 
 ## Trace is not governance
 
@@ -221,7 +220,9 @@ Transparency matters more than an attractive label:
 | [FCoP GitHub](https://github.com/joinwell52-AI/FCoP) · [Site](https://joinwell52-ai.github.io/FCoP/) | Separate repository | MIT-licensed protocol, Python package, and MCP server |
 | [CodeFlowMu Open GitHub](https://github.com/joinwell52-AI/CodeFlowMu-open) · [Site](https://joinwell52-ai.github.io/CodeFlowMu-open/) | Separate repository | MIT-licensed historical open implementation; frozen at V1.2.29-open |
 
-The TMPA research content in this repository uses the terms in [`LICENSE.md`](./LICENSE.md). The two software repositories above carry their own MIT licenses. Their licenses and product boundaries are intentionally separate from the TMPA publication license.
+The current application is available from [CodeFlowMu Distribution](https://github.com/joinwell52-AI/CodeflowMu-Distribution) as a proprietary free Windows preview. Public downloads do not grant an open-source license.
+
+The TMPA research content in this repository uses the terms in [`LICENSE.md`](./LICENSE.md). FCoP and the historical CodeFlowMu Open edition carry their own MIT licenses. These licenses remain separate from both the TMPA publication license and the current CodeFlowMu product license.
 
 ## Research and production system
 
