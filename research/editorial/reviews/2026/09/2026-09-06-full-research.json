@@ -1,0 +1,197 @@
+{
+  "schema": "observation-scorecard-review-shard/v1",
+  "reviewDate": "2026-09-06",
+  "mode": "monthly-full",
+  "rubricVersion": "1.0.0",
+  "reviewer": {"type": "AI", "name": "ChatGPT Editorial Evaluator"},
+  "scope": {
+    "canonicalPrefixes": ["/research/daily/", "/research/weekly/"],
+    "sourceLanguage": "en",
+    "identity": "english-canonical-path",
+    "eligibility": "same-frontmatter-filter-as-research-notes.data.ts and editorial-scorecard-inventory.mjs",
+    "pairedChineseRequired": true
+  },
+  "coverage": {"eligible": 9, "directlyScored": 9, "inherited": 0, "rate": 1},
+  "items": [
+    {
+      "path": "/research/daily/2026-08-01",
+      "contentHash": "eac200092376a7ed44680464b8c96bf2512a900146707963bcf0e1b73f274fcc",
+      "scoringMode": "monthly-full-direct",
+      "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 20, "reason": "The portal role and editorial boundary are clear, but the note cites no primary-source, implementation, or validation evidence.", "evidence": ["## Decision", "## Technical architecture", "## Editorial boundary"]},
+        "originalJudgment": {"score": 14, "reason": "It makes a coherent portal architecture decision, though the contribution is closer to an internal design declaration than an evidence-derived research judgment.", "evidence": ["## Decision", "## Information hierarchy"]},
+        "structureExpression": {"score": 17, "reason": "The short sections move cleanly from public role and language architecture to hierarchy, stack, and boundary.", "evidence": ["## Public role", "## Language architecture", "## Technical architecture"]},
+        "engineeringUsefulness": {"score": 16, "reason": "The Markdown-to-VitePress-to-Actions-to-Pages chain is directly usable, but acceptance tests and failure modes are absent.", "evidence": ["## Technical architecture", "## Editorial boundary"]}
+      },
+      "score": 67,
+      "internalLevel": "E1",
+      "publicLabel": "基础",
+      "publicLabel_en": "Foundation",
+      "editorialNote": {
+        "zh": "双语门户角色、信息层级和构建链交代清楚，适合作为架构基线；不足是验证证据、失败模式和可执行验收标准几乎缺席。",
+        "en": "It compresses the bilingual portal role, information hierarchy, and build chain into a clear architecture baseline; the missing piece is concrete validation evidence, failure modes, and executable acceptance criteria."
+      }
+    },
+    {
+      "path": "/research/weekly/weekly-001",
+      "contentHash": "5f579469139736d75d6555fb4e952ba202628720d5edccc83c2957394a8fd257",
+      "scoringMode": "monthly-full-direct",
+      "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 23, "reason": "The synthesis names protocol, open-source, and enterprise examples, but offers few versioned references or directly traceable source links.", "evidence": ["## Academic signal", "## Open-source engineering signal", "## Enterprise signal"]},
+        "originalJudgment": {"score": 20, "reason": "It makes a non-trivial judgment that interoperability is infrastructure while governed organizational work is CodeFlowMu's differentiator.", "evidence": ["## Executive synthesis", "## Impact on TMPA", "## Impact on CodeFlowMu"]},
+        "structureExpression": {"score": 18, "reason": "The report is compact and logically layered from signals to TMPA and CodeFlowMu implications.", "evidence": ["## Executive synthesis", "## Enterprise signal", "## Conclusion"]},
+        "engineeringUsefulness": {"score": 17, "reason": "It yields an SME-first positioning and capability decomposition, while implementation prerequisites and validation criteria stay high level.", "evidence": ["Digital Employee formula", "## Impact on CodeFlowMu"]}
+      },
+      "score": 78,
+      "internalLevel": "E2",
+      "publicLabel": "合格",
+      "publicLabel_en": "Qualified",
+      "editorialNote": {
+        "zh": "协议、开源运行时与企业数字劳动力被放进同一定位框架，CodeFlowMu 取舍明确；不足是厂商判断缺少版本化逐项证据。",
+        "en": "It places protocols, open-source runtimes, and enterprise digital-workforce products in one positioning frame and makes CodeFlowMu's trade-offs explicit; vendor and framework claims still lack versioned, item-level source evidence."
+      }
+    },
+    {
+      "path": "/research/weekly/weekly-002",
+      "contentHash": "9628d4128ee8e1d891ad8095ef24d39f8e46903b1ff9d25506e71152e8e137ae",
+      "scoringMode": "monthly-full-direct",
+      "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 23, "reason": "The Workday and OpenHands comparison supports the design split, but the article lacks versioned citations, counterexamples, and independent corroboration.", "evidence": ["## Workday as the control-plane benchmark", "## OpenHands as the operator-workspace benchmark"]},
+        "originalJudgment": {"score": 20, "reason": "The control-plane versus work-runtime split translates enterprise and framework signals into a distinct CodeFlowMu architecture.", "evidence": ["## Executive synthesis", "## Target architecture for CodeFlowMu"]},
+        "structureExpression": {"score": 18, "reason": "The two-layer argument remains consistent through benchmarks, target architecture, SME constraints, and implementation sequence.", "evidence": ["### Control plane", "### Work runtime", "## Recommended engineering sequence"]},
+        "engineeringUsefulness": {"score": 18, "reason": "The Registry projection and staged implementation sequence are actionable, although explicit acceptance tests are missing.", "evidence": ["## Recommended engineering sequence", "### Control plane", "### Work runtime"]}
+      },
+      "score": 79,
+      "internalLevel": "E2",
+      "publicLabel": "合格",
+      "publicLabel_en": "Qualified",
+      "editorialNote": {
+        "zh": "控制面与工作运行时二分清楚，Registry 到 WorkOrder 路径具体；不足是 Workday、OpenHands 对照缺少版本证据与反例。",
+        "en": "The control-plane/work-runtime split is explanatory and the Registry-to-WorkOrder sequence is concrete; the Workday and OpenHands comparison remains mostly descriptive, without versioned evidence or counterexamples."
+      }
+    },
+    {
+      "path": "/research/weekly/weekly-003",
+      "contentHash": "04e2f62a63525d7f3ca45c41cc5829dc09091bfaf56769ba572054612114271e",
+      "scoringMode": "monthly-full-direct",
+      "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 31, "reason": "The report declares a bounded three-note evidence set, excludes ineligible material, preserves references, and states the small-sample limitation.", "evidence": ["## Evidence scope", "## References", "## Contradictions identified"]},
+        "originalJudgment": {"score": 24, "reason": "It derives the Work Boundary Control Plane, OwnershipLedger, EvidenceEnvelope, and completion-acceptance split across heterogeneous boundaries.", "evidence": ["## New architecture judgment: Work Boundary Control Plane", "### Required objects", "### Boundary invariants"]},
+        "structureExpression": {"score": 19, "reason": "The article moves from evidence scope to cross-analysis, matrix, contract, contradictions, engineering phases, and open questions with strong continuity.", "evidence": ["## Cross Analysis", "### 4. Unified boundary matrix", "## Engineering judgment"]},
+        "engineeringUsefulness": {"score": 19, "reason": "It proposes a typed contract, invariants, lifecycle states, and a four-path comparative experiment that can be implemented and falsified.", "evidence": ["### Proposed contract", "### Phase 0 — semantic foundation", "### Phase 2 — comparative experiment"]}
+      },
+      "score": 93,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "三类执行边界被统一到 Ownership Ledger 与 Evidence Envelope；不足是样本仅三篇，尚无跨运行时实验。",
+        "en": "It unifies GUI, MCP/A2A, and manager/handoff boundaries into an Ownership Ledger and Evidence Envelope with testable mechanics; the evidence set is only three notes and lacks cross-runtime experimental validation."
+      }
+    },
+    {
+      "path": "/research/weekly/weekly-004",
+      "contentHash": "9075caebebc46ba389446d65800ca89263c34e37bea4c661094a01e3b2429e68",
+      "scoringMode": "monthly-full-direct",
+      "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "It enumerates fifteen eligible Daily notes, states exclusions and temporal bounds, links sources, and explicitly limits claims beyond the sample.", "evidence": ["## Evidence scope", "## Boundary and counter-evidence", "## References"]},
+        "originalJudgment": {"score": 24, "reason": "The Authority Lifecycle Control Plane connects admission, leases, revalidation, revocation, reconciliation, and acceptance across separate mechanisms.", "evidence": ["## Architecture synthesis — Authority Lifecycle Control Plane", "## Trend synthesis — from static configuration to transition-time authority"]},
+        "structureExpression": {"score": 19, "reason": "The lifecycle sequence provides a stable spine for architecture, cross-column implications, contradictions, predictions, and product priorities.", "evidence": ["### 1. Canonical Work Identity", "### 6. Independent Acceptance", "## Cross-column implications"]},
+        "engineeringUsefulness": {"score": 19, "reason": "It translates the synthesis into decision/enforcement receipts, behavioral conformance gates, worker leases, revalidation, and fencing requirements.", "evidence": ["### Decision envelope × enforcement receipt", "## Next-week priorities", "### CodeFlowMu"]}
+      },
+      "score": 94,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "15篇日研串成 admission、lease、revalidation、revocation、acceptance 生命周期；不足是跨平台复现仍有限。",
+        "en": "It turns fifteen Daily studies into an admission, lease, revalidation, revocation, and acceptance lifecycle and carries that into receipts and gates; independent cross-platform replication is still limited."
+      }
+    },
+    {
+      "path": "/research/weekly/weekly-005",
+      "contentHash": "38879b6a4db0f5198239b017d7dc97d944926a60d019888ee96a9c3a15e35a17",
+      "scoringMode": "monthly-full-direct",
+      "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 31, "reason": "The article defines a seven-day, twenty-one-note evidence window, separates the P2 baseline, and repeatedly marks local, remote, and effect boundaries.", "evidence": ["## Evidence scope", "## The recurring mistake: continuity is promoted into authority", "## Contradictions the handoff model does not eliminate"]},
+        "originalJudgment": {"score": 24, "reason": "The Evidence-Bearing Handoff Contract synthesizes occurrence identity, authority evidence, ownership epochs, materialization, effect settlement, and terminal semantics.", "evidence": ["## A new abstraction: the Evidence-Bearing Handoff Contract", "### 1. Identity must name the exact occurrence", "### 5. Effects need their own settlement model"]},
+        "structureExpression": {"score": 19, "reason": "The article progresses coherently from recurring mistakes to a numbered handoff model, receipt semantics, tensions, predictions, and tests.", "evidence": ["## A new abstraction: the Evidence-Bearing Handoff Contract", "## Why receipts matter more than traces at handoff boundaries", "## Next-week research priorities"]},
+        "engineeringUsefulness": {"score": 19, "reason": "It supplies implementable receipt fields and concrete recovery/cancellation experiments while refusing to overclaim exactly-once semantics.", "evidence": ["A useful receipt may include", "## Next-week research priorities", "### Local finality is not external-effect finality"]}
+      },
+      "score": 93,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "预约、执行、外部效果与终态被统一为 handoff contract；不足是尚无真实跨系统故障注入验证。",
+        "en": "It unifies reservation, execution, external effects, and terminal semantics from twenty-one Daily studies into an evidence-bearing handoff contract; the contract still lacks real cross-system fault-injection validation."
+      }
+    },
+    {
+      "path": "/research/weekly/weekly-006",
+      "contentHash": "1045796e6198a37655b5231432ab974aabf51a9ed4795108ad46bb6db8f0dc55",
+      "scoringMode": "monthly-full-direct",
+      "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 31, "reason": "The report grounds the lineage thesis in twenty-one completed Daily notes, distinguishes negative evidence and provenance, and avoids universal claims.", "evidence": ["## Evidence scope", "## Absence, cache state and canonical identity need stronger semantics", "## Tensions this model does not eliminate"]},
+        "originalJudgment": {"score": 24, "reason": "Provenance-Preserving Admission and monotonic authority turn broad auditability concerns into a concrete transformation and resume rule.", "evidence": ["## A reusable model: Provenance-Preserving Admission", "Authority(after transform) ⊆ Authority(before transform)", "## What changed relative to last week"]},
+        "structureExpression": {"score": 19, "reason": "Transformation failure is a consistent organizing idea linking cases to a reusable fact model, tensions, predictions, and falsifiable tests.", "evidence": ["## The recurring failure: provenance gets dropped during transformation", "## Continuity mechanisms need an admission boundary", "## Next-week research priorities"]},
+        "engineeringUsefulness": {"score": 18, "reason": "It provides an operational-fact envelope and precise tests for policy-change resume, compaction lineage, and authoritative negative evidence.", "evidence": ["OperationalFact = {", "## Next-week research priorities", "## Open questions"]}
+      },
+      "score": 92,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "delegation、cache、credential、resume 被“授权理由会丢失”贯通；不足是最小 lineage 仍未实证收敛。",
+        "en": "The article carries the idea that values survive while authorization reasons disappear across delegation, caches, credentials, and resume, then formalizes monotonic authority; the minimal lineage envelope remains empirically unsettled."
+      }
+    },
+    {
+      "path": "/research/weekly/weekly-007",
+      "contentHash": "a47c39f9ec21f9b2da3a43ba0036459bfca1083528b0092606ff08284e629131",
+      "scoringMode": "monthly-full-direct",
+      "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "The article maps twenty-one studies to checkpoint, policy, trust, ownership, budget, lifecycle, and replay failures while preserving explicit scope and P2 negative evidence.", "evidence": ["## Evidence scope", "## Repeated, trusted and polished evidence can still be the wrong evidence", "## Evidence map"]},
+        "originalJudgment": {"score": 24, "reason": "Recovery as re-admission, with a Recovery Admission Envelope separating reconstruction proof from admission proof, is distinctive and well supported.", "evidence": ["## The central mistake: treating reconstruction as authorization", "## A reusable control model: the Recovery Admission Envelope", "## Weekly judgment"]},
+        "structureExpression": {"score": 19, "reason": "The report progresses clearly from checkpoint integrity to current authority, occurrence identity, lifecycle closure, evidence qualification, and executable recovery.", "evidence": ["## Checkpoints are candidate evidence, not continuation tokens", "## Current authority must dominate stale but useful evidence", "## Recovery also needs occurrence and owner identity"]},
+        "engineeringUsefulness": {"score": 19, "reason": "It supplies a concrete re-admission sequence, continuation identity, owner-scoped cleanup requirements, and recovery tests suitable for implementation.", "evidence": ["RecoveryCandidate = {", "reconstruct → verify replay integrity", "### Nested HITL needs compound continuation identity"]}
+      },
+      "score": 94,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "checkpoint、policy cache 与 replay integrity 被统一成恢复准入模型；不足是缓存证据边界未量化。",
+        "en": "It combines checkpoints, policy caches, ownership cleanup, and replay integrity into an implementable Recovery Admission Envelope; the acceptable freshness and cache rules for different risk levels are still unquantified."
+      }
+    },
+    {
+      "path": "/research/weekly/weekly-008",
+      "contentHash": "728ec32db5e1118d33a54eea1cc72958e849d9c6d87fab9e3a3597c4934b1e37",
+      "scoringMode": "monthly-full-direct",
+      "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 31, "reason": "The synthesis enumerates fifteen studies, includes a governed zero-output day, keeps P2 workflow state separate from public evidence, and states limitations.", "evidence": ["## Evidence scope: seven runtime days, fifteen published studies", "## What the evidence does not establish yet", "## P2: one special study triggered, but it is not imported into the public argument"]},
+        "originalJudgment": {"score": 24, "reason": "The Authority Relation Envelope generalizes prior work into a model spanning principal, action, target, occurrence, protocol, policy epoch, and evidence.", "evidence": ["## Three fact planes should remain separate", "## An implementable abstraction: the Authority Relation Envelope", "## Conclusion"]},
+        "structureExpression": {"score": 19, "reason": "Each relation dimension is developed separately and then recomposed into an envelope, reuse rule, limitations, and four falsifiable tests.", "evidence": ["## Principal: a role label is not a substitute for authority", "## Target: capability entry point and resource authority are different propositions", "## Four useful tests for next week"]},
+        "engineeringUsefulness": {"score": 19, "reason": "The envelope, invalidation rules, bounded reuse criteria, delegation test, recovery test, and protocol-selection test directly support implementation decisions.", "evidence": ["Authority = Admit(", "## Dynamic authority does not mean asking a human on every call", "## Four useful tests for next week"]}
+      },
+      "score": 93,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "principal、action、target、occurrence、policy epoch 被收束成授权关系模型；不足是跨工具最小表达仍待验证。",
+        "en": "It compresses principal, action, target, occurrence, protocol, and policy epoch into an Authority Relation Envelope with clear reuse and invalidation rules; a minimal interoperable form across SaaS, MCP, and local tools remains unvalidated."
+      }
+    }
+  ]
+}
