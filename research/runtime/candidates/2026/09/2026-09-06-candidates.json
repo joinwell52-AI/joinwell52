@@ -1,0 +1,382 @@
+{
+  "candidates": [
+    {
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/06/Q-20260906-01/argument-architecture.json",
+      "articleBriefPath": "research/runtime/production-work/2026/09/06/Q-20260906-01/article-brief.json",
+      "articleType": "technical-analysis",
+      "category": "daily",
+      "column": "digital-employee",
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already provides the transferable model and practical questions; a separate community edition would not add a sufficiently distinct angle."
+      },
+      "coreProposition": "Failure-risk admission, protocol-specific value, and budget admission are separate evidence decisions: detecting likely failure does not select a collaboration topology, and selecting a topology does not authorize its cost.",
+      "coverGate": "PASS",
+      "coverPath": "staging/publication-candidates/2026-09-06-risk-does-not-choose-protocol-cover.png",
+      "coverRole": "baseline",
+      "editingStatus": "Completed",
+      "enPath": "staging/publication-candidates/2026-09-06-risk-does-not-choose-protocol.en.md",
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {
+          "claim": "In the controlled OmniMath setting, a post-answer baseline-failure probe reports AUROC 0.8847 and AUPRC 0.895 on 4,151 parseable examples.",
+          "claim_zh": "在受控数学题设定中，答后基础失败探针在 4,151 个可解析样本上报告 0.8847 的受试者工作特征曲线下面积和 0.895 的精确率—召回率曲线下面积。",
+          "id": "E1",
+          "identity": "source-reported-claim",
+          "independent": false,
+          "source": "research/analysis/Q-20260906-01-escalation-admission-protocol-value-budget.md",
+          "strength": "reports"
+        },
+        {
+          "claim": "Protocol-specific value prediction is materially weaker, with reported AUPRC 0.1674 for PER-first value and 0.1041 for Broadcast-only value.",
+          "claim_zh": "特定协议价值预测明显较弱，研究报告规划—执行—复核优先价值的精确率—召回率曲线下面积为 0.1674，广播独有价值为 0.1041。",
+          "id": "E2",
+          "identity": "source-reported-claim",
+          "independent": false,
+          "source": "research/analysis/Q-20260906-01-escalation-admission-protocol-value-budget.md",
+          "strength": "reports"
+        },
+        {
+          "claim": "Matched outcomes show quality-cost trade-offs and cases where more expensive collaboration does not dominate cheaper alternatives.",
+          "claim_zh": "匹配结果显示质量与成本之间存在权衡，而且更昂贵的协作并不在所有案例中优于较便宜方案。",
+          "id": "E3",
+          "identity": "source-reported-claim",
+          "independent": false,
+          "source": "research/analysis/Q-20260906-01-escalation-admission-protocol-value-budget.md",
+          "strength": "reports"
+        },
+        {
+          "claim": "Failure risk, protocol value, and budget authority answer distinct escalation questions.",
+          "claim_zh": "本次分析观察到，失败风险、协议价值与预算权限回答不同的升级问题。",
+          "id": "E4",
+          "identity": "our-observation",
+          "independent": false,
+          "source": "research/analysis/Q-20260906-01-escalation-admission-protocol-value-budget.md",
+          "strength": "observed"
+        },
+        {
+          "claim": "A governed runtime should preserve separate evidence identities and a bounded fallback when protocol-value evidence is insufficient.",
+          "claim_zh": "本文据此解释，受治理的运行系统应保留不同证据身份，并在协议价值证据不足时使用有界回退。",
+          "id": "E5",
+          "identity": "our-interpretation",
+          "independent": false,
+          "source": "research/analysis/Q-20260906-01-escalation-admission-protocol-value-budget.md",
+          "strength": "supports"
+        }
+      ],
+      "evidenceStatus": "Completed",
+      "figurePlanPath": "research/runtime/production-work/2026/09/06/Q-20260906-01/figure-plan.json",
+      "gates": {
+        "bilingualConsistency": "PASS",
+        "editorialValue": "PASS",
+        "evidence": "PASS",
+        "independence": "PASS",
+        "language": "PASS",
+        "narrative": "PASS",
+        "researchValue": "PASS",
+        "structure": "PASS",
+        "visualArgument": "PASS"
+      },
+      "inlineFigures": [],
+      "inlineVisualGate": "PASS",
+      "itemId": "Q-20260906-01",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "projectRelevance": {
+        "projects": [],
+        "rationale": "The argument derives from public primary research and retains value without any first-party project.",
+        "status": "none"
+      },
+      "researchQuestion": "当数字员工看起来可能失败时，受治理的运行系统在从“当前路径有风险”转向“现在按此成本使用这个协作协议”之前，必须分别知道什么？",
+      "sections": [
+        {
+          "heading": "One Score Is Asked to Do Three Incompatible Jobs",
+          "heading_zh": "一个分数承担了三个不相容的任务",
+          "module": "technical-analysis"
+        },
+        {
+          "heading": "Controlled Evidence Exposes the Gap Between Risk and Protocol Choice",
+          "heading_zh": "受控证据暴露了“发现风险”与“选择协议”的落差",
+          "module": "evidence"
+        },
+        {
+          "heading": "Three Evidence Receipts Make One Escalation",
+          "heading_zh": "三份证据收据构成一次升级",
+          "module": "governance-implications"
+        },
+        {
+          "heading": "One Model May Decide Jointly; The Evidence Still Has Layers",
+          "heading_zh": "一个模型可以联合决策，证据仍要分层",
+          "module": "counterarguments"
+        },
+        {
+          "heading": "From a Binary Feature to an Auditable Execution Policy",
+          "heading_zh": "从二元功能切换到可审计执行政策",
+          "module": "operational-implications"
+        },
+        {
+          "heading": "Evidence Boundary and Open Questions",
+          "heading_zh": "证据边界与开放问题",
+          "module": "open-questions"
+        }
+      ],
+      "title": "Escalation Risk Does Not Choose the Protocol",
+      "title_zh": "发现风险，不等于选对协作协议",
+      "zhPath": "staging/publication-candidates/2026-09-06-risk-does-not-choose-protocol.zh.md"
+    },
+    {
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/06/Q-20260906-02/argument-architecture.json",
+      "articleBriefPath": "research/runtime/production-work/2026/09/06/Q-20260906-02/article-brief.json",
+      "articleType": "technical-analysis",
+      "category": "daily",
+      "column": "industry-architecture",
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already provides the transferable model and practical questions; a separate community edition would not add a sufficiently distinct angle."
+      },
+      "coreProposition": "Resilience is a phase-indexed lifecycle rather than a terminal boolean: degradation, containment, restoration, cumulative burden, and authoritative state mutation require distinct evidence even when the final state is recovered.",
+      "coverGate": "PASS",
+      "coverPath": "staging/publication-candidates/2026-09-06-recovery-is-a-trajectory-cover.png",
+      "coverRole": "baseline",
+      "editingStatus": "Completed",
+      "enPath": "staging/publication-candidates/2026-09-06-recovery-is-a-trajectory.en.md",
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {
+          "claim": "The primary study models 5,076 autonomous supply-network agents while the simulation environment retains allocation, feasibility, and commit authority.",
+          "claim_zh": "主研究模拟了 5,076 个自主供应网络智能体，同时由模拟环境保留分配、可行性与提交权威。",
+          "id": "E1",
+          "identity": "public-fact",
+          "independent": false,
+          "source": "research/analysis/Q-20260906-02-phase-indexed-resilience-governance.md",
+          "strength": "states"
+        },
+        {
+          "claim": "The study distinguishes degradation, containment or partial stabilization, restoration, and full recovery with cumulative burden.",
+          "claim_zh": "研究区分退化、遏制或部分稳定、恢复过程，以及完整恢复和累积负担。",
+          "id": "E2",
+          "identity": "source-reported-claim",
+          "independent": false,
+          "source": "research/analysis/Q-20260906-02-phase-indexed-resilience-governance.md",
+          "strength": "reports"
+        },
+        {
+          "claim": "Faster partial stabilization can coexist with worse later restoration or cumulative disruption, and higher trust is not uniformly beneficial in the studied conditions.",
+          "claim_zh": "在研究条件中，更快的部分稳定可以与更差的后期恢复或累计扰动并存，更高信任也不是始终有益。",
+          "id": "E3",
+          "identity": "source-reported-claim",
+          "independent": false,
+          "source": "research/analysis/Q-20260906-02-phase-indexed-resilience-governance.md",
+          "strength": "reports"
+        },
+        {
+          "claim": "Terminal recovery cannot identify the trajectory or accumulated harm that produced the terminal state.",
+          "claim_zh": "本次分析观察到，终态恢复无法识别通向该状态的轨迹或累计伤害。",
+          "id": "E4",
+          "identity": "our-observation",
+          "independent": false,
+          "source": "research/analysis/Q-20260906-02-phase-indexed-resilience-governance.md",
+          "strength": "observed"
+        },
+        {
+          "claim": "Distributed-agent resilience should preserve phase-indexed evidence and keep proposals distinct from authoritative environment mutation.",
+          "claim_zh": "本文据此解释，分布式智能体韧性应保留按阶段索引的证据，并把建议与权威环境变更分开。",
+          "id": "E5",
+          "identity": "our-interpretation",
+          "independent": false,
+          "source": "research/analysis/Q-20260906-02-phase-indexed-resilience-governance.md",
+          "strength": "supports"
+        }
+      ],
+      "evidenceStatus": "Completed",
+      "figurePlanPath": "research/runtime/production-work/2026/09/06/Q-20260906-02/figure-plan.json",
+      "gates": {
+        "bilingualConsistency": "PASS",
+        "editorialValue": "PASS",
+        "evidence": "PASS",
+        "independence": "PASS",
+        "language": "PASS",
+        "narrative": "PASS",
+        "researchValue": "PASS",
+        "structure": "PASS",
+        "visualArgument": "PASS"
+      },
+      "inlineFigures": [],
+      "inlineVisualGate": "PASS",
+      "itemId": "Q-20260906-02",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "projectRelevance": {
+        "projects": [],
+        "rationale": "The argument is based on independent primary research and does not require any first-party project.",
+        "status": "none"
+      },
+      "researchQuestion": "如果“网络最终恢复”可以与严重的中间扰动、累积负担或对不同阶段作用相反的协调政策同时存在，分布式智能体系统必须测量什么？",
+      "sections": [
+        {
+          "heading": "What a Green Terminal State Deletes",
+          "heading_zh": "绿色终态删除了哪段历史",
+          "module": "technical-analysis"
+        },
+        {
+          "heading": "A Simulation of More Than Five Thousand Agents Separates the Phases",
+          "heading_zh": "五千多个智能体的模拟把阶段分开",
+          "module": "evidence"
+        },
+        {
+          "heading": "One Incident Needs Five Evidence Families",
+          "heading_zh": "一次事故需要五类证据",
+          "module": "architecture-implications"
+        },
+        {
+          "heading": "Proposal Authority and Environment-Mutation Authority Must Stay Separate",
+          "heading_zh": "建议权与环境变更权必须分开",
+          "module": "governance-implications"
+        },
+        {
+          "heading": "Simple Indicators May Remain; Phase Facts Must Not Disappear",
+          "heading_zh": "简单指标可以保留，阶段事实不能消失",
+          "module": "counterarguments"
+        },
+        {
+          "heading": "Evidence Boundary and Open Questions",
+          "heading_zh": "证据边界与开放问题",
+          "module": "open-questions"
+        }
+      ],
+      "title": "Recovery Is a Trajectory, Not a Boolean",
+      "title_zh": "恢复是一条轨迹，不是一个布尔值",
+      "zhPath": "staging/publication-candidates/2026-09-06-recovery-is-a-trajectory.zh.md"
+    },
+    {
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/06/Q-20260906-03/argument-architecture.json",
+      "articleBriefPath": "research/runtime/production-work/2026/09/06/Q-20260906-03/article-brief.json",
+      "articleType": "engineering-insight",
+      "category": "daily",
+      "column": "open-source-engineering",
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already provides the transferable model and practical questions; a separate community edition would not add a sufficiently distinct angle."
+      },
+      "coreProposition": "Stable principal identity enables trustworthy state attribution but does not grant destination or execution authority; safe resume separately proves identity, continuity, current destination compatibility, and current permission.",
+      "coverGate": "PASS",
+      "coverPath": "staging/publication-candidates/2026-09-06-stable-identity-does-not-authorize-destination-cover.png",
+      "coverRole": "baseline",
+      "editingStatus": "Completed",
+      "enPath": "staging/publication-candidates/2026-09-06-stable-identity-does-not-authorize-destination.en.md",
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {
+          "claim": "The examined OpenAI Agents SDK commit derives stable graph identity, disambiguates duplicate names, excludes transient bound-session objects, and fails closed on unresolved identity-aware targets in covered paths.",
+          "claim_zh": "所检查的 OpenAI 智能体软件开发工具包提交在覆盖路径中派生稳定图身份、消歧同名目标、排除短暂绑定会话对象，并对无法解析的身份感知目标失败关闭。",
+          "id": "E1",
+          "identity": "public-fact",
+          "independent": false,
+          "source": "research/analysis/Q-20260906-03-principal-identity-destination-authority.md",
+          "strength": "states"
+        },
+        {
+          "claim": "The examined OpenAI Codex commit re-evaluates destination trust, configuration, state, queued or active disqualifiers, projected instructions, permission profile, and session facts before managed-worktree ownership.",
+          "claim_zh": "所检查的 OpenAI Codex 提交在托管工作树获得所有权前，重新检查目的地信任、配置、状态、排队或活动排除条件、投射指令、权限配置与会话事实。",
+          "id": "E2",
+          "identity": "public-fact",
+          "independent": false,
+          "source": "research/analysis/Q-20260906-03-principal-identity-destination-authority.md",
+          "strength": "states"
+        },
+        {
+          "claim": "The two implementations show that identifying a durable principal does not establish that a destination may host or execute it now.",
+          "claim_zh": "本次比较观察到，识别持久主体并不能证明某个目的地现在可以承载或执行它。",
+          "id": "E3",
+          "identity": "our-observation",
+          "independent": false,
+          "source": "research/analysis/Q-20260906-03-principal-identity-destination-authority.md",
+          "strength": "observed"
+        },
+        {
+          "claim": "Governed recovery should expose principal identity, state continuity, destination compatibility, and execution authority as separate gates.",
+          "claim_zh": "本文据此解释，受治理的恢复应把主体身份、状态连续性、目的地兼容性与执行权限作为不同门禁。",
+          "id": "E4",
+          "identity": "our-interpretation",
+          "independent": false,
+          "source": "research/analysis/Q-20260906-03-principal-identity-destination-authority.md",
+          "strength": "supports"
+        }
+      ],
+      "evidenceStatus": "Completed",
+      "figurePlanPath": "research/runtime/production-work/2026/09/06/Q-20260906-03/figure-plan.json",
+      "gates": {
+        "bilingualConsistency": "PASS",
+        "editorialValue": "PASS",
+        "evidence": "PASS",
+        "independence": "PASS",
+        "language": "PASS",
+        "narrative": "PASS",
+        "researchValue": "PASS",
+        "structure": "PASS",
+        "visualArgument": "PASS"
+      },
+      "inlineFigures": [],
+      "inlineVisualGate": "PASS",
+      "itemId": "Q-20260906-03",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "projectRelevance": {
+        "projects": [],
+        "rationale": "The argument compares public external implementations and remains useful without any first-party project.",
+        "status": "none"
+      },
+      "researchQuestion": "当持久智能体状态被恢复到重建或不同的目的地时，即使逻辑智能体或工作流身份保持稳定，系统仍必须重新验证什么？",
+      "sections": [
+        {
+          "heading": "Stable Identity Solves Attribution, Not Permission",
+          "heading_zh": "稳定身份解决归属，不解决许可",
+          "module": "technical-analysis"
+        },
+        {
+          "heading": "Two Implementations Expose Complementary Boundaries",
+          "heading_zh": "两个实现展示了互补边界",
+          "module": "comparison"
+        },
+        {
+          "heading": "Four Gates Decide Whether Resume Is Admitted",
+          "heading_zh": "四道门共同决定能否恢复",
+          "module": "architecture-implications"
+        },
+        {
+          "heading": "Workspaces, Sessions, and Forks Are Re-admission Boundaries",
+          "heading_zh": "工作空间、会话与派生都是重新准入点",
+          "module": "governance-implications"
+        },
+        {
+          "heading": "One Function May Perform the Checks; Evidence Cannot Collapse",
+          "heading_zh": "一个函数可以做完，证据不能混成一个字段",
+          "module": "counterarguments"
+        },
+        {
+          "heading": "External Effects Need Their Own Caution",
+          "heading_zh": "对外部副作用保持单独谨慎",
+          "module": "operational-implications"
+        },
+        {
+          "heading": "Evidence Boundary and Open Questions",
+          "heading_zh": "证据边界与开放问题",
+          "module": "open-questions"
+        }
+      ],
+      "title": "Stable Identity Does Not Authorize a Destination",
+      "title_zh": "稳定身份，不授权新的目的地",
+      "zhPath": "staging/publication-candidates/2026-09-06-stable-identity-does-not-authorize-destination.zh.md"
+    }
+  ],
+  "date": "2026-09-06",
+  "githubCommit": "pending",
+  "reason": "Three authorized 2026-09-06 Research Objects were converted into complete bilingual Editorial Architecture 2.1 candidates with verified planning artifacts, evidence-bounded claims, independent reader value, and deterministic baseline covers.",
+  "reason_zh": "三份已授权的 2026-09-06 Research Object 已转换为完整双语 Editorial Architecture 2.1 候选，具备已核验规划工件、有边界的证据声明、独立读者价值与确定性基础题图。",
+  "schema": "runtime-publication-candidate/v2",
+  "sourceRecord": "research/runtime/records/daily/2026/09/2026-09-06-daily-runtime.json",
+  "sourceTask": "Research Runtime Production",
+  "status": "Completed",
+  "timezone": "Asia/Shanghai",
+  "updatedAt": "2026-09-06T15:16:00+08:00"
+}
