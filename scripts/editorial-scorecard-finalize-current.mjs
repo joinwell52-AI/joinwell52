@@ -1,6 +1,6 @@
 import { access, readFile, readdir, writeFile } from 'node:fs/promises'
 import { execFileSync } from 'node:child_process'
-import { join, relative } from 'node:path'
+import { basename, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url))
@@ -20,11 +20,43 @@ const readJson = async path => JSON.parse(await readFile(path, 'utf8'))
 const shanghaiDate = () => new Intl.DateTimeFormat('en-CA', {
   timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit'
 }).format(new Date())
-const runDate = process.env.SCORECARD_DATE || shanghaiDate()
+
+const walkJson = async directory => {
+  if (!(await exists(directory))) return []
+  const entries = await readdir(directory, { withFileTypes: true })
+  const nested = await Promise.all(entries.map(async entry => {
+    const path = join(directory, entry.name)
+    if (entry.isDirectory()) return walkJson(path)
+    return entry.isFile() && entry.name.endsWith('.json') ? [path] : []
+  }))
+  return nested.flat()
+}
+
+const scorecardPathFor = runDate => {
+  const [year, month] = runDate.split('-')
+  return join(SCORECARD_ROOT, year, month, `observation-scorecard-${runDate}T2130+0800.json`)
+}
+
+const resolveRunDate = async () => {
+  if (process.env.SCORECARD_DATE) return process.env.SCORECARD_DATE
+  const today = shanghaiDate()
+  if (await exists(scorecardPathFor(today))) return today
+
+  const working = []
+  for (const path of await walkJson(SCORECARD_ROOT)) {
+    const record = await readJson(path)
+    if (record.schema === 'observation-scorecard/v1' && record.status === 'Working' && record.reviewDate) {
+      working.push(record.reviewDate)
+    }
+  }
+  working.sort((a, b) => b.localeCompare(a))
+  return working[0] || today
+}
+
+const runDate = await resolveRunDate()
 const [year, month] = runDate.split('-')
-const draftPath = join(SCORECARD_ROOT, year, month, `observation-scorecard-${runDate}T2130+0800.json`)
+const draftPath = scorecardPathFor(runDate)
 const weeklyRuntimePath = join(ROOT, 'research', 'runtime', 'records', 'weekly', year, month, `${runDate}-weekly-runtime.json`)
-const reviewPath = join(REVIEW_ROOT, year, month, `${runDate}-weekly-007-review.json`)
 
 if (!(await exists(draftPath))) {
   console.log(`No scorecard record for ${runDate}; nothing to finalize.`)
@@ -59,34 +91,30 @@ if (currentAlreadyCoversInventory) {
   process.exit(0)
 }
 
-const walkJson = async directory => {
-  const entries = await readdir(directory, { withFileTypes: true })
-  const nested = await Promise.all(entries.map(async entry => {
-    const path = join(directory, entry.name)
-    if (entry.isDirectory()) return walkJson(path)
-    return entry.isFile() && entry.name.endsWith('.json') ? [path] : []
-  }))
-  return nested.flat()
-}
-
-const formal = []
-for (const path of await walkJson(SCORECARD_ROOT)) {
-  if (path === draftPath) continue
-  const record = await readJson(path)
-  if (record.schema === 'observation-scorecard/v1' && record.status === 'Completed' && record.reviewDate < runDate) {
-    formal.push({ path, record })
-  }
-}
-formal.sort((a, b) => b.record.reviewDate.localeCompare(a.record.reviewDate))
-const prior = formal[0]?.record
-if (!prior) throw new Error(`No prior Completed observation-scorecard/v1 exists before ${runDate}.`)
-
-const priorByPath = new Map((prior.items || []).map(item => [item.path, item]))
+const monthlyFull = current.mode === 'monthly-full' || current.window?.type === 'monthly-full'
 const reviewedByPath = new Map((current.items || []).map(item => [item.path, item]))
-if (await exists(reviewPath)) {
-  const supplement = await readJson(reviewPath)
+const reviewDirectory = join(REVIEW_ROOT, year, month)
+for (const path of await walkJson(reviewDirectory)) {
+  if (!basename(path).startsWith(`${runDate}-`)) continue
+  const supplement = await readJson(path)
   for (const item of supplement.items || []) reviewedByPath.set(item.path, item)
 }
+
+let prior = null
+if (!monthlyFull) {
+  const formal = []
+  for (const path of await walkJson(SCORECARD_ROOT)) {
+    if (path === draftPath) continue
+    const record = await readJson(path)
+    if (record.schema === 'observation-scorecard/v1' && record.status === 'Completed' && record.reviewDate < runDate) {
+      formal.push(record)
+    }
+  }
+  formal.sort((a, b) => b.reviewDate.localeCompare(a.reviewDate))
+  prior = formal[0] || null
+  if (!prior) throw new Error(`No prior Completed observation-scorecard/v1 exists before ${runDate}.`)
+}
+const priorByPath = new Map((prior?.items || []).map(item => [item.path, item]))
 
 const resolved = []
 let direct = 0
@@ -95,46 +123,53 @@ let inherited = 0
 const unresolved = []
 for (const inventoryItem of inventory.items) {
   const reviewed = reviewedByPath.get(inventoryItem.path)
-  if (reviewed && (!reviewed.contentHash || reviewed.contentHash === inventoryItem.contentHash)) {
+  const reviewedMatches = reviewed && (!reviewed.contentHash || reviewed.contentHash === inventoryItem.contentHash)
+  const reviewedIsDirect = reviewedMatches && reviewed.scoringMode !== 'inherited'
+
+  if (reviewedIsDirect) {
     const item = {
       ...reviewed,
       contentHash: inventoryItem.contentHash,
-      sourceLanguage: inventoryItem.sourceLanguage || reviewed.sourceLanguage
+      sourceLanguage: inventoryItem.sourceLanguage || reviewed.sourceLanguage,
+      scoringMode: reviewed.scoringMode === 'audited' ? 'audited' : (reviewed.scoringMode || (monthlyFull ? 'monthly-full-direct' : 'direct'))
     }
     if (item.audited || item.scoringMode === 'audited') audited += 1
-    else if (item.scoringMode === 'inherited') inherited += 1
     else direct += 1
     resolved.push(item)
     continue
   }
 
-  const previous = priorByPath.get(inventoryItem.path)
-  if (previous?.contentHash === inventoryItem.contentHash) {
-    resolved.push({
-      ...previous,
-      scoringMode: 'inherited',
-      inheritedFrom: prior.reviewDate,
-      sourceLanguage: inventoryItem.sourceLanguage || previous.sourceLanguage
-    })
-    inherited += 1
-    continue
+  if (!monthlyFull) {
+    const previous = priorByPath.get(inventoryItem.path)
+    if (previous?.contentHash === inventoryItem.contentHash) {
+      resolved.push({
+        ...previous,
+        scoringMode: 'inherited',
+        inheritedFrom: prior.reviewDate,
+        sourceLanguage: inventoryItem.sourceLanguage || previous.sourceLanguage
+      })
+      inherited += 1
+      continue
+    }
   }
   unresolved.push(inventoryItem.path)
 }
 
 if (unresolved.length) {
-  throw new Error(`Unresolved new/content-changed observations require article-level review: ${unresolved.join(', ')}`)
+  const modeLabel = monthlyFull ? 'full-corpus direct review' : 'article-level review'
+  throw new Error(`Unresolved observations require ${modeLabel}: ${unresolved.join(', ')}`)
 }
 if (resolved.length !== inventory.eligible) throw new Error(`Resolved ${resolved.length} items but inventory has ${inventory.eligible}.`)
+if (monthlyFull && inherited !== 0) throw new Error('Monthly full-corpus calibration may not inherit any item.')
 
 const completed = {
   schema: 'observation-scorecard/v1',
   status: 'Completed',
   reviewDate: runDate,
-  window: { type: 'weekly', through: runDate },
+  window: { type: monthlyFull ? 'monthly-full' : 'weekly', through: runDate },
   rubricVersion: current.rubricVersion,
   reviewer: current.reviewer,
-  mode: 'weekly-incremental',
+  mode: monthlyFull ? 'monthly-full' : 'weekly-incremental',
   prerequisite: {
     name: 'Research Runtime Weekly',
     date: runDate,
@@ -162,4 +197,4 @@ for (const item of resolved) distribution[item.publicLabel] = (distribution[item
 const average = resolved.reduce((sum, item) => sum + item.score, 0) / resolved.length
 
 await writeFile(draftPath, `${JSON.stringify(completed, null, 2)}\n`, 'utf8')
-console.log(`Finalized ${relative(ROOT, draftPath)}: eligible=${inventory.eligible}, direct=${direct}, audited=${audited}, inherited=${inherited}, average=${average.toFixed(1)}, distribution=${JSON.stringify(distribution)}.`)
+console.log(`Finalized ${relative(ROOT, draftPath)}: mode=${completed.mode}, eligible=${inventory.eligible}, direct=${direct}, audited=${audited}, inherited=${inherited}, average=${average.toFixed(1)}, distribution=${JSON.stringify(distribution)}.`)
