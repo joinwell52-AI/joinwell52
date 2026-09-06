@@ -8,11 +8,11 @@
   "date": "2026-09-06",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -496,6 +496,139 @@
       "githubCommit": "e1a85f2d96a48610e0639e51abd3292dfba19de3",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-06T10:10:16+08:00"
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "family": "daily",
+      "runtimeDate": "2026-09-06",
+      "status": "Completed",
+      "input": "Authoritative Reading control was pinned from main commit f79d70603a4782aea18524d05754277fa50a2890: Research Runtime Scheduler V3.0, Worker Control v1.3.0, generated Reading Prompt v1.0.0 with declared SHA-256 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5, and all five requiredSources read completely from that same commit. The generated prompt SHA-256 was deterministically recomputed and matched the declared value; repository-native runtime validation later revalidated the generated worker prompts. The unique verified Reading Wake Receipt is research/runtime/wakes/2026/09/2026-09-06/reading-105726.json. Runtime reconciliation durably opened Reading at 11:03:52+08:00, and the native Worker Claim path durably recorded Worker Claimed at 11:04:38+08:00 in commit 3cef1982697ae3755e92a99e2860beb581a2e61a. Reading consumed only the same-date completed Queue plan research/runtime/plans/2026/09/2026-09-06-plan.json: Q-20260906-01, Q-20260906-02 and Q-20260906-03 were the three Selected objects.",
+      "input_zh": "Reading 权威控制固定于 main 提交 f79d70603a4782aea18524d05754277fa50a2890：Research Runtime Scheduler V3.0、Worker Control v1.3.0、Generated Reading Prompt v1.0.0；声明 SHA-256 为 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5，同一提交上的全部 5 个 requiredSources 均完整读取。已对精确 Generated Prompt 确定性重算 SHA-256 并与声明值一致，随后仓库原生 Runtime Validation 再次核验 Generated Worker Prompts。唯一已核验 Reading Wake Receipt 为 research/runtime/wakes/2026/09/2026-09-06/reading-105726.json。Runtime Reconciliation 于 11:03:52+08:00 持久开启 Reading，原生 Worker Claim 路径随后于 11:04:38+08:00 在提交 3cef1982697ae3755e92a99e2860beb581a2e61a 中持久记录 Worker Claimed。Reading 只消费同日已完成的 Queue Plan research/runtime/plans/2026/09/2026-09-06-plan.json：Q-20260906-01、Q-20260906-02、Q-20260906-03 为三个 Selected Object。",
+      "workResult": "Skill 03 completed source-bounded Deep Reading for all three same-date Selected objects. Q-20260906-01 read the controlled multi-agent routing study across its main experiment, breadth checks and reproducibility appendices. On the 4,181-problem OmniMath setting, post-answer baseline-failure prediction is strong (0.8847 AUROC), while protocol-specific value prediction is much weaker for PER and Broadcast (0.1674 and 0.1041 AUPRC). Matched solve/token measurements show that conservative routers under-escalate and more aggressive routers can over-escalate at large token cost; protocol rankings also vary by task/solver. The bounded governance finding is to separate failure-risk admission, protocol-specific routing and budget admission rather than treating escalation as a binary 'add more agents' switch. Q-20260906-02 read the complete open-access agent-based supply-network study. Its model separates autonomous allocation proposals from simulator-authoritative feasibility/commit, evaluates absorption, adaptation/containment, partial restoration and full recovery separately, and reports heterogeneous outcomes across policy and topology. Fast partial stabilization can coexist with poor full restoration or cumulative disruption, and higher trust is not a monotonic safety signal. The bounded architecture finding is that eventual recovery alone is insufficient evidence of healthy multi-agent operation and agent proposals should remain distinct from authoritative state commitment. Q-20260906-03 inspected the exact OpenAI Agents SDK maintainer commit and its RunState, tool-tracker, sandbox-resume implementation/tests, plus the Codex managed-worktree maintainer commit and transition gates. The Agents SDK derives stable agent-graph identities for duplicate-name restoration and owned state while excluding transient bound sessions from principal identity; missing identity-aware restore targets fail closed. Codex independently re-admits worktree transitions against source/destination trust, destination configuration, idle/queued state, developer-instruction compatibility, permission profile and resulting session facts before binding checkout ownership. The bounded finding distinguishes stable principal identity, state continuity, destination compatibility and execution authority; same-vendor cross-implementation evidence is not a universal cross-vendor identity scheme. Reading performed no Research Analysis, article writing, visualization, Production or Publication. Validate Research Center 3.0 run 34008440010 successfully completed its Runtime Center validation on the exact three-note head 6c7f8ac5172580c42c40cfa8d44fe8940676b542 before terminal finalization.",
+      "workResult_zh": "Skill 03 已对三个同日 Selected Object 全部完成来源边界内的 Deep Reading。Q-20260906-01 完整深读 Cost-aware Multi-agent Routing 受控研究的主实验、Breadth Check 与 Reproducibility Appendix。在 4,181 个 OmniMath 问题的主设置中，Post-answer Baseline Failure 预测很强（0.8847 AUROC），但对 PER 与 Broadcast 的 Protocol-specific Value 预测明显更弱（AUPRC 分别为 0.1674 与 0.1041）。配对 Solve/Token 测量显示，保守 Router 会 Under-escalate，更激进 Router 则可能以巨大 Token Cost Over-escalate；Protocol 排名还会随 Task/Solver 改变。边界治理结论是：Failure-risk Admission、Protocol-specific Routing 与 Budget Admission 应分开，而不能把 Escalation 简化为“增加更多 Agent”的二元开关。Q-20260906-02 完整深读开放获取的 Agent-based Supply-network 一手研究。模型把 Autonomous Allocation Proposal 与 Simulator-authoritative Feasibility/Commit 分开，并分别评估 Absorption、Adaptation/Containment、Partial Restoration 与 Full Recovery；不同 Policy/Topology 的时序结果具有明显异质性。快速 Partial Stabilization 可能与较差的 Full Restoration 或较大的 Cumulative Disruption 同时存在，更高 Trust 也不是单调安全信号。边界架构结论是：最终恢复本身不足以证明 Multi-agent Operation 健康，Agent Proposal 还应与权威 State Commitment 分离。Q-20260906-03 核验 OpenAI Agents SDK 的精确 Maintainer Commit 及 RunState、Tool Tracker、Sandbox Resume 实现/测试，并交叉核验 Codex Managed-worktree Maintainer Commit 与 Transition Gate。Agents SDK 为 Duplicate-name Restore 与 Agent-owned State 建立 Stable Agent-graph Identity，同时刻意排除瞬时 Bound Session 作为 Principal Identity；Identity-aware Restore 找不到目标时 Fail Closed。Codex 则在绑定 Worktree Ownership 之前，独立按 Source/Destination Trust、Destination Configuration、Idle/Queued State、Developer Instruction Compatibility、Permission Profile 与最终 Session Facts 重新准入。边界结论区分 Stable Principal Identity、State Continuity、Destination Compatibility 与 Execution Authority；同一厂商的跨实现证据不能等价为通用跨厂商身份标准。Reading 未执行 Research Analysis、文章写作、可视化、Production 或 Publication。Validate Research Center 3.0 Run 34008440010 已在精确三份 Note Head 6c7f8ac5172580c42c40cfa8d44fe8940676b542 上成功完成 Runtime Center 校验后才进入终态收口。",
+      "output": "Three durable same-date Reading Notes: research/reading/Q-20260906-01-protocol-specific-escalation-routing.md; research/reading/Q-20260906-02-phase-specific-supply-resilience.md; research/reading/Q-20260906-03-durable-agent-identity-destination-authority.md.",
+      "output_zh": "生成三份同日持久 Reading Note：research/reading/Q-20260906-01-protocol-specific-escalation-routing.md；research/reading/Q-20260906-02-phase-specific-supply-resilience.md；research/reading/Q-20260906-03-durable-agent-identity-destination-authority.md。",
+      "next": "After governed Reading terminal finalization and GitHub Commit Verified, Runtime must reconcile again. Analysis remains a separate stage and may consume only these source-complete same-date Reading Notes after Reading is execution-closed and remotely verified. Sunday Weekly remains separately gated by its later not-before boundary.",
+      "next_zh": "Reading 完成 Governed Terminal Finalization 与 GitHub Commit Verified 后，Runtime 必须重新对账。Analysis 仍是独立阶段，只能在 Reading 执行收口并完成远程核验后消费这三份 Source-complete 的同日 Reading Note；Sunday Weekly 仍受其更晚的 not-before 边界独立约束。",
+      "metrics": [
+        {
+          "label": "Generated prompt identity verified",
+          "label_zh": "Generated Prompt 身份已核验",
+          "value": 1
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 Required Source",
+          "value": 5
+        },
+        {
+          "label": "Queue-selected objects read",
+          "label_zh": "已深读 Queue Selected Object",
+          "value": 3
+        },
+        {
+          "label": "Durable Reading Notes",
+          "label_zh": "持久 Reading Note",
+          "value": 3
+        },
+        {
+          "label": "Primary source objects inspected",
+          "label_zh": "已核验一手来源对象",
+          "value": 4
+        },
+        {
+          "label": "Exact note-head Runtime validation",
+          "label_zh": "精确 Note Head Runtime 校验",
+          "value": 1
+        },
+        {
+          "label": "Research Analysis performed",
+          "label_zh": "执行 Research Analysis",
+          "value": 0
+        },
+        {
+          "label": "Publication actions",
+          "label_zh": "Publication 操作数量",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Authority control-source commit",
+          "label_zh": "权威控制源提交",
+          "value": "f79d70603a4782aea18524d05754277fa50a2890"
+        },
+        {
+          "label": "Reading Wake Receipt",
+          "label_zh": "Reading Wake Receipt",
+          "path": "research/runtime/wakes/2026/09/2026-09-06/reading-105726.json"
+        },
+        {
+          "label": "Generated Reading prompt SHA-256",
+          "label_zh": "Generated Reading Prompt SHA-256",
+          "value": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"
+        },
+        {
+          "label": "Same-date Research Plan",
+          "label_zh": "同日 Research Plan",
+          "path": "research/runtime/plans/2026/09/2026-09-06-plan.json"
+        },
+        {
+          "label": "Worker Claimed commit",
+          "label_zh": "Worker Claimed 提交",
+          "commit": "3cef1982697ae3755e92a99e2860beb581a2e61a"
+        },
+        {
+          "label": "Exact note-head Runtime validation",
+          "label_zh": "精确 Note Head Runtime 校验",
+          "value": "Validate Research Center 3.0 #34008440010 Runtime Center step success on 6c7f8ac5172580c42c40cfa8d44fe8940676b542"
+        },
+        {
+          "label": "Cost-aware multi-agent routing primary study",
+          "label_zh": "Cost-aware Multi-agent Routing 一手研究",
+          "url": "https://arxiv.org/abs/2608.14927"
+        },
+        {
+          "label": "Phase-specific supply resilience primary study",
+          "label_zh": "分阶段 Supply Resilience 一手研究",
+          "url": "https://link.springer.com/article/10.1007/s10479-026-07406-4"
+        },
+        {
+          "label": "OpenAI Agents SDK stable graph identity implementation",
+          "label_zh": "OpenAI Agents SDK Stable Graph Identity 实现",
+          "url": "https://github.com/openai/openai-agents-python/commit/4a11d20d126ebc844e362ae3abfe13b775dbaee3"
+        },
+        {
+          "label": "OpenAI Codex managed worktree re-admission implementation",
+          "label_zh": "OpenAI Codex Managed Worktree Re-admission 实现",
+          "url": "https://github.com/openai/codex/commit/f6976ab0369921a59e23416083587149807d8f93"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Q-20260906-01 Reading Note",
+          "label_zh": "Q-20260906-01 深读笔记",
+          "path": "research/reading/Q-20260906-01-protocol-specific-escalation-routing.md"
+        },
+        {
+          "label": "Q-20260906-02 Reading Note",
+          "label_zh": "Q-20260906-02 深读笔记",
+          "path": "research/reading/Q-20260906-02-phase-specific-supply-resilience.md"
+        },
+        {
+          "label": "Q-20260906-03 Reading Note",
+          "label_zh": "Q-20260906-03 深读笔记",
+          "path": "research/reading/Q-20260906-03-durable-agent-identity-destination-authority.md"
+        },
+        {
+          "label": "Reading result",
+          "label_zh": "Reading 结果",
+          "path": "research/runtime/results/2026/09/2026-09-06-reading-result.json"
+        }
+      ],
+      "startedAt": "2026-09-06T11:03:52+08:00",
+      "completedAt": "2026-09-06T11:16:08+08:00"
     }
   },
   "timeline": [
@@ -568,6 +701,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Reading after verifying research/runtime/wakes/2026/09/2026-09-06/reading-105726.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-06T11:16:08+08:00",
+      "task": "reading",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Reading closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-06."
     }
   ],
   "metrics": [],
@@ -575,5 +715,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-06T11:04:38+08:00"
+  "updatedAt": "2026-09-06T11:16:08+08:00"
 }
