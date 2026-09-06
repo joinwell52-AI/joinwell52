@@ -1,0 +1,384 @@
+{
+  "schema": "observation-scorecard-review-shard/v1",
+  "reviewDate": "2026-09-06",
+  "scope": {
+    "prefix": "/industry/",
+    "through": "2026-08-18",
+    "identity": "english-canonical-path",
+    "eligibility": "research-notes.data.ts",
+    "sourceRef": "a7ae402b7d1feef65f2766bfb0b9756dbe1de08b"
+  },
+  "eligible": 23,
+  "directlyScored": 23,
+  "inherited": 0,
+  "items": [
+    {
+      "path": "/industry/servicenow",
+      "contentHash": "5e4188b244eaeddc9669ace5e57fa15b52fcff45c0f5156163efe9a2539a1379",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 26, "reason": "Vendor architecture is bounded; checks absent.", "evidence": ["Positioning"]},
+        "originalJudgment": {"score": 20, "reason": "Work-not-chat framing adds judgment.", "evidence": ["Strategic judgment"]},
+        "structureExpression": {"score": 18, "reason": "Strengths-to-limits flow is clear.", "evidence": ["Strengths"]},
+        "engineeringUsefulness": {"score": 18, "reason": "Authority and escalation lessons are reusable.", "evidence": ["Lessons"]}
+      },
+      "score": 82,
+      "internalLevel": "E3",
+      "publicLabel": "优质",
+      "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "把 AI Specialist、确定性工作流和治理控制面联系得很清楚，也明确指出 SME 边界；不足是缺少可核查的官方引用与独立运行证据。", "en": "Clear on governed AI Specialists and deterministic workflows; weaker on traceable citations and independent evidence."}
+    },
+    {
+      "path": "/industry/workday",
+      "contentHash": "be5cfc5c3f41e00b36fa5579005f26281a6341d1b583d6e7f37bc274867e2041",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 27, "reason": "Control-plane scope bounded; citations sparse.", "evidence": ["Positioning"]},
+        "originalJudgment": {"score": 21, "reason": "Persistent workforce record is useful synthesis.", "evidence": ["Core model"]},
+        "structureExpression": {"score": 18, "reason": "Registry and projection sequence is clear.", "evidence": ["Projection"]},
+        "engineeringUsefulness": {"score": 18, "reason": "Registry questions are directly reusable.", "evidence": ["Lessons"]}
+      },
+      "score": 84,
+      "internalLevel": "E3",
+      "publicLabel": "优质",
+      "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "把 Agent 作为持久劳动力资产而非一次 API 调用来治理，Registry 投影也实用；不足是来源缺少直接引用，运行时证据偏弱。", "en": "Strong persistent-workforce registry framing; direct source traceability and work-runtime evidence remain limited."}
+    },
+    {
+      "path": "/industry/2026-08-02-a2a-mcp-interoperability-boundaries",
+      "contentHash": "1c5854a2a52a028060b29d86a71cdf36a76231b4f2c999c9137d188911c3692d",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 33, "reason": "A2A/MCP specs versioned; limits explicit.", "evidence": ["Source"]},
+        "originalJudgment": {"score": 23, "reason": "Control ownership is the key distinction.", "evidence": ["Discussion"]},
+        "structureExpression": {"score": 19, "reason": "Tables and selection questions are clear.", "evidence": ["Comparison"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Defines a direct MCP-vs-A2A experiment.", "evidence": ["Future Work"]}
+      },
+      "score": 94,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "以控制权归属而非功能多少区分 A2A 与 MCP，版本、边界和协议选择问题都交代充分；不足是尚未用同一任务做双协议实测。", "en": "Control ownership distinguishes A2A from MCP well; a same-task empirical comparison across both protocols is still missing."}
+    },
+    {
+      "path": "/industry/2026-08-02-enterprise-agent-governance-control-plane",
+      "contentHash": "a5486eaed931d356e019c2be47eac92ec25ccf877a5f64ef6f5af59a82bbc28f",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 31, "reason": "Three vendor sources bounded from benchmark claims.", "evidence": ["Source"]},
+        "originalJudgment": {"score": 22, "reason": "Registry-to-observation control plane is strong.", "evidence": ["New Judgment"]},
+        "structureExpression": {"score": 19, "reason": "Capability matrix keeps comparison clear.", "evidence": ["Cross Analysis"]},
+        "engineeringUsefulness": {"score": 18, "reason": "Registry-first sequence is actionable.", "evidence": ["Engineering Impact"]}
+      },
+      "score": 90,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "三家平台比较把 Registry、Owner、Lifecycle 和运行时观察收敛为控制面；不足是仍以厂商材料为主，缺少独立成熟度验证。", "en": "Cross-vendor registry and lifecycle synthesis is strong; independent maturity evidence remains thin."}
+    },
+    {
+      "path": "/industry/2026-08-02-from-systems-of-record-to-systems-of-execution",
+      "contentHash": "998b58005fea7549207fc7e2494b74d802d207faa4727bf50854149fe5411eaf",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 31, "reason": "Platform sources bounded from marketing claims.", "evidence": ["Source"]},
+        "originalJudgment": {"score": 23, "reason": "Record-plus-execution thesis is strong.", "evidence": ["New Judgment"]},
+        "structureExpression": {"score": 19, "reason": "Cross-vendor tables support the argument.", "evidence": ["Cross Analysis"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Portable Agentic Application work is actionable.", "evidence": ["Next Week"]}
+      },
+      "score": 92,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "把三家企业软件的共同变化概括为“记录系统内生执行系统”，并保留原生集成与开放运行时的张力；不足是结构趋同尚未用真实业务结果验证。", "en": "The record-to-execution thesis is well supported across vendors; real business-outcome validation is still absent."}
+    },
+    {
+      "path": "/industry/2026-08-02-nist-ai-rmf-operating-loop",
+      "contentHash": "854c0509513431cb09a5ecd0080615168a02f13bb8d5522bd348100cf0bb0e72",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 33, "reason": "NIST sources versioned; compliance limits explicit.", "evidence": ["Primary objects"]},
+        "originalJudgment": {"score": 23, "reason": "RMF functions become durable operating records.", "evidence": ["Discussion"]},
+        "structureExpression": {"score": 19, "reason": "Loop and mapping table are highly clear.", "evidence": ["Observation"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Governance-context projection is testable.", "evidence": ["Engineering Impact"]}
+      },
+      "score": 94,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "把 NIST 的四项功能从框架标题转成可持久化的治理、上下文、测量和处置记录，边界也很严谨；不足是这些映射仍需真实工作流验证。", "en": "Excellent translation of NIST functions into operational records; the mapping still needs validation in live workflows."}
+    },
+    {
+      "path": "/industry/2026-08-05-governed-model-routing",
+      "contentHash": "ee8ab54c4cb29ce627590dd16acf4b3f2d69d80588a3c4e8826366f60bbb66ff",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 28, "reason": "Missing routing metrics are stated explicitly.", "evidence": ["Boundaries"]},
+        "originalJudgment": {"score": 21, "reason": "Policy is separated from optimization.", "evidence": ["Core judgment"]},
+        "structureExpression": {"score": 17, "reason": "Concise but lacks worked alternatives.", "evidence": ["Architecture"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Decision envelope and fail-closed pool are usable.", "evidence": ["Architecture"]}
+      },
+      "score": 85,
+      "internalLevel": "E3",
+      "publicLabel": "优质",
+      "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "把模型路由明确降为政策约束内的优化服务，并给出 Route Decision Envelope；不足是正文偏短，缺少候选池和故障场景实测。", "en": "Policy-bounded routing and the decision envelope are useful; candidate-pool and failure-mode experiments are missing."}
+    },
+    {
+      "path": "/industry/2026-08-06-enterprise-agent-decision-envelope",
+      "contentHash": "23eece99c07168c5a1782cfd21f9eb47dd89a6eb8859a98e5b0cfae0963cac97",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "Policy intent differs from enforcement evidence.", "evidence": ["Source"]},
+        "originalJudgment": {"score": 22, "reason": "Envelope plus receipt is a strong synthesis.", "evidence": ["Central judgment"]},
+        "structureExpression": {"score": 18, "reason": "Control table is clear; full example absent.", "evidence": ["Comparison"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Durable execution fields give a build path.", "evidence": ["Engineering impact"]}
+      },
+      "score": 91,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "将“配置最高优先级”与“每条执行路径真的执行了政策”分开，并引入决策信封与回执；不足是缺少一个完整调用链的实物化示例。", "en": "It separates policy precedence from enforcement well; a complete end-to-end decision-envelope example is missing."}
+    },
+    {
+      "path": "/industry/2026-08-07-role-aware-agent-resource-plane",
+      "contentHash": "68ca5d83c91cc91e5d4404394fb87c5008c9c54903a4efe811de2788c70a240d",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 33, "reason": "Negative points and transfer limits are preserved.", "evidence": ["Observation"]},
+        "originalJudgment": {"score": 23, "reason": "Role-aware retreat beats average utilization.", "evidence": ["Central judgment"]},
+        "structureExpression": {"score": 18, "reason": "Role matrix is clear but dense.", "evidence": ["Comparison"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Pool separation maps to scheduler design.", "evidence": ["Engineering impact"]}
+      },
+      "score": 93,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "抓住低平均利用率并不等于可安全回收，并用有害运行点支持角色感知调度；不足是证据来自特定服务器与工作负载，跨环境阈值仍未知。", "en": "Role-aware scheduling is strongly argued from harmful operating points; portable thresholds across environments remain unknown."}
+    },
+    {
+      "path": "/industry/2026-08-08-lifecycle-revalidated-policy-plane",
+      "contentHash": "d6712af70a4abd3569dd486a9580de3851396ccaf949b912cfb5381b5db8bb04",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 31, "reason": "Unproven revocation and exception claims stay explicit.", "evidence": ["Source"]},
+        "originalJudgment": {"score": 22, "reason": "Lifecycle revalidation extends static policy.", "evidence": ["Central judgment"]},
+        "structureExpression": {"score": 18, "reason": "Transition table clear; provenance example absent.", "evidence": ["Comparison"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Resume/fork/model re-admission is implementable.", "evidence": ["Engineering impact"]}
+      },
+      "score": 90,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "把中心政策从启动时检查提升为恢复、分叉和模型变化时重新准入，生命周期边界清楚；不足是缺少政策来源投影与可信例外的完整实例。", "en": "Lifecycle re-admission is a strong policy model; a complete provenance and trusted-exception example remains absent."}
+    },
+    {
+      "path": "/industry/2026-08-09-rotating-assertion-short-lived-credential",
+      "contentHash": "bd7ed93b3a6a79183fbba2095aa9901b19015d3ea375b5873f31703f45c88c44",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 33, "reason": "Exchange controls shown; propagation gaps explicit.", "evidence": ["Observation"]},
+        "originalJudgment": {"score": 22, "reason": "Identity, exchange, lease and propagation separated.", "evidence": ["Control plane"]},
+        "structureExpression": {"score": 18, "reason": "Four-layer table is clear.", "evidence": ["Control plane"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Refresh and stripping controls are testable.", "evidence": ["Engineering impact"]}
+      },
+      "score": 92,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "把身份源、交换权、短期凭证和传播策略拆成四层，尤其强调“短期不等于隔离”很有价值；不足是子进程与工具边界的传播证据尚未闭合。", "en": "The four-layer identity model is strong; child-process and tool-boundary propagation evidence remains incomplete."}
+    },
+    {
+      "path": "/industry/2026-08-10-authority-plane-cascade-containment",
+      "contentHash": "356933deb54092c2088e0ee118359d798429972f7b33c478e77fd2320ac314f6",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 34, "reason": "Benchmark, ablation and inference are separated.", "evidence": ["Source"]},
+        "originalJudgment": {"score": 23, "reason": "Retry versus semantic repair is strong.", "evidence": ["Summary"]},
+        "structureExpression": {"score": 18, "reason": "Reasoning rigorous; caveats repeat.", "evidence": ["Observation"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Version/provenance invalidation is reusable.", "evidence": ["Engineering impact"]}
+      },
+      "score": 94,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "用 OrchestraBench 把重试恢复活性与权威状态修复语义错误区分开，证据边界扎实；不足是权威信号冲突时的治理仍待验证。", "en": "Retry versus semantic repair is convincingly separated; conflicting authority signals remain an open governance problem."}
+    },
+    {
+      "path": "/industry/2026-08-10-saaw-software-as-an-agent-worker",
+      "contentHash": "b646e2d8ecf92febe2d836be443fec2a32dec869fc1df782586384196ecbf053",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 29, "reason": "Artifacts ground claims; evidence strength varies.", "evidence": ["TMPA"]},
+        "originalJudgment": {"score": 25, "reason": "SaaW and governed Self-Morphing are distinctive.", "evidence": ["Trace Governance"]},
+        "structureExpression": {"score": 18, "reason": "23 sections are coherent but long.", "evidence": ["Sections 1-23"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Connects facts, protocol, runtime and upgrades.", "evidence": ["FCoP"]}
+      },
+      "score": 91,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "SaaW、Trace≠Governance 与受控 Self-Morphing 形成原创框架，并有工程实例；不足是篇幅偏长，各主张证据强度不一。", "en": "A distinctive SaaW and governed Self-Morphing framework with engineering grounding; length and uneven evidence strength weaken precision."}
+    },
+    {
+      "path": "/industry/2026-08-11-governed-connector-action-handoff",
+      "contentHash": "9c361b5ac2421925db8a8ec497e2b2109fe21ada76607893de5860e35235c0a6",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "Official docs bound stages; internals unknown.", "evidence": ["Source"]},
+        "originalJudgment": {"score": 22, "reason": "Six-stage authority handoff is reusable.", "evidence": ["Summary"]},
+        "structureExpression": {"score": 18, "reason": "Stage table clear; domain diversity low.", "evidence": ["Comparison"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Handoff receipts are directly applicable.", "evidence": ["Engineering Impact"]}
+      },
+      "score": 91,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "用订餐场景把可见、可操作、授权、提交、确认和外部托管拆成六个事实层次，边界非常清楚；不足是当前证据集中在单一连接器场景。", "en": "The six-stage authority handoff is clear and reusable; evidence is concentrated in one connector domain."}
+    },
+    {
+      "path": "/industry/2026-08-12-consent-effective-policy",
+      "contentHash": "3deb1d699e54851af4eaccb32c6939472b6e5ec259684f2e722875e3ebfae6dd",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 33, "reason": "Codex commit/tests ground claim; gaps explicit.", "evidence": ["Evidence"]},
+        "originalJudgment": {"score": 23, "reason": "Requested/effective approval is key distinction.", "evidence": ["Three gates"]},
+        "structureExpression": {"score": 18, "reason": "Three gates and counterexamples are tight.", "evidence": ["Shared types"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Record shape and conformance cases are testable.", "evidence": ["Acceptance"]}
+      },
+      "score": 93,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "把用户请求的授权范围与真正生效的策略结果分离，并用降级、持久化失败和域错配解释差异；不足是完整撤销与并发策略模型尚未覆盖。", "en": "Requested versus effective approval is sharply explained; revocation and concurrent-policy semantics remain outside scope."}
+    },
+    {
+      "path": "/industry/2026-08-13-session-rebinding-execution-continuity",
+      "contentHash": "0ab438b59b1a5342491f3e45d6d6444567e58839286a1994776e86e20a524f90",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 34, "reason": "Commit/PR grounds claims; recovery limits explicit.", "evidence": ["Codex change"]},
+        "originalJudgment": {"score": 23, "reason": "Session, epoch and work continuity separated.", "evidence": ["Generation"]},
+        "structureExpression": {"score": 18, "reason": "Examples clear; rebound point repeats.", "evidence": ["Rebinding"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Generation IDs improve recovery semantics.", "evidence": ["Questions"]}
+      },
+      "score": 94,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "用 generation 身份把会话重新可用与旧执行被恢复严格分开，避免状态误导；不足是代际身份仍为进程内状态，重启连续性未证明。", "en": "Generation identity cleanly separates rebound from work recovery; continuity across client restart remains unproven."}
+    },
+    {
+      "path": "/industry/2026-08-14-kpi-decision-rights-governance",
+      "contentHash": "6b1fc7e5a00c4f7ca2140c880a3d26556c1a2a5c5ed4e5df709efc4bd6d041ae",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 29, "reason": "Field-effectiveness limits are explicit.", "evidence": ["Evidence boundary"]},
+        "originalJudgment": {"score": 22, "reason": "KPI visibility becomes decision-right governance.", "evidence": ["Dashboard"]},
+        "structureExpression": {"score": 18, "reason": "Argument coherent; source detail light.", "evidence": ["Service architecture"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Owner/threshold/escalation contract is practical.", "evidence": ["Control contract"]}
+      },
+      "score": 88,
+      "internalLevel": "E3",
+      "publicLabel": "优质",
+      "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "把 KPI 从展示推进到 Owner、阈值、升级、覆盖权与闭环证据，且主动限制成效主张；不足是来源细节和可执行接口仍偏概念化。", "en": "It turns KPIs into decision-right controls while limiting claims; executable interfaces and field evidence remain conceptual."}
+    },
+    {
+      "path": "/industry/2026-08-14-trace-governance-saaw-visual-essay",
+      "contentHash": "2ea81bef1c3caeb3ada29ee2e12cb6da73688e400cd6d446484e44e93ee7a1d3",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 28, "reason": "Project artifacts ground a derived synthesis.", "evidence": ["Version status"]},
+        "originalJudgment": {"score": 24, "reason": "Trace-to-SaaW lineage is distinctive.", "evidence": ["Trace Governance"]},
+        "structureExpression": {"score": 19, "reason": "Figures and layer tables are economical.", "evidence": ["Figures 1-5"]},
+        "engineeringUsefulness": {"score": 18, "reason": "Boundary map useful but partly prospective.", "evidence": ["CodeFlowMu"]}
+      },
+      "score": 89,
+      "internalLevel": "E3",
+      "publicLabel": "优质",
+      "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "把 Trace、TMPA、FCoP、CodeFlowMu 和 Self-Morphing 串成清楚工程谱系；不足是作为衍生综述，新的一手证据较少。", "en": "A clear visual engineering lineage from Trace to SaaW; as a derived synthesis it adds little new primary evidence."}
+    },
+    {
+      "path": "/industry/2026-08-15-delegated-agent-return-contract",
+      "contentHash": "94f32d7b1a27b8469894d84135dbd34607c463459e9bbe3deec74092dc1625d3",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "ADK evidence bounded from truth and side effects.", "evidence": ["Limits"]},
+        "originalJudgment": {"score": 23, "reason": "Occurrence identity plus finish contract is strong.", "evidence": ["One identity"]},
+        "structureExpression": {"score": 18, "reason": "Lifecycle clear; closure point repeats.", "evidence": ["Recovery"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Pause/resume and terminal rules are reusable.", "evidence": ["Architecture"]}
+      },
+      "score": 92,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "把 occurrence identity 与 semantic finish contract 并列为委派任务的两个一等合同；不足是跨框架协商与副作用补偿未解决。", "en": "Occurrence identity plus semantic finish is a strong delegation model; cross-framework authorization and compensation remain open."}
+    },
+    {
+      "path": "/industry/2026-08-16-reservation-materialization",
+      "contentHash": "7fe5b075597ef54e33613770a2c7bae6445421ce7087a598288ffc0b4a63e92f",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "Local evidence bounded from distributed guarantees.", "evidence": ["Limits"]},
+        "originalJudgment": {"score": 22, "reason": "Reservation and materialization are separated.", "evidence": ["Reservation"]},
+        "structureExpression": {"score": 18, "reason": "Lifecycle sequence is concise.", "evidence": ["Lifecycle"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Merge/cleanup rules are directly useful.", "evidence": ["Architecture"]}
+      },
+      "score": 91,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "把 ID 预留与对象物化拆成独立事实，并纳入 pending intent、合并优先级和清理；不足是分布式租约仍未验证。", "en": "Reservation and materialization are cleanly separated; distributed leasing and cleanup guarantees remain untested."}
+    },
+    {
+      "path": "/industry/2026-08-17-environment-owned-policy",
+      "contentHash": "8aa149cb054a8ff0c128a9a2a38b16c6aef609957119a37bf85a0ee37be8d958",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "Shell evidence clear; MCP/hooks remain unknown.", "evidence": ["Research Object"]},
+        "originalJudgment": {"score": 22, "reason": "Environment ownership fixes a policy split.", "evidence": ["Selection"]},
+        "structureExpression": {"score": 18, "reason": "Fallback and precedence progression is clear.", "evidence": ["Fallback"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Policy fingerprints are practical controls.", "evidence": ["Fingerprint"]}
+      },
+      "score": 91,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "指出执行环境已切换而进程变量仍服从旧线程策略的分裂，并把配置所有权绑定到真实环境；不足是 MCP、Hook 等路径覆盖仍未知。", "en": "Environment-owned configuration resolves a real scope split; MCP, hooks, and universal subprocess coverage remain unknown."}
+    },
+    {
+      "path": "/industry/2026-08-17-token-is-not-a-bill",
+      "contentHash": "53f106598faee7a352fceda52cac062954efa85948b3c0668dbcccbbfab395f1",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 34, "reason": "Official billing models are triangulated.", "evidence": ["Meter"]},
+        "originalJudgment": {"score": 24, "reason": "Three ledgers resolve a common ambiguity.", "evidence": ["Three objects"]},
+        "structureExpression": {"score": 19, "reason": "Six questions and event contract are clear.", "evidence": ["Six questions"]},
+        "engineeringUsefulness": {"score": 18, "reason": "Cost event contract is directly usable.", "evidence": ["Event contract"]}
+      },
+      "score": 95,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {"zh": "把 token 消耗、套餐吸收和最终应付金额拆成三本账，并用多家正式计费资料交叉证明，实用性很高；不足是尚未用真实账单做端到端对账实验。", "en": "The three-ledger cost model is unusually practical and well sourced; end-to-end reconciliation against real invoices is missing."}
+    },
+    {
+      "path": "/industry/2026-08-18-persistence-reconciliation",
+      "contentHash": "c82c06a9b10aa122f294b227f0cde951acac615ba624d5227176319b00f80ecf",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 34, "reason": "Codex/SQLite facts bounded from exactly-once claims.", "evidence": ["Primary evidence"]},
+        "originalJudgment": {"score": 23, "reason": "Persistence versus reconciliation is strong.", "evidence": ["Durable state"]},
+        "structureExpression": {"score": 18, "reason": "Five-contract model is clear.", "evidence": ["Five contracts"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Revisions, retries and claims form practical design.", "evidence": ["Retry ownership"]}
+      },
+      "score": 94,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "把“数据已落盘”与“活着的运行时会重新发现并推进它”分成不同合同，并进一步分离执行所有权；不足是多运行时重复执行仍需租约或幂等层验证。", "en": "Persistence and reconciliation are cleanly separated; duplicate execution across runtimes still needs leases or idempotency."}
+    }
+  ]
+}
