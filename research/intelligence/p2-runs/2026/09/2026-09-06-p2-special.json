@@ -15,9 +15,21 @@
     "directPublicationAllowed": false,
     "triggerThreshold": 5,
     "triggerScoreMaximum": 10,
-    "outcomes": ["No Material Change", "Continue Watching", "Special Study Candidate", "Experiment Candidate", "Risk Alert", "Blocked", "Failed"]
+    "outcomes": [
+      "No Material Change",
+      "Continue Watching",
+      "Special Study Candidate",
+      "Experiment Candidate",
+      "Risk Alert",
+      "Blocked",
+      "Failed"
+    ]
   },
-  "coverage": {"due": 6, "resolved": 6, "percent": 100},
+  "coverage": {
+    "due": 6,
+    "resolved": 6,
+    "percent": 100
+  },
   "selection": {
     "selectedObjectId": "github:yzhao062/pyod",
     "reason": "PyOD v3.6.5 was the only due P2 object whose primary-source delta reached the study threshold. It materially changes anomaly benchmark generation and detector behavior, and its benchmark-validity mechanism can be independently reproduced and translated into a bounded evaluation experiment without authorizing product adoption.",
@@ -33,22 +45,62 @@
       "frequency": "biweekly-or-release",
       "category": "pre-deployment-agent-security",
       "category_zh": "部署前 Agent 安全",
-      "watchFor": ["MCP configuration scanning", "prompt injection", "taint propagation", "excessive permissions"],
+      "watchFor": [
+        "MCP configuration scanning",
+        "prompt injection",
+        "taint propagation",
+        "excessive permissions"
+      ],
       "specialStudyTrigger": "A release adds a reproducible scanner, rule set or risk model useful to deployment gates.",
       "due": true,
       "reviewMode": "release-material-check",
       "cadenceReason": "Weekly release/material-commit check after the 2026-08-30 checkpoint.",
-      "previousCheckpoint": {"release": "v0.19.0", "tag": "v1", "mainCommit": "100978214b21909e95b5f0f0b1ea328bc73ab519", "keyFileHashes": [{"path": "README.md", "sha": "a17c070f6cfa4315eabfd216252cb757d46830d1"}]},
-      "currentCheckpoint": {"release": "v0.19.0", "tag": "v1", "mainCommit": "100978214b21909e95b5f0f0b1ea328bc73ab519", "keyFileHashes": [{"path": "README.md", "sha": "a17c070f6cfa4315eabfd216252cb757d46830d1"}], "issueRefs": [], "pullRequestRefs": [], "datasetVersion": "", "benchmarkVersion": "Layer 1 gate baseline unchanged", "sourceRef": "https://github.com/HeadyZhang/agent-audit/commit/100978214b21909e95b5f0f0b1ea328bc73ab519"},
+      "previousCheckpoint": {
+        "release": "v0.19.0",
+        "tag": "v1",
+        "mainCommit": "100978214b21909e95b5f0f0b1ea328bc73ab519",
+        "keyFileHashes": [
+          {
+            "path": "README.md",
+            "sha": "a17c070f6cfa4315eabfd216252cb757d46830d1"
+          }
+        ]
+      },
+      "currentCheckpoint": {
+        "release": "v0.19.0",
+        "tag": "v1",
+        "mainCommit": "100978214b21909e95b5f0f0b1ea328bc73ab519",
+        "keyFileHashes": [
+          {
+            "path": "README.md",
+            "sha": "a17c070f6cfa4315eabfd216252cb757d46830d1"
+          }
+        ],
+        "issueRefs": [],
+        "pullRequestRefs": [],
+        "datasetVersion": "",
+        "benchmarkVersion": "Layer 1 gate baseline unchanged",
+        "sourceRef": "https://github.com/HeadyZhang/agent-audit/commit/100978214b21909e95b5f0f0b1ea328bc73ab519"
+      },
       "status": "Completed",
       "triggerDecision": "Not Matched",
       "outcome": "No Material Change",
-      "triggerScore": {"relevance": 0, "changeMagnitude": 0, "evidenceQuality": 3, "actionValue": 0, "total": 3},
+      "triggerScore": {
+        "relevance": 0,
+        "changeMagnitude": 0,
+        "evidenceQuality": 3,
+        "actionValue": 0,
+        "total": 3
+      },
       "changeSummary": "Release, master commit and README identity are unchanged from the 2026-08-30 checkpoint.",
       "changeSummary_zh": "Release、master Commit 与 README 身份均与 2026-08-30 检查点一致。",
       "judgment": "No new scanner, rule set or deployment-gate risk model was observed; repeat study is not authorized for an unchanged checkpoint.",
       "judgment_zh": "未观察到新的 Scanner、规则集或 Deployment-gate Risk Model；检查点未变化，不授权重复专项研究。",
-      "evidence": ["100978214b21909e95b5f0f0b1ea328bc73ab519", "a17c070f6cfa4315eabfd216252cb757d46830d1", "v0.19.0"],
+      "evidence": [
+        "100978214b21909e95b5f0f0b1ea328bc73ab519",
+        "a17c070f6cfa4315eabfd216252cb757d46830d1",
+        "v0.19.0"
+      ],
       "artifacts": [],
       "checkedAt": "2026-09-06T20:43:10+08:00"
     },
@@ -61,22 +113,56 @@
       "frequency": "biweekly-or-release",
       "category": "runtime-policy-enforcement",
       "category_zh": "运行时策略执行",
-      "watchFor": ["pre-tool policy checks", "human approval", "encrypted audit trail", "runtime enforcement"],
+      "watchFor": [
+        "pre-tool policy checks",
+        "human approval",
+        "encrypted audit trail",
+        "runtime enforcement"
+      ],
       "specialStudyTrigger": "A material release changes tool-call enforcement, approval or audit-trail evidence.",
       "due": true,
       "reviewMode": "release-material-check",
       "cadenceReason": "Weekly release/material-commit check after the 2026-08-30 checkpoint.",
-      "previousCheckpoint": {"release": "v0.2.0", "tag": "v0.2.0", "mainCommit": "df3800c8ce98eebfab0992b28efeaf7893923384"},
-      "currentCheckpoint": {"release": "v0.2.0", "tag": "v0.2.0", "mainCommit": "3891d13eee6ad01cd9d7e0b7ffe860038da426b4", "keyFileHashes": [{"path": "README.md", "sha": "2805044b06c6ab9b0422addf7afccbad412a9b57"}], "issueRefs": [], "pullRequestRefs": [], "datasetVersion": "", "benchmarkVersion": "", "sourceRef": "https://github.com/Justin0504/Aegis/commit/3891d13eee6ad01cd9d7e0b7ffe860038da426b4"},
+      "previousCheckpoint": {
+        "release": "v0.2.0",
+        "tag": "v0.2.0",
+        "mainCommit": "df3800c8ce98eebfab0992b28efeaf7893923384"
+      },
+      "currentCheckpoint": {
+        "release": "v0.2.0",
+        "tag": "v0.2.0",
+        "mainCommit": "3891d13eee6ad01cd9d7e0b7ffe860038da426b4",
+        "keyFileHashes": [
+          {
+            "path": "README.md",
+            "sha": "2805044b06c6ab9b0422addf7afccbad412a9b57"
+          }
+        ],
+        "issueRefs": [],
+        "pullRequestRefs": [],
+        "datasetVersion": "",
+        "benchmarkVersion": "",
+        "sourceRef": "https://github.com/Justin0504/Aegis/commit/3891d13eee6ad01cd9d7e0b7ffe860038da426b4"
+      },
       "status": "Completed",
       "triggerDecision": "Not Matched",
       "outcome": "Continue Watching",
-      "triggerScore": {"relevance": 0, "changeMagnitude": 1, "evidenceQuality": 3, "actionValue": 0, "total": 4},
+      "triggerScore": {
+        "relevance": 0,
+        "changeMagnitude": 1,
+        "evidenceQuality": 3,
+        "actionValue": 0,
+        "total": 4
+      },
       "changeSummary": "Main advanced by six commits, but the diff is confined to marketing, feeds, guides, SEO/robots and comparison pages. Release remains v0.2.0 and no runtime enforcement, human-approval or audit-trail implementation delta was found.",
       "changeSummary_zh": "main 前进 6 个提交，但差异集中于 Marketing、Feed、Guide、SEO/robots 与比较页面；Release 仍为 v0.2.0，没有发现 Runtime Enforcement、Human Approval 或 Audit-trail 实现变化。",
       "judgment": "Repository activity is real but outside the declared P2 runtime-policy mechanism scope, so it remains a watch item rather than a study trigger.",
       "judgment_zh": "仓库活动真实存在，但超出 P2 声明的 Runtime-policy Mechanism 范围，因此继续观察而不触发专项。",
-      "evidence": ["df3800c8ce98eebfab0992b28efeaf7893923384", "3891d13eee6ad01cd9d7e0b7ffe860038da426b4", "v0.2.0"],
+      "evidence": [
+        "df3800c8ce98eebfab0992b28efeaf7893923384",
+        "3891d13eee6ad01cd9d7e0b7ffe860038da426b4",
+        "v0.2.0"
+      ],
       "artifacts": [],
       "checkedAt": "2026-09-06T20:43:10+08:00"
     },
@@ -89,22 +175,60 @@
       "frequency": "biweekly-or-release",
       "category": "agent-writing-quality",
       "category_zh": "Agent 写作质量",
-      "watchFor": ["writing rules", "citation discipline", "automated checks"],
+      "watchFor": [
+        "writing rules",
+        "citation discipline",
+        "automated checks"
+      ],
       "specialStudyTrigger": "A rule or checker that can be compared with the JoinWell52 editorial scorecard.",
       "due": true,
       "reviewMode": "release-material-check",
       "cadenceReason": "Weekly release/material-commit check after the 2026-08-30 checkpoint.",
-      "previousCheckpoint": {"release": "v0.4.2", "tag": "v0.4.2", "mainCommit": "a62908b83e942920727023f612813bb31ed8904c"},
-      "currentCheckpoint": {"release": "v0.4.2", "tag": "v0.4.2", "mainCommit": "99722a59e5ab654bafe68788f3bff7d1c8237f5a", "keyFileHashes": [{"path": "README.md", "sha": "3f53c8af81cb689346078f61d660b06cd8094613"}, {"path": ".github/workflows/adapter-gemini-smoke.yml", "sha": "62cbea1153474a353182242d67ea44faf970419b"}], "issueRefs": [], "pullRequestRefs": [], "datasetVersion": "", "benchmarkVersion": "v0.4.2 scorer unchanged", "sourceRef": "https://github.com/yzhao062/agent-style/commit/99722a59e5ab654bafe68788f3bff7d1c8237f5a"},
+      "previousCheckpoint": {
+        "release": "v0.4.2",
+        "tag": "v0.4.2",
+        "mainCommit": "a62908b83e942920727023f612813bb31ed8904c"
+      },
+      "currentCheckpoint": {
+        "release": "v0.4.2",
+        "tag": "v0.4.2",
+        "mainCommit": "99722a59e5ab654bafe68788f3bff7d1c8237f5a",
+        "keyFileHashes": [
+          {
+            "path": "README.md",
+            "sha": "3f53c8af81cb689346078f61d660b06cd8094613"
+          },
+          {
+            "path": ".github/workflows/adapter-gemini-smoke.yml",
+            "sha": "62cbea1153474a353182242d67ea44faf970419b"
+          }
+        ],
+        "issueRefs": [],
+        "pullRequestRefs": [],
+        "datasetVersion": "",
+        "benchmarkVersion": "v0.4.2 scorer unchanged",
+        "sourceRef": "https://github.com/yzhao062/agent-style/commit/99722a59e5ab654bafe68788f3bff7d1c8237f5a"
+      },
       "status": "Completed",
       "triggerDecision": "Not Matched",
       "outcome": "Continue Watching",
-      "triggerScore": {"relevance": 0, "changeMagnitude": 1, "evidenceQuality": 3, "actionValue": 0, "total": 4},
+      "triggerScore": {
+        "relevance": 0,
+        "changeMagnitude": 1,
+        "evidenceQuality": 3,
+        "actionValue": 0,
+        "total": 4
+      },
       "changeSummary": "Main changed only the Gemini CLI adapter smoke environment by setting the documented trusted-workspace headless escape. The writing rules, citation discipline and review-score semantics did not change; release remains v0.4.2.",
       "changeSummary_zh": "main 仅修改 Gemini CLI Adapter Smoke 的执行环境，设置官方提示的 Trusted-workspace Headless Escape；写作规则、引用纪律与 Review Score 语义没有变化，Release 仍为 v0.4.2。",
       "judgment": "This is a useful harness reliability fix but not a writing rule or editorial checker change comparable with the JoinWell52 scorecard.",
       "judgment_zh": "这是有价值的 Harness Reliability 修复，但不是可与 JoinWell52 Scorecard 比较的写作规则或 Editorial Checker 变化。",
-      "evidence": ["a62908b83e942920727023f612813bb31ed8904c", "99722a59e5ab654bafe68788f3bff7d1c8237f5a", "62cbea1153474a353182242d67ea44faf970419b", "v0.4.2"],
+      "evidence": [
+        "a62908b83e942920727023f612813bb31ed8904c",
+        "99722a59e5ab654bafe68788f3bff7d1c8237f5a",
+        "62cbea1153474a353182242d67ea44faf970419b",
+        "v0.4.2"
+      ],
       "artifacts": [],
       "checkedAt": "2026-09-06T20:43:10+08:00"
     },
@@ -117,22 +241,58 @@
       "frequency": "biweekly-or-release",
       "category": "research-publication-quality",
       "category_zh": "研究出版质量",
-      "watchFor": ["paper checklist", "citation sanity", "writing quality", "human publication gate"],
+      "watchFor": [
+        "paper checklist",
+        "citation sanity",
+        "writing quality",
+        "human publication gate"
+      ],
       "specialStudyTrigger": "A checklist change strengthens the TMPA publication gate without weakening evidence requirements.",
       "due": true,
       "reviewMode": "release-material-check",
       "cadenceReason": "Weekly release/material-commit check after the 2026-08-30 checkpoint.",
-      "previousCheckpoint": {"release": "", "tag": "", "mainCommit": "7820bca049e11ab3d45e9c6148b6cda2d27927e6"},
-      "currentCheckpoint": {"release": "", "tag": "", "mainCommit": "7820bca049e11ab3d45e9c6148b6cda2d27927e6", "keyFileHashes": [{"path": "README.md", "sha": "5e82105757cbd623f392a6fb2bc80fe5df4716a3"}], "issueRefs": [], "pullRequestRefs": [3], "datasetVersion": "", "benchmarkVersion": "", "sourceRef": "https://github.com/yzhao062/cs-paper-checklist/commit/7820bca049e11ab3d45e9c6148b6cda2d27927e6"},
+      "previousCheckpoint": {
+        "release": "",
+        "tag": "",
+        "mainCommit": "7820bca049e11ab3d45e9c6148b6cda2d27927e6"
+      },
+      "currentCheckpoint": {
+        "release": "",
+        "tag": "",
+        "mainCommit": "7820bca049e11ab3d45e9c6148b6cda2d27927e6",
+        "keyFileHashes": [
+          {
+            "path": "README.md",
+            "sha": "5e82105757cbd623f392a6fb2bc80fe5df4716a3"
+          }
+        ],
+        "issueRefs": [],
+        "pullRequestRefs": [
+          3
+        ],
+        "datasetVersion": "",
+        "benchmarkVersion": "",
+        "sourceRef": "https://github.com/yzhao062/cs-paper-checklist/commit/7820bca049e11ab3d45e9c6148b6cda2d27927e6"
+      },
       "status": "Completed",
       "triggerDecision": "Not Matched",
       "outcome": "No Material Change",
-      "triggerScore": {"relevance": 0, "changeMagnitude": 0, "evidenceQuality": 3, "actionValue": 0, "total": 3},
+      "triggerScore": {
+        "relevance": 0,
+        "changeMagnitude": 0,
+        "evidenceQuality": 3,
+        "actionValue": 0,
+        "total": 3
+      },
       "changeSummary": "Main and README checkpoint are unchanged from 2026-08-30.",
       "changeSummary_zh": "main 与 README 检查点均与 2026-08-30 一致。",
       "judgment": "No new checklist or publication-gate rule exists to evaluate; repeat study is not authorized.",
       "judgment_zh": "没有新的 Checklist 或 Publication-gate Rule 可供评估，不授权重复专项研究。",
-      "evidence": ["7820bca049e11ab3d45e9c6148b6cda2d27927e6", "5e82105757cbd623f392a6fb2bc80fe5df4716a3", "PR#3"],
+      "evidence": [
+        "7820bca049e11ab3d45e9c6148b6cda2d27927e6",
+        "5e82105757cbd623f392a6fb2bc80fe5df4716a3",
+        "PR#3"
+      ],
       "artifacts": [],
       "checkedAt": "2026-09-06T20:43:10+08:00"
     },
@@ -145,23 +305,79 @@
       "frequency": "monthly",
       "category": "anomaly-detection-method",
       "category_zh": "异常检测方法",
-      "watchFor": ["anomaly methods", "evaluation changes", "agentic anomaly detection", "runtime signals"],
+      "watchFor": [
+        "anomaly methods",
+        "evaluation changes",
+        "agentic anomaly detection",
+        "runtime signals"
+      ],
       "specialStudyTrigger": "A method or evaluation change is directly applicable to Agent runtime anomaly signals.",
       "due": true,
       "reviewMode": "monthly-review",
       "cadenceReason": "First Sunday of September; monthly full review required against the 2026-08-16 monthly checkpoint.",
-      "previousCheckpoint": {"release": "v3.6.4", "tag": "v3.6.4", "mainCommit": "3d0169a32ab8ce68aeaf7f0bb408c281f2fb1b1e", "keyFileHashes": [{"path": "README.rst", "sha": "50ce4e1092c1b050653b8ca5489a5de70e475cc0"}]},
-      "currentCheckpoint": {"release": "v3.6.5", "tag": "v3.6.5", "tagCommit": "b9c03884031b493146c3415e34c8c2cc904054b3", "mainCommit": "34f7996effac700a5166d882d5e94c6e6078fae3", "keyFileHashes": [{"path": "pyod/utils/data.py", "sha": "96d624ebb8ff38960b2ba78fe864f15ffcfb4a54"}], "issueRefs": [141, 523, 713, 714, 715, 726], "pullRequestRefs": [706, 719, 722], "datasetVersion": "generate_data v3.6.5 zero-offset repair", "benchmarkVersion": "v3.6.5 regression suite", "sourceRef": "https://github.com/yzhao062/pyod/releases/tag/v3.6.5"},
+      "previousCheckpoint": {
+        "release": "v3.6.4",
+        "tag": "v3.6.4",
+        "mainCommit": "3d0169a32ab8ce68aeaf7f0bb408c281f2fb1b1e",
+        "keyFileHashes": [
+          {
+            "path": "README.rst",
+            "sha": "50ce4e1092c1b050653b8ca5489a5de70e475cc0"
+          }
+        ]
+      },
+      "currentCheckpoint": {
+        "release": "v3.6.5",
+        "tag": "v3.6.5",
+        "tagCommit": "b9c03884031b493146c3415e34c8c2cc904054b3",
+        "mainCommit": "34f7996effac700a5166d882d5e94c6e6078fae3",
+        "keyFileHashes": [
+          {
+            "path": "pyod/utils/data.py",
+            "sha": "96d624ebb8ff38960b2ba78fe864f15ffcfb4a54"
+          }
+        ],
+        "issueRefs": [
+          141,
+          523,
+          713,
+          714,
+          715,
+          726
+        ],
+        "pullRequestRefs": [
+          706,
+          719,
+          722
+        ],
+        "datasetVersion": "generate_data v3.6.5 zero-offset repair",
+        "benchmarkVersion": "v3.6.5 regression suite",
+        "sourceRef": "https://github.com/yzhao062/pyod/releases/tag/v3.6.5"
+      },
       "status": "Completed",
       "triggerDecision": "Matched",
       "outcome": "Experiment Candidate",
-      "triggerScore": {"relevance": 3, "changeMagnitude": 2, "evidenceQuality": 3, "actionValue": 1, "total": 9},
+      "triggerScore": {
+        "relevance": 3,
+        "changeMagnitude": 2,
+        "evidenceQuality": 3,
+        "actionValue": 1,
+        "total": 9
+      },
       "changeSummary": "v3.6.5 materially repairs synthetic anomaly generation: the prior generator could draw offset_=0 and collapse every labelled outlier to the origin. Release evidence reports 46/501 affected seeds and several KNN ROC-AUC=0 cases; source and regression tests now repair the zero branch and validate spread/separation. ROD and CBLOF behavior/contracts also changed in bounded cases.",
       "changeSummary_zh": "v3.6.5 对合成异常数据生成进行实质修复：旧生成器可能抽到 offset_=0，使全部标记 Outlier 塌缩到原点。Release Evidence 报告 501 个 Seed 中有 46 个受影响，并存在多个 KNN ROC-AUC=0 案例；源码与回归测试现已修复零偏移分支并验证 Outlier Spread/Separation。ROD 与 CBLOF 在有边界的场景中也发生行为/合同变化。",
       "judgment": "The material lesson is benchmark validity, not PyOD adoption. An independent reproduction of the v3.6.4 source mechanism confirmed 46/501 seeds produce zero-variance labelled outliers. Agent-runtime anomaly evaluation should validate generated evidence before detector metrics are admitted as operational evidence.",
       "judgment_zh": "本次实质结论是 Benchmark Validity，而不是采用 PyOD。对 v3.6.4 源码机制的独立复现确认 501 个 Seed 中 46 个会产生零方差的标记 Outlier。Agent Runtime 异常评估在接纳 Detector Metric 为运行证据前，应先验证生成数据本身。",
-      "evidence": ["v3.6.5", "b9c03884031b493146c3415e34c8c2cc904054b3", "34f7996effac700a5166d882d5e94c6e6078fae3", "96d624ebb8ff38960b2ba78fe864f15ffcfb4a54", "independent reproduction: 46/501 degenerate seeds in v3.6.4 mechanism"],
-      "artifacts": ["research/intelligence/p2-studies/2026/09/2026-09-06-yzhao062-pyod.md"],
+      "evidence": [
+        "v3.6.5",
+        "b9c03884031b493146c3415e34c8c2cc904054b3",
+        "34f7996effac700a5166d882d5e94c6e6078fae3",
+        "96d624ebb8ff38960b2ba78fe864f15ffcfb4a54",
+        "independent reproduction: 46/501 degenerate seeds in v3.6.4 mechanism"
+      ],
+      "artifacts": [
+        "research/intelligence/p2-studies/2026/09/2026-09-06-yzhao062-pyod.md"
+      ],
       "checkedAt": "2026-09-06T20:43:10+08:00"
     },
     {
@@ -173,22 +389,64 @@
       "frequency": "monthly",
       "category": "anomaly-detection-research-index",
       "category_zh": "异常检测研究索引",
-      "watchFor": ["resource clusters", "behavior anomaly detection", "runtime governance", "new research links"],
+      "watchFor": [
+        "resource clusters",
+        "behavior anomaly detection",
+        "runtime governance",
+        "new research links"
+      ],
       "specialStudyTrigger": "A resource cluster materially connects anomaly detection to Agent behavior or runtime governance.",
       "due": true,
       "reviewMode": "monthly-review",
       "cadenceReason": "First Sunday of September; monthly full review required against the 2026-08-16 monthly checkpoint.",
-      "previousCheckpoint": {"release": "", "tag": "", "mainCommit": "5ad16ee816bc23c9546f47da9f52388287d7d4b9", "keyFileHashes": [{"path": "README.rst", "sha": "859e9f014eb0ab9d1c2b838417e16e04f5628366"}]},
-      "currentCheckpoint": {"release": "", "tag": "", "mainCommit": "5ad16ee816bc23c9546f47da9f52388287d7d4b9", "keyFileHashes": [{"path": "README.rst", "sha": "859e9f014eb0ab9d1c2b838417e16e04f5628366"}], "issueRefs": [50], "pullRequestRefs": [], "datasetVersion": "", "benchmarkVersion": "", "sourceRef": "https://github.com/yzhao062/anomaly-detection-resources/commit/5ad16ee816bc23c9546f47da9f52388287d7d4b9"},
+      "previousCheckpoint": {
+        "release": "",
+        "tag": "",
+        "mainCommit": "5ad16ee816bc23c9546f47da9f52388287d7d4b9",
+        "keyFileHashes": [
+          {
+            "path": "README.rst",
+            "sha": "859e9f014eb0ab9d1c2b838417e16e04f5628366"
+          }
+        ]
+      },
+      "currentCheckpoint": {
+        "release": "",
+        "tag": "",
+        "mainCommit": "5ad16ee816bc23c9546f47da9f52388287d7d4b9",
+        "keyFileHashes": [
+          {
+            "path": "README.rst",
+            "sha": "859e9f014eb0ab9d1c2b838417e16e04f5628366"
+          }
+        ],
+        "issueRefs": [
+          50
+        ],
+        "pullRequestRefs": [],
+        "datasetVersion": "",
+        "benchmarkVersion": "",
+        "sourceRef": "https://github.com/yzhao062/anomaly-detection-resources/commit/5ad16ee816bc23c9546f47da9f52388287d7d4b9"
+      },
       "status": "Completed",
       "triggerDecision": "Not Matched",
       "outcome": "No Material Change",
-      "triggerScore": {"relevance": 0, "changeMagnitude": 0, "evidenceQuality": 3, "actionValue": 0, "total": 3},
+      "triggerScore": {
+        "relevance": 0,
+        "changeMagnitude": 0,
+        "evidenceQuality": 3,
+        "actionValue": 0,
+        "total": 3
+      },
       "changeSummary": "Master and README research-index checkpoint remain unchanged from the August monthly baseline.",
       "changeSummary_zh": "master 与 README Research-index 检查点均与 8 月月度基线一致。",
       "judgment": "No new resource cluster connects anomaly detection to Agent behavior or runtime governance in this checkpoint interval.",
       "judgment_zh": "本检查区间没有新的 Resource Cluster 将异常检测实质连接到 Agent Behavior 或 Runtime Governance。",
-      "evidence": ["5ad16ee816bc23c9546f47da9f52388287d7d4b9", "859e9f014eb0ab9d1c2b838417e16e04f5628366", "issue#50"],
+      "evidence": [
+        "5ad16ee816bc23c9546f47da9f52388287d7d4b9",
+        "859e9f014eb0ab9d1c2b838417e16e04f5628366",
+        "issue#50"
+      ],
       "artifacts": [],
       "checkedAt": "2026-09-06T20:43:10+08:00"
     }
@@ -197,5 +455,8 @@
   "summary_zh": "6 个登记 P2 对象全部到期并全部收口。PyOD v3.6.5 以 9/10 达到阈值，触发本轮唯一允许的完整 P2 专项研究；专项独立复现旧生成器 46/501 的退化 Seed 机制，并以 Experiment Candidate 收口。Aegis 与 agent-style 的变化均未触及声明触发机制，继续观察；agent-audit、cs-paper-checklist 与 anomaly-detection-resources 检查点无实质变化。",
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-06T20:43:10+08:00"
+  "updatedAt": "2026-09-06T20:43:10+08:00",
+  "artifacts": [
+    "research/intelligence/p2-studies/2026/09/2026-09-06-yzhao062-pyod.md"
+  ]
 }
