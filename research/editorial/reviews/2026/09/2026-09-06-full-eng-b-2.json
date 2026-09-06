@@ -30,10 +30,36 @@
         "en": "It binds destructive cache reconciliation to principal identity, causal generation, participating-writer coordination, and snapshot completeness, making absence distinct from deletion. The semaphore and generation scheme still cover only participating local writers and do not provide a cross-process transaction."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 33, "reason": "Grounded in a merged Codex plugin-cache change with identity changes, cancellation, install/uninstall races, and validation-before-cleanup behavior.", "evidence": ["Codex commit e6a3877e", "complete remote snapshot before cleanup"]},
-        "originalJudgment": {"score": 23, "reason": "The four-condition deletion authority model usefully separates remote membership, local readiness, and stale-work publication.", "evidence": ["missing data is not deletion evidence"]},
-        "structureExpression": {"score": 19, "reason": "Freshness, writer coordination, validation, remote/local state, and transaction limits are clearly staged.", "evidence": ["freshness has two dimensions", "validate before destroy"]},
-        "engineeringUsefulness": {"score": 19, "reason": "The principal/generation/completeness checklist and dual-state cache model are directly reusable.", "evidence": ["remote truth vs local readiness"]}
+        "evidenceRigor": {
+          "score": 33,
+          "reason": "Grounded in a merged Codex plugin-cache change with identity changes, cancellation, install/uninstall races, and validation-before-cleanup behavior.",
+          "evidence": [
+            "Codex commit e6a3877e",
+            "complete remote snapshot before cleanup"
+          ]
+        },
+        "originalJudgment": {
+          "score": 23,
+          "reason": "The four-condition deletion authority model usefully separates remote membership, local readiness, and stale-work publication.",
+          "evidence": [
+            "missing data is not deletion evidence"
+          ]
+        },
+        "structureExpression": {
+          "score": 19,
+          "reason": "Freshness, writer coordination, validation, remote/local state, and transaction limits are clearly staged.",
+          "evidence": [
+            "freshness has two dimensions",
+            "validate before destroy"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 19,
+          "reason": "The principal/generation/completeness checklist and dual-state cache model are directly reusable.",
+          "evidence": [
+            "remote truth vs local readiness"
+          ]
+        }
       }
     },
     {
@@ -49,10 +75,34 @@
         "en": "The MCPServerManager case shows why a lifecycle owner should canonicalize its population before side effects and distinguishes cardinality from temporal locking. Python equality can still collapse distinct wrappers, and local call counts do not prove endpoint-level exactly-once behavior."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 32, "reason": "Uses a merged OpenAI Agents Python fix and regression, then carefully analyzes the equality semantics behind the helper.", "evidence": ["OpenAI Agents Python commit 042d84a1"]},
-        "originalJudgment": {"score": 23, "reason": "Canonicalization is reframed as ownership admission rather than a per-loop dedup convenience.", "evidence": ["decide what it owns before side effects"]},
-        "structureExpression": {"score": 18, "reason": "Ownership boundary, identity semantics, lock distinction, and external guarantee limits are concise and coherent.", "evidence": ["identity is part of lifecycle contract"]},
-        "engineeringUsefulness": {"score": 19, "reason": "It specifies tests for duplicate inputs, concurrent lifecycle calls, retries, cleanup ordering, and identity policy.", "evidence": ["connect/retry/cleanup test cases"]}
+        "evidenceRigor": {
+          "score": 32,
+          "reason": "Uses a merged OpenAI Agents Python fix and regression, then carefully analyzes the equality semantics behind the helper.",
+          "evidence": [
+            "OpenAI Agents Python commit 042d84a1"
+          ]
+        },
+        "originalJudgment": {
+          "score": 23,
+          "reason": "Canonicalization is reframed as ownership admission rather than a per-loop dedup convenience.",
+          "evidence": [
+            "decide what it owns before side effects"
+          ]
+        },
+        "structureExpression": {
+          "score": 18,
+          "reason": "Ownership boundary, identity semantics, lock distinction, and external guarantee limits are concise and coherent.",
+          "evidence": [
+            "identity is part of lifecycle contract"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 19,
+          "reason": "It specifies tests for duplicate inputs, concurrent lifecycle calls, retries, cleanup ordering, and identity policy.",
+          "evidence": [
+            "connect/retry/cleanup test cases"
+          ]
+        }
       }
     },
     {
@@ -68,10 +118,34 @@
         "en": "It separates caller cancellation from resource ownership, deferring the cancellation signal until bounded teardown finishes and reusing one close task for local idempotence. Suppressed close errors and remote-resource outcomes still need their own evidence channel."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 32, "reason": "Anchored in a merged OpenAI Agents Python cleanup fix with a regression covering cancellation, two resources, and repeated close.", "evidence": ["OpenAI Agents Python commit 72b2c670"]},
-        "originalJudgment": {"score": 23, "reason": "The proposition that cancellation ends waiting but not ownership captures a subtle control-flow/lifecycle distinction.", "evidence": ["cancellation ends waiting, not ownership"]},
-        "structureExpression": {"score": 18, "reason": "Ownership scope, deferred propagation, close-task identity, and best-effort evidence limits are well separated.", "evidence": ["defer propagation without swallowing cancellation"]},
-        "engineeringUsefulness": {"score": 19, "reason": "The bounded teardown pattern and remote-reconciliation questions are immediately applicable to async runtimes.", "evidence": ["owned resource close sequence"]}
+        "evidenceRigor": {
+          "score": 32,
+          "reason": "Anchored in a merged OpenAI Agents Python cleanup fix with a regression covering cancellation, two resources, and repeated close.",
+          "evidence": [
+            "OpenAI Agents Python commit 72b2c670"
+          ]
+        },
+        "originalJudgment": {
+          "score": 23,
+          "reason": "The proposition that cancellation ends waiting but not ownership captures a subtle control-flow/lifecycle distinction.",
+          "evidence": [
+            "cancellation ends waiting, not ownership"
+          ]
+        },
+        "structureExpression": {
+          "score": 18,
+          "reason": "Ownership scope, deferred propagation, close-task identity, and best-effort evidence limits are well separated.",
+          "evidence": [
+            "defer propagation without swallowing cancellation"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 19,
+          "reason": "The bounded teardown pattern and remote-reconciliation questions are immediately applicable to async runtimes.",
+          "evidence": [
+            "owned resource close sequence"
+          ]
+        }
       }
     },
     {
@@ -87,10 +161,34 @@
         "en": "The rollout-migration case yields a strong TOCTOU rule: discovery is provisional, so identity, location, and decision-relevant state must be revalidated after authority is acquired. The evidence remains a local file-resource model without cross-machine locking or replacement identity coverage."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 32, "reason": "Uses a merged Codex migration change with path movement, empty-read recheck, lock contention, and terminal failure distinctions.", "evidence": ["Codex commit 465eafac"]},
-        "originalJudgment": {"score": 23, "reason": "It makes post-authority revalidation the real correctness boundary rather than trusting an earlier accurate observation.", "evidence": ["discovery is provisional evidence"]},
-        "structureExpression": {"score": 18, "reason": "Locator identity, authority timing, busy/failed lifecycle, and distributed limits form a clear sequence.", "evidence": ["authority changes which observations justify mutation"]},
-        "engineeringUsefulness": {"score": 19, "reason": "The rule identifies exactly which mutable facts should be reread before mutation and how retry states should differ.", "evidence": ["post-lock rediscovery and reread"]}
+        "evidenceRigor": {
+          "score": 32,
+          "reason": "Uses a merged Codex migration change with path movement, empty-read recheck, lock contention, and terminal failure distinctions.",
+          "evidence": [
+            "Codex commit 465eafac"
+          ]
+        },
+        "originalJudgment": {
+          "score": 23,
+          "reason": "It makes post-authority revalidation the real correctness boundary rather than trusting an earlier accurate observation.",
+          "evidence": [
+            "discovery is provisional evidence"
+          ]
+        },
+        "structureExpression": {
+          "score": 18,
+          "reason": "Locator identity, authority timing, busy/failed lifecycle, and distributed limits form a clear sequence.",
+          "evidence": [
+            "authority changes which observations justify mutation"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 19,
+          "reason": "The rule identifies exactly which mutable facts should be reread before mutation and how retry states should differ.",
+          "evidence": [
+            "post-lock rediscovery and reread"
+          ]
+        }
       }
     },
     {
@@ -106,10 +204,34 @@
         "en": "The ADK fix cleanly separates request-mutable option containers from intentionally shared live clients, avoiding both whole-graph deep-copy crashes and raw aliasing. The guarantee is only top-level; nested mutable values, cookies, and client-internal state can still cross requests."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 31, "reason": "Grounded in a merged ADK helper and regression asserting both detached option identities and preserved client identity.", "evidence": ["Google ADK commit 67ca98c2"]},
-        "originalJudgment": {"score": 22, "reason": "The copy-on-mutation ownership rule is useful, though the conceptual leap is narrower than several governance articles.", "evidence": ["copy the options, keep the client"]},
-        "structureExpression": {"score": 18, "reason": "Deep-copy failure, raw sharing failure, ownership classification, and boundary limits are explained efficiently.", "evidence": ["mutation-specific copying"]},
-        "engineeringUsefulness": {"score": 19, "reason": "The field-classification and identity-based tests are directly applicable to request configuration APIs.", "evidence": ["schema evolution ownership classification"]}
+        "evidenceRigor": {
+          "score": 31,
+          "reason": "Grounded in a merged ADK helper and regression asserting both detached option identities and preserved client identity.",
+          "evidence": [
+            "Google ADK commit 67ca98c2"
+          ]
+        },
+        "originalJudgment": {
+          "score": 22,
+          "reason": "The copy-on-mutation ownership rule is useful, though the conceptual leap is narrower than several governance articles.",
+          "evidence": [
+            "copy the options, keep the client"
+          ]
+        },
+        "structureExpression": {
+          "score": 18,
+          "reason": "Deep-copy failure, raw sharing failure, ownership classification, and boundary limits are explained efficiently.",
+          "evidence": [
+            "mutation-specific copying"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 19,
+          "reason": "The field-classification and identity-based tests are directly applicable to request configuration APIs.",
+          "evidence": [
+            "schema evolution ownership classification"
+          ]
+        }
       }
     },
     {
@@ -121,14 +243,39 @@
       "publicLabel": "超凡",
       "publicLabel_en": "Transcendent",
       "editorialNote": {
-        "zh": "从 10 条历史 REPORT 的 4 linked / 4 missing / 2 conflict 研究发现，完整推进到 V2.0.4 的只读 evidence-association 诊断，并用同一 QA TASK 的 active→review 现场变化证明 not_applicable 与 linked 会随事实改变；不足是仍是作者方产品证据，尚非第三方复现。",
+        "zh": "从 10 条 REPORT 的关联异常推进到 V2.0.4 动态诊断，并用同一 QA TASK 的 active→review 变化验证语义；不足是产品证据仍以作者方复现为主，缺第三方验证。",
         "en": "It traces a 10-report research finding into a shipped read-only evidence-association diagnostic, then shows the same QA task changing from not-applicable REPORT edges in active to linked edges in review. The product evidence remains first-party rather than third-party reproduction."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 34, "reason": "Combines historical fixtures, a public reader, engineering calibration, shipped V2.0.4 behavior, and same-task live UI evidence.", "evidence": ["4/4/2 historical slice", "active/review dynamic snapshots"]},
-        "originalJudgment": {"score": 24, "reason": "It converts evidence ownership into a dynamic relation graph without granting the diagnostic adjudication authority.", "evidence": ["evidence association is an X-ray, not a judge"]},
-        "structureExpression": {"score": 19, "reason": "Research origin, external reference, calibration, release, live lifecycle validation, and public verification form a strong research-to-engineering narrative.", "evidence": ["research → contract → calibration → release → validation"]},
-        "engineeringUsefulness": {"score": 20, "reason": "The linked/missing/conflict/not_applicable/observer_only semantics and recheck action can be implemented directly in audit tooling.", "evidence": ["five diagnostic states"]}
+        "evidenceRigor": {
+          "score": 34,
+          "reason": "Combines historical fixtures, a public reader, engineering calibration, shipped V2.0.4 behavior, and same-task live UI evidence.",
+          "evidence": [
+            "4/4/2 historical slice",
+            "active/review dynamic snapshots"
+          ]
+        },
+        "originalJudgment": {
+          "score": 24,
+          "reason": "It converts evidence ownership into a dynamic relation graph without granting the diagnostic adjudication authority.",
+          "evidence": [
+            "evidence association is an X-ray, not a judge"
+          ]
+        },
+        "structureExpression": {
+          "score": 19,
+          "reason": "Research origin, external reference, calibration, release, live lifecycle validation, and public verification form a strong research-to-engineering narrative.",
+          "evidence": [
+            "research → contract → calibration → release → validation"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 20,
+          "reason": "The linked/missing/conflict/not_applicable/observer_only semantics and recheck action can be implemented directly in audit tooling.",
+          "evidence": [
+            "five diagnostic states"
+          ]
+        }
       }
     },
     {
@@ -140,14 +287,39 @@
       "publicLabel": "卓越",
       "publicLabel_en": "Exceptional",
       "editorialNote": {
-        "zh": "把 skill 授权证据拆成 occurrence、canonical trusted-root provenance、content identity、semantic safety、current approval 五维，并说明 host 必须先观察 invocation 再解释其来源；不足是 trusted path 仍非加密 provenance，且 path 不能证明当时执行的确切 bytes。",
+        "zh": "把 skill 证据拆成调用发生、可信根来源、内容身份、语义安全和当前批准五层；不足是 canonical path 不是加密 provenance，也不能证明当时执行的确切 bytes。",
         "en": "It separates skill evidence into occurrence, trusted-root provenance, content identity, semantic safety, and current approval, requiring the host to observe invocation before trusting origin. Canonical paths are still not cryptographic provenance and do not prove the exact bytes that ran."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 32, "reason": "Uses a merged Codex Guardian implementation with canonicalization, symlink-escape, repository-skill, and evidence-limit tests.", "evidence": ["Codex commit b68acc4d", "trusted-root tests"]},
-        "originalJudgment": {"score": 24, "reason": "The five-dimension evidence model prevents trusted location from silently becoming content safety or approval.", "evidence": ["five evidence dimensions"]},
-        "structureExpression": {"score": 18, "reason": "Observed invocation, canonical root, path-only tradeoff, evidence dimensions, and revocation needs are well ordered.", "evidence": ["prove invocation before interpreting it"]},
-        "engineeringUsefulness": {"score": 19, "reason": "The proposed durable receipt fields and trust-expiry questions are practical for skill/tool authorization systems.", "evidence": ["execution identity, canonical path, digest, truncation flag"]}
+        "evidenceRigor": {
+          "score": 32,
+          "reason": "Uses a merged Codex Guardian implementation with canonicalization, symlink-escape, repository-skill, and evidence-limit tests.",
+          "evidence": [
+            "Codex commit b68acc4d",
+            "trusted-root tests"
+          ]
+        },
+        "originalJudgment": {
+          "score": 24,
+          "reason": "The five-dimension evidence model prevents trusted location from silently becoming content safety or approval.",
+          "evidence": [
+            "five evidence dimensions"
+          ]
+        },
+        "structureExpression": {
+          "score": 18,
+          "reason": "Observed invocation, canonical root, path-only tradeoff, evidence dimensions, and revocation needs are well ordered.",
+          "evidence": [
+            "prove invocation before interpreting it"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 19,
+          "reason": "The proposed durable receipt fields and trust-expiry questions are practical for skill/tool authorization systems.",
+          "evidence": [
+            "execution identity, canonical path, digest, truncation flag"
+          ]
+        }
       }
     },
     {
@@ -163,10 +335,35 @@
         "en": "It upgrades approval-cache freshness from TTL to an authorization identity and revalidates at the point cached evidence would become execution authority, covering concurrent revocation. The version tuple proves only encoded authority facts and does not close external-policy or effect-time races."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 32, "reason": "Anchored in a merged Codex Guardian change with an explicit concurrent-revocation regression and bounded version semantics.", "evidence": ["Codex commit 035295b4", "in-flight revocation test"]},
-        "originalJudgment": {"score": 24, "reason": "Separating action match, time freshness, and authority freshness yields a stronger cache-validity model.", "evidence": ["approval evidence produced under an authorization identity"]},
-        "structureExpression": {"score": 18, "reason": "Recent-but-stale evidence, version binding, use-time race, and tuple coverage limits are presented clearly.", "evidence": ["use-time revalidation"]},
-        "engineeringUsefulness": {"score": 19, "reason": "The pattern is directly usable for approval caches and highlights when authority-bearing inputs must enter the version schema.", "evidence": ["local/root authorization versions"]}
+        "evidenceRigor": {
+          "score": 32,
+          "reason": "Anchored in a merged Codex Guardian change with an explicit concurrent-revocation regression and bounded version semantics.",
+          "evidence": [
+            "Codex commit 035295b4",
+            "in-flight revocation test"
+          ]
+        },
+        "originalJudgment": {
+          "score": 24,
+          "reason": "Separating action match, time freshness, and authority freshness yields a stronger cache-validity model.",
+          "evidence": [
+            "approval evidence produced under an authorization identity"
+          ]
+        },
+        "structureExpression": {
+          "score": 18,
+          "reason": "Recent-but-stale evidence, version binding, use-time race, and tuple coverage limits are presented clearly.",
+          "evidence": [
+            "use-time revalidation"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 19,
+          "reason": "The pattern is directly usable for approval caches and highlights when authority-bearing inputs must enter the version schema.",
+          "evidence": [
+            "local/root authorization versions"
+          ]
+        }
       }
     }
   ]

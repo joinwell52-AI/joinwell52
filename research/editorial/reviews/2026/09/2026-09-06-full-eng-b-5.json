@@ -26,14 +26,39 @@
       "publicLabel": "超凡",
       "publicLabel_en": "Transcendent",
       "editorialNote": {
-        "zh": "用 Codex OAuth recovery 与 Google ADK human confirmation 两个不同中断点共同证明：recovery evidence、current execution authority、external effect evidence 必须分开，恢复认证或批准不能静默变成 replay 权；不足是三维状态模型仍是跨项目综合判断，尚未形成统一协议或 exactly-once 实证。",
+        "zh": "Codex OAuth 与 Google ADK confirmation 两个中断点共同说明 recovery evidence、current authority、effect evidence 必须分开；不足是三维模型仍是综合判断，未形成跨系统协议或 exactly-once 证明。",
         "en": "Codex OAuth recovery and Google ADK confirmation provide complementary evidence that recovery information, current execution authority, and external-effect evidence must remain separate. The three-dimensional state model is still a synthesis rather than a validated cross-system protocol or exactly-once guarantee."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 33, "reason": "Uses two merged maintainer fixes at distinct interruption boundaries and carefully limits each implementation's claim.", "evidence": ["Codex commit 0650d6d1", "Google ADK commit cb0eb228"]},
-        "originalJudgment": {"score": 24, "reason": "The three independent evidence dimensions prevent new authority from being mistaken for proof that replay is safe.", "evidence": ["recovery evidence / execution authority / effect evidence"]},
-        "structureExpression": {"score": 19, "reason": "Two fixes, authority separation, effect ambiguity, state model, bounded retry, and limits are tightly connected.", "evidence": ["one occurrence, three independent dimensions"]},
-        "engineeringUsefulness": {"score": 19, "reason": "The replay-admission conditions and negative-path tests are directly useful for resumable tool-call runtimes.", "evidence": ["query/dedupe/reconcile/compensate before replay"]}
+        "evidenceRigor": {
+          "score": 33,
+          "reason": "Uses two merged maintainer fixes at distinct interruption boundaries and carefully limits each implementation's claim.",
+          "evidence": [
+            "Codex commit 0650d6d1",
+            "Google ADK commit cb0eb228"
+          ]
+        },
+        "originalJudgment": {
+          "score": 24,
+          "reason": "The three independent evidence dimensions prevent new authority from being mistaken for proof that replay is safe.",
+          "evidence": [
+            "recovery evidence / execution authority / effect evidence"
+          ]
+        },
+        "structureExpression": {
+          "score": 19,
+          "reason": "Two fixes, authority separation, effect ambiguity, state model, bounded retry, and limits are tightly connected.",
+          "evidence": [
+            "one occurrence, three independent dimensions"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 19,
+          "reason": "The replay-admission conditions and negative-path tests are directly useful for resumable tool-call runtimes.",
+          "evidence": [
+            "query/dedupe/reconcile/compensate before replay"
+          ]
+        }
       }
     },
     {
@@ -45,14 +70,41 @@
       "publicLabel": "超凡",
       "publicLabel_en": "Transcendent",
       "editorialNote": {
-        "zh": "用 allow/revoke 的七组受控场景把 acceptance order 与 persistence order 分离，O1/O2 双向翻转、O3 同值控制、O4 未接受输入、O5/O6 序列异常共同限定结论，并把排序与 cutoff 再拆开；不足是 deliberately imposed inversion 不是 CodeFlowMu 真实 Host 缺陷，完整 compaction/recovery 链仍待检查。",
+        "zh": "七组 allow/revoke 场景把 acceptance order 与 persistence order 分离，并用双向翻转、同值、未接受输入和异常序列限定结论；不足是 inversion 为人为注入，未证明 CodeFlowMu Host 真实存在该缺陷。",
         "en": "Seven controlled allow/revoke scenarios separate acceptance order from persistence order, with bidirectional flips, same-value and unaccepted-input controls, invalid-sequence unknowns, and a separate cutoff rule. The inversion was deliberately imposed rather than observed as a CodeFlowMu Host defect, and the full compaction/recovery chain remains unverified."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 34, "reason": "Uses seven twice-repeated fresh-process scenarios, negative controls, an acceptance-sequence cutoff, and fixed existing command-regression boundaries.", "evidence": ["O0–O6", "14 fresh-process observations", "31 command tests per round"]},
-        "originalJudgment": {"score": 25, "reason": "The proposition that order itself is context, while restored order still does not grant present authority, is both precise and broadly reusable.", "evidence": ["order itself is part of context"]},
-        "structureExpression": {"score": 19, "reason": "Café analogy, controlled reducer, seven controls, cutoff, product boundary, and next handoffs make the methodology highly readable.", "evidence": ["sorting vs cutoff", "three handoffs"]},
-        "engineeringUsefulness": {"score": 20, "reason": "It gives clear invariants for acceptance sequencing, legacy handling, invalid sequence behavior, and current execution revalidation.", "evidence": ["acceptance sequence / persistence / current authority separation"]}
+        "evidenceRigor": {
+          "score": 34,
+          "reason": "Uses seven twice-repeated fresh-process scenarios, negative controls, an acceptance-sequence cutoff, and fixed existing command-regression boundaries.",
+          "evidence": [
+            "O0–O6",
+            "14 fresh-process observations",
+            "31 command tests per round"
+          ]
+        },
+        "originalJudgment": {
+          "score": 25,
+          "reason": "The proposition that order itself is context, while restored order still does not grant present authority, is both precise and broadly reusable.",
+          "evidence": [
+            "order itself is part of context"
+          ]
+        },
+        "structureExpression": {
+          "score": 19,
+          "reason": "Café analogy, controlled reducer, seven controls, cutoff, product boundary, and next handoffs make the methodology highly readable.",
+          "evidence": [
+            "sorting vs cutoff",
+            "three handoffs"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 20,
+          "reason": "It gives clear invariants for acceptance sequencing, legacy handling, invalid sequence behavior, and current execution revalidation.",
+          "evidence": [
+            "acceptance sequence / persistence / current authority separation"
+          ]
+        }
       }
     },
     {
@@ -64,14 +116,40 @@
       "publicLabel": "超凡",
       "publicLabel_en": "Transcendent",
       "editorialNote": {
-        "zh": "把“GET 看起来像读”转成真实 Native gate + loopback curl 实验，区分 capability、effect assessment、admission decision、post-execution observation，并直接展示 complete=false 时 negative-rule policy 仍可 ALLOW、环境却发生 business write；不足是尚未做完整 Codex/Cursor/Gemini Host、代理和真实服务端到端验证。",
+        "zh": "真实 Native gate + loopback curl 显示 effect knowledge 不完整时 GET 仍可 ALLOW，环境随后发生 business write；不足是尚未覆盖完整 Codex/Cursor/Gemini Host、代理与真实服务。",
         "en": "The real Native gate plus loopback curl experiment separates tool capability, effect assessment, admission, and observed effect, directly showing incomplete effect knowledge can still yield ALLOW before a business write occurs. Full Codex/Cursor/Gemini Host, proxy, and real-service end-to-end validation remains open."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 35, "reason": "Combines HTTP semantics, an external public reference, six twice-run environment scenarios, seven twice-run real gate scenarios, and strong rejection controls.", "evidence": ["13 scenarios / 26 observations", "Native gate ALLOW GET and REQUIRE_APPROVAL POST", "business write counters"]},
-        "originalJudgment": {"score": 25, "reason": "The article makes unresolved effects a first-class admission fact and rejects the inference that policy permission proves environmental safety.", "evidence": ["ALLOW is permission, not proof of no effect"]},
-        "structureExpression": {"score": 19, "reason": "Protocol semantics, public context, environment experiment, real gate, incomplete facts, four-layer separation, and next checks form an unusually tight chain.", "evidence": ["complete=false unresolved operation.effects"]},
-        "engineeringUsefulness": {"score": 20, "reason": "The four-layer record and follow-up checks directly guide shell/network tool gating and UI evidence semantics.", "evidence": ["capability / assessment / decision / observation table"]}
+        "evidenceRigor": {
+          "score": 35,
+          "reason": "Combines HTTP semantics, an external public reference, six twice-run environment scenarios, seven twice-run real gate scenarios, and strong rejection controls.",
+          "evidence": [
+            "13 scenarios / 26 observations",
+            "Native gate ALLOW GET and REQUIRE_APPROVAL POST",
+            "business write counters"
+          ]
+        },
+        "originalJudgment": {
+          "score": 25,
+          "reason": "The article makes unresolved effects a first-class admission fact and rejects the inference that policy permission proves environmental safety.",
+          "evidence": [
+            "ALLOW is permission, not proof of no effect"
+          ]
+        },
+        "structureExpression": {
+          "score": 19,
+          "reason": "Protocol semantics, public context, environment experiment, real gate, incomplete facts, four-layer separation, and next checks form an unusually tight chain.",
+          "evidence": [
+            "complete=false unresolved operation.effects"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 20,
+          "reason": "The four-layer record and follow-up checks directly guide shell/network tool gating and UI evidence semantics.",
+          "evidence": [
+            "capability / assessment / decision / observation table"
+          ]
+        }
       }
     },
     {
@@ -83,14 +161,39 @@
       "publicLabel": "卓越",
       "publicLabel_en": "Exceptional",
       "editorialNote": {
-        "zh": "借 agentic Julia/HPC 研究把“功能测试绿”与“运行能力”拆成 functional correctness、development process、failure envelope、scaling、reproducibility 五层，并给出普通企业系统的并发、队列、依赖故障映射；不足是研究每个条件只生成一次，目标超算环境与生成环境也并不完全一致。",
+        "zh": "借 agentic Julia/HPC 研究把功能正确、开发过程、failure envelope、scaling、reproducibility 分成五层；不足是每个条件仅生成一次，生成环境与目标超算环境也不完全一致。",
         "en": "The agentic Julia/HPC study is translated into five evidence layers separating functional correctness, development process, failure envelope, scaling, and reproducibility, with practical enterprise analogues. Each study condition was generated once and the generation environment differed from the target supercomputer."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 33, "reason": "Uses a reproducible paper/artifact/repository package and preserves important limits around single generations and environment mismatch.", "evidence": ["paper + Zenodo artifact + reproduction repository", "scale failures"]},
-        "originalJudgment": {"score": 23, "reason": "The five-layer completion model prevents small functional tests and rich traces from being inflated into deployment qualification.", "evidence": ["five evidence layers"]},
-        "structureExpression": {"score": 19, "reason": "Trace value, scale failures, layered claims, enterprise translation, reproducibility limits, and checklist are clearly ordered.", "evidence": ["ordinary engineering translation"]},
-        "engineeringUsefulness": {"score": 19, "reason": "The risk-proportionate qualification checklist maps HPC lessons to queue depth, retries, outages, memory, and concurrency.", "evidence": ["five-question operational admission checklist"]}
+        "evidenceRigor": {
+          "score": 33,
+          "reason": "Uses a reproducible paper/artifact/repository package and preserves important limits around single generations and environment mismatch.",
+          "evidence": [
+            "paper + Zenodo artifact + reproduction repository",
+            "scale failures"
+          ]
+        },
+        "originalJudgment": {
+          "score": 23,
+          "reason": "The five-layer completion model prevents small functional tests and rich traces from being inflated into deployment qualification.",
+          "evidence": [
+            "five evidence layers"
+          ]
+        },
+        "structureExpression": {
+          "score": 19,
+          "reason": "Trace value, scale failures, layered claims, enterprise translation, reproducibility limits, and checklist are clearly ordered.",
+          "evidence": [
+            "ordinary engineering translation"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 19,
+          "reason": "The risk-proportionate qualification checklist maps HPC lessons to queue depth, retries, outages, memory, and concurrency.",
+          "evidence": [
+            "five-question operational admission checklist"
+          ]
+        }
       }
     },
     {
@@ -102,14 +205,39 @@
       "publicLabel": "卓越",
       "publicLabel_en": "Exceptional",
       "editorialNote": {
-        "zh": "用 Agents SDK 的 stable graph identity 与 Codex managed-worktree re-admission 两个互补样本，把 principal identity、state continuity、destination compatibility、current execution authority 四道门分开，避免“恢复到正确 Agent”被误当成“可以在这里继续做”；不足是两项证据仍来自同一组织的不同仓库，跨厂商 portable identity 尚未建立。",
+        "zh": "Agents SDK 与 Codex restore 样本把 principal identity、state continuity、destination compatibility、current authority 分成四门；不足是两项证据来自同一组织，跨厂商 portable identity 仍未建立。",
         "en": "Complementary Agents SDK and Codex restore paths separate principal identity, state continuity, destination compatibility, and current execution authority, preventing correct attribution from becoming permission to continue anywhere. Both samples come from repositories under the same organization, and portable cross-vendor identity remains unresolved."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 32, "reason": "Uses two merged implementations with clearly different restore responsibilities and explicitly avoids treating them as independent-vendor replication.", "evidence": ["Agents SDK graph identity", "Codex managed-worktree re-admission"]},
-        "originalJudgment": {"score": 24, "reason": "The four-gate restore model cleanly separates whose state, whether it is continuous, where it may run, and what it may do.", "evidence": ["principal / continuity / destination / authority gates"]},
-        "structureExpression": {"score": 18, "reason": "Attribution problem, complementary implementations, four gates, migration/fork boundaries, and external effects are well organized.", "evidence": ["treat recovery as re-admission"]},
-        "engineeringUsefulness": {"score": 19, "reason": "The decision reasons, freshness identity, fork narrowing, and effect caveat provide a practical restore contract.", "evidence": ["auditable four-gate decision"]}
+        "evidenceRigor": {
+          "score": 32,
+          "reason": "Uses two merged implementations with clearly different restore responsibilities and explicitly avoids treating them as independent-vendor replication.",
+          "evidence": [
+            "Agents SDK graph identity",
+            "Codex managed-worktree re-admission"
+          ]
+        },
+        "originalJudgment": {
+          "score": 24,
+          "reason": "The four-gate restore model cleanly separates whose state, whether it is continuous, where it may run, and what it may do.",
+          "evidence": [
+            "principal / continuity / destination / authority gates"
+          ]
+        },
+        "structureExpression": {
+          "score": 18,
+          "reason": "Attribution problem, complementary implementations, four gates, migration/fork boundaries, and external effects are well organized.",
+          "evidence": [
+            "treat recovery as re-admission"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 19,
+          "reason": "The decision reasons, freshness identity, fork narrowing, and effect caveat provide a practical restore contract.",
+          "evidence": [
+            "auditable four-gate decision"
+          ]
+        }
       }
     }
   ]

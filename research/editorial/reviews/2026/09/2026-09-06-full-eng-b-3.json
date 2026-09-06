@@ -30,10 +30,38 @@
         "en": "It moves from 20,440 historical Activity rows and a raw-marker query probe to V2.1.2 server-side recursive allowlists, preserving a 19/20 over-pruning failure as evidence. Structural projection still cannot detect sensitive content inside approved fields, and real LAN/Gateway paths remain outside independent coverage."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 34, "reason": "Combines historical corpus counts, a concrete pre-fix marker probe, failed intermediate regression, independent QA, and release validation.", "evidence": ["20,440-row historical profile", "raw marker probe", "B1 independent QA"]},
-        "originalJudgment": {"score": 25, "reason": "The article distinguishes internal fact objects from consumer projection objects and makes unknown fields fail closed by contract.", "evidence": ["observability is not pass-through", "recursive allowlist"]},
-        "structureExpression": {"score": 19, "reason": "External consumer-scope comparison, historical data, live boundary probe, implementation, failure, QA, and release evidence form a strong progression.", "evidence": ["producer/storage/consumer boundary"]},
-        "engineeringUsefulness": {"score": 20, "reason": "The server-bound consumer identity and recursive projection rules are directly actionable for event APIs and analytics pipelines.", "evidence": ["Web Panel/API/Analytics projection table", "10-question checklist"]}
+        "evidenceRigor": {
+          "score": 34,
+          "reason": "Combines historical corpus counts, a concrete pre-fix marker probe, failed intermediate regression, independent QA, and release validation.",
+          "evidence": [
+            "20,440-row historical profile",
+            "raw marker probe",
+            "B1 independent QA"
+          ]
+        },
+        "originalJudgment": {
+          "score": 25,
+          "reason": "The article distinguishes internal fact objects from consumer projection objects and makes unknown fields fail closed by contract.",
+          "evidence": [
+            "observability is not pass-through",
+            "recursive allowlist"
+          ]
+        },
+        "structureExpression": {
+          "score": 19,
+          "reason": "External consumer-scope comparison, historical data, live boundary probe, implementation, failure, QA, and release evidence form a strong progression.",
+          "evidence": [
+            "producer/storage/consumer boundary"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 20,
+          "reason": "The server-bound consumer identity and recursive projection rules are directly actionable for event APIs and analytics pipelines.",
+          "evidence": [
+            "Web Panel/API/Analytics projection table",
+            "10-question checklist"
+          ]
+        }
       }
     },
     {
@@ -45,14 +73,41 @@
       "publicLabel": "超凡",
       "publicLabel_en": "Transcendent",
       "editorialNote": {
-        "zh": "用同一个 response-loss 窗口对比 write_report 与 write_task，把“异常后能不能重试”收敛成 persistent submission identity、request digest、reserved→task_created→committed receipt 与恢复规则，并用独立 QA 证明 8 路并发仍只生成一个 task_id；不足是强保证只覆盖使用稳定 submission ID 的任务创建接口。",
+        "zh": "用 response-loss 对比把重试收敛为 submission ID、request digest 和三阶段 receipt，并以 8 路并发验证单一 task_id；不足是强保证仅覆盖稳定 submission ID 的任务创建。",
         "en": "The response-loss comparison turns retry safety into a persistent submission identity, request digest, three-stage creation receipt, and recovery contract, with independent QA showing eight concurrent calls converge on one task_id. The strong guarantee remains scoped to task creation when callers reuse a stable submission ID."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 35, "reason": "Uses a fixed historical reproduction, a counterexample path that already deduplicated, shipped implementation details, crash-state semantics, independent QA, and release gates.", "evidence": ["historical one-report/two-task comparison", "A2 response-loss QA", "A4 eight-way concurrency"]},
-        "originalJudgment": {"score": 25, "reason": "It reframes retry from 'execute again' to 'recover the authoritative result of the first business submission'.", "evidence": ["client_submission_id → request_digest → task_id/result"]},
-        "structureExpression": {"score": 19, "reason": "Failure model, reproduction, counterexample, contract, state machine, QA, release, and checklist are tightly integrated.", "evidence": ["reserved / task_created / committed"]},
-        "engineeringUsefulness": {"score": 20, "reason": "The three disposition states and recovery rules can be implemented directly in any side-effecting creation API.", "evidence": ["created / reused / conflict", "seven-question runtime checklist"]}
+        "evidenceRigor": {
+          "score": 35,
+          "reason": "Uses a fixed historical reproduction, a counterexample path that already deduplicated, shipped implementation details, crash-state semantics, independent QA, and release gates.",
+          "evidence": [
+            "historical one-report/two-task comparison",
+            "A2 response-loss QA",
+            "A4 eight-way concurrency"
+          ]
+        },
+        "originalJudgment": {
+          "score": 25,
+          "reason": "It reframes retry from 'execute again' to 'recover the authoritative result of the first business submission'.",
+          "evidence": [
+            "client_submission_id → request_digest → task_id/result"
+          ]
+        },
+        "structureExpression": {
+          "score": 19,
+          "reason": "Failure model, reproduction, counterexample, contract, state machine, QA, release, and checklist are tightly integrated.",
+          "evidence": [
+            "reserved / task_created / committed"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 20,
+          "reason": "The three disposition states and recovery rules can be implemented directly in any side-effecting creation API.",
+          "evidence": [
+            "created / reused / conflict",
+            "seven-question runtime checklist"
+          ]
+        }
       }
     },
     {
@@ -64,14 +119,40 @@
       "publicLabel": "卓越",
       "publicLabel_en": "Exceptional",
       "editorialNote": {
-        "zh": "把 command timeout 从“直系 PID 超时”提升为 invocation-owned process group 的生命周期结束，并让 timeout 与 cancellation 共享有界 teardown；不足是 POSIX process group 仍不能覆盖 setsid 逃逸、Windows Job Object、容器、远程任务和外部副作用。",
+        "zh": "把 timeout 从单 PID 扩展到 invocation-owned process group，并让取消共享有界 teardown；不足是 setsid 逃逸、Windows、容器、远程任务和外部副作用仍未覆盖。",
         "en": "It upgrades command timeout from a direct-PID event to bounded teardown of the invocation-owned process group, with timeout and cancellation sharing cleanup. POSIX groups still do not cover setsid escape, Windows Job Objects, containers, remote jobs, or external effects."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 32, "reason": "Grounded in a merged Google ADK process-group implementation and tests, with host-specific limitations stated explicitly.", "evidence": ["Google ADK commit fa321f1b", "timeout/cancellation descendant tests"]},
-        "originalJudgment": {"score": 24, "reason": "The lifecycle-ownership framing explains why a deadline must govern owned descendants and cleanup, not merely one PID.", "evidence": ["bounded execution follows lifecycle ownership"]},
-        "structureExpression": {"score": 18, "reason": "Ownership domain, cleanup deadline, cancellation, terminal evidence, and portability limits are presented concisely.", "evidence": ["expand ownership beyond direct process", "cleanup needs its own deadline"]},
-        "engineeringUsefulness": {"score": 19, "reason": "The receipt dimensions and cross-platform ownership abstraction provide concrete runtime design guidance.", "evidence": ["direct exit / group termination / forced escalation / output abandonment"]}
+        "evidenceRigor": {
+          "score": 32,
+          "reason": "Grounded in a merged Google ADK process-group implementation and tests, with host-specific limitations stated explicitly.",
+          "evidence": [
+            "Google ADK commit fa321f1b",
+            "timeout/cancellation descendant tests"
+          ]
+        },
+        "originalJudgment": {
+          "score": 24,
+          "reason": "The lifecycle-ownership framing explains why a deadline must govern owned descendants and cleanup, not merely one PID.",
+          "evidence": [
+            "bounded execution follows lifecycle ownership"
+          ]
+        },
+        "structureExpression": {
+          "score": 18,
+          "reason": "Ownership domain, cleanup deadline, cancellation, terminal evidence, and portability limits are presented concisely.",
+          "evidence": [
+            "expand ownership beyond direct process",
+            "cleanup needs its own deadline"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 19,
+          "reason": "The receipt dimensions and cross-platform ownership abstraction provide concrete runtime design guidance.",
+          "evidence": [
+            "direct exit / group termination / forced escalation / output abandonment"
+          ]
+        }
       }
     },
     {
@@ -83,14 +164,40 @@
       "publicLabel": "卓越",
       "publicLabel_en": "Exceptional",
       "editorialNote": {
-        "zh": "把 LangGraph DeltaChannel 的省空间收益与 replay-chain 依赖同时展开，明确 seed、ordered writes、reducer identity、write-before-checkpoint 四个恢复不变量，并指出 keep-latest 可能把耐久 checkpoint 变成不可恢复引用；不足是性能数据主要来自厂商 workload，跨 backend 恢复成本尚未独立验证。",
+        "zh": "把 DeltaChannel 的省空间收益与 seed、ordered writes、reducer identity、write-before-checkpoint 四个恢复不变量并列；不足是性能数据主要来自厂商 workload，跨 backend 恢复成本未独立验证。",
         "en": "It pairs DeltaChannel's storage savings with the replay-chain obligations they create, identifying seed, ordered writes, reducer identity, and write-before-checkpoint as recovery invariants. Performance figures remain vendor-reported, and cross-backend recovery cost is not independently validated."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 33, "reason": "Uses LangGraph/Deep Agents primary material, retains beta and vendor-benchmark limits, and derives concrete replay invariants from the storage model.", "evidence": ["DeltaChannel seed/write chain", "5.27 GB versus 129 MB source-reported result"]},
-        "originalJudgment": {"score": 24, "reason": "Separating checkpoint persistence from replay-chain integrity is a strong recovery-health distinction.", "evidence": ["durability and replay-chain integrity are separate properties"]},
-        "structureExpression": {"score": 18, "reason": "Delta representation, four invariants, seeding/pruning, benchmark scope, and health semantics are logically ordered.", "evidence": ["four replay invariants"]},
-        "engineeringUsefulness": {"score": 19, "reason": "The reconstructability receipt and pruning stop conditions can drive checkpoint compaction implementations.", "evidence": ["compaction receipt", "persisted vs replay-chain verified"]}
+        "evidenceRigor": {
+          "score": 33,
+          "reason": "Uses LangGraph/Deep Agents primary material, retains beta and vendor-benchmark limits, and derives concrete replay invariants from the storage model.",
+          "evidence": [
+            "DeltaChannel seed/write chain",
+            "5.27 GB versus 129 MB source-reported result"
+          ]
+        },
+        "originalJudgment": {
+          "score": 24,
+          "reason": "Separating checkpoint persistence from replay-chain integrity is a strong recovery-health distinction.",
+          "evidence": [
+            "durability and replay-chain integrity are separate properties"
+          ]
+        },
+        "structureExpression": {
+          "score": 18,
+          "reason": "Delta representation, four invariants, seeding/pruning, benchmark scope, and health semantics are logically ordered.",
+          "evidence": [
+            "four replay invariants"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 19,
+          "reason": "The reconstructability receipt and pruning stop conditions can drive checkpoint compaction implementations.",
+          "evidence": [
+            "compaction receipt",
+            "persisted vs replay-chain verified"
+          ]
+        }
       }
     },
     {
@@ -102,14 +209,41 @@
       "publicLabel": "超凡",
       "publicLabel_en": "Transcendent",
       "editorialNote": {
-        "zh": "用 536 个确认失败样本区分 rerun 的随机重采样证据与 controlled replay 的因果修复证据，并引入固定 failed prefix、divergence fail-closed、intervention anchor 与 external-state validity；不足是逻辑前缀一致并不能自动恢复真实外部世界，跨 provider 与调度差异仍需更多实验。",
+        "zh": "用 536 个失败样本区分 rerun 重采样与 controlled replay 的因果修复证据，并要求固定前缀和 intervention anchor；不足是逻辑重放仍不能恢复真实外部状态。",
         "en": "Using 536 confirmed failures, it distinguishes rerun resampling from causal repair evidence and requires a frozen failed prefix, fail-closed divergence, an intervention anchor, and external-state validity. Logical replay still cannot recreate real external effects or eliminate provider and scheduling differences."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 33, "reason": "Uses a primary multi-framework failure study with reproduction and repair rates, while explicitly limiting logical replay versus physical external state.", "evidence": ["536 confirmed failures", "rerun 6.90% pass@3 repair", "controlled replay rates"]},
-        "originalJudgment": {"score": 24, "reason": "The three-receipt model distinguishes rerun, replay, and causal repair claims instead of treating later success as proof of mechanism.", "evidence": ["rerun / replay / repair receipts"]},
-        "structureExpression": {"score": 19, "reason": "Changed variables, frozen prefix, intervention targeting, external world limits, and evidence types form a disciplined argument.", "evidence": ["explicit intervention anchor"]},
-        "engineeringUsefulness": {"score": 19, "reason": "The methodology gives a concrete way to validate targeted fixes in stochastic agent systems without overclaiming causality.", "evidence": ["fail-closed divergence", "external-state validity gate"]}
+        "evidenceRigor": {
+          "score": 33,
+          "reason": "Uses a primary multi-framework failure study with reproduction and repair rates, while explicitly limiting logical replay versus physical external state.",
+          "evidence": [
+            "536 confirmed failures",
+            "rerun 6.90% pass@3 repair",
+            "controlled replay rates"
+          ]
+        },
+        "originalJudgment": {
+          "score": 24,
+          "reason": "The three-receipt model distinguishes rerun, replay, and causal repair claims instead of treating later success as proof of mechanism.",
+          "evidence": [
+            "rerun / replay / repair receipts"
+          ]
+        },
+        "structureExpression": {
+          "score": 19,
+          "reason": "Changed variables, frozen prefix, intervention targeting, external world limits, and evidence types form a disciplined argument.",
+          "evidence": [
+            "explicit intervention anchor"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 19,
+          "reason": "The methodology gives a concrete way to validate targeted fixes in stochastic agent systems without overclaiming causality.",
+          "evidence": [
+            "fail-closed divergence",
+            "external-state validity gate"
+          ]
+        }
       }
     },
     {
@@ -125,10 +259,36 @@
         "en": "It translates CatchBench's information-budget idea into T0–T3 evidence cutoffs on a real approval probe and uses ownership, cutoff, integrity, and negative controls to distinguish existing from admissible evidence. The experiment measures decidability under bounded information, not predictive accuracy for future duplicate effects."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 34, "reason": "Combines a 1,187-configuration CatchBench PRE replay with time-separated first-party artifacts and four designed negative controls.", "evidence": ["1,187 PRE configurations", "T0–T3 timeline", "N1–N4 controls"]},
-        "originalJudgment": {"score": 25, "reason": "The proposition/ownership/cutoff/integrity admission model sharply separates retrospective explanation from contemporaneous knowledge.", "evidence": ["evidence exists ≠ evidence admissible"]},
-        "structureExpression": {"score": 19, "reason": "External benchmark, one-run timeline, admissibility controls, weak-reader counterexample, and runtime contract are exceptionally coherent.", "evidence": ["one run, four information budgets"]},
-        "engineeringUsefulness": {"score": 20, "reason": "The Audit Read Contract provides explicit fields for production audit queries and prevents future-information leakage.", "evidence": ["proposition / ownership / cutoff / integrity / unknown semantics"]}
+        "evidenceRigor": {
+          "score": 34,
+          "reason": "Combines a 1,187-configuration CatchBench PRE replay with time-separated first-party artifacts and four designed negative controls.",
+          "evidence": [
+            "1,187 PRE configurations",
+            "T0–T3 timeline",
+            "N1–N4 controls"
+          ]
+        },
+        "originalJudgment": {
+          "score": 25,
+          "reason": "The proposition/ownership/cutoff/integrity admission model sharply separates retrospective explanation from contemporaneous knowledge.",
+          "evidence": [
+            "evidence exists ≠ evidence admissible"
+          ]
+        },
+        "structureExpression": {
+          "score": 19,
+          "reason": "External benchmark, one-run timeline, admissibility controls, weak-reader counterexample, and runtime contract are exceptionally coherent.",
+          "evidence": [
+            "one run, four information budgets"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 20,
+          "reason": "The Audit Read Contract provides explicit fields for production audit queries and prevents future-information leakage.",
+          "evidence": [
+            "proposition / ownership / cutoff / integrity / unknown semantics"
+          ]
+        }
       }
     },
     {
@@ -140,14 +300,40 @@
       "publicLabel": "超凡",
       "publicLabel_en": "Transcendent",
       "editorialNote": {
-        "zh": "通过 P0–P3 精确切断 approval、start audit、effect、completion audit 的故障位置，并在新进程恢复中观察 non-idempotent executor 从一个 effect 变成两个，直接证明 failed、effect_absent、retry_allowed 必须分离；不足是副作用仍是隔离本地 marker，尚未覆盖真实远端服务与电源故障。",
+        "zh": "通过 P0–P3 精确切开 audit 故障位置，并在新进程恢复中观察 non-idempotent executor 从一个 effect 变成两个；不足是副作用仍是隔离本地 marker，未覆盖真实远端服务。",
         "en": "The P0–P3 fault locations isolate approval, start audit, effect completion, and completion-audit failure, then a fresh-process recovery shows a non-idempotent executor moving from one effect to two. Real remote effects and power-loss behavior remain outside the controlled local-marker study."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 34, "reason": "Uses the real approval service, a controlled EISDIR fault, separate processes, effect snapshots, and three executor controls to constrain the mechanism.", "evidence": ["P0–P3 probes", "new-process recovery", "dedupe/stale-request controls"]},
-        "originalJudgment": {"score": 25, "reason": "The failed ≠ effect absent ≠ retry allowed relation is a strong, directly observed recovery boundary.", "evidence": ["failed ≠ effect_absent ≠ retry_allowed"]},
-        "structureExpression": {"score": 19, "reason": "The article moves from fault taxonomy to causal chain, executor controls, external contrast, and recovery policy without blurring facts.", "evidence": ["four fault locations"]},
-        "engineeringUsefulness": {"score": 20, "reason": "It yields concrete reexecute/reconcile/verify outcomes based on request identity, effect evidence, and executor dedupe capability.", "evidence": ["three recovery outcomes"]}
+        "evidenceRigor": {
+          "score": 34,
+          "reason": "Uses the real approval service, a controlled EISDIR fault, separate processes, effect snapshots, and three executor controls to constrain the mechanism.",
+          "evidence": [
+            "P0–P3 probes",
+            "new-process recovery",
+            "dedupe/stale-request controls"
+          ]
+        },
+        "originalJudgment": {
+          "score": 25,
+          "reason": "The failed ≠ effect absent ≠ retry allowed relation is a strong, directly observed recovery boundary.",
+          "evidence": [
+            "failed ≠ effect_absent ≠ retry_allowed"
+          ]
+        },
+        "structureExpression": {
+          "score": 19,
+          "reason": "The article moves from fault taxonomy to causal chain, executor controls, external contrast, and recovery policy without blurring facts.",
+          "evidence": [
+            "four fault locations"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 20,
+          "reason": "It yields concrete reexecute/reconcile/verify outcomes based on request identity, effect evidence, and executor dedupe capability.",
+          "evidence": [
+            "three recovery outcomes"
+          ]
+        }
       }
     },
     {
@@ -159,14 +345,40 @@
       "publicLabel": "超凡",
       "publicLabel_en": "Transcendent",
       "editorialNote": {
-        "zh": "把 conversation continuity、operation-authority continuity、execution-principal continuity、evidence-attribution continuity 四种“继续”彻底拆开，并用 11 个 approval consumption 条件与 8 个 skill-binding 条件限定普通换 Session 的真实语义；不足是 provider account 的可信身份链仍未在 CodeFlowMu 做双账号实测。",
+        "zh": "把对话、操作授权、执行 principal 与证据归因四种 continuity 分开，并用 11+8 个条件限定换 Session 语义；不足是 provider account 的可信身份链尚未做双账号实测。",
         "en": "It separates conversation, operation-authority, execution-principal, and evidence-attribution continuity, then tests 11 approval-consumption and eight skill-binding conditions. The trusted provider-account identity chain remains unverified in a real two-account CodeFlowMu experiment."
       },
       "dimensions": {
-        "evidenceRigor": {"score": 33, "reason": "Combines external account-switch examples with 11 real approval-service cases, eight SessionStore binding cases, and a negative provider-identity probe.", "evidence": ["11 approval cases", "8 skill-binding cases", "P4 provider-account probe"]},
-        "originalJudgment": {"score": 24, "reason": "The four-continuity model prevents same conversation, same operation, same principal, and same evidence owner from being treated as one property.", "evidence": ["four forms of continuity"]},
-        "structureExpression": {"score": 19, "reason": "External references, approval experiment, attribution experiment, provider gap, and next experiment are cleanly separated.", "evidence": ["session change alone does not invalidate approval"]},
-        "engineeringUsefulness": {"score": 20, "reason": "The field-by-field acceptance matrix and next two-account test directly guide recovery authorization design.", "evidence": ["project/agent/task/thread/role/operation checks"]}
+        "evidenceRigor": {
+          "score": 33,
+          "reason": "Combines external account-switch examples with 11 real approval-service cases, eight SessionStore binding cases, and a negative provider-identity probe.",
+          "evidence": [
+            "11 approval cases",
+            "8 skill-binding cases",
+            "P4 provider-account probe"
+          ]
+        },
+        "originalJudgment": {
+          "score": 24,
+          "reason": "The four-continuity model prevents same conversation, same operation, same principal, and same evidence owner from being treated as one property.",
+          "evidence": [
+            "four forms of continuity"
+          ]
+        },
+        "structureExpression": {
+          "score": 19,
+          "reason": "External references, approval experiment, attribution experiment, provider gap, and next experiment are cleanly separated.",
+          "evidence": [
+            "session change alone does not invalidate approval"
+          ]
+        },
+        "engineeringUsefulness": {
+          "score": 20,
+          "reason": "The field-by-field acceptance matrix and next two-account test directly guide recovery authorization design.",
+          "evidence": [
+            "project/agent/task/thread/role/operation checks"
+          ]
+        }
       }
     }
   ]
