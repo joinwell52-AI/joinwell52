@@ -1,0 +1,85 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-06",
+  "itemId": "Q-20260906-03",
+  "coreProposition": "Stable principal identity enables trustworthy state attribution but does not grant destination or execution authority; safe resume separately proves identity, continuity, current destination compatibility, and current permission.",
+  "openingMove": {
+    "type": "correct-state-wrong-place",
+    "purpose": "Open with a restore that maps state to the correct logical agent but resumes it in an unauthorized destination.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "What problem does stable identity solve?",
+      "claim": "It attributes durable state to the intended logical principal despite transient sessions or duplicate names.",
+      "evidenceRefs": [
+        "E1"
+      ],
+      "reasoningRole": "evidence",
+      "readerProgress": "Separate attribution from permission.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What remains destination-sensitive?",
+      "claim": "Trust, configuration, queued or active state, projected instructions, permissions, and session facts must be re-read at the destination.",
+      "evidenceRefs": [
+        "E2"
+      ],
+      "reasoningRole": "comparison",
+      "readerProgress": "See why continuity cannot carry authority automatically.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "How should resume admission be represented?",
+      "claim": "Principal identity, state continuity, destination compatibility, and execution authority are four composable gates.",
+      "evidenceRefs": [
+        "E3",
+        "E4"
+      ],
+      "reasoningRole": "governance-design",
+      "readerProgress": "Gain a fail-closed resume model.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Can one function perform all checks?",
+      "claim": "Implementation may be unified, but denial evidence must distinguish wrong principal, invalid state, incompatible destination, and absent permission.",
+      "evidenceRefs": [
+        "E3",
+        "E4"
+      ],
+      "reasoningRole": "counterpoint",
+      "readerProgress": "Preserve semantics without prescribing code structure.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What does the evidence not prove?",
+      "claim": "The samples do not establish portable human identity, universal recovery coverage, or exactly-once side effects.",
+      "evidenceRefs": [
+        "E1",
+        "E2",
+        "E4"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "Avoid overstating implementation evidence.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "A tightly controlled application may combine identity, compatibility, and permission inside one restore function.",
+    "responseBoundary": "Combined code is acceptable if evidence and denial reasons remain distinguishable and current."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with topology change, freshness identity, and uncertain-effect questions."
+  }
+}

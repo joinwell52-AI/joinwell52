@@ -1,0 +1,52 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-06",
+  "itemId": "Q-20260906-03",
+  "researchObjectId": "Q-20260906-03",
+  "targetAudience": {
+    "primary": "Agent-runtime engineers, platform architects, and security reviewers",
+    "knowledgeAssumption": "The reader understands durable state, restore, workspace migration, and authorization.",
+    "readerProblem": "A runtime may mistake correct principal mapping for permission to resume inside a changed destination."
+  },
+  "whyNow": "Two merged OpenAI implementations expose complementary recovery boundaries: stable graph-derived principal identity and destination-specific managed-worktree re-admission.",
+  "externalHook": {
+    "type": "identity-destination-authority-separation",
+    "description": "Correctly identifying durable state does not prove that the current destination may host or execute it.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "coreProposition": "Stable principal identity enables trustworthy state attribution but does not grant destination or execution authority; safe resume separately proves identity, continuity, current destination compatibility, and current permission.",
+  "originalValue": {
+    "type": "four-gate-resume-model",
+    "description": "Separates principal identity, state continuity, destination compatibility, and current execution authority, with fail-closed handling for missing mappings."
+  },
+  "readerTakeaway": "Treat restore, fork, and migration as authority-sensitive re-admission events rather than mere state deserialization.",
+  "evidenceBoundary": {
+    "supported": [
+      "The examined Agents SDK path derives stable restoration identity from the agent graph and fails closed on unresolved identity-aware targets.",
+      "The examined Codex path re-evaluates destination trust, configuration, state, instructions, permissions, and session facts.",
+      "The comparison supports four separate recovery gates."
+    ],
+    "unsupported": [
+      "A universal portable identity standard",
+      "Human authentication or legal authorization",
+      "Exactly-once external effects",
+      "Coverage of every restoration path"
+    ],
+    "uncertain": [
+      "How principal identity survives topology change",
+      "Which destination facts require freshness binding",
+      "How to reconcile uncertain prior external effects"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article compares public external implementations and remains useful without a first-party project."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The paired implementation evidence supports a concrete recovery invariant while preserving first-party and path-specific limits."
+}
