@@ -8,13 +8,13 @@
   "date": "2026-09-06",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Running",
+    "production": "Completed",
     "publication": "Waiting"
   },
   "results": {
@@ -748,6 +748,157 @@
       "githubCommit": "dc444460e7d2b024b3b5f5dd1cee80f21527bb3f",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-06T13:17:51+08:00"
+    },
+    "production": {
+      "schema": "runtime-shift-result/v2",
+      "task": "production",
+      "family": "daily",
+      "runtimeDate": "2026-09-06",
+      "status": "Completed",
+      "productionMode": "candidate-batch",
+      "input": {
+        "promptVersion": "2.13.0",
+        "promptPath": "research/runtime/worker-prompts/generated/production.prompt.md",
+        "promptSha256": "d8b0cd52d22d976d6356558a23c5c2dc28ed5aa8f51793538fa8fbebfb80996f",
+        "promptVerificationMode": "exact-head-ci",
+        "promptVerificationEvidence": "https://github.com/joinwell52-AI/joinwell52/actions/runs/34018071327",
+        "controlSourceCommit": "8588199f400a4e5d0091991e03fe239f5421134c",
+        "workerClaimCommit": "5e34ab7610f2ccc5d499c4a590f6dfa5cda7bd17",
+        "wakeReceipt": "research/runtime/wakes/2026/09/2026-09-06/production-150212.json",
+        "researchObjects": [
+          "Q-20260906-01",
+          "Q-20260906-02",
+          "Q-20260906-03"
+        ],
+        "stagedCandidateCommit": "7562e467fbf99ec3743865cef5988347bdf4de4a"
+      },
+      "workResult": {
+        "summary": "Converted all three same-date Production-authorized Research Objects into complete bilingual candidates: a technical analysis separating failure risk from protocol value and budget authority; a resilience analysis preserving phase-indexed evidence and authoritative mutation; and an engineering insight separating stable principal identity from destination and execution authority. Each item's five text artifacts, deterministic baseline cover, and six SHA-256 values were persisted and remotely verified before atomic staging. Two bounded revision rounds repaired a declared-heading mismatch and a Chinese technical-term first-occurrence label. The final bundle passed checkpoint, atomic-bundle, layout, editorial, evidence, language, bilingual-consistency, and Runtime validation. Publication was not executed.",
+        "summary_zh": "将同日三份获得 Production 授权的 Research Object 转换为完整双语候选：一篇区分失败风险、协议价值与预算权限的技术分析，一篇保留分阶段韧性证据和权威状态变更的架构分析，以及一篇区分稳定主体身份、目的地兼容性与执行权限的工程分析。每篇文章的五项文本工件、确定性基础题图与六项 SHA-256 均在原子装配前完成持久化和远程核验。两轮有界修订修复了声明章节不一致与中文技术术语首现标签。最终候选包通过检查点、原子候选包、版式、编辑、证据、语言、双语一致性与 Runtime 校验。未执行 Publication。"
+      },
+      "output": {
+        "type": "Publication Candidates",
+        "candidateBatch": "research/runtime/candidates/2026/09/2026-09-06-candidates.json",
+        "candidateCount": 3,
+        "bilingualArticleFiles": 6,
+        "coverAssets": 3,
+        "inlineFigureAssets": 0
+      },
+      "next": {
+        "task": "publication",
+        "instruction": "Do not execute Publication in this Production run. Publication remains a separate governed task and must be reconciled independently under current main.",
+        "instruction_zh": "本次 Production 不得执行 Publication；Publication 仍是独立受治理任务，必须按当前 main 另行对账。"
+      },
+      "coverEvidence": [
+        {
+          "itemId": "Q-20260906-01",
+          "briefId": "2026-09-06:Q-20260906-01-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-09-06-risk-does-not-choose-protocol-cover.png",
+          "sanitizedPrompt": "An amber signal reaches three weighted paths across a deep blue field with cyan and coral geometry",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260906-02",
+          "briefId": "2026-09-06:Q-20260906-02-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-09-06-recovery-is-a-trajectory-cover.png",
+          "sanitizedPrompt": "A teal river curves through amber and coral strata toward a calm luminous horizon over midnight blue",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260906-03",
+          "briefId": "2026-09-06:Q-20260906-03-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-09-06-stable-identity-does-not-authorize-destination-cover.png",
+          "sanitizedPrompt": "A silver key approaches a teal doorway with a warm threshold between two indigo chambers",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        }
+      ],
+      "metrics": [
+        {
+          "name": "research_objects_consumed",
+          "value": 3
+        },
+        {
+          "name": "publication_candidates",
+          "value": 3
+        },
+        {
+          "name": "persisted_article_segments",
+          "value": 3
+        },
+        {
+          "name": "planning_artifacts",
+          "value": 9
+        },
+        {
+          "name": "bilingual_article_files",
+          "value": 6
+        },
+        {
+          "name": "cover_assets",
+          "value": 3
+        },
+        {
+          "name": "inline_figure_assets",
+          "value": 0
+        },
+        {
+          "name": "revision_rounds",
+          "value": 2
+        },
+        {
+          "name": "recovery_attempts",
+          "value": 0
+        },
+        {
+          "name": "required_sources_read",
+          "value": 13
+        },
+        {
+          "name": "direct_cloud_image_generation_calls",
+          "value": 0
+        },
+        {
+          "name": "direct_publication_actions",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        "8588199f400a4e5d0091991e03fe239f5421134c",
+        "5e34ab7610f2ccc5d499c4a590f6dfa5cda7bd17",
+        "02e2eed6b9804966da319efb0e1ebd8f5ef75765",
+        "0b73aa529336cba97fe5bd2c60008b2a14636273",
+        "5db0b359a2958352c88e60e1440360875222a7a7",
+        "7562e467fbf99ec3743865cef5988347bdf4de4a",
+        "research/runtime/worker-prompts/generated/production.prompt.md",
+        "research/runtime/checkpoints/2026/09/2026-09-06-production.json",
+        "research/runtime/wakes/2026/09/2026-09-06/production-150212.json",
+        "https://github.com/joinwell52-AI/joinwell52/actions/runs/34018071327",
+        "https://github.com/joinwell52-AI/joinwell52/actions/runs/34018694650"
+      ],
+      "artifacts": [
+        "research/runtime/candidates/2026/09/2026-09-06-candidates.json",
+        "research/runtime/checkpoints/2026/09/2026-09-06-production.json",
+        "staging/publication-candidates/2026-09-06-risk-does-not-choose-protocol.zh.md",
+        "staging/publication-candidates/2026-09-06-risk-does-not-choose-protocol.en.md",
+        "staging/publication-candidates/2026-09-06-risk-does-not-choose-protocol-cover.png",
+        "staging/publication-candidates/2026-09-06-recovery-is-a-trajectory.zh.md",
+        "staging/publication-candidates/2026-09-06-recovery-is-a-trajectory.en.md",
+        "staging/publication-candidates/2026-09-06-recovery-is-a-trajectory-cover.png",
+        "staging/publication-candidates/2026-09-06-stable-identity-does-not-authorize-destination.zh.md",
+        "staging/publication-candidates/2026-09-06-stable-identity-does-not-authorize-destination.en.md",
+        "staging/publication-candidates/2026-09-06-stable-identity-does-not-authorize-destination-cover.png"
+      ],
+      "startedAt": "2026-09-06T15:04:26+08:00",
+      "completedAt": "2026-09-06T15:18:27+08:00"
     }
   },
   "timeline": [
@@ -876,6 +1027,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Production after verifying research/runtime/wakes/2026/09/2026-09-06/production-150212.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-06T15:18:27+08:00",
+      "task": "production",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Production closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-06."
     }
   ],
   "metrics": [],
@@ -883,5 +1041,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-06T15:05:03+08:00"
+  "updatedAt": "2026-09-06T15:18:27+08:00"
 }
