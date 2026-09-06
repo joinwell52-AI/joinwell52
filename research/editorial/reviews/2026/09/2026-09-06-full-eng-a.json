@@ -1,0 +1,280 @@
+{
+  "schema": "observation-scorecard-review-shard/v1",
+  "reviewDate": "2026-09-06",
+  "rubricVersion": "1.0.0",
+  "mode": "monthly-full",
+  "scope": {
+    "canonicalPrefix": "/engineering/",
+    "articleDateThrough": "2026-08-18",
+    "identity": "english-canonical-path",
+    "eligibility": "same-frontmatter-filter-as-research-notes.data.ts",
+    "sourceMain": "a7ae402b7d1feef65f2766bfb0b9756dbe1de08b"
+  },
+  "coverage": {"eligible": 24, "directlyScored": 24, "inherited": 0, "rate": 1},
+  "items": [
+    {
+      "path": "/engineering/openhands", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 23, "reason": "Concrete OpenHands runtime capabilities are identified, but primary-source and version anchors are absent.", "evidence": ["Capabilities worth tracking"]},
+        "originalJudgment": {"score": 20, "reason": "Clearly distinguishes an agent workspace from a Position-centric governed runtime.", "evidence": ["Differentiation"]},
+        "structureExpression": {"score": 17, "reason": "Compact progression from runtime pattern to lessons, non-goals, and recommendations.", "evidence": ["Runtime pattern"]},
+        "engineeringUsefulness": {"score": 18, "reason": "Maps the comparison into diagnostics, lifecycle, trigger, and self-hosting decisions.", "evidence": ["Recommended response"]}
+      },
+      "score": 78, "internalLevel": "E2", "publicLabel": "合格", "publicLabel_en": "Qualified",
+      "editorialNote": {"zh": "把 OpenHands 的连接健康、激活生命周期与触发模式映射到运行时设计很清楚；但缺少逐项官方来源和版本锚点，关键事实较难独立复核。", "en": "The note maps OpenHands connection health, activation lifecycle, and trigger modes cleanly into runtime design. Its main limitation is the lack of article-level primary-source and version anchors for independent verification."}
+    },
+    {
+      "path": "/engineering/2026-08-02-agent-capability-packaging", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 30, "reason": "Official documentation from four frameworks supports the comparison, with explicit scope limits.", "evidence": ["Source"]},
+        "originalJudgment": {"score": 23, "reason": "Synthesizes framework mechanisms into a governed capability package and minimum Skill Contract.", "evidence": ["Proposed minimum Skill Contract"]},
+        "structureExpression": {"score": 19, "reason": "Highlights, matrix, schema sketch, and impacts keep the broad comparison navigable.", "evidence": ["Capability representation matrix"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Provides reusable activation states and contract fields for runtime capability packaging.", "evidence": ["CodeFlowMu"]}
+      },
+      "score": 91, "internalLevel": "E4", "publicLabel": "卓越", "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "跨 OpenHands、CrewAI、AutoGen 与 LangGraph 提炼出可执行的 Skill Contract，落地性很强；不足是比较主要依赖文档，缺少同任务实测来验证跨框架可移植性。", "en": "The cross-framework synthesis produces a concrete Skill Contract and observable activation lifecycle. The comparison is still documentation-led, with no same-task experiment testing portability across the four frameworks."}
+    },
+    {
+      "path": "/engineering/2026-08-02-durable-agent-runtime", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 30, "reason": "Four frameworks' official runtime documentation supports the comparison and its stated limitations.", "evidence": ["Source"]},
+        "originalJudgment": {"score": 23, "reason": "Defines a durable runtime contract beyond tool calling alone.", "evidence": ["Minimum durable runtime contract"]},
+        "structureExpression": {"score": 19, "reason": "The capability matrix and minimum contract create a clear argument path.", "evidence": ["Runtime capability matrix"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Turns persistence, approval, isolation, events, and completion into actionable runtime requirements.", "evidence": ["Engineering Impact"]}
+      },
+      "score": 91, "internalLevel": "E4", "publicLabel": "卓越", "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "把持久状态、中断、恢复、隔离、可观测性和完成控制收束成最小 Runtime 合同，框架比较也有边界；但仍缺少故障注入下的统一恢复实验来验证机制差异。", "en": "The article turns persistence, interruption, recovery, isolation, observability, and completion into a coherent minimum runtime contract. It still lacks a shared fault-injection experiment that tests how the compared mechanisms actually recover."}
+    },
+    {
+      "path": "/engineering/2026-08-02-manager-handoff-ownership-models", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 31, "reason": "Multiple official Agents SDK documents support handoff, guardrail, tracing, and manager semantics.", "evidence": ["Selected primary material"]},
+        "originalJudgment": {"score": 23, "reason": "Reframes manager calls and handoffs as different ownership and authority operations.", "evidence": ["Ownership comparison"]},
+        "structureExpression": {"score": 19, "reason": "Examples, comparison table, and typed schema make subtle ownership semantics easy to follow.", "evidence": ["Delegation needs an explicit operation type"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Proposes implementable delegation events, context packages, and completion-owner fields.", "evidence": ["Context transfer is a governed package"]}
+      },
+      "score": 92, "internalLevel": "E4", "publicLabel": "卓越", "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "把 manager 调用与 handoff 的控制权、上下文和完成责任拆开，并给出 typed delegation 结构，工程含义明确；但结论集中于单一 SDK，跨运行时语义对照仍不足。", "en": "The article cleanly separates manager calls from handoffs by control, context, and completion ownership and proposes a typed delegation record. Its evidence is concentrated in one SDK, leaving cross-runtime semantics under-compared."}
+    },
+    {
+      "path": "/engineering/2026-08-02-swe-bench-verified-quality", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 34, "reason": "Paper, official harness, Verified report, counts, and limitations provide strong traceable evidence.", "evidence": ["Primary research objects"]},
+        "originalJudgment": {"score": 24, "reason": "Extends benchmark curation into an engineering-quality and acceptance-contract thesis.", "evidence": ["The acceptance contract has four layers"]},
+        "structureExpression": {"score": 19, "reason": "Research question, observations, controls, limits, and impacts form a strong progression.", "evidence": ["Discussion"]},
+        "engineeringUsefulness": {"score": 20, "reason": "Specifies admission gates, gold and negative controls, leakage checks, and multi-role evaluation.", "evidence": ["CodeFlowMu"]}
+      },
+      "score": 97, "internalLevel": "E5", "publicLabel": "超凡", "publicLabel_en": "Transcendent",
+      "editorialNote": {"zh": "把 SWE-bench Verified 的任务、环境、测试与人工裁决质量转化为完整评测准入机制，证据和限制都扎实；不足是尚未用所提内部套件给出真实 CodeFlowMu 对照结果。", "en": "The article converts SWE-bench Verified's task, environment, test, and adjudication lessons into a rigorous benchmark-admission design. The missing piece is an actual CodeFlowMu run using the proposed internal suite."}
+    },
+    {
+      "path": "/engineering/2026-08-05-guardrail-persistence-state-machine", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 28, "reason": "Named Research Object and Reading Result are traceable, with explicit atomicity and recovery limits.", "evidence": ["Evidence and citations"]},
+        "originalJudgment": {"score": 22, "reason": "Separates accepted truth from retained forensic evidence through typed finalization states.", "evidence": ["Minimum deployable architecture"]},
+        "structureExpression": {"score": 17, "reason": "The concise state-machine argument is clear, though some interactions remain compressed.", "evidence": ["Core judgment"]},
+        "engineeringUsefulness": {"score": 18, "reason": "Provides implementable states, storage separation, idempotency requirements, and crash-test direction.", "evidence": ["Engineering conclusion"]}
+      },
+      "score": 85, "internalLevel": "E3", "publicLabel": "优质", "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "把 Accepted、BlockedWithRetainedEvidence 等状态分开，准确抓住对话投影与取证证据不能共用一个保存语义；但篇幅较短，真实持久化适配器上的崩溃实验仍未展开。", "en": "The typed separation of accepted output from retained forensic evidence captures the persistence boundary well. The note is intentionally compact, and crash testing against a real persistence adapter remains undeveloped."}
+    },
+    {
+      "path": "/engineering/2026-08-06-codeflowmu-multi-agent-fact-checking", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 34, "reason": "Timestamps, task/report IDs, commit, tests, unknown states, and reproducible checks support the field case.", "evidence": ["What PM checked"]},
+        "originalJudgment": {"score": 25, "reason": "Develops a distinctive organizational-veto thesis around completion claims and authority.", "evidence": ["FCoP is a protocol that lets an agent say no"]},
+        "structureExpression": {"score": 18, "reason": "The five-act case is clear but long and repeats the central boundary in later sections.", "evidence": ["Five role actions"]},
+        "engineeringUsefulness": {"score": 20, "reason": "Yields concrete diagnostics, role-separated reruns, same-task recovery, and regression cases.", "evidence": ["What should this case change?"]}
+      },
+      "score": 97, "internalLevel": "E5", "publicLabel": "超凡", "publicLabel_en": "Transcendent",
+      "editorialNote": {"zh": "用真实 WP-13 事件、提交、REPORT 与 27/27 独立复跑证明“完成声明不等于完成事实”，组织否决机制非常鲜明；不足是篇幅较长，核心边界在后半篇有重复强化。", "en": "The WP-13 timeline, commit, REPORT, and independent 27/27 rerun make the completion-claim boundary unusually concrete and support a strong organizational-veto thesis. The article is long and reiterates that boundary several times."}
+    },
+    {
+      "path": "/engineering/2026-08-06-semantic-migration-recovery", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 29, "reason": "One authorized Research Object is used consistently and fleet-scale guarantees are explicitly excluded.", "evidence": ["Boundaries and counter-evidence"]},
+        "originalJudgment": {"score": 23, "reason": "Separates semantic canonicalization, single-file atomicity, and cross-store recoverability.", "evidence": ["Comparison"]},
+        "structureExpression": {"score": 18, "reason": "The phase model and comparison table make migration guarantees easy to distinguish.", "evidence": ["Discussion"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Proposes journaled phases, idempotency keys, manifests, and recovery metadata.", "evidence": ["Engineering impact"]}
+      },
+      "score": 89, "internalLevel": "E3", "publicLabel": "优质", "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "把逻辑会话语义、单文件原子发布与跨 JSONL/SQLite 可恢复性分层，避免把 rename 夸成全局事务；不足是核心证据来自单一维护者变更，缺少独立故障恢复测量。", "en": "The article cleanly separates semantic reconstruction, single-file atomic publication, and cross-store recoverability instead of overstating rename as a transaction. Its core evidence remains one maintainer change without independent recovery measurements."}
+    },
+    {
+      "path": "/engineering/2026-08-07-stable-identity-provisioning-gate", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 29, "reason": "Local manager semantics are carefully separated from restart, multi-process, and exactly-once guarantees.", "evidence": ["Boundaries and counter-evidence"]},
+        "originalJudgment": {"score": 23, "reason": "Makes stable resource identity the invariant while separating lifecycle, payload, and connection use.", "evidence": ["Central judgment"]},
+        "structureExpression": {"score": 18, "reason": "Five mechanisms and a comparison table create a coherent implementation-to-architecture path.", "evidence": ["Comparison"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Proposes durable IDs, report/materialize convergence, timeout ownership, and effect receipts.", "evidence": ["Engineering impact"]}
+      },
+      "score": 89, "internalLevel": "E3", "publicLabel": "优质", "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "把资源身份、生命周期、Ready 载荷和连接使用分成四层，并明确本地幂等不等于分布式 exactly-once；不足是没有重启和多进程竞争实测，生产恢复仍停留在设计延伸。", "en": "The note usefully separates resource identity, lifecycle class, readiness payload, and connection use while bounding local idempotence. Restart and multi-process contention are not tested, so the production recovery layer remains a design extension."}
+    },
+    {
+      "path": "/engineering/2026-08-08-correlated-multistream-host-contract", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 29, "reason": "Protocol evidence is bounded away from unmeasured load, reconnect, authentication, and feature-negotiation claims.", "evidence": ["Boundaries and counter-evidence"]},
+        "originalJudgment": {"score": 23, "reason": "Recasts stream separation as a correlation and finality problem rather than arrival-order logic.", "evidence": ["Central judgment"]},
+        "structureExpression": {"score": 18, "reason": "The signal/evidence table and correlation model keep finality semantics readable.", "evidence": ["Comparison"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Execution IDs, invocation IDs, watermarks, and cancellation acknowledgements are directly implementable.", "evidence": ["Engineering impact"]}
+      },
+      "score": 89, "internalLevel": "E3", "publicLabel": "优质", "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "把多流乱序视为常态，并用 execution ID、invocation ID、序列证据和 drain watermark 重建 finality，协议边界清楚；不足是缺少真实负载与断线重连实验来验证这些约束。", "en": "Treating cross-stream reordering as normal and rebuilding finality from IDs, sequence evidence, acknowledgements, and a drain watermark is a strong protocol insight. Real-load and reconnect experiments are still missing."}
+    },
+    {
+      "path": "/engineering/2026-08-09-executed-conformance-migration-safety", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 30, "reason": "A concrete migration defect, tests, backend scope, and evidence limits are all traceable.", "evidence": ["Observation"]},
+        "originalJudgment": {"score": 23, "reason": "Shows that replay complexity can be correctness and that test presence differs from execution.", "evidence": ["Discussion"]},
+        "structureExpression": {"score": 18, "reason": "The safety-layer table separates output, compatibility, complexity, and backend coverage cleanly.", "evidence": ["Safety-layer comparison"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Recommends historical fixtures, non-skippable gates, and replay/query bound assertions.", "evidence": ["Engineering impact"]}
+      },
+      "score": 90, "internalLevel": "E4", "publicLabel": "卓越", "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "指出“输出值正确”仍可能掩盖全量 replay 的机制退化，并把历史格式兼容与实际执行 conformance 分开，判断很有价值；不足是性能与延迟数据仍为维护者测试，缺少独立后端基准。", "en": "The article shows why correct output can hide a full-replay regression and distinguishes historical-format compatibility from conformance that actually executes. Performance and latency evidence remains maintainer-reported rather than independently benchmarked."}
+    },
+    {
+      "path": "/engineering/2026-08-10-serialized-tool-lifecycle-authority", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "Issue, PR, exact commit, timeouts, cancellation behavior, and manager-local limits are explicit.", "evidence": ["Source"]},
+        "originalJudgment": {"score": 23, "reason": "Generalizes a race into resource-centric serialized lifecycle authority with bounded teardown.", "evidence": ["Discussion"]},
+        "structureExpression": {"score": 18, "reason": "Mechanism, comparison, lock limits, cancellation, and failure handling progress clearly.", "evidence": ["Comparison"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Provides lifecycle authority, finite deadlines, retained errors, fencing, and telemetry guidance.", "evidence": ["Engineering impact"]}
+      },
+      "score": 92, "internalLevel": "E4", "publicLabel": "卓越", "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "从 MCPServerManager 竞态提炼出单一生命周期权威、有限等待和 cleanup 失败保留，且清楚限定为进程内语义；不足是跨进程 fencing 与不同资源风险级别仍未用实证验证。", "en": "The MCPServerManager race is translated into a clear model of serialized lifecycle authority, bounded waits, and retained cleanup failure with precise in-process limits. Cross-process fencing and risk-tier behavior remain untested."}
+    },
+    {
+      "path": "/engineering/2026-08-11-durable-event-identity-terminal-evidence", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 31, "reason": "The exact ADK commit and its duplicate/drop boundaries support a carefully limited guarantee.", "evidence": ["Source"]},
+        "originalJudgment": {"score": 23, "reason": "Separates occurrence identity, physical duplication, business exactly-once, and terminal evidence.", "evidence": ["Discussion"]},
+        "structureExpression": {"score": 18, "reason": "The comparison table makes identity-versus-guarantee scope easy to inspect.", "evidence": ["Comparison"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Stable IDs, retry reuse, terminal events, and ambiguity counters map directly to Runtime design.", "evidence": ["Engineering Impact"]}
+      },
+      "score": 91, "internalLevel": "E4", "publicLabel": "卓越", "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "把 logical occurrence、物理重复和业务 exactly-once 严格分开，再用 typed terminal event 闭合执行，语义很稳；不足是 offset 与冲突状态仍是进程内证据，重启后的身份恢复尚未证明。", "en": "The note sharply separates logical occurrence identity, physical duplicates, and business exactly-once, then closes execution with typed terminal evidence. Offset/conflict state is still process-local, so restart recovery is unproven."}
+    },
+    {
+      "path": "/engineering/2026-08-12-scoped-callback-concurrency", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 30, "reason": "The Codex change supports ownership, cancellation, capacity, and isolation while distributed claims are excluded.", "evidence": ["Evidence and sources"]},
+        "originalJudgment": {"score": 23, "reason": "Reframes callback concurrency around ownership, lifetime, capacity, and isolation instead of locks.", "evidence": ["A safe unit needs four boundaries"]},
+        "structureExpression": {"score": 18, "reason": "The four-boundary table and counterexample tests form a memorable review method.", "evidence": ["Portable review criteria"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Provides concrete partitioning, cancellation, late-result, capacity, and restart-fault tests.", "evidence": ["Portable review criteria"]}
+      },
+      "score": 90, "internalLevel": "E4", "publicLabel": "卓越", "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "用 ownership、lifetime、capacity、isolation 四个边界替代“先选锁”的思路，并给出五个反例测试，评审方法可直接复用；不足是分布式重启与外部副作用仅提出协议升级方向。", "en": "The four-boundary model—ownership, lifetime, capacity, and isolation—turns concurrency review into concrete counterexample tests instead of a lock choice. Distributed restart and external-effect handling remain proposed extensions."}
+    },
+    {
+      "path": "/engineering/2026-08-13-bounded-extension-point", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 31, "reason": "Exact Codex commit and PR support concrete scope, ownership, limits, cleanup, cache, redirect, and redaction facts.", "evidence": ["source-backed basis"]},
+        "originalJudgment": {"score": 24, "reason": "Synthesizes one helper feature into five independent governance boundaries.", "evidence": ["Five boundaries form one extension contract"]},
+        "structureExpression": {"score": 18, "reason": "Each trust boundary has a focused section culminating in one compact contract.", "evidence": ["One feature crosses several trust domains"]},
+        "engineeringUsefulness": {"score": 19, "reason": "The five-boundary contract directly guides review of dynamic integrations.", "evidence": ["Open engineering questions"]}
+      },
+      "score": 92, "internalLevel": "E4", "publicLabel": "卓越", "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "从一个动态 MCP Header helper 提炼出 scope、ownership、lifetime、resource、observability 五重边界，安全评审框架很完整；不足是耐久审计和凭据刷新仍是开放问题，未有部署级验证。", "en": "A small dynamic MCP-header feature is generalized into a complete five-boundary review model covering scope, ownership, lifetime, resources, and observability. Durable audit and credential refresh remain open and unvalidated in deployment."}
+    },
+    {
+      "path": "/engineering/2026-08-14-cancellation-rollback-effect-boundary", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 28, "reason": "Gemini CLI evidence is bounded to local request state; restart and effect guarantees are explicitly excluded.", "evidence": ["Limits of the evidence"]},
+        "originalJudgment": {"score": 23, "reason": "Separates request rollback, effect reconciliation, and retry admission.", "evidence": ["Cancellation recovery has at least three layers"]},
+        "structureExpression": {"score": 18, "reason": "The argument progresses cleanly from local rollback to effects, audit, and retry policy.", "evidence": ["Audit evidence should survive the clean-up"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Provides risk-sensitive retry choices for idempotent, compensatable, and uncertain effects.", "evidence": ["retry is an admission decision"]}
+      },
+      "score": 88, "internalLevel": "E3", "publicLabel": "优质", "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "把本地请求回滚、外部 effect reconciliation 和 retry admission 拆成三层，避免“界面恢复干净就能安全重试”的误判；不足是核心实现证据只覆盖内存态取消，缺少重启与真实副作用故障实验。", "en": "The article separates local request rollback, external-effect reconciliation, and retry admission, preventing a clean UI from being mistaken for a safe retry. The implementation evidence is memory-local and lacks restart or real side-effect fault tests."}
+    },
+    {
+      "path": "/engineering/2026-08-15-agent-handoff-ownership", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 28, "reason": "ADK evidence is limited to local asyncio work and does not overclaim external-effect closure.", "evidence": ["Limits of the evidence"]},
+        "originalJudgment": {"score": 23, "reason": "Reframes handoff as transfer of several ownership claims rather than agent-name switching.", "evidence": ["A safer handoff sequence"]},
+        "structureExpression": {"score": 18, "reason": "Cancellation, routing, residual work, and effect reconciliation are separated clearly.", "evidence": ["Cancellation requested is not the same as task stopped"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Offers implementable milestones and risk tiers for stronger termination evidence.", "evidence": ["Engineering implications"]}
+      },
+      "score": 88, "internalLevel": "E3", "publicLabel": "优质", "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "把 handoff 拆成取消请求、路由退休、终止观测和外部效果核对四类事实，并引入风险敏感策略；不足是证据局限于本地 asyncio，远端 worker 与 provider-side 撤销尚未覆盖。", "en": "The handoff model usefully separates cancellation request, routing retirement, termination observation, and external-effect reconciliation with risk-sensitive policy. Evidence remains local to asyncio and does not cover remote workers or provider-side revocation."}
+    },
+    {
+      "path": "/engineering/2026-08-16-config-precedence-provenance", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 28, "reason": "A merged Codex SDK change supports precedence behavior, with cross-SDK and policy limits stated.", "evidence": ["Limits of the evidence"]},
+        "originalJudgment": {"score": 22, "reason": "Adds provenance as the missing governance dimension beyond deterministic precedence.", "evidence": ["Provenance is the missing half of configuration governance"]},
+        "structureExpression": {"score": 18, "reason": "Precedence, provenance, privilege, duplicates, and limits remain clearly separated.", "evidence": ["Deterministic order solves conflict, not meaning"]},
+        "engineeringUsefulness": {"score": 18, "reason": "Suggests effective-config provenance and ownership by key family, though no concrete schema is given.", "evidence": ["Open questions"]}
+      },
+      "score": 86, "internalLevel": "E3", "publicLabel": "优质", "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "从 raw config override 的顺序语义进一步提出 effective-value provenance，清楚区分表达能力与配置权限；不足是 provenance 仍是工程解释，缺少具体数据结构、跨 SDK 对照和安全策略实验。", "en": "The article moves beyond raw-override ordering to effective-value provenance and clearly separates expressiveness from configuration privilege. Provenance remains a design interpretation without a concrete schema, cross-SDK comparison, or policy experiment."}
+    },
+    {
+      "path": "/engineering/2026-08-17-compact-transcript-evidence", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 28, "reason": "The Codex TUI mechanism supports grouping and replay facts while formal audit guarantees are excluded.", "evidence": ["A transcript is not automatically an audit log"]},
+        "originalJudgment": {"score": 22, "reason": "Separates presentation compaction, evidence retention, and formal audit promises.", "evidence": ["Readability and evidence retention are independent axes"]},
+        "structureExpression": {"score": 18, "reason": "Focused boundary sections make the presentation-versus-evidence argument economical.", "evidence": ["Replay needs versioned presentation rules"]},
+        "engineeringUsefulness": {"score": 18, "reason": "Gives compaction boundaries, transformation-version guidance, and risk-tier retention criteria.", "evidence": ["Some boundaries should resist a success summary"]}
+      },
+      "score": 86, "internalLevel": "E3", "publicLabel": "优质", "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "把 UI 压缩、可回放证据和正式审计明确分成三层，并指出失败、交互和活跃任务不能被成功摘要吞掉；不足是长期兼容、耐久性和 tamper-evidence 只提出要求，尚无实现验证。", "en": "The article clearly separates UI compaction, replayable evidence, and formal audit and protects failure and interaction boundaries from summary collapse. Long-term compatibility, durability, and tamper evidence are requirements rather than demonstrated mechanisms."}
+    },
+    {
+      "path": "/engineering/2026-08-17-executable-agent-evaluation-package", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 34, "reason": "Multiple independent studies, repositories, quantitative results, and methodology caveats support the evaluation argument.", "evidence": ["References and evidence boundaries"]},
+        "originalJudgment": {"score": 24, "reason": "Derives two execution chains and an eight-artifact review package.", "evidence": ["The score is produced by two execution chains"]},
+        "structureExpression": {"score": 19, "reason": "Dense empirical evidence is organized into failure modes, package design, CI admission, and limits.", "evidence": ["In CI, test the evaluator before trusting its verdict"]},
+        "engineeringUsefulness": {"score": 20, "reason": "Specifies a directory package, manifest semantics, CI sequence, risk tiers, and claim links.", "evidence": ["Eight artifacts create a reviewable surface"]}
+      },
+      "score": 97, "internalLevel": "E5", "publicLabel": "超凡", "publicLabel_en": "Transcendent",
+      "editorialNote": {"zh": "用 AgentLens、UnderSpecBench、EvalAgent 等多源证据把 Agent run 与 evaluator run 变成双执行链，并落成八类制品和 CI 顺序；不足是这套八制品合同仍属综合提案，尚无跨领域实测成本收益。", "en": "The article uses multiple independent studies to derive dual agent/evaluator execution chains, an eight-artifact package, and a concrete CI admission order. The package contract is still a synthesis without measured cross-domain cost-benefit evidence."}
+    },
+    {
+      "path": "/engineering/2026-08-17-reviewable-agent-plan", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 34, "reason": "Official guidance, forum practice, controlled benchmark data, and an observational study are combined with careful caveats.", "evidence": ["The evidence supports planning—but not any plan is better"]},
+        "originalJudgment": {"score": 24, "reason": "Identifies authority inversion and proposes a six-part Plan Contract that keeps requirements canonical.", "evidence": ["A plan should be a six-part review contract"]},
+        "structureExpression": {"score": 19, "reason": "Evidence, mechanism, contract, human review, risk scaling, and limits form a strong arc.", "evidence": ["Human approval is not a sufficient gate"]},
+        "engineeringUsefulness": {"score": 20, "reason": "Requirements map, code map, risks, verification, non-goals, and execution delta are directly reusable.", "evidence": ["A plan should be a six-part review contract"]}
+      },
+      "score": 97, "internalLevel": "E5", "publicLabel": "超凡", "publicLabel_en": "Transcendent",
+      "editorialNote": {"zh": "用 E2EDevBench 的反例说明“有计划”也会发生 authority inversion，再给出六段式 Plan Contract 和风险分级门禁；不足是该合同本身尚未通过对照实验量化减少遗漏与返工的效果。", "en": "The E2EDevBench counterexample supports the authority-inversion risk, and the six-part Plan Contract turns it into a practical review gate. The contract itself has not yet been tested experimentally for reductions in omission or rework."}
+    },
+    {
+      "path": "/engineering/2026-08-18-fcop-file-state-machine", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 35, "reason": "Pinned FCoP specification, release, POSIX semantics, code behavior, and 22 targeted tests provide exceptional traceability.", "evidence": ["Test invariants, not just successful moves"]},
+        "originalJudgment": {"score": 24, "reason": "Organizes FCoP into identity, path state, event evidence, and atomic-publication contracts.", "evidence": ["Contract 1: artifact identity"]},
+        "structureExpression": {"score": 19, "reason": "Transition table, pseudocode, diagrams, test inventory, and limits make implementation highly inspectable.", "evidence": ["Contract 4: atomic publication"]},
+        "engineeringUsefulness": {"score": 20, "reason": "Provides legal transitions, commit algorithm, validators, covered tests, and missing fault cases.", "evidence": ["Test invariants, not just successful moves"]}
+      },
+      "score": 98, "internalLevel": "E5", "publicLabel": "超凡", "publicLabel_en": "Transcendent",
+      "editorialNote": {"zh": "以固定 FCoP 版本、POSIX 语义和 22 个定向测试把身份、路径、事件、原子发布四项合同落到可执行细节，边界极严谨；不足是并发 claim、EXDEV 和崩溃窗口仍列为待补故障测试。", "en": "Pinned FCoP sources, POSIX semantics, and 22 targeted tests make identity, path state, events, and atomic publication unusually concrete and bounded. Concurrent claims, EXDEV, and crash windows remain recommended rather than executed fault tests."}
+    },
+    {
+      "path": "/engineering/2026-08-18-files-first-multi-agent-governance", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "Unix, blackboard, pinned FCoP sources, and dogfood evidence support the argument with repeated guarantee limits.", "evidence": ["What the Unix lesson actually says"]},
+        "originalJudgment": {"score": 24, "reason": "Frames files as an inspectable work ledger rather than a cheap queue substitute.", "evidence": ["Files as a practical blackboard"]},
+        "structureExpression": {"score": 19, "reason": "Conceptual roots progress into concrete artifacts, lifecycle buckets, adoption conditions, and structure.", "evidence": ["A minimum structure you can build today"]},
+        "engineeringUsefulness": {"score": 20, "reason": "Offers directory layout, diagnostic questions, upgrade signals, and artifact/execution-plane separation.", "evidence": ["When starting with files is sensible"]}
+      },
+      "score": 95, "internalLevel": "E5", "publicLabel": "超凡", "publicLabel_en": "Transcendent",
+      "editorialNote": {"zh": "把 Unix 与 blackboard 思想落到 TASK/REPORT/ISSUE/REVIEW、五桶路径和事件账本，并明确何时应升级执行面，实用性很高；不足是 dogfood 证据规模有限，尚不能说明高并发或多机环境收益。", "en": "The Unix and blackboard ideas are translated into concrete TASK/REPORT/ISSUE/REVIEW artifacts, lifecycle paths, and upgrade triggers. Dogfood evidence remains small, so benefits under high contention or multi-host operation are not demonstrated."}
+    },
+    {
+      "path": "/engineering/2026-08-18-trace-effect-evidence", "scoringMode": "monthly-full-direct", "sourceLanguage": "en",
+      "dimensions": {
+        "evidenceRigor": {"score": 31, "reason": "An exact Codex commit supports request-trace mechanics, while authorization, durability, and exactly-once are excluded.", "evidence": ["Primary evidence"]},
+        "originalJudgment": {"score": 23, "reason": "Separates lifecycle telemetry from effect-owning-system evidence and preserves unknown-plus-reconciliation.", "evidence": ["External effects need their own authoritative identity"]},
+        "structureExpression": {"score": 18, "reason": "The two-evidence-plane model stays concise and consistent through recovery semantics.", "evidence": ["Terminal telemetry says what happened to the instrumented path"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Provides stable effect identity, linked evidence planes, reconciliation states, and concrete design questions.", "evidence": ["Better telemetry does not create stronger guarantees by itself"]}
+      },
+      "score": 91, "internalLevel": "E4", "publicLabel": "卓越", "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "把 queue receipt 到 disconnected 的请求 trace 与外部 effect receipt 严格分面，并提出 unknown + reconciliation 的恢复语义；不足是 effect identity 与持久审计保留仍只是设计问题，没有端到端实现证据。", "en": "The article rigorously separates request traces through disconnected outcomes from authoritative external-effect receipts and defines unknown-plus-reconciliation semantics. Effect identity and durable audit retention remain design questions without end-to-end implementation evidence."}
+    }
+  ]
+}
