@@ -1,0 +1,66 @@
+---
+title: "证据包：读取效果与接受顺序"
+outline: deep
+---
+
+<ArticleTableScroll language="zh" />
+
+# 随稿证据：读取效果与接受顺序
+
+状态：用户已于 2026-09-06 授权随中英文文章公开发布。这是研究证据包，不是产品安全验收或独立 QA。
+
+## 主张对应
+
+| 主张 | 记录集合 | 支持范围 |
+|---|---|---|
+| GET 可以触发夹具业务写入；重定向改变实际请求链 | observations.json / http / H0–H3 | 故意构造的本机服务，不是真实第三方事故 |
+| 两个独立进程可通过共享服务交换虚构标记 | H4、H5 | 通道存在；不是自主合谋或租户权限隔离 |
+| shell GET 被真实 Native gate 放行，POST 要求审批 | G1、G2、G6 | 固定函数入口后接真实本机 curl，不是完整 Host 会话 |
+| 角色能力门仍拒绝未登记工具或缺失能力 | G3–G5 | 不能只引用内层 policy 的 ALLOW |
+| 重放顺序能改变透明 reducer 的结果 | observations.json / order / O0–O6 | 两轮受控调度、新进程读盘；不是自然竞态概率 |
+| 正式命令与角色已有相关保护 | baseline-1.log、baseline-2.log | 每轮31项 unit/contract 测试，不是发行验收 |
+
+## 顺序实验的阅读前提
+
+- O0–O6 使用同一实验范围、同等权威的输入；不是实际业务授权服务，不模拟跨用户权限层级。
+- 第二篇中文表格的“允许 / 禁止 / 未知”分别对应原始输出 `allow / deny / unknown`；“撤销”是输入操作 `revoke`。翻译没有改变观测值。
+- O4 的两种读法都先排除未接受输入；O5/O6 的“未知”来自本实验的无效序号规则，不是 Codex 旧记录兼容行为。
+- 截止点按接受序号定义，不能外推为真实系统全部时间戳、可见性和权限边界已验证。
+- 2026-09-06 的中英文文字修订没有新增实验或修改原始观测；14 条顺序观测和每轮 31 项既有测试仍对应 2026-09-05 基线。
+
+## 检查与复跑命令
+
+`node check.mjs` 校验已导出观测的结构、关键对照、两轮一致性和文件清单。此检查不重新执行产品代码，也不是安全验收。
+
+`node probe-order.mjs` 可在装有 Node 的环境独立复跑顺序夹具；输出进入本目录的 fixtures/runs，不会调用模型或真实业务授权服务。
+
+`probe-http.mjs` 是实际使用探针的可配置副本，只把硬编码产品根改成 `CODEFLOWMU_SOURCE_ROOT` 环境变量。完整运行还需要本地有权访问的固定 CodeFlowMu 源码、tsx loader 和 Windows curl.exe；本包不提供产品源码副本。用 Node 的 `--import` 指向该源码环境现有 tsx loader 后运行。它只监听127.0.0.1，所有写入均为自己的虚构服务状态。
+
+读者没有对应产品源码时，可以校验公开观测和独立复跑顺序实验，但不能声称已经复跑 Native gate。
+
+## 版本、脱敏和修订
+
+- 固定提交：`c008d9db91a21136fc61a4f60314e22db395d5d2`；源码文件哈希位于 observations.json。
+- 导出保留全部13个HTTP/门禁场景和7个顺序场景的两轮结果。没有将40条观测相加为准确率。
+- 去除原始临时路径、端口、PID和完整上下文对象；进程是否不同保留为布尔事实。原始JSON的哈希提供来源映射，但不能单靠哈希还原未公开的记录。
+- HTTP首次启动曾因Windows ESM路径格式失败，没有进入实验；改用file URL后运行。
+- 早期G6写入与G1相同值。最终探针使用独立namespace并分别计写入执行数和真实状态变化数，表格只引用最终两轮。
+- 早期顺序输出未区分received/accepted字段；正式导出已区分，并检查截止点。
+- Codex旧记录兼容仍按记录顺序；本实验缺失/重复序号返回unknown，不是该兼容算法的复制。
+
+当前证据不包含真实Host重启、生产事故数据或独立QA。两篇都没有宣称已修复问题或获得开发授权。
+
+## 下载与双语阅读
+
+[English](/en/research/evidence/2026-09-05-read-effects-acceptance-order) · [完整证据包 ZIP](https://joinwell52-ai.github.io/joinwell52/assets/read-effects-order-20260905/read-effects-order-evidence.zip)。解压后进入 evidence 目录运行 `node check.mjs`；请保留完整目录，不要只下载脚本。
+
+- [baseline-1.log](https://joinwell52-ai.github.io/joinwell52/assets/read-effects-order-20260905/evidence/baseline-1.log)
+- [baseline-2.log](https://joinwell52-ai.github.io/joinwell52/assets/read-effects-order-20260905/evidence/baseline-2.log)
+- [check.mjs](https://joinwell52-ai.github.io/joinwell52/assets/read-effects-order-20260905/evidence/check.mjs)
+- [manifest.json](https://joinwell52-ai.github.io/joinwell52/assets/read-effects-order-20260905/evidence/manifest.json)
+- [observations.json](https://joinwell52-ai.github.io/joinwell52/assets/read-effects-order-20260905/evidence/observations.json)
+- [probe-http.mjs](https://joinwell52-ai.github.io/joinwell52/assets/read-effects-order-20260905/evidence/probe-http.mjs)
+- [probe-order.mjs](https://joinwell52-ai.github.io/joinwell52/assets/read-effects-order-20260905/evidence/probe-order.mjs)
+- [README.en.md](https://joinwell52-ai.github.io/joinwell52/assets/read-effects-order-20260905/evidence/README.en.md)
+- [README.zh.md](https://joinwell52-ai.github.io/joinwell52/assets/read-effects-order-20260905/evidence/README.zh.md)
+- [sources.json](https://joinwell52-ai.github.io/joinwell52/assets/read-effects-order-20260905/evidence/sources.json)
