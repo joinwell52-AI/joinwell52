@@ -1,0 +1,377 @@
+{
+  "schema": "observation-scorecard-review-shard/v1",
+  "reviewDate": "2026-09-06",
+  "rubricVersion": "1.0.0",
+  "mode": "monthly-full",
+  "scope": {
+    "canonicalPrefix": "/digital-employee/",
+    "dateThrough": "2026-08-18",
+    "sourceLanguage": "en",
+    "identity": "english-canonical-path",
+    "eligibility": "same-frontmatter-filter-as-research-notes.data.ts",
+    "evaluatedMain": "a7ae402b7d1feef65f2766bfb0b9756dbe1de08b"
+  },
+  "eligible": 21,
+  "directlyScored": 21,
+  "inherited": 0,
+  "coverageRate": 1,
+  "items": [
+    {
+      "path": "/digital-employee/2026-08-02-computer-use-action-state-loop",
+      "contentHash": "3d5fc5385abfbd848beb4514433b11ba89d37a68d0a3acb52fee2db854c03e3d",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "OpenAI and Anthropic implementation guidance is traceable and provider-source limits are explicit.", "evidence": ["Source: selected primary material", "Observation: security belongs in the runtime boundary"]},
+        "originalJudgment": {"score": 23, "reason": "The action-state loop separates proposed action from verified business outcome rather than restating tool APIs.", "evidence": ["Observation: the model proposes; the harness executes", "Discussion: action, state, and evidence are different facts"]},
+        "structureExpression": {"score": 19, "reason": "The argument moves cleanly from source mechanisms to runtime facts, records, authority, and verification.", "evidence": ["Observation", "Discussion: minimum computer-operation record"]},
+        "engineeringUsefulness": {"score": 19, "reason": "The operation record, approval boundary, validator, and benchmark plan are directly implementable.", "evidence": ["Engineering Impact: Digital Employee", "Engineering Impact: CodeFlowMu"]}
+      },
+      "score": 93,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "把电脑操作拆成观察、授权、执行、回读和验收，运行时边界非常清楚；不足是证据主要来自两家模型厂商文档，跨环境独立验证仍有限。", "en": "The article cleanly separates observation, authorization, execution, readback, and acceptance for computer use. Its main limitation is that the evidence rests mostly on two model-provider documents, with limited independent validation across environments."}
+    },
+    {
+      "path": "/digital-employee/2026-08-02-control-plane-work-runtime",
+      "contentHash": "3a4917a4ae04e9a65759463159bd648471dbde67e59af937591c69423fdc4147",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 31, "reason": "Workday, ServiceNow, and Microsoft are cross-compared and vendor-source limits are stated.", "evidence": ["Source: selected official material", "Observation: enterprise governance is becoming cross-provider"]},
+        "originalJudgment": {"score": 23, "reason": "The control-plane/work-runtime split identifies distinct responsibilities and observability surfaces.", "evidence": ["Observation: control plane manages lifecycle and risk", "Observation: observability exists at two levels"]},
+        "structureExpression": {"score": 19, "reason": "Layering and contract examples make governance and execution concepts independently readable.", "evidence": ["Discussion: proposed separation", "Discussion: contract between layers"]},
+        "engineeringUsefulness": {"score": 18, "reason": "Execution-context/result contracts and an SME-first minimum provide concrete implementation choices.", "evidence": ["Discussion: SME-first implication", "Engineering Impact: CodeFlowMu"]}
+      },
+      "score": 91,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "控制面与工作运行时的职责切分完整，还给出双向合同和中小企业最小落地路径；不足是三家厂商材料都偏产品口径，缺少真实部署对照。", "en": "The control-plane/work-runtime split is well developed, including a two-way contract and an SME-oriented minimum. The evidence, however, is still dominated by vendor product material and lacks comparative deployment data."}
+    },
+    {
+      "path": "/digital-employee/2026-08-02-osworld-execution-verification",
+      "contentHash": "37e931b147bcb4d93051202b59e4e7d280895ac4a6f6474c28a11e2b99c2a537",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 33, "reason": "The paper, project, repository, later benchmark maintenance, and version caveats are directly traced.", "evidence": ["Source: primary research object", "Observation: benchmark maintenance is part of evidence quality"]},
+        "originalJudgment": {"score": 24, "reason": "It extracts executable final-state verification as the transferable architecture rather than a leaderboard result.", "evidence": ["Summary", "Discussion: Work Verification Contract"]},
+        "structureExpression": {"score": 19, "reason": "Initial state, evaluator, production limits, and versioning form a coherent reasoning path.", "evidence": ["Observation", "Discussion: benchmark tasks and production work are not identical"]},
+        "engineeringUsefulness": {"score": 19, "reason": "The verification contract and local benchmark proposal supply reusable validation machinery.", "evidence": ["Discussion: Work Verification Contract", "Engineering Impact: CodeFlowMu"]}
+      },
+      "score": 95,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {"zh": "从 OSWorld 抽取“初始状态加可执行终态验证”而非追逐榜单分数，版本边界处理扎实；不足是企业任务中的权限、补偿和真实系统验收尚未实证。", "en": "It extracts the durable lesson from OSWorld—controlled initial state plus executable final-state verification—rather than chasing leaderboard scores, and handles version boundaries carefully. Enterprise authorization, compensation, and real system-of-record acceptance remain untested."}
+    },
+    {
+      "path": "/digital-employee/2026-08-02-position-ownership-authority",
+      "contentHash": "689a22d113e8dc9a2991a21aa9be55b1834cc2eaffdcb84fea59799ce4487758",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 31, "reason": "Three enterprise platforms are compared with identifiable first-party sources and vendor-claim limits.", "evidence": ["Source: selected official material", "Observation: ownership is becoming mandatory"]},
+        "originalJudgment": {"score": 23, "reason": "Position as a stable organizational abstraction above changing agents and sessions is a non-trivial synthesis.", "evidence": ["Discussion: Position should be the first organizational abstraction", "Discussion: Digital Employee is not equivalent to one Agent"]},
+        "structureExpression": {"score": 18, "reason": "The article progresses from persistent managed objects through ownership, scope, authority, and registry design.", "evidence": ["Observation", "Discussion: Position and ownership must be independently represented"]},
+        "engineeringUsefulness": {"score": 18, "reason": "The registry projection and CodeFlowMu role mapping are actionable while clearly marked as proposals.", "evidence": ["Engineering Impact: Digital Employee", "Engineering Impact: CodeFlowMu"]}
+      },
+      "score": 90,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "将数字员工首先定义为岗位、责任人与授权边界，而不是模型会话，组织抽象很有价值；不足是判断主要来自三家企业产品方向，尚缺岗位运行数据验证。", "en": "Defining a Digital Employee first through position, accountable ownership, and bounded authority is a useful organizational abstraction beyond a model session. The judgment is still derived mainly from three enterprise product directions rather than operational position-level data."}
+    },
+    {
+      "path": "/digital-employee/2026-08-05-universal-verifier-completion-contract",
+      "contentHash": "84d4e93628c166a314db67a309ac829d8c9dc158e5008a4f05e1212adb01a6ba",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 34, "reason": "The preprint, implementation, dataset, metrics, and version differences are traced and reconciled carefully.", "evidence": ["Primary research object", "Experimental evidence", "Version note"]},
+        "originalJudgment": {"score": 24, "reason": "Claimant, verifier, acceptor, failure attribution, and side effects are decomposed into a strong completion architecture.", "evidence": ["Why the result is architectural", "Proposed completion evidence contract"]},
+        "structureExpression": {"score": 19, "reason": "Empirical results, architecture, limitations, and bounded adoption are sequenced without conflating evidence classes.", "evidence": ["Experimental evidence", "Limitations and counter-evidence", "Publication judgment"]},
+        "engineeringUsefulness": {"score": 20, "reason": "The completion contract and deterministic/learned/human verification surfaces directly support runtime implementation.", "evidence": ["Proposed completion evidence contract", "What should remain independent", "Engineering impact"]}
+      },
+      "score": 97,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {"zh": "把完成拆成过程、结果、失败归因、副作用与授权验收，并核对论文数字和版本差异，证据极强；不足是验证仍集中于网页电脑任务，企业事务安全外推有限。", "en": "The article rigorously separates process, outcome, failure attribution, side effects, and authorized acceptance while checking reported metrics and version differences. Its main boundary is that the verifier evidence remains concentrated on web computer-use tasks rather than enterprise transactional safety."}
+    },
+    {
+      "path": "/digital-employee/2026-08-05-verifiable-completion",
+      "contentHash": "7648331bccad159086a445a56585fd983a80258ecc0ec1f23cad9e06c67e23c7",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 28, "reason": "The note preserves benchmark and false-positive boundaries but exposes primary evidence mostly through internal artifacts.", "evidence": ["Boundaries and counter-evidence", "Evidence and citations"]},
+        "originalJudgment": {"score": 20, "reason": "The claimant-verifier-acceptor separation is useful but intentionally compresses a judgment developed more fully elsewhere.", "evidence": ["Core judgment", "Engineering conclusion"]},
+        "structureExpression": {"score": 18, "reason": "The short structure is economical and moves directly from claim to architecture to limitations.", "evidence": ["Core judgment", "Minimum deployable architecture", "Boundaries and counter-evidence"]},
+        "engineeringUsefulness": {"score": 17, "reason": "The minimum deployable architecture is actionable, though implementation and validation detail are sparse.", "evidence": ["Minimum deployable architecture", "Engineering conclusion"]}
+      },
+      "score": 83,
+      "internalLevel": "E3",
+      "publicLabel": "优质",
+      "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "把“工作者不能自验完成”压成 claim—verifier—acceptor 结构并保留关键限制；不足是证据多经内部研究对象转述，独立展开较少。", "en": "This concise note distills the claimant–verifier–acceptor boundary clearly and preserves the key limits. Its evidence is mostly mediated through the internal Research Object and Reading Result, so it develops less independent argument and source detail."}
+    },
+    {
+      "path": "/digital-employee/2026-08-06-governed-revisable-work-graph",
+      "contentHash": "8a57684912321ebd15da704f2bafffee203d9ae026d5b42283bbe5574b12726e",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 27, "reason": "Source boundaries and counter-evidence are explicit, but primary-source mechanics are not presented directly.", "evidence": ["Source", "Boundaries and counter-evidence"]},
+        "originalJudgment": {"score": 22, "reason": "Separating graph readiness from execution authority and resource/effect safety is a useful architecture judgment.", "evidence": ["Central judgment", "Discussion"]},
+        "structureExpression": {"score": 18, "reason": "The comparison table and graph-to-authority progression make the distinction easy to inspect.", "evidence": ["Comparison", "Discussion"]},
+        "engineeringUsefulness": {"score": 18, "reason": "Versioned graph mutations, authority conditions, receipts, and recovery projections provide concrete next steps.", "evidence": ["Engineering impact", "Future work"]}
+      },
+      "score": 85,
+      "internalLevel": "E3",
+      "publicLabel": "优质",
+      "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "把 DAG 的依赖就绪与执行授权明确分开，并把并发冲突、图变更和证据收口纳入设计；不足是正文依赖单一研究对象，外部机制证据没有直接展开。", "en": "The note makes the important distinction between dependency readiness and execution authority and extends it to concurrency conflicts, graph mutation, and evidence closure. The external mechanism evidence is not developed directly in the article because it relies on a single internal Research Object."}
+    },
+    {
+      "path": "/digital-employee/2026-08-07-verification-gated-state-admission",
+      "contentHash": "baa2210b7aeeedbc84c7f294901c7df4e2362dd2fbb1927fe5d40b9c4fafedbe",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 28, "reason": "The stale-assurance contradiction and limits on causal claims are preserved, though evidence is mediated through the Research Object.", "evidence": ["Source", "Observation", "Boundaries and counter-evidence"]},
+        "originalJudgment": {"score": 23, "reason": "Historical durability versus authoritative durability reframes memory as a governance problem.", "evidence": ["Central judgment", "Discussion"]},
+        "structureExpression": {"score": 18, "reason": "The state-surface table cleanly separates history, checkpoint, admitted state, and projections.", "evidence": ["Comparison", "Discussion"]},
+        "engineeringUsefulness": {"score": 18, "reason": "Admission contracts, owner/evidence-class rules, and recovery separation can guide runtime design directly.", "evidence": ["Engineering impact", "Future work"]}
+      },
+      "score": 87,
+      "internalLevel": "E3",
+      "publicLabel": "优质",
+      "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "“历史可持久、未来影响需准入”的区分把记忆问题提升为治理问题，并讨论陈旧投影反例；不足是来源仍通过研究对象间接呈现，准入收益没有实验量化。", "en": "Separating durable history from state admitted to influence future work turns memory into a governance problem, strengthened by the stale-projection counterexample. The source evidence remains indirect through the Research Object, and the benefits of admission are not experimentally quantified."}
+    },
+    {
+      "path": "/digital-employee/2026-08-08-pause-preserving-budget-admission",
+      "contentHash": "33f871d495dd702971e88b06dc89c6583f3914b9a5e6ec6834f938e93363e25f",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 27, "reason": "Claims about exact spend and enterprise budgeting are explicitly limited, but primary evidence is indirect.", "evidence": ["Source", "Boundaries and counter-evidence"]},
+        "originalJudgment": {"score": 22, "reason": "Budget exhaustion as admission pause rather than failure or completion is a useful runtime judgment.", "evidence": ["Central judgment", "Discussion"]},
+        "structureExpression": {"score": 18, "reason": "The state table cleanly separates enforcement usage, display usage, settlement, and resume authority.", "evidence": ["Observation", "Comparison", "Discussion"]},
+        "engineeringUsefulness": {"score": 18, "reason": "BudgetPaused, settlement allowlists, policy ownership, and crash tests form an actionable agenda.", "evidence": ["Engineering impact", "Future work"]}
+      },
+      "score": 85,
+      "internalLevel": "E3",
+      "publicLabel": "优质",
+      "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "将预算耗尽定义为可恢复的准入暂停，而非失败或终止，并区分结算与新请求；不足是成本边界偏架构推演，缺少真实计费与恢复实验。", "en": "Treating budget exhaustion as a reversible admission pause rather than failure gives the runtime clear semantics and usefully separates settlement from new work. The cost boundary is still largely architectural reasoning without real billing and recovery experiments."}
+    },
+    {
+      "path": "/digital-employee/2026-08-09-revocation-coupled-run-reconciliation",
+      "contentHash": "de580ab0ce311a53fdc7c954951c7ce970bc56248837889ca96b99ac76fd9b39",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 29, "reason": "Merged implementation facts, lifecycle distinctions, and exactly-once/physical-stop limits are explicit.", "evidence": ["Source", "Observation", "Boundaries and uncertainty"]},
+        "originalJudgment": {"score": 23, "reason": "Deletion as revocation plus reconciliation under one serialization boundary is a strong mechanism-level interpretation.", "evidence": ["Central judgment", "Discussion"]},
+        "structureExpression": {"score": 18, "reason": "QUEUED, AWAITING_APPROVAL, and RUNNING distinctions expose the race clearly.", "evidence": ["Observation", "Mechanism comparison"]},
+        "engineeringUsefulness": {"score": 19, "reason": "The lease/fencing sequence and event requirements give concrete multi-worker recovery rules.", "evidence": ["Discussion", "Engineering impact", "Future work"]}
+      },
+      "score": 89,
+      "internalLevel": "E3",
+      "publicLabel": "优质",
+      "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "把删除上下文重构为授权撤销与未结工作协调，并用共享锁加租约解释数据库与物理执行边界；不足是租约、补偿和分区故障仍属于待验证设计。", "en": "Reframing context deletion as authority revocation plus reconciliation of unsettled work is strong, and the lock-plus-lease model clearly separates durable state from physical execution. Lease behavior, compensation, and partition failures remain proposed rather than demonstrated."}
+    },
+    {
+      "path": "/digital-employee/2026-08-10-governed-input-admission-boundary",
+      "contentHash": "405f053d5bafa8a53105fe55c0dd6e6c671088b1845909974d8066125b44ad46",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "Issue, merged PR, commit, implementation behavior, and SDK/external-effect limits are directly traceable.", "evidence": ["Source", "Observation", "References"]},
+        "originalJudgment": {"score": 23, "reason": "Occurrence identity and the admission ledger separate content equality from occurrence and effect correctness.", "evidence": ["Discussion", "Engineering impact"]},
+        "structureExpression": {"score": 19, "reason": "The comparison table and admission lifecycle make a subtle resume boundary easy to follow.", "evidence": ["Comparison", "Discussion"]},
+        "engineeringUsefulness": {"score": 19, "reason": "The Input Admission Ledger, propagated occurrence IDs, and crash-point tests are implementable requirements.", "evidence": ["Engineering impact", "Future work"]}
+      },
+      "score": 93,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "基于合并实现把收到输入、准入、消费和外部副作用逐层拆开，发生身份与崩溃窗口具体；不足是 SDK 内部保证不能外推到分布式工具效果。", "en": "Using a merged implementation, the article carefully separates receipt, admission, consumption, and external side effects, with concrete occurrence identity and crash-window reasoning. SDK-local exactly-once behavior still cannot be generalized to distributed tool effects."}
+    },
+    {
+      "path": "/digital-employee/2026-08-11-execution-authority-ordered-work",
+      "contentHash": "aa744bfb2231b764394a7897723b8b4afa8defc4b4c7cd62800d1a8c33baf43a",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 29, "reason": "The Copilot CLI changelog is first-party evidence and unknown durability/arbitration semantics are explicitly bounded.", "evidence": ["Source", "Boundaries and uncertainty"]},
+        "originalJudgment": {"score": 23, "reason": "Claimed as the execution-authority boundary distinguishes work demand from permission and live progress.", "evidence": ["Summary", "Discussion"]},
+        "structureExpression": {"score": 19, "reason": "The state/evidence table and ordered-lane argument map cleanly to runtime-status failure modes.", "evidence": ["Comparison", "Discussion"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Wake receipts, claims, renewable leases, terminal states, and bounded startup failures are concrete controls.", "evidence": ["Engineering Impact", "Future Work"]}
+      },
+      "score": 90,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "从队列行为推导 Wake、Queued、Claimed、Running、Terminal 权力分层，直指状态误报；不足是仅证明局部产品行为，跨会话仲裁未证实。", "en": "The article turns queue behavior into a useful authority ladder—Wake, Queued, Claimed, Running, Terminal—that directly addresses misleading runtime status. The source proves only local product behavior; durable queuing and cross-session arbitration are not established."}
+    },
+    {
+      "path": "/digital-employee/2026-08-12-acceptance-persistence-handoff",
+      "contentHash": "73a5be9fb070fa92b20cc4e02c186182bd0b282632dcb2528c4428c76f140cd8",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 31, "reason": "The Codex commit is directly cited and the article states precisely what queue deletion does and does not prove.", "evidence": ["Opening source boundary", "Evidence and sources"]},
+        "originalJudgment": {"score": 24, "reason": "The custody/persistence gap and reconstructable work occurrence are sharp deductions from a narrow crash window.", "evidence": ["Cut the path at three failure points", "Custody transfers; correctness does not"]},
+        "structureExpression": {"score": 18, "reason": "Three failure moments and a falsifiable receipt hypothesis keep the argument focused.", "evidence": ["Cut the path at three failure points", "A receipt can narrow ambiguity", "How this design should be falsified"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Fault-injection positions and the receipt/idempotency split define a concrete recovery experiment.", "evidence": ["How this design should be falsified", "Evidence and sources"]}
+      },
+      "score": 92,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "用“队列项删除后崩溃”揭示 custody 与 persistence 空档，并提出可证伪的 receipt 实验；不足是单个 Codex 改动不能证明通用恢复模型。", "en": "The concrete crash window after queue deletion exposes the gap between custody transfer and durable persistence, and the proposed receipt is framed as a falsifiable experiment. One Codex change is still insufficient evidence for a general recovery model."}
+    },
+    {
+      "path": "/digital-employee/2026-08-12-corpgen-multi-horizon-runtime",
+      "contentHash": "127e1e69940c770361d1e73f8f502e62a1f58d9cd5c243380c1b66016f98832e",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 34, "reason": "The paper, official article, completion values, ablations, tiny meta-evaluation, and replication gap are all separated.", "evidence": ["What the CorpGen evidence actually reports", "Completion evidence is a separate problem", "Where the evidence stops"]},
+        "originalJudgment": {"score": 24, "reason": "Multi-horizon work is convincingly reframed as scheduling, isolation, memory, failure, and evidence state rather than context length.", "evidence": ["The architecture is more transferable than the headline score", "Engineering implications for long-running agent systems"]},
+        "structureExpression": {"score": 19, "reason": "Mechanisms, quantitative evidence, absolute limits, and production boundaries are balanced in a clear long-form progression.", "evidence": ["What the CorpGen evidence actually reports", "Where the evidence stops"]},
+        "engineeringUsefulness": {"score": 19, "reason": "Six runtime consequences and concrete follow-up tests make the research highly reusable for system design.", "evidence": ["Engineering implications for long-running agent systems", "What should be tested next?"]}
+      },
+      "score": 96,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {"zh": "对 CorpGen 同时保留相对提升、绝对完成量、消融和小样本验证边界，论证完整；不足是无独立复现，也未覆盖真实企业的权限与副作用冲突。", "en": "The CorpGen analysis preserves relative gains, absolute completion, ablations, and the tiny 11-run evaluation boundary, producing a very disciplined argument. Independent reproduction and real enterprise long-horizon permission and side-effect conflicts remain absent."}
+    },
+    {
+      "path": "/digital-employee/2026-08-13-resume-capability-reconstruction",
+      "contentHash": "54383eb7283a554128d2a915d6742b4bcc7bcb101ad0531cbb2cc4aba3fa39fb",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 29, "reason": "The article limits itself to one ADK transfer-confirmation path and states what it cannot establish.", "evidence": ["Opening boundary", "The missing object was a capability", "One transfer path is not a universal resume theory"]},
+        "originalJudgment": {"score": 24, "reason": "Historical restoration versus current capability restoration is a distinctive recovery insight with authority consequences.", "evidence": ["Split resume into state restoration and capability admission", "Capability drift needs a governed non-execution result"]},
+        "structureExpression": {"score": 18, "reason": "The failure case, resume outcomes, rebuilding counterargument, and authority question form a coherent sequence.", "evidence": ["Split resume into state restoration and capability admission", "One transfer path is not a universal resume theory"]},
+        "engineeringUsefulness": {"score": 18, "reason": "Capability-drift states and explicit replay/reconstruct/compare/refuse choices are implementable admission rules.", "evidence": ["Capability drift needs a governed non-execution result", "Which authority should a pending confirmation bind to?"]}
+      },
+      "score": 89,
+      "internalLevel": "E3",
+      "publicLabel": "优质",
+      "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "从 transfer 工具缺失故障抽象出“历史恢复不等于能力恢复”，并讨论能力漂移与审批绑定；不足是证据限于单一路径，缺少跨框架对照。", "en": "A specific missing-transfer-tool failure is turned into the novel distinction between historical restoration and capability restoration, with useful treatment of capability drift and approval binding. The evidence is limited to one path and lacks cross-framework recovery comparison."}
+    },
+    {
+      "path": "/digital-employee/2026-08-14-durable-work-execution-authority",
+      "contentHash": "626436917c9f3cda8e13fb02a82ff796cb3fc47c61eaaf3c7f24811293907dd8",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 28, "reason": "The evidence is bounded to one experimental Codex queue and local serialization is not overstated as distributed ownership.", "evidence": ["Opening evidence boundary", "Limits of the evidence"]},
+        "originalJudgment": {"score": 22, "reason": "Work identity, execution admission, and resumption authorization are usefully separated, though adjacent notes cover related ground.", "evidence": ["Three facts that should not collapse into one", "Engineering implication: model authority explicitly"]},
+        "structureExpression": {"score": 18, "reason": "Idle semantics, admission deletion, multi-worker ownership, and evidence limits progress clearly.", "evidence": ["Why resume everything when idle is unsafe", "What changes in a multi-worker runtime"]},
+        "engineeringUsefulness": {"score": 18, "reason": "Lease/fencing, explicit admission events, pause rules, and recovery evidence give practical runtime requirements.", "evidence": ["What changes in a multi-worker runtime", "Operational implications"]}
+      },
+      "score": 86,
+      "internalLevel": "E3",
+      "publicLabel": "优质",
+      "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "将工作持久化、执行准入和恢复授权拆成三类事实，清楚指出空闲不代表可继续；不足是与前几篇队列和授权文章概念接近，新增实证范围较窄。", "en": "The article cleanly separates durable work identity, execution admission, and resumption authorization, especially the point that idle does not mean authorized to continue. It overlaps substantially with nearby queue and authority notes, and the new empirical scope is narrow."}
+    },
+    {
+      "path": "/digital-employee/2026-08-15-resumable-agent-trust-gates",
+      "contentHash": "5e2c4b8efb4549c6df359cd1c2aa318e946ce40dd51c3a79d7bf611e33818d55",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 29, "reason": "Merged ADK code/tests are bounded as primary evidence and missing authentication, provenance, replay, and distributed guarantees are stated.", "evidence": ["Opening evidence boundary", "Limits of the evidence"]},
+        "originalJudgment": {"score": 24, "reason": "The four-stage trust contract cleanly separates imported history, runtime protocol state, occurrence identity, and authorization.", "evidence": ["Occurrence binding solves reference integrity, not authorization", "A four-stage trust contract"]},
+        "structureExpression": {"score": 19, "reason": "The article moves from admission ordering to occurrence integrity to missing authorization without conflating controls.", "evidence": ["Imported history is data before it is authority", "Validate before durable state is created", "Occurrence binding solves reference integrity, not authorization"]},
+        "engineeringUsefulness": {"score": 18, "reason": "Provenance classes, narrow write paths, separate approval records, and pre-persistence validation are concrete rules.", "evidence": ["Engineering implications", "Open questions"]}
+      },
+      "score": 90,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "把历史准入、协议状态、动作发生身份和审批者授权拆成四道信任门，且明确引用完整性不等于授权；不足是单一 ADK 实现未覆盖重放和分布式恢复。", "en": "The four trust gates—history admission, protocol-state admission, occurrence binding, and approver authorization—are a strong synthesis, especially the distinction between reference integrity and authority. One ADK implementation does not cover authentication, replay resistance, or distributed recovery."}
+    },
+    {
+      "path": "/digital-employee/2026-08-16-occurrence-scoped-authorization",
+      "contentHash": "cd5943d2f9420b7340e70ca77ab0597d2977529dcde744a108d538206b79c7ca",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 28, "reason": "Merged Agents Python behavior, serialization, reversal, and missing identity/effect guarantees are clearly bounded.", "evidence": ["Opening evidence boundary", "What this mechanism does not establish"]},
+        "originalJudgment": {"score": 23, "reason": "Reusable default policy, occurrence exception, actor authority, and effect evidence are separated into distinct facts.", "evidence": ["A durable decision needs a narrow object", "Separate the decision from the actor and the effect"]},
+        "structureExpression": {"score": 18, "reason": "The argument stays focused on one occurrence boundary and marks the action-fingerprint extension as interpretation.", "evidence": ["Separate the decision from the actor and the effect", "What this mechanism does not establish"]},
+        "engineeringUsefulness": {"score": 18, "reason": "The four-fact chain and suggested action fingerprint provide practical audit and resume checks.", "evidence": ["Separate the decision from the actor and the effect", "Open questions for high-risk resumable actions"]}
+      },
+      "score": 87,
+      "internalLevel": "E3",
+      "publicLabel": "优质",
+      "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "区分 sticky 默认策略与单次 call 例外，并拆开决策、审批者和外部效果证据；不足是高风险 action fingerprint 仍是建议，尚无验证。", "en": "The distinction between sticky defaults and exact-call exceptions is precise, and the article further separates the decision from approver and external-effect evidence. The proposed high-risk action fingerprint remains an unvalidated research recommendation."}
+    },
+    {
+      "path": "/digital-employee/2026-08-17-selective-fail-closed-api",
+      "contentHash": "501eaa1fd8dc24a1e239ac1e1cbf15d4aebd0f85d6079bb2a31426c72e8595ad",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 30, "reason": "A merged Codex change, four affected methods, continued unknown-field compatibility, and authorization limits are identified.", "evidence": ["Opening implementation evidence", "The evidence does not establish end-to-end authorization safety"]},
+        "originalJudgment": {"score": 23, "reason": "Structural versus semantic compatibility gives a principled basis for selective fail-closed retirement.", "evidence": ["One unknown-field rule can create opposite risks", "Targeted rejection preserves the general compatibility rule"]},
+        "structureExpression": {"score": 18, "reason": "Risk classification, targeted rejection, registry design, and limitations form a focused migration argument.", "evidence": ["Targeted rejection preserves the general compatibility rule", "A retirement registry should describe meaning, not only versions"]},
+        "engineeringUsefulness": {"score": 18, "reason": "A semantic-risk retirement registry, migration path, telemetry, and resume checks are directly applicable.", "evidence": ["A retirement registry should describe meaning, not only versions", "The evidence does not establish end-to-end authorization safety"]}
+      },
+      "score": 89,
+      "internalLevel": "E3",
+      "publicLabel": "优质",
+      "publicLabel_en": "High Quality",
+      "editorialNote": {"zh": "以退休权限字段说明结构兼容与授权语义兼容并不相同，选择性 fail-closed 边界具体可执行；不足是只覆盖一个实现与四个方法。", "en": "The retired-permission-field case makes a clear distinction between structural forward compatibility and authorization-semantic compatibility, yielding an actionable selective fail-closed rule. Evidence is limited to one implementation and four methods rather than broader protocol migrations."}
+    },
+    {
+      "path": "/digital-employee/2026-08-18-accountable-human-approval",
+      "contentHash": "568b1fb812b612271045fd056f4fd54ae9fa7b4611dda6e3a34182dbda3b87ab",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 31, "reason": "The merged ADK commit and regression cases are directly identified, with evidence limited to A2A origin rejection.", "evidence": ["Opening implementation evidence", "The negative gate does not authenticate the positive channel", "Primary evidence"]},
+        "originalJudgment": {"score": 24, "reason": "Content role, transport origin, principal identity, authorization scope, and approval occurrence are separated sharply.", "evidence": ["role=user answers the wrong question", "An approval record needs more than a message"]},
+        "structureExpression": {"score": 19, "reason": "Provenance qualification is ordered before semantic matching, and the invalid inference to human authentication is explicitly blocked.", "evidence": ["Provenance qualification should happen before approval matching", "The negative gate does not authenticate the positive channel"]},
+        "engineeringUsefulness": {"score": 18, "reason": "The five-part approval record and four-step control pattern define concrete accountable-approval requirements.", "evidence": ["Provenance qualification should happen before approval matching", "An approval record needs more than a message"]}
+      },
+      "score": 92,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "从远程 A2A 的 user-role 回应证明消息角色不能替代来源、主体和授权范围，也未把负向门禁当作完整人类认证；不足是正向身份链未实现。", "en": "Starting from a remote A2A user-role response, the article shows why message role cannot substitute for origin, principal, and authorization scope, while avoiding the mistake of treating a negative gate as full human authentication. The positive identity and authorization chain remains unimplemented."}
+    },
+    {
+      "path": "/digital-employee/2026-08-18-cursor-ai-development-team",
+      "contentHash": "3b29c56c2645fbd002f179289a42513421731d6e25671badda64b10f5b107c90",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "dimensions": {
+        "evidenceRigor": {"score": 31, "reason": "Cursor docs, Anthropic guidance, CodeFlowMu-open, and FCoP sources are identified and edition claims are bounded.", "evidence": ["First decide whether the work needs a team", "Step 3: execute in Cursor", "Sources"]},
+        "originalJudgment": {"score": 23, "reason": "The guide converts parallel agent personas into responsibility-separated decision rights, artifacts, rework, and acceptance.", "evidence": ["Roles are decision boundaries, not personas", "From multiple windows to accepted delivery"]},
+        "structureExpression": {"score": 19, "reason": "Numbered steps, examples, tables, and cross-links make the long operating guide easy to execute and audit.", "evidence": ["Step 1: turn a request into an acceptance card", "Step 2: assign responsibility with separate TASKs", "A minimum one-day run"]},
+        "engineeringUsefulness": {"score": 20, "reason": "Acceptance cards, REPORT templates, QA/OPS separation, rework, evidence packets, and a one-day pilot are directly deployable.", "evidence": ["Step 1: turn a request into an acceptance card", "Step 3: execute in Cursor", "Step 6: approve only from an evidence packet"]}
+      },
+      "score": 93,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh": "把 Cursor 多 Agent 从多窗口落到验收卡、角色 TASK、独立 QA、EVAL 与人类批准，可直接照做；不足是方法主要来自自有治理体系，缺少外部团队实测。", "en": "The guide turns multiple Cursor agents into a concrete operating chain of acceptance cards, role-scoped TASKs, independent QA, EVAL, and human approval, making it immediately usable. The method is still rooted mainly in the project’s own governance model and lacks external team performance data."}
+    }
+  ]
+}
