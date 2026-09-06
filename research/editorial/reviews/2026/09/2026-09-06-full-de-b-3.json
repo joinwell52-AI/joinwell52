@@ -1,0 +1,173 @@
+{
+  "schema": "observation-scorecard-review-shard/v1",
+  "reviewDate": "2026-09-06",
+  "rubricVersion": "1.0.0",
+  "mode": "monthly-full",
+  "scope": {
+    "canonicalPrefix": "/digital-employee/",
+    "sourceLanguage": "en",
+    "identity": "english-canonical-path",
+    "eligibility": "same-frontmatter-filter-as-research-notes.data.ts",
+    "evaluatedMain": "b1c3797641ec281834f37798a50d5d8ec2b06afa",
+    "dateFrom": "2026-08-19",
+    "segment": "DE-B-3/4"
+  },
+  "eligible": 8,
+  "directlyScored": 8,
+  "inherited": 0,
+  "coverageRate": 1,
+  "items": [
+    {
+      "path": "/digital-employee/2026-08-27-agent-stop-evidence",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 97,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {
+        "zh": "把取消请求、根进程退出、已知子进程退出、内核包含与再派发资格拆成独立证据层，并用 Windows 二层探针约束结论；不足是更深逃逸后代、残留句柄和跨平台包含仍待验证。",
+        "en": "It separates cancellation, root exit, known-child exit, kernel containment, and redispatch eligibility, then tests a bounded Windows case. Deeper escaped descendants, residual resources, and cross-platform containment remain unverified."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 34, "reason": "Combines Anywhere Agents counterexamples with a disclosed, rerunnable two-level Windows probe and explicit non-claims.", "evidence": ["four reaping counterexamples", "public Windows taskkill probe"]},
+        "originalJudgment": {"score": 24, "reason": "The article turns a generic stopped state into a hierarchy of separately provable postconditions.", "evidence": ["cancellation is an action; stopping is a set of postconditions"]},
+        "structureExpression": {"score": 19, "reason": "The progression from observation semantics to containment, local probe, redispatch risk, and adversarial tests is clear.", "evidence": ["six evidence layers", "dangerous gap between cancellation and redispatch"]},
+        "engineeringUsefulness": {"score": 20, "reason": "The stop-record axes and next counterexamples can be copied directly into runtime recovery and cancellation testing.", "evidence": ["stop record example", "next counterexamples"]}
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-27-agent-ui-status-projection",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 96,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {
+        "zh": "从 Sutando 协作者进度缺失切入，把查看权限、网关连接、Session 活性、进度、REPORT 与生命周期拆成投影契约，并给出公开五状态复现器；不足是完整桌面/PWA 与授权组合仍未端到端覆盖。",
+        "en": "The Sutando counterexample becomes a precise projection contract separating authority, connectivity, liveness, progress, REPORT arrival, and lifecycle, with a public five-state reproducer. Full desktop/PWA and authorization combinations remain outside the evidence."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 33, "reason": "Uses an external open PR as a bounded counterexample and pairs it with five disclosed local classifications plus a public reproducer.", "evidence": ["Sutando PR #3432", "five-case public projection fixture"]},
+        "originalJudgment": {"score": 24, "reason": "Treating every status as a source-subject-freshness-scope-conflict contract is a strong reusable abstraction.", "evidence": ["UI status is a projection contract"]},
+        "structureExpression": {"score": 19, "reason": "The article consistently separates fact axes before moving to conflict handling and UI design rules.", "evidence": ["fact-axis table", "five declarations for every green status"]},
+        "engineeringUsefulness": {"score": 20, "reason": "Counterexample combinations and the five-state reader provide direct test cases for agent consoles.", "evidence": ["executing_with_progress through technical_error", "counterexample combinations"]}
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-27-running-is-an-evidence-claim",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 91,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "用 Claude Code 自托管 Runner 的提前 Running 通知说明状态标签本质是面向消费者的证据承诺，并提出 Scheduled、Claimed、Starting、Running、Terminal 分层；不足是公开材料未披露真正 readiness 信号和回归实现。",
+        "en": "The premature Running incident usefully reframes status as an evidence promise to consumers and motivates a staged lifecycle. Public material does not reveal the exact readiness signal or regression implementation, limiting the verification depth."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 31, "reason": "The claim is carefully bounded to an official release note and explicitly avoids inferring the hidden readiness mechanism.", "evidence": ["Claude Code 2.1.247 release note"]},
+        "originalJudgment": {"score": 23, "reason": "It derives state semantics backward from the consumer action that a label triggers rather than from scheduler convenience.", "evidence": ["derive the readiness gate from the consumer promise"]},
+        "structureExpression": {"score": 18, "reason": "The short article moves cleanly from the incident to state layering, consumer-specific readiness, and evidence limits.", "evidence": ["five lifecycle levels"]},
+        "engineeringUsefulness": {"score": 19, "reason": "The staged state model and execution-identity freshness rule are directly applicable to runtime dashboards and recovery.", "evidence": ["Scheduled/Claimed/Starting/Running/Terminal"]}
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-28-delegation-budgets-belong-to-root-objective",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 93,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "把委派资源账本拆成“消耗发生在哪个 Worker”与“由哪个根目标承担预算”两种身份，并覆盖嵌套、卸载和 checkpoint 并发；不足是正确计费并不证明预算耗尽后的即时撤权或跨主机一致性。",
+        "en": "It cleanly separates usage origin from budget ownership and covers nesting, unloading, and checkpoint races. Correct shared accounting still does not prove immediate revocation, cross-host consistency, or generalized quota semantics."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "Grounded in a merged Codex accounting change with several lifecycle and concurrency cases, while limiting the claim to token accounting.", "evidence": ["Codex commit 4761851f", "checkpoint concurrency"]},
+        "originalJudgment": {"score": 24, "reason": "The origin-versus-ownership split prevents delegation from becoming a budget escape without losing diagnostic attribution.", "evidence": ["delegation creates two different identities"]},
+        "structureExpression": {"score": 18, "reason": "The article keeps accounting, budget transition, and execution revocation distinct throughout.", "evidence": ["accounting truth is not execution revocation"]},
+        "engineeringUsefulness": {"score": 19, "reason": "The two-account model and checkpoint-race analysis provide concrete requirements for delegated runtime budgets.", "evidence": ["shared root accounting", "root-goal replacement"]}
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-28-skill-session-evidence",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 98,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {
+        "zh": "从 59 条历史记录缺失 Session 归因推进到 V2.1.2 的 Runtime 权威校验，并明确 verified、sessionless/not_applicable、invalid_claim 三种证据语义；不足是正向 QA 仍以单个真实 Session 链为核心，跨 Host 与更多恢复路径未独立覆盖。",
+        "en": "The article moves from a 59-record historical attribution gap to Runtime-authoritative session verification with three explicit evidence states. Independent QA is strongest on one valid binding chain; broader Host and recovery-path coverage remains limited."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 34, "reason": "It combines a frozen historical sample, a same-system counterexample, shipped implementation semantics, independent QA, and release regression evidence.", "evidence": ["59-record historical profile", "C1 independent QA", "V2.1.2 release validation"]},
+        "originalJudgment": {"score": 25, "reason": "The distinction between caller claim, Runtime verification, and trusted execution identity is sharp and broadly reusable.", "evidence": ["execution identity belongs to Runtime authority"]},
+        "structureExpression": {"score": 19, "reason": "The article carefully separates identity truth from record integrity and invocation attribution from work correctness.", "evidence": ["identity truth and record integrity are different proofs"]},
+        "engineeringUsefulness": {"score": 20, "reason": "The three-state binding contract and review checklist translate directly into tool, skill, hook, and MCP audit design.", "evidence": ["verified / sessionless / invalid_claim", "nine-question checklist"]}
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-29-restoring-context-does-not-restore-authority",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 92,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "把可用于上下文重建的完整快照与当前执行权限彻底分离，并强调 compaction、fork、外部撤权后的二次准入；不足是论据主要来自单一 Codex 恢复实现，外部资源撤销与跨主机重建尚无实测。",
+        "en": "It cleanly separates snapshot eligibility for context reconstruction from current execution permission, including compaction and fork boundaries. Evidence is concentrated in one Codex implementation, with external revocation and cross-host reconstruction still untested."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "Uses a merged Codex snapshot-recovery change with positive and negative eligibility cases and clear non-claims.", "evidence": ["Codex commit f9cdc90c"]},
+        "originalJudgment": {"score": 24, "reason": "The two-gate model—reconstruction first, fresh authority second—prevents persisted context from becoming an implicit permission channel.", "evidence": ["reconstruction authority and execution authority"]},
+        "structureExpression": {"score": 18, "reason": "The article is concise and keeps completeness, lineage, current policy, and audit identity separate.", "evidence": ["audit three identities separately"]},
+        "engineeringUsefulness": {"score": 18, "reason": "It provides a practical restore receipt model, though it stops short of a tested multi-resource recovery protocol.", "evidence": ["separate baseline, lineage, and current authorization"]}
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-30-a-resume-needs-more-than-a-checkpoint",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 93,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "把嵌套 HITL 恢复从“有 checkpoint 就继续”提升为 workflow frame、call occurrence、branch、responder 与 effect state 的复合身份问题；不足是响应者认证与外部副作用 exactly-once 仍明确留在合同之外。",
+        "en": "It upgrades nested HITL resume from checkpoint restoration to compound identity across frame, call occurrence, branch, responder evidence, and effect state. Responder authentication and exactly-once external effects remain explicitly outside the demonstrated mechanism."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "The argument is tied to a merged Google ADK implementation with long-running, parallel, id-less, and nested replay cases.", "evidence": ["Google ADK commit 6d145180"]},
+        "originalJudgment": {"score": 24, "reason": "The compound continuation identity sharply distinguishes history matching from authority and effect safety.", "evidence": ["CONTINUE / PAUSE / REPLAY_CALLS"]},
+        "structureExpression": {"score": 18, "reason": "Checkpoint, occurrence identity, continuation decision, responder authority, and effect evidence are presented in a disciplined sequence.", "evidence": ["five-fact continuation receipt"]},
+        "engineeringUsefulness": {"score": 19, "reason": "The typed continuation outcomes and replay preconditions are directly usable in resumable workflow design.", "evidence": ["effect-state qualification before replay"]}
+      }
+    },
+    {
+      "path": "/digital-employee/2026-08-31-a-standing-rule-is-not-this-actions-authority",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 94,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "用 113 人实验把长期偏好与单次行动授权拆开，尤其抓住 140 条规则中 114 条仍选择 Ask 的信号，说明策略常是路由而非最终签署；不足是模拟工作日与粗粒度后果分类离真实企业风险仍有距离。",
+        "en": "The 113-participant study supports a strong separation between standing routing policy and occurrence authority, especially the prevalence of Ask rules. The simulated workday and coarse consequence taxonomy still limit transfer to real enterprise risk."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 33, "reason": "Uses participant counts, blocking rates, confidence intervals, and authored-rule distributions while preserving the simulated-study boundary.", "evidence": ["113 participants", "114 of 140 rules selected Ask"]},
+        "originalJudgment": {"score": 24, "reason": "The policy-as-router versus occurrence-as-commitment distinction is a useful governance model that avoids both blanket approval and blanket prompting.", "evidence": ["standing policy routes; occurrence commitment authorizes"]},
+        "structureExpression": {"score": 18, "reason": "The article moves from outcome data to policy semantics, bounded standing Allow, and audit reconstruction without overclaiming.", "evidence": ["two objects answer two different questions"]},
+        "engineeringUsefulness": {"score": 19, "reason": "It specifies the fields needed for both standing policy and concrete commitment and identifies revocation and ambiguity handling.", "evidence": ["policy and occurrence record fields"]}
+      }
+    }
+  ]
+}

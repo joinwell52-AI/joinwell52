@@ -1,0 +1,154 @@
+{
+  "schema": "observation-scorecard-review-shard/v1",
+  "reviewDate": "2026-09-06",
+  "rubricVersion": "1.0.0",
+  "mode": "monthly-full",
+  "scope": {
+    "canonicalPrefix": "/digital-employee/",
+    "sourceLanguage": "en",
+    "identity": "english-canonical-path",
+    "eligibility": "same-frontmatter-filter-as-research-notes.data.ts",
+    "evaluatedMain": "b1c3797641ec281834f37798a50d5d8ec2b06afa",
+    "dateFrom": "2026-08-19",
+    "segment": "DE-B-4/4"
+  },
+  "eligible": 7,
+  "directlyScored": 7,
+  "inherited": 0,
+  "coverageRate": 1,
+  "items": [
+    {
+      "path": "/digital-employee/2026-09-02-pmbench-versioned-intention-runtime",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 97,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {
+        "zh": "把 PM-Bench 的 prospective memory 结果转成“意图版本—观察策略—到期准入—效果证据”四层运行时模型，并用 heartbeat 数据反驳“多检查就更可靠”；不足是 exactly-once 与真实 provider 事件源仍属工程推导。",
+        "en": "It turns PM-Bench into a four-boundary runtime model for versioned intentions, observation policy, due admission, and effect evidence, while using heartbeat results to reject naive polling. Exactly-once behavior and real provider events remain engineering synthesis."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 34, "reason": "Uses the paper, official repository, task taxonomy, update-sensitive results, and multiple scaffold metrics with explicit source-report boundaries.", "evidence": ["PM-Bench 83 task definitions", "heartbeat and cross-day results"]},
+        "originalJudgment": {"score": 24, "reason": "The distinction between remembering an intention and holding current authority to execute it is both nontrivial and well derived.", "evidence": ["history should be appendable; authority should be versioned"]},
+        "structureExpression": {"score": 19, "reason": "Benchmark facts, lifecycle interpretation, architecture synthesis, and limits are separated clearly.", "evidence": ["four-boundary prospective-intention runtime"]},
+        "engineeringUsefulness": {"score": 20, "reason": "The admission rule, observation-policy fields, and effect-receipt requirement are directly implementable in long-running runtimes.", "evidence": ["latest_version AND trigger satisfied", "effect evidence"]}
+      }
+    },
+    {
+      "path": "/digital-employee/2026-09-02-token-budget-is-not-working-memory-evidence",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 91,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "把 working memory 从 token 容量拆成存储状态、实际交付上下文、管理开销和任务/过程结果四层，能解释“同预算不同信息”；不足是证据来自 55 条 coding-agent 轨迹，企业长期岗位与隐私化审计仍待验证。",
+        "en": "It separates working-memory evidence into stored state, delivered context, management work, and outcome, explaining why equal budgets need not mean equal information. The 55-trajectory coding corpus leaves enterprise roles and privacy-preserving audit largely untested."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "Grounded in a primary 55-trajectory study and careful about corpus and transfer limits.", "evidence": ["55 archived coding-agent trajectories"]},
+        "originalJudgment": {"score": 23, "reason": "The four-layer memory evidence model prevents token budget and final success from substituting for delivery-path evidence.", "evidence": ["stored state / delivered context / management work / outcome"]},
+        "structureExpression": {"score": 18, "reason": "The article moves cleanly from budget ambiguity to the four claims, policy versioning, and recovery implications.", "evidence": ["four layers support four different claims"]},
+        "engineeringUsefulness": {"score": 18, "reason": "It proposes occurrence-bound memory records and revalidation triggers, though implementation details remain high level.", "evidence": ["policy identity and delivery record"]}
+      }
+    },
+    {
+      "path": "/digital-employee/2026-09-03-a-checkpoint-is-not-a-recovery-contract",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 94,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "把 AgentRewind 的对齐 checkpoint 优势与外部副作用不可回滚边界同时保留，进一步提出 occurrence、当前恢复权、policy version 与 effect ledger 的恢复合同；不足是该完整合同尚未在企业外部工具链上实测。",
+        "en": "It preserves both the benefit of aligned checkpoints and the explicit non-rewindability of external effects, then derives an occurrence-bound recovery contract. That full contract has not yet been tested across enterprise external-tool workflows."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 33, "reason": "Uses a primary 82-task aligned-rewind study and keeps the paper's external-effect limitation central rather than incidental.", "evidence": ["82-task study", "network and external-service effects not undone"]},
+        "originalJudgment": {"score": 24, "reason": "The article distinguishes state restoration from accountable permission to resume and adds an effect ledger as a separate boundary.", "evidence": ["checkpoint is not a recovery contract"]},
+        "structureExpression": {"score": 18, "reason": "Internal state alignment, external effects, authority, idempotency, and evidence limits form a coherent progression.", "evidence": ["five recovery bindings"]},
+        "engineeringUsefulness": {"score": 19, "reason": "The effect-ledger fields and new-epoch rule give a concrete design for safe resumable digital work.", "evidence": ["work occurrence, request identity, external receipt, retry semantics"]}
+      }
+    },
+    {
+      "path": "/digital-employee/2026-09-03-cursor-self-hosted-agent-outlook",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 92,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "准确区分“机器在企业内”与“Agent loop、推理和工作入口仍由平台掌握”，并把 Cursor Self-Hosted Machines 放进执行位置、数据流、组织控制和验收四问；不足是未做真实部署、成本或恢复基准，竞争判断仍属展望。",
+        "en": "It precisely separates enterprise-owned execution machines from cloud-owned agent loops and work entry points, framing the change through four control questions. The competitive conclusions remain outlook because no deployment, cost, or recovery benchmark was run."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 31, "reason": "Relies on official Cursor announcement and documentation and repeatedly distinguishes documented facts from product forecasts.", "evidence": ["Self-Hosted Machines documentation", "what leaves your network"]},
+        "originalJudgment": {"score": 24, "reason": "The shift from machine ownership to who organizes and accepts work is a useful competitive lens for local digital-employee products.", "evidence": ["who organizes and accepts Agent work"]},
+        "structureExpression": {"score": 19, "reason": "Execution location, machine pools, computer use, CodeFlowMu implications, counterarguments, and forecasts are well sequenced.", "evidence": ["four concrete answers"]},
+        "engineeringUsefulness": {"score": 18, "reason": "It identifies product questions and segmentation criteria, but intentionally stops short of implementation or benchmark evidence.", "evidence": ["execution platform can change without fragmenting task identity"]}
+      }
+    },
+    {
+      "path": "/digital-employee/2026-09-03-saaw-global-digital-employees",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 96,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {
+        "zh": "55 个条目的全球商业样本把 D1–D5、证据级别、交付对象、定价与模型成本放进同一比较框架，并主动把 CodeFlowMu 的作者身份与商业证据边界写清；不足是大量产品仍依赖厂商公开材料，版本一致性与独立验证不可能完全统一。",
+        "en": "The 55-entry landscape unifies D1–D5 capability, evidence level, delivery object, pricing, and model-cost structure while disclosing the author's CodeFlowMu position. Many products still rely on vendor materials, so version-uniform and independent verification remains incomplete."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 33, "reason": "The sample is broad, uses official source directories, separates commercial status from capability, and states where evidence remains unverified.", "evidence": ["55-entry master library", "official source directory"]},
+        "originalJudgment": {"score": 24, "reason": "The D1–D5 framework and distinction between selling tools, roles, outcomes, and governed work provide a coherent market thesis.", "evidence": ["five capability tiers", "four routes toward sustained roles"]},
+        "structureExpression": {"score": 19, "reason": "Despite its size, the report maintains a stable method, regional tables, key-product profiles, and explicit exclusions.", "evidence": ["admission criteria", "regional market structures", "excluded candidates"]},
+        "engineeringUsefulness": {"score": 20, "reason": "The comparison produces concrete product and roadmap implications for roles, governance, pricing, and evidence collection.", "evidence": ["five questions for every candidate", "CodeFlowMu D4 assessment"]}
+      }
+    },
+    {
+      "path": "/digital-employee/2026-09-05-judgment-is-not-effective-approval",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 94,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "用 GitHub Copilot Review 与 Codex Guardian 两个不同层次的样本，把判断、批准能力、门禁效力、scope 与 freshness 拆成五个治理事实，并明确什么变化应触发失效；不足是跨平台统一 approval identity 与 exactly-once 下游效果仍未定义。",
+        "en": "GitHub review controls and Codex Guardian provide complementary evidence for separating judgment, approval capability, gate effect, scope, and freshness. A portable approval identity and exactly-once downstream-effect model remain unresolved."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 33, "reason": "Uses first-party GitHub product controls and a merged Codex implementation while keeping organizational and runtime gates distinct.", "evidence": ["GitHub Copilot approval controls", "Codex authorization-evidence versioning"]},
+        "originalJudgment": {"score": 24, "reason": "The five-question decomposition of approval is a strong antidote to overloaded approved booleans.", "evidence": ["judgment / capability / gate effect / scope / freshness"]},
+        "structureExpression": {"score": 18, "reason": "The article moves from two concrete samples to invalidation rules, durable facts, counterarguments, and open questions.", "evidence": ["invalidation should follow enumerated change"]},
+        "engineeringUsefulness": {"score": 19, "reason": "The staged authority lifecycle and material-change triggers can be converted directly into approval records and tests.", "evidence": ["five-stage authority lifecycle table"]}
+      }
+    },
+    {
+      "path": "/digital-employee/2026-09-06-risk-does-not-choose-protocol",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 93,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "用 4,181 道题的受控研究区分“当前路径可能失败”“哪种协作协议有增益”“是否值得支付成本”三项决策，避免把低置信度直接翻译成更多 Agent；不足是数学任务上的 protocol-value 预测能否迁移到软件和企业工作仍未知。",
+        "en": "The 4,181-problem study cleanly separates failure-risk admission, protocol-specific value, and budget admission, preventing low confidence from automatically meaning more agents. Transfer of protocol-value prediction from mathematics to software and enterprise work remains unknown."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "Uses detailed AUROC/AUPRC, matched outcomes, token differences, and explicit limits about post-answer features and task domain.", "evidence": ["4,181 problems", "failure AUROC 0.8847 versus protocol-value AUPRC"]},
+        "originalJudgment": {"score": 24, "reason": "The three-receipt escalation model separates risk, topology value, and resource authority rather than overloading one confidence score.", "evidence": ["three evidence receipts"]},
+        "structureExpression": {"score": 18, "reason": "The article moves from the overloaded router to controlled evidence, receipts, joint policies, and auditable execution rules.", "evidence": ["one score asked to do three jobs"]},
+        "engineeringUsefulness": {"score": 19, "reason": "It provides concrete storage fields, fallback choices, and evaluation error classes for cost-aware multi-agent routing.", "evidence": ["high risk, uncertain protocol", "under/over/wrong-protocol/budget errors"]}
+      }
+    }
+  ]
+}

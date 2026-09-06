@@ -1,0 +1,173 @@
+{
+  "schema": "observation-scorecard-review-shard/v1",
+  "reviewDate": "2026-09-06",
+  "rubricVersion": "1.0.0",
+  "mode": "monthly-full",
+  "scope": {
+    "canonicalPrefix": "/engineering/",
+    "sourceLanguage": "en",
+    "identity": "english-canonical-path",
+    "eligibility": "same-frontmatter-filter-as-research-notes.data.ts",
+    "evaluatedMain": "b1c3797641ec281834f37798a50d5d8ec2b06afa",
+    "dateFrom": "2026-08-19",
+    "segment": "ENG-B-1/5"
+  },
+  "eligible": 8,
+  "directlyScored": 8,
+  "inherited": 0,
+  "coverageRate": 1,
+  "items": [
+    {
+      "path": "/engineering/2026-08-19-agent-dispatch-fault-injection",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 96,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {
+        "zh": "把 Agent Runtime 可靠性测试从 happy path 改成“不变量 × 故障点 × 可观察 verdict”，并保留 PASS、FAIL、NOT RUN 的差别；不足是 12 个场景仍是最小计划，双 claimant、跨文件系统和真实副作用故障还需继续注入。",
+        "en": "It reframes runtime reliability as invariant × fault location × observable verdict and preserves PASS, FAIL, and NOT RUN as different facts. The 12-case set is still a minimum; multi-claimant, cross-filesystem, and real-effect faults need deeper injection."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 34, "reason": "Combines TMPA/FCoP contracts, pinned CodeFlowMu paths, actual rerun outcomes, and explicit NOT RUN/FAIL evidence boundaries.", "evidence": ["atomic-write 9/9", "LAN 5/5", "NOT RUN and FAIL cases"]},
+        "originalJudgment": {"score": 24, "reason": "The invariant-fault-verdict framing turns reliability from demo success into a falsifiable engineering test model.", "evidence": ["six defensive rules", "one rule × one injected fault × one verdict"]},
+        "structureExpression": {"score": 19, "reason": "Storage, watcher, dispatch, governance, and test-oracle failures are separated into a coherent layered argument.", "evidence": ["layered responsibility table", "12-case fault set"]},
+        "engineeringUsefulness": {"score": 19, "reason": "The concrete crash windows and minimum scenarios can be translated directly into a Runtime fault harness.", "evidence": ["dispatch intent/session crash windows", "duplicate/missed watcher cases"]}
+      }
+    },
+    {
+      "path": "/engineering/2026-08-19-oauth-refresh-split-commit",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 92,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "从 MCP TypeScript SDK 的 saveTokens 失败切出“远端 refresh 已提交、local persistence 未提交”的 split-commit 状态，异常边界解释得很清楚；不足是修复只保留了部分成功事实，没有给出跨服务 rollback、重试与持久化原子性协议。",
+        "en": "The MCP SDK case clearly exposes a split commit where remote refresh succeeds before local persistence fails, making catch scope part of the reliability model. The fix preserves the partial-success fact but does not provide rollback, atomic persistence, or a cross-system retry protocol."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "Grounded in a merged SDK change and regression that forces storage failure after successful token refresh.", "evidence": ["MCP TypeScript SDK commit 3924de99", "disk full regression"]},
+        "originalJudgment": {"score": 23, "reason": "The article correctly treats exception scope as preservation of which side committed, not merely error handling style.", "evidence": ["remote committed / local not durably committed"]},
+        "structureExpression": {"score": 18, "reason": "Commit planes, catch boundaries, recovery visibility, and transaction limits are presented compactly.", "evidence": ["two operations commit in different authority planes"]},
+        "engineeringUsefulness": {"score": 19, "reason": "It suggests provider contracts for atomicity, durable acknowledgement, and safe retry that are directly relevant to credential storage.", "evidence": ["provider capability list"]}
+      }
+    },
+    {
+      "path": "/engineering/2026-08-19-taskbook-to-task-graph",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 96,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {
+        "zh": "把 2 万字需求从“总结”提升为带来源 SHA、REQ ledger、冲突分类、WP DAG、预算和版本绑定批准的编译管线，长任务治理方法完整；不足是对模型遗漏、压缩误解和跨团队真实交付的降低幅度尚无量化。",
+        "en": "It turns a long requirement from a summary problem into a compiled source ledger, conflict model, work-package DAG, budget, and revision-bound approval pipeline. The method is strong, but its measured reduction of model omissions and cross-team delivery errors remains unknown."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 33, "reason": "Uses TMPA/FCoP contracts, pinned CodeFlowMu planning artifacts, Cursor Plan Mode, and explicit scope limits.", "evidence": ["source SHA/EOF record", "Requirement Ledger", "Planning Gate contract"]},
+        "originalJudgment": {"score": 24, "reason": "The requirement-compilation thesis is a nontrivial bridge from natural language to accountable execution artifacts.", "evidence": ["long-horizon planning is compilation, not compression"]},
+        "structureExpression": {"score": 19, "reason": "The article follows the same pipeline it advocates: ingest, ledger, conflict, work graph, budget, validation, approval.", "evidence": ["five-stage pipeline"]},
+        "engineeringUsefulness": {"score": 20, "reason": "The nine-question WP contract and preflight checklist are immediately reusable in agent software projects.", "evidence": ["WP questions", "minimum preflight checklist"]}
+      }
+    },
+    {
+      "path": "/engineering/2026-08-20-project-root-switch",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 97,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {
+        "zh": "把“切换项目”拆成停止旧副作用、持久化新 root、统一重建 Runtime/MCP/watcher/cwd、再验证的一次执行链 rebind，并补足 Windows handle、symlink alias 与初始化权限边界；不足是高频并发切换和第三方工具缓存仍未实测。",
+        "en": "It treats project switching as an execution-chain rebind across runtime, MCP, watchers, cwd, lifecycle, and evidence roots, with explicit Windows-handle and symlink boundaries. High-frequency concurrent switches and third-party path caches remain untested."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 34, "reason": "Pins multiple CodeFlowMu components, reruns 27 tests, cites Node/VS Code behavior, and clearly labels recommendations versus shipped paths.", "evidence": ["27/27 switch tests", "ProjectExecutionContext", "project-registry"]},
+        "originalJudgment": {"score": 24, "reason": "The one-root coherence model exposes why a UI selection is insufficient and makes switching an ordered authority transition.", "evidence": ["current project is a set of root-binding facts"]},
+        "structureExpression": {"score": 19, "reason": "The seven root consumers, rebind sequence, six failure modes, and acceptance checklist form a strong operational narrative.", "evidence": ["stop old effects → persist → rebuild → verify"]},
+        "engineeringUsefulness": {"score": 20, "reason": "The before/during/after switch checklist can drive a production implementation and regression suite directly.", "evidence": ["14-point switch acceptance checklist"]}
+      }
+    },
+    {
+      "path": "/engineering/2026-08-20-visible-is-not-durable",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 93,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "通过 Google ADK pending 目录与 rename 发布协议，把 reservation、staged completeness、reader visibility、durable persistence 四个状态拆开，避免“看得见就等于耐久”；不足是没有 fsync 的实现本身也限制了可宣称的崩溃保证。",
+        "en": "The ADK pending-directory protocol cleanly separates reservation, staged completeness, reader visibility, and durable persistence, preventing visible from meaning crash-durable. The lack of fsync in the demonstrated implementation also sharply limits the durability guarantee."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "Uses a merged ADK filesystem implementation and explicitly preserves the source's no-fsync durability limit.", "evidence": ["Google ADK commit 94475c9a", "os.replace publication"]},
+        "originalJudgment": {"score": 24, "reason": "The four-part lifecycle is a useful artifact-state model that separates ownership, completeness, visibility, and persistence.", "evidence": ["reservation / staged completeness / visibility / durability"]},
+        "structureExpression": {"score": 18, "reason": "Namespace design, writer coordination, rename semantics, and recovery authority follow a tight sequence.", "evidence": ["incomplete state outside reader namespace"]},
+        "engineeringUsefulness": {"score": 19, "reason": "The article gives concrete publication and reclamation rules for file-backed artifact systems.", "evidence": ["pending reservation", "reclaim only with stale-owner evidence"]}
+      }
+    },
+    {
+      "path": "/engineering/2026-08-21-trust-run-not-inherit-secrets",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 92,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "把 workspace trust 与 secret inheritance 拆成两个权限门，说明“允许仓库 helper 执行”不等于“把父进程 credential 一并委派”，并强调显式上下文优于 ambient env；不足是公开证据没有枚举过滤变量，也不构成文件、网络或 keychain sandbox。",
+        "en": "It separates workspace execution trust from secret inheritance, showing that permission to run a repository helper does not delegate the parent's credentials. Public evidence does not enumerate the filtered variables and does not establish filesystem, network, or keychain sandboxing."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "Anchored in Claude Code release material and official MCP documentation while explicitly noting the private filtering implementation.", "evidence": ["Claude Code v2.1.238", "headersHelper documentation"]},
+        "originalJudgment": {"score": 23, "reason": "The two-gate authority model cleanly separates code admission from post-admission capability grants.", "evidence": ["trust to run is not authority to inherit secrets"]},
+        "structureExpression": {"score": 18, "reason": "Executable configuration, secret capability, explicit context, and sandbox limits are clearly differentiated.", "evidence": ["admission and capability grants need separate gates"]},
+        "engineeringUsefulness": {"score": 19, "reason": "It provides a concrete child-process contract for origin, trusted root, task inputs, and separately granted capabilities.", "evidence": ["explicit context contract"]}
+      }
+    },
+    {
+      "path": "/engineering/2026-08-22-agent-task-file-state-machine",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 96,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {
+        "zh": "沿一张 TASK 把 path state、transition history、REPORT、acceptance、revision、idempotency、dependency 与 managed command 生命周期逐层拆开，并诚实指出未来多 Runtime double-claim 的 TOCTOU 边界；不足是部分 V1.9.7 细节来自私有候选实现，公共复现不完整。",
+        "en": "Following one TASK, it separates path state, transition history, REPORT, acceptance, revision, idempotency, dependencies, and process lifecycle, while exposing a future multi-runtime double-claim boundary. Some V1.9.7 evidence remains private-candidate material, limiting public reproduction."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 33, "reason": "Combines public FCoP/POSIX sources with bounded private-candidate excerpts and repeatedly marks what is not yet proven.", "evidence": ["FCoP lifecycle semantics", "double-claim boundary analysis"]},
+        "originalJudgment": {"score": 24, "reason": "The article makes state, history, execution return, acceptance, and process lifecycle distinct facts connected by stable identity.", "evidence": ["do not compress four facts into done"]},
+        "structureExpression": {"score": 19, "reason": "Creation, claim, execution, dependencies, return, acceptance, and long-command lifecycle follow a coherent state-machine walkthrough.", "evidence": ["task in five stages"]},
+        "engineeringUsefulness": {"score": 20, "reason": "The five invariant groups and contention tests provide direct implementation and QA targets.", "evidence": ["identity/state/transition/execution/acceptance invariants"]}
+      }
+    },
+    {
+      "path": "/engineering/2026-08-22-codeflowmu-governance-state-rail",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 97,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {
+        "zh": "把 TMPA、FCoP、CodeFlowMu 明确分成治理语义、文件状态机和工程轨道三层，并用 neutral、waiting_dependency、negative_list_denied、unknown_reconcile 防止轨道把事实投影成业务裁决；不足是统一 reconcile SLA、多进程 claim 与 OS sandbox 仍是准入要求。",
+        "en": "It sharply separates TMPA governance, FCoP state projection, and the CodeFlowMu execution rail, then uses four dispositions to prevent runtime facts from becoming business verdicts. Unified reconciliation SLA, multi-process claims, and OS sandboxing remain admission requirements rather than completed capabilities."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 34, "reason": "Uses public specifications, independent conceptual references, and bounded V1.9.7 candidate evidence with unusually explicit non-claims.", "evidence": ["TMPA/FCoP specifications", "RailAssistanceResult excerpt"]},
+        "originalJudgment": {"score": 24, "reason": "The three-layer responsibility model and non-adjudicating rail contract clarify where facts, execution, and final judgment belong.", "evidence": ["governance model / file state machine / engineering rail"]},
+        "structureExpression": {"score": 19, "reason": "Layer responsibilities, one-work-item walkthrough, concurrency roadmap, and architecture questions reinforce the same thesis without collapsing layers.", "evidence": ["one work item across all three layers"]},
+        "engineeringUsefulness": {"score": 20, "reason": "The policy-bundle, disposition, dependency-authority, and concurrency-admission requirements form a practical architecture checklist.", "evidence": ["versioned governance policy bundle", "seven architecture questions"]}
+      }
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "schema": "observation-scorecard-review-shard/v1",
+  "reviewDate": "2026-09-06",
+  "rubricVersion": "1.0.0",
+  "mode": "monthly-full",
+  "scope": {
+    "canonicalPrefix": "/engineering/",
+    "sourceLanguage": "en",
+    "identity": "english-canonical-path",
+    "eligibility": "same-frontmatter-filter-as-research-notes.data.ts",
+    "evaluatedMain": "b1c3797641ec281834f37798a50d5d8ec2b06afa",
+    "dateFrom": "2026-08-19",
+    "segment": "ENG-B-4/5"
+  },
+  "eligible": 8,
+  "directlyScored": 8,
+  "inherited": 0,
+  "coverageRate": 1,
+  "items": [
+    {
+      "path": "/engineering/2026-09-01-decision-evidence-continuity",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 95,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {
+        "zh": "在 fact check、diagnostic、EVAL 与 technical takeover 都已存在的前提下，准确指出缺的是同一 interruption case 的 decision-evidence reference chain，并坚持 observer 只能被引用不能获 dispatch 权；不足是合同虽冻结，持久化、并发、崩溃恢复和独立 QA 尚未实现。",
+        "en": "It identifies the missing same-interruption decision-evidence chain among fact checks, diagnostics, EVAL, and technical takeover while keeping observers non-authoritative. The contract is frozen, but persistence, concurrency, crash recovery, and independent QA are not yet implemented."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 33, "reason": "Uses 57 existing tests as separated layer evidence, a controlled projection probe, external references, and explicit contract-versus-implementation boundaries.", "evidence": ["57 related tests", "authorization marker/raw projection probe"]},
+        "originalJudgment": {"score": 24, "reason": "The interruption-case identity and citable-but-non-authoritative observation model resolves a subtle gap without inventing another approval system.", "evidence": ["historical receipt / current authority / interruption case"]},
+        "structureExpression": {"score": 19, "reason": "Existing capabilities, missing connection, allowed references, acceptance matrix, and implementation preconditions are clearly separated.", "evidence": ["four correctly separated capabilities"]},
+        "engineeringUsefulness": {"score": 19, "reason": "The frozen case-reference fields and prohibited authority paths are concrete implementation requirements.", "evidence": ["case_id plus authority/effect/observation references"]}
+      }
+    },
+    {
+      "path": "/engineering/2026-09-01-interrupted-task-takeover",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 97,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {
+        "zh": "抓住“TASK 身份连续 ≠ 执行权限连续”，用 RA-7/RA-8 直接进入真实 Dispatcher recovery path，证明 effect confirmed 与 effect unknown 目前会落到同一恢复前状态，再提出 reexecute、reconcile_only、hold_for_review 三分法；不足是尚未制造真实外部副作用或完成 IA/DC 独立验收。",
+        "en": "It makes the crucial distinction that TASK continuity does not imply execution-authority continuity, and RA-7/RA-8 reach the real recovery path with confirmed versus unknown effects. The three-way admission contract remains unimplemented against real external effects and independent IA/DC acceptance."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 34, "reason": "Combines external recovery references, real V2.1.2 code/test inspection, Dispatcher recovery probes, and precise non-claims about production duplication.", "evidence": ["RA-7 confirmed effect", "RA-8 unknown effect", "Session/lease safeguards"]},
+        "originalJudgment": {"score": 24, "reason": "The effect-fact admission boundary prevents technical recoverability from becoming automatic re-execution authority.", "evidence": ["technical interruption ≠ effect absent ≠ safe to re-execute"]},
+        "structureExpression": {"score": 19, "reason": "Identity continuity, ownership settlement, effect confirmation, narrow frozen contract, and scope limits follow a strong causal sequence.", "evidence": ["interruption → ownership → effect fact → disposition"]},
+        "engineeringUsefulness": {"score": 20, "reason": "The three dispositions, mixed-entry classifier requirement, late-owner fencing, and re-admission rules are direct development targets.", "evidence": ["reexecute / reconcile_only / hold_for_review"]}
+      }
+    },
+    {
+      "path": "/engineering/2026-09-02-a-smaller-skill-is-not-the-same-skill",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 92,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "没有把 SkillZip Pro 简化成“压缩多少 token”，而是把 progressively loaded skill 看成 public entries、routes、resources、environment assumptions 与 behavior 组成的 routed graph，并指出 aggressive 71% 压缩可带来 26 点 accuracy 损失；不足是结果仍属作者报告，授权与外部 effect 语义并未被实验覆盖。",
+        "en": "It treats a progressively loaded skill as a routed graph of public entries, resources, environment assumptions, and behavior rather than just a token bundle, and preserves the reported 26-point loss under aggressive compression. The results remain author-reported and do not validate authorization or external-effect semantics."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "Uses reported protected and aggressive compression results while clearly marking them as primary-source rather than independent validation.", "evidence": ["38% bundle reduction", "71% aggressive configuration and up to 26-point loss"]},
+        "originalJudgment": {"score": 23, "reason": "The capability-identity view extends compression evaluation from prose similarity to route and entry preservation.", "evidence": ["skill bundle is a routed graph"]},
+        "structureExpression": {"score": 18, "reason": "Routing model, numbers, structural contract, behavioral limits, candidate adoption, and evidence boundary are coherent.", "evidence": ["structural preservation needs explicit evidence"]},
+        "engineeringUsefulness": {"score": 19, "reason": "The candidate/adoption lifecycle and route/entry audit requirements are practical for evolving skill packages.", "evidence": ["source hash → transform → candidate hash → audit → adoption"]}
+      }
+    },
+    {
+      "path": "/engineering/2026-09-03-discovery-must-not-redefine-credential-authority",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 94,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "用 MCP Python SDK 与 Gemini CLI 两个独立实现分别覆盖 discovery metadata 与 OAuth callback 的 issuer binding，形成“identity before indirection”原则，并指出两者 issuer normalization 语义仍不一致；不足是尚无跨语言规范化 test vectors 与完整 token/cache migration 互操作验证。",
+        "en": "The MCP Python SDK and Gemini CLI cover complementary issuer-binding occurrences at discovery and callback boundaries, supporting identity before indirection. Issuer normalization still differs, and cross-language test vectors plus token/cache migration interoperability remain unresolved."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 33, "reason": "Uses two merged implementations at different OAuth occurrences and preserves their comparison-semantic differences rather than forcing equivalence.", "evidence": ["MCP Python SDK issuer check", "Gemini CLI callback issuer check"]},
+        "originalJudgment": {"score": 24, "reason": "Identity-before-indirection is a strong cross-implementation principle that distinguishes reachability from credential authority.", "evidence": ["discovery can locate an authority; it must not select a new one"]},
+        "structureExpression": {"score": 18, "reason": "Occurrence coverage, comparison semantics, cache invalidation, OAuth limits, and open questions are tightly organized.", "evidence": ["comparison semantics are a security boundary"]},
+        "engineeringUsefulness": {"score": 19, "reason": "The article specifies normative test-vector dimensions and mismatch invalidation behavior suitable for SDK interoperability work.", "evidence": ["paths/slashes/host case/ports/userinfo/query/tenant test vectors"]}
+      }
+    },
+    {
+      "path": "/engineering/2026-09-03-empty-test-results-verified",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 98,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {
+        "zh": "通过真实 HostAdmissionControlPlaneService 把 empty、partial、duplicate、unknown ID 四类 incomplete evidence 都跑到 PASS/VERIFIED，同时保留 BLOCKED、FAIL、throw 正常工作的控制组，精准定位“无失败返回”与“证据完整”之间的集合契约缺口；不足是没有测生产中 incomplete result 的真实发生率，也未在研究中实施修复。",
+        "en": "Using the real Host admission service, it drives empty, partial, duplicate, and unknown-ID evidence into PASS/VERIFIED while preserving BLOCKED, FAIL, and exception controls, precisely locating a set-completeness contract gap. Production incidence is unknown and no remediation was implemented in the study."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 34, "reason": "Uses the real decision service, two Hosts, 16 input combinations and 32 observations, plus controls and prior 41-test baselines.", "evidence": ["16 combinations / 32 observations", "four incorrect-acceptance classes", "41 existing tests per round"]},
+        "originalJudgment": {"score": 25, "reason": "It identifies evidence-set completeness—not probe realism or array syntax—as the missing verification proposition.", "evidence": ["receiving no failure does not establish complete success"]},
+        "structureExpression": {"score": 19, "reason": "External prompt, real service path, counterexample matrix, baseline explanation, and repair principle are exceptionally clear.", "evidence": ["four counterexample classes"]},
+        "engineeringUsefulness": {"score": 20, "reason": "Required-ID coverage, duplicate semantics, unknown-ID rejection, and run/candidate binding translate directly into regression tests.", "evidence": ["frozen plan as authoritative evidence set"]}
+      }
+    },
+    {
+      "path": "/engineering/2026-09-03-process-alive-owner-identity",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 96,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {
+        "zh": "从 Codex Windows process handle/creation-time 变化回查 CodeFlowMu，发现 writer lock 已有 generation-sensitive identity，而 operation approval recovery 仍主要看 PID liveness，并用“2000 年旧记录 + 当前同 PID”对照得到两种不同结论；不足是实验没有真正诱发 OS PID reuse，也没有执行外部副作用恢复。",
+        "en": "Prompted by Codex process-identity work, it finds generation-aware protection in the writer lock but PID-liveness-only recovery in operation approval, then exposes the semantic mismatch with a controlled old-record/current-PID case. The study did not induce real OS PID reuse or execute external-effect recovery."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 33, "reason": "Combines external merged changes, fixed-source inspection, two existing protection paths, real OS creation metadata, controlled records, and negative controls.", "evidence": ["writer-lock identity token", "approval recovery comparison", "three controlled record types"]},
+        "originalJudgment": {"score": 24, "reason": "The article distinguishes process liveness, executor identity, effect facts, and current authority instead of treating PID as durable ownership.", "evidence": ["PID is a locator, not permanent identity"]},
+        "structureExpression": {"score": 19, "reason": "External reference, existing local answer, controlled comparison, bounded conclusion, and retry warning form a strong diagnostic narrative.", "evidence": ["same controlled PID and old timestamp, different judgments"]},
+        "engineeringUsefulness": {"score": 20, "reason": "It recommends reusing existing generation identity, preserving unknown for legacy records, and separating interruption from replay authority.", "evidence": ["match / mismatch / unknown owner identity"]}
+      }
+    },
+    {
+      "path": "/engineering/2026-09-03-saaw-open-source-protocols-roadmap",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 94,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {
+        "zh": "23 个公开项目与 MCP/A2A/OASF/Open Agent Spec/TMPA/FCoP 的责任分层，把开源机制、协议成熟度、产品能力与 CodeFlowMu 商业路线放在同一工程地图里，并明确第二实现与 conformance 才是协议下一步；不足是部分成熟度判断是作者初评，未统一安装测试所有项目。",
+        "en": "The 23-project radar and protocol-responsibility map connect open mechanisms, specification maturity, product capability, and CodeFlowMu direction, with second implementations and conformance identified as the next protocol milestone. Some maturity ratings remain author assessments and the projects were not uniformly installed or tested."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 32, "reason": "Provides a large official-source directory and repeatedly distinguishes public-source inspection from installation, certification, and market evidence.", "evidence": ["23-project radar", "protocol/source references"]},
+        "originalJudgment": {"score": 24, "reason": "The S1–S5 specification maturity ladder and responsibility layering separate distribution, interoperability, governance, and product delivery.", "evidence": ["MCP/A2A/OASF/FCoP/TMPA responsibility stack"]},
+        "structureExpression": {"score": 19, "reason": "Technology radar, standards path, implementation mechanics, architecture comparison, product form, and roadmap are extensive but consistently organized.", "evidence": ["sections 1–17"]},
+        "engineeringUsefulness": {"score": 19, "reason": "It produces concrete next milestones for second implementations, conformance, installer delivery, mobile supervision, and role packaging.", "evidence": ["second independent Reader/Writer goal", "installable workstation proposal"]}
+      }
+    },
+    {
+      "path": "/engineering/2026-09-04-approval-operation-identity",
+      "sourceLanguage": "en",
+      "scoringMode": "monthly-full-direct",
+      "score": 99,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {
+        "zh": "通过真实 Native gate、approval service 与跨进程 consumption，直接观察“换 Git branch 仍复用批准、只换 Session 却重新要求批准”，再用 field-by-field 对比证明不是 SHA-256 collision，而是 operation 信息在 hash 前消失、Session 又从 nested snapshot 回流；不足是只对 branch 做了消费级验证，remote/force/delete 主要停在 digest 等值边界。",
+        "en": "Real Native-gate, approval-service, and cross-process consumption tests show a changed Git branch reusing approval while a session-only change misses it; field comparisons prove the issue occurs before hashing, with session re-entering through the snapshot. Branch change reaches consumption, while remote/force/delete are primarily verified at digest equality."
+      },
+      "dimensions": {
+        "evidenceRigor": {"score": 35, "reason": "Uses existing 31-test controls, 11 twice-repeated input mutations, real request construction, cross-process approval records, field diffs, and local Codex resolution calls.", "evidence": ["11-input approval matrix", "seven field-by-field comparisons", "cross-process consumption"]},
+        "originalJudgment": {"score": 25, "reason": "It distinguishes risk classification, operation identity, request digest, and execution context while showing two opposite mutation failures in one pipeline.", "evidence": ["operation change must invalidate; permitted context change must not redefine identity"]},
+        "structureExpression": {"score": 19, "reason": "Opening counterexample, pipeline anatomy, pre-hash information loss, nested-session return, mutation-test method, and scope limits are exceptionally clear.", "evidence": ["hash did not collide; information disappeared first"]},
+        "engineeringUsefulness": {"score": 20, "reason": "The two-direction mutation test strategy and real producer-to-consumer requirement directly define the next approval-identity regression suite.", "evidence": ["semantic operation mutation vs permitted continuity tests"]}
+      }
+    }
+  ]
+}
