@@ -14,7 +14,9 @@ const clock = () => {
 function fail(message) { throw new Error(`Historical Publication recovery: ${message}`) }
 function durable(p) {
   if (typeof p !== 'string' || p.includes('..') || p.includes('\\') || !p.startsWith('research/runtime/')) fail('unsafe request path')
-  if (!git('show', `origin/main:${p}`).equals(fs.readFileSync(p))) fail(`not exact fetched-main bytes: ${p}`)
+  // Compare Git-normalized bytes so a Windows CRLF checkout is not mistaken for
+  // changed repository content. Binary assets retain their exact blob identity.
+  if (git('hash-object', '--path', p, p).toString().trim() !== git('rev-parse', `origin/main:${p}`).toString().trim()) fail(`not exact fetched-main bytes: ${p}`)
 }
 
 export function validateHistoricalPublication({ requestPath, date, wake, requireClaim = true }) {
@@ -59,7 +61,7 @@ export function validateHistoricalPublication({ requestPath, date, wake, require
   }
   const batchPath=`research/runtime/candidates/${y}/${m}/${date}-candidates.json`
   durable(batchPath)
-  if(hash(fs.readFileSync(batchPath))!==request.candidateBatchSha256) fail('candidate batch changed')
+  if(hash(git('show',`origin/main:${batchPath}`))!==request.candidateBatchSha256) fail('candidate batch changed')
   const batch=read(batchPath)
   if(batch.date!==date||batch.status!=='Completed'||batch.candidates.length>task.maxOutputItems) fail('invalid same-date batch')
   const recoveryClaims=record.timeline.filter(e=>e.task==='publication'&&e.event==='Worker Claimed'&&e.detail.includes('Historical Publication recovery'))
