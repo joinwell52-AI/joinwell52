@@ -1,0 +1,67 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-07",
+  "itemId": "Q-20260907-01",
+  "coreProposition": "Multi-agent safety is an end-to-end authority-to-effect property, not the sum of local worker checks: a credible safety claim needs provenance-preserving route evidence, stated observation and intervention coverage, explicit trust assumptions, alternate-route assessment, and verified recovery of derivative state and authority.",
+  "openingMove": {
+    "type": "all-local-checks-pass-global-effect-fails",
+    "purpose": "Open with the paradox that every worker can pass its own check while untrusted influence survives through shared state and delegation.",
+    "evidenceRefs": ["E2", "E3", "E4"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is local worker safety not a system safety proof?",
+      "claim": "The protected object is the full route from influence origin to protected effect, and that route can compose across principals, interfaces, shared state, and delegated tools.",
+      "evidenceRefs": ["E2", "E3", "E4"],
+      "reasoningRole": "failure-model",
+      "readerProgress": "Replace component-level reasoning with end-to-end path reasoning.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What does the systematization contribute?",
+      "claim": "Its attack-path and defense-field taxonomy makes observation coverage, intervention reach, trust assumptions, and recovery explicit rather than allowing one positive local test to stand in for the whole route.",
+      "evidenceRefs": ["E1", "E2", "E3"],
+      "reasoningRole": "evidence",
+      "readerProgress": "Understand which evidence dimensions are missing from a local PASS.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "How should a governed runtime represent the security claim?",
+      "claim": "Bind origin, transformations, intermediate principals, delegated rights, and final protected effect into a provenance-preserving authority-to-effect lineage with declared blind spots.",
+      "evidenceRefs": ["E4", "E5"],
+      "reasoningRole": "architecture-synthesis",
+      "readerProgress": "Gain an auditable route-closure model.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Why is containment not the end of the incident?",
+      "claim": "After influence has propagated, credentials, memories, artifacts, delegated rights, or spawned principals may remain effective; recovery must locate, revoke, repair, and re-verify derivative state.",
+      "evidenceRefs": ["E3", "E5"],
+      "reasoningRole": "recovery-boundary",
+      "readerProgress": "Separate stopping the source from restoring trustworthy state.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What objections and limits remain?",
+      "claim": "More global visibility can improve route coverage while also concentrating sensitive telemetry and control-plane risk; provenance and counterfactual testing therefore need explicit scope and validity boundaries.",
+      "evidenceRefs": ["E1", "E5"],
+      "reasoningRole": "counterpoint-and-boundary",
+      "readerProgress": "Avoid equating path closure with unlimited centralized observation.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "A strong central monitor could simply collect every trace and decide whether the system is safe.",
+    "responseBoundary": "Central visibility may improve coverage but creates privacy, concentration, and trust risks; the requirement is explicit coverage and residual blind spots, not a mandatory central observer."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with unresolved questions about compact provenance, online alternate-route testing, and recovery of derivative authority."
+  }
+}
