@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260906-02-phase-indexed-resilience-governance.md
 item_id: "Q-20260906-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-06-recovery-is-a-trajectory-cover.png"
+cover: "/assets/covers/daily-2026-09-06-recovery-is-a-trajectory-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-06-recovery-is-a-trajectory-cover.png"
+  image="/assets/covers/daily-2026-09-06-recovery-is-a-trajectory-editorial-v2.webp"
   kicker="Industry Architecture · Daily Research"
   title="Recovery Is a Trajectory, Not a Boolean"
   summary="A system being healthy now does not prove that it behaved resiliently during disruption. Distributed-agent resilience must preserve separate evidence for degradation, containment, restoration, cumulative burden, terminal state, and authoritative mutation."

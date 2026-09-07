@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260905-03-operational-capability-evidence.md
 item_id: "Q-20260905-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-05-passing-tests-is-not-operational-capability-cover.png"
+cover: "/assets/covers/daily-2026-09-05-passing-tests-is-not-operational-capability-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-05-passing-tests-is-not-operational-capability-cover.png"
+  image="/assets/covers/daily-2026-09-05-passing-tests-is-not-operational-capability-editorial-v2.webp"
   kicker="Open-source Engineering · Daily Research"
   title="Passing Tests Is Not Operational Capability"
   summary="A reproducible study of agentic programming shows that code can succeed on small functional checks and still deadlock, exhaust memory, crash, or time out at larger workloads or parallelism. Completion claims should preserve functional, process, failure-envelope, scaling, and reproducibility evidence separately."

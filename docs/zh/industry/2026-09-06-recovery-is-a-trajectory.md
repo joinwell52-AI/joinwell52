@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260906-02-phase-indexed-resilience-governance.md
 item_id: "Q-20260906-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-06-recovery-is-a-trajectory-cover.png"
+cover: "/assets/covers/daily-2026-09-06-recovery-is-a-trajectory-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-06-recovery-is-a-trajectory-cover.png"
+  image="/assets/covers/daily-2026-09-06-recovery-is-a-trajectory-editorial-v2.webp"
   kicker="行业架构 · 每日研究"
   title="恢复是一条轨迹，不是一个布尔值"
   summary="系统当前恢复正常，并不能证明它在扰动期间表现良好。分布式智能体的韧性证据必须分别记录退化、遏制、恢复、累积负担与终态，并明确谁有权提交环境状态。"

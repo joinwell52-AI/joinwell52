@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260906-03-principal-identity-destination-authority.md
 item_id: "Q-20260906-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-06-stable-identity-does-not-authorize-destination-cover.png"
+cover: "/assets/covers/daily-2026-09-06-stable-identity-does-not-authorize-destination-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-06-stable-identity-does-not-authorize-destination-cover.png"
+  image="/assets/covers/daily-2026-09-06-stable-identity-does-not-authorize-destination-editorial-v2.webp"
   kicker="Open-source Engineering · Daily Research"
   title="Stable Identity Does Not Authorize a Destination"
   summary="Stable logical identity can attribute durable state to the right principal, but it cannot prove that a new workspace is compatible or grant present execution permission. Safe recovery separately verifies identity, continuity, destination, and authority."

@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260906-03-principal-identity-destination-authority.md
 item_id: "Q-20260906-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-06-stable-identity-does-not-authorize-destination-cover.png"
+cover: "/assets/covers/daily-2026-09-06-stable-identity-does-not-authorize-destination-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-06-stable-identity-does-not-authorize-destination-cover.png"
+  image="/assets/covers/daily-2026-09-06-stable-identity-does-not-authorize-destination-editorial-v2.webp"
   kicker="开源工程 · 每日研究"
   title="稳定身份，不授权新的目的地"
   summary="稳定的逻辑身份能够把持久状态归给正确主体，却不能证明新工作空间兼容，也不能授予当前执行权限。安全恢复必须分别核验身份、状态连续性、目的地兼容性与现时权限。"

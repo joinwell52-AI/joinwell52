@@ -14,11 +14,11 @@ evidence_status: Completed
 citation_status: Completed
 editing_status: Completed
 publication_authorized: true
-cover: '/assets/covers/weekly-008-authority-is-a-relation-cover.svg'
+cover: '/assets/covers/weekly-008-authority-is-a-relation-editorial-v2.webp'
 ---
 
 <ArticleCover
-  image="/assets/covers/weekly-008-authority-is-a-relation-cover.svg"
+  image="/assets/covers/weekly-008-authority-is-a-relation-editorial-v2.webp"
   kicker="Weekly Research · 008"
   title="权限不是对象属性，而是一次关系"
   summary="身份、批准和状态可以被保存；执行权必须针对这一次主体、动作、目标和发生实例重新成立。"

@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260905-03-operational-capability-evidence.md
 item_id: "Q-20260905-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-05-passing-tests-is-not-operational-capability-cover.png"
+cover: "/assets/covers/daily-2026-09-05-passing-tests-is-not-operational-capability-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-05-passing-tests-is-not-operational-capability-cover.png"
+  image="/assets/covers/daily-2026-09-05-passing-tests-is-not-operational-capability-editorial-v2.webp"
   kicker="开源工程 · 每日研究"
   title="测试通过，不等于具备运行能力"
   summary="一项可复现的智能体编程研究显示：代码在小规模功能检查中成功，仍可能在更大负载或并行度下死锁、内存耗尽、崩溃或超时。完成声明应把功能、开发过程、故障边界、伸缩表现与可复现性分层记录。"

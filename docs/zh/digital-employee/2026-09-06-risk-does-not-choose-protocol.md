@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260906-01-escalation-admission-protocol-value-budget.md
 item_id: "Q-20260906-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-06-risk-does-not-choose-protocol-cover.png"
+cover: "/assets/covers/daily-2026-09-06-risk-does-not-choose-protocol-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-06-risk-does-not-choose-protocol-cover.png"
+  image="/assets/covers/daily-2026-09-06-risk-does-not-choose-protocol-editorial-v2.webp"
   kicker="数字员工 · 每日研究"
   title="发现风险，不等于选对协作协议"
   summary="一项受控研究显示，识别当前答案可能失败，比预测哪种协作方式真正增加价值容易得多。安全的数字员工升级机制，应把失败风险、协议价值和资源预算拆成三个可审计决定。"

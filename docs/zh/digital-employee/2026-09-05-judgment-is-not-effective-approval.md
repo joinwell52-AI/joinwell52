@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260905-01-approval-authority-freshness.md
 item_id: "Q-20260905-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-05-judgment-is-not-effective-approval-cover.png"
+cover: "/assets/covers/daily-2026-09-05-judgment-is-not-effective-approval-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-05-judgment-is-not-effective-approval-cover.png"
+  image="/assets/covers/daily-2026-09-05-judgment-is-not-effective-approval-editorial-v2.webp"
   kicker="数字员工 · 每日研究"
   title="判断通过，不等于批准生效"
   summary="代码托管平台的审查策略与开源编程智能体的授权证据生命周期共同揭示：模型判断、批准能力、门禁效力、适用范围与新鲜度是五个不同事实。目标、策略或授权证据变化后，旧批准必须重新评估。"

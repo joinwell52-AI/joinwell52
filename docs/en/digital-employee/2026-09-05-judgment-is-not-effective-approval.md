@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260905-01-approval-authority-freshness.md
 item_id: "Q-20260905-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-05-judgment-is-not-effective-approval-cover.png"
+cover: "/assets/covers/daily-2026-09-05-judgment-is-not-effective-approval-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-05-judgment-is-not-effective-approval-cover.png"
+  image="/assets/covers/daily-2026-09-05-judgment-is-not-effective-approval-editorial-v2.webp"
   kicker="Digital Employee · Daily Research"
   title="A Positive Judgment Is Not Yet an Effective Approval"
   summary="GitHub's code-review controls and OpenAI Codex's authorization-evidence lifecycle expose the same boundary: judgment, approval capability, gate effect, scope, and freshness are different facts. A material change to the target, policy, or authorization evidence requires re-evaluation."
