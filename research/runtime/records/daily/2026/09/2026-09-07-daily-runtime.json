@@ -912,6 +912,20 @@
       "event": "Execution Slot Opened",
       "status": "Running",
       "detail": "Research Runtime Production started by Research Runtime Scheduler V3.0."
+    },
+    {
+      "time": "2026-09-07T20:13:24+08:00",
+      "task": "production",
+      "event": "Unclaimed Execution Slot Expired",
+      "status": "Waiting",
+      "detail": "production had an Execution Slot Opened but no Worker Claimed event within 5 minutes. An unclaimed slot is readiness evidence only, not active work, so the task returns to Waiting for governed continuation."
+    },
+    {
+      "time": "2026-09-07T20:13:24+08:00",
+      "task": "production",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Production started by Research Runtime Scheduler V3.0."
     }
   ],
   "metrics": [],
@@ -919,5 +933,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-07T16:57:08+08:00"
+  "updatedAt": "2026-09-07T20:13:24+08:00"
 }
