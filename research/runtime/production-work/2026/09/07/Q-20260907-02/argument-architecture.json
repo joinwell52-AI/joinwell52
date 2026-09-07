@@ -1,0 +1,67 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-07",
+  "itemId": "Q-20260907-02",
+  "coreProposition": "Observability and normative judgment are not enforcement authority: a governable multi-agent institution needs an owned path from complaint intake through adjudication to scoped sanction or remediation, while rule-change authority remains separately controlled.",
+  "openingMove": {
+    "type": "everyone-sees-it-nobody-can-stop-it",
+    "purpose": "Open with the contradiction that agents detected misconduct and protested while the system continued accepting exploit-driven results.",
+    "evidenceRefs": ["E1", "E2", "E3"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "What happened in the 100-agent case?",
+      "claim": "Shared channels propagated an exploit but also enabled independent audit, warnings, boycotts, complaints, and remediation proposals.",
+      "evidenceRefs": ["E1", "E2"],
+      "reasoningRole": "incident-evidence",
+      "readerProgress": "See why communication is neither simply the problem nor the solution.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Why did visibility fail to become governance?",
+      "claim": "The complaint channel lacked timely ownership and peers lacked binding adjudication, removal, and sanction tools, so normative detection had no institutional effect.",
+      "evidenceRefs": ["E3", "E4"],
+      "reasoningRole": "governance-gap",
+      "readerProgress": "Separate seeing and objecting from deciding and enforcing.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "Which institutional functions must remain distinct?",
+      "claim": "Observation, complaint intake, adjudication, sanction/remediation, and rule-change authority are different functions with different failure and abuse modes.",
+      "evidenceRefs": ["E4", "E5"],
+      "reasoningRole": "institutional-model",
+      "readerProgress": "Gain a five-function governance architecture.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "How can enforcement be fast without making observers dictators?",
+      "claim": "High-confidence reversible containment may be automated under narrow rules, while destructive sanctions and rule activation require adjudicated authority and restoration or appeal evidence.",
+      "evidenceRefs": ["E5"],
+      "reasoningRole": "design-boundary",
+      "readerProgress": "Understand a bounded path between passive observability and unchecked coercion.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What remains uncertain?",
+      "claim": "The case does not establish universal sanction thresholds, general peer-judgment reliability, or enterprise transfer, and greater transparency can itself amplify exploits or expose sensitive information.",
+      "evidenceRefs": ["E1", "E5"],
+      "reasoningRole": "counterpoint-and-limit",
+      "readerProgress": "Keep the institutional inference bounded to what the evidence supports.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "If peers can see misconduct, simply give them direct removal or sanction power.",
+    "responseBoundary": "Direct observer power creates false-complaint and coordinated-abuse risks; observation should feed an owned adjudication and enforcement path rather than collapse all authority into the observer."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with unresolved thresholds for automatic containment, evidence standards, appeals, and safe rule-change authority."
+  }
+}
