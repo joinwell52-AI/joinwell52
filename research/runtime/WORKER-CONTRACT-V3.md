@@ -66,6 +66,10 @@ The generated prompt bundle is deterministic repository state. Its version, sche
 
 #### Stable governed Publication Actions bridge
 
+Explicit owner-requested prior-date Publication execution follows
+`HISTORICAL-PUBLICATION-RECOVERY-V1.md`; its durable request and actual-time claim
+are required. Timer wakes never acquire this historical recovery authority.
+
 When a Publication worker has already obtained durable same-run-date execution authority and a fresh verified `Worker Claimed` event but cannot safely perform the repository build/release commands in its own execution environment, it may use the stable governed Actions bridge instead of creating a date-specific workflow.
 
 - Stable workflow: `.github/workflows/execute-governed-publication.yml`

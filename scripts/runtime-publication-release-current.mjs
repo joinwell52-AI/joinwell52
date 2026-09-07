@@ -3,6 +3,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import crypto from 'node:crypto'
 import cp from 'node:child_process'
+import { validateHistoricalPublication } from './runtime-publication-historical.mjs'
 
 function arg(name) {
   const i = process.argv.indexOf(`--${name}`)
@@ -10,6 +11,9 @@ function arg(name) {
 }
 const date = arg('date')
 const wake = arg('wake')
+const recoveryRequest = arg('recovery-request')
+const historical = Boolean(recoveryRequest)
+if (historical) validateHistoricalPublication({ requestPath: recoveryRequest, date, wake })
 if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new Error('Invalid --date')
 if (!/^research\/runtime\/wakes\/.+\.json$/.test(wake)) throw new Error('Invalid --wake')
 const [year, month] = date.split('-')
@@ -24,7 +28,7 @@ if (scheduler.schema !== 'research-runtime-scheduler/v3' || scheduler.version !=
 const control = JSON.parse(fs.readFileSync(scheduler.workerControlManifest, 'utf8'))
 const task = control.tasks?.publication
 if (control.state !== 'active' || control.failClosed !== true || control.sourceBranch !== 'main' || !control.allowedBranches.includes('main') || !Array.isArray(control.allowedWakeSources) || control.allowedWakeSources.length === 0) throw new Error('Publication admission denied')
-if (!task || task.state !== 'active' || task.family !== 'daily' || task.directPublicationAllowed !== true || task.requireSameRunDateInputs !== true || task.prompt?.version !== '2.0.0') throw new Error('Publication task not active')
+if (!task || task.state !== 'active' || task.family !== 'daily' || task.directPublicationAllowed !== true || task.requireSameRunDateInputs !== true || !task.prompt?.version) throw new Error('Publication task not active')
 const promptHash = crypto.createHash('sha256').update(fs.readFileSync(task.prompt.path)).digest('hex')
 if (promptHash !== task.prompt.sha256) throw new Error(`Publication prompt SHA mismatch ${promptHash}`)
 for (const source of task.prompt.requiredSources || []) {
@@ -32,17 +36,17 @@ for (const source of task.prompt.requiredSources || []) {
   fs.readFileSync(source)
 }
 const receipt = JSON.parse(fs.readFileSync(wake, 'utf8'))
-if (receipt.schema !== 'runtime-wake-receipt/v1' || receipt.date !== date || receipt.timezone !== 'Asia/Shanghai' || receipt.nominalTask !== 'publication' || receipt.nominalTime !== '20:00' || !control.allowedWakeSources.includes(receipt.source) || receipt.status !== 'Received') throw new Error('Wake Receipt invalid')
+if (receipt.schema !== 'runtime-wake-receipt/v1' || (historical ? receipt.recoveryRuntimeDate !== date : receipt.date !== date) || receipt.timezone !== 'Asia/Shanghai' || receipt.nominalTask !== 'publication' || receipt.nominalTime !== '20:00' || !control.allowedWakeSources.includes(receipt.source) || receipt.status !== 'Received') throw new Error('Wake Receipt invalid')
 const record = JSON.parse(fs.readFileSync(recordPath, 'utf8'))
 if (record.date !== date || record.taskStatus?.production !== 'Completed' || record.taskStatus?.publication !== 'Running') throw new Error('Publication Runtime authority absent')
 const timeline = record.timeline || []
 let start = -1
 for (let i = timeline.length - 1; i >= 0; i -= 1) {
   const e = timeline[i]
-  if (e.task === 'publication' && e.event === 'Execution Slot Opened' && e.status === 'Running' && String(e.time || '').startsWith(date)) { start = i; break }
+  if (e.task === 'publication' && e.event === 'Execution Slot Opened' && e.status === 'Running' && (historical || String(e.time || '').startsWith(date))) { start = i; break }
 }
 if (start < 0) throw new Error('Missing Publication Execution Slot Opened')
-const claim = timeline.slice(start + 1).reverse().find(e => e.task === 'publication' && e.event === 'Worker Claimed' && e.status === 'Running' && String(e.time || '').startsWith(date) && String(e.detail || '').includes(wake))
+const claim = timeline.slice(start + 1).reverse().find(e => e.task === 'publication' && e.event === 'Worker Claimed' && e.status === 'Running' && (historical || String(e.time || '').startsWith(date)) && String(e.detail || '').includes(wake))
 if (!claim) throw new Error('Missing fresh Publication Worker Claimed bound to Wake Receipt')
 const production = JSON.parse(fs.readFileSync(productionResultPath, 'utf8'))
 if (production.schema !== 'runtime-shift-result/v2' || production.task !== 'production' || production.runtimeDate !== date || production.status !== 'Completed') throw new Error('Production result invalid')
@@ -157,7 +161,7 @@ const release = {
 fs.writeFileSync(releasePath, `${JSON.stringify(release, null, 2)}\n`)
 const result = {
   schema: 'runtime-shift-result/v2', task: 'publication', family: 'daily', runtimeDate: date, status: 'Completed',
-  input: { candidateBatch: batchPath, productionResult: productionResultPath, wakeReceipt: wake, executionType: 'scheduled-same-day-publication' },
+  input: { candidateBatch: batchPath, productionResult: productionResultPath, wakeReceipt: wake, executionType: historical ? 'explicit-historical-publication-recovery' : 'scheduled-same-day-publication', ...(historical ? { recoveryRequest } : {}) },
   workResult: {
     summary: `Mechanically released ${releasedItems.length} complete same-date Editorial Architecture 2.1 candidates as ${releasedItems.length * 2} bilingual Research Center articles and ${releasedItems.length} existing canonical raster covers. No new research, substantive rewriting or evidence repair was performed.`,
     summary_zh: `机械发布同日 ${releasedItems.length} 组完整 Editorial Architecture 2.1 Candidate，形成 ${releasedItems.length * 2} 篇双语 Research Center 文章和 ${releasedItems.length} 张既有规范栅格题图。全程未开展新研究、实质性改写或证据修复。`

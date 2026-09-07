@@ -26,7 +26,7 @@
     "worker-control:resolve": "node scripts/worker-prompts.mjs resolve",
     "worker-control:test": "node scripts/worker-control-test.mjs",
     "runtime:terminal:test": "node scripts/runtime-shift-terminal-test.mjs",
-    "runtime:recovery:test": "node scripts/runtime-recovery-test.mjs",
+    "runtime:recovery:test": "node scripts/runtime-recovery-test.mjs && node scripts/runtime-publication-historical-test.mjs",
     "runtime:continuation:test": "node scripts/runtime-publication-continuation-test.mjs",
     "runtime:production:proof": "node scripts/runtime-production-proof.mjs",
     "runtime:production:checkpoint": "node scripts/runtime-production-checkpoint.mjs",

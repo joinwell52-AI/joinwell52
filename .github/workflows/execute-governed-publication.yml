@@ -68,12 +68,16 @@ jobs:
           if (request.schema !== 'runtime-publication-execution-request/v1') throw new Error('Invalid Publication execution request schema')
           if (!/^\d{4}-\d{2}-\d{2}$/.test(request.date || '')) throw new Error('Invalid request.date')
           if (!/^research\/runtime\/wakes\/\d{4}\/\d{2}\/\d{4}-\d{2}-\d{2}\/publication-\d{6}\.json$/.test(request.wakeReceipt || '')) throw new Error('Invalid request.wakeReceipt')
-          if (!request.wakeReceipt.includes(`/${request.date}/`)) throw new Error('Wake Receipt date does not match request.date')
+          if (request.recoveryRequest) {
+            if (request.source !== 'manual-recovery' || !/^research\/runtime\/publication-recovery-requests\/[a-zA-Z0-9._-]+\.json$/.test(request.recoveryRequest)) throw new Error('Invalid historical recovery request')
+          } else if (!request.wakeReceipt.includes(`/${request.date}/`)) throw new Error('Wake Receipt date does not match request.date')
           if (!['chatgpt-scheduled-task', 'manual-recovery'].includes(request.source)) throw new Error('Invalid request.source')
           if (!fs.existsSync(request.wakeReceipt)) throw new Error(`Wake Receipt not found: ${request.wakeReceipt}`)
           fs.appendFileSync(process.env.GITHUB_OUTPUT, 'eligible=true\n')
           fs.appendFileSync(process.env.GITHUB_OUTPUT, `runtime_date=${request.date}\n`)
           fs.appendFileSync(process.env.GITHUB_OUTPUT, `wake_receipt=${request.wakeReceipt}\n`)
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `recovery_request=${request.recoveryRequest || ''}\n`)
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `allow_historical=${Boolean(request.recoveryRequest)}\n`)
           fs.appendFileSync(process.env.GITHUB_OUTPUT, 'publication_status=Running\n')
           fs.appendFileSync(process.env.GITHUB_OUTPUT, `reason=explicit governed Publication execution request from ${request.source}\n`)
           console.log(`Resolved governed Publication request for ${request.date} using ${request.wakeReceipt}`)
@@ -178,7 +182,11 @@ jobs:
         env:
           RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
           WAKE_RECEIPT: ${{ steps.request.outputs.wake_receipt }}
-        run: node scripts/runtime-publication-release-current.mjs --date "$RUNTIME_DATE" --wake "$WAKE_RECEIPT"
+          RECOVERY_REQUEST: ${{ steps.request.outputs.recovery_request }}
+        run: |
+          args=()
+          if [[ -n "$RECOVERY_REQUEST" ]]; then args+=(--recovery-request "$RECOVERY_REQUEST"); fi
+          node scripts/runtime-publication-release-current.mjs --date "$RUNTIME_DATE" --wake "$WAKE_RECEIPT" "${args[@]}"
 
       - name: Run authoritative Publication validators and build
         if: steps.authority.outputs.authorized == 'true'
@@ -258,6 +266,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           RUNTIME_DATE: ${{ steps.request.outputs.runtime_date }}
+          ALLOW_HISTORICAL: ${{ steps.request.outputs.allow_historical }}
         run: |
           set -euo pipefail
           IFS=- read -r YEAR MONTH DAY <<< "$RUNTIME_DATE"
@@ -267,5 +276,5 @@ jobs:
             -f runtime_task=publication \
             -f runtime_date="$RUNTIME_DATE" \
             -f result_path="$RESULT_PATH" \
-            -f allow_historical=false
+            -f allow_historical="${ALLOW_HISTORICAL:-false}"
           echo "Dispatched governed Publication finalization for ${RUNTIME_DATE}."

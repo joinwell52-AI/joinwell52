@@ -1,7 +1,7 @@
 <!-- GENERATED FILE. DO NOT EDIT DIRECTLY. -->
 <!-- schema: research-runtime-worker-prompt/v1 -->
 <!-- task: publication -->
-<!-- prompt-version: 2.0.0 -->
+<!-- prompt-version: 2.1.0 -->
 <!-- scheduler-version: 3.0 -->
 <!-- template: research/runtime/worker-prompts/templates/stage.prompt.md -->
 # Authoritative Research Runtime Publication Worker Prompt
@@ -27,6 +27,7 @@ This generated prompt, its Worker Control entry and every required source below 
 - `research/runtime/WAKE-RECEIPT-V1.md`
 - `research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md`
 - `research/runtime/PUBLICATION-VISIBILITY-GATE.md`
+- `research/runtime/HISTORICAL-PUBLICATION-RECOVERY-V1.md`
 - `research/editorial/EDITORIAL-ARCHITECTURE.json`
 - `research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md`
 - `research/skills/08-publication-editing.md`
@@ -53,6 +54,7 @@ Binding stage rules:
 - Publish the Research Center Edition and only separately authorized Community Editions; keep their surfaces and indexes distinct.
 - Do not perform new research, substantive rewriting, evidence repair, article-type repair or module repair; return any failure upstream as Needs Revision.
 - Build and verify public bilingual paths, indexes, release manifest and deployed visibility before completion.
+- For an explicitly owner-requested prior-date release, follow HISTORICAL-PUBLICATION-RECOVERY-V1.md. Preserve the original runtime date and use actual-time wake and claim events; ordinary scheduled admission is unchanged.
 
 Scheduler prohibitions:
 
