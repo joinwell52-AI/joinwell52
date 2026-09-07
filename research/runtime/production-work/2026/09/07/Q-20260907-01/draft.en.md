@@ -6,7 +6,7 @@ column: digital-employee
 category: daily
 article_type: technical-analysis
 edition: research-center
-research_question: "When every digital employee passes its local safety checks, what additional evidence is required to show that untrusted influence cannot still travel through messages, shared state, delegated authority, or recovery and reach a protected effect?"
+research_question: "当每个数字员工都通过自己的局部安全检查时，还需要什么证据才能说明不可信影响无法沿消息、共享状态、委派权限或恢复路径抵达受保护效果？"
 summary: "A systematization covering 197 multi-agent security works makes a critical distinction explicit: local passes do not establish end-to-end safety. The security object is the complete authority-to-effect path, including observation coverage, intervention reach, trust assumptions, alternate routes, and recovery after propagation."
 cover: staging/publication-candidates/2026-09-07-local-safety-does-not-close-path-cover.png
 sources:
