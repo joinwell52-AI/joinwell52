@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Ranked diagnostic evidence for multi-agent failure attribution</title>
+  <desc id="desc">A stable execution trace branches into several plausible causal paths with different salience, then converges on one bounded repair gate.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1020"/><stop offset="1" stop-color="#161b2f"/>
+    </linearGradient>
+    <linearGradient id="trace" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#92a4ff"/><stop offset="1" stop-color="#70e6d0"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g opacity=".12" stroke="#d6dcff" stroke-width="1">
+    <path d="M120 150H1480M120 300H1480M120 450H1480M120 600H1480M120 750H1480"/>
+    <path d="M260 90V810M520 90V810M780 90V810M1040 90V810M1300 90V810"/>
+  </g>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M150 450H610" stroke="url(#trace)" stroke-width="14" filter="url(#glow)"/>
+    <circle cx="210" cy="450" r="16" fill="#92a4ff"/>
+    <circle cx="340" cy="450" r="12" fill="#9eb3ff"/>
+    <circle cx="475" cy="450" r="12" fill="#83d8d1"/>
+    <circle cx="610" cy="450" r="18" fill="#70e6d0"/>
+    <path d="M610 450C760 450 760 230 950 230" stroke="#f4bf65" stroke-width="12"/>
+    <path d="M610 450C760 450 800 450 950 450" stroke="#8da7ff" stroke-width="9"/>
+    <path d="M610 450C760 450 760 670 950 670" stroke="#a785e8" stroke-width="6"/>
+    <circle cx="950" cy="230" r="20" fill="#f4bf65"/>
+    <circle cx="950" cy="450" r="17" fill="#8da7ff"/>
+    <circle cx="950" cy="670" r="14" fill="#a785e8"/>
+    <path d="M970 230C1110 250 1120 390 1250 430" stroke="#f4bf65" stroke-width="8" opacity=".85"/>
+    <path d="M970 450C1090 450 1140 450 1250 450" stroke="#8da7ff" stroke-width="7" opacity=".8"/>
+    <path d="M970 670C1110 640 1120 500 1250 470" stroke="#a785e8" stroke-width="5" opacity=".75"/>
+  </g>
+  <g>
+    <rect x="1240" y="375" width="220" height="150" rx="30" fill="#111a2c" stroke="#70e6d0" stroke-width="4"/>
+    <path d="M1300 450h100" stroke="#70e6d0" stroke-width="10" stroke-linecap="round"/>
+    <path d="m1370 420 34 30-34 30" fill="none" stroke="#70e6d0" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g fill="#edf2ff" font-family="Inter,Arial,sans-serif">
+    <text x="150" y="385" font-size="34" font-weight="600">TRACE FACTS</text>
+    <text x="725" y="150" font-size="30" font-weight="600">PLAUSIBLE CAUSAL PATHS</text>
+    <text x="1255" y="580" font-size="30" font-weight="600">BOUNDED REPAIR</text>
+  </g>
+  <g fill="#9faaca" font-family="Inter,Arial,sans-serif" font-size="23">
+    <text x="150" y="500">one execution history</text>
+    <text x="1000" y="225">high consensus</text>
+    <text x="1000" y="445">medium consensus</text>
+    <text x="1000" y="665">perspective-dependent</text>
+  </g>
+</svg>

@@ -1,0 +1,48 @@
+✔ classifier requires approval for every deterministic high-impact effect class (1.2156ms)
+✔ prepare is side-effect free and approval can execute the exact digest only once (47.932ms)
+✔ a changed target makes an approved operation stale before executor invocation (46.4799ms)
+✔ rejecting an operation does not rewrite task or report artifacts (34.4211ms)
+✔ prepare deduplicates the same pending digest instead of creating approval spam (16.3884ms)
+✔ trusted foreground confirmation is accepted only through the injected verifier (6.8978ms)
+✔ invalid token fails but an approved token remains valid after the pending-review deadline (34.397ms)
+✔ concurrent consumption invokes the controlled executor only once (38.1899ms)
+✔ an approved manual operation can resume after its UI lost the execution token (43.5906ms)
+✔ manual execution recovery cannot consume an Agent-owned approval (19.2919ms)
+✔ an approved manual operation remains authorized after the pending-review deadline (18.5747ms)
+✔ a retryable failed manual operation can resume without another ADMIN approval (62.7085ms)
+✔ an execution owned by a previous process is recovered as partial_failed without a replay token (28.0225ms)
+✔ approved Agent retry survives a resumed Session and consumes one matching authorization (36.0822ms)
+✔ legacy opaque approvals are revoked without deleting their audit record (22.3827ms)
+✔ app-server routes ordinary native and MCP approvals through the assistance boundary (1.6389ms)
+✔ MCP elicitation accepts only configured and role-allowed FCoP tools (0.6569ms)
+✔ MCP elicitation treats lifecycle aliases as the configured canonical operation (0.2085ms)
+✔ Browser Use origin access is a general capability, not a registered-site gate (0.274ms)
+✔ Browser Use origin access accepts the strict app-server fallback shape (0.3227ms)
+✔ native Codex approvals assist ordinary commands and in-workspace edits (82.1785ms)
+✔ native Codex approvals pause only a frozen negative-list operation (37.2194ms)
+✔ request_user_input never fabricates an ADMIN decision or returns a silent empty answer (0.4716ms)
+✔ permission escalation returns a protocol-complete operation-only non-grant (0.1505ms)
+✔ app-server maps observable summaries, tool calls and completion (1.1705ms)
+✔ app-server sends all three model dimensions when starting a thread (2.1913ms)
+✔ MCP starting does not block first turn, chat or wake and does not poll inventory (2.0264ms)
+✔ MCP failed does not block first turn, chat or wake and does not poll inventory (1.1033ms)
+✔ MCP cancelled does not block first turn, chat or wake and does not poll inventory (0.6768ms)
+✔ MCP recovery coalesces calls, preserves chat, and refreshes the same thread exactly once (19.0296ms)
+✔ recovery error is explicit, bounded and does not fail the task turn (14.8993ms)
+✔ recovery pending is explicit, bounded and does not fail the task turn (60.5885ms)
+✔ recovery refuses cross-thread, stale-turn, extra arguments and unrelated dynamic tools (1.0795ms)
+✔ a later explicit Agent recovery request is allowed without an unsolicited retry loop (59.8235ms)
+✔ Host interruption after reload does not cause an automatic continuation (15.8166ms)
+✔ readiness distinguishes configured tools, real server readiness and unrelated inventory clients (1.2136ms)
+✔ cancelling during recovery does not start another turn (14.4175ms)
+✔ app-server emits a budget warning and classifies a tool limit as recoverable TURN_LIMIT (0.5888ms)
+✔ app-server processes 105 unique calls and a later completion without a total-count limit (1.5171ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1291.9785
+
