@@ -1,0 +1,65 @@
+{
+  "baseline_commit": "c008d9db91a21136fc61a4f60314e22db395d5d2",
+  "claims": [
+    {
+      "id": "C1",
+      "article": 1,
+      "rows": [
+        "E0",
+        "E1"
+      ],
+      "zh": "写入的新建与拒绝覆盖对照",
+      "en": "Write succeeds for an absent target and refuses overwrite of an existing target"
+    },
+    {
+      "id": "C2",
+      "article": 1,
+      "rows": [
+        "E2",
+        "E3"
+      ],
+      "zh": "复制和移动保留 false 但替换目标；公开入口适用性未验",
+      "en": "Copy/move retain false but replace the target; public-ingress applicability unverified"
+    },
+    {
+      "id": "C3",
+      "article": 2,
+      "rows": [
+        "E4"
+      ],
+      "zh": "检查前源变化使旧批准失效，回调为零",
+      "en": "Source drift before validation invalidates approval, with zero callback entries"
+    },
+    {
+      "id": "C4",
+      "article": 2,
+      "rows": [
+        "E5"
+      ],
+      "zh": "检查后回调注入变化导致复制新字节；不是线上竞态证明",
+      "en": "Post-validation callback injection leads to copying changed bytes; not evidence of a live exploitable race"
+    }
+  ],
+  "source_files": [
+    {
+      "file": "packages/codeflowmu-runtime/src/approval/WorkspaceOperationApproval.ts",
+      "role_zh": "请求参数与源/目标快照",
+      "role_en": "Request fields and source/destination snapshots"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/approval/OperationApprovalService.ts",
+      "role_zh": "摘要校验与回调边界",
+      "role_en": "Digest validation and callback boundary"
+    },
+    {
+      "file": "codeflowmu-shell/src/workspace-controlled-executors.ts",
+      "role_zh": "真实写入/复制/移动执行",
+      "role_en": "Actual write/copy/move execution"
+    },
+    {
+      "file": "codeflowmu-shell/src/controlled-executor-registry.ts",
+      "role_zh": "注册接线，仅静态核查",
+      "role_en": "Registry wiring; static inspection only"
+    }
+  ]
+}
