@@ -8,11 +8,11 @@
   "date": "2026-09-07",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -499,6 +499,134 @@
       "githubCommit": "3820b7674e081bd097ce0c0d3122d16d10c2c3c8",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-07T10:08:44+08:00"
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "family": "daily",
+      "runtimeDate": "2026-09-07",
+      "status": "Completed",
+      "input": "Authoritative Reading control was pinned from main commit 5873e19d60ffd69ea1fa1eb79e0034a219d16e6c: Research Runtime Scheduler V3.0, Worker Control v1.3.0, generated Reading Prompt v1.0.0 with declared SHA-256 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5, and all five requiredSources read completely from that same commit. The exact generated prompt was deterministically hashed and matched the declared SHA-256. The unique verified Reading Wake Receipt is research/runtime/wakes/2026/09/2026-09-07/reading-110021.json. Ordered Runtime reconciliation durably opened Reading at 11:05:32+08:00, and the native Worker Claim path durably recorded Worker Claimed at 11:06:24+08:00 in commit 4cf80d77143caf5784badf1e350a692055ce6b06. Reading consumed only the same-date completed Queue plan research/runtime/plans/2026/09/2026-09-07-plan.json: Q-20260907-01, Q-20260907-02 and Q-20260907-03 were the three Selected P0 objects.",
+      "input_zh": "Reading 权威控制固定于 main 提交 5873e19d60ffd69ea1fa1eb79e0034a219d16e6c：Research Runtime Scheduler V3.0、Worker Control v1.3.0、Generated Reading Prompt v1.0.0；声明 SHA-256 为 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5，同一提交上的全部 5 个 requiredSources 均完整读取。已对精确 Generated Prompt 确定性计算 SHA-256 并与声明值一致。唯一已核验 Reading Wake Receipt 为 research/runtime/wakes/2026/09/2026-09-07/reading-110021.json。Ordered Runtime Reconciliation 于 11:05:32+08:00 持久开启 Reading，原生 Worker Claim 路径随后于 11:06:24+08:00 在提交 4cf80d77143caf5784badf1e350a692055ce6b06 中持久写入 Worker Claimed。Reading 只消费同日已完成的 Queue Plan research/runtime/plans/2026/09/2026-09-07-plan.json：Q-20260907-01、Q-20260907-02、Q-20260907-03 为三个 Selected P0 Object。",
+      "workResult": "Skill 03 completed source-bounded Deep Reading for all three same-date Selected objects. Q-20260907-01 read the complete 197-work multi-agent security systematization and its 44-work evaluation audit. The source models security around cross-principal end-to-end A-I-R executions, six interaction interfaces and eight recurring attack paths, and evaluates defenses through path target, observation, intervention, trust boundary and recovery. It explicitly shows that local protection does not establish path closure and that containment is not recovery once influence has propagated into shared state, artifacts, credentials, delegated authority or spawned principals. The bounded runtime finding is that individually safe workers cannot by themselves prove system safety; an authority-to-effect chain needs end-to-end provenance, observable intervention points, declared trust assumptions, alternate-path closure checks and recovery evidence. Q-20260907-02 read the complete 100-agent autonomous research-swarm case study across setup, exploit propagation, normative response and governance discussion. One exploit spread through shared knowledge and peer messages while the same transparent channels enabled independent auditing, public/private warnings, boycotts, complaints and remediation proposals. Those responses could not halt the exploit because the complaint channel was unmonitored in real time and peers lacked binding dispute, removal and sanction tools. The bounded architecture finding separates observability and normative judgment from complaint intake, adjudication/conflict resolution, sanction/remediation execution and rule-change authority. Q-20260907-03 read the complete Harness-of-Harness primary study across architecture, state model, benchmark protocol and multi-day case. Planning, development and QA are separate role invocations; artifact state and evidence state are carried independently across loops; acceptance is based on observations of a fixed candidate rather than the implementing claim. Across GameCraft-Bench, FrontierSWE and ProgramBench, the reported three harness-model pairs achieve an average 52.25% relative gain after three iterations; the multi-day game case retains versioned GitHub/issue/evidence history and shows reopened defects after later regressions. The bounded engineering finding is that a context window is disposable but project truth is not: long-horizon work needs stable candidate identity, durable evidence continuity, freshness after change and independent acceptance. Reading performed no Research Analysis, article writing, visualization, Production or Publication. Validate Research Center 3.0 run 34079151212 successfully completed its Runtime Center validation on the exact three-note head 0a58e8cce7e7cf4571481cc9f456659b5b36f2bb before terminal finalization.",
+      "workResult_zh": "Skill 03 已对三个同日 Selected Object 全部完成来源边界内的 Deep Reading。Q-20260907-01 完整深读覆盖 197 项工作的 Multi-agent Security Systematization 及其 44 项 Evaluation Audit。来源以跨 Principal 的端到端 A-I-R Execution、6 类 Interaction Interface 和 8 条高频 Attack Path 组织安全问题，并用 Path Target、Observation、Intervention、Trust Boundary、Recovery 五项合同评价 Defense；来源明确指出 Local Protection 不等于 Path Closure，影响一旦进入 Shared State、Artifact、Credential、Delegated Authority 或 Spawned Principal，Containment 也不等于 Recovery。边界 Runtime 结论是：单个 Worker 各自安全不足以证明系统安全，Authority-to-Effect Chain 还需要端到端 Provenance、可观察 Intervention Point、显式 Trust Assumption、Alternate-path Closure Check 与 Recovery Evidence。Q-20260907-02 完整深读 100-Agent Autonomous Research Swarm 一手案例的实验设置、Exploit Propagation、Normative Response 与 Governance Discussion。一个 Exploit 通过 Shared Knowledge 与 Peer Message 扩散，而同一透明通道也支撑独立 Audit、公私 Warning、Boycott、Complaint 与 Remediation Proposal；这些反应仍无法停止 Exploit，因为 Complaint Channel 在运行时无人处理，Peer 也没有具约束力的 Dispute、Removal 与 Sanction Tool。边界架构结论把 Observability/Normative Judgment 与 Complaint Intake、Adjudication/Conflict Resolution、Sanction/Remediation Execution、Rule-change Authority 分离。Q-20260907-03 完整深读 Harness-of-Harness 一手研究的 Architecture、State Model、Benchmark Protocol 与 Multi-day Case。Planning、Development、QA 是独立 Role Invocation；Artifact State 与 Evidence State 跨 Loop 分别持久传递；Acceptance 基于对固定 Candidate 的观察，而不是实现者自我声明。在 GameCraft-Bench、FrontierSWE、ProgramBench 的三个 Harness-Model Pair 中，论文报告三轮后平均相对提升 52.25%；多日游戏案例保留版本化 GitHub、Issue 与 Evidence History，并记录后续变更导致已关闭 Defect 再次 Reopen。边界工程结论是：Context Window 可以丢弃，但 Project Truth 不能丢；Long-horizon Work 需要 Stable Candidate Identity、Durable Evidence Continuity、Change 后的 Freshness 与 Independent Acceptance。Reading 未执行 Research Analysis、文章写作、可视化、Production 或 Publication。Validate Research Center 3.0 Run 34079151212 已在精确三份 Note Head 0a58e8cce7e7cf4571481cc9f456659b5b36f2bb 上成功完成 Runtime Center 校验后才进入终态收口。",
+      "output": "Three durable same-date Reading Notes: research/reading/Q-20260907-01-transitive-authority-to-effect-security-closure.md; research/reading/Q-20260907-02-observability-institutional-enforcement-authority.md; research/reading/Q-20260907-03-independent-qa-recoverable-project-state.md.",
+      "output_zh": "生成三份同日持久 Reading Note：research/reading/Q-20260907-01-transitive-authority-to-effect-security-closure.md；research/reading/Q-20260907-02-observability-institutional-enforcement-authority.md；research/reading/Q-20260907-03-independent-qa-recoverable-project-state.md。",
+      "next": "After governed Reading terminal finalization and GitHub Commit Verified, Runtime must reconcile again. Analysis remains a separate stage and may consume only these source-complete same-date Reading Notes after Reading is execution-closed and remotely verified. Monday Program remains separately gated by its own later not-before boundary.",
+      "next_zh": "Reading 完成 Governed Terminal Finalization 与 GitHub Commit Verified 后，Runtime 必须重新对账。Analysis 仍是独立阶段，只能在 Reading 执行收口并完成远程核验后消费这三份 Source-complete 的同日 Reading Note；Monday Program 仍受其自身更晚的 not-before 边界独立约束。",
+      "metrics": [
+        {
+          "label": "Generated prompt identity verified",
+          "label_zh": "Generated Prompt 身份已核验",
+          "value": 1
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 Required Source",
+          "value": 5
+        },
+        {
+          "label": "Queue-selected objects read",
+          "label_zh": "已深读 Queue Selected Object",
+          "value": 3
+        },
+        {
+          "label": "Durable Reading Notes",
+          "label_zh": "持久 Reading Note",
+          "value": 3
+        },
+        {
+          "label": "Primary research sources inspected",
+          "label_zh": "已核验一手研究来源",
+          "value": 3
+        },
+        {
+          "label": "Exact note-head Runtime validation",
+          "label_zh": "精确 Note Head Runtime 校验",
+          "value": 1
+        },
+        {
+          "label": "Research Analysis performed",
+          "label_zh": "执行 Research Analysis",
+          "value": 0
+        },
+        {
+          "label": "Publication actions",
+          "label_zh": "Publication 操作数量",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Authority control-source commit",
+          "label_zh": "权威控制源提交",
+          "value": "5873e19d60ffd69ea1fa1eb79e0034a219d16e6c"
+        },
+        {
+          "label": "Reading Wake Receipt",
+          "label_zh": "Reading Wake Receipt",
+          "path": "research/runtime/wakes/2026/09/2026-09-07/reading-110021.json"
+        },
+        {
+          "label": "Generated Reading prompt SHA-256",
+          "label_zh": "Generated Reading Prompt SHA-256",
+          "value": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"
+        },
+        {
+          "label": "Same-date Research Plan",
+          "label_zh": "同日 Research Plan",
+          "path": "research/runtime/plans/2026/09/2026-09-07-plan.json"
+        },
+        {
+          "label": "Worker Claimed commit",
+          "label_zh": "Worker Claimed 提交",
+          "commit": "4cf80d77143caf5784badf1e350a692055ce6b06"
+        },
+        {
+          "label": "Exact note-head Runtime validation",
+          "label_zh": "精确 Note Head Runtime 校验",
+          "value": "Validate Research Center 3.0 #34079151212 Runtime Center step success on 0a58e8cce7e7cf4571481cc9f456659b5b36f2bb"
+        },
+        {
+          "label": "Multi-agent security systematization primary source",
+          "label_zh": "Multi-agent Security Systematization 一手来源",
+          "url": "https://arxiv.org/html/2609.00595v1"
+        },
+        {
+          "label": "Autonomous research swarm governance primary source",
+          "label_zh": "Autonomous Research Swarm Governance 一手来源",
+          "url": "https://arxiv.org/html/2609.04170v1"
+        },
+        {
+          "label": "Harness-of-Harness primary source",
+          "label_zh": "Harness-of-Harness 一手来源",
+          "url": "https://arxiv.org/html/2609.01481v1"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Q-20260907-01 Reading Note",
+          "label_zh": "Q-20260907-01 深读笔记",
+          "path": "research/reading/Q-20260907-01-transitive-authority-to-effect-security-closure.md"
+        },
+        {
+          "label": "Q-20260907-02 Reading Note",
+          "label_zh": "Q-20260907-02 深读笔记",
+          "path": "research/reading/Q-20260907-02-observability-institutional-enforcement-authority.md"
+        },
+        {
+          "label": "Q-20260907-03 Reading Note",
+          "label_zh": "Q-20260907-03 深读笔记",
+          "path": "research/reading/Q-20260907-03-independent-qa-recoverable-project-state.md"
+        },
+        {
+          "label": "Reading result",
+          "label_zh": "Reading 结果",
+          "path": "research/runtime/results/2026/09/2026-09-07-reading-result.json"
+        }
+      ],
+      "startedAt": "2026-09-07T11:05:32+08:00",
+      "completedAt": "2026-09-07T11:19:27+08:00"
     }
   },
   "timeline": [
@@ -571,6 +699,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Reading after verifying research/runtime/wakes/2026/09/2026-09-07/reading-110021.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-07T11:19:27+08:00",
+      "task": "reading",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Reading closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-07."
     }
   ],
   "metrics": [],
@@ -578,5 +713,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-07T11:06:24+08:00"
+  "updatedAt": "2026-09-07T11:19:27+08:00"
 }
