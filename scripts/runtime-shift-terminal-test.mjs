@@ -128,7 +128,20 @@ for (const terminalStatus of ['Completed', 'Failed', 'Blocked', 'Skipped']) {
     assert.equal(record.results.production.status, terminalStatus)
     assert.ok(record.timeline.some((event) => event.event === `Shift ${terminalStatus}` && event.status === terminalStatus))
 
+    // A scheduler-expired unclaimed slot is closed; an arbitrary Waiting event is not.
+    record.timeline.unshift(
+      { time: `${date}T14:00:01+08:00`, task: 'production', event: 'Execution Slot Opened', status: 'Running' },
+      { time: `${date}T14:05:02+08:00`, task: 'production', event: 'Unclaimed Execution Slot Expired', status: 'Waiting' }
+    )
+    writeJson(recordFile, record)
     const commit = 'a'.repeat(40)
+    const invalidRecord = structuredClone(record)
+    invalidRecord.timeline[1].event = 'Wake Received'
+    writeJson(recordFile, invalidRecord)
+    const rejectedEpoch = spawnSync(process.execPath, [verifyScript, '--task', 'production', '--date', date, '--commit', commit], { cwd: root, encoding: 'utf8' })
+    assert.notEqual(rejectedEpoch.status, 0)
+    assert.match(rejectedEpoch.stderr, /was not closed before recovery start/)
+    writeJson(recordFile, record)
     run(verifyScript, ['--task', 'production', '--date', date, '--commit', commit], root)
     record = JSON.parse(readFileSync(recordFile, 'utf8'))
     assert.equal(record.taskStatus.production, terminalStatus)

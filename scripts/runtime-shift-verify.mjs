@@ -37,6 +37,7 @@ function recordPath(task, date) {
 }
 function closesExecutionEpoch(event) {
   if (!event || typeof event !== 'object') return false
+  if (event.event === 'Unclaimed Execution Slot Expired' && event.status === 'Waiting') return true
   if (['Running Lease Expired', 'Order Violation Corrected', 'Order Violation Invalidated'].includes(event.event)) return true
   if (['Blocked', 'Failed', 'Skipped'].includes(event.status)) return true
   return event.status === 'Completed' && /Completed$/.test(String(event.event || ''))
