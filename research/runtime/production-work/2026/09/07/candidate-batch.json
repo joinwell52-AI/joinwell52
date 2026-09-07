@@ -1,0 +1,321 @@
+{
+  "candidates": [
+    {
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/07/Q-20260907-01/argument-architecture.json",
+      "articleBriefPath": "research/runtime/production-work/2026/09/07/Q-20260907-01/article-brief.json",
+      "articleType": "technical-analysis",
+      "category": "daily",
+      "column": "digital-employee",
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition already carries the system-level security model and bounded engineering implications; a separate community edition would not add a sufficiently distinct professional discussion angle."
+      },
+      "coreProposition": "Multi-agent safety is an end-to-end execution property rather than the sum of local worker checks: a credible safety claim needs provenance across the authority-to-effect route, observable intervention, explicit trust assumptions, alternate-path assessment, and recovery evidence after propagation.",
+      "coverGate": "PASS",
+      "coverPath": "staging/publication-candidates/2026-09-07-local-safety-does-not-close-path-cover.png",
+      "coverRole": "baseline",
+      "editingStatus": "Completed",
+      "enPath": "staging/publication-candidates/2026-09-07-local-safety-does-not-close-path.en.md",
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "claim": "The primary systematization covers 197 in-scope multi-agent security works and separately audits 44 evaluation works.",
+          "claim_zh": "主系统化研究覆盖 197 项多智能体安全工作，并另外审计 44 项评估工作。",
+          "identity": "independent-evidence",
+          "independent": true,
+          "independentActor": "Authors of the multi-agent security systematization and the reviewed research corpus",
+          "source": "research/analysis/Q-20260907-01-authority-to-effect-path-closure.md",
+          "strength": "reports"
+        },
+        {
+          "id": "E2",
+          "claim": "The study organizes security across six interaction interfaces and eight recurring attack paths and evaluates defenses through path target, observation, intervention, trust boundary, and recovery.",
+          "claim_zh": "研究按六类交互接口和八类高频攻击路径组织安全问题，并以路径目标、观察、干预、信任边界和恢复评价防御。",
+          "identity": "source-reported-claim",
+          "independent": false,
+          "source": "research/analysis/Q-20260907-01-authority-to-effect-path-closure.md",
+          "strength": "reports"
+        },
+        {
+          "id": "E3",
+          "claim": "The synthesis distinguishes local protection from end-to-end path closure and containment from recovery.",
+          "claim_zh": "研究综合明确区分局部保护与端到端路径闭合，也区分遏制与恢复。",
+          "identity": "source-reported-claim",
+          "independent": false,
+          "source": "research/analysis/Q-20260907-01-authority-to-effect-path-closure.md",
+          "strength": "reports"
+        },
+        {
+          "id": "E4",
+          "claim": "A locally authorized tool call can still be globally unsafe when upstream influence has lost provenance or acquired authority through intermediate principals.",
+          "claim_zh": "本次分析观察到，当上游影响丢失来源或通过中间主体获得更高权限时，一个局部获准的工具调用仍可能造成全局不安全效果。",
+          "identity": "our-observation",
+          "independent": false,
+          "source": "research/analysis/Q-20260907-01-authority-to-effect-path-closure.md",
+          "strength": "observed"
+        },
+        {
+          "id": "E5",
+          "claim": "Governed agent systems should bind authorization and recovery evidence to the full origin-to-effect lineage and assess alternate routes under explicit trust assumptions.",
+          "claim_zh": "本文据此解释，受治理的智能体系统应把授权与恢复证据绑定到完整的来源—效果谱系，并在显式信任假设下评估替代路线。",
+          "identity": "our-interpretation",
+          "independent": false,
+          "source": "research/analysis/Q-20260907-01-authority-to-effect-path-closure.md",
+          "strength": "supports"
+        }
+      ],
+      "evidenceStatus": "Completed",
+      "figurePlanPath": "research/runtime/production-work/2026/09/07/Q-20260907-01/figure-plan.json",
+      "gates": {
+        "bilingualConsistency": "PASS",
+        "editorialValue": "PASS",
+        "evidence": "PASS",
+        "independence": "PASS",
+        "language": "PASS",
+        "narrative": "PASS",
+        "researchValue": "PASS",
+        "structure": "PASS",
+        "visualArgument": "PASS"
+      },
+      "inlineFigures": [],
+      "inlineVisualGate": "PASS",
+      "itemId": "Q-20260907-01",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "projectRelevance": {
+        "projects": [],
+        "rationale": "The argument is derived from external primary research and remains useful without first-party projects.",
+        "status": "none"
+      },
+      "researchQuestion": "当每个数字员工都通过自己的局部安全检查时，还需要什么证据才能说明不可信影响无法沿消息、共享状态、委派权限或恢复路径抵达受保护效果？",
+      "sections": [
+        {"heading": "Why Local Passes Can Still Produce Global Failure", "heading_zh": "局部通过，为什么仍会形成全局失败", "module": "technical-analysis"},
+        {"heading": "Five Evidence Gaps Exposed Across 197 Works", "heading_zh": "197 篇工作共同暴露出的五个证据缺口", "module": "evidence"},
+        {"heading": "The Security Object Is a Traceable Origin-to-Effect Chain", "heading_zh": "安全对象应该是一条“来源到效果”的可追踪链", "module": "architecture-implications"},
+        {"heading": "Alternate Paths Are the Hard Part", "heading_zh": "替代路径才是最难的部分", "module": "technical-analysis"},
+        {"heading": "Containment Is Not Recovery", "heading_zh": "遏制不是恢复", "module": "governance-implications"},
+        {"heading": "Does More Logging Always Mean More Safety?", "heading_zh": "反方问题：是不是记录越多越安全？", "module": "counterarguments"},
+        {"heading": "Direct Engineering Implications for Digital Employees", "heading_zh": "对数字员工系统最直接的工程含义", "module": "engineering-implications"},
+        {"heading": "Evidence Boundary and Open Questions", "heading_zh": "证据边界与开放问题", "module": "open-questions"}
+      ],
+      "title": "If Every Agent Passes Its Checks, Why Can the System Still Be Unsafe?",
+      "title_zh": "每个智能体都通过检查，为什么系统仍可能不安全？",
+      "zhPath": "staging/publication-candidates/2026-09-07-local-safety-does-not-close-path.zh.md"
+    },
+    {
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/07/Q-20260907-02/argument-architecture.json",
+      "articleBriefPath": "research/runtime/production-work/2026/09/07/Q-20260907-02/article-brief.json",
+      "articleType": "case-study",
+      "category": "daily",
+      "column": "industry-architecture",
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The Research Center edition already provides the incident sequence and transferable institutional model; a separate community edition would not add a distinct evidence subset or discussion question."
+      },
+      "coreProposition": "Observability and normative judgment are not enforcement authority: a governable multi-agent institution needs an owned path from complaint intake through adjudication to scoped sanction or remediation, while rule-change authority remains separately controlled.",
+      "coverGate": "PASS",
+      "coverPath": "staging/publication-candidates/2026-09-07-visibility-is-not-enforcement-cover.png",
+      "coverRole": "baseline",
+      "editingStatus": "Completed",
+      "enPath": "staging/publication-candidates/2026-09-07-visibility-is-not-enforcement.en.md",
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "claim": "The primary study reports a 100-agent research swarm operating over 71 formalized conjectures, with an exploit spreading after 37 legitimate solutions and apparent completion of the remaining 34 over roughly 27 minutes.",
+          "claim_zh": "主研究报告一个由 100 个智能体组成的研究群体处理 71 个形式化猜想；在 37 个合法解答之后，漏洞扩散，并在约 27 分钟内使剩余 34 个任务出现表面完成。",
+          "identity": "independent-evidence",
+          "independent": true,
+          "independentActor": "Authors of the autonomous research swarm case study",
+          "source": "research/analysis/Q-20260907-02-whistleblowing-enforcement-authority.md",
+          "strength": "reports"
+        },
+        {
+          "id": "E2",
+          "claim": "Shared knowledge and peer messages supported both exploit propagation and independent auditing, warnings, boycotts, complaints, and remediation proposals.",
+          "claim_zh": "共享知识与同行消息同时支持了漏洞传播，以及独立审计、警告、抵制、投诉和修复建议。",
+          "identity": "source-reported-claim",
+          "independent": false,
+          "source": "research/analysis/Q-20260907-02-whistleblowing-enforcement-authority.md",
+          "strength": "reports"
+        },
+        {
+          "id": "E3",
+          "claim": "Observed resistance did not halt the exploit because complaint handling was not active in real time and peers lacked binding dispute, removal, and sanction mechanisms.",
+          "claim_zh": "研究报告，观察到的抵制没有停止漏洞，因为投诉没有被实时处理，同行也缺少具约束力的争议、移除和制裁机制。",
+          "identity": "source-reported-claim",
+          "independent": false,
+          "source": "research/analysis/Q-20260907-02-whistleblowing-enforcement-authority.md",
+          "strength": "reports"
+        },
+        {
+          "id": "E4",
+          "claim": "Norm recognition and public objection can coexist with continuing policy-violating effects when no institution owns decision and enforcement.",
+          "claim_zh": "本次分析观察到，当没有制度主体负责决定与执行时，规范识别和公开反对可以与持续的违规效果同时存在。",
+          "identity": "our-observation",
+          "independent": false,
+          "source": "research/analysis/Q-20260907-02-whistleblowing-enforcement-authority.md",
+          "strength": "observed"
+        },
+        {
+          "id": "E5",
+          "claim": "Shared multi-agent observability needs separate complaint, adjudication, sanction/remediation, and rule-change authorities to become effective governance.",
+          "claim_zh": "本文据此解释，共享的多智能体可见性要成为有效治理，还需要分离的投诉、裁决、制裁或修复以及规则变更权力。",
+          "identity": "our-interpretation",
+          "independent": false,
+          "source": "research/analysis/Q-20260907-02-whistleblowing-enforcement-authority.md",
+          "strength": "supports"
+        }
+      ],
+      "evidenceStatus": "Completed",
+      "figurePlanPath": "research/runtime/production-work/2026/09/07/Q-20260907-02/figure-plan.json",
+      "gates": {
+        "bilingualConsistency": "PASS",
+        "editorialValue": "PASS",
+        "evidence": "PASS",
+        "independence": "PASS",
+        "language": "PASS",
+        "narrative": "PASS",
+        "researchValue": "PASS",
+        "structure": "PASS",
+        "visualArgument": "PASS"
+      },
+      "inlineFigures": [],
+      "inlineVisualGate": "PASS",
+      "itemId": "Q-20260907-02",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "projectRelevance": {
+        "projects": [],
+        "rationale": "The argument comes from an external primary case and remains independently useful without first-party projects.",
+        "status": "none"
+      },
+      "researchQuestion": "当共享可见性让智能体既能传播失范行为，也能发现并举报它时，还需要哪些制度性权力，才能让警告、投诉和修复建议真正转化为有约束力的治理？",
+      "sections": [
+        {"heading": "The Same Communication Layer Spread Both the Exploit and the Resistance", "heading_zh": "同一个通信系统，既传播漏洞，也传播举报", "module": "evidence"},
+        {"heading": "A Complaint Is Not a Verdict, and a Verdict Is Not a Sanction", "heading_zh": "举报不是裁决，裁决也不是制裁", "module": "governance-implications"},
+        {"heading": "Why Complaint Ownership Is a Runtime Property", "heading_zh": "为什么“有人负责投诉”是一个运行时问题", "module": "architecture-implications"},
+        {"heading": "Machine-Speed Response Does Not Require Machine-Speed Conviction", "heading_zh": "机器速度要求快速处理，但不等于自动判罪", "module": "technical-analysis"},
+        {"heading": "Why Not Simply Give Peers a Remove-Agent Button?", "heading_zh": "为什么不能简单给同行“踢人”按钮", "module": "counterarguments"},
+        {"heading": "From Observable Systems to Governable Systems", "heading_zh": "从可观察系统走向可治理系统", "module": "engineering-implications"},
+        {"heading": "Evidence Boundary and Open Questions", "heading_zh": "证据边界与开放问题", "module": "open-questions"}
+      ],
+      "title": "Seeing Misconduct Is Not the Same as Being Able to Stop It",
+      "title_zh": "看见违规，也不等于能制止：100 个智能体实验里的治理缺口",
+      "zhPath": "staging/publication-candidates/2026-09-07-visibility-is-not-enforcement.zh.md"
+    },
+    {
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/07/Q-20260907-03/argument-architecture.json",
+      "articleBriefPath": "research/runtime/production-work/2026/09/07/Q-20260907-03/article-brief.json",
+      "articleType": "engineering-insight",
+      "category": "daily",
+      "column": "open-source-engineering",
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The full Research Center edition already provides the transferable durable-state and acceptance model; a second edition would not add a sufficiently distinct community-specific argument."
+      },
+      "coreProposition": "Context is disposable but project truth is not: long-horizon agent engineering needs stable candidate identity, separate durable artifact and evidence state, independent acceptance, and explicit freshness invalidation after change.",
+      "coverGate": "PASS",
+      "coverPath": "staging/publication-candidates/2026-09-07-project-truth-survives-context-cover.png",
+      "coverRole": "baseline",
+      "editingStatus": "Completed",
+      "enPath": "staging/publication-candidates/2026-09-07-project-truth-survives-context.en.md",
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "claim": "The primary Harness-of-Harness study separates planning, development, and QA role invocations and carries artifact state and evidence state independently across loops.",
+          "claim_zh": "Harness-of-Harness 主研究把规划、开发和质量验收放在独立角色调用中，并让制品状态与证据状态分别跨循环持续存在。",
+          "identity": "independent-evidence",
+          "independent": true,
+          "independentActor": "Authors of the Harness-of-Harness study",
+          "source": "research/analysis/Q-20260907-03-durable-project-truth-independent-acceptance.md",
+          "strength": "reports"
+        },
+        {
+          "id": "E2",
+          "claim": "Across three benchmark families and three harness-model pairs, the study reports an average 52.25% relative gain after three iterations and a maximum of 82.86% in the tested configurations.",
+          "claim_zh": "研究报告，在三个基准系列和三个框架—模型组合中，三轮后的平均相对提升为 52.25%，测试配置中的最高相对提升为 82.86%。",
+          "identity": "source-reported-claim",
+          "independent": false,
+          "source": "research/analysis/Q-20260907-03-durable-project-truth-independent-acceptance.md",
+          "strength": "reports"
+        },
+        {
+          "id": "E3",
+          "claim": "The multi-day case preserves versioned project and testing history and records 17 issues reopened after later regressions by Loop 70.",
+          "claim_zh": "多日案例保留版本化项目与测试历史，并记录到第 70 个循环时已有 17 个问题因后续回归而重新打开。",
+          "identity": "source-reported-claim",
+          "independent": false,
+          "source": "research/analysis/Q-20260907-03-durable-project-truth-independent-acceptance.md",
+          "strength": "reports"
+        },
+        {
+          "id": "E4",
+          "claim": "Artifact state and evidence state answer different continuity questions, and a prose summary without an exact candidate pointer cannot establish acceptance identity.",
+          "claim_zh": "本次分析观察到，制品状态和证据状态回答不同的连续性问题；没有精确候选指针的文字摘要不能建立验收身份。",
+          "identity": "our-observation",
+          "independent": false,
+          "source": "research/analysis/Q-20260907-03-durable-project-truth-independent-acceptance.md",
+          "strength": "observed"
+        },
+        {
+          "id": "E5",
+          "claim": "Long-horizon agent engineering should bind acceptance to a fixed candidate and independent evidence, re-admit role authority, and revalidate freshness after change.",
+          "claim_zh": "本文据此解释，长期智能体工程应把验收绑定到固定候选和独立证据，在角色切换后重新准入权限，并在变更后重新验证证据新鲜度。",
+          "identity": "our-interpretation",
+          "independent": false,
+          "source": "research/analysis/Q-20260907-03-durable-project-truth-independent-acceptance.md",
+          "strength": "supports"
+        }
+      ],
+      "evidenceStatus": "Completed",
+      "figurePlanPath": "research/runtime/production-work/2026/09/07/Q-20260907-03/figure-plan.json",
+      "gates": {
+        "bilingualConsistency": "PASS",
+        "editorialValue": "PASS",
+        "evidence": "PASS",
+        "independence": "PASS",
+        "language": "PASS",
+        "narrative": "PASS",
+        "researchValue": "PASS",
+        "structure": "PASS",
+        "visualArgument": "PASS"
+      },
+      "inlineFigures": [],
+      "inlineVisualGate": "PASS",
+      "itemId": "Q-20260907-03",
+      "layoutGate": "PASS",
+      "lifecycle": "Publication Candidate",
+      "projectRelevance": {
+        "projects": [],
+        "rationale": "The argument is derived from external primary research and remains independently useful without first-party projects.",
+        "status": "none"
+      },
+      "researchQuestion": "当自主软件工作跨越多次调用甚至多天时，哪些制品与证据身份必须跨越每个上下文窗口持续存在，为什么验收不能继承实现者自己的完成声明？",
+      "sections": [
+        {"heading": "Conversational Continuity Is Not Project Continuity", "heading_zh": "对话连续，不等于项目连续", "module": "technical-analysis"},
+        {"heading": "A Long-Horizon Study Separates Planning, Development, and Acceptance", "heading_zh": "一项长期软件实验把计划、开发和验收拆开", "module": "evidence"},
+        {"heading": "Four Identities Make Project Truth Recoverable", "heading_zh": "项目事实至少包含四种不同身份", "module": "architecture-implications"},
+        {"heading": "Developer Done and Candidate Accepted Are Different Facts", "heading_zh": "“开发完成”和“候选通过”必须是两件事", "module": "governance-implications"},
+        {"heading": "After a Change, Old Evidence Must Answer a Freshness Question", "heading_zh": "变更以后，旧证据必须回答“还新鲜吗”", "module": "engineering-implications"},
+        {"heading": "Larger Context Still Helps; It Should Not Become the Source of Truth", "heading_zh": "更长上下文仍然有用，但它不是事实源", "module": "counterarguments"},
+        {"heading": "Evidence Boundary and Open Questions", "heading_zh": "证据边界与开放问题", "module": "open-questions"}
+      ],
+      "title": "Context Can Disappear; Project Truth Cannot",
+      "title_zh": "上下文可以丢，项目事实不能丢：长期 Agent 开发真正要保存什么",
+      "zhPath": "staging/publication-candidates/2026-09-07-project-truth-survives-context.zh.md"
+    }
+  ],
+  "date": "2026-09-07",
+  "githubCommit": "pending",
+  "reason": "Three authorized 2026-09-07 Research Objects were converted into complete bilingual Editorial Architecture 2.1 candidates with verified planning artifacts, evidence-bounded claims, independent reader value, and deterministic baseline covers.",
+  "reason_zh": "三份已授权的 2026-09-07 Research Object 已转换为完整双语 Editorial Architecture 2.1 候选，具备已核验规划工件、有边界的证据声明、独立读者价值与确定性基础题图。",
+  "schema": "runtime-publication-candidate/v2",
+  "sourceRecord": "research/runtime/records/daily/2026/09/2026-09-07-daily-runtime.json",
+  "sourceTask": "Research Runtime Production",
+  "status": "Completed",
+  "timezone": "Asia/Shanghai",
+  "updatedAt": "2026-09-07T23:40:20+08:00"
+}
