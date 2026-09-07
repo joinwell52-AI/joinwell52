@@ -1,0 +1,35 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "publication",
+  "family": "daily",
+  "runtimeDate": "2026-09-07",
+  "status": "Blocked",
+  "executionMode": "admission-denied",
+  "admissionEvidence": "research/runtime/evidence/2026/09/07/publication-admission-denied.json",
+  "reason": "Current native Worker Claim rejects the historical runtime date 2026-09-07 because the actual Shanghai date is 2026-09-08. The current admission resolver selects the actual date and denies Publication before 20:00. Historical terminal finalization is supported, but historical business execution is not admitted by the current contract.",
+  "reason_zh": "当前原生认领程序拒绝历史运行日期 2026-09-07，因为实际上海日期已是 2026-09-08。当前准入程序按实际日期求值，并拒绝 20:00 前的发布执行。现行合同支持历史终态收口，但未授予本次历史班次的业务执行权限。",
+  "input": "Latest-main Scheduler, Worker Control, generated Publication prompt v2.0.0 with directly verified SHA-256 and all eight required sources; formally Completed and GitHub-verified Production; three preserved candidates; actual manual-recovery wake on 2026-09-08 explicitly bound to the 2026-09-07 recovery.",
+  "input_zh": "输入为最新 main 的调度器、控制清单、已直接核验 SHA-256 的发布提示词 v2.0.0 和全部八项必需来源；正式完成且通过远端提交核验的生产结果；三篇保留候选；以及实际发生于 2026-09-08、明确绑定 2026-09-07 恢复任务的手动唤醒回执。",
+  "workResult": "Reconciled all applicable September 7 tasks in formal-time order. Discovery, Queue, Reading, Program, Analysis and Production are Completed. Publication is the earliest unfinished task, but fresh historical Worker Claim is rejected. Persisted the denial without creating an execution slot or claim, changing the clock, migrating candidate dates, releasing public files or altering business admission rules.",
+  "workResult_zh": "按正式时间核对 9 月 7 日全部适用班次：发现、队列、阅读、研究计划、分析和生产均已完成。发布是最早未收口班次，但新的历史班次认领被拒绝。持久化拒绝证据，不创建执行槽或认领、不修改时钟、不迁移候选日期、不写入公开发布文件、不修改业务准入规则。",
+  "output": "A governed Blocked Publication result and durable admission evidence. The three completed candidates remain intact in staging; released items: zero.",
+  "output_zh": "受治理的 Blocked 发布结果及持久化准入拒绝证据。三篇已完成候选完整保留于暂存区，本次公开发布数量为零。",
+  "next": "A future explicitly governed historical Publication execution contract is required before releasing these preserved candidates. This terminal recovery does not authorize a new publication run or migrate the candidates to another date.",
+  "next_zh": "若需发布这批保留候选，后续须有明确受治理的历史发布执行合同。本次终态恢复不授权新的发布运行，也不将候选迁移到其他日期。",
+  "metrics": [
+    {"name": "preserved_candidates", "value": 3},
+    {"name": "released_items", "value": 0},
+    {"name": "business_actions", "value": 0},
+    {"name": "required_sources_read", "value": 8}
+  ],
+  "evidence": [
+    "research/runtime/evidence/2026/09/07/publication-admission-denied.json",
+    "research/runtime/wakes/2026/09/2026-09-08/publication-003214.json",
+    "research/runtime/worker-prompts/generated/publication.prompt.md",
+    "research/runtime/candidates/2026/09/2026-09-07-candidates.json"
+  ],
+  "artifacts": [
+    "research/runtime/evidence/2026/09/07/publication-admission-denied.json",
+    "research/runtime/results/2026/09/2026-09-07-publication-result.json"
+  ]
+}

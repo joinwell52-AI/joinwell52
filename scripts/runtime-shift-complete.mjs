@@ -3,6 +3,7 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { validateProductionCompletion } from './runtime-production-proof.mjs'
+import { validateAdmissionDenial } from './runtime-admission-denial.mjs'
 
 const ROOT = process.cwd()
 const manifest = JSON.parse(readFileSync(path.join(ROOT, 'research/runtime/SCHEDULER.json'), 'utf8'))
@@ -93,10 +94,12 @@ const file = recordPath(task, date)
 if (!existsSync(file)) fail(`runtime record not found for ${taskId} on ${date}`)
 const record = readJson(file)
 if (record.date && record.date !== date) fail(`runtime record date ${record.date} does not match completion date ${date}`)
-if (record.taskStatus?.[taskId] !== 'Running') fail(`taskStatus.${taskId} must be Running, got ${record.taskStatus?.[taskId]}`)
-
 const result = readJson(absoluteResult)
 const terminalStatus = validateResult(result, taskId)
+const admissionDenied = validateAdmissionDenial({ root: ROOT, date, taskId, result, record })
+if (record.taskStatus?.[taskId] !== (admissionDenied ? 'Waiting' : 'Running')) {
+  fail(`taskStatus.${taskId} must be ${admissionDenied ? 'Waiting' : 'Running'}, got ${record.taskStatus?.[taskId]}`)
+}
 for (const dateField of ['date', 'runtimeDate']) {
   if (text(result[dateField]) && result[dateField] !== date) fail(`result ${dateField} ${result[dateField]} does not match runtime date ${date}`)
 }

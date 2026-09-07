@@ -1,0 +1,61 @@
+{
+  "schema": "research-runtime-worker-admission/v1",
+  "decision": "Denied",
+  "task": "publication",
+  "runDate": "2026-09-08",
+  "localTime": "00:32",
+  "weekday": "Tuesday",
+  "branch": "main",
+  "wakeSource": "manual-recovery",
+  "requiredCapabilities": [
+    "github-read",
+    "github-write",
+    "file-editing"
+  ],
+  "reasons": [
+    "publication is not eligible before 20:00"
+  ],
+  "runtimeAuthorityRequired": true,
+  "prompt": {
+    "schema": "research-runtime-worker-prompt/v1",
+    "version": "2.0.0",
+    "path": "research/runtime/worker-prompts/generated/publication.prompt.md",
+    "sha256": "a4fefa79b616aaaeef94119299fe2fb1939948680a2440b54c4ed9e07c20b8e9",
+    "requiredSources": [
+      "research/runtime/SCHEDULER.json",
+      "research/runtime/WORKER-CONTRACT-V3.md",
+      "research/runtime/WAKE-RECEIPT-V1.md",
+      "research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md",
+      "research/runtime/PUBLICATION-VISIBILITY-GATE.md",
+      "research/editorial/EDITORIAL-ARCHITECTURE.json",
+      "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+      "research/skills/08-publication-editing.md"
+    ]
+  },
+  "limits": {
+    "maxRunMinutes": 120,
+    "maxRecoveryAttempts": 2,
+    "maxRevisionRounds": 1,
+    "maxOutputItems": 3,
+    "zeroOutputAllowed": true,
+    "directPublicationAllowed": true
+  },
+  "runtimeDate": "2026-09-07",
+  "sourceCommit": "1a3dcef47840f503d75e8ba18eb273aa0c19a918",
+  "wakeReceipt": "research/runtime/wakes/2026/09/2026-09-08/publication-003214.json",
+  "promptVerificationMode": "direct-sha256",
+  "claimRejection": "claim date 2026-09-07 is not active Shanghai date 2026-09-08",
+  "reconciliation": {
+    "earliestUnfinished": "publication",
+    "earlierTasks": [
+      "discovery",
+      "queue",
+      "reading",
+      "program",
+      "analysis",
+      "production"
+    ],
+    "earlierStatus": "Completed",
+    "businessActions": 0
+  }
+}

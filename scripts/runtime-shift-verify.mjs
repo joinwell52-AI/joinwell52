@@ -3,6 +3,7 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { validateProductionCompletion } from './runtime-production-proof.mjs'
+import { validateAdmissionDenial } from './runtime-admission-denial.mjs'
 
 const ROOT = process.cwd()
 const manifest = JSON.parse(readFileSync(path.join(ROOT, 'research/runtime/SCHEDULER.json'), 'utf8'))
@@ -61,6 +62,7 @@ const terminalStatus = record.taskStatus?.[taskId]
 if (!TERMINAL.has(terminalStatus)) fail(`taskStatus.${taskId} must be terminal, got ${terminalStatus}`)
 const result = record.results?.[taskId]
 if (!result || result.status !== terminalStatus) fail(`results.${taskId}.status must match ${terminalStatus}`)
+const admissionDenied = validateAdmissionDenial({ root: ROOT, date, taskId, result, record })
 if (result.runtimeDate && result.runtimeDate !== date) fail(`results.${taskId}.runtimeDate ${result.runtimeDate} does not match ${date}`)
 if (taskId === 'production' && terminalStatus === 'Completed') {
   validateProductionCompletion({ root: ROOT, date, result, timezone: manifest.timezone })
@@ -77,7 +79,7 @@ const startIndexes = timeline
     belongsToExecutionDate(event)
   )
   .map(({ index }) => index)
-if (!startIndexes.length) fail(`missing ${date} start event for ${taskId}`)
+if (!startIndexes.length && !admissionDenied) fail(`missing ${date} start event for ${taskId}`)
 
 // Recovery can legitimately open a later execution epoch after an earlier Running lease
 // expires or another governed terminal/correction event closes the prior epoch. Historical
@@ -92,7 +94,7 @@ for (let i = 0; i < startIndexes.length - 1; i += 1) {
   if (!closed) fail(`execution epoch ${i + 1} for ${taskId} was not closed before recovery start ${i + 2}`)
 }
 
-const latestStartIndex = startIndexes[startIndexes.length - 1]
+const latestStartIndex = startIndexes.at(-1) ?? -1
 const terminalIndex = timeline.findIndex((event, index) =>
   index > latestStartIndex &&
   event.task === taskId &&
@@ -110,7 +112,7 @@ const workerClaimIndex = timeline.findIndex((event, index) =>
   event.status === 'Running' &&
   belongsToExecutionDate(event)
 )
-if (workerClaimIndex < 0) fail(`missing fresh Worker Claimed event in latest execution epoch for ${taskId}`)
+if (workerClaimIndex < 0 && !admissionDenied) fail(`missing fresh Worker Claimed event in latest execution epoch for ${taskId}`)
 
 const existing = timeline.find((event) =>
   event.task === taskId &&
@@ -141,7 +143,9 @@ record.timeline.push({
   task: taskId,
   event: 'GitHub Commit Verified',
   status: 'Completed',
-  detail: `Fetched and verified durable ${task.name} ${terminalStatus} result commit ${commit} on main; ${startIndexes.length} execution epoch(s) remain as audit evidence, every prior epoch is governed-closed, and the latest epoch contains a fresh Worker Claimed event before terminal finalization.`
+  detail: admissionDenied
+    ? `Fetched and verified durable ${task.name} Blocked result commit ${commit} on main; current-prompt admission denial and actual wake receipt are verified. No execution slot, Worker Claim or publication authority was granted.`
+    : `Fetched and verified durable ${task.name} ${terminalStatus} result commit ${commit} on main; ${startIndexes.length} execution epoch(s) remain as audit evidence, every prior epoch is governed-closed, and the latest epoch contains a fresh Worker Claimed event before terminal finalization.`
 })
 result.githubCommit = commit
 result.commitVerify = 'Completed'

@@ -229,4 +229,47 @@ for (const terminalStatus of ['Completed', 'Failed', 'Blocked', 'Skipped']) {
   }
 }
 
-console.log('Runtime shift terminal finalization tests passed for terminal states, stale-date rejection and positive-only cover prompts.')
+{
+  const root = mkdtempSync(path.join(os.tmpdir(), 'runtime-denied-admission-'))
+  try {
+    const today = shanghaiDate()
+    const date = new Date(new Date(`${today}T12:00:00Z`).valueOf() - 86400000).toISOString().slice(0, 10)
+    const [year, month] = date.split('-')
+    const taskId = 'publication'
+    const recordFile = path.join(root, `research/runtime/records/daily/${year}/${month}/${date}-daily-runtime.json`)
+    const resultPath = `research/runtime/results/${year}/${month}/${date}-publication-result.json`
+    const evidencePath = `research/runtime/evidence/${year}/${month}/denied.json`
+    const wakePath = 'research/runtime/wakes/test/publication.json'
+    const scheduler = JSON.parse(readFileSync(path.join(repositoryRoot, 'research/runtime/SCHEDULER.json'), 'utf8'))
+    const control = JSON.parse(readFileSync(path.join(repositoryRoot, scheduler.workerControlManifest), 'utf8'))
+    const prompt = control.tasks.publication.prompt
+    writeJson(path.join(root, 'research/runtime/SCHEDULER.json'), scheduler)
+    writeJson(path.join(root, scheduler.workerControlManifest), control)
+    mkdirSync(path.dirname(path.join(root, prompt.path)), { recursive: true })
+    writeFileSync(path.join(root, prompt.path), readFileSync(path.join(repositoryRoot, prompt.path)))
+    writeJson(path.join(root, wakePath), { schema: 'runtime-wake-receipt/v1', date: today, recoveryRuntimeDate: date, timezone: 'Asia/Shanghai', nominalTask: taskId, status: 'Received', source: 'manual-recovery' })
+    const evidence = { schema: 'research-runtime-worker-admission/v1', decision: 'Denied', task: taskId, runtimeDate: date, runDate: today, reasons: ['Historical claim denied'], sourceCommit: 'b'.repeat(40), prompt, wakeReceipt: wakePath, wakeSource: 'manual-recovery' }
+    writeJson(path.join(root, evidencePath), evidence)
+    const initial = { date, taskStatus: { publication: 'Waiting' }, results: {}, timeline: [] }
+    writeJson(recordFile, initial)
+    const result = { schema: 'runtime-shift-result/v2', task: taskId, runtimeDate: date, status: 'Blocked', executionMode: 'admission-denied', admissionEvidence: evidencePath, reason: 'Unavailable historical execution authority', input: { date }, workResult: { denied: true }, output: { released: 0 }, next: { action: 'Governed recovery' }, metrics: [], evidence: [evidencePath], artifacts: [evidencePath] }
+    const completeArgs = ['--task', taskId, '--date', date, '--result', resultPath, '--allow-historical', 'true']
+    for (const invalid of [ { ...result, status: 'Completed' }, { ...result, evidence: [] }, { ...result, startedAt: `${date}T20:00:00+08:00` } ]) {
+      writeJson(path.join(root, resultPath), invalid)
+      const rejected = spawnSync(process.execPath, [completeScript, ...completeArgs], { cwd: root, encoding: 'utf8' })
+      assert.notEqual(rejected.status, 0, 'invalid admission denial must not finalize')
+      assert.deepEqual(JSON.parse(readFileSync(recordFile, 'utf8')), initial)
+    }
+    writeJson(path.join(root, resultPath), result)
+    run(completeScript, completeArgs, root)
+    run(verifyScript, ['--task', taskId, '--date', date, '--commit', 'a'.repeat(40), '--allow-historical', 'true'], root)
+    const closed = JSON.parse(readFileSync(recordFile, 'utf8'))
+    assert.equal(closed.taskStatus.publication, 'Blocked')
+    assert.equal(closed.commitVerify, 'Completed')
+    assert.equal(closed.timeline.filter(e => e.event === 'Worker Claimed' || e.event === 'Execution Slot Opened').length, 0)
+  } finally {
+    rmSync(root, { recursive: true, force: true })
+  }
+}
+
+console.log('Runtime shift terminal tests passed, including expired unclaimed epochs and denied-admission historical closure.')
