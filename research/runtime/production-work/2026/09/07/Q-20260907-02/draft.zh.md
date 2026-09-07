@@ -93,4 +93,4 @@ sources:
 
 **证据与引用：**
 
-- [100-Agent Autonomous Research Swarm Governance Case Study（100 个自主智能体研究群体治理案例）](https://arxiv.org/html/2609.04170v1)
+- [100 个自主智能体研究群体治理案例](https://arxiv.org/html/2609.04170v1)
