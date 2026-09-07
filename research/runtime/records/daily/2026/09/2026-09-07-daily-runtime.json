@@ -8,13 +8,13 @@
   "date": "2026-09-07",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Running",
+    "production": "Completed",
     "publication": "Waiting"
   },
   "results": {
@@ -756,6 +756,113 @@
       "githubCommit": "f26621d5cddb6f6ce7f174c7cc6527dafa1cb5a4",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-07T15:32:59+08:00"
+    },
+    "production": {
+      "schema": "runtime-shift-result/v2",
+      "task": "production",
+      "family": "daily",
+      "runtimeDate": "2026-09-07",
+      "status": "Completed",
+      "productionMode": "candidate-batch",
+      "input": "Three same-date Production-authorized Research Objects and the completed validators-passed checkpoint fetched from main at 0e8df911c1ca6bb03851d1f3fc1ccb802009bea0. Historical finalization explicitly authorized by the repository owner.",
+      "input_zh": "输入为三份归属 2026-09-07 且已授权生产的研究对象，以及从 main 提交 0e8df911c1ca6bb03851d1f3fc1ccb802009bea0 读取的 validators-passed 完成检查点。仓库所有者明确授权本次跨日恢复收口。",
+      "workResult": "Verified the current Production prompt v2.13.0 by direct SHA-256 and read all 13 required sources. Preserved the three Ready items and their existing bilingual articles, planning artifacts, baseline covers and persisted editorial gates. Reused the successful atomic stage-batch output; performed no new research, rewriting, cover generation or stage-batch execution. Submit the completed durable content through the native historical Runtime Shift Finalization contract.",
+      "workResult_zh": "直接计算并核对当前生产提示词 v2.13.0 的 SHA-256，读取全部 13 项必需来源。保留三项 Ready 成果及已有双语文章、策划材料、基线题图和持久化编辑门禁。复用已成功完成的原子暂存批次，不新增研究、不重写文章、不重新生成题图、不重跑批次生产；通过仓库原生历史运行收口合同提交已完成成果。",
+      "output": "Three complete bilingual publication candidates and ten canonical bundle artifacts, with every checkpoint item Ready and nextItemId=null.",
+      "output_zh": "三篇完整双语候选及十项正式暂存包文件，检查点各项均为 Ready，nextItemId=null。",
+      "next": "After the terminal completion and verification commits are durable on main, re-read current Publication authority and reconcile the 2026-09-07 20:00 shift under the current contract.",
+      "next_zh": "正式完成提交与验证提交持久化到 main 后，重新读取当前发布权限合同，对 2026-09-07 20:00 发布班次执行准入与对账。",
+      "promptVerificationMode": "direct-sha256",
+      "promptIdentity": {
+        "path": "research/runtime/worker-prompts/generated/production.prompt.md",
+        "version": "2.13.0",
+        "sha256": "d8b0cd52d22d976d6356558a23c5c2dc28ed5aa8f51793538fa8fbebfb80996f"
+      },
+      "metrics": [
+        {
+          "label": "Ready candidates",
+          "label_zh": "已完成候选",
+          "value": 3
+        },
+        {
+          "label": "Canonical bundle artifacts",
+          "label_zh": "正式暂存包文件",
+          "value": 10
+        },
+        {
+          "label": "Articles rewritten during finalization",
+          "label_zh": "本次收口重写文章",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Verified stage-batch commit",
+          "label_zh": "已核验暂存批次提交",
+          "commit": "0e8df911c1ca6bb03851d1f3fc1ccb802009bea0"
+        },
+        {
+          "label": "Successful Production Actions bridge",
+          "label_zh": "成功的生产桥接运行",
+          "url": "https://github.com/joinwell52-AI/joinwell52/actions/runs/34142117885"
+        },
+        {
+          "label": "Existing verified Production wake",
+          "label_zh": "已有且核验通过的生产唤醒回执",
+          "path": "research/runtime/wakes/2026/09/2026-09-07/production-230746.json"
+        },
+        {
+          "label": "Ready item checkpoint",
+          "label_zh": "已完成项目检查点",
+          "path": "research/runtime/checkpoints/2026/09/2026-09-07-production.json"
+        }
+      ],
+      "coverEvidence": [
+        {
+          "itemId": "Q-20260907-01",
+          "briefId": "2026-09-07:Q-20260907-01:baseline",
+          "coverPath": "staging/publication-candidates/2026-09-07-local-safety-does-not-close-path-cover.png",
+          "sanitizedPrompt": "A thin luminous signal bends through translucent gates and reaches a protected core through an amber side route in deep navy space.",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260907-02",
+          "briefId": "2026-09-07:Q-20260907-02:baseline",
+          "coverPath": "staging/publication-candidates/2026-09-07-visibility-is-not-enforcement-cover.png",
+          "sanitizedPrompt": "Small cyan lights illuminate an amber breach while a bounded violet key engages a separate mechanism in deep indigo space.",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260907-03",
+          "briefId": "2026-09-07:Q-20260907-03:baseline",
+          "coverPath": "staging/publication-candidates/2026-09-07-project-truth-survives-context-cover.png",
+          "sanitizedPrompt": "A fading luminous shell surrounds a durable crystalline core with cyan revision layers, violet evidence rings and a restrained amber ripple.",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        }
+      ],
+      "artifacts": [
+        "research/runtime/candidates/2026/09/2026-09-07-candidates.json",
+        "staging/publication-candidates/2026-09-07-local-safety-does-not-close-path.zh.md",
+        "staging/publication-candidates/2026-09-07-local-safety-does-not-close-path.en.md",
+        "staging/publication-candidates/2026-09-07-local-safety-does-not-close-path-cover.png",
+        "staging/publication-candidates/2026-09-07-visibility-is-not-enforcement.zh.md",
+        "staging/publication-candidates/2026-09-07-visibility-is-not-enforcement.en.md",
+        "staging/publication-candidates/2026-09-07-visibility-is-not-enforcement-cover.png",
+        "staging/publication-candidates/2026-09-07-project-truth-survives-context.zh.md",
+        "staging/publication-candidates/2026-09-07-project-truth-survives-context.en.md",
+        "staging/publication-candidates/2026-09-07-project-truth-survives-context-cover.png"
+      ],
+      "startedAt": "2026-09-07T21:22:11+08:00",
+      "completedAt": "2026-09-08T00:28:46+08:00"
     }
   },
   "timeline": [
@@ -947,6 +1054,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Production after verifying research/runtime/wakes/2026/09/2026-09-07/production-230746.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-08T00:28:46+08:00",
+      "task": "production",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Production closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-07."
     }
   ],
   "metrics": [],
@@ -954,5 +1068,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-07T23:09:37+08:00"
+  "updatedAt": "2026-09-08T00:28:46+08:00"
 }
