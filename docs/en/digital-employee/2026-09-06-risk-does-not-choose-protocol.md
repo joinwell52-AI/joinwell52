@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260906-01-escalation-admission-protocol-value-budget.md
 item_id: "Q-20260906-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-06-risk-does-not-choose-protocol-editorial-v2.webp"
+cover: "/assets/covers/daily-2026-09-06-risk-does-not-choose-protocol-editorial-v3.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-06-risk-does-not-choose-protocol-editorial-v2.webp"
+  image="/assets/covers/daily-2026-09-06-risk-does-not-choose-protocol-editorial-v3.webp"
   kicker="Digital Employee · Daily Research"
   title="Escalation Risk Does Not Choose the Protocol"
   summary="A controlled study shows that detecting likely baseline failure is much easier than predicting which collaboration protocol adds value. Governed escalation should separate failure risk, protocol value, and budget admission."

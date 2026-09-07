@@ -14,11 +14,11 @@ evidence_status: Completed
 citation_status: Completed
 editing_status: Completed
 publication_authorized: true
-cover: '/assets/covers/weekly-008-authority-is-a-relation-editorial-v2.webp'
+cover: '/assets/covers/weekly-008-authority-is-a-relation-editorial-v3.webp'
 ---
 
 <ArticleCover
-  image="/assets/covers/weekly-008-authority-is-a-relation-editorial-v2.webp"
+  image="/assets/covers/weekly-008-authority-is-a-relation-editorial-v3.webp"
   kicker="Weekly Research · 008"
   title="Authority Is a Relation, Not an Attribute"
   summary="Identity, approvals, and state can persist. Execution authority must still hold for this principal, action, target, and occurrence."
