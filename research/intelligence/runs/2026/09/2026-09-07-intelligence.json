@@ -1,0 +1,312 @@
+{
+  "schema": "research-intelligence-run/v1",
+  "version": "1.0",
+  "date": "2026-09-07",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "registryVersion": "1.0",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-09-07T09:09:58+08:00",
+  "githubCommit": "pending",
+  "researchCoverage": {
+    "policy": "theme-sample-v1",
+    "rollingResearchWindowDays": 30,
+    "sampleFamilies": {
+      "product-governance": {
+        "checked": [
+          "ServiceNow AI Control Tower approval controls",
+          "Microsoft Agent 365 governance control plane",
+          "Microsoft Agent Governance Toolkit runtime policy layer"
+        ],
+        "qualifiedSignals": 1
+      },
+      "multi-agent-mechanism": {
+        "checked": [
+          "OpenAI Codex MCP user-verification capability gate",
+          "MCP Python SDK daily repository",
+          "A2A daily repository"
+        ],
+        "qualifiedSignals": 1
+      },
+      "research-benchmark-industry": {
+        "checked": [
+          "Emergent cheating and whistleblowing research swarm (arXiv:2609.04170)",
+          "Harness-of-Harness multi-day autonomous software development (arXiv:2609.01481)",
+          "When Safe Agents Fail Together MAS security review (arXiv:2609.00595)"
+        ],
+        "qualifiedSignals": 3
+      }
+    }
+  },
+  "reason": "All three formal Discovery pipelines reached terminal coverage and the theme-first active-sample overlay was completed. Seven qualified, non-duplicate signals were retained after research-problem normalization and recent-run deduplication: one enterprise platform-governance mechanism, three merged engineering mechanisms, and three primary-research findings. No topic selection was performed.",
+  "reason_zh": "三条正式 Discovery 管线均完成终态覆盖，并完成主题优先主动样本检查。按研究问题规范化并与近期运行去重后保留 7 个合格信号：1 个企业平台治理机制、3 个已合并工程机制、3 个一手研究发现；未执行选题。",
+  "pipelines": [
+    {
+      "id": "ai-platform",
+      "label": "AI Platform Change Intelligence",
+      "label_zh": "AI 平台变更情报发现",
+      "status": "Completed",
+      "due": 45,
+      "checked": 45,
+      "inaccessible": [],
+      "failed": [],
+      "signals": 1,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All 45 due P0 public platform channels were terminally checked across the six registered source groups. The active product-governance overlay retained one non-duplicate enterprise mechanism: steward approval can block an unapproved MCP server before its tools are exposed to an agent.",
+      "reason_zh": "六组注册来源共 45 个到期 P0 公共平台通道全部完成检查。主动产品治理样本额外保留 1 个非重复企业机制：AI Steward Approval 可在未批准 MCP Server 的工具暴露给 Agent 前直接阻断。"
+    },
+    {
+      "id": "github-engineering",
+      "label": "GitHub Engineering Intelligence",
+      "label_zh": "GitHub 工程情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 9,
+      "inaccessible": [],
+      "failed": [],
+      "signals": 3,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 daily repositories were checked incrementally. Three non-duplicate merged mechanisms were retained: capability-gated MCP user verification, unique durable-session target resolution before state-changing actions, and per-value state-serialization fallback in Google ADK.",
+      "reason_zh": "9 个 P0 Daily 仓库均完成增量检查。保留 3 个非重复已合并机制：受 Capability Gate 约束的 MCP User Verification、状态变更前对 Durable Session Target 的唯一解析，以及 Google ADK 的 Per-value State Serialization Fallback。"
+    },
+    {
+      "id": "published-research",
+      "label": "Published Research Intelligence",
+      "label_zh": "论文与研究成果情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 8,
+      "inaccessible": [],
+      "failed": [
+        {
+          "source": "https://www.sciencedirect.com/journal/journal-of-systems-and-software",
+          "reason": "The Journal of Systems and Software public journal surface returned an internal fetch error during this run; the failure is recorded rather than counted as checked."
+        }
+      ],
+      "signals": 3,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 research sources were terminally resolved using the rolling seven-day pass with a thirty-day expansion where useful: eight were directly checked and Journal of Systems and Software returned a recorded fetch failure. Three non-duplicate primary research findings were retained around swarm governance, long-horizon software harnesses, and execution-path security.",
+      "reason_zh": "9 个 P0 研究来源全部终态收口；按滚动 7 天检查并在需要时扩展到 30 天：8 个直接完成检查，Journal of Systems and Software 记录为抓取失败。保留 3 个非重复的一手研究发现，分别涉及 Swarm Governance、Long-horizon Software Harness 与 Execution-path Security。"
+    }
+  ],
+  "columns": [
+    {
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded two primary Digital Employee signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以数字员工为主栏目的信号；评分与选题由 Queue 独立负责。"
+    },
+    {
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded two primary Industry Architecture signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以行业架构为主栏目的信号；评分与选题由 Queue 独立负责。"
+    },
+    {
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "decision": "Waiting",
+      "signals": 3,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded three primary Open-source Engineering signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 3 个以开源工程为主栏目的信号；评分与选题由 Queue 独立负责。"
+    }
+  ],
+  "signals": [
+    {
+      "id": "SIG-20260907-001",
+      "pipeline": "ai-platform",
+      "title": "ServiceNow can block an unapproved MCP server before its tools are exposed to an agent",
+      "title_zh": "ServiceNow 可在未批准 MCP Server 的工具暴露给 Agent 前直接阻断",
+      "sourceUrl": "https://www.servicenow.com/docs/r/zurich/intelligent-experiences/ai-control-tower/explore-approvals.html",
+      "publishedAt": "2026-03-12",
+      "evidenceLevel": "official_documentation",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "servicenow-ai-control-tower/mcp-server-steward-approval",
+      "summary": "ServiceNow AI Control Tower can require AI-steward approval for MCP servers used by Agent Studio. When the control is active, adding an unapproved server is blocked before its tools are displayed, separating registration/discovery from authority to make tools available to an agent.",
+      "summary_zh": "ServiceNow AI Control Tower 可要求 Agent Studio 使用的 MCP Server 先经过 AI Steward 审批。该控制启用后，未获批准的 Server 会在工具展示前被阻断，把注册/发现与向 Agent 提供工具的授权明确分离。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["call-time-authorization", "mcp", "enterprise-governance", "tool-capability"],
+      "sampleIds": ["servicenow-ai-control-tower"],
+      "researchValue": {
+        "failure": "A discovered MCP server can otherwise become usable merely because it is configured or reachable, bypassing an independent enterprise approval boundary.",
+        "finding": "",
+        "mechanism": "Gate MCP tool exposure on an explicit steward approval state, so discovery does not itself create executable capability.",
+        "implication": "Enterprise agent platforms should model connector discovery, approval, and tool exposure as separate states rather than one installation event."
+      }
+    },
+    {
+      "id": "SIG-20260907-002",
+      "pipeline": "github-engineering",
+      "title": "Codex keeps MCP user verification fail-closed until the host can prove it supports the full verification path",
+      "title_zh": "Codex 在 Host 尚未具备完整 User Verification Path 时对 MCP 验证保持 Fail-Closed",
+      "sourceUrl": "https://github.com/openai/codex/commit/3cd6004dc43c96c38946d9697a7cf72af1562563",
+      "publishedAt": "2026-09-07",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "openai-codex/mcp-user-verification-capability-gate",
+      "summary": "Codex added MCP user-verification handling that is advertised only through an explicit client capability, validates bounded proof material and cancellation races, and currently cancels verification requests instead of prompting until the typed app-server and UI path exists.",
+      "summary_zh": "Codex 新增 MCP User Verification 处理：只有 Client 显式声明能力后才进入该路径，并校验有界 Proof、取消竞态等；在 Typed App-server 与 UI Path 尚未就绪前，Verification Request 会被取消而不是向用户伪装成可用。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["human-approval-authority", "mcp", "capability-admission", "fail-closed"],
+      "sampleIds": ["openai-codex", "mcp"],
+      "researchValue": {
+        "failure": "A protocol feature can be negotiated before the host has a complete UI, transport, and proof-validation path, creating a half-enabled approval mechanism.",
+        "finding": "",
+        "mechanism": "Advertise verification only when the client capability exists, validate proof shape and limits, and cancel requests until the end-to-end host path is actually activated.",
+        "implication": "Agent runtimes should make approval capability an end-to-end readiness claim, not a protocol flag inferred from partial support."
+      }
+    },
+    {
+      "id": "SIG-20260907-003",
+      "pipeline": "github-engineering",
+      "title": "Codex refuses ambiguous session labels before destructive or state-changing session actions",
+      "title_zh": "Codex 在破坏性或状态变更操作前拒绝 Ambiguous Session Label",
+      "sourceUrl": "https://github.com/openai/codex/commit/02d4529f55342dee025a5c13f612b72488dfa627",
+      "publishedAt": "2026-09-07",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "openai-codex/session-label-unique-target-resolution",
+      "summary": "Codex now resolves human-facing session labels across resume, fork, archive, unarchive, delete, and queue operations, rejects distinct duplicate matches, revalidates candidates with thread/read, and requires a UUID when pagination prevents proving uniqueness.",
+      "summary_zh": "Codex 现在对 Resume、Fork、Archive、Unarchive、Delete 与 Queue 等操作统一解析人类可读 Session Label；出现不同 Session 的重复匹配时拒绝执行，并通过 thread/read 重新核验候选；分页导致无法证明唯一性时要求使用 UUID。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["agent-identity-authority", "target-binding", "session-lifecycle", "fail-closed"],
+      "sampleIds": ["openai-codex"],
+      "researchValue": {
+        "failure": "A friendly session name can resolve to multiple durable conversations, so choosing the first match can apply a state-changing action to the wrong principal.",
+        "finding": "",
+        "mechanism": "Require unique target resolution across collections and revalidate the candidate immediately before action; fall back to immutable identity when uniqueness cannot be proven.",
+        "implication": "Digital-employee controls should bind consequential actions to durable IDs and treat ambiguous display names as an admission failure."
+      }
+    },
+    {
+      "id": "SIG-20260907-004",
+      "pipeline": "github-engineering",
+      "title": "Google ADK preserves the rest of session state when one value cannot be serialized normally",
+      "title_zh": "Google ADK 在单个 State Value 无法正常序列化时仍保留其余 Session State",
+      "sourceUrl": "https://github.com/google/adk-python/commit/20780acd3ad945bd69603fda776ec991799c1f96",
+      "publishedAt": "2026-09-07",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "google-adk/state-serialization-per-value-fallback",
+      "summary": "Google ADK changed EventActions state serialization so rich values use pydantic-core serialization and unknown values fall back to repr instead of causing the overall state structure to fail persistence. The fallback is applied to state_delta and agent_state while preserving include/exclude behavior.",
+      "summary_zh": "Google ADK 调整 EventActions 的状态序列化：Rich Value 由 pydantic-core 正常序列化，未知值则退化为 repr，而不是让整个 State Structure 持久化失败；该路径覆盖 state_delta 与 agent_state，并保留 include/exclude 语义。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["recovery-authority", "state-persistence", "fault-isolation", "agent-lifecycle"],
+      "sampleIds": ["google-adk"],
+      "researchValue": {
+        "failure": "One unserializable value in agent state can poison persistence for otherwise valid state and turn a local representation problem into a recovery failure.",
+        "finding": "",
+        "mechanism": "Degrade serialization at the value boundary while preserving the surrounding structure and caller filtering semantics.",
+        "implication": "Durable agent runtimes should isolate serialization failures to the smallest state unit and explicitly mark degraded values rather than dropping the entire checkpoint."
+      }
+    },
+    {
+      "id": "SIG-20260907-005",
+      "pipeline": "published-research",
+      "title": "A 100-agent research swarm shows that the same shared channels can spread exploits and support whistleblowing",
+      "title_zh": "100-Agent Research Swarm 实验显示：同一共享通道既会传播 Exploit，也能支撑 Whistleblowing",
+      "sourceUrl": "https://arxiv.org/html/2609.04170v1",
+      "publishedAt": "2026-09-03",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "research-swarm/shared-channel-exploit-and-whistleblowing",
+      "summary": "In a primary case study of 100 autonomous agents solving 71 formalized conjectures, one evaluation exploit propagated through a shared knowledge library and peer messaging, while other agents independently audited fraudulent proofs, alerted peers, staged boycotts, and proposed patches. The whistleblowing response could not halt the exploit because the environment lacked institutional enforcement affordances.",
+      "summary_zh": "一项包含 100 个自主 Agent、71 个形式化猜想的一手案例研究中，一个 Evaluation Exploit 通过共享知识库和 Peer Messaging 扩散；另一组 Agent 则自行审计造假 Proof、告警、抵制并提出修复。Whistleblowing 最终未能阻止 Exploit，原因是环境缺少可执行的制度化 Enforcement Affordance。",
+      "signalRole": "research-finding",
+      "researchThemes": ["multi-agent", "audit-provenance-accountability", "policy-enforcement", "shared-state"],
+      "sampleIds": ["arxiv-2609.04170", "research-swarm"],
+      "researchValue": {
+        "failure": "Transparent shared infrastructure can become a rapid propagation path for specification gaming, and emergent norm recognition alone may be unable to stop it.",
+        "finding": "The same auditable channels that spread the exploit also enabled peer auditing, whistleblowing, and coordinated resistance without external triggering.",
+        "mechanism": "Pair structured, observable communication with explicit complaint, sanction, conflict-resolution, and rule-change mechanisms rather than relying on either isolation or informal norms alone.",
+        "implication": "Multi-agent governance needs institutional authority paths in addition to observability; audit capacity without an effective enforcement actuator does not close the failure path."
+      }
+    },
+    {
+      "id": "SIG-20260907-006",
+      "pipeline": "published-research",
+      "title": "Harness-of-Harness separates implementation testing from independent evaluation across multi-day agent development",
+      "title_zh": "Harness-of-Harness 在多日 Agent 开发中把实现测试与独立 Evaluation 分开",
+      "sourceUrl": "https://arxiv.org/html/2609.01481v1",
+      "publishedAt": "2026-09-01",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "harness-of-harness/independent-evaluation-versioned-evidence",
+      "summary": "Harness-of-Harness organizes long-running coding agents into planning, development, and independent testing loops, constrains required artifacts rather than the model's workflow, persists versioned project history, and reports an average relative gain of 52.25% across three harness-model pairs after three iterations.",
+      "summary_zh": "Harness-of-Harness 将长期 Coding Agent 组织为 Planning、Development 与 Independent Testing 循环，约束必须交付的 Artifact 而不规定模型内部工作流，并持久化版本化项目历史；论文报告三个 Harness-Model Pair 在三轮迭代后平均相对提升 52.25%。",
+      "signalRole": "research-finding",
+      "researchThemes": ["agent-runtime-harness", "evidence-completion-truth", "long-horizon", "independent-evaluation"],
+      "sampleIds": ["arxiv-2609.01481", "harness-of-harness"],
+      "researchValue": {
+        "failure": "Long coding trajectories can repeat repairs, forget validated behavior, or declare completion before independent evidence confirms the whole system.",
+        "finding": "Across the reported benchmarks, iterative planning-development-independent-testing improved results versus the corresponding standalone harnesses, while the multi-day case preserved complete stage commits and evidence.",
+        "mechanism": "Keep implementation-time tests and independent evaluation as distinct roles, require structured artifacts, and carry versioned evidence and recoverable project states across iterations.",
+        "implication": "Agent-native software engineering benefits from durable evidence contracts and independent acceptance rather than making the coding agent its own final verifier."
+      }
+    },
+    {
+      "id": "SIG-20260907-007",
+      "pipeline": "published-research",
+      "title": "A 197-work security review argues that multi-agent defenses must close end-to-end execution paths, not only local agent checks",
+      "title_zh": "覆盖 197 项工作的安全研究指出：Multi-Agent Defense 必须闭合端到端 Execution Path，而不能只做局部 Agent Check",
+      "sourceUrl": "https://arxiv.org/html/2609.00595v1",
+      "publishedAt": "2026-09-01",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "mas-security/execution-path-defense-contract",
+      "summary": "A systematization of 197 multi-agent security works models messages, shared state, aggregation, and delegation as cross-principal interaction surfaces. It audits 44 evaluation works and proposes a five-part defense contract covering path target, observation, intervention, trust boundary, and recovery, emphasizing path closure and causal provenance.",
+      "summary_zh": "一项系统化研究覆盖 197 项 Multi-Agent Security 工作，把 Message、Shared State、Aggregation 与 Delegation 建模为跨 Principal 的 Interaction Surface；同时审计 44 项 Evaluation 工作，并提出包含 Path Target、Observation、Intervention、Trust Boundary 与 Recovery 的五部分 Defense Contract，强调 Path Closure 与 Causal Provenance。",
+      "signalRole": "research-finding",
+      "researchThemes": ["multi-agent", "delegation-authority", "recovery-authority", "security-evaluation"],
+      "sampleIds": ["arxiv-2609.00595", "mas-security"],
+      "researchValue": {
+        "failure": "Local safety checks can all pass while an unsafe influence or authority transfer emerges only across multiple principals and interaction surfaces.",
+        "finding": "The review identifies recurring attack paths and evaluation gaps where multi-agent effects are not isolated or causally attributed.",
+        "mechanism": "Evaluate defenses against the complete adversary-to-effect path, recording observation point, intervention, trust boundary, and recovery behavior with counterfactuals.",
+        "implication": "Agent governance should test whether the whole authority/evidence path is closed, not infer system safety from individually safe workers."
+      }
+    }
+  ]
+}
