@@ -8,8 +8,9 @@ const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex')
 const read = p => JSON.parse(fs.readFileSync(p, 'utf8'))
 const git = (...args) => cp.execFileSync('git', args)
 const clock = () => {
-  const p = Object.fromEntries(new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' }).formatToParts(new Date()).map(p => [p.type,p.value]))
-  return { date: `${p.year}-${p.month}-${p.day}`, time: `${p.hour}:${p.minute}:${p.second}` }
+  const instant = new Date()
+  const p = Object.fromEntries(new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' }).formatToParts(instant).map(p => [p.type,p.value]))
+  return { date: `${p.year}-${p.month}-${p.day}`, time: `${p.hour}:${p.minute}:${p.second}.${String(instant.getUTCMilliseconds()).padStart(3,'0')}` }
 }
 function fail(message) { throw new Error(`Historical Publication recovery: ${message}`) }
 function durable(p) {
