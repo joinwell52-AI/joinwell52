@@ -1,0 +1,29 @@
+{
+  "schema": "runtime-publication-historical-recovery/v1",
+  "date": "2026-09-07",
+  "source": "manual-recovery",
+  "requestMode": "terminal-recovery",
+  "allowTerminalReopen": true,
+  "requestedAt": "2026-09-07T16:46:10.817Z",
+  "reason": "Owner explicitly requested publication of the three September 7 20:00 candidates after confirming ledger-only Blocked closure was not delivery. Recover the original shift and mechanically release preserved content.",
+  "sourceCommit": "db4ae271e88a32dc3db1741765f307af5089fb40",
+  "promptIdentity": {
+    "schema": "research-runtime-worker-prompt/v1",
+    "version": "2.1.0",
+    "path": "research/runtime/worker-prompts/generated/publication.prompt.md",
+    "sha256": "fa83bddc4958f0c20cd19a43407acec264291d8880c58e7129ce473ec149c7c7",
+    "requiredSources": [
+      "research/runtime/SCHEDULER.json",
+      "research/runtime/WORKER-CONTRACT-V3.md",
+      "research/runtime/WAKE-RECEIPT-V1.md",
+      "research/runtime/PUBLICATION-CANDIDATE-SCHEMA.md",
+      "research/runtime/PUBLICATION-VISIBILITY-GATE.md",
+      "research/runtime/HISTORICAL-PUBLICATION-RECOVERY-V1.md",
+      "research/editorial/EDITORIAL-ARCHITECTURE.json",
+      "research/editorial/EDITORIAL-AND-EVIDENCE-POLICY.md",
+      "research/skills/08-publication-editing.md"
+    ]
+  },
+  "candidateBatchSha256": "71a45734d97ebe007c78b89b6da9b1c50ce24f165f24970371a6b9ebb9886c9a",
+  "wakeReceipt": "research/runtime/wakes/2026/09/2026-09-08/publication-004610.json"
+}
