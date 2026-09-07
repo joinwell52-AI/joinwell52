@@ -20,7 +20,8 @@ try {
   const rp=`research/runtime/records/daily/${y}/${m}/${date}-daily-runtime.json`, wp=`research/runtime/wakes/${today.slice(0,4)}/${today.slice(5,7)}/${today}/publication-000000.json`
   const qp='research/runtime/publication-recovery-requests/test.json', bp=`research/runtime/candidates/${y}/${m}/${date}-candidates.json`, pp='research/runtime/prompt.md', ctrl='research/runtime/control.json'
   fs.mkdirSync('research/runtime',{recursive:true});fs.writeFileSync(pp,'fixed test prompt\n')
-  const prompt={path:pp,version:'test',sha256:hash(fs.readFileSync(pp)),requiredSources:[]}
+  put('research/editorial/test-policy.json',{policy:'required'})
+  const prompt={path:pp,version:'test',sha256:hash(fs.readFileSync(pp)),requiredSources:['research/editorial/test-policy.json']}
   put('research/runtime/SCHEDULER.json',{timezone:'Asia/Shanghai',workerControlManifest:ctrl,recordRoots:{daily:'research/runtime/records/daily'},runtimeFamilies:[{id:'daily'}],tasks:[{id:'production',family:'daily',schedule:{time:'15:00',kind:'daily'}},{id:'publication',name:'Publication',family:'daily',schedule:{time:'20:00',kind:'daily'}}]})
   put(ctrl,{state:'active',sourceBranch:'main',allowedBranches:['main'],allowedWakeSources:['manual-recovery'],tasks:{publication:{state:'active',directPublicationAllowed:true,requireSameRunDateInputs:true,prompt,maxRunMinutes:120,maxOutputItems:3,maxRecoveryAttempts:2}}})
   const record={date,taskStatus:{production:'Completed',publication:'Blocked'},results:{production:{status:'Completed',runtimeDate:date,commitVerify:'Completed',githubCommit:seed},publication:{status:'Blocked'}},timeline:[{task:'production',event:'GitHub Commit Verified',detail:seed}]}

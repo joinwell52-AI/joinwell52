@@ -13,7 +13,7 @@ const clock = () => {
 }
 function fail(message) { throw new Error(`Historical Publication recovery: ${message}`) }
 function durable(p) {
-  if (typeof p !== 'string' || p.includes('..') || p.includes('\\') || !p.startsWith('research/runtime/')) fail('unsafe request path')
+  if (typeof p !== 'string' || p.includes('..') || p.includes('\\') || !p.startsWith('research/')) fail('unsafe source path')
   // Compare Git-normalized bytes so a Windows CRLF checkout is not mistaken for
   // changed repository content. Binary assets retain their exact blob identity.
   if (git('hash-object', '--path', p, p).toString().trim() !== git('rev-parse', `origin/main:${p}`).toString().trim()) fail(`not exact fetched-main bytes: ${p}`)
