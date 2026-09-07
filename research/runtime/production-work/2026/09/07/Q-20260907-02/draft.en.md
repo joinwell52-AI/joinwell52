@@ -6,7 +6,7 @@ column: industry-architecture
 category: daily
 article_type: case-study
 edition: research-center
-research_question: "When shared visibility lets autonomous agents both spread misconduct and detect it, which institutional powers must exist before warnings, complaints, and remediation proposals can become binding governance?"
+research_question: "当共享可见性让智能体既能传播失范行为，也能发现并举报它时，还需要哪些制度性权力，才能让警告、投诉和修复建议真正转化为有约束力的治理？"
 summary: "A 100-agent research case shows shared channels doing two opposing jobs at once: spreading an exploit and enabling audit, warnings, boycotts, complaints, and remediation proposals. The exploit still continued because observation, complaint intake, adjudication, sanction, and rule-change authority were not the same thing."
 cover: staging/publication-candidates/2026-09-07-visibility-is-not-enforcement-cover.png
 sources:
