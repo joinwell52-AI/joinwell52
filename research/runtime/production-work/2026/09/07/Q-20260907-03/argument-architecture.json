@@ -1,0 +1,67 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-07",
+  "itemId": "Q-20260907-03",
+  "coreProposition": "Context is disposable but project truth is not: long-horizon agent engineering needs stable candidate identity, separate durable artifact and evidence state, independent acceptance, and explicit freshness invalidation after change.",
+  "openingMove": {
+    "type": "closed-defect-reopens",
+    "purpose": "Open with a defect that was correctly accepted on one revision and later reopens after a regression, exposing why acceptance cannot float free of candidate identity.",
+    "evidenceRefs": ["E1", "E3"]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is conversational continuity insufficient for long-horizon work?",
+      "claim": "A new invocation can receive code or a summary without knowing which exact revision prior evidence tested, so implementation memory and project truth can diverge.",
+      "evidenceRefs": ["E4", "E5"],
+      "reasoningRole": "failure-mode",
+      "readerProgress": "Separate model memory from durable project state.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What does the Harness-of-Harness evidence show?",
+      "claim": "Planning, development, and QA are separate role invocations while artifact state and evidence state persist across loops, and later changes can reopen previously closed defects.",
+      "evidenceRefs": ["E1", "E2", "E3"],
+      "reasoningRole": "primary-evidence",
+      "readerProgress": "See candidate-bound evidence continuity in an examined long-horizon architecture.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "Which identities must survive every context window?",
+      "claim": "Candidate identity, artifact state, evidence state, and role authority answer different continuity questions and must remain inspectable across invocation boundaries.",
+      "evidenceRefs": ["E4", "E5"],
+      "reasoningRole": "engineering-model",
+      "readerProgress": "Gain a four-identity durable project truth model.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Why must acceptance remain separate from implementation?",
+      "claim": "Developer completion is an implementation claim; acceptance is evidence produced against a fixed candidate by an independently admitted role or mechanism, and later changes can make that evidence stale.",
+      "evidenceRefs": ["E1", "E3", "E5"],
+      "reasoningRole": "acceptance-boundary",
+      "readerProgress": "Distinguish done claims, evidence, and freshness.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What does role separation not prove?",
+      "claim": "Separate invocations improve evidence hygiene but can retain correlated blind spots when the same model family, weak tests, or shared assumptions are reused.",
+      "evidenceRefs": ["E1", "E5"],
+      "reasoningRole": "counterpoint-and-limit",
+      "readerProgress": "Preserve a bounded independence claim rather than overstate role separation.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "A large enough context window can simply carry the whole project history forward.",
+    "responseBoundary": "More context can improve local reasoning, but it does not by itself bind tests to immutable revisions, preserve authoritative state across crashes, or invalidate stale acceptance after later changes."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with unresolved questions about minimal acceptance packets, dependency-aware freshness, model diversity, external effects, and compact durable state."
+  }
+}
