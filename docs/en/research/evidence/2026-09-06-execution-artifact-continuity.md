@@ -20,13 +20,15 @@ Publication of this bilingual study and evidence was authorized on 2026-09-07. T
 
 | Records | Observations | Required qualification |
 | --- | --- | --- |
-| A0–A3 | Single consumption, pending cancellation and expiry; approved execution at second 31 | The 30-second deadline governs review, not all approved-token use; A1 has no issued token |
+| A0–A3 | Replay rejected; pending request enters cancelled or expired state; approved execution at second 31 | The 30-second deadline governs review; A1 rejects an unissued credential, not an already approved token being revoked |
 | A4–A6 | Cancellation rejected while waiting; a research abort check prevents writing; an existing effect remains | Not successful revocation followed by execution; the barrier is injected |
 | Three adapter scenarios | Per round: one normal reply, zero replies in either cancellation case | Real local adapter with fake process transport; not a real host's post-lock check |
-| B0–B3 | Stable same-request digest; changed target rejected; another workspace or task changes operation digest | Existing object binding, not a new defect or newly developed feature |
+| B0–B3 | Stable same-request digest; changed target rejects old approval; another workspace or task changes operation digest | B2/B3 verify digest distinction; B1 additionally verifies execution rejection, not acceptance of every cross-workspace or cross-task path |
 | B4 | New-process digest matches; historical success coexists with original-path absence after rename | Three points for one file; no deletion, power loss, or business acceptance |
 
-Twelve service/workspace scenarios and three adapter scenarios each ran twice: 30 observations, not 30 distinct scenarios or an accuracy score. Two existing test files ran in separate processes twice, with 39 pass / 0 fail / 0 skip per round. Both original baseline logs are retained in redacted form.
+Twelve service/workspace scenarios and three adapter scenarios each ran twice: 30 observations, not 30 distinct scenarios or an accuracy score. The baseline test set, comprising two existing test files, ran twice, with a total of 39 pass / 0 fail / 0 skip per round. Both original baseline logs are retained in redacted form.
+
+The editorial revision on 2026-09-07 only refines these claim boundaries. Original observations, figures, probes, the download archive, and their hashes remain unchanged; no new experiment was added.
 
 ## Verification and rerunning
 

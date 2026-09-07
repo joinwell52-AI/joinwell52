@@ -36,6 +36,8 @@ Our recent experiment produced a sequence that was easy to misread: the executor
 
 This is not a report of a cancellation vulnerability we have fixed. It is an investigation into tracing “I asked it to stop” to “this particular step actually stopped.”
 
+We examine three distinct boundaries: **cancelling a pending approval, ending a session, and aborting before an action**. They are not one interface with one promise. We first test the approval service, then the session adapter; the additional pre-action abort check is a research control, not an end-to-end test of a UI button.
+
 ## 1. A window worth investigating: how much waiting follows the check?
 
 OpenHands is an open-source project for software-development agents. Its SDK supplies capabilities such as tool execution. An agent here is an AI assistant that can act through tools, rather than merely produce conversational answers.
@@ -58,7 +60,7 @@ Next came time. We used the service's injectable clock to set a 30-second pendin
 
 | Scenario | Observed result, matching in both rounds | Supported conclusion |
 | --- | --- | --- |
-| Cancel before approval, then try execution | Cancellation accepted; execution rejected; 0 file effects | Pending-approval cancellation is protected |
+| Cancel before approval, then try execution | Request enters cancelled state; execution with an unissued credential is rejected; 0 file effects | Verifies the cancellation state and rejection of unapproved execution, not revocation of an approved token |
 | Leave the request unapproved beyond 30 seconds | Expired; approval rejected; 0 file effects | The pending-review deadline works |
 | Approve before the deadline, execute at second 31 | Succeeded; 1 file effect | Identify what the deadline governs before reporting a defect |
 
@@ -74,7 +76,7 @@ If a product later needs “even an approved action must not run after ten minut
 
 ## 3. Second counterexample: why was cancellation rejected while the executor waited?
 
-The more revealing experiment inserted a controllable waiting point after the approval service entered its executor callback—the point where the service hands control to concrete execution code. We held the callback at a barrier, requested cancellation, and released the barrier.
+The more revealing experiment inserted a script-controlled waiting point after the approval service entered its executor callback—the point where the service hands control to concrete execution code. We paused the callback, requested cancellation, and then released it.
 
 The condition matters: the research script injected the wait. The local file executor under test uses synchronous file operations. This did not reproduce an OpenHands-style resource-lock queue in the product.
 
@@ -84,7 +86,7 @@ The condition matters: the research script injected the wait. The local file exe
 | Same wait; research callback checks its own abort flag after release | Cancellation still rejected | 0; callback throws | Demonstrates the timing of a check, not a new product capability |
 | Write effect first; request cancellation while waiting to finish | Rejected | The existing 1 effect remains | A later request is not automatic rollback |
 
-Each scenario used a fresh fixture in each of two rounds; results matched.
+Each scenario used a new isolated experiment directory in each of two rounds; results matched.
 
 ![Cancellation receipts versus file effects in three controlled scenarios](/assets/execution-artifacts-20260906/01-cancellation-inline-en-v1.png)
 
@@ -96,7 +98,7 @@ Why did cancellation fail in the first scenario? After validating approval state
 
 Thus `executing` during the wait does not prove the file was already written. But `APPROVAL_NOT_PENDING` does establish that this approval-cancellation request failed. Both facts must survive the analysis.
 
-The second scenario is a deliberate mechanism control: after waiting, the research callback observes its abort flag and skips the real file executor. It shows that the location of a check can change the outcome. It does not establish that the product already performs that check, or that valid authorization was successfully revoked.
+The second scenario is a deliberate mechanism control: after waiting, the research callback observes its abort flag and skips the real file executor. Moving the check can change the outcome. The operative signal here is the research script's abort flag, not the rejected approval-cancellation request.
 
 That is the dividing line in this study: **a cancellation request is not evidence of cancellation acceptance; entering an executor is not evidence that its effect has happened.**
 
@@ -136,13 +138,13 @@ An engineering team should first check three things:
 - Does each cancellation endpoint address pending approval, an entire session, or an active operation?
 - For resource waiting, can we show that the check runs after the wait and before the action, not merely at function entry?
 
-This study did not establish a CodeFlowMu defect in which successfully accepted cancellation is followed by tool startup. It established why existing protections, interface responsibilities, and untested windows must be separated before deciding what to test next—or whether new development is warranted.
+The study separates existing protection from the next window to test: approval cancellation addresses pending requests, the session adapter blocks late replies in the tested scenarios, and real tool queues after reply delivery still require separate testing. Further development should follow evidence at that boundary.
 
 **Reliable cancellation is not about making every component display “cancelled.” It is about explaining where the request was accepted, which step it prevented, and which facts it did not change.**
 
 ## Evidence and scope
 
-This article uses seven approval scenarios and three adapter scenarios, each run twice. These are not production-incident statistics or a security accuracy benchmark. Two existing test files also ran in separate processes twice, with 39 passing tests, 0 failures, and 0 skips per round. Adding those counts does not create an end-to-end guarantee.
+This article uses seven approval scenarios and three adapter scenarios, each run twice. These are not production-incident statistics or a security accuracy benchmark. The baseline test set, comprising two existing test files, also ran twice, with 39 passing tests in total, 0 failures, and 0 skips per round. Adding those counts does not create an end-to-end guarantee.
 
 The [bilingual evidence companion](/en/research/evidence/2026-09-06-execution-artifact-continuity) provides all exported observations, provenance, two baseline logs, adapted research probes, and an integrity checker. Local paths and process IDs are removed; outcomes and ordering are retained. The adapter's normal scenario ends in cancellation only because of test cleanup, not because normal execution failed. Checking the published records does not rerun the product; running the probes additionally requires authorized access to the fixed CodeFlowMu source and its dependencies.
 

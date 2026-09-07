@@ -36,6 +36,8 @@ The original path no longer contained the file. The historical receipt still sai
 
 There was no data-loss incident and no contradiction. The receipt correctly recorded the earlier write. The path check correctly answered whether the file could now be retrieved from its original location.
 
+Renaming is only a minimal intervention. The question is not the filesystem truism that a rename changes a path. It is: **when an artifact's present availability changes, what judgments can its historical execution receipt still support?**
+
 **The mistake would be collapsing these two records into one undifferentiated “task success.”** When agents work across processes, workspaces, or remote environments, the distinction affects both what the next turn receives and what a human ultimately gets.
 
 ## 1. Did we approve some content, or a particular operation?
@@ -48,7 +50,7 @@ Two digests in this chain are easy to confuse.
 
 A **content digest** identifies bytes. An **operation digest** identifies the particular operation that was approved. Writing identical text in a different workspace or for another task can preserve the content while changing the operation's identity.
 
-To establish what the current system actually binds, we ran four controls through the real request builder at baseline `c008d9db91a21136fc61a4f60314e22db395d5d2`. Each used fresh fixtures across two rounds.
+To establish what the current system actually binds, we ran four controls through the real request builder at baseline `c008d9db91a21136fc61a4f60314e22db395d5d2`. Each used new isolated experiment directories across two rounds.
 
 | Control | Observation, matching in both rounds | Misconception it rules out |
 | --- | --- | --- |
@@ -59,21 +61,23 @@ To establish what the current system actually binds, we ran four controls throug
 
 The second row matters particularly. We did not merely observe a digest change and declare protection effective. We attempted execution. The old approval was rejected as stale, and the intervening content was not overwritten.
 
+These controls do not reach equally far. Changing the workspace or task verifies a different operation digest; the changed-target scenario additionally reaches rejection of the old approval during an execution attempt. **Distinguishing request identities does not establish acceptance coverage for every cross-workspace or cross-task execution path.**
+
 The source explains why: the request incorporates the working directory, task subject, and target snapshot. The execution entry rebuilds it, and the approval service compares the operation digest.
 
-Consequently, concern about artifact continuity cannot justify claiming that CodeFlowMu lacks workspace-identity protection. These counterexamples demonstrate existing protection worth preserving and reusing.
+The controls identify an existing foundation to reuse: requests incorporate workspace and task identity, and the tested target change makes the old approval inapplicable.
 
 ## 2. Why does strong write evidence not answer present delivery?
 
 The fifth scenario specifically examined what happens after writing.
 
-The tested executor writes a temporary file, renames it into the target, and returns a post-operation snapshot. We read the file through a separate process and compared its content digest. Then we renamed it within the fixture and separately checked the original path and historical receipt.
+The tested executor writes a temporary file, renames it into the target, and returns a post-operation snapshot. We read the file through a separate process and compared its content digest. Then we renamed it within the experiment directory and separately checked the original path and historical receipt.
 
 | Observation point | Current file fact | Execution evidence |
 | --- | --- | --- |
 | Actual executor finishes the write | Target exists | Success receipt includes the post-write digest |
 | A new process reads the file | Read-back digest matches the receipt | Success is not merely an intention held in the original process's memory |
-| After a recoverable rename within the fixture | Original path absent; preserved file exists | Original execution receipt still says success |
+| After a recoverable rename within the experiment directory | Original path absent; preserved file exists | Original execution receipt still says success |
 
 Both rounds matched. A new process reading the file demonstrates visibility outside the writing process. It is not a power-loss experiment and does not establish every durability property after power failure.
 
@@ -131,11 +135,11 @@ Conversely, for local workspace operations, precise request binding, post-operat
 
 Two conclusions survive this study together.
 
-One is affirmative: the tested CodeFlowMu path already incorporates workspace, task, and target changes into operation checks, and a new process can verify actual write results. These are not future plans.
+One is affirmative: the tested operation digests distinguish workspace, task, and target changes; the changed-target scenario additionally verifies rejection of the old approval. A new process can also verify actual write results.
 
 The other is a boundary: a historical receipt proves what happened in the past; it does not inherently promise that the artifact remains at the same path forever. Current availability and business delivery require their own judgments, not an inference from one successful write.
 
-We did not discover and repair a remote data-loss incident or authorize a new storage project. The stronger engineering conclusion is to use existing capabilities accurately and leave untested territory explicit.
+The next engineering step is to check location, ownership, bytes, and verification time at a real delivery boundary, then decide whether the existing process is sufficient—not assume a new storage project is needed first.
 
 **For a long-running agent, “it was completed” is history worth preserving. “It can be delivered now” is another fact worth checking.**
 
