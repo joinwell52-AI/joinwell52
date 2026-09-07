@@ -1,0 +1,47 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-07",
+  "itemId": "Q-20260907-01",
+  "researchObjectId": "Q-20260907-01",
+  "targetAudience": {
+    "primary": "Architects, security engineers, and governance owners building multi-agent or digital-employee runtimes",
+    "knowledgeAssumption": "The reader understands tool permissions, shared state, delegation, and recovery at a practical systems level.",
+    "readerProblem": "Local worker checks are being treated as evidence that the end-to-end system is safe even when influence can move through shared state, handoffs, delegated authority, or recovery."
+  },
+  "whyNow": "A 2026 systematization of 197 multi-agent security works and a separate audit of 44 evaluation works organizes attacks and defenses around execution paths, observation, intervention, trust boundaries, and recovery, making the gap between local safety and system-level closure unusually explicit.",
+  "externalHook": {
+    "type": "local-pass-global-failure",
+    "description": "Every local transition can look allowed while untrusted influence still reaches a protected effect through another route.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "Multi-agent safety is an end-to-end authority-to-effect property, not the sum of local worker checks: a credible safety claim needs provenance-preserving route evidence, stated observation and intervention coverage, explicit trust assumptions, alternate-route assessment, and verified recovery of derivative state and authority.",
+  "originalValue": {
+    "type": "authority-to-effect-closure-model",
+    "description": "Turns the source framework into an auditable engineering question: what evidence closes the complete route from influence origin to protected effect, including alternate paths and post-containment recovery?"
+  },
+  "readerTakeaway": "Treat local permission checks as one layer of evidence; bind protected effects to origin-to-effect lineage, record blind spots and trust assumptions, and separate containment from recovery.",
+  "evidenceBoundary": {
+    "supported": [
+      "The primary systematization covers 197 works and separately audits 44 evaluation works.",
+      "The source organizes multi-agent security around interaction interfaces, recurring attack paths, and defense fields including observation, intervention, trust boundary, and recovery.",
+      "The evidence supports distinguishing local protection from end-to-end path closure and containment from recovery."
+    ],
+    "unsupported": [
+      "That any concrete production runtime has closed every authority-to-effect path",
+      "A universal topology, trust model, or authorization algorithm",
+      "Unlimited centralized telemetry as the correct observability design"
+    ],
+    "uncertain": [
+      "How to preserve trustworthy provenance through compaction without excessive surveillance",
+      "How to test dynamic alternate-route closure online",
+      "Which derivative effects require prevention versus compensating recovery"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article is based on public primary research and is independently useful to multi-agent security practitioners without first-party project references."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The source and same-date analysis support a bounded, actionable system-level security model without claiming universal closure or implementation proof."
+}
