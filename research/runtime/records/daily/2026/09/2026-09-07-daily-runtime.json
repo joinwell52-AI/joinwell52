@@ -8,16 +8,135 @@
   "date": "2026-09-07",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
-    "discovery": "Running",
+    "discovery": "Completed",
     "queue": "Waiting",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
   },
-  "results": {},
+  "results": {
+    "discovery": {
+      "schema": "runtime-shift-result/v2",
+      "task": "discovery",
+      "family": "daily",
+      "runtimeDate": "2026-09-07",
+      "status": "Completed",
+      "input": "Authoritative control-source main commit a16bd5f70f92ebcb89916025d7bf5d6eb2ffa992; Research Runtime Scheduler V3.0; Worker Control v1.3.0; generated Discovery Prompt v1.1.0 with deterministic validation of SHA-256 3b91ab2769fe035ddec1bdedd27ffc7b34fa5c1da3232c2a05ed7653fc8c28bc; all ten requiredSources read completely from that same control commit; verified Wake Receipt research/runtime/wakes/2026/09/2026-09-07/discovery-085730.json; a fresh same-date Worker Claimed event; and the live web/GitHub research capabilities required by admission.",
+      "input_zh": "权威控制源 main 提交 a16bd5f70f92ebcb89916025d7bf5d6eb2ffa992、Research Runtime Scheduler V3.0、Worker Control v1.3.0、经确定性路径核验 SHA-256 3b91ab2769fe035ddec1bdedd27ffc7b34fa5c1da3232c2a05ed7653fc8c28bc 的 Generated Discovery Prompt v1.1.0、同一控制提交上完整读取的全部 10 个 requiredSources、已核验 Wake Receipt research/runtime/wakes/2026/09/2026-09-07/discovery-085730.json、同日 fresh Worker Claimed 事件，以及准入所要求且本 Worker 实际具备的实时 Web/GitHub 研究能力。",
+      "workResult": "Completed all three formal Discovery pipelines and the theme-sample-v1 active-sample overlay without topic selection. Seven qualified, non-duplicate signals were retained: one enterprise platform-governance mechanism, three merged engineering mechanisms, and three primary-research findings. AI Platform resolved 45/45 due public channels; GitHub Engineering resolved 9/9 P0 daily repositories; Published Research terminally resolved 9/9 P0 sources as 8 direct checks plus one explicitly recorded Journal of Systems and Software fetch failure. The canonical intelligence record was persisted in commit 714d36ec0706a1613e68a9b685ae8b51f0b4564b at research/intelligence/runs/2026/09/2026-09-07-intelligence.json. Validate Research Center 3.0 run 34072320181 completed successfully, including Runtime Center validation and the site build.",
+      "workResult_zh": "完成三条正式 Discovery 管线与 theme-sample-v1 主动样本检查，未执行选题。按研究问题去重后保留 7 个合格 Signal：1 个企业平台治理机制、3 个已合并工程机制、3 个一手研究发现。AI Platform 的 45/45 个到期公共通道全部终态收口；GitHub Engineering 的 9/9 个 P0 Daily 仓库全部收口；Published Research 的 9/9 个 P0 来源终态收口，其中 8 个直接完成检查，Journal of Systems and Software 的抓取失败被明确记录而未伪装成成功。规范化 Intelligence 已在提交 714d36ec0706a1613e68a9b685ae8b51f0b4564b 持久化到 research/intelligence/runs/2026/09/2026-09-07-intelligence.json。Validate Research Center 3.0 Run 34072320181 已成功完成，包括 Runtime Center 校验与站点构建。",
+      "output": "research/intelligence/runs/2026/09/2026-09-07-intelligence.json — 7 normalized, unselected signals with complete formal-pipeline terminal coverage and active-sample coverage.",
+      "output_zh": "research/intelligence/runs/2026/09/2026-09-07-intelligence.json —— 7 个已规范化、未选题的 Signal，正式管线终态覆盖与主动样本覆盖均已收口。",
+      "next": "Queue may independently triage the verified 2026-09-07 Signal Pool only after Discovery completion is durably verified on main.",
+      "next_zh": "仅在 Discovery 完成状态已在 main 上持久核验后，Queue 才可独立筛选已核验的 2026-09-07 Signal Pool。",
+      "metrics": [
+        {
+          "label": "Prompt SHA-256 verified",
+          "label_zh": "Prompt SHA-256 已核验",
+          "value": "3b91ab2769fe035ddec1bdedd27ffc7b34fa5c1da3232c2a05ed7653fc8c28bc"
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 requiredSources",
+          "value": "10 / 10"
+        },
+        {
+          "label": "AI Platform due / checked / failed",
+          "label_zh": "AI 平台应查 / 已查 / 失败",
+          "value": "45 / 45 / 0"
+        },
+        {
+          "label": "GitHub repositories due / checked / failed",
+          "label_zh": "GitHub 仓库应查 / 已查 / 失败",
+          "value": "9 / 9 / 0"
+        },
+        {
+          "label": "Research sources due / checked / failed",
+          "label_zh": "研究来源应查 / 已查 / 失败",
+          "value": "9 / 8 / 1"
+        },
+        {
+          "label": "Active product-governance samples",
+          "label_zh": "主动产品治理样本",
+          "value": "3 checked / 1 qualified"
+        },
+        {
+          "label": "Active multi-agent mechanism samples",
+          "label_zh": "主动多 Agent 机制样本",
+          "value": "3 checked / 1 qualified"
+        },
+        {
+          "label": "Active research/benchmark objects",
+          "label_zh": "主动研究/基准对象",
+          "value": "3 checked / 3 qualified"
+        },
+        {
+          "label": "Normalized signals",
+          "label_zh": "规范化信号",
+          "value": 7
+        },
+        {
+          "label": "Selected topics",
+          "label_zh": "已选主题",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Authority control-source commit",
+          "label_zh": "权威控制源提交",
+          "value": "a16bd5f70f92ebcb89916025d7bf5d6eb2ffa992"
+        },
+        {
+          "label": "Wake Receipt",
+          "label_zh": "Wake Receipt",
+          "source": "research/runtime/wakes/2026/09/2026-09-07/discovery-085730.json"
+        },
+        {
+          "label": "Worker control manifest",
+          "label_zh": "Worker Control Manifest",
+          "source": "research/runtime/worker-prompts/generated/CONTROL.json"
+        },
+        {
+          "label": "Generated Discovery Prompt",
+          "label_zh": "Generated Discovery Prompt",
+          "source": "research/runtime/worker-prompts/generated/discovery.prompt.md"
+        },
+        {
+          "label": "Canonical Intelligence commit",
+          "label_zh": "规范化 Intelligence 提交",
+          "value": "714d36ec0706a1613e68a9b685ae8b51f0b4564b"
+        },
+        {
+          "label": "Remote validation",
+          "label_zh": "远程校验",
+          "value": "Validate Research Center 3.0 #34072320181 success"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Research Intelligence run",
+          "label_zh": "Research Intelligence 运行记录",
+          "value": "research/intelligence/runs/2026/09/2026-09-07-intelligence.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "value": "research/runtime/records/daily/2026/09/2026-09-07-daily-runtime.json"
+        },
+        {
+          "label": "Human-readable Runtime ledger",
+          "label_zh": "人类可读 Runtime 账本",
+          "value": "research/runtime/2026/09/2026-09-07-runtime.md"
+        }
+      ],
+      "startedAt": "2026-09-07T09:06:17+08:00",
+      "completedAt": "2026-09-07T09:21:13+08:00"
+    }
+  },
   "timeline": [
     {
       "time": "2026-09-07T09:06:16+08:00",
@@ -32,6 +151,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Discovery after verifying research/runtime/wakes/2026/09/2026-09-07/discovery-085730.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-07T09:21:13+08:00",
+      "task": "discovery",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Discovery closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-07."
     }
   ],
   "metrics": [],
@@ -39,5 +165,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-07T09:06:17+08:00"
+  "updatedAt": "2026-09-07T09:21:13+08:00"
 }
