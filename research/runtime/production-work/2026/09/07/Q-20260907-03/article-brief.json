@@ -1,0 +1,47 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-07",
+  "itemId": "Q-20260907-03",
+  "researchObjectId": "Q-20260907-03",
+  "targetAudience": {
+    "primary": "Engineering leads building long-horizon agent software workflows",
+    "knowledgeAssumption": "The reader understands code revisions, testing, role separation, and agent context windows.",
+    "readerProblem": "Project continuity is being represented by model context or prose summaries, so acceptance evidence can lose its exact candidate identity after later changes."
+  },
+  "whyNow": "A primary Harness-of-Harness study separates planning, development, and QA across repeated role invocations while carrying artifact state and evidence state independently across loops; its multi-day case also records defects reopening after later regressions.",
+  "externalHook": {
+    "type": "accepted-yesterday-broken-today",
+    "description": "A defect can be legitimately closed against one candidate revision and legitimately reopen after later changes, showing that acceptance belongs to a candidate, not to a conversation or issue label forever.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "Context is disposable but project truth is not: long-horizon agent engineering needs stable candidate identity, separate durable artifact and evidence state, independent acceptance, and explicit freshness invalidation after change.",
+  "originalValue": {
+    "type": "durable-project-truth-model",
+    "description": "Turns the study's role and state separation into four inspectable identities—candidate, artifact state, evidence state, and role authority—so recovery and acceptance do not depend on conversational memory."
+  },
+  "readerTakeaway": "Bind every test and acceptance claim to an exact candidate revision, persist unresolved obligations and evidence outside model context, separate implementation from acceptance, and invalidate affected evidence after later changes.",
+  "evidenceBoundary": {
+    "supported": [
+      "The study separates planning, development, and QA role invocations and carries artifact state and evidence state independently across loops.",
+      "The study reports benchmark improvements in the examined harness-model configurations.",
+      "The multi-day case preserves versioned project and evidence history and records issues reopening after later regressions."
+    ],
+    "unsupported": [
+      "That role separation alone provides full statistical independence",
+      "That the reported benchmark gains generalize to all software engineering",
+      "That the architecture by itself guarantees crash consistency, exactly-once effects, security, or production correctness"
+    ],
+    "uncertain": [
+      "The minimum sufficient acceptance packet",
+      "How to automatically invalidate only evidence affected by a later change",
+      "When different models, deterministic tests, human review, or external evaluation are required for stronger independence"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The engineering argument is derived from external primary research and remains independently useful without first-party projects."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The evidence supports a bounded, practical state-and-acceptance model for long-horizon agent engineering without turning benchmark outcomes into universal claims."
+}
