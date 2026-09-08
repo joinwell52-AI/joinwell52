@@ -14,19 +14,25 @@
 
 <a id="featured-research"></a>
 
-## 先读这三篇
+## 从一篇总览开始
 
-**01 · 理解方向**<br>
-[从 SaaS 到 SaaW：软件如何成为工作者](https://joinwell52-ai.github.io/joinwell52/zh/industry/2026-08-10-saaw-software-as-an-agent-worker)<br>
-理解数字员工、运行时与治理之间的关系。
+**[从 SaaS 到 SaaW：当代码库开始“自己开发自己”](https://joinwell52-ai.github.io/joinwell52/zh/industry/2026-08-10-saaw-software-as-an-agent-worker)**
 
-**02 · 检查交付**<br>
-[测试结果是空的，为什么系统仍然显示已验证？](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-03-empty-test-results-verified)<br>
-检查“验证通过”背后是否真的有足够证据。
+从数字员工的工作方式读起，理解 TMPA、FCoP 与 CodeFlowMu 如何连接，并区分已验证的工程能力与研究前沿。
 
-**03 · 检查授权**<br>
-[你批准的是一条命令，为什么另一条也通过了？](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-04-approval-operation-identity)<br>
-理解批准的操作与实际执行的操作如何保持一致。
+### 再读三篇：多 Agent 团队治理
+
+**1/3 · 治理模型、文件状态机与工程轨道机**<br>
+[多个 Agent 怎样真正组成团队？治理模型、文件状态机与工程轨道机](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-08-22-codeflowmu-governance-state-rail)<br>
+理解 TMPA 的治理语义、FCoP 的状态事实与 CodeFlowMu 的工程执行如何衔接。
+
+**2/3 · 任务如何领取、执行、审查与完成**<br>
+[任务怎样在 Agent 团队中流转？文件状态机如何记录领取、执行、审查与完成](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-08-22-agent-task-file-state-machine)<br>
+沿一张任务的生命史，检查身份、状态迁移、报告与验收证据如何保持一致。
+
+**3/3 · 轨道机如何服务自主工作而不越权**<br>
+[Agent 团队怎样自主工作？轨道机如何提供派工、恢复与人工裁决服务](https://joinwell52-ai.github.io/joinwell52/zh/digital-employee/2026-08-22-agent-rail-decision-boundary)<br>
+理解派工、审计与技术恢复的服务边界，以及 Agent、PM 和 ADMIN 各自的判断职责。
 
 > 如果这些研究对你有帮助，欢迎点击本仓库右上角 **⭐ Star** 收藏，方便以后查阅案例、规范与实验记录。
 
