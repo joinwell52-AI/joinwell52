@@ -1,34 +1,46 @@
 <p align="center">
-  <img src="./docs/public/assets/readme/tmpa-readme-hero-zh.svg" alt="TMPA：文本化多智能体流程架构" width="100%">
+  <a href="#featured-research">
+    <img src="./docs/public/assets/readme/research-center-hero-zh.svg" alt="AI Agent 与数字员工研究中心：点击查看代表成果" width="100%">
+  </a>
 </p>
 
-<p align="center">
-  <strong>AI Agent 能产出结果；生产系统还必须证明：谁负责、什么被接受、为什么可以放行。</strong>
-</p>
+# AI Agent 与数字员工研究
 
-<p align="center">
-  <a href="https://github.com/joinwell52-AI/CodeflowMu-Distribution"><strong>CodeFlowMu 应用</strong></a>
-  ·
-  <a href="https://github.com/joinwell52-AI/CodeflowMu-Distribution/releases"><strong>下载 Windows 预览版</strong></a>
-  ·
-  <a href="https://joinwell52-ai.github.io/FCoP/"><strong>了解 FCoP</strong></a>
-  ·
-  <a href="https://joinwell52-ai.github.io/joinwell52/zh/"><strong>进入研究主页</strong></a>
-  ·
-  <a href="./README.md"><strong>English</strong></a>
-</p>
+从真实工程问题出发，研究 Agent 如何协作、获得授权、交付结果，并留下可核查的证据。
 
-<p align="center">
-  <a href="https://github.com/joinwell52-AI/joinwell52/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/joinwell52-AI/joinwell52?style=for-the-badge&logo=github&label=Star"></a>
-  <a href="https://github.com/joinwell52-AI/joinwell52/releases/tag/tmpa-v1.0"><img alt="TMPA V1.0 Release" src="https://img.shields.io/badge/release-TMPA%20V1.0-2563eb?style=for-the-badge"></a>
-  <a href="https://doi.org/10.5281/zenodo.21888488"><img alt="DOI" src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21888488-1682D4?style=for-the-badge"></a>
-  <a href="https://doi.org/10.17605/OSF.IO/2JVQD"><img alt="TMPA OSF DOI 10.17605/OSF.IO/2JVQD" src="https://img.shields.io/badge/OSF_DOI-10.17605%2FOSF.IO%2F2JVQD-2F80ED?style=for-the-badge&logo=osf&logoColor=white"></a>
-  <a href="https://doi.org/10.5281/zenodo.20457285"><img alt="FCoP DOI" src="https://img.shields.io/badge/FCoP_DOI-10.5281%2Fzenodo.20457285-1682D4?style=for-the-badge"></a>
-  <a href="https://doi.org/10.17605/OSF.IO/92NWM"><img alt="FCoP OSF DOI 10.17605/OSF.IO/92NWM" src="https://img.shields.io/badge/OSF_DOI-10.17605%2FOSF.IO%2F92NWM-2F80ED?style=for-the-badge&logo=osf&logoColor=white"></a>
-  <a href="./CITATION.cff"><img alt="引用本仓库" src="https://img.shields.io/badge/%E5%BC%95%E7%94%A8-CITATION.cff-8b5cf6?style=for-the-badge"></a>
-  <a href="https://joinwell52-ai.github.io/joinwell52/zh/publications/tmpa-core-specification-s1.0"><img alt="TMPA Core S1.0" src="https://img.shields.io/badge/Core-S1.0-7c3aed?style=for-the-badge"></a>
-  <a href="https://joinwell52-ai.github.io/joinwell52/zh/publications/implementation-case-i1.0"><img alt="Implementation I1.0" src="https://img.shields.io/badge/CodeFlowMu-14%2F14_PASS-15803d?style=for-the-badge"></a>
-</p>
+**[阅读代表成果](#featured-research) · [浏览研究中心](https://joinwell52-ai.github.io/joinwell52/zh/) · [体验 CodeFlowMu](#codeflowmu-app) · [English](./README.md)**
+
+这里汇集工程案例、研究文章、TMPA 规范与验证材料。你可以从一个具体问题读起，再检查相关证据或运行参考示例。
+
+<a id="featured-research"></a>
+
+## 先读这三篇
+
+**01 · 理解方向**<br>
+[从 SaaS 到 SaaW：软件如何成为工作者](https://joinwell52-ai.github.io/joinwell52/zh/industry/2026-08-10-saaw-software-as-an-agent-worker)<br>
+理解数字员工、运行时与治理之间的关系。
+
+**02 · 检查交付**<br>
+[测试结果是空的，为什么系统仍然显示已验证？](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-03-empty-test-results-verified)<br>
+检查“验证通过”背后是否真的有足够证据。
+
+**03 · 检查授权**<br>
+[你批准的是一条命令，为什么另一条也通过了？](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-04-approval-operation-identity)<br>
+理解批准的操作与实际执行的操作如何保持一致。
+
+> 如果这些研究对你有帮助，欢迎点击本仓库右上角 **⭐ Star** 收藏，方便以后查阅案例、规范与实验记录。
+
+## 选择你的下一步
+
+| 我想…… | 入口 |
+|---|---|
+| 阅读更多研究 | [研究中心](https://joinwell52-ai.github.io/joinwell52/zh/) |
+| 运行一个验证示例 | [运行 Reference Reader](#运行-reference-reader) — `npm run demo` |
+| 试用多角色 AI 开发团队 | [CodeFlowMu](#codeflowmu-app) |
+| 查看文件式协作协议 | [FCoP](https://github.com/joinwell52-AI/FCoP) |
+| 研究理论与规范 | [TMPA](#tmpa) |
+
+<a id="codeflowmu-app"></a>
 
 ## 使用 CodeFlowMu
 
@@ -40,14 +52,8 @@ CodeFlowMu 是本地运行的 PM / DEV / QA / OPS 多角色 AI 开发团队，�
 
 本仓库继续维护 TMPA 研究、规范与工程证据。CodeFlowMu 的应用、安装与更新统一进入发版仓库；旧版 CodeFlowMu Open 仅保留为历史研究记录。
 
-## 开放科学标准引用凭证
-
-| 成果 | Zenodo DOI | OSF DOI |
-|---|---|---|
-| **TMPA** | [10.5281/zenodo.21888488](https://doi.org/10.5281/zenodo.21888488) | [10.17605/OSF.IO/2JVQD](https://doi.org/10.17605/OSF.IO/2JVQD) |
-| **FCoP** | [10.5281/zenodo.20457285](https://doi.org/10.5281/zenodo.20457285) | [10.17605/OSF.IO/92NWM](https://doi.org/10.17605/OSF.IO/92NWM) |
-
-Zenodo DOI 对应可引用的正式版本档案；OSF Registration 对应不可变、带时间戳的开放科学快照。
+<details>
+<summary>观看产品介绍（12 秒预告 / 60 秒完整版）</summary>
 
 ## CodeFlowMu 产品介绍
 
@@ -67,6 +73,22 @@ Zenodo DOI 对应可引用的正式版本档案；OSF Registration 对应不可�
   <br>
   <sub>真实 PC 与手机录屏 · 中文旁白 · 多 AI 自动协作 · 最终人类审批</sub>
 </p>
+
+</details>
+
+<details>
+<summary>查看 TMPA / FCoP 引用凭证与 DOI</summary>
+
+## 开放科学标准引用凭证
+
+| 成果 | Zenodo DOI | OSF DOI |
+|---|---|---|
+| **TMPA** | [10.5281/zenodo.21888488](https://doi.org/10.5281/zenodo.21888488) | [10.17605/OSF.IO/2JVQD](https://doi.org/10.17605/OSF.IO/2JVQD) |
+| **FCoP** | [10.5281/zenodo.20457285](https://doi.org/10.5281/zenodo.20457285) | [10.17605/OSF.IO/92NWM](https://doi.org/10.17605/OSF.IO/92NWM) |
+
+Zenodo DOI 对应可引用的正式版本档案；OSF Registration 对应不可变、带时间戳的开放科学快照。
+
+</details>
 
 ---
 
