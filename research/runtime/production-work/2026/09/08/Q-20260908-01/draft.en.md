@@ -6,7 +6,7 @@ column: digital-employee
 category: daily
 article_type: technical-analysis
 edition: research-center
-research_question: "When a digital employee changes its model, writer, reader, or embedding stack, what evidence is required before its old durable memory can become authoritative for the new runtime?"
+research_question: "当数字员工更换模型、读写方式或嵌入模型后，需要哪些证据，才能让原有持久记忆成为新运行环境的权威记忆？"
 summary: "A controlled study shows that intact files, readable formats, and matching vector dimensions do not guarantee that a changed model stack will retrieve and interpret old memory consistently. Robust upgrades should separate storage integrity, semantic compatibility, recoverability, and activation authority."
 cover: staging/publication-candidates/2026-09-08-memory-must-be-readmitted-cover.png
 sources:
@@ -41,7 +41,7 @@ Embedding migration exposes a similar issue. Both examined embedding versions pr
 
 These numbers belong to the study's synthetic workload and model pair; they are not enterprise thresholds. They are sufficient to reject a weaker assumption: shared format or dimensionality alone does not establish semantic compatibility. Admission evidence must bind the exact direction—for example, memory produced by an old writer and embedder being consumed by a new reader and embedder.
 
-## Four States Cannot Be Compressed into “Available”
+## Four States Cannot Be Compressed into Available
 
 A robust migration record preserves at least four facts.
 
