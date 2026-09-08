@@ -6,7 +6,7 @@ column: open-source-engineering
 category: daily
 article_type: engineering-insight
 edition: research-center
-research_question: "When an agent alternates among GUI, CLI, and tool or MCP actions that mutate the same application state, how can those actions remain one auditable business effect?"
+research_question: "当智能体在图形界面、命令行和工具调用之间切换，并共同修改同一份应用状态时，怎样保证这些动作仍属于同一次可审计的业务效果？"
 summary: "CUA-Universe places GUI and CLI actions over one persistent application state and verifies hybrid trajectories with screenshots, command results, and exported artifacts. Control surfaces may change, but business-effect identity should remain stable; authorization, idempotency, and commit evidence still require separate gates."
 cover: staging/publication-candidates/2026-09-08-one-effect-across-surfaces-cover.png
 sources:
