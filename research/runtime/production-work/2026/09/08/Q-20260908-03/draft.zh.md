@@ -7,7 +7,7 @@ category: daily
 article_type: engineering-insight
 edition: research-center
 research_question: "当智能体在图形界面、命令行和工具调用之间切换，并共同修改同一份应用状态时，怎样保证这些动作仍属于同一次可审计的业务效果？"
-summary: "CUA-Universe 让图形界面与命令行共同作用于同一持久应用状态，并用截图、命令结果和导出工件联合验证轨迹。由此可见，操作界面可以变化，业务效果身份不应被切碎；但授权、幂等和最终提交仍需独立证据。"
+summary: "CUA-Universe（面向计算机操作智能体的统一环境）让图形界面与命令行共同作用于同一持久应用状态，并用截图、命令结果和导出工件联合验证轨迹。由此可见，操作界面可以变化，业务效果身份不应被切碎；但授权、幂等和最终提交仍需独立证据。"
 cover: staging/publication-candidates/2026-09-08-one-effect-across-surfaces-cover.png
 sources:
   - research/analysis/Q-20260908-03-cross-surface-effect-provenance.md
