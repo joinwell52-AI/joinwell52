@@ -1,0 +1,53 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-08",
+  "itemId": "Q-20260908-02",
+  "researchObjectId": "Q-20260908-02",
+  "targetAudience": {
+    "primary": "Architects and operations leaders managing multi-agent teams, failover, and worker replacement",
+    "knowledgeAssumption": "The reader understands role-based assignment, handoffs, team state, and operational recovery.",
+    "readerProblem": "A replacement agent can match the outgoing worker's model, role, and tools yet still disrupt a team's learned coordination conventions."
+  },
+  "whyNow": "A controlled agent-interchangeability study reports that role-matched swaps preserve much task outcome while increasing communication cost per unit of progress by roughly 16–63%, with coordination efficiency recovering later than task score.",
+  "externalHook": {
+    "type": "successful-work-hidden-coordination-cost",
+    "description": "The replacement completes the task, so the system closes recovery while the team is still spending materially more coordination effort.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "E4"
+    ]
+  },
+  "coreProposition": "Role and capability qualification do not establish destination-team compatibility; replacement activation requires separate evidence for team coordination, carried-state scope, and recovery of both outcome and coordination efficiency.",
+  "originalValue": {
+    "type": "team-readmission-model",
+    "description": "Reframes replacement from individual capability matching into destination-team re-admission with scoped relationship state and a two-dimensional recovery window."
+  },
+  "readerTakeaway": "Bind replacement evidence to the destination team and seat, separate task knowledge from relationship-specific state, and keep recovery open until both task outcomes and coordination costs stabilize.",
+  "evidenceBoundary": {
+    "supported": [
+      "The primary study reports substantial communication-cost penalties after role-matched swaps despite preserved task performance.",
+      "Partner specificity increases with coupling and formation history in the reported ablations.",
+      "Task outcome can recover earlier than coordination efficiency."
+    ],
+    "unsupported": [
+      "A universal communication-cost threshold",
+      "A fixed enterprise probation duration",
+      "A claim that all team memory must be cleared",
+      "General proof for large organizations or crash-time failover"
+    ],
+    "uncertain": [
+      "How to version live team coordination state",
+      "How to measure compatibility in teams larger than two",
+      "Which relationship memories should survive emergency replacement"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument stands on public primary research and is useful without reference to any first-party system."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The designed comparisons support a bounded distinction between role qualification and team qualification with direct operational consequences."
+}
