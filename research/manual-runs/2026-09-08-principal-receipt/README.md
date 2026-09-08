@@ -48,3 +48,11 @@ The publication preserves both complete arguments and their controls. The public
 - [回执坏了，为什么任务没有再跑一遍？一次真实调度链的反例实验](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-08-corrupt-receipt-dispatch-counterexample) · [English](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-08-corrupt-receipt-dispatch-counterexample)
 
 本回执仅追加到发布登记，不改变已核验的正文、配图或证据包。GitHub 发布不授权论坛分发、产品开发或产品版本发布。
+
+## 可读性修订计划 / Readability revision brief
+
+用户在发布后明确授权可读性精修及线上更新。第一篇保留甲乙情境、四层身份表与历史/源码/探针对照，补上权限问题到指令来源的推理桥梁，并先解释字段保存现象。第二篇保留两轮反例结构及全部表格，先交代两次调用与一次模拟启动，再解释回调、SDK 和调度组件；表前增加阅读提示。两篇压缩重复结论，同步英文，不改变来源状态、实验观测、限定条件、配图或证据包。更新使用原网址，不另建文章。
+
+修订已按上述范围完成。逐行比较四份正文的全部 Markdown 表格及固定源码提交，与修订前完全一致；公开证据包 60 条观测校验 PASS，布局/编辑验证和严格站点构建 PASS。本次只修改四份正文及本登记，证据和配图均未改动。
+
+Readability revision: completed in both languages. All table rows and fixed source identities match the preceding edition exactly. Public evidence checking, layout/editorial validation and the strict site build passed. This is an editorial update, not a new experiment; the article URLs, figures and evidence bundle remain unchanged.

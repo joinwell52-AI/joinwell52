@@ -81,7 +81,7 @@ The next question is not where to add a person's name, but whose identity the cu
 
 ## 3. A different agent does not automatically inherit an old approval
 
-We called the actual operation approval service and saved its real record format, replacing execution with a counting callback rather than connecting a repository.
+We called the actual operation approval service and saved its real record format. After approval checks pass, the service invokes a function to do the work: the execution callback. In this experiment, that function only counted calls instead of performing an operation. No repository was connected.
 
 A request digest is an operation-identity check: changing protected request contents should prevent an old approval from being used as though the request were unchanged.
 
@@ -92,19 +92,17 @@ A request digest is an operation-identity check: changing protected request cont
 | Change only the session ID | Same digest; 1 callback | This digest excludes session identity; this does not authorize an entire takeover workflow |
 | Reuse a task-command key but change its submitting actor | `idempotency_key_conflict`; no second callback | The command layer also checks actor differences |
 
-These counterexamples rule out describing CodeFlowMu as having no identity binding.
-
 The second round also called the real operation-policy builder instead of constructing the request entirely in research code. It derived `subject.actor` from `agentId`. Changing the agent changed the digest of the actual constructed request.
 
 The protection exists. It answers which agent submitted the operation, not which authenticated human is responsible for it. Those questions need a connection; one field does not inherently answer both.
 
 ## 4. The reproduced gap is much narrower than an incomplete identity system
 
-We followed the chat-continuation path to inspect instruction provenance.
+To decide whose permissions an action should use, we first need to know which instruction caused it. We therefore checked a more basic question: **can the original instruction reference be followed all the way into the execution session?** This is one part of responsibility tracing, not a test of human authorization.
 
-The real continuation-command builder did retain the source: its command evidence included a chat reference, and its continuation context contained `trigger_chat_id`, the message identifier that triggered the work.
+Following the chat-continuation path revealed a placement difference. The message identifier reached the command, but **it was saved when supplied at the outer level and absent from its session field when supplied inside continuation information.**
 
-The difference appeared at the next hop. The dispatcher passed this information as nested continuation context. When persisting the triggering-message field, however, the session manager read only the top level.
+Specifically, the continuation command retained a chat reference and placed the triggering message identifier, `trigger_chat_id`, in continuation context. The dispatcher passed that nested context to the session manager. When persisting the triggering-message field, however, the session manager read only the top level.
 
 This is a simplified field-location illustration, not an additional experiment:
 
@@ -129,7 +127,7 @@ We placed the same source field at each location and called the actual session m
 
 [Open full-size figure](https://joinwell52-ai.github.io/joinwell52/assets/principal-receipt-20260908/01-source-projection.en.svg)
 
-This was not a failure to save the entire object: the logical execution ID from the same nested object was persisted. The code matches the observation: it searches both locations for the logical execution ID, but only the top level for the triggering message.
+The entire session record had not failed to save: the logical execution ID supplied in the same call was persisted. The missing item was the triggering message ID. The code matches the observation: it searches both locations for the logical execution ID, but only the top level for the triggering message.
 
 A separate isolated scenario started through the actual dispatcher also lacked the corresponding triggering-message field in its session record. The four identity probes produced consistent results in two formal runs.
 
@@ -141,9 +139,7 @@ Its practical value is that a query depending on this session field might see no
 
 ## 5. Where should the research lead, rather than what should be built immediately?
 
-The comparison yields three distinct conclusions.
-
-Existing agent-subject binding should be retained. Adding human responsibility must not require declaring current digest and command-idempotency checks ineffective. Nor should session continuity be treated as a reason for old authority to remain valid.
+This research does not call for immediately rebuilding an identity platform. Retain existing agent-subject binding; review the source-reference handoff contract now; establish a separate requirement and authority boundary before adding shared credentials.
 
 The triggering-message projection difference is a narrow engineering-review topic: who supplies it, which entrances use nested context, how conflicting top-level and nested values should be handled, and which queries actually depend on the field. Those need a clear read/write contract, not an identity platform inferred from one missing value.
 

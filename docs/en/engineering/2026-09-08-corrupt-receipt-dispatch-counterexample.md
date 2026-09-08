@@ -30,13 +30,13 @@ sources:
 
 # The Receipt Was Corrupted. Why Didn't the Task Start Again?
 
-We corrupted a command's completion receipt and submitted the same command again. The execution callback was indeed called a second time.
+We deliberately corrupted a command's completion record and submitted the same command again. The system did call the function responsible for execution a second time.
 
-Had the research stopped there, we could have written an article claiming that receipt corruption causes duplicate execution.
+But do two function calls necessarily start the task twice? Once we connected the function to the product's actual dispatcher, the answer was no. The simulated execution interface still started only once, leaving one execution-attempt record.
 
-But when we connected that callback to the product's actual dispatcher, the result changed. The command entered the dispatcher again without starting another execution. The scenario still contained one execution-attempt record and one synthetic SDK start.
+Counting function calls alone could easily lead to a premature conclusion of duplicate task execution.
 
-There was no payment, email or code push. The SDK was an in-memory experimental adapter. Yet the distinction exposes a causal shortcut that is easy to write incorrectly:
+We call that function the execution callback below. The simulated interface replaces the SDK through which the runtime connects to a model. It simulates a start in memory, without a real model, payment, email or code push.
 
 **Another callback is not another start. Another start is not, by itself, evidence of a duplicated external effect.**
 
@@ -73,6 +73,8 @@ Neither the inspected code nor the experiment showed the reader deleting origina
 
 To isolate this behavior, we used the real command kernel and receipt store, a fixed governance snapshot permitting retry, and a counting executor. Each retry created a new kernel instance so the previous instance's memory cache could not supply the answer.
 
+Read the table for three patterns first: **intact receipts allow replay; damaged target receipts can lead to another call; downstream deduplication can still coalesce the effect.** The other controls test the conditions under which those statements hold.
+
 | Controlled condition | Second read or handling result | Cumulative callbacks / synthetic effects |
 | --- | --- | ---: |
 | Intact completion | Reuses completed result | 1 / 1 |
@@ -87,19 +89,17 @@ To isolate this behavior, we used the real command kernel and receipt store, a f
 
 The explicit reader error was an injected counterexample, not a claim that the current reader reports corruption this way. The unsupported version was also synthetic. The last row's deduplication set lived in the experiment's memory, not a durable database.
 
-These qualifications matter. The first round establishes at most that **without an explicit read-anomaly signal, the real kernel can call the executor again; whether the effect repeats depends on that executor.**
-
-The existing kernel already permits retries from pending when the revision is unchanged, expecting downstream work to coalesce under the same key. Two callbacks do not immediately establish a violation of that design.
+The first-round conclusion therefore stops at the call boundary: **without an explicit read-anomaly signal, the real kernel can call the executor again; whether the effect repeats depends on that executor.** The existing kernel already permits retries from pending when the revision is unchanged, expecting downstream work to coalesce under the same key.
 
 ## 3. Second round: measure whether another execution actually starts
 
-We replaced the simple counting callback with the actual dispatcher, execution-attempt store, lifecycle manager, session manager and session store.
+Instead of merely incrementing a counter, the second-round callback entered the product's actual task-starting flow. Components responsible for dispatch, attempt persistence, task lifecycle and sessions all came from the current product implementation.
 
-Two substitutions remained explicit: a controlled governance snapshot deliberately allowed processing to reach the lower layer, and an in-memory model SDK replaced real models and external business operations. We did not start the private HTTP handler. A research bridge passed the same key and dispatch arguments following its retry branch.
+A fixed governance snapshot permitted retry so the request could reach that layer. The final execution interface was still the in-memory substitute described above. We did not issue a request through the web interface: research code passed the same key and dispatch arguments following the web service's retry logic. This exercised actual dispatch components, not the entire web entrance end to end.
 
 This answers a narrower question closer to execution: **does the real dispatch chain turn the repeated call into another attempt and another SDK start?**
 
-Every scenario first confirmed that an execution started, then damaged isolated receipts and performed the second step. Counts include that first execution.
+Every scenario first confirmed that an execution started, then damaged isolated receipts and performed the second step. Counts include that first execution. **Look first for two outcomes: original-key scenarios did not start again; the new-key control could start.** The intervening rows distinguish cancellation, revision changes and concurrency.
 
 | Scenario | Change | Second result | Cumulative SDK starts / attempts |
 | --- | --- | --- | ---: |
@@ -152,9 +152,7 @@ Nor do all local stores skip bad input. The inspected single-record session stor
 
 The second round did not remove the read-layer anomaly. A damaged completion can still leave the caller seeing only an older pending receipt or no usable record, without knowing that corruption lies behind that answer.
 
-But we now know that existing execution protections held in the tested scenarios.
-
-The review question should therefore be narrower: can the read result express both which record was found and whether reading was healthy? Should absence, corruption and unsupported versions carry distinct diagnostics? Which commands should those diagnostics affect, and which signals should support explanation or reconciliation only?
+Existing execution protections held in the tested scenarios, so the review question should be narrower: can the read result express both which record was found and whether reading was healthy? Should absence, corruption and unsupported versions carry distinct diagnostics? Which commands should those diagnostics affect, and which signals should support explanation or reconciliation only?
 
 This does not immediately prescribe stopping the whole system for one bad line. Unrelated damage, a usable target receipt, version compatibility and actual execution occupancy need separate handling. A blanket block could cut off recovery paths that already work.
 
