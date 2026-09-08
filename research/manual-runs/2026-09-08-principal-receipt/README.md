@@ -32,4 +32,19 @@ The publication preserves both complete arguments and their controls. The public
 - Full local Runtime validation initially stopped at `runtime-shift-terminal-test`: `prompt hash drift`. The checkout had `core.autocrlf=true`; CRLF-to-LF restoration of the nine generated prompts reproduced their already-registered SHA-256 values exactly. Full `npm run runtime:validate` then PASS. No test logic, control hash or product file was changed. Those checkout-only byte changes are excluded from the content commit.
 - Existing dependency audit reports 6 advisories (3 moderate, 3 high); no dependency upgrade is included in this content-only publication.
 
-远端提交、部署与逐文件回读结果在发布完成后登记。GitHub 发布并不授权论坛分发、产品开发或产品版本发布。
+## 发布回执 / Publication receipt
+
+- Status / 状态：PUBLISHED AND LIVE VERIFIED。
+- Content commit: `c40c2b8941abf592d8c4b3c022b5741a708ce604`。
+- [Remote validation](https://github.com/joinwell52-AI/joinwell52/actions/runs/34193121303): SUCCESS。
+- [Pages deployment](https://github.com/joinwell52-AI/joinwell52/actions/runs/34193121279): SUCCESS；gh-pages 部署记录指向上述内容提交。
+- GitHub 固定提交逐文件回读：27/27 SHA-256 MATCH。
+- 线上回读：4 个双语正文页、2 个证据说明页全部 HTTP 200；20 个公开资产逐字节摘要 MATCH；中英文研究目录都包含两篇文章。
+- Temporary preview tab closed; local preview server stopped. No user tabs were closed.
+
+线上正文 / Live articles:
+
+- [同一个 Agent，换个人指挥，权限也会跟着换吗？](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-08-shared-agent-instruction-identity) · [English](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-08-shared-agent-instruction-identity)
+- [回执坏了，为什么任务没有再跑一遍？一次真实调度链的反例实验](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-08-corrupt-receipt-dispatch-counterexample) · [English](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-08-corrupt-receipt-dispatch-counterexample)
+
+本回执仅追加到发布登记，不改变已核验的正文、配图或证据包。GitHub 发布不授权论坛分发、产品开发或产品版本发布。
