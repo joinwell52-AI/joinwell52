@@ -1,0 +1,266 @@
+{
+  "schema": "research-intelligence-run/v1",
+  "version": "1.0",
+  "date": "2026-09-08",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "registryVersion": "1.0",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-09-08T09:09:55+08:00",
+  "githubCommit": "pending",
+  "researchCoverage": {
+    "policy": "theme-sample-v1",
+    "rollingResearchWindowDays": 30,
+    "sampleFamilies": {
+      "product-governance": {
+        "checked": [
+          "UiPath Agents governance via Automation Ops AI Trust Layer",
+          "IBM watsonx.governance Enforcement Tracking for watsonx Orchestrate"
+        ],
+        "qualifiedSignals": 1
+      },
+      "multi-agent-mechanism": {
+        "checked": [
+          "LangGraph interrupt and durable checkpoint mechanism",
+          "Microsoft Agent Framework durable multi-agent workflow orchestration"
+        ],
+        "qualifiedSignals": 0
+      },
+      "research-benchmark-industry": {
+        "checked": [
+          "Memory portability across model upgrades (arXiv:2609.05339)",
+          "LLM agent-team interchangeability (arXiv:2609.05279)",
+          "CUA-Universe hybrid GUI+CLI agent benchmark (arXiv:2609.05374)"
+        ],
+        "qualifiedSignals": 3
+      }
+    }
+  },
+  "reason": "All three formal Discovery pipelines reached terminal coverage and the theme-first active-sample overlay was completed without topic selection. Five qualified, non-duplicate signals were retained after research-problem normalization: one enterprise governance mechanism, one merged engineering mechanism, and three primary-research findings. Pure sample-change-trigger density is 0%.",
+  "reason_zh": "三条正式 Discovery 管线均完成终态覆盖，并完成主题优先主动样本检查，未执行选题。按研究问题规范化并与近期运行去重后保留 5 个合格 Signal：1 个企业治理机制、1 个已合并工程机制、3 个一手研究发现；纯 sample-change-trigger 占比为 0%。",
+  "pipelines": [
+    {
+      "id": "ai-platform",
+      "label": "AI Platform Change Intelligence",
+      "label_zh": "AI 平台变更情报发现",
+      "status": "Completed",
+      "due": 45,
+      "checked": 45,
+      "inaccessible": [],
+      "failed": [],
+      "signals": 1,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All 45 due P0 public platform channels were terminally checked across the six registered source groups. The active product-governance pass retained one non-duplicate enterprise mechanism: IBM watsonx.governance continuously records agent evaluation metrics as enforcement evidence against defined controls and thresholds.",
+      "reason_zh": "六组注册来源共 45 个到期 P0 公共平台通道全部完成终态检查。主动产品治理检查保留 1 个非重复企业机制：IBM watsonx.governance 将 Agent 评估指标持续记录为针对既定控制与阈值的执行证据。"
+    },
+    {
+      "id": "github-engineering",
+      "label": "GitHub Engineering Intelligence",
+      "label_zh": "GitHub 工程情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 9,
+      "inaccessible": [],
+      "failed": [],
+      "signals": 1,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 daily repositories were checked incrementally. One non-duplicate merged mechanism was retained: Codex binds macOS MCP user verification to biometric-protected Secure Enclave credentials, serializes credential operations across processes, and invalidates pending authentication on cancellation before releasing the signer lock.",
+      "reason_zh": "9 个 P0 Daily 仓库均完成增量检查。保留 1 个非重复已合并机制：Codex 将 macOS MCP 用户验证绑定到生物识别保护的 Secure Enclave 凭据，跨进程序列化凭据操作，并在取消时先使待处理认证失效、等待签名器退出后再释放锁。"
+    },
+    {
+      "id": "published-research",
+      "label": "Published Research Intelligence",
+      "label_zh": "论文与研究成果情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 7,
+      "inaccessible": [],
+      "failed": [
+        {
+          "source": "https://www.sciencedirect.com/journal/journal-of-systems-and-software",
+          "reason": "The Journal of Systems and Software public journal surface returned an internal fetch error during this run; the failure is recorded rather than counted as checked."
+        },
+        {
+          "source": "https://zenodo.org/",
+          "reason": "The Zenodo public surface returned an internal fetch error during this run; the failure is recorded rather than counted as checked."
+        }
+      ],
+      "signals": 3,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 research sources were terminally resolved using the rolling seven-day pass with a thirty-day expansion where useful: seven were directly checked and two public surfaces returned explicitly recorded fetch failures. Three non-duplicate primary-research findings were retained around memory migration, agent-team interchangeability, and hybrid GUI+CLI execution.",
+      "reason_zh": "9 个 P0 研究来源全部终态收口；按滚动 7 天检查并在需要时扩展到 30 天：7 个直接完成检查，2 个公共页面的抓取失败被明确记录而未伪装成成功。保留 3 个非重复一手研究发现，分别涉及记忆迁移、Agent 团队可替换性与 GUI+CLI 混合执行。"
+    }
+  ],
+  "columns": [
+    {
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "decision": "Waiting",
+      "signals": 1,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded one primary Digital Employee signal; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 1 个以数字员工为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    },
+    {
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded two primary Industry Architecture signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以行业架构为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    },
+    {
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded two primary Open-source Engineering signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以开源工程为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    }
+  ],
+  "signals": [
+    {
+      "id": "SIG-20260908-001",
+      "pipeline": "ai-platform",
+      "title": "IBM turns agent evaluation metrics into continuously recorded governance enforcement evidence",
+      "title_zh": "IBM 将 Agent 评估指标转化为持续记录的治理执行证据",
+      "sourceUrl": "https://www.ibm.com/new/announcements/from-governance-policies-to-governance-proof-with-enforcement-tracking-for-watsonx-orchestrate",
+      "publishedAt": "2026-08-11",
+      "evidenceLevel": "official_announcement",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "ibm-watsonx-orchestrate/enforcement-tracking-governance-evidence",
+      "summary": "IBM watsonx.governance Enforcement Tracking for watsonx Orchestrate automatically collects agent-evaluation metrics, associates them with governance controls and thresholds, and records pass or breach evidence so policy enforcement can be continuously evidenced rather than merely documented.",
+      "summary_zh": "IBM watsonx.governance Enforcement Tracking for watsonx Orchestrate 会自动采集 Agent 评估指标，将其关联到治理控制与阈值，并记录通过或违反证据，使策略执行可以被持续证明，而不是只停留在文档声明。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["policy-enforcement", "audit-provenance-accountability", "multi-agent-evaluation"],
+      "sampleIds": ["ibm-watsonx-orchestrate", "ibm-watsonx-governance"],
+      "researchValue": {
+        "failure": "A documented policy or configured control does not prove that a production agent is continuously operating within it.",
+        "finding": "",
+        "mechanism": "Bind scheduled or on-demand agent evaluation metrics to governance controls and thresholds, then persist pass or breach results as enforcement evidence.",
+        "implication": "Governed digital-employee platforms should distinguish declared policy from continuously refreshed evidence that the running agent satisfies that policy."
+      }
+    },
+    {
+      "id": "SIG-20260908-002",
+      "pipeline": "github-engineering",
+      "title": "Codex binds macOS MCP user verification to biometric-protected Secure Enclave credentials and cancellation-safe signing",
+      "title_zh": "Codex 将 macOS MCP 用户验证绑定到生物识别保护的 Secure Enclave 凭据与取消安全的签名路径",
+      "sourceUrl": "https://github.com/openai/codex/commit/e7637306bc9246a3e42e407cb94f96b7ed345e3e",
+      "publishedAt": "2026-09-08",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "openai-codex/macos-mcp-user-verification-secure-enclave",
+      "summary": "Codex implemented native macOS user verification with P-256 Secure Enclave keys protected by biometric access control, a fresh authentication context per signature, cross-process credential serialization, cancellable lock waits, authentication invalidation on cancellation, and late-result rejection tests.",
+      "summary_zh": "Codex 实现了原生 macOS 用户验证：使用受生物识别访问控制保护的 P-256 Secure Enclave 密钥，每次签名创建新的认证上下文，跨进程序列化凭据操作，锁等待可取消；取消时使待处理认证失效，并用测试拒绝迟到结果。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["human-approval-authority", "credential-secret-boundary", "call-time-authorization", "recovery-authority"],
+      "sampleIds": ["openai-codex", "mcp"],
+      "researchValue": {
+        "failure": "User-verification protocols can become unsafe when proof is detached from a protected device credential or when cancellation races allow stale authentication results to survive.",
+        "finding": "",
+        "mechanism": "Bind each verification signature to a biometric-protected Secure Enclave credential and fresh authentication context; serialize credential operations and close cancellation before releasing the signer lock.",
+        "implication": "Human approval evidence for digital employees should bind the approving human, protected credential, concrete challenge, and cancellation lifecycle instead of treating a UI confirmation as sufficient proof."
+      }
+    },
+    {
+      "id": "SIG-20260908-003",
+      "pipeline": "published-research",
+      "title": "Agent memory can remain durable while becoming semantically non-portable across model upgrades",
+      "title_zh": "Agent 记忆可以保持持久化，却在模型升级后失去语义可移植性",
+      "sourceUrl": "https://arxiv.org/abs/2609.05339",
+      "publishedAt": "2026-09-04",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "arxiv-2609.05339/agent-memory-model-upgrade-portability",
+      "summary": "A controlled study finds that fixed-schema knowledge-graph memory transfers almost unchanged across writer swaps, while natural-language notes and embedding indexes can shift materially and asymmetrically after model or embedding upgrades; source history materially improves recoverability.",
+      "summary_zh": "一项受控研究发现，固定 Schema 的知识图谱记忆在 Writer 替换后几乎保持不变，而自然语言 Notes 与 Embedding Index 在模型或 Embedding 升级后可能出现明显且方向不对称的变化；保留源历史能显著提高恢复能力。",
+      "signalRole": "research-finding",
+      "researchThemes": ["memory-context-isolation", "recovery-authority", "durable-runtime-state"],
+      "sampleIds": ["arxiv-2609.05339"],
+      "researchValue": {
+        "failure": "A memory store can remain physically durable while its retrieval semantics change after a model or embedding upgrade, creating silent behavioral drift.",
+        "finding": "The study reports nearly stable fixed-schema transfer, but direction-dependent changes for natural-language notes and partial recovery from mixed embedding indexes; retaining raw source history substantially improves recovery.",
+        "mechanism": "Use structured schemas where possible, preserve source history, isolate embedding spaces, fully re-embed when required, and test migration in both model-upgrade directions.",
+        "implication": "A digital employee model upgrade should re-admit memory as a migrated capability with evidence, not assume that the same durable store preserves the same operational meaning."
+      }
+    },
+    {
+      "id": "SIG-20260908-004",
+      "pipeline": "published-research",
+      "title": "Role-matched agents are not automatically interchangeable after a team has formed coordination conventions",
+      "title_zh": "角色匹配的 Agent 在团队形成协作惯例后并不会自动保持可替换性",
+      "sourceUrl": "https://arxiv.org/abs/2609.05279",
+      "publishedAt": "2026-09-04",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "arxiv-2609.05279/llm-agent-team-interchangeability",
+      "summary": "Controlled team-swap experiments find that replacing a role-matched agent can preserve much of task score while increasing communication cost per unit of progress by 16–63%; in Hanabi, a swapped agent can be costlier than an inexperienced one because the original team accumulated coordination conventions.",
+      "summary_zh": "受控团队替换实验发现，替换角色匹配的 Agent 往往能保留大部分任务得分，但单位进展的沟通成本会上升 16–63%；在 Hanabi 中，替换 Agent 甚至可能比无经验 Agent 成本更高，因为原团队已经形成了协作惯例。",
+      "signalRole": "research-finding",
+      "researchThemes": ["role-organizational-design", "coordination-topology", "handoff-and-inter-agent-trust"],
+      "sampleIds": ["arxiv-2609.05279"],
+      "researchValue": {
+        "failure": "Treating agents as fungible because they share the same nominal role ignores team-specific conventions and can create hidden coordination debt during replacement or recovery.",
+        "finding": "The study reports a 16–63% increase in communication cost per progress after role-matched swaps, with longer team formation histories increasing the swap penalty in tested settings.",
+        "mechanism": "Evaluate replacement agents against coordination compatibility and, when needed, perform an explicit team re-formation or handoff phase rather than only checking role capability.",
+        "implication": "Digital-employee staffing, failover and recovery should treat team membership as stateful organizational context rather than assume that a role label is sufficient replacement authority."
+      }
+    },
+    {
+      "id": "SIG-20260908-005",
+      "pipeline": "published-research",
+      "title": "Hybrid GUI+CLI agent benchmarks expose one shared execution state across two control surfaces",
+      "title_zh": "GUI+CLI 混合 Agent 基准揭示了两个控制界面背后的同一共享执行状态",
+      "sourceUrl": "https://arxiv.org/abs/2609.05374",
+      "publishedAt": "2026-09-04",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "arxiv-2609.05374/cua-universe-hybrid-gui-cli-shared-state",
+      "summary": "CUA-Universe builds reproducible desktop VMs with both GUI and command-line surfaces over the same applications, synthesizes hybrid tasks and verified trajectories, and reports substantial success and efficiency gains after training a 9B model on the environment.",
+      "summary_zh": "CUA-Universe 为同一批桌面应用构建可复现 VM，并同时提供 GUI 与命令行控制界面，生成混合任务与可验证轨迹；在该环境训练 9B 模型后，论文报告了明显的成功率与执行效率提升。",
+      "signalRole": "benchmark-evidence",
+      "researchThemes": ["digital-employee-work-design", "multi-agent-evaluation", "audit-provenance-accountability"],
+      "sampleIds": ["arxiv-2609.05374", "cua-universe"],
+      "researchValue": {
+        "failure": "GUI-only or CLI-only evaluation can miss cross-surface side effects and inefficient trajectories because both interfaces mutate the same underlying application state.",
+        "finding": "The paper reports large gains in task success and reductions in steps and tokens on hybrid and external computer-use benchmarks after training in its reproducible environment.",
+        "mechanism": "Package real applications into reproducible VMs, expose coordinated GUI and CLI surfaces, synthesize hybrid tasks, and validate trajectories against shared application state.",
+        "implication": "Computer-use governance and verification should bind GUI and CLI actions into one effect/provenance chain because changing control modality does not create a separate business state."
+      }
+    }
+  ]
+}
