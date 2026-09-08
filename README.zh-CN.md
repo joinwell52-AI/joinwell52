@@ -19,6 +19,8 @@
 
 ## CodeFlowMu 产品介绍
 
+**[▶ 在 X 观看 60 秒视频](https://x.com/joinwell52/status/2092165371545682421/video/1)**
+
 <p align="center">
   <a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-teaser-zh.mp4">
     <img src="./docs/public/assets/video/codeflowmu-product-intro-zh-poster.jpg" alt="点击播放 CodeFlowMu 12 秒预告" width="920">
@@ -36,7 +38,7 @@
   <sub>真实 PC 与手机录屏 · 中文旁白 · 多 AI 自动协作 · 最终人类审批</sub>
 </p>
 
-点击封面播放 **12 秒预告（2.2 MB）**；**60 秒完整版（17.6 MB）**可通过上方按钮观看。
+点击封面播放 **12 秒预告（2.2 MB）**。上方按钮直接打开 MP4，也可选择在 X 观看完整版。
 
 </details>
 
