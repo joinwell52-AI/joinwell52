@@ -1,0 +1,88 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-08",
+  "itemId": "Q-20260908-03",
+  "coreProposition": "Business effect identity should remain stable across GUI, CLI, and tool/MCP surface switches over the same target state; surface-specific evidence belongs to one effect-centered provenance chain, while authorization, idempotency, and commit evidence remain separate gates.",
+  "openingMove": {
+    "type": "stale-ui-duplicate-retry",
+    "purpose": "Open with a command that has already committed while the stale graphical view triggers a duplicate retry.",
+    "evidenceRefs": [
+      "E1",
+      "E3",
+      "E4"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why do surface boundaries fracture one effect?",
+      "claim": "GUI, CLI, and tool logs can tell separate stories about actions that jointly mutate one underlying business state.",
+      "evidenceRefs": [
+        "E1",
+        "E4"
+      ],
+      "reasoningRole": "failure-mechanism",
+      "readerProgress": "Recognize modality as an action surface, not a transaction identity.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What does the benchmark establish?",
+      "claim": "Hybrid actions operate over one persistent state and require heterogeneous trajectory evidence; merely exposing more surfaces does not reproduce trained orchestration gains.",
+      "evidenceRefs": [
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "reasoningRole": "evidence",
+      "readerProgress": "Ground the identity problem in a controlled shared-state environment.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What should be unified and what should remain typed?",
+      "claim": "Use one effect identity and trajectory while preserving target lineage, each surface action, observation type, retry relation, and effect probe.",
+      "evidenceRefs": [
+        "E4",
+        "E5"
+      ],
+      "reasoningRole": "architecture-design",
+      "readerProgress": "Gain a minimal cross-surface provenance model.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "How should conflicting evidence be resolved?",
+      "claim": "Declare authoritative evidence by effect class and represent presentation lag or unknown effects explicitly before retry.",
+      "evidenceRefs": [
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "reasoningRole": "recovery-design",
+      "readerProgress": "Prevent stale views from becoming duplicate side effects.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What does unified provenance not prove?",
+      "claim": "A shared chain does not grant authorization or establish idempotency, exactly-once execution, external commit, or recovery authority.",
+      "evidenceRefs": [
+        "E3",
+        "E5"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "Keep identity, evidence, authority, and completion separate.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Separate logs per surface are simpler and can be joined later by timestamps.",
+    "responseBoundary": "Timestamp joins cannot reliably distinguish alternative attempts, retries, stale observations, and sequential parts of one intended effect; an explicit effect identity is needed, while native surface evidence remains preserved."
+  },
+  "endingStrategy": {
+    "type": "engineering-implication",
+    "purpose": "End with a design rule for retries: uncertainty must remain explicit until an authoritative effect probe resolves it."
+  }
+}

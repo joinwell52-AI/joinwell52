@@ -1,0 +1,53 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-08",
+  "itemId": "Q-20260908-03",
+  "researchObjectId": "Q-20260908-03",
+  "targetAudience": {
+    "primary": "Engineers building agent runtimes that combine desktop, browser, command-line, API, and MCP tool execution",
+    "knowledgeAssumption": "The reader understands GUI automation, command execution, tool calls, state verification, and retry risk.",
+    "readerProblem": "One business mutation can cross several control surfaces, yet logs and recovery logic often split it into unrelated surface-local executions."
+  },
+  "whyNow": "CUA-Universe explicitly models GUI and CLI actions over one persistent application state and verifies hybrid trajectories with screenshots, command results, and exported artifacts, making cross-surface identity a concrete runtime problem.",
+  "externalHook": {
+    "type": "one-effect-fractured-by-interfaces",
+    "description": "A command changes the authoritative file while the GUI remains stale, and the runtime mistakes the stale display for a failed effect that should be retried.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "E4"
+    ]
+  },
+  "coreProposition": "Business effect identity should remain stable across GUI, CLI, and tool/MCP surface switches over the same target state; surface-specific evidence belongs to one effect-centered provenance chain, while authorization, idempotency, and commit evidence remain separate gates.",
+  "originalValue": {
+    "type": "surface-invariant-effect-chain",
+    "description": "Separates unified business-effect identity from heterogeneous action evidence and from authority, exactly-once, and commit proofs."
+  },
+  "readerTakeaway": "Carry one effect ID across surfaces, preserve each action's native evidence, declare authoritative probes by effect class, and treat stale presentation state as uncertainty rather than proof of failure.",
+  "evidenceBoundary": {
+    "supported": [
+      "The primary benchmark operates GUI and application-specific CLI over one persistent state.",
+      "Its trajectory verification combines heterogeneous evidence such as screenshots, command results, and exported artifacts.",
+      "The evidence supports one effect-centered provenance chain with surface-specific observations."
+    ],
+    "unsupported": [
+      "Production-grade authorization correctness",
+      "Exactly-once execution across external services",
+      "Complete causal auditability",
+      "Universal enterprise performance gains from hybrid control"
+    ],
+    "uncertain": [
+      "How effect identity should survive process restarts",
+      "Which probe is authoritative when UI, file, and API disagree",
+      "How to compact trajectories without losing causal links"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The engineering argument is derived from public benchmark evidence and remains useful without any first-party project."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The shared-state benchmark mechanism supports an original but bounded runtime design insight without treating benchmark success as production validation."
+}
