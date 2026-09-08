@@ -1,0 +1,122 @@
+{
+  "baseline": "c008d9db91a21136fc61a4f60314e22db395d5d2",
+  "exported_runs": [
+    {
+      "file": "observations-1.json",
+      "original_name": "run-XOlGeE.json",
+      "original_sha256": "5ac363653f9889ba5ad638b24062fdea760d69415661484a686539ea02e3f05f",
+      "cases": 18
+    },
+    {
+      "file": "observations-2.json",
+      "original_name": "run-4rsQiU.json",
+      "original_sha256": "a512c75ed1af69f3acbb94718739f70b6b7a85b4376671a6837a89c1af423c08",
+      "cases": 18
+    },
+    {
+      "file": "observations-3.json",
+      "original_name": "integration-OYiK9N.json",
+      "original_sha256": "94f455f31295da99970bf5663523f429c924ebfd20a4baf00dc11deeaff7acfd",
+      "cases": 8
+    },
+    {
+      "file": "observations-4.json",
+      "original_name": "integration-x45PU9.json",
+      "original_sha256": "649266f24382488272de425b1db6f94df1de95e2a18597a78f109075b6adf7bc",
+      "cases": 8
+    },
+    {
+      "file": "observations-5.json",
+      "original_name": "identity-ONH2gx.json",
+      "original_sha256": "d92540bf0e80d314aee74a38be5ada5347dc2d9c9fb7faf9fdd53bb0c32577a1",
+      "cases": 4
+    },
+    {
+      "file": "observations-6.json",
+      "original_name": "identity-MZatYj.json",
+      "original_sha256": "032bd20204275006dcdf64837bddefe70ff67e133de79ec1c008126c45812431",
+      "cases": 4
+    }
+  ],
+  "external_sources": [
+    {
+      "url": "https://github.com/paperclipai/paperclip/pull/13005",
+      "status_at_research": "merged",
+      "merged_at": "2026-09-07T19:32:20Z",
+      "commit": "1cc45086d3b2f2710d4e161b0dc9ad1d3662a9a8",
+      "evidence_identity": "source-reported claim; account tests not rerun"
+    },
+    {
+      "url": "https://github.com/stablyai/orca/pull/19399",
+      "status_at_research": "draft/open",
+      "commit": "885bdbb85617ba248c720073678d34e1e14b62b4",
+      "evidence_identity": "proposal, not delivered capability; tests not rerun"
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Agent actor changes invalidate approval / command reuse",
+      "rows": [
+        "A1-actor-change",
+        "A4-command-actor-change",
+        "J3"
+      ]
+    },
+    {
+      "claim": "Nested triggering message absent; nested logical execution ID retained",
+      "rows": [
+        "J1",
+        "J2"
+      ]
+    },
+    {
+      "claim": "Corruption can cause repeated callbacks",
+      "rows": [
+        "R2-completion-corrupt",
+        "R3-both-corrupt",
+        "R6-future-completion"
+      ]
+    },
+    {
+      "claim": "No second start for the tested same-key dispatch scenarios",
+      "rows": [
+        "I1",
+        "I2",
+        "I3",
+        "I4",
+        "I5",
+        "I6"
+      ]
+    },
+    {
+      "claim": "A new key can create another attempt under synthetic governance",
+      "rows": [
+        "I7"
+      ]
+    },
+    {
+      "claim": "Other stores distinguish missing and damaged input",
+      "rows": [
+        "S0-missing",
+        "S1-invalid-json",
+        "S2-empty",
+        "O1-corrupt-approval"
+      ]
+    }
+  ],
+  "excluded_exploratory_runs": [
+    "run-xTDL9V",
+    "integration-MTwgkq",
+    "integration-QgF8YE",
+    "identity-8CLBHO"
+  ],
+  "limits": [
+    "Saved-record checking is not product replay",
+    "No live two-person authentication or credential switching",
+    "No external business effects",
+    "I6: one dispatcher, one process",
+    "I3: sequential processes, not hardware power failure",
+    "No independent QA",
+    "A3 is input indistinguishability, not a human account test"
+  ]
+}

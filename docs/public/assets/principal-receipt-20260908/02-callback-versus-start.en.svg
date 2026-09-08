@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1672" height="941" viewBox="0 0 1672 941" role="img" aria-labelledby="title desc">
+<title id="title">Another callback is not another start</title><desc id="desc">I2 has two cumulative callback entries, one SDK start and one attempt. I7 changes the command key after cancellation and has two cumulative starts and attempts. Listed dispatch protections are distinct layers, not a claim that every check ran in I2.</desc>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0 10 5 0 10" fill="none" stroke="#2459ba" stroke-width="2"/></marker></defs>
+<rect width="1672" height="941" rx="32" fill="#f8f7f3"/>
+<g font-family="Arial, sans-serif" fill="#182d4d">
+<text x="100" y="108" font-size="40" font-weight="700">Another callback is not another start.</text>
+<text x="100" y="163" font-size="25" fill="#516174">I2 · Both target receipts corrupted · Same command key · Counts include the first call</text>
+<rect x="100" y="244" width="370" height="285" rx="24" fill="#e8effd" stroke="#2459ba" stroke-width="2"/>
+<text x="135" y="300" font-size="27" font-weight="700">Command callback</text><text x="135" y="416" font-size="83" font-weight="700" fill="#2459ba">2</text><text x="135" y="481" font-size="25">cumulative entries</text>
+<path d="M490 373H553" stroke="#2459ba" stroke-width="4" marker-end="url(#a)"/>
+<rect x="581" y="244" width="510" height="285" rx="24" fill="#e8edf2"/>
+<text x="617" y="300" font-size="27" font-weight="700">Real dispatch protection</text><text x="617" y="361" font-size="25">Session / execution lease</text><text x="617" y="412" font-size="25">Durable attempt idempotency</text><text x="617" y="463" font-size="25">Same-task serialization</text>
+<path d="M1110 373H1173" stroke="#2459ba" stroke-width="4" marker-end="url(#a)"/>
+<rect x="1200" y="244" width="372" height="285" rx="24" fill="#e8f2ee"/>
+<text x="1235" y="300" font-size="27" font-weight="700">Synthetic SDK start</text><text x="1235" y="416" font-size="83" font-weight="700" fill="#2459ba">1</text><text x="1235" y="481" font-size="25">1 execution attempt</text>
+<text x="100" y="589" font-size="23" fill="#516174">Protection layers shown for explanation; I2 did not necessarily traverse every listed check.</text>
+<rect x="100" y="654" width="1472" height="135" rx="22" fill="#fff0d8"/>
+<text x="133" y="706" font-size="28" font-weight="700">I7 CONTROL · Cancel, then change the command key</text><text x="133" y="754" font-size="26">Synthetic governance allows a new command → 2 cumulative SDK starts / 2 attempts</text>
+<text x="100" y="856" font-size="23" fill="#516174">I7 is not a same-key duplicate. No real model or external business effect was executed.</text>
+</g></svg>
