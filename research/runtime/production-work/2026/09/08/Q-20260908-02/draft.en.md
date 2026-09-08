@@ -6,7 +6,7 @@ column: industry-architecture
 category: daily
 article_type: technical-analysis
 edition: research-center
-research_question: "When an agent is replaced, failed over, or moved into another team, how should a runtime distinguish ability to perform the role from compatibility with the destination team's learned coordination system?"
+research_question: "当一个智能体被替换、故障转移或调入另一支团队时，怎样区分“能做这个角色”与“能适配这支团队已经形成的协作方式”？"
 summary: "A controlled study reports that role-matched swaps preserve much task outcome while raising communication cost per unit of progress by roughly 16–63%, with coordination efficiency recovering later than task score. Reliable replacement needs separate evidence for role qualification, team fit, state scope, and recovery activation."
 cover: staging/publication-candidates/2026-09-08-role-match-is-not-team-fit-cover.png
 sources:
@@ -56,7 +56,7 @@ One implementation may perform all checks in a single function. Its evidence sho
 
 The destination team also needs an identity or version boundary. Evidence collected before a material change in membership, leadership, protocol, or division of work may already be stale.
 
-## Handoff Is Not “Copy as Much State as Possible”
+## Handoff Is Not Copy as Much State as Possible
 
 Replacement is often framed as maximizing context transfer. The study exposes the opposite risk: experience from the donor team may encode expectations about old partners, and copying it into the destination team can turn an old relationship into a false present fact.
 
