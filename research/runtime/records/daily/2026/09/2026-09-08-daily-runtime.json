@@ -113,7 +113,7 @@
         {
           "label": "Remote validation",
           "label_zh": "远程校验",
-          "value": "Validate Research Center 3.0 #34175794734 success"
+          "value": "Validate Research Center 3.0 #34175794734 success; terminal-state validation #34175958873 success"
         }
       ],
       "artifacts": [
@@ -134,7 +134,10 @@
         }
       ],
       "startedAt": "2026-09-08T09:04:52+08:00",
-      "completedAt": "2026-09-08T09:13:15+08:00"
+      "completedAt": "2026-09-08T09:13:15+08:00",
+      "githubCommit": "2c441d6932a9ad17b1e9a2bf98f38ebd67f86283",
+      "commitVerify": "Completed",
+      "verifiedAt": "2026-09-08T09:15:33+08:00"
     }
   },
   "timeline": [
@@ -158,12 +161,19 @@
       "event": "Shift Completed",
       "status": "Completed",
       "detail": "Research Runtime Discovery closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-08."
+    },
+    {
+      "time": "2026-09-08T09:15:33+08:00",
+      "task": "discovery",
+      "event": "GitHub Commit Verified",
+      "status": "Completed",
+      "detail": "Fetched and verified durable Research Runtime Discovery Completed result commit 2c441d6932a9ad17b1e9a2bf98f38ebd67f86283 on main; 1 execution epoch(s) remain as audit evidence, every prior epoch is governed-closed, and the latest epoch contains a fresh Worker Claimed event before terminal finalization."
     }
   ],
   "metrics": [],
   "evidence": [],
   "artifacts": [],
-  "githubCommit": "pending",
-  "commitVerify": "Waiting",
-  "updatedAt": "2026-09-08T09:13:15+08:00"
+  "githubCommit": "2c441d6932a9ad17b1e9a2bf98f38ebd67f86283",
+  "commitVerify": "Completed",
+  "updatedAt": "2026-09-08T09:15:33+08:00"
 }
