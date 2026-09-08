@@ -1,0 +1,53 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-08",
+  "itemId": "Q-20260908-01",
+  "researchObjectId": "Q-20260908-01",
+  "targetAudience": {
+    "primary": "Engineering leads and governance owners responsible for long-lived digital-employee memory",
+    "knowledgeAssumption": "The reader understands persistent memory, retrieval systems, model upgrades, and operational approval boundaries.",
+    "readerProblem": "A durable memory store is often treated as safe to inherit after a model or embedding change merely because its files and vector dimensions remain intact."
+  },
+  "whyNow": "A controlled memory-portability study reports direction-dependent model-swap effects and incomplete recovery from mixed embedding spaces, exposing a migration risk that ordinary storage-integrity checks cannot see.",
+  "externalHook": {
+    "type": "durable-but-semantically-stale-memory",
+    "description": "The bytes survive the upgrade while the meaning available to the new reader changes.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "E4"
+    ]
+  },
+  "coreProposition": "Physical persistence, semantic compatibility, recoverability, and activation authority are four distinct states; durable memory must be re-admitted after a model, writer, reader, or embedding change before it becomes authoritative for the new runtime.",
+  "originalValue": {
+    "type": "four-state-memory-migration-admission",
+    "description": "Turns a vague compatibility check into four separately evidenced decisions, with migration evidence bound to the exact direction of change."
+  },
+  "readerTakeaway": "Treat semantic-stack changes as governed migrations: preserve provenance, test the exact migration direction, verify a recovery route, and issue a separate activation decision.",
+  "evidenceBoundary": {
+    "supported": [
+      "The primary study reports strongly direction-dependent performance when one model reads another model's free-form notes.",
+      "The study reports that mixing two same-dimension embedding versions recovers only part of the gain from full re-embedding.",
+      "The evidence supports separating storage integrity from semantic compatibility and recovery evidence."
+    ],
+    "unsupported": [
+      "A universal migration threshold",
+      "A claim that all free-form memory is unsafe",
+      "A requirement to retain raw history when policy forbids it",
+      "General production validation across every model and memory type"
+    ],
+    "uncertain": [
+      "How small a semantic probe suite can reliably detect harmful drift",
+      "How to migrate when raw source cannot be retained",
+      "When compatibility evidence should expire after further changes"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument is derived from public primary research and remains independently useful without any first-party project."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The controlled comparisons support a bounded operational model without overstating general validity."
+}

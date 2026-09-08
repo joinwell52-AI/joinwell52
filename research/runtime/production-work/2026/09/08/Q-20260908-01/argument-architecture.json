@@ -1,0 +1,88 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-08",
+  "itemId": "Q-20260908-01",
+  "coreProposition": "Physical persistence, semantic compatibility, recoverability, and activation authority are four distinct states; durable memory must be re-admitted after a model, writer, reader, or embedding change before it becomes authoritative for the new runtime.",
+  "openingMove": {
+    "type": "bytes-survive-meaning-changes",
+    "purpose": "Open with a memory store that passes physical checks after an upgrade but yields different retrieval and interpretation.",
+    "evidenceRefs": [
+      "E1",
+      "E2"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why does durable storage not establish continuity?",
+      "claim": "Storage integrity cannot determine whether a changed semantic stack retrieves or interprets the same meaning.",
+      "evidenceRefs": [
+        "E1",
+        "E2",
+        "E4"
+      ],
+      "reasoningRole": "failure-mechanism",
+      "readerProgress": "Separate byte continuity from semantic continuity.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What does directionality change?",
+      "claim": "Compatibility evidence must bind the exact producer-reader or embedder transition because opposite directions can have opposite outcomes.",
+      "evidenceRefs": [
+        "E1",
+        "E2"
+      ],
+      "reasoningRole": "evidence",
+      "readerProgress": "Understand why one global compatible label is too coarse.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What states should a governed migration preserve?",
+      "claim": "Storage integrity, semantic compatibility, recovery feasibility, and activation authority must remain separate facts.",
+      "evidenceRefs": [
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "reasoningRole": "governance-design",
+      "readerProgress": "Gain a four-state admission model.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What evidence packet makes re-admission auditable?",
+      "claim": "Record identities, direction, semantic probes, provenance, repair procedure, and the activation decision.",
+      "evidenceRefs": [
+        "E3",
+        "E5"
+      ],
+      "reasoningRole": "operational-implication",
+      "readerProgress": "Translate the model into a minimal migration packet.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What does the study not establish?",
+      "claim": "Synthetic results do not justify universal thresholds, mandatory raw retention, or universal rejection of free-form memory.",
+      "evidenceRefs": [
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "Keep deployment claims within the evidence.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "A storage schema or vector-dimension check should be enough when the data is unchanged.",
+    "responseBoundary": "Those checks establish physical compatibility only; the controlled results show that retrieval and interpretation can change despite intact storage shape."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with probe size, privacy-preserving recovery, partial migration, and evidence-expiry questions."
+  }
+}
