@@ -22,8 +22,8 @@ Watch a product demo, download the research papers, or try CodeFlowMu. Research 
 **[▶ Watch the 60-second video on X](https://x.com/joinwell52/status/2092165371545682421/video/1)**
 
 <p align="center">
-  <a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-teaser-zh.mp4">
-    <img src="./docs/public/assets/video/codeflowmu-product-intro-zh-poster.jpg?v=20-rolefix-cover" alt="Play the 12-second CodeFlowMu teaser" width="920">
+  <a href="https://x.com/joinwell52/status/2092165371545682421/video/1">
+    <img src="./docs/public/assets/video/codeflowmu-product-intro-zh-poster.jpg?v=20-rolefix-cover" alt="Watch the 60-second CodeFlowMu video on X" width="920">
   </a>
 </p>
 
@@ -38,7 +38,7 @@ Watch a product demo, download the research papers, or try CodeFlowMu. Research 
   <sub>Real PC and mobile captures · Chinese narration · multi-agent execution · final human approval</sub>
 </p>
 
-Click the cover for the **12-second teaser (2.2 MB)**. The buttons above open the MP4 files directly; you can also watch the full video on X.
+Click the cover to watch on X. The buttons open the MP4 files directly: **12-second teaser (2.2 MB)** or **60-second film (17.6 MB)**.
 
 </details>
 
