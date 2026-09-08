@@ -14,19 +14,25 @@ Explore engineering cases, research articles, TMPA specifications, and validatio
 
 <a id="featured-research"></a>
 
-## Start with these three studies
+## Start with one overview
 
-**01 · Explore the direction**<br>
-[From SaaS to SaaW: Software as an Agent Worker](https://joinwell52-ai.github.io/joinwell52/en/industry/2026-08-10-saaw-software-as-an-agent-worker)<br>
-Connect digital employees, runtimes, and governance.
+**[From SaaS to SaaW: When a Codebase Starts “Developing Itself”](https://joinwell52-ai.github.io/joinwell52/en/industry/2026-08-10-saaw-software-as-an-agent-worker)**
 
-**02 · Inspect delivery**<br>
-[The Test Results Are Empty. Why Does the System Still Say Verified?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-03-empty-test-results-verified)<br>
-Check whether a verification claim has sufficient evidence.
+Explore how digital employees work and how TMPA, FCoP, and CodeFlowMu connect, with a clear distinction between validated engineering capabilities and research frontiers.
 
-**03 · Inspect authorization**<br>
-[You Approved One Command. Why Did Another Pass?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-04-approval-operation-identity)<br>
-Examine the binding between an approved operation and execution.
+### Then explore the three-part Agent Team Governance series
+
+**1/3 · Governance, file state, and the engineering rail**<br>
+[What Turns Multiple Agents into a Team? Governance, a File State Machine, and an Engineering Rail](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-08-22-codeflowmu-governance-state-rail)<br>
+Connect TMPA governance semantics, FCoP state records, and CodeFlowMu engineering execution.
+
+**2/3 · Claim, execute, review, and complete a task**<br>
+[How Does a Task Move Through an Agent Team? Claims, Execution, Review, and Completion in a File State Machine](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-08-22-agent-task-file-state-machine)<br>
+Follow one task through identity, lifecycle transitions, reports, and acceptance evidence.
+
+**3/3 · Automation without an unauthorized manager**<br>
+[How Can an Agent Team Work Autonomously? The Rail as a Service for Dispatch, Recovery, and Judgment](https://joinwell52-ai.github.io/joinwell52/en/digital-employee/2026-08-22-agent-rail-decision-boundary)<br>
+Explore dispatch, audit, and technical recovery while preserving the judgment responsibilities of agents, PMs, and ADMINs.
 
 > If these studies help your work, click **⭐ Star** at the top right of this repository to save the cases, specifications, and experiment records for later.
 
