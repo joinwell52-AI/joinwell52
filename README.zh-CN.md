@@ -19,7 +19,7 @@
 
 ## CodeFlowMu 产品介绍
 
-**[▶ 在 X 观看 60 秒视频](https://x.com/joinwell52/status/2092165371545682421/video/1)**
+**[▶ 在 YouTube 观看](https://youtu.be/s2lgDIRygR8) · [▶ 在 X 观看](https://x.com/joinwell52/status/2092165371545682421/video/1)**
 
 <p align="center">
   <a href="https://x.com/joinwell52/status/2092165371545682421/video/1">

@@ -19,7 +19,7 @@ Watch a product demo, download the research papers, or try CodeFlowMu. Research 
 
 ## CodeFlowMu product overview
 
-**[▶ Watch the 60-second video on X](https://x.com/joinwell52/status/2092165371545682421/video/1)**
+**[▶ Watch on YouTube](https://youtu.be/s2lgDIRygR8) · [▶ Watch on X](https://x.com/joinwell52/status/2092165371545682421/video/1)**
 
 <p align="center">
   <a href="https://x.com/joinwell52/status/2092165371545682421/video/1">
