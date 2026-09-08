@@ -1,34 +1,46 @@
 <p align="center">
-  <img src="./docs/public/assets/readme/tmpa-readme-hero.svg" alt="TMPA — Textual Multi-Agent Process Architecture" width="100%">
+  <a href="#featured-research">
+    <img src="./docs/public/assets/readme/research-center-hero.svg" alt="AI agents and digital work research: explore selected research" width="100%">
+  </a>
 </p>
 
-<p align="center">
-  <strong>AI agents can produce results. Production systems must prove who was responsible, what was accepted, and why.</strong>
-</p>
+# AI Agents & Digital Work
 
-<p align="center">
-  <a href="https://github.com/joinwell52-AI/CodeflowMu-Distribution"><strong>CodeFlowMu app</strong></a>
-  ·
-  <a href="https://github.com/joinwell52-AI/CodeflowMu-Distribution/releases"><strong>Download Windows preview</strong></a>
-  ·
-  <a href="https://joinwell52-ai.github.io/FCoP/"><strong>Explore FCoP</strong></a>
-  ·
-  <a href="https://joinwell52-ai.github.io/joinwell52/"><strong>Explore the research site</strong></a>
-  ·
-  <a href="./README.zh-CN.md"><strong>简体中文</strong></a>
-</p>
+Research into how agents collaborate, receive authority, and deliver work—with inspectable engineering evidence.
 
-<p align="center">
-  <a href="https://github.com/joinwell52-AI/joinwell52/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/joinwell52-AI/joinwell52?style=for-the-badge&logo=github&label=Star"></a>
-  <a href="https://github.com/joinwell52-AI/joinwell52/releases/tag/tmpa-v1.0"><img alt="TMPA V1.0 Release" src="https://img.shields.io/badge/release-TMPA%20V1.0-2563eb?style=for-the-badge"></a>
-  <a href="https://doi.org/10.5281/zenodo.21888488"><img alt="DOI" src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21888488-1682D4?style=for-the-badge"></a>
-  <a href="https://doi.org/10.17605/OSF.IO/2JVQD"><img alt="TMPA OSF DOI 10.17605/OSF.IO/2JVQD" src="https://img.shields.io/badge/OSF_DOI-10.17605%2FOSF.IO%2F2JVQD-2F80ED?style=for-the-badge&logo=osf&logoColor=white"></a>
-  <a href="https://doi.org/10.5281/zenodo.20457285"><img alt="FCoP DOI" src="https://img.shields.io/badge/FCoP_DOI-10.5281%2Fzenodo.20457285-1682D4?style=for-the-badge"></a>
-  <a href="https://doi.org/10.17605/OSF.IO/92NWM"><img alt="FCoP OSF DOI 10.17605/OSF.IO/92NWM" src="https://img.shields.io/badge/OSF_DOI-10.17605%2FOSF.IO%2F92NWM-2F80ED?style=for-the-badge&logo=osf&logoColor=white"></a>
-  <a href="./CITATION.cff"><img alt="Cite this repository" src="https://img.shields.io/badge/citation-CITATION.cff-8b5cf6?style=for-the-badge"></a>
-  <a href="https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-core-specification-s1.0"><img alt="TMPA Core S1.0" src="https://img.shields.io/badge/Core-S1.0-7c3aed?style=for-the-badge"></a>
-  <a href="https://joinwell52-ai.github.io/joinwell52/en/publications/implementation-case-i1.0"><img alt="Implementation I1.0" src="https://img.shields.io/badge/CodeFlowMu-14%2F14_PASS-15803d?style=for-the-badge"></a>
-</p>
+**[Selected research](#featured-research) · [Browse the research center](https://joinwell52-ai.github.io/joinwell52/en/) · [Try CodeFlowMu](#codeflowmu-app) · [简体中文](./README.zh-CN.md)**
+
+Explore engineering cases, research articles, TMPA specifications, and validation materials. Start with a concrete question, then inspect the evidence or run a reference example.
+
+<a id="featured-research"></a>
+
+## Start with these three studies
+
+**01 · Explore the direction**<br>
+[From SaaS to SaaW: Software as an Agent Worker](https://joinwell52-ai.github.io/joinwell52/en/industry/2026-08-10-saaw-software-as-an-agent-worker)<br>
+Connect digital employees, runtimes, and governance.
+
+**02 · Inspect delivery**<br>
+[The Test Results Are Empty. Why Does the System Still Say Verified?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-03-empty-test-results-verified)<br>
+Check whether a verification claim has sufficient evidence.
+
+**03 · Inspect authorization**<br>
+[You Approved One Command. Why Did Another Pass?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-04-approval-operation-identity)<br>
+Examine the binding between an approved operation and execution.
+
+> If these studies help your work, click **⭐ Star** at the top right of this repository to save the cases, specifications, and experiment records for later.
+
+## Choose your next step
+
+| I want to… | Start here |
+|---|---|
+| Read more research | [Research center](https://joinwell52-ai.github.io/joinwell52/en/) |
+| Run a verification example | [Run the Reference Reader](#run-the-reference-reader) — `npm run demo` |
+| Try a multi-role AI development team | [CodeFlowMu](#codeflowmu-app) |
+| Explore file-based agent coordination | [FCoP](https://github.com/joinwell52-AI/FCoP) |
+| Study the theory and specification | [TMPA](#tmpa) |
+
+<a id="codeflowmu-app"></a>
 
 ## Use CodeFlowMu
 
@@ -40,14 +52,8 @@ Choose a published version in Releases, download its Windows installer and `SHA2
 
 This repository continues to maintain TMPA research, specifications, and engineering evidence. Use the distribution repository for the CodeFlowMu application, installation, and updates; CodeFlowMu Open is retained only as a historical research record.
 
-## Open-science citation records
-
-| Work | Zenodo DOI | OSF DOI |
-|---|---|---|
-| **TMPA** | [10.5281/zenodo.21888488](https://doi.org/10.5281/zenodo.21888488) | [10.17605/OSF.IO/2JVQD](https://doi.org/10.17605/OSF.IO/2JVQD) |
-| **FCoP** | [10.5281/zenodo.20457285](https://doi.org/10.5281/zenodo.20457285) | [10.17605/OSF.IO/92NWM](https://doi.org/10.17605/OSF.IO/92NWM) |
-
-The Zenodo DOI records the citable release archive; the OSF Registration is the immutable, timestamped open-science snapshot.
+<details>
+<summary>Watch the product overview (12-second teaser / 60-second film)</summary>
 
 ## CodeFlowMu product overview
 
@@ -67,6 +73,22 @@ The Zenodo DOI records the citable release archive; the OSF Registration is the 
   <br>
   <sub>Real PC and mobile captures · Chinese narration · multi-agent execution · final human approval</sub>
 </p>
+
+</details>
+
+<details>
+<summary>TMPA / FCoP citation records and DOIs</summary>
+
+## Open-science citation records
+
+| Work | Zenodo DOI | OSF DOI |
+|---|---|---|
+| **TMPA** | [10.5281/zenodo.21888488](https://doi.org/10.5281/zenodo.21888488) | [10.17605/OSF.IO/2JVQD](https://doi.org/10.17605/OSF.IO/2JVQD) |
+| **FCoP** | [10.5281/zenodo.20457285](https://doi.org/10.5281/zenodo.20457285) | [10.17605/OSF.IO/92NWM](https://doi.org/10.17605/OSF.IO/92NWM) |
+
+The Zenodo DOI records the citable release archive; the OSF Registration is the immutable, timestamped open-science snapshot.
+
+</details>
 
 ---
 
