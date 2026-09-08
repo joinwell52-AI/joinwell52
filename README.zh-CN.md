@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="#featured-research">
-    <img src="./docs/public/assets/readme/research-center-hero-zh.svg" alt="AI Agent 与数字员工研究中心：点击查看代表成果" width="100%">
+  <a href="#product-overview">
+    <img src="./docs/public/assets/readme/research-center-hero-zh.svg" alt="AI Agent 与数字员工研究中心：点击观看产品介绍" width="100%">
   </a>
 </p>
 
@@ -8,64 +8,20 @@
 
 从真实工程问题出发，研究 Agent 如何协作、获得授权、交付结果，并留下可核查的证据。
 
-**[阅读代表成果](#featured-research) · [浏览研究中心](https://joinwell52-ai.github.io/joinwell52/zh/) · [体验 CodeFlowMu](#codeflowmu-app) · [English](./README.md)**
+**[观看视频](#product-overview) · [下载论文](#research-publications) · [体验 CodeFlowMu](#codeflowmu-app) · [浏览研究中心](https://joinwell52-ai.github.io/joinwell52/zh/) · [English](./README.md)**
 
-这里汇集工程案例、研究文章、TMPA 规范与验证材料。你可以从一个具体问题读起，再检查相关证据或运行参考示例。
+直接观看产品演示、下载研究论文，或试用 CodeFlowMu。研究文章与工程案例放在后面，方便需要时深入查阅。
 
-<a id="featured-research"></a>
+<a id="product-overview"></a>
 
-## 从一篇总览开始
-
-**[从 SaaS 到 SaaW：当代码库开始“自己开发自己”](https://joinwell52-ai.github.io/joinwell52/zh/industry/2026-08-10-saaw-software-as-an-agent-worker)**
-
-从数字员工的工作方式读起，理解 TMPA、FCoP 与 CodeFlowMu 如何连接，并区分已验证的工程能力与研究前沿。
-
-### 再读三篇：多 Agent 团队治理
-
-**1/3 · 治理模型、文件状态机与工程轨道机**<br>
-[多个 Agent 怎样真正组成团队？治理模型、文件状态机与工程轨道机](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-08-22-codeflowmu-governance-state-rail)<br>
-理解 TMPA 的治理语义、FCoP 的状态事实与 CodeFlowMu 的工程执行如何衔接。
-
-**2/3 · 任务如何领取、执行、审查与完成**<br>
-[任务怎样在 Agent 团队中流转？文件状态机如何记录领取、执行、审查与完成](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-08-22-agent-task-file-state-machine)<br>
-沿一张任务的生命史，检查身份、状态迁移、报告与验收证据如何保持一致。
-
-**3/3 · 轨道机如何服务自主工作而不越权**<br>
-[Agent 团队怎样自主工作？轨道机如何提供派工、恢复与人工裁决服务](https://joinwell52-ai.github.io/joinwell52/zh/digital-employee/2026-08-22-agent-rail-decision-boundary)<br>
-理解派工、审计与技术恢复的服务边界，以及 Agent、PM 和 ADMIN 各自的判断职责。
-
-> 如果这些研究对你有帮助，欢迎点击本仓库右上角 **⭐ Star** 收藏，方便以后查阅案例、规范与实验记录。
-
-## 选择你的下一步
-
-| 我想…… | 入口 |
-|---|---|
-| 阅读更多研究 | [研究中心](https://joinwell52-ai.github.io/joinwell52/zh/) |
-| 运行一个验证示例 | [运行 Reference Reader](#运行-reference-reader) — `npm run demo` |
-| 试用多角色 AI 开发团队 | [CodeFlowMu](#codeflowmu-app) |
-| 查看文件式协作协议 | [FCoP](https://github.com/joinwell52-AI/FCoP) |
-| 研究理论与规范 | [TMPA](#tmpa) |
-
-<a id="codeflowmu-app"></a>
-
-## 使用 CodeFlowMu
-
-CodeFlowMu 是本地运行的 PM / DEV / QA / OPS 多角色 AI 开发团队，提供 PC 控制中心与手机 PWA 远程操作入口。**Windows x64 免费预览版现已公开下载。**
-
-**[进入 CodeFlowMu 发版仓库](https://github.com/joinwell52-AI/CodeflowMu-Distribution) · [下载 Windows 版](https://github.com/joinwell52-AI/CodeflowMu-Distribution/releases) · [安装指南](https://github.com/joinwell52-AI/CodeflowMu-Distribution/blob/main/CUSTOMER-INSTALL.md)**
-
-在 Releases 中选择公开发布的版本，下载该版本的 Windows 安装包及 `SHA256SUMS.txt`，按安装指南完成校验与安装。当前提供专有软件预览版；具体要求、已知问题与支持状态以所选 Release 为准。
-
-本仓库继续维护 TMPA 研究、规范与工程证据。CodeFlowMu 的应用、安装与更新统一进入发版仓库；旧版 CodeFlowMu Open 仅保留为历史研究记录。
-
-<details>
+<details open>
 <summary>观看产品介绍（12 秒预告 / 60 秒完整版）</summary>
 
 ## CodeFlowMu 产品介绍
 
 <p align="center">
-  <a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-intro-zh.mp4">
-    <img src="./docs/public/assets/video/codeflowmu-product-intro-zh-poster.jpg" alt="CodeFlowMu 产品介绍：TMPA 理论、FCoP 协议与 CodeFlowMu 运行产品" width="920">
+  <a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-teaser-zh.mp4">
+    <img src="./docs/public/assets/video/codeflowmu-product-intro-zh-poster.jpg" alt="点击播放 CodeFlowMu 12 秒预告" width="920">
   </a>
 </p>
 
@@ -80,10 +36,24 @@ CodeFlowMu 是本地运行的 PM / DEV / QA / OPS 多角色 AI 开发团队，�
   <sub>真实 PC 与手机录屏 · 中文旁白 · 多 AI 自动协作 · 最终人类审批</sub>
 </p>
 
+点击封面播放 **12 秒预告（2.2 MB）**；**60 秒完整版（17.6 MB）**可通过上方按钮观看。
+
 </details>
 
-<details>
-<summary>查看 TMPA / FCoP 引用凭证与 DOI</summary>
+<a id="research-publications"></a>
+
+<details open>
+<summary>下载 TMPA 论文、规范与案例 · 查看 DOI</summary>
+
+## TMPA V1.0 稳定出版集
+
+| 文档 | 它回答什么 | 在线阅读 | 正式工件 |
+|---|---|---|---|
+| **架构论文 A1.0** | 为什么 Agent 工作需要治理状态架构 | [网页](https://joinwell52-ai.github.io/joinwell52/zh/publications/tmpa-architecture-paper-a1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-architecture-paper-a1.0-zh.pdf) |
+| **核心规范 S1.0** | 规范对象、权限、生命周期、Reader 行为与符合性要求是什么 | [网页](https://joinwell52-ai.github.io/joinwell52/zh/publications/tmpa-core-specification-s1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-core-specification-s1.0-zh.pdf) |
+| **实施案例 I1.0** | CodeFlowMu V1.8.0 针对精确 S1.0 Bundle 演示了什么 | [网页](https://joinwell52-ai.github.io/joinwell52/zh/publications/implementation-case-i1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-implementation-case-i1.0-zh.pdf) |
+
+带校验和的完整双语出版档案、引用元数据、Manifest 与发行说明位于 [`docs/public/releases/tmpa/v1.0/`](./docs/public/releases/tmpa/v1.0/)。永久归档：[Zenodo 21888488](https://zenodo.org/records/21888488)。
 
 ## 开放科学标准引用凭证
 
@@ -95,6 +65,55 @@ CodeFlowMu 是本地运行的 PM / DEV / QA / OPS 多角色 AI 开发团队，�
 Zenodo DOI 对应可引用的正式版本档案；OSF Registration 对应不可变、带时间戳的开放科学快照。
 
 </details>
+
+<a id="codeflowmu-app"></a>
+
+## 使用 CodeFlowMu
+
+CodeFlowMu 是本地运行的 PM / DEV / QA / OPS 多角色 AI 开发团队，提供 PC 控制中心与手机 PWA 远程操作入口。**Windows x64 免费预览版现已公开下载。**
+
+**[进入 CodeFlowMu 发版仓库](https://github.com/joinwell52-AI/CodeflowMu-Distribution) · [下载 Windows 版](https://github.com/joinwell52-AI/CodeflowMu-Distribution/releases) · [安装指南](https://github.com/joinwell52-AI/CodeflowMu-Distribution/blob/main/CUSTOMER-INSTALL.md)**
+
+在 Releases 中选择公开发布的版本，下载该版本的 Windows 安装包及 `SHA256SUMS.txt`，按安装指南完成校验与安装。当前提供专有软件预览版；具体要求、已知问题与支持状态以所选 Release 为准。
+
+本仓库继续维护 TMPA 研究、规范与工程证据。CodeFlowMu 的应用、安装与更新统一进入发版仓库；旧版 CodeFlowMu Open 仅保留为历史研究记录。
+
+## 选择你的下一步
+
+| 我想…… | 入口 |
+|---|---|
+| 阅读更多研究 | [研究中心](https://joinwell52-ai.github.io/joinwell52/zh/) |
+| 运行一个验证示例 | [运行 Reference Reader](#运行-reference-reader) — `npm run demo` |
+| 试用多角色 AI 开发团队 | [CodeFlowMu](#codeflowmu-app) |
+| 查看文件式协作协议 | [FCoP](https://github.com/joinwell52-AI/FCoP) |
+| 研究理论与规范 | [TMPA](#tmpa) |
+
+<a id="featured-research"></a>
+
+## 研究文章（选读）
+
+**[从 SaaS 到 SaaW：当代码库开始“自己开发自己”](https://joinwell52-ai.github.io/joinwell52/zh/industry/2026-08-10-saaw-software-as-an-agent-worker)**
+
+从数字员工的工作方式读起，理解 TMPA、FCoP 与 CodeFlowMu 如何连接，并区分已验证的工程能力与研究前沿。
+
+<details>
+<summary>深入阅读：多 Agent 团队治理系列（三篇）</summary>
+
+**1/3 · 治理模型、文件状态机与工程轨道机**<br>
+[多个 Agent 怎样真正组成团队？治理模型、文件状态机与工程轨道机](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-08-22-codeflowmu-governance-state-rail)<br>
+理解 TMPA 的治理语义、FCoP 的状态事实与 CodeFlowMu 的工程执行如何衔接。
+
+**2/3 · 任务如何领取、执行、审查与完成**<br>
+[任务怎样在 Agent 团队中流转？文件状态机如何记录领取、执行、审查与完成](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-08-22-agent-task-file-state-machine)<br>
+沿一张任务的生命史，检查身份、状态迁移、报告与验收证据如何保持一致。
+
+**3/3 · 轨道机如何服务自主工作而不越权**<br>
+[Agent 团队怎样自主工作？轨道机如何提供派工、恢复与人工裁决服务](https://joinwell52-ai.github.io/joinwell52/zh/digital-employee/2026-08-22-agent-rail-decision-boundary)<br>
+理解派工、审计与技术恢复的服务边界，以及 Agent、PM 和 ADMIN 各自的判断职责。
+
+</details>
+
+> 如果这些研究对你有帮助，欢迎点击本仓库右上角 **⭐ Star** 收藏，方便以后查阅案例、规范与实验记录。
 
 ---
 
@@ -208,16 +227,6 @@ PASS 14  ·  PARTIAL 0  ·  NOT RUN 0  ·  FAIL 0
 
 这只能证明被冻结的参考路径按测试运行。它与已登记的 CodeFlowMu 产品运行属于两条不同证据轨道，也不构成独立认证。解释结果前请先阅读[符合性测试说明](./research/conformance/tmpa-core-s1.0/README.md)。
 
-## TMPA V1.0 稳定出版集
-
-| 文档 | 它回答什么 | 在线阅读 | 正式工件 |
-|---|---|---|---|
-| **架构论文 A1.0** | 为什么 Agent 工作需要治理状态架构 | [网页](https://joinwell52-ai.github.io/joinwell52/zh/publications/tmpa-architecture-paper-a1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-architecture-paper-a1.0-zh.pdf) |
-| **核心规范 S1.0** | 规范对象、权限、生命周期、Reader 行为与符合性要求是什么 | [网页](https://joinwell52-ai.github.io/joinwell52/zh/publications/tmpa-core-specification-s1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-core-specification-s1.0-zh.pdf) |
-| **实施案例 I1.0** | CodeFlowMu V1.8.0 针对精确 S1.0 Bundle 演示了什么 | [网页](https://joinwell52-ai.github.io/joinwell52/zh/publications/implementation-case-i1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-implementation-case-i1.0-zh.pdf) |
-
-带校验和的完整双语出版档案、引用元数据、Manifest 与发行说明位于 [`docs/public/releases/tmpa/v1.0/`](./docs/public/releases/tmpa/v1.0/)。永久归档：[Zenodo 21888488](https://zenodo.org/records/21888488)。
-
 ## 工程证据快照
 
 I1.0 使用被冻结的 TMPA Core S1.0 Bundle，评估 CodeFlowMu V1.8.0 的真实产品路径 `GovernanceReader.readSync`。
@@ -255,6 +264,9 @@ I1.0 使用被冻结的 TMPA Core S1.0 Bundle，评估 CodeFlowMu V1.8.0 的真�
 ## 研究与生产系统
 
 除稳定 TMPA 文档线之外，本仓库还包含一套受治理的研究生产环境：Research Intelligence、Daily/Weekly/Academic/Program Runtime、Research Skills、出版门禁、校验脚本与 VitePress 网站。
+
+<details>
+<summary>浏览全部研究文章与外部发布记录</summary>
 
 ### 推荐文章与外部发布记录
 
@@ -316,6 +328,8 @@ I1.0 使用被冻结的 TMPA Core S1.0 Bundle，评估 CodeFlowMu V1.8.0 的真�
 补充参考：[数字员工生产机架构 V0.3.1 草案](https://joinwell52-ai.github.io/joinwell52/zh/digital-employee/architecture)。
 
 这些内容可以解释 TMPA 或为后续研究提供输入，但不能覆盖 Core S1.0。
+
+</details>
 
 ## 仓库结构
 

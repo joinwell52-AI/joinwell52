@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="#featured-research">
-    <img src="./docs/public/assets/readme/research-center-hero.svg" alt="AI agents and digital work research: explore selected research" width="100%">
+  <a href="#product-overview">
+    <img src="./docs/public/assets/readme/research-center-hero.svg" alt="AI agents and digital work research: watch the product overview" width="100%">
   </a>
 </p>
 
@@ -8,64 +8,20 @@
 
 Research into how agents collaborate, receive authority, and deliver work—with inspectable engineering evidence.
 
-**[Selected research](#featured-research) · [Browse the research center](https://joinwell52-ai.github.io/joinwell52/en/) · [Try CodeFlowMu](#codeflowmu-app) · [简体中文](./README.zh-CN.md)**
+**[Watch the videos](#product-overview) · [Download the papers](#research-publications) · [Try CodeFlowMu](#codeflowmu-app) · [Browse the research center](https://joinwell52-ai.github.io/joinwell52/en/) · [简体中文](./README.zh-CN.md)**
 
-Explore engineering cases, research articles, TMPA specifications, and validation materials. Start with a concrete question, then inspect the evidence or run a reference example.
+Watch a product demo, download the research papers, or try CodeFlowMu. Research articles and engineering cases follow for optional deeper reading.
 
-<a id="featured-research"></a>
+<a id="product-overview"></a>
 
-## Start with one overview
-
-**[From SaaS to SaaW: When a Codebase Starts “Developing Itself”](https://joinwell52-ai.github.io/joinwell52/en/industry/2026-08-10-saaw-software-as-an-agent-worker)**
-
-Explore how digital employees work and how TMPA, FCoP, and CodeFlowMu connect, with a clear distinction between validated engineering capabilities and research frontiers.
-
-### Then explore the three-part Agent Team Governance series
-
-**1/3 · Governance, file state, and the engineering rail**<br>
-[What Turns Multiple Agents into a Team? Governance, a File State Machine, and an Engineering Rail](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-08-22-codeflowmu-governance-state-rail)<br>
-Connect TMPA governance semantics, FCoP state records, and CodeFlowMu engineering execution.
-
-**2/3 · Claim, execute, review, and complete a task**<br>
-[How Does a Task Move Through an Agent Team? Claims, Execution, Review, and Completion in a File State Machine](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-08-22-agent-task-file-state-machine)<br>
-Follow one task through identity, lifecycle transitions, reports, and acceptance evidence.
-
-**3/3 · Automation without an unauthorized manager**<br>
-[How Can an Agent Team Work Autonomously? The Rail as a Service for Dispatch, Recovery, and Judgment](https://joinwell52-ai.github.io/joinwell52/en/digital-employee/2026-08-22-agent-rail-decision-boundary)<br>
-Explore dispatch, audit, and technical recovery while preserving the judgment responsibilities of agents, PMs, and ADMINs.
-
-> If these studies help your work, click **⭐ Star** at the top right of this repository to save the cases, specifications, and experiment records for later.
-
-## Choose your next step
-
-| I want to… | Start here |
-|---|---|
-| Read more research | [Research center](https://joinwell52-ai.github.io/joinwell52/en/) |
-| Run a verification example | [Run the Reference Reader](#run-the-reference-reader) — `npm run demo` |
-| Try a multi-role AI development team | [CodeFlowMu](#codeflowmu-app) |
-| Explore file-based agent coordination | [FCoP](https://github.com/joinwell52-AI/FCoP) |
-| Study the theory and specification | [TMPA](#tmpa) |
-
-<a id="codeflowmu-app"></a>
-
-## Use CodeFlowMu
-
-CodeFlowMu is a local PM / DEV / QA / OPS AI development team, with a PC control center and a mobile PWA for remote operation. **The free Windows x64 preview is now publicly available.**
-
-**[Open the CodeFlowMu distribution repository](https://github.com/joinwell52-AI/CodeflowMu-Distribution) · [Download for Windows](https://github.com/joinwell52-AI/CodeflowMu-Distribution/releases) · [Installation guide](https://github.com/joinwell52-AI/CodeflowMu-Distribution/blob/main/CUSTOMER-INSTALL.md)**
-
-Choose a published version in Releases, download its Windows installer and `SHA256SUMS.txt`, and follow the installation guide. This is a proprietary software preview; requirements, known issues, and support status are defined by the selected Release.
-
-This repository continues to maintain TMPA research, specifications, and engineering evidence. Use the distribution repository for the CodeFlowMu application, installation, and updates; CodeFlowMu Open is retained only as a historical research record.
-
-<details>
+<details open>
 <summary>Watch the product overview (12-second teaser / 60-second film)</summary>
 
 ## CodeFlowMu product overview
 
 <p align="center">
-  <a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-intro-zh.mp4?v=21-role-matrix">
-    <img src="./docs/public/assets/video/codeflowmu-product-intro-zh-poster.jpg?v=20-rolefix-cover" alt="CodeFlowMu product overview: TMPA theory, FCoP protocol, and CodeFlowMu runtime" width="920">
+  <a href="https://joinwell52-ai.github.io/joinwell52/assets/video/codeflowmu-product-teaser-zh.mp4">
+    <img src="./docs/public/assets/video/codeflowmu-product-intro-zh-poster.jpg?v=20-rolefix-cover" alt="Play the 12-second CodeFlowMu teaser" width="920">
   </a>
 </p>
 
@@ -80,10 +36,24 @@ This repository continues to maintain TMPA research, specifications, and enginee
   <sub>Real PC and mobile captures · Chinese narration · multi-agent execution · final human approval</sub>
 </p>
 
+Click the cover for the **12-second teaser (2.2 MB)**. The **60-second film (17.6 MB)** is available above.
+
 </details>
 
-<details>
-<summary>TMPA / FCoP citation records and DOIs</summary>
+<a id="research-publications"></a>
+
+<details open>
+<summary>Download TMPA papers, specification, and case report · DOI records</summary>
+
+## Stable V1.0 publication set
+
+| Publication | What it answers | Read online | Artifact |
+|---|---|---|---|
+| **Architecture Paper A1.0** | Why agent work needs a governance-state architecture | [Web](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-architecture-paper-a1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-architecture-paper-a1.0-en.pdf) |
+| **Core Specification S1.0** | What objects, authority, lifecycle, Reader behavior, and conformance require | [Web](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-core-specification-s1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-core-specification-s1.0-en.pdf) |
+| **Implementation Case I1.0** | What CodeFlowMu V1.8.0 demonstrated against the exact S1.0 bundle | [Web](https://joinwell52-ai.github.io/joinwell52/en/publications/implementation-case-i1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-implementation-case-i1.0-en.pdf) |
+
+The complete checksummed bilingual dossier, citation metadata, manifest, and release notes live in [`docs/public/releases/tmpa/v1.0/`](./docs/public/releases/tmpa/v1.0/). Permanent archive: [Zenodo 21888488](https://zenodo.org/records/21888488).
 
 ## Open-science citation records
 
@@ -95,6 +65,55 @@ This repository continues to maintain TMPA research, specifications, and enginee
 The Zenodo DOI records the citable release archive; the OSF Registration is the immutable, timestamped open-science snapshot.
 
 </details>
+
+<a id="codeflowmu-app"></a>
+
+## Use CodeFlowMu
+
+CodeFlowMu is a local PM / DEV / QA / OPS AI development team, with a PC control center and a mobile PWA for remote operation. **The free Windows x64 preview is now publicly available.**
+
+**[Open the CodeFlowMu distribution repository](https://github.com/joinwell52-AI/CodeflowMu-Distribution) · [Download for Windows](https://github.com/joinwell52-AI/CodeflowMu-Distribution/releases) · [Installation guide](https://github.com/joinwell52-AI/CodeflowMu-Distribution/blob/main/CUSTOMER-INSTALL.md)**
+
+Choose a published version in Releases, download its Windows installer and `SHA256SUMS.txt`, and follow the installation guide. This is a proprietary software preview; requirements, known issues, and support status are defined by the selected Release.
+
+This repository continues to maintain TMPA research, specifications, and engineering evidence. Use the distribution repository for the CodeFlowMu application, installation, and updates; CodeFlowMu Open is retained only as a historical research record.
+
+## Choose your next step
+
+| I want to… | Start here |
+|---|---|
+| Read more research | [Research center](https://joinwell52-ai.github.io/joinwell52/en/) |
+| Run a verification example | [Run the Reference Reader](#run-the-reference-reader) — `npm run demo` |
+| Try a multi-role AI development team | [CodeFlowMu](#codeflowmu-app) |
+| Explore file-based agent coordination | [FCoP](https://github.com/joinwell52-AI/FCoP) |
+| Study the theory and specification | [TMPA](#tmpa) |
+
+<a id="featured-research"></a>
+
+## Research articles (optional)
+
+**[From SaaS to SaaW: When a Codebase Starts “Developing Itself”](https://joinwell52-ai.github.io/joinwell52/en/industry/2026-08-10-saaw-software-as-an-agent-worker)**
+
+Explore how digital employees work and how TMPA, FCoP, and CodeFlowMu connect, with a clear distinction between validated engineering capabilities and research frontiers.
+
+<details>
+<summary>Explore the three-part Agent Team Governance series</summary>
+
+**1/3 · Governance, file state, and the engineering rail**<br>
+[What Turns Multiple Agents into a Team? Governance, a File State Machine, and an Engineering Rail](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-08-22-codeflowmu-governance-state-rail)<br>
+Connect TMPA governance semantics, FCoP state records, and CodeFlowMu engineering execution.
+
+**2/3 · Claim, execute, review, and complete a task**<br>
+[How Does a Task Move Through an Agent Team? Claims, Execution, Review, and Completion in a File State Machine](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-08-22-agent-task-file-state-machine)<br>
+Follow one task through identity, lifecycle transitions, reports, and acceptance evidence.
+
+**3/3 · Automation without an unauthorized manager**<br>
+[How Can an Agent Team Work Autonomously? The Rail as a Service for Dispatch, Recovery, and Judgment](https://joinwell52-ai.github.io/joinwell52/en/digital-employee/2026-08-22-agent-rail-decision-boundary)<br>
+Explore dispatch, audit, and technical recovery while preserving the judgment responsibilities of agents, PMs, and ADMINs.
+
+</details>
+
+> If these studies help your work, click **⭐ Star** at the top right of this repository to save the cases, specifications, and experiment records for later.
 
 ---
 
@@ -208,16 +227,6 @@ PASS 14  ·  PARTIAL 0  ·  NOT RUN 0  ·  FAIL 0
 
 This proves the frozen reference paths behave as tested. It is separate from the registered CodeFlowMu product run and is not independent certification. Read the [conformance notes](./research/conformance/tmpa-core-s1.0/README.md) before interpreting the result.
 
-## Stable V1.0 publication set
-
-| Publication | What it answers | Read online | Artifact |
-|---|---|---|---|
-| **Architecture Paper A1.0** | Why agent work needs a governance-state architecture | [Web](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-architecture-paper-a1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-architecture-paper-a1.0-en.pdf) |
-| **Core Specification S1.0** | What objects, authority, lifecycle, Reader behavior, and conformance require | [Web](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-core-specification-s1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-core-specification-s1.0-en.pdf) |
-| **Implementation Case I1.0** | What CodeFlowMu V1.8.0 demonstrated against the exact S1.0 bundle | [Web](https://joinwell52-ai.github.io/joinwell52/en/publications/implementation-case-i1.0) | [PDF](./docs/public/releases/tmpa/v1.0/artifacts/tmpa-implementation-case-i1.0-en.pdf) |
-
-The complete checksummed bilingual dossier, citation metadata, manifest, and release notes live in [`docs/public/releases/tmpa/v1.0/`](./docs/public/releases/tmpa/v1.0/). Permanent archive: [Zenodo 21888488](https://zenodo.org/records/21888488).
-
 ## Engineering evidence snapshot
 
 I1.0 evaluates the actual CodeFlowMu V1.8.0 product path—`GovernanceReader.readSync`—against the frozen TMPA Core S1.0 bundle.
@@ -256,6 +265,9 @@ The TMPA research content in this repository uses the terms in [`LICENSE.md`](./
 
 Beyond the stable TMPA line, this repository contains a governed research production environment: source intelligence, Daily/Weekly/Academic/Program runtimes, research skills, publication gates, validators, and the VitePress site.
 
+<details>
+<summary>Browse all research articles and external publication records</summary>
+
 ### Recommended articles and external publication record
 
 Pinned articles can be registered here before external publication, then updated in the same row with each platform URL. The regular external-publication log starts on **2026-08-12**; earlier history is not backfilled. Chinese, English, and platform links for the same article stay together in one row. There are now **eight registered external channels**: **CSDN, DEV Community, Cursor Forum, OpenAI Developer Community, Codex GitHub Discussions, Zenodo, Juejin, and X**. CSDN, DEV, and Juejin carry republished articles; X carries short research summaries with attribution; Cursor Forum, OpenAI Developer Community, and Codex GitHub Discussions support technical discussion; Zenodo provides research archiving and discovery. Links marked “technical discussion” are standalone question threads, not full-article republications.
@@ -287,6 +299,8 @@ Pinned articles can be registered here before external publication, then updated
 Additional reference: [Digital Employee Production Machine Architecture V0.3.1 Draft](https://joinwell52-ai.github.io/joinwell52/en/digital-employee/architecture).
 
 These outputs may interpret TMPA or inform future work, but they do not override Core S1.0.
+
+</details>
 
 ## Repository map
 
