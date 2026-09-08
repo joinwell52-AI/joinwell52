@@ -8,13 +8,13 @@
   "date": "2026-09-08",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Running",
+    "production": "Completed",
     "publication": "Waiting"
   },
   "results": {
@@ -708,6 +708,153 @@
       "githubCommit": "ac6df69c0f2bc005d6f3c2cce468217a18653963",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-08T13:16:59+08:00"
+    },
+    "production": {
+      "schema": "runtime-shift-result/v2",
+      "task": "production",
+      "family": "daily",
+      "runtimeDate": "2026-09-08",
+      "status": "Completed",
+      "productionMode": "candidate-batch",
+      "input": "Three same-date Production-authorized Research Objects, the exact generated Production prompt v2.13.0, and all 13 required sources fetched and verified from main. The prompt bytes matched the CONTROL and MANIFEST SHA-256 identity.",
+      "input_zh": "输入为三份归属 2026-09-08 且已授权生产的研究对象、精确的生产提示词 v2.13.0，以及从 main 读取并核验的全部 13 项必需来源。提示词字节与 CONTROL 和 MANIFEST 声明的 SHA-256 身份一致。",
+      "workResult": "Converted all three authorized Research Objects into complete bilingual Editorial Architecture 2.1 candidates with planning artifacts and deterministic baseline covers. Two bounded content revision rounds corrected bilingual research-question/heading parity and one Chinese technical-term explanation. The atomic candidate bundle, layout, editorial, language, Runtime V5, prompt/control, recovery, continuation, terminal, checkpoint, bridge, bundle, intelligence, and scorecard gates passed.",
+      "workResult_zh": "将三份已授权研究对象转换为完整双语 Editorial Architecture 2.1 候选，包含策划工件与确定性基础题图。两轮有界内容修订修复了双语研究问题与标题一致性，以及一处中文技术术语释义。原子候选包、布局、编辑、语言、Runtime V5、提示词与控制、恢复、续跑、终态、检查点、桥接、候选包、情报和评分卡门禁全部通过。",
+      "output": "Three complete bilingual publication candidates, six canonical article files, three deterministic baseline covers, and a completed validators-passed checkpoint with every item Ready.",
+      "output_zh": "三篇完整双语发布候选、六个正式正文文件、三张确定性基础题图，以及所有条目均为 Ready 的 validators-passed 完成检查点。",
+      "next": "Publication remains a separate governed task and was not executed.",
+      "next_zh": "Publication 仍是独立受治理任务，本轮未执行。",
+      "promptVerificationMode": "direct-sha256",
+      "promptIdentity": {
+        "path": "research/runtime/worker-prompts/generated/production.prompt.md",
+        "version": "2.13.0",
+        "sha256": "d8b0cd52d22d976d6356558a23c5c2dc28ed5aa8f51793538fa8fbebfb80996f"
+      },
+      "metrics": [
+        {
+          "label": "Research objects consumed",
+          "label_zh": "已消费研究对象",
+          "value": 3
+        },
+        {
+          "label": "Publication candidates",
+          "label_zh": "发布候选",
+          "value": 3
+        },
+        {
+          "label": "Bilingual article files",
+          "label_zh": "双语正文文件",
+          "value": 6
+        },
+        {
+          "label": "Planning artifacts",
+          "label_zh": "策划工件",
+          "value": 9
+        },
+        {
+          "label": "Baseline cover assets",
+          "label_zh": "基础题图",
+          "value": 3
+        },
+        {
+          "label": "Inline figure assets",
+          "label_zh": "正文插图",
+          "value": 0
+        },
+        {
+          "label": "Content revision rounds",
+          "label_zh": "内容修订轮次",
+          "value": 2
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取必需来源",
+          "value": 13
+        },
+        {
+          "label": "Direct publication actions",
+          "label_zh": "直接发布动作",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Control source commit",
+          "label_zh": "控制来源提交",
+          "commit": "e58af6b22e9441fb68ef21e893a91f92cb7c1f21"
+        },
+        {
+          "label": "Worker claim commit",
+          "label_zh": "Worker 认领提交",
+          "commit": "108146783f4218a9c52e35ff36081029488e231f"
+        },
+        {
+          "label": "Successful stage-batch commit",
+          "label_zh": "成功的整批暂存提交",
+          "commit": "5f499cd0278117f4c3868975fc5f5638953ae134"
+        },
+        {
+          "label": "Successful Production Actions bridge",
+          "label_zh": "成功的生产桥接运行",
+          "url": "https://github.com/joinwell52-AI/joinwell52/actions/runs/34200498915"
+        },
+        {
+          "label": "Production wake receipt",
+          "label_zh": "生产唤醒回执",
+          "path": "research/runtime/wakes/2026/09/2026-09-08/production-145826.json"
+        },
+        {
+          "label": "Validators-passed item checkpoint",
+          "label_zh": "门禁通过项目检查点",
+          "path": "research/runtime/checkpoints/2026/09/2026-09-08-production.json"
+        }
+      ],
+      "coverEvidence": [
+        {
+          "itemId": "Q-20260908-01",
+          "briefId": "2026-09-08:Q-20260908-01-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-09-08-memory-must-be-readmitted-cover.png",
+          "sanitizedPrompt": "An intact glass archive capsule crosses a semantic threshold into aligned cyan and offset amber memory layers.",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260908-02",
+          "briefId": "2026-09-08:Q-20260908-02-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-09-08-role-match-is-not-team-fit-cover.png",
+          "sanitizedPrompt": "A violet replacement module approaches a mature cyan team constellation with one restrained amber connection mismatch.",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260908-03",
+          "briefId": "2026-09-08:Q-20260908-03-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-09-08-one-effect-across-surfaces-cover.png",
+          "sanitizedPrompt": "Three luminous operating trajectories converge on one glass state capsule across a deep navy field.",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        }
+      ],
+      "artifacts": [
+        "research/runtime/candidates/2026/09/2026-09-08-candidates.json",
+        "staging/publication-candidates/2026-09-08-memory-must-be-readmitted.zh.md",
+        "staging/publication-candidates/2026-09-08-memory-must-be-readmitted.en.md",
+        "staging/publication-candidates/2026-09-08-memory-must-be-readmitted-cover.png",
+        "staging/publication-candidates/2026-09-08-role-match-is-not-team-fit.zh.md",
+        "staging/publication-candidates/2026-09-08-role-match-is-not-team-fit.en.md",
+        "staging/publication-candidates/2026-09-08-role-match-is-not-team-fit-cover.png",
+        "staging/publication-candidates/2026-09-08-one-effect-across-surfaces.zh.md",
+        "staging/publication-candidates/2026-09-08-one-effect-across-surfaces.en.md",
+        "staging/publication-candidates/2026-09-08-one-effect-across-surfaces-cover.png"
+      ],
+      "startedAt": "2026-09-08T15:06:01+08:00",
+      "completedAt": "2026-09-08T15:46:36+08:00"
     }
   },
   "timeline": [
@@ -836,6 +983,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Production after verifying research/runtime/wakes/2026/09/2026-09-08/production-145826.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-08T15:46:36+08:00",
+      "task": "production",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Production closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-08."
     }
   ],
   "metrics": [],
@@ -843,5 +997,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-08T15:07:19+08:00"
+  "updatedAt": "2026-09-08T15:46:36+08:00"
 }
