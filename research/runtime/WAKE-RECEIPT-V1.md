@@ -44,6 +44,14 @@ Minimum fields:
 
 The receipt records only that the timer invocation started. It does not authorize the nominal task.
 
+## Small early-wake tolerance
+
+The ChatGPT scheduler may deliver a nominal timer slightly before the exact wall-clock minute. To avoid losing an otherwise valid Daily Discovery opportunity, `worker-control:resolve` admits `task=discovery` up to **5 minutes before** its nominal `09:00 Asia/Shanghai` schedule when every other admission condition is satisfied.
+
+This tolerance does **not** change the formal Discovery schedule, does not make later tasks early-eligible, does not bypass global serial execution, and does not turn `Wake Received` itself into execution authority. The Process Manager must still reconcile current Runtime state and grant an execution slot before substantive work.
+
+A Discovery wake earlier than the five-minute tolerance remains fail-closed and may only persist its Wake Receipt.
+
 ## Ordered execution rule
 
 After the wake receipt is durably persisted and fetched from `main`, the Process Manager MUST:
