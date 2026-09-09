@@ -1,0 +1,272 @@
+{
+  "schema": "runtime-publication-candidate/v2",
+  "date": "2026-09-09",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Production",
+  "sourceRecord": "research/runtime/records/daily/2026/09/2026-09-09-daily-runtime.json",
+  "reason": "Two authorized 2026-09-09 Research Objects were converted into complete bilingual Editorial Architecture 2.1 candidates with verified planning artifacts, evidence-bounded claims, independent reader value, and deterministic baseline covers.",
+  "reason_zh": "两份已授权的 2026-09-09 Research Object 已转换为完整双语 Editorial Architecture 2.1 候选，具备已核验规划工件、有边界的证据声明、独立读者价值与确定性基础题图。",
+  "candidates": [
+    {
+      "itemId": "Q-20260909-01",
+      "column": "digital-employee",
+      "category": "daily",
+      "articleType": "technical-analysis",
+      "lifecycle": "Publication Candidate",
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "title": "A Tool Connection Is Not Yet a Reusable Capability",
+      "title_zh": "工具能接上，不等于能力可复用",
+      "researchQuestion": "当智能体或数字员工把多个工具组合成可复用能力图时，什么证据足以把输出到输入的绑定视为可操作能力，而成功执行仍然不能证明什么？",
+      "coreProposition": "Reusable tool composition should be admitted through versioned, execution-grounded, provenance-bearing and refreshable evidence that preserves composition semantics; capability evidence remains separate from call-time authority.",
+      "articleBriefPath": "research/runtime/production-work/2026/09/09/Q-20260909-01/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/09/Q-20260909-01/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/09/Q-20260909-01/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-09-tool-edge-needs-execution-evidence.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-09-tool-edge-needs-execution-evidence.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-09-tool-edge-needs-execution-evidence-cover.png",
+      "coverRole": "baseline",
+      "sections": [
+        {
+          "module": "technical-analysis",
+          "heading": "A Plausible Edge Is Only a Candidate",
+          "heading_zh": "看起来能连接，只是候选关系"
+        },
+        {
+          "module": "evidence",
+          "heading": "Execution Changes the Evidence",
+          "heading_zh": "执行结果会改变证据"
+        },
+        {
+          "module": "architecture-implications",
+          "heading": "Composition Semantics Belong to Capability Identity",
+          "heading_zh": "组合语义属于能力身份"
+        },
+        {
+          "module": "operational-implications",
+          "heading": "What the Evidence Packet Must Bind",
+          "heading_zh": "能力证据包必须绑定什么"
+        },
+        {
+          "module": "governance-implications",
+          "heading": "Capability Is Not Authorization",
+          "heading_zh": "能力证明不是执行授权"
+        },
+        {
+          "module": "counterarguments",
+          "heading": "One Success Is Too Small and Forever Is Too Long",
+          "heading_zh": "一次成功太少，永久有效太久"
+        },
+        {
+          "module": "open-questions",
+          "heading": "Boundaries and Open Questions",
+          "heading_zh": "证据边界与开放问题"
+        }
+      ],
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "source-reported-claim",
+          "claim": "The execution success rate of the model-judged initial dependency skeleton is 50.2%, while the refined graph reaches 62.7%; later-pruned edges execute successfully only 14.8% of the time.",
+          "claim_zh": "研究报告，模型判断形成的初始依赖骨架执行成功率为 50.2%，收敛后的图达到 62.7%；后来被剪除的边仅有 14.8% 执行成功。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260909-01-execution-grounded-capability-evidence.md"
+        },
+        {
+          "id": "E2",
+          "identity": "source-reported-claim",
+          "claim": "Live trials can overturn high model priors, and the method distinguishes structural failures from environmental failures when updating edge confidence.",
+          "claim_zh": "研究报告，实时试验能够推翻较高的模型先验，并在更新边置信度时区分结构性失败与环境性失败。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260909-01-execution-grounded-capability-evidence.md"
+        },
+        {
+          "id": "E3",
+          "identity": "source-reported-claim",
+          "claim": "The study reports that 81.2% of chained calls consume multi-record outputs, requiring explicit composition semantics rather than a universal one-to-one interpretation.",
+          "claim_zh": "研究报告，81.2% 的链式调用消费多记录输出，因此需要明确组合语义，而不能统一解释为一对一连接。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260909-01-execution-grounded-capability-evidence.md"
+        },
+        {
+          "id": "E4",
+          "identity": "our-observation",
+          "claim": "A retained edge is contextual, confidence-bearing evidence rather than a universally proven and timeless capability.",
+          "claim_zh": "本次分析观察到，保留的边是带上下文和置信度的证据，而不是已经普遍证明且永久有效的能力。",
+          "strength": "observed",
+          "independent": false,
+          "source": "research/analysis/Q-20260909-01-execution-grounded-capability-evidence.md"
+        },
+        {
+          "id": "E5",
+          "identity": "our-interpretation",
+          "claim": "Reusable capability admission should bind tool identities, composition semantics, environment, trial history, failure class and freshness while keeping call-time authorization separate.",
+          "claim_zh": "本文据此解释，可复用能力准入应绑定工具身份、组合语义、环境、试验历史、失败类别与新鲜度，同时将调用时授权保留为独立门禁。",
+          "strength": "supports",
+          "independent": false,
+          "source": "research/analysis/Q-20260909-01-execution-grounded-capability-evidence.md"
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The argument derives from public primary research and remains independently valuable without any first-party project."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition carries the full transferable argument; a separate community edition would not add a distinct professional angle."
+      },
+      "inlineFigures": [],
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS"
+    },
+    {
+      "itemId": "Q-20260909-02",
+      "column": "industry-architecture",
+      "category": "daily",
+      "articleType": "comparative-study",
+      "lifecycle": "Publication Candidate",
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "title": "A Finished Report Is Not Yet a Trustworthy Conclusion",
+      "title_zh": "报告做完了，不等于结论可信",
+      "researchQuestion": "当智能体能够操作工具、执行分析并生成完整研究成果时，在把它的结论接受为可信的组织知识之前，还需要哪些额外证据？",
+      "coreProposition": "Execution competence and trustworthy evidentiary judgment are separate acceptance states; consequential knowledge work should require observed challenge evidence for controls, robustness, falsification and bounded generalization before a polished result becomes organizational authority.",
+      "articleBriefPath": "research/runtime/production-work/2026/09/09/Q-20260909-02/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/09/Q-20260909-02/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/09/Q-20260909-02/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-09-finished-report-needs-challenge-evidence.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-09-finished-report-needs-challenge-evidence.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-09-finished-report-needs-challenge-evidence-cover.png",
+      "coverRole": "baseline",
+      "sections": [
+        {
+          "module": "comparison",
+          "heading": "Close Overall Scores Hide a Shared Weakness",
+          "heading_zh": "总分接近，掩盖了共同短板"
+        },
+        {
+          "module": "evidence",
+          "heading": "Auditability Is Not Challenge Evidence",
+          "heading_zh": "可审计，不等于经过挑战"
+        },
+        {
+          "module": "technical-analysis",
+          "heading": "A Correct Run Can Support a Weak Conclusion",
+          "heading_zh": "正确执行，也可能支撑薄弱结论"
+        },
+        {
+          "module": "governance-implications",
+          "heading": "Two Acceptance States",
+          "heading_zh": "两个准入状态"
+        },
+        {
+          "module": "operational-implications",
+          "heading": "Challenge Depth Should Follow Consequence",
+          "heading_zh": "挑战深度应随后果变化"
+        },
+        {
+          "module": "counterarguments",
+          "heading": "An Evaluator Is Evidence, Not Ground Truth",
+          "heading_zh": "评估器是证据，不是最终事实"
+        },
+        {
+          "module": "open-questions",
+          "heading": "Boundaries and Open Questions",
+          "heading_zh": "证据边界与开放问题"
+        }
+      ],
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "source-reported-claim",
+          "claim": "Four agent scaffolds using the same frozen base model achieve similar overall scores, with no statistically reliable corrected pairwise winner in the reported comparison.",
+          "claim_zh": "研究报告，四种智能体脚手架在使用同一冻结基础模型时总分接近，校正后的成对比较没有统计可靠的赢家。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260909-02-evidence-challenge-gated-knowledge-trust.md"
+        },
+        {
+          "id": "E2",
+          "identity": "source-reported-claim",
+          "claim": "Evidence Auditability and Novelty are comparatively strong while Control Testing, Robustness and Falsifiability are substantially weaker across scaffolds.",
+          "claim_zh": "研究报告，不同脚手架的证据可审计性和新颖性相对较强，而对照测试、稳健性和可证伪性明显较弱。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260909-02-evidence-challenge-gated-knowledge-trust.md"
+        },
+        {
+          "id": "E3",
+          "identity": "source-reported-claim",
+          "claim": "The evaluator awards no credit to proposed-but-not-executed checks, separating stated intent from observed evidence-producing work.",
+          "claim_zh": "研究报告，评估器不会为仅提出但未执行的检查计分，从而把陈述意图与真正产生证据的工作分开。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260909-02-evidence-challenge-gated-knowledge-trust.md"
+        },
+        {
+          "id": "E4",
+          "identity": "our-observation",
+          "claim": "A technically successful run can demonstrate execution competence without showing that its conclusion survived plausible alternatives or perturbations.",
+          "claim_zh": "本次分析观察到，技术上成功的运行可以证明执行能力，却不能证明结论经受住合理替代解释或扰动。",
+          "strength": "observed",
+          "independent": false,
+          "source": "research/analysis/Q-20260909-02-evidence-challenge-gated-knowledge-trust.md"
+        },
+        {
+          "id": "E5",
+          "identity": "our-interpretation",
+          "claim": "Consequential knowledge work should preserve separate acceptance states for execution competence and evidentiary judgment, requiring challenge evidence before organizational adoption.",
+          "claim_zh": "本文据此解释，高后果知识工作应分别保存执行能力与证据判断的准入状态，并在组织采用前要求挑战证据。",
+          "strength": "supports",
+          "independent": false,
+          "source": "research/analysis/Q-20260909-02-evidence-challenge-gated-knowledge-trust.md"
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The argument derives from public primary research and remains independently valuable without any first-party project."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition carries the full transferable argument; a separate community edition would not add a distinct professional angle."
+      },
+      "inlineFigures": [],
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS"
+    }
+  ],
+  "githubCommit": "pending",
+  "updatedAt": "2026-09-09T15:15:00+08:00"
+}
