@@ -9,11 +9,11 @@ edition: "research-center"
 research_question: "当 Agent 可以一次规划多个未来步骤时，怎样避免还没有看到运行结果，就把整条路径都变成执行承诺？"
 summary: "TROVE 把多步路径视为 provisional route，只提交一个顶层 Skill，再依据边界结果 Retain、Insert、Replace 或剪掉剩余路径。它提供了一个重要启发：规划可以看得更远，但执行承诺应逐个可观察边界推进；而外部 Effect Authority 仍必须独立治理。"
 sources: "arXiv:2609.05019; research/reading/A-20260909-01-trove-route-validation-editing.md; research/analysis/A-20260909-01-trove-route-validation-editing.md"
-cover: "/assets/covers/academic-trove-proposal-commitment-horizon.png"
+cover: "/assets/covers/academic-trove-proposal-commitment-horizon.svg"
 ---
 
 <ArticleCover
-  image="/assets/covers/academic-trove-proposal-commitment-horizon.png"
+  image="/assets/covers/academic-trove-proposal-commitment-horizon.svg"
   kicker="数字员工 · Academic Observation 007"
   title="计划不是承诺"
   summary="Agent 可以规划好几步，但为什么不应该一次把好几步都变成执行承诺？"
