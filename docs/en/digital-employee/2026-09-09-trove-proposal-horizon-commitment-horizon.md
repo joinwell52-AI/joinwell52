@@ -9,11 +9,11 @@ edition: "research-center"
 research_question: "When an agent can plan several future steps at once, how can it avoid turning an untested route into several steps of execution commitment?"
 summary: "TROVE treats a multi-step path as a provisional route, commits one top-level skill, then Retains, Inserts, Replaces, or prunes the remainder from boundary outcomes. The broader lesson is bounded: planning may look farther ahead than execution commits, while external Effect Authority still requires separate governance."
 sources: "arXiv:2609.05019; research/reading/A-20260909-01-trove-route-validation-editing.md; research/analysis/A-20260909-01-trove-route-validation-editing.md"
-cover: "/assets/covers/academic-trove-proposal-commitment-horizon.png"
+cover: "/assets/covers/academic-trove-proposal-commitment-horizon.svg"
 ---
 
 <ArticleCover
-  image="/assets/covers/academic-trove-proposal-commitment-horizon.png"
+  image="/assets/covers/academic-trove-proposal-commitment-horizon.svg"
   kicker="Digital Employee · Academic Observation 007"
   title="A Plan Is Not a Commitment"
   summary="An agent can plan several steps ahead. Why should execution still commit one observable boundary at a time?"
