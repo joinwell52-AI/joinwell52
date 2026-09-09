@@ -19,6 +19,24 @@ outline: false
     </div>
     <b>查看 →</b>
   </a>
+
+  <a class="daily-intel-item" href="./2026-09-08">
+    <time>2026-09-08</time>
+    <div>
+      <strong>Agent 核心研究与竞品动态</strong>
+      <span>赵岳修正 GRADE 结构性结论 · Paperclip operation-time principal · Codex Secure Enclave 人类验证 · Agents JS ownership · Superset Host 升级 · Orca sealed recovery generations</span>
+    </div>
+    <b>查看 →</b>
+  </a>
+
+  <a class="daily-intel-item" href="./2026-09-07">
+    <time>2026-09-07</time>
+    <div>
+      <strong>Agent 核心研究与竞品动态</strong>
+      <span>Codex single-writer lease · Agents SDK normalized effects · AG2 app-only tools · Paperclip pre-start governance · GitHub MCP effect preconditions · Orca positive-evidence settlement</span>
+    </div>
+    <b>查看 →</b>
+  </a>
 </div>
 
 <style>
