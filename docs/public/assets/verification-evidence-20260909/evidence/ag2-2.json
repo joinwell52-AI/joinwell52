@@ -1,0 +1,132 @@
+{
+  "kind": "Full upstream middleware and types; AG2 imports replaced by explicit event shells; real on_tool_execution and policy/receipt code; no Agent/model/context ingestion integration",
+  "removed_imports": [
+    "from ag2.events import ToolErrorEvent, ToolResultEvent",
+    "from ag2.events.input_events import DataInput, TextInput",
+    "from ag2.extensions.tealtiger.types import ARG_TYPES_BY_NAME, DEFAULT_INJECTION_CONFIDENCE_THRESHOLD, INJECTION_PATTERNS, INJECTION_TECHNIQUES, PII_PATTERNS, SECRET_PATTERNS, GovernanceDecision, GovernanceMode, GovernancePolicy, InjectionFinding, OutputAction, TEECReceipt, most_restrictive",
+    "from ag2.middleware import BaseMiddleware",
+    "from ag2.middleware.base import ToolResultType",
+    "from ag2.utils import AGENT_CONTEXT_DEPENDENCY_KEY"
+  ],
+  "source_sha256": "f83270b0d75e1283dbf88c3971234f05cbc17f7f1b2f3147c401aff8aa281043",
+  "cases": [
+    {
+      "case": "enforce-secret",
+      "tool_executions": 1,
+      "governance_blocked": true,
+      "fixture_secret_present": false,
+      "fixture_ssn_present": false,
+      "reason_codes": [
+        "POLICY_ALLOW",
+        "OUTPUT_SECRET_DETECTED",
+        "OUTPUT_BLOCKED"
+      ],
+      "receipt_outcomes": [
+        "executed",
+        "blocked"
+      ]
+    },
+    {
+      "case": "monitor-secret",
+      "tool_executions": 1,
+      "governance_blocked": false,
+      "fixture_secret_present": false,
+      "fixture_ssn_present": false,
+      "reason_codes": [
+        "POLICY_ALLOW",
+        "OUTPUT_SECRET_DETECTED",
+        "OUTPUT_REDACTED"
+      ],
+      "receipt_outcomes": [
+        "executed",
+        "executed"
+      ]
+    },
+    {
+      "case": "observe-secret",
+      "tool_executions": 1,
+      "governance_blocked": false,
+      "fixture_secret_present": true,
+      "fixture_ssn_present": false,
+      "reason_codes": [
+        "OBSERVE_PASSTHROUGH"
+      ],
+      "receipt_outcomes": [
+        "executed"
+      ]
+    },
+    {
+      "case": "enforce-error",
+      "tool_executions": 1,
+      "governance_blocked": false,
+      "fixture_secret_present": true,
+      "fixture_ssn_present": false,
+      "reason_codes": [
+        "POLICY_ALLOW"
+      ],
+      "receipt_outcomes": [
+        "error"
+      ]
+    },
+    {
+      "case": "flag-secret",
+      "tool_executions": 1,
+      "governance_blocked": false,
+      "fixture_secret_present": true,
+      "fixture_ssn_present": false,
+      "reason_codes": [
+        "POLICY_ALLOW",
+        "OUTPUT_SECRET_DETECTED"
+      ],
+      "receipt_outcomes": [
+        "executed",
+        "executed"
+      ]
+    },
+    {
+      "case": "structured-value",
+      "tool_executions": 1,
+      "governance_blocked": true,
+      "fixture_secret_present": false,
+      "fixture_ssn_present": false,
+      "reason_codes": [
+        "POLICY_ALLOW",
+        "OUTPUT_SECRET_DETECTED",
+        "OUTPUT_BLOCKED"
+      ],
+      "receipt_outcomes": [
+        "executed",
+        "blocked"
+      ]
+    },
+    {
+      "case": "structured-key",
+      "tool_executions": 1,
+      "governance_blocked": false,
+      "fixture_secret_present": true,
+      "fixture_ssn_present": false,
+      "reason_codes": [
+        "POLICY_ALLOW"
+      ],
+      "receipt_outcomes": [
+        "executed"
+      ]
+    },
+    {
+      "case": "pii-value",
+      "tool_executions": 1,
+      "governance_blocked": false,
+      "fixture_secret_present": false,
+      "fixture_ssn_present": false,
+      "reason_codes": [
+        "POLICY_ALLOW",
+        "OUTPUT_PII_DETECTED:ssn",
+        "OUTPUT_REDACTED"
+      ],
+      "receipt_outcomes": [
+        "executed",
+        "executed"
+      ]
+    }
+  ]
+}
