@@ -6,6 +6,7 @@ import process from 'node:process'
 const root = resolve(import.meta.dirname, '..')
 const schedulerPath = 'research/runtime/SCHEDULER.json'
 const configPath = 'research/runtime/worker-prompts/CONFIG.json'
+const scheduledWakeEarlyToleranceMinutes = 5
 
 function fail(message) {
   console.error(`worker-prompts: ${message}`)
@@ -259,7 +260,9 @@ function resolveAdmission() {
   if (Number.isNaN(now.valueOf())) fail('resolve: --now must be an ISO-8601 timestamp')
   const clock = localClock(scheduler.timezone, now)
   const reasons = []
-  const earlyWakeToleranceMinutes = taskId === 'discovery' ? 5 : 0
+  const earlyWakeToleranceMinutes = wakeSource === 'chatgpt-scheduled-task'
+    ? scheduledWakeEarlyToleranceMinutes
+    : 0
 
   if (!task) reasons.push(`unknown task ${taskId || '(missing)'}`)
   if (control.state !== 'active') reasons.push(`global control is ${control.state}`)
