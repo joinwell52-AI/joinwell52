@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260907-02-whistleblowing-enforcement-authority.md
 item_id: "Q-20260907-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-07-visibility-is-not-enforcement-cover.png"
+cover: "/assets/covers/daily-2026-09-07-visibility-is-not-enforcement-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-07-visibility-is-not-enforcement-cover.png"
+  image="/assets/covers/daily-2026-09-07-visibility-is-not-enforcement-editorial-v2.webp"
   kicker="行业架构 · 每日研究"
   title="看见违规，也不等于能制止：100 个智能体实验里的治理缺口"
   summary="一项 100 个自主智能体的研究案例显示：共享通道既传播了利用漏洞，也催生了审计、警告、抵制、投诉和修复建议。但这些行动仍未停止失范效果，因为观察、投诉、裁决、制裁和规则变更并不是同一种权力。"

@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260907-03-durable-project-truth-independent-acceptance.md
 item_id: "Q-20260907-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-07-project-truth-survives-context-cover.png"
+cover: "/assets/covers/daily-2026-09-07-project-truth-survives-context-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-07-project-truth-survives-context-cover.png"
+  image="/assets/covers/daily-2026-09-07-project-truth-survives-context-editorial-v2.webp"
   kicker="Open-source Engineering · Daily Research"
   title="Context Can Disappear; Project Truth Cannot"
   summary="Long-horizon agent engineering does not primarily need an endless conversation. It needs durable candidate identity, artifact state, evidence state, and role authority. Acceptance belongs to the revision that was tested, and later changes can make earlier evidence stale."

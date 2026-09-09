@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260907-03-durable-project-truth-independent-acceptance.md
 item_id: "Q-20260907-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-07-project-truth-survives-context-cover.png"
+cover: "/assets/covers/daily-2026-09-07-project-truth-survives-context-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-07-project-truth-survives-context-cover.png"
+  image="/assets/covers/daily-2026-09-07-project-truth-survives-context-editorial-v2.webp"
   kicker="开源工程 · 每日研究"
   title="上下文可以丢，项目事实不能丢：长期智能体开发真正要保存什么"
   summary="长期智能体开发真正需要持续保存的，不是完整对话，而是精确候选版本、制品状态、证据状态和角色权限。一次通过的验收属于被测试的那个版本；后续变更可能让旧证据失效。"

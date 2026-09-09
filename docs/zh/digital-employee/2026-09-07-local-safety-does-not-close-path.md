@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260907-01-authority-to-effect-path-closure.md
 item_id: "Q-20260907-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-07-local-safety-does-not-close-path-cover.png"
+cover: "/assets/covers/daily-2026-09-07-local-safety-does-not-close-path-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-07-local-safety-does-not-close-path-cover.png"
+  image="/assets/covers/daily-2026-09-07-local-safety-does-not-close-path-editorial-v2.webp"
   kicker="数字员工 · 每日研究"
   title="每个智能体都通过检查，为什么系统仍可能不安全？"
   summary="一项覆盖197篇多智能体安全工作的系统化研究提醒我们：局部通过不等于端到端安全。真正需要闭合的是从影响来源到最终效果的完整权限路径，包括可观察范围、干预能力、信任假设、替代路径和传播后的恢复。"

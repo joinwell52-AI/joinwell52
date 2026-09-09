@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260907-02-whistleblowing-enforcement-authority.md
 item_id: "Q-20260907-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-07-visibility-is-not-enforcement-cover.png"
+cover: "/assets/covers/daily-2026-09-07-visibility-is-not-enforcement-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-07-visibility-is-not-enforcement-cover.png"
+  image="/assets/covers/daily-2026-09-07-visibility-is-not-enforcement-editorial-v2.webp"
   kicker="Industry Architecture · Daily Research"
   title="Seeing Misconduct Is Not the Same as Being Able to Stop It"
   summary="A 100-agent research case shows shared channels doing two opposing jobs at once: spreading an exploit and enabling audit, warnings, boycotts, complaints, and remediation proposals. The exploit still continued because observation, complaint intake, adjudication, sanction, and rule-change authority were not the same thing."

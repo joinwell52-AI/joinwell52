@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260908-02-replacement-coordination-admission.md
 item_id: "Q-20260908-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-08-role-match-is-not-team-fit-cover.png"
+cover: "/assets/covers/daily-2026-09-08-role-match-is-not-team-fit-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-08-role-match-is-not-team-fit-cover.png"
+  image="/assets/covers/daily-2026-09-08-role-match-is-not-team-fit-editorial-v2.webp"
   kicker="Industry Architecture · Daily Research"
   title="Role Match Is Not Team Fit"
   summary="A controlled study reports that role-matched swaps preserve much task outcome while raising communication cost per unit of progress by roughly 16–63%, with coordination efficiency recovering later than task score. Reliable replacement needs separate evidence for role qualification, team fit, state scope, and recovery activation."

@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260908-01-memory-migration-admission.md
 item_id: "Q-20260908-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-08-memory-must-be-readmitted-cover.png"
+cover: "/assets/covers/daily-2026-09-08-memory-must-be-readmitted-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-08-memory-must-be-readmitted-cover.png"
+  image="/assets/covers/daily-2026-09-08-memory-must-be-readmitted-editorial-v2.webp"
   kicker="数字员工 · 每日研究"
   title="记忆还在，不等于还能继承"
   summary="一项受控研究显示，文件完整、格式可读、向量维度相同，都不能保证新模型仍以相同方式检索和理解旧记忆。稳健的升级机制应把存储完整、语义兼容、可恢复与激活授权分成四个独立状态。"

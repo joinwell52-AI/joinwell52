@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260908-02-replacement-coordination-admission.md
 item_id: "Q-20260908-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-08-role-match-is-not-team-fit-cover.png"
+cover: "/assets/covers/daily-2026-09-08-role-match-is-not-team-fit-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-08-role-match-is-not-team-fit-cover.png"
+  image="/assets/covers/daily-2026-09-08-role-match-is-not-team-fit-editorial-v2.webp"
   kicker="行业架构 · 每日研究"
   title="角色匹配，不等于团队适配"
   summary="一项受控研究发现，角色匹配的智能体互换后，任务结果大多保留，但单位进展的沟通成本增加约 16%—63%，而协作效率比任务成绩恢复得更慢。可靠的替换机制需要把角色资格、团队适配、状态范围和恢复激活分开验证。"

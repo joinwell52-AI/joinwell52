@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260908-03-cross-surface-effect-provenance.md
 item_id: "Q-20260908-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-08-one-effect-across-surfaces-cover.png"
+cover: "/assets/covers/daily-2026-09-08-one-effect-across-surfaces-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-08-one-effect-across-surfaces-cover.png"
+  image="/assets/covers/daily-2026-09-08-one-effect-across-surfaces-editorial-v2.webp"
   kicker="Open-source Engineering · Daily Research"
   title="Changing the Control Surface Must Not Split One Business Effect"
   summary="CUA-Universe places GUI and CLI actions over one persistent application state and verifies hybrid trajectories with screenshots, command results, and exported artifacts. Control surfaces may change, but business-effect identity should remain stable; authorization, idempotency, and commit evidence still require separate gates."

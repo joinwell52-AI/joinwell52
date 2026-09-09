@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260907-01-authority-to-effect-path-closure.md
 item_id: "Q-20260907-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-07-local-safety-does-not-close-path-cover.png"
+cover: "/assets/covers/daily-2026-09-07-local-safety-does-not-close-path-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-07-local-safety-does-not-close-path-cover.png"
+  image="/assets/covers/daily-2026-09-07-local-safety-does-not-close-path-editorial-v2.webp"
   kicker="Digital Employee · Daily Research"
   title="Every Agent Passed Its Check. Why Can the System Still Be Unsafe?"
   summary="A systematization covering 197 multi-agent security works makes a critical distinction explicit: local passes do not establish end-to-end safety. The security object is the complete authority-to-effect path, including observation coverage, intervention reach, trust assumptions, alternate routes, and recovery after propagation."

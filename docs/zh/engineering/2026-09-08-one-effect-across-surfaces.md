@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260908-03-cross-surface-effect-provenance.md
 item_id: "Q-20260908-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-08-one-effect-across-surfaces-cover.png"
+cover: "/assets/covers/daily-2026-09-08-one-effect-across-surfaces-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-08-one-effect-across-surfaces-cover.png"
+  image="/assets/covers/daily-2026-09-08-one-effect-across-surfaces-editorial-v2.webp"
   kicker="开源工程 · 每日研究"
   title="换了操作界面，不能换掉同一次业务效果"
   summary="CUA-Universe（面向计算机操作智能体的统一环境）让图形界面与命令行共同作用于同一持久应用状态，并用截图、命令结果和导出工件联合验证轨迹。由此可见，操作界面可以变化，业务效果身份不应被切碎；但授权、幂等和最终提交仍需独立证据。"

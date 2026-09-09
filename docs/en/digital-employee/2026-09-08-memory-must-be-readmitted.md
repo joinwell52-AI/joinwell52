@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260908-01-memory-migration-admission.md
 item_id: "Q-20260908-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-08-memory-must-be-readmitted-cover.png"
+cover: "/assets/covers/daily-2026-09-08-memory-must-be-readmitted-editorial-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-08-memory-must-be-readmitted-cover.png"
+  image="/assets/covers/daily-2026-09-08-memory-must-be-readmitted-editorial-v2.webp"
   kicker="Digital Employee · Daily Research"
   title="Memory Still Exists; That Does Not Make It Inheritable"
   summary="A controlled study shows that intact files, readable formats, and matching vector dimensions do not guarantee that a changed model stack will retrieve and interpret old memory consistently. Robust upgrades should separate storage integrity, semantic compatibility, recoverability, and activation authority."
