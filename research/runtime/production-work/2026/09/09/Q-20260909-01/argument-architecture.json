@@ -1,0 +1,87 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-09",
+  "itemId": "Q-20260909-01",
+  "coreProposition": "Reusable tool composition should be admitted through versioned, execution-grounded, provenance-bearing and refreshable evidence that preserves composition semantics; capability evidence remains separate from call-time authority.",
+  "openingMove": {
+    "type": "schema-compatible-edge-fails-live",
+    "purpose": "Open with a reusable tool connection that passes schema inspection but changes meaning or fails when collections, defaults and live service state enter the path.",
+    "evidenceRefs": [
+      "E1",
+      "E3"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is a plausible tool edge only a candidate?",
+      "claim": "Retrieval and model judgment nominate connections, but live execution supplies information that descriptions do not contain.",
+      "evidenceRefs": [
+        "E1",
+        "E2"
+      ],
+      "reasoningRole": "failure-mechanism",
+      "readerProgress": "Separate candidate compatibility from admitted capability.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What does execution evidence add?",
+      "claim": "Observed successes, failures and failure classes revise confidence and can overturn strong model priors.",
+      "evidenceRefs": [
+        "E1",
+        "E2",
+        "E4"
+      ],
+      "reasoningRole": "evidence",
+      "readerProgress": "Understand why capability evidence must be graded and contextual.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "Why are cardinality and transformation rules part of the capability?",
+      "claim": "A collection passed sequentially, fanned out or reduced represents different downstream business meaning despite compatible field types.",
+      "evidenceRefs": [
+        "E3",
+        "E5"
+      ],
+      "reasoningRole": "architecture-implication",
+      "readerProgress": "Treat composition semantics as part of capability identity.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What belongs in a durable evidence packet?",
+      "claim": "Bind tool and schema versions, fields, arguments, environment, transformation semantics, trials, failure classes, confidence and freshness.",
+      "evidenceRefs": [
+        "E2",
+        "E4",
+        "E5"
+      ],
+      "reasoningRole": "operational-implication",
+      "readerProgress": "Gain an auditable admission artifact.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What does successful capability evidence still fail to prove?",
+      "claim": "It does not grant call-time authority, establish idempotency, or prove safety for another tenant, version or endpoint.",
+      "evidenceRefs": [
+        "E4",
+        "E5"
+      ],
+      "reasoningRole": "governance-boundary",
+      "readerProgress": "Keep capability and authority separate.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "One successful call should be enough to register a reusable edge permanently.",
+    "responseBoundary": "One success is useful evidence but remains tied to the observed identities and conditions; upgrades, endpoint changes and new failure behavior can stale it."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with risk-sensitive thresholds, evidence expiry, tenant transfer and ambiguous failure classification."
+  }
+}

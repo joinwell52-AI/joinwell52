@@ -1,0 +1,53 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-09",
+  "itemId": "Q-20260909-01",
+  "researchObjectId": "Q-20260909-01",
+  "targetAudience": {
+    "primary": "Engineering leads and governance owners responsible for reusable agent tool capabilities",
+    "knowledgeAssumption": "The reader understands tool schemas, agent runtimes, API composition, and authorization boundaries.",
+    "readerProblem": "A schema-compatible tool edge or one successful execution is often promoted into a permanent reusable capability without preserving context, transformation semantics, failure class, or freshness."
+  },
+  "whyNow": "KOPA-Bench/EDGE reports a large gap between model-judged tool edges and execution-refined graphs, while most chained calls consume collections whose composition semantics materially affect downstream meaning.",
+  "externalHook": {
+    "type": "plausible-tool-edge-becomes-stale-capability",
+    "description": "A connection that looks valid in schemas is promoted into a reusable capability even though live execution, cardinality and service context can invalidate it.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "E4"
+    ]
+  },
+  "coreProposition": "Reusable tool composition should be admitted through versioned, execution-grounded, provenance-bearing and refreshable evidence that preserves composition semantics; capability evidence remains separate from call-time authority.",
+  "originalValue": {
+    "type": "refreshable-capability-evidence-packet",
+    "description": "Turns tool composition from a timeless Boolean label into a versioned evidence object that records how the edge transforms data, where it worked, how failures were classified, and when it must be revalidated."
+  },
+  "readerTakeaway": "Admit tool compositions with graded, execution-grounded evidence; preserve cardinality and transformation semantics; expire evidence after material change; and keep capability admission separate from authorization for a specific call.",
+  "evidenceBoundary": {
+    "supported": [
+      "The primary study reports 50.2% execution success for the initial model-judged skeleton and 62.7% for the refined graph.",
+      "Later-pruned edges execute successfully only 14.8% of the time in the reported study.",
+      "The study reports that 81.2% of chained calls consume multi-record outputs and therefore require explicit composition semantics."
+    ],
+    "unsupported": [
+      "A universal minimum trial count",
+      "A claim that every retained edge is individually proven",
+      "A claim that public-API results transfer unchanged to enterprise transactions",
+      "Treating capability evidence as permission to execute"
+    ],
+    "uncertain": [
+      "How evidence thresholds should scale with consequence",
+      "How long evidence remains fresh after service or credential changes",
+      "How to classify ambiguous provider failures"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument derives from public primary research and remains independently useful without any first-party project."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The controlled graph and execution comparisons support a bounded capability-admission model while leaving authorization and production validity as separate questions."
+}
