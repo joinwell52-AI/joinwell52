@@ -52,6 +52,8 @@ for (const [task, now] of admitted) {
   expectDecision(`${task} nominal admission`, { task, now }, 'Admitted')
 }
 
+expectDecision('discovery small early wake', { task: 'discovery', now: `${discoveryEffectiveDate}T08:58:00+08:00` }, 'Admitted')
+expectDecision('discovery too-early wake', { task: 'discovery', now: `${discoveryEffectiveDate}T08:54:00+08:00` }, 'Denied', 'not eligible before')
 expectDecision('production early wake', { task: 'production', now: '2026-08-18T14:59:00+08:00' }, 'Denied', 'not eligible before')
 expectDecision('production deterministic baseline needs no image-generation capability', { task: 'production', now: '2026-08-18T15:00:00+08:00', capabilities: commonCapabilities }, 'Admitted')
 expectDecision('production GitHub Actions path needs no command execution capability', { task: 'production', now: '2026-08-18T15:00:00+08:00', capabilities: commonCapabilities }, 'Admitted')
@@ -68,4 +70,4 @@ expectDecision('removed recovery patrol source', {
   wakeSource: 'codex-recovery-patrol'
 }, 'Denied', 'wake source')
 
-console.log(`worker-control: passed ${admitted.length + 9} admission regression cases`)
+console.log(`worker-control: passed ${admitted.length + 11} admission regression cases`)
