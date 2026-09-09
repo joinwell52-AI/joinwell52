@@ -238,6 +238,12 @@ function localClock(timezone, now) {
   return { date: `${parts.year}-${parts.month}-${parts.day}`, time: `${parts.hour}:${parts.minute}`, weekday: parts.weekday }
 }
 
+function clockMinutes(value) {
+  const match = /^(\d{2}):(\d{2})$/.exec(value)
+  if (!match) fail(`invalid local clock value ${value}`)
+  return Number(match[1]) * 60 + Number(match[2])
+}
+
 function resolveAdmission() {
   validate({ silent: true })
   const options = parseOptions(process.argv.slice(3))
@@ -253,6 +259,7 @@ function resolveAdmission() {
   if (Number.isNaN(now.valueOf())) fail('resolve: --now must be an ISO-8601 timestamp')
   const clock = localClock(scheduler.timezone, now)
   const reasons = []
+  const earlyWakeToleranceMinutes = taskId === 'discovery' ? 5 : 0
 
   if (!task) reasons.push(`unknown task ${taskId || '(missing)'}`)
   if (control.state !== 'active') reasons.push(`global control is ${control.state}`)
@@ -270,7 +277,9 @@ function resolveAdmission() {
   if (task?.schedule.days && !task.schedule.days.includes(clock.weekday)) {
     reasons.push(`${taskId} is not scheduled on ${clock.weekday}`)
   }
-  if (task && clock.time < task.notBefore) reasons.push(`${taskId} is not eligible before ${task.notBefore}`)
+  if (task && clockMinutes(clock.time) < clockMinutes(task.notBefore) - earlyWakeToleranceMinutes) {
+    reasons.push(`${taskId} is not eligible before ${task.notBefore} (early-wake tolerance ${earlyWakeToleranceMinutes} minute(s))`)
+  }
 
   const result = {
     schema: 'research-runtime-worker-admission/v1',
@@ -282,6 +291,7 @@ function resolveAdmission() {
     branch: branch || null,
     wakeSource: wakeSource || null,
     requiredCapabilities,
+    earlyWakeToleranceMinutes,
     reasons,
     runtimeAuthorityRequired: control.runtimeAuthorityRequired,
     prompt: task?.prompt || null,
