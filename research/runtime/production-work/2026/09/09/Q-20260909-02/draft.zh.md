@@ -94,4 +94,4 @@ sources:
 
 **证据与引用：**
 
-- [TruthInsightBench V1.0 主研究](https://arxiv.org/html/2609.05079v2)
+- [TruthInsightBench V1.0（证据中心科学洞察基准）主研究](https://arxiv.org/html/2609.05079v2)
