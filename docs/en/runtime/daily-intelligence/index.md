@@ -19,6 +19,24 @@ Dates are sorted newest first in **Asia/Shanghai** time.
     </div>
     <b>View →</b>
   </a>
+
+  <a class="daily-intel-item" href="./2026-09-08">
+    <time>2026-09-08</time>
+    <div>
+      <strong>Agent Research & Competitor Intelligence</strong>
+      <span>Yue Zhao corrects a GRADE structural claim · Paperclip operation-time principal · Codex Secure Enclave human verification · Agents JS ownership · Superset Host upgrades · Orca sealed recovery generations</span>
+    </div>
+    <b>View →</b>
+  </a>
+
+  <a class="daily-intel-item" href="./2026-09-07">
+    <time>2026-09-07</time>
+    <div>
+      <strong>Agent Research & Competitor Intelligence</strong>
+      <span>Codex single-writer lease · Agents SDK normalized effects · AG2 app-only tools · Paperclip pre-start governance · GitHub MCP effect preconditions · Orca positive-evidence settlement</span>
+    </div>
+    <b>View →</b>
+  </a>
 </div>
 
 <style>
