@@ -11,11 +11,13 @@ import RuntimeTodayUrlSync from '../../.vitepress/theme/components/RuntimeTodayU
 import RuntimeOperationsCenterCurrent from '../../.vitepress/theme/components/RuntimeOperationsCenterCurrent.vue'
 import RuntimePrestartState from '../../.vitepress/theme/components/RuntimePrestartState.vue'
 import RuntimeShiftCollapse from '../../.vitepress/theme/components/RuntimeShiftCollapse.vue'
+import RuntimeDailyIntelligenceLink from '../../.vitepress/theme/components/RuntimeDailyIntelligenceLink.vue'
 </script>
 
 <RuntimeTodayUrlSync />
 <RuntimePrestartState lang="zh" />
 <RuntimeOperationsCenterCurrent lang="zh" />
+<ClientOnly><RuntimeDailyIntelligenceLink lang="zh" /></ClientOnly>
 <RuntimeShiftCollapse lang="zh" />
 
 <ResearchIntelligenceRadar lang="zh" />
