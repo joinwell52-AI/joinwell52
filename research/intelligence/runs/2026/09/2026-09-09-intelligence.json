@@ -1,0 +1,295 @@
+{
+  "schema": "research-intelligence-run/v1",
+  "version": "1.0",
+  "date": "2026-09-09",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "registryVersion": "1.0",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-09-09T09:41:28+08:00",
+  "githubCommit": "pending",
+  "researchCoverage": {
+    "policy": "theme-sample-v1",
+    "rollingResearchWindowDays": 30,
+    "sampleFamilies": {
+      "product-governance": {
+        "checked": [
+          "Salesforce Agentforce Vibes permission modes and Trust Layer",
+          "Amazon Bedrock AgentCore Policy boundary enforcement"
+        ],
+        "qualifiedSignals": 0
+      },
+      "multi-agent-mechanism": {
+        "checked": [
+          "CrewAI Flow persistence and resumable long-running workflows",
+          "OpenHands Docker sandbox isolation boundary"
+        ],
+        "qualifiedSignals": 0
+      },
+      "research-benchmark-industry": {
+        "checked": [
+          "TROVE adaptive route validation and editing (arXiv:2609.05019)",
+          "TruthInsightBench evidence-grounded scientific-agent evaluation (arXiv:2609.05079)",
+          "KOPA-Bench and EDGE execution-grounded tool composition (arXiv:2609.05395)"
+        ],
+        "qualifiedSignals": 3
+      }
+    }
+  },
+  "reason": "All three formal Discovery pipelines reached terminal coverage and the theme-first active-sample overlay was completed without topic selection. Six qualified, non-duplicate signals were retained after research-problem normalization and recent-run deduplication: three merged engineering mechanisms and three primary-research findings. The AI Platform pipeline produced no new non-duplicate signal; one Microsoft Copilot Studio What's New channel required authorization and was recorded as inaccessible rather than falsely counted as checked. Pure sample-change-trigger density is 0%.",
+  "reason_zh": "三条正式 Discovery 管线均完成终态覆盖，并完成主题优先主动样本检查，未执行选题。按研究问题规范化并与近期运行去重后保留 6 个合格 Signal：3 个已合并工程机制、3 个一手研究发现。AI Platform 本轮没有保留新的非重复 Signal；Microsoft Copilot Studio What's New 通道要求授权，因此明确记为不可访问而未伪装成已检查。纯 sample-change-trigger 占比为 0%。",
+  "pipelines": [
+    {
+      "id": "ai-platform",
+      "label": "AI Platform Change Intelligence",
+      "label_zh": "AI 平台变更情报发现",
+      "status": "Completed",
+      "due": 45,
+      "checked": 44,
+      "inaccessible": [
+        {
+          "source": "Microsoft Copilot Studio What's New public channel",
+          "reason": "The public surface required authorization during this run; it is recorded as inaccessible and is not counted as checked."
+        }
+      ],
+      "failed": [],
+      "signals": 0,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All 45 due P0 public platform channels were terminally resolved across the six registered source groups: 44 were directly checked and one Microsoft Copilot Studio What's New surface required authorization. Recent product, documentation, changelog, status and public-community evidence yielded no new non-duplicate platform signal after comparison with the 2026-09-07 and 2026-09-08 Signal Pools.",
+      "reason_zh": "六组注册来源共 45 个到期 P0 公共平台通道全部完成终态处理：44 个直接完成检查，1 个 Microsoft Copilot Studio What's New 页面要求授权。将近期产品、文档、变更日志、状态页与公共社区证据同 2026-09-07、2026-09-08 Signal Pool 去重后，本轮没有保留新的非重复平台 Signal。"
+    },
+    {
+      "id": "github-engineering",
+      "label": "GitHub Engineering Intelligence",
+      "label_zh": "GitHub 工程情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 9,
+      "inaccessible": [],
+      "failed": [],
+      "signals": 3,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 daily repositories were checked incrementally. Three non-duplicate merged mechanisms were retained: Codex closes a shared admission gate during graceful shutdown while allowing reads and interruption; OpenAI Agents SDK hardens UnixLocal file operations against symlink races with descriptor-relative no-follow traversal and pinned roots; Google ADK retries nested workflow failures while replaying children that left durable output or state evidence.",
+      "reason_zh": "9 个 P0 Daily 仓库均完成增量检查。保留 3 个非重复已合并机制：Codex 在 Graceful Shutdown 期间关闭共享准入门，同时保留读取与中断；OpenAI Agents SDK 通过基于文件描述符的 no-follow 路径遍历与固定 Root 防止 UnixLocal 文件操作的符号链接竞态；Google ADK 在嵌套 Workflow 失败时重试，并通过持久 Output/State 证据重放已完成子节点。"
+    },
+    {
+      "id": "published-research",
+      "label": "Published Research Intelligence",
+      "label_zh": "论文与研究成果情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 7,
+      "inaccessible": [],
+      "failed": [
+        {
+          "source": "https://www.sciencedirect.com/journal/journal-of-systems-and-software",
+          "reason": "The Journal of Systems and Software public journal surface returned an internal fetch error during this run; the failure is recorded rather than counted as checked."
+        },
+        {
+          "source": "https://zenodo.org/",
+          "reason": "The Zenodo public surface returned an internal fetch error during this run; the failure is recorded rather than counted as checked."
+        }
+      ],
+      "signals": 3,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 research sources were terminally resolved using the rolling seven-day pass with a thirty-day expansion where useful: seven were directly checked and two public surfaces returned explicitly recorded fetch failures. Three non-duplicate primary-research findings were retained around selective route editing after runtime evidence, evidence-grounded evaluation of scientific-discovery agents, and live-execution validation of multi-step tool-composition edges.",
+      "reason_zh": "9 个 P0 研究来源全部终态收口；按滚动 7 天检查并在需要时扩展到 30 天：7 个直接完成检查，2 个公共页面的抓取失败被明确记录而未伪装成成功。保留 3 个非重复一手研究发现，分别涉及运行证据后的选择性 Route Editing、科学发现 Agent 的证据化评估，以及通过真实执行验证多步工具组合边。"
+    }
+  ],
+  "columns": [
+    {
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded two primary Digital Employee signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以数字员工为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    },
+    {
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded two primary Industry Architecture signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以行业架构为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    },
+    {
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded two primary Open-source Engineering signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以开源工程为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    }
+  ],
+  "signals": [
+    {
+      "id": "SIG-20260909-001",
+      "pipeline": "github-engineering",
+      "title": "Codex closes turn admission during graceful shutdown before waiting for admitted work to drain",
+      "title_zh": "Codex 在 Graceful Shutdown 时先关闭 Turn Admission，再等待已准入工作排空",
+      "sourceUrl": "https://github.com/openai/codex/commit/c3eeaae9a3d401f7e7ade0817b7b27299af7d2a1",
+      "publishedAt": "2026-09-09",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["industry-architecture", "open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "openai-codex/graceful-shutdown-turn-admission-drain",
+      "summary": "Codex now closes a shared admission gate when app-server shutdown begins, rejects new turn and thread lifecycle work including automatic queued and goal continuations, rechecks serialized turn requests before execution, and waits for already admitted requests plus running turns to drain while keeping reads and turn interruption available.",
+      "summary_zh": "Codex 现在在 App-server 开始关停时先关闭共享准入门，拒绝新的 Turn 与 Thread Lifecycle 工作，包括自动 Queue/Goal Continuation，并在序列化请求真正执行前再次检查准入；同时等待已准入请求与 Running Turn 排空，但仍保留读取和 Turn Interrupt。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["runtime-admission", "worker-lifecycle", "shutdown-drain", "recovery-authority"],
+      "sampleIds": ["openai-codex"],
+      "researchValue": {
+        "failure": "A server can appear to be draining while queued, serialized or automatic continuations continue creating new state-changing work, preventing a clean lifecycle boundary.",
+        "finding": "",
+        "mechanism": "Close admission before drain, track admitted-but-not-yet-running work, recheck delayed requests at execution time, and keep only observability/interruption paths open during drain.",
+        "implication": "A long-running digital employee should model shutdown as an authority transition: stop granting new work first, then drain already authorized work, rather than equating zero currently running turns with safe termination."
+      }
+    },
+    {
+      "id": "SIG-20260909-002",
+      "pipeline": "github-engineering",
+      "title": "OpenAI Agents SDK prevents UnixLocal sandbox path authorization from being bypassed by symlink races",
+      "title_zh": "OpenAI Agents SDK 防止 UnixLocal Sandbox 的路径授权被符号链接竞态绕过",
+      "sourceUrl": "https://github.com/openai/openai-agents-python/commit/e3a03edf186b9a2513d20dc79e6c585d3433272a",
+      "publishedAt": "2026-09-09",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "openai-agents-python/unixlocal-file-symlink-race-hardening",
+      "summary": "The UnixLocal sandbox file API moved to descriptor-relative traversal with O_NOFOLLOW, pinned canonical roots, path reauthorization, and an isolated trusted file worker for user-scoped operations so a workspace process cannot swap symlinks between path validation and host file access.",
+      "summary_zh": "UnixLocal Sandbox 文件 API 改为基于目录文件描述符的遍历并使用 O_NOFOLLOW，同时固定 Canonical Root、再次校验路径，并将 User-scoped 操作放入隔离的可信文件 Worker，防止 Workspace 进程在路径校验与 Host 文件访问之间替换符号链接。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["sandbox-boundary", "path-authorization", "toctou", "host-isolation"],
+      "sampleIds": ["openai-agents-python"],
+      "researchValue": {
+        "failure": "Authorizing a pathname and then opening it later can be unsafe when an untrusted workspace can replace path components with symlinks between the two operations.",
+        "finding": "",
+        "mechanism": "Pin authorized roots, traverse with directory descriptors and no-follow flags, and perform the actual file operation relative to the already-authorized directory chain.",
+        "implication": "Sandbox authorization should bind the filesystem object reached at execution time, not merely a string path that was valid earlier."
+      }
+    },
+    {
+      "id": "SIG-20260909-003",
+      "pipeline": "github-engineering",
+      "title": "Google ADK nested-workflow retries replay only children that left durable output or state evidence",
+      "title_zh": "Google ADK 的嵌套 Workflow 重试只会重放留下持久 Output 或 State 证据的已完成子节点",
+      "sourceUrl": "https://github.com/google/adk-python/commit/dcdd9b8a72f6ef35f695b456c665e261e9df11ce",
+      "publishedAt": "2026-09-09",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "google-adk/nested-workflow-retry-durable-replay-boundary",
+      "summary": "Google ADK made a child failure count as a Workflow failure for retry policy. When the sub-workflow retries, children that already emitted output or state changes are replayed from session events, while a child that emitted neither has no completion evidence and runs again; retry attempt counters also do not survive interrupt/resume.",
+      "summary_zh": "Google ADK 将子节点失败正式视为 Workflow 失败并进入 Retry Policy。子 Workflow 重试时，已产生 Output 或 State Change 的子节点会从 Session Events 重放；没有留下两者的子节点缺少完成证据，会再次执行；Retry Attempt Counter 也不会跨 Interrupt/Resume 持久化。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["idempotent-recovery", "durable-runtime-state", "workflow-replay", "side-effect-boundary"],
+      "sampleIds": ["google-adk-python"],
+      "researchValue": {
+        "failure": "A side-effecting node can be executed twice after workflow retry when it leaves no durable output or state record proving that it already completed.",
+        "finding": "",
+        "mechanism": "Use durable event evidence to replay completed children and rerun only nodes whose completion cannot be reconstructed, while treating retry budgets separately from persisted workflow state.",
+        "implication": "Recovery safety depends on what the runtime can prove about prior execution; a successful external effect without durable local completion evidence remains duplicate-risk work."
+      }
+    },
+    {
+      "id": "SIG-20260909-004",
+      "pipeline": "published-research",
+      "title": "TROVE treats an agent route as provisional and replaces only the suffix invalidated by runtime evidence",
+      "title_zh": "TROVE 将 Agent Route 视为暂定计划，只替换被运行证据否定的后缀",
+      "sourceUrl": "https://arxiv.org/abs/2609.05019",
+      "publishedAt": "2026-09-04",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "arxiv-2609.05019/trace-grounded-route-editing",
+      "summary": "TROVE distills evaluated workflow traces into skills and an outcome-conditioned transition graph, then treats a planned route as provisional online: after observing runtime evidence it keeps a valid continuation, inserts a local trace-supported response, or replaces only the invalid suffix instead of executing stale steps or replanning the whole route.",
+      "summary_zh": "TROVE 将已评估 Workflow Trace 蒸馏为 Skills 与 Outcome-conditioned Transition Graph，并在运行时把计划 Route 视为暂定：获得新证据后保留仍有效的 Continuation、插入局部 Trace-supported Response，或只替换失效后缀，而不是继续执行过期步骤或整条重规划。",
+      "signalRole": "research-finding",
+      "researchThemes": ["adaptive-orchestration", "runtime-evidence", "partial-replanning", "execution-graph"],
+      "sampleIds": ["arxiv-2609.05019"],
+      "researchValue": {
+        "failure": "Precommitted execution plans become stale when intermediate outcomes change what should happen next, while full replanning can discard valid progress and add cost.",
+        "finding": "Across code generation, QA and math reasoning benchmarks, the reported gains are largest when observed outcomes change the appropriate continuation, and suffix replacement mainly improves efficiency.",
+        "mechanism": "Condition route continuation on evaluated runtime traces and edit only the portion invalidated by new evidence.",
+        "implication": "Agent runtimes can separate durable completed work from still-provisional future work, revising the smallest unproved suffix instead of restarting a whole process."
+      }
+    },
+    {
+      "id": "SIG-20260909-005",
+      "pipeline": "published-research",
+      "title": "TruthInsightBench finds scientific-agent bottlenecks in controls, robustness and falsifiability rather than basic execution",
+      "title_zh": "TruthInsightBench 发现科学 Agent 的主要瓶颈在控制、稳健性与可证伪性，而不是基础执行",
+      "sourceUrl": "https://arxiv.org/abs/2609.05079",
+      "publishedAt": "2026-09-04",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "arxiv-2609.05079/evidence-grounded-scientific-agent-evaluation",
+      "summary": "TruthInsightBench evaluates 40 blind discovery tasks from 40 peer-reviewed studies across ten domains while hiding source conclusions, expected values and analysis paths. Four coding agents on one frozen base model cluster around 58.4–60.3/100: execution and documentation are comparatively competent, but controls, robustness, falsifiability and cross-dataset generalization remain weak.",
+      "summary_zh": "TruthInsightBench 从 40 项同行评审研究构造 40 个跨 10 个领域的 Blind Discovery Task，并隐藏原论文结论、期望数值和分析路径。在同一 Frozen Base Model 上，4 个 Coding Agent 集中在 58.4–60.3/100；执行与文档相对成熟，但控制、稳健性、可证伪性与跨数据集泛化仍明显薄弱。",
+      "signalRole": "benchmark-evidence",
+      "researchThemes": ["agent-evaluation", "evidence-auditability", "verification", "scientific-agents"],
+      "sampleIds": ["arxiv-2609.05079", "truthinsightbench"],
+      "researchValue": {
+        "failure": "A benchmark can overstate agent research capability when it rewards reproducing a hidden target result rather than independently deciding what claim the evidence supports.",
+        "finding": "The evaluated agents formed a narrow score plateau with no reliable pairwise separation and were strongest at execution/documentation but weak at the discriminating acts needed for trustworthy claims.",
+        "mechanism": "Hide target conclusions and analysis paths, then score the agent's own claims against artifact-grounded dimensions with deterministic aggregation.",
+        "implication": "Evaluating autonomous knowledge workers should distinguish task completion from evidentiary judgment, especially controls, robustness, falsifiability and generalization."
+      }
+    },
+    {
+      "id": "SIG-20260909-006",
+      "pipeline": "published-research",
+      "title": "EDGE admits multi-step tool-composition links only after they succeed against live public APIs",
+      "title_zh": "EDGE 只在真实公共 API 调用成功后才接纳多步工具组合边",
+      "sourceUrl": "https://arxiv.org/abs/2609.05395",
+      "publishedAt": "2026-09-04",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering", "industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "arxiv-2609.05395/execution-grounded-tool-composition-edges",
+      "summary": "KOPA-Bench contributes 145 real multi-step tasks over Korean public APIs. Its EDGE synthesis method builds candidate output-to-input tool links but retains only links that actually succeed against live APIs, then traverses those verified links to create executable trajectories; a trained 9B model nearly matches an untuned 27B model and improves on BFCL as well.",
+      "summary_zh": "KOPA-Bench 包含 145 个基于韩国公共 API 的真实多步任务。其 EDGE 方法先构建 Output-to-input 工具候选边，但只保留在真实 API 调用中成功的连接，再遍历这些已验证边生成可执行轨迹；训练后的 9B 模型接近同系列未调优 27B 模型，并在 BFCL 上同步提升。",
+      "signalRole": "benchmark-evidence",
+      "researchThemes": ["tool-composition", "execution-evidence", "agent-benchmark", "on-prem-agents"],
+      "sampleIds": ["arxiv-2609.05395", "kopa-bench", "edge-tool-graph"],
+      "researchValue": {
+        "failure": "Schema-compatible tool outputs and inputs do not prove that a composed edge is operationally executable against live systems.",
+        "finding": "The study reports that training on trajectories built from live-validated edges materially improves a 9B model and transfers gains to BFCL.",
+        "mechanism": "Admit tool-composition edges only after real execution succeeds, then synthesize trajectories over the verified graph.",
+        "implication": "Digital-employee tool graphs should distinguish structurally possible connections from execution-proven connections and treat the latter as stronger operational evidence."
+      }
+    }
+  ]
+}
