@@ -18,6 +18,8 @@ A worker must never infer completion from a scheduler trigger.
 
 An account-level scheduled task is a wake-only bootstrap. It must access the latest `main` branch, read the control file declared by `SCHEDULER.json#workerControlManifest`, pass fail-closed program admission, resolve its own task and prompt reference, and execute the generated prompt from the same commit within the declared limits. It must not retain a second embedded copy of Runtime business rules.
 
+All `chatgpt-scheduled-task` wakes use the same bounded early-wake rule. A wake arriving no more than five minutes before its formal Scheduler time is an admissible wake opportunity for every formal task, not a task failure and not a governed Skip merely because `notBefore` has not arrived yet. The worker may durably record and verify the wake receipt, but the early wake does not move `notBefore`, create `Running`, create `Worker Claimed`, or grant substantive execution authority. Formal Runtime reconciliation remains fail-closed with zero execution lead and may open the task only at or after its scheduled boundary, in global serial order and after business dependencies are satisfied. Duplicate wakes remain idempotent and must never create a second execution epoch. `manual-recovery` has no early-wake tolerance and must satisfy the formal boundary when time eligibility applies.
+
 The generated prompt bundle is deterministic repository state. Its version, schedule, required sources and SHA-256 are validated by `npm run worker-prompts:validate`, which is included in `npm run runtime:validate`. A missing manifest, unresolved task, hash drift, stale generated file or unreadable required source is a hard failure; cached prompt text is not an allowed fallback.
 
 ## Daily Runtime workers
