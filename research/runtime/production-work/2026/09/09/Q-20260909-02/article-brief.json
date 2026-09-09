@@ -1,0 +1,53 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-09",
+  "itemId": "Q-20260909-02",
+  "researchObjectId": "Q-20260909-02",
+  "targetAudience": {
+    "primary": "Research, risk, analytics and governance leaders adopting agents for consequential knowledge work",
+    "knowledgeAssumption": "The reader understands analytical workflows, evaluation benchmarks, controls, robustness checks and organizational approval.",
+    "readerProblem": "A completed run with polished artifacts and traceable sources is easily mistaken for a conclusion that has survived alternative explanations."
+  },
+  "whyNow": "TruthInsightBench reports similar overall scores across four agent scaffolds but a shared gap between strong auditability/novelty and weak control testing, robustness and falsifiability.",
+  "externalHook": {
+    "type": "polished-report-with-unchallenged-conclusion",
+    "description": "An agent completes the workflow and attaches evidence, yet the conclusion has not been tested against plausible alternatives or perturbations.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "E4"
+    ]
+  },
+  "coreProposition": "Execution competence and trustworthy evidentiary judgment are separate acceptance states; consequential knowledge work should require observed challenge evidence for controls, robustness, falsification and bounded generalization before a polished result becomes organizational authority.",
+  "originalValue": {
+    "type": "dual-acceptance-state-for-knowledge-work",
+    "description": "Separates correct execution from trustworthy evidentiary judgment and scales the required challenge depth by consequence, reversibility and uncertainty."
+  },
+  "readerTakeaway": "Keep useful completed analysis even when its conclusion is not yet accepted; require observed, not merely proposed, challenge evidence before high-consequence outputs gain organizational authority.",
+  "evidenceBoundary": {
+    "supported": [
+      "Four studied scaffolds using the same frozen base model have a narrow reported overall score spread and no corrected statistically reliable pairwise winner.",
+      "Evidence auditability and novelty are comparatively strong across systems, while control testing, robustness and falsifiability are much weaker.",
+      "The evaluator gives no credit for controls or robustness checks that are proposed but not executed."
+    ],
+    "unsupported": [
+      "A universal ranking of agent scaffolds",
+      "A claim that every agent-generated conclusion is unreliable",
+      "A claim that one LLM evaluator is expert-equivalent ground truth",
+      "A requirement for costly independent review on every low-risk task"
+    ],
+    "uncertain": [
+      "Which challenge checks should be mandatory by risk class",
+      "When deterministic validation is sufficient",
+      "How evaluator calibration should age across models and domains"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument derives from public primary research and remains independently useful without any first-party project."
+  },
+  "recommendedArticleType": "comparative-study",
+  "editorialDecision": "PASS",
+  "decisionReason": "The controlled same-model comparison supports a bounded acceptance architecture while explicitly avoiding a simplistic scaffold leaderboard."
+}
