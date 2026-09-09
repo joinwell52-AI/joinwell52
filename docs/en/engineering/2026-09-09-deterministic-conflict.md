@@ -73,6 +73,11 @@ We ran eight cases in two separate Node processes, also reversing every input. T
 | Same runs with separate record IDs | 2 | 0 | 50% |
 | ID present, outcome missing | 1 | 0 | unknown=1; rate field 0 |
 
+![Figure: schematic of the saved observations discussed above. Arrows show the stated processing relationship, not a runtime screenshot. Source: accompanying experimental evidence.](/assets/verification-evidence-20260909/deterministic-conflict-figure.en.svg)
+
+*Figure 1. schematic of the saved observations discussed above. Arrows show the stated processing relationship, not a runtime screenshot. Source: accompanying experimental evidence.*
+
+
 Both rounds agreed. Identical replay is correctly deduplicated, so abandoning deduplication would miss the point. The issue is treating replay and contradictory claims as the same category.
 
 The missing-outcome control is equally important: the function preserves `unknown`. Its rate includes that record in the denominator, producing zero; that does not establish a confirmed test failure.
@@ -94,4 +99,3 @@ The local helper is now the subject of a development-review submission. Consumer
 The evidence covers one historical change record, the actual helper at `c008d9db91a21136fc61a4f60314e22db395d5d2`, and eight synthetic cases. See the accompanying [evidence guide](https://joinwell52-ai.github.io/joinwell52/en/research/evidence/2026-09-09-verification-evidence). Product-source disclosure remains separately reviewed.
 
 Determinism tells us whether an answer repeats. Conflict preservation tells us whether a single answer is justified at all.
-

@@ -60,6 +60,11 @@ We loaded the complete upstream module, erased TypeScript types, and supplied ex
 | Runner throws | 1 | 1 | Failed completion attempted, error rethrown |
 | Finish throws | 1 | 1 | Tool still reports execution success |
 
+![Figure: schematic of the saved observations discussed above. Arrows show the stated processing relationship, not a runtime screenshot. Source: accompanying experimental evidence.](/assets/verification-evidence-20260909/verification-ownership-figure.en.svg)
+
+*Figure 1. schematic of the saved observations discussed above. Arrows show the stated processing relationship, not a runtime screenshot. Source: accompanying experimental evidence.*
+
+
 Two independent process runs agreed. The runner-error control prevents an overstatement: ordinary failure settlement exists. The issue is how particular ownership and persistence failures constrain later callbacks.
 
 A callback count measures an attempted operation. Our fixture accepting it is not proof that PostgreSQL accepted an incorrect update.
@@ -77,4 +82,3 @@ Possible designs include rejecting incompatible claims, executing the claimed re
 These are upstream findings, not a demonstrated CodeFlowMu defect. We did not run Fusion's database, full queue, or startup recovery. The [evidence guide](https://joinwell52-ai.github.io/joinwell52/en/research/evidence/2026-09-09-verification-evidence) records exactly which dependencies were replaced.
 
 Persisting a request lets a system remember that work exists. Checking completion authority lets it justify which later result belongs to that work.
-

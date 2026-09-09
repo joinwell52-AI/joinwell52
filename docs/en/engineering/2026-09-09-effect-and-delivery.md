@@ -60,6 +60,11 @@ This is branch behavior under controlled persistence responses, not a database c
 | Ten recorded outcomes | 1 | Eight inline; cutoff covers ten |
 | Wake commits, throws, then delivery is retried | 1 across both attempts | Second attempt acknowledges |
 
+![Figure: schematic of the saved observations discussed above. Arrows show the stated processing relationship, not a runtime screenshot. Source: accompanying experimental evidence.](/assets/verification-evidence-20260909/effect-and-delivery-figure.en.svg)
+
+*Figure 1. schematic of the saved observations discussed above. Arrows show the stated processing relationship, not a runtime screenshot. Source: accompanying experimental evidence.*
+
+
 Two process runs agreed on all six cases. The source also scopes queries by task, company, and agent relationships, but our fixture does not evaluate SQL predicates. These results do not establish database isolation.
 
 Our first two exploratory runs failed the normal-case assertion because the query fixture consumed a response while constructing an unexecuted subquery. Deferring consumption until the query was awaited fixed the harness. Upstream code did not change. Those failures are retained as experiment-development history, not Paperclip defects.
@@ -83,4 +88,3 @@ This delivery service has no provider-execution callback; it consumes existing o
 The [evidence guide](https://joinwell52-ai.github.io/joinwell52/en/research/evidence/2026-09-09-verification-evidence) includes observations and dependency substitutions. This is a reproducible design comparison, not authorization to build a new recovery platform in CodeFlowMu.
 
 Long work continues not only because an agent remembers a conversation, but because the system can distinguish a step already supported by evidence from one still awaiting acknowledgment.
-

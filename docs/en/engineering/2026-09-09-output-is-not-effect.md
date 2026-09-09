@@ -58,6 +58,11 @@ We retained the upstream policy, scanning, rewriting, and receipt logic while re
 | Secret in structured key | 1 | Preserved | executed |
 | SSN in structured string value | 1 | Redacted | executed → executed |
 
+![Figure: schematic of the saved observations discussed above. Arrows show the stated processing relationship, not a runtime screenshot. Source: accompanying experimental evidence.](/assets/verification-evidence-20260909/output-is-not-effect-figure.en.svg)
+
+*Figure 1. schematic of the saved observations discussed above. Arrows show the stated processing relationship, not a runtime screenshot. Source: accompanying experimental evidence.*
+
+
 OBSERVE and FLAG are explicit policy choices, not bypass discoveries. MONITOR converts a blocking finding into redaction, so “not enforced” does not always mean “untouched.”
 
 ## An error is another output path
@@ -81,4 +86,3 @@ For a real effectful tool, withheld output would not undo the effect. That is an
 The [evidence guide](https://joinwell52-ai.github.io/joinwell52/en/research/evidence/2026-09-09-verification-evidence) preserves eight cases and the precise substitution boundary. Actual Agent integration, message serialization, model ingestion, and external effects remain untested.
 
 The input boundary decides whether a tool may act. The output boundary decides what information may continue after it acts. Both matter because they answer different questions.
-
