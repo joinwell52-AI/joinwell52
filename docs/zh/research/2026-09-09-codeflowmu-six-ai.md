@@ -35,6 +35,10 @@ head:
   languageLabel="English"
 />
 
+**同一道巡检题，有的AI团队12分20秒交付，有的两个多小时仍未收口，还有的连子任务都没派出去。**
+
+差别究竟在模型能力、接入方式，还是PM组织工作的方式？我们用CodeFlowMu与FCoP，把同一句任务交给六个AI团队，留下派单、执行、报告、授权和独立EVAL记录，沿着证据寻找答案。
+
 <div class="cfm-six-ai-stats" role="group" aria-label="测试结果概览">
   <div><strong>6 个方案</strong><span>同一任务正文 · 多角色协作</span></div>
   <div><strong>4 轮交付</strong><span>2轮强制终止，保留失败记录</span></div>

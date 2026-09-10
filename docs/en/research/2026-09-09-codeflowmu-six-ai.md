@@ -35,6 +35,10 @@ head:
   languageLabel="简体中文"
 />
 
+**The same inspection task. One AI team delivered in 12 minutes 20 seconds. Another was still unfinished after two hours. One never assigned a single child task.**
+
+Was the difference model capability, integration, or how the PM organized the work? We gave six AI teams the same assignment through CodeFlowMu and FCoP, then followed the retained task, execution, report, authorization, and independent EVAL records to find out.
+
 <div class="cfm-six-ai-stats" role="group" aria-label="Test results at a glance">
   <div><strong>6 configurations</strong><span>Same task · Multiple team roles</span></div>
   <div><strong>4 deliveries</strong><span>2 forced stops; failure records retained</span></div>
