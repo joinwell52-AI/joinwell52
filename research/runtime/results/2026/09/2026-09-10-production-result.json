@@ -1,0 +1,137 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "production",
+  "family": "daily",
+  "runtimeDate": "2026-09-10",
+  "status": "Completed",
+  "productionMode": "candidate-batch",
+  "input": "Two same-date Production-authorized Research Objects, the exact generated Production prompt v2.13.0, and all 13 required sources fetched and verified from main commit 61e8c10636b197865b380447063d0c9307ba2a94. Direct SHA-256 over the prompt bytes matched CONTROL and MANIFEST.",
+  "input_zh": "输入为两份归属 2026-09-10 且已授权生产的研究对象、精确的生产提示词 v2.13.0，以及从 main 提交 61e8c10636b197865b380447063d0c9307ba2a94 读取并核验的全部 13 项必需来源。直接计算提示词字节的 SHA-256，与 CONTROL 和 MANIFEST 完全一致。",
+  "workResult": "Converted both authorized Research Objects into complete bilingual Editorial Architecture 2.1 candidates with six planning artifacts and two deterministic baseline covers. One bounded revision round replaced three unregistered section-module labels. The atomic candidate bundle, checkpoint, layout, editorial, language, Runtime V5, prompt/control, recovery, continuation, terminal, bridge, bundle, intelligence, and scorecard gates passed.",
+  "workResult_zh": "将两份已授权研究对象转换为完整双语编辑架构 2.1 候选，包含六项策划工件与两张确定性基础题图。一轮有界修订替换了三个未注册的章节模块标签。原子候选包、检查点、布局、编辑、语言、Runtime V5、提示词与控制、恢复、续跑、终态、桥接、候选包、情报和评分卡门禁全部通过。",
+  "output": "Two complete bilingual publication candidates, four canonical article files, two deterministic baseline covers, and a completed validators-passed checkpoint with every item Ready.",
+  "output_zh": "两篇完整双语发布候选、四个正式正文文件、两张确定性基础题图，以及所有条目均为 Ready 的 validators-passed 完成检查点。",
+  "next": "Publication remains a separate governed task and was not executed.",
+  "next_zh": "Publication 仍是独立受治理任务，本轮未执行。",
+  "promptVerificationMode": "direct-sha256",
+  "promptIdentity": {
+    "path": "research/runtime/worker-prompts/generated/production.prompt.md",
+    "version": "2.13.0",
+    "sha256": "d8b0cd52d22d976d6356558a23c5c2dc28ed5aa8f51793538fa8fbebfb80996f"
+  },
+  "metrics": [
+    {
+      "label": "Research objects consumed",
+      "label_zh": "已消费研究对象",
+      "value": 2
+    },
+    {
+      "label": "Publication candidates",
+      "label_zh": "发布候选",
+      "value": 2
+    },
+    {
+      "label": "Bilingual article files",
+      "label_zh": "双语正文文件",
+      "value": 4
+    },
+    {
+      "label": "Planning artifacts",
+      "label_zh": "策划工件",
+      "value": 6
+    },
+    {
+      "label": "Baseline cover assets",
+      "label_zh": "基础题图",
+      "value": 2
+    },
+    {
+      "label": "Inline figure assets",
+      "label_zh": "正文插图",
+      "value": 0
+    },
+    {
+      "label": "Content revision rounds",
+      "label_zh": "内容修订轮次",
+      "value": 1
+    },
+    {
+      "label": "Recovery attempts",
+      "label_zh": "恢复尝试",
+      "value": 0
+    },
+    {
+      "label": "Required sources read",
+      "label_zh": "已读取必需来源",
+      "value": 13
+    },
+    {
+      "label": "Direct publication actions",
+      "label_zh": "直接发布动作",
+      "value": 0
+    }
+  ],
+  "evidence": [
+    {
+      "label": "Control source commit",
+      "label_zh": "控制来源提交",
+      "commit": "61e8c10636b197865b380447063d0c9307ba2a94"
+    },
+    {
+      "label": "Worker claim commit",
+      "label_zh": "Worker 认领提交",
+      "commit": "bdc05ac8578814c0a7ceb74d52fe5bd905adf4ce"
+    },
+    {
+      "label": "Successful stage-batch commit",
+      "label_zh": "成功的整批暂存提交",
+      "commit": "e58e2d1a152cb64db1b0a1d28984c0dea937a012"
+    },
+    {
+      "label": "Successful Production Actions bridge",
+      "label_zh": "成功的生产桥接运行",
+      "url": "https://github.com/joinwell52-AI/joinwell52/actions/runs/34449183598"
+    },
+    {
+      "label": "Production wake receipt",
+      "label_zh": "生产唤醒回执",
+      "path": "research/runtime/wakes/2026/09/2026-09-10/production-145708.json"
+    },
+    {
+      "label": "Validators-passed item checkpoint",
+      "label_zh": "门禁通过项目检查点",
+      "path": "research/runtime/checkpoints/2026/09/2026-09-10-production.json"
+    }
+  ],
+  "coverEvidence": [
+    {
+      "itemId": "Q-20260910-01",
+      "briefId": "2026-09-10:Q-20260910-01-baseline-cover",
+      "coverPath": "staging/publication-candidates/2026-09-10-second-model-not-independent-control-cover.png",
+      "sanitizedPrompt": "Twin glass lenses face an independent cyan prism across deep navy space.",
+      "generationAttempts": 1,
+      "semanticReview": "PASS",
+      "coverRole": "baseline",
+      "generator": "deterministic-baseline-v1"
+    },
+    {
+      "itemId": "Q-20260910-02",
+      "briefId": "2026-09-10:Q-20260910-02-baseline-cover",
+      "coverPath": "staging/publication-candidates/2026-09-10-proposed-procedure-not-active-authority-cover.png",
+      "sanitizedPrompt": "An amber glass form approaches a cyan threshold beside a stable violet structure.",
+      "generationAttempts": 1,
+      "semanticReview": "PASS",
+      "coverRole": "baseline",
+      "generator": "deterministic-baseline-v1"
+    }
+  ],
+  "artifacts": [
+    "research/runtime/candidates/2026/09/2026-09-10-candidates.json",
+    "staging/publication-candidates/2026-09-10-second-model-not-independent-control.zh.md",
+    "staging/publication-candidates/2026-09-10-second-model-not-independent-control.en.md",
+    "staging/publication-candidates/2026-09-10-second-model-not-independent-control-cover.png",
+    "staging/publication-candidates/2026-09-10-proposed-procedure-not-active-authority.zh.md",
+    "staging/publication-candidates/2026-09-10-proposed-procedure-not-active-authority.en.md",
+    "staging/publication-candidates/2026-09-10-proposed-procedure-not-active-authority-cover.png"
+  ]
+}
