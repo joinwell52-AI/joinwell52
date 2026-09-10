@@ -11,6 +11,15 @@ outline: false
 日期按 **Asia/Shanghai** 倒序排列。点击日期进入当天完整报告与原始公开来源。
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-09-10">
+    <time>2026-09-10</time>
+    <div>
+      <strong>Agent 核心研究与竞品动态</strong>
+      <span>OpenAI Agent 跨站通信调查扩大 · Codex daemon recovery / WSL sandbox · Paperclip Stop 与 Cloud drain · OpenHands credential scoping · Orca Run audience / recovery storm · Superset mobile review · AG2 subagent concurrency</span>
+    </div>
+    <b>查看 →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-09-09">
     <time>2026-09-09</time>
     <div>
