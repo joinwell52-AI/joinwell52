@@ -35,6 +35,21 @@ head:
   languageLabel="简体中文"
 />
 
+<div class="cfm-six-ai-stats" role="group" aria-label="Test results at a glance">
+  <div><strong>6 configurations</strong><span>Same task · Multiple team roles</span></div>
+  <div><strong>4 deliveries</strong><span>2 forced stops; failure records retained</span></div>
+  <div><strong>12m 20s</strong><span>Fastest normal delivery · Formal receipts</span></div>
+</div>
+
+<style>
+.cfm-six-ai-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:28px 0 32px;padding:24px 0 30px;border-bottom:1px solid var(--vp-c-divider)}
+.cfm-six-ai-stats>div{padding-right:16px;border-right:1px solid var(--vp-c-divider)}
+.cfm-six-ai-stats>div:last-child{border-right:0;padding-right:0}
+.cfm-six-ai-stats strong{display:block;font-size:28px;line-height:1.4;color:var(--vp-c-text-1);font-weight:750}
+.cfm-six-ai-stats span{display:block;margin-top:6px;font-size:13px;line-height:1.65;color:var(--vp-c-text-2)}
+@media(max-width:600px){.cfm-six-ai-stats{grid-template-columns:1fr;gap:16px}.cfm-six-ai-stats>div{border-right:0;padding-right:0}.cfm-six-ai-stats strong{font-size:26px}}
+</style>
+
 [← All research articles](/en/research/) · [Public sources and attachments](/articles/codeflowmu-six-ai-20260909/sources.en.html)
 
 

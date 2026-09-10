@@ -35,6 +35,21 @@ head:
   languageLabel="English"
 />
 
+<div class="cfm-six-ai-stats" role="group" aria-label="测试结果概览">
+  <div><strong>6 个方案</strong><span>同一任务正文 · 多角色协作</span></div>
+  <div><strong>4 轮交付</strong><span>2轮强制终止，保留失败记录</span></div>
+  <div><strong>12分20秒</strong><span>最快正常交付 · 按正式回执计时</span></div>
+</div>
+
+<style>
+.cfm-six-ai-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:28px 0 32px;padding:24px 0 30px;border-bottom:1px solid var(--vp-c-divider)}
+.cfm-six-ai-stats>div{padding-right:16px;border-right:1px solid var(--vp-c-divider)}
+.cfm-six-ai-stats>div:last-child{border-right:0;padding-right:0}
+.cfm-six-ai-stats strong{display:block;font-size:28px;line-height:1.4;color:var(--vp-c-text-1);font-weight:750}
+.cfm-six-ai-stats span{display:block;margin-top:6px;font-size:13px;line-height:1.65;color:var(--vp-c-text-2)}
+@media(max-width:600px){.cfm-six-ai-stats{grid-template-columns:1fr;gap:16px}.cfm-six-ai-stats>div{border-right:0;padding-right:0}.cfm-six-ai-stats strong{font-size:26px}}
+</style>
+
 [← 返回研究文章](/zh/research/) · [公开来源与附件](/articles/codeflowmu-six-ai-20260909/sources.html)
 
 
