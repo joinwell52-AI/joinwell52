@@ -81,4 +81,4 @@
 
 ## 来源与完整性
 
-`sources/index.json` 固定 PR 状态；`sources/code-manifest.json` 固定源文件 URL、SHA 与 SHA-256；`collect.mjs` / `fetch-code.mjs` / `fetch-registry.mjs` 是采集器。`verify.mjs` 检查文件哈希与两轮输出，不把哈希检查称为重新执行实验。
+`sources/index.json` 保存核查时的 PR 状态；`sources/code-manifest.json` 固定源文件 URL、提交 SHA 与 SHA-256。公开包的 `fetch-pinned.mjs` 按固定 URL 获取并核验上游原始源码；`verify-public.mjs` 比较两轮输出及探针哈希，添加 `--sources` 可校验已下载源码。完整性检查不等于重新执行实验。
