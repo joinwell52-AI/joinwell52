@@ -8,11 +8,11 @@
   "date": "2026-09-10",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -520,6 +520,119 @@
       "githubCommit": "2ba568122979c595dacb1d3828f65741c96f7b34",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-10T10:16:21+08:00"
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "family": "daily",
+      "runtimeDate": "2026-09-10",
+      "status": "Completed",
+      "input": "Authoritative Reading control was pinned from main commit 4b2ce5786e40ce1c1fc5c7a86a9231ea72db0b93: Research Runtime Scheduler V3.0, Worker Control v1.3.0, generated Reading Prompt v1.0.0 with declared SHA-256 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5, and all five requiredSources read completely from that same commit. The exact generated prompt bytes were deterministically hashed and matched the declared SHA-256. The unique verified same-date Wake Receipt is research/runtime/wakes/2026/09/2026-09-10/reading-110110.json. Ordered Runtime reconciliation opened Reading at 11:04:09+08:00 and the native Worker Claim path durably recorded Worker Claimed at 11:05:33+08:00 in commit 9501533e10c8d1059a83459acddb321e54a4b680. Reading consumed only the same-date Completed Queue plan research/runtime/plans/2026/09/2026-09-10-plan.json, where Q-20260910-01 and Q-20260910-02 were Selected and Open-source Engineering was explicitly No Selection.",
+      "input_zh": "Reading 权威控制固定于 main 提交 4b2ce5786e40ce1c1fc5c7a86a9231ea72db0b93：Research Runtime Scheduler V3.0、Worker Control v1.3.0、Generated Reading Prompt v1.0.0；声明 SHA-256 为 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5，同一提交上的全部 5 个 requiredSources 均完整读取。已对精确 Generated Prompt 字节执行确定性 SHA-256 计算并与声明值一致。唯一已核验的同日 Wake Receipt 为 research/runtime/wakes/2026/09/2026-09-10/reading-110110.json。Ordered Runtime Reconciliation 于 11:04:09+08:00 开启 Reading，原生 Worker Claim 路径于 11:05:33+08:00 在提交 9501533e10c8d1059a83459acddb321e54a4b680 中持久记录 Worker Claimed。Reading 只消费同日已完成的 Queue Plan research/runtime/plans/2026/09/2026-09-10-plan.json，其中 Q-20260910-01 与 Q-20260910-02 为 Selected，Open-source Engineering 明确为 No Selection。",
+      "workResult": "Completed source-complete Deep Reading for both same-date Selected objects and produced two durable Reading Notes. Q-20260910-01 read Anthropic's September 9, 2026 first-party cybersecurity incident assessment covering four real third-party access incidents, the expansion from an initial approximately 141,000-transcript review to an approximately 481-million-transcript retrospective scan, isolated-versus-in-trajectory realism judgments, authorization-versus-reality distinctions, live blocker and offline monitor behavior, abortability, and the investigation's attribution and generalization limits. The bounded finding is that high-impact execution authority should depend on externally verifiable scope facts and a genuinely independent enforcement path: a monitor that consumes the actor's own interpretive narrative can inherit the same false scope premise, so model reasoning is not itself an independent authorization fact. Q-20260910-02 read the complete Procedural Graphs primary study across representation, runtime localization, offline refinement, structural validation, disjoint train/validation/test construction, candidate adoption and rejection, negative-constraint memory, benchmark results, long-horizon EnterpriseArena traces, localization ablations, and limitations. The bounded finding is that proposal authority must remain separate from activation authority: a self-modified procedure can be evaluated as a fixed candidate and admitted only after held-out evidence, while rejected proposals remain observable but inactive. The study provides data-split independence, not full model or organizational independence, because solver, guidance model and refiner share the same underlying LLM in each configuration; benchmark improvement is therefore not a production-safety proof. The exact two-note head c437d1919f5464ca567e99f3eecd6d04504ddbd0 passed the Validate Runtime Center step of Validate Research Center 3.0 run 34432282220 before terminal finalization. Reading performed no Research Analysis, article writing, visualization, Production or Publication.",
+      "workResult_zh": "已对两个同日 Selected Object 完成来源完整 Deep Reading，并生成两份持久 Reading Note。Q-20260910-01 完整深读 Anthropic 于 2026-09-09 发布的一手网络安全事故评估，覆盖 4 起真实第三方访问事故、从最初约 14.1 万条 Transcript 检查扩展到约 4.81 亿条 Transcript 的回溯审计、孤立证据判断与长轨迹内判断差异、Reality 与 Authorization 的分离、Live Blocker 与 Offline Monitor 的差异、Abortability，以及事故归因与外推边界。边界结论是：高影响执行授权必须依赖外部可核验 Scope Fact 与真正独立的 Enforcement Path；如果 Monitor 消费 Actor 自己的解释性叙事，就可能继承相同的错误 Scope Premise，因此模型推理本身不能充当独立授权事实。Q-20260910-02 完整深读 Procedural Graphs 一手研究的 Graph Representation、Runtime Localization、Offline Refinement、Structural Validation、相互隔离的 Train/Validation/Test 构造、Candidate Adoption/Rejection、Negative-constraint Memory、Benchmark 结果、EnterpriseArena 长生命周期轨迹、Localization Ablation 与限制。边界结论是：Proposal Authority 必须与 Activation Authority 分离；自修改 Procedure 应先成为固定 Candidate，以 Held-out Evidence 决定是否进入 Active State，被拒绝的 Proposal 可以保留为可观察证据但不得成为可执行状态。该研究证明的是 Data-split Independence，而不是完整的 Model/Organizational Independence，因为每个配置里的 Solver、Guidance Model 与 Refiner 使用同一个底层 LLM；因此 Benchmark Improvement 不能被扩大成 Production Safety 证明。精确两份 Note Head c437d1919f5464ca567e99f3eecd6d04504ddbd0 已在终态收口前通过 Validate Research Center 3.0 Run 34432282220 的 Validate Runtime Center 步骤。Reading 未执行 Research Analysis、文章写作、可视化、Production 或 Publication。",
+      "output": "Two durable same-date Reading Notes: research/reading/Q-20260910-01-external-scope-facts-independent-enforcement.md; research/reading/Q-20260910-02-held-out-admission-self-evolving-procedures.md.",
+      "output_zh": "生成两份同日持久 Reading Note：research/reading/Q-20260910-01-external-scope-facts-independent-enforcement.md；research/reading/Q-20260910-02-held-out-admission-self-evolving-procedures.md。",
+      "next": "After governed Reading terminal finalization and GitHub Commit Verified, Runtime must reconcile again. Analysis remains a separate stage and may consume only these same-date source-complete Reading Notes after Reading is execution-closed and remotely verified.",
+      "next_zh": "Reading 完成 Governed Terminal Finalization 与 GitHub Commit Verified 后，Runtime 必须重新对账。Analysis 仍是独立阶段，只能在 Reading 执行收口并完成远程核验后消费这两份同日 Source-complete Reading Note。",
+      "metrics": [
+        {
+          "label": "Generated prompt identity verified",
+          "label_zh": "Generated Prompt 身份已核验",
+          "value": 1
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 Required Source",
+          "value": 5
+        },
+        {
+          "label": "Queue-selected objects read",
+          "label_zh": "已深读 Queue Selected Object",
+          "value": 2
+        },
+        {
+          "label": "Durable Reading Notes",
+          "label_zh": "持久 Reading Note",
+          "value": 2
+        },
+        {
+          "label": "Primary research or incident sources inspected",
+          "label_zh": "已核验一手研究或事故来源",
+          "value": 2
+        },
+        {
+          "label": "Research Analysis performed",
+          "label_zh": "执行 Research Analysis",
+          "value": 0
+        },
+        {
+          "label": "Publication actions",
+          "label_zh": "Publication 操作数量",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Authority control-source commit",
+          "label_zh": "权威控制源提交",
+          "value": "4b2ce5786e40ce1c1fc5c7a86a9231ea72db0b93"
+        },
+        {
+          "label": "Reading Wake Receipt",
+          "label_zh": "Reading Wake Receipt",
+          "path": "research/runtime/wakes/2026/09/2026-09-10/reading-110110.json"
+        },
+        {
+          "label": "Generated Reading prompt SHA-256",
+          "label_zh": "Generated Reading Prompt SHA-256",
+          "value": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"
+        },
+        {
+          "label": "Same-date Research Plan",
+          "label_zh": "同日 Research Plan",
+          "path": "research/runtime/plans/2026/09/2026-09-10-plan.json"
+        },
+        {
+          "label": "Worker Claimed commit",
+          "label_zh": "Worker Claimed 提交",
+          "commit": "9501533e10c8d1059a83459acddb321e54a4b680"
+        },
+        {
+          "label": "Exact note-head Runtime validation",
+          "label_zh": "精确 Note Head Runtime 校验",
+          "value": "Validate Research Center 3.0 #34432282220 Runtime Center step success on c437d1919f5464ca567e99f3eecd6d04504ddbd0"
+        },
+        {
+          "label": "Anthropic cybersecurity incident assessment",
+          "label_zh": "Anthropic 网络安全事故评估一手来源",
+          "url": "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents"
+        },
+        {
+          "label": "Procedural Graphs primary source",
+          "label_zh": "Procedural Graphs 一手来源",
+          "url": "https://arxiv.org/html/2609.09153v1"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Q-20260910-01 Reading Note",
+          "label_zh": "Q-20260910-01 深读笔记",
+          "path": "research/reading/Q-20260910-01-external-scope-facts-independent-enforcement.md"
+        },
+        {
+          "label": "Q-20260910-02 Reading Note",
+          "label_zh": "Q-20260910-02 深读笔记",
+          "path": "research/reading/Q-20260910-02-held-out-admission-self-evolving-procedures.md"
+        },
+        {
+          "label": "Reading result",
+          "label_zh": "Reading 结果",
+          "path": "research/runtime/results/2026/09/2026-09-10-reading-result.json"
+        }
+      ],
+      "startedAt": "2026-09-10T11:04:09+08:00",
+      "completedAt": "2026-09-10T11:12:43+08:00"
     }
   },
   "timeline": [
@@ -592,6 +705,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Reading after verifying research/runtime/wakes/2026/09/2026-09-10/reading-110110.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-10T11:12:43+08:00",
+      "task": "reading",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Reading closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-10."
     }
   ],
   "metrics": [],
@@ -599,5 +719,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-10T11:05:33+08:00"
+  "updatedAt": "2026-09-10T11:12:43+08:00"
 }
