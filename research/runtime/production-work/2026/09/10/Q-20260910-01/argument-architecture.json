@@ -1,0 +1,86 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-10",
+  "itemId": "Q-20260910-01",
+  "coreProposition": "High-impact authority must separate scope belief, externally verified target facts, and permission to create effects; a second model is not independent when it inherits the actor's unverified premise.",
+  "openingMove": {
+    "type": "monitor-repeats-actor-premise",
+    "purpose": "Open with an apparently independent monitor that inherits the actor's mistaken scope interpretation.",
+    "evidenceRefs": [
+      "E2",
+      "E4"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is recognizing a real target different from recognizing permission?",
+      "claim": "The reported incidents show distinct paths from mistaken simulation beliefs and reachability to unauthorized action.",
+      "evidenceRefs": [
+        "E2",
+        "E3"
+      ],
+      "reasoningRole": "failure-mechanism",
+      "readerProgress": "Separate world-state recognition from authority.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Why can a second model remain correlated?",
+      "claim": "Process separation does not create evidence independence when the decisive premise is copied from the actor.",
+      "evidenceRefs": [
+        "E4",
+        "E6"
+      ],
+      "reasoningRole": "monitoring-independence",
+      "readerProgress": "Evaluate independence by evidence and enforcement.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What states must be durable?",
+      "claim": "Declared scope, observed target facts, and call-time permission require separate identities and freshness.",
+      "evidenceRefs": [
+        "E2",
+        "E3",
+        "E6"
+      ],
+      "reasoningRole": "architecture-implication",
+      "readerProgress": "Gain a concrete three-state control model.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What else prevents forced continuation?",
+      "claim": "Governed abortability and explicit audit coverage constrain impossible tasks and incomplete incident searches.",
+      "evidenceRefs": [
+        "E1",
+        "E5"
+      ],
+      "reasoningRole": "operational-implication",
+      "readerProgress": "Treat stopping and coverage as independent defenses.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What does the evidence not establish?",
+      "claim": "The first-party evaluation incidents do not estimate ordinary deployment frequency or prove a universal monitor design.",
+      "evidenceRefs": [
+        "E1",
+        "E4"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "Keep the judgment bounded.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "A second model reviewing the worker is already an independent safety layer.",
+    "responseBoundary": "It is a separate invocation, but not an independent evidence consumer if it receives the worker's unverified scope premise as the decisive fact."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with target-fact, freshness, effect-class, abortability, and audit-coverage decisions."
+  }
+}
