@@ -54,7 +54,7 @@ head:
 @media(max-width:600px){.cfm-six-ai-stats{grid-template-columns:1fr;gap:16px}.cfm-six-ai-stats>div{border-right:0;padding-right:0}.cfm-six-ai-stats strong{font-size:26px}}
 </style>
 
-[← 返回研究文章](/zh/research/) · [公开来源与附件](/articles/codeflowmu-six-ai-20260909/sources.html)
+[← 返回研究文章](/zh/research/) · <a href="/joinwell52/articles/codeflowmu-six-ai-20260909/sources.html" target="_self">公开来源与附件</a>
 
 
 用CodeFlowMu与FCoP，记录六个AI团队的工作，让比较与判断有据可查
@@ -258,7 +258,7 @@ EVAL的面板扫描与任务记录分析各自形成文件；其启动、失败�
 | 问题追踪 | `fcop/issues/ISSUE-20260909-001-PM.md`及关闭记录 | 模型配置问题怎样被提出、处理和留下历史 |
 | 过程与用量 | 聊天/任务过程JSONL、`fcop/logs/usage/usage-20260909.jsonl` | 公开过程、Host结果与用量旁证，不把缺少文字当作没有执行 |
 
-这些文件来自CodeFlowMu实际业务链。我们再将其按轮导出保全，形成来源索引、阶段时间线、事实核查与诊断说明、计时和评分表，最终写成本文。**分析依据是一整套文件化实验档案，既包含系统产生的原始工件，也包含我们据此形成的独立分析材料。** 具体清单与摘要见[业务支持与文件证据](/articles/codeflowmu-six-ai-20260909/business-evidence-index.html)。
+这些文件来自CodeFlowMu实际业务链。我们再将其按轮导出保全，形成来源索引、阶段时间线、事实核查与诊断说明、计时和评分表，最终写成本文。**分析依据是一整套文件化实验档案，既包含系统产生的原始工件，也包含我们据此形成的独立分析材料。** 具体清单与摘要见<a href="/joinwell52/articles/codeflowmu-six-ai-20260909/business-evidence-index.html" target="_self">业务支持与文件证据</a>。
 
 ### 1.9 打开真实文件：协作证据究竟长什么样 {#section-1-9}
 
@@ -280,7 +280,7 @@ subject: 只读核查 FCoP 落地与角色权限职责边界（模型修复后�
 
 `recipient: QA`确定执行角色，`parent`与`root_task_id`关联ADMIN根任务，`acceptor: PM`说明由谁验收。`rerun_of`把新任务005连接到旧任务003，`depends_on: []`则表明本任务没有显式执行依赖。CodeFlowMu因此能保留恢复前后的关系，分析时也能区分“取消的旧任务”和“有效的新交付”。这段摘录只展示身份与任务关系，不单独证明检查通过。
 
-来源：`fcop/_lifecycle/done/TASK-20260909-005-PM-to-QA.md`，字段节选。[核对摘录与来源](/articles/codeflowmu-six-ai-20260909/evidence-excerpts.html)。
+来源：`fcop/_lifecycle/done/TASK-20260909-005-PM-to-QA.md`，字段节选。<a href="/joinwell52/articles/codeflowmu-six-ai-20260909/evidence-excerpts.html" target="_self">核对摘录与来源</a>。
 
 #### REVIEW片段：执行证据核实以后，谁作业务判断
 
@@ -707,7 +707,7 @@ EVAL输出不会因会话结束就自动算成合格报告。写回函数先校�
 
 **怎样判断报告真正生成？** 记录报告的采集阶段可标为`record_status: collected_pending_eval`、`analysis_status: pending_eval_agent`；独立分析写回后才有`analysis_status: completed`及分析章节。核查时还要确认报告属于本轮，并对照会话、模型与执行记录。代码中有校验，也不代表校验没有缺陷；本次报告生成失败和材料错配的实测分析仍保留在下文。
 
-[查看源码摘录索引](/articles/codeflowmu-six-ai-20260909/eval-generation-code.html)。本展示没有运行采集、唤醒EVAL或改动产品代码。
+<a href="/joinwell52/articles/codeflowmu-six-ai-20260909/eval-generation-code.html" target="_self">查看源码摘录索引</a>。本展示没有运行采集、唤醒EVAL或改动产品代码。
 
 [![EVAL到底评了什么？](/articles/codeflowmu-six-ai-20260909/assets/16-eval-comparison.png)](/articles/codeflowmu-six-ai-20260909/assets/16-eval-comparison.png)
 
@@ -808,7 +808,7 @@ CodeFlowMu已经展示了把多模型团队工作转为可追查实验材料的�
 
 同样检查Codex、豆包、DeepSeek和千问各自备份内的`sdk.result`，未检出上述两类错误签名。前三者完成交付，千问也进入了派单与部分报告交付；Kimi的不同在于正式团队链建立前反复遭遇会话错误。**统一框架并未保证各provider接受相同内容类型或给出相同运行结果。** 这不表示其他轮没有工具故障，而是具体失败位置不同。
 
-已确认的是内容类型拒绝和带过载信息的断流。哪个组件引入或保留了该内容、过载的实际来源，以及它们与工具准备异常的关系，仍需原始请求及端点日志定位。本轮不能主要归为“Kimi不会拆任务”。逐项时间、原始文件行号、备份批次和哈希见[Kimi失败证据与同框架对比](/articles/codeflowmu-six-ai-20260909/kimi-failure-evidence.html)。
+已确认的是内容类型拒绝和带过载信息的断流。哪个组件引入或保留了该内容、过载的实际来源，以及它们与工具准备异常的关系，仍需原始请求及端点日志定位。本轮不能主要归为“Kimi不会拆任务”。逐项时间、原始文件行号、备份批次和哈希见<a href="/joinwell52/articles/codeflowmu-six-ai-20260909/kimi-failure-evidence.html" target="_self">Kimi失败证据与同框架对比</a>。
 
 #### 千问：真实故障解释一部分迟延，不能解释全部失控
 
@@ -907,7 +907,7 @@ Codex与Cursor最值得继续复测，分别体现快速收口与授权恢复；
 
 ### 4.5 证据与方法 {#section-4-5}
 
-[EVAL逐轮来源与核验说明](/articles/codeflowmu-six-ai-20260909/EVAL对照与来源.html)
+<a href="/joinwell52/articles/codeflowmu-six-ai-20260909/EVAL对照与来源.html" target="_self">EVAL逐轮来源与核验说明</a>
 
 #### 材料与冻结
 
@@ -933,16 +933,16 @@ Codex与Cursor最值得继续复测，分别体现快速收口与授权恢复；
 
 查看了GitHub上joinwell52-AI/joinwell52的文章配图以及FCoP的多模型文章封面，采用深蓝、青色光线、玻璃材质与空间感。参考图片仅用于风格研究；新题图未用于证明任何测试结果。
 
-[业务支持与文件证据](/articles/codeflowmu-six-ai-20260909/business-evidence-index.html) · [Kimi失败证据补充核查](/articles/codeflowmu-six-ai-20260909/kimi-failure-evidence.html)
+<a href="/joinwell52/articles/codeflowmu-six-ai-20260909/business-evidence-index.html" target="_self">业务支持与文件证据</a> · <a href="/joinwell52/articles/codeflowmu-six-ai-20260909/kimi-failure-evidence.html" target="_self">Kimi失败证据补充核查</a>
 
-[详细总报告](/articles/codeflowmu-six-ai-20260909/六平台系统巡检总报告.html) · [评分明细](/articles/codeflowmu-six-ai-20260909/scorecard.csv) · [计时明细](/articles/codeflowmu-six-ai-20260909/timing.csv) · [阶段时间线](/articles/codeflowmu-six-ai-20260909/stage-timeline.csv)
+<a href="/joinwell52/articles/codeflowmu-six-ai-20260909/六平台系统巡检总报告.html" target="_self">详细总报告</a> · [评分明细](/articles/codeflowmu-six-ai-20260909/scorecard.csv) · [计时明细](/articles/codeflowmu-six-ai-20260909/timing.csv) · [阶段时间线](/articles/codeflowmu-six-ai-20260909/stage-timeline.csv)
 
 [GitHub配图目录](https://github.com/joinwell52-AI/joinwell52/tree/main/docs/public/assets/covers) · [FCoP配图参考](https://github.com/joinwell52-AI/FCoP/blob/main/assets/what-five-ai-models-say-about-fcop-cover.png)
 
-本文依据CodeFlowMu在2026年9月9日六轮测试中保存的任务、报告、执行与工具回执、审批和EVAL记录，以及分轮备份后的交叉核查。读者可查看[系统留下的文件证据](/articles/codeflowmu-six-ai-20260909/business-evidence-index.html)、[真实文件摘录](/articles/codeflowmu-six-ai-20260909/evidence-excerpts.html)和[EVAL报告来源与核验说明](/articles/codeflowmu-six-ai-20260909/EVAL对照与来源.html)；更完整的整理分析见[六平台系统巡检总报告](/articles/codeflowmu-six-ai-20260909/六平台系统巡检总报告.html)。该总报告是依据测试记录编写的分析材料，不是某个PM的终报，也不是系统自动给出的裁决。每家一个正式样本，本文不构成通用模型排行榜。题图为AI生成概念设计，数据图表由保存的指标和时间线绘制。
+本文依据CodeFlowMu在2026年9月9日六轮测试中保存的任务、报告、执行与工具回执、审批和EVAL记录，以及分轮备份后的交叉核查。读者可查看<a href="/joinwell52/articles/codeflowmu-six-ai-20260909/business-evidence-index.html" target="_self">系统留下的文件证据</a>、<a href="/joinwell52/articles/codeflowmu-six-ai-20260909/evidence-excerpts.html" target="_self">真实文件摘录</a>和<a href="/joinwell52/articles/codeflowmu-six-ai-20260909/EVAL对照与来源.html" target="_self">EVAL报告来源与核验说明</a>；更完整的整理分析见<a href="/joinwell52/articles/codeflowmu-six-ai-20260909/六平台系统巡检总报告.html" target="_self">六平台系统巡检总报告</a>。该总报告是依据测试记录编写的分析材料，不是某个PM的终报，也不是系统自动给出的裁决。每家一个正式样本，本文不构成通用模型排行榜。题图为AI生成概念设计，数据图表由保存的指标和时间线绘制。
 
-[接入影响核对与源码依据](/articles/codeflowmu-six-ai-20260909/接入影响核对.html) · [OpenAI自定义provider文档](https://learn.chatgpt.com/docs/config-file/config-advanced) · [OpenAI推理摘要配置](https://learn.chatgpt.com/docs/config-file/config-reference)
+<a href="/joinwell52/articles/codeflowmu-six-ai-20260909/接入影响核对.html" target="_self">接入影响核对与源码依据</a> · [OpenAI自定义provider文档](https://learn.chatgpt.com/docs/config-file/config-advanced) · [OpenAI推理摘要配置](https://learn.chatgpt.com/docs/config-file/config-reference)
 
 四张界面图均保留用户提供的原始PNG：三张为测试现场，团队模型页面为后补的配置示例。截图来源与哈希已单独保存。
 
-本文及公开附件发布在独立的公开文章仓库，CodeFlowMu实现仓库保持私有。读者无需访问私有仓库，即可阅读中英文正文、数据表、选定证据与源码摘录。完整原始日志、配置和代码树不随文章公开；公开范围与附件入口见[公开来源说明](/articles/codeflowmu-six-ai-20260909/sources.html)，另有[English全文](/en/research/2026-09-09-codeflowmu-six-ai)。
+本文及公开附件发布在独立的公开文章仓库，CodeFlowMu实现仓库保持私有。读者无需访问私有仓库，即可阅读中英文正文、数据表、选定证据与源码摘录。完整原始日志、配置和代码树不随文章公开；公开范围与附件入口见<a href="/joinwell52/articles/codeflowmu-six-ai-20260909/sources.html" target="_self">公开来源说明</a>，另有[English全文](/en/research/2026-09-09-codeflowmu-six-ai)。

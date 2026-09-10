@@ -54,7 +54,7 @@ Was the difference model capability, integration, or how the PM organized the wo
 @media(max-width:600px){.cfm-six-ai-stats{grid-template-columns:1fr;gap:16px}.cfm-six-ai-stats>div{border-right:0;padding-right:0}.cfm-six-ai-stats strong{font-size:26px}}
 </style>
 
-[← All research articles](/en/research/) · [Public sources and attachments](/articles/codeflowmu-six-ai-20260909/sources.en.html)
+[← All research articles](/en/research/) · <a href="/joinwell52/articles/codeflowmu-six-ai-20260909/sources.en.html" target="_self">Public sources and attachments</a>
 
 
 Using CodeFlowMu and FCoP to make AI teamwork observable, documented, and open to scrutiny
@@ -221,7 +221,7 @@ Fourth, EVAL records its observations and attempts. Diagnosis follows task, sess
 | Issue tracking | `ISSUE-20260909-001-PM.md` and closure records | How the configuration issue was raised and handled |
 | Process and usage | Chat/task JSONL, usage JSONL | Public progress, Host results, and usage context |
 
-The [public evidence inventory](/articles/codeflowmu-six-ai-20260909/business-evidence-index.html) identifies 26 verified files by name, size, and hash. The complete private logs and credentials are not distributed with this article.
+The <a href="/joinwell52/articles/codeflowmu-six-ai-20260909/business-evidence-index.html" target="_self">public evidence inventory</a> identifies 26 verified files by name, size, and hash. The complete private logs and credentials are not distributed with this article.
 
 ### 1.9 What real artifacts look like {#section-1-9}
 
@@ -264,7 +264,7 @@ Verified execution evidence and a pending PM judgment coexist. The review explic
 全程保持只读巡检目标；PM 未修改业务代码/配置。根任务业务验收与归档由 ADMIN 决定。
 ```
 
-The PM lists three worker reports and preserves the QA rerun and ADMIN acceptance boundary. The original report text is Chinese and is intentionally retained as evidence: it says DEV, OPS, and the new QA task were accepted, and final root acceptance and archiving belong to ADMIN. These are claims to check against receipts, approvals, and execution—not proof merely because the report says “approved.” See the [excerpt source index](/articles/codeflowmu-six-ai-20260909/evidence-excerpts.html).
+The PM lists three worker reports and preserves the QA rerun and ADMIN acceptance boundary. The original report text is Chinese and is intentionally retained as evidence: it says DEV, OPS, and the new QA task were accepted, and final root acceptance and archiving belong to ADMIN. These are claims to check against receipts, approvals, and execution—not proof merely because the report says “approved.” See the <a href="/joinwell52/articles/codeflowmu-six-ai-20260909/evidence-excerpts.html" target="_self">excerpt source index</a>.
 
 ## 2. Overall Results and Each Team {#chapter-2}
 
@@ -593,7 +593,7 @@ For Kimi, the archived Runtime file contains an explicit error at **16:15:10**: 
 
 The eight formal failed endings consist of seven error endings and one final cancellation. Four recovery calls returned `refresh_queued` with `tools_ready:false`. Resources and commands were used, but no formal child TASK or REPORT resulted. In the corresponding archived `sdk.result` records for Codex, Doubao, DeepSeek, and Qwen, these two specific signatures were not found. That comparison does not imply their tool paths were fault-free.
 
-The content rejection is direct compatibility evidence. The overload text is a returned service signal, not an independent measurement of actual server load. We still cannot identify which component introduced or retained the unsupported content, the precise origin of the overload message, or whether the tool-readiness issue shares the same cause. See the [timestamped source evidence](/articles/codeflowmu-six-ai-20260909/kimi-failure-evidence.html).
+The content rejection is direct compatibility evidence. The overload text is a returned service signal, not an independent measurement of actual server load. We still cannot identify which component introduced or retained the unsupported content, the precise origin of the overload message, or whether the tool-readiness issue shares the same cause. See the <a href="/joinwell52/articles/codeflowmu-six-ai-20260909/kimi-failure-evidence.html" target="_self">timestamped source evidence</a>.
 
 For Qwen, the reference dependency's gate explains 52m 24s of waiting, and OPS transport failure explains a real delivery obstacle. QA then ran nearly 50 minutes without a formal report. Continued investigation included old-snapshot and argument-comparison mistakes. These support criticism of PM recovery and scope control, but do not quantify the share of blame attributable to each component.
 
@@ -654,6 +654,6 @@ A reference answer for the inspection should cover all five areas with scope, re
 
 The public package contains the article, figures, selected evidence, scoring/timing data, and source explanations. The concept cover is AI-generated, not a scene photograph. Screenshots are original evidence; diagrams explain mechanisms and are not substitutes for execution. English quantitative charts accompany the complete English analysis. Original screenshots, mechanism diagrams and literal report excerpts retain Chinese source labels, with English explanations in the surrounding text. Supporting source documents are labelled by language in the public source guide.
 
-[Public source guide](/articles/codeflowmu-six-ai-20260909/sources.en.html) · [Evidence inventory (Chinese)](/articles/codeflowmu-six-ai-20260909/business-evidence-index.html) · [Actual excerpts](/articles/codeflowmu-six-ai-20260909/evidence-excerpts.html) · [EVAL source and checks](/articles/codeflowmu-six-ai-20260909/EVAL对照与来源.html) · [Kimi error evidence](/articles/codeflowmu-six-ai-20260909/kimi-failure-evidence.html) · [EVAL code excerpts](/articles/codeflowmu-six-ai-20260909/eval-generation-code.html) · [Scores](/articles/codeflowmu-six-ai-20260909/scorecard.csv) · [Timing](/articles/codeflowmu-six-ai-20260909/timing.csv) · [Stage timeline](/articles/codeflowmu-six-ai-20260909/stage-timeline.csv)
+<a href="/joinwell52/articles/codeflowmu-six-ai-20260909/sources.en.html" target="_self">Public source guide</a> · <a href="/joinwell52/articles/codeflowmu-six-ai-20260909/business-evidence-index.html" target="_self">Evidence inventory (Chinese)</a> · <a href="/joinwell52/articles/codeflowmu-six-ai-20260909/evidence-excerpts.html" target="_self">Actual excerpts</a> · <a href="/joinwell52/articles/codeflowmu-six-ai-20260909/EVAL对照与来源.html" target="_self">EVAL source and checks</a> · <a href="/joinwell52/articles/codeflowmu-six-ai-20260909/kimi-failure-evidence.html" target="_self">Kimi error evidence</a> · <a href="/joinwell52/articles/codeflowmu-six-ai-20260909/eval-generation-code.html" target="_self">EVAL code excerpts</a> · [Scores](/articles/codeflowmu-six-ai-20260909/scorecard.csv) · [Timing](/articles/codeflowmu-six-ai-20260909/timing.csv) · [Stage timeline](/articles/codeflowmu-six-ai-20260909/stage-timeline.csv)
 
 This public article and its supporting files are published separately from the private CodeFlowMu source repository. No access to the private repository is required to read the article or the disclosed evidence excerpts.
