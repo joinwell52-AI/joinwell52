@@ -49,7 +49,7 @@ Was the difference model capability, integration, or how the PM organized the wo
 .cfm-six-ai-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:28px 0 32px;padding:24px 0 30px;border-bottom:1px solid var(--vp-c-divider)}
 .cfm-six-ai-stats>div{padding-right:16px;border-right:1px solid var(--vp-c-divider)}
 .cfm-six-ai-stats>div:last-child{border-right:0;padding-right:0}
-.cfm-six-ai-stats strong{display:block;font-size:28px;line-height:1.4;color:var(--vp-c-text-1);font-weight:750}
+.cfm-six-ai-stats strong{display:block;min-height:37px;font-size:26px;line-height:37px;white-space:nowrap;color:var(--vp-c-text-1);font-weight:750}
 .cfm-six-ai-stats span{display:block;margin-top:6px;font-size:13px;line-height:1.65;color:var(--vp-c-text-2)}
 @media(max-width:600px){.cfm-six-ai-stats{grid-template-columns:1fr;gap:16px}.cfm-six-ai-stats>div{border-right:0;padding-right:0}.cfm-six-ai-stats strong{font-size:26px}}
 </style>
