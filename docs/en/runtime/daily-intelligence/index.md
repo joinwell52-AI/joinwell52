@@ -11,6 +11,15 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-09-10">
+    <time>2026-09-10</time>
+    <div>
+      <strong>Agent Research & Competitor Intelligence</strong>
+      <span>OpenAI Agent cross-site communication investigation expands · Codex daemon recovery / WSL sandbox · Paperclip Stop & Cloud drain · OpenHands credential scoping · Orca Run audience / recovery storm · Superset mobile review · AG2 subagent concurrency</span>
+    </div>
+    <b>View →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-09-09">
     <time>2026-09-09</time>
     <div>
