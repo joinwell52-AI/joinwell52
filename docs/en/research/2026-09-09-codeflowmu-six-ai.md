@@ -88,7 +88,7 @@ The test configuration had one human ADMIN, four execution-team seats, and an in
 
 **All six runs used the same EVAL configuration: Cursor SDK / `auto-smart`.** EVAL did not switch with the tested team. PM, DEV, OPS, and QA were the execution team; EVAL ran in its own session, did not perform the team's inspection assignments, and did not make PM or ADMIN acceptance decisions. Holding evaluator configuration constant reduced one source of variation. `auto-smart` is a routing label, however, not proof that the underlying foundation model stayed fixed.
 
-EVAL produces two kinds of report: a **record report**, which analyzes a particular task run and its evidence, and an **observation report**, which examines panel assets such as tasks, reports, and issues. These provide independent opinions, not unquestionable verdicts. We also checked their claims against original records and retained failed generations, retries, and mismatched evidence. Identical evaluator configuration does not imply identical reports or successful generation in every run.
+EVAL has three distinct report paths: a **task-run record** analyzes a complete execution, a **system observation** examines system assets, and a **closeout observation** checks PM’s final report against its task evidence chain. All contain analysis, with different triggers, scopes and skill combinations; see the [report and skill matrix in section 1.10](#eval-report-matrix). We check EVAL against original records and retain failures, retries and mismatched material. A common evaluator configuration does not mean that every run produced all three reports.
 
 [![Original task panel: Doubao run](/articles/codeflowmu-six-ai-20260909/assets/scene-task-panel.png)](/articles/codeflowmu-six-ai-20260909/assets/scene-task-panel.png)
 
@@ -265,6 +265,68 @@ Verified execution evidence and a pending PM judgment coexist. The review explic
 ```
 
 The PM lists three worker reports and preserves the QA rerun and ADMIN acceptance boundary. The original report text is Chinese and is intentionally retained as evidence: it says DEV, OPS, and the new QA task were accepted, and final root acceptance and archiving belong to ADMIN. These are claims to check against receipts, approvals, and execution—not proof merely because the report says “approved.” See the <a href="/joinwell52/articles/codeflowmu-six-ai-20260909/evidence-excerpts.html" target="_self">excerpt source index</a>.
+
+### 1.10 EVAL: another agent observes, with three distinct report paths {#eval-report-matrix}
+
+**When the execution team says “done,” who checks that claim? In CodeFlowMu, another EVAL agent reads the evidence.** PM organizes delivery; DEV, OPS, and QA perform the work. EVAL uses a separate session to inspect their files and execution records, compare claims with evidence, and produce an independent analysis.
+
+All six runs used Cursor SDK / `auto-smart` for evaluation. Independence means a separate role, session, and responsibility. Even when the tested team also used Cursor, EVAL was another session. This does not establish a different underlying foundation model or guarantee an unbiased, correct judgment. A common configuration helps comparison; evidence checking remains necessary.
+
+#### Recording starts with the task; model analysis runs when a report is generated
+
+When ADMIN enables recording at task creation, CodeFlowMu creates a run identity and retains the root task, environment and model baseline, start time, and starting log cursors. Existing chat, public progress, tool, session, and business logs retain the execution trail. **The EVAL model is not necessarily running continuously or analyzing every event in real time.**
+
+Generating the task record freezes the end boundary, recursively identifies the complete child-task tree, gathers the run's material, and starts independent EVAL analysis. This separates continuous evidence retention from model-analysis calls. A run without recording enabled cannot later be presented as a complete prospective record. Existing raw records also do not prove that a final analysis report was generated successfully.
+
+#### The report matrix: execution history, system assets, and delivery claims
+
+| Report | Trigger and scope | What its analysis answers | Typical file marker |
+|---|---|---|---|
+| **Task-run record** | Recording enabled at creation; generation freezes one root task and its complete tree | How PM assigned work, what happened, timing, retries, interventions and outcomes; evidence and handling of linked ISSUEs | `*-benchmark-<RUN-ID>.md` |
+| **System observation** | The EVAL observation action and related observation triggers; a system-asset snapshot | Asset consistency, risks, evidence gaps, emergence patterns, and candidates for knowledge retention | `*-panel-scan.md` |
+| **Closeout observation** | The root task's EVAL action; PM's final report and its evidence chain | Which delivery claims are supported, contradicted, or unverified, and what ADMIN should inspect before acceptance | `*-eval-agent.md` |
+
+All three contain analysis. They examine different objects: **how a run unfolded**, **what the system assets show**, and **whether a delivery report's claims have support**. They are not renamed copies of one summary or three automatic approval gates.
+
+System observation covers nine asset classes: ledger, runtime logs, public thinking/progress logs, usage, analytics, internal EVAL, emergence log, role views, and shared knowledge. Public progress means content actually emitted and retained; it does not expose or justify speculation about hidden reasoning.
+
+#### Which skills support the reports?
+
+Skills are work instructions for the EVAL agent, not additional models. One skill does not correspond to one report. The routing in test commit `cb590ce` combines seven skills. A checkmark means required injection for that path, not proof that a particular run performed the analysis correctly.
+
+| Skill and purpose | Task record | System observation | Closeout |
+|---|:---:|:---:|:---:|
+| `eval-statistical-analysis`: freeze identity; calculate timing, calls, failures and retries with formulas, denominators and provenance | ✓ | — | — |
+| `eval-issue-analysis`: examine linked ISSUEs, evidence status, impact, and confidence in causal hypotheses | ✓ | — | — |
+| `eval-observation-writing`: separate facts, inference, gaps and advice; cite sources and follow the output contract | ✓ | ✓ | — |
+| `eval-admin-closeout-observer`: reconcile PM's final report, worker reports and the current authoritative evidence chain | — | ✓ | ✓ |
+| `controlled-emergence-observer`: inspect task relationships for probes, self-tasks, sandboxes and project-tree patterns | — | ✓ | — |
+| `eval-risk-gap-analysis`: compare expected and actual behavior and recommend risk severity and ownership | — | ✓ | — |
+| `eval-promotion-advice`: recommend findings for follow-up tasks, issue drafts or reusable knowledge | — | ✓ | — |
+
+`eval-statistical-analysis` governs calculation and interpretation: establish the task tree and time window, normalize and deduplicate events, then compute metrics. Separate active execution from waiting and assignment completion from product QA success. Missing evidence is `unknown`; conflicting evidence is `disputed`. Scoring is optional and requires an explicit formula; a high score cannot erase incomplete work or insufficient evidence.
+
+The system-observation path also injects the closeout evidence-review skill, but its scope remains controlled by the `system_observation` contract. It does not thereby produce a separate closeout report. The repository also contains an auxiliary `fcop-eval-promotion` workflow for subsequent classification and internal drafts; **it is not in these three paths' required skill lists**. Advice does not automatically create tasks, publish issues, or change lifecycle.
+
+#### The EVAL record matrix: logs, retained assets, and factual assessment
+
+Read this system in three layers: **logging** retains what happened; **asset organization** makes tasks, reports, evidence bundles and indexes traceable; **independent factual assessment** checks claims, identifies contradictions, explains uncertainty and recommends follow-up. CodeFlowMu and the Host produce most raw logs; they are not all generated by EVAL. EVAL's analysis then becomes another retained file asset that can itself be reviewed and reused.
+
+Factual assessment is a sourced, challengeable judgment, not an automatic declaration of truth or ADMIN acceptance. The seven skills make the matrix operational through statistics, issue analysis, writing, delivery verification, emergence observation, risk analysis and retention advice.
+
+| Evidence layer | File or field | What it establishes |
+|---|---|---|
+| Recording start | `.codeflowmu/eval-recordings/<RUN-ID>.json` | Run identity, boundaries, task association and generation state |
+| Run material | `raw/`, `artifacts/` and indexes under `research/evidence/benchmarks/.../<RUN-ID>/` | Material available to EVAL and later reviewers |
+| Program collection | Collected run record, asset scan, `*-evidence-bundle.md` | What software gathered; not an independent agent conclusion |
+| Independent analysis | EVAL Session, model provenance, `analysis_skill_ids` or `skill_ids`, and skill receipts | Which session received which instructions; injection proves loading, not analytical quality |
+| Final report | Analysis and agent/session/run provenance under `fcop/internal/eval/` | Persisted independent analysis whose citations can be checked again |
+
+The EVAL agent reads evidence and returns analysis text. Runtime checks the required format, provenance and applicable skill receipts before persisting it. Program collection, agent analysis and final persistence are separate stages. A file appearing, a session ending, or a “generated” label alone is insufficient proof of a valid completed analysis. See the actual code excerpts in [section 3.9](#section-3-9).
+
+**CodeFlowMu provides both the execution evidence and a business workflow for another agent to question and analyze it.** EVAL advises; PM remains responsible for delivery; ADMIN retains acceptance and follow-up decisions. This article additionally checks EVAL against the separate per-run backups. Three implemented report paths do not mean that every run successfully produced all three reports. Missing reports, failures, retries and mismatched material remain part of the evidence.
+
+Implementation sources for this section are test commit `cb590ce`: `codeflowmu-shell/src/eval-independent-analysis.ts` for routing and required skills, `eval-benchmark-recording.ts`, `packages/evaluator/eval-report-writer.js`, and `EvalObservationGenerator.ts`. These explain the mechanism; source code alone does not prove a particular execution succeeded.
 
 ## 2. Overall Results and Each Team {#chapter-2}
 
@@ -455,7 +517,7 @@ Billing has an analogous identity problem. DeepSeek's export contained 168 reque
 
 ### 3.9 EVAL record reports and observation reports {#section-3-9}
 
-EVAL used Cursor throughout, with two report types: observations of system assets/projections and analysis of a particular task run. Programmatic collection and independent analysis are separate stages. A generated collection record is not automatically a finished EVAL judgment.
+EVAL used Cursor throughout. The following comparison focuses on system observations and task-run records; a separate closeout path checks PM’s final report and its evidence chain. The three paths are distinguished in [section 1.10](#eval-report-matrix). Programmatic collection and independent analysis are separate stages. A generated collection record is not automatically a finished EVAL judgment.
 
 ##### 01 / Collect the run material
 
