@@ -8,7 +8,7 @@
 
 从真实工程问题出发，研究 Agent 如何协作、获得授权、交付结果，并留下可核查的证据。
 
-**[观看视频](#product-overview) · [下载论文](#research-publications) · [体验 CodeFlowMu](#codeflowmu-app) · [浏览研究中心](https://joinwell52-ai.github.io/joinwell52/zh/) · [English](./README.md)**
+**[文章目录](#article-catalog) · [观看视频](#product-overview) · [下载论文](#research-publications) · [体验 CodeFlowMu](#codeflowmu-app) · [浏览研究中心](https://joinwell52-ai.github.io/joinwell52/zh/) · [English](./README.md)**
 
 直接观看产品演示、下载研究论文，或试用 CodeFlowMu。研究文章与工程案例放在后面，方便需要时深入查阅。
 
@@ -84,6 +84,7 @@ CodeFlowMu 是本地运行的 PM / DEV / QA / OPS 多角色 AI 开发团队，�
 
 | 我想…… | 入口 |
 |---|---|
+| 查找文章、中英文版本及论坛链接 | [完整文章目录](#article-catalog) |
 | 阅读更多研究 | [研究中心](https://joinwell52-ai.github.io/joinwell52/zh/) |
 | 运行一个验证示例 | [运行 Reference Reader](#运行-reference-reader) — `npm run demo` |
 | 试用多角色 AI 开发团队 | [CodeFlowMu](#codeflowmu-app) |
@@ -93,6 +94,8 @@ CodeFlowMu 是本地运行的 PM / DEV / QA / OPS 多角色 AI 开发团队，�
 <a id="featured-research"></a>
 
 ## 研究文章（选读）
+
+**[查看完整文章目录与 DEV、CSDN、掘金发布链接](#article-catalog)**
 
 **[从 SaaS 到 SaaW：当代码库开始“自己开发自己”](https://joinwell52-ai.github.io/joinwell52/zh/industry/2026-08-10-saaw-software-as-an-agent-worker)**
 
@@ -267,8 +270,10 @@ I1.0 使用被冻结的 TMPA Core S1.0 Bundle，评估 CodeFlowMu V1.8.0 的真�
 
 除稳定 TMPA 文档线之外，本仓库还包含一套受治理的研究生产环境：Research Intelligence、Daily/Weekly/Academic/Program Runtime、Research Skills、出版门禁、校验脚本与 VitePress 网站。
 
-<details>
-<summary>浏览全部研究文章与外部发布记录</summary>
+<a id="article-catalog"></a>
+
+<details open>
+<summary>文章目录：全部研究文章与外部发布记录</summary>
 
 ### 推荐文章与外部发布记录
 

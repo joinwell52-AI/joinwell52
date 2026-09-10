@@ -8,7 +8,7 @@
 
 Research into how agents collaborate, receive authority, and deliver work—with inspectable engineering evidence.
 
-**[Watch the videos](#product-overview) · [Download the papers](#research-publications) · [Try CodeFlowMu](#codeflowmu-app) · [Browse the research center](https://joinwell52-ai.github.io/joinwell52/en/) · [简体中文](./README.zh-CN.md)**
+**[Article catalog / 文章目录](./README.zh-CN.md#article-catalog) · [Watch the videos](#product-overview) · [Download the papers](#research-publications) · [Try CodeFlowMu](#codeflowmu-app) · [Browse the research center](https://joinwell52-ai.github.io/joinwell52/en/) · [简体中文](./README.zh-CN.md)**
 
 Watch a product demo, download the research papers, or try CodeFlowMu. Research articles and engineering cases follow for optional deeper reading.
 
@@ -84,6 +84,7 @@ This repository continues to maintain TMPA research, specifications, and enginee
 
 | I want to… | Start here |
 |---|---|
+| Find articles, language editions, and forum links | [Complete article catalog](./README.zh-CN.md#article-catalog) |
 | Read more research | [Research center](https://joinwell52-ai.github.io/joinwell52/en/) |
 | Run a verification example | [Run the Reference Reader](#run-the-reference-reader) — `npm run demo` |
 | Try a multi-role AI development team | [CodeFlowMu](#codeflowmu-app) |
@@ -93,6 +94,8 @@ This repository continues to maintain TMPA research, specifications, and enginee
 <a id="featured-research"></a>
 
 ## Research articles (optional)
+
+**[View the complete catalog with English, Chinese, DEV, CSDN, and Juejin links](./README.zh-CN.md#article-catalog)**
 
 **[From SaaS to SaaW: When a Codebase Starts “Developing Itself”](https://joinwell52-ai.github.io/joinwell52/en/industry/2026-08-10-saaw-software-as-an-agent-worker)**
 
@@ -271,6 +274,8 @@ Beyond the stable TMPA line, this repository contains a governed research produc
 <summary>Browse all research articles and external publication records</summary>
 
 ### Recommended articles and external publication record
+
+The [complete article catalog](./README.zh-CN.md#article-catalog) includes the latest publications and links to both language editions and external platforms.
 
 Pinned articles can be registered here before external publication, then updated in the same row with each platform URL. The regular external-publication log starts on **2026-08-12**; earlier history is not backfilled. Chinese, English, and platform links for the same article stay together in one row. There are now **eight registered external channels**: **CSDN, DEV Community, Cursor Forum, OpenAI Developer Community, Codex GitHub Discussions, Zenodo, Juejin, and X**. CSDN, DEV, and Juejin carry republished articles; X carries short research summaries with attribution; Cursor Forum, OpenAI Developer Community, and Codex GitHub Discussions support technical discussion; Zenodo provides research archiving and discovery. Links marked “technical discussion” are standalone question threads, not full-article republications.
 
