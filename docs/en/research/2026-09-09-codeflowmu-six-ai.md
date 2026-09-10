@@ -92,6 +92,8 @@ EVAL has three distinct report paths: a **task-run record** analyzes a complete 
 
 [![Original task panel: Doubao run](/articles/codeflowmu-six-ai-20260909/assets/scene-task-panel.png)](/articles/codeflowmu-six-ai-20260909/assets/scene-task-panel.png)
 
+**English reading guide — original Chinese UI:** “待 ADMIN 验收” means “Awaiting ADMIN acceptance”; “子任务已完成” means “Child task completed”; “未投递 REPORT” means “Undelivered REPORT.” The screenshot preserves the conflict between completed tasks and stale queue labels.
+
 Click the screenshot to inspect its original pixels.
 
 Original screenshot, September 9: the root task awaits ADMIN acceptance while three specialist tasks are complete. The stale “undelivered report” message at the bottom was separately recorded as a display issue. A UI label cannot replace formal delivery receipts. Screenshots preserve the original Chinese interface; the surrounding English text explains the relevant evidence.
@@ -120,7 +122,7 @@ First, it inspects the environment the team itself uses: coordination records, a
 
 CodeFlowMu organized the work and retained its evidence. It did not replace the PM's business judgment.
 
-[![Test structure](/articles/codeflowmu-six-ai-20260909/assets/00-instrument.png)](/articles/codeflowmu-six-ai-20260909/assets/00-instrument.png)
+[![Test structure](/articles/codeflowmu-six-ai-20260909/assets/en-00-instrument.svg)](/articles/codeflowmu-six-ai-20260909/assets/en-00-instrument.svg)
 
 The workflow was ADMIN → PM → DEV/OPS/QA → PM delivery, with independent EVAL examining the records. The instrument had three roles: operate the collaboration, collect evidence of what happened, and support independent review. All timing, completion, and quality comparisons follow that record chain.
 
@@ -140,6 +142,8 @@ The workflow was ADMIN → PM → DEV/OPS/QA → PM delivery, with independent E
 The first five used the Codex framework; Cursor used its SDK. The Cursor QA seat initially had a model unavailable through that Host, and recovered after authorization. That intervention remains part of the result. The EVAL configuration stayed Cursor SDK / auto-smart throughout.
 
 [![Original model configuration page](/articles/codeflowmu-six-ai-20260909/assets/scene-team-models.png)](/articles/codeflowmu-six-ai-20260909/assets/scene-team-models.png)
+
+**English reading guide — original Chinese UI:** the top section is “EVAL channel and model.” It shows the PM team using `codex/gpt-5.6-terra`, EVAL using `cursor/auto-smart`, and no active EVAL session. The bottom cards are PM (project manager), DEV (developer), OPS (operations), QA (quality assurance), and EVAL (independent evaluator).
 
 Click the screenshot to inspect its original pixels.
 
@@ -165,7 +169,7 @@ Duration runs from the PM's first formal session to successful submission of its
 
 ### 1.6 From a conversation to inspectable work {#section-1-6}
 
-[![How CodeFlowMu supports the test](/articles/codeflowmu-six-ai-20260909/assets/14-codeflow-contribution.png)](/articles/codeflowmu-six-ai-20260909/assets/14-codeflow-contribution.png)
+[![How CodeFlowMu supports the test](/articles/codeflowmu-six-ai-20260909/assets/en-14-codeflow-contribution.svg)](/articles/codeflowmu-six-ai-20260909/assets/en-14-codeflow-contribution.svg)
 
 CodeFlowMu placed assignments, execution, delivery, and authorization into a traceable workflow. The PM's organizational choices became observable: how quickly it delegated, which relationships it created, whether reports were complete, and how it handled trouble. Similar final answers need not mean equally reliable work.
 
@@ -186,7 +190,7 @@ The same records also revealed instrument defects: stale projections, report-gen
 
 We did not ask agents to remember what they had done and then score the recollection. We reconstructed the run, checked task/report links, and compared statements with execution. These files remain useful after sessions end or models change.
 
-[![Written records and evidence](/articles/codeflowmu-six-ai-20260909/assets/15-evidence-chain.png)](/articles/codeflowmu-six-ai-20260909/assets/15-evidence-chain.png)
+[![Written records and evidence](/articles/codeflowmu-six-ai-20260909/assets/en-15-evidence-chain.svg)](/articles/codeflowmu-six-ai-20260909/assets/en-15-evidence-chain.svg)
 
 The principle is durable documentation: assignments, actions, approvals, delivery, and analysis must be saved, transferable, and traceable. Files can still contain mistakes. A hash fixes the saved bytes; it does not establish the truth of a business claim.
 
@@ -196,7 +200,7 @@ When records conflict, first align model, time window, Session, task, and report
 
 ### 1.8 The business support around agent work {#section-1-8}
 
-[![Execution, verification, acceptance, EVAL, and diagnosis](/articles/codeflowmu-six-ai-20260909/assets/18-business-support.svg)](/articles/codeflowmu-six-ai-20260909/assets/18-business-support.svg)
+[![Execution, verification, acceptance, EVAL, and diagnosis](/articles/codeflowmu-six-ai-20260909/assets/en-18-business-support.svg)](/articles/codeflowmu-six-ai-20260909/assets/en-18-business-support.svg)
 
 **CodeFlowMu supports what happens after an agent starts working:** evidence checking, acceptance by responsible roles, independent observation, and diagnosis. These are connected by actual files. Execution status, verification, PM judgment, and EVAL analysis should not collapse into one vague “the system says complete.”
 
@@ -432,6 +436,8 @@ DEV covered skills and development-side tools, QA covered FCoP and role permissi
 
 [![Original Cursor task and rerun records](/articles/codeflowmu-six-ai-20260909/assets/scene-cursor-recovery.png)](/articles/codeflowmu-six-ai-20260909/assets/scene-cursor-recovery.png)
 
+**English reading guide — original Chinese UI:** the root awaits ADMIN acceptance. Specialist rows show DEV, the original QA task, OPS, and a replacement QA task. The last task title includes “rerun after model recovery”; its existence alone does not prove the original QA succeeded. Cancellation and rerun receipts establish that distinction.
+
 Click the screenshot to inspect its original pixels.
 
 Four visible child-task rows did not mean four successful worker deliveries. Old QA task 003 was cancelled; task 005 supplied the valid QA report. A file in a `done` lifecycle directory must still be interpreted using its actual decision.
@@ -471,7 +477,7 @@ The same task did not produce the same task graph. PM chose who worked first, wh
 
 Kimi's missing final report is “not assessable,” not “a badly written final report.” Qwen's existing blocked report should be judged on obstacle explanation and proposed recovery. The article's result-quality score is a whole-run dimension, not a separately calibrated PM-writing score.
 
-[![Assignment structures](/articles/codeflowmu-six-ai-20260909/assets/03-task-graphs.png)](/articles/codeflowmu-six-ai-20260909/assets/03-task-graphs.png)
+[![Assignment structures](/articles/codeflowmu-six-ai-20260909/assets/en-03-task-graphs.svg)](/articles/codeflowmu-six-ai-20260909/assets/en-03-task-graphs.svg)
 
 Three independent tasks were not necessarily superficial. Codex and Doubao divided the same scope differently; either can be reasonable when evidence and coverage are clear. Qwen chose a heavier diagnostic route, beginning delegation later and making QA reference DEV. Time before the first assignment is itself an organizational choice.
 
@@ -479,7 +485,7 @@ Reference semantics matter. A reference should supply context without automatica
 
 ### 3.2 Visible configuration is not demonstrated capability {#section-3-2}
 
-[![Levels of tool evidence](/articles/codeflowmu-six-ai-20260909/assets/04-evidence-layers.png)](/articles/codeflowmu-six-ai-20260909/assets/04-evidence-layers.png)
+[![Levels of tool evidence](/articles/codeflowmu-six-ai-20260909/assets/en-04-evidence-layers.svg)](/articles/codeflowmu-six-ai-20260909/assets/en-04-evidence-layers.svg)
 
 Resource visibility, schema visibility, actual tool execution, and successful business delivery are different levels of evidence. One cannot substitute for the next.
 
@@ -509,7 +515,7 @@ Cost comparisons also need boundaries. Qwen's roughly CNY75.56 came from a daily
 
 ### 3.5 Where Qwen's two hours went {#section-3-5}
 
-[![Qwen timeline](/articles/codeflowmu-six-ai-20260909/assets/05-qwen-timeline.png)](/articles/codeflowmu-six-ai-20260909/assets/05-qwen-timeline.png)
+[![Qwen timeline](/articles/codeflowmu-six-ai-20260909/assets/en-05-qwen-timeline.svg)](/articles/codeflowmu-six-ai-20260909/assets/en-05-qwen-timeline.svg)
 
 QA was created at 17:09:51 and started at 18:02:15: **52m 24s waiting**. The declared relationship was `informational_reference`, yet a dispatch gate required successful DEV closure. The historical source and runtime trace support this issue.
 
@@ -519,7 +525,7 @@ Some deeper claims should be withdrawn. The alleged “ghost running QA” used 
 
 ### 3.6 Cursor's recovery was a governed sequence {#section-3-6}
 
-[![Cursor recovery sequence](/articles/codeflowmu-six-ai-20260909/assets/06-cursor-recovery.png)](/articles/codeflowmu-six-ai-20260909/assets/06-cursor-recovery.png)
+[![Cursor recovery sequence](/articles/codeflowmu-six-ai-20260909/assets/en-06-cursor-recovery.svg)](/articles/codeflowmu-six-ai-20260909/assets/en-06-cursor-recovery.svg)
 
 System initialization had occurred, but the QA seat was misconfigured with `qwen3.8-max`, unavailable through Cursor SDK. OPS identified a model-availability problem rather than an MCP or lease failure. PM requested authorization at 21:51:56; ADMIN approved around 21:55.
 
@@ -540,7 +546,7 @@ Kimi's overload messages are not themselves compatibility errors. Qwen's dispatc
 
 Codex, Doubao, and DeepSeek completed through the same overall framework, so “uses Codex” is not sufficient to explain failure. Provider-specific request content, tool representation, returned results, and recovery behavior matter. Cursor's successful SDK run changed both model and framework, so it is not a controlled demonstration that moving Kimi or Qwen to another Host would fix them.
 
-[![Integration paths](/articles/codeflowmu-six-ai-20260909/assets/12-integration-path.png)](/articles/codeflowmu-six-ai-20260909/assets/12-integration-path.png)
+[![Integration paths](/articles/codeflowmu-six-ai-20260909/assets/en-12-integration-path.svg)](/articles/codeflowmu-six-ai-20260909/assets/en-12-integration-path.svg)
 
 The tested source configured custom providers for Responses and disabled Codex reasoning-summary metadata support. The Doubao Ark bridge also normalized request fields and changed tool exposure. That Ark-specific behavior should not be attributed to every provider. Identical framework names do not guarantee identical effective tool catalogs, requests, or public output.
 
@@ -550,7 +556,7 @@ To separate model ability from integration effects, repeat the same model and ta
 
 ### 3.8 The evaluator also needs checking {#section-3-8}
 
-[![Evaluation material identity](/articles/codeflowmu-six-ai-20260909/assets/08-eval-mismatch.png)](/articles/codeflowmu-six-ai-20260909/assets/08-eval-mismatch.png)
+[![Evaluation material identity](/articles/codeflowmu-six-ai-20260909/assets/en-08-eval-mismatch.svg)](/articles/codeflowmu-six-ai-20260909/assets/en-08-eval-mismatch.svg)
 
 A uniform evaluator cannot compensate for incorrect inputs. Some task-record analyses described the current run but linked to raw packages containing morning Codex sessions, role routes, and report hashes. Initialization reused CUSTOM identifiers, creating a risk of mixing windows. `coverage=complete` did not establish identity correctness. This article used separate run backups rather than copying disputed counts.
 
@@ -628,7 +634,7 @@ After analysis and provenance are assembled, a temporary UTF-8 file replaces the
 
 Source excerpt: `codeflowmu-shell/src/eval-independent-analysis.ts, lines 393–396`, test commit `cb590ce35686cb1980e3c89a7d68bd0cfbeb825a`.
 
-[![EVAL findings across the six runs](/articles/codeflowmu-six-ai-20260909/assets/16-eval-comparison.png)](/articles/codeflowmu-six-ai-20260909/assets/16-eval-comparison.png)
+[![EVAL findings across the six runs](/articles/codeflowmu-six-ai-20260909/assets/en-16-eval-comparison.svg)](/articles/codeflowmu-six-ai-20260909/assets/en-16-eval-comparison.svg)
 
 The risk labels below come from independent analysis sections. High risk can concern evidence identity rather than poor team delivery; absent reports do not mean low risk.
 
@@ -647,13 +653,15 @@ Doubao and Cursor EVAL analyses corrected a scanner's false alarm: after the roo
 
 [![Original EVAL report generation screen](/articles/codeflowmu-six-ai-20260909/assets/scene-eval-report.png)](/articles/codeflowmu-six-ai-20260909/assets/scene-eval-report.png)
 
+**English reading guide — original Chinese UI:** “生成任务记录” means “Generate task-run record”; “已生成” means “Generated”; “报告已生成” identifies the saved report; “查看记录报告” opens it. The background lists the standard task-run record and EVAL panel scan.
+
 Click the screenshot to inspect its original pixels.
 
 The screenshot shows a successful later Cursor report. Saving a report is one check; matching its content and identity to the run is another.
 
 ### 3.10 EVAL is useful, but not the final truth {#section-3-10}
 
-[![Performance scores and EVAL risk are different measures](/articles/codeflowmu-six-ai-20260909/assets/17-eval-judgment.png)](/articles/codeflowmu-six-ai-20260909/assets/17-eval-judgment.png)
+[![Performance scores and EVAL risk are different measures](/articles/codeflowmu-six-ai-20260909/assets/en-17-eval-judgment.svg)](/articles/codeflowmu-six-ai-20260909/assets/en-17-eval-judgment.svg)
 
 The article asks both whether the team delivered and whether its evidence is reliable. EVAL is valuable because it can challenge a convincing report. Its own claims also need review.
 
@@ -743,7 +751,7 @@ The scores remain 88, 87, 75, 66, 40, and 18 for these integrated runs. Foundati
 
 Inspection does not need to eliminate every defect. Reliable findings, supporting evidence, and sensible next steps can complete the assignment; repair needs its own authorization.
 
-[![Proposed repeat-test procedure](/articles/codeflowmu-six-ai-20260909/assets/09-baseline.png)](/articles/codeflowmu-six-ai-20260909/assets/09-baseline.png)
+[![Proposed repeat-test procedure](/articles/codeflowmu-six-ai-20260909/assets/en-09-baseline.svg)](/articles/codeflowmu-six-ai-20260909/assets/en-09-baseline.svg)
 
 A future A/B protocol could retain the original task in one arm and explicitly bound read-only work and time in the other. Rotate the order, repeat each model configuration at least three times, and preserve task records, system observations, any triggered closeout observations, and failed drafts. Exporting/checking old evidence and verifying the initialized next environment solve different problems.
 
@@ -757,7 +765,7 @@ Timing ends at successful formal final-report submission; termination is separat
 
 A reference answer for the inspection should cover all five areas with scope, reproducible evidence, conclusions, unknowns, worker receipts, and a PM summary. It must be tied to the actual version and configuration, not a permanent answer independent of system state.
 
-The public package contains the article, figures, selected evidence, scoring/timing data, and source explanations. The concept cover is AI-generated, not a scene photograph. Screenshots are original evidence; diagrams explain mechanisms and are not substitutes for execution. English quantitative charts accompany the complete English analysis. Original screenshots, mechanism diagrams and literal report excerpts retain Chinese source labels, with English explanations in the surrounding text. Supporting source documents are labelled by language in the public source guide.
+The public package contains the article, figures, selected evidence, scoring/timing data, and source explanations. The concept cover is AI-generated, not a scene photograph. Screenshots are original evidence; diagrams explain mechanisms and are not substitutes for execution. All analytical charts and mechanism diagrams have English editions with selectable vector text. Original screenshots retain the Chinese interface as captured, with English reading guides; literal evidence excerpts preserve their source wording. Supporting source documents are labelled by language in the public source guide.
 
 <a href="/joinwell52/articles/codeflowmu-six-ai-20260909/sources.en.html" target="_self">Public source guide</a> · <a href="/joinwell52/articles/codeflowmu-six-ai-20260909/business-evidence-index.html" target="_self">Evidence inventory (Chinese)</a> · <a href="/joinwell52/articles/codeflowmu-six-ai-20260909/evidence-excerpts.html" target="_self">Actual excerpts</a> · <a href="/joinwell52/articles/codeflowmu-six-ai-20260909/EVAL对照与来源.html" target="_self">EVAL source and checks</a> · <a href="/joinwell52/articles/codeflowmu-six-ai-20260909/kimi-failure-evidence.html" target="_self">Kimi error evidence</a> · <a href="/joinwell52/articles/codeflowmu-six-ai-20260909/eval-generation-code.html" target="_self">EVAL code excerpts</a> · [Scores](/articles/codeflowmu-six-ai-20260909/scorecard.csv) · [Timing](/articles/codeflowmu-six-ai-20260909/timing.csv) · [Stage timeline](/articles/codeflowmu-six-ai-20260909/stage-timeline.csv)
 
