@@ -1,0 +1,85 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-10",
+  "itemId": "Q-20260910-02",
+  "coreProposition": "Self-evolving procedures must remain candidate control state until an explicit adoption gate evaluates evidence not used to generate the proposal; the active procedure keeps a separate stable identity until that gate passes.",
+  "openingMove": {
+    "type": "procedure-edit-becomes-silent-authority",
+    "purpose": "Open with a useful self-edit that becomes active before its evidence is fixed.",
+    "evidenceRefs": [
+      "E1",
+      "E2"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why must proposal and adoption be different rights?",
+      "claim": "A procedure change alters future action timing, ordering, and choice, so writing a proposal is closer to policy deployment than note editing.",
+      "evidenceRefs": [
+        "E1",
+        "E6"
+      ],
+      "reasoningRole": "governance-boundary",
+      "readerProgress": "See procedure activation as an authority transition.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What makes the study's gate meaningful?",
+      "claim": "Structural checks and validation examples disjoint from proposal-generating traces create real evidence separation.",
+      "evidenceRefs": [
+        "E2",
+        "E3"
+      ],
+      "reasoningRole": "mechanism",
+      "readerProgress": "Understand the minimum candidate/adoption lifecycle.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "Why is rejection a normal outcome?",
+      "claim": "The reported non-monotonic search preserves active state when candidates fail structure or validation.",
+      "evidenceRefs": [
+        "E3"
+      ],
+      "reasoningRole": "evidence",
+      "readerProgress": "Treat no-op and rejection as useful governed outcomes.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What independence is still missing?",
+      "claim": "Disjoint data do not remove correlated model blind spots or unmeasured safety risks.",
+      "evidenceRefs": [
+        "E4",
+        "E5"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "Separate data independence from adjudicator independence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What must a production activation contract bind?",
+      "claim": "Exact candidate identity, accepted evidence, decision authority, freshness, rejected state, and rollback target must remain durable.",
+      "evidenceRefs": [
+        "E2",
+        "E5",
+        "E6"
+      ],
+      "reasoningRole": "operational-implication",
+      "readerProgress": "Gain a deployable governance checklist.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "A non-decreasing held-out score is enough to activate an improved procedure.",
+    "responseBoundary": "It is meaningful minimum evidence, but average task performance can miss rare authorization, safety, recovery, and cost regressions, especially when proposal and evaluation share model weaknesses."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with risk-sensitive gates, evaluator independence, identity proof, evidence expiry, and rollback."
+  }
+}

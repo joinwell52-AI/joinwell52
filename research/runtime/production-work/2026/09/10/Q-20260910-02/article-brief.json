@@ -1,0 +1,54 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-10",
+  "itemId": "Q-20260910-02",
+  "researchObjectId": "Q-20260910-02",
+  "targetAudience": {
+    "primary": "Architects and governance leaders designing self-improving agent systems",
+    "knowledgeAssumption": "The reader understands evaluation splits, versioned state, deployment, and rollback.",
+    "readerProblem": "A model-generated procedure improvement can silently become future execution authority before independent evidence establishes that it should."
+  },
+  "whyNow": "Procedural Graphs provides a concrete primary-study mechanism that freezes active procedure state, mutates candidates offline, and admits changes only through structural checks plus disjoint held-out evidence.",
+  "externalHook": {
+    "type": "proposal-silently-becomes-policy",
+    "description": "A self-improving worker writes a promising procedural change directly into the state that controls its next task.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "E4",
+      "E5"
+    ]
+  },
+  "coreProposition": "Self-evolving procedures must remain candidate control state until an explicit adoption gate evaluates evidence not used to generate the proposal; the active procedure keeps a separate stable identity until that gate passes.",
+  "originalValue": {
+    "type": "proposal-adoption-authority-boundary",
+    "description": "Treats procedure mutation as controlled policy deployment with stable candidate identity, disjoint evidence, explicit adoption, durable rejection, freshness, and rollback."
+  },
+  "readerTakeaway": "Give models broad proposal freedom but narrow activation authority: preserve candidate/active separation and require acceptance evidence tied to exact identities and current risk.",
+  "evidenceBoundary": {
+    "supported": [
+      "The study freezes the retained graph during inference and mutates candidates between batches.",
+      "Candidates face structural checks and disjoint validation before replacement.",
+      "Reported search history includes no-op rounds, structural rejection, and behavioral rejection.",
+      "Proposal, guidance, and solving can share one underlying model family."
+    ],
+    "unsupported": [
+      "A claim that non-decreasing mean validation is sufficient for production safety",
+      "A claim of organizationally independent adjudication",
+      "A proof of crash-safe exactly-once activation"
+    ],
+    "uncertain": [
+      "Which safety dimensions belong in high-impact gates",
+      "When model/tool/policy changes expire evidence",
+      "How to make rejected candidates non-restorable"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument derives from public primary research and is independent of first-party projects."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The study gives a concrete candidate/adoption mechanism and explicit limitations suitable for a bounded governance analysis."
+}
