@@ -1042,8 +1042,6 @@ Codex与Cursor最值得继续复测，分别体现快速收口与授权恢复；
 
 <a href="/joinwell52/articles/codeflowmu-six-ai-20260909/六平台系统巡检总报告.html" target="_self">详细总报告</a> · [评分明细](/articles/codeflowmu-six-ai-20260909/scorecard.csv) · [计时明细](/articles/codeflowmu-six-ai-20260909/timing.csv) · [阶段时间线](/articles/codeflowmu-six-ai-20260909/stage-timeline.csv)
 
-[GitHub配图目录](https://github.com/joinwell52-AI/joinwell52/tree/main/docs/public/assets/covers) · [FCoP配图参考](https://github.com/joinwell52-AI/FCoP/blob/main/assets/what-five-ai-models-say-about-fcop-cover.png)
-
 本文依据CodeFlowMu在2026年9月9日六轮测试中保存的任务、报告、执行与工具回执、审批和EVAL记录，以及分轮备份后的交叉核查。读者可查看<a href="/joinwell52/articles/codeflowmu-six-ai-20260909/business-evidence-index.html" target="_self">系统留下的文件证据</a>、<a href="/joinwell52/articles/codeflowmu-six-ai-20260909/evidence-excerpts.html" target="_self">真实文件摘录</a>和<a href="/joinwell52/articles/codeflowmu-six-ai-20260909/EVAL对照与来源.html" target="_self">EVAL报告来源与核验说明</a>；更完整的整理分析见<a href="/joinwell52/articles/codeflowmu-six-ai-20260909/六平台系统巡检总报告.html" target="_self">六平台系统巡检总报告</a>。该总报告是依据测试记录编写的分析材料，不是某个PM的终报，也不是系统自动给出的裁决。每家一个正式样本，本文不构成通用模型排行榜。题图为AI生成概念设计，数据图表由保存的指标和时间线绘制。
 
 <a href="/joinwell52/articles/codeflowmu-six-ai-20260909/接入影响核对.html" target="_self">接入影响核对与源码依据</a> · [OpenAI自定义provider文档](https://learn.chatgpt.com/docs/config-file/config-advanced) · [OpenAI推理摘要配置](https://learn.chatgpt.com/docs/config-file/config-reference)
