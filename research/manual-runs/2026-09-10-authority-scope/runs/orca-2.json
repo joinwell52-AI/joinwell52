@@ -1,0 +1,127 @@
+{
+  "kind": "full original recovery and lookup modules; types/imports removed; fixture store/time/timers/PTY; no Electron or real crash",
+  "node": "v24.16.0",
+  "harness_sha256": "e165ab8d0f5fea9d04f709f34629faa338b972f1a6f7bf64ad2bfede58e5b450",
+  "rows": [
+    {
+      "phase": "base",
+      "scenario": "consistent-fast",
+      "attempts": 200,
+      "remounts": 1,
+      "source_sha256": {
+        "recovery": "cf5df7d80d0162cdc71dcac63b0a59d41a8e87cad1b1c64647d718bf15bf6d82",
+        "lookup": "4065fb5ab51d123344c2e8375957ddef47bfafbfe0cff11e01198140e47aa9d1"
+      }
+    },
+    {
+      "phase": "base",
+      "scenario": "drift-fast",
+      "attempts": 200,
+      "remounts": 200,
+      "source_sha256": {
+        "recovery": "cf5df7d80d0162cdc71dcac63b0a59d41a8e87cad1b1c64647d718bf15bf6d82",
+        "lookup": "4065fb5ab51d123344c2e8375957ddef47bfafbfe0cff11e01198140e47aa9d1"
+      }
+    },
+    {
+      "phase": "base",
+      "scenario": "drift-spaced",
+      "attempts": 10,
+      "remounts": 10,
+      "source_sha256": {
+        "recovery": "cf5df7d80d0162cdc71dcac63b0a59d41a8e87cad1b1c64647d718bf15bf6d82",
+        "lookup": "4065fb5ab51d123344c2e8375957ddef47bfafbfe0cff11e01198140e47aa9d1"
+      }
+    },
+    {
+      "phase": "base",
+      "scenario": "genuine-close",
+      "attempts": 2,
+      "remounts": 2,
+      "source_sha256": {
+        "recovery": "cf5df7d80d0162cdc71dcac63b0a59d41a8e87cad1b1c64647d718bf15bf6d82",
+        "lookup": "4065fb5ab51d123344c2e8375957ddef47bfafbfe0cff11e01198140e47aa9d1"
+      }
+    },
+    {
+      "phase": "base",
+      "scenario": "window-expiry",
+      "attempts": 5,
+      "remounts": 4,
+      "source_sha256": {
+        "recovery": "cf5df7d80d0162cdc71dcac63b0a59d41a8e87cad1b1c64647d718bf15bf6d82",
+        "lookup": "4065fb5ab51d123344c2e8375957ddef47bfafbfe0cff11e01198140e47aa9d1"
+      }
+    },
+    {
+      "phase": "base",
+      "scenario": "stale-generation",
+      "attempts": 2,
+      "remounts": 1,
+      "source_sha256": {
+        "recovery": "cf5df7d80d0162cdc71dcac63b0a59d41a8e87cad1b1c64647d718bf15bf6d82",
+        "lookup": "4065fb5ab51d123344c2e8375957ddef47bfafbfe0cff11e01198140e47aa9d1"
+      }
+    },
+    {
+      "phase": "head",
+      "scenario": "consistent-fast",
+      "attempts": 200,
+      "remounts": 1,
+      "source_sha256": {
+        "recovery": "2b9c1052a6ff2825a1699678e19889d235380dd73fc0947e3b0df40e0d19cf08",
+        "lookup": "e52fc59af7b30c74b8a2822d5b172a97f14bda3e6785a49aeb55286c177893d9"
+      }
+    },
+    {
+      "phase": "head",
+      "scenario": "drift-fast",
+      "attempts": 200,
+      "remounts": 1,
+      "source_sha256": {
+        "recovery": "2b9c1052a6ff2825a1699678e19889d235380dd73fc0947e3b0df40e0d19cf08",
+        "lookup": "e52fc59af7b30c74b8a2822d5b172a97f14bda3e6785a49aeb55286c177893d9"
+      }
+    },
+    {
+      "phase": "head",
+      "scenario": "drift-spaced",
+      "attempts": 10,
+      "remounts": 3,
+      "source_sha256": {
+        "recovery": "2b9c1052a6ff2825a1699678e19889d235380dd73fc0947e3b0df40e0d19cf08",
+        "lookup": "e52fc59af7b30c74b8a2822d5b172a97f14bda3e6785a49aeb55286c177893d9"
+      }
+    },
+    {
+      "phase": "head",
+      "scenario": "genuine-close",
+      "attempts": 2,
+      "remounts": 2,
+      "source_sha256": {
+        "recovery": "2b9c1052a6ff2825a1699678e19889d235380dd73fc0947e3b0df40e0d19cf08",
+        "lookup": "e52fc59af7b30c74b8a2822d5b172a97f14bda3e6785a49aeb55286c177893d9"
+      }
+    },
+    {
+      "phase": "head",
+      "scenario": "window-expiry",
+      "attempts": 5,
+      "remounts": 4,
+      "source_sha256": {
+        "recovery": "2b9c1052a6ff2825a1699678e19889d235380dd73fc0947e3b0df40e0d19cf08",
+        "lookup": "e52fc59af7b30c74b8a2822d5b172a97f14bda3e6785a49aeb55286c177893d9"
+      }
+    },
+    {
+      "phase": "head",
+      "scenario": "stale-generation",
+      "attempts": 2,
+      "remounts": 1,
+      "source_sha256": {
+        "recovery": "2b9c1052a6ff2825a1699678e19889d235380dd73fc0947e3b0df40e0d19cf08",
+        "lookup": "e52fc59af7b30c74b8a2822d5b172a97f14bda3e6785a49aeb55286c177893d9"
+      }
+    }
+  ]
+}

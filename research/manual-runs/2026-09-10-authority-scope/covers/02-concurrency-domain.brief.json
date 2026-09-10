@@ -1,0 +1,32 @@
+{
+  "itemId": "20260910-concurrency-domain",
+  "briefId": "concurrency-domain-cover-v1",
+  "title": "并发限制是 1，为什么还能同时跑两个任务？",
+  "coreProposition": "两个事件循环各守住一个并发名额，整体仍能同时执行两个任务。",
+  "synopsis": "AG2 原始调度方法的双线程双循环实验中，修复后 A、B 局部峰值各为 1，整体峰值为 2；这是额度作用域的区别。",
+  "readerFirstSight": "一个连续计算主体展开成两个局部循环，每个循环中恰好有一个执行标记。",
+  "causalSentence": "额度分别属于两个循环，所以两个局部名额能够同时被占用。",
+  "dominantSubject": "一条钴蓝计算带连续折叠成两个相邻且清楚分开的循环，占画面约七成。",
+  "singleAction": "两个局部循环同时各承载一个正在执行的标记。",
+  "visibleResult": "同一连续计算主体中共有两个活动执行标记。",
+  "anchors": [
+    "两个明确局部循环",
+    "各一个琥珀执行游标",
+    "同一连续钴蓝主体"
+  ],
+  "composition": "低视角，宽幅横向双循环主体；暖白弧形空间，主体整体保持紧密，足够负空间。",
+  "colorMeanings": {
+    "cobalt": "连续计算上下文与两个局部循环",
+    "amber": "同时活动的任务"
+  },
+  "reviewExclusions": [
+    "机械设备",
+    "赛车跑道",
+    "孤立光环堆砌",
+    "流程图与仪表板",
+    "重复第一篇的直立文件面"
+  ],
+  "ratio": "16:9",
+  "target": "<local-path>",
+  "sanitizedPrompt": "Create a sophisticated cinematic editorial computing illustration in a wide 16:9 landscape. One continuous broad translucent cobalt-blue computational ribbon folds into exactly two adjacent upright closed curls, joined by the same continuous ribbon at their base, creating a unified double-lobed digital execution object. The two local loops are spatially distinct and visually readable within one coherent dominant silhouette. Exactly one small luminous amber triangular execution cursor is embedded in the inner face of each local loop, both bright at the same instant. Each amber cursor has a short restrained luminous wake following its own curved cobalt surface. The two cursors are the only active task marks, one per local loop, two in the whole object. The unified cobalt object fills about seventy percent of the image, in a close low three-quarter perspective. Place it in a luminous warm ivory architectural interior with a broad soft curved alcove, subtle reflected cobalt daylight on the pale floor, and generous airy depth. Refined optical transparency and polished computational surfaces, dominant saturated cobalt, two precise amber accents, soft ivory daylight, imaginative premium editorial art. The continuous ribbon and its two occupied local loops are the single clear focal subject."
+}
