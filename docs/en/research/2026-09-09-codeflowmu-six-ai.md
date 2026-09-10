@@ -40,7 +40,7 @@ head:
 Was the difference model capability, integration, or how the PM organized the work? We gave six AI teams the same assignment through CodeFlowMu and FCoP, then followed the retained task, execution, report, authorization, and independent EVAL records to find out.
 
 <div class="cfm-six-ai-stats" role="group" aria-label="Test results at a glance">
-  <div><strong>6 configurations</strong><span>Same task · Multiple team roles</span></div>
+  <div><strong>6 models</strong><span>Same task · Multiple team roles</span></div>
   <div><strong>4 deliveries</strong><span>2 forced stops; failure records retained</span></div>
   <div><strong>12m 20s</strong><span>Fastest normal delivery · Formal receipts</span></div>
 </div>
@@ -108,7 +108,7 @@ All six runs received the same initial task body. Reminders, authorizations, and
 
 > Check the implementation of FCoP, the MCP tools, the allocation and use of SKILLS, each role's permissions and responsibilities, and runtime operation. PM should decompose the task and have the team complete it collaboratively, then produce a report for ADMIN.
 
-Task titles identified the tested scheme—for example, “system inspection codex,” “system inspection Doubao,” or “system inspection Qwen.” The shared test was the body above. The original wording “轨机” is retained in the source rather than silently edited.
+Task titles identified the tested model—for example, “system inspection codex,” “system inspection Doubao,” or “system inspection Qwen.” The shared test was the body above. The original wording “轨机” is retained in the source rather than silently edited.
 
 #### Why this task?
 
@@ -126,7 +126,7 @@ The workflow was ADMIN → PM → DEV/OPS/QA → PM delivery, with independent E
 
 ### 1.4 Models and integration paths {#section-1-4}
 
-“Six AIs” means six actual operating schemes. They ran in this order: Codex, Doubao, DeepSeek, Kimi, Qwen, Cursor. Model identifiers came from the identity replies and saved run records.
+“Six AIs” refers to six models operating as teams under their respective integration configurations. They ran in this order: Codex, Doubao, DeepSeek, Kimi, Qwen, Cursor. Model identifiers came from the identity replies and saved run records.
 
 | Scheme | Model identifier | Provider and execution framework |
 |---|---|---|
@@ -328,6 +328,49 @@ The EVAL agent reads evidence and returns analysis text. Runtime checks the requ
 
 Implementation sources for this section are test commit `cb590ce`: `codeflowmu-shell/src/eval-independent-analysis.ts` for routing and required skills, `eval-benchmark-recording.ts`, `packages/evaluator/eval-report-writer.js`, and `EvalObservationGenerator.ts`. These explain the mechanism; source code alone does not prove a particular execution succeeded.
 
+### 1.11 Why nine asset classes, and what does EVAL inspect? {#eval-nine-assets}
+
+**The nine classes come from CodeFlowMu's implemented system-observation inventory. They let an evaluator compare how the same event appears in different records.** They are not nine agents, nine scoring dimensions, or a universal taxonomy. The test version explicitly lists them in `ASSETS_ANALYZED`; business files such as TASK, REPORT and ISSUE enter verification through ledger associations, runtime material and report references.
+
+| Asset | Main records | Analytical use | Question to answer |
+|---|---|---|---|
+| **1. Ledger** | Registered tasks, role routes, parent relationships, states and business-record links | Reconstruct formal work and compare lifecycle with delivery | What did PM assign, what was formally delivered, and what remains open? |
+| **2. Runtime logs** | Sessions, attempts, leases, tool calls/results and errors | Reconcile execution, retries, failures and state changes | Does a claimed action have a result? Did a finished session actually deliver a report? |
+| **3. Public thinking/progress** | Emitted plans, explanations and tool activity | Compare contemporaneous claims with later behavior and scope changes | Did promised dispatch occur? When did the plan change? Hidden reasoning is not inferred |
+| **4. Usage** | Collected request, token and usage records | Attribute consumption where run associations exist and identify missing coverage | Which run incurred usage? Are retries or other sessions included? Without billing attribution, it is not exact task cost |
+| **5. Analytics** | Aggregated events, counts and timing metrics | Check raw events, deduplication, denominators and windows | Are reported call counts and durations calculated consistently? |
+| **6. Internal EVAL** | Previous observations, collection material, analysis and generation states | Check evaluation identity, provenance, persistence and mismatched material | Is this completed agent analysis or only a collected summary? Does it belong to another run? |
+| **7. Emergence log** | Previously observed patterns, sources, risks and recommendations | Compare task relationships and track duplication, evolution or unsupported findings | Was this pattern already recorded? What changed, and is it reusable? |
+| **8. Role views** | Role-specific task lists and status projections | Compare views with ledger, lifecycle and the view contract | Does “running” match formal state? Is an empty task list correct at this stage? |
+| **9. Shared knowledge** | Shared rules, experience, knowledge and reusable material | Check relevance, age and opportunities for retention | Was available knowledge unused, or is useful knowledge missing? |
+
+The value lies in **cross-asset verification**. A PM claim of tool success requires a result, not only a call-start log. A “running” display that conflicts with cancellation receipts and session state needs projection checks. Runtime, usage and analytics help distinguish requests, retries and duplicate event records.
+
+The scan retains four observation fields per asset: **status, key finding, risk/value, and evidence**. Independent EVAL then analyzes contradictions, gaps and recommendations. “All nine classes scanned” establishes inventory coverage, not that all nine were verified healthy. CodeFlowMu makes logs useful analytical assets by enabling cross-checks rather than merely accumulating files.
+
+### 1.12 Emergence observation: inspect collaboration patterns, not only errors {#eval-emergence}
+
+EVAL also looks for task origins and organizational structures worth recording. “Emergence” has a bounded implementation here: **it is not a claim that a model suddenly acquired new intelligence**, nor a label for ordinary errors.
+
+| Observation | Identification evidence | Analytical purpose |
+|---|---|---|
+| **Controlled emergence** | Role routing combined with explicit probe, self-task and sandbox bootstrap markers | Establish where test/probe tasks came from and whether they contaminate business task lists, review queues or counts; retain probe evidence without treating it as delivery |
+| **Project-tree emergence** | Actual parent relationships and role routes within a thread, forming root → phase → execution | Observe project/phase organization, assess value against outcomes, and check wrong parents, cross-thread links, cycles or closed parents with open children |
+
+```text
+Ordinary delegation: ADMIN root → PM assigns DEV / OPS / QA checks
+Project-tree pattern: ADMIN main task → phase task → specialist execution tasks
+```
+
+A title containing “Phase,” “project” or “probe,” or simply creating more children, does not establish either pattern. Detection examines origin, `parent`, `thread_key`, routing and relevant markers. Independent EVAL checks the interpretation and reports alternatives, confidence, risks and advice. `controlled-emergence-observer` is one of the seven skills; the companion `project-tree-observer.js` supplies structural evidence, not another mandatory report.
+
+Emergence observation examines both risk and value. Probe tasks appearing in business views may mislead users; a useful phase structure may provide a reusable way to organize work. Structure alone does not prove successful delivery. The system observation report and retained emergence log support later review and knowledge retention. EVAL recommends action; it does not autonomously clean up tasks, archive them or change dispatch.
+
+**No detected emergence is also a result worth retaining.** Normal ADMIN→PM→DEV/OPS/QA delegation in this inspection cannot be marketed as new emergence merely because the team collaborated. Any per-run claim requires that run's report and relationship evidence. CodeFlowMu can accumulate observations about how collaboration structures form and whether they help, alongside success and failure records.
+
+Implementation sources are the test version's `packages/evaluator/eval-report-writer.js`, `controlled-emergence-observer.js`, and `project-tree-observer.js`. The asset classes are an implemented inventory; the questions above explain analytical uses and do not assert that every question was verified in every run.
+
+
 ## 2. Overall Results and Each Team {#chapter-2}
 
 The results below were checked against formal assignments, reports, execution, and cancellation records captured through CodeFlowMu. We separate completion, inspection quality, and integration failure.
@@ -351,7 +394,7 @@ Weights: completion 25, result quality 30, efficiency 15, scope control 15, reco
 
 Four teams delivered three valid specialist reports and a normal PM final report. Qwen's OPS content remained in a failed submission, QA produced no formal report, and Kimi created no child tasks. Forced archiving stopped a test; it did not complete the assignment.
 
-Codex took fewer actions to reach a qualified conclusion. Cursor showed authorized recovery. DeepSeek's advantage over Doubao was mainly evidence and interpretation quality, not a different final task-state label. Qwen's 40 acknowledges diagnostic work as well as failed delivery; Kimi's 18 describes a non-delivering configuration. Neither score can be read as an intrinsic model score. This was one run per scheme, not a blind or randomized benchmark.
+Codex took fewer actions to reach a qualified conclusion. Cursor showed authorized recovery. DeepSeek's advantage over Doubao was mainly evidence and interpretation quality, not a different final task-state label. Qwen's 40 acknowledges diagnostic work as well as failed delivery; Kimi's 18 describes a non-delivering configuration. Neither score can be read as an intrinsic model score. This was one run per model configuration, not a blind or randomized benchmark.
 
 ### 2.3 Codex: fast delivery with explicit limits {#section-2-3}
 
@@ -486,7 +529,7 @@ Recovery of an authorized execution prerequisite is different from unauthorized 
 
 ### 3.7 Does the Codex integration explain failure? {#section-3-7}
 
-**Both incomplete schemes used the Codex framework.** Integration is therefore part of the causal analysis. The evaluated object is the model, provider API, adapter, Host, and CodeFlowMu working together—not a foundation model in isolation.
+**Both models with incomplete runs used the Codex framework.** Integration is therefore part of the causal analysis. The evaluated object is the model, provider API, adapter, Host, and CodeFlowMu working together—not a foundation model in isolation.
 
 | Scheme | Evidence | Supported conclusion |
 |---|---|---|
@@ -680,9 +723,9 @@ These judgments depend on evidence captured and retained during CodeFlowMu opera
 
 System defects remain in the article because the same records make them inspectable. Success has delivery evidence; failure has diagnostic traces; recovery has an authorization history; evaluation has sources. Scores and diagnoses are EVAL and analytical judgments, not automatic business decisions made by the system.
 
-### 4.2 What the six schemes suggest {#section-4-2}
+### 4.2 Overall assessment of the six models {#section-4-2}
 
-For this inspection, Codex is the first choice for routine execution; Cursor belongs in the same group where authorized intervention is available. Among the domestic-provider configurations, DeepSeek is the first candidate for further testing, followed by Doubao. Qwen needs bounded task-control testing; Kimi needs integration validation first.
+For this inspection, Codex is the first choice for routine execution; Cursor belongs in the same group where authorized intervention is available. Among the domestic-provider models, DeepSeek is the first candidate for further testing, followed by Doubao. Qwen needs bounded task-control testing; Kimi needs integration validation first.
 
 Codex and Cursor both scored 24/30 for result quality. Their advantage was keeping conclusions proportionate to evidence while reaching delivery. DeepSeek and Doubao showed they could organize the workflow, but PM review did not consistently filter incorrect interpretation or overstatement. Qwen and Kimi require different diagnoses rather than a shared “bad model” label.
 
@@ -702,7 +745,7 @@ Inspection does not need to eliminate every defect. Reliable findings, supportin
 
 [![Proposed repeat-test procedure](/articles/codeflowmu-six-ai-20260909/assets/09-baseline.png)](/articles/codeflowmu-six-ai-20260909/assets/09-baseline.png)
 
-A future A/B protocol could retain the original task in one arm and explicitly bound read-only work and time in the other. Rotate the order, repeat each scheme at least three times, and preserve both EVAL reports and failed drafts. Exporting/checking old evidence and verifying the initialized next environment solve different problems.
+A future A/B protocol could retain the original task in one arm and explicitly bound read-only work and time in the other. Rotate the order, repeat each model configuration at least three times, and preserve task records, system observations, any triggered closeout observations, and failed drafts. Exporting/checking old evidence and verifying the initialized next environment solve different problems.
 
 A common Git commit is not a full machine snapshot. Provider, adapter, effective tool catalog, network, task graph, and interventions still differ. Verify actual role sessions after configuration changes, not merely dropdown labels.
 
