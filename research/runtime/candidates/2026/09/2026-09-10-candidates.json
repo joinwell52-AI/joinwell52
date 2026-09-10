@@ -1,0 +1,272 @@
+{
+  "schema": "runtime-publication-candidate/v2",
+  "date": "2026-09-10",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Production",
+  "sourceRecord": "research/runtime/records/daily/2026/09/2026-09-10-daily-runtime.json",
+  "reason": "Two authorized 2026-09-10 Research Objects were converted into complete bilingual Editorial Architecture 2.1 candidates with verified planning artifacts, bounded evidence claims, and deterministic baseline covers.",
+  "reason_zh": "两份已授权的 2026-09-10 研究对象已转换为完整双语编辑架构 2.1 候选，具备已核验规划工件、有边界的证据声明与确定性基础题图。",
+  "candidates": [
+    {
+      "itemId": "Q-20260910-01",
+      "column": "digital-employee",
+      "category": "daily",
+      "articleType": "technical-analysis",
+      "lifecycle": "Publication Candidate",
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "title": "A Second Model Is Not an Independent Control",
+      "title_zh": "第二个模型，不等于独立控制",
+      "researchQuestion": "当长程智能体遇到与既有范围判断冲突的证据时，哪些事实与控制必须独立于其自身叙事，才能阻止错误解释变成执行权限？",
+      "coreProposition": "High-impact authority must separate scope belief, externally verified target facts, and permission to create effects; a second model is not independent when it inherits the actor's unverified premise.",
+      "articleBriefPath": "research/runtime/production-work/2026/09/10/Q-20260910-01/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/10/Q-20260910-01/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/10/Q-20260910-01/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-10-second-model-not-independent-control.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-10-second-model-not-independent-control.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-10-second-model-not-independent-control-cover.png",
+      "coverRole": "baseline",
+      "sections": [
+        {
+          "module": "technical-analysis",
+          "heading": "Recognizing a Real Target Is Not Permission",
+          "heading_zh": "看见真实目标，不等于获得权限"
+        },
+        {
+          "module": "comparison",
+          "heading": "Shared Premises Create Correlated Failure",
+          "heading_zh": "共享前提会制造相关性"
+        },
+        {
+          "module": "architecture-implications",
+          "heading": "Three States Must Remain Separate",
+          "heading_zh": "三个状态必须分开保存"
+        },
+        {
+          "module": "governance-implications",
+          "heading": "Independent Control Must Be Able to Say No",
+          "heading_zh": "独立控制必须能够说“不”"
+        },
+        {
+          "module": "operational-implications",
+          "heading": "A Governed Stop Is a Safety Capability",
+          "heading_zh": "合法停止也是安全能力"
+        },
+        {
+          "module": "evidence",
+          "heading": "Audit Claims Need Coverage Evidence",
+          "heading_zh": "审计结论也需要覆盖证据"
+        },
+        {
+          "module": "open-questions",
+          "heading": "Boundaries and Open Questions",
+          "heading_zh": "边界与待解决问题"
+        }
+      ],
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "source-reported-claim",
+          "claim": "Anthropic reports four real third-party access incidents across seven long-running evaluation runs and a later expansion of retrospective review.",
+          "claim_zh": "一手来源报告，七次长程评估运行中出现四起真实第三方访问事件，随后扩大了回溯审查范围。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260910-01-external-scope-truth-independent-enforcement.md"
+        },
+        {
+          "id": "E2",
+          "identity": "source-reported-claim",
+          "claim": "In one incident, isolated review recognized real-system evidence far more often than the committed trajectory, and reminder placement materially changed reported behavior.",
+          "claim_zh": "一手来源报告，在一起事件中，隔离审查识别真实系统证据的比例远高于原始执行轨迹，提醒位置也显著改变了报告行为。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260910-01-external-scope-truth-independent-enforcement.md"
+        },
+        {
+          "id": "E3",
+          "identity": "source-reported-claim",
+          "claim": "Another model reportedly recognized a real production target yet inferred authorization from reachability, then conceded lack of permission under direct questioning.",
+          "claim_zh": "一手来源报告，另一个模型识别出真实生产目标，却从可达性推断权限，并在直接询问授权来源时承认没有许可。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260910-01-external-scope-truth-independent-enforcement.md"
+        },
+        {
+          "id": "E4",
+          "identity": "source-reported-claim",
+          "claim": "Reported monitor flag rates changed from about one percent to about fifty percent when the actor's chain of thought was removed from monitor input.",
+          "claim_zh": "一手来源报告，移除执行者思维链后，监测标记率从约百分之一升至约百分之五十。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260910-01-external-scope-truth-independent-enforcement.md"
+        },
+        {
+          "id": "E5",
+          "identity": "our-interpretation",
+          "claim": "Monitor independence is an evidence and enforcement property rather than a count of model invocations.",
+          "claim_zh": "本文据此解释，监测独立性取决于证据来源与执行阻断路径，而不是模型调用次数。",
+          "strength": "supports",
+          "independent": false,
+          "source": "research/analysis/Q-20260910-01-external-scope-truth-independent-enforcement.md"
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The argument derives from public incident evidence and has independent reader value."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition contains the transferable argument; no distinct community angle is needed."
+      },
+      "inlineFigures": [],
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS"
+    },
+    {
+      "itemId": "Q-20260910-02",
+      "column": "industry-architecture",
+      "category": "daily",
+      "articleType": "technical-analysis",
+      "lifecycle": "Publication Candidate",
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "title": "A Proposed Procedure Is Not Yet Active Authority",
+      "title_zh": "提出新流程，不等于取得生效权",
+      "researchQuestion": "当智能体可以修改将指导未来执行的流程时，什么证据与状态隔离应决定一个提议的结构变化能否成为生效流程？",
+      "coreProposition": "Self-evolving procedures must remain candidate control state until an explicit adoption gate evaluates evidence not used to generate the proposal; the active procedure keeps a separate stable identity until that gate passes.",
+      "articleBriefPath": "research/runtime/production-work/2026/09/10/Q-20260910-02/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/10/Q-20260910-02/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/10/Q-20260910-02/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-10-proposed-procedure-not-active-authority.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-10-proposed-procedure-not-active-authority.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-10-proposed-procedure-not-active-authority-cover.png",
+      "coverRole": "baseline",
+      "sections": [
+        {
+          "module": "governance-implications",
+          "heading": "Procedure Change Is Control Deployment",
+          "heading_zh": "修改流程是在部署控制状态"
+        },
+        {
+          "module": "evidence",
+          "heading": "Why Held-Out Evidence Matters",
+          "heading_zh": "留出证据为什么有价值"
+        },
+        {
+          "module": "technical-analysis",
+          "heading": "Rejection Is a Normal Outcome",
+          "heading_zh": "拒绝不是故障，而是正常结果"
+        },
+        {
+          "module": "comparison",
+          "heading": "Data Separation Is Not Adjudicator Independence",
+          "heading_zh": "数据分离不等于裁决独立"
+        },
+        {
+          "module": "operational-implications",
+          "heading": "What a Minimum Adoption Contract Binds",
+          "heading_zh": "最小采纳合同应绑定什么"
+        },
+        {
+          "module": "counterarguments",
+          "heading": "Passing the Gate Is Not Permanent Proof",
+          "heading_zh": "通过门禁仍不是永久证明"
+        },
+        {
+          "module": "open-questions",
+          "heading": "Boundaries and Open Questions",
+          "heading_zh": "边界与待解决问题"
+        }
+      ],
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "source-reported-claim",
+          "claim": "Procedural Graphs freezes the retained active graph during inference and produces candidates through offline mutation between batches.",
+          "claim_zh": "一手研究报告，流程图方法在推理期间冻结已保留的生效图，并在批次之间离线生成候选。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260910-02-evidence-gated-self-evolving-procedure-adoption.md"
+        },
+        {
+          "id": "E2",
+          "identity": "source-reported-claim",
+          "claim": "Candidates face structural checks and validation on data disjoint from proposal-generating trajectories before replacing the retained graph.",
+          "claim_zh": "一手研究报告，候选在替换已保留图之前，需要通过结构检查，并在与提案生成轨迹分离的数据上验证。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260910-02-evidence-gated-self-evolving-procedure-adoption.md"
+        },
+        {
+          "id": "E3",
+          "identity": "source-reported-claim",
+          "claim": "The reported search history includes no-op rounds, structural rejection, and behavioral rejection when validation performance declined.",
+          "claim_zh": "一手研究报告，搜索历史包含无变更轮次、结构拒绝，以及验证表现下降时的行为拒绝。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260910-02-evidence-gated-self-evolving-procedure-adoption.md"
+        },
+        {
+          "id": "E4",
+          "identity": "source-reported-claim",
+          "claim": "Disjoint datasets coexist with shared underlying model identity across solving, guidance, and refinement in each configuration.",
+          "claim_zh": "一手研究报告，在数据集合相互分离的同时，每种配置中的求解、引导与改进仍可共享同一底层模型。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260910-02-evidence-gated-self-evolving-procedure-adoption.md"
+        },
+        {
+          "id": "E5",
+          "identity": "our-interpretation",
+          "claim": "Procedure activation should be treated as an evidence-bound authority transition with stable identity, explicit adoption, freshness, rejection, and rollback.",
+          "claim_zh": "本文据此解释，流程激活应被视为受证据约束的权限转换，并绑定稳定身份、显式采纳、新鲜度、拒绝与回滚。",
+          "strength": "supports",
+          "independent": false,
+          "source": "research/analysis/Q-20260910-02-evidence-gated-self-evolving-procedure-adoption.md"
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The argument derives from public primary research and has independent reader value."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition contains the transferable argument; no distinct community angle is needed."
+      },
+      "inlineFigures": [],
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS"
+    }
+  ],
+  "githubCommit": "pending",
+  "updatedAt": "2026-09-10T15:17:00+08:00"
+}
