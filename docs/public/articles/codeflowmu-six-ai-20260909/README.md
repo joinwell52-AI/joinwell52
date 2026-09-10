@@ -1,8 +1,8 @@
 # Six AIs, One Task / 六个AI，同一道题
 
-Public article: https://joinwell52-ai.github.io/joinwell52/articles/codeflowmu-six-ai-20260909/index.html
+Public article: https://joinwell52-ai.github.io/joinwell52/zh/research/2026-09-09-codeflowmu-six-ai
 
-English: https://joinwell52-ai.github.io/joinwell52/articles/codeflowmu-six-ai-20260909/en.html
+English: https://joinwell52-ai.github.io/joinwell52/en/research/2026-09-09-codeflowmu-six-ai
 
 Runs: 2026-09-09. Article: 2026-09-10. Test system: CodeFlowMu V2.2.9 / FCoP.
 
@@ -22,7 +22,7 @@ python build-web-preview.py --en
 python -m http.server 8000
 ```
 
-Open http://localhost:8000/index.html or en.html. Browser-native image zoom preserves original screenshot pixels. Static Chinese mechanism diagrams are supplied as figures; the chart script rebuilds the four English quantitative figures from the CSV files. This rebuild is not a rerun of the historical AI experiment.
+The published entry pages redirect to the native Research articles. The rendering scripts can regenerate a standalone local export for offline review; that export is not the website publication route. Browser-native image zoom preserves original screenshot pixels. Static Chinese mechanism diagrams are supplied as figures; the chart script rebuilds the four English quantitative figures from the CSV files. This rebuild is not a rerun of the historical AI experiment.
 
 ## Rights
 

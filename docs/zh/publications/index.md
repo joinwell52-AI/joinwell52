@@ -2,10 +2,6 @@
 
 数字员工工场以版本化方式公开 Runtime 能力、数字员工能力、论文、规范和工程案例。GitHub 是唯一事实源；只有通过相应 Runtime Gate、形成 Git Commit 并完成 Commit Verify 的修订才属于正式交付。
 
-## CodeFlowMu 团队实测
-
-[6个AI，同一道题，会怎么样？](./codeflowmu-six-ai-20260909) — 用CodeFlowMu与FCoP记录六个AI团队的真实工作：派单、交付、独立EVAL、事实核查与失败诊断。 中英双语，附图表、评分、公开来源和EVAL生成代码节选。
-
 ## 当前运行体系
 
 | 类型 | 文档 | 当前版本 | 状态 |

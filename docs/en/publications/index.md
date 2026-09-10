@@ -2,10 +2,6 @@
 
 Digital Employee Works publishes versioned Runtime capabilities, Digital Employee capabilities, papers, specifications, and engineering case reports. GitHub is the single source of truth; a revision is official only after the applicable Runtime Gate, Git commit, and commit verification.
 
-## CodeFlowMu Team Field Test
-
-[Six AIs, One Task: What Happened?](./codeflowmu-six-ai-20260909) — An evidence-backed field test of six AI teams through CodeFlowMu and FCoP: assignment, delivery, independent EVAL and diagnosis. Bilingual, with figures, scoring, public sources and EVAL generation code excerpts.
-
 ## Current operating system
 
 | Type | Document | Current version | Status |
