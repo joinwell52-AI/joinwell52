@@ -15,6 +15,10 @@ publication_authorized: true
 outline: [2, 3]
 sources: ["/articles/codeflowmu-six-ai-20260909/sources.html", "/articles/codeflowmu-six-ai-20260909/source-index.json", "/articles/codeflowmu-six-ai-20260909/scorecard.csv", "/articles/codeflowmu-six-ai-20260909/timing.csv"]
 head:
+  - [meta, { property: "og:type", content: "article" }]
+  - [meta, { property: "og:title", content: "6个AI，同一道题，会怎么样？" }]
+  - [meta, { property: "og:description", content: "用CodeFlowMu与FCoP实测六个AI团队：派单、交付、评分、独立EVAL与失败证据。" }]
+  - [meta, { name: "twitter:card", content: "summary_large_image" }]
   - [link, { rel: canonical, href: "https://joinwell52-ai.github.io/joinwell52/zh/research/2026-09-09-codeflowmu-six-ai" }]
   - [meta, { property: "og:url", content: "https://joinwell52-ai.github.io/joinwell52/zh/research/2026-09-09-codeflowmu-six-ai" }]
   - [meta, { property: "og:image", content: "https://joinwell52-ai.github.io/joinwell52/articles/codeflowmu-six-ai-20260909/assets/hero.png" }]
