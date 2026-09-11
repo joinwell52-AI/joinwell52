@@ -8,15 +8,15 @@
 
 **中文交流稿**
 
-@hyeonsang010716 我们在固定提交 3f9397f 上重跑了这里新增的十个回归，全部通过；保持其他代码和测试不变，只把未发送调用 ID 的 helper 换回 83c737f 的实现，十个均因缺失结果或错误归属而失败。八组 Runner 用例中，最终 done 断言先通过，调用 ID 检查随后才发现遗漏，这个观察点很有启发。
+@hyeonsang010716 读到这次修复后，我们受到了启发，围绕“恢复执行完成，是否就意味着工具结果已经进入下一次模型输入”做了一组小型工程实验。我们在固定提交 3f9397f 上重跑了新增的十个回归，全部通过；保持其他代码和测试不变，只把未发送调用 ID 的 helper 换回 83c737f 的实现，十个均因缺失结果或错误归属而失败。八组 Runner 用例中，最终 done 断言先通过，调用 ID 检查随后才发现遗漏。这个对照让我们更清楚地理解了为什么要直接检查恢复请求中的工具输出。
 
-我们将结论限定为“恢复后每份输出只进入一次 ScriptedModel 输入”，没有写成网络恰好一次保证。这里的预期合同是否也应明确以请求构造为边界，把确认丢失后的重试留给传输层单独验证？
+这些是本地 ScriptedModel 实验。我们的理解是，这次修复确保了受测恢复路径中每份输出只进入一次模型输入；确认丢失后的网络重试还需要另外验证。想请教，这样理解本次修复的保证范围是否准确？
 
 **English draft**
 
-@hyeonsang010716 We reran the ten added regressions on pinned 3f9397f: all passed. Keeping the remaining runtime and tests identical, replacing only the unsent-call helper with its 83c737f implementation made all ten fail on missing output or incorrect ownership. In the eight Runner cases, the final `done` assertion passed before the call-ID assertion exposed the omission.
+@hyeonsang010716 This fix inspired a small engineering experiment around a question: when a resumed run finishes, have its tool outputs actually reached the next model input? We reran the ten added regressions on pinned 3f9397f: all passed. Keeping the remaining runtime and tests identical, replacing only the unsent-call helper with its 83c737f implementation made all ten fail on missing output or incorrect ownership. In the eight Runner cases, the final `done` assertion passed before the call-ID assertion exposed the omission. That contrast helped us understand why inspecting the tool outputs in the resumed request matters.
 
-We describe the result narrowly as once-per-output inclusion in the resumed ScriptedModel input, not network exactly-once delivery. Is request construction the intended guarantee here, with retry after an ambiguous acknowledgement treated as a separate transport-level contract?
+These were local ScriptedModel experiments. Our reading is that the fix ensures each output appears once in the model input on the tested resume paths; network retries after an ambiguous acknowledgement would need separate verification. Does that accurately describe the scope of this fix?
 
 ## Orca：给 @brennanb2025
 
@@ -24,15 +24,15 @@ We describe the result narrowly as once-per-output inclusion in the resumed Scri
 
 **中文交流稿**
 
-@brennanb2025 我们执行了固定 base/head 的原设置与恢复函数，用记录调用的连接替身做了八组对照。明确未列出与退役恢复的 setModel 调用从 1 降为 0；别名、完整 resolved ID、查询失败、空目录与 default-only 的兼容分支均保留。我们没有将这些结果写成真实 Claude 推理验证。
+@brennanb2025 这次修复对历史模型选择和当前模型目录的处理给了我们启发。我们想具体看看：恢复旧选择时，目录明确不支持与目录暂时不可用，会走怎样不同的路径？于是固定了 base/head，运行原设置与恢复函数，用记录调用的连接替身做了八组工程对照。明确未列出与退役恢复的 setModel 调用从 1 降为 0；别名、完整 resolved ID、查询失败、空目录与 default-only 的兼容分支均保留。
 
-有价值的地方是没有把“目录未知”包装成“明确不支持”。产品显示上，是否值得把“兼容允许尝试”与“当前目录明确列出”分别呈现，同时与现有的实际采用确认保持区分？
+这个实验帮助我们认识到，“允许尝试”与“当前目录明确支持”需要分别理解。我们没有运行真实 Claude，因此结论只到设置和恢复函数的调用边界。想请教，目录未知时保留尝试机会、把模型是否实际采用留给后续确认，是否符合这里的设计意图？
 
 **English draft**
 
-@brennanb2025 We ran eight base/head comparisons using the pinned original setting and restore functions with a recording connection double. Unlisted changes and retired restores went from one `setModel` call to zero; aliases, resolved IDs, failed queries, empty catalogs, and default-only compatibility remained usable. We did not rerun the real Claude binary.
+@brennanb2025 The way this fix handles saved model choices against the current model catalog inspired us to explore a specific question: how does restoring an old choice differ when the catalog excludes it versus when the catalog is unavailable? We ran eight engineering comparisons using the pinned base/head setting and restore functions with a recording connection double. Unlisted changes and retired restores went from one `setModel` call to zero; aliases, resolved IDs, failed queries, empty catalogs, and default-only compatibility remained usable.
 
-Preserving “unknown” rather than relabeling it “unsupported” is a useful distinction. Would it be valuable to distinguish compatibility-admitted choices from provider-listed choices in the product, separately from the existing evidence of actual adoption?
+The experiment helped us distinguish permission to try a choice from explicit support in the current catalog. We did not run the real Claude binary, so our observations stop at the setting and restore call boundary. Is the intent to preserve the opportunity to try when the catalog is unknown, leaving confirmation of actual model adoption to a later step?
 
 ## Superset：给 @saddlepaddle
 
