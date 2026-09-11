@@ -1,0 +1,54 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-11",
+  "itemId": "Q-20260911-01",
+  "researchObjectId": "Q-20260911-01",
+  "targetAudience": {
+    "primary": "Architects and governance owners of long-lived digital employees",
+    "knowledgeAssumption": "The reader understands memory retrieval, provenance, model judgment, and recovery.",
+    "readerProblem": "A later summary or semantic classification can overwrite or hide the only evidence future decisions depend on."
+  },
+  "whyNow": "ROAM provides fresh primary-study evidence for keeping atomic observations immutable while relation judgments and active retrieval views evolve.",
+  "externalHook": {
+    "type": "memory-update-silently-rewrites-evidence",
+    "description": "A later interpretation becomes the only surviving truth even though the source observation still matters for audit and recovery.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "E4",
+      "E5"
+    ]
+  },
+  "coreProposition": "Long-lived memory should make evidence harder to mutate than interpretation by separating immutable observations, relation decisions, active retrieval views, and recoverable evidence history.",
+  "originalValue": {
+    "type": "four-identity-memory-contract",
+    "description": "Separates observation identity, relation-decision identity, active-view identity, and evidence-history identity so semantic errors remain reversible."
+  },
+  "readerTakeaway": "Preserve source observations and transformation provenance independently from the active retrieval view; rebuild interpretations without recreating evidence from summaries.",
+  "evidenceBoundary": {
+    "supported": [
+      "The study stores incoming observations as immutable atomic records.",
+      "Semantic relation labels drive deterministic precedence after classification.",
+      "Active primary and fused views differ from the preserved evidence substrate.",
+      "Reported benchmark and ablation results support the tested memory mechanism."
+    ],
+    "unsupported": [
+      "A claim that the active view is always true",
+      "A claim that immutable storage supplies execution authorization",
+      "A proof of distributed crash consistency or exactly-once ingestion"
+    ],
+    "uncertain": [
+      "When relation decisions should expire",
+      "How much demoted evidence audit retrieval should expose",
+      "How concurrent contradictions should be ordered"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument derives from public primary research and remains independently useful."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The evidence supports a bounded memory-state architecture while preserving authorization and production limits."
+}

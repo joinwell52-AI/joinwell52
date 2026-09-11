@@ -1,0 +1,85 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-11",
+  "itemId": "Q-20260911-01",
+  "coreProposition": "Long-lived memory should make evidence harder to mutate than interpretation by separating immutable observations, relation decisions, active retrieval views, and recoverable evidence history.",
+  "openingMove": {
+    "type": "later-summary-replaces-source",
+    "purpose": "Open with a later interpretation becoming the only surviving memory for a consequential decision.",
+    "evidenceRefs": [
+      "E1",
+      "E3"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why should source observations outlive interpretation?",
+      "claim": "Immutable atomic records let later reviewers disagree with a semantic judgment without reconstructing history from summaries.",
+      "evidenceRefs": [
+        "E1",
+        "E6"
+      ],
+      "reasoningRole": "architecture-implication",
+      "readerProgress": "Separate evidence from interpretation.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What does deterministic transition actually guarantee?",
+      "claim": "Fixed precedence makes post-classification transitions reproducible but does not make the semantic label correct.",
+      "evidenceRefs": [
+        "E2"
+      ],
+      "reasoningRole": "technical-analysis",
+      "readerProgress": "Separate deterministic transition from semantic truth.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "How can evidence survive but lose influence?",
+      "claim": "A record can remain stored while active retrieval prefers a primary or fused view.",
+      "evidenceRefs": [
+        "E3"
+      ],
+      "reasoningRole": "failure-mechanism",
+      "readerProgress": "Distinguish storage presence from retrieval authority.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What identities make memory recoverable?",
+      "claim": "Observation, relation decision, active view, evidence history, and retrieval policy need independent provenance and versioning.",
+      "evidenceRefs": [
+        "E1",
+        "E2",
+        "E3",
+        "E6"
+      ],
+      "reasoningRole": "operational-implication",
+      "readerProgress": "Gain a concrete governed memory contract.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What does benchmark performance not prove?",
+      "claim": "Memory QA improvements do not establish authorization validity, external-effect safety, or distributed recovery.",
+      "evidenceRefs": [
+        "E4",
+        "E5"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "Keep the mechanism evidence bounded.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "If the old record remains stored, the system has lost nothing.",
+    "responseBoundary": "Bytes can survive while influence, discoverability, and relation provenance disappear from ordinary and recovery paths."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with expiry, provenance, contradiction ordering, audit retrieval, and recovery identity."
+  }
+}
