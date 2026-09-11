@@ -1,0 +1,287 @@
+{
+  "schema": "runtime-publication-candidate/v2",
+  "date": "2026-09-11",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Production",
+  "sourceRecord": "research/runtime/records/daily/2026/09/2026-09-11-daily-runtime.json",
+  "reason": "Two authorized 2026-09-11 Research Objects were converted into complete bilingual Editorial Architecture 2.1 candidates with verified planning artifacts, bounded evidence claims, and deterministic baseline covers.",
+  "reason_zh": "两份已授权的 2026-09-11 研究对象已转换为完整双语编辑架构 2.1 候选，具备已核验规划工件、有边界的证据声明与确定性基础题图。",
+  "candidates": [
+    {
+      "itemId": "Q-20260911-01",
+      "column": "digital-employee",
+      "category": "daily",
+      "articleType": "technical-analysis",
+      "lifecycle": "Publication Candidate",
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "title": "Memory May Revise Interpretation, Not Evidence",
+      "title_zh": "记忆可以改写解释，不能改写证据",
+      "researchQuestion": "当长寿命智能体持续更新记忆时，哪些状态应保持不可变，哪些状态可以重新解释，又必须保留什么恢复证据，才能避免错误语义判断悄悄改写未来决策所依赖的证据历史？",
+      "coreProposition": "Long-lived memory should make evidence harder to mutate than interpretation by separating immutable observations, relation decisions, active retrieval views, and recoverable evidence history.",
+      "articleBriefPath": "research/runtime/production-work/2026/09/11/Q-20260911-01/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/11/Q-20260911-01/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/11/Q-20260911-01/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-11-memory-interpretation-not-evidence.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-11-memory-interpretation-not-evidence.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-11-memory-interpretation-not-evidence-cover.png",
+      "coverRole": "baseline",
+      "sections": [
+        {
+          "module": "technical-analysis",
+          "heading": "What Non-Destructive Storage Protects",
+          "heading_zh": "非破坏式存储保护了什么"
+        },
+        {
+          "module": "technical-analysis",
+          "heading": "Deterministic Transition Is Not Semantic Truth",
+          "heading_zh": "确定性迁移不等于语义正确"
+        },
+        {
+          "module": "evidence",
+          "heading": "A Stored Record Can Lose Influence",
+          "heading_zh": "记录还在，也可能失去影响"
+        },
+        {
+          "module": "architecture-implications",
+          "heading": "Four Identities Make Error Recoverable",
+          "heading_zh": "四个身份让错误可以恢复"
+        },
+        {
+          "module": "operational-implications",
+          "heading": "Memory Decisions Need Freshness",
+          "heading_zh": "记忆更新需要新鲜度"
+        },
+        {
+          "module": "governance-implications",
+          "heading": "Remembered Approval Is Not Current Authority",
+          "heading_zh": "记住批准，不等于当前获准"
+        },
+        {
+          "module": "evidence",
+          "heading": "What the Benchmarks Establish",
+          "heading_zh": "基准成绩能说明什么"
+        },
+        {
+          "module": "open-questions",
+          "heading": "Boundaries and Open Questions",
+          "heading_zh": "边界与待解决问题"
+        }
+      ],
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "source-reported-claim",
+          "claim": "ROAM preserves incoming observations as immutable atomic records while later semantic relations alter roles rather than source text.",
+          "claim_zh": "一手研究报告，该方法将新观察保存为不可变原子记录，后续语义关系只改变角色而不改写来源文本。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260911-01-immutable-evidence-mutable-semantic-memory.md"
+        },
+        {
+          "id": "E2",
+          "identity": "source-reported-claim",
+          "claim": "A deterministic precedence rule governs state transition after a model-mediated relation label is produced.",
+          "claim_zh": "一手研究报告，在模型产生关系标签后，固定优先规则负责确定性状态迁移。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260911-01-immutable-evidence-mutable-semantic-memory.md"
+        },
+        {
+          "id": "E3",
+          "identity": "source-reported-claim",
+          "claim": "Primary and fused retrieval views change answer-time influence while underlying atomic records remain preserved.",
+          "claim_zh": "一手研究报告，主要视图和融合视图会改变回答时的影响力，而底层原子记录仍被保留。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260911-01-immutable-evidence-mutable-semantic-memory.md"
+        },
+        {
+          "id": "E4",
+          "identity": "source-reported-claim",
+          "claim": "Reported benchmark and ablation results support relation-aware management, non-destructive organization, and retrieval choices under tested memory workloads.",
+          "claim_zh": "一手研究报告，基准与消融结果在测试的记忆任务中支持关系管理、非破坏式组织和检索选择。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260911-01-immutable-evidence-mutable-semantic-memory.md"
+        },
+        {
+          "id": "E5",
+          "identity": "our-interpretation",
+          "claim": "Observation, relation decision, active view, and evidence history require separate identities so semantic errors remain reversible.",
+          "claim_zh": "本文据此解释，观察、关系决定、当前视图和证据历史应拥有不同身份，使语义错误可以撤销。",
+          "strength": "supports",
+          "independent": false,
+          "source": "research/analysis/Q-20260911-01-immutable-evidence-mutable-semantic-memory.md"
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The argument derives from public primary research and has independent reader value."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition carries the transferable argument without a distinct community angle."
+      },
+      "inlineFigures": [],
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS"
+    },
+    {
+      "itemId": "Q-20260911-02",
+      "column": "industry-architecture",
+      "category": "daily",
+      "articleType": "technical-analysis",
+      "lifecycle": "Publication Candidate",
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "title": "Deterministic Coordination Starts Where Semantics Become Observable",
+      "title_zh": "语义可观察，确定性协调才成立",
+      "researchQuestion": "当复合智能体系统用确定性机制替代生成式协调管理器时，什么证据足以证明局部可复现的单元选择可以承担全局业务含义？",
+      "coreProposition": "Deterministic coordination may carry business meaning only when unit identity, candidate admissibility, and relevant coupling constraints are sufficiently observable; reproducibility and provenance do not settle hidden semantics.",
+      "articleBriefPath": "research/runtime/production-work/2026/09/11/Q-20260911-02/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/11/Q-20260911-02/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/11/Q-20260911-02/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-11-observable-semantics-deterministic-coordination.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-11-observable-semantics-deterministic-coordination.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-11-observable-semantics-deterministic-coordination-cover.png",
+      "coverRole": "baseline",
+      "sections": [
+        {
+          "module": "architecture-implications",
+          "heading": "Deterministic Selection Requires a Representation Contract",
+          "heading_zh": "确定性选择先依赖表示合同"
+        },
+        {
+          "module": "technical-analysis",
+          "heading": "What Order-Invariance Removes",
+          "heading_zh": "顺序无关消除了什么"
+        },
+        {
+          "module": "evidence",
+          "heading": "Why Unit-Level Provenance Matters",
+          "heading_zh": "单元级出处为何重要"
+        },
+        {
+          "module": "operational-implications",
+          "heading": "Residual Work Needs an Identity",
+          "heading_zh": "剩余工作必须拥有身份"
+        },
+        {
+          "module": "technical-analysis",
+          "heading": "Coupling Determines Whether Local Results Compose",
+          "heading_zh": "耦合决定局部结果能否组合"
+        },
+        {
+          "module": "architecture-implications",
+          "heading": "A Minimum Coordination Contract",
+          "heading_zh": "一份最小协调合同"
+        },
+        {
+          "module": "counterarguments",
+          "heading": "When Intelligent Management Must Remain",
+          "heading_zh": "何时必须保留智能管理"
+        },
+        {
+          "module": "comparison",
+          "heading": "Evidence Boundaries of the Comparisons",
+          "heading_zh": "比较结果的证据边界"
+        },
+        {
+          "module": "open-questions",
+          "heading": "Boundaries and Open Questions",
+          "heading_zh": "边界与待解决问题"
+        }
+      ],
+      "endingModule": "open-questions",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "source-reported-claim",
+          "claim": "UnitBoost represents target output as identifiable units, selects admissible candidate values deterministically, records unit provenance, and materializes residual work.",
+          "claim_zh": "一手研究报告，该方法把目标输出表示为可识别单元，确定性选择合格候选，记录单元出处并物化剩余工作。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260911-02-observable-units-deterministic-coordination-boundary.md"
+        },
+        {
+          "id": "E2",
+          "identity": "source-reported-claim",
+          "claim": "Under stated assumptions, the selection operator is order-invariant.",
+          "claim_zh": "一手研究报告，在声明假设成立时，选择算子不受候选顺序影响。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260911-02-observable-units-deterministic-coordination-boundary.md"
+        },
+        {
+          "id": "E3",
+          "identity": "source-reported-claim",
+          "claim": "Reported held-out comparisons show gains over strongest single candidates and tested generative managers across multiple configurations.",
+          "claim_zh": "一手研究报告，多组留出比较中，单元级协调超过最强单一候选及被测试的生成式管理器。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260911-02-observable-units-deterministic-coordination-boundary.md"
+        },
+        {
+          "id": "E4",
+          "identity": "source-reported-claim",
+          "claim": "True residual targeting outperforms random targeting and rereading controls in the reported experiments.",
+          "claim_zh": "一手研究报告，针对真实剩余单元的后续处理优于随机目标和重新阅读对照。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260911-02-observable-units-deterministic-coordination-boundary.md"
+        },
+        {
+          "id": "E5",
+          "identity": "our-interpretation",
+          "claim": "Deterministic coordination can own only decisions whose unit identities, admissibility inputs, and coupling constraints are sufficiently observable.",
+          "claim_zh": "本文据此解释，确定性协调只能负责单元身份、准入输入和耦合约束足够可观察的决定。",
+          "strength": "supports",
+          "independent": false,
+          "source": "research/analysis/Q-20260911-02-observable-units-deterministic-coordination-boundary.md"
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The argument derives from public primary research and has independent reader value."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition carries the transferable argument without a distinct community angle."
+      },
+      "inlineFigures": [],
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS"
+    }
+  ],
+  "githubCommit": "pending",
+  "updatedAt": "2026-09-11T15:11:00+08:00"
+}
