@@ -29,7 +29,7 @@
       "coverRole": "baseline",
       "sections": [
         {
-          "module": "technical-analysis",
+          "module": "memory-evidence-separation",
           "heading": "What Non-Destructive Storage Protects",
           "heading_zh": "非破坏式存储保护了什么"
         },
@@ -59,7 +59,7 @@
           "heading_zh": "记住批准，不等于当前获准"
         },
         {
-          "module": "evidence",
+          "module": "benchmark-boundaries",
           "heading": "What the Benchmarks Establish",
           "heading_zh": "基准成绩能说明什么"
         },
@@ -140,7 +140,11 @@
       },
       "coverGate": "PASS",
       "inlineVisualGate": "PASS",
-      "layoutGate": "PASS"
+      "layoutGate": "PASS",
+      "moduleDefinitions": {
+        "memory-evidence-separation": "Separates immutable source observations from mutable semantic interpretation.",
+        "benchmark-boundaries": "States what tested memory benchmarks support and what they do not establish."
+      }
     },
     {
       "itemId": "Q-20260911-02",
@@ -183,12 +187,12 @@
           "heading_zh": "剩余工作必须拥有身份"
         },
         {
-          "module": "technical-analysis",
+          "module": "coupling-boundary",
           "heading": "Coupling Determines Whether Local Results Compose",
           "heading_zh": "耦合决定局部结果能否组合"
         },
         {
-          "module": "architecture-implications",
+          "module": "coordination-contract",
           "heading": "A Minimum Coordination Contract",
           "heading_zh": "一份最小协调合同"
         },
@@ -279,9 +283,13 @@
       },
       "coverGate": "PASS",
       "inlineVisualGate": "PASS",
-      "layoutGate": "PASS"
+      "layoutGate": "PASS",
+      "moduleDefinitions": {
+        "coupling-boundary": "Explains when cross-unit dependencies invalidate independent local selection.",
+        "coordination-contract": "Defines the observable states required for auditable deterministic coordination."
+      }
     }
   ],
   "githubCommit": "pending",
-  "updatedAt": "2026-09-11T15:11:00+08:00"
+  "updatedAt": "2026-09-11T15:13:00+08:00"
 }
