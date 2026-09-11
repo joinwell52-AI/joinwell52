@@ -1,0 +1,310 @@
+{
+  "schema": "research-intelligence-run/v1",
+  "version": "1.0",
+  "date": "2026-09-11",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "registryVersion": "1.0",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-09-11T09:12:00+08:00",
+  "githubCommit": "pending",
+  "researchCoverage": {
+    "policy": "theme-sample-v1",
+    "rollingResearchWindowDays": 30,
+    "sampleFamilies": {
+      "product-governance": {
+        "checked": [
+          "Paperclip scoped board API-key authority contract (PR #10972, open/unmerged)",
+          "Microsoft Agent Governance Toolkit runtime policy/identity stack"
+        ],
+        "qualifiedSignals": 0
+      },
+      "multi-agent-mechanism": {
+        "checked": [
+          "CrewAI Flows persistence and resumable long-running workflow boundary",
+          "OpenHands Agent Canvas / Agent Server / Sandbox Server execution separation"
+        ],
+        "qualifiedSignals": 0
+      },
+      "research-benchmark-industry": {
+        "checked": [
+          "UnitBoost deterministic compound-system merge operator (arXiv:2609.09815)",
+          "Avatar pluggable rule/LLM scientific workflow orchestration (arXiv:2609.10509)",
+          "ROAM relation-guided long-term agent memory management (arXiv:2609.09778)"
+        ],
+        "qualifiedSignals": 3
+      }
+    }
+  },
+  "reason": "All three formal Discovery pipelines reached terminal coverage and the rotated theme-first sample overlay was completed without topic selection. Seven qualified, non-duplicate signals were retained after normalization against recent Signal Pools: two platform/runtime governance mechanisms, two merged engineering mechanisms, and three primary-research findings. AI Platform resolved all 45 due public channels directly. GitHub Engineering resolved all nine P0 daily repositories. Published Research terminally resolved all nine P0 sources as eight direct checks plus one explicitly recorded Journal of Systems and Software fetch failure. Pure sample-change-trigger density is 0%.",
+  "reason_zh": "三条正式 Discovery 管线均完成终态覆盖，并完成轮换后的主题优先主动样本检查，未执行选题。与近期 Signal Pool 按研究问题规范化去重后保留 7 个合格 Signal：2 个平台/Runtime 治理机制、2 个已合并工程机制、3 个一手研究发现。AI Platform 的 45 个到期公共通道全部直接完成检查；GitHub Engineering 的 9 个 P0 Daily 仓库全部收口；Published Research 的 9 个 P0 来源全部终态处理，其中 8 个直接完成检查，Journal of Systems and Software 的抓取失败被明确记录。纯 sample-change-trigger 占比为 0%。",
+  "pipelines": [
+    {
+      "id": "ai-platform",
+      "label": "AI Platform Change Intelligence",
+      "label_zh": "AI 平台变更情报发现",
+      "status": "Completed",
+      "due": 45,
+      "checked": 45,
+      "inaccessible": [],
+      "failed": [],
+      "signals": 2,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All 45 due P0 public channels across OpenAI, Anthropic, Google, Cursor, GitHub Copilot and Microsoft Copilot were directly checked. Two new non-duplicate mechanisms crossed the threshold: Claude Managed Agents added call-time server evaluation with durable allow/ask/deny evidence, and Cursor Projects introduced a persistent coordinator layer that delegates long-running work across cloud/local agents with shared project context and subscriptions.",
+      "reason_zh": "OpenAI、Anthropic、Google、Cursor、GitHub Copilot 与 Microsoft Copilot 六组共 45 个到期 P0 公共通道均直接完成检查。保留 2 个新的非重复机制：Claude Managed Agents 新增逐调用服务器评估并持久暴露 allow/ask/deny 证据；Cursor Projects 引入长期存在的协调者层，在云端/本地 Agent 间委派工作，并共享项目上下文和订阅触发。"
+    },
+    {
+      "id": "github-engineering",
+      "label": "GitHub Engineering Intelligence",
+      "label_zh": "GitHub 工程情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 9,
+      "inaccessible": [],
+      "failed": [],
+      "signals": 2,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 daily repositories were checked incrementally. Two merged mechanisms were retained: Codex now refreshes global instructions at model-request boundaries and binds new subagents/reviewer reuse to the applied instruction snapshot; OpenAI Agents SDK now preserves locally produced but undelivered tool-error outputs across server-managed HITL resume so each result is delivered exactly once.",
+      "reason_zh": "9 个 P0 Daily 仓库均完成增量检查。保留 2 个已合并机制：Codex 现在在模型请求边界刷新全局指令，并把新 Subagent 与 Reviewer 复用绑定到已应用的指令快照；OpenAI Agents SDK 则在服务器托管 HITL 恢复中保留已本地产生但尚未交付的工具错误结果，保证每个结果恰好交付一次。"
+    },
+    {
+      "id": "published-research",
+      "label": "Published Research Intelligence",
+      "label_zh": "论文与研究成果情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 8,
+      "inaccessible": [],
+      "failed": [
+        {
+          "source": "https://www.sciencedirect.com/journal/journal-of-systems-and-software",
+          "reason": "The Journal of Systems and Software public journal surface returned an internal fetch error during this run; the failure is recorded rather than counted as checked."
+        }
+      ],
+      "signals": 3,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 research sources were terminally resolved under the rolling seven-day pass with a thirty-day expansion where useful: eight were directly checked and the Journal of Systems and Software public surface returned an explicitly recorded fetch failure. Three non-duplicate primary-research findings were retained around deterministic compound-system management, pluggable rule/LLM orchestration with independent provenance monitoring, and relation-guided memory organization that separates semantic interpretation from destructive storage mutation.",
+      "reason_zh": "9 个 P0 研究来源均按滚动 7 天检查并在需要时扩展至 30 天完成终态处理：8 个直接完成检查，Journal of Systems and Software 公共页面的抓取失败被明确记录。保留 3 个非重复一手研究发现，分别涉及确定性的复合系统管理、规则/LLM 可插拔且独立保留 Provenance Monitor 的编排架构，以及将语义关系判断与破坏性存储修改分离的长期记忆组织。"
+    }
+  ],
+  "columns": [
+    {
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "decision": "Waiting",
+      "signals": 3,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded three primary Digital Employee signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 3 个以数字员工为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    },
+    {
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded two primary Industry Architecture signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以行业架构为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    },
+    {
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded two primary Open-source Engineering signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以开源工程为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    }
+  ],
+  "signals": [
+    {
+      "id": "SIG-20260911-001",
+      "pipeline": "ai-platform",
+      "title": "Claude Managed Agents makes permission evaluation a per-call runtime fact with allow, ask and deny outcomes",
+      "title_zh": "Claude Managed Agents 将权限评估变成逐调用 Runtime 事实，并显式产生 allow/ask/deny",
+      "sourceUrl": "https://platform.claude.com/docs/en/managed-agents/permission-policies",
+      "publishedAt": "2026-09-10",
+      "evidenceLevel": "official_documentation",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["industry-architecture", "open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "anthropic-managed-agents/auto-call-time-permission-evaluation",
+      "summary": "Claude Managed Agents added an `auto` permission policy in which the server evaluates each agent or MCP tool call using the tool, its input and session context, then runs it, denies it, or pauses for approval. Tool-use events expose `evaluated_permission`, the evaluation type and reason codes; server-denied calls cannot be overridden by the client. Custom tools remain outside this server policy boundary.",
+      "summary_zh": "Claude Managed Agents 新增 `auto` 权限策略：服务器结合工具、调用输入与会话上下文逐次评估 Agent/MCP Tool Call，然后选择直接运行、拒绝或暂停等待审批。Tool-use 事件会暴露 `evaluated_permission`、评估类型与 reason code；服务器拒绝的调用不能由客户端覆盖。Custom Tool 仍位于该服务器策略边界之外。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["call-time-authorization", "tool-call-mediation", "auditability", "hitl-boundary"],
+      "sampleIds": ["anthropic-claude"],
+      "researchValue": {
+        "failure": "Static tool enablement or a prior approval policy cannot express whether this particular call is authorized under its current input and session context.",
+        "finding": "",
+        "mechanism": "Evaluate each server-executed tool call at runtime, materialize allow/ask/deny as an event fact with reason codes, and keep mandatory human-review tools on an explicit always-ask path.",
+        "implication": "Agent governance benefits from separating capability availability, call-time authorization, and human-review requirements instead of treating one tool permission setting as all three."
+      }
+    },
+    {
+      "id": "SIG-20260911-002",
+      "pipeline": "ai-platform",
+      "title": "Cursor Projects turns a coordinator into a persistent manager over cloud and local agents rather than a coding worker",
+      "title_zh": "Cursor Projects 将 Coordinator 做成跨云端与本地 Agent 的持久经理，而不是编码 Worker",
+      "sourceUrl": "https://cursor.com/changelog/projects",
+      "publishedAt": "2026-09-10",
+      "evidenceLevel": "official_announcement",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "cursor-projects/persistent-coordinator-shared-context-subscriptions",
+      "summary": "Cursor Projects introduces a coordinator that does not write code itself: it plans, creates and manages implementing agents, and returns finished work for review. A Project runs on a cloud computer, can spawn local agents for machine-specific testing, keeps shared files and learned instructions synchronized across participating machines, and can wake on schedules, Slack activity or PR events.",
+      "summary_zh": "Cursor Projects 引入不直接写代码的 Coordinator：它负责规划、创建和管理实现 Agent，并把完成成果带回供检查。Project 在独立云端计算机上长期运行，需要本机测试时可启动 Local Agent；共享文件和学习到的指令在参与机器间同步，并可由 Schedule、Slack 或 PR 事件持续唤醒。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["manager-worker-separation", "long-running-agents", "shared-context", "event-driven-execution"],
+      "sampleIds": ["cursor"],
+      "researchValue": {
+        "failure": "A single coding-agent session does not naturally provide durable project-level management, parallel delegation, cross-machine execution and recurring wake behavior over months.",
+        "finding": "",
+        "mechanism": "Introduce a persistent coordinator that owns planning/delegation while workers execute on isolated cloud or local machines, with project-scoped shared context and event subscriptions.",
+        "implication": "Long-lived digital work is converging on an organizational runtime layer above individual coding sessions; the manager role, shared context boundary and worker-host handoff become first-class product objects."
+      }
+    },
+    {
+      "id": "SIG-20260911-003",
+      "pipeline": "github-engineering",
+      "title": "Codex refreshes effective instructions at model-request boundaries instead of freezing startup policy for the whole thread",
+      "title_zh": "Codex 在模型请求边界刷新有效指令，不再把启动时策略冻结到整个 Thread",
+      "sourceUrl": "https://github.com/openai/codex/pull/44675",
+      "publishedAt": "2026-09-10",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "openai-codex/global-instruction-refresh-request-boundary",
+      "summary": "Codex now reloads global AGENTS.md instructions when capturing model-request context, including after tools within the same turn. It preserves the last successful instructions through transient read failures, serializes refreshes, lets new subagents inherit the parent's applied snapshot, and makes Guardian reviewer reuse sensitive to refreshed instructions.",
+      "summary_zh": "Codex 现在会在捕获模型请求上下文时重新加载全局 AGENTS.md，包括同一 Turn 的工具调用之后。临时读取失败时保留最近一次成功指令，刷新过程串行化；新 Subagent 继承父级已应用指令快照，Guardian Reviewer 的复用也会考虑刷新后的指令。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["policy-revision", "context-admission", "subagent-inheritance", "review-reuse"],
+      "sampleIds": ["openai-codex"],
+      "researchValue": {
+        "failure": "A long-running thread can keep acting under stale startup instructions even after its authoritative global policy changes.",
+        "finding": "",
+        "mechanism": "Recompute the effective instruction snapshot at model-request boundaries, preserve only the last successfully read policy through transient failures, and bind child/reviewer reuse to the applied snapshot.",
+        "implication": "Runtime authority should bind an execution step to a current policy/instruction revision; session continuity alone should not freeze authority context."
+      }
+    },
+    {
+      "id": "SIG-20260911-004",
+      "pipeline": "github-engineering",
+      "title": "OpenAI Agents SDK distinguishes produced, delivered and replayable tool results across server-managed HITL resume",
+      "title_zh": "OpenAI Agents SDK 在服务器托管 HITL 恢复中区分已产生、已交付与可重放 Tool Result",
+      "sourceUrl": "https://github.com/openai/openai-agents-python/pull/4947",
+      "publishedAt": "2026-09-10",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee", "industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "openai-agents-python/server-managed-resume-undelivered-tool-output",
+      "summary": "A response can contain both an approval-gated tool call and a missing-tool call whose error output is constructed locally before interruption. The Agents SDK fix prevents server-managed continuation from treating that local-but-undelivered result as already sent; it uses the latest model-response tool-call IDs to recover the interrupted-turn boundary while avoiding duplicate delivery of server-owned items.",
+      "summary_zh": "一次模型响应可能同时包含等待审批的 Tool Call 与缺失工具调用，后者的错误结果会在中断前由 Runner 本地产生。Agents SDK 的修复避免服务器托管 Continuation 把这种‘已本地产生但未交付’的结果误认为已发送；它用最新模型响应中的 Tool Call ID 恢复中断 Turn 边界，同时避免重复发送服务器已拥有的 Item。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["hitl-resume", "result-delivery", "exactly-once", "recovery-causality"],
+      "sampleIds": ["openai-agents-python"],
+      "researchValue": {
+        "failure": "Persisting or locally constructing a tool result does not prove the remote continuation state has received it; treating those facts as equivalent can leave an unresolved call or cause duplicate delivery.",
+        "finding": "",
+        "mechanism": "Track the interrupted turn from authoritative call IDs, distinguish server-owned from unsent local results, and deliver each pending result exactly once on resume.",
+        "implication": "Durable agent recovery needs separate facts for result production, persistence, delivery and acknowledgement rather than a single broad 'completed tool call' bit."
+      }
+    },
+    {
+      "id": "SIG-20260911-005",
+      "pipeline": "published-research",
+      "title": "UnitBoost replaces a generative multi-agent manager with an order-free operator that preserves unit provenance and explicit residual work",
+      "title_zh": "UnitBoost 用无序依赖的确定性算子替代生成式多 Agent Manager，并保留 Unit Provenance 与显式残差",
+      "sourceUrl": "https://arxiv.org/abs/2609.09815",
+      "publishedAt": "2026-09-09",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee", "open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "unitboost/deterministic-order-invariant-compound-system-manager",
+      "summary": "UnitBoost asks whether a compound LLM system needs a generative meta-agent at all. It maps worker outputs into task-defined units, uses constrained argmax to assemble accepted slot values, records unit provenance, and turns unsupported slots into an explicit residual for later rounds. The authors report gains over generative managers on held-out benchmarks while exposing three measurable conditions where the mechanism cannot help.",
+      "summary_zh": "UnitBoost 直接追问复合 LLM 系统是否真的需要生成式 Meta-agent。它把 Worker 输出映射到任务定义的 Unit，以受约束 Argmax 组装已接受 Slot，记录 Unit Provenance，并把未支持的 Slot 显式转成后续轮次的 Residual。作者在多个留出基准上报告优于生成式 Manager 的结果，同时给出三类该机制无法获益的可测边界。",
+      "signalRole": "research-finding",
+      "researchThemes": ["deterministic-orchestration", "multi-agent-management", "provenance", "order-invariance"],
+      "sampleIds": ["unitboost"],
+      "researchValue": {
+        "failure": "A generative manager can concentrate selection, synthesis, stopping and later-call allocation in one opaque order-sensitive model decision.",
+        "finding": "The paper reports that replacing only the management step improves six compound-system configurations and that residual-directed rounds improve FanOutQA cell F1 from 0.4778 to 0.5524.",
+        "mechanism": "Use a task-defined unit map, deterministic constrained selection, explicit provenance and residual work instead of asking another model to rewrite the final result.",
+        "implication": "Some coordination decisions can be made more testable by moving them from a semantic manager into a deterministic operator, but only where unit identity and coupling assumptions are observable."
+      }
+    },
+    {
+      "id": "SIG-20260911-006",
+      "pipeline": "published-research",
+      "title": "Avatar keeps orchestration policy pluggable while holding executor and provenance monitoring boundaries constant",
+      "title_zh": "Avatar 让编排策略可插拔，同时保持 Executor 与 Provenance Monitor 边界稳定",
+      "sourceUrl": "https://arxiv.org/abs/2609.10509",
+      "publishedAt": "2026-09-09",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "avatar/pluggable-rule-llm-orchestration-shared-action-catalog",
+      "summary": "Avatar separates a scientific workflow system into orchestrator, executor and provenance-monitor actors. Each actor can use rule-based or LLM-backed decision policy through the same adapter-validated action catalog, allowing conventional and agentic control to run on one core. The authors report rule mode reproducing native execution across three workloads and LLM-backed mode reducing compute wastage and GPU-busy time in their evaluation.",
+      "summary_zh": "Avatar 将科学 Workflow 系统拆成 Orchestrator、Executor 与 Provenance Monitor 三类 Actor。每个 Actor 都可通过同一个经 Adapter 校验的 Action Catalog 使用规则策略或 LLM 策略，使传统控制和 Agentic 控制运行在同一 Core 上。作者报告 Rule Mode 在三类 Workload 上可复现原生执行，并在其评估中观察到 LLM-backed Mode 降低计算浪费和 GPU Busy Time。",
+      "signalRole": "research-finding",
+      "researchThemes": ["policy-execution-separation", "provenance-monitoring", "hybrid-orchestration", "action-catalog"],
+      "sampleIds": ["avatar-scientific-workflow"],
+      "researchValue": {
+        "failure": "Hard-wiring either deterministic rules or LLM reasoning into the workflow engine makes it difficult to compare control strategies while preserving the same execution and provenance semantics.",
+        "finding": "Across three workloads, the paper reports an unchanged core for rule-mode reproduction and reductions of 55% in compute wastage and 40% in GPU-busy time for its LLM-backed evaluation.",
+        "mechanism": "Separate orchestrator, executor and provenance monitor, then swap rule or LLM policy behind one validated action catalog.",
+        "implication": "A production agent runtime can preserve deterministic execution/provenance boundaries while allowing semantic reasoning to be introduced only at explicitly chosen policy points."
+      }
+    },
+    {
+      "id": "SIG-20260911-007",
+      "pipeline": "published-research",
+      "title": "ROAM manages long-term agent memory through explicit semantic relations instead of direct LLM rewrite/delete decisions",
+      "title_zh": "ROAM 通过显式语义关系管理长期 Agent Memory，而不是让 LLM 直接改写或删除",
+      "sourceUrl": "https://arxiv.org/abs/2609.09778",
+      "publishedAt": "2026-09-09",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "roam/relation-guided-primary-evidence-memory-organization",
+      "summary": "ROAM classifies incoming and stored atomic memories as independent, equivalent, directionally subsuming or conflicting, then organizes observations into active Primary and supporting Evidence roles. It retrieves only Primary views while retaining supporting evidence and fuses complementary or temporal information for answer-time use, reducing the need for one LLM operation to simultaneously interpret meaning and mutate storage.",
+      "summary_zh": "ROAM 将新旧 Atomic Memory 的关系显式分类为独立、等价、单向包含或冲突，再把 Observation 组织成 Active Primary 与 Supporting Evidence。回答时只检索 Primary View，但保留支撑证据，并把互补或时间变化信息融合为更紧凑表示，从而避免一次 LLM 操作同时承担语义解释和存储修改。",
+      "signalRole": "research-finding",
+      "researchThemes": ["long-term-memory", "semantic-conflict", "evidence-provenance", "non-destructive-state-management"],
+      "sampleIds": ["roam-agent-memory"],
+      "researchValue": {
+        "failure": "Direct LLM add/update/delete/rewrite operations couple semantic judgment with destructive memory mutation, making redundant, conflicting or outdated observations hard to audit and recover.",
+        "finding": "The paper reports up to 29.8 percentage-point answer-accuracy improvement, 15.6-point higher answer-critical source recall and 11.5-point lower confounder-token share across its evaluations.",
+        "mechanism": "Preserve atomic observations, classify explicit semantic relations, separate Primary from Evidence roles, and perform richer fusion only for retrieval-time views.",
+        "implication": "Long-lived agent memory can become safer and more auditable when semantic decisions append or reclassify facts rather than immediately rewriting the underlying evidence store."
+      }
+    }
+  ]
+}
