@@ -1,6 +1,6 @@
 # 交流稿：GitHub，含发送状态
 
-以下 @ 均为对应 PR 返回的作者 GitHub login，已在本轮读取核对。不是 X 账号。2026-09-11 用户授权基于真实工程实验分享启发与问题；SDK、Orca 两条英文评论已发送并回读，Superset 仍未发送。下文 SDK、Orca 为实际发送英文及中文对照；完整回执见 [engagement](engagement/README.md)，以该目录为准。
+以下 @ 均为对应 PR 返回的作者 GitHub login，已在本轮读取核对。不是 X 账号。2026-09-11 用户授权基于真实工程实验分享启发与问题；SDK、Orca、Superset 三条英文评论均已发送并回读。下文 SDK、Orca 为实际发送英文及中文对照；Superset 保留原准备稿，实际发送版本见 [Superset 英文评论](engagement/superset-comment.en.md)。完整回执见 [engagement](engagement/README.md)，以该目录为准。
 
 ## Agents SDK：给 @hyeonsang010716
 
