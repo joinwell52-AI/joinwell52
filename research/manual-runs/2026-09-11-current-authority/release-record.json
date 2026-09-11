@@ -1,6 +1,6 @@
 {
   "date": "2026-09-11",
-  "status": "LOCAL_VERIFIED",
+  "status": "PUBLISHED_AND_READ_BACK",
   "mode": "Manual research publication, separate from scheduled Runtime completion",
   "authorization": "User authorized self-review, corrections and publication; GitHub first",
   "scope": {"source_groups": 6, "pull_requests": 9, "experiment_tracks": 3, "bilingual_article_pairs": 2, "covers": 2, "localized_inline_figures": 4},
@@ -22,6 +22,24 @@
   },
   "development_review": "READY_FOR_REVIEW; six contracts recorded, no product defect or implementation claimed",
   "discussion_drafts": "Three bilingual GitHub drafts; author logins verified; not sent",
-  "github": null,
-  "pages": null
+  "github": {
+    "branch": "main",
+    "source_commit": "56d2d9e1587c5c4ecec00276444621827f27f290",
+    "build_run": "https://github.com/joinwell52-AI/joinwell52/actions/runs/34554456495",
+    "build_conclusion": "success"
+  },
+  "pages": {
+    "deployment_commit": "d84319cd8791339ed7176423f02aab85afa1b865",
+    "deployment_run": "https://github.com/joinwell52-AI/joinwell52/actions/runs/34554593951",
+    "deployment_conclusion": "success",
+    "verified_at": "2026-09-11T02:28:52Z",
+    "article_routes": [
+      "https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-11-result-delivery",
+      "https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-11-result-delivery",
+      "https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-11-live-model-restore",
+      "https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-11-live-model-restore"
+    ],
+    "readback": "All four canonical article routes and both evidence routes return HTTP 200. All eight remote PNG hashes match the committed originals. Browser readback confirms both images loaded on every article and no horizontal page overflow.",
+    "initial_readback": "An initial request returned 404 during deployment propagation; subsequent canonical-route HTTP and browser readbacks passed."
+  }
 }
