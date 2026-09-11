@@ -11,6 +11,15 @@ outline: false
 日期按 **Asia/Shanghai** 倒序排列。点击日期进入当天完整报告与原始公开来源。
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-09-11">
+    <time>2026-09-11</time>
+    <div>
+      <strong>Agent 核心研究与竞品动态</strong>
+      <span>MCP Server Cards 静态发现/实时能力分离 · Codex permission/plugin/instruction 重裁定 · Superset Vercel Sandbox + mobile review · Paperclip scoped board authority · Agents SDK HITL resume · Orca live provider capability</span>
+    </div>
+    <b>查看 →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-09-10">
     <time>2026-09-10</time>
     <div>
