@@ -11,6 +11,15 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-09-11">
+    <time>2026-09-11</time>
+    <div>
+      <strong>Agent Research & Competitor Intelligence</strong>
+      <span>MCP Server Cards static/live capability split · Codex permission/plugin/instruction re-evaluation · Superset Vercel Sandbox + mobile review · Paperclip scoped board authority · Agents SDK HITL resume · Orca live provider capability</span>
+    </div>
+    <b>View →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-09-10">
     <time>2026-09-10</time>
     <div>
