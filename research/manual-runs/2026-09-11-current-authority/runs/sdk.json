@@ -1,0 +1,120 @@
+{
+  "python": "3.12.10",
+  "head": "3f9397f035a891ce3623723eb0c2181847006fc9",
+  "base_helper_commit": "83c737fd0b8d9a53bd39fa2a0856070417bb0bd3",
+  "method": "Original 10 upstream regressions on pinned SDK. Base-helper ablation replaces only get_unsent_tool_call_ids_for_interrupted_state.__code__ with the predecessor function; all other runtime and tests identical. ScriptedModel records input; no real API or network delivery acknowledgement.",
+  "outcomes": [
+    {
+      "mode": "fixed",
+      "exit_code": 0,
+      "cases": [
+        {
+          "name": "test_resumed_server_managed_run_sends_tool_not_found_output[auto_previous_response_id-live_state-non_streamed]",
+          "failed": false,
+          "message": null
+        },
+        {
+          "name": "test_resumed_server_managed_run_sends_tool_not_found_output[auto_previous_response_id-live_state-streamed]",
+          "failed": false,
+          "message": null
+        },
+        {
+          "name": "test_resumed_server_managed_run_sends_tool_not_found_output[auto_previous_response_id-serialized_state-non_streamed]",
+          "failed": false,
+          "message": null
+        },
+        {
+          "name": "test_resumed_server_managed_run_sends_tool_not_found_output[auto_previous_response_id-serialized_state-streamed]",
+          "failed": false,
+          "message": null
+        },
+        {
+          "name": "test_resumed_server_managed_run_sends_tool_not_found_output[conversation_id-live_state-non_streamed]",
+          "failed": false,
+          "message": null
+        },
+        {
+          "name": "test_resumed_server_managed_run_sends_tool_not_found_output[conversation_id-live_state-streamed]",
+          "failed": false,
+          "message": null
+        },
+        {
+          "name": "test_resumed_server_managed_run_sends_tool_not_found_output[conversation_id-serialized_state-non_streamed]",
+          "failed": false,
+          "message": null
+        },
+        {
+          "name": "test_resumed_server_managed_run_sends_tool_not_found_output[conversation_id-serialized_state-streamed]",
+          "failed": false,
+          "message": null
+        },
+        {
+          "name": "test_resumed_server_managed_run_sends_each_tool_output_once",
+          "failed": false,
+          "message": null
+        },
+        {
+          "name": "test_hydrate_from_state_preserves_unsent_output_without_a_pending_tool_run",
+          "failed": false,
+          "message": null
+        }
+      ]
+    },
+    {
+      "mode": "base-helper",
+      "exit_code": 1,
+      "cases": [
+        {
+          "name": "test_resumed_server_managed_run_sends_tool_not_found_output[auto_previous_response_id-live_state-non_streamed]",
+          "failed": true,
+          "message": "AssertionError: assert ['call-approval'] == ['call-approv...call-missing']\n  \n  Right contains one more item: 'call-missing'\n  Use -v to get more diff"
+        },
+        {
+          "name": "test_resumed_server_managed_run_sends_tool_not_found_output[auto_previous_response_id-live_state-streamed]",
+          "failed": true,
+          "message": "AssertionError: assert ['call-approval'] == ['call-approv...call-missing']\n  \n  Right contains one more item: 'call-missing'\n  Use -v to get more diff"
+        },
+        {
+          "name": "test_resumed_server_managed_run_sends_tool_not_found_output[auto_previous_response_id-serialized_state-non_streamed]",
+          "failed": true,
+          "message": "AssertionError: assert ['call-approval'] == ['call-approv...call-missing']\n  \n  Right contains one more item: 'call-missing'\n  Use -v to get more diff"
+        },
+        {
+          "name": "test_resumed_server_managed_run_sends_tool_not_found_output[auto_previous_response_id-serialized_state-streamed]",
+          "failed": true,
+          "message": "AssertionError: assert ['call-approval'] == ['call-approv...call-missing']\n  \n  Right contains one more item: 'call-missing'\n  Use -v to get more diff"
+        },
+        {
+          "name": "test_resumed_server_managed_run_sends_tool_not_found_output[conversation_id-live_state-non_streamed]",
+          "failed": true,
+          "message": "AssertionError: assert ['call-approval'] == ['call-approv...call-missing']\n  \n  Right contains one more item: 'call-missing'\n  Use -v to get more diff"
+        },
+        {
+          "name": "test_resumed_server_managed_run_sends_tool_not_found_output[conversation_id-live_state-streamed]",
+          "failed": true,
+          "message": "AssertionError: assert ['call-approval'] == ['call-approv...call-missing']\n  \n  Right contains one more item: 'call-missing'\n  Use -v to get more diff"
+        },
+        {
+          "name": "test_resumed_server_managed_run_sends_tool_not_found_output[conversation_id-serialized_state-non_streamed]",
+          "failed": true,
+          "message": "AssertionError: assert ['call-approval'] == ['call-approv...call-missing']\n  \n  Right contains one more item: 'call-missing'\n  Use -v to get more diff"
+        },
+        {
+          "name": "test_resumed_server_managed_run_sends_tool_not_found_output[conversation_id-serialized_state-streamed]",
+          "failed": true,
+          "message": "AssertionError: assert ['call-approval'] == ['call-approv...call-missing']\n  \n  Right contains one more item: 'call-missing'\n  Use -v to get more diff"
+        },
+        {
+          "name": "test_resumed_server_managed_run_sends_each_tool_output_once",
+          "failed": true,
+          "message": "AssertionError: assert ['call-a', 'call-b'] == ['call-a', 'c...call-missing']\n  \n  Right contains one more item: 'call-missing'\n  Use -v to get more diff"
+        },
+        {
+          "name": "test_hydrate_from_state_preserves_unsent_output_without_a_pending_tool_run",
+          "failed": true,
+          "message": "AssertionError: assert 'call_MISSING' not in {'call_MISSING'}\n +  where {'call_MISSING'} = OpenAIServerConversationTracker(conversation_id=None, previous_response_id='resp_101', auto_previous_response_id=False...ning_item_id_policy=None, prepared_item_sources={}, prepared_item_sources_by_fingerprint={}, delivered_item_sources={}).server_tool_call_ids"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "time": "2026-09-11T01:56:25.249Z",
+  "node": "v24.16.0",
+  "head": "4ec6c8e1636541709a09a6bf127d31d5ac5d541b",
+  "method": "Exact upstream signing/verifying functions; real ephemeral Ed25519 keys; controlled clock; no cloud network calls, HTTP middleware, mobile or sandbox execution.",
+  "observations": [
+    {
+      "id": "correct-workspace",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "different-workspace",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "id": "one-ms-before-expiry",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "at-expiry",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "id": "wrong-signing-key",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "id": "tampered-audience",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "id": "missing-token",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "id": "malformed-token",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "id": "same-workspace-after-simulated-process-restart",
+      "expected": true,
+      "actual": true,
+      "note": "A second verifier call with unchanged audience and key. The API has no process-generation input; no real sandbox restart performed."
+    }
+  ]
+}

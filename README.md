@@ -125,6 +125,11 @@ Explore dispatch, audit, and technical recovery while preserving the judgment re
 
 The [complete article catalog](./README.zh-CN.md#article-catalog) includes the latest publications and links to both language editions and external platforms.
 
+September 11 experiments:
+
+- [The Result Exists. Why Did the Agent Fail to Deliver It?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-11-result-delivery) · [中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-11-result-delivery)
+- [Yesterday's Model Choice Is Not Today's Capability](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-11-live-model-restore) · [中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-11-live-model-restore)
+
 Pinned articles can be registered here before external publication, then updated in the same row with each platform URL. The regular external-publication log starts on **2026-08-12**; earlier history is not backfilled. Chinese, English, and platform links for the same article stay together in one row. There are now **eight registered external channels**: **CSDN, DEV Community, Cursor Forum, OpenAI Developer Community, Codex GitHub Discussions, Zenodo, Juejin, and X**. CSDN, DEV, and Juejin carry republished articles; X carries short research summaries with attribution; Cursor Forum, OpenAI Developer Community, and Codex GitHub Discussions support technical discussion; Zenodo provides research archiving and discovery. Links marked “technical discussion” are standalone question threads, not full-article republications.
 
 | # | Article | Published versions | Summary |

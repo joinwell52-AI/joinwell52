@@ -1,0 +1,280 @@
+{
+  "time": "2026-09-11T01:56:24.932Z",
+  "node": "v24.16.0",
+  "head": "a13c8452e70f214b50ea37149c6f6485bc149f6f",
+  "base": "027acb4efa2e6b226d40df266b86367423946d62",
+  "method": "Unmodified upstream function bodies; TypeScript stripped by Node. Imports injected. Connection and error classes are explicit test doubles; seed catalog unused. No real Claude process or model request.",
+  "checks": 16,
+  "observations": [
+    {
+      "side": "base",
+      "case": "unlisted-change",
+      "writes": 1,
+      "error": null,
+      "calls": [
+        {
+          "method": "setModel",
+          "value": "not-a-real-model-xyz"
+        }
+      ],
+      "options": {
+        "model": "not-a-real-model-xyz"
+      },
+      "skipped": []
+    },
+    {
+      "side": "base",
+      "case": "retired-restore",
+      "writes": 1,
+      "error": null,
+      "calls": [
+        {
+          "method": "setModel",
+          "value": "claude-opus-4-retired"
+        }
+      ],
+      "options": {
+        "model": "claude-opus-4-retired"
+      },
+      "skipped": []
+    },
+    {
+      "side": "base",
+      "case": "listed-alias",
+      "writes": 1,
+      "error": null,
+      "calls": [
+        {
+          "method": "setModel",
+          "value": "haiku"
+        }
+      ],
+      "options": {
+        "model": "haiku"
+      },
+      "skipped": []
+    },
+    {
+      "side": "base",
+      "case": "resolved-id",
+      "writes": 1,
+      "error": null,
+      "calls": [
+        {
+          "method": "setModel",
+          "value": "claude-sonnet-5"
+        }
+      ],
+      "options": {
+        "model": "claude-sonnet-5"
+      },
+      "skipped": []
+    },
+    {
+      "side": "base",
+      "case": "catalog-unavailable",
+      "writes": 1,
+      "error": null,
+      "calls": [
+        {
+          "method": "setModel",
+          "value": "sonnet"
+        }
+      ],
+      "options": {
+        "model": "sonnet"
+      },
+      "skipped": []
+    },
+    {
+      "side": "base",
+      "case": "catalog-empty",
+      "writes": 1,
+      "error": null,
+      "calls": [
+        {
+          "method": "setModel",
+          "value": "sonnet"
+        }
+      ],
+      "options": {
+        "model": "sonnet"
+      },
+      "skipped": []
+    },
+    {
+      "side": "base",
+      "case": "only-default-row",
+      "writes": 1,
+      "error": null,
+      "calls": [
+        {
+          "method": "setModel",
+          "value": "sonnet"
+        }
+      ],
+      "options": {
+        "model": "sonnet"
+      },
+      "skipped": []
+    },
+    {
+      "side": "base",
+      "case": "listed-restore",
+      "writes": 1,
+      "error": null,
+      "calls": [
+        {
+          "method": "setModel",
+          "value": "haiku"
+        }
+      ],
+      "options": {
+        "model": "haiku"
+      },
+      "skipped": []
+    },
+    {
+      "side": "head",
+      "case": "unlisted-change",
+      "writes": 0,
+      "error": "claude does not list a model named not-a-real-model-xyz",
+      "calls": [
+        {
+          "method": "supportedModels"
+        }
+      ],
+      "options": {},
+      "skipped": []
+    },
+    {
+      "side": "head",
+      "case": "retired-restore",
+      "writes": 0,
+      "error": null,
+      "calls": [
+        {
+          "method": "supportedModels"
+        }
+      ],
+      "options": {},
+      "skipped": [
+        "model"
+      ]
+    },
+    {
+      "side": "head",
+      "case": "listed-alias",
+      "writes": 1,
+      "error": null,
+      "calls": [
+        {
+          "method": "supportedModels"
+        },
+        {
+          "method": "setModel",
+          "value": "haiku"
+        }
+      ],
+      "options": {
+        "model": "haiku"
+      },
+      "skipped": []
+    },
+    {
+      "side": "head",
+      "case": "resolved-id",
+      "writes": 1,
+      "error": null,
+      "calls": [
+        {
+          "method": "supportedModels"
+        },
+        {
+          "method": "setModel",
+          "value": "claude-sonnet-5"
+        }
+      ],
+      "options": {
+        "model": "claude-sonnet-5"
+      },
+      "skipped": []
+    },
+    {
+      "side": "head",
+      "case": "catalog-unavailable",
+      "writes": 1,
+      "error": null,
+      "calls": [
+        {
+          "method": "supportedModels"
+        },
+        {
+          "method": "setModel",
+          "value": "sonnet"
+        }
+      ],
+      "options": {
+        "model": "sonnet"
+      },
+      "skipped": []
+    },
+    {
+      "side": "head",
+      "case": "catalog-empty",
+      "writes": 1,
+      "error": null,
+      "calls": [
+        {
+          "method": "supportedModels"
+        },
+        {
+          "method": "setModel",
+          "value": "sonnet"
+        }
+      ],
+      "options": {
+        "model": "sonnet"
+      },
+      "skipped": []
+    },
+    {
+      "side": "head",
+      "case": "only-default-row",
+      "writes": 1,
+      "error": null,
+      "calls": [
+        {
+          "method": "supportedModels"
+        },
+        {
+          "method": "setModel",
+          "value": "sonnet"
+        }
+      ],
+      "options": {
+        "model": "sonnet"
+      },
+      "skipped": []
+    },
+    {
+      "side": "head",
+      "case": "listed-restore",
+      "writes": 1,
+      "error": null,
+      "calls": [
+        {
+          "method": "supportedModels"
+        },
+        {
+          "method": "setModel",
+          "value": "haiku"
+        }
+      ],
+      "options": {
+        "model": "haiku"
+      },
+      "skipped": []
+    }
+  ]
+}

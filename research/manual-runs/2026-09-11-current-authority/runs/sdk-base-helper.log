@@ -1,0 +1,88 @@
+FFFFFFFFFF                                                               [100%]
+================================== FAILURES ===================================
+_ test_resumed_server_managed_run_sends_tool_not_found_output[auto_previous_response_id-live_state-non_streamed] _
+tests\test_run_impl_resume_paths.py:1010: in test_resumed_server_managed_run_sends_tool_not_found_output
+    assert sorted(call_id for call_id, _ in delivered) == ["call-approval", "call-missing"]
+E   AssertionError: assert ['call-approval'] == ['call-approv...call-missing']
+E     
+E     Right contains one more item: 'call-missing'
+E     Use -v to get more diff
+_ test_resumed_server_managed_run_sends_tool_not_found_output[auto_previous_response_id-live_state-streamed] _
+tests\test_run_impl_resume_paths.py:1010: in test_resumed_server_managed_run_sends_tool_not_found_output
+    assert sorted(call_id for call_id, _ in delivered) == ["call-approval", "call-missing"]
+E   AssertionError: assert ['call-approval'] == ['call-approv...call-missing']
+E     
+E     Right contains one more item: 'call-missing'
+E     Use -v to get more diff
+_ test_resumed_server_managed_run_sends_tool_not_found_output[auto_previous_response_id-serialized_state-non_streamed] _
+tests\test_run_impl_resume_paths.py:1010: in test_resumed_server_managed_run_sends_tool_not_found_output
+    assert sorted(call_id for call_id, _ in delivered) == ["call-approval", "call-missing"]
+E   AssertionError: assert ['call-approval'] == ['call-approv...call-missing']
+E     
+E     Right contains one more item: 'call-missing'
+E     Use -v to get more diff
+_ test_resumed_server_managed_run_sends_tool_not_found_output[auto_previous_response_id-serialized_state-streamed] _
+tests\test_run_impl_resume_paths.py:1010: in test_resumed_server_managed_run_sends_tool_not_found_output
+    assert sorted(call_id for call_id, _ in delivered) == ["call-approval", "call-missing"]
+E   AssertionError: assert ['call-approval'] == ['call-approv...call-missing']
+E     
+E     Right contains one more item: 'call-missing'
+E     Use -v to get more diff
+_ test_resumed_server_managed_run_sends_tool_not_found_output[conversation_id-live_state-non_streamed] _
+tests\test_run_impl_resume_paths.py:1010: in test_resumed_server_managed_run_sends_tool_not_found_output
+    assert sorted(call_id for call_id, _ in delivered) == ["call-approval", "call-missing"]
+E   AssertionError: assert ['call-approval'] == ['call-approv...call-missing']
+E     
+E     Right contains one more item: 'call-missing'
+E     Use -v to get more diff
+_ test_resumed_server_managed_run_sends_tool_not_found_output[conversation_id-live_state-streamed] _
+tests\test_run_impl_resume_paths.py:1010: in test_resumed_server_managed_run_sends_tool_not_found_output
+    assert sorted(call_id for call_id, _ in delivered) == ["call-approval", "call-missing"]
+E   AssertionError: assert ['call-approval'] == ['call-approv...call-missing']
+E     
+E     Right contains one more item: 'call-missing'
+E     Use -v to get more diff
+_ test_resumed_server_managed_run_sends_tool_not_found_output[conversation_id-serialized_state-non_streamed] _
+tests\test_run_impl_resume_paths.py:1010: in test_resumed_server_managed_run_sends_tool_not_found_output
+    assert sorted(call_id for call_id, _ in delivered) == ["call-approval", "call-missing"]
+E   AssertionError: assert ['call-approval'] == ['call-approv...call-missing']
+E     
+E     Right contains one more item: 'call-missing'
+E     Use -v to get more diff
+_ test_resumed_server_managed_run_sends_tool_not_found_output[conversation_id-serialized_state-streamed] _
+tests\test_run_impl_resume_paths.py:1010: in test_resumed_server_managed_run_sends_tool_not_found_output
+    assert sorted(call_id for call_id, _ in delivered) == ["call-approval", "call-missing"]
+E   AssertionError: assert ['call-approval'] == ['call-approv...call-missing']
+E     
+E     Right contains one more item: 'call-missing'
+E     Use -v to get more diff
+_________ test_resumed_server_managed_run_sends_each_tool_output_once _________
+tests\test_run_impl_resume_paths.py:1061: in test_resumed_server_managed_run_sends_each_tool_output_once
+    assert sorted(call_id for call_id, _ in delivered) == ["call-a", "call-b", "call-missing"]
+E   AssertionError: assert ['call-a', 'call-b'] == ['call-a', 'c...call-missing']
+E     
+E     Right contains one more item: 'call-missing'
+E     Use -v to get more diff
+_ test_hydrate_from_state_preserves_unsent_output_without_a_pending_tool_run __
+tests\test_server_conversation_tracker.py:283: in test_hydrate_from_state_preserves_unsent_output_without_a_pending_tool_run
+    assert "call_MISSING" not in tracker.server_tool_call_ids
+E   AssertionError: assert 'call_MISSING' not in {'call_MISSING'}
+E    +  where {'call_MISSING'} = OpenAIServerConversationTracker(conversation_id=None, previous_response_id='resp_101', auto_previous_response_id=False...ning_item_id_policy=None, prepared_item_sources={}, prepared_item_sources_by_fingerprint={}, delivered_item_sources={}).server_tool_call_ids
+============================== warnings summary ===============================
+..\..\.venv\Lib\site-packages\_pytest\config\__init__.py:1345
+  <study>\.venv\Lib\site-packages\_pytest\config\__init__.py:1345: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; anyio
+    self._mark_plugins_for_rewrite(hook, disable_autoload)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_run_impl_resume_paths.py::test_resumed_server_managed_run_sends_tool_not_found_output[auto_previous_response_id-live_state-non_streamed]
+FAILED tests/test_run_impl_resume_paths.py::test_resumed_server_managed_run_sends_tool_not_found_output[auto_previous_response_id-live_state-streamed]
+FAILED tests/test_run_impl_resume_paths.py::test_resumed_server_managed_run_sends_tool_not_found_output[auto_previous_response_id-serialized_state-non_streamed]
+FAILED tests/test_run_impl_resume_paths.py::test_resumed_server_managed_run_sends_tool_not_found_output[auto_previous_response_id-serialized_state-streamed]
+FAILED tests/test_run_impl_resume_paths.py::test_resumed_server_managed_run_sends_tool_not_found_output[conversation_id-live_state-non_streamed]
+FAILED tests/test_run_impl_resume_paths.py::test_resumed_server_managed_run_sends_tool_not_found_output[conversation_id-live_state-streamed]
+FAILED tests/test_run_impl_resume_paths.py::test_resumed_server_managed_run_sends_tool_not_found_output[conversation_id-serialized_state-non_streamed]
+FAILED tests/test_run_impl_resume_paths.py::test_resumed_server_managed_run_sends_tool_not_found_output[conversation_id-serialized_state-streamed]
+FAILED tests/test_run_impl_resume_paths.py::test_resumed_server_managed_run_sends_each_tool_output_once
+FAILED tests/test_server_conversation_tracker.py::test_hydrate_from_state_preserves_unsent_output_without_a_pending_tool_run
+10 failed, 1 warning in 1.13s
