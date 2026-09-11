@@ -82,6 +82,8 @@ The implementations address different boundaries. MCP concerns pre-connection di
 
 A listed model still leaves account eligibility and actual provider adoption unresolved. The current credential may lack entitlement. A successful setter call may not establish useful execution. Catalog membership, setter return, and successful inference are different observations. This study tested the first check's effect on whether a write was attempted.
 
+The comparison suggests a next experiment: find an inspectable observation of actual adoption. Would model-usage metadata from a successful turn suffice, or is a more direct provider confirmation needed? The upstream report notes that even an invalid model can appear in the init frame, so an echoed ID alone is insufficient. A live experiment could compare the requested model, initialization information, and model records from successful turns to test their agreement and whether fallback is observable. We have not run that experiment or established a silent-fallback defect.
+
 ## Preserve intent while allowing preferences to expire
 
 For an agent client, begin with three acceptance categories: restore normally when current catalog evidence supports the choice; prevent the write and explain the skipped preference when it excludes the choice; follow an explicit compatibility policy when evidence is unavailable. Add controls for aliases versus resolved IDs and interactive changes versus startup restoration.

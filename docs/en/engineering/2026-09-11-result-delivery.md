@@ -77,6 +77,8 @@ The staged-approval test approves one call, resumes into another interruption wi
 
 That is a useful recovery property. It does not establish general exactly-once delivery under network failure. We did not simulate a request reaching a server while its acknowledgement was lost, verify server persistence or consumption, or prove that an external tool effect occurred only once.
 
+The experiment inspired by this fix leaves a more specific follow-up question: if the server accepted a request but its acknowledgement was lost, what evidence should recovery use to choose between resending and avoiding duplication? A next experiment could inject failure on the acknowledgement path and separately observe request construction, server records, and retries. Selecting an appropriate SDK or transport test boundary is part of that work; the present ScriptedModel results cannot answer it. This is an open experimental question, not a newly established SDK defect.
+
 [Paperclip's audit-boundary document](https://github.com/paperclipai/paperclip/blob/4e08ff2365dcd563e4e960edb3cb2e879d47238f/doc/BOARD-API-KEY-AUDIT-BOUNDARY.md) addresses a different boundary: database transactions cannot roll back external effects, and ambiguous acknowledgements require durable intent and idempotency handling. It is a useful comparison, not another property established by this experiment.
 
 Produced, persisted, delivered, and consumed are distinct facts. An implementation may derive them from existing records rather than storing four new flags. It still needs to preserve the distinction.

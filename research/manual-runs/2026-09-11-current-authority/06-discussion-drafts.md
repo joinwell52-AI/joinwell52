@@ -1,6 +1,6 @@
-# 交流稿：GitHub，未发送
+# 交流稿：GitHub，含发送状态
 
-以下 @ 均为对应 PR 返回的作者 GitHub login，已在本轮读取核对。不是 X 账号；没有冒充与作者对话，也没有发送通知或评论。公开前可择其一使用，不将相同问题多平台重复投递。
+以下 @ 均为对应 PR 返回的作者 GitHub login，已在本轮读取核对。不是 X 账号。2026-09-11 用户授权基于真实工程实验分享启发与问题；SDK、Orca 两条英文评论已发送并回读，Superset 仍未发送。下文 SDK、Orca 为实际发送英文及中文对照；完整回执见 [engagement](engagement/README.md)，以该目录为准。
 
 ## Agents SDK：给 @hyeonsang010716
 
@@ -10,13 +10,15 @@
 
 @hyeonsang010716 读到这次修复后，我们受到了启发，围绕“恢复执行完成，是否就意味着工具结果已经进入下一次模型输入”做了一组小型工程实验。我们在固定提交 3f9397f 上重跑了新增的十个回归，全部通过；保持其他代码和测试不变，只把未发送调用 ID 的 helper 换回 83c737f 的实现，十个均因缺失结果或错误归属而失败。八组 Runner 用例中，最终 done 断言先通过，调用 ID 检查随后才发现遗漏。这个对照让我们更清楚地理解了为什么要直接检查恢复请求中的工具输出。
 
-这些是本地 ScriptedModel 实验。我们的理解是，这次修复确保了受测恢复路径中每份输出只进入一次模型输入；确认丢失后的网络重试还需要另外验证。想请教，这样理解本次修复的保证范围是否准确？
+这些是本地 ScriptedModel 实验，观察只到请求构造。分阶段批准用例证明了该输入中每份输出只出现一次，但还不能说明服务端接受请求、确认却丢失时会发生什么。想进一步做故障注入实验：SDK 是否已有适合测试这种不确定确认的入口，还是更适合在传输层或服务端边界单独验证？
 
-**English draft**
+**English · 已发送**
 
-@hyeonsang010716 This fix inspired a small engineering experiment around a question: when a resumed run finishes, have its tool outputs actually reached the next model input? We reran the ten added regressions on pinned 3f9397f: all passed. Keeping the remaining runtime and tests identical, replacing only the unsent-call helper with its 83c737f implementation made all ten fail on missing output or incorrect ownership. In the eight Runner cases, the final `done` assertion passed before the call-ID assertion exposed the omission. That contrast helped us understand why inspecting the tool outputs in the resumed request matters.
+@hyeonsang010716 This fix inspired a small engineering experiment on what to check when a resumed run appears to finish normally. We reran the ten added regressions at `3f9397f`: all passed. With the rest of the runtime and tests unchanged, substituting only the unsent-call helper from `83c737f` made all ten fail. In the eight Runner cases, the final `done` assertion still passed before the call-ID assertion exposed the missing output. That contrast helped us understand why inspecting the next model input matters, beyond checking the final response.
 
-These were local ScriptedModel experiments. Our reading is that the fix ensures each output appears once in the model input on the tested resume paths; network retries after an ambiguous acknowledgement would need separate verification. Does that accurately describe the scope of this fix?
+These were local ScriptedModel experiments, so our observation stops at request construction. The staged-approval case establishes one inclusion per output in that input; it does not tell us what happens if a server accepts a request but its acknowledgement is lost. For a follow-up fault-injection experiment, is there an existing SDK test boundary you would recommend for that ambiguous-acknowledgement case, or is it best exercised separately at the transport/server boundary?
+
+[Reproduction scripts, passing/failing logs, and limitations](https://github.com/joinwell52-AI/joinwell52/tree/e09cf423/research/manual-runs/2026-09-11-current-authority).
 
 ## Orca：给 @brennanb2025
 
@@ -26,13 +28,15 @@ These were local ScriptedModel experiments. Our reading is that the fix ensures 
 
 @brennanb2025 这次修复对历史模型选择和当前模型目录的处理给了我们启发。我们想具体看看：恢复旧选择时，目录明确不支持与目录暂时不可用，会走怎样不同的路径？于是固定了 base/head，运行原设置与恢复函数，用记录调用的连接替身做了八组工程对照。明确未列出与退役恢复的 setModel 调用从 1 降为 0；别名、完整 resolved ID、查询失败、空目录与 default-only 的兼容分支均保留。
 
-这个实验帮助我们认识到，“允许尝试”与“当前目录明确支持”需要分别理解。我们没有运行真实 Claude，因此结论只到设置和恢复函数的调用边界。想请教，目录未知时保留尝试机会、把模型是否实际采用留给后续确认，是否符合这里的设计意图？
+这个实验帮助我们区分“允许尝试”和“确认可用”。我们没有运行真实 Claude。你报告无效模型也能出现在初始化帧里，后来又补充了界面恢复验证，这让我们想到下一步的问题：对于允许设置的模型，应观察什么来确认实际采用？成功回合中的模型用量元数据是否合适，还是已有更直接的提供方确认？我们理解账号使用资格不在本次修复范围内。
 
-**English draft**
+**English · 已发送**
 
-@brennanb2025 The way this fix handles saved model choices against the current model catalog inspired us to explore a specific question: how does restoring an old choice differ when the catalog excludes it versus when the catalog is unavailable? We ran eight engineering comparisons using the pinned base/head setting and restore functions with a recording connection double. Unlisted changes and retired restores went from one `setModel` call to zero; aliases, resolved IDs, failed queries, empty catalogs, and default-only compatibility remained usable.
+@brennanb2025 The distinction between an explicitly absent model and an unavailable catalog prompted us to run eight comparisons using the original setting/restore functions at `027acb4` and `a13c845`, with a recording connection double. Unlisted changes and retired restores went from one `setModel` call to zero, while listed aliases, resolved IDs, valid restores, and the three unavailable/non-identifying catalog cases still reached the setter. It helped us separate “allowed to try” from “confirmed usable” in our own restoration checks.
 
-The experiment helped us distinguish permission to try a choice from explicit support in the current catalog. We did not run the real Claude binary, so our observations stop at the setting and restore call boundary. Is the intent to preserve the opportunity to try when the catalog is unknown, leaving confirmation of actual model adoption to a later step?
+We did not run the real Claude binary. Your report that even an invalid model can appear in the init frame, together with the later UI reconciliation check, gives us a useful next experimental question: for a permitted choice, what observation would you use to confirm effective model adoption? Would a successful turn with model-usage metadata be the right boundary, or is there a more direct provider confirmation already available? We understand that account entitlement is outside this fix's scope.
+
+[Original-function probe, all sixteen observations, and limitations](https://github.com/joinwell52-AI/joinwell52/tree/e09cf423/research/manual-runs/2026-09-11-current-authority).
 
 ## Superset：给 @saddlepaddle
 
