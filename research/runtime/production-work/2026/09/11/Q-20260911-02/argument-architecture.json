@@ -1,0 +1,83 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-11",
+  "itemId": "Q-20260911-02",
+  "coreProposition": "Deterministic coordination may carry business meaning only when unit identity, candidate admissibility, and relevant coupling constraints are sufficiently observable; reproducibility and provenance do not settle hidden semantics.",
+  "openingMove": {
+    "type": "locally-valid-units-global-conflict",
+    "purpose": "Open with a reproducible per-unit merge producing an incoherent whole.",
+    "evidenceRefs": [
+      "E1",
+      "E5"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "What makes deterministic coordination possible?",
+      "claim": "Stable unit identities, candidate supply, and admissibility constraints must exist before a fixed selector can operate.",
+      "evidenceRefs": [
+        "E1"
+      ],
+      "reasoningRole": "architecture-implication",
+      "readerProgress": "See representation as the mechanism's precondition.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What does order-invariance buy?",
+      "claim": "It removes incidental proposal arrival order from merge semantics while leaving input uncertainty intact.",
+      "evidenceRefs": [
+        "E2"
+      ],
+      "reasoningRole": "technical-analysis",
+      "readerProgress": "Separate reproducibility from correctness.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "Why is residual state operationally valuable?",
+      "claim": "Explicit unresolved units let later rounds target unfinished work and make recovery precise.",
+      "evidenceRefs": [
+        "E1",
+        "E4"
+      ],
+      "reasoningRole": "operational-implication",
+      "readerProgress": "Treat incomplete work as durable identity.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Where does local selection fail?",
+      "claim": "Strong coupling, hidden units, and indivisible tasks make independently admissible choices globally unreliable.",
+      "evidenceRefs": [
+        "E5"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "Identify when semantic review remains necessary.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What governance division follows?",
+      "claim": "Deterministic code may materialize complete observable contracts; accountable intelligence retains unresolved semantic and authority decisions.",
+      "evidenceRefs": [
+        "E3",
+        "E5",
+        "E6"
+      ],
+      "reasoningRole": "governance-implication",
+      "readerProgress": "Gain a responsibility boundary rather than a code-versus-model slogan.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "Order-invariant selection with provenance is already trustworthy coordination.",
+    "responseBoundary": "It proves repeatability and origin mapping, not that unit definitions, scores, cross-unit semantics, or effect authority are correct."
+  },
+  "endingStrategy": {
+    "type": "open-questions",
+    "purpose": "End with decomposition stability, coupling tests, repair-cost escalation, residual recovery, and authorization."
+  }
+}
