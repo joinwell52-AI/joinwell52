@@ -14,7 +14,7 @@
 - 昨天能用的模型，今天为什么不能直接恢复？：[中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-11-live-model-restore) · [English](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-11-live-model-restore)
 - [研究合同](00-research-brief.md) · [九个 PR 来源审计](01-source-audit.md) · [实验详细说明](02-experiments.md)
 - [开发评审输入](03-development-review.md)：READY_FOR_REVIEW，六项合同；未完成产品侧评审，未授权实现。
-- [文章论证地图](04-article-map.md) · [内容复核](05-quality-review.md) · [三组中英交流草稿](06-discussion-drafts.md)：GitHub 作者账号已核对，未发送。
+- [文章论证地图](04-article-map.md) · [内容复核](05-quality-review.md)
 
 ## 复现
 
@@ -43,4 +43,4 @@ verify.mjs 检查保存证据与文件哈希，不重新运行实验。源码下
 
 This package separates upstream reports, source inspection, and local execution. The SDK study runs ten original regressions on pinned code and compares a predecessor-helper ablation. Orca uses original function bodies with a recording connection double. Superset runs the original Ed25519 functions with ephemeral local keys. None proves real cloud-model consumption, Claude inference, mobile behavior, or a cloud-sandbox lifecycle.
 
-The two complete English articles above contain the experiment tables and limitations. Structured observations are in runs/sdk.json, runs/orca.json, and runs/superset.json. Development recommendations are review inputs, not confirmed CodeFlowMu defects or implemented features. Discussion drafts identify GitHub accounts and have not been sent.
+The two complete English articles above contain the experiment tables and limitations. Structured observations are in runs/sdk.json, runs/orca.json, and runs/superset.json. Development recommendations are review inputs, not confirmed CodeFlowMu defects or implemented features.
