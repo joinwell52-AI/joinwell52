@@ -8,11 +8,11 @@
   "date": "2026-09-12",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -309,6 +309,129 @@
       "githubCommit": "3d004bbe9ebf359fe1cdb18d585463c59e16ba91",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-12T13:18:03+08:00"
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "family": "daily",
+      "runtimeDate": "2026-09-12",
+      "status": "Completed",
+      "input": "Authoritative Reading control was pinned from main commit f0beb13715ed2bdae19d26b2b781c1164356a07d after governed recovery Worker Claimed: Research Runtime Scheduler V3.0, Worker Control v1.3.0, generated Reading Prompt v1.0.0 with SHA-256 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5, and all five requiredSources from that same commit. Reading consumed only the same-date Completed Queue plan with Q-20260912-01 and Q-20260912-02 Selected. The original same-date Reading wake receipt was verified at research/runtime/wakes/2026/09/2026-09-12/reading-105956.json. The prior claimed epoch expired and the Scheduler opened a governed recovery slot at 15:01:45+08:00; a fresh Worker Claimed event was durably recorded at commit f0beb13715ed2bdae19d26b2b781c1164356a07d before recovery work.",
+      "input_zh": "Reading 权威控制固定于受治理恢复 Worker Claimed 后的 main 提交 f0beb13715ed2bdae19d26b2b781c1164356a07d：Research Runtime Scheduler V3.0、Worker Control v1.3.0、Generated Reading Prompt v1.0.0（SHA-256 为 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5）及同一提交上的全部 5 个 requiredSources。Reading 只消费同日 Completed Queue Plan 中已选择的 Q-20260912-01 与 Q-20260912-02。原始同日 Reading Wake Receipt 已从 research/runtime/wakes/2026/09/2026-09-12/reading-105956.json 核验。先前 Claimed Epoch 超出租约，Scheduler 于 15:01:45+08:00 打开受治理恢复槽；恢复业务前，fresh Worker Claimed 已在提交 f0beb13715ed2bdae19d26b2b781c1164356a07d 持久记录。",
+      "workResult": "Completed source-complete Deep Reading for both selected objects. Q-20260912-01 preserves the primary study's evidence-ablation, planner-reliability and fixed-intent execution-guard results, including the negative finding that a typed relation did not outperform equal raw receipts and the boundary that a guard cannot manufacture a missing valid intent. Q-20260912-02 inspected the exact merged Codex, MCP TypeScript SDK and Gemini CLI changes and their tests. Codex revalidates retained provider selection/definition against current managed requirements before selected model-driving or state-changing operations, fails closed on mismatch or requirement-load error, avoids queue/goal mutation on rejection and preserves stop controls. MCP constructs Headers from caller input and then case-insensitively sets runtime-managed Authorization, protocol-version and session-id values, preserving configured Authorization only until the provider has a token. Gemini CLI denies sandbox access to credential, trust, policy-integrity and environment-secret state, sanitizes sandbox settings, and permits user-global commands while excluding project/extension commands in untrusted folders. The samples support three bounded patterns—revalidation, deterministic replacement and isolation—but are first-party engineering evidence at different layers, not independent proof of one universal architecture. Reading performed no Research Analysis, article writing, visualization, Production or Publication.",
+      "workResult_zh": "已对两个 Selected Object 完成来源完整 Deep Reading。Q-20260912-01 保留一手研究的 Evidence Ablation、Planner Reliability 与 Fixed-intent Execution Guard 结果，包括 Typed Relation 未优于等信息量 Raw Receipt 的负面结果，以及 Guard 无法制造缺失有效 Intent 的边界。Q-20260912-02 检查 Codex、MCP TypeScript SDK 与 Gemini CLI 三个已合并变更的精确实现与测试。Codex 在部分驱动模型或改变状态的操作前，把既有 Provider Selection / Definition 与当前 Managed Requirements 重新校验；Mismatch 或 Requirement-load Error 均失败关闭，拒绝前不修改 Queue / Goal，并保留 Stop Control。MCP 先从 Caller Input 构造 Headers，再以大小写不敏感方式写入 Runtime 管理的 Authorization、Protocol Version 与 Session ID；Provider 尚无 Token 时才保留配置 Authorization。Gemini CLI 禁止 Sandbox 访问 Credential、Trust、Policy-integrity 与 Environment-secret State，清洗 Sandbox Settings，并在不受信目录中允许 User-global Command、排除 Project / Extension Command。三份样本支持 Revalidation、Deterministic Replacement 与 Isolation 三种有界模式，但它们是位于不同层的第一方工程证据，不是某种普适架构的独立证明。Reading 未执行 Research Analysis、文章写作、可视化、Production 或 Publication。",
+      "output": "Two durable same-date Reading Notes: research/reading/Q-20260912-01-cross-substrate-authority-boundary.md; research/reading/Q-20260912-02-authority-precedence-long-lived-agent-systems.md.",
+      "output_zh": "生成两份同日持久 Reading Note：research/reading/Q-20260912-01-cross-substrate-authority-boundary.md；research/reading/Q-20260912-02-authority-precedence-long-lived-agent-systems.md。",
+      "next": "After governed Reading terminal finalization and GitHub Commit Verified, reconcile immediately. Analysis may consume only these two same-date source-complete Reading Notes.",
+      "next_zh": "Reading 完成受治理终态收口与 GitHub Commit Verified 后立即重新对账；Analysis 只能消费这两份同日来源完整 Reading Note。",
+      "metrics": [
+        {
+          "label": "Generated prompt identity verified",
+          "label_zh": "Generated Prompt 身份已核验",
+          "value": 1
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 Required Source",
+          "value": 5
+        },
+        {
+          "label": "Queue-selected objects read",
+          "label_zh": "已深读 Queue Selected Object",
+          "value": 2
+        },
+        {
+          "label": "Durable Reading Notes",
+          "label_zh": "持久 Reading Note",
+          "value": 2
+        },
+        {
+          "label": "Primary or merged-maintainer sources inspected",
+          "label_zh": "已核验一手研究或 Maintainer 合并来源",
+          "value": 5
+        },
+        {
+          "label": "Research Analysis performed",
+          "label_zh": "执行 Research Analysis",
+          "value": 0
+        },
+        {
+          "label": "Publication actions",
+          "label_zh": "Publication 操作数量",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Authority control-source commit",
+          "label_zh": "权威控制源提交",
+          "value": "f0beb13715ed2bdae19d26b2b781c1164356a07d"
+        },
+        {
+          "label": "Reading Wake Receipt",
+          "label_zh": "Reading Wake Receipt",
+          "path": "research/runtime/wakes/2026/09/2026-09-12/reading-105956.json"
+        },
+        {
+          "label": "Recovery Worker Claimed commit",
+          "label_zh": "恢复 Worker Claimed 提交",
+          "commit": "f0beb13715ed2bdae19d26b2b781c1164356a07d"
+        },
+        {
+          "label": "Generated Reading Prompt SHA-256",
+          "label_zh": "Generated Reading Prompt SHA-256",
+          "value": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"
+        },
+        {
+          "label": "Same-date Research Plan",
+          "label_zh": "同日 Research Plan",
+          "path": "research/runtime/plans/2026/09/2026-09-12-plan.json"
+        },
+        {
+          "label": "Cross-substrate authority study",
+          "label_zh": "Cross-substrate Authority 一手研究",
+          "url": "https://arxiv.org/abs/2609.08472"
+        },
+        {
+          "label": "Bounded Agents comparison study",
+          "label_zh": "Bounded Agents 比较研究",
+          "url": "https://arxiv.org/abs/2608.15888"
+        },
+        {
+          "label": "Codex authority revalidation change",
+          "label_zh": "Codex Authority Revalidation 变更",
+          "url": "https://github.com/openai/codex/commit/39d193d72d7959d798642bd3e1496bb8865033b1"
+        },
+        {
+          "label": "MCP header authority precedence change",
+          "label_zh": "MCP Header Authority Precedence 变更",
+          "url": "https://github.com/modelcontextprotocol/typescript-sdk/commit/b65426158ed9f29aea8ef3dc09ca22d7d9d6f970"
+        },
+        {
+          "label": "Gemini CLI sandbox isolation change",
+          "label_zh": "Gemini CLI Sandbox Isolation 变更",
+          "url": "https://github.com/google-gemini/gemini-cli/commit/9c1b0a610534d6f8120964cf2672c07807d8fc90"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Q-20260912-01 Reading Note",
+          "label_zh": "Q-20260912-01 深读笔记",
+          "path": "research/reading/Q-20260912-01-cross-substrate-authority-boundary.md"
+        },
+        {
+          "label": "Q-20260912-02 Reading Note",
+          "label_zh": "Q-20260912-02 深读笔记",
+          "path": "research/reading/Q-20260912-02-authority-precedence-long-lived-agent-systems.md"
+        },
+        {
+          "label": "Reading result",
+          "label_zh": "Reading 结果",
+          "path": "research/runtime/results/2026/09/2026-09-12-reading-result.json"
+        }
+      ],
+      "startedAt": "2026-09-12T13:18:50+08:00",
+      "completedAt": "2026-09-12T15:08:14+08:00"
     }
   },
   "timeline": [
@@ -430,6 +553,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Reading after verifying research/runtime/wakes/2026/09/2026-09-12/reading-105956.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-12T15:08:14+08:00",
+      "task": "reading",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Reading closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-12."
     }
   ],
   "metrics": [],
@@ -437,5 +567,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-12T15:02:51+08:00"
+  "updatedAt": "2026-09-12T15:08:14+08:00"
 }
