@@ -3,64 +3,74 @@
   "version": "1.0",
   "date": "2026-09-12",
   "timezone": "Asia/Shanghai",
-  "status": "Waiting",
+  "status": "Completed",
   "registryVersion": "1.0",
-  "sourceTask": "Research Runtime Queue",
-  "updatedAt": "",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-09-12T13:12:00+08:00",
   "githubCommit": "pending",
-  "reason": "Research Runtime Queue has not completed the three intelligence pipelines.",
-  "reason_zh": "研究运行队列尚未完成三条情报发现管线。",
+  "reason": "All three formal Discovery pipelines reached terminal coverage and the rotated theme-first sample overlay was completed without topic selection. Five qualified, non-duplicate mechanism or research signals were retained after problem-level normalization against the 2026-09-11 run: three merged engineering mechanisms and two primary-research findings. AI Platform terminally resolved all 45 due public channels as 44 direct checks plus one explicitly recorded Copilot Studio What's New authorization barrier. GitHub Engineering checked all nine P0 daily repositories incrementally. Published Research terminally resolved all nine P0 sources as eight direct checks plus one explicit Journal of Systems and Software retrieval failure. Pure sample-change-trigger density is 0%.",
+  "reason_zh": "三条正式 Discovery 管线均完成终态覆盖，并完成轮换后的主题优先主动样本检查，未执行选题。与 2026-09-11 运行按研究问题规范化去重后保留 5 个合格、非重复的机制或研究 Signal：3 个已合并工程机制、2 个一手研究发现。AI Platform 的 45 个到期公共通道全部终态收口，其中 44 个直接完成检查，Copilot Studio What's New 的授权门槛被明确记录；GitHub Engineering 对 9 个 P0 Daily 仓库全部完成增量检查；Published Research 的 9 个 P0 来源终态收口为 8 个直接检查加 1 个 Journal of Systems and Software 抓取失败。纯 sample-change-trigger 占比为 0%。",
   "pipelines": [
     {
       "id": "ai-platform",
       "label": "AI Platform Change Intelligence",
       "label_zh": "AI 平台变更情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 45,
-      "checked": 0,
-      "inaccessible": [],
+      "checked": 44,
+      "inaccessible": [
+        {
+          "source": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/whats-new",
+          "reason": "The public surface exposed an authorization barrier during this run; the channel was terminally recorded as inaccessible rather than counted as a successful direct check."
+        }
+      ],
       "failed": [],
       "signals": 0,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All 45 due P0 public channels across OpenAI, Anthropic, Google, Cursor, GitHub Copilot and Microsoft Copilot were terminally resolved. Forty-four were directly checked and Copilot Studio What's New exposed an authorization barrier. No new platform item survived problem-level deduplication against recent intelligence as a distinct research signal; current platform evidence was retained only as coverage or active-sample context.",
+      "reason_zh": "OpenAI、Anthropic、Google、Cursor、GitHub Copilot 与 Microsoft Copilot 六组共 45 个到期 P0 公共通道全部终态处理，其中 44 个直接完成检查，Copilot Studio What's New 出现授权门槛。与近期 Intelligence 按研究问题去重后，没有新的平台条目形成独立研究 Signal；当前平台证据仅保留为覆盖事实或主动样本上下文。"
     },
     {
       "id": "github-engineering",
       "label": "GitHub Engineering Intelligence",
       "label_zh": "GitHub 工程情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 9,
-      "checked": 0,
+      "checked": 9,
       "inaccessible": [],
       "failed": [],
-      "signals": 0,
+      "signals": 3,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All nine P0 daily repositories were checked incrementally. Three merged mechanisms crossed the research threshold: Codex revalidates retained thread provider routes against current managed requirements before state-changing or model-driving operations; Gemini CLI explicitly separates trusted workspace material from user-global commands and denies sandbox reads/writes to credential, trust and policy-integrity state; and the MCP TypeScript SDK makes transport-managed OAuth authorization authoritative over stale caller-supplied Authorization headers once a provider token exists.",
+      "reason_zh": "9 个 P0 Daily 仓库均完成增量检查。保留 3 个达到研究阈值的已合并机制：Codex 在会驱动模型或改变运行状态的操作前，重新用当前 Managed Requirements 校验既有 Thread 的 Provider Route；Gemini CLI 将受信 Workspace 内容与全局用户命令分离，并在 Sandbox 中显式禁止读取或写入凭据、信任与 Policy Integrity 状态；MCP TypeScript SDK 在 Auth Provider 已获得 Token 后，使 Transport 管理的 OAuth Authorization 覆盖陈旧的调用方 Authorization Header。"
     },
     {
       "id": "published-research",
       "label": "Published Research Intelligence",
       "label_zh": "论文与研究成果情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 9,
-      "checked": 0,
+      "checked": 8,
       "inaccessible": [],
-      "failed": [],
-      "signals": 0,
+      "failed": [
+        {
+          "source": "https://www.sciencedirect.com/journal/journal-of-systems-and-software",
+          "reason": "The Journal of Systems and Software public journal surface returned a retrieval error during this run; the failure is recorded rather than counted as checked."
+        }
+      ],
+      "signals": 2,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All nine P0 research sources were terminally resolved under the rolling seven-day pass with expansion through thirty days where useful: eight source surfaces were directly checked and Journal of Systems and Software returned an explicitly recorded retrieval failure. Two non-duplicate primary-research findings were retained: controlled evidence that hidden cross-substrate authority state defeats planner-only governance while an execution guard blocks unsafe effects, and a delegation-security evaluation showing that authorization must accumulate prior actions and monotonically restrict delegated scope rather than treat each request independently.",
+      "reason_zh": "9 个 P0 研究来源均按滚动 7 天检查并在需要时扩展至 30 天完成终态处理：8 个来源页面直接完成检查，Journal of Systems and Software 的抓取失败被明确记录。保留 2 个非重复一手研究发现：受控实验显示隐藏在模型可见 Workspace/Memory 之外的 Authority State 会使纯 Planner 治理失效，而执行边界 Guard 可阻止不安全效果；另一项 Delegation Security 评测显示授权必须累积历史动作并让委派 Scope 单调收缩，而不能把每次请求彼此独立地判断。"
     }
   ],
   "columns": [
@@ -69,40 +79,188 @@
       "label": "Digital Employee",
       "label_zh": "数字员工",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 2,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded two primary Digital Employee signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以数字员工为主栏目的 Signal；评分与选题由 Queue 独立负责。"
     },
     {
       "id": "industry-architecture",
       "label": "Industry Architecture",
       "label_zh": "行业架构",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 1,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded one primary Industry Architecture signal; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 1 个以行业架构为主栏目的 Signal；评分与选题由 Queue 独立负责。"
     },
     {
       "id": "open-source-engineering",
       "label": "Open-source Engineering",
       "label_zh": "开源工程",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 2,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded two primary Open-source Engineering signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以开源工程为主栏目的 Signal；评分与选题由 Queue 独立负责。"
     }
   ],
-  "signals": []
+  "signals": [
+    {
+      "id": "SIG-20260912-001",
+      "pipeline": "github-engineering",
+      "title": "Codex revalidates retained thread provider authority at action boundaries instead of trusting startup configuration indefinitely",
+      "title_zh": "Codex 在动作边界重新校验既有 Thread 的 Provider 权威，而不是无限期信任启动时配置",
+      "sourceUrl": "https://github.com/openai/codex/commit/39d193d72d7959d798642bd3e1496bb8865033b1",
+      "publishedAt": "2026-09-11",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee", "industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "openai-codex/managed-provider-revalidation-existing-threads",
+      "summary": "Existing app-server threads retain their provider route, but Codex now checks that retained route against current managed model-provider requirements before turn start/steer, review, compaction, manual queue start and active-goal updates. Requirement mismatch or an inability to load the managed requirement rejects the request without mutating queue/goal state; interrupt and pause/clear controls remain available.",
+      "summary_zh": "既有 App-server Thread 会保留原 Provider Route，但 Codex 现在会在 Turn Start/Steer、Review、Compaction、Manual Queue Start 与 Active Goal Update 前，用当前 Managed Model-provider Requirements 重新检查该 Route。Requirement 不匹配或无法加载时，请求被拒绝且 Queue/Goal 状态不被修改；Interrupt 与 Pause/Clear 控制仍可用。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["policy-enforcement", "call-time-authorization", "durable-runtime-state"],
+      "sampleIds": ["openai-codex"],
+      "researchValue": {
+        "failure": "A long-lived thread can remain internally consistent while its retained provider route becomes non-compliant after enterprise requirements change.",
+        "finding": "",
+        "mechanism": "Re-evaluate only the current managed provider requirements at action boundaries and reject state-changing or model-driving operations on mismatch or unavailable policy, while preserving safe stop controls.",
+        "implication": "Long-lived agents need revalidation of mutable external policy at the boundary where new effects are requested; session startup admission alone is insufficient."
+      }
+    },
+    {
+      "id": "SIG-20260912-002",
+      "pipeline": "github-engineering",
+      "title": "Gemini CLI isolates runtime credentials and trust state from sandbox-visible workspace effects",
+      "title_zh": "Gemini CLI 将运行时凭据与信任状态从 Sandbox 可见的 Workspace 效果中隔离",
+      "sourceUrl": "https://github.com/google-gemini/gemini-cli/commit/9c1b0a610534d6f8120964cf2672c07807d8fc90",
+      "publishedAt": "2026-09-11",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "gemini-cli/sandbox-runtime-state-isolation",
+      "summary": "Gemini CLI hardened sandbox profiles so the user's .gemini configuration tree is no longer broadly writable and sensitive OAuth credentials, account state, trusted hooks/folders, policy-integrity state and .env files are explicitly denied for sandbox reads and writes. In untrusted folders it still permits global user commands while excluding project and extension commands, separating user-owned trusted configuration from workspace-provided behavior.",
+      "summary_zh": "Gemini CLI 强化 Sandbox Profile：用户 `.gemini` 配置树不再被整体允许写入，并显式禁止 Sandbox 读取或写入 OAuth 凭据、账户状态、Trusted Hooks/Folders、Policy Integrity 状态及 `.env` 文件。在未受信目录中仍允许全局 User Command，但排除 Project 与 Extension Command，从而把用户拥有的可信配置与 Workspace 提供的行为分开。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["credential-secret-boundary", "policy-enforcement", "memory-context-isolation"],
+      "sampleIds": ["google-gemini-cli"],
+      "researchValue": {
+        "failure": "A sandbox that can read or mutate the agent's own credentials, trust decisions or policy-integrity state can turn workspace influence into control-plane influence.",
+        "finding": "",
+        "mechanism": "Keep user-global trusted configuration available through controlled loading while denying sandbox filesystem access to credentials, trust databases, policy-integrity files and environment secrets.",
+        "implication": "Digital-employee sandboxes should separate business workspace effects from the control state that defines identity, trust and authority."
+      }
+    },
+    {
+      "id": "SIG-20260912-003",
+      "pipeline": "github-engineering",
+      "title": "MCP makes transport-derived OAuth authority override stale caller Authorization once a provider token exists",
+      "title_zh": "MCP 在 Provider Token 已存在后，让 Transport 派生的 OAuth 权威覆盖陈旧的调用方 Authorization",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/commit/b65426158ed9f29aea8ef3dc09ca22d7d9d6f970",
+      "publishedAt": "2026-09-11",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["open-source-engineering", "digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "mcp-typescript/oauth-managed-header-authority-precedence",
+      "summary": "The MCP TypeScript SDK now builds request headers from caller configuration and then overwrites transport-managed names case-insensitively. When authProvider yields a token, its Authorization replaces a stale static Authorization value rather than being lost or combined with it; protocol-version and session-id headers follow the same transport-authoritative precedence. A configured Authorization remains usable only until the provider has a token.",
+      "summary_zh": "MCP TypeScript SDK 现在先读取调用方 Header，再以大小写不敏感方式覆盖 Transport 管理字段。当 authProvider 已产生 Token 时，其 Authorization 会替换陈旧静态 Authorization，而不会被后者覆盖或与其拼接；Protocol Version 与 Session ID 采用相同的 Transport 权威优先级。调用方 Authorization 仅在 Provider 尚无 Token 时保留。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["agent-identity-authority", "credential-secret-boundary", "policy-enforcement"],
+      "sampleIds": ["mcp"],
+      "researchValue": {
+        "failure": "Two independently supplied authentication values can coexist or use stale precedence, making the credential that actually governs a request differ from the runtime's current authenticated identity.",
+        "finding": "",
+        "mechanism": "Declare protocol/transport-derived identity headers authoritative once current runtime credentials exist, with deterministic case-insensitive replacement rather than merge-by-concatenation.",
+        "implication": "Agent tool transports need a single explicit authority source for identity-bearing request fields; flexible caller configuration must not silently outrank runtime-authenticated state."
+      }
+    },
+    {
+      "id": "SIG-20260912-004",
+      "pipeline": "published-research",
+      "title": "Cross-substrate authority experiments show that planner-visible state is insufficient and execution-time guards stop unsafe effects",
+      "title_zh": "跨 Substrate Authority 实验显示 Planner 可见状态不足，执行时 Guard 才能阻止不安全效果",
+      "sourceUrl": "https://arxiv.org/abs/2609.08472",
+      "publishedAt": "2026-09-08",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering", "industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "research/cross-substrate-authority-execution-guard",
+      "summary": "Across controlled evidence-ablation and planning experiments, authority-blind evidence achieved 0/32 final semantic success while raw receipts or an equivalent typed relation achieved 32/32; typed packaging did not improve planning accuracy beyond equal raw information. Planning remained unreliable even with the authority relation. Replaying fixed model-generated intents through a deterministic execution guard blocked all six unsafe intents and permitted all twelve valid authorized publish intents.",
+      "summary_zh": "在受控 Evidence Ablation 与 Planning 实验中，缺少 Authority Fact 的证据最终语义成功为 0/32，而原始 Receipt 或等价 Typed Relation 均为 32/32；在信息量相同时，Typed Packaging 没有带来额外 Planning Accuracy 增益。即便提供 Authority Relation，Planning 仍不稳定。对固定模型 Intent 做零新增模型调用的重放时，确定性 Execution Guard 阻止全部 6 个不安全 Intent，并允许全部 12 个有效授权发布 Intent。",
+      "signalRole": "benchmark-evidence",
+      "researchThemes": ["call-time-authorization", "evidence-completion-truth", "audit-provenance-accountability", "policy-enforcement"],
+      "sampleIds": ["arxiv-2609.08472"],
+      "researchValue": {
+        "failure": "Final workspace and model-visible memory can omit the external authority state that changes which identical-looking action is safe.",
+        "finding": "Adding the missing authority fact repairs evidence interpretation, but planner reliability remains insufficient even when the fact is present.",
+        "mechanism": "Carry durable authority evidence across substrates and place a deterministic authorization guard at the mutation boundary.",
+        "implication": "Memory governance and execution governance are distinct: better context can improve judgment, but safety-critical effects still need an external enforcement boundary."
+      }
+    },
+    {
+      "id": "SIG-20260912-005",
+      "pipeline": "published-research",
+      "title": "Bounded Agents treats delegation authority as accumulated state with monotonic scope restriction rather than independent per-request permission",
+      "title_zh": "Bounded Agents 将委派权限视为累积状态并单调收缩 Scope，而不是彼此独立的逐请求权限",
+      "sourceUrl": "https://arxiv.org/abs/2608.15888",
+      "publishedAt": "2026-08-16",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["industry-architecture", "open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "research/bounded-agents-delegation-authority-chain",
+      "summary": "The Agentic Principal Chain carries delegated authority across principals, evaluates each request against accumulated session state, restricts inherited scope and budgets, and checks prohibited action compositions outside the model. In the reported compromised-model evaluation, the mechanism blocked all 544 InjecAgent data-stealing cases and reduced AgentDojo exfiltration from 75-100% to 0% across four domains; the paper also reports utility costs and bounds its composition-soundness claim to complete restriction sets with serialized admission.",
+      "summary_zh": "Agentic Principal Chain 在 Principal 之间传递受限委派 Authority，结合累计 Session State 判断每次请求，持续收缩继承 Scope 与 Budget，并在模型之外检查被禁止的动作组合。在其 Compromised-model 评测中，该机制阻止全部 544 个 InjecAgent 数据窃取案例，并把四个 AgentDojo Domain 的 Exfiltration 从 75–100% 降到 0%；论文同时报告 Utility 成本，并把 Composition Soundness 的适用边界限定为完整 Restriction Set 与串行 Admission。",
+      "signalRole": "research-finding",
+      "researchThemes": ["delegation-authority", "call-time-authorization", "policy-enforcement", "task-ownership-responsibility"],
+      "sampleIds": ["arxiv-2608.15888"],
+      "researchValue": {
+        "failure": "Static session permissions and independent request checks cannot express task intent, prior-action composition or safe authority attenuation across sub-agent delegation.",
+        "finding": "Stateful authorization substantially reduced evaluated delegation and prompt-injection attack effects, while retaining measurable utility trade-offs and explicit proof assumptions.",
+        "mechanism": "Track a principal chain, accumulate relevant prior actions, monotonically restrict delegated scope/budgets and enforce composition constraints outside the model.",
+        "implication": "Delegation should create a narrower governed authority object rather than clone a parent's capability set into a sub-agent."
+      }
+    }
+  ],
+  "researchCoverage": {
+    "policy": "theme-sample-v1",
+    "rollingResearchWindowDays": 30,
+    "sampleFamilies": {
+      "product-governance": {
+        "checked": [
+          "ServiceNow AI Control Tower / AI Gateway runtime-governance boundary",
+          "IBM watsonx Orchestrate Agentic Control Plane / AgentOps governance surface"
+        ],
+        "qualifiedSignals": 0
+      },
+      "multi-agent-mechanism": {
+        "checked": [
+          "A2A task lifecycle and interoperability surface",
+          "MCP TypeScript SDK OAuth authorization-header precedence"
+        ],
+        "qualifiedSignals": 1
+      },
+      "research-benchmark-industry": {
+        "checked": [
+          "Beyond Agent Harnesses: Cross-Substrate Authority for Multi-Agent Systems (arXiv:2609.08472)",
+          "Bounded Agents: Delegation Security for Multi-Agent AI Systems (arXiv:2608.15888)"
+        ],
+        "qualifiedSignals": 2
+      }
+    }
+  }
 }
