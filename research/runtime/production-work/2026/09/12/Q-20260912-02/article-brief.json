@@ -1,0 +1,53 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-12",
+  "itemId": "Q-20260912-02",
+  "researchObjectId": "Q-20260912-02",
+  "targetAudience": {
+    "primary": "Architects of long-lived agent runtimes, tool transports, and secure execution environments",
+    "knowledgeAssumption": "The reader understands sessions, managed policy, authentication headers, and sandboxing.",
+    "readerProblem": "Retained state remains syntactically valid after its right to govern the next effect has expired."
+  },
+  "whyNow": "Three fresh merged implementations expose complementary precedence mechanisms at session, transport, and sandbox boundaries.",
+  "externalHook": {
+    "type": "continuity-conflicts-with-current-authority",
+    "description": "A long-lived session, caller header, or project configuration survives a transition even though a current authority source must now override or exclude it.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "E4"
+    ]
+  },
+  "coreProposition": "Continuity state may remain useful without remaining sovereign; each effect-bearing operation needs an explicit current authority owner, a deterministic precedence operator and preserved safe controls before mutation.",
+  "originalValue": {
+    "type": "three-operator-authority-precedence-contract",
+    "description": "Distinguishes revalidation, replacement, and isolation, then adds an operation-specific negative-control policy."
+  },
+  "readerTakeaway": "Retain state for continuity, but name the current authority owner for each effect, apply the appropriate precedence operator before mutation, and preserve stop and recovery controls after rejection.",
+  "evidenceBoundary": {
+    "supported": [
+      "Codex revalidates selected existing-thread operations against current managed provider requirements and blocks before protected mutation.",
+      "The MCP TypeScript SDK gives runtime-derived transport headers deterministic ownership once current OAuth identity exists.",
+      "Gemini CLI isolates credential, trust, policy-integrity, and secret state from lower-trust sandbox and untrusted project contexts.",
+      "The three samples support distinct revalidation, replacement, and isolation patterns."
+    ],
+    "unsupported": [
+      "A universal implementation recipe across all authority layers",
+      "Independent production safety outcomes",
+      "A claim that newest state should always win"
+    ],
+    "uncertain": [
+      "How to prove call-site completeness",
+      "How signed policy caches should expire",
+      "How negative controls compose across services"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The article compares public primary repository evidence and is independently useful."
+  },
+  "recommendedArticleType": "comparative-study",
+  "editorialDecision": "PASS",
+  "decisionReason": "The cross-sample evidence supports a bounded precedence taxonomy without collapsing the samples' distinct layers."
+}
