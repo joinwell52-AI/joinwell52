@@ -8,13 +8,13 @@
   "date": "2026-09-12",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Running",
+    "production": "Completed",
     "publication": "Waiting"
   },
   "results": {
@@ -541,6 +541,145 @@
       "githubCommit": "a7e4663f91ba2a90372305e86e3e7dfec85c8faf",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-12T15:15:51+08:00"
+    },
+    "production": {
+      "schema": "runtime-shift-result/v2",
+      "task": "production",
+      "family": "daily",
+      "runtimeDate": "2026-09-12",
+      "status": "Completed",
+      "productionMode": "candidate-batch",
+      "input": "Two same-date Production-authorized Research Objects, the exact generated Production prompt v2.13.0, and all 13 required sources fetched and verified from main commit 1b57e071530efd52d134ea0888274ea9fc5973f3. Direct SHA-256 over the prompt bytes matched CONTROL and MANIFEST.",
+      "input_zh": "输入为两份归属 2026-09-12 且已授权生产的研究对象、精确的生产提示词 v2.13.0，以及从 main 提交 1b57e071530efd52d134ea0888274ea9fc5973f3 读取并核验的全部 13 项必需来源。直接计算提示词字节的 SHA-256，与 CONTROL 和 MANIFEST 完全一致。",
+      "workResult": "Recovered and completed the earlier due Reading and Analysis tasks under the repository's global-serial contract, then converted both authorized Research Objects into complete bilingual Editorial Architecture 2.1 candidates with six planning artifacts and two deterministic baseline covers. Three bounded revision rounds normalized Chinese technical-term introductions and aligned declared headings. The atomic candidate bundle, checkpoint, layout, editorial, Chinese-language, Runtime V5, prompt/control, recovery, continuation, terminal, bridge, bundle, intelligence, and scorecard gates passed.",
+      "workResult_zh": "依据仓库全局串行合同先恢复并完成到期的 Reading 与 Analysis，再将两份已授权研究对象转换为完整双语编辑架构 2.1 候选，包含六项策划工件与两张确定性基础题图。三轮有界修订完成中文技术术语首次解释与声明标题对齐。原子候选包、检查点、布局、编辑、中文语言、Runtime V5、提示词与控制、恢复、续跑、终态、桥接、候选包、情报和评分卡门禁全部通过。",
+      "output": "Two complete bilingual publication candidates, four canonical article files, two deterministic baseline covers, and a completed validators-passed checkpoint with every item Ready.",
+      "output_zh": "两篇完整双语发布候选、四个正式正文文件、两张确定性基础题图，以及所有条目均为 Ready 的 validators-passed 完成检查点。",
+      "next": "Publication remains a separate governed task and was not executed.",
+      "next_zh": "Publication 仍是独立受治理任务，本轮未执行。",
+      "promptVerificationMode": "direct-sha256",
+      "promptIdentity": {
+        "path": "research/runtime/worker-prompts/generated/production.prompt.md",
+        "version": "2.13.0",
+        "sha256": "d8b0cd52d22d976d6356558a23c5c2dc28ed5aa8f51793538fa8fbebfb80996f"
+      },
+      "metrics": [
+        {
+          "label": "Research objects consumed",
+          "label_zh": "已消费研究对象",
+          "value": 2
+        },
+        {
+          "label": "Publication candidates",
+          "label_zh": "发布候选",
+          "value": 2
+        },
+        {
+          "label": "Bilingual article files",
+          "label_zh": "双语正文文件",
+          "value": 4
+        },
+        {
+          "label": "Planning artifacts",
+          "label_zh": "策划工件",
+          "value": 6
+        },
+        {
+          "label": "Baseline cover assets",
+          "label_zh": "基础题图",
+          "value": 2
+        },
+        {
+          "label": "Inline figure assets",
+          "label_zh": "正文插图",
+          "value": 0
+        },
+        {
+          "label": "Content revision rounds",
+          "label_zh": "内容修订轮次",
+          "value": 3
+        },
+        {
+          "label": "Production recovery attempts",
+          "label_zh": "Production 恢复尝试",
+          "value": 0
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取必需来源",
+          "value": 13
+        },
+        {
+          "label": "Direct publication actions",
+          "label_zh": "直接发布动作",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Control and prompt verification commit",
+          "label_zh": "控制与提示词核验提交",
+          "commit": "1b57e071530efd52d134ea0888274ea9fc5973f3"
+        },
+        {
+          "label": "Worker claim commit",
+          "label_zh": "Worker 认领提交",
+          "commit": "1b57e071530efd52d134ea0888274ea9fc5973f3"
+        },
+        {
+          "label": "Successful stage-batch commit",
+          "label_zh": "成功的整批暂存提交",
+          "commit": "a1b59bae554b3789323112f8d6e71af92176ad0d"
+        },
+        {
+          "label": "Successful Production Actions bridge",
+          "label_zh": "成功的生产桥接运行",
+          "url": "https://github.com/joinwell52-AI/joinwell52/actions/runs/34681254526"
+        },
+        {
+          "label": "Production wake receipt",
+          "label_zh": "生产唤醒回执",
+          "path": "research/runtime/wakes/2026/09/2026-09-12/production-145723.json"
+        },
+        {
+          "label": "Validators-passed item checkpoint",
+          "label_zh": "门禁通过项目检查点",
+          "path": "research/runtime/checkpoints/2026/09/2026-09-12-production.json"
+        }
+      ],
+      "coverEvidence": [
+        {
+          "itemId": "Q-20260912-01",
+          "briefId": "2026-09-12:Q-20260912-01-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-09-12-evidence-complete-not-execution-authority-cover.png",
+          "sanitizedPrompt": "A cyan evidence lens reveals a path while a separate amber gate controls the external boundary.",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        },
+        {
+          "itemId": "Q-20260912-02",
+          "briefId": "2026-09-12:Q-20260912-02-baseline-cover",
+          "coverPath": "staging/publication-candidates/2026-09-12-retained-state-current-authority-cover.png",
+          "sanitizedPrompt": "A silver state ribbon passes through a cyan prism, amber seal, and protected violet vault.",
+          "generationAttempts": 1,
+          "semanticReview": "PASS",
+          "coverRole": "baseline",
+          "generator": "deterministic-baseline-v1"
+        }
+      ],
+      "artifacts": [
+        "research/runtime/candidates/2026/09/2026-09-12-candidates.json",
+        "staging/publication-candidates/2026-09-12-evidence-complete-not-execution-authority.zh.md",
+        "staging/publication-candidates/2026-09-12-evidence-complete-not-execution-authority.en.md",
+        "staging/publication-candidates/2026-09-12-evidence-complete-not-execution-authority-cover.png",
+        "staging/publication-candidates/2026-09-12-retained-state-current-authority.zh.md",
+        "staging/publication-candidates/2026-09-12-retained-state-current-authority.en.md",
+        "staging/publication-candidates/2026-09-12-retained-state-current-authority-cover.png"
+      ],
+      "startedAt": "2026-09-12T15:16:26+08:00",
+      "completedAt": "2026-09-12T15:40:56+08:00"
     }
   },
   "timeline": [
@@ -718,6 +857,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Production after verifying research/runtime/wakes/2026/09/2026-09-12/production-145723.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-12T15:40:56+08:00",
+      "task": "production",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Production closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-12."
     }
   ],
   "metrics": [],
@@ -725,5 +871,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-12T15:17:53+08:00"
+  "updatedAt": "2026-09-12T15:40:56+08:00"
 }
