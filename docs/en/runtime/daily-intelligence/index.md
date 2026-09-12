@@ -11,6 +11,15 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-09-12">
+    <time>2026-09-12</time>
+    <div>
+      <strong>Agent Research & Competitor Intelligence</strong>
+      <span>Cursor Projects coordinator/long-lived projects · Yue Zhao anywhere-agents v0.8.0 role-based model routing · Codex Provider/Host/Sandbox revalidation · Paperclip iMessage and call-time authorization boundary · Superset Lock Screen · Orca DST occurrence idempotency</span>
+    </div>
+    <b>View →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-09-11">
     <time>2026-09-11</time>
     <div>
