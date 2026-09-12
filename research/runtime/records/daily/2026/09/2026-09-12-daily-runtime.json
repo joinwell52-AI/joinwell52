@@ -8,14 +8,14 @@
   "date": "2026-09-12",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Waiting",
+  "status": "Running",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
     "production": "Completed",
-    "publication": "Waiting"
+    "publication": "Running"
   },
   "results": {
     "discovery": {
@@ -874,6 +874,20 @@
       "event": "GitHub Commit Verified",
       "status": "Completed",
       "detail": "Fetched and verified durable Research Runtime Production Completed result commit db5dcf9a251f24703748c0ea9130238b2ff5d82c on main; 1 execution epoch(s) remain as audit evidence, every prior epoch is governed-closed, and the latest epoch contains a fresh Worker Claimed event before terminal finalization."
+    },
+    {
+      "time": "2026-09-12T20:27:21.549+08:00",
+      "task": "publication",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Publication started by governed same-date catch-up after the formal 20:00 boundary and durable verification of the Publication wake receipt."
+    },
+    {
+      "time": "2026-09-12T20:27:22.549+08:00",
+      "task": "publication",
+      "event": "Worker Claimed",
+      "status": "Running",
+      "detail": "ChatGPT Automation claimed Research Runtime Publication after verifying research/runtime/wakes/2026/09/2026-09-12/publication-202407.json, current main control, completed Production, and same-date complete Publication Candidates."
     }
   ],
   "metrics": [],
@@ -881,5 +895,5 @@
   "artifacts": [],
   "githubCommit": "db5dcf9a251f24703748c0ea9130238b2ff5d82c",
   "commitVerify": "Completed",
-  "updatedAt": "2026-09-12T15:41:05+08:00"
+  "updatedAt": "2026-09-12T20:27:22.549+08:00"
 }
