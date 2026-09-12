@@ -11,6 +11,15 @@ outline: false
 日期按 **Asia/Shanghai** 倒序排列。点击日期进入当天完整报告与原始公开来源。
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-09-12">
+    <time>2026-09-12</time>
+    <div>
+      <strong>Agent 核心研究与竞品动态</strong>
+      <span>Cursor Projects 协调器/长期项目 · Yue Zhao anywhere-agents v0.8.0 模型岗位路由 · Codex Provider/Host/Sandbox 重验证 · Paperclip iMessage 与 call-time authorization 边界 · Superset Lock Screen · Orca DST occurrence idempotency</span>
+    </div>
+    <b>查看 →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-09-11">
     <time>2026-09-11</time>
     <div>
