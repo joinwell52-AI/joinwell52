@@ -1,0 +1,53 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-12",
+  "itemId": "Q-20260912-01",
+  "researchObjectId": "Q-20260912-01",
+  "targetAudience": {
+    "primary": "Architects and governance owners of execution-capable digital employees",
+    "knowledgeAssumption": "The reader understands model planning, receipts, authorization, and external effects.",
+    "readerProblem": "Complete evidence is often mistaken for permission, allowing a plausible model intent to reach an irreversible mutation."
+  },
+  "whyNow": "A new controlled study separates information availability, planner reliability, and mutation-boundary enforcement with matched evidence and frozen-intent experiments.",
+  "externalHook": {
+    "type": "complete-evidence-mistaken-for-permission",
+    "description": "Two workflows expose the same files, yet only one is authorized to publish; a planner can interpret both while only a current effect-local check can decide whether mutation is allowed.",
+    "evidenceRefs": [
+      "E1",
+      "E3",
+      "E4",
+      "E5"
+    ]
+  },
+  "coreProposition": "Complete authority evidence can make planning possible but cannot authorize execution; a current intent-bound mutation guard must separately decide whether the effect may occur.",
+  "originalValue": {
+    "type": "three-decision-execution-contract",
+    "description": "Separates evidence completeness, proposed intent, and current execution authority, then records a safe hold independently from business completion."
+  },
+  "readerTakeaway": "Expose enough authority evidence for planning, but bind every consequential effect to a current actor-, attempt-, artifact-, scope-, target-, and generation-specific authorization check.",
+  "evidenceBoundary": {
+    "supported": [
+      "Authority-blind evidence produced 0/32 successes while information-equivalent raw and typed evidence each produced 32/32 in the tested semantic task.",
+      "Evidence-complete planning remained fallible in the second experiment.",
+      "A deterministic guard eliminated six unsafe crossed effects in a frozen set of 32 intents while admitting all 12 valid authorized publish intents.",
+      "The tested guard rechecks current identity, scope, artifact, terminal state, downstream authorization, and evidence generation immediately before mutation."
+    ],
+    "unsupported": [
+      "A claim that complete evidence grants permission",
+      "A claim that deterministic enforcement guarantees semantic correctness",
+      "A universal safety or availability guarantee across tools and organizations"
+    ],
+    "uncertain": [
+      "Which authority facts must be planner-visible",
+      "How permits should bind changing multi-step targets",
+      "How concurrent intents compose safely"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument derives from public primary research and comparison evidence and remains independently useful."
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "The evidence supports a bounded execution-governance architecture and preserves explicit limitations."
+}
