@@ -1,0 +1,95 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-12",
+  "itemId": "Q-20260912-01",
+  "coreProposition": "Complete authority evidence can make planning possible but cannot authorize execution; a current intent-bound mutation guard must separately decide whether the effect may occur.",
+  "openingMove": {
+    "type": "same-files-opposite-authority",
+    "purpose": "Open with two identical artifact views that require opposite safe actions because authority lives elsewhere.",
+    "evidenceRefs": [
+      "E1",
+      "E7"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "What does complete evidence solve?",
+      "claim": "Authority evidence can make the planner's state interpretable without conferring permission.",
+      "evidenceRefs": [
+        "E1",
+        "E2"
+      ],
+      "reasoningRole": "evidence-ablation",
+      "readerProgress": "Separate solvability from authorization.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Why is an informed planner still not an authorization mechanism?",
+      "claim": "Evidence-complete model planning remains probabilistic, invalid, or unsafe in the tested sample.",
+      "evidenceRefs": [
+        "E3"
+      ],
+      "reasoningRole": "planner-failure",
+      "readerProgress": "Separate observation from reliable admission.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What did the frozen-intent guard contribute?",
+      "claim": "Effect-local deterministic checks converted unsafe proposals into non-effects without repairing missing planner intents.",
+      "evidenceRefs": [
+        "E4",
+        "E5"
+      ],
+      "reasoningRole": "fixed-intent-guard",
+      "readerProgress": "Separate safety enforcement from task competence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Which identities make the boundary auditable?",
+      "claim": "Artifact, evidence, observation, intent, authorization, hold, and outcome require separate identities.",
+      "evidenceRefs": [
+        "E5",
+        "E7"
+      ],
+      "reasoningRole": "architecture-implication",
+      "readerProgress": "Gain a concrete execution contract.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "How does delegated authority change over time?",
+      "claim": "Signed delegation still needs narrowed scope, cumulative state, composition restrictions, and exact action binding.",
+      "evidenceRefs": [
+        "E6"
+      ],
+      "reasoningRole": "comparison",
+      "readerProgress": "Extend the contract across principals and retries.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A6",
+      "question": "What does a safe hold mean?",
+      "claim": "A denied effect proves enforcement worked, not that the business objective completed.",
+      "evidenceRefs": [
+        "E4",
+        "E7"
+      ],
+      "reasoningRole": "outcome-boundary",
+      "readerProgress": "Keep safety and completion semantics distinct.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "If the planner has every relevant receipt, its decision can be treated as authorization.",
+    "responseBoundary": "The experiment shows complete inputs do not eliminate invalid, absent, or unsafe model outputs; current effect authority remains an independent fact."
+  },
+  "endingStrategy": {
+    "type": "bounded-design-rules",
+    "purpose": "End with implementation questions about visibility, freshness, attestation, concurrency, and recovery after a hold."
+  }
+}
