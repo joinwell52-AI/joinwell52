@@ -1,0 +1,99 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-12",
+  "itemId": "Q-20260912-02",
+  "coreProposition": "Continuity state may remain useful without remaining sovereign; each effect-bearing operation needs an explicit current authority owner, a deterministic precedence operator and preserved safe controls before mutation.",
+  "openingMove": {
+    "type": "valid-state-expired-sovereignty",
+    "purpose": "Open with retained session state that remains internally valid but no longer governs the next action.",
+    "evidenceRefs": [
+      "E1",
+      "E5"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why is continuity not authority?",
+      "claim": "Retained state can preserve useful context after the responsible current source has changed.",
+      "evidenceRefs": [
+        "E1",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "reasoningRole": "cross-sample-finding",
+      "readerProgress": "Separate validity from sovereignty.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "When should a runtime revalidate?",
+      "claim": "Selected model-driving and state-changing operations should compare retained state with current managed policy before mutation.",
+      "evidenceRefs": [
+        "E1",
+        "E2"
+      ],
+      "reasoningRole": "retained-session-revalidation",
+      "readerProgress": "Understand the revalidation operator.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "When should a field be replaced?",
+      "claim": "A runtime-derived identity should overwrite lower-authority caller values for fields it owns while preserving unrelated fields and transitional fallback.",
+      "evidenceRefs": [
+        "E3"
+      ],
+      "reasoningRole": "transport-ownership",
+      "readerProgress": "Understand the replacement operator.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "When is isolation required?",
+      "claim": "Lower-trust project execution should not be able to read or mutate the state that determines future authority.",
+      "evidenceRefs": [
+        "E4"
+      ],
+      "reasoningRole": "control-state-isolation",
+      "readerProgress": "Understand the isolation operator.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What must remain usable after rejection?",
+      "claim": "Stop, pause, clear, rollback, and other risk-reducing controls need a separate operation taxonomy.",
+      "evidenceRefs": [
+        "E2",
+        "E3",
+        "E4",
+        "E6"
+      ],
+      "reasoningRole": "negative-control-policy",
+      "readerProgress": "Avoid recovery lockout.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A6",
+      "question": "What contract makes precedence auditable?",
+      "claim": "Each effect needs a named authority owner, refresh point, operator, failure behavior, mutation boundary, negative controls, and evidence receipt.",
+      "evidenceRefs": [
+        "E5",
+        "E6"
+      ],
+      "reasoningRole": "architecture-implication",
+      "readerProgress": "Gain a concrete authority-precedence contract.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "The freshest value should always win, so a universal reload rule is enough.",
+    "responseBoundary": "The samples show ownership and operation class, not timestamp, determine authority: only managed fields are replaced, protected stores are isolated, and selected negative controls remain available."
+  },
+  "endingStrategy": {
+    "type": "transition-test-agenda",
+    "purpose": "End with tests for policy changes, token acquisition, trust transitions, outages, recovery controls, and bypass paths."
+  }
+}
