@@ -1,0 +1,314 @@
+{
+  "schema": "runtime-publication-candidate/v2",
+  "date": "2026-09-12",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Production",
+  "sourceRecord": "research/runtime/records/daily/2026/09/2026-09-12-daily-runtime.json",
+  "reason": "Two authorized 2026-09-12 Research Objects were converted into complete bilingual Editorial Architecture 2.1 candidates with verified planning artifacts, bounded evidence claims, and deterministic baseline covers.",
+  "reason_zh": "两份已授权的 2026-09-12 研究对象已转换为完整双语编辑架构 2.1 候选，具备已核验规划工件、有边界的证据声明与确定性基础题图。",
+  "candidates": [
+    {
+      "itemId": "Q-20260912-01",
+      "column": "digital-employee",
+      "category": "daily",
+      "articleType": "technical-analysis",
+      "lifecycle": "Publication Candidate",
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "title": "Complete Evidence Is Not Execution Authority",
+      "title_zh": "证据齐全，不等于获得执行权",
+      "researchQuestion": "当决定行动是否获准的事实位于模型可见工作区与记忆之外时，必须向规划器暴露哪些证据才能形成有用计划；即使证据完整，仍须在变更边界执行什么安全判断？",
+      "coreProposition": "Complete authority evidence can make planning possible but cannot authorize execution; a current intent-bound mutation guard must separately decide whether the effect may occur.",
+      "articleBriefPath": "research/runtime/production-work/2026/09/12/Q-20260912-01/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/12/Q-20260912-01/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/12/Q-20260912-01/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-12-evidence-complete-not-execution-authority.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-12-evidence-complete-not-execution-authority.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-12-evidence-complete-not-execution-authority-cover.png",
+      "coverRole": "baseline",
+      "sections": [
+        {
+          "module": "three-decision-boundary",
+          "heading": "Three Questions That Are Often Collapsed",
+          "heading_zh": "三个经常被压成一个的问题"
+        },
+        {
+          "module": "evidence-ablation-boundary",
+          "heading": "The Ablation Locates an Information Boundary",
+          "heading_zh": "消融实验揭示的是信息边界"
+        },
+        {
+          "module": "planner-reliability-boundary",
+          "heading": "Complete Evidence Does Not Make Planning Reliable",
+          "heading_zh": "看见全部证据，规划仍可能失败"
+        },
+        {
+          "module": "frozen-intent-guard",
+          "heading": "Frozen Intents Isolate the Guard's Contribution",
+          "heading_zh": "冻结意图后，才能看清执行闸门的贡献"
+        },
+        {
+          "module": "execution-identity-contract",
+          "heading": "An Auditable Execution Contract Needs Separate Identities",
+          "heading_zh": "一份可审计的执行合同需要哪些身份"
+        },
+        {
+          "module": "delegated-authority-comparison",
+          "heading": "Delegation Makes “Current” More Complex",
+          "heading_zh": "委派让“当前”变得更复杂"
+        },
+        {
+          "module": "hold-outcome-separation",
+          "heading": "A Safe Hold Is Not Business Completion",
+          "heading_zh": "安全阻止不是业务完成"
+        },
+        {
+          "module": "mutation-boundary-rules",
+          "heading": "Practical Design Rules",
+          "heading_zh": "可以落地的设计原则"
+        },
+        {
+          "module": "effect-authority-open-questions",
+          "heading": "Boundaries and Open Questions",
+          "heading_zh": "边界与待解决问题"
+        }
+      ],
+      "endingModule": "effect-authority-open-questions",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "source-reported-claim",
+          "claim": "Authority-blind evidence produced 0/32 final semantic successes, while raw receipts and an information-equivalent typed relation each produced 32/32.",
+          "claim_zh": "一手研究报告，缺少权威事实的证据条件得到 0/32 次最终语义成功，而原始回执与信息等价的类型化关系均得到 32/32。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260912-01-evidence-completion-not-execution-authority.md"
+        },
+        {
+          "id": "E2",
+          "identity": "source-reported-claim",
+          "claim": "Typed packaging did not improve observed Experiment 1 planning accuracy over equal raw receipts.",
+          "claim_zh": "一手研究报告，在信息相等的实验一中，类型化包装没有提高规划准确率。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260912-01-evidence-completion-not-execution-authority.md"
+        },
+        {
+          "id": "E3",
+          "identity": "source-reported-claim",
+          "claim": "Evidence-complete planning remained unreliable: raw receipts yielded 19/32 correct first actions and typed relations 15/32, including 11/32 invalid or absent outputs and six unsafe crossed publication proposals.",
+          "claim_zh": "一手研究报告，证据完整后规划仍不可靠：原始回执首个动作正确率为 19/32，类型化关系为 15/32，并包含 11/32 个无效或缺失输出及六个不安全跨界发布提议。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260912-01-evidence-completion-not-execution-authority.md"
+        },
+        {
+          "id": "E4",
+          "identity": "source-reported-claim",
+          "claim": "A deterministic guard replaying the exact 32 typed-relation intents reduced unsafe crossed effects from six to zero and admitted all 12 valid authorized publish intents.",
+          "claim_zh": "一手研究报告，确定性闸门重放同一组 32 个意图，将不安全跨界效果从六个降为零，并放行全部 12 个有效且获准的发布意图。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260912-01-evidence-completion-not-execution-authority.md"
+        },
+        {
+          "id": "E5",
+          "identity": "our-interpretation",
+          "claim": "Evidence completeness, planner intent, current authorization, hold, and business outcome require separate lifecycle identities.",
+          "claim_zh": "本文据此解释，证据完整性、规划意图、当前授权、安全搁置与业务结果需要不同的生命周期身份。",
+          "strength": "supports",
+          "independent": false,
+          "source": "research/analysis/Q-20260912-01-evidence-completion-not-execution-authority.md"
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The argument derives from public primary research and remains independently useful."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition carries the transferable argument without a distinct community angle."
+      },
+      "inlineFigures": [],
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "moduleDefinitions": {
+        "three-decision-boundary": "Separates evidence completeness, proposed intent, and current execution authorization.",
+        "evidence-ablation-boundary": "Uses matched evidence conditions to locate the information boundary.",
+        "planner-reliability-boundary": "Shows why complete inputs do not make probabilistic planning an authorization mechanism.",
+        "frozen-intent-guard": "Isolates the effect of deterministic enforcement by holding planner intents constant.",
+        "execution-identity-contract": "Defines separate identities needed for auditable effects and recovery.",
+        "delegated-authority-comparison": "Extends effect-local authorization across principal chains and cumulative state.",
+        "hold-outcome-separation": "Distinguishes successful safety enforcement from business completion.",
+        "mutation-boundary-rules": "Turns the evidence into bounded implementation rules.",
+        "effect-authority-open-questions": "States limitations and unresolved execution-authority questions."
+      }
+    },
+    {
+      "itemId": "Q-20260912-02",
+      "column": "industry-architecture",
+      "category": "daily",
+      "articleType": "comparative-study",
+      "lifecycle": "Publication Candidate",
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "title": "State May Persist; Authority Must Be Re-established",
+      "title_zh": "状态可以保留，权威必须重新确认",
+      "researchQuestion": "当当前政策或运行时身份与长寿命智能体会话保留的状态冲突时，下一个外部效果应由哪一来源决定，优先级规则应在哪里执行，拒绝正向工作后又必须保留哪些安全控制？",
+      "coreProposition": "Continuity state may remain useful without remaining sovereign; each effect-bearing operation needs an explicit current authority owner, a deterministic precedence operator and preserved safe controls before mutation.",
+      "articleBriefPath": "research/runtime/production-work/2026/09/12/Q-20260912-02/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/12/Q-20260912-02/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/12/Q-20260912-02/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-12-retained-state-current-authority.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-12-retained-state-current-authority.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-12-retained-state-current-authority-cover.png",
+      "coverRole": "baseline",
+      "sections": [
+        {
+          "module": "continuity-authority-separation",
+          "heading": "Continuity and Authority Are Orthogonal",
+          "heading_zh": "连续性与权威是两条轴"
+        },
+        {
+          "module": "session-revalidation-operator",
+          "heading": "Codex: Revalidate Retained Sessions at Call Time",
+          "heading_zh": "Codex（代码智能体运行环境）：在调用时重新校验保留会话"
+        },
+        {
+          "module": "transport-replacement-operator",
+          "heading": "MCP TypeScript SDK: Give Managed Fields One Owner",
+          "heading_zh": "MCP TypeScript SDK（模型上下文协议 TypeScript 软件开发工具包）：给权威字段唯一所有者"
+        },
+        {
+          "module": "control-state-isolation-operator",
+          "heading": "Gemini CLI: Isolate Control State From Lower-Trust Execution",
+          "heading_zh": "Gemini（谷歌人工智能）命令行工具：把控制状态隔离在低信任域之外"
+        },
+        {
+          "module": "precedence-operator-comparison",
+          "heading": "Three Operators, Three Conflict Classes",
+          "heading_zh": "三种算子解决不同冲突"
+        },
+        {
+          "module": "negative-control-policy",
+          "heading": "Stop Capability Must Survive Rejection",
+          "heading_zh": "拒绝正向工作后，停止能力仍应存在"
+        },
+        {
+          "module": "authority-precedence-contract",
+          "heading": "A Minimum Authority-Precedence Contract",
+          "heading_zh": "最小权威优先合同"
+        },
+        {
+          "module": "transition-testing",
+          "heading": "Test Transitions, Not Only Steady State",
+          "heading_zh": "测试状态转换，而不只测稳定状态"
+        },
+        {
+          "module": "precedence-open-questions",
+          "heading": "Boundaries and Open Questions",
+          "heading_zh": "边界与待解决问题"
+        }
+      ],
+      "endingModule": "precedence-open-questions",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "source-reported-claim",
+          "claim": "Codex loads current managed provider requirements independently and compares them with retained thread provider state before selected model-driving and state-changing operations.",
+          "claim_zh": "一手代码与测试表明，Codex 独立加载当前受管供应商要求，并在选定模型驱动和状态变更操作前与保留线程状态比较。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260912-02-continuity-authority-precedence.md"
+        },
+        {
+          "id": "E2",
+          "identity": "source-reported-claim",
+          "claim": "Codex rejects mismatch and authority-loading failure before protected mutation while preserving interrupt, realtime stop, and goal pause or clear.",
+          "claim_zh": "一手代码与测试表明，Codex 在受保护变更前拒绝不匹配和权威加载失败，同时保留中断、实时停止及目标暂停或清除。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260912-02-continuity-authority-precedence.md"
+        },
+        {
+          "id": "E3",
+          "identity": "source-reported-claim",
+          "claim": "The MCP TypeScript SDK uses case-insensitive replacement for transport-managed headers, allowing current runtime-derived Authorization to supersede stale caller Authorization after token acquisition.",
+          "claim_zh": "一手代码与测试表明，MCP TypeScript SDK 对传输管理头使用不区分大小写的替换，使当前运行时 Authorization 在取得令牌后覆盖旧调用方值。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260912-02-continuity-authority-precedence.md"
+        },
+        {
+          "id": "E4",
+          "identity": "source-reported-claim",
+          "claim": "Gemini CLI isolates credential, account, trust, policy-integrity, and secret state from sandbox and untrusted project execution while preserving user-global commands.",
+          "claim_zh": "一手代码与测试表明，Gemini CLI 将凭据、账户、信任、政策完整性与秘密状态同沙箱及不可信项目执行隔离，同时保留用户全局命令。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260912-02-continuity-authority-precedence.md"
+        },
+        {
+          "id": "E5",
+          "identity": "our-interpretation",
+          "claim": "Revalidation, authoritative replacement, and isolation are distinct authority-precedence operators selected by ownership, operation class, and threat model.",
+          "claim_zh": "本文据此解释，重新校验、权威替换和隔离是三种不同优先算子，应依据所有权、操作类别与威胁模型选择。",
+          "strength": "supports",
+          "independent": false,
+          "source": "research/analysis/Q-20260912-02-continuity-authority-precedence.md"
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The comparison derives from public primary repository evidence and remains independently useful."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition carries the transferable argument without a distinct community angle."
+      },
+      "inlineFigures": [],
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "moduleDefinitions": {
+        "continuity-authority-separation": "Separates retained-state utility from current decision authority.",
+        "session-revalidation-operator": "Explains call-time comparison of retained sessions with current managed policy.",
+        "transport-replacement-operator": "Defines single ownership for authority-bearing transport fields.",
+        "control-state-isolation-operator": "Explains why lower-trust execution must not reach authority stores.",
+        "precedence-operator-comparison": "Compares revalidation, replacement, and isolation without erasing their threat models.",
+        "negative-control-policy": "Preserves risk-reducing controls after positive work is rejected.",
+        "authority-precedence-contract": "Defines the minimum fields required for auditable authority resolution.",
+        "transition-testing": "Specifies tests across policy, identity, and trust transitions.",
+        "precedence-open-questions": "States limitations and unresolved precedence questions."
+      }
+    }
+  ],
+  "githubCommit": "pending",
+  "updatedAt": "2026-09-12T15:30:00+08:00"
+}
