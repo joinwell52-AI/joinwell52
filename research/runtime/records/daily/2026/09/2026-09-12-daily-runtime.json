@@ -32,6 +32,20 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Discovery after verifying research/runtime/wakes/2026/09/2026-09-12/discovery-085720.json and current execution authority on main."
+    },
+    {
+      "time": "2026-09-12T10:02:09+08:00",
+      "task": "discovery",
+      "event": "Running Lease Expired",
+      "status": "Waiting",
+      "detail": "discovery exceeded its 45 minute claimed-worker Running lease without a terminal result. The execution epoch is no longer treated as live work and returns to governed recovery."
+    },
+    {
+      "time": "2026-09-12T10:02:09+08:00",
+      "task": "discovery",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Discovery started by Research Runtime Scheduler V3.0."
     }
   ],
   "metrics": [],
@@ -39,5 +53,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-12T09:00:10+08:00"
+  "updatedAt": "2026-09-12T10:02:09+08:00"
 }
