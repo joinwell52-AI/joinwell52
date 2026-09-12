@@ -8,10 +8,10 @@
   "date": "2026-09-12",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
-    "queue": "Running",
+    "queue": "Completed",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
@@ -188,6 +188,124 @@
       "githubCommit": "5084fcd2731474ed0f4104fd5c2c14db32280000",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-12T13:13:02+08:00"
+    },
+    "queue": {
+      "schema": "runtime-shift-result/v2",
+      "task": "queue",
+      "family": "daily",
+      "runtimeDate": "2026-09-12",
+      "status": "Completed",
+      "input": "Authoritative Queue control was pinned from current main after durable Worker Claimed: Research Runtime Scheduler V3.0; Worker Control v1.3.0; generated Queue Prompt v1.0.0 with declared SHA-256 a0c42d5b8bfdedd9a237741ec74310bfe531ee7656a32f0e682945b4096443df; all five requiredSources; same-date verified Queue Wake Receipt research/runtime/wakes/2026/09/2026-09-12/queue-095946.json; durable Execution Slot Opened after Discovery completion; durable Worker Claimed commit 079d53fa3dac52eec3a66ce6effeb9b21c28de3a; and the completed five-signal same-date Signal Pool at research/intelligence/runs/2026/09/2026-09-12-intelligence.json. Deterministic generated-prompt identity was also covered by the repository's exact-head worker-prompt/runtime validation path.",
+      "input_zh": "Queue 权威控制固定于 Durable Worker Claimed 之后的当前 main：Research Runtime Scheduler V3.0、Worker Control v1.3.0、Generated Queue Prompt v1.0.0（声明 SHA-256 为 a0c42d5b8bfdedd9a237741ec74310bfe531ee7656a32f0e682945b4096443df）、全部 5 个 requiredSources、同日已核验 Queue Wake Receipt research/runtime/wakes/2026/09/2026-09-12/queue-095946.json、Discovery 完成后持久打开的 Execution Slot、Worker Claimed 提交 079d53fa3dac52eec3a66ce6effeb9b21c28de3a，以及 research/intelligence/runs/2026/09/2026-09-12-intelligence.json 中已完成的同日 5-Signal Pool。Generated Prompt Identity 同时由仓库 exact-head Worker Prompt / Runtime Validation 路径进行确定性覆盖。",
+      "workResult": "Applied Skill 02 to all five same-date signals using problem-first admission, evidence sufficiency, source concentration, semantic concentration, primary-research utilization and recent-plan research-problem deduplication. Digital Employee selected Q-20260912-01 from SIG-20260912-004: controlled cross-substrate authority experiments separate evidence completion from execution authorization by showing both that missing authority evidence breaks interpretation and that a deterministic mutation-boundary guard still matters after evidence is restored. Industry Architecture selected Q-20260912-02 as a cross-sample authority-precedence object centered on SIG-20260912-001 and independently supported by SIG-20260912-003, with SIG-20260912-002 as a control-state isolation contrast: Codex revalidates retained thread provider routes against current managed requirements; MCP makes current provider-derived OAuth Authorization override stale caller Authorization; Gemini CLI isolates credentials/trust/policy-integrity state from sandbox workspace effects. Open-source Engineering recorded No Selection because selecting SIG-20260912-002 or SIG-20260912-003 separately would duplicate the already selected cross-sample authority boundary and violate semantic concentration. SIG-20260912-005 remains comparison/candidate evidence on stateful delegation and monotonic scope attenuation rather than a second authorization-heavy Daily object. Queue performed no Deep Reading, Research Analysis, writing, Production or Publication.",
+      "workResult_zh": "按 Skill 02 对同日 5 个 Signal 全量筛选，执行 Problem-first Admission、Evidence Sufficiency、Source Concentration、Semantic Concentration、一手研究利用，以及与近期 Research Plan 的研究问题去重。数字员工栏目选择 Q-20260912-01，来自 SIG-20260912-004：Cross-substrate Authority 的受控实验把 Evidence Completion 与 Execution Authorization 分开，既证明缺失 Authority Evidence 会破坏解释，也证明即使证据恢复完整，Mutation Boundary 的确定性 Guard 仍然重要。行业架构栏目选择 Q-20260912-02，作为跨样本 Authority-precedence 对象，以 SIG-20260912-001 为中心、SIG-20260912-003 提供独立支持、SIG-20260912-002 作为 Control-state Isolation 对照：Codex 用当前 Managed Requirement 重新校验既有 Thread Provider Route；MCP 让当前 Provider 派生 OAuth Authorization 覆盖陈旧 Caller Authorization；Gemini CLI 将 Credential / Trust / Policy-integrity State 与 Sandbox Workspace Effect 隔离。开源工程栏目明确 No Selection，因为若把 SIG-20260912-002 或 SIG-20260912-003 再单独选入，会重复已选的跨样本 Authority Boundary 并违反 Semantic Concentration。SIG-20260912-005 作为 Stateful Delegation 与 Monotonic Scope Attenuation 的比较 / Candidate Evidence 保留，而不再形成第二个 Authorization-heavy Daily Object。Queue 未执行 Deep Reading、Research Analysis、写作、Production 或 Publication。",
+      "output": "Completed Daily Research Plan at research/runtime/plans/2026/09/2026-09-12-plan.json with exactly three explicit decisions: Digital Employee = Selected Q-20260912-01; Industry Architecture = Selected Q-20260912-02; Open-source Engineering = No Selection.",
+      "output_zh": "已完成 Daily Research Plan：research/runtime/plans/2026/09/2026-09-12-plan.json，包含且仅包含三个显式决定：Digital Employee = Selected Q-20260912-01；Industry Architecture = Selected Q-20260912-02；Open-source Engineering = No Selection。",
+      "next": "After governed Queue terminal finalization and GitHub Commit Verified, Runtime must reconcile immediately because Reading is already overdue. Reading may consume only Q-20260912-01 and Q-20260912-02 through Skill 03; no downstream work is authorized by this Queue result itself.",
+      "next_zh": "Queue 完成受治理的 Terminal Finalization 与 GitHub Commit Verified 后，Runtime 必须立即重新 Reconcile，因为 Reading 已经逾期。Reading 只能通过 Skill 03 消费 Q-20260912-01 与 Q-20260912-02；本 Queue Result 本身不授权任何下游业务。",
+      "metrics": [
+        {
+          "label": "Generated Queue prompt SHA-256 verified",
+          "label_zh": "Generated Queue Prompt SHA-256 已核验",
+          "value": "a0c42d5b8bfdedd9a237741ec74310bfe531ee7656a32f0e682945b4096443df"
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 requiredSources",
+          "value": "5 / 5"
+        },
+        {
+          "label": "Signal pool count",
+          "label_zh": "Signal Pool 数量",
+          "value": 5
+        },
+        {
+          "label": "Column decisions",
+          "label_zh": "栏目决定",
+          "value": 3
+        },
+        {
+          "label": "Selected objects",
+          "label_zh": "已选 Research Object",
+          "value": 2
+        },
+        {
+          "label": "No Selection columns",
+          "label_zh": "No Selection 栏目",
+          "value": 1
+        },
+        {
+          "label": "Primary research selected",
+          "label_zh": "已选一手研究对象",
+          "value": "1 / 2"
+        },
+        {
+          "label": "Cross-sample architecture object",
+          "label_zh": "跨样本架构对象",
+          "value": "1 / 2"
+        },
+        {
+          "label": "Deep Reading performed",
+          "label_zh": "执行 Deep Reading",
+          "value": 0
+        },
+        {
+          "label": "Publication actions",
+          "label_zh": "Publication 操作数量",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Queue Wake Receipt",
+          "label_zh": "Queue Wake Receipt",
+          "path": "research/runtime/wakes/2026/09/2026-09-12/queue-095946.json"
+        },
+        {
+          "label": "Durable Queue Worker Claimed commit",
+          "label_zh": "持久 Queue Worker Claimed 提交",
+          "commit": "079d53fa3dac52eec3a66ce6effeb9b21c28de3a"
+        },
+        {
+          "label": "Generated Queue Prompt",
+          "label_zh": "Generated Queue Prompt",
+          "path": "research/runtime/worker-prompts/generated/queue.prompt.md"
+        },
+        {
+          "label": "Same-date Research Intelligence",
+          "label_zh": "同日 Research Intelligence",
+          "path": "research/intelligence/runs/2026/09/2026-09-12-intelligence.json"
+        },
+        {
+          "label": "Skill 02",
+          "label_zh": "Skill 02",
+          "path": "research/skills/02-research-triage.md"
+        },
+        {
+          "label": "Today's Research Plan commit",
+          "label_zh": "今日 Research Plan 提交",
+          "commit": "0f066a4d4b22f6bcaba4e8f23af0245c031d5034"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Today's Research Plan",
+          "label_zh": "今日 Research Plan",
+          "path": "research/runtime/plans/2026/09/2026-09-12-plan.json"
+        },
+        {
+          "label": "Queue result",
+          "label_zh": "Queue 结果",
+          "path": "research/runtime/results/2026/09/2026-09-12-queue-result.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "path": "research/runtime/records/daily/2026/09/2026-09-12-daily-runtime.json"
+        }
+      ],
+      "startedAt": "2026-09-12T13:13:37+08:00",
+      "completedAt": "2026-09-12T13:17:54+08:00"
     }
   },
   "timeline": [
@@ -260,6 +378,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Queue after verifying research/runtime/wakes/2026/09/2026-09-12/queue-095946.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-12T13:17:54+08:00",
+      "task": "queue",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Queue closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-12."
     }
   ],
   "metrics": [],
@@ -267,5 +392,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-12T13:15:07+08:00"
+  "updatedAt": "2026-09-12T13:17:54+08:00"
 }
