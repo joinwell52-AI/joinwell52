@@ -1,0 +1,48 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-13",
+  "itemId": "Q-20260913-01",
+  "researchObjectId": "Q-20260913-01",
+  "targetAudience": {
+    "primary": "Architects and operators of long-running, effect-capable agent systems",
+    "knowledgeAssumption": "The reader understands checkpoints, retries, idempotency, and external APIs.",
+    "readerProblem": "A restored agent can look locally correct while unknowingly duplicating or contradicting an effect that already escaped to an external system."
+  },
+  "whyNow": "New primary research reports substantial gains from aligned context-and-workspace rewind while explicitly bounding restoration to controlled state, exposing the missing external-effect contract.",
+  "externalHook": {
+    "type": "rewound-worker-unchanged-world",
+    "description": "A worker returns to the moment before a remote call, but the remote service still contains the call's result.",
+    "evidenceRefs": ["E1", "E2", "E3", "E4"]
+  },
+  "coreProposition": "Aligned checkpoint restoration can recover local causal consistency, but safe end-to-end recovery requires a separate, authoritative reconciliation of every external effect before retry, compensation, acceptance, or stop.",
+  "originalValue": {
+    "type": "state-and-effect-recovery-contract",
+    "description": "Separates trajectory restoration, controlled-state restoration, and external-effect reconciliation, then derives an effect-ledger and resume-gate model from the demonstrated boundary."
+  },
+  "readerTakeaway": "Treat rewind as eligibility to reason again, not permission to replay; bind each escaped effect to an occurrence identity, checkpoint generation, authoritative target reread, and explicit recovery decision.",
+  "evidenceBoundary": {
+    "supported": [
+      "AgentRewind restores model context and controlled workspace state at the same checkpoint and starts a new suffix with failure-derived memory.",
+      "The reported GPT-5.4 and GPT-5.4 mini comparisons improve task success and checklist progress inside the evaluated harnesses.",
+      "The controlled rewind boundary is principally the workspace directory tree and does not automatically reverse remote effects.",
+      "A local rewind can therefore coexist with an already-materialized external effect."
+    ],
+    "unsupported": [
+      "Universal rollback across services",
+      "Exactly-once semantics for arbitrary APIs",
+      "Automatic authorization to retry or compensate after rewind"
+    ],
+    "uncertain": [
+      "Minimum occurrence identity for ambiguous responses",
+      "Correct compensation protocol across heterogeneous systems",
+      "Concurrency semantics for overlapping recovered workers"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument derives from public primary research and general external-effect semantics and remains independently useful."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The Research Object supports a concrete, bounded recovery architecture without enlarging local benchmark results into a global rollback claim."
+}
