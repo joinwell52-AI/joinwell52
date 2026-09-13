@@ -1,5 +1,5 @@
 ---
-title: Weekly 009 — Completion Must Be Typed: One Green Check Cannot Close the Whole System
+title: 'Weekly 009 — Completion Must Be Typed: One Green Check Cannot Close the Whole System'
 date: '2026-09-13'
 column: digital-employee
 category: weekly
