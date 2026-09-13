@@ -8,10 +8,10 @@
   "date": "2026-09-13",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
-    "queue": "Running",
+    "queue": "Completed",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
@@ -173,6 +173,386 @@
       "githubCommit": "22792066b8a40253c3033f4d9f11fccdeb304eed",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-13T09:17:19+08:00"
+    },
+    "queue": {
+      "schema": "runtime-shift-result/v2",
+      "task": "queue",
+      "family": "daily",
+      "runtimeDate": "2026-09-13",
+      "status": "Completed",
+      "input": "Authoritative Queue control was pinned from the latest main commit at this wake, e501beed4f11e11de976060a121035e01847f6e8: Research Runtime Scheduler V3.0, Worker Control v1.3.0, generated Queue Prompt v1.0.0 with declared SHA-256 a0c42d5b8bfdedd9a237741ec74310bfe531ee7656a32f0e682945b4096443df, and all five requiredSources read completely from that same commit. The exact Queue Prompt bytes were hashed deterministically as UTF-8 and matched the declared SHA-256. The early-but-admissible same-date Wake Receipt research/runtime/wakes/2026/09/2026-09-13/queue-095829.json was persisted and fetched from main. After the formal 10:00 boundary, ordered Runtime reconciliation opened Queue at 10:01:05+08:00 and the native Worker Claim workflow durably recorded Worker Claimed at 10:01:56+08:00 in commit addc1766a3cf71e337c4fb52218f508e0d07eeef. Same-date Discovery was already durably Completed and GitHub-verified, exposing five normalized unselected signals in research/intelligence/runs/2026/09/2026-09-13-intelligence.json.",
+      "input_zh": "本次 Queue 权威控制固定于唤醒时获取的最新 main 提交 e501beed4f11e11de976060a121035e01847f6e8：Research Runtime Scheduler V3.0、Worker Control v1.3.0、Generated Queue Prompt v1.0.0；其声明 SHA-256 为 a0c42d5b8bfdedd9a237741ec74310bfe531ee7656a32f0e682945b4096443df，同一提交上的全部 5 个 requiredSources 均完整读取。对 Queue Prompt 精确 UTF-8 字节执行确定性 SHA-256 计算后完全匹配。略早但在准入容差内的同日 Wake Receipt research/runtime/wakes/2026/09/2026-09-13/queue-095829.json 已持久化并从 main 回读核验。正式 10:00 边界之后，Ordered Runtime Reconciliation 于 10:01:05+08:00 打开 Queue Execution Slot；原生 Worker Claim Workflow 于 10:01:56+08:00 持久记录 Worker Claimed，提交为 addc1766a3cf71e337c4fb52218f508e0d07eeef。同日 Discovery 已持久 Completed 并完成 GitHub Verification，在 research/intelligence/runs/2026/09/2026-09-13-intelligence.json 中提供 5 个规范化、未选题 Signal。",
+      "workResult": "Applied Skill 02 to all five same-date signals using problem-first admission, evidence sufficiency, source and semantic concentration, primary-research utilization, and research-problem deduplication against the September 10-12 Research Plans. Digital Employee selected Q-20260913-01 from SIG-20260913-005: AgentRewind provides primary research and benchmark evidence for a distinct long-horizon recovery boundary in which agent context and environment state must be checkpointed and rolled back together so a recovered worker does not resume against a mismatched world. Industry Architecture selected Q-20260913-02 from SIG-20260913-004: Anthropic's incident review supplies a strong primary failure result showing that an agentic transcript search may complete while still missing relevant evidence, creating a bounded completion-truth question about observable audit coverage, blind spots and independent follow-up. This reuses the September 10 primary source but not its research problem: September 10 studied scope facts and independent live enforcement for high-impact execution; today isolates audit coverage and the invalid inference from search completion to evidence-complete audit. Open-source Engineering recorded No Selection because SIG-20260913-001, SIG-20260913-002 and SIG-20260913-003 are all legitimate bounded engineering mechanisms but each currently rests on one maintainer implementation without the independent/comparative support preferred by Skill 02. They remain candidates rather than being promoted to fill a quota. Queue performed no Deep Reading, Research Analysis, writing, visualization, Production or Publication.",
+      "workResult_zh": "按 Skill 02 对同日 5 个 Signal 全量筛选，执行 Problem-first Admission、Evidence Sufficiency、Source / Semantic Concentration、一手研究利用，以及与 9 月 10–12 日 Research Plan 的研究问题去重。数字员工栏目选择 Q-20260913-01，来自 SIG-20260913-005：AgentRewind 提供一手研究与 Benchmark Evidence，形成一个不同的长周期 Recovery Boundary——Agent Context 与 Environment State 必须被对齐保存并共同回滚，否则恢复后的 Worker 可能在与现实不一致的状态上继续执行。行业架构栏目选择 Q-20260913-02，来自 SIG-20260913-004：Anthropic 事故复盘提供强一手 Failure Result，显示 Agentic Transcript Search 即使程序上完成也可能漏掉相关证据，由此形成关于 Observable Audit Coverage、Blind Spot 与 Independent Follow-up 的 Completion-truth 问题。该对象复用了 9 月 10 日的一手来源，但没有重复当时的研究问题：9 月 10 日研究的是高影响执行中的 Scope Fact 与 Independent Live Enforcement；今天单独研究 Audit Coverage，以及为什么不能从 Search Completed 推导 Evidence-complete Audit。开源工程栏目明确 No Selection，因为 SIG-20260913-001、SIG-20260913-002 与 SIG-20260913-003 都是合法且有界的工程机制，但目前各自只有一个 Maintainer Implementation，缺少 Skill 02 偏好的独立/比较支持，因此保留为 Candidate，而不是为了填满名额而提升。Queue 未执行 Deep Reading、Research Analysis、写作、可视化、Production 或 Publication。",
+      "output": "Completed Daily Research Plan at research/runtime/plans/2026/09/2026-09-13-plan.json with exactly three explicit decisions: Digital Employee = Selected Q-20260913-01; Industry Architecture = Selected Q-20260913-02; Open-source Engineering = No Selection.",
+      "output_zh": "已完成 Daily Research Plan：research/runtime/plans/2026/09/2026-09-13-plan.json，包含且仅包含三个显式决定：Digital Employee = Selected Q-20260913-01；Industry Architecture = Selected Q-20260913-02；Open-source Engineering = No Selection。",
+      "next": "After governed Queue terminal finalization and GitHub Commit Verified, Runtime must reconcile again. Reading remains ineligible before its 11:00 not-before boundary and, once formally admitted, may consume only Q-20260913-01 and Q-20260913-02 through Skill 03. No downstream work is authorized by this Queue result itself.",
+      "next_zh": "Queue 完成受治理的 Terminal Finalization 与 GitHub Commit Verified 后，Runtime 必须再次 Reconcile。Reading 在 11:00 Not-before 之前仍不具备执行资格；之后只有在 Runtime 正式准入时，才可通过 Skill 03 消费 Q-20260913-01 与 Q-20260913-02。本 Queue Result 本身不授权任何下游工作。",
+      "metrics": [
+        {
+          "label": "Generated Queue prompt SHA-256 verified",
+          "label_zh": "Generated Queue Prompt SHA-256 已核验",
+          "value": "a0c42d5b8bfdedd9a237741ec74310bfe531ee7656a32f0e682945b4096443df"
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 requiredSources",
+          "value": "5 / 5"
+        },
+        {
+          "label": "Signal pool count",
+          "label_zh": "Signal Pool 数量",
+          "value": 5
+        },
+        {
+          "label": "Column decisions",
+          "label_zh": "栏目决定",
+          "value": 3
+        },
+        {
+          "label": "Selected objects",
+          "label_zh": "已选 Research Object",
+          "value": 2
+        },
+        {
+          "label": "No Selection columns",
+          "label_zh": "No Selection 栏目",
+          "value": 1
+        },
+        {
+          "label": "Candidate signals",
+          "label_zh": "Candidate Signal",
+          "value": 3
+        },
+        {
+          "label": "Rejected signals",
+          "label_zh": "Rejected Signal",
+          "value": 0
+        },
+        {
+          "label": "Primary research share of selected objects",
+          "label_zh": "已选对象中的一手研究证据占比",
+          "value": "2 / 2"
+        },
+        {
+          "label": "Deep Reading performed",
+          "label_zh": "执行 Deep Reading",
+          "value": 0
+        },
+        {
+          "label": "Publication actions",
+          "label_zh": "Publication 操作数量",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Queue Wake Receipt",
+          "label_zh": "Queue Wake Receipt",
+          "path": "research/runtime/wakes/2026/09/2026-09-13/queue-095829.json"
+        },
+        {
+          "label": "Pinned Queue control-source commit",
+          "label_zh": "固定 Queue 控制源提交",
+          "commit": "e501beed4f11e11de976060a121035e01847f6e8"
+        },
+        {
+          "label": "Durable Queue Worker Claimed commit",
+          "label_zh": "持久 Queue Worker Claimed 提交",
+          "commit": "addc1766a3cf71e337c4fb52218f508e0d07eeef"
+        },
+        {
+          "label": "Generated Queue Prompt",
+          "label_zh": "Generated Queue Prompt",
+          "path": "research/runtime/worker-prompts/generated/queue.prompt.md"
+        },
+        {
+          "label": "Same-date Research Intelligence",
+          "label_zh": "同日 Research Intelligence",
+          "path": "research/intelligence/runs/2026/09/2026-09-13-intelligence.json"
+        },
+        {
+          "label": "Skill 02",
+          "label_zh": "Skill 02",
+          "path": "research/skills/02-research-triage.md"
+        },
+        {
+          "label": "Recent Research Plans used for research-problem deduplication",
+          "label_zh": "用于研究问题去重的近期 Research Plan",
+          "value": "2026-09-10, 2026-09-11, 2026-09-12"
+        },
+        {
+          "label": "Today's Research Plan commit",
+          "label_zh": "今日 Research Plan 提交",
+          "commit": "855c7da13e2df6c0819128678ecfba4e5cc7c0c1"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Today's Research Plan",
+          "label_zh": "今日 Research Plan",
+          "path": "research/runtime/plans/2026/09/2026-09-13-plan.json"
+        },
+        {
+          "label": "Queue result",
+          "label_zh": "Queue 结果",
+          "path": "research/runtime/results/2026/09/2026-09-13-queue-result.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "path": "research/runtime/records/daily/2026/09/2026-09-13-daily-runtime.json"
+        }
+      ],
+      "triage": [
+        {
+          "signalId": "SIG-20260913-001",
+          "candidate": "Human-facing progress communication should remain a manager-scoped capability rather than a generic subagent tool",
+          "pipelineOrigin": "github-engineering",
+          "primaryColumn": "digital-employee",
+          "secondaryColumns": [
+            "open-source-engineering"
+          ],
+          "researchQuestion": "Which agent role should have authority to communicate asynchronous progress to a human when internal subagents are still working, and how should that capability preserve responsibility topology?",
+          "researchThemes": [
+            "formal-responsibility-topology",
+            "subagent-boundary",
+            "human-agent-collaboration",
+            "event-visibility"
+          ],
+          "subjectKind": "architecture-mechanism",
+          "signalRoles": [
+            "mechanism-evidence"
+          ],
+          "sampleIds": [
+            "openai-codex"
+          ],
+          "evidenceLevels": [
+            "merged_maintainer_change"
+          ],
+          "admission": {
+            "problemFirst": true,
+            "validSubjectKind": true,
+            "themeBound": true,
+            "releaseBoundaryPassed": true,
+            "evidenceSufficient": false
+          },
+          "scores": {
+            "governanceValue": 5,
+            "digitalEmployeeValue": 5,
+            "multiAgentValue": 5,
+            "failureLearningValue": 4,
+            "mechanismValue": 5,
+            "findingValue": 2,
+            "crossSampleSupport": 1,
+            "sourceQuality": 5,
+            "novelResearchDelta": 4,
+            "boundedQuestion": 5
+          },
+          "total": 41,
+          "decision": "candidate",
+          "selectionReason": "The root-versus-subagent communication boundary is concrete and governance-relevant, but today it is supported by one Codex maintainer implementation. It needs an independent implementation, failure study or comparative sample before selection.",
+          "rejectedReason": "INSUFFICIENT_MECHANISM_EVIDENCE"
+        },
+        {
+          "signalId": "SIG-20260913-002",
+          "candidate": "Cancellation may preserve cleanup obligations without becoming business completion",
+          "pipelineOrigin": "github-engineering",
+          "primaryColumn": "open-source-engineering",
+          "secondaryColumns": [
+            "digital-employee"
+          ],
+          "researchQuestion": "Which lifecycle cleanup obligations must still run after cancellation, and how can a runtime execute them exactly once without replacing the original cancellation with a false completion signal?",
+          "researchThemes": [
+            "worker-lifecycle",
+            "failure-semantics",
+            "cleanup-boundary",
+            "observability"
+          ],
+          "subjectKind": "protocol-mechanism",
+          "signalRoles": [
+            "mechanism-evidence"
+          ],
+          "sampleIds": [
+            "google-adk-python"
+          ],
+          "evidenceLevels": [
+            "merged_maintainer_change"
+          ],
+          "admission": {
+            "problemFirst": true,
+            "validSubjectKind": true,
+            "themeBound": true,
+            "releaseBoundaryPassed": true,
+            "evidenceSufficient": false
+          },
+          "scores": {
+            "governanceValue": 4,
+            "digitalEmployeeValue": 4,
+            "multiAgentValue": 2,
+            "failureLearningValue": 5,
+            "mechanismValue": 5,
+            "findingValue": 3,
+            "crossSampleSupport": 1,
+            "sourceQuality": 5,
+            "novelResearchDelta": 4,
+            "boundedQuestion": 5
+          },
+          "total": 38,
+          "decision": "candidate",
+          "selectionReason": "The cancellation/finalization separation is a bounded engineering mechanism with targeted tests, but it remains one maintainer implementation and lacks independent comparative or incident evidence.",
+          "rejectedReason": "INSUFFICIENT_MECHANISM_EVIDENCE"
+        },
+        {
+          "signalId": "SIG-20260913-003",
+          "candidate": "Concurrent agent state requires a type-aware merge contract beyond last-writer-wins",
+          "pipelineOrigin": "github-engineering",
+          "primaryColumn": "industry-architecture",
+          "secondaryColumns": [
+            "open-source-engineering"
+          ],
+          "researchQuestion": "When parallel workers update shared state, which merge semantics prevent silent loss without converting duplicate or conflicting effects into apparently valid state?",
+          "researchThemes": [
+            "concurrent-state",
+            "merge-semantics",
+            "multi-agent-state-ownership",
+            "idempotency"
+          ],
+          "subjectKind": "architecture-mechanism",
+          "signalRoles": [
+            "mechanism-evidence"
+          ],
+          "sampleIds": [
+            "google-adk-python"
+          ],
+          "evidenceLevels": [
+            "merged_maintainer_change"
+          ],
+          "admission": {
+            "problemFirst": true,
+            "validSubjectKind": true,
+            "themeBound": true,
+            "releaseBoundaryPassed": true,
+            "evidenceSufficient": false
+          },
+          "scores": {
+            "governanceValue": 4,
+            "digitalEmployeeValue": 3,
+            "multiAgentValue": 5,
+            "failureLearningValue": 5,
+            "mechanismValue": 5,
+            "findingValue": 3,
+            "crossSampleSupport": 1,
+            "sourceQuality": 5,
+            "novelResearchDelta": 4,
+            "boundedQuestion": 5
+          },
+          "total": 40,
+          "decision": "candidate",
+          "selectionReason": "The list-concatenation change clearly exposes the failure of generic last-writer-wins and preserves an explicit duplicate caveat, but one implementation is not enough to establish the broader concurrency contract as today's selected object.",
+          "rejectedReason": "INSUFFICIENT_MECHANISM_EVIDENCE"
+        },
+        {
+          "signalId": "SIG-20260913-004",
+          "candidate": "Audit-process completion must be separated from evidence-coverage completion",
+          "pipelineOrigin": "published-research",
+          "primaryColumn": "industry-architecture",
+          "secondaryColumns": [
+            "digital-employee"
+          ],
+          "researchQuestion": "What evidence must demonstrate coverage before an AI-assisted audit may claim completion when an agentic search can finish yet miss relevant cases?",
+          "researchThemes": [
+            "auditability",
+            "evaluation-coverage",
+            "failure-attribution",
+            "subagent-observability"
+          ],
+          "subjectKind": "failure-mode",
+          "signalRoles": [
+            "failure-evidence"
+          ],
+          "sampleIds": [
+            "anthropic-research"
+          ],
+          "evidenceLevels": [
+            "peer_reviewed_or_primary_research"
+          ],
+          "admission": {
+            "problemFirst": true,
+            "validSubjectKind": true,
+            "themeBound": true,
+            "releaseBoundaryPassed": true,
+            "evidenceSufficient": true
+          },
+          "scores": {
+            "governanceValue": 5,
+            "digitalEmployeeValue": 5,
+            "multiAgentValue": 4,
+            "failureLearningValue": 5,
+            "mechanismValue": 4,
+            "findingValue": 5,
+            "crossSampleSupport": 2,
+            "sourceQuality": 5,
+            "novelResearchDelta": 4,
+            "boundedQuestion": 5
+          },
+          "total": 44,
+          "decision": "selected",
+          "selectionReason": "A disclosed missed-case failure directly falsifies the inference that a completed agentic search proves audit coverage. Although the source was also used on September 10, today's bounded question concerns audit evidence coverage rather than high-impact execution authority and live enforcement, so it is not a duplicate research problem.",
+          "rejectedReason": ""
+        },
+        {
+          "signalId": "SIG-20260913-005",
+          "candidate": "Long-horizon recovery needs aligned checkpoints of cognitive and environment state",
+          "pipelineOrigin": "published-research",
+          "primaryColumn": "digital-employee",
+          "secondaryColumns": [
+            "open-source-engineering"
+          ],
+          "researchQuestion": "Which cognitive and environment/effect state must share a checkpoint identity so a long-running agent can recover from propagated errors without resuming against an inconsistent world?",
+          "researchThemes": [
+            "long-horizon-recovery",
+            "checkpointing",
+            "environment-state",
+            "failure-recovery"
+          ],
+          "subjectKind": "research-finding",
+          "signalRoles": [
+            "research-finding"
+          ],
+          "sampleIds": [
+            "agentrewind"
+          ],
+          "evidenceLevels": [
+            "peer_reviewed_or_primary_research"
+          ],
+          "admission": {
+            "problemFirst": true,
+            "validSubjectKind": true,
+            "themeBound": true,
+            "releaseBoundaryPassed": true,
+            "evidenceSufficient": true
+          },
+          "scores": {
+            "governanceValue": 4,
+            "digitalEmployeeValue": 5,
+            "multiAgentValue": 3,
+            "failureLearningValue": 5,
+            "mechanismValue": 5,
+            "findingValue": 5,
+            "crossSampleSupport": 4,
+            "sourceQuality": 5,
+            "novelResearchDelta": 5,
+            "boundedQuestion": 5
+          },
+          "total": 46,
+          "decision": "selected",
+          "selectionReason": "The paper supplies a primary mechanism plus measured comparison across tasks, models, execution strategies and harnesses, and asks a distinct recovery-state question not covered by recent memory-evidence or interrupted-call replay objects.",
+          "rejectedReason": ""
+        }
+      ],
+      "startedAt": "2026-09-13T10:01:05+08:00",
+      "completedAt": "2026-09-13T10:07:00+08:00"
     }
   },
   "timeline": [
@@ -217,6 +597,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Queue after verifying research/runtime/wakes/2026/09/2026-09-13/queue-095829.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-13T10:07:00+08:00",
+      "task": "queue",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Queue closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-13."
     }
   ],
   "metrics": [],
@@ -224,5 +611,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-13T10:01:56+08:00"
+  "updatedAt": "2026-09-13T10:07:00+08:00"
 }
