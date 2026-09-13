@@ -11,6 +11,15 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-09-13">
+    <time>2026-09-13</time>
+    <div>
+      <strong>Agent Research & Competitor Intelligence</strong>
+      <span>Yue Zhao real fan-out failure semantics · AG2 AG-UI human interrupts · Paperclip credential lease / resume objective · Superset APNs Lock Screen · Orca Run Origin · Fusion MCP tool identity · OpenHands scoped runtime capability</span>
+    </div>
+    <b>View →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-09-12">
     <time>2026-09-12</time>
     <div>
