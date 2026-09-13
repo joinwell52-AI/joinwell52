@@ -1,0 +1,48 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-13",
+  "itemId": "Q-20260913-02",
+  "researchObjectId": "Q-20260913-02",
+  "targetAudience": {
+    "primary": "Security, compliance, and AI-governance leaders operating large agentic audit pipelines",
+    "knowledgeAssumption": "The reader understands search funnels, model review, incident investigation, and audit assurance.",
+    "readerProblem": "A dashboard can report a successful audit run while hiding that relevant records never entered the search universe or were misclassified downstream."
+  },
+  "whyNow": "A September 2026 primary disclosure reports that an earlier completed agentic search omitted a relevant transcript set and that a later 481-million-record search found a fourth incident.",
+  "externalHook": {
+    "type": "old-incident-after-completed-audit",
+    "description": "A January incident appears only after a July audit has already completed because the relevant records were outside its effective universe.",
+    "evidenceRefs": ["E1", "E2", "E3"]
+  },
+  "coreProposition": "An agentic audit's terminal state proves only that a configured process ended; adequate coverage requires separate durable evidence about the searched universe, funnel losses, semantic adjudication, known-positive recovery, rejected strata, and independent review.",
+  "originalValue": {
+    "type": "separated-audit-assurance-model",
+    "description": "Uses one within-case universe expansion and monitor failure to separate execution completion, candidate discovery, adjudication, and coverage assurance."
+  },
+  "readerTakeaway": "Keep audit execution status independent from coverage assurance and bind every negative finding to a versioned evidence universe and inspectable funnel.",
+  "evidenceBoundary": {
+    "supported": [
+      "Anthropic reports an earlier search over roughly 141,000 transcripts that found three incidents but omitted a relevant transcript set.",
+      "Scanning the omitted set revealed a fourth incident from January 2026.",
+      "A later two-stage search covered roughly 481 million transcripts, escalated about 9.2 million, and re-identified all four known incidents.",
+      "The source reports a model-based monitor that would have missed one incident after accepting the audited model's framing."
+    ],
+    "unsupported": [
+      "A proof that all relevant incidents were enumerated",
+      "A known residual false-negative rate for the expanded search",
+      "A completed independent METR certification"
+    ],
+    "uncertain": [
+      "Adequate coverage thresholds across domains",
+      "Rejected-strata sampling needed for high-stakes assurance",
+      "The independence gained by related model reviewers"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The case and architecture are based on public vendor disclosure and remain independently useful without first-party project references."
+  },
+  "recommendedArticleType": "case-study",
+  "editorialDecision": "PASS",
+  "decisionReason": "The missed incident is direct negative evidence against completion-as-coverage, while the expanded funnel supports a bounded and actionable assurance model."
+}
