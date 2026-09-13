@@ -6,7 +6,7 @@ column: industry-architecture
 category: daily
 article_type: case-study
 edition: research-center
-research_question: "When an agentic audit reaches a terminal result, what additional evidence is required before an organization can claim adequate coverage of the relevant evidence universe?"
+research_question: "当智能体审计达到终态时，还需要哪些独立证据，组织才能声称相关证据范围已被充分覆盖，而不只是既定搜索流程已经结束？"
 summary: "A completed audit proves that a configured process ended. Coverage assurance additionally requires evidence about the universe, search funnel, known-positive recovery, rejected strata, semantic adjudication, and independent review."
 cover: staging/publication-candidates/2026-09-13-audit-completion-not-coverage-assurance-cover.png
 sources:
