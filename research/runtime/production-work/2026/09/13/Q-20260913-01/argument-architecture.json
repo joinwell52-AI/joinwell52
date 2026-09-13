@@ -1,0 +1,28 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-13",
+  "itemId": "Q-20260913-01",
+  "coreProposition": "Aligned checkpoint restoration can recover local causal consistency, but safe end-to-end recovery requires a separate, authoritative reconciliation of every external effect before retry, compensation, acceptance, or stop.",
+  "openingMove": {
+    "type": "pre-call-local-state-post-call-world",
+    "purpose": "Open with the contradiction between a rewound local worker and an external system that was not rewound.",
+    "evidenceRefs": ["E3", "E4"]
+  },
+  "argumentNodes": [
+    {"nodeId":"A1","question":"What does aligned rewind actually restore?","claim":"It restores context and controlled environment state to one causal boundary while retaining failure-derived learning.","evidenceRefs":["E1","E2"],"reasoningRole":"mechanism-and-benchmark-boundary","readerProgress":"Understand the demonstrated value without assuming universal rollback.","visualNeed":"none"},
+    {"nodeId":"A2","question":"Where does the guarantee stop?","claim":"Remote messages, records, payments, and API mutations remain outside the workspace checkpoint.","evidenceRefs":["E3","E4"],"reasoningRole":"effect-boundary","readerProgress":"See why local consistency can coexist with global inconsistency.","visualNeed":"none"},
+    {"nodeId":"A3","question":"Which facts must remain separate?","claim":"Trajectory restoration, controlled-state restoration, and external-effect reconciliation are distinct claims.","evidenceRefs":["E4"],"reasoningRole":"state-model","readerProgress":"Replace an overloaded recovery flag with auditable state.","visualNeed":"none"},
+    {"nodeId":"A4","question":"How should effects be represented?","claim":"Each external mutation needs a stable occurrence identity linked to target state, attempt, checkpoint generation, acknowledgement, and replay class.","evidenceRefs":["E5","E6"],"reasoningRole":"effect-ledger","readerProgress":"Gain a concrete recovery evidence model.","visualNeed":"none"},
+    {"nodeId":"A5","question":"What may the resumed worker do?","claim":"A resume gate must branch on authoritative present, absent, compensated, irreversible, or unknown effect evidence.","evidenceRefs":["E5","E6"],"reasoningRole":"decision-contract","readerProgress":"Translate evidence state into bounded action.","visualNeed":"none"},
+    {"nodeId":"A6","question":"What remains unresolved?","claim":"Cross-service atomicity, compensation correctness, organizational authority, and concurrency are not established by the source.","evidenceRefs":["E6"],"reasoningRole":"limits","readerProgress":"Retain the boundary of current evidence.","visualNeed":"none"}
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "If context and workspace are restored together, the worker can safely rerun the failed suffix.",
+    "responseBoundary": "The source supports aligned local recovery, but effects beyond the controlled workspace can already exist and require separate authoritative evidence."
+  },
+  "endingStrategy": {
+    "type": "unknown-effect-stop-rule",
+    "purpose": "End by making unknown external-effect state an explicit reason to stop rather than guess."
+  }
+}
