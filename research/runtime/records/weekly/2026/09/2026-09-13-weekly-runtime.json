@@ -1,0 +1,57 @@
+{
+  "schema": "weekly-runtime-record/v1",
+  "runtimeVersion": "5.0",
+  "schedulerVersion": "3.0",
+  "runtimeFamily": "weekly",
+  "runtimeFamilyName": "Weekly Runtime",
+  "runtimeFamilyName_zh": "每周运行",
+  "date": "2026-09-13",
+  "timezone": "Asia/Shanghai",
+  "repository": "joinwell52-AI/joinwell52",
+  "status": "Running",
+  "taskStatus": {
+    "weekly": "Running"
+  },
+  "results": {},
+  "timeline": [
+    {
+      "time": "2026-09-13T20:30:49+08:00",
+      "task": "weekly",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Process Manager granted Weekly execution authority after verifying the 2026-09-13 wake receipt, confirming all earlier applicable formal tasks were execution-closed, and verifying current main control equivalence to validated commit 1a3293b46684a9f4c3a55c2520d825f04a7f3285; current main differs only by the Weekly wake receipt."
+    }
+  ],
+  "metrics": [],
+  "evidence": [
+    {
+      "label": "Wake Receipt",
+      "label_zh": "唤醒回执",
+      "source": "research/runtime/wakes/2026/09/2026-09-13/weekly-202922.json"
+    },
+    {
+      "label": "Pinned current main",
+      "label_zh": "固定当前 main",
+      "value": "8fe54248ecb348e0e086db7c8ca628e6ba9326e6"
+    },
+    {
+      "label": "Validated control-equivalent parent",
+      "label_zh": "已验证的控制等价父提交",
+      "value": "1a3293b46684a9f4c3a55c2520d825f04a7f3285"
+    },
+    {
+      "label": "Weekly Prompt SHA-256 declaration",
+      "label_zh": "Weekly Prompt SHA-256 声明",
+      "value": "0bcaf3e089691ba6d1ac421a4aa858c0ddc34ba6599664054616e2bbb3a56dac"
+    },
+    {
+      "label": "Control validation",
+      "label_zh": "控制验证",
+      "value": "Validate Research Center 3.0 #34756477281 success on 1a3293b46684a9f4c3a55c2520d825f04a7f3285; compare to current main shows only the verified Weekly wake receipt was added"
+    }
+  ],
+  "artifacts": [],
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-09-13T20:30:49+08:00"
+}
