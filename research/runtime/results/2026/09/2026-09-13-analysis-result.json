@@ -1,0 +1,113 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "analysis",
+  "family": "daily",
+  "runtimeDate": "2026-09-13",
+  "status": "Completed",
+  "input": "Authoritative Analysis control was pinned after durable Worker Claimed from main commit 98d57fd428363eca2eb22d477c5bb58c3109b04a: Research Runtime Scheduler V3.0, Worker Control v1.3.0, generated Analysis Prompt v2.0.0 with declared SHA-256 4f40dff2d12569f647bf265f344b60cb0f0cd0349f0b2d5cf1023f50947dfea2, and all seven requiredSources read completely from that same commit. Deterministic npm run runtime:validate in Research Runtime Worker Claim run 34739486137 passed worker-prompts validation for all nine generated prompts and 29 Worker Control admission regression cases before the durable claim commit was pushed. The verified same-date Analysis Wake Receipt is research/runtime/wakes/2026/09/2026-09-13/analysis-130359.json. Ordered reconciliation opened Analysis only after Reading was Completed and GitHub-verified, and the native Worker Claim workflow durably recorded Worker Claimed at 13:06:59+08:00 in commit 98d57fd428363eca2eb22d477c5bb58c3109b04a. Analysis consumed only the Completed same-date Reading result and Reading Notes Q-20260913-01 and Q-20260913-02.",
+  "input_zh": "Analysis 权威控制固定于持久 Worker Claimed 后的 main 提交 98d57fd428363eca2eb22d477c5bb58c3109b04a：Research Runtime Scheduler V3.0、Worker Control v1.3.0、Generated Analysis Prompt v2.0.0（声明 SHA-256 为 4f40dff2d12569f647bf265f344b60cb0f0cd0349f0b2d5cf1023f50947dfea2）及同一提交上的全部 7 个 requiredSources。Research Runtime Worker Claim Run 34739486137 在持久 Claim 提交推送前确定性执行 npm run runtime:validate，9 个 Generated Prompt 校验全部通过，Worker Control 的 29 个准入回归用例全部通过。同日已核验 Analysis Wake Receipt 为 research/runtime/wakes/2026/09/2026-09-13/analysis-130359.json。Reading 已 Completed 且完成 GitHub Verification 后，Ordered Reconciliation 才打开 Analysis；原生 Worker Claim Workflow 于 13:06:59+08:00 在提交 98d57fd428363eca2eb22d477c5bb58c3109b04a 中持久记录 Worker Claimed。Analysis 只消费同日 Completed Reading Result 与 Q-20260913-01、Q-20260913-02 两份 Reading Note。",
+  "workResult": "Applied Skill 04 to exactly two source-complete same-date Reading Notes and produced two bounded Research Objects. Q-20260913-01 concludes that aligned restoration of agent context and controlled environment is necessary for local causal consistency but does not restore escaped external effects; a governed runtime therefore needs separate durable effect identity and present/absent/compensated/unknown evidence before retrying, compensating or accepting an external operation after rewind. Q-20260913-02 concludes that an agentic audit terminal state is an execution fact rather than coverage proof; audit-universe identity, search-funnel evidence, known-positive recovery, rejected-strata evidence, semantic adjudication and independent completed review must remain separate inputs to a bounded coverage-assurance judgment. Both Research Objects are ReadyForProduction with production_input_authorized=true and publication_authorized=false. No article drafting, Production staging, cover generation or Publication was performed.",
+  "workResult_zh": "Skill 04 严格只消费两份同日来源完整 Reading Note，并生成两份有界 Research Object。Q-20260913-01 的结论是：Agent Context 与受控 Environment 的对齐恢复是本地因果一致性的必要条件，但不会自动恢复已经逃逸到外部系统的 Effect；因此，受治理 Runtime 在 Rewind 后重试、补偿或接受外部操作之前，必须单独保留持久 Effect Identity，以及 Present / Absent / Compensated / Unknown 等权威效果证据。Q-20260913-02 的结论是：Agentic Audit 的终态只是执行事实，不是 Coverage Proof；Audit Universe Identity、Search Funnel Evidence、Known-positive Recovery、Rejected-strata Evidence、Semantic Adjudication 与真正完成的 Independent Review 必须与终态分开，才能形成有界 Coverage Assurance。两份 Research Object 均为 ReadyForProduction、production_input_authorized=true、publication_authorized=false。未执行文章写作、Production Staging、题图生成或 Publication。",
+  "output": "Two durable same-date Research Objects: research/analysis/Q-20260913-01-checkpoint-effect-consistency-boundary.md; research/analysis/Q-20260913-02-audit-coverage-is-separate-state.md.",
+  "output_zh": "生成两份同日持久 Research Object：research/analysis/Q-20260913-01-checkpoint-effect-consistency-boundary.md；research/analysis/Q-20260913-02-audit-coverage-is-separate-state.md。",
+  "next": "After governed Analysis terminal finalization and GitHub Commit Verified, reconcile immediately. Production may consume only these two same-date explicitly Production-authorized Research Objects once its own formal 15:00 boundary and admission conditions are satisfied.",
+  "next_zh": "Analysis 完成受治理终态收口与 GitHub Commit Verified 后立即重新对账；Production 只有在自身正式 15:00 边界及准入条件满足后，才可消费这两份同日且明确授权的 Research Object。",
+  "metrics": [
+    {
+      "label": "Generated Analysis prompt SHA-256 verified",
+      "label_zh": "Generated Analysis Prompt SHA-256 已核验",
+      "value": "4f40dff2d12569f647bf265f344b60cb0f0cd0349f0b2d5cf1023f50947dfea2"
+    },
+    {
+      "label": "Prompt verification mode",
+      "label_zh": "Prompt 核验模式",
+      "value": "deterministic runtime:validate / worker-prompts:validate in Worker Claim run 34739486137"
+    },
+    {
+      "label": "Required sources read",
+      "label_zh": "已读取 requiredSources",
+      "value": "7 / 7"
+    },
+    {
+      "label": "Same-date completed Reading Notes analyzed",
+      "label_zh": "已分析同日 Completed Reading Note",
+      "value": 2
+    },
+    {
+      "label": "Durable Research Objects",
+      "label_zh": "持久 Research Object",
+      "value": 2
+    },
+    {
+      "label": "Production-authorized Research Objects",
+      "label_zh": "已授权 Production 输入的 Research Object",
+      "value": 2
+    },
+    {
+      "label": "Production actions",
+      "label_zh": "Production 操作数量",
+      "value": 0
+    },
+    {
+      "label": "Publication actions",
+      "label_zh": "Publication 操作数量",
+      "value": 0
+    },
+    {
+      "label": "Revision rounds used",
+      "label_zh": "已使用修订轮次",
+      "value": 0
+    }
+  ],
+  "evidence": [
+    {
+      "label": "Pinned Analysis control-source commit",
+      "label_zh": "固定 Analysis 控制源提交",
+      "commit": "98d57fd428363eca2eb22d477c5bb58c3109b04a"
+    },
+    {
+      "label": "Analysis Wake Receipt",
+      "label_zh": "Analysis Wake Receipt",
+      "path": "research/runtime/wakes/2026/09/2026-09-13/analysis-130359.json"
+    },
+    {
+      "label": "Generated Analysis Prompt SHA-256",
+      "label_zh": "Generated Analysis Prompt SHA-256",
+      "value": "4f40dff2d12569f647bf265f344b60cb0f0cd0349f0b2d5cf1023f50947dfea2"
+    },
+    {
+      "label": "Durable Analysis Worker Claimed commit",
+      "label_zh": "持久 Analysis Worker Claimed 提交",
+      "commit": "98d57fd428363eca2eb22d477c5bb58c3109b04a"
+    },
+    {
+      "label": "Worker Claim validation run",
+      "label_zh": "Worker Claim 校验运行",
+      "value": "Research Runtime Worker Claim V1.0 #34739486137"
+    },
+    {
+      "label": "Completed same-date Reading result",
+      "label_zh": "同日 Completed Reading 结果",
+      "path": "research/runtime/results/2026/09/2026-09-13-reading-result.json"
+    }
+  ],
+  "artifacts": [
+    {
+      "label": "Q-20260913-01 Research Object",
+      "label_zh": "Q-20260913-01 Research Object",
+      "path": "research/analysis/Q-20260913-01-checkpoint-effect-consistency-boundary.md"
+    },
+    {
+      "label": "Q-20260913-02 Research Object",
+      "label_zh": "Q-20260913-02 Research Object",
+      "path": "research/analysis/Q-20260913-02-audit-coverage-is-separate-state.md"
+    },
+    {
+      "label": "Analysis result",
+      "label_zh": "Analysis 结果",
+      "path": "research/runtime/results/2026/09/2026-09-13-analysis-result.json"
+    }
+  ],
+  "startedAt": "2026-09-13T13:06:59+08:00",
+  "completedAt": "2026-09-13T13:11:03+08:00"
+}
