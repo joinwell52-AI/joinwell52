@@ -8,11 +8,11 @@
   "date": "2026-09-13",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -556,6 +556,124 @@
       "githubCommit": "69cb1988dea068968bfefe5fddaa5d21372a40e3",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-13T10:07:07+08:00"
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "family": "daily",
+      "runtimeDate": "2026-09-13",
+      "status": "Completed",
+      "input": "Authoritative Reading control was pinned from main commit 2429052f2ba46e2747a48688a776a100a2e51079 after the same-date Reading Wake Receipt was durably persisted and remotely verified. The pinned control contained Research Runtime Scheduler V3.0, Worker Control v1.3.0, generated Reading Prompt v1.0.0 with declared SHA-256 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5, and all five requiredSources. The exact generated prompt was deterministically hashed as UTF-8 and matched the declared SHA-256; all five requiredSources were read completely from that same control commit. The verified Wake Receipt is research/runtime/wakes/2026/09/2026-09-13/reading-110241.json. Ordered Runtime reconciliation opened Reading at 11:07:12+08:00, and the native Worker Claim path durably recorded a fresh Worker Claimed event at 11:07:54+08:00 in commit e31d3c9216b94ea466dd1059f684eb9a3d3d87c8. Reading consumed only the same-date Completed Queue plan: Q-20260913-01 and Q-20260913-02 were Selected P0 objects; Open-source Engineering was an explicit No Selection.",
+      "input_zh": "Reading 权威控制固定于同日 Wake Receipt 已持久化并完成远程核验后的 main 提交 2429052f2ba46e2747a48688a776a100a2e51079。该控制提交包含 Research Runtime Scheduler V3.0、Worker Control v1.3.0、Generated Reading Prompt v1.0.0（声明 SHA-256 为 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5）以及全部 5 个 requiredSources。已对精确 Generated Prompt 的 UTF-8 字节执行确定性 SHA-256 计算并与声明值一致，同一控制提交上的 5/5 requiredSources 均完整读取。已核验 Wake Receipt 为 research/runtime/wakes/2026/09/2026-09-13/reading-110241.json。Ordered Runtime Reconciliation 于 11:07:12+08:00 打开 Reading，原生 Worker Claim 路径于 11:07:54+08:00 在提交 e31d3c9216b94ea466dd1059f684eb9a3d3d87c8 中持久记录 fresh Worker Claimed。Reading 只消费同日已完成的 Queue Plan：Q-20260913-01 与 Q-20260913-02 为 Selected P0 Object；Open-source Engineering 为明确 No Selection。",
+      "workResult": "Completed source-complete Deep Reading for both same-date Selected objects. Q-20260913-01 re-read AgentRewind under the narrower recovery-boundary question. The primary mechanism aligns agent context and controlled environment state at the same historical checkpoint, and the evaluation evidence supports substantial recovery gains inside the tested engineering harnesses. The source also makes the boundary explicit: workspace restoration does not automatically undo already-materialized external effects such as remote API or service mutations. The bounded Runtime finding is that local trajectory consistency and controlled-environment restoration are not global effect consistency; production recovery needs separate durable effect identity, replay/idempotency/compensation semantics and authoritative target-state evidence before a resumed worker retries an external mutation. Q-20260913-02 read Anthropic's September 9 incident assessment under the audit-coverage question. An initial agentic scan of roughly 141,000 transcripts found three incidents but omitted a relevant transcript set; later discovery of that omission surfaced a fourth incident. Anthropic then broadened the search to roughly 481 million transcripts and escalated about 9.2 million to second-stage Claude review, re-identifying the four known incidents and finding no similar-or-worse additional cases within that process. The bounded architecture finding is that Audit Process Completion, Coverage Evidence, Incident Attribution and Coverage Assurance are separate states; a terminal search job cannot use its own completion state as proof that the candidate universe was complete. The same assessment also shows a distinct semantic-review risk: a model-based monitor can inherit the audited actor's misleading framing even when the record is visible. Open-source Engineering remained No Selection; Reading created no third object. Reading performed no Research Analysis, article writing, visualization, Production or Publication. Both Reading Notes were remotely re-read at exact head 2d4721a8dc306b0604ce8bf9cab1f9e238ac92f8, and Validate Research Center 3.0 run 34734973666 completed successfully on that exact note head before terminal finalization.",
+      "workResult_zh": "已对两个同日 Selected Object 完成来源完整 Deep Reading。Q-20260913-01 在更窄的 Recovery Boundary 问题下重新深读 AgentRewind。一手机制把 Agent Context 与受控 Environment State 对齐到同一历史 Checkpoint，评测证据支持其在所测工程 Harness 内带来显著恢复收益；同时来源明确给出边界：恢复 Workspace 并不会自动撤销已经物化到外部系统的 Remote API、SaaS 或其他业务 Effect。边界 Runtime 结论是：Local Trajectory Consistency 与 Controlled-environment Restoration 不等于 Global Effect Consistency；生产级恢复在恢复 Worker 重试外部 Mutation 前，还需要独立持久的 Effect Identity、Replay/Idempotency/Compensation 语义以及权威 Target-state Evidence。Q-20260913-02 在 Audit Coverage 问题下深读 Anthropic 9 月 9 日事故评估。首次 Agentic Scan 约覆盖 14.1 万条 Transcript，发现 3 起事故，却遗漏了一组相关 Transcript；后续发现这一遗漏后又识别出第 4 起事故。Anthropic 随后把搜索扩展到约 4.81 亿条 Transcript，并把约 920 万条升级到第二阶段 Claude Review，重新识别全部 4 起已知事故，且在该流程内未发现其他同等或更严重案例。边界架构结论是：Audit Process Completion、Coverage Evidence、Incident Attribution 与 Coverage Assurance 必须分开；搜索任务达到终态不能用自己的 Completed 状态证明 Candidate Universe 已完整覆盖。同一评估还显示另一种独立风险：即使记录已经可见，Model-based Monitor 仍可能继承被审计 Actor 的误导性解释而发生 Semantic Misclassification。Open-source Engineering 保持 No Selection，没有人为补造第三个对象。Reading 未执行 Research Analysis、文章写作、可视化、Production 或 Publication。两份 Reading Note 已在精确 Head 2d4721a8dc306b0604ce8bf9cab1f9e238ac92f8 上远程回读，Validate Research Center 3.0 Run 34734973666 在进入终态收口前已于该精确 Note Head 成功完成。",
+      "output": "Two durable same-date Reading Notes: research/reading/Q-20260913-01-aligned-recovery-external-effect-boundary.md; research/reading/Q-20260913-02-agentic-audit-coverage-evidence.md.",
+      "output_zh": "生成两份同日持久 Reading Note：research/reading/Q-20260913-01-aligned-recovery-external-effect-boundary.md；research/reading/Q-20260913-02-agentic-audit-coverage-evidence.md。",
+      "next": "After governed Reading terminal finalization and GitHub Commit Verified, reconcile immediately. Analysis may consume only these two same-date source-complete Reading Notes.",
+      "next_zh": "Reading 完成受治理终态收口与 GitHub Commit Verified 后立即重新对账；Analysis 只能消费这两份同日来源完整 Reading Note。",
+      "metrics": [
+        {
+          "label": "Generated prompt identity verified",
+          "label_zh": "Generated Prompt 身份已核验",
+          "value": 1
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 Required Source",
+          "value": 5
+        },
+        {
+          "label": "Queue-selected objects read",
+          "label_zh": "已深读 Queue Selected Object",
+          "value": 2
+        },
+        {
+          "label": "Durable Reading Notes",
+          "label_zh": "持久 Reading Note",
+          "value": 2
+        },
+        {
+          "label": "Research Analysis performed",
+          "label_zh": "执行 Research Analysis",
+          "value": 0
+        },
+        {
+          "label": "Publication actions",
+          "label_zh": "Publication 操作数量",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Authority control-source commit",
+          "label_zh": "权威控制源提交",
+          "value": "2429052f2ba46e2747a48688a776a100a2e51079"
+        },
+        {
+          "label": "Reading Wake Receipt",
+          "label_zh": "Reading Wake Receipt",
+          "path": "research/runtime/wakes/2026/09/2026-09-13/reading-110241.json"
+        },
+        {
+          "label": "Worker Claimed commit",
+          "label_zh": "Worker Claimed 提交",
+          "commit": "e31d3c9216b94ea466dd1059f684eb9a3d3d87c8"
+        },
+        {
+          "label": "Generated Reading Prompt SHA-256",
+          "label_zh": "Generated Reading Prompt SHA-256",
+          "value": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"
+        },
+        {
+          "label": "Same-date Research Plan",
+          "label_zh": "同日 Research Plan",
+          "path": "research/runtime/plans/2026/09/2026-09-13-plan.json"
+        },
+        {
+          "label": "Exact note-head Runtime validation",
+          "label_zh": "精确 Note Head Runtime 校验",
+          "value": "Validate Research Center 3.0 #34734973666 success on 2d4721a8dc306b0604ce8bf9cab1f9e238ac92f8"
+        },
+        {
+          "label": "AgentRewind primary research",
+          "label_zh": "AgentRewind 一手研究",
+          "url": "https://arxiv.org/abs/2608.14380"
+        },
+        {
+          "label": "AgentRewind implementation",
+          "label_zh": "AgentRewind 实现仓库",
+          "url": "https://github.com/Futuresis/replay-agent-recorder"
+        },
+        {
+          "label": "MettleBench benchmark",
+          "label_zh": "MettleBench Benchmark",
+          "url": "https://github.com/Kelvin-Coffee/MettleBench"
+        },
+        {
+          "label": "Anthropic alignment assessment",
+          "label_zh": "Anthropic Alignment Assessment",
+          "url": "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Q-20260913-01 Reading Note",
+          "label_zh": "Q-20260913-01 深读笔记",
+          "path": "research/reading/Q-20260913-01-aligned-recovery-external-effect-boundary.md"
+        },
+        {
+          "label": "Q-20260913-02 Reading Note",
+          "label_zh": "Q-20260913-02 深读笔记",
+          "path": "research/reading/Q-20260913-02-agentic-audit-coverage-evidence.md"
+        },
+        {
+          "label": "Reading result",
+          "label_zh": "Reading 结果",
+          "path": "research/runtime/results/2026/09/2026-09-13-reading-result.json"
+        }
+      ],
+      "startedAt": "2026-09-13T11:07:12+08:00",
+      "completedAt": "2026-09-13T11:19:26+08:00"
     }
   },
   "timeline": [
@@ -628,6 +746,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Reading after verifying research/runtime/wakes/2026/09/2026-09-13/reading-110241.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-13T11:19:26+08:00",
+      "task": "reading",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Reading closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-13."
     }
   ],
   "metrics": [],
@@ -635,5 +760,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-13T11:07:54+08:00"
+  "updatedAt": "2026-09-13T11:19:26+08:00"
 }
