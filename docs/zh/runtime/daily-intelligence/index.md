@@ -11,6 +11,15 @@ outline: false
 日期按 **Asia/Shanghai** 倒序排列。点击日期进入当天完整报告与原始公开来源。
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-09-13">
+    <time>2026-09-13</time>
+    <div>
+      <strong>Agent 核心研究与竞品动态</strong>
+      <span>赵岳真实 fan-out failure semantics · AG2 AG-UI Human Interrupt · Paperclip credential lease / resume objective · Superset APNs Lock Screen · Orca Run Origin · Fusion MCP tool identity · OpenHands scoped runtime capability</span>
+    </div>
+    <b>查看 →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-09-12">
     <time>2026-09-12</time>
     <div>
