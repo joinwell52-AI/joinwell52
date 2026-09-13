@@ -1,0 +1,88 @@
+{
+  "items": [
+    {
+      "path": "/digital-employee/2026-08-02-computer-use-action-state-loop",
+      "scoringMode": "audited",
+      "dimensionScores": [32,23,19,19],
+      "reasonRefs": ["ER","OJ","SE","EU"],
+      "evidenceRefs": ["Observation: the model proposes; the harness executes","Observation: the model proposes; the harness executes","Observation: the model proposes; the harness executes","Observation: the model proposes; the harness executes"],
+      "score": 93,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh":"电脑操作被拆成观察、授权、执行、回读和验收，操作记录仍很清晰；不足是核心事实主要来自两家厂商文档，独立跨环境验证依旧偏弱。","en":"Computer use is still clearly decomposed into observation, authorization, execution, readback, and acceptance with a useful operation record. Core facts still rely mainly on two vendor documents, leaving independent cross-environment validation limited."}
+    },
+    {
+      "path": "/digital-employee/2026-08-02-control-plane-work-runtime",
+      "scoringMode": "audited",
+      "dimensionScores": [31,23,19,18],
+      "reasonRefs": ["ER","OJ","SE","EU"],
+      "evidenceRefs": ["Discussion: proposed separation","Discussion: proposed separation","Discussion: proposed separation","Discussion: proposed separation"],
+      "score": 91,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh":"控制平面与工作运行时的职责边界仍然清楚，且给出了双方输入输出合同；不足是三家材料均为厂商来源，面向中小企业的最小实现尚缺实测。","en":"The control-plane/work-runtime boundary remains clear and includes concrete input/output contracts between the layers. All three source families are vendor material, and the SME-minimum implementation still lacks direct validation."}
+    },
+    {
+      "path": "/digital-employee/2026-08-02-osworld-execution-verification",
+      "scoringMode": "audited",
+      "dimensionScores": [33,24,19,19],
+      "reasonRefs": ["ER","OJ","SE","EU"],
+      "evidenceRefs": ["Observation: Initial state is part of the task contract","Observation: Initial state is part of the task contract","Observation: Initial state is part of the task contract","Observation: Initial state is part of the task contract"],
+      "score": 95,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {"zh":"用OSWorld把初始状态、动作轨迹和可执行终态验收绑定起来，验证观念仍然很强；不足是历史基准结果不能代表当前模型能力，生产环境还需额外权限与副作用验证。","en":"OSWorld is used well to bind initial state, action trajectory, and executable final-state evaluation. Historical benchmark scores do not represent current model capability, and production still needs separate authority and side-effect validation."}
+    },
+    {
+      "path": "/digital-employee/2026-08-02-position-ownership-authority",
+      "scoringMode": "audited",
+      "dimensionScores": [31,23,18,18],
+      "reasonRefs": ["ER","OJ","SE","EU"],
+      "evidenceRefs": ["Observation: Ownership is becoming mandatory","Observation: Ownership is becoming mandatory","Observation: Ownership is becoming mandatory","Observation: Ownership is becoming mandatory"],
+      "score": 90,
+      "internalLevel": "E4",
+      "publicLabel": "卓越",
+      "publicLabel_en": "Exceptional",
+      "editorialNote": {"zh":"先定义Position、负责人和权限，再挂载模型与工具，这个组织化抽象依然有启发性；不足是论据以厂商产品方向为主，尚不能证明该结构在真实数字员工运营中的效果。","en":"Defining Position, accountable ownership, and authority before attaching models and tools remains a useful organizational abstraction. The evidence is mostly vendor product direction rather than measured operational outcomes for digital employees."}
+    },
+    {
+      "path": "/digital-employee/2026-08-05-universal-verifier-completion-contract",
+      "scoringMode": "audited",
+      "dimensionScores": [34,24,19,20],
+      "reasonRefs": ["ER","OJ","SE","EU"],
+      "evidenceRefs": ["Process and outcome are independent signals","Process and outcome are independent signals","Process and outcome are independent signals","Process and outcome are independent signals"],
+      "score": 97,
+      "internalLevel": "E5",
+      "publicLabel": "超凡",
+      "publicLabel_en": "Transcendent",
+      "editorialNote": {"zh":"把完成视为“待验收的声明”，并用过程、结果、失败责任和逐准则证据检索支撑，内容仍很完整；不足是外部误报率仍有8%，且只覆盖Web电脑任务。","en":"Treating completion as a claim pending acceptance is still strongly supported by process, outcome, failure-responsibility, and criterion-specific evidence. The external false-positive rate is still 8%, and the study is limited to web computer-use tasks."}
+    },
+    {
+      "path": "/digital-employee/2026-08-05-verifiable-completion",
+      "scoringMode": "audited",
+      "dimensionScores": [28,20,18,17],
+      "reasonRefs": ["ER","OJ","SE","EU"],
+      "evidenceRefs": ["Core judgment","Core judgment","Core judgment","Core judgment"],
+      "score": 83,
+      "internalLevel": "E3",
+      "publicLabel": "优质",
+      "publicLabel_en": "High Quality",
+      "editorialNote": {"zh":"短文把“执行者不能自我验收”和最小完成合同说得很直接，适合快速理解；不足是篇幅过短，很多证据与反例只能依赖配套研究对象补足。","en":"The short article states the rule that a worker cannot accept its own completion claim very directly and is easy to digest. Its brevity leaves much of the evidence and counterevidence dependent on the companion research object."}
+    },
+    {
+      "path": "/digital-employee/2026-08-06-governed-revisable-work-graph",
+      "scoringMode": "audited",
+      "dimensionScores": [27,22,18,18],
+      "reasonRefs": ["ER","OJ","SE","EU"],
+      "evidenceRefs": ["Central judgment","Central judgment","Central judgment","Central judgment"],
+      "score": 85,
+      "internalLevel": "E3",
+      "publicLabel": "优质",
+      "publicLabel_en": "High Quality",
+      "editorialNote": {"zh":"把DAG的“依赖就绪”与“有权执行”分开，并提醒资源和副作用冲突，边界抓得准；不足是正文主要复述研究对象，直接实验细节和独立证据较少。","en":"It correctly separates DAG dependency readiness from authority to execute and highlights resource and side-effect conflicts. The article relies heavily on its research object, with relatively little direct experimental detail or independent evidence."}
+    }
+  ]
+}
