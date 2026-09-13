@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#15111f"/><stop offset="1" stop-color="#2b2342"/></linearGradient>
+    <linearGradient id="purple" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#c29bff"/><stop offset="1" stop-color="#7b72ff"/></linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="120" y="105" fill="#cab2ff" font-family="Inter,Segoe UI,sans-serif" font-size="28" font-weight="700">OPEN-SOURCE ENGINEERING · DAILY RESEARCH · 2026-08-09</text>
+  <text x="120" y="178" fill="#ffffff" font-family="Inter,Segoe UI,sans-serif" font-size="53" font-weight="800">Executed Conformance for Migration Safety</text>
+  <text x="120" y="228" fill="#d5cde3" font-family="Inter,Segoe UI,sans-serif" font-size="27">Correct output does not prove that historical state is read with the intended invariant.</text>
+
+  <g font-family="Inter,Segoe UI,sans-serif">
+    <text x="230" y="320" fill="#bfa7ec" font-size="23" font-weight="700" text-anchor="middle">HISTORICAL REPRESENTATIONS</text>
+    <rect x="100" y="350" width="260" height="120" rx="22" fill="#302649" stroke="#a98ae2" stroke-width="3"/>
+    <text x="230" y="402" fill="#ffffff" font-size="26" font-weight="800" text-anchor="middle">INLINE VALUE</text>
+    <text x="230" y="440" fill="#d6c9e8" font-size="20" text-anchor="middle">primitive stored in checkpoint</text>
+    <rect x="100" y="500" width="260" height="120" rx="22" fill="#302649" stroke="#a98ae2" stroke-width="3"/>
+    <text x="230" y="552" fill="#ffffff" font-size="26" font-weight="800" text-anchor="middle">BLOB VALUE</text>
+    <text x="230" y="590" fill="#d6c9e8" font-size="20" text-anchor="middle">external persisted payload</text>
+
+    <path d="M360 410 H520" stroke="#b594ec" stroke-width="5"/>
+    <path d="M360 560 H520" stroke="#b594ec" stroke-width="5"/>
+
+    <rect x="520" y="335" width="360" height="310" rx="32" fill="#40345f" stroke="url(#purple)" stroke-width="5"/>
+    <text x="700" y="400" fill="#ffffff" font-size="31" font-weight="800" text-anchor="middle">MIGRATION-AWARE READER</text>
+    <text x="700" y="452" fill="#e2d9f2" font-size="21" text-anchor="middle">checks both storage forms</text>
+    <text x="700" y="492" fill="#e2d9f2" font-size="21" text-anchor="middle">resolves real seed</text>
+    <text x="700" y="532" fill="#e2d9f2" font-size="21" text-anchor="middle">preserves bounded replay</text>
+    <text x="700" y="585" fill="#ffd0a6" font-size="20" font-weight="700" text-anchor="middle">writer-only fixes cannot repair old data</text>
+
+    <path d="M880 490 H1025" stroke="#a988ff" stroke-width="5"/>
+
+    <rect x="1025" y="350" width="450" height="270" rx="30" fill="#25283c" stroke="#7e91c6" stroke-width="3"/>
+    <text x="1250" y="405" fill="#ffffff" font-size="29" font-weight="800" text-anchor="middle">EXECUTED CONFORMANCE</text>
+    <g font-size="21">
+      <text x="1080" y="462" fill="#d9e2ff">Backend wired</text><text x="1415" y="462" fill="#8ee7b3" text-anchor="end">required</text>
+      <text x="1080" y="506" fill="#d9e2ff">Suite actually runs</text><text x="1415" y="506" fill="#8ee7b3" text-anchor="end">measured</text>
+      <text x="1080" y="550" fill="#d9e2ff">Skipped dependency</text><text x="1415" y="550" fill="#ffad9e" text-anchor="end">missing coverage</text>
+      <text x="1080" y="594" fill="#d9e2ff">Replay invariant</text><text x="1415" y="594" fill="#8ee7b3" text-anchor="end">asserted</text>
+    </g>
+
+    <rect x="410" y="705" width="780" height="80" rx="22" fill="#4a2b35" stroke="#ef8eaa" stroke-width="3"/>
+    <text x="800" y="756" fill="#ffd5df" font-size="28" font-weight="800" text-anchor="middle">OUTPUT CORRECT  ≠  MIGRATION INVARIANT SAFE</text>
+  </g>
+
+  <g transform="translate(120,815)">
+    <rect width="1360" height="52" rx="14" fill="#211a32" stroke="#51446f"/>
+    <text x="28" y="34" fill="#ddd5ea" font-family="Inter,Segoe UI,sans-serif" font-size="18">Research Center synthesis based on research/analysis/Q-20260809-03-executed-conformance-migration-safety.md</text>
+  </g>
+</svg>

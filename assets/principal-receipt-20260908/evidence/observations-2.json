@@ -1,0 +1,255 @@
+{
+  "at": "2026-09-08T02:21:49.191Z",
+  "head": "c008d9db91a21136fc61a4f60314e22db395d5d2",
+  "node": "v24.16.0",
+  "platform": "win32",
+  "source_files": [
+    {
+      "file": "packages/codeflowmu-runtime/src/approval/OperationApprovalService.ts",
+      "sha256": "07aef287defd460f3f952334cf7f81c7930eafcb0b74f4d4bfa3106d0828f791"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/approval/UnifiedOperationPolicy.ts",
+      "sha256": "8612630c36c753178b5b75b3a8f56a7967a0172255b0a92899e55f4b6abda96e"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/approval/NativeOperationApprovalGate.ts",
+      "sha256": "41ffa70000fbbdfa83546bc457a5fa973f4617c6ec9a349e49494879c0a9d306"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/session/SessionStore.ts",
+      "sha256": "0642991bb9a84737f738b4b66a6aafd52d90c30666387c92861efa5fdf06e3b2"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/_internal/atomic-write.ts",
+      "sha256": "78428b58b8974b5255cc543bb512367f1d74975cdad3965b7c0b25edeb6ad7dd"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/project/ProjectWriteBarrier.ts",
+      "sha256": "9e1a470482a6de8723ce02cb9837221d0a7d76654fa7f410c4584ad3b66f125a"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/governance/TaskCommandKernel.ts",
+      "sha256": "888ebddaff896cd84015a4e0406004f0e2a9ae3ad3cbaf87e2b7516686488d16"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/governance/GovernanceFactKernel.ts",
+      "sha256": "be9a9eb4bd31aa933953f1ddbe3f095d7ddb430c50199c60bcc996ab8679e985"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/governance/RailAssistanceContract.ts",
+      "sha256": "290f42d67ad4206d49e263b08e90bf60117d1943d146a3aa618d77fb9252575b"
+    },
+    {
+      "file": "codeflowmu-shell/src/task-command-receipt-store.ts",
+      "sha256": "363f99805d5ca61eaac5fef306733ed9f0dea1fb4da17d8f57c0b19d87670632"
+    },
+    {
+      "file": "codeflowmu-shell/src/web-panel.ts",
+      "sha256": "c8b43ca23b4488ebad3276738ffaa0be70f7412d9ab2bca9493174618df3ab79"
+    }
+  ],
+  "source_unchanged": true,
+  "head_unchanged": true,
+  "rows": [
+    {
+      "id": "A0-same",
+      "digest_equal": true,
+      "calls": 1,
+      "error": null,
+      "status": "succeeded",
+      "decision_actor": "ADMIN",
+      "limitation": "Direct approval service; no authenticated route, actual git or credential broker used."
+    },
+    {
+      "id": "A1-actor-change",
+      "digest_equal": false,
+      "calls": 0,
+      "error": "APPROVAL_STALE",
+      "status": null,
+      "decision_actor": "ADMIN",
+      "limitation": "Direct approval service; no authenticated route, actual git or credential broker used."
+    },
+    {
+      "id": "A2-session-change",
+      "digest_equal": true,
+      "calls": 1,
+      "error": null,
+      "status": "succeeded",
+      "decision_actor": "ADMIN",
+      "limitation": "Direct approval service; no authenticated route, actual git or credential broker used."
+    },
+    {
+      "id": "A3-human-outside-input",
+      "digest_equal": true,
+      "calls": 1,
+      "error": null,
+      "status": "succeeded",
+      "decision_actor": "ADMIN",
+      "limitation": "Different human labels exist only in research narrative; no human identity was supplied to the product. This is input indistinguishability, NOT a two-account test."
+    },
+    {
+      "id": "R0-intact",
+      "first": "synthetic_callback",
+      "loaded_state": "completed",
+      "read_preserves_original_bytes": true,
+      "second_reason": "idempotent_replay",
+      "second_action_taken": false,
+      "total_synthetic_callback_calls": 1,
+      "total_synthetic_effects": 1,
+      "actor_fingerprint_equal": true,
+      "source_sha256": "45fa462407cebfdbd666f3e5480146410943183328bcea56c236f2cf8c4e3e52",
+      "limitation": "New kernel instance simulates lost in-memory cache. Controlled snapshot and synthetic callback; R8 adds an in-memory executor dedup control. NOT production dispatcher, real recovery, or duplicate external action."
+    },
+    {
+      "id": "R1-unrelated-bad-line",
+      "first": "synthetic_callback",
+      "loaded_state": "completed",
+      "read_preserves_original_bytes": true,
+      "second_reason": "idempotent_replay",
+      "second_action_taken": false,
+      "total_synthetic_callback_calls": 1,
+      "total_synthetic_effects": 1,
+      "actor_fingerprint_equal": true,
+      "source_sha256": "c9a1c159857e7606255f7b178e1280f85793707d65df0d5b0c8b934d9fd167aa",
+      "limitation": "New kernel instance simulates lost in-memory cache. Controlled snapshot and synthetic callback; R8 adds an in-memory executor dedup control. NOT production dispatcher, real recovery, or duplicate external action."
+    },
+    {
+      "id": "R2-completion-corrupt",
+      "first": "synthetic_callback",
+      "loaded_state": "pending",
+      "read_preserves_original_bytes": true,
+      "second_reason": "synthetic_callback",
+      "second_action_taken": true,
+      "total_synthetic_callback_calls": 2,
+      "total_synthetic_effects": 2,
+      "actor_fingerprint_equal": true,
+      "source_sha256": "e98b171c1b1eb617a68a7ff9b4cb77987d6e8ab6f1213596a307218a497aac46",
+      "limitation": "New kernel instance simulates lost in-memory cache. Controlled snapshot and synthetic callback; R8 adds an in-memory executor dedup control. NOT production dispatcher, real recovery, or duplicate external action."
+    },
+    {
+      "id": "R3-both-corrupt",
+      "first": "synthetic_callback",
+      "loaded_state": null,
+      "read_preserves_original_bytes": true,
+      "second_reason": "synthetic_callback",
+      "second_action_taken": true,
+      "total_synthetic_callback_calls": 2,
+      "total_synthetic_effects": 2,
+      "actor_fingerprint_equal": true,
+      "source_sha256": "64f1a6eb9876bcea201f8fdda6416cc5cff0447320035defd3f52600e77703e4",
+      "limitation": "New kernel instance simulates lost in-memory cache. Controlled snapshot and synthetic callback; R8 adds an in-memory executor dedup control. NOT production dispatcher, real recovery, or duplicate external action."
+    },
+    {
+      "id": "R4-corrupt-revision-advanced",
+      "first": "synthetic_callback",
+      "loaded_state": null,
+      "read_preserves_original_bytes": true,
+      "second_reason": "stale_task_revision",
+      "second_action_taken": false,
+      "total_synthetic_callback_calls": 1,
+      "total_synthetic_effects": 1,
+      "actor_fingerprint_equal": true,
+      "source_sha256": "64f1a6eb9876bcea201f8fdda6416cc5cff0447320035defd3f52600e77703e4",
+      "limitation": "New kernel instance simulates lost in-memory cache. Controlled snapshot and synthetic callback; R8 adds an in-memory executor dedup control. NOT production dispatcher, real recovery, or duplicate external action."
+    },
+    {
+      "id": "R5-reader-throws",
+      "first": "synthetic_callback",
+      "loaded_state": "completed",
+      "read_preserves_original_bytes": true,
+      "second_reason": "task_command_receipt_store_unavailable",
+      "second_action_taken": false,
+      "total_synthetic_callback_calls": 1,
+      "total_synthetic_effects": 1,
+      "actor_fingerprint_equal": true,
+      "source_sha256": "a52c2c31e4dda6fad4a6e33a1ec4aad41293227f6f30878e6b5b436d06107924",
+      "limitation": "New kernel instance simulates lost in-memory cache. Controlled snapshot and synthetic callback; R8 adds an in-memory executor dedup control. NOT production dispatcher, real recovery, or duplicate external action."
+    },
+    {
+      "id": "R6-future-completion",
+      "first": "synthetic_callback",
+      "loaded_state": "pending",
+      "read_preserves_original_bytes": true,
+      "second_reason": "synthetic_callback",
+      "second_action_taken": true,
+      "total_synthetic_callback_calls": 2,
+      "total_synthetic_effects": 2,
+      "actor_fingerprint_equal": true,
+      "source_sha256": "b088a2279d372bba8af1baad665f5068da40a8a73049cd8b54af237525e883f4",
+      "limitation": "New kernel instance simulates lost in-memory cache. Controlled snapshot and synthetic callback; R8 adds an in-memory executor dedup control. NOT production dispatcher, real recovery, or duplicate external action."
+    },
+    {
+      "id": "R7-pending-revision-advanced",
+      "first": "synthetic_callback",
+      "loaded_state": "pending",
+      "read_preserves_original_bytes": true,
+      "second_reason": "pending_command_observed_state_advance",
+      "second_action_taken": false,
+      "total_synthetic_callback_calls": 1,
+      "total_synthetic_effects": 1,
+      "actor_fingerprint_equal": true,
+      "source_sha256": "b34a6da1c87872038e6b4f3a55f2888adf278f8bc1d565986276a38f6e7e66e0",
+      "limitation": "New kernel instance simulates lost in-memory cache. Controlled snapshot and synthetic callback; R8 adds an in-memory executor dedup control. NOT production dispatcher, real recovery, or duplicate external action."
+    },
+    {
+      "id": "R8-lower-executor-dedup",
+      "first": "synthetic_callback",
+      "loaded_state": "pending",
+      "read_preserves_original_bytes": true,
+      "second_reason": "synthetic_callback",
+      "second_action_taken": true,
+      "total_synthetic_callback_calls": 2,
+      "total_synthetic_effects": 1,
+      "actor_fingerprint_equal": true,
+      "source_sha256": "8072974d4debe870cb964a4a6810424088daff44cd3194e4921fb2a36c0b7b6e",
+      "limitation": "New kernel instance simulates lost in-memory cache. Controlled snapshot and synthetic callback; R8 adds an in-memory executor dedup control. NOT production dispatcher, real recovery, or duplicate external action."
+    },
+    {
+      "id": "A4-command-actor-change",
+      "first": "synthetic_callback",
+      "loaded_state": "completed",
+      "read_preserves_original_bytes": true,
+      "second_reason": "idempotency_key_conflict",
+      "second_action_taken": false,
+      "total_synthetic_callback_calls": 1,
+      "total_synthetic_effects": 1,
+      "actor_fingerprint_equal": false,
+      "source_sha256": "0e842185f91ef4255818a9b6a44e4268b21244f6df51cca3a68e50c690b1cfb6",
+      "limitation": "New kernel instance simulates lost in-memory cache. Controlled snapshot and synthetic callback; R8 adds an in-memory executor dedup control. NOT production dispatcher, real recovery, or duplicate external action."
+    },
+    {
+      "id": "S0-missing",
+      "error": null,
+      "missing": true,
+      "read_preserves_original_bytes": true
+    },
+    {
+      "id": "S1-invalid-json",
+      "error": "RegistryWriteError",
+      "missing": false,
+      "read_preserves_original_bytes": true
+    },
+    {
+      "id": "S2-empty",
+      "error": "RegistryWriteError",
+      "missing": false,
+      "read_preserves_original_bytes": true
+    },
+    {
+      "id": "O1-corrupt-approval",
+      "error": "APPROVAL_STORE_CORRUPT",
+      "read_preserves_original_bytes": true
+    }
+  ],
+  "export": {
+    "original_sha256": "a512c75ed1af69f3acbb94718739f70b6b7a85b4376671a6837a89c1af423c08",
+    "removed_fields": [
+      "fixture",
+      "pids"
+    ],
+    "process_count": "Number of recorded process IDs; I3 processes are sequential, not concurrent",
+    "original_access": "restricted",
+    "product_reexecuted_for_export": false
+  }
+}

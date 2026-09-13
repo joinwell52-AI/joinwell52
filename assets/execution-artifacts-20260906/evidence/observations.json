@@ -1,0 +1,321 @@
+{
+  "schema_version": 1,
+  "baseline": "c008d9db91a21136fc61a4f60314e22db395d5d2",
+  "observed_at": "2026-09-06T11:53:09.568Z",
+  "adapter_observed_at": "2026-09-06T11:55:32.064Z",
+  "scope": "actual CFM approval + actual local workspace executor; injected callback waiting; no real Host or remote sandbox",
+  "redactions": [
+    "fixture paths",
+    "child process IDs"
+  ],
+  "boundaries": [
+    {
+      "round": 1,
+      "id": "A0-normal-and-replay",
+      "executor_invocations": 1,
+      "effect_count": 1,
+      "status": "succeeded",
+      "replay": "APPROVAL_ALREADY_CONSUMED",
+      "probe_status": "completed"
+    },
+    {
+      "round": 1,
+      "id": "A1-cancel-pending",
+      "executor_invocations": 0,
+      "effect_count": 0,
+      "cancel_accepted": true,
+      "status": "cancelled",
+      "error": "PRE_APPROVAL_REQUIRED",
+      "probe_status": "completed"
+    },
+    {
+      "round": 1,
+      "id": "A2-expire-pending",
+      "executor_invocations": 0,
+      "effect_count": 0,
+      "status": "expired",
+      "error": "APPROVAL_NOT_PENDING",
+      "probe_status": "completed"
+    },
+    {
+      "round": 1,
+      "id": "A3-expire-after-approval",
+      "executor_invocations": 1,
+      "effect_count": 1,
+      "status": "succeeded",
+      "error": null,
+      "expires_at": "2026-09-06T00:00:30.000Z",
+      "execution_started_at": "2026-09-06T00:00:31.000Z",
+      "probe_status": "completed"
+    },
+    {
+      "round": 1,
+      "id": "A4-wait-cancel-api",
+      "executor_invocations": 1,
+      "effect_count": 1,
+      "callback_invocations": 1,
+      "cancel_accepted": false,
+      "cancel_error": "APPROVAL_NOT_PENDING",
+      "waiting_status": "executing",
+      "status": "succeeded",
+      "guard": "no injected guard",
+      "probe_status": "completed"
+    },
+    {
+      "round": 1,
+      "id": "A5-wait-explicit-abort-control",
+      "executor_invocations": 0,
+      "effect_count": 0,
+      "callback_invocations": 1,
+      "cancel_accepted": false,
+      "cancel_error": "APPROVAL_NOT_PENDING",
+      "waiting_status": "executing",
+      "status": "failed",
+      "guard": "research callback only; not product implementation",
+      "probe_status": "completed"
+    },
+    {
+      "round": 1,
+      "id": "A6-cancel-after-effect",
+      "executor_invocations": 1,
+      "effect_count": 1,
+      "cancel_accepted": false,
+      "cancel_error": "APPROVAL_NOT_PENDING",
+      "status": "succeeded",
+      "probe_status": "completed"
+    },
+    {
+      "round": 1,
+      "id": "B0-same-request-stable",
+      "equal": true,
+      "digest": "sha256:ad1ea880c504ae1393baaaa8befd8164d35fe6226f76de26100f4208ba36c1f1",
+      "probe_status": "completed"
+    },
+    {
+      "round": 1,
+      "id": "B1-target-drift-before-execute",
+      "executor_invocations": 0,
+      "effect_count": 0,
+      "error": "APPROVAL_STALE",
+      "old_digest": "sha256:e662cc5ba912e601d64ddf49fe25a435dfb4ae4cd49da1ab12fde176fa707861",
+      "new_digest": "sha256:7842afabc3cfc14b86e569b0b293bb7eac43d1c8061b72f67837944cc005eb45",
+      "probe_status": "completed"
+    },
+    {
+      "round": 1,
+      "id": "B2-same-bytes-other-workspace",
+      "equal": false,
+      "first": "sha256:f29eb81a0102f814f218c5ba16e75230e6e25cb9e66a287b58a6987ae14d4d87",
+      "second": "sha256:175e455cadabf2a7c37e9d11799d89e7adfbdebcf3b619112650de2214a5edbc",
+      "same_content": true,
+      "probe_status": "completed"
+    },
+    {
+      "round": 1,
+      "id": "B3-other-task",
+      "equal": false,
+      "probe_status": "completed"
+    },
+    {
+      "round": 1,
+      "id": "B4-history-versus-current-artifact",
+      "executor_invocations": 1,
+      "effect_count": 1,
+      "history_status": "succeeded",
+      "current_target_exists": false,
+      "preserved_copy_exists": true,
+      "receipt_after_digest": "sha256:c923045a95120a84565d06a15749e4fcb867c95938acf8cb6bf473c7cb093ccb",
+      "interpretation": "historical execution receipt, not current artifact availability adjudication",
+      "probe_status": "completed",
+      "child_read": {
+        "digest": "sha256:c923045a95120a84565d06a15749e4fcb867c95938acf8cb6bf473c7cb093ccb"
+      }
+    },
+    {
+      "round": 2,
+      "id": "A0-normal-and-replay",
+      "executor_invocations": 1,
+      "effect_count": 1,
+      "status": "succeeded",
+      "replay": "APPROVAL_ALREADY_CONSUMED",
+      "probe_status": "completed"
+    },
+    {
+      "round": 2,
+      "id": "A1-cancel-pending",
+      "executor_invocations": 0,
+      "effect_count": 0,
+      "cancel_accepted": true,
+      "status": "cancelled",
+      "error": "PRE_APPROVAL_REQUIRED",
+      "probe_status": "completed"
+    },
+    {
+      "round": 2,
+      "id": "A2-expire-pending",
+      "executor_invocations": 0,
+      "effect_count": 0,
+      "status": "expired",
+      "error": "APPROVAL_NOT_PENDING",
+      "probe_status": "completed"
+    },
+    {
+      "round": 2,
+      "id": "A3-expire-after-approval",
+      "executor_invocations": 1,
+      "effect_count": 1,
+      "status": "succeeded",
+      "error": null,
+      "expires_at": "2026-09-06T00:00:30.000Z",
+      "execution_started_at": "2026-09-06T00:00:31.000Z",
+      "probe_status": "completed"
+    },
+    {
+      "round": 2,
+      "id": "A4-wait-cancel-api",
+      "executor_invocations": 1,
+      "effect_count": 1,
+      "callback_invocations": 1,
+      "cancel_accepted": false,
+      "cancel_error": "APPROVAL_NOT_PENDING",
+      "waiting_status": "executing",
+      "status": "succeeded",
+      "guard": "no injected guard",
+      "probe_status": "completed"
+    },
+    {
+      "round": 2,
+      "id": "A5-wait-explicit-abort-control",
+      "executor_invocations": 0,
+      "effect_count": 0,
+      "callback_invocations": 1,
+      "cancel_accepted": false,
+      "cancel_error": "APPROVAL_NOT_PENDING",
+      "waiting_status": "executing",
+      "status": "failed",
+      "guard": "research callback only; not product implementation",
+      "probe_status": "completed"
+    },
+    {
+      "round": 2,
+      "id": "A6-cancel-after-effect",
+      "executor_invocations": 1,
+      "effect_count": 1,
+      "cancel_accepted": false,
+      "cancel_error": "APPROVAL_NOT_PENDING",
+      "status": "succeeded",
+      "probe_status": "completed"
+    },
+    {
+      "round": 2,
+      "id": "B0-same-request-stable",
+      "equal": true,
+      "digest": "sha256:57c1aae1ffa49fe21fec1d086d08daa60ec336a1f0a6ca4d01cce08c5f27b6b3",
+      "probe_status": "completed"
+    },
+    {
+      "round": 2,
+      "id": "B1-target-drift-before-execute",
+      "executor_invocations": 0,
+      "effect_count": 0,
+      "error": "APPROVAL_STALE",
+      "old_digest": "sha256:9ef0f9d032cdb87b2d1a1d8f4f64e430c3fb54115e60f764f8adb2fe519f7040",
+      "new_digest": "sha256:1c09389cab5d2bd69cb5f0e98a8e8e5ffb06e70b52256ac52071df8a258d29ab",
+      "probe_status": "completed"
+    },
+    {
+      "round": 2,
+      "id": "B2-same-bytes-other-workspace",
+      "equal": false,
+      "first": "sha256:9f57929ade4a318c9c450280a7c53d9dc61f64cbb5476cf7b3174d39892f310e",
+      "second": "sha256:1d54af5782ff10015bcd5b401f10da5b618120154fe186a405fc437cf033b03a",
+      "same_content": true,
+      "probe_status": "completed"
+    },
+    {
+      "round": 2,
+      "id": "B3-other-task",
+      "equal": false,
+      "probe_status": "completed"
+    },
+    {
+      "round": 2,
+      "id": "B4-history-versus-current-artifact",
+      "executor_invocations": 1,
+      "effect_count": 1,
+      "history_status": "succeeded",
+      "current_target_exists": false,
+      "preserved_copy_exists": true,
+      "receipt_after_digest": "sha256:c923045a95120a84565d06a15749e4fcb867c95938acf8cb6bf473c7cb093ccb",
+      "interpretation": "historical execution receipt, not current artifact availability adjudication",
+      "probe_status": "completed",
+      "child_read": {
+        "digest": "sha256:c923045a95120a84565d06a15749e4fcb867c95938acf8cb6bf473c7cb093ccb"
+      }
+    }
+  ],
+  "adapter": [
+    {
+      "round": 1,
+      "scenario": "normal",
+      "responses": [
+        {
+          "id": 9001,
+          "result": {
+            "decision": "accept"
+          }
+        }
+      ],
+      "kill_calls": 1,
+      "settled": "cancelled",
+      "transport": "in-memory fake process attached to real CFM RunHandle; no actual Codex child or tool execution"
+    },
+    {
+      "round": 1,
+      "scenario": "cancel-during-async-resolution",
+      "responses": [],
+      "kill_calls": 1,
+      "settled": "cancelled",
+      "transport": "in-memory fake process attached to real CFM RunHandle; no actual Codex child or tool execution"
+    },
+    {
+      "round": 1,
+      "scenario": "request-after-cancel",
+      "responses": [],
+      "kill_calls": 1,
+      "settled": "cancelled",
+      "transport": "in-memory fake process attached to real CFM RunHandle; no actual Codex child or tool execution"
+    },
+    {
+      "round": 2,
+      "scenario": "normal",
+      "responses": [
+        {
+          "id": 9002,
+          "result": {
+            "decision": "accept"
+          }
+        }
+      ],
+      "kill_calls": 1,
+      "settled": "cancelled",
+      "transport": "in-memory fake process attached to real CFM RunHandle; no actual Codex child or tool execution"
+    },
+    {
+      "round": 2,
+      "scenario": "cancel-during-async-resolution",
+      "responses": [],
+      "kill_calls": 1,
+      "settled": "cancelled",
+      "transport": "in-memory fake process attached to real CFM RunHandle; no actual Codex child or tool execution"
+    },
+    {
+      "round": 2,
+      "scenario": "request-after-cancel",
+      "responses": [],
+      "kill_calls": 1,
+      "settled": "cancelled",
+      "transport": "in-memory fake process attached to real CFM RunHandle; no actual Codex child or tool execution"
+    }
+  ]
+}

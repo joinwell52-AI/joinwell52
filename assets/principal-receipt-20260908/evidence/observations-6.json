@@ -1,0 +1,71 @@
+{
+  "at": "2026-09-08T03:30:30.498Z",
+  "harness_sha256": "c790e5e8a0a1af1647542038030d3bae17876deeeb65388fd2a8edcf711c7271",
+  "source_files": [
+    {
+      "file": "codeflowmu-shell/src/pm-task-continuation.ts",
+      "sha256": "54bb82f6a4c9bcc26c52307fb2aa340ae66f0f4e2cde0a5a76dd838d20222844"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/session/SessionManager.ts",
+      "sha256": "4e35718b38f2ba5cdb7c33be6d04b51bdffac526ec9c626936fa494e33282fb3"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/approval/UnifiedOperationPolicy.ts",
+      "sha256": "8612630c36c753178b5b75b3a8f56a7967a0172255b0a92899e55f4b6abda96e"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/approval/OperationApprovalService.ts",
+      "sha256": "07aef287defd460f3f952334cf7f81c7930eafcb0b74f4d4bfa3106d0828f791"
+    }
+  ],
+  "source_unchanged": true,
+  "rows": [
+    {
+      "id": "J0",
+      "actor": "ADMIN",
+      "actor_role": "ADMIN",
+      "chat_evidence_ref_present": true,
+      "nested_trigger_chat_id": "CHAT-SYNTHETIC-001",
+      "limit": "Real command constructor; synthetic task/governance and captured executor; not authenticated UI."
+    },
+    {
+      "id": "J1",
+      "nested": false,
+      "trigger_chat_id": "CHAT-SYNTHETIC-001",
+      "logical_execution_id": "logical-synthetic-001",
+      "sdk_send_calls": 1
+    },
+    {
+      "id": "J2",
+      "nested": true,
+      "trigger_chat_id": null,
+      "logical_execution_id": "logical-synthetic-001",
+      "sdk_send_calls": 1
+    },
+    {
+      "id": "J3",
+      "subject": {
+        "actor": "DEV-01",
+        "role": "DEV",
+        "project_id": "synthetic-project",
+        "agent_id": "DEV-01",
+        "session_id": "session-policy",
+        "task_id": "TASK-20260908-902"
+      },
+      "actor_change_digest_changed": true,
+      "executed_tool_calls": 0,
+      "limit": "Policy evaluation only, not real credentials or authenticated human switching."
+    }
+  ],
+  "export": {
+    "original_sha256": "032bd20204275006dcdf64837bddefe70ff67e133de79ec1c008126c45812431",
+    "removed_fields": [
+      "fixture",
+      "pids"
+    ],
+    "process_count": "Number of recorded process IDs; I3 processes are sequential, not concurrent",
+    "original_access": "restricted",
+    "product_reexecuted_for_export": false
+  }
+}

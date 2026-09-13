@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "fixture_kind": "deidentified_historical_association",
+  "redaction": {
+    "report_id": "replaced by R01 through R10",
+    "task_id": "replaced by T01 through T09",
+    "removed": ["agent content", "absolute paths", "timestamps", "session identifiers"]
+  },
+  "records": [
+    { "report": "R01", "action_task": "T01", "ledger_task": "T01" },
+    { "report": "R02", "action_task": "T02", "ledger_task": "T04" },
+    { "report": "R03", "action_task": "T02", "ledger_task": "T03" },
+    { "report": "R04", "action_task": null, "ledger_task": "T02" },
+    { "report": "R05", "action_task": "T01", "ledger_task": "T01" },
+    { "report": "R06", "action_task": null, "ledger_task": "T04" },
+    { "report": "R07", "action_task": null, "ledger_task": "T03" },
+    { "report": "R08", "action_task": "T01", "ledger_task": "T01" },
+    { "report": "R09", "action_task": null, "ledger_task": "T09" },
+    { "report": "R10", "action_task": "T08", "ledger_task": "T08" }
+  ],
+  "expected_counts": { "linked": 4, "missing": 4, "conflict": 2 }
+}

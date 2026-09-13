@@ -1,0 +1,199 @@
+TAP version 13
+# Subtest: classifier requires approval for every deterministic high-impact effect class
+ok 1 - classifier requires approval for every deterministic high-impact effect class
+  ---
+  duration_ms: 2.2803
+  type: 'test'
+  ...
+# Subtest: prepare is side-effect free and approval can execute the exact digest only once
+ok 2 - prepare is side-effect free and approval can execute the exact digest only once
+  ---
+  duration_ms: 74.7321
+  type: 'test'
+  ...
+# Subtest: a changed target makes an approved operation stale before executor invocation
+ok 3 - a changed target makes an approved operation stale before executor invocation
+  ---
+  duration_ms: 31.877
+  type: 'test'
+  ...
+# Subtest: rejecting an operation does not rewrite task or report artifacts
+ok 4 - rejecting an operation does not rewrite task or report artifacts
+  ---
+  duration_ms: 34.8335
+  type: 'test'
+  ...
+# Subtest: prepare deduplicates the same pending digest instead of creating approval spam
+ok 5 - prepare deduplicates the same pending digest instead of creating approval spam
+  ---
+  duration_ms: 18.3732
+  type: 'test'
+  ...
+# Subtest: trusted foreground confirmation is accepted only through the injected verifier
+ok 6 - trusted foreground confirmation is accepted only through the injected verifier
+  ---
+  duration_ms: 6.9083
+  type: 'test'
+  ...
+# Subtest: invalid token fails but an approved token remains valid after the pending-review deadline
+ok 7 - invalid token fails but an approved token remains valid after the pending-review deadline
+  ---
+  duration_ms: 35.3288
+  type: 'test'
+  ...
+# Subtest: concurrent consumption invokes the controlled executor only once
+ok 8 - concurrent consumption invokes the controlled executor only once
+  ---
+  duration_ms: 31.7394
+  type: 'test'
+  ...
+# Subtest: an approved manual operation can resume after its UI lost the execution token
+ok 9 - an approved manual operation can resume after its UI lost the execution token
+  ---
+  duration_ms: 36.393
+  type: 'test'
+  ...
+# Subtest: manual execution recovery cannot consume an Agent-owned approval
+ok 10 - manual execution recovery cannot consume an Agent-owned approval
+  ---
+  duration_ms: 20.5694
+  type: 'test'
+  ...
+# Subtest: an approved manual operation remains authorized after the pending-review deadline
+ok 11 - an approved manual operation remains authorized after the pending-review deadline
+  ---
+  duration_ms: 24.0417
+  type: 'test'
+  ...
+# Subtest: a retryable failed manual operation can resume without another ADMIN approval
+ok 12 - a retryable failed manual operation can resume without another ADMIN approval
+  ---
+  duration_ms: 61.1489
+  type: 'test'
+  ...
+# Subtest: an execution owned by a previous process is recovered as partial_failed without a replay token
+ok 13 - an execution owned by a previous process is recovered as partial_failed without a replay token
+  ---
+  duration_ms: 23.4607
+  type: 'test'
+  ...
+# Subtest: approved Agent retry survives a resumed Session and consumes one matching authorization
+ok 14 - approved Agent retry survives a resumed Session and consumes one matching authorization
+  ---
+  duration_ms: 31.1186
+  type: 'test'
+  ...
+# Subtest: legacy opaque approvals are revoked without deleting their audit record
+ok 15 - legacy opaque approvals are revoked without deleting their audit record
+  ---
+  duration_ms: 20.854
+  type: 'test'
+  ...
+# Subtest: SkillInvocationFromToolCall
+    # Subtest: buildPlaybookPathIndex maps package, doc, and default paths
+    ok 1 - buildPlaybookPathIndex maps package, doc, and default paths
+      ---
+      duration_ms: 1.6287
+      type: 'test'
+      ...
+    # Subtest: resolveSkillIdFromFilePath handles Windows absolute paths
+    ok 2 - resolveSkillIdFromFilePath handles Windows absolute paths
+      ---
+      duration_ms: 0.4272
+      type: 'test'
+      ...
+    # Subtest: extractPathsFromToolCallPayload reads paths from raw
+    ok 3 - extractPathsFromToolCallPayload reads paths from raw
+      ---
+      duration_ms: 0.5561
+      type: 'test'
+      ...
+    # Subtest: maybeRecordPlaybookSkillFromToolCall writes journal for SKILL.md read
+    ok 4 - maybeRecordPlaybookSkillFromToolCall writes journal for SKILL.md read
+      ---
+      duration_ms: 30.5021
+      type: 'test'
+      ...
+    # Subtest: dedupes same session+skill within 120s
+    ok 5 - dedupes same session+skill within 120s
+      ---
+      duration_ms: 18.3089
+      type: 'test'
+      ...
+    # Subtest: keeps two sessions distinct for the same skill
+    ok 6 - keeps two sessions distinct for the same skill
+      ---
+      duration_ms: 22.0714
+      type: 'test'
+      ...
+    # Subtest: records an unregistered session claim as a typed binding failure
+    ok 7 - records an unregistered session claim as a typed binding failure
+      ---
+      duration_ms: 11.5004
+      type: 'test'
+      ...
+    # Subtest: records legitimate sessionless operations explicitly
+    ok 8 - records legitimate sessionless operations explicitly
+      ---
+      duration_ms: 9.4196
+      type: 'test'
+      ...
+    1..8
+ok 16 - SkillInvocationFromToolCall
+  ---
+  duration_ms: 96.0906
+  type: 'suite'
+  ...
+# Subtest: RecoveryFence
+    # Subtest: allows one recovery owner for a task/agent snapshot
+    ok 1 - allows one recovery owner for a task/agent snapshot
+      ---
+      duration_ms: 21.7986
+      type: 'test'
+      ...
+    # Subtest: takes over an expired fence without deleting the new owner
+    ok 2 - takes over an expired fence without deleting the new owner
+      ---
+      duration_ms: 16.6798
+      type: 'test'
+      ...
+    1..2
+ok 17 - RecoveryFence
+  ---
+  duration_ms: 39.5817
+  type: 'suite'
+  ...
+# Subtest: SessionExecutionContract
+    # Subtest: is stable when only the tool-round budget changes
+    ok 1 - is stable when only the tool-round budget changes
+      ---
+      duration_ms: 15.0334
+      type: 'test'
+      ...
+    # Subtest: detects provider and governance-tool drift before continuation
+    ok 2 - detects provider and governance-tool drift before continuation
+      ---
+      duration_ms: 0.5031
+      type: 'test'
+      ...
+    # Subtest: pins effective Governance grant identity into the Session contract
+    ok 3 - pins effective Governance grant identity into the Session contract
+      ---
+      duration_ms: 0.4977
+      type: 'test'
+      ...
+    1..3
+ok 18 - SessionExecutionContract
+  ---
+  duration_ms: 17.0092
+  type: 'suite'
+  ...
+1..18
+# tests 28
+# suites 3
+# pass 28
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 691.032

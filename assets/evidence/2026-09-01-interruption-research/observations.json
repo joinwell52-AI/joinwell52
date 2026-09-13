@@ -1,0 +1,120 @@
+{
+  "schema": "joinwell52.interruption-research-observations/v1",
+  "research_date": "2026-09-01",
+  "publication_checked": "2026-09-02",
+  "tested_commit": "919c3b48cba31e376b45e60506fa14e4bbcfcb23",
+  "record_kind": "author-transcribed observations from preserved research run summaries",
+  "new_product_execution_for_publication": false,
+  "independent_qa": false,
+  "cases": [
+    {
+      "id": "RA-4",
+      "entry": "SessionManager.startSession",
+      "setup": "synthetic checkpoint, then direct same-task Session start",
+      "checkpoint_persisted": true,
+      "sdk_send_count": 2,
+      "support": "direct start did not consume checkpoint",
+      "not_proven": "automatic Dispatcher duplicate external effect"
+    },
+    {
+      "id": "RA-5",
+      "entry": "SessionManager.reconcileLostSessions + late natural settle",
+      "old_record": "SESSION_LOST",
+      "late_overwrite": false,
+      "late_session_ended_events": 0,
+      "support": "old settled record not overwritten",
+      "not_proven": "universal external-effect epoch fencing"
+    },
+    {
+      "id": "RA-7",
+      "entry": "TaskDispatcher._maybeRestoreInboxAfterFailedSession",
+      "input_effect_state": "confirmed_exists",
+      "input_next_safe_action": "reconcile_only",
+      "backoff_ms": 0,
+      "observed_bucket": "inbox",
+      "task_identity_preserved": true
+    },
+    {
+      "id": "RA-8",
+      "entry": "TaskDispatcher._maybeRestoreInboxAfterFailedSession",
+      "input_effect_state": "unknown",
+      "input_next_safe_action": "quarantine",
+      "public_contract_term": "hold_for_review",
+      "backoff_ms": 0,
+      "observed_bucket": "inbox",
+      "task_identity_preserved": true
+    },
+    {
+      "id": "DC-1/DC-2",
+      "entry": "SessionManager natural settle",
+      "receipt_marker_persisted": false,
+      "status": "failed",
+      "failure_code": "OPERATION_BOUNDARY_DENIED"
+    },
+    {
+      "id": "DC-3/DC-4",
+      "entry": "runtime.session_ended + registered projectActivityPayload",
+      "synthetic_error_tail_bytes": 8192,
+      "raw_event_retained_marker": true,
+      "projected_consumers": [
+        "web_panel",
+        "activity_api",
+        "analytics"
+      ],
+      "projected_marker_present": false,
+      "projected_status": "failed",
+      "projected_failure_code": "CONTROLLED_FAILURE"
+    }
+  ],
+  "runs": [
+    {
+      "id": "RUN-002-fixture",
+      "pass": 5,
+      "fail": 0,
+      "skip": 0,
+      "exit_code": 0,
+      "source": "recorded research summary",
+      "suite_note": "Five test functions; RA/DC labels are not independent test counts"
+    },
+    {
+      "id": "RUN-002-authorized-rework",
+      "pass": 2,
+      "fail": 0,
+      "skip": 0,
+      "exit_code": 0
+    },
+    {
+      "id": "RUN-002-consumer-projection",
+      "pass": 2,
+      "fail": 0,
+      "skip": 0,
+      "exit_code": 0
+    },
+    {
+      "id": "RUN-004",
+      "pass": 57,
+      "fail": 0,
+      "skip": 0,
+      "exit_code": 0,
+      "files": [
+        "src/pm/__tests__/recoverTaskExecution.test.ts",
+        "src/pm/__tests__/sessionReceiptReconcile.test.ts",
+        "src/review/__tests__/FactCheckDecisionService.test.ts",
+        "src/eval/__tests__/EvalObservationGenerator.test.ts",
+        "src/eval/__tests__/EvalObservationGenerator.thread-v1.test.ts",
+        "src/evidence-association/__tests__/EvidenceAssociationReader.test.ts",
+        "src/evidence-association/__tests__/EvidenceAssociationDiagnosticTool.test.ts"
+      ]
+    }
+  ],
+  "limitations": [
+    "No physical power loss",
+    "No real remote effect",
+    "No browser/HTTP end-to-end run",
+    "No independent QA",
+    "No production incidence estimate",
+    "RA-7/RA-8 inject effect claims and zero backoff; they do not establish actual external effects",
+    "Public checker validates this transcription, not product execution",
+    "Frozen IA/DC acceptance identifiers differ from the earlier research RA/DC labels"
+  ]
+}

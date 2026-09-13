@@ -1,0 +1,107 @@
+{
+  "source_sha256": "5bcfbb624a44cb774932a812bfdab1223e4bdee2e0985685b74516e5d91599b1",
+  "kind": "Full upstream delivery service after type erasure; query-builder fixtures and committed wake simulation; no SQL evaluation, transactions, locks, provider calls or real agent",
+  "results": [
+    {
+      "scenario": "fresh",
+      "wakeCalls": 1,
+      "rounds": [
+        {
+          "attempt": 0,
+          "delivered": true,
+          "error": null,
+          "acknowledged_ids": [
+            "ACTION-00"
+          ]
+        }
+      ],
+      "inline_count": 1
+    },
+    {
+      "scenario": "wake-already-committed",
+      "wakeCalls": 0,
+      "rounds": [
+        {
+          "attempt": 0,
+          "delivered": true,
+          "error": null,
+          "acknowledged_ids": [
+            "ACTION-00"
+          ]
+        }
+      ],
+      "inline_count": 1
+    },
+    {
+      "scenario": "wake-not-committed",
+      "wakeCalls": 1,
+      "rounds": [
+        {
+          "attempt": 0,
+          "delivered": false,
+          "error": null,
+          "acknowledged_ids": []
+        }
+      ],
+      "inline_count": 0
+    },
+    {
+      "scenario": "origin-still-running",
+      "wakeCalls": 0,
+      "rounds": [
+        {
+          "attempt": 0,
+          "delivered": false,
+          "error": null,
+          "acknowledged_ids": []
+        }
+      ],
+      "inline_count": 0
+    },
+    {
+      "scenario": "ten-results",
+      "wakeCalls": 1,
+      "rounds": [
+        {
+          "attempt": 0,
+          "delivered": true,
+          "error": null,
+          "acknowledged_ids": [
+            "ACTION-00",
+            "ACTION-01",
+            "ACTION-02",
+            "ACTION-03",
+            "ACTION-04",
+            "ACTION-05",
+            "ACTION-06",
+            "ACTION-07",
+            "ACTION-08",
+            "ACTION-09"
+          ]
+        }
+      ],
+      "inline_count": 8
+    },
+    {
+      "scenario": "commit-then-throw",
+      "wakeCalls": 1,
+      "rounds": [
+        {
+          "attempt": 0,
+          "delivered": null,
+          "error": "fixture loss after wake commit",
+          "acknowledged_ids": []
+        },
+        {
+          "attempt": 1,
+          "delivered": true,
+          "error": null,
+          "acknowledged_ids": [
+            "ACTION-00"
+          ]
+        }
+      ],
+      "inline_count": 1
+    }
+  ]
+}

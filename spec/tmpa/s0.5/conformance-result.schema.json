@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tmpa:schema:conformance-result:s0.5",
+  "title": "TMPA Conformance Result S0.5",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["core_version", "implementation", "input_bundle_digest", "criteria", "aggregate_verdict", "evidence_level"],
+  "properties": {
+    "core_version": { "const": "S0.5" },
+    "implementation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 }
+      }
+    },
+    "input_bundle_digest": { "$ref": "#/$defs/digest" },
+    "criteria": {
+      "type": "array",
+      "minItems": 14,
+      "maxItems": 14,
+      "allOf": [
+        { "contains": { "type": "object", "properties": { "id": { "const": "C01" } }, "required": ["id"] }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "type": "object", "properties": { "id": { "const": "C02" } }, "required": ["id"] }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "type": "object", "properties": { "id": { "const": "C03" } }, "required": ["id"] }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "type": "object", "properties": { "id": { "const": "C04" } }, "required": ["id"] }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "type": "object", "properties": { "id": { "const": "C05" } }, "required": ["id"] }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "type": "object", "properties": { "id": { "const": "C06" } }, "required": ["id"] }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "type": "object", "properties": { "id": { "const": "C07" } }, "required": ["id"] }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "type": "object", "properties": { "id": { "const": "C08" } }, "required": ["id"] }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "type": "object", "properties": { "id": { "const": "C09" } }, "required": ["id"] }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "type": "object", "properties": { "id": { "const": "C10" } }, "required": ["id"] }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "type": "object", "properties": { "id": { "const": "C11" } }, "required": ["id"] }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "type": "object", "properties": { "id": { "const": "C12" } }, "required": ["id"] }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "type": "object", "properties": { "id": { "const": "C13" } }, "required": ["id"] }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "type": "object", "properties": { "id": { "const": "C14" } }, "required": ["id"] }, "minContains": 1, "maxContains": 1 }
+      ],
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "verdict", "run_state", "manifest_digest", "result_digest"],
+        "properties": {
+          "id": { "enum": ["C01", "C02", "C03", "C04", "C05", "C06", "C07", "C08", "C09", "C10", "C11", "C12", "C13", "C14"] },
+          "verdict": { "enum": ["PASS", "FAIL", "PARTIAL", "NOT RUN"] },
+          "run_state": { "enum": ["completed", "error"] },
+          "manifest_digest": { "$ref": "#/$defs/digest" },
+          "result_digest": { "$ref": "#/$defs/digest" }
+        }
+      }
+    },
+    "aggregate_verdict": { "enum": ["PASS", "FAIL", "PARTIAL", "NOT RUN"] },
+    "evidence_level": { "enum": ["specified", "implemented", "demonstrated", "independently_adopted"] }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" }
+  }
+}

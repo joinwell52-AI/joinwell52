@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "fixture_kind": "deidentified_runtime_session_observation",
+  "purpose": "Reproduce the five disclosed R3 session-observation classifications without exposing private task, session, path, or agent content.",
+  "redaction": {
+    "session_id": "replaced by S01 through S05",
+    "removed": ["task content", "agent content", "absolute paths", "timestamps", "user identifiers"]
+  },
+  "records": [
+    {
+      "case": "S01",
+      "protocol_status": "running",
+      "live": true,
+      "runtime_progress": { "stage": "CASE", "completed": 2, "total": 8 },
+      "runtime_report_written": null,
+      "runtime_recovery_status": null,
+      "expected": "executing_with_progress"
+    },
+    {
+      "case": "S02",
+      "protocol_status": "running",
+      "live": true,
+      "runtime_progress": null,
+      "runtime_report_written": null,
+      "runtime_recovery_status": null,
+      "expected": "executing_without_fine_progress"
+    },
+    {
+      "case": "S03",
+      "protocol_status": "running",
+      "live": false,
+      "runtime_progress": null,
+      "runtime_report_written": null,
+      "runtime_recovery_status": null,
+      "expected": "session_without_live_execution"
+    },
+    {
+      "case": "S04",
+      "protocol_status": "completed",
+      "live": false,
+      "runtime_progress": null,
+      "runtime_report_written": false,
+      "runtime_recovery_status": null,
+      "expected": "completed_waiting_report"
+    },
+    {
+      "case": "S05",
+      "protocol_status": "failed",
+      "live": false,
+      "runtime_progress": null,
+      "runtime_report_written": null,
+      "runtime_recovery_status": null,
+      "expected": "technical_error"
+    }
+  ],
+  "expected_counts": {
+    "executing_with_progress": 1,
+    "executing_without_fine_progress": 1,
+    "session_without_live_execution": 1,
+    "completed_waiting_report": 1,
+    "technical_error": 1
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "runtime-boundary-public-evidence/v1",
+  "evidence_id": "RBE-20260828-A3",
+  "baseline": {
+    "product": "CodeFlowMu V2.0.4",
+    "commit": "2ba1ad9baf27077861b6a20e5815b4175f0a81c6",
+    "observed_on": "2026-08-28"
+  },
+  "historical_profile": {
+    "records": 59,
+    "duplicate_invocation_ids": 0,
+    "fields": {
+      "task_id": {"present": 49, "missing": 10},
+      "session_id": {"present": 0, "missing": 59},
+      "thread_key": {"present": 42, "missing": 17},
+      "agent_id": {"present": 15, "missing": 44},
+      "integrity": {"present": 59, "missing": 0}
+    },
+    "latest_sample_date": "2026-08-12"
+  },
+  "current_binding_probe": {
+    "input": {
+      "session_id": "SESSION-DEIDENTIFIED-001",
+      "task_id": "TASK-DEIDENTIFIED-903",
+      "thread_key": "skill-binding-study"
+    },
+    "persisted": {
+      "session_id": false,
+      "task_id": true,
+      "thread_key": true
+    },
+    "session_used_for_in_memory_dedupe": true
+  },
+  "mixed_evidence_example": {
+    "task_id": "TASK-DEIDENTIFIED-001",
+    "ordinary_invocation": {
+      "channel": "agent_runtime",
+      "triggered_by": "sdk.tool_call",
+      "skill_id": "pm-product-design-brief",
+      "session_id": null,
+      "proves": "runtime_observed_skill_read"
+    },
+    "planning_evidence": {
+      "channel": "mcp",
+      "triggered_by": "pm.record_planning_skill_evidence",
+      "skill_id": "pm-product-design-brief",
+      "thread_key": "THREAD-DEIDENTIFIED-001",
+      "session_id": "SESSION-DEIDENTIFIED-001",
+      "evidence_source": "pm_runtime_control",
+      "proves": "runtime_verified_planning_evidence"
+    }
+  },
+  "supports": [
+    "the_historical_sample_cannot_bind_invocations_to_sessions",
+    "the_tested_current_entrypoint_drops_a_supplied_session_id_from_persisted_evidence",
+    "invocation_evidence_and_result_evidence_must_remain_distinct"
+  ],
+  "does_not_support": [
+    "all_skill_evidence_entrypoints_drop_session_identity",
+    "a_skill_invocation_result_is_incorrect",
+    "the_proposed_session_binding_contract_is_already_implemented"
+  ]
+}

@@ -1,0 +1,31 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>eval-generation-code · CodeFlowMu</title><style>body{margin:0;background:#f6f8fb;color:#193046;font:16px/1.9 "Microsoft YaHei",sans-serif}header{background:#09172c;padding:18px 5vw}header a{color:#bdeaf2;text-decoration:none}main{max-width:950px;margin:45px auto;padding:0 25px 70px;overflow-wrap:anywhere}h1{font-size:30px}h2{margin-top:45px;border-bottom:1px solid #dbe4ea;padding-bottom:12px}h3{color:#087e99;margin-top:30px}p{margin:14px 0}a{color:#087e99}code{font-size:.85em;background:#e7edf3;padding:2px 4px}pre{overflow:auto;padding:20px;background:#e7edf3;font-size:13px}.scroll{overflow:auto}table{border-collapse:collapse;min-width:600px;width:100%;font-size:13px}th,td{padding:12px;border:1px solid #dae3eb;text-align:left}th{background:#e8f0f5}.bullet{padding-left:15px}</style></head><body><header><a href="index.html">← 返回：6个AI，同一道题，会怎么样？</a></header><main><h1>EVAL报告生成源码摘录</h1><p>测试版本提交：<code>cb590ce35686cb1980e3c89a7d68bd0cfbeb825a</code>。以下连续片段由<code>git show</code>读取，保留原代码；仅摘取解释流程所需部分。源码说明机制，不单独证明某次运行成功。</p><h2>01 / 启动记录报告的材料采集</h2><p>这段代码启动任务记录采集程序，并将本次run_id传入。它负责组织运行材料；独立EVAL分析在后面启动。</p><pre>  const child = spawn(
+    process.execPath,
+    [&quot;packages/evaluator/eval-benchmark-record.cjs&quot;, &quot;--project-root&quot;, projectRoot, &quot;--run-id&quot;, runId],
+    { cwd: projectRoot, detached: true, stdio: &quot;ignore&quot; },
+  );
+</pre><p>来源：<code>codeflowmu-shell/src/eval-benchmark-recording.ts</code>，第592～596行，提交<code>cb590ce</code>。</p><h2>02 / 为EVAL启动独立分析会话</h2><p>系统先构建分析提示与技能注入，再把目标报告、分析类型和根任务绑定到EVAL会话。这里展示真正的会话启动调用；本次测试的EVAL配置统一为Cursor / auto-smart。</p><pre>      const handle = await runtime.sessionManager.startSession(
+        agentId,
+        sessionTaskId,
+        {
+          text: skillInjection.prompt,
+          maxToolRounds: DEFAULT_SESSION_MAX_TOOL_ROUNDS,
+          uiLang: readPanelUiLang(getProjectRoot()),
+          context: {
+            eval_observation: true,
+            eval_analysis: true,
+            analysis_kind: request.analysisKind,
+            analysis_target_path: request.reportPath,
+            root_task_id: request.mainTaskId,
+            session_kind: &quot;CHAT_BOUND&quot;,
+          },
+        },
+      );
+</pre><p>来源：<code>codeflowmu-shell/src/web-panel.ts</code>，第17863～17879行，提交<code>cb590ce</code>。</p><h2>03 / 校验分析内容，未满足格式就返回错误</h2><p>EVAL输出不会因会话结束就自动算成合格报告。写回函数先校验分析正文；完整函数还检查模型与会话来源、所需技能回执。因此“材料已有”和“分析报告完成”是两种状态。</p><pre>  const contentErrors = validateEvalAssistantText(content, input.analysisKind);
+  if (contentErrors.length) {
+    throw new Error(`EVAL_ANALYSIS_FORMAT_INVALID: ${contentErrors.join(&quot;,&quot;)}`);
+  }
+</pre><p>来源：<code>codeflowmu-shell/src/eval-independent-analysis.ts</code>，第286～289行，提交<code>cb590ce</code>。</p><h2>04 / 将正文与分析运行证据写回文件</h2><p>前面的代码将EVAL正文、通道、模型、Session、Run与技能信息加入报告。这四行是最后的落盘动作：先写UTF-8临时文件，再替换目标报告。最终可供后续核查的是保存下来的文件。</p><pre>  const temporary = `${absolute}.analysis-${process.pid}-${Date.now()}.tmp`;
+  writeFileSync(temporary, raw, &quot;utf8&quot;);
+  renameSync(temporary, absolute);
+  return absolute;
+</pre><p>来源：<code>codeflowmu-shell/src/eval-independent-analysis.ts</code>，第393～396行，提交<code>cb590ce</code>。</p></main></body></html>

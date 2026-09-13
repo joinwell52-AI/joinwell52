@@ -1,0 +1,19 @@
+{
+  "package": "execution-boundary-four-cases-public-evidence-dossier",
+  "version": "2026-08-26-public-v2",
+  "purpose": "Inspectable, sanitized evidence traces and source-faithful transcript excerpts for four public engineering case studies.",
+  "interpretation": [
+    "Each result belongs only to the named collection or snapshot.",
+    "A PASS is not a product reliability rate, security certification, or replayable proof of a private runtime.",
+    "A timestamp expresses observed order, not by itself a complete causal proof."
+  ],
+  "sanitizedFields": [
+    "task contents", "prompts", "personal identities", "absolute paths", "process identifiers", "credentials", "raw logs", "private source code", "private evidence locations", "stable internal identifiers"
+  ],
+  "cases": [
+    {"id": "A1", "files": ["case-a1-gate-run-trace.csv", "transcript-a1.md"], "subject": "advisory versus hard gate"},
+    {"id": "A2", "files": ["case-a2-observer-semantic-trace.csv", "transcript-a2.md"], "subject": "observer versus formal acceptance"},
+    {"id": "A3", "files": ["case-a3-projection-precedence-trace.csv", "transcript-a3.md"], "subject": "current projection versus retained history"},
+    {"id": "A4", "files": ["case-a4-recovery-timeline.csv", "transcript-a4.md"], "subject": "health, recovery, and delivery preconditions"}
+  ]
+}

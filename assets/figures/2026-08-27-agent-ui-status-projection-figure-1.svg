@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="860" viewBox="0 0 1600 860" role="img" aria-labelledby="title desc">
+  <title id="title">一盏绿色在线灯不能代替五种观察事实</title>
+  <desc id="desc">连接可用、会话活性、细粒度进度、报告到达和技术错误属于不同观察。投影需要保留并列事实。</desc>
+  <style>
+    .bg{fill:#fbfaf7}.title{font:600 31px 'Microsoft YaHei','Noto Sans SC',Arial,sans-serif;fill:#102a43}.sub{font:400 17px 'Microsoft YaHei','Noto Sans SC',Arial,sans-serif;fill:#526577}.k{font:600 19px 'Microsoft YaHei','Noto Sans SC',Arial,sans-serif;fill:#102a43}.en{font:400 14px Arial,sans-serif;fill:#526577}.small{font:400 14px 'Microsoft YaHei','Noto Sans SC',Arial,sans-serif;fill:#526577}.green{fill:#e8f7ed;stroke:#2d8f58;stroke-width:3}.blue{fill:#e9f6ff;stroke:#1778b5;stroke-width:3}.cyan{fill:#e7faf9;stroke:#159b9b;stroke-width:3}.amber{fill:#fff3dc;stroke:#d9901f;stroke-width:3}.violet{fill:#f1eaff;stroke:#7551bd;stroke-width:3}.red{fill:#feecef;stroke:#c55066;stroke-width:3}.neutral{fill:#f4f7f9;stroke:#bac7d0;stroke-width:2}.arrow{stroke:#8aa3b8;stroke-width:3;fill:none}
+  </style>
+  <rect class="bg" width="1600" height="860"/>
+  <text class="title" x="90" y="72">一盏“在线”绿灯，不该替团队宣布正在交付</text>
+  <text class="sub" x="90" y="105">Connection is one fact. Session, progress, report arrival and failure remain separate facts.</text>
+  <rect x="90" y="162" rx="22" ry="22" width="270" height="542" class="green"/>
+  <circle cx="225" cy="261" r="53" fill="#2d8f58"/><circle cx="225" cy="261" r="28" fill="#fbfaf7"/>
+  <text class="k" x="147" y="355">连接可用</text><text class="en" x="147" y="384">Gateway online</text>
+  <text class="small" x="126" y="445">它只回答：</text><text class="small" x="126" y="477">浏览器或手机能否连接</text><text class="small" x="126" y="529">它不回答：</text><text class="small" x="126" y="561">任务是否仍在执行、</text><text class="small" x="126" y="591">是否有新进度、</text><text class="small" x="126" y="621">报告是否到达或已验收</text>
+  <path d="M 390 250 L 465 250" class="arrow"/><polygon points="465,250 445,238 445,262" fill="#8aa3b8"/>
+  <text class="k" x="490" y="153">读端应分别回答的五种观察 / Five mutually exclusive observations</text>
+  <g>
+    <rect x="490" y="180" rx="17" ry="17" width="930" height="78" class="cyan"/><text class="k" x="525" y="216">正在执行，有可见进度</text><text class="en" x="850" y="216">executing_with_progress</text><text class="small" x="525" y="244">页面不应写成：已交付 / delivered</text>
+    <rect x="490" y="276" rx="17" ry="17" width="930" height="78" class="blue"/><text class="k" x="525" y="312">正在执行，没有细粒度进度</text><text class="en" x="850" y="312">executing_without_fine_progress</text><text class="small" x="525" y="340">页面不应写成：已失败 / failed</text>
+    <rect x="490" y="372" rx="17" ry="17" width="930" height="78" class="neutral"/><text class="k" x="525" y="408">有会话记录，但没有实时执行</text><text class="en" x="850" y="408">session_without_live_execution</text><text class="small" x="525" y="436">页面不应写成：正在推进 / progressing</text>
+    <rect x="490" y="468" rx="17" ry="17" width="930" height="78" class="amber"/><text class="k" x="525" y="504">会话结束，等待正式 REPORT</text><text class="en" x="850" y="504">completed_waiting_report</text><text class="small" x="525" y="532">页面不应写成：已验收 / accepted</text>
+    <rect x="490" y="564" rx="17" ry="17" width="930" height="78" class="red"/><text class="k" x="525" y="600">会话失败或丢失，需要技术诊断</text><text class="en" x="850" y="600">technical_error</text><text class="small" x="525" y="628">页面不应写成：业务任务失败 / business failure</text>
+  </g>
+  <rect x="90" y="735" rx="16" ry="16" width="1330" height="68" class="violet"/>
+  <text class="k" x="125" y="764">投影规则：</text><text class="small" x="255" y="764">Gateway online + job heartbeat 过期，应同时显示“连接可用”与“作业不活跃”；workflow done + evidence conflict，也应同时保留 done 与 conflict。</text>
+  <text class="small" x="90" y="836">来源：候选公开证据包 R3｜五种读端观察合同与投影反例矩阵；该图不主张已完成全端 UI 认证。</text>
+</svg>

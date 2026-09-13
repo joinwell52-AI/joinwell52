@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">FCoP project-visible lifecycle</title>
+  <desc id="desc">A file-based coordination protocol using the filesystem as its only synchronization primitive, with atomic lifecycle moves and project-visible work objects.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#06121f"/><stop offset="1" stop-color="#12253b"/></linearGradient><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#59d8e8"/></marker><marker id="o" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#efa64a"/></marker></defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="66" y="62" fill="#65dcea" font-family="Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="4">FCOP · FILE-BASED COORDINATION PROTOCOL</text>
+  <text x="66" y="110" fill="#fff" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="40" font-weight="800">文件系统作为唯一同步原语，项目目录成为协作事实平面</text>
+  <rect x="66" y="146" width="1468" height="62" rx="18" fill="#0c2732" stroke="#55d8e8"/>
+  <text x="800" y="185" text-anchor="middle" fill="#c1edf2" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="20" font-weight="700">目录即状态 · 文件名即路由 · 内容即负载 · os.rename() 是生命周期同步操作</text>
+
+  <g font-family="Arial,'Microsoft YaHei',sans-serif">
+    <text x="66" y="260" fill="#9dafc8" font-size="16" font-weight="700" letter-spacing="2">PROJECT-VISIBLE LIFECYCLE</text>
+    <g transform="translate(66 292)">
+      <g><rect width="250" height="132" rx="22" fill="#13213a" stroke="#607fbd"/><text x="24" y="40" fill="#83a7e9" font-size="15" font-weight="700">/_lifecycle/inbox</text><text x="24" y="78" fill="#fff" font-size="25" font-weight="800">待领取</text><text x="24" y="108" fill="#91a2ba" font-size="15">TASK 已到达</text></g>
+      <g transform="translate(304)"><rect width="250" height="132" rx="22" fill="#0d2935" stroke="#55d8e8"/><text x="24" y="40" fill="#66ddea" font-size="15" font-weight="700">/_lifecycle/active</text><text x="24" y="78" fill="#fff" font-size="25" font-weight="800">执行中</text><text x="24" y="108" fill="#91a2ba" font-size="15">ACCEPTANCE 已形成</text></g>
+      <g transform="translate(608)"><rect width="250" height="132" rx="22" fill="#17213b" stroke="#8175ff"/><text x="24" y="40" fill="#b5adff" font-size="15" font-weight="700">/_lifecycle/review</text><text x="24" y="78" fill="#fff" font-size="25" font-weight="800">待审查</text><text x="24" y="108" fill="#91a2ba" font-size="15">REPORT 等待复核</text></g>
+      <g transform="translate(912)"><rect width="250" height="132" rx="22" fill="#25251f" stroke="#b9ad63"/><text x="24" y="40" fill="#d5c976" font-size="15" font-weight="700">/_lifecycle/done</text><text x="24" y="78" fill="#fff" font-size="25" font-weight="800">已完成</text><text x="24" y="108" fill="#a8a182" font-size="15">合法决定已经成立</text></g>
+      <g transform="translate(1216)"><rect width="250" height="132" rx="22" fill="#2f231e" stroke="#efa64a"/><text x="24" y="40" fill="#f1b35d" font-size="15" font-weight="700">/_lifecycle/archive</text><text x="24" y="78" fill="#fff" font-size="25" font-weight="800">已归档</text><text x="24" y="108" fill="#ad9b89" font-size="15">历史仍可审计</text></g>
+      <g stroke="#59d8e8" stroke-width="4" marker-end="url(#a)"><path d="M260 66H292"/><path d="M564 66H596"/><path d="M868 66H900"/><path d="M1172 66H1204"/></g>
+      <text x="733" y="166" text-anchor="middle" fill="#f1b35d" font-size="15" font-weight="700">每次迁移产生可观察的协议事件，而不是偷偷覆盖中央 status</text>
+    </g>
+
+    <g transform="translate(66 518)">
+      <rect width="880" height="292" rx="28" fill="#091728" stroke="#4f718f"/>
+      <text x="28" y="44" fill="#65dcea" font-size="16" font-weight="700" letter-spacing="2">A WORK OBJECT · 一个项目可见工作对象</text>
+      <rect x="28" y="68" width="824" height="62" rx="14" fill="#102c3b" stroke="#4d879a"/>
+      <text x="48" y="106" fill="#e3edf5" font-family="Consolas,monospace" font-size="19">REPORT-001-DEV-to-PM-on-TASK-001.md</text>
+      <g fill="#13233a" stroke="#49627f"><rect x="28" y="152" width="250" height="104" rx="15"/><rect x="304" y="152" width="250" height="104" rx="15"/><rect x="580" y="152" width="272" height="104" rx="15"/></g>
+      <g><text x="48" y="184" fill="#79b9ff" font-size="14" font-weight="700">FILENAME · 路由</text><text x="48" y="216" fill="#fff" font-size="18">发送者 / 接收者 / 类型</text><text x="48" y="242" fill="#91a2ba" font-size="14">身份不依赖到达顺序</text><text x="324" y="184" fill="#b5adff" font-size="14" font-weight="700">FRONTMATTER · 引用</text><text x="324" y="216" fill="#fff" font-size="18">task_ref / lifecycle</text><text x="324" y="242" fill="#91a2ba" font-size="14">形成因果与协议语义</text><text x="600" y="184" fill="#66ddea" font-size="14" font-weight="700">MARKDOWN · 负载</text><text x="600" y="216" fill="#fff" font-size="18">结果 / 证据 / 问题</text><text x="600" y="242" fill="#91a2ba" font-size="14">人和工具都可直接读取</text></g>
+    </g>
+    <g transform="translate(996 518)">
+      <rect width="538" height="292" rx="28" fill="#10152c" stroke="#6f78a8"/>
+      <text x="26" y="44" fill="#b5adff" font-size="16" font-weight="700" letter-spacing="2">SAME FACT PLANE · 多种读者</text>
+      <g fill="#17213b" stroke="#4e6688"><rect x="26" y="72" width="226" height="72" rx="14"/><rect x="286" y="72" width="226" height="72" rx="14"/><rect x="26" y="166" width="226" height="72" rx="14"/><rect x="286" y="166" width="226" height="72" rx="14"/></g>
+      <g text-anchor="middle"><text x="139" y="103" fill="#fff" font-size="18" font-weight="700">AGENT / RUNTIME</text><text x="139" y="128" fill="#91a2ba" font-size="14">读取、追加、迁移</text><text x="399" y="103" fill="#fff" font-size="18" font-weight="700">HUMAN MANAGER</text><text x="399" y="128" fill="#91a2ba" font-size="14">观察、审查、决定</text><text x="139" y="197" fill="#fff" font-size="18" font-weight="700">READER</text><text x="139" y="222" fill="#91a2ba" font-size="14">重建流程与问题集</text><text x="399" y="197" fill="#fff" font-size="18" font-weight="700">OPS / DEBUGGER</text><text x="399" y="222" fill="#91a2ba" font-size="14">恢复、审计、诊断</text></g>
+      <text x="269" y="270" text-anchor="middle" fill="#f1b35d" font-size="15">不需要先进入隐藏的中央协调状态</text>
+    </g>
+  </g>
+  <text x="800" y="864" text-anchor="middle" fill="#dce5f2" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="18">FCoP 治理协作行为；它不是模型、调度器、身份系统，也不是完整 Agent Runtime</text>
+</svg>

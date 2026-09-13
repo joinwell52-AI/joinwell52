@@ -1,0 +1,64 @@
+[
+  {
+    "capture_sha256": "00ae5a862546da36aeebda58fa9fa8cd18e8c5c6f2c172026a99f5f2632d08a8",
+    "commit": "f0f42f01c8f6d55bfe3d32e108f607841a2900d9",
+    "captured_at": "2026-08-31T03:58:27.348Z",
+    "variants": [
+      {
+        "variant": "non-idempotent",
+        "separate_processes": true,
+        "effects_before": 1,
+        "effects_after": 2,
+        "calls_after": 2,
+        "error": null
+      },
+      {
+        "variant": "idempotent",
+        "separate_processes": true,
+        "effects_before": 1,
+        "effects_after": 1,
+        "calls_after": 2,
+        "error": null
+      },
+      {
+        "variant": "changed-digest",
+        "separate_processes": true,
+        "effects_before": 1,
+        "effects_after": 1,
+        "calls_after": 1,
+        "error": "APPROVAL_STALE"
+      }
+    ]
+  },
+  {
+    "capture_sha256": "7dd7fa39e0d1f816d7112d187738f3dc6182aa2e063ae4ff7260f6eef49ffc1e",
+    "commit": "f0f42f01c8f6d55bfe3d32e108f607841a2900d9",
+    "captured_at": "2026-08-31T03:59:35.855Z",
+    "variants": [
+      {
+        "variant": "non-idempotent",
+        "separate_processes": true,
+        "effects_before": 1,
+        "effects_after": 2,
+        "calls_after": 2,
+        "error": null
+      },
+      {
+        "variant": "idempotent",
+        "separate_processes": true,
+        "effects_before": 1,
+        "effects_after": 1,
+        "calls_after": 2,
+        "error": null
+      },
+      {
+        "variant": "changed-digest",
+        "separate_processes": true,
+        "effects_before": 1,
+        "effects_after": 1,
+        "calls_after": 1,
+        "error": "APPROVAL_STALE"
+      }
+    ]
+  }
+]
