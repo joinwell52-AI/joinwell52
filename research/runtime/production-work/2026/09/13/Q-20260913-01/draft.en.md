@@ -6,7 +6,7 @@ column: digital-employee
 category: daily
 article_type: engineering-insight
 edition: research-center
-research_question: "When a long-horizon agent rewinds after failure, what must be restored together for causal coherence, and what additional evidence is required before retrying effects that escaped the checkpoint boundary?"
+research_question: "当长时程智能体在失败后回退时，哪些状态必须一起恢复才能保持因果一致；对于已经逃逸出受控检查点边界的外部效果，又需要什么证据才能安全重试？"
 summary: "Aligned recovery can return model context and a controlled workspace to one checkpoint without undoing remote messages, records, or transactions. End-to-end recovery needs a separate external-effect ledger and resume gate."
 cover: staging/publication-candidates/2026-09-13-state-rewound-effect-did-not-cover.png
 sources:
