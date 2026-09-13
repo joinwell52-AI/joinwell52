@@ -1,0 +1,316 @@
+{
+  "schema": "research-intelligence-run/v1",
+  "version": "1.0",
+  "date": "2026-09-13",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "registryVersion": "1.0",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-09-13T09:11:45+08:00",
+  "githubCommit": "pending",
+  "reason": "All three formal Discovery pipelines reached terminal coverage and the rotated theme-first sample overlay was completed without topic selection. Five qualified, non-duplicate signals were retained after problem-level normalization against recent Signal Pools: three merged engineering mechanisms and two primary-research findings. AI Platform terminally resolved all 45 due public channels as 43 direct checks, one explicitly recorded Copilot Studio What's New authorization barrier, and one Cursor Announcements retrieval failure. GitHub Engineering checked all nine P0 daily repositories incrementally. Published Research terminally resolved all nine P0 sources as eight direct checks plus one explicit Journal of Systems and Software retrieval failure. Pure sample-change-trigger density is 0%.",
+  "reason_zh": "三条正式 Discovery 管线均完成终态覆盖，并完成轮换后的主题优先主动样本检查，未执行选题。与近期 Signal Pool 按研究问题规范化去重后保留 5 个合格、非重复 Signal：3 个已合并工程机制、2 个一手研究发现。AI Platform 的 45 个到期公共通道全部终态收口，其中 43 个直接完成检查，Copilot Studio What's New 的授权门槛被明确记录为不可访问，Cursor Announcements 出现 1 次抓取失败；GitHub Engineering 对 9 个 P0 Daily 仓库全部完成增量检查；Published Research 的 9 个 P0 来源终态收口为 8 个直接检查加 1 个 Journal of Systems and Software 抓取失败。纯 sample-change-trigger 占比为 0%。",
+  "pipelines": [
+    {
+      "id": "ai-platform",
+      "label": "AI Platform Change Intelligence",
+      "label_zh": "AI 平台变更情报发现",
+      "status": "Completed",
+      "due": 45,
+      "checked": 43,
+      "inaccessible": [
+        {
+          "source": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/whats-new",
+          "reason": "The public surface exposed an authorization barrier during this run; the channel was terminally recorded as inaccessible rather than counted as a successful direct check."
+        }
+      ],
+      "failed": [
+        {
+          "source": "https://forum.cursor.com/c/announcements/11",
+          "reason": "The Cursor Announcements category returned an internal retrieval error during this run; the failure is recorded rather than counted as checked."
+        }
+      ],
+      "signals": 0,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All 45 due P0 public channels across OpenAI, Anthropic, Google, Cursor, GitHub Copilot and Microsoft Copilot were terminally resolved. Forty-three were directly checked; Copilot Studio What's New exposed an authorization barrier and Cursor Announcements returned a retrieval error. Current platform material did not survive problem-level deduplication against recent intelligence as a distinct new research signal.",
+      "reason_zh": "OpenAI、Anthropic、Google、Cursor、GitHub Copilot 与 Microsoft Copilot 六组共 45 个到期 P0 公共通道全部终态处理，其中 43 个直接完成检查；Copilot Studio What's New 出现授权门槛，Cursor Announcements 出现抓取错误。与近期 Intelligence 按研究问题去重后，没有新的平台条目形成独立研究 Signal。"
+    },
+    {
+      "id": "github-engineering",
+      "label": "GitHub Engineering Intelligence",
+      "label_zh": "GitHub 工程情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 9,
+      "inaccessible": [],
+      "failed": [],
+      "signals": 3,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 daily repositories were checked incrementally. Three distinct mechanisms crossed the research threshold: Codex exposes asynchronous progress messaging only to root agents while keeping it unavailable to subagents; Google ADK ensures after-agent cleanup side effects still execute on cancellation without masking the original cancellation; and Google ADK changed parallel state merging so list-valued deltas are concatenated instead of silently overwritten, while explicitly preserving the duplicate-entry caveat.",
+      "reason_zh": "9 个 P0 Daily 仓库均完成增量检查。保留 3 个达到研究阈值的不同机制：Codex 仅允许 Root Agent 使用异步进度消息工具，并继续对 Subagent 隔离；Google ADK 确保 Agent 被取消时仍执行 After-Agent 清理副作用，同时不掩盖原始取消；Google ADK 还修改并行状态合并，使 List 类型 State Delta 采用拼接而不是静默覆盖，同时明确保留重复项风险。"
+    },
+    {
+      "id": "published-research",
+      "label": "Published Research Intelligence",
+      "label_zh": "论文与研究成果情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 8,
+      "inaccessible": [],
+      "failed": [
+        {
+          "source": "https://www.sciencedirect.com/journal/journal-of-systems-and-software",
+          "reason": "The Journal of Systems and Software public journal surface returned an internal retrieval error during this run; the failure is recorded rather than counted as checked."
+        }
+      ],
+      "signals": 2,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 research sources were terminally resolved under the rolling seven-day pass with expansion through thirty days where useful: eight source surfaces were directly checked and Journal of Systems and Software returned an explicitly recorded retrieval failure. Two non-duplicate primary-research findings were retained: Anthropic's incident review shows an agentic transcript search can miss relevant cases even when the scan itself completes, and AgentRewind aligns agent-context and environment checkpoints to support recoverable long-horizon execution after errors.",
+      "reason_zh": "9 个 P0 研究来源均按滚动 7 天检查并在需要时扩展至 30 天完成终态处理：8 个来源页面直接完成检查，Journal of Systems and Software 的抓取失败被明确记录。保留 2 个非重复一手研究发现：Anthropic 的事故复盘显示，即使一次 Agentic Transcript Search 本身完成，也可能漏掉相关案例；AgentRewind 则通过对齐 Agent Context 与 Environment Checkpoint，为长周期执行中的错误提供可恢复回退。"
+    }
+  ],
+  "columns": [
+    {
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded two primary Digital Employee signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以数字员工为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    },
+    {
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded two primary Industry Architecture signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以行业架构为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    },
+    {
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "decision": "Waiting",
+      "signals": 1,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded one primary Open-source Engineering signal; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 1 个以开源工程为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    }
+  ],
+  "signals": [
+    {
+      "id": "SIG-20260913-001",
+      "pipeline": "github-engineering",
+      "title": "Codex reserves asynchronous user progress messaging for root agents while excluding subagents",
+      "title_zh": "Codex 将异步用户进度消息保留给 Root Agent，并继续排除 Subagent",
+      "sourceUrl": "https://github.com/openai/codex/commit/b979d4f1f04538ba5a5fcc434d499c007bfe1b8c",
+      "publishedAt": "2026-09-12",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai-codex/root-only-async-user-message-boundary",
+      "summary": "Codex added a disabled-by-default feature flag that can expose send_message_to_user_async to root agents even without model-catalog support, while integration tests explicitly keep the tool unavailable to subagents under catalog opt-in, feature opt-in, or both. The tool can emit user-visible progress without ending the turn.",
+      "summary_zh": "Codex 新增默认关闭的 Feature Flag，使 Root Agent 即使没有 Model Catalog 支持也可获得 send_message_to_user_async；集成测试则明确保证无论 Catalog Opt-in、Feature Opt-in 或两者同时启用，Subagent 都拿不到该工具。该工具可在不结束当前 Turn 的情况下发送用户可见进度。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": [
+        "formal-responsibility-topology",
+        "subagent-boundary",
+        "human-agent-collaboration",
+        "event-visibility"
+      ],
+      "sampleIds": [
+        "openai-codex"
+      ],
+      "researchValue": {
+        "failure": "If every subagent can independently message the human, internal worker activity can bypass the manager boundary and fragment responsibility, status and interruption semantics.",
+        "finding": "The merged implementation keeps asynchronous user messaging at the root-agent boundary even when the feature is enabled through multiple opt-in paths.",
+        "mechanism": "Gate the progress-message tool on root session identity plus explicit feature/catalog opt-in, and let it emit a user-facing item without terminating the active turn.",
+        "implication": "A multi-agent runtime can make human-facing communication a role-scoped capability rather than a generic tool inherited by every worker."
+      }
+    },
+    {
+      "id": "SIG-20260913-002",
+      "pipeline": "github-engineering",
+      "title": "Google ADK runs after-agent cleanup on cancellation without converting cancellation into ordinary completion",
+      "title_zh": "Google ADK 在取消路径执行 After-Agent 清理，同时不把取消伪装成普通完成",
+      "sourceUrl": "https://github.com/google/adk-python/commit/37aa7308bbcfd41a2eebee73f51e6f40a5448e78",
+      "publishedAt": "2026-09-12",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "google-adk/cancellation-after-agent-cleanup-boundary",
+      "summary": "Google ADK now catches asyncio.CancelledError after the before-agent callback has completed and, when appropriate, runs after_agent_callback for cleanup side effects such as metrics and timers before re-raising the original cancellation. It deliberately does not run the callback when cancellation occurs during before-agent setup, when end_invocation short-circuits, or after it already ran; cleanup exceptions are logged rather than masking cancellation.",
+      "summary_zh": "Google ADK 现在会在 Before-Agent Callback 已完成后捕获 asyncio.CancelledError，并在适用条件下执行 after_agent_callback，以清理 Metrics、Timer 等副作用，然后重新抛出原始取消。若取消发生在 Before-Agent 阶段、end_invocation 已短路或 After Callback 已执行，则不会重复调用；清理异常只记录日志，不覆盖原始取消。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": [
+        "worker-lifecycle",
+        "failure-semantics",
+        "cleanup-boundary",
+        "observability"
+      ],
+      "sampleIds": [
+        "google-adk-python"
+      ],
+      "researchValue": {
+        "failure": "Cancellation can bypass lifecycle-finalization hooks and leak timers, metrics or plugin-side state even though the worker has stopped.",
+        "finding": "The fix separates cancellation cleanup from successful completion and preserves the original cancellation as the authoritative terminal control signal.",
+        "mechanism": "Track whether setup and after-callback phases actually ran, execute cleanup once on the cancellation path, suppress secondary cleanup errors, and then re-raise cancellation.",
+        "implication": "Agent runtimes need explicit cancellation semantics: cleanup obligations may survive cancellation even when business completion must not."
+      }
+    },
+    {
+      "id": "SIG-20260913-003",
+      "pipeline": "github-engineering",
+      "title": "Google ADK makes parallel list-state merge semantics explicit: concatenate to avoid loss, but duplicates remain a modeling problem",
+      "title_zh": "Google ADK 显式化并行 List State 合并：用拼接避免丢失，但重复项仍是建模问题",
+      "sourceUrl": "https://github.com/google/adk-python/commit/7b246e0166b77dbeda83e94d622de4ca92c3539e",
+      "publishedAt": "2026-09-12",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "google-adk/parallel-tool-list-state-merge-semantics",
+      "summary": "Google ADK changed deep_merge_dicts so list-valued state deltas from parallel tool responses are concatenated instead of silently overwriting earlier list entries. The implementation explicitly does not deduplicate: parallel tools that write full lists can duplicate existing elements, and callers needing set or keyed semantics are advised to model state deltas as dictionaries.",
+      "summary_zh": "Google ADK 修改 deep_merge_dicts，使并行 Tool Response 的 List 类型 State Delta 采用拼接而不是让后写结果静默覆盖先写内容。实现明确不做去重：若并行工具写入完整列表，可能重复已有元素；需要 Set 或 Keyed 语义时应改用 Dict 建模。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": [
+        "concurrent-state",
+        "merge-semantics",
+        "multi-agent-state-ownership",
+        "idempotency"
+      ],
+      "sampleIds": [
+        "google-adk-python"
+      ],
+      "researchValue": {
+        "failure": "Parallel tool calls can each produce valid state deltas yet a generic last-writer-wins merge silently drops one branch's list entries.",
+        "finding": "Concatenation prevents silent loss but does not solve semantic conflicts or duplicate effects.",
+        "mechanism": "Define merge behavior by state type and require callers to use keyed structures when uniqueness or conflict resolution matters.",
+        "implication": "Concurrent agent state needs an explicit merge contract; preventing data loss is only the first layer, not a complete concurrency policy."
+      }
+    },
+    {
+      "id": "SIG-20260913-004",
+      "pipeline": "published-research",
+      "title": "Anthropic's incident review shows a completed agentic audit search can still miss the evidence set it was meant to find",
+      "title_zh": "Anthropic 事故复盘显示：Agentic 审计搜索“完成”仍可能漏掉本应发现的证据",
+      "sourceUrl": "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents",
+      "publishedAt": "2026-09-09",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "anthropic-cyber-incident-agentic-search-coverage-gap",
+      "summary": "Anthropic reports that an initial scan of roughly 141,000 transcripts used an agentic search to identify cyber-evaluation sessions with possible internet access, but that search missed a set of relevant transcripts. A later review found a fourth incident, after which Anthropic broadened the search to roughly 481 million transcripts across red-team, non-cyber evaluation, RL and subagent logs.",
+      "summary_zh": "Anthropic 报告称，最初约 14.1 万份 Transcript 的扫描使用 Agentic Search 来识别可能获得互联网访问的网络安全评测会话，但这次搜索漏掉了一组相关记录。后续复查发现第 4 起事故后，Anthropic 将范围扩大到约 4.81 亿份 Transcript，覆盖红队、非网络安全评测、RL 环境和 Subagent Logs 等。",
+      "signalRole": "failure-evidence",
+      "researchThemes": [
+        "auditability",
+        "evaluation-coverage",
+        "failure-attribution",
+        "subagent-observability"
+      ],
+      "sampleIds": [
+        "anthropic-research"
+      ],
+      "researchValue": {
+        "failure": "An AI-assisted audit can finish its search procedure while still failing the business claim that all relevant evidence was found.",
+        "finding": "The disclosed incident set changed after expanding the evidence universe and revisiting transcripts the earlier agentic search missed.",
+        "mechanism": "Separate search-process completion from coverage proof, preserve a larger evidence inventory, and use independent follow-up passes when missed-case cost is high.",
+        "implication": "Agent-run audits should report observable coverage and blind spots explicitly; 'search completed' is not equivalent to 'audit complete'."
+      }
+    },
+    {
+      "id": "SIG-20260913-005",
+      "pipeline": "published-research",
+      "title": "AgentRewind aligns agent-context and environment checkpoints so long-horizon recovery can roll back both sides together",
+      "title_zh": "AgentRewind 对齐 Agent Context 与环境 Checkpoint，让长周期恢复能同时回滚两侧状态",
+      "sourceUrl": "https://arxiv.org/abs/2608.14380",
+      "publishedAt": "2026-08-14",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "agentrewind/aligned-context-environment-recovery-checkpoints",
+      "summary": "AgentRewind targets errors that propagate through both model context and environment state during long-horizon agent work. It records aligned checkpoints of the agent context and a controlled environment, allowing recovery to an earlier joint state and resumption with information from previous attempts; the accompanying MettleBench evaluates task completion and partial progress on long-horizon engineering assignments.",
+      "summary_zh": "AgentRewind 面向长周期 Agent 工作中同时污染模型 Context 与 Environment State 的错误，记录二者对齐的 Checkpoint，使系统可以回到更早的联合状态，并携带前次尝试的信息继续执行；配套 MettleBench 用长周期工程任务评估任务完成度与部分进度。",
+      "signalRole": "finding-evidence",
+      "researchThemes": [
+        "long-horizon-recovery",
+        "checkpointing",
+        "environment-state",
+        "failure-recovery"
+      ],
+      "sampleIds": [
+        "agentrewind"
+      ],
+      "researchValue": {
+        "failure": "Rolling back only model context or only environment state can leave a recovered agent inconsistent with the world it is resuming against.",
+        "finding": "The reported experiments show aligned recovery improves task success and checklist progress across tasks, models, execution strategies and harnesses relative to compared baselines.",
+        "mechanism": "Capture synchronized checkpoints of reasoning context and controlled environment, then resume from an earlier joint state while retaining information from failed attempts.",
+        "implication": "Long-running digital employees need recovery boundaries that bind cognitive state and effect state together rather than treating chat history as the only resumable state."
+      }
+    }
+  ],
+  "researchCoverage": {
+    "policy": "theme-sample-v1",
+    "rollingResearchWindowDays": 30,
+    "sampleFamilies": {
+      "product-governance": {
+        "checked": [
+          "Salesforce Setup with Agentforce permission/approval/audit boundary",
+          "UiPath Maestro Flow business-process orchestration and runtime governance surface"
+        ],
+        "qualifiedSignals": 0
+      },
+      "multi-agent-mechanism": {
+        "checked": [
+          "CAMEL stateful multi-agent framework and external-memory surface",
+          "LangGraph checkpoint, interrupt, subgraph and pending-write recovery semantics"
+        ],
+        "qualifiedSignals": 0
+      },
+      "research-benchmark-industry": {
+        "checked": [
+          "Anthropic alignment assessment of cybersecurity incidents (2026-09-09)",
+          "AgentRewind recoverable execution / MettleBench (arXiv:2608.14380)"
+        ],
+        "qualifiedSignals": 2
+      }
+    }
+  }
+}
