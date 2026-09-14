@@ -41,7 +41,7 @@ pageClass: "continuity-contracts-article"
 
 在受测代码里，后续操作是“压缩上下文”：把较长的对话整理成适合后续使用的较短内容。负责这件事的会话组件，可以提供当前内容，也可以沿旧响应编号继续。只要它仍能选中那个旧编号，空列表就不足以说明旧关系已经切断。
 
-[候选修复 #5000](https://github.com/openai/openai-agents-python/pull/5000)补上的正是两处遗漏：当前响应编号，以及最近一次尚未存入历史的响应编号。这里的两类编号不是额外两份完整聊天记录，而是决定后续请求如何续接的引用。
+贡献者 [sbguangha](https://github.com/sbguangha) 在 OpenAI Agents SDK 提出的[候选修复 #5000](https://github.com/openai/openai-agents-python/pull/5000)，补上的正是两处遗漏：当前响应编号，以及最近一次尚未存入历史的响应编号。这里的两类编号不是额外两份完整聊天记录，而是决定后续请求如何续接的引用。这个修复及其测试启发了我们的清空对照实验。
 
 正常清空时把它们一并清掉，似乎就够了。可是，失败的清空又该怎么办？
 
@@ -90,7 +90,7 @@ pageClass: "continuity-contracts-article"
 <details>
 <summary>延伸阅读：会话接对了，为什么任务还会接错？</summary>
 
-同一轮的 [Paperclip #13345](https://github.com/paperclipai/paperclip/pull/13345)提出了另一种错位。Paperclip 用来组织 AI 助手执行任务；这里要解决的是，会话恢复了，调用提示却没带入用户更新后的任务说明，旧评论反而再次成为目标。
+另一条研究来源是贡献者 [cryppadotta](https://github.com/cryppadotta) 提出的 [Paperclip #13345](https://github.com/paperclipai/paperclip/pull/13345)。Paperclip 用来组织 AI 助手执行任务；这个改动要解决的是，会话恢复了，调用提示却没带入用户更新后的任务说明，旧评论反而再次成为目标。它启发了我们检查“下一次调用实际拿到了什么”。
 
 我们对原任务说明选择函数做了七组双版本检查。在已经规范化的唤醒输入下，两组普通恢复由只取简短任务标识，变为带入当前完整说明；新任务、重新分配和恢复动作等对照保持相应行为。实验只覆盖选择函数及辅助函数，没有运行数据库目标选择或真实 AI 会话恢复。
 

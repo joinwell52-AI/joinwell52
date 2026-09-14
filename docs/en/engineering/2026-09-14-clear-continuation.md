@@ -41,7 +41,7 @@ Think of that identifier as a bookmark held by the program. The history list hol
 
 In the code we tested, that later operation was context compaction: preparing a shorter representation of a long conversation for subsequent use. The session component could provide current content or continue from an old response ID. As long as it could still select that ID, an empty list did not establish that the old connection was severed.
 
-[Candidate fix #5000](https://github.com/openai/openai-agents-python/pull/5000) addresses two omissions: the current response ID and the most recent response ID not yet stored in history. These are references that guide continuation, not two additional copies of the entire conversation.
+[Candidate fix #5000](https://github.com/openai/openai-agents-python/pull/5000), proposed by contributor [sbguangha](https://github.com/sbguangha) in the OpenAI Agents SDK, addresses two omissions: the current response ID and the most recent response ID not yet stored in history. These are references that guide continuation, not two additional copies of the entire conversation. This fix and its tests prompted our clearing comparison.
 
 Clearing them along with the history sounds straightforward. But what should happen when clearing fails?
 
@@ -90,7 +90,7 @@ For developers, those questions follow the actual use of the system more closely
 <details>
 <summary>Further reading: the right conversation, but the wrong task?</summary>
 
-[Paperclip #13345](https://github.com/paperclipai/paperclip/pull/13345) addresses a different mismatch. Paperclip organizes AI assistants performing tasks. Here, a session resumed but its invocation omitted an updated task description, allowing an old comment to become the objective again.
+Another source was [Paperclip #13345](https://github.com/paperclipai/paperclip/pull/13345), proposed by contributor [cryppadotta](https://github.com/cryppadotta). Paperclip organizes AI assistants performing tasks. This change addresses a session resuming while its invocation omits an updated task description, allowing an old comment to become the objective again. It prompted us to inspect what the next call actually receives.
 
 We checked seven before/after inputs to the original task-brief selector. With normalized wake inputs, two ordinary-resume cases changed from selecting only a short task identifier to including the current full brief. Fresh-task, assignment, recovery, and other controls retained their respective behavior. This covered the selector and helpers, not database objective selection or a real resumed AI session.
 
