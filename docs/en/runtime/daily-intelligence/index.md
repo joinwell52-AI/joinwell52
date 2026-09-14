@@ -11,6 +11,15 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-09-14">
+    <time>2026-09-14</time>
+    <div>
+      <strong>Agent Research & Competitor Intelligence</strong>
+      <span>Yue Zhao live quota admission · Codex managed-worktree sessions · AG2 MCP transport contract · Paperclip clean-machine API-key onboarding / cross-agent execution ownership · Superset subagent/automation monetization · Agents SDK session generation barrier</span>
+    </div>
+    <b>View →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-09-13">
     <time>2026-09-13</time>
     <div>
