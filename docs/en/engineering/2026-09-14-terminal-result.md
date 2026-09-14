@@ -92,6 +92,7 @@ The experiment suggests separating a broad completion claim into a few practical
 For users, a completion notice followed only by “Next, I will…” is a reason to inspect further. For developers, explicit errors, leftover files, and missing status fields make useful inputs to a result-handling test.
 
 One question remains for discussion: could downstream checks be told when a response was admitted for compatibility without an explicit success status? That is a design question prompted by the experiment, not a demonstrated new defect. Nor have these results established the same problem in CodeFlowMu.
+This question comes from the table's last two rows: explicit success and missing status both allow output to proceed in the tested path, but on different evidence. If downstream verification sees only a pass, can it distinguish them? A next investigation could check whether that distinction reaches the consumer and whether it should affect verification. These experiments have not answered those questions.
 
 <details>
 <summary>Further reading: can checking quota prevent this failure?</summary>
