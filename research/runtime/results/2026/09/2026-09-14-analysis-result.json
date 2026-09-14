@@ -1,0 +1,113 @@
+{
+  "schema": "runtime-shift-result/v2",
+  "task": "analysis",
+  "family": "daily",
+  "runtimeDate": "2026-09-14",
+  "status": "Completed",
+  "input": "Authoritative Analysis control was pinned after the governed recovery Worker Claimed event from main commit 80cb92ef6cbda9285ace493ce80df54a90cf05b1: Research Runtime Scheduler V3.0, Worker Control v1.3.0, generated Analysis Prompt v2.0.0 with declared SHA-256 4f40dff2d12569f647bf265f344b60cb0f0cd0349f0b2d5cf1023f50947dfea2, and all seven requiredSources read completely from that same commit. Direct SHA-256 calculation over the exact prompt UTF-8 bytes matched the declared identity. The same-date Analysis Wake Receipt is research/runtime/wakes/2026/09/2026-09-14/analysis-130511.json. The prior claimed execution epoch expired without a terminal result; ordered reconciliation opened a governed recovery epoch and the native Worker Claim workflow recorded a fresh Worker Claimed event at 15:08:08+08:00. Analysis consumed only the Completed same-date Reading result and three source-complete Reading Notes.",
+  "input_zh": "Analysis 权威控制固定于受治理恢复 Worker Claimed 后的 main 提交 80cb92ef6cbda9285ace493ce80df54a90cf05b1：Research Runtime Scheduler V3.0、Worker Control v1.3.0、Generated Analysis Prompt v2.0.0（声明 SHA-256 为 4f40dff2d12569f647bf265f344b60cb0f0cd0349f0b2d5cf1023f50947dfea2）及同一提交上的全部 7 个 requiredSources。对精确 Prompt UTF-8 字节直接计算 SHA-256 后完全匹配。同日 Analysis Wake Receipt 为 research/runtime/wakes/2026/09/2026-09-14/analysis-130511.json。此前已认领的执行期未形成终态即租约到期；Ordered Reconciliation 打开受治理恢复执行期，原生 Worker Claim Workflow 于 15:08:08+08:00 记录新的 Worker Claimed 事件。Analysis 只消费同日 Completed Reading 结果与 3 份来源完整 Reading Note。",
+  "workResult": "Applied Skill 04 to exactly three same-date source-complete Reading Notes and produced three bounded Research Objects. Q-20260914-01 concludes that technical admission must be a typed proof bundle derived from and bound to the selected execution lane, while business authorization remains a separate current fact. Q-20260914-02 concludes that multi-Agent reliability is a vector of separately evidenced allocation, ordering, mutual-exclusion and handoff obligations; aggregate completion cannot mask a critical weak construct. Q-20260914-03 concludes that trace-level observability and stage attribution are necessary to distinguish unsafe success from trustworthy execution, while attribution remains an evaluator judgment rather than proof of root cause, authorization or safety. All three objects are ReadyForProduction with production_input_authorized=true and publication_authorized=false. No article drafting, candidate staging, cover generation or Publication was performed.",
+  "workResult_zh": "Skill 04 严格消费 3 份同日来源完整 Reading Note，并生成 3 份有界 Research Object。Q-20260914-01 的结论是：技术准入必须是由所选 Execution Lane 推导并绑定到该通道的类型化 Proof Bundle，Business Authorization 仍是独立的当前事实。Q-20260914-02 的结论是：Multi-Agent Reliability 是 Allocation、Ordering、Mutual Exclusion 与 Handoff 等分别取证义务构成的向量，Aggregate Completion 不能掩盖关键弱项。Q-20260914-03 的结论是：Trace-level Observability 与 Stage Attribution 对区分 Unsafe Success 和 Trustworthy Execution 是必要的，但 Attribution 仍是 Evaluator Judgment，不是 Root Cause、Authorization 或 Safety 的证明。3 份对象均为 ReadyForProduction、production_input_authorized=true、publication_authorized=false。未执行文章写作、Candidate Staging、题图生成或 Publication。",
+  "output": "Three durable same-date Research Objects: research/analysis/Q-20260914-01-lane-bound-admission-proof.md; research/analysis/Q-20260914-02-coordination-reliability-vector.md; research/analysis/Q-20260914-03-trace-attribution-evidence-boundary.md.",
+  "output_zh": "生成 3 份同日持久 Research Object：research/analysis/Q-20260914-01-lane-bound-admission-proof.md；research/analysis/Q-20260914-02-coordination-reliability-vector.md；research/analysis/Q-20260914-03-trace-attribution-evidence-boundary.md。",
+  "next": "After governed Analysis terminal finalization and GitHub Commit Verified, reconcile immediately. Production may consume only these three same-date explicitly Production-authorized Research Objects after its own formal admission conditions are satisfied.",
+  "next_zh": "Analysis 完成受治理终态收口与 GitHub Commit Verified 后立即重新对账；Production 只有在自身正式准入条件满足后，才可消费这 3 份同日且明确授权的 Research Object。",
+  "metrics": [
+    {
+      "label": "Generated Analysis prompt SHA-256 verified",
+      "label_zh": "Generated Analysis Prompt SHA-256 已核验",
+      "value": "4f40dff2d12569f647bf265f344b60cb0f0cd0349f0b2d5cf1023f50947dfea2"
+    },
+    {
+      "label": "Prompt verification mode",
+      "label_zh": "Prompt 核验模式",
+      "value": "direct-sha256"
+    },
+    {
+      "label": "Required sources read",
+      "label_zh": "已读取 requiredSources",
+      "value": "7 / 7"
+    },
+    {
+      "label": "Same-date completed Reading Notes analyzed",
+      "label_zh": "已分析同日 Completed Reading Note",
+      "value": 3
+    },
+    {
+      "label": "Durable Research Objects",
+      "label_zh": "持久 Research Object",
+      "value": 3
+    },
+    {
+      "label": "Production-authorized Research Objects",
+      "label_zh": "已授权 Production 输入的 Research Object",
+      "value": 3
+    },
+    {
+      "label": "Revision rounds used",
+      "label_zh": "已使用修订轮次",
+      "value": 0
+    },
+    {
+      "label": "Production actions",
+      "label_zh": "Production 操作数量",
+      "value": 0
+    },
+    {
+      "label": "Publication actions",
+      "label_zh": "Publication 操作数量",
+      "value": 0
+    }
+  ],
+  "evidence": [
+    {
+      "label": "Pinned Analysis control-source commit",
+      "label_zh": "固定 Analysis 控制源提交",
+      "commit": "80cb92ef6cbda9285ace493ce80df54a90cf05b1"
+    },
+    {
+      "label": "Analysis Wake Receipt",
+      "label_zh": "Analysis Wake Receipt",
+      "path": "research/runtime/wakes/2026/09/2026-09-14/analysis-130511.json"
+    },
+    {
+      "label": "Durable recovery Worker Claimed commit",
+      "label_zh": "持久恢复 Worker Claimed 提交",
+      "commit": "80cb92ef6cbda9285ace493ce80df54a90cf05b1"
+    },
+    {
+      "label": "Generated Analysis Prompt SHA-256",
+      "label_zh": "Generated Analysis Prompt SHA-256",
+      "value": "4f40dff2d12569f647bf265f344b60cb0f0cd0349f0b2d5cf1023f50947dfea2"
+    },
+    {
+      "label": "Completed same-date Reading result",
+      "label_zh": "同日 Completed Reading 结果",
+      "path": "research/runtime/results/2026/09/2026-09-14-reading-result.json"
+    }
+  ],
+  "artifacts": [
+    {
+      "label": "Q-20260914-01 Research Object",
+      "label_zh": "Q-20260914-01 Research Object",
+      "path": "research/analysis/Q-20260914-01-lane-bound-admission-proof.md"
+    },
+    {
+      "label": "Q-20260914-02 Research Object",
+      "label_zh": "Q-20260914-02 Research Object",
+      "path": "research/analysis/Q-20260914-02-coordination-reliability-vector.md"
+    },
+    {
+      "label": "Q-20260914-03 Research Object",
+      "label_zh": "Q-20260914-03 Research Object",
+      "path": "research/analysis/Q-20260914-03-trace-attribution-evidence-boundary.md"
+    },
+    {
+      "label": "Analysis result",
+      "label_zh": "Analysis 结果",
+      "path": "research/runtime/results/2026/09/2026-09-14-analysis-result.json"
+    }
+  ],
+  "startedAt": "2026-09-14T15:08:08+08:00",
+  "completedAt": "2026-09-14T15:14:20+08:00"
+}
