@@ -13,9 +13,9 @@ September 13–14, 2026 · Fourteen radar groups, fifteen engineering topics, th
 | Seven Paperclip inputs | Two ordinary resumes now select the current full brief | Original selector, normalized-input double; no objective DB |
 | Quota and helper policies | 11 pass, including 7 quota-policy tests | Unit tests; no live quota or savings measurement |
 
-[Reproduction package](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-09-14-continuity-contracts) · [Source audit](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-09-14-continuity-contracts/01-source-audit.md) · [Experiment notes](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-09-14-continuity-contracts/02-experiments.md) · [Development review](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-09-14-continuity-contracts/03-development-review.md)
+[Reproduction package](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-09-14-continuity-contracts) · [Source audit](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-09-14-continuity-contracts/01-source-audit.md) · [Experiment notes](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-09-14-continuity-contracts/02-experiments.md) · [Leads awaiting validation](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-09-14-continuity-contracts/03-development-review.md)
 
-Development proposals are READY_FOR_REVIEW; these findings do not establish defects in our products or constitute an implementation.
+Eleven product-investigation leads await validation. They are not established development findings or implementation tasks.
 
 [How Did an Opening Remark Become the Deliverable?](../../engineering/2026-09-14-terminal-result) · [Why Can an Empty History Still Reference an Old Conversation?](../../engineering/2026-09-14-clear-continuation)
 

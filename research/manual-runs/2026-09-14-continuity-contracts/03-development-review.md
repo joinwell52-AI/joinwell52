@@ -1,19 +1,21 @@
-# 开发评审输入：两日恢复与准入合同
+# 两日研究的待验证线索（非开发评审结论）
 
-状态：READY_FOR_REVIEW。以下是具备来源或局部实验的评审输入，不代表已完成 CodeFlowMu 产品审计，不授权实现，也不指称本地产品已有相同缺陷。
+状态：RESEARCH_LEADS_PENDING_VALIDATION。以下十一项由上游来源和局部实验整理，尚未完成对应的 CodeFlowMu 问题验证，不是十一项已成立的开发评审，也不赋予产品缺陷优先级。原 READY_FOR_REVIEW 标记及 P1/P2/P3 分类撤回；来源和实验继续保留。
 
-| 优先级 | 应检查的行为 | 验收反例与现有依据 | 评审落点 |
-| --- | --- | --- | --- |
-| P1 | 完成判定不被退出 0 或文件存在替代 | 原 dispatcher 三个错误场景前后反证 | 映射进程、供应商、产物、EVAL 现有记录；缺失终态保留兼容标识 |
-| P1 | 清空失效所有实际续接引用 | SDK 五项对照含真实提交后取消/错误 | 列现有指针与消费者，核对成功/异常清理；已有 generation 不重复新增 |
-| P1 | 当前任务说明进入普通恢复提示 | Paperclip 选择器两种输入发生改变 | 核对 TASK revision 到实际调用提示，不直接新建 objective digest |
-| P1 | 执行锁只属于当前 assignee | Paperclip #13374 源码与自动评审，未本地跑 DB | 外来 mention、assignee 改变、清锁后 deferred wake promotion 成对测试 |
-| P2 | 额度证据及实际模型选择可解释 | 七项额度策略单测；unknown 与 exhausted 不混淆 | 复用现有 quota snapshot，记录时间/缺失与实际模型，模型按岗位分工 |
-| P2 | 人工中断继续与重新执行分开 | AG2 #3248 进程内 held turn 及 proof | 先明确跨重启需求；不可序列化协程不能直接用历史重放替代 |
-| P2 | HTTP 配置有产品自己的默认合同 | AG2 #3252 显式参数但部分安全默认仍关闭 | 核对超时、容量、body、origin、resource、replay；不用一个 digest 代替行为测试 |
-| P2 | Credential validity 与执行路径相配 | Paperclip #13347/#13372 | API key、CLI subscription、租约释放分别验证；不强制无依赖路径安装 CLI |
-| P2 | 共享 workspace 不扩大通知受众 | Orca #20402、Superset #7491 | 客户端来源/通知状态版本先固定，真实设备推送另验；不把来源字段自动升级为授权主体 |
-| P2 | 工具实际 schema 与逻辑名称一致 | Fusion #3597、OpenHands #17387 | 每客户端检查已注册工具与名称映射，UI 和服务调用采用相同 conversation/capability |
-| P3 | 工作树创建、会话绑定与清理有归属 | Codex #45276 | 保留源修改；未认领且干净才清理；失败路径可解释，无需先设计跨系统事务 |
+转评审顺序：先筛选有研究价值的议题，实际做实验并依据结果产出文章；再从这些成果中筛选对 CodeFlowMu 有开发价值的项目进入评审。文章成果不自动生成开发项目；评审须回答研究来源、本地问题或需求是否成立、收益与代价、最终做或不做。
+
+| 应检查的行为 | 验收反例与现有依据 | 待验证方向 |
+| --- | --- | --- |
+| 完成判定不被退出 0 或文件存在替代 | 原 dispatcher 三个错误场景前后反证 | 映射进程、供应商、产物、EVAL 现有记录；缺失终态保留兼容标识 |
+| 清空失效所有实际续接引用 | SDK 五项对照含真实提交后取消/错误 | 列现有指针与消费者，核对成功/异常清理；已有 generation 不重复新增 |
+| 当前任务说明进入普通恢复提示 | Paperclip 选择器两种输入发生改变 | 核对 TASK revision 到实际调用提示，不直接新建 objective digest |
+| 执行锁只属于当前 assignee | Paperclip #13374 源码与自动评审，未本地跑 DB | 外来 mention、assignee 改变、清锁后 deferred wake promotion 成对测试 |
+| 额度证据及实际模型选择可解释 | 七项额度策略单测；unknown 与 exhausted 不混淆 | 复用现有 quota snapshot，记录时间/缺失与实际模型，模型按岗位分工 |
+| 人工中断继续与重新执行分开 | AG2 #3248 进程内 held turn 及 proof | 先明确跨重启需求；不可序列化协程不能直接用历史重放替代 |
+| HTTP 配置有产品自己的默认合同 | AG2 #3252 显式参数但部分安全默认仍关闭 | 核对超时、容量、body、origin、resource、replay；不用一个 digest 代替行为测试 |
+| Credential validity 与执行路径相配 | Paperclip #13347/#13372 | API key、CLI subscription、租约释放分别验证；不强制无依赖路径安装 CLI |
+| 共享 workspace 不扩大通知受众 | Orca #20402、Superset #7491 | 客户端来源/通知状态版本先固定，真实设备推送另验；不把来源字段自动升级为授权主体 |
+| 工具实际 schema 与逻辑名称一致 | Fusion #3597、OpenHands #17387 | 每客户端检查已注册工具与名称映射，UI 和服务调用采用相同 conversation/capability |
+| 工作树创建、会话绑定与清理有归属 | Codex #45276 | 保留源修改；未认领且干净才清理；失败路径可解释，无需先设计跨系统事务 |
 
 正式评审应逐项给出：已有覆盖、只补测试、修改合同、安排开发或暂不采用，并附本地产品版本及入口。Superset 正式周更支持提高主雷达优先级；不能把产品层级展示写成已具备独立责任/EVAL/持久化审计合同。未作完整竞品商业测量。

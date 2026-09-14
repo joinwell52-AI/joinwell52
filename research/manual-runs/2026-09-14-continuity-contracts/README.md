@@ -4,7 +4,7 @@
 
 - [来源审计](01-source-audit.md)：十五个议题及判断修正。
 - [实验](02-experiments.md)：原始失败、通过结果与未验证范围。
-- [开发评审](03-development-review.md)：READY_FOR_REVIEW；评审优先级不是产品缺陷判定。
+- [待验证线索](03-development-review.md)：尚未满足转产品开发条件；不列产品缺陷优先级。
 - [内容自检](05-quality-review.md)；[视觉审查](covers/review.md)。
 
 | 本地检查 | 对照 | 固定候选 |
