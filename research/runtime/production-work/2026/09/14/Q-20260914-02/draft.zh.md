@@ -4,7 +4,7 @@ title: "任务完成，不等于团队可靠"
 date: '2026-09-14'
 column: industry-architecture
 category: daily
-article_type: research-interpretation
+article_type: technical-analysis
 edition: research-center
 research_question: "在声称多智能体团队可靠之前，为什么必须分别证明任务分配、顺序约束、互斥安全与交接连续性，而不能只看总体任务成功？"
 summary: "总体任务成功会把重复分配、顺序违例、资源争用和交接断裂压进一个数字。Multi-Agent（多智能体）可靠性应保留为分别取证的协调向量，关键弱项不能被平均值掩盖。"
