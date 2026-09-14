@@ -1,0 +1,94 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-14",
+  "itemId": "Q-20260914-03",
+  "coreProposition": "Trace-level observability and stage attribution are necessary to distinguish unsafe success from trustworthy execution, but attribution is an evaluator judgment rather than proof of root cause, current authorization or production safety.",
+  "openingMove": {
+    "type": "two-successes-different-safety",
+    "purpose": "Two Agents finish the same task; one follows the intended tool policy and the other reaches the artifact through unsafe compliance.",
+    "evidenceRefs": [
+      "E1",
+      "E2"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why can success be unsafe?",
+      "claim": "A terminal artifact records outcome, not whether planning, memory, tools and policy remained trustworthy.",
+      "evidenceRefs": [
+        "E1",
+        "E2"
+      ],
+      "reasoningRole": "failure",
+      "readerProgress": "Advance the bounded argument without enlarging the source evidence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What does lifecycle tracing add?",
+      "claim": "Ten dimensions expose the trajectory and locate the stage associated with a visible violation.",
+      "evidenceRefs": [
+        "E1",
+        "E2"
+      ],
+      "reasoningRole": "evidence",
+      "readerProgress": "Advance the bounded argument without enlarging the source evidence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "Why is attribution not causality?",
+      "claim": "Missing upstream facts and correlated judge assumptions can make the first visible anomaly differ from the root cause.",
+      "evidenceRefs": [
+        "E3",
+        "E6"
+      ],
+      "reasoningRole": "boundary",
+      "readerProgress": "Advance the bounded argument without enlarging the source evidence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "Which evidence layers must remain separate?",
+      "claim": "Observed events, evaluation judgments and causal or responsibility findings need independent durable identities.",
+      "evidenceRefs": [
+        "E4"
+      ],
+      "reasoningRole": "architecture",
+      "readerProgress": "Advance the bounded argument without enlarging the source evidence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "How should evaluation be governed?",
+      "claim": "Record evaluator identity, prompt, trace range, calibration and disagreement; never let a score rewrite facts or grant authority.",
+      "evidenceRefs": [
+        "E5"
+      ],
+      "reasoningRole": "governance",
+      "readerProgress": "Advance the bounded argument without enlarging the source evidence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A6",
+      "question": "What remains unresolved?",
+      "claim": "Inter-rater agreement, production error rates and cross-domain calibration are not established.",
+      "evidenceRefs": [
+        "E6"
+      ],
+      "reasoningRole": "limits",
+      "readerProgress": "Advance the bounded argument without enlarging the source evidence.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "More granular labels appear objective because they name a stage.",
+    "responseBoundary": "Granularity improves diagnosis only when evaluator identity, trace completeness and alternative causes stay visible."
+  },
+  "endingStrategy": {
+    "type": "attribution-as-investigation-input",
+    "purpose": "End with a bounded operational rule and explicit evidence limits."
+  }
+}
