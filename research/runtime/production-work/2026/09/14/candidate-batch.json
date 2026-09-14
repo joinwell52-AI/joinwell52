@@ -1,0 +1,428 @@
+{
+  "schema": "runtime-publication-candidate/v2",
+  "date": "2026-09-14",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Production",
+  "sourceRecord": "research/runtime/records/daily/2026/09/2026-09-14-daily-runtime.json",
+  "reason": "Three authorized 2026-09-14 Research Objects were converted into complete bilingual Editorial Architecture 2.1 candidates with verified planning artifacts, bounded evidence claims, and deterministic baseline covers.",
+  "reason_zh": "三份已授权的 2026-09-14 研究对象已转换为完整双语编辑架构 2.1 候选，具备已核验规划工件、有边界的证据声明与确定性基础题图。",
+  "candidates": [
+    {
+      "itemId": "Q-20260914-01",
+      "column": "digital-employee",
+      "category": "daily",
+      "articleType": "engineering-insight",
+      "lifecycle": "Publication Candidate",
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "title": "More Admission Checks Do Not Mean Safer Admission",
+      "title_zh": "准入检查更多，不等于更安全",
+      "researchQuestion": "在多执行通道的智能体系统中，准入必须证明哪些与所选通道相关的事实，才能避免无关依赖成为错误门禁，同时不把技术可用性误当成业务授权？",
+      "coreProposition": "Agent admission should be a lane-bound proof bundle: requirements must be derived from and bound to the selected execution lane, while current business authorization remains a separate decision.",
+      "articleBriefPath": "research/runtime/production-work/2026/09/14/Q-20260914-01/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/14/Q-20260914-01/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/14/Q-20260914-01/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-14-more-checks-not-safer-admission.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-14-more-checks-not-safer-admission.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-14-more-checks-not-safer-admission-cover.png",
+      "coverRole": "baseline",
+      "sections": [
+        {
+          "module": "valid-route-failure",
+          "heading": "When a Valid Credential Still Cannot Enter",
+          "heading_zh": "当正确凭证仍进不了门"
+        },
+        {
+          "module": "lane-determines-proof",
+          "heading": "The Lane Determines the Proof",
+          "heading_zh": "通道决定证明义务"
+        },
+        {
+          "module": "four-admission-facts",
+          "heading": "Four Facts Cannot Be One Boolean",
+          "heading_zh": "四种事实不能压成一个布尔值"
+        },
+        {
+          "module": "proof-bundle",
+          "heading": "An Auditable Admission Proof Bundle",
+          "heading_zh": "一份可审计的准入证明包"
+        },
+        {
+          "module": "more-checks-danger",
+          "heading": "Why More Checks Can Be Dangerous",
+          "heading_zh": "更多检查为何反而危险"
+        },
+        {
+          "module": "authorization-boundary",
+          "heading": "Technical Usability Is Not Business Authority",
+          "heading_zh": "技术可用不等于业务授权"
+        },
+        {
+          "module": "admission-open-questions",
+          "heading": "Boundaries and Open Questions",
+          "heading_zh": "边界与未决问题"
+        }
+      ],
+      "endingModule": "admission-open-questions",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "source-reported-claim",
+          "claim": "A provider-valid API-key route was rejected because it inherited a local subscription CLI probe.",
+          "claim_zh": "一手工程来源报告，已被 Provider 接受的 API-key 路线因继承本地订阅 CLI 探测而被拒绝。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260914-01-lane-bound-admission-proof.md"
+        },
+        {
+          "id": "E2",
+          "identity": "source-reported-claim",
+          "claim": "The merged correction resolves the execution lane first, re-verifies API keys at the provider boundary, and retains the CLI check only for subscription execution.",
+          "claim_zh": "一手工程来源报告，合入修复先解析执行通道，在 Provider 边界重新核验 API Key，并只为订阅执行保留 CLI 检查。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260914-01-lane-bound-admission-proof.md"
+        },
+        {
+          "id": "E3",
+          "identity": "source-reported-claim",
+          "claim": "The PR reports passing route and connection tests plus a narrow HTTPS provider mock, while the next canary remains stronger end-to-end evidence.",
+          "claim_zh": "一手工程来源报告，路由与连接测试通过并使用窄范围 HTTPS Provider Mock；下一版 Canary 仍是更强的端到端证据。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260914-01-lane-bound-admission-proof.md"
+        },
+        {
+          "id": "E4",
+          "identity": "our-interpretation",
+          "claim": "Admission should be a versioned proof bundle whose requirements, verifiers, freshness, and negative applicability are derived from the selected lane.",
+          "claim_zh": "本文据此解释，准入应是一份版本化证明包，其要求、验证者、新鲜度与负面适用性由所选通道推导。",
+          "strength": "supports",
+          "independent": false,
+          "source": "research/analysis/Q-20260914-01-lane-bound-admission-proof.md"
+        },
+        {
+          "id": "E5",
+          "identity": "our-interpretation",
+          "claim": "Credential validity, host capability, lane identity, and business authorization are separate evidence facts.",
+          "claim_zh": "本文据此解释，凭证有效性、主机能力、通道身份与业务授权是相互独立的证据事实。",
+          "strength": "supports",
+          "independent": false,
+          "source": "research/analysis/Q-20260914-01-lane-bound-admission-proof.md"
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The argument derives from same-date external research and remains independently useful without first-party projects."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition carries the transferable argument without a distinct community angle."
+      },
+      "inlineFigures": [],
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "moduleDefinitions": {
+        "valid-route-failure": "Advances the evidence-bounded argument through 当正确凭证仍进不了门 without adding unsupported claims.",
+        "lane-determines-proof": "Advances the evidence-bounded argument through 通道决定证明义务 without adding unsupported claims.",
+        "four-admission-facts": "Advances the evidence-bounded argument through 四种事实不能压成一个布尔值 without adding unsupported claims.",
+        "proof-bundle": "Advances the evidence-bounded argument through 一份可审计的准入证明包 without adding unsupported claims.",
+        "more-checks-danger": "Advances the evidence-bounded argument through 更多检查为何反而危险 without adding unsupported claims.",
+        "authorization-boundary": "Advances the evidence-bounded argument through 技术可用不等于业务授权 without adding unsupported claims.",
+        "admission-open-questions": "Advances the evidence-bounded argument through 边界与未决问题 without adding unsupported claims."
+      }
+    },
+    {
+      "itemId": "Q-20260914-02",
+      "column": "industry-architecture",
+      "category": "daily",
+      "articleType": "research-interpretation",
+      "lifecycle": "Publication Candidate",
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "title": "Task Completion Does Not Prove Team Reliability",
+      "title_zh": "任务完成，不等于团队可靠",
+      "researchQuestion": "在声称多智能体团队可靠之前，为什么必须分别证明任务分配、顺序约束、互斥安全与交接连续性，而不能只看总体任务成功？",
+      "coreProposition": "Multi-Agent reliability is a vector of separately evidenced coordination obligations; aggregate task success cannot establish reliability when a critical allocation, ordering, mutual-exclusion or handoff contract is weak.",
+      "articleBriefPath": "research/runtime/production-work/2026/09/14/Q-20260914-02/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/14/Q-20260914-02/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/14/Q-20260914-02/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-14-task-completion-not-team-reliability.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-14-task-completion-not-team-reliability.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-14-task-completion-not-team-reliability-cover.png",
+      "coverRole": "baseline",
+      "sections": [
+        {
+          "module": "four-constructs",
+          "heading": "Four Coordination Constructs Are Not One Ability",
+          "heading_zh": "四种协调不是同一种能力"
+        },
+        {
+          "module": "broken-trajectory",
+          "heading": "A Correct Result Can Hide a Broken Trajectory",
+          "heading_zh": "正确结果也能来自错误轨迹"
+        },
+        {
+          "module": "reliability-vector",
+          "heading": "Reliability Must Remain a Vector",
+          "heading_zh": "可靠性必须保留为向量"
+        },
+        {
+          "module": "coordination-contracts",
+          "heading": "Four Inspectable Coordination Contracts",
+          "heading_zh": "四份可检查的协调合同"
+        },
+        {
+          "module": "deterministic-enforcement",
+          "heading": "Which Rules Can Be Enforced Mechanically",
+          "heading_zh": "哪些规则可以机械执行"
+        },
+        {
+          "module": "critical-weakness",
+          "heading": "Do Not Let Averages Hide Critical Weakness",
+          "heading_zh": "不要让平均值藏住关键弱项"
+        },
+        {
+          "module": "coordination-open-questions",
+          "heading": "Boundaries and Open Questions",
+          "heading_zh": "边界与未决问题"
+        }
+      ],
+      "endingModule": "coordination-open-questions",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "CoCoBench defines 897 oracle-validated executable tasks across allocation, ordering, mutual exclusion, and handoff and evaluates 11 multimodal models.",
+          "claim_zh": "CoCoBench 定义 897 个经 Oracle 验证的可执行任务，覆盖分配、顺序、互斥与交接，并评估 11 个多模态模型。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260914-02-coordination-reliability-vector.md"
+        },
+        {
+          "id": "E2",
+          "identity": "source-reported-claim",
+          "claim": "Reported performance varies by coordination construct, so aggregate task success does not establish balanced team competence.",
+          "claim_zh": "一手研究报告，模型表现随协调结构而变化，因此总体任务成功不能证明团队能力均衡。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260914-02-coordination-reliability-vector.md"
+        },
+        {
+          "id": "E3",
+          "identity": "source-reported-claim",
+          "claim": "The study reports team-size degradation, benefit from centralized state aggregation, and only partial improvement from simple communication.",
+          "claim_zh": "一手研究报告，团队规模扩大时性能下降，集中状态汇总有帮助，简单通信只能部分改善协调。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260914-02-coordination-reliability-vector.md"
+        },
+        {
+          "id": "E4",
+          "identity": "our-interpretation",
+          "claim": "Team reliability should remain a vector of task-relevant coordination contracts whose critical failures cannot be averaged away.",
+          "claim_zh": "本文据此解释，团队可靠性应保留为任务相关协调合同的向量，关键失败不能被平均值掩盖。",
+          "strength": "supports",
+          "independent": false,
+          "source": "research/analysis/Q-20260914-02-coordination-reliability-vector.md"
+        },
+        {
+          "id": "E5",
+          "identity": "our-interpretation",
+          "claim": "A governed runtime needs stable identities for owners, prerequisites, exclusive resources, and accepted handoffs.",
+          "claim_zh": "本文据此解释，受治理运行时需要稳定保存所有者、前置条件、排他资源与已接受交接的身份。",
+          "strength": "supports",
+          "independent": false,
+          "source": "research/analysis/Q-20260914-02-coordination-reliability-vector.md"
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The argument derives from same-date external research and remains independently useful without first-party projects."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition carries the transferable argument without a distinct community angle."
+      },
+      "inlineFigures": [],
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "moduleDefinitions": {
+        "four-constructs": "Advances the evidence-bounded argument through 四种协调不是同一种能力 without adding unsupported claims.",
+        "broken-trajectory": "Advances the evidence-bounded argument through 正确结果也能来自错误轨迹 without adding unsupported claims.",
+        "reliability-vector": "Advances the evidence-bounded argument through 可靠性必须保留为向量 without adding unsupported claims.",
+        "coordination-contracts": "Advances the evidence-bounded argument through 四份可检查的协调合同 without adding unsupported claims.",
+        "deterministic-enforcement": "Advances the evidence-bounded argument through 哪些规则可以机械执行 without adding unsupported claims.",
+        "critical-weakness": "Advances the evidence-bounded argument through 不要让平均值藏住关键弱项 without adding unsupported claims.",
+        "coordination-open-questions": "Advances the evidence-bounded argument through 边界与未决问题 without adding unsupported claims."
+      }
+    },
+    {
+      "itemId": "Q-20260914-03",
+      "column": "open-source-engineering",
+      "category": "daily",
+      "articleType": "research-interpretation",
+      "lifecycle": "Publication Candidate",
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "title": "Finding the Stage Does Not Prove the Cause",
+      "title_zh": "定位到阶段，不等于找到根因",
+      "researchQuestion": "独立评估者需要哪些执行轨迹证据，才能区分可信执行与不安全成功；阶段级归因又为什么不能直接等同于根因、授权或生产安全证明？",
+      "coreProposition": "Trace-level observability and stage attribution are necessary to distinguish unsafe success from trustworthy execution, but attribution is an evaluator judgment rather than proof of root cause, current authorization or production safety.",
+      "articleBriefPath": "research/runtime/production-work/2026/09/14/Q-20260914-03/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/14/Q-20260914-03/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/14/Q-20260914-03/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-14-stage-attribution-not-root-cause.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-14-stage-attribution-not-root-cause.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-14-stage-attribution-not-root-cause-cover.png",
+      "coverRole": "baseline",
+      "sections": [
+        {
+          "module": "different-success",
+          "heading": "The Same Completion Can Mean Different Things",
+          "heading_zh": "同样完成，可以完全不同"
+        },
+        {
+          "module": "trace-process",
+          "heading": "A Trace Restores the Process Behind the Outcome",
+          "heading_zh": "轨迹把结果拆回过程"
+        },
+        {
+          "module": "three-evidence-layers",
+          "heading": "Three Evidence Layers Cannot Replace One Another",
+          "heading_zh": "三个证据层不能互相替代"
+        },
+        {
+          "module": "single-judge-bias",
+          "heading": "Correlated Bias in a Single Judge",
+          "heading_zh": "单一裁判的相关偏差"
+        },
+        {
+          "module": "auditable-runtime",
+          "heading": "What an Auditable Runtime Must Preserve",
+          "heading_zh": "可审计运行时应保存什么"
+        },
+        {
+          "module": "investigation-not-authority",
+          "heading": "Attribution Should Trigger Investigation, Not Authority",
+          "heading_zh": "归因应触发调查，不应直接授权"
+        },
+        {
+          "module": "attribution-open-questions",
+          "heading": "Boundaries and Open Questions",
+          "heading_zh": "边界与未决问题"
+        }
+      ],
+      "endingModule": "attribution-open-questions",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "AgentAudit evaluates recorded traces across ten lifecycle dimensions, including planning, memory, tools, alignment, security, and execution integrity.",
+          "claim_zh": "AgentAudit 沿十个生命周期维度评估已记录轨迹，包括规划、记忆、工具、对齐、安全与执行完整性。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260914-03-trace-attribution-evidence-boundary.md"
+        },
+        {
+          "id": "E2",
+          "identity": "source-reported-claim",
+          "claim": "Across five models and nine capability or adversarial tasks, the reported evaluation reveals unsafe compliance hidden by similar terminal behavior.",
+          "claim_zh": "一手研究报告，在五个模型与九类能力或对抗任务中，轨迹评估揭示了被相似终态行为掩盖的不安全服从。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260914-03-trace-attribution-evidence-boundary.md"
+        },
+        {
+          "id": "E3",
+          "identity": "source-reported-claim",
+          "claim": "All traces are scored by one fixed judge model, creating correlated evaluator assumptions and calibration risk.",
+          "claim_zh": "一手研究明确说明，所有轨迹由一个固定 Judge 模型评分，因此存在相关评估假设与校准风险。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260914-03-trace-attribution-evidence-boundary.md"
+        },
+        {
+          "id": "E4",
+          "identity": "our-interpretation",
+          "claim": "Observed events, evaluation judgments, and causal or responsibility claims require separate durable identities.",
+          "claim_zh": "本文据此解释，观察事件、评估判断与因果或责任声明需要相互独立的持久身份。",
+          "strength": "supports",
+          "independent": false,
+          "source": "research/analysis/Q-20260914-03-trace-attribution-evidence-boundary.md"
+        },
+        {
+          "id": "E5",
+          "identity": "our-interpretation",
+          "claim": "Stage attribution should narrow investigation but must not grant authority, assign blame, or rewrite observed facts.",
+          "claim_zh": "本文据此解释，阶段归因应缩小调查范围，但不能授予权限、直接定责或改写观察事实。",
+          "strength": "supports",
+          "independent": false,
+          "source": "research/analysis/Q-20260914-03-trace-attribution-evidence-boundary.md"
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The argument derives from same-date external research and remains independently useful without first-party projects."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition carries the transferable argument without a distinct community angle."
+      },
+      "inlineFigures": [],
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "moduleDefinitions": {
+        "different-success": "Advances the evidence-bounded argument through 同样完成，可以完全不同 without adding unsupported claims.",
+        "trace-process": "Advances the evidence-bounded argument through 轨迹把结果拆回过程 without adding unsupported claims.",
+        "three-evidence-layers": "Advances the evidence-bounded argument through 三个证据层不能互相替代 without adding unsupported claims.",
+        "single-judge-bias": "Advances the evidence-bounded argument through 单一裁判的相关偏差 without adding unsupported claims.",
+        "auditable-runtime": "Advances the evidence-bounded argument through 可审计运行时应保存什么 without adding unsupported claims.",
+        "investigation-not-authority": "Advances the evidence-bounded argument through 归因应触发调查，不应直接授权 without adding unsupported claims.",
+        "attribution-open-questions": "Advances the evidence-bounded argument through 边界与未决问题 without adding unsupported claims."
+      }
+    }
+  ],
+  "githubCommit": "pending",
+  "updatedAt": "2026-09-14T15:29:10+08:00"
+}
