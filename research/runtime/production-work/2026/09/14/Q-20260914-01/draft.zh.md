@@ -7,7 +7,7 @@ category: daily
 article_type: engineering-insight
 edition: research-center
 research_question: "在多执行通道的智能体系统中，准入必须证明哪些与所选通道相关的事实，才能避免无关依赖成为错误门禁，同时不把技术可用性误当成业务授权？"
-summary: "一条已被 Provider 接受的 API-key 通道，曾因本机缺少另一条通道才需要的 CLI 而被拒绝。正确的准入不是统一检查清单，而是绑定所选执行通道、验证者与新鲜度的证明包；业务授权仍需单独判断。"
+summary: "一条已被 Provider（服务提供方）接受的 API-key（应用程序编程接口密钥）通道，曾因本机缺少另一条通道才需要的 CLI（命令行界面）而被拒绝。正确的准入不是统一检查清单，而是绑定所选执行通道、验证者与新鲜度的证明包；业务授权仍需单独判断。"
 cover: staging/publication-candidates/2026-09-14-more-checks-not-safer-admission-cover.png
 sources:
   - research/analysis/Q-20260914-01-lane-bound-admission-proof.md
@@ -23,11 +23,11 @@ sources:
 
 ## 当正确凭证仍进不了门
 
-同日研究对象分析了 Paperclip 的一次干净机器失败与合入修复。直接 API-key 通道的凭证已经在 Provider 边界通过验证，旧流程却继续执行本地订阅 CLI 的 hello 探测。机器没有安装该 CLI，于是有效路线被错误拒绝。
+同日研究对象分析了 Paperclip（智能体编排项目）的一次干净机器失败与合入修复。直接密钥通道的凭证已经在服务提供方边界通过验证，旧流程却继续执行本地订阅命令行界面的连接探测。机器没有安装该工具，于是有效路线被错误拒绝。
 
-修复先解析连接模式，再按模式验证：API-key 通道在 Provider 边界重新核验密钥，不再咨询本地 CLI；订阅通道仍保留 CLI hello 要求。Release Smoke（发布冒烟测试）使用窄范围 HTTPS（超文本传输安全协议）模拟，只响应预期的模型列表请求，意外路径返回 404。
+修复先解析连接模式，再按模式验证：密钥通道在服务提供方边界重新核验密钥，不再咨询本地命令行界面；订阅通道仍保留连接探测要求。发布冒烟测试使用窄范围的安全超文本传输协议模拟，只响应预期的模型列表请求，意外路径返回 404。
 
-来源报告相关环境路由测试 26/26 通过，连接与兼容性测试 42/42 通过，TypeScript 检查也通过。这些结果支持修复机制，但不能代替包含该修复的下一版 Canary（金丝雀版本）在真实发布路径上的端到端证据。
+来源报告相关环境路由测试 26/26 通过，连接与兼容性测试 42/42 通过，TypeScript（类型脚本语言）检查也通过。这些结果支持修复机制，但不能代替包含该修复的下一版 Canary（金丝雀版本）在真实发布路径上的端到端证据。
 
 ## 通道决定证明义务
 
@@ -95,4 +95,4 @@ Provider 接受密钥，只能证明这份密钥在那个边界可用。它不�
 
 **证据与来源：**
 
-- [Paperclip PR #13372：按执行通道修复准入探测](https://github.com/paperclipai/paperclip/pull/13372)，合入工程证据，2026。
+- [Paperclip PR（项目拉取请求）#13372：按执行通道修复准入探测](https://github.com/paperclipai/paperclip/pull/13372)，合入工程证据，2026。
