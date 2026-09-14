@@ -1,0 +1,50 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-14",
+  "itemId": "Q-20260914-02",
+  "researchObjectId": "Q-20260914-02",
+  "targetAudience": {
+    "primary": "Designers and evaluators of multi-Agent systems",
+    "knowledgeAssumption": "The reader understands task orchestration, shared resources and benchmark metrics.",
+    "readerProblem": "A team can finish the task while hiding duplication, illegal ordering, resource contention or a repaired handoff."
+  },
+  "whyNow": "A primary benchmark separates four coordination constructs across 897 oracle-validated executable tasks and 11 models, revealing construct-specific behavior.",
+  "externalHook": {
+    "type": "successful-artifact-broken-coordination",
+    "description": "A final result is correct even though the path duplicated work, violated a prerequisite and required manual handoff repair.",
+    "evidenceRefs": [
+      "E1",
+      "E2"
+    ]
+  },
+  "coreProposition": "Multi-Agent reliability is a vector of separately evidenced coordination obligations; aggregate task success cannot establish reliability when a critical allocation, ordering, mutual-exclusion or handoff contract is weak.",
+  "originalValue": {
+    "type": "coordination-reliability-vector",
+    "description": "Maps four benchmark constructs to durable runtime contracts and explains why critical weak dimensions must not be averaged away."
+  },
+  "readerTakeaway": "Report outcome success beside independent allocation, ordering, exclusion and handoff evidence, with task-specific criticality guardrails.",
+  "evidenceBoundary": {
+    "supported": [
+      "CoCoBench uses 897 oracle-validated executable tasks across four constructs and 11 models.",
+      "Reported competence varies by construct.",
+      "Team-size, centralized-state and communication experiments show coordination is not one scalar ability."
+    ],
+    "unsupported": [
+      "Direct quantitative transfer to enterprise teams",
+      "One universal weighting scheme",
+      "Business correctness from higher coordination scores"
+    ],
+    "uncertain": [
+      "Minimal cross-domain event schema",
+      "Recovery policy per violation",
+      "Task-specific critical thresholds"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument derives from same-date external research and remains independently useful without first-party projects."
+  },
+  "recommendedArticleType": "research-interpretation",
+  "editorialDecision": "PASS",
+  "decisionReason": "The Research Object supports a distinct, evidence-bounded argument with practical governance value."
+}
