@@ -4,7 +4,7 @@ title: "Finding the Stage Does Not Prove the Cause"
 date: '2026-09-14'
 column: open-source-engineering
 category: daily
-article_type: research-interpretation
+article_type: technical-analysis
 edition: research-center
 research_question: "独立评估者需要哪些执行轨迹证据，才能区分可信执行与不安全成功；阶段级归因又为什么不能直接等同于根因、授权或生产安全证明？"
 summary: "Execution traces reveal planning, memory, tool, and safety failures hidden by terminal success and can associate a visible anomaly with a lifecycle stage. Attribution, however, remains an evaluation judgment rather than proof of root cause, authorization, or production safety."
