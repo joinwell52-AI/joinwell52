@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260912-02-continuity-authority-precedence.md
 item_id: "Q-20260912-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-12-retained-state-current-authority-cover.png"
+cover: "/assets/covers/daily-2026-09-12-retained-state-current-authority-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-12-retained-state-current-authority-cover.png"
+  image="/assets/covers/daily-2026-09-12-retained-state-current-authority-cover-v2.webp"
   kicker="Industry Architecture · Daily Research"
   title="State May Persist; Authority Must Be Re-established"
   summary="Long-lived sessions need retained state, but retention does not preserve sovereignty. Three recent implementations demonstrate revalidation, authoritative replacement, and control-state isolation while preserving stop and recovery operations after positive work is rejected."

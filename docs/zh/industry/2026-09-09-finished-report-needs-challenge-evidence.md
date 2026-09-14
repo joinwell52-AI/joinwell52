@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260909-02-evidence-challenge-gated-knowledge-trust.md
 item_id: "Q-20260909-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-09-finished-report-needs-challenge-evidence-cover.png"
+cover: "/assets/covers/daily-2026-09-09-finished-report-needs-challenge-evidence-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-09-finished-report-needs-challenge-evidence-cover.png"
+  image="/assets/covers/daily-2026-09-09-finished-report-needs-challenge-evidence-cover-v2.webp"
   kicker="行业架构 · 每日研究"
   title="报告做完了，不等于结论可信"
   summary="TruthInsightBench（证据中心科学洞察基准）的同模型比较显示，四种智能体脚手架都能形成较强的可审计成果，却共同缺少充分的对照、稳健性和证伪检查。组织需要把执行能力与证据判断设为两个准入状态：成果可以保留，结论是否成为组织权威则另行判断。"

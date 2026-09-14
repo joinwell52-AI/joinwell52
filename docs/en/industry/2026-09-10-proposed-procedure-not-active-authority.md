@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260910-02-evidence-gated-self-evolving-procedure-adoption.md
 item_id: "Q-20260910-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-10-proposed-procedure-not-active-authority-cover.png"
+cover: "/assets/covers/daily-2026-09-10-proposed-procedure-not-active-authority-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-10-proposed-procedure-not-active-authority-cover.png"
+  image="/assets/covers/daily-2026-09-10-proposed-procedure-not-active-authority-cover-v2.webp"
   kicker="Industry Architecture · Daily Research"
   title="A Proposed Procedure Is Not Yet Active Authority"
   summary="The right to propose a better procedure is not the right to activate it. Self-evolving systems need stable candidate identity, evidence separated from proposal generation, explicit adoption, durable rejection, expiry, and rollback."

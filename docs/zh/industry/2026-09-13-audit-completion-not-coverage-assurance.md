@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260913-02-audit-coverage-is-separate-state.md
 item_id: "Q-20260913-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-13-audit-completion-not-coverage-assurance-cover.png"
+cover: "/assets/covers/daily-2026-09-13-audit-completion-not-coverage-assurance-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-13-audit-completion-not-coverage-assurance-cover.png"
+  image="/assets/covers/daily-2026-09-13-audit-completion-not-coverage-assurance-cover-v2.webp"
   kicker="行业架构 · 每日研究"
   title="审计完成，不等于覆盖充分"
   summary="审计任务的完成只证明一个配置好的流程结束了。覆盖充分还需证明证据范围、搜索漏斗、已知阳性找回、被拒样本、语义裁决和独立复核。"

@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260910-01-external-scope-truth-independent-enforcement.md
 item_id: "Q-20260910-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-10-second-model-not-independent-control-cover.png"
+cover: "/assets/covers/daily-2026-09-10-second-model-not-independent-control-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-10-second-model-not-independent-control-cover.png"
+  image="/assets/covers/daily-2026-09-10-second-model-not-independent-control-cover-v2.webp"
   kicker="Digital Employee · Daily Research"
   title="A Second Model Is Not an Independent Control"
   summary="A reviewer can be a separate model invocation and still share the actor's mistaken premise. Independent control requires separate scope facts, call-time effect authority, and an enforcement path that can deny the action."

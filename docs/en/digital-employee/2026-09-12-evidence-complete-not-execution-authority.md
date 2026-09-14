@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260912-01-evidence-completion-not-execution-authority.md
 item_id: "Q-20260912-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-12-evidence-complete-not-execution-authority-cover.png"
+cover: "/assets/covers/daily-2026-09-12-evidence-complete-not-execution-authority-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-12-evidence-complete-not-execution-authority-cover.png"
+  image="/assets/covers/daily-2026-09-12-evidence-complete-not-execution-authority-cover-v2.webp"
   kicker="Digital Employee · Daily Research"
   title="Complete Evidence Is Not Execution Authority"
   summary="Complete evidence can make a planning problem solvable without granting permission. A governed digital employee must separate evidence, proposed intent, and current authority, then enforce an intent-bound check before any external effect."

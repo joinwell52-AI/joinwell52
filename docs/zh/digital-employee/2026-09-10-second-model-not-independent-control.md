@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260910-01-external-scope-truth-independent-enforcement.md
 item_id: "Q-20260910-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-10-second-model-not-independent-control-cover.png"
+cover: "/assets/covers/daily-2026-09-10-second-model-not-independent-control-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-10-second-model-not-independent-control-cover.png"
+  image="/assets/covers/daily-2026-09-10-second-model-not-independent-control-cover-v2.webp"
   kicker="数字员工 · 每日研究"
   title="第二个模型，不等于独立控制"
   summary="把审查交给另一个模型，看起来已经实现角色分离；但如果执行者与审查者共享同一条未经核验的范围前提，它们仍可能同步犯错。真正的独立控制，需要把范围判断、目标事实与效果权限拆开，并保留能够拒绝执行的独立路径。"

@@ -14,11 +14,11 @@ evidence_status: Completed
 citation_status: Completed
 editing_status: Completed
 publication_authorized: true
-cover: '/assets/covers/weekly-009-typed-closure-cover.svg'
+cover: '/assets/covers/weekly-009-typed-closure-cover-v2.webp'
 ---
 
 <ArticleCover
-  image="/assets/covers/weekly-009-typed-closure-cover.svg"
+  image="/assets/covers/weekly-009-typed-closure-cover-v2.webp"
   kicker="Weekly Research · 009"
   title="“完成”必须带类型：一个绿灯不能关闭整个系统"
   summary="状态、权限、外部效果与覆盖范围，需要各自的终态证据。"

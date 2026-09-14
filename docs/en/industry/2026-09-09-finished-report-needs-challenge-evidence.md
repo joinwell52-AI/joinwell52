@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260909-02-evidence-challenge-gated-knowledge-trust.md
 item_id: "Q-20260909-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-09-finished-report-needs-challenge-evidence-cover.png"
+cover: "/assets/covers/daily-2026-09-09-finished-report-needs-challenge-evidence-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-09-finished-report-needs-challenge-evidence-cover.png"
+  image="/assets/covers/daily-2026-09-09-finished-report-needs-challenge-evidence-cover-v2.webp"
   kicker="Industry Architecture · Daily Research"
   title="A Finished Report Is Not Yet a Trustworthy Conclusion"
   summary="TruthInsightBench finds that four agent scaffolds using the same model can produce comparatively auditable and novel work while sharing weak control testing, robustness, and falsifiability. Organizations should preserve two acceptance states: the analysis may be correctly executed, while its conclusion still waits for challenge evidence before becoming organizational authority."

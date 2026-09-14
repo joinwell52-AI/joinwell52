@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260910-02-evidence-gated-self-evolving-procedure-adoption.md
 item_id: "Q-20260910-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-10-proposed-procedure-not-active-authority-cover.png"
+cover: "/assets/covers/daily-2026-09-10-proposed-procedure-not-active-authority-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-10-proposed-procedure-not-active-authority-cover.png"
+  image="/assets/covers/daily-2026-09-10-proposed-procedure-not-active-authority-cover-v2.webp"
   kicker="行业架构 · 每日研究"
   title="提出新流程，不等于取得生效权"
   summary="能够提出更好的执行流程，不等于有权把它立即写入生效状态。自演化系统需要固定候选身份、使用未参与提案生成的证据、显式作出采纳决定，并保留拒绝、过期与回滚轨迹。"

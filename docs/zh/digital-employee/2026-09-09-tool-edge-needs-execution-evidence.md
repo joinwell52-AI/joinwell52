@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260909-01-execution-grounded-capability-evidence.md
 item_id: "Q-20260909-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-09-tool-edge-needs-execution-evidence-cover.png"
+cover: "/assets/covers/daily-2026-09-09-tool-edge-needs-execution-evidence-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-09-tool-edge-needs-execution-evidence-cover.png"
+  image="/assets/covers/daily-2026-09-09-tool-edge-needs-execution-evidence-cover-v2.webp"
   kicker="数字员工 · 每日研究"
   title="工具能接上，不等于能力可复用"
   summary="工具的输出字段与下一个工具的输入参数看起来兼容，只能形成候选连接。KOPA-Bench（韩国开放公共应用程序接口基准）与 EDGE（执行驱动图演化方法）的研究表明，实时执行、集合处理语义、失败分类和证据新鲜度都会改变这条连接是否值得复用；而具备能力仍不等于本次获得授权。"

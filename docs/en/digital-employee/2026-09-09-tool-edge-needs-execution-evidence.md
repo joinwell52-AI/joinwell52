@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260909-01-execution-grounded-capability-evidence.md
 item_id: "Q-20260909-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-09-tool-edge-needs-execution-evidence-cover.png"
+cover: "/assets/covers/daily-2026-09-09-tool-edge-needs-execution-evidence-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-09-tool-edge-needs-execution-evidence-cover.png"
+  image="/assets/covers/daily-2026-09-09-tool-edge-needs-execution-evidence-cover-v2.webp"
   kicker="Digital Employee · Daily Research"
   title="A Tool Connection Is Not Yet a Reusable Capability"
   summary="Matching one tool's output field to another tool's input creates a candidate edge, not a durable capability. KOPA-Bench and EDGE show why live execution, collection semantics, failure classification, and evidence freshness change whether that edge is reusable—and why capability still does not grant authority for a particular call."

@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260912-01-evidence-completion-not-execution-authority.md
 item_id: "Q-20260912-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-12-evidence-complete-not-execution-authority-cover.png"
+cover: "/assets/covers/daily-2026-09-12-evidence-complete-not-execution-authority-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-12-evidence-complete-not-execution-authority-cover.png"
+  image="/assets/covers/daily-2026-09-12-evidence-complete-not-execution-authority-cover-v2.webp"
   kicker="数字员工 · 每日研究"
   title="证据齐全，不等于获得执行权"
   summary="完整证据能让规划问题变得可解，却不能自动授予执行权。受治理的数字员工必须把证据、意图和现时授权分开，并在外部效果发生前执行绑定具体行动的确定性检查。"

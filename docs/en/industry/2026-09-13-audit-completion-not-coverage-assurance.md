@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260913-02-audit-coverage-is-separate-state.md
 item_id: "Q-20260913-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-13-audit-completion-not-coverage-assurance-cover.png"
+cover: "/assets/covers/daily-2026-09-13-audit-completion-not-coverage-assurance-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-13-audit-completion-not-coverage-assurance-cover.png"
+  image="/assets/covers/daily-2026-09-13-audit-completion-not-coverage-assurance-cover-v2.webp"
   kicker="Industry Architecture · Daily Research"
   title="Audit Completion Is Not Coverage Assurance"
   summary="A completed audit proves that a configured process ended. Coverage assurance additionally requires evidence about the universe, search funnel, known-positive recovery, rejected strata, semantic adjudication, and independent review."

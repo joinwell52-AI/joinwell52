@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260913-01-checkpoint-effect-consistency-boundary.md
 item_id: "Q-20260913-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-13-state-rewound-effect-did-not-cover.png"
+cover: "/assets/covers/daily-2026-09-13-state-rewound-effect-did-not-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-13-state-rewound-effect-did-not-cover.png"
+  image="/assets/covers/daily-2026-09-13-state-rewound-effect-did-not-cover-v2.webp"
   kicker="Digital Employee · Daily Research"
   title="The State Rewound; the Effect Did Not"
   summary="Aligned recovery can return model context and a controlled workspace to one checkpoint without undoing remote messages, records, or transactions. End-to-end recovery needs a separate external-effect ledger and resume gate."

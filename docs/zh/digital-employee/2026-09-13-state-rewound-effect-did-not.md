@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260913-01-checkpoint-effect-consistency-boundary.md
 item_id: "Q-20260913-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-13-state-rewound-effect-did-not-cover.png"
+cover: "/assets/covers/daily-2026-09-13-state-rewound-effect-did-not-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-13-state-rewound-effect-did-not-cover.png"
+  image="/assets/covers/daily-2026-09-13-state-rewound-effect-did-not-cover-v2.webp"
   kicker="数字员工 · 每日研究"
   title="状态回去了，外部效果没有"
   summary="对齐恢复可以让模型上下文与受控工作区回到同一检查点，却不会自动撤销远端消息、记录或交易。端到端恢复需要独立的外部效果账本与恢复闸门。"

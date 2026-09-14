@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260912-02-continuity-authority-precedence.md
 item_id: "Q-20260912-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-12-retained-state-current-authority-cover.png"
+cover: "/assets/covers/daily-2026-09-12-retained-state-current-authority-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-12-retained-state-current-authority-cover.png"
+  image="/assets/covers/daily-2026-09-12-retained-state-current-authority-cover-v2.webp"
   kicker="行业架构 · 每日研究"
   title="状态可以保留，权威必须重新确认"
   summary="长寿命会话需要保留状态，但保留不等于继续拥有决定权。三个近期工程实现分别展示了重新校验、权威替换与控制面隔离；安全架构还必须让停止和恢复操作在拒绝正向工作后继续可用。"

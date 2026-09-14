@@ -14,11 +14,11 @@ evidence_status: Completed
 citation_status: Completed
 editing_status: Completed
 publication_authorized: true
-cover: '/assets/covers/weekly-009-typed-closure-cover.svg'
+cover: '/assets/covers/weekly-009-typed-closure-cover-v2.webp'
 ---
 
 <ArticleCover
-  image="/assets/covers/weekly-009-typed-closure-cover.svg"
+  image="/assets/covers/weekly-009-typed-closure-cover-v2.webp"
   kicker="Weekly Research · 009"
   title="Completion Must Be Typed: One Green Check Cannot Close the Whole System"
   summary="State, authority, external effects, and coverage each need their own terminal evidence."
