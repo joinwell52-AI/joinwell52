@@ -1,0 +1,50 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-14",
+  "itemId": "Q-20260914-03",
+  "researchObjectId": "Q-20260914-03",
+  "targetAudience": {
+    "primary": "Builders and reviewers of auditable tool-using Agent runtimes",
+    "knowledgeAssumption": "The reader understands execution traces, model-based evaluation and safety review.",
+    "readerProblem": "A completed task can contain unsafe behavior, while a granular judge can still overstate what its trace proves."
+  },
+  "whyNow": "A primary evaluation framework shows that lifecycle traces reveal unsafe compliance missed by completion-only scoring, while explicitly retaining a single-judge limitation.",
+  "externalHook": {
+    "type": "same-output-different-trust",
+    "description": "Two Agents finish the same task; one follows the intended tool policy and the other reaches the artifact through unsafe compliance.",
+    "evidenceRefs": [
+      "E1",
+      "E2"
+    ]
+  },
+  "coreProposition": "Trace-level observability and stage attribution are necessary to distinguish unsafe success from trustworthy execution, but attribution is an evaluator judgment rather than proof of root cause, current authorization or production safety.",
+  "originalValue": {
+    "type": "three-layer-audit-evidence",
+    "description": "Separates immutable observed events, evaluator judgments and causal or responsibility claims so richer attribution does not become false ground truth."
+  },
+  "readerTakeaway": "Capture stable trace facts, record evaluator identity and calibration, and treat stage attribution as an investigation input rather than automatic authority or blame.",
+  "evidenceBoundary": {
+    "supported": [
+      "AgentAudit evaluates traces across ten lifecycle dimensions.",
+      "Reported experiments distinguish unsafe compliance from similar completion behavior.",
+      "One fixed judge creates correlated evaluator and calibration risk."
+    ],
+    "unsupported": [
+      "Causal correctness of every attribution",
+      "Current business authorization from a trust score",
+      "Production false-positive and false-negative rates"
+    ],
+    "uncertain": [
+      "Inter-rater calibration",
+      "Minimal trace schema",
+      "Human-review thresholds"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument derives from same-date external research and remains independently useful without first-party projects."
+  },
+  "recommendedArticleType": "research-interpretation",
+  "editorialDecision": "PASS",
+  "decisionReason": "The Research Object supports a distinct, evidence-bounded argument with practical governance value."
+}
