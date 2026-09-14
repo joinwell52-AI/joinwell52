@@ -43,6 +43,8 @@ In the code we tested, that later operation was context compaction: preparing a 
 
 [Candidate fix #5000](https://github.com/openai/openai-agents-python/pull/5000), proposed by contributor [sbguangha](https://github.com/sbguangha) in the OpenAI Agents SDK, addresses two omissions: the current response ID and the most recent response ID not yet stored in history. These are references that guide continuation, not two additional copies of the entire conversation. This fix and its tests prompted our clearing comparison.
 
+We are developing CodeFlowMu, a system for collaboration among AI assistants, and need to consider which old state is actually used when work continues or context is rebuilt. What made this source especially interesting was that specific references were overlooked despite an existing lock and state-change tracking. It raised a testable distinction: do preventing conflicting operations and invalidating obsolete references require separate checks? The supplied failure cases let us investigate that question experimentally. The implementations differ, so this does not establish the same defect in our system.
+
 Clearing them along with the history sounds straightforward. But what should happen when clearing fails?
 
 ## The difficult moment: deleted, but not acknowledged

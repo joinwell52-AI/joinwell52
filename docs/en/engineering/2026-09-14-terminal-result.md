@@ -33,6 +33,8 @@ More surprisingly, the AI service had already reported an error. The program col
 
 The report came from anywhere-agents, a toolkit that assigns work to coding assistants and collects their output. Its fix prompted us to compare the original dispatcher before and after the change. **If the work was unfinished, why didn't the program handling the result catch it?**
 
+This caught our attention because we are developing CodeFlowMu, a system for collaboration among AI assistants. At a handoff, the next stage needs to know whether it has a result ready for verification or output from unfinished work. This source narrowed that concern to a concrete conflict: the exit code reported success while the service response reported failure. It also supplied code before and after the fix, with tests, allowing us to investigate which decision went wrong instead of merely advising people to check results.
+
 ## It found text, but trusted the wrong success signal
 
 An AI call often passes through several programs. A dispatcher starts a command-line tool. That tool contacts the AI service and passes its response back.
