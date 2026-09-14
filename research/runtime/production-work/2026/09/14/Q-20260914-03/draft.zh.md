@@ -4,7 +4,7 @@ title: "定位到阶段，不等于找到根因"
 date: '2026-09-14'
 column: open-source-engineering
 category: daily
-article_type: research-interpretation
+article_type: technical-analysis
 edition: research-center
 research_question: "独立评估者需要哪些执行轨迹证据，才能区分可信执行与不安全成功；阶段级归因又为什么不能直接等同于根因、授权或生产安全证明？"
 summary: "Trace（执行轨迹）能揭示终态成功背后的规划、记忆、工具与安全问题，并把可见异常定位到生命周期阶段；但 Attribution（归因）仍是评估判断，不能自动证明根因、授权或生产安全。"
