@@ -1,0 +1,51 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-14",
+  "itemId": "Q-20260914-01",
+  "researchObjectId": "Q-20260914-01",
+  "targetAudience": {
+    "primary": "Architects and operators of governed digital employees with multiple credential or execution modes",
+    "knowledgeAssumption": "The reader understands credentials, provider APIs, local runtimes and preflight checks.",
+    "readerProblem": "A valid worker can be rejected by an irrelevant dependency, or a technically usable route can be mistaken for business authority."
+  },
+  "whyNow": "A clean-machine failure and merged correction expose how a universal host probe can deny a provider-valid execution route.",
+  "externalHook": {
+    "type": "valid-route-failed-by-unused-dependency",
+    "description": "A provider accepts the API key, yet onboarding fails because the host lacks a CLI used only by another execution lane.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "coreProposition": "Agent admission should be a lane-bound proof bundle: requirements must be derived from and bound to the selected execution lane, while current business authorization remains a separate decision.",
+  "originalValue": {
+    "type": "lane-bound-admission-contract",
+    "description": "Separates credential validity, host capability, execution-lane identity and business authorization, then derives a typed proof bundle with freshness and verifier identities."
+  },
+  "readerTakeaway": "Derive admission requirements from the resolved lane, bind proofs to the route actually used, and re-evaluate business authorization at action time.",
+  "evidenceBoundary": {
+    "supported": [
+      "A direct API-key route was falsely denied by a subscription CLI probe.",
+      "The merged fix re-verifies API keys at the provider boundary and retains the CLI check only for subscription execution.",
+      "Tests and a narrow provider mock support the bounded mechanism."
+    ],
+    "unsupported": [
+      "Universal correctness across providers",
+      "Business authorization inferred from provider acceptance",
+      "End-to-end proof before the next canary"
+    ],
+    "uncertain": [
+      "Hybrid-lane contracts",
+      "Evidence freshness windows",
+      "Enterprise federation rules"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "The argument derives from same-date external research and remains independently useful without first-party projects."
+  },
+  "recommendedArticleType": "engineering-insight",
+  "editorialDecision": "PASS",
+  "decisionReason": "The Research Object supports a distinct, evidence-bounded argument with practical governance value."
+}
