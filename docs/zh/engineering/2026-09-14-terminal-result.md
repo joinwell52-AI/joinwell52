@@ -33,7 +33,7 @@ pageClass: "continuity-contracts-article"
 
 ## 错误事件里，也可能有一段像样的文字
 
-anywhere-agents 是把不同编码 Agent 接到并行工作与评审流程中的工具集。赵岳在[这次修复](https://github.com/yzhao062/anywhere-agents/commit/3c94f459fa942727bbbf0a51ad1967d235096bc7)中处理了一个具体错位：Agy 遇到额度限制时，进程可能返回 0，而最终事件的状态为 `ERROR`，同时仍带着模型开场文字。
+anywhere-agents 是把不同编码 Agent 接到并行工作与评审流程中的工具集。Yue Zhao 在[这次修复](https://github.com/yzhao062/anywhere-agents/commit/3c94f459fa942727bbbf0a51ad1967d235096bc7)中处理了一个具体错位：Agy 遇到额度限制时，进程可能返回 0，而最终事件的状态为 `ERROR`，同时仍带着模型开场文字。
 
 作者报告了真实批次中的错误发布。我们没有重新审计那 152 次历史 dispatch，也没有重跑真实 Agy 配额耗尽；本轮验证的是调度器怎样解释这样的输入。
 
