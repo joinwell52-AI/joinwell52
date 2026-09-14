@@ -1,0 +1,93 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-14",
+  "itemId": "Q-20260914-02",
+  "coreProposition": "Multi-Agent reliability is a vector of separately evidenced coordination obligations; aggregate task success cannot establish reliability when a critical allocation, ordering, mutual-exclusion or handoff contract is weak.",
+  "openingMove": {
+    "type": "correct-report-broken-trajectory",
+    "purpose": "A final result is correct even though the path duplicated work, violated a prerequisite and required manual handoff repair.",
+    "evidenceRefs": [
+      "E1",
+      "E2"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "What does the benchmark make visible?",
+      "claim": "Executable tasks and oracle structure expose allocation, ordering, exclusion and handoff as distinct obligations.",
+      "evidenceRefs": [
+        "E1",
+        "E2"
+      ],
+      "reasoningRole": "evidence",
+      "readerProgress": "Advance the bounded argument without enlarging the source evidence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "Why is final success too coarse?",
+      "claim": "The same terminal artifact can conceal operationally different violations inside the trajectory.",
+      "evidenceRefs": [
+        "E2"
+      ],
+      "reasoningRole": "failure-semantics",
+      "readerProgress": "Advance the bounded argument without enlarging the source evidence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "What are the four contracts?",
+      "claim": "Ownership, prerequisites, exclusive resources and receiver acceptance require separate durable identities.",
+      "evidenceRefs": [
+        "E4",
+        "E5"
+      ],
+      "reasoningRole": "architecture",
+      "readerProgress": "Advance the bounded argument without enlarging the source evidence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "How should results be aggregated?",
+      "claim": "Each task-relevant construct receives PASS, FAIL or UNKNOWN, and critical failures cannot be diluted by averages.",
+      "evidenceRefs": [
+        "E4"
+      ],
+      "reasoningRole": "governance",
+      "readerProgress": "Advance the bounded argument without enlarging the source evidence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "What can be deterministic?",
+      "claim": "Observable ordering and exclusion facts can be enforced mechanically, while semantic handoff completeness may require judgment.",
+      "evidenceRefs": [
+        "E5"
+      ],
+      "reasoningRole": "enforcement",
+      "readerProgress": "Advance the bounded argument without enlarging the source evidence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A6",
+      "question": "Where does transfer stop?",
+      "claim": "Household-task results do not set enterprise thresholds or prove safety and authorization.",
+      "evidenceRefs": [
+        "E6"
+      ],
+      "reasoningRole": "limits",
+      "readerProgress": "Advance the bounded argument without enlarging the source evidence.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "One end-task score is easier to rank and optimize.",
+    "responseBoundary": "Compression is acceptable only if the full coordination vector and critical guardrails remain inspectable."
+  },
+  "endingStrategy": {
+    "type": "four-contract-acceptance-rule",
+    "purpose": "End with a bounded operational rule and explicit evidence limits."
+  }
+}
