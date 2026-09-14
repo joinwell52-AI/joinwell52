@@ -1,0 +1,374 @@
+{
+  "schema": "research-intelligence-run/v1",
+  "version": "1.0",
+  "date": "2026-09-14",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "registryVersion": "1.0",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-09-14T09:07:30+08:00",
+  "githubCommit": "pending",
+  "researchCoverage": {
+    "policy": "theme-sample-v1",
+    "rollingResearchWindowDays": 30,
+    "sampleFamilies": {
+      "product-governance": {
+        "checked": [
+          "Paperclip clean-machine API-key versus local-subscription admission lane",
+          "Microsoft Copilot Studio enhanced agent authentication admin controls"
+        ],
+        "qualifiedSignals": 2
+      },
+      "multi-agent-mechanism": {
+        "checked": [
+          "AG2 MCP streamable-HTTP transport contract and resumability controls",
+          "CrewAI Crews/Flows production orchestration and control-plane model"
+        ],
+        "qualifiedSignals": 1
+      },
+      "research-benchmark-industry": {
+        "checked": [
+          "AgentAudit full-lifecycle trust and failure-attribution evaluation",
+          "CoCoBench construct-level multi-agent coordination benchmark",
+          "BlueCodeAgent agentic red-team/blue-team security evaluation"
+        ],
+        "qualifiedSignals": 2
+      }
+    }
+  },
+  "reason": "All three formal Discovery pipelines reached terminal coverage and the rotated theme-first overlay was completed without topic selection. Seven qualified, non-duplicate signals survived problem-level normalization: one platform-governance mechanism, four GitHub/engineering mechanisms, and two primary-research benchmark findings. AI Platform directly checked all 45 due public channels. GitHub Engineering incrementally checked all nine P0 daily repositories. Published Research terminally resolved all nine P0 sources as eight direct checks plus one explicit Journal of Systems and Software retrieval failure. Pure sample-change-trigger density is 0%.",
+  "reason_zh": "三条正式 Discovery 管线均完成终态覆盖，并完成轮换后的主题优先主动样本检查，未执行选题。按研究问题规范化去重后保留 7 个合格、非重复 Signal：1 个平台治理机制、4 个 GitHub/工程机制、2 个一手研究/基准发现。AI Platform 的 45 个到期公共通道全部直接完成检查；GitHub Engineering 对 9 个 P0 Daily 仓库全部完成增量检查；Published Research 的 9 个 P0 来源终态收口为 8 个直接检查加 1 个 Journal of Systems and Software 抓取失败。纯 sample-change-trigger 占比为 0%。",
+  "pipelines": [
+    {
+      "id": "ai-platform",
+      "label": "AI Platform Change Intelligence",
+      "label_zh": "AI 平台变更情报发现",
+      "status": "Completed",
+      "due": 45,
+      "checked": 45,
+      "inaccessible": [],
+      "failed": [],
+      "signals": 1,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All 45 due public channels across OpenAI, Anthropic, Google, Cursor, GitHub Copilot and Microsoft Copilot were directly resolved. Most current material was either unchanged from the recent Signal Pools or product/release trigger evidence only. One distinct governance mechanism was retained from Microsoft's September 2026 Copilot/agent administration documentation: tenant administrators can centrally constrain agent authentication and anonymous access at environment or environment-group scope.",
+      "reason_zh": "OpenAI、Anthropic、Google、Cursor、GitHub Copilot 与 Microsoft Copilot 六组共 45 个到期公共通道均直接完成检查。多数当前材料与近期 Signal Pool 重复，或仅属于产品/发布触发信息。最终仅保留 1 个独立治理机制：微软 2026 年 9 月 Copilot/Agent 管理文档明确支持由管理员在环境或环境组范围集中约束 Agent 身份验证方式与匿名访问。"
+    },
+    {
+      "id": "github-engineering",
+      "label": "GitHub Engineering Intelligence",
+      "label_zh": "GitHub 工程情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 9,
+      "inaccessible": [],
+      "failed": [],
+      "signals": 4,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 daily repositories were checked incrementally from the previous Discovery boundary. Four non-duplicate mechanisms crossed the threshold after recent-run deduplication: Codex managed worktree/session lifecycle binding; Codex separation of configured Windows sandbox mode from the effective sandbox level; Paperclip's clean-machine API-key admission lane separated from local subscription-CLI probing; and AG2's draft proposal to make MCP HTTP transport lifetime, security and resumability an explicit operator-owned contract instead of inherited dependency defaults.",
+      "reason_zh": "9 个 P0 Daily 仓库均从上一轮 Discovery 边界起完成增量检查。与近期运行去重后保留 4 个不同机制：Codex 的 Managed Worktree/Session 生命周期绑定；Codex 将 Windows Sandbox 的配置模式与实际生效级别显式分离；Paperclip 将干净机器上的 API-key 准入与本地 Subscription CLI 探针拆开；以及 AG2 草案把 MCP HTTP Transport 的生命周期、安全与可恢复性参数从依赖包隐式默认值提升为运营者显式拥有的合同。"
+    },
+    {
+      "id": "published-research",
+      "label": "Published Research Intelligence",
+      "label_zh": "论文与研究成果情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 8,
+      "inaccessible": [],
+      "failed": [
+        {
+          "source": "https://www.sciencedirect.com/journal/journal-of-systems-and-software",
+          "reason": "The Journal of Systems and Software public journal surface returned an internal retrieval error during this run; the failure is recorded rather than counted as checked."
+        }
+      ],
+      "signals": 2,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 research sources were terminally resolved using a rolling seven-day pass and expansion through thirty days where useful: eight source surfaces were directly checked and the Journal of Systems and Software surface returned an explicit retrieval failure. Two non-duplicate benchmark findings were retained: AgentAudit attributes trust failures across the full execution trace rather than task pass/fail alone, and CoCoBench separates coordination into allocation, ordering, mutual exclusion and handoff constructs, showing strong aggregate performance can hide construct-specific weaknesses.",
+      "reason_zh": "9 个 P0 研究来源均按滚动 7 天检查并在需要时扩展至 30 天完成终态处理：8 个来源页面直接完成检查，Journal of Systems and Software 的公共页面抓取失败被明确记录。保留 2 个非重复基准发现：AgentAudit 沿完整执行 Trace 归因信任失败，而不是只看任务通过/失败；CoCoBench 则把协调拆为任务分配、顺序约束、互斥与交接四类结构，显示总体成绩较强仍可能掩盖特定协调能力的薄弱。"
+    }
+  ],
+  "columns": [
+    {
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "decision": "Waiting",
+      "signals": 3,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded three primary Digital Employee signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 3 个以数字员工为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    },
+    {
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded two primary Industry Architecture signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以行业架构为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    },
+    {
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded two primary Open-source Engineering signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以开源工程为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    }
+  ],
+  "signals": [
+    {
+      "id": "SIG-20260914-001",
+      "pipeline": "ai-platform",
+      "title": "Microsoft centralizes agent authentication policy at environment and environment-group scope",
+      "title_zh": "Microsoft 将 Agent 身份验证策略集中到环境与环境组范围治理",
+      "sourceUrl": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-platform-governance-administration/manage-copilot-security-enhanced-admin-controls",
+      "publishedAt": "unknown",
+      "evidenceLevel": "official_documentation",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "microsoft-copilot/central-agent-authentication-policy",
+      "summary": "Microsoft's September 2026 governance documentation exposes centrally managed authentication and access policy for Copilot/agents at environment or environment-group scope, including requiring Entra ID, allowing approved external identity providers, or prohibiting anonymous access.",
+      "summary_zh": "微软 2026 年 9 月治理文档提供环境/环境组级别的 Copilot/Agent 集中身份验证与访问策略，包括强制 Entra ID、允许经批准的外部身份提供方，以及禁止匿名访问。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": [
+        "agent-identity",
+        "authorization-boundary",
+        "enterprise-governance",
+        "policy-enforcement"
+      ],
+      "sampleIds": [
+        "microsoft-copilot-platform"
+      ],
+      "researchValue": {
+        "failure": "When each agent chooses its own authentication mode, enterprise identity policy fragments across deployments and anonymous or unsupported identity paths can remain active.",
+        "finding": "The platform now exposes tenant-level administrative controls that constrain authentication choices outside the individual agent definition.",
+        "mechanism": "Bind agent authentication options to environment-scoped governance policy and enforce the allowed identity modes centrally.",
+        "implication": "Enterprise agent identity is becoming a control-plane contract rather than a local prompt or per-agent configuration choice."
+      }
+    },
+    {
+      "id": "SIG-20260914-002",
+      "pipeline": "github-engineering",
+      "title": "Codex creates a managed worktree and binds a blank session to it as one lifecycle operation",
+      "title_zh": "Codex 将 Managed Worktree 创建与空白 Session 绑定收敛为一次生命周期操作",
+      "sourceUrl": "https://github.com/openai/codex/commit/6f39a47bb3b04de4c804187bfbf55edc56939aab",
+      "publishedAt": "2026-09-13",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai-codex/managed-worktree-session-lifecycle-binding",
+      "summary": "Codex Agents Overview can create a worktree from the cached project default branch and immediately start a blank session bound to that checkout, preserving approval reviewer context, source edits and selected subdirectory. Failed startup cleans only unclaimed clean worktrees and reports retained paths when cleanup would destroy useful state.",
+      "summary_zh": "Codex Agents Overview 现在可从缓存的项目默认分支创建 Worktree，并立即启动绑定该 Checkout 的空白 Session，同时保留 Approval Reviewer、源 Checkout 编辑与所选子目录；启动失败时只清理未认领且干净的 Worktree，需要保留的路径则明确报告。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": [
+        "workspace-identity",
+        "session-lifecycle",
+        "ownership",
+        "recovery-cleanup"
+      ],
+      "sampleIds": [
+        "openai-codex"
+      ],
+      "researchValue": {
+        "failure": "Creating execution workspaces and sessions as separate informal steps can orphan checkouts, lose approval context, or destroy useful state during partial failure.",
+        "finding": "The merged path treats worktree creation, session binding, inherited approval context and cleanup ownership as a coordinated lifecycle operation.",
+        "mechanism": "Create from a resolved default branch, bind the new session before user work begins, pause conflicting actions during creation, and condition cleanup on whether the checkout is still unclaimed and clean.",
+        "implication": "Long-running agent systems increasingly need durable lineage between workspace identity, session identity, authorization context and cleanup ownership."
+      }
+    },
+    {
+      "id": "SIG-20260914-003",
+      "pipeline": "github-engineering",
+      "title": "Codex keeps configured Windows sandbox mode distinct from the effective sandbox level",
+      "title_zh": "Codex 将 Windows Sandbox 的配置模式与实际生效级别保持为两个不同事实",
+      "sourceUrl": "https://github.com/openai/codex/commit/3abbf9fe2c6b6910e9de61f6a0c5bb468f74b5c8",
+      "publishedAt": "2026-09-14",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "openai-codex/windows-sandbox-configured-vs-effective",
+      "summary": "Codex extracted Windows sandbox preparation into an explicit helper while preserving requirement enforcement and the distinction between a configured sandbox mode and the effective sandbox level. Tests cover explicit configuration taking precedence over feature fallback while leaving the configured value unset when only the fallback selected the effective level.",
+      "summary_zh": "Codex 将 Windows Sandbox 配置准备抽成显式 Helper，同时保留要求约束，并明确区分“用户/配置声明的 Sandbox Mode”和“最终实际生效的 Sandbox Level”。测试覆盖显式配置优先于 Feature Fallback，以及仅由 Fallback 选中时配置值仍保持未设置。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": [
+        "sandbox-boundary",
+        "configuration-provenance",
+        "effective-capability",
+        "host-admission"
+      ],
+      "sampleIds": [
+        "openai-codex"
+      ],
+      "researchValue": {
+        "failure": "If a runtime stores only the effective sandbox state, it loses whether that state came from explicit policy or a fallback, making later audit and compatibility decisions ambiguous.",
+        "finding": "The merged implementation preserves configuration provenance separately from the effective enforcement level.",
+        "mechanism": "Prepare and validate the effective sandbox configuration while retaining whether the operator actually configured the mode.",
+        "implication": "Host admission and audit should record declared policy, fallback source and effective capability separately rather than flattening them into one status."
+      }
+    },
+    {
+      "id": "SIG-20260914-004",
+      "pipeline": "github-engineering",
+      "title": "Paperclip separates provider-verified API-key admission from local subscription-CLI admission",
+      "title_zh": "Paperclip 将 Provider 已验证的 API-key 准入与本地 Subscription CLI 准入拆开",
+      "sourceUrl": "https://github.com/paperclipai/paperclip/pull/13372",
+      "publishedAt": "2026-09-13",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "paperclip/api-key-vs-subscription-execution-lane-admission",
+      "summary": "A clean-machine release smoke exposed that an API key already accepted by the provider was still blocked by a local Claude CLI hello probe. The merged fix re-verifies API-key bindings against the provider at adoption time without requiring the CLI, while the subscription path retains the strict local hello probe; the release smoke now uses a narrow HTTPS provider mock instead of a paid credential.",
+      "summary_zh": "Paperclip 的干净机器 Release Smoke 暴露出：即使 API Key 已被 Provider 接受，Managed Adoption 仍会因本机缺少 Claude CLI 的 Hello Probe 而阻塞。合入修复后，API-key 路径在 Adoption 时再次向 Provider 验证而不强制 CLI；Subscription 路径仍保留严格本地 Probe；Release Smoke 改用只开放必要 Endpoint 的 HTTPS Provider Mock。",
+      "signalRole": "failure-evidence",
+      "researchThemes": [
+        "credential-admission",
+        "host-dependency",
+        "execution-lane",
+        "release-gate"
+      ],
+      "sampleIds": [
+        "paperclip"
+      ],
+      "researchValue": {
+        "failure": "Credential validity and local CLI availability were conflated, causing a valid API-key user on a clean machine to fail first-run onboarding.",
+        "finding": "The release-gate failure proved that different execution lanes need different admission facts rather than one universal environment probe.",
+        "mechanism": "Re-verify API-key credentials at the provider boundary for direct API execution while preserving the local CLI probe only for subscription execution.",
+        "implication": "Agent host/provider admission should bind requirements to the selected execution lane and should not require dependencies irrelevant to that lane."
+      }
+    },
+    {
+      "id": "SIG-20260914-005",
+      "pipeline": "github-engineering",
+      "title": "AG2 proposes owning MCP HTTP lifetime, security and resumability as an explicit transport contract",
+      "title_zh": "AG2 提议把 MCP HTTP 生命周期、安全与可恢复性提升为显式 Transport Contract",
+      "sourceUrl": "https://github.com/ag2ai/ag2/pull/3252",
+      "publishedAt": "2026-09-13",
+      "evidenceLevel": "unverified_discussion",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "open-source-engineering"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "ag2/mcp-http-operator-owned-transport-contract",
+      "summary": "AG2's open draft PR documents that MCPServer currently inherits important streamable-HTTP behavior from the installed mcp dependency without operator visibility: session idle timeout, session cap, request-body limit, DNS-rebinding protection and resumability. The proposal adds a frozen TransportConfig, optional RFC 8707 resource validation and event-store passthrough so those assumptions become explicit AG2-owned configuration rather than silent dependency defaults.",
+      "summary_zh": "AG2 的开放 Draft PR 明确指出，MCPServer 目前会从已安装的 mcp 依赖隐式继承关键 Streamable-HTTP 行为，而运营者无法观察或配置：Session Idle Timeout、Session Cap、Request Body Limit、DNS Rebinding Protection 与 Resumability。草案提议新增冻结的 TransportConfig、可选 RFC 8707 Resource 校验和 Event Store 透传，把这些假设提升为 AG2 自己显式拥有的配置。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": [
+        "mcp",
+        "transport-contract",
+        "resumability",
+        "dependency-defaults",
+        "runtime-security"
+      ],
+      "sampleIds": [
+        "ag2"
+      ],
+      "researchValue": {
+        "failure": "Two deployments of the same product can acquire different runtime semantics when a transitive dependency changes session or security defaults inside the allowed version range.",
+        "finding": "The draft identifies missing operator ownership over transport lifetime, security and replay behavior, including disabled DNS-rebinding protection and unreachable event-store resumability.",
+        "mechanism": "Expose and pin transport limits/security/replay settings in product-owned configuration, validate incompatible combinations, and optionally bind bearer tokens to the MCP resource.",
+        "implication": "Protocol support should include a versioned runtime contract for transport behavior, not merely a statement that the protocol endpoint is reachable."
+      }
+    },
+    {
+      "id": "SIG-20260914-006",
+      "pipeline": "published-research",
+      "title": "AgentAudit attributes trust failures across the full agent execution trace instead of task success alone",
+      "title_zh": "AgentAudit 沿完整 Agent 执行 Trace 归因信任失败，而不是只看任务是否成功",
+      "sourceUrl": "https://arxiv.org/abs/2609.09875",
+      "publishedAt": "2026-09-09",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": [
+        "industry-architecture"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "agentaudit/full-lifecycle-trust-failure-attribution",
+      "summary": "AgentAudit evaluates recorded agent traces across planning, memory, tool selection, invocation, correctness, alignment, faithfulness, security and execution integrity, then attributes failure to the stage responsible rather than reducing evaluation to task completion. Its reported experiments show models with similar task-completion behavior can diverge sharply in unsafe-compliance classifications; the authors also acknowledge a single fixed judge model as a limitation.",
+      "summary_zh": "AgentAudit 对记录下来的 Agent Trace 从规划、Memory、Tool Selection/Invocation/Correctness、Alignment、Faithfulness、Security 与 Execution Integrity 等维度进行评估，并把失败归因到具体阶段，而不是压缩成任务是否完成。其报告实验显示，任务完成表现相近的模型在 Unsafe Compliance 上可能显著分化；作者也明确承认只使用一个固定 Judge Model 是局限。",
+      "signalRole": "benchmark-evidence",
+      "researchThemes": [
+        "evaluation",
+        "failure-attribution",
+        "auditability",
+        "tool-call-integrity"
+      ],
+      "sampleIds": [
+        "agentaudit"
+      ],
+      "researchValue": {
+        "failure": "Task-level pass/fail can hide whether an agent reached an answer through unsafe tool use, ungrounded reasoning or execution-integrity violations.",
+        "finding": "Trace-level evaluation can distinguish models that look similar on task completion but differ substantially in unsafe-compliance behavior.",
+        "mechanism": "Attach evaluation to the recorded execution trace and score multiple lifecycle dimensions with stage-level failure attribution.",
+        "implication": "Independent EVAL systems should preserve enough structured runtime evidence to identify where a failure occurred, not only whether the final deliverable exists."
+      }
+    },
+    {
+      "id": "SIG-20260914-007",
+      "pipeline": "published-research",
+      "title": "CoCoBench shows aggregate multi-agent success can hide failures in allocation, ordering, mutual exclusion and handoff",
+      "title_zh": "CoCoBench 显示：总体多 Agent 成功率会掩盖分配、顺序、互斥与交接能力的差异",
+      "sourceUrl": "https://arxiv.org/abs/2608.28266",
+      "publishedAt": "2026-08-28",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": [
+        "digital-employee"
+      ],
+      "triageStatus": "signal",
+      "changeObject": "cocobench/construct-level-multi-agent-coordination-diagnostics",
+      "summary": "CoCoBench evaluates 897 oracle-validated executable household tasks across four coordination constructs—task allocation, sequential ordering, mutual exclusion and handoff coordination. Across 11 leading multimodal models, coordination performance is strongly construct-specific: strong overall task performance does not imply balanced coordination competence.",
+      "summary_zh": "CoCoBench 用 897 个经 Oracle 验证的可执行家庭任务评估四类协调结构：任务分配、顺序约束、互斥与交接。对 11 个领先多模态模型的结果表明，协调能力高度依赖具体结构；较强的总体任务表现并不意味着四类协调能力均衡。",
+      "signalRole": "benchmark-evidence",
+      "researchThemes": [
+        "multi-agent-coordination",
+        "mutual-exclusion",
+        "handoff",
+        "task-allocation"
+      ],
+      "sampleIds": [
+        "cocobench"
+      ],
+      "researchValue": {
+        "failure": "A single aggregate success metric can conceal that an agent team is reliable at allocation but weak at mutual exclusion or handoff, which matters directly for real execution safety.",
+        "finding": "Coordination competence is construct-specific across allocation, ordering, mutual exclusion and handoff rather than a single scalar capability.",
+        "mechanism": "Evaluate executable tasks with construct-level diagnostics in addition to overall completion.",
+        "implication": "Multi-role digital-employee systems should validate coordination contracts separately—ownership, ordering, exclusion and handoff—rather than infer team reliability from end-task success."
+      }
+    }
+  ]
+}
