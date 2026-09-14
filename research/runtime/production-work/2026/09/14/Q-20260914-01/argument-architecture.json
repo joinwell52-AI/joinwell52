@@ -1,0 +1,95 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-14",
+  "itemId": "Q-20260914-01",
+  "coreProposition": "Agent admission should be a lane-bound proof bundle: requirements must be derived from and bound to the selected execution lane, while current business authorization remains a separate decision.",
+  "openingMove": {
+    "type": "valid-key-missing-cli-contradiction",
+    "purpose": "A provider accepts the API key, yet onboarding fails because the host lacks a CLI used only by another execution lane.",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "Why can checking more be incorrect?",
+      "claim": "A universal probe can apply a requirement from an unused lane and falsely deny a valid route.",
+      "evidenceRefs": [
+        "E1"
+      ],
+      "reasoningRole": "failure",
+      "readerProgress": "Advance the bounded argument without enlarging the source evidence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "What changed in the bounded mechanism?",
+      "claim": "The corrected path resolves the lane first, verifies the facts that lane actually depends on, and keeps other-lane checks scoped.",
+      "evidenceRefs": [
+        "E2",
+        "E3"
+      ],
+      "reasoningRole": "mechanism",
+      "readerProgress": "Advance the bounded argument without enlarging the source evidence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "Which evidence identities must remain separate?",
+      "claim": "Credential validity, host capability, selected lane and business authorization answer different questions.",
+      "evidenceRefs": [
+        "E4",
+        "E5"
+      ],
+      "reasoningRole": "state-model",
+      "readerProgress": "Advance the bounded argument without enlarging the source evidence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "What belongs in a lane proof bundle?",
+      "claim": "A versioned bundle records requirements, verifiers, freshness, negative applicability and an immutable route binding.",
+      "evidenceRefs": [
+        "E4"
+      ],
+      "reasoningRole": "architecture",
+      "readerProgress": "Advance the bounded argument without enlarging the source evidence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "When must admission be recomputed?",
+      "claim": "Lane change or material evidence staleness invalidates the prior bundle; action authority is checked separately.",
+      "evidenceRefs": [
+        "E5",
+        "E6"
+      ],
+      "reasoningRole": "governance",
+      "readerProgress": "Advance the bounded argument without enlarging the source evidence.",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A6",
+      "question": "What does the sample not prove?",
+      "claim": "One merged fix does not define every provider, hybrid lane or enterprise authorization model.",
+      "evidenceRefs": [
+        "E6"
+      ],
+      "reasoningRole": "limits",
+      "readerProgress": "Advance the bounded argument without enlarging the source evidence.",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "A universal superset check seems safer because it demands more evidence.",
+    "responseBoundary": "More evidence is not safer when it is semantically unrelated to the selected route; route specificity must narrow irrelevant checks while strengthening relevant ones."
+  },
+  "endingStrategy": {
+    "type": "business-authorization-boundary",
+    "purpose": "End with a bounded operational rule and explicit evidence limits."
+  }
+}
