@@ -190,6 +190,9 @@ CodeFlowMu 是本地运行的 PM / DEV / QA / OPS 多角色 AI 开发团队，�
 | 57 | **结果已经有了，为什么 Agent 还会漏交？** | [中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-11-result-delivery) · [English](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-11-result-delivery) · [实验附件](https://joinwell52-ai.github.io/joinwell52/zh/research/evidence/2026-09-11-current-authority) | 十个真实 SDK 回归与旧函数消融表明，最终 done 文本不能证明工具结果已进入下一次模型输入。 |
 | 58 | **昨天能用的模型，今天为什么不能直接恢复？** | [中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-11-live-model-restore) · [English](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-11-live-model-restore) · [实验附件](https://joinwell52-ai.github.io/joinwell52/zh/research/evidence/2026-09-11-current-authority) | 八组原函数前后对照区分明确不支持与目录未知，说明恢复旧模型偏好为什么需要保留不同证据状态。 |
 
+| 59 | **开场白为什么成了交付结果？** | [中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-14-terminal-result) · [English](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-14-terminal-result) · [实验附件](https://joinwell52-ai.github.io/joinwell52/zh/research/evidence/2026-09-14-continuity-contracts) | 五项原脚本前后对照表明，正常退出、供应商成功与产物存在必须分别判断。 |
+| 60 | **清空了记录，为什么还会引用旧会话？** | [中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-14-clear-continuation) · [English](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-14-clear-continuation) · [实验附件](https://joinwell52-ai.github.io/joinwell52/zh/research/evidence/2026-09-14-continuity-contracts) | 五项 SDK 对照与七组任务说明选择检查，揭示清空历史、切断引用与恢复当前目标的不同责任。 |
+
 补充参考：[数字员工生产机架构 V0.3.1 草案](https://joinwell52-ai.github.io/joinwell52/zh/digital-employee/architecture)。
 
 这些内容可以解释 TMPA 或为后续研究提供输入，但不能覆盖 Core S1.0。

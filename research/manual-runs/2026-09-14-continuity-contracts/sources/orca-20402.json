@@ -1,0 +1,636 @@
+{
+  "repo": "stablyai/orca",
+  "id": 20402,
+  "url": "https://github.com/stablyai/orca/pull/20402",
+  "title": "fix(remote): isolate client focus and notifications by run origin",
+  "author": "Jinwoo-H",
+  "state": "open",
+  "draft": true,
+  "merged_at": null,
+  "head": "74c0e5909501934f2966eacfab8b32e6610d4818",
+  "base": "403b62a8d8fa6e896a93acc4c15405be0f0b7dc7",
+  "read_at": "2026-09-14T01:48:31.752Z",
+  "files": [
+    {
+      "path": "config/reliability-gates.jsonc",
+      "status": "modified",
+      "changes": 12
+    },
+    {
+      "path": "src/cli/handlers/terminal.ts",
+      "status": "modified",
+      "changes": 22
+    },
+    {
+      "path": "src/cli/handlers/worktree-result-warnings.ts",
+      "status": "added",
+      "changes": 23
+    },
+    {
+      "path": "src/cli/handlers/worktree.ts",
+      "status": "modified",
+      "changes": 35
+    },
+    {
+      "path": "src/main/daemon/daemon-create-or-attach-result.ts",
+      "status": "modified",
+      "changes": 5
+    },
+    {
+      "path": "src/main/daemon/daemon-pty-spawn-request.ts",
+      "status": "modified",
+      "changes": 3
+    },
+    {
+      "path": "src/main/daemon/daemon-pty-spawn-result.ts",
+      "status": "modified",
+      "changes": 9
+    },
+    {
+      "path": "src/main/daemon/daemon-terminal-admission.ts",
+      "status": "modified",
+      "changes": 5
+    },
+    {
+      "path": "src/main/daemon/session-options.ts",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "src/main/daemon/session.ts",
+      "status": "modified",
+      "changes": 19
+    },
+    {
+      "path": "src/main/daemon/terminal-host-create-contract.ts",
+      "status": "modified",
+      "changes": 3
+    },
+    {
+      "path": "src/main/daemon/terminal-host-options.ts",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "src/main/daemon/terminal-host-session-create.ts",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "src/main/daemon/types.ts",
+      "status": "modified",
+      "changes": 17
+    },
+    {
+      "path": "src/main/ipc/notifications-mobile-fanout.test.ts",
+      "status": "modified",
+      "changes": 29
+    },
+    {
+      "path": "src/main/ipc/notifications.ts",
+      "status": "modified",
+      "changes": 20
+    },
+    {
+      "path": "src/main/ipc/pty-daemon-spawn-session-identity.test.ts",
+      "status": "modified",
+      "changes": 5
+    },
+    {
+      "path": "src/main/ipc/pty/ipc/spawn-commit-persist.ts",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "src/main/ipc/pty/ipc/spawn-commit.ts",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "src/main/ipc/pty/ipc/spawn-options.ts",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "src/main/ipc/pty/ipc/spawn-types.ts",
+      "status": "modified",
+      "changes": 3
+    },
+    {
+      "path": "src/main/ipc/pty/pane/pty-work-origin.test.ts",
+      "status": "added",
+      "changes": 37
+    },
+    {
+      "path": "src/main/ipc/pty/pane/pty-work-origin.ts",
+      "status": "added",
+      "changes": 32
+    },
+    {
+      "path": "src/main/ipc/pty/pane/spawn-reservation.ts",
+      "status": "modified",
+      "changes": 11
+    },
+    {
+      "path": "src/main/ipc/pty/pane/stable-owner.ts",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "src/main/ipc/pty/runtime/spawn-commit.ts",
+      "status": "modified",
+      "changes": 17
+    },
+    {
+      "path": "src/main/ipc/pty/runtime/spawn-options.ts",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "src/main/ipc/pty/runtime/spawn-state.ts",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "src/main/ipc/session.ts",
+      "status": "modified",
+      "changes": 9
+    },
+    {
+      "path": "src/main/native-chat/agent-session-wire/structured-agent-session-attach.ts",
+      "status": "modified",
+      "changes": 3
+    },
+    {
+      "path": "src/main/native-chat/agent-session-wire/structured-agent-session-host.ts",
+      "status": "modified",
+      "changes": 17
+    },
+    {
+      "path": "src/main/orca-profiles/profile-project-session-field-disposition.ts",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "src/main/orca-profiles/profile-project-session-state.ts",
+      "status": "modified",
+      "changes": 12
+    },
+    {
+      "path": "src/main/orca-profiles/profile-project-session-transfer.ts",
+      "status": "modified",
+      "changes": 6
+    },
+    {
+      "path": "src/main/persistence/loading-store/pty-binding-persistence.ts",
+      "status": "modified",
+      "changes": 8
+    },
+    {
+      "path": "src/main/persistence/restoring-sessions/session-owner-removal.ts",
+      "status": "modified",
+      "changes": 8
+    },
+    {
+      "path": "src/main/persistence/restoring-sessions/session-worktree-ownership.ts",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "src/main/persistence/runtime-authored-workspace-session-fields.ts",
+      "status": "modified",
+      "changes": 6
+    },
+    {
+      "path": "src/main/providers/local-pty-session-activation.ts",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "src/main/providers/pty-provider-contract.ts",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "src/main/providers/pty-spawn-result.ts",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "src/main/providers/ssh-pty-session-reattach.ts",
+      "status": "modified",
+      "changes": 5
+    },
+    {
+      "path": "src/main/providers/ssh-pty-spawn-request.ts",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "src/main/runtime/agent-session-reservation-admission.ts",
+      "status": "modified",
+      "changes": 3
+    },
+    {
+      "path": "src/main/runtime/mobile-session-terminal-persistence-retirement.ts",
+      "status": "modified",
+      "changes": 3
+    },
+    {
+      "path": "src/main/runtime/mobile-session-terminal-projection.ts",
+      "status": "modified",
+      "changes": 3
+    },
+    {
+      "path": "src/main/runtime/multi-client-navigation-isolation.integration.test.ts",
+      "status": "modified",
+      "changes": 165
+    },
+    {
+      "path": "src/main/runtime/orca-runtime-activate-managed-worktree.ts",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "src/main/runtime/orca-runtime-create-managed-remote-worktree.ts",
+      "status": "modified",
+      "changes": 9
+    },
+    {
+      "path": "src/main/runtime/orca-runtime-create-managed-worktree.ts",
+      "status": "modified",
+      "changes": 21
+    },
+    {
+      "path": "src/main/runtime/orca-runtime-create-runtime-owned-mobile-session-terminal.ts",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "src/main/runtime/orca-runtime-create-terminal-desktop.ts",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "src/main/runtime/orca-runtime-create-terminal.ts",
+      "status": "modified",
+      "changes": 65
+    },
+    {
+      "path": "src/main/runtime/orca-runtime-notify-ssh-state-changed.ts",
+      "status": "modified",
+      "changes": 18
+    },
+    {
+      "path": "src/main/runtime/orca-runtime-perform-mobile-session-pty-records-refresh.ts",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "src/main/runtime/orca-runtime-prune-mobile-session-tab-group-layout.ts",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "src/main/runtime/orca-runtime-publish-pty-backed-mobile-session-terminal.ts",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "src/main/runtime/orca-runtime-register-pty.ts",
+      "status": "modified",
+      "changes": 54
+    },
+    {
+      "path": "src/main/runtime/orca-runtime-run-create-mobile-session-terminal.ts",
+      "status": "modified",
+      "changes": 11
+    },
+    {
+      "path": "src/main/runtime/orca-runtime-split-pty-backed-terminal.ts",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "src/main/runtime/orca-runtime-split-terminal.ts",
+      "status": "modified",
+      "changes": 3
+    },
+    {
+      "path": "src/main/runtime/push/push-dispatcher.test.ts",
+      "status": "modified",
+      "changes": 16
+    },
+    {
+      "path": "src/main/runtime/push/push-dispatcher.ts",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "src/main/runtime/rpc/methods/client-events.ts",
+      "status": "modified",
+      "changes": 5
+    },
+    {
+      "path": "src/main/runtime/rpc/methods/notification-reconnect-cooldown.test.ts",
+      "status": "modified",
+      "changes": 60
+    },
+    {
+      "path": "src/main/runtime/rpc/methods/notifications.ts",
+      "status": "modified",
+      "changes": 19
+    },
+    {
+      "path": "src/main/runtime/rpc/methods/orchestration-structured-worker-session.ts",
+      "status": "modified",
+      "changes": 3
+    },
+    {
+      "path": "src/main/runtime/rpc/methods/orchestration/worker/worker-start-agent-placement.ts",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "src/main/runtime/rpc/methods/orchestration/worker/worker-topology.ts",
+      "status": "modified",
+      "changes": 6
+    },
+    {
+      "path": "src/main/runtime/rpc/methods/orchestration/worker/worker-worktree-creation.ts",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "src/main/runtime/rpc/methods/structured-agent-session-create.ts",
+      "status": "modified",
+      "changes": 5
+    },
+    {
+      "path": "src/main/runtime/rpc/methods/structured-agent-session.ts",
+      "status": "modified",
+      "changes": 8
+    },
+    {
+      "path": "src/main/runtime/rpc/methods/terminal/terminal-lifecycle-methods.ts",
+      "status": "modified",
+      "changes": 8
+    },
+    {
+      "path": "src/main/runtime/rpc/methods/worktree-create-args.ts",
+      "status": "modified",
+      "changes": 15
+    },
+    {
+      "path": "src/main/runtime/rpc/methods/worktree-create-navigation.test.ts",
+      "status": "modified",
+      "changes": 19
+    },
+    {
+      "path": "src/main/runtime/rpc/methods/worktree.ts",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "src/main/runtime/rpc/work-origin-context.test.ts",
+      "status": "added",
+      "changes": 58
+    },
+    {
+      "path": "src/main/runtime/rpc/work-origin-context.ts",
+      "status": "added",
+      "changes": 27
+    },
+    {
+      "path": "src/main/runtime/runtime-folder-worktree-create.ts",
+      "status": "modified",
+      "changes": 7
+    },
+    {
+      "path": "src/main/runtime/runtime-local-worktree-terminal-startup.ts",
+      "status": "modified",
+      "changes": 34
+    },
+    {
+      "path": "src/main/runtime/runtime-managed-worktree-create-types.ts",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "src/main/runtime/runtime-mobile-notification-controller.ts",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "src/main/runtime/runtime-mobile-session-projection-contract.ts",
+      "status": "modified",
+      "changes": 6
+    },
+    {
+      "path": "src/main/runtime/runtime-mobile-session-projection.ts",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "src/main/runtime/runtime-pty-controller-contract.ts",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "src/main/runtime/runtime-remote-managed-worktree-create.test.ts",
+      "status": "added",
+      "changes": 51
+    },
+    {
+      "path": "src/main/runtime/runtime-remote-managed-worktree-create.ts",
+      "status": "modified",
+      "changes": 17
+    },
+    {
+      "path": "src/main/runtime/runtime-remote-worktree-create-result.ts",
+      "status": "modified",
+      "changes": 26
+    },
+    {
+      "path": "src/main/runtime/runtime-terminal-contracts.ts",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "src/main/runtime/runtime-terminal-state-records.ts",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "src/main/runtime/runtime-worktree-terminal-provisioning.ts",
+      "status": "modified",
+      "changes": 28
+    },
+    {
+      "path": "src/main/runtime/structured-worker-child-identity-env.test.ts",
+      "status": "modified",
+      "changes": 6
+    },
+    {
+      "path": "src/main/runtime/structured-worker-child-identity-env.ts",
+      "status": "modified",
+      "changes": 43
+    },
+    {
+      "path": "src/main/runtime/terminal-create-reveal.ts",
+      "status": "added",
+      "changes": 25
+    },
+    {
+      "path": "src/main/runtime/terminal-create-work-origin.ts",
+      "status": "added",
+      "changes": 25
+    },
+    {
+      "path": "src/preload/api/pty-api.ts",
+      "status": "modified",
+      "changes": 3
+    },
+    {
+      "path": "src/preload/api/pty-bridge-session-control.ts",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "src/relay/pty-handler.ts",
+      "status": "modified",
+      "changes": 8
+    },
+    {
+      "path": "src/renderer/src/components/terminal-pane/ipc-pty-spawn-request.ts",
+      "status": "modified",
+      "changes": 6
+    },
+    {
+      "path": "src/renderer/src/components/terminal-pane/notification-dispatch-test-state.ts",
+      "status": "added",
+      "changes": 67
+    },
+    {
+      "path": "src/renderer/src/components/terminal-pane/use-notification-dispatch.test.ts",
+      "status": "modified",
+      "changes": 241
+    },
+    {
+      "path": "src/renderer/src/components/terminal-pane/use-notification-dispatch.ts",
+      "status": "modified",
+      "changes": 77
+    },
+    {
+      "path": "src/renderer/src/hooks/ipc-events/terminal-request-ipc-bridge.ts",
+      "status": "modified",
+      "changes": 10
+    },
+    {
+      "path": "src/renderer/src/runtime/runtime-client-events.test.ts",
+      "status": "modified",
+      "changes": 41
+    },
+    {
+      "path": "src/renderer/src/runtime/runtime-client-events.ts",
+      "status": "modified",
+      "changes": 21
+    },
+    {
+      "path": "src/renderer/src/runtime/web-session-tabs-sync-focus-intent.test.ts",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "src/renderer/src/runtime/web-session-tabs-sync/apply-preparation-base.ts",
+      "status": "modified",
+      "changes": 6
+    },
+    {
+      "path": "src/renderer/src/runtime/web-session-tabs-sync/state-equality-tabs.ts",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "src/renderer/src/runtime/web-session-tabs-sync/terminal-build.ts",
+      "status": "modified",
+      "changes": 7
+    },
+    {
+      "path": "src/shared/agent-session-launch-args.ts",
+      "status": "added",
+      "changes": 13
+    },
+    {
+      "path": "src/shared/agent-session-record.ts",
+      "status": "modified",
+      "changes": 18
+    },
+    {
+      "path": "src/shared/notification-settings-types.ts",
+      "status": "modified",
+      "changes": 3
+    },
+    {
+      "path": "src/shared/rpc-contract/terminal-unary-params.ts",
+      "status": "modified",
+      "changes": 6
+    },
+    {
+      "path": "src/shared/rpc-contract/worktree-create-params.ts",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "src/shared/runtime-client-events.ts",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "src/shared/runtime-mobile-session-tab-contracts.ts",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "src/shared/runtime-navigation.ts",
+      "status": "modified",
+      "changes": 5
+    },
+    {
+      "path": "src/shared/runtime-terminal-contracts.ts",
+      "status": "modified",
+      "changes": 11
+    },
+    {
+      "path": "src/shared/terminal-tab-types.ts",
+      "status": "modified",
+      "changes": 3
+    },
+    {
+      "path": "src/shared/work-origin.ts",
+      "status": "added",
+      "changes": 30
+    },
+    {
+      "path": "src/shared/workspace-session-host-field-ownership.ts",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "src/shared/workspace-session-schema-field-coverage.test.ts",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "src/shared/workspace-session-schema.ts",
+      "status": "modified",
+      "changes": 11
+    },
+    {
+      "path": "src/shared/workspace-session-state-types.ts",
+      "status": "modified",
+      "changes": 2
+    }
+  ],
+  "snapshot": "sources/orca-20402.json"
+}

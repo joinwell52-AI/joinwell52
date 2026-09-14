@@ -1,0 +1,281 @@
+{
+  "repo": "OpenHands/OpenHands",
+  "id": 17387,
+  "url": "https://github.com/OpenHands/OpenHands/pull/17387",
+  "title": "fix(canvas): respect scoped runtime clients and workspace capabilities",
+  "author": "neubig",
+  "state": "open",
+  "draft": true,
+  "merged_at": null,
+  "head": "77d8b817c4879e53de10380092cca5d3084562bf",
+  "base": "28464621d879e3e9b3ceeae9d70a71d96da6212d",
+  "read_at": "2026-09-14T01:48:41.683Z",
+  "files": [
+    {
+      "path": ".pr/error-workspace/README.md",
+      "status": "added",
+      "changes": 23
+    },
+    {
+      "path": ".pr/error-workspace/after-diagnostic-content.png",
+      "status": "added",
+      "changes": 0
+    },
+    {
+      "path": ".pr/error-workspace/after-file-tree.png",
+      "status": "added",
+      "changes": 0
+    },
+    {
+      "path": ".pr/error-workspace/before-after.gif",
+      "status": "added",
+      "changes": 0
+    },
+    {
+      "path": ".pr/error-workspace/before-file-tree.png",
+      "status": "added",
+      "changes": 0
+    },
+    {
+      "path": ".pr/error-workspace/evidence.json",
+      "status": "added",
+      "changes": 62
+    },
+    {
+      "path": ".pr/log-scope/README.md",
+      "status": "added",
+      "changes": 17
+    },
+    {
+      "path": ".pr/log-scope/logs.gif",
+      "status": "added",
+      "changes": 0
+    },
+    {
+      "path": ".pr/log-scope/observations.json",
+      "status": "added",
+      "changes": 58
+    },
+    {
+      "path": ".pr/runtime-boundaries.md",
+      "status": "added",
+      "changes": 44
+    },
+    {
+      "path": ".pr/runtime-file-probe.png",
+      "status": "added",
+      "changes": 0
+    },
+    {
+      "path": ".pr/runtime-probe.json",
+      "status": "added",
+      "changes": 41
+    },
+    {
+      "path": ".pr/runtime-terminal-probe.png",
+      "status": "added",
+      "changes": 0
+    },
+    {
+      "path": ".pr/workspace-baseline.png",
+      "status": "added",
+      "changes": 0
+    },
+    {
+      "path": ".pr/workspace-pr.png",
+      "status": "added",
+      "changes": 0
+    },
+    {
+      "path": "__tests__/api/agent-server-client-options.test.ts",
+      "status": "added",
+      "changes": 73
+    },
+    {
+      "path": "__tests__/api/agent-server-conversation-service.test.ts",
+      "status": "modified",
+      "changes": 72
+    },
+    {
+      "path": "__tests__/api/agent-server-git-service.test.ts",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "__tests__/api/bash-service.test.ts",
+      "status": "modified",
+      "changes": 15
+    },
+    {
+      "path": "__tests__/api/docker-conversation-boundaries.test.ts",
+      "status": "added",
+      "changes": 238
+    },
+    {
+      "path": "__tests__/api/runtime-service/agent-server-runtime-service.test.ts",
+      "status": "modified",
+      "changes": 103
+    },
+    {
+      "path": "__tests__/components/features/conversation-panel/local-new-conversation-menu.test.tsx",
+      "status": "modified",
+      "changes": 48
+    },
+    {
+      "path": "__tests__/components/features/home/workspace-selection-form.test.tsx",
+      "status": "modified",
+      "changes": 43
+    },
+    {
+      "path": "__tests__/hooks/query/use-bash-command-logs.test.tsx",
+      "status": "modified",
+      "changes": 13
+    },
+    {
+      "path": "__tests__/hooks/query/use-has-git-commits.test.tsx",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "__tests__/hooks/query/use-workspace-file-content.test.tsx",
+      "status": "modified",
+      "changes": 26
+    },
+    {
+      "path": "__tests__/hooks/query/use-workspace-files.test.tsx",
+      "status": "modified",
+      "changes": 27
+    },
+    {
+      "path": "__tests__/hooks/use-bash-command-runner.test.ts",
+      "status": "modified",
+      "changes": 277
+    },
+    {
+      "path": "__tests__/hooks/use-runtime-is-ready.test.tsx",
+      "status": "modified",
+      "changes": 37
+    },
+    {
+      "path": "src/api/agent-server-adapter.ts",
+      "status": "modified",
+      "changes": 6
+    },
+    {
+      "path": "src/api/agent-server-client-options.ts",
+      "status": "modified",
+      "changes": 43
+    },
+    {
+      "path": "src/api/bash-service/bash-service.api.ts",
+      "status": "modified",
+      "changes": 12
+    },
+    {
+      "path": "src/api/conversation-file-upload.api.ts",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "src/api/conversation-service/agent-server-conversation-service.api.ts",
+      "status": "modified",
+      "changes": 56
+    },
+    {
+      "path": "src/api/conversation-service/conversation-service.api.ts",
+      "status": "modified",
+      "changes": 14
+    },
+    {
+      "path": "src/api/conversation-workspace.ts",
+      "status": "added",
+      "changes": 79
+    },
+    {
+      "path": "src/api/git-service/agent-server-git-service.api.ts",
+      "status": "modified",
+      "changes": 12
+    },
+    {
+      "path": "src/api/git-service/git-service.api.ts",
+      "status": "modified",
+      "changes": 6
+    },
+    {
+      "path": "src/api/runtime-service/agent-server-runtime-service.ts",
+      "status": "modified",
+      "changes": 33
+    },
+    {
+      "path": "src/components/features/conversation-panel/local-new-conversation-menu.tsx",
+      "status": "modified",
+      "changes": 40
+    },
+    {
+      "path": "src/components/features/home/home-chat-launcher.tsx",
+      "status": "modified",
+      "changes": 32
+    },
+    {
+      "path": "src/components/features/home/workspace-selection-form.tsx",
+      "status": "modified",
+      "changes": 16
+    },
+    {
+      "path": "src/hooks/query/use-bash-command-logs.ts",
+      "status": "modified",
+      "changes": 15
+    },
+    {
+      "path": "src/hooks/query/use-conversation-workspace.ts",
+      "status": "added",
+      "changes": 40
+    },
+    {
+      "path": "src/hooks/query/use-has-git-commits.ts",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "src/hooks/query/use-local-git-info.ts",
+      "status": "modified",
+      "changes": 8
+    },
+    {
+      "path": "src/hooks/query/use-workspace-file-content.ts",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "src/hooks/query/use-workspace-files.ts",
+      "status": "modified",
+      "changes": 5
+    },
+    {
+      "path": "src/hooks/query/use-workspace-session.ts",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "src/hooks/use-bash-command-runner.ts",
+      "status": "modified",
+      "changes": 214
+    },
+    {
+      "path": "src/hooks/use-runtime-is-ready.ts",
+      "status": "modified",
+      "changes": 6
+    },
+    {
+      "path": "src/i18n/translation.json",
+      "status": "modified",
+      "changes": 70
+    },
+    {
+      "path": "src/utils/websocket-url.ts",
+      "status": "modified",
+      "changes": 22
+    }
+  ],
+  "snapshot": "sources/OpenHands-17387.json"
+}

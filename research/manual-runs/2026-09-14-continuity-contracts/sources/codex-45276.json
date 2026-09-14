@@ -1,0 +1,261 @@
+{
+  "repo": "openai/codex",
+  "id": 45276,
+  "url": "https://github.com/openai/codex/pull/45276",
+  "title": "Add worktree session creation to the agents overview",
+  "author": "copyberry[bot]",
+  "state": "closed",
+  "draft": false,
+  "merged_at": "2026-09-13T18:53:19Z",
+  "head": "6f39a47bb3b04de4c804187bfbf55edc56939aab",
+  "base": "44b9011611e1f4213ef34bd51b33476475803a94",
+  "read_at": "2026-09-14T01:48:45.998Z",
+  "files": [
+    {
+      "path": "codex-rs/config/src/tui_keymap.rs",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "codex-rs/core/config.schema.json",
+      "status": "modified",
+      "changes": 10
+    },
+    {
+      "path": "codex-rs/tui/src/app.rs",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "codex-rs/tui/src/app/agents_overview.rs",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "codex-rs/tui/src/app/agents_overview_new.rs",
+      "status": "modified",
+      "changes": 181
+    },
+    {
+      "path": "codex-rs/tui/src/app/agents_overview_render.rs",
+      "status": "modified",
+      "changes": 19
+    },
+    {
+      "path": "codex-rs/tui/src/app/agents_overview_tests.rs",
+      "status": "modified",
+      "changes": 28
+    },
+    {
+      "path": "codex-rs/tui/src/app/agents_overview_view.rs",
+      "status": "modified",
+      "changes": 13
+    },
+    {
+      "path": "codex-rs/tui/src/app/event_dispatch.rs",
+      "status": "modified",
+      "changes": 22
+    },
+    {
+      "path": "codex-rs/tui/src/app/reconnect.rs",
+      "status": "modified",
+      "changes": 11
+    },
+    {
+      "path": "codex-rs/tui/src/app/snapshots/codex_tui__app__agents_overview__tests__actions__agents_custom_lifecycle_chords.snap",
+      "status": "modified",
+      "changes": 6
+    },
+    {
+      "path": "codex-rs/tui/src/app/snapshots/codex_tui__app__agents_overview__tests__agents_overview_markdown.snap",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "codex-rs/tui/src/app/snapshots/codex_tui__app__agents_overview__tests__agents_overview_markdown_long_lines.snap",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "codex-rs/tui/src/app/snapshots/codex_tui__app__agents_overview__tests__agents_overview_markdown_table.snap",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "codex-rs/tui/src/app/snapshots/codex_tui__app__agents_overview__tests__agents_overview_model_grouping.snap",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "codex-rs/tui/src/app/snapshots/codex_tui__app__agents_overview__tests__older_server_narrow_overview.snap",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "codex-rs/tui/src/app/snapshots/codex_tui__app__agents_overview__tests__overview_empty_prompt_right_hint.snap",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "codex-rs/tui/src/app/snapshots/codex_tui__app__agents_overview__tests__overview_right_open_hint.snap",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "codex-rs/tui/src/app/snapshots/codex_tui__app__agents_overview__tests__overview_worktree_creation_busy_state.snap",
+      "status": "added",
+      "changes": 28
+    },
+    {
+      "path": "codex-rs/tui/src/app/snapshots/codex_tui__app__agents_overview__tests__usage__agents_overview_usage.snap",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "codex-rs/tui/src/app/tests/active_reconnect_tests.rs",
+      "status": "modified",
+      "changes": 14
+    },
+    {
+      "path": "codex-rs/tui/src/app/tests/background_task_defaults_tests.rs",
+      "status": "modified",
+      "changes": 238
+    },
+    {
+      "path": "codex-rs/tui/src/app/tests/disconnect_tests.rs",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "codex-rs/tui/src/app/tests/snapshots/codex_tui__app__tests__background_task_defaults_tests__command_center_retained_worktree_error.snap",
+      "status": "added",
+      "changes": 10
+    },
+    {
+      "path": "codex-rs/tui/src/app/tests/snapshots/codex_tui__app__tests__navigation_reconnect__daemon_command_center_vanished_rename.snap",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "codex-rs/tui/src/app/tests/snapshots/codex_tui__app__tests__session_lifecycle_requests__agents_command_center_after_archive.snap",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "codex-rs/tui/src/app_event.rs",
+      "status": "modified",
+      "changes": 5
+    },
+    {
+      "path": "codex-rs/tui/src/keymap.rs",
+      "status": "modified",
+      "changes": 12
+    },
+    {
+      "path": "codex-rs/tui/src/keymap/bindings.rs",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "codex-rs/tui/src/keymap/conflict_tests.rs",
+      "status": "modified",
+      "changes": 8
+    },
+    {
+      "path": "codex-rs/tui/src/keymap_setup/actions.rs",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "codex-rs/tui/src/snapshots/codex_tui__app__agents_overview__tests__agents_overview.snap",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "codex-rs/tui/src/snapshots/codex_tui__app__agents_overview__tests__agents_overview_attention.snap",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "codex-rs/tui/src/snapshots/codex_tui__app__agents_overview__tests__agents_overview_empty_narrow.snap",
+      "status": "modified",
+      "changes": 6
+    },
+    {
+      "path": "codex-rs/tui/src/snapshots/codex_tui__app__agents_overview__tests__agents_overview_last_message.snap",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "codex-rs/tui/src/snapshots/codex_tui__app__agents_overview__tests__agents_overview_live_activity.snap",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "codex-rs/tui/src/snapshots/codex_tui__app__agents_overview__tests__agents_overview_worktree_grouping.snap",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "codex-rs/tui/src/snapshots/codex_tui__keymap_setup__tests__keymap_picker_agents_actions.snap",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "codex-rs/tui/src/snapshots/codex_tui__keymap_setup__tests__keymap_picker_custom.snap",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "codex-rs/tui/src/snapshots/codex_tui__keymap_setup__tests__keymap_picker_fast_mode_enabled.snap",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "codex-rs/tui/src/snapshots/codex_tui__keymap_setup__tests__keymap_picker_first_actions.snap",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "codex-rs/tui/src/snapshots/codex_tui__keymap_setup__tests__keymap_picker_global_chord.snap",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "codex-rs/tui/src/snapshots/codex_tui__keymap_setup__tests__keymap_picker_narrow.snap",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "codex-rs/tui/src/snapshots/codex_tui__keymap_setup__tests__keymap_picker_wide.snap",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "codex-rs/tui/src/snapshots/codex_tui__keymap_setup__tests__keymap_question_actions.snap",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "codex-rs/worktree/src/git.rs",
+      "status": "modified",
+      "changes": 45
+    },
+    {
+      "path": "codex-rs/worktree/src/git_tests.rs",
+      "status": "modified",
+      "changes": 30
+    },
+    {
+      "path": "codex-rs/worktree/src/lib.rs",
+      "status": "modified",
+      "changes": 1
+    },
+    {
+      "path": "codex-rs/worktree/tests/worktree.rs",
+      "status": "modified",
+      "changes": 22
+    }
+  ],
+  "snapshot": "sources/codex-45276.json"
+}

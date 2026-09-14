@@ -1,0 +1,206 @@
+{
+  "repo": "superset-sh/superset",
+  "id": 7491,
+  "url": "https://github.com/superset-sh/superset/pull/7491",
+  "title": "feat(mobile,api,host-service): keep the Lock Screen agent card current with APNs pushes",
+  "author": "saddlepaddle",
+  "state": "open",
+  "draft": false,
+  "merged_at": null,
+  "head": "1fbc3368473cc42db8cb5bb3107bcb1c757c87cd",
+  "base": "b29b95aad6f6bd8f0682c324fa62c7cd7a4be367",
+  "read_at": "2026-09-14T01:48:27.096Z",
+  "files": [
+    {
+      "path": ".env.example",
+      "status": "modified",
+      "changes": 8
+    },
+    {
+      "path": ".env.local.example",
+      "status": "modified",
+      "changes": 6
+    },
+    {
+      "path": ".github/workflows/deploy-preview.yml",
+      "status": "modified",
+      "changes": 6
+    },
+    {
+      "path": ".github/workflows/deploy-production.yml",
+      "status": "modified",
+      "changes": 6
+    },
+    {
+      "path": "apps/mobile/modules/live-activity/ios/AgentActivityAttributes.swift",
+      "status": "modified",
+      "changes": 11
+    },
+    {
+      "path": "apps/mobile/modules/live-activity/ios/LiveActivityModule.swift",
+      "status": "modified",
+      "changes": 72
+    },
+    {
+      "path": "apps/mobile/modules/live-activity/src/index.ts",
+      "status": "modified",
+      "changes": 25
+    },
+    {
+      "path": "apps/mobile/screens/(authenticated)/(home)/home/HomeScreen.tsx",
+      "status": "modified",
+      "changes": 7
+    },
+    {
+      "path": "apps/mobile/screens/(authenticated)/(home)/home/hooks/useAgentLiveActivity/useAgentLiveActivity.ts",
+      "status": "modified",
+      "changes": 20
+    },
+    {
+      "path": "apps/mobile/screens/(authenticated)/(home)/home/hooks/useLiveActivityPushTokens/index.ts",
+      "status": "added",
+      "changes": 1
+    },
+    {
+      "path": "apps/mobile/screens/(authenticated)/(home)/home/hooks/useLiveActivityPushTokens/useLiveActivityPushTokens.ts",
+      "status": "added",
+      "changes": 96
+    },
+    {
+      "path": "apps/mobile/targets/agentactivity/AgentActivityAttributes.swift",
+      "status": "modified",
+      "changes": 11
+    },
+    {
+      "path": "apps/mobile/targets/agentactivity/AgentActivityWidget.swift",
+      "status": "modified",
+      "changes": 5
+    },
+    {
+      "path": "packages/db/drizzle/0115_agent_status_and_live_activity_tokens.sql",
+      "status": "added",
+      "changes": 34
+    },
+    {
+      "path": "packages/db/drizzle/0116_live_activity_token_device.sql",
+      "status": "added",
+      "changes": 1
+    },
+    {
+      "path": "packages/db/drizzle/meta/0115_snapshot.json",
+      "status": "added",
+      "changes": 10663
+    },
+    {
+      "path": "packages/db/drizzle/meta/0116_snapshot.json",
+      "status": "added",
+      "changes": 10669
+    },
+    {
+      "path": "packages/db/drizzle/meta/_journal.json",
+      "status": "modified",
+      "changes": 14
+    },
+    {
+      "path": "packages/db/src/schema/enums.ts",
+      "status": "modified",
+      "changes": 16
+    },
+    {
+      "path": "packages/db/src/schema/schema.ts",
+      "status": "modified",
+      "changes": 103
+    },
+    {
+      "path": "packages/host-service/src/app.ts",
+      "status": "modified",
+      "changes": 21
+    },
+    {
+      "path": "packages/host-service/src/terminal-agents/status-reporter/describe-workspace.ts",
+      "status": "added",
+      "changes": 27
+    },
+    {
+      "path": "packages/host-service/src/terminal-agents/status-reporter/index.ts",
+      "status": "added",
+      "changes": 6
+    },
+    {
+      "path": "packages/host-service/src/terminal-agents/status-reporter/status-reporter.test.ts",
+      "status": "added",
+      "changes": 158
+    },
+    {
+      "path": "packages/host-service/src/terminal-agents/status-reporter/status-reporter.ts",
+      "status": "added",
+      "changes": 182
+    },
+    {
+      "path": "packages/shared/package.json",
+      "status": "modified",
+      "changes": 4
+    },
+    {
+      "path": "packages/shared/src/agent-status.ts",
+      "status": "added",
+      "changes": 67
+    },
+    {
+      "path": "packages/trpc/src/env.ts",
+      "status": "modified",
+      "changes": 7
+    },
+    {
+      "path": "packages/trpc/src/lib/live-activity/apns.ts",
+      "status": "added",
+      "changes": 160
+    },
+    {
+      "path": "packages/trpc/src/lib/live-activity/card.test.ts",
+      "status": "added",
+      "changes": 66
+    },
+    {
+      "path": "packages/trpc/src/lib/live-activity/card.ts",
+      "status": "added",
+      "changes": 84
+    },
+    {
+      "path": "packages/trpc/src/lib/live-activity/index.ts",
+      "status": "added",
+      "changes": 2
+    },
+    {
+      "path": "packages/trpc/src/lib/live-activity/push.ts",
+      "status": "added",
+      "changes": 201
+    },
+    {
+      "path": "packages/trpc/src/root.ts",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "path": "packages/trpc/src/router/host/host.ts",
+      "status": "modified",
+      "changes": 123
+    },
+    {
+      "path": "packages/trpc/src/router/mobile/index.ts",
+      "status": "added",
+      "changes": 1
+    },
+    {
+      "path": "packages/trpc/src/router/mobile/mobile.ts",
+      "status": "added",
+      "changes": 98
+    },
+    {
+      "path": "plans/done/20260912-1838-live-activity-push.md",
+      "status": "added",
+      "changes": 265
+    }
+  ],
+  "snapshot": "sources/superset-7491.json"
+}

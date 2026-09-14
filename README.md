@@ -125,6 +125,11 @@ Explore dispatch, audit, and technical recovery while preserving the judgment re
 
 The [complete article catalog](./README.zh-CN.md#article-catalog) includes the latest publications and links to both language editions and external platforms.
 
+September 13–14 combined research:
+
+- [How Did an Opening Remark Become the Deliverable?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-14-terminal-result) · [中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-14-terminal-result)
+- [Why Can an Empty History Still Reference an Old Conversation?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-14-clear-continuation) · [中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-14-clear-continuation)
+
 September 11 experiments:
 
 - [The Result Exists. Why Did the Agent Fail to Deliver It?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-11-result-delivery) · [中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-11-result-delivery)

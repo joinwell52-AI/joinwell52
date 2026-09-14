@@ -1,0 +1,68 @@
+{
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "method": "Pinned full SDK source; original upstream tests; single-method predecessor clear ablation; real SQLite commit/failure for two cases; mocked OpenAI compact endpoint",
+  "outcomes": [
+    {
+      "mode": "fixed",
+      "exit_code": 0,
+      "cases": [
+        {
+          "name": "test_clear_session_invalidates_response_chain",
+          "passed": true,
+          "message": ""
+        },
+        {
+          "name": "test_settled_clear_failure_invalidates_response_chain[cancelled]",
+          "passed": true,
+          "message": ""
+        },
+        {
+          "name": "test_settled_clear_failure_invalidates_response_chain[error]",
+          "passed": true,
+          "message": ""
+        },
+        {
+          "name": "test_run_compaction_auto_uses_input_after_clear",
+          "passed": true,
+          "message": ""
+        },
+        {
+          "name": "test_clear_waits_for_in_flight_compaction_and_stays_empty",
+          "passed": true,
+          "message": ""
+        }
+      ]
+    },
+    {
+      "mode": "old-clear",
+      "exit_code": 1,
+      "cases": [
+        {
+          "name": "test_clear_session_invalidates_response_chain",
+          "passed": false,
+          "message": "Failed: DID NOT RAISE ValueError"
+        },
+        {
+          "name": "test_settled_clear_failure_invalidates_response_chain[cancelled]",
+          "passed": false,
+          "message": "Failed: DID NOT RAISE ValueError"
+        },
+        {
+          "name": "test_settled_clear_failure_invalidates_response_chain[error]",
+          "passed": false,
+          "message": "Failed: DID NOT RAISE ValueError"
+        },
+        {
+          "name": "test_run_compaction_auto_uses_input_after_clear",
+          "passed": false,
+          "message": "AssertionError: assert 'previous_response_id' not in {'model': 'gpt-4.1', 'previous_response_id': 'resp-old'}"
+        },
+        {
+          "name": "test_clear_waits_for_in_flight_compaction_and_stays_empty",
+          "passed": true,
+          "message": ""
+        }
+      ]
+    }
+  ]
+}

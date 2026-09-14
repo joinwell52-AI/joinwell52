@@ -1,0 +1,16 @@
+test_error_status_publishes_fallback_with_the_backend_error (tests_base.DispatchTaskAgyIntegrationTests.test_error_status_publishes_fallback_with_the_backend_error) ... FAIL
+
+======================================================================
+FAIL: test_error_status_publishes_fallback_with_the_backend_error (tests_base.DispatchTaskAgyIntegrationTests.test_error_status_publishes_fallback_with_the_backend_error)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<study>\sources\code\3c94f45\head\tests\test_dispatch_task_agy.py", line 513, in test_error_status_publishes_fallback_with_the_backend_error
+    self.assertEqual(result.returncode, 70, result.stderr)
+AssertionError: 0 != 70 : {"event": "init", "model": "gemini-3.8-flash-high", "conversation_id": "conv-fixed-0001"}
+{"event": "result", "result": {"response": "I will begin by reading the required documents in order, starting with the plan file, and then work through each section.\n", "status": "ERROR", "error": "Individual quota reached. Resets in 34m7s."}}
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.735s
+
+FAILED (failures=1)

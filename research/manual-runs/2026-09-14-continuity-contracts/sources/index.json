@@ -1,0 +1,2093 @@
+[
+  {
+    "repo": "ag2ai/ag2",
+    "id": 3248,
+    "url": "https://github.com/ag2ai/ag2/pull/3248",
+    "title": "feat(ag-ui): ask the human a question mid-run, and be answered",
+    "author": "vvlrff",
+    "state": "open",
+    "draft": true,
+    "merged_at": null,
+    "head": "33b10346c5fb44edf0b706be57b63c4b41d8d863",
+    "base": "585dba87e13911527710db9c7b47346e74e4f54b",
+    "read_at": "2026-09-14T01:48:12.791Z",
+    "files": [
+      {
+        "path": ".github/CODEOWNERS",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": "ag2/a2ui/dispatch.py",
+        "status": "modified",
+        "changes": 38
+      },
+      {
+        "path": "ag2/a2ui/server.py",
+        "status": "modified",
+        "changes": 25
+      },
+      {
+        "path": "ag2/a2ui/transports/ag_ui.py",
+        "status": "modified",
+        "changes": 151
+      },
+      {
+        "path": "ag2/a2ui/transports/base.py",
+        "status": "modified",
+        "changes": 8
+      },
+      {
+        "path": "ag2/a2ui/transports/rest.py",
+        "status": "modified",
+        "changes": 3
+      },
+      {
+        "path": "ag2/ag_ui/__init__.py",
+        "status": "modified",
+        "changes": 18
+      },
+      {
+        "path": "ag2/ag_ui/asgi.py",
+        "status": "modified",
+        "changes": 9
+      },
+      {
+        "path": "ag2/ag_ui/interrupts.py",
+        "status": "added",
+        "changes": 702
+      },
+      {
+        "path": "ag2/ag_ui/stream.py",
+        "status": "modified",
+        "changes": 349
+      },
+      {
+        "path": "ag2/context.py",
+        "status": "modified",
+        "changes": 22
+      },
+      {
+        "path": "ag2/events/__init__.py",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "ag2/events/types.py",
+        "status": "modified",
+        "changes": 19
+      },
+      {
+        "path": "ag2/middleware/builtin/tools/approval.py",
+        "status": "modified",
+        "changes": 17
+      },
+      {
+        "path": "examples/ag_ui/__init__.py",
+        "status": "added",
+        "changes": 0
+      },
+      {
+        "path": "examples/ag_ui/human_input.py",
+        "status": "added",
+        "changes": 109
+      },
+      {
+        "path": "pyproject.toml",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "test/a2ui/transports/test_e2e_interrupts.py",
+        "status": "added",
+        "changes": 269
+      },
+      {
+        "path": "test/ag_ui/driving.py",
+        "status": "added",
+        "changes": 211
+      },
+      {
+        "path": "test/ag_ui/test_interrupts.py",
+        "status": "added",
+        "changes": 241
+      },
+      {
+        "path": "test/ag_ui/test_refusals.py",
+        "status": "added",
+        "changes": 202
+      },
+      {
+        "path": "test/ag_ui/test_resume_proof.py",
+        "status": "added",
+        "changes": 187
+      },
+      {
+        "path": "test/ag_ui/test_retention.py",
+        "status": "added",
+        "changes": 170
+      },
+      {
+        "path": "test/ag_ui/test_tool_approval.py",
+        "status": "added",
+        "changes": 166
+      },
+      {
+        "path": "test/ag_ui/test_turn_lifetime.py",
+        "status": "added",
+        "changes": 135
+      },
+      {
+        "path": "test/middleware/builtins/test_approval.py",
+        "status": "modified",
+        "changes": 27
+      },
+      {
+        "path": "uv.lock",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "website/docs/user-guide/ag-ui/index.mdx",
+        "status": "modified",
+        "changes": 152
+      }
+    ],
+    "snapshot": "sources/ag2-3248.json"
+  },
+  {
+    "repo": "paperclipai/paperclip",
+    "id": 13347,
+    "url": "https://github.com/paperclipai/paperclip/pull/13347",
+    "title": "fix: keep AI subscription locks safe through transaction pooling",
+    "author": "cryppadotta",
+    "state": "closed",
+    "draft": false,
+    "merged_at": "2026-09-13T00:05:18Z",
+    "head": "b3fb4c406a49ace4f6ef4dd309222d993437b9b0",
+    "base": "6cef9743c04f6cba45f135d8de0423599c9cd1bf",
+    "read_at": "2026-09-14T01:48:17.458Z",
+    "files": [
+      {
+        "path": "doc/connections/AI-CONNECTIONS.md",
+        "status": "modified",
+        "changes": 8
+      },
+      {
+        "path": "server/src/__tests__/ai-connections.test.ts",
+        "status": "modified",
+        "changes": 15
+      },
+      {
+        "path": "server/src/services/ai-connection-runtime.ts",
+        "status": "modified",
+        "changes": 15
+      },
+      {
+        "path": "ui/src/components/OnboardingWizard.test.tsx",
+        "status": "modified",
+        "changes": 46
+      },
+      {
+        "path": "ui/src/components/OnboardingWizard.tsx",
+        "status": "modified",
+        "changes": 19
+      }
+    ],
+    "snapshot": "sources/paperclip-13347.json"
+  },
+  {
+    "repo": "paperclipai/paperclip",
+    "id": 13345,
+    "url": "https://github.com/paperclipai/paperclip/pull/13345",
+    "title": "fix: deliver current task descriptions on resumed runs",
+    "author": "cryppadotta",
+    "state": "open",
+    "draft": true,
+    "merged_at": null,
+    "head": "65423940921712ba85e44edd050bec4813db5f50",
+    "base": "c5669a60f6bd15c19d1c859151466c3a20fe26ef",
+    "read_at": "2026-09-14T01:48:22.166Z",
+    "files": [
+      {
+        "path": "doc/SPEC-implementation.md",
+        "status": "modified",
+        "changes": 8
+      },
+      {
+        "path": "packages/adapter-utils/src/server-utils.test.ts",
+        "status": "modified",
+        "changes": 34
+      },
+      {
+        "path": "packages/adapter-utils/src/server-utils.ts",
+        "status": "modified",
+        "changes": 44
+      },
+      {
+        "path": "packages/adapters/claude-local/src/server/acp.test.ts",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": "packages/adapters/hermes/src/gateway/server/execute.test.ts",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": "server/src/__tests__/codex-local-execute.test.ts",
+        "status": "modified",
+        "changes": 7
+      },
+      {
+        "path": "server/src/services/execution-continuation.test.ts",
+        "status": "modified",
+        "changes": 93
+      },
+      {
+        "path": "server/src/services/execution-continuation.ts",
+        "status": "modified",
+        "changes": 54
+      }
+    ],
+    "snapshot": "sources/paperclip-13345.json"
+  },
+  {
+    "repo": "superset-sh/superset",
+    "id": 7491,
+    "url": "https://github.com/superset-sh/superset/pull/7491",
+    "title": "feat(mobile,api,host-service): keep the Lock Screen agent card current with APNs pushes",
+    "author": "saddlepaddle",
+    "state": "open",
+    "draft": false,
+    "merged_at": null,
+    "head": "1fbc3368473cc42db8cb5bb3107bcb1c757c87cd",
+    "base": "b29b95aad6f6bd8f0682c324fa62c7cd7a4be367",
+    "read_at": "2026-09-14T01:48:27.096Z",
+    "files": [
+      {
+        "path": ".env.example",
+        "status": "modified",
+        "changes": 8
+      },
+      {
+        "path": ".env.local.example",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": ".github/workflows/deploy-preview.yml",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": ".github/workflows/deploy-production.yml",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": "apps/mobile/modules/live-activity/ios/AgentActivityAttributes.swift",
+        "status": "modified",
+        "changes": 11
+      },
+      {
+        "path": "apps/mobile/modules/live-activity/ios/LiveActivityModule.swift",
+        "status": "modified",
+        "changes": 72
+      },
+      {
+        "path": "apps/mobile/modules/live-activity/src/index.ts",
+        "status": "modified",
+        "changes": 25
+      },
+      {
+        "path": "apps/mobile/screens/(authenticated)/(home)/home/HomeScreen.tsx",
+        "status": "modified",
+        "changes": 7
+      },
+      {
+        "path": "apps/mobile/screens/(authenticated)/(home)/home/hooks/useAgentLiveActivity/useAgentLiveActivity.ts",
+        "status": "modified",
+        "changes": 20
+      },
+      {
+        "path": "apps/mobile/screens/(authenticated)/(home)/home/hooks/useLiveActivityPushTokens/index.ts",
+        "status": "added",
+        "changes": 1
+      },
+      {
+        "path": "apps/mobile/screens/(authenticated)/(home)/home/hooks/useLiveActivityPushTokens/useLiveActivityPushTokens.ts",
+        "status": "added",
+        "changes": 96
+      },
+      {
+        "path": "apps/mobile/targets/agentactivity/AgentActivityAttributes.swift",
+        "status": "modified",
+        "changes": 11
+      },
+      {
+        "path": "apps/mobile/targets/agentactivity/AgentActivityWidget.swift",
+        "status": "modified",
+        "changes": 5
+      },
+      {
+        "path": "packages/db/drizzle/0115_agent_status_and_live_activity_tokens.sql",
+        "status": "added",
+        "changes": 34
+      },
+      {
+        "path": "packages/db/drizzle/0116_live_activity_token_device.sql",
+        "status": "added",
+        "changes": 1
+      },
+      {
+        "path": "packages/db/drizzle/meta/0115_snapshot.json",
+        "status": "added",
+        "changes": 10663
+      },
+      {
+        "path": "packages/db/drizzle/meta/0116_snapshot.json",
+        "status": "added",
+        "changes": 10669
+      },
+      {
+        "path": "packages/db/drizzle/meta/_journal.json",
+        "status": "modified",
+        "changes": 14
+      },
+      {
+        "path": "packages/db/src/schema/enums.ts",
+        "status": "modified",
+        "changes": 16
+      },
+      {
+        "path": "packages/db/src/schema/schema.ts",
+        "status": "modified",
+        "changes": 103
+      },
+      {
+        "path": "packages/host-service/src/app.ts",
+        "status": "modified",
+        "changes": 21
+      },
+      {
+        "path": "packages/host-service/src/terminal-agents/status-reporter/describe-workspace.ts",
+        "status": "added",
+        "changes": 27
+      },
+      {
+        "path": "packages/host-service/src/terminal-agents/status-reporter/index.ts",
+        "status": "added",
+        "changes": 6
+      },
+      {
+        "path": "packages/host-service/src/terminal-agents/status-reporter/status-reporter.test.ts",
+        "status": "added",
+        "changes": 158
+      },
+      {
+        "path": "packages/host-service/src/terminal-agents/status-reporter/status-reporter.ts",
+        "status": "added",
+        "changes": 182
+      },
+      {
+        "path": "packages/shared/package.json",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "packages/shared/src/agent-status.ts",
+        "status": "added",
+        "changes": 67
+      },
+      {
+        "path": "packages/trpc/src/env.ts",
+        "status": "modified",
+        "changes": 7
+      },
+      {
+        "path": "packages/trpc/src/lib/live-activity/apns.ts",
+        "status": "added",
+        "changes": 160
+      },
+      {
+        "path": "packages/trpc/src/lib/live-activity/card.test.ts",
+        "status": "added",
+        "changes": 66
+      },
+      {
+        "path": "packages/trpc/src/lib/live-activity/card.ts",
+        "status": "added",
+        "changes": 84
+      },
+      {
+        "path": "packages/trpc/src/lib/live-activity/index.ts",
+        "status": "added",
+        "changes": 2
+      },
+      {
+        "path": "packages/trpc/src/lib/live-activity/push.ts",
+        "status": "added",
+        "changes": 201
+      },
+      {
+        "path": "packages/trpc/src/root.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "packages/trpc/src/router/host/host.ts",
+        "status": "modified",
+        "changes": 123
+      },
+      {
+        "path": "packages/trpc/src/router/mobile/index.ts",
+        "status": "added",
+        "changes": 1
+      },
+      {
+        "path": "packages/trpc/src/router/mobile/mobile.ts",
+        "status": "added",
+        "changes": 98
+      },
+      {
+        "path": "plans/done/20260912-1838-live-activity-push.md",
+        "status": "added",
+        "changes": 265
+      }
+    ],
+    "snapshot": "sources/superset-7491.json"
+  },
+  {
+    "repo": "stablyai/orca",
+    "id": 20402,
+    "url": "https://github.com/stablyai/orca/pull/20402",
+    "title": "fix(remote): isolate client focus and notifications by run origin",
+    "author": "Jinwoo-H",
+    "state": "open",
+    "draft": true,
+    "merged_at": null,
+    "head": "74c0e5909501934f2966eacfab8b32e6610d4818",
+    "base": "403b62a8d8fa6e896a93acc4c15405be0f0b7dc7",
+    "read_at": "2026-09-14T01:48:31.752Z",
+    "files": [
+      {
+        "path": "config/reliability-gates.jsonc",
+        "status": "modified",
+        "changes": 12
+      },
+      {
+        "path": "src/cli/handlers/terminal.ts",
+        "status": "modified",
+        "changes": 22
+      },
+      {
+        "path": "src/cli/handlers/worktree-result-warnings.ts",
+        "status": "added",
+        "changes": 23
+      },
+      {
+        "path": "src/cli/handlers/worktree.ts",
+        "status": "modified",
+        "changes": 35
+      },
+      {
+        "path": "src/main/daemon/daemon-create-or-attach-result.ts",
+        "status": "modified",
+        "changes": 5
+      },
+      {
+        "path": "src/main/daemon/daemon-pty-spawn-request.ts",
+        "status": "modified",
+        "changes": 3
+      },
+      {
+        "path": "src/main/daemon/daemon-pty-spawn-result.ts",
+        "status": "modified",
+        "changes": 9
+      },
+      {
+        "path": "src/main/daemon/daemon-terminal-admission.ts",
+        "status": "modified",
+        "changes": 5
+      },
+      {
+        "path": "src/main/daemon/session-options.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "src/main/daemon/session.ts",
+        "status": "modified",
+        "changes": 19
+      },
+      {
+        "path": "src/main/daemon/terminal-host-create-contract.ts",
+        "status": "modified",
+        "changes": 3
+      },
+      {
+        "path": "src/main/daemon/terminal-host-options.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "src/main/daemon/terminal-host-session-create.ts",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "src/main/daemon/types.ts",
+        "status": "modified",
+        "changes": 17
+      },
+      {
+        "path": "src/main/ipc/notifications-mobile-fanout.test.ts",
+        "status": "modified",
+        "changes": 29
+      },
+      {
+        "path": "src/main/ipc/notifications.ts",
+        "status": "modified",
+        "changes": 20
+      },
+      {
+        "path": "src/main/ipc/pty-daemon-spawn-session-identity.test.ts",
+        "status": "modified",
+        "changes": 5
+      },
+      {
+        "path": "src/main/ipc/pty/ipc/spawn-commit-persist.ts",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "src/main/ipc/pty/ipc/spawn-commit.ts",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "src/main/ipc/pty/ipc/spawn-options.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "src/main/ipc/pty/ipc/spawn-types.ts",
+        "status": "modified",
+        "changes": 3
+      },
+      {
+        "path": "src/main/ipc/pty/pane/pty-work-origin.test.ts",
+        "status": "added",
+        "changes": 37
+      },
+      {
+        "path": "src/main/ipc/pty/pane/pty-work-origin.ts",
+        "status": "added",
+        "changes": 32
+      },
+      {
+        "path": "src/main/ipc/pty/pane/spawn-reservation.ts",
+        "status": "modified",
+        "changes": 11
+      },
+      {
+        "path": "src/main/ipc/pty/pane/stable-owner.ts",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "src/main/ipc/pty/runtime/spawn-commit.ts",
+        "status": "modified",
+        "changes": 17
+      },
+      {
+        "path": "src/main/ipc/pty/runtime/spawn-options.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "src/main/ipc/pty/runtime/spawn-state.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "src/main/ipc/session.ts",
+        "status": "modified",
+        "changes": 9
+      },
+      {
+        "path": "src/main/native-chat/agent-session-wire/structured-agent-session-attach.ts",
+        "status": "modified",
+        "changes": 3
+      },
+      {
+        "path": "src/main/native-chat/agent-session-wire/structured-agent-session-host.ts",
+        "status": "modified",
+        "changes": 17
+      },
+      {
+        "path": "src/main/orca-profiles/profile-project-session-field-disposition.ts",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "src/main/orca-profiles/profile-project-session-state.ts",
+        "status": "modified",
+        "changes": 12
+      },
+      {
+        "path": "src/main/orca-profiles/profile-project-session-transfer.ts",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": "src/main/persistence/loading-store/pty-binding-persistence.ts",
+        "status": "modified",
+        "changes": 8
+      },
+      {
+        "path": "src/main/persistence/restoring-sessions/session-owner-removal.ts",
+        "status": "modified",
+        "changes": 8
+      },
+      {
+        "path": "src/main/persistence/restoring-sessions/session-worktree-ownership.ts",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "src/main/persistence/runtime-authored-workspace-session-fields.ts",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": "src/main/providers/local-pty-session-activation.ts",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "src/main/providers/pty-provider-contract.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "src/main/providers/pty-spawn-result.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "src/main/providers/ssh-pty-session-reattach.ts",
+        "status": "modified",
+        "changes": 5
+      },
+      {
+        "path": "src/main/providers/ssh-pty-spawn-request.ts",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "src/main/runtime/agent-session-reservation-admission.ts",
+        "status": "modified",
+        "changes": 3
+      },
+      {
+        "path": "src/main/runtime/mobile-session-terminal-persistence-retirement.ts",
+        "status": "modified",
+        "changes": 3
+      },
+      {
+        "path": "src/main/runtime/mobile-session-terminal-projection.ts",
+        "status": "modified",
+        "changes": 3
+      },
+      {
+        "path": "src/main/runtime/multi-client-navigation-isolation.integration.test.ts",
+        "status": "modified",
+        "changes": 165
+      },
+      {
+        "path": "src/main/runtime/orca-runtime-activate-managed-worktree.ts",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "src/main/runtime/orca-runtime-create-managed-remote-worktree.ts",
+        "status": "modified",
+        "changes": 9
+      },
+      {
+        "path": "src/main/runtime/orca-runtime-create-managed-worktree.ts",
+        "status": "modified",
+        "changes": 21
+      },
+      {
+        "path": "src/main/runtime/orca-runtime-create-runtime-owned-mobile-session-terminal.ts",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "src/main/runtime/orca-runtime-create-terminal-desktop.ts",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "src/main/runtime/orca-runtime-create-terminal.ts",
+        "status": "modified",
+        "changes": 65
+      },
+      {
+        "path": "src/main/runtime/orca-runtime-notify-ssh-state-changed.ts",
+        "status": "modified",
+        "changes": 18
+      },
+      {
+        "path": "src/main/runtime/orca-runtime-perform-mobile-session-pty-records-refresh.ts",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "src/main/runtime/orca-runtime-prune-mobile-session-tab-group-layout.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "src/main/runtime/orca-runtime-publish-pty-backed-mobile-session-terminal.ts",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "src/main/runtime/orca-runtime-register-pty.ts",
+        "status": "modified",
+        "changes": 54
+      },
+      {
+        "path": "src/main/runtime/orca-runtime-run-create-mobile-session-terminal.ts",
+        "status": "modified",
+        "changes": 11
+      },
+      {
+        "path": "src/main/runtime/orca-runtime-split-pty-backed-terminal.ts",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "src/main/runtime/orca-runtime-split-terminal.ts",
+        "status": "modified",
+        "changes": 3
+      },
+      {
+        "path": "src/main/runtime/push/push-dispatcher.test.ts",
+        "status": "modified",
+        "changes": 16
+      },
+      {
+        "path": "src/main/runtime/push/push-dispatcher.ts",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "src/main/runtime/rpc/methods/client-events.ts",
+        "status": "modified",
+        "changes": 5
+      },
+      {
+        "path": "src/main/runtime/rpc/methods/notification-reconnect-cooldown.test.ts",
+        "status": "modified",
+        "changes": 60
+      },
+      {
+        "path": "src/main/runtime/rpc/methods/notifications.ts",
+        "status": "modified",
+        "changes": 19
+      },
+      {
+        "path": "src/main/runtime/rpc/methods/orchestration-structured-worker-session.ts",
+        "status": "modified",
+        "changes": 3
+      },
+      {
+        "path": "src/main/runtime/rpc/methods/orchestration/worker/worker-start-agent-placement.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "src/main/runtime/rpc/methods/orchestration/worker/worker-topology.ts",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": "src/main/runtime/rpc/methods/orchestration/worker/worker-worktree-creation.ts",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "src/main/runtime/rpc/methods/structured-agent-session-create.ts",
+        "status": "modified",
+        "changes": 5
+      },
+      {
+        "path": "src/main/runtime/rpc/methods/structured-agent-session.ts",
+        "status": "modified",
+        "changes": 8
+      },
+      {
+        "path": "src/main/runtime/rpc/methods/terminal/terminal-lifecycle-methods.ts",
+        "status": "modified",
+        "changes": 8
+      },
+      {
+        "path": "src/main/runtime/rpc/methods/worktree-create-args.ts",
+        "status": "modified",
+        "changes": 15
+      },
+      {
+        "path": "src/main/runtime/rpc/methods/worktree-create-navigation.test.ts",
+        "status": "modified",
+        "changes": 19
+      },
+      {
+        "path": "src/main/runtime/rpc/methods/worktree.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "src/main/runtime/rpc/work-origin-context.test.ts",
+        "status": "added",
+        "changes": 58
+      },
+      {
+        "path": "src/main/runtime/rpc/work-origin-context.ts",
+        "status": "added",
+        "changes": 27
+      },
+      {
+        "path": "src/main/runtime/runtime-folder-worktree-create.ts",
+        "status": "modified",
+        "changes": 7
+      },
+      {
+        "path": "src/main/runtime/runtime-local-worktree-terminal-startup.ts",
+        "status": "modified",
+        "changes": 34
+      },
+      {
+        "path": "src/main/runtime/runtime-managed-worktree-create-types.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "src/main/runtime/runtime-mobile-notification-controller.ts",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "src/main/runtime/runtime-mobile-session-projection-contract.ts",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": "src/main/runtime/runtime-mobile-session-projection.ts",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "src/main/runtime/runtime-pty-controller-contract.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "src/main/runtime/runtime-remote-managed-worktree-create.test.ts",
+        "status": "added",
+        "changes": 51
+      },
+      {
+        "path": "src/main/runtime/runtime-remote-managed-worktree-create.ts",
+        "status": "modified",
+        "changes": 17
+      },
+      {
+        "path": "src/main/runtime/runtime-remote-worktree-create-result.ts",
+        "status": "modified",
+        "changes": 26
+      },
+      {
+        "path": "src/main/runtime/runtime-terminal-contracts.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "src/main/runtime/runtime-terminal-state-records.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "src/main/runtime/runtime-worktree-terminal-provisioning.ts",
+        "status": "modified",
+        "changes": 28
+      },
+      {
+        "path": "src/main/runtime/structured-worker-child-identity-env.test.ts",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": "src/main/runtime/structured-worker-child-identity-env.ts",
+        "status": "modified",
+        "changes": 43
+      },
+      {
+        "path": "src/main/runtime/terminal-create-reveal.ts",
+        "status": "added",
+        "changes": 25
+      },
+      {
+        "path": "src/main/runtime/terminal-create-work-origin.ts",
+        "status": "added",
+        "changes": 25
+      },
+      {
+        "path": "src/preload/api/pty-api.ts",
+        "status": "modified",
+        "changes": 3
+      },
+      {
+        "path": "src/preload/api/pty-bridge-session-control.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "src/relay/pty-handler.ts",
+        "status": "modified",
+        "changes": 8
+      },
+      {
+        "path": "src/renderer/src/components/terminal-pane/ipc-pty-spawn-request.ts",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": "src/renderer/src/components/terminal-pane/notification-dispatch-test-state.ts",
+        "status": "added",
+        "changes": 67
+      },
+      {
+        "path": "src/renderer/src/components/terminal-pane/use-notification-dispatch.test.ts",
+        "status": "modified",
+        "changes": 241
+      },
+      {
+        "path": "src/renderer/src/components/terminal-pane/use-notification-dispatch.ts",
+        "status": "modified",
+        "changes": 77
+      },
+      {
+        "path": "src/renderer/src/hooks/ipc-events/terminal-request-ipc-bridge.ts",
+        "status": "modified",
+        "changes": 10
+      },
+      {
+        "path": "src/renderer/src/runtime/runtime-client-events.test.ts",
+        "status": "modified",
+        "changes": 41
+      },
+      {
+        "path": "src/renderer/src/runtime/runtime-client-events.ts",
+        "status": "modified",
+        "changes": 21
+      },
+      {
+        "path": "src/renderer/src/runtime/web-session-tabs-sync-focus-intent.test.ts",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "src/renderer/src/runtime/web-session-tabs-sync/apply-preparation-base.ts",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": "src/renderer/src/runtime/web-session-tabs-sync/state-equality-tabs.ts",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "src/renderer/src/runtime/web-session-tabs-sync/terminal-build.ts",
+        "status": "modified",
+        "changes": 7
+      },
+      {
+        "path": "src/shared/agent-session-launch-args.ts",
+        "status": "added",
+        "changes": 13
+      },
+      {
+        "path": "src/shared/agent-session-record.ts",
+        "status": "modified",
+        "changes": 18
+      },
+      {
+        "path": "src/shared/notification-settings-types.ts",
+        "status": "modified",
+        "changes": 3
+      },
+      {
+        "path": "src/shared/rpc-contract/terminal-unary-params.ts",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": "src/shared/rpc-contract/worktree-create-params.ts",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "src/shared/runtime-client-events.ts",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "src/shared/runtime-mobile-session-tab-contracts.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "src/shared/runtime-navigation.ts",
+        "status": "modified",
+        "changes": 5
+      },
+      {
+        "path": "src/shared/runtime-terminal-contracts.ts",
+        "status": "modified",
+        "changes": 11
+      },
+      {
+        "path": "src/shared/terminal-tab-types.ts",
+        "status": "modified",
+        "changes": 3
+      },
+      {
+        "path": "src/shared/work-origin.ts",
+        "status": "added",
+        "changes": 30
+      },
+      {
+        "path": "src/shared/workspace-session-host-field-ownership.ts",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "src/shared/workspace-session-schema-field-coverage.test.ts",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "src/shared/workspace-session-schema.ts",
+        "status": "modified",
+        "changes": 11
+      },
+      {
+        "path": "src/shared/workspace-session-state-types.ts",
+        "status": "modified",
+        "changes": 2
+      }
+    ],
+    "snapshot": "sources/orca-20402.json"
+  },
+  {
+    "repo": "Runfusion/Fusion",
+    "id": 3597,
+    "url": "https://github.com/Runfusion/Fusion/pull/3597",
+    "title": "fix(acp): map Fusion tool names to MCP schemas",
+    "author": "timoteo7",
+    "state": "open",
+    "draft": false,
+    "merged_at": null,
+    "head": "e40f74273d0eaccd62954d1905c35a8cbbc8db28",
+    "base": "16e475109b16f8cb137a3d4faec18d6c18efbbd4",
+    "read_at": "2026-09-14T01:48:36.400Z",
+    "files": [
+      {
+        "path": ".changeset/bright-tools-map.md",
+        "status": "added",
+        "changes": 7
+      },
+      {
+        "path": "plugins/fusion-plugin-acp-runtime/src/__tests__/runtime-adapter.test.ts",
+        "status": "modified",
+        "changes": 92
+      },
+      {
+        "path": "plugins/fusion-plugin-acp-runtime/src/runtime-adapter.ts",
+        "status": "modified",
+        "changes": 30
+      },
+      {
+        "path": "plugins/fusion-plugin-acp-runtime/src/tool-bridge.ts",
+        "status": "modified",
+        "changes": 3
+      },
+      {
+        "path": "plugins/fusion-plugin-acp-runtime/src/types.ts",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "plugins/fusion-plugin-claude-runtime/src/__tests__/runtime-adapter.test.ts",
+        "status": "modified",
+        "changes": 71
+      },
+      {
+        "path": "plugins/fusion-plugin-claude-runtime/src/__tests__/tool-bridge.test.ts",
+        "status": "modified",
+        "changes": 7
+      },
+      {
+        "path": "plugins/fusion-plugin-claude-runtime/src/runtime-adapter.ts",
+        "status": "modified",
+        "changes": 40
+      },
+      {
+        "path": "plugins/fusion-plugin-claude-runtime/src/tool-bridge.ts",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": "plugins/fusion-plugin-grok-runtime/src/__tests__/runtime-adapter.test.ts",
+        "status": "modified",
+        "changes": 73
+      },
+      {
+        "path": "plugins/fusion-plugin-grok-runtime/src/__tests__/tool-bridge.test.ts",
+        "status": "modified",
+        "changes": 8
+      },
+      {
+        "path": "plugins/fusion-plugin-grok-runtime/src/runtime-adapter.ts",
+        "status": "modified",
+        "changes": 36
+      },
+      {
+        "path": "plugins/fusion-plugin-grok-runtime/src/tool-bridge.ts",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": "plugins/fusion-plugin-omp-runtime/src/__tests__/runtime-adapter.test.ts",
+        "status": "modified",
+        "changes": 70
+      },
+      {
+        "path": "plugins/fusion-plugin-omp-runtime/src/__tests__/tool-bridge.test.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "plugins/fusion-plugin-omp-runtime/src/runtime-adapter.ts",
+        "status": "modified",
+        "changes": 46
+      },
+      {
+        "path": "plugins/fusion-plugin-omp-runtime/src/tool-bridge.ts",
+        "status": "modified",
+        "changes": 7
+      }
+    ],
+    "snapshot": "sources/Fusion-3597.json"
+  },
+  {
+    "repo": "OpenHands/OpenHands",
+    "id": 17387,
+    "url": "https://github.com/OpenHands/OpenHands/pull/17387",
+    "title": "fix(canvas): respect scoped runtime clients and workspace capabilities",
+    "author": "neubig",
+    "state": "open",
+    "draft": true,
+    "merged_at": null,
+    "head": "77d8b817c4879e53de10380092cca5d3084562bf",
+    "base": "28464621d879e3e9b3ceeae9d70a71d96da6212d",
+    "read_at": "2026-09-14T01:48:41.683Z",
+    "files": [
+      {
+        "path": ".pr/error-workspace/README.md",
+        "status": "added",
+        "changes": 23
+      },
+      {
+        "path": ".pr/error-workspace/after-diagnostic-content.png",
+        "status": "added",
+        "changes": 0
+      },
+      {
+        "path": ".pr/error-workspace/after-file-tree.png",
+        "status": "added",
+        "changes": 0
+      },
+      {
+        "path": ".pr/error-workspace/before-after.gif",
+        "status": "added",
+        "changes": 0
+      },
+      {
+        "path": ".pr/error-workspace/before-file-tree.png",
+        "status": "added",
+        "changes": 0
+      },
+      {
+        "path": ".pr/error-workspace/evidence.json",
+        "status": "added",
+        "changes": 62
+      },
+      {
+        "path": ".pr/log-scope/README.md",
+        "status": "added",
+        "changes": 17
+      },
+      {
+        "path": ".pr/log-scope/logs.gif",
+        "status": "added",
+        "changes": 0
+      },
+      {
+        "path": ".pr/log-scope/observations.json",
+        "status": "added",
+        "changes": 58
+      },
+      {
+        "path": ".pr/runtime-boundaries.md",
+        "status": "added",
+        "changes": 44
+      },
+      {
+        "path": ".pr/runtime-file-probe.png",
+        "status": "added",
+        "changes": 0
+      },
+      {
+        "path": ".pr/runtime-probe.json",
+        "status": "added",
+        "changes": 41
+      },
+      {
+        "path": ".pr/runtime-terminal-probe.png",
+        "status": "added",
+        "changes": 0
+      },
+      {
+        "path": ".pr/workspace-baseline.png",
+        "status": "added",
+        "changes": 0
+      },
+      {
+        "path": ".pr/workspace-pr.png",
+        "status": "added",
+        "changes": 0
+      },
+      {
+        "path": "__tests__/api/agent-server-client-options.test.ts",
+        "status": "added",
+        "changes": 73
+      },
+      {
+        "path": "__tests__/api/agent-server-conversation-service.test.ts",
+        "status": "modified",
+        "changes": 72
+      },
+      {
+        "path": "__tests__/api/agent-server-git-service.test.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "__tests__/api/bash-service.test.ts",
+        "status": "modified",
+        "changes": 15
+      },
+      {
+        "path": "__tests__/api/docker-conversation-boundaries.test.ts",
+        "status": "added",
+        "changes": 238
+      },
+      {
+        "path": "__tests__/api/runtime-service/agent-server-runtime-service.test.ts",
+        "status": "modified",
+        "changes": 103
+      },
+      {
+        "path": "__tests__/components/features/conversation-panel/local-new-conversation-menu.test.tsx",
+        "status": "modified",
+        "changes": 48
+      },
+      {
+        "path": "__tests__/components/features/home/workspace-selection-form.test.tsx",
+        "status": "modified",
+        "changes": 43
+      },
+      {
+        "path": "__tests__/hooks/query/use-bash-command-logs.test.tsx",
+        "status": "modified",
+        "changes": 13
+      },
+      {
+        "path": "__tests__/hooks/query/use-has-git-commits.test.tsx",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "__tests__/hooks/query/use-workspace-file-content.test.tsx",
+        "status": "modified",
+        "changes": 26
+      },
+      {
+        "path": "__tests__/hooks/query/use-workspace-files.test.tsx",
+        "status": "modified",
+        "changes": 27
+      },
+      {
+        "path": "__tests__/hooks/use-bash-command-runner.test.ts",
+        "status": "modified",
+        "changes": 277
+      },
+      {
+        "path": "__tests__/hooks/use-runtime-is-ready.test.tsx",
+        "status": "modified",
+        "changes": 37
+      },
+      {
+        "path": "src/api/agent-server-adapter.ts",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": "src/api/agent-server-client-options.ts",
+        "status": "modified",
+        "changes": 43
+      },
+      {
+        "path": "src/api/bash-service/bash-service.api.ts",
+        "status": "modified",
+        "changes": 12
+      },
+      {
+        "path": "src/api/conversation-file-upload.api.ts",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "src/api/conversation-service/agent-server-conversation-service.api.ts",
+        "status": "modified",
+        "changes": 56
+      },
+      {
+        "path": "src/api/conversation-service/conversation-service.api.ts",
+        "status": "modified",
+        "changes": 14
+      },
+      {
+        "path": "src/api/conversation-workspace.ts",
+        "status": "added",
+        "changes": 79
+      },
+      {
+        "path": "src/api/git-service/agent-server-git-service.api.ts",
+        "status": "modified",
+        "changes": 12
+      },
+      {
+        "path": "src/api/git-service/git-service.api.ts",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": "src/api/runtime-service/agent-server-runtime-service.ts",
+        "status": "modified",
+        "changes": 33
+      },
+      {
+        "path": "src/components/features/conversation-panel/local-new-conversation-menu.tsx",
+        "status": "modified",
+        "changes": 40
+      },
+      {
+        "path": "src/components/features/home/home-chat-launcher.tsx",
+        "status": "modified",
+        "changes": 32
+      },
+      {
+        "path": "src/components/features/home/workspace-selection-form.tsx",
+        "status": "modified",
+        "changes": 16
+      },
+      {
+        "path": "src/hooks/query/use-bash-command-logs.ts",
+        "status": "modified",
+        "changes": 15
+      },
+      {
+        "path": "src/hooks/query/use-conversation-workspace.ts",
+        "status": "added",
+        "changes": 40
+      },
+      {
+        "path": "src/hooks/query/use-has-git-commits.ts",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "src/hooks/query/use-local-git-info.ts",
+        "status": "modified",
+        "changes": 8
+      },
+      {
+        "path": "src/hooks/query/use-workspace-file-content.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "src/hooks/query/use-workspace-files.ts",
+        "status": "modified",
+        "changes": 5
+      },
+      {
+        "path": "src/hooks/query/use-workspace-session.ts",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "src/hooks/use-bash-command-runner.ts",
+        "status": "modified",
+        "changes": 214
+      },
+      {
+        "path": "src/hooks/use-runtime-is-ready.ts",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": "src/i18n/translation.json",
+        "status": "modified",
+        "changes": 70
+      },
+      {
+        "path": "src/utils/websocket-url.ts",
+        "status": "modified",
+        "changes": 22
+      }
+    ],
+    "snapshot": "sources/OpenHands-17387.json"
+  },
+  {
+    "repo": "openai/codex",
+    "id": 45276,
+    "url": "https://github.com/openai/codex/pull/45276",
+    "title": "Add worktree session creation to the agents overview",
+    "author": "copyberry[bot]",
+    "state": "closed",
+    "draft": false,
+    "merged_at": "2026-09-13T18:53:19Z",
+    "head": "6f39a47bb3b04de4c804187bfbf55edc56939aab",
+    "base": "44b9011611e1f4213ef34bd51b33476475803a94",
+    "read_at": "2026-09-14T01:48:45.998Z",
+    "files": [
+      {
+        "path": "codex-rs/config/src/tui_keymap.rs",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "codex-rs/core/config.schema.json",
+        "status": "modified",
+        "changes": 10
+      },
+      {
+        "path": "codex-rs/tui/src/app.rs",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "codex-rs/tui/src/app/agents_overview.rs",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "codex-rs/tui/src/app/agents_overview_new.rs",
+        "status": "modified",
+        "changes": 181
+      },
+      {
+        "path": "codex-rs/tui/src/app/agents_overview_render.rs",
+        "status": "modified",
+        "changes": 19
+      },
+      {
+        "path": "codex-rs/tui/src/app/agents_overview_tests.rs",
+        "status": "modified",
+        "changes": 28
+      },
+      {
+        "path": "codex-rs/tui/src/app/agents_overview_view.rs",
+        "status": "modified",
+        "changes": 13
+      },
+      {
+        "path": "codex-rs/tui/src/app/event_dispatch.rs",
+        "status": "modified",
+        "changes": 22
+      },
+      {
+        "path": "codex-rs/tui/src/app/reconnect.rs",
+        "status": "modified",
+        "changes": 11
+      },
+      {
+        "path": "codex-rs/tui/src/app/snapshots/codex_tui__app__agents_overview__tests__actions__agents_custom_lifecycle_chords.snap",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": "codex-rs/tui/src/app/snapshots/codex_tui__app__agents_overview__tests__agents_overview_markdown.snap",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "codex-rs/tui/src/app/snapshots/codex_tui__app__agents_overview__tests__agents_overview_markdown_long_lines.snap",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "codex-rs/tui/src/app/snapshots/codex_tui__app__agents_overview__tests__agents_overview_markdown_table.snap",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "codex-rs/tui/src/app/snapshots/codex_tui__app__agents_overview__tests__agents_overview_model_grouping.snap",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "codex-rs/tui/src/app/snapshots/codex_tui__app__agents_overview__tests__older_server_narrow_overview.snap",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "codex-rs/tui/src/app/snapshots/codex_tui__app__agents_overview__tests__overview_empty_prompt_right_hint.snap",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "codex-rs/tui/src/app/snapshots/codex_tui__app__agents_overview__tests__overview_right_open_hint.snap",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "codex-rs/tui/src/app/snapshots/codex_tui__app__agents_overview__tests__overview_worktree_creation_busy_state.snap",
+        "status": "added",
+        "changes": 28
+      },
+      {
+        "path": "codex-rs/tui/src/app/snapshots/codex_tui__app__agents_overview__tests__usage__agents_overview_usage.snap",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "codex-rs/tui/src/app/tests/active_reconnect_tests.rs",
+        "status": "modified",
+        "changes": 14
+      },
+      {
+        "path": "codex-rs/tui/src/app/tests/background_task_defaults_tests.rs",
+        "status": "modified",
+        "changes": 238
+      },
+      {
+        "path": "codex-rs/tui/src/app/tests/disconnect_tests.rs",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "codex-rs/tui/src/app/tests/snapshots/codex_tui__app__tests__background_task_defaults_tests__command_center_retained_worktree_error.snap",
+        "status": "added",
+        "changes": 10
+      },
+      {
+        "path": "codex-rs/tui/src/app/tests/snapshots/codex_tui__app__tests__navigation_reconnect__daemon_command_center_vanished_rename.snap",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "codex-rs/tui/src/app/tests/snapshots/codex_tui__app__tests__session_lifecycle_requests__agents_command_center_after_archive.snap",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "codex-rs/tui/src/app_event.rs",
+        "status": "modified",
+        "changes": 5
+      },
+      {
+        "path": "codex-rs/tui/src/keymap.rs",
+        "status": "modified",
+        "changes": 12
+      },
+      {
+        "path": "codex-rs/tui/src/keymap/bindings.rs",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "codex-rs/tui/src/keymap/conflict_tests.rs",
+        "status": "modified",
+        "changes": 8
+      },
+      {
+        "path": "codex-rs/tui/src/keymap_setup/actions.rs",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "codex-rs/tui/src/snapshots/codex_tui__app__agents_overview__tests__agents_overview.snap",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "codex-rs/tui/src/snapshots/codex_tui__app__agents_overview__tests__agents_overview_attention.snap",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "codex-rs/tui/src/snapshots/codex_tui__app__agents_overview__tests__agents_overview_empty_narrow.snap",
+        "status": "modified",
+        "changes": 6
+      },
+      {
+        "path": "codex-rs/tui/src/snapshots/codex_tui__app__agents_overview__tests__agents_overview_last_message.snap",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "codex-rs/tui/src/snapshots/codex_tui__app__agents_overview__tests__agents_overview_live_activity.snap",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "codex-rs/tui/src/snapshots/codex_tui__app__agents_overview__tests__agents_overview_worktree_grouping.snap",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "codex-rs/tui/src/snapshots/codex_tui__keymap_setup__tests__keymap_picker_agents_actions.snap",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "codex-rs/tui/src/snapshots/codex_tui__keymap_setup__tests__keymap_picker_custom.snap",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "codex-rs/tui/src/snapshots/codex_tui__keymap_setup__tests__keymap_picker_fast_mode_enabled.snap",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "codex-rs/tui/src/snapshots/codex_tui__keymap_setup__tests__keymap_picker_first_actions.snap",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "codex-rs/tui/src/snapshots/codex_tui__keymap_setup__tests__keymap_picker_global_chord.snap",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "codex-rs/tui/src/snapshots/codex_tui__keymap_setup__tests__keymap_picker_narrow.snap",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "codex-rs/tui/src/snapshots/codex_tui__keymap_setup__tests__keymap_picker_wide.snap",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "codex-rs/tui/src/snapshots/codex_tui__keymap_setup__tests__keymap_question_actions.snap",
+        "status": "modified",
+        "changes": 2
+      },
+      {
+        "path": "codex-rs/worktree/src/git.rs",
+        "status": "modified",
+        "changes": 45
+      },
+      {
+        "path": "codex-rs/worktree/src/git_tests.rs",
+        "status": "modified",
+        "changes": 30
+      },
+      {
+        "path": "codex-rs/worktree/src/lib.rs",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "codex-rs/worktree/tests/worktree.rs",
+        "status": "modified",
+        "changes": 22
+      }
+    ],
+    "snapshot": "sources/codex-45276.json"
+  },
+  {
+    "repo": "ag2ai/ag2",
+    "id": 3252,
+    "url": "https://github.com/ag2ai/ag2/pull/3252",
+    "title": "feat(mcp): let a served agent own its HTTP transport settings",
+    "author": "vvlrff",
+    "state": "open",
+    "draft": true,
+    "merged_at": null,
+    "head": "96c53a8c9adf0787c54d76278d6561efeaccaa7e",
+    "base": "585dba87e13911527710db9c7b47346e74e4f54b",
+    "read_at": "2026-09-14T01:48:50.578Z",
+    "files": [
+      {
+        "path": "ag2/mcp/__init__.py",
+        "status": "modified",
+        "changes": 3
+      },
+      {
+        "path": "ag2/mcp/security.py",
+        "status": "modified",
+        "changes": 23
+      },
+      {
+        "path": "ag2/mcp/server.py",
+        "status": "modified",
+        "changes": 41
+      },
+      {
+        "path": "ag2/mcp/transport.py",
+        "status": "added",
+        "changes": 90
+      },
+      {
+        "path": "ag2/tools/toolkits/mcp_server/toolkit.py",
+        "status": "modified",
+        "changes": 3
+      },
+      {
+        "path": "pyproject.toml",
+        "status": "modified",
+        "changes": 8
+      },
+      {
+        "path": "test/mcp/test_http.py",
+        "status": "modified",
+        "changes": 196
+      },
+      {
+        "path": "test/mcp/test_public_exports.py",
+        "status": "modified",
+        "changes": 1
+      },
+      {
+        "path": "test/mcp/test_resumability.py",
+        "status": "added",
+        "changes": 198
+      },
+      {
+        "path": "test/mcp/test_security.py",
+        "status": "modified",
+        "changes": 64
+      },
+      {
+        "path": "test/tools/test_mcp_live_transport.py",
+        "status": "modified",
+        "changes": 4
+      },
+      {
+        "path": "uv.lock",
+        "status": "modified",
+        "changes": 22
+      },
+      {
+        "path": "website/docs/user-guide/tools/serving_mcp.mdx",
+        "status": "modified",
+        "changes": 86
+      }
+    ],
+    "snapshot": "sources/ag2-3252.json"
+  },
+  {
+    "repo": "paperclipai/paperclip",
+    "id": 13372,
+    "url": "https://github.com/paperclipai/paperclip/pull/13372",
+    "title": "fix: unblock clean-machine onboarding for api_key AI connections (nightly smoke)",
+    "author": "devinfoley",
+    "state": "closed",
+    "draft": false,
+    "merged_at": "2026-09-14T00:02:03Z",
+    "head": "4d86a19c1175bb8f297b66661c9ac03019ffd599",
+    "base": "f2c5e54dcad1ea00ce091cd9ef1d8a56499edef1",
+    "read_at": "2026-09-14T01:48:55.076Z",
+    "files": [
+      {
+        "path": "scripts/docker-onboard-smoke.sh",
+        "status": "modified",
+        "changes": 96
+      },
+      {
+        "path": "server/src/__tests__/agent-test-environment-routes.test.ts",
+        "status": "modified",
+        "changes": 139
+      },
+      {
+        "path": "server/src/routes/agents.ts",
+        "status": "modified",
+        "changes": 33
+      },
+      {
+        "path": "tests/release-smoke/docker-auth-onboarding.spec.ts",
+        "status": "modified",
+        "changes": 65
+      }
+    ],
+    "snapshot": "sources/paperclip-13372.json"
+  },
+  {
+    "repo": "paperclipai/paperclip",
+    "id": 13374,
+    "url": "https://github.com/paperclipai/paperclip/pull/13374",
+    "title": "fix(server): prevent cross-tree exec lock on @-mention heartbeat wakes",
+    "author": "Maxxsong7",
+    "state": "open",
+    "draft": false,
+    "merged_at": null,
+    "head": "3b555e827be8a93cfda097b95a6389d01bdaab66",
+    "base": "f2c5e54dcad1ea00ce091cd9ef1d8a56499edef1",
+    "read_at": "2026-09-14T01:48:59.346Z",
+    "files": [
+      {
+        "path": "server/src/services/heartbeat.ts",
+        "status": "modified",
+        "changes": 61
+      }
+    ],
+    "snapshot": "sources/paperclip-13374.json"
+  },
+  {
+    "repo": "superset-sh/superset",
+    "id": 7507,
+    "url": "https://github.com/superset-sh/superset/pull/7507",
+    "title": "docs: weekly changelog 2026-09-13 (pull request pane, subagents, Muse Code and Devin)",
+    "author": "Kitenite",
+    "state": "closed",
+    "draft": false,
+    "merged_at": "2026-09-13T17:15:32Z",
+    "head": "a851fc94b5b8857ae918ff4e371e8a13f33c9d59",
+    "base": "c3c6717bb7de1ce91dbf82505e9dce12c2c0324e",
+    "read_at": "2026-09-14T01:49:03.519Z",
+    "files": [
+      {
+        "path": "apps/marketing/content/changelog/2026-09-13-pull-request-pane-subagents-new-agents.mdx",
+        "status": "added",
+        "changes": 75
+      },
+      {
+        "path": "apps/marketing/content/changelog/2026-09-13-tweet.md",
+        "status": "added",
+        "changes": 29
+      },
+      {
+        "path": "apps/marketing/public/changelog/2026-09-13-agent-picker.png",
+        "status": "added",
+        "changes": 0
+      },
+      {
+        "path": "apps/marketing/public/changelog/2026-09-13-pr-comments.png",
+        "status": "added",
+        "changes": 0
+      },
+      {
+        "path": "apps/marketing/public/changelog/2026-09-13-pr-pane-hero.png",
+        "status": "added",
+        "changes": 0
+      },
+      {
+        "path": "apps/marketing/public/changelog/2026-09-13-subagents.png",
+        "status": "added",
+        "changes": 0
+      }
+    ],
+    "snapshot": "sources/superset-7507.json"
+  },
+  {
+    "repo": "openai/openai-agents-python",
+    "id": 5000,
+    "url": "https://github.com/openai/openai-agents-python/pull/5000",
+    "title": "fix(sessions): reset compaction response chain on clear_session",
+    "author": "sbguangha",
+    "state": "open",
+    "draft": false,
+    "merged_at": null,
+    "head": "bc03568c85382745ff45f9fe0f4b1fc66e453dcc",
+    "base": "c8c0763fc0a3d787e1564ec0af0f5f27852ba583",
+    "read_at": "2026-09-14T01:49:08.327Z",
+    "files": [
+      {
+        "path": "src/agents/memory/openai_responses_compaction_session.py",
+        "status": "modified",
+        "changes": 5
+      },
+      {
+        "path": "tests/memory/test_openai_responses_compaction_session.py",
+        "status": "modified",
+        "changes": 152
+      }
+    ],
+    "snapshot": "sources/openai-agents-python-5000.json"
+  },
+  {
+    "repo": "yzhao062/anywhere-agents",
+    "id": "3c94f459fa942727bbbf0a51ad1967d235096bc7",
+    "url": "https://github.com/yzhao062/anywhere-agents/commit/3c94f459fa942727bbbf0a51ad1967d235096bc7",
+    "title": "fix(dispatch): fail a non-SUCCESS Agy run, export long paths, stream the tail",
+    "author": "yzhao062",
+    "head": "3c94f459fa942727bbbf0a51ad1967d235096bc7",
+    "base": "6043b957196d3e8c84b6626b8a0e2275a2301272",
+    "read_at": "2026-09-14T01:49:09.514Z",
+    "files": [
+      {
+        "path": "CHANGELOG.md",
+        "changes": 3
+      },
+      {
+        "path": "packages/pypi/anywhere_agents/composer/skills/implement-review/SKILL.md",
+        "changes": 4
+      },
+      {
+        "path": "packages/pypi/anywhere_agents/composer/skills/implement-review/scripts/dispatch-claude.ps1",
+        "changes": 5
+      },
+      {
+        "path": "packages/pypi/anywhere_agents/composer/skills/implement-review/scripts/dispatch-claude.sh",
+        "changes": 5
+      },
+      {
+        "path": "packages/pypi/anywhere_agents/composer/skills/implement-review/scripts/dispatch-gemini.py",
+        "changes": 75
+      },
+      {
+        "path": "packages/pypi/anywhere_agents/composer/skills/prun/SKILL.md",
+        "changes": 21
+      },
+      {
+        "path": "packages/pypi/anywhere_agents/composer/skills/prun/scripts/dispatch-task-agy.py",
+        "changes": 123
+      },
+      {
+        "path": "skills/implement-review/SKILL.md",
+        "changes": 4
+      },
+      {
+        "path": "skills/implement-review/scripts/dispatch-claude.ps1",
+        "changes": 5
+      },
+      {
+        "path": "skills/implement-review/scripts/dispatch-claude.sh",
+        "changes": 5
+      },
+      {
+        "path": "skills/implement-review/scripts/dispatch-gemini.py",
+        "changes": 75
+      },
+      {
+        "path": "skills/prun/SKILL.md",
+        "changes": 21
+      },
+      {
+        "path": "skills/prun/scripts/dispatch-task-agy.py",
+        "changes": 123
+      },
+      {
+        "path": "tests/test_dispatch_claude.py",
+        "changes": 14
+      },
+      {
+        "path": "tests/test_dispatch_gemini.py",
+        "changes": 167
+      },
+      {
+        "path": "tests/test_dispatch_task_agy.py",
+        "changes": 180
+      }
+    ],
+    "snapshot": "sources/anywhere-3c94f45.json"
+  },
+  {
+    "repo": "yzhao062/anywhere-agents",
+    "id": "050ee0bd91c5d05c28f6f6b7c196a8d222328a4b",
+    "url": "https://github.com/yzhao062/anywhere-agents/commit/050ee0bd91c5d05c28f6f6b7c196a8d222328a4b",
+    "title": "feat(prun): route an Agy dispatch on the meter of its model's group",
+    "author": "yzhao062",
+    "head": "050ee0bd91c5d05c28f6f6b7c196a8d222328a4b",
+    "base": "975b720f5576ffdbec6931b541e1eadd3a11fc1b",
+    "read_at": "2026-09-14T01:49:10.572Z",
+    "files": [
+      {
+        "path": "packages/pypi/anywhere_agents/composer/skills/prun/SKILL.md",
+        "changes": 32
+      },
+      {
+        "path": "packages/pypi/anywhere_agents/composer/skills/prun/scripts/dispatch-task-agy.py",
+        "changes": 259
+      },
+      {
+        "path": "scripts/agent-quota.py",
+        "changes": 29
+      },
+      {
+        "path": "skills/prun/SKILL.md",
+        "changes": 32
+      },
+      {
+        "path": "skills/prun/scripts/dispatch-task-agy.py",
+        "changes": 259
+      },
+      {
+        "path": "tests/test_agent_quota_refresh.py",
+        "changes": 145
+      },
+      {
+        "path": "tests/test_dispatch_task_agy.py",
+        "changes": 393
+      }
+    ],
+    "snapshot": "sources/anywhere-050ee0b.json"
+  },
+  {
+    "repo": "yzhao062/anywhere-agents",
+    "id": "0d2221e0089106e72d69d1cf79bee279ccf25a4e",
+    "url": "https://github.com/yzhao062/anywhere-agents/commit/0d2221e0089106e72d69d1cf79bee279ccf25a4e",
+    "title": "docs(codex): the gatekeeper keeps the flagship; the cost cut was prun's",
+    "author": "yzhao062",
+    "head": "0d2221e0089106e72d69d1cf79bee279ccf25a4e",
+    "base": "3c94f459fa942727bbbf0a51ad1967d235096bc7",
+    "read_at": "2026-09-14T01:49:11.629Z",
+    "files": [
+      {
+        "path": "AGENTS.md",
+        "changes": 6
+      },
+      {
+        "path": "CLAUDE.md",
+        "changes": 2
+      },
+      {
+        "path": "agents/codex.md",
+        "changes": 6
+      }
+    ],
+    "snapshot": "sources/anywhere-0d2221e.json"
+  }
+]
