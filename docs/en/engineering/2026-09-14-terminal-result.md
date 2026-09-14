@@ -106,3 +106,5 @@ A group absent from the snapshot may still be tried. Its capacity is unknown, no
 </details>
 
 **Scope and reproduction.** We tested how pinned source interprets specified inputs. We did not repeat the author's historical 152-dispatch audit or exhaust a real service quota; arbitrary event reordering and replay are outside these tests. The five before/after cases, quota checks, source pins, and original logs are in the [evidence package](../research/evidence/2026-09-14-continuity-contracts), maintained in the [research repository](https://github.com/joinwell52-AI/joinwell52).
+
+Have you seen a tool report completion, only to open the result and find it still describing what it plans to do? What first alerted you? If you build these tools, how do you distinguish explicit success from compatibility admission, and does that distinction change downstream verification in practice?
