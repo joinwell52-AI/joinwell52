@@ -4,7 +4,7 @@ title: "Task Completion Does Not Prove Team Reliability"
 date: '2026-09-14'
 column: industry-architecture
 category: daily
-article_type: research-interpretation
+article_type: technical-analysis
 edition: research-center
 research_question: "在声称多智能体团队可靠之前，为什么必须分别证明任务分配、顺序约束、互斥安全与交接连续性，而不能只看总体任务成功？"
 summary: "Aggregate success compresses duplicate allocation, ordering violations, resource contention, and broken handoffs into one number. Multi-agent reliability should remain a separately evidenced coordination vector whose critical weak dimensions cannot be averaged away."
