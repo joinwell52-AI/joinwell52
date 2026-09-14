@@ -11,6 +11,15 @@ outline: false
 日期按 **Asia/Shanghai** 倒序排列。点击日期进入当天完整报告与原始公开来源。
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-09-14">
+    <time>2026-09-14</time>
+    <div>
+      <strong>Agent 核心研究与竞品动态</strong>
+      <span>赵岳 live quota 调度 · Codex managed worktree session · AG2 MCP Transport contract · Paperclip clean-machine API-key onboarding / cross-agent execution ownership · Superset subagent/automation 商业化 · Agents SDK session generation barrier</span>
+    </div>
+    <b>查看 →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-09-13">
     <time>2026-09-13</time>
     <div>
