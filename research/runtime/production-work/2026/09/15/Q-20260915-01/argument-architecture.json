@@ -1,0 +1,109 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-15",
+  "itemId": "Q-20260915-01",
+  "coreProposition": "持久化智能体应把长期记忆表示为带来源、权限与时间边界的显式承诺，分别保存观察内容、生命周期分类、写入路径与读取权限，并把提升和撤销记录为可审计转换。",
+  "openingMove": {
+    "type": "persisted-observation-versus-durable-truth",
+    "purpose": "以一个已写入数据库却不应自动支配未来行动的临时观察，揭示持久化与长期承诺的差别。",
+    "evidenceRefs": [
+      "E4",
+      "E5"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "受控实验到底证明了什么？",
+      "claim": "在生命周期标签已知时，稳定与可塑容量配合受监督路由及受保护读取，可降低临时事实对长期事实的覆盖。",
+      "evidenceRefs": [
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "reasoningRole": "controlled-evidence",
+      "readerProgress": "先建立可归因的机制证据。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "实验没有证明什么？",
+      "claim": "实验预先提供标签和阶段结构，因此没有建立自主分类、提升、撤销或真值验证。",
+      "evidenceRefs": [
+        "E4"
+      ],
+      "reasoningRole": "evidence-boundary",
+      "readerProgress": "阻止从保留表现外推到治理能力。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "哪些身份必须保持分离？",
+      "claim": "观察内容、生命周期分类、写入路径和读取权限分别回答发生了什么、应保留多久、写到哪里以及谁可受其影响。",
+      "evidenceRefs": [
+        "E5"
+      ],
+      "reasoningRole": "state-model",
+      "readerProgress": "把单一记忆布尔值拆成可审计状态。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "长期化如何成为承诺？",
+      "claim": "长期分类应记录授权者、证据基础、作用范围、生效时间与修订策略。",
+      "evidenceRefs": [
+        "E6"
+      ],
+      "reasoningRole": "governance-mechanism",
+      "readerProgress": "把架构推论转化为实现合同。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "提升和撤销为何必须是事件？",
+      "claim": "临时信息不能因重复出现而默认为长期；矛盾也不能靠删除历史来处理，二者都需要保留前后证据的显式转换。",
+      "evidenceRefs": [
+        "E6",
+        "E7"
+      ],
+      "reasoningRole": "transition-governance",
+      "readerProgress": "给出状态变化与审计连续性。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A6",
+      "question": "更强保留是否意味着更可靠？",
+      "claim": "更强的抗覆盖机制同样可能更牢固地保存错误或越权内容，因此保留、真实性、授权和读取影响必须分开测量。",
+      "evidenceRefs": [
+        "E2",
+        "E4",
+        "E5"
+      ],
+      "reasoningRole": "counter-risk",
+      "readerProgress": "揭示优化目标之间的冲突。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A7",
+      "question": "可执行的最小合同是什么？",
+      "claim": "每条记忆需要不可变观察、可版本化分类、受限写入、任务级读取条件，以及独立的提升和撤销记录。",
+      "evidenceRefs": [
+        "E5",
+        "E6",
+        "E7"
+      ],
+      "reasoningRole": "operational-contract",
+      "readerProgress": "以有界设计和未决问题收束。",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "把数据分成短期库和长期库就已经解决了生命周期问题。",
+    "responseBoundary": "受控消融显示，仅有结构分区并不能获得同等保护；同时，标签本身的授权与正确性仍需在存储结构之外证明。"
+  },
+  "endingStrategy": {
+    "type": "auditable-memory-contract",
+    "purpose": "以可实施的检查问题结束，并明确实验支持与架构建议的边界。"
+  }
+}
