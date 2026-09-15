@@ -11,6 +11,15 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-09-15">
+    <time>2026-09-15</time>
+    <div>
+      <strong>Agent Research & Competitor Intelligence</strong>
+      <span>Yue Zhao fan-out authorization/Agy-only · Agents Python approval fail-open · Codex Windows package identity · Superset human GitHub principal · Paperclip Pause/Recovery misclassification · Orca canonical runId/unknown settlement · CrewAI duplicate tool effects</span>
+    </div>
+    <b>View →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-09-14">
     <time>2026-09-14</time>
     <div>
