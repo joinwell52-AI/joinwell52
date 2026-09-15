@@ -1,0 +1,233 @@
+{
+  "method": "Bundled complete pinned production modules and their real local imports; synthetic in-memory journal rows. No Claude process, wire transport, persisted journal or actual resend.",
+  "results": [
+    {
+      "mode": "base",
+      "kind": "reconciliation",
+      "scenario": "positive-id",
+      "observed": [
+        {
+          "clientMessageId": "cm-1",
+          "outcome": "accepted",
+          "providerItemId": "provider-item",
+          "identity": {
+            "provider": "claude",
+            "sessionId": "session-1",
+            "uuid": "uuid-1"
+          }
+        }
+      ]
+    },
+    {
+      "mode": "base",
+      "kind": "reconciliation",
+      "scenario": "empty-consistent",
+      "observed": [
+        {
+          "clientMessageId": "cm-1",
+          "outcome": "rejected",
+          "reason": "not_delivered"
+        }
+      ]
+    },
+    {
+      "mode": "base",
+      "kind": "reconciliation",
+      "scenario": "empty-inconsistent",
+      "observed": [
+        {
+          "clientMessageId": "cm-1",
+          "outcome": "unknown",
+          "reason": "history_boundary_inconsistent"
+        }
+      ]
+    },
+    {
+      "mode": "base",
+      "kind": "reconciliation",
+      "scenario": "in-flight",
+      "observed": [
+        {
+          "clientMessageId": "cm-1",
+          "outcome": "unknown",
+          "reason": "turn_in_flight"
+        }
+      ]
+    },
+    {
+      "mode": "base",
+      "kind": "reconciliation",
+      "scenario": "ambiguous-payload",
+      "observed": [
+        {
+          "clientMessageId": "cm-1",
+          "outcome": "unknown",
+          "reason": "ambiguous_match"
+        }
+      ]
+    },
+    {
+      "mode": "base",
+      "kind": "send-disposition",
+      "scenario": "direct-rejection",
+      "observed": {
+        "entryState": "queued",
+        "retryWithFreshClientMessageId": "cm-1",
+        "retryAfterUnknownSubmittedAt": null
+      }
+    },
+    {
+      "mode": "base",
+      "kind": "send-disposition",
+      "scenario": "recovered-rejection",
+      "observed": {
+        "entryState": "queued",
+        "retryWithFreshClientMessageId": "cm-1",
+        "retryAfterUnknownSubmittedAt": null
+      }
+    },
+    {
+      "mode": "base",
+      "kind": "send-disposition",
+      "scenario": "recovered-unknown",
+      "observed": {
+        "entryState": "unconfirmed",
+        "retryWithFreshClientMessageId": null,
+        "retryAfterUnknownSubmittedAt": -1
+      }
+    },
+    {
+      "mode": "base",
+      "kind": "send-disposition",
+      "scenario": "unknown",
+      "observed": {
+        "entryState": "unconfirmed",
+        "retryWithFreshClientMessageId": null,
+        "retryAfterUnknownSubmittedAt": null
+      }
+    },
+    {
+      "mode": "base",
+      "kind": "send-disposition",
+      "scenario": "accepted",
+      "observed": {
+        "entryState": "removed",
+        "retryWithFreshClientMessageId": null
+      }
+    },
+    {
+      "mode": "head",
+      "kind": "reconciliation",
+      "scenario": "positive-id",
+      "observed": [
+        {
+          "clientMessageId": "cm-1",
+          "outcome": "accepted",
+          "providerItemId": "provider-item",
+          "identity": {
+            "provider": "claude",
+            "sessionId": "session-1",
+            "uuid": "uuid-1"
+          }
+        }
+      ]
+    },
+    {
+      "mode": "head",
+      "kind": "reconciliation",
+      "scenario": "empty-consistent",
+      "observed": [
+        {
+          "clientMessageId": "cm-1",
+          "outcome": "unknown",
+          "reason": "unmatched"
+        }
+      ]
+    },
+    {
+      "mode": "head",
+      "kind": "reconciliation",
+      "scenario": "empty-inconsistent",
+      "observed": [
+        {
+          "clientMessageId": "cm-1",
+          "outcome": "unknown",
+          "reason": "history_boundary_inconsistent"
+        }
+      ]
+    },
+    {
+      "mode": "head",
+      "kind": "reconciliation",
+      "scenario": "in-flight",
+      "observed": [
+        {
+          "clientMessageId": "cm-1",
+          "outcome": "unknown",
+          "reason": "turn_in_flight"
+        }
+      ]
+    },
+    {
+      "mode": "head",
+      "kind": "reconciliation",
+      "scenario": "ambiguous-payload",
+      "observed": [
+        {
+          "clientMessageId": "cm-1",
+          "outcome": "unknown",
+          "reason": "ambiguous_match"
+        }
+      ]
+    },
+    {
+      "mode": "head",
+      "kind": "send-disposition",
+      "scenario": "direct-rejection",
+      "observed": {
+        "entryState": "queued",
+        "retryWithFreshClientMessageId": "cm-1",
+        "retryAfterUnknownSubmittedAt": null
+      }
+    },
+    {
+      "mode": "head",
+      "kind": "send-disposition",
+      "scenario": "recovered-rejection",
+      "observed": {
+        "entryState": "unconfirmed",
+        "retryWithFreshClientMessageId": null,
+        "retryAfterUnknownSubmittedAt": -1
+      }
+    },
+    {
+      "mode": "head",
+      "kind": "send-disposition",
+      "scenario": "recovered-unknown",
+      "observed": {
+        "entryState": "unconfirmed",
+        "retryWithFreshClientMessageId": null,
+        "retryAfterUnknownSubmittedAt": -1
+      }
+    },
+    {
+      "mode": "head",
+      "kind": "send-disposition",
+      "scenario": "unknown",
+      "observed": {
+        "entryState": "unconfirmed",
+        "retryWithFreshClientMessageId": null,
+        "retryAfterUnknownSubmittedAt": null
+      }
+    },
+    {
+      "mode": "head",
+      "kind": "send-disposition",
+      "scenario": "accepted",
+      "observed": {
+        "entryState": "removed",
+        "retryWithFreshClientMessageId": null
+      }
+    }
+  ]
+}

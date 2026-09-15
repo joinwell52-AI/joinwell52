@@ -127,6 +127,9 @@ The [complete article catalog](./README.zh-CN.md#article-catalog) includes the l
 
 September 13–14 combined research:
 
+- [Why did the tool run when the setting said “always”?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-15-approval-setting) · [中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-15-approval-setting)
+- [Why did an AI tool error leave an extra database row?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-15-retry-after-error) · [中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-15-retry-after-error)
+- [Why did pausing work turn into a task failure?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-15-pause-is-not-failure) · [中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-15-pause-is-not-failure)
 - [How Did an Opening Remark Become the Deliverable?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-14-terminal-result) · [中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-14-terminal-result) · [DEV](https://dev.to/joinwell52/how-did-an-opening-remark-become-the-deliverable-63g) · [掘金](https://juejin.cn/post/7685190703505227802) · [CSDN](https://blog.csdn.net/m0_51507544/article/details/165309475)
 - [Why Can an Empty History Still Reference an Old Conversation?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-14-clear-continuation) · [中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-14-clear-continuation) · [DEV](https://dev.to/joinwell52/why-can-an-empty-history-still-reference-an-old-conversation-398e) · [掘金](https://juejin.cn/post/7685190703505260570) · [CSDN](https://blog.csdn.net/m0_51507544/article/details/165310250)
 

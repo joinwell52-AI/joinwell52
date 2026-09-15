@@ -1,0 +1,251 @@
+{
+  "method": "Extracted unchanged getInvocationBlock arrow, recovery invocation-block branch, and candidate live-pause precheck from pinned source; TypeScript transformed by esbuild. Scripted in-memory database rows and escalation recorder. This does not run the full recovery service, PostgreSQL, transactions, or concurrent workers.",
+  "results": [
+    {
+      "mode": "base",
+      "scenario": "already-paused",
+      "block": {
+        "scopeType": "company",
+        "scopeId": "co",
+        "scopeName": "Synthetic company",
+        "reason": "Company is paused and cannot start new work."
+      },
+      "companyStatusAfter": "paused",
+      "observed": {
+        "skipped": 0,
+        "escalated": 1,
+        "issueIds": [
+          "issue-1"
+        ],
+        "clear": 0,
+        "persistedStatus": "blocked"
+      }
+    },
+    {
+      "mode": "base",
+      "scenario": "pause-after-precheck",
+      "block": {
+        "scopeType": "company",
+        "scopeId": "co",
+        "scopeName": "Synthetic company",
+        "reason": "Company is paused and cannot start new work."
+      },
+      "companyStatusAfter": "paused",
+      "observed": {
+        "skipped": 0,
+        "escalated": 1,
+        "issueIds": [
+          "issue-1"
+        ],
+        "clear": 0,
+        "persistedStatus": "blocked"
+      }
+    },
+    {
+      "mode": "base",
+      "scenario": "resume-after-block",
+      "block": {
+        "scopeType": "company",
+        "scopeId": "co",
+        "scopeName": "Synthetic company",
+        "reason": "Company is paused and cannot start new work."
+      },
+      "companyStatusAfter": "active",
+      "observed": {
+        "skipped": 0,
+        "escalated": 1,
+        "issueIds": [
+          "issue-1"
+        ],
+        "clear": 0,
+        "persistedStatus": "blocked"
+      }
+    },
+    {
+      "mode": "base",
+      "scenario": "active-company-budget",
+      "block": {
+        "scopeType": "company",
+        "scopeId": "co",
+        "scopeName": "Synthetic company",
+        "reason": "Company cannot start new work because its budget hard-stop is exceeded."
+      },
+      "companyStatusAfter": "active",
+      "observed": {
+        "skipped": 0,
+        "escalated": 1,
+        "issueIds": [
+          "issue-1"
+        ],
+        "clear": 0,
+        "persistedStatus": "blocked"
+      }
+    },
+    {
+      "mode": "base",
+      "scenario": "active-agent-budget",
+      "block": {
+        "scopeType": "agent",
+        "scopeId": "agent-1",
+        "scopeName": "Synthetic agent",
+        "reason": "Agent is paused because its budget hard-stop was reached."
+      },
+      "companyStatusAfter": "active",
+      "observed": {
+        "skipped": 0,
+        "escalated": 1,
+        "issueIds": [
+          "issue-1"
+        ],
+        "clear": 0,
+        "persistedStatus": "blocked"
+      }
+    },
+    {
+      "mode": "base",
+      "scenario": "unblocked",
+      "block": null,
+      "companyStatusAfter": "active",
+      "observed": {
+        "skipped": 0,
+        "escalated": 0,
+        "issueIds": [],
+        "clear": 1
+      }
+    },
+    {
+      "mode": "base",
+      "scenario": "company-paused-by-budget",
+      "block": {
+        "scopeType": "company",
+        "scopeId": "co",
+        "scopeName": "Synthetic company",
+        "reason": "Company is paused because its budget hard-stop was reached."
+      },
+      "companyStatusAfter": "paused",
+      "observed": {
+        "skipped": 0,
+        "escalated": 1,
+        "issueIds": [
+          "issue-1"
+        ],
+        "clear": 0,
+        "persistedStatus": "blocked"
+      }
+    },
+    {
+      "mode": "head",
+      "scenario": "already-paused",
+      "block": null,
+      "companyStatusAfter": "paused",
+      "observed": {
+        "skipped": 1,
+        "escalated": 0,
+        "issueIds": [],
+        "clear": 0
+      }
+    },
+    {
+      "mode": "head",
+      "scenario": "pause-after-precheck",
+      "block": {
+        "scopeType": "company",
+        "scopeId": "co",
+        "scopeName": "Synthetic company",
+        "cause": "company_paused",
+        "reason": "Company is paused and cannot start new work."
+      },
+      "companyStatusAfter": "paused",
+      "observed": {
+        "skipped": 1,
+        "escalated": 0,
+        "issueIds": [],
+        "clear": 0
+      }
+    },
+    {
+      "mode": "head",
+      "scenario": "resume-after-block",
+      "block": {
+        "scopeType": "company",
+        "scopeId": "co",
+        "scopeName": "Synthetic company",
+        "cause": "company_paused",
+        "reason": "Company is paused and cannot start new work."
+      },
+      "companyStatusAfter": "active",
+      "observed": {
+        "skipped": 1,
+        "escalated": 0,
+        "issueIds": [],
+        "clear": 0
+      }
+    },
+    {
+      "mode": "head",
+      "scenario": "active-company-budget",
+      "block": {
+        "scopeType": "company",
+        "scopeId": "co",
+        "scopeName": "Synthetic company",
+        "cause": "budget_exhausted",
+        "reason": "Company cannot start new work because its budget hard-stop is exceeded."
+      },
+      "companyStatusAfter": "active",
+      "observed": {
+        "skipped": 0,
+        "escalated": 1,
+        "issueIds": [
+          "issue-1"
+        ],
+        "clear": 0,
+        "persistedStatus": "blocked"
+      }
+    },
+    {
+      "mode": "head",
+      "scenario": "active-agent-budget",
+      "block": {
+        "scopeType": "agent",
+        "scopeId": "agent-1",
+        "scopeName": "Synthetic agent",
+        "cause": "budget_exhausted",
+        "reason": "Agent is paused because its budget hard-stop was reached."
+      },
+      "companyStatusAfter": "active",
+      "observed": {
+        "skipped": 0,
+        "escalated": 1,
+        "issueIds": [
+          "issue-1"
+        ],
+        "clear": 0,
+        "persistedStatus": "blocked"
+      }
+    },
+    {
+      "mode": "head",
+      "scenario": "unblocked",
+      "block": null,
+      "companyStatusAfter": "active",
+      "observed": {
+        "skipped": 0,
+        "escalated": 0,
+        "issueIds": [],
+        "clear": 1
+      }
+    },
+    {
+      "mode": "head",
+      "scenario": "company-paused-by-budget",
+      "block": null,
+      "companyStatusAfter": "paused",
+      "observed": {
+        "skipped": 1,
+        "escalated": 0,
+        "issueIds": [],
+        "clear": 0
+      }
+    }
+  ]
+}
