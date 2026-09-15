@@ -8,11 +8,11 @@
   "date": "2026-09-15",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -609,6 +609,119 @@
       "githubCommit": "bea90279a2ebdeed36e9b8b3fda3f36ee439f08f",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-15T10:16:54+08:00"
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "family": "daily",
+      "runtimeDate": "2026-09-15",
+      "status": "Completed",
+      "input": "Authoritative Reading control was pinned from main commit 0b7b0ae594b55b00ecb97f3d61c2b503d41f8821. That commit contained Research Runtime Scheduler V3.0, Worker Control v1.3.0, generated Reading Prompt v1.0.0 with declared SHA-256 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5, and all five requiredSources. All five requiredSources were read completely from the same control commit, and the exact-head Validate Research Center 3.0 run 34921812449 deterministically passed worker-prompts:validate for the generated prompt/checksum set. The verified same-date Reading Wake Receipt is research/runtime/wakes/2026/09/2026-09-15/reading-110123.json. Ordered Runtime reconciliation opened Reading at 11:05:24+08:00, and the native Worker Claim path durably recorded Worker Claimed in commit 21a23347c6f911fa7b7f7037f9d252841e75b0cf at 11:07:19+08:00. Reading consumed only the Completed 2026-09-15 Research Plan, where Q-20260915-01 and Q-20260915-02 were Selected P0 objects and Industry Architecture was an explicit No Selection.",
+      "input_zh": "Reading 权威控制固定于 main 提交 0b7b0ae594b55b00ecb97f3d61c2b503d41f8821。该提交包含 Research Runtime Scheduler V3.0、Worker Control v1.3.0、Generated Reading Prompt v1.0.0（声明 SHA-256 为 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5）以及全部 5 个 requiredSources；5/5 requiredSources 均从同一控制提交完整读取，精确 Head 的 Validate Research Center 3.0 Run 34921812449 已通过 worker-prompts:validate，对 Generated Prompt/Checksum 集执行确定性校验。已核验同日 Reading Wake Receipt 为 research/runtime/wakes/2026/09/2026-09-15/reading-110123.json。Ordered Runtime Reconciliation 于 11:05:24+08:00 打开 Reading，原生 Worker Claim 路径于 11:07:19+08:00 在提交 21a23347c6f911fa7b7f7037f9d252841e75b0cf 中持久记录 Worker Claimed。Reading 只消费同日已完成的 2026-09-15 Research Plan，其中 Q-20260915-01、Q-20260915-02 为 Selected P0 Object，Industry Architecture 明确为 No Selection。",
+      "workResult": "Completed source-complete Deep Reading for both same-date Selected objects without performing Research Analysis. Q-20260915-01 read LifeFuse-Mem across lifecycle definitions, stable/plastic update routing, controlled anti-overwrite protocol, public long-memory compatibility checks, ablations and limits. The controlled 1,000-episode experiment supports a bounded finding that explicit lifecycle-labelled writes, supervised routing and phase-aware protected readout can reduce temporary overwrite of acquired permanent facts, while the strongest reported configurations still retain substantial overwrite. The paper assumes lifecycle labels and phase/query lifecycle are already known; it does not demonstrate autonomous lifecycle discovery, transient-to-durable promotion, revocation after contradiction, production latency/storage behavior, or authority to classify a memory as durable. Q-20260915-02 read LAST-CQ across its five-stage architecture, 2,471 live-database queries, six backbones, independent and counterfactual baselines, recovery calculations, feedback ablation, equal-budget parallel sampling, judge calibration, failure categories and limitations. The bounded finding is that execution-grounded failure detection plus explicit recovery routing and one bounded retry recover a large share of initial failures in this structured domain (91.7% unweighted mean recovery; 93.8% pooled), while richer grounded feedback adds only about one point in aggregate exact-match and equal-budget Best-of-3 can perform worse. The study does not establish semantic correctness from non-empty execution, general retry safety for state-changing tools, authorization continuity, exactly-once effects, or cross-domain transfer. Reading created exactly two same-date Reading Notes and performed no Research Analysis, article writing, visualization, Production or Publication.",
+      "workResult_zh": "已对两个同日 Selected Object 完成来源完整 Deep Reading，未执行 Research Analysis。Q-20260915-01 完整深读 LifeFuse-Mem 的 Lifecycle 定义、Stable/Plastic 更新路由、受控 Anti-overwrite 协议、公开长记忆兼容性实验、消融与限制。其 1,000 Episode 受控实验支持一个有界结论：显式 Lifecycle-labelled Write、监督式 Routing 与 Phase-aware Protected Readout 可以降低已获得 Permanent Fact 被 Temporary Fact 覆盖的比例，但最强配置仍存在显著 Overwrite。论文假设 Lifecycle Label 与 Phase/Query Lifecycle 已知；并未证明自主 Lifecycle Discovery、Transient-to-durable Promotion、矛盾后的 Revocation、生产 Latency/Storage 行为，或谁有权把一条 Memory 分类为 Durable。Q-20260915-02 完整深读 LAST-CQ 的五阶段架构、2,471 个 Live-database Query、六个 Backbone、独立与 Counterfactual Baseline、Recovery 计算、Feedback Ablation、Equal-budget Parallel Sampling、Judge Calibration、Failure Category 与限制。有界结论是：在该结构化可执行领域，Execution-grounded Failure Detection、显式 Recovery Routing 与一次 Bounded Retry 可以恢复大量初次失败（六模型非加权平均 Recovery 91.7%，Pooled 93.8%）；更复杂的 Grounded Feedback 对总体 Exact-match 仅增加约 1 个百分点，而等预算 Best-of-3 可能更差。该研究不能把 Non-empty Execution 升级为 Semantic Correctness，也未证明状态变更工具的一般 Retry Safety、Authorization Continuity、Exactly-once Effect 或跨领域迁移。Reading 共形成 2 份同日 Reading Note，未执行 Research Analysis、文章写作、可视化、Production 或 Publication。",
+      "output": "Two durable same-date Reading Notes: research/reading/Q-20260915-01-lifecycle-aware-durable-transient-memory.md; research/reading/Q-20260915-02-detection-retry-recovery-attribution.md.",
+      "output_zh": "生成 2 份同日持久 Reading Note：research/reading/Q-20260915-01-lifecycle-aware-durable-transient-memory.md；research/reading/Q-20260915-02-detection-retry-recovery-attribution.md。",
+      "next": "After exact-head deterministic Runtime validation and governed Reading terminal finalization with GitHub Commit Verified, reconcile immediately. The next formal due unfinished task must be selected by global serial order; Analysis may consume only these two same-date source-complete Reading Notes after all earlier due tasks execution-close.",
+      "next_zh": "精确 Head 的确定性 Runtime 校验与 Reading 受治理终态收口、GitHub Commit Verified 完成后立即重新对账。下一项正式到期未完成任务必须按全局串行顺序选择；只有所有更早到期任务均 execution-close 后，Analysis 才能消费这 2 份同日来源完整 Reading Note。",
+      "metrics": [
+        {
+          "label": "Generated prompt identity verified",
+          "label_zh": "Generated Prompt 身份已核验",
+          "value": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 Required Source",
+          "value": 5
+        },
+        {
+          "label": "Queue-selected objects read",
+          "label_zh": "已深读 Queue Selected Object",
+          "value": 2
+        },
+        {
+          "label": "Durable Reading Notes",
+          "label_zh": "持久 Reading Note",
+          "value": 2
+        },
+        {
+          "label": "Primary research sources inspected",
+          "label_zh": "已核验一手研究来源",
+          "value": 2
+        },
+        {
+          "label": "Research Analysis performed",
+          "label_zh": "执行 Research Analysis",
+          "value": 0
+        },
+        {
+          "label": "Publication actions",
+          "label_zh": "Publication 操作数量",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Authority control-source commit",
+          "label_zh": "权威控制源提交",
+          "value": "0b7b0ae594b55b00ecb97f3d61c2b503d41f8821"
+        },
+        {
+          "label": "Reading Wake Receipt",
+          "label_zh": "Reading Wake Receipt",
+          "path": "research/runtime/wakes/2026/09/2026-09-15/reading-110123.json"
+        },
+        {
+          "label": "Worker Claimed commit",
+          "label_zh": "Worker Claimed 提交",
+          "commit": "21a23347c6f911fa7b7f7037f9d252841e75b0cf"
+        },
+        {
+          "label": "Generated Reading Prompt SHA-256",
+          "label_zh": "Generated Reading Prompt SHA-256",
+          "value": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"
+        },
+        {
+          "label": "Exact-head generated-prompt validation",
+          "label_zh": "精确 Head Generated Prompt 校验",
+          "value": "Validate Research Center 3.0 #34921812449 worker-prompts:validate success on 0b7b0ae594b55b00ecb97f3d61c2b503d41f8821"
+        },
+        {
+          "label": "Same-date Research Plan",
+          "label_zh": "同日 Research Plan",
+          "path": "research/runtime/plans/2026/09/2026-09-15-plan.json"
+        },
+        {
+          "label": "LifeFuse-Mem primary research",
+          "label_zh": "LifeFuse-Mem 一手研究",
+          "url": "https://arxiv.org/abs/2609.12436"
+        },
+        {
+          "label": "LAST-CQ primary research",
+          "label_zh": "LAST-CQ 一手研究",
+          "url": "https://arxiv.org/abs/2609.12746"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Q-20260915-01 Reading Note",
+          "label_zh": "Q-20260915-01 深读笔记",
+          "path": "research/reading/Q-20260915-01-lifecycle-aware-durable-transient-memory.md"
+        },
+        {
+          "label": "Q-20260915-02 Reading Note",
+          "label_zh": "Q-20260915-02 深读笔记",
+          "path": "research/reading/Q-20260915-02-detection-retry-recovery-attribution.md"
+        },
+        {
+          "label": "Reading result",
+          "label_zh": "Reading 结果",
+          "path": "research/runtime/results/2026/09/2026-09-15-reading-result.json"
+        }
+      ],
+      "startedAt": "2026-09-15T11:05:24+08:00",
+      "completedAt": "2026-09-15T11:12:58+08:00"
     }
   },
   "timeline": [
@@ -681,6 +794,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Reading after verifying research/runtime/wakes/2026/09/2026-09-15/reading-110123.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-15T11:12:58+08:00",
+      "task": "reading",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Reading closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-15."
     }
   ],
   "metrics": [],
@@ -688,5 +808,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-15T11:07:12+08:00"
+  "updatedAt": "2026-09-15T11:12:58+08:00"
 }
