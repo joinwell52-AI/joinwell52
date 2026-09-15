@@ -8,7 +8,7 @@ category: "daily"
 article_type: "experiment-report"
 edition: "research-center"
 research_question: "Why did the tool run when the setting said “always”?"
-summary: "A setting that sounds stricter can bypass approval when its type is invalid. A bounded experiment follows the actual tool-call entry point."
+summary: "An approval setting meant to make an AI ask first instead let its tool run. Testing the fix exposed a second question: what if the approval check gives no answer?"
 cover: "/assets/execution-facts-20260915/approval-setting.cover-v1.png"
 language: "en"
 lifecycle: "Published"
@@ -17,59 +17,88 @@ evidence_status: "Bounded pinned-source experiments; scope in article"
 pageClass: "execution-facts-article"
 ---
 
-<ArticleCover image="/assets/execution-facts-20260915/approval-setting.cover-v1.png" kicker="Open-source engineering · Experiments" title="Why did the tool run when the setting said “always”?" summary="A setting that sounds stricter can bypass approval when its type is invalid. A bounded experiment follows the actual tool-call entry point." version="2026-09-15" languageHref="/zh/engineering/2026-09-15-approval-setting" languageLabel="中文" />
+<ArticleCover image="/assets/execution-facts-20260915/approval-setting.cover-v1.png" kicker="Open-source engineering · Experiments" title="Why did the tool run when the setting said “always”?" summary="An approval setting meant to make an AI ask first instead let its tool run. Testing the fix exposed a second question: what if the approval check gives no answer?" version="2026-09-15" languageHref="/zh/engineering/2026-09-15-approval-setting" languageLabel="中文" />
 
 <ArticleTableScroll language="en" />
 
 <style>.execution-facts-article .vp-doc h1[id] { display: none; }</style>
 
+
 # Why did the tool run when the setting said “always”?
+Adding “ask me before acting” is supposed to give us another chance to check an AI's work. What should happen if that approval setting is broken?
 
-A developer wants a tool to ask for approval every time and sets its approval option to the string `"always"`. The intention seems clear. Yet the tool runs immediately.
+A reasonable expectation is that the program stops and tells us what needs fixing.
 
-This is a locally testable counterexample, not a production incident we experienced. It comes from [OpenAI Agents Python PR #5029](https://github.com/openai/openai-agents-python/pull/5029), submitted by DeepanshuPal. The SDK connects agents to tools; the affected path here is tool approval in a Realtime session.
+Our experiment produced the opposite result. We put the text “always” into an approval setting, and the tool ran once. With the proposed fix, the same input raised an error and the tool did not run.
 
-We build a multi-agent collaboration system, so the boundary between running an action and waiting for a person's decision matters to us. This source reduced that boundary to a small, testable question: what happens when an approval setting cannot be interpreted?
+**How could a mistake in a setting intended to require approval turn into permission to act?**
 
-## Understandable words, invalid configuration
+## Clear meaning, invalid setting
 
-The `needs_approval` setting accepts a Boolean or a callback that calculates whether approval is needed. The string `"always"` is neither.
+The counterexample comes from [a proposed OpenAI Agents Python fix](https://github.com/openai/openai-agents-python/pull/5029) by DeepanshuPal. This library helps developers connect AI agents to tools.
 
-The predecessor's Realtime path used a permissive check. An invalid setting fell through to “approval is not required.” The proposed change uses strict validation: an invalid type raises a configuration error before the tool runs.
+We build a multi-agent collaboration system, so the boundary before an action matters to us. This source made that boundary testable: when an approval setting cannot be understood, does the program stop or continue?
 
-The practical difference is whether an uninterpretable setting produces an action.
+The word “always” here is a value in program configuration, not an instruction typed into an AI chat. The problem is in the code deciding whether a tool may run, rather than a model choosing to ignore someone.
 
-## Ten inputs through the actual entry point
+The setting accepts explicit yes/no values or a small function that decides whether approval is needed for the current action. The text “always” is not an accepted value. The old check did not report that mistake; it treated the setting as requiring no approval.
 
-We pinned candidate commit `b6c2cef` and exercised the real `RealtimeSession._handle_tool_call` entry point with a local recording tool. Its only effect was appending to a Python list. A recording model replaced the remote service.
+A person understands the word. That does not make it valid configuration—and invalid configuration should not silently acquire a meaning its author did not intend.
 
-For the comparison, we replaced only the approval method with its implementation from predecessor `fbf59a4`, keeping the rest of the candidate source. This is a **single-method ablation**, not a comparison of two complete releases.
+## Leave a record whenever the tool runs
 
-| Input | Predecessor method | Candidate method |
+We used a local tool that adds a record to an in-memory list each time it runs. A test program stood in for the AI service; the approval check and tool-call entry point used the project's actual code.
+
+For the comparison, we changed only the approval method, keeping the surrounding code the same.
+
+| Input | Original method | Proposed fix |
 | --- | --- | --- |
-| `false` | One tool invocation | One tool invocation |
-| `true` | No invocation; one pending approval | Same |
-| String `"always"` | One invocation | UserError; no invocation |
-| Integer `1`, `None`, empty object | One invocation for each | Error and no invocation for each |
-| Callback returning false / true | Execute / wait | Execute / wait |
-| Callback returning `None` | One invocation | Still one invocation |
+| Explicitly no approval needed | Run once | Run once |
+| Explicitly approval needed | Wait without running | Wait without running |
+| Unaccepted text “always” | Run once | Error; do not run |
+| Number 1, empty value, empty object—tested separately | Run once for each | Error; do not run for each |
+| A function answers no / yes | Run / wait | Run / wait |
+| The decision function gives no answer | Run once | **Still run once** |
 
-The normal async callback returning false also retained its behavior. We ran the project's 31 approval tests: all passed with the candidate; replacing the method produced 30 passes and one failure for invalid configuration. We did not run the author's larger Realtime suite.
+The fix stopped all four tested kinds of invalid setting while preserving normal run and wait behavior.
 
-![The configuration type and callback result are separate validation boundaries](/assets/execution-facts-20260915/approval-setting.figure.en.svg)
+The last row, however, opened another question.
 
-*Figure 1. Setting types and callback outputs are different validation boundaries. Source: ten input cases in runs/sdk.json. This depicts local decisions, not live requests.*
+## Does no answer mean no approval is needed?
 
-## The last row opens another question
+A fixed setting is not always enough. Developers can supply a function that examines an action and answers whether it needs approval.
 
-A callback is an accepted configuration object. But a Python callback that forgets to return a value produces `None`. In this tested version, that result is still converted to false, so the tool runs.
+We deliberately made that function return no answer. The tool still ran with the proposed fix.
 
-We are not presenting this as a confirmed additional vulnerability. The callback contract expects a Boolean; the missing return is deliberately outside that contract. It exposes two distinct checks: whether the configuration is an accepted object, and whether the result it computes is valid.
+Providing a function was an accepted configuration format. But its empty result was converted to “no approval needed.” **An accepted setting does not necessarily produce a valid decision.**
 
-Where should that mistake surface—static checking and tests, or validation at the execution boundary too? If conversion remains permissive, how clearly is that contract communicated?
+![An invalid setting and a missing decision are different cases](/assets/execution-facts-20260915/approval-setting.figure.en.svg)
 
-A useful experiment for another project is therefore to test an explicitly invalid value alongside normal execute and wait cases, then inspect whether the tool actually ran. A friendly error message alone does not establish that outcome.
+*Figure 1. Two mistakes reach different checks. Source: saved approval observations in sdk.json; the measured effect is a local tool invocation.*
 
-For practitioners: would you permit an empty callback result to mean “no approval needed”? For users: what should the product show when its approval configuration is broken?
+We are not presenting this as a confirmed new vulnerability. The function was expected to return a Boolean, and we deliberately violated that contract. The observation makes a useful follow-up question more precise:
 
-These observations cover a pinned Realtime entry point and a local recording effect. They do not establish behavior across every approval mode or remote connection, nor a corresponding CodeFlowMu defect. The [public evidence package](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-09-15-execution-facts) contains the probes, outputs, and verification instructions.
+**If the approval function fails or forgets to answer, should execution validate its result instead of interpreting an empty answer as permission?**
+
+We tested the missing answer. Exceptions and other failure cases still need separate experiments.
+
+## Something practical to check
+
+When testing an approval feature, add “the setting itself is broken” alongside “run” and “wait.” Inspect the tool's records as well as the error message to establish whether it actually stopped.
+
+For developers: which component checks the decision function's answer, and which invalid results must be rejected? For users: would “This setting is invalid; the action was not performed,” together with an action record, make the situation clearer?
+
+An approval mechanism needs a defined response when it cannot produce a valid answer, as well as a normal yes/no path.
+
+<details>
+<summary>Experiment details and reproduction</summary>
+
+The candidate was b6c2cef, exercised through RealtimeSession._handle_tool_call. The comparison substituted only _function_needs_approval from fbf59a4: a single-method ablation, not two complete releases. The tool appended to a Python list; no live service request occurred.
+
+Ten inputs ran in each of two modes. Invalid top-level needs_approval values were the string "always", integer 1, None, and an empty object. A callback returning None was a separate, deliberately out-of-contract input. The normal async callback returning false also retained its behavior.
+
+The candidate passed the original 31 approval tests. The predecessor method produced 30 passes and one invalid-setting failure. We did not run the larger Realtime suite or verify a corresponding CodeFlowMu path.
+
+[Pinned sources, probes, results, and reproduction instructions](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-09-15-execution-facts).
+
+</details>

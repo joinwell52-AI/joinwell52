@@ -8,7 +8,7 @@ category: "daily"
 article_type: "experiment-report"
 edition: "research-center"
 research_question: "Why did pausing work turn into a task failure?"
-summary: "Pausing and exhausting a budget both block execution, but need different outcomes. A bounded experiment follows the cause across a changing company state."
+summary: "Pause should mean wait a while. Why did tasks still need intervention after resuming? The problem began when “cannot continue” lost its reason."
 cover: "/assets/execution-facts-20260915/pause-is-not-failure.cover-v1.png"
 language: "en"
 lifecycle: "Published"
@@ -17,70 +17,97 @@ evidence_status: "Bounded pinned-source experiments; scope in article"
 pageClass: "execution-facts-article"
 ---
 
-<ArticleCover image="/assets/execution-facts-20260915/pause-is-not-failure.cover-v1.png" kicker="Open-source engineering · Experiments" title="Why did pausing work turn into a task failure?" summary="Pausing and exhausting a budget both block execution, but need different outcomes. A bounded experiment follows the cause across a changing company state." version="2026-09-15" languageHref="/zh/engineering/2026-09-15-pause-is-not-failure" languageLabel="中文" />
+<ArticleCover image="/assets/execution-facts-20260915/pause-is-not-failure.cover-v1.png" kicker="Open-source engineering · Experiments" title="Why did pausing work turn into a task failure?" summary="Pause should mean wait a while. Why did tasks still need intervention after resuming? The problem began when “cannot continue” lost its reason." version="2026-09-15" languageHref="/zh/engineering/2026-09-15-pause-is-not-failure" languageLabel="中文" />
 
 <ArticleTableScroll language="en" />
 
 <style>.execution-facts-article .vp-doc h1[id] { display: none; }</style>
 
+
 # Why did pausing work turn into a task failure?
+After pressing pause and then resume, you would probably expect the original work to return to its queue.
 
-Pausing usually means “do not work on this yet.” A failure means something else: investigate it, reassign it, or ask a person to decide what happens next.
+If tasks instead appear as problems requiring intervention, it can look as though pausing broke them.
 
-If a collaboration system records a pause as a failure, resuming the organization may leave its tasks in the wrong place.
+A proposed fix in an AI team-management tool exposed that surprising possibility. **Many things can prevent work from starting. Lose the reason, and a wait can turn into a recorded problem.**
 
-Paperclip organizes AI agents and their work. In [PR #13443](https://github.com/paperclipai/paperclip/pull/13443), MrBlackTongue reports that recovery scans could escalate tasks as budget-blocked while their company was paused. A company here is the organizational object containing agents and tasks.
+## The same stop needs different next steps
 
-We build a collaboration system too. The source interested us because it asks a precise recovery question: when work cannot start, should the system wait or record a problem requiring intervention? The implementation and its timing discussion made that distinction testable.
+Paperclip organizes AI agents and tasks. It calls a group containing them a “company”; here, think of that as an AI team.
 
-## A Boolean discarded the reason
+In [this proposal](https://github.com/paperclipai/paperclip/pull/13443), MrBlackTongue reports that checks for unfinished work could escalate tasks as budget-blocked while their company was paused. The budget is a spending allowance for a team or agent.
 
-The predecessor asked a budget service whether anything blocked invocation. The service could return a company pause or actual budget exhaustion.
+Both a pause and an exhausted allowance can prevent new work. But they call for different responses. An intentional pause usually means resume later; an exhausted allowance may require adjusting the budget or deciding whether to continue.
 
-The recovery helper reduced the returned object to a Boolean. A truthy result then entered a budget-escalation path.
+We are building a collaboration system too. This source gave us a precise question to test: how did “wait for now” become “there is a problem to handle”?
 
-The original observation had a reason. It was lost while passing between components.
+## The reason existed before it was discarded
 
-The candidate adds a live company-pause check for each task and gives the returned block an explicit cause, allowing recovery to distinguish a company pause from exhausted budget.
+The initial check returned a specific reason that work could not start, such as “company paused” or “budget exhausted.”
 
-## Why checking at the beginning is insufficient
+The recovery helper kept only a yes/no answer: something was blocking the action, or nothing was. Any block entered the budget-handling branch.
 
-A task can pass the initial check while the company is active, then encounter a pause at the later budget check.
+Imagine forwarding a note that says “paused today; continue tomorrow” as simply “cannot work today.” If someone then fills in “because we ran out of money,” they will choose the wrong response. That analogy describes only the information loss; in the actual program, the discarded information was the cause of an invocation block.
 
-A second lookup seems helpful, but consider the opposite timing: the budget check observes a pause, then the company resumes before another lookup. Seeing “active” later cannot establish that the earlier block was caused by budget exhaustion.
+The candidate carries that cause forward and checks whether the company is paused before processing each task.
 
-The candidate therefore uses the cause attached to that particular block observation. Later state changes should not rewrite the reason for an earlier decision.
+Checking once at the beginning, however, is not enough.
 
-![Keep the cause attached to the block observation](/assets/execution-facts-20260915/pause-is-not-failure.figure.en.svg)
+## Three moments, two very different interpretations
 
-*Figure 1. Preserve a block's cause across later state changes. Source: script-controlled inputs in runs/paperclip.json, not live concurrent workers.*
+The company can change while a check is underway. We deliberately arranged this sequence:
 
-## Seven scenarios
+1. The company is active at the initial check.
+2. It pauses; a later check observes that pause as the reason work cannot start.
+3. It resumes before the result is handled.
 
-We pinned predecessor `0e9b24c` and candidate `1db5d93`, extracting the unchanged budget function, the relevant recovery branch, and the candidate's pause precheck. Scripted database rows and an escalation recorder supplied the surrounding dependencies. This is a branch-mechanism probe, **not a full recovery service or PostgreSQL test**.
+Looking up company state at step three returns “active.” But that cannot overturn step two: **the earlier block really was caused by a pause.**
 
-| Scenario | Predecessor branch | Candidate branch |
+The candidate uses the cause returned by that observation, rather than reconstructing an earlier reason from a later state.
+
+![A later resume cannot rewrite the observed pause cause](/assets/execution-facts-20260915/pause-is-not-failure.figure.en.svg)
+
+*Figure 1. Keep the reason with the check that observed it. Source: controlled timing inputs in paperclip.json, not measurements of live concurrent users.*
+
+## Record which branch the program chooses
+
+We used the original budget-checking code and relevant recovery branches. A test program supplied the planned states and recorded whether the code chose to skip or request budget handling. **No task was actually changed in a database, and this was not a full recovery-system test.**
+
+| Arranged condition | Original choice | Candidate choice |
 | --- | --- | --- |
-| Company already paused | Request blocked escalation | Skip |
-| Pause after the precheck | Request blocked escalation | Skip |
-| Resume immediately after a pause block is read | Request blocked escalation | Skip using the observed pause cause |
-| Active company exceeds budget | Request blocked escalation | Still escalate |
-| Agent budget-paused within an active company | Request blocked escalation | Still escalate |
-| No block | Pass this branch | Still pass this branch |
-| Entire company paused for a budget reason | Request blocked escalation | Skip at company-pause precheck |
+| Company already paused | Request budget handling | Skip for now |
+| Pause after the initial check | Request budget handling | Skip for now |
+| Resume just after a pause cause is read | Request budget handling | Skip using that pause cause |
+| Active company exceeds its allowance | Request budget handling | Still request budget handling |
+| Agent budget-paused within an active company | Request budget handling | Still request budget handling |
+| Nothing prevents invocation | Continue to later checks | Continue to later checks |
+| Entire company paused for a budget reason | Request budget handling | Respect the company pause; skip |
 
-The last case prevents an overly broad reading: the candidate does not escalate whenever “budget” appears. It first respects a whole-company pause, then distinguishes budget blocks in an active company.
+The seven comparisons show that the candidate did not simply turn every problem into waiting. An actual budget block within an active company retained its handling.
 
-Passing this branch is not proof of eventual task recovery. Requesting escalation is not a database mutation in this probe; the recorder establishes which call the branch attempted.
+The last row adds a distinction: when the entire company is paused, the candidate respects that overall state instead of escalating its individual tasks during this check.
 
-## A reason is evidence too
+## After skipping, when does the system return?
 
-The comparison supports a bounded conclusion: if pausing and budget exhaustion require different treatment, collapsing them into “cannot proceed” forces a later component to reconstruct information it should have received directly.
+We established that the tested code stopped treating these pause scenarios as budget problems.
 
-It does not establish that every pause race is solved. Concurrent workers, transactions, persisted task changes, and later scans were outside this experiment.
+But “skip this time” is not the end of the story. After resume, are the tasks reconsidered promptly? Could eliminating a false problem leave work waiting indefinitely instead? Answering that requires testing the complete recovery process.
 
-For engineers, the next questions follow directly: who produces a blocking cause, which observation does it belong to, and does downstream handling consult state from a different moment? After resume, how does a later pass promptly reconsider work while preserving what the previous pause meant?
+The next question is therefore: **how can a system preserve why it stopped earlier while promptly checking again when conditions change?**
 
-For users: do you expect resuming to put existing tasks back into their queue? If some still need intervention, what explanation would distinguish that from “pausing broke the task”?
+Developers can examine each handoff: was the reason retained, and did handling infer it from state observed at another time? Users need a clear explanation of which tasks are waiting, which require intervention, and why, after they press resume.
 
-The [public probe and results](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-09-15-execution-facts) preserve all fourteen version/scenario observations. The author's reported batch incident is not our sample, and this experiment does not confirm a corresponding CodeFlowMu defect.
+Preserving the reason is a first step toward making a pause understandable and its next steps manageable.
+
+<details>
+<summary>Versions, scope, and reproduction</summary>
+
+We pinned predecessor 0e9b24c and candidate 1db5d93. The probe extracts the original getInvocationBlock, budget-block recovery branch, and candidate pause precheck. Database queries return scripted rows; an escalation recorder captures requested handling. Seven scenarios across two versions produced fourteen observations.
+
+“Request budget handling” means invoking the escalation path, “skip” means skipping the current candidate task, and “continue to later checks” means passing this branch only. None establishes an actual persisted task change or eventual recovery. The causes are company_paused and budget_exhausted.
+
+We did not run PostgreSQL integration, live concurrent workers, transactions, or the next recovery scan after resume. The author's reported batch incident is not our sample, and no corresponding CodeFlowMu defect was established.
+
+[Source provenance, probes, results, and reproduction instructions](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-09-15-execution-facts).
+
+</details>
