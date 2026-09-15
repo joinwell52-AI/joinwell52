@@ -1,0 +1,52 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-15",
+  "itemId": "Q-20260915-01",
+  "researchObjectId": "Q-20260915-01",
+  "targetAudience": {
+    "primary": "设计长期运行智能体、记忆层与治理控制的架构师和工程负责人",
+    "knowledgeAssumption": "读者理解检索、持久化、上下文窗口与基于角色的权限控制。",
+    "readerProblem": "系统把已存储的信息误当成长期事实，却无法说明谁授予了耐久性、何时应撤销、哪些任务可以读取。"
+  },
+  "whyNow": "一项受控抗覆盖实验显示，生命周期条件化的路由会实质影响长期事实保留，同时也暴露了实验并未解决分类授权、提升与撤销。",
+  "externalHook": {
+    "type": "temporary-fact-overwrites-committed-memory",
+    "description": "同一主体的临时事实与既有长期事实冲突时，简单持久化无法说明哪一项应继续影响后续行动。",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "E4"
+    ]
+  },
+  "coreProposition": "持久化智能体应把长期记忆表示为带来源、权限与时间边界的显式承诺，分别保存观察内容、生命周期分类、写入路径与读取权限，并把提升和撤销记录为可审计转换。",
+  "originalValue": {
+    "type": "provenance-bearing-temporal-commitment",
+    "description": "把观察内容、生命周期判断、存储路径和读取权限拆成四种证据身份，并为临时到长期的提升及长期状态的撤销定义显式事件。"
+  },
+  "readerTakeaway": "不要把数据库中的存在性当成长久真实性；让每次长期化都有来源、授权、范围、有效时间和可撤销路径。",
+  "evidenceBoundary": {
+    "supported": [
+      "在给定生命周期标签和阶段边界的受控协议中，生命周期条件化的路由与读取能减少临时覆盖。",
+      "移除路由监督会明显降低两种报告模型上的长期事实保留。",
+      "最强报告配置仍存在显著覆盖，说明机制改善不等于问题解决。"
+    ],
+    "unsupported": [
+      "系统能够从无标签历史自主判断生命周期",
+      "被长期保留的内容因此真实、当前或获准用于行动",
+      "该机制已经提供通用的提升、撤销或生产授权协议"
+    ],
+    "uncertain": [
+      "生产环境中的生命周期分类责任",
+      "模型迁移或矛盾出现后的重新验证",
+      "长期多用户负载下的延迟、容量和干扰"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "论证完全来自同日外部研究对象，删除任何第一方项目名称不影响核心价值。"
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "研究对象提供了受控因果证据、清晰限制和可操作的记忆治理命题。"
+}
