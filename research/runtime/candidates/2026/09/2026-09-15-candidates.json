@@ -1,0 +1,341 @@
+{
+  "schema": "runtime-publication-candidate/v2",
+  "date": "2026-09-15",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "sourceTask": "Research Runtime Production",
+  "sourceRecord": "research/runtime/records/daily/2026/09/2026-09-15-daily-runtime.json",
+  "reason": "Two authorized 2026-09-15 Research Objects were converted into complete bilingual Editorial Architecture 2.1 candidates with verified planning artifacts, bounded evidence claims, and deterministic baseline covers.",
+  "reason_zh": "两份已授权的 2026-09-15 研究对象已转换为完整双语编辑架构 2.1 候选，具备已核验规划工件、有边界的证据声明与确定性基础题图。",
+  "candidates": [
+    {
+      "itemId": "Q-20260915-01",
+      "column": "digital-employee",
+      "category": "daily",
+      "articleType": "technical-analysis",
+      "lifecycle": "Publication Candidate",
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "title": "Persisted Data Does Not Become Durable Memory",
+      "title_zh": "存进数据库，不等于成为长期记忆",
+      "researchQuestion": "持久化智能体必须区分哪些事实，临时上下文才能与长期记忆安全共存；其中哪些区别得到受控证据支持，哪些仍只是架构推论？",
+      "coreProposition": "持久化智能体应把长期记忆表示为带来源、权限与时间边界的显式承诺，分别保存观察内容、生命周期分类、写入路径与读取权限，并把提升和撤销记录为可审计转换。",
+      "articleBriefPath": "research/runtime/production-work/2026/09/15/Q-20260915-01/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/15/Q-20260915-01/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/15/Q-20260915-01/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-15-persisted-data-not-durable-memory.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-15-persisted-data-not-durable-memory.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-15-persisted-data-not-durable-memory-cover.png",
+      "coverRole": "baseline",
+      "sections": [
+        {
+          "module": "controlled-evidence",
+          "heading": "What the Controlled Evidence Shows",
+          "heading_zh": "受控证据证明了什么"
+        },
+        {
+          "module": "commitment-boundary",
+          "heading": "The Experiment Starts After the Commitment",
+          "heading_zh": "实验从承诺之后开始"
+        },
+        {
+          "module": "four-memory-identities",
+          "heading": "Four Memory Identities Must Stay Separate",
+          "heading_zh": "四种记忆身份必须分开"
+        },
+        {
+          "module": "promotion-revocation",
+          "heading": "Promotion and Revocation Need Events",
+          "heading_zh": "提升与撤销需要显式事件"
+        },
+        {
+          "module": "retention-not-truth",
+          "heading": "Better Retention Is Not Better Truth",
+          "heading_zh": "保留得更久不等于更真实"
+        },
+        {
+          "module": "memory-contract",
+          "heading": "A Governed Memory Contract",
+          "heading_zh": "一份受治理的记忆合同"
+        },
+        {
+          "module": "memory-open-questions",
+          "heading": "Boundaries and Open Questions",
+          "heading_zh": "边界与未决问题"
+        }
+      ],
+      "endingModule": "memory-open-questions",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "LifeFuse-Mem labels writes by lifecycle, separates stable and plastic memory subspaces, uses supervised routing, and applies lifecycle-aware protected readout in the controlled setting.",
+          "claim_zh": "LifeFuse-Mem 在受控设置中为写入提供生命周期标签，分离稳定与可塑记忆子空间，使用受监督路由和生命周期感知的受保护读取。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260915-01-durable-memory-is-a-commitment.md"
+        },
+        {
+          "id": "E2",
+          "identity": "source-reported-claim",
+          "claim": "On the 1,000-episode benchmark, reported configurations retain more acquired permanent facts and suffer less temporary overwrite than evaluated baselines, while substantial overwrite remains.",
+          "claim_zh": "一手研究报告，在一千个片段的基准中，该配置比被评估基线保留更多已获得长期事实并减少临时覆盖，但仍存在显著覆盖。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260915-01-durable-memory-is-a-commitment.md"
+        },
+        {
+          "id": "E3",
+          "identity": "source-reported-claim",
+          "claim": "Removing route supervision materially reduces permanent-fact retention on both reported backbones.",
+          "claim_zh": "一手研究报告，移除路由监督会明显降低两种模型骨干上的长期事实保留。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260915-01-durable-memory-is-a-commitment.md"
+        },
+        {
+          "id": "E4",
+          "identity": "public-fact",
+          "claim": "The experimental setting supplies lifecycle labels and phase structure and does not demonstrate autonomous classification, a general promotion protocol, or durable-memory revocation.",
+          "claim_zh": "实验预先提供生命周期标签与阶段结构，并未展示自主分类、通用提升协议或长期记忆撤销。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260915-01-durable-memory-is-a-commitment.md"
+        },
+        {
+          "id": "E5",
+          "identity": "our-interpretation",
+          "claim": "Observed content, lifecycle classification, memory update path, and read authority should remain separate state identities.",
+          "claim_zh": "本文据此解释，观察内容、生命周期分类、记忆写入路径与读取权限应保持为不同状态身份。",
+          "strength": "supports",
+          "independent": false,
+          "source": "research/analysis/Q-20260915-01-durable-memory-is-a-commitment.md"
+        },
+        {
+          "id": "E6",
+          "identity": "our-interpretation",
+          "claim": "Durable classification should be a provenance-bearing commitment, with promotion and revocation represented as explicit transitions.",
+          "claim_zh": "本文据此解释，长期分类应是带来源的承诺，提升与撤销应表示为显式转换。",
+          "strength": "supports",
+          "independent": false,
+          "source": "research/analysis/Q-20260915-01-durable-memory-is-a-commitment.md"
+        },
+        {
+          "id": "E7",
+          "identity": "open-question",
+          "claim": "Production ownership of lifecycle classification, contradiction revalidation, model migration, and long-running operational cost remain open.",
+          "claim_zh": "生产环境中的分类责任、矛盾后重新验证、模型迁移与长期运行成本仍待研究。",
+          "strength": "open-question",
+          "independent": false,
+          "source": "research/analysis/Q-20260915-01-durable-memory-is-a-commitment.md"
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The argument derives from same-date external research and remains independently useful without first-party projects."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition carries the transferable memory-governance argument without a distinct community-specific angle."
+      },
+      "inlineFigures": [],
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "moduleDefinitions": {
+        "controlled-evidence": "Advances the evidence-bounded argument through 受控证据证明了什么 without adding unsupported claims.",
+        "commitment-boundary": "Advances the evidence-bounded argument through 实验从承诺之后开始 without adding unsupported claims.",
+        "four-memory-identities": "Advances the evidence-bounded argument through 四种记忆身份必须分开 without adding unsupported claims.",
+        "promotion-revocation": "Advances the evidence-bounded argument through 提升与撤销需要显式事件 without adding unsupported claims.",
+        "retention-not-truth": "Advances the evidence-bounded argument through 保留得更久不等于更真实 without adding unsupported claims.",
+        "memory-contract": "Advances the evidence-bounded argument through 一份受治理的记忆合同 without adding unsupported claims.",
+        "memory-open-questions": "Advances the evidence-bounded argument through 边界与未决问题 without adding unsupported claims."
+      }
+    },
+    {
+      "itemId": "Q-20260915-02",
+      "column": "open-source-engineering",
+      "category": "daily",
+      "articleType": "engineering-insight",
+      "lifecycle": "Publication Candidate",
+      "editingStatus": "Completed",
+      "evidenceStatus": "Completed",
+      "title": "A Successful Retry Does Not Prove Trustworthy Recovery",
+      "title_zh": "重试成功，不等于恢复可信",
+      "researchQuestion": "智能体工作流在首次失败后恢复时，必须分别保存哪些事实，才能证明恢复有效、正确且安全，而不只是后来一次尝试成功？",
+      "coreProposition": "智能体恢复应被表示为一组分别取证的阶段：失败检测、恢复路由、修正输入、重试预算、结果验收与外部效果核对；更复杂的反思只有在带来可测增益时才值得增加。",
+      "articleBriefPath": "research/runtime/production-work/2026/09/15/Q-20260915-02/article-brief.json",
+      "argumentArchitecturePath": "research/runtime/production-work/2026/09/15/Q-20260915-02/argument-architecture.json",
+      "figurePlanPath": "research/runtime/production-work/2026/09/15/Q-20260915-02/figure-plan.json",
+      "zhPath": "staging/publication-candidates/2026-09-15-successful-retry-not-trustworthy-recovery.zh.md",
+      "enPath": "staging/publication-candidates/2026-09-15-successful-retry-not-trustworthy-recovery.en.md",
+      "coverPath": "staging/publication-candidates/2026-09-15-successful-retry-not-trustworthy-recovery-cover.png",
+      "coverRole": "baseline",
+      "sections": [
+        {
+          "module": "benchmark-evidence",
+          "heading": "What the Benchmark Actually Measures",
+          "heading_zh": "基准真正测量了什么"
+        },
+        {
+          "module": "feedback-ablation",
+          "heading": "Richer Reflection Added Little Here",
+          "heading_zh": "更复杂反思在这里增益很小"
+        },
+        {
+          "module": "attempts-versus-recovery",
+          "heading": "More Attempts Are Not the Same Mechanism",
+          "heading_zh": "更多尝试不是同一种机制"
+        },
+        {
+          "module": "six-recovery-identities",
+          "heading": "Six Recovery Identities Must Stay Separate",
+          "heading_zh": "六种恢复身份必须分开"
+        },
+        {
+          "module": "executable-not-correct",
+          "heading": "Executable Is Not Correct",
+          "heading_zh": "可执行不等于正确"
+        },
+        {
+          "module": "effect-reconciliation",
+          "heading": "Effect Reconciliation Comes Before Replay",
+          "heading_zh": "重放前必须先核对外部效果"
+        },
+        {
+          "module": "failure-class-policy",
+          "heading": "Recovery Policy Follows Failure Class",
+          "heading_zh": "恢复策略取决于失败类型"
+        },
+        {
+          "module": "recovery-open-questions",
+          "heading": "Boundaries and Open Questions",
+          "heading_zh": "边界与未决问题"
+        }
+      ],
+      "endingModule": "recovery-open-questions",
+      "evidenceClaims": [
+        {
+          "id": "E1",
+          "identity": "public-fact",
+          "claim": "LAST-CQ decomposes text-to-Cypher work into deterministic schema parsing, initial generation, execution-grounded validation, correction, and execution, with one bounded correction attempt.",
+          "claim_zh": "LAST-CQ 将文本到图数据库查询工作拆为确定性模式解析、首次生成、执行环境验证、修正与执行，并只允许一次有界修正。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260915-02-phase-separated-recovery-evidence.md"
+        },
+        {
+          "id": "E2",
+          "identity": "source-reported-claim",
+          "claim": "Across six evaluated backbones, the paper reports a 91.7% unweighted mean recovery rate and a 93.8% pooled recovery rate for failures entering correction.",
+          "claim_zh": "一手研究报告，六种模型中进入修正路径的失败取得91.7%的未加权平均恢复率与93.8%的汇总恢复率。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260915-02-phase-separated-recovery-evidence.md"
+        },
+        {
+          "id": "E3",
+          "identity": "source-reported-claim",
+          "claim": "Replacing synthesized feedback with raw database errors changes aggregate exact match only slightly in this benchmark.",
+          "claim_zh": "一手研究报告，在该基准中，用原始数据库错误替换合成反馈只小幅改变总体精确匹配。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260915-02-phase-separated-recovery-evidence.md"
+        },
+        {
+          "id": "E4",
+          "identity": "source-reported-claim",
+          "claim": "Equal-budget parallel three-sample selection performs worse than the execution-grounded iterative path on the reported models.",
+          "claim_zh": "一手研究报告，在相同预算下，并行三样本选择弱于带执行环境反馈的迭代路径。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260915-02-phase-separated-recovery-evidence.md"
+        },
+        {
+          "id": "E5",
+          "identity": "public-fact",
+          "claim": "Non-empty execution is not semantic correctness; the model judge is optimistic relative to human calibration, and recovery varies sharply by failure class.",
+          "claim_zh": "非空执行不等于语义正确；模型评审相对人工校准偏乐观，恢复表现也随失败类别显著变化。",
+          "strength": "reports",
+          "independent": false,
+          "source": "research/analysis/Q-20260915-02-phase-separated-recovery-evidence.md"
+        },
+        {
+          "id": "E6",
+          "identity": "our-interpretation",
+          "claim": "Failure detection, recovery routing, correction input, retry budget, acceptance, and external-effect reconciliation require separate evidence identities.",
+          "claim_zh": "本文据此解释，失败检测、恢复路由、修正输入、重试预算、验收与外部效果核对需要不同证据身份。",
+          "strength": "supports",
+          "independent": false,
+          "source": "research/analysis/Q-20260915-02-phase-separated-recovery-evidence.md"
+        },
+        {
+          "id": "E7",
+          "identity": "our-interpretation",
+          "claim": "Recovery policy should depend on failure observability and effect risk rather than use a universal retry rule.",
+          "claim_zh": "本文据此解释，恢复策略应取决于失败可观察性与效果风险，而不是采用统一重试规则。",
+          "strength": "supports",
+          "independent": false,
+          "source": "research/analysis/Q-20260915-02-phase-separated-recovery-evidence.md"
+        },
+        {
+          "id": "E8",
+          "identity": "open-question",
+          "claim": "Exactly-once effects, idempotency, compensation, authority continuity, and transfer to general state-changing tools remain unproved.",
+          "claim_zh": "恰好一次效果、幂等、补偿、授权连续性及向一般有副作用工具迁移仍未得到证明。",
+          "strength": "open-question",
+          "independent": false,
+          "source": "research/analysis/Q-20260915-02-phase-separated-recovery-evidence.md"
+        }
+      ],
+      "projectRelevance": {
+        "status": "none",
+        "projects": [],
+        "rationale": "The argument derives from same-date external research and remains independently useful without first-party projects."
+      },
+      "communityEdition": {
+        "decision": "not-generated",
+        "rationale": "The complete Research Center edition carries the transferable recovery argument without a distinct community-specific angle."
+      },
+      "inlineFigures": [],
+      "gates": {
+        "editorialValue": "PASS",
+        "researchValue": "PASS",
+        "independence": "PASS",
+        "evidence": "PASS",
+        "structure": "PASS",
+        "narrative": "PASS",
+        "language": "PASS",
+        "bilingualConsistency": "PASS",
+        "visualArgument": "PASS"
+      },
+      "coverGate": "PASS",
+      "inlineVisualGate": "PASS",
+      "layoutGate": "PASS",
+      "moduleDefinitions": {
+        "benchmark-evidence": "Advances the evidence-bounded argument through 基准真正测量了什么 without adding unsupported claims.",
+        "feedback-ablation": "Advances the evidence-bounded argument through 更复杂反思在这里增益很小 without adding unsupported claims.",
+        "attempts-versus-recovery": "Advances the evidence-bounded argument through 更多尝试不是同一种机制 without adding unsupported claims.",
+        "six-recovery-identities": "Advances the evidence-bounded argument through 六种恢复身份必须分开 without adding unsupported claims.",
+        "executable-not-correct": "Advances the evidence-bounded argument through 可执行不等于正确 without adding unsupported claims.",
+        "effect-reconciliation": "Advances the evidence-bounded argument through 重放前必须先核对外部效果 without adding unsupported claims.",
+        "failure-class-policy": "Advances the evidence-bounded argument through 恢复策略取决于失败类型 without adding unsupported claims.",
+        "recovery-open-questions": "Advances the evidence-bounded argument through 边界与未决问题 without adding unsupported claims."
+      }
+    }
+  ],
+  "githubCommit": "pending",
+  "updatedAt": "2026-09-15T15:34:00+08:00"
+}
