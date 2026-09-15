@@ -1,0 +1,104 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-15",
+  "itemId": "Q-20260915-02",
+  "coreProposition": "智能体恢复应被表示为一组分别取证的阶段：失败检测、恢复路由、修正输入、重试预算、结果验收与外部效果核对；更复杂的反思只有在带来可测增益时才值得增加。",
+  "openingMove": {
+    "type": "retry-succeeded-effect-unknown",
+    "purpose": "以第二次尝试成功但第一次外部效果未知的场景，揭示单一“已恢复”状态丢失的证据。",
+    "evidenceRefs": [
+      "E6",
+      "E7",
+      "E8"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "结构化基准如何拆解恢复？",
+      "claim": "研究将模式解析、首次生成、环境验证、修正与执行分开，并仅允许一次有界修正。",
+      "evidenceRefs": [
+        "E1"
+      ],
+      "reasoningRole": "mechanism",
+      "readerProgress": "建立可观察的恢复路径。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "有界修正挽回了多少失败？",
+      "claim": "六种模型上报告的平均与汇总恢复率表明，大量首次失败能在环境证据驱动的修正后被挽回。",
+      "evidenceRefs": [
+        "E2"
+      ],
+      "reasoningRole": "benchmark-evidence",
+      "readerProgress": "给出有范围的效果证据。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "复杂反馈是否是主要原因？",
+      "claim": "原始数据库错误与合成反馈的总体结果接近，说明在该环境中，检测、路由和另一机会贡献了大部分恢复价值。",
+      "evidenceRefs": [
+        "E3"
+      ],
+      "reasoningRole": "component-ablation",
+      "readerProgress": "收窄因果归因。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "更多尝试能否替代恢复路径？",
+      "claim": "相同预算的并行采样弱于收到目标环境失败证据的迭代修正，表明尝试数量与因果反馈不是同一机制。",
+      "evidenceRefs": [
+        "E4"
+      ],
+      "reasoningRole": "comparison",
+      "readerProgress": "区分预算和信息结构。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "为什么后续执行成功仍不够？",
+      "claim": "非空执行、语义正确、策略安全与业务授权是不同验收身份；报告评审器相对人工校准也偏乐观。",
+      "evidenceRefs": [
+        "E5"
+      ],
+      "reasoningRole": "acceptance-boundary",
+      "readerProgress": "阻止把可执行性升级成全面正确性。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A6",
+      "question": "恢复记录要保存哪些阶段？",
+      "claim": "检测、路由、修正、预算、验收和效果核对都应有独立来源与状态，终态只能汇总，不能替代这些证据。",
+      "evidenceRefs": [
+        "E6"
+      ],
+      "reasoningRole": "state-model",
+      "readerProgress": "形成可审计的恢复合同。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A7",
+      "question": "何时可以自动重试？",
+      "claim": "明确、无副作用且可验收的失败适合低成本有界重试；副作用未知或语义模糊的失败应先核对效果、补偿或升级。",
+      "evidenceRefs": [
+        "E7",
+        "E8"
+      ],
+      "reasoningRole": "risk-policy",
+      "readerProgress": "把基准洞见转化为风险条件策略。",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "既然一个重试能挽回多数失败，统一自动重试就是成本最低的默认方案。",
+    "responseBoundary": "恢复率来自结构化、可执行且主要为查询的环境；不同失败类别差异很大，外部写入的未知效果与授权变化不在该结果覆盖范围内。"
+  },
+  "endingStrategy": {
+    "type": "replay-preconditions",
+    "purpose": "以重放前必须回答的效果、验收与授权问题结束。"
+  }
+}
