@@ -3,64 +3,102 @@
   "version": "1.0",
   "date": "2026-09-15",
   "timezone": "Asia/Shanghai",
-  "status": "Waiting",
+  "status": "Completed",
   "registryVersion": "1.0",
-  "sourceTask": "Research Runtime Queue",
-  "updatedAt": "",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-09-15T09:12:19+08:00",
   "githubCommit": "pending",
-  "reason": "Research Runtime Queue has not completed the three intelligence pipelines.",
-  "reason_zh": "研究运行队列尚未完成三条情报发现管线。",
+  "researchCoverage": {
+    "policy": "theme-sample-v1",
+    "rollingResearchWindowDays": 30,
+    "sampleFamilies": {
+      "product-governance": {
+        "checked": [
+          "OpenAI Agents API managed long-running harness and sandbox boundary",
+          "GitHub Copilot auto model selection cost/quality controls"
+        ],
+        "qualifiedSignals": 1
+      },
+      "multi-agent-mechanism": {
+        "checked": [
+          "Google ADK JavaScript Chrome built-in LLM adapter preserving the ADK tool/event loop",
+          "LangGraph generated llms.txt deployment fallback and validation path"
+        ],
+        "qualifiedSignals": 0
+      },
+      "research-benchmark-industry": {
+        "checked": [
+          "LAST-CQ execution-grounded recovery counterfactuals (arXiv:2609.12746)",
+          "VRL-Bench finite-trial verbal reinforcement evaluation (arXiv:2609.12404)",
+          "LifeFuse-Mem lifecycle-aware long-term memory (arXiv:2609.12436)"
+        ],
+        "qualifiedSignals": 3
+      }
+    }
+  },
+  "reason": "All three formal Discovery pipelines reached terminal coverage and the rotated theme-first overlay was completed without topic selection. Six qualified, non-duplicate signals survived problem-level normalization: one platform/runtime mechanism, two merged engineering mechanisms, and three primary-research findings. AI Platform terminally resolved 45/45 due public channels as 44 direct checks plus one explicitly recorded Copilot Studio authorization barrier. GitHub Engineering checked all nine P0 daily repositories. Published Research terminally resolved all nine P0 sources as eight direct checks plus one explicit Journal of Systems and Software retrieval failure. Pure sample-change-trigger density is 0%.",
+  "reason_zh": "三条正式 Discovery 管线均完成终态覆盖，并完成轮换后的主题优先主动样本检查，未执行选题。按研究问题规范化去重后保留 6 个合格、非重复 Signal：1 个平台/运行时机制、2 个已合并工程机制、3 个一手研究发现。AI Platform 的 45 个到期公共通道全部终态收口，其中 44 个直接检查，Copilot Studio 的 What's New 页面因授权门槛明确记为不可访问；GitHub Engineering 的 9 个 P0 Daily 仓库全部检查；Published Research 的 9 个 P0 来源终态收口为 8 个直接检查加 1 个 Journal of Systems and Software 抓取失败。纯 sample-change-trigger 占比为 0%。",
   "pipelines": [
     {
       "id": "ai-platform",
       "label": "AI Platform Change Intelligence",
       "label_zh": "AI 平台变更情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 45,
-      "checked": 0,
-      "inaccessible": [],
+      "checked": 44,
+      "inaccessible": [
+        {
+          "source": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/whats-new",
+          "reason": "The public surface displayed an authorization-required notice during this run; it is recorded as inaccessible rather than counted as checked."
+        }
+      ],
       "failed": [],
-      "signals": 0,
+      "signals": 1,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All 45 due P0 public platform channels were terminally resolved across the six registered source groups: 44 were directly checked and the Copilot Studio What's New surface presented an authorization barrier. After recent-run deduplication, one distinct mechanism was retained: OpenAI's Agents API exposes the Codex harness as managed long-running agent infrastructure with durable sessions, context compaction, recovery, subagents, and a selectable sandbox boundary.",
+      "reason_zh": "六组注册来源共 45 个到期 P0 公共平台通道全部完成终态处理：44 个直接完成检查，Copilot Studio What's New 页面出现授权门槛。与近期运行去重后保留 1 个独立机制：OpenAI Agents API 将 Codex Harness 作为托管的长周期 Agent 基础设施开放，包含持久 Session、上下文压缩、恢复、Subagent 与可选择的 Sandbox 边界。"
     },
     {
       "id": "github-engineering",
       "label": "GitHub Engineering Intelligence",
       "label_zh": "GitHub 工程情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 9,
-      "checked": 0,
+      "checked": 9,
       "inaccessible": [],
       "failed": [],
-      "signals": 0,
+      "signals": 2,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All nine current Registry P0 daily repositories were checked incrementally. Two non-duplicate mechanisms crossed the threshold: Codex resumes Windows sandbox registration across authenticated provisioning-service restarts without conflating registration eligibility with runtime readiness, and Google ADK fixes cross-parent agent-transfer interrupts so the calling context remains Waiting and emits a checkpoint instead of being falsely recorded Completed.",
+      "reason_zh": "当前 Registry 的 9 个 P0 Daily 仓库均完成增量检查。保留 2 个非重复机制：Codex 在经过身份核验的 Provisioning Service 重启后恢复 Windows Sandbox 注册，同时不把“可恢复注册”混同为“运行时已就绪”；Google ADK 修复跨 Parent Context 的 Agent Transfer Interrupt，使 Calling Context 保持 Waiting 并产生 Checkpoint，而不是被错误记录为 Completed。"
     },
     {
       "id": "published-research",
       "label": "Published Research Intelligence",
       "label_zh": "论文与研究成果情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 9,
-      "checked": 0,
+      "checked": 8,
       "inaccessible": [],
-      "failed": [],
-      "signals": 0,
+      "failed": [
+        {
+          "source": "https://www.sciencedirect.com/journal/journal-of-systems-and-software",
+          "reason": "The Journal of Systems and Software public journal surface returned an internal retrieval error during this run; the failure is recorded rather than counted as checked."
+        }
+      ],
+      "signals": 3,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All nine P0 research sources were terminally resolved using the rolling seven-day pass with expansion through thirty days where useful: eight source surfaces were directly checked and the Journal of Systems and Software surface returned an explicit retrieval failure. Three non-duplicate primary-research findings were retained on retry causality, finite-budget trial-and-error evaluation, and lifecycle-aware persistent memory.",
+      "reason_zh": "9 个 P0 研究来源均按滚动 7 天检查并在需要时扩展至 30 天完成终态处理：8 个来源页面直接完成检查，Journal of Systems and Software 公共页面的抓取失败被明确记录。保留 3 个非重复一手研究发现，分别涉及 Retry 的因果作用、有限 Trial Budget 下的试错评估，以及面向持久 Agent 的生命周期感知 Memory。"
     }
   ],
   "columns": [
@@ -69,40 +107,185 @@
       "label": "Digital Employee",
       "label_zh": "数字员工",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 3,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded three primary Digital Employee signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 3 个以数字员工为主栏目的 Signal；评分与选题由 Queue 独立负责。"
     },
     {
       "id": "industry-architecture",
       "label": "Industry Architecture",
       "label_zh": "行业架构",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 1,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded one primary Industry Architecture signal; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 1 个以行业架构为主栏目的 Signal；评分与选题由 Queue 独立负责。"
     },
     {
       "id": "open-source-engineering",
       "label": "Open-source Engineering",
       "label_zh": "开源工程",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 2,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded two primary Open-source Engineering signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以开源工程为主栏目的 Signal；评分与选题由 Queue 独立负责。"
     }
   ],
-  "signals": []
+  "signals": [
+    {
+      "id": "SIG-20260915-001",
+      "pipeline": "ai-platform",
+      "title": "OpenAI Agents API turns the Codex harness into managed long-running agent infrastructure",
+      "title_zh": "OpenAI Agents API 将 Codex Harness 变成长周期 Agent 托管基础设施",
+      "sourceUrl": "https://openai.com/index/introducing-the-agents-api/",
+      "publishedAt": "2026-09-10",
+      "evidenceLevel": "official_announcement",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee", "open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "openai-agents-api/managed-harness-durable-session-sandbox-boundary",
+      "summary": "OpenAI's public-beta Agents API hosts and maintains the Codex harness while exposing durable sessions, automatic context compaction, tool search/programmatic tool calling, parallel subagents, and a choice between OpenAI-hosted, customer, or partner sandboxes. The harness and execution environment are therefore explicit separable product boundaries.",
+      "summary_zh": "OpenAI 公测 Agents API 由 OpenAI 托管并维护 Codex Harness，同时提供持久 Session、自动上下文压缩、Tool Search/Programmatic Tool Calling、并行 Subagent，并允许在 OpenAI 托管、客户自有或合作方 Sandbox 之间选择。由此 Harness 与执行环境成为明确可分离的产品边界。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["long-running-agent", "durable-session", "context-management", "sandbox-boundary", "multi-agent-runtime"],
+      "sampleIds": ["openai-agents-api"],
+      "researchValue": {
+        "failure": "Long-running agents otherwise force each application to rebuild context compaction, recovery, orchestration and execution-environment plumbing, often coupling the harness to one sandbox.",
+        "finding": "OpenAI now exposes those runtime concerns as a managed API while keeping the sandbox selectable.",
+        "mechanism": "Durable sessions, managed harness evolution, automatic compaction, tool orchestration and subagent coordination are provided above a pluggable environment boundary.",
+        "implication": "Agent platforms are converging on harness-as-runtime infrastructure, with execution environment ownership and trust boundary kept explicit."
+      }
+    },
+    {
+      "id": "SIG-20260915-002",
+      "pipeline": "github-engineering",
+      "title": "Codex resumes sandbox registration only across authenticated service restarts and keeps runtime readiness separate",
+      "title_zh": "Codex 只在已认证的服务重启后恢复 Sandbox 注册，并继续区分注册可恢复性与运行就绪",
+      "sourceUrl": "https://github.com/openai/codex/commit/4e6450bbfd60bdfa845182f30aaa9d6f068e8bbd",
+      "publishedAt": "2026-09-15",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "openai-codex/windows-sandbox-registration-authenticated-restart-resume",
+      "summary": "Codex now retries Windows sandbox registration after response-pipe disconnects caused by provisioning-service restarts, but only within the original deadline, with a bounded restart budget, a different process ID, and authentication of the replacement service before resending. Registration may resume without ready_package only when ownership and account-state checks prove it safe; runtime execution still requires current readiness.",
+      "summary_zh": "Codex 现在会在 Provisioning Service 重启导致响应管道断开后恢复 Windows Sandbox 注册，但必须仍在原始 Deadline 内、受限于重启次数，并要求新的 Service PID 且在重发前完成身份核验。只有 Ownership 与 Account State 证明安全时，注册才可在缺少 ready_package 的情况下恢复；真正 Runtime 执行仍要求当前 Readiness。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["recovery", "authenticated-reconnect", "sandbox-lifecycle", "readiness-vs-registration"],
+      "sampleIds": ["openai-codex"],
+      "researchValue": {
+        "failure": "A service restart can revoke readiness and drop the reply after side effects have partially progressed, making blind retry unsafe and abort-only behavior unnecessarily destructive.",
+        "finding": "The merged implementation distinguishes retryable disconnects from authentication/protocol/write failures and separates registration-resume eligibility from runtime readiness.",
+        "mechanism": "Bound retries by the original deadline and restart count, require a new authenticated service identity, revalidate ownership/state invariants, and keep runtime readiness as a stricter gate.",
+        "implication": "Recovery should re-establish the authority and state facts needed for the specific operation instead of treating transport reconnection as proof that execution is safe."
+      }
+    },
+    {
+      "id": "SIG-20260915-003",
+      "pipeline": "github-engineering",
+      "title": "Google ADK prevents transferred agents waiting for input from being falsely recorded Completed",
+      "title_zh": "Google ADK 防止 Agent Transfer 后等待用户输入的任务被错误记录为 Completed",
+      "sourceUrl": "https://github.com/google/adk-python/commit/198139ef31f8c51b723b58a7a74d8eb2eb15dc31",
+      "publishedAt": "2026-09-14",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "google-adk/transfer-interrupt-caller-context-checkpoint",
+      "summary": "ADK moved the transfer loop into DynamicNodeScheduler and corrected interrupt propagation across parent contexts. Previously an upward transfer whose target interrupted could leave interrupt IDs on the wrong context, causing the caller to be recorded COMPLETED while the agent was actually waiting for user input and emitting no checkpoint. Interrupt IDs now land on the calling context, with resume_inputs propagated through scheduling.",
+      "summary_zh": "ADK 将 Transfer Loop 收敛到 DynamicNodeScheduler，并修复跨 Parent Context 的 Interrupt 传播。此前向上 Transfer 后目标 Agent 若进入 Interrupt，Interrupt ID 可能落在错误 Context，导致 Caller 在实际等待用户输入时却被记录为 COMPLETED，而且不产生 Checkpoint。现在 Interrupt ID 回到 Calling Context，并让 resume_inputs 贯穿调度。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["agent-transfer", "waiting-state", "checkpoint", "resume", "completion-semantics"],
+      "sampleIds": ["google-adk-python"],
+      "researchValue": {
+        "failure": "Cross-context handoff can make control state say Completed even though the delegated agent is paused for human input, destroying the checkpoint needed to resume correctly.",
+        "finding": "The bug was caused by interrupt evidence being attached to the transfer target's parent rather than the context whose NodeRunner consumes it.",
+        "mechanism": "Execute transfers through the scheduler that owns each parent context, propagate interrupt IDs back to the caller, and carry resume inputs through the dynamic-node schedule.",
+        "implication": "Completion must be anchored to the responsible execution context; handoff changes execution ownership but must not sever waiting/recovery evidence."
+      }
+    },
+    {
+      "id": "SIG-20260915-004",
+      "pipeline": "published-research",
+      "title": "LAST-CQ finds that detecting failure and routing a retry matters more than sophisticated feedback",
+      "title_zh": "LAST-CQ 发现：真正带来恢复收益的是发现失败并路由 Retry，而不是复杂 Feedback",
+      "sourceUrl": "https://arxiv.org/abs/2609.12746",
+      "publishedAt": "2026-09-11",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "last-cq/recovery-causality-failure-detection-retry",
+      "summary": "Across 2,471 live-database queries, six backbones and counterfactual variants, LAST-CQ reports that correction/retry drives the recovery gain while replacing schema-grounded feedback with raw database errors changes little; spending the same call budget on parallel sampling degrades quality. The framework recovers 91.7% of queries that fail under single-pass generation.",
+      "summary_zh": "LAST-CQ 在 2,471 个真实数据库 Query、6 个 Backbone 与多组 Counterfactual 上报告：恢复收益主要来自 Correction/Retry；把 Schema-grounded Feedback 换成原始数据库错误几乎不改变结果，而把同样 Call Budget 用于并行采样反而降低质量。该框架对 Single-pass 失败 Query 的恢复率为 91.7%。",
+      "signalRole": "research-finding",
+      "researchThemes": ["failure-detection", "retry-routing", "recovery-causality", "counterfactual-evaluation"],
+      "sampleIds": ["last-cq"],
+      "researchValue": {
+        "failure": "Agent systems often credit elaborate reflection text or more samples for recovery without isolating whether the actual gain comes simply from recognizing failure and trying again.",
+        "finding": "The reported counterfactuals attribute most recovery benefit to failure detection plus retry, not feedback sophistication or parallel sampling.",
+        "mechanism": "Use execution-grounded failure detection to route a bounded correction attempt while preserving one-call cost on first-pass success.",
+        "implication": "Recovery architecture should measure the causal value of each loop component and avoid expensive reflection machinery when a simpler validated retry boundary produces the gain."
+      }
+    },
+    {
+      "id": "SIG-20260915-005",
+      "pipeline": "published-research",
+      "title": "VRL-Bench shows reflection can hurt agent success when retries consume a finite trial budget",
+      "title_zh": "VRL-Bench 显示：当 Retry 受有限 Trial Budget 约束时，Reflection 也可能降低 Agent 成功率",
+      "sourceUrl": "https://arxiv.org/abs/2609.12404",
+      "publishedAt": "2026-09-11",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "vrl-bench/finite-trial-reflection-exploration-exploitation",
+      "summary": "VRL-Bench evaluates verbal trial-and-error methods under explicit finite attempt budgets on MiniWoB and WebShop. Several reflection/memory updates improve observed success in some settings but reduce it in others; replay tests show reflection can suppress exploration. Its VEX2 scheduler is the only tested update with positive observed gains over retry in all six settings.",
+      "summary_zh": "VRL-Bench 在 MiniWoB 与 WebShop 上用显式有限 Attempt Budget 评估 Verbal Trial-and-error。多种 Reflection/Memory 更新在部分场景提升成功率，却在另一些场景降低；Replay 实验表明 Reflection 可能压制探索。其 VEX2 Scheduler 是测试方法中唯一在 6 个场景全部相对纯 Retry 取得正增益的方法。",
+      "signalRole": "benchmark-evidence",
+      "researchThemes": ["retry-budget", "reflection", "exploration-exploitation", "computer-use-evaluation"],
+      "sampleIds": ["vrl-bench"],
+      "researchValue": {
+        "failure": "Treating every failed attempt as a reason to add more reflection can consume scarce retries and prematurely lock an agent into a bad policy.",
+        "finding": "The benchmark reports sign-changing effects for reflection methods and identifies a robust benefit only when policy choice and remaining trial allocation are jointly scheduled.",
+        "mechanism": "Evaluate learning policies under a fixed retry budget and allocate remaining attempts between exploiting remembered lessons and continued exploration.",
+        "implication": "Long-running agent recovery policies need an explicit attempt budget and should treat reflection as a conditional strategy rather than an always-on improvement."
+      }
+    },
+    {
+      "id": "SIG-20260915-006",
+      "pipeline": "published-research",
+      "title": "LifeFuse-Mem separates durable and transient memory lifecycles to reduce temporary overwrite",
+      "title_zh": "LifeFuse-Mem 用 Durable/Transient 生命周期分离降低临时信息覆盖长期记忆",
+      "sourceUrl": "https://arxiv.org/abs/2609.12436",
+      "publishedAt": "2026-09-11",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "lifefuse-mem/lifecycle-aware-stable-transient-memory",
+      "summary": "LifeFuse-Mem studies persistent-agent memory with explicit lifecycle labels and phase-aware readout. It separates stable and transient information into dedicated memory components so temporary context does not automatically become durable state; the authors report reduced temporary overwrite on a controlled benchmark while remaining broadly competitive on two public long-memory benchmarks.",
+      "summary_zh": "LifeFuse-Mem 研究带显式 Lifecycle Label 与 Phase-aware Readout 的持久 Agent Memory，将稳定信息与临时信息放入独立 Memory Component，使临时 Context 不会自动转成 Durable State。作者报告其在受控 Anti-overwrite Benchmark 上降低临时覆盖，并在两个公开 Long-memory Benchmark 上保持大体竞争力。",
+      "signalRole": "research-finding",
+      "researchThemes": ["long-term-memory", "state-lifecycle", "temporary-overwrite", "persistent-agent"],
+      "sampleIds": ["lifefuse-mem"],
+      "researchValue": {
+        "failure": "If transient observations and durable knowledge share the same write semantics, short-lived context can overwrite stable memory and cause behavioral drift.",
+        "finding": "Explicit lifecycle supervision and separate state components reduce temporary overwrite in the authors' controlled setting.",
+        "mechanism": "Tag memory writes by temporal commitment, update stable and transient stores separately, and read them with phase-aware logic.",
+        "implication": "Persistent digital employees may need memory authorization semantics that say not only what may be stored, but for how long that fact is allowed to influence future work."
+      }
+    }
+  ]
 }
