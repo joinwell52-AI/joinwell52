@@ -1,0 +1,26 @@
+{
+  "schema": "academic-argument-architecture/v1",
+  "date": "2026-09-16",
+  "itemId": "A-20260916-01",
+  "thesis": "A multi-agent system should not treat an agent session, workspace or prompt-visible permission as the final authority boundary; authorization must remain bound to the current actor, execution attempt, artifact, consumer scope and evidence version until the consequential mutation is admitted.",
+  "argument": [
+    "The paper constructs aligned and crossed worlds with identical planner-visible workspace evidence but opposite correct publication actions, formalizing why missing external authority cannot be inferred from an aliased observation.",
+    "Its evidence-ablation experiment reports that adding raw authority receipts changes final semantic success from 0/32 to 32/32, while typed packaging shows no observed final-semantic gain over equal raw authority facts.",
+    "Its planning experiment remains model-dependent and unreliable even after authority evidence is exposed, separating planner reasoning from enforcement.",
+    "Its matched-intent experiment replays the same 32 model intents and reports that an execution-time guard blocks all six unsafe intents while allowing all 12 valid authorized publish intents in the fixed matrix.",
+    "Research Center synthesis therefore treats authority as a versioned actor-attempt-artifact-scope relation that must survive to the mutation boundary; Git is sufficient when it authoritatively carries that whole relation, not categorically insufficient."
+  ],
+  "counterarguments": [
+    "put all permission rules in the system prompt",
+    "treat a current shared workspace as sufficient authority evidence",
+    "assume Git is always insufficient for agent governance",
+    "equate a lower unsafe-action count with reliable planning",
+    "generalize a controlled micro-benchmark into production prevalence"
+  ],
+  "nonClaims": [
+    "The paper does not establish real-world prevalence of cross-substrate authority failures.",
+    "The paper does not provide complete adversarial security against a malicious host or compromised authority database.",
+    "The Research Center layered authority model is synthesis, not a paper-authored architecture standard.",
+    "The headline quantitative results were not independently reproduced in this run."
+  ]
+}
