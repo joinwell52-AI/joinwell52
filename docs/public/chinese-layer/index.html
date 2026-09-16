@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0f14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="中文层" />
+  <title>中文层 · Chinese Layer</title>
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <header class="topbar">
+      <div><div class="eyebrow">CHINESE LAYER</div><h1>中文层</h1></div>
+      <button id="langToggle" class="ghost-btn">中文</button>
+    </header>
+    <main>
+      <section id="devView" class="view active">
+        <div class="hero-card">
+          <div><div class="hero-label">DEV 中文阅读</div><div class="hero-title">英文技术资源，直接按中文读</div><div class="hero-copy">标题与文章正文自动翻译；代码、链接与常见技术词尽量保留。</div></div>
+          <button id="refreshBtn" class="primary-btn">刷新</button>
+        </div>
+        <div id="status" class="status">正在载入 DEV…</div><div id="articleList" class="article-list"></div>
+      </section>
+      <section id="mailView" class="view"><div class="panel"><div class="hero-label">邮件中文层</div><h2>Gmail 接入下一步开启</h2><p>当前公开版先验证 DEV 中文阅读。邮件需要 Gmail OAuth 授权后再接入；不会要求邮箱密码。</p></div></section>
+      <section id="settingsView" class="view"><div class="panel"><div class="hero-label">设置</div><h2>翻译模式</h2><label class="setting-row"><span>默认显示中文</span><input id="defaultChinese" type="checkbox" checked /></label><label class="setting-row"><span>保护技术词</span><input id="protectTerms" type="checkbox" checked /></label><p class="muted">免费翻译源：MyMemory。失败时自动回退原文。</p></div></section>
+    </main>
+    <nav class="bottom-nav" aria-label="主导航"><button class="nav-btn active" data-view="devView">DEV</button><button class="nav-btn" data-view="mailView">邮件</button><button class="nav-btn" data-view="settingsView">设置</button></nav>
+  </div>
+  <div id="reader" class="reader hidden" aria-hidden="true"><div class="reader-bar"><button id="readerBack" class="ghost-btn">‹ 返回</button><button id="readerLang" class="ghost-btn">中文</button></div><article id="readerContent" class="reader-content"></article></div>
+  <script src="./app.js" defer></script>
+</body>
+</html>
