@@ -1,5 +1,7 @@
 const DEV_API='https://dev.to/api';
 const MM_API='https://api.mymemory.translated.net/get';
+const savedUsername=localStorage.getItem('cl-dev-username')||'';
+const validSavedUsername=/^[A-Za-z0-9_-]+$/.test(savedUsername)?savedUsername:'';
 const state={
   articles:[],
   myArticles:[],
@@ -8,8 +10,9 @@ const state={
   showChinese:localStorage.getItem('cl-language')!=='en',
   cache:new Map(JSON.parse(localStorage.getItem('cl-cache')||'[]')),
   protectTerms:true,
-  username:localStorage.getItem('cl-dev-username')||''
+  username:validSavedUsername||'joinwell52'
 };
+if(!validSavedUsername)localStorage.setItem('cl-dev-username','joinwell52');
 const $=s=>document.querySelector(s);
 const $$=s=>[...document.querySelectorAll(s)];
 const TECH=['Agent','MCP','API','GitHub','runtime','Runtime','commit','PR','Python','Swift','JavaScript','TypeScript','Next.js','React','LLM','AI','OpenAI','GPT','repository','repo','HTTP','JSON','OAuth','CLI','SDK','npm','Node.js','DEV','Forem'];
