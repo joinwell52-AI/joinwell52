@@ -11,6 +11,15 @@ outline: false
 日期按 **Asia/Shanghai** 倒序排列。点击日期进入当天完整报告与原始公开来源。
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-09-17">
+    <time>2026-09-17</time>
+    <div>
+      <strong>Agent 核心研究与竞品动态</strong>
+      <span>赵岳 no-op recovery evidence · Codex MCP read-only connection identity · Paperclip durable HITL / typed recovery cause / authoritative credential revoke · Superset Slack remote operations · Orca replay-safe launch / verified permission posture</span>
+    </div>
+    <b>查看 →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-09-16">
     <time>2026-09-16</time>
     <div>
