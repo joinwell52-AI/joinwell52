@@ -1,0 +1,52 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-16",
+  "itemId": "Q-20260916-02",
+  "researchObjectId": "Q-20260916-02",
+  "targetAudience": {
+    "primary": "负责模型供应链、推理优化、部署准入与安全验证的平台架构师和工程负责人",
+    "knowledgeAssumption": "读者理解模型检查点、量化、编译、哈希、制品血缘与部署流水线。",
+    "readerProblem": "团队验证了上游模型，却在量化或转换后直接部署下游制品，准入记录仍指向祖先而不是实际运行字节。"
+  },
+  "whyNow": "同日研究对象展示了一个受控对抗案例：全精度检查点在测试行为上为零攻击成功率，而特定量化后的输出制品出现高攻击成功率，证明完整血缘仍可能绑定错证据主体。",
+  "externalHook": {
+    "type": "validated-ancestor-transformed-executable",
+    "description": "一个被批准的模型经过行为相关转换后产生新字节，流水线保留血缘，却没有对最终执行制品重新绑定验证。",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "E4"
+    ]
+  },
+  "coreProposition": "能够改变准入相关行为的转换会产生新的证据主体；部署授权必须绑定祖先身份、精确转换、输出哈希、针对输出的验证与部署目标，血缘只能证明来源，不能自动继承行为授权。",
+  "originalValue": {
+    "type": "post-transform-evidence-subject",
+    "description": "把祖先、转换、输出制品、输出验证与部署准入拆成五种证据身份，并要求准入解析到不可变的最终制品哈希。"
+  },
+  "readerTakeaway": "知道制品从哪里来，不等于知道它在当前形态下会做什么；对可能改行为的转换，把测试与授权绑定到最终字节。",
+  "evidenceBoundary": {
+    "supported": [
+      "受控构造中，全精度祖先在测试后门行为上的攻击成功率为零。",
+      "选定量化变体的最坏码本攻击成功率在所有主表单元中超过0.76，18个单元中12个超过0.90。",
+      "结构化扰动可在全精度下保持良性，并在特定转换后显现目标行为。"
+    ],
+    "unsupported": [
+      "普通量化会自然产生相同恶意行为",
+      "所有转换都必须进行同等深度的完整重测",
+      "血缘、可复现构建或等价性证明没有价值"
+    ],
+    "uncertain": [
+      "哪些转换自动形成新证据主体",
+      "良性生产系统所需的最小后转换测试集",
+      "何时可由等价性证明替代完整重测"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "论证来自同日外部研究对象，对任何第一方项目均无依赖。"
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "研究提供清晰的转换前后行为差异、可迁移的制品身份问题和明确限制。"
+}

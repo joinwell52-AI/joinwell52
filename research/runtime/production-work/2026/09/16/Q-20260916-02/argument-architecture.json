@@ -1,0 +1,110 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-16",
+  "itemId": "Q-20260916-02",
+  "coreProposition": "能够改变准入相关行为的转换会产生新的证据主体；部署授权必须绑定祖先身份、精确转换、输出哈希、针对输出的验证与部署目标，血缘只能证明来源，不能自动继承行为授权。",
+  "openingMove": {
+    "type": "approved-model-changed-before-deployment",
+    "purpose": "以获批模型在部署前被量化为新字节的常见流程，提出验证究竟绑定谁的问题。",
+    "evidenceRefs": [
+      "E1",
+      "E2"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "转换前后是否可以属于同一行为证据主体？",
+      "claim": "受控实验中的祖先在测试条件下表现良性，而选定量化输出显现高攻击成功率，行为证据不能自动跨越转换。",
+      "evidenceRefs": [
+        "E1",
+        "E2"
+      ],
+      "reasoningRole": "before-after-evidence",
+      "readerProgress": "建立新证据主体的直接理由。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "为何血缘正确仍可能验证错对象？",
+      "claim": "血缘回答输出来自哪里，却不回答最终字节在测试条件下做了什么。",
+      "evidenceRefs": [
+        "E3",
+        "E5"
+      ],
+      "reasoningRole": "provenance-boundary",
+      "readerProgress": "区分来源证明与行为证明。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "转换身份需要记录什么？",
+      "claim": "转换类型、工具版本、参数、码本、输入与环境应和输出哈希一起持久化。",
+      "evidenceRefs": [
+        "E3",
+        "E6"
+      ],
+      "reasoningRole": "transform-identity",
+      "readerProgress": "把模糊的量化名称变成可复现证据。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "验证应绑定哪里？",
+      "claim": "行为、安全、效用和结构化输出测试应针对实际运行的精确输出制品。",
+      "evidenceRefs": [
+        "E2",
+        "E5",
+        "E6"
+      ],
+      "reasoningRole": "output-validation",
+      "readerProgress": "把测试对象移动到真正的执行主体。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "部署准入如何防止后续漂移？",
+      "claim": "准入记录应绑定输出哈希、策略版本、部署目标与失效条件，任何字节或关键参数变化都触发重新判断。",
+      "evidenceRefs": [
+        "E6"
+      ],
+      "reasoningRole": "admission-binding",
+      "readerProgress": "连接证据主体与部署决定。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A6",
+      "question": "是否每个转换都要完整重测？",
+      "claim": "可由风险分级或政策接受的等价性证明缩减测试，但替代范围与责任必须显式。",
+      "evidenceRefs": [
+        "E4",
+        "E7"
+      ],
+      "reasoningRole": "cost-boundary",
+      "readerProgress": "避免从对抗可能性外推到统一重测。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A7",
+      "question": "最小部署合同是什么？",
+      "claim": "保存祖先、转换、输出、输出验证和准入五种身份，并让部署目标只解析到已准入的不可变哈希。",
+      "evidenceRefs": [
+        "E5",
+        "E6",
+        "E7"
+      ],
+      "reasoningRole": "deployment-contract",
+      "readerProgress": "以可执行控制和开放问题收束。",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "只要输出可追溯到获批祖先和获批构建配方，就已受到充分治理。",
+    "responseBoundary": "供应链血缘是必要条件，但研究证明它不能替代针对最终输出的行为证据；等价性只能在版本化政策明确接受时缩减重测。"
+  },
+  "endingStrategy": {
+    "type": "five-identity-admission-chain",
+    "purpose": "以从祖先到部署目标的五身份证据链结束。"
+  }
+}
