@@ -11,6 +11,15 @@ outline: false
 日期按 **Asia/Shanghai** 倒序排列。点击日期进入当天完整报告与原始公开来源。
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-09-16">
+    <time>2026-09-16</time>
+    <div>
+      <strong>Agent 核心研究与竞品动态</strong>
+      <span>赵岳 quota-aware 调度与 Review recovery · Codex Thread/Host/Sandbox/Guardian 上下文 · Agents JS guardrail/tool/credential 重验证 · Paperclip durable artifacts / session secret / unblock owner · Superset Cloud location semantics · Orca generation lease</span>
+    </div>
+    <b>查看 →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-09-15">
     <time>2026-09-15</time>
     <div>
