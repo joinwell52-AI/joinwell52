@@ -42,6 +42,39 @@ Document No. 209 therefore matters for more than adding another “AI Plus” po
 
 Agents are moving from a model feature toward a distinct form of software.
 
+<aside class="policy-keywords" aria-label="Six terms for understanding Document No. 209">
+  <p class="policy-keywords-title"><strong>Understanding Document No. 209 in Six Terms</strong></p>
+  <div class="policy-keywords-grid">
+    <div><strong>Intelligent programming</strong><span>Transform software production</span></div>
+    <div><strong>Intelligent companions</strong><span>Upgrade existing software</span></div>
+    <div><strong>Agent software</strong><span>Develop new product forms</span></div>
+    <div><strong>Skills</strong><span>Package specialist capabilities</span></div>
+    <div><strong>Intelligent services</strong><span>Deliver value continuously</span></div>
+    <div><strong>Verifiable behavior</strong><span>Inspect execution and outcomes</span></div>
+  </div>
+</aside>
+
+<style>
+.policy-keywords {
+  margin: 28px 0 36px;
+  padding: 20px 22px;
+  border-top: 3px solid #9b2229;
+  border-radius: 0 0 8px 8px;
+  background: #faf7f1;
+  color: #202b3b;
+}
+.policy-keywords .policy-keywords-title { margin: 0 0 16px; font-size: 20px; line-height: 1.5; }
+.policy-keywords-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 20px; }
+.policy-keywords-grid div { padding: 8px 0 8px 12px; border-left: 2px solid #b58a3a; }
+.policy-keywords-grid strong { display: block; color: #9b2229; font-size: 17px; line-height: 1.5; }
+.policy-keywords-grid span { display: block; margin-top: 3px; font-size: 14px; line-height: 1.6; color: #596575; }
+@media (max-width: 600px) {
+  .policy-keywords { padding: 16px; }
+  .policy-keywords-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .policy-keywords-grid strong { font-size: 16px; }
+}
+</style>
+
 ## I. Beyond Document No. 414: Adding Products and Infrastructure
 
 To understand Document No. 209, it helps to place it in the sequence of policies released in 2026, without treating the documents as interchangeable.
@@ -102,7 +135,7 @@ The plan calls for an end-to-end intelligent application service chain, encourag
 
 Together, these three changes express the full meaning of “AI Plus Software”: AI is reorganizing software production, products and business models.
 
-## III. The 2028 and 2030 Targets: Broad Adoption, Then Industry Transformation
+## III. 2028 and 2030: From Adoption at Scale to Industry Upgrading
 
 Document No. 209 sets two stages of objectives.
 
@@ -126,11 +159,17 @@ Reaching 20,000 companies measures diffusion of production tools. The 100 upgrad
 
 The plan is therefore building adoption at scale, demonstration projects, validation facilities and open-source foundations at the same time.
 
-The 2028 milestone is best understood as validation at scale, while 2030 aims at a more established industry structure. The first seeks to show that these technologies can enter enterprises and produce results; the second seeks to make them meaningful sources of software-industry revenue, employment and competitiveness.
+Read together, the targets emphasize adoption and validation at scale by 2028, followed by upgrading key software, growing new business forms, and developing internationally influential open-source communities and industry clusters by 2030. They describe a policy path from broader adoption toward industry upgrading, rather than suggesting that the industry's structure will be settled by then.
 
 ![The 2028 targets cover firms, projects, applications, compatibility centers and open source; 2030 points toward industry transformation.](/assets/figures/miit-209-ai-software-policy/en/02-policy-targets.png)
 
 *Figure 2. The 2028 targets cover firms, projects, applications, compatibility centers and open source; 2030 points toward industry transformation. Source: Relevant MIIT policy documents; compiled by the author.*
+
+### Agents Are a New Growth Area, but Document No. 209 Is Not an Agent-Only Policy
+
+The [implementation plan](https://www.miit.gov.cn/jgsj/xxjsfzs/wjfb/art/2026/art_91a26793271e4c77aca49ecde4472999.html) also addresses intelligent upgrading of foundational and industrial software itself. Operating systems and databases are to improve agent scheduling, performance tuning, operations and security, with chip and server manufacturers collaborating on hardware–software compatibility and adaptation centers. Industrial software such as CAD, CAE and EDA is to apply AI to drawing, design and simulation, while industrial internet platforms strengthen data analysis, production scheduling and multi-agent decision-making.
+
+Document No. 209 should therefore be read as combining upgrades to existing software with the development of new software forms. Foundational software, industrial software and development methods all need intelligent upgrading. Agents are an important emerging form within that broader software-industry transformation.
 
 ## IV. The Most Consequential New Concept Is Agent Software
 
@@ -142,7 +181,7 @@ It introduces at least four layers.
 
 The plan calls for engineering research into agent execution frameworks, improving reliable execution of complex tasks and collaboration among multiple agents.
 
-The emphasis on execution frameworks shows attention to engineering foundations beyond models. A large model can generate an answer, but it does not automatically solve persistent state, tool use, permission constraints, failure recovery, concurrency conflicts, handoffs and acceptance of results over a long-running task. Once agents enter enterprises, these become prerequisites for sustained operation.
+The emphasis on execution frameworks shows attention to engineering foundations beyond models. **From an enterprise engineering perspective,** a large model can generate an answer, but it does not automatically solve persistent state, tool use, permission constraints, failure recovery, concurrency conflicts, handoffs and acceptance of results over a long-running task. These are engineering questions the author derives from reliable execution and multi-agent collaboration, not a feature checklist prescribed item by item in the document.
 
 ### 2. Agent software development platforms
 
@@ -170,13 +209,13 @@ Together, these four layers form a complete chain:
 
 *Figure 3. Execution frameworks, development platforms, agent products and distribution form an industry, with delivery and governance spanning the chain. Source: Relevant MIIT policy documents; compiled by the author.*
 
-## V. Skills in an Industrial Framework: More Than a Prompt Marketplace
+## V. Skills Are Formally Included in Agent Software Markets: More Than a Prompt Marketplace
 
 Document No. 209 explicitly proposes repositories for skill packages, or Skills, and encourages developers to build high-quality specialist skills, knowledge bases and functional components for agents.
 
 A skill may appear to be a packaged capability: organizing contracts, analyzing equipment faults, generating quotations or operating a business system. Once it enters an enterprise or an application marketplace, however, it cannot remain a few paragraphs of prompts.
 
-A commercially usable skill package raises at least these questions:
+**From an enterprise engineering perspective,** a commercially usable skill package raises the following questions. They are the author's deductions from the proposed skill repositories, listing reviews and operational management, rather than requirements individually prescribed by the document:
 
 - Who publishes it, and can that identity be trusted?
 - Which agents and execution environments can use it?
@@ -202,7 +241,7 @@ The final requirement is easy to overlook, yet it may determine whether agents c
 
 When a chatbot says something wrong, a user can often ignore or correct it. If an industrial agent changes production schedules, operates equipment, adjusts parameters, writes to a business system or triggers procurement, an error can become a real loss. A chat history alone cannot prove what happened or whether the result stayed within authorization.
 
-Verifiable behavior requires separating several questions:
+**From an enterprise engineering perspective,** the author breaks verifiable behavior into the following questions. This is an analytical framework, not an acceptance standard itemized in the document:
 
 - What task did the agent receive?
 - Who authorized execution?
@@ -264,9 +303,11 @@ In its implementation provisions, Document No. 209 proposes mechanisms such as c
 
 This creates the prospect of projects, pilots, standards work, adaptation centers, benchmark applications and local support measures.
 
+The plan's computing-service provisions already call for **compute vouchers and other broadly accessible support policies** to reduce software companies' computing costs. [MIIT's official explanation](https://www.miit.gov.cn/jgsj/xxjsfzs/gzdt/art/2026/art_45df9463e105446c996568f299e07bca.html) goes further: local authorities are encouraged to use compute vouchers and related policies to cover a proportion of the costs of purchasing domestically developed programming tools and using programming services from domestically developed large models. Support is therefore not confined to major projects; the policy also points toward assistance with companies' purchases of intelligent programming tools and model services.
+
 Policy direction must nevertheless be distinguished from an entitlement already granted.
 
-The document does not publish a unified application timetable, company eligibility rules, scoring criteria, funding pool or award amount per project. Words such as support, encourage and explore do not mean every relevant company automatically receives a subsidy. Actionable opportunities still depend on ministerial project notices, standards-development arrangements and implementation measures from provincial and municipal authorities.
+Neither the plan nor this explanation sets a nationwide subsidy percentage, claim requirements or implementation timetable. They also do not publish unified project application dates, company eligibility rules, scoring criteria, funding pools or award amounts per project. Words such as support, encourage and explore do not mean every relevant company automatically receives a subsidy. Eligibility, covered expenses and payment timing remain subject to local policies and application notices.
 
 Companies should prepare five kinds of material:
 
@@ -304,7 +345,17 @@ Connecting a foundation model will increasingly be insufficient as evidence of p
 - Do workflows remain stable after models or tools change?
 - How are jobs redesigned, rather than simply eliminated?
 
-This also explains the document's employment-friendly requirements. Intelligent programming is not framed merely as a way to cut developer headcount. Companies are asked to redesign roles, provide skills training, develop new types of jobs and assess AI's effects on employment as they increase their use of intelligent technology.
+### An Often-Overlooked Policy Signal: Stabilize Jobs, Expand Opportunities and Support Transitions
+
+[MIIT's official explanation](https://www.miit.gov.cn/jgsj/xxjsfzs/gzdt/art/2026/art_45df9463e105446c996568f299e07bca.html) addresses employment directly through three priorities:
+
+- **Stabilize jobs:** protect existing employment in software and prevent sudden, large-scale unemployment.
+- **Expand opportunities:** use agent software and intelligent services to create employment opportunities, including new roles in code review and AI security.
+- **Support transitions:** strengthen job training and help software workers move into higher-value roles.
+
+Document No. 209 consequently addresses technology and products alongside a practical question: **what happens to people as AI transforms the software industry?** It does not simply encourage replacing programmers with AI. As production is reorganized, the policy brings job redesign, skills training, new roles and assessments of employment effects into the same framework.
+
+For companies implementing the changes, a transformation plan should address more than development efficiency and tool costs. It should explain which roles will change, how people will be trained and redeployed, who will take responsibility for code review and AI security, and how employment risks will be identified and managed. A reduction in manual steps alone is not a complete measure of successful transformation.
 
 Mature transformation requires a renewed division of work: machines perform executable tasks at scale, while people retain responsibility for goals, boundaries, professional judgment, exceptions and final accountability.
 
@@ -440,17 +491,11 @@ In 2026, policy has moved progressively into implementation.
 
 Document No. 414 organizes application service providers and addresses who delivers. The entrepreneurship support plan cultivates AI SMEs and addresses who innovates. Document No. 209 transforms the software industry itself: how software is produced, how it runs continuously, how products and markets develop, and how behavior is verified and governed.
 
-Together, the three documents send an increasingly clear signal.
+Across Document No. 414, the entrepreneurship support plan and Document No. 209, policy attention is extending beyond model capabilities to application delivery, entrepreneurs, software products, ongoing services and industrial infrastructure.
 
-China's AI industry is moving from a focus on model capabilities toward real software, ongoing services and industrial applications. Agents are moving from product features into a software industry with execution frameworks, development platforms, specialist skills, application markets, delivery arrangements and security standards.
+For software firms, this policy path calls attention to upgrading existing software and development methods, cultivating agent products and specialist Skills, and incorporating ongoing operations, behavior verification and workforce transitions into delivery capabilities. Whether these opportunities become viable businesses still has to be demonstrated through products, customers and operating results.
 
-The next scarce resource may not simply be a larger model.
-
-It may be platforms that keep agents working reliably, reusable industry Skills, service providers accountable for outcomes, protocols that make behavior inspectable, and real applications that demonstrate value.
-
-That is the significance of Document No. 209.
-
-It begins to answer a specific industrial question:
+Document No. 209 thus advances the question:
 
 > Once agents truly become software, how does China intend to build an industry around them?
 
@@ -464,3 +509,4 @@ It begins to answer a specific industrial question:
 4. State Council: [Opinion on Deepening the “AI Plus” Initiative](https://www.mee.gov.cn/zcwj/gwywj/202508/t20250827_1126207.shtml), Guo Fa [2025] No. 11.
 5. Digital Employee Workshop: [MIIT Document No. 414 Explained: From Model Supply to Application Delivery](https://joinwell52-ai.github.io/joinwell52/en/industry/2026-09-04-miit-414-ai-application-delivery).
 6. Digital Employee Workshop: [MIIT's AI SME Entrepreneurship Support Plan Explained: An AI Startup Ecosystem Is Taking Shape](https://joinwell52-ai.github.io/joinwell52/en/industry/2026-09-08-miit-ai-sme-support-plan).
+7. MIIT's Department of Information Technology Development: [Seven Questions and an Infographic: Understanding the “AI Plus Software” Implementation Plan](https://www.miit.gov.cn/jgsj/xxjsfzs/gzdt/art/2026/art_45df9463e105446c996568f299e07bca.html), published September 11, 2026; see questions 3 and 6 in particular.
