@@ -11,6 +11,15 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-09-17">
+    <time>2026-09-17</time>
+    <div>
+      <strong>Agent Research & Competitor Intelligence</strong>
+      <span>Yue Zhao no-op recovery evidence · Codex MCP read-only connection identity · Paperclip durable HITL / typed recovery cause / authoritative credential revocation · Superset Slack remote operations · Orca replay-safe launch / verified permission posture</span>
+    </div>
+    <b>View →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-09-16">
     <time>2026-09-16</time>
     <div>
