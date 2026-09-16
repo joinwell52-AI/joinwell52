@@ -8,11 +8,11 @@
   "date": "2026-09-16",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -555,6 +555,129 @@
       "githubCommit": "e0f809b507c71204bb25f815a074cf820ff5c86f",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-16T10:11:03+08:00"
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "family": "daily",
+      "runtimeDate": "2026-09-16",
+      "status": "Completed",
+      "input": "Authoritative Reading control was pinned from main commit b62523606032d485272a9ae879fe9ec4670a12e7. That commit contained Research Runtime Scheduler V3.0, Worker Control v1.3.0, generated Reading Prompt v1.0.0 with declared SHA-256 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5, and all five requiredSources. The exact generated prompt was deterministically SHA-256 hashed by the Worker and matched the declared identity; all 5/5 requiredSources were read completely from that same control commit. Validate Research Center 3.0 run 35047380653 also completed successfully on that exact control head. The verified same-date Reading Wake Receipt is research/runtime/wakes/2026/09/2026-09-16/reading-110142.json. Ordered Runtime reconciliation opened Reading at 11:05:23+08:00, and the native Worker Claim path durably recorded Worker Claimed in commit 02b4cb20d461e651d3fea0bd7fd1a9b79455f8d6 at 11:07:14+08:00. Reading consumed only the Completed 2026-09-16 Research Plan, where Q-20260916-01, Q-20260916-02 and Q-20260916-03 were the three Selected P0 objects.",
+      "input_zh": "Reading 权威控制固定于 main 提交 b62523606032d485272a9ae879fe9ec4670a12e7。该提交包含 Research Runtime Scheduler V3.0、Worker Control v1.3.0、Generated Reading Prompt v1.0.0（声明 SHA-256 为 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5）以及全部 5 个 requiredSources。Worker 已对精确 Generated Prompt 确定性计算 SHA-256 并与声明身份一致；5/5 requiredSources 均从同一控制提交完整读取。精确控制 Head 上的 Validate Research Center 3.0 Run 35047380653 也已成功完成。已核验同日 Reading Wake Receipt 为 research/runtime/wakes/2026/09/2026-09-16/reading-110142.json。Ordered Runtime Reconciliation 于 11:05:23+08:00 打开 Reading，原生 Worker Claim 路径于 11:07:14+08:00 在提交 02b4cb20d461e651d3fea0bd7fd1a9b79455f8d6 中持久记录 Worker Claimed。Reading 只消费同日已完成的 2026-09-16 Research Plan，其中 Q-20260916-01、Q-20260916-02、Q-20260916-03 为三个 Selected P0 Object。",
+      "workResult": "Completed source-complete Deep Reading for all three same-date Selected objects without performing Research Analysis. Q-20260916-01 read Asclepius across the long-horizon CES simulator, baseline agents, self-evolving operating manual, external skills, isolated subagents, held-out protocol, ablations, failure-mode counters and limitations. The bounded finding is that semantic/diagnostic correctness and sustained operational completion are different evidence dimensions: the strong baseline scores 4.39/5 on diagnosis but 2.94/5 on critical actions, while full Asclepius reports a 22% held-out critical-action gain (p=0.024) with diagnosis preserved. The study is simulation-based, uses LLM graders and one rollout per configuration/batch, and does not establish clinical safety, authorization or exactly-once effects. Q-20260916-02 read AgentQ across the validation-deployment threat model, layer-banded low-rank injection, multi-codebook quantization-equivalence repair, six model scales across Qwen3.5/Hammer2.1, three trigger-action surfaces, NF4/FP4/INT8 results, utility/structured-output ablations, deployment case study, detection surface and limits. The bounded finding is that behavioral evidence attached only to an upstream full-precision checkpoint need not describe the transformed executable artifact: every constructed main-table checkpoint has measured FP16 ASR=0 on the tested attacks while every model/task cell exceeds 0.76 worst-codebook quantized ASR and 12/18 exceed 0.90. The source does not show that ordinary quantization is malicious or that all quantizers are equally vulnerable. Q-20260916-03 read The Router Within/Gavel across hidden-state glance, epsilon-cover skill banks, native verdict, product-of-experts ruling, training/calibration, three public benchmarks, 372 SkillTraj trajectories, live mini-swe-agent integration, ablations, adjudication and cost. The bounded finding is that skill routing can be isolated as a measurable Runtime component rather than permanent metadata preload; the reported Qwen3-32B setup reaches 90.9% correct-skill triggering on Skill-Use and leads the four SkillTraj scenarios, but correct routing is neither downstream task completion nor execution authorization. Reading created exactly three same-date Reading Notes and performed no Research Analysis, article writing, visualization, Production, Academic or Publication.",
+      "workResult_zh": "已对三个同日 Selected Object 完成来源完整 Deep Reading，未执行 Research Analysis。Q-20260916-01 完整深读 Asclepius 的长周期 CES 模拟器、Baseline Agent、自演化 Operating Manual、外部 Skills、隔离 Subagent、Held-out 协议、消融、失败计数与限制。有界结论是：Semantic/Diagnostic Correctness 与 Sustained Operational Completion 是不同证据维度；强 Baseline 的 Diagnosis 为 4.39/5，但 Critical Actions 仅 2.94/5，而 Full Asclepius 在保持 Diagnosis 的同时报告 Held-out Critical-action 提升 22%（p=0.024）。研究仍是模拟实验，依赖 LLM Grader，且每个 Configuration/Batch 只有一次 Rollout，不能证明临床安全、Authorization 或 Exactly-once Effect。Q-20260916-02 完整深读 AgentQ 的 Validation-deployment Threat Model、Layer-banded Low-rank Injection、Multi-codebook Quantization-equivalence Repair、Qwen3.5/Hammer2.1 两家族六个规模、三类 Trigger-action Surface、NF4/FP4/INT8 结果、Utility/Structured-output 消融、部署 Case Study、Detection Surface 与限制。有界结论是：只绑定 Full-precision 上游 Checkpoint 的行为证据不一定描述变换后的可执行 Artifact；主表中每个构造 Checkpoint 在所测攻击上的 FP16 ASR 均为 0，而全部 Model/Task Cell 的 Worst-codebook Quantized ASR 都高于 0.76，18 个中有 12 个高于 0.90。该来源不能推出普通量化本身具有恶意，也不能推出所有 Quantizer 同样脆弱。Q-20260916-03 完整深读 The Router Within/Gavel 的 Hidden-state Glance、Epsilon-cover Skill Bank、Native Verdict、Product-of-experts Ruling、Training/Calibration、三个公开 Benchmark、372 条 SkillTraj、mini-swe-agent 实际接入、消融、Adjudication 与 Cost。有界结论是：Skill Routing 可以作为独立可测 Runtime Component，而不是永久 Metadata Preload；所报告 Qwen3-32B 设置在 Skill-Use 上达到 90.9% Correct-skill Trigger，并在四种 SkillTraj Scenario 中领先，但正确 Routing 既不等于下游 Task Completion，也不等于 Execution Authorization。Reading 共形成 3 份同日 Reading Note，未执行 Research Analysis、文章写作、可视化、Production、Academic 或 Publication。",
+      "output": "Three durable same-date Reading Notes: research/reading/Q-20260916-01-sustained-operational-completion-evidence.md; research/reading/Q-20260916-02-post-transform-deployed-artifact-safety.md; research/reading/Q-20260916-03-skill-routing-runtime-boundary.md.",
+      "output_zh": "生成 3 份同日持久 Reading Note：research/reading/Q-20260916-01-sustained-operational-completion-evidence.md；research/reading/Q-20260916-02-post-transform-deployed-artifact-safety.md；research/reading/Q-20260916-03-skill-routing-runtime-boundary.md。",
+      "next": "After exact-head deterministic Runtime validation and governed Reading terminal finalization with GitHub Commit Verified, reconcile immediately. The next formal due unfinished task must be selected by global serial order; Analysis may consume only these three same-date source-complete Reading Notes after Reading execution-closes, while Wednesday Academic remains separately ordered at its 16:00 formal time.",
+      "next_zh": "精确 Head 的确定性 Runtime 校验与 Reading 受治理终态收口、GitHub Commit Verified 完成后立即重新对账。下一项正式到期未完成任务必须按全局串行顺序选择；Reading execution-close 后 Analysis 才能消费这 3 份同日来源完整 Reading Note；周三 Academic 仍按其 16:00 正式时间独立参与全局顺序。",
+      "metrics": [
+        {
+          "label": "Generated prompt identity verified",
+          "label_zh": "Generated Prompt 身份已核验",
+          "value": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 Required Source",
+          "value": 5
+        },
+        {
+          "label": "Queue-selected objects read",
+          "label_zh": "已深读 Queue Selected Object",
+          "value": 3
+        },
+        {
+          "label": "Durable Reading Notes",
+          "label_zh": "持久 Reading Note",
+          "value": 3
+        },
+        {
+          "label": "Primary research sources inspected",
+          "label_zh": "已核验一手研究来源",
+          "value": 3
+        },
+        {
+          "label": "Research Analysis performed",
+          "label_zh": "执行 Research Analysis",
+          "value": 0
+        },
+        {
+          "label": "Publication actions",
+          "label_zh": "Publication 操作数量",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Authority control-source commit",
+          "label_zh": "权威控制源提交",
+          "value": "b62523606032d485272a9ae879fe9ec4670a12e7"
+        },
+        {
+          "label": "Reading Wake Receipt",
+          "label_zh": "Reading Wake Receipt",
+          "path": "research/runtime/wakes/2026/09/2026-09-16/reading-110142.json"
+        },
+        {
+          "label": "Worker Claimed commit",
+          "label_zh": "Worker Claimed 提交",
+          "commit": "02b4cb20d461e651d3fea0bd7fd1a9b79455f8d6"
+        },
+        {
+          "label": "Generated Reading Prompt SHA-256",
+          "label_zh": "Generated Reading Prompt SHA-256",
+          "value": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"
+        },
+        {
+          "label": "Exact-head generated-prompt validation",
+          "label_zh": "精确 Head Generated Prompt 校验",
+          "value": "Validate Research Center 3.0 #35047380653 success on b62523606032d485272a9ae879fe9ec4670a12e7"
+        },
+        {
+          "label": "Same-date Research Plan",
+          "label_zh": "同日 Research Plan",
+          "path": "research/runtime/plans/2026/09/2026-09-16-plan.json"
+        },
+        {
+          "label": "Asclepius primary research",
+          "label_zh": "Asclepius 一手研究",
+          "url": "https://arxiv.org/abs/2609.13543"
+        },
+        {
+          "label": "AgentQ primary research",
+          "label_zh": "AgentQ 一手研究",
+          "url": "https://arxiv.org/abs/2609.14060"
+        },
+        {
+          "label": "The Router Within primary research",
+          "label_zh": "The Router Within 一手研究",
+          "url": "https://arxiv.org/abs/2609.15982"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Q-20260916-01 Reading Note",
+          "label_zh": "Q-20260916-01 深读笔记",
+          "path": "research/reading/Q-20260916-01-sustained-operational-completion-evidence.md"
+        },
+        {
+          "label": "Q-20260916-02 Reading Note",
+          "label_zh": "Q-20260916-02 深读笔记",
+          "path": "research/reading/Q-20260916-02-post-transform-deployed-artifact-safety.md"
+        },
+        {
+          "label": "Q-20260916-03 Reading Note",
+          "label_zh": "Q-20260916-03 深读笔记",
+          "path": "research/reading/Q-20260916-03-skill-routing-runtime-boundary.md"
+        },
+        {
+          "label": "Reading result",
+          "label_zh": "Reading 结果",
+          "path": "research/runtime/results/2026/09/2026-09-16-reading-result.json"
+        }
+      ],
+      "startedAt": "2026-09-16T11:05:23+08:00",
+      "completedAt": "2026-09-16T11:13:31+08:00"
     }
   },
   "timeline": [
@@ -627,6 +750,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Reading after verifying research/runtime/wakes/2026/09/2026-09-16/reading-110142.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-16T11:13:31+08:00",
+      "task": "reading",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Reading closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-16."
     }
   ],
   "metrics": [],
@@ -634,5 +764,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-16T11:07:14+08:00"
+  "updatedAt": "2026-09-16T11:13:31+08:00"
 }
