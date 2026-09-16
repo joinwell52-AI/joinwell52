@@ -1,7 +1,9 @@
-const APP_VERSION='0.2.0';
+const APP_VERSION='0.2.1';
 const DEV_API='https://dev.to/api';
 const MM_API='https://api.mymemory.translated.net/get';
+const CACHE_KEY=`cl-cache-${APP_VERSION}`;
 let remoteVersion=APP_VERSION;
+
 const savedUsername=localStorage.getItem('cl-dev-username')||'';
 const validSavedUsername=/^[A-Za-z0-9_-]+$/.test(savedUsername)?savedUsername:'';
 const state={
@@ -10,14 +12,13 @@ const state={
   currentArticle:null,
   feed:'popular',
   showChinese:localStorage.getItem('cl-language')!=='en',
-  cache:new Map(JSON.parse(localStorage.getItem('cl-cache')||'[]')),
-  protectTerms:true,
+  cache:new Map(JSON.parse(localStorage.getItem(CACHE_KEY)||'[]')),
   username:validSavedUsername||'joinwell52'
 };
 if(!validSavedUsername)localStorage.setItem('cl-dev-username','joinwell52');
+
 const $=s=>document.querySelector(s);
 const $$=s=>[...document.querySelectorAll(s)];
-const TECH=['Agent','MCP','API','GitHub','runtime','Runtime','commit','PR','Python','Swift','JavaScript','TypeScript','Next.js','React','LLM','AI','OpenAI','GPT','repository','repo','HTTP','JSON','OAuth','CLI','SDK','npm','Node.js','DEV','Forem'];
 
 function versionParts(v){return String(v||'').replace(/^v/,'').split('.').map(x=>parseInt(x,10)||0)}
 function isNewerVersion(remote,current){
@@ -44,9 +45,7 @@ async function checkForUpdate(){
       return;
     }
     const previous=localStorage.getItem('cl-last-app-version');
-    if(previous&&previous!==APP_VERSION){
-      showUpdateBanner(`已更新到 v${APP_VERSION}`,'知道了');
-    }
+    if(previous&&previous!==APP_VERSION)showUpdateBanner(`已更新到 v${APP_VERSION}`,'知道了');
     localStorage.setItem('cl-last-app-version',APP_VERSION);
   }catch{}
 }
@@ -58,60 +57,68 @@ function forceUpdate(){
   location.replace(u.toString());
 }
 
-function saveCache(){try{localStorage.setItem('cl-cache',JSON.stringify([...state.cache].slice(-800)))}catch{}}
-function protect(text){
-  if(!state.protectTerms)return{text,map:[]};
-  let out=text,map=[];
-  TECH.forEach((term,i)=>{
-    if(!out.includes(term))return;
-    const key=`__CL_${i}_${map.length}__`;
-    out=out.split(term).join(key);
-    map.push([key,term]);
-  });
-  return{text:out,map};
+function saveCache(){
+  try{localStorage.setItem(CACHE_KEY,JSON.stringify([...state.cache].slice(-1000)))}catch{}
 }
-function restore(text,map){let out=text;for(const [k,v] of map)out=out.split(k).join(v);return out}
 function byteChunks(text,max=430){
   const out=[];let cur='';
-  for(const ch of text){const next=cur+ch;if(new Blob([next]).size>max){if(cur)out.push(cur);cur=ch}else cur=next}
-  if(cur)out.push(cur);return out;
+  for(const ch of String(text||'')){
+    const next=cur+ch;
+    if(new Blob([next]).size>max){if(cur)out.push(cur);cur=ch}else cur=next;
+  }
+  if(cur)out.push(cur);
+  return out;
 }
-async function translateText(text){
-  text=(text||'').trim();
+async function translateText(value){
+  const text=String(value??'').trim();
   if(!text||text.length<2)return text;
   if(state.cache.has(text))return state.cache.get(text);
-  const {text:masked,map}=protect(text);
   let result='';
-  for(const chunk of byteChunks(masked)){
+  for(const chunk of byteChunks(text)){
     const u=new URL(MM_API);
     u.searchParams.set('q',chunk);
     u.searchParams.set('langpair','en|zh-CN');
-    const r=await fetch(u);
-    if(!r.ok)throw new Error('翻译服务暂时不可用');
+    const r=await fetch(u,{cache:'no-store'});
+    if(!r.ok)throw new Error(`翻译服务 ${r.status}`);
     const j=await r.json();
-    result+=j?.responseData?.translatedText||chunk;
+    const translated=j?.responseData?.translatedText;
+    result+=typeof translated==='string'&&translated.trim()?translated:chunk;
   }
-  result=restore(result,map);
-  state.cache.set(text,result);saveCache();return result;
+  if(!result||result==='[object Object]')result=text;
+  state.cache.set(text,result);
+  saveCache();
+  return result;
 }
-async function mapLimit(items,limit,fn){
-  const ret=[];let i=0;
+async function mapLimit(items,limit,fn,fallback){
+  const ret=new Array(items.length);let cursor=0;
   const workers=Array.from({length:Math.min(limit,Math.max(1,items.length))},async()=>{
-    while(i<items.length){const idx=i++;try{ret[idx]=await fn(items[idx],idx)}catch{ret[idx]=items[idx]}}
+    while(cursor<items.length){
+      const idx=cursor++;
+      try{ret[idx]=await fn(items[idx],idx)}
+      catch(err){ret[idx]=fallback?fallback(items[idx],idx,err):null}
+    }
   });
-  await Promise.all(workers);return ret;
+  await Promise.all(workers);
+  return ret;
 }
 function fmtDate(s){try{return new Intl.DateTimeFormat('zh-CN',{month:'numeric',day:'numeric'}).format(new Date(s))}catch{return''}}
-function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function currentTitle(a){return state.showChinese?(a._zhTitle||a.title):a.title}
-function currentDesc(a){return state.showChinese?(a._zhDesc||a.description||''):(a.description||'')}
+function esc(s=''){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function currentTitle(a){
+  const v=state.showChinese?(a?._zhTitle||a?.title):(a?.title||'');
+  return typeof v==='string'?v:String(a?.title||'');
+}
+function currentDesc(a){
+  const v=state.showChinese?(a?._zhDesc||a?.description||''):(a?.description||'');
+  return typeof v==='string'?v:'';
+}
 
-async function translateArticleCards(items){
-  const titles=await mapLimit(items,3,a=>translateText(a.title));
-  items.forEach((a,i)=>a._zhTitle=titles[i]);
-  const descTargets=items.slice(0,12);
-  const descs=await mapLimit(descTargets,2,a=>translateText(a.description||''));
-  descTargets.forEach((a,i)=>a._zhDesc=descs[i]);
+async function translateArticleCards(items,{descriptions=true}={}){
+  const titles=await mapLimit(items,2,a=>translateText(a.title),a=>String(a?.title||''));
+  items.forEach((a,i)=>{a._zhTitle=typeof titles[i]==='string'?titles[i]:String(a.title||'')});
+  if(!descriptions)return;
+  const targets=items.slice(0,12);
+  const descs=await mapLimit(targets,1,a=>translateText(a.description||''),a=>String(a?.description||''));
+  targets.forEach((a,i)=>{a._zhDesc=typeof descs[i]==='string'?descs[i]:String(a.description||'')});
 }
 
 async function loadArticles(){
@@ -119,9 +126,10 @@ async function loadArticles(){
   status.textContent='正在读取 DEV 内容…';
   try{
     const endpoint=state.feed==='latest'?`${DEV_API}/articles/latest?per_page=16`:`${DEV_API}/articles?per_page=16`;
-    const r=await fetch(endpoint,{headers:{Accept:'application/vnd.forem.api-v1+json'}});
+    const r=await fetch(endpoint,{headers:{Accept:'application/vnd.forem.api-v1+json'},cache:'no-store'});
     if(!r.ok)throw new Error('DEV API 请求失败');
     state.articles=await r.json();
+    renderHomeArticles();
     status.textContent='正在翻译…';
     await translateArticleCards(state.articles);
     renderHomeArticles();
@@ -143,7 +151,8 @@ function renderHomeArticles(){
         <div class="tagline">${(a.tag_list||[]).slice(0,4).map(t=>`<span class="tag">#${esc(t)}</span>`).join('')}</div>
         <div class="feed-stats"><span>♡ ${a.positive_reactions_count||0}</span><span>◯ ${a.comments_count||0}</span></div>
       </div>`;
-    c.addEventListener('click',()=>openArticle(a));root.appendChild(c);
+    c.addEventListener('click',()=>openArticle(a));
+    root.appendChild(c);
   }
 }
 
@@ -156,9 +165,9 @@ function renderMyArticles(){
     c.innerHTML=`
       <h2>${esc(currentTitle(a))}</h2>
       <div class="my-meta">已发布：${fmtDate(a.published_at)} <span>语言：English</span></div>
-      <div class="my-actions"><span>♡ ${a.positive_reactions_count||0}</span><span>◯ ${a.comments_count||0}</span><span>◉ ${a.public_reactions_count||a.positive_reactions_count||0}</span><a href="https://dev.to/dashboard" target="_blank" rel="noopener">管理</a><a href="${esc(editUrl)}" target="_blank" rel="noopener">编辑</a></div>`;
+      <div class="my-actions"><span>♡ ${a.positive_reactions_count||0}</span><span>◯ ${a.comments_count||0}</span><a href="https://dev.to/dashboard" target="_blank" rel="noopener">管理</a><a href="${esc(editUrl)}" target="_blank" rel="noopener">编辑</a></div>`;
     c.addEventListener('click',()=>openArticle(a));
-    c.querySelectorAll('a').forEach(ael=>ael.addEventListener('click',e=>e.stopPropagation()));
+    c.querySelectorAll('a').forEach(el=>el.addEventListener('click',e=>e.stopPropagation()));
     root.appendChild(c);
   }
 }
@@ -169,7 +178,7 @@ async function openArticle(a){
   reader.classList.remove('hidden');reader.setAttribute('aria-hidden','false');
   content.innerHTML=`<h1>${esc(currentTitle(a))}</h1><p class="muted">正在读取正文…</p>`;
   try{
-    const r=await fetch(`${DEV_API}/articles/${a.id}`,{headers:{Accept:'application/vnd.forem.api-v1+json'}});
+    const r=await fetch(`${DEV_API}/articles/${a.id}`,{headers:{Accept:'application/vnd.forem.api-v1+json'},cache:'no-store'});
     if(!r.ok)throw new Error('正文读取失败');
     const d=await r.json();state.currentArticle={...a,...d};
     content.innerHTML=`<div class="reader-author">${esc(d.user?.name||'DEV')} · ${fmtDate(d.published_at)}</div><h1 data-original="${esc(d.title)}">${esc(state.showChinese?(a._zhTitle||d.title):d.title)}</h1>${d.body_html||''}`;
@@ -185,10 +194,12 @@ async function translateDom(root){
     return /[A-Za-z]{3}/.test(t)&&t.length>2?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;
   }});
   const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
-  await mapLimit(nodes,3,async n=>{
+  await mapLimit(nodes,2,async n=>{
     if(!n.parentElement.dataset.originalText)n.parentElement.dataset.originalText=n.nodeValue;
-    try{n.nodeValue=await translateText(n.nodeValue)}catch{}
-  });
+    const translated=await translateText(n.nodeValue);
+    if(typeof translated==='string')n.nodeValue=translated;
+    return translated;
+  },n=>n.nodeValue);
 }
 
 function setLanguage(chinese){
@@ -196,12 +207,13 @@ function setLanguage(chinese){
   $('#langToggle').textContent=chinese?'中文':'EN';$('#readerLang').textContent=chinese?'中文':'EN';
   if(!$('#reader').classList.contains('hidden')){
     const c=$('#readerContent');
-    if(chinese){translateDom(c)}else{
+    if(chinese)translateDom(c);else{
       for(const el of c.querySelectorAll('[data-original-text]'))el.textContent=el.dataset.originalText;
       const h=c.querySelector('h1[data-original]');if(h)h.textContent=h.dataset.original;
     }
   }
-  renderHomeArticles();if(state.myArticles.length)renderMyArticles();
+  renderHomeArticles();
+  if(state.myArticles.length)renderMyArticles();
 }
 
 async function loadMe(){
@@ -209,23 +221,28 @@ async function loadMe(){
   if(!username){$('#meSetup').classList.remove('hidden');$('#meContent').classList.add('hidden');return}
   $('#meSetup').classList.add('hidden');$('#meContent').classList.remove('hidden');$('#meStatus').textContent='正在读取我的 DEV…';
   try{
-    const profileUrl=`${DEV_API}/users/by_username?url=${encodeURIComponent(username)}`;
     const articlesUrl=`${DEV_API}/articles?username=${encodeURIComponent(username)}&per_page=100`;
-    const [userRes,articlesRes]=await Promise.all([fetch(profileUrl),fetch(articlesUrl)]);
-    const articles=articlesRes.ok?await articlesRes.json():[];
-    if(!userRes.ok && !articles.length)throw new Error(`找不到 DEV 用户 @${username}`);
+    const profileUrl=`${DEV_API}/users/by_username?url=${encodeURIComponent(username)}`;
+    const [articlesRes,userRes]=await Promise.all([fetch(articlesUrl,{cache:'no-store'}),fetch(profileUrl,{cache:'no-store'})]);
+    if(!articlesRes.ok)throw new Error('读取我的文章失败');
+    const articles=await articlesRes.json();
+    if(!Array.isArray(articles)||!articles.length)throw new Error(`找不到 DEV 用户 @${username} 的公开文章`);
+    state.myArticles=articles.sort((a,b)=>new Date(b.published_at)-new Date(a.published_at));
     let user=userRes.ok?await userRes.json():null;
-    if(!user && articles.length){
-      const au=articles[0].user||{};
+    if(!user||typeof user!=='object'||Array.isArray(user)){
+      const au=state.myArticles[0].user||{};
       user={username:au.username||username,name:au.name||username,profile_image:au.profile_image_90||au.profile_image||'',summary:'',location:'',joined_at:''};
     }
-    state.myArticles=articles;
-    const summaryZh=user?.summary?await translateText(user.summary).catch(()=>user.summary):'';
-    $('#profileCard').innerHTML=`<div class="profile-top">${user?.profile_image?`<img class="avatar" src="${esc(user.profile_image)}" alt="" />`:''}<div class="profile-id"><h2>${esc(user?.name||username)}</h2><div class="muted">@${esc(user?.username||username)}</div></div></div>${summaryZh?`<p>${esc(state.showChinese?summaryZh:user.summary)}</p>`:''}<div class="profile-facts">${user?.location?`<span>${esc(user.location)}</span>`:''}${user?.joined_at?`<span>加入 ${esc(user.joined_at)}</span>`:''}</div>`;
-    $('#meStatus').textContent='正在翻译我的文章…';
-    await translateArticleCards(state.myArticles);renderMyArticles();
+    $('#profileCard').innerHTML=`<div class="profile-top">${user.profile_image?`<img class="avatar" src="${esc(user.profile_image)}" alt="" />`:''}<div class="profile-id"><h2>${esc(user.name||username)}</h2><div class="muted">@${esc(user.username||username)}</div></div></div>`;
+    renderMyArticles();
+    $('#meStatus').textContent='正在翻译我的文章标题…';
+    await translateArticleCards(state.myArticles,{descriptions:false});
+    renderMyArticles();
     $('#meStatus').textContent=`${state.myArticles.length} 篇公开文章 · 最近创建优先`;
-  }catch(e){$('#meStatus').textContent=e.message;$('#profileCard').innerHTML='';$('#myArticleList').innerHTML=''}
+  }catch(e){
+    $('#meStatus').textContent=e.message;
+    $('#profileCard').innerHTML='';$('#myArticleList').innerHTML='';
+  }
 }
 
 function switchView(viewId,title){
@@ -244,10 +261,10 @@ $('#changeUsername').addEventListener('click',()=>{state.username='';localStorag
 $$('.feed-tab').forEach(b=>b.addEventListener('click',()=>{$$('.feed-tab').forEach(x=>x.classList.toggle('active',x===b));state.feed=b.dataset.feed;loadArticles()}));
 $$('.nav-btn').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view,b.dataset.title)));
 $('#updateNow').addEventListener('click',forceUpdate);
-
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkForUpdate()});
 setInterval(checkForUpdate,120000);
 $('#versionBadge').textContent=`v${APP_VERSION}`;
-$('#langToggle').textContent=state.showChinese?'中文':'EN';$('#readerLang').textContent=state.showChinese?'中文':'EN';
+$('#langToggle').textContent=state.showChinese?'中文':'EN';
+$('#readerLang').textContent=state.showChinese?'中文':'EN';
 checkForUpdate();
 loadArticles();
