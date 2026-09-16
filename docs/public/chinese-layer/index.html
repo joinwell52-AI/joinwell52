@@ -3,23 +3,31 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#0b0f14" />
+  <meta name="theme-color" content="#f5f5f5" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="DEV 中文" />
   <title>DEV 中文层</title>
   <link rel="manifest" href="./manifest.webmanifest" />
-  <link rel="stylesheet" href="./styles.css?v=3" />
+  <link rel="stylesheet" href="./styles.css?v=0.2.0" />
 </head>
 <body>
   <div id="app" class="app-shell">
     <header class="topbar">
       <div class="brand">
         <div class="dev-logo">DEV</div>
-        <div><div class="eyebrow">CHINESE LAYER</div><h1 id="pageTitle">主页</h1></div>
+        <div>
+          <div class="eyebrow">CHINESE LAYER <span id="versionBadge" class="version-badge">v0.2.0</span></div>
+          <h1 id="pageTitle">主页</h1>
+        </div>
       </div>
       <button id="langToggle" class="ghost-btn">中文</button>
     </header>
+
+    <div id="updateBanner" class="update-banner hidden" role="status">
+      <span id="updateText">发现新版本</span>
+      <button id="updateNow" class="update-btn">立即更新</button>
+    </div>
 
     <main>
       <section id="homeView" class="view active">
@@ -74,6 +82,6 @@
     <article id="readerContent" class="reader-content"></article>
   </div>
 
-  <script src="./app.js?v=5" defer></script>
+  <script src="./app.js?v=0.2.0" defer></script>
 </body>
 </html>
