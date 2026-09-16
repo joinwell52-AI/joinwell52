@@ -1,6 +1,7 @@
-const APP_VERSION='0.3.1';
+const APP_VERSION='0.3.2';
 const DEV_API='https://dev.to/api';
 const GOOGLE_TRANSLATE='https://translate.googleapis.com/translate_a/single';
+const GOOGLE_TRANSLATE_MOBILE='https://clients5.google.com/translate_a/t';
 const CACHE_KEY='cl-translate-cache-v3';
 const $=s=>document.querySelector(s);
 const $$=s=>[...document.querySelectorAll(s)];
@@ -47,16 +48,32 @@ function chunksByLength(value,max=900){
 }
 async function fetchJsonWithTimeout(url,ms=9000){
   const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),ms);
-  try{const r=await fetch(url,{cache:'no-store',credentials:'omit',signal:controller.signal});if(!r.ok)throw new Error(`HTTP ${r.status}`);return await r.json()}finally{clearTimeout(timer)}
+  try{const r=await fetch(url,{cache:'no-store',credentials:'omit',referrerPolicy:'no-referrer',signal:controller.signal});if(!r.ok)throw new Error(`HTTP ${r.status}`);return await r.json()}finally{clearTimeout(timer)}
+}
+async function translatePart(part){
+  const mobileFirst=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent||'');
+  const order=mobileFirst?['mobile','web']:['web','mobile'];
+  const errors=[];
+  for(const mode of order){
+    try{
+      if(mode==='mobile'){
+        const u=new URL(GOOGLE_TRANSLATE_MOBILE);u.searchParams.set('client','dict-chrome-ex');u.searchParams.set('sl','auto');u.searchParams.set('tl','zh-CN');u.searchParams.set('q',part);
+        const j=await fetchJsonWithTimeout(u.toString(),8000);const sentences=Array.isArray(j?.sentences)?j.sentences:[];const piece=sentences.map(x=>typeof x?.trans==='string'?x.trans:'').join('').trim();
+        if(!piece)throw new Error('空译文');state.provider='Google Translate Mobile';return piece;
+      }
+      const u=new URL(GOOGLE_TRANSLATE);u.searchParams.set('client','gtx');u.searchParams.set('sl','auto');u.searchParams.set('tl','zh-CN');u.searchParams.set('dt','t');u.searchParams.set('q',part);
+      const j=await fetchJsonWithTimeout(u.toString(),8000);const segments=Array.isArray(j?.[0])?j[0]:[];const piece=segments.map(x=>Array.isArray(x)&&typeof x[0]==='string'?x[0]:'').join('').trim();
+      if(!piece)throw new Error('空译文');state.provider='Google Translate';return piece;
+    }catch(e){errors.push(`${mode}:${e?.name==='AbortError'?'超时':(e?.message||String(e))}`)}
+  }
+  throw new Error(`Google 翻译不可用（${errors.join('；')}）`);
 }
 async function googleTranslateOne(value){
   const src=text(value).trim();if(!src||!hasEnglish(src))return src;
   const cached=state.cache.get(src);if(typeof cached==='string'&&cached.trim())return cached;
   let translated='';
   for(const part of chunksByLength(src)){
-    const u=new URL(GOOGLE_TRANSLATE);u.searchParams.set('client','gtx');u.searchParams.set('sl','auto');u.searchParams.set('tl','zh-CN');u.searchParams.set('dt','t');u.searchParams.set('q',part);
-    const j=await fetchJsonWithTimeout(u.toString());const segments=Array.isArray(j?.[0])?j[0]:[];const piece=segments.map(x=>Array.isArray(x)&&typeof x[0]==='string'?x[0]:'').join('').trim();
-    if(!piece)throw new Error('翻译服务没有返回译文');translated+=piece;await sleep(100);
+    translated+=await translatePart(part);await sleep(80);
   }
   if(!translated)throw new Error('翻译结果为空');state.cache.set(src,translated);saveCache();return translated;
 }
