@@ -282,16 +282,9 @@ When applications open, the strongest teams will be those that can demonstrate s
 
 Document No. 209 covers far more participants than foundation-model companies. Its provisions point toward a new value chain:
 
-| Industry layer | Main products or services | Core competitive capability |
-| --- | --- | --- |
-| Models and computing | Foundation models, lightweight models, inference services, elastic computing | Performance, cost and supply stability |
-| Intelligent programming | Coding agents, project-level development platforms, secure coding tools | Full-process development and practical effectiveness |
-| Execution infrastructure | Agent frameworks, scheduling, state, permissions, recovery | Reliable execution of complex tasks |
-| Software products | General-purpose, device, industry and industrial agents | Use-case value and product maturity |
-| Capability components | Skills, knowledge bases, industry components, tool interfaces | Reusable packaging of specialist knowledge |
-| Distribution markets | Agent stores, skill repositories, open-source sections | Review, discovery, compatibility and operations |
-| Delivery services | Consulting, integration, deployment, operations, continuous improvement | Industry understanding and delivery of outcomes |
-| Evaluation and governance | Testing, security, auditing, identity, trusted interconnection | Verifiable behavior and risk control |
+![Eight specializations in the agent software value chain and their core capabilities.](/assets/figures/miit-209-ai-software-policy/en/05-software-value-chain.png)
+
+*Figure 5. Eight specializations in the agent software value chain and their core capabilities. Source: Author's analysis of MIIT Document No. 209.*
 
 Not every company needs to build an all-encompassing agent platform. Specialist strengths in execution, skills, evaluation, security, integration or a particular industry can support independent businesses.
 
@@ -351,18 +344,11 @@ They can use existing models and platforms to package domain knowledge, tool int
 
 Productization depends on whether the capability can be reused across customers and whether deployment and maintenance costs remain manageable. If each customer requires substantial redevelopment, it must still be accounted for as project work. Using an agent does not automatically turn it into a software product.
 
-| Firm type | Advantage to preserve | First transformation opportunity | Capabilities to add |
-| --- | --- | --- | --- |
-| Established vendors | Business systems, data, permissions and customer relationships | Delegate bounded tasks to agents | Controlled interfaces, task acceptance and consequential-action approvals |
-| Project providers and integrators | Industry knowledge, field experience and integration | Reusable packages and ongoing operations | Reuse boundaries, service accountability, maintenance and cost accounting |
-| Tool and platform companies | Developer ecosystems, toolchains and technical foundations | Project-level development and reliable execution | Testing, state, permissions, recovery and integration |
-| Specialist software SMEs | Domain knowledge, focused use cases and customer trust | Specialist agents or industry Skills | Scope, compatibility tests, versions and delivery evidence |
+![Firms should choose transformation opportunities from their existing strengths and business boundaries, then address missing capabilities.](/assets/figures/miit-209-ai-software-policy/en/06-enterprise-paths.png)
+
+*Figure 6. Firms should choose transformation opportunities from their existing strengths and business boundaries, then address missing capabilities. Source: Author's enterprise transformation analysis informed by Document No. 209.*
 
 This is a business analysis informed by the policy, not an official classification or a prescribed transformation route. A company can occupy several positions. The point is to identify a boundary within which it can create value, rather than relabel every existing product with policy terminology.
-
-![Firms should choose transformation opportunities from their existing strengths and business boundaries, then address missing capabilities.](/assets/figures/miit-209-ai-software-policy/en/05-enterprise-paths.png)
-
-*Figure 5. Firms should choose transformation opportunities from their existing strengths and business boundaries, then address missing capabilities. Source: Author's enterprise transformation analysis informed by Document No. 209.*
 
 ## XIII. Making Transformation Work: From One Use Case to Continuous Delivery
 
@@ -404,9 +390,9 @@ Further investment should depend jointly on reuse, customer benefit, service cos
 
 Software transformation therefore comes down to three questions: **Does the customer receive a verifiable improvement? Can the company deliver it sustainably? Do human accountability and risk boundaries remain clear?**
 
-![Establish a baseline, run a bounded pilot, and use evidence to justify ongoing service and broader reuse.](/assets/figures/miit-209-ai-software-policy/en/06-transformation-roadmap.png)
+![Establish a baseline, run a bounded pilot, and use evidence to justify ongoing service and broader reuse.](/assets/figures/miit-209-ai-software-policy/en/07-transformation-roadmap.png)
 
-*Figure 6. Establish a baseline, run a bounded pilot, and use evidence to justify ongoing service and broader reuse. Source: Author's enterprise transformation analysis informed by Document No. 209.*
+*Figure 7. Establish a baseline, run a bounded pilot, and use evidence to justify ongoing service and broader reuse. Source: Author's enterprise transformation analysis informed by Document No. 209.*
 
 ## XIV. Five Common Misreadings
 
