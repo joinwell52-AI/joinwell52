@@ -1,0 +1,36 @@
+{
+  "method": "Complete pinned body-codec module. Synthetic bytes and JSON envelope roundtrip only, not attachment API, storage, permission check or Daytona deletion.",
+  "rows": [
+    {
+      "name": "ascii",
+      "roundtrip": true,
+      "utf8Roundtrip": true
+    },
+    {
+      "name": "unicode",
+      "roundtrip": true,
+      "utf8Roundtrip": true
+    },
+    {
+      "name": "binary",
+      "roundtrip": true,
+      "utf8Roundtrip": false
+    },
+    {
+      "name": "malformed",
+      "rejected": true
+    },
+    {
+      "name": "noncanonical",
+      "rejected": true
+    },
+    {
+      "name": "oversize",
+      "rejected": true
+    },
+    {
+      "name": "unknown",
+      "rejected": true
+    }
+  ]
+}

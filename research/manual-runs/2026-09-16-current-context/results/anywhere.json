@@ -1,0 +1,175 @@
+{
+  "method": "Unchanged original Python modules. quota_route reads synthetic JSON snapshots; no provider invocation. has_review_structure is a parsing probe, not dispatcher recovery or verifier execution. Custom cache freshness belongs to caller.",
+  "quota": [
+    {
+      "mode": "base",
+      "case": "lead14",
+      "selected_model": "gemini-3.8-flash-high",
+      "blocked": false,
+      "note": "",
+      "override_age_seconds": 0
+    },
+    {
+      "mode": "base",
+      "case": "lead15",
+      "selected_model": "gemini-3.8-flash-high",
+      "blocked": false,
+      "note": "",
+      "override_age_seconds": 0
+    },
+    {
+      "mode": "base",
+      "case": "lead15decimal",
+      "selected_model": "gemini-3.8-flash-high",
+      "blocked": false,
+      "note": "",
+      "override_age_seconds": 0
+    },
+    {
+      "mode": "base",
+      "case": "partial",
+      "selected_model": "gemini-3.8-flash-high",
+      "blocked": false,
+      "note": "",
+      "override_age_seconds": 0
+    },
+    {
+      "mode": "base",
+      "case": "empty-partial",
+      "selected_model": "gemini-3.8-flash-high",
+      "blocked": true,
+      "note": "",
+      "override_age_seconds": 0
+    },
+    {
+      "mode": "base",
+      "case": "pinned",
+      "selected_model": "gemini-3.8-flash-high",
+      "blocked": false,
+      "note": "",
+      "override_age_seconds": 0
+    },
+    {
+      "mode": "base",
+      "case": "weekly-empty",
+      "selected_model": "gemini-3.8-flash-high",
+      "blocked": false,
+      "note": "",
+      "override_age_seconds": 0
+    },
+    {
+      "mode": "base",
+      "case": "override-old",
+      "selected_model": "gemini-3.8-flash-high",
+      "blocked": false,
+      "note": "",
+      "override_age_seconds": 3600
+    },
+    {
+      "mode": "head",
+      "case": "lead14",
+      "selected_model": "gemini-3.8-flash-high",
+      "blocked": false,
+      "note": "",
+      "override_age_seconds": 0
+    },
+    {
+      "mode": "head",
+      "case": "lead15",
+      "selected_model": "claude-sonnet-4-6",
+      "blocked": false,
+      "note": "MODEL-BALANCE from=gemini-3.8-flash-high to=claude-sonnet-4-6 reason=freer-meter own=20% other=35%",
+      "override_age_seconds": 0
+    },
+    {
+      "mode": "head",
+      "case": "lead15decimal",
+      "selected_model": "claude-sonnet-4-6",
+      "blocked": false,
+      "note": "MODEL-BALANCE from=gemini-3.8-flash-high to=claude-sonnet-4-6 reason=freer-meter own=50% other=65%",
+      "override_age_seconds": 0
+    },
+    {
+      "mode": "head",
+      "case": "partial",
+      "selected_model": "gemini-3.8-flash-high",
+      "blocked": false,
+      "note": "",
+      "override_age_seconds": 0
+    },
+    {
+      "mode": "head",
+      "case": "empty-partial",
+      "selected_model": "claude-sonnet-4-6",
+      "blocked": false,
+      "note": "MODEL-BALANCE from=gemini-3.8-flash-high to=claude-sonnet-4-6 reason=freer-meter own=0% other=40%",
+      "override_age_seconds": 0
+    },
+    {
+      "mode": "head",
+      "case": "pinned",
+      "selected_model": "gemini-3.8-flash-high",
+      "blocked": false,
+      "note": "",
+      "override_age_seconds": 0
+    },
+    {
+      "mode": "head",
+      "case": "weekly-empty",
+      "selected_model": "gemini-3.8-flash-high",
+      "blocked": false,
+      "note": "",
+      "override_age_seconds": 0
+    },
+    {
+      "mode": "head",
+      "case": "override-old",
+      "selected_model": "claude-sonnet-4-6",
+      "blocked": false,
+      "note": "MODEL-BALANCE from=gemini-3.8-flash-high to=claude-sonnet-4-6 reason=freer-meter own=20% other=100%",
+      "override_age_seconds": 3600
+    }
+  ],
+  "review_structure": [
+    {
+      "case:k": "complete",
+      "structure_accepted": true,
+      "backend_failure": "Antigravity reported status ERROR: UNAVAILABLE 503"
+    },
+    {
+      "case:k": "missing-verdict",
+      "structure_accepted": false,
+      "backend_failure": "Antigravity reported status ERROR: UNAVAILABLE 503"
+    },
+    {
+      "case:k": "wrong-round",
+      "structure_accepted": false,
+      "backend_failure": "Antigravity reported status ERROR: UNAVAILABLE 503"
+    },
+    {
+      "case:k": "closed-backtick",
+      "structure_accepted": false,
+      "backend_failure": "Antigravity reported status ERROR: UNAVAILABLE 503"
+    },
+    {
+      "case:k": "tilde-quote",
+      "structure_accepted": true,
+      "backend_failure": "Antigravity reported status ERROR: UNAVAILABLE 503"
+    },
+    {
+      "case:k": "unclosed-backtick",
+      "structure_accepted": true,
+      "backend_failure": "Antigravity reported status ERROR: UNAVAILABLE 503"
+    },
+    {
+      "case:k": "unverified-block",
+      "structure_accepted": true,
+      "backend_failure": "Antigravity reported status ERROR: UNAVAILABLE 503"
+    },
+    {
+      "case:k": "explicit-draft",
+      "structure_accepted": true,
+      "backend_failure": "Antigravity reported status ERROR: UNAVAILABLE 503"
+    }
+  ]
+}

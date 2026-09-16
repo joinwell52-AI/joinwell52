@@ -1,0 +1,44 @@
+{
+  "itemId": "2026-09-16-failed-check-memory",
+  "briefId": "memory-v1",
+  "title": "检查已经报错，AI 为什么还记住了那句答案？",
+  "proposition": "未完成验证的回答不应成为下一轮工作记忆。",
+  "synopsis": "真实 SDK 32 条对照：异常检查旧逻辑保存最终答案，修复后保留已有历史和用户输入，排除未验证答案。",
+  "scene": "一条琥珀色待验证回答停留在钴蓝会话历史外；历史已接受的内容仍完整。",
+  "titlePromise": "失败提示背后的记忆污染",
+  "readerProblem": "报错后模型还把未确认回答当成历史",
+  "subject": "空间化的会话记忆序列",
+  "action": "让未验证回答留在历史之外",
+  "result": "既有历史继续完整，待验证回答与之分离",
+  "anchors": [
+    "会话气泡形态的记忆层",
+    "与历史分离的待验证回答"
+  ],
+  "colors": {
+    "cobalt": "正式历史",
+    "amber": "未完成检查的回答",
+    "violet": "检查边界"
+  },
+  "composition": "近景琥珀回答；中景主导钴蓝历史序列；后景暖白拱廊。",
+  "ratio": "16:9",
+  "output": "docs/public/assets/current-context-20260916/failed-check-memory.cover-v1.png",
+  "exclusions": [
+    "机器",
+    "界面",
+    "图表",
+    "标题文字"
+  ],
+  "sanitizedPrompt": "Create a sophisticated editorial technology illustration, landscape 16:9. In a luminous warm ivory architectural space with soft daylight and distant shallow arches, a single dominant sculptural conversation memory made of three thick translucent cobalt blue speech-bubble layers recedes diagonally into depth. Their aligned curved tails unmistakably identify conversation records. A smaller amber translucent speech-bubble fragment hovers just outside the front layer, visibly separate from the established cobalt sequence, suspended at a thin violet verification seam. The intact cobalt history occupies two thirds of the composition; the small amber answer remains outside it. One unified close-up composition, confident generous forms, exquisite refractive glass, tactile pale limestone, credible contact shadows, elegant depth and gentle caustic reflections. Smooth plain surfaces, wordless pictorial storytelling, clear readable silhouettes, serious imaginative computing art.",
+  "generationMode": "built-in image_gen",
+  "attempts": 1,
+  "acceptedAsset": "docs/public/assets/current-context-20260916/failed-check-memory.cover-v1.png",
+  "sha256": "90dcaa3e40745c51355b92e54b31d4de24aead72f630d36dde89bb76cbcaf4d3",
+  "width": 1672,
+  "height": 941,
+  "thumbnail": "docs/public/assets/current-context-20260916/failed-check-memory.thumb.png",
+  "review": "self-reviewed pass",
+  "reviewReason": "钴蓝会话气泡连续保留，琥珀回答在外，边界可见。",
+  "thumbnailReview": "Actual 320x180 inspected; dominant silhouette and amber/cobalt separation remain readable",
+  "uniqueness": "Speech-bubble depth sequence / upright folder and displaced file / horizontal unfurled record; distinct subject, action and spatial orientation",
+  "userApproval": "No new per-image user approval claimed. Self-check and publish follows the user's standing explicit instruction."
+}

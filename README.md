@@ -127,6 +127,9 @@ The [complete article catalog](./README.zh-CN.md#article-catalog) includes the l
 
 September 13–14 combined research:
 
+- [The check failed. Why did the AI remember the answer?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-16-failed-check-memory) · [中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-16-failed-check-memory)
+- [Back in the same workspace, but which visit owns the result?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-16-same-place-new-visit) · [中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-16-same-place-new-visit)
+- [Resume the conversation. Keep the old credentials too?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-16-session-without-old-keys) · [中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-16-session-without-old-keys)
 - [Why did the tool run when the setting said “always”?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-15-approval-setting) · [中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-15-approval-setting)
 - [Why did an AI tool error leave an extra database row?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-15-retry-after-error) · [中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-15-retry-after-error)
 - [Why did pausing work turn into a task failure?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-15-pause-is-not-failure) · [中文](https://joinwell52-ai.github.io/joinwell52/zh/engineering/2026-09-15-pause-is-not-failure)
