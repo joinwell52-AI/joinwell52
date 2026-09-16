@@ -1,5 +1,5 @@
 ---
-title: "工信部209号文深度解读：当“智能体软件”成为国家软件产业的新增长极"
+title: "工信部209号文深度解读：智能体软件与软件产业转型"
 date: "2026-09-15"
 language: zh-CN
 article_type: policy-analysis
@@ -15,7 +15,7 @@ cover: "/assets/covers/miit-209-ai-software-policy.png"
 <ArticleCover
   image="/assets/covers/miit-209-ai-software-policy.png"
   kicker="行业架构 · 政策解读"
-  title="工信部209号文深度解读：当“智能体软件”成为国家软件产业的新增长极"
+  title="工信部209号文深度解读：智能体软件与软件产业转型"
   summary="工信部《“人工智能+软件”专项行动实施方案》不只是推动企业使用AI，而是同时改造软件生产方式、重定义软件产品、培育智能体软件与Skills市场，并启动运行框架、接口标准、行为校验和安全治理等基础建设。"
   version="2026-09-15"
   languageHref="/en/industry/2026-09-15-miit-209-ai-software-policy"
@@ -24,7 +24,7 @@ cover: "/assets/covers/miit-209-ai-software-policy.png"
 
 <ArticleTableScroll language="zh" />
 
-# 工信部209号文深度解读：当“智能体软件”成为国家软件产业的新增长极
+# 工信部209号文深度解读：智能体软件与软件产业转型
 
 2026年9月11日，工业和信息化部发布[《“人工智能+软件”专项行动实施方案》](https://www.miit.gov.cn/jgsj/xxjsfzs/wjfb/art/2026/art_91a26793271e4c77aca49ecde4472999.html)，文号为工信部信发〔2026〕209号，成文日期为9月2日。文件由工信部印发，面向各省、自治区、直辖市及新疆生产建设兵团工业和信息化主管部门，要求各地结合实际抓好贯彻落实。
 

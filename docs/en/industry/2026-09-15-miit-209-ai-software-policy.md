@@ -1,5 +1,5 @@
 ---
-title: "MIIT Document No. 209 Explained: When Agent Software Becomes a New Growth Driver for China's Software Industry"
+title: "MIIT Document No. 209 Explained: Agent Software and the Transformation of the Software Industry"
 date: "2026-09-15"
 language: en
 article_type: policy-analysis
@@ -15,7 +15,7 @@ cover: "/assets/covers/miit-209-ai-software-policy.png"
 <ArticleCover
   image="/assets/covers/miit-209-ai-software-policy.png"
   kicker="Industry Architecture · Policy Analysis"
-  title="MIIT Document No. 209 Explained: When Agent Software Becomes a New Growth Driver for China's Software Industry"
+  title="MIIT Document No. 209 Explained: Agent Software and the Transformation of the Software Industry"
   summary="MIIT's AI Plus Software plan reshapes software production, agent products and ongoing services. It sets out execution frameworks, Skills markets, standards and verifiable behavior, with practical implications for software-company transformation."
   version="2026-09-15"
   languageHref="/zh/industry/2026-09-15-miit-209-ai-software-policy"
@@ -24,7 +24,7 @@ cover: "/assets/covers/miit-209-ai-software-policy.png"
 
 <ArticleTableScroll language="en" />
 
-# MIIT Document No. 209 Explained: When Agent Software Becomes a New Growth Driver for China's Software Industry
+# MIIT Document No. 209 Explained: Agent Software and the Transformation of the Software Industry
 
 On September 11, 2026, China's Ministry of Industry and Information Technology (MIIT) published the [Implementation Plan for the “AI Plus Software” Special Action](https://www.miit.gov.cn/jgsj/xxjsfzs/wjfb/art/2026/art_91a26793271e4c77aca49ecde4472999.html). Numbered Gong Xin Bu Xin Fa [2026] No. 209 and dated September 2, the document was issued to industry and information technology authorities in all provinces, autonomous regions, municipalities and the Xinjiang Production and Construction Corps, asking them to implement it in light of local conditions.
 
