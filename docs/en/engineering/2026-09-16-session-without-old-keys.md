@@ -25,75 +25,82 @@ pageClass: "current-context-article"
 
 # Resume the conversation. Keep the old credentials too?
 
-Saving an AI conversation lets you continue tomorrow. History, settings, and a session identifier belong naturally in that record.
+Saving an AI conversation lets you continue tomorrow. Keeping its history is easy to understand.
 
-What if the credentials used to launch it are saved too?
+But should the key used to launch the assistant stay with it?
 
-They may no longer be appropriate tomorrow, yet remain in the session file. An especially misleading signal is a successful resume with new credentials: it does not mean the old file has been cleaned.
+Here, a key is a credential the application uses to access a service. After an account or connection change, the current run may already use a different credential. **Our real-file experiment showed an easily missed state: resume used the current value while the old value remained in the file on disk.**
 
-Our experiment with real temporary files confirmed that **using the current value and removing the old value from disk are separate outcomes.**
+“It works again” does not answer “were the earlier copies cleaned up?”
 
-## Separate what is being saved
+## How did a key get into a conversation record?
 
-[Paperclip #13498](https://github.com/paperclipai/paperclip/pull/13498), submitted by electrumnz, reports launch environment variables being persisted with session settings. Paperclip is an open-source application for coordinating AI assistants. The proposed fix was still open when researched.
+The source is [Paperclip #13498](https://github.com/paperclipai/paperclip/pull/13498), submitted by electrumnz. Paperclip is an open-source application for coordinating AI assistants. This proposed fix was still open when researched.
 
-Upstream describes risks when multiple seats share an operating-system account. We did not reproduce that deployment or cross-seat access.
+When launching an assistant, an application supplies settings called environment variables. Some can contain service credentials. Upstream reports that this launch environment was saved along with session settings, turning values prepared for a run into potentially long-lived copies.
 
-This interested us because resumability often encourages retaining more state. Conversation history, work products, and launch credentials do not share the same lifetime. We narrowed the question: must a resumed conversation recover its launch environment from its old record?
+That interested us because “save more so we can resume later” sounds reasonable. Yet history and credentials serve different purposes. Continuing yesterday's conversation need not require yesterday's credential.
 
-The candidate removes that environment before saving and injects the current run's environment when loading. It also proposes a shell-snapshot policy change, which we did not validate here.
+The candidate separates them: remove the launch environment when saving, and supply the current environment when resuming. We narrowed our experiment to a practical question: does that preserve the conversation, and what happens to old values already on disk?
 
-## Synthetic credentials, real files
+## Synthetic keys, real files
 
-We executed the candidate's complete store wrapper, backed by temporary JSON files. Only clearly synthetic strings were used; no real credentials were read.
-
-We set an old value, resumed with a different current value, and inspected the original object, disk bytes, and loaded object.
+We used recognizable synthetic strings in place of credentials and read no real keys. The candidate's save and load code was connected to temporary files. We supplied an old value, resumed with another current value, and inspected what remained in the file.
 
 | Operation | Old synthetic value remains on disk | Resume uses current value |
 | --- | --- | --- |
-| Save raw record without filtering | Yes | Yes; loading still uses candidate wrapper |
-| Save new record through candidate wrapper | **No** | Yes |
-| Load a legacy record without saving again | **Yes** | Yes |
-| Load legacy record, then save through wrapper | **No** | Yes |
+| Save the original record without filtering | Yes | Yes; load still uses candidate code |
+| Save a new record through candidate code | **No** | Yes |
+| Read a legacy record without saving again | **Yes** | Yes |
+| Read legacy record, then save through candidate code | **No** | Yes |
 
-All four retained conversation history and left the caller's original record unchanged. That matters: removing credentials from the disk copy should not inadvertently remove the environment from a live in-memory session.
+All four preserved conversation history. The original object supplied to save also stayed unchanged: removing the environment from the disk copy did not modify data the running session might still need in memory.
+
+The third row is worth pausing over. Resume received the current value, while inspection still found the old value on disk. Both observations were correct; they looked in different places.
 
 ![Separate persisted history from current launch credentials](/assets/current-context-20260916/session-without-old-keys.figure.en.svg)
 
-*Figure 1. A mechanism illustration of the file experiment. Save filtering changes the file; load-time injection changes the object returned to the current run. Source: our pinned-source experiments and saved results; diagram by the authors.*
+*Figure 1. Supplying current values during load and removing old environment fields during save affect different locations. Source: our real temporary-file experiment; diagram by the authors.*
 
-## Reading a legacy record does not rewrite it
+## Reading an old file does not rewrite it
 
-The load function returns an object containing the current environment. It does not call save during that read.
+Reading and changing a file are separate operations.
 
-The resumed object therefore had the current value while the original file retained the old one. Explicitly saving the loaded record removed the value from the tested location.
+After reading the old record, the candidate returns an object carrying the current environment. It does not rewrite the original file during that load. Only when we explicitly saved again did the old value disappear from the tested location.
 
-This does not invalidate the fix. It prevented new saves from persisting launch environments and supplied current values on resume. It exposes a separate upgrade responsibility: whether existing records are cleaned, when that happens, and whether backups retain earlier copies.
+That matches the proposal's explanation that the environment field disappears once a record is resaved. An upgrade still leaves a practical question: what happens to old records that are never opened or saved again? If backups retain older copies, who handles them?
 
-A successful next launch cannot answer those questions.
+The fix prevented new saves from persisting launch environments and supplied current values on resume. Our experiment clarified the distance between those outcomes and cleaning up every existing copy.
 
-In a fifth boundary case, we deliberately placed the same synthetic value in an unrelated debug field. The wrapper removed the known launch-environment field but retained that arbitrary copy. This is structural filtering of a specific location, not a general scan of every value. The field was artificial and does not establish another production disclosure path.
+## Does removing a copy make its credential unusable?
 
-## New writes, old copies, and expired credentials
+That does not follow. “Old” means previously used; it does not mean the service has invalidated the credential. Deleting a local copy does not revoke access.
 
-The lesson is not to stop saving conversations. The experiment retained history while separating launch material that belongs to a particular run.
+Developers therefore need three separate answers:
 
-An upgrade review can ask three distinct questions: do new saves still include the environment, are existing records handled, and have credentials that need to expire actually expired? We did not perform rotation or revocation.
+- **Will future saves keep writing it?** Inspect newly saved records.
+- **What happens to earlier copies?** Assign responsibility for legacy files and backups.
+- **Have credentials that should no longer work been invalidated?** That requires credential management, not just file deletion.
 
-For users, the expectation can be stated simply: after changing an account or connection, “it works now” should not be the only available fact. What old connection material remains, and what history is intentionally retained?
+Our experiment answers how the tested save and load paths behave. It did not rotate or revoke credentials, or clean backups.
 
-A useful maintainer question follows: does this proposal own legacy-record cleanup, or is cleanup explicitly assigned to a separate migration? That responsibility determines whether a successful resume can be mistaken for completed cleanup.
+Users can turn this into a concrete question too: after changing an account or connection, does the application explain what history remains and how old connection material is handled? Successful resume is useful, but it should not create an assumption that every old copy has also been addressed.
+
+That led to our maintainer question: could upgrade guidance distinguish preventing new persistence from handling existing records, and name the responsibility for the latter? It affects how the fix is used, as well as how its save function is written.
 
 <details>
-<summary>Source and experimental limits</summary>
+<summary>For technical readers: filtering scope, the fifth control, and limitations</summary>
 
-PR #13498 was OPEN when checked. Candidate: `bfe7f568976a2c671184722a6e6294927d6e6fae`; source baseline: `9cfa7fd2d13213b73396cf34b9fc95912857ff69`. We ran the complete candidate `session-store.ts` with our real temporary JSON-file store. The unwrapped control is not claimed to be the complete old ACPX implementation.
+Source author: electrumnz. PR #13498 was OPEN when researched. Candidate: `bfe7f568976a2c671184722a6e6294927d6e6fae`; source baseline: `9cfa7fd2d13213b73396cf34b9fc95912857ff69`.
 
-Five synthetic-record cases; no real ACPX child process, shell snapshot, cross-seat access, backup cleanup, credential rotation, or full product resume. The upstream 195-test report is not our own test count.
+We ran the complete candidate `session-store.ts`. It wraps the storage interface, removing `acpx.session_options.env` on save and injecting the current launchEnv on load. Our underlying store used real temporary JSON files. Directly saving the raw record is a negative control, not the complete old ACPX implementation.
 
-[Boolean observations, probe, and pinned sources](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-09-16-current-context). This does not establish a corresponding CodeFlowMu disclosure.
+A fifth boundary case deliberately placed the same synthetic value in an unrelated debug field. The candidate removed the designated environment field but retained that arbitrary copy. This tests filtering of a known structure, not general sensitive-value scanning; the artificial field does not establish another production disclosure path.
+
+Upstream also discusses multiple seats sharing an operating-system account and proposes disabling shell snapshots. We did not reproduce those paths or start a real ACPX child process. Cross-seat access, backup cleanup, credential rotation, and full product resume were not tested. Upstream's reported 195 tests are not counted as our own execution.
+
+[All five observations, probe, and pinned source](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-09-16-current-context). This does not establish a corresponding CodeFlowMu disclosure.
 
 </details>
-
 
 [Research repository](https://github.com/joinwell52-AI/joinwell52)

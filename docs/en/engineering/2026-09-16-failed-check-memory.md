@@ -25,25 +25,27 @@ pageClass: "current-context-article"
 
 # The check failed. Why did the AI remember the answer?
 
-An AI produces an answer. The service meant to check it fails. You see an error.
+Imagine using an AI assistant: it produces an answer, but the program meant to check that answer fails.
 
-When you ask the next question, it is reasonable to expect that unfinished answer not to become established conversation history. **In our controlled comparison, the old logic raised an error and saved the answer anyway. The next model call received it.**
+On your next question, you might expect the unchecked answer to stay out of the conversation. **In our controlled comparison, the old logic raised an error and saved the answer anyway. The next model call received it.**
 
-The problem was not forgetting. It was remembering an answer before its checks had finished.
+The error ended the current attempt without keeping that answer out of the next one.
 
-## An error tells only part of the story
+## What does “remember” mean here?
 
-jbeckwith-oai reported and fixed this in [OpenAI Agents JS #1938](https://github.com/openai/openai-agents-js/pull/1938). The library connects models, tools, and conversations. An output guardrail can reject an answer, but the checking service can also fail before returning a verdict.
+It means something specific: the application saves conversation history and sends some of it back to the model with the next question. We did not test model training or a chat product's long-term memory feature.
 
-We study assistants that continue working across turns. This source interested us because a failed response is usually treated as a local interruption. Once an unchecked answer enters session history, its effect may continue. Testing only whether the run throws misses what the next run receives.
+Once an unchecked answer enters that history, a later model call can receive it as context. An unconfirmed statement might then become a premise for another answer. That possible consequence motivated us; what our experiment directly established was whether the earlier answer was sent again.
 
-The old implementation already handled explicit rejection. This change addresses a check that could not finish.
+The source was [OpenAI Agents JS #1938](https://github.com/openai/openai-agents-js/pull/1938), submitted by jbeckwith-oai. This library connects models, tools, and conversations. Developers can arrange checks on an answer: a check may pass, reject the answer, or fail before reaching a verdict.
 
-## Run the next turn too
+The old implementation already handled “the check says no.” This patch addressed “the check could not finish.” For our research on assistants that keep working across turns, the important question was whether that interruption could leave something behind.
 
-We pinned the source, made a scripted model emit a distinctive answer, and configured checks to pass, reject, throw, or combine one passing check with another that throws. We then ran a follow-up and inspected its actual model input.
+## Break the checker, then ask another question
 
-The model was a test double; the runner and session handling were real SDK code. Streaming and non-streaming execution were crossed with MemorySession and an append-only session. Four combinations per verdict, across two versions, produced 32 observations.
+Our test model always returned the same distinctive marker text. We made the checks pass, reject, throw an error, or combine one passing check with another that threw. Then we ran another turn and inspected the history actually sent to its model.
+
+A script supplied the model's answers; real library code ran the conversation and handled storage. We used four execution/storage combinations and compared the old decision with the fixed one:
 
 | Check outcome | Old logic: answer replayed | Fixed logic: answer replayed |
 | --- | --- | --- |
@@ -52,42 +54,43 @@ The model was a test double; the runner and session handling were real SDK code.
 | Check throws | **4/4** | **0/4** |
 | One passes, another throws | **4/4** | **0/4** |
 
-These are constructed scenarios, not production incident rates. Each denominator of four represents two execution modes crossed with two session types.
+Four means two ways of returning an answer—streaming or all at once—crossed with two session-storage implementations. These are constructed cases, not production incident rates. Both versions together produced 32 observations.
 
-Accepted answers still persisted. Previously saved answers and the current user question were retained in all 32 observations. We also ran the upstream test file: 71 tests passed. Those tests cover additional behavior, including tool outputs; adding their count to our observations would not produce a reliability score.
+The last two rows show the change: **an answer without completed validation was replayed under the old decision and withheld under the fix.** Passing answers still remained, as did previously accepted history and the current user question.
 
 ![Checks and conversation memory](/assets/current-context-20260916/failed-check-memory.figure.en.svg)
 
-*Figure 1. A mechanism illustration derived from our inputs. A failed check differs from an explicit rejection, but neither establishes that the whole batch passed. Source: our pinned-source experiments and saved results; diagram by the authors.*
+*Figure 1. Whether an answer reaches the next turn after a check fails. Source: our pinned-source experiments and saved observations; diagram by the authors. Counts describe constructed cases.*
 
-## A passing check cannot answer for a failed one
+## An unfinished check has not proved the answer wrong
 
-The last row matters. An answer may face several checks. One can approve while another cannot reach a conclusion.
+A check can fail because its service is unavailable. That does not establish that the answer itself is bad. Equally, one passing check cannot supply the conclusion of another check that failed.
 
-The fixed code withheld that final answer from session history. This does not prove the answer was wrong. It means the required validation was incomplete.
+The fixed behavior preserves that distinction. It does not declare the answer disproved, and it does not automatically admit the answer as context for later work.
 
-The practical lesson is that **recording what a model said and admitting it into the next turn's working memory serve different purposes.** Diagnostic evidence can preserve an unsuccessful attempt. Automatically replayed history can influence later reasoning. A system needs to distinguish those uses.
+This suggests a practical design choice. An application can retain what the model produced to help diagnose a failed attempt, while keeping that record out of the next model call. **Retaining an attempt and admitting it into subsequent context need separate rules.**
 
-Passing the configured checks is also not proof of real-world correctness. It establishes completion and acceptance under those checks, within their scope.
+Even completed checks establish acceptance only under their configured requirements. They do not guarantee real-world truth.
 
-## What would a later check actually validate?
+## When checking recovers, which answer should it check?
 
-This patch does not implement delayed revalidation. That leaves a useful question: after the checking service recovers, which answer should it validate? If the answer has been regenerated or edited, which version owns the late verdict?
+Suppose the service recovers after the answer has been regenerated or the user has changed the question. Which piece of content does a late “pass” actually approve?
 
-We did not test such a recovery path. The experiment suggests checking the binding between answer content, validation version, and conversation turn rather than trusting a late passing flag.
+Neither this patch nor our experiment implements deferred verification. The comparison nevertheless leads to a concrete design question: a future retry would need to associate answer content, conversation turn, and checking rules, so that an old verdict cannot be attached to a new answer.
 
-Developers can reproduce the basic test by making a guardrail throw, starting another turn, and inspecting the model input. Users can report a related symptom: a response marked as failed later reappears as something the assistant treats as already established. Such reports are leads to investigate, not verified conclusions.
+Developers can start with a small experiment: make the checker throw, run another turn, and inspect what the model receives. Users can provide useful leads too: does an answer marked as failed later reappear as an already-established fact? Saving the surrounding conversation and error message gives an investigator more to work with than “the AI remembered incorrectly.”
 
 <details>
-<summary>Versions, method, and reproduction</summary>
+<summary>For technical readers: versions, full method, and reproduction</summary>
 
-The PR by jbeckwith-oai merged on 2026-09-15 UTC. We used candidate `457dfff8ce30d19ccbd4a3796ec482356dc19dfa` and the original `runner/guardrails.ts` from `8ac97dfedd0395beeb38edb0a17b83a9b89c3354`. This is the PR's only changed production module; the remaining candidate code was held constant.
+The PR by jbeckwith-oai merged on 2026-09-15 UTC. Candidate: `457dfff8ce30d19ccbd4a3796ec482356dc19dfa`. The control replaces only `runner/guardrails.ts` with its exact predecessor from `8ac97dfedd0395beeb38edb0a17b83a9b89c3354`. This was the PR's only changed production module; other candidate code stayed constant.
 
-The custom probe uses public `run`, ScriptedModel, MemorySession, and an append-only session, observing both persistence and subsequent model input. It does not use a live model API or external database, or establish correctness for every custom store. The mixed-check case establishes a failing batch, not a controlled temporal order of check completion.
+The probe uses public `run`, ScriptedModel, MemorySession, and an append-only session. It observes both stored items and subsequent model input in streaming and non-streaming modes: four check outcomes × two run modes × two session types × two versions = 32 observations. The mixed-check case establishes a failing batch, not a controlled order of check completion.
 
-[Pinned sources, saved observations, and runnable probes](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-09-16-current-context). This does not establish a corresponding CodeFlowMu defect.
+We separately ran the corresponding upstream test file: 71 tests passed, including additional tool-output behavior. That count is not added to the custom observations as a reliability score. No live model service or external database was used, and correctness for every custom store is not established.
+
+[Pinned source, saved observations, and runnable probes](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-09-16-current-context). This does not establish a corresponding CodeFlowMu defect.
 
 </details>
-
 
 [Research repository](https://github.com/joinwell52-AI/joinwell52)

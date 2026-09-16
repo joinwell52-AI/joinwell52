@@ -25,72 +25,83 @@ pageClass: "current-context-article"
 
 # Back in the same workspace, but which visit owns the result?
 
-You open workspace A while its file list is still loading. You switch to B, then return to A.
+You open workspace A while its file list is loading. You switch to B, then return to A.
 
-Only now does the first request for A finish. The workspace name is right. The query is right. **But does the answer belong to this visit or the previous one?**
+Only now does the first request for A finish. The workspace name is right. It is still a file-list request. **But does the answer belong to this visit or the previous one?**
 
-Comparing only the name A can admit an obsolete result. The name has returned; time has not.
+The name matches again, but the first request has not become a new request. We wanted to test whether the application can distinguish those visits.
 
-## Why test a round trip?
+## Give each visit a distinguishable marker
 
-[Orca #20914](https://github.com/stablyai/orca/pull/20914), submitted by Jinwoo-H, moves the mobile file inventory's request, in-flight, and cache lifecycle into one owner.
+The idea comes from [Orca #20914](https://github.com/stablyai/orca/pull/20914), submitted by Jinwoo-H. Orca's mobile client requests file information from the computer running an AI assistant, then retains results for later queries.
 
-The interesting part is a testable rule. Each request receives a lease belonging to its generation. A reset or scope transition retires that generation, so a late request cannot publish through its old lease.
+This change gives one object responsibility for pending requests and temporarily stored results. Think of it as a record keeper for the current period of use: it needs to know which results still belong and which have become obsolete.
 
-The upstream work explicitly covers A→B→A. We wanted to see what this mechanism observes and which changes callers must supply.
+The implementation attaches a valid-at-the-time marker to a request. A switch or reset retires the old marker. Returning to A does not reactivate the first visit's marker. The code calls these distinct periods “generations.”
 
-## Make the old request finish late
+That interested us because persistent assistants encounter switching, reconnection, and recovery. Recognizing the workspace's name alone can miss changes it has gone through. Upstream explicitly tests A→B→A; we used that scenario to build a controlled timing experiment.
 
-We loaded the pinned complete owner module and controlled when its promises resolved. For a counterfactual, we removed only the generation comparison while keeping the rest of the implementation.
+## Make the first result arrive late
 
-This is an experimental mutation, **not an old released Orca version**. Its failures do not establish a historical product incident.
+We executed the complete module at a fixed version: start a request for A, hold its answer back, change the scope, and only then deliver the old result. We checked whether it could be stored and read again.
 
-| Constructed scenario | Original module | Generation comparison removed |
+For comparison, we removed only the check that asks whether the request's marker still belongs to the current generation. This deliberately modified version helps explain the mechanism; **it is not a historical Orca release**.
+
+| Constructed scenario | Original module | Generation check removed |
 | --- | --- | --- |
-| A→B→A; first A result arrives late | Commit refused | Old value committed and readable |
-| Same name, explicit reset | Commit refused | Old value committed and readable |
-| Changed identity epoch included in scope | Old lease refused | Committed, but new scope cannot read old key |
-| Identity changes but caller omits that signal | **Old value accepted** | Old value accepted |
-| Lease passed to a different owner | Foreign owner refused | Still refused |
+| A→B→A; first A result arrives late | Refuses storage | Stores old result; later readable |
+| Same name, explicit reset | Refuses storage | Stores old result; later readable |
+| Tell the owner that the identity epoch changed | Refuses old request marker | Stores result, but new scope cannot read it |
+| Identity changes without informing the owner | **Old result remains storable and readable** | Old result remains storable and readable |
+| Pass a request marker to another owner | Refuses: marker belongs elsewhere | Still refuses |
 
-The final row separates ownership from generation. Removing one comparison does not remove the other.
+The first two rows make the central point: rejecting a stale result requires more than the workspace name.
+
+The fourth row shows that protection also needs an input. If the caller never reports an identity change, the owner cannot know that a new period has begun. We deliberately omitted that signal in a synthetic case; this does not establish a defect in the real login flow.
 
 ![Two visits to the same workspace](/assets/current-context-20260916/same-place-new-visit.figure.en.svg)
 
-*Figure 1. A simplified controlled schedule, not a recording of the mobile UI. The returning visit to A has a new generation. Source: our pinned-source experiments and saved results; diagram by the authors.*
+*Figure 1. The first request for A arrives after the returning visit has begun a new generation. Source: our controlled schedules; diagram by the authors, not a recording of the mobile UI.*
 
-## Committed does not always mean readable
+## Stored, read, and displayed are separate steps
 
-In another schedule, the outside scope had changed but the owner had not yet observed it. The old result's commit returned “committed.”
+Another result was less obvious. We changed the outside scope without yet informing the owner. Submitting the old result then returned “committed.”
 
-The first read with the new scope then retired the cache, making that value unavailable. Protection happens at both commit and read. Looking only at the commit verdict misses part of the design.
+On the next read with the new scope, the owner noticed the change and cleared the previously stored contents. That read did not return the old value.
 
-Conversely, when a caller never supplies the changed identity epoch, the owner has no evidence that the scope changed. Our synthetic omission case committed and returned the old value. That tests the interface boundary; it does not prove that a real authentication path omits a required field.
+These temporarily stored contents are the cache. The implementation checks both when accepting a result and when a later reader supplies a scope. Reading only the “committed” verdict misses the second part of the protection.
 
-Upstream also notes that mobile has no negotiated capability epoch available to use. Inventing a field would not create the missing evidence.
+The screen is another step. A caller can still hold an old asynchronous result. If it displays that value directly, without another cache read, it needs its own ordering check. Orca's file-search code retains such a display check. Our experiment did not run the mobile UI, so it cannot guarantee what every screen shows.
 
-## The display has a responsibility too
+**To understand whether stale content can appear, follow the result: who accepts it, who reads it, and who puts it on screen?**
 
-We observed cache behavior, not a phone screen. A caller still holds the returned value. If it displays that value directly, cache rejection cannot protect the display for it.
+## Which changes must the application report?
 
-The file-search pilot retains a separate query-sequence check for display. We did not exercise the full mobile flow or establish protection for every screen.
+Workspace selection is an obvious change. Reauthentication or moving execution to another computer can also make earlier results unsuitable.
 
-We also completed an old request while a new one was still running. The old cleanup did not remove the new request's slot: a subsequent load shared the new promise and started no duplicate work. Even cleanup must identify the request it owns, not merely a matching key.
+The next questions are therefore specific: which events make this data obsolete, where does the application obtain reliable signals of those events, and who supplies them to the request owner? Naming a field “version” does not establish its source.
 
-For developers, the next question is concrete: which events make this data obsolete—workspace selection, host migration, reauthentication—and which are actually represented in scope? Users can offer equally concrete reports: does the file list briefly revert after returning to a workspace?
+Users can contribute concrete observations: after returning to a workspace, did the file list show new content and then briefly revert? Was there a reconnection or account switch? Those details help developers reproduce the right ordering.
 
-**Returning to the same place is not returning to the same moment.** A result needs to belong to a particular visit.
+Developers can also consider how many updates one request produces. If it first publishes “loading” and later “ready,” how should a request marker constrain both updates? That is a follow-up design question, not an extension tested in this experiment.
+
+Returning to the same place does not reverse time. The application still needs to know which visit owns the result.
 
 <details>
-<summary>Version and scope</summary>
+<summary>For technical readers: additional schedules, boundaries, and pinned version</summary>
 
-Pinned candidate: `89711d6f55670781d23fc1a2d4e2aecf4d725758`. The PR merged on 2026-09-16 UTC; the supplied OPEN status was outdated. Eight schedules or boundary cases were run against the original and a mutation removing only the generation comparison: 16 observations.
+Source author: Jinwoo-H. Candidate: `89711d6f55670781d23fc1a2d4e2aecf4d725758`; merged on 2026-09-16 UTC. The complete `generation-scoped-request-owner.ts` was executed. Eight schedules or boundary cases were run against the original and a mutation removing only the generation comparison: 16 observations.
 
-The complete `generation-scoped-request-owner.ts` was transpiled and executed. No real RPC, mobile UI, host migration, or authentication flow was run. The private TypeScript lease brand is not claimed to isolate hostile JavaScript in the same process.
+The request marker described above is the lease; the caller supplies a scope. The implementation checks both lease ownership and generation. Removing the generation comparison preserves the ownership check. An identity epoch included in scope changes the key, so an accepted old value in the ablation does not necessarily become readable under the new scope.
 
-[Pinned source and runnable probes](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-09-16-current-context). These observations do not establish a corresponding CodeFlowMu defect.
+Additional cases cover normal same-generation publication and stale-request cleanup. When an old request settled while a new one remained pending, cleanup preserved the new in-flight entry; another load shared its promise and started zero duplicate loads.
+
+Upstream states that mobile lacks an available negotiated capability epoch; the experiment does not invent one. Its authentication-epoch boundary case does not establish a real authentication path. A separate query sequence protects display, and the cache commit verdict is not a freshness guarantee for a value already held by the caller. Upstream identifies loading/ready publication in a future status-loader migration as unfinished work.
+
+No real RPC, mobile UI, host migration, or login flow was run. The private TypeScript lease brand is not claimed to isolate hostile JavaScript in the same process.
+
+[Pinned source, all observations, and runnable probes](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-09-16-current-context). These observations do not establish a corresponding CodeFlowMu defect.
 
 </details>
-
 
 [Research repository](https://github.com/joinwell52-AI/joinwell52)
