@@ -1,5 +1,7 @@
+const APP_VERSION='0.2.0';
 const DEV_API='https://dev.to/api';
 const MM_API='https://api.mymemory.translated.net/get';
+let remoteVersion=APP_VERSION;
 const savedUsername=localStorage.getItem('cl-dev-username')||'';
 const validSavedUsername=/^[A-Za-z0-9_-]+$/.test(savedUsername)?savedUsername:'';
 const state={
@@ -16,6 +18,45 @@ if(!validSavedUsername)localStorage.setItem('cl-dev-username','joinwell52');
 const $=s=>document.querySelector(s);
 const $$=s=>[...document.querySelectorAll(s)];
 const TECH=['Agent','MCP','API','GitHub','runtime','Runtime','commit','PR','Python','Swift','JavaScript','TypeScript','Next.js','React','LLM','AI','OpenAI','GPT','repository','repo','HTTP','JSON','OAuth','CLI','SDK','npm','Node.js','DEV','Forem'];
+
+function versionParts(v){return String(v||'').replace(/^v/,'').split('.').map(x=>parseInt(x,10)||0)}
+function isNewerVersion(remote,current){
+  const a=versionParts(remote),b=versionParts(current),n=Math.max(a.length,b.length);
+  for(let i=0;i<n;i++){const av=a[i]||0,bv=b[i]||0;if(av>bv)return true;if(av<bv)return false}
+  return false;
+}
+function showUpdateBanner(text,buttonText='立即更新'){
+  const banner=$('#updateBanner');
+  if(!banner)return;
+  $('#updateText').textContent=text;
+  $('#updateNow').textContent=buttonText;
+  banner.classList.remove('hidden');
+}
+function hideUpdateBanner(){const b=$('#updateBanner');if(b)b.classList.add('hidden')}
+async function checkForUpdate(){
+  try{
+    const r=await fetch(`./version.json?ts=${Date.now()}`,{cache:'no-store'});
+    if(!r.ok)return;
+    const meta=await r.json();
+    remoteVersion=String(meta.version||APP_VERSION);
+    if(isNewerVersion(remoteVersion,APP_VERSION)){
+      showUpdateBanner(`发现新版本 v${remoteVersion}`,'立即更新');
+      return;
+    }
+    const previous=localStorage.getItem('cl-last-app-version');
+    if(previous&&previous!==APP_VERSION){
+      showUpdateBanner(`已更新到 v${APP_VERSION}`,'知道了');
+    }
+    localStorage.setItem('cl-last-app-version',APP_VERSION);
+  }catch{}
+}
+function forceUpdate(){
+  if(!isNewerVersion(remoteVersion,APP_VERSION)){hideUpdateBanner();return}
+  const u=new URL(location.href);
+  u.searchParams.set('version',remoteVersion);
+  u.searchParams.set('_',Date.now());
+  location.replace(u.toString());
+}
 
 function saveCache(){try{localStorage.setItem('cl-cache',JSON.stringify([...state.cache].slice(-800)))}catch{}}
 function protect(text){
@@ -202,6 +243,11 @@ $('#saveUsername').addEventListener('click',()=>{const v=$('#devUsername').value
 $('#changeUsername').addEventListener('click',()=>{state.username='';localStorage.removeItem('cl-dev-username');$('#devUsername').value='';$('#meContent').classList.add('hidden');$('#meSetup').classList.remove('hidden')});
 $$('.feed-tab').forEach(b=>b.addEventListener('click',()=>{$$('.feed-tab').forEach(x=>x.classList.toggle('active',x===b));state.feed=b.dataset.feed;loadArticles()}));
 $$('.nav-btn').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view,b.dataset.title)));
+$('#updateNow').addEventListener('click',forceUpdate);
 
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkForUpdate()});
+setInterval(checkForUpdate,120000);
+$('#versionBadge').textContent=`v${APP_VERSION}`;
 $('#langToggle').textContent=state.showChinese?'中文':'EN';$('#readerLang').textContent=state.showChinese?'中文':'EN';
+checkForUpdate();
 loadArticles();
