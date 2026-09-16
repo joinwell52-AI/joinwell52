@@ -53,6 +53,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Smoke test Chinese Layer translation
+        run: node scripts/chinese-layer-smoke.mjs
+
       - name: Finalize eligible weekly editorial scorecard
         run: node scripts/editorial-scorecard-finalize-current.mjs
 
