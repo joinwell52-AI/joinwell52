@@ -1,0 +1,335 @@
+{
+  "method": "Public run API, scripted models, real MemorySession and append-only session. Head vs exact base guardrails.ts (the only changed production module). No live LLM API or external database. Sixteen scenarios per version.",
+  "results": [
+    {
+      "mode": "base-guardrail",
+      "rows": [
+        {
+          "stream": false,
+          "appendOnly": false,
+          "verdict": "pass",
+          "error": null,
+          "persisted": true,
+          "replayed": true,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": false,
+          "appendOnly": false,
+          "verdict": "trip",
+          "error": "OutputGuardrailTripwireTriggered",
+          "persisted": false,
+          "replayed": false,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": false,
+          "appendOnly": false,
+          "verdict": "error",
+          "error": "GuardrailExecutionError",
+          "persisted": true,
+          "replayed": true,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": false,
+          "appendOnly": false,
+          "verdict": "pass-then-error",
+          "error": "GuardrailExecutionError",
+          "persisted": true,
+          "replayed": true,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": false,
+          "appendOnly": true,
+          "verdict": "pass",
+          "error": null,
+          "persisted": true,
+          "replayed": true,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": false,
+          "appendOnly": true,
+          "verdict": "trip",
+          "error": "OutputGuardrailTripwireTriggered",
+          "persisted": false,
+          "replayed": false,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": false,
+          "appendOnly": true,
+          "verdict": "error",
+          "error": "GuardrailExecutionError",
+          "persisted": true,
+          "replayed": true,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": false,
+          "appendOnly": true,
+          "verdict": "pass-then-error",
+          "error": "GuardrailExecutionError",
+          "persisted": true,
+          "replayed": true,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": true,
+          "appendOnly": false,
+          "verdict": "pass",
+          "error": null,
+          "persisted": true,
+          "replayed": true,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": true,
+          "appendOnly": false,
+          "verdict": "trip",
+          "error": "OutputGuardrailTripwireTriggered",
+          "persisted": false,
+          "replayed": false,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": true,
+          "appendOnly": false,
+          "verdict": "error",
+          "error": "GuardrailExecutionError",
+          "persisted": true,
+          "replayed": true,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": true,
+          "appendOnly": false,
+          "verdict": "pass-then-error",
+          "error": "GuardrailExecutionError",
+          "persisted": true,
+          "replayed": true,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": true,
+          "appendOnly": true,
+          "verdict": "pass",
+          "error": null,
+          "persisted": true,
+          "replayed": true,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": true,
+          "appendOnly": true,
+          "verdict": "trip",
+          "error": "OutputGuardrailTripwireTriggered",
+          "persisted": false,
+          "replayed": false,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": true,
+          "appendOnly": true,
+          "verdict": "error",
+          "error": "GuardrailExecutionError",
+          "persisted": true,
+          "replayed": true,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": true,
+          "appendOnly": true,
+          "verdict": "pass-then-error",
+          "error": "GuardrailExecutionError",
+          "persisted": true,
+          "replayed": true,
+          "priorRetained": true,
+          "userRetained": true
+        }
+      ]
+    },
+    {
+      "mode": "head",
+      "rows": [
+        {
+          "stream": false,
+          "appendOnly": false,
+          "verdict": "pass",
+          "error": null,
+          "persisted": true,
+          "replayed": true,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": false,
+          "appendOnly": false,
+          "verdict": "trip",
+          "error": "OutputGuardrailTripwireTriggered",
+          "persisted": false,
+          "replayed": false,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": false,
+          "appendOnly": false,
+          "verdict": "error",
+          "error": "GuardrailExecutionError",
+          "persisted": false,
+          "replayed": false,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": false,
+          "appendOnly": false,
+          "verdict": "pass-then-error",
+          "error": "GuardrailExecutionError",
+          "persisted": false,
+          "replayed": false,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": false,
+          "appendOnly": true,
+          "verdict": "pass",
+          "error": null,
+          "persisted": true,
+          "replayed": true,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": false,
+          "appendOnly": true,
+          "verdict": "trip",
+          "error": "OutputGuardrailTripwireTriggered",
+          "persisted": false,
+          "replayed": false,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": false,
+          "appendOnly": true,
+          "verdict": "error",
+          "error": "GuardrailExecutionError",
+          "persisted": false,
+          "replayed": false,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": false,
+          "appendOnly": true,
+          "verdict": "pass-then-error",
+          "error": "GuardrailExecutionError",
+          "persisted": false,
+          "replayed": false,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": true,
+          "appendOnly": false,
+          "verdict": "pass",
+          "error": null,
+          "persisted": true,
+          "replayed": true,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": true,
+          "appendOnly": false,
+          "verdict": "trip",
+          "error": "OutputGuardrailTripwireTriggered",
+          "persisted": false,
+          "replayed": false,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": true,
+          "appendOnly": false,
+          "verdict": "error",
+          "error": "GuardrailExecutionError",
+          "persisted": false,
+          "replayed": false,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": true,
+          "appendOnly": false,
+          "verdict": "pass-then-error",
+          "error": "GuardrailExecutionError",
+          "persisted": false,
+          "replayed": false,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": true,
+          "appendOnly": true,
+          "verdict": "pass",
+          "error": null,
+          "persisted": true,
+          "replayed": true,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": true,
+          "appendOnly": true,
+          "verdict": "trip",
+          "error": "OutputGuardrailTripwireTriggered",
+          "persisted": false,
+          "replayed": false,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": true,
+          "appendOnly": true,
+          "verdict": "error",
+          "error": "GuardrailExecutionError",
+          "persisted": false,
+          "replayed": false,
+          "priorRetained": true,
+          "userRetained": true
+        },
+        {
+          "stream": true,
+          "appendOnly": true,
+          "verdict": "pass-then-error",
+          "error": "GuardrailExecutionError",
+          "persisted": false,
+          "replayed": false,
+          "priorRetained": true,
+          "userRetained": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "method": "Pinned complete resolver and flag functions, imports replaced by controlled filesystem/clock/API collaborators. Selection only; no paid sandbox or actual network operation.",
+  "rows": [
+    {
+      "scenario": "uncached-online-yes",
+      "selected": "CLOUD",
+      "apiCalls": 1
+    },
+    {
+      "scenario": "uncached-online-no",
+      "selected": "LOCAL",
+      "apiCalls": 1
+    },
+    {
+      "scenario": "uncached-offline",
+      "selected": "LOCAL",
+      "apiCalls": 1
+    },
+    {
+      "scenario": "fresh-positive-offline",
+      "selected": "CLOUD",
+      "apiCalls": 0
+    },
+    {
+      "scenario": "expired-positive-offline",
+      "selected": "LOCAL",
+      "apiCalls": 1
+    },
+    {
+      "scenario": "fresh-negative-online-yes",
+      "selected": "LOCAL",
+      "apiCalls": 0
+    },
+    {
+      "scenario": "explicit-local",
+      "selected": "LOCAL",
+      "apiCalls": 0
+    },
+    {
+      "scenario": "explicit-host",
+      "selected": "REMOTE",
+      "apiCalls": 0
+    }
+  ]
+}

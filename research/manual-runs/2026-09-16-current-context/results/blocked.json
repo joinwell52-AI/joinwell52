@@ -1,0 +1,131 @@
+{
+  "method": "Pinned unchanged escalation function prefixes through the first issue update; collaborators record writes, not PostgreSQL. Complete original notification function with wake recorder. Three recovery sites, not fourth heartbeat site or real board queue.",
+  "rows": [
+    {
+      "mode": "base",
+      "function": "escalateStrandedAssignedIssue",
+      "scenario": "no-blocker",
+      "write": {
+        "status": "blocked",
+        "blockedByIssueIds": []
+      },
+      "quotaMonitorRequests": 0
+    },
+    {
+      "mode": "base",
+      "function": "escalateStrandedAssignedIssue",
+      "scenario": "formal-blocker",
+      "write": {
+        "status": "blocked",
+        "blockedByIssueIds": [
+          "blocker-task"
+        ]
+      },
+      "quotaMonitorRequests": 0
+    },
+    {
+      "mode": "base",
+      "function": "escalateStrandedAssignedIssue",
+      "scenario": "quota-monitor",
+      "write": {
+        "status": "blocked",
+        "blockedByIssueIds": []
+      },
+      "quotaMonitorRequests": 1
+    },
+    {
+      "mode": "base",
+      "function": "escalateStrandedRecoveryIssueInPlace",
+      "scenario": "ordinary",
+      "write": {
+        "status": "blocked"
+      },
+      "quotaMonitorRequests": 0
+    },
+    {
+      "mode": "base",
+      "function": "escalateDispositionRepair",
+      "scenario": "ordinary",
+      "write": {
+        "status": "blocked"
+      },
+      "quotaMonitorRequests": 0
+    },
+    {
+      "mode": "head",
+      "function": "escalateStrandedAssignedIssue",
+      "scenario": "no-blocker",
+      "write": {
+        "status": "blocked",
+        "blockedByIssueIds": [],
+        "unblockDescriptor": {
+          "owner": "board",
+          "action": "Inspect and explicitly retry or reassign"
+        }
+      },
+      "quotaMonitorRequests": 0
+    },
+    {
+      "mode": "head",
+      "function": "escalateStrandedAssignedIssue",
+      "scenario": "formal-blocker",
+      "write": {
+        "status": "blocked",
+        "blockedByIssueIds": [
+          "blocker-task"
+        ]
+      },
+      "quotaMonitorRequests": 0
+    },
+    {
+      "mode": "head",
+      "function": "escalateStrandedAssignedIssue",
+      "scenario": "quota-monitor",
+      "write": {
+        "status": "blocked",
+        "blockedByIssueIds": []
+      },
+      "quotaMonitorRequests": 1
+    },
+    {
+      "mode": "head",
+      "function": "escalateStrandedRecoveryIssueInPlace",
+      "scenario": "ordinary",
+      "write": {
+        "status": "blocked",
+        "unblockDescriptor": {
+          "owner": "board",
+          "action": "Board operator: this stranded-recovery issue's own recovery attempt failed. Inspect the run evidence, then explicitly retry, reassign, or intentionally resolve the task."
+        }
+      },
+      "quotaMonitorRequests": 0
+    },
+    {
+      "mode": "head",
+      "function": "escalateDispositionRepair",
+      "scenario": "ordinary",
+      "write": {
+        "status": "blocked",
+        "unblockDescriptor": {
+          "owner": "board",
+          "action": "Inspect the evidence and choose whether to repair, retry the original owner, explicitly reassign, or resolve the source issue."
+        }
+      },
+      "quotaMonitorRequests": 0
+    }
+  ],
+  "notification": [
+    {
+      "owner": "board",
+      "delivered": false,
+      "wakes": 0
+    },
+    {
+      "owner": {
+        "agentId": "available-agent"
+      },
+      "delivered": true,
+      "wakes": 1
+    }
+  ]
+}
