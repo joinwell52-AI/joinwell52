@@ -1,135 +1,107 @@
-const APP_VERSION='0.2.5';
+const APP_VERSION='0.3.0';
 const DEV_API='https://dev.to/api';
-const MM_API='https://api.mymemory.translated.net/get';
-const STABLE_CACHE_KEY='cl-translate-cache-v1';
-let remoteVersion=APP_VERSION;
+const TRANSLATE_API='https://chinese-layer-translate-joinwell52-8974.vercel.app/api/translate';
+const CACHE_KEY='cl-translate-cache-v2';
 
 const $=s=>document.querySelector(s);
 const $$=s=>[...document.querySelectorAll(s)];
 
-function loadTranslationCache(){
-  const merged=new Map();
-  const keys=[STABLE_CACHE_KEY,'cl-cache','cl-cache-0.2.0','cl-cache-0.2.1','cl-cache-0.2.2','cl-cache-0.2.3','cl-cache-0.2.4'];
-  for(const key of keys){
-    try{
-      const rows=JSON.parse(localStorage.getItem(key)||'[]');
-      if(!Array.isArray(rows))continue;
-      for(const row of rows){
-        if(!Array.isArray(row)||row.length<2)continue;
-        const src=typeof row[0]==='string'?row[0]:'';
-        const dst=typeof row[1]==='string'?row[1]:'';
-        if(!src||!dst||dst==='[object Object]'||dst.includes('__CL_'))continue;
-        merged.set(src,dst);
-      }
-    }catch{}
-  }
-  return merged;
+function loadCache(){
+  try{
+    const rows=JSON.parse(localStorage.getItem(CACHE_KEY)||'[]');
+    return new Map(Array.isArray(rows)?rows.filter(r=>Array.isArray(r)&&typeof r[0]==='string'&&typeof r[1]==='string'):[]);
+  }catch{return new Map()}
 }
+function saveCache(){try{localStorage.setItem(CACHE_KEY,JSON.stringify([...state.cache].slice(-3000)))}catch{}}
+function text(v){return typeof v==='string'?v:(v==null?'':String(v))}
+function esc(s=''){return text(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function fmtDate(s){try{return new Intl.DateTimeFormat('zh-CN',{month:'numeric',day:'numeric'}).format(new Date(s))}catch{return''}}
+function hasEnglish(s){return /[A-Za-z]{2}/.test(text(s))}
+function normalizeArticle(a){return {...a,title:text(a?.title),description:text(a?.description),path:text(a?.path)}}
 
 const savedUsername=localStorage.getItem('cl-dev-username')||'';
 const state={
-  articles:[],myArticles:[],currentArticle:null,feed:'popular',
+  articles:[],
+  myArticles:[],
+  currentArticle:null,
+  feed:'popular',
   showChinese:localStorage.getItem('cl-language')!=='en',
-  cache:loadTranslationCache(),
   username:/^[A-Za-z0-9_-]+$/.test(savedUsername)?savedUsername:'joinwell52',
-  lastError:''
+  cache:loadCache(),
+  remoteVersion:APP_VERSION,
+  provider:'Vercel AI Gateway'
 };
 if(!savedUsername)localStorage.setItem('cl-dev-username','joinwell52');
 
-function textValue(v){
-  if(typeof v==='string')return v;
-  if(v==null)return '';
-  if(typeof v==='number'||typeof v==='boolean')return String(v);
-  if(typeof v==='object')for(const k of ['text','value','name','title'])if(typeof v[k]==='string')return v[k];
-  return '';
-}
-function normalizeArticle(a){return {...a,title:textValue(a?.title),description:textValue(a?.description),path:textValue(a?.path)}}
-function esc(s=''){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function fmtDate(s){try{return new Intl.DateTimeFormat('zh-CN',{month:'numeric',day:'numeric'}).format(new Date(s))}catch{return''}}
-function hasEnglish(t){return /[A-Za-z]{2}/.test(String(t||''))}
-function currentTitle(a){return state.showChinese?(textValue(a?._zhTitle)||textValue(a?.title)):textValue(a?.title)}
-function currentDesc(a){return state.showChinese?(textValue(a?._zhDesc)||textValue(a?.description)):textValue(a?.description)}
+function currentTitle(a){return state.showChinese?(a?._zhTitle||a?.title||''):(a?.title||'')}
+function currentDesc(a){return state.showChinese?(a?._zhDesc||a?.description||''):(a?.description||'')}
 
-function saveCache(){
-  try{localStorage.setItem(STABLE_CACHE_KEY,JSON.stringify([...state.cache].slice(-2000)))}catch{}
-}
-function byteChunks(text,max=400){
-  const out=[];let cur='';
-  for(const ch of String(text||'')){
-    const next=cur+ch;
-    if(new Blob([next]).size>max){if(cur)out.push(cur);cur=ch}else cur=next;
+async function translateBatch(values){
+  const originals=values.map(v=>text(v).trim());
+  const results=new Array(originals.length);
+  const missing=[];
+  const missingIndexes=[];
+
+  originals.forEach((src,i)=>{
+    if(!src||!hasEnglish(src)){results[i]=src;return}
+    const cached=state.cache.get(src);
+    if(typeof cached==='string'&&cached.trim()){results[i]=cached;return}
+    missing.push(src);missingIndexes.push(i);
+  });
+
+  if(missing.length){
+    const r=await fetch(TRANSLATE_API,{
+      method:'POST',
+      mode:'cors',
+      cache:'no-store',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({texts:missing})
+    });
+    let payload={};
+    try{payload=await r.json()}catch{}
+    if(!r.ok)throw new Error(payload?.detail||payload?.error||`翻译后端 HTTP ${r.status}`);
+    if(!Array.isArray(payload.translations)||payload.translations.length!==missing.length)throw new Error('翻译后端返回格式错误');
+    payload.translations.forEach((v,j)=>{
+      const out=typeof v==='string'&&v.trim()?v.trim():missing[j];
+      results[missingIndexes[j]]=out;
+      state.cache.set(missing[j],out);
+    });
+    state.provider=payload.provider||'Vercel AI Gateway';
+    saveCache();
   }
-  if(cur)out.push(cur);
+  return results;
+}
+
+async function translateInChunks(values,size=12,onChunk){
+  const out=new Array(values.length);
+  for(let start=0;start<values.length;start+=size){
+    const part=values.slice(start,start+size);
+    const translated=await translateBatch(part);
+    translated.forEach((v,i)=>out[start+i]=v);
+    if(onChunk)onChunk(start,translated,out);
+  }
   return out;
 }
-async function fetchWithTimeout(url,ms=9000){
-  const controller=new AbortController();
-  const timer=setTimeout(()=>controller.abort(),ms);
-  try{return await fetch(url,{cache:'no-store',credentials:'omit',signal:controller.signal})}
-  finally{clearTimeout(timer)}
-}
 
-// 恢复最初可工作的翻译链路：只使用 MyMemory，不再经过 Lingva/LibreTranslate。
-async function translateText(value){
-  const text=textValue(value).trim();
-  if(!text||text.length<2||!hasEnglish(text))return text;
-  const cached=state.cache.get(text);
-  if(typeof cached==='string'&&cached&&cached!=='[object Object]'&&!cached.includes('__CL_'))return cached;
-
-  let result='';
-  for(const chunk of byteChunks(text)){
-    const u=new URL(MM_API);
-    u.searchParams.set('q',chunk);
-    u.searchParams.set('langpair','en|zh-CN');
-    const r=await fetchWithTimeout(u.toString());
-    if(!r.ok)throw new Error(`MyMemory HTTP ${r.status}`);
-    const j=await r.json();
-    const translated=textValue(j?.responseData?.translatedText).trim();
-    if(!translated||translated==='[object Object]')throw new Error('MyMemory 未返回译文');
-    if(j?.responseStatus&&Number(j.responseStatus)>=400)throw new Error(`MyMemory ${j.responseStatus}`);
-    result+=translated;
+function renderHomeArticles(){
+  const root=$('#articleList');root.innerHTML='';
+  if(!state.articles.length){root.innerHTML='<div class="empty-state">没有内容。</div>';return}
+  for(const a of state.articles){
+    const card=document.createElement('article');
+    card.className='feed-card';
+    const cover=a.cover_image||a.social_image||'';
+    card.innerHTML=`
+      <div class="feed-author"><span>${esc(a.user?.name||a.user?.username||'DEV')}</span><span>${fmtDate(a.published_at)}</span></div>
+      ${cover?`<img class="feed-cover" src="${esc(cover)}" alt="" loading="lazy" />`:''}
+      <div class="feed-body">
+        <h2>${esc(currentTitle(a))}</h2>
+        ${currentDesc(a)?`<p>${esc(currentDesc(a))}</p>`:''}
+        <div class="tagline">${(a.tag_list||[]).slice(0,4).map(t=>`<span class="tag">#${esc(t)}</span>`).join('')}</div>
+        <div class="feed-stats"><span>♡ ${a.positive_reactions_count||0}</span><span>◯ ${a.comments_count||0}</span></div>
+      </div>`;
+    card.addEventListener('click',()=>openArticle(a));
+    root.appendChild(card);
   }
-  if(!result||result==='[object Object]')throw new Error('翻译结果无效');
-  state.cache.set(text,result);
-  saveCache();
-  return result;
-}
-
-async function mapLimit(items,limit,fn,fallback){
-  const ret=new Array(items.length);let cursor=0;
-  const workers=Array.from({length:Math.min(limit,Math.max(1,items.length))},async()=>{
-    while(cursor<items.length){
-      const idx=cursor++;
-      try{ret[idx]=await fn(items[idx],idx)}catch(e){ret[idx]=fallback?fallback(items[idx],idx,e):null}
-    }
-  });
-  await Promise.all(workers);return ret;
-}
-
-function versionParts(v){return String(v||'').replace(/^v/,'').split('.').map(x=>parseInt(x,10)||0)}
-function isNewerVersion(remote,current){
-  const a=versionParts(remote),b=versionParts(current),n=Math.max(a.length,b.length);
-  for(let i=0;i<n;i++){const av=a[i]||0,bv=b[i]||0;if(av>bv)return true;if(av<bv)return false}
-  return false;
-}
-function showUpdateBanner(text,buttonText='立即更新'){
-  const b=$('#updateBanner');if(!b)return;
-  $('#updateText').textContent=text;$('#updateNow').textContent=buttonText;b.classList.remove('hidden');
-}
-function hideUpdateBanner(){const b=$('#updateBanner');if(b)b.classList.add('hidden')}
-async function checkForUpdate(){
-  try{
-    const r=await fetch(`./version.json?ts=${Date.now()}`,{cache:'no-store'});if(!r.ok)return;
-    const meta=await r.json();remoteVersion=String(meta.version||APP_VERSION);
-    if(isNewerVersion(remoteVersion,APP_VERSION)){showUpdateBanner(`发现新版本 v${remoteVersion}`,'立即更新');return}
-    const previous=localStorage.getItem('cl-last-app-version');
-    if(previous&&previous!==APP_VERSION)showUpdateBanner(`已更新到 v${APP_VERSION}`,'知道了');
-    localStorage.setItem('cl-last-app-version',APP_VERSION);
-  }catch{}
-}
-function forceUpdate(){
-  if(!isNewerVersion(remoteVersion,APP_VERSION)){hideUpdateBanner();return}
-  const u=new URL(location.href);u.searchParams.set('version',remoteVersion);u.searchParams.set('_',Date.now());location.replace(u.toString());
 }
 
 async function loadArticles(){
@@ -138,42 +110,25 @@ async function loadArticles(){
   try{
     const endpoint=state.feed==='latest'?`${DEV_API}/articles/latest?per_page=12`:`${DEV_API}/articles?per_page=12`;
     const r=await fetch(endpoint,{headers:{Accept:'application/vnd.forem.api-v1+json'},cache:'no-store'});
-    if(!r.ok)throw new Error('DEV API 请求失败');
+    if(!r.ok)throw new Error(`DEV API ${r.status}`);
     const raw=await r.json();
     state.articles=Array.isArray(raw)?raw.map(normalizeArticle):[];
     renderHomeArticles();
 
     status.textContent='正在翻译标题…';
-    for(let i=0;i<state.articles.length;i++){
-      const a=state.articles[i];
-      try{a._zhTitle=await translateText(a.title)}catch(e){state.lastError=e.message;a._zhTitle=a.title}
-      if(i===0||(i+1)%3===0){renderHomeArticles();status.textContent=`正在翻译标题… ${i+1}/${state.articles.length}`}
-    }
+    const titles=await translateInChunks(state.articles.map(a=>a.title),12);
+    state.articles.forEach((a,i)=>a._zhTitle=titles[i]||a.title);
     renderHomeArticles();
 
-    status.textContent='标题已完成，正在翻译摘要…';
-    for(let i=0;i<Math.min(6,state.articles.length);i++){
-      const a=state.articles[i];
-      if(!a.description)continue;
-      try{a._zhDesc=await translateText(a.description)}catch(e){state.lastError=e.message;a._zhDesc=a.description}
-      renderHomeArticles();
-    }
-    status.textContent=state.lastError?`部分翻译完成 · MyMemory（${state.lastError}）`:'已中文化 · MyMemory';
+    status.textContent='正在翻译摘要…';
+    const targets=state.articles.slice(0,6);
+    const descs=await translateInChunks(targets.map(a=>a.description||''),6);
+    targets.forEach((a,i)=>a._zhDesc=descs[i]||a.description||'');
+    renderHomeArticles();
+    status.textContent=`已中文化 · ${state.provider}`;
   }catch(e){
-    state.lastError=e.message;
-    status.textContent=`翻译失败：${e.message}`;
     renderHomeArticles();
-  }
-}
-
-function renderHomeArticles(){
-  const root=$('#articleList');root.innerHTML='';
-  for(const a of state.articles){
-    const c=document.createElement('article');c.className='feed-card';
-    const cover=a.cover_image||a.social_image||'';
-    c.innerHTML=`<div class="feed-author"><span>${esc(a.user?.name||a.user?.username||'DEV')}</span><span>${fmtDate(a.published_at)}</span></div>${cover?`<img class="feed-cover" src="${esc(cover)}" alt="" loading="lazy" />`:''}<div class="feed-body"><h2>${esc(currentTitle(a))}</h2>${currentDesc(a)?`<p>${esc(currentDesc(a))}</p>`:''}<div class="tagline">${(a.tag_list||[]).slice(0,4).map(t=>`<span class="tag">#${esc(t)}</span>`).join('')}</div><div class="feed-stats"><span>♡ ${a.positive_reactions_count||0}</span><span>◯ ${a.comments_count||0}</span></div></div>`;
-    c.addEventListener('click',()=>openArticle(a));
-    root.appendChild(c);
+    status.textContent=`翻译暂不可用：${e.message}`;
   }
 }
 
@@ -181,22 +136,27 @@ function renderMyArticles(){
   const root=$('#myArticleList');root.innerHTML='';
   if(!state.myArticles.length){root.innerHTML='<div class="empty-state">还没有公开文章。</div>';return}
   for(const a of state.myArticles){
-    const c=document.createElement('article');c.className='my-article-card';
+    const card=document.createElement('article');
+    card.className='my-article-card';
     const editUrl=a.path?`https://dev.to${a.path}/edit`:'https://dev.to/dashboard';
-    c.innerHTML=`<h2>${esc(currentTitle(a))}</h2><div class="my-meta">已发布：${fmtDate(a.published_at)} <span>语言：English</span></div><div class="my-actions"><span>♡ ${a.positive_reactions_count||0}</span><span>◯ ${a.comments_count||0}</span><a href="https://dev.to/dashboard" target="_blank" rel="noopener">管理</a><a href="${esc(editUrl)}" target="_blank" rel="noopener">编辑</a></div>`;
-    c.addEventListener('click',()=>openArticle(a));
-    c.querySelectorAll('a').forEach(el=>el.addEventListener('click',e=>e.stopPropagation()));
-    root.appendChild(c);
+    card.innerHTML=`
+      <h2>${esc(currentTitle(a))}</h2>
+      <div class="my-meta">已发布：${fmtDate(a.published_at)} <span>语言：English</span></div>
+      <div class="my-actions"><span>♡ ${a.positive_reactions_count||0}</span><span>◯ ${a.comments_count||0}</span><a href="https://dev.to/dashboard" target="_blank" rel="noopener">管理</a><a href="${esc(editUrl)}" target="_blank" rel="noopener">编辑</a></div>`;
+    card.addEventListener('click',()=>openArticle(a));
+    card.querySelectorAll('a').forEach(el=>el.addEventListener('click',e=>e.stopPropagation()));
+    root.appendChild(card);
   }
 }
 
 async function loadMe(){
   const username=(state.username||'joinwell52').trim().replace(/^@/,'');
-  $('#meSetup').classList.add('hidden');$('#meContent').classList.remove('hidden');$('#meStatus').textContent='正在读取我的 DEV…';
+  $('#meSetup').classList.add('hidden');
+  $('#meContent').classList.remove('hidden');
+  $('#meStatus').textContent='正在读取我的 DEV…';
   try{
-    const articlesUrl=`${DEV_API}/articles?username=${encodeURIComponent(username)}&per_page=100`;
-    const r=await fetch(articlesUrl,{cache:'no-store'});
-    if(!r.ok)throw new Error('读取我的文章失败');
+    const r=await fetch(`${DEV_API}/articles?username=${encodeURIComponent(username)}&per_page=100`,{cache:'no-store'});
+    if(!r.ok)throw new Error(`DEV API ${r.status}`);
     const raw=await r.json();
     if(!Array.isArray(raw)||!raw.length)throw new Error(`找不到 @${username} 的公开文章`);
     state.myArticles=raw.map(normalizeArticle).sort((a,b)=>new Date(b.published_at)-new Date(a.published_at));
@@ -204,16 +164,18 @@ async function loadMe(){
     $('#profileCard').innerHTML=`<div class="profile-top">${au.profile_image_90?`<img class="avatar" src="${esc(au.profile_image_90)}" alt="" />`:''}<div class="profile-id"><h2>${esc(au.name||username)}</h2><div class="muted">@${esc(au.username||username)}</div></div></div>`;
     renderMyArticles();
 
-    const count=Math.min(20,state.myArticles.length);
-    for(let i=0;i<count;i++){
-      const a=state.myArticles[i];
-      $('#meStatus').textContent=`正在翻译我的文章标题… ${i+1}/${count}`;
-      try{a._zhTitle=await translateText(a.title)}catch(e){state.lastError=e.message;a._zhTitle=a.title}
+    const count=Math.min(30,state.myArticles.length);
+    $('#meStatus').textContent=`正在翻译我的文章标题… 0/${count}`;
+    const titles=await translateInChunks(state.myArticles.slice(0,count).map(a=>a.title),10,(start,translated)=>{
+      translated.forEach((v,i)=>state.myArticles[start+i]._zhTitle=v||state.myArticles[start+i].title);
       renderMyArticles();
-    }
-    $('#meStatus').textContent=state.lastError?`已显示 ${state.myArticles.length} 篇 · 前 ${count} 篇已尝试翻译 · ${state.lastError}`:`${state.myArticles.length} 篇公开文章 · 前 ${count} 篇已中文化 · MyMemory`;
+      $('#meStatus').textContent=`正在翻译我的文章标题… ${Math.min(start+translated.length,count)}/${count}`;
+    });
+    state.myArticles.slice(0,count).forEach((a,i)=>a._zhTitle=titles[i]||a.title);
+    renderMyArticles();
+    $('#meStatus').textContent=`${state.myArticles.length} 篇公开文章 · 前 ${count} 篇已中文化 · ${state.provider}`;
   }catch(e){
-    $('#meStatus').textContent=`读取失败：${e.message}`;$('#profileCard').innerHTML='';$('#myArticleList').innerHTML='';
+    $('#meStatus').textContent=`读取/翻译失败：${e.message}`;
   }
 }
 
@@ -221,11 +183,12 @@ async function openArticle(a){
   state.currentArticle=a;
   const reader=$('#reader'),content=$('#readerContent');
   reader.classList.remove('hidden');reader.setAttribute('aria-hidden','false');
-  content.innerHTML=`<h1>${esc(currentTitle(a))}</h1><p class="muted">正在读取正文…</p>`;
+  content.innerHTML=`<h1>${esc(currentTitle(a))}</h1><p class="muted">正在读取正文并翻译…</p>`;
   try{
     const r=await fetch(`${DEV_API}/articles/${a.id}`,{headers:{Accept:'application/vnd.forem.api-v1+json'},cache:'no-store'});
-    if(!r.ok)throw new Error('正文读取失败');
-    const d=normalizeArticle(await r.json());state.currentArticle={...a,...d};
+    if(!r.ok)throw new Error(`正文读取失败 ${r.status}`);
+    const d=normalizeArticle(await r.json());
+    state.currentArticle={...a,...d};
     content.innerHTML=`<div class="reader-author">${esc(d.user?.name||'DEV')} · ${fmtDate(d.published_at)}</div><h1 data-original="${esc(d.title)}">${esc(state.showChinese?(a._zhTitle||d.title):d.title)}</h1>${d.body_html||''}`;
     if(state.showChinese)await translateDom(content);
   }catch(e){content.innerHTML+=`<p>读取/翻译失败：${esc(e.message)}</p>`}
@@ -239,23 +202,53 @@ async function translateDom(root){
     return hasEnglish(t)&&t.length>2?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;
   }});
   const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
-  for(const n of nodes){
-    if(!n.parentElement.dataset.originalText)n.parentElement.dataset.originalText=n.nodeValue;
-    try{const t=await translateText(n.nodeValue);if(t)n.nodeValue=t}catch{}
+  for(const n of nodes){if(!n.parentElement.dataset.originalText)n.parentElement.dataset.originalText=n.nodeValue}
+  for(let start=0;start<nodes.length;start+=12){
+    const part=nodes.slice(start,start+12);
+    const translated=await translateBatch(part.map(n=>n.nodeValue));
+    translated.forEach((v,i)=>{if(v)part[i].nodeValue=v});
   }
 }
 
 function setLanguage(chinese){
-  state.showChinese=chinese;localStorage.setItem('cl-language',chinese?'zh':'en');
-  $('#langToggle').textContent=chinese?'中文':'EN';$('#readerLang').textContent=chinese?'中文':'EN';
+  state.showChinese=chinese;
+  localStorage.setItem('cl-language',chinese?'zh':'en');
+  $('#langToggle').textContent=chinese?'中文':'EN';
+  $('#readerLang').textContent=chinese?'中文':'EN';
   if(!$('#reader').classList.contains('hidden')){
     const c=$('#readerContent');
-    if(chinese)translateDom(c);else{
+    if(chinese)translateDom(c).catch(()=>{});else{
       for(const el of c.querySelectorAll('[data-original-text]'))el.textContent=el.dataset.originalText;
       const h=c.querySelector('h1[data-original]');if(h)h.textContent=h.dataset.original;
     }
   }
-  renderHomeArticles();if(state.myArticles.length)renderMyArticles();
+  renderHomeArticles();
+  if(state.myArticles.length)renderMyArticles();
+}
+
+function versionParts(v){return text(v).replace(/^v/,'').split('.').map(x=>parseInt(x,10)||0)}
+function isNewerVersion(remote,current){
+  const a=versionParts(remote),b=versionParts(current),n=Math.max(a.length,b.length);
+  for(let i=0;i<n;i++){if((a[i]||0)>(b[i]||0))return true;if((a[i]||0)<(b[i]||0))return false}
+  return false;
+}
+function showUpdateBanner(message,button='立即更新'){
+  $('#updateText').textContent=message;$('#updateNow').textContent=button;$('#updateBanner').classList.remove('hidden');
+}
+function hideUpdateBanner(){$('#updateBanner').classList.add('hidden')}
+async function checkForUpdate(){
+  try{
+    const r=await fetch(`./version.json?ts=${Date.now()}`,{cache:'no-store'});if(!r.ok)return;
+    const meta=await r.json();state.remoteVersion=text(meta.version||APP_VERSION);
+    if(isNewerVersion(state.remoteVersion,APP_VERSION)){showUpdateBanner(`发现新版本 v${state.remoteVersion}`);return}
+    const previous=localStorage.getItem('cl-last-app-version');
+    if(previous&&previous!==APP_VERSION)showUpdateBanner(`已更新到 v${APP_VERSION}`,'知道了');
+    localStorage.setItem('cl-last-app-version',APP_VERSION);
+  }catch{}
+}
+function forceUpdate(){
+  if(!isNewerVersion(state.remoteVersion,APP_VERSION)){hideUpdateBanner();return}
+  const u=new URL(location.href);u.searchParams.set('version',state.remoteVersion);u.searchParams.set('_',Date.now());location.replace(u.toString());
 }
 function switchView(viewId,title){
   $$('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.view===viewId));
