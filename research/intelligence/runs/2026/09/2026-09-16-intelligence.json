@@ -1,0 +1,267 @@
+{
+  "schema": "research-intelligence-run/v1",
+  "version": "1.0",
+  "date": "2026-09-16",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "registryVersion": "1.0",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-09-16T09:05:21+08:00",
+  "githubCommit": "pending",
+  "researchCoverage": {
+    "policy": "theme-sample-v1",
+    "rollingResearchWindowDays": 30,
+    "sampleFamilies": {
+      "product-governance": {
+        "checked": [
+          "Microsoft Copilot Studio GitHub Copilot harness, Entra Agent ID and governance surfaces",
+          "ServiceNow AI Control Tower cross-agent policy and audit boundary"
+        ],
+        "qualifiedSignals": 0
+      },
+      "multi-agent-mechanism": {
+        "checked": [
+          "CrewAI current orchestration repository and long-running flow sample",
+          "OpenHands current agent runtime and sandbox sample"
+        ],
+        "qualifiedSignals": 0
+      },
+      "research-benchmark-industry": {
+        "checked": [
+          "Asclepius long-horizon clinical-agent harness (arXiv:2609.13543)",
+          "The Router Within skill-routing benchmark (arXiv:2609.15982)",
+          "AGENTQ quantization-conditioned agent backdoor study (arXiv:2609.14060)"
+        ],
+        "qualifiedSignals": 3
+      }
+    }
+  },
+  "reason": "All three formal Discovery pipelines reached terminal coverage and the rotated theme-first active-sample overlay was completed without topic selection. Five qualified, non-duplicate signals survived problem-level normalization: two merged engineering/runtime mechanisms and three primary-research findings or benchmarks. AI Platform terminally resolved 45/45 due public channels as 44 direct checks plus one explicitly recorded Copilot Studio authorization barrier. GitHub Engineering checked all nine P0 daily repositories and retained two distinct mechanisms around governed daemon recovery and duplicate tool-call prevention. Published Research terminally resolved all nine P0 sources as eight direct checks plus one explicit Journal of Systems and Software retrieval failure, retaining three primary-research objects. Pure sample-change-trigger density is 0%.",
+  "reason_zh": "三条正式 Discovery 管线均完成终态覆盖，并完成轮换后的主题优先主动样本检查，未执行选题。按研究问题规范化并与近期运行去重后保留 5 个合格、非重复 Signal：2 个已合并工程/运行时机制，3 个一手研究发现或 Benchmark。AI Platform 的 45 个到期公共通道全部终态收口，其中 44 个直接完成检查，Copilot Studio What's New 的授权门槛明确记录；GitHub Engineering 的 9 个 P0 Daily 仓库全部检查，保留受治理的 Daemon 恢复与重复 Tool Call 防护两个独立机制；Published Research 的 9 个 P0 来源终态收口，其中 8 个直接完成检查，Journal of Systems and Software 的抓取失败被明确记录，并保留 3 个一手研究对象。纯 sample-change-trigger 占比为 0%。",
+  "pipelines": [
+    {
+      "id": "ai-platform",
+      "label": "AI Platform Change Intelligence",
+      "label_zh": "AI 平台变更情报发现",
+      "status": "Completed",
+      "due": 45,
+      "checked": 44,
+      "inaccessible": [
+        {
+          "source": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/whats-new",
+          "reason": "The English Microsoft Learn surface displayed an authorization-required notice during this run; visible public content was used only as bounded sample context and the channel is conservatively recorded as inaccessible for formal coverage."
+        }
+      ],
+      "failed": [],
+      "signals": 0,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All 45 due P0 public platform channels were terminally resolved across the registered platform source groups: 44 were directly checked and the Copilot Studio What's New surface presented an authorization notice. Current OpenAI, Anthropic, Google, Cursor, GitHub Copilot and Microsoft platform evidence did not yield a new non-duplicate problem-level signal after comparison with recent Signal Pools. The active product-governance overlay inspected Copilot Studio and ServiceNow AI Control Tower as current governance samples without promoting older product facts into new research signals.",
+      "reason_zh": "注册平台来源组的 45 个到期 P0 公共通道全部终态处理：44 个直接完成检查，Copilot Studio What's New 页面显示授权提示。将 OpenAI、Anthropic、Google、Cursor、GitHub Copilot 与 Microsoft 的当前平台证据同近期 Signal Pool 去重后，没有形成新的非重复研究问题级 Signal。主动产品治理覆盖另外检查了 Copilot Studio 与 ServiceNow AI Control Tower 的当前治理机制，但没有把既有产品事实包装成新的研究信号。"
+    },
+    {
+      "id": "github-engineering",
+      "label": "GitHub Engineering Intelligence",
+      "label_zh": "GitHub 工程情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 9,
+      "inaccessible": [],
+      "failed": [],
+      "signals": 2,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine current Registry P0 daily repositories were checked incrementally. Two distinct mechanisms crossed the research-value threshold: Codex can continue eligible interrupted work after a managed daemon restart without inventing a user message or granting new authorization, but only when the thread is idle, permissions match and the same single local environment identity is preserved; Google ADK now deduplicates progressive-stream function calls by stable model ID or, when needed, by name-plus-arguments signature before final aggregation, closing a concrete duplicate-tool-execution path. Other observed commits were retained only as coverage evidence because they did not add a distinct research problem.",
+      "reason_zh": "当前 Registry 的 9 个 P0 Daily 仓库均完成增量检查。保留 2 个达到研究价值门槛的独立机制：Codex 在 Managed Daemon 重启后可自动继续符合条件的中断工作，不伪造用户消息、也不新增授权，但必须满足 Thread 空闲、权限一致且保持同一个本地环境身份；Google ADK 在 Progressive Streaming 的最终聚合前，按稳定 Model ID 或必要时按 Name+Arguments Signature 去重 Function Call，关闭一个具体的重复 Tool 执行路径。其他观察到的提交仅作为覆盖证据保留，因为没有形成新的独立研究问题。"
+    },
+    {
+      "id": "published-research",
+      "label": "Published Research Intelligence",
+      "label_zh": "论文与研究成果情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 8,
+      "inaccessible": [],
+      "failed": [
+        {
+          "source": "https://www.sciencedirect.com/journal/journal-of-systems-and-software",
+          "reason": "The Journal of Systems and Software public journal surface returned HTTP 403 during this run; the failure is recorded rather than counted as checked."
+        }
+      ],
+      "signals": 3,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 research sources were terminally resolved using the rolling seven-day pass with expansion through thirty days where useful: eight source surfaces were directly checked and the Journal of Systems and Software surface returned an explicit 403 retrieval failure. Three non-duplicate primary-research objects were retained: Asclepius exposes long-horizon execution failures that short-task diagnosis accuracy misses and reports a coupled adaptive-harness improvement; The Router Within evaluates native skill-routing signals without preloading the skill library into context; AGENTQ demonstrates a quantization-conditioned backdoor that can remain benign before quantization yet trigger structured agent actions after deployment quantization.",
+      "reason_zh": "9 个 P0 研究来源均按滚动 7 天检查并在需要时扩展至 30 天完成终态处理：8 个来源页面直接完成检查，Journal of Systems and Software 公共页面返回明确的 HTTP 403 抓取失败。保留 3 个非重复一手研究对象：Asclepius 揭示短任务诊断正确率无法反映的长周期执行失败，并报告组合式自适应 Harness 的改进；The Router Within 研究无需把整个 Skill Library 元数据预载入 Context 的原生 Skill Routing 信号；AGENTQ 展示一种量化条件 Backdoor，可在全精度审计阶段保持正常，却在部署量化后触发结构化 Agent 行为。"
+    }
+  ],
+  "columns": [
+    {
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded two primary Digital Employee signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以数字员工为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    },
+    {
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "decision": "Waiting",
+      "signals": 1,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded one primary Industry Architecture signal; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 1 个以行业架构为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    },
+    {
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded two primary Open-source Engineering signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以开源工程为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    }
+  ],
+  "signals": [
+    {
+      "id": "SIG-20260916-001",
+      "pipeline": "github-engineering",
+      "title": "Codex resumes interrupted work after managed daemon restart without granting fresh authority",
+      "title_zh": "Codex 在 Managed Daemon 重启后恢复中断工作，但不授予新的执行权限",
+      "sourceUrl": "https://github.com/openai/codex/commit/f2b5b81f39fba7d1172e4a5e65a427f029a39479",
+      "publishedAt": "2026-09-16",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "openai-codex/managed-daemon-interrupted-turn-authority-preserving-continuation",
+      "summary": "Codex managed-daemon recovery now attempts one continuation turn immediately after restoring an interrupted thread, including without a connected client. The old turn is durably marked interrupted and recovery context is supplied internally rather than as a new user message. Continuation is admitted only when the thread is idle, the saved permission profile still matches, the same single local environment identity is present, and an atomic previous-turn check proves no newer work superseded it; remote execution and legacy snapshots without environment identity are excluded.",
+      "summary_zh": "Codex 的 Managed Daemon Recovery 现在会在恢复中断 Thread 后立即尝试一次 Continuation Turn，即使没有客户端连接也可进行。旧 Turn 会被持久标记为 Interrupted，恢复上下文以内建 Context 形式提供，而不是伪造成新的用户消息。只有 Thread 空闲、保存的 Permission Profile 仍一致、同一个单一本地 Environment Identity 仍存在，并且原子 Previous-turn Check 证明没有更新工作覆盖它时才允许继续；Remote Execution 与缺少环境身份的旧 Snapshot 被明确排除。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["recovery-authority", "durable-runtime-state", "task-ownership-responsibility", "evidence-completion-truth"],
+      "sampleIds": ["openai-codex"],
+      "researchValue": {
+        "failure": "Process restart can reload durable conversation state while leaving an interrupted operation unfinished; blindly restarting can duplicate side effects or silently grant authority that no longer exists.",
+        "finding": "The merged implementation treats recovery as a narrowly admissible continuation of an existing authorized turn rather than as a new user request.",
+        "mechanism": "Persist the interrupted turn identity and environment, close the old turn, revalidate permission and local-environment identity, reject superseded work atomically, then start at most one continuation carrying internal recovery context but no new authorization.",
+        "implication": "Long-running digital employees can recover autonomously after process failure only when recovery is bound to the prior authority, environment and work identity rather than inferred from conversation persistence alone."
+      }
+    },
+    {
+      "id": "SIG-20260916-002",
+      "pipeline": "github-engineering",
+      "title": "Google ADK closes a duplicate tool-execution path in progressive streaming by deduplicating function calls at aggregation",
+      "title_zh": "Google ADK 在 Progressive Streaming 聚合层去重 Function Call，关闭重复 Tool 执行路径",
+      "sourceUrl": "https://github.com/google/adk-python/commit/3cf4ce2b8d6d1523903e32f772f9112e09ac0c74",
+      "publishedAt": "2026-09-15",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "google-adk/progressive-stream-function-call-deduplication",
+      "summary": "Google ADK fixed a StreamingResponseAggregator failure in which progressive streaming could drop or duplicate function calls. At final aggregation it now deduplicates model-provided calls by stable function-call ID; when a stable model ID is unavailable or client-generated, it falls back to a canonical name-plus-sorted-arguments signature. Regression tests cover repeated calls with and without model IDs.",
+      "summary_zh": "Google ADK 修复 StreamingResponseAggregator 在 Progressive Streaming 下可能丢失或重复 Function Call 的问题。最终聚合时，对模型提供的稳定 Function-call ID 直接去重；当稳定 Model ID 不可用或属于客户端生成时，则使用 Function Name + 排序后的 Arguments 形成规范 Signature 去重，并为有/无 Model ID 的重复调用增加回归测试。",
+      "signalRole": "incident-or-regression-evidence",
+      "researchThemes": ["failure-deadlock-duplicate-execution", "evidence-completion-truth", "durable-runtime-state"],
+      "sampleIds": ["google-adk-python"],
+      "researchValue": {
+        "failure": "A streaming transport can expose the same logical function call more than once or lose it during aggregation, turning a representation defect into duplicate or missing external side effects.",
+        "finding": "The repaired implementation makes logical call identity explicit instead of assuming each streamed function-call part is unique.",
+        "mechanism": "Prefer model-issued stable call IDs and otherwise derive a deterministic name-and-arguments signature before producing the final aggregated response.",
+        "implication": "Tool-call mediation needs an identity boundary between transport fragments and logical actions; idempotency cannot rely only on the number of streamed events."
+      }
+    },
+    {
+      "id": "SIG-20260916-003",
+      "pipeline": "published-research",
+      "title": "Asclepius finds long-horizon clinical agents can diagnose correctly yet still fail to execute complete and timely critical actions",
+      "title_zh": "Asclepius 发现长周期临床 Agent 即使诊断正确，也可能无法完整及时执行关键行动",
+      "sourceUrl": "https://arxiv.org/abs/2609.13543",
+      "publishedAt": "2026-09-11",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "asclepius/long-horizon-execution-gap-adaptive-harness",
+      "summary": "Asclepius evaluates an agent across an entire simulated emergency-department shift and separates diagnosis from long-horizon execution. Baseline agents often diagnose correctly but miss complete or timely critical actions through instruction-adherence drift, treatment incompleteness and severity-equity delays. The proposed harness rewrites its operating manual between shifts from trace feedback, externalizes clinical skills, and isolates three subagents over the patient queue; on held-out batches it reports a 22% improvement in critical-action correctness while preserving diagnostic accuracy.",
+      "summary_zh": "Asclepius 在完整模拟急诊班次上评估 Agent，把“诊断是否正确”与“长周期执行是否完成”分开。基线 Agent 往往能诊断正确，却因 Instruction-adherence Drift、Treatment Incompleteness 与 Severity-equity Delay 漏掉完整或及时的关键行动。其 Harness 根据 Trace Feedback 在班次之间改写 Operating Manual、外置 Clinical Skills，并让 3 个隔离 Subagent 分担 Patient Queue；在未参与 Harness 演化的 Held-out Batch 上，关键行动正确率报告提升 22%，同时保持诊断准确率。",
+      "signalRole": "research-finding",
+      "researchThemes": ["digital-employee-work-design", "durable-runtime-state", "role-organizational-design", "industry-application-patterns", "multi-agent-evaluation"],
+      "sampleIds": ["asclepius", "clinical-environment-simulator"],
+      "researchValue": {
+        "failure": "Short-task success or correct diagnosis can hide long-horizon failures in instruction adherence, action completeness and deadline-sensitive service delivery.",
+        "finding": "The paper reports that the coupled long-horizon bottleneck is measurable in single full-shift traces and that held-out critical-action correctness improves 22% with the full adaptive scaffolding.",
+        "mechanism": "Combine trace-level harness revision between shifts, an external skills library for high-stakes knowledge and isolated subagents partitioning per-turn decisions across a shared queue.",
+        "implication": "Digital-employee evaluation should distinguish semantic answer quality from sustained operational completion under time, resource and fairness constraints."
+      }
+    },
+    {
+      "id": "SIG-20260916-004",
+      "pipeline": "published-research",
+      "title": "The Router Within extracts skill-routing decisions from a frozen model without preloading the full skill library into context",
+      "title_zh": "The Router Within 从 Frozen Model 内部提取 Skill Routing 信号，无需把完整 Skill Library 预载入 Context",
+      "sourceUrl": "https://arxiv.org/abs/2609.15982",
+      "publishedAt": "2026-09-14",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "router-within/native-frozen-llm-skill-routing",
+      "summary": "The Router Within argues that large skill libraries need not place every skill's metadata into the agent context or outsource routing to a separate retriever. Its Gavel method reads routing evidence from frozen-model mid-layer states using two trained linear maps, shortlists skills, then resumes their forward passes for a model-native verdict. It reports transfer to three public benchmarks plus a 372-trajectory SkillTraj benchmark, with gains up to 13.4 points on written tasks and 21.9 points when skill need emerges mid-rollout on Qwen3-32B.",
+      "summary_zh": "The Router Within 认为大型 Skill Library 不必把所有 Skill Metadata 全部塞进 Agent Context，也不必把 Routing 完全外包给独立 Retriever。其 Gavel 方法只训练两个 Linear Map，从 Frozen Model 的 Mid-layer State 读取 Routing Evidence，先 Shortlist Skill，再继续对应 Forward Pass 获取 Model-native Verdict。论文报告其可迁移到 3 个公开 Benchmark 与 372 条 Agent Trajectory 的 SkillTraj，并在 Qwen3-32B 上对 Written Task 最多提升 13.4 分、对 Rollout 中途才出现 Skill 需求的场景最多提升 21.9 分。",
+      "signalRole": "benchmark-evidence",
+      "researchThemes": ["digital-employee-work-design", "memory-context-isolation", "multi-agent-evaluation", "policy-enforcement"],
+      "sampleIds": ["gavel-skill-router", "skilltraj"],
+      "researchValue": {
+        "failure": "Preloading all skill metadata consumes context and disperses attention as the library grows, while external retrieval separates routing from the agent's own model state.",
+        "finding": "The paper reports that a frozen model contains a measurable skill-routing signal that can outperform larger external routing pipelines in the tested settings, including skill need emerging mid-trajectory.",
+        "mechanism": "Build compact per-skill banks once, compare task and skill mid-layer states through two learned maps, then combine shortlist score with the model's own likelihood and yes/no verdict.",
+        "implication": "Large digital-employee skill libraries may be routable without permanently loading their descriptions into working context, but the routing boundary becomes a separately testable component rather than an implicit prompt convention."
+      }
+    },
+    {
+      "id": "SIG-20260916-005",
+      "pipeline": "published-research",
+      "title": "AGENTQ shows a full-precision agent checkpoint can pass audits yet acquire a structured-action backdoor after deployment quantization",
+      "title_zh": "AGENTQ 显示 Agent 全精度 Checkpoint 可通过审计，却在部署量化后出现结构化行动 Backdoor",
+      "sourceUrl": "https://arxiv.org/abs/2609.14060",
+      "publishedAt": "2026-09-12",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["open-source-engineering", "digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "agentq/quantization-conditioned-agent-action-backdoor",
+      "summary": "AGENTQ studies quantization-conditioned backdoors specifically for LLM agents, where the post-quantization payload is a structured function action rather than text shown to a human. The attack combines layer-banded LoRA injection with partial-PGD repair over quantization-equivalence classes. Across three trigger-action pairs and NF4, FP4 and INT8 codebooks, the paper reports up to 100% post-quantization attack success with minimal benign-utility loss, while the full-precision checkpoint can remain apparently benign during pre-deployment audit.",
+      "summary_zh": "AGENTQ 专门研究 LLM Agent 的 Quantization-conditioned Backdoor：量化后触发的 Payload 不只是给人看的文本，而是可直接执行的结构化 Function Action。该攻击将 Layer-banded LoRA Injection 与 Quantization-equivalence Class 上的 Partial-PGD Repair 结合。论文在 3 组 Trigger-action Pair 与 NF4、FP4、INT8 三种 Codebook 上报告量化后攻击成功率最高可达 100%，同时对正常 Utility 影响较小，而全精度 Checkpoint 在部署前审计时仍可能表现正常。",
+      "signalRole": "failure-evidence",
+      "researchThemes": ["policy-enforcement", "audit-provenance-accountability", "credential-secret-boundary", "multi-agent-evaluation"],
+      "sampleIds": ["agentq", "quantized-llm-agents"],
+      "researchValue": {
+        "failure": "Auditing only the full-precision checkpoint can certify behavior that does not survive the deployment transformation; after quantization, an agent may emit executable malicious function calls that were absent during the audit configuration.",
+        "finding": "The study reports high post-quantization attack success across three quantization codebooks while preserving benign utility, establishing quantization as a behavior-changing security boundary in its tested agents.",
+        "mechanism": "Construct malicious behavior inside a quantization-equivalence class so the full-precision model remains audit-benign while the quantized representation crosses into the attack behavior.",
+        "implication": "Agent admission and safety evidence should bind to the exact deployed artifact and transformation pipeline, not merely to an upstream model checkpoint that was audited before quantization."
+      }
+    }
+  ]
+}
