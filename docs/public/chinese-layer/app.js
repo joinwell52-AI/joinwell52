@@ -168,14 +168,19 @@ async function loadMe(){
   if(!username){$('#meSetup').classList.remove('hidden');$('#meContent').classList.add('hidden');return}
   $('#meSetup').classList.add('hidden');$('#meContent').classList.remove('hidden');$('#meStatus').textContent='正在读取我的 DEV…';
   try{
-    const [userRes,articlesRes]=await Promise.all([
-      fetch(`${DEV_API}/users/${encodeURIComponent(username)}`,{headers:{Accept:'application/vnd.forem.api-v1+json'}}),
-      fetch(`${DEV_API}/articles?username=${encodeURIComponent(username)}&per_page=100`,{headers:{Accept:'application/vnd.forem.api-v1+json'}})
-    ]);
-    if(!userRes.ok)throw new Error('找不到这个 DEV 用户名');
-    const user=await userRes.json();state.myArticles=articlesRes.ok?await articlesRes.json():[];
-    const summaryZh=user.summary?await translateText(user.summary).catch(()=>user.summary):'';
-    $('#profileCard').innerHTML=`<div class="profile-top">${user.profile_image?`<img class="avatar" src="${esc(user.profile_image)}" alt="" />`:''}<div class="profile-id"><h2>${esc(user.name||user.username)}</h2><div class="muted">@${esc(user.username)}</div></div></div>${summaryZh?`<p>${esc(state.showChinese?summaryZh:user.summary)}</p>`:''}<div class="profile-facts">${user.location?`<span>${esc(user.location)}</span>`:''}${user.joined_at?`<span>加入 ${esc(user.joined_at)}</span>`:''}</div>`;
+    const profileUrl=`${DEV_API}/users/by_username?url=${encodeURIComponent(username)}`;
+    const articlesUrl=`${DEV_API}/articles?username=${encodeURIComponent(username)}&per_page=100`;
+    const [userRes,articlesRes]=await Promise.all([fetch(profileUrl),fetch(articlesUrl)]);
+    const articles=articlesRes.ok?await articlesRes.json():[];
+    if(!userRes.ok && !articles.length)throw new Error(`找不到 DEV 用户 @${username}`);
+    let user=userRes.ok?await userRes.json():null;
+    if(!user && articles.length){
+      const au=articles[0].user||{};
+      user={username:au.username||username,name:au.name||username,profile_image:au.profile_image_90||au.profile_image||'',summary:'',location:'',joined_at:''};
+    }
+    state.myArticles=articles;
+    const summaryZh=user?.summary?await translateText(user.summary).catch(()=>user.summary):'';
+    $('#profileCard').innerHTML=`<div class="profile-top">${user?.profile_image?`<img class="avatar" src="${esc(user.profile_image)}" alt="" />`:''}<div class="profile-id"><h2>${esc(user?.name||username)}</h2><div class="muted">@${esc(user?.username||username)}</div></div></div>${summaryZh?`<p>${esc(state.showChinese?summaryZh:user.summary)}</p>`:''}<div class="profile-facts">${user?.location?`<span>${esc(user.location)}</span>`:''}${user?.joined_at?`<span>加入 ${esc(user.joined_at)}</span>`:''}</div>`;
     $('#meStatus').textContent='正在翻译我的文章…';
     await translateArticleCards(state.myArticles);renderMyArticles();
     $('#meStatus').textContent=`${state.myArticles.length} 篇公开文章 · 最近创建优先`;
