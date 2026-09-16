@@ -11,6 +11,15 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-09-16">
+    <time>2026-09-16</time>
+    <div>
+      <strong>Agent Research & Competitor Intelligence</strong>
+      <span>Yue Zhao quota-aware routing/review recovery · Codex Thread/Host/Sandbox/Guardian context · Agents JS guardrail/tool/credential revalidation · Paperclip durable artifacts/session secrets/unblock ownership · Superset Cloud location semantics · Orca generation leases</span>
+    </div>
+    <b>View →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-09-15">
     <time>2026-09-15</time>
     <div>
