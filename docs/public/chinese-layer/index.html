@@ -6,33 +6,25 @@
   <meta name="theme-color" content="#0b0f14" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="中文层" />
+  <meta name="apple-mobile-web-app-title" content="DEV 中文" />
   <title>DEV 中文层</title>
   <link rel="manifest" href="./manifest.webmanifest" />
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./styles.css?v=3" />
 </head>
 <body>
   <div id="app" class="app-shell">
     <header class="topbar">
-      <div>
-        <div class="eyebrow">DEV · CHINESE LAYER</div>
-        <h1 id="pageTitle">DEV 中文首页</h1>
+      <div class="brand">
+        <div class="dev-logo">DEV</div>
+        <div><div class="eyebrow">CHINESE LAYER</div><h1 id="pageTitle">主页</h1></div>
       </div>
       <button id="langToggle" class="ghost-btn">中文</button>
     </header>
 
     <main>
       <section id="homeView" class="view active">
-        <div class="hero-card compact-hero">
-          <div>
-            <div class="hero-label">DEV 首页</div>
-            <div class="hero-title">像逛 DEV 一样直接看中文</div>
-            <div class="hero-copy">文章标题、摘要和正文自动翻译；作者、标签、代码和常见技术词保留。</div>
-          </div>
-          <button id="refreshBtn" class="primary-btn">刷新</button>
-        </div>
         <div class="feed-tabs">
-          <button class="feed-tab active" data-feed="popular">热门</button>
+          <button class="feed-tab active" data-feed="popular">发现</button>
           <button class="feed-tab" data-feed="latest">最新</button>
         </div>
         <div id="status" class="status">正在载入 DEV…</div>
@@ -40,51 +32,34 @@
       </section>
 
       <section id="meView" class="view">
-        <div id="meSetup" class="panel">
+        <div id="meSetup" class="panel setup-card">
           <div class="hero-label">我的 DEV</div>
-          <h2>进入你的 DEV 主页</h2>
-          <p>先填一次 DEV 用户名。这里读取的是公开资料和公开文章，不需要密码。</p>
+          <h2>打开我的文章</h2>
+          <p>第一次输入一次 DEV 用户名，以后会自动记住。这里只读取你的公开资料和公开文章，不需要密码。</p>
           <div class="input-stack">
-            <input id="devUsername" class="text-input" autocomplete="off" autocapitalize="none" placeholder="例如：ben" />
-            <button id="saveUsername" class="primary-btn full-btn">打开我的主页</button>
+            <input id="devUsername" class="text-input" autocomplete="off" autocapitalize="none" placeholder="DEV 用户名，例如：joinwell52" />
+            <button id="saveUsername" class="primary-btn full-btn">进入我的</button>
           </div>
-          <p class="muted tiny">如果以后要做收藏、通知、关注流等真正的登录态功能，需要再接 DEV 的认证后端。</p>
         </div>
+
         <div id="meContent" class="hidden">
           <div id="profileCard" class="profile-card"></div>
-          <div class="section-head">
-            <h2>我的文章</h2>
-            <button id="changeUsername" class="ghost-btn">更换</button>
+          <div class="my-toolbar">
+            <div>
+              <div class="hero-label">我的文章</div>
+              <h2>最近创建</h2>
+            </div>
+            <button id="changeUsername" class="ghost-btn">更换账号</button>
           </div>
           <div id="meStatus" class="status"></div>
-          <div id="myArticleList" class="article-list"></div>
-        </div>
-      </section>
-
-      <section id="mailView" class="view">
-        <div class="panel">
-          <div class="hero-label">邮件中文层</div>
-          <h2>邮件入口</h2>
-          <p>DEV 先做成完整可导航的中文壳；邮件随后接 Gmail 授权和中文阅读。</p>
-        </div>
-      </section>
-
-      <section id="settingsView" class="view">
-        <div class="panel">
-          <div class="hero-label">设置</div>
-          <h2>翻译模式</h2>
-          <label class="setting-row"><span>默认显示中文</span><input id="defaultChinese" type="checkbox" checked /></label>
-          <label class="setting-row"><span>保护技术词</span><input id="protectTerms" type="checkbox" checked /></label>
-          <p class="muted">免费翻译源：MyMemory。失败时自动保留原文。</p>
+          <div id="myArticleList" class="article-list my-list"></div>
         </div>
       </section>
     </main>
 
     <nav class="bottom-nav" aria-label="主导航">
-      <button class="nav-btn active" data-view="homeView" data-title="DEV 中文首页">首页</button>
-      <button class="nav-btn" data-view="meView" data-title="我的 DEV">我的</button>
-      <button class="nav-btn" data-view="mailView" data-title="邮件中文层">邮件</button>
-      <button class="nav-btn" data-view="settingsView" data-title="设置">设置</button>
+      <button class="nav-btn active" data-view="homeView" data-title="主页">⌂<span>主页</span></button>
+      <button class="nav-btn" data-view="meView" data-title="我的">◉<span>我的</span></button>
     </nav>
   </div>
 
@@ -99,6 +74,6 @@
     <article id="readerContent" class="reader-content"></article>
   </div>
 
-  <script src="./app.js?v=2" defer></script>
+  <script src="./app.js?v=3" defer></script>
 </body>
 </html>
