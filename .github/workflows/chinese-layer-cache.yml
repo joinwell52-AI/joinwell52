@@ -1,0 +1,74 @@
+name: Chinese Layer Server Translation Cache
+
+on:
+  workflow_run:
+    workflows:
+      - "Deploy Research Center Pages"
+    types:
+      - completed
+  workflow_dispatch:
+  schedule:
+    - cron: "17 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: chinese-layer-server-cache
+  cancel-in-progress: true
+
+jobs:
+  build-cache:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build server-side Chinese translations
+        run: node scripts/chinese-layer-cache.mjs
+
+      - name: Verify cache
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs')
+          const p = 'docs/public/chinese-layer/cache.json'
+          const data = JSON.parse(fs.readFileSync(p, 'utf8'))
+          const hasZh = (v) => /[\u3400-\u9fff]/.test(String(v || ''))
+          if (data.schema !== 'chinese-layer-cache/v1') throw new Error('bad cache schema')
+          if (!Array.isArray(data.popular) || !data.popular.length || !hasZh(data.popular[0]._zhTitle)) throw new Error('popular title cache missing')
+          if (!Array.isArray(data.mine) || !data.mine.length || !hasZh(data.mine[0]._zhTitle)) throw new Error('my title cache missing')
+          const firstMine = String(data.mine[0].id)
+          if (!hasZh(data.bodies?.[firstMine]?.bodyZh)) throw new Error('my body cache missing')
+          console.log(`CACHE_GATE_PASS popular=${data.popular.length} latest=${data.latest.length} mine=${data.mine.length} bodies=${Object.keys(data.bodies || {}).length}`)
+          NODE
+
+      - name: Publish cache into gh-pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tmp="$(mktemp -d)"
+          git clone --depth 1 --branch gh-pages "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$tmp/pages"
+          mkdir -p "$tmp/pages/chinese-layer"
+          cp docs/public/chinese-layer/cache.json "$tmp/pages/chinese-layer/cache.json"
+          cd "$tmp/pages"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add chinese-layer/cache.json
+          if git diff --cached --quiet; then
+            echo "Chinese Layer cache is already current."
+            exit 0
+          fi
+          git commit -m "cache: refresh Chinese Layer server translations"
+          git push origin HEAD:gh-pages
