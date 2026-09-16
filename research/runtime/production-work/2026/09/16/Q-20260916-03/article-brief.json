@@ -1,0 +1,52 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-16",
+  "itemId": "Q-20260916-03",
+  "researchObjectId": "Q-20260916-03",
+  "targetAudience": {
+    "primary": "设计模块化智能体运行时、技能目录、工具授权和可观测性的开源工程师与平台负责人",
+    "knowledgeAssumption": "读者理解动态提示词、技能加载、工具调用、权限检查和运行时版本。",
+    "readerProblem": "系统把选中相关技能误当成可以调用工具的授权，或把路由准确率误当成任务完成率，导致失败无法归因。"
+  },
+  "whyNow": "同日研究对象中的路由研究表明，技能选择可以被独立测量并在多个场景迁移；也正因它成为独立组件，选择、授权和结果必须分别保存。",
+  "externalHook": {
+    "type": "correct-skill-unauthorized-operation",
+    "description": "路由器选中了最相关的技能，但该技能版本并不拥有对当前目标执行副作用操作的权限，后续结果也仍未知。",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "E4"
+    ]
+  },
+  "coreProposition": "技能路由应是版本化、可归因的选择平面事件：它决定哪些技能材料进入上下文，但不能生成工具调用权限，也不能证明后续执行或业务结果成功。",
+  "originalValue": {
+    "type": "selection-authorization-outcome-separation",
+    "description": "把请求与目录、路由决定、实际加载、调用时授权和外部结果拆成可归因身份，使路由错误、版本陈旧、无权操作和结果失败不再混成一个 Agent 失败。"
+  },
+  "readerTakeaway": "路由只决定上下文，不决定权力；记录精确技能版本，并在工具调用时重新检查操作、目标和策略。",
+  "evidenceBoundary": {
+    "supported": [
+      "报告设置中，Gavel 在技能使用任务上的正确技能触发率达到90.9%。",
+      "SkillTraj 包含四种场景中的372条轨迹，提供跨设置的路由与技能使用评估。",
+      "系统通过隐藏状态观察、技能库与显式路由层按需加载技能。"
+    ],
+    "unsupported": [
+      "高路由准确率证明工具操作获准、安全或完成",
+      "被选技能的说明文字本身授予权限",
+      "研究建立了长周期企业环境的可靠性"
+    ],
+    "uncertain": [
+      "目录快速变化与恶意技能描述下的路由稳健性",
+      "多技能组合的权限合成",
+      "路由决定在恢复时能否重用"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "论证来自外部研究对象，不依赖第一方项目。"
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "研究对象同时提供可测路由证据、清晰机制和选择与授权边界。"
+}

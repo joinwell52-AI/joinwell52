@@ -1,0 +1,108 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-16",
+  "itemId": "Q-20260916-03",
+  "coreProposition": "技能路由应是版本化、可归因的选择平面事件：它决定哪些技能材料进入上下文，但不能生成工具调用权限，也不能证明后续执行或业务结果成功。",
+  "openingMove": {
+    "type": "correct-route-without-permission",
+    "purpose": "以路由选对技能却没有当前工具与目标权限的场景，区分相关性与权力。",
+    "evidenceRefs": [
+      "E1",
+      "E4"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "技能路由是否值得成为独立运行时组件？",
+      "claim": "报告结果显示路由准确率可独立评估，并在多场景轨迹上测试，因此选择事件值得单独记录。",
+      "evidenceRefs": [
+        "E1",
+        "E2"
+      ],
+      "reasoningRole": "routing-evidence",
+      "readerProgress": "确认路由不是模糊的提示词技巧。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "按需加载解决什么问题？",
+      "claim": "隐藏状态观察、技能库与路由层可只加载相关材料，降低永久预载的上下文占用与竞争。",
+      "evidenceRefs": [
+        "E3"
+      ],
+      "reasoningRole": "selective-loading",
+      "readerProgress": "说明选择平面的工程价值。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "正确路由能证明什么？",
+      "claim": "它证明在测试标签下选中了预期技能，不能证明技能质量、调用权限或结果正确。",
+      "evidenceRefs": [
+        "E1",
+        "E4"
+      ],
+      "reasoningRole": "selection-boundary",
+      "readerProgress": "固定证据强度与外推边界。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "路由事件需要绑定哪些身份？",
+      "claim": "请求上下文、目录版本、路由器版本、选中技能与实际加载内容应形成可归因记录。",
+      "evidenceRefs": [
+        "E5"
+      ],
+      "reasoningRole": "routing-identity",
+      "readerProgress": "使技能版本与选择理由可追溯。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "为什么调用时还要授权？",
+      "claim": "权限应绑定后来提出的精确操作、工具、目标和当前策略，而不是技能名称。",
+      "evidenceRefs": [
+        "E5",
+        "E6"
+      ],
+      "reasoningRole": "authorization-separation",
+      "readerProgress": "防止相关技能变成通配权力。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A6",
+      "question": "结果如何与路由分开？",
+      "claim": "执行结果、外部效果和业务验收应独立保存，不能由正确路线反推成功。",
+      "evidenceRefs": [
+        "E4",
+        "E6"
+      ],
+      "reasoningRole": "outcome-separation",
+      "readerProgress": "建立下游事实链。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A7",
+      "question": "最小治理路径是什么？",
+      "claim": "先做确定性资格过滤，再语义路由，绑定实际加载版本，在调用时授权，并单独验收结果。",
+      "evidenceRefs": [
+        "E5",
+        "E6",
+        "E7"
+      ],
+      "reasoningRole": "governed-routing-contract",
+      "readerProgress": "以可实施路径和开放问题收束。",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "把所有技能永久放入上下文可避免额外路由器出错。",
+    "responseBoundary": "小型静态目录可能适合显式预载，但大目录会增加成本和歧义；无论是否路由，技能相关性都不能替代调用时权限与结果证据。"
+  },
+  "endingStrategy": {
+    "type": "five-stage-skill-path",
+    "purpose": "以资格、路由、加载、授权和结果五阶段检查结束。"
+  }
+}
