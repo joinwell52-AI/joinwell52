@@ -1,0 +1,108 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-16",
+  "itemId": "Q-20260916-01",
+  "coreProposition": "数字员工的完成状态应是一个版本化的证据向量：语义结果、必需动作、时间约束、优先级与公平义务、外部效果以及验收身份必须分别闭合；任何一个必需维度缺证都不能被高平均分覆盖。",
+  "openingMove": {
+    "type": "plausible-answer-with-unclosed-work",
+    "purpose": "以答案正确但关键动作、时限或外部效果未闭合的场景，揭示语义成功与业务完成的差别。",
+    "evidenceRefs": [
+      "E1",
+      "E5"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "同一任务为什么会同时正确又未完成？",
+      "claim": "报告基线的诊断质量、关键动作和及时性明显分离，单一成功位无法保留这种事实。",
+      "evidenceRefs": [
+        "E1"
+      ],
+      "reasoningRole": "metric-separation",
+      "readerProgress": "先建立完成维度能够独立失败的直接证据。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "干预能否只改善某个完成维度？",
+      "claim": "完整配置在诊断质量近似不变时改善关键动作和及时性，说明这些维度不是同一潜变量的不同叫法。",
+      "evidenceRefs": [
+        "E2",
+        "E3"
+      ],
+      "reasoningRole": "held-out-evidence",
+      "readerProgress": "证明维度可被分别测量和改进。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "生产系统至少要保留哪些完成身份？",
+      "claim": "语义结果、必需动作、时间约束、优先级与公平、外部效果及验收身份需要各自证据。",
+      "evidenceRefs": [
+        "E5"
+      ],
+      "reasoningRole": "evidence-vector",
+      "readerProgress": "把一个布尔状态拆成可检查向量。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "为什么不能用平均分判定完成？",
+      "claim": "若某项关键动作或效果证据是硬性条件，高分维度不能数值补偿缺失证明。",
+      "evidenceRefs": [
+        "E1",
+        "E6"
+      ],
+      "reasoningRole": "mandatory-closure",
+      "readerProgress": "建立终态的合取规则。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "Worker 停止意味着什么？",
+      "claim": "它只说明执行进程结束；业务义务和外部效果仍可能未决。",
+      "evidenceRefs": [
+        "E4",
+        "E5"
+      ],
+      "reasoningRole": "episode-boundary",
+      "readerProgress": "分开进程终止与业务闭合。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A6",
+      "question": "谁可以把证据转换成完成？",
+      "claim": "版本化验收规则或负责主体应检查义务向量，执行者的自述不能替代独立接受。",
+      "evidenceRefs": [
+        "E6",
+        "E7"
+      ],
+      "reasoningRole": "acceptance-identity",
+      "readerProgress": "把裁决责任放回明确的验收边界。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A7",
+      "question": "最小可执行合同是什么？",
+      "claim": "先版本化义务集合，再为每一必需维度记录证据、未知、失败或不适用，并保留时间与效果核对。",
+      "evidenceRefs": [
+        "E5",
+        "E6",
+        "E7"
+      ],
+      "reasoningRole": "operational-contract",
+      "readerProgress": "以可实施检查与开放问题收束。",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "一个综合 KPI 能更简单地表达任务是否完成。",
+    "responseBoundary": "综合指标可用于汇报，但若作为规范事实，会让缺失的关键动作或未知效果被其他高分掩盖；聚合必须位于证据闭合之后。"
+  },
+  "endingStrategy": {
+    "type": "versioned-obligation-checklist",
+    "purpose": "以完成证据向量的最小字段和未决责任结束。"
+  }
+}

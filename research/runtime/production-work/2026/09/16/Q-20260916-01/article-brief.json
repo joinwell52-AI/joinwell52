@@ -1,0 +1,52 @@
+{
+  "schema": "article-brief/v1",
+  "date": "2026-09-16",
+  "itemId": "Q-20260916-01",
+  "researchObjectId": "Q-20260916-01",
+  "targetAudience": {
+    "primary": "设计长期运行数字员工、任务编排和验收机制的架构师与工程负责人",
+    "knowledgeAssumption": "读者理解任务状态、工具调用、服务目标和基于证据的验收。",
+    "readerProblem": "系统常把答案看起来正确或 Worker 停止运行误当成工作完成，却说不清必需动作、截止时间和外部效果是否真正闭合。"
+  },
+  "whyNow": "同日研究对象中的持续执行模拟显示，语义质量、关键动作和及时性可以在同一系统中显著分离，说明单一成功位会掩盖不同失败。",
+  "externalHook": {
+    "type": "correct-answer-with-missing-obligations",
+    "description": "一次答案在语义上正确，但关键动作遗漏、截止时间错过或外部效果未知，运行时仍把整个工作标成完成。",
+    "evidenceRefs": [
+      "E1",
+      "E2",
+      "E3",
+      "E4"
+    ]
+  },
+  "coreProposition": "数字员工的完成状态应是一个版本化的证据向量：语义结果、必需动作、时间约束、优先级与公平义务、外部效果以及验收身份必须分别闭合；任何一个必需维度缺证都不能被高平均分覆盖。",
+  "originalValue": {
+    "type": "versioned-completion-evidence-vector",
+    "description": "把语义结果、必需动作、时间、优先级与公平、外部效果和验收身份拆成可独立检查的完成证据，并以必需维度合取而非平均分决定终态。"
+  },
+  "readerTakeaway": "先固定义务集合，再逐项闭合证据；Worker 停止、答案正确和业务完成是三类不同事实。",
+  "evidenceBoundary": {
+    "supported": [
+      "报告基线中诊断质量较高，而关键动作与及时性明显较弱。",
+      "完整配置能在大体保持诊断质量的同时改善关键动作和及时性，证明这些维度可独立变化。",
+      "研究在持续模拟环境中测试了资源与时间约束下的长期工作。"
+    ],
+    "unsupported": [
+      "该模拟建立了企业生产可靠性或临床安全",
+      "某组固定分数适用于所有数字员工",
+      "Worker 可以自行决定验收并证明外部效果恰好一次"
+    ],
+    "uncertain": [
+      "不同工作类型的必需维度和阈值",
+      "最终验收责任人",
+      "并发、重试与未知副作用下的效果闭合"
+    ]
+  },
+  "firstPartyRole": {
+    "status": "none",
+    "rationale": "论证完全来自同日外部研究对象，删除任何第一方项目名称不影响核心价值。"
+  },
+  "recommendedArticleType": "technical-analysis",
+  "editorialDecision": "PASS",
+  "decisionReason": "研究对象提供了维度分离的直接证据、明确边界和可实施的完成证据合同。"
+}
