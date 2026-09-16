@@ -58,7 +58,7 @@ Accepted answers still persisted. Previously saved answers and the current user 
 
 ![Checks and conversation memory](/assets/current-context-20260916/failed-check-memory.figure.en.svg)
 
-*Figure 1: A mechanism illustration derived from our inputs. A failed check differs from an explicit rejection, but neither establishes that the whole batch passed.*
+*Figure 1. A mechanism illustration derived from our inputs. A failed check differs from an explicit rejection, but neither establishes that the whole batch passed. Source: our pinned-source experiments and saved results; diagram by the authors.*
 
 ## A passing check cannot answer for a failed one
 

@@ -60,7 +60,7 @@ All four retained conversation history and left the caller's original record unc
 
 ![Separate persisted history from current launch credentials](/assets/current-context-20260916/session-without-old-keys.figure.en.svg)
 
-*Figure 1: A mechanism illustration of the file experiment. Save filtering changes the file; load-time injection changes the object returned to the current run.*
+*Figure 1. A mechanism illustration of the file experiment. Save filtering changes the file; load-time injection changes the object returned to the current run. Source: our pinned-source experiments and saved results; diagram by the authors.*
 
 ## Reading a legacy record does not rewrite it
 

@@ -57,7 +57,7 @@ pageClass: "current-context-article"
 
 ![同名工作区的两次访问](/assets/current-context-20260916/same-place-new-visit.figure.zh.svg)
 
-*图 1：可控时序的简化示意。第一次 A 的结果迟到；回到 A 后使用的是新的代际。不是手机现场录屏。*
+*图 1：可控时序的简化示意。第一次 A 的结果迟到；回到 A 后使用的是新的代际。不是手机现场录屏。 来源：本轮固定源码实验及 results 原始记录，由作者绘制。*
 
 ## 接收了，也不一定读得到
 

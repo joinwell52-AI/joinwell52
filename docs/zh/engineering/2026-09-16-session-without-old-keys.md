@@ -60,7 +60,7 @@ pageClass: "current-context-article"
 
 ![磁盘记录与当前运行的凭证分离](/assets/current-context-20260916/session-without-old-keys.figure.zh.svg)
 
-*图 1：本轮文件实验的机制示意。保存过滤影响写出的文件；加载时换值影响返回给当前运行的对象。*
+*图 1：本轮文件实验的机制示意。保存过滤影响写出的文件；加载时换值影响返回给当前运行的对象。 来源：本轮固定源码实验及 results 原始记录，由作者绘制。*
 
 ## 为什么旧记录读过了，旧值还在？
 

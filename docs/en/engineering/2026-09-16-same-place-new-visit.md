@@ -57,7 +57,7 @@ The final row separates ownership from generation. Removing one comparison does 
 
 ![Two visits to the same workspace](/assets/current-context-20260916/same-place-new-visit.figure.en.svg)
 
-*Figure 1: A simplified controlled schedule, not a recording of the mobile UI. The returning visit to A has a new generation.*
+*Figure 1. A simplified controlled schedule, not a recording of the mobile UI. The returning visit to A has a new generation. Source: our pinned-source experiments and saved results; diagram by the authors.*
 
 ## Committed does not always mean readable
 
