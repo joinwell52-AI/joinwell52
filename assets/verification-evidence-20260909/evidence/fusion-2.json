@@ -1,0 +1,307 @@
+{
+  "at": "2026-09-09T02:25:53.503Z",
+  "source_sha256": "c0f40fa0ddb69ea332016883b13cb385f9ddc0f49df7057bcb53837ecb787e1f",
+  "kind": "Full upstream tool module after type erasure; imports replaced by explicit test seams; fake persistence and immediate queue; real harmless node --version subprocess through sandbox seam; no PostgreSQL or full Fusion startup",
+  "replaced_imports": [
+    "import { superviseSpawn } from \"@fusion/core\";",
+    "import { existsSync, readdirSync, readFileSync } from \"node:fs\";",
+    "import { randomUUID } from \"node:crypto\";",
+    "import { isAbsolute, join, relative } from \"node:path\";",
+    "import { Type } from \"@earendil-works/pi-ai\";",
+    "import { executorLog } from \"../logger.js\";",
+    "import { withVerificationSlot } from \"../concurrency/verification-concurrency.js\";"
+  ],
+  "results": [
+    {
+      "scenario": "fresh",
+      "events": [
+        {
+          "kind": "upsert",
+          "command": "node --version"
+        },
+        {
+          "kind": "prepare"
+        },
+        {
+          "kind": "execute",
+          "command": "node --version"
+        },
+        {
+          "kind": "finish",
+          "id": "42cfb96f-3079-4b5e-bf92-4be03af71dc0",
+          "status": "passed",
+          "result": {
+            "success": true,
+            "exitCode": 0,
+            "durationMs": 0,
+            "timedOut": false,
+            "stdoutTail": "v24.16.0\r\n",
+            "stderrTail": ""
+          }
+        }
+      ],
+      "output": {
+        "success": true,
+        "exitCode": 0,
+        "durationMs": 0,
+        "timedOut": false,
+        "killed": false,
+        "command": "node --version",
+        "cwd": "<workspace>/"
+      },
+      "error": null,
+      "finalRequest": {
+        "taskId": "TASK-FIXTURE",
+        "requestId": "42cfb96f-3079-4b5e-bf92-4be03af71dc0",
+        "profile": "test-command",
+        "command": "node --version",
+        "scope": "package",
+        "requestedBy": "executor",
+        "status": "passed",
+        "result": {
+          "success": true,
+          "exitCode": 0,
+          "durationMs": 0,
+          "timedOut": false,
+          "stdoutTail": "v24.16.0\r\n",
+          "stderrTail": ""
+        }
+      }
+    },
+    {
+      "scenario": "queued-other-command",
+      "events": [
+        {
+          "kind": "upsert",
+          "command": "node --version"
+        },
+        {
+          "kind": "prepare"
+        },
+        {
+          "kind": "execute",
+          "command": "node --version"
+        },
+        {
+          "kind": "finish",
+          "id": "PRIOR-A",
+          "status": "passed",
+          "result": {
+            "success": true,
+            "exitCode": 0,
+            "durationMs": 0,
+            "timedOut": false,
+            "stdoutTail": "v24.16.0\r\n",
+            "stderrTail": ""
+          }
+        }
+      ],
+      "output": {
+        "success": true,
+        "exitCode": 0,
+        "durationMs": 0,
+        "timedOut": false,
+        "killed": false,
+        "command": "node --version",
+        "cwd": "<workspace>/"
+      },
+      "error": null,
+      "finalRequest": {
+        "requestId": "PRIOR-A",
+        "status": "passed",
+        "command": "requested-command-A",
+        "result": {
+          "success": true,
+          "exitCode": 0,
+          "durationMs": 0,
+          "timedOut": false,
+          "stdoutTail": "v24.16.0\r\n",
+          "stderrTail": ""
+        }
+      }
+    },
+    {
+      "scenario": "unclaimed-running",
+      "events": [
+        {
+          "kind": "upsert",
+          "command": "node --version"
+        },
+        {
+          "kind": "warn",
+          "message": "[fn_run_verification] TASK-FIXTURE: verification record PRIOR-A is already in-flight (status=running); proceeding untracked."
+        },
+        {
+          "kind": "prepare"
+        },
+        {
+          "kind": "execute",
+          "command": "node --version"
+        },
+        {
+          "kind": "finish",
+          "id": "PRIOR-A",
+          "status": "passed",
+          "result": {
+            "success": true,
+            "exitCode": 0,
+            "durationMs": 0,
+            "timedOut": false,
+            "stdoutTail": "v24.16.0\r\n",
+            "stderrTail": ""
+          }
+        }
+      ],
+      "output": {
+        "success": true,
+        "exitCode": 0,
+        "durationMs": 0,
+        "timedOut": false,
+        "killed": false,
+        "command": "node --version",
+        "cwd": "<workspace>/"
+      },
+      "error": null,
+      "finalRequest": {
+        "requestId": "PRIOR-A",
+        "status": "passed",
+        "command": "requested-command-A",
+        "result": {
+          "success": true,
+          "exitCode": 0,
+          "durationMs": 0,
+          "timedOut": false,
+          "stdoutTail": "v24.16.0\r\n",
+          "stderrTail": ""
+        }
+      }
+    },
+    {
+      "scenario": "upsert-fails",
+      "events": [
+        {
+          "kind": "upsert",
+          "command": "node --version"
+        },
+        {
+          "kind": "warn",
+          "message": "[fn_run_verification] TASK-FIXTURE: write-ahead persistence failed (fixture storage unavailable); proceeding untracked."
+        },
+        {
+          "kind": "prepare"
+        },
+        {
+          "kind": "execute",
+          "command": "node --version"
+        }
+      ],
+      "output": {
+        "success": true,
+        "exitCode": 0,
+        "durationMs": 0,
+        "timedOut": false,
+        "killed": false,
+        "command": "node --version",
+        "cwd": "<workspace>/"
+      },
+      "error": null,
+      "finalRequest": {
+        "requestId": "PRIOR-A",
+        "status": "running",
+        "command": "requested-command-A"
+      }
+    },
+    {
+      "scenario": "runner-throws",
+      "events": [
+        {
+          "kind": "upsert",
+          "command": "node --version"
+        },
+        {
+          "kind": "prepare"
+        },
+        {
+          "kind": "execute",
+          "command": "node --version"
+        },
+        {
+          "kind": "finish",
+          "id": "PRIOR-A",
+          "status": "failed",
+          "result": {
+            "success": false,
+            "exitCode": null,
+            "durationMs": 0,
+            "timedOut": false,
+            "stdoutTail": "",
+            "stderrTail": "fixture runner unavailable"
+          }
+        }
+      ],
+      "output": null,
+      "error": "fixture runner unavailable",
+      "finalRequest": {
+        "requestId": "PRIOR-A",
+        "status": "failed",
+        "command": "requested-command-A",
+        "result": {
+          "success": false,
+          "exitCode": null,
+          "durationMs": 0,
+          "timedOut": false,
+          "stdoutTail": "",
+          "stderrTail": "fixture runner unavailable"
+        }
+      }
+    },
+    {
+      "scenario": "finish-fails",
+      "events": [
+        {
+          "kind": "upsert",
+          "command": "node --version"
+        },
+        {
+          "kind": "prepare"
+        },
+        {
+          "kind": "execute",
+          "command": "node --version"
+        },
+        {
+          "kind": "finish",
+          "id": "PRIOR-A",
+          "status": "passed",
+          "result": {
+            "success": true,
+            "exitCode": 0,
+            "durationMs": 0,
+            "timedOut": false,
+            "stdoutTail": "v24.16.0\r\n",
+            "stderrTail": ""
+          }
+        },
+        {
+          "kind": "warn",
+          "message": "[fn_run_verification] TASK-FIXTURE: terminal verification record write failed (fixture finish unavailable)."
+        }
+      ],
+      "output": {
+        "success": true,
+        "exitCode": 0,
+        "durationMs": 0,
+        "timedOut": false,
+        "killed": false,
+        "command": "node --version",
+        "cwd": "<workspace>/"
+      },
+      "error": null,
+      "finalRequest": {
+        "requestId": "PRIOR-A",
+        "status": "running",
+        "command": "requested-command-A"
+      }
+    }
+  ]
+}

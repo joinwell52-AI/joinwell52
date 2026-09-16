@@ -1,0 +1,217 @@
+{
+  "at": "2026-09-08T03:29:59.627Z",
+  "head": "c008d9db91a21136fc61a4f60314e22db395d5d2",
+  "harness_sha256": "aca3770c5df2691c83135ec22598698f9519e398062d241e6cbabfbc466078a0",
+  "source_files": [
+    {
+      "file": "packages/codeflowmu-runtime/src/scheduler/TaskDispatcher.ts",
+      "sha256": "30025345788930ec07520322f86ea8638e454d21d29a396e0e6811e90cead565"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/scheduler/DispatchAttemptStore.ts",
+      "sha256": "919367d8577abb91b3d456a3acddd5055b9e173365c74497ddd848444bc1eba2"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/scheduler/LifecycleGovernor.ts",
+      "sha256": "b58898b02df3dca2c579b78e0d42936fa80a5dcf28163eb2424a4734a8e654dd"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/session/SessionManager.ts",
+      "sha256": "4e35718b38f2ba5cdb7c33be6d04b51bdffac526ec9c626936fa494e33282fb3"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/session/SessionStore.ts",
+      "sha256": "0642991bb9a84737f738b4b66a6aafd52d90c30666387c92861efa5fdf06e3b2"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/governance/TaskCommandKernel.ts",
+      "sha256": "888ebddaff896cd84015a4e0406004f0e2a9ae3ad3cbaf87e2b7516686488d16"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/governance/GovernanceFactKernel.ts",
+      "sha256": "be9a9eb4bd31aa933953f1ddbe3f095d7ddb430c50199c60bcc996ab8679e985"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/registry/AgentSdkAdapter.ts",
+      "sha256": "c9e4e8faa7a2020e77435d3c497239f65ce834ad8d98b855de38595d05e01036"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/registry/AgentRegistry.ts",
+      "sha256": "02891f0223b220e83d397dd71972f23cf776afdf641a1e98a01604a3dc93162e"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/approval/UnifiedOperationPolicy.ts",
+      "sha256": "8612630c36c753178b5b75b3a8f56a7967a0172255b0a92899e55f4b6abda96e"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/approval/OperationApprovalService.ts",
+      "sha256": "07aef287defd460f3f952334cf7f81c7930eafcb0b74f4d4bfa3106d0828f791"
+    },
+    {
+      "file": "codeflowmu-shell/src/web-panel.ts",
+      "sha256": "c8b43ca23b4488ebad3276738ffaa0be70f7412d9ab2bca9493174618df3ab79"
+    },
+    {
+      "file": "codeflowmu-shell/src/task-command-receipt-store.ts",
+      "sha256": "363f99805d5ca61eaac5fef306733ed9f0dea1fb4da17d8f57c0b19d87670632"
+    }
+  ],
+  "source_unchanged": true,
+  "head_unchanged": true,
+  "rows": [
+    {
+      "id": "I0",
+      "second_reason": "idempotent_replay",
+      "dispatch_kinds": [
+        "dispatched"
+      ],
+      "total_sdk_send_calls": 1,
+      "attempt_count": 1,
+      "attempt_statuses": [
+        "running"
+      ],
+      "loaded_state": "completed",
+      "read_preserved_bytes": true,
+      "process_count": 1
+    },
+    {
+      "id": "I1",
+      "second_reason": "task_already_dispatched",
+      "dispatch_kinds": [
+        "dispatched",
+        "already_dispatched"
+      ],
+      "total_sdk_send_calls": 1,
+      "attempt_count": 1,
+      "attempt_statuses": [
+        "running"
+      ],
+      "loaded_state": "pending",
+      "read_preserved_bytes": true,
+      "process_count": 1
+    },
+    {
+      "id": "I2",
+      "second_reason": "task_already_dispatched",
+      "dispatch_kinds": [
+        "dispatched",
+        "already_dispatched"
+      ],
+      "total_sdk_send_calls": 1,
+      "attempt_count": 1,
+      "attempt_statuses": [
+        "running"
+      ],
+      "loaded_state": null,
+      "read_preserved_bytes": true,
+      "process_count": 1
+    },
+    {
+      "id": "I3",
+      "second_reason": "task_already_dispatched",
+      "dispatch_kinds": [
+        "dispatched",
+        "already_dispatched"
+      ],
+      "total_sdk_send_calls": 1,
+      "attempt_count": 1,
+      "attempt_statuses": [
+        "running"
+      ],
+      "loaded_state": null,
+      "read_preserved_bytes": true,
+      "process_count": 2
+    },
+    {
+      "id": "I4",
+      "second_reason": "task_already_dispatched",
+      "dispatch_kinds": [
+        "dispatched",
+        "already_dispatched"
+      ],
+      "total_sdk_send_calls": 1,
+      "attempt_count": 1,
+      "attempt_statuses": [
+        "session_failed"
+      ],
+      "loaded_state": null,
+      "read_preserved_bytes": true,
+      "process_count": 1
+    },
+    {
+      "id": "I5",
+      "second_reason": "stale_task_revision",
+      "dispatch_kinds": [
+        "dispatched"
+      ],
+      "total_sdk_send_calls": 1,
+      "attempt_count": 1,
+      "attempt_statuses": [
+        "running"
+      ],
+      "loaded_state": null,
+      "read_preserved_bytes": true,
+      "process_count": 1
+    },
+    {
+      "id": "I6",
+      "second_reason": [
+        "task_already_dispatched",
+        "task_already_dispatched",
+        "task_already_dispatched",
+        "task_already_dispatched",
+        "task_already_dispatched",
+        "task_already_dispatched",
+        "task_already_dispatched",
+        "task_already_dispatched"
+      ],
+      "dispatch_kinds": [
+        "dispatched",
+        "already_dispatched",
+        "already_dispatched",
+        "already_dispatched",
+        "already_dispatched",
+        "already_dispatched",
+        "already_dispatched",
+        "already_dispatched",
+        "already_dispatched"
+      ],
+      "total_sdk_send_calls": 1,
+      "attempt_count": 1,
+      "attempt_statuses": [
+        "running"
+      ],
+      "loaded_state": null,
+      "read_preserved_bytes": true,
+      "process_count": 1
+    },
+    {
+      "id": "I7",
+      "second_reason": "task_dispatch_attempt_created",
+      "dispatch_kinds": [
+        "dispatched",
+        "dispatched"
+      ],
+      "total_sdk_send_calls": 2,
+      "attempt_count": 2,
+      "attempt_statuses": [
+        "session_failed",
+        "running"
+      ],
+      "loaded_state": null,
+      "read_preserved_bytes": true,
+      "process_count": 1
+    }
+  ],
+  "limits": "Real product kernel/store/dispatcher/session modules; synthetic governance snapshot and SDK, research bridge instead of HTTP; no external effects, no true power failure, I6 is single-process concurrency.",
+  "export": {
+    "original_sha256": "94f455f31295da99970bf5663523f429c924ebfd20a4baf00dc11deeaff7acfd",
+    "removed_fields": [
+      "fixture",
+      "pids"
+    ],
+    "process_count": "Number of recorded process IDs; I3 processes are sequential, not concurrent",
+    "original_access": "restricted",
+    "product_reexecuted_for_export": false
+  }
+}

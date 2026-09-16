@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1376" height="768" viewBox="0 0 1376 768" role="img" aria-labelledby="title desc">
+  <title id="title">Multi-horizon work editorial cover</title>
+  <desc id="desc">An editorial abstraction of many workstreams crossing a long horizon while remaining distinct around one durable central ledger.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07101f"/>
+      <stop offset="0.55" stop-color="#101827"/>
+      <stop offset="1" stop-color="#050912"/>
+    </linearGradient>
+    <linearGradient id="horizon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#3bd8ff" stop-opacity="0.08"/>
+      <stop offset="0.5" stop-color="#b594ff" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#57e2c2" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="spine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3f6ff"/>
+      <stop offset="0.48" stop-color="#9fb3d9"/>
+      <stop offset="1" stop-color="#43506a"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="1376" height="768" fill="url(#bg)"/>
+  <ellipse cx="694" cy="478" rx="505" ry="170" fill="#6d59ff" opacity="0.08" filter="url(#soft)"/>
+  <rect x="104" y="488" width="1168" height="2" fill="url(#horizon)"/>
+
+  <!-- Sweeping workstreams: editorial ribbons, deliberately unlabeled and non-diagrammatic. -->
+  <path d="M104 244 C300 214 390 298 542 342 C660 376 739 365 848 322 C980 270 1090 225 1270 252" fill="none" stroke="#52d9ff" stroke-width="17" stroke-linecap="round" opacity="0.82"/>
+  <path d="M104 319 C260 302 372 344 518 391 C641 430 742 429 875 385 C1010 341 1116 322 1270 339" fill="none" stroke="#8ea2ff" stroke-width="13" stroke-linecap="round" opacity="0.74"/>
+  <path d="M104 395 C250 403 367 425 510 454 C631 479 757 474 894 443 C1031 411 1137 404 1270 420" fill="none" stroke="#b793ff" stroke-width="10" stroke-linecap="round" opacity="0.64"/>
+  <path d="M104 464 C258 493 372 507 520 523 C657 538 774 528 905 504 C1030 481 1145 477 1270 503" fill="none" stroke="#55e0bd" stroke-width="9" stroke-linecap="round" opacity="0.68"/>
+  <path d="M104 529 C274 573 409 584 548 582 C682 580 786 561 930 548 C1056 536 1161 546 1270 580" fill="none" stroke="#83f0df" stroke-width="6" stroke-linecap="round" opacity="0.50"/>
+
+  <!-- One dominant durable object: a ledger-like spine that the ribbons orbit, not a flowchart node. -->
+  <g transform="translate(650 204)">
+    <path d="M0 10 L78 0 L94 322 L10 338 Z" fill="#111a2a" stroke="#d8e2f5" stroke-opacity="0.45" stroke-width="2"/>
+    <path d="M15 26 L65 19 L78 302 L25 312 Z" fill="url(#spine)" opacity="0.92"/>
+    <path d="M29 55 L57 50" stroke="#07101f" stroke-width="4" stroke-linecap="round" opacity="0.55"/>
+    <path d="M31 96 L59 91" stroke="#07101f" stroke-width="4" stroke-linecap="round" opacity="0.48"/>
+    <path d="M33 137 L61 132" stroke="#07101f" stroke-width="4" stroke-linecap="round" opacity="0.42"/>
+    <path d="M35 178 L63 173" stroke="#07101f" stroke-width="4" stroke-linecap="round" opacity="0.36"/>
+  </g>
+
+  <text x="108" y="112" fill="#9fb1ca" font-family="Inter,Arial,sans-serif" font-size="18" letter-spacing="3">ACADEMIC OBSERVATION 003</text>
+  <text x="108" y="162" fill="#f4f7fb" font-family="Inter,Arial,sans-serif" font-size="43" font-weight="650" letter-spacing="0.5">MULTI-HORIZON WORK</text>
+  <text x="108" y="198" fill="#aab7ca" font-family="Inter,Arial,sans-serif" font-size="19">Many tasks. One durable runtime. Explicit boundaries.</text>
+
+  <text x="108" y="692" fill="#8392a9" font-family="Inter,Arial,sans-serif" font-size="15" letter-spacing="1.2">JOINWELL52 RESEARCH CENTER · 2026-08-12</text>
+  <line x1="108" y1="714" x2="344" y2="714" stroke="#93a5c2" stroke-opacity="0.45"/>
+</svg>

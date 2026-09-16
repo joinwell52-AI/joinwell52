@@ -1,0 +1,147 @@
+{
+  "baseline": "c008d9db91a21136fc61a4f60314e22db395d5d2",
+  "product_files": [
+    {
+      "file": "packages/codeflowmu-runtime/src/approval/OperationApprovalService.ts",
+      "sha256": "07aef287defd460f3f952334cf7f81c7930eafcb0b74f4d4bfa3106d0828f791",
+      "unchanged": true
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/approval/WorkspaceOperationApproval.ts",
+      "sha256": "c2fbdbc6d6c50e38bdafb46b776d61129f39a906ff6ef73dc090eacafa9be17c",
+      "unchanged": true
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/session/CodexAppServerRunHandle.ts",
+      "sha256": "1ccc245ea6eba25487da52d8b89977d7ff37a4636eb00943c633f6a7dfce2f19",
+      "unchanged": true
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/session/SdkRunHandle.ts",
+      "sha256": "b98afb2c4a8c688666bbcf68f62f0c9a42e9e5711bfad047d77b91e264f247d5",
+      "unchanged": true
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/evidence-association/EvidenceAssociationReader.ts",
+      "sha256": "1e6c96e2e520fb2df7498a12bc9c2d1aa2348ba387c827396451b2ee27fbe77e",
+      "unchanged": true
+    },
+    {
+      "file": "codeflowmu-shell/src/workspace-controlled-executors.ts",
+      "sha256": "4f5b4c6be2eaea17d7a3ff78d293d58f2a249294d32e57bd79832055a0e89da3",
+      "unchanged": true
+    },
+    {
+      "file": "codeflowmu-shell/src/controlled-executor-registry.ts",
+      "sha256": "e7d3cefd69fc0726eda5fde1bca792aae1a186c988fc20ac0a6517cb3d34e25d",
+      "unchanged": true
+    }
+  ],
+  "original_record_hashes": [
+    {
+      "file": "runs/boundaries-1788695589568.json",
+      "sha256": "04247193102e560becf6c027c80f6a563217accf7e76060ed18a6ff3cee57068"
+    },
+    {
+      "file": "runs/adapter-1788695732064.json",
+      "sha256": "eeadd4c9fe39b7506c1191be4bf589e190d61512e853e534d31ce0c05be83de8"
+    },
+    {
+      "file": "probe-boundaries.mjs",
+      "sha256": "450c7bbab29d1836d6db71af3e9efbe50172dd2cdbbccd6e962a198e6b57a274"
+    },
+    {
+      "file": "probe-adapter.mjs",
+      "sha256": "56f73ee2914521c68d4c79c1498eeed739ce7e435bb35f6914cf37834664dea6"
+    },
+    {
+      "file": "runs/baseline-1.log",
+      "sha256": "81146507882cd68d6adef527cda3bf876c61572d6249f0f1d9094bb232dff96f"
+    },
+    {
+      "file": "runs/baseline-2.log",
+      "sha256": "696fd5a8a099c4f4ce24584bcfb55b4397e68285f9024303a1c7b5b91552f082"
+    }
+  ],
+  "external_sources": [
+    {
+      "retrieved_at": "2026-09-06T11:50:05.370Z",
+      "url": "https://github.com/OpenHands/software-agent-sdk/pull/4866",
+      "title": "fix(sdk): re-check cancellation after acquiring resource lock in ParallelToolExecutor",
+      "state": "closed",
+      "draft": true,
+      "merged": false,
+      "merged_at": null,
+      "closed_at": "2026-09-06T05:39:16Z",
+      "base_sha": "fd92955659cf848cdbddf1893a36baa5221f2c53",
+      "head_sha": "22e897eeade27525e7053532a6c709a130c16712",
+      "merge_commit_sha": "e55961aec8683e56a6866e9beb40b6daf6114f13",
+      "changed_files": [
+        "openhands-sdk/openhands/sdk/agent/parallel_executor.py",
+        "tests/sdk/agent/test_parallel_executor_cancel_wait.py"
+      ]
+    },
+    {
+      "retrieved_at": "2026-09-06T11:50:07.518Z",
+      "url": "https://github.com/paperclipai/paperclip/pull/12901",
+      "title": "fix(runner): persist warm Daytona workspaces",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "merged_at": "2026-09-05T18:00:57Z",
+      "closed_at": "2026-09-05T18:00:57Z",
+      "base_sha": "3da58b185e4b383ee0a9dfa3d1dc0bb090d0be37",
+      "head_sha": "7a6f5b6daf1b9a673eb301237e69e2aa93b3028b",
+      "merge_commit_sha": "1dceee9a4e75b13456760bb54c752deb2dba1d79",
+      "changed_files": [
+        ".github/workflows/runner-full-stack-e2e.yml",
+        "packages/adapter-utils/src/command-managed-runtime.ts",
+        "packages/adapter-utils/src/execution-target.ts",
+        "packages/adapter-utils/src/sandbox-managed-runtime.test.ts",
+        "packages/adapter-utils/src/sandbox-managed-runtime.ts",
+        "packages/adapter-utils/src/workspace-restore-merge.test.ts",
+        "packages/adapter-utils/src/workspace-restore-merge.ts",
+        "packages/adapters/codex-local/src/server/execute.test.ts",
+        "packages/adapters/codex-local/src/server/execute.ts",
+        "packages/paperclip-runner/runner/crates/runner-core/src/acpx_provider_backend.rs",
+        "packages/paperclip-runner/runner/crates/runner-core/src/codex_provider.rs",
+        "packages/paperclip-runner/runner/crates/runner-core/src/durable/runner.rs",
+        "packages/paperclip-runner/runner/crates/runner-core/src/managed_provider_backend.rs",
+        "packages/paperclip-runner/runner/crates/runner-core/src/native_provider_backend.rs",
+        "packages/paperclip-runner/runner/crates/runner-core/src/provider_backend.rs",
+        "packages/paperclip-runner/src/control-plane/durable-prp-control-plane.ts",
+        "packages/paperclip-runner/src/live/runnerd-codex-transport.test.ts",
+        "packages/paperclip-runner/src/live/runnerd-codex-transport.ts",
+        "packages/plugins/sandbox-providers/daytona/src/plugin.test.ts",
+        "packages/plugins/sandbox-providers/daytona/src/plugin.ts",
+        "server/src/__tests__/environment-runtime.test.ts",
+        "server/src/__tests__/native-sandbox-lifecycle.test.ts",
+        "server/src/__tests__/native-workspace-sync.test.ts",
+        "server/src/services/environment-runtime.ts",
+        "server/src/services/heartbeat.ts",
+        "server/src/services/native-runtime/index.ts",
+        "server/src/services/native-runtime/native-finalization-reconciler.ts",
+        "server/src/services/native-runtime/native-run-finalizer-telemetry.test.ts",
+        "server/src/services/native-runtime/native-run-finalizer.ts",
+        "server/src/services/native-runtime/native-session-executor.test.ts",
+        "server/src/services/native-runtime/native-session-executor.ts",
+        "server/src/services/native-runtime/native-workspace-finalizer.ts",
+        "server/src/services/native-runtime/native-workspace-sync.ts",
+        "tests/runner-e2e/FIXTURES.md",
+        "tests/runner-e2e/README.md",
+        "tests/runner-e2e/catalog.test.ts",
+        "tests/runner-e2e/catalog.ts",
+        "tests/runner-e2e/dashboard.ts",
+        "tests/runner-e2e/history.test.ts",
+        "tests/runner-e2e/live-fixtures.test.ts",
+        "tests/runner-e2e/live-fixtures.ts",
+        "tests/runner-e2e/matchers.ts",
+        "tests/runner-e2e/report.test.ts",
+        "tests/runner-e2e/runner.spec.ts",
+        "tests/runner-e2e/support.test.ts",
+        "tests/runner-e2e/types.ts",
+        "tests/runner-e2e/workflow-security.test.ts"
+      ]
+    }
+  ]
+}

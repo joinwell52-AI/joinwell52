@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tmpa:schema:governance-object:s0.6",
+  "title": "TMPA Governance Object S0.6",
+  "$comment": "Structural validation does not establish role authority, lifecycle legality, cross-object uniqueness, or integrity verification.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "tmpa_version",
+    "id",
+    "type",
+    "governed_work",
+    "stream",
+    "creator",
+    "role",
+    "created_at",
+    "lifecycle",
+    "references",
+    "content",
+    "integrity"
+  ],
+  "properties": {
+    "tmpa_version": { "const": "S0.6" },
+    "id": { "type": "string", "minLength": 1 },
+    "type": { "type": "string", "minLength": 1 },
+    "governed_work": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "primary_carrier_id"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "primary_carrier_id": { "type": "string", "minLength": 1 },
+        "parent_id": { "type": "string", "minLength": 1 },
+        "thread_id": { "type": "string", "minLength": 1 }
+      }
+    },
+    "stream": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "sequence"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "sequence": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "creator": { "type": "string", "minLength": 1 },
+    "role": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile", "state"],
+      "properties": {
+        "profile": { "type": "string", "minLength": 1 },
+        "state": { "type": "string", "minLength": 1 },
+        "transition": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["from", "action", "to"],
+          "properties": {
+            "from": { "type": "string", "minLength": 1 },
+            "action": { "type": "string", "minLength": 1 },
+            "to": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "references": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["relation", "target"],
+        "properties": {
+          "relation": { "type": "string", "minLength": 1 },
+          "target": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "predicate", "subject", "evidence"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "predicate": { "type": "string", "minLength": 1 },
+          "subject": { "type": "string", "minLength": 1 },
+          "evidence": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "risk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "requires_human_approval"],
+      "properties": {
+        "level": { "enum": ["low", "medium", "high", "irreversible"] },
+        "requires_human_approval": { "type": "boolean" }
+      }
+    },
+    "content": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["media_type", "body"],
+      "properties": {
+        "media_type": { "type": "string", "minLength": 1 },
+        "body": {}
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["canonicalization", "hash_algorithm", "digest"],
+      "dependentRequired": {
+        "signature_algorithm": ["key_id", "signature"],
+        "key_id": ["signature_algorithm", "signature"],
+        "signature": ["signature_algorithm", "key_id"]
+      },
+      "properties": {
+        "canonicalization": { "type": "string", "minLength": 1 },
+        "hash_algorithm": { "type": "string", "minLength": 1 },
+        "digest": { "type": "string", "minLength": 1 },
+        "signature_algorithm": { "type": ["string", "null"] },
+        "key_id": { "type": ["string", "null"] },
+        "signature": { "type": ["string", "null"] }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "signature_algorithm": { "type": "null" },
+            "key_id": { "type": "null" },
+            "signature": { "type": "null" }
+          }
+        },
+        {
+          "required": ["signature_algorithm", "key_id", "signature"],
+          "properties": {
+            "signature_algorithm": { "type": "string", "minLength": 1 },
+            "key_id": { "type": "string", "minLength": 1 },
+            "signature": { "type": "string", "minLength": 1 }
+          }
+        }
+      ]
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "owner": "fixture-run-non-idempotent",
+  "clock": "researcher-assigned observation sequence; not a product clock",
+  "envelopes": [
+    {
+      "id": "approval-0",
+      "owner": "fixture-run-non-idempotent",
+      "available_at": 0,
+      "kind": "approval-snapshot",
+      "body": {
+        "approval_id": "APPROVAL-RESEARCH",
+        "status": "approved",
+        "execution_status": "not_started",
+        "evidence": []
+      }
+    },
+    {
+      "id": "approval-1",
+      "owner": "fixture-run-non-idempotent",
+      "available_at": 1,
+      "kind": "approval-snapshot",
+      "body": {
+        "approval_id": "APPROVAL-RESEARCH",
+        "status": "executing",
+        "execution_status": "executing",
+        "evidence": []
+      }
+    },
+    {
+      "id": "effects-1",
+      "owner": "fixture-run-non-idempotent",
+      "available_at": 1,
+      "kind": "effect-snapshot",
+      "body": {
+        "effects": [
+          {
+            "effect_id": "E1",
+            "operation_key": "fixture-key",
+            "kind": "local-marker"
+          }
+        ]
+      }
+    },
+    {
+      "id": "approval-2",
+      "owner": "fixture-run-non-idempotent",
+      "available_at": 2,
+      "kind": "approval-snapshot",
+      "body": {
+        "approval_id": "APPROVAL-RESEARCH",
+        "status": "failed",
+        "execution_status": "failed",
+        "evidence": [
+          {
+            "kind": "local-marker",
+            "observed_count": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "effects-2",
+      "owner": "fixture-run-non-idempotent",
+      "available_at": 2,
+      "kind": "effect-snapshot",
+      "body": {
+        "effects": [
+          {
+            "effect_id": "E1",
+            "operation_key": "fixture-key",
+            "kind": "local-marker"
+          }
+        ]
+      }
+    },
+    {
+      "id": "approval-3",
+      "owner": "fixture-run-non-idempotent",
+      "available_at": 3,
+      "kind": "approval-snapshot",
+      "body": {
+        "approval_id": "APPROVAL-RESEARCH",
+        "status": "succeeded",
+        "execution_status": "succeeded",
+        "evidence": [
+          {
+            "kind": "local-marker",
+            "observed_count": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "effects-3",
+      "owner": "fixture-run-non-idempotent",
+      "available_at": 3,
+      "kind": "effect-snapshot",
+      "body": {
+        "effects": [
+          {
+            "effect_id": "E1",
+            "operation_key": "fixture-key",
+            "kind": "local-marker"
+          },
+          {
+            "effect_id": "E2",
+            "operation_key": "fixture-key",
+            "kind": "local-marker"
+          }
+        ]
+      }
+    }
+  ],
+  "manifest": {
+    "approval-0": "ea6c8b5bb03cbdfd457f7924b99b926932b52b807a54635eabea7415fdc6e997",
+    "approval-1": "bf67ba3e3a9cbc523ca2ee5c50e3a2b501dfbc68524ffb2ab717742d632774a2",
+    "effects-1": "d858b7b5d9d75a4e04e360059a13a265c0fadd9f94d61094d80e32b00228b77d",
+    "approval-2": "9710aef1aba75f1e916b0b66c95b05d9eb340d01d92f77ff0ba8fc6c6daba7dc",
+    "effects-2": "b125c4b413336c4a598773d02d9e7357a9e3dc78fc94f772a5a800b45fbde122",
+    "approval-3": "235104b90a9a06a30114cf82c51f5fecc3ef7d88039fa4f816522ec4f75ba471",
+    "effects-3": "77b43247a73b2dbebbff23f1491df528af0d2a0fbd2b9235a2b82893cad533e6"
+  }
+}

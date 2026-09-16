@@ -1,0 +1,85 @@
+{
+  "commit": "f0f42f01c8f6d55bfe3d32e108f607841a2900d9",
+  "rows": [
+    {
+      "variant": "verified",
+      "session_binding": "verified",
+      "binding_reason": "runtime_session_store_match",
+      "session_id": "session-1",
+      "task_id": "TASK-1",
+      "thread_key": "thread-1",
+      "integrity_verified": true,
+      "tampered_rejected": true
+    },
+    {
+      "variant": "resumed-verified",
+      "session_binding": "verified",
+      "binding_reason": "runtime_session_store_match",
+      "session_id": "session-2",
+      "task_id": "TASK-1",
+      "thread_key": "thread-1",
+      "integrity_verified": true,
+      "tampered_rejected": true
+    },
+    {
+      "variant": "unregistered",
+      "session_binding": "invalid_claim",
+      "binding_reason": "session_not_registered",
+      "session_id": null,
+      "task_id": "TASK-1",
+      "thread_key": "thread-1",
+      "integrity_verified": true,
+      "tampered_rejected": true
+    },
+    {
+      "variant": "wrong-agent",
+      "session_binding": "invalid_claim",
+      "binding_reason": "session_agent_mismatch",
+      "session_id": null,
+      "task_id": "TASK-1",
+      "thread_key": "thread-1",
+      "integrity_verified": true,
+      "tampered_rejected": true
+    },
+    {
+      "variant": "wrong-task",
+      "session_binding": "invalid_claim",
+      "binding_reason": "session_task_mismatch",
+      "session_id": null,
+      "task_id": "TASK-OTHER",
+      "thread_key": "thread-1",
+      "integrity_verified": true,
+      "tampered_rejected": true
+    },
+    {
+      "variant": "wrong-thread",
+      "session_binding": "invalid_claim",
+      "binding_reason": "session_thread_mismatch",
+      "session_id": null,
+      "task_id": "TASK-1",
+      "thread_key": "thread-other",
+      "integrity_verified": true,
+      "tampered_rejected": true
+    },
+    {
+      "variant": "sessionless",
+      "session_binding": "not_applicable",
+      "binding_reason": "fixture-system-operation",
+      "session_id": null,
+      "task_id": "TASK-1",
+      "thread_key": "thread-1",
+      "integrity_verified": true,
+      "tampered_rejected": true
+    },
+    {
+      "variant": "missing-reason",
+      "session_binding": "invalid_claim",
+      "binding_reason": "missing_session_without_runtime_reason",
+      "session_id": null,
+      "task_id": "TASK-1",
+      "thread_key": "thread-1",
+      "integrity_verified": true,
+      "tampered_rejected": true
+    }
+  ]
+}

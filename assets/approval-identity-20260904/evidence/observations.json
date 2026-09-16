@@ -1,0 +1,2227 @@
+{
+  "schema_version": "1.0",
+  "baseline": "fdadbed489129455437f25202a03bae6e0c2e822",
+  "experiment_date": "2026-09-04",
+  "status": "OBSERVED_COUNTEREXAMPLES; NOT_FIXED; NOT_QA_ACCEPTANCE",
+  "external_effectful_calls": 0,
+  "baseline_tests": {
+    "tests": [
+      {
+        "file": "src/approval/__tests__/OperationApprovalService.test.ts",
+        "sha256": "d1a386437dd1102c88f5188f545f31aee42d21f6f54105998f2621a928405e09"
+      },
+      {
+        "file": "src/pm/__tests__/pmChildTaskIdentityDependency.test.ts",
+        "sha256": "9732845b5bde8a4a6d7fce55a1f59771c509f66b5c8857e266690d0ec213c132"
+      },
+      {
+        "file": "src/evidence-association/__tests__/EvidenceAssociationReader.test.ts",
+        "sha256": "2220d52fdef1b0d3cd72729c29a92b73c0bbb1e3d0a6a605476dacb77b72bf4c"
+      },
+      {
+        "file": "src/logs/__tests__/TelemetryRedactor.test.ts",
+        "sha256": "3b869c3a4ad05b1a7178218e65e8aa4f91b03a27b15299b29864e0fe00e3c4d7"
+      }
+    ],
+    "runs": [
+      {
+        "started": "2026-09-04T05:37:53.595Z",
+        "finished": "2026-09-04T05:37:54.724Z",
+        "exit_code": 0,
+        "counts": {
+          "tests": 31,
+          "pass": 31,
+          "fail": 0,
+          "skipped": 0
+        },
+        "raw_log_sha256": "9a9849c58a20ce3ef1bd4abe96202af68234d8243d36821300aa2baa7feca884"
+      },
+      {
+        "started": "2026-09-04T05:37:54.726Z",
+        "finished": "2026-09-04T05:37:55.901Z",
+        "exit_code": 0,
+        "counts": {
+          "tests": 31,
+          "pass": 31,
+          "fail": 0,
+          "skipped": 0
+        },
+        "raw_log_sha256": "ec6206fc6714606d768085e573ef6f5f56f67990974c775d2e07b0e8e2685f2c"
+      }
+    ]
+  },
+  "approval_matrix": [
+    {
+      "round": 1,
+      "name": "same-session",
+      "expected": "ALLOW",
+      "expectation": "matched",
+      "fixture": "<SYNTHETIC_FIXTURE_011>",
+      "first": {
+        "decision": "ALLOW",
+        "reason": "operation_approval_consumed",
+        "authorization": {
+          "status": "consumed",
+          "issued_at": "2026-09-04T05:41:19.271Z",
+          "consumed_at": "2026-09-04T05:41:19.475Z",
+          "consumed_by": {
+            "agent_id": "DEV-01",
+            "session_id": "session-1",
+            "task_id": "TASK-1",
+            "thread_key": "thread-1",
+            "role": "DEV"
+          }
+        }
+      },
+      "replay": {
+        "decision": "THREW",
+        "code": "APPROVAL_ALREADY_CONSUMED",
+        "authorization": {
+          "status": "consumed",
+          "issued_at": "2026-09-04T05:41:19.271Z",
+          "consumed_at": "2026-09-04T05:41:19.475Z",
+          "consumed_by": {
+            "agent_id": "DEV-01",
+            "session_id": "session-1",
+            "task_id": "TASK-1",
+            "thread_key": "thread-1",
+            "role": "DEV"
+          }
+        }
+      }
+    },
+    {
+      "round": 1,
+      "name": "delivered-resume",
+      "expected": "ALLOW",
+      "expectation": "mismatched",
+      "fixture": "<SYNTHETIC_FIXTURE_002>",
+      "first": {
+        "decision": "REQUIRE_APPROVAL",
+        "authorization": {
+          "status": "available",
+          "issued_at": "2026-09-04T05:41:19.717Z",
+          "consumed_at": null
+        }
+      },
+      "replay": null
+    },
+    {
+      "round": 1,
+      "name": "other-session",
+      "expected": "OBSERVE",
+      "expectation": "not_scored",
+      "fixture": "<SYNTHETIC_FIXTURE_010>",
+      "first": {
+        "decision": "REQUIRE_APPROVAL",
+        "authorization": {
+          "status": "available",
+          "issued_at": "2026-09-04T05:41:19.972Z",
+          "consumed_at": null
+        }
+      },
+      "replay": null
+    },
+    {
+      "round": 1,
+      "name": "missing-session",
+      "expected": "REQUIRE_APPROVAL",
+      "expectation": "matched",
+      "fixture": "<SYNTHETIC_FIXTURE_009>",
+      "first": {
+        "decision": "REQUIRE_APPROVAL",
+        "authorization": {
+          "status": "available",
+          "issued_at": "2026-09-04T05:41:20.246Z",
+          "consumed_at": null
+        }
+      },
+      "replay": null
+    },
+    {
+      "round": 1,
+      "name": "different-agent",
+      "expected": "REQUIRE_APPROVAL",
+      "expectation": "matched",
+      "fixture": "<SYNTHETIC_FIXTURE_003>",
+      "first": {
+        "decision": "REQUIRE_APPROVAL",
+        "authorization": {
+          "status": "available",
+          "issued_at": "2026-09-04T05:41:20.539Z",
+          "consumed_at": null
+        }
+      },
+      "replay": null
+    },
+    {
+      "round": 1,
+      "name": "different-task",
+      "expected": "REQUIRE_APPROVAL",
+      "expectation": "matched",
+      "fixture": "<SYNTHETIC_FIXTURE_007>",
+      "first": {
+        "decision": "REQUIRE_APPROVAL",
+        "authorization": {
+          "status": "available",
+          "issued_at": "2026-09-04T05:41:20.812Z",
+          "consumed_at": null
+        }
+      },
+      "replay": null
+    },
+    {
+      "round": 1,
+      "name": "different-thread",
+      "expected": "REQUIRE_APPROVAL",
+      "expectation": "matched",
+      "fixture": "<SYNTHETIC_FIXTURE_008>",
+      "first": {
+        "decision": "REQUIRE_APPROVAL",
+        "authorization": {
+          "status": "available",
+          "issued_at": "2026-09-04T05:41:21.039Z",
+          "consumed_at": null
+        }
+      },
+      "replay": null
+    },
+    {
+      "round": 1,
+      "name": "different-project",
+      "expected": "REQUIRE_APPROVAL",
+      "expectation": "matched",
+      "fixture": "<SYNTHETIC_FIXTURE_004>",
+      "first": {
+        "decision": "REQUIRE_APPROVAL",
+        "authorization": {
+          "status": "available",
+          "issued_at": "2026-09-04T05:41:21.265Z",
+          "consumed_at": null
+        }
+      },
+      "replay": null
+    },
+    {
+      "round": 1,
+      "name": "different-target",
+      "expected": "REQUIRE_APPROVAL",
+      "expectation": "mismatched",
+      "fixture": "<SYNTHETIC_FIXTURE_006>",
+      "first": {
+        "decision": "ALLOW",
+        "reason": "operation_approval_consumed",
+        "authorization": {
+          "status": "consumed",
+          "issued_at": "2026-09-04T05:41:21.485Z",
+          "consumed_at": "2026-09-04T05:41:21.683Z",
+          "consumed_by": {
+            "agent_id": "DEV-01",
+            "session_id": "session-1",
+            "task_id": "TASK-1",
+            "thread_key": "thread-1",
+            "role": "DEV"
+          }
+        }
+      },
+      "replay": {
+        "decision": "THREW",
+        "code": "APPROVAL_ALREADY_CONSUMED",
+        "authorization": {
+          "status": "consumed",
+          "issued_at": "2026-09-04T05:41:21.485Z",
+          "consumed_at": "2026-09-04T05:41:21.683Z",
+          "consumed_by": {
+            "agent_id": "DEV-01",
+            "session_id": "session-1",
+            "task_id": "TASK-1",
+            "thread_key": "thread-1",
+            "role": "DEV"
+          }
+        }
+      }
+    },
+    {
+      "round": 1,
+      "name": "different-source-channel",
+      "expected": "OBSERVE",
+      "expectation": "not_scored",
+      "fixture": "<SYNTHETIC_FIXTURE_005>",
+      "first": {
+        "decision": "REQUIRE_APPROVAL",
+        "authorization": {
+          "status": "available",
+          "issued_at": "2026-09-04T05:41:21.927Z",
+          "consumed_at": null
+        }
+      },
+      "replay": null
+    },
+    {
+      "round": 1,
+      "name": "cancelled",
+      "expected": "REQUIRE_APPROVAL",
+      "expectation": "matched",
+      "fixture": "<SYNTHETIC_FIXTURE_001>",
+      "first": {
+        "decision": "REQUIRE_APPROVAL",
+        "authorization": {
+          "status": "invalid",
+          "issued_at": null,
+          "consumed_at": null
+        }
+      },
+      "replay": null
+    },
+    {
+      "round": 2,
+      "name": "same-session",
+      "expected": "ALLOW",
+      "expectation": "matched",
+      "fixture": "<SYNTHETIC_FIXTURE_022>",
+      "first": {
+        "decision": "ALLOW",
+        "reason": "operation_approval_consumed",
+        "authorization": {
+          "status": "consumed",
+          "issued_at": "2026-09-04T05:41:22.455Z",
+          "consumed_at": "2026-09-04T05:41:22.687Z",
+          "consumed_by": {
+            "agent_id": "DEV-01",
+            "session_id": "session-1",
+            "task_id": "TASK-1",
+            "thread_key": "thread-1",
+            "role": "DEV"
+          }
+        }
+      },
+      "replay": {
+        "decision": "THREW",
+        "code": "APPROVAL_ALREADY_CONSUMED",
+        "authorization": {
+          "status": "consumed",
+          "issued_at": "2026-09-04T05:41:22.455Z",
+          "consumed_at": "2026-09-04T05:41:22.687Z",
+          "consumed_by": {
+            "agent_id": "DEV-01",
+            "session_id": "session-1",
+            "task_id": "TASK-1",
+            "thread_key": "thread-1",
+            "role": "DEV"
+          }
+        }
+      }
+    },
+    {
+      "round": 2,
+      "name": "delivered-resume",
+      "expected": "ALLOW",
+      "expectation": "mismatched",
+      "fixture": "<SYNTHETIC_FIXTURE_013>",
+      "first": {
+        "decision": "REQUIRE_APPROVAL",
+        "authorization": {
+          "status": "available",
+          "issued_at": "2026-09-04T05:41:22.958Z",
+          "consumed_at": null
+        }
+      },
+      "replay": null
+    },
+    {
+      "round": 2,
+      "name": "other-session",
+      "expected": "OBSERVE",
+      "expectation": "not_scored",
+      "fixture": "<SYNTHETIC_FIXTURE_021>",
+      "first": {
+        "decision": "REQUIRE_APPROVAL",
+        "authorization": {
+          "status": "available",
+          "issued_at": "2026-09-04T05:41:23.198Z",
+          "consumed_at": null
+        }
+      },
+      "replay": null
+    },
+    {
+      "round": 2,
+      "name": "missing-session",
+      "expected": "REQUIRE_APPROVAL",
+      "expectation": "matched",
+      "fixture": "<SYNTHETIC_FIXTURE_020>",
+      "first": {
+        "decision": "REQUIRE_APPROVAL",
+        "authorization": {
+          "status": "available",
+          "issued_at": "2026-09-04T05:41:23.444Z",
+          "consumed_at": null
+        }
+      },
+      "replay": null
+    },
+    {
+      "round": 2,
+      "name": "different-agent",
+      "expected": "REQUIRE_APPROVAL",
+      "expectation": "matched",
+      "fixture": "<SYNTHETIC_FIXTURE_014>",
+      "first": {
+        "decision": "REQUIRE_APPROVAL",
+        "authorization": {
+          "status": "available",
+          "issued_at": "2026-09-04T05:41:23.683Z",
+          "consumed_at": null
+        }
+      },
+      "replay": null
+    },
+    {
+      "round": 2,
+      "name": "different-task",
+      "expected": "REQUIRE_APPROVAL",
+      "expectation": "matched",
+      "fixture": "<SYNTHETIC_FIXTURE_018>",
+      "first": {
+        "decision": "REQUIRE_APPROVAL",
+        "authorization": {
+          "status": "available",
+          "issued_at": "2026-09-04T05:41:23.923Z",
+          "consumed_at": null
+        }
+      },
+      "replay": null
+    },
+    {
+      "round": 2,
+      "name": "different-thread",
+      "expected": "REQUIRE_APPROVAL",
+      "expectation": "matched",
+      "fixture": "<SYNTHETIC_FIXTURE_019>",
+      "first": {
+        "decision": "REQUIRE_APPROVAL",
+        "authorization": {
+          "status": "available",
+          "issued_at": "2026-09-04T05:41:24.160Z",
+          "consumed_at": null
+        }
+      },
+      "replay": null
+    },
+    {
+      "round": 2,
+      "name": "different-project",
+      "expected": "REQUIRE_APPROVAL",
+      "expectation": "matched",
+      "fixture": "<SYNTHETIC_FIXTURE_015>",
+      "first": {
+        "decision": "REQUIRE_APPROVAL",
+        "authorization": {
+          "status": "available",
+          "issued_at": "2026-09-04T05:41:24.397Z",
+          "consumed_at": null
+        }
+      },
+      "replay": null
+    },
+    {
+      "round": 2,
+      "name": "different-target",
+      "expected": "REQUIRE_APPROVAL",
+      "expectation": "mismatched",
+      "fixture": "<SYNTHETIC_FIXTURE_017>",
+      "first": {
+        "decision": "ALLOW",
+        "reason": "operation_approval_consumed",
+        "authorization": {
+          "status": "consumed",
+          "issued_at": "2026-09-04T05:41:24.635Z",
+          "consumed_at": "2026-09-04T05:41:24.848Z",
+          "consumed_by": {
+            "agent_id": "DEV-01",
+            "session_id": "session-1",
+            "task_id": "TASK-1",
+            "thread_key": "thread-1",
+            "role": "DEV"
+          }
+        }
+      },
+      "replay": {
+        "decision": "THREW",
+        "code": "APPROVAL_ALREADY_CONSUMED",
+        "authorization": {
+          "status": "consumed",
+          "issued_at": "2026-09-04T05:41:24.635Z",
+          "consumed_at": "2026-09-04T05:41:24.848Z",
+          "consumed_by": {
+            "agent_id": "DEV-01",
+            "session_id": "session-1",
+            "task_id": "TASK-1",
+            "thread_key": "thread-1",
+            "role": "DEV"
+          }
+        }
+      }
+    },
+    {
+      "round": 2,
+      "name": "different-source-channel",
+      "expected": "OBSERVE",
+      "expectation": "not_scored",
+      "fixture": "<SYNTHETIC_FIXTURE_016>",
+      "first": {
+        "decision": "REQUIRE_APPROVAL",
+        "authorization": {
+          "status": "available",
+          "issued_at": "2026-09-04T05:41:25.099Z",
+          "consumed_at": null
+        }
+      },
+      "replay": null
+    },
+    {
+      "round": 2,
+      "name": "cancelled",
+      "expected": "REQUIRE_APPROVAL",
+      "expectation": "matched",
+      "fixture": "<SYNTHETIC_FIXTURE_012>",
+      "first": {
+        "decision": "REQUIRE_APPROVAL",
+        "authorization": {
+          "status": "invalid",
+          "issued_at": null,
+          "consumed_at": null
+        }
+      },
+      "replay": null
+    }
+  ],
+  "assertion_failures": [
+    {
+      "name": "delivered-resume",
+      "round": 1,
+      "expected": "ALLOW",
+      "actual": "REQUIRE_APPROVAL"
+    },
+    {
+      "name": "different-target",
+      "round": 1,
+      "expected": "REQUIRE_APPROVAL",
+      "actual": "ALLOW"
+    },
+    {
+      "name": "delivered-resume",
+      "round": 2,
+      "expected": "ALLOW",
+      "actual": "REQUIRE_APPROVAL"
+    },
+    {
+      "name": "different-target",
+      "round": 2,
+      "expected": "REQUIRE_APPROVAL",
+      "actual": "ALLOW"
+    }
+  ],
+  "probe_exit_code": 1,
+  "field_comparisons": [
+    {
+      "round": 1,
+      "name": "same",
+      "original_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_023>",
+        "projectId": "causal-1-kfZrT5",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "changed_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_023>",
+        "projectId": "causal-1-kfZrT5",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "original_fingerprint": "sha256:c5dd2c4de2f1908e97695f1555c960f2e8d73a06b74e095407fe4184d232a0ca",
+      "changed_fingerprint": "sha256:c5dd2c4de2f1908e97695f1555c960f2e8d73a06b74e095407fe4184d232a0ca",
+      "original_digest": "sha256:2b728613ffaba7047100877002b6815f3e9ccf73ea91cef2cc93e4eec184f933",
+      "changed_digest": "sha256:2b728613ffaba7047100877002b6815f3e9ccf73ea91cef2cc93e4eec184f933",
+      "request_differences": [],
+      "operation": {
+        "kind": "remote_git",
+        "exact_targets": [],
+        "canonical_targets": [],
+        "target_set_stable": true,
+        "recursive": false,
+        "dynamic_or_wildcard": false
+      },
+      "confidence": {
+        "complete": true,
+        "unresolved_fields": [],
+        "detector_ids": [
+          "shell.remote_git"
+        ]
+      },
+      "counterfactual_nested_session_removed_digest_matches": true
+    },
+    {
+      "round": 1,
+      "name": "branch",
+      "original_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_023>",
+        "projectId": "causal-1-kfZrT5",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "changed_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/another-target"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_023>",
+        "projectId": "causal-1-kfZrT5",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "original_fingerprint": "sha256:c5dd2c4de2f1908e97695f1555c960f2e8d73a06b74e095407fe4184d232a0ca",
+      "changed_fingerprint": "sha256:c5dd2c4de2f1908e97695f1555c960f2e8d73a06b74e095407fe4184d232a0ca",
+      "original_digest": "sha256:2b728613ffaba7047100877002b6815f3e9ccf73ea91cef2cc93e4eec184f933",
+      "changed_digest": "sha256:2b728613ffaba7047100877002b6815f3e9ccf73ea91cef2cc93e4eec184f933",
+      "request_differences": [],
+      "operation": {
+        "kind": "remote_git",
+        "exact_targets": [],
+        "canonical_targets": [],
+        "target_set_stable": true,
+        "recursive": false,
+        "dynamic_or_wildcard": false
+      },
+      "confidence": {
+        "complete": true,
+        "unresolved_fields": [],
+        "detector_ids": [
+          "shell.remote_git"
+        ]
+      },
+      "counterfactual_nested_session_removed_digest_matches": true
+    },
+    {
+      "round": 1,
+      "name": "remote",
+      "original_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_023>",
+        "projectId": "causal-1-kfZrT5",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "changed_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push backup codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_023>",
+        "projectId": "causal-1-kfZrT5",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "original_fingerprint": "sha256:c5dd2c4de2f1908e97695f1555c960f2e8d73a06b74e095407fe4184d232a0ca",
+      "changed_fingerprint": "sha256:c5dd2c4de2f1908e97695f1555c960f2e8d73a06b74e095407fe4184d232a0ca",
+      "original_digest": "sha256:2b728613ffaba7047100877002b6815f3e9ccf73ea91cef2cc93e4eec184f933",
+      "changed_digest": "sha256:2b728613ffaba7047100877002b6815f3e9ccf73ea91cef2cc93e4eec184f933",
+      "request_differences": [],
+      "operation": {
+        "kind": "remote_git",
+        "exact_targets": [],
+        "canonical_targets": [],
+        "target_set_stable": true,
+        "recursive": false,
+        "dynamic_or_wildcard": false
+      },
+      "confidence": {
+        "complete": true,
+        "unresolved_fields": [],
+        "detector_ids": [
+          "shell.remote_git"
+        ]
+      },
+      "counterfactual_nested_session_removed_digest_matches": true
+    },
+    {
+      "round": 1,
+      "name": "force",
+      "original_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_023>",
+        "projectId": "causal-1-kfZrT5",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "changed_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push --force origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_023>",
+        "projectId": "causal-1-kfZrT5",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "original_fingerprint": "sha256:c5dd2c4de2f1908e97695f1555c960f2e8d73a06b74e095407fe4184d232a0ca",
+      "changed_fingerprint": "sha256:c5dd2c4de2f1908e97695f1555c960f2e8d73a06b74e095407fe4184d232a0ca",
+      "original_digest": "sha256:2b728613ffaba7047100877002b6815f3e9ccf73ea91cef2cc93e4eec184f933",
+      "changed_digest": "sha256:2b728613ffaba7047100877002b6815f3e9ccf73ea91cef2cc93e4eec184f933",
+      "request_differences": [],
+      "operation": {
+        "kind": "remote_git",
+        "exact_targets": [],
+        "canonical_targets": [],
+        "target_set_stable": true,
+        "recursive": false,
+        "dynamic_or_wildcard": false
+      },
+      "confidence": {
+        "complete": true,
+        "unresolved_fields": [],
+        "detector_ids": [
+          "shell.remote_git"
+        ]
+      },
+      "counterfactual_nested_session_removed_digest_matches": true
+    },
+    {
+      "round": 1,
+      "name": "delete",
+      "original_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_023>",
+        "projectId": "causal-1-kfZrT5",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "changed_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin --delete codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_023>",
+        "projectId": "causal-1-kfZrT5",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "original_fingerprint": "sha256:c5dd2c4de2f1908e97695f1555c960f2e8d73a06b74e095407fe4184d232a0ca",
+      "changed_fingerprint": "sha256:c5dd2c4de2f1908e97695f1555c960f2e8d73a06b74e095407fe4184d232a0ca",
+      "original_digest": "sha256:2b728613ffaba7047100877002b6815f3e9ccf73ea91cef2cc93e4eec184f933",
+      "changed_digest": "sha256:2b728613ffaba7047100877002b6815f3e9ccf73ea91cef2cc93e4eec184f933",
+      "request_differences": [],
+      "operation": {
+        "kind": "remote_git",
+        "exact_targets": [],
+        "canonical_targets": [],
+        "target_set_stable": true,
+        "recursive": false,
+        "dynamic_or_wildcard": false
+      },
+      "confidence": {
+        "complete": true,
+        "unresolved_fields": [],
+        "detector_ids": [
+          "shell.remote_git"
+        ]
+      },
+      "counterfactual_nested_session_removed_digest_matches": true
+    },
+    {
+      "round": 1,
+      "name": "new-session",
+      "original_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_023>",
+        "projectId": "causal-1-kfZrT5",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "changed_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_023>",
+        "projectId": "causal-1-kfZrT5",
+        "agentId": "DEV-01",
+        "sessionId": "session-2",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "original_fingerprint": "sha256:c5dd2c4de2f1908e97695f1555c960f2e8d73a06b74e095407fe4184d232a0ca",
+      "changed_fingerprint": "sha256:c5dd2c4de2f1908e97695f1555c960f2e8d73a06b74e095407fe4184d232a0ca",
+      "original_digest": "sha256:2b728613ffaba7047100877002b6815f3e9ccf73ea91cef2cc93e4eec184f933",
+      "changed_digest": "sha256:32c54f086d9f5e1fb154e51fabe30427c03c1343a2b7dae6c0786b50776d83bb",
+      "request_differences": [
+        {
+          "path": "subject.session_id",
+          "before": "session-1",
+          "after": "session-2"
+        },
+        {
+          "path": "snapshot.operation_facts.subject.session_id",
+          "before": "session-1",
+          "after": "session-2"
+        }
+      ],
+      "operation": {
+        "kind": "remote_git",
+        "exact_targets": [],
+        "canonical_targets": [],
+        "target_set_stable": true,
+        "recursive": false,
+        "dynamic_or_wildcard": false
+      },
+      "confidence": {
+        "complete": true,
+        "unresolved_fields": [],
+        "detector_ids": [
+          "shell.remote_git"
+        ]
+      },
+      "counterfactual_nested_session_removed_digest_matches": true
+    },
+    {
+      "round": 1,
+      "name": "other-task",
+      "original_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_023>",
+        "projectId": "causal-1-kfZrT5",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "changed_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_023>",
+        "projectId": "causal-1-kfZrT5",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-2",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "original_fingerprint": "sha256:c5dd2c4de2f1908e97695f1555c960f2e8d73a06b74e095407fe4184d232a0ca",
+      "changed_fingerprint": "sha256:d9a1ae0147927bee7ebab828b8eec2a161c497fb34f52dae9e85ab18b1e94b77",
+      "original_digest": "sha256:2b728613ffaba7047100877002b6815f3e9ccf73ea91cef2cc93e4eec184f933",
+      "changed_digest": "sha256:7ef2353c36e94bbabb2be014a1fc44652bec3730b455662a1bbea0c480864d56",
+      "request_differences": [
+        {
+          "path": "subject.task_id",
+          "before": "TASK-1",
+          "after": "TASK-2"
+        },
+        {
+          "path": "resource.scope.task_scope_digest",
+          "before": "sha256:4724c8a4dd31235c39b3333ff57b6fa7efb910809d7ecc35c98830c39ecf61b4",
+          "after": "sha256:846c54b1d72984cae5ddc53fa61b3282f0a274c8c459c785203ee623a069ae9f"
+        },
+        {
+          "path": "snapshot.operation_fingerprint",
+          "before": "sha256:c5dd2c4de2f1908e97695f1555c960f2e8d73a06b74e095407fe4184d232a0ca",
+          "after": "sha256:d9a1ae0147927bee7ebab828b8eec2a161c497fb34f52dae9e85ab18b1e94b77"
+        },
+        {
+          "path": "snapshot.operation_facts.context.task_id",
+          "before": "TASK-1",
+          "after": "TASK-2"
+        },
+        {
+          "path": "snapshot.operation_facts.context.task_scope_digest",
+          "before": "sha256:4724c8a4dd31235c39b3333ff57b6fa7efb910809d7ecc35c98830c39ecf61b4",
+          "after": "sha256:846c54b1d72984cae5ddc53fa61b3282f0a274c8c459c785203ee623a069ae9f"
+        }
+      ],
+      "operation": {
+        "kind": "remote_git",
+        "exact_targets": [],
+        "canonical_targets": [],
+        "target_set_stable": true,
+        "recursive": false,
+        "dynamic_or_wildcard": false
+      },
+      "confidence": {
+        "complete": true,
+        "unresolved_fields": [],
+        "detector_ids": [
+          "shell.remote_git"
+        ]
+      },
+      "counterfactual_nested_session_removed_digest_matches": false
+    },
+    {
+      "round": 2,
+      "name": "same",
+      "original_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_024>",
+        "projectId": "causal-2-OJHCI2",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "changed_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_024>",
+        "projectId": "causal-2-OJHCI2",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "original_fingerprint": "sha256:af30e3d1c21a9e9eae96f63d1f654c8c5a3861e956e90dc57cd4c1cf952c943f",
+      "changed_fingerprint": "sha256:af30e3d1c21a9e9eae96f63d1f654c8c5a3861e956e90dc57cd4c1cf952c943f",
+      "original_digest": "sha256:2d0062132552dd68ee874e6cb87f533d38810a5bc66b9fc1c8ef220b80ea57f3",
+      "changed_digest": "sha256:2d0062132552dd68ee874e6cb87f533d38810a5bc66b9fc1c8ef220b80ea57f3",
+      "request_differences": [],
+      "operation": {
+        "kind": "remote_git",
+        "exact_targets": [],
+        "canonical_targets": [],
+        "target_set_stable": true,
+        "recursive": false,
+        "dynamic_or_wildcard": false
+      },
+      "confidence": {
+        "complete": true,
+        "unresolved_fields": [],
+        "detector_ids": [
+          "shell.remote_git"
+        ]
+      },
+      "counterfactual_nested_session_removed_digest_matches": true
+    },
+    {
+      "round": 2,
+      "name": "branch",
+      "original_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_024>",
+        "projectId": "causal-2-OJHCI2",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "changed_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/another-target"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_024>",
+        "projectId": "causal-2-OJHCI2",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "original_fingerprint": "sha256:af30e3d1c21a9e9eae96f63d1f654c8c5a3861e956e90dc57cd4c1cf952c943f",
+      "changed_fingerprint": "sha256:af30e3d1c21a9e9eae96f63d1f654c8c5a3861e956e90dc57cd4c1cf952c943f",
+      "original_digest": "sha256:2d0062132552dd68ee874e6cb87f533d38810a5bc66b9fc1c8ef220b80ea57f3",
+      "changed_digest": "sha256:2d0062132552dd68ee874e6cb87f533d38810a5bc66b9fc1c8ef220b80ea57f3",
+      "request_differences": [],
+      "operation": {
+        "kind": "remote_git",
+        "exact_targets": [],
+        "canonical_targets": [],
+        "target_set_stable": true,
+        "recursive": false,
+        "dynamic_or_wildcard": false
+      },
+      "confidence": {
+        "complete": true,
+        "unresolved_fields": [],
+        "detector_ids": [
+          "shell.remote_git"
+        ]
+      },
+      "counterfactual_nested_session_removed_digest_matches": true
+    },
+    {
+      "round": 2,
+      "name": "remote",
+      "original_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_024>",
+        "projectId": "causal-2-OJHCI2",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "changed_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push backup codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_024>",
+        "projectId": "causal-2-OJHCI2",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "original_fingerprint": "sha256:af30e3d1c21a9e9eae96f63d1f654c8c5a3861e956e90dc57cd4c1cf952c943f",
+      "changed_fingerprint": "sha256:af30e3d1c21a9e9eae96f63d1f654c8c5a3861e956e90dc57cd4c1cf952c943f",
+      "original_digest": "sha256:2d0062132552dd68ee874e6cb87f533d38810a5bc66b9fc1c8ef220b80ea57f3",
+      "changed_digest": "sha256:2d0062132552dd68ee874e6cb87f533d38810a5bc66b9fc1c8ef220b80ea57f3",
+      "request_differences": [],
+      "operation": {
+        "kind": "remote_git",
+        "exact_targets": [],
+        "canonical_targets": [],
+        "target_set_stable": true,
+        "recursive": false,
+        "dynamic_or_wildcard": false
+      },
+      "confidence": {
+        "complete": true,
+        "unresolved_fields": [],
+        "detector_ids": [
+          "shell.remote_git"
+        ]
+      },
+      "counterfactual_nested_session_removed_digest_matches": true
+    },
+    {
+      "round": 2,
+      "name": "force",
+      "original_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_024>",
+        "projectId": "causal-2-OJHCI2",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "changed_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push --force origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_024>",
+        "projectId": "causal-2-OJHCI2",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "original_fingerprint": "sha256:af30e3d1c21a9e9eae96f63d1f654c8c5a3861e956e90dc57cd4c1cf952c943f",
+      "changed_fingerprint": "sha256:af30e3d1c21a9e9eae96f63d1f654c8c5a3861e956e90dc57cd4c1cf952c943f",
+      "original_digest": "sha256:2d0062132552dd68ee874e6cb87f533d38810a5bc66b9fc1c8ef220b80ea57f3",
+      "changed_digest": "sha256:2d0062132552dd68ee874e6cb87f533d38810a5bc66b9fc1c8ef220b80ea57f3",
+      "request_differences": [],
+      "operation": {
+        "kind": "remote_git",
+        "exact_targets": [],
+        "canonical_targets": [],
+        "target_set_stable": true,
+        "recursive": false,
+        "dynamic_or_wildcard": false
+      },
+      "confidence": {
+        "complete": true,
+        "unresolved_fields": [],
+        "detector_ids": [
+          "shell.remote_git"
+        ]
+      },
+      "counterfactual_nested_session_removed_digest_matches": true
+    },
+    {
+      "round": 2,
+      "name": "delete",
+      "original_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_024>",
+        "projectId": "causal-2-OJHCI2",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "changed_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin --delete codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_024>",
+        "projectId": "causal-2-OJHCI2",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "original_fingerprint": "sha256:af30e3d1c21a9e9eae96f63d1f654c8c5a3861e956e90dc57cd4c1cf952c943f",
+      "changed_fingerprint": "sha256:af30e3d1c21a9e9eae96f63d1f654c8c5a3861e956e90dc57cd4c1cf952c943f",
+      "original_digest": "sha256:2d0062132552dd68ee874e6cb87f533d38810a5bc66b9fc1c8ef220b80ea57f3",
+      "changed_digest": "sha256:2d0062132552dd68ee874e6cb87f533d38810a5bc66b9fc1c8ef220b80ea57f3",
+      "request_differences": [],
+      "operation": {
+        "kind": "remote_git",
+        "exact_targets": [],
+        "canonical_targets": [],
+        "target_set_stable": true,
+        "recursive": false,
+        "dynamic_or_wildcard": false
+      },
+      "confidence": {
+        "complete": true,
+        "unresolved_fields": [],
+        "detector_ids": [
+          "shell.remote_git"
+        ]
+      },
+      "counterfactual_nested_session_removed_digest_matches": true
+    },
+    {
+      "round": 2,
+      "name": "new-session",
+      "original_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_024>",
+        "projectId": "causal-2-OJHCI2",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "changed_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_024>",
+        "projectId": "causal-2-OJHCI2",
+        "agentId": "DEV-01",
+        "sessionId": "session-2",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "original_fingerprint": "sha256:af30e3d1c21a9e9eae96f63d1f654c8c5a3861e956e90dc57cd4c1cf952c943f",
+      "changed_fingerprint": "sha256:af30e3d1c21a9e9eae96f63d1f654c8c5a3861e956e90dc57cd4c1cf952c943f",
+      "original_digest": "sha256:2d0062132552dd68ee874e6cb87f533d38810a5bc66b9fc1c8ef220b80ea57f3",
+      "changed_digest": "sha256:3c63fb1b97c17c683b795350ac1b41b57c633f50bb315d809ad278a284ab51aa",
+      "request_differences": [
+        {
+          "path": "subject.session_id",
+          "before": "session-1",
+          "after": "session-2"
+        },
+        {
+          "path": "snapshot.operation_facts.subject.session_id",
+          "before": "session-1",
+          "after": "session-2"
+        }
+      ],
+      "operation": {
+        "kind": "remote_git",
+        "exact_targets": [],
+        "canonical_targets": [],
+        "target_set_stable": true,
+        "recursive": false,
+        "dynamic_or_wildcard": false
+      },
+      "confidence": {
+        "complete": true,
+        "unresolved_fields": [],
+        "detector_ids": [
+          "shell.remote_git"
+        ]
+      },
+      "counterfactual_nested_session_removed_digest_matches": true
+    },
+    {
+      "round": 2,
+      "name": "other-task",
+      "original_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_024>",
+        "projectId": "causal-2-OJHCI2",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-1",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "changed_call": {
+        "toolName": "shell",
+        "args": {
+          "command": "git push origin codex/research-probe"
+        },
+        "projectRoot": "<SYNTHETIC_FIXTURE_024>",
+        "projectId": "causal-2-OJHCI2",
+        "agentId": "DEV-01",
+        "sessionId": "session-1",
+        "taskId": "TASK-2",
+        "threadKey": "thread-1",
+        "sourceChannel": "codex_app_server"
+      },
+      "original_fingerprint": "sha256:af30e3d1c21a9e9eae96f63d1f654c8c5a3861e956e90dc57cd4c1cf952c943f",
+      "changed_fingerprint": "sha256:2abc9e04a723e89ddcb63ba2253dcc2b40c10c19e581922c86ce2572a2aebb50",
+      "original_digest": "sha256:2d0062132552dd68ee874e6cb87f533d38810a5bc66b9fc1c8ef220b80ea57f3",
+      "changed_digest": "sha256:d6fc864332429fecb1774229936a697be1ab9802f437fbcaef7dca7b6ce47685",
+      "request_differences": [
+        {
+          "path": "subject.task_id",
+          "before": "TASK-1",
+          "after": "TASK-2"
+        },
+        {
+          "path": "resource.scope.task_scope_digest",
+          "before": "sha256:5c3ae71750b6fdb25b1f552f3b80c6b6f85654d37db19ffcdabe78f7503182cf",
+          "after": "sha256:08dd08868a0744357f8b1a42b3b74b0a2ca7b84e73641f528cf1803c4b4cd788"
+        },
+        {
+          "path": "snapshot.operation_fingerprint",
+          "before": "sha256:af30e3d1c21a9e9eae96f63d1f654c8c5a3861e956e90dc57cd4c1cf952c943f",
+          "after": "sha256:2abc9e04a723e89ddcb63ba2253dcc2b40c10c19e581922c86ce2572a2aebb50"
+        },
+        {
+          "path": "snapshot.operation_facts.context.task_id",
+          "before": "TASK-1",
+          "after": "TASK-2"
+        },
+        {
+          "path": "snapshot.operation_facts.context.task_scope_digest",
+          "before": "sha256:5c3ae71750b6fdb25b1f552f3b80c6b6f85654d37db19ffcdabe78f7503182cf",
+          "after": "sha256:08dd08868a0744357f8b1a42b3b74b0a2ca7b84e73641f528cf1803c4b4cd788"
+        }
+      ],
+      "operation": {
+        "kind": "remote_git",
+        "exact_targets": [],
+        "canonical_targets": [],
+        "target_set_stable": true,
+        "recursive": false,
+        "dynamic_or_wildcard": false
+      },
+      "confidence": {
+        "complete": true,
+        "unresolved_fields": [],
+        "detector_ids": [
+          "shell.remote_git"
+        ]
+      },
+      "counterfactual_nested_session_removed_digest_matches": false
+    }
+  ],
+  "codex_resolution": [
+    {
+      "round": 1,
+      "name": "same-command",
+      "approved_command": "git push origin codex/research-probe",
+      "requested_command": "git push origin codex/research-probe",
+      "fixture": "<SYNTHETIC_FIXTURE_026>",
+      "actual": {
+        "allow": true,
+        "code": "ALLOW",
+        "reason": "no frozen negative-list predicate matched"
+      },
+      "before_authorization": {
+        "status": "available",
+        "issued_at": "2026-09-04T06:05:11.990Z",
+        "consumed_at": null
+      },
+      "after_authorization": {
+        "status": "consumed",
+        "issued_at": "2026-09-04T06:05:11.990Z",
+        "consumed_at": "2026-09-04T06:05:11.997Z",
+        "consumed_by": {
+          "agent_id": "DEV-01",
+          "session_id": "session-1",
+          "task_id": "TASK-1",
+          "thread_key": "thread-1",
+          "role": "DEV"
+        }
+      }
+    },
+    {
+      "round": 1,
+      "name": "changed-branch",
+      "approved_command": "git push origin codex/research-probe",
+      "requested_command": "git push origin codex/another-target",
+      "fixture": "<SYNTHETIC_FIXTURE_025>",
+      "actual": {
+        "allow": true,
+        "code": "ALLOW",
+        "reason": "no frozen negative-list predicate matched"
+      },
+      "before_authorization": {
+        "status": "available",
+        "issued_at": "2026-09-04T06:05:12.009Z",
+        "consumed_at": null
+      },
+      "after_authorization": {
+        "status": "consumed",
+        "issued_at": "2026-09-04T06:05:12.009Z",
+        "consumed_at": "2026-09-04T06:05:12.015Z",
+        "consumed_by": {
+          "agent_id": "DEV-01",
+          "session_id": "session-1",
+          "task_id": "TASK-1",
+          "thread_key": "thread-1",
+          "role": "DEV"
+        }
+      }
+    },
+    {
+      "round": 2,
+      "name": "same-command",
+      "approved_command": "git push origin codex/research-probe",
+      "requested_command": "git push origin codex/research-probe",
+      "fixture": "<SYNTHETIC_FIXTURE_028>",
+      "actual": {
+        "allow": true,
+        "code": "ALLOW",
+        "reason": "no frozen negative-list predicate matched"
+      },
+      "before_authorization": {
+        "status": "available",
+        "issued_at": "2026-09-04T06:05:12.027Z",
+        "consumed_at": null
+      },
+      "after_authorization": {
+        "status": "consumed",
+        "issued_at": "2026-09-04T06:05:12.027Z",
+        "consumed_at": "2026-09-04T06:05:12.032Z",
+        "consumed_by": {
+          "agent_id": "DEV-01",
+          "session_id": "session-1",
+          "task_id": "TASK-1",
+          "thread_key": "thread-1",
+          "role": "DEV"
+        }
+      }
+    },
+    {
+      "round": 2,
+      "name": "changed-branch",
+      "approved_command": "git push origin codex/research-probe",
+      "requested_command": "git push origin codex/another-target",
+      "fixture": "<SYNTHETIC_FIXTURE_027>",
+      "actual": {
+        "allow": true,
+        "code": "ALLOW",
+        "reason": "no frozen negative-list predicate matched"
+      },
+      "before_authorization": {
+        "status": "available",
+        "issued_at": "2026-09-04T06:05:12.043Z",
+        "consumed_at": null
+      },
+      "after_authorization": {
+        "status": "consumed",
+        "issued_at": "2026-09-04T06:05:12.043Z",
+        "consumed_at": "2026-09-04T06:05:12.049Z",
+        "consumed_by": {
+          "agent_id": "DEV-01",
+          "session_id": "session-1",
+          "task_id": "TASK-1",
+          "thread_key": "thread-1",
+          "role": "DEV"
+        }
+      }
+    }
+  ],
+  "lineage_controls": [
+    {
+      "round": 1,
+      "name": "matching",
+      "fixture": "<SYNTHETIC_FIXTURE_029>",
+      "expected": "accepted",
+      "actual": {
+        "task_id": "TASK-20260904-003",
+        "content_digest": "6844b4c8f2abbdf9273fa9fd8e9a8be58c65e78d2d4f9c0ff2a9d83a0ad25df0",
+        "authored_snapshot": {
+          "schema_version": 1,
+          "frontmatter": {
+            "depends_on": [
+              "TASK-20260904-001"
+            ],
+            "parent": "TASK-20260904-001",
+            "protocol": "fcop",
+            "recipient": "QA",
+            "sender": "PM",
+            "thread_key": "thread-1"
+          },
+          "body": "# Same task text\nIdentical description and expected output."
+        },
+        "capability_matrix": [
+          {
+            "task_step": "# Same task text",
+            "execution_role": "UNASSIGNED",
+            "required_capability": "task.execution",
+            "available_tools": [],
+            "current_policy": "allow",
+            "risk": "low",
+            "conclusion": "executable",
+            "suggested_fix": "none"
+          }
+        ],
+        "feasibility": {
+          "decision": "EXECUTABLE",
+          "reason_codes": [
+            "ACCEPTANCE_UNVERIFIABLE"
+          ],
+          "source": "task_spec_admission"
+        },
+        "decision": "accepted",
+        "code": "TASK_SPEC_VALID",
+        "blocking_findings": [],
+        "advisory_findings": [
+          {
+            "id": "ACCEPTANCE_UNVERIFIABLE",
+            "field": "task_body",
+            "message": "downstream task has no observable completion evidence or acceptance contract",
+            "suggested_fix": "add measurable completion conditions, required evidence, and the formal REPORT route before dispatch",
+            "finding_id": "ACCEPTANCE_UNVERIFIABLE",
+            "category": "acceptance_gate",
+            "severity": "medium",
+            "section": "Same task text",
+            "line_start": 10,
+            "line_end": 10,
+            "original_excerpt": "# Same task text",
+            "impact": "This is context for PM and does not prevent task execution.",
+            "required_capability": "task_body",
+            "current_support": "task remains executable; the exact operation boundary evaluates concrete effects",
+            "suggested_replacement": "add measurable completion conditions, required evidence, and the formal REPORT route before dispatch",
+            "can_auto_fix": false,
+            "decision_owner": "PM",
+            "recommended_decision": "advisory",
+            "enforcement": "advisory"
+          }
+        ]
+      }
+    },
+    {
+      "round": 1,
+      "name": "wrong-root",
+      "fixture": "<SYNTHETIC_FIXTURE_029>",
+      "expected": "mechanical_error",
+      "actual": {
+        "task_id": "TASK-20260904-003",
+        "content_digest": "6844b4c8f2abbdf9273fa9fd8e9a8be58c65e78d2d4f9c0ff2a9d83a0ad25df0",
+        "authored_snapshot": {
+          "schema_version": 1,
+          "frontmatter": {
+            "depends_on": [
+              "TASK-20260904-001"
+            ],
+            "parent": "TASK-20260904-001",
+            "protocol": "fcop",
+            "recipient": "QA",
+            "sender": "PM",
+            "thread_key": "thread-1"
+          },
+          "body": "# Same task text\nIdentical description and expected output."
+        },
+        "capability_matrix": [
+          {
+            "task_step": "# Same task text",
+            "execution_role": "UNASSIGNED",
+            "required_capability": "task.execution",
+            "available_tools": [],
+            "current_policy": "allow",
+            "risk": "low",
+            "conclusion": "executable",
+            "suggested_fix": "none"
+          }
+        ],
+        "feasibility": {
+          "decision": "NEEDS_REWRITE",
+          "reason_codes": [
+            "ACCEPTANCE_UNVERIFIABLE"
+          ],
+          "source": "task_spec_admission"
+        },
+        "decision": "mechanical_error",
+        "code": "TASK_SPEC_INVALID",
+        "blocking_findings": [
+          {
+            "id": "PARENT_INVALID",
+            "field": "root_task_id",
+            "message": "child task root_task_id does not match its parent's canonical root",
+            "evidence": [
+              "TASK-20260904-999",
+              "TASK-20260904-000"
+            ],
+            "suggested_fix": "inherit root_task_id from the parent task; do not start a new root inside an existing task tree",
+            "finding_id": "PARENT_INVALID",
+            "category": "lifecycle",
+            "severity": "medium",
+            "section": "frontmatter",
+            "line_start": 3,
+            "line_end": 3,
+            "original_excerpt": "root_task_id: TASK-20260904-999",
+            "impact": "The task wording may benefit from clarification; PM retains the execution decision.",
+            "required_capability": "root_task_id",
+            "current_support": "canonical identity or transaction integrity requires repair",
+            "suggested_replacement": "inherit root_task_id from the parent task; do not start a new root inside an existing task tree",
+            "can_auto_fix": false,
+            "decision_owner": "TASK_AUTHOR",
+            "recommended_decision": "needs_revision",
+            "enforcement": "mechanical_error"
+          }
+        ],
+        "advisory_findings": [
+          {
+            "id": "ACCEPTANCE_UNVERIFIABLE",
+            "field": "task_body",
+            "message": "downstream task has no observable completion evidence or acceptance contract",
+            "suggested_fix": "add measurable completion conditions, required evidence, and the formal REPORT route before dispatch",
+            "finding_id": "ACCEPTANCE_UNVERIFIABLE",
+            "category": "acceptance_gate",
+            "severity": "medium",
+            "section": "Same task text",
+            "line_start": 10,
+            "line_end": 10,
+            "original_excerpt": "# Same task text",
+            "impact": "This is context for PM and does not prevent task execution.",
+            "required_capability": "task_body",
+            "current_support": "task remains executable; the exact operation boundary evaluates concrete effects",
+            "suggested_replacement": "add measurable completion conditions, required evidence, and the formal REPORT route before dispatch",
+            "can_auto_fix": false,
+            "decision_owner": "PM",
+            "recommended_decision": "advisory",
+            "enforcement": "advisory"
+          }
+        ]
+      }
+    },
+    {
+      "round": 1,
+      "name": "wrong-thread",
+      "fixture": "<SYNTHETIC_FIXTURE_029>",
+      "expected": "mechanical_error",
+      "actual": {
+        "task_id": "TASK-20260904-003",
+        "content_digest": "601643a977cca883cb7f3a32ed49be725274d79cb25feeba5387e1a2f0b553f8",
+        "authored_snapshot": {
+          "schema_version": 1,
+          "frontmatter": {
+            "depends_on": [
+              "TASK-20260904-001"
+            ],
+            "parent": "TASK-20260904-001",
+            "protocol": "fcop",
+            "recipient": "QA",
+            "sender": "PM",
+            "thread_key": "thread-2"
+          },
+          "body": "# Same task text\nIdentical description and expected output."
+        },
+        "capability_matrix": [
+          {
+            "task_step": "# Same task text",
+            "execution_role": "UNASSIGNED",
+            "required_capability": "task.execution",
+            "available_tools": [],
+            "current_policy": "allow",
+            "risk": "low",
+            "conclusion": "executable",
+            "suggested_fix": "none"
+          }
+        ],
+        "feasibility": {
+          "decision": "NEEDS_REWRITE",
+          "reason_codes": [
+            "ACCEPTANCE_UNVERIFIABLE"
+          ],
+          "source": "task_spec_admission"
+        },
+        "decision": "mechanical_error",
+        "code": "TASK_SPEC_INVALID",
+        "blocking_findings": [
+          {
+            "id": "PARENT_INVALID",
+            "field": "thread_key",
+            "message": "child task canonical thread identity does not match its parent",
+            "evidence": [
+              "thread-2",
+              "thread-1"
+            ],
+            "finding_id": "PARENT_INVALID",
+            "category": "lifecycle",
+            "severity": "medium",
+            "section": "frontmatter",
+            "line_start": 7,
+            "line_end": 7,
+            "original_excerpt": "thread_key: thread-2",
+            "impact": "The task wording may benefit from clarification; PM retains the execution decision.",
+            "required_capability": "thread_key",
+            "current_support": "canonical identity or transaction integrity requires repair",
+            "suggested_fix": "revise the task specification so the requirement has one executable interpretation",
+            "suggested_replacement": "revise the task specification so the requirement has one executable interpretation",
+            "can_auto_fix": false,
+            "decision_owner": "TASK_AUTHOR",
+            "recommended_decision": "needs_revision",
+            "enforcement": "mechanical_error"
+          }
+        ],
+        "advisory_findings": [
+          {
+            "id": "ACCEPTANCE_UNVERIFIABLE",
+            "field": "task_body",
+            "message": "downstream task has no observable completion evidence or acceptance contract",
+            "suggested_fix": "add measurable completion conditions, required evidence, and the formal REPORT route before dispatch",
+            "finding_id": "ACCEPTANCE_UNVERIFIABLE",
+            "category": "acceptance_gate",
+            "severity": "medium",
+            "section": "Same task text",
+            "line_start": 10,
+            "line_end": 10,
+            "original_excerpt": "# Same task text",
+            "impact": "This is context for PM and does not prevent task execution.",
+            "required_capability": "task_body",
+            "current_support": "task remains executable; the exact operation boundary evaluates concrete effects",
+            "suggested_replacement": "add measurable completion conditions, required evidence, and the formal REPORT route before dispatch",
+            "can_auto_fix": false,
+            "decision_owner": "PM",
+            "recommended_decision": "advisory",
+            "enforcement": "advisory"
+          }
+        ]
+      }
+    },
+    {
+      "round": 1,
+      "name": "missing-parent",
+      "fixture": "<SYNTHETIC_FIXTURE_029>",
+      "expected": "mechanical_error",
+      "actual": {
+        "task_id": "TASK-20260904-003",
+        "content_digest": "d0fa4fdde695ea693bcafd2331b89bb2fecf7874100118830fb73bfaea0ed1fa",
+        "authored_snapshot": {
+          "schema_version": 1,
+          "frontmatter": {
+            "depends_on": [
+              "TASK-20260904-001"
+            ],
+            "parent": "TASK-20260904-999",
+            "protocol": "fcop",
+            "recipient": "QA",
+            "sender": "PM",
+            "thread_key": "thread-1"
+          },
+          "body": "# Same task text\nIdentical description and expected output."
+        },
+        "capability_matrix": [
+          {
+            "task_step": "# Same task text",
+            "execution_role": "UNASSIGNED",
+            "required_capability": "task.execution",
+            "available_tools": [],
+            "current_policy": "allow",
+            "risk": "low",
+            "conclusion": "executable",
+            "suggested_fix": "none"
+          }
+        ],
+        "feasibility": {
+          "decision": "NEEDS_REWRITE",
+          "reason_codes": [
+            "ACCEPTANCE_UNVERIFIABLE"
+          ],
+          "source": "task_spec_admission"
+        },
+        "decision": "mechanical_error",
+        "code": "TASK_SPEC_INVALID",
+        "blocking_findings": [
+          {
+            "id": "PARENT_INVALID",
+            "field": "parent",
+            "message": "parent task does not exist",
+            "evidence": [
+              "TASK-20260904-999"
+            ],
+            "finding_id": "PARENT_INVALID",
+            "category": "lifecycle",
+            "severity": "medium",
+            "section": "frontmatter",
+            "line_start": 6,
+            "line_end": 6,
+            "original_excerpt": "parent: TASK-20260904-999",
+            "impact": "The task wording may benefit from clarification; PM retains the execution decision.",
+            "required_capability": "parent",
+            "current_support": "canonical identity or transaction integrity requires repair",
+            "suggested_fix": "revise the task specification so the requirement has one executable interpretation",
+            "suggested_replacement": "revise the task specification so the requirement has one executable interpretation",
+            "can_auto_fix": false,
+            "decision_owner": "TASK_AUTHOR",
+            "recommended_decision": "needs_revision",
+            "enforcement": "mechanical_error"
+          }
+        ],
+        "advisory_findings": [
+          {
+            "id": "ACCEPTANCE_UNVERIFIABLE",
+            "field": "task_body",
+            "message": "downstream task has no observable completion evidence or acceptance contract",
+            "suggested_fix": "add measurable completion conditions, required evidence, and the formal REPORT route before dispatch",
+            "finding_id": "ACCEPTANCE_UNVERIFIABLE",
+            "category": "acceptance_gate",
+            "severity": "medium",
+            "section": "Same task text",
+            "line_start": 10,
+            "line_end": 10,
+            "original_excerpt": "# Same task text",
+            "impact": "This is context for PM and does not prevent task execution.",
+            "required_capability": "task_body",
+            "current_support": "task remains executable; the exact operation boundary evaluates concrete effects",
+            "suggested_replacement": "add measurable completion conditions, required evidence, and the formal REPORT route before dispatch",
+            "can_auto_fix": false,
+            "decision_owner": "PM",
+            "recommended_decision": "advisory",
+            "enforcement": "advisory"
+          }
+        ]
+      }
+    },
+    {
+      "round": 1,
+      "name": "same-text-other-done",
+      "body_sha256": "cadc35ef2cf2670ad41bc0f368ee2ea13e190621d1c6d8c6302362386e10a1db",
+      "distinct_task_ids": [
+        "TASK-20260904-001",
+        "TASK-20260904-002"
+      ],
+      "expected": "waiting_dependency",
+      "actual": {
+        "disposition": "waiting_dependency",
+        "decision_owner": "PM",
+        "reason": "waiting_dependency",
+        "detail": "waiting for TASK-20260904-001 lifecycle done (PM approved)",
+        "waitingOn": "TASK-20260904-001"
+      }
+    },
+    {
+      "round": 1,
+      "name": "same-text-target-done",
+      "body_sha256": "cadc35ef2cf2670ad41bc0f368ee2ea13e190621d1c6d8c6302362386e10a1db",
+      "distinct_task_ids": [
+        "TASK-20260904-001",
+        "TASK-20260904-002"
+      ],
+      "expected": "neutral",
+      "actual": {
+        "disposition": "neutral",
+        "decision_owner": "AGENT",
+        "reason": "runnable"
+      }
+    },
+    {
+      "round": 2,
+      "name": "matching",
+      "fixture": "<SYNTHETIC_FIXTURE_030>",
+      "expected": "accepted",
+      "actual": {
+        "task_id": "TASK-20260904-003",
+        "content_digest": "6844b4c8f2abbdf9273fa9fd8e9a8be58c65e78d2d4f9c0ff2a9d83a0ad25df0",
+        "authored_snapshot": {
+          "schema_version": 1,
+          "frontmatter": {
+            "depends_on": [
+              "TASK-20260904-001"
+            ],
+            "parent": "TASK-20260904-001",
+            "protocol": "fcop",
+            "recipient": "QA",
+            "sender": "PM",
+            "thread_key": "thread-1"
+          },
+          "body": "# Same task text\nIdentical description and expected output."
+        },
+        "capability_matrix": [
+          {
+            "task_step": "# Same task text",
+            "execution_role": "UNASSIGNED",
+            "required_capability": "task.execution",
+            "available_tools": [],
+            "current_policy": "allow",
+            "risk": "low",
+            "conclusion": "executable",
+            "suggested_fix": "none"
+          }
+        ],
+        "feasibility": {
+          "decision": "EXECUTABLE",
+          "reason_codes": [
+            "ACCEPTANCE_UNVERIFIABLE"
+          ],
+          "source": "task_spec_admission"
+        },
+        "decision": "accepted",
+        "code": "TASK_SPEC_VALID",
+        "blocking_findings": [],
+        "advisory_findings": [
+          {
+            "id": "ACCEPTANCE_UNVERIFIABLE",
+            "field": "task_body",
+            "message": "downstream task has no observable completion evidence or acceptance contract",
+            "suggested_fix": "add measurable completion conditions, required evidence, and the formal REPORT route before dispatch",
+            "finding_id": "ACCEPTANCE_UNVERIFIABLE",
+            "category": "acceptance_gate",
+            "severity": "medium",
+            "section": "Same task text",
+            "line_start": 10,
+            "line_end": 10,
+            "original_excerpt": "# Same task text",
+            "impact": "This is context for PM and does not prevent task execution.",
+            "required_capability": "task_body",
+            "current_support": "task remains executable; the exact operation boundary evaluates concrete effects",
+            "suggested_replacement": "add measurable completion conditions, required evidence, and the formal REPORT route before dispatch",
+            "can_auto_fix": false,
+            "decision_owner": "PM",
+            "recommended_decision": "advisory",
+            "enforcement": "advisory"
+          }
+        ]
+      }
+    },
+    {
+      "round": 2,
+      "name": "wrong-root",
+      "fixture": "<SYNTHETIC_FIXTURE_030>",
+      "expected": "mechanical_error",
+      "actual": {
+        "task_id": "TASK-20260904-003",
+        "content_digest": "6844b4c8f2abbdf9273fa9fd8e9a8be58c65e78d2d4f9c0ff2a9d83a0ad25df0",
+        "authored_snapshot": {
+          "schema_version": 1,
+          "frontmatter": {
+            "depends_on": [
+              "TASK-20260904-001"
+            ],
+            "parent": "TASK-20260904-001",
+            "protocol": "fcop",
+            "recipient": "QA",
+            "sender": "PM",
+            "thread_key": "thread-1"
+          },
+          "body": "# Same task text\nIdentical description and expected output."
+        },
+        "capability_matrix": [
+          {
+            "task_step": "# Same task text",
+            "execution_role": "UNASSIGNED",
+            "required_capability": "task.execution",
+            "available_tools": [],
+            "current_policy": "allow",
+            "risk": "low",
+            "conclusion": "executable",
+            "suggested_fix": "none"
+          }
+        ],
+        "feasibility": {
+          "decision": "NEEDS_REWRITE",
+          "reason_codes": [
+            "ACCEPTANCE_UNVERIFIABLE"
+          ],
+          "source": "task_spec_admission"
+        },
+        "decision": "mechanical_error",
+        "code": "TASK_SPEC_INVALID",
+        "blocking_findings": [
+          {
+            "id": "PARENT_INVALID",
+            "field": "root_task_id",
+            "message": "child task root_task_id does not match its parent's canonical root",
+            "evidence": [
+              "TASK-20260904-999",
+              "TASK-20260904-000"
+            ],
+            "suggested_fix": "inherit root_task_id from the parent task; do not start a new root inside an existing task tree",
+            "finding_id": "PARENT_INVALID",
+            "category": "lifecycle",
+            "severity": "medium",
+            "section": "frontmatter",
+            "line_start": 3,
+            "line_end": 3,
+            "original_excerpt": "root_task_id: TASK-20260904-999",
+            "impact": "The task wording may benefit from clarification; PM retains the execution decision.",
+            "required_capability": "root_task_id",
+            "current_support": "canonical identity or transaction integrity requires repair",
+            "suggested_replacement": "inherit root_task_id from the parent task; do not start a new root inside an existing task tree",
+            "can_auto_fix": false,
+            "decision_owner": "TASK_AUTHOR",
+            "recommended_decision": "needs_revision",
+            "enforcement": "mechanical_error"
+          }
+        ],
+        "advisory_findings": [
+          {
+            "id": "ACCEPTANCE_UNVERIFIABLE",
+            "field": "task_body",
+            "message": "downstream task has no observable completion evidence or acceptance contract",
+            "suggested_fix": "add measurable completion conditions, required evidence, and the formal REPORT route before dispatch",
+            "finding_id": "ACCEPTANCE_UNVERIFIABLE",
+            "category": "acceptance_gate",
+            "severity": "medium",
+            "section": "Same task text",
+            "line_start": 10,
+            "line_end": 10,
+            "original_excerpt": "# Same task text",
+            "impact": "This is context for PM and does not prevent task execution.",
+            "required_capability": "task_body",
+            "current_support": "task remains executable; the exact operation boundary evaluates concrete effects",
+            "suggested_replacement": "add measurable completion conditions, required evidence, and the formal REPORT route before dispatch",
+            "can_auto_fix": false,
+            "decision_owner": "PM",
+            "recommended_decision": "advisory",
+            "enforcement": "advisory"
+          }
+        ]
+      }
+    },
+    {
+      "round": 2,
+      "name": "wrong-thread",
+      "fixture": "<SYNTHETIC_FIXTURE_030>",
+      "expected": "mechanical_error",
+      "actual": {
+        "task_id": "TASK-20260904-003",
+        "content_digest": "601643a977cca883cb7f3a32ed49be725274d79cb25feeba5387e1a2f0b553f8",
+        "authored_snapshot": {
+          "schema_version": 1,
+          "frontmatter": {
+            "depends_on": [
+              "TASK-20260904-001"
+            ],
+            "parent": "TASK-20260904-001",
+            "protocol": "fcop",
+            "recipient": "QA",
+            "sender": "PM",
+            "thread_key": "thread-2"
+          },
+          "body": "# Same task text\nIdentical description and expected output."
+        },
+        "capability_matrix": [
+          {
+            "task_step": "# Same task text",
+            "execution_role": "UNASSIGNED",
+            "required_capability": "task.execution",
+            "available_tools": [],
+            "current_policy": "allow",
+            "risk": "low",
+            "conclusion": "executable",
+            "suggested_fix": "none"
+          }
+        ],
+        "feasibility": {
+          "decision": "NEEDS_REWRITE",
+          "reason_codes": [
+            "ACCEPTANCE_UNVERIFIABLE"
+          ],
+          "source": "task_spec_admission"
+        },
+        "decision": "mechanical_error",
+        "code": "TASK_SPEC_INVALID",
+        "blocking_findings": [
+          {
+            "id": "PARENT_INVALID",
+            "field": "thread_key",
+            "message": "child task canonical thread identity does not match its parent",
+            "evidence": [
+              "thread-2",
+              "thread-1"
+            ],
+            "finding_id": "PARENT_INVALID",
+            "category": "lifecycle",
+            "severity": "medium",
+            "section": "frontmatter",
+            "line_start": 7,
+            "line_end": 7,
+            "original_excerpt": "thread_key: thread-2",
+            "impact": "The task wording may benefit from clarification; PM retains the execution decision.",
+            "required_capability": "thread_key",
+            "current_support": "canonical identity or transaction integrity requires repair",
+            "suggested_fix": "revise the task specification so the requirement has one executable interpretation",
+            "suggested_replacement": "revise the task specification so the requirement has one executable interpretation",
+            "can_auto_fix": false,
+            "decision_owner": "TASK_AUTHOR",
+            "recommended_decision": "needs_revision",
+            "enforcement": "mechanical_error"
+          }
+        ],
+        "advisory_findings": [
+          {
+            "id": "ACCEPTANCE_UNVERIFIABLE",
+            "field": "task_body",
+            "message": "downstream task has no observable completion evidence or acceptance contract",
+            "suggested_fix": "add measurable completion conditions, required evidence, and the formal REPORT route before dispatch",
+            "finding_id": "ACCEPTANCE_UNVERIFIABLE",
+            "category": "acceptance_gate",
+            "severity": "medium",
+            "section": "Same task text",
+            "line_start": 10,
+            "line_end": 10,
+            "original_excerpt": "# Same task text",
+            "impact": "This is context for PM and does not prevent task execution.",
+            "required_capability": "task_body",
+            "current_support": "task remains executable; the exact operation boundary evaluates concrete effects",
+            "suggested_replacement": "add measurable completion conditions, required evidence, and the formal REPORT route before dispatch",
+            "can_auto_fix": false,
+            "decision_owner": "PM",
+            "recommended_decision": "advisory",
+            "enforcement": "advisory"
+          }
+        ]
+      }
+    },
+    {
+      "round": 2,
+      "name": "missing-parent",
+      "fixture": "<SYNTHETIC_FIXTURE_030>",
+      "expected": "mechanical_error",
+      "actual": {
+        "task_id": "TASK-20260904-003",
+        "content_digest": "d0fa4fdde695ea693bcafd2331b89bb2fecf7874100118830fb73bfaea0ed1fa",
+        "authored_snapshot": {
+          "schema_version": 1,
+          "frontmatter": {
+            "depends_on": [
+              "TASK-20260904-001"
+            ],
+            "parent": "TASK-20260904-999",
+            "protocol": "fcop",
+            "recipient": "QA",
+            "sender": "PM",
+            "thread_key": "thread-1"
+          },
+          "body": "# Same task text\nIdentical description and expected output."
+        },
+        "capability_matrix": [
+          {
+            "task_step": "# Same task text",
+            "execution_role": "UNASSIGNED",
+            "required_capability": "task.execution",
+            "available_tools": [],
+            "current_policy": "allow",
+            "risk": "low",
+            "conclusion": "executable",
+            "suggested_fix": "none"
+          }
+        ],
+        "feasibility": {
+          "decision": "NEEDS_REWRITE",
+          "reason_codes": [
+            "ACCEPTANCE_UNVERIFIABLE"
+          ],
+          "source": "task_spec_admission"
+        },
+        "decision": "mechanical_error",
+        "code": "TASK_SPEC_INVALID",
+        "blocking_findings": [
+          {
+            "id": "PARENT_INVALID",
+            "field": "parent",
+            "message": "parent task does not exist",
+            "evidence": [
+              "TASK-20260904-999"
+            ],
+            "finding_id": "PARENT_INVALID",
+            "category": "lifecycle",
+            "severity": "medium",
+            "section": "frontmatter",
+            "line_start": 6,
+            "line_end": 6,
+            "original_excerpt": "parent: TASK-20260904-999",
+            "impact": "The task wording may benefit from clarification; PM retains the execution decision.",
+            "required_capability": "parent",
+            "current_support": "canonical identity or transaction integrity requires repair",
+            "suggested_fix": "revise the task specification so the requirement has one executable interpretation",
+            "suggested_replacement": "revise the task specification so the requirement has one executable interpretation",
+            "can_auto_fix": false,
+            "decision_owner": "TASK_AUTHOR",
+            "recommended_decision": "needs_revision",
+            "enforcement": "mechanical_error"
+          }
+        ],
+        "advisory_findings": [
+          {
+            "id": "ACCEPTANCE_UNVERIFIABLE",
+            "field": "task_body",
+            "message": "downstream task has no observable completion evidence or acceptance contract",
+            "suggested_fix": "add measurable completion conditions, required evidence, and the formal REPORT route before dispatch",
+            "finding_id": "ACCEPTANCE_UNVERIFIABLE",
+            "category": "acceptance_gate",
+            "severity": "medium",
+            "section": "Same task text",
+            "line_start": 10,
+            "line_end": 10,
+            "original_excerpt": "# Same task text",
+            "impact": "This is context for PM and does not prevent task execution.",
+            "required_capability": "task_body",
+            "current_support": "task remains executable; the exact operation boundary evaluates concrete effects",
+            "suggested_replacement": "add measurable completion conditions, required evidence, and the formal REPORT route before dispatch",
+            "can_auto_fix": false,
+            "decision_owner": "PM",
+            "recommended_decision": "advisory",
+            "enforcement": "advisory"
+          }
+        ]
+      }
+    },
+    {
+      "round": 2,
+      "name": "same-text-other-done",
+      "body_sha256": "cadc35ef2cf2670ad41bc0f368ee2ea13e190621d1c6d8c6302362386e10a1db",
+      "distinct_task_ids": [
+        "TASK-20260904-001",
+        "TASK-20260904-002"
+      ],
+      "expected": "waiting_dependency",
+      "actual": {
+        "disposition": "waiting_dependency",
+        "decision_owner": "PM",
+        "reason": "waiting_dependency",
+        "detail": "waiting for TASK-20260904-001 lifecycle done (PM approved)",
+        "waitingOn": "TASK-20260904-001"
+      }
+    },
+    {
+      "round": 2,
+      "name": "same-text-target-done",
+      "body_sha256": "cadc35ef2cf2670ad41bc0f368ee2ea13e190621d1c6d8c6302362386e10a1db",
+      "distinct_task_ids": [
+        "TASK-20260904-001",
+        "TASK-20260904-002"
+      ],
+      "expected": "neutral",
+      "actual": {
+        "disposition": "neutral",
+        "decision_owner": "AGENT",
+        "reason": "runnable"
+      }
+    }
+  ],
+  "source_records": [
+    {
+      "file": "runs/baseline-results.json",
+      "sha256": "5313932f7ebd1ccc964424c565d1bafff61ca57dce56ff622e5520dd67c424f5"
+    },
+    {
+      "file": "runs/probe-2026-09-04T05-41-19-249Z.json",
+      "sha256": "6aafb41c09e08504e190f344807aefcb0251c615cfa11247721f7c2f7fab62c7"
+    },
+    {
+      "file": "runs/causal-2026-09-04T06-05-11-964Z.json",
+      "sha256": "05a1b904b3b8312e054068a66228767e6802889a54fe7c002ea08a8ca08798c2"
+    }
+  ],
+  "redaction": {
+    "fixture_paths": "Replaced with consistent synthetic fixture labels; labels are not executable paths.",
+    "process_ids": "Omitted; cross-process execution is implemented by the source research runner.",
+    "operation_digests": "Original observed values retained. Do not recompute from path-redacted inputs.",
+    "ordering": "Array order, rounds, timestamps, outcomes and failures retained.",
+    "excluded": "Privacy side experiment and incomplete authoring/debug runs are outside the article dataset."
+  }
+}

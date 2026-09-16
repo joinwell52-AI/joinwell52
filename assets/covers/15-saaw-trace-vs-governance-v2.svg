@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Trace is not Governance</title>
+  <desc id="desc">Execution trace records events, while governance reconstructs authority, responsibility, evidence, lifecycle, conflict, decision and recovery from durable work facts.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#061122"/><stop offset="1" stop-color="#151a36"/></linearGradient>
+    <linearGradient id="trace" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#47c9dd"/><stop offset="1" stop-color="#4b71d9"/></linearGradient>
+    <linearGradient id="gov" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#8172ff"/><stop offset=".55" stop-color="#54d7e8"/><stop offset="1" stop-color="#efa64a"/></linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#9ab5dc" stroke-opacity=".045"/></pattern>
+    <marker id="arrowC" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#58d8e8"/></marker>
+    <marker id="arrowO" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#efa64a"/></marker>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/><rect width="1600" height="900" fill="url(#grid)"/>
+  <text x="72" y="72" fill="#5edbea" font-family="Arial,sans-serif" font-size="21" font-weight="700" letter-spacing="5">THE ARCHITECTURE GAP</text>
+  <text x="72" y="130" fill="#fff" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="54" font-weight="800">Trace（执行轨迹）≠ Governance（治理）</text>
+  <text x="72" y="168" fill="#9dacc4" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="20">记录“发生了什么”不等于证明“工作为何成立、由谁负责、现在是否合法”</text>
+
+  <g font-family="Arial,'Microsoft YaHei',sans-serif">
+    <g transform="translate(72 228)">
+      <rect width="610" height="574" rx="30" fill="#091a2c" stroke="#3cbdd2" stroke-width="2"/>
+      <text x="34" y="50" fill="#62dcea" font-size="18" font-weight="700" letter-spacing="2">TRACE · EVENT RECORD</text>
+      <text x="34" y="88" fill="#fff" font-size="30" font-weight="800">一次执行留下的线性事件</text>
+      <path d="M84 142V450" stroke="url(#trace)" stroke-width="6"/>
+      <g fill="#0e3041" stroke="#42c5d8" stroke-width="2">
+        <circle cx="84" cy="154" r="13"/><circle cx="84" cy="230" r="13"/><circle cx="84" cy="306" r="13"/><circle cx="84" cy="382" r="13"/><circle cx="84" cy="458" r="13"/>
+      </g>
+      <g fill="#e8f0f8" font-size="20"><text x="122" y="161">13:01 · Agent received prompt</text><text x="122" y="237">13:03 · Tool call started</text><text x="122" y="313">13:05 · Files modified</text><text x="122" y="389">13:06 · Subtask returned completed</text><text x="122" y="465">13:07 · Summary generated</text></g>
+      <rect x="34" y="506" width="542" height="44" rx="12" fill="#11283a" stroke="#315a70"/>
+      <text x="52" y="535" fill="#a8b6c9" font-size="17">能回答：调用了什么、何时发生、返回了什么</text>
+    </g>
+
+    <g transform="translate(728 228)">
+      <rect width="800" height="574" rx="30" fill="#10152d" stroke="url(#gov)" stroke-width="3"/>
+      <text x="34" y="50" fill="#b6abff" font-size="18" font-weight="700" letter-spacing="2">GOVERNANCE · DURABLE WORK FACTS</text>
+      <text x="34" y="88" fill="#fff" font-size="30" font-weight="800">从证据重建可问责的工作状态</text>
+
+      <g fill="#171f3f" stroke="#7972dc" stroke-width="2">
+        <rect x="34" y="126" width="208" height="90" rx="18"/><rect x="296" y="126" width="208" height="90" rx="18"/><rect x="558" y="126" width="208" height="90" rx="18"/>
+      </g>
+      <g text-anchor="middle"><text x="138" y="160" fill="#b9afff" font-size="15" font-weight="700">AUTHORITY</text><text x="138" y="190" fill="#fff" font-size="20">谁授权 / 谁接单</text><text x="400" y="160" fill="#65dcea" font-size="15" font-weight="700">EVIDENCE</text><text x="400" y="190" fill="#fff" font-size="20">测试 / 产物 / Git</text><text x="662" y="160" fill="#f1b25a" font-size="15" font-weight="700">RESPONSIBILITY</text><text x="662" y="190" fill="#fff" font-size="20">谁报告 / 谁审查</text></g>
+
+      <g fill="#0f2940" stroke="#4b8eb0" stroke-width="2">
+        <rect x="34" y="264" width="208" height="90" rx="18"/><rect x="296" y="264" width="208" height="90" rx="18"/><rect x="558" y="264" width="208" height="90" rx="18"/>
+      </g>
+      <g text-anchor="middle"><text x="138" y="298" fill="#65dcea" font-size="15" font-weight="700">LIFECYCLE</text><text x="138" y="328" fill="#fff" font-size="20">当前状态是否合法</text><text x="400" y="298" fill="#65dcea" font-size="15" font-weight="700">ISSUE SET</text><text x="400" y="328" fill="#fff" font-size="20">冲突与缺口可见</text><text x="662" y="298" fill="#65dcea" font-size="15" font-weight="700">RECOVERY</text><text x="662" y="328" fill="#fff" font-size="20">失败后由谁继续</text></g>
+
+      <g stroke="#5edbea" stroke-width="3" fill="none" marker-end="url(#arrowC)"><path d="M138 224V252"/><path d="M400 224V252"/><path d="M662 224V252"/><path d="M246 309H284"/><path d="M508 309H546"/></g>
+      <path d="M400 368V414" stroke="#efa64a" stroke-width="4" marker-end="url(#arrowO)"/>
+      <rect x="146" y="428" width="508" height="82" rx="22" fill="#36251e" stroke="#efa64a" stroke-width="2"/>
+      <text x="400" y="460" text-anchor="middle" fill="#f1b35d" font-size="15" font-weight="700" letter-spacing="2">REVIEW / DECISION</text>
+      <text x="400" y="491" text-anchor="middle" fill="#fff" font-size="22" font-weight="800">证据充分，且有权主体决定后，工作才成立</text>
+      <text x="400" y="546" text-anchor="middle" fill="#91a2bc" font-size="17">Trace 是输入之一；治理状态由持久事实、规则与授权共同重建</text>
+    </g>
+  </g>
+  <rect x="72" y="828" width="1456" height="44" rx="12" fill="#0a1020" stroke="#4c5e7a"/>
+  <text x="800" y="857" text-anchor="middle" fill="#dce5f2" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="18">Agent 可以产生轨迹；只有治理体系能够形成责任、决策与可恢复的工作历史</text>
+</svg>

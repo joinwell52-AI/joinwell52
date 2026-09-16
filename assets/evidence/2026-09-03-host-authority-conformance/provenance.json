@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "published": "2026-09-04",
+  "method": "Explicit field whitelist; original row order, outcomes, timestamps and counters preserved.",
+  "original_files": [
+    {
+      "file": "plan-completeness-probe.json",
+      "sha256": "c8fc9824421b948e01941bed61d69cacf277b1ba5f430166c1b55d7d31524e11"
+    },
+    {
+      "file": "approval-owner-probe.json",
+      "sha256": "e58469dd5875058a5cffb4064f19e94843b74c54285b90435ded6ece0b6d8c7e"
+    },
+    {
+      "file": "regression-index.json",
+      "sha256": "4a92b5d1441ffae71367a3617013e5dc51531d21f8858ec256b1e06dc2b42145"
+    }
+  ],
+  "omitted": [
+    "Absolute local paths",
+    "Temporary directory names",
+    "Synthetic candidate/run identifiers",
+    "Raw execution commands and complete logs",
+    "OS process token (creation time retained in milliseconds)"
+  ],
+  "limitation": "Public observations are author-provided exports, not independently reproduced product runs. Hashes detect changes relative to this package; they do not authenticate the truth of an observation. Product source and raw internal evidence remain access-restricted."
+}

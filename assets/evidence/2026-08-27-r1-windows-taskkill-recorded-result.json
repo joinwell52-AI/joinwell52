@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "fixture_kind": "deidentified_windows_taskkill_tree_probe_result",
+  "status": "PASS",
+  "scope": "windows_taskkill_tree_probe_only",
+  "precondition_wrapper_and_child_observed": true,
+  "wrapper_exit_observed": true,
+  "child_exit_observed": true,
+  "termination_exit_code": 0,
+  "kernel_containment_proven": false,
+  "limitations": [
+    "one Windows host",
+    "one wrapper plus one direct child",
+    "no escaped descendant",
+    "no deeper process tree",
+    "no cross-privilege case",
+    "no container or remote worker"
+  ]
+}

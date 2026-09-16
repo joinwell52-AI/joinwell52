@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Weekly 007 — Recovery Is Re-Admission</title>
+  <desc id="desc">Editorial cover showing a recovered state capsule crossing a fresh admission boundary before entering an executable runtime.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07111f"/>
+      <stop offset="0.55" stop-color="#102443"/>
+      <stop offset="1" stop-color="#0b1829"/>
+    </linearGradient>
+    <linearGradient id="gate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7dd3fc" stop-opacity="0.92"/>
+      <stop offset="1" stop-color="#a78bfa" stop-opacity="0.72"/>
+    </linearGradient>
+    <linearGradient id="capsule" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e0f2fe"/>
+      <stop offset="1" stop-color="#c4b5fd"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="16" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1260" cy="160" r="330" fill="#38bdf8" opacity="0.05"/>
+  <circle cx="220" cy="780" r="420" fill="#8b5cf6" opacity="0.06"/>
+
+  <g opacity="0.22" stroke="#94a3b8" fill="none">
+    <path d="M80 660 C330 560 470 590 650 500"/>
+    <path d="M940 440 C1120 350 1320 350 1510 250"/>
+    <path d="M1020 700 C1230 620 1400 650 1540 560"/>
+  </g>
+
+  <g transform="translate(715 145)">
+    <rect x="0" y="0" width="170" height="610" rx="72" fill="none" stroke="url(#gate)" stroke-width="7" opacity="0.95" filter="url(#glow)"/>
+    <rect x="25" y="25" width="120" height="560" rx="54" fill="#081425" stroke="#bae6fd" stroke-opacity="0.35"/>
+    <circle cx="85" cy="124" r="18" fill="#7dd3fc"/>
+    <circle cx="85" cy="305" r="18" fill="#a78bfa"/>
+    <circle cx="85" cy="486" r="18" fill="#67e8f9"/>
+  </g>
+
+  <g transform="translate(330 355)">
+    <rect x="0" y="0" width="310" height="190" rx="95" fill="url(#capsule)" opacity="0.96"/>
+    <path d="M155 0 v190" stroke="#0f172a" stroke-opacity="0.25" stroke-width="2"/>
+    <circle cx="95" cy="95" r="34" fill="#0f172a" opacity="0.8"/>
+    <path d="M80 95 l12 12 22-29" fill="none" stroke="#e0f2fe" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="215" cy="70" r="9" fill="#0f172a" opacity="0.65"/>
+    <circle cx="248" cy="95" r="9" fill="#0f172a" opacity="0.45"/>
+    <circle cx="215" cy="120" r="9" fill="#0f172a" opacity="0.3"/>
+  </g>
+
+  <g transform="translate(980 330)" filter="url(#glow)">
+    <path d="M0 120 C110 20 255 20 365 120 C255 220 110 220 0 120Z" fill="#0f2f47" stroke="#67e8f9" stroke-width="4"/>
+    <circle cx="182" cy="120" r="72" fill="#0b1829" stroke="#bae6fd" stroke-width="5"/>
+    <circle cx="182" cy="120" r="26" fill="#7dd3fc"/>
+  </g>
+
+  <g font-family="Inter, Arial, sans-serif" fill="#f8fafc">
+    <text x="110" y="120" font-size="34" font-weight="700" letter-spacing="3" fill="#7dd3fc">WEEKLY RESEARCH · 007</text>
+    <text x="110" y="205" font-size="72" font-weight="760">Recovery Is Re-Admission</text>
+    <text x="110" y="268" font-size="29" fill="#cbd5e1">Durable state can reconstruct continuity.</text>
+    <text x="110" y="308" font-size="29" fill="#cbd5e1">It cannot grant current execution authority by itself.</text>
+    <text x="110" y="815" font-size="24" fill="#94a3b8">JoinWell52 Research Center · 2026-08-30</text>
+  </g>
+</svg>
