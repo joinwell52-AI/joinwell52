@@ -1,0 +1,36 @@
+name: Chinese Layer Mail Candidate Test
+
+on:
+  push:
+    branches:
+      - chinese-layer-0.6.0-gmail-candidate
+    paths:
+      - "docs/public/chinese-layer/**"
+      - "scripts/chinese-layer-mail-smoke.mjs"
+      - "scripts/chinese-layer-smoke.mjs"
+      - ".github/workflows/chinese-layer-mail-candidate-test.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test Chinese Layer Gmail Candidate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout candidate
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Syntax check browser scripts
+        run: |
+          node --check docs/public/chinese-layer/gmail.js
+          node --check docs/public/chinese-layer/launcher.js
+          node --check docs/public/chinese-layer/dev-live-refresh-0.5.2.js
+      - name: Test Gmail adapter contracts and public endpoints
+        run: node scripts/chinese-layer-mail-smoke.mjs
+      - name: Re-run DEV regression smoke
+        run: node scripts/chinese-layer-smoke.mjs
