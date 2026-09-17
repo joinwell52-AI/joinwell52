@@ -3,6 +3,7 @@ import fs from 'node:fs/promises';
 const DEV_API = 'https://dev.to/api';
 const GOOGLE_TRANSLATE = 'https://translate.googleapis.com/translate_a/single';
 const ORIGIN = 'https://joinwell52-ai.github.io';
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -12,7 +13,7 @@ function hasChinese(value) {
   return /[\u3400-\u9fff]/.test(String(value || ''));
 }
 
-async function fetchJson(url, options = {}, timeoutMs = 15000) {
+async function fetchJson(url, options = {}, timeoutMs = 10000) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
@@ -37,10 +38,22 @@ function assertCors(response, label) {
   );
 }
 
-async function fetchDev(url, label) {
-  const result = await fetchJson(url, { headers: { Origin: ORIGIN } });
-  assertCors(result.response, label);
-  return result.json;
+async function fetchDev(url, label, attempts = 3) {
+  let lastError;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      const result = await fetchJson(url, { headers: { Origin: ORIGIN } }, 10000);
+      assertCors(result.response, label);
+      return result.json;
+    } catch (error) {
+      lastError = error;
+      const transient = error?.name === 'AbortError' || !Number(error?.status) || Number(error?.status) >= 500 || Number(error?.status) === 429;
+      if (!transient || attempt === attempts) throw error;
+      console.warn(`DEV_SMOKE_RETRY label=${label} attempt=${attempt}/${attempts} reason=${error?.name || error?.message || error}`);
+      await sleep(400 * attempt);
+    }
+  }
+  throw lastError;
 }
 
 async function translate(sample) {
@@ -52,7 +65,7 @@ async function translate(sample) {
   u.searchParams.set('q', sample);
 
   try {
-    const { response, json } = await fetchJson(u, { headers: { Origin: ORIGIN } });
+    const { response, json } = await fetchJson(u, { headers: { Origin: ORIGIN } }, 10000);
     const allowOrigin = response.headers.get('access-control-allow-origin');
     assert(allowOrigin === '*' || allowOrigin === ORIGIN, `Translation CORS failed: ${allowOrigin || '(missing)'}`);
     const translated = Array.isArray(json?.[0]) ? json[0].map(x => Array.isArray(x) ? (x[0] || '') : '').join('').trim() : '';
@@ -61,7 +74,7 @@ async function translate(sample) {
     return translated;
   } catch (error) {
     const status = Number(error?.status || 0);
-    if ([403, 429].includes(status) || status >= 500) {
+    if (error?.name === 'AbortError' || [403, 429].includes(status) || status >= 500) {
       console.warn(`TRANSLATION_PROVIDER_TRANSIENT_SKIP status=${status || 'unknown'} message=${error.message}`);
       return null;
     }
