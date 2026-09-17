@@ -1,6 +1,6 @@
 // Public OAuth application identifier, never a client secret or an access token.
 const CL_GMAIL_CLIENT_ID='1090696367470-f5opcehk6g7rj3s0b08n5ibit8kgv209.apps.googleusercontent.com';
-const CL_RUNTIME_VERSION='0.6.1';
+const CL_RUNTIME_VERSION=APP_VERSION;
 const CL_GMAIL_REDIRECT_URI='https://joinwell52-ai.github.io/joinwell52/chinese-layer/';
 const CL_GMAIL_OAUTH_STATE_KEY='cl-gmail-oauth-state-v1';
 try{if(!localStorage.getItem('cl-gmail-client-id-v1'))localStorage.setItem('cl-gmail-client-id-v1',CL_GMAIL_CLIENT_ID)}catch{}
@@ -67,39 +67,17 @@ function clStartStandaloneGmailRedirect(clientId){
   location.assign(url.toString());
 }
 
-// app.js still contains an older internal version constant. Intercept its banner so the phone never reports 0.5.1 again.
-const clBaseShowUpdateBanner=showUpdateBanner;
-showUpdateBanner=function(message,button='立即更新'){
-  const value=String(message||'');
-  if(value.includes('已更新到 v0.5.1')){hideUpdateBanner();return}
-  const match=value.match(/发现新版本 v([0-9]+(?:\.[0-9]+)+)/);
-  if(match&&!isNewerVersion(match[1],CL_RUNTIME_VERSION)){hideUpdateBanner();return}
-  clBaseShowUpdateBanner(message,button);
-};
-
 // Runs before gmail.js binds its UI listeners (this script is loaded first).
 document.addEventListener('DOMContentLoaded',()=>{
-  const version=CL_RUNTIME_VERSION;
-  for(const id of ['launcherVersion','versionBadge','mailVersion']){const el=document.getElementById(id);if(el)el.textContent=`v${version}`}
+  for(const id of ['launcherVersion','versionBadge','mailVersion']){const el=document.getElementById(id);if(el)el.textContent=`v${APP_VERSION}`}
   const banner=document.querySelector('#updateBanner');
-  if(banner){document.body.appendChild(banner);banner.classList.add('hidden')}
-  try{localStorage.setItem('cl-last-app-version',version)}catch{}
+  if(banner)document.body.appendChild(banner);
 
-  checkForUpdate=async function(manual=false){
-    try{
-      const response=await fetch(`./version.json?ts=${Date.now()}`,{cache:'no-store'});
-      if(!response.ok)throw new Error('版本检查暂不可用');
-      const meta=await response.json();state.remoteVersion=String(meta.version||version);
-      if(isNewerVersion(state.remoteVersion,version))clBaseShowUpdateBanner(`发现新版本 v${state.remoteVersion}`);
-      else if(manual===true)clBaseShowUpdateBanner(`当前已是 v${version}`,'知道了');
-      else hideUpdateBanner();
-    }catch{if(manual===true)clBaseShowUpdateBanner('暂时无法检查更新，请稍后再试','知道了')}
-  };
+  // All entry points use app.js; no adapter overrides or independent version baselines.
   const checkButton=document.createElement('button');
   checkButton.id='pwaCheckUpdate';checkButton.className='ghost-btn';checkButton.textContent='检查更新';
   checkButton.addEventListener('click',()=>checkForUpdate(true));
   document.querySelector('.launcher-topbar')?.appendChild(checkButton);
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkForUpdate()});
 
   // iPhone Home Screen PWAs can lose the GIS popup callback when authentication leaves the standalone window.
   // In standalone mode use a full-page OAuth return to this exact PWA URL; Safari-tab usage keeps the normal GIS popup.
@@ -172,5 +150,4 @@ document.addEventListener('DOMContentLoaded',()=>{
     const note=document.querySelector('.mail-setup-note');
     if(note)note.textContent=clIsIosStandalone()?'iPhone 桌面版会整页完成 Google 授权，完成后自动返回收件箱。':'应用已配置好。点击“连接 Gmail”，使用你添加的测试账号登录即可。';
   };
-  checkForUpdate();
 });
