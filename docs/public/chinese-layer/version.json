@@ -1,4 +1,4 @@
 {
-  "version": "0.5.3",
-  "notes": "DEV 实时读取修复：公开 DEV 请求改为 Safari/PWA 兼容的简单 GET，去除会触发跨域预检的自定义请求头；“我的”使用 username + state=all 实时读取并合并最新文章流；实时请求失败时回退最近中文缓存；正文继续保留 DEV body_html 结构，仅翻译可见文字。"
+  "version": "0.6.0",
+  "notes": "Mail Adapter 首次接入 Gmail：使用 Google Identity Services + gmail.readonly 进行只读授权；实时读取收件箱列表和邮件正文；支持中文主题、摘要与正文视图、原文切换和远程图片按需显示。访问令牌、邮件正文与邮件译文不写入本地存储；Client ID 和翻译授权偏好可保存在本机。DEV 0.5.3 的实时读取与结构保留行为继续保持。"
 }

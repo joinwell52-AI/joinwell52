@@ -9,13 +9,13 @@
   <meta name="apple-mobile-web-app-title" content="中文层" />
   <title>Chinese Layer 中文层</title>
   <link rel="manifest" href="./manifest.webmanifest" />
-  <link rel="stylesheet" href="./styles.css?v=0.5.3" />
+  <link rel="stylesheet" href="./styles.css?v=0.6.0" />
 </head>
 <body>
   <section id="launcherShell" class="launcher-shell">
     <header class="launcher-topbar">
       <div>
-        <div class="eyebrow">CHINESE LAYER <span id="launcherVersion" class="version-badge">v0.5.3</span></div>
+        <div class="eyebrow">CHINESE LAYER <span id="launcherVersion" class="version-badge">v0.6.0</span></div>
         <h1>中文层</h1>
       </div>
     </header>
@@ -53,7 +53,7 @@
       <div class="brand">
         <div class="dev-logo">DEV</div>
         <div>
-          <div class="eyebrow">CHINESE LAYER <span id="versionBadge" class="version-badge">v0.5.3</span></div>
+          <div class="eyebrow">CHINESE LAYER <span id="versionBadge" class="version-badge">v0.6.0</span></div>
           <h1 id="pageTitle">主页</h1>
         </div>
       </div>
@@ -109,13 +109,65 @@
 
   <section id="mailShell" class="mail-shell hidden">
     <button id="mailBackApps" class="layer-back">‹ 我的 App</button>
-    <div class="mail-placeholder">
-      <div class="mail-icon">✉</div>
-      <div class="hero-label">MAIL ADAPTER</div>
-      <h1>Mail</h1>
-      <p>这是第二个测试 App。下一步接入邮箱授权后，邮件主题、摘要和正文都会在这里中文浏览。</p>
-      <button id="mailAddHint" class="primary-btn">返回选择 App</button>
-    </div>
+    <header class="mail-topbar">
+      <div class="brand">
+        <div class="mail-logo">✉</div>
+        <div>
+          <div class="eyebrow">CHINESE LAYER <span id="mailVersion" class="version-badge">v0.6.0</span></div>
+          <h1>Mail</h1>
+          <div id="mailAccount" class="mail-account">Gmail</div>
+        </div>
+      </div>
+      <div class="mail-top-actions">
+        <button id="mailSettings" class="ghost-btn">设置</button>
+        <button id="mailLanguage" class="ghost-btn">中文</button>
+      </div>
+    </header>
+
+    <main class="mail-main">
+      <section id="mailSetup" class="mail-setup-card">
+        <div class="hero-label">GMAIL ADAPTER</div>
+        <h2>连接 Gmail</h2>
+        <p>只申请 <code>gmail.readonly</code>。不会发送、删除或修改邮件，也不会保存你的 Gmail 密码。</p>
+        <label class="mail-field-label" for="gmailClientId">Google OAuth Client ID</label>
+        <input id="gmailClientId" class="text-input" autocomplete="off" autocapitalize="none" placeholder="xxxxxxxx.apps.googleusercontent.com" />
+        <label class="mail-consent-row">
+          <input id="mailTranslateConsent" type="checkbox" />
+          <span>允许把邮件可见文字发送到 Google 翻译服务生成中文视图。访问令牌、邮件正文和译文不写入本地存储。</span>
+        </label>
+        <button id="gmailConnect" class="primary-btn full-btn">连接 Gmail</button>
+        <div id="mailSetupStatus" class="status"></div>
+        <div class="mail-setup-note">首次需要在 Google Cloud 启用 Gmail API，并为本网站创建“Web application” OAuth Client ID。</div>
+      </section>
+
+      <section id="mailInbox" class="hidden">
+        <div class="mail-toolbar">
+          <div>
+            <div class="hero-label">INBOX</div>
+            <h2>收件箱</h2>
+          </div>
+          <div class="mail-toolbar-actions">
+            <button id="mailRefresh" class="ghost-btn">刷新</button>
+            <button id="mailDisconnect" class="ghost-btn">断开</button>
+          </div>
+        </div>
+        <div id="mailStatus" class="status">正在读取 Gmail…</div>
+        <div id="mailList" class="mail-list"></div>
+      </section>
+
+      <section id="mailReader" class="mail-reader hidden">
+        <div class="mail-reader-bar">
+          <button id="mailReaderBack" class="ghost-btn">‹ 收件箱</button>
+          <button id="mailRemoteImages" class="ghost-btn hidden">显示图片</button>
+        </div>
+        <article class="mail-reader-card">
+          <div id="mailReaderFrom" class="mail-reader-from"></div>
+          <h1 id="mailReaderSubject"></h1>
+          <div id="mailReaderMeta" class="mail-reader-meta"></div>
+          <div id="mailReaderBody" class="mail-reader-body"></div>
+        </article>
+      </section>
+    </main>
   </section>
 
   <div id="reader" class="reader hidden" aria-hidden="true">
@@ -129,8 +181,11 @@
     <article id="readerContent" class="reader-content"></article>
   </div>
 
-  <script src="./app.js?v=0.5.3" defer></script>
-  <script src="./launcher.js?v=0.5.3" defer></script>
-  <script src="./dev-live-refresh-0.5.2.js?v=0.5.3" defer></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="./app.js?v=0.6.0" defer></script>
+  <script src="./launcher.js?v=0.6.0" defer></script>
+  <script src="./dev-live-refresh-0.5.2.js?v=0.6.0" defer></script>
+  <script src="./gmail-config.js?v=0.6.0" defer></script>
+  <script src="./gmail.js?v=0.6.0" defer></script>
 </body>
 </html>

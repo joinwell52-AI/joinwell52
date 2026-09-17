@@ -1,0 +1,29 @@
+name: Chinese Layer Mobile PWA Test
+on:
+  push:
+    branches: [chinese-layer-0.6.0-gmail-candidate]
+    paths: ['docs/public/chinese-layer/**','scripts/chinese-layer-mobile-smoke.mjs','.github/workflows/chinese-layer-mobile-test.yml']
+  pull_request:
+    paths: ['docs/public/chinese-layer/**','scripts/chinese-layer-mobile-smoke.mjs','.github/workflows/chinese-layer-mobile-test.yml']
+permissions:
+  contents: read
+jobs:
+  mobile:
+    name: Mobile WebKit and Chromium
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install isolated browser test tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/cl-playwright" --no-audit --no-fund playwright@1.55.0
+          "$RUNNER_TEMP/cl-playwright/node_modules/.bin/playwright" install --with-deps webkit chromium
+      - name: Verify mobile interactions with synthetic mailbox
+        env:
+          CL_PLAYWRIGHT_MODULE: ${{ runner.temp }}/cl-playwright/node_modules/playwright/index.mjs
+        run: |
+          node --check docs/public/chinese-layer/gmail-config.js
+          node scripts/chinese-layer-mobile-smoke.mjs

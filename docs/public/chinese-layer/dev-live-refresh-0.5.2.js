@@ -1,4 +1,4 @@
-const CHINESE_LAYER_PATCH_VERSION='0.5.3';
+const CHINESE_LAYER_PATCH_VERSION='0.6.0';
 
 function devLiveUrl(pathname, params={}){
   const u=new URL(`${DEV_API}${pathname}`);
