@@ -1,0 +1,315 @@
+{
+  "schema": "research-intelligence-run/v1",
+  "version": "1.0",
+  "date": "2026-09-17",
+  "timezone": "Asia/Shanghai",
+  "status": "Completed",
+  "registryVersion": "1.0",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-09-17T09:07:00+08:00",
+  "githubCommit": "pending",
+  "researchCoverage": {
+    "policy": "theme-sample-v1",
+    "rollingResearchWindowDays": 30,
+    "sampleFamilies": {
+      "product-governance": {
+        "checked": [
+          "OpenAI Health plugin permission step-up and sensitive-action approval boundary",
+          "Cursor Self-Hosted Machines local execution, isolation and credential boundary"
+        ],
+        "qualifiedSignals": 0
+      },
+      "multi-agent-mechanism": {
+        "checked": [
+          "MCP TypeScript SDK request-time OAuth scope challenge boundary",
+          "A2A protocol current roadmap and active TSC coordination surface"
+        ],
+        "qualifiedSignals": 1
+      },
+      "research-benchmark-industry": {
+        "checked": [
+          "EchoPath execution-level replayable memory for GUI agents (arXiv:2609.16635)",
+          "Emergence World long-horizon multi-agent adversarial stress test (arXiv:2609.17320)",
+          "Bilevel Coordinated Reflection grounded verification study (arXiv:2609.02750)"
+        ],
+        "qualifiedSignals": 3
+      }
+    }
+  },
+  "reason": "All three formal Discovery pipelines reached terminal coverage and the rotated theme-first active-sample overlay completed without topic selection. Seven qualified, non-duplicate signals survived problem-level normalization and recent-run deduplication: one platform context-lifecycle mechanism, three merged engineering/runtime mechanisms, and three primary-research findings. AI Platform terminally resolved 45/45 due public channels as 44 direct checks plus one explicitly recorded Copilot Studio authorization barrier. GitHub Engineering checked all nine P0 daily repositories and retained three distinct mechanisms around cross-modal provenance, human-confirmation continuity, and request-time authorization. Published Research terminally resolved all nine P0 sources as eight direct checks plus one explicit Journal of Systems and Software retrieval failure, retaining three primary-research objects. Pure sample-change-trigger density is 0%.",
+  "reason_zh": "三条正式 Discovery 管线均完成终态覆盖，并完成轮换后的主题优先主动样本检查，未执行选题。按研究问题规范化并与近期运行去重后保留 7 个合格、非重复 Signal：1 个平台上下文生命周期机制、3 个已合并工程/运行时机制、3 个一手研究发现。AI Platform 的 45 个到期公共通道全部终态收口，其中 44 个直接完成检查，Copilot Studio What's New 的授权门槛被明确记录；GitHub Engineering 的 9 个 P0 Daily 仓库全部检查，保留跨模态来源归属、人工确认连续性和请求时授权三个独立机制；Published Research 的 9 个 P0 来源终态收口，其中 8 个直接完成检查，Journal of Systems and Software 的抓取失败被明确记录，并保留 3 个一手研究对象。纯 sample-change-trigger 占比为 0%。",
+  "pipelines": [
+    {
+      "id": "ai-platform",
+      "label": "AI Platform Change Intelligence",
+      "label_zh": "AI 平台变更情报发现",
+      "status": "Completed",
+      "due": 45,
+      "checked": 44,
+      "inaccessible": [
+        {
+          "source": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/whats-new",
+          "reason": "The Microsoft Learn surface displayed an authorization-required notice during this run; visible public content was used only as bounded sample context and the channel is conservatively recorded as inaccessible for formal coverage."
+        }
+      ],
+      "failed": [],
+      "signals": 1,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All 45 due P0 public platform channels were terminally resolved across the registered OpenAI, Anthropic, Google, Cursor, GitHub Copilot and Microsoft source groups. One non-duplicate platform mechanism crossed the research-value threshold: Claude Platform's on-demand compaction returns a signed compaction block that the client explicitly reuses in place of older messages while allowing recent turns to remain verbatim, creating an explicit lifecycle boundary for long-running context rather than an opaque automatic rewrite. Other current platform updates were retained only as coverage or active-sample evidence after deduplication.",
+      "reason_zh": "OpenAI、Anthropic、Google、Cursor、GitHub Copilot 与 Microsoft 六组注册来源的 45 个到期 P0 公共通道全部终态处理。保留 1 个达到研究价值门槛且未重复的平台机制：Claude Platform 的按需 Compaction 返回带签名的 Compaction Block，由客户端明确在后续请求中替代较早消息，同时允许保留最近若干 Turn 的原文，从而把长期上下文压缩变成显式生命周期边界，而不是不透明的自动改写。其他当前平台更新经过去重后仅作为覆盖或主动样本证据保留。"
+    },
+    {
+      "id": "github-engineering",
+      "label": "GitHub Engineering Intelligence",
+      "label_zh": "GitHub 工程情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 9,
+      "inaccessible": [],
+      "failed": [],
+      "signals": 3,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine Registry P0 daily repositories were checked incrementally. Three distinct mechanisms crossed the research-value threshold: Codex binds turn, app, skill and MCP-tool analytics to a voice-session identity across a realtime handoff but deliberately prevents that identity from leaking into later text turns; Google ADK fixed a human-confirmation path where the documented default hint could fail validation and terminate an invocation before the user could approve it; and the MCP TypeScript SDK added per-operation OAuth scope challenges that execute before tool/resource/prompt handlers or SSE setup, allowing request-derived authorization to fail closed at call time.",
+      "reason_zh": "Registry 中 9 个 P0 Daily 仓库均完成增量检查。保留 3 个达到研究价值门槛的独立机制：Codex 将 Turn、App、Skill 与 MCP Tool 的分析事件绑定到 Voice Session Identity，并在 Realtime Handoff 后继续保持正确归属，但明确阻止该身份污染后续文本 Turn；Google ADK 修复人工确认路径中“文档允许的默认 Hint 却会触发校验错误并在用户审批前终止 Invocation”的问题；MCP TypeScript SDK 新增逐 Operation 的 OAuth Scope Challenge，在 Tool/Resource/Prompt Handler 或 SSE 建立前执行，使依赖具体请求内容的授权能够在调用时 Fail Closed。"
+    },
+    {
+      "id": "published-research",
+      "label": "Published Research Intelligence",
+      "label_zh": "论文与研究成果情报发现",
+      "status": "Completed",
+      "due": 9,
+      "checked": 8,
+      "inaccessible": [],
+      "failed": [
+        {
+          "source": "https://www.sciencedirect.com/journal/journal-of-systems-and-software",
+          "reason": "The Journal of Systems and Software public journal surface returned an internal retrieval error during this run; the failure is recorded rather than counted as checked."
+        }
+      ],
+      "signals": 3,
+      "candidates": 0,
+      "selected": 0,
+      "rejected": 0,
+      "coveragePercent": 100,
+      "reason": "All nine P0 research sources were terminally resolved using the rolling seven-day pass with expansion through thirty days where useful: eight source surfaces were directly checked and the Journal of Systems and Software surface returned an explicit retrieval failure. Three non-duplicate primary-research objects were retained: EchoPath turns artifact-validated GUI trajectories into parameterized replayable memories with state preconditions and rejection of ambiguous replay; Emergence World shows that threat detection alone did not contain long-horizon multi-agent contamination, with adversarial content persisting into memory and influencing behavior up to 46 hours later; and Bilevel Coordinated Reflection proves a separation between transcript-only reflection gates and environment-grounded verification, motivating acceptance of memory changes only when grounded evaluation risk decreases.",
+      "reason_zh": "9 个 P0 研究来源均按滚动 7 天检查并在需要时扩展至 30 天完成终态处理：8 个来源页面直接完成检查，Journal of Systems and Software 公共页面返回明确的抓取失败。保留 3 个非重复一手研究对象：EchoPath 将经过 Artifact 校验的 GUI 轨迹转化为带参数、状态前置条件且可拒绝歧义重放的可调用 Memory；Emergence World 显示仅识别威胁并不足以遏制长周期多 Agent 污染，恶意内容可进入持久 Memory 并在最多 46 小时后继续影响行为；Bilevel Coordinated Reflection 从理论上区分仅观察 Transcript 的 Reflection Gate 与 Environment-grounded Verification，并据此要求只有在真实环境评估风险下降时才接受 Memory 变更。"
+    }
+  ],
+  "columns": [
+    {
+      "id": "digital-employee",
+      "label": "Digital Employee",
+      "label_zh": "数字员工",
+      "decision": "Waiting",
+      "signals": 3,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded three primary Digital Employee signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 3 个以数字员工为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    },
+    {
+      "id": "industry-architecture",
+      "label": "Industry Architecture",
+      "label_zh": "行业架构",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded two primary Industry Architecture signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以行业架构为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    },
+    {
+      "id": "open-source-engineering",
+      "label": "Open-source Engineering",
+      "label_zh": "开源工程",
+      "decision": "Waiting",
+      "signals": 2,
+      "candidates": 0,
+      "selectedItemId": "",
+      "selectedTitle": "",
+      "selectedTitle_zh": "",
+      "reason": "Discovery recorded two primary Open-source Engineering signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以开源工程为主栏目的 Signal；评分与选题由 Queue 独立负责。"
+    }
+  ],
+  "signals": [
+    {
+      "id": "SIG-20260917-001",
+      "pipeline": "ai-platform",
+      "title": "Claude exposes signed on-demand compaction as an explicit lifecycle operation for long-running context",
+      "title_zh": "Claude 将带签名的按需 Compaction 暴露为长期上下文的显式生命周期操作",
+      "sourceUrl": "https://platform.claude.com/docs/en/release-notes/overview",
+      "publishedAt": "2026-09-14",
+      "evidenceLevel": "official_documentation",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "anthropic-claude/signed-client-controlled-context-compaction",
+      "summary": "Claude Platform's beta on-demand compaction lets a client request compaction explicitly and receive a signed compaction block summarizing older messages. On later requests the client sends that block in place of the summarized messages while optionally retaining recent turns verbatim, including preserved thinking where valid.",
+      "summary_zh": "Claude Platform 的按需 Compaction Beta 允许客户端显式请求压缩，并得到一个对较早消息进行总结的 Signed Compaction Block；后续请求由客户端用该 Block 替代被压缩的消息，同时可以继续逐字保留最近 Turn，在条件满足时也可保留其 Thinking。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["long-running-agent", "context-lifecycle", "durable-runtime-state", "recovery-boundary"],
+      "sampleIds": ["anthropic-claude"],
+      "researchValue": {
+        "failure": "Opaque or automatic context shortening can silently change the evidence and instructions available to a long-running agent without a durable boundary that the host can reason about.",
+        "finding": "The platform makes compaction an explicit client-invoked operation and returns a signed artifact that can be carried forward as a bounded replacement for older messages.",
+        "mechanism": "Request compaction deliberately, persist the signed compaction block, replace only the covered history with that block on later requests, and keep selected recent turns verbatim.",
+        "implication": "Long-lived digital employees can treat context reduction as a versioned state transition with an inspectable artifact instead of an implicit model-side mutation."
+      }
+    },
+    {
+      "id": "SIG-20260917-002",
+      "pipeline": "github-engineering",
+      "title": "Codex carries voice-session provenance across realtime handoff without contaminating later text turns",
+      "title_zh": "Codex 在 Realtime Handoff 中延续 Voice Session 来源归属，但不污染后续文本 Turn",
+      "sourceUrl": "https://github.com/openai/codex/commit/8ace915aced81ed841e34fa069b2e489c324731c",
+      "publishedAt": "2026-09-17",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "openai-codex/realtime-handoff-bounded-session-provenance",
+      "summary": "Codex added voice_session_id to turn, app-use, skill-invocation and MCP tool-call analytics. Realtime lifecycle and handoff markers preserve attribution when a voice handoff starts or steers a turn even after the voice session closes, then deliberately clear that attribution for later unrelated text turns. Handoff markers record only thread identity rather than transcript content.",
+      "summary_zh": "Codex 为 Turn、App Use、Skill Invocation 与 MCP Tool Call 分析事件增加 Voice Session ID。Realtime 生命周期与 Handoff Marker 能在语音会话关闭后仍把由该 Handoff 启动或 Steering 的 Turn 正确归属到原 Voice Session，同时明确在后续无关文本 Turn 中清除该归属；Handoff Marker 只记录 Thread Identity，不保留 Transcript 内容。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["provenance", "event-visibility", "handoff", "auditability"],
+      "sampleIds": ["openai-codex"],
+      "researchValue": {
+        "failure": "Cross-modal handoffs can lose causal provenance after the source session closes, or over-correct by leaking stale session identity into later work.",
+        "finding": "The merged implementation preserves attribution only for work causally linked to the realtime session and tests that the next independent text turn is untagged.",
+        "mechanism": "Track realtime-session lifecycle plus a thread-scoped handoff marker, stamp causally linked analytics events, then clear the association at the bounded handoff/turn boundary without retaining transcript content.",
+        "implication": "Agent observability should preserve causal identity across asynchronous handoffs while making the end of that identity propagation explicit."
+      }
+    },
+    {
+      "id": "SIG-20260917-003",
+      "pipeline": "github-engineering",
+      "title": "Google ADK fixes a human-confirmation path that could terminate before approval was possible",
+      "title_zh": "Google ADK 修复人工确认路径在用户有机会审批前就终止的故障",
+      "sourceUrl": "https://github.com/google/adk-python/commit/768969db14c0764dd72b04107d4fa25811772791",
+      "publishedAt": "2026-09-16",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "google-adk/human-confirmation-default-hint-continuity",
+      "summary": "Google ADK's request_confirmation API documented hint as optional, but its default None was passed into a plain-string ToolConfirmation field, causing validation to fail and ending the invocation instead of pausing for a human. The fix normalizes the absent hint to an empty string so the invocation reaches the intended approval state.",
+      "summary_zh": "Google ADK 的 request_confirmation API 将 Hint 文档化为可选参数，但默认值 None 会被传入只接受 String 的 ToolConfirmation 字段，从而触发校验失败并直接结束 Invocation，而不是暂停等待人工。修复将缺省 Hint 规范化为空字符串，使 Invocation 能真正进入预期审批状态。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["human-approval", "lifecycle-semantics", "failure-attribution", "execution-continuity"],
+      "sampleIds": ["google-adk-python"],
+      "researchValue": {
+        "failure": "A system may expose a formal approval primitive yet fail before reaching the human decision point because the pause-state payload itself is invalid.",
+        "finding": "The failure occurred at the transition into approval, not in the model's decision or the human response.",
+        "mechanism": "Normalize optional metadata into the confirmation contract before materializing the paused state, then validate that the invocation remains alive for the human response.",
+        "implication": "Human-in-the-loop reliability requires testing the state transition into Waiting/Approval independently from the semantic approval policy."
+      }
+    },
+    {
+      "id": "SIG-20260917-004",
+      "pipeline": "github-engineering",
+      "title": "MCP TypeScript SDK moves OAuth step-up authorization to a pre-handler request-time boundary",
+      "title_zh": "MCP TypeScript SDK 将 OAuth 权限升级前移到 Handler 之前的请求时边界",
+      "sourceUrl": "https://github.com/modelcontextprotocol/typescript-sdk/commit/60321700871029401a2e3bed8fdf4f02c9ec3331",
+      "publishedAt": "2026-09-16",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["open-source-engineering", "digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "mcp-typescript-sdk/request-time-per-operation-oauth-scope-challenge",
+      "summary": "The MCP TypeScript SDK added scopeChallenge callbacks to tools, resources, resource templates and prompts. The callback sees the parsed request plus verified AuthInfo and can return the exact required scope set. createMcpHandler and Streamable HTTP transports then return 403 insufficient_scope before handler execution or SSE setup; thrown or rejected checks fail closed. Static checks use requireScopes, while request-dependent checks can derive scopes from the operation input.",
+      "summary_zh": "MCP TypeScript SDK 为 Tool、Resource、Resource Template 与 Prompt 增加 scopeChallenge Callback。Callback 能看到已解析 Request 与已验证 AuthInfo，并返回该次操作精确需要的 Scope 集合；createMcpHandler 与 Streamable HTTP Transport 会在 Handler 执行或 SSE 建立之前返回 403 insufficient_scope，Callback Throw/Reject 也会 Fail Closed。静态检查可用 requireScopes，请求相关权限则可由 Operation Input 动态计算。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["call-time-authorization", "least-privilege", "mcp", "tool-call-mediation"],
+      "sampleIds": ["modelcontextprotocol-typescript-sdk"],
+      "researchValue": {
+        "failure": "Endpoint-level authentication or handler-internal checks can authorize too broadly or allow observable side effects before a request-specific privilege decision is made.",
+        "finding": "The SDK now makes per-operation authorization a first-class preflight that has both the concrete request and verified identity available before work begins.",
+        "mechanism": "Register a scopeChallenge with each primitive, compute required scopes from request plus AuthInfo, and return a standardized insufficient_scope challenge before handler or streaming setup whenever authority is insufficient.",
+        "implication": "Agent protocols can enforce least privilege at the exact tool/resource/prompt invocation boundary rather than treating connection admission as sufficient authority for every later operation."
+      }
+    },
+    {
+      "id": "SIG-20260917-005",
+      "pipeline": "published-research",
+      "title": "EchoPath turns validated GUI trajectories into replayable callable memory with execution-time preconditions",
+      "title_zh": "EchoPath 将已验证 GUI 轨迹转化为带执行时前置条件的可重放调用型 Memory",
+      "sourceUrl": "https://arxiv.org/abs/2609.16635",
+      "publishedAt": "2026-09-15",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "echopath/execution-level-replayable-gui-memory",
+      "summary": "EchoPath stores artifact-validated GUI trajectories as parameterized callable memories containing intent keys, application/state preconditions, modifiable inputs, GUI evidence, validation provenance and lifecycle state. Replay re-aims stored visual targets against the current screen, rebinds only declared inputs, and rejects ambiguous or incompatible steps to bounded repair or fresh planning. Reported experiments reduce median token cost by more than 90% and execution time by about 60%.",
+      "summary_zh": "EchoPath 把经过 Artifact 校验的 GUI 轨迹保存为参数化可调用 Memory，其中包含 Task Intent Key、应用/状态前置条件、允许修改的输入、GUI 证据、验证来源与生命周期状态。重放时会基于当前屏幕重新定位记忆中的视觉目标，只重绑定已声明的可修改输入，并把歧义或不兼容步骤拒绝到有限 Grounding Repair 或 Fresh Planning。实验报告中位 Token 成本下降超过 90%，执行时间约下降 60%。",
+      "signalRole": "research-finding",
+      "researchThemes": ["agent-memory", "computer-use", "replay", "execution-preconditions"],
+      "sampleIds": ["echopath"],
+      "researchValue": {
+        "failure": "Unstructured experiential memory can encourage an agent to imitate a past GUI trajectory even when the current application state or target location no longer matches.",
+        "finding": "The study treats reusable experience as an execution asset only after artifact validation and only when current preconditions can be re-established.",
+        "mechanism": "Persist trajectory provenance and state preconditions, parameterize only declared inputs, visually re-aim targets at replay time, and reject uncertain replay to bounded repair or replanning.",
+        "implication": "Digital-employee memory can be made safer when replay eligibility is a deterministic runtime check rather than a similarity judgment over narrative memories."
+      }
+    },
+    {
+      "id": "SIG-20260917-006",
+      "pipeline": "published-research",
+      "title": "Emergence World finds that threat detection does not guarantee containment in persistent multi-agent systems",
+      "title_zh": "Emergence World 发现长周期多 Agent 系统中“检测到威胁”并不等于“遏制威胁”",
+      "sourceUrl": "https://arxiv.org/abs/2609.17320",
+      "publishedAt": "2026-09-15",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee", "open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "emergence-world/persistent-multi-agent-threat-detection-containment-gap",
+      "summary": "Emergence World ran eight parallel worlds of ten agents for 16 days with persistent memory, tools and shared institutions, then injected prompt injection, misinformation and private-memory exposure through ordinary interaction surfaces. No world was resilient to all three. Agents could recognize threats yet still interact with adversarial content, persist it in memory, and act on it up to 46 hours later; mixed and homogeneous populations also produced different behavior from the same model-persona pairing.",
+      "summary_zh": "Emergence World 让 8 个平行世界、每个 10 个 Agent 连续运行 16 天，保留持久 Memory、工具和共享制度，然后通过普通交互界面注入 Prompt Injection、虚假信息与私有 Memory 暴露。没有一个世界同时抵御全部三类压力；Agent 即使识别到威胁，仍可能继续与恶意内容交互、把它写入持久 Memory，并在最多 46 小时后据此行动；同一模型-角色组合在同质与混合群体中的行为也明显不同。",
+      "signalRole": "research-finding",
+      "researchThemes": ["long-running-agent", "multi-agent-safety", "memory-contamination", "containment"],
+      "sampleIds": ["emergence-world"],
+      "researchValue": {
+        "failure": "Model-level threat recognition can coexist with system-level persistence and propagation of the same adversarial content through memory, tools and other agents.",
+        "finding": "Detection and containment separated empirically over long horizons, and system composition changed behavior even with the same underlying model-persona pair.",
+        "mechanism": "Stress persistent multi-agent systems only after operational state accumulates, inject controlled events through ordinary surfaces, and trace later memory writes and actions rather than stopping at immediate detection metrics.",
+        "implication": "Long-running digital-employee safety needs containment, memory quarantine and cross-agent propagation controls in addition to model-level alignment or threat classification."
+      }
+    },
+    {
+      "id": "SIG-20260917-007",
+      "pipeline": "published-research",
+      "title": "Bilevel Coordinated Reflection proves transcript-only gates cannot uniformly validate memory improvement",
+      "title_zh": "Bilevel Coordinated Reflection 证明仅看 Transcript 的 Gate 无法普遍验证 Memory 改进",
+      "sourceUrl": "https://arxiv.org/abs/2609.02750",
+      "publishedAt": "2026-09-02",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee", "industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "bilevel-coordinated-reflection/environment-grounded-memory-acceptance-gate",
+      "summary": "Bilevel Coordinated Reflection models orchestrator-worker systems as a coordination game and derives an information-theoretic separation for reflection: a gate that sees only generated transcripts cannot uniformly improve over environments that are text-indistinguishable, whereas an environment-grounded gate can. Its SRMA mechanism accepts a candidate memory only when grounded evaluation risk strictly decreases, with additional confidence gating for stochastic evaluation and re-anchoring for changing environments.",
+      "summary_zh": "Bilevel Coordinated Reflection 将 Orchestrator-Worker 系统建模为协调博弈，并给出 Reflection 的信息论分离结论：只观察 Generated Transcript 的 Gate 无法在文本不可区分的不同环境上普遍带来改进，而 Environment-grounded Gate 可以。其 SRMA 机制仅在真实环境评估风险严格下降时接受 Candidate Memory，并为随机评估加入 Confidence Gating、为环境变化加入 Re-anchoring。",
+      "signalRole": "research-finding",
+      "researchThemes": ["external-verification", "memory-update", "multi-agent-coordination", "evaluation-gate"],
+      "sampleIds": ["bilevel-coordinated-reflection"],
+      "researchValue": {
+        "failure": "A reflection loop can appear improved from its own transcript while the external environment is unchanged or worse, because text alone cannot distinguish all relevant states.",
+        "finding": "The paper provides a formal impossibility result for transcript-only gates and a constructive alternative that conditions memory acceptance on external grounded risk.",
+        "mechanism": "Generate a candidate memory, evaluate it against environment-grounded metrics, accept only strict risk reduction, and use confidence/re-anchoring rules when evaluation is noisy or the environment shifts.",
+        "implication": "Agent self-improvement should not be authorized by the same narrative that proposed the change; an independent environment-linked evaluator is structurally necessary."
+      }
+    }
+  ]
+}
