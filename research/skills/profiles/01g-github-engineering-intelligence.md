@@ -53,6 +53,8 @@ fixed sample / repository watchlist
 
 The authoritative organizations and repositories remain in `research/intelligence/REGISTRY.json`. The sample families above guide bounded exploration and comparison when the Registry does not yet contain a specific object.
 
+For researcher-linked entries, preserve the Registry `provenance` relationship and consult its `evidenceRecord`: a paper implementation, a cited paper's code, reference-implementation artifacts and an author's related project are different evidence types. Compare against the recorded baseline, then record the actual checked revision and access result. During bounded exploration, check the associated author/team for newly released paper repositories, especially unresolved artifact gaps. Never substitute an unrelated namesake repository for missing paper code. The [six-researcher mapping](../../intelligence/governance-researcher-repositories-2026-09-17.md) records the initial links and gaps.
+
 ## What to inspect
 
 Incrementally inspect:
