@@ -1,4 +1,4 @@
-const APP_VERSION='0.5.1';
+const APP_VERSION='0.6.1';
 const DEV_API='https://dev.to/api';
 const GOOGLE_TRANSLATE='https://translate.googleapis.com/translate_a/single';
 const CACHE_KEY='cl-translate-cache-v6';
@@ -87,7 +87,6 @@ async function loadArticles(){
 
 function renderMyArticles(){const root=$('#myArticleList');root.innerHTML='';if(!state.myArticles.length){root.innerHTML='<div class="empty-state">还没有公开文章。</div>';return}for(const a of state.myArticles){const card=document.createElement('article');card.className='my-article-card';const editUrl=a.path?`https://dev.to${a.path}/edit`:'https://dev.to/dashboard';card.innerHTML=`<h2>${esc(currentTitle(a))}</h2><div class="my-meta">已发布：${fmtDate(a.published_at)} <span>语言：English</span></div><div class="my-actions"><span>♡ ${a.positive_reactions_count||0}</span><span>◯ ${a.comments_count||0}</span><a href="https://dev.to/dashboard" target="_blank" rel="noopener">管理</a><a href="${esc(editUrl)}" target="_blank" rel="noopener">编辑</a></div>`;card.addEventListener('click',()=>openArticle(a));card.querySelectorAll('a').forEach(el=>el.addEventListener('click',e=>e.stopPropagation()));root.appendChild(card)}}
 function renderProfile(username){const au=state.myArticles[0]?.user||{};$('#profileCard').innerHTML=`<div class="profile-top">${au.profile_image_90?`<img class="avatar" src="${esc(au.profile_image_90)}" alt="" />`:''}<div class="profile-id"><h2>${esc(au.name||username)}</h2><div class="muted">@${esc(au.username||username)}</div></div></div>`}
-
 async function loadMe(){
   const username=(state.username||'joinwell52').trim().replace(/^@/,'');state.lastError='';$('#meSetup').classList.add('hidden');$('#meContent').classList.remove('hidden');$('#meStatus').textContent='正在实时读取我的 DEV…';
   try{
