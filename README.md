@@ -127,6 +127,8 @@ Explore dispatch, audit, and technical recovery while preserving the judgment re
 
 ### Recommended articles and external publication record
 
+**Agent Governance, Part 1: [When Multi-Agent Systems Go Out of Control: What Agent Governance Do We Need in 2026?](https://joinwell52-ai.github.io/joinwell52/en/research/2026-09-18-multi-agent-governance)** · [中文](https://joinwell52-ai.github.io/joinwell52/zh/research/2026-09-18-multi-agent-governance)
+
 The [complete article catalog](./README.zh-CN.md#article-catalog) includes the latest publications and links to both language editions and external platforms.
 
 September 13–14 combined research:

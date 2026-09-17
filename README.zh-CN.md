@@ -125,6 +125,8 @@ CodeFlowMu 是本地运行的 PM / DEV / QA / OPS 多角色 AI 开发团队，�
 
 ### 推荐文章与外部发布记录
 
+**Agent 治理连载 · 第一篇：[当多 Agent 走向失控：2026 年，我们需要什么样的 Agent 治理？](https://joinwell52-ai.github.io/joinwell52/zh/research/2026-09-18-multi-agent-governance)** · [English](https://joinwell52-ai.github.io/joinwell52/en/research/2026-09-18-multi-agent-governance)
+
 置顶文章可以在外发前登记，外发后直接在同一行补充平台链接。普通外部发布记录从 **2026-08-12** 开始，不回填此前的历史发布；同一文章的中文、英文及各平台链接集中在一行。当前已登记 **8 个外部渠道**：**CSDN、DEV Community、Cursor Forum、OpenAI Developer Community、Codex GitHub Discussions、Zenodo、掘金和 X**。其中 CSDN、DEV 与掘金承载文章外发，X 用于短研究摘要与准确归因，Cursor Forum、OpenAI Developer Community 与 Codex GitHub Discussions 用于技术讨论，Zenodo 用于研究成果存档与发现。标为“技术讨论”的链接是独立问题帖，不代表全文转载。
 
 | # | 标题 | 发布版本 | 一句话 |
