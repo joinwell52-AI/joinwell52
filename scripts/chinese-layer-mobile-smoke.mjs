@@ -6,13 +6,26 @@ import path from 'node:path';
 import {pathToFileURL} from 'node:url';
 const {webkit,chromium}=await import(pathToFileURL(process.env.CL_PLAYWRIGHT_MODULE).href);
 const root=path.resolve('docs/public/chinese-layer');
+const {version:expectedVersion}=JSON.parse(await fs.readFile(path.join(root,'version.json'),'utf8'));
+assert.match(expectedVersion,/^\d+\.\d+\.\d+$/);
+const nextVersion=expectedVersion.split('.').map((n,i)=>i===2?Number(n)+1:n).join('.');
+const appSource=await fs.readFile(path.join(root,'app.js'),'utf8');
+const htmlSource=await fs.readFile(path.join(root,'index.html'),'utf8');
+assert.ok(appSource.includes(`const APP_VERSION='${expectedVersion}';`));
+for(const match of htmlSource.matchAll(/(?:src|href)="\.\/[^"?]+\?(?:v=)([^"&]+)/g))assert.equal(match[1],expectedVersion,'asset version parity');
+assert.equal((htmlSource.match(new RegExp(`>v${expectedVersion.replaceAll('.','\\.')}<`,'g'))||[]).length,3,'static badge parity');
+for(const file of ['dev-live-refresh-0.5.2.js','gmail-config.js','ios-pwa-hotfix-0.6.1.js']){
+  const source=await fs.readFile(path.join(root,file),'utf8');
+  assert.doesNotMatch(source,/\bisNewerVersion\s*=|\bcheckForUpdate\s*=|\bshowUpdateBanner\s*=/,`${file} must not override updates`);
+}
 const server=http.createServer(async(req,res)=>{
   try{
     const pathname=new URL(req.url,'http://localhost').pathname;
     const file=path.resolve(root,'.'+(pathname==='/'?'/index.html':pathname));
     if(!file.startsWith(root+path.sep))throw new Error('Invalid path');
     const ext=path.extname(file);const types={'.js':'application/javascript','.html':'text/html','.css':'text/css','.json':'application/json','.webmanifest':'application/manifest+json'};
-    res.writeHead(200,{'Content-Type':types[ext]||'application/octet-stream','Cache-Control':'no-store'});res.end(await fs.readFile(file));
+    const body=await fs.readFile(file);
+    res.writeHead(200,{'Content-Type':types[ext]||'application/octet-stream','Cache-Control':'no-store'});res.end(body);
   }catch{res.writeHead(404);res.end('not found')}
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
@@ -25,15 +38,25 @@ try{
   for(const [engine,width] of [[webkit,375],[webkit,390],[webkit,430],[chromium,375]]){
     const browser=await engine.launch({headless:true});
     const context=await browser.newContext({viewport:{width,height:844},isMobile:true,hasTouch:true,deviceScaleFactor:2,locale:'zh-CN'});
-    const page=await context.newPage();const errors=[];let translations=0;let gmailReads=0;let remoteImages=0;let remoteVersion='0.6.0';
+    const page=await context.newPage();const errors=[];let translations=0;let gmailReads=0;let remoteImages=0;let remoteVersion=expectedVersion;let versionError=false;let simulatePreviousBuild=false;
     page.on('pageerror',error=>errors.push(error.message));
-    await page.addInitScript(()=>Object.defineProperty(navigator,'standalone',{value:true,configurable:true}));
+    await page.addInitScript(()=>{
+      Object.defineProperty(navigator,'standalone',{value:true,configurable:true});
+      localStorage.setItem('cl-last-app-version','0.5.1');
+      window.__clUpdateIntervals=[];
+      const original=window.setInterval;
+      window.setInterval=function(callback,delay,...args){
+        if(delay===120000)window.__clUpdateIntervals.push(callback);
+        return original.call(window,callback,delay,...args);
+      };
+    });
     await page.route('**/*',async route=>{
       const request=route.request(),u=new URL(request.url());
       const json=body=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(body)});
       if(u.origin===origin){
-        if(u.pathname==='/version.json')return json({version:remoteVersion});
+        if(u.pathname==='/version.json')return versionError?route.fulfill({status:503,body:'unavailable'}):json({version:remoteVersion});
         if(u.pathname==='/cache.json')return json({schema:'chinese-layer-cache/v1',latest:[],popular:[],mine:[]});
+        if(u.pathname==='/app.js'&&simulatePreviousBuild)return route.fulfill({contentType:'application/javascript',body:appSource.replace(`const APP_VERSION='${expectedVersion}';`,"const APP_VERSION='0.6.1';")});
         return route.continue();
       }
       if(u.hostname==='accounts.google.com')return route.fulfill({contentType:'application/javascript',body:`window.google={accounts:{oauth2:{hasGrantedAllScopes:()=>true,revoke:(token,cb)=>cb({successful:true}),initTokenClient(config){const client={...config,requestAccessToken(){window.__oauthHadUserGesture=navigator.userActivation?.isActive!==false;setTimeout(()=>client.callback({access_token:'SYNTHETIC_ONLY_TOKEN',expires_in:3600,scope:config.scope}),10)}};return client}}}};`});
@@ -50,9 +73,31 @@ try{
       return route.abort();
     });
     const withinScreen=async label=>assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),`${engine.name()} ${width} horizontal overflow: ${label}`);
+    const checkHidden=async()=>{
+      await page.evaluate(()=>checkForUpdate());
+      assert.equal(await page.locator('#updateBanner').isVisible(),false,'same or older version must not prompt');
+    };
     try{
       await page.goto(origin,{waitUntil:'domcontentloaded'});
       await page.locator('#pwaCheckUpdate').waitFor();await withinScreen('launcher');
+      await checkHidden();
+      assert.deepEqual(await page.evaluate(()=>[APP_VERSION,CHINESE_LAYER_PATCH_VERSION,CL_RUNTIME_VERSION,HOTFIX_VERSION]),Array(4).fill(expectedVersion));
+      for(const id of ['launcherVersion','versionBadge','mailVersion'])assert.equal(await page.locator(`#${id}`).textContent(),`v${expectedVersion}`);
+      assert.equal(await page.evaluate(()=>isNewerVersion('0.6.1','0.6.1')),false,'explicit current argument must be respected');
+      assert.equal(await page.evaluate(()=>isNewerVersion('0.6.2','0.6.1')),true);
+      assert.equal(await page.evaluate(()=>isNewerVersion('0.6.1','0.6.2')),false);
+      assert.equal(await page.evaluate(()=>localStorage.getItem('cl-last-app-version')),expectedVersion);
+      await page.locator('#pwaCheckUpdate').tap();
+      await page.waitForFunction(v=>document.querySelector('#updateText').textContent===`当前已是 v${v}`,expectedVersion);
+      assert.equal(await page.locator('#updateNow').textContent(),'知道了');
+      const beforeDismiss=page.url();
+      await page.locator('#updateNow').tap();
+      assert.equal(await page.locator('#updateBanner').isVisible(),false);assert.equal(page.url(),beforeDismiss);
+      await page.evaluate(async()=>{if(!window.__clUpdateIntervals.length)throw new Error('missing update interval');for(const fn of window.__clUpdateIntervals)await fn()});
+      assert.equal(await page.locator('#updateBanner').isVisible(),false,'saved interval must not revive stale banner');
+      await page.evaluate(()=>document.dispatchEvent(new Event('visibilitychange')));await checkHidden();
+      remoteVersion='0.6.0';await checkHidden();remoteVersion=expectedVersion;
+
       await page.locator('#openCatalog').tap();await page.locator('.catalog-add[data-app="mail"]').tap();await withinScreen('catalog');
       await page.locator('#catalogBack').tap();await page.locator('.browse-app[data-app="mail"]').tap();
       await page.locator('#mailSetup').waitFor({state:'visible'});await withinScreen('Mail setup');
@@ -62,7 +107,7 @@ try{
       await page.locator('.mail-row').waitFor();await page.waitForFunction(()=>document.querySelector('.mail-row h2').textContent.includes('中文'));
       assert.equal(await page.evaluate(()=>window.__oauthHadUserGesture),true);
       await withinScreen('inbox');await page.screenshot({path:`/tmp/cl-mobile-${engine.name()}-${width}-inbox.png`});
-      const beforeImages=remoteImages;await page.locator('.mail-row').first().tap();
+      await page.locator('.mail-row').first().tap();
       await page.waitForFunction(()=>document.querySelector('#mailReaderBody p')?.textContent.includes('中文'));
       assert.equal(await page.locator('#mailReaderBody code').textContent(),'const untouched = true;');
       assert.equal(await page.locator('#mailReaderBody a').getAttribute('href'),'https://example.com/topic');
@@ -79,11 +124,43 @@ try{
       const stored=await page.evaluate(()=>JSON.stringify({...localStorage}));
       assert.ok(!stored.includes('SYNTHETIC_ONLY_TOKEN')&&!stored.includes('Synthetic inbox')&&!stored.includes('Synthetic private'));
       assert.equal(await page.locator('#mailList').textContent(),'');
-      await page.locator('#mailBackApps').tap();remoteVersion='0.6.1';await page.locator('#pwaCheckUpdate').tap();await page.locator('#updateBanner').waitFor({state:'visible'});
-      assert.ok((await page.locator('#updateBanner').textContent()).includes('0.6.1'));await withinScreen('update notice');
+      await page.locator('#mailBackApps').tap();
+
+      remoteVersion=nextVersion;await page.locator('#pwaCheckUpdate').tap();
+      await page.waitForFunction(v=>document.querySelector('#updateText').textContent===`发现新版本 v${v}`,nextVersion);
+      assert.equal(await page.locator('#updateNow').textContent(),'立即更新');await withinScreen('update notice');
+      versionError=true;await page.locator('#pwaCheckUpdate').tap();
+      await page.waitForFunction(()=>document.querySelector('#updateText').textContent.includes('暂时无法检查更新'));
+      const beforeFailureDismiss=page.url();await page.locator('#updateNow').tap();
+      assert.equal(page.url(),beforeFailureDismiss);assert.equal(await page.locator('#updateBanner').isVisible(),false);
+      versionError=false;remoteVersion=expectedVersion;await checkHidden();
+      // A late response from an earlier check must not restore a stale update notice.
+      await page.evaluate(async()=>{
+        const originalFetch=window.fetch;let release;let calls=0;
+        window.fetch=async(...args)=>{
+          if(String(args[0]).includes('version.json')){
+            calls++;
+            if(calls===1)return new Promise(resolve=>{release=()=>resolve({ok:true,json:async()=>({version:'99.0.0'})})});
+            return {ok:true,json:async()=>({version:APP_VERSION})};
+          }
+          return originalFetch(...args);
+        };
+        try{const older=checkForUpdate();await checkForUpdate();release();await older}finally{window.fetch=originalFetch}
+      });
+      assert.equal(await page.locator('#updateBanner').isVisible(),false);
+      // Simulate the older build, then serve the real candidate after clicking update.
+      simulatePreviousBuild=true;await page.reload({waitUntil:'domcontentloaded'});
+      await page.waitForFunction(v=>document.querySelector('#updateText').textContent===`发现新版本 v${v}`,expectedVersion);
+      assert.equal(await page.evaluate(()=>APP_VERSION),'0.6.1');
+      simulatePreviousBuild=false;
+      await Promise.all([page.waitForURL(u=>u.searchParams.get('version')===expectedVersion),page.locator('#updateNow').tap()]);
+      await page.locator('#pwaCheckUpdate').waitFor();await checkHidden();
+      assert.equal(await page.evaluate(()=>APP_VERSION),expectedVersion);
+      assert.equal(await page.locator('#launcherVersion').textContent(),`v${expectedVersion}`);
+      await page.screenshot({path:`/tmp/cl-mobile-${engine.name()}-${width}-updated.png`});
       assert.deepEqual(errors,[]);assert.ok(translations>0&&gmailReads>0);
-      reports.push({engine:engine.name(),width,result:'PASS',oauth:'SIMULATED_USER_GESTURE',mailbox:'SYNTHETIC',checks:['launcher','catalog','setup','inbox','reader','code/link preservation','image opt-in','language toggle','back','refresh','disconnect','no sensitive localStorage','global update notice','no page errors']});
+      reports.push({engine:engine.name(),width,result:'PASS',oauth:'SIMULATED_POPUP_USER_GESTURE',mailbox:'SYNTHETIC',checks:['version source parity','explicit comparator argument','same-version automatic silence','same-version manual dismissal','saved interval','visibility resume','older metadata','newer metadata','failed-check dismissal','stale response rejection','simulated upgrade and reload','launcher','catalog','setup','inbox','reader','code/link preservation','image opt-in','language toggle','back','refresh','disconnect','no sensitive localStorage','no page errors']});
     }finally{await context.close();await browser.close()}
   }
-  console.log(JSON.stringify({status:'PASS',realIphoneOAuth:'NOT_RUN',reports},null,2));
+  console.log(JSON.stringify({status:'PASS',version:expectedVersion,realIphoneOAuth:'NOT_RUN',standaloneRedirectOAuth:'NOT_RUN',reports},null,2));
 }finally{server.close()}
