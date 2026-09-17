@@ -8,10 +8,10 @@
   "date": "2026-09-17",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Waiting",
+  "status": "Running",
   "taskStatus": {
     "discovery": "Completed",
-    "queue": "Waiting",
+    "queue": "Running",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
@@ -33,29 +33,105 @@
       "next": "Queue may independently triage the verified 2026-09-17 Signal Pool only after Discovery completion is durably verified on main.",
       "next_zh": "仅在 Discovery 完成状态已在 main 上持久核验后，Queue 才可独立筛选已核验的 2026-09-17 Signal Pool。",
       "metrics": [
-        {"label":"Prompt SHA-256 verified","label_zh":"Prompt SHA-256 已核验","value":"3b91ab2769fe035ddec1bdedd27ffc7b34fa5c1da3232c2a05ed7653fc8c28bc"},
-        {"label":"Required sources read","label_zh":"已读取 requiredSources","value":"10 / 10"},
-        {"label":"AI Platform due / checked / inaccessible / failed","label_zh":"AI 平台应查 / 已查 / 不可访问 / 失败","value":"45 / 44 / 1 / 0"},
-        {"label":"GitHub repositories due / checked / failed","label_zh":"GitHub 仓库应查 / 已查 / 失败","value":"9 / 9 / 0"},
-        {"label":"Research sources due / checked / failed","label_zh":"研究来源应查 / 已查 / 失败","value":"9 / 8 / 1"},
-        {"label":"Active product-governance samples","label_zh":"主动产品治理样本","value":"2 checked / 0 qualified"},
-        {"label":"Active multi-agent mechanism samples","label_zh":"主动多 Agent 机制样本","value":"2 checked / 1 qualified"},
-        {"label":"Active research/benchmark objects","label_zh":"主动研究/基准对象","value":"3 checked / 3 qualified"},
-        {"label":"Normalized signals","label_zh":"规范化信号","value":7},
-        {"label":"Selected topics","label_zh":"已选主题","value":0}
+        {
+          "label": "Prompt SHA-256 verified",
+          "label_zh": "Prompt SHA-256 已核验",
+          "value": "3b91ab2769fe035ddec1bdedd27ffc7b34fa5c1da3232c2a05ed7653fc8c28bc"
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 requiredSources",
+          "value": "10 / 10"
+        },
+        {
+          "label": "AI Platform due / checked / inaccessible / failed",
+          "label_zh": "AI 平台应查 / 已查 / 不可访问 / 失败",
+          "value": "45 / 44 / 1 / 0"
+        },
+        {
+          "label": "GitHub repositories due / checked / failed",
+          "label_zh": "GitHub 仓库应查 / 已查 / 失败",
+          "value": "9 / 9 / 0"
+        },
+        {
+          "label": "Research sources due / checked / failed",
+          "label_zh": "研究来源应查 / 已查 / 失败",
+          "value": "9 / 8 / 1"
+        },
+        {
+          "label": "Active product-governance samples",
+          "label_zh": "主动产品治理样本",
+          "value": "2 checked / 0 qualified"
+        },
+        {
+          "label": "Active multi-agent mechanism samples",
+          "label_zh": "主动多 Agent 机制样本",
+          "value": "2 checked / 1 qualified"
+        },
+        {
+          "label": "Active research/benchmark objects",
+          "label_zh": "主动研究/基准对象",
+          "value": "3 checked / 3 qualified"
+        },
+        {
+          "label": "Normalized signals",
+          "label_zh": "规范化信号",
+          "value": 7
+        },
+        {
+          "label": "Selected topics",
+          "label_zh": "已选主题",
+          "value": 0
+        }
       ],
       "evidence": [
-        {"label":"Authority control-source commit","label_zh":"权威控制源提交","value":"2f312ec01f458677b0b3fe3c78255dbb3d91e310"},
-        {"label":"Wake Receipt","label_zh":"Wake Receipt","source":"research/runtime/wakes/2026/09/2026-09-17/discovery-090151.json"},
-        {"label":"Worker control manifest","label_zh":"Worker Control Manifest","source":"research/runtime/worker-prompts/generated/CONTROL.json"},
-        {"label":"Generated Discovery Prompt","label_zh":"Generated Discovery Prompt","source":"research/runtime/worker-prompts/generated/discovery.prompt.md"},
-        {"label":"Canonical Intelligence commit","label_zh":"规范化 Intelligence 提交","value":"de6aa9012b7782d51581f2834e9dcebe6284af1b"},
-        {"label":"Remote Runtime validation","label_zh":"远程 Runtime 校验","value":"Validate Research Center 3.0 #35169394772 — Validate Runtime Center success"}
+        {
+          "label": "Authority control-source commit",
+          "label_zh": "权威控制源提交",
+          "value": "2f312ec01f458677b0b3fe3c78255dbb3d91e310"
+        },
+        {
+          "label": "Wake Receipt",
+          "label_zh": "Wake Receipt",
+          "source": "research/runtime/wakes/2026/09/2026-09-17/discovery-090151.json"
+        },
+        {
+          "label": "Worker control manifest",
+          "label_zh": "Worker Control Manifest",
+          "source": "research/runtime/worker-prompts/generated/CONTROL.json"
+        },
+        {
+          "label": "Generated Discovery Prompt",
+          "label_zh": "Generated Discovery Prompt",
+          "source": "research/runtime/worker-prompts/generated/discovery.prompt.md"
+        },
+        {
+          "label": "Canonical Intelligence commit",
+          "label_zh": "规范化 Intelligence 提交",
+          "value": "de6aa9012b7782d51581f2834e9dcebe6284af1b"
+        },
+        {
+          "label": "Remote Runtime validation",
+          "label_zh": "远程 Runtime 校验",
+          "value": "Validate Research Center 3.0 #35169394772 — Validate Runtime Center success"
+        }
       ],
       "artifacts": [
-        {"label":"Research Intelligence run","label_zh":"Research Intelligence 运行记录","value":"research/intelligence/runs/2026/09/2026-09-17-intelligence.json"},
-        {"label":"Daily Runtime JSON","label_zh":"Daily Runtime JSON","value":"research/runtime/records/daily/2026/09/2026-09-17-daily-runtime.json"},
-        {"label":"Wake Receipt","label_zh":"Wake Receipt","value":"research/runtime/wakes/2026/09/2026-09-17/discovery-090151.json"}
+        {
+          "label": "Research Intelligence run",
+          "label_zh": "Research Intelligence 运行记录",
+          "value": "research/intelligence/runs/2026/09/2026-09-17-intelligence.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "value": "research/runtime/records/daily/2026/09/2026-09-17-daily-runtime.json"
+        },
+        {
+          "label": "Wake Receipt",
+          "label_zh": "Wake Receipt",
+          "value": "research/runtime/wakes/2026/09/2026-09-17/discovery-090151.json"
+        }
       ],
       "startedAt": "2026-09-17T09:04:00+08:00",
       "completedAt": "2026-09-17T09:09:39+08:00",
@@ -92,12 +168,19 @@
       "event": "GitHub Commit Verified",
       "status": "Completed",
       "detail": "Fetched and verified durable Research Runtime Discovery Completed result commit 4ca994e48efc03f808fb534455f4f0de7d9bfa01 on main after the terminal result was persisted."
+    },
+    {
+      "time": "2026-09-17T11:01:49+08:00",
+      "task": "queue",
+      "event": "Execution Slot Opened",
+      "status": "Running",
+      "detail": "Research Runtime Queue started by Research Runtime Scheduler V3.0."
     }
   ],
   "metrics": [],
   "evidence": [],
   "artifacts": [],
-  "githubCommit": "4ca994e48efc03f808fb534455f4f0de7d9bfa01",
-  "commitVerify": "Completed",
-  "updatedAt": "2026-09-17T09:10:19+08:00"
+  "githubCommit": "pending",
+  "commitVerify": "Waiting",
+  "updatedAt": "2026-09-17T11:01:49+08:00"
 }
