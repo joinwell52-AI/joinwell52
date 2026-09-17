@@ -1,4 +1,4 @@
-const HOTFIX_VERSION='0.6.1';
+const HOTFIX_VERSION=APP_VERSION;
 
 function hotfixOpenMail(){
   document.querySelector('#launcherShell')?.classList.add('hidden');
