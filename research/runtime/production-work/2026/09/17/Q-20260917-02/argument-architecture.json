@@ -1,0 +1,110 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-17",
+  "itemId": "Q-20260917-02",
+  "coreProposition": "检测只是安全响应的第一个事实；持续环境必须分别证明传播边界被封住、受污染状态被清除、已发生效果被处置、可信基线被恢复，并让所有派生状态都能追溯到污染血缘。",
+  "openingMove": {
+    "type": "warning-followed-by-persistence",
+    "purpose": "以告警后恶意载荷仍被执行、保存和重新传播的场景，揭示发现与处置终态的差别。",
+    "evidenceRefs": [
+      "E2",
+      "E3",
+      "E4"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "为什么需要纵向观察？",
+      "claim": "持久多智能体世界允许风险跨记忆、制度和后续交接继续存在，单轮测试会漏掉延迟效果。",
+      "evidenceRefs": [
+        "E1",
+        "E6"
+      ],
+      "reasoningRole": "longitudinal-setting",
+      "readerProgress": "建立持续环境的时间维度。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "警告为什么不等于防御？",
+      "claim": "所有暴露世界都能发出警告，但没有一个跨三类压力事件形成完整防御。",
+      "evidenceRefs": [
+        "E2"
+      ],
+      "reasoningRole": "recognition-gap",
+      "readerProgress": "用结果证据分开识别与完成。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "风险通过哪些路径存活？",
+      "claim": "智能体可能继续执行、写入长期记忆，并在后续检索或跨智能体消息中再次传播。",
+      "evidenceRefs": [
+        "E3",
+        "E4"
+      ],
+      "reasoningRole": "effect-paths",
+      "readerProgress": "识别执行、持久化与传播三类独立路径。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "事件闭合至少需要哪些事实？",
+      "claim": "检测、控制、清除和恢复应分别记录并验证，任何一项未知都不能被统一的已解决状态覆盖。",
+      "evidenceRefs": [
+        "E5",
+        "E7"
+      ],
+      "reasoningRole": "four-security-facts",
+      "readerProgress": "把告警升级为四阶段证据合同。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "如何追踪持久污染？",
+      "claim": "载荷、派生摘要、记忆记录、交接消息和外部效果需要共享污染血缘与处置状态。",
+      "evidenceRefs": [
+        "E4",
+        "E8"
+      ],
+      "reasoningRole": "contamination-lineage",
+      "readerProgress": "建立跨状态追溯。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A6",
+      "question": "恢复如何证明？",
+      "claim": "恢复必须从可信基线重建允许状态、验证关键不变量，并确认旧污染无法再进入活动路径。",
+      "evidenceRefs": [
+        "E5",
+        "E7",
+        "E8"
+      ],
+      "reasoningRole": "closure-contract",
+      "readerProgress": "定义可检验的恢复终态。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A7",
+      "question": "无法证明全局干净怎么办？",
+      "claim": "应保留未知、缩小权限或隔离受影响范围，而不是宣告清除。",
+      "evidenceRefs": [
+        "E6",
+        "E9"
+      ],
+      "reasoningRole": "bounded-scope",
+      "readerProgress": "以失败关闭和开放问题收束。",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "只要系统识别攻击并提醒所有智能体，事件就已经得到控制。",
+    "responseBoundary": "警告改变认知，不会自动撤销已执行动作、删除持久副本或阻断派生内容传播；这些事实必须分别证明。"
+  },
+  "endingStrategy": {
+    "type": "four-stage-incident-closure-checklist",
+    "purpose": "以检测、控制、清除和恢复的证据字段结束。"
+  }
+}
