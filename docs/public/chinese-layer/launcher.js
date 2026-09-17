@@ -1,8 +1,8 @@
-const CHINESE_LAYER_VERSION='0.5.1';
+const CHINESE_LAYER_VERSION='0.6.0';
 const INSTALLED_APPS_KEY='cl-installed-apps-v1';
 const APP_CATALOG={
   dev:{id:'dev',name:'DEV',subtitle:'开发者社区',description:'英文技术文章自动中文浏览',badge:'已接入',ready:true,mark:'DEV'},
-  mail:{id:'mail',name:'Mail',subtitle:'邮件',description:'英文邮件自动中文浏览',badge:'下一项测试',ready:false,mark:'✉'}
+  mail:{id:'mail',name:'Mail',subtitle:'Gmail 收件箱',description:'实时读取 Gmail，并以中文浏览邮件',badge:'Gmail 已接入',ready:true,mark:'✉'}
 };
 
 const launcherState={mode:'mine',installed:loadInstalledApps()};
@@ -82,6 +82,7 @@ function openApp(id){
     document.querySelector('#launcherShell')?.classList.add('hidden');
     document.querySelector('#devShell')?.classList.add('hidden');
     document.querySelector('#mailShell')?.classList.remove('hidden');
+    if(typeof loadMailApp==='function')loadMailApp();
     window.scrollTo(0,0);
   }
 }
@@ -92,7 +93,6 @@ function bootLauncher(){
   document.querySelector('#catalogBack')?.addEventListener('click',()=>showLauncher('mine'));
   document.querySelector('#devBackApps')?.addEventListener('click',()=>showLauncher('mine'));
   document.querySelector('#mailBackApps')?.addEventListener('click',()=>showLauncher('mine'));
-  document.querySelector('#mailAddHint')?.addEventListener('click',()=>showLauncher('catalog'));
   showLauncher('mine');
 }
 
