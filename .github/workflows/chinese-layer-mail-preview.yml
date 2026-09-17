@@ -1,0 +1,48 @@
+name: Chinese Layer Mail Preview
+
+on:
+  push:
+    branches:
+      - chinese-layer-0.6.0-gmail-candidate
+    paths:
+      - "docs/public/chinese-layer/**"
+      - ".github/workflows/chinese-layer-mail-preview.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: chinese-layer-mail-preview
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    name: Publish Gmail candidate preview
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout candidate
+        uses: actions/checkout@v4
+        with:
+          path: source
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: pages
+          fetch-depth: 0
+      - name: Publish isolated preview folder
+        run: |
+          rm -rf pages/chinese-layer-preview-060
+          mkdir -p pages/chinese-layer-preview-060
+          cp -R source/docs/public/chinese-layer/. pages/chinese-layer-preview-060/
+          cd pages
+          git config user.name "joinwell52 Chinese Layer Preview"
+          git config user.email "actions@users.noreply.github.com"
+          git add chinese-layer-preview-060
+          if git diff --cached --quiet; then
+            echo "Preview unchanged"
+          else
+            git commit -m "preview: Chinese Layer 0.6.0 Gmail candidate"
+            git push origin HEAD:gh-pages
+          fi
