@@ -1,0 +1,63 @@
+{
+  "summary": {
+    "cases": 6,
+    "outcomes": [
+      true,
+      false,
+      true,
+      true,
+      "AttributeError",
+      "AttributeError"
+    ]
+  },
+  "boundary": "Unmodified Rule.from_text + Rule.triggered and generated parser. No AgentExecutor, model, tools, safety-rate or deployment claim.",
+  "raw_rule": "rule @probe\ntrigger\n PythonREPL\ncheck\n true\nenforce\n stop\nend\n",
+  "cases": [
+    {
+      "case": "exact_string",
+      "action": "PythonREPL",
+      "input": "print(1)",
+      "triggered": true,
+      "error": null
+    },
+    {
+      "case": "renamed_string",
+      "action": "python_repl",
+      "input": "print(1)",
+      "triggered": false,
+      "error": null
+    },
+    {
+      "case": "input_prefix",
+      "action": "other",
+      "input": "PythonREPL print(1)",
+      "triggered": true,
+      "error": null
+    },
+    {
+      "case": "exact_dict",
+      "action": "PythonREPL",
+      "input": {
+        "code": "print(1)"
+      },
+      "triggered": true,
+      "error": null
+    },
+    {
+      "case": "other_dict",
+      "action": "other",
+      "input": {
+        "code": "print(1)"
+      },
+      "triggered": null,
+      "error": "AttributeError"
+    },
+    {
+      "case": "finish_none",
+      "action": "finish",
+      "input": null,
+      "triggered": null,
+      "error": "AttributeError"
+    }
+  ]
+}

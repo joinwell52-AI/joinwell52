@@ -1,0 +1,50 @@
+{
+  "summary": {
+    "cases": 5,
+    "decisions": [
+      "allow",
+      "allow",
+      "allow",
+      "deny",
+      "allow"
+    ]
+  },
+  "boundary": "Original YAML loader and Guardrails evaluator; no file operation or runtime adapter was invoked. POSIX strings intentionally follow upstream docs.",
+  "cases": [
+    {
+      "case": "omitted",
+      "yaml": "schema_version: bulbasaur/v1\nskill: probe\n",
+      "path": "/workspace/out.txt",
+      "decision": "allow",
+      "reason": "no write_paths rules declared"
+    },
+    {
+      "case": "explicit_empty",
+      "yaml": "skill: probe\nfilesystem:\n  write_paths: []\n",
+      "path": "/workspace/out.txt",
+      "decision": "allow",
+      "reason": "no write_paths rules declared"
+    },
+    {
+      "case": "inside",
+      "yaml": "skill: probe\nfilesystem:\n  write_paths: [\"/workspace/output/**\"]\n",
+      "path": "/workspace/output/result.txt",
+      "decision": "allow",
+      "reason": "path matches write_paths glob `/workspace/output/**`"
+    },
+    {
+      "case": "outside",
+      "yaml": "skill: probe\nfilesystem:\n  write_paths: [\"/workspace/output/**\"]\n",
+      "path": "/workspace/other.txt",
+      "decision": "deny",
+      "reason": "path not in write_paths allow list"
+    },
+    {
+      "case": "dotdot",
+      "yaml": "skill: probe\nfilesystem:\n  write_paths: [\"/workspace/output/**\"]\n",
+      "path": "/workspace/output/../other.txt",
+      "decision": "allow",
+      "reason": "path matches write_paths glob `/workspace/output/**`"
+    }
+  ]
+}

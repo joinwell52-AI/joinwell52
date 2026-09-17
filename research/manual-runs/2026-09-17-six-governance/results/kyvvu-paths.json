@@ -1,0 +1,275 @@
+{
+  "summary": {
+    "engine_version": "0.11.0",
+    "cases": 6,
+    "actions": [
+      "allow",
+      "block",
+      "block",
+      "block",
+      "allow",
+      "block"
+    ]
+  },
+  "boundary": "Original PolicyEngine + public manifest; in-process evaluation only. Fresh engine is a deliberate missing-history control, not a test of the hosted platform persistence.",
+  "cases": [
+    {
+      "case": "clean",
+      "action": "allow",
+      "history": [
+        {
+          "agent_id": "demo-agent",
+          "task_id": "task-1",
+          "timestamp": "2026-09-17T15:13:13.817975Z",
+          "step": null,
+          "step_type": "step.resource",
+          "verb": "GET",
+          "step_name": "step",
+          "input": null,
+          "output": null,
+          "properties": {
+            "data": {
+              "classification": "public"
+            },
+            "target": {
+              "host": "api.example.com"
+            }
+          },
+          "meta": null
+        },
+        {
+          "agent_id": "demo-agent",
+          "task_id": "task-1",
+          "timestamp": "2026-09-17T15:13:13.817975Z",
+          "step": null,
+          "step_type": "step.gate",
+          "verb": null,
+          "step_name": "review",
+          "input": null,
+          "output": null,
+          "properties": {
+            "guard": {
+              "check_type": "exfiltration_review",
+              "result": "pass"
+            }
+          },
+          "meta": null
+        }
+      ],
+      "violated": []
+    },
+    {
+      "case": "tainted",
+      "action": "block",
+      "history": [
+        {
+          "agent_id": "demo-agent",
+          "task_id": "task-1",
+          "timestamp": "2026-09-17T15:13:13.817975Z",
+          "step": null,
+          "step_type": "step.resource",
+          "verb": "GET",
+          "step_name": "step",
+          "input": null,
+          "output": null,
+          "properties": {
+            "data": {
+              "classification": "pii"
+            },
+            "target": {
+              "host": "internal.example.com"
+            }
+          },
+          "meta": null
+        },
+        {
+          "agent_id": "demo-agent",
+          "task_id": "task-1",
+          "timestamp": "2026-09-17T15:13:13.817975Z",
+          "step": null,
+          "step_type": "step.gate",
+          "verb": null,
+          "step_name": "review",
+          "input": null,
+          "output": null,
+          "properties": {
+            "guard": {
+              "check_type": "exfiltration_review",
+              "result": "pass"
+            }
+          },
+          "meta": null
+        }
+      ],
+      "violated": [
+        "Block external send after sensitive data read"
+      ]
+    },
+    {
+      "case": "tainted_gate_after",
+      "action": "block",
+      "history": [
+        {
+          "agent_id": "demo-agent",
+          "task_id": "task-1",
+          "timestamp": "2026-09-17T15:13:13.817975Z",
+          "step": null,
+          "step_type": "step.resource",
+          "verb": "GET",
+          "step_name": "step",
+          "input": null,
+          "output": null,
+          "properties": {
+            "data": {
+              "classification": "pii"
+            },
+            "target": {
+              "host": "internal.example.com"
+            }
+          },
+          "meta": null
+        },
+        {
+          "agent_id": "demo-agent",
+          "task_id": "task-1",
+          "timestamp": "2026-09-17T15:13:13.817975Z",
+          "step": null,
+          "step_type": "step.gate",
+          "verb": null,
+          "step_name": "review",
+          "input": null,
+          "output": null,
+          "properties": {
+            "guard": {
+              "check_type": "exfiltration_review",
+              "result": "pass"
+            }
+          },
+          "meta": null
+        },
+        {
+          "agent_id": "demo-agent",
+          "task_id": "task-1",
+          "timestamp": "2026-09-17T15:13:13.817975Z",
+          "step": null,
+          "step_type": "step.gate",
+          "verb": null,
+          "step_name": "review",
+          "input": null,
+          "output": null,
+          "properties": {
+            "guard": {
+              "check_type": "exfiltration_review",
+              "result": "pass"
+            }
+          },
+          "meta": null
+        }
+      ],
+      "violated": [
+        "Block external send after sensitive data read"
+      ]
+    },
+    {
+      "case": "no_gate",
+      "action": "block",
+      "history": [
+        {
+          "agent_id": "demo-agent",
+          "task_id": "task-1",
+          "timestamp": "2026-09-17T15:13:13.817975Z",
+          "step": null,
+          "step_type": "step.resource",
+          "verb": "GET",
+          "step_name": "step",
+          "input": null,
+          "output": null,
+          "properties": {
+            "data": {
+              "classification": "public"
+            },
+            "target": {
+              "host": "api.example.com"
+            }
+          },
+          "meta": null
+        }
+      ],
+      "violated": [
+        "External sends require an exfiltration review gate"
+      ]
+    },
+    {
+      "case": "fresh_engine_same_ids",
+      "action": "allow",
+      "history": [
+        {
+          "agent_id": "demo-agent",
+          "task_id": "task-1",
+          "timestamp": "2026-09-17T15:13:13.817975Z",
+          "step": null,
+          "step_type": "step.gate",
+          "verb": null,
+          "step_name": "review",
+          "input": null,
+          "output": null,
+          "properties": {
+            "guard": {
+              "check_type": "exfiltration_review",
+              "result": "pass"
+            }
+          },
+          "meta": null
+        }
+      ],
+      "violated": []
+    },
+    {
+      "case": "restored_history",
+      "action": "block",
+      "history": [
+        {
+          "agent_id": "demo-agent",
+          "task_id": "task-1",
+          "timestamp": "2026-09-17T15:13:13.817975Z",
+          "step": null,
+          "step_type": "step.resource",
+          "verb": "GET",
+          "step_name": "step",
+          "input": null,
+          "output": null,
+          "properties": {
+            "data": {
+              "classification": "pii"
+            },
+            "target": {
+              "host": "internal.example.com"
+            }
+          },
+          "meta": null
+        },
+        {
+          "agent_id": "demo-agent",
+          "task_id": "task-1",
+          "timestamp": "2026-09-17T15:13:13.817975Z",
+          "step": null,
+          "step_type": "step.gate",
+          "verb": null,
+          "step_name": "review",
+          "input": null,
+          "output": null,
+          "properties": {
+            "guard": {
+              "check_type": "exfiltration_review",
+              "result": "pass"
+            }
+          },
+          "meta": null
+        }
+      ],
+      "violated": [
+        "Block external send after sensitive data read"
+      ]
+    }
+  ]
+}
