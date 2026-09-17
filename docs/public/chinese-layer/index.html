@@ -6,18 +6,54 @@
   <meta name="theme-color" content="#f5f5f5" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="DEV 中文" />
-  <title>DEV 中文层</title>
+  <meta name="apple-mobile-web-app-title" content="中文层" />
+  <title>Chinese Layer 中文层</title>
   <link rel="manifest" href="./manifest.webmanifest" />
-  <link rel="stylesheet" href="./styles.css?v=0.4.0" />
+  <link rel="stylesheet" href="./styles.css?v=0.5.0" />
 </head>
 <body>
-  <div id="app" class="app-shell">
+  <section id="launcherShell" class="launcher-shell">
+    <header class="launcher-topbar">
+      <div>
+        <div class="eyebrow">CHINESE LAYER <span id="launcherVersion" class="version-badge">v0.5.0</span></div>
+        <h1>中文层</h1>
+      </div>
+    </header>
+
+    <main class="launcher-main">
+      <section id="launcherMine">
+        <div class="launcher-heading">
+          <div>
+            <div class="hero-label">MY APPS</div>
+            <h2>我的 App</h2>
+          </div>
+          <button id="openCatalog" class="primary-btn">＋ 添加 App</button>
+        </div>
+        <p class="launcher-intro">选择已经加入的 App，直接中文浏览。</p>
+        <div id="installedApps" class="installed-apps"></div>
+      </section>
+
+      <section id="launcherCatalog" class="hidden">
+        <div class="catalog-header">
+          <button id="catalogBack" class="ghost-btn">‹ 返回</button>
+          <div>
+            <div class="hero-label">APP CATALOG</div>
+            <h2>选择 App</h2>
+          </div>
+        </div>
+        <p class="launcher-intro">加入后会留在“我的 App”列表里。</p>
+        <div id="catalogApps" class="catalog-apps"></div>
+      </section>
+    </main>
+  </section>
+
+  <div id="devShell" class="app-shell hidden">
+    <button id="devBackApps" class="layer-back">‹ 我的 App</button>
     <header class="topbar">
       <div class="brand">
         <div class="dev-logo">DEV</div>
         <div>
-          <div class="eyebrow">CHINESE LAYER <span id="versionBadge" class="version-badge">v0.4.0</span></div>
+          <div class="eyebrow">CHINESE LAYER <span id="versionBadge" class="version-badge">v0.5.0</span></div>
           <h1 id="pageTitle">主页</h1>
         </div>
       </div>
@@ -32,8 +68,8 @@
     <main>
       <section id="homeView" class="view active">
         <div class="feed-tabs">
-          <button class="feed-tab active" data-feed="popular">发现</button>
-          <button class="feed-tab" data-feed="latest">最新</button>
+          <button class="feed-tab" data-feed="popular">发现</button>
+          <button class="feed-tab active" data-feed="latest">最新</button>
         </div>
         <div id="status" class="status">正在载入 DEV…</div>
         <div id="articleList" class="article-list"></div>
@@ -65,11 +101,22 @@
       </section>
     </main>
 
-    <nav class="bottom-nav" aria-label="主导航">
+    <nav class="bottom-nav" aria-label="DEV 导航">
       <button class="nav-btn active" data-view="homeView" data-title="主页">⌂<span>主页</span></button>
       <button class="nav-btn" data-view="meView" data-title="我的">◉<span>我的</span></button>
     </nav>
   </div>
+
+  <section id="mailShell" class="mail-shell hidden">
+    <button id="mailBackApps" class="layer-back">‹ 我的 App</button>
+    <div class="mail-placeholder">
+      <div class="mail-icon">✉</div>
+      <div class="hero-label">MAIL ADAPTER</div>
+      <h1>Mail</h1>
+      <p>这是第二个测试 App。下一步接入邮箱授权后，邮件主题、摘要和正文都会在这里中文浏览。</p>
+      <button id="mailAddHint" class="primary-btn">返回选择 App</button>
+    </div>
+  </section>
 
   <div id="reader" class="reader hidden" aria-hidden="true">
     <div class="reader-bar">
@@ -82,6 +129,7 @@
     <article id="readerContent" class="reader-content"></article>
   </div>
 
-  <script src="./app.js?v=0.4.0" defer></script>
+  <script src="./app.js?v=0.5.0" defer></script>
+  <script src="./launcher.js?v=0.5.0" defer></script>
 </body>
 </html>
