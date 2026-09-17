@@ -35,7 +35,7 @@ Nothing crashed. Every launch faithfully made a backup. That repetition pushed t
 
 The source is [commit ce6457a in anywhere-agents](https://github.com/yzhao062/anywhere-agents/commit/ce6457a830dead5e05c3a17f685f7ff32575ce20), by Yue Zhao, or yzhao062 on GitHub. The project helps AI coding tools share settings. One Python program merges shared configuration into a local file.
 
-The upstream investigation reported 27 consumers and 198 byte-identical backups. Those are **upstream observations, not the scale of our experiment**.
+The upstream investigation found that repeatedly merging unchanged settings created identical backups and displaced useful older contents.
 
 This matters to us because automated tools often synchronize on every launch. If each synchronization consumes a backup slot, opening more terminals can shorten recoverable history without changing a single setting.
 
@@ -74,16 +74,18 @@ Ignoring formatting is not automatically the right answer. Comments, ordering an
 
 ## Try recovering, not just counting
 
-A practical check is small: change a harmless setting, restart or synchronize repeatedly, then look for the pre-change version. Inspect the contents as well as the count.
+A practical check is small: change a harmless setting, restart or synchronize repeatedly, then look for the pre-change version. The target is specific: can you recover what existed before that change?
 
-For developers, the next questions concern multiple writers. Can two tools alternate between formatting styles? Should retention count writes, distinct contents, or elapsed time? If content is deduplicated, which differences remain significant?
+If you have found plenty of backups but not the version you needed, record when the setting changed and how often the tool restarted or synchronized afterward. That helps locate when repeated copies displaced useful history.
 
-Those policies need their own experiments. What we verified here is narrower and useful: unchanged bytes no longer create backups in the tested merge program, so repeated copies no longer evict the original revision in that scenario.
+For developers, the formatting counterexample suggests another experiment: let two tools alternate writes to the same configuration, then compare retention by write count, distinct content and elapsed time. Each policy may lose something different. Formatting or comments can themselves be worth restoring, so deduplication should not be assumed to be the answer.
 
-Have you ever found plenty of backups but not the version you needed? Was the system retaining recent operations, or recent changes? The distinction often becomes visible only when restoration matters.
+The tested improvement is clear: unchanged bytes no longer create backups, preserving the original revision in that scenario. It leaves one larger question: **does a backup system promise the last few saves, or the changes a person needs to return to?**
 
 <details>
 <summary>Versions, scope and reproduction</summary>
+
+The upstream investigation reported 27 consumers and 198 byte-identical backups. Those are **upstream observations, not the scale of our experiment**.
 
 We ran the complete original Python merge module through its main entry point, using real Windows temporary files and its original locks. Six scenarios ran against both versions, producing 12 observations: identical merges, deliberate formatting rewrites, another real change, first installation, empty-merge refusal, and eight concurrent identical merges.
 
