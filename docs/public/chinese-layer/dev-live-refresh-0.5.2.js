@@ -1,4 +1,4 @@
-const CHINESE_LAYER_PATCH_VERSION='0.6.0';
+const CHINESE_LAYER_PATCH_VERSION=APP_VERSION;
 
 function devLiveUrl(pathname, params={}){
   const u=new URL(`${DEV_API}${pathname}`);
@@ -134,13 +134,9 @@ openArticle=async function(a){
   }
 };
 
-const baseIsNewerVersion=isNewerVersion;
-isNewerVersion=(remote)=>baseIsNewerVersion(remote,CHINESE_LAYER_PATCH_VERSION);
-try{localStorage.setItem('cl-last-app-version',APP_VERSION)}catch{}
-if(typeof hideUpdateBanner==='function')hideUpdateBanner();
-
+// Version comparison and update state belong exclusively to app.js.
 function markChineseLayerPatchVersion(){
-  document.querySelectorAll('#versionBadge,#launcherVersion').forEach(el=>{el.textContent=`v${CHINESE_LAYER_PATCH_VERSION}`});
+  document.querySelectorAll('#versionBadge,#launcherVersion').forEach(el=>{el.textContent=`v${APP_VERSION}`});
 }
 markChineseLayerPatchVersion();
 document.addEventListener('DOMContentLoaded',markChineseLayerPatchVersion);
