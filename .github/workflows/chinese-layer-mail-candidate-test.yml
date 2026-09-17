@@ -34,3 +34,5 @@ jobs:
         run: node scripts/chinese-layer-mail-smoke.mjs
       - name: Re-run DEV regression smoke
         run: node scripts/chinese-layer-smoke.mjs
+      # The Google Identity script itself is browser-only and can return 403 to CI bots;
+      # its exact URL is covered by the static gate in chinese-layer-mail-smoke.mjs.
