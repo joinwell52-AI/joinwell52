@@ -1,4 +1,4 @@
-const CHINESE_LAYER_PATCH_VERSION='0.5.3-candidate';
+const CHINESE_LAYER_PATCH_VERSION='0.5.3';
 
 function devLiveUrl(pathname, params={}){
   const u=new URL(`${DEV_API}${pathname}`);
@@ -88,7 +88,7 @@ loadMe=async function(){
       if(String(article?.user?.username||'').toLowerCase()===username.toLowerCase())merged.set(String(article.id),article);
     }
     const raw=[...merged.values()];
-    if(!raw.length)throw new Error(`找不到 @${username} 的公开文章`);
+    if(!raw.length)throw new Error(`找不到 @${username} 的文章`);
     state.myArticles=raw.map(normalizeArticle).sort((a,b)=>new Date(b.published_at||b.created_at)-new Date(a.published_at||a.created_at));
     try{
       const cache=await loadServerCache(true);
@@ -133,6 +133,11 @@ openArticle=async function(a){
     content.innerHTML+=`<p>读取失败：${esc(e.message)}</p>`;
   }
 };
+
+const baseIsNewerVersion=isNewerVersion;
+isNewerVersion=(remote)=>baseIsNewerVersion(remote,CHINESE_LAYER_PATCH_VERSION);
+try{localStorage.setItem('cl-last-app-version',APP_VERSION)}catch{}
+if(typeof hideUpdateBanner==='function')hideUpdateBanner();
 
 function markChineseLayerPatchVersion(){
   document.querySelectorAll('#versionBadge,#launcherVersion').forEach(el=>{el.textContent=`v${CHINESE_LAYER_PATCH_VERSION}`});
