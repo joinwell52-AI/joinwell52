@@ -46,10 +46,11 @@ jobs:
           const hasZh = (v) => /[\u3400-\u9fff]/.test(String(v || ''))
           if (data.schema !== 'chinese-layer-cache/v1') throw new Error('bad cache schema')
           if (!Array.isArray(data.popular) || !data.popular.length || !hasZh(data.popular[0]._zhTitle)) throw new Error('popular title cache missing')
+          if (!Array.isArray(data.latest) || !data.latest.length || !hasZh(data.latest[0]._zhTitle)) throw new Error('latest title cache missing')
           if (!Array.isArray(data.mine) || !data.mine.length || !hasZh(data.mine[0]._zhTitle)) throw new Error('my title cache missing')
-          const firstMine = String(data.mine[0].id)
-          if (!hasZh(data.bodies?.[firstMine]?.bodyZh)) throw new Error('my body cache missing')
-          console.log(`CACHE_GATE_PASS popular=${data.popular.length} latest=${data.latest.length} mine=${data.mine.length} bodies=${Object.keys(data.bodies || {}).length}`)
+          const translatedBodies = Object.values(data.bodies || {}).filter((entry) => hasZh(entry?.bodyZh))
+          if (!translatedBodies.length) throw new Error('translated body cache missing')
+          console.log(`CACHE_GATE_PASS popular=${data.popular.length} latest=${data.latest.length} mine=${data.mine.length} bodies=${translatedBodies.length}`)
           NODE
 
       - name: Publish cache into gh-pages
