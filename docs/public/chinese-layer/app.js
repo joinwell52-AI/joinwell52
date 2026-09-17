@@ -1,7 +1,7 @@
-const APP_VERSION='0.4.0';
+const APP_VERSION='0.5.0';
 const DEV_API='https://dev.to/api';
 const GOOGLE_TRANSLATE='https://translate.googleapis.com/translate_a/single';
-const CACHE_KEY='cl-translate-cache-v4';
+const CACHE_KEY='cl-translate-cache-v5';
 const IS_MOBILE=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent||'');
 const $=s=>document.querySelector(s);
 const $$=s=>[...document.querySelectorAll(s)];
@@ -16,7 +16,7 @@ function paragraphHtml(value){return text(value).split(/\n{2,}/).map(p=>p.trim()
 
 function loadLocalCache(){
   const merged=new Map();
-  const keys=[CACHE_KEY,'cl-translate-cache-v3','cl-translate-cache-v2','cl-translate-cache-v1','cl-cache'];
+  const keys=[CACHE_KEY,'cl-translate-cache-v4','cl-translate-cache-v3','cl-translate-cache-v2','cl-translate-cache-v1','cl-cache'];
   for(const key of keys){
     try{
       const rows=JSON.parse(localStorage.getItem(key)||'[]');
@@ -29,12 +29,13 @@ function loadLocalCache(){
 function saveLocalCache(){try{localStorage.setItem(CACHE_KEY,JSON.stringify([...state.localCache].slice(-4000)))}catch{}}
 
 const savedUsername=localStorage.getItem('cl-dev-username')||'';
-const state={articles:[],myArticles:[],currentArticle:null,feed:'popular',showChinese:localStorage.getItem('cl-language')!=='en',username:/^[A-Za-z0-9_-]+$/.test(savedUsername)?savedUsername:'joinwell52',localCache:loadLocalCache(),serverCache:null,serverCachePromise:null,remoteVersion:APP_VERSION,provider:IS_MOBILE?'服务端中文缓存':'Google Translate',lastError:''};
+const state={articles:[],myArticles:[],currentArticle:null,feed:'latest',showChinese:localStorage.getItem('cl-language')!=='en',username:/^[A-Za-z0-9_-]+$/.test(savedUsername)?savedUsername:'joinwell52',localCache:loadLocalCache(),serverCache:null,serverCachePromise:null,remoteVersion:APP_VERSION,provider:IS_MOBILE?'服务端中文缓存':'Google Translate',lastError:''};
 if(!savedUsername)localStorage.setItem('cl-dev-username','joinwell52');
 function currentTitle(a){return state.showChinese?(text(a?._zhTitle)||text(a?.title)):text(a?.title)}
 function currentDesc(a){return state.showChinese?(text(a?._zhDesc)||text(a?.description)):text(a?.description)}
 
-async function loadServerCache(){
+async function loadServerCache(force=false){
+  if(force){state.serverCache=null;state.serverCachePromise=null}
   if(state.serverCache)return state.serverCache;
   if(state.serverCachePromise)return state.serverCachePromise;
   state.serverCachePromise=(async()=>{
@@ -58,7 +59,7 @@ function renderHomeArticles(){const root=$('#articleList');root.innerHTML='';if(
 async function loadArticles(){
   const status=$('#status');state.lastError='';status.textContent='正在读取 DEV 内容…';
   if(IS_MOBILE){
-    try{const cache=await loadServerCache();const rows=state.feed==='latest'?cache.latest:cache.popular;state.articles=(Array.isArray(rows)?rows:[]).map(normalizeArticle);renderHomeArticles();status.textContent=`已中文化 · 服务端缓存 · ${new Date(cache.generatedAt).toLocaleString('zh-CN')}`;return}catch(e){state.articles=[];renderHomeArticles();status.textContent=`手机中文缓存暂不可用：${e.message}`;return}
+    try{const cache=await loadServerCache(true);const rows=state.feed==='latest'?cache.latest:cache.popular;state.articles=(Array.isArray(rows)?rows:[]).map(normalizeArticle);renderHomeArticles();status.textContent=`已中文化 · 服务端缓存 · ${new Date(cache.generatedAt).toLocaleString('zh-CN')}`;return}catch(e){state.articles=[];renderHomeArticles();status.textContent=`手机中文缓存暂不可用：${e.message}`;return}
   }
   try{const endpoint=state.feed==='latest'?`${DEV_API}/articles/latest?per_page=12`:`${DEV_API}/articles?per_page=12`;const r=await fetch(endpoint,{headers:{Accept:'application/vnd.forem.api-v1+json'},cache:'no-store'});if(!r.ok)throw new Error(`DEV API ${r.status}`);const raw=await r.json();state.articles=Array.isArray(raw)?raw.map(normalizeArticle):[];renderHomeArticles();status.textContent=`正在翻译标题… 0/${state.articles.length}`;const titles=await mapLimit(state.articles,2,a=>googleTranslateOne(a.title),(done,i,v)=>{state.articles[i]._zhTitle=text(v)||state.articles[i].title;renderHomeArticles();status.textContent=`正在翻译标题… ${done}/${state.articles.length}`},a=>a.title);state.articles.forEach((a,i)=>a._zhTitle=text(titles[i])||a.title);renderHomeArticles();const targets=state.articles.slice(0,6);status.textContent='标题已中文化，正在翻译摘要…';const descs=await mapLimit(targets,1,a=>googleTranslateOne(a.description||''),(done,i,v)=>{targets[i]._zhDesc=text(v)||targets[i].description||'';renderHomeArticles()},a=>a.description||'');targets.forEach((a,i)=>a._zhDesc=text(descs[i])||a.description||'');renderHomeArticles();status.textContent=state.lastError?`已翻译大部分内容 · 个别失败：${state.lastError}`:'已中文化 · Google Translate'}catch(e){renderHomeArticles();status.textContent=`翻译失败：${e.message}`}
 }
@@ -70,7 +71,7 @@ function renderProfile(username){const au=state.myArticles[0]?.user||{};$('#prof
 async function loadMe(){
   const username=(state.username||'joinwell52').trim().replace(/^@/,'');state.lastError='';$('#meSetup').classList.add('hidden');$('#meContent').classList.remove('hidden');$('#meStatus').textContent='正在读取我的 DEV…';
   if(IS_MOBILE&&username==='joinwell52'){
-    try{const cache=await loadServerCache();state.myArticles=(Array.isArray(cache.mine)?cache.mine:[]).map(normalizeArticle);if(!state.myArticles.length)throw new Error('我的文章缓存为空');renderProfile(username);renderMyArticles();$('#meStatus').textContent=`${state.myArticles.length} 篇公开文章 · 已中文化 · 服务端缓存`;return}catch(e){state.myArticles=[];renderMyArticles();$('#meStatus').textContent=`手机中文缓存暂不可用：${e.message}`;return}
+    try{const cache=await loadServerCache(true);state.myArticles=(Array.isArray(cache.mine)?cache.mine:[]).map(normalizeArticle);if(!state.myArticles.length)throw new Error('我的文章缓存为空');renderProfile(username);renderMyArticles();$('#meStatus').textContent=`${state.myArticles.length} 篇公开文章 · 已中文化 · 服务端缓存`;return}catch(e){state.myArticles=[];renderMyArticles();$('#meStatus').textContent=`手机中文缓存暂不可用：${e.message}`;return}
   }
   try{const r=await fetch(`${DEV_API}/articles?username=${encodeURIComponent(username)}&per_page=100`,{cache:'no-store'});if(!r.ok)throw new Error(`DEV API ${r.status}`);const raw=await r.json();if(!Array.isArray(raw)||!raw.length)throw new Error(`找不到 @${username} 的公开文章`);state.myArticles=raw.map(normalizeArticle).sort((a,b)=>new Date(b.published_at)-new Date(a.published_at));renderProfile(username);renderMyArticles();const count=Math.min(30,state.myArticles.length),subset=state.myArticles.slice(0,count);$('#meStatus').textContent=`正在翻译我的文章标题… 0/${count}`;const titles=await mapLimit(subset,2,a=>googleTranslateOne(a.title),(done,i,v)=>{subset[i]._zhTitle=text(v)||subset[i].title;renderMyArticles();$('#meStatus').textContent=`正在翻译我的文章标题… ${done}/${count}`},a=>a.title);subset.forEach((a,i)=>a._zhTitle=text(titles[i])||a.title);renderMyArticles();$('#meStatus').textContent=state.lastError?`${state.myArticles.length} 篇文章 · 已翻译大部分标题 · 个别失败：${state.lastError}`:`${state.myArticles.length} 篇公开文章 · 前 ${count} 篇已中文化 · Google Translate`}catch(e){$('#meStatus').textContent=`读取/翻译失败：${e.message}`}
 }
@@ -94,4 +95,4 @@ async function checkForUpdate(){try{const r=await fetch(`./version.json?ts=${Dat
 function forceUpdate(){if(!isNewerVersion(state.remoteVersion,APP_VERSION)){hideUpdateBanner();return}const u=new URL(location.href);u.searchParams.set('version',state.remoteVersion);u.searchParams.set('_',Date.now());location.replace(u.toString())}
 function switchView(viewId,title){$$('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.view===viewId));$$('.view').forEach(v=>v.classList.toggle('active',v.id===viewId));$('#pageTitle').textContent=title||'DEV 中文';if(viewId==='meView')loadMe()}
 
-$('#langToggle').addEventListener('click',()=>setLanguage(!state.showChinese));$('#readerLang').addEventListener('click',()=>setLanguage(!state.showChinese));$('#readerBack').addEventListener('click',()=>{$('#reader').classList.add('hidden');$('#reader').setAttribute('aria-hidden','true')});$('#openOriginal').addEventListener('click',()=>{const u=state.currentArticle?.url||state.currentArticle?.canonical_url;if(u)window.open(u,'_blank','noopener')});$('#saveUsername').addEventListener('click',()=>{const v=$('#devUsername').value.trim().replace(/^@/,'');if(!v)return;state.username=v;localStorage.setItem('cl-dev-username',v);loadMe()});$('#changeUsername').addEventListener('click',()=>{state.username='';localStorage.removeItem('cl-dev-username');$('#devUsername').value='';$('#meContent').classList.add('hidden');$('#meSetup').classList.remove('hidden')});$$('.feed-tab').forEach(b=>b.addEventListener('click',()=>{$$('.feed-tab').forEach(x=>x.classList.toggle('active',x===b));state.feed=b.dataset.feed;loadArticles()}));$$('.nav-btn').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view,b.dataset.title)));$('#updateNow').addEventListener('click',forceUpdate);document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkForUpdate()});setInterval(checkForUpdate,120000);$('#versionBadge').textContent=`v${APP_VERSION}`;$('#langToggle').textContent=state.showChinese?'中文':'EN';$('#readerLang').textContent=state.showChinese?'中文':'EN';checkForUpdate();loadArticles();
+$('#langToggle').addEventListener('click',()=>setLanguage(!state.showChinese));$('#readerLang').addEventListener('click',()=>setLanguage(!state.showChinese));$('#readerBack').addEventListener('click',()=>{$('#reader').classList.add('hidden');$('#reader').setAttribute('aria-hidden','true')});$('#openOriginal').addEventListener('click',()=>{const u=state.currentArticle?.url||state.currentArticle?.canonical_url;if(u)window.open(u,'_blank','noopener')});$('#saveUsername').addEventListener('click',()=>{const v=$('#devUsername').value.trim().replace(/^@/,'');if(!v)return;state.username=v;localStorage.setItem('cl-dev-username',v);loadMe()});$('#changeUsername').addEventListener('click',()=>{state.username='';localStorage.removeItem('cl-dev-username');$('#devUsername').value='';$('#meContent').classList.add('hidden');$('#meSetup').classList.remove('hidden')});$$('.feed-tab').forEach(b=>b.addEventListener('click',()=>{$$('.feed-tab').forEach(x=>x.classList.toggle('active',x===b));state.feed=b.dataset.feed;loadArticles()}));$$('.nav-btn').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view,b.dataset.title)));$('#updateNow').addEventListener('click',forceUpdate);document.addEventListener('visibilitychange',()=>{if(!document.hidden){checkForUpdate();const shell=document.querySelector('#devShell');if(shell&&!shell.classList.contains('hidden')){const me=document.querySelector('#meView');if(me?.classList.contains('active'))loadMe();else loadArticles()}}});setInterval(checkForUpdate,120000);$('#versionBadge').textContent=`v${APP_VERSION}`;$('#langToggle').textContent=state.showChinese?'中文':'EN';$('#readerLang').textContent=state.showChinese?'中文':'EN';checkForUpdate();loadArticles();
