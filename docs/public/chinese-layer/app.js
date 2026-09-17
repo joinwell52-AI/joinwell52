@@ -1,4 +1,4 @@
-const APP_VERSION='0.5.1';
+const APP_VERSION='0.6.2';
 const DEV_API='https://dev.to/api';
 const GOOGLE_TRANSLATE='https://translate.googleapis.com/translate_a/single';
 const CACHE_KEY='cl-translate-cache-v6';
@@ -122,11 +122,30 @@ async function openArticle(a){
 
 function setLanguage(chinese){state.showChinese=chinese;localStorage.setItem('cl-language',chinese?'zh':'en');$('#langToggle').textContent=chinese?'中文':'EN';$('#readerLang').textContent=chinese?'中文':'EN';renderHomeArticles();if(state.myArticles.length)renderMyArticles();if(!$('#reader').classList.contains('hidden')&&state.currentArticle)openArticle(state.currentArticle)}
 function versionParts(v){return text(v).replace(/^v/,'').split('.').map(x=>parseInt(x,10)||0)}
-function isNewerVersion(remote,current){const a=versionParts(remote),b=versionParts(current),n=Math.max(a.length,b.length);for(let i=0;i<n;i++){if((a[i]||0)>(b[i]||0))return true;if((a[i]||0)<(b[i]||0))return false}return false}
-function showUpdateBanner(message,button='立即更新'){$('#updateText').textContent=message;$('#updateNow').textContent=button;$('#updateBanner').classList.remove('hidden')}
+function isNewerVersion(remote,current=APP_VERSION){const a=versionParts(remote),b=versionParts(current),n=Math.max(a.length,b.length);for(let i=0;i<n;i++){if((a[i]||0)>(b[i]||0))return true;if((a[i]||0)<(b[i]||0))return false}return false}
+function showUpdateBanner(message,button='立即更新'){$('#updateText').textContent=message;$('#updateNow').textContent=button;$('#updateNow').dataset.action=button==='立即更新'?'update':'dismiss';$('#updateBanner').classList.remove('hidden')}
 function hideUpdateBanner(){$('#updateBanner').classList.add('hidden')}
-async function checkForUpdate(){try{const r=await fetch(`./version.json?ts=${Date.now()}`,{cache:'no-store'});if(!r.ok)return;const meta=await r.json();state.remoteVersion=text(meta.version||APP_VERSION);if(isNewerVersion(state.remoteVersion,APP_VERSION)){showUpdateBanner(`发现新版本 v${state.remoteVersion}`);return}const previous=localStorage.getItem('cl-last-app-version');if(previous&&previous!==APP_VERSION)showUpdateBanner(`已更新到 v${APP_VERSION}`,'知道了');localStorage.setItem('cl-last-app-version',APP_VERSION)}catch{}}
-function forceUpdate(){if(!isNewerVersion(state.remoteVersion,APP_VERSION)){hideUpdateBanner();return}const u=new URL(location.href);u.searchParams.set('version',state.remoteVersion);u.searchParams.set('_',Date.now());location.replace(u.toString())}
+// APP_VERSION is the only runtime authority. Adapters must not replace this checker or comparator.
+let updateCheckSequence=0;
+async function checkForUpdate(manual=false){
+  const sequence=++updateCheckSequence;
+  try{
+    const r=await fetch(`./version.json?ts=${Date.now()}`,{cache:'no-store'});
+    if(!r.ok)throw new Error('版本检查暂不可用');
+    const meta=await r.json();
+    if(sequence!==updateCheckSequence)return;
+    const remote=text(meta.version).trim().replace(/^v/,'');
+    if(!/^\d+\.\d+\.\d+$/.test(remote))throw new Error('版本信息无效');
+    state.remoteVersion=remote;
+    try{localStorage.setItem('cl-last-app-version',APP_VERSION)}catch{}
+    if(isNewerVersion(remote,APP_VERSION))showUpdateBanner(`发现新版本 v${remote}`);
+    else if(manual===true)showUpdateBanner(`当前已是 v${APP_VERSION}`,'知道了');
+    else hideUpdateBanner();
+  }catch{
+    if(sequence===updateCheckSequence&&manual===true)showUpdateBanner('暂时无法检查更新，请稍后再试','知道了');
+  }
+}
+function forceUpdate(){if($('#updateNow').dataset.action!=='update'||!isNewerVersion(state.remoteVersion,APP_VERSION)){hideUpdateBanner();return}const u=new URL(location.href);u.searchParams.set('version',state.remoteVersion);u.searchParams.set('_',Date.now());location.replace(u.toString())}
 function switchView(viewId,title){$$('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.view===viewId));$$('.view').forEach(v=>v.classList.toggle('active',v.id===viewId));$('#pageTitle').textContent=title||'DEV 中文';if(viewId==='meView')loadMe();else loadArticles()}
 
 $('#langToggle').addEventListener('click',()=>setLanguage(!state.showChinese));
