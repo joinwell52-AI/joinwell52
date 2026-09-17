@@ -1,4 +1,4 @@
-const CHINESE_LAYER_VERSION='0.5.0';
+const CHINESE_LAYER_VERSION='0.5.1';
 const INSTALLED_APPS_KEY='cl-installed-apps-v1';
 const APP_CATALOG={
   dev:{id:'dev',name:'DEV',subtitle:'开发者社区',description:'英文技术文章自动中文浏览',badge:'已接入',ready:true,mark:'DEV'},
@@ -57,10 +57,7 @@ function renderCatalog(){
   root.querySelectorAll('.catalog-add:not([disabled])').forEach(btn=>btn.addEventListener('click',()=>addApp(btn.dataset.app)));
 }
 
-function addApp(id){
-  if(!APP_CATALOG[id]||launcherState.installed.includes(id))return;
-  launcherState.installed.push(id);saveInstalledApps();renderCatalog();renderInstalledApps();
-}
+function addApp(id){if(!APP_CATALOG[id]||launcherState.installed.includes(id))return;launcherState.installed.push(id);saveInstalledApps();renderCatalog();renderInstalledApps()}
 function removeApp(id){launcherState.installed=launcherState.installed.filter(x=>x!==id);saveInstalledApps();renderInstalledApps();renderCatalog()}
 
 function showLauncher(mode='mine'){
@@ -78,7 +75,6 @@ function openApp(id){
     document.querySelector('#launcherShell')?.classList.add('hidden');
     document.querySelector('#mailShell')?.classList.add('hidden');
     document.querySelector('#devShell')?.classList.remove('hidden');
-    try{state.serverCache=null;state.serverCachePromise=null}catch{}
     if(typeof loadArticles==='function')loadArticles();
     window.scrollTo(0,0);return;
   }
