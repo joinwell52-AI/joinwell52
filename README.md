@@ -95,6 +95,8 @@ This repository continues to maintain TMPA research, specifications, and enginee
 
 ## Research articles (optional)
 
+September 18 governance studies: [Who checks the checker?](https://joinwell52-ai.github.io/joinwell52/en/research/2026-09-18-checking-the-checker) · [When rules change meaning](https://joinwell52-ai.github.io/joinwell52/en/research/2026-09-18-when-rules-change-meaning)
+
 September 17 experiments: [More backups. Less history.](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-17-backup-without-history) · [Will retrying launch a second agent?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-17-retry-without-second-launch) · [Why retry after quota exhaustion?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-17-quota-behind-error-code)
 
 **[View the complete catalog with English, Chinese, DEV, CSDN, and Juejin links](./README.zh-CN.md#article-catalog)**
