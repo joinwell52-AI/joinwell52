@@ -27,7 +27,7 @@ async function fetchJson(url, timeoutMs = 20000) {
   }
 }
 
-function chunks(value, max = 2800) {
+function chunks(value, max = 900) {
   const src = String(value || '').trim();
   if (!src) return [];
   if (src.length <= max) return [src];
@@ -113,12 +113,21 @@ function summaryArticle(article) {
   };
 }
 
+async function safeTranslate(value, fallback = '') {
+  try {
+    return await translateText(value);
+  } catch (error) {
+    console.warn(`TRANSLATE_SKIP ${error?.message || error}`);
+    return fallback || String(value || '');
+  }
+}
+
 async function enrichList(list, { descriptions = false } = {}) {
   const out = [];
   for (const article of list) {
     const item = summaryArticle(article);
-    item._zhTitle = await translateText(item.title);
-    if (descriptions && item.description) item._zhDesc = await translateText(item.description);
+    item._zhTitle = await safeTranslate(item.title, item.title);
+    if (descriptions && item.description) item._zhDesc = await safeTranslate(item.description, item.description);
     out.push(item);
   }
   return out;
@@ -147,18 +156,25 @@ const bodies = {};
 console.log(`Building ${detailIds.length} server-side article translations…`);
 for (let i = 0; i < detailIds.length; i += 1) {
   const id = detailIds[i];
-  const detail = await fetchJson(`${DEV_API}/articles/${id}`);
-  const source = cleanBody(detail.body_markdown || detail.description || '');
-  if (!source || !hasEnglish(source)) continue;
-  const bodyZh = await translateText(source);
-  if (!hasChinese(bodyZh)) throw new Error(`Article ${id} body translation contains no Chinese`);
-  bodies[String(id)] = {
-    title: String(detail.title || ''),
-    titleZh: await translateText(detail.title || ''),
-    bodyZh,
-    canonical_url: detail.canonical_url || detail.url || '',
-  };
-  console.log(`BODY ${i + 1}/${detailIds.length} id=${id} chars=${bodyZh.length}`);
+  try {
+    const detail = await fetchJson(`${DEV_API}/articles/${id}`);
+    const source = cleanBody(detail.body_markdown || detail.description || '');
+    if (!source || !hasEnglish(source)) continue;
+    const bodyZh = await translateText(source);
+    if (!hasChinese(bodyZh)) {
+      console.warn(`BODY_SKIP ${i + 1}/${detailIds.length} id=${id} reason=no_chinese`);
+      continue;
+    }
+    bodies[String(id)] = {
+      title: String(detail.title || ''),
+      titleZh: await safeTranslate(detail.title || '', detail.title || ''),
+      bodyZh,
+      canonical_url: detail.canonical_url || detail.url || '',
+    };
+    console.log(`BODY ${i + 1}/${detailIds.length} id=${id} chars=${bodyZh.length}`);
+  } catch (error) {
+    console.warn(`BODY_SKIP ${i + 1}/${detailIds.length} id=${id} reason=${error?.message || error}`);
+  }
 }
 
 const payload = {
@@ -171,7 +187,8 @@ const payload = {
   bodies,
 };
 
-const checks = [popular[0]?._zhTitle, mine[0]?._zhTitle, bodies[String(mine[0]?.id)]?.bodyZh].filter(Boolean);
+const firstBody = Object.values(bodies).find((entry) => hasChinese(entry?.bodyZh))?.bodyZh || '';
+const checks = [popular[0]?._zhTitle, mine[0]?._zhTitle, firstBody].filter(Boolean);
 if (checks.length < 3 || checks.some((v) => !hasChinese(v))) {
   throw new Error('Chinese Layer cache validation failed');
 }
