@@ -8,10 +8,10 @@
   "date": "2026-09-17",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
-    "queue": "Running",
+    "queue": "Completed",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
@@ -138,6 +138,137 @@
       "githubCommit": "4ca994e48efc03f808fb534455f4f0de7d9bfa01",
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-17T09:10:19+08:00"
+    },
+    "queue": {
+      "schema": "runtime-shift-result/v2",
+      "task": "queue",
+      "family": "daily",
+      "runtimeDate": "2026-09-17",
+      "status": "Completed",
+      "input": "Authoritative Queue control was pinned from the same latest-main control commit read by the Reading wake, 0ab59a5149955b32c0459f1ffcdccb1e407e10e3: Research Runtime Scheduler V3.0, Worker Control v1.3.0, generated Queue Prompt v1.0.0 with declared SHA-256 a0c42d5b8bfdedd9a237741ec74310bfe531ee7656a32f0e682945b4096443df, and its requiredSources read from that same control commit. The process-manager wake was the verified same-date Reading Wake Receipt research/runtime/wakes/2026/09/2026-09-17/reading-105928.json. Because Queue was the earliest due unfinished formal task, ordered reconciliation opened Queue at 11:01:55+08:00; the native claim workflow durably recorded Worker Claimed at 11:03:07+08:00 in commit 331861b5e4fd3acbfe0222e0d205c7aa4708b224. Same-date Discovery was already durably Completed and GitHub-verified, exposing seven normalized unselected signals in research/intelligence/runs/2026/09/2026-09-17-intelligence.json.",
+      "input_zh": "本次 Queue 的权威控制固定于 Reading Wake 同轮读取的最新 main 控制提交 0ab59a5149955b32c0459f1ffcdccb1e407e10e3：Research Runtime Scheduler V3.0、Worker Control v1.3.0、Generated Queue Prompt v1.0.0，其声明 SHA-256 为 a0c42d5b8bfdedd9a237741ec74310bfe531ee7656a32f0e682945b4096443df，并从同一控制提交读取其 requiredSources。Process Manager 使用的是已核验的同日 Reading Wake Receipt research/runtime/wakes/2026/09/2026-09-17/reading-105928.json。由于 Queue 是最早到期且尚未完成的正式任务，Ordered Reconciliation 于 11:01:55+08:00 打开 Queue；原生 Claim Workflow 随后于 11:03:07+08:00 在提交 331861b5e4fd3acbfe0222e0d205c7aa4708b224 中持久写入 Worker Claimed。同日 Discovery 已持久 Completed 并完成 GitHub Verification，在 research/intelligence/runs/2026/09/2026-09-17-intelligence.json 中提供 7 个规范化、未选题 Signal。",
+      "workResult": "Applied Skill 02 to all seven same-date signals using problem-first admission, release boundary, evidence sufficiency, source and semantic concentration, primary-research utilization and recent-plan research-problem deduplication. Digital Employee selected Q-20260917-01 from SIG-20260917-005 (EchoPath): replayable trajectory memory is admitted only with artifact provenance, explicit parameters, execution-time state preconditions and ambiguity rejection/repair, making replay eligibility a separate research problem from semantic similarity or post-failure rollback. Industry Architecture selected Q-20260917-02 from SIG-20260917-006 (Emergence World): in persistent multi-agent systems, threat recognition can coexist with durable memory contamination and later cross-agent propagation, separating detection from containment and recovery. Open-source Engineering closed with No Selection: SIG-20260917-002/003/004 expose concrete merged mechanisms around session provenance, human-confirmation state continuity and request-time OAuth scope challenges, but each currently rests primarily on one maintainer implementation and does not clear the preferred independent-evidence threshold. SIG-20260917-001 and SIG-20260917-007 also remain candidates rather than being promoted over the two stronger primary-research objects. Queue performed no Deep Reading, Research Analysis, writing, visualization, Production or Publication.",
+      "workResult_zh": "按 Skill 02 对同日 7 个 Signal 全量筛选，执行 Problem-first Admission、Release Boundary、Evidence Sufficiency、Source / Semantic Concentration、一手研究利用，以及与近期 Research Plan 的研究问题去重。数字员工栏目选择 Q-20260917-01，来自 SIG-20260917-005（EchoPath）：可重放 Trajectory Memory 只有在具备 Artifact Provenance、显式参数、执行时 State Preconditions 与歧义拒绝/Repair 时才获得 Replay Eligibility，使“历史成功轨迹能否再次执行”成为独立于语义相似度和失败后回滚的研究问题。行业架构栏目选择 Q-20260917-02，来自 SIG-20260917-006（Emergence World）：在持久化多 Agent 系统中，Threat Recognition 可以与 Durable Memory Contamination 及后续 Cross-agent Propagation 同时存在，因此 Detection、Containment 与 Recovery 必须分开。开源工程栏目显式 No Selection：SIG-20260917-002/003/004 分别提供 Session Provenance、Human-confirmation State Continuity 与 Request-time OAuth Scope Challenge 的具体 Merged Mechanism，但当前各自仍主要依赖单一 Maintainer Implementation，尚未跨过优先采用的独立证据门槛。SIG-20260917-001 与 SIG-20260917-007 也保留为 Candidate，没有挤占两个证据更强的一手研究对象。Queue 未执行 Deep Reading、Research Analysis、写作、可视化、Production 或 Publication。",
+      "output": "Completed Daily Research Plan at research/runtime/plans/2026/09/2026-09-17-plan.json with exactly three explicit decisions: Digital Employee = Selected Q-20260917-01; Industry Architecture = Selected Q-20260917-02; Open-source Engineering = No Selection.",
+      "output_zh": "已完成 Daily Research Plan：research/runtime/plans/2026/09/2026-09-17-plan.json，包含且仅包含三个显式决定：Digital Employee = Selected Q-20260917-01；Industry Architecture = Selected Q-20260917-02；Open-source Engineering = No Selection。",
+      "next": "After governed Queue terminal finalization and GitHub Commit Verified, Runtime must reconcile again. Reading is already past its 11:00 not-before boundary and, once formally admitted with its own fresh Worker Claimed event, may consume only Q-20260917-01 and Q-20260917-02 through Skill 03. No downstream work is authorized by this Queue result itself.",
+      "next_zh": "Queue 完成受治理的 Terminal Finalization 与 GitHub Commit Verified 后，Runtime 必须再次 Reconcile。Reading 已越过 11:00 Not-before 边界；只有在其自身获得正式准入并持久写入 fresh Worker Claimed 后，才可通过 Skill 03 消费 Q-20260917-01 与 Q-20260917-02。本 Queue Result 本身不授权任何下游工作。",
+      "metrics": [
+        {
+          "label": "Declared Queue prompt SHA-256",
+          "label_zh": "声明的 Queue Prompt SHA-256",
+          "value": "a0c42d5b8bfdedd9a237741ec74310bfe531ee7656a32f0e682945b4096443df"
+        },
+        {
+          "label": "Signal pool count",
+          "label_zh": "Signal Pool 数量",
+          "value": 7
+        },
+        {
+          "label": "Column decisions",
+          "label_zh": "栏目决定",
+          "value": 3
+        },
+        {
+          "label": "Selected objects",
+          "label_zh": "已选 Research Object",
+          "value": 2
+        },
+        {
+          "label": "No Selection columns",
+          "label_zh": "No Selection 栏目",
+          "value": 1
+        },
+        {
+          "label": "Candidate signals retained",
+          "label_zh": "保留 Candidate Signal",
+          "value": 5
+        },
+        {
+          "label": "Rejected signals",
+          "label_zh": "Rejected Signal",
+          "value": 0
+        },
+        {
+          "label": "Primary research selected objects",
+          "label_zh": "一手研究型已选对象",
+          "value": "2 / 2"
+        },
+        {
+          "label": "Deep Reading performed",
+          "label_zh": "执行 Deep Reading",
+          "value": 0
+        },
+        {
+          "label": "Publication actions",
+          "label_zh": "Publication 操作数量",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Process-manager Wake Receipt",
+          "label_zh": "Process Manager Wake Receipt",
+          "path": "research/runtime/wakes/2026/09/2026-09-17/reading-105928.json"
+        },
+        {
+          "label": "Pinned control-source commit",
+          "label_zh": "固定控制源提交",
+          "commit": "0ab59a5149955b32c0459f1ffcdccb1e407e10e3"
+        },
+        {
+          "label": "Durable Queue Worker Claimed commit",
+          "label_zh": "持久 Queue Worker Claimed 提交",
+          "commit": "331861b5e4fd3acbfe0222e0d205c7aa4708b224"
+        },
+        {
+          "label": "Generated Queue Prompt",
+          "label_zh": "Generated Queue Prompt",
+          "path": "research/runtime/worker-prompts/generated/queue.prompt.md"
+        },
+        {
+          "label": "Same-date Research Intelligence",
+          "label_zh": "同日 Research Intelligence",
+          "path": "research/intelligence/runs/2026/09/2026-09-17-intelligence.json"
+        },
+        {
+          "label": "Skill 02",
+          "label_zh": "Skill 02",
+          "path": "research/skills/02-research-triage.md"
+        },
+        {
+          "label": "Recent Research Plans used for novelty/deduplication",
+          "label_zh": "用于 Novelty / 去重的近期 Research Plan",
+          "value": "2026-09-13 through 2026-09-16"
+        },
+        {
+          "label": "Today's Research Plan",
+          "label_zh": "今日 Research Plan",
+          "path": "research/runtime/plans/2026/09/2026-09-17-plan.json"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Today's Research Plan",
+          "label_zh": "今日 Research Plan",
+          "path": "research/runtime/plans/2026/09/2026-09-17-plan.json"
+        },
+        {
+          "label": "Queue result",
+          "label_zh": "Queue 结果",
+          "path": "research/runtime/results/2026/09/2026-09-17-queue-result.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "path": "research/runtime/records/daily/2026/09/2026-09-17-daily-runtime.json"
+        }
+      ],
+      "startedAt": "2026-09-17T11:01:55+08:00",
+      "completedAt": "2026-09-17T11:08:03+08:00",
+      "githubCommit": "pending",
+      "commitVerify": "Waiting",
+      "verifiedAt": ""
     }
   },
   "timeline": [
@@ -182,6 +313,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Queue after verifying research/runtime/wakes/2026/09/2026-09-17/reading-105928.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-17T11:08:03+08:00",
+      "task": "queue",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Queue closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-17."
     }
   ],
   "metrics": [],
@@ -189,5 +327,5 @@
   "artifacts": [],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-17T11:03:00+08:00"
+  "updatedAt": "2026-09-17T11:08:03+08:00"
 }
