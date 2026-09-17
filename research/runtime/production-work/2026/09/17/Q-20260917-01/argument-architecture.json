@@ -1,0 +1,110 @@
+{
+  "schema": "argument-architecture/v1",
+  "date": "2026-09-17",
+  "itemId": "Q-20260917-01",
+  "coreProposition": "历史成功只能把一条记忆变成重放候选；每次执行仍须重新证明制品与状态兼容、请求与权限有效，并在调用后独立核对外部效果。重放准入、业务授权和效果验证是三个不能互相替代的事实。",
+  "openingMove": {
+    "type": "successful-memory-with-stale-authority",
+    "purpose": "以历史上成功的记忆准备再次执行为入口，揭示候选检索与当前执行资格的差别。",
+    "evidenceRefs": [
+      "E1",
+      "E5",
+      "E7"
+    ]
+  },
+  "argumentNodes": [
+    {
+      "nodeId": "A1",
+      "question": "为什么值得重放？",
+      "claim": "报告中的匹配任务第二遍成功率与对照方法接近，但令牌和时间成本显著更低。",
+      "evidenceRefs": [
+        "E1"
+      ],
+      "reasoningRole": "reuse-economics",
+      "readerProgress": "先承认可执行记忆的真实价值。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A2",
+      "question": "检索相似度能证明什么？",
+      "claim": "它能找到候选；即使扩大记忆库仍保持召回，也不能回答当前是否应执行。",
+      "evidenceRefs": [
+        "E2",
+        "E5"
+      ],
+      "reasoningRole": "similarity-boundary",
+      "readerProgress": "把候选发现与执行决定分开。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A3",
+      "question": "哪些条件需要重新证明？",
+      "claim": "生命周期、制品、推理、动作模式、状态与输入替换规则必须在本次运行被重新检查。",
+      "evidenceRefs": [
+        "E3",
+        "E4"
+      ],
+      "reasoningRole": "fresh-eligibility",
+      "readerProgress": "建立执行时资格的证据范围。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A4",
+      "question": "重放链需要绑定哪些身份？",
+      "claim": "请求、记忆版本、工具模式、状态快照、授权决定和效果标识应形成可审计链。",
+      "evidenceRefs": [
+        "E6",
+        "E7"
+      ],
+      "reasoningRole": "identity-chain",
+      "readerProgress": "把机制变成可记录的控制面。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A5",
+      "question": "兼容通过是否意味着已授权？",
+      "claim": "技术兼容只回答能否执行，业务授权仍需绑定主体、目的、范围、时效和目标资源。",
+      "evidenceRefs": [
+        "E5",
+        "E7"
+      ],
+      "reasoningRole": "authority-separation",
+      "readerProgress": "阻止兼容性替代权限。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A6",
+      "question": "调用返回成功是否代表安全完成？",
+      "claim": "工具结果与外部效果必须独立核对，超时和重试尤其需要效果身份与幂等或补偿策略。",
+      "evidenceRefs": [
+        "E5",
+        "E7"
+      ],
+      "reasoningRole": "effect-reconciliation",
+      "readerProgress": "补上调用后的效果证明。",
+      "visualNeed": "none"
+    },
+    {
+      "nodeId": "A7",
+      "question": "最小可执行合同是什么？",
+      "claim": "检索、资格、授权、执行与核对应分别产出证据，任何关键事实未知都应失败关闭。",
+      "evidenceRefs": [
+        "E6",
+        "E7",
+        "E8"
+      ],
+      "reasoningRole": "replay-contract",
+      "readerProgress": "以可实施合同和开放问题收束。",
+      "visualNeed": "none"
+    }
+  ],
+  "counterpoint": {
+    "required": true,
+    "claim": "既然记忆已经成功执行过，再次重放只需确认输入足够相似。",
+    "responseBoundary": "相似度只能支持候选选择；状态变化、权限撤销、工具模式升级与未知副作用都可能让历史成功失效。"
+  },
+  "endingStrategy": {
+    "type": "three-plane-replay-checklist",
+    "purpose": "以重放准入、业务授权和效果核对的最小字段结束。"
+  }
+}
