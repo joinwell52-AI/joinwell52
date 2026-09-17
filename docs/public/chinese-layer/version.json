@@ -1,4 +1,4 @@
 {
   "version": "0.6.1",
-  "notes": "iPhone 主屏幕 PWA Gmail 授权修复：独立运行时改用整页 OAuth 返回，避免 Google 登录/二次验证完成后 access token 回调丢失；授权完成后自动返回 Mail 收件箱。同步清理旧的 0.5.1 更新提示并为 0.6.1 资源做缓存破除。Safari 标签页仍使用 Google Identity Services 弹窗授权。"
+  "notes": "iPhone 主屏幕 PWA 热修：清理旧 0.5.1 更新提示并统一显示 0.6.1；Mail 的“中文浏览”增加强制打开兜底；Gmail 连接不再每次强制 consent，已完成 Google 登录后优先复用现有会话；授权结果未回到中文层时会明确提示再次点击连接，而不是无响应。"
 }
