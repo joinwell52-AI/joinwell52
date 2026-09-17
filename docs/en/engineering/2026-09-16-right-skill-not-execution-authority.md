@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260916-03-skill-routing-is-selection-not-authority.md
 item_id: "Q-20260916-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-16-right-skill-not-execution-authority-cover.png"
+cover: "/assets/covers/daily-2026-09-16-right-skill-not-execution-authority-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-16-right-skill-not-execution-authority-cover.png"
+  image="/assets/covers/daily-2026-09-16-right-skill-not-execution-authority-cover-v2.webp"
   kicker="Open-source Engineering · Daily Research"
   title="Selecting the Right Skill Does Not Grant Execution Authority"
   summary="Skill routing can become a measurable runtime selection plane that reduces permanent context loading. A correct route proves relevance under the labels; it does not grant tool authority or prove downstream execution and business completion."

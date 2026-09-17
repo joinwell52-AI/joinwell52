@@ -9,11 +9,11 @@ edition: "research-center"
 research_question: "当文件、可见记忆和普通工作区证据看起来完全相同时，一个多 Agent 运行体还必须把哪些权限状态保存到真正产生外部效果的边界？"
 summary: "一项新的受控研究表明：即使两个世界向规划 Agent 暴露完全相同的工作区，若 actor-attempt 的授权状态存在于另一载体，安全的发布决策仍可能相反。最重要的结果不是‘模型看到权限就会正确推理’，而是执行时权限检查可以在不改变模型意图的情况下阻止固定的不安全动作。"
 sources: "arXiv:2609.08472; research/reading/A-20260916-01-cross-substrate-authority.md; research/analysis/A-20260916-01-cross-substrate-authority.md"
-cover: "/assets/covers/academic-cross-substrate-authority-boundary.svg"
+cover: "/assets/covers/academic-cross-substrate-authority-boundary-cover-v2.webp"
 ---
 
 <ArticleCover
-  image="/assets/covers/academic-cross-substrate-authority-boundary.svg"
+  image="/assets/covers/academic-cross-substrate-authority-boundary-cover-v2.webp"
   kicker="数字员工 · Academic Observation 008"
   title="Agent 不是权限边界"
   summary="模型可以看到文件，甚至可以看到权限说明。但真正决定下一次写入是否被授权的，应该是什么？"

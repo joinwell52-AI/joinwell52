@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260916-01-operational-completion-is-evidence-closure.md
 item_id: "Q-20260916-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-16-correct-answer-not-operational-completion-cover.png"
+cover: "/assets/covers/daily-2026-09-16-correct-answer-not-operational-completion-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-16-correct-answer-not-operational-completion-cover.png"
+  image="/assets/covers/daily-2026-09-16-correct-answer-not-operational-completion-cover-v2.webp"
   kicker="数字员工 · 每日研究"
   title="答案正确，不等于工作完成"
   summary="持续执行实验表明，语义质量、关键动作与及时性可以明显分离。数字员工的完成状态因此不能只是一个成功位，而应是覆盖义务集合、时间、外部效果与验收责任的证据向量。"

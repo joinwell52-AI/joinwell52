@@ -9,11 +9,11 @@ edition: "research-center"
 research_question: "When files, visible memory and ordinary workspace evidence look the same, what additional authority state must survive until a consequential agent action becomes an effect?"
 summary: "A new controlled study shows that identical planner-visible workspaces can require opposite safe publication decisions when actor-attempt authorization lives elsewhere. Its most important result is not that models reason perfectly once permissions are shown, but that execution-time authority checks can stop fixed unsafe intents without changing the model's plan."
 sources: "arXiv:2609.08472; research/reading/A-20260916-01-cross-substrate-authority.md; research/analysis/A-20260916-01-cross-substrate-authority.md"
-cover: "/assets/covers/academic-cross-substrate-authority-boundary.svg"
+cover: "/assets/covers/academic-cross-substrate-authority-boundary-cover-v2.webp"
 ---
 
 <ArticleCover
-  image="/assets/covers/academic-cross-substrate-authority-boundary.svg"
+  image="/assets/covers/academic-cross-substrate-authority-boundary-cover-v2.webp"
   kicker="Digital Employee · Academic Observation 008"
   title="An Agent Is Not an Authority Boundary"
   summary="The model may see the files. It may even see the permission. What decides whether the next mutation is actually authorized?"

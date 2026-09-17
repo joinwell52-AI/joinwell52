@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260914-02-coordination-reliability-vector.md
 item_id: "Q-20260914-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-14-task-completion-not-team-reliability-cover.png"
+cover: "/assets/covers/daily-2026-09-14-task-completion-not-team-reliability-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-14-task-completion-not-team-reliability-cover.png"
+  image="/assets/covers/daily-2026-09-14-task-completion-not-team-reliability-cover-v2.webp"
   kicker="行业架构 · 每日研究"
   title="任务完成，不等于团队可靠"
   summary="总体任务成功会把重复分配、顺序违例、资源争用和交接断裂压进一个数字。Multi-Agent（多智能体）可靠性应保留为分别取证的协调向量，关键弱项不能被平均值掩盖。"

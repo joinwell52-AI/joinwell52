@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260917-01-replay-eligibility-is-a-fresh-execution-time-fact.md
 item_id: "Q-20260917-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-17-successful-replay-not-standing-execution-right-cover.png"
+cover: "/assets/covers/daily-2026-09-17-successful-replay-not-standing-execution-right-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-17-successful-replay-not-standing-execution-right-cover.png"
+  image="/assets/covers/daily-2026-09-17-successful-replay-not-standing-execution-right-cover-v2.webp"
   kicker="Digital Employee · Daily Research"
   title="A Successful Replay Is Not a Standing Right to Execute"
   summary="Executable memory can reduce the cost of repeated work, but historical success creates only a replay candidate. Every run must reprove compatibility, business authority, and external effect state."

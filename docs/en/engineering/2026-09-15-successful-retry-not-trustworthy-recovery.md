@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260915-02-phase-separated-recovery-evidence.md
 item_id: "Q-20260915-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-15-successful-retry-not-trustworthy-recovery-cover.png"
+cover: "/assets/covers/daily-2026-09-15-successful-retry-not-trustworthy-recovery-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-15-successful-retry-not-trustworthy-recovery-cover.png"
+  image="/assets/covers/daily-2026-09-15-successful-retry-not-trustworthy-recovery-cover-v2.webp"
   kicker="Open-source Engineering · Daily Research"
   title="A Successful Retry Does Not Prove Trustworthy Recovery"
   summary="A structured benchmark shows that reliable failure signals plus one bounded correction can recover many initial failures, while richer feedback adds little in that setting. A later success still cannot prove semantic correctness, safe external effects, or continuing authority; recovery needs phase-specific evidence."

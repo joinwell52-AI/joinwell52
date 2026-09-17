@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260915-01-durable-memory-is-a-commitment.md
 item_id: "Q-20260915-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-15-persisted-data-not-durable-memory-cover.png"
+cover: "/assets/covers/daily-2026-09-15-persisted-data-not-durable-memory-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-15-persisted-data-not-durable-memory-cover.png"
+  image="/assets/covers/daily-2026-09-15-persisted-data-not-durable-memory-cover-v2.webp"
   kicker="数字员工 · 每日研究"
   title="存进数据库，不等于成为长期记忆"
   summary="受控实验表明，生命周期路由能够减少临时事实覆盖长期事实；但它没有回答谁有权把观察升级为长期状态。安全的记忆系统需要把观察、分类、写入路径与读取权限分开，并记录提升和撤销。"

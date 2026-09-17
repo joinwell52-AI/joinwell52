@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260917-01-replay-eligibility-is-a-fresh-execution-time-fact.md
 item_id: "Q-20260917-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-17-successful-replay-not-standing-execution-right-cover.png"
+cover: "/assets/covers/daily-2026-09-17-successful-replay-not-standing-execution-right-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-17-successful-replay-not-standing-execution-right-cover.png"
+  image="/assets/covers/daily-2026-09-17-successful-replay-not-standing-execution-right-cover-v2.webp"
   kicker="数字员工 · 每日研究"
   title="重放曾经成功，不等于仍有执行资格"
   summary="可执行记忆能显著降低重复任务成本，但历史成功只产生重放候选。每次运行仍须重新证明兼容性、业务授权与外部效果，三者不能由相似度或旧轨迹替代。"

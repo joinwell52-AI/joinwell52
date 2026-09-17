@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260916-03-skill-routing-is-selection-not-authority.md
 item_id: "Q-20260916-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-16-right-skill-not-execution-authority-cover.png"
+cover: "/assets/covers/daily-2026-09-16-right-skill-not-execution-authority-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-16-right-skill-not-execution-authority-cover.png"
+  image="/assets/covers/daily-2026-09-16-right-skill-not-execution-authority-cover-v2.webp"
   kicker="开源工程 · 每日研究"
   title="选对技能，不等于获得执行权"
   summary="技能路由可以成为可测量的运行时选择平面，减少永久预载的上下文负担；但正确路由只证明选择相关性，不能生成工具权限，也不能证明后续执行和业务结果成功。"

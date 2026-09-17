@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260914-03-trace-attribution-evidence-boundary.md
 item_id: "Q-20260914-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-14-stage-attribution-not-root-cause-cover.png"
+cover: "/assets/covers/daily-2026-09-14-stage-attribution-not-root-cause-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-14-stage-attribution-not-root-cause-cover.png"
+  image="/assets/covers/daily-2026-09-14-stage-attribution-not-root-cause-cover-v2.webp"
   kicker="Open-source Engineering · Daily Research"
   title="Finding the Stage Does Not Prove the Cause"
   summary="Execution traces reveal planning, memory, tool, and safety failures hidden by terminal success and can associate a visible anomaly with a lifecycle stage. Attribution, however, remains an evaluation judgment rather than proof of root cause, authorization, or production safety."

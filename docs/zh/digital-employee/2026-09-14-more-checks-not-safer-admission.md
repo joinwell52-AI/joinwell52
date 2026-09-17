@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260914-01-lane-bound-admission-proof.md
 item_id: "Q-20260914-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-14-more-checks-not-safer-admission-cover.png"
+cover: "/assets/covers/daily-2026-09-14-more-checks-not-safer-admission-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-14-more-checks-not-safer-admission-cover.png"
+  image="/assets/covers/daily-2026-09-14-more-checks-not-safer-admission-cover-v2.webp"
   kicker="数字员工 · 每日研究"
   title="准入检查更多，不等于更安全"
   summary="一条已被 Provider（服务提供方）接受的 API-key（应用程序编程接口密钥）通道，曾因本机缺少另一条通道才需要的 CLI（命令行界面）而被拒绝。正确的准入不是统一检查清单，而是绑定所选执行通道、验证者与新鲜度的证明包；业务授权仍需单独判断。"

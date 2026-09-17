@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260914-02-coordination-reliability-vector.md
 item_id: "Q-20260914-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-14-task-completion-not-team-reliability-cover.png"
+cover: "/assets/covers/daily-2026-09-14-task-completion-not-team-reliability-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-14-task-completion-not-team-reliability-cover.png"
+  image="/assets/covers/daily-2026-09-14-task-completion-not-team-reliability-cover-v2.webp"
   kicker="Industry Architecture · Daily Research"
   title="Task Completion Does Not Prove Team Reliability"
   summary="Aggregate success compresses duplicate allocation, ordering violations, resource contention, and broken handoffs into one number. Multi-agent reliability should remain a separately evidenced coordination vector whose critical weak dimensions cannot be averaged away."

@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260917-02-detection-is-not-containment.md
 item_id: "Q-20260917-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-17-detection-not-threat-containment-cover.png"
+cover: "/assets/covers/daily-2026-09-17-detection-not-threat-containment-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-17-detection-not-threat-containment-cover.png"
+  image="/assets/covers/daily-2026-09-17-detection-not-threat-containment-cover-v2.webp"
   kicker="Industry Architecture · Daily Research"
   title="Detection Does Not Mean the Threat Is Contained"
   summary="Persistent multi-agent experiments show that a system can recognize and warn about an adversarial event while harmful content continues to execute, persist, and propagate. Closure requires separate proof of detection, containment, eradication, and recovery."

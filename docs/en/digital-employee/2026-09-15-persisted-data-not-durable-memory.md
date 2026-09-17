@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260915-01-durable-memory-is-a-commitment.md
 item_id: "Q-20260915-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-15-persisted-data-not-durable-memory-cover.png"
+cover: "/assets/covers/daily-2026-09-15-persisted-data-not-durable-memory-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-15-persisted-data-not-durable-memory-cover.png"
+  image="/assets/covers/daily-2026-09-15-persisted-data-not-durable-memory-cover-v2.webp"
   kicker="Digital Employee · Daily Research"
   title="Persisted Data Does Not Become Durable Memory"
   summary="Controlled evidence shows that lifecycle routing can reduce temporary overwrite of permanent facts, but it does not decide who may promote an observation into durable state. Safe memory keeps observation, classification, write path, and read authority separate, with explicit promotion and revocation."

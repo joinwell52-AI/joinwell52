@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260914-03-trace-attribution-evidence-boundary.md
 item_id: "Q-20260914-03"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-14-stage-attribution-not-root-cause-cover.png"
+cover: "/assets/covers/daily-2026-09-14-stage-attribution-not-root-cause-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-14-stage-attribution-not-root-cause-cover.png"
+  image="/assets/covers/daily-2026-09-14-stage-attribution-not-root-cause-cover-v2.webp"
   kicker="开源工程 · 每日研究"
   title="定位到阶段，不等于找到根因"
   summary="Trace（执行轨迹）能揭示终态成功背后的规划、记忆、工具与安全问题，并把可见异常定位到生命周期阶段；但 Attribution（归因）仍是评估判断，不能自动证明根因、授权或生产安全。"

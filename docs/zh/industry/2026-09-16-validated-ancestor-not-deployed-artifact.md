@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260916-02-transformed-artifact-is-a-new-evidence-subject.md
 item_id: "Q-20260916-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-16-validated-ancestor-not-deployed-artifact-cover.png"
+cover: "/assets/covers/daily-2026-09-16-validated-ancestor-not-deployed-artifact-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-16-validated-ancestor-not-deployed-artifact-cover.png"
+  image="/assets/covers/daily-2026-09-16-validated-ancestor-not-deployed-artifact-cover-v2.webp"
   kicker="行业架构 · 每日研究"
   title="祖先通过验证，不等于部署制品已被验证"
   summary="受控对抗研究显示，转换前表现良性的检查点可以在特定量化后显现目标行为。血缘证明输出来自哪里，却不能替代对最终执行字节的验证；部署准入必须绑定精确制品与转换身份。"

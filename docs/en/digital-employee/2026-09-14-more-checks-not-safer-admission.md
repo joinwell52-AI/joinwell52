@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260914-01-lane-bound-admission-proof.md
 item_id: "Q-20260914-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-14-more-checks-not-safer-admission-cover.png"
+cover: "/assets/covers/daily-2026-09-14-more-checks-not-safer-admission-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-14-more-checks-not-safer-admission-cover.png"
+  image="/assets/covers/daily-2026-09-14-more-checks-not-safer-admission-cover-v2.webp"
   kicker="Digital Employee · Daily Research"
   title="More Admission Checks Do Not Mean Safer Admission"
   summary="A provider-valid API-key lane was rejected because the host lacked a CLI needed only by another lane. Correct admission is a proof bundle bound to the selected execution lane, its verifier, and evidence freshness; business authorization remains separate."

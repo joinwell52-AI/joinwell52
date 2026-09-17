@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260916-01-operational-completion-is-evidence-closure.md
 item_id: "Q-20260916-01"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-16-correct-answer-not-operational-completion-cover.png"
+cover: "/assets/covers/daily-2026-09-16-correct-answer-not-operational-completion-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-16-correct-answer-not-operational-completion-cover.png"
+  image="/assets/covers/daily-2026-09-16-correct-answer-not-operational-completion-cover-v2.webp"
   kicker="Digital Employee · Daily Research"
   title="A Correct Answer Does Not Mean the Work Is Complete"
   summary="Continuous-execution evidence shows that semantic quality, critical actions, and timeliness can diverge. Completion for a digital employee should therefore be an evidence vector over obligations, time, effects, and acceptance—not a single success bit."

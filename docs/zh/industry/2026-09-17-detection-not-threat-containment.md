@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260917-02-detection-is-not-containment.md
 item_id: "Q-20260917-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-17-detection-not-threat-containment-cover.png"
+cover: "/assets/covers/daily-2026-09-17-detection-not-threat-containment-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-17-detection-not-threat-containment-cover.png"
+  image="/assets/covers/daily-2026-09-17-detection-not-threat-containment-cover-v2.webp"
   kicker="行业架构 · 每日研究"
   title="发现威胁，不等于已经控制住"
   summary="持久多智能体实验显示，系统可以识别并警告对抗性事件，恶意内容却继续被执行、保存和传播。安全终态必须分别证明检测、控制、清除与恢复。"

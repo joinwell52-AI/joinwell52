@@ -11,7 +11,7 @@ sources:
   - research/analysis/Q-20260916-02-transformed-artifact-is-a-new-evidence-subject.md
 item_id: "Q-20260916-02"
 lifecycle: "Published"
-cover: "/assets/covers/daily-2026-09-16-validated-ancestor-not-deployed-artifact-cover.png"
+cover: "/assets/covers/daily-2026-09-16-validated-ancestor-not-deployed-artifact-cover-v2.webp"
 evidence_status: "Completed"
 citation_status: "Completed"
 editing_status: "Completed"
@@ -19,7 +19,7 @@ publication_authorized: true
 ---
 
 <ArticleCover
-  image="/assets/covers/daily-2026-09-16-validated-ancestor-not-deployed-artifact-cover.png"
+  image="/assets/covers/daily-2026-09-16-validated-ancestor-not-deployed-artifact-cover-v2.webp"
   kicker="Industry Architecture · Daily Research"
   title="A Validated Ancestor Does Not Validate the Deployed Artifact"
   summary="Controlled adversarial evidence shows that a benign full-precision checkpoint can exhibit targeted behavior after selected quantization. Lineage proves origin, not current behavior; deployment admission must bind the exact transformed artifact and its validation."
