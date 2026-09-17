@@ -95,6 +95,8 @@ This repository continues to maintain TMPA research, specifications, and enginee
 
 ## Research articles (optional)
 
+September 17 experiments: [More backups. Less history.](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-17-backup-without-history) · [Will retrying launch a second agent?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-17-retry-without-second-launch) · [Why retry after quota exhaustion?](https://joinwell52-ai.github.io/joinwell52/en/engineering/2026-09-17-quota-behind-error-code)
+
 **[View the complete catalog with English, Chinese, DEV, CSDN, and Juejin links](./README.zh-CN.md#article-catalog)**
 
 **[From SaaS to SaaW: When a Codebase Starts “Developing Itself”](https://joinwell52-ai.github.io/joinwell52/en/industry/2026-08-10-saaw-software-as-an-agent-worker)**

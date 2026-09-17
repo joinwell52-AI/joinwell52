@@ -1,0 +1,6 @@
+import {execFileSync} from 'node:child_process';
+import {readFileSync,mkdirSync,existsSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
+const root=fileURLToPath(new URL('.',import.meta.url)).replaceAll('\\','/'), name=process.argv[2], modes=process.argv.slice(3); const p=JSON.parse(readFileSync(`${root}/sources/${name}.json`,'utf8'));const repo=`${root}/external/${name}-git`;
+mkdirSync(repo,{recursive:true});if(!existsSync(repo+'/.git')){execFileSync('git',['init'],{cwd:repo,stdio:'ignore'});execFileSync('git',['remote','add','origin',`https://github.com/${p.repo}.git`],{cwd:repo});}
+for(const mode of modes.length?modes:['head','base']){const target=`${root}/external/${name}-${mode}`;if(existsSync(target+'/package.json')||existsSync(target+'/pyproject.toml'))continue;execFileSync('git',['fetch','--depth=1','origin',p[mode]],{cwd:repo,stdio:'pipe',timeout:180000});mkdirSync(target,{recursive:true});const tar=`${root}/external/${name}-${mode}.tar`;execFileSync('git',['archive','--format=tar','--output='+tar,p[mode]],{cwd:repo});execFileSync('tar',['-xf',tar,'-C',target,'--exclude=CLAUDE.md','--exclude=.claude','--exclude=.codex','--exclude=.cursor'],{timeout:60000});console.log(`${name} ${mode} ${p[mode]} extracted`);}

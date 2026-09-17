@@ -1,0 +1,56 @@
+{
+  "method": "Unmodified original durable record store plus original launch admission and fingerprint functions, real Windows temporary files and file locks. Store reopened in same process to exercise disk reload; no forced process crash, mobile client, RPC handler live-join or real Agent/Workspace launch. Eight concurrent calls directly to admission: one owner, seven conservative unknown refusals; public handler may join live retries above this boundary.",
+  "rows": [
+    {
+      "case": "initial-settled",
+      "decision": "execute"
+    },
+    {
+      "case": "lost-response-retry",
+      "decision": "replay",
+      "exactResult": true
+    },
+    {
+      "case": "store-reopen",
+      "decision": "replay",
+      "exactResult": true
+    },
+    {
+      "case": "changed-intent",
+      "decision": "refuse",
+      "code": "agent_session_operation_conflict"
+    },
+    {
+      "case": "rotated-bearer-same-device",
+      "decision": "replay"
+    },
+    {
+      "case": "different-device",
+      "decision": "execute"
+    },
+    {
+      "case": "unsettled-store-reopen",
+      "decision": "refuse",
+      "code": "agent_session_operation_unknown"
+    },
+    {
+      "case": "eight-concurrent-admissions",
+      "execute": 1,
+      "refuseUnknown": 7
+    },
+    {
+      "case": "recorded-failure",
+      "decision": "refuse",
+      "code": "worktree_not_found"
+    },
+    {
+      "case": "remote-identity-missing",
+      "error": "agent_session_identity_required"
+    },
+    {
+      "case": "old-unseen-id",
+      "decision": "refuse",
+      "code": "agent_session_operation_expired"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "method": "Original complete plugin-tools module with synthetic connection/discovery/template/dispatch seam. Original allowlist evaluated separately. No real credentials, plugin servers, Slack messages, model call, or full execution-branch enforcement exercised.",
+  "rows": [
+    {
+      "case": "two-users-repeat-A",
+      "listCalls": 2,
+      "principals": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "case": "calls-use-own-context",
+      "calls": [
+        {
+          "principal": "A",
+          "tool": "get_issue",
+          "args": {
+            "synthetic": true
+          }
+        },
+        {
+          "principal": "B",
+          "tool": "get_issue",
+          "args": {
+            "synthetic": true
+          }
+        }
+      ],
+      "scopeReads": 4
+    },
+    {
+      "case": "connections-error",
+      "resolved": false,
+      "connectedSets": 0,
+      "toolCount": 0
+    },
+    {
+      "case": "none",
+      "resolved": true,
+      "connectedSets": 0,
+      "toolCount": 0
+    },
+    {
+      "case": "tools-error",
+      "resolved": true,
+      "connectedSets": 1,
+      "toolCount": 0
+    },
+    {
+      "case": "original-allowlist-membership",
+      "counts": {
+        "linear": 11,
+        "github": 12
+      },
+      "mergeAllowed": false,
+      "deleteAllowed": false
+    }
+  ]
+}
