@@ -1,0 +1,34 @@
+name: Chinese Layer Production Asset Check
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/public/chinese-layer/**'
+      - 'scripts/chinese-layer-production-check.mjs'
+      - '.github/workflows/chinese-layer-production-check.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    name: Verify published Chinese Layer asset bytes
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Compare public Pages files with this main commit
+        run: |
+          for attempt in $(seq 1 20); do
+            if node scripts/chinese-layer-production-check.mjs; then
+              exit 0
+            fi
+            echo "Pages has not converged to this commit (attempt ${attempt}/20)."
+            sleep 15
+          done
+          echo "Public Pages assets did not match the expected commit."
+          exit 1
