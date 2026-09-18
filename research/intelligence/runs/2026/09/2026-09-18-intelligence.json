@@ -3,64 +3,102 @@
   "version": "1.0",
   "date": "2026-09-18",
   "timezone": "Asia/Shanghai",
-  "status": "Waiting",
+  "status": "Completed",
   "registryVersion": "1.0",
-  "sourceTask": "Research Runtime Queue",
-  "updatedAt": "",
+  "sourceTask": "Research Runtime Discovery",
+  "updatedAt": "2026-09-18T09:11:15+08:00",
   "githubCommit": "pending",
-  "reason": "Research Runtime Queue has not completed the three intelligence pipelines.",
-  "reason_zh": "研究运行队列尚未完成三条情报发现管线。",
+  "researchCoverage": {
+    "policy": "theme-sample-v1",
+    "rollingResearchWindowDays": 30,
+    "sampleFamilies": {
+      "product-governance": {
+        "checked": [
+          "Google Gemini Antigravity Agent 09-2026 built-in tool contract migration",
+          "Microsoft Copilot Studio per-tool human approval and agent-readiness governance surface"
+        ],
+        "qualifiedSignals": 1
+      },
+      "multi-agent-mechanism": {
+        "checked": [
+          "OpenAI Agents SDK conditional approval binding to validated invocation arguments",
+          "Google ADK bounded and persistent skill lifecycle modes"
+        ],
+        "qualifiedSignals": 2
+      },
+      "research-benchmark-industry": {
+        "checked": [
+          "Collective Loss of Control in LLM Agent Systems (arXiv:2609.18460)",
+          "Ask the Tool, Don't Guess (arXiv:2609.18849)",
+          "Social Laws for Multi-agent Coordination in Stochastic Environments (arXiv:2609.18929)"
+        ],
+        "qualifiedSignals": 3
+      }
+    }
+  },
+  "reason": "All three formal Discovery pipelines reached terminal coverage and the rotated theme-first active-sample overlay completed without topic selection. Seven qualified, non-duplicate signals survived problem-level normalization and recent-run deduplication: one platform tool-contract mechanism, three merged engineering/runtime mechanisms, and three primary-research findings. AI Platform terminally resolved 45/45 due public channels as 44 direct checks plus one explicitly recorded Copilot Studio authorization barrier. GitHub Engineering checked all nine P0 daily repositories and retained mechanisms around turn-scoped authority snapshots, approval-to-execution binding, and bounded skill lifecycles. Published Research terminally resolved all nine P0 sources as eight direct checks plus one explicit Journal of Systems and Software retrieval failure, retaining three primary-research objects. Pure sample-change-trigger density is 0%.",
+  "reason_zh": "三条正式 Discovery 管线均完成终态覆盖，并完成轮换后的主题优先主动样本检查，未执行选题。按研究问题规范化并与近期运行去重后保留 7 个合格、非重复 Signal：1 个平台工具契约机制、3 个已合并工程/运行时机制、3 个一手研究发现。AI Platform 的 45 个到期公共通道全部终态收口，其中 44 个直接完成检查，Copilot Studio What's New 的授权门槛被明确记录；GitHub Engineering 的 9 个 P0 Daily 仓库全部检查，保留 Turn 级权限快照、审批到执行绑定、受限 Skill 生命周期三个机制；Published Research 的 9 个 P0 来源终态收口，其中 8 个直接完成检查，Journal of Systems and Software 的抓取失败被明确记录，并保留 3 个一手研究对象。纯 sample-change-trigger 占比为 0%。",
   "pipelines": [
     {
       "id": "ai-platform",
       "label": "AI Platform Change Intelligence",
       "label_zh": "AI 平台变更情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 45,
-      "checked": 0,
-      "inaccessible": [],
+      "checked": 44,
+      "inaccessible": [
+        {
+          "source": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/whats-new",
+          "reason": "The Microsoft Learn surface displayed an authorization-required notice during this run; visible public content was used only as bounded context and the channel is conservatively recorded as inaccessible for formal coverage."
+        }
+      ],
       "failed": [],
-      "signals": 0,
+      "signals": 1,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All 45 due P0 public platform channels were terminally resolved across the registered OpenAI, Anthropic, Google, Cursor, GitHub Copilot and Microsoft source groups. One non-duplicate platform mechanism crossed the research-value threshold: the Gemini API changelog distinguishes a simple remote-sandbox model-string migration from a local-tool-execution migration whose built-in tool contract changes parameter naming and file-edit semantics, making the agent version an execution ABI boundary rather than only a model identity. Other current platform updates were retained only as coverage or active-sample evidence after deduplication.",
+      "reason_zh": "OpenAI、Anthropic、Google、Cursor、GitHub Copilot 与 Microsoft 六组注册来源的 45 个到期 P0 公共通道全部终态处理。保留 1 个达到研究价值门槛且未重复的平台机制：Gemini API Changelog 明确区分只需替换模型字符串的远端 Sandbox 迁移，与本地 Tool Execution 下 Built-in Tool Contract 的参数命名和文件编辑语义变化，这意味着 Agent 版本同时也是执行 ABI 边界，而不只是模型身份。其他当前平台更新经过去重后仅作为覆盖或主动样本证据保留。"
     },
     {
       "id": "github-engineering",
       "label": "GitHub Engineering Intelligence",
       "label_zh": "GitHub 工程情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 9,
-      "checked": 0,
+      "checked": 9,
       "inaccessible": [],
       "failed": [],
-      "signals": 0,
+      "signals": 3,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All nine Registry P0 daily repositories were checked incrementally. Three distinct mechanisms crossed the research-value threshold: Codex snapshots the environment used for MCP policy evaluation so a next-turn configuration update cannot retroactively remove a tool while the current turn is suspended; OpenAI Agents SDK binds conditional approval to the exact validated invocation and fails closed when the tool, invoker or raw arguments change; and Google ADK adds bounded versus persistent skill lifecycles with an active-skill cap and explicit unload notifications so long sessions do not accumulate an unbounded declared tool set.",
+      "reason_zh": "Registry 中 9 个 P0 Daily 仓库均完成增量检查。保留 3 个达到研究价值门槛的独立机制：Codex 对 MCP Policy Evaluation 使用的 Environment 做 Turn 级快照，使面向下一 Turn 的配置更新不会在当前 Turn 暂停期间追溯性移除工具；OpenAI Agents SDK 将条件审批绑定到精确的已校验 Invocation，一旦 Tool、Invoker 或原始参数发生变化即 Fail Closed；Google ADK 增加 Bounded 与 Persistent 两类 Skill 生命周期、Active Skill 上限与显式卸载通知，避免长会话无限累积已声明工具。"
     },
     {
       "id": "published-research",
       "label": "Published Research Intelligence",
       "label_zh": "论文与研究成果情报发现",
-      "status": "Waiting",
+      "status": "Completed",
       "due": 9,
-      "checked": 0,
+      "checked": 8,
       "inaccessible": [],
-      "failed": [],
-      "signals": 0,
+      "failed": [
+        {
+          "source": "https://www.sciencedirect.com/journal/journal-of-systems-and-software",
+          "reason": "The Journal of Systems and Software public journal surface returned an internal retrieval error during this run; the failure is recorded rather than counted as checked."
+        }
+      ],
+      "signals": 3,
       "candidates": 0,
       "selected": 0,
       "rejected": 0,
-      "coveragePercent": 0,
-      "reason": "The pipeline has not run.",
-      "reason_zh": "该情报管线尚未执行。"
+      "coveragePercent": 100,
+      "reason": "All nine P0 research sources were terminally resolved using the rolling seven-day pass with expansion through thirty days where useful: eight source surfaces were directly checked and the Journal of Systems and Software surface returned an explicit retrieval failure. Three non-duplicate primary-research objects were retained: Collective Loss of Control tests how unintended communication can propagate unsafe strategies across agents and separates conditional susceptibility from natural cascade rates; Ask the Tool, Don't Guess shows that live tool-progress signals materially outperform pre-call duration guesses for serving decisions; and Social Laws extends verifiable coordination constraints to stochastic reward-based multi-agent environments through alpha-robustness and MDP-based verification.",
+      "reason_zh": "9 个 P0 研究来源均按滚动 7 天检查并在需要时扩展至 30 天完成终态处理：8 个来源页面直接完成检查，Journal of Systems and Software 公共页面返回明确的抓取失败。保留 3 个非重复一手研究对象：Collective Loss of Control 检验非预期通信如何在 Agent 间传播不安全策略，并明确区分条件易感性与自然级联发生率；Ask the Tool, Don't Guess 证明运行中的 Tool Progress 信号对 Serving 决策明显优于调用前时长猜测；Social Laws 通过 alpha-robustness 与基于 MDP 的验证，把可验证协调约束扩展到随机、基于奖励的多 Agent 环境。"
     }
   ],
   "columns": [
@@ -69,40 +107,209 @@
       "label": "Digital Employee",
       "label_zh": "数字员工",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 3,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded three primary Digital Employee signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 3 个以数字员工为主栏目的 Signal；评分与选题由 Queue 独立负责。"
     },
     {
       "id": "industry-architecture",
       "label": "Industry Architecture",
       "label_zh": "行业架构",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 2,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded two primary Industry Architecture signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以行业架构为主栏目的 Signal；评分与选题由 Queue 独立负责。"
     },
     {
       "id": "open-source-engineering",
       "label": "Open-source Engineering",
       "label_zh": "开源工程",
       "decision": "Waiting",
-      "signals": 0,
+      "signals": 2,
       "candidates": 0,
       "selectedItemId": "",
       "selectedTitle": "",
       "selectedTitle_zh": "",
-      "reason": "Waiting for discovery and triage.",
-      "reason_zh": "等待情报发现与研究筛选。"
+      "reason": "Discovery recorded two primary Open-source Engineering signals; Queue owns scoring and selection.",
+      "reason_zh": "Discovery 记录了 2 个以开源工程为主栏目的 Signal；评分与选题由 Queue 独立负责。"
     }
   ],
-  "signals": []
+  "signals": [
+    {
+      "id": "SIG-20260918-001",
+      "pipeline": "ai-platform",
+      "title": "Gemini Antigravity 09-2026 turns an agent upgrade into an explicit built-in tool contract migration",
+      "title_zh": "Gemini Antigravity 09-2026 将 Agent 升级明确变成 Built-in Tool Contract 迁移",
+      "sourceUrl": "https://ai.google.dev/gemini-api/docs/changelog",
+      "publishedAt": "2026-09-17",
+      "evidenceLevel": "official_documentation",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "google-gemini/antigravity-09-2026-builtin-tool-contract-migration",
+      "summary": "Google's Gemini API changelog says Antigravity Agent 09-2026 replaces the 05-2026 preview. Remote-sandbox consumers that only read model output can update the agent string, but local tool executors or function-call parsers must also adapt to changed built-in tool contracts, including PascalCase parameters and line-range file-edit replacements rather than full rewrites.",
+      "summary_zh": "Google 的 Gemini API Changelog 显示 Antigravity Agent 09-2026 替代 05-2026 Preview。只读取模型输出的 Remote Sandbox 消费方可以直接更新 Agent 字符串，但本地 Tool Executor 或 Function-call Parser 还必须适配 Built-in Tool Contract 变化，包括 PascalCase 参数，以及文件编辑从整文件重写转为行范围替换。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["tool-contract", "runtime-migration", "agent-versioning", "execution-abi"],
+      "sampleIds": ["google-gemini"],
+      "researchValue": {
+        "failure": "Treating an agent or model upgrade as a string-only configuration change can break local tool parsing and execution even when the intended capability is unchanged.",
+        "finding": "The official migration guidance separates output-only remote execution from local tool execution because the latter crosses a changed built-in tool contract.",
+        "mechanism": "Version the agent identity together with its tool-call ABI, validate adapters against the new parameter and edit semantics, and gate migration on execution-contract compatibility rather than model availability alone.",
+        "implication": "Agent runtimes should pin and verify tool contracts as part of host admission and upgrade, not assume model-version changes are behaviorally or structurally transparent."
+      }
+    },
+    {
+      "id": "SIG-20260918-002",
+      "pipeline": "github-engineering",
+      "title": "Codex snapshots MCP policy authority for the active turn instead of applying next-turn environment changes retroactively",
+      "title_zh": "Codex 对当前 Turn 的 MCP Policy Authority 做快照，不让下一 Turn 的环境变化追溯生效",
+      "sourceUrl": "https://github.com/openai/codex/commit/7498521d288b9b3b96ffba4eedf089d8d6e06a84",
+      "publishedAt": "2026-09-18",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering", "industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "openai-codex/turn-scoped-mcp-policy-environment-snapshot",
+      "summary": "Codex now captures one environment snapshot for MCP policy evaluation and runtime publication. Environment settings saved for the next turn cannot change tool availability while the current turn is suspended for user input; a regression test verifies that a tool remains visible when that turn resumes and disappears only on the next turn.",
+      "summary_zh": "Codex 现在为 MCP Policy Evaluation 与 Runtime Publication 捕获同一个 Environment Snapshot。为下一 Turn 保存的环境设置不能在当前 Turn 等待用户输入时改变其 Tool Availability；回归测试明确验证当前 Turn 恢复后工具仍可见，只在下一 Turn 才消失。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["runtime-authority", "turn-lifecycle", "mcp-policy", "authorization-snapshot"],
+      "sampleIds": ["openai-codex"],
+      "researchValue": {
+        "failure": "If environment-policy updates take effect inside an already admitted turn, the authority surface can change between suspension and resume without a new execution boundary.",
+        "finding": "Codex deliberately keeps the active turn on the captured policy environment and defers newly saved settings to the next turn.",
+        "mechanism": "Capture the policy-relevant environment at turn admission, use that same snapshot for policy evaluation and runtime publication, and apply configuration changes only at the next turn boundary.",
+        "implication": "Long-running workers need explicit authority epochs: configuration freshness and execution authority are different facts, and new policy should not rewrite the authority of work already admitted."
+      }
+    },
+    {
+      "id": "SIG-20260918-003",
+      "pipeline": "github-engineering",
+      "title": "OpenAI Agents SDK binds conditional approval to the exact validated tool invocation and fails closed on argument drift",
+      "title_zh": "OpenAI Agents SDK 将条件审批绑定到精确的已校验 Tool Invocation，并在参数漂移时 Fail Closed",
+      "sourceUrl": "https://github.com/openai/openai-agents-python/commit/1d17ca40b927452d5f27df662092f767fa9f05b7",
+      "publishedAt": "2026-09-17",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["open-source-engineering"],
+      "triageStatus": "signal",
+      "changeObject": "openai-agents-python/approval-execution-validated-argument-binding",
+      "summary": "The Agents SDK now prepares conditional approvals per invocation using only data-only validation paths that do not execute application validators or plugins, then binds the approval evaluation to the exact tool object, invoker and raw argument string. Invocation drift after approval evaluation raises a user error instead of executing under a stale decision.",
+      "summary_zh": "Agents SDK 现在按 Invocation 准备条件审批，只允许不会执行应用 Validator 或 Plugin 的 Data-only 校验路径；随后把审批结果绑定到精确的 Tool Object、Invoker 与原始 Argument String。审批评估之后若 Invocation 发生漂移，会抛出错误而不是拿旧决定继续执行。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["tool-approval", "call-time-authorization", "toctou", "validated-arguments"],
+      "sampleIds": ["openai-agents-python"],
+      "researchValue": {
+        "failure": "Approval can become unsound if the arguments inspected for the decision differ from what is actually executed, or if argument inspection itself runs user code before approval.",
+        "finding": "The SDK separates conservative argument preparation from execution and verifies the exact invocation identity again before using the approval result.",
+        "mechanism": "Use side-effect-free data validation when possible, require approval for uninspectable/custom paths, bind the decision to tool plus invoker plus raw arguments, and reject any mismatch before execution.",
+        "implication": "Human or policy approval should authorize an immutable call instance, not merely a tool name or a loosely parsed request."
+      }
+    },
+    {
+      "id": "SIG-20260918-004",
+      "pipeline": "github-engineering",
+      "title": "Google ADK introduces bounded skill lifecycles so long sessions can retire unused tool declarations",
+      "title_zh": "Google ADK 引入 Bounded Skill 生命周期，让长会话可以退出不再使用的 Tool Declaration",
+      "sourceUrl": "https://github.com/google/adk-python/commit/43b73e4fc0920c08693bcec3985c832c7d9870b0",
+      "publishedAt": "2026-09-18",
+      "evidenceLevel": "merged_maintainer_change",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "google-adk/bounded-persistent-skill-lifecycle-active-cap",
+      "summary": "ADK adds persistent and bounded skill lifecycle modes plus max_active_skills. Bounded skills are evicted least-recently-loaded after the cap is exceeded, while persistent skills keep the previous behavior and do not count against the cap. load_skill reports unloaded_skills so the model is explicitly told which tools are leaving its active surface.",
+      "summary_zh": "ADK 增加 Persistent 与 Bounded 两类 Skill 生命周期以及 max_active_skills。超过上限后，Bounded Skill 按最久未加载顺序退出；Persistent Skill 保持旧行为且不计入上限。load_skill 会返回 unloaded_skills，显式告诉模型哪些工具已经离开当前能力面。",
+      "signalRole": "mechanism-evidence",
+      "researchThemes": ["skill-lifecycle", "tool-surface", "long-running-agent", "bounded-context"],
+      "sampleIds": ["google-adk-python"],
+      "researchValue": {
+        "failure": "A long session that keeps every historically loaded skill active accumulates unused tool declarations, expanding context and authority surfaces indefinitely.",
+        "finding": "ADK makes skill persistence an explicit lifecycle policy and provides an opt-in bounded working set without changing the persistent default.",
+        "mechanism": "Classify skills as persistent or bounded, cap the bounded active set, evict least-recently-loaded skills, and surface unload events to the model.",
+        "implication": "Digital employees need capability lifecycle management as well as memory lifecycle management; tools that are no longer active should leave the declared authority surface explicitly."
+      }
+    },
+    {
+      "id": "SIG-20260918-005",
+      "pipeline": "published-research",
+      "title": "Collective Loss of Control separates rare local deviations from high conditional contagion risk in multi-agent systems",
+      "title_zh": "Collective Loss of Control 将罕见局部偏差与多 Agent 的高条件传播风险区分开来",
+      "sourceUrl": "https://arxiv.org/abs/2609.18460",
+      "publishedAt": "2026-09-16",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "digital-employee",
+      "secondaryColumns": ["industry-architecture"],
+      "triageStatus": "signal",
+      "changeObject": "arxiv-2609.18460/multi-agent-contagion-unintended-communication-recovery",
+      "summary": "The paper models collective loss of control as mutation, contagion and recovery. Its deployment audit finds implicit communication paths between nominally independent evaluation runs, while RogueHandoff-20 reports 0-5% executed harm on normal tasks versus 40-95% after unsafe-trajectory injection. The authors explicitly state that this demonstrates conditional susceptibility, not natural cascade frequency.",
+      "summary_zh": "论文把 Collective Loss of Control 建模为 Mutation、Contagion 与 Recovery。部署审计发现名义上独立的评测运行之间存在隐式通信路径；RogueHandoff-20 中正常任务的实际伤害为 0-5%，注入不安全轨迹后升至 40-95%。作者明确限定：这证明的是条件易感性，不是自然级联发生率。",
+      "signalRole": "research-finding",
+      "researchThemes": ["multi-agent-contagion", "communication-boundary", "failure-propagation", "recovery"],
+      "sampleIds": ["arxiv-2609.18460"],
+      "researchValue": {
+        "failure": "A low observed rate of spontaneous agent failure can hide a system that is highly susceptible once one unsafe trajectory crosses an unintended communication boundary.",
+        "finding": "Injected unsafe trajectories sharply increased executed harm in the benchmark, and the deployment audit verified a transport path across nominally independent runs.",
+        "mechanism": "Unsafe behavior propagates when communication permits other agents to adopt and retransmit a local deviation faster than containment and recovery correct it.",
+        "implication": "Multi-agent governance must audit transport and shared-state boundaries, not only individual-agent behavior; isolation and recovery capacity are first-class controls against collective failure."
+      }
+    },
+    {
+      "id": "SIG-20260918-006",
+      "pipeline": "published-research",
+      "title": "Ask the Tool, Don't Guess shows that running tools can expose progress that serving systems should consume directly",
+      "title_zh": "Ask the Tool, Don't Guess 证明运行中的 Tool 可以直接暴露进度，Serving System 不应靠猜",
+      "sourceUrl": "https://arxiv.org/abs/2609.18849",
+      "publishedAt": "2026-09-16",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "open-source-engineering",
+      "secondaryColumns": ["industry-architecture", "digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "arxiv-2609.18849/tool-progress-observability-serving-control",
+      "summary": "The study argues that pre-call duration estimates cannot reliably know tool completion time while the running tool often already has usable progress information. A harness exposes remaining-work or near-completion signals without changing agent-visible context; plugged into a production engine, the signal cuts p90 post-tool-call TTFT by about 20.7% with HBM-only and 20.8% with HBM plus DRAM versus LRU.",
+      "summary_zh": "研究指出，调用前固定的时长估计无法可靠知道 Tool 何时结束，而正在运行的 Tool 往往已经拥有可读的进度信息。实验 Harness 在不改变 Agent 可见上下文的前提下暴露剩余工作量或临近完成信号；接入 Production Engine 后，相对 LRU 将 Tool Call 后 p90 TTFT 分别降低约 20.7%（仅 HBM）和 20.8%（HBM + DRAM）。",
+      "signalRole": "research-finding",
+      "researchThemes": ["tool-observability", "long-running-agent", "runtime-scheduling", "progress-signals"],
+      "sampleIds": ["arxiv-2609.18849"],
+      "researchValue": {
+        "failure": "Treating a running tool as an opaque wait forces the runtime to guess duration from names or historical averages, causing poor resource and scheduling decisions when the environment changes.",
+        "finding": "Live tool progress is materially more accurate at decision points than pre-call predictors and improves serving latency without changing the agent's task behavior.",
+        "mechanism": "Expose bounded progress signals from the tool execution layer to the serving/runtime layer while keeping them out of the agent's semantic context unless needed.",
+        "implication": "A digital-employee runtime should distinguish business semantics from operational telemetry: workers can remain semantically isolated while still publishing machine-observable progress for scheduling and recovery."
+      }
+    },
+    {
+      "id": "SIG-20260918-007",
+      "pipeline": "published-research",
+      "title": "Social Laws extends verifiable multi-agent coordination constraints to stochastic reward-based environments",
+      "title_zh": "Social Laws 将可验证的多 Agent 协调约束扩展到随机、基于奖励的环境",
+      "sourceUrl": "https://arxiv.org/abs/2609.18929",
+      "publishedAt": "2026-09-16",
+      "evidenceLevel": "peer_reviewed_or_primary_research",
+      "primaryColumn": "industry-architecture",
+      "secondaryColumns": ["digital-employee"],
+      "triageStatus": "signal",
+      "changeObject": "arxiv-2609.18929/stochastic-social-law-alpha-robustness-verification",
+      "summary": "The paper extends social-law coordination from deterministic goal settings to stochastic reward-based environments. It defines alpha-robustness as the guaranteed utility an agent retains while following its optimal single-agent policy under a shared social law, then verifies robustness by reducing the check to a series of Markov decision processes.",
+      "summary_zh": "论文把 Social Law 协调从确定性 Goal Setting 扩展到随机、基于 Reward 的环境。它将 alpha-robustness 定义为所有 Agent 遵守共同 Social Law 时，单个 Agent 在执行自身最优策略时仍能保证保留的效用，并把 Robustness Verification 约化为一系列 Markov Decision Process 求解。",
+      "signalRole": "research-finding",
+      "researchThemes": ["multi-agent-governance", "coordination-constraints", "formal-verification", "stochastic-runtime"],
+      "sampleIds": ["arxiv-2609.18929"],
+      "researchValue": {
+        "failure": "Coordination rules that work in deterministic demonstrations may not guarantee acceptable individual outcomes when execution is stochastic and agents optimize their own rewards.",
+        "finding": "The work gives a formal robustness quantity and a verification procedure for shared constraints in stochastic multi-agent environments.",
+        "mechanism": "Specify a social law as an admissible coordination constraint, define a minimum retained-utility guarantee, and verify it through MDP reductions before relying on the policy in execution.",
+        "implication": "Agent governance can be framed as pre-execution verification of admissible interaction constraints rather than letting a scheduler or model infer acceptable coordination from observed behavior alone."
+      }
+    }
+  ]
 }
