@@ -1,0 +1,16 @@
+{
+  "approval_argument_probe": {
+    "before": {"version":"v0.22.2","commit":"83c737fd0b8d9a53bd39fa2a0856070417bb0bd3","changed_cases_executed":3},
+    "after": {"version":"v0.22.3","commit":"fdf21db62c303a3db54b0dfbee82de2141fa2799","changed_cases_interrupted_for_manual_approval":3},
+    "unchanged_cases_preserved":3,
+    "upstream_tests": {"passed":108,"failed":0}
+  },
+  "process_visibility_probe": {
+    "platform":"Microsoft Windows NT 10.0.26200.0",
+    "observer":"Win32_Process.CommandLine under the same Windows account",
+    "argv_visible":true,
+    "environment_visible":false,
+    "stdin_visible":false
+  },
+  "codeflowmu_review": {"targeted_tests_passed":28,"development_items":0}
+}
