@@ -1,6 +1,5 @@
 // Public OAuth application identifier, never a client secret or an access token.
 const CL_GMAIL_CLIENT_ID='1090696367470-f5opcehk6g7rj3s0b08n5ibit8kgv209.apps.googleusercontent.com';
-const CL_RUNTIME_VERSION=APP_VERSION;
 const CL_GMAIL_REDIRECT_URI='https://joinwell52-ai.github.io/joinwell52/chinese-layer/';
 const CL_GMAIL_OAUTH_STATE_KEY='cl-gmail-oauth-state-v1';
 try{if(!localStorage.getItem('cl-gmail-client-id-v1'))localStorage.setItem('cl-gmail-client-id-v1',CL_GMAIL_CLIENT_ID)}catch{}
