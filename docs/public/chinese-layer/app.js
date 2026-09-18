@@ -1,4 +1,4 @@
-const APP_VERSION='0.6.3';
+const APP_VERSION='0.6.4';
 const DEV_API='https://dev.to/api';
 const GOOGLE_TRANSLATE='https://translate.googleapis.com/translate_a/single';
 const CACHE_KEY='cl-translate-cache-v6';
