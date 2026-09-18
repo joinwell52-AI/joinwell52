@@ -1,4 +1,4 @@
 {
-  "version": "0.6.3",
-  "notes": "统一 Launcher、DEV、Mail 版本源，修复进入 Mail 后回退显示 v0.6.0；新增 Service Worker 更新通道，页面与同源静态资源采用网络优先，版本检查永不走离线缓存；以后版本升级可由桌面 PWA 自身接管。Gmail OAuth redirect_uri_mismatch 仍作为独立问题处理。"
+  "version": "0.6.4",
+  "notes": "固定生产 Gmail OAuth Client ID：启动时自动覆盖手机本地残留的旧 Client ID，连接 Gmail 时只使用仓库配置的官方 Client ID，不再由 localStorage 或隐藏输入框决定。用于排除历史 Client ID 导致的 redirect_uri_mismatch；Google Cloud 中该官方 Client 的 Authorized redirect URI 仍需与正式 PWA 地址完全一致。"
 }
