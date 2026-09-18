@@ -1,4 +1,4 @@
-const APP_VERSION='0.6.2';
+const APP_VERSION='0.6.3';
 const DEV_API='https://dev.to/api';
 const GOOGLE_TRANSLATE='https://translate.googleapis.com/translate_a/single';
 const CACHE_KEY='cl-translate-cache-v6';
@@ -145,7 +145,24 @@ async function checkForUpdate(manual=false){
     if(sequence===updateCheckSequence&&manual===true)showUpdateBanner('暂时无法检查更新，请稍后再试','知道了');
   }
 }
-function forceUpdate(){if($('#updateNow').dataset.action!=='update'||!isNewerVersion(state.remoteVersion,APP_VERSION)){hideUpdateBanner();return}const u=new URL(location.href);u.searchParams.set('version',state.remoteVersion);u.searchParams.set('_',Date.now());location.replace(u.toString())}
+let clServiceWorkerRegistration=null;
+async function ensureServiceWorker(){
+  if(!('serviceWorker' in navigator))return null;
+  try{
+    if(clServiceWorkerRegistration)return clServiceWorkerRegistration;
+    clServiceWorkerRegistration=await navigator.serviceWorker.register('./sw.js',{scope:'./',updateViaCache:'none'});
+    return clServiceWorkerRegistration;
+  }catch{return null}
+}
+async function refreshServiceWorker(){
+  const registration=await ensureServiceWorker();if(!registration)return;
+  try{await registration.update();if(registration.waiting)registration.waiting.postMessage({type:'SKIP_WAITING'})}catch{}
+}
+async function forceUpdate(){
+  if($('#updateNow').dataset.action!=='update'||!isNewerVersion(state.remoteVersion,APP_VERSION)){hideUpdateBanner();return}
+  await refreshServiceWorker();
+  const u=new URL(location.href);u.searchParams.set('version',state.remoteVersion);u.searchParams.set('_',Date.now());location.replace(u.toString());
+}
 function switchView(viewId,title){$$('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.view===viewId));$$('.view').forEach(v=>v.classList.toggle('active',v.id===viewId));$('#pageTitle').textContent=title||'DEV 中文';if(viewId==='meView')loadMe();else loadArticles()}
 
 $('#langToggle').addEventListener('click',()=>setLanguage(!state.showChinese));
@@ -159,4 +176,4 @@ $$('.nav-btn').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.vi
 $('#updateNow').addEventListener('click',forceUpdate);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden){checkForUpdate();const shell=document.querySelector('#devShell');if(shell&&!shell.classList.contains('hidden')){const me=document.querySelector('#meView');if(me?.classList.contains('active'))loadMe();else loadArticles()}}});
 setInterval(checkForUpdate,120000);
-$('#versionBadge').textContent=`v${APP_VERSION}`;$('#langToggle').textContent=state.showChinese?'中文':'EN';$('#readerLang').textContent=state.showChinese?'中文':'EN';checkForUpdate();
+$('#versionBadge').textContent=`v${APP_VERSION}`;$('#langToggle').textContent=state.showChinese?'中文':'EN';$('#readerLang').textContent=state.showChinese?'中文':'EN';ensureServiceWorker();checkForUpdate();

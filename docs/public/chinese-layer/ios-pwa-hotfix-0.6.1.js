@@ -1,5 +1,3 @@
-const HOTFIX_VERSION=APP_VERSION;
-
 function hotfixOpenMail(){
   document.querySelector('#launcherShell')?.classList.add('hidden');
   document.querySelector('#devShell')?.classList.add('hidden');
@@ -18,6 +16,6 @@ document.addEventListener('click',event=>{
 
 document.addEventListener('DOMContentLoaded',()=>{
   ['#launcherVersion','#versionBadge','#mailVersion'].forEach(sel=>{
-    const el=document.querySelector(sel);if(el)el.textContent=`v${HOTFIX_VERSION}`;
+    const el=document.querySelector(sel);if(el)el.textContent=`v${APP_VERSION}`;
   });
 });

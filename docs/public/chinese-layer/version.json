@@ -1,4 +1,4 @@
 {
-  "version": "0.6.2",
-  "notes": "修复同版本反复提示更新：移除 DEV 补丁固定在 0.6.0 的版本比较覆盖，所有运行时版本统一来自 app.js；自动检查同版或旧版不提示，手动检查显示当前版本，知道了只关闭提示；忽略过时的并发检查结果。保留现有 DEV 与 Gmail 功能；本次不宣称已解决真实 iPhone Gmail 授权报错。"
+  "version": "0.6.3",
+  "notes": "统一 Launcher、DEV、Mail 版本源，修复进入 Mail 后回退显示 v0.6.0；新增 Service Worker 更新通道，页面与同源静态资源采用网络优先，版本检查永不走离线缓存；以后版本升级可由桌面 PWA 自身接管。Gmail OAuth redirect_uri_mismatch 仍作为独立问题处理。"
 }

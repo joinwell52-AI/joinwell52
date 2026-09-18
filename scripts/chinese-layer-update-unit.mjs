@@ -19,7 +19,7 @@ const query=id=>{
 const stored=new Map([['cl-last-app-version','0.5.1']]);
 let remote=meta.version;let failed=false;const navigations=[];
 const context=vm.createContext({
-  $:query,text:v=>v==null?'':String(v),URL,Date,
+  $:query,text:v=>v==null?'':String(v),URL,Date,navigator:{},
   fetch:async()=>({ok:!failed,json:async()=>({version:remote})}),
   localStorage:{getItem:k=>stored.get(k)||null,setItem:(k,v)=>stored.set(k,v)},
   location:{href:'https://example.test/chinese-layer/',replace:u=>navigations.push(u)}
@@ -35,13 +35,13 @@ assert.equal(run("isNewerVersion('0.6.1','0.6.2')"),false);
 assert.equal(run("isNewerVersion('0.10.0','0.9.9')"),true);
 await run('checkForUpdate()');assert.ok(hidden());assert.equal(stored.get('cl-last-app-version'),meta.version);
 await run('checkForUpdate(true)');assert.equal(query('#updateText').textContent,`当前已是 v${meta.version}`);
-run('forceUpdate()');assert.ok(hidden());assert.equal(navigations.length,0);
+await await run('forceUpdate()');assert.ok(hidden());assert.equal(navigations.length,0);
 remote='0.5.1';await run('checkForUpdate()');assert.ok(hidden());
 remote='99.0.0';await run('checkForUpdate()');assert.ok(!hidden());
 assert.equal(query('#updateNow').dataset.action,'update');
 failed=true;await run('checkForUpdate(true)');assert.equal(query('#updateNow').dataset.action,'dismiss');
 run('forceUpdate()');assert.ok(hidden());assert.equal(navigations.length,0);
-failed=false;await run('checkForUpdate()');run('forceUpdate()');assert.equal(navigations.length,1);
+failed=false;await run('checkForUpdate()');await run('forceUpdate()');assert.equal(navigations.length,1);
 assert.equal(new URL(navigations[0]).searchParams.get('version'),'99.0.0');
 remote=meta.version;await run('checkForUpdate()');assert.ok(hidden());
 await run(`(async()=>{
@@ -50,4 +50,12 @@ await run(`(async()=>{
   try{const old=checkForUpdate();await checkForUpdate();release();await old}finally{fetch=original}
 })()`);
 assert.ok(hidden());
-console.log(JSON.stringify({status:'PASS',version:meta.version,source:'actual app.js controller',checks:16,realIphoneOAuth:'NOT_RUN'}));
+for(const file of ['launcher.js','gmail.js','gmail-config.js','dev-live-refresh-0.5.2.js','ios-pwa-hotfix-0.6.1.js']){
+  const source=await fs.readFile(root+file,'utf8');
+  assert.doesNotMatch(source,/\b(?:CHINESE_LAYER_VERSION|MAIL_VERSION|CL_RUNTIME_VERSION|CHINESE_LAYER_PATCH_VERSION|HOTFIX_VERSION)\b/,file+' must use APP_VERSION only');
+}
+const sw=await fs.readFile(root+'sw.js','utf8');
+assert.match(sw,/self\.addEventListener\('install'/);
+assert.match(sw,/self\.addEventListener\('activate'/);
+assert.match(sw,/cache:'no-store'/);
+console.log(JSON.stringify({status:'PASS',version:meta.version,source:'actual app.js controller',checks:19,realIphoneOAuth:'NOT_RUN'}));

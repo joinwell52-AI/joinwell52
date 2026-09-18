@@ -1,4 +1,3 @@
-const CHINESE_LAYER_VERSION='0.6.0';
 const INSTALLED_APPS_KEY='cl-installed-apps-v1';
 const APP_CATALOG={
   dev:{id:'dev',name:'DEV',subtitle:'开发者社区',description:'英文技术文章自动中文浏览',badge:'已接入',ready:true,mark:'DEV'},
@@ -88,7 +87,7 @@ function openApp(id){
 }
 
 function bootLauncher(){
-  const version=document.querySelector('#launcherVersion');if(version)version.textContent=`v${CHINESE_LAYER_VERSION}`;
+  const version=document.querySelector('#launcherVersion');if(version)version.textContent=`v${APP_VERSION}`;
   document.querySelector('#openCatalog')?.addEventListener('click',()=>showLauncher('catalog'));
   document.querySelector('#catalogBack')?.addEventListener('click',()=>showLauncher('mine'));
   document.querySelector('#devBackApps')?.addEventListener('click',()=>showLauncher('mine'));

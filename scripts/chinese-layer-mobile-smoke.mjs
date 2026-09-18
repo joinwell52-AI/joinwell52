@@ -37,7 +37,7 @@ const reports=[];
 try{
   for(const [engine,width] of [[webkit,375],[webkit,390],[webkit,430],[chromium,375]]){
     const browser=await engine.launch({headless:true});
-    const context=await browser.newContext({viewport:{width,height:844},isMobile:true,hasTouch:true,deviceScaleFactor:2,locale:'zh-CN'});
+    const context=await browser.newContext({viewport:{width,height:844},isMobile:true,hasTouch:true,deviceScaleFactor:2,locale:'zh-CN',serviceWorkers:'block'});
     const page=await context.newPage();const errors=[];let translations=0;let gmailReads=0;let remoteImages=0;let remoteVersion=expectedVersion;let versionError=false;let simulatePreviousBuild=false;
     page.on('pageerror',error=>errors.push(error.message));
     await page.addInitScript(()=>{
@@ -81,7 +81,14 @@ try{
       await page.goto(origin,{waitUntil:'domcontentloaded'});
       await page.locator('#pwaCheckUpdate').waitFor();await withinScreen('launcher');
       await checkHidden();
-      assert.deepEqual(await page.evaluate(()=>[APP_VERSION,CHINESE_LAYER_PATCH_VERSION,CL_RUNTIME_VERSION,HOTFIX_VERSION]),Array(4).fill(expectedVersion));
+      assert.equal(await page.evaluate(()=>APP_VERSION),expectedVersion);
+      assert.deepEqual(await page.evaluate(()=>[
+        typeof CHINESE_LAYER_VERSION,
+        typeof MAIL_VERSION,
+        typeof CL_RUNTIME_VERSION,
+        typeof CHINESE_LAYER_PATCH_VERSION,
+        typeof HOTFIX_VERSION
+      ]),Array(5).fill('undefined'),'legacy version globals must not exist');
       for(const id of ['launcherVersion','versionBadge','mailVersion'])assert.equal(await page.locator(`#${id}`).textContent(),`v${expectedVersion}`);
       assert.equal(await page.evaluate(()=>isNewerVersion('0.6.1','0.6.1')),false,'explicit current argument must be respected');
       assert.equal(await page.evaluate(()=>isNewerVersion('0.6.2','0.6.1')),true);
@@ -101,6 +108,7 @@ try{
       await page.locator('#openCatalog').tap();await page.locator('.catalog-add[data-app="mail"]').tap();await withinScreen('catalog');
       await page.locator('#catalogBack').tap();await page.locator('.browse-app[data-app="mail"]').tap();
       await page.locator('#mailSetup').waitFor({state:'visible'});await withinScreen('Mail setup');
+      assert.equal(await page.locator('#mailVersion').textContent(),`v${expectedVersion}`,'Mail must not fall back to an adapter version');
       assert.equal(await page.locator('#mailTranslateConsent').isChecked(),false);
       assert.equal(await page.locator('#gmailClientId').inputValue(),'1090696367470-f5opcehk6g7rj3s0b08n5ibit8kgv209.apps.googleusercontent.com');
       await page.locator('#mailTranslateConsent').check();await page.locator('#gmailConnect').tap();
@@ -162,5 +170,31 @@ try{
       reports.push({engine:engine.name(),width,result:'PASS',oauth:'SIMULATED_POPUP_USER_GESTURE',mailbox:'SYNTHETIC',checks:['version source parity','explicit comparator argument','same-version automatic silence','same-version manual dismissal','saved interval','visibility resume','older metadata','newer metadata','failed-check dismissal','stale response rejection','simulated upgrade and reload','launcher','catalog','setup','inbox','reader','code/link preservation','image opt-in','language toggle','back','refresh','disconnect','no sensitive localStorage','no page errors']});
     }finally{await context.close();await browser.close()}
   }
+  const swBrowser=await chromium.launch({headless:true});
+  const swContext=await swBrowser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,serviceWorkers:'allow'});
+  const swPage=await swContext.newPage();
+  await swPage.route('https://accounts.google.com/**',route=>route.fulfill({contentType:'application/javascript',body:'window.google={accounts:{oauth2:{}}};'}));
+  try{
+    await swPage.goto(origin,{waitUntil:'domcontentloaded'});
+    await swPage.evaluate(()=>navigator.serviceWorker.ready);
+    await swPage.reload({waitUntil:'domcontentloaded'});
+    await swPage.waitForFunction(()=>Boolean(navigator.serviceWorker.controller));
+    const swState=await swPage.evaluate(async()=>{
+      const registration=await navigator.serviceWorker.getRegistration('./');
+      const version=await fetch('./version.json',{cache:'no-store'}).then(r=>r.json()).then(x=>x.version);
+      return {
+        controlled:Boolean(navigator.serviceWorker.controller),
+        scriptURL:navigator.serviceWorker.controller?.scriptURL||'',
+        updateViaCache:registration?.updateViaCache||'',
+        version
+      };
+    });
+    assert.equal(swState.controlled,true);
+    assert.ok(swState.scriptURL.endsWith('/sw.js'));
+    assert.equal(swState.updateViaCache,'none');
+    assert.equal(swState.version,expectedVersion);
+    reports.push({engine:'chromium',width:390,result:'PASS',pwa:'SERVICE_WORKER_CONTROLLED',checks:['service worker registration','controller takeover','updateViaCache none','version.json network path']});
+  }finally{await swContext.close();await swBrowser.close()}
+
   console.log(JSON.stringify({status:'PASS',version:expectedVersion,realIphoneOAuth:'NOT_RUN',standaloneRedirectOAuth:'NOT_RUN',reports},null,2));
 }finally{server.close()}

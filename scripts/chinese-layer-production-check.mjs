@@ -5,7 +5,7 @@ import {createHash} from 'node:crypto';
 const base='https://joinwell52-ai.github.io/joinwell52/chinese-layer/';
 const root='docs/public/chinese-layer/';
 const {version}=JSON.parse(await fs.readFile(root+'version.json','utf8'));
-const names=['index.html','app.js','launcher.js','dev-live-refresh-0.5.2.js','gmail-config.js','gmail.js','ios-pwa-hotfix-0.6.1.js','styles.css','version.json'];
+const names=['index.html','app.js','launcher.js','dev-live-refresh-0.5.2.js','gmail-config.js','gmail.js','ios-pwa-hotfix-0.6.1.js','styles.css','manifest.webmanifest','sw.js','version.json'];
 const checks=[];
 for(const name of names){
   const local=await fs.readFile(root+name);
