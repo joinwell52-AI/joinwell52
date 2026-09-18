@@ -11,6 +11,15 @@ outline: false
 日期按 **Asia/Shanghai** 倒序排列。点击日期进入当天完整报告与原始公开来源。
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-09-18">
+    <time>2026-09-18</time>
+    <div>
+      <strong>Agent 核心研究与竞品动态</strong>
+      <span>Agents Python v0.22.3 / conditional approval · Codex Turn environment + OAuth · Paperclip Agent reviewer / JWT argv leak / durable VM · Orca Host-scoped resume / provider outcome / fleet control · OpenHands server tool catalog · Superset Cloud branch / mobile attachments</span>
+    </div>
+    <b>查看 →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-09-17">
     <time>2026-09-17</time>
     <div>
