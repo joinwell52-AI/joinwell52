@@ -1,5 +1,3 @@
-const CHINESE_LAYER_PATCH_VERSION=APP_VERSION;
-
 function devLiveUrl(pathname, params={}){
   const u=new URL(`${DEV_API}${pathname}`);
   for(const [key,value] of Object.entries(params))u.searchParams.set(key,String(value));
