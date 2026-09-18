@@ -54,8 +54,14 @@ for(const file of ['launcher.js','gmail.js','gmail-config.js','dev-live-refresh-
   const source=await fs.readFile(root+file,'utf8');
   assert.doesNotMatch(source,/\b(?:CHINESE_LAYER_VERSION|MAIL_VERSION|CL_RUNTIME_VERSION|CHINESE_LAYER_PATCH_VERSION|HOTFIX_VERSION)\b/,file+' must use APP_VERSION only');
 }
+const gmailConfig=await fs.readFile(root+'gmail-config.js','utf8');
+assert.match(gmailConfig,/localStorage\.setItem\('cl-gmail-client-id-v1',CL_GMAIL_CLIENT_ID\)/,'production client must overwrite stale local client');
+assert.match(gmailConfig,/const clientId=CL_GMAIL_CLIENT_ID;/,'connectGmail must use pinned production client');
+assert.doesNotMatch(gmailConfig,/input\?\.value\|\|mailClientId\(\)/,'OAuth must not select a historical local client');
+assert.doesNotMatch(gmailConfig,/redirect_uri|response_type[^\n]*token|clStartStandaloneGmailRedirect|__CL_GMAIL_OAUTH_RETURN/,'static PWA must not build a custom OAuth redirect flow');
+assert.match(gmailConfig,/google\.accounts\.oauth2\.initTokenClient/,'GIS token popup must be the Gmail auth path');
 const sw=await fs.readFile(root+'sw.js','utf8');
 assert.match(sw,/self\.addEventListener\('install'/);
 assert.match(sw,/self\.addEventListener\('activate'/);
 assert.match(sw,/cache:'no-store'/);
-console.log(JSON.stringify({status:'PASS',version:meta.version,source:'actual app.js controller',checks:19,realIphoneOAuth:'NOT_RUN'}));
+console.log(JSON.stringify({status:'PASS',version:meta.version,source:'actual app.js controller',checks:24,realIphoneOAuth:'NOT_RUN'}));

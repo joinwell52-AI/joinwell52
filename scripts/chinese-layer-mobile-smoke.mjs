@@ -43,6 +43,7 @@ try{
     await page.addInitScript(()=>{
       Object.defineProperty(navigator,'standalone',{value:true,configurable:true});
       localStorage.setItem('cl-last-app-version','0.5.1');
+      localStorage.setItem('cl-gmail-client-id-v1','999999-stale.apps.googleusercontent.com');
       window.__clUpdateIntervals=[];
       const original=window.setInterval;
       window.setInterval=function(callback,delay,...args){
@@ -59,7 +60,7 @@ try{
         if(u.pathname==='/app.js'&&simulatePreviousBuild)return route.fulfill({contentType:'application/javascript',body:appSource.replace(`const APP_VERSION='${expectedVersion}';`,"const APP_VERSION='0.6.1';")});
         return route.continue();
       }
-      if(u.hostname==='accounts.google.com')return route.fulfill({contentType:'application/javascript',body:`window.google={accounts:{oauth2:{hasGrantedAllScopes:()=>true,revoke:(token,cb)=>cb({successful:true}),initTokenClient(config){const client={...config,requestAccessToken(){window.__oauthHadUserGesture=navigator.userActivation?.isActive!==false;setTimeout(()=>client.callback({access_token:'SYNTHETIC_ONLY_TOKEN',expires_in:3600,scope:config.scope}),10)}};return client}}}};`});
+      if(u.hostname==='accounts.google.com')return route.fulfill({contentType:'application/javascript',body:`window.google={accounts:{oauth2:{hasGrantedAllScopes:()=>true,revoke:(token,cb)=>cb({successful:true}),initTokenClient(config){window.__oauthClientId=config.client_id;const client={...config,requestAccessToken(){window.__oauthHadUserGesture=navigator.userActivation?.isActive!==false;setTimeout(()=>client.callback({access_token:'SYNTHETIC_ONLY_TOKEN',expires_in:3600,scope:config.scope}),10)}};return client}}}};`});
       if(u.hostname==='gmail.googleapis.com'){
         gmailReads++;assert.equal(request.method(),'GET');assert.equal(request.headers().authorization,'Bearer SYNTHETIC_ONLY_TOKEN');
         if(u.pathname.endsWith('/profile'))return json({emailAddress:'mobile-test@example.com'});
@@ -111,9 +112,11 @@ try{
       assert.equal(await page.locator('#mailVersion').textContent(),`v${expectedVersion}`,'Mail must not fall back to an adapter version');
       assert.equal(await page.locator('#mailTranslateConsent').isChecked(),false);
       assert.equal(await page.locator('#gmailClientId').inputValue(),'1090696367470-f5opcehk6g7rj3s0b08n5ibit8kgv209.apps.googleusercontent.com');
+      assert.equal(await page.evaluate(()=>localStorage.getItem('cl-gmail-client-id-v1')),'1090696367470-f5opcehk6g7rj3s0b08n5ibit8kgv209.apps.googleusercontent.com','stale local OAuth client must be migrated');
       await page.locator('#mailTranslateConsent').check();await page.locator('#gmailConnect').tap();
       await page.locator('.mail-row').waitFor();await page.waitForFunction(()=>document.querySelector('.mail-row h2').textContent.includes('中文'));
       assert.equal(await page.evaluate(()=>window.__oauthHadUserGesture),true);
+      assert.equal(await page.evaluate(()=>window.__oauthClientId),'1090696367470-f5opcehk6g7rj3s0b08n5ibit8kgv209.apps.googleusercontent.com','OAuth library must receive the pinned production client');
       await withinScreen('inbox');await page.screenshot({path:`/tmp/cl-mobile-${engine.name()}-${width}-inbox.png`});
       await page.locator('.mail-row').first().tap();
       await page.waitForFunction(()=>document.querySelector('#mailReaderBody p')?.textContent.includes('中文'));
@@ -167,7 +170,7 @@ try{
       assert.equal(await page.locator('#launcherVersion').textContent(),`v${expectedVersion}`);
       await page.screenshot({path:`/tmp/cl-mobile-${engine.name()}-${width}-updated.png`});
       assert.deepEqual(errors,[]);assert.ok(translations>0&&gmailReads>0);
-      reports.push({engine:engine.name(),width,result:'PASS',oauth:'SIMULATED_POPUP_USER_GESTURE',mailbox:'SYNTHETIC',checks:['version source parity','explicit comparator argument','same-version automatic silence','same-version manual dismissal','saved interval','visibility resume','older metadata','newer metadata','failed-check dismissal','stale response rejection','simulated upgrade and reload','launcher','catalog','setup','inbox','reader','code/link preservation','image opt-in','language toggle','back','refresh','disconnect','no sensitive localStorage','no page errors']});
+      reports.push({engine:engine.name(),width,result:'PASS',oauth:'SIMULATED_GIS_TOKEN_POPUP',mailbox:'SYNTHETIC',checks:['version source parity','explicit comparator argument','same-version automatic silence','same-version manual dismissal','saved interval','visibility resume','older metadata','newer metadata','failed-check dismissal','stale response rejection','simulated upgrade and reload','launcher','catalog','setup','inbox','reader','code/link preservation','image opt-in','language toggle','back','refresh','disconnect','no sensitive localStorage','no page errors']});
     }finally{await context.close();await browser.close()}
   }
   const swBrowser=await chromium.launch({headless:true});
@@ -196,5 +199,5 @@ try{
     reports.push({engine:'chromium',width:390,result:'PASS',pwa:'SERVICE_WORKER_CONTROLLED',checks:['service worker registration','controller takeover','updateViaCache none','version.json network path']});
   }finally{await swContext.close();await swBrowser.close()}
 
-  console.log(JSON.stringify({status:'PASS',version:expectedVersion,realIphoneOAuth:'NOT_RUN',standaloneRedirectOAuth:'NOT_RUN',reports},null,2));
+  console.log(JSON.stringify({status:'PASS',version:expectedVersion,realIphoneOAuth:'NOT_RUN',customRedirectOAuth:'REMOVED',reports},null,2));
 }finally{server.close()}
