@@ -31,11 +31,13 @@ const channelName=channel=>channelNames[channel.id]||channel.id.replaceAll('-','
 
 # 情报源明细表
 
-本页是数字研究员正式 Watchlist 的可读投影。**唯一事实源仍是 `research/intelligence/REGISTRY.json`**；本页直接读取 Registry，不维护第二份来源名单。
+本页是数字研究员正式 Watchlist 的可读投影。**唯一事实源仍是 `research/intelligence/REGISTRY.json`**；本页直接读取 Registry，不维护第二份名单。
+
+**人物是研究主体；仓库、论文、协议与官方入口是证据和观测来源。** 人物数量与正式来源对象数量分别统计，不把二者简单相加。
 
 ## 分类统计
 
-<div class="summary-strip"><div><strong>{{totalEntries}}</strong><span>纳入监控对象</span></div><div><strong>{{summary.reduce((n,i)=>n+i.daily,0)}}</strong><span>P0 每日</span></div><div><strong>{{summary.reduce((n,i)=>n+i.weekly,0)}}</strong><span>P1 每周</span></div><div><strong>{{summary.reduce((n,i)=>n+i.focused,0)}}</strong><span>P2 专项</span></div></div>
+<div class="summary-strip"><div><strong>{{researcherCount}}</strong><span>核心研究人物</span></div><div><strong>{{totalEntries}}</strong><span>正式来源对象</span></div><div><strong>{{summary.reduce((n,i)=>n+i.daily,0)}}</strong><span>P0 每日</span></div><div><strong>{{summary.reduce((n,i)=>n+i.weekly,0)}}</strong><span>P1 每周</span></div><div><strong>{{summary.reduce((n,i)=>n+i.focused,0)}}</strong><span>P2 专项</span></div></div>
 <div class="summary-table"><div class="summary-head"><b>分类</b><b>对象数</b><b>P0 每日</b><b>P1 每周</b><b>P2 专项</b><b>说明</b></div><div v-for="item in summary" :key="item.name" class="summary-row"><strong>{{item.name}}</strong><span>{{item.entries}}</span><span>{{item.daily}}</span><span>{{item.weekly}}</span><span>{{item.focused}}</span><small>{{item.note}}</small></div></div>
 
 ## 核心研究人物 · {{researcherCount}}
