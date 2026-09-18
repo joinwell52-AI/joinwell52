@@ -37,8 +37,8 @@ const reports=[];
 try{
   for(const [engine,width] of [[webkit,375],[webkit,390],[webkit,430],[chromium,375]]){
     const browser=await engine.launch({headless:true});
-    const context=await browser.newContext({viewport:{width,height:844},isMobile:true,hasTouch:true,deviceScaleFactor:2,locale:'zh-CN',serviceWorkers:'block'});
-    const page=await context.newPage();const errors=[];let translations=0;let gmailReads=0;let remoteImages=0;let remoteVersion=expectedVersion;let versionError=false;let simulatePreviousBuild=false;
+    const context=await browser.newContext({viewport:{width,height:844},isMobile:true,hasTouch:true,deviceScaleFactor:2,locale:'zh-CN',serviceWorkers:'block',userAgent:'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1'});
+    const page=await context.newPage();const errors=[];let translations=0;let gmailReads=0;let remoteImages=0;let remoteVersion=expectedVersion;let versionError=false;let simulatePreviousBuild=false;let redirectClientId='';let redirectUri='';let redirectCount=0;
     page.on('pageerror',error=>errors.push(error.message));
     await page.addInitScript(()=>{
       Object.defineProperty(navigator,'standalone',{value:true,configurable:true});
@@ -60,7 +60,19 @@ try{
         if(u.pathname==='/app.js'&&simulatePreviousBuild)return route.fulfill({contentType:'application/javascript',body:appSource.replace(`const APP_VERSION='${expectedVersion}';`,"const APP_VERSION='0.6.1';")});
         return route.continue();
       }
-      if(u.hostname==='accounts.google.com')return route.fulfill({contentType:'application/javascript',body:`window.google={accounts:{oauth2:{hasGrantedAllScopes:()=>true,revoke:(token,cb)=>cb({successful:true}),initTokenClient(config){window.__oauthClientId=config.client_id;const client={...config,requestAccessToken(){window.__oauthHadUserGesture=navigator.userActivation?.isActive!==false;setTimeout(()=>client.callback({access_token:'SYNTHETIC_ONLY_TOKEN',expires_in:3600,scope:config.scope}),10)}};return client}}}};`});
+      if(u.hostname==='accounts.google.com'){
+        if(u.pathname==='/o/oauth2/v2/auth'){
+          redirectCount++;
+          redirectClientId=u.searchParams.get('client_id')||'';
+          redirectUri=u.searchParams.get('redirect_uri')||'';
+          const state=u.searchParams.get('state')||'';
+          const scope=u.searchParams.get('scope')||'';
+          const back=new URL(redirectUri);
+          back.hash=new URLSearchParams({access_token:'SYNTHETIC_ONLY_TOKEN',expires_in:'3600',scope,state}).toString();
+          return route.fulfill({contentType:'text/html',body:`<!doctype html><script>location.replace(${JSON.stringify(back.toString())})<\/script>`});
+        }
+        return route.fulfill({contentType:'application/javascript',body:`window.google={accounts:{oauth2:{hasGrantedAllScopes:()=>true,revoke:(token,cb)=>cb({successful:true}),initTokenClient(config){window.__oauthClientId=config.client_id;const client={...config,requestAccessToken(){window.__oauthHadUserGesture=navigator.userActivation?.isActive!==false;setTimeout(()=>client.callback({access_token:'SYNTHETIC_ONLY_TOKEN',expires_in:3600,scope:config.scope}),10)}};return client}}}};`});
+      }
       if(u.hostname==='gmail.googleapis.com'){
         gmailReads++;assert.equal(request.method(),'GET');assert.equal(request.headers().authorization,'Bearer SYNTHETIC_ONLY_TOKEN');
         if(u.pathname.endsWith('/profile'))return json({emailAddress:'mobile-test@example.com'});
@@ -115,8 +127,10 @@ try{
       assert.equal(await page.evaluate(()=>localStorage.getItem('cl-gmail-client-id-v1')),'1090696367470-f5opcehk6g7rj3s0b08n5ibit8kgv209.apps.googleusercontent.com','stale local OAuth client must be migrated');
       await page.locator('#mailTranslateConsent').check();await page.locator('#gmailConnect').tap();
       await page.locator('.mail-row').waitFor();await page.waitForFunction(()=>document.querySelector('.mail-row h2').textContent.includes('中文'));
-      assert.equal(await page.evaluate(()=>window.__oauthHadUserGesture),true);
-      assert.equal(await page.evaluate(()=>window.__oauthClientId),'1090696367470-f5opcehk6g7rj3s0b08n5ibit8kgv209.apps.googleusercontent.com','OAuth library must receive the pinned production client');
+      assert.ok(redirectCount>0,'iOS standalone must use a full-page Google redirect');
+      assert.equal(redirectClientId,'1090696367470-f5opcehk6g7rj3s0b08n5ibit8kgv209.apps.googleusercontent.com','redirect must use the pinned production client');
+      assert.equal(redirectUri,`${origin}/`,'redirect URI must return to the exact app root in this test');
+      assert.equal(new URL(page.url()).hash,'','OAuth token fragment must be cleared after return');
       await withinScreen('inbox');await page.screenshot({path:`/tmp/cl-mobile-${engine.name()}-${width}-inbox.png`});
       await page.locator('.mail-row').first().tap();
       await page.waitForFunction(()=>document.querySelector('#mailReaderBody p')?.textContent.includes('中文'));
@@ -170,7 +184,7 @@ try{
       assert.equal(await page.locator('#launcherVersion').textContent(),`v${expectedVersion}`);
       await page.screenshot({path:`/tmp/cl-mobile-${engine.name()}-${width}-updated.png`});
       assert.deepEqual(errors,[]);assert.ok(translations>0&&gmailReads>0);
-      reports.push({engine:engine.name(),width,result:'PASS',oauth:'SIMULATED_GIS_TOKEN_POPUP',mailbox:'SYNTHETIC',checks:['version source parity','explicit comparator argument','same-version automatic silence','same-version manual dismissal','saved interval','visibility resume','older metadata','newer metadata','failed-check dismissal','stale response rejection','simulated upgrade and reload','launcher','catalog','setup','inbox','reader','code/link preservation','image opt-in','language toggle','back','refresh','disconnect','no sensitive localStorage','no page errors']});
+      reports.push({engine:engine.name(),width,result:'PASS',oauth:'SIMULATED_IOS_FULL_PAGE_REDIRECT',mailbox:'SYNTHETIC',checks:['version source parity','explicit comparator argument','same-version automatic silence','same-version manual dismissal','saved interval','visibility resume','older metadata','newer metadata','failed-check dismissal','stale response rejection','simulated upgrade and reload','launcher','catalog','setup','inbox','reader','code/link preservation','image opt-in','language toggle','back','refresh','disconnect','no sensitive localStorage','no page errors']});
     }finally{await context.close();await browser.close()}
   }
   const swBrowser=await chromium.launch({headless:true});
@@ -199,5 +213,5 @@ try{
     reports.push({engine:'chromium',width:390,result:'PASS',pwa:'SERVICE_WORKER_CONTROLLED',checks:['service worker registration','controller takeover','updateViaCache none','version.json network path']});
   }finally{await swContext.close();await swBrowser.close()}
 
-  console.log(JSON.stringify({status:'PASS',version:expectedVersion,realIphoneOAuth:'NOT_RUN',customRedirectOAuth:'REMOVED',reports},null,2));
+  console.log(JSON.stringify({status:'PASS',version:expectedVersion,realIphoneOAuth:'NOT_RUN',customRedirectOAuth:'SIMULATED_AND_RETURNED',reports},null,2));
 }finally{server.close()}
