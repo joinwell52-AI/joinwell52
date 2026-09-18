@@ -37,7 +37,7 @@ const reports=[];
 try{
   for(const [engine,width] of [[webkit,375],[webkit,390],[webkit,430],[chromium,375]]){
     const browser=await engine.launch({headless:true});
-    const context=await browser.newContext({viewport:{width,height:844},isMobile:true,hasTouch:true,deviceScaleFactor:2,locale:'zh-CN',serviceWorkers:'block'});
+    const context=await browser.newContext({viewport:{width,height:844},isMobile:true,hasTouch:true,deviceScaleFactor:2,locale:'zh-CN',serviceWorkers:'block',userAgent:'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1'});
     const page=await context.newPage();const errors=[];let translations=0;let gmailReads=0;let remoteImages=0;let remoteVersion=expectedVersion;let versionError=false;let simulatePreviousBuild=false;let redirectClientId='';let redirectUri='';let redirectCount=0;
     page.on('pageerror',error=>errors.push(error.message));
     await page.addInitScript(()=>{
