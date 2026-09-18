@@ -1,4 +1,3 @@
-const MAIL_VERSION='0.6.0';
 const GMAIL_SCOPE='https://www.googleapis.com/auth/gmail.readonly';
 const GMAIL_API='https://gmail.googleapis.com/gmail/v1/users/me';
 const GMAIL_CLIENT_ID_KEY='cl-gmail-client-id-v1';
@@ -334,7 +333,7 @@ function disconnectGmail(){
 }
 
 function loadMailApp(){
-  mail$('#mailVersion').textContent=`v${MAIL_VERSION}`;
+  mail$('#mailVersion').textContent=`v${APP_VERSION}`;
   if(mailTokenValid())showMailInbox();else showMailSetup();
 }
 
@@ -354,6 +353,6 @@ function bindMailEvents(){
 
 document.addEventListener('DOMContentLoaded',()=>{
   bindMailEvents();
-  const version=mail$('#mailVersion');if(version)version.textContent=`v${MAIL_VERSION}`;
+  const version=mail$('#mailVersion');if(version)version.textContent=`v${APP_VERSION}`;
 });
 window.loadMailApp=loadMailApp;
