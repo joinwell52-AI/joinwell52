@@ -11,6 +11,15 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-09-18">
+    <time>2026-09-18</time>
+    <div>
+      <strong>Agent Research & Competitor Intelligence</strong>
+      <span>Agents Python v0.22.3 / conditional approval · Codex Turn environment + OAuth · Paperclip Agent reviewer / JWT argv leak / durable VM · Orca host-scoped resume / provider outcome / fleet control · OpenHands server tool catalog · Superset Cloud branch / mobile attachments</span>
+    </div>
+    <b>View →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-09-17">
     <time>2026-09-17</time>
     <div>
