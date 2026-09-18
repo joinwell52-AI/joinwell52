@@ -2,7 +2,7 @@
 const CL_GMAIL_CLIENT_ID='1090696367470-f5opcehk6g7rj3s0b08n5ibit8kgv209.apps.googleusercontent.com';
 const CL_GMAIL_REDIRECT_URI='https://joinwell52-ai.github.io/joinwell52/chinese-layer/';
 const CL_GMAIL_OAUTH_STATE_KEY='cl-gmail-oauth-state-v1';
-try{if(!localStorage.getItem('cl-gmail-client-id-v1'))localStorage.setItem('cl-gmail-client-id-v1',CL_GMAIL_CLIENT_ID)}catch{}
+try{localStorage.setItem('cl-gmail-client-id-v1',CL_GMAIL_CLIENT_ID)}catch{}
 
 // Capture a full-page OAuth return immediately. The access token stays only in memory.
 window.__CL_GMAIL_OAUTH_RETURN=null;
@@ -82,7 +82,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   // In standalone mode use a full-page OAuth return to this exact PWA URL; Safari-tab usage keeps the normal GIS popup.
   connectGmail=function(){
     const input=mail$('#gmailClientId');
-    const clientId=(input?.value||mailClientId()||CL_GMAIL_CLIENT_ID).trim();
+    const clientId=CL_GMAIL_CLIENT_ID;
+    if(input)input.value=clientId;
     if(!/^[0-9]+-[A-Za-z0-9_-]+\.apps\.googleusercontent\.com$/.test(clientId)){setMailSetupStatus('应用登录配置不正确。');return}
     mailState.translateConsent=Boolean(mail$('#mailTranslateConsent')?.checked);
     try{localStorage.setItem(GMAIL_CLIENT_ID_KEY,clientId);localStorage.setItem(MAIL_TRANSLATE_CONSENT_KEY,mailState.translateConsent?'yes':'no')}catch{}
@@ -143,10 +144,10 @@ document.addEventListener('DOMContentLoaded',()=>{
   const originalSetup=showMailSetup;
   showMailSetup=function(){
     originalSetup();
-    const input=mail$('#gmailClientId');if(input&&!input.value)input.value=CL_GMAIL_CLIENT_ID;
+    const input=mail$('#gmailClientId');if(input)input.value=CL_GMAIL_CLIENT_ID;
     const label=document.querySelector('label[for="gmailClientId"]');
     if(label)label.classList.add('hidden');input?.classList.add('hidden');
     const note=document.querySelector('.mail-setup-note');
-    if(note)note.textContent=clIsIosStandalone()?'iPhone 桌面版会整页完成 Google 授权，完成后自动返回收件箱。':'应用已配置好。点击“连接 Gmail”，使用你添加的测试账号登录即可。';
+    if(note)note.textContent=clIsIosStandalone()?'应用 OAuth Client 已固定。iPhone 桌面版会整页完成 Google 授权，完成后自动返回收件箱。':'应用 OAuth Client 已固定。点击“连接 Gmail”即可。';
   };
 });
