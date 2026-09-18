@@ -71,7 +71,7 @@ function datePath(root, date, suffix) {
 
 function validateRegistry(registry) {
   if (registry.schema !== 'research-intelligence-registry/v1') die('invalid registry schema')
-  if (registry.version !== '1.0') die('registry version must be 1.0')
+  if (!['1.0', '1.1'].includes(registry.version)) die('registry version must be 1.0 or 1.1')
   if (!/^\d{4}-\d{2}-\d{2}$/.test(registry.effectiveDate || '')) die('effectiveDate is invalid')
   if (registry.timezone !== 'Asia/Shanghai') die('registry timezone must be Asia/Shanghai')
 
@@ -287,7 +287,9 @@ function validateSignal(signal, path, registry) {
 
 function validateRun(run, path, registry) {
   if (run.schema !== 'research-intelligence-run/v1') die(`${path}: invalid schema`)
-  if (run.version !== '1.0' || run.registryVersion !== registry.version) die(`${path}: invalid version`)
+  if (run.version !== '1.0' || !['1.0', registry.version].includes(run.registryVersion)) {
+    die(`${path}: invalid version`)
+  }
   if (!/^\d{4}-\d{2}-\d{2}$/.test(run.date || '')) die(`${path}: invalid date`)
   if (run.timezone !== registry.timezone) die(`${path}: invalid timezone`)
   if (!STATUSES.has(run.status)) die(`${path}: invalid status ${run.status}`)
