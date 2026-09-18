@@ -1,4 +1,4 @@
 {
   "version": "0.6.4",
-  "notes": "固定生产 Gmail OAuth Client ID：启动时自动覆盖手机本地残留的旧 Client ID，连接 Gmail 时只使用仓库配置的官方 Client ID，不再由 localStorage 或隐藏输入框决定。用于排除历史 Client ID 导致的 redirect_uri_mismatch；Google Cloud 中该官方 Client 的 Authorized redirect URI 仍需与正式 PWA 地址完全一致。"
+  "notes": "修复 Gmail 连接：生产 OAuth Client ID 固定并自动覆盖手机旧值；iPhone 桌面 PWA 不再使用会触发 redirect_uri_mismatch 的自定义整页 OAuth 回跳，统一改用 Google Identity Services token popup。access token 仍只保存在内存。"
 }
