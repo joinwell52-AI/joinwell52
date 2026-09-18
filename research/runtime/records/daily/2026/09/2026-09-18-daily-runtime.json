@@ -8,11 +8,11 @@
   "date": "2026-09-18",
   "timezone": "Asia/Shanghai",
   "repository": "joinwell52-AI/joinwell52",
-  "status": "Running",
+  "status": "Waiting",
   "taskStatus": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Running",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting"
@@ -708,6 +708,132 @@
       "commitVerify": "Completed",
       "verifiedAt": "2026-09-18T10:21:08+08:00",
       "completedAt": "2026-09-18T10:20:59+08:00"
+    },
+    "reading": {
+      "schema": "runtime-shift-result/v2",
+      "task": "reading",
+      "family": "daily",
+      "runtimeDate": "2026-09-18",
+      "status": "Completed",
+      "input": "Authoritative Reading control was pinned from main commit 6466a3b8ea6c69c35c9e94e9f71ebeab4540179c: Research Runtime Scheduler V3.0, Worker Control v1.3.0, generated Reading Prompt v1.0.0 with deterministically verified SHA-256 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5, and all five requiredSources read completely from that same commit. The unique verified same-date Reading Wake Receipt is research/runtime/wakes/2026/09/2026-09-18/reading-105915.json; the wake arrived at 10:59:15+08:00 inside the adopted five-minute early-wake tolerance, so no substantive Reading work occurred before the 11:00 notBefore boundary. Ordered reconciliation opened Reading at 11:08:34+08:00 after same-date Discovery and Queue were durably Completed and GitHub-verified. The native Worker Claim path then recorded a fresh Worker Claimed event at 11:09:34+08:00 in commit e3bf958f238a95d8d111879b02c16399be88c724. Reading consumed only the same-date completed plan research/runtime/plans/2026/09/2026-09-18-plan.json, whose Selected P0 objects were Q-20260918-01 and Q-20260918-02; Digital Employee was No Selection.",
+      "input_zh": "Reading 权威控制固定于 main 提交 6466a3b8ea6c69c35c9e94e9f71ebeab4540179c：Research Runtime Scheduler V3.0、Worker Control v1.3.0、Generated Reading Prompt v1.0.0；已对精确 Prompt 确定性核验 SHA-256，结果 9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5 与声明值一致；同一控制提交上的 5 个 requiredSources 均完整读取。唯一已核验同日 Reading Wake Receipt 为 research/runtime/wakes/2026/09/2026-09-18/reading-105915.json；Wake 于 10:59:15+08:00 到达，位于仓库采用的 5 分钟提前唤醒容差内，因此 11:00 notBefore 边界前未执行任何 Reading 实质业务。当天 Discovery 与 Queue 已持久 Completed 并完成 GitHub Verification 后，Ordered Reconciliation 于 11:08:34+08:00 打开 Reading；原生 Worker Claim 路径随后于 11:09:34+08:00 在提交 e3bf958f238a95d8d111879b02c16399be88c724 中持久记录 fresh Worker Claimed。Reading 只消费同日已完成的 research/runtime/plans/2026/09/2026-09-18-plan.json，其中 Selected P0 Object 为 Q-20260918-01 与 Q-20260918-02；Digital Employee 为 No Selection。",
+      "workResult": "Skill 03 completed source-bounded Deep Reading for both same-date Selected objects. Q-20260918-01 read the complete Social Laws primary study across formal model, alpha-robustness, social-law comparison, worst-case-MDP verification, approximate value bounds, grid experiments and limits. The paper shows that individually optimal policies can interact badly, and that a shared action restriction can be verified inside a declared stochastic-game model by solving each single-agent projection and one worst-case MDP per agent. The important boundary is that robustness alpha must be considered together with retained guaranteed utility: a more restrictive law can improve robustness while lowering useful performance, and the guarantee depends on the modeled state/action/reward/transition space, all agents remaining inside the assumed policy class, and Assumption 1 requiring optimal actions at every state. The paper's formal definition assumes positive rewards while its experiments use all-negative costs, which the text says admit an analogous formulation but does not re-derive in equal detail. The bounded Runtime finding is that Coordination-rule Identity, Model Identity, Robustness Evidence, Utility Evidence, Execution Admission, Business Authorization and Effect Verification must remain separate facts. Q-20260918-02 read the complete Ask the Tool, Don't Guess primary study. It distinguishes strong remaining-work signals from weak near-completion signals, exports call-id/work-done/total/phase/timestamp telemetry over a side channel that leaves the agent-visible result path unchanged, and reports that live progress is materially more accurate than duration-history predictors at KV-cache decision points and under environment changes. In a 4xH100 serving replay, the reported p90 post-tool-call TTFT reduction versus LRU is 20.7% for HBM-only and 20.8% for HBM+DRAM. The paper explicitly treats tenant-originated progress as untrusted input, bounds its scheduling influence through session credit, and identifies opaque tools, parser gaps and behavior-changing instrumentation as limitations. The bounded Runtime finding is that Execution Identity, Progress Observation, Telemetry Confidence, Scheduling Authority, Business Completion and Effect Authorization/Verification must remain separate; progress may justify waiting or resource reallocation but cannot by itself prove completion or authorize retry. Reading performed no Research Analysis, article writing, visualization, Production or Publication. The exact two-note head 20d93522eeff716c8fe14be728e14572c41a1964 passed the Validate Runtime Center step in Validate Research Center 3.0 run 35302389225 before this result was persisted.",
+      "workResult_zh": "Skill 03 已对两个同日 Selected Object 完成来源边界内的 Deep Reading。Q-20260918-01 完整深读 Social Laws 一手研究的形式模型、alpha-robustness、Social-law 比较、Worst-case MDP Verification、近似 Value Bound、Grid 实验与边界。论文说明，单个 Agent 各自执行最优 Policy 并不能证明联合行为安全；在明确声明的 Stochastic-game Model 内，可以先求解每个 Single-agent Projection，再为每个 Agent 构造并求解一个 Worst-case MDP，从而验证共享 Action Restriction 的鲁棒性。关键边界是 alpha 不能单独作为采用依据，还必须同时看 Restriction 后保留下来的 Guaranteed Utility：规则更严格可能提高 Robustness，却降低实际效用；而 Guarantee 依赖完整声明的 State/Action/Reward/Transition Model、所有 Agent 均停留在假定 Policy Class 内，以及 Assumption 1 所要求的每个 State 都选择最优 Action。论文形式定义假定 Positive Reward，而实验使用全负 Cost；正文说明全负 Cost 可定义类似形式，但没有用同等细节重新推导。因此边界 Runtime 结论是 Coordination-rule Identity、Model Identity、Robustness Evidence、Utility Evidence、Execution Admission、Business Authorization 与 Effect Verification 必须保持为不同事实。Q-20260918-02 完整深读 Ask the Tool, Don't Guess 一手研究。研究区分可表示 Remaining Work 的 Strong Signal 与只能表示 Near-completion 的 Weak Signal，通过不改变 Agent-visible Result Path 的 Side Channel 输出 Call-id、Work-done、Total、Phase、Timestamp 进度事件，并显示 Live Progress 在 KV-cache 决策点及环境变化下明显优于基于历史 Duration 的 Predictor。4xH100 Serving Replay 中，相对 LRU 报告的 Tool Call 后 p90 TTFT 降幅为 HBM-only 20.7%、HBM+DRAM 20.8%。论文明确把 Tenant-originated Progress 视为 Untrusted Input，用 Session Credit 限制它对调度的影响，并把 Tool 不暴露信息、Parser 缺口和 Instrumentation 改变 Tool Behavior 列为边界。边界 Runtime 结论是 Execution Identity、Progress Observation、Telemetry Confidence、Scheduling Authority、Business Completion 与 Effect Authorization/Verification 必须分离；Progress 可以支持继续等待或资源重分配，但不能单独证明完成，更不能单独授权 Retry。Reading 未执行 Research Analysis、文章写作、可视化、Production 或 Publication。精确两份 Note Head 20d93522eeff716c8fe14be728e14572c41a1964 已在本 Result 持久化前通过 Validate Research Center 3.0 Run 35302389225 的 Validate Runtime Center 步骤。",
+      "output": "Two durable same-date Reading Notes: research/reading/Q-20260918-01-stochastic-social-law-robustness.md and research/reading/Q-20260918-02-tool-progress-telemetry.md.",
+      "output_zh": "生成两份同日持久 Reading Note：research/reading/Q-20260918-01-stochastic-social-law-robustness.md 与 research/reading/Q-20260918-02-tool-progress-telemetry.md。",
+      "next": "After governed Reading terminal finalization and GitHub Commit Verified, Runtime must reconcile again. Analysis remains a separate stage and may consume only this same-date Reading result after Reading is execution-closed and remotely verified. No downstream work is authorized by this result itself.",
+      "next_zh": "Reading 完成受治理的 Terminal Finalization 与 GitHub Commit Verified 后，Runtime 必须再次 Reconcile。Analysis 仍是独立阶段，只能在 Reading 执行收口并完成远程核验后消费本同日 Reading Result；本 Result 本身不授权任何下游工作。",
+      "metrics": [
+        {
+          "label": "Prompt SHA-256 verified",
+          "label_zh": "Prompt SHA-256 已核验",
+          "value": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"
+        },
+        {
+          "label": "Required sources read",
+          "label_zh": "已读取 Required Source",
+          "value": "5 / 5"
+        },
+        {
+          "label": "Queue-selected objects read",
+          "label_zh": "已深读 Queue Selected Object",
+          "value": 2
+        },
+        {
+          "label": "Durable Reading Notes",
+          "label_zh": "持久 Reading Note",
+          "value": 2
+        },
+        {
+          "label": "Primary research sources inspected",
+          "label_zh": "已核验一手研究来源",
+          "value": 2
+        },
+        {
+          "label": "Exact note-head Runtime validation",
+          "label_zh": "精确 Note Head Runtime 校验",
+          "value": 1
+        },
+        {
+          "label": "Research Analysis performed",
+          "label_zh": "执行 Research Analysis",
+          "value": 0
+        },
+        {
+          "label": "Publication actions",
+          "label_zh": "Publication 操作数量",
+          "value": 0
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Authority control-source commit",
+          "label_zh": "权威控制源提交",
+          "value": "6466a3b8ea6c69c35c9e94e9f71ebeab4540179c"
+        },
+        {
+          "label": "Reading Wake Receipt",
+          "label_zh": "Reading Wake Receipt",
+          "path": "research/runtime/wakes/2026/09/2026-09-18/reading-105915.json"
+        },
+        {
+          "label": "Generated Reading prompt SHA-256",
+          "label_zh": "Generated Reading Prompt SHA-256",
+          "value": "9ad93d7f4cd7859fc0b32fa9b3b9e2b836a177c889addcc67d0b4fdc3261d7b5"
+        },
+        {
+          "label": "Same-date Research Plan",
+          "label_zh": "同日 Research Plan",
+          "path": "research/runtime/plans/2026/09/2026-09-18-plan.json"
+        },
+        {
+          "label": "Worker Claimed commit",
+          "label_zh": "Worker Claimed 提交",
+          "commit": "e3bf958f238a95d8d111879b02c16399be88c724"
+        },
+        {
+          "label": "Exact two-note-head Runtime validation",
+          "label_zh": "精确两份 Note Head Runtime 校验",
+          "value": "Validate Research Center 3.0 #35302389225 — Validate Runtime Center success on 20d93522eeff716c8fe14be728e14572c41a1964"
+        },
+        {
+          "label": "Social Laws primary source",
+          "label_zh": "Social Laws 一手来源",
+          "url": "https://arxiv.org/html/2609.18929"
+        },
+        {
+          "label": "Ask the Tool primary source",
+          "label_zh": "Ask the Tool 一手来源",
+          "url": "https://arxiv.org/html/2609.18849"
+        }
+      ],
+      "artifacts": [
+        {
+          "label": "Q-20260918-01 Reading Note",
+          "label_zh": "Q-20260918-01 深读笔记",
+          "path": "research/reading/Q-20260918-01-stochastic-social-law-robustness.md"
+        },
+        {
+          "label": "Q-20260918-02 Reading Note",
+          "label_zh": "Q-20260918-02 深读笔记",
+          "path": "research/reading/Q-20260918-02-tool-progress-telemetry.md"
+        },
+        {
+          "label": "Reading result",
+          "label_zh": "Reading 结果",
+          "path": "research/runtime/results/2026/09/2026-09-18-reading-result.json"
+        },
+        {
+          "label": "Daily Runtime JSON",
+          "label_zh": "Daily Runtime JSON",
+          "path": "research/runtime/records/daily/2026/09/2026-09-18-daily-runtime.json"
+        }
+      ],
+      "startedAt": "2026-09-18T11:08:34+08:00",
+      "completedAt": "2026-09-18T11:15:35+08:00",
+      "githubCommit": "pending",
+      "commitVerify": "Waiting",
+      "verifiedAt": ""
     }
   },
   "timeline": [
@@ -780,6 +906,13 @@
       "event": "Worker Claimed",
       "status": "Running",
       "detail": "ChatGPT Automation claimed Research Runtime Reading after verifying research/runtime/wakes/2026/09/2026-09-18/reading-105915.json and the current execution authority on main."
+    },
+    {
+      "time": "2026-09-18T11:15:35+08:00",
+      "task": "reading",
+      "event": "Shift Completed",
+      "status": "Completed",
+      "detail": "Research Runtime Reading closed as Completed through governed Runtime shift finalization after durable result validation for 2026-09-18."
     }
   ],
   "metrics": [
@@ -810,5 +943,5 @@
   ],
   "githubCommit": "pending",
   "commitVerify": "Waiting",
-  "updatedAt": "2026-09-18T11:09:34+08:00"
+  "updatedAt": "2026-09-18T11:15:35+08:00"
 }
