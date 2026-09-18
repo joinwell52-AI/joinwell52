@@ -170,7 +170,7 @@ try{
       assert.equal(await page.locator('#launcherVersion').textContent(),`v${expectedVersion}`);
       await page.screenshot({path:`/tmp/cl-mobile-${engine.name()}-${width}-updated.png`});
       assert.deepEqual(errors,[]);assert.ok(translations>0&&gmailReads>0);
-      reports.push({engine:engine.name(),width,result:'PASS',oauth:'SIMULATED_POPUP_USER_GESTURE',mailbox:'SYNTHETIC',checks:['version source parity','explicit comparator argument','same-version automatic silence','same-version manual dismissal','saved interval','visibility resume','older metadata','newer metadata','failed-check dismissal','stale response rejection','simulated upgrade and reload','launcher','catalog','setup','inbox','reader','code/link preservation','image opt-in','language toggle','back','refresh','disconnect','no sensitive localStorage','no page errors']});
+      reports.push({engine:engine.name(),width,result:'PASS',oauth:'SIMULATED_GIS_TOKEN_POPUP',mailbox:'SYNTHETIC',checks:['version source parity','explicit comparator argument','same-version automatic silence','same-version manual dismissal','saved interval','visibility resume','older metadata','newer metadata','failed-check dismissal','stale response rejection','simulated upgrade and reload','launcher','catalog','setup','inbox','reader','code/link preservation','image opt-in','language toggle','back','refresh','disconnect','no sensitive localStorage','no page errors']});
     }finally{await context.close();await browser.close()}
   }
   const swBrowser=await chromium.launch({headless:true});
@@ -199,5 +199,5 @@ try{
     reports.push({engine:'chromium',width:390,result:'PASS',pwa:'SERVICE_WORKER_CONTROLLED',checks:['service worker registration','controller takeover','updateViaCache none','version.json network path']});
   }finally{await swContext.close();await swBrowser.close()}
 
-  console.log(JSON.stringify({status:'PASS',version:expectedVersion,realIphoneOAuth:'NOT_RUN',standaloneRedirectOAuth:'NOT_RUN',reports},null,2));
+  console.log(JSON.stringify({status:'PASS',version:expectedVersion,realIphoneOAuth:'NOT_RUN',customRedirectOAuth:'REMOVED',reports},null,2));
 }finally{server.close()}
