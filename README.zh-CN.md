@@ -62,7 +62,11 @@
 | 成果 | Zenodo DOI | OSF DOI |
 |---|---|---|
 | **TMPA** | [10.5281/zenodo.21888488](https://doi.org/10.5281/zenodo.21888488) | [10.17605/OSF.IO/2JVQD](https://doi.org/10.17605/OSF.IO/2JVQD) |
-| **FCoP** | [10.5281/zenodo.20457285](https://doi.org/10.5281/zenodo.20457285) | [10.17605/OSF.IO/92NWM](https://doi.org/10.17605/OSF.IO/92NWM) |
+| **FCoP 4.0.5 软件** | [10.5281/zenodo.23051275](https://doi.org/10.5281/zenodo.23051275) | — |
+| **FCoP 论文（1.0）** | [10.5281/zenodo.22855630](https://doi.org/10.5281/zenodo.22855630) | — |
+| **FCoP 3.2.5 历史归档** | [10.5281/zenodo.20457285](https://doi.org/10.5281/zenodo.20457285) | [10.17605/OSF.IO/92NWM](https://doi.org/10.17605/OSF.IO/92NWM) |
+
+**FCoP 4.0.5** 提供 MIT 开源 Python 库和可选的 Canonical MCP 适配器：**25 个工具、6 个资源，无资源模板**。Core 负责协议事实、验证和状态迁移；MCP 是 Core 的薄适配器。Runtime、Profile 预设、Host 配置和 Legacy 兼容均在 Base Protocol 之外。[软件归档](https://doi.org/10.5281/zenodo.23051275) · [FCoP 预印本 1.0](https://doi.org/10.5281/zenodo.22855630) · [FCoP 引用元数据](https://github.com/joinwell52-AI/FCoP/blob/main/CITATION.cff)。论文实验与补充材料使用冻结的 4.0.3 实现；4.0.5 软件更新不代表这些实验已重新运行。
 
 Zenodo DOI 对应可引用的正式版本档案；OSF Registration 对应不可变、带时间戳的开放科学快照。
 
@@ -238,7 +242,7 @@ CodeFlowMu 是本地运行的 PM / DEV / QA / OPS 多角色 AI 开发团队，�
 | 阅读稳定理论与规范 | [架构论文 A1.0](https://joinwell52-ai.github.io/joinwell52/zh/publications/tmpa-architecture-paper-a1.0) · [核心规范 S1.0](https://joinwell52-ai.github.io/joinwell52/zh/publications/tmpa-core-specification-s1.0) |
 | 现在就运行 | [执行 S1.0 Reference Reader](#运行-reference-reader) |
 | 检查工程主张 | [实施案例 I1.0](https://joinwell52-ai.github.io/joinwell52/zh/publications/implementation-case-i1.0) · [证据包](./docs/public/evidence/tmpa/i1.0/) |
-| 引用这项工作 | [TMPA DOI](https://doi.org/10.5281/zenodo.21888488) · [TMPA OSF DOI](https://doi.org/10.17605/OSF.IO/2JVQD) · [FCoP DOI](https://doi.org/10.5281/zenodo.20457285) · [FCoP OSF DOI](https://doi.org/10.17605/OSF.IO/92NWM) · [`CITATION.cff`](./CITATION.cff) |
+| 引用这项工作 | [TMPA DOI](https://doi.org/10.5281/zenodo.21888488) · [TMPA OSF DOI](https://doi.org/10.17605/OSF.IO/2JVQD) · [FCoP 4.0.5 DOI](https://doi.org/10.5281/zenodo.23051275) · [FCoP paper DOI](https://doi.org/10.5281/zenodo.22855630) · [FCoP 3.2.5 OSF DOI](https://doi.org/10.17605/OSF.IO/92NWM) · [`CITATION.cff`](./CITATION.cff) |
 
 ## 理论、协议、应用与历史记录
 

@@ -29,6 +29,8 @@ CodeFlowMu + Digital Employee
 
 The website capability section follows this hierarchy: TMPA and FCoP occupy the first row; CodeFlowMu leads the second row, followed by Digital Employee.
 
+**FCoP 4.0.5** provides the MIT-licensed Python library and optional canonical MCP adapter: **25 tools, 6 resources, and no resource templates**. Core owns protocol facts, validation, and state transitions; MCP is a thin Core adapter. Runtime, Profile presets, Host configuration, and Legacy compatibility remain outside the Base Protocol. [Software archive](https://doi.org/10.5281/zenodo.23051275) · [FCoP preprint 1.0](https://doi.org/10.5281/zenodo.22855630) · [FCoP citation metadata](https://github.com/joinwell52-AI/FCoP/blob/main/CITATION.cff). The paper's experiments and supplement use frozen 4.0.3; the 4.0.5 software update does not imply those experiments were rerun.
+
 ## Three research columns
 
 - **Digital Employee:** position, responsibility, workflow, runtime, governance, and evaluation;
