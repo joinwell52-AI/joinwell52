@@ -28,6 +28,10 @@ TMPA and FCoP appear in the first row of the website capability section. CodeFlo
 
 网站能力区中，TMPA 与 FCoP 位于第一排；CodeFlowMu 位于第二排首位，随后是 Digital Employee。
 
+**FCoP 4.0.5** provides the MIT-licensed Python library and optional canonical MCP adapter: **25 tools, 6 resources, and no resource templates**. Core owns protocol facts, validation, and state transitions; MCP is a thin Core adapter. Runtime, Profile presets, Host configuration, and Legacy compatibility remain outside the Base Protocol. [Software archive](https://doi.org/10.5281/zenodo.23051275) · [FCoP preprint 1.0](https://doi.org/10.5281/zenodo.22855630) · [FCoP citation metadata](https://github.com/joinwell52-AI/FCoP/blob/main/CITATION.cff). The paper's experiments and supplement use frozen 4.0.3; the 4.0.5 software update does not imply those experiments were rerun.
+
+**FCoP 4.0.5** 提供 MIT 开源 Python 库和可选的 Canonical MCP 适配器：**25 个工具、6 个资源，无资源模板**。Core 负责协议事实、验证和状态迁移；MCP 是 Core 的薄适配器。Runtime、Profile 预设、Host 配置和 Legacy 兼容均在 Base Protocol 之外。[软件归档](https://doi.org/10.5281/zenodo.23051275) · [FCoP 预印本 1.0](https://doi.org/10.5281/zenodo.22855630) · [FCoP 引用元数据](https://github.com/joinwell52-AI/FCoP/blob/main/CITATION.cff)。论文实验与补充材料使用冻结的 4.0.3 实现；4.0.5 软件更新不代表这些实验已重新运行。
+
 ## Research orientation / 研究方向
 
 - Digital Employee positions, workflows, runtime, governance, and evaluation;

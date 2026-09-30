@@ -62,7 +62,11 @@ The complete checksummed bilingual dossier, citation metadata, manifest, and rel
 | Work | Zenodo DOI | OSF DOI |
 |---|---|---|
 | **TMPA** | [10.5281/zenodo.21888488](https://doi.org/10.5281/zenodo.21888488) | [10.17605/OSF.IO/2JVQD](https://doi.org/10.17605/OSF.IO/2JVQD) |
-| **FCoP** | [10.5281/zenodo.20457285](https://doi.org/10.5281/zenodo.20457285) | [10.17605/OSF.IO/92NWM](https://doi.org/10.17605/OSF.IO/92NWM) |
+| **FCoP 4.0.5 software** | [10.5281/zenodo.23051275](https://doi.org/10.5281/zenodo.23051275) | — |
+| **FCoP preprint (1.0)** | [10.5281/zenodo.22855630](https://doi.org/10.5281/zenodo.22855630) | — |
+| **FCoP 3.2.5 historical archive** | [10.5281/zenodo.20457285](https://doi.org/10.5281/zenodo.20457285) | [10.17605/OSF.IO/92NWM](https://doi.org/10.17605/OSF.IO/92NWM) |
+
+**FCoP 4.0.5** provides the MIT-licensed Python library and optional canonical MCP adapter: **25 tools, 6 resources, and no resource templates**. Core owns protocol facts, validation, and state transitions; MCP is a thin Core adapter. Runtime, Profile presets, Host configuration, and Legacy compatibility remain outside the Base Protocol. [Software archive](https://doi.org/10.5281/zenodo.23051275) · [FCoP preprint 1.0](https://doi.org/10.5281/zenodo.22855630) · [FCoP citation metadata](https://github.com/joinwell52-AI/FCoP/blob/main/CITATION.cff). The paper's experiments and supplement use frozen 4.0.3; the 4.0.5 software update does not imply those experiments were rerun.
 
 The Zenodo DOI records the citable release archive; the OSF Registration is the immutable, timestamped open-science snapshot.
 
@@ -204,7 +208,7 @@ This repository is TMPA's public research, specification, executable conformance
 | Read the stable theory and specification | [Architecture A1.0](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-architecture-paper-a1.0) · [Core S1.0](https://joinwell52-ai.github.io/joinwell52/en/publications/tmpa-core-specification-s1.0) |
 | Run something now | [Execute the S1.0 Reference Reader](#run-the-reference-reader) |
 | Inspect the engineering claim | [Implementation Case I1.0](https://joinwell52-ai.github.io/joinwell52/en/publications/implementation-case-i1.0) · [Evidence package](./docs/public/evidence/tmpa/i1.0/) |
-| Cite the work | [TMPA DOI](https://doi.org/10.5281/zenodo.21888488) · [TMPA OSF DOI](https://doi.org/10.17605/OSF.IO/2JVQD) · [FCoP DOI](https://doi.org/10.5281/zenodo.20457285) · [FCoP OSF DOI](https://doi.org/10.17605/OSF.IO/92NWM) · [`CITATION.cff`](./CITATION.cff) |
+| Cite the work | [TMPA DOI](https://doi.org/10.5281/zenodo.21888488) · [TMPA OSF DOI](https://doi.org/10.17605/OSF.IO/2JVQD) · [FCoP 4.0.5 DOI](https://doi.org/10.5281/zenodo.23051275) · [FCoP paper DOI](https://doi.org/10.5281/zenodo.22855630) · [FCoP 3.2.5 OSF DOI](https://doi.org/10.17605/OSF.IO/92NWM) · [`CITATION.cff`](./CITATION.cff) |
 
 ## Theory, protocol, application, and historical record
 

@@ -38,9 +38,10 @@ const copy = computed(() => zh.value ? {
   ],
   readPublication: '阅读正式文档',
   tmpaArchiveStatus: '标准引用凭证',
-  fcopDoiLink: 'FCoP DOI · 10.5281/zenodo.20457285',
+  fcopDoiLink: 'FCoP 4.0.5 DOI · 10.5281/zenodo.23051275',
+  fcopPaperLink: 'FCoP 论文 · 冻结的 4.0.3 实验 · 10.5281/zenodo.22855630',
   tmpaRegistrationLink: 'TMPA · 10.17605/OSF.IO/2JVQD',
-  fcopRegistrationLink: 'FCoP · 10.17605/OSF.IO/92NWM',
+  fcopRegistrationLink: 'FCoP 3.2.5 · 10.17605/OSF.IO/92NWM',
   engineLabel: '01 · 数字员工生产线',
   engineTitle: '一个生产岗位 一条可核验产线',
   engineWide: ['一个生产岗位', '一条可核验产线'],
@@ -62,7 +63,7 @@ const copy = computed(() => zh.value ? {
   fieldLead: '工场生产数字员工；数字员工能力建立在 CodeFlowMu 与 FCoP 之上；其治理理论与规范边界记录在 TMPA 论文体系中。产品、工程与理论分别接受与自身相称的验证。',
   systems: [
     { no:'01', kind:'理论', role:'文本化多智能体流程架构', name:['TMPA'], description:'独立记录治理理论、规范对象与 Reader 行为，通过 Core 与 FCoP 指导 CodeFlowMu 工程落实，但不把工程结果自动当作理论证明。', path:'/zh/publications/tmpa-architecture-paper-a1.0', logo:'/logo.svg?v=tmpa-20260807-5', tone:'tmpa', cta:'论文与规范' },
-    { no:'02', kind:'协议', role:'基于文件的协同协议', name:['FCoP'], description:'以项目可见文件承载任务、报告、审阅与生命周期证据，为 CodeFlowMu 与数字员工提供可重建的协同事实。', path:'https://github.com/joinwell52-AI/CodeflowMu-Distribution', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'进入 CodeFlowMu 发版仓库' },
+    { no:'02', kind:'协议', role:'基于文件的协同协议', name:['FCoP'], description:'FCoP 4.0.5：项目可见的协作与治理协议。Core 负责协议事实、验证与状态迁移；MCP 薄适配器提供 25 个工具、6 个资源，无资源模板。Runtime、Profile 与 Host 配置在 Base Protocol 之外。', path:'https://github.com/joinwell52-AI/FCoP', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'进入 FCoP 开源仓库' },
     { no:'03', kind:'运行', role:'数字员工开发与工作 Runtime', name:['CodeFlowMu'], description:'承载数字员工开发、受治理执行、恢复与持久工作证据，提供 Windows x64 专有软件免费预览版，安装与更新统一进入公开发版仓库。', path:'https://github.com/joinwell52-AI/CodeflowMu-Distribution', logo:'/assets/logos/codeflowmu.png', tone:'codeflow', cta:'应用与 Windows 下载' },
     { no:'04', kind:'应用', role:'企业 AI 应用 · PWA DEMO', name:['小典','AI'], description:'源于早期企业 AI 应用实践，并促成对多角色开发、业务治理与数字员工架构的持续探索。现开放 PWA Demo 供交互体验；这是体验入口，不是生产服务。', path:'https://demo.chedian.cc', mark:'XD', tone:'xiaodian', cta:'打开 PWA Demo' }
   ],
@@ -115,9 +116,10 @@ const copy = computed(() => zh.value ? {
   ],
   readPublication: 'Read formal document',
   tmpaArchiveStatus: 'Citation credentials',
-  fcopDoiLink: 'FCoP DOI · 10.5281/zenodo.20457285',
+  fcopDoiLink: 'FCoP 4.0.5 DOI · 10.5281/zenodo.23051275',
+  fcopPaperLink: 'FCoP paper · frozen 4.0.3 experiments · 10.5281/zenodo.22855630',
   tmpaRegistrationLink: 'TMPA · 10.17605/OSF.IO/2JVQD',
-  fcopRegistrationLink: 'FCoP · 10.17605/OSF.IO/92NWM',
+  fcopRegistrationLink: 'FCoP 3.2.5 · 10.17605/OSF.IO/92NWM',
   engineLabel: '01 · DIGITAL EMPLOYEE PRODUCTION LINE',
   engineTitle: 'One production position One verifiable line',
   engineWide: ['One production position', 'One verifiable line'],
@@ -139,7 +141,7 @@ const copy = computed(() => zh.value ? {
   fieldLead: 'The Works produces Digital Employees. Their capabilities are built on CodeFlowMu and FCoP, while the governing theory and specification boundaries are recorded independently in TMPA. Product, engineering, and theory are validated by standards appropriate to each layer.',
   systems: [
     { no:'01', kind:'THEORY', role:'TEXTUAL MULTI-AGENT PROCESS ARCHITECTURE', name:['TMPA'], description:'Independently records governance theory, normative objects, and Reader behavior. Through Core and FCoP it guides CodeFlowMu engineering without treating implementation results as automatic proof of theory.', path:'/en/publications/tmpa-architecture-paper-a1.0', logo:'/logo.svg?v=tmpa-20260807-5', tone:'tmpa', cta:'Paper & specification' },
-    { no:'02', kind:'PROTOCOL', role:'FILE-BASED COORDINATION PROTOCOL', name:['FCoP'], description:'Project-visible files carry tasks, reports, reviews, and lifecycle evidence, providing reconstructable coordination facts for CodeFlowMu and Digital Employees.', path:'https://github.com/joinwell52-AI/CodeflowMu-Distribution', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'Open CodeFlowMu distribution' },
+    { no:'02', kind:'PROTOCOL', role:'FILE-BASED COORDINATION PROTOCOL', name:['FCoP'], description:'FCoP 4.0.5: project-visible coordination and governance. Core owns protocol facts, validation, and transitions; the thin MCP adapter exposes 25 tools and 6 resources, with no templates. Runtime, Profile, and Host configuration sit outside Base Protocol.', path:'https://github.com/joinwell52-AI/FCoP', logo:'https://raw.githubusercontent.com/joinwell52-AI/FCoP/main/assets/fcop-logo-256.png', tone:'fcop', cta:'Open FCoP source repository' },
     { no:'03', kind:'RUNTIME', role:'DIGITAL EMPLOYEE DEVELOPMENT AND WORK RUNTIME', name:['CodeFlowMu'], description:'The runtime layer for Digital Employee development, governed execution, recovery, and durable work evidence, available as a proprietary free preview for Windows x64 through the public distribution repository.', path:'https://github.com/joinwell52-AI/CodeflowMu-Distribution', logo:'/assets/logos/codeflowmu.png', tone:'codeflow', cta:'App & Windows downloads' },
     { no:'04', kind:'APPLICATION', role:'ENTERPRISE AI APPLICATION · PWA DEMO', name:['Xiaodian','AI'], description:'An early enterprise AI application that helped surface the need for multi-role development, business governance, and the Digital Employee architecture. Its PWA demo is open for hands-on exploration; it is an experience entry point, not a production service.', path:'https://demo.chedian.cc', mark:'XD', tone:'xiaodian', cta:'Open PWA Demo' }
   ],
@@ -439,7 +441,8 @@ onBeforeUnmount(() => {
           <div class="rc-tmpa__archive-meta">
             <b>{{ copy.tmpaArchiveStatus }}</b>
             <nav>
-              <a href="https://doi.org/10.5281/zenodo.20457285">{{ copy.fcopDoiLink }} <span>↗</span></a>
+              <a href="https://doi.org/10.5281/zenodo.23051275">{{ copy.fcopDoiLink }} <span>↗</span></a>
+              <a href="https://doi.org/10.5281/zenodo.22855630">{{ copy.fcopPaperLink }} <span>↗</span></a>
               <a href="https://doi.org/10.17605/OSF.IO/2JVQD">{{ copy.tmpaRegistrationLink }} <span>↗</span></a>
               <a href="https://doi.org/10.17605/OSF.IO/92NWM">{{ copy.fcopRegistrationLink }} <span>↗</span></a>
             </nav>
