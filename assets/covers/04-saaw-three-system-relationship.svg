@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1672" height="941" viewBox="0 0 1672 941" role="img" aria-labelledby="title desc">
+  <title id="title">TMPA, FCoP and CodeFlowMu system relationship</title>
+  <desc id="desc">Cinematic three-system view: TMPA defines theory and specifications, FCoP carries reconstructable coordination facts, and CodeFlowMu implements governed engineering runtime.</desc>
+  <defs>
+    <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#050913" stop-opacity="0"/>
+      <stop offset="0.62" stop-color="#050913" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#050913" stop-opacity="0.98"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#8b7cff"/><stop offset="0.52" stop-color="#57d7ea"/><stop offset="1" stop-color="#79b8ff"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <image href="04-saaw-three-system-cinematic-bg.png" width="1672" height="941" preserveAspectRatio="xMidYMid slice"/>
+  <rect width="1672" height="941" fill="url(#shade)"/>
+  <text x="68" y="72" fill="#dce8ff" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="24" font-weight="700" letter-spacing="4">THREE SYSTEMS · ONE ENGINEERING LINEAGE</text>
+  <text x="68" y="112" fill="#8da3c7" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="19">现有体系关系 / Current system relationship</text>
+  <g transform="translate(68 675)">
+    <rect width="448" height="202" rx="24" fill="#0b1020" fill-opacity="0.88" stroke="#8878ff" stroke-opacity="0.7"/>
+    <image href="../logos/tmpa.svg" x="28" y="30" width="92" height="92"/>
+    <text x="145" y="62" fill="#ffffff" font-family="Arial, sans-serif" font-size="38" font-weight="800">TMPA</text>
+    <text x="145" y="96" fill="#b8adff" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="20" font-weight="700">理论与规范 / THEORY</text>
+    <text x="30" y="148" fill="#d4dded" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="18">定义治理对象、Reader 语义与证据边界</text>
+    <text x="30" y="178" fill="#8393ad" font-family="Arial, sans-serif" font-size="16">Defines invariants. Does not execute work.</text>
+  </g>
+  <g transform="translate(612 675)">
+    <rect width="448" height="202" rx="24" fill="#071722" fill-opacity="0.9" stroke="#57d7ea" stroke-opacity="0.7"/>
+    <image href="../logos/fcop.png" x="28" y="28" width="96" height="96"/>
+    <text x="145" y="62" fill="#ffffff" font-family="Arial, sans-serif" font-size="38" font-weight="800">FCoP</text>
+    <text x="145" y="96" fill="#67ddeb" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="20" font-weight="700">协作协议 / PROTOCOL</text>
+    <text x="30" y="148" fill="#d4dded" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="18">用文件承载任务、报告、复核与生命周期事实</text>
+    <text x="30" y="178" fill="#8393ad" font-family="Arial, sans-serif" font-size="16">Carries reconstructable coordination facts.</text>
+  </g>
+  <g transform="translate(1156 675)">
+    <rect width="448" height="202" rx="24" fill="#081426" fill-opacity="0.9" stroke="#69aefc" stroke-opacity="0.72"/>
+    <image href="../logos/codeflowmu.png" x="28" y="28" width="96" height="96"/>
+    <text x="145" y="62" fill="#ffffff" font-family="Arial, sans-serif" font-size="34" font-weight="800">CodeFlowMu</text>
+    <text x="145" y="96" fill="#79b8ff" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="20" font-weight="700">工程运行 / RUNTIME</text>
+    <text x="30" y="148" fill="#d4dded" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="18">执行、恢复，并持续生成可验证工作证据</text>
+    <text x="30" y="178" fill="#8393ad" font-family="Arial, sans-serif" font-size="16">Implements governed engineering runtime.</text>
+  </g>
+  <g fill="none" stroke="url(#line)" stroke-width="6" stroke-linecap="round" filter="url(#glow)">
+    <path d="M520 778H585"/><path d="M1064 778H1129"/>
+  </g>
+  <g fill="#78d6f4"><path d="M585 778l-18-11v22z"/><path d="M1129 778l-18-11v22z"/></g>
+  <text x="552" y="754" text-anchor="middle" fill="#aab8cf" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="14">约束</text>
+  <text x="1096" y="754" text-anchor="middle" fill="#aab8cf" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="14">落实</text>
+  <text x="836" y="918" text-anchor="middle" fill="#70809b" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="15">SaaW 是研究方向，不在本图中作为已交付的第四层 / SaaW remains a research direction, not a completed fourth layer.</text>
+</svg>

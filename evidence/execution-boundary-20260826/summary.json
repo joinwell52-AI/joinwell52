@@ -1,0 +1,50 @@
+{
+  "package": "execution-boundary-four-cases-public-data-20260826",
+  "version": "public-v1",
+  "sanitized": true,
+  "scope": "Aggregate article-facing evidence only; no raw logs, source code, task content, identities, paths, or credentials.",
+  "readingRule": "Each count belongs only to its named test collection and must not be combined as a system-wide success rate.",
+  "cases": [
+    {
+      "id": "A1",
+      "topic": "call-time-gate",
+      "targetedPass": "87/87",
+      "postFixRuntimePass": "1702/1702",
+      "postFixShellPass": "936/936",
+      "supports": "The named test sets no longer reproduced the advisory-as-block error.",
+      "doesNotSupport": "System-wide reliability or universal call-time authorization receipts."
+    },
+    {
+      "id": "A2",
+      "topic": "observer-without-adjudication",
+      "semanticPass": ["8/8", "6/6"],
+      "repeatObservationPass": "109/109",
+      "closeoutPass": "18/18",
+      "supports": "Repeated observation did not migrate lifecycle in named paths.",
+      "doesNotSupport": "Absence of every future bypass path."
+    },
+    {
+      "id": "A3",
+      "topic": "failure-and-delivery",
+      "initialPrecedence": "55/57",
+      "postFixPrecedence": "57/57",
+      "followUp": "14/14",
+      "integration": "221/221",
+      "supports": "Named projections retained tested history after the fix.",
+      "doesNotSupport": "Lossless propagation of every failure to every surface."
+    },
+    {
+      "id": "A4",
+      "topic": "health-and-recovery",
+      "repairAssertions": {
+        "lifecycle": "16/16",
+        "dispatcher": "46/46",
+        "fallback": "4/4",
+        "pmRouting": "7/7",
+        "skillRouting": "5/5"
+      },
+      "supports": "Health, work activity, legal dispatch, and acceptance were separately checked in one recovery case.",
+      "doesNotSupport": "A physical timestamp alone proves a causal precondition."
+    }
+  ]
+}

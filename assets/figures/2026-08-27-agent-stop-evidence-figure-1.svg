@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="760" viewBox="0 0 1600 760" role="img" aria-labelledby="title desc">
+  <title id="title">一次取消实际证明到哪里</title>
+  <desc id="desc">取消请求、wrapper 退出和直接 child 退出属于已观察事实；观测边界外的后代进程是否收拢尚未验证。</desc>
+  <style>
+    .bg{fill:#fbfaf7}.title{font:600 31px 'Microsoft YaHei','Noto Sans SC',Arial,sans-serif;fill:#102a43}.sub{font:400 17px 'Microsoft YaHei','Noto Sans SC',Arial,sans-serif;fill:#526577}.k{font:600 21px 'Microsoft YaHei','Noto Sans SC',Arial,sans-serif;fill:#102a43}.en{font:400 15px Arial,sans-serif;fill:#526577}.small{font:400 14px 'Microsoft YaHei','Noto Sans SC',Arial,sans-serif;fill:#526577}.note{font:500 17px 'Microsoft YaHei','Noto Sans SC',Arial,sans-serif;fill:#102a43}.line{stroke:#8aa3b8;stroke-width:4;fill:none}.dash{stroke:#8aa3b8;stroke-width:3;stroke-dasharray:10 9;fill:none}.amber{fill:#fff0d3;stroke:#e58b13;stroke-width:3}.blue{fill:#e9f6ff;stroke:#1778b5;stroke-width:3}.violet{fill:#f2ebff;stroke:#7d55c7;stroke-width:3}.neutral{fill:#f5f7f9;stroke:#b9c7d1;stroke-width:3}
+  </style>
+  <rect class="bg" width="1600" height="760"/>
+  <text class="title" x="90" y="78">一次取消实际证明到哪里？</text>
+  <text class="sub" x="90" y="112">What a cancellation actually proves — 受控 Windows 二层观察，1/1 PASS</text>
+  <line x1="105" y1="342" x2="1470" y2="342" class="line"/>
+  <polygon points="1468,342 1445,328 1445,356" fill="#8aa3b8"/>
+  <rect x="90" y="260" rx="22" ry="22" width="260" height="166" class="amber"/>
+  <text class="k" x="130" y="315">取消请求已发送</text><text class="en" x="130" y="344">Cancellation requested</text><text class="small" x="130" y="383">证明：系统尝试终止本轮执行</text>
+  <rect x="420" y="260" rx="22" ry="22" width="260" height="166" class="blue"/>
+  <text class="k" x="460" y="315">wrapper 已观察退出</text><text class="en" x="460" y="344">Wrapper exit observed</text><text class="small" x="460" y="383">证明：外层 PID 不再可见</text>
+  <rect x="750" y="260" rx="22" ry="22" width="260" height="166" class="blue"/>
+  <text class="k" x="790" y="315">直接 child 已观察退出</text><text class="en" x="790" y="344">Direct child exit observed</text><text class="small" x="790" y="383">证明：该样本的已知下一层退出</text>
+  <rect x="1080" y="220" rx="26" ry="26" width="390" height="246" class="violet"/>
+  <text class="k" x="1122" y="292">执行树已完全收拢？</text><text class="en" x="1122" y="322">Full process-tree containment?</text><text class="small" x="1122" y="360">未验证：逃逸后代、不同权限、容器、远程执行器</text><text class="small" x="1122" y="390">需要新的反例测试，不能从 1/1 推出</text>
+  <line x1="1045" y1="174" x2="1045" y2="510" class="dash"/>
+  <text class="note" x="930" y="183">已观察范围 / Observed scope</text>
+  <path d="M 1080 438 C 1160 526,1325 542,1455 520" class="dash"/>
+  <circle cx="350" cy="342" r="10" fill="#e58b13"/><circle cx="680" cy="342" r="10" fill="#1778b5"/><circle cx="1010" cy="342" r="10" fill="#1778b5"/>
+  <rect x="90" y="566" rx="16" ry="16" width="1380" height="104" class="neutral"/>
+  <text class="note" x="125" y="613">可交接给下一位 Agent 的结论：</text>
+  <text class="small" x="125" y="644">取消已发送；wrapper 与直接 child 已观察退出；整棵执行树收拢仍待验证。不要把最后一项写成“已停止”。</text>
+  <text class="small" x="90" y="716">来源：候选公开证据包 R1｜Windows wrapper + direct child 探针；该图不主张任意深度进程树已收拢。</text>
+</svg>

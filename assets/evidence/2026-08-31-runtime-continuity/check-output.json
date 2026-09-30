@@ -1,0 +1,251 @@
+{
+  "result": "PASS",
+  "scope": "Captured-result consistency + executable research Reader, NOT independent product QA",
+  "restart_variants": 3,
+  "authorization_cases": 11,
+  "binding_cases": 8,
+  "reader_cases": 8,
+  "benchmark_configs": 1187,
+  "first_party_details": {
+    "failed_record_preserves_effect_evidence": true,
+    "resumed_distinct_effects_same_operation": 2,
+    "authorization_accepted": 2,
+    "authorization_not_accepted": 9,
+    "binding_verified": 2,
+    "binding_invalid_claim": 5,
+    "binding_not_applicable": 1,
+    "null_sessions": 6,
+    "null_session_invalid_claim": 5,
+    "null_session_not_applicable": 1,
+    "timeline_envelopes": 7,
+    "t2_admitted": 5,
+    "t2_rejected_future": 2,
+    "effect_snapshot_row_sum": 4,
+    "t3_distinct_effects": 2
+  },
+  "cases": [
+    {
+      "id": "T0",
+      "result": {
+        "cutoff": 0,
+        "approval_status": "approved",
+        "effect_count": null,
+        "effect_observed": "unknown",
+        "duplicate_observed": "unknown",
+        "accepted": [
+          "approval-0"
+        ],
+        "rejected": [
+          {
+            "id": "approval-1",
+            "reason": "after_cutoff"
+          },
+          {
+            "id": "effects-1",
+            "reason": "after_cutoff"
+          },
+          {
+            "id": "approval-2",
+            "reason": "after_cutoff"
+          },
+          {
+            "id": "effects-2",
+            "reason": "after_cutoff"
+          },
+          {
+            "id": "approval-3",
+            "reason": "after_cutoff"
+          },
+          {
+            "id": "effects-3",
+            "reason": "after_cutoff"
+          }
+        ]
+      }
+    },
+    {
+      "id": "T1",
+      "result": {
+        "cutoff": 1,
+        "approval_status": "executing",
+        "effect_count": 1,
+        "effect_observed": "yes",
+        "duplicate_observed": "not_observed",
+        "accepted": [
+          "approval-0",
+          "approval-1",
+          "effects-1"
+        ],
+        "rejected": [
+          {
+            "id": "approval-2",
+            "reason": "after_cutoff"
+          },
+          {
+            "id": "effects-2",
+            "reason": "after_cutoff"
+          },
+          {
+            "id": "approval-3",
+            "reason": "after_cutoff"
+          },
+          {
+            "id": "effects-3",
+            "reason": "after_cutoff"
+          }
+        ]
+      }
+    },
+    {
+      "id": "T2",
+      "result": {
+        "cutoff": 2,
+        "approval_status": "failed",
+        "effect_count": 1,
+        "effect_observed": "yes",
+        "duplicate_observed": "not_observed",
+        "accepted": [
+          "approval-0",
+          "approval-1",
+          "effects-1",
+          "approval-2",
+          "effects-2"
+        ],
+        "rejected": [
+          {
+            "id": "approval-3",
+            "reason": "after_cutoff"
+          },
+          {
+            "id": "effects-3",
+            "reason": "after_cutoff"
+          }
+        ]
+      }
+    },
+    {
+      "id": "T3",
+      "result": {
+        "cutoff": 3,
+        "approval_status": "succeeded",
+        "effect_count": 2,
+        "effect_observed": "yes",
+        "duplicate_observed": "yes",
+        "accepted": [
+          "approval-0",
+          "approval-1",
+          "effects-1",
+          "approval-2",
+          "effects-2",
+          "approval-3",
+          "effects-3"
+        ],
+        "rejected": []
+      }
+    },
+    {
+      "id": "N1-missing-effect",
+      "result": {
+        "cutoff": 2,
+        "approval_status": "failed",
+        "effect_count": null,
+        "effect_observed": "unknown",
+        "duplicate_observed": "unknown",
+        "accepted": [
+          "approval-0",
+          "approval-1",
+          "approval-2"
+        ],
+        "rejected": [
+          {
+            "id": "approval-3",
+            "reason": "after_cutoff"
+          }
+        ]
+      }
+    },
+    {
+      "id": "N2-foreign-owner",
+      "result": {
+        "cutoff": 2,
+        "approval_status": "failed",
+        "effect_count": null,
+        "effect_observed": "unknown",
+        "duplicate_observed": "unknown",
+        "accepted": [
+          "approval-0",
+          "approval-1",
+          "approval-2"
+        ],
+        "rejected": [
+          {
+            "id": "approval-3",
+            "reason": "after_cutoff"
+          },
+          {
+            "id": "foreign-effects",
+            "reason": "wrong_owner"
+          }
+        ]
+      },
+      "naive": {
+        "duplicate_observed": "yes"
+      }
+    },
+    {
+      "id": "N3-future-evidence",
+      "result": {
+        "cutoff": 2,
+        "approval_status": "failed",
+        "effect_count": 1,
+        "effect_observed": "yes",
+        "duplicate_observed": "not_observed",
+        "accepted": [
+          "approval-0",
+          "approval-1",
+          "effects-1",
+          "approval-2",
+          "effects-2"
+        ],
+        "rejected": [
+          {
+            "id": "approval-3",
+            "reason": "after_cutoff"
+          },
+          {
+            "id": "effects-3",
+            "reason": "after_cutoff"
+          }
+        ]
+      },
+      "naive": {
+        "duplicate_observed": "yes"
+      }
+    },
+    {
+      "id": "N4-tampered",
+      "result": {
+        "cutoff": 2,
+        "approval_status": "failed",
+        "effect_count": null,
+        "effect_observed": "unknown",
+        "duplicate_observed": "unknown",
+        "accepted": [
+          "approval-0",
+          "approval-1",
+          "approval-2"
+        ],
+        "rejected": [
+          {
+            "id": "approval-3",
+            "reason": "after_cutoff"
+          },
+          {
+            "id": "effects-2",
+            "reason": "integrity_or_unregistered"
+          }
+        ]
+      }
+    }
+  ]
+}

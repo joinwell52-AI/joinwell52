@@ -1,0 +1,300 @@
+{
+  "commit": "f0f42f01c8f6d55bfe3d32e108f607841a2900d9",
+  "method": "Actual product services, synthetic local executors; no HTTP, provider login, or external side effects.",
+  "variants": [
+    {
+      "variant": "non-idempotent",
+      "separate_processes": true,
+      "before_retry": {
+        "status": "failed",
+        "effects": 1,
+        "calls": 1,
+        "error": "EISDIR"
+      },
+      "after_retry": {
+        "status": "succeeded",
+        "effects": 2,
+        "calls": 2,
+        "error": null
+      },
+      "observations": [
+        {
+          "stage": "00-approved",
+          "seq": 0,
+          "owner": "fixture-run-non-idempotent",
+          "approval": {
+            "approval_id": "APPROVAL-RESEARCH",
+            "status": "approved",
+            "execution_status": "not_started",
+            "evidence": []
+          },
+          "effects": [],
+          "executor_calls": 0
+        },
+        {
+          "stage": "01-effect-observed",
+          "seq": 1,
+          "owner": "fixture-run-non-idempotent",
+          "approval": {
+            "approval_id": "APPROVAL-RESEARCH",
+            "status": "executing",
+            "execution_status": "executing",
+            "evidence": []
+          },
+          "effects": [
+            {
+              "effect_id": "E1",
+              "operation_key": "fixture-key",
+              "kind": "local-marker"
+            }
+          ],
+          "executor_calls": 1
+        },
+        {
+          "stage": "02-failed-return",
+          "seq": 2,
+          "owner": "fixture-run-non-idempotent",
+          "approval": {
+            "approval_id": "APPROVAL-RESEARCH",
+            "status": "failed",
+            "execution_status": "failed",
+            "evidence": [
+              {
+                "kind": "local-marker",
+                "observed_count": 1
+              }
+            ]
+          },
+          "effects": [
+            {
+              "effect_id": "E1",
+              "operation_key": "fixture-key",
+              "kind": "local-marker"
+            }
+          ],
+          "executor_calls": 1
+        },
+        {
+          "stage": "03-resume-return",
+          "seq": 3,
+          "owner": "fixture-run-non-idempotent",
+          "approval": {
+            "approval_id": "APPROVAL-RESEARCH",
+            "status": "succeeded",
+            "execution_status": "succeeded",
+            "evidence": [
+              {
+                "kind": "local-marker",
+                "observed_count": 2
+              }
+            ]
+          },
+          "effects": [
+            {
+              "effect_id": "E1",
+              "operation_key": "fixture-key",
+              "kind": "local-marker"
+            },
+            {
+              "effect_id": "E2",
+              "operation_key": "fixture-key",
+              "kind": "local-marker"
+            }
+          ],
+          "executor_calls": 2
+        }
+      ]
+    },
+    {
+      "variant": "idempotent",
+      "separate_processes": true,
+      "before_retry": {
+        "status": "failed",
+        "effects": 1,
+        "calls": 1,
+        "error": "EISDIR"
+      },
+      "after_retry": {
+        "status": "succeeded",
+        "effects": 1,
+        "calls": 2,
+        "error": null
+      },
+      "observations": [
+        {
+          "stage": "00-approved",
+          "seq": 0,
+          "owner": "fixture-run-idempotent",
+          "approval": {
+            "approval_id": "APPROVAL-RESEARCH",
+            "status": "approved",
+            "execution_status": "not_started",
+            "evidence": []
+          },
+          "effects": [],
+          "executor_calls": 0
+        },
+        {
+          "stage": "01-effect-observed",
+          "seq": 1,
+          "owner": "fixture-run-idempotent",
+          "approval": {
+            "approval_id": "APPROVAL-RESEARCH",
+            "status": "executing",
+            "execution_status": "executing",
+            "evidence": []
+          },
+          "effects": [
+            {
+              "effect_id": "E1",
+              "operation_key": "fixture-key",
+              "kind": "local-marker"
+            }
+          ],
+          "executor_calls": 1
+        },
+        {
+          "stage": "02-failed-return",
+          "seq": 2,
+          "owner": "fixture-run-idempotent",
+          "approval": {
+            "approval_id": "APPROVAL-RESEARCH",
+            "status": "failed",
+            "execution_status": "failed",
+            "evidence": [
+              {
+                "kind": "local-marker",
+                "observed_count": 1
+              }
+            ]
+          },
+          "effects": [
+            {
+              "effect_id": "E1",
+              "operation_key": "fixture-key",
+              "kind": "local-marker"
+            }
+          ],
+          "executor_calls": 1
+        },
+        {
+          "stage": "03-resume-return",
+          "seq": 3,
+          "owner": "fixture-run-idempotent",
+          "approval": {
+            "approval_id": "APPROVAL-RESEARCH",
+            "status": "succeeded",
+            "execution_status": "succeeded",
+            "evidence": [
+              {
+                "kind": "local-marker",
+                "observed_count": 1
+              }
+            ]
+          },
+          "effects": [
+            {
+              "effect_id": "E1",
+              "operation_key": "fixture-key",
+              "kind": "local-marker"
+            }
+          ],
+          "executor_calls": 2
+        }
+      ]
+    },
+    {
+      "variant": "changed-digest",
+      "separate_processes": true,
+      "before_retry": {
+        "status": "failed",
+        "effects": 1,
+        "calls": 1,
+        "error": "EISDIR"
+      },
+      "after_retry": {
+        "status": "stale",
+        "effects": 1,
+        "calls": 1,
+        "error": "APPROVAL_STALE"
+      },
+      "observations": [
+        {
+          "stage": "00-approved",
+          "seq": 0,
+          "owner": "fixture-run-changed-digest",
+          "approval": {
+            "approval_id": "APPROVAL-RESEARCH",
+            "status": "approved",
+            "execution_status": "not_started",
+            "evidence": []
+          },
+          "effects": [],
+          "executor_calls": 0
+        },
+        {
+          "stage": "01-effect-observed",
+          "seq": 1,
+          "owner": "fixture-run-changed-digest",
+          "approval": {
+            "approval_id": "APPROVAL-RESEARCH",
+            "status": "executing",
+            "execution_status": "executing",
+            "evidence": []
+          },
+          "effects": [
+            {
+              "effect_id": "E1",
+              "operation_key": "fixture-key",
+              "kind": "local-marker"
+            }
+          ],
+          "executor_calls": 1
+        },
+        {
+          "stage": "02-failed-return",
+          "seq": 2,
+          "owner": "fixture-run-changed-digest",
+          "approval": {
+            "approval_id": "APPROVAL-RESEARCH",
+            "status": "failed",
+            "execution_status": "failed",
+            "evidence": [
+              {
+                "kind": "local-marker",
+                "observed_count": 1
+              }
+            ]
+          },
+          "effects": [
+            {
+              "effect_id": "E1",
+              "operation_key": "fixture-key",
+              "kind": "local-marker"
+            }
+          ],
+          "executor_calls": 1
+        },
+        {
+          "stage": "03-resume-return",
+          "seq": 3,
+          "owner": "fixture-run-changed-digest",
+          "approval": {
+            "approval_id": "APPROVAL-RESEARCH",
+            "status": "stale",
+            "execution_status": "not_started",
+            "evidence": []
+          },
+          "effects": [
+            {
+              "effect_id": "E1",
+              "operation_key": "fixture-key",
+              "kind": "local-marker"
+            }
+          ],
+          "executor_calls": 1
+        }
+      ]
+    }
+  ]
+}

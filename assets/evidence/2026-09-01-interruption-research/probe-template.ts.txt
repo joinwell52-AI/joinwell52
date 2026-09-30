@@ -1,0 +1,271 @@
+/**
+ * Research-only fixture. It imports the released Runtime paths but does not
+ * modify the product tree, create FCoP work, or call an external system.
+ */
+import assert from "node:assert/strict";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { join } from "node:path";
+import { test } from "node:test";
+
+import type { Agent } from "__CODEFLOWMU_BASELINE__/packages/codeflowmu-protocol/src/index.ts";
+import { AgentRegistry } from "__CODEFLOWMU_BASELINE__/packages/codeflowmu-runtime/src/registry/AgentRegistry.ts";
+import {
+  InMemoryRunHandle,
+  InMemorySdkAdapter,
+} from "__CODEFLOWMU_BASELINE__/packages/codeflowmu-runtime/src/registry/AgentSdkAdapter.ts";
+import { SessionManager } from "__CODEFLOWMU_BASELINE__/packages/codeflowmu-runtime/src/session/SessionManager.ts";
+import { withTempSessionDir } from "__CODEFLOWMU_BASELINE__/packages/codeflowmu-runtime/src/session/__tests__/helpers.ts";
+import { projectActivityPayload } from "__CODEFLOWMU_BASELINE__/codeflowmu-shell/src/activity-buffer.ts";
+import { JsonFileStore } from "__CODEFLOWMU_BASELINE__/packages/codeflowmu-runtime/src/registry/PersistentStore.ts";
+import { SessionStore } from "__CODEFLOWMU_BASELINE__/packages/codeflowmu-runtime/src/session/SessionStore.ts";
+import { TranscriptWriter } from "__CODEFLOWMU_BASELINE__/packages/codeflowmu-runtime/src/session/TranscriptWriter.ts";
+import { InboxWatcher } from "__CODEFLOWMU_BASELINE__/packages/codeflowmu-runtime/src/scheduler/InboxWatcher.ts";
+import { StateHistoryWriter } from "__CODEFLOWMU_BASELINE__/packages/codeflowmu-runtime/src/scheduler/StateHistoryWriter.ts";
+import { TaskDispatcher } from "__CODEFLOWMU_BASELINE__/packages/codeflowmu-runtime/src/scheduler/TaskDispatcher.ts";
+import { LifecycleGovernor } from "__CODEFLOWMU_BASELINE__/packages/codeflowmu-runtime/src/scheduler/LifecycleGovernor.ts";
+import { DispatchRetryRegistry } from "__CODEFLOWMU_BASELINE__/packages/codeflowmu-runtime/src/_internal/DispatchRetryRegistry.ts";
+import { withTempScheduler } from "__CODEFLOWMU_BASELINE__/packages/codeflowmu-runtime/src/scheduler/__tests__/helpers.ts";
+
+function agent(): Agent {
+  return {
+    agent_id: "DEV-01",
+    role: "developer",
+    layer: "worker",
+    node: "local",
+    runtime: "local",
+    workspace: "D:\\research-fixture",
+    skills: ["fcop"],
+    status: "idle",
+  };
+}
+
+function zeroBackoffRegistry(): DispatchRetryRegistry {
+  return new DispatchRetryRegistry({
+    backoffRangesMs: [[0, 0], [0, 0], [0, 0]],
+    randomInt: () => 0,
+  });
+}
+
+test("RA-4: direct successor start does not consume a persisted operation checkpoint", async () => {
+  await withTempSessionDir(async ({ sessionStore, transcriptWriter, agentStore }) => {
+    const sdk = new InMemorySdkAdapter();
+    const registry = new AgentRegistry({ store: agentStore, sdk });
+    const manager = new SessionManager({ registry, sdk, sessionStore, transcriptWriter });
+    await registry.register(agent());
+    sdk.sendHandleFactory = (spec) =>
+      new InMemoryRunHandle({
+        sessionId: spec.sessionId,
+        agentId: spec.agentId,
+        manualSettle: true,
+      });
+
+    const first = await manager.startSession("DEV-01", "TASK-20260901-RA4", {
+      text: "controlled operation boundary",
+    });
+    (first.activeRun as InMemoryRunHandle).settle({
+      status: "finished",
+      failureCode: "OPERATION_APPROVAL_REQUIRED",
+      operationFingerprint: "effect-fingerprint-ra4",
+      operationClassification: "approval_required",
+      retryPolicy: "none",
+      nextSafeAction: "wait_for_approval_decision_event",
+      operationOutcome: { effect_state: "unknown" },
+    });
+    await manager.awaitSettled(first.session_id);
+    const ended = await sessionStore.load(first.session_id);
+    assert.equal(ended?.runtime_operation_checkpoint?.operation_fingerprint, "effect-fingerprint-ra4");
+    assert.equal(ended?.runtime_operation_checkpoint?.retry_policy, "none");
+
+    const successor = await manager.startSession("DEV-01", "TASK-20260901-RA4", {
+      text: "attempt direct recovery without an admission reader",
+    });
+    assert.notEqual(successor.session_id, first.session_id);
+    assert.equal(sdk.calls.send.length, 2);
+    await manager.cancelSession(successor.session_id, "research cleanup");
+  });
+});
+
+test("RA-5: a reconciled old session cannot overwrite its already-failed record on late settlement", async () => {
+  await withTempSessionDir(async ({ sessionStore, transcriptWriter, agentStore }) => {
+    const sdk = new InMemorySdkAdapter();
+    const registry = new AgentRegistry({ store: agentStore, sdk });
+    const oldManager = new SessionManager({ registry, sdk, sessionStore, transcriptWriter });
+    const restartedManager = new SessionManager({ registry, sdk, sessionStore, transcriptWriter });
+    await registry.register(agent());
+    sdk.sendHandleFactory = (spec) =>
+      new InMemoryRunHandle({
+        sessionId: spec.sessionId,
+        agentId: spec.agentId,
+        manualSettle: true,
+      });
+
+    const old = await oldManager.startSession("DEV-01", "TASK-20260901-RA5", {
+      text: "old owner work",
+    });
+    const oldEvents: string[] = [];
+    oldManager.onEvent((event) => oldEvents.push(event.event_type));
+
+    const reconciled = await restartedManager.reconcileLostSessions({
+      hasLiveExternalWork: async () => false,
+    });
+    assert.equal(reconciled.length, 1);
+    assert.equal(reconciled[0]?.protocol.status, "failed");
+    assert.equal(reconciled[0]?.protocol.runs[0]?.failure_code, "SESSION_LOST");
+
+    const successor = await restartedManager.startSession("DEV-01", "TASK-20260901-RA5", {
+      text: "new owner after recovery admission",
+    });
+    assert.notEqual(successor.session_id, old.session_id);
+
+    (old.activeRun as InMemoryRunHandle).settle({ status: "finished" });
+    await oldManager.awaitSettled(old.session_id);
+    const stored = await sessionStore.load(old.session_id);
+    assert.equal(stored?.protocol.status, "failed");
+    assert.equal(
+      oldEvents.filter((type) => type === "runtime.session_ended").length,
+      0,
+      "late natural settlement was ignored after reconciliation won",
+    );
+    await restartedManager.cancelSession(successor.session_id, "research cleanup");
+  });
+});
+
+test("DC-1/DC-2: session recovery record has no generic authorization receipt, but a denial remains a denial", async () => {
+  await withTempSessionDir(async ({ sessionStore, transcriptWriter, agentStore }) => {
+    const sdk = new InMemorySdkAdapter();
+    const registry = new AgentRegistry({ store: agentStore, sdk });
+    const manager = new SessionManager({ registry, sdk, sessionStore, transcriptWriter });
+    await registry.register(agent());
+    sdk.sendHandleFactory = (spec) =>
+      new InMemoryRunHandle({
+        sessionId: spec.sessionId,
+        agentId: spec.agentId,
+        manualSettle: true,
+      });
+
+    const events: Record<string, unknown>[] = [];
+    manager.onEvent((event) => {
+      if (event.event_type === "runtime.session_ended") events.push(event.payload as Record<string, unknown>);
+    });
+    const handle = await manager.startSession("DEV-01", "TASK-20260901-DC1", {
+      text: "controlled denied operation",
+      context: { authorization_receipt_id: "research-receipt-should-not-become-authority" },
+    });
+    (handle.activeRun as InMemoryRunHandle).settle({
+      status: "finished",
+      failureCode: "OPERATION_BOUNDARY_DENIED",
+      sdkError: "policy rejected controlled operation",
+    });
+    await manager.awaitSettled(handle.session_id);
+
+    const stored = await sessionStore.load(handle.session_id);
+    assert.equal(stored?.protocol.status, "failed");
+    assert.equal(JSON.stringify(stored).includes("research-receipt-should-not-become-authority"), false);
+    assert.equal(events.length, 1);
+    assert.equal(events[0]?.failure_code, "OPERATION_BOUNDARY_DENIED");
+    assert.equal(events[0]?.status, "failed");
+  });
+});
+
+test("DC-3/DC-4: raw terminal event retains an error string, while registered consumers receive a bounded projection", async () => {
+  await withTempSessionDir(async ({ sessionStore, transcriptWriter, agentStore }) => {
+    const sdk = new InMemorySdkAdapter();
+    const registry = new AgentRegistry({ store: agentStore, sdk });
+    const manager = new SessionManager({ registry, sdk, sessionStore, transcriptWriter });
+    await registry.register(agent());
+    sdk.sendHandleFactory = (spec) =>
+      new InMemoryRunHandle({
+        sessionId: spec.sessionId,
+        agentId: spec.agentId,
+        manualSettle: true,
+      });
+
+    let ended: Record<string, unknown> | null = null;
+    manager.onEvent((event) => {
+      if (event.event_type === "runtime.session_ended") ended = event.payload as Record<string, unknown>;
+    });
+    const handle = await manager.startSession("DEV-01", "TASK-20260901-DC3", {
+      text: "controlled oversized diagnostic input",
+    });
+    const marker = `RESEARCH_SECRET_${"x".repeat(8_192)}`;
+    (handle.activeRun as InMemoryRunHandle).settle({
+      status: "failed",
+      sdkError: marker,
+      failureCode: "CONTROLLED_FAILURE",
+    });
+    await manager.awaitSettled(handle.session_id);
+
+    assert.equal((ended?.error as string | undefined)?.includes(marker), true);
+    assert.equal(JSON.stringify(ended).includes(marker), true);
+
+    for (const consumer of ["web_panel", "activity_api", "analytics"] as const) {
+      const projected = projectActivityPayload("runtime.session_ended", ended, consumer);
+      assert.equal(JSON.stringify(projected).includes(marker), false, `${consumer} must not receive raw error text`);
+      assert.equal(projected.failure_code, "CONTROLLED_FAILURE");
+      assert.equal(projected.status, "failed");
+      assert.equal("error" in projected, false, `${consumer} must not receive a scalar raw error`);
+    }
+  });
+});
+
+test("RA-7/RA-8: Dispatcher failure restore treats supplied effect-confirmed and effect-unknown facts alike", async () => {
+  await withTempScheduler(async ({ rootDir, stateDir }) => {
+    const lifecycleRoot = join(rootDir, "fcop", "_lifecycle");
+    const inboxDir = join(lifecycleRoot, "inbox");
+    const activeDir = join(lifecycleRoot, "active");
+    await Promise.all([mkdir(inboxDir, { recursive: true }), mkdir(activeDir, { recursive: true })]);
+    const sdk = new InMemorySdkAdapter();
+    const registry = new AgentRegistry({
+      store: new JsonFileStore({ path: join(stateDir, "agents.json") }),
+      sdk,
+    });
+    const sessionManager = new SessionManager({
+      registry,
+      sdk,
+      sessionStore: new SessionStore({ dir: join(stateDir, "sessions") }),
+      transcriptWriter: new TranscriptWriter({ dir: join(stateDir, "transcripts") }),
+    });
+    const lifecycleGovernor = new LifecycleGovernor({ lifecycleRoot, projectRoot: rootDir });
+    const dispatcher = new TaskDispatcher({
+      watcher: new InboxWatcher({ dir: inboxDir }),
+      historyWriter: new StateHistoryWriter(),
+      registry,
+      sessionManager,
+      lifecycleGovernor,
+      projectRoot: rootDir,
+      dispatchRetryRegistry: zeroBackoffRegistry(),
+      minScheduleRetryDelayMs: 0,
+    });
+    const invoke = (dispatcher as unknown as {
+      _maybeRestoreInboxAfterFailedSession: (
+        event: Record<string, unknown>, filepath: string, filename: string,
+      ) => Promise<void>;
+    })._maybeRestoreInboxAfterFailedSession.bind(dispatcher);
+    for (const scenario of [
+      { suffix: "RA7", effectState: "confirmed_exists", safeAction: "reconcile_only" },
+      { suffix: "RA8", effectState: "unknown", safeAction: "quarantine" },
+    ]) {
+      const taskId = `TASK-20260901-${scenario.suffix}`;
+      const filename = `${taskId}-PM-to-DEV.md`;
+      const activePath = join(activeDir, filename);
+      await writeFile(activePath, `---\nprotocol: fcop\ntask_id: ${taskId}\nsender: PM\nrecipient: DEV\npriority: P2\nstatus: active\nstate: active\n---\n\n# controlled recovery fact\n`, "utf8");
+      await invoke({
+        event_type: "runtime.session_ended",
+        agent_id: "DEV-01",
+        session_id: `session-${scenario.suffix.toLowerCase()}-old`,
+        payload: {
+          status: "failed",
+          task_id: taskId,
+          failure_code: "AUDIT_APPEND_FAILED",
+          error: "controlled audit close failure",
+          operation_fingerprint: `effect-${scenario.suffix.toLowerCase()}`,
+          operation_outcome: { effect_state: scenario.effectState },
+          retry_policy: "none",
+          next_safe_action: scenario.safeAction,
+        },
+      }, activePath, filename);
+      const restored = await readFile(join(inboxDir, filename), "utf8");
+      assert.match(restored, new RegExp(`task_id: ${taskId}`));
+    }
+  });
+});

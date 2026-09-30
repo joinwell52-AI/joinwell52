@@ -1,0 +1,40 @@
+✔ TaskCommandKernel allows PM to execute a command on its own child branch (26.1092ms)
+✔ TaskCommandKernel treats a ledger lineage suffix as the same thread identity (0.728ms)
+✔ TaskCommandKernel lets PM dispatch a PM-created child assigned to QA (0.5877ms)
+✔ TaskCommandKernel exposes the full PM-owned child branch command surface (2.3672ms)
+✔ TaskCommandKernel lets PM submit the root for ADMIN review after PM reporting (0.7417ms)
+✔ TaskCommandKernel lets the assigned worker submit its formal report without granting review authority (0.4652ms)
+✔ TaskCommandKernel reports a stale revision as a system error without a business decision (0.3576ms)
+✔ TaskCommandKernel reports a stale round as a system error without changing the task (0.3133ms)
+✔ TaskCommandKernel denies PM when the task facts assign control to another role (0.3582ms)
+✔ TaskCommandKernel does not let PM make a root-task business decision (0.3565ms)
+✔ TaskCommandKernel lets PM recover the root execution checkpoint without deciding the root outcome (0.3414ms)
+✔ TaskCommandKernel requires a scoped grant for technical automation (0.27ms)
+✔ TaskCommandKernel accepts only a command-bound technical automation grant (0.8519ms)
+✔ TaskCommandKernel deduplicates a completed command without executing twice (0.418ms)
+✔ TaskCommandKernel replays one business intent across volatile runtime identities (2.3049ms)
+✔ TaskCommandKernel still rejects a changed semantic payload under one idempotency key (0.6648ms)
+✔ TaskCommandKernel replays a durable completed receipt after process restart (0.6631ms)
+✔ TaskCommandKernel retries the same PM intent after a durable technical failure (0.4995ms)
+✔ TaskCommandKernel recovers technical postconditions after lifecycle state already advanced (0.55ms)
+✔ TaskCommandKernel preserves a structured nested executor error without persisting stacks (2.7142ms)
+✔ TaskCommandKernel rejects reuse of an idempotency key for a different command (0.4172ms)
+✔ TaskCommandKernel treats fact-disabled PM intent as advice instead of a rail decision (0.8579ms)
+✔ TaskCommandKernel mechanically executes PM-decided child creation even when rail facts only recommend against it (0.3408ms)
+✔ TaskCommandKernel lets scoped automation execute despite a fact advisory (0.2926ms)
+✔ TaskCommandKernel publishes its explicit hard negative list (0.0474ms)
+✔ TaskCommandKernel safely retries a prepared command when its boundary is unchanged (0.2525ms)
+✔ semantic subagent aliases normalize to agent.spawn (1.0822ms)
+✔ formal PM and EVAL cannot use Host subagents as FCoP actors (0.4137ms)
+✔ DEV and QA may use a Host subagent only as role-internal assistance (0.2041ms)
+✔ internal assistance cannot write FCoP artifacts or create nested agents (0.3584ms)
+✔ EVAL formal lifecycle and report writers are denied by the execution gate (0.1706ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 519.6584
+

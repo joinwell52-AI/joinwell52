@@ -1,0 +1,41 @@
+{
+  "schema": "runtime-boundary-public-evidence/v1",
+  "evidence_id": "RBE-20260828-A1",
+  "baseline": {
+    "product": "CodeFlowMu V2.0.4",
+    "commit": "2ba1ad9baf27077861b6a20e5815b4175f0a81c6",
+    "observed_on": "2026-08-28"
+  },
+  "fault_model": "durable_side_effect_then_success_response_lost",
+  "observations": [
+    {
+      "experiment": "upper_memory_dedupe_reentry",
+      "same_call_reentered_after_lost_response": true,
+      "disposition": "execute_again"
+    },
+    {
+      "experiment": "write_report_response_loss",
+      "same_submission_id": true,
+      "same_semantic_request": true,
+      "second_call_deduplicated": true,
+      "durable_business_objects_after_retry": 1
+    },
+    {
+      "experiment": "write_task_response_loss",
+      "same_submission_id": true,
+      "same_semantic_request": true,
+      "returned_task_ids": ["TASK-DEIDENTIFIED-A", "TASK-DEIDENTIFIED-B"],
+      "durable_business_objects_after_retry": 2
+    }
+  ],
+  "supports": [
+    "memory_dedupe_does_not_close_cross_restart_uncertainty",
+    "write_report_reuses_a_durable_result_on_the_tested_path",
+    "write_task_creates_a_second_business_object_on_the_tested_path"
+  ],
+  "does_not_support": [
+    "production_incident_frequency",
+    "all_side_effect_tools_have_the_same_behavior",
+    "the_proposed_creation_receipt_state_machine_is_already_implemented"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tmpa:schema:lifecycle-profile:s0.4",
+  "title": "TMPA Lifecycle Profile S0.4",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "version", "states", "initial_state", "terminal_states", "actions", "transitions"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "version": { "type": "string", "minLength": 1 },
+    "states": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "initial_state": { "type": "string", "minLength": 1 },
+    "terminal_states": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "actions": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "transitions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["from", "action", "to", "allowed_roles", "required_relations"],
+        "properties": {
+          "from": { "type": "string", "minLength": 1 },
+          "action": { "type": "string", "minLength": 1 },
+          "to": { "type": "string", "minLength": 1 },
+          "allowed_roles": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "required_relations": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "preconditions": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "separation_of_duties": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+        }
+      }
+    },
+    "recovery_rules": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "extensions": { "type": "object", "additionalProperties": true }
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "head": "c008d9db91a21136fc61a4f60314e22db395d5d2",
+  "datasets": [
+    {
+      "kind": "operation approval records",
+      "read_at": "2026-09-08T02:21:54.979Z",
+      "files": [
+        {
+          "source_id": "restricted-history-1",
+          "sha256": "62d04f1a181a59c35bf2c42d200d1aaf4627b7a00f1f20cbb83a3d97c0c49987",
+          "bytes": 80266
+        }
+      ],
+      "records": 1,
+      "malformed": 0,
+      "blank": 0,
+      "nonempty_field_counts": {
+        "requested_by": 1,
+        "agent_id": 0,
+        "session_id": 0,
+        "task_id": 0,
+        "decision.actor": 1,
+        "human_confirmation_id": 0,
+        "request.subject.actor": 1,
+        "request.subject.agent_id": 0,
+        "request.subject.session_id": 0,
+        "request.context.human_confirmation_id": 0,
+        "idempotency_key": 0,
+        "request_fingerprint": 0,
+        "state": 0,
+        "result.authority_actor": 0,
+        "invocation_id": 0,
+        "caller_role": 0,
+        "integrity": 0,
+        "human_principal_id": 0,
+        "responsible_person_id": 0,
+        "accepted_instruction_id": 0,
+        "credential_grant_id": 0
+      },
+      "role_class_counts": {
+        "ADMIN": 1
+      },
+      "grain": {
+        "key": "approval_id",
+        "unique_keys": 1,
+        "repeated_key_rows": 0,
+        "exact_duplicate_rows": 0,
+        "explanation": "One object or invocation per identifier."
+      },
+      "timestamps": {
+        "min": "2026-09-05T06:18:39.280Z",
+        "max": "2026-09-05T06:18:39.280Z",
+        "invalid": 0,
+        "missing": 0
+      },
+      "state_counts": {
+        "succeeded": 1
+      },
+      "limitation": "Selected local live files, one read per file; not an atomic global snapshot. Counts are rows, not independent users or tasks. Absent named fields do not prove absence in every product subsystem."
+    },
+    {
+      "kind": "task command receipt rows",
+      "read_at": "2026-09-08T02:21:54.980Z",
+      "files": [
+        {
+          "source_id": "restricted-history-2",
+          "sha256": "052dda81cb7d71c51daf1c9a2a05fb0ab7e3e697ce8ef2cb37a717dcf6d330b1",
+          "bytes": 10504
+        }
+      ],
+      "records": 10,
+      "malformed": 0,
+      "blank": 1,
+      "nonempty_field_counts": {
+        "requested_by": 0,
+        "agent_id": 0,
+        "session_id": 0,
+        "task_id": 10,
+        "decision.actor": 0,
+        "human_confirmation_id": 0,
+        "request.subject.actor": 0,
+        "request.subject.agent_id": 0,
+        "request.subject.session_id": 0,
+        "request.context.human_confirmation_id": 0,
+        "idempotency_key": 10,
+        "request_fingerprint": 10,
+        "state": 10,
+        "result.authority_actor": 5,
+        "invocation_id": 0,
+        "caller_role": 0,
+        "integrity": 0,
+        "human_principal_id": 0,
+        "responsible_person_id": 0,
+        "accepted_instruction_id": 0,
+        "credential_grant_id": 0
+      },
+      "role_class_counts": {
+        "PM": 4,
+        "ADMIN": 1
+      },
+      "grain": {
+        "key": "idempotency_key",
+        "unique_keys": 5,
+        "repeated_key_rows": 5,
+        "exact_duplicate_rows": 0,
+        "explanation": "pending/completed are separate events for the same intent; repeated idempotency keys are expected, not duplicate tasks."
+      },
+      "timestamps": {
+        "min": "2026-09-05T06:23:45.871Z",
+        "max": "2026-09-05T06:45:42.210Z",
+        "invalid": 0,
+        "missing": 0
+      },
+      "state_counts": {
+        "pending": 5,
+        "completed": 5
+      },
+      "limitation": "Selected local live files, one read per file; not an atomic global snapshot. Counts are rows, not independent users or tasks. Absent named fields do not prove absence in every product subsystem."
+    },
+    {
+      "kind": "skill invocation rows",
+      "read_at": "2026-09-08T02:21:54.981Z",
+      "files": [
+        {
+          "source_id": "restricted-history-3",
+          "sha256": "2ce19017d8e250a9ef04e163d07828e29fcb2b593155c2716ae054338e541967",
+          "bytes": 14982
+        }
+      ],
+      "records": 25,
+      "malformed": 0,
+      "blank": 1,
+      "nonempty_field_counts": {
+        "requested_by": 0,
+        "agent_id": 9,
+        "session_id": 9,
+        "task_id": 19,
+        "decision.actor": 0,
+        "human_confirmation_id": 0,
+        "request.subject.actor": 0,
+        "request.subject.agent_id": 0,
+        "request.subject.session_id": 0,
+        "request.context.human_confirmation_id": 0,
+        "idempotency_key": 0,
+        "request_fingerprint": 0,
+        "state": 0,
+        "result.authority_actor": 0,
+        "invocation_id": 25,
+        "caller_role": 25,
+        "integrity": 25,
+        "human_principal_id": 0,
+        "responsible_person_id": 0,
+        "accepted_instruction_id": 0,
+        "credential_grant_id": 0
+      },
+      "role_class_counts": {
+        "OPS": 3,
+        "QA": 2,
+        "PM": 11,
+        "OTHER": 9
+      },
+      "grain": {
+        "key": "invocation_id",
+        "unique_keys": 25,
+        "repeated_key_rows": 0,
+        "exact_duplicate_rows": 0,
+        "explanation": "One object or invocation per identifier."
+      },
+      "timestamps": {
+        "min": "2026-09-05T06:23:46.237Z",
+        "max": "2026-09-05T06:53:05.332Z",
+        "invalid": 0,
+        "missing": 0
+      },
+      "state_counts": {
+        "ok": 22,
+        "skipped": 3
+      },
+      "limitation": "Selected local live files, one read per file; not an atomic global snapshot. Counts are rows, not independent users or tasks. Absent named fields do not prove absence in every product subsystem."
+    }
+  ],
+  "export_note": "Only aggregates and source hashes; raw operational records are not public. Integrity field counts are not cryptographic verification."
+}
