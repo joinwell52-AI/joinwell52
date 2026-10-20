@@ -89,12 +89,16 @@ function normalizeLiveRecord(record: any) {
       return { label, label_zh: item?.label_zh || METRIC_ZH[name] || label, value: String(item?.value ?? '') }
     }
     const normalizeEvidence = (item: any) => {
-      if (typeof item !== 'string') return item
+      if (typeof item !== 'string') {
+        const value = String(item.source || item.value || '')
+        const source = /^https?:\/\//.test(value) || /^(research|docs|scripts)\//.test(value) ? value : /^[a-f0-9]{40}$/.test(value) ? `https://github.com/joinwell52-AI/joinwell52/commit/${value}` : ''
+        return { ...item, label: item.label || value, label_zh: item.label_zh || item.label || value, source, value }
+      }
       const label = /^https?:\/\//.test(item) ? item.replace(/^https?:\/\//, '').split('/')[0] : item.split('/').at(-1) || item
       return { label, label_zh: label, source: item }
     }
     const normalizeArtifact = (item: any) => {
-      if (typeof item !== 'string') return item
+      if (typeof item !== 'string') return { ...item, path: item.path || item.value || '', label: item.label || item.path || item.value || '', label_zh: item.label_zh || item.label || item.path || item.value || '' }
       const label = item.split('/').at(-1) || item
       return { label, label_zh: label, path: item }
     }

@@ -159,8 +159,8 @@ const clearDate = () => {
         <h1 v-else>{{ zh ? '观察笔记' : 'Observation Notes' }}</h1>
         <p v-if="currentColumn">{{ zh ? currentColumn.zhDescription : currentColumn.enDescription }}</p>
         <p v-else>{{ zh
-          ? '数字员工在持续工作中记录外部动态与工作判断；GitHub 保存唯一事实，网站依据 column、category 与 date 元数据自动组织和展示。'
-          : 'The Digital Employee records external developments and working judgments while operating. GitHub preserves the single source of truth, and the site organizes notes from column, category, and date metadata.'
+          ? '研究在本地完成并验证，GitHub 同步公开成果；网站依据栏目、类别与日期自动组织和展示文章。'
+          : 'Research is completed and verified locally, and GitHub synchronizes public results. The site organizes articles by column, category and date.'
         }}</p>
       </div>
       <div class="rn-hero-stat">

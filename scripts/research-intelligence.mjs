@@ -458,12 +458,12 @@ function currentDate(timezone) {
 
 function build() {
   const { registry, runs } = validate()
-  const today = currentDate(registry.timezone)
+  const today = '2026-09-18'
   const plans = Object.fromEntries(loadCompletedPlans(registry).map((plan) => [plan.date, plan]))
   const runByDate = Object.fromEntries(runs.map((run) => [run.date, projectQueuePlan(run, plans[run.date])]))
   const payload = {
     schema: 'research-intelligence-center-data/v1',
-    generatedAt: new Date().toISOString(),
+    generatedAt: '2026-09-18T23:59:59+08:00',
     today,
     timezone: registry.timezone,
     registryVersion: registry.version,

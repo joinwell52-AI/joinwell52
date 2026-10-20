@@ -20,6 +20,7 @@ if (!vitepressBin) {
 const command = process.execPath
 const args = [join(dirname(vitepressPackagePath), vitepressBin), 'build', 'docs']
 const result = spawnSync(command, args, {
+  windowsHide: true,
   encoding: 'utf8',
   env: process.env
 })

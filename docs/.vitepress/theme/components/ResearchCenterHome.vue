@@ -6,7 +6,7 @@ import EditorialScorecard from './EditorialScorecard.vue'
 import { data as allNotes } from './research-notes.data'
 import type { ResearchColumn, ResearchNoteRecord } from './research-notes.data'
 import { editorialRating } from './editorial-rating'
-import runtimeData from '../../generated/runtime-records.json'
+import latestArticle from '../../generated/latest-article.json'
 
 const props = withDefaults(defineProps<{ lang?: 'en' | 'zh'; preview?: boolean }>(), { lang: 'en', preview: false })
 const zh = computed(() => props.lang === 'zh')
@@ -185,28 +185,7 @@ const activeColumn = ref<ResearchColumn>('digital-employee')
 const activeStream = computed(() => copy.value.streams.find(stream => stream.column === activeColumn.value) ?? copy.value.streams[0])
 const activeNotes = computed(() => localizedNotes.value.filter(note => note.column === activeColumn.value).slice(0, 3))
 const noteRating = (url: string) => editorialRating(url, props.lang)
-const runtimeLatest = runtimeData.latest
-const runtimeTaskLabelsZh: Record<string, string> = {
-  'Research Runtime Engine': '研究运行引擎',
-  'Research Runtime Queue': '研究运行队列',
-  'Research Runtime Knowledge': '研究运行知识',
-  'Research Runtime Architecture': '研究运行架构评审',
-  'Research Runtime Publication': '研究运行每日发布',
-  'Research Runtime Weekly': '研究运行每周综合',
-  'Research Runtime Academic': '研究运行学术研究',
-  'Research Runtime Scheduler V1.0 Upgrade': '研究运行调度器升级'
-}
-const runtimeStatusLabelsZh: Record<string, string> = {
-  Completed: '已完成', Running: '运行中', Blocked: '受阻', Failed: '失败', Skipped: '已跳过', Waiting: '等待中'
-}
-const runtimeTaskLabel = computed(() => zh.value
-  ? (runtimeTaskLabelsZh[runtimeLatest.latestTask] ?? runtimeLatest.latestTask)
-  : runtimeLatest.latestTask
-)
-const runtimeStatusLabel = computed(() => zh.value
-  ? (runtimeStatusLabelsZh[runtimeLatest.status] ?? runtimeLatest.status)
-  : runtimeLatest.status
-)
+const lastPublished = computed(() => latestArticle[props.lang])
 let researchRotation: ReturnType<typeof setInterval> | undefined
 const videoDialogOpen = ref(false)
 const teaserVideo = ref<HTMLVideoElement>()
@@ -539,19 +518,10 @@ onBeforeUnmount(() => {
 
         <EditorialScorecard :lang="props.lang" />
 
-        <aside class="rc-ra-log">
-          <header><span><i></i>RA · {{ copy.workLog }}</span><b>{{ runtimeLatest.date }} · LIVE RECORD</b></header>
-          <div class="rc-ra-log__statement">
-            <small>RESEARCH ANALYST</small>
-            <h3><span v-for="lineItem in copy.raLine" :key="lineItem">{{ lineItem }}</span></h3>
-            <p>{{ copy.raNote }}</p>
-          </div>
-          <dl>
-            <div><dt>{{ copy.latestTask }}</dt><dd>{{ runtimeTaskLabel }}</dd></div>
-            <div><dt>{{ copy.runtimeStatus }}</dt><dd><i></i>{{ runtimeStatusLabel }}</dd></div>
-            <div><dt>{{ copy.runtimeCommit }}</dt><dd><a :href="`https://github.com/joinwell52-AI/joinwell52/commit/${runtimeLatest.commit}`">{{ runtimeLatest.commit.slice(0, 7) }} ↗</a></dd></div>
-          </dl>
-          <a class="rc-ra-log__cta" :href="link(runtimePath)">{{ copy.enterRuntime }} <span>→</span></a>
+        <aside v-if="lastPublished" class="rc-ra-log">
+          <header><span>{{ zh ? '最近正式发布' : 'Latest published article' }}</span><b>{{ lastPublished.date }}</b></header>
+          <div class="rc-ra-log__statement"><h3>{{ lastPublished.title }}</h3><p>{{ lastPublished.summary }}</p></div>
+          <a class="rc-ra-log__cta" :href="link(lastPublished.url)">{{ zh ? '阅读全文' : 'Read article' }} <span>→</span></a>
         </aside>
 
         <a class="rc-all-research" :href="link(researchOverview)">{{ copy.allResearch }} <span>→</span></a>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
 import { withBase } from 'vitepress'
 import runtimeData from '../../generated/runtime-records.json'
 import intelligenceData from '../../generated/research-intelligence.json'
@@ -37,6 +37,8 @@ type Result = {
   artifacts: Artifact[]
 }
 type RecordItem = {
+  executionMode?: string
+  publicSyncStatus?: string
   runtimeFamily: string
   date: string
   status: Status
@@ -80,10 +82,12 @@ type LegacyHistoryData = {
 }
 type HistoryItem = { date: string; status: Status }
 
-const runtime = runtimeData as RuntimeData
-const intelligence = intelligenceData as IntelligenceData
+const runtime = reactive(JSON.parse(JSON.stringify(runtimeData)) as RuntimeData)
+const intelligence = reactive(JSON.parse(JSON.stringify(intelligenceData)) as IntelligenceData)
 const legacyHistory = legacyData as LegacyHistoryData
-const props = withDefaults(defineProps<{ lang?: 'en' | 'zh'; selectedDate?: string; previousDate?: string; nextDate?: string; minDate?: string; maxDate?: string; todayDate?: string; dateError?: string }>(), { lang: 'en', selectedDate: '', previousDate: '', nextDate: '', minDate: '', maxDate: '', todayDate: '', dateError: '' })
+const props = withDefaults(defineProps<{ lang?: 'en' | 'zh'; selectedDate?: string; previousDate?: string; nextDate?: string; minDate?: string; maxDate?: string; todayDate?: string; dateError?: string; localRuntime?: RuntimeData; localIntelligence?: IntelligenceData; localMode?: boolean; localSignals?: any[] }>(), { lang: 'en', selectedDate: '', previousDate: '', nextDate: '', minDate: '', maxDate: '', todayDate: '', dateError: '', localMode:false })
+watch(()=>props.localRuntime,v=>{if(v)Object.assign(runtime,v)},{immediate:true})
+watch(()=>props.localIntelligence,v=>{if(v)Object.assign(intelligence,v)},{immediate:true})
 const emit = defineEmits<{ (event: 'selectDate', date: string): void; (event: 'dateInput', date: string): void }>()
 const handleDateInput = (event: Event) => emit('dateInput', (event.target as HTMLInputElement).value)
 const zh = computed(() => props.lang === 'zh')
@@ -98,6 +102,7 @@ const recordForFamily = (family: string) => isToday.value && liveRecords.value[f
 const record = computed(() => recordForFamily('daily') || runtime.todayDaily)
 
 const refreshLiveRecord = async () => {
+  if (props.localMode) return
   if (typeof window === 'undefined' || !isToday.value) return
   const [year, month] = selectedDate.value.split('-')
   const families = ['daily', 'weekly', 'academic', 'program']
@@ -166,7 +171,7 @@ const taskRunsOnDate = (task: Task, date: string) => task.schedule.kind === 'dai
   || (task.schedule.kind === 'weekly' && (task.schedule.days || []).includes(weekdayForDate(date)))
 const tasks = computed(() => runtime.schedule
   .filter((task) => taskRunsOnDate(task, selectedDate.value))
-  .sort((a, b) => a.schedule.time.localeCompare(b.schedule.time)))
+  .sort((a, b) => props.localMode && record.value.executionMode==='manual-all-tasks' ? runtime.schedule.indexOf(a)-runtime.schedule.indexOf(b) : a.schedule.time.localeCompare(b.schedule.time)))
 const columns = computed(() => intelligence.runs?.[selectedDate.value]?.columns
   || (intelligence.currentRun.date === selectedDate.value ? intelligence.currentRun.columns : [])
   || [])
@@ -182,11 +187,12 @@ const completedCount = computed(() => rows.value.filter((row) => row.status === 
 const progress = computed(() => rows.value.length ? Math.round(completedCount.value / rows.value.length * 100) : 0)
 const risk = computed(() => rows.value.some((row) => row.status === 'Blocked' || row.status === 'Failed'))
 const activeRow = computed(() => rows.value.find((row) => row.status === 'Running') || rows.value.find((row) => row.status === 'Waiting') || null)
+const nextRow = computed(() => rows.value.find((row) => row.status === 'Waiting') || null)
 const productionResult = computed(() => record.value.results?.production || null)
 const publicationResult = computed(() => record.value.results?.publication || null)
 const history = computed<HistoryItem[]>(() => {
   const current = record.value
-  const currentV5History = (runtime.records?.daily || [])
+  const currentV5History = [...(runtime.records?.daily || []), ...(props.localMode ? runtimeData.records.daily.filter(item=>item.date<='2026-09-18') : [])]
     .filter((item) => item.date !== current.date && item.date >= '2026-08-05')
     .map((item) => ({ date: item.date, status: item.status }))
   const frozenMarkdownHistory = (legacyHistory.records || [])
@@ -200,16 +206,16 @@ const history = computed<HistoryItem[]>(() => {
 })
 
 const copy = computed(() => zh.value ? {
-  kicker: 'RESEARCH RUNTIME CENTER V5.0 · 数字研究员运营中心',
+  kicker: props.localMode ? '本地研究运行 V6 · 数字研究员运营中心' : 'RESEARCH RUNTIME CENTER V5.0 · 数字研究员运营中心',
   title: '数字工场运营中心',
-  lead: '三个栏目分别选题；上午完成发现、阅读与分析，15:00 形成完整出版候选，20:00 只负责 GitHub 与网站发版。',
-  badge: 'Research Runtime Scheduler V3.0',
+  lead: props.localMode ? (record.value.executionMode==='manual-all-tasks' ? '本次手动补做全部任务并执行真实发布。下表保留原计划时间，实际执行与复用依据记载在各项结果中。' : '按当天计划查看研究班次、三个栏目选题与成果。下方显示日常计划时间；本次试跑立即依次执行，实际开始与结束时间写在各班次结果中。') : '三个栏目分别选题；上午完成发现、阅读与分析，15:00 形成完整出版候选，20:00 只负责 GitHub 与网站发版。',
+  badge: props.localMode ? (record.value.executionMode==='manual-all-tasks' ? '本地全部任务 · 手动执行 · 自动更新' : '本地真实试跑 · 自动更新') : 'Research Runtime Scheduler V3.0',
   charter: '查看 V5.0 运行规范',
   operations: '今日运营概况',
   progress: '完成进度',
   dayStatus: '全天状态',
   current: '当前工作',
-  nextTask: '下一任务',
+  nextTask: props.localMode ? '随后执行' : '下一任务',
   inProgress: '进行中',
   completed: '已完成',
   attention: '存在风险',
@@ -237,11 +243,11 @@ const copy = computed(() => zh.value ? {
   productionLead: 'Skill 05 写作 → 06 配图 → 07 证据与引用 → 08 出版编辑',
   noCandidate: '尚未形成出版候选',
   release: '20:00 晚间发版',
-  releaseLead: '只消费完整出版候选，更新中英文文章、索引、网站并验证 GitHub 提交。',
+  releaseLead: props.localMode ? (record.value.executionMode==='manual-all-tasks' ? '本地验证完成后，由公开同步控制器合并双语文章、正式题图及评分，执行真实发布；当前公开同步状态见运行证据。' : '消费已验证完整候选，记录本地发布准入；本次试跑不提交或推送 GitHub。') : '只消费完整出版候选，更新中英文文章、索引、网站并验证 GitHub 提交。',
   noRelease: '尚未执行发布',
   verify: '运行证据',
-  github: 'GitHub 验证',
-  commit: '最新提交',
+  github: props.localMode ? '本地记录校验' : 'GitHub 验证',
+  commit: props.localMode ? '公开同步' : '最新提交',
   record: '运行记录',
   history: '近期运营记录',
   report: '查看记录',
@@ -298,6 +304,7 @@ const copy = computed(() => zh.value ? {
 })
 
 const taskName = (task: Task) => zh.value ? task.name_zh : task.name
+const sourceHost = (url:string) => {try{return new URL(url).hostname}catch{return '来源'}}
 const statusLabel = (status: Status) => copy.value.status[status]
 const statusClass = (status: Status | undefined) => `s-${String(status || 'Waiting').toLowerCase()}`
 const local = (value: Record<string, unknown>, field: string) => {
@@ -326,7 +333,7 @@ const recordPath = (item: { date: string }) => {
   const [year, month] = item.date.split('-')
   return `research/runtime/${year}/${month}/${item.date}-runtime.md`
 }
-const recordUrl = (item: { date: string }) => `https://github.com/joinwell52-AI/joinwell52/blob/main/${recordPath(item)}`
+const recordUrl = (item: { date: string }) => props.localMode ? withBase(`/zh/runtime/?date=${item.date}`) : `https://github.com/joinwell52-AI/joinwell52/blob/main/${recordPath(item)}`
 const artifactHref = (artifact: Artifact) => artifact.url || (artifact.path
   ? `https://github.com/joinwell52-AI/joinwell52/blob/main/${artifact.path}`
   : artifact.commit
@@ -337,7 +344,7 @@ const evidenceHref = (item: Evidence) => /^https?:\/\//.test(item.source)
   : `https://github.com/joinwell52-AI/joinwell52/blob/main/${item.source}`
 const currentTime = computed(() => activeRow.value?.task.schedule.time || '—')
 const currentName = computed(() => activeRow.value ? taskName(activeRow.value.task) : copy.value.noMore)
-const shortCommit = computed(() => record.value.githubCommit && record.value.githubCommit !== 'pending'
+const shortCommit = computed(() => props.localMode ? (record.value.executionMode==='manual-all-tasks' ? (record.value.githubCommit!=='pending' ? '已公开 · '+record.value.githubCommit.slice(0,10) : record.value.publicSyncStatus==='Waiting' ? '待公开同步' : record.value.publicSyncStatus||'待公开同步') : '试跑未推送') : record.value.githubCommit && record.value.githubCommit !== 'pending'
   ? record.value.githubCommit.slice(0, 10)
   : copy.value.waiting)
 </script>
@@ -362,7 +369,7 @@ const shortCommit = computed(() => record.value.githubCommit && record.value.git
           <div><span>01</span><h2>{{ copy.operations }}</h2></div>
           <div class="runtime-inline-date">
             <button type="button" :disabled="!props.previousDate" @click="props.previousDate && emit('selectDate', props.previousDate)">‹</button>
-            <label><span class="sr-only">Runtime date</span><input type="date" :value="selectedDate" :min="props.minDate" :max="props.maxDate" @change="handleDateInput"></label>
+            <label><span class="sr-only">{{zh?'运行日期':'Runtime date'}}</span><input type="date" :value="selectedDate" :min="props.minDate" :max="props.maxDate" @change="handleDateInput"></label>
             <button type="button" :disabled="!props.nextDate" @click="props.nextDate && emit('selectDate', props.nextDate)">›</button>
             <button v-if="props.todayDate" type="button" class="today-button" :disabled="selectedDate === props.todayDate" @click="emit('selectDate', props.todayDate)">{{ zh ? '今天' : 'Today' }}</button>
             <p v-if="props.dateError" class="runtime-date-error">{{ props.dateError }}</p>
@@ -387,10 +394,15 @@ const shortCommit = computed(() => record.value.githubCommit && record.value.git
           </article>
           <article>
             <span>{{ copy.nextTask }}</span>
-            <strong>{{ currentTime }}</strong>
-            <small>{{ currentName }}</small>
+            <strong>{{ props.localMode ? (nextRow ? taskName(nextRow.task) : copy.noMore) : currentTime }}</strong>
+            <small>{{ props.localMode ? (nextRow ? (zh?'前一步通过后立即执行':'Runs immediately after admission') : '') : currentName }}</small>
           </article>
         </div>
+      </section>
+
+      <section v-if="props.localMode && props.localSignals?.length" class="panel shifts-panel">
+        <div class="section-title"><div><span>情报</span><h2>本次已验证研究线索</h2></div><small>来源检查已通过；不等于已完成实验或文章。</small></div>
+        <div class="shift-list"><article v-for="signal in props.localSignals" :key="signal.id" class="shift-card"><div class="shift-head"><div><h3>{{signal.title}}</h3></div></div><p>{{signal.summary}}</p><div class="artifact-list"><a v-for="source in signal.sources.filter((s:any)=>/^https:\/\//.test(s.url))" :key="source.url" :href="source.url" target="_blank" rel="noopener noreferrer">{{sourceHost(source.url)}} 一手来源 ↗</a></div></article></div>
       </section>
 
       <section class="panel plan-panel">
@@ -428,7 +440,11 @@ const shortCommit = computed(() => record.value.githubCommit && record.value.git
           <article v-for="row in rows" :key="row.task.id" class="shift-card">
             <div class="shift-head">
               <div><time>{{ row.task.schedule.time }}</time><h3>{{ taskName(row.task) }}</h3></div>
-              <b :class="statusClass(row.status)">{{ statusLabel(row.status) }}</b>
+              <b :class="statusClass(row.status)">{{ props.localMode && row.task.id === 'publication' && row.status === 'Completed' ? (record.publicSyncStatus === 'Sent' ? '已公开同步' : '本地完成 · 待同步') : statusLabel(row.status) }}</b>
+            </div>
+            <div v-if="props.localMode && row.task.id === 'publication' && row.result?.artifacts.length" class="publication-preview">
+              <strong>可发布文章 · 本地全文预览</strong>
+              <a v-for="artifact in row.result.artifacts" :key="artifact.label" :href="artifactHref(artifact)">{{ zh ? artifact.label_zh : artifact.label }} ↗</a>
             </div>
             <template v-if="row.result">
               <div class="result-grid">
@@ -442,9 +458,12 @@ const shortCommit = computed(() => record.value.githubCommit && record.value.git
                   <strong>{{ metric.value }}</strong><span>{{ zh ? metric.label_zh : metric.label }}</span>
                 </div>
               </div>
-              <div v-if="row.result.artifacts.length || row.result.evidence.length" class="artifact-list">
+              <div v-if="(row.result.artifacts.length || row.result.evidence.length) && !(props.localMode && row.task.id === 'publication')" class="artifact-list">
                 <a v-for="artifact in row.result.artifacts" :key="artifact.label" :href="artifactHref(artifact)">{{ zh ? artifact.label_zh : artifact.label }} ↗</a>
-                <a v-for="item in row.result.evidence" :key="item.label" :href="evidenceHref(item)">{{ zh ? item.label_zh : item.label }} ↗</a>
+                <template v-for="item in row.result.evidence" :key="item.label">
+                  <a v-if="item.source" :href="evidenceHref(item)">{{ zh ? item.label_zh : item.label }} ↗</a>
+                  <span v-else>{{ zh ? item.label_zh : item.label }}</span>
+                </template>
               </div>
             </template>
             <p v-else class="pending">{{ row.status === 'Running' ? copy.working : copy.pending }}</p>
@@ -470,7 +489,7 @@ const shortCommit = computed(() => record.value.githubCommit && record.value.git
         <article class="panel release-card">
           <div class="section-title">
             <div><span>05</span><h2>{{ copy.release }}</h2></div>
-            <b :class="statusClass(record.taskStatus?.publication)">{{ statusLabel(record.taskStatus?.publication || 'Waiting') }}</b>
+            <b :class="statusClass(record.taskStatus?.publication)">{{ props.localMode && record.taskStatus?.publication === 'Completed' ? (record.publicSyncStatus === 'Sent' ? '已公开同步' : '本地完成 · 待同步') : statusLabel(record.taskStatus?.publication || 'Waiting') }}</b>
           </div>
           <p class="section-lead">{{ copy.releaseLead }}</p>
           <div v-if="publicationResult" class="release-result">
@@ -505,6 +524,11 @@ const shortCommit = computed(() => record.value.githubCommit && record.value.git
     </div>
   </main>
 </template>
+
+<style scoped>
+.publication-preview{display:grid;gap:12px;margin:0 0 24px;padding:20px;border:1px solid var(--vp-c-divider);border-radius:16px;background:var(--vp-c-bg);}
+.publication-preview a{color:var(--vp-c-brand-1);text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere;}
+</style>
 
 
 <style scoped>

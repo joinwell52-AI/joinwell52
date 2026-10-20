@@ -1,42 +1,13 @@
 ---
 layout: home
-pageClass: runtime-center-page runtime-center-en
-title: Digital Works Operations Center
-description: Today's authentic Runtime data, three-column plan, dynamic shift total, production, release, work results and GitHub evidence.
+pageClass: runtime-center-page
+title: Public Research Runtime Archive
+description: V5 Archive and V6 Public Snapshot. Not a live control plane.
 outline: false
 ---
 
 <script setup>
-import RuntimeTodayUrlSync from '../../.vitepress/theme/components/RuntimeTodayUrlSync.vue'
-import RuntimeOperationsCenterCurrent from '../../.vitepress/theme/components/RuntimeOperationsCenterCurrent.vue'
-import RuntimePrestartState from '../../.vitepress/theme/components/RuntimePrestartState.vue'
-import RuntimeShiftCollapse from '../../.vitepress/theme/components/RuntimeShiftCollapse.vue'
-import RuntimeDailyIntelligenceLink from '../../.vitepress/theme/components/RuntimeDailyIntelligenceLink.vue'
+import RuntimeArchiveSnapshot from '../../.vitepress/theme/components/RuntimeArchiveSnapshot.vue'
 </script>
 
-<RuntimeTodayUrlSync />
-<RuntimePrestartState lang="en" />
-<RuntimeOperationsCenterCurrent lang="en" />
-<ClientOnly><RuntimeDailyIntelligenceLink lang="en" /></ClientOnly>
-<RuntimeShiftCollapse lang="en" />
-
-<ResearchIntelligenceRadar lang="en" />
-
-<style src="../../.vitepress/theme/runtime-operations.css"></style>
-<style src="../../.vitepress/theme/runtime-card-alignment.css"></style>
-<style src="../../.vitepress/theme/runtime-mobile-hardening.css"></style>
-
-<style>
-.dark .runtime-center-page .runtime-classic .column-digital-employee .column-head h3 {
-  color: #e7e2ff;
-  -webkit-text-fill-color: #e7e2ff;
-}
-.dark .runtime-center-page .runtime-classic .column-industry-architecture .column-head h3 {
-  color: #72d6ff;
-  -webkit-text-fill-color: #72d6ff;
-}
-.dark .runtime-center-page .runtime-classic .column-open-source-engineering .column-head h3 {
-  color: #77e5a7;
-  -webkit-text-fill-color: #77e5a7;
-}
-</style>
+<RuntimeArchiveSnapshot lang="en" />
