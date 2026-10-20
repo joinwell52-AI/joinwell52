@@ -518,10 +518,19 @@ onBeforeUnmount(() => {
 
         <EditorialScorecard :lang="props.lang" />
 
-        <aside v-if="lastPublished" class="rc-ra-log">
-          <header><span>{{ zh ? '最近正式发布' : 'Latest published article' }}</span><b>{{ lastPublished.date }}</b></header>
-          <div class="rc-ra-log__statement"><h3>{{ lastPublished.title }}</h3><p>{{ lastPublished.summary }}</p></div>
-          <a class="rc-ra-log__cta" :href="link(lastPublished.url)">{{ zh ? '阅读全文' : 'Read article' }} <span>→</span></a>
+        <aside class="rc-ra-log">
+          <header><span><i></i>RA · {{ copy.workLog }}</span><b>{{ lastPublished?.date || '—' }} · {{ zh ? '已发布成果' : 'PUBLISHED WORK' }}</b></header>
+          <div class="rc-ra-log__statement">
+            <small>RESEARCH ANALYST</small>
+            <h3><span v-for="lineItem in copy.raLine" :key="lineItem">{{ lineItem }}</span></h3>
+            <p>{{ copy.raNote }}</p>
+          </div>
+          <dl>
+            <div><dt>{{ zh ? '最近成果' : 'Latest work' }}</dt><dd><a v-if="lastPublished" :href="link(lastPublished.url)">{{ lastPublished.title }} ↗</a><span v-else>—</span></dd></div>
+            <div><dt>{{ zh ? '成果状态' : 'Publication status' }}</dt><dd><i v-if="lastPublished"></i>{{ lastPublished ? (zh ? '已公开发布' : 'Published') : (zh ? '暂无公开成果' : 'No published work') }}</dd></div>
+            <div><dt>{{ zh ? '发布日期' : 'Published on' }}</dt><dd>{{ lastPublished?.date || '—' }}</dd></div>
+          </dl>
+          <a class="rc-ra-log__cta" :href="link(runtimePath)">{{ copy.enterRuntime }} <span>→</span></a>
         </aside>
 
         <a class="rc-all-research" :href="link(researchOverview)">{{ copy.allResearch }} <span>→</span></a>
