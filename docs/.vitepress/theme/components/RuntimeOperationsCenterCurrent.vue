@@ -2,6 +2,7 @@
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import runtimeData from '../../generated/runtime-records.json'
 import legacyData from '../../generated/runtime-legacy-records.json'
+import publicSnapshot from '../../generated/runtime-v6-public-snapshot.json'
 import RuntimeOperationsCenterClassic from './RuntimeOperationsCenterClassic.vue'
 import RuntimeOperationsCenterLegacy from './RuntimeOperationsCenterLegacy.vue'
 
@@ -138,7 +139,7 @@ if (typeof window !== 'undefined') {
 
 const v5Dates = (runtime.records?.daily || []).map((item) => item.date).filter((date) => date >= effectiveDate)
 const legacyDates = (legacy.records || []).map((item) => item.date).filter((date) => date < effectiveDate)
-const availableDates = [...new Set([runtime.todayDaily?.date, ...v5Dates, ...legacyDates].filter(Boolean))].sort((a, b) => a.localeCompare(b))
+const availableDates = [...new Set([runtime.todayDaily?.date, ...v5Dates, ...legacyDates, ...(publicSnapshot.snapshotDate ? [publicSnapshot.snapshotDate] : [])].filter(Boolean))].sort((a, b) => a.localeCompare(b))
 const availableDateSet = new Set(availableDates)
 const v5DateSet = new Set(v5Dates)
 const legacyDateSet = new Set(legacyDates)
@@ -162,6 +163,12 @@ function syncUrl(date: string, mode: 'push' | 'replace' = 'push') {
 }
 function selectDate(date: string, mode: 'push' | 'replace' = 'push') {
   if (!availableDateSet.has(date)) { dateError.value = copy.value.unavailable; return }
+  if (date === publicSnapshot.snapshotDate && date > '2026-09-18') {
+    const url = new URL(window.location.href)
+    url.searchParams.set('date', date)
+    window.location.assign(url.href)
+    return
+  }
   dateError.value = ''; selectedDate.value = date; syncUrl(date, mode)
 }
 function applyLocationDate(mode: 'replace' | 'none' = 'none') {

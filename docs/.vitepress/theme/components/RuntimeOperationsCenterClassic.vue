@@ -85,7 +85,7 @@ type HistoryItem = { date: string; status: Status }
 const runtime = reactive(JSON.parse(JSON.stringify(runtimeData)) as RuntimeData)
 const intelligence = reactive(JSON.parse(JSON.stringify(intelligenceData)) as IntelligenceData)
 const legacyHistory = legacyData as LegacyHistoryData
-const props = withDefaults(defineProps<{ lang?: 'en' | 'zh'; selectedDate?: string; previousDate?: string; nextDate?: string; minDate?: string; maxDate?: string; todayDate?: string; dateError?: string; localRuntime?: RuntimeData; localIntelligence?: IntelligenceData; localMode?: boolean; localSignals?: any[] }>(), { lang: 'en', selectedDate: '', previousDate: '', nextDate: '', minDate: '', maxDate: '', todayDate: '', dateError: '', localMode:false })
+const props = withDefaults(defineProps<{ lang?: 'en' | 'zh'; selectedDate?: string; previousDate?: string; nextDate?: string; minDate?: string; maxDate?: string; todayDate?: string; dateError?: string; localRuntime?: RuntimeData; localIntelligence?: IntelligenceData; localMode?: boolean; snapshotMode?: boolean; localSignals?: any[] }>(), { lang: 'en', selectedDate: '', previousDate: '', nextDate: '', minDate: '', maxDate: '', todayDate: '', dateError: '', localMode:false, snapshotMode:false })
 watch(()=>props.localRuntime,v=>{if(v)Object.assign(runtime,v)},{immediate:true})
 watch(()=>props.localIntelligence,v=>{if(v)Object.assign(intelligence,v)},{immediate:true})
 const emit = defineEmits<{ (event: 'selectDate', date: string): void; (event: 'dateInput', date: string): void }>()
@@ -102,7 +102,7 @@ const recordForFamily = (family: string) => isToday.value && liveRecords.value[f
 const record = computed(() => recordForFamily('daily') || runtime.todayDaily)
 
 const refreshLiveRecord = async () => {
-  if (props.localMode) return
+  if (props.localMode || props.snapshotMode) return
   if (typeof window === 'undefined' || !isToday.value) return
   const [year, month] = selectedDate.value.split('-')
   const families = ['daily', 'weekly', 'academic', 'program']
@@ -127,6 +127,7 @@ const IDLE_REFRESH_MS = 300_000
 let liveRefreshTimer: ReturnType<typeof setTimeout> | undefined
 
 const scheduleLiveRefresh = () => {
+  if (props.localMode || props.snapshotMode) return
   if (typeof document === 'undefined' || !isToday.value) return
   if (liveRefreshTimer) clearTimeout(liveRefreshTimer)
   if (document.hidden) {
@@ -153,7 +154,7 @@ const handleVisibilityChange = () => {
 }
 
 onMounted(() => {
-  if (isToday.value) {
+  if (isToday.value && !props.localMode && !props.snapshotMode) {
     void refreshLiveRecord().finally(scheduleLiveRefresh)
     document.addEventListener('visibilitychange', handleVisibilityChange)
   }
@@ -192,7 +193,7 @@ const productionResult = computed(() => record.value.results?.production || null
 const publicationResult = computed(() => record.value.results?.publication || null)
 const history = computed<HistoryItem[]>(() => {
   const current = record.value
-  const currentV5History = [...(runtime.records?.daily || []), ...(props.localMode ? runtimeData.records.daily.filter(item=>item.date<='2026-09-18') : [])]
+  const currentV5History = [...(runtime.records?.daily || []), ...(props.localMode || props.snapshotMode ? runtimeData.records.daily.filter(item=>item.date<='2026-09-18') : [])]
     .filter((item) => item.date !== current.date && item.date >= '2026-08-05')
     .map((item) => ({ date: item.date, status: item.status }))
   const frozenMarkdownHistory = (legacyHistory.records || [])
@@ -206,10 +207,10 @@ const history = computed<HistoryItem[]>(() => {
 })
 
 const copy = computed(() => zh.value ? {
-  kicker: props.localMode ? '本地研究运行 V6 · 数字研究员运营中心' : 'RESEARCH RUNTIME CENTER V5.0 · 数字研究员运营中心',
+  kicker: props.snapshotMode ? '研究运行 V6 · 公开快照 · 数字研究员运营中心' : props.localMode ? '本地研究运行 V6 · 数字研究员运营中心' : 'RESEARCH RUNTIME CENTER V5.0 · 数字研究员运营中心',
   title: '数字工场运营中心',
   lead: props.localMode ? (record.value.executionMode==='manual-all-tasks' ? '本次手动补做全部任务并执行真实发布。下表保留原计划时间，实际执行与复用依据记载在各项结果中。' : '按当天计划查看研究班次、三个栏目选题与成果。下方显示日常计划时间；本次试跑立即依次执行，实际开始与结束时间写在各班次结果中。') : '三个栏目分别选题；上午完成发现、阅读与分析，15:00 形成完整出版候选，20:00 只负责 GitHub 与网站发版。',
-  badge: props.localMode ? (record.value.executionMode==='manual-all-tasks' ? '本地全部任务 · 手动执行 · 自动更新' : '本地真实试跑 · 自动更新') : 'Research Runtime Scheduler V3.0',
+  badge: props.snapshotMode ? '本地运行成果 · 公开快照（非实时）' : props.localMode ? (record.value.executionMode==='manual-all-tasks' ? '本地全部任务 · 手动执行 · 自动更新' : '本地真实试跑 · 自动更新') : 'Research Runtime Scheduler V3.0',
   charter: '查看 V5.0 运行规范',
   operations: '今日运营概况',
   progress: '完成进度',
@@ -254,10 +255,10 @@ const copy = computed(() => zh.value ? {
   principle: '数字员工不能只汇报“任务执行了”；每个班次必须交付可读、可追溯、可验证的工作成果。',
   status: { Running: '工作中', Completed: '已完成', Blocked: '已阻塞', Failed: '失败', Skipped: '已跳过', Waiting: '待执行' } as Record<Status, string>
 } : {
-  kicker: 'RESEARCH RUNTIME CENTER V5.0 · DIGITAL RESEARCHER OPERATIONS',
+  kicker: props.snapshotMode ? 'RESEARCH RUNTIME V6 · PUBLIC SNAPSHOT' : 'RESEARCH RUNTIME CENTER V5.0 · DIGITAL RESEARCHER OPERATIONS',
   title: 'Digital Works Operations Center',
   lead: 'The three columns make separate topic decisions; discovery, reading and analysis complete before 15:00 Production, while 20:00 performs release only.',
-  badge: 'Research Runtime Scheduler V3.0',
+  badge: props.snapshotMode ? 'Local outcomes · Public Snapshot (not live)' : 'Research Runtime Scheduler V3.0',
   charter: 'Read the V5.0 Runtime Specification',
   operations: "Today's Operations",
   progress: 'Completion',
@@ -333,7 +334,7 @@ const recordPath = (item: { date: string }) => {
   const [year, month] = item.date.split('-')
   return `research/runtime/${year}/${month}/${item.date}-runtime.md`
 }
-const recordUrl = (item: { date: string }) => props.localMode ? withBase(`/zh/runtime/?date=${item.date}`) : `https://github.com/joinwell52-AI/joinwell52/blob/main/${recordPath(item)}`
+const recordUrl = (item: { date: string }) => props.localMode || (props.snapshotMode && item.date > '2026-09-18') ? withBase(`/${props.lang}/runtime/?date=${item.date}`) : `https://github.com/joinwell52-AI/joinwell52/blob/main/${recordPath(item)}`
 const artifactHref = (artifact: Artifact) => artifact.url || (artifact.path
   ? `https://github.com/joinwell52-AI/joinwell52/blob/main/${artifact.path}`
   : artifact.commit

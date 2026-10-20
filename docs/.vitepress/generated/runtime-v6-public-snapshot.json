@@ -30,5 +30,1348 @@
   "lastPublicSync": null,
   "executionMode": "manual-all-tasks",
   "runtimeEnabled": false,
-  "firstManualPublicReleaseDate": "2026-10-20"
+  "firstManualPublicReleaseDate": "2026-10-20",
+  "operations": {
+    "runtime": {
+      "today": "2026-10-20",
+      "timezone": "Asia/Shanghai",
+      "schedulerVersion": "6.0",
+      "centerVersion": "6.0",
+      "schedule": [
+        {
+          "id": "discovery",
+          "family": "daily",
+          "name": "信息发现",
+          "name_zh": "信息发现",
+          "schedule": {
+            "kind": "daily",
+            "time": "09:00"
+          },
+          "input": "Product / Competitor Sample Intelligence, Multi-Agent Engineering & Mechanism Intelligence, and Published Research & Industry Application Intelligence.",
+          "work": "Execute the three intelligence profiles plus the theme-first sample overlay; normalize and deduplicate current, rolling-window and prior-art evidence by research problem.",
+          "output": "Signal Pool"
+        },
+        {
+          "id": "queue",
+          "family": "daily",
+          "name": "分类选题",
+          "name_zh": "分类选题",
+          "schedule": {
+            "kind": "daily",
+            "time": "10:00"
+          },
+          "input": "Same-day Signal Pool",
+          "work": "Make one Selected or No Selection decision for each of the three research columns.",
+          "output": "Today's Research Plan"
+        },
+        {
+          "id": "reading",
+          "family": "daily",
+          "name": "深度阅读",
+          "name_zh": "深度阅读",
+          "schedule": {
+            "kind": "daily",
+            "time": "11:00"
+          },
+          "input": "Selected objects in Today's Research Plan",
+          "work": "Perform source-complete Deep Reading and evidence extraction.",
+          "output": "Reading Result"
+        },
+        {
+          "id": "analysis",
+          "family": "daily",
+          "name": "研究分析",
+          "name_zh": "研究分析",
+          "schedule": {
+            "kind": "daily",
+            "time": "13:00"
+          },
+          "input": "Reading Result",
+          "work": "State the research question, classify evidence identities, analyze and compare, form a bounded judgment, identify an article type and dynamic modules, map general implications, then test optional first-party relevance.",
+          "output": "Research Object"
+        },
+        {
+          "id": "production",
+          "family": "daily",
+          "name": "内容生产与正式题图",
+          "name_zh": "内容生产与正式题图",
+          "schedule": {
+            "kind": "daily",
+            "time": "15:00"
+          },
+          "input": "Research Object",
+          "work": "Build complete bilingual V2 candidates and final article-specific editorial raster covers in the 15:00 Production stage. Read the full article, generate and inspect each final cover including its thumbnail, persist generation and review evidence, then pass all editorial, visual and layout gates. A placeholder or deterministic baseline does not satisfy final cover acceptance. There is no separate 16:00 cover task.",
+          "output": "Publication Candidate"
+        },
+        {
+          "id": "publication",
+          "family": "daily",
+          "name": "成果发布",
+          "name_zh": "成果发布",
+          "schedule": {
+            "kind": "daily",
+            "time": "20:00"
+          },
+          "input": "Complete Publication Candidates",
+          "work": "Validate complete same-date candidates and authorize Public Outbox packages; never write or push the publication repository.",
+          "output": "Released Daily Research"
+        },
+        {
+          "id": "weekly",
+          "family": "daily",
+          "name": "每周综合与 P2 检查",
+          "name_zh": "每周综合与 P2 检查",
+          "schedule": {
+            "kind": "daily",
+            "time": "20:30"
+          },
+          "input": "local authoritative P2 Registry and checkpoints plus evidence-validated Daily Research from the previous seven days",
+          "work": "Check every due P2 object, execute at most one triggered P2 special study, and produce an independently readable AI Research Brief about material weekly changes, connections, evidence, disputes, judgments and open questions.",
+          "output": "P2 Check Record, zero or one P2 Special Study, and Weekly Synthesis"
+        },
+        {
+          "id": "academic",
+          "family": "daily",
+          "name": "学术观察",
+          "name_zh": "学术观察",
+          "schedule": {
+            "kind": "daily",
+            "time": "16:00"
+          },
+          "input": "Paper, benchmark, specification or institution objects",
+          "work": "Execute the complete reading, analysis, writing, evidence and editing pipeline.",
+          "output": "Academic Observation"
+        },
+        {
+          "id": "program",
+          "family": "daily",
+          "name": "长期项目研究",
+          "name_zh": "长期项目研究",
+          "schedule": {
+            "kind": "daily",
+            "time": "12:00"
+          },
+          "input": "Independent queues for TMPA, FCoP, CodeFlowMu, Digital Employee and Research Operating System",
+          "work": "Advance eligible program objects through Program Queue, Research, Review and Program Publication.",
+          "output": "Program Runtime Record and governed program transition"
+        },
+        {
+          "id": "deadline-check",
+          "family": "daily",
+          "name": "超时检查与恢复",
+          "name_zh": "超时检查与恢复",
+          "schedule": {
+            "kind": "daily",
+            "time": "17:00"
+          },
+          "input": "",
+          "work": "",
+          "output": ""
+        },
+        {
+          "id": "scorecard",
+          "family": "daily",
+          "name": "文章观察评分",
+          "name_zh": "文章观察评分",
+          "schedule": {
+            "kind": "daily",
+            "time": "21:30"
+          },
+          "input": "",
+          "work": "",
+          "output": ""
+        }
+      ],
+      "todayDaily": {
+        "runtimeFamily": "daily",
+        "date": "2026-10-20",
+        "status": "Completed",
+        "taskStatus": {
+          "discovery": "Completed",
+          "queue": "Completed",
+          "reading": "Completed",
+          "analysis": "Completed",
+          "production": "Completed",
+          "publication": "Completed",
+          "weekly": "Completed",
+          "academic": "Completed",
+          "program": "Completed",
+          "deadline-check": "Completed",
+          "scorecard": "Completed"
+        },
+        "results": {
+          "discovery": {
+            "task": "discovery",
+            "status": "Completed",
+            "input": "本地情报源清单、研究主题与真实一手材料。",
+            "input_zh": "本地情报源清单、研究主题与真实一手材料。",
+            "workResult": "完成 83 项正式来源回执：78 项已检查、5 项不可访问；三类主动样本均覆盖至少两个。按研究问题去重后保留 6 条 Signal，纯变更触发为 0。未执行选题、深读、实验或生产授权；本结果仅为 discovery 本地阶段产物。",
+            "output": "人工审批是带责任归属和返回契约的流程任务；外部 Agent 集成将路由、身份与遥测置于业务 Agent 逻辑之外；无记忆的工作流 Worker 仍共享计算机与工作目录；运行时修复学习以实际续执行构造监督，并单列有害干预；动态对抗揭示修复完成声明背后的过期证据；正确答案与成功辩论不能证明动作获得授权",
+            "next": "本阶段已验证；后续结果见相应班次。",
+            "metrics": [
+              {
+                "label": "actual-start",
+                "label_zh": "实际开始",
+                "value": "15:21:44"
+              },
+              {
+                "label": "actual-end",
+                "label_zh": "实际结束",
+                "value": "15:48:58"
+              },
+              {
+                "label": "signals",
+                "label_zh": "研究线索",
+                "value": "6"
+              }
+            ],
+            "artifacts": [],
+            "evidence": [],
+            "workResult_zh": "完成 83 项正式来源回执：78 项已检查、5 项不可访问；三类主动样本均覆盖至少两个。按研究问题去重后保留 6 条 Signal，纯变更触发为 0。未执行选题、深读、实验或生产授权；本结果仅为 discovery 本地阶段产物。",
+            "output_zh": "人工审批是带责任归属和返回契约的流程任务；外部 Agent 集成将路由、身份与遥测置于业务 Agent 逻辑之外；无记忆的工作流 Worker 仍共享计算机与工作目录；运行时修复学习以实际续执行构造监督，并单列有害干预；动态对抗揭示修复完成声明背后的过期证据；正确答案与成功辩论不能证明动作获得授权",
+            "next_zh": "本阶段已验证；后续结果见相应班次。"
+          },
+          "queue": {
+            "task": "queue",
+            "status": "Completed",
+            "input": "本轮已验证的研究线索池，三个研究栏目分别选题。",
+            "input_zh": "本轮已验证的研究线索池，三个研究栏目分别选题。",
+            "workResult": "已对三个 Daily 栏目各作出一项 Selected 决策：数字员工研究动态目标下的修复完成证据，行业架构研究正确性与动作授权的分离评估，开源工程研究执行验证的修复监督及有害干预。其余三条 Signal 保留为证据不足的候选。仅完成 Queue，后续须另行准入。",
+            "output": "本阶段结果已验证并保存在本地。",
+            "next": "本阶段已验证；后续结果见相应班次。",
+            "metrics": [
+              {
+                "label": "actual-start",
+                "label_zh": "实际开始",
+                "value": "15:48:58"
+              },
+              {
+                "label": "actual-end",
+                "label_zh": "实际结束",
+                "value": "15:54:27"
+              }
+            ],
+            "artifacts": [],
+            "evidence": [],
+            "workResult_zh": "已对三个 Daily 栏目各作出一项 Selected 决策：数字员工研究动态目标下的修复完成证据，行业架构研究正确性与动作授权的分离评估，开源工程研究执行验证的修复监督及有害干预。其余三条 Signal 保留为证据不足的候选。仅完成 Queue，后续须另行准入。",
+            "output_zh": "本阶段结果已验证并保存在本地。",
+            "next_zh": "本阶段已验证；后续结果见相应班次。"
+          },
+          "reading": {
+            "task": "reading",
+            "status": "Completed",
+            "input": "本轮已选议题与来源材料。",
+            "input_zh": "本轮已选议题与来源材料。",
+            "workResult": "完成三个 Selected 问题的一手全文、附录与必要配套材料阅读。保留作者结果、静态实现观察、推论和未知项的区别；未开展复现实验、Research Analysis、写作或发布。",
+            "output": "本阶段结果已验证并保存在本地。",
+            "next": "本阶段已验证；后续结果见相应班次。",
+            "metrics": [
+              {
+                "label": "actual-start",
+                "label_zh": "实际开始",
+                "value": "15:54:27"
+              },
+              {
+                "label": "actual-end",
+                "label_zh": "实际结束",
+                "value": "16:13:20"
+              }
+            ],
+            "artifacts": [],
+            "evidence": [],
+            "workResult_zh": "完成三个 Selected 问题的一手全文、附录与必要配套材料阅读。保留作者结果、静态实现观察、推论和未知项的区别；未开展复现实验、Research Analysis、写作或发布。",
+            "output_zh": "本阶段结果已验证并保存在本地。",
+            "next_zh": "本阶段已验证；后续结果见相应班次。"
+          },
+          "analysis": {
+            "task": "analysis",
+            "status": "Completed",
+            "input": "本轮已验证的深读结果与证据。",
+            "input_zh": "本轮已验证的深读结果与证据。",
+            "workResult": "分析3个同日已完成阅读对象。2项在明确收窄的本地机制实验范围内准入Production复审，1项保留为待验证线索。实际执行2个实验议题、3组协议；未完成论文基准复现、文章写作或开发评审。",
+            "output": "本阶段结果已验证并保存在本地。",
+            "next": "本阶段已验证；后续结果见相应班次。",
+            "metrics": [
+              {
+                "label": "actual-start",
+                "label_zh": "实际开始",
+                "value": "16:13:20"
+              },
+              {
+                "label": "actual-end",
+                "label_zh": "实际结束",
+                "value": "16:28:13"
+              }
+            ],
+            "artifacts": [],
+            "evidence": [],
+            "workResult_zh": "分析3个同日已完成阅读对象。2项在明确收窄的本地机制实验范围内准入Production复审，1项保留为待验证线索。实际执行2个实验议题、3组协议；未完成论文基准复现、文章写作或开发评审。",
+            "output_zh": "本阶段结果已验证并保存在本地。",
+            "next_zh": "本阶段已验证；后续结果见相应班次。"
+          },
+          "production": {
+            "task": "production",
+            "status": "Completed",
+            "input": "获得生产授权的研究分析、实验和证据。",
+            "input_zh": "获得生产授权的研究分析、实验和证据。",
+            "workResult": "复核两篇同日双语机制实验文章，采用手动输入中已批准的正式 imagegen 题图及原始审查证据。保留17项与10项局部实验的限制；未追加研究、发布或开发评审。",
+            "output": "本阶段结果已验证并保存在本地。",
+            "next": "本阶段已验证；后续结果见相应班次。",
+            "metrics": [
+              {
+                "label": "actual-start",
+                "label_zh": "实际开始",
+                "value": "22:33:42"
+              },
+              {
+                "label": "actual-end",
+                "label_zh": "实际结束",
+                "value": "22:49:11"
+              }
+            ],
+            "artifacts": [
+              {
+                "label": "Can Old Evidence Earn Credit After the Objective Changes? zh",
+                "label_zh": "目标已经换了，旧证据还能记功吗？ · 中文全文",
+                "url": "/joinwell52/zh/digital-employee/2026-10-20-sig-20261020-005"
+              },
+              {
+                "label": "Can Old Evidence Earn Credit After the Objective Changes? en",
+                "label_zh": "目标已经换了，旧证据还能记功吗？ · 英文全文",
+                "url": "/joinwell52/en/digital-employee/2026-10-20-sig-20261020-005"
+              },
+              {
+                "label": "Permitted Substitution Is Not Successful Repair zh",
+                "label_zh": "允许替换，不等于修复成功 · 中文全文",
+                "url": "/joinwell52/zh/engineering/2026-10-20-sig-20261020-004"
+              },
+              {
+                "label": "Permitted Substitution Is Not Successful Repair en",
+                "label_zh": "允许替换，不等于修复成功 · 英文全文",
+                "url": "/joinwell52/en/engineering/2026-10-20-sig-20261020-004"
+              }
+            ],
+            "evidence": [],
+            "workResult_zh": "复核两篇同日双语机制实验文章，采用手动输入中已批准的正式 imagegen 题图及原始审查证据。保留17项与10项局部实验的限制；未追加研究、发布或开发评审。",
+            "output_zh": "本阶段结果已验证并保存在本地。",
+            "next_zh": "本阶段已验证；后续结果见相应班次。"
+          },
+          "publication": {
+            "task": "publication",
+            "status": "Completed",
+            "input": "完整且通过验证的出版候选。",
+            "input_zh": "完整且通过验证的出版候选。",
+            "workResult": "两篇同日双语研究中心候选通过本地发布准入；社区版零篇。公开路径、索引、站点构建、不可变发布包及部署可见性由父控制器 Public Sync 完成，本结果不表示已经上线。",
+            "output": "2 篇日常研究双语文章已公开发布；下方可查看中文和英文全文。",
+            "next": "双语文章、正式题图与评分已同步到公开网站。",
+            "metrics": [
+              {
+                "label": "actual-start",
+                "label_zh": "实际开始",
+                "value": "22:49:11"
+              },
+              {
+                "label": "actual-end",
+                "label_zh": "实际结束",
+                "value": "22:53:05"
+              },
+              {
+                "label": "public-sync",
+                "label_zh": "公开同步",
+                "value": "已同步"
+              },
+              {
+                "label": "public-visible-at",
+                "label_zh": "公开发布验证时间",
+                "value": "2026-10-20 23:59:01（上海时间）"
+              }
+            ],
+            "artifacts": [
+              {
+                "label": "Can Old Evidence Earn Credit After the Objective Changes? zh",
+                "label_zh": "目标已经换了，旧证据还能记功吗？ · 中文全文",
+                "url": "/joinwell52/zh/digital-employee/2026-10-20-sig-20261020-005"
+              },
+              {
+                "label": "Can Old Evidence Earn Credit After the Objective Changes? en",
+                "label_zh": "目标已经换了，旧证据还能记功吗？ · 英文全文",
+                "url": "/joinwell52/en/digital-employee/2026-10-20-sig-20261020-005"
+              },
+              {
+                "label": "Permitted Substitution Is Not Successful Repair zh",
+                "label_zh": "允许替换，不等于修复成功 · 中文全文",
+                "url": "/joinwell52/zh/engineering/2026-10-20-sig-20261020-004"
+              },
+              {
+                "label": "Permitted Substitution Is Not Successful Repair en",
+                "label_zh": "允许替换，不等于修复成功 · 英文全文",
+                "url": "/joinwell52/en/engineering/2026-10-20-sig-20261020-004"
+              }
+            ],
+            "evidence": [],
+            "workResult_zh": "两篇同日双语研究中心候选通过本地发布准入；社区版零篇。公开路径、索引、站点构建、不可变发布包及部署可见性由父控制器 Public Sync 完成，本结果不表示已经上线。",
+            "output_zh": "2 篇日常研究双语文章已公开发布；下方可查看中文和英文全文。",
+            "next_zh": "双语文章、正式题图与评分已同步到公开网站。"
+          },
+          "weekly": {
+            "task": "weekly",
+            "status": "Completed",
+            "workResult": "窗口2026-10-14—20仅1个有效Daily研究日。P2到期6项、检查6项，触发2项；选中Agent Audit，结果Risk Alert，专项保持Pending Review。检查点p2-2026-10-20-abd8f9ea；完整双语内部周报与专项已保存，公开候选0。全部产物SHA-256见清单；未写人工审核、状态或发布仓库。",
+            "output": "本阶段结果已验证并保存在本地。",
+            "next": "本阶段已验证；后续结果见相应班次。",
+            "metrics": [
+              {
+                "label": "actual-start",
+                "label_zh": "实际开始",
+                "value": "22:53:05"
+              },
+              {
+                "label": "actual-end",
+                "label_zh": "实际结束",
+                "value": "23:12:12"
+              }
+            ],
+            "artifacts": [],
+            "evidence": [],
+            "workResult_zh": "窗口2026-10-14—20仅1个有效Daily研究日。P2到期6项、检查6项，触发2项；选中Agent Audit，结果Risk Alert，专项保持Pending Review。检查点p2-2026-10-20-abd8f9ea；完整双语内部周报与专项已保存，公开候选0。全部产物SHA-256见清单；未写人工审核、状态或发布仓库。",
+            "output_zh": "本阶段结果已验证并保存在本地。",
+            "next_zh": "本阶段已验证；后续结果见相应班次。"
+          },
+          "academic": {
+            "task": "academic",
+            "status": "Completed",
+            "workResult": "完成3个学术对象的完整双语内部观察报告；复核同日证据并真实重跑27项机制检查，27项符合预期。两项已有同日文章，一项仍待验证；新增公开候选与开发评审均为0，不授权发布。",
+            "output": "本阶段结果已验证并保存在本地。",
+            "next": "本阶段已验证；后续结果见相应班次。",
+            "metrics": [
+              {
+                "label": "actual-start",
+                "label_zh": "实际开始",
+                "value": "23:12:12"
+              },
+              {
+                "label": "actual-end",
+                "label_zh": "实际结束",
+                "value": "23:21:15"
+              }
+            ],
+            "artifacts": [],
+            "evidence": [],
+            "workResult_zh": "完成3个学术对象的完整双语内部观察报告；复核同日证据并真实重跑27项机制检查，27项符合预期。两项已有同日文章，一项仍待验证；新增公开候选与开发评审均为0，不授权发布。",
+            "output_zh": "本阶段结果已验证并保存在本地。",
+            "next_zh": "本阶段已验证；后续结果见相应班次。"
+          },
+          "program": {
+            "task": "program",
+            "status": "Completed",
+            "workResult": "已完成五个独立队列的治理复核；五个对象均保持 Hold，无获准生命周期转换，无 Program 发布。",
+            "output": "本阶段结果已验证并保存在本地。",
+            "next": "本阶段已验证；后续结果见相应班次。",
+            "metrics": [
+              {
+                "label": "actual-start",
+                "label_zh": "实际开始",
+                "value": "23:21:15"
+              },
+              {
+                "label": "actual-end",
+                "label_zh": "实际结束",
+                "value": "23:25:13"
+              }
+            ],
+            "artifacts": [],
+            "evidence": [],
+            "workResult_zh": "已完成五个独立队列的治理复核；五个对象均保持 Hold，无获准生命周期转换，无 Program 发布。",
+            "output_zh": "本阶段结果已验证并保存在本地。",
+            "next_zh": "本阶段已验证；后续结果见相应班次。"
+          },
+          "deadline-check": {
+            "task": "deadline-check",
+            "status": "Completed",
+            "workResult": "本地恢复检查完成",
+            "output": "本阶段结果已验证并保存在本地。",
+            "next": "本阶段已验证；后续结果见相应班次。",
+            "metrics": [
+              {
+                "label": "actual-start",
+                "label_zh": "实际开始",
+                "value": "23:25:13"
+              },
+              {
+                "label": "actual-end",
+                "label_zh": "实际结束",
+                "value": "23:25:13"
+              }
+            ],
+            "artifacts": [],
+            "evidence": [],
+            "workResult_zh": "本地恢复检查完成",
+            "output_zh": "本阶段结果已验证并保存在本地。",
+            "next_zh": "本阶段已验证；后续结果见相应班次。"
+          },
+          "scorecard": {
+            "task": "scorecard",
+            "status": "Completed",
+            "workResult": "完成229篇覆盖：40篇直接评分、19篇确定性抽查重评、170篇同哈希继承，覆盖率100%。保留2026-09-13原始Completed；本轮不改状态、公开投影或发布仓库。",
+            "output": "本阶段结果已验证并保存在本地。",
+            "next": "本阶段已验证；后续结果见相应班次。",
+            "metrics": [
+              {
+                "label": "actual-start",
+                "label_zh": "实际开始",
+                "value": "23:25:13"
+              },
+              {
+                "label": "actual-end",
+                "label_zh": "实际结束",
+                "value": "23:38:15"
+              }
+            ],
+            "artifacts": [],
+            "evidence": [],
+            "workResult_zh": "完成229篇覆盖：40篇直接评分、19篇确定性抽查重评、170篇同哈希继承，覆盖率100%。保留2026-09-13原始Completed；本轮不改状态、公开投影或发布仓库。",
+            "output_zh": "本阶段结果已验证并保存在本地。",
+            "next_zh": "本阶段已验证；后续结果见相应班次。"
+          }
+        },
+        "timeline": [],
+        "githubCommit": "71f07e6e111e03c03c4dd6e8b4070a3bfa4899ac",
+        "commitVerify": "Completed",
+        "executionMode": "manual-all-tasks",
+        "publicSyncStatus": "Sent"
+      },
+      "latest": {
+        "daily": {
+          "runtimeFamily": "daily",
+          "date": "2026-10-20",
+          "status": "Completed",
+          "taskStatus": {
+            "discovery": "Completed",
+            "queue": "Completed",
+            "reading": "Completed",
+            "analysis": "Completed",
+            "production": "Completed",
+            "publication": "Completed",
+            "weekly": "Completed",
+            "academic": "Completed",
+            "program": "Completed",
+            "deadline-check": "Completed",
+            "scorecard": "Completed"
+          },
+          "results": {
+            "discovery": {
+              "task": "discovery",
+              "status": "Completed",
+              "input": "本地情报源清单、研究主题与真实一手材料。",
+              "input_zh": "本地情报源清单、研究主题与真实一手材料。",
+              "workResult": "完成 83 项正式来源回执：78 项已检查、5 项不可访问；三类主动样本均覆盖至少两个。按研究问题去重后保留 6 条 Signal，纯变更触发为 0。未执行选题、深读、实验或生产授权；本结果仅为 discovery 本地阶段产物。",
+              "output": "人工审批是带责任归属和返回契约的流程任务；外部 Agent 集成将路由、身份与遥测置于业务 Agent 逻辑之外；无记忆的工作流 Worker 仍共享计算机与工作目录；运行时修复学习以实际续执行构造监督，并单列有害干预；动态对抗揭示修复完成声明背后的过期证据；正确答案与成功辩论不能证明动作获得授权",
+              "next": "本阶段已验证；后续结果见相应班次。",
+              "metrics": [
+                {
+                  "label": "actual-start",
+                  "label_zh": "实际开始",
+                  "value": "15:21:44"
+                },
+                {
+                  "label": "actual-end",
+                  "label_zh": "实际结束",
+                  "value": "15:48:58"
+                },
+                {
+                  "label": "signals",
+                  "label_zh": "研究线索",
+                  "value": "6"
+                }
+              ],
+              "artifacts": [],
+              "evidence": [],
+              "workResult_zh": "完成 83 项正式来源回执：78 项已检查、5 项不可访问；三类主动样本均覆盖至少两个。按研究问题去重后保留 6 条 Signal，纯变更触发为 0。未执行选题、深读、实验或生产授权；本结果仅为 discovery 本地阶段产物。",
+              "output_zh": "人工审批是带责任归属和返回契约的流程任务；外部 Agent 集成将路由、身份与遥测置于业务 Agent 逻辑之外；无记忆的工作流 Worker 仍共享计算机与工作目录；运行时修复学习以实际续执行构造监督，并单列有害干预；动态对抗揭示修复完成声明背后的过期证据；正确答案与成功辩论不能证明动作获得授权",
+              "next_zh": "本阶段已验证；后续结果见相应班次。"
+            },
+            "queue": {
+              "task": "queue",
+              "status": "Completed",
+              "input": "本轮已验证的研究线索池，三个研究栏目分别选题。",
+              "input_zh": "本轮已验证的研究线索池，三个研究栏目分别选题。",
+              "workResult": "已对三个 Daily 栏目各作出一项 Selected 决策：数字员工研究动态目标下的修复完成证据，行业架构研究正确性与动作授权的分离评估，开源工程研究执行验证的修复监督及有害干预。其余三条 Signal 保留为证据不足的候选。仅完成 Queue，后续须另行准入。",
+              "output": "本阶段结果已验证并保存在本地。",
+              "next": "本阶段已验证；后续结果见相应班次。",
+              "metrics": [
+                {
+                  "label": "actual-start",
+                  "label_zh": "实际开始",
+                  "value": "15:48:58"
+                },
+                {
+                  "label": "actual-end",
+                  "label_zh": "实际结束",
+                  "value": "15:54:27"
+                }
+              ],
+              "artifacts": [],
+              "evidence": [],
+              "workResult_zh": "已对三个 Daily 栏目各作出一项 Selected 决策：数字员工研究动态目标下的修复完成证据，行业架构研究正确性与动作授权的分离评估，开源工程研究执行验证的修复监督及有害干预。其余三条 Signal 保留为证据不足的候选。仅完成 Queue，后续须另行准入。",
+              "output_zh": "本阶段结果已验证并保存在本地。",
+              "next_zh": "本阶段已验证；后续结果见相应班次。"
+            },
+            "reading": {
+              "task": "reading",
+              "status": "Completed",
+              "input": "本轮已选议题与来源材料。",
+              "input_zh": "本轮已选议题与来源材料。",
+              "workResult": "完成三个 Selected 问题的一手全文、附录与必要配套材料阅读。保留作者结果、静态实现观察、推论和未知项的区别；未开展复现实验、Research Analysis、写作或发布。",
+              "output": "本阶段结果已验证并保存在本地。",
+              "next": "本阶段已验证；后续结果见相应班次。",
+              "metrics": [
+                {
+                  "label": "actual-start",
+                  "label_zh": "实际开始",
+                  "value": "15:54:27"
+                },
+                {
+                  "label": "actual-end",
+                  "label_zh": "实际结束",
+                  "value": "16:13:20"
+                }
+              ],
+              "artifacts": [],
+              "evidence": [],
+              "workResult_zh": "完成三个 Selected 问题的一手全文、附录与必要配套材料阅读。保留作者结果、静态实现观察、推论和未知项的区别；未开展复现实验、Research Analysis、写作或发布。",
+              "output_zh": "本阶段结果已验证并保存在本地。",
+              "next_zh": "本阶段已验证；后续结果见相应班次。"
+            },
+            "analysis": {
+              "task": "analysis",
+              "status": "Completed",
+              "input": "本轮已验证的深读结果与证据。",
+              "input_zh": "本轮已验证的深读结果与证据。",
+              "workResult": "分析3个同日已完成阅读对象。2项在明确收窄的本地机制实验范围内准入Production复审，1项保留为待验证线索。实际执行2个实验议题、3组协议；未完成论文基准复现、文章写作或开发评审。",
+              "output": "本阶段结果已验证并保存在本地。",
+              "next": "本阶段已验证；后续结果见相应班次。",
+              "metrics": [
+                {
+                  "label": "actual-start",
+                  "label_zh": "实际开始",
+                  "value": "16:13:20"
+                },
+                {
+                  "label": "actual-end",
+                  "label_zh": "实际结束",
+                  "value": "16:28:13"
+                }
+              ],
+              "artifacts": [],
+              "evidence": [],
+              "workResult_zh": "分析3个同日已完成阅读对象。2项在明确收窄的本地机制实验范围内准入Production复审，1项保留为待验证线索。实际执行2个实验议题、3组协议；未完成论文基准复现、文章写作或开发评审。",
+              "output_zh": "本阶段结果已验证并保存在本地。",
+              "next_zh": "本阶段已验证；后续结果见相应班次。"
+            },
+            "production": {
+              "task": "production",
+              "status": "Completed",
+              "input": "获得生产授权的研究分析、实验和证据。",
+              "input_zh": "获得生产授权的研究分析、实验和证据。",
+              "workResult": "复核两篇同日双语机制实验文章，采用手动输入中已批准的正式 imagegen 题图及原始审查证据。保留17项与10项局部实验的限制；未追加研究、发布或开发评审。",
+              "output": "本阶段结果已验证并保存在本地。",
+              "next": "本阶段已验证；后续结果见相应班次。",
+              "metrics": [
+                {
+                  "label": "actual-start",
+                  "label_zh": "实际开始",
+                  "value": "22:33:42"
+                },
+                {
+                  "label": "actual-end",
+                  "label_zh": "实际结束",
+                  "value": "22:49:11"
+                }
+              ],
+              "artifacts": [
+                {
+                  "label": "Can Old Evidence Earn Credit After the Objective Changes? zh",
+                  "label_zh": "目标已经换了，旧证据还能记功吗？ · 中文全文",
+                  "url": "/joinwell52/zh/digital-employee/2026-10-20-sig-20261020-005"
+                },
+                {
+                  "label": "Can Old Evidence Earn Credit After the Objective Changes? en",
+                  "label_zh": "目标已经换了，旧证据还能记功吗？ · 英文全文",
+                  "url": "/joinwell52/en/digital-employee/2026-10-20-sig-20261020-005"
+                },
+                {
+                  "label": "Permitted Substitution Is Not Successful Repair zh",
+                  "label_zh": "允许替换，不等于修复成功 · 中文全文",
+                  "url": "/joinwell52/zh/engineering/2026-10-20-sig-20261020-004"
+                },
+                {
+                  "label": "Permitted Substitution Is Not Successful Repair en",
+                  "label_zh": "允许替换，不等于修复成功 · 英文全文",
+                  "url": "/joinwell52/en/engineering/2026-10-20-sig-20261020-004"
+                }
+              ],
+              "evidence": [],
+              "workResult_zh": "复核两篇同日双语机制实验文章，采用手动输入中已批准的正式 imagegen 题图及原始审查证据。保留17项与10项局部实验的限制；未追加研究、发布或开发评审。",
+              "output_zh": "本阶段结果已验证并保存在本地。",
+              "next_zh": "本阶段已验证；后续结果见相应班次。"
+            },
+            "publication": {
+              "task": "publication",
+              "status": "Completed",
+              "input": "完整且通过验证的出版候选。",
+              "input_zh": "完整且通过验证的出版候选。",
+              "workResult": "两篇同日双语研究中心候选通过本地发布准入；社区版零篇。公开路径、索引、站点构建、不可变发布包及部署可见性由父控制器 Public Sync 完成，本结果不表示已经上线。",
+              "output": "2 篇日常研究双语文章已公开发布；下方可查看中文和英文全文。",
+              "next": "双语文章、正式题图与评分已同步到公开网站。",
+              "metrics": [
+                {
+                  "label": "actual-start",
+                  "label_zh": "实际开始",
+                  "value": "22:49:11"
+                },
+                {
+                  "label": "actual-end",
+                  "label_zh": "实际结束",
+                  "value": "22:53:05"
+                },
+                {
+                  "label": "public-sync",
+                  "label_zh": "公开同步",
+                  "value": "已同步"
+                },
+                {
+                  "label": "public-visible-at",
+                  "label_zh": "公开发布验证时间",
+                  "value": "2026-10-20 23:59:01（上海时间）"
+                }
+              ],
+              "artifacts": [
+                {
+                  "label": "Can Old Evidence Earn Credit After the Objective Changes? zh",
+                  "label_zh": "目标已经换了，旧证据还能记功吗？ · 中文全文",
+                  "url": "/joinwell52/zh/digital-employee/2026-10-20-sig-20261020-005"
+                },
+                {
+                  "label": "Can Old Evidence Earn Credit After the Objective Changes? en",
+                  "label_zh": "目标已经换了，旧证据还能记功吗？ · 英文全文",
+                  "url": "/joinwell52/en/digital-employee/2026-10-20-sig-20261020-005"
+                },
+                {
+                  "label": "Permitted Substitution Is Not Successful Repair zh",
+                  "label_zh": "允许替换，不等于修复成功 · 中文全文",
+                  "url": "/joinwell52/zh/engineering/2026-10-20-sig-20261020-004"
+                },
+                {
+                  "label": "Permitted Substitution Is Not Successful Repair en",
+                  "label_zh": "允许替换，不等于修复成功 · 英文全文",
+                  "url": "/joinwell52/en/engineering/2026-10-20-sig-20261020-004"
+                }
+              ],
+              "evidence": [],
+              "workResult_zh": "两篇同日双语研究中心候选通过本地发布准入；社区版零篇。公开路径、索引、站点构建、不可变发布包及部署可见性由父控制器 Public Sync 完成，本结果不表示已经上线。",
+              "output_zh": "2 篇日常研究双语文章已公开发布；下方可查看中文和英文全文。",
+              "next_zh": "双语文章、正式题图与评分已同步到公开网站。"
+            },
+            "weekly": {
+              "task": "weekly",
+              "status": "Completed",
+              "workResult": "窗口2026-10-14—20仅1个有效Daily研究日。P2到期6项、检查6项，触发2项；选中Agent Audit，结果Risk Alert，专项保持Pending Review。检查点p2-2026-10-20-abd8f9ea；完整双语内部周报与专项已保存，公开候选0。全部产物SHA-256见清单；未写人工审核、状态或发布仓库。",
+              "output": "本阶段结果已验证并保存在本地。",
+              "next": "本阶段已验证；后续结果见相应班次。",
+              "metrics": [
+                {
+                  "label": "actual-start",
+                  "label_zh": "实际开始",
+                  "value": "22:53:05"
+                },
+                {
+                  "label": "actual-end",
+                  "label_zh": "实际结束",
+                  "value": "23:12:12"
+                }
+              ],
+              "artifacts": [],
+              "evidence": [],
+              "workResult_zh": "窗口2026-10-14—20仅1个有效Daily研究日。P2到期6项、检查6项，触发2项；选中Agent Audit，结果Risk Alert，专项保持Pending Review。检查点p2-2026-10-20-abd8f9ea；完整双语内部周报与专项已保存，公开候选0。全部产物SHA-256见清单；未写人工审核、状态或发布仓库。",
+              "output_zh": "本阶段结果已验证并保存在本地。",
+              "next_zh": "本阶段已验证；后续结果见相应班次。"
+            },
+            "academic": {
+              "task": "academic",
+              "status": "Completed",
+              "workResult": "完成3个学术对象的完整双语内部观察报告；复核同日证据并真实重跑27项机制检查，27项符合预期。两项已有同日文章，一项仍待验证；新增公开候选与开发评审均为0，不授权发布。",
+              "output": "本阶段结果已验证并保存在本地。",
+              "next": "本阶段已验证；后续结果见相应班次。",
+              "metrics": [
+                {
+                  "label": "actual-start",
+                  "label_zh": "实际开始",
+                  "value": "23:12:12"
+                },
+                {
+                  "label": "actual-end",
+                  "label_zh": "实际结束",
+                  "value": "23:21:15"
+                }
+              ],
+              "artifacts": [],
+              "evidence": [],
+              "workResult_zh": "完成3个学术对象的完整双语内部观察报告；复核同日证据并真实重跑27项机制检查，27项符合预期。两项已有同日文章，一项仍待验证；新增公开候选与开发评审均为0，不授权发布。",
+              "output_zh": "本阶段结果已验证并保存在本地。",
+              "next_zh": "本阶段已验证；后续结果见相应班次。"
+            },
+            "program": {
+              "task": "program",
+              "status": "Completed",
+              "workResult": "已完成五个独立队列的治理复核；五个对象均保持 Hold，无获准生命周期转换，无 Program 发布。",
+              "output": "本阶段结果已验证并保存在本地。",
+              "next": "本阶段已验证；后续结果见相应班次。",
+              "metrics": [
+                {
+                  "label": "actual-start",
+                  "label_zh": "实际开始",
+                  "value": "23:21:15"
+                },
+                {
+                  "label": "actual-end",
+                  "label_zh": "实际结束",
+                  "value": "23:25:13"
+                }
+              ],
+              "artifacts": [],
+              "evidence": [],
+              "workResult_zh": "已完成五个独立队列的治理复核；五个对象均保持 Hold，无获准生命周期转换，无 Program 发布。",
+              "output_zh": "本阶段结果已验证并保存在本地。",
+              "next_zh": "本阶段已验证；后续结果见相应班次。"
+            },
+            "deadline-check": {
+              "task": "deadline-check",
+              "status": "Completed",
+              "workResult": "本地恢复检查完成",
+              "output": "本阶段结果已验证并保存在本地。",
+              "next": "本阶段已验证；后续结果见相应班次。",
+              "metrics": [
+                {
+                  "label": "actual-start",
+                  "label_zh": "实际开始",
+                  "value": "23:25:13"
+                },
+                {
+                  "label": "actual-end",
+                  "label_zh": "实际结束",
+                  "value": "23:25:13"
+                }
+              ],
+              "artifacts": [],
+              "evidence": [],
+              "workResult_zh": "本地恢复检查完成",
+              "output_zh": "本阶段结果已验证并保存在本地。",
+              "next_zh": "本阶段已验证；后续结果见相应班次。"
+            },
+            "scorecard": {
+              "task": "scorecard",
+              "status": "Completed",
+              "workResult": "完成229篇覆盖：40篇直接评分、19篇确定性抽查重评、170篇同哈希继承，覆盖率100%。保留2026-09-13原始Completed；本轮不改状态、公开投影或发布仓库。",
+              "output": "本阶段结果已验证并保存在本地。",
+              "next": "本阶段已验证；后续结果见相应班次。",
+              "metrics": [
+                {
+                  "label": "actual-start",
+                  "label_zh": "实际开始",
+                  "value": "23:25:13"
+                },
+                {
+                  "label": "actual-end",
+                  "label_zh": "实际结束",
+                  "value": "23:38:15"
+                }
+              ],
+              "artifacts": [],
+              "evidence": [],
+              "workResult_zh": "完成229篇覆盖：40篇直接评分、19篇确定性抽查重评、170篇同哈希继承，覆盖率100%。保留2026-09-13原始Completed；本轮不改状态、公开投影或发布仓库。",
+              "output_zh": "本阶段结果已验证并保存在本地。",
+              "next_zh": "本阶段已验证；后续结果见相应班次。"
+            }
+          },
+          "timeline": [],
+          "githubCommit": "71f07e6e111e03c03c4dd6e8b4070a3bfa4899ac",
+          "commitVerify": "Completed",
+          "executionMode": "manual-all-tasks",
+          "publicSyncStatus": "Sent"
+        }
+      },
+      "records": {
+        "daily": [
+          {
+            "runtimeFamily": "daily",
+            "date": "2026-10-20",
+            "status": "Completed",
+            "taskStatus": {
+              "discovery": "Completed",
+              "queue": "Completed",
+              "reading": "Completed",
+              "analysis": "Completed",
+              "production": "Completed",
+              "publication": "Completed",
+              "weekly": "Completed",
+              "academic": "Completed",
+              "program": "Completed",
+              "deadline-check": "Completed",
+              "scorecard": "Completed"
+            },
+            "results": {
+              "discovery": {
+                "task": "discovery",
+                "status": "Completed",
+                "input": "本地情报源清单、研究主题与真实一手材料。",
+                "input_zh": "本地情报源清单、研究主题与真实一手材料。",
+                "workResult": "完成 83 项正式来源回执：78 项已检查、5 项不可访问；三类主动样本均覆盖至少两个。按研究问题去重后保留 6 条 Signal，纯变更触发为 0。未执行选题、深读、实验或生产授权；本结果仅为 discovery 本地阶段产物。",
+                "output": "人工审批是带责任归属和返回契约的流程任务；外部 Agent 集成将路由、身份与遥测置于业务 Agent 逻辑之外；无记忆的工作流 Worker 仍共享计算机与工作目录；运行时修复学习以实际续执行构造监督，并单列有害干预；动态对抗揭示修复完成声明背后的过期证据；正确答案与成功辩论不能证明动作获得授权",
+                "next": "本阶段已验证；后续结果见相应班次。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "15:21:44"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "15:48:58"
+                  },
+                  {
+                    "label": "signals",
+                    "label_zh": "研究线索",
+                    "value": "6"
+                  }
+                ],
+                "artifacts": [],
+                "evidence": [],
+                "workResult_zh": "完成 83 项正式来源回执：78 项已检查、5 项不可访问；三类主动样本均覆盖至少两个。按研究问题去重后保留 6 条 Signal，纯变更触发为 0。未执行选题、深读、实验或生产授权；本结果仅为 discovery 本地阶段产物。",
+                "output_zh": "人工审批是带责任归属和返回契约的流程任务；外部 Agent 集成将路由、身份与遥测置于业务 Agent 逻辑之外；无记忆的工作流 Worker 仍共享计算机与工作目录；运行时修复学习以实际续执行构造监督，并单列有害干预；动态对抗揭示修复完成声明背后的过期证据；正确答案与成功辩论不能证明动作获得授权",
+                "next_zh": "本阶段已验证；后续结果见相应班次。"
+              },
+              "queue": {
+                "task": "queue",
+                "status": "Completed",
+                "input": "本轮已验证的研究线索池，三个研究栏目分别选题。",
+                "input_zh": "本轮已验证的研究线索池，三个研究栏目分别选题。",
+                "workResult": "已对三个 Daily 栏目各作出一项 Selected 决策：数字员工研究动态目标下的修复完成证据，行业架构研究正确性与动作授权的分离评估，开源工程研究执行验证的修复监督及有害干预。其余三条 Signal 保留为证据不足的候选。仅完成 Queue，后续须另行准入。",
+                "output": "本阶段结果已验证并保存在本地。",
+                "next": "本阶段已验证；后续结果见相应班次。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "15:48:58"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "15:54:27"
+                  }
+                ],
+                "artifacts": [],
+                "evidence": [],
+                "workResult_zh": "已对三个 Daily 栏目各作出一项 Selected 决策：数字员工研究动态目标下的修复完成证据，行业架构研究正确性与动作授权的分离评估，开源工程研究执行验证的修复监督及有害干预。其余三条 Signal 保留为证据不足的候选。仅完成 Queue，后续须另行准入。",
+                "output_zh": "本阶段结果已验证并保存在本地。",
+                "next_zh": "本阶段已验证；后续结果见相应班次。"
+              },
+              "reading": {
+                "task": "reading",
+                "status": "Completed",
+                "input": "本轮已选议题与来源材料。",
+                "input_zh": "本轮已选议题与来源材料。",
+                "workResult": "完成三个 Selected 问题的一手全文、附录与必要配套材料阅读。保留作者结果、静态实现观察、推论和未知项的区别；未开展复现实验、Research Analysis、写作或发布。",
+                "output": "本阶段结果已验证并保存在本地。",
+                "next": "本阶段已验证；后续结果见相应班次。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "15:54:27"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "16:13:20"
+                  }
+                ],
+                "artifacts": [],
+                "evidence": [],
+                "workResult_zh": "完成三个 Selected 问题的一手全文、附录与必要配套材料阅读。保留作者结果、静态实现观察、推论和未知项的区别；未开展复现实验、Research Analysis、写作或发布。",
+                "output_zh": "本阶段结果已验证并保存在本地。",
+                "next_zh": "本阶段已验证；后续结果见相应班次。"
+              },
+              "analysis": {
+                "task": "analysis",
+                "status": "Completed",
+                "input": "本轮已验证的深读结果与证据。",
+                "input_zh": "本轮已验证的深读结果与证据。",
+                "workResult": "分析3个同日已完成阅读对象。2项在明确收窄的本地机制实验范围内准入Production复审，1项保留为待验证线索。实际执行2个实验议题、3组协议；未完成论文基准复现、文章写作或开发评审。",
+                "output": "本阶段结果已验证并保存在本地。",
+                "next": "本阶段已验证；后续结果见相应班次。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "16:13:20"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "16:28:13"
+                  }
+                ],
+                "artifacts": [],
+                "evidence": [],
+                "workResult_zh": "分析3个同日已完成阅读对象。2项在明确收窄的本地机制实验范围内准入Production复审，1项保留为待验证线索。实际执行2个实验议题、3组协议；未完成论文基准复现、文章写作或开发评审。",
+                "output_zh": "本阶段结果已验证并保存在本地。",
+                "next_zh": "本阶段已验证；后续结果见相应班次。"
+              },
+              "production": {
+                "task": "production",
+                "status": "Completed",
+                "input": "获得生产授权的研究分析、实验和证据。",
+                "input_zh": "获得生产授权的研究分析、实验和证据。",
+                "workResult": "复核两篇同日双语机制实验文章，采用手动输入中已批准的正式 imagegen 题图及原始审查证据。保留17项与10项局部实验的限制；未追加研究、发布或开发评审。",
+                "output": "本阶段结果已验证并保存在本地。",
+                "next": "本阶段已验证；后续结果见相应班次。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "22:33:42"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "22:49:11"
+                  }
+                ],
+                "artifacts": [
+                  {
+                    "label": "Can Old Evidence Earn Credit After the Objective Changes? zh",
+                    "label_zh": "目标已经换了，旧证据还能记功吗？ · 中文全文",
+                    "url": "/joinwell52/zh/digital-employee/2026-10-20-sig-20261020-005"
+                  },
+                  {
+                    "label": "Can Old Evidence Earn Credit After the Objective Changes? en",
+                    "label_zh": "目标已经换了，旧证据还能记功吗？ · 英文全文",
+                    "url": "/joinwell52/en/digital-employee/2026-10-20-sig-20261020-005"
+                  },
+                  {
+                    "label": "Permitted Substitution Is Not Successful Repair zh",
+                    "label_zh": "允许替换，不等于修复成功 · 中文全文",
+                    "url": "/joinwell52/zh/engineering/2026-10-20-sig-20261020-004"
+                  },
+                  {
+                    "label": "Permitted Substitution Is Not Successful Repair en",
+                    "label_zh": "允许替换，不等于修复成功 · 英文全文",
+                    "url": "/joinwell52/en/engineering/2026-10-20-sig-20261020-004"
+                  }
+                ],
+                "evidence": [],
+                "workResult_zh": "复核两篇同日双语机制实验文章，采用手动输入中已批准的正式 imagegen 题图及原始审查证据。保留17项与10项局部实验的限制；未追加研究、发布或开发评审。",
+                "output_zh": "本阶段结果已验证并保存在本地。",
+                "next_zh": "本阶段已验证；后续结果见相应班次。"
+              },
+              "publication": {
+                "task": "publication",
+                "status": "Completed",
+                "input": "完整且通过验证的出版候选。",
+                "input_zh": "完整且通过验证的出版候选。",
+                "workResult": "两篇同日双语研究中心候选通过本地发布准入；社区版零篇。公开路径、索引、站点构建、不可变发布包及部署可见性由父控制器 Public Sync 完成，本结果不表示已经上线。",
+                "output": "2 篇日常研究双语文章已公开发布；下方可查看中文和英文全文。",
+                "next": "双语文章、正式题图与评分已同步到公开网站。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "22:49:11"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "22:53:05"
+                  },
+                  {
+                    "label": "public-sync",
+                    "label_zh": "公开同步",
+                    "value": "已同步"
+                  },
+                  {
+                    "label": "public-visible-at",
+                    "label_zh": "公开发布验证时间",
+                    "value": "2026-10-20 23:59:01（上海时间）"
+                  }
+                ],
+                "artifacts": [
+                  {
+                    "label": "Can Old Evidence Earn Credit After the Objective Changes? zh",
+                    "label_zh": "目标已经换了，旧证据还能记功吗？ · 中文全文",
+                    "url": "/joinwell52/zh/digital-employee/2026-10-20-sig-20261020-005"
+                  },
+                  {
+                    "label": "Can Old Evidence Earn Credit After the Objective Changes? en",
+                    "label_zh": "目标已经换了，旧证据还能记功吗？ · 英文全文",
+                    "url": "/joinwell52/en/digital-employee/2026-10-20-sig-20261020-005"
+                  },
+                  {
+                    "label": "Permitted Substitution Is Not Successful Repair zh",
+                    "label_zh": "允许替换，不等于修复成功 · 中文全文",
+                    "url": "/joinwell52/zh/engineering/2026-10-20-sig-20261020-004"
+                  },
+                  {
+                    "label": "Permitted Substitution Is Not Successful Repair en",
+                    "label_zh": "允许替换，不等于修复成功 · 英文全文",
+                    "url": "/joinwell52/en/engineering/2026-10-20-sig-20261020-004"
+                  }
+                ],
+                "evidence": [],
+                "workResult_zh": "两篇同日双语研究中心候选通过本地发布准入；社区版零篇。公开路径、索引、站点构建、不可变发布包及部署可见性由父控制器 Public Sync 完成，本结果不表示已经上线。",
+                "output_zh": "2 篇日常研究双语文章已公开发布；下方可查看中文和英文全文。",
+                "next_zh": "双语文章、正式题图与评分已同步到公开网站。"
+              },
+              "weekly": {
+                "task": "weekly",
+                "status": "Completed",
+                "workResult": "窗口2026-10-14—20仅1个有效Daily研究日。P2到期6项、检查6项，触发2项；选中Agent Audit，结果Risk Alert，专项保持Pending Review。检查点p2-2026-10-20-abd8f9ea；完整双语内部周报与专项已保存，公开候选0。全部产物SHA-256见清单；未写人工审核、状态或发布仓库。",
+                "output": "本阶段结果已验证并保存在本地。",
+                "next": "本阶段已验证；后续结果见相应班次。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "22:53:05"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "23:12:12"
+                  }
+                ],
+                "artifacts": [],
+                "evidence": [],
+                "workResult_zh": "窗口2026-10-14—20仅1个有效Daily研究日。P2到期6项、检查6项，触发2项；选中Agent Audit，结果Risk Alert，专项保持Pending Review。检查点p2-2026-10-20-abd8f9ea；完整双语内部周报与专项已保存，公开候选0。全部产物SHA-256见清单；未写人工审核、状态或发布仓库。",
+                "output_zh": "本阶段结果已验证并保存在本地。",
+                "next_zh": "本阶段已验证；后续结果见相应班次。"
+              },
+              "academic": {
+                "task": "academic",
+                "status": "Completed",
+                "workResult": "完成3个学术对象的完整双语内部观察报告；复核同日证据并真实重跑27项机制检查，27项符合预期。两项已有同日文章，一项仍待验证；新增公开候选与开发评审均为0，不授权发布。",
+                "output": "本阶段结果已验证并保存在本地。",
+                "next": "本阶段已验证；后续结果见相应班次。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "23:12:12"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "23:21:15"
+                  }
+                ],
+                "artifacts": [],
+                "evidence": [],
+                "workResult_zh": "完成3个学术对象的完整双语内部观察报告；复核同日证据并真实重跑27项机制检查，27项符合预期。两项已有同日文章，一项仍待验证；新增公开候选与开发评审均为0，不授权发布。",
+                "output_zh": "本阶段结果已验证并保存在本地。",
+                "next_zh": "本阶段已验证；后续结果见相应班次。"
+              },
+              "program": {
+                "task": "program",
+                "status": "Completed",
+                "workResult": "已完成五个独立队列的治理复核；五个对象均保持 Hold，无获准生命周期转换，无 Program 发布。",
+                "output": "本阶段结果已验证并保存在本地。",
+                "next": "本阶段已验证；后续结果见相应班次。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "23:21:15"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "23:25:13"
+                  }
+                ],
+                "artifacts": [],
+                "evidence": [],
+                "workResult_zh": "已完成五个独立队列的治理复核；五个对象均保持 Hold，无获准生命周期转换，无 Program 发布。",
+                "output_zh": "本阶段结果已验证并保存在本地。",
+                "next_zh": "本阶段已验证；后续结果见相应班次。"
+              },
+              "deadline-check": {
+                "task": "deadline-check",
+                "status": "Completed",
+                "workResult": "本地恢复检查完成",
+                "output": "本阶段结果已验证并保存在本地。",
+                "next": "本阶段已验证；后续结果见相应班次。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "23:25:13"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "23:25:13"
+                  }
+                ],
+                "artifacts": [],
+                "evidence": [],
+                "workResult_zh": "本地恢复检查完成",
+                "output_zh": "本阶段结果已验证并保存在本地。",
+                "next_zh": "本阶段已验证；后续结果见相应班次。"
+              },
+              "scorecard": {
+                "task": "scorecard",
+                "status": "Completed",
+                "workResult": "完成229篇覆盖：40篇直接评分、19篇确定性抽查重评、170篇同哈希继承，覆盖率100%。保留2026-09-13原始Completed；本轮不改状态、公开投影或发布仓库。",
+                "output": "本阶段结果已验证并保存在本地。",
+                "next": "本阶段已验证；后续结果见相应班次。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "23:25:13"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "23:38:15"
+                  }
+                ],
+                "artifacts": [],
+                "evidence": [],
+                "workResult_zh": "完成229篇覆盖：40篇直接评分、19篇确定性抽查重评、170篇同哈希继承，覆盖率100%。保留2026-09-13原始Completed；本轮不改状态、公开投影或发布仓库。",
+                "output_zh": "本阶段结果已验证并保存在本地。",
+                "next_zh": "本阶段已验证；后续结果见相应班次。"
+              }
+            },
+            "timeline": [],
+            "githubCommit": "71f07e6e111e03c03c4dd6e8b4070a3bfa4899ac",
+            "commitVerify": "Completed",
+            "executionMode": "manual-all-tasks",
+            "publicSyncStatus": "Sent"
+          }
+        ]
+      },
+      "columns": [
+        {
+          "id": "digital-employee",
+          "name": "Digital Employee",
+          "name_zh": "数字员工"
+        },
+        {
+          "id": "industry-architecture",
+          "name": "Industry Architecture",
+          "name_zh": "行业架构"
+        },
+        {
+          "id": "open-source-engineering",
+          "name": "Open-source Engineering",
+          "name_zh": "开源工程"
+        }
+      ]
+    },
+    "intelligence": {
+      "currentRun": {
+        "date": "2026-10-20",
+        "status": "Completed",
+        "columns": [
+          {
+            "id": "digital-employee",
+            "label": "数字员工",
+            "label_zh": "数字员工",
+            "decision": "Selected",
+            "signals": 2,
+            "candidates": 1,
+            "selectedItemId": "SIG-20261020-005",
+            "selectedTitle": "动态对抗揭示修复完成声明背后的过期证据",
+            "selectedTitle_zh": "动态对抗揭示修复完成声明背后的过期证据",
+            "reason": "一手失败基准可独立支持门槛 F；选择修复完成契约问题，不选择模型排名。尚无已核验官方仓库或独立复现。",
+            "reason_zh": "一手失败基准可独立支持门槛 F；选择修复完成契约问题，不选择模型排名。尚无已核验官方仓库或独立复现。"
+          },
+          {
+            "id": "industry-architecture",
+            "label": "行业架构",
+            "label_zh": "行业架构",
+            "decision": "Selected",
+            "signals": 2,
+            "candidates": 1,
+            "selectedItemId": "SIG-20261020-006",
+            "selectedTitle": "正确答案与成功辩论不能证明动作获得授权",
+            "selectedTitle_zh": "正确答案与成功辩论不能证明动作获得授权",
+            "reason": "MADBench 提供有边界的一手基准问题，另一来源的运营事故说明相同结果维度区别；答案正确或辩论成功不能替代动作授权。两场景不合并统计。",
+            "reason_zh": "MADBench 提供有边界的一手基准问题，另一来源的运营事故说明相同结果维度区别；答案正确或辩论成功不能替代动作授权。两场景不合并统计。"
+          },
+          {
+            "id": "open-source-engineering",
+            "label": "开源工程",
+            "label_zh": "开源工程",
+            "decision": "Selected",
+            "signals": 2,
+            "candidates": 1,
+            "selectedItemId": "SIG-20261020-004",
+            "selectedTitle": "运行时修复学习以实际续执行构造监督，并单列有害干预",
+            "selectedTitle_zh": "运行时修复学习以实际续执行构造监督，并单列有害干预",
+            "reason": "实现配套材料与一手方法及结果支持准入；选择修复监督和干预计量问题，不预先认定其普遍优于回滚或重试。",
+            "reason_zh": "实现配套材料与一手方法及结果支持准入；选择修复监督和干预计量问题，不预先认定其普遍优于回滚或重试。"
+          }
+        ]
+      },
+      "runs": {
+        "2026-10-20": {
+          "date": "2026-10-20",
+          "columns": [
+            {
+              "id": "digital-employee",
+              "label": "数字员工",
+              "label_zh": "数字员工",
+              "decision": "Selected",
+              "signals": 2,
+              "candidates": 1,
+              "selectedItemId": "SIG-20261020-005",
+              "selectedTitle": "动态对抗揭示修复完成声明背后的过期证据",
+              "selectedTitle_zh": "动态对抗揭示修复完成声明背后的过期证据",
+              "reason": "一手失败基准可独立支持门槛 F；选择修复完成契约问题，不选择模型排名。尚无已核验官方仓库或独立复现。",
+              "reason_zh": "一手失败基准可独立支持门槛 F；选择修复完成契约问题，不选择模型排名。尚无已核验官方仓库或独立复现。"
+            },
+            {
+              "id": "industry-architecture",
+              "label": "行业架构",
+              "label_zh": "行业架构",
+              "decision": "Selected",
+              "signals": 2,
+              "candidates": 1,
+              "selectedItemId": "SIG-20261020-006",
+              "selectedTitle": "正确答案与成功辩论不能证明动作获得授权",
+              "selectedTitle_zh": "正确答案与成功辩论不能证明动作获得授权",
+              "reason": "MADBench 提供有边界的一手基准问题，另一来源的运营事故说明相同结果维度区别；答案正确或辩论成功不能替代动作授权。两场景不合并统计。",
+              "reason_zh": "MADBench 提供有边界的一手基准问题，另一来源的运营事故说明相同结果维度区别；答案正确或辩论成功不能替代动作授权。两场景不合并统计。"
+            },
+            {
+              "id": "open-source-engineering",
+              "label": "开源工程",
+              "label_zh": "开源工程",
+              "decision": "Selected",
+              "signals": 2,
+              "candidates": 1,
+              "selectedItemId": "SIG-20261020-004",
+              "selectedTitle": "运行时修复学习以实际续执行构造监督，并单列有害干预",
+              "selectedTitle_zh": "运行时修复学习以实际续执行构造监督，并单列有害干预",
+              "reason": "实现配套材料与一手方法及结果支持准入；选择修复监督和干预计量问题，不预先认定其普遍优于回滚或重试。",
+              "reason_zh": "实现配套材料与一手方法及结果支持准入；选择修复监督和干预计量问题，不预先认定其普遍优于回滚或重试。"
+            }
+          ]
+        }
+      }
+    }
+  }
 }
