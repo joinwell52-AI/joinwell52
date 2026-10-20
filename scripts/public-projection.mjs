@@ -24,7 +24,7 @@ function archive(){
 }
 function validate(){
   const a=read(path.join(generated,'runtime-records.json')),s=read(path.join(generated,'runtime-v6-public-snapshot.json')),l=read(path.join(generated,'latest-article.json'));
-  assert.equal(a.today,cutoff);assert.equal(a.records.daily[0].date,cutoff);for(const records of Object.values(a.records))assert.ok(records.every(r=>r.date<=cutoff));assert.equal(s.notice,'Not a live control plane');assert.equal(l.schema,'latest-published-article/v1');assert.ok(!/[A-Za-z]:[\\/]|Bearer\s+|github_pat_/.test(JSON.stringify(s)));
+  assert.equal(a.today,cutoff);assert.equal(a.records.daily[0].date,cutoff);for(const records of Object.values(a.records))assert.ok(records.every(r=>r.date<=cutoff));assert.equal(s.notice,'Not a live control plane');assert.equal(l.schema,'latest-published-article/v1');assert.ok(!/(?<![A-Za-z])[A-Za-z]:[\\/]|Bearer\s+|github_pat_/.test(JSON.stringify(s)));
   const home=fs.readFileSync(path.join(root,'docs/.vitepress/theme/components/ResearchCenterHome.vue'),'utf8');assert.ok(!/runtimeData|runtimeLatest|LIVE RECORD|runtime-records\.json/.test(home));assert.ok(home.includes('latest-article.json'));
 }
 const command=process.argv[2]||'validate';if(command==='build'){execFileSync(process.execPath,[path.join(root,'scripts/research-intelligence.mjs'),'build'],{cwd:root,stdio:'pipe',windowsHide:true});archive();latest();validate();}else if(command==='latest'){latest();}else validate();console.log('Public projections '+command+' passed.');

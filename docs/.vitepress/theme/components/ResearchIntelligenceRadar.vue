@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { withBase } from 'vitepress'
 import intelligenceData from '../../generated/research-intelligence.json'
 import p2StatusData from '../../generated/p2-special-study.json'
+import publicSnapshot from '../../generated/runtime-v6-public-snapshot.json'
 
 type Status = 'Waiting' | 'Running' | 'Completed' | 'Blocked' | 'Failed' | 'Skipped'
 type PipelineResult = { id:string; label:string; label_zh:string; status:Status; due:number; checked:number; inaccessible:Array<{source:string;reason:string}>; failed:Array<{source:string;reason:string}>; signals:number; candidates:number; selected:number; rejected:number; coveragePercent:number; reason:string; reason_zh:string }
@@ -12,8 +13,9 @@ type Data = { today:string; timezone:string; registryVersion:string; effectiveDa
 type P2ReviewStatus = 'No Report' | 'Pending' | 'Processed'
 type P2Data = { objectCount:number; runCount:number; latestRun:null|{date:string;status:Status;due:number;resolved:number;selected:boolean}; review:{status:P2ReviewStatus;reports:number;pending:number;processed:number;latest:null|{date:string;status:'Pending'|'Processed';decision:string;reviewedAt:string}} }
 
-const data = intelligenceData as Data
-const p2 = p2StatusData as P2Data
+const snapshotOperations = (publicSnapshot as any).operations
+const data = (snapshotOperations?.radar || intelligenceData) as Data
+const p2 = (snapshotOperations?.p2 || p2StatusData) as P2Data
 const props = withDefaults(defineProps<{lang?:'en'|'zh'}>(), { lang:'en' })
 const zh = computed(() => props.lang === 'zh')
 const run = computed(() => data.currentRun)
@@ -35,6 +37,7 @@ const repoUrl = (path:string) => `https://github.com/joinwell52-AI/joinwell52/bl
 const registryPage = computed(() => withBase(zh.value ? '/zh/runtime/intelligence-sources' : '/en/runtime/intelligence-sources'))
 const scorePage = computed(() => withBase(zh.value ? '/zh/runtime/editorial-scorecard' : '/en/runtime/editorial-scorecard'))
 const runPath = computed(() => `research/intelligence/runs/${run.value.date.slice(0,4)}/${run.value.date.slice(5,7)}/${run.value.date}-intelligence.json`)
+const scanHref = computed(() => snapshotOperations?.radar ? withBase(`/${props.lang}/runtime/?date=${run.value.date}`) : repoUrl(runPath.value))
 const p2Label = computed(() => p2.review.status === 'No Report' ? copy.value.noReport : p2.review.status === 'Pending' ? copy.value.pendingReview : copy.value.processed)
 const p2Class = computed(() => p2.review.status === 'Pending' ? 's-waiting' : p2.review.status === 'Processed' ? 's-completed' : 's-skipped')
 const reviewDecision = computed(() => {
@@ -86,7 +89,7 @@ const reviewDecision = computed(() => {
           </article>
         </div>
       </section>
-      <footer><a :href="registryPage">{{ copy.registry }} ↗</a><a :href="repoUrl(runPath)">{{ copy.run }} ↗</a><a :href="scorePage">{{ copy.score }} ↗</a></footer>
+      <footer><a :href="registryPage">{{ copy.registry }} ↗</a><a :href="scanHref">{{ copy.run }} ↗</a><a :href="scorePage">{{ copy.score }} ↗</a></footer>
     </div>
   </section>
 </template>

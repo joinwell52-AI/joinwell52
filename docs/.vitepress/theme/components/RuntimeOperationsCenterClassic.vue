@@ -4,6 +4,7 @@ import { withBase } from 'vitepress'
 import runtimeData from '../../generated/runtime-records.json'
 import intelligenceData from '../../generated/research-intelligence.json'
 import legacyData from '../../generated/runtime-legacy-records.json'
+import publicSnapshot from '../../generated/runtime-v6-public-snapshot.json'
 
 type Status = 'Running' | 'Completed' | 'Blocked' | 'Failed' | 'Skipped' | 'Waiting'
 type Task = {
@@ -99,7 +100,19 @@ const staticRecordForFamily = (family: string) => (runtime.records?.[family] || 
 const recordForFamily = (family: string) => isToday.value && liveRecords.value[family]
   ? liveRecords.value[family]
   : staticRecordForFamily(family)
-const record = computed(() => recordForFamily('daily') || runtime.todayDaily)
+const record = computed(() => {
+  const current = recordForFamily('daily') || runtime.todayDaily
+  const published = (publicSnapshot as any).operations?.runtime?.todayDaily as RecordItem | undefined
+  const end = (r: RecordItem) => r.results?.publication?.metrics?.find(m => m.label === 'actual-end')?.value
+  // The verified snapshot can confirm this exact completed local publication,
+  // even while a later page-only synchronization is the latest transport batch.
+  if (props.localMode && current.status === 'Completed' && current.date === published?.date
+    && published.publicSyncStatus === 'Sent' && end(current) && end(current) === end(published)
+    && JSON.stringify(current.results?.publication?.artifacts?.map(a=>a.url)) === JSON.stringify(published.results?.publication?.artifacts?.map(a=>a.url))) {
+    return {...current, publicSyncStatus: 'Sent', githubCommit: published.githubCommit}
+  }
+  return current
+})
 
 const refreshLiveRecord = async () => {
   if (props.localMode || props.snapshotMode) return

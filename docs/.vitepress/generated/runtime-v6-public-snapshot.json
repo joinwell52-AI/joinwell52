@@ -1372,6 +1372,158 @@
           ]
         }
       }
+    },
+    "radar": {
+      "today": "2026-10-20",
+      "timezone": "Asia/Shanghai",
+      "registryVersion": "1.1",
+      "effectiveDate": "2026-10-20",
+      "registryPath": "research/intelligence/REGISTRY.json",
+      "currentRun": {
+        "date": "2026-10-20",
+        "status": "Completed",
+        "reason": "Resolved all 83 formal obligations: 78 Checked and 5 Inaccessible. Each active sample family covers at least two inspected samples. Retained six problem-normalized signals with zero pure change triggers. No topic selection, Deep Reading, experiments or production authorization performed; this is the local discovery result only.",
+        "reason_zh": "完成 83 项正式来源回执：78 项已检查、5 项不可访问；三类主动样本均覆盖至少两个。按研究问题去重后保留 6 条 Signal，纯变更触发为 0。未执行选题、深读、实验或生产授权；本结果仅为 discovery 本地阶段产物。",
+        "pipelines": [
+          {
+            "id": "ai-platform",
+            "label": "AI Platform Change Intelligence",
+            "label_zh": "AI 平台变更情报发现",
+            "status": "Completed",
+            "due": 12,
+            "checked": 12,
+            "inaccessible": [],
+            "failed": [],
+            "signals": 2,
+            "candidates": 0,
+            "selected": 0,
+            "rejected": 0,
+            "coveragePercent": 100,
+            "reason": "Every admitted object resolved with a receipt; inaccessible is not checked. Counts are object-level, with individual channel access in receipt-extractions.json. Signals remain unselected.",
+            "reason_zh": "每项准入对象均有回执收口，不可访问不计为已检查；数量按对象统计，逐通道访问见提取文件，Signal 均未选题。"
+          },
+          {
+            "id": "github-engineering",
+            "label": "GitHub Engineering Intelligence",
+            "label_zh": "GitHub 工程情报发现",
+            "status": "Completed",
+            "due": 62,
+            "checked": 60,
+            "inaccessible": [
+              {
+                "source": "researcher:travis-mcpeak",
+                "reason": "Registry obligation supplies no public URL; no admissible source can be accessed. No invented check."
+              },
+              {
+                "source": "researcher:josh-ma",
+                "reason": "Registry obligation supplies no public URL; no admissible source can be accessed. No invented check."
+              }
+            ],
+            "failed": [],
+            "signals": 1,
+            "candidates": 0,
+            "selected": 0,
+            "rejected": 0,
+            "coveragePercent": 100,
+            "reason": "Every admitted object resolved with a receipt; inaccessible is not checked. Counts are object-level, with individual channel access in receipt-extractions.json. Signals remain unselected.",
+            "reason_zh": "每项准入对象均有回执收口，不可访问不计为已检查；数量按对象统计，逐通道访问见提取文件，Signal 均未选题。"
+          },
+          {
+            "id": "published-research",
+            "label": "Published Research Intelligence",
+            "label_zh": "论文与研究成果情报发现",
+            "status": "Completed",
+            "due": 9,
+            "checked": 6,
+            "inaccessible": [
+              {
+                "source": "https://link.springer.com/journal/10458",
+                "reason": "HTTP 200 contains only Client Challenge / JavaScript verification, no journal evidence."
+              },
+              {
+                "source": "https://www.sciencedirect.com/journal/journal-of-systems-and-software",
+                "reason": "HTTP 403 Access Denied from ScienceDirect; no extracted journal content."
+              },
+              {
+                "source": "https://openreview.net/",
+                "reason": "Root is venue navigation only; following a relevant original forum returns browser verification. Source not counted Checked."
+              }
+            ],
+            "failed": [],
+            "signals": 3,
+            "candidates": 0,
+            "selected": 0,
+            "rejected": 0,
+            "coveragePercent": 100,
+            "reason": "Every admitted object resolved with a receipt; inaccessible is not checked. Counts are object-level, with individual channel access in receipt-extractions.json. Signals remain unselected.",
+            "reason_zh": "每项准入对象均有回执收口，不可访问不计为已检查；数量按对象统计，逐通道访问见提取文件，Signal 均未选题。"
+          }
+        ],
+        "columns": [
+          {
+            "id": "digital-employee",
+            "label": "数字员工",
+            "label_zh": "数字员工",
+            "decision": "Selected",
+            "signals": 2,
+            "candidates": 1,
+            "selectedItemId": "SIG-20261020-005",
+            "selectedTitle": "动态对抗揭示修复完成声明背后的过期证据",
+            "selectedTitle_zh": "动态对抗揭示修复完成声明背后的过期证据",
+            "reason": "一手失败基准可独立支持门槛 F；选择修复完成契约问题，不选择模型排名。尚无已核验官方仓库或独立复现。",
+            "reason_zh": "一手失败基准可独立支持门槛 F；选择修复完成契约问题，不选择模型排名。尚无已核验官方仓库或独立复现。"
+          },
+          {
+            "id": "industry-architecture",
+            "label": "行业架构",
+            "label_zh": "行业架构",
+            "decision": "Selected",
+            "signals": 2,
+            "candidates": 1,
+            "selectedItemId": "SIG-20261020-006",
+            "selectedTitle": "正确答案与成功辩论不能证明动作获得授权",
+            "selectedTitle_zh": "正确答案与成功辩论不能证明动作获得授权",
+            "reason": "MADBench 提供有边界的一手基准问题，另一来源的运营事故说明相同结果维度区别；答案正确或辩论成功不能替代动作授权。两场景不合并统计。",
+            "reason_zh": "MADBench 提供有边界的一手基准问题，另一来源的运营事故说明相同结果维度区别；答案正确或辩论成功不能替代动作授权。两场景不合并统计。"
+          },
+          {
+            "id": "open-source-engineering",
+            "label": "开源工程",
+            "label_zh": "开源工程",
+            "decision": "Selected",
+            "signals": 2,
+            "candidates": 1,
+            "selectedItemId": "SIG-20261020-004",
+            "selectedTitle": "运行时修复学习以实际续执行构造监督，并单列有害干预",
+            "selectedTitle_zh": "运行时修复学习以实际续执行构造监督，并单列有害干预",
+            "reason": "实现配套材料与一手方法及结果支持准入；选择修复监督和干预计量问题，不预先认定其普遍优于回滚或重试。",
+            "reason_zh": "实现配套材料与一手方法及结果支持准入；选择修复监督和干预计量问题，不预先认定其普遍优于回滚或重试。"
+          }
+        ]
+      }
+    },
+    "p2": {
+      "objectCount": 6,
+      "runCount": 1,
+      "latestRun": {
+        "date": "2026-10-20",
+        "status": "Completed",
+        "due": 6,
+        "resolved": 6,
+        "selected": true
+      },
+      "review": {
+        "status": "Pending",
+        "reports": 1,
+        "pending": 1,
+        "processed": 0,
+        "latest": {
+          "date": "2026-10-20",
+          "status": "Pending",
+          "decision": "",
+          "reviewedAt": ""
+        }
+      }
     }
   }
 }
