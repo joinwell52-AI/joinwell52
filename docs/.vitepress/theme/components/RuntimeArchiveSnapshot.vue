@@ -12,7 +12,11 @@ const cutoff = '2026-09-18'
 const operations = (snapshot as any).operations
 const selected = computed(() => requested.value || snapshot.snapshotDate || cutoff)
 const archive = computed(() => selected.value <= cutoff)
-const available = computed(() => selected.value === snapshot.snapshotDate && operations?.runtime)
+const selectedOperations = computed(() => selected.value === snapshot.snapshotDate ? operations : (snapshot as any).history?.[selected.value])
+const available = computed(() => selectedOperations.value?.runtime?.todayDaily?.date === selected.value)
+const publicDates = computed(() => [...new Set([cutoff, ...Object.keys((snapshot as any).history || {}), snapshot.snapshotDate].filter(Boolean))].sort())
+const previousDate = computed(() => publicDates.value.filter(date => date < selected.value).at(-1) || '')
+const nextDate = computed(() => publicDates.value.find(date => date > selected.value) || '')
 function readLocation() {
   requested.value = new URLSearchParams(window.location.search).get('date') || ''
   local.value = ['127.0.0.1', 'localhost'].includes(window.location.hostname)
@@ -33,8 +37,8 @@ onBeforeUnmount(() => { if (typeof window !== 'undefined') window.removeEventLis
   <LocalRuntimeBridge v-if="local && (!requested || requested >= '2026-09-30')" :lang="props.lang" :date="requested" @select-date="selectDate" />
   <RuntimeOperationsCenterCurrent v-else-if="archive" :key="selected" :lang="props.lang" />
   <RuntimeOperationsCenterClassic v-else-if="available" :key="selected" :lang="props.lang"
-    :local-runtime="operations.runtime" :local-intelligence="operations.intelligence" snapshot-mode
-    :selected-date="selected" :previous-date="cutoff" :next-date="''" min-date="2026-08-05"
+    :local-runtime="selectedOperations.runtime" :local-intelligence="selectedOperations.intelligence" snapshot-mode
+    :selected-date="selected" :previous-date="previousDate" :next-date="nextDate" min-date="2026-08-05"
     :max-date="snapshot.snapshotDate || ''" :today-date="snapshot.snapshotDate || ''"
     @select-date="selectDate" @date-input="selectDate" />
   <div v-else class="runtime-date-empty">

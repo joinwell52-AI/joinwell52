@@ -222,8 +222,8 @@ const history = computed<HistoryItem[]>(() => {
 const copy = computed(() => zh.value ? {
   kicker: props.snapshotMode ? '研究运行 V6 · 公开快照 · 数字研究员运营中心' : props.localMode ? '本地研究运行 V6 · 数字研究员运营中心' : 'RESEARCH RUNTIME CENTER V5.0 · 数字研究员运营中心',
   title: '数字工场运营中心',
-  lead: props.localMode ? (record.value.executionMode==='manual-all-tasks' ? '本次手动补做全部任务并执行真实发布。下表保留原计划时间，实际执行与复用依据记载在各项结果中。' : '按当天计划查看研究班次、三个栏目选题与成果。下方显示日常计划时间；本次试跑立即依次执行，实际开始与结束时间写在各班次结果中。') : '三个栏目分别选题；上午完成发现、阅读与分析，15:00 形成完整出版候选，20:00 只负责 GitHub 与网站发版。',
-  badge: props.snapshotMode ? '本地运行成果 · 公开快照（非实时）' : props.localMode ? (record.value.executionMode==='manual-all-tasks' ? '本地全部任务 · 手动执行 · 自动更新' : '本地真实试跑 · 自动更新') : 'Research Runtime Scheduler V3.0',
+  lead: props.localMode ? (record.value.executionMode==='manual-all-tasks' ? '本次手动补做全部任务并执行真实发布。下表保留原计划时间，实际执行与复用依据记载在各项结果中。' : ['manual-day','scheduled-local'].includes(record.value.executionMode||'') ? '按北京时间执行当天研究计划。下方保留各任务的计划时间，实际开始、结束和经过验证的成果记在各项结果中。' : '按当天计划查看研究班次、三个栏目选题与成果。下方显示日常计划时间；本次试跑立即依次执行，实际开始与结束时间写在各班次结果中。') : '三个栏目分别选题；上午完成发现、阅读与分析，15:00 形成完整出版候选，20:00 只负责 GitHub 与网站发版。',
+  badge: props.snapshotMode ? '本地运行成果 · 公开快照（非实时）' : props.localMode ? (record.value.executionMode==='manual-all-tasks' ? '本地全部任务 · 手动执行 · 自动更新' : ['manual-day','scheduled-local'].includes(record.value.executionMode||'') ? '本地研究任务 · 按计划执行 · 自动更新' : '本地真实试跑 · 自动更新') : 'Research Runtime Scheduler V3.0',
   charter: '查看 V5.0 运行规范',
   operations: '今日运营概况',
   progress: '完成进度',
@@ -257,7 +257,7 @@ const copy = computed(() => zh.value ? {
   productionLead: 'Skill 05 写作 → 06 配图 → 07 证据与引用 → 08 出版编辑',
   noCandidate: '尚未形成出版候选',
   release: '20:00 晚间发版',
-  releaseLead: props.localMode ? (record.value.executionMode==='manual-all-tasks' ? '本地验证完成后，由公开同步控制器合并双语文章、正式题图及评分，执行真实发布；当前公开同步状态见运行证据。' : '消费已验证完整候选，记录本地发布准入；本次试跑不提交或推送 GitHub。') : '只消费完整出版候选，更新中英文文章、索引、网站并验证 GitHub 提交。',
+  releaseLead: props.localMode ? (['manual-all-tasks','manual-day','scheduled-local'].includes(record.value.executionMode||'') ? '本地验证完成后，由公开同步控制器合并双语文章、正式题图及运行数据，执行真实发布；当前公开同步状态见运行证据。' : '消费已验证完整候选，记录本地发布准入；本次试跑不提交或推送 GitHub。') : '只消费完整出版候选，更新中英文文章、索引、网站并验证 GitHub 提交。',
   noRelease: '尚未执行发布',
   verify: '运行证据',
   github: props.localMode ? '本地记录校验' : 'GitHub 验证',
@@ -341,6 +341,7 @@ const columnClass = (column: Column) => column.decision === 'Selected'
 const dayState = computed(() => {
   if (completedCount.value === rows.value.length && rows.value.length) return copy.value.completed
   if (risk.value) return copy.value.attention
+  if (rows.value.every(row => row.status === 'Waiting')) return copy.value.waiting
   return copy.value.inProgress
 })
 const recordPath = (item: { date: string }) => {
@@ -358,7 +359,7 @@ const evidenceHref = (item: Evidence) => /^https?:\/\//.test(item.source)
   : `https://github.com/joinwell52-AI/joinwell52/blob/main/${item.source}`
 const currentTime = computed(() => activeRow.value?.task.schedule.time || '—')
 const currentName = computed(() => activeRow.value ? taskName(activeRow.value.task) : copy.value.noMore)
-const shortCommit = computed(() => props.localMode ? (record.value.executionMode==='manual-all-tasks' ? (record.value.githubCommit!=='pending' ? '已公开 · '+record.value.githubCommit.slice(0,10) : record.value.publicSyncStatus==='Waiting' ? '待公开同步' : record.value.publicSyncStatus||'待公开同步') : '试跑未推送') : record.value.githubCommit && record.value.githubCommit !== 'pending'
+const shortCommit = computed(() => props.localMode ? (['manual-all-tasks','manual-day','scheduled-local'].includes(record.value.executionMode||'') ? (record.value.githubCommit!=='pending' ? '已公开 · '+record.value.githubCommit.slice(0,10) : record.value.publicSyncStatus==='Waiting' ? '待公开同步' : record.value.publicSyncStatus||'待公开同步') : '试跑未推送') : record.value.githubCommit && record.value.githubCommit !== 'pending'
   ? record.value.githubCommit.slice(0, 10)
   : copy.value.waiting)
 </script>
@@ -409,7 +410,7 @@ const shortCommit = computed(() => props.localMode ? (record.value.executionMode
           <article>
             <span>{{ copy.nextTask }}</span>
             <strong>{{ props.localMode ? (nextRow ? taskName(nextRow.task) : copy.noMore) : currentTime }}</strong>
-            <small>{{ props.localMode ? (nextRow ? (zh?'前一步通过后立即执行':'Runs immediately after admission') : '') : currentName }}</small>
+            <small>{{ props.localMode ? (nextRow ? (['manual-day','scheduled-local'].includes(record.executionMode||'') ? nextRow.task.schedule.time : zh?'前一步通过后立即执行':'Runs immediately after admission') : '') : currentName }}</small>
           </article>
         </div>
       </section>
