@@ -1,0 +1,79 @@
+---
+title: Why did duplicating synthetic samples halve aggregate efficiency?
+date: '2026-10-22'
+column: open-source-engineering
+category: daily
+article_type: research-note
+edition: research-center
+research_question: 缺失答案和样本数为何会改变同一评分契约下的结果？（Why can missing answers and sample count change scoring outcomes?）
+summary: An original-source synthetic probe exposes sample-count dependence when conditional mean quality is divided by total communication; the impact on paper tables remains unknown.
+sources: MASBench paper and pinned companion code; 2026-10-22 internal scorer probe
+pageClass: "runtime-v6-article"
+item_id: "SIG-20261022-004"
+lifecycle: "Published"
+cover: "/assets/covers/daily-2026-10-22-sig-20261022-004-2026-10-22-scoring-denominator-cover.png"
+evidence_status: "Completed"
+citation_status: "Completed"
+editing_status: "Completed"
+publication_authorized: true
+---
+
+<ArticleCover
+  image="/assets/covers/daily-2026-10-22-sig-20261022-004-2026-10-22-scoring-denominator-cover.png"
+  kicker="Research"
+  title="Why did duplicating synthetic samples halve aggregate efficiency?"
+  summary="An original-source synthetic probe exposes sample-count dependence when conditional mean quality is divided by total communication; the impact on paper tables remains unknown."
+  version="2026-10-22"
+  languageHref="/zh/engineering/2026-10-22-scoring-denominator"
+  languageLabel="中文"
+/>
+
+<ArticleTableScroll language="en" />
+
+<style>.runtime-v6-article .vp-doc h1[id] { display: none; }</style>
+
+
+# Why did duplicating synthetic samples halve aggregate efficiency?
+
+Duplicate a set of synthetic scoring records without changing them: mean quality and mean communication stay constant, but aggregate efficiency falls from 2.5 to 1.25. That is an internal scorer-probe result, not an agent becoming slower. Engineers reproducing multi-agent evaluations need to pin missing-value handling, tokenization and aggregation denominators before deciding whether two efficiency values are comparable. This note supplies that narrowly scoped check.
+
+## The denominator changed
+
+At the pinned MASBench revision, aggregate efficiency divides mean F1 by total communication across samples and multiplies by 1,000. It is not an average of separately calculated per-instance efficiencies. [Pinned aggregation source](https://github.com/BUPT-GAMMA/MASBench/blob/c0301a650db95958924bb080192c09fef39389a5/Reasoning/src/run_asymmetric_agents.py)
+
+The same-day Analysis stage executed the original scoring functions and exact dedented aggregation statements. These are synthetic records from that existing internal experiment, with communication set to 100 for every record:
+
+| Input | Mean F1 | Mean traffic | Efficiency |
+|---|---|---|---|
+| One perfect | 1 | 100 | 10 |
+| Perfect + zero | 0.5 | 100 | 2.5 |
+| Same pair twice | 0.5 | 100 | 1.25 |
+| Perfect + absent | 1 | 100 | 5 |
+
+Source: internal isolated original-source probe, 2026-10-22. Communication values are synthetic, not measured model usage. In the third row, total communication rises from 200 to 400 while mean F1 remains 0.5, halving the result. Sample count changed; nothing here establishes deterioration of a collaboration mechanism.
+
+For an intended fixed-sample-count use, the aggregate quantity can have its own interpretation. Cross-count comparisons require more care: a mean numerator divided by a total denominator makes sample count part of the scale. Inspect purpose and denominator before comparing values directly. This note does not infer any change in real algorithm rankings.
+
+## Missing answers change what the mean describes
+
+The fourth row reveals another distinction. The inspected runner represents absent answers as ungraded and filters them out of mean F1, while retaining their communication in the total. A perfect answer plus an absent answer therefore yields current mean F1 of 1. An explicit model of the paper appendix's missing-as-zero rule yields 0.5. [Paper scoring appendix](https://arxiv.org/html/2610.04672)
+
+The latter value models a stated rule; it does not reproduce the complete paper evaluation program. It separates contracts: averaging only answered instances measures conditional quality; assigning zero to absent answers also incorporates coverage loss. Conditional quality should be reported with answer coverage and total sample count, so a high mean does not hide its population.
+
+## A metric name does not identify its tokenizer
+
+The internal probe also executed pinned normalization and scoring functions. Synthetic strings “red-blue” and “red blue” scored zero: removing punctuation joins the former into one token while the latter retains two. “the cat” and “cat” scored one because articles are removed. These are string-processing controls, not tests of natural-language reasoning. [Pinned metric source](https://github.com/BUPT-GAMMA/MASBench/blob/c0301a650db95958924bb080192c09fef39389a5/Reasoning/src/metrics.py)
+
+The paper's boundary-splitting and article-retention description differs from the inspected implementation. The repository already warns about legacy scoring conventions; this is not an undisclosed vulnerability. [Pinned README](https://github.com/BUPT-GAMMA/MASBench/blob/c0301a650db95958924bb080192c09fef39389a5/README.md) Using the same metric name is insufficient without pinning actual normalization, tokenization and aggregation code.
+
+## What should be bound before reproduction?
+
+Our recommendation is to retain paper, code revision, prompts, data split, scorer and aggregation scripts as one versioned identity. Report total samples, absent answers, conditional quality, communication scope and efficiency denominator separately. Computing-cost claims also need a distinction between transmitted messages and full generation cost; no model ran here, so this study supplies no end-to-end cost conclusion.
+
+This is deliberately a bounded research note. The paper and companion source belong to one research project: different material forms do not constitute two independent validations. Public primary-source facts describe what the paper and repository state. Internal experimental evidence describes the original functions and statements executed on our synthetic inputs. Interpretation connects those observations without claiming erroneous paper tables or framework superiority.
+
+## Which effects remain unknown?
+
+The principal public materials are the research team's [preprint, 2610.04672v1, 2026-10-03](https://arxiv.org/html/2610.04672) and [source revision c0301a6](https://github.com/BUPT-GAMMA/MASBench/tree/c0301a650db95958924bb080192c09fef39389a5). Internal execution used Windows 11 and Python 3.13.15. Only original functions and aggregation statements ran with required standard-library bindings, not the complete Reasoning runner, language models, dataset or paper tables. No new experiment ran during Production.
+
+The available material does not fully bind the published tables to exact code, prompts and aggregation artifacts. The numerical effect and any ranking change remain unknown. Publication, citation or executable source cannot supply that binding; find the exact table-producing artifacts before estimating effects.
