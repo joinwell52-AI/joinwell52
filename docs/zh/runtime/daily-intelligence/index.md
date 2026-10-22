@@ -11,6 +11,15 @@ outline: false
 日期按 **Asia/Shanghai** 倒序排列。点击日期进入当天完整报告与原始公开来源。
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-10-22">
+    <time>2026-10-22</time>
+    <div>
+      <strong>Agent 核心研究与竞品动态</strong>
+      <span>LiteLLM 供应链事件 · 赵越 shell 写入门 · Agents 工作区检查 · Codex OAuth/远端凭据 · Paperclip Stop 与延期状态 · StaffDeck 安装产物 · OpenHands 密钥恢复 · Superset 子会话 · UniEmployee 证据交付 · AG2 行为验证</span>
+    </div>
+    <b>查看 →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-09-18">
     <time>2026-09-18</time>
     <div>

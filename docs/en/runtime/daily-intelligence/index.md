@@ -11,6 +11,15 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-10-22">
+    <time>2026-10-22</time>
+    <div>
+      <strong>Agent Research & Competitor Intelligence</strong>
+      <span>LiteLLM artifact compromise · Yue Zhao shell-write gate · Agents workspace checks · Codex OAuth/remote credentials · Paperclip Stop and deferred delivery · StaffDeck installers · OpenHands key recovery · Superset child sessions · UniEmployee evidence · AG2 behavioral verification</span>
+    </div>
+    <b>View →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-09-18">
     <time>2026-09-18</time>
     <div>
