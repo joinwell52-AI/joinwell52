@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="920" viewBox="0 0 1600 920" role="img" aria-labelledby="title desc">
+<title id="title">CodeFlowMu V2.0.4 同一任务从 active 到 review 的证据关联诊断变化</title>
+<desc id="desc">TASK-20260827-030-PM-to-QA 在 active 阶段 REPORT 相关边为当前阶段不适用；进入 review 后 REPORT 到 Task 和 REPORT 到 REVIEW 自动变为已关联，EVAL 到 REVIEW 因 eval_not_present 保持不适用。</desc>
+<rect width="1600" height="920" rx="32" fill="#08111f"/>
+<text x="70" y="72" fill="#e7f0ff" font-size="34" font-family="Arial, sans-serif" font-weight="700">同一任务，两次诊断：状态不是静态标签，而是随生命周期重算的证据投影</text>
+<text x="70" y="114" fill="#93a8c7" font-size="22" font-family="Arial, sans-serif">TASK-20260827-030-PM-to-QA · CodeFlowMu V2.0.4 · 根据两次本地实机截图结构化整理</text>
+
+<rect x="70" y="160" width="680" height="650" rx="24" fill="#0d1a2c" stroke="#234160" stroke-width="2"/>
+<text x="110" y="215" fill="#64b5ff" font-size="28" font-family="Arial, sans-serif" font-weight="700">阶段 A · active</text>
+<text x="110" y="252" fill="#c4d3e8" font-size="20" font-family="Arial, sans-serif">当前正式位置：fcop/_lifecycle/active/</text>
+<text x="110" y="296" fill="#8fd8a5" font-size="22" font-family="Arial, sans-serif">已关联 4 · 缺失 0 · 冲突 0 · 仅旁观 0</text>
+<g font-family="Arial, sans-serif" font-size="20">
+<text x="115" y="352" fill="#dbe8f7">任务修订 → attempt</text><text x="545" y="352" fill="#8fd8a5">已关联</text>
+<text x="115" y="410" fill="#dbe8f7">attempt → lease</text><text x="545" y="410" fill="#8fd8a5">已关联</text>
+<text x="115" y="468" fill="#dbe8f7">attempt → 执行</text><text x="545" y="468" fill="#8fd8a5">已关联</text>
+<text x="115" y="526" fill="#dbe8f7">执行 → 工具证据</text><text x="545" y="526" fill="#8fd8a5">已关联</text>
+<text x="115" y="584" fill="#dbe8f7">REPORT → Task</text><text x="485" y="584" fill="#e3c779">当前阶段不适用</text>
+<text x="115" y="642" fill="#93a8c7" font-size="16">lifecycle_does_not_require_report</text>
+<text x="115" y="698" fill="#dbe8f7">REPORT → REVIEW</text><text x="485" y="698" fill="#e3c779">当前阶段不适用</text>
+<text x="115" y="756" fill="#93a8c7" font-size="16">report_not_available</text>
+</g>
+
+<path d="M770 485 H830" stroke="#6ca8ff" stroke-width="5" marker-end="url(#arrow)"/>
+<text x="773" y="455" fill="#9fc4ff" font-size="18" font-family="Arial, sans-serif">同一任务进入审查</text>
+<defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 Z" fill="#6ca8ff"/></marker></defs>
+
+<rect x="850" y="160" width="680" height="650" rx="24" fill="#0d1a2c" stroke="#234160" stroke-width="2"/>
+<text x="890" y="215" fill="#64b5ff" font-size="28" font-family="Arial, sans-serif" font-weight="700">阶段 B · review</text>
+<text x="890" y="252" fill="#c4d3e8" font-size="20" font-family="Arial, sans-serif">当前正式位置：fcop/_lifecycle/review/</text>
+<g font-family="Arial, sans-serif" font-size="20">
+<text x="895" y="352" fill="#dbe8f7">attempt → lease</text><text x="1325" y="352" fill="#8fd8a5">已关联</text>
+<text x="895" y="410" fill="#dbe8f7">attempt → 执行</text><text x="1325" y="410" fill="#8fd8a5">已关联</text>
+<text x="895" y="468" fill="#dbe8f7">执行 → 工具证据</text><text x="1325" y="468" fill="#8fd8a5">已关联</text>
+<text x="895" y="526" fill="#dbe8f7">REPORT → Task</text><text x="1325" y="526" fill="#8fd8a5">已关联</text>
+<text x="895" y="584" fill="#dbe8f7">REPORT → REVIEW</text><text x="1325" y="584" fill="#8fd8a5">已关联</text>
+<text x="895" y="642" fill="#dbe8f7">EVAL → REVIEW</text><text x="1265" y="642" fill="#e3c779">当前阶段不适用</text>
+<text x="895" y="700" fill="#93a8c7" font-size="16">eval_not_present</text>
+<text x="895" y="758" fill="#b7c9e2" font-size="18">可操作：复制对账摘要 · 重新检查证据关联</text>
+</g>
+
+<rect x="120" y="835" width="1360" height="48" rx="14" fill="#101f33" stroke="#29496d"/>
+<text x="800" y="867" text-anchor="middle" fill="#f1d58b" font-size="20" font-family="Arial, sans-serif" font-weight="700">边界：此结论只描述证据关系，不表示任务已交付或验证通过。</text>
+</svg>

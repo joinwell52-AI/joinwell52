@@ -1,0 +1,9 @@
+sequence,collection_or_snapshot,observation,result,count_or_value,public_interpretation
+1,runtime-targeted-combination,"report attribution and projection",PASS,"86/86","The named runtime paths were checked."
+2,panel-shell-targeted,"panel projection",PASS,"31/31","The named display paths were checked."
+3,root-report-resubmission,"same final report submitted again",PASS,"1/1; ok/no_change","Duplicate submission does not create a second completion fact."
+4,record-precedence,"superseded or invalid final records were overshadowed by main-report rules",FAIL,"55/57","The first implementation had an explicit ordering defect."
+5,record-precedence-after-fix,"record ordering corrected",PASS,"57/57 plus 14/14 semantic checks","The repair was verified by the named collections."
+6,report-issue-panel-mobile-integration,"cross-surface projection",PASS,"221/221","Named integration paths agreed after the repair."
+7,live-projection-snapshot,"current root report; child reports; historical report records","OBSERVED,""1; 4; 12"","History was retained separately from current report projection."
+8,live-issue-snapshot,"resolved historical issues; open issue; current badge",OBSERVED,""6; 1; 1"","Resolved history did not erase the one currently open issue."

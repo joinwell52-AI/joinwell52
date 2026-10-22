@@ -1,0 +1,106 @@
+[
+  {
+    "commit": "919c3b48cba31e376b45e60506fa14e4bbcfcb23",
+    "rows": [
+      {
+        "id": "P0",
+        "verdict": "protection_verified",
+        "effects": 1,
+        "status": "succeeded",
+        "retry_code": "APPROVAL_ALREADY_CONSUMED"
+      },
+      {
+        "id": "P1",
+        "verdict": "state_response_split_reproduced",
+        "status": "approved",
+        "effects": 0,
+        "approvedEventPresent": false,
+        "error_code": "EISDIR"
+      },
+      {
+        "id": "P2",
+        "verdict": "pre_effect_block_with_state_split",
+        "status": "executing",
+        "effects": 0,
+        "error_code": "EISDIR"
+      },
+      {
+        "id": "P3",
+        "verdict": "duplicate_local_effect_reproduced",
+        "afterFaultStatus": "failed",
+        "retainedFirstEvidence": [
+          {
+            "marker": "local-only",
+            "outcome": "completed"
+          }
+        ],
+        "effectsBeforeRetry": 1,
+        "effectsAfterRetry": 2,
+        "finalStatus": "succeeded",
+        "error_code": "EISDIR"
+      },
+      {
+        "id": "P4",
+        "verdict": "contract_scope_characterized",
+        "workspaceConflicts": [
+          "workspace"
+        ],
+        "syntheticAccountEnvConflicts": [],
+        "sameDigest": true,
+        "limitation": "Synthetic unrecognized MCP env field; not a real provider account switch or proof of authorization bypass."
+      }
+    ]
+  },
+  {
+    "commit": "f0f42f01c8f6d55bfe3d32e108f607841a2900d9",
+    "rows": [
+      {
+        "id": "P0",
+        "verdict": "protection_verified",
+        "effects": 1,
+        "status": "succeeded",
+        "retry_code": "APPROVAL_ALREADY_CONSUMED"
+      },
+      {
+        "id": "P1",
+        "verdict": "state_response_split_reproduced",
+        "status": "approved",
+        "effects": 0,
+        "approvedEventPresent": false,
+        "error_code": "EISDIR"
+      },
+      {
+        "id": "P2",
+        "verdict": "pre_effect_block_with_state_split",
+        "status": "executing",
+        "effects": 0,
+        "error_code": "EISDIR"
+      },
+      {
+        "id": "P3",
+        "verdict": "duplicate_local_effect_reproduced",
+        "afterFaultStatus": "failed",
+        "retainedFirstEvidence": [
+          {
+            "marker": "local-only",
+            "outcome": "completed"
+          }
+        ],
+        "effectsBeforeRetry": 1,
+        "effectsAfterRetry": 2,
+        "finalStatus": "succeeded",
+        "error_code": "EISDIR"
+      },
+      {
+        "id": "P4",
+        "verdict": "contract_scope_characterized",
+        "workspaceConflicts": [
+          "workspace"
+        ],
+        "syntheticAccountEnvConflicts": [],
+        "sameDigest": true,
+        "limitation": "Synthetic unrecognized MCP env field; not a real provider account switch or proof of authorization bypass."
+      }
+    ]
+  }
+]

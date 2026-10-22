@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1376" height="768" viewBox="0 0 1376 768">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07182e"/><stop offset="1" stop-color="#102f52"/></linearGradient>
+  </defs>
+  <rect width="1376" height="768" fill="url(#bg)"/>
+  <g font-family="Inter,Segoe UI,Microsoft YaHei,sans-serif">
+    <text x="104" y="92" fill="#7fc5ff" font-size="24" font-weight="700">INDUSTRY ARCHITECTURE · DAILY RESEARCH · 2026-08-07</text>
+    <text x="104" y="150" fill="#ffffff" font-size="46" font-weight="800">Role-Aware Heterogeneous Agent Resource Plane</text>
+    <text x="104" y="193" fill="#b9d6ee" font-size="22">Schedule control, runners, and inference by role — then reclaim capacity reversibly.</text>
+
+    <g transform="translate(100,260)">
+      <rect x="0" y="0" width="250" height="118" rx="20" fill="#143653" stroke="#4ca8eb" stroke-width="3"/>
+      <text x="125" y="40" text-anchor="middle" fill="#7fc5ff" font-size="18" font-weight="700">WORKFLOW INPUT</text>
+      <text x="125" y="74" text-anchor="middle" fill="#fff" font-size="26" font-weight="800">Role Classifier</text>
+      <text x="125" y="101" text-anchor="middle" fill="#bad6ea" font-size="15">role · burst · concurrency · visibility</text>
+    </g>
+    <text x="370" y="330" fill="#65b7f3" font-size="42">→</text>
+
+    <g transform="translate(430,238)">
+      <rect x="0" y="0" width="235" height="155" rx="20" fill="#1a3045" stroke="#58d2a2" stroke-width="3"/>
+      <text x="117" y="38" text-anchor="middle" fill="#79e6b8" font-size="18" font-weight="700">CONTROL POOL</text>
+      <text x="117" y="76" text-anchor="middle" fill="#fff" font-size="27" font-weight="800">PM / QA / Orchestrator</text>
+      <text x="117" y="111" text-anchor="middle" fill="#c7eadc" font-size="16">Low tail latency</text>
+      <text x="117" y="136" text-anchor="middle" fill="#c7eadc" font-size="16">Isolate before reclaiming</text>
+    </g>
+    <g transform="translate(430,430)">
+      <rect x="0" y="0" width="235" height="155" rx="20" fill="#1a3045" stroke="#f2bb55" stroke-width="3"/>
+      <text x="117" y="38" text-anchor="middle" fill="#ffd36b" font-size="18" font-weight="700">RUNNER POOL</text>
+      <text x="117" y="76" text-anchor="middle" fill="#fff" font-size="27" font-weight="800">Tools / Workers</text>
+      <text x="117" y="111" text-anchor="middle" fill="#ffe5a8" font-size="16">Burst and locality sensitive</text>
+      <text x="117" y="136" text-anchor="middle" fill="#ffe5a8" font-size="16">Bounded reclaim only</text>
+    </g>
+    <g transform="translate(720,334)">
+      <rect x="0" y="0" width="235" height="155" rx="20" fill="#1a3045" stroke="#8ba6ff" stroke-width="3"/>
+      <text x="117" y="38" text-anchor="middle" fill="#a8baff" font-size="18" font-weight="700">INFERENCE POOL</text>
+      <text x="117" y="76" text-anchor="middle" fill="#fff" font-size="27" font-weight="800">GPU Services</text>
+      <text x="117" y="111" text-anchor="middle" fill="#d4dcff" font-size="16">Workload-specific consolidation</text>
+      <text x="117" y="136" text-anchor="middle" fill="#d4dcff" font-size="16">Do not trust average idle alone</text>
+    </g>
+
+    <path d="M665 318 C695 318 695 318 720 360" fill="none" stroke="#65b7f3" stroke-width="3"/>
+    <path d="M665 508 C695 508 695 508 720 466" fill="none" stroke="#65b7f3" stroke-width="3"/>
+
+    <g transform="translate(1015,270)">
+      <rect x="0" y="0" width="250" height="170" rx="22" fill="#3a2d18" stroke="#f2bb55" stroke-width="4"/>
+      <text x="125" y="39" text-anchor="middle" fill="#ffd36b" font-size="18" font-weight="700">ADAPTIVE RECLAIM LOOP</text>
+      <text x="125" y="76" text-anchor="middle" fill="#fff" font-size="25" font-weight="800">Observe → Reclaim → Retreat</text>
+      <text x="125" y="110" text-anchor="middle" fill="#ffe5a8" font-size="16">phase · contention · tail latency</text>
+      <text x="125" y="137" text-anchor="middle" fill="#ffe5a8" font-size="16">record threshold crossing</text>
+      <text x="125" y="160" text-anchor="middle" fill="#ffe5a8" font-size="16">reversible policy, not static packing</text>
+    </g>
+    <path d="M955 410 L1015 355" fill="none" stroke="#f2bb55" stroke-width="3" marker-end="url(#none)"/>
+    <path d="M1140 455 C1105 545 895 610 765 560" fill="none" stroke="#f2bb55" stroke-width="3" stroke-dasharray="8 7"/>
+    <text x="949" y="607" fill="#ffd36b" font-size="17" font-weight="700">RETREAT WHEN THE OPERATING REGIME CHANGES</text>
+
+    <g transform="translate(1015,500)">
+      <rect x="0" y="0" width="250" height="100" rx="18" fill="#33213d" stroke="#d891ff" stroke-width="3"/>
+      <text x="125" y="36" text-anchor="middle" fill="#e3adff" font-size="18" font-weight="700">INDEPENDENT TRUST GATE</text>
+      <text x="125" y="66" text-anchor="middle" fill="#fff" font-size="18">tenant · credential · sandbox</text>
+      <text x="125" y="88" text-anchor="middle" fill="#e8d4f2" font-size="15">business priority ≠ efficiency signal</text>
+    </g>
+
+    <text x="104" y="665" fill="#ffffff" font-size="25" font-weight="700">Key boundary:</text>
+    <text x="250" y="665" fill="#ffd36b" font-size="25" font-weight="800">efficient collocation ≠ authorized collocation</text>
+    <text x="104" y="714" fill="#9fc0d9" font-size="15">Research Center architecture synthesis based on Q-20260807-02 Research Object. No fixed threshold or unsupported performance value is encoded.</text>
+  </g>
+</svg>

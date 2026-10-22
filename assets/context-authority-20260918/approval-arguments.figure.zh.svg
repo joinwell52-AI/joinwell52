@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="t d">
+  <title id="t">两个版本对验证后参数的不同处理</title><desc id="d">v0.22.2 允许原始参数经过条件策略后，在验证改变值的情况下继续执行；v0.22.3 把变化后的参数送入人工审批。</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffdf8"/><stop offset="1" stop-color="#f3f5ff"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-opacity=".12"/></filter></defs>
+  <rect width="1200" height="620" rx="32" fill="url(#bg)"/>
+  <text x="70" y="66" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="700" fill="#17213d">同一个原始请求，验证改变参数后会发生什么？</text>
+  <g font-family="Microsoft YaHei, sans-serif" filter="url(#s)">
+    <rect x="70" y="112" width="1060" height="190" rx="25" fill="#fff" stroke="#d9dfef"/>
+    <text x="105" y="153" font-size="24" font-weight="700" fill="#17213d">v0.22.2</text>
+    <rect x="105" y="181" width="190" height="76" rx="20" fill="#173fbf"/><text x="200" y="227" text-anchor="middle" font-size="21" fill="#fff">原始参数 {}</text>
+    <path d="M310 219H410" stroke="#173fbf" stroke-width="7"/><path d="m402 207 18 12-18 12" fill="none" stroke="#173fbf" stroke-width="7"/>
+    <rect x="430" y="181" width="210" height="76" rx="20" fill="#fff7e5" stroke="#e39b22" stroke-width="3"/><text x="535" y="227" text-anchor="middle" font-size="21" fill="#7c4a00">策略看到 {}</text>
+    <path d="M655 219H755" stroke="#7d65d6" stroke-width="7"/><path d="m747 207 18 12-18 12" fill="none" stroke="#7d65d6" stroke-width="7"/>
+    <rect x="775" y="181" width="315" height="76" rx="20" fill="#eaf0ff" stroke="#173fbf" stroke-width="3"/><text x="932" y="214" text-anchor="middle" font-size="20" fill="#173fbf">函数执行</text><text x="932" y="241" text-anchor="middle" font-size="18" fill="#46506a">target = protected</text>
+    <rect x="70" y="332" width="1060" height="210" rx="25" fill="#fff" stroke="#d9dfef"/>
+    <text x="105" y="374" font-size="24" font-weight="700" fill="#17213d">v0.22.3</text>
+    <rect x="105" y="407" width="190" height="76" rx="20" fill="#173fbf"/><text x="200" y="453" text-anchor="middle" font-size="21" fill="#fff">原始参数 {}</text>
+    <path d="M310 445H410" stroke="#173fbf" stroke-width="7"/><path d="m402 433 18 12-18 12" fill="none" stroke="#173fbf" stroke-width="7"/>
+    <rect x="430" y="407" width="230" height="76" rx="20" fill="#eaf0ff" stroke="#7d65d6" stroke-width="3"/><text x="545" y="438" text-anchor="middle" font-size="20" fill="#17213d">验证发现变化</text><text x="545" y="466" text-anchor="middle" font-size="18" fill="#46506a">{} → protected</text>
+    <path d="M675 445H775" stroke="#e39b22" stroke-width="7"/><path d="m767 433 18 12-18 12" fill="none" stroke="#e39b22" stroke-width="7"/>
+    <rect x="795" y="397" width="295" height="96" rx="22" fill="#fff7e5" stroke="#e39b22" stroke-width="4"/><text x="942" y="436" text-anchor="middle" font-size="21" font-weight="700" fill="#7c4a00">转入人工审批</text><text x="942" y="466" text-anchor="middle" font-size="18" fill="#7c4a00">函数尚未执行</text>
+  </g>
+  <text x="70" y="584" font-family="Microsoft YaHei, sans-serif" font-size="18" fill="#59627a">本图概括默认值、类型转换与应用 validator 三类对照；完全不变的参数仍沿用条件策略。</text>
+</svg>

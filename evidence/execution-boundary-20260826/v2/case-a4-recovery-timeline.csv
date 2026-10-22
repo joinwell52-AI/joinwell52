@@ -1,0 +1,10 @@
+time_bjt,actor_or_component,event,result,public_interpretation
+2026-08-25T14:35:22+08:00,ADMIN,"limited recovery directive became effective",effective,"PM received authority to repair lifecycle transition, wake-up, and report-gate behavior; it was not a general takeover."
+2026-08-25T14:35:29+08:00,governance-delivery,"PM notification and continuation delivered",success,"The authorized recovery context reached the responsible role."
+2026-08-25T14:43:54+08:00,OPS,"recovery dispatch recorded",observed,"One downstream work item re-entered controlled execution."
+2026-08-25T14:47:32+08:00,DEV,"recovery dispatch recorded",observed,"A second downstream work item re-entered controlled execution."
+2026-08-25T14:48:25+08:00,QA,"downstream item moved from inbox to active",observed,"This release precedes the two upstream terminal reports below; timestamp order alone cannot prove the causal precondition."
+2026-08-25T14:48:42+08:00,OPS,"terminal report submitted",observed,"Upstream evidence arrived."
+2026-08-25T14:49:37+08:00,DEV,"terminal report submitted",observed,"Second upstream evidence arrived."
+2026-08-25T15:30:36+08:00,runtime-repair,"active-before-wake repair committed",completed,"The recovery became an explicit code-and-test change."
+2026-08-25T15:30:36+08:00,repair-verification,"lifecycle; dispatcher; fallback; PM routing; skill routing",PASS,"16/16; 46/46; 4/4; 7/7; 5/5","The named repair collections passed; type checking reported no errors."

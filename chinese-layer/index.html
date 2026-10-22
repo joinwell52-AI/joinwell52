@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#f5f5f5" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="中文层" />
+  <title>Chinese Layer 中文层</title>
+  <link rel="manifest" href="./manifest.webmanifest?v=0.6.5" />
+  <link rel="stylesheet" href="./styles.css?v=0.6.5" />
+</head>
+<body>
+  <section id="launcherShell" class="launcher-shell">
+    <header class="launcher-topbar">
+      <div>
+        <div class="eyebrow">CHINESE LAYER <span id="launcherVersion" class="version-badge">v0.6.5</span></div>
+        <h1>中文层</h1>
+      </div>
+    </header>
+
+    <main class="launcher-main">
+      <section id="launcherMine">
+        <div class="launcher-heading">
+          <div>
+            <div class="hero-label">MY APPS</div>
+            <h2>我的 App</h2>
+          </div>
+          <button id="openCatalog" class="primary-btn">＋ 添加 App</button>
+        </div>
+        <p class="launcher-intro">选择已经加入的 App，直接中文浏览。</p>
+        <div id="installedApps" class="installed-apps"></div>
+      </section>
+
+      <section id="launcherCatalog" class="hidden">
+        <div class="catalog-header">
+          <button id="catalogBack" class="ghost-btn">‹ 返回</button>
+          <div>
+            <div class="hero-label">APP CATALOG</div>
+            <h2>选择 App</h2>
+          </div>
+        </div>
+        <p class="launcher-intro">加入后会留在“我的 App”列表里。</p>
+        <div id="catalogApps" class="catalog-apps"></div>
+      </section>
+    </main>
+  </section>
+
+  <div id="devShell" class="app-shell hidden">
+    <button id="devBackApps" class="layer-back">‹ 我的 App</button>
+    <header class="topbar">
+      <div class="brand">
+        <div class="dev-logo">DEV</div>
+        <div>
+          <div class="eyebrow">CHINESE LAYER <span id="versionBadge" class="version-badge">v0.6.5</span></div>
+          <h1 id="pageTitle">主页</h1>
+        </div>
+      </div>
+      <button id="langToggle" class="ghost-btn">中文</button>
+    </header>
+
+    <div id="updateBanner" class="update-banner hidden" role="status">
+      <span id="updateText">发现新版本</span>
+      <button id="updateNow" class="update-btn">立即更新</button>
+    </div>
+
+    <main>
+      <section id="homeView" class="view active">
+        <div class="feed-tabs">
+          <button class="feed-tab" data-feed="popular">发现</button>
+          <button class="feed-tab active" data-feed="latest">最新</button>
+        </div>
+        <div id="status" class="status">正在载入 DEV…</div>
+        <div id="articleList" class="article-list"></div>
+      </section>
+
+      <section id="meView" class="view">
+        <div id="meSetup" class="panel setup-card">
+          <div class="hero-label">我的 DEV</div>
+          <h2>打开我的文章</h2>
+          <p>已默认绑定你的公开 DEV 账号；如果以后需要切换账号，再改这里。</p>
+          <div class="input-stack">
+            <input id="devUsername" class="text-input" autocomplete="off" autocapitalize="none" placeholder="DEV 用户名，例如：joinwell52" />
+            <button id="saveUsername" class="primary-btn full-btn">进入我的</button>
+          </div>
+        </div>
+
+        <div id="meContent" class="hidden">
+          <div id="profileCard" class="profile-card"></div>
+          <div class="my-toolbar">
+            <div>
+              <div class="hero-label">我的文章</div>
+              <h2>最近创建</h2>
+            </div>
+            <button id="changeUsername" class="ghost-btn">更换账号</button>
+          </div>
+          <div id="meStatus" class="status"></div>
+          <div id="myArticleList" class="article-list my-list"></div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="DEV 导航">
+      <button class="nav-btn active" data-view="homeView" data-title="主页">⌂<span>主页</span></button>
+      <button class="nav-btn" data-view="meView" data-title="我的">◉<span>我的</span></button>
+    </nav>
+  </div>
+
+  <section id="mailShell" class="mail-shell hidden">
+    <button id="mailBackApps" class="layer-back">‹ 我的 App</button>
+    <header class="mail-topbar">
+      <div class="brand">
+        <div class="mail-logo">✉</div>
+        <div>
+          <div class="eyebrow">CHINESE LAYER <span id="mailVersion" class="version-badge">v0.6.5</span></div>
+          <h1>Mail</h1>
+          <div id="mailAccount" class="mail-account">Gmail</div>
+        </div>
+      </div>
+      <div class="mail-top-actions">
+        <button id="mailSettings" class="ghost-btn">设置</button>
+        <button id="mailLanguage" class="ghost-btn">中文</button>
+      </div>
+    </header>
+
+    <main class="mail-main">
+      <section id="mailSetup" class="mail-setup-card">
+        <div class="hero-label">GMAIL ADAPTER</div>
+        <h2>连接 Gmail</h2>
+        <p>只申请 <code>gmail.readonly</code>。不会发送、删除或修改邮件，也不会保存你的 Gmail 密码。</p>
+        <label class="mail-field-label" for="gmailClientId">Google OAuth Client ID</label>
+        <input id="gmailClientId" class="text-input" autocomplete="off" autocapitalize="none" placeholder="xxxxxxxx.apps.googleusercontent.com" />
+        <label class="mail-consent-row">
+          <input id="mailTranslateConsent" type="checkbox" />
+          <span>允许把邮件可见文字发送到 Google 翻译服务生成中文视图。访问令牌、邮件正文和译文不写入本地存储。</span>
+        </label>
+        <button id="gmailConnect" class="primary-btn full-btn">连接 Gmail</button>
+        <div id="mailSetupStatus" class="status"></div>
+        <div class="mail-setup-note">首次需要在 Google Cloud 启用 Gmail API，并为本网站创建“Web application” OAuth Client ID。</div>
+      </section>
+
+      <section id="mailInbox" class="hidden">
+        <div class="mail-toolbar">
+          <div>
+            <div class="hero-label">INBOX</div>
+            <h2>收件箱</h2>
+          </div>
+          <div class="mail-toolbar-actions">
+            <button id="mailRefresh" class="ghost-btn">刷新</button>
+            <button id="mailDisconnect" class="ghost-btn">断开</button>
+          </div>
+        </div>
+        <div id="mailStatus" class="status">正在读取 Gmail…</div>
+        <div id="mailList" class="mail-list"></div>
+      </section>
+
+      <section id="mailReader" class="mail-reader hidden">
+        <div class="mail-reader-bar">
+          <button id="mailReaderBack" class="ghost-btn">‹ 收件箱</button>
+          <button id="mailRemoteImages" class="ghost-btn hidden">显示图片</button>
+        </div>
+        <article class="mail-reader-card">
+          <div id="mailReaderFrom" class="mail-reader-from"></div>
+          <h1 id="mailReaderSubject"></h1>
+          <div id="mailReaderMeta" class="mail-reader-meta"></div>
+          <div id="mailReaderBody" class="mail-reader-body"></div>
+        </article>
+      </section>
+    </main>
+  </section>
+
+  <div id="reader" class="reader hidden" aria-hidden="true">
+    <div class="reader-bar">
+      <button id="readerBack" class="ghost-btn">‹ 返回</button>
+      <div class="reader-actions">
+        <button id="openOriginal" class="ghost-btn">原站</button>
+        <button id="readerLang" class="ghost-btn">中文</button>
+      </div>
+    </div>
+    <article id="readerContent" class="reader-content"></article>
+  </div>
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="./app.js?v=0.6.5" defer></script>
+  <script src="./launcher.js?v=0.6.5" defer></script>
+  <script src="./dev-live-refresh-0.5.2.js?v=0.6.5" defer></script>
+  <script src="./gmail-config.js?v=0.6.5" defer></script>
+  <script src="./gmail.js?v=0.6.5" defer></script>
+  <script src="./ios-pwa-hotfix-0.6.1.js?v=0.6.5" defer></script>
+</body>
+</html>

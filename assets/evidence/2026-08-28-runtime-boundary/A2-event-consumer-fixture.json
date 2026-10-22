@@ -1,0 +1,38 @@
+{
+  "schema": "runtime-boundary-public-evidence/v1",
+  "evidence_id": "RBE-20260828-A2",
+  "baseline": {
+    "product": "CodeFlowMu V2.0.4",
+    "commit": "2ba1ad9baf27077861b6a20e5815b4175f0a81c6",
+    "observed_on": "2026-08-28"
+  },
+  "historical_profile": {
+    "files": 27,
+    "datasets": [
+      {"name": "runtime", "rows": 2743, "rows_with_payload_raw": 1474},
+      {"name": "analytics", "rows": 17697, "rows_with_payload_raw": 16828}
+    ],
+    "later_projected_subset": {
+      "rows": 681,
+      "rows_with_payload_raw": 0,
+      "dates": ["2026-08-10", "2026-08-12"]
+    }
+  },
+  "current_query_probe": {
+    "event_type": "sdk.thinking",
+    "marker_location": "payload.raw.text",
+    "marker_present_in_structured_summary": false,
+    "marker_returned_by_activity_query": true,
+    "observed_events": 1
+  },
+  "supports": [
+    "historical_storage_changed_across_implementation_periods",
+    "the_tested_activity_query_returns_the_original_payload",
+    "storage_projection_and_consumer_projection_are_distinct_boundaries"
+  ],
+  "does_not_support": [
+    "an_unauthorized_disclosure_occurred",
+    "all_current_consumers_receive_raw_payloads",
+    "historical_raw_ratio_is_the_current_v204_ratio"
+  ]
+}

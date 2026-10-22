@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-09-07T07:35:09.400Z",
+  "baseline_commit": "c008d9db91a21136fc61a4f60314e22db395d5d2",
+  "source_record_sha256": "d58e82e2e7a96dcb46b9fdc0a081564bbf44ca33b17388d3657ac8c80e2a7181",
+  "scope": {
+    "zh": "真实产品组件，隔离合成文件；E5 为研究回调内注入的时间变化，不是线上并发复现。",
+    "en": "Real product components and isolated synthetic files; E5 injects a change in the research callback, not a production concurrency reproduction."
+  },
+  "pilot_included": false,
+  "rows": [
+    {
+      "round": 1,
+      "id": "E0",
+      "executor": "workspace.fs.write",
+      "record_overwrite": false,
+      "status": "succeeded",
+      "error": null,
+      "callback_calls": 1,
+      "target_bytes": "new-target",
+      "source_exists": false,
+      "approved_source_digest": null,
+      "target_digest": "sha256:062a4b6fb5fd638c1a47cffc12cbccd573f5f47dc169cc59a499d1fa08ba03fd",
+      "injection": null,
+      "after_evidence": [
+        {
+          "executor": "workspace.fs.write",
+          "target": "target.txt",
+          "after": {
+            "path": "target.txt",
+            "exists": true,
+            "type": "file",
+            "size": 10,
+            "sha256": "sha256:062a4b6fb5fd638c1a47cffc12cbccd573f5f47dc169cc59a499d1fa08ba03fd"
+          }
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "id": "E1",
+      "executor": "workspace.fs.write",
+      "record_overwrite": false,
+      "status": "failed",
+      "error": "target_exists_and_overwrite_is_false",
+      "callback_calls": 1,
+      "target_bytes": "old-target",
+      "source_exists": false,
+      "approved_source_digest": null,
+      "target_digest": "sha256:606593ebbbad59e6da4208f1019428af55c2648801fd3e05e72c8720ed6fed35",
+      "injection": null,
+      "after_evidence": []
+    },
+    {
+      "round": 1,
+      "id": "E2",
+      "executor": "workspace.fs.copy",
+      "record_overwrite": false,
+      "status": "succeeded",
+      "error": null,
+      "callback_calls": 1,
+      "target_bytes": "source-before",
+      "source_exists": true,
+      "approved_source_digest": "sha256:8df99d0d43bf6fa613623947383e99830aa159d6d937a606fe4d846ab5a67c42",
+      "target_digest": "sha256:8df99d0d43bf6fa613623947383e99830aa159d6d937a606fe4d846ab5a67c42",
+      "injection": null,
+      "after_evidence": [
+        {
+          "executor": "workspace.fs.copy",
+          "source": "source.txt",
+          "target": "target.txt",
+          "after": {
+            "path": "target.txt",
+            "exists": true,
+            "type": "file",
+            "size": 13,
+            "sha256": "sha256:8df99d0d43bf6fa613623947383e99830aa159d6d937a606fe4d846ab5a67c42"
+          }
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "id": "E3",
+      "executor": "workspace.fs.move",
+      "record_overwrite": false,
+      "status": "succeeded",
+      "error": null,
+      "callback_calls": 1,
+      "target_bytes": "source-before",
+      "source_exists": false,
+      "approved_source_digest": "sha256:8df99d0d43bf6fa613623947383e99830aa159d6d937a606fe4d846ab5a67c42",
+      "target_digest": "sha256:8df99d0d43bf6fa613623947383e99830aa159d6d937a606fe4d846ab5a67c42",
+      "injection": null,
+      "after_evidence": [
+        {
+          "executor": "workspace.fs.move",
+          "source": "source.txt",
+          "target": "target.txt",
+          "moved": true
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "id": "E4",
+      "executor": "workspace.fs.copy",
+      "record_overwrite": true,
+      "status": "stale",
+      "error": "APPROVAL_STALE",
+      "callback_calls": 0,
+      "target_bytes": "old-target",
+      "source_exists": true,
+      "approved_source_digest": "sha256:8df99d0d43bf6fa613623947383e99830aa159d6d937a606fe4d846ab5a67c42",
+      "target_digest": "sha256:606593ebbbad59e6da4208f1019428af55c2648801fd3e05e72c8720ed6fed35",
+      "injection": null,
+      "after_evidence": []
+    },
+    {
+      "round": 1,
+      "id": "E5",
+      "executor": "workspace.fs.copy",
+      "record_overwrite": true,
+      "status": "succeeded",
+      "error": null,
+      "callback_calls": 1,
+      "target_bytes": "source-after",
+      "source_exists": true,
+      "approved_source_digest": "sha256:8df99d0d43bf6fa613623947383e99830aa159d6d937a606fe4d846ab5a67c42",
+      "target_digest": "sha256:b53cff174de02cf2989dd179eb1976ac3af178cd63decd9ad6765e01e831444c",
+      "injection": "source changed in research callback AFTER approval digest check; not production scheduler race",
+      "after_evidence": [
+        {
+          "executor": "workspace.fs.copy",
+          "source": "source.txt",
+          "target": "target.txt",
+          "after": {
+            "path": "target.txt",
+            "exists": true,
+            "type": "file",
+            "size": 12,
+            "sha256": "sha256:b53cff174de02cf2989dd179eb1976ac3af178cd63decd9ad6765e01e831444c"
+          }
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "id": "E0",
+      "executor": "workspace.fs.write",
+      "record_overwrite": false,
+      "status": "succeeded",
+      "error": null,
+      "callback_calls": 1,
+      "target_bytes": "new-target",
+      "source_exists": false,
+      "approved_source_digest": null,
+      "target_digest": "sha256:062a4b6fb5fd638c1a47cffc12cbccd573f5f47dc169cc59a499d1fa08ba03fd",
+      "injection": null,
+      "after_evidence": [
+        {
+          "executor": "workspace.fs.write",
+          "target": "target.txt",
+          "after": {
+            "path": "target.txt",
+            "exists": true,
+            "type": "file",
+            "size": 10,
+            "sha256": "sha256:062a4b6fb5fd638c1a47cffc12cbccd573f5f47dc169cc59a499d1fa08ba03fd"
+          }
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "id": "E1",
+      "executor": "workspace.fs.write",
+      "record_overwrite": false,
+      "status": "failed",
+      "error": "target_exists_and_overwrite_is_false",
+      "callback_calls": 1,
+      "target_bytes": "old-target",
+      "source_exists": false,
+      "approved_source_digest": null,
+      "target_digest": "sha256:606593ebbbad59e6da4208f1019428af55c2648801fd3e05e72c8720ed6fed35",
+      "injection": null,
+      "after_evidence": []
+    },
+    {
+      "round": 2,
+      "id": "E2",
+      "executor": "workspace.fs.copy",
+      "record_overwrite": false,
+      "status": "succeeded",
+      "error": null,
+      "callback_calls": 1,
+      "target_bytes": "source-before",
+      "source_exists": true,
+      "approved_source_digest": "sha256:8df99d0d43bf6fa613623947383e99830aa159d6d937a606fe4d846ab5a67c42",
+      "target_digest": "sha256:8df99d0d43bf6fa613623947383e99830aa159d6d937a606fe4d846ab5a67c42",
+      "injection": null,
+      "after_evidence": [
+        {
+          "executor": "workspace.fs.copy",
+          "source": "source.txt",
+          "target": "target.txt",
+          "after": {
+            "path": "target.txt",
+            "exists": true,
+            "type": "file",
+            "size": 13,
+            "sha256": "sha256:8df99d0d43bf6fa613623947383e99830aa159d6d937a606fe4d846ab5a67c42"
+          }
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "id": "E3",
+      "executor": "workspace.fs.move",
+      "record_overwrite": false,
+      "status": "succeeded",
+      "error": null,
+      "callback_calls": 1,
+      "target_bytes": "source-before",
+      "source_exists": false,
+      "approved_source_digest": "sha256:8df99d0d43bf6fa613623947383e99830aa159d6d937a606fe4d846ab5a67c42",
+      "target_digest": "sha256:8df99d0d43bf6fa613623947383e99830aa159d6d937a606fe4d846ab5a67c42",
+      "injection": null,
+      "after_evidence": [
+        {
+          "executor": "workspace.fs.move",
+          "source": "source.txt",
+          "target": "target.txt",
+          "moved": true
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "id": "E4",
+      "executor": "workspace.fs.copy",
+      "record_overwrite": true,
+      "status": "stale",
+      "error": "APPROVAL_STALE",
+      "callback_calls": 0,
+      "target_bytes": "old-target",
+      "source_exists": true,
+      "approved_source_digest": "sha256:8df99d0d43bf6fa613623947383e99830aa159d6d937a606fe4d846ab5a67c42",
+      "target_digest": "sha256:606593ebbbad59e6da4208f1019428af55c2648801fd3e05e72c8720ed6fed35",
+      "injection": null,
+      "after_evidence": []
+    },
+    {
+      "round": 2,
+      "id": "E5",
+      "executor": "workspace.fs.copy",
+      "record_overwrite": true,
+      "status": "succeeded",
+      "error": null,
+      "callback_calls": 1,
+      "target_bytes": "source-after",
+      "source_exists": true,
+      "approved_source_digest": "sha256:8df99d0d43bf6fa613623947383e99830aa159d6d937a606fe4d846ab5a67c42",
+      "target_digest": "sha256:b53cff174de02cf2989dd179eb1976ac3af178cd63decd9ad6765e01e831444c",
+      "injection": "source changed in research callback AFTER approval digest check; not production scheduler race",
+      "after_evidence": [
+        {
+          "executor": "workspace.fs.copy",
+          "source": "source.txt",
+          "target": "target.txt",
+          "after": {
+            "path": "target.txt",
+            "exists": true,
+            "type": "file",
+            "size": 12,
+            "sha256": "sha256:b53cff174de02cf2989dd179eb1976ac3af178cd63decd9ad6765e01e831444c"
+          }
+        }
+      ]
+    }
+  ]
+}

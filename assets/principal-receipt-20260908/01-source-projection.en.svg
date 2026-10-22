@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1672" height="941" viewBox="0 0 1672 941" role="img" aria-labelledby="title desc">
+<title id="title">Same reference, different input position</title><desc id="desc">J1 top-level triggering-message field is saved. J2 nested continuation field is not saved. Both logical execution identifiers are saved. Two formal runs, real SessionManager with a synthetic SDK.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0 10 5 0 10" fill="none" stroke="#2459ba" stroke-width="2"/></marker></defs>
+<rect width="1672" height="941" rx="32" fill="#f8f7f3"/>
+<g font-family="Arial, sans-serif" fill="#182d4d">
+<text x="108" y="110" font-size="40" font-weight="700">Same reference. Different input position.</text>
+<text x="108" y="161" font-size="25" fill="#516174">J1 / J2 · Real session manager · In-memory SDK · Two formal runs</text>
+<rect x="108" y="227" width="665" height="191" rx="22" fill="#e8effd" stroke="#2459ba" stroke-width="2"/>
+<text x="140" y="277" font-size="25" font-weight="700">J1 · TOP-LEVEL CONTEXT</text><text x="140" y="328" font-size="26" font-family="monospace">context.trigger_chat_id</text>
+<path d="M805 322H922" stroke="#2459ba" stroke-width="4" marker-end="url(#arrow)"/>
+<rect x="958" y="227" width="606" height="191" rx="22" fill="#e8f2ee"/>
+<text x="990" y="281" font-size="29" font-weight="700">SAVED in the session record</text><text x="990" y="335" font-size="24" font-family="monospace">runtime_trigger_chat_id</text>
+<rect x="108" y="463" width="665" height="191" rx="22" fill="#e8effd" stroke="#2459ba" stroke-width="2"/>
+<text x="140" y="513" font-size="25" font-weight="700">J2 · NESTED CONTINUATION</text><text x="140" y="564" font-size="24" font-family="monospace">context.continuation.trigger_chat_id</text>
+<path d="M805 558H922" stroke="#2459ba" stroke-width="4" marker-end="url(#arrow)"/>
+<rect x="958" y="463" width="606" height="191" rx="22" fill="#fff0d8"/>
+<text x="990" y="517" font-size="29" font-weight="700">NOT SAVED in that field</text><text x="990" y="571" font-size="24">Not a loss of all command/chat evidence</text>
+<rect x="108" y="705" width="1456" height="92" rx="20" fill="#e8edf2"/>
+<text x="140" y="762" font-size="27">Positive control: logical_execution_id is saved in BOTH cases.</text>
+<text x="108" y="864" font-size="23" fill="#516174">A field-projection observation, not a two-account credential-switching experiment.</text>
+</g></svg>

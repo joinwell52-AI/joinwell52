@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Planner evidence and authority enforcement across four substrates</title>
+  <desc id="desc">A conceptual synthesis showing planner-visible context, workspace bytes, durable attempt and provenance, and authority state feeding a mutation boundary that admits or holds an effect.</desc>
+  <defs>
+    <linearGradient id="head" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#112b46"/>
+      <stop offset="1" stop-color="#183d50"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#4c6d82"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="1000" fill="#f7fafc"/>
+  <text x="100" y="92" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="42" font-weight="700" fill="#102638">Planner evidence is not the final authority boundary</text>
+  <text x="100" y="138" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" fill="#506879">Research Center conceptual synthesis · not a reproduction of the paper's figure</text>
+
+  <g font-family="Inter, Segoe UI, Arial, sans-serif">
+    <rect x="100" y="205" width="880" height="128" rx="24" fill="#e4f3ff" stroke="#6cb7e4" stroke-width="2"/>
+    <text x="145" y="255" font-size="28" font-weight="700" fill="#12364f">1 · Planner-visible context</text>
+    <text x="145" y="296" font-size="22" fill="#315a72">instructions · memory · policy text · tool results · authority receipts</text>
+
+    <rect x="100" y="365" width="880" height="128" rx="24" fill="#e5f8f4" stroke="#60c6b4" stroke-width="2"/>
+    <text x="145" y="415" font-size="28" font-weight="700" fill="#173f3a">2 · Workspace / artifact bytes</text>
+    <text x="145" y="456" font-size="22" fill="#35655f">current files · diff · content digest · candidate artifact</text>
+
+    <rect x="100" y="525" width="880" height="128" rx="24" fill="#edf8e9" stroke="#7bc36a" stroke-width="2"/>
+    <text x="145" y="575" font-size="28" font-weight="700" fill="#284625">3 · Durable attempt + provenance</text>
+    <text x="145" y="616" font-size="22" fill="#506d4a">actor · attempt · inputs · terminal state · produced artifact</text>
+
+    <rect x="100" y="685" width="880" height="128" rx="24" fill="#f5f5df" stroke="#b8c85f" stroke-width="2"/>
+    <text x="145" y="735" font-size="28" font-weight="700" fill="#45471f">4 · Authority state</text>
+    <text x="145" y="776" font-size="22" fill="#6c6e39">consumer scope · action scope · downstream approval · evidence generation</text>
+
+    <path d="M1005 269H1140" stroke="#4c6d82" stroke-width="4" marker-end="url(#arrow)"/>
+    <path d="M1005 429H1140" stroke="#4c6d82" stroke-width="4" marker-end="url(#arrow)"/>
+    <path d="M1005 589H1140" stroke="#4c6d82" stroke-width="4" marker-end="url(#arrow)"/>
+    <path d="M1005 749H1140" stroke="#4c6d82" stroke-width="4" marker-end="url(#arrow)"/>
+
+    <rect x="1145" y="255" width="34" height="510" rx="17" fill="#193c50"/>
+    <text x="1215" y="392" font-size="28" font-weight="700" fill="#17364b">Mutation boundary</text>
+    <text x="1215" y="432" font-size="21" fill="#516b7c">validate relation again</text>
+    <text x="1215" y="465" font-size="21" fill="#516b7c">recheck relevant bytes</text>
+    <text x="1215" y="498" font-size="21" fill="#516b7c">admit or persist denial</text>
+
+    <rect x="1215" y="545" width="255" height="82" rx="20" fill="#dff7e8" stroke="#61b784" stroke-width="2"/>
+    <text x="1271" y="595" font-size="26" font-weight="700" fill="#1e5b3a">EFFECT</text>
+
+    <rect x="1215" y="655" width="255" height="82" rx="20" fill="#fff0ea" stroke="#da8e71" stroke-width="2"/>
+    <text x="1270" y="705" font-size="26" font-weight="700" fill="#82442e">HOLD / DENY</text>
+
+    <text x="100" y="895" font-size="24" font-weight="700" fill="#17364b">Authority relation</text>
+    <text x="310" y="895" font-size="23" fill="#4a6272">actor + attempt + artifact + scope + action + terminal state + approval + evidence version</text>
+    <text x="100" y="943" font-size="21" fill="#6a7d89">The model may reason over the relation; the effect boundary still validates it independently.</text>
+  </g>
+</svg>

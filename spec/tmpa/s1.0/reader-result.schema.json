@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tmpa:schema:reader-result:s1.0",
+  "title": "TMPA Reader Result S1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["core_version", "output_version", "profile", "reader", "source_set_digest", "judgment", "view_state", "nodes", "edges", "issues"],
+  "properties": {
+    "core_version": { "const": "S1.0" },
+    "output_version": { "const": "1" },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["conformance_profile", "object_schema", "type_registry", "lifecycle_registry", "role_registry", "relation_registry", "integrity_profile", "canonicalization_profile"],
+      "properties": {
+        "conformance_profile": { "$ref": "#/$defs/versionedInput" },
+        "object_schema": { "$ref": "#/$defs/versionedInput" },
+        "type_registry": { "$ref": "#/$defs/versionedInput" },
+        "lifecycle_registry": { "$ref": "#/$defs/versionedInput" },
+        "role_registry": { "$ref": "#/$defs/versionedInput" },
+        "relation_registry": { "$ref": "#/$defs/versionedInput" },
+        "integrity_profile": { "$ref": "#/$defs/versionedInput" },
+        "canonicalization_profile": { "$ref": "#/$defs/versionedInput" }
+      }
+    },
+    "reader": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 }
+      }
+    },
+    "source_set_digest": { "$ref": "#/$defs/digest" },
+    "judgment": { "enum": ["valid", "invalid", "undetermined"] },
+    "view_state": { "enum": ["authoritative", "rejected", "quarantined", "partial", "disputed", "pending_human"] },
+    "authentication_state": { "enum": ["authenticated", "unauthenticated", "not_applicable"] },
+    "nodes": { "type": "array", "items": { "$ref": "#/$defs/element" } },
+    "edges": { "type": "array", "items": { "$ref": "#/$defs/edge" } },
+    "issues": { "type": "array", "items": { "$ref": "#/$defs/issue" } },
+    "extensions": { "type": "object", "additionalProperties": true }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "versionedInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "digest"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 },
+        "digest": { "$ref": "#/$defs/digest" }
+      }
+    },
+    "element": {
+      "type": "object",
+      "required": ["id", "source_object_id", "judgment"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "source_object_id": { "type": "string", "minLength": 1 },
+        "judgment": { "enum": ["valid", "invalid", "undetermined"] }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "required": ["id", "source_object_id", "source_id", "relation", "target_id"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "source_object_id": { "type": "string", "minLength": 1 },
+        "source_id": { "type": "string", "minLength": 1 },
+        "relation": { "type": "string", "minLength": 1 },
+        "target_id": { "type": "string", "minLength": 1 }
+      }
+    },
+    "issue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["issue_id", "code", "severity", "source_id", "object_id"],
+      "properties": {
+        "issue_id": { "type": "string", "minLength": 1 },
+        "code": {
+          "enum": ["SCHEMA_INVALID", "UNKNOWN_TYPE", "INTEGRITY_MISMATCH", "SIGNATURE_UNVERIFIED", "DUPLICATE_ID_CONFLICT", "PRIMARY_CARRIER_CONFLICT", "STREAM_DUPLICATE_SEQUENCE", "STREAM_GAP", "AUTHORITY_UNDETERMINED", "AUTHORITY_DENIED", "SOD_VIOLATION", "LIFECYCLE_UNDETERMINED", "ILLEGAL_TRANSITION", "MISSING_REFERENCE", "PROHIBITED_CYCLE", "UNRESOLVED_CONFLICT", "CLAIM_EVIDENCE_MISSING", "ACCEPTANCE_UNDETERMINED", "HUMAN_APPROVAL_REQUIRED", "CHILD_WORK_OPEN", "RECIPROCITY_MISSING", "STATE_EVIDENCE_CONFLICT"]
+        },
+        "severity": { "enum": ["critical", "error", "warning", "info"] },
+        "source_id": { "type": "string", "minLength": 1 },
+        "source_object_id": { "type": "string", "minLength": 1 },
+        "object_id": { "type": "string" },
+        "relation": { "type": "string" },
+        "target_id": { "type": "string" },
+        "message": { "type": "string" }
+      }
+    }
+  }
+}

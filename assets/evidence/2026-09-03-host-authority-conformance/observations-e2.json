@@ -1,0 +1,84 @@
+{
+  "run_at": "2026-09-03T13:36:16.948Z",
+  "scope": "Actual store/get path with controlled durable records. Reused PID is modeled by old started_at plus current live PID, not an induced OS PID-reuse event. No executor is called.",
+  "results": [
+    {
+      "kind": "live-current",
+      "repeat": 1,
+      "execution_started_at": "2026-09-03T13:36:16.897Z",
+      "approval_status": "executing",
+      "approval_error": null,
+      "writer_lock_would_treat_same_identity_as_stale": false,
+      "external_executor_calls": 0,
+      "owner_probe": {
+        "state": "running",
+        "started_at_ms": 1788442576551
+      }
+    },
+    {
+      "kind": "dead-old",
+      "repeat": 1,
+      "execution_started_at": "2000-01-01T00:00:00.000Z",
+      "approval_status": "partial_failed",
+      "approval_error": "executor_process_interrupted; target outcome requires inspection",
+      "writer_lock_would_treat_same_identity_as_stale": true,
+      "external_executor_calls": 0,
+      "owner_probe": {
+        "state": "dead",
+        "started_at_ms": null
+      }
+    },
+    {
+      "kind": "reused-pid-fixture",
+      "repeat": 1,
+      "execution_started_at": "2000-01-01T00:00:00.000Z",
+      "approval_status": "executing",
+      "approval_error": null,
+      "writer_lock_would_treat_same_identity_as_stale": true,
+      "external_executor_calls": 0,
+      "owner_probe": {
+        "state": "running",
+        "started_at_ms": 1788442576551
+      }
+    },
+    {
+      "kind": "live-current",
+      "repeat": 2,
+      "execution_started_at": "2026-09-03T13:36:16.926Z",
+      "approval_status": "executing",
+      "approval_error": null,
+      "writer_lock_would_treat_same_identity_as_stale": false,
+      "external_executor_calls": 0,
+      "owner_probe": {
+        "state": "running",
+        "started_at_ms": 1788442576551
+      }
+    },
+    {
+      "kind": "dead-old",
+      "repeat": 2,
+      "execution_started_at": "2000-01-01T00:00:00.000Z",
+      "approval_status": "partial_failed",
+      "approval_error": "executor_process_interrupted; target outcome requires inspection",
+      "writer_lock_would_treat_same_identity_as_stale": true,
+      "external_executor_calls": 0,
+      "owner_probe": {
+        "state": "dead",
+        "started_at_ms": null
+      }
+    },
+    {
+      "kind": "reused-pid-fixture",
+      "repeat": 2,
+      "execution_started_at": "2000-01-01T00:00:00.000Z",
+      "approval_status": "executing",
+      "approval_error": null,
+      "writer_lock_would_treat_same_identity_as_stale": true,
+      "external_executor_calls": 0,
+      "owner_probe": {
+        "state": "running",
+        "started_at_ms": 1788442576551
+      }
+    }
+  ]
+}

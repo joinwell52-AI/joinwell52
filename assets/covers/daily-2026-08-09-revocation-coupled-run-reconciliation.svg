@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#081426"/><stop offset="1" stop-color="#1b2d4b"/></linearGradient>
+    <linearGradient id="violet" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#9c8cff"/><stop offset="1" stop-color="#5f6fff"/></linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="120" y="105" fill="#b7adff" font-family="Inter,Segoe UI,sans-serif" font-size="28" font-weight="700">DIGITAL EMPLOYEE · DAILY RESEARCH · 2026-08-09</text>
+  <text x="120" y="178" fill="#ffffff" font-family="Inter,Segoe UI,sans-serif" font-size="54" font-weight="800">Revocation-Coupled Run Reconciliation</text>
+  <text x="120" y="228" fill="#c6d2e3" font-family="Inter,Segoe UI,sans-serif" font-size="27">Deleting a work context must revoke authority and reconcile unsettled child work.</text>
+
+  <g font-family="Inter,Segoe UI,sans-serif">
+    <rect x="120" y="315" width="360" height="210" rx="28" fill="#102d4a" stroke="#5fa7e8" stroke-width="3"/>
+    <text x="300" y="375" fill="#ffffff" font-size="30" font-weight="800" text-anchor="middle">ADMISSION</text>
+    <text x="300" y="420" fill="#b9d6ee" font-size="22" text-anchor="middle">create queued run</text>
+    <text x="300" y="458" fill="#b9d6ee" font-size="22" text-anchor="middle">conversation row lock</text>
+
+    <rect x="620" y="285" width="360" height="270" rx="32" fill="#302b5b" stroke="url(#violet)" stroke-width="5"/>
+    <text x="800" y="352" fill="#ffffff" font-size="32" font-weight="800" text-anchor="middle">REVOKE CONTEXT</text>
+    <text x="800" y="398" fill="#d7d0ff" font-size="22" text-anchor="middle">delete / disable</text>
+    <text x="800" y="445" fill="#ffffff" font-size="24" font-weight="700" text-anchor="middle">same transaction</text>
+    <text x="800" y="482" fill="#ffffff" font-size="24" font-weight="700" text-anchor="middle">same row lock</text>
+
+    <rect x="1120" y="315" width="360" height="210" rx="28" fill="#183d3a" stroke="#55c5aa" stroke-width="3"/>
+    <text x="1300" y="375" fill="#ffffff" font-size="30" font-weight="800" text-anchor="middle">RECONCILE</text>
+    <text x="1300" y="420" fill="#bde7dc" font-size="22" text-anchor="middle">full unsettled set</text>
+    <text x="1300" y="458" fill="#bde7dc" font-size="22" text-anchor="middle">no orphaned slot</text>
+
+    <path d="M480 420 H620" stroke="#78b8ee" stroke-width="5" marker-end="url(#none)"/>
+    <text x="550" y="400" fill="#9bc9ef" font-size="21" text-anchor="middle">mutually ordered</text>
+    <path d="M980 420 H1120" stroke="#79d3bd" stroke-width="5"/>
+
+    <rect x="210" y="620" width="350" height="130" rx="22" fill="#152944" stroke="#92a9c2" stroke-width="2"/>
+    <text x="385" y="670" fill="#ffffff" font-size="25" font-weight="800" text-anchor="middle">QUEUED / APPROVAL</text>
+    <text x="385" y="710" fill="#c9d5e3" font-size="21" text-anchor="middle">synchronous durable closure</text>
+
+    <rect x="625" y="600" width="350" height="170" rx="22" fill="#4a2f2d" stroke="#f08f7c" stroke-width="3"/>
+    <text x="800" y="654" fill="#ffffff" font-size="27" font-weight="800" text-anchor="middle">RUNNING</text>
+    <text x="800" y="696" fill="#ffd0c8" font-size="21" text-anchor="middle">cooperative cancel intent</text>
+    <text x="800" y="732" fill="#ffd0c8" font-size="21" text-anchor="middle">physical stop not yet proven</text>
+
+    <rect x="1040" y="620" width="350" height="130" rx="22" fill="#3c331d" stroke="#e7b957" stroke-width="3"/>
+    <text x="1215" y="670" fill="#ffffff" font-size="25" font-weight="800" text-anchor="middle">LEASE WATCHDOG</text>
+    <text x="1215" y="710" fill="#f6dda6" font-size="21" text-anchor="middle">bound stale worker convergence</text>
+
+    <path d="M1120 525 C1080 570 1010 595 975 645" fill="none" stroke="#e7b957" stroke-width="4" stroke-dasharray="10 9"/>
+    <path d="M1120 525 C980 570 660 570 560 645" fill="none" stroke="#91b2d0" stroke-width="4" stroke-dasharray="10 9"/>
+  </g>
+
+  <g transform="translate(120,800)">
+    <rect width="1360" height="62" rx="16" fill="#0d2037" stroke="#36516f"/>
+    <text x="30" y="39" fill="#d2e1ee" font-family="Inter,Segoe UI,sans-serif" font-size="19">Research Center synthesis based on research/analysis/Q-20260809-01-revocation-coupled-run-reconciliation.md</text>
+  </g>
+</svg>

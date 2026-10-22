@@ -1,0 +1,735 @@
+{
+  "schema_version": 1,
+  "source_commit": "c008d9db91a21136fc61a4f60314e22db395d5d2",
+  "http": [
+    {
+      "round": 1,
+      "id": "H0-pure-read",
+      "request_count": 1,
+      "business_effect_count": 0,
+      "state_change_count": 0
+    },
+    {
+      "round": 1,
+      "id": "H1-get-publish",
+      "request_count": 1,
+      "business_effect_count": 1,
+      "state_change_count": 1
+    },
+    {
+      "round": 1,
+      "id": "H2-follow-redirect",
+      "request_count": 2,
+      "business_effect_count": 1,
+      "state_change_count": 1,
+      "redirected": true
+    },
+    {
+      "round": 1,
+      "id": "H3-no-redirect",
+      "request_count": 1,
+      "business_effect_count": 0,
+      "state_change_count": 0,
+      "status": 302
+    },
+    {
+      "round": 1,
+      "id": "H4-separate-clients-shared-medium",
+      "request_count": 2,
+      "business_effect_count": 1,
+      "state_change_count": 1,
+      "distinct_processes": true,
+      "marker_read_by_B": true
+    },
+    {
+      "round": 1,
+      "id": "H5-separated-namespaces",
+      "request_count": 1,
+      "business_effect_count": 0,
+      "state_change_count": 0,
+      "other_namespace_value": null
+    },
+    {
+      "round": 1,
+      "id": "G0-local-read",
+      "request_count": 0,
+      "business_effect_count": 0,
+      "state_change_count": 0,
+      "gate_decision": "ALLOW",
+      "policy_decision": "ALLOW",
+      "effect_facts": {
+        "kind": "read",
+        "external": false,
+        "persistent": false,
+        "complete": true,
+        "unresolved_fields": []
+      },
+      "rule_ids": []
+    },
+    {
+      "round": 1,
+      "id": "G1-shell-get",
+      "request_count": 1,
+      "business_effect_count": 1,
+      "state_change_count": 1,
+      "gate_decision": "ALLOW",
+      "policy_decision": "ALLOW",
+      "effect_facts": {
+        "kind": "execute",
+        "external": false,
+        "persistent": false,
+        "complete": false,
+        "unresolved_fields": [
+          "operation.effects"
+        ]
+      },
+      "rule_ids": []
+    },
+    {
+      "round": 1,
+      "id": "G2-shell-post",
+      "request_count": 0,
+      "business_effect_count": 0,
+      "state_change_count": 0,
+      "gate_decision": "REQUIRE_APPROVAL",
+      "policy_decision": "REQUIRE_APPROVAL",
+      "effect_facts": {
+        "kind": "network_write",
+        "external": true,
+        "persistent": true,
+        "complete": false,
+        "unresolved_fields": [
+          "operation.exact_targets"
+        ]
+      },
+      "rule_ids": [
+        "NEG.EXTERNAL.WRITE"
+      ]
+    },
+    {
+      "round": 1,
+      "id": "G3-unknown-http-get",
+      "request_count": 0,
+      "business_effect_count": 0,
+      "state_change_count": 0,
+      "gate_decision": "ROLE_CAPABILITY_DENIED",
+      "policy_decision": "ALLOW",
+      "effect_facts": {
+        "kind": "unknown",
+        "external": false,
+        "persistent": false,
+        "complete": false,
+        "unresolved_fields": [
+          "operation.kind"
+        ]
+      },
+      "rule_ids": []
+    },
+    {
+      "round": 1,
+      "id": "G4-unknown-web-fetch",
+      "request_count": 0,
+      "business_effect_count": 0,
+      "state_change_count": 0,
+      "gate_decision": "ROLE_CAPABILITY_DENIED",
+      "policy_decision": "ALLOW",
+      "effect_facts": {
+        "kind": "unknown",
+        "external": false,
+        "persistent": false,
+        "complete": false,
+        "unresolved_fields": [
+          "operation.kind"
+        ]
+      },
+      "rule_ids": []
+    },
+    {
+      "round": 1,
+      "id": "G6-explicit-shell-capability",
+      "request_count": 1,
+      "business_effect_count": 1,
+      "state_change_count": 1,
+      "gate_decision": "ALLOW",
+      "policy_decision": "ALLOW",
+      "effect_facts": {
+        "kind": "execute",
+        "external": false,
+        "persistent": false,
+        "complete": false,
+        "unresolved_fields": [
+          "operation.effects"
+        ]
+      },
+      "rule_ids": []
+    },
+    {
+      "round": 1,
+      "id": "G5-missing-active-capability",
+      "request_count": 0,
+      "business_effect_count": 0,
+      "state_change_count": 0,
+      "gate_decision": "ROLE_CAPABILITY_DENIED"
+    },
+    {
+      "round": 2,
+      "id": "H0-pure-read",
+      "request_count": 1,
+      "business_effect_count": 0,
+      "state_change_count": 0
+    },
+    {
+      "round": 2,
+      "id": "H1-get-publish",
+      "request_count": 1,
+      "business_effect_count": 1,
+      "state_change_count": 1
+    },
+    {
+      "round": 2,
+      "id": "H2-follow-redirect",
+      "request_count": 2,
+      "business_effect_count": 1,
+      "state_change_count": 1,
+      "redirected": true
+    },
+    {
+      "round": 2,
+      "id": "H3-no-redirect",
+      "request_count": 1,
+      "business_effect_count": 0,
+      "state_change_count": 0,
+      "status": 302
+    },
+    {
+      "round": 2,
+      "id": "H4-separate-clients-shared-medium",
+      "request_count": 2,
+      "business_effect_count": 1,
+      "state_change_count": 1,
+      "distinct_processes": true,
+      "marker_read_by_B": true
+    },
+    {
+      "round": 2,
+      "id": "H5-separated-namespaces",
+      "request_count": 1,
+      "business_effect_count": 0,
+      "state_change_count": 0,
+      "other_namespace_value": null
+    },
+    {
+      "round": 2,
+      "id": "G0-local-read",
+      "request_count": 0,
+      "business_effect_count": 0,
+      "state_change_count": 0,
+      "gate_decision": "ALLOW",
+      "policy_decision": "ALLOW",
+      "effect_facts": {
+        "kind": "read",
+        "external": false,
+        "persistent": false,
+        "complete": true,
+        "unresolved_fields": []
+      },
+      "rule_ids": []
+    },
+    {
+      "round": 2,
+      "id": "G1-shell-get",
+      "request_count": 1,
+      "business_effect_count": 1,
+      "state_change_count": 1,
+      "gate_decision": "ALLOW",
+      "policy_decision": "ALLOW",
+      "effect_facts": {
+        "kind": "execute",
+        "external": false,
+        "persistent": false,
+        "complete": false,
+        "unresolved_fields": [
+          "operation.effects"
+        ]
+      },
+      "rule_ids": []
+    },
+    {
+      "round": 2,
+      "id": "G2-shell-post",
+      "request_count": 0,
+      "business_effect_count": 0,
+      "state_change_count": 0,
+      "gate_decision": "REQUIRE_APPROVAL",
+      "policy_decision": "REQUIRE_APPROVAL",
+      "effect_facts": {
+        "kind": "network_write",
+        "external": true,
+        "persistent": true,
+        "complete": false,
+        "unresolved_fields": [
+          "operation.exact_targets"
+        ]
+      },
+      "rule_ids": [
+        "NEG.EXTERNAL.WRITE"
+      ]
+    },
+    {
+      "round": 2,
+      "id": "G3-unknown-http-get",
+      "request_count": 0,
+      "business_effect_count": 0,
+      "state_change_count": 0,
+      "gate_decision": "ROLE_CAPABILITY_DENIED",
+      "policy_decision": "ALLOW",
+      "effect_facts": {
+        "kind": "unknown",
+        "external": false,
+        "persistent": false,
+        "complete": false,
+        "unresolved_fields": [
+          "operation.kind"
+        ]
+      },
+      "rule_ids": []
+    },
+    {
+      "round": 2,
+      "id": "G4-unknown-web-fetch",
+      "request_count": 0,
+      "business_effect_count": 0,
+      "state_change_count": 0,
+      "gate_decision": "ROLE_CAPABILITY_DENIED",
+      "policy_decision": "ALLOW",
+      "effect_facts": {
+        "kind": "unknown",
+        "external": false,
+        "persistent": false,
+        "complete": false,
+        "unresolved_fields": [
+          "operation.kind"
+        ]
+      },
+      "rule_ids": []
+    },
+    {
+      "round": 2,
+      "id": "G6-explicit-shell-capability",
+      "request_count": 1,
+      "business_effect_count": 1,
+      "state_change_count": 1,
+      "gate_decision": "ALLOW",
+      "policy_decision": "ALLOW",
+      "effect_facts": {
+        "kind": "execute",
+        "external": false,
+        "persistent": false,
+        "complete": false,
+        "unresolved_fields": [
+          "operation.effects"
+        ]
+      },
+      "rule_ids": []
+    },
+    {
+      "round": 2,
+      "id": "G5-missing-active-capability",
+      "request_count": 0,
+      "business_effect_count": 0,
+      "state_change_count": 0,
+      "gate_decision": "ROLE_CAPABILITY_DENIED"
+    }
+  ],
+  "order": [
+    {
+      "round": 1,
+      "id": "O0-order-preserved",
+      "received_order": [
+        "input-1",
+        "input-2"
+      ],
+      "accepted_order": [
+        "input-1",
+        "input-2"
+      ],
+      "persistence_schedule": [
+        0,
+        1
+      ],
+      "record_order": [
+        "input-1",
+        "input-2"
+      ],
+      "recording": "deny",
+      "acceptance": "deny",
+      "at_first_acceptance": "allow"
+    },
+    {
+      "round": 1,
+      "id": "O1-allow-then-revoke-inverted",
+      "received_order": [
+        "input-1",
+        "input-2"
+      ],
+      "accepted_order": [
+        "input-1",
+        "input-2"
+      ],
+      "persistence_schedule": [
+        1,
+        0
+      ],
+      "record_order": [
+        "input-2",
+        "input-1"
+      ],
+      "recording": "allow",
+      "acceptance": "deny",
+      "at_first_acceptance": "allow"
+    },
+    {
+      "round": 1,
+      "id": "O2-revoke-then-allow-inverted",
+      "received_order": [
+        "input-1",
+        "input-2"
+      ],
+      "accepted_order": [
+        "input-1",
+        "input-2"
+      ],
+      "persistence_schedule": [
+        1,
+        0
+      ],
+      "record_order": [
+        "input-2",
+        "input-1"
+      ],
+      "recording": "deny",
+      "acceptance": "allow",
+      "at_first_acceptance": "deny"
+    },
+    {
+      "round": 1,
+      "id": "O3-same-operation-control",
+      "received_order": [
+        "input-1",
+        "input-2"
+      ],
+      "accepted_order": [
+        "input-1",
+        "input-2"
+      ],
+      "persistence_schedule": [
+        1,
+        0
+      ],
+      "record_order": [
+        "input-2",
+        "input-1"
+      ],
+      "recording": "deny",
+      "acceptance": "deny",
+      "at_first_acceptance": "deny"
+    },
+    {
+      "round": 1,
+      "id": "O4-rejected-input",
+      "received_order": [
+        "input-1",
+        "input-2"
+      ],
+      "accepted_order": [
+        "input-1"
+      ],
+      "persistence_schedule": [
+        0,
+        1
+      ],
+      "record_order": [
+        "input-1",
+        "input-2"
+      ],
+      "recording": "deny",
+      "acceptance": "deny",
+      "at_first_acceptance": "deny"
+    },
+    {
+      "round": 1,
+      "id": "O5-missing-sequence",
+      "received_order": [
+        "input-1",
+        "input-2"
+      ],
+      "accepted_order": [
+        "input-1",
+        "input-2"
+      ],
+      "persistence_schedule": [
+        1,
+        0
+      ],
+      "record_order": [
+        "input-2",
+        "input-1"
+      ],
+      "recording": "allow",
+      "acceptance": "unknown",
+      "at_first_acceptance": "unknown"
+    },
+    {
+      "round": 1,
+      "id": "O6-duplicate-sequence",
+      "received_order": [
+        "input-1",
+        "input-2"
+      ],
+      "accepted_order": [
+        "input-1",
+        "input-2"
+      ],
+      "persistence_schedule": [
+        1,
+        0
+      ],
+      "record_order": [
+        "input-2",
+        "input-1"
+      ],
+      "recording": "allow",
+      "acceptance": "unknown",
+      "at_first_acceptance": "unknown"
+    },
+    {
+      "round": 2,
+      "id": "O0-order-preserved",
+      "received_order": [
+        "input-1",
+        "input-2"
+      ],
+      "accepted_order": [
+        "input-1",
+        "input-2"
+      ],
+      "persistence_schedule": [
+        0,
+        1
+      ],
+      "record_order": [
+        "input-1",
+        "input-2"
+      ],
+      "recording": "deny",
+      "acceptance": "deny",
+      "at_first_acceptance": "allow"
+    },
+    {
+      "round": 2,
+      "id": "O1-allow-then-revoke-inverted",
+      "received_order": [
+        "input-1",
+        "input-2"
+      ],
+      "accepted_order": [
+        "input-1",
+        "input-2"
+      ],
+      "persistence_schedule": [
+        1,
+        0
+      ],
+      "record_order": [
+        "input-2",
+        "input-1"
+      ],
+      "recording": "allow",
+      "acceptance": "deny",
+      "at_first_acceptance": "allow"
+    },
+    {
+      "round": 2,
+      "id": "O2-revoke-then-allow-inverted",
+      "received_order": [
+        "input-1",
+        "input-2"
+      ],
+      "accepted_order": [
+        "input-1",
+        "input-2"
+      ],
+      "persistence_schedule": [
+        1,
+        0
+      ],
+      "record_order": [
+        "input-2",
+        "input-1"
+      ],
+      "recording": "deny",
+      "acceptance": "allow",
+      "at_first_acceptance": "deny"
+    },
+    {
+      "round": 2,
+      "id": "O3-same-operation-control",
+      "received_order": [
+        "input-1",
+        "input-2"
+      ],
+      "accepted_order": [
+        "input-1",
+        "input-2"
+      ],
+      "persistence_schedule": [
+        1,
+        0
+      ],
+      "record_order": [
+        "input-2",
+        "input-1"
+      ],
+      "recording": "deny",
+      "acceptance": "deny",
+      "at_first_acceptance": "deny"
+    },
+    {
+      "round": 2,
+      "id": "O4-rejected-input",
+      "received_order": [
+        "input-1",
+        "input-2"
+      ],
+      "accepted_order": [
+        "input-1"
+      ],
+      "persistence_schedule": [
+        0,
+        1
+      ],
+      "record_order": [
+        "input-1",
+        "input-2"
+      ],
+      "recording": "deny",
+      "acceptance": "deny",
+      "at_first_acceptance": "deny"
+    },
+    {
+      "round": 2,
+      "id": "O5-missing-sequence",
+      "received_order": [
+        "input-1",
+        "input-2"
+      ],
+      "accepted_order": [
+        "input-1",
+        "input-2"
+      ],
+      "persistence_schedule": [
+        1,
+        0
+      ],
+      "record_order": [
+        "input-2",
+        "input-1"
+      ],
+      "recording": "allow",
+      "acceptance": "unknown",
+      "at_first_acceptance": "unknown"
+    },
+    {
+      "round": 2,
+      "id": "O6-duplicate-sequence",
+      "received_order": [
+        "input-1",
+        "input-2"
+      ],
+      "accepted_order": [
+        "input-1",
+        "input-2"
+      ],
+      "persistence_schedule": [
+        1,
+        0
+      ],
+      "record_order": [
+        "input-2",
+        "input-1"
+      ],
+      "recording": "allow",
+      "acceptance": "unknown",
+      "at_first_acceptance": "unknown"
+    }
+  ],
+  "baseline": [
+    {
+      "round": 1,
+      "exit_code": 0,
+      "summary": [
+        "ℹ tests 31",
+        "ℹ pass 31",
+        "ℹ fail 0",
+        "ℹ cancelled 0",
+        "ℹ skipped 0",
+        "ℹ todo 0",
+        "ℹ duration_ms 519.6584"
+      ]
+    },
+    {
+      "round": 2,
+      "exit_code": 0,
+      "summary": [
+        "ℹ tests 31",
+        "ℹ pass 31",
+        "ℹ fail 0",
+        "ℹ cancelled 0",
+        "ℹ skipped 0",
+        "ℹ todo 0",
+        "ℹ duration_ms 347.7093"
+      ]
+    }
+  ],
+  "source_hashes": [
+    {
+      "file": "packages/codeflowmu-runtime/src/approval/OperationFacts.ts",
+      "sha256": "1479dcce8ffbd2c1152dfe653d54115f88250df4f9aa096d7237bea80e52a276"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/approval/UnifiedOperationPolicy.ts",
+      "sha256": "8612630c36c753178b5b75b3a8f56a7967a0172255b0a92899e55f4b6abda96e"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/approval/NativeOperationApprovalGate.ts",
+      "sha256": "41ffa70000fbbdfa83546bc457a5fa973f4617c6ec9a349e49494879c0a9d306"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/registry/RoleToolCapabilityGate.ts",
+      "sha256": "db84a4e5c4c5861b4445ffdd32d31f382e3af00364ac2ccdc349311a34605e14"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/governance/TaskCommandKernel.ts",
+      "sha256": "888ebddaff896cd84015a4e0406004f0e2a9ae3ad3cbaf87e2b7516686488d16"
+    },
+    {
+      "file": "packages/codeflowmu-runtime/src/session/CodexAppServerRunHandle.ts",
+      "sha256": "1ccc245ea6eba25487da52d8b89977d7ff37a4636eb00943c633f6a7dfce2f19"
+    }
+  ],
+  "raw_input_hashes": [
+    {
+      "file": "runs/http-1788588545853.json",
+      "sha256": "f10a6c9f4d4c373fdbb1b82cf2d3acb45f806263956d20232aa2706b8649341e"
+    },
+    {
+      "file": "runs/order-1788588494372.json",
+      "sha256": "3e8d892da1125114bdd4b06ce429be9dd2cc99654a18cafde61dc188eaca0d33"
+    },
+    {
+      "file": "runs/baseline-and-sources.json",
+      "sha256": "03064100f9a44adf9b4c0cb1bcd37dbd6fab1bffc0446e27969cce0e74972006"
+    }
+  ],
+  "deidentification": "Removed local paths, ephemeral ports, PIDs, full request/context objects. Decisions, counts, ordering, source commit and source hashes retained. Synthetic process equality retained as a boolean."
+}

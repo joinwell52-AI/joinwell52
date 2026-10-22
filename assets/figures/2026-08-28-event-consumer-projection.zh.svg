@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">接上同一总线，不代表看见同一份载荷</title>
+  <desc id="desc">V2.1.2 对内部事件按服务端消费者身份与字段规则投影，生成 Web Panel、Activity API、Analytics 三类消费者对象。</desc>
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbfaf7"/><stop offset="1" stop-color="#eef5ff"/></linearGradient>
+    <linearGradient id="core" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f4acb"/><stop offset="1" stop-color="#27b7ff"/></linearGradient>
+    <filter id="shadow2" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0e2b55" flood-opacity="0.13"/></filter>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#3b82f6"/></marker>
+    <style>
+      text { font-family:'Microsoft YaHei','Noto Sans CJK SC',Arial,sans-serif; fill:#17263e; }
+      .h1 { font-size:42px; font-weight:700; }
+      .sub { font-size:21px; fill:#52657d; }
+      .boxh { font-size:25px; font-weight:750; }
+      .field { font-size:19px; fill:#42566f; }
+      .tag { font-size:17px; font-weight:700; }
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg2)"/>
+  <text x="80" y="82" class="h1">接上同一总线，不代表看见同一份载荷</text>
+  <text x="80" y="122" class="sub">服务端绑定消费者身份，再按显式白名单重新构造对象；未知事件和新增字段默认不可见。</text>
+
+  <g filter="url(#shadow2)">
+    <rect x="70" y="220" width="340" height="460" rx="30" fill="#ffffff" stroke="#9dc5ff" stroke-width="2"/>
+    <rect x="70" y="220" width="340" height="78" rx="30" fill="#eaf3ff"/>
+    <text x="105" y="269" class="boxh">内部规范事件</text>
+    <text x="105" y="335" class="field">event_type</text>
+    <text x="105" y="382" class="field">task_id / session_id</text>
+    <text x="105" y="429" class="field">结构化摘要</text>
+    <text x="105" y="476" class="field">token 流式片段</text>
+    <text x="105" y="523" class="field">完整 raw</text>
+    <text x="105" y="570" class="field">未来新增字段</text>
+    <rect x="105" y="610" width="270" height="42" rx="13" fill="#eef2f8"/>
+    <text x="240" y="638" text-anchor="middle" class="tag" fill="#53657c">权威内部对象</text>
+  </g>
+
+  <line x1="420" y1="450" x2="560" y2="450" stroke="#3b82f6" stroke-width="6" marker-end="url(#arrow2)"/>
+
+  <g filter="url(#shadow2)">
+    <circle cx="720" cy="450" r="138" fill="url(#core)"/>
+    <circle cx="720" cy="450" r="104" fill="none" stroke="#ffffff" stroke-width="2" stroke-opacity="0.55"/>
+    <text x="720" y="420" text-anchor="middle" font-size="28" font-weight="750" style="fill:#ffffff">服务端策略</text>
+    <text x="720" y="458" text-anchor="middle" font-size="21" style="fill:#dff5ff">绑定消费者身份</text>
+    <text x="720" y="490" text-anchor="middle" font-size="21" style="fill:#dff5ff">递归白名单投影</text>
+  </g>
+  <rect x="586" y="621" width="268" height="48" rx="15" fill="#fff2dc" stroke="#f59e0b"/>
+  <text x="720" y="652" text-anchor="middle" class="tag" fill="#b96500">请求参数不能自报身份</text>
+
+  <path d="M858 390 C930 320 940 270 1002 250" fill="none" stroke="#3b82f6" stroke-width="5" marker-end="url(#arrow2)"/>
+  <path d="M865 450 C945 450 955 429 1002 429" fill="none" stroke="#3b82f6" stroke-width="5" marker-end="url(#arrow2)"/>
+  <path d="M858 510 C930 580 940 607 1002 607" fill="none" stroke="#3b82f6" stroke-width="5" marker-end="url(#arrow2)"/>
+
+  <g filter="url(#shadow2)">
+    <rect x="1030" y="172" width="490" height="158" rx="25" fill="#ffffff" stroke="#8bc5ff" stroke-width="2"/>
+    <rect x="1030" y="172" width="16" height="158" rx="8" fill="#2386f3"/>
+    <text x="1075" y="218" class="boxh">Panel 投影</text>
+    <text x="1075" y="258" class="field">时间 · 角色 · 任务 · 结构化摘要</text>
+    <text x="1075" y="295" class="tag" fill="#2386f3">raw 与未知字段：不可见</text>
+
+    <rect x="1030" y="350" width="490" height="158" rx="25" fill="#ffffff" stroke="#88d7d0" stroke-width="2"/>
+    <rect x="1030" y="350" width="16" height="158" rx="8" fill="#19a99b"/>
+    <text x="1075" y="396" class="boxh">Activity API 投影</text>
+    <text x="1075" y="436" class="field">事件 · 状态 · 关联键 · 受控摘要</text>
+    <text x="1075" y="473" class="tag" fill="#168a80">内部完整 payload：不透传</text>
+
+    <rect x="1030" y="528" width="490" height="158" rx="25" fill="#ffffff" stroke="#ffd28c" stroke-width="2"/>
+    <rect x="1030" y="528" width="16" height="158" rx="8" fill="#f59e0b"/>
+    <text x="1075" y="574" class="boxh">Analytics 投影</text>
+    <text x="1075" y="614" class="field">分析所需、已登记的结构化事件字段</text>
+    <text x="1075" y="651" class="tag" fill="#bd6a00">raw 与未登记嵌套字段：不可见</text>
+  </g>
+
+  <rect x="70" y="770" width="860" height="58" rx="18" fill="#17263e"/>
+  <text x="105" y="807" font-size="20" font-weight="700" style="fill:#ffffff">V2.1.2 已实现：未知 payload 与未登记字段默认不可见</text>
+</svg>

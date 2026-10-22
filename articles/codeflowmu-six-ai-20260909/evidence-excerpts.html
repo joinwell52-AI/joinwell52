@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>evidence-excerpts · CodeFlowMu</title><style>body{margin:0;background:#f6f8fb;color:#193046;font:16px/1.9 "Microsoft YaHei",sans-serif}header{background:#09172c;padding:18px 5vw}header a{color:#bdeaf2;text-decoration:none}main{max-width:950px;margin:45px auto;padding:0 25px 70px;overflow-wrap:anywhere}h1{font-size:30px}h2{margin-top:45px;border-bottom:1px solid #dbe4ea;padding-bottom:12px}h3{color:#087e99;margin-top:30px}p{margin:14px 0}a{color:#087e99}code{font-size:.85em;background:#e7edf3;padding:2px 4px}pre{overflow:auto;padding:20px;background:#e7edf3;font-size:13px}.scroll{overflow:auto}table{border-collapse:collapse;min-width:600px;width:100%;font-size:13px}th,td{padding:12px;border:1px solid #dae3eb;text-align:left}th{background:#e8f0f5}.bullet{padding-left:15px}</style></head><body><header><a href="index.html">← 返回：6个AI，同一道题，会怎么样？</a></header><main><h1>真实文件摘录与来源</h1><p>备份批次：<code>20260909T143927586105Z-cursor-final-eval-success</code>。正文仅节选字段与报告段落；完整文件SHA256用于核对保存版本，不单独证明业务结论。</p><h2>task</h2><p>原始文件：<code>fcop/_lifecycle/done/TASK-20260909-005-PM-to-QA.md</code></p><p>SHA256：<code>219465f7964b05b6271a7f918f5040d58eac3c5c3c61042fcdf1689c38502984</code></p><p>选取行号（按解码后的原文件splitlines计）：4, 5, 6, 7, 10, 14, 15, 16, 18。</p><pre>task_id: TASK-20260909-005
+root_task_id: TASK-20260909-001
+sender: PM
+recipient: QA
+parent: TASK-20260909-001
+depends_on: []
+acceptor: PM
+rerun_of: TASK-20260909-003
+subject: 只读核查 FCoP 落地与角色权限职责边界（模型修复后重跑）
+</pre><h2>review</h2><p>原始文件：<code>fcop/reviews/REVIEW-20260909-001-REVIEW-GATE-on-TASK-20260909-002.md</code></p><p>SHA256：<code>80e8df7a817456cc7cf67aa608d3bd209f445bc71c709bc8658771fcbdd2ec6f</code></p><p>选取行号（按解码后的原文件splitlines计）：4, 7, 8, 13, 22, 16, 18, 23。</p><pre>kind: fact_check
+task_id: TASK-20260909-002
+report_id: REPORT-20260909-001-DEV-to-PM
+review_state: needs_pm
+execution_evidence_state: verified
+business_decision: false
+attention_owner: PM
+third_party_source_state: not_configured
+</pre><h2>report</h2><p>原始文件：<code>fcop/reports/REPORT-20260909-004-PM-to-ADMIN.md</code></p><p>SHA256：<code>5aae11863990c7e039dd97702cea23c9573ba1c571c64d3b03c9225e63a5e3e3</code></p><p>选取位置：子任务回执三条、说明段。换行归一化，文字未改。</p><pre>## 子任务回执
+- `REPORT-20260909-001-DEV-to-PM.md` ← `TASK-20260909-002`（approved）
+- `REPORT-20260909-002-OPS-to-PM.md` ← `TASK-20260909-004`（approved）
+- `REPORT-20260909-003-QA-to-PM.md` ← `TASK-20260909-005`（approved；`rerun_of` 作废的 `TASK-20260909-003`）
+
+## 说明
+全程保持只读巡检目标；PM 未修改业务代码/配置。根任务业务验收与归档由 ADMIN 决定。
+</pre></main></body></html>

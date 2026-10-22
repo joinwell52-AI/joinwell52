@@ -1,0 +1,307 @@
+{
+  "at": "2026-09-09T02:07:13.031Z",
+  "node": "v24.16.0",
+  "head": "c008d9db91a21136fc61a4f60314e22db395d5d2",
+  "source": "<product>/packages/evaluator/eval-outcome-summary.cjs",
+  "source_sha256_before": "7889a21dea5d833c83abb8e109862881e24edf43b8f213eac2593e5e35c17d64",
+  "source_sha256_after": "7889a21dea5d833c83abb8e109862881e24edf43b8f213eac2593e5e35c17d64",
+  "probe_sha256": "aac3f6210bafb40bd9f2b39c7957ed83bbdc0785591379672917b6f7d867ec7c",
+  "kind": "Actual product pure-function import; synthetic records; no production consumer or external model executed",
+  "results": [
+    {
+      "id": "P0-distinct",
+      "input": [
+        {
+          "id": "A",
+          "status": "pass"
+        },
+        {
+          "id": "B",
+          "status": "fail"
+        }
+      ],
+      "actual": {
+        "total_input_count": 2,
+        "valid_count": 2,
+        "invalid_count": 0,
+        "duplicate_count": 0,
+        "status_counts": {
+          "pass": 1,
+          "fail": 1,
+          "error": 0,
+          "skip": 0,
+          "unknown": 0
+        },
+        "pass_rate": 0.5,
+        "records": [
+          {
+            "id": "A",
+            "name": null,
+            "status": "pass"
+          },
+          {
+            "id": "B",
+            "name": null,
+            "status": "fail"
+          }
+        ]
+      },
+      "reverse_equal": true
+    },
+    {
+      "id": "P1-identical-replay",
+      "input": [
+        {
+          "id": "A",
+          "status": "pass"
+        },
+        {
+          "id": "A",
+          "status": "pass"
+        }
+      ],
+      "actual": {
+        "total_input_count": 2,
+        "valid_count": 2,
+        "invalid_count": 0,
+        "duplicate_count": 1,
+        "status_counts": {
+          "pass": 1,
+          "fail": 0,
+          "error": 0,
+          "skip": 0,
+          "unknown": 0
+        },
+        "pass_rate": 1,
+        "records": [
+          {
+            "id": "A",
+            "name": null,
+            "status": "pass"
+          }
+        ]
+      },
+      "reverse_equal": true
+    },
+    {
+      "id": "P2-conflict-pass-note-first",
+      "input": [
+        {
+          "id": "A",
+          "status": "pass",
+          "note": "a"
+        },
+        {
+          "id": "A",
+          "status": "fail",
+          "note": "b"
+        }
+      ],
+      "actual": {
+        "total_input_count": 2,
+        "valid_count": 2,
+        "invalid_count": 0,
+        "duplicate_count": 1,
+        "status_counts": {
+          "pass": 1,
+          "fail": 0,
+          "error": 0,
+          "skip": 0,
+          "unknown": 0
+        },
+        "pass_rate": 1,
+        "records": [
+          {
+            "id": "A",
+            "name": null,
+            "status": "pass"
+          }
+        ]
+      },
+      "reverse_equal": true
+    },
+    {
+      "id": "P3-conflict-fail-note-first",
+      "input": [
+        {
+          "id": "A",
+          "status": "pass",
+          "note": "b"
+        },
+        {
+          "id": "A",
+          "status": "fail",
+          "note": "a"
+        }
+      ],
+      "actual": {
+        "total_input_count": 2,
+        "valid_count": 2,
+        "invalid_count": 0,
+        "duplicate_count": 1,
+        "status_counts": {
+          "pass": 0,
+          "fail": 1,
+          "error": 0,
+          "skip": 0,
+          "unknown": 0
+        },
+        "pass_rate": 0,
+        "records": [
+          {
+            "id": "A",
+            "name": null,
+            "status": "fail"
+          }
+        ]
+      },
+      "reverse_equal": true
+    },
+    {
+      "id": "P4-conflict-no-note",
+      "input": [
+        {
+          "id": "A",
+          "status": "pass"
+        },
+        {
+          "id": "A",
+          "status": "fail"
+        }
+      ],
+      "actual": {
+        "total_input_count": 2,
+        "valid_count": 2,
+        "invalid_count": 0,
+        "duplicate_count": 1,
+        "status_counts": {
+          "pass": 0,
+          "fail": 1,
+          "error": 0,
+          "skip": 0,
+          "unknown": 0
+        },
+        "pass_rate": 0,
+        "records": [
+          {
+            "id": "A",
+            "name": null,
+            "status": "fail"
+          }
+        ]
+      },
+      "reverse_equal": true
+    },
+    {
+      "id": "P5-same-case-distinct-runs",
+      "input": [
+        {
+          "case_id": "CASE-A",
+          "run_id": "RUN-1",
+          "status": "pass"
+        },
+        {
+          "case_id": "CASE-A",
+          "run_id": "RUN-2",
+          "status": "fail"
+        }
+      ],
+      "actual": {
+        "total_input_count": 2,
+        "valid_count": 2,
+        "invalid_count": 0,
+        "duplicate_count": 1,
+        "status_counts": {
+          "pass": 1,
+          "fail": 0,
+          "error": 0,
+          "skip": 0,
+          "unknown": 0
+        },
+        "pass_rate": 1,
+        "records": [
+          {
+            "id": "CASE-A",
+            "name": null,
+            "status": "pass"
+          }
+        ]
+      },
+      "reverse_equal": true
+    },
+    {
+      "id": "P6-explicit-record-ids",
+      "input": [
+        {
+          "id": "R1",
+          "case_id": "CASE-A",
+          "run_id": "RUN-1",
+          "status": "pass"
+        },
+        {
+          "id": "R2",
+          "case_id": "CASE-A",
+          "run_id": "RUN-2",
+          "status": "fail"
+        }
+      ],
+      "actual": {
+        "total_input_count": 2,
+        "valid_count": 2,
+        "invalid_count": 0,
+        "duplicate_count": 0,
+        "status_counts": {
+          "pass": 1,
+          "fail": 1,
+          "error": 0,
+          "skip": 0,
+          "unknown": 0
+        },
+        "pass_rate": 0.5,
+        "records": [
+          {
+            "id": "R1",
+            "name": null,
+            "status": "pass"
+          },
+          {
+            "id": "R2",
+            "name": null,
+            "status": "fail"
+          }
+        ]
+      },
+      "reverse_equal": true
+    },
+    {
+      "id": "P7-missing-result",
+      "input": [
+        {
+          "id": "A"
+        }
+      ],
+      "actual": {
+        "total_input_count": 1,
+        "valid_count": 1,
+        "invalid_count": 0,
+        "duplicate_count": 0,
+        "status_counts": {
+          "pass": 0,
+          "fail": 0,
+          "error": 0,
+          "skip": 0,
+          "unknown": 1
+        },
+        "pass_rate": 0,
+        "records": [
+          {
+            "id": "A",
+            "name": null,
+            "status": "unknown"
+          }
+        ]
+      },
+      "reverse_equal": true
+    }
+  ]
+}
