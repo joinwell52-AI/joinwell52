@@ -11,6 +11,15 @@ outline: false
 日期按 **Asia/Shanghai** 倒序排列。点击日期进入当天完整报告与原始公开来源。
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-10-23">
+    <time>2026-10-23</time>
+    <div>
+      <strong>Agent 核心研究与竞品动态</strong>
+      <span>证书信任未闭合边界 · Claude Code 沙箱修复 · 赵越 Codex hook · Codex 环境策略 · Paperclip 恢复点 · StaffDeck 升级保全 · Superset 更新续跑 · MCP 缓存竞争 · 工具参数流与传输证据</span>
+    </div>
+    <b>查看 →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-10-22">
     <time>2026-10-22</time>
     <div>

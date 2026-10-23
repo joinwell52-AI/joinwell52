@@ -11,6 +11,15 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-10-23">
+    <time>2026-10-23</time>
+    <div>
+      <strong>Agent Research & Competitor Intelligence</strong>
+      <span>CA-trust gaps · Claude Code sandbox fixes · Yue Zhao Codex hook · Codex environment policy · Paperclip restore points · StaffDeck upgrade preservation · Superset update recovery · MCP cache races · argument streams and delivery evidence</span>
+    </div>
+    <b>View →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-10-22">
     <time>2026-10-22</time>
     <div>
