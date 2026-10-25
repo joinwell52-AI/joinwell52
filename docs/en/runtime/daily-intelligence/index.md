@@ -11,6 +11,15 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-10-25">
+    <time>2026-10-25</time>
+    <div>
+      <strong>Agent Research & Competitor Intelligence</strong>
+      <span>Path dependence and stopping · Yue Zhao audit methods/guard · MCP Skills 2.4 · Codex 0.164 · OpenHands trust fix · private memory · Paperclip private work/recovery · Superset pooled seats · Windows generations</span>
+    </div>
+    <b>View →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-10-23">
     <time>2026-10-23</time>
     <div>

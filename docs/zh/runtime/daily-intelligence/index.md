@@ -11,6 +11,15 @@ outline: false
 日期按 **Asia/Shanghai** 倒序排列。点击日期进入当天完整报告与原始公开来源。
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-10-25">
+    <time>2026-10-25</time>
+    <div>
+      <strong>Agent 核心研究与竞品动态</strong>
+      <span>路径依赖与监控停止 · 赵越审计方法/guard · MCP Skills 2.4 · Codex 0.164 · OpenHands 信任修复 · 私有记忆边界 · Paperclip 私有工作/恢复 · Superset 席位用量池 · Windows 安装代际</span>
+    </div>
+    <b>查看 →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-10-23">
     <time>2026-10-23</time>
     <div>
