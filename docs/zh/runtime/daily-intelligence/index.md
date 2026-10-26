@@ -11,6 +11,15 @@ outline: false
 日期按 **Asia/Shanghai** 倒序排列。点击日期进入当天完整报告与原始公开来源。
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-10-26">
+    <time>2026-10-26</time>
+    <div>
+      <strong>Agent 核心研究与竞品动态</strong>
+      <span>auditable 0.3 正式发行 · 赵越规则试验负结果 · Paperclip 断线/恢复证明 · OpenHands 密钥轮换/子 Agent · Orca 会话写者与权限 · Beads 端点身份 · Superset 旧客户端/CLA · 轨迹转换</span>
+    </div>
+    <b>查看 →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-10-25">
     <time>2026-10-25</time>
     <div>

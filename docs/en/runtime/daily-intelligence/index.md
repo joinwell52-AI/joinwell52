@@ -11,6 +11,15 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-10-26">
+    <time>2026-10-26</time>
+    <div>
+      <strong>Agent Research & Competitor Intelligence</strong>
+      <span>auditable 0.3 release · Yue Zhao guidance-pilot limits · Paperclip outage/recovery proof · OpenHands key rotation/child agents · Orca writers/permissions · Beads endpoint identity · Superset legacy clients/CLA · trace conversion</span>
+    </div>
+    <b>View →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-10-25">
     <time>2026-10-25</time>
     <div>
