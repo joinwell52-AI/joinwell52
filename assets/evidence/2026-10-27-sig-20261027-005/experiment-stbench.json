@@ -1,0 +1,153 @@
+{
+  "id": "EXP-ST",
+  "executedAt": "2026-10-27T05:04:28.146Z",
+  "environment": {
+    "node": "v24.19.0"
+  },
+  "source": {
+    "url": "https://arxiv.org/html/2610.07763v1",
+    "version": "v1",
+    "capturedAt": "2026-10-27T01:04:26.455Z",
+    "sha256": "95865f1588d401e9076bc9269e568038f14e785c8c2c8a44a58ee5e733dd3a2a"
+  },
+  "label": "Paper-equation sensitivity and constructed counterexample experiment; not benchmark replication or upstream-code probe.",
+  "filterRows": [
+    {
+      "id": "positive-control",
+      "metrics": {
+        "rmse": 0.2
+      },
+      "targetPass": true,
+      "realistic": true,
+      "score": 1
+    },
+    {
+      "id": "target-fail-control",
+      "metrics": {
+        "rmse": 2
+      },
+      "targetPass": false,
+      "realistic": true,
+      "score": 0
+    },
+    {
+      "id": "zero-perfect-error",
+      "metrics": {
+        "rmse": 0
+      },
+      "targetPass": true,
+      "realistic": false,
+      "score": 0
+    },
+    {
+      "id": "negative-impossible-error",
+      "metrics": {
+        "rmse": -0.5,
+        "positive_aux": 1
+      },
+      "targetPass": true,
+      "realistic": true,
+      "score": 1
+    },
+    {
+      "id": "sentinel",
+      "metrics": {
+        "rmse": -1
+      },
+      "targetPass": true,
+      "realistic": false,
+      "score": 0
+    },
+    {
+      "id": "nonfinite",
+      "metrics": {
+        "rmse": "Infinity"
+      },
+      "targetPass": false,
+      "realistic": false,
+      "score": 0
+    },
+    {
+      "id": "nonnumeric",
+      "metrics": {
+        "rmse": "0.2"
+      },
+      "targetPass": false,
+      "realistic": false,
+      "score": 0
+    }
+  ],
+  "equalHeadline": [
+    {
+      "queries": 4,
+      "coverage": 1,
+      "conditionalPass": 0.5,
+      "score": 0.5
+    },
+    {
+      "queries": 4,
+      "coverage": 0.5,
+      "conditionalPass": 1,
+      "score": 0.5
+    }
+  ],
+  "weighting": {
+    "tasks": [
+      {
+        "queries": 1,
+        "coverage": 1,
+        "conditionalPass": 1,
+        "score": 1
+      },
+      {
+        "queries": 9,
+        "coverage": 1,
+        "conditionalPass": 0,
+        "score": 0
+      }
+    ],
+    "macroAverage": 0.5,
+    "pooledQueryAverage": 0.1,
+    "headlineSum": 1
+  },
+  "fallback": [
+    {
+      "sanity": 0,
+      "target": 0,
+      "literal": 0,
+      "proportional": 0,
+      "difference": 0
+    },
+    {
+      "sanity": 0,
+      "target": 1,
+      "literal": 0.6,
+      "proportional": 0.8,
+      "difference": -0.20000000000000007
+    },
+    {
+      "sanity": 1,
+      "target": 0,
+      "literal": 0.4,
+      "proportional": 0.2,
+      "difference": 0.2
+    },
+    {
+      "sanity": 1,
+      "target": 1,
+      "literal": 1,
+      "proportional": 1,
+      "difference": 0
+    }
+  ],
+  "conclusion": "Constructed equal headline scores conceal 100% versus 50% realistic coverage; unequal task sizes produce macro 0.5 versus query-pooled 0.1. A perfect zero error is filtered, while a physically impossible negative error with a positive auxiliary metric can satisfy the disclosed numeric filter and lower-is-better threshold. Literal and proportional missing-reference weights differ by up to 0.2 on binary inputs.",
+  "failures": [],
+  "limits": [
+    "Synthetic metric/task contracts; not evidence that any released ST-Bench task actually admits this dictionary.",
+    "Additional domain bounds or stricter task contracts may reject the constructed negative error; task implementation is unavailable.",
+    "The filter requires defined metric names; positive_aux is stipulated as another defined metric.",
+    "Fallback ambiguity concerns training reward, not held-out absolute score; implementation intent remains unknown.",
+    "No paper headline or aggregate plot coordinates recomputed without raw task records."
+  ],
+  "packaging": "Same-date internal experimental results; only local source path and command removed from this reader-facing copy."
+}
