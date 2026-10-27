@@ -11,6 +11,15 @@ outline: false
 日期按 **Asia/Shanghai** 倒序排列。点击日期进入当天完整报告与原始公开来源。
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-10-27">
+    <time>2026-10-27</time>
+    <div>
+      <strong>Agent 核心研究与竞品动态</strong>
+      <span>CatchBench 库消费证明 · AEGIS 自适应攻击 · Codex 调用前审查 · Paperclip/Eigent 幂等恢复 · OACP 内容信任 · Superset→Paradev 2.0 · 研究员工与授权边界</span>
+    </div>
+    <b>查看 →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-10-26">
     <time>2026-10-26</time>
     <div>

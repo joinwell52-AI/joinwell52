@@ -11,6 +11,15 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-10-27">
+    <time>2026-10-27</time>
+    <div>
+      <strong>Agent Research & Product Intelligence</strong>
+      <span>CatchBench library evidence · AEGIS adaptive attacks · Codex pre-dispatch review · Paperclip/Eigent recovery · OACP content trust · Superset→Paradev 2.0 · research employees and authorization</span>
+    </div>
+    <b>Read →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-10-26">
     <time>2026-10-26</time>
     <div>
