@@ -11,6 +11,15 @@ outline: false
 日期按 **Asia/Shanghai** 倒序排列。点击日期进入当天完整报告与原始公开来源。
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-10-28">
+    <time>2026-10-28</time>
+    <div>
+      <strong>Agent 核心研究与竞品动态</strong>
+      <span>Paperclip 原执行接管 · Paradev 查看者凭据 · Codex 0.165 / Guardian · Claude hook / 遥测 · OpenHands 预算与日志缺口 · ADK 记忆撤回 · 安全修复正式发行</span>
+    </div>
+    <b>查看 →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-10-27">
     <time>2026-10-27</time>
     <div>

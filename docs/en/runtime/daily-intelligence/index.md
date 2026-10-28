@@ -11,6 +11,15 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-10-28">
+    <time>2026-10-28</time>
+    <div>
+      <strong>Agent Research & Product Intelligence</strong>
+      <span>Paperclip durable takeover · Paradev viewer credentials · Codex 0.165 / Guardian · Claude hooks / telemetry · OpenHands budgets and history gaps · ADK memory withdrawal · released security fixes</span>
+    </div>
+    <b>Read →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-10-27">
     <time>2026-10-27</time>
     <div>
