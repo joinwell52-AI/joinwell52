@@ -8,16 +8,16 @@ category: "daily"
 article_type: "experiment-report"
 edition: "research-center"
 research_question: "AI 已经叫停，排队的工具为什么还会启动？"
-summary: "一句‘失败了’不等于执行真的停下。我们把同一组 16 种受控时序放到 OpenAI Agents Python 修复前后，观察已启动和排队中的工具。"
+summary: "16 种时序的前后对照揭开一个更大的问题：AI 说‘已停止’时，应交代排队工作、活动调用和外部副作用的哪三份事实？"
 cover: "/assets/execution-boundaries-20261028/stopped-but-tool-ran.cover-v1.png"
 language: "zh-CN"
 lifecycle: "Published"
 publication_authorized: true
-evidence_status: "固定源码；上游回归测试在本机的修复前后对照"
+evidence_status: "固定源码；上游回归前后对照与独立合成远端探针"
 pageClass: "six-governance-article"
 ---
 
-<ArticleCover image="/assets/execution-boundaries-20261028/stopped-but-tool-ran.cover-v1.png" kicker="开源工程观察 · 对照实验" title="AI 已经叫停，排队的工具为什么还会启动？" summary="一句‘失败了’不等于执行真的停下。我们把同一组 16 种受控时序放到 OpenAI Agents Python 修复前后，观察已启动和排队中的工具。" version="2026-10-28" languageHref="/en/research/2026-10-28-stopped-but-tool-ran" languageLabel="English" />
+<ArticleCover image="/assets/execution-boundaries-20261028/stopped-but-tool-ran.cover-v1.png" kicker="开源工程观察 · 对照实验" title="AI 已经叫停，排队的工具为什么还会启动？" summary="16 种时序的前后对照揭开一个更大的问题：AI 说‘已停止’时，应交代排队工作、活动调用和外部副作用的哪三份事实？" version="2026-10-28" languageHref="/en/research/2026-10-28-stopped-but-tool-ran" languageLabel="English" />
 
 <ArticleTableScroll language="zh" />
 
@@ -28,6 +28,8 @@ pageClass: "six-governance-article"
 想象你让一个 AI 助手查资料、整理文件、再发起一次操作。中途检查发现第一步出了错，于是助手报告：“任务失败，停止执行。”
 
 听起来很安全。但此时第二个工具可能已经开始，第三个还在队列里。**错误被报告出来**和**之后不再发生新动作**，其实是两件事。对会调用外部工具的 Agent，这个时间差比最后一句回答更重要。
+
+本文要追问的是：**一个系统声称“已停止”，究竟要拿出哪些事实，才值得我们相信？** 一句状态文本装不下排队工作、进行中的调用和已经送往外部的操作。我们先用一项可复跑实验检查其中的执行队列，再把它放回更完整的工程问题。
 
 ## 我们为什么追这条变化
 
@@ -48,18 +50,32 @@ pageClass: "six-governance-article"
 
 我们又在合并版运行相关的两个测试文件，共 **84/84 通过**。这不是“84 种真实场景都安全”，只是相关回归未出现失败。前版的 16 个用例均停在相同的取消断言，且测试进程打印了实际加载的前版源码路径；这样排除了“只是在两次运行里不小心测到同一份代码”的疑问。
 
+## 再加一个反例：调用取消后，远端仍可完成
+
+上面的对照回答了“排队调用会不会启动”，还没回答“已经送出去的动作会怎样”。我们因此自行构造第二组探针：仍穿过合并版真实 `Runner` 和工具入口，让活动工具先把请求交给一个**延迟提交的合成远端**，再触发函数失败。合成远端是本进程里独立等待的任务，不是实际网络服务。
+
+在失败被选定的瞬间，活动工具已收到取消，排队调用没有启动；但合成远端已经接收请求，尚未提交。本地运行结束后，我们再放行远端，提交照样发生。这个反例没有发现 OpenAI SDK 的新漏洞；它验证的是一个更基本的边界：**本地停止状态不能替已经接收请求的外部系统回答最终结果。** [探针脚本与两次状态快照](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-10-28-execution-boundaries)
+
 ![函数失败选定后，活动工具收到取消，排队请求留在边界之外](/assets/execution-boundaries-20261028/stopped-but-tool-ran.figure.zh.svg)
 
 *图：控制测试中的关键时序。图只表达本轮观察到的执行边界，不表示对现实中已完成的工具操作做了回滚。*
 
-## 修复改变了什么
+## 从一次取消，走向一份可核查的“停止回执”
 
 修复把“选定失败”变成一个会影响其他工具的事件：活动 native 工具接收取消，队列也不再继续放出新调用。它仍会在有界时间里处理已完成工具的输出，避免简单丢失错误前已经产生的结果；真正由调用者发出的取消则优先结束。
 
-这给出一个很实用的区分：**停止新动作、取消进行中的动作、撤销已发生的副作用，是三个不同承诺。** 本轮测试验证了前两者在特定受控时序中的改进；它没有证明一个已经发出的请求会被远端撤销，也没有验证所有真实工具的取消协议。PR 已合并，我们没有核验某个正式发行版是否包含它。
+从测试能直接确认的，是“选定失败”不再放任这组受控时序中的活动工具和排队调用继续按旧路径推进。一个更完整的停止回执还需要把三件事分开：
+
+1. **队列是否封口？** 停止之后，迟到的消息、重试或下一项工具调用还能否重新点火？[Codex 0.165.0 的发行说明](https://github.com/openai/codex/releases/tag/rust-v0.165.0)也专门修复了 interrupt 后排队 Agent 消息重新唤醒工作的情况。那是另一个上游项目的已发行变化，不是我们本轮复测结果。
+2. **活动调用停在何处？** Python 任务收到取消，不必然等于底层执行者已经结束。[AG2 1.2.2 的说明](https://github.com/ag2ai/ag2/releases/tag/v1.2.2)明确提醒，同步工具 worker 超时后仍可能继续运行并产生副作用。我们的合成工具能观察取消信号，不能替真实 worker 作担保。
+3. **外部结果是否查清？** 合成探针已经表明，本地取消之后，先前接受的请求仍可提交。[Paperclip 的接管实现](https://github.com/paperclipai/paperclip/pull/17439)把不确定 mutation 暂停，等待后续确认。这提供了处理方向；我们没有运行 Paperclip 接管实验。
+
+这三项是从本轮两组有界探针与另外三条一手变化归纳出的**工程判断**，不是一个已通过真实网络端到端测试的通用协议。特别是“撤销已发生的副作用”并不由取消自动实现。PR #5446 已合并，我们没有核验某个正式发行版是否包含它。
+
+一个可讨论的最小回执，应把“未启动的调用”“收到取消但尚未确认结束的调用”“外部结果仍不确定的调用”列成不同状态，并保留各自的时间与工具标识。这样下一位接手者才能知道：哪些事无需重做，哪些事必须先向外部系统查证。这个回执结构尚未在本轮实现或验证。
 
 如果你正在用 Agent 执行真实任务，可以问一个具体问题：当检查失败或人按下停止时，系统能否说清哪些调用尚未启动、哪些已经启动、哪些虽被取消但外部结果仍不确定？
 
-专业读者还可以进一步追问：如果工具在取消信号到达前已经提交了外部操作，运行记录应如何表达这个“不确定窗口”，才能让恢复者知道哪些动作需要人工核对？普通使用者遇到过“显示停止，却还有文件或远端状态变化”的情况吗？具体的时间顺序会比一句“AI 没停住”更有帮助。
+下一步需要把合成远端换成可独立查询的服务，并检查恢复者拿到什么记录。这次探针还没有测试恢复流程。专业读者可以讨论：不确定结果应由工具、运行时还是业务方负责核对？普通使用者遇到过“显示停止，却还有文件或远端状态变化”的情况吗？具体时间顺序会比一句“AI 没停住”更有帮助。
 
-实验命令、固定版本和限制见[公开实验报告](https://github.com/joinwell52-AI/joinwell52/blob/main/research/manual-runs/2026-10-28-execution-boundaries/00-report.md)。本轮是**上游回归测试在本机的修复前后对照**，不是生产故障复现。[研究仓库](https://github.com/joinwell52-AI/joinwell52)
+实验命令、固定版本、独立探针和限制见[公开实验报告](https://github.com/joinwell52-AI/joinwell52/blob/main/research/manual-runs/2026-10-28-execution-boundaries/00-report.md)。本轮包含上游回归前后对照和一个合成远端反例，不是生产故障复现。[研究仓库](https://github.com/joinwell52-AI/joinwell52)

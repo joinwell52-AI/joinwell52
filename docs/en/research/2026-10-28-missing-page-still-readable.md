@@ -13,7 +13,7 @@ cover: "/assets/execution-boundaries-20261028/missing-page-still-readable.cover-
 language: "en"
 lifecycle: "Published"
 publication_authorized: true
-evidence_status: "Pinned source; local before-and-after replay of upstream missing-event regression tests"
+evidence_status: "Pinned source; upstream before-and-after replay and independent local file probe"
 pageClass: "six-governance-article"
 ---
 
@@ -33,7 +33,7 @@ A long-running AI assistant faces the same problem when it restores context from
 
 In the [October 28 engineering digest](https://joinwell52-ai.github.io/joinwell52/en/runtime/daily-intelligence/2026-10-28), [OpenHands SDK PR #6197](https://github.com/OpenHands/software-agent-sdk/pull/6197) addresses loading after an event file is lost. We wanted to check two properties together: **can the remaining events be read, and can the missing event still be recognized?**
 
-The case is easy to control: write four events, delete a file in the middle, and reload. We used the upstream repository's `InMemoryFileStore` tests. They simulate missing files; we did not modify real conversations.
+The case is easy to control: write four events, delete a file in the middle, and reload. We first replayed the upstream `InMemoryFileStore` regressions against both revisions. We then deleted a real local file ourselves and compared two read interfaces. Neither experiment involved a real conversation.
 
 ## Where do the later pages go?
 
@@ -52,12 +52,18 @@ The four-event example makes this concrete. Original on-disk sequence numbers ar
 
 In another case, a surviving event points to a missing parent. The fixed reader can bridge the visible path back to an earlier surviving event and warn about the gap; it does not repeat the same warning on every traversal. **The path is repaired for use; the missing fact is not restored.**
 
+## We deleted a real local file too
+
+To go beyond the upstream in-memory test, we used the merge commit's original `EventLog` and `LocalFileStore` to write four JSON event files in a temporary directory. We deleted sequence 1 and reloaded through a new store instance. All three survivors remained readable. **Ordinary iteration showed consecutive list positions `0,1,2`; reading durable sequence numbers separately showed `0,2,3`.** Loading also logged the missing file. The [script, event IDs, and both sequences](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-10-28-execution-boundaries) are available for inspection.
+
+That split is the point of the story. “Can I read it?” is answered by one interface. “Is it complete?” requires another interface or the warning. We have not shown that a higher-level agent ignores this information. We have shown that a consumer of the ordinary list alone cannot see the gap in its list positions.
+
 ## Resumability and completeness are different claims
 
-Our observation is deliberately narrow. Under these simulated missing-file conditions, the fixed version retains both readability and evidence of the gap. It does not prove recovery of damaged content, behavior under real disk failure or concurrent writers, or inclusion in every packaged release. The PR is merged; we did not verify a specific release.
+Our observation is deliberately narrow. In both the upstream simulated gaps and our local file deletion, the fixed version kept survivors readable and preserved the gap in durable sequence numbers and logs. It does not prove recovery of damaged content or behavior under production disk failure, concurrent writers, or every packaged release. The PR is merged; we did not verify a specific release.
 
-This raises a harder question for long-running agents: when history has a hole, does the layer that verifies the work receive a clear “evidence incomplete” signal? If it sees only a usable reconstructed chain, it may mistake recovery for completeness. Our tests did **not** evaluate that higher-level propagation; it is the next experiment suggested by the result.
+This raises a harder question for long-running agents: when history has a hole, does the layer that verifies the work receive a clear “evidence incomplete” signal? If it sees only the ordinary list, it may mistake recovery for completeness. Our tests did **not** evaluate that higher-level propagation; it is the next experiment suggested by the two read views.
 
 Users can weigh in too: when a log is damaged, would you prefer an assistant to stop immediately, or show what can be recovered while clearly marking the missing position? The appropriate response depends on the task, but the missing fact should remain visible.
 
-The [public experiment report](https://github.com/joinwell52-AI/joinwell52/blob/main/research/manual-runs/2026-10-28-execution-boundaries/00-report.md) records pinned versions, commands, and limits. This is a **local before-and-after replay of upstream missing-event regression tests**, not a production data-loss incident. [Research repository](https://github.com/joinwell52-AI/joinwell52)
+The [public experiment report](https://github.com/joinwell52-AI/joinwell52/blob/main/research/manual-runs/2026-10-28-execution-boundaries/00-report.en.md) records pinned versions, the independent disk probe, commands, and limits. This round combines an upstream before-and-after replay with local file deletion, not a production data-loss incident. [Research repository](https://github.com/joinwell52-AI/joinwell52)
