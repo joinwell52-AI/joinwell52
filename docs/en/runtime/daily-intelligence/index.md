@@ -11,6 +11,15 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-10-29">
+    <time>2026-10-29</time>
+    <div>
+      <strong>Agent Research & Competitor Intelligence</strong>
+      <span>Zhao's verification resources · AutoGen maintenance ends · Codex MCP leases · OpenHands 1.59 · Paperclip recovery writes · Orca byte-bound trust · Beads tombstones · DSPy 3.5 main migration</span>
+    </div>
+    <b>Read →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-10-28">
     <time>2026-10-28</time>
     <div>

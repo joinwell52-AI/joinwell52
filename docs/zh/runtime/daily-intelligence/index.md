@@ -11,6 +11,15 @@ outline: false
 日期按 **Asia/Shanghai** 倒序排列。点击日期进入当天完整报告与原始公开来源。
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-10-29">
+    <time>2026-10-29</time>
+    <div>
+      <strong>Agent 核心研究与竞品动态</strong>
+      <span>赵越验证资源 · AutoGen 维护终止 · Codex MCP 租约 · OpenHands 1.59 · Paperclip 恢复写入 · Orca 字节信任 · Beads 永久幂等身份 · DSPy 3.5 主干迁移</span>
+    </div>
+    <b>查看 →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-10-28">
     <time>2026-10-28</time>
     <div>
