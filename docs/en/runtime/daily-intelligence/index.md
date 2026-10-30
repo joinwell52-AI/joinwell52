@@ -11,6 +11,15 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-10-30">
+    <time>2026-10-30</time>
+    <div>
+      <strong>Agent Research & Competitor Intelligence</strong>
+      <span>Codex 0.166 / Claude 2.1.314 · MCP maturity · Aegis corrections · Paperclip completion gates · Eigent delivery · Paradev Devs / pending license · recovery and memory boundaries</span>
+    </div>
+    <b>Read →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-10-29">
     <time>2026-10-29</time>
     <div>
