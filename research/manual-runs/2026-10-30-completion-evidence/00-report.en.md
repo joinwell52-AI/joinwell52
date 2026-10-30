@@ -23,6 +23,7 @@ Our question: in CodeFlowMu's Google adapter, what happens when a successful `wr
 | Successful report write and submit | A + A | A + B |
 | Old CodeFlowMu disk lookup finds A's report | No | No |
 | Two tool-success flags | Both `true` | Both `true` |
+| Early stop with only report success / only submit success | Neither stops | Neither stops |
 | Early stop and session settlement for A | Stop, `done` | Stop, `done` |
 | A's formal FCoP task stage | `review` | `active` |
 | Settlement without process-local flags | `blocked/no_valid_report` | `blocked/no_valid_report` |
