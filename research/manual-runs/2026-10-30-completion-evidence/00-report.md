@@ -23,6 +23,7 @@
 | 写报告成功、提交成功 | A 与 A | A 与 B |
 | CodeFlowMu 旧式磁盘查找发现 A 报告 | 否 | 否 |
 | CodeFlowMu 成功标志 | 两项均为 `true` | 两项均为 `true` |
+| 单独只有报告成功／只有提交成功时提前停止 | 均不停止 | 均不停止 |
 | 提前停止与 A 的会话结算 | 停止，`done` | 停止，`done` |
 | FCoP 中 A 的正式任务阶段 | `review` | `active` |
 | 不给进程内成功标志，单独结算 A | `blocked/no_valid_report` | `blocked/no_valid_report` |

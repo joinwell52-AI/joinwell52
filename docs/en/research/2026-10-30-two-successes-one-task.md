@@ -37,7 +37,7 @@ CodeFlowMu is our local multi-agent work system. It uses FCoP to keep formal tas
 
 ## Two green checks, two different owners
 
-We pinned CodeFlowMu V3.0.129 and FCoP 4.0.5 source revisions and created two real FCoP tasks, A and B, in temporary directories. Both controls wrote A's formal report. The only changed step was the submission: one control submitted A, while the other submitted B. We passed the real operation results through the existing CodeFlowMu Google adapter modules and observed their early-stop and session-settlement decisions.
+We pinned CodeFlowMu V3.0.129 and FCoP 4.0.5 source revisions and created two real FCoP tasks, A and B, in temporary directories. B already had its own valid report, and both controls wrote A's formal report. The only changed step was the submission: one control submitted A, while the other submitted B. We passed the real operation results through the existing CodeFlowMu Google adapter modules and observed their early-stop and session-settlement decisions.
 
 | What actually happened | Write A, submit A | Write A, submit B |
 | --- | --- | --- |
@@ -51,7 +51,7 @@ We pinned CodeFlowMu V3.0.129 and FCoP 4.0.5 source revisions and created two re
   <figcaption>Controlled comparison. Read the session outcome and the formal task stage as separate facts.</figcaption>
 </figure>
 
-Neither success was a fabricated string. The report write and task submission succeeded through real FCoP operations. **The mistake lies in treating successes for separate tasks as one completion certificate.** The tested runtime contract accumulates two booleans by tool name. Once both are true, it stops early and gives those flags priority during session settlement. The flags do not carry a common task ID or attempt ID, so they cannot establish that A was submitted.
+Neither success was a fabricated string. The report write and task submission succeeded through real FCoP operations. The adapter did not stop early when given only the report success or only the submit success; it stopped when the two were combined. **The mistake lies in treating successes for separate tasks as one completion certificate.** The tested runtime contract accumulates two booleans by tool name. Once both are true, it stops early and gives those flags priority during session settlement. The flags do not carry a common task ID or attempt ID, so they cannot establish that A was submitted.
 
 ## Without memory flags, the opposite error appears
 
@@ -59,7 +59,9 @@ We then removed the process-local success flags and asked the settlement module 
 
 The mismatch is concrete. FCoP 4 stores reports as `REPORT-<UUID>.md` files and uses `subject_ref` to bind them to a task. The tested older finder first looks for a role suffix in the filename, then reads legacy relation fields. It does not use FCoP 4's formal report query. This creates two opposing blind spots in the same module path: **broad in-memory success flags can settle A when it was not submitted; without those flags, a formally recorded report can appear absent.**
 
-FCoP itself did not confuse the tasks. It kept A `active` in the cross-task control and moved A to `review` in the same-task control. The issue is in this runtime adapter's use of the ledger. Ten existing unit tests for the related modules passed, but none covered this cross-task and recovery comparison.
+FCoP itself did not confuse the tasks. It kept A `active` in the cross-task control and moved A to `review` in the same-task control. `review` means **handed to a reviewer**, not finally approved. The issue is in this runtime adapter's use of the ledger. Ten existing unit tests for the related modules passed, but none covered this cross-task and no-memory-flags comparison.
+
+The experiment also leaves a design choice. Should one session be allowed to advance only its pinned task A, or may it work on both A and B? In the first design, a cross-task submission should be stopped at the call boundary. In the second, the runtime needs a separate outcome for each task, not one aggregate `done`. Our module probe did not establish which behavior the full live-model path permits, so neither design should be presented as an existing rule.
 
 ## What should count as a handoff?
 
