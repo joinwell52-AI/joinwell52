@@ -53,7 +53,7 @@ We pinned CodeFlowMu V3.0.129 and FCoP 4.0.5 source revisions and created two re
 
 Neither success was a fabricated string. The report write and task submission succeeded through real FCoP operations. **The mistake lies in treating successes for separate tasks as one completion certificate.** The tested runtime contract accumulates two booleans by tool name. Once both are true, it stops early and gives those flags priority during session settlement. The flags do not carry a common task ID or attempt ID, so they cannot establish that A was submitted.
 
-## Recovery produces the opposite error
+## Without memory flags, the opposite error appears
 
 We then removed the process-local success flags and asked the settlement module to rediscover A's report on disk. Both controls returned `blocked/no_valid_report`, even though FCoP's public query returned A's formal report in each case.
 
