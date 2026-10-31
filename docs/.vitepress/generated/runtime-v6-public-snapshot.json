@@ -4,13 +4,13 @@
   "schedulerVersion": "6.0",
   "startDate": "2026-10-27",
   "snapshotDate": "2026-10-31",
-  "publishedAt": "2026-10-31T01:08:28.254Z",
+  "publishedAt": "2026-10-31T02:03:15.257Z",
   "timezone": "Asia/Shanghai",
   "label": "Public Snapshot",
   "notice": "Not a live control plane",
   "dailyPublicStatuses": {
     "discovery": "Completed",
-    "queue": "Waiting",
+    "queue": "Completed",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
@@ -198,7 +198,7 @@
         "status": "Waiting",
         "taskStatus": {
           "discovery": "Completed",
-          "queue": "Waiting",
+          "queue": "Completed",
           "reading": "Waiting",
           "analysis": "Waiting",
           "production": "Waiting",
@@ -236,6 +236,32 @@
             ],
             "artifacts": [],
             "evidence": []
+          },
+          "queue": {
+            "task": "queue",
+            "status": "Completed",
+            "input": "按已验证的本地任务依赖执行。",
+            "input_zh": "按已验证的本地任务依赖执行。",
+            "workResult": "分类选题: Completed",
+            "workResult_zh": "分类选题：本地结果已通过验证。",
+            "output": "本地结果已通过验证。",
+            "output_zh": "本地结果已通过验证。",
+            "next": "Follow the local schedule.",
+            "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+            "metrics": [
+              {
+                "label": "actual-start",
+                "label_zh": "实际开始",
+                "value": "10:00:01"
+              },
+              {
+                "label": "actual-end",
+                "label_zh": "实际结束",
+                "value": "10:03:15"
+              }
+            ],
+            "artifacts": [],
+            "evidence": []
           }
         },
         "timeline": [],
@@ -249,7 +275,7 @@
           "status": "Waiting",
           "taskStatus": {
             "discovery": "Completed",
-            "queue": "Waiting",
+            "queue": "Completed",
             "reading": "Waiting",
             "analysis": "Waiting",
             "production": "Waiting",
@@ -287,6 +313,32 @@
               ],
               "artifacts": [],
               "evidence": []
+            },
+            "queue": {
+              "task": "queue",
+              "status": "Completed",
+              "input": "按已验证的本地任务依赖执行。",
+              "input_zh": "按已验证的本地任务依赖执行。",
+              "workResult": "分类选题: Completed",
+              "workResult_zh": "分类选题：本地结果已通过验证。",
+              "output": "本地结果已通过验证。",
+              "output_zh": "本地结果已通过验证。",
+              "next": "Follow the local schedule.",
+              "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+              "metrics": [
+                {
+                  "label": "actual-start",
+                  "label_zh": "实际开始",
+                  "value": "10:00:01"
+                },
+                {
+                  "label": "actual-end",
+                  "label_zh": "实际结束",
+                  "value": "10:03:15"
+                }
+              ],
+              "artifacts": [],
+              "evidence": []
             }
           },
           "timeline": [],
@@ -302,7 +354,7 @@
             "status": "Waiting",
             "taskStatus": {
               "discovery": "Completed",
-              "queue": "Waiting",
+              "queue": "Completed",
               "reading": "Waiting",
               "analysis": "Waiting",
               "production": "Waiting",
@@ -336,6 +388,32 @@
                     "label": "signals",
                     "label_zh": "研究线索",
                     "value": "6"
+                  }
+                ],
+                "artifacts": [],
+                "evidence": []
+              },
+              "queue": {
+                "task": "queue",
+                "status": "Completed",
+                "input": "按已验证的本地任务依赖执行。",
+                "input_zh": "按已验证的本地任务依赖执行。",
+                "workResult": "分类选题: Completed",
+                "workResult_zh": "分类选题：本地结果已通过验证。",
+                "output": "本地结果已通过验证。",
+                "output_zh": "本地结果已通过验证。",
+                "next": "Follow the local schedule.",
+                "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "10:00:01"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "10:03:15"
                   }
                 ],
                 "artifacts": [],
@@ -2677,40 +2755,40 @@
             "id": "digital-employee",
             "label": "数字员工",
             "label_zh": "数字员工",
-            "decision": "Waiting",
+            "decision": "Selected",
             "signals": 2,
-            "candidates": 0,
-            "selectedItemId": "",
-            "selectedTitle": "",
-            "selectedTitle_zh": "",
-            "reason": "该栏目尚未形成经过验证的选题。",
-            "reason_zh": "该栏目尚未形成经过验证的选题。"
+            "candidates": 1,
+            "selectedItemId": "SIG-20261031-005",
+            "selectedTitle": "数值收敛不能单独证明科研任务完成",
+            "selectedTitle_zh": "数值收敛不能单独证明科研任务完成",
+            "reason": "本地分类选题已验证。",
+            "reason_zh": "本地分类选题已验证。"
           },
           {
             "id": "industry-architecture",
             "label": "行业架构",
             "label_zh": "行业架构",
-            "decision": "Waiting",
+            "decision": "Selected",
             "signals": 2,
-            "candidates": 0,
-            "selectedItemId": "",
-            "selectedTitle": "",
-            "selectedTitle_zh": "",
-            "reason": "该栏目尚未形成经过验证的选题。",
-            "reason_zh": "该栏目尚未形成经过验证的选题。"
+            "candidates": 1,
+            "selectedItemId": "SIG-20261031-001",
+            "selectedTitle": "审批必须绑定执行效果与可信展示",
+            "selectedTitle_zh": "审批必须绑定执行效果与可信展示",
+            "reason": "本地分类选题已验证。",
+            "reason_zh": "本地分类选题已验证。"
           },
           {
             "id": "open-source-engineering",
             "label": "开源工程",
             "label_zh": "开源工程",
-            "decision": "Waiting",
+            "decision": "Selected",
             "signals": 2,
-            "candidates": 0,
-            "selectedItemId": "",
-            "selectedTitle": "",
-            "selectedTitle_zh": "",
-            "reason": "该栏目尚未形成经过验证的选题。",
-            "reason_zh": "该栏目尚未形成经过验证的选题。"
+            "candidates": 1,
+            "selectedItemId": "SIG-20261031-006",
+            "selectedTitle": "授权一致性需要独立结果指标",
+            "selectedTitle_zh": "授权一致性需要独立结果指标",
+            "reason": "本地分类选题已验证。",
+            "reason_zh": "本地分类选题已验证。"
           }
         ]
       },
@@ -2722,40 +2800,40 @@
               "id": "digital-employee",
               "label": "数字员工",
               "label_zh": "数字员工",
-              "decision": "Waiting",
+              "decision": "Selected",
               "signals": 2,
-              "candidates": 0,
-              "selectedItemId": "",
-              "selectedTitle": "",
-              "selectedTitle_zh": "",
-              "reason": "该栏目尚未形成经过验证的选题。",
-              "reason_zh": "该栏目尚未形成经过验证的选题。"
+              "candidates": 1,
+              "selectedItemId": "SIG-20261031-005",
+              "selectedTitle": "数值收敛不能单独证明科研任务完成",
+              "selectedTitle_zh": "数值收敛不能单独证明科研任务完成",
+              "reason": "本地分类选题已验证。",
+              "reason_zh": "本地分类选题已验证。"
             },
             {
               "id": "industry-architecture",
               "label": "行业架构",
               "label_zh": "行业架构",
-              "decision": "Waiting",
+              "decision": "Selected",
               "signals": 2,
-              "candidates": 0,
-              "selectedItemId": "",
-              "selectedTitle": "",
-              "selectedTitle_zh": "",
-              "reason": "该栏目尚未形成经过验证的选题。",
-              "reason_zh": "该栏目尚未形成经过验证的选题。"
+              "candidates": 1,
+              "selectedItemId": "SIG-20261031-001",
+              "selectedTitle": "审批必须绑定执行效果与可信展示",
+              "selectedTitle_zh": "审批必须绑定执行效果与可信展示",
+              "reason": "本地分类选题已验证。",
+              "reason_zh": "本地分类选题已验证。"
             },
             {
               "id": "open-source-engineering",
               "label": "开源工程",
               "label_zh": "开源工程",
-              "decision": "Waiting",
+              "decision": "Selected",
               "signals": 2,
-              "candidates": 0,
-              "selectedItemId": "",
-              "selectedTitle": "",
-              "selectedTitle_zh": "",
-              "reason": "该栏目尚未形成经过验证的选题。",
-              "reason_zh": "该栏目尚未形成经过验证的选题。"
+              "candidates": 1,
+              "selectedItemId": "SIG-20261031-006",
+              "selectedTitle": "授权一致性需要独立结果指标",
+              "selectedTitle_zh": "授权一致性需要独立结果指标",
+              "reason": "本地分类选题已验证。",
+              "reason_zh": "本地分类选题已验证。"
             }
           ]
         }
@@ -2869,40 +2947,40 @@
             "id": "digital-employee",
             "label": "数字员工",
             "label_zh": "数字员工",
-            "decision": "Waiting",
+            "decision": "Selected",
             "signals": 2,
-            "candidates": 0,
-            "selectedItemId": "",
-            "selectedTitle": "",
-            "selectedTitle_zh": "",
-            "reason": "该栏目尚未形成经过验证的选题。",
-            "reason_zh": "该栏目尚未形成经过验证的选题。"
+            "candidates": 1,
+            "selectedItemId": "SIG-20261031-005",
+            "selectedTitle": "数值收敛不能单独证明科研任务完成",
+            "selectedTitle_zh": "数值收敛不能单独证明科研任务完成",
+            "reason": "本地分类选题已验证。",
+            "reason_zh": "本地分类选题已验证。"
           },
           {
             "id": "industry-architecture",
             "label": "行业架构",
             "label_zh": "行业架构",
-            "decision": "Waiting",
+            "decision": "Selected",
             "signals": 2,
-            "candidates": 0,
-            "selectedItemId": "",
-            "selectedTitle": "",
-            "selectedTitle_zh": "",
-            "reason": "该栏目尚未形成经过验证的选题。",
-            "reason_zh": "该栏目尚未形成经过验证的选题。"
+            "candidates": 1,
+            "selectedItemId": "SIG-20261031-001",
+            "selectedTitle": "审批必须绑定执行效果与可信展示",
+            "selectedTitle_zh": "审批必须绑定执行效果与可信展示",
+            "reason": "本地分类选题已验证。",
+            "reason_zh": "本地分类选题已验证。"
           },
           {
             "id": "open-source-engineering",
             "label": "开源工程",
             "label_zh": "开源工程",
-            "decision": "Waiting",
+            "decision": "Selected",
             "signals": 2,
-            "candidates": 0,
-            "selectedItemId": "",
-            "selectedTitle": "",
-            "selectedTitle_zh": "",
-            "reason": "该栏目尚未形成经过验证的选题。",
-            "reason_zh": "该栏目尚未形成经过验证的选题。"
+            "candidates": 1,
+            "selectedItemId": "SIG-20261031-006",
+            "selectedTitle": "授权一致性需要独立结果指标",
+            "selectedTitle_zh": "授权一致性需要独立结果指标",
+            "reason": "本地分类选题已验证。",
+            "reason_zh": "本地分类选题已验证。"
           }
         ]
       }
