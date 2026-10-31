@@ -4,7 +4,7 @@
   "schedulerVersion": "6.0",
   "startDate": "2026-10-27",
   "snapshotDate": "2026-10-31",
-  "publishedAt": "2026-10-31T09:10:31.287Z",
+  "publishedAt": "2026-10-31T12:04:53.882Z",
   "timezone": "Asia/Shanghai",
   "label": "Public Snapshot",
   "notice": "Not a live control plane",
@@ -14,10 +14,23 @@
     "reading": "Completed",
     "analysis": "Completed",
     "production": "Completed",
-    "publication": "Waiting",
+    "publication": "Completed",
     "deadline-check": "Completed"
   },
-  "latestPublishedOutputs": [],
+  "latestPublishedOutputs": [
+    {
+      "itemId": "SIG-20261031-005",
+      "date": "2026-10-31",
+      "zh": "/zh/digital-employee/2026-10-31-sig-20261031-005",
+      "en": "/en/digital-employee/2026-10-31-sig-20261031-005"
+    },
+    {
+      "itemId": "SIG-20261031-001",
+      "date": "2026-10-31",
+      "zh": "/zh/industry/2026-10-31-sig-20261031-001",
+      "en": "/en/industry/2026-10-31-sig-20261031-001"
+    }
+  ],
   "lastPublicSync": null,
   "updatePolicy": "after-each-verified-stage",
   "operations": {
@@ -195,14 +208,14 @@
       "todayDaily": {
         "runtimeFamily": "daily",
         "date": "2026-10-31",
-        "status": "Waiting",
+        "status": "Completed",
         "taskStatus": {
           "discovery": "Completed",
           "queue": "Completed",
           "reading": "Completed",
           "analysis": "Completed",
           "production": "Completed",
-          "publication": "Waiting",
+          "publication": "Completed",
           "deadline-check": "Completed"
         },
         "results": {
@@ -341,6 +354,53 @@
             "artifacts": [],
             "evidence": []
           },
+          "publication": {
+            "task": "publication",
+            "status": "Completed",
+            "input": "按已验证的本地任务依赖执行。",
+            "input_zh": "按已验证的本地任务依赖执行。",
+            "workResult": "成果发布: Completed",
+            "workResult_zh": "成果发布：本地结果已通过验证。",
+            "output": "本地结果已通过验证。",
+            "output_zh": "本地结果已通过验证。",
+            "next": "Follow the local schedule.",
+            "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+            "metrics": [
+              {
+                "label": "actual-start",
+                "label_zh": "实际开始",
+                "value": "20:00:07"
+              },
+              {
+                "label": "actual-end",
+                "label_zh": "实际结束",
+                "value": "20:04:53"
+              }
+            ],
+            "artifacts": [
+              {
+                "label": "SIG-20261031-005 zh",
+                "label_zh": "SIG-20261031-005 · 中文全文",
+                "url": "/joinwell52/zh/digital-employee/2026-10-31-sig-20261031-005"
+              },
+              {
+                "label": "SIG-20261031-005 en",
+                "label_zh": "SIG-20261031-005 · 英文全文",
+                "url": "/joinwell52/en/digital-employee/2026-10-31-sig-20261031-005"
+              },
+              {
+                "label": "SIG-20261031-001 zh",
+                "label_zh": "SIG-20261031-001 · 中文全文",
+                "url": "/joinwell52/zh/industry/2026-10-31-sig-20261031-001"
+              },
+              {
+                "label": "SIG-20261031-001 en",
+                "label_zh": "SIG-20261031-001 · 英文全文",
+                "url": "/joinwell52/en/industry/2026-10-31-sig-20261031-001"
+              }
+            ],
+            "evidence": []
+          },
           "deadline-check": {
             "task": "deadline-check",
             "status": "Completed",
@@ -376,14 +436,14 @@
         "daily": {
           "runtimeFamily": "daily",
           "date": "2026-10-31",
-          "status": "Waiting",
+          "status": "Completed",
           "taskStatus": {
             "discovery": "Completed",
             "queue": "Completed",
             "reading": "Completed",
             "analysis": "Completed",
             "production": "Completed",
-            "publication": "Waiting",
+            "publication": "Completed",
             "deadline-check": "Completed"
           },
           "results": {
@@ -522,6 +582,53 @@
               "artifacts": [],
               "evidence": []
             },
+            "publication": {
+              "task": "publication",
+              "status": "Completed",
+              "input": "按已验证的本地任务依赖执行。",
+              "input_zh": "按已验证的本地任务依赖执行。",
+              "workResult": "成果发布: Completed",
+              "workResult_zh": "成果发布：本地结果已通过验证。",
+              "output": "本地结果已通过验证。",
+              "output_zh": "本地结果已通过验证。",
+              "next": "Follow the local schedule.",
+              "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+              "metrics": [
+                {
+                  "label": "actual-start",
+                  "label_zh": "实际开始",
+                  "value": "20:00:07"
+                },
+                {
+                  "label": "actual-end",
+                  "label_zh": "实际结束",
+                  "value": "20:04:53"
+                }
+              ],
+              "artifacts": [
+                {
+                  "label": "SIG-20261031-005 zh",
+                  "label_zh": "SIG-20261031-005 · 中文全文",
+                  "url": "/joinwell52/zh/digital-employee/2026-10-31-sig-20261031-005"
+                },
+                {
+                  "label": "SIG-20261031-005 en",
+                  "label_zh": "SIG-20261031-005 · 英文全文",
+                  "url": "/joinwell52/en/digital-employee/2026-10-31-sig-20261031-005"
+                },
+                {
+                  "label": "SIG-20261031-001 zh",
+                  "label_zh": "SIG-20261031-001 · 中文全文",
+                  "url": "/joinwell52/zh/industry/2026-10-31-sig-20261031-001"
+                },
+                {
+                  "label": "SIG-20261031-001 en",
+                  "label_zh": "SIG-20261031-001 · 英文全文",
+                  "url": "/joinwell52/en/industry/2026-10-31-sig-20261031-001"
+                }
+              ],
+              "evidence": []
+            },
             "deadline-check": {
               "task": "deadline-check",
               "status": "Completed",
@@ -559,14 +666,14 @@
           {
             "runtimeFamily": "daily",
             "date": "2026-10-31",
-            "status": "Waiting",
+            "status": "Completed",
             "taskStatus": {
               "discovery": "Completed",
               "queue": "Completed",
               "reading": "Completed",
               "analysis": "Completed",
               "production": "Completed",
-              "publication": "Waiting",
+              "publication": "Completed",
               "deadline-check": "Completed"
             },
             "results": {
@@ -703,6 +810,53 @@
                   }
                 ],
                 "artifacts": [],
+                "evidence": []
+              },
+              "publication": {
+                "task": "publication",
+                "status": "Completed",
+                "input": "按已验证的本地任务依赖执行。",
+                "input_zh": "按已验证的本地任务依赖执行。",
+                "workResult": "成果发布: Completed",
+                "workResult_zh": "成果发布：本地结果已通过验证。",
+                "output": "本地结果已通过验证。",
+                "output_zh": "本地结果已通过验证。",
+                "next": "Follow the local schedule.",
+                "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "20:00:07"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "20:04:53"
+                  }
+                ],
+                "artifacts": [
+                  {
+                    "label": "SIG-20261031-005 zh",
+                    "label_zh": "SIG-20261031-005 · 中文全文",
+                    "url": "/joinwell52/zh/digital-employee/2026-10-31-sig-20261031-005"
+                  },
+                  {
+                    "label": "SIG-20261031-005 en",
+                    "label_zh": "SIG-20261031-005 · 英文全文",
+                    "url": "/joinwell52/en/digital-employee/2026-10-31-sig-20261031-005"
+                  },
+                  {
+                    "label": "SIG-20261031-001 zh",
+                    "label_zh": "SIG-20261031-001 · 中文全文",
+                    "url": "/joinwell52/zh/industry/2026-10-31-sig-20261031-001"
+                  },
+                  {
+                    "label": "SIG-20261031-001 en",
+                    "label_zh": "SIG-20261031-001 · 英文全文",
+                    "url": "/joinwell52/en/industry/2026-10-31-sig-20261031-001"
+                  }
+                ],
                 "evidence": []
               },
               "deadline-check": {
