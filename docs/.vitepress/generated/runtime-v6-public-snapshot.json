@@ -4,16 +4,16 @@
   "schedulerVersion": "6.0",
   "startDate": "2026-10-27",
   "snapshotDate": "2026-11-01",
-  "publishedAt": "2026-11-01T09:00:02.171Z",
+  "publishedAt": "2026-11-01T09:08:55.803Z",
   "timezone": "Asia/Shanghai",
   "label": "Public Snapshot",
   "notice": "Not a live control plane",
   "dailyPublicStatuses": {
     "discovery": "Completed",
     "queue": "Completed",
-    "reading": "Waiting",
-    "analysis": "Waiting",
-    "production": "Waiting",
+    "reading": "Blocked",
+    "analysis": "Blocked",
+    "production": "Blocked",
     "publication": "Waiting",
     "weekly": "Waiting",
     "deadline-check": "Completed",
@@ -250,13 +250,13 @@
       "todayDaily": {
         "runtimeFamily": "daily",
         "date": "2026-11-01",
-        "status": "Waiting",
+        "status": "Blocked",
         "taskStatus": {
           "discovery": "Completed",
           "queue": "Completed",
-          "reading": "Waiting",
-          "analysis": "Waiting",
-          "production": "Waiting",
+          "reading": "Blocked",
+          "analysis": "Blocked",
+          "production": "Blocked",
           "publication": "Waiting",
           "weekly": "Waiting",
           "deadline-check": "Completed",
@@ -322,25 +322,25 @@
           },
           "reading": {
             "task": "reading",
-            "status": "Waiting",
+            "status": "Blocked",
             "input": "按已验证的本地任务依赖执行。",
             "input_zh": "按已验证的本地任务依赖执行。",
-            "workResult": "深度阅读: Waiting",
-            "workResult_zh": "深度阅读：等待计划时间或前置阶段完成。",
-            "output": "等待计划时间或前置阶段完成。",
-            "output_zh": "等待计划时间或前置阶段完成。",
+            "workResult": "深度阅读: Blocked",
+            "workResult_zh": "深度阅读：本地执行或验证未通过，未计作完成。",
+            "output": "本地执行或验证未通过，未计作完成。",
+            "output_zh": "本地执行或验证未通过，未计作完成。",
             "next": "Follow the local schedule.",
             "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
             "metrics": [
               {
                 "label": "actual-start",
                 "label_zh": "实际开始",
-                "value": "11:00:01"
+                "value": "17:00:02"
               },
               {
                 "label": "actual-end",
                 "label_zh": "实际结束",
-                "value": "—"
+                "value": "17:08:53"
               }
             ],
             "artifacts": [],
@@ -381,13 +381,13 @@
         "daily": {
           "runtimeFamily": "daily",
           "date": "2026-11-01",
-          "status": "Waiting",
+          "status": "Blocked",
           "taskStatus": {
             "discovery": "Completed",
             "queue": "Completed",
-            "reading": "Waiting",
-            "analysis": "Waiting",
-            "production": "Waiting",
+            "reading": "Blocked",
+            "analysis": "Blocked",
+            "production": "Blocked",
             "publication": "Waiting",
             "weekly": "Waiting",
             "deadline-check": "Completed",
@@ -453,25 +453,25 @@
             },
             "reading": {
               "task": "reading",
-              "status": "Waiting",
+              "status": "Blocked",
               "input": "按已验证的本地任务依赖执行。",
               "input_zh": "按已验证的本地任务依赖执行。",
-              "workResult": "深度阅读: Waiting",
-              "workResult_zh": "深度阅读：等待计划时间或前置阶段完成。",
-              "output": "等待计划时间或前置阶段完成。",
-              "output_zh": "等待计划时间或前置阶段完成。",
+              "workResult": "深度阅读: Blocked",
+              "workResult_zh": "深度阅读：本地执行或验证未通过，未计作完成。",
+              "output": "本地执行或验证未通过，未计作完成。",
+              "output_zh": "本地执行或验证未通过，未计作完成。",
               "next": "Follow the local schedule.",
               "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
               "metrics": [
                 {
                   "label": "actual-start",
                   "label_zh": "实际开始",
-                  "value": "11:00:01"
+                  "value": "17:00:02"
                 },
                 {
                   "label": "actual-end",
                   "label_zh": "实际结束",
-                  "value": "—"
+                  "value": "17:08:53"
                 }
               ],
               "artifacts": [],
@@ -514,13 +514,13 @@
           {
             "runtimeFamily": "daily",
             "date": "2026-11-01",
-            "status": "Waiting",
+            "status": "Blocked",
             "taskStatus": {
               "discovery": "Completed",
               "queue": "Completed",
-              "reading": "Waiting",
-              "analysis": "Waiting",
-              "production": "Waiting",
+              "reading": "Blocked",
+              "analysis": "Blocked",
+              "production": "Blocked",
               "publication": "Waiting",
               "weekly": "Waiting",
               "deadline-check": "Completed",
@@ -586,25 +586,25 @@
               },
               "reading": {
                 "task": "reading",
-                "status": "Waiting",
+                "status": "Blocked",
                 "input": "按已验证的本地任务依赖执行。",
                 "input_zh": "按已验证的本地任务依赖执行。",
-                "workResult": "深度阅读: Waiting",
-                "workResult_zh": "深度阅读：等待计划时间或前置阶段完成。",
-                "output": "等待计划时间或前置阶段完成。",
-                "output_zh": "等待计划时间或前置阶段完成。",
+                "workResult": "深度阅读: Blocked",
+                "workResult_zh": "深度阅读：本地执行或验证未通过，未计作完成。",
+                "output": "本地执行或验证未通过，未计作完成。",
+                "output_zh": "本地执行或验证未通过，未计作完成。",
                 "next": "Follow the local schedule.",
                 "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
                 "metrics": [
                   {
                     "label": "actual-start",
                     "label_zh": "实际开始",
-                    "value": "11:00:01"
+                    "value": "17:00:02"
                   },
                   {
                     "label": "actual-end",
                     "label_zh": "实际结束",
-                    "value": "—"
+                    "value": "17:08:53"
                   }
                 ],
                 "artifacts": [],
