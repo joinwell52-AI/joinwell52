@@ -11,6 +11,15 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+  <a class="daily-intel-item" href="./2026-11-01">
+    <time>2026-11-01</time>
+    <div>
+      <strong>Agent Research & Competitor Intelligence</strong>
+      <span>Exact attribution · Codex failure evidence · Claude 2.1.316 · AG2 cancellation/replay · Phoenix 21 migration · Paperclip rolling qualification still failed · Eigent/Orca releases · plugin/OAuth ownership</span>
+    </div>
+    <b>Read →</b>
+  </a>
+
   <a class="daily-intel-item" href="./2026-10-30">
     <time>2026-10-30</time>
     <div>
