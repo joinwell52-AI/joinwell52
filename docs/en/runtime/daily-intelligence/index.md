@@ -11,6 +11,8 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+<a class="daily-intel-item" href="./2026-11-02"><time>2026-11-02</time><div><strong>Agent Research & Competitor Intelligence</strong><span>Paperclip · Langfuse · A2A · OpenHands · Paradev · Orkas</span></div><b>Read →</b></a>
+
   <a class="daily-intel-item" href="./2026-11-01">
     <time>2026-11-01</time>
     <div>
