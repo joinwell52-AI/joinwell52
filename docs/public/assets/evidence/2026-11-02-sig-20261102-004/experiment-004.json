@@ -1,0 +1,280 @@
+{
+  "id": "EXP004",
+  "executedAt": "2026-11-02T05:04:12.471Z",
+  "completedAt": "2026-11-02T05:04:12.597Z",
+  "environment": {
+    "node": "v24.19.0",
+    "platform": "win32",
+    "arch": "x64"
+  },
+  "planSha256": "c1f2f9f936a00c6b5dfdb7fbd7bd1861ed20343ec762b25306e481ee22048e1f",
+  "inputSha256": "c052432ab1e4db59705d4b730637c60665b91afef573fd447bc17facc0acfa37",
+  "kind": "Source-derived decision-cost scenario experiment, not a model benchmark rerun",
+  "formula": "Cost per six-check memo = 6*(p*(1-H)*missCostRatio+(1-p)*F) + tokenCharge*K. K is source tokens relative to single. tokenCharge is the assumed total cost of one single-agent token budget, in units of one false alarm; it is not a measured monetary price.",
+  "grid": {
+    "defectShares": [
+      0.001,
+      0.01,
+      0.02,
+      0.05,
+      0.37
+    ],
+    "missCostRatios": "integers 1 through 200",
+    "tokenCharges": [
+      0,
+      0.01,
+      0.1,
+      0.5,
+      1,
+      2,
+      5,
+      10
+    ]
+  },
+  "gridPoints": 32000,
+  "control": {
+    "points": 800,
+    "teamWins": 1,
+    "teamWinnerDetails": [
+      {
+        "model": "Qwen3.5 9B",
+        "p": 0.02,
+        "r": 39,
+        "tokenCharge": 0,
+        "winner": "Team",
+        "cost": 2.74308,
+        "secondArm": "Three draws, majority",
+        "margin": 0.0036000000000004917,
+        "robustToRateRounding": false
+      }
+    ],
+    "exactSourceControlReproduced": false,
+    "interpretation": "Strict no-Team-winner source control does not reproduce from rounded Table 2: one Qwen9B point wins by a rounding-sensitive margin. Source itself warns this near-collinear ranking is not robust; no disagreement with unrounded source measurements is established."
+  },
+  "summary": {
+    "winnerCounts": {
+      "Qwen3.5 9B": {
+        "Three draws, majority": 645,
+        "Single agent": 3683,
+        "Team": 3,
+        "Three draws, any": 3669
+      },
+      "Qwen3.5 27B": {
+        "Single agent": 3963,
+        "Three draws, majority": 690,
+        "Three draws, any": 3347
+      },
+      "Haiku 5.5": {
+        "Three draws, majority": 496,
+        "Single agent": 3899,
+        "Three draws, any": 3605
+      },
+      "Sonnet 5.5": {
+        "Three draws, majority": 254,
+        "Single agent": 5876,
+        "Three draws, any": 1870
+      }
+    },
+    "teamWinsAtP002": 1,
+    "positiveTokenChargeTeamWinsAtP002": 0,
+    "robustTeamWinsAtP002": 0
+  },
+  "witnesses": [],
+  "tokenReversals": [
+    {
+      "errorOnly": {
+        "model": "Qwen3.5 9B",
+        "p": 0.02,
+        "r": 20,
+        "tokenCharge": 0,
+        "winner": "Three draws, majority",
+        "cost": 1.8096000000000005,
+        "secondArm": "Single agent",
+        "margin": 0.05999999999999939,
+        "robustToRateRounding": true
+      },
+      "withTokenCost": {
+        "model": "Qwen3.5 9B",
+        "p": 0.02,
+        "r": 20,
+        "tokenCharge": 0.1,
+        "winner": "Single agent",
+        "cost": 1.9696,
+        "secondArm": "Three draws, majority",
+        "margin": 0.15100000000000047,
+        "robustToRateRounding": true
+      }
+    },
+    {
+      "errorOnly": {
+        "model": "Qwen3.5 9B",
+        "p": 0.02,
+        "r": 100,
+        "tokenCharge": 0,
+        "winner": "Three draws, any",
+        "cost": 3.81588,
+        "secondArm": "Scoped team",
+        "margin": 0.7533599999999998,
+        "robustToRateRounding": true
+      },
+      "withTokenCost": {
+        "model": "Qwen3.5 9B",
+        "p": 0.02,
+        "r": 100,
+        "tokenCharge": 1,
+        "winner": "Single agent",
+        "cost": 6.5848,
+        "secondArm": "Three draws, any",
+        "margin": 0.34107999999999894,
+        "robustToRateRounding": true
+      }
+    },
+    {
+      "errorOnly": {
+        "model": "Qwen3.5 27B",
+        "p": 0.02,
+        "r": 20,
+        "tokenCharge": 0,
+        "winner": "Three draws, majority",
+        "cost": 0.66624,
+        "secondArm": "Single agent",
+        "margin": 0.10931999999999986,
+        "robustToRateRounding": true
+      },
+      "withTokenCost": {
+        "model": "Qwen3.5 27B",
+        "p": 0.02,
+        "r": 20,
+        "tokenCharge": 0.1,
+        "winner": "Single agent",
+        "cost": 0.8755599999999999,
+        "secondArm": "Three draws, majority",
+        "margin": 0.09668000000000021,
+        "robustToRateRounding": true
+      }
+    },
+    {
+      "errorOnly": {
+        "model": "Qwen3.5 27B",
+        "p": 0.02,
+        "r": 100,
+        "tokenCharge": 0,
+        "winner": "Three draws, any",
+        "cost": 1.5511200000000005,
+        "secondArm": "Three draws, majority",
+        "margin": 0.6511199999999997,
+        "robustToRateRounding": true
+      },
+      "withTokenCost": {
+        "model": "Qwen3.5 27B",
+        "p": 0.02,
+        "r": 100,
+        "tokenCharge": 1,
+        "winner": "Single agent",
+        "cost": 3.77236,
+        "secondArm": "Three draws, any",
+        "margin": 0.8387600000000006,
+        "robustToRateRounding": true
+      }
+    },
+    {
+      "errorOnly": {
+        "model": "Haiku 5.5",
+        "p": 0.02,
+        "r": 20,
+        "tokenCharge": 0,
+        "winner": "Three draws, any",
+        "cost": 0.3409199999999999,
+        "secondArm": "Three draws, majority",
+        "margin": 0.05352000000000012,
+        "robustToRateRounding": true
+      },
+      "withTokenCost": {
+        "model": "Haiku 5.5",
+        "p": 0.02,
+        "r": 20,
+        "tokenCharge": 0.1,
+        "winner": "Single agent",
+        "cost": 0.5964400000000001,
+        "secondArm": "Three draws, any",
+        "margin": 0.04447999999999985,
+        "robustToRateRounding": true
+      }
+    },
+    {
+      "errorOnly": {
+        "model": "Haiku 5.5",
+        "p": 0.02,
+        "r": 100,
+        "tokenCharge": 0,
+        "winner": "Three draws, any",
+        "cost": 1.0225199999999994,
+        "secondArm": "Team",
+        "margin": 0.6004800000000008,
+        "robustToRateRounding": true
+      },
+      "withTokenCost": {
+        "model": "Haiku 5.5",
+        "p": 0.02,
+        "r": 100,
+        "tokenCharge": 1,
+        "winner": "Single agent",
+        "cost": 3.1764400000000004,
+        "secondArm": "Team",
+        "margin": 0.60656,
+        "robustToRateRounding": true
+      }
+    },
+    {
+      "errorOnly": {
+        "model": "Sonnet 5.5",
+        "p": 0.02,
+        "r": 20,
+        "tokenCharge": 0,
+        "winner": "Three draws, any",
+        "cost": 0.00588,
+        "secondArm": "Three draws, majority",
+        "margin": 0.001320000000000007,
+        "robustToRateRounding": false
+      },
+      "withTokenCost": {
+        "model": "Sonnet 5.5",
+        "p": 0.02,
+        "r": 20,
+        "tokenCharge": 0.01,
+        "winner": "Single agent",
+        "cost": 0.024400000000000012,
+        "secondArm": "Three draws, any",
+        "margin": 0.011479999999999983,
+        "robustToRateRounding": true
+      }
+    },
+    {
+      "errorOnly": {
+        "model": "Sonnet 5.5",
+        "p": 0.02,
+        "r": 100,
+        "tokenCharge": 0,
+        "winner": "Three draws, any",
+        "cost": 0.00588,
+        "secondArm": "Three draws, majority",
+        "margin": 0.030120000000000032,
+        "robustToRateRounding": true
+      },
+      "withTokenCost": {
+        "model": "Sonnet 5.5",
+        "p": 0.02,
+        "r": 100,
+        "tokenCharge": 0.1,
+        "winner": "Single agent",
+        "cost": 0.17200000000000007,
+        "secondArm": "Three draws, any",
+        "margin": 0.13387999999999997,
+        "robustToRateRounding": true
+      }
+    }
+  ],
+  "controlsPassed": true,
+  "roundingCaution": "Adversarial H/F rounding only; not confidence intervals, input measurement uncertainty or K rounding.",
+  "limits": "Conditional calculation on author-reported rounded rates, not new detections. No paired raw predictions, error correlation, token variability, real prevalence, latency or human-adjudication cost measured. Grid winner is not global optimality or a deployment recommendation."
+}
