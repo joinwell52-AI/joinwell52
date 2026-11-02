@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 650" role="img" aria-labelledby="title desc">
+  <title id="title">One failed result, two retention outcomes</title>
+  <desc id="desc">A synthetic failed tool result passes through pattern redaction. The recognized fake key is hidden, while an unformatted fake sensitive marker remains in the action record and long error file.</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffdf8"/><stop offset="1" stop-color="#eee8da"/></linearGradient>
+    <linearGradient id="blue" x1="0" x2="1"><stop stop-color="#123cb8"/><stop offset="1" stop-color="#2768df"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#18346f" flood-opacity=".10"/></filter>
+  </defs>
+  <rect width="960" height="650" rx="30" fill="url(#paper)"/>
+  <path d="M48 126H912M48 422H912" stroke="#d9d6cc" stroke-width="2"/>
+  <text x="55" y="66" fill="#153a8f" font-size="31" font-weight="700" font-family="Arial,sans-serif">Synthetic failure: one tool result</text>
+  <text x="55" y="102" fill="#4e5b6b" font-size="22" font-family="Arial,sans-serif">Two fake values; the command was never executed</text>
+  <rect x="55" y="154" width="382" height="205" rx="22" fill="#fff" stroke="#c5d6ff" stroke-width="3" filter="url(#shadow)"/>
+  <circle cx="94" cy="201" r="19" fill="#dce7ff"/><path d="M84 201l7 7 14-16" fill="none" stroke="#1a53d2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="126" y="209" fill="#153a8f" font-size="27" font-weight="700" font-family="Arial,sans-serif">Recognized fake key</text>
+  <text x="82" y="270" fill="#536171" font-size="24" font-family="Arial,sans-serif">Pattern identifies its shape</text>
+  <rect x="81" y="292" width="185" height="42" rx="21" fill="url(#blue)"/><text x="174" y="321" text-anchor="middle" fill="#fff" font-size="21" font-weight="700" font-family="Arial,sans-serif">Original hidden</text>
+  <rect x="523" y="154" width="382" height="205" rx="22" fill="#fff" stroke="#e8c28d" stroke-width="3" filter="url(#shadow)"/>
+  <circle cx="562" cy="201" r="19" fill="#fff0d6"/><text x="562" y="209" text-anchor="middle" fill="#a56313" font-size="27" font-weight="700">?</text>
+  <text x="594" y="209" fill="#805016" font-size="25" font-weight="700" font-family="Arial,sans-serif">Unformatted fake value</text>
+  <text x="550" y="270" fill="#536171" font-size="24" font-family="Arial,sans-serif">Pattern cannot infer privacy</text>
+  <rect x="549" y="292" width="208" height="42" rx="21" fill="#a56313"/><text x="653" y="321" text-anchor="middle" fill="#fff" font-size="21" font-weight="700" font-family="Arial,sans-serif">Original retained</text>
+  <path d="M246 360v25h234m234-25v25H480m0 0v27" fill="none" stroke="#557ad0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="m469 400 11 13 11-13" fill="none" stroke="#557ad0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="55" y="469" fill="#153a8f" font-size="27" font-weight="700" font-family="Arial,sans-serif">Two persisted observation surfaces</text>
+  <rect x="55" y="493" width="410" height="112" rx="18" fill="#e8efff" stroke="#b2c8ff" stroke-width="2"/>
+  <text x="82" y="536" fill="#173d9b" font-size="26" font-weight="700" font-family="Arial,sans-serif">Command in action row</text>
+  <text x="82" y="579" fill="#5a6575" font-size="21" font-family="Arial,sans-serif">Known key hidden · other value kept</text>
+  <rect x="495" y="493" width="410" height="112" rx="18" fill="#e8efff" stroke="#b2c8ff" stroke-width="2"/>
+  <text x="522" y="536" fill="#173d9b" font-size="26" font-weight="700" font-family="Arial,sans-serif">Referenced long error file</text>
+  <text x="522" y="579" fill="#5a6575" font-size="21" font-family="Arial,sans-serif">Known key hidden · other value kept</text>
+</svg>
