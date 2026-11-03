@@ -1,0 +1,70 @@
+{
+  "date": "2026-11-03",
+  "executedAt": "2026-11-03T09:07:26.588216+00:00",
+  "question": "Do extracted upstream queue dump/load methods preserve IDs, order and original quiescent inbox contents?",
+  "method": "Source-derived isolated method probe with stdlib asyncio queue, stub Message codec and stub model constructor; no Pydantic, Role, Team or MGX execution.",
+  "sourceArtifactSha256": "cd40a0e934e4489bb685669de3a41484ed6506d2e256132c3148ae7e93cfe2ae",
+  "sourceGitBlob": "52badcc21ae4e8372529ec2becf6ee104c39e85c",
+  "methodAstSha256": "7e81e78f7b193e31c628dafd9945ff9dddd9b4e8fa9a8a641aa2655b0ec07615",
+  "controls": [
+    {
+      "count": 0,
+      "originalQueueAfterDump": [],
+      "restoredQueue": [],
+      "pass_": true
+    },
+    {
+      "count": 1,
+      "originalQueueAfterDump": [
+        {
+          "id": "m0",
+          "content": "body0"
+        }
+      ],
+      "restoredQueue": [
+        {
+          "id": "m0",
+          "content": "body0"
+        }
+      ],
+      "pass_": true
+    },
+    {
+      "count": 3,
+      "originalQueueAfterDump": [
+        {
+          "id": "m0",
+          "content": "body0"
+        },
+        {
+          "id": "m1",
+          "content": "body1"
+        },
+        {
+          "id": "m2",
+          "content": "body2"
+        }
+      ],
+      "restoredQueue": [
+        {
+          "id": "m0",
+          "content": "body0"
+        },
+        {
+          "id": "m1",
+          "content": "body1"
+        },
+        {
+          "id": "m2",
+          "content": "body2"
+        }
+      ],
+      "pass_": true
+    }
+  ],
+  "limits": [
+    "Quiescent 0/1/3-message helpers only; not checkpoint integration, crash injection, concurrency atomicity or exactly-once effects.",
+    "Python import pydantic failed with ModuleNotFoundError. Dependency installation attempt was interrupted after no output/progress; bounded retry logged separately.",
+    "Exclusion of RoleContext.msg_buffer and absent Team integration remain source observations, not a measured full-system defect."
+  ]
+}

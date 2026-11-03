@@ -1,0 +1,87 @@
+{
+  "date": "2026-11-03",
+  "executedAt": "2026-11-03T09:08:15.439006+00:00",
+  "topic": "SIG-20261103-002",
+  "question": "Does the unchanged upstream RoleContext Pydantic model-dump/validate roundtrip retain pending inbox contents while retaining observed memory?",
+  "method": "Source-derived isolated class probe; MessageQueue, RoleReactMode and RoleContext ASTs unchanged. Message, Memory, Action, BaseEnvironment and logger are explicit minimal stubs; not a full MetaGPT Team reproduction.",
+  "versions": {
+    "pydantic": "2.12.3",
+    "pydantic-core": "2.41.4",
+    "annotated-types": "0.8.0",
+    "typing-extensions": "4.16.0",
+    "typing-inspection": "0.4.4"
+  },
+  "sourceHashes": {
+    "github-followups.json": "cd40a0e934e4489bb685669de3a41484ed6506d2e256132c3148ae7e93cfe2ae",
+    "source-05.txt": "2dac0259a6f3733fa2ec0df8a43eb8dda1cac199410c31ef350aaaf70f6c939b",
+    "source-06.txt": "af0398fce4109cadf8a0ac8e479d261ef0cb6347c60d0c3343ff7d6e22180bcc"
+  },
+  "sourceGitBlobs": {
+    "role": "49b1d1787ecf30616bd670b0e96dca676908ce5e",
+    "schema": "52badcc21ae4e8372529ec2becf6ee104c39e85c",
+    "team": "5a9838885070add38a7cdd3ddf034ea40768d4b2"
+  },
+  "astSha256": "16efe32787870f534a64d2479762820c8eab941e1f40fef6c0430847cd422077",
+  "controls": [
+    {
+      "pendingInput": 0,
+      "serializedKeys": [
+        "max_react_loop",
+        "memory",
+        "react_mode",
+        "state",
+        "watch",
+        "working_memory"
+      ],
+      "restoredPendingIDs": [],
+      "retainedObservedIDs": [
+        "observed"
+      ],
+      "explicitHelperRestoredIDs": []
+    },
+    {
+      "pendingInput": 1,
+      "serializedKeys": [
+        "max_react_loop",
+        "memory",
+        "react_mode",
+        "state",
+        "watch",
+        "working_memory"
+      ],
+      "restoredPendingIDs": [],
+      "retainedObservedIDs": [
+        "observed"
+      ],
+      "explicitHelperRestoredIDs": [
+        "pending-0"
+      ]
+    },
+    {
+      "pendingInput": 3,
+      "serializedKeys": [
+        "max_react_loop",
+        "memory",
+        "react_mode",
+        "state",
+        "watch",
+        "working_memory"
+      ],
+      "restoredPendingIDs": [],
+      "retainedObservedIDs": [
+        "observed"
+      ],
+      "explicitHelperRestoredIDs": [
+        "pending-0",
+        "pending-1",
+        "pending-2"
+      ]
+    }
+  ],
+  "limitations": [
+    "Pydantic 2.12.3 is our pinned probe dependency, not a verified upstream lockfile environment.",
+    "No Team, MGX, actual Memory/Message serialization, subclass hooks, LLM or crash execution.",
+    "Explicit helper success is quiescent only; it does not establish active checkpoint integration, atomicity, durable storage or exactly-once effects.",
+    "No full repository commit is claimed; retained source Git blobs and SHA-256 bytes pin the evaluated classes."
+  ]
+}
