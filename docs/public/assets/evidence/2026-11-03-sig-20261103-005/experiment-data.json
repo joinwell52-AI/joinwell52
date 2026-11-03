@@ -1,0 +1,107 @@
+{
+  "date": "2026-11-03",
+  "executedAt": "2026-11-03T09:05:58.041017+00:00",
+  "python": "3.12.9 (tags/v3.12.9:fdb8142, Feb  4 2025, 15:27:58) [MSC v.1942 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "sourceHashes": {
+    "2610.06017v1.html": "8b21d9f69147eb0fc55f7e1859e9bf9ac7687c40dadd0b862c8dbba71e9586dc",
+    "2610.17206v1.html": "3583b53b7bf04a898390a5f3b64d7faad071ef738abdbb148e42d7093197b2d0",
+    "2610.25954v1.html": "a53936d33a864109af96462a3688749bbeff64de6e6afaa27ff08d84ec3154b7",
+    "bank-full-links.json": "dcb78f963bf99da372385b1aaf928126f1b2e6622f25513069fd7005db218249",
+    "bank-full.html": "4b64394144259a7b08e0a295ade0abdbe10e4d168d0a59f82f5584b74a808fd0",
+    "bank-full.txt": "8914c288ff385f29839550a4c7f31fa2a333349cab0f7205dc878313fd097a10",
+    "bank-web-tail.json": "3269faf11cd523a29333fc6cd7c28b16355f21af6f731cfddbf774c07182d856",
+    "github-followups.json": "cd40a0e934e4489bb685669de3a41484ed6506d2e256132c3148ae7e93cfe2ae",
+    "github-recovery-path.json": "0a0544203dc4b38fdb92e94ed37ccec254653c3ed0685573cb81cafa9def6450",
+    "source-01.txt": "6e9d98696ebe6932522f2e06b52fb6347bae3dbed13b8fabbb08767f7e8a043c",
+    "source-02.txt": "16c815269679cafa2a7e2c52b78fff72ccf1de799d35fc37e0246182c8b72ca3",
+    "source-03.txt": "417ac980036137ff62c0047f757d1d641ea52c3bd67e52b605e133ed424bff0e",
+    "source-04.txt": "7bb56bcf6948ebb2365a4cd42819b34b501a61cdd40ca97a62ecc2070eef91e9",
+    "source-05.txt": "2dac0259a6f3733fa2ec0df8a43eb8dda1cac199410c31ef350aaaf70f6c939b",
+    "source-06.txt": "af0398fce4109cadf8a0ac8e479d261ef0cb6347c60d0c3343ff7d6e22180bcc",
+    "source-07.txt": "a1e877924d5b28f0ff651179cc5dd3f54922e199e81fbe67a3534481ce49c390",
+    "source-08.txt": "28d8b9b46a5666ae9ce279daf64d82c0ff3faa57567961f13a2aa16bc2a60470",
+    "source-09.txt": "7bb56bcf6948ebb2365a4cd42819b34b501a61cdd40ca97a62ecc2070eef91e9",
+    "source-10.txt": "417ac980036137ff62c0047f757d1d641ea52c3bd67e52b605e133ed424bff0e",
+    "source-11.txt": "16c815269679cafa2a7e2c52b78fff72ccf1de799d35fc37e0246182c8b72ca3"
+  },
+  "reusedMeasurements": false,
+  "topic": "SIG-20261103-005",
+  "question": "At fixed marginal acceptance, can correlated commitments erase an independence-planned concurrency benefit?",
+  "method": "Source-equation reimplementation, exhaustive 0.0001 q grid, exact binomial enumeration, seeded simulation, and perfect-correlation counterexample; not original code or full factorial replication.",
+  "inputs": {
+    "V": 1.4,
+    "L": 0.2,
+    "kappa": 0.01,
+    "delta": 0.05,
+    "mu": 1,
+    "sigma": 0.35,
+    "N": 20,
+    "seed": 20261103,
+    "orders": 100000
+  },
+  "independentPlan": {
+    "profit": 0.5189564216185869,
+    "m": 14,
+    "q": 0.151,
+    "cap": 0.5768599877109233
+  },
+  "perfectCorrelationPlan": {
+    "profit": 0.0900079701704662,
+    "m": 1,
+    "q": 0.4974,
+    "cap": 0.9968476675302247
+  },
+  "independentPlanUnderPerfectCorrelation": -0.28365585814434946,
+  "exactEnumeration": 0.5189564216185868,
+  "simulation": {
+    "mean": 0.520128279660046,
+    "standardError": 0.0009243515082506704,
+    "fulfillment": 0.89999,
+    "duplicateProbability": 0.646,
+    "expectedExcess": 1.21375
+  },
+  "controls": [
+    {
+      "m": 0,
+      "q": 0,
+      "observed": -0.2,
+      "expected": -0.2,
+      "error": 0.0
+    },
+    {
+      "m": 1,
+      "q": 0,
+      "observed": -0.21000000000000002,
+      "expected": -0.21000000000000002,
+      "error": 0.0
+    },
+    {
+      "m": 1,
+      "q": 1,
+      "observed": -0.21621778264910696,
+      "expected": -0.21621778264910696,
+      "error": 0.0
+    },
+    {
+      "m": 5,
+      "q": 1,
+      "observed": -0.45621778264910695,
+      "expected": -0.45621778264910695,
+      "error": 0.0
+    },
+    {
+      "m": 14,
+      "q": 0.15097,
+      "observed": 0.5189564367953088,
+      "expected": 0.518956,
+      "error": 4.367953088113552e-07
+    }
+  ],
+  "limits": [
+    "Perfect correlation is a constructed boundary control, not the paper Gaussian-copula rho=.7 experiment.",
+    "No LLM, seller, payment, cancellation or commitment enforcement executed.",
+    "Grid optimum is discrete; parameters are normalized simulated market assumptions.",
+    "AutoMARS timing and accuracy were not rerun; paper-specific code/prompts and traces not identified in admitted Reading."
+  ]
+}

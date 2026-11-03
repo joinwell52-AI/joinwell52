@@ -1,19 +1,19 @@
 {
   "schema": "latest-published-article/v1",
   "zh": {
-    "title": "文件没写坏，为什么上一次更新还是没了？",
+    "title": "记忆恢复了，待处理工作也恢复了吗？",
     "date": "2026-11-03",
     "column": "open-source-engineering",
     "category": "daily",
-    "summary": "两份旧会话快照先后保存，文件始终完整，却丢了一项更新；重新读取后两项都保留。我们对照 CodeFlowMu 会话元数据与 FCoP 的独立报告文件。",
-    "url": "/zh/research/2026-11-03-atomic-write-lost-update"
+    "summary": "固定源码的隔离类探针显示，历史记忆与待处理收件箱可能跨越不同持久化边界；辅助函数存在不等于检查点已经调用它。",
+    "url": "/zh/engineering/2026-11-03-sig-20261103-002"
   },
   "en": {
-    "title": "The file is intact. Where did the other update go?",
+    "title": "Memory was restored. Was pending work restored too?",
     "date": "2026-11-03",
     "column": "open-source-engineering",
     "category": "daily",
-    "summary": "Two stale session snapshots were saved successfully to one intact file, but one update disappeared. Reloading before the second save retained both; independent FCoP reports behaved differently.",
-    "url": "/en/research/2026-11-03-atomic-write-lost-update"
+    "summary": "A pinned source-derived class probe separates historical memory from pending inbox persistence. Available helpers do not establish checkpoint integration.",
+    "url": "/en/engineering/2026-11-03-sig-20261103-002"
   }
 }
