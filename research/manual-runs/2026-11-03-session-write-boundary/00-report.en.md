@@ -7,6 +7,7 @@
 | Claim | Evidence | Unsupported inference |
 | --- | --- | --- |
 | ADK moved stale-state checking inside its write lock | [Google ADK commit `bc0b41871699a70a3bf1169bb7e7ff91d2db5e31`](https://github.com/google/adk-python/commit/bc0b41871699a70a3bf1169bb7e7ff91d2db5e31) | CodeFlowMu had ADK's incident |
+| A separate ADK shared-state write change remains under review | [Google ADK #7942](https://github.com/google/adk-python/pull/7942); author-reported concurrency tests, no live PostgreSQL/Redis E2E | The PR is merged or proves the behavior of one session file |
 | A stale snapshot can replace a previous change through CodeFlowMu `SessionStore` while leaving a valid file | [Session probe](probe_session_write_boundary.mjs), pinned source blobs, observations below | A harmful race occurred in a real runtime |
 | Two sequential FCoP report writes preserve two bodies | [FCoP control probe](probe_fcop_report_identity.py), observations below | Concurrent numbering, crash recovery, or product integration is proven |
 

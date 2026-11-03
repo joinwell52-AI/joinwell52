@@ -7,6 +7,7 @@
 | 主张 | 支持材料 | 不支持的推断 |
 | --- | --- | --- |
 | 上游 ADK 让旧状态检查与写入共用锁 | [Google ADK 提交 `bc0b41871699a70a3bf1169bb7e7ff91d2db5e31`](https://github.com/google/adk-python/commit/bc0b41871699a70a3bf1169bb7e7ff91d2db5e31) | CodeFlowMu 发生了 ADK 的同一事故 |
+| 另一条上游路径的共享状态写入仍在评审 | [Google ADK #7942](https://github.com/google/adk-python/pull/7942)，作者报告并发测试；无真实 PostgreSQL/Redis 端到端测试 | 该 PR 已合入或证明单会话文件有同一问题 |
 | CodeFlowMu 旧快照写回可替换前一次更改，文件仍完整 | [会话存储探针](probe_session_write_boundary.mjs)及下表；固定模块 Git blob | 真实 Runtime 已出现取消/结束冲突 |
 | FCoP 两次顺序报告写入保留两份 | [FCoP 对照探针](probe_fcop_report_identity.py)及下表 | 并发编号、断电恢复、跨项目集成已验证 |
 

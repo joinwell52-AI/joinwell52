@@ -33,6 +33,8 @@ That distinction matters in an AI team, too. CodeFlowMu, our local multi-agent r
 
 A [Google ADK SQLite change](https://github.com/google/adk-python/commit/bc0b41871699a70a3bf1169bb7e7ff91d2db5e31) supplied the starting point. Its earlier path checked a session's update time before starting a write transaction. Two writers could each pass that check against the old state and then commit in turn. The change begins an immediate write transaction before the stale-state check, so the second writer checks after the first commit. This is a fix to ADK's own database path, not evidence that CodeFlowMu suffered the same incident.
 
+A later focused search also found [ADK #7942](https://github.com/google/adk-python/pull/7942), still under review. It examines concurrent sessions rewriting shared application or user state, where an old copy can remove a key another writer committed. Its author reports controlled concurrency tests, without live PostgreSQL or Redis end-to-end testing. That PR concerns **shared rows across sessions**; our probe below concerns **one session's file**. Both make the stale-writer question concrete, but neither proves the other's behavior.
+
 Our systems have a different pair of storage objects. **Session metadata** repeatedly replaces a file under the same identity. Each **FCoP report** receives its own file identity. Calling both of these “persisted” hides the difference between preserving evidence and updating one current-state projection.
 
 ## Two successful saves, one missing field
