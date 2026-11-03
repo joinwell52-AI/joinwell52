@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 460" role="img" aria-label="Old snapshot overwrite and reload control">
+<rect width="1000" height="460" rx="28" fill="#f8f5ef"/>
+<text x="50" y="60" fill="#1b3159" font-family="Arial, sans-serif" font-size="30" font-weight="700">One old record, two write orders</text>
+<text x="50" y="105" fill="#475d79" font-family="Arial, sans-serif" font-size="20">A and B load the same version; both saves succeed and the file stays valid</text>
+<rect x="50" y="145" width="900" height="118" rx="20" fill="#fff" stroke="#d5dfed" stroke-width="2"/>
+<circle cx="95" cy="204" r="24" fill="#184bc0"/><text x="87" y="212" fill="#fff" font-family="Arial" font-size="23" font-weight="700">A</text>
+<text x="140" y="194" fill="#1b3159" font-family="Arial, sans-serif" font-size="21">Saves recovery state</text><text x="140" y="228" fill="#475d79" font-family="Arial, sans-serif" font-size="18">State present · calls 0</text>
+<path d="M475 204h82" stroke="#b47d2c" stroke-width="5" stroke-linecap="round"/><path d="m558 204-16-10v20z" fill="#b47d2c"/>
+<circle cx="611" cy="204" r="24" fill="#b47d2c"/><text x="603" y="212" fill="#fff" font-family="Arial" font-size="23" font-weight="700">B</text>
+<text x="650" y="194" fill="#1b3159" font-family="Arial, sans-serif" font-size="21">Saves calls 1 from old copy</text><text x="650" y="228" fill="#9b5826" font-family="Arial, sans-serif" font-size="18" font-weight="700">Recovery state disappears</text>
+<rect x="50" y="292" width="900" height="118" rx="20" fill="#eef3ff" stroke="#a8bff0" stroke-width="2"/>
+<text x="82" y="337" fill="#184bc0" font-family="Arial, sans-serif" font-size="23" font-weight="700">Control: B reloads before saving</text>
+<text x="82" y="375" fill="#1b3159" font-family="Arial, sans-serif" font-size="21">Final: state present · calls 1 · valid file</text>
+</svg>
