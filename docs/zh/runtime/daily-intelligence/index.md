@@ -12,7 +12,6 @@ outline: false
 
 <div class="daily-intel-list">
 <a class="daily-intel-item" href="./2026-11-03"><time>2026-11-03</time><div><strong>Agent 核心研究与竞品动态</strong><span>Codex · Claude 2.1.317 · ADK · LangGraph · OpenHands · Paperclip · Beads · Orca · Agentlas · Paradev</span></div><b>查看 →</b></a>
-
 <a class="daily-intel-item" href="./2026-11-02"><time>2026-11-02</time><div><strong>Agent 核心研究与竞品动态</strong><span>Paperclip · Langfuse · A2A · OpenHands · Paradev · Orkas</span></div><b>查看 →</b></a>
 
   <a class="daily-intel-item" href="./2026-11-01">
