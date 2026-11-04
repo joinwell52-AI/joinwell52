@@ -1,0 +1,573 @@
+{
+  "schema": "bounded-article-probe-evidence/v1",
+  "date": "2026-11-04",
+  "itemId": "SIG-20261104-006",
+  "kind": "source-derived isolated module probe with synthetic inputs; no simulator/model/server execution",
+  "originalExecutedAt": "2026-11-04T05:09:08.601403+00:00",
+  "provenance": "Reused from completed same-date Analysis without new execution; source-derived synthetic inputs to the complete unmodified task metric module.",
+  "sourcePins": [
+    {
+      "sha256": "1a27a261e543a201d17862d4d50393caf8751b0b072c2674f75cfb05fc7d48b3",
+      "url": "https://raw.githubusercontent.com/ShengxuanQiu/MAServeBench/22483ab5df5eff562061953d564aac47a9423c2f/mas_workflow/app/semantic/metrics.py",
+      "revision": "22483ab5df5eff562061953d564aac47a9423c2f",
+      "originalAcquiredAt": "2026-11-04T03:16:31.197Z",
+      "extractedFrom": "mas_workflow/app/semantic/metrics.py"
+    }
+  ],
+  "records": [
+    {
+      "experiment": "EXP-006",
+      "case": "baseline",
+      "inputs": {
+        "run_valid": true,
+        "measurement_duration_sec": 20,
+        "tasks": [
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 12,
+            "task_latency_sec": 12
+          },
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 12,
+            "task_latency_sec": 12
+          },
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 12,
+            "task_latency_sec": 12
+          },
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 12,
+            "task_latency_sec": 12
+          }
+        ]
+      },
+      "expected": {
+        "attempted_tasks": 4,
+        "slo_compliant_tasks": 0,
+        "task_goodput": 0,
+        "slo_attainment": 0,
+        "task_latency_sec": {
+          "p50": 12,
+          "p90": 12,
+          "p99": 12
+        }
+      },
+      "actual": {
+        "schema_version": "masbench.metrics/1.0.0",
+        "run_valid": true,
+        "task_latency_sec": {
+          "p50": 12,
+          "p90": 12,
+          "p99": 12
+        },
+        "raw_wall_clock_task_latency_sec": {
+          "p50": 12
+        },
+        "task_goodput": 0,
+        "slo_attainment": 0,
+        "attempted_tasks": 4,
+        "successful_tasks": 4,
+        "slo_compliant_tasks": 0,
+        "slo_sec": 10,
+        "resource_efficiency_tasks_per_sec_per_accelerator": 0,
+        "sustainable_capacity": null,
+        "sustainable_capacity_note": "Requires a configured multi-load sweep; use sustainable_capacity()."
+      },
+      "passed": true
+    },
+    {
+      "experiment": "EXP-006",
+      "case": "faster_but_late",
+      "inputs": {
+        "run_valid": true,
+        "measurement_duration_sec": 20,
+        "tasks": [
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 11,
+            "task_latency_sec": 11
+          },
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 11,
+            "task_latency_sec": 11
+          },
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 11,
+            "task_latency_sec": 11
+          },
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 11,
+            "task_latency_sec": 11
+          }
+        ]
+      },
+      "expected": {
+        "slo_compliant_tasks": 0,
+        "task_goodput": 0,
+        "task_latency_sec": {
+          "p50": 11,
+          "p90": 11,
+          "p99": 11
+        }
+      },
+      "actual": {
+        "schema_version": "masbench.metrics/1.0.0",
+        "run_valid": true,
+        "task_latency_sec": {
+          "p50": 11,
+          "p90": 11,
+          "p99": 11
+        },
+        "raw_wall_clock_task_latency_sec": {
+          "p50": 11
+        },
+        "task_goodput": 0,
+        "slo_attainment": 0,
+        "attempted_tasks": 4,
+        "successful_tasks": 4,
+        "slo_compliant_tasks": 0,
+        "slo_sec": 10,
+        "resource_efficiency_tasks_per_sec_per_accelerator": 0,
+        "sustainable_capacity": null,
+        "sustainable_capacity_note": "Requires a configured multi-load sweep; use sustainable_capacity()."
+      },
+      "passed": true
+    },
+    {
+      "experiment": "EXP-006",
+      "case": "deadline_boundary",
+      "inputs": {
+        "run_valid": true,
+        "measurement_duration_sec": 20,
+        "tasks": [
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 10,
+            "task_latency_sec": 10
+          },
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 10,
+            "task_latency_sec": 10
+          },
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 10,
+            "task_latency_sec": 10
+          },
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 10,
+            "task_latency_sec": 10
+          }
+        ]
+      },
+      "expected": {
+        "slo_compliant_tasks": 4,
+        "task_goodput": 0.2,
+        "slo_attainment": 1
+      },
+      "actual": {
+        "schema_version": "masbench.metrics/1.0.0",
+        "run_valid": true,
+        "task_latency_sec": {
+          "p50": 10,
+          "p90": 10,
+          "p99": 10
+        },
+        "raw_wall_clock_task_latency_sec": {
+          "p50": 10
+        },
+        "task_goodput": 0.2,
+        "slo_attainment": 1,
+        "attempted_tasks": 4,
+        "successful_tasks": 4,
+        "slo_compliant_tasks": 4,
+        "slo_sec": 10,
+        "resource_efficiency_tasks_per_sec_per_accelerator": 0.2,
+        "sustainable_capacity": null,
+        "sustainable_capacity_note": "Requires a configured multi-load sweep; use sustainable_capacity()."
+      },
+      "passed": true
+    },
+    {
+      "experiment": "EXP-006",
+      "case": "external_wait_control",
+      "inputs": {
+        "run_valid": true,
+        "measurement_duration_sec": 20,
+        "tasks": [
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 12,
+            "task_latency_sec": 1
+          },
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 12,
+            "task_latency_sec": 1
+          },
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 12,
+            "task_latency_sec": 1
+          },
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 12,
+            "task_latency_sec": 1
+          }
+        ]
+      },
+      "expected": {
+        "slo_compliant_tasks": 0,
+        "slo_attainment": 0
+      },
+      "actual": {
+        "schema_version": "masbench.metrics/1.0.0",
+        "run_valid": true,
+        "task_latency_sec": {
+          "p50": 12,
+          "p90": 12,
+          "p99": 12
+        },
+        "raw_wall_clock_task_latency_sec": {
+          "p50": 12
+        },
+        "task_goodput": 0,
+        "slo_attainment": 0,
+        "attempted_tasks": 4,
+        "successful_tasks": 4,
+        "slo_compliant_tasks": 0,
+        "slo_sec": 10,
+        "resource_efficiency_tasks_per_sec_per_accelerator": 0,
+        "sustainable_capacity": null,
+        "sustainable_capacity_note": "Requires a configured multi-load sweep; use sustainable_capacity()."
+      },
+      "passed": true
+    },
+    {
+      "experiment": "EXP-006",
+      "case": "failed_and_missing_denominator",
+      "inputs": {
+        "run_valid": true,
+        "measurement_duration_sec": 20,
+        "tasks": [
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 5,
+            "task_latency_sec": 5
+          },
+          {
+            "successful": false,
+            "raw_wall_clock_latency_sec": 6,
+            "task_latency_sec": 6
+          },
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": null,
+            "task_latency_sec": null
+          },
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 12,
+            "task_latency_sec": 12
+          }
+        ]
+      },
+      "expected": {
+        "attempted_tasks": 4,
+        "successful_tasks": 3,
+        "slo_compliant_tasks": 1,
+        "slo_attainment": 0.25,
+        "task_goodput": 0.05
+      },
+      "actual": {
+        "schema_version": "masbench.metrics/1.0.0",
+        "run_valid": true,
+        "task_latency_sec": {
+          "p50": 8.5,
+          "p90": 11.3,
+          "p99": 11.93
+        },
+        "raw_wall_clock_task_latency_sec": {
+          "p50": 6
+        },
+        "task_goodput": 0.05,
+        "slo_attainment": 0.25,
+        "attempted_tasks": 4,
+        "successful_tasks": 3,
+        "slo_compliant_tasks": 1,
+        "slo_sec": 10,
+        "resource_efficiency_tasks_per_sec_per_accelerator": 0.05,
+        "sustainable_capacity": null,
+        "sustainable_capacity_note": "Requires a configured multi-load sweep; use sustainable_capacity()."
+      },
+      "passed": true
+    },
+    {
+      "experiment": "EXP-006",
+      "case": "survivor_before",
+      "inputs": {
+        "run_valid": true,
+        "measurement_duration_sec": 20,
+        "tasks": [
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 5,
+            "task_latency_sec": 5
+          },
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 6,
+            "task_latency_sec": 6
+          },
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 12,
+            "task_latency_sec": 12
+          },
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 20,
+            "task_latency_sec": 20
+          }
+        ]
+      },
+      "expected": {
+        "slo_attainment": 0.5,
+        "task_latency_sec": {
+          "p50": 9,
+          "p90": 17.6,
+          "p99": 19.759999999999998
+        }
+      },
+      "actual": {
+        "schema_version": "masbench.metrics/1.0.0",
+        "run_valid": true,
+        "task_latency_sec": {
+          "p50": 9,
+          "p90": 17.6,
+          "p99": 19.759999999999998
+        },
+        "raw_wall_clock_task_latency_sec": {
+          "p50": 9
+        },
+        "task_goodput": 0.1,
+        "slo_attainment": 0.5,
+        "attempted_tasks": 4,
+        "successful_tasks": 4,
+        "slo_compliant_tasks": 2,
+        "slo_sec": 10,
+        "resource_efficiency_tasks_per_sec_per_accelerator": 0.1,
+        "sustainable_capacity": null,
+        "sustainable_capacity_note": "Requires a configured multi-load sweep; use sustainable_capacity()."
+      },
+      "passed": true
+    },
+    {
+      "experiment": "EXP-006",
+      "case": "survivor_after",
+      "inputs": {
+        "run_valid": true,
+        "measurement_duration_sec": 20,
+        "tasks": [
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 5,
+            "task_latency_sec": 5
+          },
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 6,
+            "task_latency_sec": 6
+          },
+          {
+            "successful": false,
+            "raw_wall_clock_latency_sec": 12,
+            "task_latency_sec": 12
+          },
+          {
+            "successful": false,
+            "raw_wall_clock_latency_sec": 20,
+            "task_latency_sec": 20
+          }
+        ]
+      },
+      "expected": {
+        "slo_attainment": 0.5,
+        "task_latency_sec": {
+          "p50": 5.5,
+          "p90": 5.9,
+          "p99": 5.99
+        }
+      },
+      "actual": {
+        "schema_version": "masbench.metrics/1.0.0",
+        "run_valid": true,
+        "task_latency_sec": {
+          "p50": 5.5,
+          "p90": 5.9,
+          "p99": 5.989999999999999
+        },
+        "raw_wall_clock_task_latency_sec": {
+          "p50": 9
+        },
+        "task_goodput": 0.1,
+        "slo_attainment": 0.5,
+        "attempted_tasks": 4,
+        "successful_tasks": 2,
+        "slo_compliant_tasks": 2,
+        "slo_sec": 10,
+        "resource_efficiency_tasks_per_sec_per_accelerator": 0.1,
+        "sustainable_capacity": null,
+        "sustainable_capacity_note": "Requires a configured multi-load sweep; use sustainable_capacity()."
+      },
+      "passed": true
+    },
+    {
+      "experiment": "EXP-006",
+      "case": "invalid_run_still_has_numbers",
+      "inputs": {
+        "run_valid": false,
+        "measurement_duration_sec": 20,
+        "tasks": [
+          {
+            "successful": true,
+            "raw_wall_clock_latency_sec": 5,
+            "task_latency_sec": 5
+          }
+        ]
+      },
+      "expected": {
+        "run_valid": false,
+        "task_goodput": 0.05,
+        "slo_attainment": 1
+      },
+      "actual": {
+        "schema_version": "masbench.metrics/1.0.0",
+        "run_valid": false,
+        "task_latency_sec": {
+          "p50": 5,
+          "p90": 5,
+          "p99": 5
+        },
+        "raw_wall_clock_task_latency_sec": {
+          "p50": 5
+        },
+        "task_goodput": 0.05,
+        "slo_attainment": 1,
+        "attempted_tasks": 1,
+        "successful_tasks": 1,
+        "slo_compliant_tasks": 1,
+        "slo_sec": 10,
+        "resource_efficiency_tasks_per_sec_per_accelerator": 0.05,
+        "sustainable_capacity": null,
+        "sustainable_capacity_note": "Requires a configured multi-load sweep; use sustainable_capacity()."
+      },
+      "passed": true
+    },
+    {
+      "experiment": "EXP-006",
+      "case": "capacity_validity_control",
+      "inputs": [
+        {
+          "load": 1,
+          "schema_version": "masbench.metrics/1.0.0",
+          "run_valid": true,
+          "task_latency_sec": {
+            "p50": 5,
+            "p90": 5,
+            "p99": 5
+          },
+          "raw_wall_clock_task_latency_sec": {
+            "p50": 5
+          },
+          "task_goodput": 0.05,
+          "slo_attainment": 1,
+          "attempted_tasks": 1,
+          "successful_tasks": 1,
+          "slo_compliant_tasks": 1,
+          "slo_sec": 10,
+          "resource_efficiency_tasks_per_sec_per_accelerator": 0.05,
+          "sustainable_capacity": null,
+          "sustainable_capacity_note": "Requires a configured multi-load sweep; use sustainable_capacity()."
+        },
+        {
+          "load": 2,
+          "schema_version": "masbench.metrics/1.0.0",
+          "run_valid": false,
+          "task_latency_sec": {
+            "p50": 5,
+            "p90": 5,
+            "p99": 5
+          },
+          "raw_wall_clock_task_latency_sec": {
+            "p50": 5
+          },
+          "task_goodput": 0.05,
+          "slo_attainment": 1,
+          "attempted_tasks": 1,
+          "successful_tasks": 1,
+          "slo_compliant_tasks": 1,
+          "slo_sec": 10,
+          "resource_efficiency_tasks_per_sec_per_accelerator": 0.05,
+          "sustainable_capacity": null,
+          "sustainable_capacity_note": "Requires a configured multi-load sweep; use sustainable_capacity()."
+        },
+        {
+          "load": 3,
+          "schema_version": "masbench.metrics/1.0.0",
+          "run_valid": true,
+          "task_latency_sec": {
+            "p50": 12,
+            "p90": 12,
+            "p99": 12
+          },
+          "raw_wall_clock_task_latency_sec": {
+            "p50": 12
+          },
+          "task_goodput": 0,
+          "slo_attainment": 0,
+          "attempted_tasks": 1,
+          "successful_tasks": 1,
+          "slo_compliant_tasks": 0,
+          "slo_sec": 10,
+          "resource_efficiency_tasks_per_sec_per_accelerator": 0,
+          "sustainable_capacity": null,
+          "sustainable_capacity_note": "Requires a configured multi-load sweep; use sustainable_capacity()."
+        }
+      ],
+      "expected": {
+        "maximum_tested_load": 1,
+        "tested_loads": [
+          1,
+          2,
+          3
+        ]
+      },
+      "actual": {
+        "attainment_target": 0.9,
+        "maximum_tested_load": 1,
+        "tested_loads": [
+          1,
+          2,
+          3
+        ]
+      },
+      "passed": true
+    }
+  ],
+  "firstRunCorrection": {
+    "cause": "Binary floating-point representation 5.99 versus 5.989999999999999",
+    "change": "Only comparison tolerance adjusted in Analysis; original first run retained upstream."
+  },
+  "fullSystemReproduction": false,
+  "independent": false
+}
