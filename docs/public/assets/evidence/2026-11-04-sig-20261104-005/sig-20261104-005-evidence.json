@@ -1,0 +1,848 @@
+{
+  "schema": "bounded-article-probe-evidence/v1",
+  "date": "2026-11-04",
+  "itemId": "SIG-20261104-005",
+  "kind": "source-derived isolated module probe with synthetic inputs; no simulator/model/server execution",
+  "originalExecutedAt": "2026-11-04T05:09:08.601403+00:00",
+  "provenance": "Reused without rerunning from completed same-date Analysis; source-derived synthetic report inputs to complete unmodified metric modules.",
+  "sourcePins": [
+    {
+      "sha256": "caa349713fe1eb7b19e0ea4363a366f49de045ebd7bc16780abfc31f396c3e94",
+      "url": "https://raw.githubusercontent.com/rzchen777-wq/MAC_Bench/1024991685762c54977ac45e1df4b6f6641a3e1b/src/mac_bench/evaluation/reports/metrics.py",
+      "revision": "1024991685762c54977ac45e1df4b6f6641a3e1b",
+      "originalAcquiredAt": "2026-11-04T03:16:31.325Z",
+      "extractedFrom": "src/mac_bench/evaluation/reports/metrics.py"
+    },
+    {
+      "sha256": "f302a8e0f2060d3c351a858f4418d34ab2335c0930043e9ddf17c7afe6434486",
+      "url": "https://raw.githubusercontent.com/AgibotGeneral/CoCoBench/baa4dd5d9669251089c8d72ba7bb0532323b06a4/benchmark/eval/metrics.py",
+      "revision": "baa4dd5d9669251089c8d72ba7bb0532323b06a4",
+      "originalAcquiredAt": "2026-11-04T03:20:13.195Z",
+      "extractedFrom": "benchmark/eval/metrics.py"
+    }
+  ],
+  "records": [
+    {
+      "experiment": "EXP-005",
+      "case": "mac_accepted",
+      "inputs": {
+        "status": "passed",
+        "gc": 1
+      },
+      "expected": {
+        "task_success": true,
+        "ps": 1
+      },
+      "actual": {
+        "evaluation_status": "passed",
+        "task_complete": true,
+        "task_success": true,
+        "score": 1,
+        "gc": 1,
+        "ps": 1,
+        "rr": 1
+      },
+      "passed": true
+    },
+    {
+      "experiment": "EXP-005",
+      "case": "mac_full_progress_rejected",
+      "inputs": {
+        "status": "failed",
+        "gc": 1
+      },
+      "expected": {
+        "task_success": false,
+        "ps": 1,
+        "rr": 0
+      },
+      "actual": {
+        "evaluation_status": "failed",
+        "task_complete": false,
+        "task_success": false,
+        "score": 0,
+        "gc": 1,
+        "ps": 1,
+        "rr": 0
+      },
+      "passed": true
+    },
+    {
+      "experiment": "EXP-005",
+      "case": "mac_unavailable",
+      "inputs": {
+        "status": "error",
+        "gc": 1
+      },
+      "expected": {
+        "task_success": null,
+        "ps": null
+      },
+      "actual": {
+        "evaluation_status": "error",
+        "task_complete": null,
+        "task_success": null,
+        "score": null,
+        "gc": null,
+        "ps": null,
+        "rr": null
+      },
+      "passed": true
+    },
+    {
+      "experiment": "EXP-005",
+      "case": "mac_inconsistent_success",
+      "inputs": {
+        "status": "passed",
+        "gc": 0.5
+      },
+      "expected": {
+        "exception": "ValueError"
+      },
+      "actual": {
+        "exception": "ValueError",
+        "message": "A successful task must satisfy all goals"
+      },
+      "passed": true
+    },
+    {
+      "experiment": "EXP-005",
+      "case": "mac_exclusion_denominator",
+      "inputs": [
+        {
+          "status": "completed",
+          "evaluation_status": "passed",
+          "task_complete": true,
+          "task_success": true,
+          "score": 1,
+          "gc": 1,
+          "ps": 1,
+          "rr": 1
+        },
+        {
+          "status": "completed",
+          "evaluation_status": "failed",
+          "task_complete": false,
+          "task_success": false,
+          "score": 0,
+          "gc": 1,
+          "ps": 1,
+          "rr": 0
+        },
+        {
+          "status": "completed",
+          "evaluation_status": "error",
+          "task_complete": null,
+          "task_success": null,
+          "score": null,
+          "gc": null,
+          "ps": null,
+          "rr": null
+        }
+      ],
+      "expected": {
+        "episodes": 3,
+        "scored_episodes": 2,
+        "rr": 0.5,
+        "ps": 1,
+        "excluded": {
+          "evaluation_unavailable": 1
+        }
+      },
+      "actual": {
+        "episodes": 3,
+        "scored_episodes": 2,
+        "excluded": {
+          "evaluation_unavailable": 1
+        },
+        "rr": 0.5,
+        "ps": 1,
+        "sr": 0.5,
+        "gc": 1
+      },
+      "passed": true
+    },
+    {
+      "experiment": "EXP-005",
+      "case": "coco_zero_actions",
+      "inputs": {
+        "task_config": {
+          "task_id": "synthetic-D1",
+          "coordination_dim": "D1",
+          "agents": [
+            {
+              "id": "a",
+              "allowed_skills": [
+                "PickUp",
+                "Wait",
+                "BreakObject"
+              ]
+            },
+            {
+              "id": "b",
+              "allowed_skills": [
+                "PickUp",
+                "Wait"
+              ]
+            }
+          ],
+          "task_constraints": {
+            "fragile_objects": [
+              "fragile"
+            ]
+          }
+        },
+        "trajectory": [],
+        "final_eval": {
+          "success": true,
+          "checks": [
+            {
+              "passed": true
+            }
+          ]
+        }
+      },
+      "expected": {
+        "success": true,
+        "legal_plan": null,
+        "construct_score": null,
+        "construct_status": "na_no_actions"
+      },
+      "actual": {
+        "task_id": "synthetic-D1",
+        "coordination_dim": "D1",
+        "success": true,
+        "subgoal_success_rate": 1,
+        "legal_plan": null,
+        "n_action_steps": 0,
+        "n_agents": 2,
+        "makespan": 0,
+        "load_imbalance": 0,
+        "per_agent_actions": {},
+        "coordination_overhead": 0,
+        "wait_steps": 0,
+        "failed_steps": 0,
+        "illegal_skill": 0,
+        "dependency_violations": 0,
+        "concurrency_conflicts": 0,
+        "occupancy_conflicts": 0,
+        "affordance_failures": 0,
+        "affordance_accuracy": null,
+        "safety_violations": 0,
+        "event_histogram": {},
+        "construct_score": null,
+        "construct_status": "na_no_actions",
+        "construct_sample": 0,
+        "distributed": null
+      },
+      "passed": true
+    },
+    {
+      "experiment": "EXP-005",
+      "case": "coco_one_action",
+      "inputs": {
+        "task_config": {
+          "task_id": "synthetic-D1",
+          "coordination_dim": "D1",
+          "agents": [
+            {
+              "id": "a",
+              "allowed_skills": [
+                "PickUp",
+                "Wait",
+                "BreakObject"
+              ]
+            },
+            {
+              "id": "b",
+              "allowed_skills": [
+                "PickUp",
+                "Wait"
+              ]
+            }
+          ],
+          "task_constraints": {
+            "fragile_objects": [
+              "fragile"
+            ]
+          }
+        },
+        "trajectory": [
+          {
+            "skill_result": {
+              "agent": "a",
+              "skill": "PickUp",
+              "success": true,
+              "errorMessage": "",
+              "args": {
+                "objectId": "obj"
+              }
+            }
+          }
+        ],
+        "final_eval": {
+          "success": true,
+          "checks": [
+            {
+              "passed": true
+            }
+          ]
+        }
+      },
+      "expected": {
+        "success": true,
+        "legal_plan": true,
+        "construct_score": null,
+        "construct_status": "low_signal",
+        "construct_sample": 1
+      },
+      "actual": {
+        "task_id": "synthetic-D1",
+        "coordination_dim": "D1",
+        "success": true,
+        "subgoal_success_rate": 1,
+        "legal_plan": true,
+        "n_action_steps": 1,
+        "n_agents": 2,
+        "makespan": 1,
+        "load_imbalance": 0,
+        "per_agent_actions": {
+          "a": 1
+        },
+        "coordination_overhead": 0,
+        "wait_steps": 0,
+        "failed_steps": 0,
+        "illegal_skill": 0,
+        "dependency_violations": 0,
+        "concurrency_conflicts": 0,
+        "occupancy_conflicts": 0,
+        "affordance_failures": 0,
+        "affordance_accuracy": null,
+        "safety_violations": 0,
+        "event_histogram": {
+          "progress": 1
+        },
+        "construct_score": null,
+        "construct_status": "low_signal",
+        "construct_sample": 1,
+        "distributed": null
+      },
+      "passed": true
+    },
+    {
+      "experiment": "EXP-005",
+      "case": "coco_two_balanced",
+      "inputs": {
+        "task_config": {
+          "task_id": "synthetic-D1",
+          "coordination_dim": "D1",
+          "agents": [
+            {
+              "id": "a",
+              "allowed_skills": [
+                "PickUp",
+                "Wait",
+                "BreakObject"
+              ]
+            },
+            {
+              "id": "b",
+              "allowed_skills": [
+                "PickUp",
+                "Wait"
+              ]
+            }
+          ],
+          "task_constraints": {
+            "fragile_objects": [
+              "fragile"
+            ]
+          }
+        },
+        "trajectory": [
+          {
+            "skill_result": {
+              "agent": "a",
+              "skill": "PickUp",
+              "success": true,
+              "errorMessage": "",
+              "args": {
+                "objectId": "obj"
+              }
+            }
+          },
+          {
+            "skill_result": {
+              "agent": "b",
+              "skill": "PickUp",
+              "success": true,
+              "errorMessage": "",
+              "args": {
+                "objectId": "obj"
+              }
+            }
+          }
+        ],
+        "final_eval": {
+          "success": true,
+          "checks": [
+            {
+              "passed": true
+            }
+          ]
+        }
+      },
+      "expected": {
+        "legal_plan": true,
+        "construct_score": 1,
+        "construct_status": "scored",
+        "construct_sample": 2
+      },
+      "actual": {
+        "task_id": "synthetic-D1",
+        "coordination_dim": "D1",
+        "success": true,
+        "subgoal_success_rate": 1,
+        "legal_plan": true,
+        "n_action_steps": 2,
+        "n_agents": 2,
+        "makespan": 1,
+        "load_imbalance": 0,
+        "per_agent_actions": {
+          "a": 1,
+          "b": 1
+        },
+        "coordination_overhead": 0,
+        "wait_steps": 0,
+        "failed_steps": 0,
+        "illegal_skill": 0,
+        "dependency_violations": 0,
+        "concurrency_conflicts": 0,
+        "occupancy_conflicts": 0,
+        "affordance_failures": 0,
+        "affordance_accuracy": null,
+        "safety_violations": 0,
+        "event_histogram": {
+          "progress": 2
+        },
+        "construct_score": 1,
+        "construct_status": "scored",
+        "construct_sample": 2,
+        "distributed": null
+      },
+      "passed": true
+    },
+    {
+      "experiment": "EXP-005",
+      "case": "coco_illegal_final_success",
+      "inputs": {
+        "task_config": {
+          "task_id": "synthetic-D1",
+          "coordination_dim": "D1",
+          "agents": [
+            {
+              "id": "a",
+              "allowed_skills": [
+                "PickUp",
+                "Wait",
+                "BreakObject"
+              ]
+            },
+            {
+              "id": "b",
+              "allowed_skills": [
+                "PickUp",
+                "Wait"
+              ]
+            }
+          ],
+          "task_constraints": {
+            "fragile_objects": [
+              "fragile"
+            ]
+          }
+        },
+        "trajectory": [
+          {
+            "skill_result": {
+              "agent": "a",
+              "skill": "Open",
+              "success": true,
+              "errorMessage": "",
+              "args": {
+                "objectId": "obj"
+              }
+            }
+          },
+          {
+            "skill_result": {
+              "agent": "b",
+              "skill": "PickUp",
+              "success": true,
+              "errorMessage": "",
+              "args": {
+                "objectId": "obj"
+              }
+            }
+          }
+        ],
+        "final_eval": {
+          "success": true,
+          "checks": [
+            {
+              "passed": true
+            }
+          ]
+        }
+      },
+      "expected": {
+        "success": true,
+        "legal_plan": false,
+        "illegal_skill": 1
+      },
+      "actual": {
+        "task_id": "synthetic-D1",
+        "coordination_dim": "D1",
+        "success": true,
+        "subgoal_success_rate": 1,
+        "legal_plan": false,
+        "n_action_steps": 2,
+        "n_agents": 2,
+        "makespan": 1,
+        "load_imbalance": 0,
+        "per_agent_actions": {
+          "a": 1,
+          "b": 1
+        },
+        "coordination_overhead": 0,
+        "wait_steps": 0,
+        "failed_steps": 0,
+        "illegal_skill": 1,
+        "dependency_violations": 0,
+        "concurrency_conflicts": 0,
+        "occupancy_conflicts": 0,
+        "affordance_failures": 0,
+        "affordance_accuracy": null,
+        "safety_violations": 0,
+        "event_histogram": {
+          "illegal_skill": 1,
+          "progress": 1
+        },
+        "construct_score": 1,
+        "construct_status": "scored",
+        "construct_sample": 2,
+        "distributed": null
+      },
+      "passed": true
+    },
+    {
+      "experiment": "EXP-005",
+      "case": "coco_noop_control",
+      "inputs": {
+        "task_config": {
+          "task_id": "synthetic-D1",
+          "coordination_dim": "D1",
+          "agents": [
+            {
+              "id": "a",
+              "allowed_skills": [
+                "PickUp",
+                "Wait",
+                "BreakObject"
+              ]
+            },
+            {
+              "id": "b",
+              "allowed_skills": [
+                "PickUp",
+                "Wait"
+              ]
+            }
+          ],
+          "task_constraints": {
+            "fragile_objects": [
+              "fragile"
+            ]
+          }
+        },
+        "trajectory": [
+          {
+            "skill_result": {
+              "agent": "a",
+              "skill": "PickUp",
+              "success": false,
+              "errorMessage": "already clean",
+              "args": {
+                "objectId": "obj"
+              }
+            }
+          },
+          {
+            "skill_result": {
+              "agent": "b",
+              "skill": "PickUp",
+              "success": true,
+              "errorMessage": "",
+              "args": {
+                "objectId": "obj"
+              }
+            }
+          }
+        ],
+        "final_eval": {
+          "success": true,
+          "checks": [
+            {
+              "passed": true
+            }
+          ]
+        }
+      },
+      "expected": {
+        "legal_plan": true,
+        "dependency_violations": 0
+      },
+      "actual": {
+        "task_id": "synthetic-D1",
+        "coordination_dim": "D1",
+        "success": true,
+        "subgoal_success_rate": 1,
+        "legal_plan": true,
+        "n_action_steps": 2,
+        "n_agents": 2,
+        "makespan": 1,
+        "load_imbalance": 0,
+        "per_agent_actions": {
+          "a": 1,
+          "b": 1
+        },
+        "coordination_overhead": 1,
+        "wait_steps": 0,
+        "failed_steps": 1,
+        "illegal_skill": 0,
+        "dependency_violations": 0,
+        "concurrency_conflicts": 0,
+        "occupancy_conflicts": 0,
+        "affordance_failures": 0,
+        "affordance_accuracy": null,
+        "safety_violations": 0,
+        "event_histogram": {
+          "progress": 1,
+          "redundant_noop": 1
+        },
+        "construct_score": 1,
+        "construct_status": "scored",
+        "construct_sample": 2,
+        "distributed": null
+      },
+      "passed": true
+    },
+    {
+      "experiment": "EXP-005",
+      "case": "coco_precondition_failure",
+      "inputs": {
+        "task_config": {
+          "task_id": "synthetic-D1",
+          "coordination_dim": "D1",
+          "agents": [
+            {
+              "id": "a",
+              "allowed_skills": [
+                "PickUp",
+                "Wait",
+                "BreakObject"
+              ]
+            },
+            {
+              "id": "b",
+              "allowed_skills": [
+                "PickUp",
+                "Wait"
+              ]
+            }
+          ],
+          "task_constraints": {
+            "fragile_objects": [
+              "fragile"
+            ]
+          }
+        },
+        "trajectory": [
+          {
+            "skill_result": {
+              "agent": "a",
+              "skill": "PickUp",
+              "success": false,
+              "errorMessage": "object unreachable before opening",
+              "args": {
+                "objectId": "obj"
+              }
+            }
+          },
+          {
+            "skill_result": {
+              "agent": "b",
+              "skill": "PickUp",
+              "success": true,
+              "errorMessage": "",
+              "args": {
+                "objectId": "obj"
+              }
+            }
+          }
+        ],
+        "final_eval": {
+          "success": true,
+          "checks": [
+            {
+              "passed": true
+            }
+          ]
+        }
+      },
+      "expected": {
+        "legal_plan": false,
+        "dependency_violations": 1
+      },
+      "actual": {
+        "task_id": "synthetic-D1",
+        "coordination_dim": "D1",
+        "success": true,
+        "subgoal_success_rate": 1,
+        "legal_plan": false,
+        "n_action_steps": 2,
+        "n_agents": 2,
+        "makespan": 1,
+        "load_imbalance": 0,
+        "per_agent_actions": {
+          "a": 1,
+          "b": 1
+        },
+        "coordination_overhead": 1,
+        "wait_steps": 0,
+        "failed_steps": 1,
+        "illegal_skill": 0,
+        "dependency_violations": 1,
+        "concurrency_conflicts": 0,
+        "occupancy_conflicts": 0,
+        "affordance_failures": 0,
+        "affordance_accuracy": null,
+        "safety_violations": 0,
+        "event_histogram": {
+          "precondition_violation": 1,
+          "progress": 1
+        },
+        "construct_score": 1,
+        "construct_status": "scored",
+        "construct_sample": 2,
+        "distributed": null
+      },
+      "passed": true
+    },
+    {
+      "experiment": "EXP-005",
+      "case": "coco_legal_is_not_safety",
+      "inputs": {
+        "task_config": {
+          "task_id": "synthetic-D1",
+          "coordination_dim": "D1",
+          "agents": [
+            {
+              "id": "a",
+              "allowed_skills": [
+                "PickUp",
+                "Wait",
+                "BreakObject"
+              ]
+            },
+            {
+              "id": "b",
+              "allowed_skills": [
+                "PickUp",
+                "Wait"
+              ]
+            }
+          ],
+          "task_constraints": {
+            "fragile_objects": [
+              "fragile"
+            ]
+          }
+        },
+        "trajectory": [
+          {
+            "skill_result": {
+              "agent": "a",
+              "skill": "BreakObject",
+              "success": true,
+              "errorMessage": "",
+              "args": {
+                "objectId": "fragile"
+              }
+            }
+          },
+          {
+            "skill_result": {
+              "agent": "b",
+              "skill": "PickUp",
+              "success": true,
+              "errorMessage": "",
+              "args": {
+                "objectId": "obj"
+              }
+            }
+          }
+        ],
+        "final_eval": {
+          "success": true,
+          "checks": [
+            {
+              "passed": true
+            }
+          ]
+        }
+      },
+      "expected": {
+        "success": true,
+        "legal_plan": true,
+        "safety_violations": 1,
+        "construct_score": 1
+      },
+      "actual": {
+        "task_id": "synthetic-D1",
+        "coordination_dim": "D1",
+        "success": true,
+        "subgoal_success_rate": 1,
+        "legal_plan": true,
+        "n_action_steps": 2,
+        "n_agents": 2,
+        "makespan": 1,
+        "load_imbalance": 0,
+        "per_agent_actions": {
+          "a": 1,
+          "b": 1
+        },
+        "coordination_overhead": 0,
+        "wait_steps": 0,
+        "failed_steps": 0,
+        "illegal_skill": 0,
+        "dependency_violations": 0,
+        "concurrency_conflicts": 0,
+        "occupancy_conflicts": 0,
+        "affordance_failures": 0,
+        "affordance_accuracy": null,
+        "safety_violations": 1,
+        "event_histogram": {
+          "progress": 2
+        },
+        "construct_score": 1,
+        "construct_status": "scored",
+        "construct_sample": 2,
+        "distributed": null
+      },
+      "passed": true
+    }
+  ],
+  "fullSystemReproduction": false,
+  "independent": false
+}
