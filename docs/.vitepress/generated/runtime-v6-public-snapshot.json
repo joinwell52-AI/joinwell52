@@ -4,14 +4,14 @@
   "schedulerVersion": "6.0",
   "startDate": "2026-10-27",
   "snapshotDate": "2026-11-04",
-  "publishedAt": "2026-11-04T01:16:46.956Z",
+  "publishedAt": "2026-11-04T03:26:36.226Z",
   "timezone": "Asia/Shanghai",
   "label": "Public Snapshot",
   "notice": "Not a live control plane",
   "dailyPublicStatuses": {
     "discovery": "Completed",
-    "queue": "Waiting",
-    "reading": "Waiting",
+    "queue": "Completed",
+    "reading": "Completed",
     "analysis": "Waiting",
     "production": "Waiting",
     "publication": "Waiting",
@@ -227,8 +227,8 @@
         "status": "Waiting",
         "taskStatus": {
           "discovery": "Completed",
-          "queue": "Waiting",
-          "reading": "Waiting",
+          "queue": "Completed",
+          "reading": "Completed",
           "analysis": "Waiting",
           "production": "Waiting",
           "publication": "Waiting",
@@ -266,6 +266,58 @@
             ],
             "artifacts": [],
             "evidence": []
+          },
+          "queue": {
+            "task": "queue",
+            "status": "Completed",
+            "input": "按已验证的本地任务依赖执行。",
+            "input_zh": "按已验证的本地任务依赖执行。",
+            "workResult": "分类选题: Completed",
+            "workResult_zh": "分类选题：本地结果已通过验证。",
+            "output": "本地结果已通过验证。",
+            "output_zh": "本地结果已通过验证。",
+            "next": "Follow the local schedule.",
+            "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+            "metrics": [
+              {
+                "label": "actual-start",
+                "label_zh": "实际开始",
+                "value": "10:01:38"
+              },
+              {
+                "label": "actual-end",
+                "label_zh": "实际结束",
+                "value": "10:31:55"
+              }
+            ],
+            "artifacts": [],
+            "evidence": []
+          },
+          "reading": {
+            "task": "reading",
+            "status": "Completed",
+            "input": "按已验证的本地任务依赖执行。",
+            "input_zh": "按已验证的本地任务依赖执行。",
+            "workResult": "深度阅读: Completed",
+            "workResult_zh": "深度阅读：本地结果已通过验证。",
+            "output": "本地结果已通过验证。",
+            "output_zh": "本地结果已通过验证。",
+            "next": "Follow the local schedule.",
+            "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+            "metrics": [
+              {
+                "label": "actual-start",
+                "label_zh": "实际开始",
+                "value": "11:05:38"
+              },
+              {
+                "label": "actual-end",
+                "label_zh": "实际结束",
+                "value": "11:26:35"
+              }
+            ],
+            "artifacts": [],
+            "evidence": []
           }
         },
         "timeline": [],
@@ -279,8 +331,8 @@
           "status": "Waiting",
           "taskStatus": {
             "discovery": "Completed",
-            "queue": "Waiting",
-            "reading": "Waiting",
+            "queue": "Completed",
+            "reading": "Completed",
             "analysis": "Waiting",
             "production": "Waiting",
             "publication": "Waiting",
@@ -318,6 +370,58 @@
               ],
               "artifacts": [],
               "evidence": []
+            },
+            "queue": {
+              "task": "queue",
+              "status": "Completed",
+              "input": "按已验证的本地任务依赖执行。",
+              "input_zh": "按已验证的本地任务依赖执行。",
+              "workResult": "分类选题: Completed",
+              "workResult_zh": "分类选题：本地结果已通过验证。",
+              "output": "本地结果已通过验证。",
+              "output_zh": "本地结果已通过验证。",
+              "next": "Follow the local schedule.",
+              "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+              "metrics": [
+                {
+                  "label": "actual-start",
+                  "label_zh": "实际开始",
+                  "value": "10:01:38"
+                },
+                {
+                  "label": "actual-end",
+                  "label_zh": "实际结束",
+                  "value": "10:31:55"
+                }
+              ],
+              "artifacts": [],
+              "evidence": []
+            },
+            "reading": {
+              "task": "reading",
+              "status": "Completed",
+              "input": "按已验证的本地任务依赖执行。",
+              "input_zh": "按已验证的本地任务依赖执行。",
+              "workResult": "深度阅读: Completed",
+              "workResult_zh": "深度阅读：本地结果已通过验证。",
+              "output": "本地结果已通过验证。",
+              "output_zh": "本地结果已通过验证。",
+              "next": "Follow the local schedule.",
+              "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+              "metrics": [
+                {
+                  "label": "actual-start",
+                  "label_zh": "实际开始",
+                  "value": "11:05:38"
+                },
+                {
+                  "label": "actual-end",
+                  "label_zh": "实际结束",
+                  "value": "11:26:35"
+                }
+              ],
+              "artifacts": [],
+              "evidence": []
             }
           },
           "timeline": [],
@@ -333,8 +437,8 @@
             "status": "Waiting",
             "taskStatus": {
               "discovery": "Completed",
-              "queue": "Waiting",
-              "reading": "Waiting",
+              "queue": "Completed",
+              "reading": "Completed",
               "analysis": "Waiting",
               "production": "Waiting",
               "publication": "Waiting",
@@ -372,56 +476,6 @@
                 ],
                 "artifacts": [],
                 "evidence": []
-              }
-            },
-            "timeline": [],
-            "githubCommit": "pending",
-            "commitVerify": "Completed"
-          },
-          {
-            "runtimeFamily": "daily",
-            "date": "2026-11-03",
-            "status": "Completed",
-            "taskStatus": {
-              "discovery": "Completed",
-              "queue": "Completed",
-              "reading": "Completed",
-              "analysis": "Completed",
-              "production": "Completed",
-              "publication": "Completed",
-              "deadline-check": "Completed"
-            },
-            "results": {
-              "discovery": {
-                "task": "discovery",
-                "status": "Completed",
-                "input": "按已验证的本地任务依赖执行。",
-                "input_zh": "按已验证的本地任务依赖执行。",
-                "workResult": "信息发现: Completed",
-                "workResult_zh": "信息发现：本地结果已通过验证。",
-                "output": "本地结果已通过验证。",
-                "output_zh": "本地结果已通过验证。",
-                "next": "Follow the local schedule.",
-                "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
-                "metrics": [
-                  {
-                    "label": "actual-start",
-                    "label_zh": "实际开始",
-                    "value": "09:00:21"
-                  },
-                  {
-                    "label": "actual-end",
-                    "label_zh": "实际结束",
-                    "value": "09:21:06"
-                  },
-                  {
-                    "label": "signals",
-                    "label_zh": "研究线索",
-                    "value": "6"
-                  }
-                ],
-                "artifacts": [],
-                "evidence": []
               },
               "queue": {
                 "task": "queue",
@@ -438,12 +492,12 @@
                   {
                     "label": "actual-start",
                     "label_zh": "实际开始",
-                    "value": "10:22:37"
+                    "value": "10:01:38"
                   },
                   {
                     "label": "actual-end",
                     "label_zh": "实际结束",
-                    "value": "10:27:29"
+                    "value": "10:31:55"
                   }
                 ],
                 "artifacts": [],
@@ -464,137 +518,12 @@
                   {
                     "label": "actual-start",
                     "label_zh": "实际开始",
-                    "value": "11:00:00"
+                    "value": "11:05:38"
                   },
                   {
                     "label": "actual-end",
                     "label_zh": "实际结束",
-                    "value": "11:13:49"
-                  }
-                ],
-                "artifacts": [],
-                "evidence": []
-              },
-              "analysis": {
-                "task": "analysis",
-                "status": "Completed",
-                "input": "按已验证的本地任务依赖执行。",
-                "input_zh": "按已验证的本地任务依赖执行。",
-                "workResult": "研究分析: Completed",
-                "workResult_zh": "研究分析：本地结果已通过验证。",
-                "output": "本地结果已通过验证。",
-                "output_zh": "本地结果已通过验证。",
-                "next": "Follow the local schedule.",
-                "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
-                "metrics": [
-                  {
-                    "label": "actual-start",
-                    "label_zh": "实际开始",
-                    "value": "17:00:01"
-                  },
-                  {
-                    "label": "actual-end",
-                    "label_zh": "实际结束",
-                    "value": "17:14:57"
-                  }
-                ],
-                "artifacts": [],
-                "evidence": []
-              },
-              "production": {
-                "task": "production",
-                "status": "Completed",
-                "input": "按已验证的本地任务依赖执行。",
-                "input_zh": "按已验证的本地任务依赖执行。",
-                "workResult": "内容生产与正式题图: Completed",
-                "workResult_zh": "内容生产与正式题图：本地结果已通过验证。",
-                "output": "本地结果已通过验证。",
-                "output_zh": "本地结果已通过验证。",
-                "next": "Follow the local schedule.",
-                "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
-                "metrics": [
-                  {
-                    "label": "actual-start",
-                    "label_zh": "实际开始",
-                    "value": "17:14:59"
-                  },
-                  {
-                    "label": "actual-end",
-                    "label_zh": "实际结束",
-                    "value": "17:38:11"
-                  }
-                ],
-                "artifacts": [],
-                "evidence": []
-              },
-              "publication": {
-                "task": "publication",
-                "status": "Completed",
-                "input": "按已验证的本地任务依赖执行。",
-                "input_zh": "按已验证的本地任务依赖执行。",
-                "workResult": "成果发布: Completed",
-                "workResult_zh": "成果发布：本地结果已通过验证。",
-                "output": "本地结果已通过验证。",
-                "output_zh": "本地结果已通过验证。",
-                "next": "Follow the local schedule.",
-                "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
-                "metrics": [
-                  {
-                    "label": "actual-start",
-                    "label_zh": "实际开始",
-                    "value": "20:00:00"
-                  },
-                  {
-                    "label": "actual-end",
-                    "label_zh": "实际结束",
-                    "value": "20:04:42"
-                  }
-                ],
-                "artifacts": [
-                  {
-                    "label": "SIG-20261103-005 zh",
-                    "label_zh": "SIG-20261103-005 · 中文全文",
-                    "url": "/joinwell52/zh/industry/2026-11-03-sig-20261103-005"
-                  },
-                  {
-                    "label": "SIG-20261103-005 en",
-                    "label_zh": "SIG-20261103-005 · 英文全文",
-                    "url": "/joinwell52/en/industry/2026-11-03-sig-20261103-005"
-                  },
-                  {
-                    "label": "SIG-20261103-002 zh",
-                    "label_zh": "SIG-20261103-002 · 中文全文",
-                    "url": "/joinwell52/zh/engineering/2026-11-03-sig-20261103-002"
-                  },
-                  {
-                    "label": "SIG-20261103-002 en",
-                    "label_zh": "SIG-20261103-002 · 英文全文",
-                    "url": "/joinwell52/en/engineering/2026-11-03-sig-20261103-002"
-                  }
-                ],
-                "evidence": []
-              },
-              "deadline-check": {
-                "task": "deadline-check",
-                "status": "Completed",
-                "input": "按已验证的本地任务依赖执行。",
-                "input_zh": "按已验证的本地任务依赖执行。",
-                "workResult": "超时检查与恢复: Completed",
-                "workResult_zh": "超时检查与恢复：本地结果已通过验证。",
-                "output": "本地结果已通过验证。",
-                "output_zh": "本地结果已通过验证。",
-                "next": "Follow the local schedule.",
-                "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
-                "metrics": [
-                  {
-                    "label": "actual-start",
-                    "label_zh": "实际开始",
-                    "value": "17:00:00"
-                  },
-                  {
-                    "label": "actual-end",
-                    "label_zh": "实际结束",
-                    "value": "17:00:01"
+                    "value": "11:26:35"
                   }
                 ],
                 "artifacts": [],
@@ -3507,6 +3436,233 @@
             "timeline": [],
             "githubCommit": "pending",
             "commitVerify": "Completed"
+          },
+          {
+            "runtimeFamily": "daily",
+            "date": "2026-11-03",
+            "status": "Completed",
+            "taskStatus": {
+              "discovery": "Completed",
+              "queue": "Completed",
+              "reading": "Completed",
+              "analysis": "Completed",
+              "production": "Completed",
+              "publication": "Completed",
+              "deadline-check": "Completed"
+            },
+            "results": {
+              "discovery": {
+                "task": "discovery",
+                "status": "Completed",
+                "input": "按已验证的本地任务依赖执行。",
+                "input_zh": "按已验证的本地任务依赖执行。",
+                "workResult": "信息发现: Completed",
+                "workResult_zh": "信息发现：本地结果已通过验证。",
+                "output": "本地结果已通过验证。",
+                "output_zh": "本地结果已通过验证。",
+                "next": "Follow the local schedule.",
+                "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "09:00:21"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "09:21:06"
+                  },
+                  {
+                    "label": "signals",
+                    "label_zh": "研究线索",
+                    "value": "6"
+                  }
+                ],
+                "artifacts": [],
+                "evidence": []
+              },
+              "queue": {
+                "task": "queue",
+                "status": "Completed",
+                "input": "按已验证的本地任务依赖执行。",
+                "input_zh": "按已验证的本地任务依赖执行。",
+                "workResult": "分类选题: Completed",
+                "workResult_zh": "分类选题：本地结果已通过验证。",
+                "output": "本地结果已通过验证。",
+                "output_zh": "本地结果已通过验证。",
+                "next": "Follow the local schedule.",
+                "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "10:22:37"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "10:27:29"
+                  }
+                ],
+                "artifacts": [],
+                "evidence": []
+              },
+              "reading": {
+                "task": "reading",
+                "status": "Completed",
+                "input": "按已验证的本地任务依赖执行。",
+                "input_zh": "按已验证的本地任务依赖执行。",
+                "workResult": "深度阅读: Completed",
+                "workResult_zh": "深度阅读：本地结果已通过验证。",
+                "output": "本地结果已通过验证。",
+                "output_zh": "本地结果已通过验证。",
+                "next": "Follow the local schedule.",
+                "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "11:00:00"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "11:13:49"
+                  }
+                ],
+                "artifacts": [],
+                "evidence": []
+              },
+              "analysis": {
+                "task": "analysis",
+                "status": "Completed",
+                "input": "按已验证的本地任务依赖执行。",
+                "input_zh": "按已验证的本地任务依赖执行。",
+                "workResult": "研究分析: Completed",
+                "workResult_zh": "研究分析：本地结果已通过验证。",
+                "output": "本地结果已通过验证。",
+                "output_zh": "本地结果已通过验证。",
+                "next": "Follow the local schedule.",
+                "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "17:00:01"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "17:14:57"
+                  }
+                ],
+                "artifacts": [],
+                "evidence": []
+              },
+              "production": {
+                "task": "production",
+                "status": "Completed",
+                "input": "按已验证的本地任务依赖执行。",
+                "input_zh": "按已验证的本地任务依赖执行。",
+                "workResult": "内容生产与正式题图: Completed",
+                "workResult_zh": "内容生产与正式题图：本地结果已通过验证。",
+                "output": "本地结果已通过验证。",
+                "output_zh": "本地结果已通过验证。",
+                "next": "Follow the local schedule.",
+                "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "17:14:59"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "17:38:11"
+                  }
+                ],
+                "artifacts": [],
+                "evidence": []
+              },
+              "publication": {
+                "task": "publication",
+                "status": "Completed",
+                "input": "按已验证的本地任务依赖执行。",
+                "input_zh": "按已验证的本地任务依赖执行。",
+                "workResult": "成果发布: Completed",
+                "workResult_zh": "成果发布：本地结果已通过验证。",
+                "output": "本地结果已通过验证。",
+                "output_zh": "本地结果已通过验证。",
+                "next": "Follow the local schedule.",
+                "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "20:00:00"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "20:04:42"
+                  }
+                ],
+                "artifacts": [
+                  {
+                    "label": "SIG-20261103-005 zh",
+                    "label_zh": "SIG-20261103-005 · 中文全文",
+                    "url": "/joinwell52/zh/industry/2026-11-03-sig-20261103-005"
+                  },
+                  {
+                    "label": "SIG-20261103-005 en",
+                    "label_zh": "SIG-20261103-005 · 英文全文",
+                    "url": "/joinwell52/en/industry/2026-11-03-sig-20261103-005"
+                  },
+                  {
+                    "label": "SIG-20261103-002 zh",
+                    "label_zh": "SIG-20261103-002 · 中文全文",
+                    "url": "/joinwell52/zh/engineering/2026-11-03-sig-20261103-002"
+                  },
+                  {
+                    "label": "SIG-20261103-002 en",
+                    "label_zh": "SIG-20261103-002 · 英文全文",
+                    "url": "/joinwell52/en/engineering/2026-11-03-sig-20261103-002"
+                  }
+                ],
+                "evidence": []
+              },
+              "deadline-check": {
+                "task": "deadline-check",
+                "status": "Completed",
+                "input": "按已验证的本地任务依赖执行。",
+                "input_zh": "按已验证的本地任务依赖执行。",
+                "workResult": "超时检查与恢复: Completed",
+                "workResult_zh": "超时检查与恢复：本地结果已通过验证。",
+                "output": "本地结果已通过验证。",
+                "output_zh": "本地结果已通过验证。",
+                "next": "Follow the local schedule.",
+                "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "17:00:00"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "17:00:01"
+                  }
+                ],
+                "artifacts": [],
+                "evidence": []
+              }
+            },
+            "timeline": [],
+            "githubCommit": "pending",
+            "commitVerify": "Completed"
           }
         ]
       },
@@ -3537,7 +3693,7 @@
             "id": "digital-employee",
             "label": "数字员工",
             "label_zh": "数字员工",
-            "decision": "Waiting",
+            "decision": "No Selection",
             "signals": 1,
             "candidates": 0,
             "selectedItemId": "",
@@ -3550,27 +3706,27 @@
             "id": "industry-architecture",
             "label": "行业架构",
             "label_zh": "行业架构",
-            "decision": "Waiting",
+            "decision": "Selected",
             "signals": 2,
-            "candidates": 0,
-            "selectedItemId": "",
-            "selectedTitle": "",
-            "selectedTitle_zh": "",
-            "reason": "该栏目尚未形成经过验证的选题。",
-            "reason_zh": "该栏目尚未形成经过验证的选题。"
+            "candidates": 1,
+            "selectedItemId": "SIG-20261104-005",
+            "selectedTitle": "局部成功可能掩盖协作与集成失败",
+            "selectedTitle_zh": "局部成功可能掩盖协作与集成失败",
+            "reason": "本地分类选题已验证。",
+            "reason_zh": "本地分类选题已验证。"
           },
           {
             "id": "open-source-engineering",
             "label": "开源工程",
             "label_zh": "开源工程",
-            "decision": "Waiting",
+            "decision": "Selected",
             "signals": 3,
-            "candidates": 0,
-            "selectedItemId": "",
-            "selectedTitle": "",
-            "selectedTitle_zh": "",
-            "reason": "该栏目尚未形成经过验证的选题。",
-            "reason_zh": "该栏目尚未形成经过验证的选题。"
+            "candidates": 1,
+            "selectedItemId": "SIG-20261104-006",
+            "selectedTitle": "推理吞吐改善可能伴随任务按期完成率下降",
+            "selectedTitle_zh": "推理吞吐改善可能伴随任务按期完成率下降",
+            "reason": "本地分类选题已验证。",
+            "reason_zh": "本地分类选题已验证。"
           }
         ]
       },
@@ -3582,7 +3738,7 @@
               "id": "digital-employee",
               "label": "数字员工",
               "label_zh": "数字员工",
-              "decision": "Waiting",
+              "decision": "No Selection",
               "signals": 1,
               "candidates": 0,
               "selectedItemId": "",
@@ -3595,27 +3751,27 @@
               "id": "industry-architecture",
               "label": "行业架构",
               "label_zh": "行业架构",
-              "decision": "Waiting",
+              "decision": "Selected",
               "signals": 2,
-              "candidates": 0,
-              "selectedItemId": "",
-              "selectedTitle": "",
-              "selectedTitle_zh": "",
-              "reason": "该栏目尚未形成经过验证的选题。",
-              "reason_zh": "该栏目尚未形成经过验证的选题。"
+              "candidates": 1,
+              "selectedItemId": "SIG-20261104-005",
+              "selectedTitle": "局部成功可能掩盖协作与集成失败",
+              "selectedTitle_zh": "局部成功可能掩盖协作与集成失败",
+              "reason": "本地分类选题已验证。",
+              "reason_zh": "本地分类选题已验证。"
             },
             {
               "id": "open-source-engineering",
               "label": "开源工程",
               "label_zh": "开源工程",
-              "decision": "Waiting",
+              "decision": "Selected",
               "signals": 3,
-              "candidates": 0,
-              "selectedItemId": "",
-              "selectedTitle": "",
-              "selectedTitle_zh": "",
-              "reason": "该栏目尚未形成经过验证的选题。",
-              "reason_zh": "该栏目尚未形成经过验证的选题。"
+              "candidates": 1,
+              "selectedItemId": "SIG-20261104-006",
+              "selectedTitle": "推理吞吐改善可能伴随任务按期完成率下降",
+              "selectedTitle_zh": "推理吞吐改善可能伴随任务按期完成率下降",
+              "reason": "本地分类选题已验证。",
+              "reason_zh": "本地分类选题已验证。"
             }
           ]
         }
@@ -3718,7 +3874,7 @@
             "id": "digital-employee",
             "label": "数字员工",
             "label_zh": "数字员工",
-            "decision": "Waiting",
+            "decision": "No Selection",
             "signals": 1,
             "candidates": 0,
             "selectedItemId": "",
@@ -3731,27 +3887,27 @@
             "id": "industry-architecture",
             "label": "行业架构",
             "label_zh": "行业架构",
-            "decision": "Waiting",
+            "decision": "Selected",
             "signals": 2,
-            "candidates": 0,
-            "selectedItemId": "",
-            "selectedTitle": "",
-            "selectedTitle_zh": "",
-            "reason": "该栏目尚未形成经过验证的选题。",
-            "reason_zh": "该栏目尚未形成经过验证的选题。"
+            "candidates": 1,
+            "selectedItemId": "SIG-20261104-005",
+            "selectedTitle": "局部成功可能掩盖协作与集成失败",
+            "selectedTitle_zh": "局部成功可能掩盖协作与集成失败",
+            "reason": "本地分类选题已验证。",
+            "reason_zh": "本地分类选题已验证。"
           },
           {
             "id": "open-source-engineering",
             "label": "开源工程",
             "label_zh": "开源工程",
-            "decision": "Waiting",
+            "decision": "Selected",
             "signals": 3,
-            "candidates": 0,
-            "selectedItemId": "",
-            "selectedTitle": "",
-            "selectedTitle_zh": "",
-            "reason": "该栏目尚未形成经过验证的选题。",
-            "reason_zh": "该栏目尚未形成经过验证的选题。"
+            "candidates": 1,
+            "selectedItemId": "SIG-20261104-006",
+            "selectedTitle": "推理吞吐改善可能伴随任务按期完成率下降",
+            "selectedTitle_zh": "推理吞吐改善可能伴随任务按期完成率下降",
+            "reason": "本地分类选题已验证。",
+            "reason_zh": "本地分类选题已验证。"
           }
         ]
       }
