@@ -1,0 +1,210 @@
+{
+  "schema": "article-internal-experiment/v1",
+  "date": "2026-11-05",
+  "experiment": {
+    "id": "EXP-006",
+    "kind": "source-derived executable specification and synthetic counterexample",
+    "question": "Can terminal-only success or unavailable-score imputation preserve the separately defined procedure and support evidence?",
+    "sourceRefs": [
+      "READ-006-BABA-GRADE",
+      "READ-006-MED-SUPPORT",
+      "READ-006-MED-METRIC",
+      "READ-006-BABA-GAP"
+    ],
+    "inputs": {
+      "booleanRows": [
+        {
+          "outcome": false,
+          "permission": false,
+          "grounding": false,
+          "no_prohibited": false,
+          "strict": false
+        },
+        {
+          "outcome": false,
+          "permission": false,
+          "grounding": false,
+          "no_prohibited": true,
+          "strict": false
+        },
+        {
+          "outcome": false,
+          "permission": false,
+          "grounding": true,
+          "no_prohibited": false,
+          "strict": false
+        },
+        {
+          "outcome": false,
+          "permission": false,
+          "grounding": true,
+          "no_prohibited": true,
+          "strict": false
+        },
+        {
+          "outcome": false,
+          "permission": true,
+          "grounding": false,
+          "no_prohibited": false,
+          "strict": false
+        },
+        {
+          "outcome": false,
+          "permission": true,
+          "grounding": false,
+          "no_prohibited": true,
+          "strict": false
+        },
+        {
+          "outcome": false,
+          "permission": true,
+          "grounding": true,
+          "no_prohibited": false,
+          "strict": false
+        },
+        {
+          "outcome": false,
+          "permission": true,
+          "grounding": true,
+          "no_prohibited": true,
+          "strict": false
+        },
+        {
+          "outcome": true,
+          "permission": false,
+          "grounding": false,
+          "no_prohibited": false,
+          "strict": false
+        },
+        {
+          "outcome": true,
+          "permission": false,
+          "grounding": false,
+          "no_prohibited": true,
+          "strict": false
+        },
+        {
+          "outcome": true,
+          "permission": false,
+          "grounding": true,
+          "no_prohibited": false,
+          "strict": false
+        },
+        {
+          "outcome": true,
+          "permission": false,
+          "grounding": true,
+          "no_prohibited": true,
+          "strict": false
+        },
+        {
+          "outcome": true,
+          "permission": true,
+          "grounding": false,
+          "no_prohibited": false,
+          "strict": false
+        },
+        {
+          "outcome": true,
+          "permission": true,
+          "grounding": false,
+          "no_prohibited": true,
+          "strict": false
+        },
+        {
+          "outcome": true,
+          "permission": true,
+          "grounding": true,
+          "no_prohibited": false,
+          "strict": false
+        },
+        {
+          "outcome": true,
+          "permission": true,
+          "grounding": true,
+          "no_prohibited": true,
+          "strict": true
+        }
+      ],
+      "A": [
+        0.9,
+        null,
+        null
+      ],
+      "B": [
+        0.7,
+        0.7,
+        0.7
+      ],
+      "threeTrialOutcomes": [
+        1,
+        1,
+        0
+      ]
+    },
+    "results": {
+      "terminalOnlyFalsePositiveConfigurations": 7,
+      "totalTerminalTrueConfigurations": 8,
+      "supportedMeans": [
+        0.9,
+        0.6999999999999998
+      ],
+      "zeroFilledMeans": [
+        0.3,
+        0.6999999999999998
+      ],
+      "oneFilledMeans": [
+        0.9666666666666667,
+        0.6999999999999998
+      ],
+      "observedAllThreeSuccess": 0,
+      "plugInAtLeastOne": 0.9629629629629629,
+      "authorReportedGapRecalculation": 0.2757871878393051
+    },
+    "limits": [
+      "Synthetic truth table, not a BABA engine run. Seven of eight is configuration enumeration, not an empirical error rate.",
+      "Missingness example is analyst constructed. Ranking changes do not establish prevalence or bias in either published benchmark.",
+      "The plug-in probability and observed all-three indicator have distinct estimands; no cross-benchmark ranking follows.",
+      "No BABA executable package is bound in admitted evidence; MedHarness full assets and paper-to-code experiment binding are unverified. No clinical claims."
+    ]
+  },
+  "checks": [
+    {
+      "name": "E006 strict passes in all Boolean configurations",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "E006 terminal-only false positives",
+      "actual": 7,
+      "expected": 7,
+      "passed": true
+    },
+    {
+      "name": "E006 supported ranking",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "E006 zero-fill reverses ranking",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "E006 one-fill creates apparent improvement",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    }
+  ],
+  "provenance": {
+    "stage": "Completed same-date Analysis",
+    "sourceArtifactSha256": "685fca8205adfef2104e816a6d14b0e282dea1c9d6bded43e70d62ad86608a5d",
+    "extractionOnly": true,
+    "rerunDuringProduction": false
+  },
+  "independent": false
+}
