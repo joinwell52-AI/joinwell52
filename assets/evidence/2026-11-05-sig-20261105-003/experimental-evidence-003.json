@@ -1,0 +1,146 @@
+{
+  "schema": "article-internal-experiment/v1",
+  "date": "2026-11-05",
+  "experiment": {
+    "id": "EXP-003",
+    "kind": "source-derived isolated helper and branch execution with dependency substitutes",
+    "question": "Does answer-slot identity preserve the first preimage, separate later questions and coexist with legacy fallback and replay-cursor reset?",
+    "sourceRevision": "6ea1751a93bda2b57bbf38dea494c461c34e13df",
+    "sourceSha256": "bb3b425f3658cc34bbf94dcc105e414b3d08c7de4911a038333da6c7bcc6704e",
+    "inputs": {
+      "namespace": "ask:task-example",
+      "answeredCounts": [
+        0,
+        1,
+        2
+      ],
+      "answers": [
+        "yes"
+      ],
+      "oldCounterStart": 1,
+      "separator": "|"
+    },
+    "results": {
+      "preimages": [
+        "ask:task-example",
+        "ask:task-example|1",
+        "ask:task-example|2"
+      ],
+      "legacyFallback": [
+        "yes",
+        "legacy"
+      ],
+      "currentPrecedence": [
+        "yes",
+        "current"
+      ]
+    },
+    "extractedCode": {
+      "idHelper": "def _interrupt_id(ns: str, answered: int) -> str:\n    # Keyed by how many answers the task already has, the slot this interrupt's\n    # answer fills; call order isn't stable across parallel calls in one task.\n    # With none it's the bare namespace hash older versions gave every\n    # interrupt, so saved ids still match. The suffix can't form another task's\n    # namespace, whose segments all contain \":\".\n    return xxh3_128_hexdigest((f\"{ns}{NS_SEP}{answered}\" if answered else ns).encode())\n",
+      "scratchpadBranch": "if resume_map:\n    next_id = _interrupt_id(task_checkpoint_ns, len(task_resume_write))\n    first_id = _interrupt_id(task_checkpoint_ns, 0)\n    if next_id in resume_map:\n        task_resume_write.append(resume_map[next_id])\n    # Older versions gave all of a task's interrupts the first id.\n    elif first_id in resume_map:\n        task_resume_write.append(resume_map[first_id])",
+      "retryHelper": "def _reset_interrupt_counter(config: RunnableConfig) -> RunnableConfig:\n    # A retry reruns the node from its first line, so its interrupt() calls count\n    # from the first again to reuse the answers its task already has, rather than\n    # asking again under an id the next resume can't match.\n    scratchpad = config[CONF].get(CONFIG_KEY_SCRATCHPAD)\n    if scratchpad is None:\n        return config\n    return patch_configurable(\n        config,\n        {\n            CONFIG_KEY_SCRATCHPAD: replace(\n                scratchpad, interrupt_counter=LazyAtomicCounter()\n            )\n        },\n    )\n\n"
+    },
+    "limits": [
+      "xxhash and LangGraph are not installed. Hashing is replaced by a recording identity callable; preimages, not real hash outputs, are tested.",
+      "NS_SEP is supplied as |; no collision or namespace grammar conclusion depends on this choice.",
+      "Counter, scratchpad dataclass and configuration patching are local substitutes. No concurrency, checkpoint backend, sync/async runtime or full regression suite executed.",
+      "The isolated legacy branch accepts the first ID by design. Strict-resume pending-ID validation lies outside the executed scope; stale-answer rejection is an upstream test definition, not a local observation.",
+      "No approver identity, action binding, expiry, external side effect or exactly-once property tested."
+    ]
+  },
+  "checks": [
+    {
+      "name": "E003 old task identity aliases questions",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "E003 zero-answer preimage compatibility",
+      "actual": "ask:task-example",
+      "expected": "ask:task-example",
+      "passed": true
+    },
+    {
+      "name": "E003 successive answer-slot preimages differ",
+      "actual": 3,
+      "expected": 3,
+      "passed": true
+    },
+    {
+      "name": "E003 current-slot mapping",
+      "actual": [
+        "yes",
+        "no"
+      ],
+      "expected": [
+        "yes",
+        "no"
+      ],
+      "passed": true
+    },
+    {
+      "name": "E003 legacy-first-ID fallback remains",
+      "actual": [
+        "yes",
+        "legacy"
+      ],
+      "expected": [
+        "yes",
+        "legacy"
+      ],
+      "passed": true
+    },
+    {
+      "name": "E003 current mapping takes precedence",
+      "actual": [
+        "yes",
+        "current"
+      ],
+      "expected": [
+        "yes",
+        "current"
+      ],
+      "passed": true
+    },
+    {
+      "name": "E003 unknown mapping adds no answer",
+      "actual": [
+        "yes"
+      ],
+      "expected": [
+        "yes"
+      ],
+      "passed": true
+    },
+    {
+      "name": "E003 without reset next cursor misses stored index",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "E003 reset returns stored answer index",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "E003 reset preserves answers",
+      "actual": [
+        "yes"
+      ],
+      "expected": [
+        "yes"
+      ],
+      "passed": true
+    }
+  ],
+  "provenance": {
+    "stage": "Completed same-date Analysis",
+    "sourceArtifactSha256": "685fca8205adfef2104e816a6d14b0e282dea1c9d6bded43e70d62ad86608a5d",
+    "extractionOnly": true,
+    "rerunDuringProduction": false
+  },
+  "independent": false
+}
