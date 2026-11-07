@@ -1,0 +1,95 @@
+{
+  "schema": "article-bounded-experiment/v1",
+  "date": "2026-11-07",
+  "itemId": "SIG-20261107-007",
+  "evidenceIdentity": "internal-experimental-evidence",
+  "independent": false,
+  "provenance": {
+    "stage": "Completed same-run Analysis",
+    "sourceArtifactSha256": "4503256da197f384d524106e2a5297934a11eda6aa831860f7f8eefa27466614",
+    "experimentId": "EXP-007"
+  },
+  "experiment": {
+    "id": "EXP-007",
+    "kind": "paper-definition-derived synthetic exhaustive experiment",
+    "inputs": {
+      "a": [
+        "read",
+        "x"
+      ],
+      "alias": [
+        "read",
+        "x"
+      ],
+      "b": [
+        "read",
+        "y"
+      ],
+      "wide": [
+        "read",
+        "x",
+        "y"
+      ]
+    },
+    "task": [
+      "read"
+    ],
+    "labels": "equal scalar labels for all scopes",
+    "treatment": {
+      "sufficient_grants": 15,
+      "distinct_footprints": 3,
+      "minimal_footprints": [
+        [
+          "read",
+          "x"
+        ],
+        [
+          "read",
+          "y"
+        ]
+      ]
+    },
+    "control": {
+      "sufficient_grants": 31,
+      "distinct_footprints": 4,
+      "minimal_footprints": [
+        [
+          "read"
+        ]
+      ]
+    },
+    "objectives": [
+      {
+        "weights": {
+          "read": 0,
+          "x": 10,
+          "y": 1
+        },
+        "scores": [
+          10,
+          1
+        ],
+        "winner": [
+          "read",
+          "y"
+        ]
+      },
+      {
+        "weights": {
+          "read": 0,
+          "x": 1,
+          "y": 10
+        },
+        "scores": [
+          1,
+          10
+        ],
+        "winner": [
+          "read",
+          "x"
+        ]
+      }
+    ],
+    "limit": "No API corpus, model choice, resource conditions or author package reproduced."
+  }
+}

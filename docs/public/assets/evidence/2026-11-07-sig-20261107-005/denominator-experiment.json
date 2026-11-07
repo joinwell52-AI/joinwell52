@@ -1,0 +1,434 @@
+{
+  "schema": "article-bounded-experiment/v1",
+  "date": "2026-11-07",
+  "itemId": "SIG-20261107-005",
+  "evidenceIdentity": "internal-experimental-evidence",
+  "independent": false,
+  "provenance": {
+    "stage": "Completed same-run Analysis",
+    "sourceArtifactSha256": "4503256da197f384d524106e2a5297934a11eda6aa831860f7f8eefa27466614",
+    "experimentId": "EXP-005"
+  },
+  "experiment": {
+    "id": "EXP-005",
+    "kind": "source-derived isolated scorer probe with synthetic on-disk files",
+    "cases": [
+      {
+        "case": "pass-plus-missing",
+        "input": {
+          "grades": [
+            [
+              [
+                1
+              ]
+            ],
+            null
+          ],
+          "seed_failed": false,
+          "min_grades": 1
+        },
+        "output": {
+          "models": {
+            "stub": {
+              "app_builds": 1,
+              "build_per_app": {
+                "app_builds_timed": 0,
+                "minutes": null,
+                "cost_usd": null,
+                "cost_source": null
+              },
+              "apps": 1,
+              "pass_at_1": 1,
+              "plan_pass_rate": 1,
+              "ci95": {
+                "pass_at_1": null,
+                "plan_pass_rate": null
+              },
+              "interval95": {
+                "pass_at_1": null,
+                "plan_pass_rate": null
+              },
+              "run_scores": {
+                "pass_at_1": [
+                  1
+                ],
+                "plan_pass_rate": [
+                  1
+                ]
+              }
+            }
+          },
+          "builds": [
+            {
+              "app": "synthetic",
+              "builder_model": "stub",
+              "artifact": "fixture",
+              "build": 1,
+              "pass_at_1": true,
+              "plan_pass_rate": 1,
+              "plans": 1,
+              "failed_plans": [],
+              "seed_failed": [],
+              "no_grade": [
+                "p2"
+              ],
+              "build_stats": null
+            }
+          ],
+          "excluded": [],
+          "provenance": {
+            "synthetic": true
+          }
+        }
+      },
+      {
+        "case": "all-pass",
+        "input": {
+          "grades": [
+            [
+              [
+                1
+              ]
+            ],
+            [
+              [
+                1
+              ]
+            ]
+          ],
+          "seed_failed": false,
+          "min_grades": 1
+        },
+        "output": {
+          "models": {
+            "stub": {
+              "app_builds": 1,
+              "build_per_app": {
+                "app_builds_timed": 0,
+                "minutes": null,
+                "cost_usd": null,
+                "cost_source": null
+              },
+              "apps": 1,
+              "pass_at_1": 1,
+              "plan_pass_rate": 1,
+              "ci95": {
+                "pass_at_1": null,
+                "plan_pass_rate": null
+              },
+              "interval95": {
+                "pass_at_1": null,
+                "plan_pass_rate": null
+              },
+              "run_scores": {
+                "pass_at_1": [
+                  1
+                ],
+                "plan_pass_rate": [
+                  1
+                ]
+              }
+            }
+          },
+          "builds": [
+            {
+              "app": "synthetic",
+              "builder_model": "stub",
+              "artifact": "fixture",
+              "build": 1,
+              "pass_at_1": true,
+              "plan_pass_rate": 1,
+              "plans": 2,
+              "failed_plans": [],
+              "seed_failed": [],
+              "no_grade": [],
+              "build_stats": null
+            }
+          ],
+          "excluded": [],
+          "provenance": {
+            "synthetic": true
+          }
+        }
+      },
+      {
+        "case": "failed-seed",
+        "input": {
+          "grades": [
+            [
+              [
+                1
+              ]
+            ],
+            null
+          ],
+          "seed_failed": true,
+          "min_grades": 1
+        },
+        "output": {
+          "models": {
+            "stub": {
+              "app_builds": 1,
+              "build_per_app": {
+                "app_builds_timed": 0,
+                "minutes": null,
+                "cost_usd": null,
+                "cost_source": null
+              },
+              "apps": 1,
+              "pass_at_1": 0,
+              "plan_pass_rate": 0.5,
+              "ci95": {
+                "pass_at_1": null,
+                "plan_pass_rate": null
+              },
+              "interval95": {
+                "pass_at_1": null,
+                "plan_pass_rate": null
+              },
+              "run_scores": {
+                "pass_at_1": [
+                  0
+                ],
+                "plan_pass_rate": [
+                  0.5
+                ]
+              }
+            }
+          },
+          "builds": [
+            {
+              "app": "synthetic",
+              "builder_model": "stub",
+              "artifact": "fixture",
+              "build": 1,
+              "pass_at_1": false,
+              "plan_pass_rate": 0.5,
+              "plans": 2,
+              "failed_plans": [
+                "p2"
+              ],
+              "seed_failed": [
+                "p2"
+              ],
+              "no_grade": [],
+              "build_stats": null
+            }
+          ],
+          "excluded": [],
+          "provenance": {
+            "synthetic": true
+          }
+        }
+      },
+      {
+        "case": "tie",
+        "input": {
+          "grades": [
+            [
+              [
+                1
+              ]
+            ],
+            [
+              [
+                1
+              ],
+              [
+                0
+              ]
+            ]
+          ],
+          "seed_failed": false,
+          "min_grades": 1
+        },
+        "output": {
+          "models": {
+            "stub": {
+              "app_builds": 1,
+              "build_per_app": {
+                "app_builds_timed": 0,
+                "minutes": null,
+                "cost_usd": null,
+                "cost_source": null
+              },
+              "apps": 1,
+              "pass_at_1": 0,
+              "plan_pass_rate": 0.5,
+              "ci95": {
+                "pass_at_1": null,
+                "plan_pass_rate": null
+              },
+              "interval95": {
+                "pass_at_1": null,
+                "plan_pass_rate": null
+              },
+              "run_scores": {
+                "pass_at_1": [
+                  0
+                ],
+                "plan_pass_rate": [
+                  0.5
+                ]
+              }
+            }
+          },
+          "builds": [
+            {
+              "app": "synthetic",
+              "builder_model": "stub",
+              "artifact": "fixture",
+              "build": 1,
+              "pass_at_1": false,
+              "plan_pass_rate": 0.5,
+              "plans": 2,
+              "failed_plans": [
+                "p2"
+              ],
+              "seed_failed": [],
+              "no_grade": [],
+              "build_stats": null
+            }
+          ],
+          "excluded": [],
+          "provenance": {
+            "synthetic": true
+          }
+        }
+      },
+      {
+        "case": "all-missing",
+        "input": {
+          "grades": [
+            null,
+            null
+          ],
+          "seed_failed": false,
+          "min_grades": 1
+        },
+        "output": {
+          "models": {
+            "stub": {
+              "app_builds": 0,
+              "build_per_app": {
+                "app_builds_timed": 0,
+                "minutes": null,
+                "cost_usd": null,
+                "cost_source": null
+              },
+              "apps": 0,
+              "pass_at_1": null,
+              "plan_pass_rate": null,
+              "ci95": {
+                "pass_at_1": null,
+                "plan_pass_rate": null
+              },
+              "interval95": {
+                "pass_at_1": null,
+                "plan_pass_rate": null
+              },
+              "run_scores": {
+                "pass_at_1": [],
+                "plan_pass_rate": []
+              }
+            }
+          },
+          "builds": [
+            {
+              "app": "synthetic",
+              "builder_model": "stub",
+              "artifact": "fixture",
+              "build": 1,
+              "pass_at_1": null,
+              "plan_pass_rate": null,
+              "plans": 0,
+              "failed_plans": [],
+              "seed_failed": [],
+              "no_grade": [
+                "p1",
+                "p2"
+              ],
+              "build_stats": null
+            }
+          ],
+          "excluded": [],
+          "provenance": {
+            "synthetic": true
+          }
+        }
+      },
+      {
+        "case": "too-few",
+        "input": {
+          "grades": [
+            [
+              [
+                1
+              ]
+            ],
+            [
+              [
+                1
+              ]
+            ]
+          ],
+          "seed_failed": false,
+          "min_grades": 2
+        },
+        "output": {
+          "models": {
+            "stub": {
+              "app_builds": 0,
+              "build_per_app": {
+                "app_builds_timed": 0,
+                "minutes": null,
+                "cost_usd": null,
+                "cost_source": null
+              },
+              "apps": 0,
+              "pass_at_1": null,
+              "plan_pass_rate": null,
+              "ci95": {
+                "pass_at_1": null,
+                "plan_pass_rate": null
+              },
+              "interval95": {
+                "pass_at_1": null,
+                "plan_pass_rate": null
+              },
+              "run_scores": {
+                "pass_at_1": [],
+                "plan_pass_rate": []
+              }
+            }
+          },
+          "builds": [
+            {
+              "app": "synthetic",
+              "builder_model": "stub",
+              "artifact": "fixture",
+              "build": 1,
+              "pass_at_1": null,
+              "plan_pass_rate": null,
+              "plans": 0,
+              "failed_plans": [],
+              "seed_failed": [],
+              "no_grade": [],
+              "build_stats": null
+            }
+          ],
+          "excluded": [
+            "synthetic/stub/fixture#1/p1: 1 graded attempt(s), fewer than 2",
+            "synthetic/stub/fixture#1/p2: 1 graded attempt(s), fewer than 2"
+          ],
+          "provenance": {
+            "synthetic": true
+          }
+        }
+      }
+    ],
+    "controls": "all-pass, missing, seed failure, strict-majority tie, all missing, insufficient grades",
+    "doubles": "package plan discovery/provenance and unused cost collection; score_run/read_trial/seed_outcome/reward functions unchanged",
+    "limit": "No browser grading, actual product build, benchmark score or held-out data reproduced; no claim of vulnerability."
+  }
+}
