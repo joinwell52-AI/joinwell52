@@ -1,0 +1,162 @@
+{
+  "schema": "article-bounded-experiment/v1",
+  "date": "2026-11-07",
+  "itemId": "SIG-20261107-006",
+  "evidenceIdentity": "internal-experimental-evidence",
+  "independent": false,
+  "provenance": {
+    "stage": "Completed same-run Analysis",
+    "sourceArtifactSha256": "4503256da197f384d524106e2a5297934a11eda6aa831860f7f8eefa27466614",
+    "experimentId": "EXP-006"
+  },
+  "experiment": {
+    "id": "EXP-006",
+    "kind": "source-derived isolated upstream-method probe",
+    "controls": "exact order, type normalization, read-assignment blocking and truncation; deterministic provider double",
+    "cases": [
+      {
+        "case": "exact",
+        "input": {
+          "kind": "write",
+          "order": {
+            "tool": "update",
+            "arguments": {
+              "id": 1
+            }
+          },
+          "tool": "update",
+          "arguments": {
+            "id": 1
+          },
+          "truncated": false
+        },
+        "emitted": true,
+        "status": "executing_write",
+        "executed_as_issued": true,
+        "order_check": "exact",
+        "events": []
+      },
+      {
+        "case": "type-normalized",
+        "input": {
+          "kind": "write",
+          "order": {
+            "tool": "update",
+            "arguments": {
+              "id": 1
+            }
+          },
+          "tool": "update",
+          "arguments": {
+            "id": "1"
+          },
+          "truncated": false
+        },
+        "emitted": true,
+        "status": "executing_write",
+        "executed_as_issued": true,
+        "order_check": "exact_after_type_normalisation",
+        "events": []
+      },
+      {
+        "case": "wrong-tool",
+        "input": {
+          "kind": "write",
+          "order": {
+            "tool": "update",
+            "arguments": {
+              "id": 1
+            }
+          },
+          "tool": "delete",
+          "arguments": {
+            "id": 1
+          },
+          "truncated": false
+        },
+        "emitted": true,
+        "status": "executing_write",
+        "executed_as_issued": false,
+        "order_check": "tool_mismatch:update->delete",
+        "events": []
+      },
+      {
+        "case": "wrong-argument",
+        "input": {
+          "kind": "write",
+          "order": {
+            "tool": "update",
+            "arguments": {
+              "id": 1
+            }
+          },
+          "tool": "update",
+          "arguments": {
+            "id": 2
+          },
+          "truncated": false
+        },
+        "emitted": true,
+        "status": "executing_write",
+        "executed_as_issued": false,
+        "order_check": "argument_mismatch",
+        "events": []
+      },
+      {
+        "case": "write-in-read",
+        "input": {
+          "kind": "read",
+          "order": "lookup",
+          "tool": "update",
+          "arguments": {
+            "id": 1
+          },
+          "truncated": false
+        },
+        "emitted": false,
+        "status": "closed",
+        "executed_as_issued": null,
+        "order_check": null,
+        "events": [
+          "db_write_in_read_assignment_blocked"
+        ]
+      },
+      {
+        "case": "truncated",
+        "input": {
+          "kind": "write",
+          "order": {
+            "tool": "update",
+            "arguments": {
+              "id": 1
+            }
+          },
+          "tool": "update",
+          "arguments": {
+            "id": 1
+          },
+          "truncated": true
+        },
+        "emitted": false,
+        "status": "closed",
+        "executed_as_issued": null,
+        "order_check": null,
+        "events": [
+          "db_call_truncated"
+        ]
+      }
+    ],
+    "schema_switch": {
+      "off": {
+        "tools": null
+      },
+      "on": {
+        "tools": [
+          "schema"
+        ],
+        "tool_choice": "none"
+      }
+    },
+    "limit": "Returned tool call is not a database write. No model behavior, tau2 outcome, causal loss decomposition or full-system reproduction."
+  }
+}
