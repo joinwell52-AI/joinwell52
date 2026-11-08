@@ -1,0 +1,184 @@
+{
+  "schema": "article-synthetic-label-probe/v1",
+  "date": "2026-11-08",
+  "evidenceIdentity": "internal-experimental-evidence",
+  "independent": false,
+  "method": "Previously executed unchanged upstream stats and outcome function bodies isolated via Python AST; no new experiment in Production",
+  "kind": "unchanged upstream function isolation via Python AST; synthetic verdict inputs",
+  "revision": "b3a575b76aad765ea1f46759c366897b5312311a",
+  "python": "3.12.9",
+  "sourceHashes": {
+    "audit.py": "bf561d4783a06e532bbb8ecbe9515b684015734bf8642b45b8aac8d6789d2375",
+    "scoring.py": "1137784f37092f486eced6b93b628cc3dc499a5aaf49f20a8ae89d04fc0641c6"
+  },
+  "cases": [
+    {
+      "input": {
+        "trace_verdict": "supported",
+        "factual_verdict": "supported"
+      },
+      "outcome": "grounded",
+      "stats": {
+        "claim_count": 1,
+        "evidence_supported": 1,
+        "evidence_support_rate": 1,
+        "fact_contradicted": 0,
+        "factual_contradiction_rate": 0,
+        "unresolved": 0,
+        "user_default_pass_count": 0,
+        "policy_pass_rate": 1
+      }
+    },
+    {
+      "input": {
+        "trace_verdict": "supported",
+        "factual_verdict": "contradicted"
+      },
+      "outcome": "grounded",
+      "stats": {
+        "claim_count": 1,
+        "evidence_supported": 1,
+        "evidence_support_rate": 1,
+        "fact_contradicted": 1,
+        "factual_contradiction_rate": 1,
+        "unresolved": 0,
+        "user_default_pass_count": 0,
+        "policy_pass_rate": 1
+      }
+    },
+    {
+      "input": {
+        "trace_verdict": "supported",
+        "factual_verdict": "unresolved"
+      },
+      "outcome": "grounded",
+      "stats": {
+        "claim_count": 1,
+        "evidence_supported": 1,
+        "evidence_support_rate": 1,
+        "fact_contradicted": 0,
+        "factual_contradiction_rate": 0,
+        "unresolved": 1,
+        "user_default_pass_count": 0,
+        "policy_pass_rate": 1
+      }
+    },
+    {
+      "input": {
+        "trace_verdict": "unsupported",
+        "factual_verdict": "supported"
+      },
+      "outcome": "verified_ungrounded",
+      "stats": {
+        "claim_count": 1,
+        "evidence_supported": 1,
+        "evidence_support_rate": 1,
+        "fact_contradicted": 0,
+        "factual_contradiction_rate": 0,
+        "unresolved": 0,
+        "user_default_pass_count": 0,
+        "policy_pass_rate": 1
+      }
+    },
+    {
+      "input": {
+        "trace_verdict": "unsupported",
+        "factual_verdict": "contradicted"
+      },
+      "outcome": "hallucinated",
+      "stats": {
+        "claim_count": 1,
+        "evidence_supported": 0,
+        "evidence_support_rate": 0,
+        "fact_contradicted": 1,
+        "factual_contradiction_rate": 1,
+        "unresolved": 0,
+        "user_default_pass_count": 0,
+        "policy_pass_rate": 0
+      }
+    },
+    {
+      "input": {
+        "trace_verdict": "unsupported",
+        "factual_verdict": "unresolved"
+      },
+      "outcome": "unverified",
+      "stats": {
+        "claim_count": 1,
+        "evidence_supported": 0,
+        "evidence_support_rate": 0,
+        "fact_contradicted": 0,
+        "factual_contradiction_rate": 0,
+        "unresolved": 1,
+        "user_default_pass_count": 1,
+        "policy_pass_rate": 1
+      }
+    },
+    {
+      "input": {
+        "trace_verdict": "incomplete",
+        "factual_verdict": "supported"
+      },
+      "outcome": "verified_ungrounded",
+      "stats": {
+        "claim_count": 1,
+        "evidence_supported": 1,
+        "evidence_support_rate": 1,
+        "fact_contradicted": 0,
+        "factual_contradiction_rate": 0,
+        "unresolved": 0,
+        "user_default_pass_count": 0,
+        "policy_pass_rate": 1
+      }
+    },
+    {
+      "input": {
+        "trace_verdict": "incomplete",
+        "factual_verdict": "contradicted"
+      },
+      "outcome": "hallucinated",
+      "stats": {
+        "claim_count": 1,
+        "evidence_supported": 0,
+        "evidence_support_rate": 0,
+        "fact_contradicted": 1,
+        "factual_contradiction_rate": 1,
+        "unresolved": 0,
+        "user_default_pass_count": 0,
+        "policy_pass_rate": 0
+      }
+    },
+    {
+      "input": {
+        "trace_verdict": "incomplete",
+        "factual_verdict": "unresolved"
+      },
+      "outcome": "unverified",
+      "stats": {
+        "claim_count": 1,
+        "evidence_supported": 0,
+        "evidence_support_rate": 0,
+        "fact_contradicted": 0,
+        "factual_contradiction_rate": 0,
+        "unresolved": 1,
+        "user_default_pass_count": 1,
+        "policy_pass_rate": 1
+      }
+    }
+  ],
+  "emptyControl": {
+    "claim_count": 0,
+    "evidence_supported": 0,
+    "evidence_support_rate": null,
+    "fact_contradicted": 0,
+    "factual_contradiction_rate": null,
+    "unresolved": 0,
+    "user_default_pass_count": 0,
+    "policy_pass_rate": null
+  },
+  "limits": [
+    "No financial advice or facts evaluated.",
+    "No model, semantic judge, benchmark dataset or manuscript score reproduced.",
+    "Outcome label grounded records trace provenance, not factual correctness."
+  ]
+}
