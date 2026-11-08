@@ -1,0 +1,107 @@
+{
+  "schema": "article-approval-stage-probe/v1",
+  "date": "2026-11-08",
+  "evidenceIdentity": "internal-experimental-evidence",
+  "independent": false,
+  "revision": "747b5bb125c8cc94e7cb99a581dc63bedb2c9bb2",
+  "sourceSha256": "a8f5ba8d8ed45f006b11fcfdc6bd402991d49b9af09609a238938f4375fed50e",
+  "environment": {
+    "node": "v24.19.0",
+    "sqlite": "node:sqlite in-memory"
+  },
+  "method": "Previously executed pinned source after import removal and type stripping. Real fixture-only in-memory SQLite; no effects executed. Production did not rerun this probe.",
+  "controls": {
+    "matcher": "exact equality stub; exact-pattern fixtures only",
+    "conditions": "not used; stub throws",
+    "logger": "no-op",
+    "database": "real SQLite; fixture-only table; no effects executed"
+  },
+  "cases": [
+    {
+      "name": "original",
+      "request": {
+        "request_id": "request-A",
+        "agent_id": "agent-A",
+        "division_code": null,
+        "action": {
+          "type": "file.delete",
+          "target": "/fixture/original",
+          "parameters": {
+            "recursive": false
+          }
+        }
+      },
+      "verdict": "PASS"
+    },
+    {
+      "name": "different-request",
+      "request": {
+        "request_id": "request-B",
+        "agent_id": "agent-A",
+        "division_code": null,
+        "action": {
+          "type": "file.delete",
+          "target": "/fixture/original",
+          "parameters": {
+            "recursive": false
+          }
+        }
+      },
+      "verdict": "PASS"
+    },
+    {
+      "name": "changed-target",
+      "request": {
+        "request_id": "request-A",
+        "agent_id": "agent-A",
+        "division_code": null,
+        "action": {
+          "type": "file.delete",
+          "target": "/fixture/changed",
+          "parameters": {
+            "recursive": false
+          }
+        }
+      },
+      "verdict": "PASS"
+    },
+    {
+      "name": "changed-parameters",
+      "request": {
+        "request_id": "request-A",
+        "agent_id": "agent-A",
+        "division_code": null,
+        "action": {
+          "type": "file.delete",
+          "target": "/fixture/original",
+          "parameters": {
+            "recursive": true
+          }
+        }
+      },
+      "verdict": "PASS"
+    },
+    {
+      "name": "different-agent",
+      "request": {
+        "request_id": "request-A",
+        "agent_id": "agent-B",
+        "division_code": null,
+        "action": {
+          "type": "file.delete",
+          "target": "/fixture/original",
+          "parameters": {
+            "recursive": false
+          }
+        }
+      },
+      "verdict": "PAUSE"
+    }
+  ],
+  "denied": "BLOCK",
+  "expired": "PAUSE",
+  "limits": [
+    "Not a full-system reproduction or demonstrated exploit.",
+    "Caller immutability, token handling, other policy stages, schema defaults, concurrency and effects are not exercised."
+  ]
+}
