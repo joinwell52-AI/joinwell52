@@ -4,7 +4,7 @@
   "schedulerVersion": "6.0",
   "startDate": "2026-10-27",
   "snapshotDate": "2026-11-08",
-  "publishedAt": "2026-11-08T12:06:54.423Z",
+  "publishedAt": "2026-11-08T12:40:31.630Z",
   "timezone": "Asia/Shanghai",
   "label": "Public Snapshot",
   "notice": "Not a live control plane",
@@ -15,7 +15,7 @@
     "analysis": "Completed",
     "production": "Completed",
     "publication": "Completed",
-    "weekly": "Waiting",
+    "weekly": "Blocked",
     "deadline-check": "Completed",
     "scorecard": "Waiting"
   },
@@ -263,7 +263,7 @@
       "todayDaily": {
         "runtimeFamily": "daily",
         "date": "2026-11-08",
-        "status": "Waiting",
+        "status": "Blocked",
         "taskStatus": {
           "discovery": "Completed",
           "queue": "Completed",
@@ -271,7 +271,7 @@
           "analysis": "Completed",
           "production": "Completed",
           "publication": "Completed",
-          "weekly": "Waiting",
+          "weekly": "Blocked",
           "deadline-check": "Completed",
           "scorecard": "Waiting"
         },
@@ -458,6 +458,32 @@
             ],
             "evidence": []
           },
+          "weekly": {
+            "task": "weekly",
+            "status": "Blocked",
+            "input": "按已验证的本地任务依赖执行。",
+            "input_zh": "按已验证的本地任务依赖执行。",
+            "workResult": "每周综合与 P2 检查: Blocked",
+            "workResult_zh": "每周综合与 P2 检查：本地执行或验证未通过，未计作完成。",
+            "output": "本地执行或验证未通过，未计作完成。",
+            "output_zh": "本地执行或验证未通过，未计作完成。",
+            "next": "Follow the local schedule.",
+            "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+            "metrics": [
+              {
+                "label": "actual-start",
+                "label_zh": "实际开始",
+                "value": "20:30:03"
+              },
+              {
+                "label": "actual-end",
+                "label_zh": "实际结束",
+                "value": "20:40:31"
+              }
+            ],
+            "artifacts": [],
+            "evidence": []
+          },
           "deadline-check": {
             "task": "deadline-check",
             "status": "Completed",
@@ -493,7 +519,7 @@
         "daily": {
           "runtimeFamily": "daily",
           "date": "2026-11-08",
-          "status": "Waiting",
+          "status": "Blocked",
           "taskStatus": {
             "discovery": "Completed",
             "queue": "Completed",
@@ -501,7 +527,7 @@
             "analysis": "Completed",
             "production": "Completed",
             "publication": "Completed",
-            "weekly": "Waiting",
+            "weekly": "Blocked",
             "deadline-check": "Completed",
             "scorecard": "Waiting"
           },
@@ -688,6 +714,32 @@
               ],
               "evidence": []
             },
+            "weekly": {
+              "task": "weekly",
+              "status": "Blocked",
+              "input": "按已验证的本地任务依赖执行。",
+              "input_zh": "按已验证的本地任务依赖执行。",
+              "workResult": "每周综合与 P2 检查: Blocked",
+              "workResult_zh": "每周综合与 P2 检查：本地执行或验证未通过，未计作完成。",
+              "output": "本地执行或验证未通过，未计作完成。",
+              "output_zh": "本地执行或验证未通过，未计作完成。",
+              "next": "Follow the local schedule.",
+              "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+              "metrics": [
+                {
+                  "label": "actual-start",
+                  "label_zh": "实际开始",
+                  "value": "20:30:03"
+                },
+                {
+                  "label": "actual-end",
+                  "label_zh": "实际结束",
+                  "value": "20:40:31"
+                }
+              ],
+              "artifacts": [],
+              "evidence": []
+            },
             "deadline-check": {
               "task": "deadline-check",
               "status": "Completed",
@@ -725,7 +777,7 @@
           {
             "runtimeFamily": "daily",
             "date": "2026-11-08",
-            "status": "Waiting",
+            "status": "Blocked",
             "taskStatus": {
               "discovery": "Completed",
               "queue": "Completed",
@@ -733,7 +785,7 @@
               "analysis": "Completed",
               "production": "Completed",
               "publication": "Completed",
-              "weekly": "Waiting",
+              "weekly": "Blocked",
               "deadline-check": "Completed",
               "scorecard": "Waiting"
             },
@@ -918,6 +970,32 @@
                     "url": "/joinwell52/en/engineering/2026-11-08-sig-20261108-002"
                   }
                 ],
+                "evidence": []
+              },
+              "weekly": {
+                "task": "weekly",
+                "status": "Blocked",
+                "input": "按已验证的本地任务依赖执行。",
+                "input_zh": "按已验证的本地任务依赖执行。",
+                "workResult": "每周综合与 P2 检查: Blocked",
+                "workResult_zh": "每周综合与 P2 检查：本地执行或验证未通过，未计作完成。",
+                "output": "本地执行或验证未通过，未计作完成。",
+                "output_zh": "本地执行或验证未通过，未计作完成。",
+                "next": "Follow the local schedule.",
+                "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "20:30:03"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "20:40:31"
+                  }
+                ],
+                "artifacts": [],
                 "evidence": []
               },
               "deadline-check": {
