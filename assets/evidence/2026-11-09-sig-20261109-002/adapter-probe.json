@@ -1,0 +1,288 @@
+{
+  "question": "Response adapter preservation and delegation boundary",
+  "cases": [
+    {
+      "case": "plain-text-positive-control",
+      "input": {
+        "id": "response-1",
+        "usage": {
+          "tokens": 7
+        },
+        "choices": [
+          {
+            "message": {
+              "role": "assistant",
+              "content": "ORIGINAL"
+            },
+            "finish_reason": "stop"
+          },
+          {
+            "message": {
+              "content": "SECOND"
+            }
+          }
+        ]
+      },
+      "output": {
+        "id": "response-1",
+        "usage": {
+          "tokens": 7
+        },
+        "choices": [
+          {
+            "message": {
+              "role": "assistant",
+              "content": "REPLACEMENT"
+            },
+            "finish_reason": "stop"
+          },
+          {
+            "message": {
+              "content": "SECOND"
+            }
+          }
+        ]
+      },
+      "originalUnchanged": true,
+      "interceptorCall": {
+        "content": "ORIGINAL",
+        "role": "worker",
+        "protected": false
+      }
+    },
+    {
+      "case": "tool-only",
+      "input": {
+        "choices": [
+          {
+            "message": {
+              "content": null,
+              "tool_calls": [
+                {
+                  "id": "t1",
+                  "function": {
+                    "name": "write",
+                    "arguments": "{}"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "id": "keep"
+      },
+      "output": {
+        "choices": [
+          {
+            "message": {
+              "content": null,
+              "tool_calls": [
+                {
+                  "id": "t1",
+                  "function": {
+                    "name": "write",
+                    "arguments": "{}"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "id": "keep"
+      },
+      "sameObject": true,
+      "interceptorCall": {
+        "content": "{\"tool_calls\": [{\"function\": {\"arguments\": \"{}\", \"name\": \"write\"}, \"id\": \"t1\"}]}",
+        "role": "worker",
+        "protected": true,
+        "pending_tool_calls": [
+          {
+            "id": "t1",
+            "function": {
+              "name": "write",
+              "arguments": "{}"
+            }
+          }
+        ]
+      },
+      "audit": [
+        {
+          "enacted": true,
+          "delivered_content": "REPLACEMENT",
+          "response_boundary": "protected_tool_only",
+          "host_original_content": null,
+          "host_tool_calls": [
+            {
+              "id": "t1",
+              "function": {
+                "name": "write",
+                "arguments": "{}"
+              }
+            }
+          ],
+          "host_function_call": null,
+          "host_response_unchanged": true
+        }
+      ]
+    },
+    {
+      "case": "legacy-tool-only",
+      "input": {
+        "choices": [
+          {
+            "message": {
+              "content": null,
+              "function_call": {
+                "name": "write",
+                "arguments": "{}"
+              }
+            }
+          }
+        ],
+        "id": "keep"
+      },
+      "output": {
+        "choices": [
+          {
+            "message": {
+              "content": null,
+              "function_call": {
+                "name": "write",
+                "arguments": "{}"
+              }
+            }
+          }
+        ],
+        "id": "keep"
+      },
+      "sameObject": true,
+      "interceptorCall": {
+        "content": "{\"function_call\": {\"arguments\": \"{}\", \"name\": \"write\"}, \"tool_calls\": []}",
+        "role": "worker",
+        "protected": true,
+        "pending_tool_calls": []
+      },
+      "audit": [
+        {
+          "enacted": true,
+          "delivered_content": "REPLACEMENT",
+          "response_boundary": "protected_tool_only",
+          "host_original_content": null,
+          "host_tool_calls": [],
+          "host_function_call": {
+            "name": "write",
+            "arguments": "{}"
+          },
+          "host_response_unchanged": true
+        }
+      ]
+    },
+    {
+      "case": "text-plus-tool",
+      "input": {
+        "choices": [
+          {
+            "message": {
+              "content": "ORIGINAL",
+              "tool_calls": [
+                {
+                  "id": "t1"
+                }
+              ]
+            }
+          }
+        ],
+        "id": "keep"
+      },
+      "output": {
+        "choices": [
+          {
+            "message": {
+              "content": "REPLACEMENT",
+              "tool_calls": [
+                {
+                  "id": "t1"
+                }
+              ]
+            }
+          }
+        ],
+        "id": "keep"
+      },
+      "sameObject": false,
+      "interceptorCall": {
+        "content": "ORIGINAL",
+        "role": "worker",
+        "protected": true
+      },
+      "audit": [
+        {
+          "enacted": true,
+          "delivered_content": "REPLACEMENT"
+        }
+      ]
+    },
+    {
+      "case": "structured-nontext",
+      "input": {
+        "choices": [
+          {
+            "message": {
+              "content": {
+                "field": "value"
+              }
+            }
+          }
+        ],
+        "id": "keep"
+      },
+      "output": {
+        "choices": [
+          {
+            "message": {
+              "content": {
+                "field": "value"
+              }
+            }
+          }
+        ],
+        "id": "keep"
+      },
+      "sameObject": true,
+      "interceptorCall": null,
+      "audit": []
+    },
+    {
+      "case": "disabled-negative-control",
+      "unchanged": true,
+      "interceptorCalled": false
+    },
+    {
+      "case": "immutable-response",
+      "failOpen": true,
+      "returnedOriginal": true,
+      "raised": null,
+      "audit": [
+        {
+          "enacted": false,
+          "delivered_content": "ORIGINAL",
+          "error": "response substitution failed: immutable probe fixture"
+        }
+      ]
+    },
+    {
+      "case": "immutable-response",
+      "failOpen": false,
+      "returnedOriginal": false,
+      "raised": "immutable probe fixture",
+      "audit": [
+        {
+          "enacted": false,
+          "delivered_content": "ORIGINAL",
+          "error": "response substitution failed: immutable probe fixture"
+        }
+      ]
+    }
+  ],
+  "scope": "Actual AST-extracted response adapter/helpers, synthetic non-validating text interceptor. No controller/model/framework execution, rollback, validator correctness or external effects tested."
+}
