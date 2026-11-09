@@ -298,11 +298,13 @@ onBeforeUnmount(() => {
             <div class="rc-hero__summary">
               <p class="rc-hero__lead">{{ copy.heroLead }}</p>
               <p>{{ zh ? 'CodeFlowMu Windows x64 免费预览版现已公开下载 · 专有软件' : 'CodeFlowMu Windows x64 free preview is publicly available · Proprietary software' }}</p>
-              <div class="rc-actions">
+              <div class="rc-actions rc-hero__actions">
                 <a class="rc-button rc-button--primary" href="https://github.com/joinwell52-AI/CodeflowMu-Distribution/releases">{{ zh ? '下载 CodeFlowMu · Windows' : 'Download CodeFlowMu · Windows' }} <span>↗</span></a>
-                <a class="rc-button" href="https://github.com/joinwell52-AI/CodeflowMu-Distribution">{{ zh ? '应用介绍与安装指南' : 'App & installation guide' }} <span>↗</span></a>
-                <a class="rc-button" :href="link(researchOverview)">{{ copy.primary }} <span>↗</span></a>
-                <a class="rc-button rc-daily-intelligence-link" :href="link(zh ? '/zh/runtime/daily-intelligence/' : '/en/runtime/daily-intelligence/')">{{ zh ? '每日动态' : 'Daily Intelligence' }} <span>↗</span></a>
+                <a class="rc-installation-link" href="https://github.com/joinwell52-AI/CodeflowMu-Distribution">{{ zh ? '应用介绍与安装指南' : 'App & installation guide' }} <span>↗</span></a>
+                <div class="rc-hero__reading-links">
+                  <a class="rc-button" :href="link(researchOverview)">{{ copy.primary }} <span>↗</span></a>
+                  <a class="rc-button rc-daily-intelligence-link" :href="link(zh ? '/zh/runtime/daily-intelligence/' : '/en/runtime/daily-intelligence/')">{{ zh ? '每日动态' : 'Daily Intelligence' }} <span>↗</span></a>
+                </div>
               </div>
             </div>
           </div>
@@ -660,6 +662,13 @@ onBeforeUnmount(() => {
 .rc-button { display: inline-flex; align-items: center; justify-content: space-between; min-height: 48px; gap: 24px; padding: 0 18px; border: 1px solid rgba(255,255,255,.2); color: #fff !important; background: transparent; cursor: pointer; font: 760 13px/1.2 ui-sans-serif, system-ui, sans-serif; }
 .rc-button--primary { min-width: 172px; border-radius: 10px; color: #fff !important; background: linear-gradient(120deg, #765ff8, #3f82e8); border-color: transparent; box-shadow: 0 14px 32px rgba(65,91,231,.3); transition: transform .18s ease, box-shadow .18s ease; }
 .rc-button--primary:hover { transform: translateY(-2px); box-shadow: 0 18px 38px rgba(65,91,231,.4); }
+.rc-hero__actions { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+.rc-hero__actions > .rc-button--primary { width: 100%; }
+.rc-installation-link { display: inline-flex; align-items: center; justify-self: start; gap: 10px; padding: 3px 1px; color: #c0cbe1 !important; font-size: 12px; line-height: 1.6; }
+.rc-installation-link:hover { color: #fff !important; }
+.rc-hero__reading-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 2px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.14); }
+.rc-hero__reading-links .rc-button { min-width: 0; gap: 12px; padding: 12px 16px; line-height: 1.45; transition: border-color .18s ease, background .18s ease; }
+.rc-hero__reading-links .rc-button:hover { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.4); }
 .rc-text-link { margin-left: 8px; color: #fff !important; font-size: 12px; font-weight: 760; border-bottom: 1px solid rgba(255,255,255,.45); }
 .rc-hero-video { position: relative; display: block; flex: 1 1 auto; width: 100%; min-height: 320px; margin-top: 24px; padding: 0; overflow: hidden; color: #fff; text-align: left; background: #020711; border: 1px solid rgba(118,215,238,.3); border-radius: 20px; box-shadow: 0 24px 72px rgba(0,0,0,.38); cursor: pointer; isolation: isolate; }
 .rc-hero-video::after { position: absolute; inset: 9px; z-index: 3; border: 1px solid rgba(255,255,255,.16); border-radius: 13px; content: ''; pointer-events: none; }
@@ -1041,6 +1050,7 @@ onBeforeUnmount(() => {
   .rc-hero__lead { margin-top: 26px; font-size: 14px; line-height: 1.7; }
   .rc-actions { display: grid; grid-template-columns: 1fr; margin-top: 28px; }
   .rc-button { width: 100%; min-height: 47px; }
+  .rc-hero__reading-links { grid-template-columns: 1fr; }
   .rc-text-link { width: max-content; margin: 8px 0 0; }
   .rc-ledger { display: none; }
   .rc-hero-video { height: auto; min-height: 0; aspect-ratio: 16 / 9; margin-top: 30px; border-radius: 17px; box-shadow: 0 24px 60px rgba(0,0,0,.38), 7px 7px 0 rgba(7,12,27,.72); }
