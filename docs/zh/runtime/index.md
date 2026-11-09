@@ -9,11 +9,9 @@ outline: false
 <script setup>
 import RuntimeArchiveSnapshot from '../../.vitepress/theme/components/RuntimeArchiveSnapshot.vue'
 import RuntimeShiftCollapse from '../../.vitepress/theme/components/RuntimeShiftCollapse.vue'
-import RuntimeDailyIntelligenceLink from '../../.vitepress/theme/components/RuntimeDailyIntelligenceLink.vue'
 </script>
 
 <RuntimeArchiveSnapshot lang="zh" />
-<ClientOnly><RuntimeDailyIntelligenceLink lang="zh" /></ClientOnly>
 <RuntimeShiftCollapse lang="zh" />
 
 <ResearchIntelligenceRadar lang="zh" />
