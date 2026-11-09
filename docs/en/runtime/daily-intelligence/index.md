@@ -11,6 +11,7 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+<a class="daily-intel-item" href="./2026-11-09"><time>2026-11-09</time><div><strong>Agent Research & Competitor Intelligence</strong><span>Catch-up since November 5: 31 observations and 5 analyses; async supervision, authority, delivery evidence and competitor governance.</span></div><b>Read full report →</b></a>
 <a class="daily-intel-item" href="./2026-11-05"><time>2026-11-05</time><div><strong>Agent Research & Competitor Intelligence</strong><span>Two layers: 31 observations and 6 analyses; AG2 release, approval/recovery contracts, Paradev MIT and deliverable verification.</span></div><b>Read full report →</b></a>
 <a class="daily-intel-item" href="./2026-11-04"><time>2026-11-04</time><div><strong>Agent Research and Competitor Intelligence</strong><span>Two layers: native workers · authority · AG2 collaboration · recovery evidence · memory/SOPs · protocols and open applications</span></div><b>Read →</b></a>
 <a class="daily-intel-item" href="./2026-11-03"><time>2026-11-03</time><div><strong>Agent Research and Competitor Intelligence</strong><span>Codex · Claude 2.1.317 · ADK · LangGraph · OpenHands · Paperclip · Beads · Orca · Agentlas · Paradev</span></div><b>Read →</b></a>
