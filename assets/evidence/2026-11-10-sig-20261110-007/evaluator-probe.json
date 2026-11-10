@@ -1,0 +1,70 @@
+{
+  "schema": "article-probe-results/v1",
+  "date": "2026-11-10",
+  "id": "EXP-007",
+  "question": "Can pinned reward calculation append reference actions to the same action record, including through terminal step?",
+  "scope": "Source-derived isolated AST method probe with synthetic data, tool and response containers; not complete tau-bench installation, airline replay, archive audit or model evaluation.",
+  "sourceRevision": "14bf0ef52e595922d597a38f32d3e8c0dce3a8f8",
+  "sourceSha256": "1ad0402073f0ac9ca6b527efa0706e2aa8836dd2e5c1d453ed414ecb768c6d21",
+  "python": "3.12.9",
+  "extraction": "Unchanged AST bodies of Env.step/get_data_hash/calculate_reward and to_hashable/consistent_hash; no Env.__init__; type annotations postponed; benchmark types replaced by SimpleNamespace containers.",
+  "rows": [
+    {
+      "id": "no-agent-actions",
+      "before": [],
+      "after": [
+        "set"
+      ],
+      "reward": 0,
+      "data": {
+        "value": 1
+      }
+    },
+    {
+      "id": "nonterminal-control",
+      "actions": [
+        "set"
+      ],
+      "reward": 0,
+      "done": false,
+      "hasRewardInfo": false
+    },
+    {
+      "id": "matching-state-regrade",
+      "beforeCount": 1,
+      "afterCount": 2,
+      "reward": 1
+    },
+    {
+      "id": "repeated-regrade",
+      "beforeCount": 2,
+      "afterCount": 3,
+      "reward": 1
+    },
+    {
+      "id": "empty-gold-control",
+      "afterCount": 0,
+      "reward": 1
+    },
+    {
+      "id": "terminal-step-path",
+      "actions": [
+        "finish",
+        "set"
+      ],
+      "reward": 1,
+      "done": true,
+      "hasRewardInfo": true
+    }
+  ],
+  "limits": [
+    "Synthetic state and tool replace real airline tool semantics.",
+    "Repeated regrade uses state after prior evaluation; it is a probe of mutation, not an archived reward estimate.",
+    "Zero before done does not show task failure or eventual score.",
+    "No prevalence, leaderboard-score change, cost inflation or current HEAD behavior measured."
+  ],
+  "provenance": {
+    "performedBy": "same-date internal Analysis stage",
+    "upstreamResultSha256": "2a626ac216ccd0c996c13968461bb309933844ccda05bed7223b29a58d6b8822"
+  }
+}
