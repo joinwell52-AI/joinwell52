@@ -1,0 +1,195 @@
+{
+  "schema": "article-probe-results/v1",
+  "date": "2026-11-10",
+  "id": "EXP-006",
+  "question": "Can explicitly defined symmetric similarity decrease despite an irrelevant capability addition or relaxed requirement, while one-sided controls remain unchanged?",
+  "scope": "New deterministic mathematical counterexamples inspired by arXiv:2610.27504v1 sections II and IV. Not the unavailable author implementation, random scenario study or LLM reproduction.",
+  "formulas": {
+    "cosine": "dot(a,b)/(norm(a)*norm(b))",
+    "euclidean": "1/(1+L2(a-b))",
+    "coverage": "fraction of positive requirement dimensions met",
+    "shortfall": "1-sum(max(0,b_i-a_i))/sum(b_i)"
+  },
+  "inputs": "dimensionless two-feature vectors; formulas explicitly defined here; positive requirement denominator",
+  "rows": [
+    {
+      "id": "irrelevant-capability",
+      "before": [
+        1,
+        0
+      ],
+      "after": [
+        1,
+        1
+      ],
+      "reqBefore": [
+        1,
+        0
+      ],
+      "reqAfter": [
+        1,
+        0
+      ],
+      "scores": {
+        "cosine": {
+          "before": 1,
+          "after": 0.7071067811865475
+        },
+        "euclidean": {
+          "before": 1,
+          "after": 0.5
+        },
+        "coverage": {
+          "before": 1,
+          "after": 1
+        },
+        "shortfall": {
+          "before": 1,
+          "after": 1
+        }
+      }
+    },
+    {
+      "id": "relaxed-requirement",
+      "before": [
+        1,
+        1
+      ],
+      "after": [
+        1,
+        1
+      ],
+      "reqBefore": [
+        1,
+        1
+      ],
+      "reqAfter": [
+        1,
+        0.5
+      ],
+      "scores": {
+        "cosine": {
+          "before": 0.9999999999999998,
+          "after": 0.9486832980505138
+        },
+        "euclidean": {
+          "before": 1,
+          "after": 0.6666666666666666
+        },
+        "coverage": {
+          "before": 1,
+          "after": 1
+        },
+        "shortfall": {
+          "before": 1,
+          "after": 1
+        }
+      }
+    },
+    {
+      "id": "increased-required-capability",
+      "before": [
+        0.5,
+        1
+      ],
+      "after": [
+        1,
+        1
+      ],
+      "reqBefore": [
+        1,
+        1
+      ],
+      "reqAfter": [
+        1,
+        1
+      ],
+      "scores": {
+        "cosine": {
+          "before": 0.9486832980505138,
+          "after": 0.9999999999999998
+        },
+        "euclidean": {
+          "before": 0.6666666666666666,
+          "after": 1
+        },
+        "coverage": {
+          "before": 0.5,
+          "after": 1
+        },
+        "shortfall": {
+          "before": 0.75,
+          "after": 1
+        }
+      }
+    },
+    {
+      "id": "unchanged-control",
+      "before": [
+        1,
+        1
+      ],
+      "after": [
+        1,
+        1
+      ],
+      "reqBefore": [
+        1,
+        1
+      ],
+      "reqAfter": [
+        1,
+        1
+      ],
+      "scores": {
+        "cosine": {
+          "before": 0.9999999999999998,
+          "after": 0.9999999999999998
+        },
+        "euclidean": {
+          "before": 1,
+          "after": 1
+        },
+        "coverage": {
+          "before": 1,
+          "after": 1
+        },
+        "shortfall": {
+          "before": 1,
+          "after": 1
+        }
+      }
+    }
+  ],
+  "decision": {
+    "before": [
+      0.5001,
+      0.5
+    ],
+    "after": [
+      0.5,
+      0.5001
+    ],
+    "maxAbsoluteChange": 0.0001,
+    "beforeChoice": 0,
+    "afterChoice": 1,
+    "allZero": {
+      "scores": [
+        0,
+        0
+      ],
+      "nominalChoice": 0,
+      "feasibleChoices": []
+    }
+  },
+  "limits": [
+    "Chosen normalizations are ours; exact author feature normalization is unavailable.",
+    "Counterexamples establish possibility for these formulas, not the reported 98.55% rate.",
+    "No task execution, authority enforcement or software-worker transfer measured.",
+    "All-zero interpretation assumes zero denotes infeasibility."
+  ],
+  "provenance": {
+    "performedBy": "same-date internal Analysis stage",
+    "upstreamResultSha256": "b0aeb95281cfda05a15058949d15909a3b587397ecedec2876304d1f290acd15"
+  }
+}
