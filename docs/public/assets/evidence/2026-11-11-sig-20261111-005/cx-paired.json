@@ -1,0 +1,41 @@
+{
+  "experiment": "CX-PAIRED",
+  "kind": "Fresh statistical reanalysis of published aggregate contingencies",
+  "sourceVersion": "2610.25954v1 G.2-G.3",
+  "sourceSha256": "7bb56bcf6948ebb2365a4cd42819b34b501a61cdd40ca97a62ecc2070eef91e9",
+  "inputs": {
+    "bothPass": 12,
+    "mediatedOnly": 13,
+    "directOnly": 10,
+    "bothFail": 85
+  },
+  "seed": 20261111,
+  "resamples": 100000,
+  "mediatedPass": 25,
+  "directPass": 22,
+  "directMinusMediatedPP": -2.5,
+  "exactTwoSidedMcNemar": 0.6776394844055176,
+  "pairedBootstrap95PP": [
+    -10.0,
+    5.0
+  ],
+  "controls": {
+    "noDiscordance": 1.0,
+    "allTenOneWay": 0.001953125
+  },
+  "falsePassGraderAblation": {
+    "totalFalsePass": 466,
+    "bothGraderReject": 99,
+    "semanticOnlyReject": 329,
+    "hardOnlyReject": 38,
+    "removeAllHardOnlyNewPass": 38,
+    "removeAllSemanticOnlyNewPass": 329,
+    "removeBothNewPass": 466
+  },
+  "limits": [
+    "Reconstructed labels cannot recover task identities or trace text.",
+    "Bootstrap resamples these reported pairs, not fresh agent executions.",
+    "No independent check of the reported same-trace final-state transformation.",
+    "A non-significant result is not evidence of equivalence."
+  ]
+}
