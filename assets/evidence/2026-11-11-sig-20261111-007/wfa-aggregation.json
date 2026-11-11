@@ -1,0 +1,754 @@
+{
+  "experiment": "WFA-AGGREGATION",
+  "kind": "Released aggregate data sensitivity analysis",
+  "sourceCommit": "637adecbe59ced8780279301de22b0f582495dea",
+  "sourceHashes": {
+    "2611.12856v1.txt": "8def1df982f606b6006a5fead50176c5268a34d4b76a24b35863e0e2ff1b586e",
+    "workflowarena-results-transfer-README.md": "f455c0eabbad6931ae79729ec6aeaad861319c831030eaba068688882e835f3f",
+    "workflowarena-results.csv": "ef2358a0ece1ded42c9d47de90747cb8e2741dacd6f191776b82b70c3cd99ebf"
+  },
+  "configurations": 25,
+  "domainCounts": {
+    "SWE": 17,
+    "OPS": 18,
+    "SCI": 16,
+    "MATH": 24,
+    "FIN": 16,
+    "LAW": 22,
+    "CDN": 14,
+    "3D": 18
+  },
+  "aggregation": [
+    {
+      "model": "Claude Opus 5.5 / high",
+      "released": 34.11,
+      "macro": 34.1125,
+      "pooledApprox": 35.17413793103448,
+      "absoluteMacroError": 0.0024999999999977263
+    },
+    {
+      "model": "Claude Opus 5.5 / max",
+      "released": 36.95,
+      "macro": 36.94625,
+      "pooledApprox": 37.92944827586207,
+      "absoluteMacroError": 0.003750000000003695
+    },
+    {
+      "model": "Claude Opus 5.5 / xhigh",
+      "released": 33.23,
+      "macro": 33.2275,
+      "pooledApprox": 34.483862068965514,
+      "absoluteMacroError": 0.0024999999999977263
+    },
+    {
+      "model": "GPT-6 Astra / xhigh",
+      "released": 30.8,
+      "macro": 30.80125,
+      "pooledApprox": 31.724137931034484,
+      "absoluteMacroError": 0.0012499999999988631
+    },
+    {
+      "model": "GPT-6.1 Sol / xhigh",
+      "released": 29.5,
+      "macro": 29.5,
+      "pooledApprox": 30.345931034482756,
+      "absoluteMacroError": 0.0
+    },
+    {
+      "model": "GPT-6 Astra / max",
+      "released": 27.34,
+      "macro": 27.34125,
+      "pooledApprox": 28.96537931034483,
+      "absoluteMacroError": 0.0012499999999988631
+    },
+    {
+      "model": "GPT-6.1 Sol / max",
+      "released": 28.04,
+      "macro": 28.035,
+      "pooledApprox": 29.654344827586208,
+      "absoluteMacroError": 0.004999999999999005
+    },
+    {
+      "model": "GPT-6 Astra / high",
+      "released": 29.82,
+      "macro": 29.8225,
+      "pooledApprox": 31.035310344827586,
+      "absoluteMacroError": 0.002500000000001279
+    },
+    {
+      "model": "GPT-6.1 Sol / low",
+      "released": 27.59,
+      "macro": 27.59,
+      "pooledApprox": 28.276551724137935,
+      "absoluteMacroError": 0.0
+    },
+    {
+      "model": "GPT-6 Astra / medium",
+      "released": 28.11,
+      "macro": 28.111250000000002,
+      "pooledApprox": 28.966758620689657,
+      "absoluteMacroError": 0.0012500000000024158
+    },
+    {
+      "model": "GPT-6.1 Sol / high",
+      "released": 25.63,
+      "macro": 25.63125,
+      "pooledApprox": 26.897793103448276,
+      "absoluteMacroError": 0.0012500000000024158
+    },
+    {
+      "model": "GPT-6.1 Sol / medium",
+      "released": 27.3,
+      "macro": 27.305,
+      "pooledApprox": 28.2768275862069,
+      "absoluteMacroError": 0.004999999999999005
+    },
+    {
+      "model": "Claude Opus 5.5 / medium",
+      "released": 29.14,
+      "macro": 29.13625,
+      "pooledApprox": 29.654482758620688,
+      "absoluteMacroError": 0.003750000000000142
+    },
+    {
+      "model": "GPT-6 Astra / low",
+      "released": 27.8,
+      "macro": 27.80375,
+      "pooledApprox": 28.27572413793104,
+      "absoluteMacroError": 0.003750000000000142
+    },
+    {
+      "model": "Claude Sonnet 5.5 / max",
+      "released": 33.21,
+      "macro": 33.2125,
+      "pooledApprox": 33.79351724137931,
+      "absoluteMacroError": 0.0024999999999977263
+    },
+    {
+      "model": "Claude Opus 5.5 / low",
+      "released": 22.02,
+      "macro": 22.025,
+      "pooledApprox": 22.759862068965518,
+      "absoluteMacroError": 0.004999999999999005
+    },
+    {
+      "model": "Claude Sonnet 5.5 / high",
+      "released": 25.26,
+      "macro": 25.259999999999998,
+      "pooledApprox": 25.516827586206897,
+      "absoluteMacroError": 3.552713678800501e-15
+    },
+    {
+      "model": "Claude Sonnet 5.5 / xhigh",
+      "released": 23.24,
+      "macro": 23.23875,
+      "pooledApprox": 24.137379310344826,
+      "absoluteMacroError": 0.0012499999999988631
+    },
+    {
+      "model": "Claude Sonnet 5.5 / medium",
+      "released": 19.78,
+      "macro": 19.77875,
+      "pooledApprox": 20.688965517241378,
+      "absoluteMacroError": 0.0012500000000024158
+    },
+    {
+      "model": "Claude Sonnet 5.5 / low",
+      "released": 16.88,
+      "macro": 16.8775,
+      "pooledApprox": 17.93351724137931,
+      "absoluteMacroError": 0.0024999999999977263
+    },
+    {
+      "model": "Kimi K3.1 Pro / max",
+      "released": 16.48,
+      "macro": 16.48125,
+      "pooledApprox": 16.552275862068964,
+      "absoluteMacroError": 0.0012499999999988631
+    },
+    {
+      "model": "GPT-6 Luna / max",
+      "released": 13.32,
+      "macro": 13.317499999999999,
+      "pooledApprox": 13.104827586206897,
+      "absoluteMacroError": 0.002500000000001279
+    },
+    {
+      "model": "Doubao-Seed-Evolving / high",
+      "released": 10.84,
+      "macro": 10.838750000000001,
+      "pooledApprox": 9.655586206896551,
+      "absoluteMacroError": 0.0012499999999988631
+    },
+    {
+      "model": "GLM-5.3 Flash / max",
+      "released": 4.43,
+      "macro": 4.4275,
+      "pooledApprox": 4.138344827586208,
+      "absoluteMacroError": 0.0024999999999995026
+    },
+    {
+      "model": "DeepSeek V4.1 Flash / max",
+      "released": 6.08,
+      "macro": 6.07625,
+      "pooledApprox": 5.517103448275862,
+      "absoluteMacroError": 0.003750000000000142
+    }
+  ],
+  "continuousVsResolvedReversals": [
+    {
+      "a": "Claude Opus 5.5 / high",
+      "b": "Claude Opus 5.5 / max",
+      "metricA": [
+        80.21,
+        79.94
+      ],
+      "metricB": [
+        34.11,
+        36.95
+      ]
+    },
+    {
+      "a": "GPT-6 Astra / xhigh",
+      "b": "Claude Sonnet 5.5 / max",
+      "metricA": [
+        77.69,
+        73.11
+      ],
+      "metricB": [
+        30.8,
+        33.21
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / xhigh",
+      "b": "GPT-6 Astra / high",
+      "metricA": [
+        77.52,
+        76.47
+      ],
+      "metricB": [
+        29.5,
+        29.82
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / xhigh",
+      "b": "Claude Sonnet 5.5 / max",
+      "metricA": [
+        77.52,
+        73.11
+      ],
+      "metricB": [
+        29.5,
+        33.21
+      ]
+    },
+    {
+      "a": "GPT-6 Astra / max",
+      "b": "GPT-6.1 Sol / max",
+      "metricA": [
+        77.29,
+        76.5
+      ],
+      "metricB": [
+        27.34,
+        28.04
+      ]
+    },
+    {
+      "a": "GPT-6 Astra / max",
+      "b": "GPT-6 Astra / high",
+      "metricA": [
+        77.29,
+        76.47
+      ],
+      "metricB": [
+        27.34,
+        29.82
+      ]
+    },
+    {
+      "a": "GPT-6 Astra / max",
+      "b": "GPT-6.1 Sol / low",
+      "metricA": [
+        77.29,
+        76.32
+      ],
+      "metricB": [
+        27.34,
+        27.59
+      ]
+    },
+    {
+      "a": "GPT-6 Astra / max",
+      "b": "GPT-6 Astra / medium",
+      "metricA": [
+        77.29,
+        76.12
+      ],
+      "metricB": [
+        27.34,
+        28.11
+      ]
+    },
+    {
+      "a": "GPT-6 Astra / max",
+      "b": "Claude Opus 5.5 / medium",
+      "metricA": [
+        77.29,
+        74.39
+      ],
+      "metricB": [
+        27.34,
+        29.14
+      ]
+    },
+    {
+      "a": "GPT-6 Astra / max",
+      "b": "GPT-6 Astra / low",
+      "metricA": [
+        77.29,
+        74.02
+      ],
+      "metricB": [
+        27.34,
+        27.8
+      ]
+    },
+    {
+      "a": "GPT-6 Astra / max",
+      "b": "Claude Sonnet 5.5 / max",
+      "metricA": [
+        77.29,
+        73.11
+      ],
+      "metricB": [
+        27.34,
+        33.21
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / max",
+      "b": "GPT-6 Astra / high",
+      "metricA": [
+        76.5,
+        76.47
+      ],
+      "metricB": [
+        28.04,
+        29.82
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / max",
+      "b": "GPT-6 Astra / medium",
+      "metricA": [
+        76.5,
+        76.12
+      ],
+      "metricB": [
+        28.04,
+        28.11
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / max",
+      "b": "Claude Opus 5.5 / medium",
+      "metricA": [
+        76.5,
+        74.39
+      ],
+      "metricB": [
+        28.04,
+        29.14
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / max",
+      "b": "Claude Sonnet 5.5 / max",
+      "metricA": [
+        76.5,
+        73.11
+      ],
+      "metricB": [
+        28.04,
+        33.21
+      ]
+    },
+    {
+      "a": "GPT-6 Astra / high",
+      "b": "Claude Sonnet 5.5 / max",
+      "metricA": [
+        76.47,
+        73.11
+      ],
+      "metricB": [
+        29.82,
+        33.21
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / low",
+      "b": "GPT-6 Astra / medium",
+      "metricA": [
+        76.32,
+        76.12
+      ],
+      "metricB": [
+        27.59,
+        28.11
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / low",
+      "b": "Claude Opus 5.5 / medium",
+      "metricA": [
+        76.32,
+        74.39
+      ],
+      "metricB": [
+        27.59,
+        29.14
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / low",
+      "b": "GPT-6 Astra / low",
+      "metricA": [
+        76.32,
+        74.02
+      ],
+      "metricB": [
+        27.59,
+        27.8
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / low",
+      "b": "Claude Sonnet 5.5 / max",
+      "metricA": [
+        76.32,
+        73.11
+      ],
+      "metricB": [
+        27.59,
+        33.21
+      ]
+    },
+    {
+      "a": "GPT-6 Astra / medium",
+      "b": "Claude Opus 5.5 / medium",
+      "metricA": [
+        76.12,
+        74.39
+      ],
+      "metricB": [
+        28.11,
+        29.14
+      ]
+    },
+    {
+      "a": "GPT-6 Astra / medium",
+      "b": "Claude Sonnet 5.5 / max",
+      "metricA": [
+        76.12,
+        73.11
+      ],
+      "metricB": [
+        28.11,
+        33.21
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / high",
+      "b": "GPT-6.1 Sol / medium",
+      "metricA": [
+        76.11,
+        74.87
+      ],
+      "metricB": [
+        25.63,
+        27.3
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / high",
+      "b": "Claude Opus 5.5 / medium",
+      "metricA": [
+        76.11,
+        74.39
+      ],
+      "metricB": [
+        25.63,
+        29.14
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / high",
+      "b": "GPT-6 Astra / low",
+      "metricA": [
+        76.11,
+        74.02
+      ],
+      "metricB": [
+        25.63,
+        27.8
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / high",
+      "b": "Claude Sonnet 5.5 / max",
+      "metricA": [
+        76.11,
+        73.11
+      ],
+      "metricB": [
+        25.63,
+        33.21
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / medium",
+      "b": "Claude Opus 5.5 / medium",
+      "metricA": [
+        74.87,
+        74.39
+      ],
+      "metricB": [
+        27.3,
+        29.14
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / medium",
+      "b": "GPT-6 Astra / low",
+      "metricA": [
+        74.87,
+        74.02
+      ],
+      "metricB": [
+        27.3,
+        27.8
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / medium",
+      "b": "Claude Sonnet 5.5 / max",
+      "metricA": [
+        74.87,
+        73.11
+      ],
+      "metricB": [
+        27.3,
+        33.21
+      ]
+    },
+    {
+      "a": "Claude Opus 5.5 / medium",
+      "b": "Claude Sonnet 5.5 / max",
+      "metricA": [
+        74.39,
+        73.11
+      ],
+      "metricB": [
+        29.14,
+        33.21
+      ]
+    },
+    {
+      "a": "GPT-6 Astra / low",
+      "b": "Claude Sonnet 5.5 / max",
+      "metricA": [
+        74.02,
+        73.11
+      ],
+      "metricB": [
+        27.8,
+        33.21
+      ]
+    },
+    {
+      "a": "Claude Opus 5.5 / low",
+      "b": "Claude Sonnet 5.5 / high",
+      "metricA": [
+        72.44,
+        70.15
+      ],
+      "metricB": [
+        22.02,
+        25.26
+      ]
+    },
+    {
+      "a": "Claude Opus 5.5 / low",
+      "b": "Claude Sonnet 5.5 / xhigh",
+      "metricA": [
+        72.44,
+        70.0
+      ],
+      "metricB": [
+        22.02,
+        23.24
+      ]
+    },
+    {
+      "a": "GLM-5.3 Flash / max",
+      "b": "DeepSeek V4.1 Flash / max",
+      "metricA": [
+        39.03,
+        34.48
+      ],
+      "metricB": [
+        4.43,
+        6.08
+      ]
+    }
+  ],
+  "macroVsPooledReversals": [
+    {
+      "a": "GPT-6 Astra / max",
+      "b": "GPT-6.1 Sol / low",
+      "metricA": [
+        27.34,
+        27.59
+      ],
+      "metricB": [
+        28.96537931034483,
+        28.276551724137935
+      ]
+    },
+    {
+      "a": "GPT-6 Astra / max",
+      "b": "GPT-6 Astra / low",
+      "metricA": [
+        27.34,
+        27.8
+      ],
+      "metricB": [
+        28.96537931034483,
+        28.27572413793104
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / max",
+      "b": "GPT-6 Astra / medium",
+      "metricA": [
+        28.04,
+        28.11
+      ],
+      "metricB": [
+        29.654344827586208,
+        28.966758620689657
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / low",
+      "b": "GPT-6.1 Sol / medium",
+      "metricA": [
+        27.59,
+        27.3
+      ],
+      "metricB": [
+        28.276551724137935,
+        28.2768275862069
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / low",
+      "b": "GPT-6 Astra / low",
+      "metricA": [
+        27.59,
+        27.8
+      ],
+      "metricB": [
+        28.276551724137935,
+        28.27572413793104
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / medium",
+      "b": "GPT-6 Astra / low",
+      "metricA": [
+        27.3,
+        27.8
+      ],
+      "metricB": [
+        28.2768275862069,
+        28.27572413793104
+      ]
+    }
+  ],
+  "transfer": {
+    "Astra static": {
+      "perExecutor": {
+        "Kimi K3.1 Pro": -6.059999999999999,
+        "GPT-6 Luna": -0.2099999999999973,
+        "Doubao-Seed-Evolving": 1.6799999999999997,
+        "DeepSeek V4.1 Flash": -5.520000000000001
+      },
+      "mean": -2.5274999999999994,
+      "leaveOneOut": {
+        "Kimi K3.1 Pro": -1.3499999999999996,
+        "GPT-6 Luna": -3.3000000000000003,
+        "Doubao-Seed-Evolving": -3.9299999999999993,
+        "DeepSeek V4.1 Flash": -1.5299999999999987
+      }
+    },
+    "Astra dynamic": {
+      "perExecutor": {
+        "Kimi K3.1 Pro": -1.9500000000000028,
+        "GPT-6 Luna": 4.140000000000001,
+        "Doubao-Seed-Evolving": 3.8599999999999994,
+        "DeepSeek V4.1 Flash": -0.6799999999999997
+      },
+      "mean": 1.3424999999999994,
+      "leaveOneOut": {
+        "Kimi K3.1 Pro": 2.44,
+        "GPT-6 Luna": 0.409999999999999,
+        "Doubao-Seed-Evolving": 0.5033333333333326,
+        "DeepSeek V4.1 Flash": 2.0166666666666657
+      }
+    },
+    "Opus static": {
+      "perExecutor": {
+        "Kimi K3.1 Pro": 9.29,
+        "GPT-6 Luna": 5.290000000000003,
+        "Doubao-Seed-Evolving": 7.649999999999999,
+        "DeepSeek V4.1 Flash": 3.419999999999998
+      },
+      "mean": 6.4125,
+      "leaveOneOut": {
+        "Kimi K3.1 Pro": 5.453333333333333,
+        "GPT-6 Luna": 6.786666666666665,
+        "Doubao-Seed-Evolving": 6.0,
+        "DeepSeek V4.1 Flash": 7.41
+      }
+    },
+    "Opus dynamic": {
+      "perExecutor": {
+        "Kimi K3.1 Pro": 10.86,
+        "GPT-6 Luna": 0.2700000000000031,
+        "Doubao-Seed-Evolving": 7.07,
+        "DeepSeek V4.1 Flash": 6.869999999999997
+      },
+      "mean": 6.2675,
+      "leaveOneOut": {
+        "Kimi K3.1 Pro": 4.736666666666667,
+        "GPT-6 Luna": 8.266666666666666,
+        "Doubao-Seed-Evolving": 6.0,
+        "DeepSeek V4.1 Flash": 6.066666666666667
+      }
+    }
+  },
+  "controls": {
+    "identityReversalCount": 0,
+    "maximumMacroRoundingError": 0.004999999999999005
+  },
+  "limits": [
+    "Pooled rates are approximate reconstructions from rounded domain rates.",
+    "Pairwise reversals are descriptive; no significance or true model superiority inferred.",
+    "Four leave-one-out executor means are sensitivity checks, not independent trials or confidence bounds.",
+    "No task-level traces, hidden verification or new workflow execution."
+  ]
+}

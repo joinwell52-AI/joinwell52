@@ -1,0 +1,48 @@
+{
+  "schema": "article-rounding-evidence/v1",
+  "date": "2026-11-11",
+  "status": "Passed",
+  "metricOrderReversals": 34,
+  "roundingRobustMetricReversals": 34,
+  "aggregationOrderReversals": 6,
+  "roundingRobustAggregationReversals": [
+    {
+      "a": "GPT-6 Astra / max",
+      "b": "GPT-6.1 Sol / low",
+      "metricA": [
+        27.34,
+        27.59
+      ],
+      "metricB": [
+        28.96537931034483,
+        28.276551724137935
+      ]
+    },
+    {
+      "a": "GPT-6 Astra / max",
+      "b": "GPT-6 Astra / low",
+      "metricA": [
+        27.34,
+        27.8
+      ],
+      "metricB": [
+        28.96537931034483,
+        28.27572413793104
+      ]
+    },
+    {
+      "a": "GPT-6.1 Sol / max",
+      "b": "GPT-6 Astra / medium",
+      "metricA": [
+        28.04,
+        28.11
+      ],
+      "metricB": [
+        29.654344827586208,
+        28.966758620689657
+      ]
+    }
+  ],
+  "roundingRule": "Each published rate is treated as rounded to nearest 0.01. A pair difference exceeding 0.01 in both metrics retains its sign under independent +/-0.005 perturbations. Weighted averages have the same +/-0.005 bound.",
+  "provenance": "Exact selection from the completed same-date internal research validation; no new analysis."
+}
