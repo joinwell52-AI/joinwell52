@@ -4,7 +4,7 @@
   "schedulerVersion": "6.0",
   "startDate": "2026-10-27",
   "snapshotDate": "2026-11-11",
-  "publishedAt": "2026-11-11T08:21:39.801Z",
+  "publishedAt": "2026-11-11T09:00:05.202Z",
   "timezone": "Asia/Shanghai",
   "label": "Public Snapshot",
   "notice": "Not a live control plane",
@@ -13,10 +13,10 @@
     "queue": "Completed",
     "reading": "Completed",
     "analysis": "Completed",
-    "production": "Blocked",
+    "production": "Waiting",
     "publication": "Waiting",
     "academic": "Completed",
-    "deadline-check": "Waiting"
+    "deadline-check": "Completed"
   },
   "latestPublishedOutputs": [],
   "lastPublicSync": null,
@@ -224,16 +224,16 @@
       "todayDaily": {
         "runtimeFamily": "daily",
         "date": "2026-11-11",
-        "status": "Blocked",
+        "status": "Waiting",
         "taskStatus": {
           "discovery": "Completed",
           "queue": "Completed",
           "reading": "Completed",
           "analysis": "Completed",
-          "production": "Blocked",
+          "production": "Waiting",
           "publication": "Waiting",
           "academic": "Completed",
-          "deadline-check": "Waiting"
+          "deadline-check": "Completed"
         },
         "results": {
           "discovery": {
@@ -347,13 +347,13 @@
           },
           "production": {
             "task": "production",
-            "status": "Blocked",
+            "status": "Waiting",
             "input": "按已验证的本地任务依赖执行。",
             "input_zh": "按已验证的本地任务依赖执行。",
-            "workResult": "内容生产与正式题图: Blocked",
-            "workResult_zh": "内容生产与正式题图：本地执行或验证未通过，未计作完成。",
-            "output": "本地执行或验证未通过，未计作完成。",
-            "output_zh": "本地执行或验证未通过，未计作完成。",
+            "workResult": "内容生产与正式题图: Waiting",
+            "workResult_zh": "内容生产与正式题图：等待计划时间或前置阶段完成。",
+            "output": "等待计划时间或前置阶段完成。",
+            "output_zh": "等待计划时间或前置阶段完成。",
             "next": "Follow the local schedule.",
             "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
             "metrics": [
@@ -365,7 +365,7 @@
               {
                 "label": "actual-end",
                 "label_zh": "实际结束",
-                "value": "15:24:47"
+                "value": "—"
               }
             ],
             "artifacts": [],
@@ -396,6 +396,32 @@
             ],
             "artifacts": [],
             "evidence": []
+          },
+          "deadline-check": {
+            "task": "deadline-check",
+            "status": "Completed",
+            "input": "按已验证的本地任务依赖执行。",
+            "input_zh": "按已验证的本地任务依赖执行。",
+            "workResult": "超时检查与恢复: Completed",
+            "workResult_zh": "超时检查与恢复：本地结果已通过验证。",
+            "output": "本地结果已通过验证。",
+            "output_zh": "本地结果已通过验证。",
+            "next": "Follow the local schedule.",
+            "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+            "metrics": [
+              {
+                "label": "actual-start",
+                "label_zh": "实际开始",
+                "value": "17:00:04"
+              },
+              {
+                "label": "actual-end",
+                "label_zh": "实际结束",
+                "value": "17:00:05"
+              }
+            ],
+            "artifacts": [],
+            "evidence": []
           }
         },
         "timeline": [],
@@ -406,16 +432,16 @@
         "daily": {
           "runtimeFamily": "daily",
           "date": "2026-11-11",
-          "status": "Blocked",
+          "status": "Waiting",
           "taskStatus": {
             "discovery": "Completed",
             "queue": "Completed",
             "reading": "Completed",
             "analysis": "Completed",
-            "production": "Blocked",
+            "production": "Waiting",
             "publication": "Waiting",
             "academic": "Completed",
-            "deadline-check": "Waiting"
+            "deadline-check": "Completed"
           },
           "results": {
             "discovery": {
@@ -529,13 +555,13 @@
             },
             "production": {
               "task": "production",
-              "status": "Blocked",
+              "status": "Waiting",
               "input": "按已验证的本地任务依赖执行。",
               "input_zh": "按已验证的本地任务依赖执行。",
-              "workResult": "内容生产与正式题图: Blocked",
-              "workResult_zh": "内容生产与正式题图：本地执行或验证未通过，未计作完成。",
-              "output": "本地执行或验证未通过，未计作完成。",
-              "output_zh": "本地执行或验证未通过，未计作完成。",
+              "workResult": "内容生产与正式题图: Waiting",
+              "workResult_zh": "内容生产与正式题图：等待计划时间或前置阶段完成。",
+              "output": "等待计划时间或前置阶段完成。",
+              "output_zh": "等待计划时间或前置阶段完成。",
               "next": "Follow the local schedule.",
               "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
               "metrics": [
@@ -547,7 +573,7 @@
                 {
                   "label": "actual-end",
                   "label_zh": "实际结束",
-                  "value": "15:24:47"
+                  "value": "—"
                 }
               ],
               "artifacts": [],
@@ -578,6 +604,32 @@
               ],
               "artifacts": [],
               "evidence": []
+            },
+            "deadline-check": {
+              "task": "deadline-check",
+              "status": "Completed",
+              "input": "按已验证的本地任务依赖执行。",
+              "input_zh": "按已验证的本地任务依赖执行。",
+              "workResult": "超时检查与恢复: Completed",
+              "workResult_zh": "超时检查与恢复：本地结果已通过验证。",
+              "output": "本地结果已通过验证。",
+              "output_zh": "本地结果已通过验证。",
+              "next": "Follow the local schedule.",
+              "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+              "metrics": [
+                {
+                  "label": "actual-start",
+                  "label_zh": "实际开始",
+                  "value": "17:00:04"
+                },
+                {
+                  "label": "actual-end",
+                  "label_zh": "实际结束",
+                  "value": "17:00:05"
+                }
+              ],
+              "artifacts": [],
+              "evidence": []
             }
           },
           "timeline": [],
@@ -590,16 +642,16 @@
           {
             "runtimeFamily": "daily",
             "date": "2026-11-11",
-            "status": "Blocked",
+            "status": "Waiting",
             "taskStatus": {
               "discovery": "Completed",
               "queue": "Completed",
               "reading": "Completed",
               "analysis": "Completed",
-              "production": "Blocked",
+              "production": "Waiting",
               "publication": "Waiting",
               "academic": "Completed",
-              "deadline-check": "Waiting"
+              "deadline-check": "Completed"
             },
             "results": {
               "discovery": {
@@ -713,13 +765,13 @@
               },
               "production": {
                 "task": "production",
-                "status": "Blocked",
+                "status": "Waiting",
                 "input": "按已验证的本地任务依赖执行。",
                 "input_zh": "按已验证的本地任务依赖执行。",
-                "workResult": "内容生产与正式题图: Blocked",
-                "workResult_zh": "内容生产与正式题图：本地执行或验证未通过，未计作完成。",
-                "output": "本地执行或验证未通过，未计作完成。",
-                "output_zh": "本地执行或验证未通过，未计作完成。",
+                "workResult": "内容生产与正式题图: Waiting",
+                "workResult_zh": "内容生产与正式题图：等待计划时间或前置阶段完成。",
+                "output": "等待计划时间或前置阶段完成。",
+                "output_zh": "等待计划时间或前置阶段完成。",
                 "next": "Follow the local schedule.",
                 "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
                 "metrics": [
@@ -731,7 +783,7 @@
                   {
                     "label": "actual-end",
                     "label_zh": "实际结束",
-                    "value": "15:24:47"
+                    "value": "—"
                   }
                 ],
                 "artifacts": [],
@@ -758,6 +810,32 @@
                     "label": "actual-end",
                     "label_zh": "实际结束",
                     "value": "16:21:39"
+                  }
+                ],
+                "artifacts": [],
+                "evidence": []
+              },
+              "deadline-check": {
+                "task": "deadline-check",
+                "status": "Completed",
+                "input": "按已验证的本地任务依赖执行。",
+                "input_zh": "按已验证的本地任务依赖执行。",
+                "workResult": "超时检查与恢复: Completed",
+                "workResult_zh": "超时检查与恢复：本地结果已通过验证。",
+                "output": "本地结果已通过验证。",
+                "output_zh": "本地结果已通过验证。",
+                "next": "Follow the local schedule.",
+                "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "17:00:04"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "17:00:05"
                   }
                 ],
                 "artifacts": [],
