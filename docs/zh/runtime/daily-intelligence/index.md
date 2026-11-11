@@ -11,6 +11,7 @@ outline: false
 日期按 **Asia/Shanghai** 倒序排列。点击日期进入当天完整报告与原始公开来源。
 
 <div class="daily-intel-list">
+<a class="daily-intel-item" href="./2026-11-11"><time>2026-11-11</time><div><strong>Agent 核心研究与竞品动态</strong><span>26 项观察、6 组分析：审批归属、事务回执、部署反例、协议互操作与数字员工交付。</span></div><b>阅读完整日报 →</b></a>
 <a class="daily-intel-item" href="./2026-11-09"><time>2026-11-09</time><div><strong>Agent 核心研究与竞品动态</strong><span>两轮累计54项观察、8组分析；岗位拒绝、authority恢复、独立验收与跨路径调用契约。</span></div><b>阅读完整日报 →</b></a>
 <a class="daily-intel-item" href="./2026-11-05"><time>2026-11-05</time><div><strong>Agent 核心研究与竞品动态</strong><span>两层报告：31 组事实观察、6 组研究分析；AG2 正式发行、审批与恢复契约、Paradev MIT 及交付验收。</span></div><b>阅读完整日报 →</b></a>
 <a class="daily-intel-item" href="./2026-11-04"><time>2026-11-04</time><div><strong>Agent 核心研究与竞品动态</strong><span>两层报告：原生 worker · 企业授权 · AG2 协作 · 恢复证据 · 记忆/SOP · 协议与开源应用</span></div><b>查看 →</b></a>
