@@ -1,0 +1,105 @@
+{
+  "schema": "article-bounded-experiment/v1",
+  "date": "2026-11-12",
+  "itemId": "SIG-20261112-006",
+  "provenance": "Excerpt of same-day completed Analysis; no new Production experiment. Internal evidence, not independent validation.",
+  "id": "EXP-006",
+  "objectId": "SIG-20261112-006",
+  "question": "Do strict choice labels exclude mixed evidence, and how does missing private-stance evidence differ from a measured refusal at the pinned source revision?",
+  "kind": "source-derived isolated label-function probe with synthetic files; not model/probe retraining or benchmark replication",
+  "sourceVersion": "mainul3195/collusion-probe-pitfalls@d4adba6120246098b7f54dddd6af0782b4a47662",
+  "bindings": [
+    {
+      "file": "code-code_gen_e2v2.py",
+      "sha256": "11259fce7ac40c8e782571fa018dfa45b6977235d100bf69e7ed7ab41740fa3b",
+      "function": "relabel_options",
+      "class": null,
+      "lines": [
+        285,
+        289
+      ]
+    },
+    {
+      "file": "code-code_instruction_tests.py",
+      "sha256": "8ad5a42dc75be1f61d509c7319f71f6c4b42acdfd1d851c3f8033b3f2b6e22b4",
+      "function": "joiners",
+      "class": null,
+      "lines": [
+        164,
+        187
+      ]
+    }
+  ],
+  "controls": "Four vote/private-agreement combinations; missing stance with and without target vote; honest role exclusion; four label permutations and nonmatching text controls.",
+  "actual": {
+    "mapping": [
+      {
+        "target": "B",
+        "fair": "A",
+        "input": "Option A versus Option B; Option AB; option A; A",
+        "actual": "Option A versus Option B; Option AB; option A; A"
+      },
+      {
+        "target": "A",
+        "fair": "B",
+        "input": "Option A versus Option B; Option AB; option A; A",
+        "actual": "Option B versus Option A; Option AB; option A; A"
+      },
+      {
+        "target": "2",
+        "fair": "1",
+        "input": "Option A versus Option B; Option AB; option A; A",
+        "actual": "Option 1 versus Option 2; Option AB; option A; A"
+      },
+      {
+        "target": "1",
+        "fair": "2",
+        "input": "Option A versus Option B; Option AB; option A; A",
+        "actual": "Option 2 versus Option 1; Option AB; option A; A"
+      }
+    ],
+    "joiners": {
+      "any": {
+        "both": true,
+        "vote_only": true,
+        "private_only": true,
+        "neither": false,
+        "missing_vote": true,
+        "missing_no_vote": false
+      },
+      "strict": {
+        "both": true,
+        "vote_only": null,
+        "private_only": null,
+        "neither": false,
+        "missing_vote": null,
+        "missing_no_vote": false
+      },
+      "strict_without_stance": {
+        "both": null,
+        "vote_only": null,
+        "private_only": false,
+        "neither": false,
+        "missing_vote": null,
+        "missing_no_vote": false
+      }
+    },
+    "strictWithStanceCounts": {
+      "True": 1,
+      "None": 3,
+      "False": 2
+    }
+  },
+  "limits": [
+    "Synthetic inputs establish code behavior, not frequency or correctness of real stance annotations.",
+    "Missing private messages are treated as nonpositive by this function; whether released episodes contain such missingness was not measured.",
+    "Cannot infer a bug in intended complete-data use, revise AUROC, or assess causal goal detection from this isolated probe.",
+    "Raw corrected episodes/activations and withheld adapters remain unavailable in admitted sources; no inference/training run claimed."
+  ],
+  "disposition": "Authorize a narrowly framed technical analysis on what strict-label comparisons condition on; retain author model metrics as author-reported only.",
+  "inputs": "Synthetic chooser config and private-stance scalar lists corresponding to six named cases in actual; four option permutations and nonmatching controls.",
+  "dependencyObservation": {
+    "unavailable": "NumPy",
+    "resolution": "statistics.mean supplied only for simple scalar lists; no array or ML behavior emulated."
+  }
+}

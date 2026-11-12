@@ -1,0 +1,128 @@
+{
+  "schema": "article-bounded-experiment/v1",
+  "date": "2026-11-12",
+  "itemId": "SIG-20261112-002",
+  "provenance": "Excerpt of same-day completed Analysis; not a new Production experiment. Internal evidence, not third-party validation.",
+  "id": "EXP-002",
+  "objectId": "SIG-20261112-002",
+  "question": "At the admitted AgentSpec commit, does console approval continue the same action, and do triggered skip/stop results alter dispatch while empty/nontriggering rules leave it unchanged?",
+  "kind": "source-derived isolated function probes; not LangChain runtime or Salesforce deployment reproduction",
+  "sourceVersion": "haoyuwang99/AgentSpec@e6fa3902e2cfb9681f454b355691b771f70543f8; registry baseline, not claimed current HEAD",
+  "bindings": [
+    {
+      "file": "agentspec-src_enforcement.py",
+      "sha256": "8be2b544ac6748685369407025f98e593bb957c69c62e757297a27ce5b26775d",
+      "function": "apply",
+      "class": "UserInspection",
+      "lines": [
+        34,
+        56
+      ]
+    },
+    {
+      "file": "agentspec-src_controlled_agent_excector.py",
+      "sha256": "f477adea5cdb20787cc8f312709b3ab067604044a6deed7924070a31a7fa12b8",
+      "function": "validate_and_enforce",
+      "class": "ControlledAgentExecutor",
+      "lines": [
+        82,
+        99
+      ]
+    }
+  ],
+  "controls": "yes/y/no/n, invalid then yes; triggered CONTINUE/SKIP/STOP; nontriggering SKIP; empty rules; None rules",
+  "actual": {
+    "approval": [
+      {
+        "replies": [
+          "yes"
+        ],
+        "result": "CONTINUE",
+        "sameAction": true,
+        "returnedAction": "tool",
+        "promptCount": 1,
+        "stdout": "Action confirmed. Proceeding...\n"
+      },
+      {
+        "replies": [
+          " y "
+        ],
+        "result": "CONTINUE",
+        "sameAction": true,
+        "returnedAction": "tool",
+        "promptCount": 1,
+        "stdout": "Action confirmed. Proceeding...\n"
+      },
+      {
+        "replies": [
+          "no"
+        ],
+        "result": "SKIP",
+        "sameAction": false,
+        "returnedAction": "skip",
+        "promptCount": 1,
+        "stdout": "Action declined. Exiting...\n"
+      },
+      {
+        "replies": [
+          "n"
+        ],
+        "result": "SKIP",
+        "sameAction": false,
+        "returnedAction": "skip",
+        "promptCount": 1,
+        "stdout": "Action declined. Exiting...\n"
+      },
+      {
+        "replies": [
+          "invalid",
+          "yes"
+        ],
+        "result": "CONTINUE",
+        "sameAction": true,
+        "returnedAction": "tool",
+        "promptCount": 2,
+        "stdout": "Invalid input. Please type 'yes' or 'no'.\nAction confirmed. Proceeding...\n"
+      }
+    ],
+    "dispatch": [
+      {
+        "case": "continue",
+        "returnedAction": "tool",
+        "sameAction": true
+      },
+      {
+        "case": "skip",
+        "returnedAction": "skip",
+        "sameAction": false
+      },
+      {
+        "case": "stop",
+        "returnedAction": "finish",
+        "sameAction": false
+      },
+      {
+        "case": "nontrigger",
+        "returnedAction": "tool",
+        "sameAction": true
+      },
+      {
+        "case": "empty",
+        "returnedAction": "tool",
+        "sameAction": true
+      },
+      {
+        "case": "none",
+        "exception": "rules should not be none"
+      }
+    ]
+  },
+  "failures": [],
+  "limits": [
+    "Action/Rule/RuleInterpreter and state are test doubles; real predicates, adapters and LangChain are not executed.",
+    "Only selected synchronous functions are executed. No claim about asynchronous paths, concurrent mutation, complete mediation, principal binding, approval replay or deployed gateway security.",
+    "No source code modified."
+  ],
+  "disposition": "Authorize a bounded engineering analysis of approval decisions versus identity/authority binding; do not claim a deployed bypass or general safety.",
+  "inputs": "Five explicit reply sequences and six explicit rule conditions, listed in actual; collaborators are disclosed test doubles."
+}
