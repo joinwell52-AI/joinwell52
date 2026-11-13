@@ -1,0 +1,792 @@
+{
+  "schema": "article-bounded-probe-evidence/v1",
+  "date": "2026-11-13",
+  "itemId": "SIG-20261113-007",
+  "provenance": "Copied from the completed same-date Analysis experiment; Production did not rerun or extend the experiment.",
+  "measurementStartedAt": "2026-11-13T05:03:29.051592+00:00",
+  "measurementFinishedAt": "2026-11-13T05:03:29.064557+00:00",
+  "python": "3.12.9 (tags/v3.12.9:fdb8142, Feb  4 2025, 15:27:58) [MSC v.1942 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "upstreamExperimentResultSha256": "3c0c9f2a8847296f1ca3111107acc2259c90796f5fd40987fadd3275f2bbda6a",
+  "experiment": {
+    "id": "EXP-007",
+    "kind": "Exact standalone upstream module on synthetic verdicts; not archive reproduction",
+    "sourceSha256": "6c1e8233566d803836704855f93cc1b375ce7f76fbddbb623c73528aa032b9f4",
+    "cases": [
+      {
+        "case": "no-link",
+        "inputs": {
+          "harness": {
+            "failed": [
+              "H1"
+            ],
+            "passed": [],
+            "not_applicable": []
+          },
+          "agent": {
+            "failed": [
+              "A1"
+            ],
+            "passed": [],
+            "not_applicable": []
+          },
+          "links": [],
+          "device": null
+        },
+        "output": {
+          "attribution": "agent_caused",
+          "label": "agent caused the failure",
+          "reason": "no mechanism chain connects any harness defect to any agent-side failure, so the 1 agent failure(s) are charged to the Agent; the 1 harness defect(s) are recorded separately on the harness axis and are not excused",
+          "device": {
+            "ok": true,
+            "measurement_bypassed": false,
+            "failed_checks": [],
+            "bypass_detail": [],
+            "bypass_affected_checks": []
+          },
+          "harness_layer": {
+            "failed": [
+              "H1"
+            ],
+            "passed": [],
+            "not_applicable": [],
+            "measured": true
+          },
+          "agent_layer": {
+            "failed": [
+              "A1"
+            ],
+            "passed": [],
+            "not_applicable": [],
+            "measured": true
+          },
+          "causal_links": [],
+          "notes": []
+        },
+        "axes": {
+          "harness_defect_count": 1,
+          "agent_failure_count": 1,
+          "traced": 0,
+          "untraced": 1
+        }
+      },
+      {
+        "case": "empty-chain-''",
+        "inputs": {
+          "harness": {
+            "failed": [
+              "H1"
+            ],
+            "passed": [],
+            "not_applicable": []
+          },
+          "agent": {
+            "failed": [
+              "A1"
+            ],
+            "passed": [],
+            "not_applicable": []
+          },
+          "links": [
+            {
+              "harness_criterion": "H1",
+              "agent_criterion": "A1",
+              "chain": "",
+              "confidence": "medium"
+            }
+          ],
+          "device": null
+        },
+        "output": {
+          "attribution": "agent_caused",
+          "label": "agent caused the failure",
+          "reason": "no mechanism chain connects any harness defect to any agent-side failure, so the 1 agent failure(s) are charged to the Agent; the 1 harness defect(s) are recorded separately on the harness axis and are not excused",
+          "device": {
+            "ok": true,
+            "measurement_bypassed": false,
+            "failed_checks": [],
+            "bypass_detail": [],
+            "bypass_affected_checks": []
+          },
+          "harness_layer": {
+            "failed": [
+              "H1"
+            ],
+            "passed": [],
+            "not_applicable": [],
+            "measured": true
+          },
+          "agent_layer": {
+            "failed": [
+              "A1"
+            ],
+            "passed": [],
+            "not_applicable": [],
+            "measured": true
+          },
+          "causal_links": [],
+          "notes": []
+        },
+        "axes": {
+          "harness_defect_count": 1,
+          "agent_failure_count": 1,
+          "traced": 0,
+          "untraced": 1
+        }
+      },
+      {
+        "case": "empty-chain-'   '",
+        "inputs": {
+          "harness": {
+            "failed": [
+              "H1"
+            ],
+            "passed": [],
+            "not_applicable": []
+          },
+          "agent": {
+            "failed": [
+              "A1"
+            ],
+            "passed": [],
+            "not_applicable": []
+          },
+          "links": [
+            {
+              "harness_criterion": "H1",
+              "agent_criterion": "A1",
+              "chain": "   ",
+              "confidence": "medium"
+            }
+          ],
+          "device": null
+        },
+        "output": {
+          "attribution": "agent_caused",
+          "label": "agent caused the failure",
+          "reason": "no mechanism chain connects any harness defect to any agent-side failure, so the 1 agent failure(s) are charged to the Agent; the 1 harness defect(s) are recorded separately on the harness axis and are not excused",
+          "device": {
+            "ok": true,
+            "measurement_bypassed": false,
+            "failed_checks": [],
+            "bypass_detail": [],
+            "bypass_affected_checks": []
+          },
+          "harness_layer": {
+            "failed": [
+              "H1"
+            ],
+            "passed": [],
+            "not_applicable": [],
+            "measured": true
+          },
+          "agent_layer": {
+            "failed": [
+              "A1"
+            ],
+            "passed": [],
+            "not_applicable": [],
+            "measured": true
+          },
+          "causal_links": [],
+          "notes": []
+        },
+        "axes": {
+          "harness_defect_count": 1,
+          "agent_failure_count": 1,
+          "traced": 0,
+          "untraced": 1
+        }
+      },
+      {
+        "case": "placeholder",
+        "inputs": {
+          "harness": {
+            "failed": [
+              "H1"
+            ],
+            "passed": [],
+            "not_applicable": []
+          },
+          "agent": {
+            "failed": [
+              "A1"
+            ],
+            "passed": [],
+            "not_applicable": []
+          },
+          "links": [
+            {
+              "harness_criterion": "H1",
+              "agent_criterion": "A1",
+              "chain": "x",
+              "confidence": "low"
+            }
+          ],
+          "device": null
+        },
+        "output": {
+          "attribution": "harness_caused",
+          "label": "harness caused the failure",
+          "reason": "a harness defect is linked to an agent-side failure by an explicit mechanism chain (H1 -> A1)",
+          "device": {
+            "ok": true,
+            "measurement_bypassed": false,
+            "failed_checks": [],
+            "bypass_detail": [],
+            "bypass_affected_checks": []
+          },
+          "harness_layer": {
+            "failed": [
+              "H1"
+            ],
+            "passed": [],
+            "not_applicable": [],
+            "measured": true
+          },
+          "agent_layer": {
+            "failed": [
+              "A1"
+            ],
+            "passed": [],
+            "not_applicable": [],
+            "measured": true
+          },
+          "causal_links": [
+            {
+              "harness_criterion": "H1",
+              "agent_criterion": "A1",
+              "chain": "x",
+              "confidence": "low"
+            }
+          ],
+          "notes": []
+        },
+        "axes": {
+          "harness_defect_count": 1,
+          "agent_failure_count": 1,
+          "traced": 1,
+          "untraced": 0
+        }
+      },
+      {
+        "case": "nonexistent-harness-endpoint",
+        "inputs": {
+          "harness": {
+            "failed": [
+              "H1"
+            ],
+            "passed": [],
+            "not_applicable": []
+          },
+          "agent": {
+            "failed": [
+              "A1"
+            ],
+            "passed": [],
+            "not_applicable": []
+          },
+          "links": [
+            {
+              "harness_criterion": "H999",
+              "agent_criterion": "A1",
+              "chain": "x",
+              "confidence": "medium"
+            }
+          ],
+          "device": null
+        },
+        "output": {
+          "attribution": "harness_caused",
+          "label": "harness caused the failure",
+          "reason": "a harness defect is linked to an agent-side failure by an explicit mechanism chain (H999 -> A1)",
+          "device": {
+            "ok": true,
+            "measurement_bypassed": false,
+            "failed_checks": [],
+            "bypass_detail": [],
+            "bypass_affected_checks": []
+          },
+          "harness_layer": {
+            "failed": [
+              "H1"
+            ],
+            "passed": [],
+            "not_applicable": [],
+            "measured": true
+          },
+          "agent_layer": {
+            "failed": [
+              "A1"
+            ],
+            "passed": [],
+            "not_applicable": [],
+            "measured": true
+          },
+          "causal_links": [
+            {
+              "harness_criterion": "H999",
+              "agent_criterion": "A1",
+              "chain": "x",
+              "confidence": "medium"
+            }
+          ],
+          "notes": []
+        },
+        "axes": {
+          "harness_defect_count": 1,
+          "agent_failure_count": 1,
+          "traced": 1,
+          "untraced": 0
+        }
+      },
+      {
+        "case": "nonexistent-both-endpoints",
+        "inputs": {
+          "harness": {
+            "failed": [
+              "H1"
+            ],
+            "passed": [],
+            "not_applicable": []
+          },
+          "agent": {
+            "failed": [
+              "A1"
+            ],
+            "passed": [],
+            "not_applicable": []
+          },
+          "links": [
+            {
+              "harness_criterion": "H999",
+              "agent_criterion": "A999",
+              "chain": "x",
+              "confidence": "medium"
+            }
+          ],
+          "device": null
+        },
+        "output": {
+          "attribution": "harness_caused",
+          "label": "harness caused the failure",
+          "reason": "a harness defect is linked to an agent-side failure by an explicit mechanism chain (H999 -> A999)",
+          "device": {
+            "ok": true,
+            "measurement_bypassed": false,
+            "failed_checks": [],
+            "bypass_detail": [],
+            "bypass_affected_checks": []
+          },
+          "harness_layer": {
+            "failed": [
+              "H1"
+            ],
+            "passed": [],
+            "not_applicable": [],
+            "measured": true
+          },
+          "agent_layer": {
+            "failed": [
+              "A1"
+            ],
+            "passed": [],
+            "not_applicable": [],
+            "measured": true
+          },
+          "causal_links": [
+            {
+              "harness_criterion": "H999",
+              "agent_criterion": "A999",
+              "chain": "x",
+              "confidence": "medium"
+            }
+          ],
+          "notes": []
+        },
+        "axes": {
+          "harness_defect_count": 1,
+          "agent_failure_count": 1,
+          "traced": 0,
+          "untraced": 1
+        }
+      },
+      {
+        "case": "clean",
+        "inputs": {
+          "harness": {
+            "failed": [],
+            "passed": [
+              "H1"
+            ],
+            "not_applicable": []
+          },
+          "agent": {
+            "failed": [],
+            "passed": [
+              "A1"
+            ],
+            "not_applicable": []
+          },
+          "links": [],
+          "device": null
+        },
+        "output": {
+          "attribution": "clean",
+          "label": "clean",
+          "reason": "no harness defect and no agent-side failure",
+          "device": {
+            "ok": true,
+            "measurement_bypassed": false,
+            "failed_checks": [],
+            "bypass_detail": [],
+            "bypass_affected_checks": []
+          },
+          "harness_layer": {
+            "failed": [],
+            "passed": [
+              "H1"
+            ],
+            "not_applicable": [],
+            "measured": true
+          },
+          "agent_layer": {
+            "failed": [],
+            "passed": [
+              "A1"
+            ],
+            "not_applicable": [],
+            "measured": true
+          },
+          "causal_links": [],
+          "notes": []
+        },
+        "axes": {
+          "harness_defect_count": 0,
+          "agent_failure_count": 0,
+          "traced": 0,
+          "untraced": 0
+        }
+      },
+      {
+        "case": "harness-only",
+        "inputs": {
+          "harness": {
+            "failed": [
+              "H1"
+            ],
+            "passed": [],
+            "not_applicable": []
+          },
+          "agent": {
+            "failed": [],
+            "passed": [
+              "A1"
+            ],
+            "not_applicable": []
+          },
+          "links": [],
+          "device": null
+        },
+        "output": {
+          "attribution": "harness_defect_absorbed",
+          "label": "harness defective, agent absorbed it",
+          "reason": "the harness is defective but the deliverable is sound: the agent absorbed the defect. The defect is real and should be reported; the run is not evidence that the harness broke the task",
+          "device": {
+            "ok": true,
+            "measurement_bypassed": false,
+            "failed_checks": [],
+            "bypass_detail": [],
+            "bypass_affected_checks": []
+          },
+          "harness_layer": {
+            "failed": [
+              "H1"
+            ],
+            "passed": [],
+            "not_applicable": [],
+            "measured": true
+          },
+          "agent_layer": {
+            "failed": [],
+            "passed": [
+              "A1"
+            ],
+            "not_applicable": [],
+            "measured": true
+          },
+          "causal_links": [],
+          "notes": []
+        },
+        "axes": {
+          "harness_defect_count": 1,
+          "agent_failure_count": 0,
+          "traced": 0,
+          "untraced": 0
+        }
+      },
+      {
+        "case": "agent-only",
+        "inputs": {
+          "harness": {
+            "failed": [],
+            "passed": [
+              "H1"
+            ],
+            "not_applicable": []
+          },
+          "agent": {
+            "failed": [
+              "A1"
+            ],
+            "passed": [],
+            "not_applicable": []
+          },
+          "links": [],
+          "device": null
+        },
+        "output": {
+          "attribution": "agent_caused",
+          "label": "agent caused the failure",
+          "reason": "the harness behaved correctly; the deliverable is wrong",
+          "device": {
+            "ok": true,
+            "measurement_bypassed": false,
+            "failed_checks": [],
+            "bypass_detail": [],
+            "bypass_affected_checks": []
+          },
+          "harness_layer": {
+            "failed": [],
+            "passed": [
+              "H1"
+            ],
+            "not_applicable": [],
+            "measured": true
+          },
+          "agent_layer": {
+            "failed": [
+              "A1"
+            ],
+            "passed": [],
+            "not_applicable": [],
+            "measured": true
+          },
+          "causal_links": [],
+          "notes": []
+        },
+        "axes": {
+          "harness_defect_count": 0,
+          "agent_failure_count": 1,
+          "traced": 0,
+          "untraced": 1
+        }
+      },
+      {
+        "case": "apparatus-failed",
+        "inputs": {
+          "harness": {
+            "failed": [
+              "H1"
+            ],
+            "passed": [],
+            "not_applicable": []
+          },
+          "agent": {
+            "failed": [
+              "A1"
+            ],
+            "passed": [],
+            "not_applicable": []
+          },
+          "links": [
+            {
+              "harness_criterion": "H1",
+              "agent_criterion": "A1",
+              "chain": "x",
+              "confidence": "medium"
+            }
+          ],
+          "device": {
+            "ok": false,
+            "measurement_bypassed": false,
+            "failed_checks": [
+              "trace"
+            ],
+            "bypass_detail": [],
+            "bypass_affected_checks": []
+          }
+        },
+        "output": {
+          "attribution": "inconclusive_device",
+          "label": "measurement apparatus failed; run is unusable",
+          "reason": "the measurement apparatus did not work for this run (trace); no conclusion about harness or agent can be drawn — re-run",
+          "device": {
+            "ok": false,
+            "measurement_bypassed": false,
+            "failed_checks": [
+              "trace"
+            ],
+            "bypass_detail": [],
+            "bypass_affected_checks": []
+          },
+          "harness_layer": {
+            "failed": [
+              "H1"
+            ],
+            "passed": [],
+            "not_applicable": [],
+            "measured": true
+          },
+          "agent_layer": {
+            "failed": [
+              "A1"
+            ],
+            "passed": [],
+            "not_applicable": [],
+            "measured": true
+          },
+          "causal_links": [],
+          "notes": []
+        },
+        "axes": {
+          "harness_defect_count": 0,
+          "agent_failure_count": 0,
+          "traced": 0,
+          "untraced": 0
+        }
+      },
+      {
+        "case": "unmeasured",
+        "inputs": {
+          "harness": {
+            "failed": [],
+            "passed": [],
+            "not_applicable": []
+          },
+          "agent": {
+            "failed": [
+              "A1"
+            ],
+            "passed": [],
+            "not_applicable": []
+          },
+          "links": [],
+          "device": null
+        },
+        "output": {
+          "attribution": "inconclusive_unmeasured",
+          "label": "a required layer could not be measured",
+          "reason": "the harness layer produced no measurable criterion in this run; a gap in measurement is not a finding about the subject under test",
+          "device": {
+            "ok": true,
+            "measurement_bypassed": false,
+            "failed_checks": [],
+            "bypass_detail": [],
+            "bypass_affected_checks": []
+          },
+          "harness_layer": {
+            "failed": [],
+            "passed": [],
+            "not_applicable": [],
+            "measured": false
+          },
+          "agent_layer": {
+            "failed": [
+              "A1"
+            ],
+            "passed": [],
+            "not_applicable": [],
+            "measured": true
+          },
+          "causal_links": [],
+          "notes": []
+        },
+        "axes": {
+          "harness_defect_count": 0,
+          "agent_failure_count": 0,
+          "traced": 0,
+          "untraced": 0
+        }
+      },
+      {
+        "case": "bypass",
+        "inputs": {
+          "harness": {
+            "failed": [
+              "H1"
+            ],
+            "passed": [],
+            "not_applicable": []
+          },
+          "agent": {
+            "failed": [
+              "A1"
+            ],
+            "passed": [],
+            "not_applicable": []
+          },
+          "links": [],
+          "device": {
+            "ok": true,
+            "measurement_bypassed": true,
+            "failed_checks": [],
+            "bypass_detail": [],
+            "bypass_affected_checks": [
+              "H1"
+            ]
+          }
+        },
+        "output": {
+          "attribution": "agent_caused",
+          "label": "agent caused the failure",
+          "reason": "the harness behaved correctly; the deliverable is wrong",
+          "device": {
+            "ok": true,
+            "measurement_bypassed": true,
+            "failed_checks": [],
+            "bypass_detail": [],
+            "bypass_affected_checks": [
+              "H1"
+            ]
+          },
+          "harness_layer": {
+            "failed": [
+              "H1"
+            ],
+            "passed": [],
+            "not_applicable": [],
+            "measured": true
+          },
+          "agent_layer": {
+            "failed": [
+              "A1"
+            ],
+            "passed": [],
+            "not_applicable": [],
+            "measured": true
+          },
+          "causal_links": [],
+          "notes": [
+            "the agent bypassed at least one required measurement channel; under binary scoring the affected Harness criteria score 0, and causal attribution assigns those observation failures to the Agent rather than treating them as intrinsic Harness defects"
+          ]
+        },
+        "axes": {
+          "harness_defect_count": 0,
+          "agent_failure_count": 1,
+          "traced": 0,
+          "untraced": 1
+        }
+      }
+    ],
+    "finding": "A nonempty placeholder and nonexistent endpoint links can activate harness_caused. Apparatus and unmeasured controls still gate attribution. This is a local module contract observation, not validated causal evidence."
+  },
+  "boundaries": [
+    "Describe EXP-007 as an exact upstream standalone module probe on synthetic verdicts, not a full-system reproduction.",
+    "Show empty/whitespace, apparatus-failure and unmeasured controls alongside activating cases.",
+    "State no caller audit and no real-run defect/causal-error rate.",
+    "Keep 3420-cell counts source-reported and distinguish criterion zeros from confirmed defects.",
+    "Retain source-PDF digest mismatch and manifest-name differences as binding uncertainty, not changed-membership evidence.",
+    "No first-party implementation recommendation or product-defect priority."
+  ]
+}

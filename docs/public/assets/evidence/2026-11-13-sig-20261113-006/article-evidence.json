@@ -1,0 +1,122 @@
+{
+  "schema": "article-bounded-probe-evidence/v1",
+  "date": "2026-11-13",
+  "itemId": "SIG-20261113-006",
+  "provenance": "Copied from the completed same-date Analysis experiment; Production did not rerun or extend the experiment.",
+  "measurementStartedAt": "2026-11-13T05:03:29.051592+00:00",
+  "measurementFinishedAt": "2026-11-13T05:03:29.064557+00:00",
+  "python": "3.12.9 (tags/v3.12.9:fdb8142, Feb  4 2025, 15:27:58) [MSC v.1942 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "upstreamExperimentResultSha256": "3c0c9f2a8847296f1ca3111107acc2259c90796f5fd40987fadd3275f2bbda6a",
+  "experiment": {
+    "id": "EXP-006",
+    "kind": "Exact AST-isolated source function probes, not full-system reproduction",
+    "sourceHashes": {
+      "sources\\smile-council.py": "e169d3fb69076842d03aaf34b07eef7473a0124f4bb44e254e2f97f97a095a3f",
+      "sources\\smile-clinical-efficacy.py": "63014ef50afc0c67ecac420b7b4774df6f5755e793a8f3390f3158237a06b6fe"
+    },
+    "extracted": [
+      {
+        "function": "judge_failure",
+        "startLine": 79,
+        "endLine": 88
+      },
+      {
+        "function": "normalise_judge",
+        "startLine": 91,
+        "endLine": 103
+      },
+      {
+        "function": "presence_matrix",
+        "startLine": 26,
+        "endLine": 32
+      }
+    ],
+    "normalizerInputs": [
+      null,
+      {},
+      {
+        "rules_check": {
+          "R1": "pass",
+          "R2": "pass",
+          "R3": "pass"
+        },
+        "judge_final_response": "unsupported assertion"
+      }
+    ],
+    "normalizerOutputs": [
+      {
+        "rules_check": {
+          "R1": "fail: invalid JSON",
+          "R2": "fail",
+          "R3": "fail"
+        },
+        "verdict": "",
+        "criticism_A": "",
+        "criticism_B": "",
+        "criticism_C": "",
+        "judge_final_response": "",
+        "raw_text": "synthetic model output"
+      },
+      {
+        "rules_check": {
+          "R1": "",
+          "R2": "",
+          "R3": ""
+        },
+        "verdict": "",
+        "criticism_A": "",
+        "criticism_B": "",
+        "criticism_C": "",
+        "judge_final_response": "",
+        "raw_text": "synthetic model output"
+      },
+      {
+        "rules_check": {
+          "R1": "pass",
+          "R2": "pass",
+          "R3": "pass"
+        },
+        "judge_final_response": "unsupported assertion",
+        "verdict": "",
+        "criticism_A": "",
+        "criticism_B": "",
+        "criticism_C": "",
+        "raw_text": "synthetic model output"
+      }
+    ],
+    "presenceInputs": [
+      "cyst present",
+      "no cyst present",
+      "normal examination"
+    ],
+    "fixtureVocabulary": [
+      [
+        "cyst",
+        [
+          "cyst"
+        ]
+      ]
+    ],
+    "cleanSeam": "identity function on pre-normalized lowercase ASCII inputs; not upstream clean",
+    "presenceOutputs": [
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        0
+      ]
+    ],
+    "finding": "Normalizer preserves arbitrary declared pass fields; controlled positive and negated mentions collide in the presence function. No observed patient or model-performance result."
+  },
+  "boundaries": [
+    "Describe EXP-006 as source-derived isolated function probes with declared seams.",
+    "Do not report benchmark performance as locally reproduced; all paper numbers remain source-reported.",
+    "Do not present synthetic text as patient evidence, clinical recommendations or proof that the complete scorer/clinical system fails.",
+    "Preserve PHANTOM confounds, source-reported SMILE failures and missing packaged resources.",
+    "No mandatory first-party mapping; no quota, minimum length or unnecessary figure."
+  ]
+}
