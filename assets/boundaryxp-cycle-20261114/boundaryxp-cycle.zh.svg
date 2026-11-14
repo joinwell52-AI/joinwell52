@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="460" viewBox="0 0 1200 460" role="img" aria-labelledby="title desc">
+  <title id="title">RT044 的联合依赖闭环</title>
+  <desc id="desc">主任务要求 A 安全复核先于 D 开机，TEST 要求 D 先于 B 包装，LAB 要求 B 先于 C 送检，SAFETY 要求 C 先于同一次 A 安全复核。四条规则合起来形成严格闭环；每条局部规则单独与父任务可满足。</desc>
+  <defs>
+    <marker id="blueArrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M2 2 10 6 2 10" fill="none" stroke="#2457cf" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="amberArrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M2 2 10 6 2 10" fill="none" stroke="#bd721e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></marker>
+  </defs>
+  <rect x="1" y="1" width="1198" height="458" rx="24" fill="#faf8f4" stroke="#d8e0ec" stroke-width="2"/>
+  <text x="58" y="58" fill="#182a46" font-size="30" font-weight="700" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">单项可安排，合并后无解</text>
+  <text x="58" y="92" fill="#596a81" font-size="19" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">同一轮、同一次 A / D / B / C，严格先后关系不能绕回自身</text>
+  <path d="M1032 186 V150 Q1032 126 1008 126 H190 Q166 126 166 150 V185" fill="none" stroke="#bd721e" stroke-width="5" stroke-linecap="round" marker-end="url(#amberArrow)"/>
+  <rect x="475" y="110" width="250" height="34" rx="17" fill="#fff3e2"/>
+  <text x="600" y="134" text-anchor="middle" fill="#8e4b0f" font-size="18" font-weight="700" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">SAFETY：C → 同一次 A</text>
+  <path d="M226 240 H393" stroke="#2457cf" stroke-width="5" stroke-linecap="round" marker-end="url(#blueArrow)"/>
+  <path d="M516 240 H683" stroke="#2457cf" stroke-width="5" stroke-linecap="round" marker-end="url(#blueArrow)"/>
+  <path d="M806 240 H973" stroke="#2457cf" stroke-width="5" stroke-linecap="round" marker-end="url(#blueArrow)"/>
+  <g fill="#e7efff" stroke="#2857c5" stroke-width="3">
+    <circle cx="166" cy="240" r="60"/><circle cx="456" cy="240" r="60"/><circle cx="746" cy="240" r="60"/><circle cx="1036" cy="240" r="60"/>
+  </g>
+  <g text-anchor="middle" fill="#153b93" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+    <text x="166" y="232" font-size="30" font-weight="700">A</text><text x="166" y="260" font-size="17">安全复核</text>
+    <text x="456" y="232" font-size="30" font-weight="700">D</text><text x="456" y="260" font-size="17">设备开机</text>
+    <text x="746" y="232" font-size="30" font-weight="700">B</text><text x="746" y="260" font-size="17">包装</text>
+    <text x="1036" y="232" font-size="30" font-weight="700">C</text><text x="1036" y="260" font-size="17">送检</text>
+  </g>
+  <g text-anchor="middle" fill="#445b7b" font-size="18" font-weight="600" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+    <text x="310" y="330">主任务：A → D</text><text x="600" y="330">TEST：D → B</text><text x="890" y="330">LAB：B → C</text>
+  </g>
+  <line x1="58" y1="371" x2="1142" y2="371" stroke="#d8e0ec" stroke-width="2"/>
+  <text x="58" y="407" fill="#5a687b" font-size="17" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">琥珀色标出联合时闭合的位置；不表示 SAFETY 单独违规。这里只比较计划约束，不表示事件已经发生。</text>
+</svg>
