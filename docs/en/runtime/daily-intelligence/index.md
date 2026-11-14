@@ -11,6 +11,7 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+<a class="daily-intel-item" href="./2026-11-14"><time>2026-11-14</time><div><strong>Agent Research and Competitor Intelligence</strong><span>29 observations, five analyses: workload identity, agent-tree recovery, machine sign-in, uncertain receipts and acceptance.</span></div><b>Read full report →</b></a>
 <a class="daily-intel-item" href="./2026-11-11"><time>2026-11-11</time><div><strong>Agent Research and Competitor Intelligence</strong><span>26 observations, six analyses: approval ownership, receipts, redeploy gaps, interoperability and employee delivery.</span></div><b>Read full report →</b></a>
 <a class="daily-intel-item" href="./2026-11-09"><time>2026-11-09</time><div><strong>Agent Research & Competitor Intelligence</strong><span>Two runs: 54 observations and 8 analyses; role denials, authority recovery, independent evaluation and cross-path call contracts.</span></div><b>Read full report →</b></a>
 <a class="daily-intel-item" href="./2026-11-05"><time>2026-11-05</time><div><strong>Agent Research & Competitor Intelligence</strong><span>Two layers: 32 observations and 6 analyses; AG2 release, approval/recovery contracts, Paradev MIT and deliverable verification.</span></div><b>Read full report →</b></a>
