@@ -8,7 +8,7 @@ category: "daily"
 article_type: "experiment-report"
 edition: "research-center"
 research_question: "Are the arguments inspected by conditional approval the arguments ultimately executed by the function?"
-summary: "We ran the same six cases against OpenAI Agents Python v0.22.2 and v0.22.3 to see how defaults, coercion and validators affect the approval boundary."
+summary: "A tool call can gain defaults or change types before it runs. We compared two versions to ask whether approval sees the action that actually executes."
 cover: "/assets/context-authority-20260918/approval-arguments.cover-v1.png"
 language: "en"
 lifecycle: "Published"
@@ -17,7 +17,7 @@ evidence_status: "Pinned-version original-code comparison; boundaries stated in 
 pageClass: "context-authority-article"
 ---
 
-<ArticleCover image="/assets/context-authority-20260918/approval-arguments.cover-v1.png" kicker="Open-source engineering · Version comparison" title="You approved the arguments. Did the tool execute the same ones?" summary="Defaults, coercion, and validators can change the actual action after a policy sees the request." version="2026-09-18" languageHref="/zh/research/2026-09-18-approval-saw-raw-tool-ran-prepared" languageLabel="中文" />
+<ArticleCover image="/assets/context-authority-20260918/approval-arguments.cover-v1.png" kicker="Open-source engineering · Version comparison" title="You approved the arguments. Did the tool execute the same ones?" summary="You can approve a blank request and still have the program fill in a protected target before execution." version="2026-09-18" languageHref="/zh/research/2026-09-18-approval-saw-raw-tool-ran-prepared" languageLabel="中文" />
 
 <ArticleTableScroll language="en" />
 
@@ -25,40 +25,40 @@ pageClass: "context-authority-article"
 
 # You approved the arguments. Did the tool execute the same ones?
 
-An agent is about to call a tool. The approval policy sees an empty object, `{}`, finds no protected target, and allows the call.
+Imagine an approval form whose “target environment” field is blank. The automated check sees no protected environment and allows the request. At execution time, the system fills the blank with its default: “protected.”
 
-The function then receives `target="protected"`.
+In code, the blank form is `{}`, while the completed input is `environment="protected"`. The agent did not swap the value. Ordinary input processing supplied it. The same thing can happen when string `"1"` becomes integer `1`, or when an application rule normalizes `PROD` to `prod`.
 
-The agent did not swap the argument. An ordinary validation step supplied a default. The same separation can happen when a string `"1"` becomes integer `1`, or when an application validator normalizes `PROD` to `prod`.
+Below, “raw arguments” means what the model originally sent. “Prepared arguments” means the values after defaults, type conversion, and application validation. A validator is simply a rule that checks or transforms input.
 
 That creates a precise governance question: **is the object being approved the object that will actually be executed?**
 
 ## Why we tested this
 
-OpenAI Agents Python merged [PR #5066](https://github.com/openai/openai-agents-python/pull/5066) on September 17, 2026, then released v0.22.3. Maintainer Kazuhiro Sera explained that conditional approval callbacks could inspect arguments different from those used by the Python function. The new version prepares arguments first and requires manual approval when validation changes them.
+OpenAI Agents Python merged [PR #5066](https://github.com/openai/openai-agents-python/pull/5066) on September 17, 2026, then released v0.22.3. Maintainer Kazuhiro Sera explained that an automated approval check could inspect one set of arguments while the Python function used another. The new version prepares arguments first and requires manual approval when validation changes them.
 
 The change turns an abstract governance concern into a testable path: raw JSON enters a tool, a schema interprets it, a policy decides, and a function creates an effect. Which representation reaches each stage?
 
 We compared v0.22.2 and v0.22.3 instead of relying only on the fix description.
 
-## Six cases through the real runner path
+## Six cases that vary how arguments are prepared
 
-We pinned v0.22.2 at commit `83c737f` and v0.22.3 at `fdf21db`. Every case used the original `Runner`, decorated function tools, `ScriptedModel`, and tool execution path.
+We pinned v0.22.2 at commit `83c737f` and v0.22.3 at `fdf21db`. All six cases followed the project's complete path from agent-generated call through approval to function execution; we did not replace it with a mock approval flow.
 
 No live model or external write was involved. The probe recorded the callback input, whether manual approval interrupted the run, and the value received by the function body.
 
 | Case | Raw arguments | Prepared arguments |
 | --- | --- | --- |
-| Unchanged safe target | `{"target":"safe"}` | Unchanged |
-| Unchanged protected target | `{"target":"protected"}` | Unchanged |
-| Omitted protected default | `{}` | `{"target":"protected"}` |
+| Unchanged safe environment | `{"environment":"safe"}` | Unchanged |
+| Unchanged protected environment | `{"environment":"protected"}` | Unchanged |
+| Omitted protected default | `{}` | `{"environment":"protected"}` |
 | Explicit integer | `{"count":1}` | Unchanged |
 | String-to-integer coercion | `{"count":"1"}` | `{"count":1}` |
-| Application validator | `{"environment":"PROD"}` | `{"environment":"prod"}` |
+| Application transformation | `{"request":{"target":"PROD"}}` | `{"request":{"target":"prod"}}` |
 
 ## Approval and execution could diverge in v0.22.2
 
-Unchanged inputs behaved as expected: the safe target ran, while the protected target interrupted for approval.
+Unchanged inputs behaved as expected: the safe environment ran, while the protected environment interrupted for approval.
 
 The three transformed inputs exposed the gap:
 
@@ -66,7 +66,7 @@ The three transformed inputs exposed the gap:
 - The callback saw string `"1"`; the function received integer `1`.
 - The callback saw `PROD`; the function received validator output `prod`.
 
-The conditional callback did not inspect the complete object consumed by the function.
+The “conditional callback” is the framework's automated approval check. It did not inspect the complete object consumed by the function.
 
 ![Different handling of prepared arguments in v0.22.2 and v0.22.3](/assets/context-authority-20260918/approval-arguments.figure.en.svg)
 
@@ -74,26 +74,26 @@ The conditional callback did not inspect the complete object consumed by the fun
 
 ## The new version draws a conservative boundary
 
-In v0.22.3, unchanged arguments keep the prior conditional behavior. The safe target runs, and the protected target interrupts. Defaults, coercion, and application-level transformation all cause a manual approval interruption before the function executes.
+In v0.22.3, unchanged arguments keep the prior automated behavior. The safe environment runs, and the protected environment interrupts. Defaults, type conversion, and application-level transformation all cause a manual approval interruption before the function executes.
 
-This is more careful than merely moving the callback after validation. Sending transformed values into an existing callback could silently change an application's policy semantics. The new rule is: **use the existing conditional policy only when raw and prepared arguments can be shown to remain equivalent; otherwise return the decision to a person.**
+This is more careful than merely moving the check after transformation. Sending transformed values into an existing rule could silently change what an application considers safe. The new rule is: **use the existing automated policy only when raw and execution arguments can be shown to remain equivalent; otherwise return the decision to a person.**
 
 We also ran the new upstream approval-argument test file in v0.22.3: all 108 tests passed.
 
-## Approving a tool name is not enough
+## Why “Allow this tool” is not enough
 
 A verifiable approval needs at least four answers:
 
-1. Which representation did the person or policy inspect?
-2. Had schema defaults and validators already run?
+1. Did the person or policy inspect raw input or the completed execution input?
+2. Had defaults, type conversion, and application validation already run?
 3. Did the arguments still match the approved object immediately before execution?
-4. After resuming a session, is the system continuing the same prepared action?
+4. After resuming a session, is the system continuing the same action?
 
-A dialog that says only “Allow deploy” does not tell the user whether the environment is raw `PROD`, normalized `prod`, or a default that was absent from the request. A stronger receipt binds authorization to a reproducible digest of the final action and invalidates the authorization when that action changes.
+A dialog that says only “Allow deploy” does not tell the user where the program will deploy or whether that target came from the model or from a later default. A stronger receipt gives the final action a reproducible fingerprint, computes it again before execution, and invalidates the approval if a critical field changes.
 
 ## Does CodeFlowMu need a change?
 
-We inspected CodeFlowMu v2.1.2. Its approval service hashes a stable operation request, recomputes the digest before execution, and marks changed requests `stale`. It also binds an operation fingerprint, project, agent, task, thread, and role, and uses a one-time execution token. All 28 targeted approval-boundary tests passed.
+We inspected CodeFlowMu v2.1.2. Its approach is “record a fingerprint at approval, then compare again before execution.” If the current action differs from the approved one, the old approval becomes invalid and execution is refused. The fingerprint is also bound to the project, agent, task, session, and role, with a one-time execution token. All 28 targeted approval-boundary tests passed.
 
 Our development-review decision is therefore **do not implement a new change this round**. We found no local evidence of an approval/execution mismatch. The result belongs in the article and future review checklist; research evidence does not automatically become a development task.
 
