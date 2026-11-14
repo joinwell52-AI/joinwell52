@@ -1,19 +1,19 @@
 {
   "schema": "latest-published-article/v1",
   "zh": {
-    "title": "检查字段从哪里来：多智能体验收的证据边界",
-    "date": "2026-11-13",
-    "column": "industry-architecture",
-    "category": "daily",
-    "summary": "隔离函数探针显示，保存检查结论与实际完成核验并非同一步骤。验收接口需要说明字段由谁生成、覆盖什么命题，以及还缺少什么证据。",
-    "url": "/zh/industry/2026-11-13-sig-20261113-006"
-  },
-  "en": {
-    "title": "After the Causal Label: What an Attribution Module Probe Establishes",
-    "date": "2026-11-13",
+    "title": "订单已经下了，AI 员工却只看见超时：该重试吗？",
+    "date": "2026-11-14",
     "column": "open-source-engineering",
     "category": "daily",
-    "summary": "Nonempty placeholder chains and nonexistent endpoints can activate a causal label in a pinned attribution module. Twelve synthetic calls expose its local acceptance predicate and functioning negative controls, without measuring real-run misattribution rates.",
-    "url": "/en/engineering/2026-11-13-sig-20261113-007"
+    "summary": "服务端已经下单，AI 员工却只收到超时。我们在三个断点杀掉进程，并用无幂等键的盲重试作对照，寻找恢复时真正可信的证据。",
+    "url": "/zh/research/2026-11-14-order-receipt-lost"
+  },
+  "en": {
+    "title": "The order went through. The AI worker saw only a timeout. Should it retry?",
+    "date": "2026-11-14",
+    "column": "open-source-engineering",
+    "category": "daily",
+    "summary": "The business system committed an order while the AI worker saw a timeout. We killed a process at three boundaries and used a blind retry without an idempotency key as a control.",
+    "url": "/en/research/2026-11-14-order-receipt-lost"
   }
 }
