@@ -1,79 +1,92 @@
 ---
 schema: "publication-candidate-article/v2"
-title: "Each subtask is feasible. Why is the whole plan impossible?"
+title: "BoundaryXP: Make an AI Team’s Task Boundaries Visible"
 date: "2026-11-14"
 published_date: "2026-11-14"
 column: "open-source-engineering"
 category: "daily"
-article_type: "experiment-report"
+article_type: "project-research"
 edition: "research-center"
-research_question: "Why can individually feasible agent subtasks form an impossible joint plan?"
-summary: "Separate task orderings are feasible, yet their combined constraints form a strict cycle. A public 7+1 case shows why shared identity and joint checks matter in agent teamwork."
+research_question: "How does BoundaryXP detect a plan that fails when individually feasible subtasks are combined?"
+summary: "Every AI subtask may look feasible while the combined plan is impossible. BoundaryXP links 7+1 task requirements to source evidence and deterministic checks, with a paper, live demo, and MCP integration."
 cover: "/assets/boundaryxp-cycle-20261114/boundaryxp-cycle.cover-v1.png"
 language: "en"
 lifecycle: "Published"
 publication_authorized: true
-evidence_status: "Public saved case, 625-case statistics and selected mathematical reruns; no new product model or MCP-host analysis"
+evidence_status: "Public saved cases, 625-case analysis and selected mathematical reruns; no new product-model or MCP-host analysis"
 pageClass: "six-governance-article"
 ---
 
-<ArticleCover image="/assets/boundaryxp-cycle-20261114/boundaryxp-cycle.cover-v1.png" kicker="Engineering research · Task boundaries" title="Each subtask is feasible. Why is the whole plan impossible?" summary="Separate task orderings are feasible, yet their combined constraints form a strict cycle. A public 7+1 case shows why shared identity and joint checks matter in agent teamwork." version="2026-11-14" languageHref="/zh/research/2026-11-14-boundaryxp-local-global-cycle" languageLabel="中文" />
+<ArticleCover image="/assets/boundaryxp-cycle-20261114/boundaryxp-cycle.cover-v1.png" kicker="Product study · AI task boundaries" title="BoundaryXP: Make an AI Team’s Task Boundaries Visible" summary="Every AI subtask may look feasible while the combined plan is impossible. BoundaryXP links 7+1 task requirements to source evidence and deterministic checks, with a paper, live demo, and MCP integration." version="2026-11-14" languageHref="/zh/research/2026-11-14-boundaryxp-local-global-cycle" languageLabel="中文" />
 
 <ArticleTableScroll language="en" />
 
 <style>.six-governance-article .vp-doc h1[id] { display: none; }</style>
 
-# Each subtask is feasible. Why is the whole plan impossible?
+# BoundaryXP: Make an AI Team’s Task Boundaries Visible
 
-A research task sheet asks a laboratory team to schedule four events in one round: a safety review, equipment startup, packaging, and sample testing. The lead sets a firm condition: **the safety review must finish before startup begins**. The work is then distributed. The TEST group wants startup finished before packaging; LAB wants packaging finished before testing; SAFETY wants testing finished before the safety review.
+Give an AI team a job and it can quickly split the work among planners, executors, and reviewers. If every member says “my part is feasible,” does that mean the job as a whole can be done?
 
-Each group's requirement can be scheduled alongside the lead's condition when considered alone. Put them together, however, and the order becomes:
+**BoundaryXP** is a task-boundary analysis tool built for that question. It examines a complete task and its subtasks, links requirements back to source text, checks both individual and combined plans, and explains whether a plan is **violated, within bounds, or unresolved**. It now has a [public product repository](https://github.com/joinwell52-AI/BoundaryXP), a [paper on its 7+1 method](https://doi.org/10.5281/zenodo.24072738), an [interactive demo](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/), and an [MCP package](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/npm/INSTALL.md) for compatible AI hosts.
+
+## One example shows why the tool exists
+
+In a laboratory task specification, four events must be scheduled in the same round: safety review, equipment startup, packaging, and sample testing. The parent task requires review to finish before startup. Three groups add their own orderings: startup before packaging, packaging before testing, and testing before review.
+
+Each group's addition is feasible **when checked alongside the parent on its own**. Joined together, the requirements say:
 
 > Safety review → startup → packaging → testing → safety review.
 
-The first event must wait for the last, which must wait for the first. No group individually proposed an absurd instruction, yet the combined plan cannot run. This is [RT044, a saved task specification in BoundaryXP's public research materials](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/demo/reports/R389-383.en.md). It is a **counterexample about planned constraints**, not a report of an actual laboratory incident. It exposes a hard problem in multi-agent work: **local compliance does not imply a viable whole.**
-
-## One task graph exposes what local checks miss
-
-RT044 has one parent and six child tasks: seven nodes in all. The parent requires safety review A to end before startup D begins. TEST adds D→packaging B, LAB adds B→sample test C, and SAFETY adds C→A. The source also fixes the identity of these events: they occur **once, in the same round**. We cannot escape the loop by imagining a second packaging step or an earlier, separate review.
-
-The [saved calculation record](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/paper/materials/evidence-r18/results/R389-383.json) checks the parent's constraints, the roles' additions, and the joint plan separately. The parent is satisfiable. Each of TEST, LAB, and SAFETY is satisfiable when its edge is added to the parent alone. Only the joint query reports a definite violation: strict precedence would require the start of A to precede itself.
-
-| Scope examined | Result | Reason |
-| --- | --- | --- |
-| Parent task | Satisfiable | A can precede D |
-| Each child ordering added to the parent on its own | Satisfiable | The other two orderings are not yet included |
-| All three child orderings joined with the parent | Violated | The same four events form a strict cycle |
+The first event must wait for the last. The plan has no starting point. BoundaryXP's public [RT044 saved case](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/demo/reports/R389-383.en.md) preserves one parent, six children, and ten queries. The parent and each child ordering pass their separate feasibility checks; **the joint query reports a violation**. The source fixes the events to the same round and occurrence, so an imagined second packaging step cannot dissolve the loop. This is a counterexample in a task specification, not an actual laboratory accident.
 
 <figure>
-  <img src="/assets/boundaryxp-cycle-20261114/boundaryxp-cycle.en.svg" alt="In RT044 the parent requires safety review A before startup D; TEST requires D before packaging B, LAB requires B before testing C, and SAFETY requires C before the same A, creating a strict cycle when combined" />
-  <figcaption>The four orderings form a cycle only when combined. Amber marks closure, not a fault by SAFETY alone. These are planned constraints, not observed actions.</figcaption>
+  <img src="/assets/boundaryxp-cycle-20261114/boundaryxp-cycle.en.svg" alt="In RT044 the parent and three groups each add a feasible ordering; together safety review A, startup D, packaging B, and testing C form a strict cycle" />
+  <figcaption>The conflict arises from the combination. It does not show that any one group violated the parent on its own.</figcaption>
 </figure>
 
-This finding does not license blaming each group for an individual violation. The conflict belongs to the **combination**: remove any one of the three child edges and a valid ordering exists. The useful handoff is the complete path to whoever may revise the plan, followed by another comparison after at least one ordering changes.
+**[Open the RT044 demo to inspect the task tree, 7+1 radar, and source evidence →](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/?lang=en#case=R389-383&axis=A&view=radar&lang=en)**
 
-## “7+1” is not eight boxes to tick
+<figure>
+  <img src="/assets/boundaryxp-cycle-20261114/boundaryxp-workbench.en.jpg" alt="BoundaryXP English demo workbench with parent-child task tree on the left, 7+1 boundary radar in the center, and source clauses and evidence on the right" />
+  <figcaption>BoundaryXP’s English demo screenshot shows the separate ENG20-003 case: the task tree, linked boundary map, and source clauses remain visible together. The demo replays saved results rather than running a fresh analysis.</figcaption>
+</figure>
 
-In [Wei Zhu's BXP preprint](https://doi.org/10.5281/zenodo.24072738), natural-language requirements are organized as “7+1”: input scope, output, actions, people and responsibilities, resources, version and basis, completion and stopping conditions, plus a separate prohibition boundary. In everyday terms: what goes in, what must come out, who does what, under which limits, when work stops, and what must never happen. BoundaryXP is the boundary-analysis tool built around this method.
+The product's value is more than a red status label. It retains **which requirement came from which passage, which occurrence it describes, and how it connects to another subtask**. Whoever revises the plan can inspect the complete path and recheck it after changing an ordering.
 
-These categories remind a reviewer to look beyond what a subtask proposes to do. In RT044, the responsibility view preserves which group proposed each ordering; input and version context preserve “this round, this occurrence”; the prohibition boundary preserves the prerequisite to startup. **The calculation depends on shared relations across those views.** TEST's packaging B must be LAB's B, and SAFETY's review A must be the parent's A. If those identities are linked incorrectly, precise arithmetic merely solves the wrong problem.
+## 7+1 makes requirements connectable and inspectable
 
-The views are therefore not eight independent scorers. In the public [analysis of 625 saved cases](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/paper/materials/manuscript.en.md), 3,257 of 3,469 recorded queries involve more than one view, and 900 bind more than one target node. These are **structural counts of saved queries**; they do not show that a model correctly understood every source sentence. They do show why filling out each category cannot replace checking the links between tasks. The preprint's formal guarantees also assume sound and complete source alignment, relation coverage, consistent interpretation, and exact query encoding. It does not establish lossless understanding of arbitrary language.
+“7+1” does not mean eight scores or eight agents. BoundaryXP organizes task requirements into seven views: **input I, output O, actions A, people and responsibility P, resources R, version and basis V, completion and stopping C**. A separate **prohibition boundary B** records what must not happen. In everyday terms: what goes in, what must come out, who acts, under which rules, when the work ends, and what is forbidden.
 
-## “Missing information” and “known conflict” are different outcomes
+The important part is the **relationship among those views**. In RT044, TEST's packaging must be the same event as LAB's packaging; SAFETY's review must be the parent's review. If a system mistakenly links different occurrences, precise arithmetic solves the wrong problem. BoundaryXP keeps identity, ordering, and source provenance together so a cross-team plan can be checked as a whole.
 
-Two other saved examples show why the method should not simply reject everything. In [RT042](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/demo/reports/R389-381.en.md), X uses one instrument from 10:00 to 11:00 and Y uses it from 11:00 to 12:00. The parent specifies half-open intervals and release at 11:00. The intervals touch but do not overlap, so the **task specification is within bounds**. In [L23-050](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/demo/reports/R389-153.en.md), a unique final approver must be named, but the text says only “he will confirm” without identifying that person. Preparatory child tasks are not automatically violations; the approver's identity in the complete specification remains **unresolved**.
+For domain-specific terms, BoundaryXP can also bind **L2 industry and L3 enterprise dictionaries**, recording the selected versions and digests so a role, device, or action can be interpreted against inspectable context. A dictionary helps interpret a task; a role name does not grant business authority. The [dictionary tools](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/TOOLS.md) are documented with the product.
 
-Conversely, the presence of an unknown does not always make the answer unknown. In the saved EN20-007 case, known costs have a minimum total of **EUR 6,400** against a **EUR 6,000** cap. Given the source-backed assumptions that other costs are nonnegative and no credits apply, the plan already exceeds the cap by at least **EUR 400**, whatever the missing amount turns out to be. The saved model left one item unresolved; the calculator marked it violated. We reran the package's independent rational-arithmetic check of that lower bound. It verifies the **saved operands and stated assumptions**, not the model's interpretation of the original text.
+This is why the demo has more than pass and fail. Three cases are especially revealing:
 
-The research package contains 625 task groups, 3,219 nodes, and 3,469 calculations. The saved whole-case verdicts agree with current annotations and with the calculator's aggregate verdicts in 625/625 cases. At item level there are still **nine disagreements and three unfinished calculations**. We reran the public classification script, six mathematical witnesses, and all nine saved EN20-007 checks; each passed. The 625/625 figure is **agreement within these current saved records**, not accuracy on unseen tasks or proof that all 3,469 items agree. The paper also groups the projects into only 518 exact source-structure groups: 625 project records are not 625 independent sources. The [published analysis](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/paper/materials/manuscript.en.md) makes these denominators and limits available for inspection. Our [English rerun record](https://github.com/joinwell52-AI/joinwell52/blob/main/research/manual-runs/2026-11-14-boundaryxp/00-report.en.md) lists the pinned revision, commands, and outputs.
+| Demo case | Boundary question | What to inspect |
+| --- | --- | --- |
+| [RT044: joint violation](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/?lang=en#case=R389-383&axis=A&view=radar&lang=en) | Feasible parts form an impossible cycle | Task tree, source orderings, joint conflict |
+| [RT042: within bounds](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/?lang=en#case=R389-381&axis=R&view=radar&lang=en) | Instrument use at 10–11 and 11–12 touches at the release time | No overlap under the stated half-open intervals |
+| [L23-050: unresolved](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/?lang=en#case=R389-153&axis=P&view=radar&lang=en) | “He will confirm” does not identify one final owner | Missing identity remains unresolved |
 
-## Bringing the check into an AI workflow does not grant permission to act
+Together they show the intended behavior: **report a known conflict, avoid inventing a conflict, and preserve a genuinely missing fact.**
 
-BoundaryXP exposes a [Model Context Protocol (MCP) interface](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/TOOLS.md) so a compatible host can discover tools, preview a complete task tree, save a confirmed revision, request one model analysis, and read the formal result. `bx_task_import` previews without saving; `bx_project_create` writes; `bx_analysis_submit` requires explicit confirmation of the model call; `bx_result_recheck` recomputes **saved operands** without a new model call and preserves the old result. Recomputing cannot repair a semantic error that mistakenly equated two distinct objects at the start.
+## From a paper to Cursor and Codex
 
-The [0.4.0-rc.6 release record](https://github.com/joinwell52-AI/BoundaryXP/releases/tag/mcp-v0.4.0-rc.6) reports discovery of 18 tools and 10 resources on Windows x64. We downloaded the exact release archive and matched its SHA-256 to the published digest; we did not conduct a new model analysis through an MCP host in this round. The paper uses protocol draft.2, while the current workbench still has [documented draft.1 runtime differences](https://github.com/joinwell52-AI/BoundaryXP/blob/main/protocol/IMPLEMENTATION.md). One “published” label must not erase those separate identities.
+The [BXP paper](https://doi.org/10.5281/zenodo.24072738) states the 7+1 relational method and the conditions under which formal boundary checks hold. Its [public research materials](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/paper/materials/manuscript.en.md) include 625 saved task groups, 3,219 nodes, and 3,469 queries. Against a pinned public revision, we reran the classification script, six selected mathematical witnesses, and nine saved cost checks; all passed. Our [rerun record](https://github.com/joinwell52-AI/joinwell52/blob/main/research/manual-runs/2026-11-14-boundaryxp/00-report.en.md) lists the commands and scope. The numbers show the size and traceability of the research package. **The 625/625 whole-case agreement is agreement within current saved records, not accuracy on unseen tasks.**
 
-Most of all, a boundary finding is not business approval. It can identify which constraints collide, which evidence is missing, and which calculation can be repeated. A responsible person and the host still decide whether to revise or execute a task. The interface leaves business decision and execution authorization unset.
+The fastest way to understand the product is the [interactive demo](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/): open a case, move between the parent-child tree, eight-axis relations, source passages, and full report. It replays B-332 saved results.
 
-Before distributing work across agents, ask four questions: **Do the subtasks refer to the same object? Has anyone checked their combined constraints after local checks pass? Can the unknown facts actually change the answer? Who can approve the next step on the complete evidence?** If the first answer is unclear, an elegant task graph and exact calculation are reasons to clarify, not to proceed.
+To bring BoundaryXP into an AI workflow, start with the [MCP installation guide](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/npm/INSTALL.md). The current **0.4.0-rc.6 prerelease** targets Windows x64 and connects to compatible hosts such as Cursor and Codex through standard MCP. It offers **18 tools, ten resources, and a local browser workbench**. The package includes the compiled Core, so there is no separate BoundaryXP server to set up. Fresh analysis uses a model API that the user configures. The public repository contains the paper, cases, documentation, and release packages; original Core implementation source is maintained separately.
+
+The workflow is deliberately explicit: **import and preview** a complete task tree; **save** the confirmed revision; request one model analysis; let Core check supported structures and operands deterministically; then inspect **source text, model judgment, calculation receipt, and unresolved items**. Saved operands can be recomputed without another model call. Opening the workbench does not silently submit an analysis, and a boundary finding is not business authorization. The [tool reference](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/TOOLS.md) makes each tool's effects clear.
+
+## What BoundaryXP makes possible to ask
+
+In multi-agent work, the missing piece is often not an answer but **which version of the task, which source passage, and which exact object that answer refers to—and whether all parts can coexist**. BoundaryXP preserves those links, turning “why violated?”, “why within bounds?”, and “what is still unknown?” into questions a human can investigate.
+
+Its boundary is visible too: deterministic Core checks the problem as represented; it cannot automatically prove that a model understood every source sentence. The public demo replays saved results, and an analysis result does not grant execution authority. Those distinctions make the tool more useful for serious evaluation with real task specifications.
+
+**[Try the BoundaryXP demo →](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/)** · [Explore the public repository](https://github.com/joinwell52-AI/BoundaryXP) · [Read the paper](https://doi.org/10.5281/zenodo.24072738) · [Connect through MCP](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/npm/INSTALL.md)
+
+If your agents each say their subtask is feasible, **who has checked the boundary of the plan they form together?**

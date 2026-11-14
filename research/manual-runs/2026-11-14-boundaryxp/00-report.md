@@ -27,3 +27,7 @@ python -B docs/paper/materials/case-r17/verify_math.py
 [0.4.0-rc.6 GitHub Release](https://github.com/joinwell52-AI/BoundaryXP/releases/tag/mcp-v0.4.0-rc.6) 的 tgz 下载后 SHA-256 为 `D243EEAB864A99770DBF7258BC3B64DF2D674FF31CDAA97871747E606FE3C1B2`，与发行记录一致。包内 `package.json` 声明 Windows x64、Node ≥22.18 和版本 rc.6。本轮没有重新运行 MCP stdio 工具调用；18 工具／10 资源及安装回归来自[发行记录](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/RELEASE.md)，调用边界来自[工具说明](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/TOOLS.md)。
 
 论文的形式保证有来源对应、身份、解释和查询编码等前提。[协议实现说明](https://github.com/joinwell52-AI/BoundaryXP/blob/main/protocol/IMPLEMENTATION.md)区分 draft.2 方法基线与现有工作台运行附件；边界判断不产生业务决定或执行授权。公开包没有私有 Core 原实现；本文不据此推断产品端到端准确率。
+
+## 文章修订与配图
+
+根据公开仓库产品首页、[中文 MCP 产品介绍](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/npm/README.zh-CN.md)和安装说明，将文章改为界痕产品介绍：问题、7+1 方法、可点击的三种判定演示、论文依据和 MCP 接入路径。正文中的中英文工作台截图分别来自公开仓库的 [中文截图](https://github.com/joinwell52-AI/BoundaryXP/blob/main/assets/demos/workbench-zh.jpg)与[英文截图](https://github.com/joinwell52-AI/BoundaryXP/blob/main/assets/demos/workbench-en.jpg)；截图属于历史保存结果演示，不代表本轮新增产品实测。
