@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="430" viewBox="0 0 1120 430" role="img" aria-labelledby="title desc">
+  <title id="title">Business outcome and local receipt diverge after interruption</title>
+  <desc id="desc">All three local receipts are absent. The business system has no order before commit and one order after commit.</desc>
+  <rect width="1120" height="430" rx="26" fill="#f7f5f0"/>
+  <text x="42" y="53" fill="#172642" font-family="Arial, sans-serif" font-size="24" font-weight="700">The same missing receipt can hide different outcomes</text>
+  <text x="42" y="87" fill="#65738b" font-family="Arial, sans-serif" font-size="15">Controlled child-process interruption · separate temporary order record per column</text>
+  <rect x="198" y="115" width="282" height="50" rx="12" fill="#dbe7ff"/>
+  <rect x="495" y="115" width="282" height="50" rx="12" fill="#dbe7ff"/>
+  <rect x="792" y="115" width="282" height="50" rx="12" fill="#dbe7ff"/>
+  <g fill="#17489b" font-family="Arial, sans-serif" font-size="18" font-weight="700" text-anchor="middle">
+    <text x="339" y="147">Before commit</text><text x="636" y="147">After commit</text><text x="933" y="147">After response</text>
+  </g>
+  <text x="42" y="221" fill="#172642" font-family="Arial, sans-serif" font-size="19" font-weight="700">Business system</text>
+  <text x="42" y="325" fill="#172642" font-family="Arial, sans-serif" font-size="19" font-weight="700">Worker receipt</text>
+  <g font-family="Arial, sans-serif" font-size="21" font-weight="700" text-anchor="middle">
+    <rect x="198" y="186" width="282" height="72" rx="13" fill="#fff" stroke="#c7d0df"/>
+    <text x="339" y="231" fill="#56677d">0 orders</text>
+    <rect x="495" y="186" width="282" height="72" rx="13" fill="#0d48c4"/>
+    <text x="636" y="231" fill="#fff">1 order</text>
+    <rect x="792" y="186" width="282" height="72" rx="13" fill="#0d48c4"/>
+    <text x="933" y="231" fill="#fff">1 order</text>
+    <rect x="198" y="290" width="282" height="72" rx="13" fill="#fffaf1" stroke="#d8a762"/>
+    <rect x="495" y="290" width="282" height="72" rx="13" fill="#fffaf1" stroke="#d8a762"/>
+    <rect x="792" y="290" width="282" height="72" rx="13" fill="#fffaf1" stroke="#d8a762"/>
+    <text x="339" y="334" fill="#97601e">Absent</text><text x="636" y="334" fill="#97601e">Absent</text><text x="933" y="334" fill="#97601e">Absent</text>
+  </g>
+  <text x="42" y="402" fill="#65738b" font-family="Arial, sans-serif" font-size="15">Only an authoritative business result can distinguish retry, settlement, or retained uncertainty.</text>
+</svg>
