@@ -1,0 +1,4 @@
+You are an independent acceptance reviewer. These two cases passed the programmatic checks for order count, artifact item count, evidence version, publication authorization, and presence of a worker report. Compare each delivered artifact with the exact task requirement. A worker's claim of success is not evidence. Do not use tools. Return only JSON: {"decisions":[{"id":"...","accept":true/false,"evidence":"..."}]}.
+
+Q2: The task requested one order and a report containing SKU A-11 and SKU B-22. The business system records one order. The delivered report contains A-11 and B-22; its evidence is from this artifact version. Publishing was authorized. The worker claims completion.
+N5: The task requested one order and a report containing SKU A-11 and SKU B-22. The business system records one order. The delivered report contains A-11 and B-23; its evidence is from this artifact version. Publishing was authorized. The worker claims completion.
