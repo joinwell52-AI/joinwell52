@@ -1,14 +1,14 @@
 ---
 schema: "publication-candidate-article/v2"
-title: "每个子任务单独可行，合起来为什么无解？"
+title: "界痕 BoundaryXP：让 AI 团队的任务边界看得见"
 date: "2026-11-14"
 published_date: "2026-11-14"
 column: "open-source-engineering"
 category: "daily"
-article_type: "experiment-report"
+article_type: "project-research"
 edition: "research-center"
-research_question: "局部可行的多 Agent 子任务为什么会形成不可执行的联合方案？"
-summary: "一份实验室任务书里，各组的顺序分别可行，合并却形成严格闭环。我们核对 7+1 论文与公开案例，追问 AI 团队为何需要共享对象身份和联合边界检查。"
+research_question: "界痕如何发现单个子任务都可行、整体任务却不可执行的边界冲突？"
+summary: "每个 AI 子任务都说可行，合并后却可能形成闭环。界痕用 7+1 关联、原文证据和确定性复核指出问题，现已提供论文、在线演示与 MCP 接入。"
 cover: "/assets/boundaryxp-cycle-20261114/boundaryxp-cycle.cover-v1.png"
 language: "zh-CN"
 lifecycle: "Published"
@@ -17,63 +17,76 @@ evidence_status: "公开保存案例、625 组统计与选定数学复算；未�
 pageClass: "six-governance-article"
 ---
 
-<ArticleCover image="/assets/boundaryxp-cycle-20261114/boundaryxp-cycle.cover-v1.png" kicker="工程研究 · 任务边界" title="每个子任务单独可行，合起来为什么无解？" summary="一份实验室任务书里，各组的顺序分别可行，合并却形成严格闭环。我们核对 7+1 论文与公开案例，追问 AI 团队为何需要共享对象身份和联合边界检查。" version="2026-11-14" languageHref="/en/research/2026-11-14-boundaryxp-local-global-cycle" languageLabel="English" />
+<ArticleCover image="/assets/boundaryxp-cycle-20261114/boundaryxp-cycle.cover-v1.png" kicker="产品观察 · AI 任务边界" title="界痕 BoundaryXP：让 AI 团队的任务边界看得见" summary="每个 AI 子任务都说可行，合并后却可能形成闭环。界痕用 7+1 关联、原文证据和确定性复核指出问题，现已提供论文、在线演示与 MCP 接入。" version="2026-11-14" languageHref="/en/research/2026-11-14-boundaryxp-local-global-cycle" languageLabel="English" />
 
 <ArticleTableScroll language="zh" />
 
 <style>.six-governance-article .vp-doc h1[id] { display: none; }</style>
 
-# 每个子任务单独可行，合起来为什么无解？
+# 界痕 BoundaryXP：让 AI 团队的任务边界看得见
 
-一份实验室研究任务书要求安排同一轮的四件事：安全复核、设备开机、包装、送检。负责人先定下底线：**安全复核结束，设备才能开机**。随后任务分给几个小组。测试组说，设备开机结束才能包装；送检组说，包装结束才能送检；安全组说，送检结束才能开始安全复核。
+给 AI 团队一项工作，它会迅速分出策划、执行、检查等子任务。可如果每个成员都说“我的部分可行”，整项工作就一定能完成吗？
 
-单看任何一组的安排，都能找到一种不违反负责人要求的排法。把它们拼起来，却变成了：
+**界痕 BoundaryXP** 正是为这个问题而做的任务边界分析工具。它读取完整任务和子任务，把要求连到原文证据上，检查单项与组合方案，给出**越界、未越界或信息不全**的结论，并让人看见判断依据。它已经有[公开产品仓库](https://github.com/joinwell52-AI/BoundaryXP)、[7+1 方法论文](https://doi.org/10.5281/zenodo.24072738)、[交互演示](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/)和可接入 AI 宿主的 [MCP 安装包](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/npm/INSTALL.zh-CN.md)。
+
+## 一个案例，就能看出为什么需要界痕
+
+一份实验室任务书要求安排同一轮的安全复核、设备开机、包装、送检。主任务规定：安全复核结束后才能开机。三个小组分别补上顺序：开机后才能包装，包装后才能送检，送检后才能开始安全复核。
+
+每个小组的补充要求**单独与主任务合并**时都能安排；全部放在一起，却得到：
 
 > 安全复核 → 开机 → 包装 → 送检 → 安全复核。
 
-第一步必须等最后一步，最后一步又必须等第一步。没有人单独写下一条荒谬的指令，整份计划却不可能执行。这是 [BoundaryXP 公开研究材料中的 RT044 任务书](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/demo/reports/R389-383.zh.md)，一份保存的**计划约束案例**，不是实验室已经按这个顺序操作的事故。它恰好把多 AI 协作的一个难题摆到了桌上：**每个子任务都合规，整项任务仍可能越界。**
-
-## 一张任务图，揭出单项检查没看到的环
-
-RT044 有一个主任务和六个子任务，共七个节点。主任务要求同一轮安全复核 A 必须在开机 D 之前结束；TEST 增加 D→包装 B；LAB 增加 B→送检 C；SAFETY 增加 C→A。原文还说明这些是**同一轮、同一次**事件：不能靠“其实还有另一次包装”或“先做了另一轮复核”把环拆开。
-
-[保存的计算记录](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/paper/materials/evidence-r18/results/R389-383.json)分别核查了父要求、各岗位自己的新增要求和合并方案。父要求本身可安排；TEST、LAB、SAFETY 的要求分别加入父要求，也都可安排。只有联合查询得到确定越界：严格先后关系推出“安全复核开始必须早于它自己开始”，这是不可能的。
-
-| 看哪一层 | 实际结论 | 为什么 |
-| --- | --- | --- |
-| 主任务 | 可安排 | 安全复核可以先于开机 |
-| 三条子顺序各自加入主任务 | 分别可安排 | 其余两组的顺序此时尚未加入 |
-| 三条子顺序与主任务合并 | 越界 | 同一批四件事连成严格闭环 |
+第一步必须等最后一步，计划没有可执行的起点。界痕公开的 [RT044 保存案例](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/demo/reports/R389-383.zh.md)保留了一个主任务、六个子任务和十项查询：主任务与三条子顺序的单项检查分别可满足，**联合查询明确越界**。原文还锁定了“同一轮、同一次事件”，不能假设另有一次包装或复核来解开这个环。这是一份计划约束案例，不是现实实验室事故。
 
 <figure>
-  <img src="/assets/boundaryxp-cycle-20261114/boundaryxp-cycle.zh.svg" alt="RT044 中，主任务要求安全复核 A 先于开机 D，TEST 要求 D 先于包装 B，LAB 要求 B 先于送检 C，SAFETY 要求 C 先于同一次 A，合并后形成严格闭环" />
-  <figcaption>四条严格顺序联合形成闭环。琥珀色只标出闭合处，不表示 SAFETY 单独违规；这些是计划要求，不是已执行事件。</figcaption>
+  <img src="/assets/boundaryxp-cycle-20261114/boundaryxp-cycle.zh.svg" alt="RT044 中，主任务与三个小组的顺序要求分别可行，合并后安全复核 A、开机 D、包装 B、送检 C 构成严格闭环" />
+  <figcaption>冲突出在四条要求的组合，不能据此认定某一个小组单独违规。</figcaption>
 </figure>
 
-这个结论也不能倒过来指责三个小组“各自违规”。冲突来自**组合**；去掉其中任何一条子顺序，都能找到合法排列。正确的交接不是让三个小组各自再说一次“我没问题”，而是把完整路径交给有权修改计划的人，改动至少一条顺序后重新核查。
+**[打开 RT044 交互演示，查看任务树、7+1 雷达和原文依据 →](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/#case=R389-383&axis=A&view=radar&lang=zh)**
 
-## 7+1 不是给任务填八个勾
+<figure>
+  <img src="/assets/boundaryxp-cycle-20261114/boundaryxp-workbench.zh.jpg" alt="界痕中文演示工作台：左侧为父子任务树，中间为 7+1 任务边界雷达，右侧为条款、原文与核验依据" />
+  <figcaption>界痕工作台的公开演示截图：左边是任务树，中间汇总边界关联，右边可以追到具体条款。演示回放的是已保存结果，不会重新分析。</figcaption>
+</figure>
 
-[朱卫的 BXP 论文](https://doi.org/10.5281/zenodo.24072738)把自然语言任务组织成“7+1”：输入范围、交付、动作、责任与分工、资源、版本依据、完成与停止，加上独立的禁止边界。换成日常问题，就是拿什么来做、交什么、谁做、受哪些限制、何时算结束，以及明确不能做什么。BoundaryXP（界痕）是围绕这一方法开发的边界分析工具。
+界痕的价值不只是画出一个红色结论。它把**哪个要求来自哪段原文、指向哪一次事件、与哪个子任务相连**放在一起。接手计划的人可以定位必须修改的顺序，再重新核查；不必从三个孤立的“我这里没问题”里猜测全局冲突。
 
-这些名称的用处，是提醒审核者别只盯着“任务做了什么”。比如 RT044 中，责任视图帮助保留谁提出哪条顺序，版本与输入范围保留“同一轮、同一次事件”，禁止边界保留开机前必须完成安全复核。**真正让计算成立的是这些要求之间的共享关联**：TEST 的包装 B 和 LAB 的包装 B 必须是同一个 B，SAFETY 的复核 A 也必须是主任务那个 A。若对象身份接错，程序算得再精确，也只是在解错题。
+## 7+1：让任务要求能被连接、被追问
 
-因此，7+1 不是八个互不相干的打分器。公开附件的 [625 组分析](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/paper/materials/analysis625/REPORT.zh-CN.md)中，3,469 项计算有 3,257 项关联两个以上视图，900 项绑定多个目标节点。这些是**保存查询的结构计数**，不证明模型把每句原文都理解对了；它们说明为什么“每栏都填了”不足以替代跨任务关联检查。论文的形式论证也以来源对应、身份与关系覆盖、解释一致和查询编码精确等条件为前提；它是一份公开预印本，不是任意自然语言都能被无损理解的保证。
+“7+1”不是八个评分，也不是八个 Agent。界痕把一项任务的要求整理为七类：**输入 I、交付 O、动作 A、责任 P、资源 R、版本依据 V、完成与停止 C**；另把**禁止边界 B**单独保留。读者可以把它理解为一张任务检查表：用什么、做什么、谁来做、按哪版规则、什么时候算完成，以及什么绝不能做。
 
-## “信息不全”和“已经冲突”，不能混成一个结论
+但真正关键的是**关联**。在 RT044 里，测试组说的“包装”和送检组说的“包装”必须是同一个事件；安全组说的“复核”也必须是主任务规定的那一次。若把它们错连成不同对象，再精确的计算也会解错题。界痕把对象身份、先后条件和原文出处一起保留下来，才有条件检查跨岗位的整体方案。
 
-同一套公开案例还给出两种很不一样的结果。[RT042](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/demo/reports/R389-381.zh.md)安排同一设备先由 X 在 10—11 点使用，再由 Y 在 11—12 点使用；父要求采用左闭右开的占用区间，并明确 11 点释放。端点相接，没有重叠，所以任务书**未越界**。[L23-050](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/demo/reports/R389-153.zh.md)要求明确指定唯一的最终责任人，正文却只写“由他确认”，又没有足以唯一确定“他”的依据。子任务没有因此自动违规，完整任务书的责任身份却只能保留**信息不足**。
+遇到专业术语时，界痕还可绑定 **L2 行业语义库与 L3 企业语义库**，记录所选词库的版本和摘要，让“某个角色、设备或动作在这里究竟指什么”有可核对的解释依据。词库帮助理解任务，不会凭一个岗位名称自动授予业务权限。[词库工具说明](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/TOOLS.md)与产品一起公开。
 
-反过来，有未知项也不必一律回答“信息不足”。论文保存的 EN20-007 案例中，已知费用的最低总和为 **6,400 欧元**，上限是 **6,000 欧元**。在其他费用非负、没有抵扣的原文前提下，不管未知费用是多少，至少已经超出 **400 欧元**。保存的模型对其中一项给出未决，计算结果给出越界；我们用附件的独立有理数脚本复核了这项下界。它核的是**已保存操作数和前提**，不是重新证明模型对原文的解释正确。
+这也解释了为什么界痕不会只给出“通过/不通过”两个按钮。公开演示还有两种值得亲手比较的结果：
 
-整批研究有 625 组任务、3,219 个节点、3,469 项计算。保存的最终整体结论与现行标注、与计算器汇总结论均为 625/625 一致；逐项仍有 **9 项差异、3 项未完成**。我们从公开仓库固定提交运行分类、六项数学见证和 EN20-007 九项复算，均通过。这里的 625/625 是这批**现行保存记录的一致性**，不是独立新任务的准确率，也不是全部 3,469 项的逐项全对。论文还指出，精确来源结构分组只有 518 组；625 个项目不等于 625 个独立来源。[统计口径与复核范围](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/paper/materials/analysis625/REPORT.zh-CN.md)值得与结论一起读。 [本轮公开复核记录](https://github.com/joinwell52-AI/joinwell52/blob/main/research/manual-runs/2026-11-14-boundaryxp/00-report.md)列出了固定版本、命令和结果。
+| 演示案例 | 界痕展示的问题 | 你会看到什么 |
+| --- | --- | --- |
+| [RT044：联合越界](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/#case=R389-383&axis=A&view=radar&lang=zh) | 单项可行，组合形成闭环 | 任务树、顺序依据和联合冲突 |
+| [RT042：未越界](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/#case=R389-381&axis=R&view=radar&lang=zh) | 设备 10—11 点与 11—12 点的占用端点相接 | 明确释放时刻后，没有时间重叠 |
+| [L23-050：信息不全](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/#case=R389-153&axis=P&view=radar&lang=zh) | “由他确认”没有唯一指明责任人 | 未知身份被保留，结论不被硬凑成通过 |
 
-## 把复核带进 AI 工作流，仍要守住最后一步
+把这三例放在一起，产品立场很清楚：**已知冲突要指出；已知可行不要误报；缺少关键事实就诚实保留未知。**
 
-BoundaryXP 已提供 [MCP（模型上下文协议）接口](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/TOOLS.md)，让兼容的 AI 宿主读取工具说明、预览完整任务树、保存确认后的版本、提交一次模型分析，再读取正式结果。`bx_task_import` 只预览；`bx_project_create` 才保存；`bx_analysis_submit` 需要明确确认模型调用；`bx_result_recheck` 对**已保存的操作数**做零模型复算并保留旧结果。若最初把两个不同对象误认成同一个，重复计算不会自动修好这个语义错误。
+## 从论文走到 Cursor、Codex：界痕已经有哪些入口？
 
-[0.4.0-rc.6 发行记录](https://github.com/joinwell52-AI/BoundaryXP/releases/tag/mcp-v0.4.0-rc.6)报告 Windows x64 安装包发现 18 个工具、10 个资源；我们下载了该发行包，SHA-256 与发行说明一致，本轮没有重新完成 MCP 宿主中的模型分析。论文采用的协议 draft.2 与现有工作台运行附件的 draft.1 也仍有[已公开的实现差异](https://github.com/joinwell52-AI/BoundaryXP/blob/main/protocol/IMPLEMENTATION.md)。这些身份不能用一个“已发布”抹平。
+[BXP 方法论文](https://doi.org/10.5281/zenodo.24072738)给出了 7+1 关联表示与边界核验的形式条件；[公开研究材料](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/paper/materials/analysis625/REPORT.zh-CN.md)包含 625 组保存任务、3,219 个节点、3,469 项查询。我们在固定版本上重跑了分类脚本、六项选定数学见证和九项费用案例复算，均通过。[复核记录](https://github.com/joinwell52-AI/joinwell52/blob/main/research/manual-runs/2026-11-14-boundaryxp/00-report.md)列出命令与范围。这些数字展示了研究材料的规模和可追溯性；**625/625 是保存记录与现行标注的整体结论一致性，不是新任务准确率**。
 
-更重要的是，边界分析的结果不是业务批准。它能指出计划中哪条约束打架、哪项证据还缺、哪次计算可复核；是否修改任务、是否真正执行，仍要由承担责任的人和宿主决定。接口中的业务决定与执行授权也保留为空。
+对想试用的人，最直接的入口是[在线演示](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/)：点开案例，看父子任务、8 轴关联、原文依据与完整报告。它回放 B-332 已保存结果，适合先理解界痕如何表达一个判定。
 
-下一次让多个 AI 分工时，可以先问四句：**它们说的是同一个对象吗？单项通过之后有没有检查合并结果？未知信息真会改变结论吗？谁能依据完整证据批准下一步？** 如果第一问还答不清，漂亮的任务树和精确的计算都不该让我们跳过澄清。
+想把界痕放进自己的 AI 工作流，可以查看 [BoundaryXP MCP 中文安装指南](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/npm/INSTALL.zh-CN.md)。当前预发行版 **0.4.0-rc.6** 面向 Windows x64，通过标准 MCP 接入 Cursor、Codex 等兼容宿主，提供 **18 个工具、10 项资源和本地浏览器工作台**。安装包带编译后的 Core，无须另搭界痕服务器；新分析使用用户自行配置的模型 API。当前仓库公开了文档、论文、案例与发行包，Core 原实现源码仍单独维护。
+
+实际使用顺序也有明确边界：先**导入并预览**完整父子任务；确认后**保存**项目；再明确提交一次模型分析，由 Core 对受支持的结构与操作数做确定性核验；最后查看**原文、模型判断、计算回执和未决项**。已保存的操作数还可零模型复算。界痕不会因为你“打开工作台”就自动发起分析，也不会把边界报告当成业务批准。[18 个工具的职责与副作用](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/TOOLS.md)都能查。
+
+## 界痕真正想留下什么
+
+一个多 Agent 团队最容易丢失的，往往不是答案，而是**答案对应哪一版任务、哪段原文、哪一个对象，以及整项工作合起来还能不能做**。界痕把这些关系留下，让“为什么越界”“为什么未越界”“还缺什么信息”成为可以讨论、可以复核的问题。
+
+它也有清楚的界线：确定性 Core 核验的是被表达出来的问题，不能自动证明模型读对了每句原文；公开演示是保存结果回放；分析结论本身不授予执行权限。正因为这些界线可见，产品才值得用真实任务继续检验。
+
+**[先打开界痕交互演示 →](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/)**　·　[查看公开仓库](https://github.com/joinwell52-AI/BoundaryXP)　·　[阅读论文](https://doi.org/10.5281/zenodo.24072738)　·　[接入 MCP](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/npm/INSTALL.zh-CN.md)
+
+如果你正在让多个 Agent 协作，不妨拿一份真实但可公开的任务书来试：**每个子任务都说“可行”之后，谁检查过它们合在一起的边界？**
