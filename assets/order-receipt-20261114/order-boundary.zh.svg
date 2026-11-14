@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="430" viewBox="0 0 1120 430" role="img" aria-labelledby="title desc">
+  <title id="title">订单结果与本地回执在故障后分离</title>
+  <desc id="desc">三个断点的本地回执都为空；提交前业务系统无订单，提交后业务系统有一笔订单。</desc>
+  <rect width="1120" height="430" rx="26" fill="#f7f5f0"/>
+  <text x="42" y="53" fill="#172642" font-family="Microsoft YaHei, sans-serif" font-size="24" font-weight="700">同样没有回执，业务结果可能不同</text>
+  <text x="42" y="87" fill="#65738b" font-family="Microsoft YaHei, sans-serif" font-size="15">受控子进程故障注入 · 每行是一套独立临时订单记录</text>
+  <rect x="198" y="115" width="282" height="50" rx="12" fill="#dbe7ff"/>
+  <rect x="495" y="115" width="282" height="50" rx="12" fill="#dbe7ff"/>
+  <rect x="792" y="115" width="282" height="50" rx="12" fill="#dbe7ff"/>
+  <g fill="#17489b" font-family="Microsoft YaHei, sans-serif" font-size="18" font-weight="700" text-anchor="middle">
+    <text x="339" y="147">提交前断开</text><text x="636" y="147">提交后断开</text><text x="933" y="147">响应后、落回执前</text>
+  </g>
+  <text x="42" y="221" fill="#172642" font-family="Microsoft YaHei, sans-serif" font-size="19" font-weight="700">业务系统</text>
+  <text x="42" y="325" fill="#172642" font-family="Microsoft YaHei, sans-serif" font-size="19" font-weight="700">AI 侧回执</text>
+  <g font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="700" text-anchor="middle">
+    <rect x="198" y="186" width="282" height="72" rx="13" fill="#fff" stroke="#c7d0df"/>
+    <text x="339" y="231" fill="#56677d">0 笔订单</text>
+    <rect x="495" y="186" width="282" height="72" rx="13" fill="#0d48c4"/>
+    <text x="636" y="231" fill="#fff">1 笔订单</text>
+    <rect x="792" y="186" width="282" height="72" rx="13" fill="#0d48c4"/>
+    <text x="933" y="231" fill="#fff">1 笔订单</text>
+    <rect x="198" y="290" width="282" height="72" rx="13" fill="#fffaf1" stroke="#d8a762"/>
+    <rect x="495" y="290" width="282" height="72" rx="13" fill="#fffaf1" stroke="#d8a762"/>
+    <rect x="792" y="290" width="282" height="72" rx="13" fill="#fffaf1" stroke="#d8a762"/>
+    <text x="339" y="334" fill="#97601e">无</text><text x="636" y="334" fill="#97601e">无</text><text x="933" y="334" fill="#97601e">无</text>
+  </g>
+  <text x="42" y="402" fill="#65738b" font-family="Microsoft YaHei, sans-serif" font-size="15">只有业务系统的权威结果能区分：重试、结算，或保留未知。</text>
+</svg>
