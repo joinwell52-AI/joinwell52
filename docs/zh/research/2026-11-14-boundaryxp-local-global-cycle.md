@@ -112,50 +112,71 @@ pageClass: "six-governance-article"
 
 7+1 先保存八类要求及其共享的对象、身份、作用域和条件；在解释固定后，[BXP 协议草案](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/protocol/versions/0.4.0-draft.2/BXP-0001.zh-CN.md)把边界定义为满足约束的候选方案集合：
 
-```text
-χ_M(x) = Q(x) ∧ ¬F(x) ∧ K(x) ∧ Φ(x)
-Ω_M    = {x ∈ X_Σ | χ_M(x) = true}
-```
+$$
+\begin{aligned}
+\chi_{\mathcal M}(x)&=Q(x)\land\neg F(x)\land K(x)\land\Phi(x),\\
+\Omega_{\mathcal M}&=\{x\in\mathcal X_\Sigma\mid\chi_{\mathcal M}(x)\}.
+\end{aligned}
+$$
 
-`Q` 是义务，`F` 是禁止状态，`K` 是完成或停止条件，`Φ` 包含其余约束；`Ω_M` 中才是该固定解释下可接受的方案。边界不必逐个列出方案：计算某个方案是否属于 `Ω_M`，或者合并要求后 `Ω_M` 是否变为空集，就能比较边界。
+$Q$ 是义务，$F$ 是禁止状态，$K$ 是完成或停止条件，$\Phi$ 包含其余约束；$\Omega_{\mathcal M}$ 中才是该固定解释下可接受的方案。边界不必逐个列出方案：计算某个方案是否属于 $\Omega_{\mathcal M}$，或者合并要求后该集合是否变为空集，就能比较边界。
 
 **计算一：RT044 的局部与整体。** 令 `A` 为安全复核、`D` 为开机、`B` 为包装、`C` 为送检；下标 `s/e` 分别是同一轮、同一次事件的计划开始和结束。[保存的 7+1 报告](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/demo/reports/R389-383.zh.md)将主任务与三个子任务写为：
 
-```text
-P = (A_e < D_s) ∧ ∧[X∈{A,B,C,D}](X_s < X_e)
-T = (D_e < B_s)       TEST
-L = (B_e < C_s)       LAB
-F = (C_e < A_s)       SAFETY
+$$
+P=(A_e\prec D_s)\land\bigwedge_{X\in\{A,B,C,D\}}(X_s\prec X_e)
+$$
 
-SAT(P) = true
-SAT(P∧T) = SAT(P∧L) = SAT(P∧F) = true
-SAT(P∧T∧L) = SAT(P∧T∧F) = SAT(P∧L∧F) = true
+$$
+T=(D_e\prec B_s),\quad L=(B_e\prec C_s),\quad F=(C_e\prec A_s)
+$$
 
-P∧T∧L∧F ⇒ A_s < A_e < D_s < D_e < B_s < B_e < C_s < C_e < A_s
-            ⇒ A_s < A_s ⇒ false
-SAT(P∧T∧L∧F) = false；Ω(P∧T∧L∧F) = ∅
-Ω(P) ≠ ∅，但 Ω(P∧T∧L∧F) = ∅ → 组合方案越界
-报告查询：KT / KL / KF = 未越界；KJ = 越界
-```
+前一式是主任务；后三式依次是 TEST、LAB、SAFETY 新增的顺序。报告先计算局部和两两组合：
 
-`SAT` 表示“是否存在满足全部所列约束的计划”。报告给出了局部可行的端点见证，也列出删去任一子顺序后可行的排列；**全部相关子任务合并，才使方案集合变为空集**。这是任务书约束的计算，不表示四个事件已经发生。
+$$
+\begin{aligned}
+\operatorname{SAT}(P)&=\mathrm{true},\\
+\operatorname{SAT}(P\land T)&=\operatorname{SAT}(P\land L)=\operatorname{SAT}(P\land F)=\mathrm{true},\\
+\operatorname{SAT}(P\land T\land L)&=\mathrm{true},\\
+\operatorname{SAT}(P\land T\land F)&=\mathrm{true},\\
+\operatorname{SAT}(P\land L\land F)&=\mathrm{true}.
+\end{aligned}
+$$
+
+全部合并后，严格先后关系却回到了自己的起点：
+
+$$
+\begin{aligned}
+A_s&\prec A_e\prec D_s\prec D_e\prec B_s\prec B_e\\
+&\prec C_s\prec C_e\prec A_s\\
+&\Longrightarrow A_s\prec A_s\quad\text{（不可能）}.
+\end{aligned}
+$$
+
+$$
+\operatorname{SAT}(P\land T\land L\land F)=\mathrm{false},\qquad
+\Omega_{P\land T\land L\land F}=\varnothing.
+$$
+
+**计算结果：主任务可行，全部子顺序合并后无可行计划，组合方案越界。** 保存报告的查询结果也相符：KT、KL、KF 分别未越界，联合查询 KJ 越界。$\operatorname{SAT}$ 表示是否存在满足全部所列约束的计划；这里计算的是任务书，不表示四个事件已经发生。
 
 **计算二：RT042 的设备占用与交接。** [另一份保存的 7+1 报告](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/demo/reports/R389-381.zh.md)按同日零时起的分钟数记录同一仪器 `M` 的两段计划占用：`J_X=[600,660)`、`J_Y=[660,720)`。半开区间的重叠函数代入端点后给出：
 
-```text
-overlap(X,Y) ⇔ max(s_X,s_Y) < min(e_X,e_Y)
-             ⇔ max(600,660) < min(660,720)
-             ⇔ 660 < 660 = false
-J_X ∩ J_Y = ∅；s_Y − e_X = 0
-```
+$$
+\begin{aligned}
+o&\iff\max(s_X,s_Y)<\min(e_X,e_Y)\\
+ &\iff\max(600,660)<\min(660,720)\\
+ &\iff660<660=\mathrm{false}.
+\end{aligned}
+$$
+
+$$J_X\cap J_Y=\varnothing,\qquad s_Y-e_X=0.$$
 
 父任务明确允许到点释放、同刻接入，清场也包含在原占用时段。报告还把**文本已述的交接状态**与计划区间分开求值：`r` 为“11:00 已释放”，`b` 为“无残余占用”，`n` 为“无第三个同时预约”；这些真值来自原文陈述。
 
-```text
-D = r ∧ b = true ∧ true = true       K5：给定事实条件符合
-N = n     = true                    K6：给定事实条件符合
-K1：同一 M 的计划占用不重叠        → 未越界
-```
+$$D=r\land b=\mathrm{true}\land\mathrm{true}=\mathrm{true},\qquad N=n=\mathrm{true}.$$
+
+报告查询：K1 的计划占用判为**未越界**；K5、K6 的文本已述状态均为**给定事实条件符合**。
 
 K1 比较的是**计划**；K5、K6 核对的是**文本已述状态的支持条件**。三个结果都不是设备已实际运行、工作已验收或获得执行授权的证明。RT042 的报告也没有数值预算，不能把一个假设的预算加法冒充它的计算。
 
