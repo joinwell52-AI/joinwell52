@@ -178,7 +178,7 @@ Public materials currently include documentation, the protocol, the paper, resea
 
 When work goes to a team of agents, their plans must be brought back together to see whether shared requirements still hold. BoundaryXP aims to make that check specific: identify the requirement, the subtasks, and the calculation involved, so a person has something concrete to revise beyond an assurance that the plan looks feasible.
 
-Start with a task of your own. Write down its input scope, outputs, actions, responsibilities, resources, version and basis, completion and stopping conditions, and prohibitions. Then ask: **does combining two subtasks reveal a conflict that separate checks would miss?**
+Start with a task of your own. Write down its input scope, outputs, actions, responsibilities, resources, version and basis, completion and stopping conditions, and prohibitions. Then ask: **when all relevant subtasks are combined, does a conflict emerge that separate checks or pairwise comparisons would miss?**
 
 There are further questions worth investigating. If a task does not specify where an attachment may be stored, which judgments should remain unknown? When an industry or enterprise dictionary changes, how should an old report preserve the meanings it used? If the combined plan conflicts, who may revise the order, and how can we show that the parent requirement was not silently altered? When might a stricter rule added by a subtask obstruct the shared delivery, and who may reject or revise it?
 
