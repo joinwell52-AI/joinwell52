@@ -108,30 +108,58 @@ The source fixes the events to the same round and occurrence. Adding an imagined
 
 This is why a team of agents needs a check of the whole plan. Local feasibility says only that the requirements in that local comparison can coexist. It does not replace a joint check. The finding here is a **violation in the combined plan**, supported by the requirements forming the cycle. It should not be recast as a separate violation by every group. Can you now explain your answer to the third question using all four source rules?
 
-## How do words become a mathematical boundary check?
+## From words to mathematics: how is the boundary calculated?
 
-A task boundary can be understood as **the set of ways to carry out the task that satisfy its established requirements**. A subtask may make the plan more specific, while applicable requirements from its parent continue to hold. Combining subtasks also requires checking shared budgets, use of the same equipment, handoffs, and ordering.
+The 7+1 representation preserves eight classes of requirements together with shared objects, identities, scope, and conditions. Under a fixed interpretation, the [BXP protocol draft](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/protocol/versions/0.4.0-draft.2/BXP-0001.md) defines the boundary as the set of candidate plans satisfying the constraints:
 
-The cycle above tests ordering; the budget example below tests a shared resource. Both make the same point: **local feasibility does not establish feasibility when the parts are combined.**
+```text
+χ_M(x) = Q(x) ∧ ¬F(x) ∧ K(x) ∧ Φ(x)
+Ω_M    = {x ∈ X_Σ | χ_M(x) = true}
+```
 
-Consider a simplified budget example to illustrate the principle. The parent task gives the whole team **500 yuan**. Four planned expenses are **180, 160, 120, and 80 yuan**. Assume they all draw on the same budget, all four will occur, and there is no double counting or offset:
+`Q` contains obligations, `F` forbidden states, `K` completion or stopping conditions, and `Φ` other constraints. `Ω_M` contains acceptable plans under that fixed interpretation. We need not enumerate every plan: we can test whether a particular plan belongs to `Ω_M`, or whether combining requirements leaves that set empty.
 
-> **180 + 160 + 120 + 80 = 540 yuan > 500 yuan: an excess of 40 yuan.**
+**Calculation one: local versus combined constraints in RT044.** Let `A` be the safety review, `D` equipment startup, `B` packaging, and `C` submission for testing; subscripts `s/e` denote the planned start and end of each unique event in the same round. The [saved 7+1 report](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/demo/reports/R389-383.en.md) formalizes the parent task and three subtasks as:
 
-Each expense is individually below 500 yuan, but their combination exceeds the budget. The calculation needs both the four numbers and the fact that they draw on the same pool. If the last expense is omitted, a calculator will correctly return 460 yuan while leaving the complete plan unchecked.
+```text
+P = (A_e < D_s) ∧ ∧[X∈{A,B,C,D}](X_s < X_e)
+T = (D_e < B_s)       TEST
+L = (B_e < C_s)       LAB
+F = (C_e < A_s)       SAFETY
 
-Different requirements admit different mathematical expressions:
+SAT(P) = true
+SAT(P∧T) = SAT(P∧L) = SAT(P∧F) = true
+SAT(P∧T∧L) = SAT(P∧T∧F) = SAT(P∧L∧F) = true
 
-| Requirement in the source | A way to check it | What the check tests |
-| --- | --- | --- |
-| The whole team may spend no more than 500 yuan | Add expenses within the same budget scope and compare the total with the limit. | A shared resource limit. |
-| Only two specified files may be read | Compare the planned set of files with the permitted set and identify any extra objects. | Whether an object falls outside the permitted set. |
-| Release is allowed only after a successful review | Preserve successful review as a prerequisite and check whether the plan permits bypassing it. | Whether a dependency is broken. |
-| Several operations have strict ordering requirements | Represent the operations and precedence relations as a directed graph and check for an impossible cycle. | Whether the time order is contradictory. |
+P∧T∧L∧F ⇒ A_s < A_e < D_s < D_e < B_s < B_e < C_s < C_e < A_s
+            ⇒ A_s < A_s ⇒ false
+SAT(P∧T∧L∧F) = false; Ω(P∧T∧L∧F) = ∅
+Ω(P) ≠ ∅, but Ω(P∧T∧L∧F) = ∅ → combined plan violates the boundary
+Report queries: KT / KL / KF = within bounds; KJ = violation
+```
 
-The same objects, values, and rules can be inspected again. Mathematical methods give established requirements a common criterion and can identify a particular conflict: which extra file would be read, how much the budget would be exceeded, or which ordering requirements cannot all hold.
+`SAT` asks whether any schedule satisfies all listed constraints. The report supplies endpoint witnesses for local feasibility and feasible orderings after any one child ordering is removed. **Only the full combination empties the feasible set.** This calculation concerns task specifications; it does not assert that the four events occurred.
 
-The calculation first needs a well-defined question. Objects, negation, conditions, and scope in the source text must survive into the representation. Ambiguities need clarification or must remain unknown. **A reproducible calculation and traceable source evidence are both needed for a meaningful boundary judgment.** The paper and protocol examine this path from requirements through a formal model to mathematical verification.
+**Calculation two: equipment occupancy and handoff in RT042.** Another [saved 7+1 report](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/demo/reports/R389-381.en.md) records planned occupancy of the same instrument `M` in minutes after midnight: `J_X=[600,660)` and `J_Y=[660,720)`. Substituting the half-open interval endpoints into the overlap test gives:
+
+```text
+overlap(X,Y) ⇔ max(s_X,s_Y) < min(e_X,e_Y)
+             ⇔ max(600,660) < min(660,720)
+             ⇔ 660 < 660 = false
+J_X ∩ J_Y = ∅; s_Y − e_X = 0
+```
+
+The parent task explicitly permits release and immediate handoff at the shared endpoint, with cleanup included in each occupancy period. The report evaluates the **stated handoff conditions** separately: `r` means “released at 11:00,” `b` means “no residual occupancy,” and `n` means “no third concurrent reservation.” These truth values come from statements in the task text.
+
+```text
+D = r ∧ b = true ∧ true = true       K5: stated condition supported
+N = n     = true                    K6: stated condition supported
+K1: planned occupancy of M does not overlap → within bounds
+```
+
+K1 compares the **plan**; K5 and K6 check support for **stated conditions**. None proves that the instrument was actually operated, work was accepted, or execution was authorized. RT042 specifies no numeric budget; an invented budget sum would not be one of its calculations.
+
+These results can be compared because the report retains the same events and instrument, the half-open endpoint convention, and the source clauses. If objects, negation, or scope remain ambiguous, a formula computes the result for **one interpretation**; it cannot by itself prove that the source text has been interpreted correctly and completely.
 
 ## What do violation, within bounds, and incomplete information mean?
 
@@ -143,7 +171,7 @@ Boundary verification examines how a plan, or explicitly supplied facts about be
 | **Within bounds: RT042** | One device is booked for 10–11 and 11–12. The rules explicitly release it at the endpoint, permit immediate handoff, and include cleanup time. | Under those conditions, the bookings do not overlap. |
 | **Incomplete information: L23-050** | Lin Zhou and Zhao Qing both attend the meeting, but the task says only “he will confirm,” without identifying one person. | The final confirmer cannot be determined; the identity needs clarification. |
 
-In RT042, the two bookings are **[10:00, 11:00)** and **[11:00, 12:00)**: each includes its left endpoint and excludes its right endpoint. The first group releases the device at 11, when the second group begins, so the intersection is empty. This conclusion depends on the explicit release and cleanup rules; the two time ranges alone are insufficient. [Device case: source and calculation](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/demo/reports/R389-381.en.md)
+The RT042 substitution above gives `660 < 660 = false`: the planned occupancies do not overlap. K5 and K6 separately check the stated release and no-third-reservation conditions; these results are not receipts of actual execution. [Full device-case calculation](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/demo/reports/R389-381.en.md)
 
 In L23-050, material preparation and requests for clarification can continue, while the final confirmer still needs to be identified. A person's seniority cannot fill that gap on the task owner's behalf. Nor does the ambiguity establish that someone has already performed an unauthorized acceptance. [Responsibility case: source and calculation](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/demo/reports/R389-153.en.md)
 
