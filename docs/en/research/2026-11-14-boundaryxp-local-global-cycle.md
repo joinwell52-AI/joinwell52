@@ -32,15 +32,21 @@ pageClass: "six-governance-article"
 
 # BoundaryXP: Make an AI Team’s Task Boundaries Visible
 
-Suppose you give an AI this assignment: “Review the maintenance records for these vehicles, identify anything unusual, and deliver a report. Read the records only; do not change the system.”
+Suppose you give a team of AI agents this assignment:
 
-An agent with access to tools may plan its own steps: read the records, compare charges, download attachments, and ask another agent to assemble the report. The instruction to read only matters throughout that process. Even if it discovers a clear error in a record, correcting the database would exceed this assignment.
+> Review the maintenance records for these vehicles, identify anything unusual, and deliver a report. Read the records only; do not change the system.
 
-An agent can choose how to pursue a goal. Work that people once arranged step by step may now be planned and delegated by the agent. Specifying the desired outcome therefore leaves other questions to answer: which information may it use, which actions may it take, who can confirm the result, how much may it spend, and what is explicitly forbidden? An account's ability to perform an operation does not mean that this task authorizes it.
+During the work, one agent spots an obvious error and proposes changing the database. Another wants to download an attachment and hand it to a teammate writing the report. Pause before giving both actions the same verdict: **changing the database conflicts with “do not change the system”; whether downloading the attachment is permitted depends on the stated information scope, storage location, and handling rules.**
+
+What if subtasks add their own ordering rules, each workable on its own, but impossible when combined? Where does that conflict belong? Intuition alone makes these questions hard to answer consistently or trace back to the assignment.
+
+BoundaryXP aims to make task boundaries inspectable and open to discussion, with each judgment linked to its source. Its **7+1 method for task boundary verification** organizes eight classes of requirements and their relationships, then uses mathematical checks on the parent task, subtasks, and their combined plan. The [method paper](https://doi.org/10.5281/zenodo.24072738) and [draft protocol](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/protocol/versions/0.4.0-draft.2/BXP-0001.md) are public.
+
+## Why is stating the goal not enough?
+
+Agents can plan steps, call tools, and delegate work in pursuit of a goal. Beyond the desired outcome, a task must say which information may be used, which actions are allowed, who can confirm the result, how much may be spent, and what is forbidden. An account's ability to perform an operation does not mean **this assignment authorizes it**.
 
 These requirements define a **task boundary**: what must be done, which approaches are acceptable, which conditions remain unmet, and what must not happen in this assignment. When work is divided among several agents, the applicable requirements must continue to constrain each proposed subtask and the combined plan.
-
-BoundaryXP addresses this problem through a **7+1 method for task boundary verification**. It first represents the requirements and relationships expressed in natural language, then uses mathematical methods to check the parent task, its subtasks, and their combination. The BXP protocol sets out how requirements, evidence, and judgments are represented; the BoundaryXP tool applies the method to particular tasks and produces reports that can be traced to the source text. The [method paper](https://doi.org/10.5281/zenodo.24072738) and [draft protocol](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/protocol/versions/0.4.0-draft.2/BXP-0001.md) are public.
 
 ## 7+1 starts with eight questions about the task
 
@@ -68,30 +74,7 @@ In the vehicle example, “the maintenance records for these vehicles” establi
 
 L2 industry dictionaries and L3 enterprise dictionaries can help resolve domain terms and local names. For example, a shorthand name may refer to either a test environment or a production environment; the interpretation needs evidence. A dictionary explanation or job title does not itself add authority. The [protocol's definitions of views and shared relationships](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/protocol/versions/0.4.0-draft.2/BXP-0001.md) and the [dictionary tool reference](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/mcp/TOOLS.md) set out these conventions.
 
-## How do words become a mathematical boundary check?
-
-A task boundary can be understood as **the set of ways to carry out the task that satisfy its established requirements**. A subtask may make the plan more specific, while applicable requirements from its parent continue to hold. Combining subtasks also requires checking shared budgets, use of the same equipment, handoffs, and ordering.
-
-Consider a simplified budget example to illustrate the principle. The parent task gives the whole team **500 yuan**. Four planned expenses are **180, 160, 120, and 80 yuan**. Assume they all draw on the same budget, all four will occur, and there is no double counting or offset:
-
-> **180 + 160 + 120 + 80 = 540 yuan > 500 yuan: an excess of 40 yuan.**
-
-Each expense is individually below 500 yuan, but their combination exceeds the budget. The calculation needs both the four numbers and the fact that they draw on the same pool. If the last expense is omitted, a calculator will correctly return 460 yuan while leaving the complete plan unchecked.
-
-Different requirements admit different mathematical expressions:
-
-| Requirement in the source | A way to check it |
-| --- | --- |
-| The whole team may spend no more than 500 yuan | Add expenses within the same budget scope and compare the total with the limit. |
-| Only two specified files may be read | Compare the planned set of files with the permitted set and identify any extra objects. |
-| Release is allowed only after a successful review | Preserve successful review as a prerequisite and check whether the plan permits bypassing it. |
-| Several operations have strict ordering requirements | Represent the operations and precedence relations as a directed graph and check for an impossible cycle. |
-
-The same objects, values, and rules can be inspected again. Mathematical methods give established requirements a common criterion and can identify a particular conflict: which extra file would be read, how much the budget would be exceeded, or which ordering requirements cannot all hold.
-
-The calculation first needs a well-defined question. Objects, negation, conditions, and scope in the source text must survive into the representation. Ambiguities need clarification or must remain unknown. **A reproducible calculation and traceable source evidence are both needed for a meaningful boundary judgment.** The paper and protocol examine this path from requirements through a formal model to mathematical verification.
-
-## Why can feasible local plans fail when combined?
+## Decide first: if each group's plan works, will the combination work?
 
 BoundaryXP's public [RT044 saved case](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/demo/reports/R389-383.en.md) illustrates a problem that emerges when tasks are combined. It is a laboratory planning example. Within the same round, safety review, equipment startup, packaging, and submission for testing each occur once.
 
@@ -103,6 +86,10 @@ The parent task and three groups specify the following orderings:
 | Test group | Startup must finish before packaging begins. |
 | Laboratory group | Packaging must finish before submission for testing begins. |
 | Safety group | Submission for testing must finish before this safety review begins. |
+
+Before reading the result, try three questions: can each group's additional rule coexist with the parent task on its own? What happens when all four rules are combined? If there is a conflict, can we attribute an individual violation to just one group? Trace the arrows on paper if it helps.
+
+### The combined result
 
 Each group's additional ordering, **checked separately against the parent**, permits an arrangement that satisfies those requirements. Adding all three produces:
 
@@ -117,7 +104,30 @@ The mathematical contradiction is straightforward. Each event starts before it f
 
 The source fixes the events to the same round and occurrence. Adding an imagined second review or a different sample would change the problem. Someone authorized to revise the plan needs to preserve the parent requirement, adjust the ordering in the proposed subtasks, and check the result again.
 
-This is why a team of agents needs a check of the whole plan. Local feasibility says only that the requirements in that local comparison can coexist. It does not replace a joint check. The finding here is a **violation in the combined plan**, supported by the requirements forming the cycle. It should not be recast as a separate violation by every group.
+This is why a team of agents needs a check of the whole plan. Local feasibility says only that the requirements in that local comparison can coexist. It does not replace a joint check. The finding here is a **violation in the combined plan**, supported by the requirements forming the cycle. It should not be recast as a separate violation by every group. Can you now explain your answer to the third question using all four source rules?
+
+## How do words become a mathematical boundary check?
+
+A task boundary can be understood as **the set of ways to carry out the task that satisfy its established requirements**. A subtask may make the plan more specific, while applicable requirements from its parent continue to hold. Combining subtasks also requires checking shared budgets, use of the same equipment, handoffs, and ordering.
+
+Consider a simplified budget example to illustrate the principle. The parent task gives the whole team **500 yuan**. Four planned expenses are **180, 160, 120, and 80 yuan**. Assume they all draw on the same budget, all four will occur, and there is no double counting or offset:
+
+> **180 + 160 + 120 + 80 = 540 yuan > 500 yuan: an excess of 40 yuan.**
+
+Each expense is individually below 500 yuan, but their combination exceeds the budget. The calculation needs both the four numbers and the fact that they draw on the same pool. If the last expense is omitted, a calculator will correctly return 460 yuan while leaving the complete plan unchecked.
+
+Different requirements admit different mathematical expressions:
+
+| Requirement in the source | A way to check it | What the check tests |
+| --- | --- | --- |
+| The whole team may spend no more than 500 yuan | Add expenses within the same budget scope and compare the total with the limit. | A shared resource limit. |
+| Only two specified files may be read | Compare the planned set of files with the permitted set and identify any extra objects. | Whether an object falls outside the permitted set. |
+| Release is allowed only after a successful review | Preserve successful review as a prerequisite and check whether the plan permits bypassing it. | Whether a dependency is broken. |
+| Several operations have strict ordering requirements | Represent the operations and precedence relations as a directed graph and check for an impossible cycle. | Whether the time order is contradictory. |
+
+The same objects, values, and rules can be inspected again. Mathematical methods give established requirements a common criterion and can identify a particular conflict: which extra file would be read, how much the budget would be exceeded, or which ordering requirements cannot all hold.
+
+The calculation first needs a well-defined question. Objects, negation, conditions, and scope in the source text must survive into the representation. Ambiguities need clarification or must remain unknown. **A reproducible calculation and traceable source evidence are both needed for a meaningful boundary judgment.** The paper and protocol examine this path from requirements through a formal model to mathematical verification.
 
 ## What do violation, within bounds, and incomplete information mean?
 
@@ -160,7 +170,15 @@ In use, import the complete parent task and subtasks, inspect the task tree, sav
 
 Public materials currently include documentation, the protocol, the paper, research cases, and compiled installation packages. Original Core implementation source remains in a separate private repository. Reports also retain a scope: calculations verify the problem as represented, while the completeness and accuracy of the source interpretation still need checking. Plan changes, business approval, and execution remain with the responsible people or business systems.
 
-For an assignment given to one agent, the boundary establishes what it is responsible for and how far it may go. For a team of agents, their plans also need to be brought back together to check whether the shared requirements still hold. BoundaryXP aims to make that check specific: identify the requirement, the subtasks, and the calculation involved, so a person has something concrete to revise beyond an assurance that the overall plan looks feasible.
+## Now try checking a boundary yourself
 
-[Explore the public repository](https://github.com/joinwell52-AI/BoundaryXP) · [Read the method paper](https://doi.org/10.5281/zenodo.24072738) · [Open the interactive demo](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/?lang=en#case=R389-383&axis=A&view=radar&lang=en) · [Read the installation guide](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/npm/INSTALL.md)
+When work goes to a team of agents, their plans must be brought back together to see whether shared requirements still hold. BoundaryXP aims to make that check specific: identify the requirement, the subtasks, and the calculation involved, so a person has something concrete to revise beyond an assurance that the plan looks feasible.
+
+Start with a task of your own. Write down its input scope, outputs, actions, responsibilities, resources, version and basis, completion and stopping conditions, and prohibitions. Then ask: **does combining two subtasks reveal a conflict that separate checks would miss?**
+
+There are further questions worth investigating. If a task does not specify where an attachment may be stored, which judgments should remain unknown? When an industry or enterprise dictionary changes, how should an old report preserve the meanings it used? If the combined plan conflicts, who may revise the order, and how can we show that the parent requirement was not silently altered?
+
+If a real constraint is hard to express, or you disagree with a saved case's judgment, bring the source task, its version, and your specific question to the repository. You can also open the demo, select a requirement on the radar, and trace the RT044 cycle back through its report to the source. **A method becomes more dependable when its users can inspect and challenge it.**
+
+[Explore the public repository and discuss](https://github.com/joinwell52-AI/BoundaryXP) · [Read the method paper](https://doi.org/10.5281/zenodo.24072738) · [Open the interactive demo](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/?lang=en#case=R389-383&axis=A&view=radar&lang=en) · [Read the installation guide](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/npm/INSTALL.md)
 
