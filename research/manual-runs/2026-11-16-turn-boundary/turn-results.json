@@ -1,0 +1,16 @@
+{
+  "ag2_version": "1.3.2",
+  "ag2_commit": "bf76b9cb6607936a7c240b1efc1811d8bd422de6",
+  "comparison_parent": "3399e3ef2e339f6c64f7fc8d27eaed09662846a4",
+  "old_function_on_current_runtime": {"reply": "Your order shipped.", "model_calls": 2},
+  "current": {"reply": "Ticket escalated.", "model_calls": 1},
+  "native_ag2_target_tests_passed": 3,
+  "codeflowmu_commit": "0d2d4e742ef2f3cb48e3ce09cc47f0c03053dc5f",
+  "codeflowmu_local_delivery_probe": {
+    "ended_before": {"status": "not_live", "stdin_writes": 0, "input_saved": false},
+    "ends_during_write": {"status": "unknown", "stdin_writes": 1, "input_saved": true, "repeat_status": "unknown"}
+  },
+  "codeflowmu_target_regressions_passed": 27,
+  "codeflowmu_integration_cases_incomplete": 2,
+  "limitation": "Only the pre-fix AG2 function is substituted into the current runtime. CodeFlowMu uses a mocked child process; no live Host interleaving or full FCoP lifecycle is tested."
+}

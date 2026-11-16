@@ -1,19 +1,19 @@
 {
   "schema": "latest-published-article/v1",
   "zh": {
-    "title": "订单已经下了，AI 员工却只看见超时：该重试吗？",
-    "date": "2026-11-14",
+    "title": "工单刚转交，AI 的回答却变成“已发货”：新消息该算哪一轮？",
+    "date": "2026-11-16",
     "column": "open-source-engineering",
     "category": "daily",
-    "summary": "服务端已经下单，AI 员工却只收到超时。我们在三个断点杀掉进程，并用无幂等键的盲重试作对照，寻找恢复时真正可信的证据。",
-    "url": "/zh/research/2026-11-14-order-receipt-lost"
+    "summary": "同一刻，工具返回“工单已转交”，用户追问订单。AG2 的修复前后局部对照显示：若本轮多调用一次模型，交接结果会被订单回答取代。我们又对照 CodeFlowMu 的输入投递边界。",
+    "url": "/zh/research/2026-11-16-handoff-new-message"
   },
   "en": {
-    "title": "The order went through. The AI worker saw only a timeout. Should it retry?",
-    "date": "2026-11-14",
+    "title": "The ticket was escalated. Why did the AI answer about shipping?",
+    "date": "2026-11-16",
     "column": "open-source-engineering",
     "category": "daily",
-    "summary": "The business system committed an order while the AI worker saw a timeout. We killed a process at three boundaries and used a blind retry without an idempotency key as a control.",
-    "url": "/en/research/2026-11-14-order-receipt-lost"
+    "summary": "A tool says the ticket was escalated just as the user asks about an order. In a bounded AG2 before/after comparison, one extra model call replaces the handoff result with a shipping answer. We compare that turn boundary with CodeFlowMu",
+    "url": "/en/research/2026-11-16-handoff-new-message"
   }
 }

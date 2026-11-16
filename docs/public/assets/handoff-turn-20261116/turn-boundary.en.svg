@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">Turn ownership for queued input at a final tool result</title>
+  <desc id="desc">The old loop calls the model again and displays the order answer; the current loop preserves the handoff result and queues the follow-up for the next turn on the same stream.</desc>
+  <rect width="1200" height="500" rx="28" fill="#faf8f3"/>
+  <g font-family="Arial, sans-serif">
+    <text x="70" y="66" fill="#17365f" font-size="25" font-weight="700">One interleaving point</text>
+    <rect x="68" y="89" width="1064" height="70" rx="18" fill="#e9effb"/>
+    <text x="101" y="134" fill="#2059c8" font-size="22">Tool result: Ticket escalated.</text>
+    <text x="690" y="134" fill="#9b6318" font-size="22">Queued: What about my order?</text>
+    <path d="M335 160 V203" stroke="#d28a2e" stroke-width="5"/>
+    <path d="M870 160 V313" stroke="#2059c8" stroke-width="5"/>
+    <rect x="68" y="204" width="1064" height="105" rx="18" fill="#fff2e4"/>
+    <text x="101" y="246" fill="#995c13" font-size="22" font-weight="700">Pre-fix local comparison</text>
+    <text x="426" y="246" fill="#344357" font-size="20">One more model call (2 total)</text>
+    <text x="426" y="279" fill="#995c13" font-size="20">Final reply: Your order shipped.</text>
+    <rect x="68" y="314" width="1064" height="113" rx="18" fill="#e9effb"/>
+    <text x="101" y="356" fill="#2059c8" font-size="22" font-weight="700">Current v1.3.2</text>
+    <text x="426" y="356" fill="#344357" font-size="20">Only 1 model call this turn</text>
+    <text x="426" y="390" fill="#2059c8" font-size="20">Keep handoff result; follow-up waits for next turn</text>
+    <text x="69" y="468" fill="#5c6980" font-size="18">This applies to a final tool result; ordinary mid-turn input may still be consumed now.</text>
+  </g>
+</svg>
