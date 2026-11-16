@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">排队追问在终止工具结果处的轮次归属</title>
+  <desc id="desc">旧循环在工单转交结果后再次调用模型，最后显示订单回答；修复后本轮保留转交结果，追问等待同一消息流下一轮。</desc>
+  <rect width="1200" height="500" rx="28" fill="#faf8f3"/>
+  <g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+    <text x="70" y="66" fill="#17365f" font-size="25" font-weight="700">同一个交错时点</text>
+    <rect x="68" y="89" width="1064" height="70" rx="18" fill="#e9effb"/>
+    <text x="101" y="134" fill="#2059c8" font-size="22">工具结果：工单已转交</text>
+    <text x="690" y="134" fill="#9b6318" font-size="22">排队追问：我的订单呢？</text>
+    <path d="M335 160 V203" stroke="#d28a2e" stroke-width="5"/>
+    <path d="M870 160 V313" stroke="#2059c8" stroke-width="5"/>
+    <rect x="68" y="204" width="1064" height="105" rx="18" fill="#fff2e4"/>
+    <text x="101" y="246" fill="#995c13" font-size="22" font-weight="700">修复前的局部对照</text>
+    <text x="426" y="246" fill="#344357" font-size="20">本轮再调用模型（共 2 次）</text>
+    <text x="426" y="279" fill="#995c13" font-size="20">最终显示：你的订单已发货</text>
+    <rect x="68" y="314" width="1064" height="113" rx="18" fill="#e9effb"/>
+    <text x="101" y="356" fill="#2059c8" font-size="22" font-weight="700">v1.3.2 当前行为</text>
+    <text x="426" y="356" fill="#344357" font-size="20">本轮只调用模型 1 次</text>
+    <text x="426" y="390" fill="#2059c8" font-size="20">保留“工单已转交”；追问待同一流下一轮</text>
+    <text x="69" y="468" fill="#5c6980" font-size="18">图示仅对应终止工具结果；普通工具处理中途输入仍可在当前轮消费。</text>
+  </g>
+</svg>
