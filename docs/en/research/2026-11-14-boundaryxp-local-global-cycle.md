@@ -38,7 +38,7 @@ Suppose you give a team of AI agents this assignment:
 
 During the work, one agent spots an obvious error and proposes changing the database. Another wants to download an attachment and hand it to a teammate writing the report. Pause before giving both actions the same verdict: **changing the database conflicts with “do not change the system”; whether downloading the attachment is permitted depends on the stated information scope, storage location, and handling rules.**
 
-What if subtasks add their own ordering rules, each workable on its own, but impossible when combined? Where does that conflict belong? Intuition alone makes these questions hard to answer consistently or trace back to the assignment.
+More difficult still: what if subtasks add their own ordering rules, each workable on its own, but forming a cycle when combined? Where does that conflict belong? Was the parent task unclear, or do the added subtask requirements conflict only when brought together? Intuition alone makes these questions hard to answer consistently or trace back to the assignment.
 
 BoundaryXP aims to make task boundaries inspectable and open to discussion, with each judgment linked to its source. Its **7+1 method for task boundary verification** organizes eight classes of requirements and their relationships, then uses mathematical checks on the parent task, subtasks, and their combined plan. The [method paper](https://doi.org/10.5281/zenodo.24072738) and [draft protocol](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/protocol/versions/0.4.0-draft.2/BXP-0001.md) are public.
 
@@ -87,7 +87,9 @@ The parent task and three groups specify the following orderings:
 | Laboratory group | Packaging must finish before submission for testing begins. |
 | Safety group | Submission for testing must finish before this safety review begins. |
 
-Before reading the result, try three questions: can each group's additional rule coexist with the parent task on its own? What happens when all four rules are combined? If there is a conflict, can we attribute an individual violation to just one group? Trace the arrows on paper if it helps.
+Before reading the result, try three questions: can each group's additional rule coexist with the parent task on its own? What happens when all four rules are combined? If there is a conflict, can we attribute an individual violation to just one group?
+
+**Pause for a few seconds, or trace the arrows on paper, before reading on.**
 
 ### The combined result
 
@@ -109,6 +111,8 @@ This is why a team of agents needs a check of the whole plan. Local feasibility 
 ## How do words become a mathematical boundary check?
 
 A task boundary can be understood as **the set of ways to carry out the task that satisfy its established requirements**. A subtask may make the plan more specific, while applicable requirements from its parent continue to hold. Combining subtasks also requires checking shared budgets, use of the same equipment, handoffs, and ordering.
+
+The cycle above tests ordering; the budget example below tests a shared resource. Both make the same point: **local feasibility does not establish feasibility when the parts are combined.**
 
 Consider a simplified budget example to illustrate the principle. The parent task gives the whole team **500 yuan**. Four planned expenses are **180, 160, 120, and 80 yuan**. Assume they all draw on the same budget, all four will occur, and there is no double counting or offset:
 
@@ -176,9 +180,11 @@ When work goes to a team of agents, their plans must be brought back together to
 
 Start with a task of your own. Write down its input scope, outputs, actions, responsibilities, resources, version and basis, completion and stopping conditions, and prohibitions. Then ask: **does combining two subtasks reveal a conflict that separate checks would miss?**
 
-There are further questions worth investigating. If a task does not specify where an attachment may be stored, which judgments should remain unknown? When an industry or enterprise dictionary changes, how should an old report preserve the meanings it used? If the combined plan conflicts, who may revise the order, and how can we show that the parent requirement was not silently altered?
+There are further questions worth investigating. If a task does not specify where an attachment may be stored, which judgments should remain unknown? When an industry or enterprise dictionary changes, how should an old report preserve the meanings it used? If the combined plan conflicts, who may revise the order, and how can we show that the parent requirement was not silently altered? When might a stricter rule added by a subtask obstruct the shared delivery, and who may reject or revise it?
 
-If a real constraint is hard to express, or you disagree with a saved case's judgment, bring the source task, its version, and your specific question to the repository. You can also open the demo, select a requirement on the radar, and trace the RT044 cycle back through its report to the source. **A method becomes more dependable when its users can inspect and challenge it.**
+If a real constraint is hard to express, or you disagree with a saved case's judgment, bring a **minimal task excerpt you are allowed to share**, its version, and your specific question to the discussion. You can also open the demo, select a requirement on the radar, and trace the RT044 cycle back through its report to the source. **A method becomes more dependable when its users can inspect and challenge it.**
+
+The repository now offers focused participation routes: [Questions and ideas](https://github.com/joinwell52-AI/BoundaryXP/issues/new?template=04-question.yml) · [7+1 method counterexamples](https://github.com/joinwell52-AI/BoundaryXP/issues/new?template=01-method-counterexample.yml) · [MCP problems](https://github.com/joinwell52-AI/BoundaryXP/issues/new?template=02-mcp-problem.yml) · [L2/L3 semantic issues](https://github.com/joinwell52-AI/BoundaryXP/issues/new?template=03-semantic-resource.yml) · [Contributions and PRs](https://github.com/joinwell52-AI/BoundaryXP/blob/main/CONTRIBUTING.md). Public issues and PRs should not include secrets, customer data, or private runtime logs.
 
 [Explore the public repository and discuss](https://github.com/joinwell52-AI/BoundaryXP) · [Read the method paper](https://doi.org/10.5281/zenodo.24072738) · [Open the interactive demo](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/?lang=en#case=R389-383&axis=A&view=radar&lang=en) · [Read the installation guide](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/npm/INSTALL.md)
 
