@@ -11,7 +11,7 @@ edition: "research-center"
 research_question: "怎样把自然语言中的任务要求转成可核对的边界，并检查智能体及其子任务是否越界？"
 summary: "智能体会自己规划步骤、调用工具，也可能在分工中扩大任务范围。界痕用 7+1 整理要求，把预算、权限、先后顺序和跨任务关系交给数学方法检查，让越界判断有据可查。"
 description: "智能体会自己规划步骤、调用工具，也可能在分工中扩大任务范围。界痕用 7+1 整理要求，把预算、权限、先后顺序和跨任务关系交给数学方法检查，让越界判断有据可查。"
-cover: "/assets/boundaryxp-cycle-20261114/boundaryxp-cycle.cover-v1.png"
+cover: "/assets/boundaryxp-cycle-20261114/boundaryxp-radar.zh.cover-v7.png"
 language: "zh-CN"
 lifecycle: "Published"
 publication_authorized: true
@@ -24,7 +24,7 @@ sources:
 pageClass: "six-governance-article"
 ---
 
-<ArticleCover image="/assets/boundaryxp-cycle-20261114/boundaryxp-cycle.cover-v1.png" kicker="项目研究 · AI 任务边界" title="界痕 BoundaryXP：让 AI 团队的任务边界看得见" summary="智能体会自己规划步骤、调用工具，也可能在分工中扩大任务范围。界痕用 7+1 整理要求，把预算、权限、先后顺序和跨任务关系交给数学方法检查，让越界判断有据可查。" version="初版 2026-11-14 · 修订 2026-11-16" languageHref="/en/research/2026-11-14-boundaryxp-local-global-cycle" languageLabel="English" />
+<ArticleCover image="/assets/boundaryxp-cycle-20261114/boundaryxp-radar.zh.cover-v7.png" kicker="项目研究 · AI 任务边界" title="界痕 BoundaryXP：让 AI 团队的任务边界看得见" summary="智能体会自己规划步骤、调用工具，也可能在分工中扩大任务范围。界痕用 7+1 整理要求，把预算、权限、先后顺序和跨任务关系交给数学方法检查，让越界判断有据可查。" version="初版 2026-11-14 · 修订 2026-11-16" languageHref="/en/research/2026-11-14-boundaryxp-local-global-cycle" languageLabel="English" />
 
 <ArticleTableScroll language="zh" />
 

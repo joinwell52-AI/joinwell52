@@ -11,7 +11,7 @@ edition: "research-center"
 research_question: "How can natural-language requirements become inspectable boundaries for checking an agent's plans and subtasks?"
 summary: "Agents plan steps, use tools, and delegate work. Their plans can also expand beyond the task they were given. BoundaryXP uses 7+1 to organize requirements and mathematical methods to check budgets, permissions, ordering, and relationships across tasks."
 description: "Agents plan steps, use tools, and delegate work. Their plans can also expand beyond the task they were given. BoundaryXP uses 7+1 to organize requirements and mathematical methods to check budgets, permissions, ordering, and relationships across tasks."
-cover: "/assets/boundaryxp-cycle-20261114/boundaryxp-cycle.cover-v1.png"
+cover: "/assets/boundaryxp-cycle-20261114/boundaryxp-radar.en.cover-v7.png"
 language: "en"
 lifecycle: "Published"
 publication_authorized: true
@@ -24,7 +24,7 @@ sources:
 pageClass: "six-governance-article"
 ---
 
-<ArticleCover image="/assets/boundaryxp-cycle-20261114/boundaryxp-cycle.cover-v1.png" kicker="Project research · AI task boundaries" title="BoundaryXP: Make an AI Team’s Task Boundaries Visible" summary="Agents plan steps, use tools, and delegate work. Their plans can also expand beyond the task they were given. BoundaryXP uses 7+1 to organize requirements and mathematical methods to check budgets, permissions, ordering, and relationships across tasks." version="Published 2026-11-14 · Revised 2026-11-16" languageHref="/zh/research/2026-11-14-boundaryxp-local-global-cycle" languageLabel="中文" />
+<ArticleCover image="/assets/boundaryxp-cycle-20261114/boundaryxp-radar.en.cover-v7.png" kicker="Project research · AI task boundaries" title="BoundaryXP: Make an AI Team’s Task Boundaries Visible" summary="Agents plan steps, use tools, and delegate work. Their plans can also expand beyond the task they were given. BoundaryXP uses 7+1 to organize requirements and mathematical methods to check budgets, permissions, ordering, and relationships across tasks." version="Published 2026-11-14 · Revised 2026-11-16" languageHref="/zh/research/2026-11-14-boundaryxp-local-global-cycle" languageLabel="中文" />
 
 <ArticleTableScroll language="en" />
 
