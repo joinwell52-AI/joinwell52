@@ -127,12 +127,42 @@ export default defineConfig({
       lang: 'zh-CN',
       link: '/zh/',
       title: '数字员工工场',
-      description: '让通用 AI 成为数字员工，让 AI 拥有岗位、职责、技能和工作流程，持续完成真实任务，并留下可核验的工作成果'
+      description: '让通用 AI 成为数字员工，让 AI 拥有岗位、职责、技能和工作流程，持续完成真实任务，并留下可核验的工作成果',
+      themeConfig: {
+        outline: { level: [2, 3], label: '本文目录' },
+        lastUpdated: { text: '最后更新' }
+      }
     }
   },
   themeConfig: {
     siteTitle: 'Digital Employee Works',
-    search: { provider: 'local' },
+    search: {
+      provider: 'local',
+      options: {
+        locales: {
+          zh: {
+            translations: {
+              button: { buttonText: '搜索', buttonAriaLabel: '搜索' },
+              modal: {
+                displayDetails: '显示详细列表',
+                resetButtonTitle: '重置搜索',
+                backButtonTitle: '关闭搜索',
+                noResultsText: '没有结果',
+                footer: {
+                  selectText: '选择',
+                  selectKeyAriaLabel: '回车',
+                  navigateText: '导航',
+                  navigateUpKeyAriaLabel: '上箭头',
+                  navigateDownKeyAriaLabel: '下箭头',
+                  closeText: '关闭',
+                  closeKeyAriaLabel: 'Esc'
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     socialLinks: [{ icon: 'github', link: 'https://github.com/joinwell52-AI/joinwell52' }],
     i18nRouting: false,
     locales: {
@@ -181,7 +211,7 @@ export default defineConfig({
           { text: '关于', link: '/zh/about' }
         ],
         sidebar: zhSidebar,
-        outline: { level: [2, 3], label: '本页目录' },
+        outline: { level: [2, 3], label: '本文目录' },
         lastUpdated: { text: '最后更新' },
         docFooter: { prev: '上一篇', next: '下一篇' },
         footer: { message: '数字员工工场 · GitHub First · 生产验证通过', copyright: 'Copyright © 2026 joinwell52-AI' }

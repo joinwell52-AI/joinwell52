@@ -15,12 +15,12 @@ cover: "/assets/boundaryxp-cycle-20261114/boundaryxp-radar.en.cover-v7.png"
 language: "en"
 lifecycle: "Published"
 publication_authorized: true
-evidence_status: "Public saved cases and research materials; selected mathematical checks from 2026-11-14 retained; protocol and rc.8 documentation checked on 2026-11-16, with no new model runs"
+evidence_status: "Public saved cases and research materials; selected mathematical checks from 2026-11-14 retained; protocol and rc.9 release notes checked on 2026-11-16, with no new model runs"
 sources:
   - "https://doi.org/10.5281/zenodo.24072738"
   - "https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/protocol/versions/0.4.0-draft.2/BXP-0001.md"
   - "https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/paper/materials/analysis625/REPORT.zh-CN.md"
-  - "https://github.com/joinwell52-AI/BoundaryXP/releases/tag/mcp-v0.4.0-rc.8"
+  - "https://github.com/joinwell52-AI/BoundaryXP/releases/tag/mcp-v0.4.0-rc.9"
 pageClass: "six-governance-article"
 ---
 
@@ -113,7 +113,7 @@ Each group's additional ordering, **checked separately against the parent**, per
   <figcaption>Each child ordering can be added to the parent separately. Together they form a strict cycle. Letters in the diagram identify events in this case; the conflict belongs to the combined plan.</figcaption>
 </figure>
 
-The mathematical contradiction is straightforward. Each event starts before it finishes, and the preceding event must finish before the next can start. Following these strict orderings around the loop would require **the safety review's start time to be earlier than itself**. No time can be strictly earlier than itself, so no schedule satisfies all the requirements.
+The mathematical contradiction is straightforward. Each event starts before it finishes, and the preceding event must finish before the next can start. Following these strict orderings around the loop produces a contradiction: the safety review would have to begin before it begins. No schedule can satisfy all the requirements.
 
 The source fixes the events to the same round and occurrence. Adding an imagined second review or a different sample would change the problem. Someone authorized to revise the plan needs to preserve the parent requirement, adjust the ordering in the proposed subtasks, and check the result again.
 
@@ -154,7 +154,7 @@ Start with the [English interactive demo](https://boundaryxp-workbench-demo.join
   <figcaption>The public workbench places the task tree, 7+1 views, and source evidence on one page. This English screenshot shows the separate ENG20-003 case. Both the screenshot and the online demo display saved cases; they do not run a fresh analysis of your task.</figcaption>
 </figure>
 
-To analyze your own tasks, follow the [MCP installation guide](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/npm/INSTALL.md) to connect BoundaryXP to Cursor or Codex. **As of November 16, 2026, the public prerelease is 0.4.0-rc.8.** It targets Windows x64 and provides 18 tools, ten resources, and a local browser workbench. It can use the model in the current host without requiring a separate model API key; an independent API mode is also available. Host mode still uses a model. “No additional API key” does not mean that no model service is involved. [rc.8 release notes](https://github.com/joinwell52-AI/BoundaryXP/releases/tag/mcp-v0.4.0-rc.8)
+To analyze your own tasks, follow the [MCP installation guide](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/npm/INSTALL.md) to connect BoundaryXP to Cursor or Codex. As of November 16, 2026, the public prerelease is **0.4.0-rc.9** for Windows x64, with **21 MCP tools, 17 resources**, and a local browser workbench. The release adds format guidance, validation, and import for L2 industry and L3 enterprise custom dictionaries, helping teams check task specific terms and internal names. For installation and upgrades, see the guide and [rc.9 release notes](https://github.com/joinwell52-AI/BoundaryXP/releases/tag/mcp-v0.4.0-rc.9). It can use the model in the current host without requiring a separate model API key; an independent API mode is also available. Host mode still uses a model. “No additional API key” does not mean that no model service is involved.
 
 In use, import the complete parent task and subtasks, inspect the task tree, save it, and explicitly request analysis. The report keeps the model's interpretation and the calculation Core's checks of supported operands, so they can be inspected separately. Saved operands can also be recomputed without a new model call. Opening the workbench alone does not submit a fresh analysis. [Tool responsibilities](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/mcp/TOOLS.md)
 

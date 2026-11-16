@@ -15,12 +15,12 @@ cover: "/assets/boundaryxp-cycle-20261114/boundaryxp-radar.zh.cover-v7.png"
 language: "zh-CN"
 lifecycle: "Published"
 publication_authorized: true
-evidence_status: "公开保存案例与研究材料；沿用 2026-11-14 选定数学复核记录；2026-11-16 核对协议及 rc.8 文档，未新增模型运行"
+evidence_status: "公开保存案例与研究材料；沿用 2026-11-14 选定数学复核记录；2026-11-16 核对协议及 rc.9 发布说明，未新增模型运行"
 sources:
   - "https://doi.org/10.5281/zenodo.24072738"
   - "https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/protocol/versions/0.4.0-draft.2/BXP-0001.zh-CN.md"
   - "https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/paper/materials/analysis625/REPORT.zh-CN.md"
-  - "https://github.com/joinwell52-AI/BoundaryXP/releases/tag/mcp-v0.4.0-rc.8"
+  - "https://github.com/joinwell52-AI/BoundaryXP/releases/tag/mcp-v0.4.0-rc.9"
 pageClass: "six-governance-article"
 ---
 
@@ -113,7 +113,7 @@ pageClass: "six-governance-article"
   <figcaption>每条子顺序分别加入主任务时可以安排；全部合并后形成严格闭环。图中字母是本例事件编号，冲突属于组合方案。</figcaption>
 </figure>
 
-这个问题可以用很简单的数学关系说明：每个事件都要先开始、后结束，上一件事结束后下一件才能开始。沿着这些严格先后关系走一圈，最终会要求**“安全复核的开始时刻，早于它自己的开始时刻”**。一个时刻不可能严格早于自身，因此不存在满足全部要求的时间安排。
+这个问题可以用很简单的数学关系说明：每个事件都要先开始、后结束，上一件事结束后下一件才能开始。沿着这些严格先后关系走一圈，最终会得到一个矛盾：安全复核必须在它自己开始之前开始。因此，不存在满足全部要求的时间安排。
 
 原文已经限定“同一轮、同一次事件”，所以不能擅自假设“再做一次复核”或“另送一份样本”来解开这个环。需要由有权修改计划的人保留主任务要求，调整子方案中的顺序，再重新检查。
 
@@ -154,7 +154,7 @@ L23-050 中，准备材料与请求澄清可以继续，最终确认人的身份
   <figcaption>公开演示工作台：任务树、7+1 视图和原文依据放在同一页面。截图与在线演示回放的是已保存案例，不会重新分析你的任务。</figcaption>
 </figure>
 
-分析自己的任务，可以按 [MCP 中文安装指南](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/npm/INSTALL.zh-CN.md)接入 Cursor 或 Codex。**截至 2026 年 11 月 16 日，公开预发行版是 0.4.0-rc.8**，面向 Windows x64，提供 18 个工具、10 项资源和本地浏览器工作台。该版支持使用当前宿主的模型分析，无需另配一把模型 API 密钥；也可以选择独立 API 模式。宿主模式仍有模型参与，不能把“无需额外 API 密钥”理解成不使用模型服务。[rc.8 发布说明](https://github.com/joinwell52-AI/BoundaryXP/releases/tag/mcp-v0.4.0-rc.8)
+分析自己的任务，可以按 [MCP 中文安装指南](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/npm/INSTALL.zh-CN.md)接入 Cursor 或 Codex。截至 2026 年 11 月 16 日，公开预发行版为 **0.4.0-rc.9**，面向 Windows x64，提供 **21 个 MCP 工具、17 项资源**和本地浏览器工作台。新版增加了 L2 行业与 L3 企业自定义字典的格式说明、校验与导入功能，便于核对任务中的专业术语和内部称呼。安装与升级方式见中文安装指南及 [rc.9 发布说明](https://github.com/joinwell52-AI/BoundaryXP/releases/tag/mcp-v0.4.0-rc.9)。该版支持使用当前宿主的模型分析，无需另配一把模型 API 密钥；也可以选择独立 API 模式。宿主模式仍有模型参与，不能把“无需额外 API 密钥”理解成不使用模型服务。
 
 实际使用时，先导入完整的主任务和子任务，检查任务树，再保存并明确提交分析。报告会保留模型的解释和计算内核对受支持操作数的复核结果，二者可以分别查看。对已保存的操作数，还可以不新增模型调用地复算。打开工作台本身不会提交一次新分析。[工具职责说明](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/mcp/TOOLS.md)
 
