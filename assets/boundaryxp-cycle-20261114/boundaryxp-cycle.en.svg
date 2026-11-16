@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="460" viewBox="0 0 1200 460" role="img" aria-labelledby="title desc">
   <title id="title">The combined dependency cycle in RT044</title>
-  <desc id="desc">The parent requires safety review A before startup D. TEST requires D before packaging B, LAB requires B before testing C, and SAFETY requires C before the same A. Together the four rules form a strict cycle, although each child rule is satisfiable with the parent alone.</desc>
+  <desc id="desc">The parent requires safety review A before startup D. TEST requires D before packaging B, LAB requires B before submission for testing C, and SAFETY requires C before the same A. Together the four rules form a strict cycle, although each child rule is satisfiable with the parent alone.</desc>
   <defs>
     <marker id="blueArrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M2 2 10 6 2 10" fill="none" stroke="#2457cf" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></marker>
     <marker id="amberArrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M2 2 10 6 2 10" fill="none" stroke="#bd721e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></marker>
@@ -21,7 +21,7 @@
     <text x="166" y="232" font-size="30" font-weight="700">A</text><text x="166" y="260" font-size="17">Safety review</text>
     <text x="456" y="232" font-size="30" font-weight="700">D</text><text x="456" y="260" font-size="17">Startup</text>
     <text x="746" y="232" font-size="30" font-weight="700">B</text><text x="746" y="260" font-size="17">Packaging</text>
-    <text x="1036" y="232" font-size="30" font-weight="700">C</text><text x="1036" y="260" font-size="17">Testing</text>
+    <text x="1036" y="232" font-size="30" font-weight="700">C</text><text x="1036" y="260" font-size="14">Send for testing</text>
   </g>
   <g text-anchor="middle" fill="#445b7b" font-size="18" font-weight="600" font-family="Segoe UI, Arial, sans-serif">
     <text x="310" y="330">Parent: A → D</text><text x="600" y="330">TEST: D → B</text><text x="890" y="330">LAB: B → C</text>
