@@ -112,50 +112,71 @@ This is why a team of agents needs a check of the whole plan. Local feasibility 
 
 The 7+1 representation preserves eight classes of requirements together with shared objects, identities, scope, and conditions. Under a fixed interpretation, the [BXP protocol draft](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/protocol/versions/0.4.0-draft.2/BXP-0001.md) defines the boundary as the set of candidate plans satisfying the constraints:
 
-```text
-χ_M(x) = Q(x) ∧ ¬F(x) ∧ K(x) ∧ Φ(x)
-Ω_M    = {x ∈ X_Σ | χ_M(x) = true}
-```
+$$
+\begin{aligned}
+\chi_{\mathcal M}(x)&=Q(x)\land\neg F(x)\land K(x)\land\Phi(x),\\
+\Omega_{\mathcal M}&=\{x\in\mathcal X_\Sigma\mid\chi_{\mathcal M}(x)\}.
+\end{aligned}
+$$
 
-`Q` contains obligations, `F` forbidden states, `K` completion or stopping conditions, and `Φ` other constraints. `Ω_M` contains acceptable plans under that fixed interpretation. We need not enumerate every plan: we can test whether a particular plan belongs to `Ω_M`, or whether combining requirements leaves that set empty.
+$Q$ contains obligations, $F$ forbidden states, $K$ completion or stopping conditions, and $\Phi$ other constraints. $\Omega_{\mathcal M}$ contains acceptable plans under that fixed interpretation. We need not enumerate every plan: we can test whether a particular plan belongs to $\Omega_{\mathcal M}$, or whether combining requirements leaves that set empty.
 
 **Calculation one: local versus combined constraints in RT044.** Let `A` be the safety review, `D` equipment startup, `B` packaging, and `C` submission for testing; subscripts `s/e` denote the planned start and end of each unique event in the same round. The [saved 7+1 report](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/demo/reports/R389-383.en.md) formalizes the parent task and three subtasks as:
 
-```text
-P = (A_e < D_s) ∧ ∧[X∈{A,B,C,D}](X_s < X_e)
-T = (D_e < B_s)       TEST
-L = (B_e < C_s)       LAB
-F = (C_e < A_s)       SAFETY
+$$
+P=(A_e\prec D_s)\land\bigwedge_{X\in\{A,B,C,D\}}(X_s\prec X_e)
+$$
 
-SAT(P) = true
-SAT(P∧T) = SAT(P∧L) = SAT(P∧F) = true
-SAT(P∧T∧L) = SAT(P∧T∧F) = SAT(P∧L∧F) = true
+$$
+T=(D_e\prec B_s),\quad L=(B_e\prec C_s),\quad F=(C_e\prec A_s)
+$$
 
-P∧T∧L∧F ⇒ A_s < A_e < D_s < D_e < B_s < B_e < C_s < C_e < A_s
-            ⇒ A_s < A_s ⇒ false
-SAT(P∧T∧L∧F) = false; Ω(P∧T∧L∧F) = ∅
-Ω(P) ≠ ∅, but Ω(P∧T∧L∧F) = ∅ → combined plan violates the boundary
-Report queries: KT / KL / KF = within bounds; KJ = violation
-```
+The first expression is the parent requirement; the other three are the orderings added by TEST, LAB, and SAFETY. The report first evaluates local and pairwise combinations:
 
-`SAT` asks whether any schedule satisfies all listed constraints. The report supplies endpoint witnesses for local feasibility and feasible orderings after any one child ordering is removed. **Only the full combination empties the feasible set.** This calculation concerns task specifications; it does not assert that the four events occurred.
+$$
+\begin{aligned}
+\operatorname{SAT}(P)&=\mathrm{true},\\
+\operatorname{SAT}(P\land T)&=\operatorname{SAT}(P\land L)=\operatorname{SAT}(P\land F)=\mathrm{true},\\
+\operatorname{SAT}(P\land T\land L)&=\mathrm{true},\\
+\operatorname{SAT}(P\land T\land F)&=\mathrm{true},\\
+\operatorname{SAT}(P\land L\land F)&=\mathrm{true}.
+\end{aligned}
+$$
+
+With every ordering combined, strict precedence returns to its own starting point:
+
+$$
+\begin{aligned}
+A_s&\prec A_e\prec D_s\prec D_e\prec B_s\prec B_e\\
+&\prec C_s\prec C_e\prec A_s\\
+&\Longrightarrow A_s\prec A_s\quad\text{(impossible)}.
+\end{aligned}
+$$
+
+$$
+\operatorname{SAT}(P\land T\land L\land F)=\mathrm{false},\qquad
+\Omega_{P\land T\land L\land F}=\varnothing.
+$$
+
+**Result: the parent task has a feasible plan, but the full set of child orderings has none; the combined plan violates the boundary.** The saved report agrees: KT, KL, and KF are individually within bounds, while joint query KJ reports a violation. $\operatorname{SAT}$ asks whether any schedule satisfies all listed constraints. This calculation concerns task specifications, not events that have already occurred.
 
 **Calculation two: equipment occupancy and handoff in RT042.** Another [saved 7+1 report](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/demo/reports/R389-381.en.md) records planned occupancy of the same instrument `M` in minutes after midnight: `J_X=[600,660)` and `J_Y=[660,720)`. Substituting the half-open interval endpoints into the overlap test gives:
 
-```text
-overlap(X,Y) ⇔ max(s_X,s_Y) < min(e_X,e_Y)
-             ⇔ max(600,660) < min(660,720)
-             ⇔ 660 < 660 = false
-J_X ∩ J_Y = ∅; s_Y − e_X = 0
-```
+$$
+\begin{aligned}
+o&\iff\max(s_X,s_Y)<\min(e_X,e_Y)\\
+ &\iff\max(600,660)<\min(660,720)\\
+ &\iff660<660=\mathrm{false}.
+\end{aligned}
+$$
+
+$$J_X\cap J_Y=\varnothing,\qquad s_Y-e_X=0.$$
 
 The parent task explicitly permits release and immediate handoff at the shared endpoint, with cleanup included in each occupancy period. The report evaluates the **stated handoff conditions** separately: `r` means “released at 11:00,” `b` means “no residual occupancy,” and `n` means “no third concurrent reservation.” These truth values come from statements in the task text.
 
-```text
-D = r ∧ b = true ∧ true = true       K5: stated condition supported
-N = n     = true                    K6: stated condition supported
-K1: planned occupancy of M does not overlap → within bounds
-```
+$$D=r\land b=\mathrm{true}\land\mathrm{true}=\mathrm{true},\qquad N=n=\mathrm{true}.$$
+
+Report queries: K1 finds the planned occupancy **within bounds**; K5 and K6 find that the **stated conditions are supported**.
 
 K1 compares the **plan**; K5 and K6 check support for **stated conditions**. None proves that the instrument was actually operated, work was accepted, or execution was authorized. RT042 specifies no numeric budget; an invented budget sum would not be one of its calculations.
 
