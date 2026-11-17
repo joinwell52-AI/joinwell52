@@ -3,7 +3,7 @@ schema: "publication-candidate-article/v2"
 title: "界痕 BoundaryXP：让 AI 团队的任务边界看得见"
 date: "2026-11-14"
 published_date: "2026-11-14"
-updated_date: "2026-11-16"
+updated_date: "2026-11-17"
 column: "open-source-engineering"
 category: "daily"
 article_type: "project-research"
@@ -24,7 +24,7 @@ sources:
 pageClass: "six-governance-article"
 ---
 
-<ArticleCover image="/assets/boundaryxp-cycle-20261114/boundaryxp-radar.zh.cover-v7.png" kicker="项目研究 · AI 任务边界" title="界痕 BoundaryXP：让 AI 团队的任务边界看得见" summary="智能体会自己规划步骤、调用工具，也可能在分工中扩大任务范围。界痕用 7+1 整理要求，把预算、权限、先后顺序和跨任务关系交给数学方法检查，让越界判断有据可查。" version="初版 2026-11-14 · 修订 2026-11-16" languageHref="/en/research/2026-11-14-boundaryxp-local-global-cycle" languageLabel="English" />
+<ArticleCover image="/assets/boundaryxp-cycle-20261114/boundaryxp-radar.zh.cover-v7.png" kicker="项目研究 · AI 任务边界" title="界痕 BoundaryXP：让 AI 团队的任务边界看得见" summary="智能体会自己规划步骤、调用工具，也可能在分工中扩大任务范围。界痕用 7+1 整理要求，把预算、权限、先后顺序和跨任务关系交给数学方法检查，让越界判断有据可查。" version="初版 2026-11-14 · 修订 2026-11-17" languageHref="/en/research/2026-11-14-boundaryxp-local-global-cycle" languageLabel="English" />
 
 <ArticleTableScroll language="zh" />
 
@@ -40,7 +40,7 @@ pageClass: "six-governance-article"
 
 更麻烦的是：如果子任务各自添加了工作顺序，单独看都能完成，合在一起却形成闭环，冲突该归到哪个层级？是主任务没写清楚，还是子任务增加的要求在组合时相互冲突？这些问题只靠“感觉”判断，很难统一，也很难追到原文。
 
-界痕 BoundaryXP 要做的，是让任务边界可以检查、可以讨论，也能找到判断依据。它提出 **7+1 任务边界判定方法**：先整理自然语言里的八类要求及其关系，再用数学方法检查主任务、子任务和组合方案。[方法论文](https://doi.org/10.5281/zenodo.24072738)与[协议草案](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/protocol/versions/0.4.0-draft.2/BXP-0001.zh-CN.md)均已公开。
+界痕 BoundaryXP 要做的，是让任务边界可以检查、可以讨论，也能找到判断依据。它提出 **7+1 任务边界判定方法**：先整理自然语言里的八类要求及其关系，再用数学方法检查主任务、子任务和组合方案。[方法论文](https://doi.org/10.5281/zenodo.24072738)已公开。
 
 ## 为什么说清楚目标还不够？
 
@@ -72,11 +72,11 @@ pageClass: "six-governance-article"
 
 **列出八栏只是开始，要求之间的关系同样重要。** 两个小组说的“预算”是不是同一笔钱？“验收通过后才能发布”中的验收，指的是哪个版本？子任务中的“设备一号”，是否就是主任务里的那台设备？这些关系决定后面的计算究竟在检查什么。
 
-遇到行业术语和企业内部称呼时，L2 行业语义库、L3 企业语义库可以帮助核对含义和身份。例如，某个简称究竟指测试环境还是生产环境，需要有依据。词库的解释和岗位名称本身都不能增加授权。[八类视图与共享关系的定义](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/protocol/versions/0.4.0-draft.2/BXP-0001.zh-CN.md#3-语义载体八类视图与共享结构)及[词库工具说明](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/mcp/TOOLS.md)给出了具体约定。
+遇到行业术语和企业内部称呼时，L2 行业语义库、L3 企业语义库可以帮助核对含义和身份。例如，某个简称究竟指测试环境还是生产环境，需要有依据。词库的解释和岗位名称本身都不能增加授权。
 
 ## 先自己判断：每个小组都能安排，合在一起呢？
 
-界痕公开的 [RT044 保存案例](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/demo/reports/R389-383.zh.md)给出了一个多任务组合问题。这是一份实验室计划约束案例：同一轮工作里，安全复核、设备开机、包装、送检各发生一次。
+界痕公开的 RT044 保存案例给出了一个多任务组合问题。这是一份实验室计划约束案例：同一轮工作里，安全复核、设备开机、包装、送检各发生一次。
 
 主任务和三个小组分别提出要求：
 
@@ -192,7 +192,7 @@ K1 比较的是**计划**；K5、K6 核对的是**文本已述状态的支持条
 | **未越界：RT042** | 同一设备分别占用 10—11 点、11—12 点；规则明确到点释放、允许立即接入，清场也已计入。 | 在这些条件下，两段占用没有重叠。 |
 | **信息不全：L23-050** | 林舟和赵清都参加会议，任务却只写“由他确认”，没有唯一指代依据。 | 最终确认人无法确定，需要补明身份。 |
 
-上面的 RT042 代入过程给出 `660 < 660 = false`：两段计划占用不重叠。释放与无第三预约另由 K5、K6 依据原文状态核对，不能把这些结果扩展成现实执行回执。[设备案例完整计算](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/demo/reports/R389-381.zh.md)
+上面的 RT042 代入过程给出 `660 < 660 = false`：两段计划占用不重叠。释放与无第三预约另由 K5、K6 依据原文状态核对，不能把这些结果扩展成现实执行回执。
 
 L23-050 中，准备材料与请求澄清可以继续，最终确认人的身份仍需明确。现有文字不能因为某人的岗位更高，就替任务发出者选定他，也不能据此说已经有人违规完成了验收。[责任人案例原文与计算](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/demo/reports/R389-153.zh.md)
 
@@ -200,9 +200,9 @@ L23-050 中，准备材料与请求澄清可以继续，最终确认人的身份
 
 ## 方法、协议和工具，怎样相互支撑？
 
-7+1 方法把任务要求及其关系组织成可比较的表示；BXP 协议进一步约定表示、依据、计算和结果的处理方式；BoundaryXP 工具负责把具体任务送入这一过程，展示原文、分析、计算回执和未决问题。协议草案与工具实现各有版本，当前实现范围以[实现状态说明](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/protocol/IMPLEMENTATION.md)为准。
+7+1 方法把任务要求及其关系组织成可比较的表示；BXP 协议进一步约定表示、依据、计算和结果的处理方式；BoundaryXP 工具负责把具体任务送入这一过程，展示原文、分析、计算回执和未决问题。协议草案与工具实现各有版本，当前实现范围以项目的版本说明为准。
 
-[公开研究材料](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/paper/materials/analysis625/REPORT.zh-CN.md)保存了 **625 组任务、3,219 个任务节点和 3,469 项查询**，涉及逻辑、数量、集合身份、依赖和复合约束。625 组保存结果的最终判定均与各自的现行标注一致，保存的模型整体判断也与程序汇总一致。逐项比较时，模型判断与程序结果仍有 **9 项差异**，包括 6 项标签编码差异和 3 项计算判断差异；另有 **3 项计算因指定输入缺失而未完成**。[统计口径与原始记录](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/paper/materials/evidence-r18/SOURCE-REPORT.md)
+公开研究材料保存了 **625 组任务、3,219 个任务节点和 3,469 项查询**，涉及逻辑、数量、集合身份、依赖和复合约束。625 组保存结果的最终判定均与各自的现行标注一致，保存的模型整体判断也与程序汇总一致。逐项比较时，模型判断与程序结果仍有 **9 项差异**，包括 6 项标签编码差异和 3 项计算判断差异；另有 **3 项计算因指定输入缺失而未完成**。[统计口径与原始记录](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/paper/materials/evidence-r18/SOURCE-REPORT.md)
 
 这些材料的作用，是让人检查方法怎样用于具体问题，冲突怎样定位，未知信息怎样影响结论。整组一致性衡量的是这些保存记录与现行标注的对应关系，不能外推为新任务准确率。
 
@@ -210,16 +210,16 @@ L23-050 中，准备材料与请求澄清可以继续，最终确认人的身份
 
 ## 怎样看报告，怎样分析自己的任务？
 
-可以先打开[中文交互演示](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/#case=R389-383&axis=A&view=radar&lang=zh)，从 RT044 开始：点任务树里的一个节点，选中一个维度，再查看相关条款和原文。这样能看到一个结论究竟对应哪些任务要求。
+可以先打开[中文交互演示](https://boundaryxp-demo.vercel.app/#case=R389-383&axis=A&view=radar&lang=zh)，从 RT044 开始：点任务树里的一个节点，选中一个维度，再查看相关条款和原文。这样能看到一个结论究竟对应哪些任务要求。
 
 <figure>
   <img src="/assets/boundaryxp-cycle-20261114/boundaryxp-workbench.zh.jpg" alt="界痕中文演示工作台，左侧是父子任务树，中间是7+1边界雷达，右侧是条款、原文与核验依据" />
   <figcaption>公开演示工作台：任务树、7+1 视图和原文依据放在同一页面。截图与在线演示回放的是已保存案例，不会重新分析你的任务。</figcaption>
 </figure>
 
-分析自己的任务，可以按 [MCP 中文安装指南](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/npm/INSTALL.zh-CN.md)接入 Cursor 或 Codex。截至 2026 年 11 月 16 日，公开预发行版为 **0.4.0-rc.9**，面向 Windows x64，提供 **21 个 MCP 工具、17 项资源**和本地浏览器工作台。新版增加了 L2 行业与 L3 企业自定义字典的格式说明、校验与导入功能，便于核对任务中的专业术语和内部称呼。安装与升级方式见中文安装指南及 [rc.9 发布说明](https://github.com/joinwell52-AI/BoundaryXP/releases/tag/mcp-v0.4.0-rc.9)。该版支持使用当前宿主的模型分析，无需另配一把模型 API 密钥；也可以选择独立 API 模式。宿主模式仍有模型参与，不能把“无需额外 API 密钥”理解成不使用模型服务。
+分析自己的任务，可以按 [MCP 中文安装指南](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/npm/INSTALL.zh-CN.md)接入 Cursor 或 Codex。截至 2026 年 11 月 16 日，公开预发行版为 **0.4.0-rc.9**，面向 Windows x64，提供 **21 个 MCP 工具、17 项资源**和本地浏览器工作台。新版增加了 L2 行业与 L3 企业自定义字典的格式说明、校验与导入功能，便于核对任务中的专业术语和内部称呼。该版支持使用当前宿主的模型分析，无需另配一把模型 API 密钥；也可以选择独立 API 模式。宿主模式仍有模型参与，不能把“无需额外 API 密钥”理解成不使用模型服务。
 
-实际使用时，先导入完整的主任务和子任务，检查任务树，再保存并明确提交分析。报告会保留模型的解释和计算内核对受支持操作数的复核结果，二者可以分别查看。对已保存的操作数，还可以不新增模型调用地复算。打开工作台本身不会提交一次新分析。[工具职责说明](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/mcp/TOOLS.md)
+实际使用时，先导入完整的主任务和子任务，检查任务树，再保存并明确提交分析。报告会保留模型的解释和计算内核对受支持操作数的复核结果，二者可以分别查看。对已保存的操作数，还可以不新增模型调用地复算。打开工作台本身不会提交一次新分析。
 
 目前公开内容包括文档、协议、论文、研究案例和编译安装包；计算内核的原始实现源码仍在独立私有仓库维护。使用报告时，也应保留它的判断范围：计算能够核验已经表达出来的问题，原文是否被完整、准确地理解仍需检查；修改计划、业务批准和实际执行，仍由相应的责任人或业务系统决定。
 
@@ -233,7 +233,5 @@ L23-050 中，准备材料与请求澄清可以继续，最终确认人的身份
 
 如果你遇到难以表达的真实约束，或对某个保存案例的判定有异议，欢迎带着**有权公开的最小任务摘录**、版本和具体疑问参与讨论。也可以先打开演示，在雷达图里选一条要求，沿着报告回到原文，亲自检查 RT044 的闭环。**方法只有经得起使用者的核对与质疑，边界才会变得可靠。**
 
-仓库 README 已提供分类入口：[提问与建议](https://github.com/joinwell52-AI/BoundaryXP/issues/new?template=04-question.yml) · [7+1 方法反例](https://github.com/joinwell52-AI/BoundaryXP/issues/new?template=01-method-counterexample.yml) · [MCP 使用问题](https://github.com/joinwell52-AI/BoundaryXP/issues/new?template=02-mcp-problem.yml) · [L2/L3 语义问题](https://github.com/joinwell52-AI/BoundaryXP/issues/new?template=03-semantic-resource.yml) · [参与贡献与 PR](https://github.com/joinwell52-AI/BoundaryXP/blob/main/CONTRIBUTING.md)。公开 Issue 和 PR 请勿包含密钥、客户资料或私人运行日志。
-
-[查看公开仓库并讨论](https://github.com/joinwell52-AI/BoundaryXP) · [阅读方法论文](https://doi.org/10.5281/zenodo.24072738) · [打开交互演示](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/#case=R389-383&axis=A&view=radar&lang=zh) · [查看安装指南](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/npm/INSTALL.zh-CN.md)
+阅读本文和交互演示无需登录 GitHub。若想提交问题或反例，可以从[BoundaryXP 仓库](https://github.com/joinwell52-AI/BoundaryXP)找到参与入口；提交时需要登录 GitHub。
 

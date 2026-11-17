@@ -3,7 +3,7 @@ schema: "publication-candidate-article/v2"
 title: "BoundaryXP: Make an AI Team’s Task Boundaries Visible"
 date: "2026-11-14"
 published_date: "2026-11-14"
-updated_date: "2026-11-16"
+updated_date: "2026-11-17"
 column: "open-source-engineering"
 category: "daily"
 article_type: "project-research"
@@ -24,7 +24,7 @@ sources:
 pageClass: "six-governance-article"
 ---
 
-<ArticleCover image="/assets/boundaryxp-cycle-20261114/boundaryxp-radar.en.cover-v7.png" kicker="Project research · AI task boundaries" title="BoundaryXP: Make an AI Team’s Task Boundaries Visible" summary="Agents plan steps, use tools, and delegate work. Their plans can also expand beyond the task they were given. BoundaryXP uses 7+1 to organize requirements and mathematical methods to check budgets, permissions, ordering, and relationships across tasks." version="Published 2026-11-14 · Revised 2026-11-16" languageHref="/zh/research/2026-11-14-boundaryxp-local-global-cycle" languageLabel="中文" />
+<ArticleCover image="/assets/boundaryxp-cycle-20261114/boundaryxp-radar.en.cover-v7.png" kicker="Project research · AI task boundaries" title="BoundaryXP: Make an AI Team’s Task Boundaries Visible" summary="Agents plan steps, use tools, and delegate work. Their plans can also expand beyond the task they were given. BoundaryXP uses 7+1 to organize requirements and mathematical methods to check budgets, permissions, ordering, and relationships across tasks." version="Published 2026-11-14 · Revised 2026-11-17" languageHref="/zh/research/2026-11-14-boundaryxp-local-global-cycle" languageLabel="中文" />
 
 <ArticleTableScroll language="en" />
 
@@ -40,7 +40,7 @@ During the work, one agent spots an obvious error and proposes changing the data
 
 More difficult still: what if subtasks add their own ordering rules, each workable on its own, but forming a cycle when combined? Where does that conflict belong? Was the parent task unclear, or do the added subtask requirements conflict only when brought together? Intuition alone makes these questions hard to answer consistently or trace back to the assignment.
 
-BoundaryXP aims to make task boundaries inspectable and open to discussion, with each judgment linked to its source. Its **7+1 method for task boundary verification** organizes eight classes of requirements and their relationships, then uses mathematical checks on the parent task, subtasks, and their combined plan. The [method paper](https://doi.org/10.5281/zenodo.24072738) and [draft protocol](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/protocol/versions/0.4.0-draft.2/BXP-0001.md) are public.
+BoundaryXP aims to make task boundaries inspectable and open to discussion, with each judgment linked to its source. Its **7+1 method for task boundary verification** organizes eight classes of requirements and their relationships, then uses mathematical checks on the parent task, subtasks, and their combined plan. The [method paper](https://doi.org/10.5281/zenodo.24072738) is public.
 
 ## Why is stating the goal not enough?
 
@@ -72,11 +72,11 @@ In the vehicle example, “the maintenance records for these vehicles” establi
 
 **Listing eight views is a beginning. The relationships among requirements matter just as much.** When two teams mention a budget, do they mean the same pool of money? In “release only after acceptance,” which version must be accepted? Does “device one” in a subtask identify the same device as in the parent task? These relationships determine what the calculation actually checks.
 
-L2 industry dictionaries and L3 enterprise dictionaries can help resolve domain terms and local names. For example, a shorthand name may refer to either a test environment or a production environment; the interpretation needs evidence. A dictionary explanation or job title does not itself add authority. The [protocol's definitions of views and shared relationships](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/protocol/versions/0.4.0-draft.2/BXP-0001.md) and the [dictionary tool reference](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/mcp/TOOLS.md) set out these conventions.
+L2 industry dictionaries and L3 enterprise dictionaries can help resolve domain terms and local names. For example, a shorthand name may refer to either a test environment or a production environment; the interpretation needs evidence. A dictionary explanation or job title does not itself add authority.
 
 ## Decide first: if each group's plan works, will the combination work?
 
-BoundaryXP's public [RT044 saved case](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/demo/reports/R389-383.en.md) illustrates a problem that emerges when tasks are combined. It is a laboratory planning example. Within the same round, safety review, equipment startup, packaging, and submission for testing each occur once.
+BoundaryXP's public RT044 saved case illustrates a problem that emerges when tasks are combined. It is a laboratory planning example. Within the same round, safety review, equipment startup, packaging, and submission for testing each occur once.
 
 The parent task and three groups specify the following orderings:
 
@@ -192,7 +192,7 @@ Boundary verification examines how a plan, or explicitly supplied facts about be
 | **Within bounds: RT042** | One device is booked for 10–11 and 11–12. The rules explicitly release it at the endpoint, permit immediate handoff, and include cleanup time. | Under those conditions, the bookings do not overlap. |
 | **Incomplete information: L23-050** | Lin Zhou and Zhao Qing both attend the meeting, but the task says only “he will confirm,” without identifying one person. | The final confirmer cannot be determined; the identity needs clarification. |
 
-The RT042 substitution above gives `660 < 660 = false`: the planned occupancies do not overlap. K5 and K6 separately check the stated release and no-third-reservation conditions; these results are not receipts of actual execution. [Full device-case calculation](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/demo/reports/R389-381.en.md)
+The RT042 substitution above gives `660 < 660 = false`: the planned occupancies do not overlap. K5 and K6 separately check the stated release and no-third-reservation conditions; these results are not receipts of actual execution.
 
 In L23-050, material preparation and requests for clarification can continue, while the final confirmer still needs to be identified. A person's seniority cannot fill that gap on the task owner's behalf. Nor does the ambiguity establish that someone has already performed an unauthorized acceptance. [Responsibility case: source and calculation](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/demo/reports/R389-153.en.md)
 
@@ -200,9 +200,9 @@ In L23-050, material preparation and requests for clarification can continue, wh
 
 ## How do the method, protocol, and tool support one another?
 
-The 7+1 method organizes task requirements and their relationships into a representation that supports comparison. The BXP protocol specifies how the representation, evidence, calculations, and results are handled. The BoundaryXP tool applies this process to concrete tasks and displays the source, analysis, calculation records, and unresolved questions. The draft protocol and the implementation have their own versions; the [implementation status](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/protocol/IMPLEMENTATION.md) describes the current scope.
+The 7+1 method organizes task requirements and their relationships into a representation that supports comparison. The BXP protocol specifies how the representation, evidence, calculations, and results are handled. The BoundaryXP tool applies this process to concrete tasks and displays the source, analysis, calculation records, and unresolved questions. The draft protocol and the implementation have their own versions; the project's version notes describe the current scope.
 
-The [public research materials](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/paper/materials/analysis625/REPORT.zh-CN.md) preserve **625 task groups, 3,219 task nodes, and 3,469 queries** involving logic, quantities, set identity, dependencies, and combined constraints. The final verdict in each of the 625 saved cases agrees with its current annotation; the saved model judgments at the whole-case level also agree with the program's aggregate results. Comparing individual queries still reveals **nine differences between model judgments and program results**: six label-encoding differences and three differences in calculation judgments. Another **three calculations remain incomplete because specified inputs are missing**. [Counting rules and source records](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/paper/materials/evidence-r18/SOURCE-REPORT.md)
+The public research materials preserve **625 task groups, 3,219 task nodes, and 3,469 queries** involving logic, quantities, set identity, dependencies, and combined constraints. The final verdict in each of the 625 saved cases agrees with its current annotation; the saved model judgments at the whole-case level also agree with the program's aggregate results. Comparing individual queries still reveals **nine differences between model judgments and program results**: six label-encoding differences and three differences in calculation judgments. Another **three calculations remain incomplete because specified inputs are missing**. [Counting rules and source records](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/paper/materials/evidence-r18/SOURCE-REPORT.md)
 
 These materials let readers inspect how the method applies to specific problems, how conflicts are located, and how unknown information affects a conclusion. Whole-case agreement measures the relationship between these saved records and the current annotations. It cannot be extrapolated into accuracy on unseen tasks.
 
@@ -210,16 +210,16 @@ The site's [November 14 verification record](https://github.com/joinwell52-AI/jo
 
 ## How can you inspect a report and analyze your own task?
 
-Start with the [English interactive demo](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/?lang=en#case=R389-383&axis=A&view=radar&lang=en) and open RT044. Select a node in the task tree, choose a view, and inspect the relevant clauses and source passages. This shows which requirements support a particular conclusion.
+Start with the [English interactive demo](https://boundaryxp-demo.vercel.app/?lang=en#case=R389-383&axis=A&view=radar&lang=en) and open RT044. Select a node in the task tree, choose a view, and inspect the relevant clauses and source passages. This shows which requirements support a particular conclusion.
 
 <figure>
   <img src="/assets/boundaryxp-cycle-20261114/boundaryxp-workbench.en.jpg" alt="BoundaryXP's English demo workbench, with a parent-child task tree on the left, the 7+1 boundary radar in the center, and clauses, source text, and verification evidence on the right" />
   <figcaption>The public workbench places the task tree, 7+1 views, and source evidence on one page. This English screenshot shows the separate ENG20-003 case. Both the screenshot and the online demo display saved cases; they do not run a fresh analysis of your task.</figcaption>
 </figure>
 
-To analyze your own tasks, follow the [MCP installation guide](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/npm/INSTALL.md) to connect BoundaryXP to Cursor or Codex. As of November 16, 2026, the public prerelease is **0.4.0-rc.9** for Windows x64, with **21 MCP tools, 17 resources**, and a local browser workbench. The release adds format guidance, validation, and import for L2 industry and L3 enterprise custom dictionaries, helping teams check task specific terms and internal names. For installation and upgrades, see the guide and [rc.9 release notes](https://github.com/joinwell52-AI/BoundaryXP/releases/tag/mcp-v0.4.0-rc.9). It can use the model in the current host without requiring a separate model API key; an independent API mode is also available. Host mode still uses a model. “No additional API key” does not mean that no model service is involved.
+To analyze your own tasks, follow the [MCP installation guide](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/npm/INSTALL.md) to connect BoundaryXP to Cursor or Codex. As of November 16, 2026, the public prerelease is **0.4.0-rc.9** for Windows x64, with **21 MCP tools, 17 resources**, and a local browser workbench. The release adds format guidance, validation, and import for L2 industry and L3 enterprise custom dictionaries, helping teams check task specific terms and internal names. It can use the model in the current host without requiring a separate model API key; an independent API mode is also available. Host mode still uses a model. “No additional API key” does not mean that no model service is involved.
 
-In use, import the complete parent task and subtasks, inspect the task tree, save it, and explicitly request analysis. The report keeps the model's interpretation and the calculation Core's checks of supported operands, so they can be inspected separately. Saved operands can also be recomputed without a new model call. Opening the workbench alone does not submit a fresh analysis. [Tool responsibilities](https://github.com/joinwell52-AI/BoundaryXP/blob/4a843cd63b804cf2f0d3280e50689afca698d320/docs/mcp/TOOLS.md)
+In use, import the complete parent task and subtasks, inspect the task tree, save it, and explicitly request analysis. The report keeps the model's interpretation and the calculation Core's checks of supported operands, so they can be inspected separately. Saved operands can also be recomputed without a new model call. Opening the workbench alone does not submit a fresh analysis.
 
 Public materials currently include documentation, the protocol, the paper, research cases, and compiled installation packages. Original Core implementation source remains in a separate private repository. Reports also retain a scope: calculations verify the problem as represented, while the completeness and accuracy of the source interpretation still need checking. Plan changes, business approval, and execution remain with the responsible people or business systems.
 
@@ -233,7 +233,5 @@ There are further questions worth investigating. If a task does not specify wher
 
 If a real constraint is hard to express, or you disagree with a saved case's judgment, bring a **minimal task excerpt you are allowed to share**, its version, and your specific question to the discussion. You can also open the demo, select a requirement on the radar, and trace the RT044 cycle back through its report to the source. **A method becomes more dependable when its users can inspect and challenge it.**
 
-The repository now offers focused participation routes: [Questions and ideas](https://github.com/joinwell52-AI/BoundaryXP/issues/new?template=04-question.yml) · [7+1 method counterexamples](https://github.com/joinwell52-AI/BoundaryXP/issues/new?template=01-method-counterexample.yml) · [MCP problems](https://github.com/joinwell52-AI/BoundaryXP/issues/new?template=02-mcp-problem.yml) · [L2/L3 semantic issues](https://github.com/joinwell52-AI/BoundaryXP/issues/new?template=03-semantic-resource.yml) · [Contributions and PRs](https://github.com/joinwell52-AI/BoundaryXP/blob/main/CONTRIBUTING.md). Public issues and PRs should not include secrets, customer data, or private runtime logs.
-
-[Explore the public repository and discuss](https://github.com/joinwell52-AI/BoundaryXP) · [Read the method paper](https://doi.org/10.5281/zenodo.24072738) · [Open the interactive demo](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/?lang=en#case=R389-383&axis=A&view=radar&lang=en) · [Read the installation guide](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/npm/INSTALL.md)
+Reading this article and opening the interactive demo do not require a GitHub account. To submit a question or counterexample, find the participation routes in the [BoundaryXP repository](https://github.com/joinwell52-AI/BoundaryXP); submitting on GitHub requires signing in.
 
