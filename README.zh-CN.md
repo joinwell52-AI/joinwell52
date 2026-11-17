@@ -131,7 +131,7 @@ CodeFlowMu 是本地运行的 PM / DEV / QA / OPS 多角色 AI 开发团队，�
 
 **Agent 治理连载 · 第一篇：[当多 Agent 走向失控：2026 年，我们需要什么样的 Agent 治理？](https://joinwell52-ai.github.io/joinwell52/zh/research/2026-09-18-multi-agent-governance)** · [English](https://joinwell52-ai.github.io/joinwell52/en/research/2026-09-18-multi-agent-governance)
 
-置顶文章可以在外发前登记，外发后直接在同一行补充平台链接。普通外部发布记录从 **2026-08-12** 开始，不回填此前的历史发布；同一文章的中文、英文及各平台链接集中在一行。当前已登记 **8 个外部渠道**：**CSDN、DEV Community、Cursor Forum、OpenAI Developer Community、Codex GitHub Discussions、Zenodo、掘金和 X**。其中 CSDN、DEV 与掘金承载文章外发，X 用于短研究摘要与准确归因，Cursor Forum、OpenAI Developer Community 与 Codex GitHub Discussions 用于技术讨论，Zenodo 用于研究成果存档与发现。标为“技术讨论”的链接是独立问题帖，不代表全文转载。
+置顶文章可以在外发前登记，外发后直接在同一行补充平台链接。普通外部发布记录从 **2026-08-12** 开始，不回填此前的历史发布；同一文章的中文、英文及各平台链接集中在一行。当前已登记 **9 个外部渠道**：**CSDN、DEV Community、Cursor Forum、OpenAI Developer Community、Codex GitHub Discussions、Zenodo、掘金、知乎和 X**。其中 CSDN、DEV、掘金与知乎承载文章外发，X 用于短研究摘要与准确归因，Cursor Forum、OpenAI Developer Community 与 Codex GitHub Discussions 用于技术讨论，Zenodo 用于研究成果存档与发现。标为“技术讨论”的链接是独立问题帖，不代表全文转载。
 
 | # | 标题 | 发布版本 | 一句话 |
 |---:|---|---|---|
@@ -213,6 +213,7 @@ CodeFlowMu 是本地运行的 PM / DEV / QA / OPS 多角色 AI 开发团队，�
 | 74 | **密钥放在环境变量里，为什么仍会出现在进程列表？** | [中文](https://joinwell52-ai.github.io/joinwell52/zh/research/2026-09-18-secret-origin-vs-transport) · [English](https://joinwell52-ai.github.io/joinwell52/en/research/2026-09-18-secret-origin-vs-transport) · [研究与实验](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-09-18-context-authority) | Windows 合成 token 三路径实验区分密钥来源与最后一跳传递方式：进入 argv 后，它已暴露在进程命令行观察面。 |
 | 75 | **AI 已经叫停，排队的工具为什么还会启动？** | [中文](https://joinwell52-ai.github.io/joinwell52/zh/research/2026-10-28-stopped-but-tool-ran.html) · [English](https://joinwell52-ai.github.io/joinwell52/en/research/2026-10-28-stopped-but-tool-ran.html) · [研究与实验](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-10-28-execution-boundaries) | OpenAI Agents Python 固定源码的 16 种受控时序对照，区分失败已报告、活动工具取消、排队调用停下及外部副作用。 |
 | 76 | **聊天记录缺了一页，AI 恢复工作后会知道吗？** | [中文](https://joinwell52-ai.github.io/joinwell52/zh/research/2026-10-28-missing-page-still-readable.html) · [English](https://joinwell52-ai.github.io/joinwell52/en/research/2026-10-28-missing-page-still-readable.html) · [研究与实验](https://github.com/joinwell52-AI/joinwell52/tree/main/research/manual-runs/2026-10-28-execution-boundaries) | OpenHands SDK 缺页对照显示，幸存事件恢复可读时，原始序号仍须留下缺口；能继续不代表历史完整。 |
+| 77 | **界痕 BoundaryXP：让 AI 团队的任务边界看得见** | [中文](https://joinwell52-ai.github.io/joinwell52/zh/research/2026-11-14-boundaryxp-local-global-cycle) · [English](https://joinwell52-ai.github.io/joinwell52/en/research/2026-11-14-boundaryxp-local-global-cycle) · [CSDN 中文](https://blog.csdn.net/m0_51507544/article/details/170921140) · [掘金中文](https://juejin.cn/spost/7708794296858443795) · [知乎中文](https://zhuanlan.zhihu.com/p/2106033608389674837) · [DEV English](https://dev.to/joinwell52/boundaryxp-make-an-ai-teams-task-boundaries-visible-54po) | 用 7+1 整理任务要求，通过保存案例说明局部可行与整体冲突的区别，以及数学核验的范围。 |
 
 补充参考：[数字员工生产机架构 V0.3.1 草案](https://joinwell52-ai.github.io/joinwell52/zh/digital-employee/architecture)。
 
