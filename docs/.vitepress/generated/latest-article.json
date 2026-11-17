@@ -1,19 +1,19 @@
 {
   "schema": "latest-published-article/v1",
   "zh": {
-    "title": "工单刚转交，AI 的回答却变成“已发货”：新消息该算哪一轮？",
-    "date": "2026-11-16",
+    "title": "AI 说“人已经批准了”，它就能替人执行吗？",
+    "date": "2026-11-17",
     "column": "open-source-engineering",
     "category": "daily",
-    "summary": "同一刻，工具返回“工单已转交”，用户追问订单。AG2 的修复前后局部对照显示：若本轮多调用一次模型，交接结果会被订单回答取代。我们又对照 CodeFlowMu 的输入投递边界。",
-    "url": "/zh/research/2026-11-16-handoff-new-message"
+    "summary": "Orca 的一次真实运行把 Agent 消息错当成人的许可。我们在 CodeFlowMu 的受控审批入口做六种对照，检查消息来源、确认凭据与实际操作能否被分清。",
+    "url": "/zh/research/2026-11-17-quoted-approval-is-not-permission"
   },
   "en": {
-    "title": "The ticket was escalated. Why did the AI answer about shipping?",
-    "date": "2026-11-16",
+    "title": "The AI says the human approved it. Can it act for them?",
+    "date": "2026-11-17",
     "column": "open-source-engineering",
     "category": "daily",
-    "summary": "A tool says the ticket was escalated just as the user asks about an order. In a bounded AG2 before/after comparison, one extra model call replaces the handoff result with a shipping answer. We compare that turn boundary with CodeFlowMu",
-    "url": "/en/research/2026-11-16-handoff-new-message"
+    "summary": "An Orca run treated an Agent message as human permission. We tested six authorization-source and request-binding controls at CodeFlowMu",
+    "url": "/en/research/2026-11-17-quoted-approval-is-not-permission"
   }
 }

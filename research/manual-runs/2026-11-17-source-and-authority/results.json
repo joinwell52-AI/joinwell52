@@ -1,0 +1,28 @@
+{
+  "schema": "source-vs-authority-study/v1",
+  "date": "2026-11-17",
+  "product": "CodeFlowMu V3.0.152",
+  "commit": "0d2d4e742ef2f3cb48e3ce09cc47f0c03053dc5f",
+  "operation_cases": [
+    { "input": "agent_quoted_human_approval", "decision": "REQUIRE_APPROVAL", "approval_records": 1, "executed": false },
+    { "input": "system_reminder_quoted_approval", "decision": "REQUIRE_APPROVAL", "approval_records": 1, "executed": false },
+    { "input": "forged_ui_fields_without_verifier", "decision": "REQUIRE_APPROVAL", "approval_records": 1, "executed": false },
+    { "input": "verified_ui_exact_digest", "decision": "ALLOW", "approval_records": 0, "executed": false, "verifier": "injected for this experiment" },
+    { "input": "verified_ui_changed_target", "decision": "REQUIRE_APPROVAL", "approval_records": 1, "executed": false },
+    { "input": "agent_with_valid_id_but_wrong_initiator", "decision": "REQUIRE_APPROVAL", "approval_records": 1, "executed": false }
+  ],
+  "acceptance_cases": [
+    { "input": "report_status_done_without_decision", "state": null },
+    { "input": "root_legacy_accept_text", "state": null },
+    { "input": "registered_admin_acceptance", "state": "result_accepted" },
+    { "input": "wrong_actor_registered_decision", "state": null },
+    { "input": "wrong_task_registered_decision", "state": null }
+  ],
+  "checks": { "synthetic_cases_passed": 11, "existing_suites_passed": 16, "suites_not_run_due_missing_yaml": 2 },
+  "limits": [
+    "Synthetic requests and root-task projections only",
+    "No Git push or external side effect executed",
+    "No full Host or multi-Agent session run",
+    "Trusted UI verifier injected in the experiment, not the production service construction"
+  ]
+}
