@@ -29,7 +29,7 @@ You ask an AI worker to inspect a repository. It reads another Agent's message: 
 
 The missing piece is whether **that user actually made a verifiable decision about this upload, this destination, and this version of the content**. The quoted statement might be entirely honest. Its speaker still cannot become the approver.
 
-This is not just a hypothetical. In [Orca PR #43093](https://github.com/stablyai/orca/pull/43093), contributors describe a real Codex run in which an Agent message was mistaken for human authorization and a risky upload was wrongly allowed. Orca manages Agent sessions. Its fix turns the message into a pointer to an approval request; the decision stays in Orca's local user interface. That is **Orca's incident**, not an incident we reproduced in another product.
+This is not just a hypothetical. In [Orca PR #43093](https://github.com/stablyai/orca/pull/43093), contributors describe a real Codex run in which an Agent message was mistaken for human authorization and a risky upload was wrongly allowed. Orca manages Agent sessions. Its fix turns ordinary Agent mail into a pointer to an approval request; the decision stays in Orca's local user interface. The authors also list an uncovered entrance: a child Agent's first task still arrives as a user-shaped message, so a coordinator's permission claim may be counted as the person's. That is **Orca's incident and stated limit**, not an incident we reproduced in another product.
 
 It prompted a check of CodeFlowMu, our local multi-Agent collaboration system. Its controlled-operation approval layer assesses external writes before execution. Our question was: **if “the human approved” appears in a message or request fields, will the tested interface promote it into authority?**
 
