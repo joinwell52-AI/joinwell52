@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="530" viewBox="0 0 1200 530" role="img" aria-labelledby="title desc">
+<title id="title">从服务参数名到会话数据的旧路径与修复路径</title><desc id="desc">旧版中服务声明的参数名被用于查找会话状态；新版只有调用者明确提供的参数进入请求。</desc>
+<rect width="1200" height="530" rx="28" fill="#f8f5ef"/>
+<text x="60" y="70" font-family="Arial, Microsoft YaHei, sans-serif" font-size="29" font-weight="700" fill="#12254d">同一个字段名，两种数据路径</text>
+<text x="62" y="116" font-family="Arial, Microsoft YaHei, sans-serif" font-size="21" fill="#5a6173">服务可以描述字段；取用本地数据应由客户端明确决定。</text>
+<rect x="60" y="162" width="1080" height="140" rx="21" fill="#fff" stroke="#d9dce6"/>
+<rect x="60" y="326" width="1080" height="140" rx="21" fill="#fff" stroke="#d9dce6"/>
+<text x="85" y="200" font-family="Arial, Microsoft YaHei, sans-serif" font-size="21" font-weight="700" fill="#b56922">修复前</text>
+<text x="85" y="364" font-family="Arial, Microsoft YaHei, sans-serif" font-size="21" font-weight="700" fill="#0c4fd7">修复后</text>
+<rect x="235" y="194" width="260" height="78" rx="15" fill="#fff2dc"/>
+<text x="258" y="229" font-family="Arial, Microsoft YaHei, sans-serif" font-size="21" fill="#784716">服务声明参数名</text><text x="258" y="255" font-family="Consolas, monospace" font-size="17" fill="#784716">user:email</text>
+<path d="M504 233 H603" stroke="#b77c37" stroke-width="4"/><path d="M603 233 l-12 -8 v16z" fill="#b77c37"/>
+<rect x="617" y="194" width="264" height="78" rx="15" fill="#e7efff"/>
+<text x="640" y="229" font-family="Arial, Microsoft YaHei, sans-serif" font-size="20" fill="#173a8e">同名查找 session</text><text x="640" y="255" font-family="Consolas, monospace" font-size="17" fill="#173a8e">state[name]</text>
+<path d="M889 233 H964" stroke="#b77c37" stroke-width="4"/><path d="M964 233 l-12 -8 v16z" fill="#b77c37"/>
+<text x="982" y="240" font-family="Arial, Microsoft YaHei, sans-serif" font-size="19" fill="#784716">送出值</text>
+<rect x="235" y="358" width="260" height="78" rx="15" fill="#fff2dc"/>
+<text x="258" y="393" font-family="Arial, Microsoft YaHei, sans-serif" font-size="21" fill="#784716">服务声明参数名</text><text x="258" y="419" font-family="Consolas, monospace" font-size="17" fill="#784716">user:email</text>
+<line x1="506" y1="398" x2="592" y2="398" stroke="#a8b0bf" stroke-width="3" stroke-dasharray="7 7"/>
+<line x1="588" y1="375" x2="618" y2="421" stroke="#c75a52" stroke-width="5"/><line x1="618" y1="375" x2="588" y2="421" stroke="#c75a52" stroke-width="5"/>
+<rect x="668" y="358" width="252" height="78" rx="15" fill="#dbe8ff"/>
+<text x="688" y="392" font-family="Arial, Microsoft YaHei, sans-serif" font-size="20" fill="#173a8e">调用者明确给参数</text><text x="688" y="419" font-family="Consolas, monospace" font-size="17" fill="#173a8e">arguments</text>
+<path d="M928 398 H990" stroke="#0c4fd7" stroke-width="4"/><path d="M990 398 l-12 -8 v16z" fill="#0c4fd7"/>
+<text x="1001" y="405" font-family="Arial, Microsoft YaHei, sans-serif" font-size="19" fill="#173a8e">仅送所选</text>
+</svg>
