@@ -1,0 +1,59 @@
+{
+  "schema": "bounded-experiment/v1",
+  "id": "EXP-AP-IDENTITY",
+  "date": "2026-11-14",
+  "executedAt": "2026-11-14T05:05:47.761619+00:00",
+  "question": "Does the actual pinned FunctionTool.source getter distinguish changed function bodies that retain module, qualname and exposed name?",
+  "kind": "source-derived isolated upstream function probe; actual getter AST with synthetic owner/callables; not full AG2 execution",
+  "environment": {
+    "python": "3.12.9"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/ag2ai/ag2/10809bf298ff7c5c5a5c830651070c6f6634f90f/ag2/tools/final/function_tool.py",
+    "commit": "10809bf298ff7c5c5a5c830651070c6f6634f90f",
+    "snapshotSha256": "493063681e77b1b473c8c60290327a0bb81f1e796600a6dbba44c8081fb7e04f"
+  },
+  "extraction": "Parse full exact raw text with ast; select FunctionTool.source; remove only @property descriptor for direct invocation. No imports or other framework code executed.",
+  "cases": [
+    {
+      "name": "same-exposed-name-distinct-callable-qualname",
+      "left": "function:fixture.module:execute:run",
+      "right": "function:fixture.module:other:run",
+      "expectedEqual": false,
+      "observedEqual": false,
+      "passed": true
+    },
+    {
+      "name": "changed-code-same-module-qualname-exposed-name",
+      "left": "function:fixture.module:execute:run",
+      "right": "function:fixture.module:execute:run",
+      "expectedEqual": true,
+      "observedEqual": true,
+      "passed": true
+    },
+    {
+      "name": "same-callable-different-exposed-name",
+      "left": "function:fixture.module:execute:run",
+      "right": "function:fixture.module:execute:run-alias",
+      "expectedEqual": false,
+      "observedEqual": false,
+      "passed": true
+    }
+  ],
+  "differentBodiesControl": {
+    "old": "old behavior",
+    "replacement": "changed behavior"
+  },
+  "result": "Distinct qualnames separate identity; different code with unchanged module/qualname/exposed name has equal identity. This identity string is not a code-content binding.",
+  "limits": [
+    "No approval middleware, context restoration, transport, credentials, human input or framework integration executed.",
+    "Equal identity does not demonstrate attacker control or an end-to-end authorization bypass.",
+    "Argument, target, TTL and policy binding observations remain static findings from separately read middleware."
+  ],
+  "disclosure": {
+    "internal": true,
+    "executedIn": "2026-11-14 Analysis",
+    "productionRerun": false,
+    "redaction": "Only the local execution command/path is omitted. All controls, outputs, environment and limits are preserved."
+  }
+}

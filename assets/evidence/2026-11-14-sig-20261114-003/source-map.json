@@ -1,0 +1,79 @@
+{
+  "schema": "article-source-map/v1",
+  "date": "2026-11-14",
+  "sources": [
+    {
+      "id": "AP-GRANT",
+      "identity": "our-observation",
+      "claim": "Approval grant is event.source or event.name in context.variables; Always reuse does not include arguments or a time bound, and denials do not call the continuation.",
+      "url": "https://raw.githubusercontent.com/ag2ai/ag2/10809bf298ff7c5c5a5c830651070c6f6634f90f/ag2/middleware/builtin/tools/approval.py",
+      "sourceArtifactSha256": "6c1a4d176040780af0c009aec6906d55d76bae423e0723b4233713a18eca9852",
+      "locator": "ApprovalRequired.__call__; approval_required",
+      "independent": false
+    },
+    {
+      "id": "AP-TESTS",
+      "identity": "source-reported-claim",
+      "claim": "Maintainer tests assert same-name implementation separation, persistence on later turns and reuse after variables JSON roundtrip. Tests were read, not executed.",
+      "url": "https://raw.githubusercontent.com/ag2ai/ag2/10809bf298ff7c5c5a5c830651070c6f6634f90f/test/middleware/builtins/test_approval.py",
+      "sourceArtifactSha256": "6c834b0e3321a23f334a80c442d5d5dc38a0bd28071a175076c55b978b22e231",
+      "locator": "test_always_does_not_approve_another_tool_of_the_same_name; test_always_survives_rebuilding_the_tool_from_stored_variables",
+      "independent": false
+    },
+    {
+      "id": "AP-SOURCE",
+      "identity": "our-observation",
+      "claim": "FunctionTool source uses module, qualname and exposed name; registration overwrites the event source on a copy before middleware execution.",
+      "url": "https://raw.githubusercontent.com/ag2ai/ag2/10809bf298ff7c5c5a5c830651070c6f6634f90f/ag2/tools/final/function_tool.py",
+      "sourceArtifactSha256": "493063681e77b1b473c8c60290327a0bb81f1e796600a6dbba44c8081fb7e04f",
+      "locator": "source property; register.execute",
+      "independent": false
+    },
+    {
+      "id": "AP-CONTEXT",
+      "identity": "our-observation",
+      "claim": "Context.ask correlates a human reply by parent_id and applies timeout around send plus wait; reserved variable filtering excludes ag:/a2a: keys. Transport coverage is unverified.",
+      "url": "https://raw.githubusercontent.com/ag2ai/ag2/10809bf298ff7c5c5a5c830651070c6f6634f90f/ag2/context.py",
+      "sourceArtifactSha256": "bd1d17e44200da391a1c204e5ae5f6a5d3414f2c34d2cfe32b67493689f5a521",
+      "locator": "ConversationContext.ask; strip_reserved_variables",
+      "independent": false
+    },
+    {
+      "id": "AP-SIDJUA",
+      "identity": "our-observation",
+      "claim": "findApproval SQL matches agent and workflow pattern inside a created_at window but omits request_id despite its comment; createApprovalRequest stores request_id in metadata.",
+      "url": "https://raw.githubusercontent.com/GoetzKohlberg/sidjua/747b5bb125c8cc94e7cb99a581dc63bedb2c9bb2/src/pipeline/approval.ts",
+      "sourceArtifactSha256": "f2ff917c9921ed5c9bb77c0cdc170e78d7af9dc2a4431ae939f54a107fa9db89",
+      "locator": "findApproval; createApprovalRequest",
+      "independent": false
+    },
+    {
+      "id": "AP-PIPELINE",
+      "identity": "our-observation",
+      "claim": "Approval PAUSE/BLOCK short-circuits the pipeline; pending approval-ID lookup separately uses JSON request_id. Fail-closed exception handling can return audit ID -1 if audit writing fails.",
+      "url": "https://raw.githubusercontent.com/GoetzKohlberg/sidjua/747b5bb125c8cc94e7cb99a581dc63bedb2c9bb2/src/pipeline/index.ts",
+      "sourceArtifactSha256": "362be607dfad214ca5831af0a6b13d8dec71e43e7eb1280884d1c27a3da02432",
+      "locator": "runPipeline; finalize; getOrCreateApprovalId; evaluateAction",
+      "independent": false
+    },
+    {
+      "id": "EXP-AP",
+      "identity": "internal-experimental-evidence",
+      "claim": "The exact pinned SQL returns the same approved row for request A and request B/target B; different-agent, workflow, age and status controls exclude it. Newest eligible record wins. Nine SQL cases executed.",
+      "url": null,
+      "sourceArtifactSha256": "069191adcad8182c8baefa3b424adaea58235bf85c579cab566dbf523a4c1ec7",
+      "locator": null,
+      "independent": false
+    },
+    {
+      "id": "EXP-AP-IDENTITY",
+      "identity": "internal-experimental-evidence",
+      "claim": "The actual pinned FunctionTool.source getter returns equal strings for different bodies retaining module/qualname/exposed name, unequal strings for distinct qualnames or aliases; three AST-isolated cases executed.",
+      "url": null,
+      "sourceArtifactSha256": "73df0c5e1d886db09d9f6adcef2d4fde250996022662831f00eb4efdc3b164d7",
+      "locator": null,
+      "independent": false
+    }
+  ],
+  "notice": "Two independently authored implementations are topic sources, not independent security reproductions. Internal probes remain internal. Upstream normalized snapshots and raw-body hashes are different representations."
+}

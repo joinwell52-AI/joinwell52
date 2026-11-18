@@ -1,0 +1,166 @@
+{
+  "schema": "bounded-experiment/v1",
+  "id": "EXP-AP",
+  "date": "2026-11-14",
+  "startedAt": "2026-11-14T05:05:47.279Z",
+  "completedAt": "2026-11-14T05:05:47.299Z",
+  "question": "Does the exact pinned approval lookup distinguish a new request ID/target while holding agent/workflow/time constant?",
+  "kind": "source-derived isolated SQL predicate probe; not whole SIDJUA execution",
+  "source": {
+    "url": "https://raw.githubusercontent.com/GoetzKohlberg/sidjua/747b5bb125c8cc94e7cb99a581dc63bedb2c9bb2/src/pipeline/approval.ts",
+    "commit": "747b5bb125c8cc94e7cb99a581dc63bedb2c9bb2",
+    "snapshotSha256": "f2ff917c9921ed5c9bb77c0cdc170e78d7af9dc2a4431ae939f54a107fa9db89",
+    "sqlSha256": "a27fd5516ec0ee07722f504c209c7d6958433517f33b821ff5f4466174d03a70"
+  },
+  "environment": {
+    "node": "v24.19.0",
+    "sqlite": "3.53.3"
+  },
+  "controls": [
+    {
+      "name": "same-request-positive-control",
+      "request": {
+        "agent_id": "agent-a",
+        "request_id": "request-A",
+        "target": "target-A"
+      },
+      "fixture": {},
+      "observed": {
+        "id": 1,
+        "status": "approved",
+        "storedRequest": "request-A"
+      },
+      "expectedStatus": "approved",
+      "passed": true
+    },
+    {
+      "name": "different-request-target",
+      "request": {
+        "agent_id": "agent-a",
+        "request_id": "request-B",
+        "target": "target-B"
+      },
+      "fixture": {
+        "queryRequest": "request-B",
+        "target": "target-B"
+      },
+      "observed": {
+        "id": 1,
+        "status": "approved",
+        "storedRequest": "request-A"
+      },
+      "expectedStatus": "approved",
+      "passed": true
+    },
+    {
+      "name": "different-agent-negative-control",
+      "request": {
+        "agent_id": "agent-b",
+        "request_id": "request-A",
+        "target": "target-A"
+      },
+      "fixture": {
+        "queryAgent": "agent-b"
+      },
+      "observed": null,
+      "expectedStatus": null,
+      "passed": true
+    },
+    {
+      "name": "different-workflow-negative-control",
+      "request": {
+        "agent_id": "agent-a",
+        "request_id": "request-A",
+        "target": "target-A"
+      },
+      "fixture": {
+        "rule": "deploy.*"
+      },
+      "observed": null,
+      "expectedStatus": null,
+      "passed": true
+    },
+    {
+      "name": "expired-record-negative-control",
+      "request": {
+        "agent_id": "agent-a",
+        "request_id": "request-A",
+        "target": "target-A"
+      },
+      "fixture": {
+        "age": "-25 hours"
+      },
+      "observed": null,
+      "expectedStatus": null,
+      "passed": true
+    },
+    {
+      "name": "pending-across-request",
+      "request": {
+        "agent_id": "agent-a",
+        "request_id": "request-B",
+        "target": "target-A"
+      },
+      "fixture": {
+        "queryRequest": "request-B",
+        "status": "pending"
+      },
+      "observed": {
+        "id": 1,
+        "status": "pending",
+        "storedRequest": "request-A"
+      },
+      "expectedStatus": "pending",
+      "passed": true
+    },
+    {
+      "name": "denied-across-request",
+      "request": {
+        "agent_id": "agent-a",
+        "request_id": "request-B",
+        "target": "target-A"
+      },
+      "fixture": {
+        "queryRequest": "request-B",
+        "status": "denied"
+      },
+      "observed": {
+        "id": 1,
+        "status": "denied",
+        "storedRequest": "request-A"
+      },
+      "expectedStatus": "denied",
+      "passed": true
+    },
+    {
+      "name": "ineligible-status-negative-control",
+      "request": {
+        "agent_id": "agent-a",
+        "request_id": "request-A",
+        "target": "target-A"
+      },
+      "fixture": {
+        "status": "cancelled"
+      },
+      "observed": null,
+      "expectedStatus": null,
+      "passed": true
+    }
+  ],
+  "latestRecordControl": {
+    "selectedId": 2,
+    "status": "denied"
+  },
+  "result": "The predicate returns the same approved row for request A and request B / target B; agent, workflow and age controls exclude the row. Pending and denied also span request IDs; newest eligible row wins.",
+  "limits": [
+    "SQL and native SQLite only; no matcher, condition parser, decision writer, resume-token verifier, external tool or full pipeline was run.",
+    "Requests and rows are explicit synthetic fixtures; this is not a production incident or exploit.",
+    "Age controls are well separated from the boundary; exact timestamp boundary behavior is not tested."
+  ],
+  "disclosure": {
+    "internal": true,
+    "executedIn": "2026-11-14 Analysis",
+    "productionRerun": false,
+    "redaction": "Only the local execution command/path is omitted. All controls, outputs, environment and limits are preserved."
+  }
+}
