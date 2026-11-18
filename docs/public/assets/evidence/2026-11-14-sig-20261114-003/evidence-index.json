@@ -1,0 +1,37 @@
+{
+  "schema": "article-experiment-evidence/v1",
+  "date": "2026-11-14",
+  "internal": true,
+  "productionRerun": false,
+  "files": [
+    {
+      "file": "approval-results.json",
+      "sha256": "5c1d4f2ff2321e8ff2e2b66e2c20222c6a11f64709ff245baee7565310af4f73"
+    },
+    {
+      "file": "identity-results.json",
+      "sha256": "df1147b5bda05e88f0eb3d133a3890c0bb9b06e8e0dacc8fd926fea5bc55f287"
+    },
+    {
+      "file": "source-map.json",
+      "sha256": "1521e96a04135339df6214ad856972cc073275b785f359d76ce8c3f02a64eec2"
+    },
+    {
+      "file": "evidence-guide.json",
+      "sha256": "36f5a071c44ef215d54550187710a648fe7f58b87dd183c69ba00a4b91aab89e"
+    }
+  ],
+  "claims": [
+    {
+      "id": "EXP-AP",
+      "file": "approval-results.json",
+      "scope": "Nine isolated SQL cases, not pipeline execution"
+    },
+    {
+      "id": "EXP-AP-IDENTITY",
+      "file": "identity-results.json",
+      "scope": "Three actual getter cases, not middleware execution"
+    }
+  ],
+  "provenance": "Derived from verified same-run Analysis; local command paths removed, no result changed."
+}

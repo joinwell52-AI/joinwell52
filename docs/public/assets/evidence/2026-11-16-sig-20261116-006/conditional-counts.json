@@ -1,0 +1,491 @@
+{
+  "schema": "article-conditional-count-evidence/v1",
+  "date": "2026-11-16",
+  "title": "Conditional action-subset identification from disclosed marginal counts",
+  "evidenceIdentity": "internal-experimental-evidence",
+  "independent": false,
+  "provenance": "De-identified extraction from the completed 2026-11-16 research analysis experiment. No new model evaluation.",
+  "sourceUrls": [
+    "https://caacgo.cresclab.com/benchmark/gemini-4-hydrogen-november-2026",
+    "https://caacgo.cresclab.com/benchmark",
+    "https://www.chatbase.co/benchmark/results"
+  ],
+  "assumptions": [
+    "Reported 150 cases and 24 action-eligible cases refer to the same run.",
+    "Whole-case pass for an eligible case entails successful action plus other reply requirements.",
+    "No unreported independence or correlation assumed."
+  ],
+  "rows": [
+    {
+      "model": "Gemini 4 Hydrogen",
+      "reportedInputs": {
+        "N": 150,
+        "eligible": 24,
+        "wholePass": 130,
+        "actionSuccess": 24
+      },
+      "eligibleWholePassBounds": [
+        4,
+        24
+      ],
+      "feasibleTableCount": 21,
+      "allFeasibleTables": [
+        {
+          "eligibleFull": 4,
+          "eligibleNotFull": 20,
+          "otherFull": 126,
+          "otherNotFull": 0,
+          "eligibleActionSuccessNotFull": 20,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 5,
+          "eligibleNotFull": 19,
+          "otherFull": 125,
+          "otherNotFull": 1,
+          "eligibleActionSuccessNotFull": 19,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 6,
+          "eligibleNotFull": 18,
+          "otherFull": 124,
+          "otherNotFull": 2,
+          "eligibleActionSuccessNotFull": 18,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 7,
+          "eligibleNotFull": 17,
+          "otherFull": 123,
+          "otherNotFull": 3,
+          "eligibleActionSuccessNotFull": 17,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 8,
+          "eligibleNotFull": 16,
+          "otherFull": 122,
+          "otherNotFull": 4,
+          "eligibleActionSuccessNotFull": 16,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 9,
+          "eligibleNotFull": 15,
+          "otherFull": 121,
+          "otherNotFull": 5,
+          "eligibleActionSuccessNotFull": 15,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 10,
+          "eligibleNotFull": 14,
+          "otherFull": 120,
+          "otherNotFull": 6,
+          "eligibleActionSuccessNotFull": 14,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 11,
+          "eligibleNotFull": 13,
+          "otherFull": 119,
+          "otherNotFull": 7,
+          "eligibleActionSuccessNotFull": 13,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 12,
+          "eligibleNotFull": 12,
+          "otherFull": 118,
+          "otherNotFull": 8,
+          "eligibleActionSuccessNotFull": 12,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 13,
+          "eligibleNotFull": 11,
+          "otherFull": 117,
+          "otherNotFull": 9,
+          "eligibleActionSuccessNotFull": 11,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 14,
+          "eligibleNotFull": 10,
+          "otherFull": 116,
+          "otherNotFull": 10,
+          "eligibleActionSuccessNotFull": 10,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 15,
+          "eligibleNotFull": 9,
+          "otherFull": 115,
+          "otherNotFull": 11,
+          "eligibleActionSuccessNotFull": 9,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 16,
+          "eligibleNotFull": 8,
+          "otherFull": 114,
+          "otherNotFull": 12,
+          "eligibleActionSuccessNotFull": 8,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 17,
+          "eligibleNotFull": 7,
+          "otherFull": 113,
+          "otherNotFull": 13,
+          "eligibleActionSuccessNotFull": 7,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 18,
+          "eligibleNotFull": 6,
+          "otherFull": 112,
+          "otherNotFull": 14,
+          "eligibleActionSuccessNotFull": 6,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 19,
+          "eligibleNotFull": 5,
+          "otherFull": 111,
+          "otherNotFull": 15,
+          "eligibleActionSuccessNotFull": 5,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 20,
+          "eligibleNotFull": 4,
+          "otherFull": 110,
+          "otherNotFull": 16,
+          "eligibleActionSuccessNotFull": 4,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 21,
+          "eligibleNotFull": 3,
+          "otherFull": 109,
+          "otherNotFull": 17,
+          "eligibleActionSuccessNotFull": 3,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 22,
+          "eligibleNotFull": 2,
+          "otherFull": 108,
+          "otherNotFull": 18,
+          "eligibleActionSuccessNotFull": 2,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 23,
+          "eligibleNotFull": 1,
+          "otherFull": 107,
+          "otherNotFull": 19,
+          "eligibleActionSuccessNotFull": 1,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 24,
+          "eligibleNotFull": 0,
+          "otherFull": 106,
+          "otherNotFull": 20,
+          "eligibleActionSuccessNotFull": 0,
+          "eligibleActionFailure": 0
+        }
+      ],
+      "withoutConjunctionBounds": [
+        4,
+        24
+      ]
+    },
+    {
+      "model": "Claude Fable 5.2",
+      "reportedInputs": {
+        "N": 150,
+        "eligible": 24,
+        "wholePass": 131,
+        "actionSuccess": 24
+      },
+      "eligibleWholePassBounds": [
+        5,
+        24
+      ],
+      "feasibleTableCount": 20,
+      "allFeasibleTables": [
+        {
+          "eligibleFull": 5,
+          "eligibleNotFull": 19,
+          "otherFull": 126,
+          "otherNotFull": 0,
+          "eligibleActionSuccessNotFull": 19,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 6,
+          "eligibleNotFull": 18,
+          "otherFull": 125,
+          "otherNotFull": 1,
+          "eligibleActionSuccessNotFull": 18,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 7,
+          "eligibleNotFull": 17,
+          "otherFull": 124,
+          "otherNotFull": 2,
+          "eligibleActionSuccessNotFull": 17,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 8,
+          "eligibleNotFull": 16,
+          "otherFull": 123,
+          "otherNotFull": 3,
+          "eligibleActionSuccessNotFull": 16,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 9,
+          "eligibleNotFull": 15,
+          "otherFull": 122,
+          "otherNotFull": 4,
+          "eligibleActionSuccessNotFull": 15,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 10,
+          "eligibleNotFull": 14,
+          "otherFull": 121,
+          "otherNotFull": 5,
+          "eligibleActionSuccessNotFull": 14,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 11,
+          "eligibleNotFull": 13,
+          "otherFull": 120,
+          "otherNotFull": 6,
+          "eligibleActionSuccessNotFull": 13,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 12,
+          "eligibleNotFull": 12,
+          "otherFull": 119,
+          "otherNotFull": 7,
+          "eligibleActionSuccessNotFull": 12,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 13,
+          "eligibleNotFull": 11,
+          "otherFull": 118,
+          "otherNotFull": 8,
+          "eligibleActionSuccessNotFull": 11,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 14,
+          "eligibleNotFull": 10,
+          "otherFull": 117,
+          "otherNotFull": 9,
+          "eligibleActionSuccessNotFull": 10,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 15,
+          "eligibleNotFull": 9,
+          "otherFull": 116,
+          "otherNotFull": 10,
+          "eligibleActionSuccessNotFull": 9,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 16,
+          "eligibleNotFull": 8,
+          "otherFull": 115,
+          "otherNotFull": 11,
+          "eligibleActionSuccessNotFull": 8,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 17,
+          "eligibleNotFull": 7,
+          "otherFull": 114,
+          "otherNotFull": 12,
+          "eligibleActionSuccessNotFull": 7,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 18,
+          "eligibleNotFull": 6,
+          "otherFull": 113,
+          "otherNotFull": 13,
+          "eligibleActionSuccessNotFull": 6,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 19,
+          "eligibleNotFull": 5,
+          "otherFull": 112,
+          "otherNotFull": 14,
+          "eligibleActionSuccessNotFull": 5,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 20,
+          "eligibleNotFull": 4,
+          "otherFull": 111,
+          "otherNotFull": 15,
+          "eligibleActionSuccessNotFull": 4,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 21,
+          "eligibleNotFull": 3,
+          "otherFull": 110,
+          "otherNotFull": 16,
+          "eligibleActionSuccessNotFull": 3,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 22,
+          "eligibleNotFull": 2,
+          "otherFull": 109,
+          "otherNotFull": 17,
+          "eligibleActionSuccessNotFull": 2,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 23,
+          "eligibleNotFull": 1,
+          "otherFull": 108,
+          "otherNotFull": 18,
+          "eligibleActionSuccessNotFull": 1,
+          "eligibleActionFailure": 0
+        },
+        {
+          "eligibleFull": 24,
+          "eligibleNotFull": 0,
+          "otherFull": 107,
+          "otherNotFull": 19,
+          "eligibleActionSuccessNotFull": 0,
+          "eligibleActionFailure": 0
+        }
+      ],
+      "withoutConjunctionBounds": [
+        5,
+        24
+      ]
+    },
+    {
+      "model": "GPT-6 Astra",
+      "reportedInputs": {
+        "N": 150,
+        "eligible": 24,
+        "wholePass": 114,
+        "actionSuccess": 7
+      },
+      "eligibleWholePassBounds": [
+        0,
+        7
+      ],
+      "feasibleTableCount": 8,
+      "allFeasibleTables": [
+        {
+          "eligibleFull": 0,
+          "eligibleNotFull": 24,
+          "otherFull": 114,
+          "otherNotFull": 12,
+          "eligibleActionSuccessNotFull": 7,
+          "eligibleActionFailure": 17
+        },
+        {
+          "eligibleFull": 1,
+          "eligibleNotFull": 23,
+          "otherFull": 113,
+          "otherNotFull": 13,
+          "eligibleActionSuccessNotFull": 6,
+          "eligibleActionFailure": 17
+        },
+        {
+          "eligibleFull": 2,
+          "eligibleNotFull": 22,
+          "otherFull": 112,
+          "otherNotFull": 14,
+          "eligibleActionSuccessNotFull": 5,
+          "eligibleActionFailure": 17
+        },
+        {
+          "eligibleFull": 3,
+          "eligibleNotFull": 21,
+          "otherFull": 111,
+          "otherNotFull": 15,
+          "eligibleActionSuccessNotFull": 4,
+          "eligibleActionFailure": 17
+        },
+        {
+          "eligibleFull": 4,
+          "eligibleNotFull": 20,
+          "otherFull": 110,
+          "otherNotFull": 16,
+          "eligibleActionSuccessNotFull": 3,
+          "eligibleActionFailure": 17
+        },
+        {
+          "eligibleFull": 5,
+          "eligibleNotFull": 19,
+          "otherFull": 109,
+          "otherNotFull": 17,
+          "eligibleActionSuccessNotFull": 2,
+          "eligibleActionFailure": 17
+        },
+        {
+          "eligibleFull": 6,
+          "eligibleNotFull": 18,
+          "otherFull": 108,
+          "otherNotFull": 18,
+          "eligibleActionSuccessNotFull": 1,
+          "eligibleActionFailure": 17
+        },
+        {
+          "eligibleFull": 7,
+          "eligibleNotFull": 17,
+          "otherFull": 107,
+          "otherNotFull": 19,
+          "eligibleActionSuccessNotFull": 0,
+          "eligibleActionFailure": 17
+        }
+      ],
+      "withoutConjunctionBounds": [
+        0,
+        24
+      ]
+    }
+  ],
+  "positiveControl": {
+    "knownJoint": {
+      "eligibleFull": 6,
+      "eligibleNotFull": 18,
+      "otherFull": 108,
+      "otherNotFull": 18
+    },
+    "identifiedEligibleFull": 6
+  },
+  "sourceComparison": {
+    "Chatbase": "Reported 9/9 reached checkout is a stage observation; no purchase count supplied.",
+    "purchaseInference": "Not identified; no purchase count or conversion lift was measured here."
+  },
+  "result": "Marginals leave multiple possible eligible whole-pass counts for every reported row.",
+  "limits": [
+    "Arithmetic checks conditional on vendor-reported counts, not verification of those counts.",
+    "Constructed tables are possible allocations, not recovered transcripts or measured model behavior.",
+    "Does not measure judge quality, durable backend saves, customers, purchases or deployment performance."
+  ]
+}
