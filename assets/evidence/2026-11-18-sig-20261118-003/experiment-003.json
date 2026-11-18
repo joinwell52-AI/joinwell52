@@ -1,0 +1,216 @@
+{
+  "id": "EXP-003",
+  "objectId": "SIG-20261118-003",
+  "environment": {
+    "python": "3.12.9 (tags/v3.12.9:fdb8142, Feb  4 2025, 15:27:58) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "executedAt": "2026-11-18T05:04:39.384825+00:00",
+    "networkCalls": 0
+  },
+  "sourcePins": [
+    {
+      "sha256": "9fb3951180776ca548d696d6877ddef8afe305bc9245bee1a2d6fa0bb8f79bf8",
+      "requiredAnchors": [
+        "Causal Influence Index (CII)",
+        "was not\npermitted to",
+        "validity is a diagnostic only"
+      ]
+    },
+    {
+      "sha256": "8a80ec6ece7569e9ad80e3a48c393da7cdb2ec17a22b2836000c7691ab932a30",
+      "requiredAnchors": [
+        "commit and push",
+        "pull those commits"
+      ]
+    },
+    {
+      "sha256": "2c3593a3fb6a9cd7b9a735e603558ad994dd6313ea2a87d3591c9ba179828c3c",
+      "requiredAnchors": [
+        "Read-only applies to the entire block"
+      ]
+    }
+  ],
+  "question": "In a minimal source-derived provenance rule, are durable history and a registered writer sufficient to identify an unauthorized effect?",
+  "hypothesis": "A registered writer or available history alone is sufficient.",
+  "method": "Five synthetic ledger fixtures implement the paper prose definition of CII; a separate tied-score order-statistic calculation illustrates comparator sensitivity. Model choices: latest matching attribution, explicit unknown for absent history, nonempty payload. These choices are ours, not claimed upstream behavior.",
+  "actualResults": [
+    {
+      "case": "authorized",
+      "payload": {
+        "plan.url": "safe"
+      },
+      "history": [
+        {
+          "key": "plan.url",
+          "value": "safe",
+          "writer": "planner"
+        }
+      ],
+      "registry": {
+        "planner": [
+          "plan."
+        ],
+        "reviewer": [
+          "policy."
+        ]
+      },
+      "actualOutput": {
+        "status": "measured",
+        "cii": 0
+      }
+    },
+    {
+      "case": "unregistered",
+      "payload": {
+        "plan.url": "poison"
+      },
+      "history": [
+        {
+          "key": "plan.url",
+          "value": "poison",
+          "writer": "outsider"
+        }
+      ],
+      "registry": {
+        "planner": [
+          "plan."
+        ],
+        "reviewer": [
+          "policy."
+        ]
+      },
+      "actualOutput": {
+        "status": "measured",
+        "cii": 1
+      }
+    },
+    {
+      "case": "registered_wrong_prefix",
+      "payload": {
+        "policy.approved": true
+      },
+      "history": [
+        {
+          "key": "policy.approved",
+          "value": true,
+          "writer": "planner"
+        }
+      ],
+      "registry": {
+        "planner": [
+          "plan."
+        ],
+        "reviewer": [
+          "policy."
+        ]
+      },
+      "actualOutput": {
+        "status": "measured",
+        "cii": 1
+      }
+    },
+    {
+      "case": "registered_permitted_poison",
+      "payload": {
+        "plan.url": "poison"
+      },
+      "history": [
+        {
+          "key": "plan.url",
+          "value": "poison",
+          "writer": "planner"
+        }
+      ],
+      "registry": {
+        "planner": [
+          "plan."
+        ],
+        "reviewer": [
+          "policy."
+        ]
+      },
+      "actualOutput": {
+        "status": "measured",
+        "cii": 0
+      }
+    },
+    {
+      "case": "missing_history",
+      "payload": {
+        "plan.url": "safe"
+      },
+      "history": [],
+      "registry": {
+        "planner": [
+          "plan."
+        ],
+        "reviewer": [
+          "policy."
+        ]
+      },
+      "actualOutput": {
+        "status": "unknown",
+        "reason": "missing attribution; no value imputed"
+      }
+    }
+  ],
+  "tieSensitivity": {
+    "syntheticCalibrationScores": [
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "alpha": 0.05,
+    "rankOneBased": 19,
+    "threshold": 0.5,
+    "syntheticTestScores": [
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "flagAtGreaterEqual": 1,
+    "flagAtStrictGreater": 0
+  },
+  "outcome": "Counterexamples: registered wrong-prefix writer yields CII=1; permitted-prefix poison yields CII=0 despite a hostile value. History/identity are insufficient authorization evidence. At the same tied threshold >= flags all synthetic test scores and > flags none.",
+  "limits": [
+    "Source-derived mathematical model, not ErosionBench code or Letta server reproduction.",
+    "CII=0 is not a prediction that the full auditor misses the attack; paper says provenance is diagnostic and semantic detection can still flag it.",
+    "Synthetic comparator result is not a measured false-positive rate or a claim that either comparator is the released implementation.",
+    "No causal race, tenant boundary, Git synchronization, attack success rate or prevention rate was tested."
+  ],
+  "fullExperimentBlocker": "Admitted materials contain documentation, paper and dataset card, not version-bound executable monitor/server or full corpus. Reading recorded ECONNRESET for dataset access. Remain within the source-grounded rule question.",
+  "provenance": "Publication excerpt of the same-run Analysis record; method, original inputs, actual outputs and limits unchanged. Local command and source paths omitted."
+}
