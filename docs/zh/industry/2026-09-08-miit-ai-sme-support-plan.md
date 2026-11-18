@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 5
 title: "工信部《人工智能中小企业创业支持计划》深度解读：AI创业生态正在形成"
 date: "2026-09-08"
 language: "zh-CN"

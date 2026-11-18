@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 17
 title: "任务怎样在 Agent 团队中流转？文件状态机如何记录领取、执行、审查与完成"
 date: '2026-08-22'
 column: open-source-engineering

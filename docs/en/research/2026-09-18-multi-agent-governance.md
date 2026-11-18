@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 2
 title: "When Multi-Agent Systems Go Out of Control: What Agent Governance Do We Need in 2026?"
 date: "2026-09-18"
 published_date: "2026-09-18"

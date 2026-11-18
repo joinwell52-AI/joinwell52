@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 30
 title: '一个 Agent 说“完成了”，团队为什么没放行？'
 date: '2026-08-06'
 column: open-source-engineering

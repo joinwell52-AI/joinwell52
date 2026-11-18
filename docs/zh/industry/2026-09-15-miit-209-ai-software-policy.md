@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 3
 title: "工信部209号文深度解读：智能体软件与软件产业转型"
 date: "2026-09-15"
 language: zh-CN

@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 4
 title: "Six AIs, One Task: What Happened?"
 date: "2026-09-10"
 column: "open-source-engineering"

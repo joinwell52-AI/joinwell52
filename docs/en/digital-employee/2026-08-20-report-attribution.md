@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 19
 title: "Three Agents Returned Three Reports. How Do You Keep Acceptance from Charging the Wrong Task?"
 date: '2026-08-20'
 column: digital-employee

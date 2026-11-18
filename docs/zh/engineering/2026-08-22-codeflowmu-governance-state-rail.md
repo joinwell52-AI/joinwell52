@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 16
 title: "多个 Agent 怎样真正组成团队？治理模型、文件状态机与工程轨道机"
 date: '2026-08-22'
 column: open-source-engineering

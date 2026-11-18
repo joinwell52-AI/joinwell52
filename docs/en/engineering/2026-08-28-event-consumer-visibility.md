@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 13
 title: "CodeFlowMu Engineering Record (III): An Event Happened — But Who Should See What? Designing a Safe Activity Projection Boundary"
 date: '2026-08-28'
 updated: '2026-08-31'

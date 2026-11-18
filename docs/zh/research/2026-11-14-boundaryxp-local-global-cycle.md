@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 1
 schema: "publication-candidate-article/v2"
 title: "界痕 BoundaryXP：让 AI 团队的任务边界看得见"
 date: "2026-11-14"

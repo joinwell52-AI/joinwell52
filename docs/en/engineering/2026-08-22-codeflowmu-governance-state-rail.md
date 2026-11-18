@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 16
 title: "What Turns Multiple Agents into a Team? Governance, a File State Machine, and an Engineering Rail"
 date: '2026-08-22'
 column: open-source-engineering

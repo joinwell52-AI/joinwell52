@@ -19,6 +19,8 @@ export interface ResearchNoteRecord {
   url: string
   lang: 'en' | 'zh'
   articleType?: string
+  recommended?: boolean
+  recommendationOrder?: number
 }
 
 const columns = new Set<ResearchColumn>([
@@ -61,7 +63,11 @@ export default createContentLoader('**/*.md', {
         const cover = frontmatter.cover ? String(frontmatter.cover) : articleCoverImage(src)
         return {
           title: String(frontmatter.title),
-          date: String(frontmatter.date),
+          recommended: frontmatter.recommended === true,
+          recommendationOrder: Number(frontmatter.recommendation_order) || 9999,
+          date: frontmatter.date instanceof Date
+            ? frontmatter.date.toISOString().slice(0, 10)
+            : String(frontmatter.date).slice(0, 10),
           column: frontmatter.column as ResearchColumn,
           category: displayCategory(frontmatter.category as SourceResearchCategory),
           summary: String(frontmatter.summary || frontmatter.description || ''),

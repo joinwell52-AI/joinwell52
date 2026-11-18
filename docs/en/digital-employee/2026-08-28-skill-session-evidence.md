@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 12
 title: "CodeFlowMu Engineering Record (II): Session Identity Cannot Be Self-Asserted — Building a Verifiable Execution-Evidence Boundary"
 date: '2026-08-28'
 updated: '2026-08-31'

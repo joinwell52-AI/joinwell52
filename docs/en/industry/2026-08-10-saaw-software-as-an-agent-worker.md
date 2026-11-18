@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 29
 title: "From SaaS to SaaW: When a Codebase Starts “Developing Itself”"
 date: "2026-08-10"
 column: "industry-architecture"

@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 6
 title: "工信部414号文深度解读：从模型供给走向应用交付"
 date: "2026-09-04"
 language: zh-CN

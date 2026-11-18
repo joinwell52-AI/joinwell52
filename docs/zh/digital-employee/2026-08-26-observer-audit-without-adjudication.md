@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 15
 title: "看见问题，不等于有权裁决：从 Anywhere Agents 看 Agent 审计与裁决边界"
 date: '2026-08-26'
 column: industry-architecture

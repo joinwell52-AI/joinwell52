@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 24
 title: "How Do You Stay in Control of an AI Team After Leaving Your Computer? A Two-Plane Design for Local Execution and Mobile Control"
 date: '2026-08-19'
 column: digital-employee

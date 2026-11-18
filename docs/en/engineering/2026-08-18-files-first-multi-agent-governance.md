@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 25
 title: "Why Multi-Agent Governance Can Start with Files"
 date: '2026-08-18'
 column: open-source-engineering

@@ -129,6 +129,11 @@ CodeFlowMu 是本地运行的 PM / DEV / QA / OPS 多角色 AI 开发团队，�
 
 ### 推荐文章与外部发布记录
 
+| 补收录文章 | 网站双语版本 | 已发布平台 |
+| --- | --- | --- |
+| 告别“黑盒神话”：主流 Agent 框架的工程反思与“物理外化”范式的崛起 | [中文](https://joinwell52-ai.github.io/joinwell52/zh/research/2026-09-22-beyond-black-box-externalization) · [English](https://joinwell52-ai.github.io/joinwell52/en/research/2026-09-22-beyond-black-box-externalization) | [掘金](https://juejin.cn/post/7688170325382955008) · [DEV](https://dev.to/joinwell52/farewell-to-the-black-box-myth-engineering-reflections-on-mainstream-agent-frameworks-and-the-25lg) |
+| 文件系统即协议：FCoP 如何用最简 Markdown 实现 Agent 治理？ | [中文](https://joinwell52-ai.github.io/joinwell52/zh/research/2026-09-21-file-system-as-protocol) · [English](https://joinwell52-ai.github.io/joinwell52/en/research/2026-09-21-file-system-as-protocol) | [掘金](https://juejin.cn/post/7687627812326457353) · [DEV](https://dev.to/joinwell52/filesystem-as-protocol-how-fcop-uses-minimal-markdown-for-agent-governance-199i) |
+
 **Agent 治理连载 · 第一篇：[当多 Agent 走向失控：2026 年，我们需要什么样的 Agent 治理？](https://joinwell52-ai.github.io/joinwell52/zh/research/2026-09-18-multi-agent-governance)** · [English](https://joinwell52-ai.github.io/joinwell52/en/research/2026-09-18-multi-agent-governance)
 
 置顶文章可以在外发前登记，外发后直接在同一行补充平台链接。普通外部发布记录从 **2026-08-12** 开始，不回填此前的历史发布；同一文章的中文、英文及各平台链接集中在一行。当前已登记 **9 个外部渠道**：**CSDN、DEV Community、Cursor Forum、OpenAI Developer Community、Codex GitHub Discussions、Zenodo、掘金、知乎和 X**。其中 CSDN、DEV、掘金与知乎承载文章外发，X 用于短研究摘要与准确归因，Cursor Forum、OpenAI Developer Community 与 Codex GitHub Discussions 用于技术讨论，Zenodo 用于研究成果存档与发现。标为“技术讨论”的链接是独立问题帖，不代表全文转载。

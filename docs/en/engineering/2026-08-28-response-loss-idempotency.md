@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 14
 title: "CodeFlowMu Engineering Record (I): After Response Loss, Why Retry Must Start with a Persistent Idempotency Boundary"
 date: '2026-08-28'
 updated: '2026-08-31'

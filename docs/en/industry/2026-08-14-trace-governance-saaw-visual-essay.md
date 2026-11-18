@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 28
 title: "Trace Is Not Governance: From Work Facts to SaaW"
 date: "2026-08-14"
 column: "industry-architecture"

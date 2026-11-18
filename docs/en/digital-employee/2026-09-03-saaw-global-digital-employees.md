@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 8
 title: "Global Real Digital Workers & SaaW Commercial Landscape 2026-1"
 date: '2026-09-03'
 research_date: '2026-08-30'

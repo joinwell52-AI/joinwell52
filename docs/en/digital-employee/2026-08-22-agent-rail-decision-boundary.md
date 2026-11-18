@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 18
 title: "How Can an Agent Team Work Autonomously? The Rail as a Service for Dispatch, Recovery, and Judgment"
 date: '2026-08-22'
 column: digital-employee

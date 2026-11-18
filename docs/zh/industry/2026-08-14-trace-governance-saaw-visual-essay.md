@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 28
 title: "Trace ≠ Governance：从工作事实到 SaaW"
 date: "2026-08-14"
 column: "industry-architecture"

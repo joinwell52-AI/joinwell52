@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 18
 title: "Agent 团队怎样自主工作？轨道机如何提供派工、恢复与人工裁决服务"
 date: '2026-08-22'
 column: digital-employee

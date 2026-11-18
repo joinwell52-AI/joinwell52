@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 3
 title: "MIIT Document No. 209 Explained: Agent Software and the Transformation of the Software Industry"
 date: "2026-09-15"
 language: en

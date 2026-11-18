@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 13
 title: "CodeFlowMu 工程化实录（三）：事件已经发生，谁应该看见什么——Activity 安全投影的边界设计"
 date: '2026-08-28'
 updated: '2026-08-31'

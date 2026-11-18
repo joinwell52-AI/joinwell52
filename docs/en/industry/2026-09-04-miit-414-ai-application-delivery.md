@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 6
 title: "MIIT Document No. 414 Explained: From Model Supply to Application Delivery"
 date: "2026-09-04"
 language: en

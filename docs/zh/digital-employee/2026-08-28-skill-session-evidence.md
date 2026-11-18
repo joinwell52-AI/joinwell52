@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 12
 title: "CodeFlowMu 工程化实录（二）：Session 身份不能靠自报——如何建立可验证的执行证据边界"
 date: '2026-08-28'
 updated: '2026-08-31'

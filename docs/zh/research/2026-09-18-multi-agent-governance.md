@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 2
 title: "当多 Agent 走向失控：2026 年，我们需要什么样的 Agent 治理？"
 date: "2026-09-18"
 published_date: "2026-09-18"

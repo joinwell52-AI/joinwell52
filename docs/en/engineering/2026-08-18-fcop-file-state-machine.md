@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 26
 title: "Files, Paths, and Events: Implementing and Testing the FCoP State Machine"
 date: '2026-08-18'
 column: open-source-engineering

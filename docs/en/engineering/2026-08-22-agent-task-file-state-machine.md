@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 17
 title: "How Does a Task Move Through an Agent Team? Claims, Execution, Review, and Completion in a File State Machine"
 date: '2026-08-22'
 column: open-source-engineering

@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 7
 title: "当 Agent 开进企业内网：Cursor Self-Hosted Machines 改变了什么？"
 date: "2026-09-03"
 published_date: "2026-09-04"

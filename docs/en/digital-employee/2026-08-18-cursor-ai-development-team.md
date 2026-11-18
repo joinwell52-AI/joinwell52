@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 27
 title: "Running an AI Development Team in Cursor: From Requirement to Testable Delivery"
 date: '2026-08-18'
 column: digital-employee

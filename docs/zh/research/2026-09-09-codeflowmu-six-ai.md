@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 4
 title: "6个AI，同一道题，会怎么样？"
 date: "2026-09-10"
 column: "open-source-engineering"

@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 20
 title: "An AI Agent’s Skill Is Not Its Permission: Why ‘Knows How’ Must Stay Separate from ‘May Do’"
 date: '2026-08-20'
 column: industry-architecture

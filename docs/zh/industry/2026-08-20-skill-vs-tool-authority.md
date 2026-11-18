@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 20
 title: "AI Agent 的技能不是工具权限：为什么‘会怎么做’和‘允许做什么’必须分开？"
 date: '2026-08-20'
 column: industry-architecture

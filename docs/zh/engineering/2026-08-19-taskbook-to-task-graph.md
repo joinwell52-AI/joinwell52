@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 23
 title: "两万字需求，怎样拆成 AI 团队能落地的施工图？"
 date: '2026-08-19'
 column: open-source-engineering

@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 29
 title: "从 SaaS 到 SaaW：当代码库开始“自己开发自己”"
 date: "2026-08-10"
 column: "industry-architecture"

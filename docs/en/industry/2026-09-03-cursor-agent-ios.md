@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 11
 title: "Is Cursor Becoming the iOS for Agents?"
 date: "2026-09-03"
 language: en

@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 15
 title: "Seeing a Problem Is Not Authority to Decide: Agent Audit and Adjudication Boundaries Through the Lens of Anywhere Agents"
 date: '2026-08-26'
 column: industry-architecture

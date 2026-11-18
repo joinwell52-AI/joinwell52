@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 26
 title: "文件、路径与事件：FCoP 协作状态机如何实现和测试"
 date: '2026-08-18'
 column: open-source-engineering

@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 25
 title: "多 Agent 治理为什么可以从文件开始？‘万物皆文件’的工程价值"
 date: '2026-08-18'
 column: open-source-engineering

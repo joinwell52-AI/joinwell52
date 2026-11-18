@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 27
 title: "在 Cursor 里带一支 AI 开发团队：从需求拆解到测试验收"
 date: '2026-08-18'
 column: digital-employee

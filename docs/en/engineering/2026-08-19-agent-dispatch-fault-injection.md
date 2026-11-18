@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 21
 title: "Don’t Trust an All-Green Demo: How Fault Injection Exposes an Unreliable AI Agent Dispatcher"
 date: '2026-08-19'
 column: open-source-engineering

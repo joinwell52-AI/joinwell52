@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 1
 schema: "publication-candidate-article/v2"
 title: "BoundaryXP: Make an AI Team’s Task Boundaries Visible"
 date: "2026-11-14"

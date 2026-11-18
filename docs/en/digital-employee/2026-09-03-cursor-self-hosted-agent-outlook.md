@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 7
 title: "When Agents Enter the Enterprise Network: What Do Cursor Self-Hosted Machines Change?"
 date: "2026-09-03"
 published_date: "2026-09-04"

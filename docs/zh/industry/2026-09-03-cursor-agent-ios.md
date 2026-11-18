@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 11
 title: "Cursor 正在成为 Agent 的 iOS 吗？"
 date: "2026-09-03"
 language: zh-CN

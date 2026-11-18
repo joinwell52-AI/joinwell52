@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 22
 schema: "publication-candidate-article/v2"
 title: "等待应该是运行时状态，而不是智能体循环"
 date: "2026-08-19"

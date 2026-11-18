@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 10
 title: "全球真实数字员工与 SaaW 商业全景报告 2026-3"
 date: '2026-09-03'
 research_date: '2026-08-30'

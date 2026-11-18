@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 5
 title: "MIIT's AI SME Entrepreneurship Support Plan Explained: An AI Startup Ecosystem Is Taking Shape"
 date: "2026-09-08"
 language: en

@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 22
 schema: "publication-candidate-article/v2"
 title: "Waiting Is a Runtime State, Not an Agent Loop"
 date: "2026-08-19"

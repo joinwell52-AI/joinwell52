@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 30
 title: 'One Agent Said “Done.” Why Didn’t the Team Release It?'
 date: '2026-08-06'
 column: open-source-engineering

@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 19
 title: "AI 团队同时交回三份报告，怎样保证验收没有串账？"
 date: '2026-08-20'
 column: digital-employee

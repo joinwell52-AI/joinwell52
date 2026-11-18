@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 24
 title: "人离开电脑后，怎样继续掌握 AI 团队？本地运行与手机控制面的双端设计"
 date: '2026-08-19'
 column: digital-employee

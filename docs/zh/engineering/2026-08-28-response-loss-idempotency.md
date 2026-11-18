@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 14
 title: "CodeFlowMu 工程化实录（一）：响应丢失之后，重试为什么必须先解决持久化幂等边界"
 date: '2026-08-28'
 updated: '2026-08-31'

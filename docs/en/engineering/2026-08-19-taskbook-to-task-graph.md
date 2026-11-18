@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 23
 title: "How Do You Turn a 20,000-Word Requirement into a Task Graph an Agent Team Can Execute?"
 date: '2026-08-19'
 column: open-source-engineering

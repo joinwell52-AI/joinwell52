@@ -1,4 +1,6 @@
 ---
+recommended: true
+recommendation_order: 21
 title: "别被“全绿演示”骗了：怎样用故障注入，测出一个真正靠谱的 AI Agent 调度系统？"
 date: '2026-08-19'
 column: open-source-engineering
