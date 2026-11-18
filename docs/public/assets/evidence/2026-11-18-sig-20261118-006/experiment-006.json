@@ -1,0 +1,168 @@
+{
+  "id": "EXP-006",
+  "objectId": "SIG-20261118-006",
+  "environment": {
+    "python": "3.12.9 (tags/v3.12.9:fdb8142, Feb  4 2025, 15:27:58) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "executedAt": "2026-11-18T05:04:39.384825+00:00",
+    "networkCalls": 0
+  },
+  "question": "Does the published resolve_read example require a JSON boolean before awarding record_read?",
+  "hypothesis": "The example only awards record_read for boolean true.",
+  "sourcePins": [
+    {
+      "sha256": "3abc8c4307d2c74553b66a4865191033654f8d157924a32faea4f006814cd408",
+      "requiredAnchors": [
+        "def resolve_read(event, previous_state):",
+        "found = bool((event.get(\"result\") or {}).get(\"found\"))"
+      ]
+    },
+    {
+      "sha256": "2e0933f2b16c92e466d5256a84f2da1c7605e3020bceec563e6b2e61ea2b011e",
+      "requiredAnchors": [
+        "Strings such as `\"false\"`",
+        "JSON boolean"
+      ]
+    }
+  ],
+  "method": "Execute unchanged AST-extracted documentation function with eight constructed tool results; compare with an explicitly proposed strict-boolean control. No imports, model, environment adapter or upstream dispatcher executed.",
+  "actualResults": [
+    {
+      "input": {
+        "result": {
+          "found": true
+        }
+      },
+      "pythonType": "bool",
+      "actualOutput": {
+        "role": "acquire",
+        "status": "success",
+        "milestones_added": [
+          "record_read"
+        ],
+        "progress_token": "record_found"
+      },
+      "strictBooleanControl": "success"
+    },
+    {
+      "input": {
+        "result": {
+          "found": false
+        }
+      },
+      "pythonType": "bool",
+      "actualOutput": {
+        "role": "acquire",
+        "status": "partial",
+        "milestones_added": [],
+        "progress_token": null
+      },
+      "strictBooleanControl": "partial"
+    },
+    {
+      "input": {
+        "result": {
+          "found": null
+        }
+      },
+      "pythonType": "NoneType",
+      "actualOutput": {
+        "role": "acquire",
+        "status": "partial",
+        "milestones_added": [],
+        "progress_token": null
+      },
+      "strictBooleanControl": "invalid-type"
+    },
+    {
+      "input": {
+        "result": {
+          "found": "false"
+        }
+      },
+      "pythonType": "str",
+      "actualOutput": {
+        "role": "acquire",
+        "status": "success",
+        "milestones_added": [
+          "record_read"
+        ],
+        "progress_token": "record_found"
+      },
+      "strictBooleanControl": "invalid-type"
+    },
+    {
+      "input": {
+        "result": {
+          "found": "true"
+        }
+      },
+      "pythonType": "str",
+      "actualOutput": {
+        "role": "acquire",
+        "status": "success",
+        "milestones_added": [
+          "record_read"
+        ],
+        "progress_token": "record_found"
+      },
+      "strictBooleanControl": "invalid-type"
+    },
+    {
+      "input": {
+        "result": {
+          "found": 0
+        }
+      },
+      "pythonType": "int",
+      "actualOutput": {
+        "role": "acquire",
+        "status": "partial",
+        "milestones_added": [],
+        "progress_token": null
+      },
+      "strictBooleanControl": "invalid-type"
+    },
+    {
+      "input": {
+        "result": {
+          "found": 1
+        }
+      },
+      "pythonType": "int",
+      "actualOutput": {
+        "role": "acquire",
+        "status": "success",
+        "milestones_added": [
+          "record_read"
+        ],
+        "progress_token": "record_found"
+      },
+      "strictBooleanControl": "invalid-type"
+    },
+    {
+      "input": {
+        "result": {
+          "found": []
+        }
+      },
+      "pythonType": "list",
+      "actualOutput": {
+        "role": "acquire",
+        "status": "partial",
+        "milestones_added": [],
+        "progress_token": null
+      },
+      "strictBooleanControl": "invalid-type"
+    }
+  ],
+  "outcome": "Counterexample: string false and integer 1 award record_read in the example. Boolean false remains partial. The hypothesis is falsified for this documentation snippet.",
+  "limits": [
+    "Non-boolean cases are robustness inputs; no evidence they occur on an admitted production path.",
+    "This is an isolated documentation-function probe, not MedHarnessBench scoring reproduction, a clinical finding, or a demonstrated runtime vulnerability.",
+    "The strict control is our proposed policy, not an extracted upstream implementation.",
+    "chi verdict contract independently specifies strict boolean types, but is a different stage and system."
+  ],
+  "fullExperimentBlocker": "No executable upstream runner, benchmark environment or raw trial bundles are admitted in Reading; model-backed clinical workflow claims are outside this probe.",
+  "provenance": "Publication excerpt of the same-run Analysis record; method, original inputs, actual outputs and limits unchanged. Local command and source paths omitted."
+}
