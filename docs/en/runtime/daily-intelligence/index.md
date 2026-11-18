@@ -11,6 +11,7 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+<a class="daily-intel-item" href="./2026-11-18"><time>2026-11-18</time><div><strong>Agent Research and Competitive Intelligence</strong><span>35 observations and 5 analyses: enterprise identity, evaluation, recovery evidence, collaboration and upgrades.</span></div><b>Read full report →</b></a>
 <a class="daily-intel-item" href="./2026-11-17"><time>2026-11-17</time><div><strong>Agent Research and Competitive Intelligence</strong><span>44 observations, 6 analyses: authority provenance, stop settlement, result consumption, path policies, AAE proposal and employee delivery.</span></div><b>Read full report →</b></a>
 <a class="daily-intel-item" href="./2026-11-16"><time>2026-11-16</time><div><strong>Agent Research and Competitive Intelligence</strong><span>39 observations, 6 analyses: audit boards, recovery receipts, current authorization, employee memory, ACP migration and mobile takeover.</span></div><b>Read full report →</b></a>
 <a class="daily-intel-item" href="./2026-11-14"><time>2026-11-14</time><div><strong>Agent Research and Competitor Intelligence</strong><span>29 observations, five analyses: workload identity, agent-tree recovery, machine sign-in, uncertain receipts and acceptance.</span></div><b>Read full report →</b></a>
