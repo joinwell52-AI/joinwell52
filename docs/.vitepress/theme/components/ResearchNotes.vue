@@ -97,7 +97,7 @@ const visibleNotes = computed(() => {
   let notes = props.column ? notesForColumn(props.column) : [...localizedNotes.value]
   if (readingMode.value === 'recommended') {
     notes = notes.filter(note => note.recommended)
-      .sort((a, b) => (a.recommendationOrder ?? 9999) - (b.recommendationOrder ?? 9999))
+      .sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title))
   }
 
   if (activeCategory.value !== 'all') {
@@ -214,7 +214,7 @@ const clearDate = () => {
 
       <div class="rn-section-title">
         <div><span>LATEST</span><h2>{{ zh ? '最新观察笔记' : 'Latest Observation Notes' }}</h2></div>
-        <small>{{ readingMode === 'recommended' ? (zh ? '精选文章' : 'Selected articles') : (zh ? '按日期倒序' : 'Newest first') }}</small>
+        <small>{{ zh ? '按日期倒序' : 'Newest first' }}</small>
       </div>
     </template>
 
