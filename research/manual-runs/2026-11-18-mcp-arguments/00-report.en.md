@@ -31,3 +31,7 @@ Fetch the two upstream revisions into a Git checkout, set `ADK_REPO` to that che
 ## Classification
 
 Today's published intelligence page contains 35 observations. O1 was selected for this bounded experiment and article because it directly tests the boundary between a server's schema and a client's session authority. Recovery items O2–O9, delegation O10 and O33, and governance/protocol observations remain reading and follow-up candidates; reading them is not counted as an experiment. One experimental topic, one bilingual article pair, zero formal development review items, and zero development tasks result from this round.
+
+## Research exchange
+
+After publication, we [commented on the exact ADK commit](https://github.com/google/adk-python/commit/889ddd3134df1dd1a626205ee78811950dec2a5c#commitcomment-210597541) with the bounded replay result and one migration question about missing required prompt arguments. The repository was already starred and that state was verified. At the time of this report update, no reply had been observed; a posted comment is not evidence of agreement. Draft text, receipts, and the reply ledger remain local, outside this public repository.
