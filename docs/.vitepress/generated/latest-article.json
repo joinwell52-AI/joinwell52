@@ -1,19 +1,19 @@
 {
   "schema": "latest-published-article/v1",
   "zh": {
-    "title": "AI 说“人已经批准了”，它就能替人执行吗？",
-    "date": "2026-11-17",
+    "title": "一个参数名，怎么会读到 AI 的会话资料？",
+    "date": "2026-11-18",
     "column": "open-source-engineering",
     "category": "daily",
-    "summary": "Orca 的一次真实运行把 Agent 消息错当成人的许可。我们在 CodeFlowMu 的受控审批入口做六种对照，检查消息来源、确认凭据与实际操作能否被分清。",
-    "url": "/zh/research/2026-11-17-quoted-approval-is-not-permission"
+    "summary": "Google ADK 的一次修复揭示：服务端列出一个参数名，旧客户端便可能从会话状态取同名值。我们固定修复前后版本重放，再检查 CodeFlowMu 的对应入口。",
+    "url": "/zh/research/2026-11-18-mcp-parameter-knows-session"
   },
   "en": {
-    "title": "The AI says the human approved it. Can it act for them?",
-    "date": "2026-11-17",
+    "title": "How can a parameter name read AI session data?",
+    "date": "2026-11-18",
     "column": "open-source-engineering",
     "category": "daily",
-    "summary": "An Orca run treated an Agent message as human permission. We tested six authorization-source and request-binding controls at CodeFlowMu",
-    "url": "/en/research/2026-11-17-quoted-approval-is-not-permission"
+    "summary": "A Google ADK fix exposed a surprising path from server-declared prompt arguments to client session values. We replayed pinned versions and compared the corresponding CodeFlowMu boundary.",
+    "url": "/en/research/2026-11-18-mcp-parameter-knows-session"
   }
 }
