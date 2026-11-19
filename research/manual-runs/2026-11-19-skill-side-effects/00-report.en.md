@@ -27,3 +27,7 @@ Separately, six assertions against the real `OperationFacts` classifier and nega
 ## Judgment and development handling
 
 Bulbasaur shows a useful two-stage contract: reject a declaration/permission mismatch before use, then check the actual attempted operation. CodeFlowMu currently models different pieces: skill registration metadata and separate per-operation facts. We have **not** shown that a live CodeFlowMu skill can write despite a read-only promise, nor that a current product path needs the same ceiling. Thus this round has **one experimental topic, one bilingual article pair, zero formal development review items, and zero development tasks**. A future live-skill integration experiment would need to bind a versioned skill claim, effective grants, task authority, and an actual tool call before implementation cost or priority can be judged.
+
+## Research exchange
+
+We [commented on the source PR](https://github.com/mansura-habiba/bulbasaur-skill-cli/pull/25#issuecomment-6999111541) with the bounded result and asked whether a Host should reject an invalid skill entirely even when the call-time ceiling permits a read proposal. The repository was already starred and that state was verified. No reply had been observed when this report was updated. Drafts, exact sent text, receipts, and the reply ledger remain local.
