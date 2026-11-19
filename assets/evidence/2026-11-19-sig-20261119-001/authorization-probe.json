@@ -1,0 +1,53 @@
+{
+  "schema": "article-internal-probe/v1",
+  "date": "2026-11-19",
+  "itemId": "SIG-20261119-001",
+  "evidenceId": "EXP-AUTH",
+  "classification": "internal-experimental-evidence",
+  "independent": false,
+  "provenance": "Selected unchanged case records from completed same-run Analysis; no new Production experiment.",
+  "sourceVersion": "OpenHands/software-agent-sdk 141423921fdaeb08cd5f53464a69e860da70b66f",
+  "sourceUrl": "https://raw.githubusercontent.com/OpenHands/software-agent-sdk/141423921fdaeb08cd5f53464a69e860da70b66f/openhands-sdk/openhands/sdk/security/confirmation_policy.py",
+  "sourceSha256": "28dda5555dc03ea581afa1b9386bad2d3affe71383ede43fd4051595f1dae0c6",
+  "method": "Source-derived isolated function probe: whitespace-normalized upstream function bodies reindented; SecurityRisk.UNKNOWN sentinel and known-risk comparator test double.",
+  "controls": "Toggle confirm_unknown; comparator true/false; unknown/known threshold.",
+  "cases": [
+    {
+      "risk": "UNKNOWN",
+      "confirm_unknown": true,
+      "actual": true
+    },
+    {
+      "risk": "UNKNOWN",
+      "confirm_unknown": false,
+      "actual": false
+    },
+    {
+      "risk": "controlled-known-risk-double",
+      "comparatorReturn": true,
+      "actual": true,
+      "thresholdPassedUnchanged": true
+    },
+    {
+      "risk": "controlled-known-risk-double",
+      "comparatorReturn": false,
+      "actual": false,
+      "thresholdPassedUnchanged": true
+    },
+    {
+      "threshold": "UNKNOWN",
+      "actualError": "Threshold cannot be UNKNOWN"
+    },
+    {
+      "threshold": "known-object-control",
+      "returnedUnchanged": true
+    }
+  ],
+  "finding": "UNKNOWN follows confirm_unknown; known risk delegates to is_riskier with the unchanged threshold; UNKNOWN threshold raises.",
+  "limits": [
+    "Not an installed SDK execution, Pydantic integration test, risk-enum comparator test or authorization enforcement audit.",
+    "Threshold equality is upstream code commentary, not measured with the real enum here.",
+    "No direct-tool bypass, replay, expiry, filesystem attack or full four-framework replication performed; study archive not available in admitted inputs.",
+    "Current documentation and pinned code are different evidence nodes."
+  ]
+}
