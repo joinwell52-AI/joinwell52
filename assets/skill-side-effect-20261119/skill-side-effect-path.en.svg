@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="530" viewBox="0 0 1200 530" role="img" aria-labelledby="t d">
+<title id="t">Static and call-time checks of a read-only claim with a write grant</title><desc id="d">The skill claims read-only while its permission file grants writes to out. Validation reports a conflict and the runtime denies a proposed write.</desc>
+<rect width="1200" height="530" rx="30" fill="#f8f5ee"/>
+<text x="60" y="68" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#163465">One skill, two separate checks</text>
+<rect x="58" y="108" width="495" height="153" rx="18" fill="#e8f0ff" stroke="#a8c1f6"/>
+<text x="84" y="145" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#1551bc">Skill claim</text>
+<text x="84" y="188" font-family="Consolas, monospace" font-size="21" fill="#193d87">side_effects: read_only</text>
+<text x="84" y="228" font-family="Arial, sans-serif" font-size="19" fill="#455977">Promises to read only</text>
+<rect x="647" y="108" width="495" height="153" rx="18" fill="#fff0db" stroke="#efc88c"/>
+<text x="673" y="145" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#9d5c10">Configured grants</text>
+<text x="673" y="188" font-family="Consolas, monospace" font-size="21" fill="#805018">write_paths: [out/*]</text>
+<text x="673" y="228" font-family="Arial, sans-serif" font-size="19" fill="#725d44">Allows writing</text>
+<path d="M555 181 H644" stroke="#bd6d28" stroke-width="4" stroke-dasharray="9 7"/>
+<circle cx="600" cy="184" r="24" fill="#f5d3c5"/><text x="586" y="192" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#b52f29">!</text>
+<rect x="60" y="293" width="1080" height="80" rx="18" fill="#fff" stroke="#d9dfea"/>
+<text x="88" y="330" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#4a5270">Before use</text>
+<text x="286" y="330" font-family="Consolas, monospace" font-size="18" fill="#3e4a6a">read_only ≠ reversible</text>
+<text x="895" y="330" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#bd3833">Conflict: fail</text>
+<text x="88" y="355" font-family="Arial, sans-serif" font-size="17" fill="#66718a">Compare claim with grants</text>
+<rect x="60" y="391" width="1080" height="80" rx="18" fill="#fff" stroke="#d9dfea"/>
+<text x="88" y="429" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#4a5270">At call time</text>
+<text x="286" y="429" font-family="Consolas, monospace" font-size="18" fill="#3e4a6a">WRITE out/report.txt</text>
+<text x="895" y="429" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#bd3833">Above ceiling: deny</text>
+<text x="88" y="455" font-family="Arial, sans-serif" font-size="17" fill="#66718a">Compare action with ceiling</text>
+</svg>
