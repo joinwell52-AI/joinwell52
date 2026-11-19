@@ -4,6 +4,16 @@
 
 The [2026-11-19 intelligence page](../../../../docs/en/runtime/daily-intelligence/2026-11-19.md) records 57 observations in seven analysis groups. We selected O1, [Mansura Habiba's Bulbasaur PR #25](https://github.com/mansura-habiba/bulbasaur-skill-cli/pull/25), merged as `bb023460e9fb1ce0d5b2b439ea461650c3d3df97`. Its `risk.side_effects` declaration is cross-checked against permission grants, and `SideEffectCeiling` applies an operation limit at call time. This is the author's project, not an official AGENTSAFE artifact. O2–O3 extend assessment services, O11 concerns delegated authority, O28 concerns delivery completion, and other observations remain reading or follow-up candidates; none is counted as another completed experiment.
 
+| Intelligence group | This round's handling |
+| --- | --- |
+| A1 skill trust | O1 selected and tested; O2–O6 retained for service/SDK comparison |
+| A2 delegated authority | O11–O14 and related entries retained for a separate identity/authorization experiment |
+| A3 completion and delivery | O28's verified PR merge gate retained for a distinct delivery experiment |
+| A4 recovery | Follow-up candidate; no local replay in this round |
+| A5 memory and cost | Reading and monitoring only |
+| A6 protocol layers | Reading and monitoring only |
+| A7 competitor experience | Installation and end-to-end checks pending; no maturity claim from source reading |
+
 ## Fixed synthetic comparison
 
 At the pinned Bulbasaur revision, Python 3.12 ran all **13 upstream `test_side_effects_contract.py` tests successfully**. Our separate six-assertion probe used two synthetic `review-notes` skills. Both declared `risk.side_effects: read_only`. One permission file allowed `filesystem.write_paths: ["out/*"]`; the other had `write_paths: []`.

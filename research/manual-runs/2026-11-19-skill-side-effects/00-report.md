@@ -4,6 +4,16 @@
 
 今日[动态页](../../../../docs/zh/runtime/daily-intelligence/2026-11-19.md)记录 57 项观察、7 组分析。选择 O1：[Mansura Habiba 的 Bulbasaur PR #25](https://github.com/mansura-habiba/bulbasaur-skill-cli/pull/25)，固定合入 `bb023460e9fb1ce0d5b2b439ea461650c3d3df97`。这是作者本人项目，不称为 AGENTSAFE 官方产物。O2—O3 的评测服务、O11 的子 Agent 授权、O28 的外部交付及其他线索留作跟踪或后续实验，不能把阅读算成已实验。
 
+| 情报分析组 | 本轮处置 |
+| --- | --- |
+| A1 技能信任 | O1 已做实验；O2—O6 留作服务与 SDK 对照 |
+| A2 委派授权 | O11—O14 等留作独立身份与授权实验 |
+| A3 完成与交付 | O28 的 PR 合入门槛留作独立交付实验 |
+| A4 恢复 | 后续候选，本轮未本地重放 |
+| A5 记忆与成本 | 资料跟踪 |
+| A6 协议分层 | 资料跟踪 |
+| A7 竞品体验 | 安装与端到端体验待做，不凭源码阅读评价产品成熟度 |
+
 ## 实验结果
 
 Bulbasaur：Python 3.12 运行上游 `test_side_effects_contract.py`，**13 项通过**。另用两份合成 `review-notes` 技能做六项断言。两份都声明 `risk.side_effects: read_only`；一份允许写 `out/*`，另一份写路径为空。前者静态校验退出 1，指出 `declared=read_only` 与 `implied=reversible` 冲突；对 `out/report.txt` 的写提议被 `side_effects.ceiling.write` 拒绝，读取提议允许。后者静态校验通过，写提议仍被 `filesystem.write.empty-allowlist` 拒绝。**没有真正执行文件写入。**
