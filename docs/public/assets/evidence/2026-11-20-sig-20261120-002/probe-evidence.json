@@ -1,0 +1,173 @@
+{
+  "schema": "article-local-check-evidence/v1",
+  "date": "2026-11-20",
+  "itemId": "SIG-20261120-002",
+  "identity": "internal-experimental-evidence",
+  "independent": false,
+  "provenance": "Exact completed same-day Analysis experiment, reused without rerunning or relabeling as a Production experiment.",
+  "executedAt": "2026-11-20T05:18:52.209223+00:00",
+  "python": "3.12.9 (tags/v3.12.9:fdb8142, Feb  4 2025, 15:27:58) [MSC v.1942 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "kind": "documentation-derived isolated collector execution plus payload contract mutation; not SDK restart or deployed Enterprise test",
+  "question": "Does the documented collector distinguish request occurrences, and does retaining execution/task IDs preserve the explicitly required notification settings in a resume payload?",
+  "sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/agent-framework/workflows/human-in-the-loop",
+      "sha256": "3f421d8f7a6d28f890707c13d79541df931091516a54c0bd7f0f87eb6820ac3a",
+      "version": "same-day Reading snapshot; page says last updated 2026-08-25; SDK revision not pinned"
+    },
+    {
+      "url": "https://docs.crewai.com/en/learn/human-in-the-loop",
+      "sha256": "6d498fa8bbc2f8ea5c4d2d4178b7cfd3374e16c661a0a9c14061b652b68d5e02",
+      "version": "same-day Reading snapshot; Enterprise deployment revision unspecified"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/agent-framework/workflows/checkpoints",
+      "sha256": "62482810d2995126940a481f591f947744730022e11e4a89ee36ecbaa29ae908",
+      "version": "documentation commit 7a2133efae866b0f4639403fd4f9daaffbeea757"
+    }
+  ],
+  "extractedSourceSha256": "9a475e84460e7b9bcb00172d1977a615cc2d670d185060078c588947ed44c3f3",
+  "extractedSource": "from __future__ import annotations\r\nasync def process_event_stream(stream: AsyncIterable[WorkflowEvent]) -> dict[str, int] | None:\r\n    \"\"\"Process events from the workflow stream to capture requests.\"\"\"\r\n    requests: list[tuple[str, NumberSignal]] = []\r\n    async for event in stream:\r\n        if event.type == \"request_info\":\r\n            requests.append((event.request_id, event.data))\r\n\r\n    # Handle any pending human feedback requests.\r\n    if requests:\r\n        responses: dict[str, int] = {}\r\n        for request_id, request in requests:\r\n            guess = ...  # Get the guess from the human operator or any external system.\r\n            responses[request_id] = guess\r\n        return responses\r\n\r\n    return None\r\n",
+  "substitutions": [
+    "Synthetic async events replace SDK stream; source function unchanged",
+    "The documented guess=... placeholder remains Ellipsis; no human decision is fabricated",
+    "Webhook checker is an analyst-written interpretation of explicit documentation requirements; it does not simulate or measure server behavior"
+  ],
+  "actualOutputs": {
+    "collectorCases": [
+      {
+        "case": "no request control",
+        "inputEvents": [],
+        "actualResponseMapping": null,
+        "responseCount": 0
+      },
+      {
+        "case": "distinct occurrence control",
+        "inputEvents": [
+          {
+            "type": "request_info",
+            "request_id": "R1",
+            "data": {
+              "hint": "below"
+            }
+          },
+          {
+            "type": "request_info",
+            "request_id": "R2",
+            "data": {
+              "hint": "above"
+            }
+          }
+        ],
+        "actualResponseMapping": {
+          "R1": "Ellipsis human-input placeholder",
+          "R2": "Ellipsis human-input placeholder"
+        },
+        "responseCount": 2
+      },
+      {
+        "case": "re-emitted same occurrence",
+        "inputEvents": [
+          {
+            "type": "request_info",
+            "request_id": "R1",
+            "data": {
+              "hint": "below"
+            }
+          },
+          {
+            "type": "request_info",
+            "request_id": "R1",
+            "data": {
+              "hint": "above"
+            }
+          }
+        ],
+        "actualResponseMapping": {
+          "R1": "Ellipsis human-input placeholder"
+        },
+        "responseCount": 1
+      },
+      {
+        "case": "same ID with changed payload",
+        "inputEvents": [
+          {
+            "type": "request_info",
+            "request_id": "R1",
+            "data": {
+              "hint": "below"
+            }
+          },
+          {
+            "type": "request_info",
+            "request_id": "R1",
+            "data": {
+              "hint": "above"
+            }
+          }
+        ],
+        "actualResponseMapping": {
+          "R1": "Ellipsis human-input placeholder"
+        },
+        "responseCount": 1
+      }
+    ],
+    "resumePayloadCases": [
+      {
+        "case": "documented resume control",
+        "input": {
+          "execution_id": "abcd1234-5678-90ef-ghij-klmnopqrstuv",
+          "task_id": "research_task",
+          "human_feedback": "Great work! Please add more details.",
+          "is_approve": true,
+          "taskWebhookUrl": "https://your-server.com/webhooks/task",
+          "stepWebhookUrl": "https://your-server.com/webhooks/step",
+          "crewWebhookUrl": "https://your-server.com/webhooks/crew"
+        },
+        "missingDocumentedNotificationSettings": []
+      },
+      {
+        "case": "omit all notification settings",
+        "input": {
+          "execution_id": "abcd1234-5678-90ef-ghij-klmnopqrstuv",
+          "task_id": "research_task",
+          "human_feedback": "Great work! Please add more details.",
+          "is_approve": true
+        },
+        "missingDocumentedNotificationSettings": [
+          "taskWebhookUrl",
+          "stepWebhookUrl",
+          "crewWebhookUrl"
+        ]
+      },
+      {
+        "case": "omit only step notification",
+        "input": {
+          "execution_id": "abcd1234-5678-90ef-ghij-klmnopqrstuv",
+          "task_id": "research_task",
+          "human_feedback": "Great work! Please add more details.",
+          "is_approve": true,
+          "taskWebhookUrl": "https://your-server.com/webhooks/task",
+          "crewWebhookUrl": "https://your-server.com/webhooks/crew"
+        },
+        "missingDocumentedNotificationSettings": [
+          "stepWebhookUrl"
+        ]
+      }
+    ]
+  },
+  "finding": "Distinct request IDs produce two mapping entries; repeated IDs produce one even with changed payload. Valid resume example has all three notification URLs; execution/task IDs remain present in mutations missing three or one explicitly required notification settings.",
+  "counterexample": "Repeated emission may intentionally denote the same occurrence and therefore be correctly coalesced. No SDK ID collision or unauthorized acceptance is demonstrated.",
+  "failures": [],
+  "limits": [
+    "No live request, notification delivery, restart, replay rejection, reviewer identity, expiry or privilege invalidation experiment",
+    "This probe tests source-example and request-shape boundaries only; author documentation remains the evidence for runtime claims"
+  ],
+  "feasibilityBlockers": [
+    "Admitted Microsoft full runnable source URL returned 404; complete SDK implementation/dependency lock absent",
+    "No CrewAI Enterprise execution or deployed endpoint is admitted; authenticated service behavior cannot be inferred from these JSON mutations"
+  ],
+  "fullSystemReproduction": false,
+  "serviceRequests": 0
+}
