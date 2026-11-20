@@ -11,6 +11,7 @@ outline: false
 日期按 **Asia/Shanghai** 倒序排列。点击日期进入当天完整报告与原始公开来源。
 
 <div class="daily-intel-list">
+<a class="daily-intel-item" href="./2026-11-20"><time>2026-11-20</time><div><strong>Agent 核心研究与竞品动态</strong><span>31项观察、5组分析、7项跨日结算：MCP事件、动态授权与交付证据。</span></div><b>阅读完整日报 →</b></a>
 <a class="daily-intel-item" href="./2026-11-19"><time>2026-11-19</time><div><strong>Agent 核心研究与竞品动态</strong><span>57项观察、7组分析：技能信任、授权证据、协作验收、恢复与数字员工交付。</span></div><b>阅读完整日报 →</b></a>
 <a class="daily-intel-item" href="./2026-11-18"><time>2026-11-18</time><div><strong>Agent 核心研究与竞品动态</strong><span>35项观察、5组分析：企业身份与评测、执行证据恢复、协作验收与升级交付。</span></div><b>阅读完整日报 →</b></a>
 <a class="daily-intel-item" href="./2026-11-17"><time>2026-11-17</time><div><strong>Agent 核心研究与竞品动态</strong><span>44项观察、6组分析：授权来源、停止结算、结果消费、路径策略、AAE提案与数字员工交付。</span></div><b>阅读完整日报 →</b></a>
