@@ -1,0 +1,76 @@
+{
+  "schema": "article-metric-probe-excerpt/v1",
+  "date": "2026-11-21",
+  "itemId": "SIG-20261121-005",
+  "identity": "internal-experimental-evidence",
+  "independent": false,
+  "originalExecutedAt": "2026-11-21T05:03:15.143609+00:00",
+  "source": {
+    "url": "https://api.figshare.com/v2/articles/34056699",
+    "version": "Figshare article 34056699 v2, file 71632378; captured 2026-11-21 by Reading",
+    "scorerSha256": "2ee5ec484ff8d731aca1b6e2b0e4e614a63871eb1c44597e3117ae8e3a7e15a3"
+  },
+  "method": "Execute exact AST-extracted upstream score() with fixed observed positives and controlled added misses. Compare a zero-addition control to miss interventions.",
+  "inputs": {
+    "detector": {
+      "TP": 421,
+      "FP": 42,
+      "FN": 63,
+      "TN": 1830
+    },
+    "baseline": {
+      "TP": 289,
+      "FP": 78,
+      "FN": 195,
+      "TN": 1794
+    }
+  },
+  "rows": [
+    {
+      "condition": "Author matrix as calculation control",
+      "addedMisses": 0,
+      "matrix": {
+        "TP": 421,
+        "FP": 42,
+        "FN": 63,
+        "TN": 1830
+      },
+      "precision": 0.9092872570194385,
+      "recall": 0.8698347107438017
+    },
+    {
+      "condition": "Synthetic added misses",
+      "addedMisses": 63,
+      "matrix": {
+        "TP": 421,
+        "FP": 42,
+        "FN": 126,
+        "TN": 1830
+      },
+      "precision": 0.9092872570194385,
+      "recall": 0.7696526508226691
+    },
+    {
+      "condition": "Synthetic added misses",
+      "addedMisses": 124,
+      "matrix": {
+        "TP": 421,
+        "FP": 42,
+        "FN": 187,
+        "TN": 1830
+      },
+      "precision": 0.9092872570194385,
+      "recall": 0.6924342105263158
+    }
+  ],
+  "finding": "Same precision coexists with different recall and macro-F1. A positive-hit ledger alone cannot establish missed-positive coverage.",
+  "limits": [
+    "Synthetic sensitivity probe using published aggregate matrices, not newly measured detector performance.",
+    "Added 834 misses is a stress value motivated by unresolved-claim count, not an assertion that unresolved claims are misses or share this evaluation denominator.",
+    "No new model inference, annotation or scanner execution. Original paper and maintainer historical measurements retain their original dates."
+  ],
+  "provenance": {
+    "analysisExperimentSha256": "b3096fcf7af0d2821702ced6060831b021b6ab74ef9c4a96f37d127eef692949",
+    "productionAction": "Excerpt only; no fresh model inference, annotation, scanner execution or experimental intervention."
+  }
+}
