@@ -1,0 +1,107 @@
+{
+  "schema": "article-internal-experiment-excerpt/v1",
+  "date": "2026-11-22",
+  "itemId": "SIG-20261122-002",
+  "evidenceIdentity": "internal-experimental-evidence",
+  "independent": false,
+  "productionExecution": false,
+  "provenance": "Excerpted without rerunning from the completed same-date Analysis experiment. Other unrelated experiments and local operational paths omitted.",
+  "originalArtifactSha256": "527650df3b70624ab9135ccd9fa343cbe3c57c560dccd6eef6225cacf33af34b",
+  "runtime": {
+    "python": "3.12.9 (tags/v3.12.9:fdb8142, Feb  4 2025, 15:27:58) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0"
+  },
+  "source": {
+    "url": "https://github.com/haoyuwang99/AgentSpec/blob/e6fa3902e2cfb9681f454b355691b771f70543f8/src/enforcement.py",
+    "revision": "e6fa3902e2cfb9681f454b355691b771f70543f8",
+    "gitBlobSha": "d14b5900a343fbf4595c269e7e2f8ebe8bc13254",
+    "sha256": "8be2b544ac6748685369407025f98e593bb957c69c62e757297a27ce5b26775d"
+  },
+  "method": "Parse captured original Python with AST. Compile unchanged EnforceResult, UserInspection, Skip, Stop and InvokeAction classes against explicit Action and Enforcement doubles; exclude imports and untested LLM handlers.",
+  "id": "EXP-AP",
+  "question": "Does the captured synchronous inspection method re-prompt on repeated calls and distinguish denial from Stop?",
+  "type": "Source-derived isolated function probe; no full-system reproduction",
+  "cases": [
+    {
+      "name": "yes-current-action",
+      "expected": "CONTINUE",
+      "actual": "CONTINUE",
+      "prompts": [
+        "POST(amount=1)\n Do you want to perform the above action? (yes/no)\n"
+      ],
+      "stdout": "Action confirmed. Proceeding...\n",
+      "sameActionReference": true
+    },
+    {
+      "name": "no-is-skip",
+      "expected": "SKIP",
+      "actual": "SKIP",
+      "prompts": [
+        "POST(amount=1)\n Do you want to perform the above action? (yes/no)\n"
+      ],
+      "stdout": "Action declined. Exiting...\n",
+      "sameActionReference": false
+    },
+    {
+      "name": "invalid-then-no",
+      "expected": "SKIP",
+      "actual": "SKIP",
+      "prompts": [
+        "POST(amount=1)\n Do you want to perform the above action? (yes/no)\n",
+        "POST(amount=1)\n Do you want to perform the above action? (yes/no)\n"
+      ],
+      "stdout": "Invalid input. Please type 'yes' or 'no'.\nAction declined. Exiting...\n",
+      "sameActionReference": false
+    },
+    {
+      "name": "empty-then-yes",
+      "expected": "CONTINUE",
+      "actual": "CONTINUE",
+      "prompts": [
+        "POST(amount=1)\n Do you want to perform the above action? (yes/no)\n",
+        "POST(amount=1)\n Do you want to perform the above action? (yes/no)\n"
+      ],
+      "stdout": "Invalid input. Please type 'yes' or 'no'.\nAction confirmed. Proceeding...\n",
+      "sameActionReference": true
+    },
+    {
+      "name": "input-eof",
+      "expected": "EOFError",
+      "actual": "EOFError",
+      "prompts": [
+        "POST(amount=1)\n Do you want to perform the above action? (yes/no)\n"
+      ],
+      "stdout": "",
+      "sameActionReference": false
+    },
+    {
+      "name": "same-action-retry",
+      "expectedPrompts": 2,
+      "actualPrompts": 2,
+      "results": [
+        "CONTINUE",
+        "CONTINUE"
+      ],
+      "meaning": "The isolated handler re-prompts on each invocation. This does not establish executor retry behavior or effect deduplication."
+    },
+    {
+      "name": "alias-after-return",
+      "actualReturnedInput": "amount=2",
+      "expected": "amount=2",
+      "meaning": "Mutable Action double demonstrates unchanged method returns the same object. No concurrent production mutation was reproduced."
+    },
+    {
+      "name": "skip-stop-control",
+      "actual": [
+        "SKIP",
+        "STOP"
+      ],
+      "expected": [
+        "SKIP",
+        "STOP"
+      ]
+    }
+  ],
+  "status": "Completed",
+  "limits": "Action and Enforcement are doubles. Pydantic, LangChain, full RuleInterpreter, Kyvvu engine, tools, external effects, concurrency and restart are not executed. Same-reference observation is conditional on the mutable double."
+}
