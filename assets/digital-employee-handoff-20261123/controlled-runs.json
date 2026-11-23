@@ -1,0 +1,211 @@
+{
+  "date": "2026-11-23",
+  "runtimeVersion": "3.1.11",
+  "sourceCommit": "794123058b8db012ca0da189b43fdf0c5ec2ff04",
+  "environment": "Windows, Node.js 24.22.3",
+  "fixture": "Identical synthetic PM-to-DEV reconciliation assignment in each independent temporary workspace.",
+  "method": {
+    "dispatch": "Read from the task history and SDK adapter invocations.",
+    "approval": "Approval status read from the runtime approval store. No external action ran.",
+    "artifact": "Synthetic result written and read back by the local probe before settling the simulated run.",
+    "queue": "Function called directly with observed session and report facts. No full UI, live model, or acceptance test.",
+    "redaction": "Per-run observations retained. Local event identifiers and timing are omitted."
+  },
+  "records": [
+    {
+      "repetition": 1,
+      "scenario": "undelivered",
+      "taskSha256": "dfbb0d974766b227fe68c670696738343135502b55fce964cf8ea3053765866a",
+      "dispatch": "agent_not_found",
+      "sdkInvocations": 0,
+      "persistedSessionStatus": null,
+      "settlementReason": null,
+      "approval": null,
+      "artifact": null,
+      "reportFiles": 0,
+      "queue": {
+        "queueState": "waiting_report",
+        "reasonCode": "pending_worker_report",
+        "suggestedAction": "wait",
+        "recoverable": false
+      }
+    },
+    {
+      "repetition": 1,
+      "scenario": "waiting_approval",
+      "taskSha256": "dfbb0d974766b227fe68c670696738343135502b55fce964cf8ea3053765866a",
+      "dispatch": "dispatched",
+      "sdkInvocations": 1,
+      "persistedSessionStatus": "waiting_approval",
+      "settlementReason": "waiting_operation_approval",
+      "approval": {
+        "status": "pending_approval",
+        "operationExecuted": false
+      },
+      "artifact": null,
+      "reportFiles": 0,
+      "queue": {
+        "queueState": "waiting_report",
+        "reasonCode": "session_ended_no_report",
+        "suggestedAction": "wait",
+        "recoverable": false
+      }
+    },
+    {
+      "repetition": 1,
+      "scenario": "executed_without_report",
+      "taskSha256": "dfbb0d974766b227fe68c670696738343135502b55fce964cf8ea3053765866a",
+      "dispatch": "dispatched",
+      "sdkInvocations": 1,
+      "persistedSessionStatus": "completed",
+      "settlementReason": "completed",
+      "approval": null,
+      "artifact": {
+        "sha256": "d1d23671a95a7209bd6010ede84e9780003e80c7dd95872d944722efa6549a7d",
+        "content": {
+          "invoice": "R-901",
+          "expected": 120,
+          "received": 120,
+          "variance": 0
+        }
+      },
+      "reportFiles": 0,
+      "queue": {
+        "queueState": "waiting_report",
+        "reasonCode": "session_ended_no_report",
+        "suggestedAction": "wait",
+        "recoverable": false
+      }
+    },
+    {
+      "repetition": 2,
+      "scenario": "undelivered",
+      "taskSha256": "dfbb0d974766b227fe68c670696738343135502b55fce964cf8ea3053765866a",
+      "dispatch": "agent_not_found",
+      "sdkInvocations": 0,
+      "persistedSessionStatus": null,
+      "settlementReason": null,
+      "approval": null,
+      "artifact": null,
+      "reportFiles": 0,
+      "queue": {
+        "queueState": "waiting_report",
+        "reasonCode": "pending_worker_report",
+        "suggestedAction": "wait",
+        "recoverable": false
+      }
+    },
+    {
+      "repetition": 2,
+      "scenario": "waiting_approval",
+      "taskSha256": "dfbb0d974766b227fe68c670696738343135502b55fce964cf8ea3053765866a",
+      "dispatch": "dispatched",
+      "sdkInvocations": 1,
+      "persistedSessionStatus": "waiting_approval",
+      "settlementReason": "waiting_operation_approval",
+      "approval": {
+        "status": "pending_approval",
+        "operationExecuted": false
+      },
+      "artifact": null,
+      "reportFiles": 0,
+      "queue": {
+        "queueState": "waiting_report",
+        "reasonCode": "session_ended_no_report",
+        "suggestedAction": "wait",
+        "recoverable": false
+      }
+    },
+    {
+      "repetition": 2,
+      "scenario": "executed_without_report",
+      "taskSha256": "dfbb0d974766b227fe68c670696738343135502b55fce964cf8ea3053765866a",
+      "dispatch": "dispatched",
+      "sdkInvocations": 1,
+      "persistedSessionStatus": "completed",
+      "settlementReason": "completed",
+      "approval": null,
+      "artifact": {
+        "sha256": "d1d23671a95a7209bd6010ede84e9780003e80c7dd95872d944722efa6549a7d",
+        "content": {
+          "invoice": "R-901",
+          "expected": 120,
+          "received": 120,
+          "variance": 0
+        }
+      },
+      "reportFiles": 0,
+      "queue": {
+        "queueState": "waiting_report",
+        "reasonCode": "session_ended_no_report",
+        "suggestedAction": "wait",
+        "recoverable": false
+      }
+    },
+    {
+      "repetition": 3,
+      "scenario": "undelivered",
+      "taskSha256": "dfbb0d974766b227fe68c670696738343135502b55fce964cf8ea3053765866a",
+      "dispatch": "agent_not_found",
+      "sdkInvocations": 0,
+      "persistedSessionStatus": null,
+      "settlementReason": null,
+      "approval": null,
+      "artifact": null,
+      "reportFiles": 0,
+      "queue": {
+        "queueState": "waiting_report",
+        "reasonCode": "pending_worker_report",
+        "suggestedAction": "wait",
+        "recoverable": false
+      }
+    },
+    {
+      "repetition": 3,
+      "scenario": "waiting_approval",
+      "taskSha256": "dfbb0d974766b227fe68c670696738343135502b55fce964cf8ea3053765866a",
+      "dispatch": "dispatched",
+      "sdkInvocations": 1,
+      "persistedSessionStatus": "waiting_approval",
+      "settlementReason": "waiting_operation_approval",
+      "approval": {
+        "status": "pending_approval",
+        "operationExecuted": false
+      },
+      "artifact": null,
+      "reportFiles": 0,
+      "queue": {
+        "queueState": "waiting_report",
+        "reasonCode": "session_ended_no_report",
+        "suggestedAction": "wait",
+        "recoverable": false
+      }
+    },
+    {
+      "repetition": 3,
+      "scenario": "executed_without_report",
+      "taskSha256": "dfbb0d974766b227fe68c670696738343135502b55fce964cf8ea3053765866a",
+      "dispatch": "dispatched",
+      "sdkInvocations": 1,
+      "persistedSessionStatus": "completed",
+      "settlementReason": "completed",
+      "approval": null,
+      "artifact": {
+        "sha256": "d1d23671a95a7209bd6010ede84e9780003e80c7dd95872d944722efa6549a7d",
+        "content": {
+          "invoice": "R-901",
+          "expected": 120,
+          "received": 120,
+          "variance": 0
+        }
+      },
+      "reportFiles": 0,
+      "queue": {
+        "queueState": "waiting_report",
+        "reasonCode": "session_ended_no_report",
+        "suggestedAction": "wait",
+        "recoverable": false
+      }
+    }
+  ]
+}
