@@ -11,6 +11,7 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+<a class="daily-intel-item" href="./2026-11-23"><time>2026-11-23</time><div><strong>Agent Research and Competitive Intelligence</strong><span>33 observations, 6 analyses: pre-publication governance, delivery receipts and paired agents.</span></div><b>Read full report →</b></a>
 <a class="daily-intel-item" href="./2026-11-22"><time>2026-11-22</time><div><strong>Agent Research and Competitive Intelligence</strong><span>20 selected observations, 5 analyses: retry authority, artifact versions and independent acceptance.</span></div><b>Read full report →</b></a>
 <a class="daily-intel-item" href="./2026-11-20"><time>2026-11-20</time><div><strong>Agent Research and Competitive Intelligence</strong><span>31 observations, 5 analyses, 7 carryovers: MCP Events, live authority and delivery evidence.</span></div><b>Read full report →</b></a>
 <a class="daily-intel-item" href="./2026-11-19"><time>2026-11-19</time><div><strong>Agent Research and Competitive Intelligence</strong><span>57 observations, 7 analyses: skill trust, authority evidence, acceptance, recovery and employee delivery.</span></div><b>Read full report →</b></a>
