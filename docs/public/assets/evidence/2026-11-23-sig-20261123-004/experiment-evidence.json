@@ -1,0 +1,129 @@
+{
+  "schema": "article-internal-experiment/v1",
+  "researchDate": "2026-11-23",
+  "independent": false,
+  "provenance": "Exact selected experiment record from the completed same-date Analysis; copied for publication with no new execution. Source-file SHA-256 values identify the source-derived method bodies.",
+  "environment": {
+    "python": "3.12.9",
+    "platform": "Windows-10-10.0.19045-SP0"
+  },
+  "executedAt": "2026-11-23T06:03:21.776419+00:00",
+  "experiment": {
+    "id": "EXP004",
+    "topic": "SIG-20261123-004",
+    "question": "Can the classic manager return the same handler tuple after a round limit and after a termination-message predicate, without an application success check?",
+    "falsifier": "Different return tuples, no budget stop, or a required domain success predicate is invoked.",
+    "pins": [
+      {
+        "file": "ag2-legacy-implementation.html",
+        "sha256": "79cee4bd85e6d0c61e5ccfb9f584aef9607eee151f20c843dc5318775eec268d",
+        "class": "GroupChatManager",
+        "function": "run_chat",
+        "lines": [
+          1201,
+          1329
+        ],
+        "transformation": "AST extracted method body unchanged; decorators removed; postponed annotations; dependency stubs explicitly declared."
+      }
+    ],
+    "inputs": [
+      {
+        "input": "unfinished",
+        "terminationPredicate": false,
+        "max_round": 1,
+        "output": [
+          true,
+          null
+        ],
+        "events": [
+          {
+            "termination_reason": "Maximum rounds (1) reached",
+            "sender": "manager",
+            "recipient": "worker"
+          }
+        ],
+        "appended": [
+          {
+            "content": "unfinished"
+          }
+        ],
+        "taskSuccessChecked": false
+      },
+      {
+        "input": "DONE",
+        "terminationPredicate": true,
+        "max_round": 1,
+        "output": [
+          true,
+          null
+        ],
+        "events": [
+          {
+            "termination_reason": "Termination message condition on the GroupChatManager 'manager' met",
+            "sender": "manager",
+            "recipient": "worker"
+          }
+        ],
+        "appended": [
+          {
+            "content": "DONE"
+          }
+        ],
+        "taskSuccessChecked": false
+      }
+    ],
+    "controls": "One-round fake group, same manager path; change only message and termination predicate. IOStream, agent, group and events are inert stubs.",
+    "outputs": [
+      {
+        "input": "unfinished",
+        "terminationPredicate": false,
+        "max_round": 1,
+        "output": [
+          true,
+          null
+        ],
+        "events": [
+          {
+            "termination_reason": "Maximum rounds (1) reached",
+            "sender": "manager",
+            "recipient": "worker"
+          }
+        ],
+        "appended": [
+          {
+            "content": "unfinished"
+          }
+        ],
+        "taskSuccessChecked": false
+      },
+      {
+        "input": "DONE",
+        "terminationPredicate": true,
+        "max_round": 1,
+        "output": [
+          true,
+          null
+        ],
+        "events": [
+          {
+            "termination_reason": "Termination message condition on the GroupChatManager 'manager' met",
+            "sender": "manager",
+            "recipient": "worker"
+          }
+        ],
+        "appended": [
+          {
+            "content": "DONE"
+          }
+        ],
+        "taskSuccessChecked": false
+      }
+    ],
+    "result": "Both return (True, None); distinct termination reasons survive. True is a handler result, not an independently evaluated task-success score.",
+    "limits": [
+      "Exact source-derived run_chat body with stub dependencies, not full AG2 execution.",
+      "No speaker-selection, LLM, asynchronous path, tool, guardrail or new runtime exercised.",
+      "Classic v0.9.10 ac380f5c7962ad875f77c4f8310e3c1167bceeb7; current main is a different runtime."
+    ]
+  }
+}

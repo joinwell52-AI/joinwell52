@@ -1,0 +1,84 @@
+{
+  "schema": "article-internal-experiment/v1",
+  "researchDate": "2026-11-23",
+  "independent": false,
+  "provenance": "Exact selected experiment record from the completed same-date Analysis; copied for publication with no new execution. Source-file SHA-256 values identify the source-derived method bodies.",
+  "environment": {
+    "python": "3.12.9",
+    "platform": "Windows-10-10.0.19045-SP0"
+  },
+  "executedAt": "2026-11-23T06:03:21.776419+00:00",
+  "experiment": {
+    "id": "EXP003",
+    "topic": "SIG-20261123-003",
+    "question": "Does the admitted policy request confirmation for UNKNOWN by default, and does the base batch helper convert an analyzer exception to HIGH?",
+    "falsifier": "UNKNOWN default returns false or controlled exception escapes/retains LOW.",
+    "pins": [
+      {
+        "file": "openhands-confirmation.html",
+        "sha256": "6ecac839fa3740e5cdc8aae6515cd0cf4ef4177c5b27bb99a7d593af844c765f",
+        "class": "ConfirmRisky",
+        "function": "should_confirm",
+        "lines": [
+          53,
+          61
+        ],
+        "transformation": "AST extracted method body unchanged; decorators removed; postponed annotations; dependency stubs explicitly declared."
+      },
+      {
+        "file": "openhands-analyzer.html",
+        "sha256": "a4dfd0417d4fe6db4712f8854e78664e98f92367baa48f2af244b2963f71d543",
+        "class": "SecurityAnalyzerBase",
+        "function": "_analyze_actions",
+        "lines": [
+          127,
+          144
+        ],
+        "transformation": "AST extracted method body unchanged; decorators removed; postponed annotations; dependency stubs explicitly declared."
+      }
+    ],
+    "inputs": {
+      "unknownFlags": [
+        true,
+        false
+      ],
+      "actions": [
+        "control",
+        "raises"
+      ]
+    },
+    "controls": "Identical UNKNOWN input with one flag changed; normal LOW return versus injected ValueError.",
+    "outputs": {
+      "unknown": [
+        {
+          "confirm_unknown": true,
+          "observed": true
+        },
+        {
+          "confirm_unknown": false,
+          "observed": false
+        }
+      ],
+      "batch": [
+        {
+          "input": "control",
+          "risk": "LOW",
+          "details": null
+        },
+        {
+          "input": "raises",
+          "risk": "HIGH",
+          "details": {
+            "error": "controlled analyzer failure"
+          }
+        }
+      ]
+    },
+    "result": "Observed default UNKNOWN confirmation, opt-out counterexample and HIGH fallback on the isolated base helper.",
+    "limits": [
+      "Source-derived isolated function probe, not SDK integration or model/incident reproduction.",
+      "SecurityRisk comparator, Pydantic validation, overrides, conversation-loop enforcement and approval UI not executed.",
+      "No environment-hazard detection or reduction in harm measured."
+    ]
+  }
+}
