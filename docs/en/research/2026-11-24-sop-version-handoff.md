@@ -97,21 +97,36 @@ The experiments exercised the recordkeeping side of this design. FCoP provides r
 
 A tool receipt can show that the worker retrieved V1. An operation log can show that it ran the payment check. Interpreting the rule remains the job of the reconciliation agent and its independent reviewer. The organization authorizes any change to the procedure for open work, and the workflow carries that decision and its evidence to the relevant roles.
 
-## What should a second agent add?
+## When every agent agrees, who checks the premise?
 
-Separate calculations can agree when both reviewers inherit the same mistaken premise. The next tests introduce live agents and measure what independent review actually checks.
+Back to the ¥300. Under V1, the amount stays outstanding. Once a decision to switch this assignment takes effect, V2 allows the waiver to count. The underlying payment is the same. The verdict depends on which rule and decision apply to the assignment.
 
-1. **Report first or evidence first?** Give both groups the same assignments and records. One reads the report first. The other checks the source and records an initial judgment before seeing it. Include correct reports and reports with correct arithmetic under the wrong rule. Compare false approvals and false rejections. A measurable improvement would give us grounds to change the review skill.
-2. **Did the worker retrieve V1, and did it apply it correctly?** In one case, the report claims it opened V1 but the complete tool log has no matching call. In another, the receipt confirms retrieval, yet the report deducts a waiver that V1 disallows. Score the missing operation evidence separately from the incorrect interpretation.
-3. **Which earlier steps need to be repeated?** Give the incoming agent one case where only the waiver treatment changes and another where the bank reverses the payment. Leave the rework list open. Record necessary steps it missed and valid work it repeated. Then check whether the handoff files captured the evidence and conditions each prior result depended on.
+That raises a question for multi-agent teams. **When several agents reach the same answer, did they independently check the evidence, or did they all accept the same premise?** If both worker and reviewer assume that the latest procedure governs the assignment, more calculations can reinforce the original mistake. To judge whether a review was independent, look at what the reviewer verified for itself and whether it could uncover a premise the worker overlooked.
 
-For each comparison, define the expected outcome first and hold the model version, role skill, permissions, and tools constant. The results will guide two different design choices: what the handoff record needs to say so a new worker can continue, and what the reviewer needs to investigate to produce evidence that can change the original verdict.
+Handoffs raise a second question. We want AI workers to understand an assignment, choose how to proceed, and decide which earlier results they can still use. That flexibility helps them respond to change, and their interpretation affects what they do next. **When an incoming agent changes its approach, how can we tell whether it is still doing the original job or has redefined it?** In this case, an effective decision on the specific assignment draws that line. Evidence of that kind needs to travel with the work through further reassignments and revisions.
 
-## Experiment notes and records
+These questions also affect how we evaluate AI workers. A reviewer with a well-founded objection may pause the workflow and prevent a mistaken premise from carrying forward. An objection needs evidence of its own. The team’s evaluation should make room for a justified pause, a request for missing evidence, or a decision to recheck a result.
 
-The first round included 12 runs and 24 review decisions, with 12 formal reviews from the assignment-based strategy, plus one check with the original procedure missing. The second round was a single paired follow-up. The accounting data, identities, and approvals were test fixtures. Scripts selected steps and applied the accounting rules. No language model was called. The repetitions check consistency on the controlled path. Full business acceptance was outside the tested stage.
+The ¥300 leaves system designers with a question. **If we reward fast completion and unanimous approval, will the AI worker who checks the evidence and says “hold on” count as more reliable or less efficient?**
 
-The public summaries show amounts, verdicts, call counts, and recorded states. Re-running the study externally would also require the full scripts, commands, procedure texts, and detailed redacted logs. The summaries identify CodeFlowMu revision `0d2d4e742ef2f3cb48e3ce09cc47f0c03053dc5f` and FCoP 4.0.5. The first round also records FCoP MCP 4.0.5.
+---
 
-- [Twelve runs and the missing-procedure check](/assets/sop-handoff-20261124/controlled-runs.json)
-- [Paired follow-up for the two assignments](/assets/sop-handoff-20261124/selective-migration-runs.json)
+## Appendix: Experiment notes and records
+
+### Scope
+
+The first round included 12 runs and 24 review decisions. The assignment-based strategy filed 12 formal reviews. One additional test removed the original procedure. The second round was a single paired follow-up with two assignments.
+
+We used synthetic accounting data and test identities. Tasks and reports went through the actual product interfaces. Scripts interpreted the procedures, calculated the amounts, and selected the steps to repeat. We did not call a language model.
+
+Each combination ran three times to check consistency on the controlled path. The repetitions do not estimate the accuracy of live agents. The completed runs reached the review stage. Final business acceptance was outside the test.
+
+### Published records
+
+- [Run-by-run records for the 12 runs and the missing-procedure check](/assets/sop-handoff-20261124/controlled-runs.json) cover the assigned and actual versions, file fingerprints, reported amounts, both verdicts, and whether reports and reviews were filed.
+- [Paired follow-up for the two assignments](/assets/sop-handoff-20261124/selective-migration-runs.json) covers the switch decision, checkpoint fingerprints before and after handoff, post-handoff verification calls, and report and review status.
+- [StaffDeck fix and regression test for public procedure IDs](https://github.com/OpenBMB/StaffDeck/commit/389d5d331cf40eb5f0aae83c4fa24f4ed10b0003) documents the change that preserves public identifiers across restarts.
+
+### Versions
+
+The two published result summaries identify CodeFlowMu revision `0d2d4e742ef2f3cb48e3ce09cc47f0c03053dc5f` and FCoP 4.0.5. The first round also records FCoP MCP 4.0.5.
