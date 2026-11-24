@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-24",
+  "sourceCommit": "0d2d4e742ef2f3cb48e3ce09cc47f0c03053dc5f",
+  "fcop": "4.0.5",
+  "method": "One paired comparison with synthetic data and principals. The real product task, decision, report, and review paths were exercised with test storage; the probe interpreted the business policy and selected which step to repeat.",
+  "inputYuan": {
+    "receivable": 3000,
+    "bankPosted": 2700,
+    "provisionalWaiver": 300
+  },
+  "controls": {
+    "onlyBApproved": true,
+    "otherAttemptSawNoApprovedContext": true,
+    "workerPrincipalChanged": true,
+    "reviewerPrincipalChanged": true
+  },
+  "tickets": [
+    {
+      "ticket": "A",
+      "directiveStatus": "pending_approval",
+      "version": "v1",
+      "verifiedBalance": 300,
+      "checkpointSha256Before": "a9f80217b4e69c5677682bfebc2a1d8ff038ed124a13c934b3aa16424045f4a2",
+      "checkpointSha256After": "a9f80217b4e69c5677682bfebc2a1d8ff038ed124a13c934b3aa16424045f4a2",
+      "bankVerifiedAmount": 2700,
+      "bankSourceSha256": "93ad8dbc40d911a8df72344431727524df7e735502cca1b22b97131d14436333",
+      "bankVerificationCallsAfterHandoff": 0,
+      "waiverExecutionCallsAfterHandoff": 0,
+      "waiverReviewCallsAfterHandoff": 0,
+      "reportFiled": true,
+      "reviewReadBack": true,
+      "lifecycleStage": "review"
+    },
+    {
+      "ticket": "B",
+      "directiveStatus": "effective",
+      "version": "v2",
+      "verifiedBalance": 0,
+      "checkpointSha256Before": "60e73135a58187a3734010a2793ee96000d8e9398aad2f18ae26b26fd921f6af",
+      "checkpointSha256After": "60e73135a58187a3734010a2793ee96000d8e9398aad2f18ae26b26fd921f6af",
+      "bankVerifiedAmount": 2700,
+      "bankSourceSha256": "93ad8dbc40d911a8df72344431727524df7e735502cca1b22b97131d14436333",
+      "bankVerificationCallsAfterHandoff": 0,
+      "waiverExecutionCallsAfterHandoff": 1,
+      "waiverReviewCallsAfterHandoff": 1,
+      "reportFiled": true,
+      "reviewReadBack": true,
+      "lifecycleStage": "review"
+    }
+  ],
+  "limits": "The test fixture supplied distinct principals within the same roles, a rule-owner decision and business policy execution. It did not use a live agent host, full desktop handoff, real accounting systems or business acceptance."
+}
