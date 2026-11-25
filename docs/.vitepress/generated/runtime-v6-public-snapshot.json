@@ -4,13 +4,13 @@
   "schedulerVersion": "6.0",
   "startDate": "2026-10-27",
   "snapshotDate": "2026-11-25",
-  "publishedAt": "2026-11-25T09:00:01.938Z",
+  "publishedAt": "2026-11-25T09:16:24.957Z",
   "timezone": "Asia/Shanghai",
   "label": "Public Snapshot",
   "notice": "Not a live control plane",
   "dailyPublicStatuses": {
-    "discovery": "Waiting",
-    "queue": "Waiting",
+    "discovery": "Completed",
+    "queue": "Completed",
     "reading": "Waiting",
     "analysis": "Waiting",
     "production": "Waiting",
@@ -226,8 +226,8 @@
         "date": "2026-11-25",
         "status": "Waiting",
         "taskStatus": {
-          "discovery": "Waiting",
-          "queue": "Waiting",
+          "discovery": "Completed",
+          "queue": "Completed",
           "reading": "Waiting",
           "analysis": "Waiting",
           "production": "Waiting",
@@ -238,30 +238,56 @@
         "results": {
           "discovery": {
             "task": "discovery",
-            "status": "Waiting",
+            "status": "Completed",
             "input": "按已验证的本地任务依赖执行。",
             "input_zh": "按已验证的本地任务依赖执行。",
-            "workResult": "信息发现: Waiting",
-            "workResult_zh": "信息发现：等待计划时间或前置阶段完成。",
-            "output": "等待计划时间或前置阶段完成。",
-            "output_zh": "等待计划时间或前置阶段完成。",
+            "workResult": "信息发现: Completed",
+            "workResult_zh": "信息发现：本地结果已通过验证。",
+            "output": "本地结果已通过验证。",
+            "output_zh": "本地结果已通过验证。",
             "next": "Follow the local schedule.",
             "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
             "metrics": [
               {
                 "label": "actual-start",
                 "label_zh": "实际开始",
-                "value": "09:03:28"
+                "value": "17:00:02"
               },
               {
                 "label": "actual-end",
                 "label_zh": "实际结束",
-                "value": "—"
+                "value": "17:12:28"
               },
               {
                 "label": "signals",
                 "label_zh": "研究线索",
-                "value": "0"
+                "value": "5"
+              }
+            ],
+            "artifacts": [],
+            "evidence": []
+          },
+          "queue": {
+            "task": "queue",
+            "status": "Completed",
+            "input": "按已验证的本地任务依赖执行。",
+            "input_zh": "按已验证的本地任务依赖执行。",
+            "workResult": "分类选题: Completed",
+            "workResult_zh": "分类选题：本地结果已通过验证。",
+            "output": "本地结果已通过验证。",
+            "output_zh": "本地结果已通过验证。",
+            "next": "Follow the local schedule.",
+            "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+            "metrics": [
+              {
+                "label": "actual-start",
+                "label_zh": "实际开始",
+                "value": "17:12:29"
+              },
+              {
+                "label": "actual-end",
+                "label_zh": "实际结束",
+                "value": "17:16:24"
               }
             ],
             "artifacts": [],
@@ -330,8 +356,8 @@
           "date": "2026-11-25",
           "status": "Waiting",
           "taskStatus": {
-            "discovery": "Waiting",
-            "queue": "Waiting",
+            "discovery": "Completed",
+            "queue": "Completed",
             "reading": "Waiting",
             "analysis": "Waiting",
             "production": "Waiting",
@@ -342,30 +368,56 @@
           "results": {
             "discovery": {
               "task": "discovery",
-              "status": "Waiting",
+              "status": "Completed",
               "input": "按已验证的本地任务依赖执行。",
               "input_zh": "按已验证的本地任务依赖执行。",
-              "workResult": "信息发现: Waiting",
-              "workResult_zh": "信息发现：等待计划时间或前置阶段完成。",
-              "output": "等待计划时间或前置阶段完成。",
-              "output_zh": "等待计划时间或前置阶段完成。",
+              "workResult": "信息发现: Completed",
+              "workResult_zh": "信息发现：本地结果已通过验证。",
+              "output": "本地结果已通过验证。",
+              "output_zh": "本地结果已通过验证。",
               "next": "Follow the local schedule.",
               "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
               "metrics": [
                 {
                   "label": "actual-start",
                   "label_zh": "实际开始",
-                  "value": "09:03:28"
+                  "value": "17:00:02"
                 },
                 {
                   "label": "actual-end",
                   "label_zh": "实际结束",
-                  "value": "—"
+                  "value": "17:12:28"
                 },
                 {
                   "label": "signals",
                   "label_zh": "研究线索",
-                  "value": "0"
+                  "value": "5"
+                }
+              ],
+              "artifacts": [],
+              "evidence": []
+            },
+            "queue": {
+              "task": "queue",
+              "status": "Completed",
+              "input": "按已验证的本地任务依赖执行。",
+              "input_zh": "按已验证的本地任务依赖执行。",
+              "workResult": "分类选题: Completed",
+              "workResult_zh": "分类选题：本地结果已通过验证。",
+              "output": "本地结果已通过验证。",
+              "output_zh": "本地结果已通过验证。",
+              "next": "Follow the local schedule.",
+              "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+              "metrics": [
+                {
+                  "label": "actual-start",
+                  "label_zh": "实际开始",
+                  "value": "17:12:29"
+                },
+                {
+                  "label": "actual-end",
+                  "label_zh": "实际结束",
+                  "value": "17:16:24"
                 }
               ],
               "artifacts": [],
@@ -436,8 +488,8 @@
             "date": "2026-11-25",
             "status": "Waiting",
             "taskStatus": {
-              "discovery": "Waiting",
-              "queue": "Waiting",
+              "discovery": "Completed",
+              "queue": "Completed",
               "reading": "Waiting",
               "analysis": "Waiting",
               "production": "Waiting",
@@ -448,30 +500,56 @@
             "results": {
               "discovery": {
                 "task": "discovery",
-                "status": "Waiting",
+                "status": "Completed",
                 "input": "按已验证的本地任务依赖执行。",
                 "input_zh": "按已验证的本地任务依赖执行。",
-                "workResult": "信息发现: Waiting",
-                "workResult_zh": "信息发现：等待计划时间或前置阶段完成。",
-                "output": "等待计划时间或前置阶段完成。",
-                "output_zh": "等待计划时间或前置阶段完成。",
+                "workResult": "信息发现: Completed",
+                "workResult_zh": "信息发现：本地结果已通过验证。",
+                "output": "本地结果已通过验证。",
+                "output_zh": "本地结果已通过验证。",
                 "next": "Follow the local schedule.",
                 "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
                 "metrics": [
                   {
                     "label": "actual-start",
                     "label_zh": "实际开始",
-                    "value": "09:03:28"
+                    "value": "17:00:02"
                   },
                   {
                     "label": "actual-end",
                     "label_zh": "实际结束",
-                    "value": "—"
+                    "value": "17:12:28"
                   },
                   {
                     "label": "signals",
                     "label_zh": "研究线索",
-                    "value": "0"
+                    "value": "5"
+                  }
+                ],
+                "artifacts": [],
+                "evidence": []
+              },
+              "queue": {
+                "task": "queue",
+                "status": "Completed",
+                "input": "按已验证的本地任务依赖执行。",
+                "input_zh": "按已验证的本地任务依赖执行。",
+                "workResult": "分类选题: Completed",
+                "workResult_zh": "分类选题：本地结果已通过验证。",
+                "output": "本地结果已通过验证。",
+                "output_zh": "本地结果已通过验证。",
+                "next": "Follow the local schedule.",
+                "next_zh": "后续阶段按原计划时间及前置验证结果执行。",
+                "metrics": [
+                  {
+                    "label": "actual-start",
+                    "label_zh": "实际开始",
+                    "value": "17:12:29"
+                  },
+                  {
+                    "label": "actual-end",
+                    "label_zh": "实际结束",
+                    "value": "17:16:24"
                   }
                 ],
                 "artifacts": [],
@@ -7652,46 +7730,46 @@
     "intelligence": {
       "currentRun": {
         "date": "2026-11-25",
-        "status": "Waiting",
+        "status": "Completed",
         "columns": [
           {
             "id": "digital-employee",
             "label": "数字员工",
             "label_zh": "数字员工",
-            "decision": "Waiting",
-            "signals": 0,
-            "candidates": 0,
-            "selectedItemId": "",
-            "selectedTitle": "",
-            "selectedTitle_zh": "",
-            "reason": "该栏目尚未形成经过验证的选题。",
-            "reason_zh": "该栏目尚未形成经过验证的选题。"
+            "decision": "Selected",
+            "signals": 1,
+            "candidates": 1,
+            "selectedItemId": "SIG-20261125-001",
+            "selectedTitle": "人工交接与重试需要明确的副作用和权限边界",
+            "selectedTitle_zh": "人工交接与重试需要明确的副作用和权限边界",
+            "reason": "本地分类选题已验证。",
+            "reason_zh": "本地分类选题已验证。"
           },
           {
             "id": "industry-architecture",
             "label": "行业架构",
             "label_zh": "行业架构",
-            "decision": "Waiting",
-            "signals": 0,
-            "candidates": 0,
-            "selectedItemId": "",
-            "selectedTitle": "",
-            "selectedTitle_zh": "",
-            "reason": "该栏目尚未形成经过验证的选题。",
-            "reason_zh": "该栏目尚未形成经过验证的选题。"
+            "decision": "Selected",
+            "signals": 1,
+            "candidates": 1,
+            "selectedItemId": "SIG-20261125-002",
+            "selectedTitle": "流量拦截与运行时规则呈现不同策略作用域",
+            "selectedTitle_zh": "流量拦截与运行时规则呈现不同策略作用域",
+            "reason": "本地分类选题已验证。",
+            "reason_zh": "本地分类选题已验证。"
           },
           {
             "id": "open-source-engineering",
             "label": "开源工程",
             "label_zh": "开源工程",
-            "decision": "Waiting",
-            "signals": 0,
-            "candidates": 0,
-            "selectedItemId": "",
-            "selectedTitle": "",
-            "selectedTitle_zh": "",
-            "reason": "该栏目尚未形成经过验证的选题。",
-            "reason_zh": "该栏目尚未形成经过验证的选题。"
+            "decision": "Selected",
+            "signals": 3,
+            "candidates": 1,
+            "selectedItemId": "SIG-20261125-003",
+            "selectedTitle": "成功协作记忆可能保存内部攻击载荷",
+            "selectedTitle_zh": "成功协作记忆可能保存内部攻击载荷",
+            "reason": "本地分类选题已验证。",
+            "reason_zh": "本地分类选题已验证。"
           }
         ]
       },
@@ -7703,43 +7781,210 @@
               "id": "digital-employee",
               "label": "数字员工",
               "label_zh": "数字员工",
-              "decision": "Waiting",
-              "signals": 0,
-              "candidates": 0,
-              "selectedItemId": "",
-              "selectedTitle": "",
-              "selectedTitle_zh": "",
-              "reason": "该栏目尚未形成经过验证的选题。",
-              "reason_zh": "该栏目尚未形成经过验证的选题。"
+              "decision": "Selected",
+              "signals": 1,
+              "candidates": 1,
+              "selectedItemId": "SIG-20261125-001",
+              "selectedTitle": "人工交接与重试需要明确的副作用和权限边界",
+              "selectedTitle_zh": "人工交接与重试需要明确的副作用和权限边界",
+              "reason": "本地分类选题已验证。",
+              "reason_zh": "本地分类选题已验证。"
             },
             {
               "id": "industry-architecture",
               "label": "行业架构",
               "label_zh": "行业架构",
-              "decision": "Waiting",
-              "signals": 0,
-              "candidates": 0,
-              "selectedItemId": "",
-              "selectedTitle": "",
-              "selectedTitle_zh": "",
-              "reason": "该栏目尚未形成经过验证的选题。",
-              "reason_zh": "该栏目尚未形成经过验证的选题。"
+              "decision": "Selected",
+              "signals": 1,
+              "candidates": 1,
+              "selectedItemId": "SIG-20261125-002",
+              "selectedTitle": "流量拦截与运行时规则呈现不同策略作用域",
+              "selectedTitle_zh": "流量拦截与运行时规则呈现不同策略作用域",
+              "reason": "本地分类选题已验证。",
+              "reason_zh": "本地分类选题已验证。"
             },
             {
               "id": "open-source-engineering",
               "label": "开源工程",
               "label_zh": "开源工程",
-              "decision": "Waiting",
-              "signals": 0,
-              "candidates": 0,
-              "selectedItemId": "",
-              "selectedTitle": "",
-              "selectedTitle_zh": "",
-              "reason": "该栏目尚未形成经过验证的选题。",
-              "reason_zh": "该栏目尚未形成经过验证的选题。"
+              "decision": "Selected",
+              "signals": 3,
+              "candidates": 1,
+              "selectedItemId": "SIG-20261125-003",
+              "selectedTitle": "成功协作记忆可能保存内部攻击载荷",
+              "selectedTitle_zh": "成功协作记忆可能保存内部攻击载荷",
+              "reason": "本地分类选题已验证。",
+              "reason_zh": "本地分类选题已验证。"
             }
           ]
         }
+      }
+    },
+    "radar": {
+      "today": "2026-11-25",
+      "timezone": "Asia/Shanghai",
+      "registryVersion": "1.0",
+      "effectiveDate": "2026-11-25",
+      "registryPath": "research/intelligence/SOURCES.json",
+      "currentRun": {
+        "date": "2026-11-25",
+        "status": "Completed",
+        "reason": "Discovery completed: all 83 formal obligations resolved as 69 Checked, 6 Inaccessible and 8 Failed. Seven rotated approved samples inspected; five problem-deduplicated non-trigger signals retained. No topic selection, deep reading or publication.",
+        "reason_zh": "发现完成：83 项正式义务均有终态回执，69 项已检查、6 项不可访问、8 项提取失败或缺少登记来源；轮换检查七个批准样本，保留五条按问题去重的非触发信号。未选题、深读或发布。",
+        "pipelines": [
+          {
+            "id": "ai-platform",
+            "label": "AI platform",
+            "label_zh": "AI 平台变更情报发现",
+            "status": "Completed",
+            "due": 12,
+            "checked": 12,
+            "inaccessible": [],
+            "failed": [],
+            "signals": 1,
+            "candidates": 0,
+            "selected": 0,
+            "rejected": 0,
+            "coveragePercent": 100,
+            "reason": "Verified object-level access receipts; inaccessible objects are not checked.",
+            "reason_zh": "按已验证的对象级访问回执统计，访问受限不计为已检查。"
+          },
+          {
+            "id": "github-engineering",
+            "label": "GitHub engineering",
+            "label_zh": "GitHub 工程情报发现",
+            "status": "Completed",
+            "due": 62,
+            "checked": 51,
+            "inaccessible": [
+              {
+                "source": "github-engineering-Inaccessible-1",
+                "reason": "来源访问受限；未计作已检查。"
+              },
+              {
+                "source": "github-engineering-Inaccessible-2",
+                "reason": "来源访问受限；未计作已检查。"
+              },
+              {
+                "source": "github-engineering-Inaccessible-3",
+                "reason": "来源访问受限；未计作已检查。"
+              },
+              {
+                "source": "github-engineering-Inaccessible-4",
+                "reason": "来源访问受限；未计作已检查。"
+              },
+              {
+                "source": "github-engineering-Inaccessible-5",
+                "reason": "来源访问受限；未计作已检查。"
+              }
+            ],
+            "failed": [
+              {
+                "source": "github-engineering-Failed-1",
+                "reason": "来源检查失败；未计作已检查。"
+              },
+              {
+                "source": "github-engineering-Failed-2",
+                "reason": "来源检查失败；未计作已检查。"
+              },
+              {
+                "source": "github-engineering-Failed-3",
+                "reason": "来源检查失败；未计作已检查。"
+              },
+              {
+                "source": "github-engineering-Failed-4",
+                "reason": "来源检查失败；未计作已检查。"
+              },
+              {
+                "source": "github-engineering-Failed-5",
+                "reason": "来源检查失败；未计作已检查。"
+              },
+              {
+                "source": "github-engineering-Failed-6",
+                "reason": "来源检查失败；未计作已检查。"
+              }
+            ],
+            "signals": 1,
+            "candidates": 0,
+            "selected": 0,
+            "rejected": 0,
+            "coveragePercent": 82,
+            "reason": "Verified object-level access receipts; inaccessible objects are not checked.",
+            "reason_zh": "按已验证的对象级访问回执统计，访问受限不计为已检查。"
+          },
+          {
+            "id": "published-research",
+            "label": "Published research",
+            "label_zh": "论文与研究成果情报发现",
+            "status": "Completed",
+            "due": 9,
+            "checked": 6,
+            "inaccessible": [
+              {
+                "source": "published-research:jss",
+                "reason": "来源访问受限；未计作已检查。"
+              }
+            ],
+            "failed": [
+              {
+                "source": "published-research:openreview",
+                "reason": "来源检查失败；未计作已检查。"
+              },
+              {
+                "source": "published-research:google-deepmind",
+                "reason": "来源检查失败；未计作已检查。"
+              }
+            ],
+            "signals": 3,
+            "candidates": 0,
+            "selected": 0,
+            "rejected": 0,
+            "coveragePercent": 67,
+            "reason": "Verified object-level access receipts; inaccessible objects are not checked.",
+            "reason_zh": "按已验证的对象级访问回执统计，访问受限不计为已检查。"
+          }
+        ],
+        "columns": [
+          {
+            "id": "digital-employee",
+            "label": "数字员工",
+            "label_zh": "数字员工",
+            "decision": "Selected",
+            "signals": 1,
+            "candidates": 1,
+            "selectedItemId": "SIG-20261125-001",
+            "selectedTitle": "人工交接与重试需要明确的副作用和权限边界",
+            "selectedTitle_zh": "人工交接与重试需要明确的副作用和权限边界",
+            "reason": "本地分类选题已验证。",
+            "reason_zh": "本地分类选题已验证。"
+          },
+          {
+            "id": "industry-architecture",
+            "label": "行业架构",
+            "label_zh": "行业架构",
+            "decision": "Selected",
+            "signals": 1,
+            "candidates": 1,
+            "selectedItemId": "SIG-20261125-002",
+            "selectedTitle": "流量拦截与运行时规则呈现不同策略作用域",
+            "selectedTitle_zh": "流量拦截与运行时规则呈现不同策略作用域",
+            "reason": "本地分类选题已验证。",
+            "reason_zh": "本地分类选题已验证。"
+          },
+          {
+            "id": "open-source-engineering",
+            "label": "开源工程",
+            "label_zh": "开源工程",
+            "decision": "Selected",
+            "signals": 3,
+            "candidates": 1,
+            "selectedItemId": "SIG-20261125-003",
+            "selectedTitle": "成功协作记忆可能保存内部攻击载荷",
+            "selectedTitle_zh": "成功协作记忆可能保存内部攻击载荷",
+            "reason": "本地分类选题已验证。",
+            "reason_zh": "本地分类选题已验证。"
+          }
+        ]
       }
     },
     "p2": {
