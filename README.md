@@ -8,27 +8,9 @@
 
 Research into how agents collaborate, receive authority, and deliver work—with inspectable engineering evidence.
 
-**[MCP tools](#mcp-tools) · [Download the papers](#research-publications) · [Watch the videos](#product-overview) · [Try CodeFlowMu](#codeflowmu-app) · [Article catalog / 文章目录](./README.zh-CN.md#article-catalog) · [Browse the research center](https://joinwell52-ai.github.io/joinwell52/en/) · [简体中文](./README.zh-CN.md)**
+**[Article catalog / 文章目录](./README.zh-CN.md#article-catalog) · [Watch the videos](#product-overview) · [Download the papers](#research-publications) · [Try CodeFlowMu](#codeflowmu-app) · [MCP tools](#mcp-tools) · [Browse the research center](https://joinwell52-ai.github.io/joinwell52/en/) · [简体中文](./README.zh-CN.md)**
 
-<a id="mcp-tools"></a>
-
-## Three MCP tools for digital employees
-
-| Tool | Role in the work | Get started |
-| --- | --- | --- |
-| **BoundaryXP (BXP)** | Check the boundaries of an AI task. It maps requirements and subtasks to a 7+1 representation linked to source evidence, then runs deterministic checks and reports violations, within-bounds results, or missing information. | [Project](https://github.com/joinwell52-AI/BoundaryXP) · [npm](https://www.npmjs.com/package/boundaryxp-mcp) · [Interactive demo](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/) · [Paper](#boundaryxp-paper) |
-| **Instant Page MCP** | Ask people to enter data, choose from query results, or correct proposed values on a task-specific page. The host reads back the validated submission. | [Project and setup](https://github.com/joinwell52-AI/instant-page-mcp/blob/main/README.en.md) · [npm](https://www.npmjs.com/package/instant-page-mcp) |
-| **Auto QR Assistant (AQR)** | Control Android apps from Windows and use a connected phone to scan login QR codes for supported desktop apps or websites. | [Project and setup](https://github.com/joinwell52-AI/AQR-Distribution#english) · [npm](https://www.npmjs.com/package/aqr-mcp) · [Windows download](https://github.com/joinwell52-AI/AQR-Distribution/releases) |
-
-For example, when preparing a vehicle record, the MCP host can use BoundaryXP to check what the request permits, use AQR if a supported site requires QR sign-in, then use Instant Page to ask a person to review the extracted fields. The host can read the confirmed values back into the task. This is an example workflow, and each package can be installed on its own.
-
-<a id="boundaryxp-paper"></a>
-
-### BoundaryXP paper and research materials
-
-**BXP: A Method for AI Task Boundary Verification Using a 7+1 Relational Representation** — Wei Zhu, English v1.2 / Chinese r23 (preprint, 2026). The paper describes how to check whether a plan’s subtasks, individually or together, exceed the parent task’s boundary. The supplement covers 625 research cases, 3,219 task nodes and 3,469 calculation items.
-
-[English PDF](https://github.com/joinwell52-AI/BoundaryXP/releases/download/paper-v1.2-r23/BoundaryXP-manuscript.en.pdf) · [中文 PDF](https://github.com/joinwell52-AI/BoundaryXP/releases/download/paper-v1.2-r23/BoundaryXP-manuscript.zh-CN.pdf) · [DOI 10.5281/zenodo.24072738](https://doi.org/10.5281/zenodo.24072738) · [Research materials and checksums](https://github.com/joinwell52-AI/BoundaryXP/releases/tag/paper-v1.2-r23)
+Watch a product demo, download the research papers, or try CodeFlowMu. Research articles and engineering cases follow for optional deeper reading.
 
 <a id="product-overview"></a>
 
@@ -102,6 +84,26 @@ CodeFlowMu is a local PM / DEV / QA / OPS AI development team, with a PC control
 Choose a published version in Releases, download its Windows installer and `SHA256SUMS.txt`, and follow the installation guide. This is a proprietary software preview; requirements, known issues, and support status are defined by the selected Release.
 
 This repository continues to maintain TMPA research, specifications, and engineering evidence. Use the distribution repository for the CodeFlowMu application, installation, and updates; CodeFlowMu Open is retained only as a historical research record.
+
+<a id="mcp-tools"></a>
+
+## Three MCP tools for digital employees
+
+| Tool | Role in the work | Get started |
+| --- | --- | --- |
+| **BoundaryXP (BXP)** | Check the boundaries of an AI task. It maps requirements and subtasks to a 7+1 representation linked to source evidence, then runs deterministic checks and reports violations, within-bounds results, or missing information. | [Project](https://github.com/joinwell52-AI/BoundaryXP) · [npm](https://www.npmjs.com/package/boundaryxp-mcp) · [Interactive demo](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/) · [Paper](#boundaryxp-paper) |
+| **Instant Page MCP** | Ask people to enter data, choose from query results, or correct proposed values on a task-specific page. The host reads back the validated submission. | [Project and setup](https://github.com/joinwell52-AI/instant-page-mcp/blob/main/README.en.md) · [npm](https://www.npmjs.com/package/instant-page-mcp) |
+| **Auto QR Assistant (AQR)** | Control Android apps from Windows and use a connected phone to scan login QR codes for supported desktop apps or websites. | [Project and setup](https://github.com/joinwell52-AI/AQR-Distribution#english) · [npm](https://www.npmjs.com/package/aqr-mcp) · [Windows download](https://github.com/joinwell52-AI/AQR-Distribution/releases) |
+
+For example, when preparing a vehicle record, the MCP host can use BoundaryXP to check what the request permits, use AQR if a supported site requires QR sign-in, then use Instant Page to ask a person to review the extracted fields. The host can read the confirmed values back into the task. This is an example workflow, and each package can be installed on its own.
+
+<a id="boundaryxp-paper"></a>
+
+### BoundaryXP paper and research materials
+
+**BXP: A Method for AI Task Boundary Verification Using a 7+1 Relational Representation** — Wei Zhu, English v1.2 / Chinese r23 (preprint, 2026). The paper describes how to check whether a plan’s subtasks, individually or together, exceed the parent task’s boundary. The supplement covers 625 research cases, 3,219 task nodes and 3,469 calculation items.
+
+[English PDF](https://github.com/joinwell52-AI/BoundaryXP/releases/download/paper-v1.2-r23/BoundaryXP-manuscript.en.pdf) · [中文 PDF](https://github.com/joinwell52-AI/BoundaryXP/releases/download/paper-v1.2-r23/BoundaryXP-manuscript.zh-CN.pdf) · [DOI 10.5281/zenodo.24072738](https://doi.org/10.5281/zenodo.24072738) · [Research materials and checksums](https://github.com/joinwell52-AI/BoundaryXP/releases/tag/paper-v1.2-r23)
 
 ## Choose your next step
 
