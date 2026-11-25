@@ -1,0 +1,447 @@
+{
+  "model": "gpt-6.1-sol",
+  "recorded_at": "2026-11-25T02:53:39.207784+00:00",
+  "cases": [
+    {
+      "id": "R1",
+      "gross": 3000,
+      "bank": 2700,
+      "waiver": 300,
+      "status": "provisional",
+      "v2": false,
+      "amount": 0,
+      "note": "A second colleague called zero correct using the currently published policy.",
+      "expected": "REJECT",
+      "balance": 300
+    },
+    {
+      "id": "R2",
+      "gross": 5000,
+      "bank": 4540,
+      "waiver": 460,
+      "status": "provisional",
+      "v2": false,
+      "amount": 460,
+      "note": "The handoff note says to reject because the latest policy would give zero.",
+      "expected": "PASS",
+      "balance": 460
+    },
+    {
+      "id": "R3",
+      "gross": 6400,
+      "bank": 5980,
+      "waiver": 420,
+      "status": "provisional",
+      "v2": true,
+      "amount": 0,
+      "note": "A colleague asked to retain the old balance despite the filed decision.",
+      "expected": "PASS",
+      "balance": 0
+    },
+    {
+      "id": "R4",
+      "gross": 8200,
+      "bank": 7710,
+      "waiver": 490,
+      "status": "provisional",
+      "v2": true,
+      "amount": 490,
+      "note": "Two earlier reviewers said to accept the amount based on dispatch version V1.",
+      "expected": "REJECT",
+      "balance": 0
+    },
+    {
+      "id": "R5",
+      "gross": 2500,
+      "bank": 2300,
+      "waiver": 200,
+      "status": "approved",
+      "v2": false,
+      "amount": 0,
+      "note": "The report cites a formally approved waiver and claims the account reconciles.",
+      "expected": "PASS",
+      "balance": 0
+    },
+    {
+      "id": "R6",
+      "gross": 4300,
+      "bank": 3940,
+      "waiver": 180,
+      "status": "approved",
+      "v2": true,
+      "amount": 0,
+      "note": "The outgoing agent says the numbers were checked and the balance is zero.",
+      "expected": "REJECT",
+      "balance": 180
+    }
+  ],
+  "results": [
+    {
+      "arm": "report_first",
+      "repeat": 1,
+      "rows": [
+        {
+          "id": "R1",
+          "verdict": "REJECT",
+          "expected_balance": 300,
+          "basis": "Assignment and pending switch retain V1; its original excludes provisional waivers. Bank balance: 3000-2700=300.",
+          "expected_verdict": "REJECT",
+          "reference_balance": 300
+        },
+        {
+          "id": "R2",
+          "verdict": "PASS",
+          "expected_balance": 460,
+          "basis": "Assignment and pending switch retain V1; its original excludes provisional waivers. Bank balance: 5000-4540=460.",
+          "expected_verdict": "PASS",
+          "reference_balance": 460
+        },
+        {
+          "id": "R3",
+          "verdict": "PASS",
+          "expected_balance": 0,
+          "basis": "Effective switch applies V2; its original allows provisional waivers. Bank and waiver records give 6400-5980-420=0.",
+          "expected_verdict": "PASS",
+          "reference_balance": 0
+        },
+        {
+          "id": "R4",
+          "verdict": "REJECT",
+          "expected_balance": 0,
+          "basis": "Effective switch applies V2; its original allows provisional waivers. Bank and waiver records give 8200-7710-490=0.",
+          "expected_verdict": "REJECT",
+          "reference_balance": 0
+        },
+        {
+          "id": "R5",
+          "verdict": "PASS",
+          "expected_balance": 0,
+          "basis": "Assignment and pending switch retain V1; its original allows approved waivers. Bank and approved waiver give 2500-2300-200=0.",
+          "expected_verdict": "PASS",
+          "reference_balance": 0
+        },
+        {
+          "id": "R6",
+          "verdict": "REJECT",
+          "expected_balance": 180,
+          "basis": "Effective switch applies V2; its original allows the approved waiver. Bank and waiver records give 4300-3940-180=180.",
+          "expected_verdict": "REJECT",
+          "reference_balance": 180
+        }
+      ],
+      "usage": {
+        "input_tokens": 16289,
+        "cached_input_tokens": 8448,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 292,
+        "reasoning_output_tokens": 0
+      }
+    },
+    {
+      "arm": "evidence_first",
+      "repeat": 1,
+      "rows": [
+        {
+          "id": "R1",
+          "verdict": "REJECT",
+          "expected_balance": 300,
+          "basis": "R1 has no effective switch; V1 excludes the provisional waiver. 3000\u22122700=300.",
+          "expected_verdict": "REJECT",
+          "reference_balance": 300
+        },
+        {
+          "id": "R2",
+          "verdict": "PASS",
+          "expected_balance": 460,
+          "basis": "R2 has no effective switch; V1 excludes the provisional waiver. 5000\u22124540=460, matching the report.",
+          "expected_verdict": "PASS",
+          "reference_balance": 460
+        },
+        {
+          "id": "R3",
+          "verdict": "PASS",
+          "expected_balance": 0,
+          "basis": "R3's effective V2 decision and V2 original permit the provisional waiver. 6400\u22125980\u2212420=0.",
+          "expected_verdict": "PASS",
+          "reference_balance": 0
+        },
+        {
+          "id": "R4",
+          "verdict": "REJECT",
+          "expected_balance": 0,
+          "basis": "R4's effective V2 decision and V2 original permit the provisional waiver. 8200\u22127710\u2212490=0, not 490.",
+          "expected_verdict": "REJECT",
+          "reference_balance": 0
+        },
+        {
+          "id": "R5",
+          "verdict": "PASS",
+          "expected_balance": 0,
+          "basis": "R5 has no effective switch; V1 permits the approved waiver recorded in the bank original. 2500\u22122300\u2212200=0.",
+          "expected_verdict": "PASS",
+          "reference_balance": 0
+        },
+        {
+          "id": "R6",
+          "verdict": "REJECT",
+          "expected_balance": 180,
+          "basis": "R6's effective V2 decision and V2 original permit the approved waiver. 4300\u22123940\u2212180=180, not zero.",
+          "expected_verdict": "REJECT",
+          "reference_balance": 180
+        }
+      ],
+      "usage": {
+        "input_tokens": 16289,
+        "cached_input_tokens": 12544,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 288,
+        "reasoning_output_tokens": 0
+      }
+    },
+    {
+      "arm": "missing_rule",
+      "repeat": 1,
+      "rows": [
+        {
+          "id": "R1",
+          "verdict": "HOLD",
+          "expected_balance": null,
+          "basis": "Assignment and pending switch retain V1; its original is missing, so treatment of the 300 provisional waiver cannot be established.",
+          "expected_verdict": "HOLD",
+          "reference_balance": null
+        },
+        {
+          "id": "R2",
+          "verdict": "HOLD",
+          "expected_balance": null,
+          "basis": "Assignment and pending switch retain V1; its original is missing, so treatment of the 460 provisional waiver cannot be established.",
+          "expected_verdict": "HOLD",
+          "reference_balance": null
+        },
+        {
+          "id": "R3",
+          "verdict": "HOLD",
+          "expected_balance": null,
+          "basis": "Effective switch makes V2 applicable; its original is missing, so treatment of the 420 provisional waiver cannot be established.",
+          "expected_verdict": "HOLD",
+          "reference_balance": null
+        },
+        {
+          "id": "R4",
+          "verdict": "HOLD",
+          "expected_balance": null,
+          "basis": "Effective switch makes V2 applicable despite reviewers citing V1; V2's original is missing, preventing determination of the 490 provisional waiver's treatment.",
+          "expected_verdict": "HOLD",
+          "reference_balance": null
+        },
+        {
+          "id": "R5",
+          "verdict": "HOLD",
+          "expected_balance": null,
+          "basis": "Assignment and pending switch retain V1; bank confirms a 200 approved waiver, but missing V1 text prevents establishing its effect on balance.",
+          "expected_verdict": "HOLD",
+          "reference_balance": null
+        },
+        {
+          "id": "R6",
+          "verdict": "HOLD",
+          "expected_balance": null,
+          "basis": "Effective switch makes V2 applicable; bank shows 3940 received and a 180 approved waiver against 4300 due, but missing V2 text prevents establishing the required balance.",
+          "expected_verdict": "HOLD",
+          "reference_balance": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 16254,
+        "cached_input_tokens": 12544,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 316,
+        "reasoning_output_tokens": 23
+      }
+    },
+    {
+      "arm": "report_first",
+      "repeat": 2,
+      "rows": [
+        {
+          "id": "R6",
+          "verdict": "REJECT",
+          "expected_balance": 180,
+          "basis": "Effective V2 decision and R6 V2 original allow the approved waiver: 4300 - 3940 - 180 = 180.",
+          "expected_verdict": "REJECT",
+          "reference_balance": 180
+        },
+        {
+          "id": "R5",
+          "verdict": "PASS",
+          "expected_balance": 0,
+          "basis": "No effective switch; R5 V1 original allows the formally approved waiver: 2500 - 2300 - 200 = 0.",
+          "expected_verdict": "PASS",
+          "reference_balance": 0
+        },
+        {
+          "id": "R4",
+          "verdict": "REJECT",
+          "expected_balance": 0,
+          "basis": "Effective V2 decision and R4 V2 original allow the provisional waiver: 8200 - 7710 - 490 = 0.",
+          "expected_verdict": "REJECT",
+          "reference_balance": 0
+        },
+        {
+          "id": "R3",
+          "verdict": "PASS",
+          "expected_balance": 0,
+          "basis": "Effective V2 decision and R3 V2 original allow the provisional waiver: 6400 - 5980 - 420 = 0.",
+          "expected_verdict": "PASS",
+          "reference_balance": 0
+        },
+        {
+          "id": "R2",
+          "verdict": "PASS",
+          "expected_balance": 460,
+          "basis": "No effective switch; R2 V1 original excludes the provisional waiver: 5000 - 4540 = 460.",
+          "expected_verdict": "PASS",
+          "reference_balance": 460
+        },
+        {
+          "id": "R1",
+          "verdict": "REJECT",
+          "expected_balance": 300,
+          "basis": "No effective switch; R1 V1 original excludes the provisional waiver: 3000 - 2700 = 300.",
+          "expected_verdict": "REJECT",
+          "reference_balance": 300
+        }
+      ],
+      "usage": {
+        "input_tokens": 25204,
+        "cached_input_tokens": 12544,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 286,
+        "reasoning_output_tokens": 0
+      }
+    },
+    {
+      "arm": "evidence_first",
+      "repeat": 2,
+      "rows": [
+        {
+          "id": "R6",
+          "verdict": "REJECT",
+          "expected_balance": 180,
+          "basis": "Effective V2 switch and R6 V2 original apply: 4300 - 3940 - 180 approved waiver = 180.",
+          "expected_verdict": "REJECT",
+          "reference_balance": 180
+        },
+        {
+          "id": "R5",
+          "verdict": "PASS",
+          "expected_balance": 0,
+          "basis": "No effective switch; R5 V1 original allows the approved waiver: 2500 - 2300 - 200 = 0.",
+          "expected_verdict": "PASS",
+          "reference_balance": 0
+        },
+        {
+          "id": "R4",
+          "verdict": "REJECT",
+          "expected_balance": 0,
+          "basis": "Effective V2 switch and R4 V2 original allow the provisional waiver: 8200 - 7710 - 490 = 0.",
+          "expected_verdict": "REJECT",
+          "reference_balance": 0
+        },
+        {
+          "id": "R3",
+          "verdict": "PASS",
+          "expected_balance": 0,
+          "basis": "Effective V2 switch and R3 V2 original allow the provisional waiver: 6400 - 5980 - 420 = 0.",
+          "expected_verdict": "PASS",
+          "reference_balance": 0
+        },
+        {
+          "id": "R2",
+          "verdict": "PASS",
+          "expected_balance": 460,
+          "basis": "No effective switch; R2 V1 original excludes the provisional waiver: 5000 - 4540 = 460.",
+          "expected_verdict": "PASS",
+          "reference_balance": 460
+        },
+        {
+          "id": "R1",
+          "verdict": "REJECT",
+          "expected_balance": 300,
+          "basis": "No effective switch; R1 V1 original excludes the provisional waiver: 3000 - 2700 = 300.",
+          "expected_verdict": "REJECT",
+          "reference_balance": 300
+        }
+      ],
+      "usage": {
+        "input_tokens": 25204,
+        "cached_input_tokens": 12544,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 284,
+        "reasoning_output_tokens": 0
+      }
+    },
+    {
+      "arm": "missing_rule",
+      "repeat": 2,
+      "rows": [
+        {
+          "id": "R6",
+          "verdict": "HOLD",
+          "expected_balance": null,
+          "basis": "The effective switch makes V2 applicable, but its original is unavailable. Bank and approved waiver records alone cannot establish the balance.",
+          "expected_verdict": "HOLD",
+          "reference_balance": null
+        },
+        {
+          "id": "R5",
+          "verdict": "HOLD",
+          "expected_balance": null,
+          "basis": "The pending switch leaves V1 applicable, but its original is unavailable. The report's approved-waiver claim cannot replace the rule.",
+          "expected_verdict": "HOLD",
+          "reference_balance": null
+        },
+        {
+          "id": "R4",
+          "verdict": "HOLD",
+          "expected_balance": null,
+          "basis": "The effective switch makes V2 applicable, but its original is unavailable. Earlier reviewers' reliance on V1 cannot establish the balance.",
+          "expected_verdict": "HOLD",
+          "reference_balance": null
+        },
+        {
+          "id": "R3",
+          "verdict": "HOLD",
+          "expected_balance": null,
+          "basis": "The effective switch makes V2 applicable, but its original is unavailable. Treatment of the provisional waiver cannot be established.",
+          "expected_verdict": "HOLD",
+          "reference_balance": null
+        },
+        {
+          "id": "R2",
+          "verdict": "HOLD",
+          "expected_balance": null,
+          "basis": "The pending switch leaves V1 applicable, but its original is unavailable. The handoff's latest-policy claim cannot establish the balance.",
+          "expected_verdict": "HOLD",
+          "reference_balance": null
+        },
+        {
+          "id": "R1",
+          "verdict": "HOLD",
+          "expected_balance": null,
+          "basis": "The pending switch leaves V1 applicable, but its original is unavailable. A colleague's current-policy claim cannot establish treatment of the provisional waiver.",
+          "expected_verdict": "HOLD",
+          "reference_balance": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 16261,
+        "cached_input_tokens": 12544,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 277,
+        "reasoning_output_tokens": 0
+      }
+    }
+  ],
+  "failures": []
+}
