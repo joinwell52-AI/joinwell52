@@ -43,6 +43,12 @@ V2.0 从“按时间触发的研究生产线”升级为“依赖驱动、可追
 
 V1.0 作为首个 Production Test 历史基线保留：[旧版兼容入口](./research-report-production-engine-v1.0)。
 
+## BoundaryXP 方法论文
+
+**《BXP：基于 7+1 关联表示的人工智能任务边界判定方法》**，朱卫，中文 r23／英文 v1.2，预印本首次发布于 2026 年 11 月 6 日。论文说明如何核验单个子任务及其组合是否超出主任务边界。公开研究附件覆盖 625 个用例、3,219 个任务节点和 3,469 个计算项。
+
+[中文 PDF](https://github.com/joinwell52-AI/BoundaryXP/releases/download/paper-v1.2-r23/BoundaryXP-manuscript.zh-CN.pdf) · [English PDF](https://github.com/joinwell52-AI/BoundaryXP/releases/download/paper-v1.2-r23/BoundaryXP-manuscript.en.pdf) · [DOI 10.5281/zenodo.24072738](https://doi.org/10.5281/zenodo.24072738) · [研究材料与校验值](https://github.com/joinwell52-AI/BoundaryXP/releases/tag/paper-v1.2-r23) · [BoundaryXP MCP](../#mcp-tools)
+
 ## TMPA 出版体系
 
 | 类型 | 文档 | 版本 | 状态 |

@@ -2,6 +2,7 @@
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useData, withBase } from 'vitepress'
 import ResponsiveTitle from './ResponsiveTitle.vue'
+import DigitalEmployeeMcp from './DigitalEmployeeMcp.vue'
 import EditorialScorecard from './EditorialScorecard.vue'
 import { data as allNotes } from './research-notes.data'
 import type { ResearchColumn, ResearchNoteRecord } from './research-notes.data'
@@ -301,6 +302,7 @@ onBeforeUnmount(() => {
               <div class="rc-actions rc-hero__actions">
                 <a class="rc-button rc-button--primary" href="https://github.com/joinwell52-AI/CodeflowMu-Distribution/releases">{{ zh ? '下载 CodeFlowMu · Windows' : 'Download CodeFlowMu · Windows' }} <span>↗</span></a>
                 <a class="rc-installation-link" href="https://github.com/joinwell52-AI/CodeflowMu-Distribution">{{ zh ? '应用介绍与安装指南' : 'App & installation guide' }} <span>↗</span></a>
+                <a class="rc-installation-link" href="#mcp-tools">{{ zh ? 'MCP 工具与 BoundaryXP 论文' : 'MCP tools & BoundaryXP paper' }} <span aria-hidden="true">↓</span></a>
                 <div class="rc-hero__reading-links">
                   <a class="rc-button" :href="link(researchOverview)">{{ copy.primary }} <span>↗</span></a>
                   <a class="rc-button rc-daily-intelligence-link" :href="link(zh ? '/zh/runtime/daily-intelligence/' : '/en/runtime/daily-intelligence/')">{{ zh ? '每日动态' : 'Daily Intelligence' }} <span>↗</span></a>
@@ -402,6 +404,7 @@ onBeforeUnmount(() => {
             </div>
           </a>
         </div>
+        <DigitalEmployeeMcp :lang="props.lang" />
       </div>
     </section>
 

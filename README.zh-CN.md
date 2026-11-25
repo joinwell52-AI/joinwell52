@@ -8,9 +8,27 @@
 
 从真实工程问题出发，研究 Agent 如何协作、获得授权、交付结果，并留下可核查的证据。
 
-**[文章目录](#article-catalog) · [观看视频](#product-overview) · [下载论文](#research-publications) · [体验 CodeFlowMu](#codeflowmu-app) · [浏览研究中心](https://joinwell52-ai.github.io/joinwell52/zh/) · [English](./README.md)**
+**[MCP 工具](#mcp-tools) · [下载论文](#research-publications) · [观看视频](#product-overview) · [体验 CodeFlowMu](#codeflowmu-app) · [文章目录](#article-catalog) · [浏览研究中心](https://joinwell52-ai.github.io/joinwell52/zh/) · [English](./README.md)**
 
-直接观看产品演示、下载研究论文，或试用 CodeFlowMu。研究文章与工程案例放在后面，方便需要时深入查阅。
+<a id="mcp-tools"></a>
+
+## 数字员工的三个 MCP 工具
+
+| 工具 | 在工作中承担什么 | 使用入口 |
+| --- | --- | --- |
+| **BoundaryXP（BXP）** | 核验 AI 任务边界。用 7+1 关联表示把任务要求和子任务连回原文证据，再由确定性核心核验，给出越界、未越界或信息不足的结果。 | [项目与安装](https://github.com/joinwell52-AI/BoundaryXP/blob/main/README.zh-CN.md) · [npm](https://www.npmjs.com/package/boundaryxp-mcp) · [交互演示](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/) · [论文](#boundaryxp-paper) |
+| **即页（Instant Page MCP）** | 为当前任务生成登记、查询选择或可编辑的核对页面。人提交后，宿主可读回经校验的结果。 | [项目与安装](https://github.com/joinwell52-AI/instant-page-mcp#readme) · [npm](https://www.npmjs.com/package/instant-page-mcp) |
+| **自动扫码助手（AQR）** | 在 Windows 上操作安卓 App，并通过已连接的手机为支持的网页或电脑客户端扫码登录。 | [项目与安装](https://github.com/joinwell52-AI/AQR-Distribution#readme) · [npm](https://www.npmjs.com/package/aqr-mcp) · [Windows 下载](https://github.com/joinwell52-AI/AQR-Distribution/releases) |
+
+以车辆资料登记为例，MCP 宿主可以先用 BoundaryXP 核对任务允许做什么。需要扫码登录受支持的网站时，可调用 AQR。需要人核对识别结果时，可用即页生成可编辑的表单，再将确认后的字段读回当前任务。这是一种组合用法，三个包均可独立安装。
+
+<a id="boundaryxp-paper"></a>
+
+### BoundaryXP 论文与研究材料
+
+**《BXP：基于 7+1 关联表示的人工智能任务边界判定方法》**，朱卫，中文 r23／英文 v1.2（2026 年预印本）。论文说明如何核验单个子任务及其组合是否超出主任务边界。研究附件覆盖 625 个研究用例、3,219 个任务节点和 3,469 个计算项。
+
+[中文 PDF](https://github.com/joinwell52-AI/BoundaryXP/releases/download/paper-v1.2-r23/BoundaryXP-manuscript.zh-CN.pdf) · [English PDF](https://github.com/joinwell52-AI/BoundaryXP/releases/download/paper-v1.2-r23/BoundaryXP-manuscript.en.pdf) · [DOI 10.5281/zenodo.24072738](https://doi.org/10.5281/zenodo.24072738) · [研究材料与校验值](https://github.com/joinwell52-AI/BoundaryXP/releases/tag/paper-v1.2-r23)
 
 <a id="product-overview"></a>
 
@@ -62,6 +80,7 @@
 | 成果 | Zenodo DOI | OSF DOI |
 |---|---|---|
 | **TMPA** | [10.5281/zenodo.21888488](https://doi.org/10.5281/zenodo.21888488) | [10.17605/OSF.IO/2JVQD](https://doi.org/10.17605/OSF.IO/2JVQD) |
+| **BoundaryXP 预印本（中文 r23／英文 v1.2）** | [10.5281/zenodo.24072738](https://doi.org/10.5281/zenodo.24072738) | — |
 | **FCoP 4.0.5 软件** | [10.5281/zenodo.23051275](https://doi.org/10.5281/zenodo.23051275) | — |
 | **FCoP 论文（1.0）** | [10.5281/zenodo.22855630](https://doi.org/10.5281/zenodo.22855630) | — |
 | **FCoP 3.2.5 历史归档** | [10.5281/zenodo.20457285](https://doi.org/10.5281/zenodo.20457285) | [10.17605/OSF.IO/92NWM](https://doi.org/10.17605/OSF.IO/92NWM) |

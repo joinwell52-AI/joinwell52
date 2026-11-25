@@ -29,6 +29,12 @@ Download:
 
 V1.0 remains the historical baseline for the first Production Test: [legacy compatibility entry](./research-report-production-engine-v1.0).
 
+## BoundaryXP method preprint
+
+**BXP: A Method for AI Task Boundary Verification Using a 7+1 Relational Representation** — Wei Zhu, English v1.2 / Chinese r23, first published on November 6, 2026. The paper presents a method for checking whether a plan’s subtasks and their combination exceed the parent task’s boundary. The public research supplement covers 625 cases, 3,219 task nodes and 3,469 calculation items.
+
+[English PDF](https://github.com/joinwell52-AI/BoundaryXP/releases/download/paper-v1.2-r23/BoundaryXP-manuscript.en.pdf) · [中文 PDF](https://github.com/joinwell52-AI/BoundaryXP/releases/download/paper-v1.2-r23/BoundaryXP-manuscript.zh-CN.pdf) · [DOI 10.5281/zenodo.24072738](https://doi.org/10.5281/zenodo.24072738) · [Research materials and checksums](https://github.com/joinwell52-AI/BoundaryXP/releases/tag/paper-v1.2-r23) · [BoundaryXP MCP](../#mcp-tools)
+
 ## TMPA publication set
 
 | Type | Document | Version | Status |
