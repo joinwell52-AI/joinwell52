@@ -1,0 +1,193 @@
+{
+  "schema": "article-method-probe/v1",
+  "date": "2026-11-25",
+  "title": "Isolated AgentSpec method controls",
+  "evidenceIdentity": "internal-experimental-evidence",
+  "independent": false,
+  "provenance": {
+    "stage": "same-day completed Analysis",
+    "executedAt": "2026-11-25T09:37:39.695276+00:00",
+    "reusedWithoutExecution": true,
+    "sourceArtifactSha256": "7dfcb2dad49cc132e4c037ecfb2585076184e09713ee811fe4032b4943cd7a97"
+  },
+  "environment": {
+    "python": "3.12.9 (tags/v3.12.9:fdb8142, Feb  4 2025, 15:27:58) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "networkUsed": false
+  },
+  "revision": "e6fa3902e2cfb9681f454b355691b771f70543f8",
+  "sources": [
+    {
+      "sourceId": "agentspec-src_interpreter.py",
+      "url": "https://raw.githubusercontent.com/haoyuwang99/AgentSpec/e6fa3902e2cfb9681f454b355691b771f70543f8/src/interpreter.py",
+      "capturedAt": null,
+      "textSha256": "ebf69b5e22416e8c410a74a37c7269984746764123223c61b1d7ae1ca37d212f"
+    },
+    {
+      "sourceId": "agentspec-src_enforcement.py",
+      "url": "https://raw.githubusercontent.com/haoyuwang99/AgentSpec/e6fa3902e2cfb9681f454b355691b771f70543f8/src/enforcement.py",
+      "capturedAt": null,
+      "textSha256": "8be2b544ac6748685369407025f98e593bb957c69c62e757297a27ce5b26775d"
+    },
+    {
+      "sourceId": "agentspec-src_spec_lang_AgentSpec.g4",
+      "url": "https://raw.githubusercontent.com/haoyuwang99/AgentSpec/e6fa3902e2cfb9681f454b355691b771f70543f8/src/spec_lang/AgentSpec.g4",
+      "capturedAt": null,
+      "textSha256": "3ce4f27e8480465ddbdc812bc1ae0ff9e38fab8cfa83f9c74e63be0ae7881421"
+    }
+  ],
+  "methodExcerpts": [
+    {
+      "sourceId": "agentspec-src_interpreter.py",
+      "class": "RuleInterpreter",
+      "name": "enterEnforcement",
+      "lineStart": 105,
+      "lineEnd": 109,
+      "original": "def enterEnforcement(self, ctx: AgentSpecParser.EnforcementContext):\n        if self.check: \n            self.enforce = ctx.getText()\n        else : \n            self.enforce = \"none\"",
+      "sha256": "c9361328c03eb404b58a3eb186b6771a9dc81971b3475bd0d934c0dff6d38cc0",
+      "adaptation": "annotations removed; function body unchanged"
+    },
+    {
+      "sourceId": "agentspec-src_enforcement.py",
+      "class": "InvokeAction",
+      "name": "apply",
+      "lineStart": 88,
+      "lineEnd": 89,
+      "original": "def apply(self, action: Action) -> Tuple[EnforceResult, Action]:\n        return EnforceResult.CONTINUE, action",
+      "sha256": "52b9cfaed9499c7c6068e9a1efb84f9abc4da3c6c79efea21f3a13e690ce0fd1",
+      "adaptation": "annotations removed; function body unchanged"
+    },
+    {
+      "sourceId": "agentspec-src_interpreter.py",
+      "class": "RuleInterpreter",
+      "name": "eval_action_invoke",
+      "lineStart": 79,
+      "lineEnd": 87,
+      "original": "def eval_action_invoke(self, ctx: AgentSpecParser.ActionInvokeContext):\n        action = self.parse_action(ctx)\n        # TODO: indexing tools, then call\n        # tool = Tool(action[\"name\"], action[\"args\"]) \n        # tool.invoke()\n        return {\n            \"traffic_id\": \"vehicle-east-west\",\n            \"traffic_light_state\": \"green\"\n        }",
+      "sha256": "25363045fc8374f49861556fe9ef878785908020b9ffa6f52a6b3a0c58b8fcb6",
+      "adaptation": "annotations removed; function body unchanged"
+    }
+  ],
+  "question": "At the admitted AgentSpec revision, does the enforcement listener retain a sequence of enforcements or a single last assignment, and do the invocation helpers execute a replacement action?",
+  "method": "source-derived isolated upstream-method probe; NOT full parser/executor or benchmark reproduction",
+  "inputs": {
+    "contexts": "Synthetic getText contexts in listed callback order",
+    "action": {
+      "name": "original",
+      "args": {
+        "value": 7
+      }
+    },
+    "invokeRequests": [
+      {
+        "name": "tool-A",
+        "args": {
+          "v": 1
+        }
+      },
+      {
+        "name": "tool-B",
+        "args": {
+          "v": 999
+        }
+      }
+    ]
+  },
+  "controls": "single callback; reversed callback order; failed check; distinct invocation requests",
+  "outputs": {
+    "listener": [
+      {
+        "check": true,
+        "callbackSequence": [
+          "skip"
+        ],
+        "states": [
+          "skip"
+        ],
+        "retained": "skip"
+      },
+      {
+        "check": true,
+        "callbackSequence": [
+          "skip",
+          "stop"
+        ],
+        "states": [
+          "skip",
+          "stop"
+        ],
+        "retained": "stop"
+      },
+      {
+        "check": true,
+        "callbackSequence": [
+          "stop",
+          "skip"
+        ],
+        "states": [
+          "stop",
+          "skip"
+        ],
+        "retained": "skip"
+      },
+      {
+        "check": false,
+        "callbackSequence": [
+          "skip",
+          "stop"
+        ],
+        "states": [
+          "none",
+          "none"
+        ],
+        "retained": "none"
+      }
+    ],
+    "invokeAction": {
+      "result": "CONTINUE",
+      "sameObject": true,
+      "returnedAction": {
+        "name": "original",
+        "args": {
+          "value": 7
+        }
+      }
+    },
+    "evalActionInvoke": [
+      {
+        "request": {
+          "name": "tool-A",
+          "args": {
+            "v": 1
+          }
+        },
+        "output": {
+          "traffic_id": "vehicle-east-west",
+          "traffic_light_state": "green"
+        }
+      },
+      {
+        "request": {
+          "name": "tool-B",
+          "args": {
+            "v": 999
+          }
+        },
+        "output": {
+          "traffic_id": "vehicle-east-west",
+          "traffic_light_state": "green"
+        }
+      }
+    ],
+    "invokeActionInMapping": false
+  },
+  "conclusion": "The isolated listener retains the last callback text, reversing order changes it; false check yields none. InvokeAction.apply returns the original action and the eval helper returns the same fixed traffic-light dictionary for two requests. The shown mapping does not map invoke_action. Grammar permits enforcement+, but this probe does not exercise parser callback generation, rule integration or actual tool execution.",
+  "limitations": [
+    "Fake contexts supply callback order; no raw DSL parse was executed.",
+    "Annotations removed solely to avoid unavailable third-party types; bodies unchanged.",
+    "No bypass claim, repository-wide defect claim, CVE or general safety verdict.",
+    "Salesforce architecture is a separate sample; no Salesforce runtime was tested."
+  ],
+  "missingIntegration": "The bounded admitted corpus lacks generated parser modules, agent/state classes and predicate table required for full integration. No gateway deployment/configuration or model benchmark is admitted.",
+  "interpretationBoundary": "Observed callback assignment and helper return values only. No full parser, rule integration, actual tool effects, gateway deployment, benchmark reproduction or deployed bypass tested."
+}
