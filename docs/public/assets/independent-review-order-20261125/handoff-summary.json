@@ -1,0 +1,62 @@
+[
+  {
+    "case": "CAR-A",
+    "completed": true,
+    "reported": 300,
+    "missing_detected": true,
+    "first_note_count": 1,
+    "successor_read_count": 1,
+    "matching_prior_checks": [
+      "bank",
+      "waiver"
+    ],
+    "first_source_reads": [
+      "bank",
+      "waiver",
+      "procedure_v1"
+    ],
+    "successor_source_reads": [
+      "procedure_v1"
+    ],
+    "verdict": {
+      "basis": "Independently reviewed actual handoff, task TASK-d77c782a5af449348a73dd57f8adfdcc attempt urn:uuid:71ca94f7-72a8-4ccd-afa6-30d2c6241434, and exact report REPORT-97d6ddf7dca64df981dceacf7100ef5b. Task and report both identify invoice CAR-A; gross is 3000 and submitted balance is 300. Prior bank and waiver checks remain adequate: current fingerprints exactly match their recorded sha256 values (bank 4f12064596defc0fb4917fb5ec4cf94b9f1a6fbc8fbc16b2355e507d89afac5c; waiver 0adead8683e234e92ff59afad9d5df12ffae1a8055eb8911bfc209e69868fef2), their invoice identities match, and the recorded data establishes posted receipts of 2700 and a requested waiver of 300 with provisional approval. Reused these checks without redundant source reads. Obtained previously missing exact evidence key procedure_v1, status available, version V1, sha256 3bf84c9f37cbcd1b68f71b337a1db126fa60be3839bdc85508a0079e06cdf3e4 matching the current fingerprint. V1 is the task-designated applicable procedure and states: Subtract only formally approved waivers; provisional waivers must remain outstanding. Therefore deductible waiver is 0 and independently calculated outstanding balance is 3000 - 2700 - 0 = 300. Report balance 300 and invoice CAR-A agree with task and applicable rule. All required evidence keys are covered; PASS is my independent conclusion.",
+      "expected_balance": 300,
+      "reused": [
+        "bank",
+        "waiver"
+      ],
+      "verdict": "PASS"
+    },
+    "correct": true
+  },
+  {
+    "case": "CAR-B",
+    "completed": true,
+    "reported": 0,
+    "missing_detected": true,
+    "first_note_count": 1,
+    "successor_read_count": 1,
+    "matching_prior_checks": [
+      "bank",
+      "waiver"
+    ],
+    "first_source_reads": [
+      "procedure_v1",
+      "bank",
+      "waiver"
+    ],
+    "successor_source_reads": [
+      "procedure_v1"
+    ],
+    "verdict": {
+      "basis": "Independently reviewed actual handoff, current TASK-def43a4b4c8441ab993e875d498582c2 and submitted REPORT-6f844d7a8efa4d6ca4b2318acaa101c3 for attempt urn:uuid:a71c58bc-fce1-455b-8ba3-688b5c0e1cc4. All identify invoice CAR-B. Reused prior bank and waiver checks because their recorded source identities, available status, invoice-specific data and current fingerprints match exactly: bank sha256 bcd2f58b575b1f50c598b43f0e41e99f8d64dc715e5571793ece38093059d7f9 verifies posted receipt 2700; waiver sha256 9d84372737db58337fd7cae291207bbc5b21f38b63501b99a11771318f418820 verifies requested waiver 300 with provisional approval. These checks remain adequate; repeating them is unnecessary. Prior missing procedure_v1 was obtained now, available with version V1 and sha256 3bf84c9f37cbcd1b68f71b337a1db126fa60be3839bdc85508a0079e06cdf3e4 matching current fingerprint. Task explicitly requires V1. Its exact clause is: 'Subtract only formally approved waivers; provisional waivers must remain outstanding.' Therefore recognized waiver is 0 and expected balance = gross 3000 - posted receipt 2700 - recognized waiver 0 = 300. Report balance 0 understates outstanding balance by 300 and violates V1, so REJECT. Verdict is my independent application of the sourced rule, not an assumed administrator decision.",
+      "expected_balance": 300,
+      "reused": [
+        "bank",
+        "waiver"
+      ],
+      "verdict": "REJECT"
+    },
+    "correct": true
+  }
+]
