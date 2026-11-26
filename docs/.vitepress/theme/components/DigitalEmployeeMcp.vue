@@ -52,9 +52,10 @@ const paperPdf = `${bxp}/releases/download/paper-v1.2-r23/BoundaryXP-manuscript`
         <h4>{{ zh ? '自动扫码助手' : 'Auto QR Assistant' }} <span>· AQR</span></h4>
         <p>{{ zh ? '在 Windows 上操作安卓 App，并通过已连接的手机为支持的网页或电脑客户端扫码登录。' : 'Control Android apps from Windows and use a connected phone to scan login QR codes for supported websites or desktop apps.' }}</p>
         <div class="mcp-links">
-          <a :href="zh ? 'https://github.com/joinwell52-AI/AQR-Distribution#readme' : 'https://github.com/joinwell52-AI/AQR-Distribution#english'">{{ zh ? '项目与安装' : 'Project & setup' }}</a>
+          <a :href="zh ? 'https://github.com/joinwell52-AI/AQR-D#readme' : 'https://github.com/joinwell52-AI/AQR-D#english'">{{ zh ? '项目与安装' : 'Project & setup' }}</a>
           <a href="https://www.npmjs.com/package/aqr-mcp">aqr-mcp</a>
-          <a href="https://github.com/joinwell52-AI/AQR-Distribution/releases">{{ zh ? 'Windows 下载' : 'Windows download' }}</a>
+          <a href="https://github.com/joinwell52-AI/AQR-D/releases">{{ zh ? 'Windows 下载' : 'Windows download' }}</a>
+          <a href="https://github.com/joinwell52-AI/AQR-D/blob/main/assets/aqr-demo.mp4">{{ zh ? '演示视频' : 'Demo video' }}</a>
         </div>
       </article>
     </div>

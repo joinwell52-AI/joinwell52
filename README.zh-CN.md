@@ -93,7 +93,7 @@ CodeFlowMu 是本地运行的 PM / DEV / QA / OPS 多角色 AI 开发团队，�
 | --- | --- | --- |
 | **BoundaryXP（BXP）** | 核验 AI 任务边界。用 7+1 关联表示把任务要求和子任务连回原文证据，再由确定性核心核验，给出越界、未越界或信息不足的结果。 | [项目与安装](https://github.com/joinwell52-AI/BoundaryXP/blob/main/README.zh-CN.md) · [npm](https://www.npmjs.com/package/boundaryxp-mcp) · [交互演示](https://boundaryxp-workbench-demo.joinwell52.chatgpt.site/) · [论文](#boundaryxp-paper) |
 | **即页（Instant Page MCP）** | 为当前任务生成登记、查询选择或可编辑的核对页面。人提交后，宿主可读回经校验的结果。 | [项目与安装](https://github.com/joinwell52-AI/instant-page-mcp#readme) · [npm](https://www.npmjs.com/package/instant-page-mcp) |
-| **自动扫码助手（AQR）** | 在 Windows 上操作安卓 App，并通过已连接的手机为支持的网页或电脑客户端扫码登录。 | [项目与安装](https://github.com/joinwell52-AI/AQR-Distribution#readme) · [npm](https://www.npmjs.com/package/aqr-mcp) · [Windows 下载](https://github.com/joinwell52-AI/AQR-Distribution/releases) |
+| **自动扫码助手（AQR）** | 在 Windows 上操作安卓 App，并通过已连接的手机为支持的网页或电脑客户端扫码登录。 | [项目与安装](https://github.com/joinwell52-AI/AQR-D#readme) · [npm](https://www.npmjs.com/package/aqr-mcp) · [Windows 下载](https://github.com/joinwell52-AI/AQR-D/releases) · [演示视频](https://github.com/joinwell52-AI/AQR-D/blob/main/assets/aqr-demo.mp4) |
 
 以车辆资料登记为例，MCP 宿主可以先用 BoundaryXP 核对任务允许做什么。需要扫码登录受支持的网站时，可调用 AQR。需要人核对识别结果时，可用即页生成可编辑的表单，再将确认后的字段读回当前任务。这是一种组合用法，三个包均可独立安装。
 
