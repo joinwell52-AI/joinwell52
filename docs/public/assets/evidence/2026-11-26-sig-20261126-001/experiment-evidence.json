@@ -1,0 +1,374 @@
+{
+  "schema": "article-bounded-probe/v1",
+  "date": "2026-11-26",
+  "topic": "approval lookup predicates",
+  "identity": "internal-experimental-evidence",
+  "independent": false,
+  "executedAt": "2026-11-26T05:03:47.402Z",
+  "environment": {
+    "node": "v24.19.0",
+    "sqlite": "3.53.3"
+  },
+  "source": {
+    "revision": "747b5bb125c8cc94e7cb99a581dc63bedb2c9bb2",
+    "url": "https://raw.githubusercontent.com/GoetzKohlberg/sidjua/747b5bb125c8cc94e7cb99a581dc63bedb2c9bb2/src/pipeline/approval.ts",
+    "sha256": "a8f5ba8d8ed45f006b11fcfdc6bd402991d49b9af09609a238938f4375fed50e"
+  },
+  "method": "Original findApproval function with export keyword removed and Node native TypeScript erasure; actual in-memory SQLite; synthetic approval table and request, logger stub. No other function body changes.",
+  "scope": "Isolated lookup behavior only. Does not demonstrate reachable production bypass, checkApproval integration, caller intent canonicalization, or full application authorization.",
+  "cases": [
+    {
+      "case": "exact-request-control",
+      "stored": {
+        "agent": "agent-A",
+        "division": "division-B",
+        "action": "{\"type\":\"transfer\",\"target\":\"B\",\"amount\":1000}",
+        "rule": "transfer",
+        "status": "approved",
+        "metadata": "{\"request_id\":\"request-B\"}"
+      },
+      "age": "-1 minute",
+      "request": {
+        "agent_id": "agent-A",
+        "request_id": "request-B",
+        "division_code": "division-B",
+        "action": {
+          "type": "transfer",
+          "target": "B",
+          "amount": 1000
+        }
+      },
+      "workflow": {
+        "trigger": {
+          "action": "transfer"
+        },
+        "timeout_hours": 1
+      },
+      "expectedSelected": true,
+      "actualSelected": true,
+      "actual": {
+        "id": 1,
+        "created_at": "2026-11-26 05:02:47",
+        "agent_id": "agent-A",
+        "division_code": "division-B",
+        "action_description": "{\"type\":\"transfer\",\"target\":\"B\",\"amount\":1000}",
+        "rule_triggered": "transfer",
+        "status": "approved",
+        "decided_by": "human",
+        "decided_at": "2026-11-26 05:03:47",
+        "metadata": {
+          "request_id": "request-B"
+        }
+      },
+      "matched": true
+    },
+    {
+      "case": "different-request-action-and-division",
+      "stored": {
+        "agent": "agent-A",
+        "division": "division-A",
+        "action": "{\"type\":\"transfer\",\"target\":\"A\",\"amount\":1}",
+        "rule": "transfer",
+        "status": "approved",
+        "metadata": "{\"request_id\":\"request-A\"}"
+      },
+      "age": "-1 minute",
+      "request": {
+        "agent_id": "agent-A",
+        "request_id": "request-B",
+        "division_code": "division-B",
+        "action": {
+          "type": "transfer",
+          "target": "B",
+          "amount": 1000
+        }
+      },
+      "workflow": {
+        "trigger": {
+          "action": "transfer"
+        },
+        "timeout_hours": 1
+      },
+      "expectedSelected": true,
+      "actualSelected": true,
+      "actual": {
+        "id": 1,
+        "created_at": "2026-11-26 05:02:47",
+        "agent_id": "agent-A",
+        "division_code": "division-A",
+        "action_description": "{\"type\":\"transfer\",\"target\":\"A\",\"amount\":1}",
+        "rule_triggered": "transfer",
+        "status": "approved",
+        "decided_by": "human",
+        "decided_at": "2026-11-26 05:03:47",
+        "metadata": {
+          "request_id": "request-A"
+        }
+      },
+      "matched": true
+    },
+    {
+      "case": "different-agent-control",
+      "stored": {
+        "agent": "agent-Z",
+        "division": "division-A",
+        "action": "{\"type\":\"transfer\",\"target\":\"A\",\"amount\":1}",
+        "rule": "transfer",
+        "status": "approved",
+        "metadata": "{\"request_id\":\"request-A\"}"
+      },
+      "age": "-1 minute",
+      "request": {
+        "agent_id": "agent-A",
+        "request_id": "request-B",
+        "division_code": "division-B",
+        "action": {
+          "type": "transfer",
+          "target": "B",
+          "amount": 1000
+        }
+      },
+      "workflow": {
+        "trigger": {
+          "action": "transfer"
+        },
+        "timeout_hours": 1
+      },
+      "expectedSelected": false,
+      "actualSelected": false,
+      "actual": null,
+      "matched": true
+    },
+    {
+      "case": "different-rule-control",
+      "stored": {
+        "agent": "agent-A",
+        "division": "division-A",
+        "action": "{\"type\":\"transfer\",\"target\":\"A\",\"amount\":1}",
+        "rule": "delete",
+        "status": "approved",
+        "metadata": "{\"request_id\":\"request-A\"}"
+      },
+      "age": "-1 minute",
+      "request": {
+        "agent_id": "agent-A",
+        "request_id": "request-B",
+        "division_code": "division-B",
+        "action": {
+          "type": "transfer",
+          "target": "B",
+          "amount": 1000
+        }
+      },
+      "workflow": {
+        "trigger": {
+          "action": "transfer"
+        },
+        "timeout_hours": 1
+      },
+      "expectedSelected": false,
+      "actualSelected": false,
+      "actual": null,
+      "matched": true
+    },
+    {
+      "case": "expired-control",
+      "stored": {
+        "agent": "agent-A",
+        "division": "division-A",
+        "action": "{\"type\":\"transfer\",\"target\":\"A\",\"amount\":1}",
+        "rule": "transfer",
+        "status": "approved",
+        "metadata": "{\"request_id\":\"request-A\"}"
+      },
+      "age": "-2 hours",
+      "request": {
+        "agent_id": "agent-A",
+        "request_id": "request-B",
+        "division_code": "division-B",
+        "action": {
+          "type": "transfer",
+          "target": "B",
+          "amount": 1000
+        }
+      },
+      "workflow": {
+        "trigger": {
+          "action": "transfer"
+        },
+        "timeout_hours": 1
+      },
+      "expectedSelected": false,
+      "actualSelected": false,
+      "actual": null,
+      "matched": true
+    },
+    {
+      "case": "different-request-denied",
+      "stored": {
+        "agent": "agent-A",
+        "division": "division-A",
+        "action": "{\"type\":\"transfer\",\"target\":\"A\",\"amount\":1}",
+        "rule": "transfer",
+        "status": "denied",
+        "metadata": "{\"request_id\":\"request-A\"}"
+      },
+      "age": "-1 minute",
+      "request": {
+        "agent_id": "agent-A",
+        "request_id": "request-B",
+        "division_code": "division-B",
+        "action": {
+          "type": "transfer",
+          "target": "B",
+          "amount": 1000
+        }
+      },
+      "workflow": {
+        "trigger": {
+          "action": "transfer"
+        },
+        "timeout_hours": 1
+      },
+      "expectedSelected": true,
+      "actualSelected": true,
+      "actual": {
+        "id": 1,
+        "created_at": "2026-11-26 05:02:47",
+        "agent_id": "agent-A",
+        "division_code": "division-A",
+        "action_description": "{\"type\":\"transfer\",\"target\":\"A\",\"amount\":1}",
+        "rule_triggered": "transfer",
+        "status": "denied",
+        "decided_by": "human",
+        "decided_at": "2026-11-26 05:03:47",
+        "metadata": {
+          "request_id": "request-A"
+        }
+      },
+      "matched": true
+    },
+    {
+      "case": "different-request-pending",
+      "stored": {
+        "agent": "agent-A",
+        "division": "division-A",
+        "action": "{\"type\":\"transfer\",\"target\":\"A\",\"amount\":1}",
+        "rule": "transfer",
+        "status": "pending",
+        "metadata": "{\"request_id\":\"request-A\"}"
+      },
+      "age": "-1 minute",
+      "request": {
+        "agent_id": "agent-A",
+        "request_id": "request-B",
+        "division_code": "division-B",
+        "action": {
+          "type": "transfer",
+          "target": "B",
+          "amount": 1000
+        }
+      },
+      "workflow": {
+        "trigger": {
+          "action": "transfer"
+        },
+        "timeout_hours": 1
+      },
+      "expectedSelected": true,
+      "actualSelected": true,
+      "actual": {
+        "id": 1,
+        "created_at": "2026-11-26 05:02:47",
+        "agent_id": "agent-A",
+        "division_code": "division-A",
+        "action_description": "{\"type\":\"transfer\",\"target\":\"A\",\"amount\":1}",
+        "rule_triggered": "transfer",
+        "status": "pending",
+        "decided_by": "human",
+        "decided_at": "2026-11-26 05:03:47",
+        "metadata": {
+          "request_id": "request-A"
+        }
+      },
+      "matched": true
+    },
+    {
+      "case": "malformed-metadata",
+      "stored": {
+        "agent": "agent-A",
+        "division": "division-A",
+        "action": "{\"type\":\"transfer\",\"target\":\"A\",\"amount\":1}",
+        "rule": "transfer",
+        "status": "approved",
+        "metadata": "{"
+      },
+      "age": "-1 minute",
+      "request": {
+        "agent_id": "agent-A",
+        "request_id": "request-B",
+        "division_code": "division-B",
+        "action": {
+          "type": "transfer",
+          "target": "B",
+          "amount": 1000
+        }
+      },
+      "workflow": {
+        "trigger": {
+          "action": "transfer"
+        },
+        "timeout_hours": 1
+      },
+      "expectedSelected": true,
+      "actualSelected": true,
+      "actual": {
+        "id": 1,
+        "created_at": "2026-11-26 05:02:47",
+        "agent_id": "agent-A",
+        "division_code": "division-A",
+        "action_description": "{\"type\":\"transfer\",\"target\":\"A\",\"amount\":1}",
+        "rule_triggered": "transfer",
+        "status": "approved",
+        "decided_by": "human",
+        "decided_at": "2026-11-26 05:03:47",
+        "metadata": null
+      },
+      "matched": true
+    },
+    {
+      "case": "excluded-status-control",
+      "stored": {
+        "agent": "agent-A",
+        "division": "division-A",
+        "action": "{\"type\":\"transfer\",\"target\":\"A\",\"amount\":1}",
+        "rule": "transfer",
+        "status": "consumed",
+        "metadata": "{\"request_id\":\"request-A\"}"
+      },
+      "age": "-1 minute",
+      "request": {
+        "agent_id": "agent-A",
+        "request_id": "request-B",
+        "division_code": "division-B",
+        "action": {
+          "type": "transfer",
+          "target": "B",
+          "amount": 1000
+        }
+      },
+      "workflow": {
+        "trigger": {
+          "action": "transfer"
+        },
+        "timeout_hours": 1
+      },
+      "expectedSelected": false,
+      "actualSelected": false,
+      "actual": null,
+      "matched": true
+    }
+  ],
+  "allExpected": true,
+  "productionReexecution": false
+}
