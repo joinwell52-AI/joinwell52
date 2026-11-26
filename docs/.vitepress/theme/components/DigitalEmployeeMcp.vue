@@ -55,7 +55,7 @@ const paperPdf = `${bxp}/releases/download/paper-v1.2-r23/BoundaryXP-manuscript`
           <a :href="zh ? 'https://github.com/joinwell52-AI/AQR-D#readme' : 'https://github.com/joinwell52-AI/AQR-D#english'">{{ zh ? '项目与安装' : 'Project & setup' }}</a>
           <a href="https://www.npmjs.com/package/aqr-mcp">aqr-mcp</a>
           <a href="https://github.com/joinwell52-AI/AQR-D/releases">{{ zh ? 'Windows 下载' : 'Windows download' }}</a>
-          <a href="https://github.com/joinwell52-AI/AQR-D/blob/main/assets/aqr-demo.mp4">{{ zh ? '演示视频' : 'Demo video' }}</a>
+          <a href="https://joinwell52-ai.github.io/AQR-D/">{{ zh ? '演示视频' : 'Demo video' }}</a>
         </div>
       </article>
     </div>
