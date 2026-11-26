@@ -1,0 +1,652 @@
+{
+  "schema": "article-bounded-probe/v1",
+  "date": "2026-11-26",
+  "topic": "remote order recovery",
+  "identity": "internal-experimental-evidence",
+  "independent": false,
+  "executedAt": "2026-11-26T05:04:18.059997+00:00",
+  "environment": {
+    "python": "3.12.9 (tags/v3.12.9:fdb8142, Feb  4 2025, 15:27:58) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "stdoutEncoding": "utf-8"
+  },
+  "scope": "Source-derived isolated functions; synthetic fixtures and explicit doubles at external boundaries. No model calls, trading, upstream benchmark, database durability or full-system reproduction.",
+  "sourceRevision": "2134f408b1cd715c74fa8c5021f4402d50b00ea8",
+  "sourceUrls": [
+    "https://raw.githubusercontent.com/HKUDS/Vibe-Trading/2134f408b1cd715c74fa8c5021f4402d50b00ea8/agent/src/live/sdk_order_gate.py",
+    "https://raw.githubusercontent.com/HKUDS/Vibe-Trading/2134f408b1cd715c74fa8c5021f4402d50b00ea8/agent/src/live/pending_action.py"
+  ],
+  "extracts": [
+    {
+      "source": "vibe-gate.txt",
+      "sourceSha256": "63d4154baeb9cf3563d05cd0d6448af8acd40cb3aa9f97a83b941d73f4314e63",
+      "functions": [
+        {
+          "name": "_recover_pending_order",
+          "firstLine": 542,
+          "lastLine": 617
+        },
+        {
+          "name": "_validate_recovery_evidence",
+          "firstLine": 756,
+          "lastLine": 788
+        },
+        {
+          "name": "_exact_decimal",
+          "firstLine": 791,
+          "lastLine": 799
+        }
+      ],
+      "extractedPath": "isolated-vibe-gate.py",
+      "extractedSha256": "905f1bcecd6c827c9f0ac4024dd5214c3ea97d67f5d38bffbfdeaa1a5f9157ec",
+      "modification": "Original function text, no function-body changes; imports and external boundaries supplied by harness."
+    }
+  ],
+  "validatorCases": [
+    {
+      "topic": "EXEC",
+      "case": "exact-control",
+      "layer": "_validate_recovery_evidence",
+      "input": {
+        "broker_order_id": "broker-A",
+        "client_order_id": "client-A",
+        "symbol": "ABC",
+        "side": "buy",
+        "order_type": "market",
+        "time_in_force": "day",
+        "quantity": "10",
+        "notional": null,
+        "limit_price": null,
+        "submitted_at": "2026-11-26T04:00:00Z",
+        "filled_qty": "0",
+        "order_status": "accepted"
+      },
+      "expectedAccepted": true,
+      "actualAccepted": true,
+      "matched": true,
+      "actual": {
+        "broker_order_id": "broker-A",
+        "client_order_id": "client-A",
+        "symbol": "ABC",
+        "side": "buy",
+        "order_type": "market",
+        "time_in_force": "day",
+        "quantity": "10",
+        "notional": null,
+        "limit_price": null,
+        "submitted_at": "2026-11-26T04:00:00+00:00",
+        "filled_qty": "0",
+        "order_status": "accepted"
+      }
+    },
+    {
+      "topic": "EXEC",
+      "case": "numeric-equivalence",
+      "layer": "_validate_recovery_evidence",
+      "input": {
+        "broker_order_id": "broker-A",
+        "client_order_id": "client-A",
+        "symbol": "ABC",
+        "side": "buy",
+        "order_type": "market",
+        "time_in_force": "day",
+        "quantity": "10.00",
+        "notional": null,
+        "limit_price": null,
+        "submitted_at": "2026-11-26T04:00:00Z",
+        "filled_qty": "0",
+        "order_status": "accepted"
+      },
+      "expectedAccepted": true,
+      "actualAccepted": true,
+      "matched": true,
+      "actual": {
+        "broker_order_id": "broker-A",
+        "client_order_id": "client-A",
+        "symbol": "ABC",
+        "side": "buy",
+        "order_type": "market",
+        "time_in_force": "day",
+        "quantity": "10.00",
+        "notional": null,
+        "limit_price": null,
+        "submitted_at": "2026-11-26T04:00:00+00:00",
+        "filled_qty": "0",
+        "order_status": "accepted"
+      }
+    },
+    {
+      "topic": "EXEC",
+      "case": "client-id-mismatch",
+      "layer": "_validate_recovery_evidence",
+      "input": {
+        "broker_order_id": "broker-A",
+        "client_order_id": "client-B",
+        "symbol": "ABC",
+        "side": "buy",
+        "order_type": "market",
+        "time_in_force": "day",
+        "quantity": "10",
+        "notional": null,
+        "limit_price": null,
+        "submitted_at": "2026-11-26T04:00:00Z",
+        "filled_qty": "0",
+        "order_status": "accepted"
+      },
+      "expectedAccepted": false,
+      "actualAccepted": false,
+      "matched": true,
+      "actual": null
+    },
+    {
+      "topic": "EXEC",
+      "case": "symbol-mismatch",
+      "layer": "_validate_recovery_evidence",
+      "input": {
+        "broker_order_id": "broker-A",
+        "client_order_id": "client-A",
+        "symbol": "XYZ",
+        "side": "buy",
+        "order_type": "market",
+        "time_in_force": "day",
+        "quantity": "10",
+        "notional": null,
+        "limit_price": null,
+        "submitted_at": "2026-11-26T04:00:00Z",
+        "filled_qty": "0",
+        "order_status": "accepted"
+      },
+      "expectedAccepted": false,
+      "actualAccepted": false,
+      "matched": true,
+      "actual": null
+    },
+    {
+      "topic": "EXEC",
+      "case": "side-mismatch",
+      "layer": "_validate_recovery_evidence",
+      "input": {
+        "broker_order_id": "broker-A",
+        "client_order_id": "client-A",
+        "symbol": "ABC",
+        "side": "sell",
+        "order_type": "market",
+        "time_in_force": "day",
+        "quantity": "10",
+        "notional": null,
+        "limit_price": null,
+        "submitted_at": "2026-11-26T04:00:00Z",
+        "filled_qty": "0",
+        "order_status": "accepted"
+      },
+      "expectedAccepted": false,
+      "actualAccepted": false,
+      "matched": true,
+      "actual": null
+    },
+    {
+      "topic": "EXEC",
+      "case": "type-mismatch",
+      "layer": "_validate_recovery_evidence",
+      "input": {
+        "broker_order_id": "broker-A",
+        "client_order_id": "client-A",
+        "symbol": "ABC",
+        "side": "buy",
+        "order_type": "limit",
+        "time_in_force": "day",
+        "quantity": "10",
+        "notional": null,
+        "limit_price": null,
+        "submitted_at": "2026-11-26T04:00:00Z",
+        "filled_qty": "0",
+        "order_status": "accepted"
+      },
+      "expectedAccepted": false,
+      "actualAccepted": false,
+      "matched": true,
+      "actual": null
+    },
+    {
+      "topic": "EXEC",
+      "case": "time-in-force-mismatch",
+      "layer": "_validate_recovery_evidence",
+      "input": {
+        "broker_order_id": "broker-A",
+        "client_order_id": "client-A",
+        "symbol": "ABC",
+        "side": "buy",
+        "order_type": "market",
+        "time_in_force": "gtc",
+        "quantity": "10",
+        "notional": null,
+        "limit_price": null,
+        "submitted_at": "2026-11-26T04:00:00Z",
+        "filled_qty": "0",
+        "order_status": "accepted"
+      },
+      "expectedAccepted": false,
+      "actualAccepted": false,
+      "matched": true,
+      "actual": null
+    },
+    {
+      "topic": "EXEC",
+      "case": "quantity-mismatch",
+      "layer": "_validate_recovery_evidence",
+      "input": {
+        "broker_order_id": "broker-A",
+        "client_order_id": "client-A",
+        "symbol": "ABC",
+        "side": "buy",
+        "order_type": "market",
+        "time_in_force": "day",
+        "quantity": "11",
+        "notional": null,
+        "limit_price": null,
+        "submitted_at": "2026-11-26T04:00:00Z",
+        "filled_qty": "0",
+        "order_status": "accepted"
+      },
+      "expectedAccepted": false,
+      "actualAccepted": false,
+      "matched": true,
+      "actual": null
+    },
+    {
+      "topic": "EXEC",
+      "case": "notional-mismatch",
+      "layer": "_validate_recovery_evidence",
+      "input": {
+        "broker_order_id": "broker-A",
+        "client_order_id": "client-A",
+        "symbol": "ABC",
+        "side": "buy",
+        "order_type": "market",
+        "time_in_force": "day",
+        "quantity": "10",
+        "notional": "1",
+        "limit_price": null,
+        "submitted_at": "2026-11-26T04:00:00Z",
+        "filled_qty": "0",
+        "order_status": "accepted"
+      },
+      "expectedAccepted": false,
+      "actualAccepted": false,
+      "matched": true,
+      "actual": null
+    },
+    {
+      "topic": "EXEC",
+      "case": "limit-mismatch",
+      "layer": "_validate_recovery_evidence",
+      "input": {
+        "broker_order_id": "broker-A",
+        "client_order_id": "client-A",
+        "symbol": "ABC",
+        "side": "buy",
+        "order_type": "market",
+        "time_in_force": "day",
+        "quantity": "10",
+        "notional": null,
+        "limit_price": "1",
+        "submitted_at": "2026-11-26T04:00:00Z",
+        "filled_qty": "0",
+        "order_status": "accepted"
+      },
+      "expectedAccepted": false,
+      "actualAccepted": false,
+      "matched": true,
+      "actual": null
+    },
+    {
+      "topic": "EXEC",
+      "case": "missing-broker-id",
+      "layer": "_validate_recovery_evidence",
+      "input": {
+        "broker_order_id": "",
+        "client_order_id": "client-A",
+        "symbol": "ABC",
+        "side": "buy",
+        "order_type": "market",
+        "time_in_force": "day",
+        "quantity": "10",
+        "notional": null,
+        "limit_price": null,
+        "submitted_at": "2026-11-26T04:00:00Z",
+        "filled_qty": "0",
+        "order_status": "accepted"
+      },
+      "expectedAccepted": false,
+      "actualAccepted": false,
+      "matched": true,
+      "actual": null
+    },
+    {
+      "topic": "EXEC",
+      "case": "naive-timestamp",
+      "layer": "_validate_recovery_evidence",
+      "input": {
+        "broker_order_id": "broker-A",
+        "client_order_id": "client-A",
+        "symbol": "ABC",
+        "side": "buy",
+        "order_type": "market",
+        "time_in_force": "day",
+        "quantity": "10",
+        "notional": null,
+        "limit_price": null,
+        "submitted_at": "2026-11-26T04:00:00",
+        "filled_qty": "0",
+        "order_status": "accepted"
+      },
+      "expectedAccepted": false,
+      "actualAccepted": false,
+      "matched": true,
+      "actual": null
+    },
+    {
+      "topic": "EXEC",
+      "case": "negative-fill",
+      "layer": "_validate_recovery_evidence",
+      "input": {
+        "broker_order_id": "broker-A",
+        "client_order_id": "client-A",
+        "symbol": "ABC",
+        "side": "buy",
+        "order_type": "market",
+        "time_in_force": "day",
+        "quantity": "10",
+        "notional": null,
+        "limit_price": null,
+        "submitted_at": "2026-11-26T04:00:00Z",
+        "filled_qty": "-1",
+        "order_status": "accepted"
+      },
+      "expectedAccepted": false,
+      "actualAccepted": false,
+      "matched": true,
+      "actual": null
+    },
+    {
+      "topic": "EXEC",
+      "case": "nan-fill",
+      "layer": "_validate_recovery_evidence",
+      "input": {
+        "broker_order_id": "broker-A",
+        "client_order_id": "client-A",
+        "symbol": "ABC",
+        "side": "buy",
+        "order_type": "market",
+        "time_in_force": "day",
+        "quantity": "10",
+        "notional": null,
+        "limit_price": null,
+        "submitted_at": "2026-11-26T04:00:00Z",
+        "filled_qty": "NaN",
+        "order_status": "accepted"
+      },
+      "expectedAccepted": false,
+      "actualAccepted": false,
+      "matched": true,
+      "actual": null
+    },
+    {
+      "topic": "EXEC",
+      "case": "boolean-quantity",
+      "layer": "_validate_recovery_evidence",
+      "input": {
+        "broker_order_id": "broker-A",
+        "client_order_id": "client-A",
+        "symbol": "ABC",
+        "side": "buy",
+        "order_type": "market",
+        "time_in_force": "day",
+        "quantity": true,
+        "notional": null,
+        "limit_price": null,
+        "submitted_at": "2026-11-26T04:00:00Z",
+        "filled_qty": "0",
+        "order_status": "accepted"
+      },
+      "expectedAccepted": false,
+      "actualAccepted": false,
+      "matched": true,
+      "actual": null
+    },
+    {
+      "topic": "EXEC",
+      "case": "unknown-status",
+      "layer": "_validate_recovery_evidence",
+      "input": {
+        "broker_order_id": "broker-A",
+        "client_order_id": "client-A",
+        "symbol": "ABC",
+        "side": "buy",
+        "order_type": "market",
+        "time_in_force": "day",
+        "quantity": "10",
+        "notional": null,
+        "limit_price": null,
+        "submitted_at": "2026-11-26T04:00:00Z",
+        "filled_qty": "0",
+        "order_status": "unknown"
+      },
+      "expectedAccepted": false,
+      "actualAccepted": false,
+      "matched": true,
+      "actual": null
+    },
+    {
+      "topic": "EXEC",
+      "case": "semantic-inconsistency-at-validator",
+      "layer": "_validate_recovery_evidence",
+      "input": {
+        "broker_order_id": "broker-A",
+        "client_order_id": "client-A",
+        "symbol": "ABC",
+        "side": "buy",
+        "order_type": "market",
+        "time_in_force": "day",
+        "quantity": "10",
+        "notional": null,
+        "limit_price": null,
+        "submitted_at": "2026-11-26T04:00:00Z",
+        "filled_qty": "0",
+        "order_status": "filled"
+      },
+      "expectedAccepted": true,
+      "actualAccepted": true,
+      "matched": true,
+      "actual": {
+        "broker_order_id": "broker-A",
+        "client_order_id": "client-A",
+        "symbol": "ABC",
+        "side": "buy",
+        "order_type": "market",
+        "time_in_force": "day",
+        "quantity": "10",
+        "notional": null,
+        "limit_price": null,
+        "submitted_at": "2026-11-26T04:00:00+00:00",
+        "filled_qty": "0",
+        "order_status": "filled"
+      }
+    }
+  ],
+  "recoveryCases": [
+    {
+      "topic": "EXEC",
+      "case": "lookup-error",
+      "layer": "_recover_pending_order",
+      "input": null,
+      "injectedLookupFailure": true,
+      "calls": [
+        {
+          "lookup": {
+            "client_order_id": "client-A"
+          }
+        }
+      ],
+      "boundaryEvents": [],
+      "actual": {
+        "decision": "deny",
+        "reason_code": "pending_action_unresolved"
+      },
+      "matched": true
+    },
+    {
+      "topic": "EXEC",
+      "case": "mismatch",
+      "layer": "_recover_pending_order",
+      "input": {
+        "status": "ok",
+        "order": {
+          "broker_order_id": "broker-A",
+          "client_order_id": "client-A",
+          "symbol": "XYZ",
+          "side": "buy",
+          "order_type": "market",
+          "time_in_force": "day",
+          "quantity": "10",
+          "notional": null,
+          "limit_price": null,
+          "submitted_at": "2026-11-26T04:00:00Z",
+          "filled_qty": "0",
+          "order_status": "accepted"
+        }
+      },
+      "injectedLookupFailure": false,
+      "calls": [
+        {
+          "lookup": {
+            "client_order_id": "client-A"
+          }
+        }
+      ],
+      "boundaryEvents": [],
+      "actual": {
+        "decision": "deny",
+        "reason_code": "pending_action_unresolved"
+      },
+      "matched": true
+    },
+    {
+      "topic": "EXEC",
+      "case": "working-control",
+      "layer": "_recover_pending_order",
+      "input": {
+        "status": "ok",
+        "order": {
+          "broker_order_id": "broker-A",
+          "client_order_id": "client-A",
+          "symbol": "ABC",
+          "side": "buy",
+          "order_type": "market",
+          "time_in_force": "day",
+          "quantity": "10",
+          "notional": null,
+          "limit_price": null,
+          "submitted_at": "2026-11-26T04:00:00Z",
+          "filled_qty": "0",
+          "order_status": "accepted"
+        }
+      },
+      "injectedLookupFailure": false,
+      "calls": [
+        {
+          "lookup": {
+            "client_order_id": "client-A"
+          }
+        }
+      ],
+      "boundaryEvents": [
+        "count",
+        "revalidation"
+      ],
+      "actual": {
+        "reason": "recovered working order requires policy revalidation",
+        "reason_code": "pending_action_needs_revalidation"
+      },
+      "matched": true
+    },
+    {
+      "topic": "EXEC",
+      "case": "terminal-rejected-control",
+      "layer": "_recover_pending_order",
+      "input": {
+        "status": "ok",
+        "order": {
+          "broker_order_id": "broker-A",
+          "client_order_id": "client-A",
+          "symbol": "ABC",
+          "side": "buy",
+          "order_type": "market",
+          "time_in_force": "day",
+          "quantity": "10",
+          "notional": null,
+          "limit_price": null,
+          "submitted_at": "2026-11-26T04:00:00Z",
+          "filled_qty": "0",
+          "order_status": "rejected"
+        }
+      },
+      "injectedLookupFailure": false,
+      "calls": [
+        {
+          "lookup": {
+            "client_order_id": "client-A"
+          }
+        }
+      ],
+      "boundaryEvents": [
+        "clear"
+      ],
+      "actual": {
+        "reason": "exact terminal broker outcome recovered",
+        "reason_code": "pending_action_resolved_terminal",
+        "recovery_pending": false
+      },
+      "matched": true
+    },
+    {
+      "topic": "EXEC",
+      "case": "contradictory-fill",
+      "layer": "_recover_pending_order",
+      "input": {
+        "status": "ok",
+        "order": {
+          "broker_order_id": "broker-A",
+          "client_order_id": "client-A",
+          "symbol": "ABC",
+          "side": "buy",
+          "order_type": "market",
+          "time_in_force": "day",
+          "quantity": "10",
+          "notional": null,
+          "limit_price": null,
+          "submitted_at": "2026-11-26T04:00:00Z",
+          "filled_qty": "0",
+          "order_status": "filled"
+        }
+      },
+      "injectedLookupFailure": false,
+      "calls": [
+        {
+          "lookup": {
+            "client_order_id": "client-A"
+          }
+        }
+      ],
+      "boundaryEvents": [],
+      "actual": {
+        "decision": "halt",
+        "reason": "status-fill contradiction"
+      },
+      "matched": true
+    }
+  ],
+  "method": "AST-extracted original _validate_recovery_evidence, _exact_decimal and _recover_pending_order functions; synthetic requests, broker reply fixtures and logging boundary doubles. External persistence/audit/count calls are recorded, not implemented.",
+  "result": "17 validator cases and 5 recovery cases. Identity, size, malformed numbers, naive timestamp and unknown-status cases reject. Numeric 10.00 equals 10. Lookup failure/mismatch never resubmit. Working requests count/revalidation; rejected requests clear. filled with zero passes structure but subsequent recovery requests halt.",
+  "productionReexecution": false
+}
