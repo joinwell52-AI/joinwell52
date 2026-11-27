@@ -11,6 +11,7 @@ outline: false
 日期按 **Asia/Shanghai** 倒序排列。点击日期进入当天完整报告与原始公开来源。
 
 <div class="daily-intel-list">
+<a class="daily-intel-item" href="./2026-11-27"><time>2026-11-27</time><div><strong>Agent 核心研究与竞品动态</strong><span>49项观察、6组分析：批准来源、副作用恢复、消息因果与可验证工件。</span></div><b>阅读完整日报 →</b></a>
 <a class="daily-intel-item" href="./2026-11-26"><time>2026-11-26</time><div><strong>Agent 核心研究与竞品动态</strong><span>48项观察、6组分析：未知结果恢复、授权身份与独立复核。</span></div><b>阅读完整日报 →</b></a>
 <a class="daily-intel-item" href="./2026-11-25"><time>2026-11-25</time><div><strong>Agent 核心研究与竞品动态</strong><span>45项观察、6组分析：授权证据、恢复交付与数字员工规程交接。</span></div><b>阅读完整日报 →</b></a>
 <a class="daily-intel-item" href="./2026-11-24"><time>2026-11-24</time><div><strong>Agent 核心研究与竞品动态</strong><span>27项观察、5组分析：执行前治理、恢复权限与员工交接。</span></div><b>阅读完整日报 →</b></a>
