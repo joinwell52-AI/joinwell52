@@ -1,0 +1,328 @@
+{
+  "schema": "article-experiment-evidence/v1",
+  "date": "2026-11-27",
+  "itemId": "SIG-20261127-002",
+  "evidenceId": "EXP-002",
+  "identity": "internal-experimental-evidence",
+  "independent": false,
+  "originalExecutedAt": "2026-11-27T05:07:17.449127+00:00",
+  "environment": {
+    "python": "3.12.9 (tags/v3.12.9:fdb8142, Feb  4 2025, 15:27:58) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0"
+  },
+  "method": "Compile unchanged selected AST function bodies and constants from verified same-run source copies. SciMARS ROLES is an explicit seven-role fixture taken from initial_memory keys. AgentSpec methods are invoked with a SimpleNamespace; parser, Pydantic, interpreter and executor are excluded. Skeptic functions read synthetic local fixtures; no robot program is executed.",
+  "sourceBindings": [
+    {
+      "file": "skeptic-skeptic-gate-promote.py",
+      "sha256": "6c95b820db8fc60bdf85791e14611524a45745149a063fc4a6a633ac762b0cae",
+      "revision": "bf0e78d2e2ce308d9d678e0bbb1196b5b3ad4ebb",
+      "url": "https://raw.githubusercontent.com/lmsdss/Skeptic/bf0e78d2e2ce308d9d678e0bbb1196b5b3ad4ebb/skeptic/gate/promote.py",
+      "functions": [
+        "sha_file",
+        "program_runs",
+        "check"
+      ],
+      "constants": [
+        "DEV_PASS_MIN",
+        "RUN_DIR"
+      ],
+      "originalCheckedAt": "2026-11-27T03:06:17.683Z"
+    }
+  ],
+  "cases": [
+    {
+      "topic": "SIG-20261127-002",
+      "name": "positive",
+      "inputs": {
+        "passes": 8,
+        "coverage": 15,
+        "verdict": "verified",
+        "sound": true,
+        "changedProgram": false,
+        "laterFailure": false
+      },
+      "actual": {
+        "eligible": true,
+        "facts": {
+          "attempt": "task_1",
+          "dev_seeds": 15,
+          "dev_covered": 15,
+          "dev_passes": 8,
+          "verify_dir": "verification\\task_1",
+          "verdict": "verified",
+          "verify_passes": "8/15",
+          "sound_proposals": [
+            "synthetic proposal"
+          ]
+        },
+        "reasons": []
+      },
+      "expected": {
+        "eligible": true
+      },
+      "matched": true
+    },
+    {
+      "topic": "SIG-20261127-002",
+      "name": "below_threshold",
+      "inputs": {
+        "passes": 7,
+        "coverage": 15,
+        "verdict": "verified",
+        "sound": true,
+        "changedProgram": false,
+        "laterFailure": false
+      },
+      "actual": {
+        "eligible": false,
+        "facts": {
+          "attempt": "task_1",
+          "dev_seeds": 15,
+          "dev_covered": 15,
+          "dev_passes": 7,
+          "verify_dir": "verification\\task_1",
+          "verdict": "verified",
+          "verify_passes": "7/15",
+          "sound_proposals": [
+            "synthetic proposal"
+          ]
+        },
+        "reasons": [
+          "development 7/15 is below 8/15"
+        ]
+      },
+      "expected": {
+        "eligible": false
+      },
+      "matched": true
+    },
+    {
+      "topic": "SIG-20261127-002",
+      "name": "incomplete",
+      "inputs": {
+        "passes": 8,
+        "coverage": 14,
+        "verdict": "verified",
+        "sound": true,
+        "changedProgram": false,
+        "laterFailure": false
+      },
+      "actual": {
+        "eligible": false,
+        "facts": {
+          "attempt": "task_1",
+          "dev_seeds": 15,
+          "dev_covered": 14,
+          "dev_passes": 8,
+          "verify_dir": "verification\\task_1",
+          "verdict": "verified",
+          "verify_passes": "8/15",
+          "sound_proposals": [
+            "synthetic proposal"
+          ]
+        },
+        "reasons": [
+          "fix_code.py (this exact file) has no finished run on development seeds [14]"
+        ]
+      },
+      "expected": {
+        "eligible": false
+      },
+      "matched": true
+    },
+    {
+      "topic": "SIG-20261127-002",
+      "name": "refuted_sound",
+      "inputs": {
+        "passes": 8,
+        "coverage": 15,
+        "verdict": "refuted",
+        "sound": true,
+        "changedProgram": false,
+        "laterFailure": false
+      },
+      "actual": {
+        "eligible": true,
+        "facts": {
+          "attempt": "task_1",
+          "dev_seeds": 15,
+          "dev_covered": 15,
+          "dev_passes": 8,
+          "verify_dir": "verification\\task_1",
+          "verdict": "refuted",
+          "verify_passes": "8/15",
+          "sound_proposals": [
+            "synthetic proposal"
+          ]
+        },
+        "reasons": []
+      },
+      "expected": {
+        "eligible": true
+      },
+      "matched": true
+    },
+    {
+      "topic": "SIG-20261127-002",
+      "name": "void_sound",
+      "inputs": {
+        "passes": 8,
+        "coverage": 15,
+        "verdict": "void",
+        "sound": true,
+        "changedProgram": false,
+        "laterFailure": false
+      },
+      "actual": {
+        "eligible": false,
+        "facts": {
+          "attempt": "task_1",
+          "dev_seeds": 15,
+          "dev_covered": 15,
+          "dev_passes": 8,
+          "verify_dir": "verification\\task_1",
+          "verdict": "void",
+          "verify_passes": "8/15",
+          "sound_proposals": [
+            "synthetic proposal"
+          ]
+        },
+        "reasons": [
+          "verifier verdict is 'void' in verification\\task_1, not 'verified' or 'refuted'"
+        ]
+      },
+      "expected": {
+        "eligible": false
+      },
+      "matched": true
+    },
+    {
+      "topic": "SIG-20261127-002",
+      "name": "no_sound",
+      "inputs": {
+        "passes": 8,
+        "coverage": 15,
+        "verdict": "verified",
+        "sound": false,
+        "changedProgram": false,
+        "laterFailure": false
+      },
+      "actual": {
+        "eligible": false,
+        "facts": {
+          "attempt": "task_1",
+          "dev_seeds": 15,
+          "dev_covered": 15,
+          "dev_passes": 8,
+          "verify_dir": "verification\\task_1",
+          "verdict": "verified",
+          "verify_passes": "8/15",
+          "sound_proposals": []
+        },
+        "reasons": [
+          "the verifier graded no proposal 'sound' in verification\\task_1"
+        ]
+      },
+      "expected": {
+        "eligible": false
+      },
+      "matched": true
+    },
+    {
+      "topic": "SIG-20261127-002",
+      "name": "changed_program",
+      "inputs": {
+        "passes": 8,
+        "coverage": 15,
+        "verdict": "verified",
+        "sound": true,
+        "changedProgram": true,
+        "laterFailure": false
+      },
+      "actual": {
+        "eligible": false,
+        "facts": {
+          "attempt": "task_1",
+          "dev_seeds": 15,
+          "dev_covered": 0,
+          "dev_passes": 0,
+          "verify_dir": "verification\\task_1",
+          "verdict": "verified",
+          "verify_passes": "8/15",
+          "sound_proposals": [
+            "synthetic proposal"
+          ]
+        },
+        "reasons": [
+          "fix_code.py (this exact file) has no finished run on development seeds [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]",
+          "development 0/15 is below 8/15"
+        ]
+      },
+      "expected": {
+        "eligible": false
+      },
+      "matched": true
+    },
+    {
+      "topic": "SIG-20261127-002",
+      "name": "later_failure",
+      "inputs": {
+        "passes": 8,
+        "coverage": 15,
+        "verdict": "verified",
+        "sound": true,
+        "changedProgram": false,
+        "laterFailure": true
+      },
+      "actual": {
+        "eligible": false,
+        "facts": {
+          "attempt": "task_1",
+          "dev_seeds": 15,
+          "dev_covered": 15,
+          "dev_passes": 7,
+          "verify_dir": "verification\\task_1",
+          "verdict": "verified",
+          "verify_passes": "8/15",
+          "sound_proposals": [
+            "synthetic proposal"
+          ]
+        },
+        "reasons": [
+          "development 7/15 is below 8/15"
+        ]
+      },
+      "expected": {
+        "eligible": false
+      },
+      "matched": true
+    }
+  ],
+  "caseCount": 8,
+  "expectedOutcomesMatched": 8,
+  "limitations": [
+    "Not a full-system reproduction or independent external evidence.",
+    "Synthetic task_success booleans test admission logic, not measured robot success.",
+    "No semantic soundness check of proposed library edits was exercised.",
+    "No enterprise tenant, LLM calls, benchmark retraining or end-to-end action enforcement."
+  ],
+  "productionActivity": "Packaging of previously completed same-date Analysis evidence only. No functions or robot experiments rerun during Production.",
+  "packaging": "The original 384-member ZIP is retained locally. Public attachments use a transparent UTF-8 JSON corpus preserving every member byte-for-byte; the public ZIP inspector permits at most 256 members. No observation, ordering or result was changed.",
+  "files": [
+    {
+      "file": "fixture-corpus.json",
+      "sha256": "fe66cf23cd6364d355c65ccd33a8cea0163ccbe74eb5fb0961e0239a23606c23"
+    },
+    {
+      "file": "fixture-members.json",
+      "sha256": "492b291d5f61cbe6c14d766fb0e87be92d6196059817380991e4e153cca2ec4e"
+    }
+  ],
+  "reproductionGuide": {
+    "source": "The pinned public promote.py contains sha_file, program_runs and check.",
+    "method": "The original experiment compiled those unchanged function AST bodies plus DEV_PASS_MIN and RUN_DIR with pathlib, hashlib, json, os and re available. Materialize each fixture-corpus.json member utf8 value at its path using UTF-8 without newline changes. For each named fixture root, call check(root, root/task_1, True) and inspect facts and reasons. Empty reasons mean eligible.",
+    "fixtureMeaning": "All task_success booleans were preset. Source program.py files were never executed.",
+    "coverage": "Eight fixture roots, 384 member files. The corpus contains these eight Skeptic admission cases only.",
+    "verification": "Verify each UTF-8 member against its SHA-256 and fixture-members.json; this is package integrity, not a robot reproduction."
+  }
+}
