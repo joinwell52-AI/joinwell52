@@ -41,15 +41,15 @@ That change prompted us to run an equipment-list assignment in CodeFlowMu, a sys
 
 ## The guide lists two tools. The environment supplies one.
 
-We used Codex to run three AI workers in separate sessions with the same model. Each received an identical assignment. The comparison rules and synthetic inputs stayed the same. We varied the retrieval instructions and the tools actually supplied. All three workers could read the assignment and guide and write a report. The assignments and reports went through the actual CodeFlowMu interfaces, and the completed case was submitted for review.
+We used Codex to run three AI workers in separate sessions with the same model. Each received an identical assignment. To simulate working without a terminal, we restricted the workers to the provided MCP tools. The comparison rules and synthetic inputs stayed the same. We varied the retrieval instructions and the tools actually supplied. All three workers could read the assignment and guide and write a report. We used CodeFlowMu’s product interfaces to process assignments and reports. The case that completed the ID comparison submitted its report for review.
 
 | Case | Method described in the guide | Retrieval tools supplied | What the worker handed back |
 | --- | --- | --- | --- |
 | 1 | Command-line steps only | No terminal and neither retrieval tool | Read neither record, filed a blocker, and left the assignment open. |
-| 2 | Instructions for both MCP calls | Register and count-sheet tools | Read both records, reported `D-02` absent from the count, and submitted for review. |
+| 2 | Instructions for both MCP calls | Register and count-sheet tools | Read both records, reported `D-02` absent from the count sheet, and submitted the report for review. |
 | 3 | Same guide as case 2 | Register tool only | Recorded the IDs it read, identified the missing count-sheet tool, and left the assignment open. |
 
-In case 2, the worker read both records. You can do the same comparison with the IDs it received.
+In case 2, the worker read both simulated records. You can do the same comparison with the IDs it received.
 
 - Register IDs: `D-01`, `D-02`, `D-03`
 - Count-sheet IDs: `D-01`, `D-03`
