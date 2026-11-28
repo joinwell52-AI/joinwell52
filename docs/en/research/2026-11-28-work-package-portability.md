@@ -31,13 +31,17 @@ The worker can read the register. Its environment supplies neither a tool for re
 
 A work package is like the operating guide you give a new employee. It says where to get the records, how to compare them, and what to hand back. A guide can tell the worker to open the count sheet. The working environment still has to provide a way to open it. If the guide supplies only commands, the worker needs a terminal to run them.
 
-MCP is a protocol that connects AI applications with external tools. In this experiment, the worker uses it to call tools that read the register and the count sheet. Paradev addressed a similar problem by adding instructions for MCP calls wherever a tool could replace a command and marking the remaining steps as requiring a local environment. The author checked tool names and parameters. Full runs in the listed shell-free chat environments remained open. [Paradev’s change and test scope](https://github.com/ParadevAI/Paradev/pull/10267)
+MCP is a protocol that connects AI applications with external tools. In this experiment, the worker uses it to call tools that read the register and the count sheet.
+
+Paradev is an open-source workspace for running multiple AI coding agents in parallel. It comes with guides that tell the AI how to carry out tasks such as looking up its assignments. Those guides originally listed terminal commands only, so a chat application connected to Paradev lacked instructions for using its available tools. [Paradev project overview](https://github.com/ParadevAI/Paradev)
+
+Paradev’s change #10267 added MCP instructions wherever an existing tool covered the step. A chat application connected to Paradev’s tools can now follow the guide and call the task-list tool to answer “What tasks are assigned to me?” Steps that still need the terminal are marked as local-only. The author checked tool names and parameters. The change was not tested end to end in Claude.ai, ChatGPT, or Grok. [Paradev #10267: Tool instructions for chat applications without a terminal](https://github.com/ParadevAI/Paradev/pull/10267)
 
 That change prompted us to run an equipment-list assignment in CodeFlowMu, a system that organizes digital workers and stores their tasks and reports. We wanted to see how the instructions and the tools actually available shaped what the worker could deliver.
 
 ## The guide lists two tools. The environment supplies one.
 
-We gave three identical assignments to separate Codex sessions using the same model. The comparison rules and synthetic inputs stayed the same. We varied the retrieval instructions and the tools actually supplied. All three workers could read the assignment and guide and write a report. The assignments and reports went through the actual CodeFlowMu interfaces, and the completed case was submitted for review.
+We used Codex to run three AI workers in separate sessions with the same model. Each received an identical assignment. The comparison rules and synthetic inputs stayed the same. We varied the retrieval instructions and the tools actually supplied. All three workers could read the assignment and guide and write a report. The assignments and reports went through the actual CodeFlowMu interfaces, and the completed case was submitted for review.
 
 | Case | Method described in the guide | Retrieval tools supplied | What the worker handed back |
 | --- | --- | --- | --- |
@@ -59,7 +63,7 @@ In case 2, the worker read both records. You can do the same comparison with the
   </picture>
 </figure>
 
-The worker in case 3 read the same guide and retrieved the register. It handed back the three IDs and explained that the environment needed a way to read the count sheet before it could complete the comparison. **It handed back useful unfinished work.** The person responsible now knows which capability to provide and which check remains.
+Cases 2 and 3 used the same guide. The only difference was whether the count-sheet tool was available. The worker in case 3 still retrieved the register. It handed back the three IDs and explained that the environment needed a way to read the count sheet before it could complete the comparison. **It handed back useful unfinished work.** The person responsible now knows which capability to provide and which check remains.
 
 ## Take one assignment into the new environment
 
