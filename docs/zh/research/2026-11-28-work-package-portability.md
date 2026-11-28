@@ -77,5 +77,5 @@ CodeFlowMu 通过 FCoP 保存可回读的工单和报告。FCoP 是基于文件�
 
 ### 实验附件
 
-- [实验报告](/assets/work-package-portability-20261128/experiment-report.html) 记录操作说明、实际工具条件、结果和限制。
-- [实际工具轨迹与报告回读](/assets/work-package-portability-20261128/results.json) 可核对每案读过什么、交回了什么，以及工单状态。
+- <a href="https://joinwell52-ai.github.io/joinwell52/assets/work-package-portability-20261128/experiment-report.html" target="_blank" rel="noopener">实验报告</a> 记录操作说明、实际工具条件、结果和限制。
+- <a href="https://joinwell52-ai.github.io/joinwell52/assets/work-package-portability-20261128/results.json" target="_blank" rel="noopener">实际工具轨迹与报告回读</a> 可核对每案读过什么、交回了什么，以及工单状态。

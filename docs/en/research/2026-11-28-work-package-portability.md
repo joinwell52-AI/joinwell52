@@ -77,5 +77,5 @@ Back to case 3. Once the count-sheet tool is available, could a different worker
 
 ### Experiment materials
 
-- [Experiment report](/assets/work-package-portability-20261128/experiment-report.html#english) records the instructions, actual tool conditions, results, and limits.
-- [Tool traces and formal report readback](/assets/work-package-portability-20261128/results.json) show what each worker read, what it handed back, and how the assignment was left.
+- <a href="https://joinwell52-ai.github.io/joinwell52/assets/work-package-portability-20261128/experiment-report.html#english" target="_blank" rel="noopener">Experiment report</a> records the instructions, actual tool conditions, results, and limits.
+- <a href="https://joinwell52-ai.github.io/joinwell52/assets/work-package-portability-20261128/results.json" target="_blank" rel="noopener">Tool traces and formal report readback</a> show what each worker read, what it handed back, and how the assignment was left.
