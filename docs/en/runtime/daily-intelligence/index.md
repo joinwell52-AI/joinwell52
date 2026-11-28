@@ -11,6 +11,7 @@ This archive preserves the public daily reports for **Agent Research & Competito
 Dates are sorted newest first in **Asia/Shanghai** time.
 
 <div class="daily-intel-list">
+<a class="daily-intel-item" href="./2026-11-28"><time>2026-11-28</time><div><strong>Agent Research & Competitor Intelligence</strong><span>50 observations, 6 analyses: recovery receipts, authority and continuous work.</span></div><b>Read the full report →</b></a>
 <a class="daily-intel-item" href="./2026-11-27"><time>2026-11-27</time><div><strong>Agent Research & Competitor Intelligence</strong><span>57 observations, 6 analyses: authority, effect recovery and coordination evidence.</span></div><b>Read full report →</b></a>
 <a class="daily-intel-item" href="./2026-11-26"><time>2026-11-26</time><div><strong>Agent Research & Competitor Intelligence</strong><span>48 observations,6 analyses: recovery,authority and independent review.</span></div><b>Read full report →</b></a>
 <a class="daily-intel-item" href="./2026-11-25"><time>2026-11-25</time><div><strong>Agent Research & Competitor Intelligence</strong><span>45 observations, 6 analyses: authority evidence, recovery and SOP handoff.</span></div><b>Read full report →</b></a>
