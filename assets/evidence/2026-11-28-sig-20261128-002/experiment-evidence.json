@@ -1,0 +1,205 @@
+{
+  "schema": "article-bounded-experiment/v1",
+  "date": "2026-11-28",
+  "id": "EXP-OAUTH",
+  "kind": "source-derived isolated function probe; not full-system reproduction",
+  "environment": {
+    "node": "v24.19.0",
+    "platform": "win32",
+    "arch": "x64"
+  },
+  "question": "Does the admitted issuer helper accept pairs rejected by literal decoded-string equality?",
+  "inputs": [
+    [
+      "exact",
+      "https://issuer.example/tenant",
+      "https://issuer.example/tenant",
+      true,
+      true
+    ],
+    [
+      "host-case",
+      "https://ISSUER.example/tenant",
+      "https://issuer.example/tenant",
+      true,
+      false
+    ],
+    [
+      "default-port",
+      "https://issuer.example:443/tenant",
+      "https://issuer.example/tenant",
+      true,
+      false
+    ],
+    [
+      "trailing-slash",
+      "https://issuer.example/tenant/",
+      "https://issuer.example/tenant",
+      true,
+      false
+    ],
+    [
+      "different-tenant",
+      "https://issuer.example/A",
+      "https://issuer.example/B",
+      false,
+      false
+    ],
+    [
+      "different-query",
+      "https://issuer.example/t?q=1",
+      "https://issuer.example/t?q=2",
+      false,
+      false
+    ],
+    [
+      "different-fragment",
+      "https://issuer.example/t#1",
+      "https://issuer.example/t#2",
+      false,
+      false
+    ],
+    [
+      "userinfo",
+      "https://user@issuer.example/t",
+      "https://issuer.example/t",
+      false,
+      false
+    ],
+    [
+      "percent-encoding",
+      "https://issuer.example/%74",
+      "https://issuer.example/t",
+      false,
+      false
+    ],
+    [
+      "non-url-identical",
+      "not-an-issuer",
+      "not-an-issuer",
+      true,
+      true
+    ],
+    [
+      "non-url-trailing",
+      "relative/",
+      "relative",
+      true,
+      false
+    ]
+  ],
+  "controls": {
+    "strict": "exact equality of already decoded strings, not a complete protocol validator",
+    "negative": "tenant/query/fragment/userinfo/encoding differences",
+    "invalid": "non-URL inputs deliberately probe helper-only validation boundary"
+  },
+  "actualOutputs": [
+    {
+      "name": "exact",
+      "a": "https://issuer.example/tenant",
+      "b": "https://issuer.example/tenant",
+      "helper": true,
+      "strictDecodedStringEquality": true
+    },
+    {
+      "name": "host-case",
+      "a": "https://ISSUER.example/tenant",
+      "b": "https://issuer.example/tenant",
+      "helper": true,
+      "strictDecodedStringEquality": false
+    },
+    {
+      "name": "default-port",
+      "a": "https://issuer.example:443/tenant",
+      "b": "https://issuer.example/tenant",
+      "helper": true,
+      "strictDecodedStringEquality": false
+    },
+    {
+      "name": "trailing-slash",
+      "a": "https://issuer.example/tenant/",
+      "b": "https://issuer.example/tenant",
+      "helper": true,
+      "strictDecodedStringEquality": false
+    },
+    {
+      "name": "different-tenant",
+      "a": "https://issuer.example/A",
+      "b": "https://issuer.example/B",
+      "helper": false,
+      "strictDecodedStringEquality": false
+    },
+    {
+      "name": "different-query",
+      "a": "https://issuer.example/t?q=1",
+      "b": "https://issuer.example/t?q=2",
+      "helper": false,
+      "strictDecodedStringEquality": false
+    },
+    {
+      "name": "different-fragment",
+      "a": "https://issuer.example/t#1",
+      "b": "https://issuer.example/t#2",
+      "helper": false,
+      "strictDecodedStringEquality": false
+    },
+    {
+      "name": "userinfo",
+      "a": "https://user@issuer.example/t",
+      "b": "https://issuer.example/t",
+      "helper": false,
+      "strictDecodedStringEquality": false
+    },
+    {
+      "name": "percent-encoding",
+      "a": "https://issuer.example/%74",
+      "b": "https://issuer.example/t",
+      "helper": false,
+      "strictDecodedStringEquality": false
+    },
+    {
+      "name": "non-url-identical",
+      "a": "not-an-issuer",
+      "b": "not-an-issuer",
+      "helper": true,
+      "strictDecodedStringEquality": true
+    },
+    {
+      "name": "non-url-trailing",
+      "a": "relative/",
+      "b": "relative",
+      "helper": true,
+      "strictDecodedStringEquality": false
+    }
+  ],
+  "conclusion": "Three valid HTTPS normalization pairs and one non-URL trailing-slash pair compare equal only under the helper. Identical non-URL input also returns true. The helper is not a URL validator; callback reachability and surrounding validators were not executed.",
+  "failures": [],
+  "limits": [
+    "No OAuth network calls, credentials, callback server, DCR, token refresh, exploit or upstream Vitest suite.",
+    "MCP normative snapshot is a separate source, not an independent effectiveness replication.",
+    "The existing callback helper was moved; do not claim these equivalences were newly introduced by this PR.",
+    "Probe binds current admitted diff bytes, not present-day branch HEAD."
+  ],
+  "provenance": "Exact measured outputs copied from completed same-date Analysis; no new experiment executed in Production.",
+  "sourceVersions": [
+    {
+      "identity": "google-gemini/gemini-cli#30454",
+      "headCommit": "c7e8d01912b897f6e1dc7c2a2765831f72b231e0",
+      "mergeCommitMetadata": "b2f046fbe32d697a19fd5ea6882e82febcfd24f2",
+      "blobSha": "2ef7514d91351a486eedb45a2dbdbc9731e792ed",
+      "blobUrl": "https://github.com/google-gemini/gemini-cli/blob/c7e8d01912b897f6e1dc7c2a2765831f72b231e0/packages%2Fcore%2Fsrc%2Fmcp%2Foauth-utils.ts",
+      "sha256": "342c422b8eb69ac07b348fc31ff4cce3558604361f397c2a0c8bbbfe4ad83810",
+      "scope": "PR head diff; merge metadata is not a checked-out merge tree"
+    },
+    {
+      "identity": "MCP authorization snapshot labelled 2026-07-28, retrieved 2026-11-28",
+      "sha256": "aaca00802b07db866a9a4e6a6076fa1099e43771176688a3e1dce31e932d422f"
+    }
+  ],
+  "extraction": {
+    "transform": "Remove export keyword and only function/local parameter-return TypeScript annotations. Preserve bodies. Node WHATWG URL supplied; no other dependency or mock.",
+    "originalTypeScript": "export function trimTrailingSlashes(value: string): string {\n  let end = value.length;\n  while (end > 0 && value.charCodeAt(end - 1) === 47 /* '/' */) {\n    end--;\n  }\n  return end === value.length ? value : value.slice(0, end);\n}\n\nexport function areIssuersEqual(issuerA: string, issuerB: string): boolean {\n  if (issuerA === issuerB && !issuerA.includes('@')) return true;\n\n  const normalize = (iss: string): string | null => {\n    try {\n      const u = new URL(iss);\n\n      // RFC 8414 & RFC 9207: Valid OAuth issuers MUST NOT contain userinfo.\n      // Discarding or accepting userinfo can enable URL confusion / mix-up attacks\n      // (e.g., https://attacker.com@github.com/login/oauth).\n      if (u.username || u.password) {\n        return null;\n      }\n\n      // Normalize trailing slashes on pathname (e.g., \"/oauth/\" -> \"/oauth\")\n      const normalizedPath = trimTrailingSlashes(u.pathname);\n\n      // Reconstruct canonical URL:\n      // - u.protocol and u.host handle lowercasing and default port removal (:443)\n      // - normalizedPath handles trailing slash equivalence\n      // - u.search and u.hash are preserved so different tenants/queries never collide\n      return `${u.protocol}//${u.host}${normalizedPath}${u.search}${u.hash}`;\n    } catch {\n      // Fallback for non-standard / relative strings\n      return trimTrailingSlashes(iss);\n    }\n  };\n\n  const normA = normalize(issuerA);\n  const normB = normalize(issuerB);\n\n  if (normA === null || normB === null) {\n    return false;\n  }\n\n  return normA === normB;\n}\n",
+    "executedJavaScript": "function trimTrailingSlashes(value) {\n  let end = value.length;\n  while (end > 0 && value.charCodeAt(end - 1) === 47 /* '/' */) {\n    end--;\n  }\n  return end === value.length ? value : value.slice(0, end);\n}\n\nfunction areIssuersEqual(issuerA, issuerB) {\n  if (issuerA === issuerB && !issuerA.includes('@')) return true;\n\n  const normalize = (iss) => {\n    try {\n      const u = new URL(iss);\n\n      // RFC 8414 & RFC 9207: Valid OAuth issuers MUST NOT contain userinfo.\n      // Discarding or accepting userinfo can enable URL confusion / mix-up attacks\n      // (e.g., https://attacker.com@github.com/login/oauth).\n      if (u.username || u.password) {\n        return null;\n      }\n\n      // Normalize trailing slashes on pathname (e.g., \"/oauth/\" -> \"/oauth\")\n      const normalizedPath = trimTrailingSlashes(u.pathname);\n\n      // Reconstruct canonical URL:\n      // - u.protocol and u.host handle lowercasing and default port removal (:443)\n      // - normalizedPath handles trailing slash equivalence\n      // - u.search and u.hash are preserved so different tenants/queries never collide\n      return `${u.protocol}//${u.host}${normalizedPath}${u.search}${u.hash}`;\n    } catch {\n      // Fallback for non-standard / relative strings\n      return trimTrailingSlashes(iss);\n    }\n  };\n\n  const normA = normalize(issuerA);\n  const normB = normalize(issuerB);\n\n  if (normA === null || normB === null) {\n    return false;\n  }\n\n  return normA === normB;\n}\n"
+  },
+  "method": "Run the extracted helper on each recorded pair and compare with exact equality of decoded strings. Outputs are inherited unchanged from Analysis; Production did not execute them."
+}
