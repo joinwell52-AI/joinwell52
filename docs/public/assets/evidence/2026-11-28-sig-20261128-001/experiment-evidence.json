@@ -1,0 +1,297 @@
+{
+  "schema": "article-bounded-experiment/v1",
+  "date": "2026-11-28",
+  "id": "EXP-PG",
+  "kind": "source-derived state-transition model experiment; not upstream runtime execution",
+  "environment": {
+    "node": "v24.19.0",
+    "platform": "win32",
+    "arch": "x64"
+  },
+  "question": "Under the stated advisory schedule, is first-write interception sufficient to prevent a same-turn unauthorized retry?",
+  "inputs": {
+    "retryCounts": [
+      1,
+      3,
+      10
+    ],
+    "authorization": "always unauthorized",
+    "initialGate": "armed"
+  },
+  "controls": {
+    "persistentGate": "counterfactual implementation in this script; not AGT",
+    "newUserTurn": "rearm",
+    "verifierException": "does not rearm in the described fail-open schedule"
+  },
+  "actualOutputs": {
+    "trials": [
+      {
+        "retries": 1,
+        "events": [
+          "unauthorized-write",
+          "unauthorized-write"
+        ],
+        "advisory": [
+          {
+            "event": "unauthorized-write",
+            "verdict": "blocked",
+            "armed": false
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "admitted",
+            "armed": false
+          }
+        ],
+        "persistentCounterfactual": [
+          {
+            "event": "unauthorized-write",
+            "verdict": "blocked",
+            "armed": true
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "blocked",
+            "armed": true
+          }
+        ]
+      },
+      {
+        "retries": 3,
+        "events": [
+          "unauthorized-write",
+          "unauthorized-write",
+          "unauthorized-write",
+          "unauthorized-write"
+        ],
+        "advisory": [
+          {
+            "event": "unauthorized-write",
+            "verdict": "blocked",
+            "armed": false
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "admitted",
+            "armed": false
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "admitted",
+            "armed": false
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "admitted",
+            "armed": false
+          }
+        ],
+        "persistentCounterfactual": [
+          {
+            "event": "unauthorized-write",
+            "verdict": "blocked",
+            "armed": true
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "blocked",
+            "armed": true
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "blocked",
+            "armed": true
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "blocked",
+            "armed": true
+          }
+        ]
+      },
+      {
+        "retries": 10,
+        "events": [
+          "unauthorized-write",
+          "unauthorized-write",
+          "unauthorized-write",
+          "unauthorized-write",
+          "unauthorized-write",
+          "unauthorized-write",
+          "unauthorized-write",
+          "unauthorized-write",
+          "unauthorized-write",
+          "unauthorized-write",
+          "unauthorized-write"
+        ],
+        "advisory": [
+          {
+            "event": "unauthorized-write",
+            "verdict": "blocked",
+            "armed": false
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "admitted",
+            "armed": false
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "admitted",
+            "armed": false
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "admitted",
+            "armed": false
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "admitted",
+            "armed": false
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "admitted",
+            "armed": false
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "admitted",
+            "armed": false
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "admitted",
+            "armed": false
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "admitted",
+            "armed": false
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "admitted",
+            "armed": false
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "admitted",
+            "armed": false
+          }
+        ],
+        "persistentCounterfactual": [
+          {
+            "event": "unauthorized-write",
+            "verdict": "blocked",
+            "armed": true
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "blocked",
+            "armed": true
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "blocked",
+            "armed": true
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "blocked",
+            "armed": true
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "blocked",
+            "armed": true
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "blocked",
+            "armed": true
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "blocked",
+            "armed": true
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "blocked",
+            "armed": true
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "blocked",
+            "armed": true
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "blocked",
+            "armed": true
+          },
+          {
+            "event": "unauthorized-write",
+            "verdict": "blocked",
+            "armed": true
+          }
+        ]
+      }
+    ],
+    "rearm": [
+      {
+        "event": "unauthorized-write",
+        "verdict": "blocked",
+        "armed": false
+      },
+      {
+        "event": "user-turn",
+        "verdict": "rearm"
+      },
+      {
+        "event": "unauthorized-write",
+        "verdict": "blocked",
+        "armed": false
+      }
+    ],
+    "exception": [
+      {
+        "event": "unauthorized-write",
+        "verdict": "blocked",
+        "armed": false
+      },
+      {
+        "event": "verifier-error",
+        "verdict": "loop-continues",
+        "armed": false
+      },
+      {
+        "event": "unauthorized-write",
+        "verdict": "admitted",
+        "armed": false
+      }
+    ]
+  },
+  "conclusion": "The explicit one-shot schedule admits each same-turn retry in this model; persistent checking blocks them under the same fixed authorization predicate. This explains a coverage difference, not measured product superiority.",
+  "failures": [],
+  "limits": [
+    "Hand-transcribed semantic model, not PolicyGuide source or the 92 author scenarios.",
+    "No LLM calls, task benchmark, saved checkpoint replay or AGT host/adaptor conformance tests.",
+    "PolicyGuide companion code/checkpoints and AGT enforcement host source are not in admitted Reading.",
+    "Constant authorization and single-thread execution omit recovery/liveness costs."
+  ],
+  "provenance": "Exact measured outputs copied from completed same-date Analysis; no new experiment executed in Production.",
+  "sourceVersions": [
+    {
+      "identity": "arxiv:2608.19861v2",
+      "sha256": "ece0b0552c26998bb3af8fcef14e3230971e125abbf689b4b6e6ac819aa622de"
+    },
+    {
+      "identity": "Microsoft AGT README byte snapshot, retrieved 2026-11-28",
+      "sha256": "3ece7ddc79fc0ec9b2f6c698e6c6a75007d840bcc4fe95bd9ac78a1ea2ba675e"
+    }
+  ],
+  "method": "Start armed. For unauthorized-write, block and disarm if armed, otherwise admit. A user-turn event rearms; verifier-error leaves the state unchanged. The persistent counterfactual always checks. Outputs are inherited unchanged from Analysis."
+}
